@@ -5,6 +5,7 @@ description: This tutorial demonstrates how to build an ASP.NET Core app using O
 ms.author: riande
 ms.custom: mvc
 ms.date: 01/23/2020
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/social/index
 ---
 # Facebook, Google, and external provider authentication in ASP.NET Core

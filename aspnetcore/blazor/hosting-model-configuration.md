@@ -5,23 +5,273 @@ description: Learn about Blazor hosting model configuration, including how to in
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/12/2020
-no-loc: [Blazor, SignalR]
+ms.date: 05/04/2020
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/hosting-model-configuration
 ---
 # ASP.NET Core Blazor hosting model configuration
 
-By [Daniel Roth](https://github.com/danroth27)
+By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.com/guardrex)
 
 [!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
 This article covers hosting model configuration.
 
-<!-- For future use:
-
 ## Blazor WebAssembly
 
--->
+### Environment
+
+When running an app locally, the environment defaults to Development. When the app is published, the environment defaults to Production.
+
+A hosted Blazor WebAssembly app picks up the environment from the server via a middleware that communicates the environment to the browser by adding the `blazor-environment` header. The value of the header is the environment. The hosted Blazor app and the server app share the same environment. For more information, including how to configure the environment, see <xref:fundamentals/environments>.
+
+For a standalone app running locally, the development server adds the `blazor-environment` header to specify the Development environment. To specify the environment for other hosting environments, add the `blazor-environment` header.
+
+In the following example for IIS, add the custom header to the published *web.config* file. The *web.config* file is located in the *bin/Release/{TARGET FRAMEWORK}/publish* folder:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <system.webServer>
+
+    ...
+
+    <httpProtocol>
+      <customHeaders>
+        <add name="blazor-environment" value="Staging" />
+      </customHeaders>
+    </httpProtocol>
+  </system.webServer>
+</configuration>
+```
+
+> [!NOTE]
+> To use a custom *web.config* file for IIS that isn't overwritten when the app is published to the *publish* folder, see <xref:host-and-deploy/blazor/webassembly#use-a-custom-webconfig>.
+
+Obtain the app's environment in a component by injecting `IWebAssemblyHostEnvironment` and reading the `Environment` property:
+
+```razor
+@page "/"
+@using Microsoft.AspNetCore.Components.WebAssembly.Hosting
+@inject IWebAssemblyHostEnvironment HostEnvironment
+
+<h1>Environment example</h1>
+
+<p>Environment: @HostEnvironment.Environment</p>
+```
+
+During startup, the `WebAssemblyHostBuilder` exposes the `IWebAssemblyHostEnvironment` through the `HostEnvironment` property, which enables developers to have environment-specific logic in their code:
+
+```csharp
+if (builder.HostEnvironment.Environment == "Custom")
+{
+    ...
+};
+```
+
+The following convenience extension methods permit checking the current environment for Development, Production, Staging, and custom environment names:
+
+* `IsDevelopment()`
+* `IsProduction()`
+* `IsStaging()`
+* `IsEnvironment("{ENVIRONMENT NAME}")
+
+```csharp
+if (builder.HostEnvironment.IsStaging())
+{
+    ...
+};
+
+if (builder.HostEnvironment.IsEnvironment("Custom"))
+{
+    ...
+};
+```
+
+The `IWebAssemblyHostEnvironment.BaseAddress` property can be used during startup when the `NavigationManager` service isn't available.
+
+### Configuration
+
+Blazor WebAssembly loads configuration from:
+
+* App settings files by default:
+  * *wwwroot/appsettings.json*
+  * *wwwroot/appsettings.{ENVIRONMENT}.json*
+* Other [configuration providers](xref:fundamentals/configuration/index) registered by the app. Not all providers are appropriate for Blazor WebAssembly apps. Clarification on which providers are supported for Blazor WebAssembly is tracked by [Clarify configuration providers for Blazor WASM (dotnet/AspNetCore.Docs #18134)](https://github.com/dotnet/AspNetCore.Docs/issues/18134).
+
+> [!WARNING]
+> Configuration in a Blazor WebAssembly app is visible to users. **Don't store app secrets or credentials in configuration.**
+
+For more information on configuration providers, see <xref:fundamentals/configuration/index>.
+
+#### App settings configuration
+
+*wwwroot/appsettings.json*:
+
+```json
+{
+  "message": "Hello from config!"
+}
+```
+
+Inject an <xref:Microsoft.Extensions.Configuration.IConfiguration> instance into a component to access the configuration data:
+
+```razor
+@page "/"
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+
+<h1>Configuration example</h1>
+
+<p>Message: @Configuration["message"]</p>
+```
+
+#### Provider configuration
+
+The following example uses a <xref:Microsoft.Extensions.Configuration.Memory.MemoryConfigurationSource> to supply additional configuration:
+
+`Program.Main`:
+
+```csharp
+using Microsoft.Extensions.Configuration.Memory;
+
+...
+
+var vehicleData = new Dictionary<string, string>()
+{
+    { "color", "blue" },
+    { "type", "car" },
+    { "wheels:count", "3" },
+    { "wheels:brand", "Blazin" },
+    { "wheels:brand:type", "rally" },
+    { "wheels:year", "2008" },
+};
+
+var memoryConfig = new MemoryConfigurationSource { InitialData = vehicleData };
+
+...
+
+builder.Configuration.Add(memoryConfig);
+```
+
+Inject an <xref:Microsoft.Extensions.Configuration.IConfiguration> instance into a component to access the configuration data:
+
+```razor
+@page "/"
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+
+<h1>Configuration example</h1>
+
+<h2>Wheels</h2>
+
+<ul>
+    <li>Count: @Configuration["wheels:count"]</li>
+    <li>Brand: @Configuration["wheels:brand"]</li>
+    <li>Type: @Configuration["wheels:brand:type"]</li>
+    <li>Year: @Configuration["wheels:year"]</li>
+</ul>
+
+@code {
+    var wheelsSection = Configuration.GetSection("wheels");
+    
+    ...
+}
+```
+
+To read other configuration files from the *wwwroot* folder into configuration, use an `HttpClient` to obtain the file's content. When using this approach, the existing `HttpClient` service registration can use the local client created to read the file, as the following example shows:
+
+*wwwroot/cars.json*:
+
+```json
+{
+    "size": "tiny"
+}
+```
+
+`Program.Main`:
+
+```csharp
+using Microsoft.Extensions.Configuration;
+
+...
+
+var client = new HttpClient()
+{
+    BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
+};
+
+builder.Services.AddTransient(sp => client);
+
+using var response = await client.GetAsync("cars.json");
+using var stream = await response.Content.ReadAsStreamAsync();
+
+builder.Configuration.AddJsonStream(stream);
+```
+
+#### Authentication configuration
+
+*wwwroot/appsettings.json*:
+
+```json
+{
+  "AzureAD": {
+    "Authority": "https://login.microsoftonline.com/",
+    "ClientId": "aeaebf0f-d416-4d92-a08f-e1d5b51fc494"
+  }
+}
+```
+
+`Program.Main`:
+
+```csharp
+builder.Services.AddOidcAuthentication(options =>
+    builder.Configuration.Bind("AzureAD", options);
+```
+
+#### Logging configuration
+
+*wwwroot/appsettings.json*:
+
+```json
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft": "Warning",
+      "Microsoft.Hosting.Lifetime": "Information"
+    }
+  }
+}
+```
+
+`Program.Main`:
+
+```csharp
+builder.Logging.AddConfiguration(
+    builder.Configuration.GetSection("Logging"));
+```
+
+#### Host builder configuration
+
+`Program.Main`:
+
+```csharp
+var hostname = builder.Configuration["HostName"];
+```
+
+#### Cached configuration
+
+Configuration files are cached for offline use. With [Progressive Web Applications (PWAs)](xref:blazor/progressive-web-app), you can only update configuration files when creating a new deployment. Editing configuration files between deployments has no effect because:
+
+* Users have cached versions of the files that they continue to use.
+* The PWA's *service-worker.js* and *service-worker-assets.js* files must be rebuilt on compilation, which signal to the app on the user's next online visit that the app has been redeployed.
+
+For more information on how background updates are handled by PWAs, see <xref:blazor/progressive-web-app#background-updates>.
+
+### Logging
+
+For information on Blazor WebAssembly logging support, see <xref:fundamentals/logging/index#create-logs-in-blazor>.
 
 ## Blazor Server
 
@@ -73,53 +323,6 @@ Blazor Server apps are set up by default to prerender the UI on the server befor
 
 Rendering server components from a static HTML page isn't supported.
 
-### Render stateful interactive components from Razor pages and views
-
-Stateful interactive components can be added to a Razor page or view.
-
-When the page or view renders:
-
-* The component is prerendered with the page or view.
-* The initial component state used for prerendering is lost.
-* New component state is created when the SignalR connection is established.
-
-The following Razor page renders a `Counter` component:
-
-```cshtml
-<h1>My Razor Page</h1>
-
-<component type="typeof(Counter)" render-mode="ServerPrerendered" 
-    param-InitialValue="InitialValue" />
-
-@code {
-    [BindProperty(SupportsGet=true)]
-    public int InitialValue { get; set; }
-}
-```
-
-### Render noninteractive components from Razor pages and views
-
-In the following Razor page, the `Counter` component is statically rendered with an initial value that's specified using a form:
-
-```cshtml
-<h1>My Razor Page</h1>
-
-<form>
-    <input type="number" asp-for="InitialValue" />
-    <button type="submit">Set initial value</button>
-</form>
-
-<component type="typeof(Counter)" render-mode="Static" 
-    param-InitialValue="InitialValue" />
-
-@code {
-    [BindProperty(SupportsGet=true)]
-    public int InitialValue { get; set; }
-}
-```
-
-Since `MyComponent` is statically rendered, the component can't be interactive.
-
 ### Configure the SignalR client for Blazor Server apps
 
 Sometimes, you need to configure the SignalR client used by Blazor Server apps. For example, you might want to configure logging on the SignalR client to diagnose a connection issue.
@@ -139,3 +342,7 @@ To configure the SignalR client in the *Pages/_Host.cshtml* file:
   });
 </script>
 ```
+
+### Logging
+
+For information on Blazor Server logging support, see <xref:fundamentals/logging/index#create-logs-in-blazor>.

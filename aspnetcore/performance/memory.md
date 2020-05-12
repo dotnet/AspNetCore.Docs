@@ -4,7 +4,8 @@ author: rick-anderson
 description: Learn how memory is managed in ASP.NET Core and how the garbage collector (GC) works.
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/05/2019
+ms.date: 4/05/2019
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: performance/memory
 ---
 
@@ -147,6 +148,12 @@ The differences between this chart and the server version are significant:
 - GC drops from 300 MB to 10 MB.
 
 On a typical web server environment, CPU usage is more important than memory, therefore the Server GC is better. If memory utilization is high and CPU usage is relatively low, the Workstation GC might be more performant. For example, high density hosting several web apps where memory is scarce.
+
+<a name="sc"></a>
+
+### GC using Docker and small containers
+
+When multiple containerized apps are running on one machine, Workstation GC might be more preformant than Server GC. For more information, see [Running with Server GC in a Small Container](https://devblogs.microsoft.com/dotnet/running-with-server-gc-in-a-small-container-scenario-part-0/) and [Running with Server GC in a Small Container Scenario Part 1 – Hard Limit for the GC Heap](https://devblogs.microsoft.com/dotnet/running-with-server-gc-in-a-small-container-scenario-part-1-hard-limit-for-the-gc-heap/).
 
 ### Persistent object references
 

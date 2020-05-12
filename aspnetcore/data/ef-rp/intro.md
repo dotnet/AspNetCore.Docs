@@ -5,6 +5,7 @@ description: Shows how to create a Razor Pages app using Entity Framework Core
 ms.author: riande
 ms.custom: "mvc, seodec18"
 ms.date: 09/26/2019
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: data/ef-rp/intro
 ---
 
@@ -60,7 +61,6 @@ Follow the link at the top of the page to get the source code for the completed 
 
 To run the app after downloading the completed project:
 
-* Delete three files and one folder that have *SQLite* in the name.
 * Build the project.
 * In Package Manager Console (PMC) run the following command:
 
@@ -78,6 +78,7 @@ To run the app after downloading the completed project:
 * Delete *Startup.cs*, and rename *StartupSQLite.cs* to *Startup.cs*.
 * Delete *appSettings.json*, and rename *appSettingsSQLite.json* to *appSettings.json*.
 * Delete the *Migrations* folder, and rename *MigrationsSQL* to *Migrations*.
+* Do a global search for `#if SQLiteVersion` and remove `#if SQLiteVersion` and the associated `#endif` statement.
 * Build the project.
 * At a command prompt in the project folder, run the following commands:
 
@@ -154,7 +155,7 @@ A student can enroll in any number of courses, and a course can have any number 
 
   [!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Models/Student.cs)]
 
-The `ID` property becomes the primary key column of the database table that corresponds to this class. By default, EF Core interprets a property that's named `ID` or `classnameID` as the primary key. So the alternative automatically recognized name for the `Student` class primary key is `StudentID`.
+The `ID` property becomes the primary key column of the database table that corresponds to this class. By default, EF Core interprets a property that's named `ID` or `classnameID` as the primary key. So the alternative automatically recognized name for the `Student` class primary key is `StudentID`. For more information, see [EF Core - Keys](/ef/core/modeling/keys?tabs=data-annotations).
 
 The `Enrollments` property is a [navigation property](/ef/core/modeling/relationships). Navigation properties hold other entities that are related to this entity. In this case, the `Enrollments` property of a `Student` entity holds all of the `Enrollment` entities that are related to that Student. For example, if a Student row in the database has two related Enrollment rows, the `Enrollments` navigation property contains those two Enrollment entities. 
 
@@ -362,7 +363,7 @@ Later in the tutorial series, you delete the database that was created by `Ensur
 The `EnsureCreated` method creates an empty database. This section adds code that populates the database with test data.
 
 Create *Data/DbInitializer.cs* with the following code:
-
+<!-- next update, keep this file in the project and surround with #if -->
   [!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Data/DbInitializer.cs)]
 
   The code checks if there are any students in the database. If there are no students, it adds test data to the database. It creates the test data in arrays rather than `List<T>` collections to optimize performance.

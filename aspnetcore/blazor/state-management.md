@@ -5,8 +5,8 @@ description: Learn how to persist state in Blazor Server apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/18/2019
-no-loc: [Blazor, SignalR]
+ms.date: 03/17/2020
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/state-management
 ---
 # ASP.NET Core Blazor state management
@@ -164,26 +164,26 @@ The choice depends on which backing store you wish to use. In the following exam
 
 The `@using` statement can be placed into an *_Imports.razor* file instead of in the component. Use of the *_Imports.razor* file makes the namespace available to larger segments of the app or the whole app.
 
-To persist the `_currentCount` value in the `Counter` component of the project template, modify the `IncrementCount` method to use `ProtectedSessionStore.SetAsync`:
+To persist the `currentCount` value in the `Counter` component of the project template, modify the `IncrementCount` method to use `ProtectedSessionStore.SetAsync`:
 
 ```csharp
 private async Task IncrementCount()
 {
-    _currentCount++;
-    await ProtectedSessionStore.SetAsync("count", _currentCount);
+    currentCount++;
+    await ProtectedSessionStore.SetAsync("count", currentCount);
 }
 ```
 
 In larger, more realistic apps, storage of individual fields is an unlikely scenario. Apps are more likely to store entire model objects that include complex state. `ProtectedSessionStore` automatically serializes and deserializes JSON data.
 
-In the preceding code example, the `_currentCount` data is stored as `sessionStorage['count']` in the user's browser. The data isn't stored in plaintext but rather is protected using ASP.NET Core's [Data Protection](xref:security/data-protection/introduction). The encrypted data can be seen if `sessionStorage['count']` is evaluated in the browser's developer console.
+In the preceding code example, the `currentCount` data is stored as `sessionStorage['count']` in the user's browser. The data isn't stored in plaintext but rather is protected using ASP.NET Core's [Data Protection](xref:security/data-protection/introduction). The encrypted data can be seen if `sessionStorage['count']` is evaluated in the browser's developer console.
 
-To recover the `_currentCount` data if the user returns to the `Counter` component later (including if they're on an entirely new circuit), use `ProtectedSessionStore.GetAsync`:
+To recover the `currentCount` data if the user returns to the `Counter` component later (including if they're on an entirely new circuit), use `ProtectedSessionStore.GetAsync`:
 
 ```csharp
 protected override async Task OnInitializedAsync()
 {
-    _currentCount = await ProtectedSessionStore.GetAsync<int>("count");
+    currentCount = await ProtectedSessionStore.GetAsync<int>("count");
 }
 ```
 
@@ -200,18 +200,18 @@ If the component's parameters include navigation state, call `ProtectedSessionSt
 
 Since browser storage is asynchronous (accessed over a network connection), there's always a period of time before the data is loaded and available for use by a component. For the best results, render a loading-state message while loading is in progress instead of displaying blank or default data.
 
-One approach is to track whether the data is `null` (still loading) or not. In the default `Counter` component, the count is held in an `int`. Make `_currentCount` nullable by adding a question mark (`?`) to the type (`int`):
+One approach is to track whether the data is `null` (still loading) or not. In the default `Counter` component, the count is held in an `int`. Make `currentCount` nullable by adding a question mark (`?`) to the type (`int`):
 
 ```csharp
-private int? _currentCount;
+private int? currentCount;
 ```
 
 Instead of unconditionally displaying the count and **Increment** button, choose to display these elements only if the data is loaded:
 
 ```razor
-@if (_currentCount.HasValue)
+@if (currentCount.HasValue)
 {
-    <p>Current count: <strong>@_currentCount</strong></p>
+    <p>Current count: <strong>@currentCount</strong></p>
 
     <button @onclick="IncrementCount">Increment</button>
 }
@@ -234,7 +234,7 @@ During prerendering:
 
 One way to resolve the error is to disable prerendering. This is usually the best choice if the app makes heavy use of browser-based storage. Prerendering adds complexity and doesn't benefit the app because the app can't prerender any useful content until `localStorage` or `sessionStorage` are available.
 
-To disable prerendering, open the *Pages/_Host.cshtml* file and change the call to `render-mode` of the `Component` Tag Helper to `Server`.
+To disable prerendering, open the *Pages/_Host.cshtml* file and change the `render-mode` of the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) to <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server>.
 
 Prerendering might be useful for other pages that don't use `localStorage` or `sessionStorage`. To keep prerendering enabled, defer the loading operation until the browser is connected to the circuit. The following is an example for storing a counter value:
 
@@ -245,8 +245,8 @@ Prerendering might be useful for other pages that don't use `localStorage` or `s
 ... rendering code goes here ...
 
 @code {
-    private int? _currentCount;
-    private bool _isConnected = false;
+    private int? currentCount;
+    private bool isConnected = false;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -254,7 +254,7 @@ Prerendering might be useful for other pages that don't use `localStorage` or `s
         {
             // When execution reaches this point, the first *interactive* render
             // is complete. The component has an active connection to the browser.
-            _isConnected = true;
+            isConnected = true;
             await LoadStateAsync();
             StateHasChanged();
         }
@@ -262,13 +262,13 @@ Prerendering might be useful for other pages that don't use `localStorage` or `s
 
     private async Task LoadStateAsync()
     {
-        _currentCount = await ProtectedLocalStore.GetAsync<int>("prerenderedCount");
+        currentCount = await ProtectedLocalStore.GetAsync<int>("prerenderedCount");
     }
 
     private async Task IncrementCount()
     {
-        _currentCount++;
-        await ProtectedSessionStore.SetAsync("count", _currentCount);
+        currentCount++;
+        await ProtectedSessionStore.SetAsync("count", currentCount);
     }
 }
 ```
@@ -283,7 +283,7 @@ In the following example of a `CounterStateProvider` component, counter data is 
 @using Microsoft.AspNetCore.ProtectedBrowserStorage
 @inject ProtectedSessionStorage ProtectedSessionStore
 
-@if (_hasLoaded)
+@if (hasLoaded)
 {
     <CascadingValue Value="@this">
         @ChildContent
@@ -295,7 +295,7 @@ else
 }
 
 @code {
-    private bool _hasLoaded;
+    private bool hasLoaded;
 
     [Parameter]
     public RenderFragment ChildContent { get; set; }
@@ -305,7 +305,7 @@ else
     protected override async Task OnInitializedAsync()
     {
         CurrentCount = await ProtectedSessionStore.GetAsync<int>("count");
-        _hasLoaded = true;
+        hasLoaded = true;
     }
 
     public async Task SaveChangesAsync()

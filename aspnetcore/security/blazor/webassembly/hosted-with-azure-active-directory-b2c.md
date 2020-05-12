@@ -5,8 +5,8 @@ description:
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/09/2020
-no-loc: [Blazor, SignalR]
+ms.date: 05/11/2020
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/blazor/webassembly/hosted-with-azure-active-directory-b2c
 ---
 # Secure an ASP.NET Core Blazor WebAssembly hosted app with Azure Active Directory B2C
@@ -52,6 +52,7 @@ In **Expose an API**:
 Record the following information:
 
 * *Server API app* Application ID (Client ID) (for example, `11111111-1111-1111-1111-111111111111`)
+* App ID URI (for example, `https://contoso.onmicrosoft.com/11111111-1111-1111-1111-111111111111`, `api://11111111-1111-1111-1111-111111111111`, or the custom value that you provided)
 * Directory ID (Tenant ID) (for example, `222222222-2222-2222-2222-222222222222`)
 * *Server API app* App ID URI (for example, `https://contoso.onmicrosoft.com/11111111-1111-1111-1111-111111111111`, the Azure portal might default the value to the Client ID)
 * Default scope (for example, `API.Access`)
@@ -88,6 +89,8 @@ In **Home** > **Azure AD B2C** > **User flows**:
 
 [Create a sign-up and sign-in user flow](/azure/active-directory-b2c/tutorial-create-user-flows)
 
+At a minimum, select the **Application claims** > **Display Name** user attribute to populate the `context.User.Identity.Name` in the `LoginDisplay` component (*Shared/LoginDisplay.razor*).
+
 Record the following information:
 
 * Record the *Client app* Application ID (Client ID) (for example, `33333333-3333-3333-3333-333333333333`).
@@ -98,10 +101,13 @@ Record the following information:
 Replace the placeholders in the following command with the information recorded earlier and execute the command in a command shell:
 
 ```dotnetcli
-dotnet new blazorwasm -au IndividualB2C --aad-b2c-instance "{AAD B2C INSTANCE}" --api-client-id "{SERVER API APP CLIENT ID}" --app-id-uri "{APP ID URI}" --client-id "{CLIENT APP CLIENT ID}" --default-scope "{DEFAULT SCOPE}" --domain "{DOMAIN}" -ho -ssp "{SIGN UP OR SIGN IN POLICY}" --tenant-id "{TENANT ID}"
+dotnet new blazorwasm -au IndividualB2C --aad-b2c-instance "{AAD B2C INSTANCE}" --api-client-id "{SERVER API APP CLIENT ID}" --app-id-uri "{SERVER API APP ID URI}" --client-id "{CLIENT APP CLIENT ID}" --default-scope "{DEFAULT SCOPE}" --domain "{DOMAIN}" -ho -ssp "{SIGN UP OR SIGN IN POLICY}" --tenant-id "{TENANT ID}"
 ```
 
 To specify the output location, which creates a project folder if it doesn't exist, include the output option in the command with a path (for example, `-o BlazorSample`). The folder name also becomes part of the project's name.
+
+> [!NOTE]
+> Pass the App ID URI to the `app-id-uri` option, but note a configuration change might be required in the client app, which is described in the [Access token scopes](#access-token-scopes) section.
 
 ## Server app configuration
 
@@ -109,20 +115,20 @@ To specify the output location, which creates a project folder if it doesn't exi
 
 ### Authentication package
 
-The support for authenticating and authorizing calls to ASP.NET Core Web APIs is provided by the `Microsoft.AspNetCore.Authentication.AzureAD.UI`:
+The support for authenticating and authorizing calls to ASP.NET Core Web APIs is provided by the `Microsoft.AspNetCore.Authentication.AzureADB2C.UI`:
 
 ```xml
-<PackageReference Include="Microsoft.AspNetCore.Authentication.AzureAD.UI" 
-    Version="3.1.0" />
+<PackageReference Include="Microsoft.AspNetCore.Authentication.AzureADB2C.UI" 
+    Version="{VERSION}" />
 ```
 
 ### Authentication service support
 
-The `AddAuthentication` method sets up authentication services within the app and configures the JWT Bearer handler as the default authentication method. The `AddAzureADBearer` method sets up the specific parameters in the JWT Bearer handler required to validate tokens emitted by the Azure Active Directory:
+The `AddAuthentication` method sets up authentication services within the app and configures the JWT Bearer handler as the default authentication method. The `AddAzureADB2CBearer` method sets up the specific parameters in the JWT Bearer handler required to validate tokens emitted by the Azure Active Directory B2C:
 
 ```csharp
-services.AddAuthentication(AzureADDefaults.BearerAuthenticationScheme)
-    .AddAzureADBearer(options => Configuration.Bind("AzureAd", options));
+services.AddAuthentication(AzureADB2CDefaults.BearerAuthenticationScheme)
+    .AddAzureADB2CBearer(options => Configuration.Bind("AzureAdB2C", options));
 ```
 
 `UseAuthentication` and `UseAuthorization` ensure that:
@@ -135,17 +141,44 @@ app.UseAuthentication();
 app.UseAuthorization();
 ```
 
+### User.Identity.Name
+
+By default, the `User.Identity.Name` isn't populated.
+
+To configure the app to receive the value from the `name` claim type, configure the [TokenValidationParameters.NameClaimType](xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.NameClaimType) of the <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions> in `Startup.ConfigureServices`:
+
+```csharp
+services.Configure<JwtBearerOptions>(
+    AzureADB2CDefaults.JwtBearerAuthenticationScheme, options =>
+    {
+        options.TokenValidationParameters.NameClaimType = "name";
+    });
+```
+
 ### App settings
 
 The *appsettings.json* file contains the options to configure the JWT bearer handler used to validate access tokens.
 
 ```json
 {
-  "AzureAd": {
-    "Instance": "https://login.microsoftonline.com/",
-    "ClientId": "{API CLIENT ID}",
+  "AzureAdB2C": {
+    "Instance": "https://{ORGANIZATION}.b2clogin.com/",
+    "ClientId": "{SERVER API APP CLIENT ID}",
     "Domain": "{DOMAIN}",
     "SignUpSignInPolicyId": "{SIGN UP OR SIGN IN POLICY}"
+  }
+}
+```
+
+Example:
+
+```json
+{
+  "AzureAdB2C": {
+    "Instance": "https://contoso.b2clogin.com/",
+    "ClientId": "41451fa7-82d9-4673-8fa5-69eff5a761fd",
+    "Domain": "contoso.onmicrosoft.com",
+    "SignUpSignInPolicyId": "B2C_1_signupsignin1",
   }
 }
 ```
@@ -192,6 +225,19 @@ The `Microsoft.Authentication.WebAssembly.Msal` package transitively adds the `M
 
 ### Authentication service support
 
+Support for `HttpClient` instances is added that include access tokens when making requests to the server project.
+
+*Program.cs*:
+
+```csharp
+builder.Services.AddHttpClient("{APP ASSEMBLY}.ServerAPI", client => 
+        client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))
+    .AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
+
+builder.Services.AddTransient(sp => sp.GetRequiredService<IHttpClientFactory>()
+    .CreateClient("{APP ASSEMBLY}.ServerAPI"));
+```
+
 Support for authenticating users is registered in the service container with the `AddMsalAuthentication` extension method provided by the `Microsoft.Authentication.WebAssembly.Msal` package. This method sets up all of the services required for the app to interact with the Identity Provider (IP).
 
 *Program.cs*:
@@ -199,19 +245,38 @@ Support for authenticating users is registered in the service container with the
 ```csharp
 builder.Services.AddMsalAuthentication(options =>
 {
-    var authentication = options.ProviderOptions.Authentication;
-    authentication.Authority = 
-        "{AAD B2C INSTANCE}{DOMAIN}/{SIGN UP OR SIGN IN POLICY}";
-    authentication.ClientId = "{CLIENT ID}";
-    authentication.ValidateAuthority = false;
-    options.ProviderOptions.DefaultAccessTokenScopes.Add(
-        "{APP ID URI}/{DEFAULT SCOPE}");
+    builder.Configuration.Bind("AzureAdB2C", options.ProviderOptions.Authentication);
+    options.ProviderOptions.DefaultAccessTokenScopes.Add("{SCOPE URI}");
 });
 ```
 
 The `AddMsalAuthentication` method accepts a callback to configure the parameters required to authenticate an app. The values required for configuring the app can be obtained from the Azure Portal AAD configuration when you register the app.
 
-The Blazor WebAssembly template automatically configures the app to request an access token for a secure API for the default scope provided to the `dotnet new` command (`{APP ID URI}/{DEFAULT SCOPE}`).
+Configuration is supplied by the *wwwroot/appsettings.json* file:
+
+```json
+{
+  "AzureAdB2C": {
+    "Authority": "{AAD B2C INSTANCE}{DOMAIN}/{SIGN UP OR SIGN IN POLICY}",
+    "ClientId": "{CLIENT APP CLIENT ID}",
+    "ValidateAuthority": false
+  }
+}
+```
+
+Example:
+
+```json
+{
+  "AzureAdB2C": {
+    "Authority": "https://contoso.b2clogin.com/contoso.onmicrosoft.com/B2C_1_signupsignin1",
+    "ClientId": "4369008b-21fa-427c-abaa-9b53bf58e538",
+    "ValidateAuthority": false
+  }
+}
+```
+
+### Access token scopes
 
 The default access token scopes represent the list of access token scopes that are:
 
@@ -224,14 +289,36 @@ All scopes must belong to the same app per Azure Active Directory rules. Additio
 builder.Services.AddMsalAuthentication(options =>
 {
     ...
-    options.ProviderOptions.DefaultAccessTokenScopes.Add(
-        "{APP ID URI}/{SCOPE}");
+    options.ProviderOptions.DefaultAccessTokenScopes.Add("{SCOPE URI}");
 });
 ```
 
+> [!NOTE]
+> If the Azure portal provides a scope URI and **the app throws an unhandled exception** when it receives a *401 Unauthorized* response from the API, try using a scope URI that doesn't include the scheme and host. For example, the Azure portal may provide one of the following scope URI formats:
+>
+> * `https://{ORGANIZATION}.onmicrosoft.com/{API CLIENT ID OR CUSTOM VALUE}/{SCOPE NAME}`
+> * `api://{API CLIENT ID OR CUSTOM VALUE}/{SCOPE NAME}`
+>
+> Supply the scope URI without the scheme and host:
+>
+> ```csharp
+> options.ProviderOptions.DefaultAccessTokenScopes.Add(
+>     "{API CLIENT ID OR CUSTOM VALUE}/{SCOPE NAME}");
+> ```
+
+For more information, see the following sections of the *Additional scenarios* article:
+
+* [Request additional access tokens](xref:security/blazor/webassembly/additional-scenarios#request-additional-access-tokens)
+* [Attach tokens to outgoing requests](xref:security/blazor/webassembly/additional-scenarios#attach-tokens-to-outgoing-requests)
+
+
+### Imports file
+
+[!INCLUDE[](~/includes/blazor-security/imports-file-hosted.md)]
+
 ### Index page
 
-[!INCLUDE[](~/includes/blazor-security/index-page.md)]
+[!INCLUDE[](~/includes/blazor-security/index-page-msal.md)]
 
 ### App component
 
@@ -253,9 +340,22 @@ builder.Services.AddMsalAuthentication(options =>
 
 [!INCLUDE[](~/includes/blazor-security/fetchdata-component.md)]
 
+## Run the app
+
+Run the app from the Server project. When using Visual Studio, select the Server project in **Solution Explorer** and select the **Run** button in the toolbar or start the app from the **Debug** menu.
+
+<!-- HOLD
+[!INCLUDE[](~/includes/blazor-security/usermanager-signinmanager.md)]
+-->
+
+[!INCLUDE[](~/includes/blazor-security/wasm-aad-b2c-userflows.md)]
+
 [!INCLUDE[](~/includes/blazor-security/troubleshoot.md)]
 
 ## Additional resources
 
+* <xref:security/blazor/webassembly/additional-scenarios>
+* [Unauthenticated or unauthorized web API requests in an app with a secure default client](xref:security/blazor/webassembly/additional-scenarios#unauthenticated-or-unauthorized-web-api-requests-in-an-app-with-a-secure-default-client)
 * <xref:security/authentication/azure-ad-b2c>
 * [Tutorial: Create an Azure Active Directory B2C tenant](/azure/active-directory-b2c/tutorial-create-tenant)
+* [Microsoft identity platform documentation](/azure/active-directory/develop/)

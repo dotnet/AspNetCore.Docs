@@ -5,6 +5,7 @@ description: In this tutorial you read and display related data -- that is, data
 ms.author: riande
 ms.custom: mvc
 ms.date: 09/28/2019
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: data/ef-rp/read-related-data
 ---
 
@@ -131,6 +132,8 @@ The `OnGetAsync` method loads related data with the `Include` method. The `Selec
 The following code loads related data with the `Select` method:
 
 [!code-csharp[](intro/samples/cu30snapshots/6-related/Pages/Courses/IndexSelect.cshtml.cs?name=snippet_RevisedIndexMethod&highlight=6)]
+
+The preceding code doesn't return any entity types, therefore no tracking is done. For more information about the EF tracking, see [Tracking vs. No-Tracking Queries](/ef/core/querying/tracking).
 
 The `CourseViewModel`:
 

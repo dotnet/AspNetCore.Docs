@@ -5,10 +5,22 @@ description: Learn how to host ASP.NET Core apps on Windows Server Internet Info
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/07/2020
+ms.date: 5/7/2020
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: host-and-deploy/iis/index
 ---
 # Host ASP.NET Core on Windows with IIS
+
+<!-- 
+
+    NOTE FOR 5.0
+    
+    When making the 5.0 version of this topic, remove the Hosting Bundle
+    direct download section from the (new) <5.0 & >2.2 version and modify 
+    the text and heading for the *Earlier versions of the installer* 
+    section. See the 2.2 version for an example.
+    
+-->
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -37,6 +49,8 @@ Apps published for 32-bit (x86) or 64-bit (x64) deployment are supported. Deploy
 * Requires the larger IIS stack size.
 * Has 64-bit native dependencies.
 
+Apps published for 32-bit (x86) must have 32-bit enabled for their IIS Application Pools. For more information, see the [Create the IIS site](#create-the-iis-site) section.
+
 Use a 64-bit (x64) .NET Core SDK to publish a 64-bit app. A 64-bit runtime must be present on the host system.
 
 ## Hosting models
@@ -52,22 +66,26 @@ The [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module):
   * Calls `Program.Main`.
 * Handles the lifetime of the IIS native request.
 
-The in-process hosting model isn't supported for ASP.NET Core apps that target the .NET Framework.
-
 The following diagram illustrates the relationship between IIS, the ASP.NET Core Module, and an app hosted in-process:
 
 ![ASP.NET Core Module in the in-process hosting scenario](index/_static/ancm-inprocess.png)
 
-A request arrives from the web to the kernel-mode HTTP.sys driver. The driver routes the native request to IIS on the website's configured port, usually 80 (HTTP) or 443 (HTTPS). The ASP.NET Core Module receives the native request and passes it to IIS HTTP Server (`IISHttpServer`). IIS HTTP Server is an in-process server implementation for IIS that converts the request from native to managed.
+1. A request arrives from the web to the kernel-mode HTTP.sys driver.
+1. The driver routes the native request to IIS on the website's configured port, usually 80 (HTTP) or 443 (HTTPS).
+1. The ASP.NET Core Module receives the native request and passes it to IIS HTTP Server (`IISHttpServer`). IIS HTTP Server is an in-process server implementation for IIS that converts the request from native to managed.
 
-After the IIS HTTP Server processes the request, the request is pushed into the ASP.NET Core middleware pipeline. The middleware pipeline handles the request and passes it on as an `HttpContext` instance to the app's logic. The app's response is passed back to IIS through IIS HTTP Server. IIS sends the response to the client that initiated the request.
+After the IIS HTTP Server processes the request:
 
-In-process hosting is opt-in for existing apps, but [dotnet new](/dotnet/core/tools/dotnet-new) templates default to the in-process hosting model for all IIS and IIS Express scenarios.
+1. The request is sent to the ASP.NET Core middleware pipeline.
+1. The middleware pipeline handles the request and passes it on as an `HttpContext` instance to the app's logic.
+1. The app's response is passed back to IIS through IIS HTTP Server.
+1. IIS sends the response to the client that initiated the request.
 
-`CreateDefaultBuilder` adds an <xref:Microsoft.AspNetCore.Hosting.Server.IServer> instance by calling the <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIIS*> method to boot the [CoreCLR](/dotnet/standard/glossary#coreclr) and host the app inside of the IIS worker process (*w3wp.exe* or *iisexpress.exe*). Performance tests indicate that hosting a .NET Core app in-process delivers significantly higher request throughput compared to hosting the app out-of-process and proxying requests to [Kestrel](xref:fundamentals/servers/kestrel) server.
+In-process hosting is opt-in for existing apps. The ASP.NET Core web templates use the in-process hosting model.
 
-> [!NOTE]
-> Apps published as a single file executable can't be loaded by the in-process hosting model.
+`CreateDefaultBuilder` adds an <xref:Microsoft.AspNetCore.Hosting.Server.IServer> instance by calling the <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIIS*> method to boot the [CoreCLR](/dotnet/standard/glossary#coreclr) and host the app inside of the IIS worker process (*w3wp.exe* or *iisexpress.exe*). Performance tests indicate that hosting a .NET Core app in-process delivers significantly higher request throughput compared to hosting the app out-of-process and proxying requests to [Kestrel](xref:fundamentals/servers/kestrel).
+
+Apps published as a single file executable can't be loaded by the in-process hosting model.
 
 ### Out-of-process hosting model
 
@@ -77,11 +95,14 @@ The following diagram illustrates the relationship between IIS, the ASP.NET Core
 
 ![ASP.NET Core Module in the out-of-process hosting scenario](index/_static/ancm-outofprocess.png)
 
-Requests arrive from the web to the kernel-mode HTTP.sys driver. The driver routes the requests to IIS on the website's configured port, usually 80 (HTTP) or 443 (HTTPS). The module forwards the requests to Kestrel on a random port for the app, which isn't port 80 or 443.
+1. Requests arrive from the web to the kernel-mode HTTP.sys driver.
+1. The driver routes the requests to IIS on the website's configured port. The configured port is usually 80 (HTTP) or 443 (HTTPS).
+1. The module forwards the requests to Kestrel on a random port for the app. The random port isn't 80 or 443.
 
-The module specifies the port via an environment variable at startup, and the <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIISIntegration*> extension configures the server to listen on `http://localhost:{PORT}`. Additional checks are performed, and requests that don't originate from the module are rejected. The module doesn't support HTTPS forwarding, so requests are forwarded over HTTP even if received by IIS over HTTPS.
+<!-- make this a bullet list -->
+The ASP.NET Core Module specifies the port via an environment variable at startup. The <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIISIntegration*> extension configures the server to listen on `http://localhost:{PORT}`. Additional checks are performed, and requests that don't originate from the module are rejected. The module doesn't support HTTPS forwarding. Requests are forwarded over HTTP even if received by IIS over HTTPS.
 
-After Kestrel picks up the request from the module, the request is pushed into the ASP.NET Core middleware pipeline. The middleware pipeline handles the request and passes it on as an `HttpContext` instance to the app's logic. Middleware added by IIS Integration updates the scheme, remote IP, and pathbase to account for forwarding the request to Kestrel. The app's response is passed back to IIS, which pushes it back out to the HTTP client that initiated the request.
+After Kestrel picks up the request from the module, the request is forwarded into the ASP.NET Core middleware pipeline. The middleware pipeline handles the request and passes it on as an `HttpContext` instance to the app's logic. Middleware added by IIS Integration updates the scheme, remote IP, and pathbase to account for forwarding the request to Kestrel. The app's response is passed back to IIS, which forwards it back to the HTTP client that initiated the request.
 
 For ASP.NET Core Module configuration guidance, see <xref:host-and-deploy/aspnet-core-module>.
 
@@ -118,7 +139,7 @@ services.Configure<IISServerOptions>(options =>
 | ------------------------------ | :-----: | ------- |
 | `AutomaticAuthentication`      | `true`  | If `true`, IIS Server sets the `HttpContext.User` authenticated by [Windows Authentication](xref:security/authentication/windowsauth). If `false`, the server only provides an identity for `HttpContext.User` and responds to challenges when explicitly requested by the `AuthenticationScheme`. Windows Authentication must be enabled in IIS for `AutomaticAuthentication` to function. For more information, see [Windows Authentication](xref:security/authentication/windowsauth). |
 | `AuthenticationDisplayName`    | `null`  | Sets the display name shown to users on login pages. |
-| `AllowSynchronousIO`           | `false` | Whether synchronous IO is allowed for the `HttpContext.Request` and the `HttpContext.Response`. |
+| `AllowSynchronousIO`           | `false` | Whether synchronous I/O is allowed for the `HttpContext.Request` and the `HttpContext.Response`. |
 | `MaxRequestBodySize`           | `30000000`  | Gets or sets the max request body size for the `HttpRequest`. Note that IIS itself has the limit `maxAllowedContentLength` which will be processed before the `MaxRequestBodySize` set in the `IISServerOptions`. Changing the `MaxRequestBodySize` won't affect the `maxAllowedContentLength`. To increase `maxAllowedContentLength`, add an entry in the *web.config* to set `maxAllowedContentLength` to a higher value. For more details, see [Configuration](/iis/configuration/system.webServer/security/requestFiltering/requestLimits/#configuration). |
 
 **Out-of-process hosting model**
@@ -140,7 +161,14 @@ services.Configure<IISOptions>(options =>
 
 ### Proxy server and load balancer scenarios
 
-The [IIS Integration Middleware](#enable-the-iisintegration-components), which configures Forwarded Headers Middleware, and the ASP.NET Core Module are configured to forward the scheme (HTTP/HTTPS) and the remote IP address where the request originated. Additional configuration might be required for apps hosted behind additional proxy servers and load balancers. For more information, see [Configure ASP.NET Core to work with proxy servers and load balancers](xref:host-and-deploy/proxy-load-balancer).
+The [IIS Integration Middleware](#enable-the-iisintegration-components) and the ASP.NET Core Module are configured to forward the:
+
+* Scheme (HTTP/HTTPS).
+* Remote IP address where the request originated.
+
+The [IIS Integration Middleware](#enable-the-iisintegration-components) configures Forwarded Headers Middleware.
+
+Additional configuration might be required for apps hosted behind additional proxy servers and load balancers. For more information, see [Configure ASP.NET Core to work with proxy servers and load balancers](xref:host-and-deploy/proxy-load-balancer).
 
 ### web.config file
 
@@ -176,7 +204,7 @@ Sensitive files exist on the app's physical path, such as *\<assembly>.runtimeco
 
 ### Transform web.config
 
-If you need to transform *web.config* on publish (for example, set environment variables based on the configuration, profile, or environment), see <xref:host-and-deploy/iis/transform-webconfig>.
+If you need to transform *web.config* on publish, see <xref:host-and-deploy/iis/transform-webconfig>. You might need to transform *web.config* on publish to set environment variables based on the configuration, profile, or environment.
 
 ## IIS configuration
 
@@ -237,16 +265,16 @@ Install the *.NET Core Hosting Bundle* on the hosting system. The bundle install
 
 Download the installer using the following link:
 
-[Current .NET Core Hosting Bundle installer (direct download)](https://www.microsoft.com/net/permalink/dotnetcore-current-windows-runtime-bundle-installer)
+[Current .NET Core Hosting Bundle installer (direct download)](https://dotnet.microsoft.com/permalink/dotnetcore-current-windows-runtime-bundle-installer)
 
 ### Earlier versions of the installer
 
 To obtain an earlier version of the installer:
 
-1. Navigate to the [.NET download archives](https://www.microsoft.com/net/download/archives).
-1. Under **.NET Core**, select the .NET Core version.
+1. Navigate to the [Download .NET Core](https://dotnet.microsoft.com/download/dotnet-core) page.
+1. Select the desired .NET Core version.
 1. In the **Run apps - Runtime** column, find the row of the .NET Core runtime version desired.
-1. Download the installer using the **Runtime & Hosting Bundle** link.
+1. Download the installer using the **Hosting Bundle** link.
 
 > [!WARNING]
 > Some installers contain release versions that have reached their end of life (EOL) and are no longer supported by Microsoft. For more information, see the [support policy](https://dotnet.microsoft.com/platform/support/policy/dotnet-core).
@@ -303,11 +331,13 @@ When deploying apps to servers with [Web Deploy](/iis/install/installing-publish
 
    ![Set No Managed Code for the .NET CLR version.](index/_static/edit-apppool-ws2016.png)
 
-    ASP.NET Core runs in a separate process and manages the runtime. ASP.NET Core doesn't rely on loading the desktop CLR (.NET CLR)&mdash;the Core Common Language Runtime (CoreCLR) for .NET Core is booted to host the app in the worker process. Setting the **.NET CLR version** to **No Managed Code** is optional but recommended.
+    ASP.NET Core runs in a separate process and manages the runtime. ASP.NET Core doesn't rely on loading the desktop CLR (.NET CLR). The Core Common Language Runtime (CoreCLR) for .NET Core is booted to host the app in the worker process. Setting the **.NET CLR version** to **No Managed Code** is optional but recommended.
 
-1. *ASP.NET Core 2.2 or later*: For a 64-bit (x64) [self-contained deployment](/dotnet/core/deploying/#self-contained-deployments-scd) that uses the [in-process hosting model](#in-process-hosting-model), disable the app pool for 32-bit (x86) processes.
+1. *ASP.NET Core 2.2 or later*:
 
-   In the **Actions** sidebar of IIS Manager > **Application Pools**, select **Set Application Pool Defaults** or **Advanced Settings**. Locate **Enable 32-Bit Applications** and set the value to `False`. This setting doesn't affect apps deployed for [out-of-process hosting](xref:host-and-deploy/aspnet-core-module#out-of-process-hosting-model).
+   * For a 32-bit (x86) [self-contained deployment](/dotnet/core/deploying/#self-contained-deployments-scd) published with a 32-bit SDK that uses the [in-process hosting model](#in-process-hosting-model), enable the Application Pool for 32-bit. In IIS Manager, navigate to **Application Pools** in the **Connections** sidebar. Select the app's Application Pool. In the **Actions** sidebar, select **Advanced Settings**. Set **Enable 32-Bit Applications** to `True`. 
+
+   * For a 64-bit (x64) [self-contained deployment](/dotnet/core/deploying/#self-contained-deployments-scd) that uses the [in-process hosting model](#in-process-hosting-model), disable the app pool for 32-bit (x86) processes. In IIS Manager, navigate to **Application Pools** in the **Connections** sidebar. Select the app's Application Pool. In the **Actions** sidebar, select **Advanced Settings**. Set **Enable 32-Bit Applications** to `False`. 
 
 1. Confirm the process model identity has the proper permissions.
 
@@ -655,7 +685,11 @@ Use a 64-bit (x64) .NET Core SDK to publish a 64-bit app. A 64-bit runtime must 
 
 ### In-process hosting model
 
-Using in-process hosting, an ASP.NET Core app runs in the same process as its IIS worker process. In-process hosting provides improved performance over out-of-process hosting because requests aren't proxied over the loopback adapter, a network interface that returns outgoing network traffic back to the same machine. IIS handles process management with the [Windows Process Activation Service (WAS)](/iis/manage/provisioning-and-managing-iis/features-of-the-windows-process-activation-service-was).
+Using in-process hosting, an ASP.NET Core app runs in the same process as its IIS worker process. In-process hosting provides improved performance over out-of-process hosting because:
+
+* Requests aren't proxied over the loopback adapter. A loopback adapter is a network interface that returns outgoing network traffic back to the same machine.
+
+IIS handles process management with the [Windows Process Activation Service (WAS)](/iis/manage/provisioning-and-managing-iis/features-of-the-windows-process-activation-service-was).
 
 The [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module):
 
@@ -840,20 +874,12 @@ Install the *.NET Core Hosting Bundle* on the hosting system. The bundle install
 >
 > If the Hosting Bundle is installed after installing the 64-bit (x64) version of .NET Core, SDKs might appear to be missing ([No .NET Core SDKs were detected](xref:test/troubleshoot#no-net-core-sdks-were-detected)). To resolve the problem, see <xref:test/troubleshoot#missing-sdk-after-installing-the-net-core-hosting-bundle>.
 
-### Direct download (current version)
+### Download
 
-Download the installer using the following link:
-
-[Current .NET Core Hosting Bundle installer (direct download)](https://www.microsoft.com/net/permalink/dotnetcore-current-windows-runtime-bundle-installer)
-
-### Earlier versions of the installer
-
-To obtain an earlier version of the installer:
-
-1. Navigate to the [.NET download archives](https://www.microsoft.com/net/download/archives).
-1. Under **.NET Core**, select the .NET Core version.
+1. Navigate to the [Download .NET Core](https://dotnet.microsoft.com/download/dotnet-core) page.
+1. Select the desired .NET Core version.
 1. In the **Run apps - Runtime** column, find the row of the .NET Core runtime version desired.
-1. Download the installer using the **Runtime & Hosting Bundle** link.
+1. Download the installer using the **Hosting Bundle** link.
 
 > [!WARNING]
 > Some installers contain release versions that have reached their end of life (EOL) and are no longer supported by Microsoft. For more information, see the [support policy](https://dotnet.microsoft.com/platform/support/policy/dotnet-core).
@@ -1416,20 +1442,12 @@ Install the *.NET Core Hosting Bundle* on the hosting system. The bundle install
 >
 > If the Hosting Bundle is installed after installing the 64-bit (x64) version of .NET Core, SDKs might appear to be missing ([No .NET Core SDKs were detected](xref:test/troubleshoot#no-net-core-sdks-were-detected)). To resolve the problem, see <xref:test/troubleshoot#missing-sdk-after-installing-the-net-core-hosting-bundle>.
 
-### Direct download (current version)
+### Download
 
-Download the installer using the following link:
-
-[Current .NET Core Hosting Bundle installer (direct download)](https://www.microsoft.com/net/permalink/dotnetcore-current-windows-runtime-bundle-installer)
-
-### Earlier versions of the installer
-
-To obtain an earlier version of the installer:
-
-1. Navigate to the [.NET download archives](https://www.microsoft.com/net/download/archives).
-1. Under **.NET Core**, select the .NET Core version.
+1. Navigate to the [Download .NET Core](https://dotnet.microsoft.com/download/dotnet-core) page.
+1. Select the desired .NET Core version.
 1. In the **Run apps - Runtime** column, find the row of the .NET Core runtime version desired.
-1. Download the installer using the **Runtime & Hosting Bundle** link.
+1. Download the installer using the **Hosting Bundle** link.
 
 > [!WARNING]
 > Some installers contain release versions that have reached their end of life (EOL) and are no longer supported by Microsoft. For more information, see the [support policy](https://dotnet.microsoft.com/platform/support/policy/dotnet-core).

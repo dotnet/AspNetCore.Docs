@@ -5,8 +5,8 @@ description: To create a new Blazor hosted app with authentication from within V
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/09/2020
-no-loc: [Blazor, SignalR]
+ms.date: 05/11/2020
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/blazor/webassembly/hosted-with-identity-server
 ---
 # Secure an ASP.NET Core Blazor WebAssembly hosted app with Identity Server
@@ -43,14 +43,15 @@ The `Startup` class has the following additions:
 
 * In `Startup.ConfigureServices`:
 
-  * Identity with the default UI:
+  * Identity:
 
     ```csharp
     services.AddDbContext<ApplicationDbContext>(options =>
-        options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+        options.UseSqlite(
+            Configuration.GetConnectionString("DefaultConnection")));
 
-    services.AddDefaultIdentity<ApplicationUser>()
-        .AddDefaultUI(UIFramework.Bootstrap4)
+    services.AddDefaultIdentity<ApplicationUser>(options => 
+            options.SignIn.RequireConfirmedAccount = true)
         .AddEntityFrameworkStores<ApplicationDbContext>();
     ```
 
@@ -80,6 +81,13 @@ The `Startup` class has the following additions:
 
     ```csharp
     app.UseIdentityServer();
+    ```
+
+  * Authentication and Authorization Middleware:
+
+    ```csharp
+    app.UseAuthentication();
+    app.UseAuthorization();
     ```
 
 ### AddApiAuthorization
@@ -114,19 +122,9 @@ In the app settings file (*appsettings.json*) at the project root, the `Identity
 ```json
 "IdentityServer": {
   "Clients": {
-    "BlazorApplicationWithAuthentication.Client": {
+    "{APP ASSEMBLY}.Client": {
       "Profile": "IdentityServerSPA"
     }
-  }
-}
-```
-
-In the Development environment app settings file (*appsettings.Development.json*) at the project root, the `IdentityServer` section describes the key used to sign tokens. <!-- When deploying to production, a key needs to be provisioned and deployed alongside the app, as explained in the [Deploy to production](#deploy-to-production) section. -->
-
-```json
-"IdentityServer": {
-  "Key": {
-    "Type": "Development"
   }
 }
 ```
@@ -157,9 +155,13 @@ builder.Services.AddApiAuthorization();
 
 By default, it loads the configuration for the app by convention from `_configuration/{client-id}`. By convention, the client ID is set to the app's assembly name. This URL can be changed to point to a separate endpoint by calling the overload with options.
 
+### Imports file
+
+[!INCLUDE[](~/includes/blazor-security/imports-file-hosted.md)]
+
 ### Index page
 
-[!INCLUDE[](~/includes/blazor-security/index-page.md)]
+[!INCLUDE[](~/includes/blazor-security/index-page-authentication.md)]
 
 ### App component
 
@@ -217,4 +219,15 @@ The `LoginDisplay` component (*Shared/LoginDisplay.razor*) is rendered in the `M
 
 [!INCLUDE[](~/includes/blazor-security/fetchdata-component.md)]
 
+## Run the app
+
+Run the app from the Server project. When using Visual Studio, select the Server project in **Solution Explorer** and select the **Run** button in the toolbar or start the app from the **Debug** menu.
+
+[!INCLUDE[](~/includes/blazor-security/usermanager-signinmanager.md)]
+
 [!INCLUDE[](~/includes/blazor-security/troubleshoot.md)]
+
+## Additional resources
+
+* <xref:security/blazor/webassembly/additional-scenarios>
+* [Unauthenticated or unauthorized web API requests in an app with a secure default client](xref:security/blazor/webassembly/additional-scenarios#unauthenticated-or-unauthorized-web-api-requests-in-an-app-with-a-secure-default-client)

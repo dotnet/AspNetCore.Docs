@@ -5,8 +5,8 @@ description: Discover how ASP.NET Core Blazor how Blazor manages unhandled excep
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/19/2020
-no-loc: [Blazor, SignalR]
+ms.date: 04/23/2020
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/handle-errors
 ---
 # Handle errors in ASP.NET Core Blazor apps
@@ -49,7 +49,28 @@ In a Blazor Server app, customize the experience in the *Pages/_Host.cshtml* fil
 </div>
 ```
 
-The `blazor-error-ui` element is hidden by the styles included with the Blazor templates and then shown when an error occurs.
+The `blazor-error-ui` element is hidden by the styles included in the Blazor templates (*wwwroot/css/site.css*) and then shown when an error occurs:
+
+```css
+#blazor-error-ui {
+    background: lightyellow;
+    bottom: 0;
+    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+    display: none;
+    left: 0;
+    padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+#blazor-error-ui .dismiss {
+    cursor: pointer;
+    position: absolute;
+    right: 0.75rem;
+    top: 0.5rem;
+}
+```
 
 ## How a Blazor Server app reacts to unhandled exceptions
 
@@ -84,6 +105,8 @@ If an unhandled exception occurs, the exception is logged to <xref:Microsoft.Ext
 During development, Blazor usually sends the full details of exceptions to the browser's console to aid in debugging. In production, detailed errors in the browser's console are disabled by default, which means that errors aren't sent to clients but the exception's full details are still logged server-side. For more information, see <xref:fundamentals/error-handling>.
 
 You must decide which incidents to log and the level of severity of logged incidents. Hostile users might be able to trigger errors deliberately. For example, don't log an incident from an error where an unknown `ProductId` is supplied in the URL of a component that displays product details. Not all errors should be treated as high-severity incidents for logging.
+
+For more information, see <xref:fundamentals/logging/index#create-logs-in-blazor>.
 
 ## Places where errors may occur
 
@@ -157,7 +180,7 @@ If user code doesn't trap and handle the exception, the framework logs the excep
 
 ### Component disposal
 
-A component may be removed from the UI, for example, because the user has navigated to another page. When a component that implements <xref:System.IDisposable?displayProperty=fullName> is removed from the UI, the framework calls the component's <xref:System.IDisposable.Dispose*> method.
+A component may be removed from the UI, for example, because the user has navigated to another page. When a component that implements <xref:System.IDisposable?displayProperty=fullName> is removed from the UI, the framework calls the component's <xref:System.IDisposable.Dispose%2A> method.
 
 If the component's `Dispose` method throws an unhandled exception, the exception is fatal to a Blazor Server circuit. If disposal logic may throw exceptions, the app should trap the exceptions using a [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) statement with error handling and logging.
 
@@ -187,7 +210,7 @@ For more information, see the following articles:
 
 ### Blazor Server prerendering
 
-Blazor components can be prerendered using the `Component` Tag Helper so that their rendered HTML markup is returned as part of the user's initial HTTP request. This works by:
+Blazor components can be prerendered using the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) so that their rendered HTML markup is returned as part of the user's initial HTTP request. This works by:
 
 * Creating a new circuit for all of the prerendered components that are part of the same page.
 * Generating the initial HTML.

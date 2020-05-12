@@ -5,8 +5,8 @@ description: Discover how components can be included in Blazor apps from an exte
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/23/2020
-no-loc: [Blazor, SignalR]
+ms.date: 03/23/2020
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/class-libraries
 ---
 # ASP.NET Core Razor components class libraries
@@ -106,6 +106,10 @@ Welcome to your new app.
 
 Include the `@using MyComponentLib1` directive in the top-level *_Import.razor* file to make the library's components available to an entire project. Add the directive to an *_Import.razor* file at any level to apply the namespace to a single page or set of pages within a folder.
 
+## Create a Razor components class library with static assets
+
+An RCL can include static assets. The static assets are available to any app that consumes the library. For more information, see <xref:razor-pages/ui-class#create-an-rcl-with-static-assets>.
+
 ## Build, pack, and ship to NuGet
 
 Because component libraries are standard .NET libraries, packaging and shipping them to NuGet is no different from packaging and shipping any library to NuGet. Packaging is performed using the [dotnet pack](/dotnet/core/tools/dotnet-pack) command in a command shell:
@@ -116,10 +120,7 @@ dotnet pack
 
 Upload the package to NuGet using the [dotnet nuget push](/dotnet/core/tools/dotnet-nuget-push) command in a command shell.
 
-## Create a Razor components class library with static assets
-
-An RCL can include static assets. The static assets are available to any app that consumes the library. For more information, see <xref:razor-pages/ui-class#create-an-rcl-with-static-assets>.
-
 ## Additional resources
 
 * <xref:razor-pages/ui-class>
+* [Add an XML linker configuration file to a library](xref:host-and-deploy/blazor/configure-linker#add-an-xml-linker-configuration-file-to-a-library)

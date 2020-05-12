@@ -4,6 +4,7 @@ author: rick-anderson
 description: Learn about key storage providers in ASP.NET Core and how to configure key storage locations.
 ms.author: riande
 ms.date: 12/05/2019
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/data-protection/implementation/key-storage-providers
 ---
 # Key storage providers in ASP.NET Core
@@ -173,7 +174,7 @@ The `DataProtectionKeys` class/entity adopts the structure shown in the followin
 
 | Property/Field | CLR Type | SQL Type              |
 | -------------- | -------- | --------------------- |
-| `Id`           | `int`    | `int`, PK, not null   |
+| `Id`           | `int`    | `int`, PK, `IDENTITY(1,1)`, not null   |
 | `FriendlyName` | `string` | `nvarchar(MAX)`, null |
 | `Xml`          | `string` | `nvarchar(MAX)`, null |
 

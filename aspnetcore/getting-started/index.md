@@ -5,6 +5,7 @@ description: A short tutorial that creates and runs a basic Hello World app usin
 ms.author: riande
 ms.custom: mvc
 ms.date: 01/07/2020
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: getting-started
 ---
 # Tutorial: Get started with ASP.NET Core
@@ -85,7 +86,7 @@ cd aspnetcoreapp
 dotnet watch run
 ```
 
-After the command shell indicates that the app has started, browse to [https://localhost:5001](https://localhost:5001).
+After the command shell indicates that the app has started, browse to `https://localhost:5001`.
 
 ## Edit a Razor page
 
@@ -93,7 +94,7 @@ Open *Pages/Index.cshtml* and modify and save the page with the following highli
 
 [!code-cshtml[](sample/index.cshtml?highlight=9)]
 
-Browse to [https://localhost:5001](https://localhost:5001), refresh the page, and verify the changes are displayed.
+Browse to `https://localhost:5001`, refresh the page, and verify the changes are displayed.
 
 ## Next steps
 

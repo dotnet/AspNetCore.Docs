@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-2.2'
 ms.author: prkrishn
 ms.custom: mvc
 ms.date: 09/05/2019
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: web-api/advanced/analyzers
 ---
 # Use web API analyzers

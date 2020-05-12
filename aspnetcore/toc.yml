@@ -1,5 +1,5 @@
 - name: ASP.NET Core documentation
-  href: /aspnet/#pivot=core
+  href: index.yml
 - name: What's new in ASP.NET Core docs
   href: whats-new/index.yml
 - name: Overview
@@ -180,10 +180,10 @@
       uid: fundamentals/middleware/index
     - name: Host
       items:
-      - name: Generic Host
-        uid: fundamentals/host/generic-host
-      - name: Web Host
-        uid: fundamentals/host/web-host
+        - name: Generic Host
+          uid: fundamentals/host/generic-host
+        - name: Web Host
+          uid: fundamentals/host/web-host
     - name: Servers
       uid: fundamentals/servers/index
     - name: Configuration
@@ -299,14 +299,14 @@
           uid: blazor/data-binding
         - name: Event handling
           uid: blazor/event-handling
+        - name: Lifecycle
+          uid: blazor/lifecycle
         - name: Templated components
           uid: blazor/templated-components
         - name: Integrate components
           uid: blazor/integrate-components
         - name: Globalization and localization
           uid: blazor/globalization-localization
-        - name: Lifecycle
-          uid: blazor/lifecycle
         - name: Layouts
           uid: blazor/layouts
         - name: Forms and validation
@@ -339,25 +339,33 @@
                   uid: security/blazor/webassembly/standalone-with-azure-active-directory
                 - name: Standalone with AAD B2C
                   uid: security/blazor/webassembly/standalone-with-azure-active-directory-b2c
-                - name: Hosted with Identity Server
-                  uid: security/blazor/webassembly/hosted-with-identity-server
                 - name: Hosted with AAD
                   uid: security/blazor/webassembly/hosted-with-azure-active-directory
                 - name: Hosted with AAD B2C
                   uid: security/blazor/webassembly/hosted-with-azure-active-directory-b2c
+                - name: Hosted with Identity Server
+                  uid: security/blazor/webassembly/hosted-with-identity-server
                 - name: Additional scenarios
                   uid: security/blazor/webassembly/additional-scenarios
+                - name: AAD groups and roles
+                  uid: security/blazor/webassembly/aad-groups-roles
             - name: Blazor Server
-              uid: security/blazor/server
+              items:
+                - name: Overview
+                  uid: security/blazor/server/index
+                - name: Threat mitigation
+                  uid: security/blazor/server/threat-mitigation
+                - name: Additional scenarios
+                  uid: security/blazor/server/additional-scenarios
             - name: Content Security Policy
               uid: security/blazor/content-security-policy
         - name: State management
           uid: blazor/state-management
         - name: Handle errors
           uid: blazor/handle-errors
-        - name: Debug
+        - name: Debug WebAssembly
           uid: blazor/debug
-        - name: Call a web API
+        - name: Call a web API from WebAssembly
           uid: blazor/call-web-api
         - name: Progressive Web Applications
           uid: blazor/progressive-web-app
@@ -424,6 +432,8 @@
               uid: mvc/views/tag-helpers/builtin-th/anchor-tag-helper
             - name: Cache
               uid: mvc/views/tag-helpers/builtin-th/cache-tag-helper
+            - name: Component
+              uid: mvc/views/tag-helpers/builtin-th/component-tag-helper
             - name: Distributed Cache
               uid: mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper
             - name: Environment
@@ -657,6 +667,8 @@
       uid: test/razor-pages-tests
     - name: Test controllers
       uid: mvc/controllers/testing
+    - name: Test middleware
+      uid: test/middleware
     - name: Remote debugging
       href: /visualstudio/debugger/remote-debugging-azure
     - name: Snapshot debugging
@@ -969,6 +981,8 @@
           uid: security/authentication/individual
         - name: Configure certificate authentication
           uid: security/authentication/certauth
+        - name: Multi-factor authentication
+          uid: security/authentication/mfa
     - name: Authorization
       items:
         - name: Overview
@@ -1078,6 +1092,8 @@
       uid: security/enforcing-ssl
     - name: Host Docker with HTTPS
       uid: security/docker-https
+    - name: Docker Compose with HTTPS
+      uid: security/docker-compose-https
     - name: EU General Data Protection Regulation (GDPR) support
       uid: security/gdpr
     - name: Anti-request forgery
@@ -1094,12 +1110,12 @@
       uid: security/samesite
     - name: SameSite samples
       items:
-       - name: Razor Pages 2.1 SameSite cookie sample
-         uid: security/samesite/rp21
-       - name: Razor Pages 3.1 SameSite cookie sample
-         uid: security/samesite/rp31
-       - name: MVC SameSite cookie sample
-         uid: security/samesite/mvc21
+        - name: Razor Pages 2.1 SameSite cookie sample
+          uid: security/samesite/rp21
+        - name: Razor Pages 3.1 SameSite cookie sample
+          uid: security/samesite/rp31
+        - name: MVC SameSite cookie sample
+          uid: security/samesite/mvc21
     - name: IP safelist
       uid: security/ip-safelist
     - name: Application security - OWASP
@@ -1120,16 +1136,24 @@
               uid: security/blazor/webassembly/standalone-with-azure-active-directory
             - name: Standalone with AAD B2C
               uid: security/blazor/webassembly/standalone-with-azure-active-directory-b2c
-            - name: Hosted with Identity Server
-              uid: security/blazor/webassembly/hosted-with-identity-server
             - name: Hosted with AAD
               uid: security/blazor/webassembly/hosted-with-azure-active-directory
             - name: Hosted with AAD B2C
               uid: security/blazor/webassembly/hosted-with-azure-active-directory-b2c
+            - name: Hosted with Identity Server
+              uid: security/blazor/webassembly/hosted-with-identity-server
             - name: Additional scenarios
               uid: security/blazor/webassembly/additional-scenarios
+            - name: AAD groups and roles
+              uid: security/blazor/webassembly/aad-groups-roles
         - name: Blazor Server
-          uid: security/blazor/server
+          items:
+            - name: Overview
+              uid: security/blazor/server/index
+            - name: Threat mitigation
+              uid: security/blazor/server/threat-mitigation
+            - name: Additional scenarios
+              uid: security/blazor/server/additional-scenarios
         - name: Content Security Policy
           uid: security/blazor/content-security-policy
 - name: Performance
@@ -1215,6 +1239,9 @@
       uid: fundamentals/middleware/extensibility-third-party-container
 - name: Migration
   items:
+    - name: 3.1 to 5.0
+      displayName: migrate, migration
+      uid: migration/31-to-50
     - name: 3.0 to 3.1
       displayName: migrate, migration
       uid: migration/30-to-31

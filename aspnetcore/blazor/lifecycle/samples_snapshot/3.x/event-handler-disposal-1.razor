@@ -1,0 +1,30 @@
+@implements IDisposable
+
+<EditForm EditContext="@editContext">
+
+    ...
+
+    <button type="submit" disabled="@formInvalid">Submit</button>
+</EditForm>
+
+@code {
+    ...
+    private EventHandler<FieldChangedEventArgs> fieldChanged;
+
+    protected override void OnInitialized()
+    {
+        editContext = new EditContext(...);
+
+        fieldChanged = (_, __) =>
+        {
+            ...
+        };
+
+        editContext.OnFieldChanged += fieldChanged;
+    }
+
+    public void Dispose()
+    {
+        editContext.OnFieldChanged -= fieldChanged;
+    }
+}

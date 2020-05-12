@@ -5,7 +5,7 @@ description: Learn about the new features in ASP.NET Core 3.0.
 ms.author: riande
 ms.custom: mvc
 ms.date: 12/05/2019
-no-loc: [Blazor, SignalR]
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: aspnetcore-3.0
 ---
 # What's new in ASP.NET Core 3.0
@@ -177,7 +177,7 @@ In the preceding code, `DomainRestrictedRequirement` serves as a custom `IAuthor
 Individual Hub methods can be marked with the name of the policy the code checks at run-time. As clients attempt to call individual Hub methods, the `DomainRestrictedRequirement` handler runs and controls access to the methods. Based on the way the `DomainRestrictedRequirement` controls access:
 
 * All logged-in users can call the `SendMessage` method.
-* Only users who have logged in with a `@jabbr.net` email address can view users’ histories.
+* Only users who have logged in with a `@jabbr.net` email address can view users' histories.
 * Only `bob42@jabbr.net` can ban users from the chat room.
 
 ```csharp
@@ -420,7 +420,7 @@ All services can still be injected directly as arguments to the `Startup.Configu
 * Connection Adapters have been removed from Kestrel and replaced with Connection Middleware, which is similar to HTTP Middleware in the ASP.NET Core pipeline but for lower-level connections.
 * The Kestrel transport layer has been exposed as a public interface in `Connections.Abstractions`.
 * Ambiguity between headers and trailers has been resolved by moving trailing headers to a new collection.
-* Synchronous IO APIs, such as `HttpRequest.Body.Read`, are a common source of thread starvation leading to app crashes. In 3.0, `AllowSynchronousIO` is disabled by default.
+* Synchronous I/O APIs, such as `HttpRequest.Body.Read`, are a common source of thread starvation leading to app crashes. In 3.0, `AllowSynchronousIO` is disabled by default.
 
 For more information, see <xref:migration/22-to-30#kestrel>.
 
@@ -509,7 +509,7 @@ ASP.NET Core 3.0 includes many improvements that reduce memory usage and improve
 
 ## ASP.NET Core 3.0 only runs on .NET Core 3.0
 
-As of ASP.NET Core 3.0, .NET Framework is no longer a supported target framework. Projects targeting .NET Framework can continue in a fully supported fashion using the [.NET Core 2.1 LTS release](https://www.microsoft.com/net/download/dotnet-core/2.1). Most ASP.NET Core 2.1.x related packages will be supported indefinitely, beyond the three-year LTS period for .NET Core 2.1.
+As of ASP.NET Core 3.0, .NET Framework is no longer a supported target framework. Projects targeting .NET Framework can continue in a fully supported fashion using the [.NET Core 2.1 LTS release](https://dotnet.microsoft.com/download/dotnet-core/2.1). Most ASP.NET Core 2.1.x related packages will be supported indefinitely, beyond the three-year LTS period for .NET Core 2.1.
 
 For migration information, see [Port your code from .NET Framework to .NET Core](/dotnet/core/porting/).
 
@@ -534,3 +534,4 @@ For a complete list of assemblies removed from the shared framework, see [Assemb
 ## Additional information
 For the complete list of changes, see the [ASP.NET Core 3.0 Release Notes](WHERE IS THIS????).
 -->
+ 

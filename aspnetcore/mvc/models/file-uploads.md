@@ -5,7 +5,8 @@ description: How to use model binding and streaming to upload files in ASP.NET C
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/25/2020
+ms.date: 05/03/2020
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/models/file-uploads
 ---
 # Upload files in ASP.NET Core
@@ -49,7 +50,7 @@ Security steps that reduce the likelihood of a successful attack are:
 >
 > For information on reducing the attack surface area when accepting files from users, see the following resources:
 >
-> * [Unrestricted File Upload](https://www.owasp.org/index.php/Unrestricted_File_Upload)
+> * [Unrestricted File Upload](https://owasp.org/www-community/vulnerabilities/Unrestricted_File_Upload)
 > * [Azure Security: Ensure appropriate controls are in place when accepting files from users](/azure/security/azure-security-threat-modeling-tool-input-validation#controls-users)
 
 For more information on implementing security measures, including examples from the sample app, see the [Validation](#validation) section.
@@ -778,7 +779,7 @@ Security steps that reduce the likelihood of a successful attack are:
 >
 > For information on reducing the attack surface area when accepting files from users, see the following resources:
 >
-> * [Unrestricted File Upload](https://www.owasp.org/index.php/Unrestricted_File_Upload)
+> * [Unrestricted File Upload](https://owasp.org/www-community/vulnerabilities/Unrestricted_File_Upload)
 > * [Azure Security: Ensure appropriate controls are in place when accepting files from users](/azure/security/azure-security-threat-modeling-tool-input-validation#controls-users)
 
 For more information on implementing security measures, including examples from the sample app, see the [Validation](#validation) section.
@@ -1466,6 +1467,7 @@ The examples in this topic rely upon <xref:System.IO.MemoryStream> to hold the u
 
 ## Additional resources
 
-* [Unrestricted File Upload](https://www.owasp.org/index.php/Unrestricted_File_Upload)
+* [HTTP connection request draining](xref:fundamentals/servers/kestrel#http11-request-draining)
+* [Unrestricted File Upload](https://owasp.org/www-community/vulnerabilities/Unrestricted_File_Upload)
 * [Azure Security: Security Frame: Input Validation | Mitigations](/azure/security/azure-security-threat-modeling-tool-input-validation)
 * [Azure Cloud Design Patterns: Valet Key pattern](/azure/architecture/patterns/valet-key)

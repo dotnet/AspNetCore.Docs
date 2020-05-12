@@ -5,8 +5,8 @@ description: Learn about ASP.NET Core Blazor app templates and Blazor project st
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/29/2020
-no-loc: [Blazor, SignalR]
+ms.date: 04/19/2020
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/templates
 ---
 # ASP.NET Core Blazor templates
@@ -24,6 +24,13 @@ For more information on Blazor's hosting models, see <xref:blazor/hosting-models
 
 For step-by-step instructions on creating a Blazor app from a template, see <xref:blazor/get-started>.
 
+Template options are available by passing the `--help` option to the [dotnet new](/dotnet/core/tools/dotnet-new) CLI command:
+
+```dotnetcli
+dotnet new blazorwasm --help
+dotnet new blazorserver --help
+```
+
 ## Blazor project structure
 
 The following files and folders make up a Blazor app generated from a Blazor template:
@@ -38,9 +45,9 @@ The following files and folders make up a Blazor app generated from a Blazor tem
 
 * *Startup.cs* (Blazor Server) &ndash; Contains the app's startup logic. The `Startup` class defines two methods:
 
-  * `ConfigureServices` &ndash; Configures the app's [dependency injection (DI)](xref:fundamentals/dependency-injection) services. In Blazor Server apps, services are added by calling <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor*>, and the `WeatherForecastService` is added to the service container for use by the example `FetchData` component.
+  * `ConfigureServices` &ndash; Configures the app's [dependency injection (DI)](xref:fundamentals/dependency-injection) services. In Blazor Server apps, services are added by calling <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor%2A>, and the `WeatherForecastService` is added to the service container for use by the example `FetchData` component.
   * `Configure` &ndash; Configures the app's request handling pipeline:
-    * <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub*> is called to set up an endpoint for the real-time connection with the browser. The connection is created with [SignalR](xref:signalr/introduction), which is a framework for adding real-time web functionality to apps.
+    * <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> is called to set up an endpoint for the real-time connection with the browser. The connection is created with [SignalR](xref:signalr/introduction), which is a framework for adding real-time web functionality to apps.
     * [MapFallbackToPage("/_Host")](xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage*) is called to set up the root page of the app (*Pages/_Host.cshtml*) and enable navigation.
 
 * *wwwroot/index.html* (Blazor WebAssembly) &ndash; The root page of the app implemented as an HTML page:
@@ -50,18 +57,17 @@ The following files and folders make up a Blazor app generated from a Blazor tem
     * Downloads the .NET runtime, the app, and the app's dependencies.
     * Initializes the runtime to run the app.
 
-* *Pages/_Host.cshtml* (Blazor Server) &ndash; The root page of the app implemented as a Razor Page:
-  * When any page of the app is initially requested, this page is rendered and returned in the response.
-  * The `_framework/blazor.server.js` JavaScript file is loaded, which sets up the real-time SignalR connection between the browser and the server.
-  * The Host page specifies where the root `App` component (*App.razor*) is rendered.
-
 * *App.razor* &ndash; The root component of the app that sets up client-side routing using the <xref:Microsoft.AspNetCore.Components.Routing.Router> component. The `Router` component intercepts browser navigation and renders the page that matches the requested address.
 
-* *Pages* folder &ndash; Contains the routable components/pages (*.razor*) that make up the Blazor app. The route for each page is specified using the [`@page`](xref:mvc/views/razor#page) directive. The template includes the following components:
-  * `Index` (*Index.razor*) &ndash; Implements the Home page.
+* *Pages* folder &ndash; Contains the routable components/pages (*.razor*) that make up the Blazor app and the root Razor page of a Blazor Server app. The route for each page is specified using the [`@page`](xref:mvc/views/razor#page) directive. The template includes the following:
+  * *_Host.cshtml* (Blazor Server) &ndash; The root page of the app implemented as a Razor Page:
+    * When any page of the app is initially requested, this page is rendered and returned in the response.
+    * The `_framework/blazor.server.js` JavaScript file is loaded, which sets up the real-time SignalR connection between the browser and the server.
+    * The Host page specifies where the root `App` component (*App.razor*) is rendered.
   * `Counter` (*Counter.razor*) &ndash; Implements the Counter page.
   * `Error` (*Error.razor*, Blazor Server app only) &ndash; Rendered when an unhandled exception occurs in the app.
   * `FetchData` (*FetchData.razor*) &ndash; Implements the Fetch data page.
+  * `Index` (*Index.razor*) &ndash; Implements the Home page.
 
 * *Shared* folder &ndash; Contains other UI components (*.razor*) used by the app:
   * `MainLayout` (*MainLayout.razor*) &ndash; The app's layout component.

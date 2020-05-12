@@ -1,4 +1,5 @@
-﻿#define TemplateCode // LogFromMain or ExpandDefault or FilterInCode or MinLevel or FilterFunction or AzLogOptions or Scopes
+﻿//#define LogFromMain  // or ExpandDefault or FilterInCode or MinLevel or FilterFunction or AzLogOptions or Scopes
+//#define FirstProgram  // comment out this and preceding to define snippet_TemplateCode
 
 using System;
 using System.Collections.Generic;
@@ -18,24 +19,12 @@ using Microsoft.Extensions.Hosting;
 
 namespace TodoApiSample
 {
+#if FirstProgram
     public class Program
     {
-#if TemplateCode
-        #region snippet_TemplateCode
-        public static void Main(string[] args)
-        {
-            CreateHostBuilder(args).Build().Run();
-        }
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
-        #endregion
-#elif LogFromMain
-        #region snippet_LogFromMain
+#if LogFromMain
+    #region snippet_LogFromMain
         public static void Main(string[] args)
         {
             var host = CreateHostBuilder(args).Build();
@@ -52,9 +41,9 @@ namespace TodoApiSample
 
             host.Run();
         }
-        #endregion
+    #endregion
 
-        #region snippet_AddProvider
+    #region snippet_AddProvider
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .ConfigureLogging(logging =>
@@ -66,9 +55,9 @@ namespace TodoApiSample
                 {
                     webBuilder.UseStartup<Startup>();
                 });
-        #endregion
+    #endregion
 #elif AzLogOptions
-        #region snippet_AzLogOptions
+    #region snippet_AzLogOptions
         public static void Main(string[] args)
         {
             var host = CreateHostBuilder(args).Build();
@@ -101,7 +90,7 @@ namespace TodoApiSample
                 {
                     webBuilder.UseStartup<Startup>();
                 });
-        #endregion
+    #endregion
 #elif Scopes
         public static void Main(string[] args)
         {
@@ -117,7 +106,7 @@ namespace TodoApiSample
             host.Run();
         }
 
-        #region snippet_Scopes
+    #region snippet_Scopes
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .ConfigureLogging((hostingContext, logging) =>
@@ -130,7 +119,7 @@ namespace TodoApiSample
                 {
                     webBuilder.UseStartup<Startup>();
                 });
-        #endregion
+    #endregion
 #elif FilterInCode
         public static void Main(string[] args)
         {
@@ -139,11 +128,11 @@ namespace TodoApiSample
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-        #region snippet_FilterInCode
+    #region snippet_FilterInCode
                 .ConfigureLogging(logging =>
                     logging.AddFilter("System", LogLevel.Debug)
                            .AddFilter<DebugLoggerProvider>("Microsoft", LogLevel.Trace))
-        #endregion
+    #endregion
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
@@ -154,11 +143,11 @@ namespace TodoApiSample
             CreateHostBuilder(args).Build().Run();
         }
 
-        #region snippet_MinLevel
+    #region snippet_MinLevel
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .ConfigureLogging(logging => logging.SetMinimumLevel(LogLevel.Warning))
-        #endregion
+    #endregion
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
@@ -171,7 +160,7 @@ namespace TodoApiSample
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-        #region snippet_FilterFunction
+    #region snippet_FilterFunction
                 .ConfigureLogging(logBuilder =>
                 {
                     logBuilder.AddFilter((provider, category, logLevel) =>
@@ -184,11 +173,33 @@ namespace TodoApiSample
                         return true;
                     });
                 })
-        #endregion
+    #endregion
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
                 });
+#else
+        // Do nothing.
 #endif
     }
+
+#else
+    #region snippet_TemplateCode
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            CreateHostBuilder(args).Build().Run();
+        }
+
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseStartup<Startup>();
+                });
+    }
+    #endregion
+#endif
+
 }

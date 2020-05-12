@@ -5,8 +5,8 @@ description: Build a Blazor app step-by-step.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/13/2020
-no-loc: [Blazor]
+ms.date: 03/20/2020
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-blazor-app
 ---
 # Build your first Blazor app
@@ -191,10 +191,10 @@ Add a new component to the app that implements a simple todo list.
 
    [!code-razor[](build-your-first-blazor-app/samples_snapshot/3.x/ToDo9.razor?highlight=5-6)]
 
-1. To verify that these values are bound, update the `<h1>` header to show a count of the number of todo items that aren't complete (`IsDone` is `false`).
+1. To verify that these values are bound, update the `<h3>` header to show a count of the number of todo items that aren't complete (`IsDone` is `false`).
 
    ```razor
-   <h1>Todo (@todos.Count(todo => !todo.IsDone))</h1>
+   <h3>Todo (@todos.Count(todo => !todo.IsDone))</h3>
    ```
 
 1. The completed `Todo` component (*Pages/Todo.razor*):

@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2020
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: test/troubleshoot-azure-iis
 ---
 # Troubleshoot ASP.NET Core on Azure App Service and IIS
@@ -153,6 +154,15 @@ To fix this error, repair the installation of the [.NET Core Hosting Bundle](xre
 ANCM failed to start within the provied startup time limit. By default, the timeout is 120 seconds.
 
 This error can occur when starting a large number of apps on the same machine. Check for CPU/Memory usage spikes on the server during startup. You may need to stagger the startup process of multiple apps.
+
+### 500.38 ANCM Application DLL Not Found
+
+ANCM failed to locate the application DLL, which should be next to the executable.
+
+This error occurs when hosting an app packaged as a [single-file executable](/dotnet/core/whats-new/dotnet-core-3-0#single-file-executables) using the in-process hosting model. The in-process model requires that the ANCM load the .NET Core app into the existing IIS process. This scenario isn't supported by the single-file deployment model. Use **one** of the following approaches in the app's project file to fix this error:
+
+1. Disable single-file publishing by setting the `PublishSingleFile` MSBuild property to `false`.
+1. Switch to the out-of-process hosting model by setting the `AspNetCoreHostingModel` MSBuild property to `OutOfProcess`.
 
 ### 502.5 Process Failure
 

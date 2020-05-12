@@ -1,19 +1,21 @@
 ---
 title: ASP.NET Core Blazor data binding
 author: guardrex
-description: Learn about data binding scenarios for components and DOM elements in Blazor apps.
+description: Learn about data binding features for components and DOM elements in Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/24/2020
-no-loc: [Blazor, SignalR]
+ms.date: 03/26/2020
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/data-binding
 ---
 # ASP.NET Core Blazor data binding
 
 By [Luke Latham](https://github.com/guardrex) and [Daniel Roth](https://github.com/danroth27)
 
-Data binding to both components and DOM elements is accomplished with the [`@bind`](xref:mvc/views/razor#bind) attribute. The following example binds a `CurrentValue` property to the text box's value:
+Razor components provide data binding features via an HTML element attribute named [`@bind`](xref:mvc/views/razor#bind) with a field, property, or Razor expression value.
+
+The following example binds the `CurrentValue` property to the text box's value:
 
 ```razor
 <input @bind="CurrentValue" />
@@ -53,23 +55,25 @@ Bind a property or field on other events by also including an `@bind:event` attr
 
 Unlike `onchange`, which fires when the element loses focus, `oninput` fires when the value of the text box changes.
 
-Use `@bind-{ATTRIBUTE}` with `@bind-{ATTRIBUTE}:event` syntax to bind element attributes other than `value`. In the following example, the paragraph's style is updated when the `_paragraphStyle` value changes:
+Use `@bind-{ATTRIBUTE}` with `@bind-{ATTRIBUTE}:event` syntax to bind element attributes other than `value`. In the following example, the paragraph's style is updated when the `paragraphStyle` value changes:
 
 ```razor
 @page "/binding-example"
 
 <p>
-    <input type="text" @bind="_paragraphStyle" />
+    <input type="text" @bind="paragraphStyle" />
 </p>
 
-<p @bind-style="_paragraphStyle" @bind-style:event="onchange">
+<p @bind-style="paragraphStyle" @bind-style:event="onchange">
     Blazorify the app!
 </p>
 
 @code {
-    private string _paragraphStyle = "color:red";
+    private string paragraphStyle = "color:red";
 }
 ```
+
+Attribute binding is case sensitive. For example, `@bind` is valid, and `@Bind` is invalid.
 
 ## Unparsable values
 
@@ -229,13 +233,13 @@ The following `PasswordField` component (*PasswordField.razor*):
 * Uses the `onclick` event is used to trigger the `ToggleShowPassword` method. For more information, see <xref:blazor/event-handling>.
 
 ```razor
-<h1>Child Component</h2>
+<h1>Child Component</h1>
 
 Password: 
 
 <input @oninput="OnPasswordChanged" 
        required 
-       type="@(_showPassword ? "text" : "password")" 
+       type="@(showPassword ? "text" : "password")" 
        value="@Password" />
 
 <button class="btn btn-primary" @onclick="ToggleShowPassword">
@@ -243,7 +247,7 @@ Password:
 </button>
 
 @code {
-    private bool _showPassword;
+    private bool showPassword;
 
     [Parameter]
     public string Password { get; set; }
@@ -260,7 +264,7 @@ Password:
 
     private void ToggleShowPassword()
     {
-        _showPassword = !_showPassword;
+        showPassword = !showPassword;
     }
 }
 ```
@@ -272,59 +276,57 @@ The `PasswordField` component is used in another component:
 
 <h1>Parent Component</h1>
 
-<PasswordField @bind-Password="_password" />
+<PasswordField @bind-Password="password" />
 
 @code {
-    private string _password;
+    private string password;
 }
 ```
 
 To perform checks or trap errors on the password in the preceding example:
 
-* Create a backing field for `Password` (`_password` in the following example code).
+* Create a backing field for `Password` (`password` in the following example code).
 * Perform the checks or trap errors in the `Password` setter.
 
 The following example provides immediate feedback to the user if a space is used in the password's value:
 
 ```razor
-@page "/ParentComponent"
-
-<h1>Parent Component</h1>
+<h1>Child Component</h1>
 
 Password: 
 
 <input @oninput="OnPasswordChanged" 
        required 
-       type="@(_showPassword ? "text" : "password")" 
+       type="@(showPassword ? "text" : "password")" 
        value="@Password" />
 
 <button class="btn btn-primary" @onclick="ToggleShowPassword">
     Show password
 </button>
 
-<span class="text-danger">@_validationMessage</span>
+<span class="text-danger">@validationMessage</span>
 
 @code {
-    private bool _showPassword;
-    private string _password;
-    private string _validationMessage;
+    private bool showPassword;
+    private string password;
+    private string validationMessage;
 
     [Parameter]
     public string Password
     {
-        get { return _password ?? string.Empty; }
+        get { return password ?? string.Empty; }
         set
         {
-            if (_password != value)
+            if (password != value)
             {
                 if (value.Contains(' '))
                 {
-                    _validationMessage = "Spaces not allowed!";
+                    validationMessage = "Spaces not allowed!";
                 }
                 else
                 {
-                    _password = value;
-                    _validationMessage = string.Empty;
+                    password = value;
+                    validationMessage = string.Empty;
                 }
             }
         }
@@ -342,7 +344,7 @@ Password:
 
     private void ToggleShowPassword()
     {
-        _showPassword = !_showPassword;
+        showPassword = !showPassword;
     }
 }
 ```

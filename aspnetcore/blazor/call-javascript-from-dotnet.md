@@ -5,8 +5,8 @@ description: Learn how to invoke JavaScript functions from .NET methods in Blazo
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/19/2020
-no-loc: [Blazor, SignalR]
+ms.date: 04/07/2020
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/call-javascript-from-dotnet
 ---
 # Call JavaScript functions from .NET methods in ASP.NET Core Blazor
@@ -266,7 +266,7 @@ In the `<body>` of *wwwroot/index.html*:
 ```razor
 @page "/"
 
-<h1 @ref="_title">Hello, world!</h1>
+<h1 @ref="title">Hello, world!</h1>
 
 Welcome to your new app.
 
@@ -285,20 +285,20 @@ namespace BlazorSample.Pages
     public partial class Index : 
         ComponentBase, IObservable<ElementReference>, IDisposable
     {
-        private bool _disposing;
-        private IList<IObserver<ElementReference>> _subscriptions = 
+        private bool disposing;
+        private IList<IObserver<ElementReference>> subscriptions = 
             new List<IObserver<ElementReference>>();
-        private ElementReference _title;
+        private ElementReference title;
 
         protected override void OnAfterRender(bool firstRender)
         {
             base.OnAfterRender(firstRender);
 
-            foreach (var subscription in _subscriptions)
+            foreach (var subscription in subscriptions)
             {
                 try
                 {
-                    subscription.OnNext(_title);
+                    subscription.OnNext(title);
                 }
                 catch (Exception)
                 {
@@ -309,9 +309,9 @@ namespace BlazorSample.Pages
 
         public void Dispose()
         {
-            _disposing = true;
+            disposing = true;
 
-            foreach (var subscription in _subscriptions)
+            foreach (var subscription in subscriptions)
             {
                 try
                 {
@@ -322,17 +322,17 @@ namespace BlazorSample.Pages
                 }
             }
 
-            _subscriptions.Clear();
+            subscriptions.Clear();
         }
 
         public IDisposable Subscribe(IObserver<ElementReference> observer)
         {
-            if (_disposing)
+            if (disposing)
             {
                 throw new InvalidOperationException("Parent being disposed");
             }
 
-            _subscriptions.Add(observer);
+            subscriptions.Add(observer);
 
             return new Subscription(observer, this);
         }
@@ -350,7 +350,7 @@ namespace BlazorSample.Pages
 
             public void Dispose()
             {
-                Self._subscriptions.Remove(Observer);
+                Self.subscriptions.Remove(Observer);
             }
         }
     }
@@ -391,7 +391,7 @@ namespace BlazorSample.Shared
     public partial class SurveyPrompt : 
         ComponentBase, IObserver<ElementReference>, IDisposable
     {
-        private IDisposable _subscription = null;
+        private IDisposable subscription = null;
 
         [Parameter]
         public IObservable<ElementReference> Parent { get; set; }
@@ -400,22 +400,22 @@ namespace BlazorSample.Shared
         {
             base.OnParametersSet();
 
-            if (_subscription != null)
+            if (subscription != null)
             {
-                _subscription.Dispose();
+                subscription.Dispose();
             }
 
-            _subscription = Parent.Subscribe(this);
+            subscription = Parent.Subscribe(this);
         }
 
         public void OnCompleted()
         {
-            _subscription = null;
+            subscription = null;
         }
 
         public void OnError(Exception error)
         {
-            _subscription = null;
+            subscription = null;
         }
 
         public void OnNext(ElementReference value)
@@ -426,7 +426,7 @@ namespace BlazorSample.Shared
 
         public void Dispose()
         {
-            _subscription?.Dispose();
+            subscription?.Dispose();
         }
     }
 }
@@ -450,9 +450,21 @@ JS interop may fail due to networking errors and should be treated as unreliable
       TimeSpan.FromSeconds({SECONDS}), new[] { "Arg1" });
   ```
 
-For more information on resource exhaustion, see <xref:security/blazor/server>.
+For more information on resource exhaustion, see <xref:security/blazor/server/threat-mitigation>.
 
 [!INCLUDE[Share interop code in a class library](~/includes/blazor-share-interop-code.md)]
+
+## Avoid circular object references
+
+Objects that contain circular references can't be serialized on the client for either:
+
+* .NET method calls.
+* JavaScript method calls from C# when the return type has circular references.
+
+For more information, see the following issues:
+
+* [Circular references are not supported, take two (dotnet/aspnetcore #20525)](https://github.com/dotnet/aspnetcore/issues/20525)
+* [Proposal: Add mechanism to handle circular references when serializing (dotnet/runtime #30820)](https://github.com/dotnet/runtime/issues/30820)
 
 ## Additional resources
 

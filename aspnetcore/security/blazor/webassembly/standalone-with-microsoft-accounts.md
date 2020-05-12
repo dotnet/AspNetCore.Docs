@@ -5,8 +5,8 @@ description:
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/09/2020
-no-loc: [Blazor, SignalR]
+ms.date: 05/11/2020
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/blazor/webassembly/standalone-with-microsoft-accounts
 ---
 # Secure an ASP.NET Core Blazor WebAssembly standalone app with Microsoft Accounts
@@ -75,17 +75,71 @@ Support for authenticating users is registered in the service container with the
 ```csharp
 builder.Services.AddMsalAuthentication(options =>
 {
-    var authentication = options.ProviderOptions.Authentication;
-    authentication.Authority = "{AUTHORITY}";
-    authentication.ClientId = "{CLIENT ID}";
+    builder.Configuration.Bind("AzureAd", options.ProviderOptions.Authentication);
 });
 ```
 
 The `AddMsalAuthentication` method accepts a callback to configure the parameters required to authenticate an app. The values required for configuring the app can be obtained from the Microsoft Accounts configuration when you register the app.
 
+Configuration is supplied by the *wwwroot/appsettings.json* file:
+
+```json
+{
+  "AzureAd": {
+    "Authority": "https://login.microsoftonline.com/common",
+    "ClientId": "{CLIENT ID}"
+  }
+}
+```
+
+Example:
+
+```json
+{
+  "AzureAd": {
+    "Authority": "https://login.microsoftonline.com/common",
+    "ClientId": "41451fa7-82d9-4673-8fa5-69eff5a761fd"
+  }
+}
+```
+
+## Access token scopes
+
+The Blazor WebAssembly template doesn't automatically configure the app to request an access token for a secure API. To provision an access token as part of the sign-in flow, add the scope to the default access token scopes of the `MsalProviderOptions`:
+
+```csharp
+builder.Services.AddMsalAuthentication(options =>
+{
+    ...
+    options.ProviderOptions.DefaultAccessTokenScopes.Add("{SCOPE URI}");
+});
+```
+
+> [!NOTE]
+> If the Azure portal provides a scope URI and **the app throws an unhandled exception** when it receives a *401 Unauthorized* response from the API, try using a scope URI that doesn't include the scheme and host. For example, the Azure portal may provide one of the following scope URI formats:
+>
+> * `https://{ORGANIZATION}.onmicrosoft.com/{API CLIENT ID OR CUSTOM VALUE}/{SCOPE NAME}`
+> * `api://{API CLIENT ID OR CUSTOM VALUE}/{SCOPE NAME}`
+>
+> Supply the scope URI without the scheme and host:
+>
+> ```csharp
+> options.ProviderOptions.DefaultAccessTokenScopes.Add(
+>     "{API CLIENT ID OR CUSTOM VALUE}/{SCOPE NAME}");
+> ```
+
+For more information, see the following sections of the *Additional scenarios* article:
+
+* [Request additional access tokens](xref:security/blazor/webassembly/additional-scenarios#request-additional-access-tokens)
+* [Attach tokens to outgoing requests](xref:security/blazor/webassembly/additional-scenarios#attach-tokens-to-outgoing-requests)
+
+## Imports file
+
+[!INCLUDE[](~/includes/blazor-security/imports-file-standalone.md)]
+
 ## Index page
 
-[!INCLUDE[](~/includes/blazor-security/index-page.md)]
+[!INCLUDE[](~/includes/blazor-security/index-page-msal.md)]
 
 ## App component
 
@@ -107,5 +161,8 @@ The `AddMsalAuthentication` method accepts a callback to configure the parameter
 
 ## Additional resources
 
+* <xref:security/blazor/webassembly/additional-scenarios>
+* [Unauthenticated or unauthorized web API requests in an app with a secure default client](xref:security/blazor/webassembly/additional-scenarios#unauthenticated-or-unauthorized-web-api-requests-in-an-app-with-a-secure-default-client)
+* <xref:security/blazor/webassembly/aad-groups-roles>
 * [Quickstart: Register an application with the Microsoft identity platform](/azure/active-directory/develop/quickstart-register-app#register-a-new-application-using-the-azure-portal)
 * [Quickstart: Configure an application to expose web APIs](/azure/active-directory/develop/quickstart-configure-app-expose-web-apis)

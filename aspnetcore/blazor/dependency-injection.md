@@ -5,8 +5,8 @@ description: See how Blazor apps can inject services into components.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/20/2020
-no-loc: [Blazor, SignalR]
+ms.date: 05/04/2020
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/dependency-injection
 ---
 # ASP.NET Core Blazor dependency injection
@@ -28,7 +28,7 @@ Default services are automatically added to the app's service collection.
 
 | Service | Lifetime | Description |
 | ------- | -------- | ----------- |
-| <xref:System.Net.Http.HttpClient> | Singleton | Provides methods for sending HTTP requests and receiving HTTP responses from a resource identified by a URI.<br><br>The instance of `HttpClient` in a Blazor WebAssembly app uses the browser for handling the HTTP traffic in the background.<br><br>Blazor Server apps don't include an `HttpClient` configured as a service by default. Provide an `HttpClient` to a Blazor Server app.<br><br>For more information, see <xref:blazor/call-web-api>. |
+| <xref:System.Net.Http.HttpClient> | Transient | Provides methods for sending HTTP requests and receiving HTTP responses from a resource identified by a URI.<br><br>The instance of `HttpClient` in a Blazor WebAssembly app uses the browser for handling the HTTP traffic in the background.<br><br>Blazor Server apps don't include an `HttpClient` configured as a service by default. Provide an `HttpClient` to a Blazor Server app.<br><br>For more information, see <xref:blazor/call-web-api>. |
 | `IJSRuntime` | Singleton (Blazor WebAssembly)<br>Scoped (Blazor Server) | Represents an instance of a JavaScript runtime where JavaScript calls are dispatched. For more information, see <xref:blazor/call-javascript-from-dotnet>. |
 | `NavigationManager` | Singleton (Blazor WebAssembly)<br>Scoped (Blazor Server) | Contains helpers for working with URIs and navigation state. For more information, see [URI and navigation state helpers](xref:blazor/routing#uri-and-navigation-state-helpers). |
 
@@ -123,9 +123,9 @@ Services can be configured with the lifetimes shown in the following table.
 
 | Lifetime | Description |
 | -------- | ----------- |
-| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Scoped*> | Blazor WebAssembly apps don't currently have a concept of DI scopes. `Scoped`-registered services behave like `Singleton` services. However, the Blazor Server hosting model supports the `Scoped` lifetime. In Blazor Server apps, a scoped service registration is scoped to the *connection*. For this reason, using scoped services is preferred for services that should be scoped to the current user, even if the current intent is to run client-side in the browser. |
-| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Singleton*> | DI creates a *single instance* of the service. All components requiring a `Singleton` service receive an instance of the same service. |
-| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Transient*> | Whenever a component obtains an instance of a `Transient` service from the service container, it receives a *new instance* of the service. |
+| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Scoped%2A> | Blazor WebAssembly apps don't currently have a concept of DI scopes. `Scoped`-registered services behave like `Singleton` services. However, the Blazor Server hosting model supports the `Scoped` lifetime. In Blazor Server apps, a scoped service registration is scoped to the *connection*. For this reason, using scoped services is preferred for services that should be scoped to the current user, even if the current intent is to run client-side in the browser. |
+| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Singleton%2A> | DI creates a *single instance* of the service. All components requiring a `Singleton` service receive an instance of the same service. |
+| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Transient%2A> | Whenever a component obtains an instance of a `Transient` service from the service container, it receives a *new instance* of the service. |
 
 The DI system is based on the DI system in ASP.NET Core. For more information, see <xref:fundamentals/dependency-injection>.
 
@@ -263,7 +263,7 @@ If a single component might use a `DbContext` concurrently (for example, every t
     @inject DbContextOptions<AppDbContext> DbContextOptions
 
     <ul>
-        @foreach (var item in _data)
+        @foreach (var item in data)
         {
             <li>@item</li>
         }
@@ -272,11 +272,11 @@ If a single component might use a `DbContext` concurrently (for example, every t
     <button @onclick="LoadData">Load Data</button>
 
     @code {
-        private List<string> _data = new List<string>();
+        private List<string> data = new List<string>();
 
         private async Task LoadData()
         {
-            _data = await GetAsync();
+            data = await GetAsync();
             StateHasChanged();
         }
 
@@ -307,7 +307,7 @@ If a single component might use a `DbContext` concurrently (for example, every t
     @inject IServiceProvider ServiceProvider
 
     <ul>
-        @foreach (var item in _data)
+        @foreach (var item in data)
         {
             <li>@item</li>
         }
@@ -316,11 +316,11 @@ If a single component might use a `DbContext` concurrently (for example, every t
     <button @onclick="LoadData">Load Data</button>
 
     @code {
-        private List<string> _data = new List<string>();
+        private List<string> data = new List<string>();
 
         private async Task LoadData()
         {
-            _data = await GetAsync();
+            data = await GetAsync();
             StateHasChanged();
         }
 

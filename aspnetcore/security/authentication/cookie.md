@@ -5,6 +5,7 @@ description: Learn how to use cookie authentication without ASP.NET Core Identit
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 02/11/2020
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/cookie
 ---
 # Use cookie authentication without ASP.NET Core Identity
@@ -83,6 +84,8 @@ To create a cookie holding user information, construct a <xref:System.Security.C
 Create a <xref:System.Security.Claims.ClaimsIdentity> with any required <xref:System.Security.Claims.Claim>s and call <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.SignInAsync*> to sign in the user:
 
 [!code-csharp[](cookie/samples/3.x/CookieSample/Pages/Account/Login.cshtml.cs?name=snippet1)]
+
+[!INCLUDE[request localized comments](~/includes/code-comments-loc.md)]
 
 `SignInAsync` creates an encrypted cookie and adds it to the current response. If `AuthenticationScheme` isn't specified, the default scheme is used.
 

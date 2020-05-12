@@ -4,6 +4,7 @@ author: isaac2004
 description: Receive guidance for migrating existing ASP.NET MVC or Web API apps to ASP.NET Core.web
 ms.author: scaddie
 ms.date: 10/18/2019
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: migration/proper-to-2x/index
 ---
 # Migrate from ASP.NET to ASP.NET Core
@@ -14,7 +15,7 @@ This article serves as a reference guide for migrating ASP.NET apps to ASP.NET C
 
 ## Prerequisites
 
-[.NET Core SDK 2.2 or later](https://www.microsoft.com/net/download)
+[.NET Core SDK 2.2 or later](https://dotnet.microsoft.com/download)
 
 ## Target frameworks
 

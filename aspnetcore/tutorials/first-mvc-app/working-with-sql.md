@@ -4,6 +4,7 @@ author: rick-anderson
 description: Learn about using SQL Server LocalDB or SQLite in a ASP.NET Core MVC app.
 ms.author: riande
 ms.date: 8/16/2019
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-mvc-app/working-with-sql
 ---
 # Work with SQL in ASP.NET Core

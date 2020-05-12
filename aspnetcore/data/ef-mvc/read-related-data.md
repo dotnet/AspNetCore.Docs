@@ -5,6 +5,7 @@ author: rick-anderson
 ms.author: riande
 ms.date: 09/28/2019
 ms.topic: tutorial
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: data/ef-mvc/read-related-data
 ---
 

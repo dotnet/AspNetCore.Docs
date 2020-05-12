@@ -5,13 +5,13 @@ description: Learn how to create and use Razor components, including how to bind
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/25/2020
-no-loc: [Blazor, SignalR]
+ms.date: 05/11/2020
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/components
 ---
 # Create and use ASP.NET Core Razor components
 
-By [Luke Latham](https://github.com/guardrex) and [Daniel Roth](https://github.com/danroth27)
+By [Luke Latham](https://github.com/guardrex), [Daniel Roth](https://github.com/danroth27), and [Tobias Bartsch](https://www.aveo-solutions.com/)
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) ([how to download](xref:index#how-to-download-a-sample))
 
@@ -29,15 +29,15 @@ Members of the component class are defined in an `@code` block. In the `@code` b
 
 Component members can be used as part of the component's rendering logic using C# expressions that start with `@`. For example, a C# field is rendered by prefixing `@` to the field name. The following example evaluates and renders:
 
-* `_headingFontStyle` to the CSS property value for `font-style`.
-* `_headingText` to the content of the `<h1>` element.
+* `headingFontStyle` to the CSS property value for `font-style`.
+* `headingText` to the content of the `<h1>` element.
 
 ```razor
-<h1 style="font-style:@_headingFontStyle">@_headingText</h1>
+<h1 style="font-style:@headingFontStyle">@headingText</h1>
 
 @code {
-    private string _headingFontStyle = "italic";
-    private string _headingText = "Put on your new Blazor!";
+    private string headingFontStyle = "italic";
+    private string headingText = "Put on your new Blazor!";
 }
 ```
 
@@ -50,13 +50,19 @@ Typically, a component's namespace is derived from the app's root namespace and 
 * The `Counter` component's namespace is `BlazorApp.Pages`.
 * The fully qualified type name of the component is `BlazorApp.Pages.Counter`.
 
-For more information, see the [Import components](#import-components) section.
-
-To use a custom folder, add the custom folder's namespace to either the parent component or to the app's *_Imports.razor* file. For example, the following namespace makes components in a *Components* folder available when the app's root namespace is `BlazorApp`:
+For custom folders that hold components, add a `using` statement to the parent component or to the app's *_Imports.razor* file. The following example makes components in the *Components* folder available:
 
 ```razor
 @using BlazorApp.Components
 ```
+
+Alternatively, a component can be directly referenced:
+
+```razor
+<BlazorApp.Components.MyCoolComponent />
+```
+
+For more information, see the [Import components](#import-components) section.
 
 ## Static assets
 
@@ -79,8 +85,6 @@ For information on setting an app's base path, see <xref:host-and-deploy/blazor/
 ## Use components
 
 Components can include other components by declaring them using HTML element syntax. The markup for using a component looks like an HTML tag where the name of the tag is the component type.
-
-Attribute binding is case sensitive. For example, `@bind` is valid, and `@Bind` is invalid.
 
 The following markup in *Index.razor* renders a `HeadingComponent` instance:
 
@@ -135,6 +139,9 @@ In the following example from the sample app, the `ParentComponent` sets the val
 *Pages/ParentComponent.razor*:
 
 [!code-razor[](components/samples_snapshot/ParentComponent.razor?highlight=5-6)]
+
+> [!WARNING]
+> Don't create components that write to their own *component parameters*, use a private field instead. For more information, see the [Don't create components that write to their own parameter properties](#dont-create-components-that-write-to-their-own-parameter-properties) section.
 
 ## Child content
 
@@ -279,22 +286,24 @@ Component references provide a way to reference a component instance so that you
 * Define a field with the same type as the child component.
 
 ```razor
-<MyLoginDialog @ref="_loginDialog" ... />
+<MyLoginDialog @ref="loginDialog" ... />
 
 @code {
-    private MyLoginDialog _loginDialog;
+    private MyLoginDialog loginDialog;
 
     private void OnSomething()
     {
-        _loginDialog.Show();
+        loginDialog.Show();
     }
 }
 ```
 
-When the component is rendered, the `_loginDialog` field is populated with the `MyLoginDialog` child component instance. You can then invoke .NET methods on the component instance.
+When the component is rendered, the `loginDialog` field is populated with the `MyLoginDialog` child component instance. You can then invoke .NET methods on the component instance.
 
 > [!IMPORTANT]
-> The `_loginDialog` variable is only populated after the component is rendered and its output includes the `MyLoginDialog` element. Until that point, there's nothing to reference. To manipulate components references after the component has finished rendering, use the [OnAfterRenderAsync or OnAfterRender methods](xref:blazor/lifecycle#after-component-render).
+> The `loginDialog` variable is only populated after the component is rendered and its output includes the `MyLoginDialog` element. Until that point, there's nothing to reference. To manipulate components references after the component has finished rendering, use the [OnAfterRenderAsync or OnAfterRender methods](xref:blazor/lifecycle#after-component-render).
+
+To reference components in a loop, see [Capture references to multiple similar child-components (dotnet/aspnetcore #13358)](https://github.com/dotnet/aspnetcore/issues/13358).
 
 While capturing component references use a similar syntax to [capturing element references](xref:blazor/call-javascript-from-dotnet#capture-references-to-elements), it isn't a JavaScript interop feature. Component references aren't passed to JavaScript code&mdash;they're only used in .NET code.
 
@@ -303,9 +312,11 @@ While capturing component references use a similar syntax to [capturing element 
 
 ## Invoke component methods externally to update state
 
-Blazor uses a `SynchronizationContext` to enforce a single logical thread of execution. A component's [lifecycle methods](xref:blazor/lifecycle) and any event callbacks that are raised by Blazor are executed on this `SynchronizationContext`. In the event a component must be updated based on an external event, such as a timer or other notifications, use the `InvokeAsync` method, which will dispatch to Blazor's `SynchronizationContext`.
+Blazor uses a synchronization context (`SynchronizationContext`) to enforce a single logical thread of execution. A component's [lifecycle methods](xref:blazor/lifecycle) and any event callbacks that are raised by Blazor are executed on the synchronization context.
 
-For example, consider a *notifier service* that can notify any listening component of the updated state:
+Blazor Server's synchronization context attempts to emulate a single-threaded environment so that it closely matches the WebAssembly model in the browser, which is single threaded. At any given point in time, work is performed on exactly one thread, giving the impression of a single logical thread. No two operations execute concurrently.
+
+In the event a component must be updated based on an external event, such as a timer or other notifications, use the `InvokeAsync` method, which will dispatch to Blazor's synchronization context. For example, consider a *notifier service* that can notify any listening component of the updated state:
 
 ```csharp
 public class NotifierService
@@ -344,10 +355,10 @@ Use the `NotifierService` to update a component:
 @inject NotifierService Notifier
 @implements IDisposable
 
-<p>Last update: @_lastNotification.key = @_lastNotification.value</p>
+<p>Last update: @lastNotification.key = @lastNotification.value</p>
 
 @code {
-    private (string key, int value) _lastNotification;
+    private (string key, int value) lastNotification;
 
     protected override void OnInitialized()
     {
@@ -358,7 +369,7 @@ Use the `NotifierService` to update a component:
     {
         await InvokeAsync(() =>
         {
-            _lastNotification = (key, value);
+            lastNotification = (key, value);
             StateHasChanged();
         });
     }
@@ -370,7 +381,7 @@ Use the `NotifierService` to update a component:
 }
 ```
 
-In the preceding example, `NotifierService` invokes the component's `OnNotify` method outside of Blazor's `SynchronizationContext`. `InvokeAsync` is used to switch to the correct context and queue a render.
+In the preceding example, `NotifierService` invokes the component's `OnNotify` method outside of Blazor's synchronization context. `InvokeAsync` is used to switch to the correct context and queue a render.
 
 ## Use \@key to control the preservation of elements and components
 
@@ -381,7 +392,7 @@ Consider the following example:
 ```csharp
 @foreach (var person in People)
 {
-    <DetailsEditor Details="person.Details" />
+    <DetailsEditor Details="@person.Details" />
 }
 
 @code {
@@ -392,12 +403,12 @@ Consider the following example:
 
 The contents of the `People` collection may change with inserted, deleted, or re-ordered entries. When the component rerenders, the `<DetailsEditor>` component may change to receive different `Details` parameter values. This may cause more complex rerendering than expected. In some cases, rerendering can lead to visible behavior differences, such as lost element focus.
 
-The mapping process can be controlled with the `@key` directive attribute. `@key` causes the diffing algorithm to guarantee preservation of elements or components based on the key's value:
+The mapping process can be controlled with the [`@key`](xref:mvc/views/razor#key) directive attribute. `@key` causes the diffing algorithm to guarantee preservation of elements or components based on the key's value:
 
 ```csharp
 @foreach (var person in People)
 {
-    <DetailsEditor @key="person" Details="person.Details" />
+    <DetailsEditor @key="person" Details="@person.Details" />
 }
 
 @code {
@@ -446,6 +457,99 @@ Generally, it makes sense to supply one of the following kinds of value for `@ke
 
 Ensure that values used for `@key` don't clash. If clashing values are detected within the same parent element, Blazor throws an exception because it can't deterministically map old elements or components to new elements or components. Only use distinct values, such as object instances or primary key values.
 
+## Don't create components that write to their own parameter properties
+
+Parameters are overwritten under the following conditions:
+
+* A child component's content is rendered with a `RenderFragment`.
+* <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is called in the parent component.
+
+Parameters are reset because the parent component rerenders when <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is called and new parameter values are supplied to the child component.
+
+Consider the following `Expander` component that:
+
+* Renders child content.
+* Toggles showing child content with a component parameter.
+
+```razor
+<div @onclick="@Toggle">
+    Toggle (Expanded = @Expanded)
+
+    @if (Expanded)
+    {
+        @ChildContent
+    }
+</div>
+
+@code {
+    [Parameter]
+    public bool Expanded { get; set; }
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    private void Toggle()
+    {
+        Expanded = !Expanded;
+    }
+}
+```
+
+The `Expander` component is added to a parent component that may call `StateHasChanged`:
+
+```razor
+<Expander Expanded="true">
+    <h1>Hello, world!</h1>
+</Expander>
+
+<Expander Expanded="true" />
+
+<button @onclick="@(() => StateHasChanged())">
+    Call StateHasChanged
+</button>
+```
+
+Initially, the `Expander` components behave independently when their `Expanded` properties are toggled. The child components maintain their states as expected. When `StateHasChanged` is called in the parent, the `Expanded` parameter of the first child component is reset back to its initial value (`true`). The second `Expander` component's `Expanded` value isn't reset because no child content is rendered in the second component.
+
+To maintain state in the preceding scenario, use a *private field* in the `Expander` component to maintain its toggled state.
+
+The following `Expander` component:
+
+* Accepts the `Expanded` component parameter value from the parent.
+* Assigns the component parameter value to a *private field* (`expanded`) in the [OnInitialized event](xref:blazor/lifecycle#component-initialization-methods).
+* Uses the private field to maintain its internal toggle state.
+
+```razor
+<div @onclick="@Toggle">
+    Toggle (Expanded = @expanded)
+
+    @if (expanded)
+    {
+        @ChildContent
+    }
+</div>
+
+@code {
+    [Parameter]
+    public bool Expanded { get; set; }
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    private bool expanded;
+
+    protected override void OnInitialized()
+    {
+        expanded = Expanded;
+    }
+
+    private void Toggle()
+    {
+        expanded = !expanded;
+    }
+}
+```
+
 ## Partial class support
 
 Razor components are generated as partial classes. Razor components are authored using either of the following approaches:
@@ -462,16 +566,16 @@ The following example shows the default `Counter` component with an `@code` bloc
 
 <h1>Counter</h1>
 
-<p>Current count: @_currentCount</p>
+<p>Current count: @currentCount</p>
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
 @code {
-    private int _currentCount = 0;
+    private int currentCount = 0;
 
     void IncrementCount()
     {
-        _currentCount++;
+        currentCount++;
     }
 }
 ```
@@ -485,7 +589,7 @@ The `Counter` component can also be created using a code-behind file with a part
 
 <h1>Counter</h1>
 
-<p>Current count: @_currentCount</p>
+<p>Current count: @currentCount</p>
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 ```
@@ -497,11 +601,11 @@ namespace BlazorApp.Pages
 {
     public partial class Counter
     {
-        private int _currentCount = 0;
+        private int currentCount = 0;
 
         void IncrementCount()
         {
-            _currentCount++;
+            currentCount++;
         }
     }
 }
@@ -634,10 +738,10 @@ Strings are normally rendered using DOM text nodes, which means that any markup 
 The following example shows using the `MarkupString` type to add a block of static HTML content to the rendered output of a component:
 
 ```html
-@((MarkupString)_myMarkup)
+@((MarkupString)myMarkup)
 
 @code {
-    private string _myMarkup = 
+    private string myMarkup = 
         "<p class='markup'>This is a <em>markup string</em>.</p>";
 }
 ```
@@ -675,7 +779,7 @@ For example, the sample app specifies theme information (`ThemeInfo`) in one of 
             <NavMenu />
         </div>
         <div class="col-sm-9">
-            <CascadingValue Value="_theme">
+            <CascadingValue Value="theme">
                 <div class="content px-4">
                     @Body
                 </div>
@@ -685,7 +789,7 @@ For example, the sample app specifies theme information (`ThemeInfo`) in one of 
 </div>
 
 @code {
-    private ThemeInfo _theme = new ThemeInfo { ButtonClass = "btn-success" };
+    private ThemeInfo theme = new ThemeInfo { ButtonClass = "btn-success" };
 }
 ```
 
@@ -702,7 +806,7 @@ In the sample app, the `CascadingValuesParametersTheme` component binds the `The
 
 <h1>Cascading Values & Parameters</h1>
 
-<p>Current count: @_currentCount</p>
+<p>Current count: @currentCount</p>
 
 <p>
     <button class="btn" @onclick="IncrementCount">
@@ -717,14 +821,14 @@ In the sample app, the `CascadingValuesParametersTheme` component binds the `The
 </p>
 
 @code {
-    private int _currentCount = 0;
+    private int currentCount = 0;
 
     [CascadingParameter]
     protected ThemeInfo ThemeInfo { get; set; }
 
     private void IncrementCount()
     {
-        _currentCount++;
+        currentCount++;
     }
 }
 ```
@@ -732,14 +836,14 @@ In the sample app, the `CascadingValuesParametersTheme` component binds the `The
 To cascade multiple values of the same type within the same subtree, provide a unique `Name` string to each `CascadingValue` component and its corresponding `CascadingParameter`. In the following example, two `CascadingValue` components cascade different instances of `MyCascadingType` by name:
 
 ```razor
-<CascadingValue Value=@_parentCascadeParameter1 Name="CascadeParam1">
+<CascadingValue Value=@parentCascadeParameter1 Name="CascadeParam1">
     <CascadingValue Value=@ParentCascadeParameter2 Name="CascadeParam2">
         ...
     </CascadingValue>
 </CascadingValue>
 
 @code {
-    private MyCascadingType _parentCascadeParameter1;
+    private MyCascadingType parentCascadeParameter1;
 
     [Parameter]
     public MyCascadingType ParentCascadeParameter2 { get; set; }
@@ -819,13 +923,13 @@ Render fragments can be defined using Razor template syntax. Razor templates are
 The following example illustrates how to specify `RenderFragment` and `RenderFragment<T>` values and render templates directly in a component. Render fragments can also be passed as arguments to [templated components](xref:blazor/templated-components).
 
 ```razor
-@_timeTemplate
+@timeTemplate
 
-@_petTemplate(new Pet { Name = "Rex" })
+@petTemplate(new Pet { Name = "Rex" })
 
 @code {
-    private RenderFragment _timeTemplate = @<p>The time is @DateTime.Now.</p>;
-    private RenderFragment<Pet> _petTemplate = (pet) => @<p>Pet: @pet.Name</p>;
+    private RenderFragment timeTemplate = @<p>The time is @DateTime.Now.</p>;
+    private RenderFragment<Pet> petTemplate = (pet) => @<p>Pet: @pet.Name</p>;
 
     private class Pet
     {
@@ -862,4 +966,4 @@ However, inline SVG markup isn't supported in all scenarios. If you place an `<s
 
 ## Additional resources
 
-* <xref:security/blazor/server> &ndash; Includes guidance on building Blazor Server apps that must contend with resource exhaustion.
+* <xref:security/blazor/server/threat-mitigation> &ndash; Includes guidance on building Blazor Server apps that must contend with resource exhaustion.

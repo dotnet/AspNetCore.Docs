@@ -5,8 +5,8 @@ description: Explore ASP.NET Core Blazor, a way to build interactive client-side
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: "mvc, seoapril2019"
-ms.date: 01/31/2020
-no-loc: [Blazor, SignalR]
+ms.date: 03/25/2020
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/index
 ---
 # Introduction to ASP.NET Core Blazor
@@ -20,6 +20,7 @@ Blazor is a framework for building interactive client-side web UI with .NET:
 * Create rich interactive UIs using C# instead of JavaScript.
 * Share server-side and client-side app logic written in .NET.
 * Render the UI as HTML and CSS for wide browser support, including mobile browsers.
+* Integrate with modern hosting platforms, such as [Docker](/dotnet/standard/microservices-architecture/container-docker-introduction/index).
 
 Using .NET for client-side web development offers the following advantages:
 

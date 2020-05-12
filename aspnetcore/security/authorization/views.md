@@ -5,6 +5,7 @@ description: This document demonstrates how to inject and utilize the authorizat
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 11/08/2019
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authorization/views
 ---
 # View-based authorization in ASP.NET Core MVC

@@ -5,8 +5,8 @@ description: Learn how to control the Intermediate Language (IL) Linker when bui
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/10/2020
-no-loc: [Blazor, SignalR]
+ms.date: 05/04/2020
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: host-and-deploy/blazor/configure-linker
 ---
 # Configure the Linker for ASP.NET Core Blazor
@@ -28,7 +28,7 @@ Linking for Blazor apps can be configured using these MSBuild features:
 
 ## Control linking with an MSBuild property
 
-Linking is enabled when an app is built in `Release` configuation. To change this, configure the `BlazorWebAssemblyEnableLinking` MSBuild property in the project file:
+Linking is enabled when an app is built in `Release` configuration. To change this, configure the `BlazorWebAssemblyEnableLinking` MSBuild property in the project file:
 
 ```xml
 <PropertyGroup>
@@ -42,11 +42,11 @@ Control linking on a per-assembly basis by providing an XML configuration file a
 
 ```xml
 <ItemGroup>
-  <BlazorLinkerDescriptor Include="Linker.xml" />
+  <BlazorLinkerDescriptor Include="LinkerConfig.xml" />
 </ItemGroup>
 ```
 
-*Linker.xml*:
+*LinkerConfig.xml*:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -78,17 +78,31 @@ Control linking on a per-assembly basis by providing an XML configuration file a
 </linker>
 ```
 
-For more information, see [IL Linker: Syntax of xml descriptor](https://github.com/mono/linker/blob/master/src/linker/README.md#syntax-of-xml-descriptor).
+For more information and examples, see [Data Formats (mono/linker GitHub repository)](https://github.com/mono/linker/blob/master/docs/data-formats.md).
+
+## Add an XML linker configuration file to a library
+
+To configure the linker for a specific library, add an XML linker configuration file into the library as an embedded resource. The embedded resource must have the same name as the assembly.
+
+In the following example, the *LinkerConfig.xml* file is specified as an embedded resource that has the same name as the library's assembly:
+
+```xml
+<ItemGroup>
+  <EmbeddedResource Include="LinkerConfig.xml">
+    <LogicalName>$(MSBuildProjectName).xml</LogicalName>
+  </EmbeddedResource>
+</ItemGroup>
+```
 
 ### Configure the linker for internationalization
 
 By default, Blazor's linker configuration for Blazor WebAssembly apps strips out internationalization information except for locales explicitly requested. Removing these assemblies minimizes the app's size.
 
-To control which I18N assemblies are retained, set the `<MonoLinkerI18NAssemblies>` MSBuild property in the project file:
+To control which I18N assemblies are retained, set the `<BlazorWebAssemblyI18NAssemblies>` MSBuild property in the project file:
 
 ```xml
 <PropertyGroup>
-  <MonoLinkerI18NAssemblies>{all|none|REGION1,REGION2,...}</MonoLinkerI18NAssemblies>
+  <BlazorWebAssemblyI18NAssemblies>{all|none|REGION1,REGION2,...}</BlazorWebAssemblyI18NAssemblies>
 </PropertyGroup>
 ```
 

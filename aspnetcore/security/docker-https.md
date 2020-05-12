@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 07/05/2019
-no-loc: ["Let's Encrypt"]
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/docker-https
 ---
 # Hosting ASP.NET Core images with Docker over HTTPS
@@ -23,7 +23,7 @@ This sample requires [Docker 17.06](https://docs.docker.com/release-notes/docker
 
 ## Prerequisites
 
-The [.NET Core 2.2 SDK](https://www.microsoft.com/net/download) or later is required for some of the instructions in this document.
+The [.NET Core 2.2 SDK](https://dotnet.microsoft.com/download) or later is required for some of the instructions in this document.
 
 ## Certificates
 

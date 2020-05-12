@@ -7,13 +7,17 @@ metadata:
   title: ASP.NET Core documentation - What's new?
   description: "Learn about new and updated content in ASP.NET Core docs."
   ms.topic: landing-page
-  ms.date: 03/02/2020
+  ms.date: 04/26/2020
 
 landingContent:
   - title: "Find ASP.NET Core docs updates"
     linkLists:
       - linkListType: whats-new
         links:
+          - text: April 2020
+            url: 2020-04.md
+          - text: March 2020
+            url: 2020-03.md
           - text: February 2020
             url: 2020-02.md
           - text: January 2020
@@ -22,10 +26,6 @@ landingContent:
             url: 2019-12.md
           - text: November 2019
             url: 2019-11.md
-          - text: October 2019
-            url: 2019-10.md
-          - text: September 2019
-            url: 2019-09.md
 
   - title: "Get involved - contribute to ASP.NET Core docs"
     linkLists:
@@ -45,6 +45,13 @@ landingContent:
             url: https://github.com/dotnet/AspNetApiDocs/blob/master/CONTRIBUTING.md
           # - text: "ASP.NET Core samples contributor guide"
           #   url: https://github.com/aspnet/samples/blob/master/CONTRIBUTING.md
+
+  - title: "Community"
+    linkLists:
+      - linkListType: whats-new
+        links:
+          - text: Community
+            url: https://dotnet.microsoft.com/platform/community
 
   - title: "Related what's new pages"
     linkLists:

@@ -5,6 +5,7 @@ description: Learn about model validation in ASP.NET Core MVC and Razor Pages.
 ms.author: riande
 ms.custom: mvc
 ms.date: 12/15/2019
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/models/validation
 ---
 
@@ -44,7 +45,7 @@ Validation attributes let you specify validation rules for model properties. The
 
 Here are some of the built-in validation attributes:
 
-* `[CreditCard]`: Validates that the property has a credit card format.
+* `[CreditCard]`: Validates that the property has a credit card format. Requires [jQuery Validation Additional Methods](https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/additional-methods.min.js).
 * `[Compare]`: Validates that two properties in a model match.
 * `[EmailAddress]`: Validates that the property has an email format.
 * `[Phone]`: Validates that the property has a telephone number format.
@@ -73,7 +74,7 @@ Internally, the attributes call `String.Format` with a placeholder for the field
 
 When applied to a `Name` property, the error message created by the preceding code would be "Name length must be between 6 and 8.".
 
-To find out which parameters are passed to `String.Format` for a particular attribute's error message, see the [DataAnnotations source code](https://github.com/dotnet/corefx/tree/master/src/System.ComponentModel.Annotations/src/System/ComponentModel/DataAnnotations).
+To find out which parameters are passed to `String.Format` for a particular attribute's error message, see the [DataAnnotations source code](https://github.com/dotnet/runtime/tree/master/src/libraries/System.ComponentModel.Annotations/src/System/ComponentModel/DataAnnotations).
 
 ## [Required] attribute
 
@@ -111,7 +112,7 @@ The `[Remote]` attribute implements client-side validation that requires calling
 
 To implement remote validation:
 
-1. Create an action method for JavaScript to call.  The jQuery Validate [remote](https://jqueryvalidation.org/remote-method/) method expects a JSON response:
+1. Create an action method for JavaScript to call.  The jQuery Validation [remote](https://jqueryvalidation.org/remote-method/) method expects a JSON response:
 
    * `true` means the input data is valid.
    * `false`, `undefined`, or `null` means the input is invalid. Display the default error message.
@@ -237,7 +238,7 @@ Client-side validation avoids an unnecessary round trip to the server when there
 
 [!code-cshtml[](validation/samples/3.x/ValidationSample/Views/Shared/_ValidationScriptsPartial.cshtml?name=snippet_Scripts)]
 
-The [jQuery Unobtrusive Validation](https://github.com/aspnet/jquery-validation-unobtrusive) script is a custom Microsoft front-end library that builds on the popular [jQuery Validate](https://jqueryvalidation.org/) plugin. Without jQuery Unobtrusive Validation, you would have to code the same validation logic in two places: once in the server-side validation attributes on model properties, and then again in client-side scripts. Instead, [Tag Helpers](xref:mvc/views/tag-helpers/intro) and [HTML helpers](xref:mvc/views/overview) use the validation attributes and type metadata from model properties to render HTML 5 `data-` attributes for the form elements that need validation. jQuery Unobtrusive Validation parses the `data-` attributes and passes the logic to jQuery Validate, effectively "copying" the server-side validation logic to the client. You can display validation errors on the client using tag helpers as shown here:
+The [jQuery Unobtrusive Validation](https://github.com/aspnet/jquery-validation-unobtrusive) script is a custom Microsoft front-end library that builds on the popular [jQuery Validation](https://jqueryvalidation.org/) plugin. Without jQuery Unobtrusive Validation, you would have to code the same validation logic in two places: once in the server-side validation attributes on model properties, and then again in client-side scripts. Instead, [Tag Helpers](xref:mvc/views/tag-helpers/intro) and [HTML helpers](xref:mvc/views/overview) use the validation attributes and type metadata from model properties to render HTML 5 `data-` attributes for the form elements that need validation. jQuery Unobtrusive Validation parses the `data-` attributes and passes the logic to jQuery Validation, effectively "copying" the server-side validation logic to the client. You can display validation errors on the client using tag helpers as shown here:
 
 [!code-cshtml[](validation/samples/3.x/ValidationSample/Pages/Movies/Create.cshtml?name=snippet_ReleaseDate&highlight=3-4)]
 
@@ -254,7 +255,7 @@ The preceding tag helpers render the following HTML:
 </div>
 ```
 
-Notice that the `data-` attributes in the HTML output correspond to the validation attributes for the `Movie.ReleaseDate` property. The `data-val-required` attribute contains an error message to display if the user doesn't fill in the release date field. jQuery Unobtrusive Validation passes this value to the jQuery Validate [required()](https://jqueryvalidation.org/required-method/) method, which then displays that message in the accompanying **\<span>** element.
+Notice that the `data-` attributes in the HTML output correspond to the validation attributes for the `Movie.ReleaseDate` property. The `data-val-required` attribute contains an error message to display if the user doesn't fill in the release date field. jQuery Unobtrusive Validation passes this value to the jQuery Validation [required()](https://jqueryvalidation.org/required-method/) method, which then displays that message in the accompanying **\<span>** element.
 
 Data type validation is based on the .NET type of a property, unless that is overridden by a `[DataType]` attribute. Browsers have their own default error messages, but the jQuery Validation Unobtrusive Validation package can override those messages. `[DataType]` attributes and subclasses such as `[EmailAddress]` let you specify the error message.
 
@@ -264,7 +265,7 @@ For information on unobtrusive validation, see [this GitHub issue](https://githu
 
 ### Add Validation to Dynamic Forms
 
-jQuery Unobtrusive Validation passes validation logic and parameters to jQuery Validate when the page first loads. Therefore, validation doesn't work automatically on dynamically generated forms. To enable validation, tell jQuery Unobtrusive Validation to parse the dynamic form immediately after you create it. For example, the following code sets up client-side validation on a form added via AJAX.
+jQuery Unobtrusive Validation passes validation logic and parameters to jQuery Validation when the page first loads. Therefore, validation doesn't work automatically on dynamically generated forms. To enable validation, tell jQuery Unobtrusive Validation to parse the dynamic form immediately after you create it. For example, the following code sets up client-side validation on a form added via AJAX.
 
 ```javascript
 $.get({
@@ -283,7 +284,7 @@ $.get({
 })
 ```
 
-The `$.validator.unobtrusive.parse()` method accepts a jQuery selector for its one argument. This method tells jQuery Unobtrusive Validation to parse the `data-` attributes of forms within that selector. The values of those attributes are then passed to the jQuery Validate plugin.
+The `$.validator.unobtrusive.parse()` method accepts a jQuery selector for its one argument. This method tells jQuery Unobtrusive Validation to parse the `data-` attributes of forms within that selector. The values of those attributes are then passed to the jQuery Validation plugin.
 
 ### Add Validation to Dynamic Controls
 
@@ -299,7 +300,7 @@ $.get({
     success: function(newInputHTML) {
         var form = document.getElementById("my-form");
         form.insertAdjacentHTML("beforeend", newInputHTML);
-        $(form).removeData("validator")    // Added by jQuery Validate
+        $(form).removeData("validator")    // Added by jQuery Validation
                .removeData("unobtrusiveValidation");   // Added by jQuery Unobtrusive Validation
         $.validator.unobtrusive.parse(form);
     }
@@ -308,11 +309,11 @@ $.get({
 
 ## Custom client-side validation
 
-Custom client-side validation is done by generating `data-` HTML attributes that work with a custom jQuery Validate adapter. The following sample adapter code was written for the `[ClassicMovie]` and `[ClassicMovieWithClientValidator]` attributes that were introduced earlier in this article:
+Custom client-side validation is done by generating `data-` HTML attributes that work with a custom jQuery Validation adapter. The following sample adapter code was written for the `[ClassicMovie]` and `[ClassicMovieWithClientValidator]` attributes that were introduced earlier in this article:
 
 [!code-javascript[](validation/samples/3.x/ValidationSample/wwwroot/js/classicMovieValidator.js)]
 
-For information about how to write adapters, see the [jQuery Validate documentation](https://jqueryvalidation.org/documentation/).
+For information about how to write adapters, see the [jQuery Validation documentation](https://jqueryvalidation.org/documentation/).
 
 The use of an adapter for a given field is triggered by `data-` attributes that:
 

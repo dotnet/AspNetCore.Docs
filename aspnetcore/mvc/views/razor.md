@@ -1,9 +1,10 @@
 ---
-title: Razor syntax reference for ASP.NET Core
+title: razor syntax reference for ASP.NET Core
 author: rick-anderson
 description: Learn about Razor markup syntax for embedding server-based code into webpages.
 ms.author: riande
 ms.date: 02/12/2020
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/views/razor
 ---
 # Razor syntax reference for ASP.NET Core
@@ -982,3 +983,7 @@ Developers are encouraged to match the casing of file and directory names to the
 * Razor Pages.
 
 Matching case ensures the deployments find their views regardless of the underlying file system.
+
+## Additional resources
+
+[Introduction to ASP.NET Web Programming Using the Razor Syntax](/aspnet/web-pages/overview/getting-started/introducing-razor-syntax-c) provides many samples of programming with Razor syntax.

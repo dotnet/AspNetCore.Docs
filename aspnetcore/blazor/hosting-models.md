@@ -5,8 +5,8 @@ description: Understand Blazor WebAssembly and Blazor Server hosting models.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/18/2020
-no-loc: [Blazor, SignalR]
+ms.date: 03/31/2020
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/hosting-models
 ---
 # ASP.NET Core Blazor hosting models
@@ -38,7 +38,7 @@ The templates include the `blazor.webassembly.js` script that handles:
 
 The Blazor WebAssembly hosting model offers several benefits:
 
-* There's no .NET server-side dependency. The app is fully functioning after downloaded to the client.
+* There's no .NET server-side dependency. The app is fully functioning after it's downloaded to the client.
 * Client resources and capabilities are fully leveraged.
 * Work is offloaded from the server to the client.
 * An ASP.NET Core web server isn't required to host the app. Serverless deployment scenarios are possible (for example, serving the app from a CDN).
@@ -49,6 +49,8 @@ There are downsides to Blazor WebAssembly hosting:
 * Capable client hardware and software (for example, WebAssembly support) is required.
 * Download size is larger, and apps take longer to load.
 * .NET runtime and tooling support is less mature. For example, limitations exist in [.NET Standard](/dotnet/standard/net-standard) support and debugging.
+
+The Blazor Hosted app model supports [Docker containers](/dotnet/standard/microservices-architecture/container-docker-introduction/index). Right-click on the Server project in Visual Studio and select **Add** > **Docker Support**.
 
 ## Blazor Server
 
@@ -63,7 +65,7 @@ The ASP.NET Core app references the app's `Startup` class to add:
 * Server-side services.
 * The app to the request handling pipeline.
 
-The `blazor.server.js` script&dagger; establishes the client connection. It's the app's responsibility to persist and restore app state as required (for example, in the event of a lost network connection).
+The `blazor.server.js` script establishes the client connection. It's the app's responsibility to persist and restore app state as required (for example, in the event of a lost network connection). The `blazor.server.js` script is served from an embedded resource in the ASP.NET Core shared framework.
 
 The Blazor Server hosting model offers several benefits:
 
@@ -80,7 +82,7 @@ There are downsides to Blazor Server hosting:
 * Scalability is challenging for apps with many users. The server must manage multiple client connections and handle client state.
 * An ASP.NET Core server is required to serve the app. Serverless deployment scenarios aren't possible (for example, serving the app from a CDN).
 
-&dagger;The `blazor.server.js` script is served from an embedded resource in the ASP.NET Core shared framework.
+The Blazor Server app model supports [Docker containers](/dotnet/standard/microservices-architecture/container-docker-introduction/index). Right-click on the project in Visual Studio and select **Add** > **Docker Support**.
 
 ### Comparison to server-rendered UI
 
@@ -105,7 +107,7 @@ A UI update in Blazor is triggered by:
 
 The graph is rerendered, and a UI *diff* (difference) is calculated. This diff is the smallest set of DOM edits required to update the UI on the client. The diff is sent to the client in a binary format and applied by the browser.
 
-A component is disposed after the user navigates away from it on the client. While a user is interacting with a component, the component's state (services, resources) must be held in the server's memory. Because the state of many components might be maintained by the server concurrently, memory exhaustion is a concern that must be addressed. For guidance on how to author a Blazor Server app to ensure the best use of server memory, see <xref:security/blazor/server>.
+A component is disposed after the user navigates away from it on the client. While a user is interacting with a component, the component's state (services, resources) must be held in the server's memory. Because the state of many components might be maintained by the server concurrently, memory exhaustion is a concern that must be addressed. For guidance on how to author a Blazor Server app to ensure the best use of server memory, see <xref:security/blazor/server/threat-mitigation>.
 
 ### Circuits
 
@@ -123,12 +125,12 @@ UI latency is the time it takes from an initiated action to the time the UI is u
 
 For a line of business app that's limited to a private corporate network, the effect on user perceptions of latency due to network latency are usually imperceptible. For an app deployed over the Internet, latency may become noticeable to users, particularly if users are widely distributed geographically.
 
-Memory usage can also contribute to app latency. Increased memory usage results in frequent garbage collection or paging memory to disk, both of which degrade app performance and consequently increase UI latency. For more information, see <xref:security/blazor/server>.
+Memory usage can also contribute to app latency. Increased memory usage results in frequent garbage collection or paging memory to disk, both of which degrade app performance and consequently increase UI latency.
 
 Blazor Server apps should be optimized to minimize UI latency by reducing network latency and memory usage. For an approach to measuring network latency, see <xref:host-and-deploy/blazor/server#measure-network-latency>. For more information on SignalR and Blazor, see:
 
 * <xref:host-and-deploy/blazor/server>
-* <xref:security/blazor/server>
+* <xref:security/blazor/server/threat-mitigation>
 
 ### Connection to the server
 
