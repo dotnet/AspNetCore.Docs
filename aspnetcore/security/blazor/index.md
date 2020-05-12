@@ -1,5 +1,5 @@
 ---
-title: ASP.NET Core Blazor authentication and authorization
+title: ASP.NET Core Blazor Authentication and Authorization
 author: guardrex
 description: Learn about Blazor authentication and authorization scenarios.
 monikerRange: '>= aspnetcore-3.1'
