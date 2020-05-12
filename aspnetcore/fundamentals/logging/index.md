@@ -882,19 +882,19 @@ public void Configure(
     loggerFactory.AddProvider(new CustomLoggerProvider(new CustomLoggerConfiguration()));
 ```
 
-The `ILoggerProvider` creates one or more `ILogger`. The `ILogger` instances are used by the framework to log the information.
+The `ILoggerProvider` creates one or more `ILogger`instances. The `ILogger` instances are used by the framework to log the information.
 
 ### Sample custom logger configuration
 
-The sample creates different colored console entries per log level and event ID. To configure this we need a configuration type like this:
+The sample creates different colored console entries per log level and event ID using the following configuration type:
 
-[!code-csharp[](index/samples/3.x/CustomLogger/ColoredConsoleLogger/ColoredConsoleLoggerProvider.cs?name=snippet)]
+[!code-csharp[](index/samples/3.x/CustomLogger/ColoredConsoleLogger/ColoredConsoleLoggerConfiguration.cs?name=snippet)]
 
-This sets the default level to `Warning` and the color to `Yellow`. If the `EventId` is set to 0, we will log all events.
+The preceding code sets the default level to `Warning` and the color to `Yellow`. If the `EventId` is set to 0, we will log all events.
 
 ### Create the custom logger
 
-The `ILogger` implementation category name is typicall the logging source. For example, the type where the logger is created:
+The `ILogger` implementation category name is typically the logging source. For example, the type where the logger is created:
 
 [!code-csharp[](index/samples/3.x/CustomLogger/ColoredConsoleLogger/ColoredConsoleLogger.cs?name=snippet)]
 
@@ -912,15 +912,11 @@ In the preceding code, <xref:Microsoft.Build.Logging.LoggerDescription.CreateLog
 
 Register the logger in the `Startup.Configure`:
 
-[!code-csharp[](index/samples/3.x/CustomLogger/Startup1.cs
-?name=snippet)]
+[!code-csharp[](index/samples/3.x/CustomLogger/Startup1.cs?name=snippet)]
 
 The preceding code is verbose. The logger registration can be encapsulated, resulting in the following:
 
-But those registrations don't really look nice. You are able to encapsulate the registrations to provide an API like this: 
-
-[!code-csharp[](index/samples/3.x/CustomLogger/Startup.cs
-?name=snippet)]
+[!code-csharp[](index/samples/3.x/CustomLogger/Startup.cs?name=snippet)]
 
 For the preceding code, provide at least one extension method for the `ILoggerFactory`:
 

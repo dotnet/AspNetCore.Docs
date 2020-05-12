@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 
 namespace CustomLogger.ColoredConsoleLogger
 {
+    #region snippet
     public class ColoredConsoleLoggerProvider : ILoggerProvider
     {
         private readonly ColoredConsoleLoggerConfiguration _config;
@@ -23,4 +24,5 @@ namespace CustomLogger.ColoredConsoleLogger
             _loggers.Clear();
         }
     }
+    #endregion
 }
