@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using CustomLogger.Models;
+using Microsoft.Docs.Samples;
 
 namespace CustomLogger.Controllers
 {
@@ -16,19 +17,23 @@ namespace CustomLogger.Controllers
 
         public IActionResult Index()
         {
-            _logger.LogInformation("Start Index action in the HomeController");
-            _logger.LogWarning("The Index action was just started");
-            _logger.LogError("Not really an error. Just to show the custom logger");            
-            _logger.LogDebug("End Index action in the HomeController");
+            var routeInfo = ControllerContext.ToCtxString();
+
+            _logger.LogInformation(routeInfo);
+            _logger.LogWarning(routeInfo + "Testing LogWarning" );
+            _logger.LogError("Not an error. Just to show the custom logger");
+
             return View();
         }
 
         public IActionResult Privacy()
         {
-            _logger.LogInformation("Start Privacy action in the HomeController");
-            _logger.LogWarning("The Privacy action was just started");
-            _logger.LogError("Not really an error. Just to show the custom logger");
-            _logger.LogDebug("End Privacy action in the HomeController");
+            var routeInfo = ControllerContext.ToCtxString();
+
+            _logger.LogInformation(routeInfo);
+            _logger.LogWarning(routeInfo + "Testing LogWarning");
+            _logger.LogError("Not an error. Just to show the custom logger");
+
             return View();
         }
 
