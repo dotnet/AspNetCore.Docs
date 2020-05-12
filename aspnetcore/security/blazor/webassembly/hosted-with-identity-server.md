@@ -5,7 +5,7 @@ description: To create a new Blazor hosted app with authentication from within V
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/11/2020
+ms.date: 05/12/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/blazor/webassembly/hosted-with-identity-server
 ---
@@ -222,6 +222,206 @@ The `LoginDisplay` component (*Shared/LoginDisplay.razor*) is rendered in the `M
 ## Run the app
 
 Run the app from the Server project. When using Visual Studio, select the Server project in **Solution Explorer** and select the **Run** button in the toolbar or start the app from the **Debug** menu.
+
+## Name and role claim with API authorization
+
+Identity Server can be configured to send `name` and `role` claims for authenticated users.
+
+> [!NOTE]
+> Currently, only one assigned role per user is supported.
+
+<!-- HOLD until the factory pattern issues are resolved
+
+In the Client app, create a custom user by extending `RemoteUserAccount`.
+
+*CustomUserAccount.cs*:
+
+```csharp
+using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+
+public class CustomUserAccount : RemoteUserAccount
+{
+    [JsonPropertyName("role")]
+    public string[] Roles { get; set; } = new string[0];
+}
+```
+
+In the Client app, create a custom user factory. Identity Server sends multiple roles as a string array in a single `role` claim. The factory creates an individual `role` claim for each role in the array.
+
+*CustomUserFactory.cs*:
+
+```csharp
+using System.Security.Claims;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication.Internal;
+
+public class CustomUserFactory
+    : AccountClaimsPrincipalFactory<CustomUserAccount>
+{
+    public CustomUserFactory(NavigationManager navigationManager,
+        IAccessTokenProviderAccessor accessor)
+        : base(accessor)
+    {
+    }
+
+    public async override ValueTask<ClaimsPrincipal> CreateUserAsync(
+        CustomUserAccount account,
+        RemoteAuthenticationUserOptions options)
+    {
+        var initialUser = await base.CreateUserAsync(account, options);
+
+        if (initialUser.Identity.IsAuthenticated)
+        {
+            var userIdentity = (ClaimsIdentity)initialUser.Identity;
+
+            foreach (var role in account.Roles)
+            {
+                userIdentity.AddClaim(new Claim("role", role));
+            }
+        }
+
+        return initialUser;
+    }
+}
+```
+
+In the Client app, register the factory.
+
+`Program.Main` (*Program.cs*):
+
+```csharp
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+
+...
+
+builder.Services.AddApiAuthorization<RemoteAuthenticationState, CustomUserAccount>()
+    .AddAccountClaimsPrincipalFactory<RemoteAuthenticationState, CustomUserAccount, 
+        CustomUserFactory>();
+```
+
+-->
+
+* In the Server app, call <xref:Microsoft.AspNetCore.Identity.IdentityBuilder.AddRoles*> on the Identity builder, which adds role-related services:
+
+  ```csharp
+  using Microsoft.AspNetCore.Identity;
+
+  ...
+
+  services.AddDefaultIdentity<ApplicationUser>(options => 
+      options.SignIn.RequireConfirmedAccount = true)
+      .AddRoles<IdentityRole>()
+      .AddEntityFrameworkStores<ApplicationDbContext>();
+  ```
+
+* In the Server app, configure Identity Server to put the `name` and `roles` claims into the ID token and the access token and prevent the default mapping for roles in the `JwtSecurityTokenHandler`:
+
+  ```csharp
+  using System.IdentityModel.Tokens.Jwt;
+  using System.Linq;
+
+  ...
+
+  services.AddIdentityServer()
+      .AddApiAuthorization<ApplicationUser, ApplicationDbContext>(options => {
+          options.IdentityResources["openid"].UserClaims.Add("name");
+          options.ApiResources.Single().UserClaims.Add("name");
+          options.IdentityResources["openid"].UserClaims.Add("role");
+          options.ApiResources.Single().UserClaims.Add("role");
+      });
+
+  JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Remove("role");
+  ```
+
+Component authorization approaches are functional at this point. Any of the authorization mechanisms in components can use a role to authorize the user:
+
+* [AuthorizeView component](xref:security/blazor/index#authorizeview-component) (Example: `<AuthorizeView Roles="admin">`)
+* [`[Authorize]` attribute directive](xref:security/blazor/index#authorize-attribute) (Example: `@attribute [Authorize(Roles = "admin")]`)
+* [Procedural logic](xref:security/blazor/index#procedural-logic) (Example: `if (user.IsInRole("admin")) { ... }`)
+
+<!-- HOLD until the factory pattern issue is resolved.
+  Multiple role tests are supported:
+
+  ```csharp
+  if (user.IsInRole("admin") && user.IsInRole("developer"))
+  {
+      ...
+  }
+  ```
+-->
+
+`User.Identity.Name` is populated in the Client app with the user's user name, which is usually their sign-in email address.
+
+## Profile Service
+
+In the Server app, create a `ProfileService` implementation. The Profile Service example in this section creates `name` and `role` claims for users similar to the scenario shown in the [Name and role claim with API authorization](#name-and-role-claim-with-api-authorization) section. The value of the `role` claim represents the user's assigned role.
+
+> [!NOTE]
+> Currently, only one assigned role per user is supported.
+
+*ProfileService.cs*:
+
+```csharp
+using IdentityModel;
+using IdentityServer4.Models;
+using IdentityServer4.Services;
+using System.Threading.Tasks;
+
+public class ProfileService : IProfileService
+{
+    public ProfileService()
+    {
+    }
+
+    public Task GetProfileDataAsync(ProfileDataRequestContext context)
+    {
+        var nameClaim = context.Subject.FindAll(JwtClaimTypes.Name);
+        context.IssuedClaims.AddRange(nameClaim);
+
+        var roleClaims = context.Subject.FindAll(JwtClaimTypes.Role);
+        context.IssuedClaims.AddRange(roleClaims);
+
+        return Task.CompletedTask;
+    }
+
+    public Task IsActiveAsync(IsActiveContext context)
+    {
+        return Task.CompletedTask;
+    }
+}
+```
+
+In the Server app, register the Profile Service in `Startup.ConfigureServices`:
+
+```csharp
+using IdentityServer4.Services;
+
+...
+
+services.AddTransient<IProfileService, ProfileService>();
+```
+
+Component authorization approaches are functional at this point. Any of the authorization mechanisms in components can a role to authorize the user:
+
+* [AuthorizeView component](xref:security/blazor/index#authorizeview-component) (Example: `<AuthorizeView Roles="admin">`)
+* [`[Authorize]` attribute directive](xref:security/blazor/index#authorize-attribute) (Example: `@attribute [Authorize(Roles = "admin")]`)
+* [Procedural logic](xref:security/blazor/index#procedural-logic) (Example: `if (user.IsInRole("admin")) { ... }`)
+
+<!-- HOLD until the factory pattern issue is resolved.
+  Multiple role tests are supported:
+
+  ```csharp
+  if (user.IsInRole("admin") && user.IsInRole("developer"))
+  {
+      ...
+  }
+  ```
+-->
+
+`User.Identity.Name` is populated in the Client app with the user's user name, which is usually their sign-in email address.
 
 [!INCLUDE[](~/includes/blazor-security/usermanager-signinmanager.md)]
 
