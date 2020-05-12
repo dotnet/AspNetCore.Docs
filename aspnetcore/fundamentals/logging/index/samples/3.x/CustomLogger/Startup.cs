@@ -18,35 +18,34 @@ namespace CustomLogger
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
+        #region snippet
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, 
+                              ILoggerFactory loggerFactory)
         {
-            // ## here are our CustomLoggers
-
-            // using default registration using AddProvider:
-            loggerFactory.AddProvider(new ColoredConsoleLoggerProvider(new ColoredConsoleLoggerConfiguration
+            // Default registration.
+            loggerFactory.AddProvider(new ColoredConsoleLoggerProvider(
+                                      new ColoredConsoleLoggerConfiguration
             {
                 LogLevel = LogLevel.Error,
                 Color = ConsoleColor.Red
             }));
 
-            // using the custom registration with default values:
+            // Custom registration with default values.
             loggerFactory.AddColoredConsoleLogger();
 
-            // using the custom registration with a new configuration instance:
+            // Custom registration with a new configuration instance.
             loggerFactory.AddColoredConsoleLogger(new ColoredConsoleLoggerConfiguration
             {
                 LogLevel = LogLevel.Debug,
                 Color = ConsoleColor.Gray
             });
 
-            // using the custom registration with a configuration object:
+            // Custom registration with a configuration object.
             loggerFactory.AddColoredConsoleLogger(c =>
             {
                 c.LogLevel = LogLevel.Information;
@@ -78,5 +77,6 @@ namespace CustomLogger
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
+        #endregion
     }
 }

@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 
 namespace CustomLogger.ColoredConsoleLogger
 {
+    #region snippet
     public class ColoredConsoleLogger : ILogger
     {
         private readonly string _name;
@@ -40,4 +41,5 @@ namespace CustomLogger.ColoredConsoleLogger
             }
         }
     }
+    #endregion
 }
