@@ -906,15 +906,11 @@ The `LoggerProvider` is the class that creates the logger instances. Maybe it is
 
 [!code-csharp[](index/samples/3.x/CustomLogger/ColoredConsoleLogger/ColoredConsoleLoggerProvider.cs?name=snippet)]
 
-In the preceding code, <xref:Microsoft.Build.Logging.LoggerDescription.CreateLogger*> creates a single instance of the `ColoredConsoleLogger` per category name and stores it in the <xref:System.Collections.Concurrent.ConcurrentDictionary`1>.
+In the preceding code, <xref:Microsoft.Build.Logging.LoggerDescription.CreateLogger*> creates a single instance of the `ColoredConsoleLogger` per category name and stores it in the [`ConcurrentDictionary<TKey,TValue>`](/dotnet/api/system.collections.concurrent.concurrentdictionary-2);
 
 ### Usage and registration of the custom logger
 
 Register the logger in the `Startup.Configure`:
-
-[!code-csharp[](index/samples/3.x/CustomLogger/Startup1.cs?name=snippet)]
-
-The preceding code is verbose. The logger registration can be encapsulated, resulting in the following:
 
 [!code-csharp[](index/samples/3.x/CustomLogger/Startup.cs?name=snippet)]
 
