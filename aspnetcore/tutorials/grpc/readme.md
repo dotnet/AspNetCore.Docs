@@ -18,6 +18,6 @@ For a tutorial on this sample see [Tutorial: Create a gRPC client and server in 
 
 ### Docs help & next steps for gRPC
 
-* [Introduction to gRPC on ASP.NET Core](https://docs.microsoft.com/aspnet/core/grpc/index?view=aspnetcore-3.0)
-* [gRPC services with C#](https://docs.microsoft.com/aspnet/core/grpc/basics?view=aspnetcore-3.0)
-* [Migrating gRPC services from C-core to ASP.NET Core](https://docs.microsoft.com/aspnet/core/grpc/migration?view=aspnetcore-3.0)
+* [Introduction to gRPC on ASP.NET Core](https://docs.microsoft.com/aspnet/core/grpc/)
+* [gRPC services with C#](https://docs.microsoft.com/aspnet/core/grpc/basics/)
+* [Migrating gRPC services from C-core to ASP.NET Core](https://docs.microsoft.com/aspnet/core/grpc/migration/)
