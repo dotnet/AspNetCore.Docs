@@ -431,8 +431,8 @@ Unhealthy
 
 In some hosting scenarios, a pair of health checks are used that distinguish two app states:
 
-* The app is functioning but not yet ready to receive requests. This state is the app's *readiness*.
-* The app is functioning and responding to requests. This state is the app's *liveness*.
+* The app is functioning but not yet ready to receive requests. This state is the app's *liveness*.
+* The app is functioning and responding to requests. This state is the app's *readiness*.
 
 The readiness check usually performs a more extensive and time-consuming set of checks to determine if all of the app's subsystems and resources are available. A liveness check merely performs a quick check to determine if the app is available to process requests. After the app passes its readiness check, there's no need to burden the app further with the expensive set of readiness checks&mdash;further checks only require checking for liveness.
 
