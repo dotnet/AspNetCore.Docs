@@ -912,62 +912,19 @@ In the preceding code, <xref:Microsoft.Build.Logging.LoggerDescription.CreateLog
 
 Register the logger in the `Startup.Configure`:
 
-[!code-csharp[](index/samples/3.x/CustomLogger/Startup.cs
+[!code-csharp[](index/samples/3.x/CustomLogger/Startup1.cs
 ?name=snippet)]
 
+The preceding code is verbose. The logger registration can be encapsulated, resulting in the following:
 
 But those registrations don't really look nice. You are able to encapsulate the registrations to provide an API like this: 
 
-```csharp
-// using the custom registration with default values:
-loggerFactory.AddColoredConsoleLogger();
+[!code-csharp[](index/samples/3.x/CustomLogger/Startup.cs
+?name=snippet)]
 
-// using the custom registration with a new configuration instance:
-loggerFactory.AddColoredConsoleLogger(new ColoredConsoleLoggerConfiguration
-{
-    LogLevel = LogLevel.Debug,
-    Color = ConsoleColor.Gray
-});
+For the preceding code, provide at least one extension method for the `ILoggerFactory`:
 
-// using the custom registration with a configuration object:
-loggerFactory.AddColoredConsoleLogger(c =>
-{
-    c.LogLevel = LogLevel.Information;
-    c.Color = ConsoleColor.Blue;
-});
-```
-
-This means you need to write at least one extension method for the `ILoggerFactory`:
-
-~~~ csharp
-public static class ColoredConsoleLoggerExtensions
-{
-    // custom registration with a configuration instance
-    public static ILoggerFactory AddColoredConsoleLogger(
-        this ILoggerFactory loggerFactory, 
-        ColoredConsoleLoggerConfiguration config)
-    {
-        loggerFactory.AddProvider(new ColoredConsoleLoggerProvider(config));
-        return loggerFactory;
-    }
-    // custom registration with default values
-    public static ILoggerFactory AddColoredConsoleLogger(
-        this ILoggerFactory loggerFactory)
-    {
-        var config = new ColoredConsoleLoggerConfiguration();
-        return loggerFactory.AddColoredConsoleLogger(config);
-    }
-    // custom registration with a configuration object
-    public static ILoggerFactory AddColoredConsoleLogger(
-        this ILoggerFactory loggerFactory, 
-        Action<ColoredConsoleLoggerConfiguration> configure)
-    {
-        var config = new ColoredConsoleLoggerConfiguration();
-        configure(config);
-        return loggerFactory.AddColoredConsoleLogger(config);
-    }
-}
-~~~
+[!code-csharp[](index/samples/3.x/CustomLogger/ColoredConsoleLogger/ColoredConsoleLoggerExtensions.cs?name=snippet)]
 
 ## Additional resources
 

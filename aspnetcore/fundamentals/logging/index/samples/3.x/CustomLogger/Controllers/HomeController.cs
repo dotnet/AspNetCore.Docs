@@ -17,7 +17,7 @@ namespace CustomLogger.Controllers
         public IActionResult Index()
         {
             _logger.LogInformation("Start Index action in the HomeController");
-            _logger.LogWarning("The Privacy action was just started");
+            _logger.LogWarning("The Index action was just started");
             _logger.LogError("Not really an error. Just to show the custom logger");            
             _logger.LogDebug("End Index action in the HomeController");
             return View();
