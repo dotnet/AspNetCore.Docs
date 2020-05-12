@@ -871,7 +871,7 @@ The following example shows how to register filter rules in code:
 
 ## Create a custom logger
 
-To add a custom logger, add a <xref:Microsoft.Extensions.Logging.ILoggerProvider> with <xref:Microsoft.Extensions.Logging.ILoggerFactory>:
+To add a custom logger, add an <xref:Microsoft.Extensions.Logging.ILoggerProvider> with <xref:Microsoft.Extensions.Logging.ILoggerFactory>:
 
 ```csharp
 public void Configure(
@@ -882,7 +882,7 @@ public void Configure(
     loggerFactory.AddProvider(new CustomLoggerProvider(new CustomLoggerConfiguration()));
 ```
 
-The `ILoggerProvider` creates one or more `ILogger`instances. The `ILogger` instances are used by the framework to log the information.
+The `ILoggerProvider` creates one or more `ILogger` instances. The `ILogger` instances are used by the framework to log the information.
 
 ### Sample custom logger configuration
 
