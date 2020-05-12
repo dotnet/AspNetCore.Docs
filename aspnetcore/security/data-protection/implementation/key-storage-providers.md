@@ -174,7 +174,7 @@ The `DataProtectionKeys` class/entity adopts the structure shown in the followin
 
 | Property/Field | CLR Type | SQL Type              |
 | -------------- | -------- | --------------------- |
-| `Id`           | `int`    | `int`, PK, not null   |
+| `Id`           | `int`    | `int`, PK, `IDENTITY(1,1)`, not null   |
 | `FriendlyName` | `string` | `nvarchar(MAX)`, null |
 | `Xml`          | `string` | `nvarchar(MAX)`, null |
 
