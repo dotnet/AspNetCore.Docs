@@ -41,6 +41,9 @@ namespace CustomLogger
                 Color = ConsoleColor.Gray
             }));
 
+            // Remaining code ommited for brevity.
+            #endregion
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -64,6 +67,5 @@ namespace CustomLogger
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
-        #endregion
     }
 }

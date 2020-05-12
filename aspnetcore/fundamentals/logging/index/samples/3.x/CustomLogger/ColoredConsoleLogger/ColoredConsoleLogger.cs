@@ -25,7 +25,8 @@ namespace CustomLogger.ColoredConsoleLogger
             return logLevel == _config.LogLevel;
         }
 
-        public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
+        public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, 
+                            Exception exception, Func<TState, Exception, string> formatter)
         {
             if (!IsEnabled(logLevel))
             {
@@ -36,7 +37,8 @@ namespace CustomLogger.ColoredConsoleLogger
             {
                 var color = Console.ForegroundColor;
                 Console.ForegroundColor = _config.Color;
-                Console.WriteLine($"{logLevel} - {eventId.Id} - {_name} - {formatter(state, exception)}");
+                Console.WriteLine($"{logLevel} - {eventId.Id} " +
+                                  $"- {_name} - {formatter(state, exception)}");
                 Console.ForegroundColor = color;
             }
         }
