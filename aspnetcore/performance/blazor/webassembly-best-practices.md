@@ -99,7 +99,7 @@ Blazor WebAssembly offers two additional versions of <xref:Microsoft.JSInterop.I
   }
   ```
 
-* <xref:Microsoft.JSInterop.WebAssembly.WebAssemblyJSRuntime> permits unmarshalled JS interop calls. While this approach has the least overhead, the JavaScript APIs required to interact with these APIs are currently undocumented and subject to breaking changes in future releases:
+* <xref:Microsoft.JSInterop.WebAssembly.WebAssemblyJSRuntime> permits unmarshalled JS interop calls:
 
   ```javascript
   function jsInteropCall() {
@@ -119,6 +119,9 @@ Blazor WebAssembly offers two additional versions of <xref:Microsoft.JSInterop.I
       }
   }
   ```
+
+  > [!WARNING]
+  > While using <xref:Microsoft.JSInterop.WebAssembly.WebAssemblyJSRuntime> has the least overhead, the JavaScript APIs required to interact with these APIs are currently undocumented and subject to breaking changes in future releases.
 
 ## Reduce app size
 
