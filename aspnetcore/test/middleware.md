@@ -109,8 +109,14 @@ As with the earlier example that tested for a *404 - Not Found* response, check 
 TestServer:
 
 * Was created to replicate server behaviors to test middleware.
-* Does ***not*** try to replicate all HttpClient behaviors. It tries to give the client access to as much control over the server as possible, and with as much visibility into what's happening on the server as possible. For example it may throw exceptions not normally thrown by HttpClient in order to directly communicate server state. It also does not set some transport specific headers by default (#18255) as those are not usually relevant to middleware.
+* Does ***not*** try to replicate all <xref:System.Net.Http.HttpClient> behaviors.
+* Attempts to give the client access to as much control over the server as possible, and with as much visibility into what's happening on the server as possible. For example it may throw exceptions not normally thrown by `HttpClient` in order to directly communicate server state.
+* Doesn't set some transport specific headers by default as those are not usually relevant to middleware. For more information, see the next section.
 
 ### Content-Length and Transfer-Encoding headers
 
-TestServer does not currently set transport related request or response headers such as [Content-Length](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Length) or [Transfer-Encoding](https://developer.mozilla.org/docs/Web/HTTP/Headers/Transfer-Encoding). Applications should avoid depending on these headers because their usage various by client, scenario, and protocol. If `Content-Length` and `Transfer-Encoding` are necessary to test a specific scenario, they can be specified in the test when composing the <xref:System.Net.Http.HttpRequestMessage> or <xref:Microsoft.AspNetCore.Http.HttpContext>.
+TestServer does **not** currently set transport related request or response headers such as [Content-Length](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Length) or [Transfer-Encoding](https://developer.mozilla.org/docs/Web/HTTP/Headers/Transfer-Encoding). Applications should avoid depending on these headers because their usage various by client, scenario, and protocol. If `Content-Length` and `Transfer-Encoding` are necessary to test a specific scenario, they can be specified in the test when composing the <xref:System.Net.Http.HttpRequestMessage> or <xref:Microsoft.AspNetCore.Http.HttpContext>. <!-- good info in these issues - but I can delete if you like --> For more information, see the following GitHub issues:
+
+* [dotnet/aspnetcore#21677](https://github.com/dotnet/aspnetcore/issues/21677)
+* [dotnet/aspnetcore#18463](https://github.com/dotnet/aspnetcore/issues/18463)
+* [dotnet/aspnetcore#13273](https://github.com/dotnet/aspnetcore/issues/13273)
