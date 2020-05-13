@@ -43,7 +43,10 @@ app.Use(async (context, next) =>
 {
     var hubContext = context.RequestServices
                             .GetRequiredService<IHubContext<MyHub>>();
-    if(next != null){
+    //...
+    
+    if (next != null)
+    {
         await next.Invoke();
     }
 });
