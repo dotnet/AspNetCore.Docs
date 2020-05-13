@@ -121,7 +121,7 @@ Blazor WebAssembly offers two additional versions of <xref:Microsoft.JSInterop.I
   ```
 
   > [!WARNING]
-  > While using <xref:Microsoft.JSInterop.WebAssembly.WebAssemblyJSRuntime> has the least overhead, the JavaScript APIs required to interact with these APIs are currently undocumented and subject to breaking changes in future releases.
+  > While using <xref:Microsoft.JSInterop.WebAssembly.WebAssemblyJSRuntime> has the least overhead of the JS interop approaches, the JavaScript APIs required to interact with these APIs are currently undocumented and subject to breaking changes in future releases.
 
 ## Reduce app size
 
