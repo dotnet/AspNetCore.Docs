@@ -49,6 +49,9 @@ app.Use(async (context, next) =>
 });
 ```
 
+> [!NOTE]
+> When hub methods are called from outside of the `Hub` class, there's no caller associated with the invocation. Therefore, there's no access to the `ConnectionId`, `Caller`, and `Others` properties.
+
 ### Get an instance of IHubContext from IHost
 
 Accessing an IHubContext from the web host is useful for
@@ -72,9 +75,6 @@ frameworks for example:
                 });
     }
 ```
-
-> [!NOTE]
-> When hub methods are called from outside of the `Hub` class, there's no caller associated with the invocation. Therefore, there's no access to the `ConnectionId`, `Caller`, and `Others` properties.
 
 ### Inject a strongly-typed HubContext
 
