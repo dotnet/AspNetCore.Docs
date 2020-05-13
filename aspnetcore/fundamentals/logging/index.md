@@ -886,7 +886,10 @@ The `ILoggerProvider` creates one or more `ILogger` instances. The `ILogger` ins
 
 ### Sample custom logger configuration
 
-The sample creates different colored console entries per log level and event ID using the following configuration type:
+The sample:
+
+* Is designed to be a very basic sample that sets the color of the log console by event ID and log level. Loggers generally don't change by event ID and are not specific to log level.
+* Creates different colored console entries per log level and event ID using the following configuration type:
 
 [!code-csharp[](index/samples/3.x/CustomLogger/ColoredConsoleLogger/ColoredConsoleLoggerConfiguration.cs?name=snippet)]
 
@@ -898,7 +901,17 @@ The `ILogger` implementation category name is typically the logging source. For 
 
 [!code-csharp[](index/samples/3.x/CustomLogger/ColoredConsoleLogger/ColoredConsoleLogger.cs?name=snippet)]
 
-The preceding code creates a logger instance per category name.
+The preceding code:
+
+* Creates a logger instance per category name.
+* Checks `logLevel == _config.LogLevel` in `IsEnabled`, so each `logLevel` has a unique logger. Generally, loggers should also be enabled for all higher log levels:
+
+```csharp
+public bool IsEnabled(LogLevel logLevel)
+{
+    return logLevel >= _config.LogLevel;
+}
+```
 
 ### Create the custom LoggerProvider
 
