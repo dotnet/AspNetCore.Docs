@@ -557,7 +557,7 @@
     - name: Clients
       displayName: signalr
       items:
-        - name: SignalR client features
+        - name: Overview
           uid: signalr/client-features
           displayName: signalr
         - name: .NET client
