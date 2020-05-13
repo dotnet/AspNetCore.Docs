@@ -119,3 +119,7 @@ To control which I18N assemblies are retained, set the `<BlazorWebAssemblyI18NAs
 Use a comma to separate multiple values (for example, `mideast,west`).
 
 For more information, see [I18N: Pnetlib Internationalization Framework Library (mono/mono GitHub repository)](https://github.com/mono/mono/tree/master/mcs/class/I18N).
+
+## Additional resources
+
+* <xref:performance/blazor/webassembly-best-practices#intermediate-language-il-linking>

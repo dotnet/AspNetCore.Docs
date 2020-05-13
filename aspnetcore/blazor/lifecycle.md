@@ -154,6 +154,8 @@ protected override bool ShouldRender()
 
 Even if `ShouldRender` is overridden, the component is always initially rendered.
 
+For more information, see <xref:performance/blazor/webassembly-best-practices#avoid-unnecessary-component-renders>.
+
 ## State changes
 
 <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> notifies the component that its state has changed. When applicable, calling `StateHasChanged` causes the component to be rerendered.
