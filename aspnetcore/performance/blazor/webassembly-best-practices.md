@@ -67,16 +67,16 @@ Components offer a convenient approach to produce re-usable fragments of code an
 
 For example, a grid or list that renders hundreds of rows containing components is processor intensive to render. Consider virtualizing a grid or list layout so that only a subset of the components is rendered at any given time. For an example of component subset rendering, see the following components in the [Virtualization sample app (aspnet/samples GitHub repository)](https://github.com/aspnet/samples/tree/master/samples/aspnetcore/blazor/Virtualization):
 
-* `Virtualize` component ([Shared/Virtualize.razor](https://github.com/aspnet/samples/blob/master/samples/aspnetcore/blazor/Virtualization/Shared/Virtualize.cs)) &ndash; A component written in C# that implements <xref:Microsoft.AspNetCore.Components.ComponentBase> to render a set of weather data rows based on user scrolling.
-* `FetchData` component ([Pages/FetchData.razor](https://github.com/aspnet/samples/blob/master/samples/aspnetcore/blazor/Virtualization/Pages/FetchData.razor)) &ndash; Uses the `Virtualize` component to display 25 rows of weather data at a time.
+* `Virtualize` component ([Shared/Virtualize.razor](https://github.com/aspnet/samples/blob/master/samples/aspnetcore/blazor/Virtualization/Shared/Virtualize.cs)): A component written in C# that implements <xref:Microsoft.AspNetCore.Components.ComponentBase> to render a set of weather data rows based on user scrolling.
+* `FetchData` component ([Pages/FetchData.razor](https://github.com/aspnet/samples/blob/master/samples/aspnetcore/blazor/Virtualization/Pages/FetchData.razor)): Uses the `Virtualize` component to display 25 rows of weather data at a time.
 
 ## Avoid JavaScript interop to marshal data
 
-In Blazor WebAssembly, a JS interop call must traverse the WebAssembly-JS boundary. Serializing and deserializing content across the two contexts creates processing overhead for the app. Frequent JS interop calls often adversely affects performance. To reduce the marshalling of data across the boundary, determine if the app can consolidate many small payloads into a single large payload to avoid the high volume of context switching between WebAssembly and JS.
+In Blazor WebAssembly, a JavaScript (JS) interop call must traverse the WebAssembly-JS boundary. Serializing and deserializing content across the two contexts creates processing overhead for the app. Frequent JS interop calls often adversely affects performance. To reduce the marshalling of data across the boundary, determine if the app can consolidate many small payloads into a single large payload to avoid the high volume of context switching between WebAssembly and JS.
 
 ## Use System.Text.Json
 
-Blazor's JS interop implementation relies on <xref:System.Text.Json>, which is a high performance JSON serialization library with low memory allocation. Using <xref:System.Text.Json> doesn't result in additional app payload size over adding one or more alternate JSON libraries.
+Blazor's JS interop implementation relies on <xref:System.Text.Json>, which is a high-performance JSON serialization library with low memory allocation. Using <xref:System.Text.Json> doesn't result in additional app payload size over adding one or more alternate JSON libraries.
 
 For migration guidance, see [How to migrate from Newtonsoft.Json to System.Text.Json](/dotnet/standard/serialization/system-text-json-migrate-from-newtonsoft-how-to).
 
@@ -149,8 +149,6 @@ Blazor WebAssembly's runtime includes the following .NET features that can be di
 
   ```xml
   <PropertyGroup>
-    <BlazorWebAssemblyPreserveCollationData>
-      false
-    </BlazorWebAssemblyPreserveCollationData>
+    <BlazorWebAssemblyPreserveCollationData>false</BlazorWebAssemblyPreserveCollationData>
   </PropertyGroup>
   ```
