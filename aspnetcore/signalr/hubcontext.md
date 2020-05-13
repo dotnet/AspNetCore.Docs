@@ -54,9 +54,8 @@ app.Use(async (context, next) =>
 
 ### Get an instance of IHubContext from IHost
 
-Accessing an IHubContext from the web host is useful for
-integrating with areas outside of ASP.NET. Other dependency injection
-frameworks for example:
+Accessing an `IHubContext` from the web host is useful for
+integrating with areas outside of ASP.NET Core, for example, using 3rd party dependency injection frameworks:
 
 ```csharp
     public class Program
