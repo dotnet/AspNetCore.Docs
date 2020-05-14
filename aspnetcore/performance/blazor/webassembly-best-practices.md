@@ -145,7 +145,7 @@ Blazor WebAssembly's runtime includes the following .NET features that can be di
   </PropertyGroup>
   ```
 
-* Collation information is included to make APIs such as <xref:System.StringComparison.InvariantCultureIgnoreCase&displayProperty=nameWithType> work correctly. If you can verify that the app doesn't require the collation data, consider disabling it by setting the `BlazorWebAssemblyPreserveCollationData` MSBuild property in the app's project file to `false`:
+* Collation information is included to make APIs such as <xref:System.StringComparison.InvariantCultureIgnoreCase&displayProperty=nameWithType> work correctly. If you are certain, that the app doesn't require the collation data, consider disabling it by setting the `BlazorWebAssemblyPreserveCollationData` MSBuild property in the app's project file to `false`:
 
   ```xml
   <PropertyGroup>
