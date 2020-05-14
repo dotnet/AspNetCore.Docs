@@ -19,7 +19,7 @@ Blazor Server is a stateful app framework. Most of the time, the app maintains a
 
 Examples of state held for a user's circuit include:
 
-* The rendered UI&mdash;the hierarchy of component instances and their most recent render output.
+* The rendered UI: The hierarchy of component instances and their most recent render output.
 * The values of any fields and properties in component instances.
 * Data held in [dependency injection (DI)](xref:fundamentals/dependency-injection) service instances that are scoped to the circuit.
 
@@ -45,7 +45,7 @@ In some scenarios, preserving state across circuits is desirable. An app can ret
 
 In general, maintaining state across circuits applies to scenarios where users are actively creating data, not simply reading data that already exists.
 
-To preserve state beyond a single circuit, *don't merely store the data in the server's memory*. The app must persist the data to some other storage location. State persistence isn't automatic&mdash;you must take steps when developing the app to implement stateful data persistence.
+To preserve state beyond a single circuit, *don't merely store the data in the server's memory*. The app must persist the data to some other storage location. State persistence isn't automatic. You must take steps when developing the app to implement stateful data persistence.
 
 Data persistence is typically only required for high-value state that users have expended effort to create. In the following examples, persisting state either saves time or aids in commercial activities:
 
@@ -88,7 +88,7 @@ For transient data representing navigation state, model the data as a part of th
 The contents of the browser's address bar are retained:
 
 * If the user manually reloads the page.
-* If the web server becomes unavailable&mdash;the user is forced to reload the page in order to connect to a different server.
+* If the web server becomes unavailable, and the user is forced to reload the page in order to connect to a different server.
 
 For information on defining URL patterns with the `@page` directive, see <xref:blazor/routing>.
 

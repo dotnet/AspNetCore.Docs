@@ -81,7 +81,7 @@ Blazor Server is a stateful framework. While users interact with an app, they ma
 
 If a user opens the app in multiple browser tabs, they have multiple independent circuits.
 
-Blazor treats most unhandled exceptions as fatal to the circuit where they occur. If a circuit is terminated due to an unhandled exception, the user can only continue to interact with the app by reloading the page to create a new circuit. Circuits outside of the one that's terminated, which are circuits for other users or other browser tabs, aren't affected. This scenario is similar to a desktop app that crashes&mdash;the crashed app must be restarted, but other apps aren't affected.
+Blazor treats most unhandled exceptions as fatal to the circuit where they occur. If a circuit is terminated due to an unhandled exception, the user can only continue to interact with the app by reloading the page to create a new circuit. Circuits outside of the one that's terminated, which are circuits for other users or other browser tabs, aren't affected. This scenario is similar to a desktop app that crashes. The crashed app must be restarted, but other apps aren't affected.
 
 A circuit is terminated when an unhandled exception occurs for the following reasons:
 
