@@ -337,4 +337,5 @@ If a single component might use a `DbContext` concurrently (for example, every t
 ## Additional resources
 
 * <xref:fundamentals/dependency-injection>
+* [IDisposable guidance for Transient and shared instances](xref:fundamentals/dependency-injection#idisposable-guidance-for-transient-and-shared-instances)
 * <xref:mvc/views/dependency-injection>
