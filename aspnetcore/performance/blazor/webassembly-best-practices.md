@@ -27,7 +27,7 @@ If authoring a UI-only component that never changes after the initial render, co
 }
 ```
 
-Also use <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> to selectively render a component responding to a UI event.
+Most apps don't require fine-grained control, but <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> can also be used to selectively render a component responding to a UI event.
 
 In the following example:
 
