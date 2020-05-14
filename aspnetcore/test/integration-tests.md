@@ -311,6 +311,8 @@ By default, the SUT's host and app environment is configured to use the Developm
 ```csharp
 protected override IHostBuilder CreateHostBuilder() => 
     base.CreateHostBuilder()
+        .ConfigureHostConfiguration(
+            config => config.AddEnvironmentVariables("ASPNETCORE"));
 ```
 
 ## How the test infrastructure infers the app content root path
