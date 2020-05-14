@@ -4,7 +4,7 @@ author: tratcher
 description: Learn how to test ASP.NET Core middleware with TestServer.
 ms.author: riande
 ms.custom: mvc
-ms.date: 5/6/2019
+ms.date: 5/12/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: test/middleware
 ---
@@ -103,3 +103,20 @@ public async Task TestMiddleware_ExpectedResponse()
 <xref:Microsoft.AspNetCore.TestHost.TestServer.SendAsync%2A> permits direct configuration of an <xref:Microsoft.AspNetCore.Http.HttpContext> object rather than using the <xref:System.Net.Http.HttpClient> abstractions. Use <xref:Microsoft.AspNetCore.TestHost.TestServer.SendAsync%2A> to manipulate structures only available on the server, such as [HttpContext.Items](xref:Microsoft.AspNetCore.Http.HttpContext.Items) or [HttpContext.Features](xref:Microsoft.AspNetCore.Http.HttpContext.Features).
 
 As with the earlier example that tested for a *404 - Not Found* response, check the opposite for each `Assert` statement in the preceding test. The check confirms that the test fails correctly when the middleware is operating normally. After you've confirmed that the false positive test works, set the final `Assert` statements for the expected conditions and values of the test. Run it again to confirm that the test passes.
+
+## TestServer limitations
+
+TestServer:
+
+* Was created to replicate server behaviors to test middleware.
+* Does ***not*** try to replicate all <xref:System.Net.Http.HttpClient> behaviors.
+* Attempts to give the client access to as much control over the server as possible, and with as much visibility into what's happening on the server as possible. For example it may throw exceptions not normally thrown by `HttpClient` in order to directly communicate server state.
+* Doesn't set some transport specific headers by default as those are not usually relevant to middleware. For more information, see the next section.
+
+### Content-Length and Transfer-Encoding headers
+
+TestServer does ***not*** set transport related request or response headers such as [Content-Length](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Length) or [Transfer-Encoding](https://developer.mozilla.org/docs/Web/HTTP/Headers/Transfer-Encoding). Applications should avoid depending on these headers because their usage varies by client, scenario, and protocol. If `Content-Length` and `Transfer-Encoding` are necessary to test a specific scenario, they can be specified in the test when composing the <xref:System.Net.Http.HttpRequestMessage> or <xref:Microsoft.AspNetCore.Http.HttpContext>. For more information, see the following GitHub issues:
+
+* [dotnet/aspnetcore#21677](https://github.com/dotnet/aspnetcore/issues/21677)
+* [dotnet/aspnetcore#18463](https://github.com/dotnet/aspnetcore/issues/18463)
+* [dotnet/aspnetcore#13273](https://github.com/dotnet/aspnetcore/issues/13273)
