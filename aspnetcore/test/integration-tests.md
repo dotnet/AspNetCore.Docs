@@ -315,7 +315,7 @@ protected override IHostBuilder CreateHostBuilder() =>
             config => config.AddEnvironmentVariables("ASPNETCORE"));
 ```
 
-If the SUT uses the Web Host (`IWebHostBuilder`), override `CreateWebHostBuilder` instead:
+If the SUT uses the Web Host (`IWebHostBuilder`), override `CreateWebHostBuilder`:
 
 ```csharp
 protected override IWebHostBuilder CreateWebHostBuilder() =>
