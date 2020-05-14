@@ -317,7 +317,10 @@ builder.Services.AddApiAuthorization<RemoteAuthenticationState, CustomUserAccoun
       .AddEntityFrameworkStores<ApplicationDbContext>();
   ```
 
-* In the Server app, configure Identity Server to put the `name` and `roles` claims into the ID token and the access token and prevent the default mapping for roles in the `JwtSecurityTokenHandler`:
+* In the Server app:
+
+  * Configure Identity Server to put the `name` and `role` claims into the ID token and access token.
+  * Prevent the default mapping for roles in the JWT token handler.
 
   ```csharp
   using System.IdentityModel.Tokens.Jwt;
@@ -353,7 +356,7 @@ Component authorization approaches are functional at this point. Any of the auth
   ```
 -->
 
-`User.Identity.Name` is populated in the Client app with the user's user name, which is usually their sign-in email address.
+`User.Identity.Name` is populated in the Client app with the user's username, which is usually their sign-in email address.
 
 ## Profile Service
 
