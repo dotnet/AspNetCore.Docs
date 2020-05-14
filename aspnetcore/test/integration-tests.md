@@ -309,15 +309,8 @@ By default, the SUT's host and app environment is configured to use the Developm
 * Override `CreateHostBuilder` in the test app to read environment variables prefixed with `ASPNETCORE`.
 
 ```csharp
-public class CustomWebApplicationFactory<TStartup>
-    : WebApplicationFactory<TStartup> where TStartup: class
-{
-    protected override IHostBuilder CreateHostBuilder() => base.CreateHostBuilder()
-        .ConfigureHostConfiguration(
-            config => config.AddEnvironmentVariables("ASPNETCORE"));
-
-    ...
-}
+protected override IHostBuilder CreateHostBuilder() => 
+    base.CreateHostBuilder()
 ```
 
 ## How the test infrastructure infers the app content root path
