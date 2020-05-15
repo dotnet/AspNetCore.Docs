@@ -138,8 +138,8 @@ Log level can be set by any of the [configuration providers](xref:fundamentals/c
 
 The following commands:
 
-* Sets the environment key and value of the `Logging:LogLevel:Microsoft:Information` on Windows.
-* Tests the settings when using an app created with the ASP.NET Core web application templates. The `dotnet run` command must be run in the project directory after using `set`.
+* Set the environment key `Logging:LogLevel:Microsoft` to a value of `Information` on Windows.
+* Test the settings when using an app created with the ASP.NET Core web application templates. The `dotnet run` command must be run in the project directory after using `set`.
 
 ```cmd
 set Logging__LogLevel__Microsoft=Information
@@ -149,12 +149,12 @@ dotnet run
 The preceding environment setting:
 
 * Is only set in processes launched from the command window they were set in.
-* Won't be read by browsers launched with Visual Studio.
+* Isn't read by browsers launched with Visual Studio.
 
 The following [setx](/windows-server/administration/windows-commands/setx) command can be used to set the environment keys and values on Windows. Unlike `set`, `setx` settings are persisted. `/M` sets the variable in the system environment. If the `/M` switch isn't used, a user environment variable is set.
 
 ```cmd
-set Logging__LogLevel__Microsoft=Information /M
+setx Logging__LogLevel__Microsoft=Information /M
 ```
 
 On [Azure App Service](https://azure.microsoft.com/services/app-service/), select **New application setting** on the **Settings > Configuration** page. Azure App Service application settings are:
@@ -164,9 +164,7 @@ On [Azure App Service](https://azure.microsoft.com/services/app-service/), selec
 
 For more information, see [Azure Apps: Override app configuration using the Azure Portal](xref:host-and-deploy/azure-apps/index#override-app-configuration-using-the-azure-portal).
 
-See [environment variables](xref:fundamentals/configuration/index#environment-variables) for more information.
-
- For information on configuring the logging providers using the command line, Azure Key Vault, Azure App Configuration, other file formats, and more, see <xref:fundamentals/configuration/index>.
+For more information on setting ASP.NET Core configuration values using environment variables, see [environment variables](xref:fundamentals/configuration/index#environment-variables). For information on using other configuration sources, including the command line, Azure Key Vault, Azure App Configuration, other file formats, and more, see <xref:fundamentals/configuration/index>.
 
 ## How filtering rules are applied
 
