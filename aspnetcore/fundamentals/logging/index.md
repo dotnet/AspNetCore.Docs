@@ -151,7 +151,7 @@ The preceding environment setting:
 * Is only set in processes launched from the command window they were set in.
 * Isn't read by browsers launched with Visual Studio.
 
-The following [setx](/windows-server/administration/windows-commands/setx) command can be used to set the environment keys and values on Windows. Unlike `set`, `setx` settings are persisted. `/M` sets the variable in the system environment. If the `/M` switch isn't used, a user environment variable is set.
+The following [setx](/windows-server/administration/windows-commands/setx) command also sets the environment key and value on Windows. Unlike `set`, `setx` settings are persisted. The `/M` switch sets the variable in the system environment. If `/M` isn't used, a user environment variable is set.
 
 ```cmd
 setx Logging__LogLevel__Microsoft=Information /M
