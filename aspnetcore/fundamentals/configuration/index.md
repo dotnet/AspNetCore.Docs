@@ -75,9 +75,11 @@ The default <xref:Microsoft.Extensions.Configuration.Json.JsonConfigurationProvi
 
 <a name="optpat"></a>
 
-#### Bind hierarchical configuration data using the options pattern
+### Bind hierarchical configuration data using the options pattern
 
 [!INCLUDE[](~/includes/bind.md)]
+
+Using the [default](#default) configuration, the *appsettings.json* and *appsettings.*`Environment`*.json* files are enabled with [reloadOnChange: true](https://github.com/dotnet/extensions/blob/release/3.1/src/Hosting/Hosting/src/Host.cs#L74-L75). Changes made to the *appsettings.json* and *appsettings.*`Environment`*.json* file ***after*** the app starts are read by the [JSON configuration provider](#jcp).
 
 See [JSON configuration provider](#jcp) in this document for information on adding additional JSON configuration files.
 

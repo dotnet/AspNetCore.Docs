@@ -5,7 +5,7 @@ description: Discover how to use the options pattern to represent groups of rela
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/12/2020
+ms.date: 05/20/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/configuration/options
 ---
@@ -22,9 +22,11 @@ Options also provide a mechanism to validate configuration data. For more inform
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/options/samples) ([how to download](xref:index#how-to-download-a-sample))
 
-## Package
+<a name="optpat"></a>
 
-The [Microsoft.Extensions.Options.ConfigurationExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions/) package is implicitly referenced in ASP.NET Core apps.
+## Bind hierarchical configuration data using the options pattern
+
+[!INCLUDE[](~/includes/bind.md)]
 
 ## Options interfaces
 
@@ -434,6 +436,10 @@ public void Configure(IApplicationBuilder app,
 ```
 
 Don't use <xref:Microsoft.Extensions.Options.IOptions%601> or <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> in `Startup.ConfigureServices`. An inconsistent options state may exist due to the ordering of service registrations.
+
+## Options.ConfigurationExtensions NuGet package
+
+The [Microsoft.Extensions.Options.ConfigurationExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions/) package is implicitly referenced in ASP.NET Core apps.
 
 ::: moniker-end
 
