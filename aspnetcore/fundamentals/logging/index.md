@@ -136,22 +136,22 @@ Log level can be set by any of the [configuration providers](xref:fundamentals/c
 
 [!INCLUDE[](~/includes/environmentVarableColon.md)]
 
-The following `set` commands:
+The following commands:
 
-* Sets the environment keys and values of the `Logging:LogLevel:Microsoft:Information` on Windows.
-* Test the settings when using an app created with the ASP.NET Core web application templates. The `dotnet run` command must be run in the project directory.
+* Sets the environment key and value of the `Logging:LogLevel:Microsoft:Information` on Windows.
+* Tests the settings when using an app created with the ASP.NET Core web application templates. The `dotnet run` command must be run in the project directory after using `set`.
 
 ```cmd
 set Logging__LogLevel__Microsoft=Information
 dotnet run
 ```
 
-The preceding environment settings:
+The preceding environment setting:
 
-* Are only set in processes launched from the command window they were set in.
+* Is only set in processes launched from the command window they were set in.
 * Won't be read by browsers launched with Visual Studio.
 
-The following [setx](/windows-server/administration/windows-commands/setx) commands can be used to set the environment keys and values on Windows. Unlike `set`, `setx` settings are persisted. `/M` sets the variable in the system environment. If the `/M` switch isn't used, a user environment variable is set.
+The following [setx](/windows-server/administration/windows-commands/setx) command can be used to set the environment keys and values on Windows. Unlike `set`, `setx` settings are persisted. `/M` sets the variable in the system environment. If the `/M` switch isn't used, a user environment variable is set.
 
 ```cmd
 set Logging__LogLevel__Microsoft=Information /M
@@ -164,7 +164,7 @@ On [Azure App Service](https://azure.microsoft.com/services/app-service/), selec
 
 For more information, see [Azure Apps: Override app configuration using the Azure Portal](xref:host-and-deploy/azure-apps/index#override-app-configuration-using-the-azure-portal).
 
-See [environment variables](xref:aspnet/core/fundamentals/configuration/#environment-variables) for more information.
+See [environment variables](xref:fundamentals/configuration/index#environment-variables) for more information.
 
  For information on configuring the logging providers using the command line, Azure Key Vault, Azure App Configuration, other file formats, and more, see <xref:fundamentals/configuration/index>.
 
