@@ -704,6 +704,8 @@ In [Razor components](xref:blazor/components), `@using` also controls which comp
 
 ## Directive attributes
 
+Razor directive attributes are represented by implicit expressions with reserved keywords following the `@` symbol. A directive attribute typically changes the way an element is parsed or enables different functionality.
+
 ### \@attributes
 
 *This scenario only applies to Razor components (.razor).*

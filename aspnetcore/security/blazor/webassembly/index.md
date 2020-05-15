@@ -5,7 +5,7 @@ description: Learn how to secure Blazor WebAssemlby apps as Single Page Applicat
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/24/2020
+ms.date: 05/14/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/blazor/webassembly/index
 ---
@@ -46,8 +46,22 @@ The `Microsoft.AspNetCore.Components.WebAssembly.Authentication` library offers 
 * When the Blazor WebAssembly app loads the login callback endpoint (`/authentication/login-callback`), the authentication response is processed.
   * If the authentication process completes successfully, the user is authenticated and optionally sent back to the original protected URL that the user requested.
   * If the authentication process fails for any reason, the user is sent to the login failed page (`/authentication/login-failed`), and an error is displayed.
+  
+## Implementation guidance
 
-## Additional resources
+Articles under this *Overview* provide information on authenticating users in Blazor WebAssembly apps against specific providers.
 
-* Articles under this *Overview* provide information on authenticating users in Blazor WebAssembly apps against specific providers.
-* <xref:security/blazor/webassembly/additional-scenarios>
+Standalone Blazor WebAssembly apps:
+
+* [General guidance for OIDC providers and the WebAssembly Authentication Library](xref:security/blazor/webassembly/standalone-with-authentication-library)
+* [Microsoft Accounts](xref:security/blazor/webassembly/standalone-with-microsoft-accounts)
+* [Azure Active Directory (AAD)](xref:security/blazor/webassembly/standalone-with-azure-active-directory)
+* [Azure Active Directory (AAD) B2C](xref:security/blazor/webassembly/standalone-with-azure-active-directory-b2c)
+
+Hosted Blazor WebAssembly apps:
+
+* [Azure Active Directory (AAD)](xref:security/blazor/webassembly/hosted-with-azure-active-directory)
+* [Azure Active Directory (AAD) B2C](xref:security/blazor/webassembly/hosted-with-azure-active-directory-b2c)
+* [Identity Server](xref:security/blazor/webassembly/hosted-with-identity-server)
+
+For further guidance on configuration, see <xref:security/blazor/webassembly/additional-scenarios>.

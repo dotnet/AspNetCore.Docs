@@ -5,7 +5,7 @@ description: Learn how integration tests ensure that an app's components functio
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/06/2019
+ms.date: 05/11/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: test/integration-tests
 ---
@@ -303,16 +303,23 @@ For more information on `WebApplicationFactoryClientOptions`, see the [Client op
 
 ## Set the environment
 
-By default, the SUT's host and app environment is configured to use the Development environment. To override the SUT's environment:
+By default, the SUT's host and app environment is configured to use the Development environment. To override the SUT's environment when using `IHostBuilder`:
 
 * Set the `ASPNETCORE_ENVIRONMENT` environment variable (for example, `Staging`, `Production`, or other custom value, such as `Testing`).
 * Override `CreateHostBuilder` in the test app to read environment variables prefixed with `ASPNETCORE`.
 
 ```csharp
-protected override IHostBuilder CreateHostBuilder() => 
+protected override IHostBuilder CreateHostBuilder() =>
     base.CreateHostBuilder()
         .ConfigureHostConfiguration(
             config => config.AddEnvironmentVariables("ASPNETCORE"));
+```
+
+If the SUT uses the Web Host (`IWebHostBuilder`), override `CreateWebHostBuilder`:
+
+```csharp
+protected override IWebHostBuilder CreateWebHostBuilder() =>
+    base.CreateWebHostBuilder().UseEnvironment("Testing");
 ```
 
 ## How the test infrastructure infers the app content root path
@@ -660,13 +667,38 @@ For more information on `WebApplicationFactoryClientOptions`, see the [Client op
 By default, the SUT's host and app environment is configured to use the Development environment. To override the SUT's environment:
 
 * Set the `ASPNETCORE_ENVIRONMENT` environment variable (for example, `Staging`, `Production`, or other custom value, such as `Testing`).
-* Override `CreateHostBuilder` in the test app to read environment variables prefixed with `ASPNETCORE`.
+* Override `CreateWebHostBuilder` in the test app to read the `ASPNETCORE_ENVIRONMENT` environment variable.
 
 ```csharp
-protected override IHostBuilder CreateHostBuilder() => 
-    base.CreateHostBuilder()
-        .ConfigureHostConfiguration(
-            config => config.AddEnvironmentVariables("ASPNETCORE"));
+public class CustomWebApplicationFactory<TStartup> 
+    : WebApplicationFactory<TStartup> where TStartup: class
+{
+    protected override IWebHostBuilder CreateWebHostBuilder()
+    {
+        return base.CreateWebHostBuilder()
+            .UseEnvironment(
+                Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT"));
+    }
+
+    ...
+}
+```
+
+The environment can also be set directly on the host builder in a custom <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601>:
+
+```csharp
+public class CustomWebApplicationFactory<TStartup> 
+    : WebApplicationFactory<TStartup> where TStartup: class
+{
+    protected override void ConfigureWebHost(IWebHostBuilder builder)
+    {
+        builder.UseEnvironment(
+            Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT"));
+    
+        ...
+    }
+
+    ...
 ```
 
 ## How the test infrastructure infers the app content root path

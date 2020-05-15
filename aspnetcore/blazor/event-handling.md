@@ -125,7 +125,7 @@ It's often convenient to close over additional values, such as when iterating ov
 
 ## EventCallback
 
-A common scenario with nested components is the desire to run a parent component's method when a child component event occurs&mdash;for example, when an `onclick` event occurs in the child. To expose events across components, use an `EventCallback`. A parent component can assign a callback method to a child component's `EventCallback`.
+A common scenario with nested components is the desire to run a parent component's method when a child component event occurs. An `onclick` event occurring in the child component is a common use case. To expose events across components, use an `EventCallback`. A parent component can assign a callback method to a child component's `EventCallback`.
 
 The `ChildComponent` in the sample app (*Components/ChildComponent.razor*) demonstrates how a button's `onclick` handler is set up to receive an `EventCallback` delegate from the sample's `ParentComponent`. The `EventCallback` is typed with `MouseEventArgs`, which is appropriate for an `onclick` event from a peripheral device:
 

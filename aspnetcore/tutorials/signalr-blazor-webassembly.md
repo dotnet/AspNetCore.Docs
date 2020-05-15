@@ -5,7 +5,7 @@ description: Create a chat app that uses ASP.NET Core SignalR with Blazor WebAss
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/30/2020
+ms.date: 05/11/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/signalr-blazor-webassembly
 ---
@@ -89,13 +89,33 @@ Follow the guidance for your choice of tooling:
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-1. In a command shell, execute the following command:
+1. If you don't wish to install the preview of Visual Studio for Mac version 8.6, open a command shell and execute the following command:
 
    ```dotnetcli
    dotnet new blazorwasm --hosted --output BlazorSignalRApp
    ```
 
-1. In Visual Studio for Mac, open the project by navigating to the project folder and opening the project's solution file (*.sln*).
+1. To use the preview of Visual Studio for Mac version 8.6, install [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/), use the [Preview channel](/visualstudio/mac/update), and perform the following steps:
+
+   * Select **File** > **New Solution** or create a **New** project from the **Start Window**.
+
+   * In the sidebar, select **Web and Console** > **App**.
+
+   * For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template.
+
+   * Confirm the following configurations:
+
+     * Select the **ASP.NET Core hosted** check box.
+     * **Target Framework** set to **.NET Core 3.1**.
+     * **Authentication** set to **No Authentication**.
+
+     Select **Next**.
+
+   * In the **Project Name** field, name the app `BlazorSignalRApp`. Select **Create**.
+
+   If a prompt appears to trust the development certificate, trust the certificate and continue. The user and keychain passwords are required to trust the certificate.
+
+1. Open the project by navigating to the project folder and opening the project's solution file (*.sln*).
 
 # [.NET Core CLI](#tab/netcore-cli/)
 

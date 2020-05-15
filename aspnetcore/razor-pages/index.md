@@ -50,9 +50,7 @@ Run `dotnet new webapp` from the command line.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-Run `dotnet new webapp` from the command line.
-
-Open the generated *.csproj* file from Visual Studio for Mac.
+See [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start) for detailed instructions on how to create a Razor Pages project.
 
 ---
 
