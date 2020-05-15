@@ -303,16 +303,23 @@ For more information on `WebApplicationFactoryClientOptions`, see the [Client op
 
 ## Set the environment
 
-By default, the SUT's host and app environment is configured to use the Development environment. To override the SUT's environment:
+By default, the SUT's host and app environment is configured to use the Development environment. To override the SUT's environment when using `IHostBuilder`:
 
 * Set the `ASPNETCORE_ENVIRONMENT` environment variable (for example, `Staging`, `Production`, or other custom value, such as `Testing`).
 * Override `CreateHostBuilder` in the test app to read environment variables prefixed with `ASPNETCORE`.
 
 ```csharp
-protected override IHostBuilder CreateHostBuilder() => 
+protected override IHostBuilder CreateHostBuilder() =>
     base.CreateHostBuilder()
         .ConfigureHostConfiguration(
             config => config.AddEnvironmentVariables("ASPNETCORE"));
+```
+
+If the SUT uses the Web Host (`IWebHostBuilder`), override `CreateWebHostBuilder`:
+
+```csharp
+protected override IWebHostBuilder CreateWebHostBuilder() =>
+    base.CreateWebHostBuilder().UseEnvironment("Testing");
 ```
 
 ## How the test infrastructure infers the app content root path
