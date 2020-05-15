@@ -184,7 +184,7 @@ Tokens can be passed to components:
 * When authentication tokens are provisioned and saved to the authentication cookie, they can be passed to components.
 * Razor components can't use `HttpContext` directly, so there's no way to obtain an [anti-request forgery (XSRF) token](xref:security/anti-request-forgery) to POST to Identity's logout endpoint at `/Identity/Account/Logout`. An XSRF token can be passed to components.
 
-For more information, see <xref:security/blazor/server#pass-tokens-to-a-blazor-server-app>.
+For more information, see <xref:security/blazor/server/index#pass-tokens-to-a-blazor-server-app>.
 
 In the *Pages/_Host.cshtml* file, establish the token after adding it to the `InitialApplicationState` and `TokenProvider` classes:
 
@@ -218,7 +218,7 @@ The `TokenProvider` service demonstrated in the topic is used in the `LoginDispl
 In the `Startup` class:
 
 * Confirm that Razor Pages services are added in `Startup.ConfigureServices`.
-* If using the [TokenProvider](xref:security/blazor/server#pass-tokens-to-a-blazor-server-app), register the service.
+* If using the [TokenProvider](xref:security/blazor/server/index#pass-tokens-to-a-blazor-server-app), register the service.
 * Call `UseDatabaseErrorPage` on the application builder in `Startup.Configure` for the Development environment.
 * Call `UseAuthentication` and `UseAuthorization` after `UseRouting`.
 * Add an endpoint for Razor Pages.
@@ -242,7 +242,7 @@ Add a `RedirectToLogin` component (*RedirectToLogin.razor*) to the app's *Shared
 }
 ```
 
-Add a `LoginDisplay` component (*LoginDisplay.razor*) to the app's *Shared* folder. The [TokenProvider service](xref:security/blazor/server#pass-tokens-to-a-blazor-server-app) provides the XSRF token for the HTML form that POSTs to Identity's logout endpoint:
+Add a `LoginDisplay` component (*LoginDisplay.razor*) to the app's *Shared* folder. The [TokenProvider service](xref:security/blazor/server/index#pass-tokens-to-a-blazor-server-app) provides the XSRF token for the HTML form that POSTs to Identity's logout endpoint:
 
 ```razor
 @using Microsoft.AspNetCore.Components.Authorization
