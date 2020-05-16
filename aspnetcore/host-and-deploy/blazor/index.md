@@ -13,8 +13,6 @@ uid: host-and-deploy/blazor/index
 
 By [Luke Latham](https://github.com/guardrex), [Rainer Stropek](https://www.timecockpit.com), and [Daniel Roth](https://github.com/danroth27)
 
-[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
-
 ## Publish the app
 
 Apps are published for deployment in Release configuration.

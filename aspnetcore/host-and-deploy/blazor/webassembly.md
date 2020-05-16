@@ -5,15 +5,13 @@ description: Learn how to host and deploy a Blazor app using ASP.NET Core, Conte
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/07/2020
+ms.date: 05/18/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: host-and-deploy/blazor/webassembly
 ---
 # Host and deploy ASP.NET Core Blazor WebAssembly
 
 By [Luke Latham](https://github.com/guardrex), [Rainer Stropek](https://www.timecockpit.com), [Daniel Roth](https://github.com/danroth27), [Ben Adams](https://twitter.com/ben_a_adams), and [Safia Abdalla](https://safia.rocks)
-
-[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
 With the [Blazor WebAssembly hosting model](xref:blazor/hosting-models#blazor-webassembly):
 
@@ -450,3 +448,4 @@ In the project file, the script is run after publishing the app:
 ```
 
 To provide feedback, visit [aspnetcore/issues #5477](https://github.com/dotnet/aspnetcore/issues/5477).
+ 

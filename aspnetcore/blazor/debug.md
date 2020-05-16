@@ -5,15 +5,13 @@ description: Learn how to debug Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/16/2020
+ms.date: 05/18/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/debug
 ---
 # Debug ASP.NET Core Blazor WebAssembly
 
 [Daniel Roth](https://github.com/danroth27)
-
-[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
 Blazor WebAssembly apps can be debugged using the browser dev tools in Chromium-based browsers (Edge/Chrome).  Alternatively you can debug your app using Visual Studio or Visual Studio Code.
 
@@ -47,8 +45,6 @@ Debugging requires either of the following browsers:
 
 ## Enable debugging for Visual Studio and Visual Studio Code
 
-Debugging is enabled automatically for new projects that are created using the ASP.NET Core 3.2 Preview 3 or later Blazor WebAssembly project template ([current release is 3.2 Preview 4](xref:blazor/get-started)).
-
 To enable debugging for an existing Blazor WebAssembly app, update the *launchSettings.json* file in the startup project to include the following `inspectUri` property in each launch profile:
 
 ```json
@@ -68,7 +64,6 @@ The `inspectUri` property:
 
 To debug a Blazor WebAssembly app in Visual Studio:
 
-1. Ensure you have [installed the latest preview release of Visual Studio 2019 16.6](https://visualstudio.com/preview) (Preview 2 or later).
 1. Create a new ASP.NET Core hosted Blazor WebAssembly app.
 1. Press <kbd>F5</kbd> to run the app in the debugger.
 1. Set a breakpoint in *Counter.razor* in the `IncrementCount` method.
@@ -112,7 +107,7 @@ To debug a Blazor WebAssembly app in Visual Studio Code:
 
    * If you get the following notification that additional setup is required to enable debugging, confirm that you have the correct extensions installed and JavaScript preview debugging enabled and then reload the window:
 
-     ![Additional setup requried](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vscode-additional-setup.png)
+     ![Additional setup required](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vscode-additional-setup.png)
 
    * A notification offers to add the required assets to the app for building and debugging. Select **Yes**:
 

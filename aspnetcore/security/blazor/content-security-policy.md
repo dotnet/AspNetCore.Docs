@@ -5,15 +5,13 @@ description: Learn how to use a Content Security Policy (CSP) with ASP.NET Core 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/02/2020
+ms.date: 05/18/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/blazor/content-security-policy
 ---
 # Enforce a Content Security Policy for ASP.NET Core Blazor
 
 By [Javier Calvarro Nelson](https://github.com/javiercn) and [Luke Latham](https://github.com/guardrex)
-
-[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
 [Cross-Site Scripting (XSS)](xref:security/cross-site-scripting) is a security vulnerability where an attacker places one or more malicious client-side scripts into an app's rendered content. A Content Security Policy (CSP) helps protect against XSS attacks by informing the browser of valid:
 

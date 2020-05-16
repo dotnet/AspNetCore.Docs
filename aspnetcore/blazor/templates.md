@@ -5,15 +5,13 @@ description: Learn about ASP.NET Core Blazor app templates and Blazor project st
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/19/2020
+ms.date: 05/18/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/templates
 ---
 # ASP.NET Core Blazor templates
 
 By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.com/guardrex)
-
-[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
 The Blazor framework provides templates to develop apps for each of the Blazor hosting models:
 

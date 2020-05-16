@@ -5,7 +5,7 @@ description: Explore ASP.NET Core Blazor, a way to build interactive client-side
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: "mvc, seoapril2019"
-ms.date: 03/25/2020
+ms.date: 05/18/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/index
 ---
@@ -98,8 +98,6 @@ When this component is used in the app, IntelliSense in [Visual Studio](/visuals
 Components render into an in-memory representation of the browser's Document Object Model (DOM) called a *render tree*, which is used to update the UI in a flexible and efficient way.
 
 ## Blazor WebAssembly
-
-[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
 Blazor WebAssembly is a single-page app framework for building interactive client-side web apps with .NET. Blazor WebAssembly uses open web standards without plugins or code transpilation and works in all modern web browsers, including mobile browsers.
 

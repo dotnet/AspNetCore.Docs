@@ -5,17 +5,13 @@ description: Learn how to configure Blazor WebAssembly for additional security s
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/11/2020
+ms.date: 05/18/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/blazor/webassembly/additional-scenarios
 ---
 # ASP.NET Core Blazor WebAssembly additional security scenarios
 
 By [Javier Calvarro Nelson](https://github.com/javiercn)
-
-[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
-
-[!INCLUDE[](~/includes/blazorwasm-3.2-template-article-notice.md)]
 
 ## Attach tokens to outgoing requests
 

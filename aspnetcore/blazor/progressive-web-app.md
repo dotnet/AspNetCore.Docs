@@ -5,17 +5,13 @@ description: Learn how to build a Blazor-based Progressive Web Application (PWA)
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/23/2020
+ms.date: 05/18/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/progressive-web-app
 ---
 # Build Progressive Web Applications with ASP.NET Core Blazor WebAssembly
 
 By [Steve Sanderson](https://github.com/SteveSandersonMS)
-
-[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
-
-[!INCLUDE[](~/includes/blazorwasm-3.2-template-article-notice.md)]
 
 A Progressive Web Application (PWA) is a Single Page Application (SPA) that uses modern browser APIs and capabilities to behave like a desktop app. Blazor WebAssembly is a standards-based client-side web app platform, so it can use any browser API, including PWA APIs required for the following capabilities:
 
@@ -34,7 +30,7 @@ The word *progressive* is used to describe such apps because:
 
 # [Visual Studio](#tab/visual-studio)
 
-When creating a new **Blazor WebAssembly App** in the **Create a New Project** dialog, select the **Progress Web Application** check box:
+When creating a new **Blazor WebAssembly App** in the **Create a New Project** dialog, select the **Progressive Web Application** check box:
 
 ![The 'Progressive Web Application' check box is selected in the Visual Studio new project dialog.](progressive-web-app/_static/image1.png)
 

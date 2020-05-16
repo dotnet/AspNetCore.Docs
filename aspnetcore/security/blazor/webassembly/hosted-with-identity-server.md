@@ -5,17 +5,13 @@ description: To create a new Blazor hosted app with authentication from within V
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/11/2020
+ms.date: 05/18/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/blazor/webassembly/hosted-with-identity-server
 ---
 # Secure an ASP.NET Core Blazor WebAssembly hosted app with Identity Server
 
 By [Javier Calvarro Nelson](https://github.com/javiercn) and [Luke Latham](https://github.com/guardrex)
-
-[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
-
-[!INCLUDE[](~/includes/blazorwasm-3.2-template-article-notice.md)]
 
 To create a new Blazor hosted app in Visual Studio that uses [IdentityServer](https://identityserver.io/) to authenticate users and API calls:
 
@@ -143,8 +139,6 @@ If adding authentication to an app, manually add the package to the app's projec
     Version="{VERSION}" />
 ```
 
-Replace `{VERSION}` in the preceding package reference with the version of the `Microsoft.AspNetCore.Blazor.Templates` package shown in the <xref:blazor/get-started> article.
-
 ### API authorization support
 
 The support for authenticating users is plugged into the service container by the extension method provided inside the `Microsoft.AspNetCore.Components.WebAssembly.Authentication` package. This method sets up all the services needed for the app to interact with the existing authorization system.
@@ -229,5 +223,7 @@ Run the app from the Server project. When using Visual Studio, select the Server
 
 ## Additional resources
 
+* [Deployment to Azure App Service](xref:security/authentication/identity/spa#deploy-to-production)
+* [Import a certificate from Key Vault (Azure documentation)](/azure/app-service/configure-ssl-certificate#import-a-certificate-from-key-vault)
 * <xref:security/blazor/webassembly/additional-scenarios>
 * [Unauthenticated or unauthorized web API requests in an app with a secure default client](xref:security/blazor/webassembly/additional-scenarios#unauthenticated-or-unauthorized-web-api-requests-in-an-app-with-a-secure-default-client)

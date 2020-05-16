@@ -5,7 +5,7 @@ description: Build a Blazor app step-by-step.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/20/2020
+ms.date: 05/18/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-blazor-app
 ---
@@ -13,9 +13,15 @@ uid: tutorials/first-blazor-app
 
 By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.com/guardrex)
 
-[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
+This tutorial shows you how to build and modify a Blazor app. You learn how to:
 
-This tutorial shows you how to build and modify a Blazor app.
+> [!div class="checklist"]
+> * Create a todo list Blazor app project
+> * Modify Razor components
+> * Use event handling and data binding in components
+> * Use dependency injection (DI) and routing in a Blazor app
+
+At the end of this tutorial, you'll have a working chat app.
 
 ## Build components
 
@@ -116,7 +122,7 @@ If working with a Blazor WebAssembly app, `HttpClient` is injected to obtain wea
 
 *Pages/FetchData.razor*:
 
-[!code-razor[](build-your-first-blazor-app/samples_snapshot/3.x/FetchData1_client.razor?highlight=7-8)]
+[!code-razor[](build-your-first-blazor-app/samples_snapshot/3.x/FetchData1_client.razor?highlight=7-9)]
 
 An [`@foreach`](/dotnet/csharp/language-reference/keywords/foreach-in) loop is used to render each forecast instance as a row in the table of weather data:
 
@@ -202,6 +208,18 @@ Add a new component to the app that implements a simple todo list.
    [!code-razor[](build-your-first-blazor-app/samples_snapshot/3.x/Todo.razor)]
 
 1. Rebuild and run the app. Add todo items to test the new code.
+
+## Next steps
+
+In this tutorial, you learned how to:
+
+> [!div class="checklist"]
+> * Create a todo list Blazor app project
+> * Modify Razor components
+> * Use event handling and data binding in components
+> * Use dependency injection (DI) and routing in a Blazor app
+
+Learn how to build and use components:
 
 > [!div class="nextstepaction"]
 > <xref:blazor/components>

@@ -5,18 +5,13 @@ description: Learn about Blazor authentication and authorization scenarios.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/04/2020
+ms.date: 05/18/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/blazor/index
 ---
 # ASP.NET Core Blazor authentication and authorization
 
 By [Steve Sanderson](https://github.com/SteveSandersonMS) and [Luke Latham](https://github.com/guardrex)
-
-[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
-
-> [!NOTE]
-> For the guidance in this article that applies to Blazor WebAssembly, the ASP.NET Core Blazor WebAssembly template version 3.2 or later is required. If you aren't using Visual Studio version 16.6 Preview 2 or later, obtain the latest Blazor WebAssembly template by following the guidance in <xref:blazor/get-started>.
 
 ASP.NET Core supports the configuration and management of security in Blazor apps.
 

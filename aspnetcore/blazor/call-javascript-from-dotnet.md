@@ -5,15 +5,13 @@ description: Learn how to invoke JavaScript functions from .NET methods in Blazo
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/07/2020
+ms.date: 05/18/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/call-javascript-from-dotnet
 ---
 # Call JavaScript functions from .NET methods in ASP.NET Core Blazor
 
 By [Javier Calvarro Nelson](https://github.com/javiercn), [Daniel Roth](https://github.com/danroth27), and [Luke Latham](https://github.com/guardrex)
-
-[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
 A Blazor app can invoke JavaScript functions from .NET methods and .NET methods from JavaScript functions. These scenarios are called *JavaScript interoperability* (*JS interop*).
 
