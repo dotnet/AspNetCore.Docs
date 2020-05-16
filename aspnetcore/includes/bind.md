@@ -11,7 +11,11 @@ Create the following `PositionOptions` class:
 
 [!code-csharp[](~/fundamentals/configuration/index/samples/3.x/ConfigSample/Options/PositionOptions.cs?name=snippet)]
 
-All the public read-write properties of the type are bound. Fields are ***not*** bound.
+An options class:
+
+* Must be non-abstract with a public parameterless constructor.
+* All public read-write properties of the type are bound.
+* Fields are ***not*** bound.
 
 The following code:
 
@@ -31,3 +35,14 @@ An alternative approach when using the ***options pattern*** is to bind the `Pos
 Using the preceding code, the following code reads the position options:
 
 [!code-csharp[](~/fundamentals/configuration/index/samples/3.x/ConfigSample/Pages/Test2.cshtml.cs?name=snippet)]
+
+Consider the following `MyOptions` class:
+
+[!code-csharp[](~fundamentals/configuration/options/samples/3.x/OptionsSample/Models/MyOptions.cs?name=snippet1)]
+
+In the preceding code:
+
+* The default value of `Option1` is set in the class constructor.
+* The default value of `Option2` is initialized in the property.
+
+Values set in *appsettings.json* or any other configuration override the default values set in the class.

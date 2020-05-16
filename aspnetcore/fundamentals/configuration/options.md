@@ -47,140 +47,22 @@ Options also provide a mechanism to validate configuration data. For more inform
 
 <xref:Microsoft.Extensions.Options.IOptions%601> can be used to support options. However, <xref:Microsoft.Extensions.Options.IOptions%601> doesn't support the preceding scenarios of <xref:Microsoft.Extensions.Options.IOptionsMonitor%601>. You may continue to use <xref:Microsoft.Extensions.Options.IOptions%601> in existing frameworks and libraries that already use the <xref:Microsoft.Extensions.Options.IOptions%601> interface and don't require the scenarios provided by <xref:Microsoft.Extensions.Options.IOptionsMonitor%601>.
 
-## General options configuration
-
-General options configuration is demonstrated as Example 1 in the sample app.
-
-An options class must be non-abstract with a public parameterless constructor. The following class, `MyOptions`, has two properties, `Option1` and `Option2`. Setting default values is optional, but the class constructor in the following example sets the default value of `Option1`. `Option2` has a default value set by initializing the property directly (*Models/MyOptions.cs*):
-
-[!code-csharp[](options/samples/3.x/OptionsSample/Models/MyOptions.cs?name=snippet1)]
-
-The `MyOptions` class is added to the service container with <xref:Microsoft.Extensions.DependencyInjection.OptionsConfigurationServiceCollectionExtensions.Configure*> and bound to configuration:
-
-[!code-csharp[](options/samples/3.x/OptionsSample/Startup.cs?name=snippet_Example1)]
-
-The following page model uses [constructor dependency injection](xref:mvc/controllers/dependency-injection) with <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> to access the settings (*Pages/Index.cshtml.cs*):
-
-[!code-csharp[](options/samples/3.x/OptionsSample/Pages/Index.cshtml.cs?range=9)]
-
-[!code-csharp[](options/samples/3.x/OptionsSample/Pages/Index.cshtml.cs?name=snippet2&highlight=2,8)]
-
-[!code-csharp[](options/samples/3.x/OptionsSample/Pages/Index.cshtml.cs?name=snippet_Example1)]
-
-The sample's *appsettings.json* file specifies values for `option1` and `option2`:
-
-[!code-json[](options/samples/3.x/OptionsSample/appsettings.json?highlight=2-3)]
-
-When the app is run, the page model's `OnGet` method returns a string showing the option class values:
-
-```html
-option1 = value1_from_json, option2 = -1
-```
-
-> [!NOTE]
-> When using a custom <xref:System.Configuration.ConfigurationBuilder> to load options configuration from a settings file, confirm that the base path is set correctly:
->
-> ```csharp
-> var configBuilder = new ConfigurationBuilder()
->    .SetBasePath(Directory.GetCurrentDirectory())
->    .AddJsonFile("appsettings.json", optional: true);
-> var config = configBuilder.Build();
->
-> services.Configure<MyOptions>(config);
-> ```
->
-> Explicitly setting the base path isn't required when loading options configuration from the settings file via <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*>.
-
-## Configure simple options with a delegate
-
-Configuring simple options with a delegate is demonstrated as Example 2 in the sample app.
-
-Use a delegate to set options values. The sample app uses the `MyOptionsWithDelegateConfig` class (*Models/MyOptionsWithDelegateConfig.cs*):
-
-[!code-csharp[](options/samples/3.x/OptionsSample/Models/MyOptionsWithDelegateConfig.cs?name=snippet1)]
-
-In the following code, a second <xref:Microsoft.Extensions.Options.IConfigureOptions%601> service is added to the service container. It uses a delegate to configure the binding with `MyOptionsWithDelegateConfig`:
-
-[!code-csharp[](options/samples/3.x/OptionsSample/Startup.cs?name=snippet_Example2)]
-
-*Index.cshtml.cs*:
-
-[!code-csharp[](options/samples/3.x/OptionsSample/Pages/Index.cshtml.cs?range=10)]
-
-[!code-csharp[](options/samples/3.x/OptionsSample/Pages/Index.cshtml.cs?name=snippet2&highlight=3,9)]
-
-[!code-csharp[](options/samples/3.x/OptionsSample/Pages/Index.cshtml.cs?name=snippet_Example2)]
-
-You can add multiple configuration providers. Configuration providers are available from NuGet packages and are applied in the order that they're registered. For more information, see <xref:fundamentals/configuration/index>.
-
-Each call to <xref:Microsoft.Extensions.Options.IConfigureOptions%601.Configure*> adds an <xref:Microsoft.Extensions.Options.IConfigureOptions%601> service to the service container. In the preceding example, the values of `Option1` and `Option2` are both specified in *appsettings.json*, but the values of `Option1` and `Option2` are overridden by the configured delegate.
-
-When more than one configuration service is enabled, the last configuration source specified *wins* and sets the configuration value. When the app is run, the page model's `OnGet` method returns a string showing the option class values:
-
-```html
-delegate_option1 = value1_configured_by_delegate, delegate_option2 = 500
-```
-
-## Suboptions configuration
-
-Suboptions configuration is demonstrated as Example 3 in the sample app.
-
-Apps should create options classes that pertain to specific scenario groups (classes) in the app. Parts of the app that require configuration values should only have access to the configuration values that they use.
-
-When binding options to configuration, each property in the options type is bound to a configuration key of the form `property[:sub-property:]`. For example, the `MyOptions.Option1` property is bound to the key `Option1`, which is read from the `option1` property in *appsettings.json*.
-
-In the following code, a third <xref:Microsoft.Extensions.Options.IConfigureOptions%601> service is added to the service container. It binds `MySubOptions` to the section `subsection` of the *appsettings.json* file:
-
-[!code-csharp[](options/samples/3.x/OptionsSample/Startup.cs?name=snippet_Example3)]
-
-The `GetSection` method requires the <xref:Microsoft.Extensions.Configuration?displayProperty=fullName> namespace.
-
-The sample's *appsettings.json* file defines a `subsection` member with keys for `suboption1` and `suboption2`:
-
-[!code-json[](options/samples/3.x/OptionsSample/appsettings.json?highlight=4-7)]
-
-The `MySubOptions` class defines properties, `SubOption1` and `SubOption2`, to hold the options values (*Models/MySubOptions.cs*):
-
-[!code-csharp[](options/samples/3.x/OptionsSample/Models/MySubOptions.cs?name=snippet1)]
-
-The page model's `OnGet` method returns a string with the options values (*Pages/Index.cshtml.cs*):
-
-[!code-csharp[](options/samples/3.x/OptionsSample/Pages/Index.cshtml.cs?range=11)]
-
-[!code-csharp[](options/samples/3.x/OptionsSample/Pages/Index.cshtml.cs?name=snippet2&highlight=4,10)]
-
-[!code-csharp[](options/samples/3.x/OptionsSample/Pages/Index.cshtml.cs?name=snippet_Example3)]
-
-When the app is run, the `OnGet` method returns a string showing the suboption class values:
-
-```html
-subOption1 = subvalue1_from_json, subOption2 = 200
-```
-
+<!-- 
 ## Options injection
 
-Options injection is demonstrated as Example 4 in the sample app.
+In the following code, `MyOptions` is added to the service container with <xref:Microsoft.Extensions.DependencyInjection.OptionsConfigurationServiceCollectionExtensions.Configure*> and bound to configuration:
 
-Inject <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> into:
+[!code-csharp[](~/fundamentals/configuration/options/samples/3.x/OptionsSample/Startup3.cs?name=snippet_Example2)]
 
-* A Razor page or MVC view with the [`@inject`](xref:mvc/views/razor#inject) Razor directive.
+The following markjup uses the [`@inject`](xref:mvc/views/razor#inject) Razor directive to display the options values:
+
+[!code-cshtml[](~/fundamentals/configuration/options/samples/3.x/OptionsSample/Pages/Test3.cshtml.cs
+)]
+
 * A page or view model.
 
 The following example from the sample app injects <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> into a page model (*Pages/Index.cshtml.cs*):
-
-[!code-csharp[](options/samples/3.x/OptionsSample/Pages/Index.cshtml.cs?range=9)]
-
-[!code-csharp[](options/samples/3.x/OptionsSample/Pages/Index.cshtml.cs?name=snippet2&highlight=2,8)]
-
-[!code-csharp[](options/samples/3.x/OptionsSample/Pages/Index.cshtml.cs?name=snippet_Example4)]
-
-The sample app shows how to inject `IOptionsMonitor<MyOptions>` with an `@inject` directive:
-
-[!code-cshtml[](options/samples/3.x/OptionsSample/Pages/Index.cshtml?range=1-10&highlight=4)]
-
-When the app is run, the options values are shown in the rendered page:
-
-![Options values Option1: value1_from_json and Option2: -1 are loaded from the model and by injection into the view.](options/_static/view.png)
+-->
 
 ## Reload configuration data with IOptionsSnapshot
 
