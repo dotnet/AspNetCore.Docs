@@ -54,7 +54,7 @@ In the preceding example:
 
 * The form validates user input in the `name` field using the validation defined in the `ExampleModel` type. The model is created in the component's `@code` block and held in a private field (`exampleModel`). The field is assigned to the `Model` attribute of the `<EditForm>` element.
 * The `InputText` component's `@bind-Value` binds:
-  * The model property (`exampleModel.Name`) to the `InputText` component's `Value` property.
+  * The model property (`exampleModel.Name`) to the `InputText` component's `Value` property. For more information on property binding, see <xref:blazor/data-binding#parent-to-child-binding-with-component-parameters>.
   * A change event delegate to the `InputText` component's `ValueChanged` property.
 * The `DataAnnotationsValidator` component attaches validation support using data annotations.
 * The `ValidationSummary` component summarizes validation messages.
@@ -191,7 +191,7 @@ In the following example:
 * Additional code is run depending on the result of the client- and server-side validation by checking `isValid`.
 
 ```razor
-<EditForm EditContext="@editContext" OnSubmit="@HandleSubmit">
+<EditForm EditContext="@editContext" OnSubmit="HandleSubmit">
 
     ...
 
