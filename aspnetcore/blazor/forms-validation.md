@@ -191,7 +191,7 @@ In the following example:
 * Additional code is run depending on the result of the client- and server-side validation by checking `isValid`.
 
 ```razor
-<EditForm EditContext="@editContext" OnSubmit="@HandleSubmit">
+<EditForm EditContext="@editContext" OnSubmit="HandleSubmit">
 
     ...
 
