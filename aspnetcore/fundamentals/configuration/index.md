@@ -702,7 +702,7 @@ In the following code, a <xref:Microsoft.Extensions.Options.IConfigureOptions%60
 
 The following code displays the option values:
 
-[!code-csharp[](options/samples/3.x/OptionsSample/Pages/Test.cshtml.cs?name=snippet)]
+[!code-csharp[](options/samples/3.x/OptionsSample/Pages/Test2.cshtml.cs?name=snippet)]
 
 In the preceding example, the values of `Option1` and `Option2` are specified in *appsettings.json*, but the values of `Option1` and `Option2` are overridden by the configured delegate.
 
