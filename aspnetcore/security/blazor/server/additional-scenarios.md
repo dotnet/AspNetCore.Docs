@@ -5,7 +5,7 @@ description: Learn how to configure Blazor Server for additional security scenar
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/14/2020
+ms.date: 05/26/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/blazor/server/additional-scenarios
 ---
