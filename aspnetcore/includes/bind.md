@@ -38,7 +38,7 @@ Using the preceding code, the following code reads the position options:
 
 Consider the following `MyOptions` class:
 
-[!code-csharp[](~fundamentals/configuration/options/samples/3.x/OptionsSample/Models/MyOptions.cs?name=snippet1)]
+[!code-csharp[](~/fundamentals/configuration/options/samples/3.x/OptionsSample/Models/MyOptions.cs?name=snippet1)]
 
 In the preceding code:
 
