@@ -30,9 +30,9 @@ The default ASP.NET Core web app templates:
 
 * Use the [Generic Host](xref:fundamentals/host/generic-host).
 * Call <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder%2A>, which adds the following logging providers:
-  * [Console](#console-provider)
-  * [Debug](#debug-provider)
-  * [EventSource](#event-source-provider)
+  * [Console](#console)
+  * [Debug](#debug)
+  * [EventSource](#event-source)
   * [EventLog](#welog) : Windows only
 
 [!code-csharp[](index/samples/3.x/TodoApiDTO/Program.cs?name=snippet_TemplateCode&highlight=9)]
@@ -42,7 +42,7 @@ The preceding code shows the `Program` class created with the ASP.NET Core web a
 To override the default set of logging providers added by `Host.CreateDefaultBuilder`, call `ClearProviders` and add the required logging providers. For example, the following code:
 
 * Calls <xref:Microsoft.Extensions.Logging.LoggingBuilderExtensions.ClearProviders%2A> to remove all the <xref:Microsoft.Extensions.Logging.ILoggerProvider> instances from the builder.
-* Adds the [Console](#console-provider) logging provider.
+* Adds the [Console](#console) logging provider.
 
 [!code-csharp[](index/samples/3.x/TodoApiDTO/Program.cs?name=snippet_AddProvider&highlight=5-6)]
 
@@ -401,9 +401,9 @@ Generally, logging should be specified in configuration and not code.
 
 ASP.NET Core includes the following logging providers:
 
-* [Console](#console-provider)
-* [Debug](#debug-provider)
-* [EventSource](#event-source-provider)
+* [Console](#console)
+* [Debug](#debug)
+* [EventSource](#event-source)
 * [EventLog](#welog)
 * [AzureAppServicesFile and AzureAppServicesBlob](#azure-app-service)
 * [ApplicationInsights](#azure-application-insights)
