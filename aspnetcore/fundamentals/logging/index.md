@@ -401,9 +401,9 @@ Generally, logging should be specified in configuration and not code.
 
 ASP.NET Core includes the following logging providers:
 
-* [Console](#console-provider)
-* [Debug](#debug-provider)
-* [EventSource](#event-source-provider)
+* [Console](#console)
+* [Debug](#debug)
+* [EventSource](#event-source)
 * [EventLog](#welog)
 * [AzureAppServicesFile and AzureAppServicesBlob](#azure-app-service)
 * [ApplicationInsights](#azure-application-insights)
