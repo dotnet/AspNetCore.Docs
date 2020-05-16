@@ -367,6 +367,8 @@
           uid: blazor/debug
         - name: Call a web API from WebAssembly
           uid: blazor/call-web-api
+        - name: WebAssembly performance
+          uid: performance/blazor/webassembly-best-practices
         - name: Progressive Web Applications
           uid: blazor/progressive-web-app
         - name: Host and deploy
@@ -1180,6 +1182,8 @@
       uid: performance/diagnostic-tools
     - name: Load and stress testing
       uid: test/loadtests
+    - name: Blazor WebAssembly
+      uid: performance/blazor/webassembly-best-practices
 - name: Globalization and localization
   items:
     - name: Overview
