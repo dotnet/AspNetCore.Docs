@@ -72,7 +72,7 @@ How you access server-side logs depends on the environment in which you're runni
 
 #### As a console app
 
-If you're running in a console app, the [Console logger](xref:fundamentals/logging/index#console-provider) should be enabled by default. gRPC logs will appear in the console.
+If you're running in a console app, the [Console logger](xref:fundamentals/logging/index#console) should be enabled by default. gRPC logs will appear in the console.
 
 #### Other environments
 

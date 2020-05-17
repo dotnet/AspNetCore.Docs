@@ -19,34 +19,47 @@ By [Javier Calvarro Nelson](https://github.com/javiercn) and [Luke Latham](https
 
 To create a Blazor WebAssembly standalone app that uses [Azure Active Directory (AAD) B2C](/azure/active-directory-b2c/overview) for authentication:
 
-1. Follow the guidance in the following topics to create a tenant and register a web app in the Azure Portal:
+Follow the guidance in the following topics to create a tenant and register a web app in the Azure Portal:
 
-   * [Create an AAD B2C tenant](/azure/active-directory-b2c/tutorial-create-tenant) &ndash; Record the following information:
+* [Create an AAD B2C tenant](/azure/active-directory-b2c/tutorial-create-tenant)
 
-     1\. AAD B2C instance (for example, `https://contoso.b2clogin.com/`, which includes the trailing slash)<br>
-     2\. AAD B2C Tenant domain (for example, `contoso.onmicrosoft.com`)
+  Record the following information:
 
-   * [Register a web application](/azure/active-directory-b2c/tutorial-register-applications) &ndash; Make the following selections during app registration:
+  * AAD B2C instance (for example, `https://contoso.b2clogin.com/`, which includes the trailing slash).
+  * AAD B2C Tenant domain (for example, `contoso.onmicrosoft.com`).
 
-     1\. Set **Web App / Web API** to **Yes**.<br>
-     2\. Set **Allow implicit flow** to **Yes**.<br>
-     3\. Add a **Reply URL** of `https://localhost:5001/authentication/login-callback`.
+* [Register a web application](/azure/active-directory-b2c/tutorial-register-applications) &ndash; Make the following selections during app registration:
 
-     Record the Application ID (Client ID) (for example, `11111111-1111-1111-1111-111111111111`).
+  1. Provide a **Name** for the app (for example, **Blazor Client AAD B2C**).
+  1. Set **Web App / Web API** to **Yes**.
+  1. Set **Allow implicit flow** to **Yes**.
+  1. Add a **Reply URL** of `https://localhost:5001/authentication/login-callback`.
+  1. Leave **App ID URI** blank.
+  1. Leave **Include native client** set to **No**.
+  1. Select the **Create** button.
 
-   * [Create user flows](/azure/active-directory-b2c/tutorial-create-user-flows) &ndash; Create a sign-up and sign-in user flow.
+  Record the Application ID (Client ID) (for example, `11111111-1111-1111-1111-111111111111`).
 
-     At a minimum, select the **Application claims** > **Display Name** user attribute to populate the `context.User.Identity.Name` in the `LoginDisplay` component (*Shared/LoginDisplay.razor*).
+* [Create user flows](/azure/active-directory-b2c/tutorial-create-user-flows) &ndash; Create a sign-up and sign-in user flow.
 
-     Record the sign-up and sign-in user flow name created for the app (for example, `B2C_1_signupsignin`).
+  At a minimum, select the **Application claims** > **Display Name** user attribute. This attribute populates the `context.User.Identity.Name` in the `LoginDisplay` component (*Shared/LoginDisplay.razor*) of the app.
 
-1. Replace the placeholders in the following command with the information recorded earlier and execute the command in a command shell:
+  Record the sign-up and sign-in user flow name created for the app (for example, `B2C_1_signupsignin`).
 
-   ```dotnetcli
-   dotnet new blazorwasm -au IndividualB2C --aad-b2c-instance "{AAD B2C INSTANCE}" --client-id "{CLIENT ID}" --domain "{DOMAIN}" -ssp "{SIGN UP OR SIGN IN POLICY}"
-   ```
+Replace the placeholders in the following command with the information recorded earlier and execute the command in a command shell:
 
-   To specify the output location, which creates a project folder if it doesn't exist, include the output option in the command with a path (for example, `-o BlazorSample`). The folder name also becomes part of the project's name.
+```dotnetcli
+dotnet new blazorwasm -au IndividualB2C --aad-b2c-instance "{AAD B2C INSTANCE}" --client-id "{CLIENT ID}" --domain "{TENANT DOMAIN}" -ssp "{SIGN UP OR SIGN IN POLICY}"
+```
+
+To specify the output location, which creates a project folder if it doesn't exist, include the output option in the command with a path (for example, `-o BlazorSample`). The folder name also becomes part of the project's name.
+
+After creating the app, you should be able to:
+
+* Log into the app using an AAD user account.
+* Request access tokens for Microsoft APIs. For more information, see:
+  * [Access token scopes](#access-token-scopes)
+  * [Quickstart: Configure an application to expose web APIs](/azure/active-directory/develop/quickstart-configure-app-expose-web-apis).
 
 ## Authentication package
 
@@ -76,7 +89,7 @@ builder.Services.AddMsalAuthentication(options =>
 });
 ```
 
-The `AddMsalAuthentication` method accepts a callback to configure the parameters required to authenticate an app. The values required for configuring the app can be obtained from the Microsoft Accounts configuration when you register the app.
+The `AddMsalAuthentication` method accepts a callback to configure the parameters required to authenticate an app. The values required for configuring the app can be obtained from the AAD configuration when you register the app.
 
 Configuration is supplied by the *wwwroot/appsettings.json* file:
 
@@ -84,7 +97,8 @@ Configuration is supplied by the *wwwroot/appsettings.json* file:
 {
   "AzureAdB2C": {
     "Authority": "{AAD B2C INSTANCE}{DOMAIN}/{SIGN UP OR SIGN IN POLICY}",
-    "ClientId": "{CLIENT ID}"
+    "ClientId": "{CLIENT ID}",
+    "ValidateAuthority": false
   }
 }
 ```
@@ -95,7 +109,8 @@ Example:
 {
   "AzureAdB2C": {
     "Authority": "https://contoso.b2clogin.com/contoso.onmicrosoft.com/B2C_1_signupsignin1",
-    "ClientId": "41451fa7-82d9-4673-8fa5-69eff5a761fd"
+    "ClientId": "41451fa7-82d9-4673-8fa5-69eff5a761fd",
+    "ValidateAuthority": false
   }
 }
 ```
