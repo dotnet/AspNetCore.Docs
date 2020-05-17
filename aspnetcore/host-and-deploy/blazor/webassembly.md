@@ -416,7 +416,7 @@ dir .\_framework\_bin | rename-item -NewName { $_.name -replace ".dll\b",".bin" 
 ((Get-Content .\_framework\blazor.boot.json -Raw) -replace '.dll"','.bin"') | Set-Content .\_framework\blazor.boot.json
 ```
 
-If service worker assets are also in use on Windows, add the following command:
+If service worker assets are also in use, add the following command:
 
 ```powershell
 ((Get-Content .\service-worker-assets.js -Raw) -replace '.dll"','.bin"') | Set-Content .\service-worker-assets.js
@@ -429,7 +429,7 @@ for f in _framework/_bin/*; do mv "$f" "`echo $f | sed -e 's/\.dll\b/.bin/g'`"; 
 sed -i 's/\.dll"/.bin"/g' _framework/blazor.boot.json
 ```
 
-If service worker assets are also in use on Linux or macOS, add the following command:
+If service worker assets are also in use, add the following command:
 
 ```console
 sed -i 's/\.dll"/.bin"/g' service-worker-assets.js
