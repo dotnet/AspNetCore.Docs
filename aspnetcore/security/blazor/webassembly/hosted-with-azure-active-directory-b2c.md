@@ -23,21 +23,29 @@ This article describes how to create a Blazor WebAssembly standalone app that us
 
 ### Create a tenant
 
-Follow the guidance in [Tutorial: Create an Azure Active Directory B2C tenant](/azure/active-directory-b2c/tutorial-create-tenant) to create an AAD B2C tenant and record the following information:
+Follow the guidance in [Tutorial: Create an Azure Active Directory B2C tenant](/azure/active-directory-b2c/tutorial-create-tenant) to create an AAD B2C tenant.
+
+Record the following information:
 
 * AAD B2C instance (for example, `https://contoso.b2clogin.com/`, which includes the trailing slash)
 * AAD B2C Tenant domain (for example, `contoso.onmicrosoft.com`)
 
 ### Register a server API app
 
-Follow the guidance in [Tutorial: Register an application in Azure Active Directory B2C](/azure/active-directory-b2c/tutorial-register-applications) to register an AAD app for the *Server API app* in the **Azure Active Directory** > **App registrations** area of the Azure portal:
+Follow the guidance in [Tutorial: Register an application in Azure Active Directory B2C](/azure/active-directory-b2c/tutorial-register-applications) to register an AAD app for the *Server API app*:
 
-1. Select **New registration**.
+1. In **Azure Active Directory** > **App registrations**, select **New registration**.
 1. Provide a **Name** for the app (for example, **Blazor Server AAD B2C**).
-1. For **Supported account types**, select **Accounts in any organizational directory or any identity provider. For authenticating users with Azure AD B2C.** (multi-tenant) for this experience.
+1. For **Supported account types**, select the multi-tenant option: **Accounts in any organizational directory or any identity provider. For authenticating users with Azure AD B2C.**
 1. The *Server API app* doesn't require a **Redirect URI** in this scenario, so leave the drop down set to **Web** and don't enter a redirect URI.
 1. Confirm that **Permissions** > **Grant admin concent to openid and offline_access permissions** is enabled.
 1. Select **Register**.
+
+Record the following information:
+
+* *Server API app* Application ID (Client ID) (for example, `11111111-1111-1111-1111-111111111111`)
+* Directory ID (Tenant ID) (for example, `222222222-2222-2222-2222-222222222222`)
+* AAD Tenant domain (for example, `contoso.onmicrosoft.com`) &ndash; The domain is available as the **Publisher domain** in the **Branding** blade of the Azure portal for the registered app.
 
 In **Expose an API**:
 
@@ -51,22 +59,21 @@ In **Expose an API**:
 
 Record the following information:
 
-* *Server API app* Application ID (Client ID) (for example, `11111111-1111-1111-1111-111111111111`)
 * App ID URI (for example, `https://contoso.onmicrosoft.com/11111111-1111-1111-1111-111111111111`, `api://11111111-1111-1111-1111-111111111111`, or the custom value that you provided)
-* Directory ID (Tenant ID) (for example, `222222222-2222-2222-2222-222222222222`)
-* *Server API app* App ID URI (for example, `https://contoso.onmicrosoft.com/11111111-1111-1111-1111-111111111111`, the Azure portal might default the value to the Client ID)
 * Default scope (for example, `API.Access`)
 
 ### Register a client app
 
-Follow the guidance in [Tutorial: Register an application in Azure Active Directory B2C](/azure/active-directory-b2c/tutorial-register-applications) again to register an AAD app for the *Client app* in the **Azure Active Directory** > **App registrations** area of the Azure portal:
+Follow the guidance in [Tutorial: Register an application in Azure Active Directory B2C](/azure/active-directory-b2c/tutorial-register-applications) again to register an AAD app for the *Client app*:
 
-1. Select **New registration**.
+1. In **Azure Active Directory** > **App registrations**, select **New registration**.
 1. Provide a **Name** for the app (for example, **Blazor Client AAD B2C**).
-1. For **Supported account types**, select **Accounts in any organizational directory or any identity provider. For authenticating users with Azure AD B2C.** (multi-tenant) for this experience.
-1. Leave the **Redirect URI** drop down set to **Web**, and provide a redirect URI of `https://localhost:5001/authentication/login-callback`.
+1. For **Supported account types**, select the multi-tenant option: **Accounts in any organizational directory or any identity provider. For authenticating users with Azure AD B2C.**
+1. Leave the **Redirect URI** drop down set to **Web**, and provide the following redirect URI: `https://localhost:5001/authentication/login-callback`
 1. Confirm that **Permissions** > **Grant admin concent to openid and offline_access permissions** is enabled.
 1. Select **Register**.
+
+Record the Application ID (Client ID) (for example, `11111111-1111-1111-1111-111111111111`).
 
 In **Authentication** > **Platform configurations** > **Web**:
 
@@ -77,7 +84,6 @@ In **Authentication** > **Platform configurations** > **Web**:
 
 In **API permissions**:
 
-1. Confirm that the app has **Microsoft Graph** > **User.Read** permission.
 1. Select **Add a permission** followed by **My APIs**.
 1. Select the *Server API app* from the **Name** column (for example, **Blazor Server AAD B2C**).
 1. Open the **API** list.
@@ -85,29 +91,30 @@ In **API permissions**:
 1. Select **Add permissions**.
 1. Select the **Grant admin content for {TENANT NAME}** button. Select **Yes** to confirm.
 
+Record the App ID URI (for example, `https://{ORGANIZATION}.onmicrosoft.com/{SERVER API APP CLIENT ID OR CUSTOM VALUE}`).
+
 In **Home** > **Azure AD B2C** > **User flows**:
 
 [Create a sign-up and sign-in user flow](/azure/active-directory-b2c/tutorial-create-user-flows)
 
 At a minimum, select the **Application claims** > **Display Name** user attribute to populate the `context.User.Identity.Name` in the `LoginDisplay` component (*Shared/LoginDisplay.razor*).
 
-Record the following information:
-
-* Record the *Client app* Application ID (Client ID) (for example, `33333333-3333-3333-3333-333333333333`).
-* Record the sign-up and sign-in user flow name created for the app (for example, `B2C_1_signupsignin`).
+Record the sign-up and sign-in user flow name created for the app (for example, `B2C_1_signupsignin`).
 
 ### Create the app
 
 Replace the placeholders in the following command with the information recorded earlier and execute the command in a command shell:
 
 ```dotnetcli
-dotnet new blazorwasm -au IndividualB2C --aad-b2c-instance "{AAD B2C INSTANCE}" --api-client-id "{SERVER API APP CLIENT ID}" --app-id-uri "{SERVER API APP ID URI}" --client-id "{CLIENT APP CLIENT ID}" --default-scope "{DEFAULT SCOPE}" --domain "{DOMAIN}" -ho -ssp "{SIGN UP OR SIGN IN POLICY}" --tenant-id "{TENANT ID}"
+dotnet new blazorwasm -au IndividualB2C --aad-b2c-instance "{AAD B2C INSTANCE}" --api-client-id "{SERVER API APP CLIENT ID}" --app-id-uri "{SERVER API APP ID URI}" --client-id "{CLIENT APP CLIENT ID}" --default-scope "{DEFAULT SCOPE}" --domain "{TENANT DOMAIN}" -ho -ssp "{SIGN UP OR SIGN IN POLICY}" --tenant-id "{TENANT ID}"
 ```
 
 To specify the output location, which creates a project folder if it doesn't exist, include the output option in the command with a path (for example, `-o BlazorSample`). The folder name also becomes part of the project's name.
 
 > [!NOTE]
 > Pass the App ID URI to the `app-id-uri` option, but note a configuration change might be required in the client app, which is described in the [Access token scopes](#access-token-scopes) section.
+>
+> Additionally, the scope set up by the Hosted Blazor template might have the App ID URI host repeated. Confirm that the scope configured for the `DefaultAccessTokenScopes` collection is correct in `Program.Main` (*Program.cs*) of the *Client app*.
 
 ## Server app configuration
 
@@ -148,6 +155,10 @@ By default, the `User.Identity.Name` isn't populated.
 To configure the app to receive the value from the `name` claim type, configure the [TokenValidationParameters.NameClaimType](xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.NameClaimType) of the <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions> in `Startup.ConfigureServices`:
 
 ```csharp
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+
+...
+
 services.Configure<JwtBearerOptions>(
     AzureADB2CDefaults.JwtBearerAuthenticationScheme, options =>
     {
@@ -162,9 +173,9 @@ The *appsettings.json* file contains the options to configure the JWT bearer han
 ```json
 {
   "AzureAdB2C": {
-    "Instance": "https://{ORGANIZATION}.b2clogin.com/",
+    "Instance": "https://{TENANT}.b2clogin.com/",
     "ClientId": "{SERVER API APP CLIENT ID}",
-    "Domain": "{DOMAIN}",
+    "Domain": "{TENANT DOMAIN}",
     "SignUpSignInPolicyId": "{SIGN UP OR SIGN IN POLICY}"
   }
 }
@@ -231,14 +242,14 @@ Support for `HttpClient` instances is added that include access tokens when maki
 
 ```csharp
 builder.Services.AddHttpClient("{APP ASSEMBLY}.ServerAPI", client => 
-        client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))
+    client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))
     .AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
 
 builder.Services.AddTransient(sp => sp.GetRequiredService<IHttpClientFactory>()
     .CreateClient("{APP ASSEMBLY}.ServerAPI"));
 ```
 
-Support for authenticating users is registered in the service container with the `AddMsalAuthentication` extension method provided by the `Microsoft.Authentication.WebAssembly.Msal` package. This method sets up all of the services required for the app to interact with the Identity Provider (IP).
+Support for authenticating users is registered in the service container with the `AddMsalAuthentication` extension method provided by the `Microsoft.Authentication.WebAssembly.Msal` package. This method sets up the services required for the app to interact with the Identity Provider (IP).
 
 *Program.cs*:
 
@@ -257,7 +268,7 @@ Configuration is supplied by the *wwwroot/appsettings.json* file:
 ```json
 {
   "AzureAdB2C": {
-    "Authority": "{AAD B2C INSTANCE}{DOMAIN}/{SIGN UP OR SIGN IN POLICY}",
+    "Authority": "{AAD B2C INSTANCE}{TENANT DOMAIN}/{SIGN UP OR SIGN IN POLICY}",
     "ClientId": "{CLIENT APP CLIENT ID}",
     "ValidateAuthority": false
   }
@@ -342,7 +353,10 @@ For more information, see the following sections of the *Additional scenarios* a
 
 ## Run the app
 
-Run the app from the Server project. When using Visual Studio, select the Server project in **Solution Explorer** and select the **Run** button in the toolbar or start the app from the **Debug** menu.
+Run the app from the Server project. When using Visual Studio, either:
+
+* Set the **Startup Projects** drop down list in the toolbar to the *Server API app* and select the **Run** button.
+* Select the Server project in **Solution Explorer** and select the **Run** button in the toolbar or start the app from the **Debug** menu.
 
 <!-- HOLD
 [!INCLUDE[](~/includes/blazor-security/usermanager-signinmanager.md)]

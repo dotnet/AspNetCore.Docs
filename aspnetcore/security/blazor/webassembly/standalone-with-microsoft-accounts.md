@@ -19,37 +19,39 @@ By [Javier Calvarro Nelson](https://github.com/javiercn) and [Luke Latham](https
 
 To create a Blazor WebAssembly standalone app that uses [Microsoft Accounts with Azure Active Directory (AAD)](/azure/active-directory/develop/quickstart-register-app#register-a-new-application-using-the-azure-portal) for authentication:
 
-1. [Create an AAD tenant and web application](/azure/active-directory/develop/v2-overview)
+[Create an AAD tenant and web application](/azure/active-directory/develop/v2-overview)
 
-   Register a AAD app in the **Azure Active Directory** > **App registrations** area of the Azure portal:
+Register a AAD app in the **Azure Active Directory** > **App registrations** area of the Azure portal:
 
-   1\. Provide a **Name** for the app (for example, **Blazor Client AAD**).<br>
-   2\. In **Supported account types**, select **Accounts in any organizational directory**.<br>
-   3\. Leave the **Redirect URI** drop down set to **Web**, and provide a redirect URI of `https://localhost:5001/authentication/login-callback`.<br>
-   4\. Disable the **Permissions** > **Grant admin concent to openid and offline_access permissions** check box.<br>
-   5\. Select **Register**.
+1. Provide a **Name** for the app (for example, **Blazor Client AAD**).
+1. In **Supported account types**, select **Accounts in any organizational directory**.
+1. Leave the **Redirect URI** drop down set to **Web**, and provide the following redirect URI: `https://localhost:5001/authentication/login-callback`.
+1. Disable the **Permissions** > **Grant admin concent to openid and offline_access permissions** check box.
+1. Select **Register**.
 
-   In **Authentication** > **Platform configurations** > **Web**:
+Record the Application ID (Client ID) (for example, `11111111-1111-1111-1111-111111111111`).
 
-   1\. Confirm the **Redirect URI** of `https://localhost:5001/authentication/login-callback` is present.<br>
-   2\. For **Implicit grant**, select the check boxes for **Access tokens** and **ID tokens**.<br>
-   3\. The remaining defaults for the app are acceptable for this experience.<br>
-   4\. Select the **Save** button.
+In **Authentication** > **Platform configurations** > **Web**:
 
-   Record the Application ID (Client ID) (for example, `11111111-1111-1111-1111-111111111111`).
+1. Confirm the **Redirect URI** of `https://localhost:5001/authentication/login-callback` is present.
+1. For **Implicit grant**, select the check boxes for **Access tokens** and **ID tokens**.
+1. The remaining defaults for the app are acceptable for this experience.
+1. Select the **Save** button.
 
-1. Replace the placeholders in the following command with the information recorded earlier and execute the command in a command shell:
+Create the app. Replace the placeholders in the following command with the information recorded earlier and execute the following command in a command shell:
 
-   ```dotnetcli
-   dotnet new blazorwasm -au SingleOrg --client-id "{CLIENT ID}" --tenant-id "common"
-   ```
+```dotnetcli
+dotnet new blazorwasm -au SingleOrg --client-id "{CLIENT ID}" --tenant-id "common"
+```
 
-   To specify the output location, which creates a project folder if it doesn't exist, include the output option in the command with a path (for example, `-o BlazorSample`). The folder name also becomes part of the project's name.
+To specify the output location, which creates a project folder if it doesn't exist, include the output option in the command with a path (for example, `-o BlazorSample`). The folder name also becomes part of the project's name.
 
 After creating the app, you should be able to:
 
-* Log into the app using a Microsoft Account.
-* Request access tokens for Microsoft APIs using the same approach as for standalone Blazor apps provided that you have configured the app correctly. For more information, see [Quickstart: Configure an application to expose web APIs](/azure/active-directory/develop/quickstart-configure-app-expose-web-apis).
+* Log into the app using a Microsoft account.
+* Request access tokens for Microsoft APIs. For more information, see:
+  * [Access token scopes](#access-token-scopes)
+  * [Quickstart: Configure an application to expose web APIs](/azure/active-directory/develop/quickstart-configure-app-expose-web-apis).
 
 ## Authentication package
 
@@ -79,7 +81,7 @@ builder.Services.AddMsalAuthentication(options =>
 });
 ```
 
-The `AddMsalAuthentication` method accepts a callback to configure the parameters required to authenticate an app. The values required for configuring the app can be obtained from the Microsoft Accounts configuration when you register the app.
+The `AddMsalAuthentication` method accepts a callback to configure the parameters required to authenticate an app. The values required for configuring the app can be obtained from the AAD configuration when you register the app.
 
 Configuration is supplied by the *wwwroot/appsettings.json* file:
 
@@ -87,7 +89,8 @@ Configuration is supplied by the *wwwroot/appsettings.json* file:
 {
   "AzureAd": {
     "Authority": "https://login.microsoftonline.com/common",
-    "ClientId": "{CLIENT ID}"
+    "ClientId": "{CLIENT ID}",
+    "ValidateAuthority": true
   }
 }
 ```
@@ -98,7 +101,8 @@ Example:
 {
   "AzureAd": {
     "Authority": "https://login.microsoftonline.com/common",
-    "ClientId": "41451fa7-82d9-4673-8fa5-69eff5a761fd"
+    "ClientId": "41451fa7-82d9-4673-8fa5-69eff5a761fd",
+    "ValidateAuthority": true
   }
 }
 ```
