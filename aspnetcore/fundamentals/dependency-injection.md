@@ -455,7 +455,7 @@ public void ConfigureServices(IServiceCollection services)
 
 #### Transient, limited lifetime
 
-**Situation**
+**Scenario**
 
 The app requires an <xref:System.IDisposable> instance with a transient lifetime for either of the following scenarios:
 
@@ -471,7 +471,7 @@ Use the factory pattern to create an instance outside of the parent scope. In th
 
 #### Shared Instance, limited lifetime
 
-**Situation**
+**Scenario**
 
 The app requires a shared <xref:System.IDisposable> instance across multiple services, but the <xref:System.IDisposable> should have a limited lifetime.
 
@@ -1030,7 +1030,7 @@ public void ConfigureServices(IServiceCollection services)
 
 #### Transient, limited lifetime
 
-**Situation**
+**Scenario**
 
 The app requires an <xref:System.IDisposable> instance with a transient lifetime for either of the following scenarios:
 
@@ -1046,7 +1046,7 @@ Use the factory pattern to create an instance outside of the parent scope. In th
 
 #### Shared Instance, limited lifetime
 
-**Situation**
+**Scenario**
 
 The app requires a shared <xref:System.IDisposable> instance across multiple services, but the <xref:System.IDisposable> should have a limited lifetime.
 
