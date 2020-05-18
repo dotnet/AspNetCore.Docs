@@ -227,7 +227,7 @@ Run the app from the Server project. When using Visual Studio, select the Server
 
 Identity Server can be configured to send `name` and `role` claims for authenticated users.
 
-In the Client app, create a custom user factory. Identity Server sends multiple roles as a string array in a single `role` claim. The factory creates an individual `role` claim for each role in the array. A single role is sent as a string value in the claim. Multiple roles are sent as a JSON array in the claim's value.
+In the Client app, create a custom user factory. Identity Server sends multiple roles as a JSON array in a single `role` claim. A single role is sent as a string value in the claim. The factory creates an individual `role` claim for each of the user's roles.
 
 *CustomUserFactory.cs*:
 
@@ -289,9 +289,7 @@ public class CustomUserFactory
 }
 ```
 
-In the Client app, register the factory.
-
-`Program.Main` (*Program.cs*):
+In the Client app, register the factory in `Program.Main` (*Program.cs*):
 
 ```csharp
 builder.Services.AddApiAuthorization()
