@@ -57,11 +57,7 @@ To get started with Blazor, follow the guidance for your choice of tooling:
 
 1. The IDE requests that you add assets to build and debug the project. Select **Yes**.
 
-1. For a Blazor WebAssembly app, start the app using the **.NET Core Launch (Blazor Standalone)** launch configuration and then start the browser using the **.NET Core Debug Blazor Web Assembly in Chrome** launch configuration (requires Chrome). For more information, see <xref:blazor/debug#visual-studio-code>.
-
-   For a Blazor Server app, run the app using the Visual Studio Code debugger.
-
-1. In a browser, navigate to `https://localhost:5001`.
+1. Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> to run the app.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
