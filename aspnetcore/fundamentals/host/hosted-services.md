@@ -162,7 +162,7 @@ The services are registered in `IHostBuilder.ConfigureServices` (*Program.cs*). 
 
 [!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Program.cs?name=snippet3)]
 
-`MontiorLoop` is started in `Program.Main`:
+`MonitorLoop` is started in `Program.Main`:
 
 [!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Program.cs?name=snippet4)]
 
