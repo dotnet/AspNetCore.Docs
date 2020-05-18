@@ -227,63 +227,64 @@ Run the app from the Server project. When using Visual Studio, select the Server
 
 Identity Server can be configured to send `name` and `role` claims for authenticated users.
 
-> [!NOTE]
-> Currently, only one assigned role per user is supported.
-
-<!-- HOLD until the factory pattern issues are resolved
-
-In the Client app, create a custom user by extending `RemoteUserAccount`.
-
-*CustomUserAccount.cs*:
-
-```csharp
-using System.Text.Json.Serialization;
-using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
-
-public class CustomUserAccount : RemoteUserAccount
-{
-    [JsonPropertyName("role")]
-    public string[] Roles { get; set; } = new string[0];
-}
-```
-
-In the Client app, create a custom user factory. Identity Server sends multiple roles as a string array in a single `role` claim. The factory creates an individual `role` claim for each role in the array.
+In the Client app, create a custom user factory. Identity Server sends multiple roles as a string array in a single `role` claim. The factory creates an individual `role` claim for each role in the array. A single role is sent as a string value in the claim. Multiple roles are sent as a JSON array in the claim's value.
 
 *CustomUserFactory.cs*:
 
 ```csharp
+using System.Linq;
 using System.Security.Claims;
+using System.Text.Json;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication.Internal;
 
 public class CustomUserFactory
-    : AccountClaimsPrincipalFactory<CustomUserAccount>
+    : AccountClaimsPrincipalFactory<RemoteUserAccount>
 {
-    public CustomUserFactory(NavigationManager navigationManager,
-        IAccessTokenProviderAccessor accessor)
+    public CustomUserFactory(IAccessTokenProviderAccessor accessor)
         : base(accessor)
     {
     }
 
     public async override ValueTask<ClaimsPrincipal> CreateUserAsync(
-        CustomUserAccount account,
+        RemoteUserAccount account,
         RemoteAuthenticationUserOptions options)
     {
-        var initialUser = await base.CreateUserAsync(account, options);
+        var user = await base.CreateUserAsync(account, options);
 
-        if (initialUser.Identity.IsAuthenticated)
+        if (user.Identity.IsAuthenticated)
         {
-            var userIdentity = (ClaimsIdentity)initialUser.Identity;
+            var identity = (ClaimsIdentity)user.Identity;
+            var roleClaims = identity.FindAll(identity.RoleClaimType);
 
-            foreach (var role in account.Roles)
+            if (roleClaims != null && roleClaims.Any())
             {
-                userIdentity.AddClaim(new Claim("role", role));
+                foreach (var existingClaim in roleClaims)
+                {
+                    identity.RemoveClaim(existingClaim);
+                }
+
+                var rolesElem = account.AdditionalProperties[identity.RoleClaimType];
+
+                if (rolesElem is JsonElement roles)
+                {
+                    if (roles.ValueKind == JsonValueKind.Array)
+                    {
+                        foreach (var role in roles.EnumerateArray())
+                        {
+                            identity.AddClaim(new Claim(options.RoleClaim, role.GetString()));
+                        }
+                    }
+                    else
+                    {
+                        identity.AddClaim(new Claim(options.RoleClaim, roles.GetString()));
+                    }
+                }
             }
         }
 
-        return initialUser;
+        return user;
     }
 }
 ```
@@ -293,16 +294,9 @@ In the Client app, register the factory.
 `Program.Main` (*Program.cs*):
 
 ```csharp
-using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
-
-...
-
-builder.Services.AddApiAuthorization<RemoteAuthenticationState, CustomUserAccount>()
-    .AddAccountClaimsPrincipalFactory<RemoteAuthenticationState, CustomUserAccount, 
-        CustomUserFactory>();
+builder.Services.AddApiAuthorization()
+    .AddAccountClaimsPrincipalFactory<RolesClaimsPrincipalFactory>();
 ```
-
--->
 
 * In the Server app, call <xref:Microsoft.AspNetCore.Identity.IdentityBuilder.AddRoles*> on the Identity builder, which adds role-related services:
 
@@ -345,7 +339,6 @@ Component authorization approaches are functional at this point. Any of the auth
 * [`[Authorize]` attribute directive](xref:security/blazor/index#authorize-attribute) (Example: `@attribute [Authorize(Roles = "admin")]`)
 * [Procedural logic](xref:security/blazor/index#procedural-logic) (Example: `if (user.IsInRole("admin")) { ... }`)
 
-<!-- HOLD until the factory pattern issue is resolved.
   Multiple role tests are supported:
 
   ```csharp
@@ -354,7 +347,6 @@ Component authorization approaches are functional at this point. Any of the auth
       ...
   }
   ```
--->
 
 `User.Identity.Name` is populated in the Client app with the user's username, which is usually their sign-in email address.
 
