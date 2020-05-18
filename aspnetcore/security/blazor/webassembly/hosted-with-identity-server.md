@@ -352,9 +352,6 @@ Component authorization approaches are functional at this point. Any of the auth
 
 In the Server app, create a `ProfileService` implementation. The Profile Service example in this section creates `name` and `role` claims for users similar to the scenario shown in the [Name and role claim with API authorization](#name-and-role-claim-with-api-authorization) section. The value of the `role` claim represents the user's assigned role.
 
-> [!NOTE]
-> Currently, only one assigned role per user is supported.
-
 *ProfileService.cs*:
 
 ```csharp
@@ -403,7 +400,6 @@ Component authorization approaches are functional at this point. Any of the auth
 * [`[Authorize]` attribute directive](xref:security/blazor/index#authorize-attribute) (Example: `@attribute [Authorize(Roles = "admin")]`)
 * [Procedural logic](xref:security/blazor/index#procedural-logic) (Example: `if (user.IsInRole("admin")) { ... }`)
 
-<!-- HOLD until the factory pattern issue is resolved.
   Multiple role tests are supported:
 
   ```csharp
@@ -412,7 +408,6 @@ Component authorization approaches are functional at this point. Any of the auth
       ...
   }
   ```
--->
 
 `User.Identity.Name` is populated in the Client app with the user's user name, which is usually their sign-in email address.
 
