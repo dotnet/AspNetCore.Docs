@@ -463,7 +463,7 @@ There are two details to change about the JSON responses returned in the [Test t
 
 To satisfy the preceding requirements, make the following changes:
 
-1. JSON.NET has been removed from ASP.NET shared framework. Add a package reference to [Microsoft.AspNetCore.Mvc.NewtonsoftJson](https://nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson).
+1. JSON.NET has been removed from ASP.NET shared framework. Add a package reference to [`Microsoft.AspNetCore.Mvc.NewtonsoftJson`](https://nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson).
 
 1. In `Startup.ConfigureServices`, chain the following highlighted code on to the `AddMvc` method call:
 
