@@ -91,7 +91,7 @@ In **API permissions**:
 1. Select **Add permissions**.
 1. Select the **Grant admin content for {TENANT NAME}** button. Select **Yes** to confirm.
 
-Record the App ID URI (for example, `https://{ORGANIZATION}.onmicrosoft.com/{SERVER API APP CLIENT ID OR CUSTOM VALUE}`).
+Record the App ID URI (for example, `https://{TENANT}.onmicrosoft.com/{SERVER API APP CLIENT ID OR CUSTOM VALUE}`).
 
 In **Home** > **Azure AD B2C** > **User flows**:
 
@@ -304,18 +304,7 @@ builder.Services.AddMsalAuthentication(options =>
 });
 ```
 
-> [!NOTE]
-> If the Azure portal provides a scope URI and **the app throws an unhandled exception** when it receives a *401 Unauthorized* response from the API, try using a scope URI that doesn't include the scheme and host. For example, the Azure portal may provide one of the following scope URI formats:
->
-> * `https://{ORGANIZATION}.onmicrosoft.com/{API CLIENT ID OR CUSTOM VALUE}/{SCOPE NAME}`
-> * `api://{API CLIENT ID OR CUSTOM VALUE}/{SCOPE NAME}`
->
-> Supply the scope URI without the scheme and host:
->
-> ```csharp
-> options.ProviderOptions.DefaultAccessTokenScopes.Add(
->     "{API CLIENT ID OR CUSTOM VALUE}/{SCOPE NAME}");
-> ```
+[!INCLUDE[](~/includes/blazor-security/azure-scope.md)]
 
 For more information, see the following sections of the *Additional scenarios* article:
 
