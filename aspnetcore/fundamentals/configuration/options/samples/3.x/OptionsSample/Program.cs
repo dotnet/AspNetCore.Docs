@@ -17,6 +17,11 @@ namespace SampleApp
                   //  webBuilder.UseStartup<Startup>();
                    // webBuilder.UseStartup<Startup2>(); 
                     webBuilder.UseStartup<Startup3>();
+                  //  webBuilder.UseStartup<StartupNO>();
+
+                    //webBuilder.UseStartup<Startup3>();
+                    //webBuilder.UseStartup<Startup3>();
+
 
                 });
     }
