@@ -85,7 +85,7 @@ Follow the guidance for your choice of tooling:
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-1. Install [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/) version 8.6 or later and perform the following steps:
+1. Install the latest version of [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/) and perform the following steps:
 
 1. Select **File** > **New Solution** or create a **New** project from the **Start Window**.
 

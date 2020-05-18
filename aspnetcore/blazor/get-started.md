@@ -61,9 +61,6 @@ To get started with Blazor, follow the guidance for your choice of tooling:
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-> [!NOTE]
-> Blazor WebAssembly support is included in Visual Studio for Mac 8.6 or later, and Blazor Server is supported in Visual Studio for Mac 8.4 or later.
-
 1. Install [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/).
 
 1. Select **File** > **New Solution** or create a **New** project from the **Start Window**.
