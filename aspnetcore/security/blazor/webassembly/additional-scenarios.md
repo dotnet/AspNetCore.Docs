@@ -814,3 +814,31 @@ While this approach requires an extra network hop through the server to call a t
 
 * The server can store refresh tokens and ensure that the app doesn't lose access to third-party resources.
 * The app can't leak access tokens from the server that might contain more sensitive permissions.
+
+## Use Open ID Connect (OIDC) v2.0 endpoints
+
+The authentication library and Blazor templates use Open ID Connect (OIDC) v1.0 endpoints. To use a v2.0 endpoint, configure the JWT Bearer <xref:Microsoft.AspNetCore.Builder.JwtBearerOptions.Authority?displayProperty=nameWithType> option. In the following example, AAD is configured for v2.0 by appending a `v2.0` segment to the `Authority` property:
+
+```csharp
+builder.Services.Configure<JwtBearerOptions>(
+    AzureADDefaults.JwtBearerAuthenticationScheme, 
+    options =>
+    {
+        options.Authority += "/v2.0";
+    });
+```
+
+Alternatively, the setting can be made in the app settings (*appsettings.json*) file:
+
+```json
+{
+  "Local": {
+    "Authority": "https://login.microsoftonline.com/common/oauth2/v2.0/",
+    ...
+  }
+}
+```
+
+If tacking on a segment to the authority isn't appropriate for the app's OIDC provider, such as with non-AAD providers, set the `Authority` property directly. Either set the property in `JwtBearerOptions` or in the app settings file with the `Authority` key.
+
+The list of claims in the ID token changes for v2.0 endpoints. For more information, see [Why update to Microsoft identity platform (v2.0)?](/azure/active-directory/azuread-dev/azure-ad-endpoint-comparison).

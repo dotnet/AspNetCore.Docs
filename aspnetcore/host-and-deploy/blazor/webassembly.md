@@ -414,11 +414,23 @@ dir .\_framework\_bin | rename-item -NewName { $_.name -replace ".dll\b",".bin" 
 ((Get-Content .\_framework\blazor.boot.json -Raw) -replace '.dll"','.bin"') | Set-Content .\_framework\blazor.boot.json
 ```
 
+If service worker assets are also in use, add the following command:
+
+```powershell
+((Get-Content .\service-worker-assets.js -Raw) -replace '.dll"','.bin"') | Set-Content .\service-worker-assets.js
+```
+
 On Linux or macOS:
 
 ```console
 for f in _framework/_bin/*; do mv "$f" "`echo $f | sed -e 's/\.dll\b/.bin/g'`"; done
 sed -i 's/\.dll"/.bin"/g' _framework/blazor.boot.json
+```
+
+If service worker assets are also in use, add the following command:
+
+```console
+sed -i 's/\.dll"/.bin"/g' service-worker-assets.js
 ```
    
 To use a different file extension than *.bin*, replace *.bin* in the preceding commands.
@@ -427,6 +439,8 @@ To address the compressed *blazor.boot.json.gz* and *blazor.boot.json.br* files,
 
 * Remove the compressed *blazor.boot.json.gz* and *blazor.boot.json.br* files. Compression is disabled with this approach.
 * Recompress the updated *blazor.boot.json* file.
+
+The preceding guidance also applies when service worker assets are in use. Remove or recompress *wwwroot/service-worker-assets.js.br* and *wwwroot/service-worker-assets.js.gz*. Otherwise, file integrity checks fail in the browser.
 
 The following Windows example uses a PowerShell script placed at the root of the project.
 
@@ -437,6 +451,12 @@ param([string]$filepath,[string]$tfm)
 dir $filepath\bin\Release\$tfm\wwwroot\_framework\_bin | rename-item -NewName { $_.name -replace ".dll\b",".bin" }
 ((Get-Content $filepath\bin\Release\$tfm\wwwroot\_framework\blazor.boot.json -Raw) -replace '.dll"','.bin"') | Set-Content $filepath\bin\Release\$tfm\wwwroot\_framework\blazor.boot.json
 Remove-Item $filepath\bin\Release\$tfm\wwwroot\_framework\blazor.boot.json.gz
+```
+
+If service worker assets are also in use, add the following command:
+
+```powershell
+((Get-Content $filepath\bin\Release\$tfm\wwwroot\service-worker-assets.js -Raw) -replace '.dll"','.bin"') | Set-Content $filepath\bin\Release\$tfm\wwwroot\service-worker-assets.js
 ```
 
 In the project file, the script is run after publishing the app:

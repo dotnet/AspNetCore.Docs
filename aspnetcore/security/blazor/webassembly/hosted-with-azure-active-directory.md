@@ -23,16 +23,22 @@ Follow the guidance in [Quickstart: Set up a tenant](/azure/active-directory/dev
 
 ### Register a server API app
 
-Follow the guidance in [Quickstart: Register an application with the Microsoft identity platform](/azure/active-directory/develop/quickstart-register-app) and subsequent Azure AAD topics to register an AAD app for the *Server API app* in the **Azure Active Directory** > **App registrations** area of the Azure portal:
+Follow the guidance in [Quickstart: Register an application with the Microsoft identity platform](/azure/active-directory/develop/quickstart-register-app) and subsequent Azure AAD topics to register an AAD app for the *Server API app*:
 
-1. Select **New registration**.
+1. In **Azure Active Directory** > **App registrations**, select **New registration**.
 1. Provide a **Name** for the app (for example, **Blazor Server AAD**).
 1. Choose a **Supported account types**. You may select **Accounts in this organizational directory only** (single tenant) for this experience.
 1. The *Server API app* doesn't require a **Redirect URI** in this scenario, so leave the drop down set to **Web** and don't enter a redirect URI.
 1. Disable the **Permissions** > **Grant admin concent to openid and offline_access permissions** check box.
 1. Select **Register**.
 
-In **API permissions**, remove the **Microsoft Graph** > **User.Read** permission, as the app doesn't require sign in or uer profile access.
+Record the following information:
+
+* *Server API app* Application ID (Client ID) (for example, `11111111-1111-1111-1111-111111111111`)
+* Directory ID (Tenant ID) (for example, `222222222-2222-2222-2222-222222222222`)
+* AAD Tenant domain (for example, `contoso.onmicrosoft.com`) &ndash; The domain is available as the **Publisher domain** in the **Branding** blade of the Azure portal for the registered app.
+
+In **API permissions**, remove the **Microsoft Graph** > **User.Read** permission, as the app doesn't require sign in or user profile access.
 
 In **Expose an API**:
 
@@ -46,22 +52,21 @@ In **Expose an API**:
 
 Record the following information:
 
-* *Server API app* Application ID (Client ID) (for example, `11111111-1111-1111-1111-111111111111`)
 * App ID URI (for example, `https://contoso.onmicrosoft.com/11111111-1111-1111-1111-111111111111`, `api://11111111-1111-1111-1111-111111111111`, or the custom value that you provided)
-* Directory ID (Tenant ID) (for example, `222222222-2222-2222-2222-222222222222`)
-* AAD Tenant domain (for example, `contoso.onmicrosoft.com`)
 * Default scope (for example, `API.Access`)
 
 ### Register a client app
 
-Follow the guidance in [Quickstart: Register an application with the Microsoft identity platform](/azure/active-directory/develop/quickstart-register-app) and subsequent Azure AAD topics to register a AAD app for the *Client app* in the **Azure Active Directory** > **App registrations** area of the Azure portal:
+Follow the guidance in [Quickstart: Register an application with the Microsoft identity platform](/azure/active-directory/develop/quickstart-register-app) and subsequent Azure AAD topics to register a AAD app for the *Client app*:
 
-1. Select **New registration**.
+1. In **Azure Active Directory** > **App registrations**, select **New registration**.
 1. Provide a **Name** for the app (for example, **Blazor Client AAD**).
 1. Choose a **Supported account types**. You may select **Accounts in this organizational directory only** (single tenant) for this experience.
-1. Leave the **Redirect URI** drop down set to **Web**, and provide a redirect URI of `https://localhost:5001/authentication/login-callback`.
+1. Leave the **Redirect URI** drop down set to **Web**, and provide the following redirect URI: `https://localhost:5001/authentication/login-callback`
 1. Disable the **Permissions** > **Grant admin concent to openid and offline_access permissions** check box.
 1. Select **Register**.
+
+Record the *Client app* Application ID (Client ID) (for example, `33333333-3333-3333-3333-333333333333`).
 
 In **Authentication** > **Platform configurations** > **Web**:
 
@@ -80,14 +85,14 @@ In **API permissions**:
 1. Select **Add permissions**.
 1. Select the **Grant admin content for {TENANT NAME}** button. Select **Yes** to confirm.
 
-Record the *Client app* Application ID (Client ID) (for example, `33333333-3333-3333-3333-333333333333`).
+Record the App ID URI (for example, `https://{TENANT}.onmicrosoft.com/{SERVER API APP CLIENT ID OR CUSTOM VALUE}`).
 
 ### Create the app
 
 Replace the placeholders in the following command with the information recorded earlier and execute the command in a command shell:
 
 ```dotnetcli
-dotnet new blazorwasm -au SingleOrg --api-client-id "{SERVER API APP CLIENT ID}" --app-id-uri "{SERVER API APP ID URI}" --client-id "{CLIENT APP CLIENT ID}" --default-scope "{DEFAULT SCOPE}" --domain "{DOMAIN}" -ho --tenant-id "{TENANT ID}"
+dotnet new blazorwasm -au SingleOrg --api-client-id "{SERVER API APP CLIENT ID}" --app-id-uri "{SERVER API APP ID URI}" --client-id "{CLIENT APP CLIENT ID}" --default-scope "{DEFAULT SCOPE}" --domain "{TENANT DOMAIN}" -ho --tenant-id "{TENANT ID}"
 ```
 
 To specify the output location, which creates a project folder if it doesn't exist, include the output option in the command with a path (for example, `-o BlazorSample`). The folder name also becomes part of the project's name.
@@ -134,6 +139,10 @@ By default, the Server app API populates `User.Identity.Name` with the value fro
 To configure the app to receive the value from the `name` claim type, configure the [TokenValidationParameters.NameClaimType](xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.NameClaimType) of the <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions> in `Startup.ConfigureServices`:
 
 ```csharp
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+
+...
+
 services.Configure<JwtBearerOptions>(
     AzureADDefaults.JwtBearerAuthenticationScheme, options =>
     {
@@ -143,7 +152,7 @@ services.Configure<JwtBearerOptions>(
 
 ### App settings
 
-The *appsettings.json* file contains the options to configure the JWT bearer handler used to validate access tokens.
+The *appsettings.json* file contains the options to configure the JWT bearer handler used to validate access tokens:
 
 ```json
 {
@@ -222,7 +231,7 @@ builder.Services.AddTransient(sp => sp.GetRequiredService<IHttpClientFactory>()
     .CreateClient("{APP ASSEMBLY}.ServerAPI"));
 ```
 
-Support for authenticating users is registered in the service container with the `AddMsalAuthentication` extension method provided by the `Microsoft.Authentication.WebAssembly.Msal` package. This method sets up all of the services required for the app to interact with the Identity Provider (IP).
+Support for authenticating users is registered in the service container with the `AddMsalAuthentication` extension method provided by the `Microsoft.Authentication.WebAssembly.Msal` package. This method sets up the services required for the app to interact with the Identity Provider (IP).
 
 *Program.cs*:
 
@@ -277,18 +286,7 @@ builder.Services.AddMsalAuthentication(options =>
 });
 ```
 
-> [!NOTE]
-> If the Azure portal provides a scope URI and **the app throws an unhandled exception** when it receives a *401 Unauthorized* response from the API, try using a scope URI that doesn't include the scheme and host. For example, the Azure portal may provide one of the following scope URI formats:
->
-> * `https://{ORGANIZATION}.onmicrosoft.com/{API CLIENT ID OR CUSTOM VALUE}/{SCOPE NAME}`
-> * `api://{API CLIENT ID OR CUSTOM VALUE}/{SCOPE NAME}`
->
-> Supply the scope URI without the scheme and host:
->
-> ```csharp
-> options.ProviderOptions.DefaultAccessTokenScopes.Add(
->     "{API CLIENT ID OR CUSTOM VALUE}/{SCOPE NAME}");
-> ```
+[!INCLUDE[](~/includes/blazor-security/azure-scope.md)]
 
 For more information, see the following sections of the *Additional scenarios* article:
 
@@ -326,7 +324,10 @@ For more information, see the following sections of the *Additional scenarios* a
 
 ## Run the app
 
-Run the app from the Server project. When using Visual Studio, select the Server project in **Solution Explorer** and select the **Run** button in the toolbar or start the app from the **Debug** menu.
+Run the app from the Server project. When using Visual Studio, either:
+
+* Set the **Startup Projects** drop down list in the toolbar to the *Server API app* and select the **Run** button.
+* Select the Server project in **Solution Explorer** and select the **Run** button in the toolbar or start the app from the **Debug** menu.
 
 <!-- HOLD
 [!INCLUDE[](~/includes/blazor-security/usermanager-signinmanager.md)]

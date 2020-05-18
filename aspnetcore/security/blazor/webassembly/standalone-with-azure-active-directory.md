@@ -21,9 +21,14 @@ Register a AAD app in the **Azure Active Directory** > **App registrations** are
 
 1. Provide a **Name** for the app (for example, **Blazor Client AAD**).
 1. Choose a **Supported account types**. You may select **Accounts in this organizational directory only** for this experience.
-1. Leave the **Redirect URI** drop down set to **Web**, and provide a redirect URI of `https://localhost:5001/authentication/login-callback`.
+1. Leave the **Redirect URI** drop down set to **Web**, and provide the following redirect URI: `https://localhost:5001/authentication/login-callback`
 1. Disable the **Permissions** > **Grant admin concent to openid and offline_access permissions** check box.
 1. Select **Register**.
+
+Record the following information:
+
+* Application ID (Client ID) (for example, `11111111-1111-1111-1111-111111111111`)
+* Directory ID (Tenant ID) (for example, `22222222-2222-2222-2222-222222222222`)
 
 In **Authentication** > **Platform configurations** > **Web**:
 
@@ -32,18 +37,20 @@ In **Authentication** > **Platform configurations** > **Web**:
 1. The remaining defaults for the app are acceptable for this experience.
 1. Select the **Save** button.
 
-Record the following information:
-
-* Application ID (Client ID) (for example, `11111111-1111-1111-1111-111111111111`)
-* Directory ID (Tenant ID) (for example, `22222222-2222-2222-2222-222222222222`)
-
-Replace the placeholders in the following command with the information recorded earlier and execute the command in a command shell:
+Create the app. Replace the placeholders in the following command with the information recorded earlier and execute the command in a command shell:
 
 ```dotnetcli
 dotnet new blazorwasm -au SingleOrg --client-id "{CLIENT ID}" --tenant-id "{TENANT ID}"
 ```
 
 To specify the output location, which creates a project folder if it doesn't exist, include the output option in the command with a path (for example, `-o BlazorSample`). The folder name also becomes part of the project's name.
+
+After creating the app, you should be able to:
+
+* Log into the app using an AAD user account.
+* Request access tokens for Microsoft APIs. For more information, see:
+  * [Access token scopes](#access-token-scopes)
+  * [Quickstart: Configure an application to expose web APIs](/azure/active-directory/develop/quickstart-configure-app-expose-web-apis).
 
 ## Authentication package
 
@@ -60,7 +67,7 @@ The `Microsoft.Authentication.WebAssembly.Msal` package transitively adds the `M
 
 ## Authentication service support
 
-Support for authenticating users is registered in the service container with the `AddMsalAuthentication` extension method provided by the `Microsoft.Authentication.WebAssembly.Msal` package. This method sets up all of the services required for the app to interact with the Identity Provider (IP).
+Support for authenticating users is registered in the service container with the `AddMsalAuthentication` extension method provided by the `Microsoft.Authentication.WebAssembly.Msal` package. This method sets up the services required for the app to interact with the Identity Provider (IP).
 
 *Program.cs*:
 
@@ -71,7 +78,7 @@ builder.Services.AddMsalAuthentication(options =>
 });
 ```
 
-The `AddMsalAuthentication` method accepts a callback to configure the parameters required to authenticate an app. The values required for configuring the app can be obtained from the Microsoft Accounts configuration when you register the app.
+The `AddMsalAuthentication` method accepts a callback to configure the parameters required to authenticate an app. The values required for configuring the app can be obtained from the AAD configuration when you register the app.
 
 Configuration is supplied by the *wwwroot/appsettings.json* file:
 
@@ -79,7 +86,8 @@ Configuration is supplied by the *wwwroot/appsettings.json* file:
 {
   "AzureAd": {
     "Authority": "https://login.microsoftonline.com/{TENANT ID}",
-    "ClientId": "{CLIENT ID}"
+    "ClientId": "{CLIENT ID}",
+    "ValidateAuthority": true
   }
 }
 ```
@@ -90,7 +98,8 @@ Example:
 {
   "AzureAd": {
     "Authority": "https://login.microsoftonline.com/e86c78e2-...-918e0565a45e",
-    "ClientId": "41451fa7-82d9-4673-8fa5-69eff5a761fd"
+    "ClientId": "41451fa7-82d9-4673-8fa5-69eff5a761fd",
+    "ValidateAuthority": true
   }
 }
 ```
@@ -107,18 +116,7 @@ builder.Services.AddMsalAuthentication(options =>
 });
 ```
 
-> [!NOTE]
-> If the Azure portal provides a scope URI and **the app throws an unhandled exception** when it receives a *401 Unauthorized* response from the API, try using a scope URI that doesn't include the scheme and host. For example, the Azure portal may provide one of the following scope URI formats:
->
-> * `https://{ORGANIZATION}.onmicrosoft.com/{API CLIENT ID OR CUSTOM VALUE}/{SCOPE NAME}`
-> * `api://{API CLIENT ID OR CUSTOM VALUE}/{SCOPE NAME}`
->
-> Supply the scope URI without the scheme and host:
->
-> ```csharp
-> options.ProviderOptions.DefaultAccessTokenScopes.Add(
->     "{API CLIENT ID OR CUSTOM VALUE}/{SCOPE NAME}");
-> ```
+[!INCLUDE[](~/includes/blazor-security/azure-scope.md)]
 
 For more information, see the following sections of the *Additional scenarios* article:
 
