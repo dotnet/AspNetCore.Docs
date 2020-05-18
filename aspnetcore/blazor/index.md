@@ -5,7 +5,7 @@ description: Explore ASP.NET Core Blazor, a way to build interactive client-side
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: "mvc, seoapril2019"
-ms.date: 05/18/2020
+ms.date: 05/19/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/index
 ---

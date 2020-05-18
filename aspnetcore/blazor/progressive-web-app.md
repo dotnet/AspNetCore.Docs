@@ -5,7 +5,7 @@ description: Learn how to build a Blazor-based Progressive Web Application (PWA)
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/18/2020
+ms.date: 05/19/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/progressive-web-app
 ---
