@@ -350,7 +350,7 @@ Component authorization approaches are functional at this point. Any of the auth
 
 ## Profile Service
 
-In the Server app, create a `ProfileService` implementation. The Profile Service example in this section creates `name` and `role` claims for users similar to the scenario shown in the [Name and role claim with API authorization](#name-and-role-claim-with-api-authorization) section. The value of the `role` claim represents the user's assigned role.
+In the Server app, create a `ProfileService` implementation. The Profile Service example in this section creates `name` and `role` claims for users similar to the scenario shown in the [Name and role claim with API authorization](#name-and-role-claim-with-api-authorization) section. The value of the `role` claim represents the user's assigned roles.
 
 *ProfileService.cs*:
 
