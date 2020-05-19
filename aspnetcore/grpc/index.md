@@ -26,6 +26,8 @@ These benefits make gRPC ideal for:
 * Polyglot systems where multiple languages are required for development.
 * Point-to-point real-time services that need to handle streaming requests or responses.
 
+[!INCLUDE[](~/includes/gRPCazure.md)]
+
 ## C# Tooling support for .proto files
 
 gRPC uses a contract-first approach to API development. Services and messages are defined in *\*.proto* files:
@@ -115,8 +117,6 @@ Console.WriteLine(response.Message);
 A gRPC client is created using a channel, which represents a long-lived connection to a gRPC service. A channel can be created using `GrpcChannel.ForAddress`.
 
 For more information on creating clients, and calling different service methods, see <xref:grpc/client>.
-
-[!INCLUDE[](~/includes/gRPCazure.md)]
 
 ## Additional resources
 

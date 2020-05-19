@@ -12,6 +12,8 @@ uid: grpc/aspnetcore
 
 This document shows how to get started with gRPC services using ASP.NET Core.
 
+[!INCLUDE[](~/includes/gRPCazure.md)]
+
 ## Prerequisites
 
 # [Visual Studio](#tab/visual-studio)
@@ -119,7 +121,6 @@ The gRPC API provides access to some HTTP/2 message data, such as the method, ho
 
 [!code-csharp[](~/grpc/aspnetcore/sample/GrcpService/GreeterService2.cs?highlight=6-7&name=snippet)]
 
-[!INCLUDE[](~/includes/gRPCazure.md)]
 
 ## Additional resources
 
