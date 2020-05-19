@@ -143,7 +143,7 @@ Web host configuration can be created independently of the test classes by inher
 
    Database seeding in the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples) is performed by the `InitializeDbForTests` method. The method is described in the [Integration tests sample: Test app organization](#test-app-organization) section.
 
-   The SUT's database context is registered in its `Startup.ConfigureServices` method. The test app's `builder.ConfigureServices` callback is executed *after* the app's `Startup.ConfigureServices` code is executed. The execution order is a breaking change for the [Generic Host](xref:fundamentals/host/generic-host) with the release of ASP.NET Core 3.0. To use a different database for the tests than the app's database, the app's database context must be replaced in `builder.ConfigureServices`.
+   The SUT's database context is registered in its `Startup.ConfigureServices` method. The test app's `builder.ConfigureServices` callback is executed *before* the app's `Startup.ConfigureServices` code is executed whereas the test app's `builder.ConfigureTestServices` callback is executed *after*. The execution order is a breaking change for the [Generic Host](xref:fundamentals/host/generic-host) with the release of ASP.NET Core 3.0. To use a different database for the tests than the app's database, the app's database context must be replaced in `builder.ConfigureTestServices`.
 
    The sample app finds the service descriptor for the database context and uses the descriptor to remove the service registration. Next, the factory adds a new `ApplicationDbContext` that uses an in-memory database for the tests.
 
@@ -393,7 +393,7 @@ The sample app seeds the database with three messages in *Utilities.cs* that tes
 
 [!code-csharp[](integration-tests/samples/3.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/Helpers/Utilities.cs?name=snippet1)]
 
-The SUT's database context is registered in its `Startup.ConfigureServices` method. The test app's `builder.ConfigureServices` callback is executed *after* the app's `Startup.ConfigureServices` code is executed. To use a different database for the tests, the app's database context must be replaced in `builder.ConfigureServices`. For more information, see the [Customize WebApplicationFactory](#customize-webapplicationfactory) section.
+The SUT's database context is registered in its `Startup.ConfigureServices` method. The test app's `builder.ConfigureServices` callback is executed *before* the app's `Startup.ConfigureServices` code is executed, whereas the test app's `builder.ConfigureTestServices` callback is executed *after*. To use a different database for the tests, the app's database context must be replaced in `builder.ConfigureTestServices`. For more information, see the [Customize WebApplicationFactory](#customize-webapplicationfactory) section.
 
 ::: moniker-end
 
@@ -515,7 +515,7 @@ By default, non-essential cookies aren't preserved across requests when the [GDP
 
 Web host configuration can be created independently of the test classes by inheriting from `WebApplicationFactory` to create one or more custom factories:
 
-1. Inherit from `WebApplicationFactory` and override [ConfigureWebHost](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1.configurewebhost). The [IWebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.iwebhostbuilder) allows the configuration of the service collection with [ConfigureServices](/dotnet/api/microsoft.aspnetcore.hosting.istartup.configureservices):
+1. Inherit from `WebApplicationFactory` and override [ConfigureWebHost](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1.configurewebhost). The [IWebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.iwebhostbuilder) allows the configuration of the service collection with [ConfigureServices](/dotnet/api/microsoft.aspnetcore.hosting.istartup.configureservices) which is executed before the app's `Startup.ConfigureServices`. The [IWebHostBuilder](/dotnet/api/microsoft.aspnetcore.hosting.iwebhostbuilder) allows overriding and modiying registered services in the service collection with [ConfigureTestServices](/dotnet/api/microsoft.aspnetcore.testhost.webhostbuilderextensions.configuretestservices):
 
    [!code-csharp[](integration-tests/samples/2.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/CustomWebApplicationFactory.cs?name=snippet1)]
 
