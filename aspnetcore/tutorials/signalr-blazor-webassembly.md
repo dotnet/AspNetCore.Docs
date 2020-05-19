@@ -92,13 +92,14 @@ Follow the guidance for your choice of tooling:
 
 1. In the sidebar, select **Web and Console** > **App**.
 
-1. Choose the **Blazor WebAssembly App** template.
+1. Choose the **Blazor WebAssembly App** template. Select **Next**.
 
    Confirm the following configurations:
 
-   * Select the **ASP.NET Core hosted** check box.
    * **Target Framework** set to **.NET Core 3.1**.
    * **Authentication** set to **No Authentication**.
+
+   Select the **ASP.NET Core Hosted** check box.
 
    Select **Next**.
 
@@ -281,3 +282,4 @@ To learn more about building Blazor apps, see the Blazor documentation:
 ## Additional resources
 
 * <xref:signalr/introduction>
+ 
