@@ -24,14 +24,13 @@ namespace Server
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddGrpc();
-            services.AddGrpcWeb(o => o.GrpcWebEnabled = true);
         }
 
         public void Configure(IApplicationBuilder app)
         {
             app.UseRouting();
 
-            app.UseGrpcWeb(); // Must be added between UseRouting and UseEndpoints
+            app.UseGrpcWeb(new GrpcWebOptions { DefaultEnabled = true });
 
             app.UseEndpoints(endpoints =>
             {
