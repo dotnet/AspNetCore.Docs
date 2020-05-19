@@ -15,6 +15,8 @@ A .NET gRPC client library is available in the [Grpc.Net.Client](https://www.nug
 * Configure a gRPC client to call gRPC services.
 * Make gRPC calls to unary, server streaming, client streaming, and bi-directional streaming methods.
 
+[!INCLUDE[](~/includes/gRPCazure.md)]
+
 ## Configure gRPC client
 
 gRPC clients are concrete client types that are [generated from *\*.proto* files](xref:grpc/basics#generated-c-assets). The concrete gRPC client has methods that translate to the gRPC service in the *\*.proto* file.
