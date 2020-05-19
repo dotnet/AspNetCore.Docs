@@ -5,15 +5,13 @@ description: Create a chat app that uses ASP.NET Core SignalR with Blazor WebAss
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/11/2020
+ms.date: 05/19/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/signalr-blazor-webassembly
 ---
 # Use ASP.NET Core SignalR with Blazor WebAssembly
 
 By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.com/guardrex)
-
-[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
 This tutorial teaches the basics of building a real-time app using SignalR with Blazor WebAssembly. You learn how to:
 
@@ -32,7 +30,8 @@ At the end of this tutorial, you'll have a working chat app.
 
 # [Visual Studio](#tab/visual-studio)
 
-[!INCLUDE[](~/includes/net-core-prereqs-vs-3.1.md)]
+* [Visual Studio 2019 16.6 or later](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019) with the **ASP.NET and web development** workload
+* [!INCLUDE [.NET Core 3.1 SDK](~/includes/3.1-SDK.md)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -40,7 +39,8 @@ At the end of this tutorial, you'll have a working chat app.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-[!INCLUDE[](~/includes/net-core-prereqs-mac-3.1.md)]
+* [Visual Studio for Mac version 8.6 or later](https://visualstudio.microsoft.com/vs/mac/)
+* [!INCLUDE [.NET Core 3.1 SDK](~/includes/3.1-SDK.md)]
 
 # [.NET Core CLI](#tab/netcore-cli/)
 
@@ -50,15 +50,12 @@ At the end of this tutorial, you'll have a working chat app.
 
 ## Create a hosted Blazor WebAssembly app project
 
-When not using Visual Studio version 16.6 Preview 2 or later, install the [Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly) template. The [Microsoft.AspNetCore.Components.WebAssembly.Templates](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Templates/) package has a preview version while Blazor WebAssembly is in preview. In a command shell, execute the following command:
-
-```dotnetcli
-dotnet new -i Microsoft.AspNetCore.Components.WebAssembly.Templates::3.2.0-rc1.20223.4
-```
-
 Follow the guidance for your choice of tooling:
 
 # [Visual Studio](#tab/visual-studio)
+
+> [!NOTE]
+> Visual Studio 16.6 or later and .NET Core SDK 3.1.300 or later are required.
 
 1. Create a new project.
 
@@ -89,29 +86,23 @@ Follow the guidance for your choice of tooling:
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-1. If you don't wish to install the preview of Visual Studio for Mac version 8.6, open a command shell and execute the following command:
+1. Install the latest version of [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/) and perform the following steps:
 
-   ```dotnetcli
-   dotnet new blazorwasm --hosted --output BlazorSignalRApp
-   ```
+1. Select **File** > **New Solution** or create a **New** project from the **Start Window**.
 
-1. To use the preview of Visual Studio for Mac version 8.6, install [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/), use the [Preview channel](/visualstudio/mac/update), and perform the following steps:
+1. In the sidebar, select **Web and Console** > **App**.
 
-   * Select **File** > **New Solution** or create a **New** project from the **Start Window**.
+1. Choose the **Blazor WebAssembly App** template.
 
-   * In the sidebar, select **Web and Console** > **App**.
+   Confirm the following configurations:
 
-   * For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template.
+   * Select the **ASP.NET Core hosted** check box.
+   * **Target Framework** set to **.NET Core 3.1**.
+   * **Authentication** set to **No Authentication**.
 
-   * Confirm the following configurations:
+   Select **Next**.
 
-     * Select the **ASP.NET Core hosted** check box.
-     * **Target Framework** set to **.NET Core 3.1**.
-     * **Authentication** set to **No Authentication**.
-
-     Select **Next**.
-
-   * In the **Project Name** field, name the app `BlazorSignalRApp`. Select **Create**.
+1. In the **Project Name** field, name the app `BlazorSignalRApp`. Select **Create**.
 
    If a prompt appears to trust the development certificate, trust the certificate and continue. The user and keychain passwords are required to trust the certificate.
 
@@ -242,7 +233,7 @@ In the **BlazorSignalRApp.Server** project, create a *Hubs* (plural) folder and 
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-1. In the **Solution** sidebar, select the **BlazorSignalRApp.Server** project. Press <kbd>⌘</kbd>+<kbd>↩</kbd>** to run the app with debugging or <kbd>⌥</kbd>+<kbd>⌘</kbd>+<kbd>↩</kbd> to run the app without debugging.
+1. In the **Solution** sidebar, select the **BlazorSignalRApp.Server** project. Press <kbd>⌘</kbd>+<kbd>↩</kbd> to run the app with debugging or <kbd>⌥</kbd>+<kbd>⌘</kbd>+<kbd>↩</kbd> to run the app without debugging.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 

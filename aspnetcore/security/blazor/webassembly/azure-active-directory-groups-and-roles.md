@@ -5,17 +5,13 @@ description: Learn how to configure Blazor WebAssembly to use Azure Active Direc
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/08/2020
+ms.date: 05/19/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/blazor/webassembly/aad-groups-roles
 ---
 # Azure AD Groups, Administrative Roles, and user-defined roles
 
 By [Luke Latham](https://github.com/guardrex) and [Javier Calvarro Nelson](https://github.com/javiercn)
-
-[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
-
-[!INCLUDE[](~/includes/blazorwasm-3.2-template-article-notice.md)]
 
 Azure Active Directory (AAD) provides several authorization approaches that can be combined with ASP.NET Core Identity:
 

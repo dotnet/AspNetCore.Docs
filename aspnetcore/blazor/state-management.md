@@ -5,15 +5,13 @@ description: Learn how to persist state in Blazor Server apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/17/2020
+ms.date: 05/19/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/state-management
 ---
 # ASP.NET Core Blazor state management
 
 By [Steve Sanderson](https://github.com/SteveSandersonMS)
-
-[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
 
 Blazor Server is a stateful app framework. Most of the time, the app maintains an ongoing connection to the server. The user's state is held in the server's memory in a *circuit*. 
 

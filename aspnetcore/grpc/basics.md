@@ -12,6 +12,8 @@ uid: grpc/basics
 
 This document outlines the concepts needed to write [gRPC](https://grpc.io/docs/guides/) apps in C#. The topics covered here apply to both [C-core](https://grpc.io/blog/grpc-stacks)-based and ASP.NET Core-based gRPC apps.
 
+[!INCLUDE[](~/includes/gRPCazure.md)]
+
 ## proto file
 
 gRPC uses a contract-first approach to API development. Protocol buffers (protobuf) are used as the Interface Design Language (IDL) by default. The *\*.proto* file contains:
@@ -69,8 +71,6 @@ By default, server and client assets are generated for each *\*.proto* file incl
 [!code-xml[](~/tutorials/grpc/grpc-start/sample/GrpcGreeter/GrpcGreeter.csproj?highlight=2&range=7-9)]
 
 Similarly, the attribute is set to `Client` in client projects.
-
-[!INCLUDE[](~/includes/gRPCazure.md)]
 
 ## Additional resources
 
