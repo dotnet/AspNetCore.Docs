@@ -65,7 +65,7 @@ Follow the guidance in [Tutorial: Register an application in Azure Active Direct
 1. In **Azure Active Directory** > **App registrations**, select **New registration**.
 1. Provide a **Name** for the app (for example, **Blazor Client AAD B2C**).
 1. For **Supported account types**, select the multi-tenant option: **Accounts in any organizational directory or any identity provider. For authenticating users with Azure AD B2C.**
-1. Leave the **Redirect URI** drop down set to **Web**, and provide the following redirect URI: `https://localhost:5001/authentication/login-callback`
+1. Leave the **Redirect URI** drop down set to **Web**, and provide the following redirect URI: `https://localhost:{PORT}/authentication/login-callback`. The default port for an app running on Kestrel is 5001. For IIS Express, the randomly generated port can be found in the Server app's properties in the **Debug** panel.
 1. Confirm that **Permissions** > **Grant admin concent to openid and offline_access permissions** is enabled.
 1. Select **Register**.
 
@@ -73,7 +73,7 @@ Record the Application ID (Client ID) (for example, `11111111-1111-1111-1111-111
 
 In **Authentication** > **Platform configurations** > **Web**:
 
-1. Confirm the **Redirect URI** of `https://localhost:5001/authentication/login-callback` is present.
+1. Confirm the **Redirect URI** of `https://localhost:{PORT}/authentication/login-callback` is present.
 1. For **Implicit grant**, select the check boxes for **Access tokens** and **ID tokens**.
 1. The remaining defaults for the app are acceptable for this experience.
 1. Select the **Save** button.
