@@ -5,7 +5,7 @@ description:
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/11/2020
+ms.date: 05/19/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/blazor/webassembly/standalone-with-azure-active-directory
 ---
@@ -13,17 +13,13 @@ uid: security/blazor/webassembly/standalone-with-azure-active-directory
 
 By [Javier Calvarro Nelson](https://github.com/javiercn) and [Luke Latham](https://github.com/guardrex)
 
-[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
-
-[!INCLUDE[](~/includes/blazorwasm-3.2-template-article-notice.md)]
-
 To create a Blazor WebAssembly standalone app that uses [Azure Active Directory (AAD)](https://azure.microsoft.com/services/active-directory/) for authentication:
 
 [Create an AAD tenant and web application](/azure/active-directory/develop/v2-overview):
 
 Register a AAD app in the **Azure Active Directory** > **App registrations** area of the Azure portal:
 
-1. Provide a **Name** for the app (for example, **Blazor Client AAD**).
+1. Provide a **Name** for the app (for example, **Blazor Standalone AAD**).
 1. Choose a **Supported account types**. You may select **Accounts in this organizational directory only** for this experience.
 1. Leave the **Redirect URI** drop down set to **Web**, and provide the following redirect URI: `https://localhost:5001/authentication/login-callback`
 1. Disable the **Permissions** > **Grant admin concent to openid and offline_access permissions** check box.
@@ -64,10 +60,8 @@ If adding authentication to an app, manually add the package to the app's projec
 
 ```xml
 <PackageReference Include="Microsoft.Authentication.WebAssembly.Msal" 
-    Version="{VERSION}" />
+  Version="3.2.0" />
 ```
-
-Replace `{VERSION}` in the preceding package reference with the version of the `Microsoft.AspNetCore.Blazor.Templates` package shown in the <xref:blazor/get-started> article.
 
 The `Microsoft.Authentication.WebAssembly.Msal` package transitively adds the `Microsoft.AspNetCore.Components.WebAssembly.Authentication` package to the app.
 

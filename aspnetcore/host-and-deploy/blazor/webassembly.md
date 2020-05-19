@@ -13,8 +13,6 @@ uid: host-and-deploy/blazor/webassembly
 
 By [Luke Latham](https://github.com/guardrex), [Rainer Stropek](https://www.timecockpit.com), [Daniel Roth](https://github.com/danroth27), [Ben Adams](https://twitter.com/ben_a_adams), and [Safia Abdalla](https://safia.rocks)
 
-[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
-
 With the [Blazor WebAssembly hosting model](xref:blazor/hosting-models#blazor-webassembly):
 
 * The Blazor app, its dependencies, and the .NET runtime are downloaded to the browser in parallel.
@@ -470,3 +468,4 @@ In the project file, the script is run after publishing the app:
 ```
 
 To provide feedback, visit [aspnetcore/issues #5477](https://github.com/dotnet/aspnetcore/issues/5477).
+ 
