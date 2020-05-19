@@ -87,6 +87,8 @@ To include companion assets as part of an RCL, create a *wwwroot* folder in the 
 
 When packing an RCL, all companion assets in the *wwwroot* folder are automatically included in the package.
 
+Use the `dotnet pack` command rather than the NuGet.exe version `nuget pack`.
+
 ### Exclude static assets
 
 To exclude static assets, add the desired exclusion path to the `$(DefaultItemExcludes)` property group in the project file. Separate entries with a semicolon (`;`).
