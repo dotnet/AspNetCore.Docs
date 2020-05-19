@@ -132,7 +132,39 @@ In the preceding sample:
 
 ## Set log level by command line, environment variables, and other configuration
 
-Log level can be set by any of the [configuration providers](xref:fundamentals/configuration/index). For information on configuring the logging providers using the command line, environment variables, other file formats, and more, see <xref:fundamentals/configuration/index>.
+Log level can be set by any of the [configuration providers](xref:fundamentals/configuration/index). 
+
+[!INCLUDE[](~/includes/environmentVarableColon.md)]
+
+The following commands:
+
+* Set the environment key `Logging:LogLevel:Microsoft` to a value of `Information` on Windows.
+* Test the settings when using an app created with the ASP.NET Core web application templates. The `dotnet run` command must be run in the project directory after using `set`.
+
+```cmd
+set Logging__LogLevel__Microsoft=Information
+dotnet run
+```
+
+The preceding environment setting:
+
+* Is only set in processes launched from the command window they were set in.
+* Isn't read by browsers launched with Visual Studio.
+
+The following [setx](/windows-server/administration/windows-commands/setx) command also sets the environment key and value on Windows. Unlike `set`, `setx` settings are persisted. The `/M` switch sets the variable in the system environment. If `/M` isn't used, a user environment variable is set.
+
+```cmd
+setx Logging__LogLevel__Microsoft=Information /M
+```
+
+On [Azure App Service](https://azure.microsoft.com/services/app-service/), select **New application setting** on the **Settings > Configuration** page. Azure App Service application settings are:
+
+* Encrypted at rest and transmitted over an encrypted channel.
+* Exposed as environment variables.
+
+For more information, see [Azure Apps: Override app configuration using the Azure Portal](xref:host-and-deploy/azure-apps/index#override-app-configuration-using-the-azure-portal).
+
+For more information on setting ASP.NET Core configuration values using environment variables, see [environment variables](xref:fundamentals/configuration/index#environment-variables). For information on using other configuration sources, including the command line, Azure Key Vault, Azure App Configuration, other file formats, and more, see <xref:fundamentals/configuration/index>.
 
 ## How filtering rules are applied
 
