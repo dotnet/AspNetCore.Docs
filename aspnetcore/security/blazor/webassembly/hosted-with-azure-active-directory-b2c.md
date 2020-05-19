@@ -87,8 +87,6 @@ In **API permissions**:
 1. Select **Add permissions**.
 1. Select the **Grant admin content for {TENANT NAME}** button. Select **Yes** to confirm.
 
-Record the App ID URI (for example, `https://{TENANT}.onmicrosoft.com/{SERVER API APP CLIENT ID OR CUSTOM VALUE}`).
-
 In **Home** > **Azure AD B2C** > **User flows**:
 
 [Create a sign-up and sign-in user flow](/azure/active-directory-b2c/tutorial-create-user-flows)

@@ -85,8 +85,6 @@ In **API permissions**:
 1. Select **Add permissions**.
 1. Select the **Grant admin content for {TENANT NAME}** button. Select **Yes** to confirm.
 
-Record the App ID URI (for example, `https://{TENANT}.onmicrosoft.com/{SERVER API APP CLIENT ID OR CUSTOM VALUE}`).
-
 ### Create the app
 
 Replace the placeholders in the following command with the information recorded earlier and execute the command in a command shell:
