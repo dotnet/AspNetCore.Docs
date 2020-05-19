@@ -819,25 +819,25 @@ To access an Azure-hosted endpoint or to use the [Azure REST API](/rest/api/azur
 
 1. Log in to Azure:
 
-    ```azcli
+    ```azurecli
     az login
     ```
 
 1. Get your subscription ID with the following command:
 
-    ```azcli
+    ```azurecli
     az account show --query id
     ```
 
 1. Copy your subscription ID and run the following command:
 
-    ```azcli
+    ```azurecli
     az account set --subscription "<SUBSCRIPTION ID>"
     ```
 
 1. Get your bearer token with the following command:
 
-    ```azcli
+    ```azurecli
     az account get-access-token --query accessToken
     ```
 
