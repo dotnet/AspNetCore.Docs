@@ -90,17 +90,24 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 
 * Select **File** > **New Solution**.
 
-![macOS New solution](../first-mvc-app/start-mvc/_static/new_project_vsmac.png)
+  ![macOS New solution](../first-mvc-app/start-mvc/_static/new_project_vsmac.png)
 
-* In Visual Studio for Mac earlier than version 8.6, select **.NET Core** > **App** > **Web Application** > **Next** from the sidebar. In version 8.6 or later, select **Web and Console** > **App** > **Web Application** > **Next** from the sidebar.
+* In Visual Studio for Mac earlier than version 8.6, select **.NET Core** > **App** > **Web Application** > **Next**. In version 8.6 or later, select **Web and Console** > **App** > **Web Application** > **Next**.
 
-* In the **Configure your new Web Application** dialog, set the  **Target Framework** to **.NET Core 3.1**.
+  ![macOS web app template selection](razor-pages-start/_static/web_app_template_vsmac.png)
+
+* Confirm the following configurations:
+
+  * **Target Framework** set to **.NET Core 3.1**.
+  * **Authentication** set to **No Authentication**.
+   
+  Select **Next**.
 
   ![macOS .NET Core 3.1 selection](razor-pages-start/_static/targetframework3.png)
 
 * Name the project **RazorPagesMovie**, and then select **Create**.
 
-  ![nameproj](razor-pages-start/_static/RazorPagesMovie.png)
+  ![macOS name the project](razor-pages-start/_static/RazorPagesMovie.png)
 
 <!-- End of VS tabs -->
 
