@@ -17,30 +17,38 @@ To create a Blazor WebAssembly standalone app that uses [Azure Active Directory 
 
 Follow the guidance in the following topics to create a tenant and register a web app in the Azure Portal:
 
-* [Create an AAD B2C tenant](/azure/active-directory-b2c/tutorial-create-tenant)
+[Create an AAD B2C tenant](/azure/active-directory-b2c/tutorial-create-tenant)
 
-  Record the following information:
+Record the following information:
 
-  * AAD B2C instance (for example, `https://contoso.b2clogin.com/`, which includes the trailing slash).
-  * AAD B2C Tenant domain (for example, `contoso.onmicrosoft.com`).
+* AAD B2C instance (for example, `https://contoso.b2clogin.com/`, which includes the trailing slash).
+* AAD B2C Tenant domain (for example, `contoso.onmicrosoft.com`).
 
-* [Register a web application](/azure/active-directory-b2c/tutorial-register-applications) &ndash; Make the following selections during app registration:
+Follow the guidance in [Tutorial: Register an application in Azure Active Directory B2C](/azure/active-directory-b2c/tutorial-register-applications) again to register an AAD app for the *Client app*:
 
-  1. Provide a **Name** for the app (for example, **Blazor Client AAD B2C**).
-  1. Set **Web App / Web API** to **Yes**.
-  1. Set **Allow implicit flow** to **Yes**.
-  1. Add a **Reply URL** of `https://localhost:5001/authentication/login-callback`.
-  1. Leave **App ID URI** blank.
-  1. Leave **Include native client** set to **No**.
-  1. Select the **Create** button.
+1. In **Azure Active Directory** > **App registrations**, select **New registration**.
+1. Provide a **Name** for the app (for example, **Blazor Standalone AAD B2C**).
+1. For **Supported account types**, select the multi-tenant option: **Accounts in any organizational directory or any identity provider. For authenticating users with Azure AD B2C.**
+1. Leave the **Redirect URI** drop down set to **Web**, and provide the following redirect URI: `https://localhost:5001/authentication/login-callback`
+1. Confirm that **Permissions** > **Grant admin concent to openid and offline_access permissions** is enabled.
+1. Select **Register**.
 
-  Record the Application ID (Client ID) (for example, `11111111-1111-1111-1111-111111111111`).
+Record the Application ID (Client ID) (for example, `11111111-1111-1111-1111-111111111111`).
 
-* [Create user flows](/azure/active-directory-b2c/tutorial-create-user-flows) &ndash; Create a sign-up and sign-in user flow.
+In **Authentication** > **Platform configurations** > **Web**:
 
-  At a minimum, select the **Application claims** > **Display Name** user attribute. This attribute populates the `context.User.Identity.Name` in the `LoginDisplay` component (*Shared/LoginDisplay.razor*) of the app.
+1. Confirm the **Redirect URI** of `https://localhost:5001/authentication/login-callback` is present.
+1. For **Implicit grant**, select the check boxes for **Access tokens** and **ID tokens**.
+1. The remaining defaults for the app are acceptable for this experience.
+1. Select the **Save** button.
 
-  Record the sign-up and sign-in user flow name created for the app (for example, `B2C_1_signupsignin`).
+In **Home** > **Azure AD B2C** > **User flows**:
+
+[Create a sign-up and sign-in user flow](/azure/active-directory-b2c/tutorial-create-user-flows)
+
+At a minimum, select the **Application claims** > **Display Name** user attribute to populate the `context.User.Identity.Name` in the `LoginDisplay` component (*Shared/LoginDisplay.razor*).
+
+Record the sign-up and sign-in user flow name created for the app (for example, `B2C_1_signupsignin`).
 
 Replace the placeholders in the following command with the information recorded earlier and execute the command in a command shell:
 

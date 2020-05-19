@@ -19,7 +19,7 @@ To create a Blazor WebAssembly standalone app that uses [Microsoft Accounts with
 
 Register a AAD app in the **Azure Active Directory** > **App registrations** area of the Azure portal:
 
-1. Provide a **Name** for the app (for example, **Blazor Client AAD**).
+1. Provide a **Name** for the app (for example, **Blazor Standalone AAD Microsoft Accounts**).
 1. In **Supported account types**, select **Accounts in any organizational directory**.
 1. Leave the **Redirect URI** drop down set to **Web**, and provide the following redirect URI: `https://localhost:5001/authentication/login-callback`.
 1. Disable the **Permissions** > **Grant admin concent to openid and offline_access permissions** check box.
