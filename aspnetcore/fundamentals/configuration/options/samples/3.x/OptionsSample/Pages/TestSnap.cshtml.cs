@@ -19,7 +19,6 @@ namespace SampleApp.Pages
 
         public ContentResult OnGet()
         {
-
             return Content($"Option1: {_snapshotOptions.Option1} \n" +
                            $"Option2: {_snapshotOptions.Option2}");
         }

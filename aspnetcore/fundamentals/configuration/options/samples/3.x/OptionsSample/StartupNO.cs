@@ -16,11 +16,15 @@ namespace SampleApp
 
         public IConfiguration Configuration { get; set; }
 
-        // Used in Test3
+        // Used in TestNO
         #region snippet_Example2
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<MyOptions>("named_options_1", Configuration);
+            services.Configure<TopItemSettings>("Month", 
+                                               Configuration.GetSection("TopItem:Month"));
+            services.Configure<TopItemSettings>("Year",
+                                            Configuration.GetSection("TopItem:Year"));
+
             services.AddRazorPages();
         }
         #endregion

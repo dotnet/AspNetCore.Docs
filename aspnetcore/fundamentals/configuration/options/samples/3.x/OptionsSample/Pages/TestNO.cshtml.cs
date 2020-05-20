@@ -10,18 +10,21 @@ namespace SampleApp.Pages
     #region snippet
     public class TestNOModel : PageModel
     {
-        private readonly MyOptions _snapshotOptions;
+        private readonly TopItemSettings _monthTopItem;
+        private readonly TopItemSettings _yearTopItem;
 
-        public TestNOModel(IOptionsSnapshot<MyOptions> snapshotOptionsAccessor)
+        public TestNOModel(IOptionsSnapshot<TopItemSettings> namedOptionsAccessor)
         {
-            _snapshotOptions = snapshotOptionsAccessor.Value;
+            _monthTopItem = namedOptionsAccessor.Get("Month");
+            _yearTopItem = namedOptionsAccessor.Get("Year");
         }
 
         public ContentResult OnGet()
         {
-
-            return Content($"Option1: {_snapshotOptions.Option1} \n" +
-                           $"Option2: {_snapshotOptions.Option2}");
+            return Content($"Month:Name {_monthTopItem.Name} \n" +
+                           $"Month:Model {_monthTopItem.Model} \n\n" +
+                           $"Year:Name {_yearTopItem.Name} \n" +
+                           $"Year:Model {_yearTopItem.Model} \n"   );
         }
     }
     #endregion
