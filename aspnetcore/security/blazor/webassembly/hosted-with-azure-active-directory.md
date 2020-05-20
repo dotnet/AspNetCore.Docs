@@ -62,7 +62,7 @@ Follow the guidance in [Quickstart: Register an application with the Microsoft i
 1. In **Azure Active Directory** > **App registrations**, select **New registration**.
 1. Provide a **Name** for the app (for example, **Blazor Client AAD**).
 1. Choose a **Supported account types**. You may select **Accounts in this organizational directory only** (single tenant) for this experience.
-1. Leave the **Redirect URI** drop down set to **Web**, and provide the following redirect URI: `https://localhost:{PORT}/authentication/login-callback`. The default port for an app running on Kestrel is 5001. For IIS Express, the randomly generated port can be found in the Server app's properties in the **Debug** panel.
+1. Leave the **Redirect URI** drop down set to **Web** and provide the following redirect URI: `https://localhost:{PORT}/authentication/login-callback`. The default port for an app running on Kestrel is 5001. If the app is run on a different Kestrel port, use the app's port. For IIS Express, the randomly generated port for the app can be found in the Server app's properties in the **Debug** panel. Since the app doesn't exist at this point and the IIS Express port isn't known, return to this step after the app is created and update the redirect URI. A remark appears in the [Create the app](#create-the-app) section to remind IIS Express users to update the redirect URI.
 1. Disable the **Permissions** > **Grant admin concent to openid and offline_access permissions** check box.
 1. Select **Register**.
 
@@ -98,6 +98,13 @@ To specify the output location, which creates a project folder if it doesn't exi
 > [!NOTE]
 > Pass the App ID URI to the `app-id-uri` option, but note a configuration change might be required in the client app, which is described in the [Access token scopes](#access-token-scopes) section.
 
+> [!NOTE]
+> In the Azure portal, the *Client app's* **Authentication** > **Platform configurations** > **Web** > **Redirect URI** is configured for port 5001 for apps that run on the Kestrel server with default settings.
+>
+> If the *Client app* is run on a random IIS Express port, the port for the app can be found in the *Server app's* properties in the **Debug** panel.
+>
+> If the port wasn't configured earlier with the *Client app's* known port, return to the *Client app's* registration in the Azure portal and update the redirect URI with the correct port.
+
 ## Server app configuration
 
 *This section pertains to the solution's **Server** app.*
@@ -108,7 +115,7 @@ The support for authenticating and authorizing calls to ASP.NET Core Web APIs is
 
 ```xml
 <PackageReference Include="Microsoft.AspNetCore.Authentication.AzureAD.UI" 
-  Version="3.2.0" />
+  Version="3.1.4" />
 ```
 
 ### Authentication service support
