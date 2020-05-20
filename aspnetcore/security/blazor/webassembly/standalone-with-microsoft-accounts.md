@@ -21,7 +21,7 @@ Register a AAD app in the **Azure Active Directory** > **App registrations** are
 
 1. Provide a **Name** for the app (for example, **Blazor Standalone AAD Microsoft Accounts**).
 1. In **Supported account types**, select **Accounts in any organizational directory**.
-1. Leave the **Redirect URI** drop down set to **Web** and provide the following redirect URI: `https://localhost:{PORT}/authentication/login-callback`. The default port for an app running on Kestrel is 5001. If the app is run on a different Kestrel port, use the app's port. For IIS Express, the randomly generated port for the app can be found in the Server app's properties in the **Debug** panel. Since the app doesn't exist at this point and the IIS Express port isn't known, return to this step after the app is created and update the redirect URI. A remark appears later in this topic to remind IIS Express users to update the redirect URI.
+1. Leave the **Redirect URI** drop down set to **Web** and provide the following redirect URI: `https://localhost:{PORT}/authentication/login-callback`. The default port for an app running on Kestrel is 5001. If the app is run on a different Kestrel port, use the app's port. For IIS Express, the randomly generated port for the app can be found in the app's properties in the **Debug** panel. Since the app doesn't exist at this point and the IIS Express port isn't known, return to this step after the app is created and update the redirect URI. A remark appears later in this topic to remind IIS Express users to update the redirect URI.
 1. Disable the **Permissions** > **Grant admin concent to openid and offline_access permissions** check box.
 1. Select **Register**.
 
@@ -45,7 +45,7 @@ To specify the output location, which creates a project folder if it doesn't exi
 > [!NOTE]
 > In the Azure portal, the app's **Authentication** > **Platform configurations** > **Web** > **Redirect URI** is configured for port 5001 for apps that run on the Kestrel server with default settings.
 >
-> If the app is run on a random IIS Express port, the port for the app can be found in the *Server app's* properties in the **Debug** panel.
+> If the app is run on a random IIS Express port, the port for the app can be found in the app's properties in the **Debug** panel.
 >
 > If the port wasn't configured earlier with the app's known port, return to the app's registration in the Azure portal and update the redirect URI with the correct port.
 
