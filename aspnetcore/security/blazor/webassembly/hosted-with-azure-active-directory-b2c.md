@@ -127,7 +127,7 @@ The support for authenticating and authorizing calls to ASP.NET Core Web APIs is
 
 ```xml
 <PackageReference Include="Microsoft.AspNetCore.Authentication.AzureADB2C.UI" 
-  Version="3.2.0" />
+  Version="3.1.4" />
 ```
 
 ### Authentication service support
