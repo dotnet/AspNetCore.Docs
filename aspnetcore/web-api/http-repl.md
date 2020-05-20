@@ -5,7 +5,7 @@ description: Learn how to use the HTTP REPL .NET Core Global Tool to browse and 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 12/11/2019
+ms.date: 05/20/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: web-api/http-repl
 ---
@@ -811,18 +811,19 @@ To set an HTTP request header, use one of the following approaches:
 
 The HTTP REPL supports the testing of secured endpoints in two ways: via the default credentials of the logged in user or through the use of HTTP request headers. 
 
-### Default Credentials
+### Default credentials
 
-To pass the default credentials of the logged in user, set the `httpClient.useDefaultCredentials` preference to true as follows:
+Consider a scenario in which the web API you're testing is hosted in IIS and is secured with Windows authentication. You want the IIS application pool identity's credentials to flow across to the HTTP REPL requests. To pass the default credentials of the logged in user:
 
-```console
-pref set httpClient.useDefaultCredentials true
-```
+1. Set the `httpClient.useDefaultCredentials` preference to `true`:
 
-> [!TIP]
-> After setting this preference, you'll need to exit and restart the tool.
+    ```console
+    pref set httpClient.useDefaultCredentials true
+    ```
 
-### HTTP Request Headers
+1. Exit and restart the tool before sending another request to the web API.
+
+### HTTP request headers
 
 Examples of supported authentication and authorization schemes include basic authentication, JWT bearer tokens, and digest authentication. For example, you can send a bearer token to an endpoint with the following command:
 
