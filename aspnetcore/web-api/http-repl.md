@@ -813,7 +813,7 @@ The HTTP REPL supports the testing of secured endpoints in two ways: via the def
 
 ### Default credentials
 
-Consider a scenario in which the web API you're testing is hosted in IIS and is secured with Windows authentication. You want the IIS application pool identity's credentials to flow across to the HTTP REPL requests. To pass the default credentials of the logged in user:
+Consider a scenario in which the web API you're testing is hosted in IIS and is secured with Windows authentication. You want the credentials of the user running the tool to flow across to the HTTP endpoints being tested. To pass the default credentials of the logged in user:
 
 1. Set the `httpClient.useDefaultCredentials` preference to `true`:
 
