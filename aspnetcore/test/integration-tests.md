@@ -399,7 +399,6 @@ The SUT's database context is registered in its `Startup.ConfigureServices` meth
 
 For SUTs that still use [Web Host}(xref:fundamentals/host/web-host), the test app's `builder.ConfigureServices` callback is executed *before* the app's `Startup.ConfigureServices` code is executed whereas the test app's `builder.ConfigureTestServices` callback is executed *after*.
 
-
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
