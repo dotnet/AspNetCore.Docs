@@ -809,7 +809,22 @@ To set an HTTP request header, use one of the following approaches:
 
 ## Test secured endpoints
 
-The HTTP REPL supports the testing of secured endpoints through the use of HTTP request headers. Examples of supported authentication and authorization schemes include basic authentication, JWT bearer tokens, and digest authentication. For example, you can send a bearer token to an endpoint with the following command:
+The HTTP REPL supports the testing of secured endpoints in two ways: via the default credentials of the logged in user or through the use of HTTP request headers. 
+
+### Default Credentials
+
+To pass the default credentials of the logged in user, set the `httpClient.useDefaultCredentials` preference to true as follows:
+
+```console
+pref set httpClient.useDefaultCredentials true
+```
+
+> [!TIP]
+> After setting this preference, you'll need to exit and restart the tool.
+
+### HTTP Request Headers
+
+Examples of supported authentication and authorization schemes include basic authentication, JWT bearer tokens, and digest authentication. For example, you can send a bearer token to an endpoint with the following command:
 
 ```console
 set header Authorization "bearer <TOKEN VALUE>"
