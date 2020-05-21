@@ -107,7 +107,7 @@ Millions of developers use or have used [ASP.NET 4.x](/aspnet/overview) to creat
 [!INCLUDE[](~/includes/benefits.md)]
 
 ```javascript
-alert("hello world");
+alert("you should be using typescript");
 ```
 
 ## Build web APIs and web UI using ASP.NET Core MVC
