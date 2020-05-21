@@ -4,7 +4,7 @@ author: ardalis
 description: Learn how to migrate a web API implementation from ASP.NET 4.x Web API to ASP.NET Core MVC.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 12/05/2019
+ms.date: 05/20/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: migration/webapi
 ---
@@ -12,35 +12,154 @@ uid: migration/webapi
 
 By [Scott Addie](https://twitter.com/scott_addie) and [Steve Smith](https://ardalis.com/)
 
-An ASP.NET 4.x Web API is an HTTP service that reaches a broad range of clients, including browsers and mobile devices. ASP.NET Core unifies ASP.NET 4.x's MVC and Web API app models into a simpler programming model known as ASP.NET Core MVC. This article demonstrates the steps required to migrate from ASP.NET 4.x Web API to ASP.NET Core MVC.
+An ASP.NET 4.x Web API is an HTTP service that reaches a broad range of clients, including browsers and mobile devices. ASP.NET Core unifies ASP.NET 4.x's MVC and Web API app models into single programming model known as ASP.NET Core MVC. This article demonstrates the steps required to migrate from ASP.NET 4.x Web API to ASP.NET Core MVC.
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/migration/webapi/sample) ([how to download](xref:index#how-to-download-a-sample))
 
+::: moniker range=">= aspnetcore-3.0"
+
+## Prerequisites
+
+[!INCLUDE [prerequisites](../includes/net-core-prereqs-vs-3.1.md)]
+
+## Review ASP.NET 4.x Web API project
+
+As a starting point, this article uses the *ProductsApp* project created in [Getting Started with ASP.NET Web API 2](/aspnet/web-api/overview/getting-started-with-aspnet-web-api/tutorial-your-first-web-api). In that project, a basic ASP.NET 4.x Web API project is configured as follows.
+
+In *Global.asax.cs*, a call is made to `WebApiConfig.Register`:
+
+[!code-csharp[](webapi/sample/3.x/ProductsApp/Global.asax.cs?highlight=14)]
+
+The `WebApiConfig` class is found in the *App_Start* folder and has a static `Register` method:
+
+[!code-csharp[](webapi/sample/3.x/ProductsApp/App_Start/WebApiConfig.cs)]
+
+This class configures [attribute routing](/aspnet/web-api/overview/web-api-routing-and-actions/attribute-routing-in-web-api-2), although it's not actually being used in the project. It also configures the routing table, which is used by ASP.NET Web API. In this case, ASP.NET 4.x Web API expects URLs to match the format `/api/{controller}/{id}`, with `{id}` being optional.
+
+The *ProductsApp* project includes one controller. The controller inherits from `ApiController` and contains two actions:
+
+[!code-csharp[](webapi/sample/3.x/ProductsApp/Controllers/ProductsController.cs?highlight=28,33)]
+
+The `Product` model used by `ProductsController` is a basic class:
+
+[!code-csharp[](webapi/sample/3.x/ProductsApp/Models/Product.cs)]
+
+The following sections demonstrate migration of the Web API project to ASP.NET Core MVC.
+
+## Create destination project
+
+Complete the following steps in Visual Studio:
+
+* From the **File** menu, select **New** > **Project**.
+* Select the **Blank Solution** template and click **Next**.
+* Name the solution *WebAPIMigration*. Click **Create**.
+* In the **Create a new ASP.NET Core Web Application** dialog, confirm that **.NET Core** and **ASP.NET Core 3.1** are selected. Select the **API** template and click **Create**.
+* Add the existing *ProductsApp* project to the solution.
+* Add a new **ASP.NET Core Web Application** project to the solution.
+* In the **Configure your new project** dialog, Name the project *ProductsCore*, and click **Create**.
+* In the **Create a new ASP.NET Core Web Application** dialog, confirm that **.NET Core** and **ASP.NET Core 3.1** are selected. Select the **API** project template, and click **Create**.
+
+The solution now contains two projects. The following sections explain migrating the *ProductsApp* project's contents to the *ProductsCore* project.
+
+## Migrate configuration
+
+ASP.NET Core doesn't use the *App_Start* folder or the *Global.asax* file, and the *web.config* file is added at publish time. *Startup.cs* is the replacement for *Global.asax* and is located in the project root. The `Startup` class handles all app startup tasks. For more information, see <xref:fundamentals/startup>.
+
+All ASP.NET Core templates include attribute routing in the generated code. The following `UseRouting` and `UseEndpoints` calls register route matching and endpoint execution in the [middleware](xref:fundamentals/middleware/index) pipeline.  They replace the *ProductsApp* project's *App_Start/WebApiConfig.cs* file:
+
+[!code-csharp[](webapi/sample/3.x/ProductsCore/Startup.cs?name=snippet_Configure&highlight=10,14])]
+
+## Migrate models and controllers
+
+Copy over the *ProductApp* project's controller and the model it uses. Follow these steps:
+
+1. Copy *Controllers/ProductsController.cs* from the original project to the new one.
+1. Copy the entire *Models* folder from the original project to the new one.
+1. Change the copied files' namespaces to match the new project name (*ProductsCore*). Adjust the `using ProductsApp.Models;` statement in *ProductsController.cs* too.
+
+At this point, building the app results in a number of compilation errors. The errors occur because the following components don't exist in ASP.NET Core:
+
+* `ApiController` class
+* `System.Web.Http` namespace
+* `IHttpActionResult` interface
+
+Fix the errors as follows:
+
+1. Change `ApiController` to <xref:Microsoft.AspNetCore.Mvc.ControllerBase>. Add `using Microsoft.AspNetCore.Mvc;` to resolve the `ControllerBase` reference.
+1. Delete `using System.Web.Http;`.
+1. Change the `GetProduct` action's return type from `IHttpActionResult` to `ActionResult<Product>`.
+
+Simplify the `GetProduct` action's `return` statement to the following:
+
+```csharp
+return product;
+```
+
+## Configure routing
+
+Configure routing as follows:
+
+1. Mark the `ProductsController` class with the following attributes:
+
+    ```csharp
+    [Route("api/[controller]")]
+    [ApiController]
+    ```
+
+    The preceding [`[Route]`](xref:Microsoft.AspNetCore.Mvc.RouteAttribute) attribute configures the controller's attribute routing pattern. The [`[ApiController]`](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) attribute makes attribute routing a requirement for all actions in this controller.
+
+    Attribute routing supports tokens, such as `[controller]` and `[action]`. At runtime, each token is replaced with the name of the controller or action, respectively, to which the attribute has been applied. The tokens reduce the number of magic strings in the project. The tokens also ensure routes remain synchronized with the corresponding controllers and actions when automatic rename refactorings are applied.
+1. Set the project's compatibility mode to ASP.NET Core 3.0:
+
+    [!code-csharp[](webapi/sample/3.x/ProductsCore/Startup.cs?name=snippet_ConfigureServices&highlight=4)]
+
+    The preceding change:
+
+    * Is required to use the `[ApiController]` attribute at the controller level.
+    * Opts in to potentially breaking behaviors introduced in ASP.NET Core 3.0.
+1. Enable HTTP Get requests to the `ProductController` actions:
+    * Apply the [`[HttpGet]`](xref:Microsoft.AspNetCore.Mvc.HttpGetAttribute) attribute to the `GetAllProducts` action.
+    * Apply the `[HttpGet("{id}")]` attribute to the `GetProduct` action.
+
+After the preceding changes and the removal of unused `using` statements, *ProductsController.cs* file looks like this:
+
+[!code-csharp[](webapi/sample/3.x/ProductsCore/Controllers/ProductsController.cs)]
+
+Run the migrated project, and browse to `/api/products`. A full list of three products appears. Browse to `/api/products/1`. The first product appears.
+
+## Additional resources
+
+* <xref:web-api/index>
+* <xref:web-api/action-return-types>
+* <xref:mvc/compatibility-version>
+
+::: moniker-end
+::: moniker range="<= aspnetcore-2.2"
 ## Prerequisites
 
 [!INCLUDE [prerequisites](../includes/net-core-prereqs-vs2019-2.2.md)]
 
 ## Review ASP.NET 4.x Web API project
 
-As a starting point, this article uses the *ProductsApp* project created in [Getting Started with ASP.NET Web API 2](/aspnet/web-api/overview/getting-started-with-aspnet-web-api/tutorial-your-first-web-api). In that project, a simple ASP.NET 4.x Web API project is configured as follows.
+As a starting point, this article uses the *ProductsApp* project created in [Getting Started with ASP.NET Web API 2](/aspnet/web-api/overview/getting-started-with-aspnet-web-api/tutorial-your-first-web-api). In that project, a basic ASP.NET 4.x Web API project is configured as follows.
 
 In *Global.asax.cs*, a call is made to `WebApiConfig.Register`:
 
-[!code-csharp[](webapi/sample/ProductsApp/Global.asax.cs?highlight=14)]
+[!code-csharp[](webapi/sample/2.x/ProductsApp/Global.asax.cs?highlight=14)]
 
 The `WebApiConfig` class is found in the *App_Start* folder and has a static `Register` method:
 
-[!code-csharp[](webapi/sample/ProductsApp/App_Start/WebApiConfig.cs)]
+[!code-csharp[](webapi/sample/2.x/ProductsApp/App_Start/WebApiConfig.cs)]
 
 This class configures [attribute routing](/aspnet/web-api/overview/web-api-routing-and-actions/attribute-routing-in-web-api-2), although it's not actually being used in the project. It also configures the routing table, which is used by ASP.NET Web API. In this case, ASP.NET 4.x Web API expects URLs to match the format `/api/{controller}/{id}`, with `{id}` being optional.
 
 The *ProductsApp* project includes one controller. The controller inherits from `ApiController` and contains two actions:
 
-[!code-csharp[](webapi/sample/ProductsApp/Controllers/ProductsController.cs?highlight=28,33)]
+[!code-csharp[](webapi/sample/2.x/ProductsApp/Controllers/ProductsController.cs?highlight=28,33)]
 
-The `Product` model used by `ProductsController` is a simple class:
+The `Product` model used by `ProductsController` is a basic class:
 
-[!code-csharp[](webapi/sample/ProductsApp/Models/Product.cs)]
+[!code-csharp[](webapi/sample/2.x/ProductsApp/Models/Product.cs)]
 
 The following sections demonstrate migration of the Web API project to ASP.NET Core MVC.
 
@@ -60,7 +179,7 @@ ASP.NET Core doesn't use the *App_Start* folder or the *Global.asax* file, and t
 
 In ASP.NET Core MVC, attribute routing is included by default when <xref:Microsoft.AspNetCore.Builder.MvcApplicationBuilderExtensions.UseMvc*> is called in `Startup.Configure`. The following `UseMvc` call replaces the *ProductsApp* project's *App_Start/WebApiConfig.cs* file:
 
-[!code-csharp[](webapi/sample/ProductsCore/Startup.cs?name=snippet_Configure&highlight=13])]
+[!code-csharp[](webapi/sample/2.x/ProductsCore/Startup.cs?name=snippet_Configure&highlight=13])]
 
 ## Migrate models and controllers
 
@@ -104,7 +223,7 @@ Configure routing as follows:
     Attribute routing supports tokens, such as `[controller]` and `[action]`. At runtime, each token is replaced with the name of the controller or action, respectively, to which the attribute has been applied. The tokens reduce the number of magic strings in the project. The tokens also ensure routes remain synchronized with the corresponding controllers and actions when automatic rename refactorings are applied.
 1. Set the project's compatibility mode to ASP.NET Core 2.2:
 
-    [!code-csharp[](webapi/sample/ProductsCore/Startup.cs?name=snippet_ConfigureServices&highlight=4)]
+    [!code-csharp[](webapi/sample/2.x/ProductsCore/Startup.cs?name=snippet_ConfigureServices&highlight=4)]
 
     The preceding change:
 
@@ -116,7 +235,7 @@ Configure routing as follows:
 
 After the preceding changes and the removal of unused `using` statements, *ProductsController.cs* file looks like this:
 
-[!code-csharp[](webapi/sample/ProductsCore/Controllers/ProductsController.cs)]
+[!code-csharp[](webapi/sample/2.x/ProductsCore/Controllers/ProductsController.cs)]
 
 Run the migrated project, and browse to `/api/products`. A full list of three products appears. Browse to `/api/products/1`. The first product appears.
 
