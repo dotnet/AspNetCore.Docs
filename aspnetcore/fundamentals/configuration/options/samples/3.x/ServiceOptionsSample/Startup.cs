@@ -9,6 +9,11 @@ namespace ServiceOptionsSample
     {
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMyService(options =>
+            {
+                options.MyValue = "This value was set in ConfigureServices";
+            });
+
             services.AddControllers();
         }
 
