@@ -106,6 +106,10 @@ Millions of developers use or have used [ASP.NET 4.x](/aspnet/overview) to creat
 
 [!INCLUDE[](~/includes/benefits.md)]
 
+```javascript
+alert("hello world");
+```
+
 ## Build web APIs and web UI using ASP.NET Core MVC
 
 ASP.NET Core MVC provides features to build [web APIs](xref:tutorials/first-web-api) and [web apps](xref:tutorials/razor-pages/index):
