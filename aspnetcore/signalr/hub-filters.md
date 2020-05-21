@@ -128,12 +128,12 @@ public class LanguageFilter : IHubFilter
     public async ValueTask<object> InvokeMethodAsync(HubInvocationContext invocationContext, Func<HubInvocationContext, ValueTask<object>> next)
     {
         var languageFilter = (LanguageFilterAttribute)Attribute.GetCustomAttribute(invocationContext.HubMethod, typeof(LanguageFilterAttribute));
-        if (invocationContext.HubMethodArguments.Count < languageFilter.FilterArgument &&
+        if (invocationContext.HubMethodArguments.Count > languageFilter.FilterArgument &&
             invocationContext.HubMethodArguments[languageFilter.FilterArgument] is string str)
         {
             foreach (var bannedPhrase in bannedPhrases)
             {
-                str.Replace(bannedPhrase, "***");
+                str = str.Replace(bannedPhrase, "***");
             }
             if (invocationContext.HubMethodArguments is object[] arguments)
             {
