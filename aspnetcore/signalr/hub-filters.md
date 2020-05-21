@@ -113,7 +113,7 @@ public class ChatHub
     [LanguageFilter(filterArgument: 0)]
     public async Task SendMessage(string message, string username)
     {
-        await Clients.All.SendAsync($"{username} says: {message}");
+        await Clients.All.SendAsync("SendMessage", $"{username} says: {message}");
     }
 }
 ```
