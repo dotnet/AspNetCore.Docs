@@ -46,18 +46,21 @@ The `Product` model used by `ProductsController` is a basic class:
 
 The following sections demonstrate migration of the Web API project to ASP.NET Core MVC.
 
-## Create destination project
+## Create the destination project
 
-Complete the following steps in Visual Studio:
+Create a new blank solution in Visual Studio and add the Web API project to migrate:
 
-* From the **File** menu, select **New** > **Project**.
-* Select the **Blank Solution** template and click **Next**.
-* Name the solution *WebAPIMigration*. Click **Create**.
-* In the **Create a new ASP.NET Core Web Application** dialog, confirm that **.NET Core** and **ASP.NET Core 3.1** are selected. Select the **API** template and click **Create**.
-* Add the existing *ProductsApp* project to the solution.
-* Add a new **ASP.NET Core Web Application** project to the solution.
-* In the **Configure your new project** dialog, Name the project *ProductsCore*, and click **Create**.
-* In the **Create a new ASP.NET Core Web Application** dialog, confirm that **.NET Core** and **ASP.NET Core 3.1** are selected. Select the **API** project template, and click **Create**.
+1. From the **File** menu, select **New** > **Project**.
+1. Select the **Blank Solution** template and click **Next**.
+1. Name the solution *WebAPIMigration*. Click **Create**.
+1. Add the existing *ProductsApp* project to the solution.
+
+Add a new API project to migrate to:
+
+1. Add a new **ASP.NET Core Web Application** project to the solution.
+1. In the **Configure your new project** dialog, Name the project *ProductsCore*, and click **Create**.
+1. In the **Create a new ASP.NET Core Web Application** dialog, confirm that **.NET Core** and **ASP.NET Core 3.1** are selected. Select the **API** project template, and click **Create**.
+1. Remove the *WeatherForecast.cs* and *Controllers/WeatherForecastController.cs* example files from the new *ProductsCore* project.
 
 The solution now contains two projects. The following sections explain migrating the *ProductsApp* project's contents to the *ProductsCore* project.
 
@@ -163,7 +166,7 @@ The `Product` model used by `ProductsController` is a basic class:
 
 The following sections demonstrate migration of the Web API project to ASP.NET Core MVC.
 
-## Create destination project
+## Create the destination project
 
 Complete the following steps in Visual Studio:
 
