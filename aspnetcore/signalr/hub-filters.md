@@ -103,47 +103,51 @@ If a filter wants to skip a hub method invocation we recommend throwing a `HubEx
 
 When writing the filter logic, try to make it generic by using attributes on hub methods instead of checking for hub method names.
 
-For example, lets write a filter that will synchronize all calls to a specific hub method so it can't be called in parallel.
-For the purposes of this example we'll assume a `SynchronizeAttribute` class is defined.
+For example, lets write a filter that will check an argument to a hub method for banned phrases and replace any phrases it finds with "***".
+For the purposes of this example we'll assume a `LanguageFilterAttribute` class is defined and it has a property named `FilterArgument` that can be set when using the attribute.
 
-First, place the attribute on the hub method that will be synchronized.
+First, place the attribute on the hub method that has a string argument that we want to clean up.
 ```csharp
 public class ChatHub
 {
-    static int number;
-
-    [Synchronize]
-    public void Increment(int count)
+    [LanguageFilter(filterArgument: 0)]
+    public async Task SendMessage(string message, string username)
     {
-        number += count;
+        await Clients.All.SendAsync($"{username} says: {message}");
     }
 }
 ```
 
-Next, define a hub filter that will check for the attribute and not allow other invocations to run until the method has completed.
+Next, define a hub filter that will check for the attribute and replace banned phrases in an argument to the hub method with "***".
 ```csharp
-public class SynchronizeFilter : IHubFilter
+public class LanguageFilter : IHubFilter
 {
-    private readonly SemaphoreSlim _lock = new SemaphoreSlim(1, 1);
+    // populated from a file or inline
+    private List<string> bannedPhrases = new List<string>();
 
     public async ValueTask<object> InvokeMethodAsync(HubInvocationContext invocationContext, Func<HubInvocationContext, ValueTask<object>> next)
     {
-        if (Attribute.IsDefined(invocationContext.HubMethod, typeof(SynchronizeAttribute)))
+        var languageFilter = (LanguageFilterAttribute)Attribute.GetCustomAttribute(invocationContext.HubMethod, typeof(LanguageFilterAttribute));
+        if (invocationContext.HubMethodArguments.Count < languageFilter.FilterArgument &&
+            invocationContext.HubMethodArguments[languageFilter.FilterArgument] is string str)
         {
-            await _lock.WaitAsync();
-            try
+            foreach (var bannedPhrase in bannedPhrases)
             {
-                return await next(invocationContext);
+                str.Replace(bannedPhrase, "***");
             }
-            finally
+            if (invocationContext.HubMethodArguments is object[] arguments)
             {
-                _lock.Release();
+                arguments[languageFilter.FilterArgument] = str;
+            }
+            else
+            {
+                arguments = invocationContext.HubMethodArguments.ToArray();
+                arguments[languageFilter.FilterArgument] = str;
+                invocationContext = new HubInvocationContext(invocationContext.Context, invocationContext.ServiceProvider, invocationContext.Hub, invocationContext.HubMethod, arguments);
             }
         }
-        else
-        {
-            return await next(invocationContext);
-        }
+
+        return await next(invocationContext);
     }
 }
 ```
@@ -154,10 +158,10 @@ public void ConfigureServices(IServiceCollection services)
 {
     services.AddSignalR(hubOptions =>
     {
-        hubOptions.AddFilter<SynchronizeFilter>();
+        hubOptions.AddFilter<LanguageFilter>();
     });
 
-    services.AddSingleton<SynchronizeFilter>();
+    services.AddSingleton<LanguageFilter>();
 }
 ```
 
