@@ -21,10 +21,10 @@ Hub filters can be applied globally or per hub type. When adding filters the ord
 ```csharp
 public void ConfigureServices(IServiceCollection services)
 {
-    services.AddSignalR(hubOptions =>
+    services.AddSignalR(options =>
     {
         // Global filters will run first
-        hubOptions.AddFilter<CustomFilter>();
+        options.AddFilter<CustomFilter>();
     }).AddHubOptions<MyHub>(options =>
     {
         // Local filters will run second
@@ -123,7 +123,7 @@ Next, define a hub filter that will check for the attribute and replace banned p
 public class LanguageFilter : IHubFilter
 {
     // populated from a file or inline
-    private List<string> bannedPhrases = new List<string>();
+    private List<string> bannedPhrases = new List<string> { "async void", ".Result" };
 
     public async ValueTask<object> InvokeMethodAsync(HubInvocationContext invocationContext, Func<HubInvocationContext, ValueTask<object>> next)
     {
@@ -152,7 +152,7 @@ public class LanguageFilter : IHubFilter
 }
 ```
 
-Finally, we need to register the hub filter. Because this filter relies on state outside of the normal hub method scope we need to register it as a singleton.
+Finally, we need to register the hub filter. To avoid reinitializing the banned phrases list for every invocation, we register the hub filter as a singleton.
 ```csharp
 public void ConfigureServices(IServiceCollection services)
 {
@@ -169,24 +169,24 @@ public void ConfigureServices(IServiceCollection services)
 
 The `HubInvocationContext` contains information for the current hub method invocation.
 
-| Property | Description |
-| ------ | ----------- |
-| `Context ` | The `HubCallerContext` contains information about the connection. |
-| `Hub` | The instance of the Hub being used for this hub method invocation. |
-| `HubMethodName` | The name of the hub method being invoked. |
-| `HubMethodArguments` | The list of arguments being passed to the hub method. |
-| `ServiceProvider` | The scoped service provider for this hub method invocation. |
-| `HubMethod` | The hub method information. |
+| Property | Description | Type |
+| ------ | ------ | ----------- |
+| `Context ` | The `HubCallerContext` contains information about the connection. | `HubCallerContext` |
+| `Hub` | The instance of the Hub being used for this hub method invocation. | `Hub` |
+| `HubMethodName` | The name of the hub method being invoked. | `string` |
+| `HubMethodArguments` | The list of arguments being passed to the hub method. | `IReadOnlyList<string>` |
+| `ServiceProvider` | The scoped service provider for this hub method invocation. | `IServiceProvider` |
+| `HubMethod` | The hub method information. | `MethodInfo` |
 
 ## The HubLifetimeContext object
 
 The `HubLifetimeContext` contains information for the `OnConnectedAsync` and `OnDisconnectedAsync` hub methods.
 
-| Property | Description |
-| ------ | ----------- |
-| `Context ` | The `HubCallerContext` contains information about the connection. |
-| `Hub` | The instance of the Hub being used for this hub method invocation. |
-| `ServiceProvider` | The scoped service provider for this hub method invocation. |
+| Property | Description | Type |
+| ------ | ------ | ----------- |
+| `Context ` | The `HubCallerContext` contains information about the connection. | `HubCallerContext` |
+| `Hub` | The instance of the Hub being used for this hub method invocation. | `Hub` |
+| `ServiceProvider` | The scoped service provider for this hub method invocation. | `IServiceProvider` |
 
 ## Authorization and filters
 
