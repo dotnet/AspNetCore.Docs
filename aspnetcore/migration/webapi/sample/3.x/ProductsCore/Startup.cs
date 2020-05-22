@@ -22,13 +22,10 @@ namespace ProductsCore
 
         public IConfiguration Configuration { get; }
 
-        #region snippet_ConfigureServices
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
         }
-        #endregion
 
         #region snippet_Configure
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

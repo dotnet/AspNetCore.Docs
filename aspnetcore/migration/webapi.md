@@ -70,7 +70,7 @@ ASP.NET Core doesn't use the *App_Start* folder or the *Global.asax* file, and t
 
 All ASP.NET Core project templates include attribute routing in the generated code. The following `UseRouting` and `UseEndpoints` calls register route matching and endpoint execution in the [middleware](xref:fundamentals/middleware/index) pipeline. They replace the *ProductsApp* project's *App_Start/WebApiConfig.cs* file:
 
-[!code-csharp[](webapi/sample/3.x/ProductsCore/Startup.cs?name=snippet_Configure&highlight=10,14])]
+[!code-csharp[](webapi/sample/3.x/ProductsCore/Startup.cs?name=snippet_Configure&highlight=10,14)]
 
 ## Migrate models and controllers
 
@@ -112,17 +112,8 @@ Configure routing as follows:
     The preceding [`[Route]`](xref:Microsoft.AspNetCore.Mvc.RouteAttribute) attribute configures the controller's attribute routing pattern. The [`[ApiController]`](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) attribute makes attribute routing a requirement for all actions in this controller.
 
     Attribute routing supports tokens, such as `[controller]` and `[action]`. At runtime, each token is replaced with the name of the controller or action, respectively, to which the attribute has been applied. The tokens:
-    
     * Reduce the number of magic strings in the project.
     * Ensure routes remain synchronized with the corresponding controllers and actions when automatic rename refactorings are applied.
-1. Set the project's compatibility mode to ASP.NET Core 3.0:
-
-    [!code-csharp[](webapi/sample/3.x/ProductsCore/Startup.cs?name=snippet_ConfigureServices&highlight=4)]
-
-    The preceding change:
-
-    * Is required to use the `[ApiController]` attribute at the controller level.
-    * Opts in to potentially breaking behaviors introduced in ASP.NET Core 3.0.
 1. Enable HTTP Get requests to the `ProductController` actions:
     * Apply the [`[HttpGet]`](xref:Microsoft.AspNetCore.Mvc.HttpGetAttribute) attribute to the `GetAllProducts` action.
     * Apply the `[HttpGet("{id}")]` attribute to the `GetProduct` action.
@@ -186,7 +177,7 @@ ASP.NET Core doesn't use the *App_Start* folder or the *Global.asax* file, and t
 
 In ASP.NET Core MVC, attribute routing is included by default when <xref:Microsoft.AspNetCore.Builder.MvcApplicationBuilderExtensions.UseMvc*> is called in `Startup.Configure`. The following `UseMvc` call replaces the *ProductsApp* project's *App_Start/WebApiConfig.cs* file:
 
-[!code-csharp[](webapi/sample/2.x/ProductsCore/Startup.cs?name=snippet_Configure&highlight=13])]
+[!code-csharp[](webapi/sample/2.x/ProductsCore/Startup.cs?name=snippet_Configure&highlight=13)]
 
 ## Migrate models and controllers
 
