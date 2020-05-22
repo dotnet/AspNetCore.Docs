@@ -155,7 +155,7 @@ We recommend the following sequence of tutorials and articles for an introductio
    |----------|----------|----------|
    |Web app                   | For new development        |[Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start) |
    |Web app                   | For maintaining an MVC app |[Get started with MVC](xref:tutorials/first-mvc-app/start-mvc)|
-   |Web API                   |                            |[Create a web API](xref:tutorials/first-web-api)&dagger; |
+   |Web API                   |                            |[Create a web API](xref:tutorials/first-web-api) |
    |Real-time app             |                            |[Get started with SignalR](xref:tutorials/signalr) |
 
 1. Follow a tutorial that shows how to do basic data access.
