@@ -12,7 +12,7 @@ uid: migration/webapi
 
 By [Scott Addie](https://twitter.com/scott_addie) and [Steve Smith](https://ardalis.com/)
 
-An ASP.NET 4.x Web API is an HTTP service that reaches a broad range of clients, including browsers and mobile devices. ASP.NET Core unifies ASP.NET 4.x's MVC and Web API app models into a single programming model known as ASP.NET Core MVC. This article demonstrates the steps required to migrate from ASP.NET 4.x Web API to ASP.NET Core MVC.
+An ASP.NET 4.x Web API is an HTTP service that reaches a broad range of clients, including browsers and mobile devices. ASP.NET Core unifies ASP.NET 4.x's MVC and Web API app models into a unified programming model known as ASP.NET Core MVC. This article demonstrates the steps required to migrate from ASP.NET 4.x Web API to ASP.NET Core MVC.
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/migration/webapi/sample) ([how to download](xref:index#how-to-download-a-sample))
 
@@ -34,7 +34,7 @@ The `WebApiConfig` class is found in the *App_Start* folder and has a static `Re
 
 [!code-csharp[](webapi/sample/3.x/ProductsApp/App_Start/WebApiConfig.cs)]
 
-This class configures [attribute routing](/aspnet/web-api/overview/web-api-routing-and-actions/attribute-routing-in-web-api-2), although it's not actually being used in the project. It also configures the routing table, which is used by ASP.NET Web API. In this case, ASP.NET 4.x Web API expects URLs to match the format `/api/{controller}/{id}`, with `{id}` being optional.
+This class configures [attribute routing](/aspnet/web-api/overview/web-api-routing-and-actions/attribute-routing-in-web-api-2), although it's not actually being used in the project. It also configures the routing table, which is used by ASP.NET 4.x Web API. In this case, ASP.NET 4.x Web API expects URLs to match the format `/api/{controller}/{id}`, with `{id}` being optional.
 
 The *ProductsApp* project includes one controller. The controller inherits from `ApiController` and contains two actions:
 
@@ -48,18 +48,18 @@ The following sections demonstrate migration of the Web API project to ASP.NET C
 
 ## Create the destination project
 
-Create a new blank solution in Visual Studio and add the Web API project to migrate:
+Create a new blank solution in Visual Studio and add the ASP.NET 4.x Web API project to migrate:
 
 1. From the **File** menu, select **New** > **Project**.
-1. Select the **Blank Solution** template and click **Next**.
-1. Name the solution *WebAPIMigration*. Click **Create**.
+1. Select the **Blank Solution** template and select **Next**.
+1. Name the solution *WebAPIMigration*. Select **Create**.
 1. Add the existing *ProductsApp* project to the solution.
 
 Add a new API project to migrate to:
 
 1. Add a new **ASP.NET Core Web Application** project to the solution.
-1. In the **Configure your new project** dialog, Name the project *ProductsCore*, and click **Create**.
-1. In the **Create a new ASP.NET Core Web Application** dialog, confirm that **.NET Core** and **ASP.NET Core 3.1** are selected. Select the **API** project template, and click **Create**.
+1. In the **Configure your new project** dialog, Name the project *ProductsCore*, and select **Create**.
+1. In the **Create a new ASP.NET Core Web Application** dialog, confirm that **.NET Core** and **ASP.NET Core 3.1** are selected. Select the **API** project template, and select **Create**.
 1. Remove the *WeatherForecast.cs* and *Controllers/WeatherForecastController.cs* example files from the new *ProductsCore* project.
 
 The solution now contains two projects. The following sections explain migrating the *ProductsApp* project's contents to the *ProductsCore* project.
@@ -68,7 +68,7 @@ The solution now contains two projects. The following sections explain migrating
 
 ASP.NET Core doesn't use the *App_Start* folder or the *Global.asax* file, and the *web.config* file is added at publish time. *Startup.cs* is the replacement for *Global.asax* and is located in the project root. The `Startup` class handles all app startup tasks. For more information, see <xref:fundamentals/startup>.
 
-All ASP.NET Core templates include attribute routing in the generated code. The following `UseRouting` and `UseEndpoints` calls register route matching and endpoint execution in the [middleware](xref:fundamentals/middleware/index) pipeline.  They replace the *ProductsApp* project's *App_Start/WebApiConfig.cs* file:
+All ASP.NET Core project templates include attribute routing in the generated code. The following `UseRouting` and `UseEndpoints` calls register route matching and endpoint execution in the [middleware](xref:fundamentals/middleware/index) pipeline. They replace the *ProductsApp* project's *App_Start/WebApiConfig.cs* file:
 
 [!code-csharp[](webapi/sample/3.x/ProductsCore/Startup.cs?name=snippet_Configure&highlight=10,14])]
 
@@ -111,7 +111,10 @@ Configure routing as follows:
 
     The preceding [`[Route]`](xref:Microsoft.AspNetCore.Mvc.RouteAttribute) attribute configures the controller's attribute routing pattern. The [`[ApiController]`](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) attribute makes attribute routing a requirement for all actions in this controller.
 
-    Attribute routing supports tokens, such as `[controller]` and `[action]`. At runtime, each token is replaced with the name of the controller or action, respectively, to which the attribute has been applied. The tokens reduce the number of magic strings in the project. The tokens also ensure routes remain synchronized with the corresponding controllers and actions when automatic rename refactorings are applied.
+    Attribute routing supports tokens, such as `[controller]` and `[action]`. At runtime, each token is replaced with the name of the controller or action, respectively, to which the attribute has been applied. The tokens:
+    
+    * Reduce the number of magic strings in the project.
+    * Ensure routes remain synchronized with the corresponding controllers and actions when automatic rename refactorings are applied.
 1. Set the project's compatibility mode to ASP.NET Core 3.0:
 
     [!code-csharp[](webapi/sample/3.x/ProductsCore/Startup.cs?name=snippet_ConfigureServices&highlight=4)]
@@ -137,6 +140,7 @@ Run the migrated project, and browse to `/api/products`. A full list of three pr
 * <xref:mvc/compatibility-version>
 
 ::: moniker-end
+
 ::: moniker range="<= aspnetcore-2.2"
 ## Prerequisites
 
