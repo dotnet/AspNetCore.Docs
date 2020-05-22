@@ -19,12 +19,12 @@ namespace OptionsValidationSample
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddOptions<MyConfig>()
-                .Bind(Configuration.GetSection(MyConfig.MyConfigName))
+            services.AddOptions<MyConfigOptions>()
+                .Bind(Configuration.GetSection(MyConfigOptions.MyConfig))
                 .ValidateDataAnnotations()
                 .Validate(config =>
                 {
-                    if (config.Key2 != default)
+                    if (config.Key2 != 0)
                     {
                         return config.Key3 > config.Key2;
                     }

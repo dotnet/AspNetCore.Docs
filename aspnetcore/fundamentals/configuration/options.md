@@ -62,7 +62,7 @@ The following code uses <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601>
 
 [!code-csharp[](options/samples/3.x/OptionsSample/Pages/TestSnap.cshtml.cs?name=snippet)]
 
-The preceding code zzz
+In the preceding code, changes to the JSON configuration file after the app has started are read.
 
 ## Named options support with IConfigureNamedOptions
 
@@ -82,7 +82,7 @@ the following class is used for each section:
 
 The following code configures the named options:
 
-[!code-csharp[](~/fundamentals/configuration/options/samples/3.x/OptionsSample/StartupNO.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/configuration/options/samples/3.x/OptionsSample/StartupNO.cs?name=snippet_Example2)]
 
 The following code displays the named options:
 
@@ -117,7 +117,7 @@ We recommend passing a configuration delegate to [Configure](xref:Microsoft.Exte
 
 ## Options validation
 
-Options validation allows you to validate options when options are configured. Call `Validate` with a validation method that returns `true` if options are valid and `false` if they aren't valid:
+Options validation enables option values to be validated.  Call `Validate` with a validation method that returns `true` if options are valid and `false` if they aren't valid:
 
 ```csharp
 // Registration

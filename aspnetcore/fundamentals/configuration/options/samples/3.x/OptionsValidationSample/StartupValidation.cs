@@ -9,7 +9,6 @@ using OptionsValidationSample.Configuration;
 
 namespace OptionsValidationSample
 {
-    #region snippet
     public class StartupValidation
     {
         public StartupValidation(IConfiguration configuration)
@@ -19,12 +18,13 @@ namespace OptionsValidationSample
 
         public IConfiguration Configuration { get; }
 
+        #region snippet
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<MyConfig>(Configuration.GetSection(
-                                                MyConfig.MyConfigName));
+            services.Configure<MyConfigOptions>(Configuration.GetSection(
+                                                MyConfigOptions.MyConfig));
             services.TryAddEnumerable(ServiceDescriptor.Singleton<IValidateOptions
-                                      <MyConfig>, MyConfigValidation>());
+                                      <MyConfigOptions>, MyConfigValidation>());
             services.AddControllersWithViews();
         }
         #endregion
