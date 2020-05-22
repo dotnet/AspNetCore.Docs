@@ -146,7 +146,7 @@ The following code shows combining attributes on one line:
 
 ### Apply migrations
 
-The DataAnnotations applied to the class change the schema. For example, the DataAnnotations applied to the `Title` field:
+The DataAnnotations applied to the class changes the schema. For example, the DataAnnotations applied to the `Title` field:
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Models/MovieDateRatingDA.cs?name=snippet11)]
 
