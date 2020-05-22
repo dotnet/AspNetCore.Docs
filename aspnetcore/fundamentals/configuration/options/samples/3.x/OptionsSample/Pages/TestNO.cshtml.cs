@@ -15,8 +15,8 @@ namespace SampleApp.Pages
 
         public TestNOModel(IOptionsSnapshot<TopItemSettings> namedOptionsAccessor)
         {
-            _monthTopItem = namedOptionsAccessor.Get("Month");
-            _yearTopItem = namedOptionsAccessor.Get("Year");
+            _monthTopItem = namedOptionsAccessor.Get(TopItemSettings.Month);
+            _yearTopItem = namedOptionsAccessor.Get(TopItemSettings.Year);
         }
 
         public ContentResult OnGet()

@@ -16,13 +16,13 @@ namespace SampleApp
 
         public IConfiguration Configuration { get; set; }
 
-        // Used in TestNO
+        // Used in TestNO and set StartupNO in main.
         #region snippet_Example2
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<TopItemSettings>("Month", 
+            services.Configure<TopItemSettings>(TopItemSettings.Month,
                                                Configuration.GetSection("TopItem:Month"));
-            services.Configure<TopItemSettings>("Year",
+            services.Configure<TopItemSettings>(TopItemSettings.Year,
                                             Configuration.GetSection("TopItem:Year"));
 
             services.AddRazorPages();

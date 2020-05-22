@@ -68,16 +68,21 @@ The preceding code zzz
 
 Named options:
 
-* Allows the app to distinguish between named options configurations.
+* Are useful when multiple configuration sections bind to the same properties.
 * Are case sensitive.
 
 Consider the following *appSetting.json* file:
 
 [!code-json[](~/fundamentals/configuration/options/samples/3.x/OptionsSample/appsettings.NO.json)]
 
-The following class binds to the preceding settings:
+Rather than creating two classes to bind `TopItem:Month` and `TopItem:Year`,
+the following class is used for each section:
 
 [!code-csharp[](~/fundamentals/configuration/options/samples/3.x/OptionsSample/Models/TopItemSettings.cs)]
+
+The following code configures the named options:
+
+[!code-csharp[](~/fundamentals/configuration/options/samples/3.x/OptionsSample/StartupNO.csname=snippet)]
 
 The following code displays the named options:
 
