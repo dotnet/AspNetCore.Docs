@@ -2,15 +2,17 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using OptionsValidationSample.Configuration;
 
 namespace OptionsValidationSample
 {
     #region snippet
-    public class Startup
+    public class StartupValidation
     {
-        public Startup(IConfiguration configuration)
+        public StartupValidation(IConfiguration configuration)
         {
             Configuration = configuration;
         }
@@ -19,19 +21,10 @@ namespace OptionsValidationSample
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddOptions<MyConfig>()
-                .Bind(Configuration.GetSection(MyConfig.MyConfigName))
-                .ValidateDataAnnotations()
-                .Validate(config =>
-                {
-                    if (config.Key2 != default)
-                    {
-                        return config.Key3 > config.Key2;
-                    }
-
-                    return true;
-                }, "Key3 mst be > than Key2.");   // Failure message.
-
+            services.Configure<MyConfig>(Configuration.GetSection(
+                                                MyConfig.MyConfigName));
+            services.TryAddEnumerable(ServiceDescriptor.Singleton<IValidateOptions
+                                      <MyConfig>, MyConfigValidation>());
             services.AddControllersWithViews();
         }
         #endregion

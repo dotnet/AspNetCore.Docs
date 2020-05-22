@@ -7,41 +7,33 @@ using System.Diagnostics;
 
 namespace OptionsValidationSample.Controllers
 {
-    public class HomeController : Controller
+    public class Home2Controller : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<Home2Controller> _logger;
         private readonly IOptions<MyConfig> _config;
 
-        public HomeController(IOptions<MyConfig> config, ILogger<HomeController> logger)
+        public Home2Controller(IOptions<MyConfig> config, ILogger<Home2Controller> logger)
         {
-            _config = config;
             _logger = logger;
-
-            try
-            {
-                var configValue = _config.Value;
-               
-            }
-            catch (OptionsValidationException ex)
-            {
-                foreach (var failure in ex.Failures)
-                {
-                    _logger.LogError(failure);
-                }
-            }
+            _config = config;
         }
 
         public ContentResult Index()
         {
-            string msg;
+            string msg=null;
             try
             {
-                 msg = $"Key1: {_config.Value.Key1} \n" +
-                       $"Key2: {_config.Value.Key2} \n" +
-                       $"Key3: {_config.Value.Key3}";
+                var config = _config.Value;
+                 msg = $"Key1: {config.Key1} \n" +
+                       $"Key2: {config.Key2} \n" +
+                       $"Key3: {config.Key3}";
             }
             catch (OptionsValidationException optValEx)
             {
+                foreach (var failure in optValEx.Failures)
+                {
+                    msg += failure + "\n";
+                }
                 return Content(optValEx.Message);
             }
             return Content(msg);

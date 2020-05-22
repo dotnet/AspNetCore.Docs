@@ -3,12 +3,17 @@ using System.ComponentModel.DataAnnotations;
 
 namespace OptionsValidationSample.Configuration
 {
+    #region snippet
     public class MyConfig
     {
-        [Required]
+        public const string MyConfigName = "MyConfig";
+
+        [RegularExpression(@"^[a-zA-Z''-'\s]{1,40}$")]
         public string Key1 { get; set; }
-        [RegularExpression(@"^[a-zA-Z''-'\s]{4,40}$")]
-        public string Key2 { get; set; }
-        public string Key3 { get; set; }
+        [Range(10, 1000,
+            ErrorMessage = "Value for {0} must be between {1} and {2}.")]
+        public int Key2 { get; set; }
+        public int Key3 { get; set; }
     }
+    #endregion
 }

@@ -82,7 +82,7 @@ the following class is used for each section:
 
 The following code configures the named options:
 
-[!code-csharp[](~/fundamentals/configuration/options/samples/3.x/OptionsSample/StartupNO.csname=snippet)]
+[!code-csharp[](~/fundamentals/configuration/options/samples/3.x/OptionsSample/StartupNO.cs?name=snippet)]
 
 The following code displays the named options:
 
@@ -90,43 +90,13 @@ The following code displays the named options:
 
 All options are named instances. <xref:Microsoft.Extensions.Options.IConfigureOptions%601> instances are treated as targeting the `Options.DefaultName` instance, which is `string.Empty`. <xref:Microsoft.Extensions.Options.IConfigureNamedOptions%601> also implements <xref:Microsoft.Extensions.Options.IConfigureOptions%601>. The default implementation of the <xref:Microsoft.Extensions.Options.IOptionsFactory%601> has logic to use each appropriately. The `null` named option is used to target all of the named instances instead of a specific named instance (<xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.ConfigureAll*> and <xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.PostConfigureAll*> use this convention).
 
-<!-- Sample provides no value. 
-## Configure all options with the ConfigureAll method
-
-Configure all options instances with the <xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.ConfigureAll*> method. The following code configures `Option1` for all configuration instances with a common value. Add the following code manually to the `Startup.ConfigureServices` method:
-
-```csharp
-services.ConfigureAll<MyOptions>(myOptions => 
-{
-    myOptions.Option1 = "ConfigureAll replacement value";
-});
-```
-
-Running the sample app after adding the code produces the following result:
-
-```html
-named_options_1: option1 = ConfigureAll replacement value, option2 = -1
-named_options_2: option1 = ConfigureAll replacement value, option2 = 5
-```
-
-> [!NOTE]
-> Moved to previous section
-
--->
-
 ## OptionsBuilder API
 
 <xref:Microsoft.Extensions.Options.OptionsBuilder%601> is used to configure `TOptions` instances. `OptionsBuilder` streamlines creating named options as it's only a single parameter to the initial `AddOptions<TOptions>(string optionsName)` call instead of appearing in all of the subsequent calls. Options validation and the `ConfigureOptions` overloads that accept service dependencies are only available via `OptionsBuilder`.
 
-```csharp
-// Options.DefaultName = "" is used.
-services.AddOptions<MyOptions>().Configure(o => o.Property = "default");
+`OptionsBuilder` is used in the [Options validation](#val) section.
 
-services.AddOptions<MyOptions>("optionalName")
-    .Configure(o => o.Property = "named");
-```
-
-## Use DI services to configure options
+ ## Use DI services to configure options
 
 Services can be accessed from dependency injection while configuring options in two ways:
 
@@ -143,7 +113,9 @@ Services can be accessed from dependency injection while configuring options in 
 
 We recommend passing a configuration delegate to [Configure](xref:Microsoft.Extensions.Options.OptionsBuilder`1.Configure*), since creating a service is more complex. Creating a type is equivalent to what the framework does when calling[Configure](xref:Microsoft.Extensions.Options.OptionsBuilder`1.Configure*). Calling [Configure](xref:Microsoft.Extensions.Options.OptionsBuilder`1.Configure*) registers a transient generic <xref:Microsoft.Extensions.Options.IConfigureNamedOptions%601>, which has a constructor that accepts the generic service types specified. 
 
-## Options validation zz
+<a name="val"></a>
+
+## Options validation
 
 Options validation allows you to validate options when options are configured. Call `Validate` with a validation method that returns `true` if options are valid and `false` if they aren't valid:
 

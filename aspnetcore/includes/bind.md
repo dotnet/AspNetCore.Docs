@@ -15,7 +15,7 @@ An options class:
 
 * Must be non-abstract with a public parameterless constructor.
 * All public read-write properties of the type are bound.
-* Fields are ***not*** bound.
+* Fields are ***not*** bound. In the preceding code, `Position` is not bound. The `Position` property is used so the string `"Position"` doesn't need to be hard coded in the app.
 
 The following code:
 
