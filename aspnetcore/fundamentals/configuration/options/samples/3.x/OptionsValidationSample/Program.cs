@@ -20,8 +20,9 @@ namespace OptionsValidationSample
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                   // webBuilder.UseStartup<Startup>();
-                    webBuilder.UseStartup<StartupValidation>();
+                    webBuilder.UseStartup<Startup>();
+                   // webBuilder.UseStartup<Startup2>();
+                    // webBuilder.UseStartup<StartupValidation>();
                 });
     }
 }

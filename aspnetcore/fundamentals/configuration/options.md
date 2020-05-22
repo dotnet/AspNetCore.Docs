@@ -96,7 +96,7 @@ All options are named instances. <xref:Microsoft.Extensions.Options.IConfigureOp
 
 `OptionsBuilder` is used in the [Options validation](#val) section.
 
- ## Use DI services to configure options
+## Use DI services to configure options
 
 Services can be accessed from dependency injection while configuring options in two ways:
 
@@ -117,40 +117,40 @@ We recommend passing a configuration delegate to [Configure](xref:Microsoft.Exte
 
 ## Options validation
 
-Options validation enables option values to be validated.  Call `Validate` with a validation method that returns `true` if options are valid and `false` if they aren't valid:
+Options validation enables option values to be validated.
 
-```csharp
-// Registration
-services.AddOptions<MyOptions>("optionalOptionsName")
-    .Configure(o => { }) // Configure the options
-    .Validate(o => YourValidationShouldReturnTrueIfValid(o), 
-        "custom error");
+Consider the following *appsettings.json* file:
 
-// Consumption
-var monitor = services.BuildServiceProvider()
-    .GetService<IOptionsMonitor<MyOptions>>();
-  
-try
-{
-    var options = monitor.Get("optionalOptionsName");
-}
-catch (OptionsValidationException e) 
-{
-   // e.OptionsName returns "optionalOptionsName"
-   // e.OptionsType returns typeof(MyOptions)
-   // e.Failures returns a list of errors, which would contain 
-   //     "custom error"
-}
-```
+[!code-json[]~/fundamentals/configuration/options/samples/3.x/OptionsValidationSample/appsettings.Dev2.json)]
 
-[!INCLUDE[about the series](~/includes/code-comments-loc.md)]
+The following class binds to the `"MyConfig"` configuration and applies several `DataAnnotations` rules:
 
-The preceding example sets the named options instance to `optionalOptionsName`. The default options instance is `Options.DefaultName`.
+[!code-csharp[](options/samples/3.x/OptionsValidationSample/Configuration/MyConfigOptions.cs?name=snippet)]
 
-Validation runs when the options instance is created. An options instance is guaranteed to pass validation the first time it's accessed.
+The following code uses [OptionsBuilder\<TOptions>](xref:Microsoft.Extensions.Options.OptionsBuilder`1) to get an options builder than binds to the `MyConfigOptions` class and enables `DataAnnotations` validation:
 
-> [!IMPORTANT]
-> Options validation doesn't guard against options modifications after the options instance is created. For example, `IOptionsSnapshot` options are created and validated once per request when the options are first accessed. The `IOptionsSnapshot` options aren't validated again on subsequent access attempts *for the same request*.
+[!code-csharp[](options/samples/3.x/OptionsValidationSample/Startup.cs?name=snippet)]
+
+The following code displays the configuration values or the validation errors:
+
+[!code-csharp[](options/samples/3.x/OptionsValidationSample/Controllers/HomeController.cs?name=snippet)]
+
+The following code applies a more complex validation rule:
+
+[!code-csharp[](options/samples/3.x/OptionsValidationSample/Startup2.cs?name=snippet)]
+
+### IValidateOptions for complex validation
+
+The following class implements <xref:Microsoft.Extensions.Options.IValidateOptions`1>:
+
+[!code-csharp[](options/samples/3.x/OptionsValidationSample/Configuration/MyConfigValidation.cs?name=snippet)]
+
+Using the preceding code, validation is enabled in `Startup.ConfigureServices` with the following code:
+
+[!code-csharp[](options/samples/3.x/OptionsValidationSample/StartupValidation.cs?name=snippet)]
+
+<!-- The following comment doesn't seem that useful 
+Options validation doesn't guard against options modifications after the options instance is created. For example, `IOptionsSnapshot` options are created and validated once per request when the options are first accessed. The `IOptionsSnapshot` options aren't validated again on subsequent access attempts *for the same request*.
 
 The `Validate` method accepts a `Func<TOptions, bool>`. To fully customize validation, implement `IValidateOptions<TOptions>`, which allows:
 
@@ -173,50 +173,7 @@ public interface IValidateOptions<TOptions> where TOptions : class
 
 Data Annotation-based validation is available from the [Microsoft.Extensions.Options.DataAnnotations](https://www.nuget.org/packages/Microsoft.Extensions.Options.DataAnnotations) package by calling the <xref:Microsoft.Extensions.DependencyInjection.OptionsBuilderDataAnnotationsExtensions.ValidateDataAnnotations*> method on `OptionsBuilder<TOptions>`. `Microsoft.Extensions.Options.DataAnnotations` is implicitly referenced in ASP.NET Core apps.
 
-```csharp
-using System.ComponentModel.DataAnnotations;
-using Microsoft.Extensions.DependencyInjection;
-
-private class AnnotatedOptions
-{
-    [Required]
-    public string Required { get; set; }
-
-    [StringLength(5, ErrorMessage = "Too long.")]
-    public string StringLength { get; set; }
-
-    [Range(-5, 5, ErrorMessage = "Out of range.")]
-    public int IntRange { get; set; }
-}
-
-[Fact]
-public void CanValidateDataAnnotations()
-{
-    var services = new ServiceCollection();
-    services.AddOptions<AnnotatedOptions>()
-        .Configure(o =>
-        {
-            o.StringLength = "111111";
-            o.IntRange = 10;
-            o.Custom = "nowhere";
-        })
-        .ValidateDataAnnotations();
-
-    var sp = services.BuildServiceProvider();
-
-    var error = Assert.Throws<OptionsValidationException>(() => 
-        sp.GetRequiredService<IOptionsMonitor<AnnotatedOptions>>().CurrentValue);
-    ValidateFailure<AnnotatedOptions>(error, Options.DefaultName, 1,
-        "DataAnnotation validation failed for members Required " +
-            "with the error 'The Required field is required.'.",
-        "DataAnnotation validation failed for members StringLength " +
-            "with the error 'Too long.'.",
-        "DataAnnotation validation failed for members IntRange " +
-            "with the error 'Out of range.'.");
-}
-```
-
-Eager validation (fail fast at startup) is under consideration for a future release.
+-->
 
 ## Options post-configuration
 
@@ -1006,3 +963,4 @@ Don't use <xref:Microsoft.Extensions.Options.IOptions%601> or <xref:Microsoft.Ex
 ## Additional resources
 
 * <xref:fundamentals/configuration/index>
+ 

@@ -7,21 +7,30 @@ using OptionsValidationSample.Configuration;
 
 namespace OptionsValidationSample
 {
-    #region snippet
-    public class Startup
+    public class Startup2
     {
-        public Startup(IConfiguration configuration)
+        public Startup2(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
 
+        #region snippet
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddOptions<MyConfigOptions>()
                 .Bind(Configuration.GetSection(MyConfigOptions.MyConfig))
-                .ValidateDataAnnotations();
+                .ValidateDataAnnotations()
+                .Validate(config =>
+                {
+                    if (config.Key2 != 0)
+                    {
+                        return config.Key3 > config.Key2;
+                    }
+
+                    return true;
+                }, "Key3 mst be > than Key2.");   // Failure message.
 
             services.AddControllersWithViews();
         }
