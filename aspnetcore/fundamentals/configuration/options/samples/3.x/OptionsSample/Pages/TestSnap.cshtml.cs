@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Options;
 using SampleApp.Models;
 
-// Requires Startup2 in Main
+// Requires Startup3 in Main
 
 namespace SampleApp.Pages
 {

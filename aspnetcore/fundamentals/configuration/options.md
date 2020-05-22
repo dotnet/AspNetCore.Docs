@@ -8,7 +8,7 @@ ms.custom: mvc
 ms.date: 05/20/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/configuration/options
----
+--- 
 # Options pattern in ASP.NET Core
 
 ::: moniker range=">= aspnetcore-3.0"
@@ -61,6 +61,8 @@ The difference between `IOptionsMonitor` and `IOptionsSnapshot` is that:
 The following code uses <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601>.
 
 [!code-csharp[](options/samples/3.x/OptionsSample/Pages/TestSnap.cshtml.cs?name=snippet)]
+
+The preceding code zzz
 
 ## Named options support with IConfigureNamedOptions
 
