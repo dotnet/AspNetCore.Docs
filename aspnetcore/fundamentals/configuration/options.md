@@ -30,28 +30,40 @@ Options also provide a mechanism to validate configuration data. For more inform
 
 ## Options interfaces
 
-<xref:Microsoft.Extensions.Options.IOptionsMonitor%601> is used to retrieve options and manage options notifications for `TOptions` instances. <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> supports the following scenarios:
+<xref:Microsoft.Extensions.Options.IOptions%601>:
 
-* Change notifications
-* [Named options](#named-options-support-with-iconfigurenamedoptions)
-* [Reloadable configuration](#reload-configuration-data-with-ioptionssnapshot)
-* Selective options invalidation (<xref:Microsoft.Extensions.Options.IOptionsMonitorCache%601>)
+* Does ***not*** support:
+  * Reading of configuration data after the app has started.
+  * [Named options](#named)
+* Is registered as a [Singleton](xref:fundamentals/dependency-injection#singleton) and can be injected into any [service lifetime](xref:fundamentals/dependency-injection#service-lifetimes).
 
+<xref:Microsoft.Extensions.Options.IOptionsSnapshot%601>:
+
+* Is useful in scenarios where options should be recomputed on every request. For more information, see [Use IOptionsSnapshot to read updated data](#ios).
+* Is registered as [Scoped](xref:fundamentals/dependency-injection#scoped) and therefore cannot be injected into a Singleton service.
+* Supports [named options](#named)
+
+<xref:Microsoft.Extensions.Options.IOptionsMonitor%601>:
+
+* Is used to retrieve options and manage options notifications for `TOptions` instances.
+* Is registered as a [Singleton](xref:fundamentals/dependency-injection#singleton) and can be injected into any [service lifetime](xref:fundamentals/dependency-injection#service-lifetimes).
+* Supports:
+  * Change notifications
+  * [Named options](#named-options-support-with-iconfigurenamedoptions)
+  * [Reloadable configuration](#ios)
+  * Selective options invalidation (<xref:Microsoft.Extensions.Options.IOptionsMonitorCache%601>)
+  
 [Post-configuration](#options-post-configuration) scenarios allow you to set or change options after all <xref:Microsoft.Extensions.Options.IConfigureOptions%601> configuration occurs.
 
 <xref:Microsoft.Extensions.Options.IOptionsFactory%601> is responsible for creating new options instances. It has a single <xref:Microsoft.Extensions.Options.IOptionsFactory`1.Create*> method. The default implementation takes all registered <xref:Microsoft.Extensions.Options.IConfigureOptions%601> and <xref:Microsoft.Extensions.Options.IPostConfigureOptions%601> and runs all the configurations first, followed by the post-configuration. It distinguishes between <xref:Microsoft.Extensions.Options.IConfigureNamedOptions%601> and <xref:Microsoft.Extensions.Options.IConfigureOptions%601> and only calls the appropriate interface.
 
 <xref:Microsoft.Extensions.Options.IOptionsMonitorCache%601> is used by <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> to cache `TOptions` instances. The <xref:Microsoft.Extensions.Options.IOptionsMonitorCache%601> invalidates options instances in the monitor so that the value is recomputed (<xref:Microsoft.Extensions.Options.IOptionsMonitorCache`1.TryRemove*>). Values can be manually introduced with <xref:Microsoft.Extensions.Options.IOptionsMonitorCache`1.TryAdd*>. The <xref:Microsoft.Extensions.Options.IOptionsMonitorCache`1.Clear*> method is used when all named instances should be recreated on demand.
 
-<xref:Microsoft.Extensions.Options.IOptionsSnapshot%601> is useful in scenarios where options should be recomputed on every request. For more information, see the [Reload configuration data](#ios) section.
-
-<xref:Microsoft.Extensions.Options.IOptions%601> can be used to support options. However, <xref:Microsoft.Extensions.Options.IOptions%601> doesn't support the preceding scenarios of <xref:Microsoft.Extensions.Options.IOptionsMonitor%601>. You may continue to use <xref:Microsoft.Extensions.Options.IOptions%601> in existing frameworks and libraries that already use the <xref:Microsoft.Extensions.Options.IOptions%601> interface and don't require the scenarios provided by <xref:Microsoft.Extensions.Options.IOptionsMonitor%601>.
-
 <a name="ios"></a>
 
 ## Use IOptionsSnapshot to read updated data
 
-Using <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601>, options are computed once per request when accessed and cached for the lifetime of the request. Changes to the configuration are read after the app starts.
+Using <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601>, options are computed once per request when accessed and cached for the lifetime of the request. Changes to the configuration are read after the app starts when using configuration providers that support reading updated configuration values.
 
 The difference between `IOptionsMonitor` and `IOptionsSnapshot` is that:
 
@@ -64,7 +76,9 @@ The following code uses <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601>
 
 In the preceding code, changes to the JSON configuration file after the app has started are read.
 
-## Named options support with IConfigureNamedOptions
+<a name="named"></a>
+
+## Named options support using IConfigureNamedOptions
 
 Named options:
 
@@ -965,4 +979,3 @@ Don't use <xref:Microsoft.Extensions.Options.IOptions%601> or <xref:Microsoft.Ex
 ## Additional resources
 
 * <xref:fundamentals/configuration/index>
- 
