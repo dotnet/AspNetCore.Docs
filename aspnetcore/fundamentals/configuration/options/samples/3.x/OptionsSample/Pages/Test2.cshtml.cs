@@ -3,24 +3,25 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Options;
 using SampleApp.Models;
 
-// Requires Startup3 in Main
+// Requires Startup2 in Main, overridden by delegate.
+// Used in fundamentals\configuration\index.md, not the Options topic
 
 namespace SampleApp.Pages
 {
     #region snippet
     public class Test2Model : PageModel
     {
-        private readonly IOptionsMonitor<MyOptions> _optionsDelegate;
+        private readonly IOptions<MyOptions> _optionsDelegate;
 
-        public Test2Model(IOptionsMonitor<MyOptions> optionsDelegate )
+        public Test2Model(IOptions<MyOptions> optionsDelegate )
         {
             _optionsDelegate = optionsDelegate;
         }
 
         public ContentResult OnGet()
         {
-            return Content($"Option1: {_optionsDelegate.CurrentValue.Option1} \n" +
-                           $"Option2: {_optionsDelegate.CurrentValue.Option2}");
+            return Content($"Option1: {_optionsDelegate.Value.Option1} \n" +
+                           $"Option2: {_optionsDelegate.Value.Option2}");
         }
     }
     #endregion
