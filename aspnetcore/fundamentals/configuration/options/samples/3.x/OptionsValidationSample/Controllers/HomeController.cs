@@ -13,7 +13,8 @@ namespace OptionsValidationSample.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly IOptions<MyConfigOptions> _config;
 
-        public HomeController(IOptions<MyConfigOptions> config, ILogger<HomeController> logger)
+        public HomeController(IOptions<MyConfigOptions> config,
+                              ILogger<HomeController> logger)
         {
             _config = config;
             _logger = logger;

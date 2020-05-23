@@ -121,13 +121,13 @@ Options validation enables option values to be validated.
 
 Consider the following *appsettings.json* file:
 
-[!code-json[]~/fundamentals/configuration/options/samples/3.x/OptionsValidationSample/appsettings.Dev2.json)]
+[!code-json[](~/fundamentals/configuration/options/samples/3.x/OptionsValidationSample/appsettings.Dev2.json)]
 
 The following class binds to the `"MyConfig"` configuration and applies several `DataAnnotations` rules:
 
 [!code-csharp[](options/samples/3.x/OptionsValidationSample/Configuration/MyConfigOptions.cs?name=snippet)]
 
-The following code uses [OptionsBuilder\<TOptions>](xref:Microsoft.Extensions.Options.OptionsBuilder`1) to get an options builder than binds to the `MyConfigOptions` class and enables `DataAnnotations` validation:
+The following code gets an  [OptionsBuilder\<TOptions>](xref:Microsoft.Extensions.Options.OptionsBuilder`1) that binds to the `MyConfigOptions` class and enables `DataAnnotations` validation:
 
 [!code-csharp[](options/samples/3.x/OptionsValidationSample/Startup.cs?name=snippet)]
 
@@ -144,6 +144,8 @@ The following code applies a more complex validation rule:
 The following class implements <xref:Microsoft.Extensions.Options.IValidateOptions`1>:
 
 [!code-csharp[](options/samples/3.x/OptionsValidationSample/Configuration/MyConfigValidation.cs?name=snippet)]
+
+`IValidateOptions` enables moving the validation code out of `StartUp` and into a class.
 
 Using the preceding code, validation is enabled in `Startup.ConfigureServices` with the following code:
 
