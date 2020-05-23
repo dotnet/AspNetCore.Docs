@@ -113,7 +113,7 @@ JSON helper methods send requests to a URI (a web API in the following examples)
   Calls to `PostAsJsonAsync` return an <xref:System.Net.Http.HttpResponseMessage>. To deserialize the JSON content from the response message, use the `ReadFromJsonAsync<T>` extension method:
   
   ```csharp
-  var content = response.content.ReadFromJsonAsync<WeatherForecast>();
+  var content = response.Content.ReadFromJsonAsync<WeatherForecast>();
   ```
 
 * `PutAsJsonAsync` &ndash; Sends an HTTP PUT request, including JSON-encoded content.
