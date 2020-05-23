@@ -272,7 +272,10 @@ The `HomeController.Index` action is run for any of the URL paths `/`, `/Home`, 
 
 This example highlights a key programming difference between attribute routing and [conventional routing](#cr). Attribute routing requires more input to specify a route. The conventional default route handles routes more succinctly. However, attribute routing allows and requires precise control of which route templates apply to each [action](#action).
 
-With attribute routing, the controller name and action names play **no** role in which action is matched. The following example matches the same URLs as the previous example:
+In the following code:
+
+* The controller name and action names play **no** role in which action is matched.
+* Matches the same URLs as the previous example:
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/MyDemoController.cs?name=snippet)]
 
