@@ -23,7 +23,7 @@ namespace SampleApp
             services.Configure<TopItemSettings>(TopItemSettings.Month,
                                                Configuration.GetSection("TopItem:Month"));
             services.Configure<TopItemSettings>(TopItemSettings.Year,
-                                            Configuration.GetSection("TopItem:Year"));
+                                                Configuration.GetSection("TopItem:Year"));
 
             services.AddRazorPages();
         }
