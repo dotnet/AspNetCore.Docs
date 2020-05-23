@@ -40,4 +40,4 @@ Using the preceding code, the following code reads the position options:
 
 [!code-csharp[](~/fundamentals/configuration/index/samples/3.x/ConfigSample/Pages/Test2.cshtml.cs?name=snippet)]
 
-In the preceding code, changes to the JSON configuration file after the app has started are ***not** read. To read changes after the app has started, use [IOptionsSnapshot](xref:fundamentals/configuration/options#ios).
+In the preceding code, changes to the JSON configuration file after the app has started are ***not*** read. To read changes after the app has started, use [IOptionsSnapshot](xref:fundamentals/configuration/options#ios).
