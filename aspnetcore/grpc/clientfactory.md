@@ -111,7 +111,7 @@ services
     .EnableCallContextPropagation();
 ```
 
-By default `EnableCallContextPropagation()` will raise an error if the client is used outside the context of a gRPC call. The error is designed to alert you that there is no call context to propagate. If you want to use the client outside of a call context then you can suppress that error when the client is configured with `SuppressContextNotFoundErrors`:
+By default, `EnableCallContextPropagation` raises an error if the client is used outside the context of a gRPC call. The error is designed to alert you that there isn't a call context to propagate. If you want to use the client outside of a call context, suppress the error when the client is configured with `SuppressContextNotFoundErrors`:
 
 ```csharp
 services
