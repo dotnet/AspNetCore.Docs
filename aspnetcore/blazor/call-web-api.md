@@ -5,7 +5,7 @@ description: Learn how to call a web API from a Blazor WebAssembly app using JSO
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/19/2020
+ms.date: 05/24/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/call-web-api
 ---
@@ -133,9 +133,7 @@ JSON helper methods send requests to a URI (a web API in the following examples)
 
       private void EditItem(long id)
       {
-          var editItem = todoItems.Single(i => i.Id == id);
-          editItem = new TodoItem { Id = editItem.Id, Name = editItem.Name, 
-              IsComplete = editItem.IsComplete };
+          editItem = todoItems.Single(i => i.Id == id);
       }
 
       private async Task SaveItem() =>
