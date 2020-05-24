@@ -392,7 +392,7 @@ A response similar to the following is produced by the call to `GetTodoItems`:
 * Create a new request.
 * Set the HTTP method to **GET**.
 * Set the request URL to `https://localhost:<port>/api/TodoItems`. For example, `https://localhost:5001/api/TodoItems`.
-* Set **Two pane view** in Postman.
+* Toggle **Two pane view** in Postman.
 * Select **Send**.
 
 This app uses an in-memory database. If the app is stopped and started, the preceding GET request will not return any data. If no data is returned, [POST](#post) data to the app.
