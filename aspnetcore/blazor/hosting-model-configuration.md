@@ -72,7 +72,7 @@ The following convenience extension methods permit checking the current environm
 * `IsDevelopment()`
 * `IsProduction()`
 * `IsStaging()`
-* `IsEnvironment("{ENVIRONMENT NAME}")
+* `IsEnvironment("{ENVIRONMENT NAME}")`
 
 ```csharp
 if (builder.HostEnvironment.IsStaging())
