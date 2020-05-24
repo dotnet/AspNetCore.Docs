@@ -489,7 +489,7 @@ Using separate readiness and liveness checks is useful in an environment such as
 
 The following example demonstrates a Kubernetes readiness probe configuration:
 
-```
+```yml
 spec:
   template:
   spec:
