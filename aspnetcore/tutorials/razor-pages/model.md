@@ -263,6 +263,14 @@ Examine the `Up` method.
 
 ### Test the app
 
+Remove the following markup before testing if it is in the Pages/Movies/Create.cshtml, Delete.cshtml, Details.cshtml, Edit.cshtml, or Index.cshtml
+ 
+```cshtml
+@{
+    Layout = null;
+}
+```
+
 * Run the app and append `/Movies` to the URL in the browser (`http://localhost:port/movies`).
 
 If you get the error:
