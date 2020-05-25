@@ -680,9 +680,9 @@ In the following code, `MyOptions` is added to the service container with <xref:
 
 [!code-csharp[](~/fundamentals/configuration/options/samples/3.x/OptionsSample/Startup3.cs?name=snippet_Example2)]
 
-The following markjup uses the [`@inject`](xref:mvc/views/razor#inject) Razor directive to display the options values:
+The following markup uses the [`@inject`](xref:mvc/views/razor#inject) Razor directive to resolve and display the options values:
 
-[!code-cshtml[](~/fundamentals/configuration/options/samples/3.x/OptionsSample/Pages/Test3.cshtml.cs)]
+[!code-cshtml[](~/fundamentals/configuration/options/samples/3.x/OptionsSample/Pages/Test3.cshtml)]
 
 ## Access configuration in a MVC view file
 
@@ -696,15 +696,15 @@ Options configured in a delegate override values set in the configuration provid
 
 Configuring options with a delegate is demonstrated as Example 2 in the sample app.
 
-In the following code, a <xref:Microsoft.Extensions.Options.IConfigureOptions%601> service is added to the service container. It uses a delegate to configure the binding with `MyOptions`:
+In the following code, an <xref:Microsoft.Extensions.Options.IConfigureOptions%601> service is added to the service container. It uses a delegate to configure values for `MyOptions`:
 
 [!code-csharp[](~/fundamentals/configuration/options/samples/3.x/OptionsSample/Startup2.cs?name=snippet_Example2)]
 
-The following code displays the option values:
+The following code displays the options values:
 
 [!code-csharp[](options/samples/3.x/OptionsSample/Pages/Test2.cshtml.cs?name=snippet)]
 
-In the preceding example, the values of `Option1` and `Option2` are specified in *appsettings.json*, but the values of `Option1` and `Option2` are overridden by the configured delegate.
+In the preceding example, the values of `Option1` and `Option2` are specified in *appsettings.json* and then overridden by the configured delegate.
 
 <a name="hvac"></a>
 

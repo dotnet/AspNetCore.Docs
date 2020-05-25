@@ -30,7 +30,7 @@ namespace OptionsValidationSample
                     }
 
                     return true;
-                }, "Key3 mst be > than Key2.");   // Failure message.
+                }, "Key3 must be > than Key2.");   // Failure message.
 
             services.AddControllersWithViews();
         }
