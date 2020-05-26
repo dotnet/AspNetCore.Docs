@@ -169,7 +169,7 @@ The following code displays the configuration values or the validation errors:
 
 [!code-csharp[](options/samples/3.x/OptionsValidationSample/Controllers/HomeController.cs?name=snippet)]
 
-The following code applies a more complex validation rule:
+The following code applies a more complex validation rule using a delegate:
 
 [!code-csharp[](options/samples/3.x/OptionsValidationSample/Startup2.cs?name=snippet)]
 
