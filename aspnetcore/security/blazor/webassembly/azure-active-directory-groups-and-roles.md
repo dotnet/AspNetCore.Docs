@@ -40,7 +40,7 @@ The following examples assume that a user is assigned to the AAD built-in *Billi
 
 The single `groups` claim sent by AAD presents the user's groups and roles as Object IDs (GUIDs) in a JSON array. The app must convert the JSON array of groups and roles into individual `group` claims that the app can build [policies](xref:security/authorization/policies) against.
 
-Extend `RemoteUserAccount` to include array properties for groups and roles.
+Extend <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount> to include array properties for groups and roles.
 
 *CustomUserAccount.cs*:
 
@@ -153,7 +153,7 @@ The [AuthorizeView component](xref:security/blazor/index#authorizeview-component
 </AuthorizeView>
 ```
 
-Access to an entire component can be based on the policy using the [`[Authorize]` attribute directive](xref:security/blazor/index#authorize-attribute) directive:
+Access to an entire component can be based on the policy using [`[Authorize]`] attribute directive](xref:security/blazor/index#authorize-attribute) (<xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute>):
 
 ```razor
 @page "/"
@@ -235,7 +235,7 @@ builder.Services.AddMsalAuthentication(options =>
 Component authorization approaches are functional at this point. Any of the authorization mechanisms in components can use the `admin` role to authorize the user:
 
 * [AuthorizeView component](xref:security/blazor/index#authorizeview-component) (Example: `<AuthorizeView Roles="admin">`)
-* [`[Authorize]` attribute directive](xref:security/blazor/index#authorize-attribute) (Example: `@attribute [Authorize(Roles = "admin")]`)
+* [`[Authorize]`] attribute directive](xref:security/blazor/index#authorize-attribute) (<xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute>) (Example: `@attribute [Authorize(Roles = "admin")]`)
 * [Procedural logic](xref:security/blazor/index#procedural-logic) (Example: `if (user.IsInRole("admin")) { ... }`)
 
   Multiple role tests are supported:

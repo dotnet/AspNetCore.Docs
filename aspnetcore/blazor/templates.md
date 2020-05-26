@@ -55,7 +55,7 @@ The following files and folders make up a Blazor app generated from a Blazor tem
     * Downloads the .NET runtime, the app, and the app's dependencies.
     * Initializes the runtime to run the app.
 
-* *App.razor* &ndash; The root component of the app that sets up client-side routing using the <xref:Microsoft.AspNetCore.Components.Routing.Router> component. The `Router` component intercepts browser navigation and renders the page that matches the requested address.
+* *App.razor* &ndash; The root component of the app that sets up client-side routing using the <xref:Microsoft.AspNetCore.Components.Routing.Router> component. The <xref:Microsoft.AspNetCore.Components.Routing.Router> component intercepts browser navigation and renders the page that matches the requested address.
 
 * *Pages* folder &ndash; Contains the routable components/pages (*.razor*) that make up the Blazor app and the root Razor page of a Blazor Server app. The route for each page is specified using the [`@page`](xref:mvc/views/razor#page) directive. The template includes the following:
   * *_Host.cshtml* (Blazor Server) &ndash; The root page of the app implemented as a Razor Page:
@@ -69,7 +69,7 @@ The following files and folders make up a Blazor app generated from a Blazor tem
 
 * *Shared* folder &ndash; Contains other UI components (*.razor*) used by the app:
   * `MainLayout` (*MainLayout.razor*) &ndash; The app's layout component.
-  * `NavMenu` (*NavMenu.razor*) &ndash; Implements sidebar navigation. Includes the [NavLink component](xref:blazor/routing#navlink-component) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), which renders navigation links to other Razor components. The `NavLink` component automatically indicates a selected state when its component is loaded, which helps the user understand which component is currently displayed.
+  * `NavMenu` (*NavMenu.razor*) &ndash; Implements sidebar navigation. Includes the [NavLink component](xref:blazor/routing#navlink-component) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), which renders navigation links to other Razor components. The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component automatically indicates a selected state when its component is loaded, which helps the user understand which component is currently displayed.
 
 * *_Imports.razor* &ndash; Includes common Razor directives to include in the app's components (*.razor*), such as [`@using`](xref:mvc/views/razor#using) directives for namespaces.
 

@@ -19,10 +19,10 @@ Technically, a layout is just another component. A layout is defined in a Razor 
 
 To turn a *component* into a *layout*, the component:
 
-* Inherits from `LayoutComponentBase`, which defines a `Body` property for the rendered content inside the layout.
+* Inherits from <xref:Microsoft.AspNetCore.Components.LayoutComponentBase>, which defines a <xref:Microsoft.AspNetCore.Components.LayoutComponentBase.Body> property for the rendered content inside the layout.
 * Uses the Razor syntax `@Body` to specify the location in the layout markup where the content is rendered.
 
-The following code sample shows the Razor template of a layout component, *MainLayout.razor*. The layout inherits `LayoutComponentBase` and sets the `@Body` between the navigation bar and the footer:
+The following code sample shows the Razor template of a layout component, *MainLayout.razor*. The layout inherits <xref:Microsoft.AspNetCore.Components.LayoutComponentBase> and sets the `@Body` between the navigation bar and the footer:
 
 [!code-razor[](layouts/sample_snapshot/3.x/MainLayout.razor?highlight=1,13)]
 
@@ -30,21 +30,21 @@ In an app based on one of the Blazor app templates, the `MainLayout` component (
 
 ## Default layout
 
-Specify the default app layout in the `Router` component in the app's *App.razor* file. The following `Router` component, which is provided by the default Blazor templates, sets the default layout to the `MainLayout` component:
+Specify the default app layout in the <xref:Microsoft.AspNetCore.Components.Routing.Router> component in the app's *App.razor* file. The following <xref:Microsoft.AspNetCore.Components.Routing.Router> component, which is provided by the default Blazor templates, sets the default layout to the `MainLayout` component:
 
 [!code-razor[](layouts/sample_snapshot/3.x/App1.razor?highlight=3)]
 
-To supply a default layout for `NotFound` content, specify a `LayoutView` for `NotFound` content:
+To supply a default layout for <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound> content, specify a <xref:Microsoft.AspNetCore.Components.LayoutView> for <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound> content:
 
 [!code-razor[](layouts/sample_snapshot/3.x/App2.razor?highlight=6-9)]
 
-For more information on the `Router` component, see <xref:blazor/routing>.
+For more information on the <xref:Microsoft.AspNetCore.Components.Routing.Router> component, see <xref:blazor/routing>.
 
 Specifying the layout as a default layout in the router is a useful practice because it can be overridden on a per-component or per-folder basis. Prefer using the router to set the app's default layout because it's the most general technique.
 
 ## Specify a layout in a component
 
-Use the Razor directive `@layout` to apply a layout to a component. The compiler converts `@layout` into a `LayoutAttribute`, which is applied to the component class.
+Use the Razor directive `@layout` to apply a layout to a component. The compiler converts `@layout` into a <xref:Microsoft.AspNetCore.Components.LayoutAttribute>, which is applied to the component class.
 
 The content of the following `MasterList` component is inserted into the `MasterLayout` at the position of `@Body`:
 
