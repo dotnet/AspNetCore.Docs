@@ -15,7 +15,7 @@ By [Javier Calvarro Nelson](https://github.com/javiercn) and [Luke Latham](https
 
 *For Azure Active Directory (AAD) and Azure Active Directory B2C (AAD B2C), don't follow the guidance in this topic. See the AAD and AAD B2C topics in this table of contents node.*
 
-To create a Blazor WebAssembly standalone app that uses `Microsoft.AspNetCore.Components.WebAssembly.Authentication` library, execute the following command in a command shell:
+To create a Blazor WebAssembly standalone app that uses [Microsoft.AspNetCore.Components.WebAssembly.Authentication](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/) library, execute the following command in a command shell:
 
 ```dotnetcli
 dotnet new blazorwasm -au Individual
@@ -27,7 +27,7 @@ In Visual Studio, [create a Blazor WebAssembly app](xref:blazor/get-started). Se
 
 ## Authentication package
 
-When an app is created to use Individual User Accounts, the app automatically receives a package reference for the `Microsoft.AspNetCore.Components.WebAssembly.Authentication` package in the app's project file. The package provides a set of primitives that help the app authenticate users and obtain tokens to call protected APIs.
+When an app is created to use Individual User Accounts, the app automatically receives a package reference for the [Microsoft.AspNetCore.Components.WebAssembly.Authentication](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/) package in the app's project file. The package provides a set of primitives that help the app authenticate users and obtain tokens to call protected APIs.
 
 If adding authentication to an app, manually add the package to the app's project file:
 
@@ -39,7 +39,7 @@ If adding authentication to an app, manually add the package to the app's projec
 
 ## Authentication service support
 
-Support for authenticating users is registered in the service container with the `AddOidcAuthentication` extension method provided by the `Microsoft.AspNetCore.Components.WebAssembly.Authentication` package. This method sets up the services required for the app to interact with the Identity Provider (IP).
+Support for authenticating users is registered in the service container with the <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyAuthenticationServiceCollectionExtensions.AddOidcAuthentication%2A> extension method provided by the [Microsoft.AspNetCore.Components.WebAssembly.Authentication](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/) package. This method sets up the services required for the app to interact with the Identity Provider (IP).
 
 *Program.cs*:
 
@@ -61,11 +61,11 @@ Configuration is supplied by the *wwwroot/appsettings.json* file:
 }
 ```
 
-Authentication support for standalone apps is offered using Open ID Connect (OIDC). The `AddOidcAuthentication` method accepts a callback to configure the parameters required to authenticate an app using OIDC. The values required for configuring the app can be obtained from the OIDC-compliant IP. Obtain the values when you register the app, which typically occurs in their online portal.
+Authentication support for standalone apps is offered using Open ID Connect (OIDC). The <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyAuthenticationServiceCollectionExtensions.AddOidcAuthentication%2A> method accepts a callback to configure the parameters required to authenticate an app using OIDC. The values required for configuring the app can be obtained from the OIDC-compliant IP. Obtain the values when you register the app, which typically occurs in their online portal.
 
 ## Access token scopes
 
-The Blazor WebAssembly template doesn't automatically configure the app to request an access token for a secure API. To provision an access token as part of the sign-in flow, add the scope to the default token scopes of the `OidcProviderOptions`:
+The Blazor WebAssembly template doesn't automatically configure the app to request an access token for a secure API. To provision an access token as part of the sign-in flow, add the scope to the default token scopes of the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.OidcProviderOptions>:
 
 ```csharp
 builder.Services.AddOidcAuthentication(options =>

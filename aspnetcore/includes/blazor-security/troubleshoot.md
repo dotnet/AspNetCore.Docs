@@ -32,3 +32,7 @@ When testing and troubleshooting a hosted Blazor app, make sure that you're runn
 * Select the **Run** button.
 * Use **Debug** > **Start Debugging** from the menu.
 * Press <kbd>F5</kbd>.
+
+### Inspect the content of a JSON Web Token (JWT)
+
+To decode a JSON Web Token (JWT), use Microsoft's [jwt.ms](https://jwt.ms/) tool. Values in the UI never leave your browser.

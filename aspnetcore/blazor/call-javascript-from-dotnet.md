@@ -19,11 +19,11 @@ This article covers invoking JavaScript functions from .NET. For information on 
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) ([how to download](xref:index#how-to-download-a-sample))
 
-To call into JavaScript from .NET, use the `IJSRuntime` abstraction. To issue JS interop calls, inject the `IJSRuntime` abstraction in your component. The `InvokeAsync<T>` method takes an identifier for the JavaScript function that you wish to invoke along with any number of JSON-serializable arguments. The function identifier is relative to the global scope (`window`). If you wish to call `window.someScope.someFunction`, the identifier is `someScope.someFunction`. There's no need to register the function before it's called. The return type `T` must also be JSON serializable. `T` should match the .NET type that best maps to the JSON type returned.
+To call into JavaScript from .NET, use the <xref:Microsoft.JSInterop.IJSRuntime> abstraction. To issue JS interop calls, inject the <xref:Microsoft.JSInterop.IJSRuntime> abstraction in your component. <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A> takes an identifier for the JavaScript function that you wish to invoke along with any number of JSON-serializable arguments. The function identifier is relative to the global scope (`window`). If you wish to call `window.someScope.someFunction`, the identifier is `someScope.someFunction`. There's no need to register the function before it's called. The return type `T` must also be JSON serializable. `T` should match the .NET type that best maps to the JSON type returned.
 
 For Blazor Server apps with prerendering enabled, calling into JavaScript isn't possible during the initial prerendering. JavaScript interop calls must be deferred until after the connection with the browser is established. For more information, see the [Detect when a Blazor Server app is prerendering](#detect-when-a-blazor-server-app-is-prerendering) section.
 
-The following example is based on [TextDecoder](https://developer.mozilla.org/docs/Web/API/TextDecoder), a JavaScript-based decoder. The example demonstrates how to invoke a JavaScript function from a C# method. The JavaScript function accepts a byte array from a C# method, decodes the array, and returns the text to the component for display.
+The following example is based on [TextDecoder](https://developer.mozilla.org/docs/Web/API/TextDecoder), a JavaScript-based decoder. The example demonstrates how to invoke a JavaScript function from a C# method that offloads a requirement from developer code to an existing JavaScript API. The JavaScript function accepts a byte array from a C# method, decodes the array, and returns the text to the component for display.
 
 Inside the `<head>` element of *wwwroot/index.html* (Blazor WebAssembly) or *Pages/_Host.cshtml* (Blazor Server), provide a JavaScript function that uses `TextDecoder` to decode a passed array and return the decoded value:
 
@@ -44,17 +44,17 @@ The following component:
 
 ## IJSRuntime
 
-To use the `IJSRuntime` abstraction, adopt any of the following approaches:
+To use the <xref:Microsoft.JSInterop.IJSRuntime> abstraction, adopt any of the following approaches:
 
-* Inject the `IJSRuntime` abstraction into the Razor component (*.razor*):
+* Inject the <xref:Microsoft.JSInterop.IJSRuntime> abstraction into the Razor component (*.razor*):
 
   [!code-razor[](call-javascript-from-dotnet/samples_snapshot/inject-abstraction.razor?highlight=1)]
 
-  Inside the `<head>` element of *wwwroot/index.html* (Blazor WebAssembly) or *Pages/_Host.cshtml* (Blazor Server), provide a `handleTickerChanged` JavaScript function. The function is called with `IJSRuntime.InvokeVoidAsync` and doesn't return a value:
+  Inside the `<head>` element of *wwwroot/index.html* (Blazor WebAssembly) or *Pages/_Host.cshtml* (Blazor Server), provide a `handleTickerChanged` JavaScript function. The function is called with <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A?displayProperty=nameWithType> and doesn't return a value:
 
   [!code-html[](call-javascript-from-dotnet/samples_snapshot/index-script-handleTickerChanged1.html)]
 
-* Inject the `IJSRuntime` abstraction into a class (*.cs*):
+* Inject the <xref:Microsoft.JSInterop.IJSRuntime> abstraction into a class (*.cs*):
 
   [!code-csharp[](call-javascript-from-dotnet/samples_snapshot/inject-abstraction-class.cs?highlight=5)]
 
@@ -90,9 +90,9 @@ Place the `<script>` tag that references the JavaScript file in the *wwwroot/ind
 
 Don't place a `<script>` tag in a component file because the `<script>` tag can't be updated dynamically.
 
-.NET methods interop with the JavaScript functions in the *exampleJsInterop.js* file by calling `IJSRuntime.InvokeAsync<T>`.
+.NET methods interop with the JavaScript functions in the *exampleJsInterop.js* file by calling <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType>.
 
-The `IJSRuntime` abstraction is asynchronous to allow for Blazor Server scenarios. If the app is a Blazor WebAssembly app and you want to invoke a JavaScript function synchronously, downcast to `IJSInProcessRuntime` and call `Invoke<T>` instead. We recommend that most JS interop libraries use the async APIs to ensure that the libraries are available in all scenarios.
+The <xref:Microsoft.JSInterop.IJSRuntime> abstraction is asynchronous to allow for Blazor Server scenarios. If the app is a Blazor WebAssembly app and you want to invoke a JavaScript function synchronously, downcast to <xref:Microsoft.JSInterop.IJSInProcessRuntime> and call <xref:Microsoft.JSInterop.IJSInProcessRuntime.Invoke%2A> instead. We recommend that most JS interop libraries use the async APIs to ensure that the libraries are available in all scenarios.
 
 The sample app includes a component to demonstrate JS interop. The component:
 
@@ -137,7 +137,7 @@ The sample app includes a component to demonstrate JS interop. The component:
 
 ## Call a void JavaScript function
 
-JavaScript functions that return [void(0)/void 0](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/void) or [undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined) are called with `IJSRuntime.InvokeVoidAsync`.
+JavaScript functions that return [void(0)/void 0](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/void) or [undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined) are called with <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A?displayProperty=nameWithType>.
 
 ## Detect when a Blazor Server app is prerendering
  
@@ -150,7 +150,7 @@ Some JS interop scenarios require references to HTML elements. For example, a UI
 Capture references to HTML elements in a component using the following approach:
 
 * Add an `@ref` attribute to the HTML element.
-* Define a field of type `ElementReference` whose name matches the value of the `@ref` attribute.
+* Define a field of type <xref:Microsoft.AspNetCore.Components.ElementReference> whose name matches the value of the `@ref` attribute.
 
 The following example shows capturing a reference to the `username` `<input>` element:
 
@@ -178,7 +178,7 @@ The following example shows capturing a reference to the `username` `<input>` el
 >
 > If JS interop mutates the contents of element `MyList` and Blazor attempts to apply diffs to the element, the diffs won't match the DOM.
 
-As far as .NET code is concerned, an `ElementReference` is an opaque handle. The *only* thing you can do with `ElementReference` is pass it through to JavaScript code via JS interop. When you do so, the JavaScript-side code receives an `HTMLElement` instance, which it can use with normal DOM APIs.
+As far as .NET code is concerned, an <xref:Microsoft.AspNetCore.Components.ElementReference> is an opaque handle. The *only* thing you can do with <xref:Microsoft.AspNetCore.Components.ElementReference> is pass it through to JavaScript code via JS interop. When you do so, the JavaScript-side code receives an `HTMLElement` instance, which it can use with normal DOM APIs.
 
 For example, the following code defines a .NET extension method that enables setting the focus on an element:
 
@@ -192,11 +192,11 @@ window.exampleJsFunctions = {
 }
 ```
 
-To call a JavaScript function that doesn't return a value, use `IJSRuntime.InvokeVoidAsync`. The following code sets the focus on the username input by calling the preceding JavaScript function with the captured `ElementReference`:
+To call a JavaScript function that doesn't return a value, use <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A?displayProperty=nameWithType>. The following code sets the focus on the username input by calling the preceding JavaScript function with the captured <xref:Microsoft.AspNetCore.Components.ElementReference>:
 
 [!code-razor[](call-javascript-from-dotnet/samples_snapshot/component1.razor?highlight=1,3,11-12)]
 
-To use an extension method, create a static extension method that receives the `IJSRuntime` instance:
+To use an extension method, create a static extension method that receives the <xref:Microsoft.JSInterop.IJSRuntime> instance:
 
 ```csharp
 public static async Task Focus(this ElementReference elementRef, IJSRuntime jsRuntime)
@@ -211,9 +211,9 @@ The `Focus` method is called directly on the object. The following example assum
 [!code-razor[](call-javascript-from-dotnet/samples_snapshot/component2.razor?highlight=1-4,12)]
 
 > [!IMPORTANT]
-> The `username` variable is only populated after the component is rendered. If an unpopulated `ElementReference` is passed to JavaScript code, the JavaScript code receives a value of `null`. To manipulate element references after the component has finished rendering (to set the initial focus on an element) use the [OnAfterRenderAsync or OnAfterRender component lifecycle methods](xref:blazor/lifecycle#after-component-render).
+> The `username` variable is only populated after the component is rendered. If an unpopulated <xref:Microsoft.AspNetCore.Components.ElementReference> is passed to JavaScript code, the JavaScript code receives a value of `null`. To manipulate element references after the component has finished rendering (to set the initial focus on an element) use the [OnAfterRenderAsync or OnAfterRender component lifecycle methods](xref:blazor/lifecycle#after-component-render).
 
-When working with generic types and returning a value, use [ValueTask\<T>](xref:System.Threading.Tasks.ValueTask`1):
+When working with generic types and returning a value, use <xref:System.Threading.Tasks.ValueTask%601>:
 
 ```csharp
 public static ValueTask<T> GenericMethod<T>(this ElementReference elementRef, 
@@ -230,12 +230,12 @@ public static ValueTask<T> GenericMethod<T>(this ElementReference elementRef,
 
 ## Reference elements across components
 
-An `ElementReference` is only guaranteed valid in a component's `OnAfterRender` method (and an element reference is a `struct`), so an element reference can't be passed between components.
+An <xref:Microsoft.AspNetCore.Components.ElementReference> is only guaranteed valid in a component's <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> method (and an element reference is a `struct`), so an element reference can't be passed between components.
 
 For a parent component to make an element reference available to other components, the parent component can:
 
 * Allow child components to register callbacks.
-* Invoke the registered callbacks during the `OnAfterRender` event with the passed element reference. Indirectly, this approach allows child components to interact with the parent's element reference.
+* Invoke the registered callbacks during the <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> event with the passed element reference. Indirectly, this approach allows child components to interact with the parent's element reference.
 
 The following Blazor WebAssembly example illustrates the approach.
 
@@ -432,7 +432,7 @@ namespace BlazorSample.Shared
 
 ## Harden JS interop calls
 
-JS interop may fail due to networking errors and should be treated as unreliable. By default, a Blazor Server app times out JS interop calls on the server after one minute. If an app can tolerate a more aggressive timeout, such as 10 seconds, set the timeout using one of the following approaches:
+JS interop may fail due to networking errors and should be treated as unreliable. By default, a Blazor Server app times out JS interop calls on the server after one minute. If an app can tolerate a more aggressive timeout, set the timeout using one of the following approaches:
 
 * Globally in `Startup.ConfigureServices`, specify the timeout:
 
@@ -450,7 +450,7 @@ JS interop may fail due to networking errors and should be treated as unreliable
 
 For more information on resource exhaustion, see <xref:security/blazor/server/threat-mitigation>.
 
-[!INCLUDE[Share interop code in a class library](~/includes/blazor-share-interop-code.md)]
+[!INCLUDE[](~/includes/blazor-share-interop-code.md)]
 
 ## Avoid circular object references
 

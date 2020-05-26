@@ -19,7 +19,7 @@ This article provides guidelines for ASP.NET Core Blazor WebAssembly performance
 
 Blazor's diffing algorithm avoids rerendering a component when the algorithm perceives that the component hasn't changed. Override [ComponentBase.ShouldRender](xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A) for fine-grained control over component rendering.
 
-If authoring a UI-only component that never changes after the initial render, configure `ShouldRender` to return `false`:
+If authoring a UI-only component that never changes after the initial render, configure <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> to return `false`:
 
 ```razor
 @code {
@@ -31,9 +31,9 @@ Most apps don't require fine-grained control, but <xref:Microsoft.AspNetCore.Com
 
 In the following example:
 
-* <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> is overridden and set to the value of the `shouldRender` field, which is initially `false` when the component loads.
-* When the button is selected, `shouldRender` is set to `true`, which forces the component to rerender with the updated `currentCount`.
-* Immediately after rerendering, <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> sets the value of `shouldRender` back to `false` to prevent further rerendering until the next time the button is selected.
+* <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> is overridden and set to the value of the <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> field, which is initially `false` when the component loads.
+* When the button is selected, <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> is set to `true`, which forces the component to rerender with the updated `currentCount`.
+* Immediately after rerendering, <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> sets the value of <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> back to `false` to prevent further rerendering until the next time the button is selected.
 
 ```razor
 <p>Current count: @currentCount</p>

@@ -74,7 +74,7 @@ To debug a Blazor WebAssembly app in Visual Studio:
 
 While debugging your Blazor WebAssembly app, you can also debug your server code:
 
-1. Set a breakpoint in the *FetchData.razor* page in `OnInitializedAsync`.
+1. Set a breakpoint in the *FetchData.razor* page in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>.
 1. Set a breakpoint in the `WeatherForecastController` in the `Get` action method.
 1. Browse to the **Fetch Data** tab to hit the first breakpoint in the `FetchData` component just before it issues an HTTP request to the server:
 

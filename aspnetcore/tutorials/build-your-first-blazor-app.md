@@ -70,11 +70,11 @@ Include a component in another component using an HTML syntax.
 
 ## Component parameters
 
-Components can also have parameters. Component parameters are defined using public properties on the component class with the `[Parameter]` attribute. Use attributes to specify arguments for a component in markup.
+Components can also have parameters. Component parameters are defined using public properties on the component class with the [`[Parameter]`](xref:Microsoft.AspNetCore.Components.ParameterAttribute) attribute. Use attributes to specify arguments for a component in markup.
 
 1. Update the component's `@code` C# code as follows:
 
-   * Add a public `IncrementAmount` property with the `[Parameter]` attribute.
+   * Add a public `IncrementAmount` property with the [`[Parameter]`](xref:Microsoft.AspNetCore.Components.ParameterAttribute) attribute.
    * Change the `IncrementCount` method to use the `IncrementAmount` property when increasing the value of `currentCount`.
 
    *Pages/Counter.razor*:
@@ -106,7 +106,7 @@ If working with a Blazor Server app, the `WeatherForecastService` service is reg
 
 [!code-csharp[](build-your-first-blazor-app/samples_snapshot/3.x/Startup.cs?highlight=5)]
 
-The `@inject` directive is used to inject the instance of the `WeatherForecastService` service into the `FetchData` component.
+The [`@inject`](xref:mvc/views/razor#inject) directive is used to inject the instance of the `WeatherForecastService` service into the `FetchData` component.
 
 *Pages/FetchData.razor*:
 
@@ -118,7 +118,7 @@ The `FetchData` component uses the injected service, as `ForecastService`, to re
 
 ### Blazor WebAssembly experience
 
-If working with a Blazor WebAssembly app, `HttpClient` is injected to obtain weather forecast data from the *weather.json* file in the *wwwroot/sample-data* folder.
+If working with a Blazor WebAssembly app, <xref:System.Net.Http.HttpClient> is injected to obtain weather forecast data from the *weather.json* file in the *wwwroot/sample-data* folder.
 
 *Pages/FetchData.razor*:
 

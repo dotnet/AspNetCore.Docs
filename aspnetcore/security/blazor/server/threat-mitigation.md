@@ -88,19 +88,20 @@ By default, there's no limit on the number of connections per user for a Blazor 
 
 ## Denial of service (DoS) attacks
 
-Denial of service (DoS) attacks involve a client causing the server to exhaust one or more of its resources making the app unavailable. Blazor Server apps include some default limits and rely on other ASP.NET Core and SignalR limits to protect against DoS attacks:
+Denial of service (DoS) attacks involve a client causing the server to exhaust one or more of its resources making the app unavailable. Blazor Server apps include some default limits and rely on other ASP.NET Core and SignalR limits to protect against DoS attacks that are set on <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions>.
 
-| Blazor Server app limit                            | Description | Default |
-| ------------------------------------------------------- | ----------- | ------- |
-| `CircuitOptions.DisconnectedCircuitMaxRetained`         | Maximum number of disconnected circuits that a given server holds in memory at a time. | 100 |
-| `CircuitOptions.DisconnectedCircuitRetentionPeriod`     | Maximum amount of time a disconnected circuit is held in memory before being torn down. | 3 minutes |
-| `CircuitOptions.JSInteropDefaultCallTimeout`            | Maximum amount of time the server waits before timing out an asynchronous JavaScript function invocation. | 1 minute |
-| `CircuitOptions.MaxBufferedUnacknowledgedRenderBatches` | Maximum number of unacknowledged render batches the server keeps in memory per circuit at a given time to support robust reconnection. After reaching the limit, the server stops producing new render batches until one or more batches have been acknowledged by the client. | 10 |
+| Blazor Server app limit | Description | Default |
+| --- | --- | --- |
+| <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DisconnectedCircuitMaxRetained> | Maximum number of disconnected circuits that a given server holds in memory at a time. | 100 |
+| <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DisconnectedCircuitRetentionPeriod> | Maximum amount of time a disconnected circuit is held in memory before being torn down. | 3 minutes |
+| <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.JSInteropDefaultCallTimeout> | Maximum amount of time the server waits before timing out an asynchronous JavaScript function invocation. | 1 minute |
+| <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.MaxBufferedUnacknowledgedRenderBatches> | Maximum number of unacknowledged render batches the server keeps in memory per circuit at a given time to support robust reconnection. After reaching the limit, the server stops producing new render batches until one or more batches have been acknowledged by the client. | 10 |
 
+Set the maximum message size of a single incoming hub message with <xref:Microsoft.AspNetCore.SignalR.HubConnectionContextOptions>.
 
-| SignalR and ASP.NET Core limit             | Description | Default |
-| ------------------------------------------ | ----------- | ------- |
-| `CircuitOptions.MaximumReceiveMessageSize` | Message size for an individual message. | 32 KB |
+| SignalR and ASP.NET Core limit | Description | Default |
+| --- | --- | --- |
+| <xref:Microsoft.AspNetCore.SignalR.HubConnectionContextOptions.MaximumReceiveMessageSize?displayProperty=nameWithType> | Message size for an individual message. | 32 KB |
 
 ## Interactions with the browser (client)
 
@@ -114,7 +115,7 @@ A client interacts with the server through JS interop event dispatching and rend
 For calls from .NET methods to JavaScript:
 
 * All invocations have a configurable timeout after which they fail, returning a <xref:System.OperationCanceledException> to the caller.
-  * There's a default timeout for the calls (`CircuitOptions.JSInteropDefaultCallTimeout`) of one minute. To configure this limit, see <xref:blazor/call-javascript-from-dotnet#harden-js-interop-calls>.
+  * There's a default timeout for the calls (<xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.JSInteropDefaultCallTimeout?displayProperty=nameWithType>) of one minute. To configure this limit, see <xref:blazor/call-javascript-from-dotnet#harden-js-interop-calls>.
   * A cancellation token can be provided to control the cancellation on a per-call basis. Rely on the default call timeout where possible and time-bound any call to the client if a cancellation token is provided.
 * The result of a JavaScript call can't be trusted. The Blazor app client running in the browser searches for the JavaScript function to invoke. The function is invoked, and either the result or an error is produced. A malicious client can attempt to:
   * Cause an issue in the app by returning an error from the JavaScript function.
@@ -287,10 +288,10 @@ When an error occurs on the server, the framework notifies the client and tears 
 
 The client-side error doesn't include the callstack and doesn't provide detail on the cause of the error, but server logs do contain such information. For development purposes, sensitive error information can be made available to the client by enabling detailed errors.
 
-Enable detailed errors with:
+Enable detailed errors in JavaScript with:
 
-* `CircuitOptions.DetailedErrors`.
-* `DetailedErrors` configuration key. For example, set the `ASPNETCORE_DETAILEDERRORS` environment variable to a value of `true`.
+* <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DetailedErrors?displayProperty=nameWithType>.
+* The `DetailedErrors` configuration key set to `true`, which can be set in the app settings file (*appsettings.json*). The key can also be set using the `ASPNETCORE_DETAILEDERRORS` environment variable with a value of `true`.
 
 > [!WARNING]
 > Exposing error information to clients on the Internet is a security risk that should always be avoided.
@@ -314,8 +315,8 @@ Cross-site scripting (XSS) allows an unauthorized party to execute arbitrary log
 
 The Blazor Server framework takes steps to protect against some of the preceding threats:
 
-* Stops producing new UI updates if the client isn't acknowledging render batches. Configured with `CircuitOptions.MaxBufferedUnacknowledgedRenderBatches`.
-* Times out any .NET to JavaScript call after one minute without receiving a response from the client. Configured with `CircuitOptions.JSInteropDefaultCallTimeout`.
+* Stops producing new UI updates if the client isn't acknowledging render batches. Configured with <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.MaxBufferedUnacknowledgedRenderBatches?displayProperty=nameWithType>.
+* Times out any .NET to JavaScript call after one minute without receiving a response from the client. Configured with <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.JSInteropDefaultCallTimeout?displayProperty=nameWithType>.
 * Performs basic validation on all input coming from the browser during JS interop:
   * .NET references are valid and of the type expected by the .NET method.
   * The data isn't malformed.
@@ -350,8 +351,8 @@ For more information, see <xref:security/cross-site-scripting>.
 
 Cross-origin attacks involve a client from a different origin performing an action against the server. The malicious action is typically a GET request or a form POST (Cross-Site Request Forgery, CSRF), but opening a malicious WebSocket is also possible. Blazor Server apps offer [the same guarantees that any other SignalR app using the hub protocol offer](xref:signalr/security):
 
-* Blazor Server apps can be accessed cross-origin unless additional measures are taken to prevent it. To disable cross-origin access, either disable CORS in the endpoint by adding the CORS middleware to the pipeline and adding the `DisableCorsAttribute` to the Blazor endpoint metadata or limit the set of allowed origins by [configuring SignalR for cross-origin resource sharing](xref:signalr/security#cross-origin-resource-sharing).
-* If CORS is enabled, extra steps might be required to protect the app depending on the CORS configuration. If CORS is globally enabled, CORS can be disabled for the Blazor Server hub by adding the `DisableCorsAttribute` metadata to the endpoint metadata after calling `hub.MapBlazorHub()`.
+* Blazor Server apps can be accessed cross-origin unless additional measures are taken to prevent it. To disable cross-origin access, either disable CORS in the endpoint by adding the CORS middleware to the pipeline and adding the <xref:Microsoft.AspNetCore.Cors.DisableCorsAttribute> to the Blazor endpoint metadata or limit the set of allowed origins by [configuring SignalR for cross-origin resource sharing](xref:signalr/security#cross-origin-resource-sharing).
+* If CORS is enabled, extra steps might be required to protect the app depending on the CORS configuration. If CORS is globally enabled, CORS can be disabled for the Blazor Server hub by adding the <xref:Microsoft.AspNetCore.Cors.DisableCorsAttribute> metadata to the endpoint metadata after calling [hub.MapBlazorHub](xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A).
 
 For more information, see <xref:security/anti-request-forgery>.
 
@@ -367,14 +368,14 @@ When a Blazor Server app session starts, the server performs basic validation of
 
 When a user selects a link on the client, the URL for the link is sent to the server, which determines what action to take. For example, the app may perform a client-side navigation or indicate to the browser to go to the new location.
 
-Components can also trigger navigation requests programatically through the use of `NavigationManager`. In such scenarios, the app might perform a client-side navigation or indicate to the browser to go to the new location.
+Components can also trigger navigation requests programatically through the use of <xref:Microsoft.AspNetCore.Components.NavigationManager>. In such scenarios, the app might perform a client-side navigation or indicate to the browser to go to the new location.
 
 Components must:
 
 * Avoid using user input as part of the navigation call arguments.
 * Validate arguments to ensure that the target is allowed by the app.
 
-Otherwise, a malicious user can force the browser to go to an attacker-controlled site. In this scenario, the attacker tricks the app into using some user input as part of the invocation of the `NavigationManager.Navigate` method.
+Otherwise, a malicious user can force the browser to go to an attacker-controlled site. In this scenario, the attacker tricks the app into using some user input as part of the invocation of the <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A?displayProperty=nameWithType> method.
 
 This advice also applies when rendering links as part of the app:
 
@@ -396,7 +397,7 @@ The following list of security considerations isn't comprehensive:
 * Guard against multiple dispatches.
 * Cancel long-running operations when the component is disposed.
 * Avoid events that produce large amounts of data.
-* Avoid using user input as part of calls to `NavigationManager.Navigate` and validate user input for URLs against a set of allowed origins first if unavoidable.
+* Avoid using user input as part of calls to <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A?displayProperty=nameWithType> and validate user input for URLs against a set of allowed origins first if unavoidable.
 * Don't make authorization decisions based on the state of the UI but only from component state.
 * Consider using [Content Security Policy (CSP)](https://developer.mozilla.org/docs/Web/HTTP/CSP) to protect against XSS attacks.
 * Consider using CSP and [X-Frame-Options](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Frame-Options) to protect against click-jacking.

@@ -21,9 +21,9 @@ This article covers invoking .NET methods from JavaScript. For information on ho
 
 ## Static .NET method call
 
-To invoke a static .NET method from JavaScript, use the `DotNet.invokeMethod` or `DotNet.invokeMethodAsync` functions. Pass in the identifier of the static method you wish to call, the name of the assembly containing the function, and any arguments. The asynchronous version is preferred to support Blazor Server scenarios. The .NET method must be public, static, and have the `[JSInvokable]` attribute. Calling open generic methods isn't currently supported.
+To invoke a static .NET method from JavaScript, use the `DotNet.invokeMethod` or `DotNet.invokeMethodAsync` functions. Pass in the identifier of the static method you wish to call, the name of the assembly containing the function, and any arguments. The asynchronous version is preferred to support Blazor Server scenarios. The .NET method must be public, static, and have the [`[JSInvokable]`](xref:Microsoft.JSInterop.JSInvokableAttribute) attribute. Calling open generic methods isn't currently supported.
 
-The sample app includes a C# method to return an `int` array. The `JSInvokable` attribute is applied to the method.
+The sample app includes a C# method to return an `int` array. The [`[JSInvokable]`](xref:Microsoft.JSInterop.JSInvokableAttribute) attribute is applied to the method.
 
 *Pages/JsInterop.razor*:
 
@@ -58,7 +58,7 @@ Array(4) [ 1, 2, 3, 4 ]
 
 The fourth array value is pushed to the array (`data.push(4);`) returned by `ReturnArrayAsync`.
 
-By default, the method identifier is the method name, but you can specify a different identifier using the `JSInvokableAttribute` constructor:
+By default, the method identifier is the method name, but you can specify a different identifier using the [`[JSInvokable]`](xref:Microsoft.JSInterop.JSInvokableAttribute) attribute constructor:
 
 ```csharp
 @code {
@@ -87,8 +87,8 @@ returnArrayAsyncJs: function () {
 You can also call .NET instance methods from JavaScript. To invoke a .NET instance method from JavaScript:
 
 * Pass the .NET instance by reference to JavaScript:
-  * Make a static call to `DotNetObjectReference.Create`.
-  * Wrap the instance in a `DotNetObjectReference` instance and call `Create` on the `DotNetObjectReference` instance. Dispose of `DotNetObjectReference` objects (an example appears later in this section).
+  * Make a static call to <xref:Microsoft.JSInterop.DotNetObjectReference.Create%2A?displayProperty=nameWithType>.
+  * Wrap the instance in a <xref:Microsoft.JSInterop.DotNetObjectReference> instance and call <xref:Microsoft.JSInterop.DotNetObjectReference.Create%2A> on the <xref:Microsoft.JSInterop.DotNetObjectReference> instance. Dispose of <xref:Microsoft.JSInterop.DotNetObjectReference> objects (an example appears later in this section).
 * Invoke .NET instance methods on the instance using the `invokeMethod` or `invokeMethodAsync` functions. The .NET instance can also be passed as an argument when invoking other .NET methods from JavaScript.
 
 > [!NOTE]
@@ -134,9 +134,9 @@ Console output in the browser's web developer tools:
 Hello, Blazor!
 ```
 
-To avoid a memory leak and allow garbage collection on a component that creates a `DotNetObjectReference`, adopt one of the following approaches:
+To avoid a memory leak and allow garbage collection on a component that creates a <xref:Microsoft.JSInterop.DotNetObjectReference>, adopt one of the following approaches:
 
-* Dispose of the object in the class that created the `DotNetObjectReference` instance:
+* Dispose of the object in the class that created the <xref:Microsoft.JSInterop.DotNetObjectReference> instance:
 
   ```csharp
   public class ExampleJsInterop : IDisposable
@@ -198,7 +198,7 @@ To avoid a memory leak and allow garbage collection on a component that creates 
   }
   ```
 
-* When the component or class doesn't dispose of the `DotNetObjectReference`, dispose of the object on the client by calling `.dispose()`:
+* When the component or class doesn't dispose of the <xref:Microsoft.JSInterop.DotNetObjectReference>, dispose of the object on the client by calling `.dispose()`:
 
   ```javascript
   window.myFunction = (dotnetHelper) => {
@@ -212,7 +212,7 @@ To avoid a memory leak and allow garbage collection on a component that creates 
 To invoke a component's .NET methods:
 
 * Use the `invokeMethod` or `invokeMethodAsync` function to make a static method call to the component.
-* The component's static method wraps the call to its instance method as an invoked `Action`.
+* The component's static method wraps the call to its instance method as an invoked <xref:System.Action>.
 
 In the client-side JavaScript:
 
@@ -258,11 +258,11 @@ function updateMessageCallerJS() {
 }
 ```
 
-When there are several components, each with instance methods to call, use a helper class to invoke the instance methods (as `Action`s) of each component.
+When there are several components, each with instance methods to call, use a helper class to invoke the instance methods (as <xref:System.Action>s) of each component.
 
 In the following example:
 
-* The `JSInterop` component contains several `ListItem` components.
+* The `JSInteropExample` component contains several `ListItem` components.
 * Each `ListItem` component is composed of a message and a button.
 * When a `ListItem` component button is selected, that `ListItem`'s `UpdateMessage` method changes the list item text and hides the button.
 
@@ -333,10 +333,10 @@ window.updateMessageCallerJS = (dotnetHelper) => {
 }
 ```
 
-*Pages/JSInterop.razor*:
+*Pages/JSInteropExample.razor*:
 
 ```razor
-@page "/JSInterop"
+@page "/JSInteropExample"
 
 <h1>List of components</h1>
 

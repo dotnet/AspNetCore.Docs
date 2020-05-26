@@ -13,11 +13,11 @@ uid: blazor/routing
 
 By [Luke Latham](https://github.com/guardrex)
 
-Learn how to route requests and how to use the `NavLink` component to create navigation links in Blazor apps.
+Learn how to route requests and how to use the <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component to create navigation links in Blazor apps.
 
 ## ASP.NET Core endpoint routing integration
 
-Blazor Server is integrated into [ASP.NET Core Endpoint Routing](xref:fundamentals/routing). An ASP.NET Core app is configured to accept incoming connections for interactive components with `MapBlazorHub` in `Startup.Configure`:
+Blazor Server is integrated into [ASP.NET Core Endpoint Routing](xref:fundamentals/routing). An ASP.NET Core app is configured to accept incoming connections for interactive components with <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> in `Startup.Configure`:
 
 [!code-csharp[](routing/samples_snapshot/3.x/Startup.cs?highlight=5)]
 
@@ -25,7 +25,7 @@ The most typical configuration is to route all requests to a Razor page, which a
 
 ## Route templates
 
-The `Router` component enables routing to each component with a specified route. The `Router` component appears in the *App.razor* file:
+The <xref:Microsoft.AspNetCore.Components.Routing.Router> component enables routing to each component with a specified route. The <xref:Microsoft.AspNetCore.Components.Routing.Router> component appears in the *App.razor* file:
 
 ```razor
 <Router AppAssembly="typeof(Startup).Assembly">
@@ -40,12 +40,12 @@ The `Router` component enables routing to each component with a specified route.
 
 When a *.razor* file with an `@page` directive is compiled, the generated class is provided a <xref:Microsoft.AspNetCore.Components.RouteAttribute> specifying the route template.
 
-At runtime, the `RouteView` component:
+At runtime, the <xref:Microsoft.AspNetCore.Components.RouteView> component:
 
-* Receives the `RouteData` from the `Router` along with any desired parameters.
+* Receives the <xref:Microsoft.AspNetCore.Components.RouteData> from the <xref:Microsoft.AspNetCore.Components.Routing.Router> along with any desired parameters.
 * Renders the specified component with its layout (or an optional default layout) using the specified parameters.
 
-You can optionally specify a `DefaultLayout` parameter with a layout class to use for components that don't specify a layout. The default Blazor templates specify the `MainLayout` component. *MainLayout.razor* is in the template project's *Shared* folder. For more information on layouts, see <xref:blazor/layouts>.
+You can optionally specify a <xref:Microsoft.AspNetCore.Components.RouteView.DefaultLayout> parameter with a layout class to use for components that don't specify a layout. The default Blazor templates specify the `MainLayout` component. *MainLayout.razor* is in the template project's *Shared* folder. For more information on layouts, see <xref:blazor/layouts>.
 
 Multiple route templates can be applied to a component. The following component responds to requests for `/BlazorRoute` and `/DifferentBlazorRoute`:
 
@@ -61,9 +61,9 @@ Multiple route templates can be applied to a component. The following component 
 
 ## Provide custom content when content isn't found
 
-The `Router` component allows the app to specify custom content if content isn't found for the requested route.
+The <xref:Microsoft.AspNetCore.Components.Routing.Router> component allows the app to specify custom content if content isn't found for the requested route.
 
-In the *App.razor* file, set custom content in the `NotFound` template parameter of the `Router` component:
+In the *App.razor* file, set custom content in the <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound> template parameter of the <xref:Microsoft.AspNetCore.Components.Routing.Router> component:
 
 ```razor
 <Router AppAssembly="typeof(Startup).Assembly">
@@ -77,11 +77,11 @@ In the *App.razor* file, set custom content in the `NotFound` template parameter
 </Router>
 ```
 
-The content of `<NotFound>` tags can include arbitrary items, such as other interactive components. To apply a default layout to `NotFound` content, see <xref:blazor/layouts>.
+The content of `<NotFound>` tags can include arbitrary items, such as other interactive components. To apply a default layout to <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound> content, see <xref:blazor/layouts>.
 
 ## Route to components from multiple assemblies
 
-Use the `AdditionalAssemblies` parameter to specify additional assemblies for the `Router` component to consider when searching for routable components. Specified assemblies are considered in addition to the `AppAssembly`-specified assembly. In the following example, `Component1` is a routable component defined in a referenced class library. The following `AdditionalAssemblies` example results in routing support for `Component1`:
+Use the <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies> parameter to specify additional assemblies for the <xref:Microsoft.AspNetCore.Components.Routing.Router> component to consider when searching for routable components. Specified assemblies are considered in addition to the `AppAssembly`-specified assembly. In the following example, `Component1` is a routable component defined in a referenced class library. The following <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies> example results in routing support for `Component1`:
 
 ```razor
 <Router
@@ -139,7 +139,7 @@ The route constraints shown in the following table are available. For the route 
 | `long`     | `{ticks:long}`    | `123456789`, `-123456789`                                                        | Yes                              |
 
 > [!WARNING]
-> Route constraints that verify the URL and are converted to a CLR type (such as `int` or `DateTime`) always use the invariant culture. These constraints assume that the URL is non-localizable.
+> Route constraints that verify the URL and are converted to a CLR type (such as `int` or <xref:System.DateTime>) always use the invariant culture. These constraints assume that the URL is non-localizable.
 
 ### Routing with URLs that contain dots
 
@@ -161,20 +161,20 @@ For more information, see <xref:fundamentals/routing>.
 
 ## NavLink component
 
-Use a `NavLink` component in place of HTML hyperlink elements (`<a>`) when creating navigation links. A `NavLink` component behaves like an `<a>` element, except it toggles an `active` CSS class based on whether its `href` matches the current URL. The `active` class helps a user understand which page is the active page among the navigation links displayed.
+Use a <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component in place of HTML hyperlink elements (`<a>`) when creating navigation links. A <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component behaves like an `<a>` element, except it toggles an `active` CSS class based on whether its `href` matches the current URL. The `active` class helps a user understand which page is the active page among the navigation links displayed.
 
-The following `NavMenu` component creates a [Bootstrap](https://getbootstrap.com/docs/) navigation bar that demonstrates how to use `NavLink` components:
+The following `NavMenu` component creates a [Bootstrap](https://getbootstrap.com/docs/) navigation bar that demonstrates how to use <xref:Microsoft.AspNetCore.Components.Routing.NavLink> components:
 
 [!code-razor[](routing/samples_snapshot/3.x/NavMenu.razor?highlight=4,9)]
 
-There are two `NavLinkMatch` options that you can assign to the `Match` attribute of the `<NavLink>` element:
+There are two <xref:Microsoft.AspNetCore.Components.Routing.NavLinkMatch> options that you can assign to the `Match` attribute of the `<NavLink>` element:
 
-* `NavLinkMatch.All` &ndash; The `NavLink` is active when it matches the entire current URL.
-* `NavLinkMatch.Prefix` (*default*) &ndash; The `NavLink` is active when it matches any prefix of the current URL.
+* <xref:Microsoft.AspNetCore.Components.Routing.NavLinkMatch.All?displayProperty=nameWithType> &ndash; The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> is active when it matches the entire current URL.
+* <xref:Microsoft.AspNetCore.Components.Routing.NavLinkMatch.Prefix?displayProperty=nameWithType> (*default*) &ndash; The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> is active when it matches any prefix of the current URL.
 
-In the preceding example, the Home `NavLink` `href=""` matches the home URL and only receives the `active` CSS class at the app's default base path URL (for example, `https://localhost:5001/`). The second `NavLink` receives the `active` class when the user visits any URL with a `MyComponent` prefix (for example, `https://localhost:5001/MyComponent` and `https://localhost:5001/MyComponent/AnotherSegment`).
+In the preceding example, the Home <xref:Microsoft.AspNetCore.Components.Routing.NavLink> `href=""` matches the home URL and only receives the `active` CSS class at the app's default base path URL (for example, `https://localhost:5001/`). The second <xref:Microsoft.AspNetCore.Components.Routing.NavLink> receives the `active` class when the user visits any URL with a `MyComponent` prefix (for example, `https://localhost:5001/MyComponent` and `https://localhost:5001/MyComponent/AnotherSegment`).
 
-Additional `NavLink` component attributes are passed through to the rendered anchor tag. In the following example, the `NavLink` component includes the `target` attribute:
+Additional <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component attributes are passed through to the rendered anchor tag. In the following example, the <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component includes the `target` attribute:
 
 ```razor
 <NavLink href="my-page" target="_blank">My page</NavLink>
@@ -188,16 +188,16 @@ The following HTML markup is rendered:
 
 ## URI and navigation state helpers
 
-Use <xref:Microsoft.AspNetCore.Components.NavigationManager> to work with URIs and navigation in C# code. `NavigationManager` provides the event and methods shown in the following table.
+Use <xref:Microsoft.AspNetCore.Components.NavigationManager> to work with URIs and navigation in C# code. <xref:Microsoft.AspNetCore.Components.NavigationManager> provides the event and methods shown in the following table.
 
 | Member | Description |
 | ------ | ----------- |
-| Uri | Gets the current absolute URI. |
-| BaseUri | Gets the base URI (with a trailing slash) that can be prepended to relative URI paths to produce an absolute URI. Typically, `BaseUri` corresponds to the `href` attribute on the document's `<base>` element in *wwwroot/index.html* (Blazor WebAssembly) or *Pages/_Host.cshtml* (Blazor Server). |
-| NavigateTo | Navigates to the specified URI. If `forceLoad` is `true`:<ul><li>Client-side routing is bypassed.</li><li>The browser is forced to load the new page from the server, whether or not the URI is normally handled by the client-side router.</li></ul> |
-| LocationChanged | An event that fires when the navigation location has changed. |
-| ToAbsoluteUri | Converts a relative URI into an absolute URI. |
-| <span style="word-break:normal;word-wrap:normal">ToBaseRelativePath</span> | Given a base URI (for example, a URI previously returned by `GetBaseUri`), converts an absolute URI into a URI relative to the base URI prefix. |
+| <xref:Microsoft.AspNetCore.Components.NavigationManager.Uri> | Gets the current absolute URI. |
+| <xref:Microsoft.AspNetCore.Components.NavigationManager.BaseUri> | Gets the base URI (with a trailing slash) that can be prepended to relative URI paths to produce an absolute URI. Typically, <xref:Microsoft.AspNetCore.Components.NavigationManager.BaseUri> corresponds to the `href` attribute on the document's `<base>` element in *wwwroot/index.html* (Blazor WebAssembly) or *Pages/_Host.cshtml* (Blazor Server). |
+| <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> | Navigates to the specified URI. If `forceLoad` is `true`:<ul><li>Client-side routing is bypassed.</li><li>The browser is forced to load the new page from the server, whether or not the URI is normally handled by the client-side router.</li></ul> |
+| <xref:Microsoft.AspNetCore.Components.NavigationManager.LocationChanged> | An event that fires when the navigation location has changed. |
+| <xref:Microsoft.AspNetCore.Components.NavigationManager.ToAbsoluteUri%2A> | Converts a relative URI into an absolute URI. |
+| <span style="word-break:normal;word-wrap:normal"><xref:Microsoft.AspNetCore.Components.NavigationManager.ToBaseRelativePath%2A></span> | Given a base URI (for example, a URI previously returned by <xref:Microsoft.AspNetCore.Components.NavigationManager.BaseUri>), converts an absolute URI into a URI relative to the base URI prefix. |
 
 The following component navigates to the app's `Counter` component when the button is selected:
 
@@ -219,7 +219,7 @@ The following component navigates to the app's `Counter` component when the butt
 }
 ```
 
-The following component handles a location changed event. The `HandleLocationChanged` method is unhooked when `Dispose` is called by the framework. Unhooking the method permits garbage collection of the component.
+The following component handles a location changed event by setting <xref:Microsoft.AspNetCore.Components.NavigationManager.LocationChanged?displayProperty=nameWithType>. The `HandleLocationChanged` method is unhooked when `Dispose` is called by the framework. Unhooking the method permits garbage collection of the component.
 
 ```razor
 @implements IDisposable
@@ -246,6 +246,6 @@ public void Dispose()
 <xref:Microsoft.AspNetCore.Components.Routing.LocationChangedEventArgs> provides the following information about the event:
 
 * <xref:Microsoft.AspNetCore.Components.Routing.LocationChangedEventArgs.Location> &ndash; The URL of the new location.
-* <xref:Microsoft.AspNetCore.Components.Routing.LocationChangedEventArgs.IsNavigationIntercepted> &ndash; If `true`, Blazor intercepted the navigation from the browser. If `false`, [NavigationManager.NavigateTo](xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A) caused the navigation to occur.
+* <xref:Microsoft.AspNetCore.Components.Routing.LocationChangedEventArgs.IsNavigationIntercepted> &ndash; If `true`, Blazor intercepted the navigation from the browser. If `false`, <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A?displayProperty=nameWithType> caused the navigation to occur.
 
 For more information on component disposal, see <xref:blazor/lifecycle#component-disposal-with-idisposable>.
