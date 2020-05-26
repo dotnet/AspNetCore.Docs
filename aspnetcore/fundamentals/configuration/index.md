@@ -682,7 +682,7 @@ In the following code, `MyOptions` is added to the service container with <xref:
 
 The following markjup uses the [`@inject`](xref:mvc/views/razor#inject) Razor directive to display the options values:
 
-[!code-cshtml[](~/fundamentals/configuration/options/samples/3.x/OptionsSample/Pages/Test3.cshtml.cs)]
+[!code-cshtml[](~/fundamentals/configuration/options/samples/3.x/OptionsSample/Pages/Test3.cshtml)]
 
 ## Access configuration in a MVC view file
 

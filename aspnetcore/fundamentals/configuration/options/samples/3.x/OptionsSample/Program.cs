@@ -14,8 +14,10 @@ namespace SampleApp
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                  //  webBuilder.UseStartup<Startup>();
-                   // webBuilder.UseStartup<Startup2>(); 
+                    //  webBuilder.UseStartup<Startup>();
+                    // webBuilder.UseStartup<Startup1>();
+
+                    // webBuilder.UseStartup<Startup2>(); 
                     webBuilder.UseStartup<Startup3>();
                   //  webBuilder.UseStartup<StartupNO>();
 
