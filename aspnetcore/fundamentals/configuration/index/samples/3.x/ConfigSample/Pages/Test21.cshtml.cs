@@ -17,8 +17,9 @@ namespace ConfigSample.Pages
         }
 
         public ContentResult OnGet()
-        {
-            positionOptions = Configuration.GetSection("Position").Get<PositionOptions>();
+        {            
+            positionOptions = Configuration.GetSection(PositionOptions.Position)
+                                                         .Get<PositionOptions>();
 
             return Content($"Title: {positionOptions.Title} \n" +
                            $"Name: {positionOptions.Name}");

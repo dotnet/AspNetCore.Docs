@@ -18,7 +18,7 @@ namespace ConfigSample.Pages
         public ContentResult OnGet()
         {
             var positionOptions = new PositionOptions();
-            Configuration.GetSection("Position").Bind(positionOptions);
+            Configuration.GetSection(PositionOptions.Position).Bind(positionOptions);
 
             return Content($"Title: {positionOptions.Title} \n" +
                            $"Name: {positionOptions.Name}");
