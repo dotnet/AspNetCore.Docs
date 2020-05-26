@@ -80,7 +80,7 @@ The following code uses <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601>
 
 In the preceding code, changes to the JSON configuration file after the app has started are read.
 
-The following code registers a configuration instance which `MyOptions` binds against.
+The following code registers a configuration instance which `MyOptions` binds against:
 
 [!code-csharp[](~/fundamentals/configuration/options/samples/3.x/OptionsSample/Startup3.cs?name=snippet_Example2)]
 
