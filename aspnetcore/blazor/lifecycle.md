@@ -279,7 +279,7 @@ Other reasons why background work items might require cancellation include:
 * The current set of executing background work items must be replaced with a new set of work items.
 * The priority of currently executing tasks must be changed.
 * The app has to be shut down in order to redeploy it to the server.
-* Server resources become limited, necessitating the rescheduling of backgound work items.
+* Server resources become limited, necessitating the rescheduling of background work items.
 
 To implement a cancelable background work pattern in a component:
 
