@@ -19,7 +19,8 @@ namespace ConfigSample
         #region snippet
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<PositionOptions>(Configuration.GetSection("Position"));
+            services.Configure<PositionOptions>(Configuration.GetSection(
+                                                PositionOptions.Position));
             services.AddRazorPages();
         }
         #endregion

@@ -30,7 +30,7 @@ namespace ConfigSample
 
 // Use this to test reading config keys in Startup
 // And anything else that doesn't add 
-// services.Configure<PositionOptions>(Configuration.GetSection("Position"));
+// services.Configure<PositionOptions>(Configuration.GetSection(PositionOptions.Position));
 // to startup
 // remove comments from  webBuilder.UseStartup<ConfigSampleKey.Startup>();
 #if MAIN2
