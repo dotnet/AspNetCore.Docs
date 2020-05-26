@@ -36,7 +36,7 @@ namespace OptionsValidationSample.Configuration
             {
                 if(_config.Key3 <= _config.Key2)
                 {
-                    vor +=  "Key3 mst be > than Key2.";
+                    vor +=  "Key3 must be > than Key2.";
                 }
             }
 
