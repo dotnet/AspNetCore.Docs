@@ -14,7 +14,7 @@ ASP.NET Core enables developers to easily configure and manage security for thei
 
 ## ASP.NET Core security features
 
-ASP.NET Core provides many tools and libraries to secure your apps including built-in Identity providers but you can use 3rd party identity services such as Facebook, Twitter, or LinkedIn. With ASP.NET Core, you can easily manage app secrets, which are a way to store and use confidential information without having to expose it in the code.
+ASP.NET Core provides many tools and libraries to secure your apps including built-in identity providers but you can use 3rd party identity services such as Facebook, Twitter, or LinkedIn. With ASP.NET Core, you can easily manage app secrets, which are a way to store and use confidential information without having to expose it in the code.
 
 ## Authentication vs. Authorization
 
