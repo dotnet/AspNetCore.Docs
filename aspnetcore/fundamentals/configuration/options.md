@@ -105,7 +105,7 @@ Named options:
 * Are useful when multiple configuration sections bind to the same properties.
 * Are case sensitive.
 
-Consider the following *appSetting.json* file:
+Consider the following *appsettings.json* file:
 
 [!code-json[](~/fundamentals/configuration/options/samples/3.x/OptionsSample/appsettings.NO.json)]
 
