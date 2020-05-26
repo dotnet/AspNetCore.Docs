@@ -13,6 +13,8 @@ uid: fundamentals/configuration/options
 
 ::: moniker range=">= aspnetcore-3.0"
 
+By [Kirk Larkin](https://twitter.com/serpent5) and [Rick Anderson](https://twitter.com/RickAndMSFT).
+
 The options pattern uses classes to provide strongly typed access to groups of related settings. When [configuration settings](xref:fundamentals/configuration/index) are isolated by scenario into separate classes, the app adheres to two important software engineering principles:
 
 * The [Interface Segregation Principle (ISP) or Encapsulation](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#encapsulation) &ndash; Scenarios (classes) that depend on configuration settings depend only on the configuration settings that they use.
@@ -27,6 +29,8 @@ Options also provide a mechanism to validate configuration data. For more inform
 ## Bind hierarchical configuration
 
 [!INCLUDE[](~/includes/bind.md)]
+
+<a name="oi"></a>
 
 ## Options interfaces
 
@@ -79,6 +83,18 @@ In the preceding code, changes to the JSON configuration file after the app has 
 The following code registers a configuration instance which `MyOptions` binds against.
 
 [!code-csharp[](~/fundamentals/configuration/options/samples/3.x/OptionsSample/Startup3.cs?name=snippet_Example2)]
+
+## IOptionsMonitor
+
+The following code registers a configuration instance which `MyOptions` binds against.
+
+[!code-csharp[](~/fundamentals/configuration/options/samples/3.x/OptionsSample/Startup3.cs?name=snippet_Example2)]
+
+The following example uses <xref:Microsoft.Extensions.Options.IOptionsMonitor%601>:
+
+[!code-csharp[](options/samples/3.x/OptionsSample/Pages/TestMonitor.cshtml.cs?name=snippet)]
+
+In the preceding code, by default, changes to the JSON configuration file after the app has started are read.
 
 <a name="named"></a>
 
@@ -145,7 +161,8 @@ The following class binds to the `"MyConfig"` configuration and applies several 
 
 [!code-csharp[](options/samples/3.x/OptionsValidationSample/Configuration/MyConfigOptions.cs?name=snippet)]
 
-The following code gets an  [OptionsBuilder\<TOptions>](xref:Microsoft.Extensions.Options.OptionsBuilder`1) that binds to the `MyConfigOptions` class and enables `DataAnnotations` validation:
+
+The following code calls <xref:Microsoft.Extensions.DependencyInjection.OptionsServiceCollectionExtensions.AddOptions%2A> to get an  [OptionsBuilder\<TOptions>](xref:Microsoft.Extensions.Options.OptionsBuilder`1) that binds to the `MyConfigOptions` class and enables `DataAnnotations` validation:
 
 [!code-csharp[](options/samples/3.x/OptionsValidationSample/Startup.cs?name=snippet)]
 
