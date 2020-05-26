@@ -4,9 +4,8 @@
 //#define First
 //#define Second
 //#define Third
-//#define Forth
 
-#define Five
+#define Forth
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Docs.Samples;
@@ -89,16 +88,6 @@ namespace WebMvcRouting.Controllers
         }
 
         public IActionResult About()
-        {
-            return ControllerContext.MyDisplayRouteInfo();
-        }
-    }
-    #endregion
-#elif Five
-    #region snippet24
-    public class HomeController : Controller
-    {
-        public IActionResult Index()
         {
             return ControllerContext.MyDisplayRouteInfo();
         }
