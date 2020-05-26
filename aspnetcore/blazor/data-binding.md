@@ -29,7 +29,7 @@ When the text box loses focus, the property's value is updated.
 
 The text box is updated in the UI only when the component is rendered, not in response to changing the property's value. Since components render themselves after event handler code executes, property updates are *usually* reflected in the UI immediately after an event handler is triggered.
 
-Using `@bind` with the `CurrentValue` property (`<input @bind="CurrentValue" />`) is essentially equivalent to the following:
+Using [`@bind`](xref:mvc/views/razor#bind) with the `CurrentValue` property (`<input @bind="CurrentValue" />`) is essentially equivalent to the following:
 
 ```razor
 <input value="@CurrentValue"
@@ -41,7 +41,7 @@ Using `@bind` with the `CurrentValue` property (`<input @bind="CurrentValue" />`
 }
 ```
 
-When the component is rendered, the `value` of the input element comes from the `CurrentValue` property. When the user types in the text box and changes element focus, the `onchange` event is fired and the `CurrentValue` property is set to the changed value. In reality, the code generation is more complex because `@bind` handles cases where type conversions are performed. In principle, `@bind` associates the current value of an expression with a `value` attribute and handles changes using the registered handler.
+When the component is rendered, the `value` of the input element comes from the `CurrentValue` property. When the user types in the text box and changes element focus, the `onchange` event is fired and the `CurrentValue` property is set to the changed value. In reality, the code generation is more complex because [`@bind`](xref:mvc/views/razor#bind) handles cases where type conversions are performed. In principle, [`@bind`](xref:mvc/views/razor#bind) associates the current value of an expression with a `value` attribute and handles changes using the registered handler.
 
 Bind a property or field on other events by also including an `@bind:event` attribute with an `event` parameter. The following example binds the `CurrentValue` property on the `oninput` event:
 
@@ -73,7 +73,7 @@ Use `@bind-{ATTRIBUTE}` with `@bind-{ATTRIBUTE}:event` syntax to bind element at
 }
 ```
 
-Attribute binding is case sensitive. For example, `@bind` is valid, and `@Bind` is invalid.
+Attribute binding is case sensitive. For example, [`@bind`](xref:mvc/views/razor#bind) is valid, and [`@bind`](xref:mvc/views/razor#bind) is invalid.
 
 ## Unparsable values
 
@@ -99,13 +99,13 @@ By default, binding applies to the element's `onchange` event (`@bind="{PROPERTY
 
 * Don't use the `oninput` event. Use the default `onchange` event (only specify `@bind="{PROPERTY OR FIELD}"`), where an invalid value isn't reverted until the element loses focus.
 * Bind to a nullable type, such as `int?` or `string`, and provide custom logic to handle invalid entries.
-* Use a [form validation component](xref:blazor/forms-validation), such as `InputNumber` or `InputDate`. Form validation components have built-in support to manage invalid inputs. Form validation components:
-  * Permit the user to provide invalid input and receive validation errors on the associated `EditContext`.
+* Use a [form validation component](xref:blazor/forms-validation), such as <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> or <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601>. Form validation components have built-in support to manage invalid inputs. Form validation components:
+  * Permit the user to provide invalid input and receive validation errors on the associated <xref:Microsoft.AspNetCore.Components.Forms.EditContext>.
   * Display validation errors in the UI without interfering with the user entering additional webform data.
 
 ## Format strings
 
-Data binding works with <xref:System.DateTime> format strings using [`@bind:format`](xref:mvc/views/razor#bind). Other format expressions, such as currency or number formats, aren't available at this time.
+Data binding works with <xref:System.DateTime> format strings using `@bind:format`. Other format expressions, such as currency or number formats, aren't available at this time.
 
 ```razor
 <input @bind="StartDate" @bind:format="yyyy-MM-dd" />
@@ -151,7 +151,7 @@ The following child component (`ChildComponent`) has a `Year` component paramete
 }
 ```
 
-`EventCallback<T>` is explained in <xref:blazor/event-handling#eventcallback>.
+<xref:Microsoft.AspNetCore.Components.EventCallback%601> is explained in <xref:blazor/event-handling#eventcallback>.
 
 The following parent component uses:
 
@@ -224,7 +224,7 @@ In general, a property can be bound to a corresponding event handler by includin
 
 A common scenario is chaining a data-bound parameter to a page element in the component's output. This scenario is called a *chained bind* because multiple levels of binding occur simultaneously.
 
-A chained bind can't be implemented with `@bind` syntax in the page's element. The event handler and value must be specified separately. A parent component, however, can use `@bind` syntax with the component's parameter.
+A chained bind can't be implemented with [`@bind`](xref:mvc/views/razor#bind) syntax in the page's element. The event handler and value must be specified separately. A parent component, however, can use [`@bind`](xref:mvc/views/razor#bind) syntax with the component's parameter.
 
 The following `PasswordField` component (*PasswordField.razor*):
 

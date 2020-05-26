@@ -148,7 +148,7 @@ To install the `Microsoft.AspNetCore.ProtectedBrowserStorage` package:
 
 ### Save and load data within a component
 
-In any component that requires loading or saving data to browser storage, use [`@inject`](xref:blazor/dependency-injection#request-a-service-in-a-component) to inject an instance of either of the following:
+In any component that requires loading or saving data to browser storage, use [`@inject`](xref:mvc/views/razor#inject)](xref:blazor/dependency-injection#request-a-service-in-a-component) to inject an instance of either of the following:
 
 * `ProtectedLocalStorage`
 * `ProtectedSessionStorage`
@@ -185,7 +185,7 @@ protected override async Task OnInitializedAsync()
 }
 ```
 
-If the component's parameters include navigation state, call `ProtectedSessionStore.GetAsync` and assign the result in `OnParametersSetAsync`, not `OnInitializedAsync`. `OnInitializedAsync` is only called one time when the component is first instantiated. `OnInitializedAsync` isn't called again later if the user navigates to a different URL while remaining on the same page. For more information, see <xref:blazor/lifecycle>.
+If the component's parameters include navigation state, call `ProtectedSessionStore.GetAsync` and assign the result in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A>, not <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>. <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> is only called one time when the component is first instantiated. <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> isn't called again later if the user navigates to a different URL while remaining on the same page. For more information, see <xref:blazor/lifecycle>.
 
 > [!WARNING]
 > The examples in this section only work if the server doesn't have prerendering enabled. With prerendering enabled, an error is generated similar to:
@@ -315,7 +315,7 @@ else
 
 The `CounterStateProvider` component handles the loading phase by not rendering its child content until loading is complete.
 
-To use the `CounterStateProvider` component, wrap an instance of the component around any other component that requires access to the counter state. To make the state accessible to all components in an app, wrap the `CounterStateProvider` component around the `Router` in the `App` component (*App.razor*):
+To use the `CounterStateProvider` component, wrap an instance of the component around any other component that requires access to the counter state. To make the state accessible to all components in an app, wrap the `CounterStateProvider` component around the <xref:Microsoft.AspNetCore.Components.Routing.Router> in the `App` component (*App.razor*):
 
 ```razor
 <CounterStateProvider>

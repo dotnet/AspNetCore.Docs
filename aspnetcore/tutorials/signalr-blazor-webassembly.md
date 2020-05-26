@@ -129,7 +129,7 @@ dotnet new blazorwasm --hosted --output BlazorSignalRApp
 
 1. With **Browse** selected, type "Microsoft.AspNetCore.SignalR.Client" in the search box.
 
-1. In the search results, select the `Microsoft.AspNetCore.SignalR.Client` package and select **Install**.
+1. In the search results, select the [Microsoft.AspNetCore.SignalR.Client](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client/) package and select **Install**.
 
 1. If the **Preview Changes** dialog appears, select **OK**.
 
@@ -151,7 +151,7 @@ dotnet add Client package Microsoft.AspNetCore.SignalR.Client
 
 1. With **Browse** selected, type "Microsoft.AspNetCore.SignalR.Client" in the search box.
 
-1. In the search results, select the check box next to the `Microsoft.AspNetCore.SignalR.Client` package and select **Add Package**.
+1. In the search results, select the check box next to the [Microsoft.AspNetCore.SignalR.Client](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client/) package and select **Add Package**.
 
 1. If the **License Acceptance** dialog appears, select **Accept** if you agree with the license terms.
 

@@ -78,7 +78,7 @@ Follow the guidance in the <xref:blazor/get-started> article to configure your e
 In order to consume components defined in a library in another project, use either of the following approaches:
 
 * Use the full type name with the namespace.
-* Use Razor's [\@using](xref:mvc/views/razor#using) directive. Individual components can be added by name.
+* Use Razor's [`@using`](xref:mvc/views/razor#using) directive. Individual components can be added by name.
 
 In the following examples, `MyComponentLib1` is a component library containing a `SalesReport` component.
 

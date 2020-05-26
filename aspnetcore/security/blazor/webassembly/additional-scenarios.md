@@ -15,9 +15,9 @@ By [Javier Calvarro Nelson](https://github.com/javiercn)
 
 ## Attach tokens to outgoing requests
 
-The `AuthorizationMessageHandler` service can be used with `HttpClient` to attach access tokens to outgoing requests. Tokens are acquired using the existing `IAccessTokenProvider` service. If a token can't be acquired, an `AccessTokenNotAvailableException` is thrown. `AccessTokenNotAvailableException` has a `Redirect` method that can be used to navigate the user to the identity provider to acquire a new token. The `AuthorizationMessageHandler` can be configured with the authorized URLs, scopes, and return URL using the `ConfigureHandler` method.
+The <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler> service can be used with <xref:System.Net.Http.HttpClient> to attach access tokens to outgoing requests. Tokens are acquired using the existing <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.IAccessTokenProvider> service. If a token can't be acquired, an <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccessTokenNotAvailableException> is thrown. <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccessTokenNotAvailableException> has a <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccessTokenNotAvailableException.Redirect%2A> method that can be used to navigate the user to the identity provider to acquire a new token. The <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler> can be configured with the authorized URLs, scopes, and return URL using the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler.ConfigureHandler%2A> method.
 
-In the following example, `AuthorizationMessageHandler` configures an `HttpClient` in `Program.Main` (*Program.cs*):
+In the following example, <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler> configures an <xref:System.Net.Http.HttpClient> in `Program.Main` (*Program.cs*):
 
 ```csharp
 using System.Net.Http;
@@ -37,7 +37,7 @@ builder.Services.AddTransient(sp =>
 });
 ```
 
-For convenience, a `BaseAddressAuthorizationMessageHandler` is included that's preconfigured with the app base address as an authorized URL. The authentication-enabled Blazor WebAssembly templates now use <xref:System.Net.Http.IHttpClientFactory> in the Server API project to set up an <xref:System.Net.Http.HttpClient> with the `BaseAddressAuthorizationMessageHandler`:
+For convenience, a <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.BaseAddressAuthorizationMessageHandler> is included that's preconfigured with the app base address as an authorized URL. The authentication-enabled Blazor WebAssembly templates now use <xref:System.Net.Http.IHttpClientFactory> in the Server API project to set up an <xref:System.Net.Http.HttpClient> with the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.BaseAddressAuthorizationMessageHandler>:
 
 ```csharp
 using System.Net.Http;
@@ -53,9 +53,9 @@ builder.Services.AddTransient(sp => sp.GetRequiredService<IHttpClientFactory>()
     .CreateClient("BlazorWithIdentity.ServerAPI"));
 ```
 
-Where the client is created with `CreateClient` in the preceding example, the <xref:System.Net.Http.HttpClient> is supplied instances that include access tokens when making requests to the server project.
+Where the client is created with <xref:System.Net.Http.IHttpClientFactory.CreateClient%2A> in the preceding example, the <xref:System.Net.Http.HttpClient> is supplied instances that include access tokens when making requests to the server project.
 
-The configured <xref:System.Net.Http.HttpClient> is then used to make authorized requests using a simple `try-catch` pattern.
+The configured <xref:System.Net.Http.HttpClient> is then used to make authorized requests using a simple [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) pattern.
 
 `FetchData` component (*Pages/FetchData.razor*):
 
@@ -238,7 +238,7 @@ if (tokenResult.TryGetToken(out var token))
 }
 ```
 
-`TryGetToken` returns:
+<xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccessTokenResult.TryGetToken%2A?displayProperty=nameWithType> returns:
 
 * `true` with the `token` for use.
 * `false` if the token isn't retrieved.
@@ -307,22 +307,22 @@ When running on WebAssembly in a Blazor WebAssembly app, [HttpClient](xref:funda
 }
 ```
 
-.NET WebAssembly's implementation of `HttpClient` uses [WindowOrWorkerGlobalScope.fetch()](https://developer.mozilla.org/docs/Web/API/WindowOrWorkerGlobalScope/fetch). Fetch allows configuring several [request-specific options](https://developer.mozilla.org/docs/Web/API/WindowOrWorkerGlobalScope/fetch#Parameters). 
+.NET WebAssembly's implementation of <xref:System.Net.Http.HttpClient> uses [WindowOrWorkerGlobalScope.fetch()](https://developer.mozilla.org/docs/Web/API/WindowOrWorkerGlobalScope/fetch). Fetch allows configuring several [request-specific options](https://developer.mozilla.org/docs/Web/API/WindowOrWorkerGlobalScope/fetch#Parameters). 
 
-HTTP fetch request options can be configured with `HttpRequestMessage` extension methods shown in the following table.
+HTTP fetch request options can be configured with <xref:System.Net.Http.HttpRequestMessage> extension methods shown in the following table.
 
-| `HttpRequestMessage` extension method | Fetch request property |
-| ------------------------------------- | ---------------------- |
-| `SetBrowserRequestCredentials`        | [credentials](https://developer.mozilla.org/docs/Web/API/Request/credentials) |
-| `SetBrowserRequestCache`              | [cache](https://developer.mozilla.org/docs/Web/API/Request/cache) |
-| `SetBrowserRequestMode`               | [mode](https://developer.mozilla.org/docs/Web/API/Request/mode) |
-| `SetBrowserRequestIntegrity`          | [integrity](https://developer.mozilla.org/docs/Web/API/Request/integrity) |
+| Extension method | Fetch request property |
+| --- | --- |
+| <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestCredentials%2A> | [credentials](https://developer.mozilla.org/docs/Web/API/Request/credentials) |
+| <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestCache%2A> | [cache](https://developer.mozilla.org/docs/Web/API/Request/cache) |
+| <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestMode%2A> | [mode](https://developer.mozilla.org/docs/Web/API/Request/mode) |
+| <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestIntegrity%2A> | [integrity](https://developer.mozilla.org/docs/Web/API/Request/integrity) |
 
-You can set additional options using the more generic `SetBrowserRequestOption` extension method.
+You can set additional options using the more generic <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestOption%2A> extension method.
  
-The HTTP response is typically buffered in a Blazor WebAssembly app to enable support for sync reads on the response content. To enable support for response streaming, use the `SetBrowserResponseStreamingEnabled` extension method on the request.
+The HTTP response is typically buffered in a Blazor WebAssembly app to enable support for sync reads on the response content. To enable support for response streaming, use the <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserResponseStreamingEnabled%2A> extension method on the request.
 
-To include credentials in a cross-origin request, use the `SetBrowserRequestCredentials` extension method:
+To include credentials in a cross-origin request, use the <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestCredentials%2A> extension method:
 
 ```csharp
 requestMessage.SetBrowserRequestCredentials(BrowserRequestCredentials.Include);
@@ -371,7 +371,7 @@ When the app requests a token, there are two possible outcomes:
 
 When a token request fails, you need to decide whether you want to save any current state before you perform a redirection. Several approaches exist with increasing levels of complexity:
 
-* Store the current page state in session storage. During `OnInitializeAsync`, check if state can be restored before continuing.
+* Store the current page state in session storage. During the [OnInitializedAsync lifecycle event](xref:blazor/lifecycle#component-initialization-methods) (<xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>), check if state can be restored before continuing.
 * Add a query string parameter and use that as a way to signal the app that it needs to re-hydrate the previously saved state.
 * Add a query string parameter with a unique identifier to store data in session storage without risking collisions with other items.
 
@@ -489,7 +489,7 @@ During an authentication operation, there are cases where you want to save the a
 
 ## Customize app routes
 
-By default, the `Microsoft.AspNetCore.Components.WebAssembly.Authentication` library uses the routes shown in the following table for representing different authentication states.
+By default, the [Microsoft.AspNetCore.Components.WebAssembly.Authentication](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/) library uses the routes shown in the following table for representing different authentication states.
 
 | Route                            | Purpose |
 | -------------------------------- | ------- |
@@ -503,7 +503,7 @@ By default, the `Microsoft.AspNetCore.Components.WebAssembly.Authentication` lib
 | `authentication/profile`         | Triggers an operation to edit the user profile. |
 | `authentication/register`        | Triggers an operation to register a new user. |
 
-The routes shown in the preceding table are configurable via `RemoteAuthenticationOptions<TProviderOptions>.AuthenticationPaths`. When setting options to provide custom routes, confirm that the app has a route that handles each path.
+The routes shown in the preceding table are configurable via <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticationOptions%601.AuthenticationPaths%2A?displayProperty=nameWithType>. When setting options to provide custom routes, confirm that the app has a route that handles each path.
 
 In the following example, all the paths are prefixed with `/security`.
 
@@ -537,7 +537,7 @@ builder.Services.AddApiAuthorization(options => {
 });
 ```
 
-If the requirement calls for completely different paths, set the routes as described previously and render the `RemoteAuthenticatorView` with an explicit action parameter:
+If the requirement calls for completely different paths, set the routes as described previously and render the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticatorView> with an explicit action parameter:
 
 ```razor
 @page "/register"
@@ -549,7 +549,7 @@ You're allowed to break the UI into different pages if you choose to do so.
 
 ## Customize the authentication user interface
 
-`RemoteAuthenticatorView` includes a default set of UI pieces for each authentication state. Each state can be customized by passing in a custom `RenderFragment`. To customize the displayed text during the initial login process, can change the `RemoteAuthenticatorView` as follows.
+<xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticatorView> includes a default set of UI pieces for each authentication state. Each state can be customized by passing in a custom <xref:Microsoft.AspNetCore.Components.RenderFragment>. To customize the displayed text during the initial login process, can change the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticatorView> as follows.
 
 `Authentication` component (*Pages/Authentication.razor*):
 
@@ -569,7 +569,7 @@ You're allowed to break the UI into different pages if you choose to do so.
 }
 ```
 
-The `RemoteAuthenticatorView` has one fragment that can be used per authentication route shown in the following table.
+The <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticatorView> has one fragment that can be used per authentication route shown in the following table.
 
 | Route                            | Fragment                |
 | -------------------------------- | ----------------------- |
@@ -587,7 +587,7 @@ The `RemoteAuthenticatorView` has one fragment that can be used per authenticati
 
 Users bound to the app can be customized. In the following example, all authenticated users receive an `amr` claim for each of the user's authentication methods.
 
-Create a class that extends the `RemoteUserAccount` class:
+Create a class that extends the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount> class:
 
 ```csharp
 using System.Text.Json.Serialization;
@@ -600,7 +600,7 @@ public class CustomUserAccount : RemoteUserAccount
 }
 ```
 
-Create a factory that extends `AccountClaimsPrincipalFactory<TAccount>`:
+Create a factory that extends <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccountClaimsPrincipalFactory%601>:
 
 ```csharp
 using System.Security.Claims;
@@ -638,7 +638,7 @@ public class CustomAccountFactory
 
 Register the `CustomAccountFactory` for the authentication provider in use. Any of the following registrations are valid: 
 
-* `AddOidcAuthentication`:
+* <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyAuthenticationServiceCollectionExtensions.AddOidcAuthentication%2A>:
 
   ```csharp
   using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
@@ -654,7 +654,7 @@ Register the `CustomAccountFactory` for the authentication provider in use. Any 
       CustomUserAccount, CustomAccountFactory>();
   ```
 
-* `AddMsalAuthentication`:
+* <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A>:
 
   ```csharp
   using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
@@ -670,7 +670,7 @@ Register the `CustomAccountFactory` for the authentication provider in use. Any 
       CustomUserAccount, CustomAccountFactory>();
   ```
   
-* `AddApiAuthorization`:
+* <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyAuthenticationServiceCollectionExtensions.AddApiAuthorization%2A>:
 
   ```csharp
   using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
@@ -742,7 +742,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-In the Server app's `Startup.Configure` method, replace `endpoints.MapFallbackToFile("index.html")` with `endpoints.MapFallbackToPage("/_Host")`:
+In the Server app's `Startup.Configure` method, replace [endpoints.MapFallbackToFile("index.html")](xref:Microsoft.AspNetCore.Builder.StaticFilesEndpointRouteBuilderExtensions.MapFallbackToFile%2A) with [endpoints.MapFallbackToPage("/_Host")](xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage%2A):
 
 ```csharp
 app.UseEndpoints(endpoints =>
@@ -817,7 +817,7 @@ While this approach requires an extra network hop through the server to call a t
 
 ## Use Open ID Connect (OIDC) v2.0 endpoints
 
-The authentication library and Blazor templates use Open ID Connect (OIDC) v1.0 endpoints. To use a v2.0 endpoint, configure the JWT Bearer <xref:Microsoft.AspNetCore.Builder.JwtBearerOptions.Authority?displayProperty=nameWithType> option. In the following example, AAD is configured for v2.0 by appending a `v2.0` segment to the `Authority` property:
+The authentication library and Blazor templates use Open ID Connect (OIDC) v1.0 endpoints. To use a v2.0 endpoint, configure the JWT Bearer <xref:Microsoft.AspNetCore.Builder.JwtBearerOptions.Authority?displayProperty=nameWithType> option. In the following example, AAD is configured for v2.0 by appending a `v2.0` segment to the <xref:Microsoft.AspNetCore.Builder.JwtBearerOptions.Authority> property:
 
 ```csharp
 builder.Services.Configure<JwtBearerOptions>(
@@ -839,6 +839,6 @@ Alternatively, the setting can be made in the app settings (*appsettings.json*) 
 }
 ```
 
-If tacking on a segment to the authority isn't appropriate for the app's OIDC provider, such as with non-AAD providers, set the `Authority` property directly. Either set the property in `JwtBearerOptions` or in the app settings file with the `Authority` key.
+If tacking on a segment to the authority isn't appropriate for the app's OIDC provider, such as with non-AAD providers, set the <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.Authority> property directly. Either set the property in <xref:Microsoft.AspNetCore.Builder.JwtBearerOptions> or in the app settings file (*appsettings.json*) with the `Authority` key.
 
 The list of claims in the ID token changes for v2.0 endpoints. For more information, see [Why update to Microsoft identity platform (v2.0)?](/azure/active-directory/azuread-dev/azure-ad-endpoint-comparison).

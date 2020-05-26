@@ -111,7 +111,7 @@ If a component contains an HTML element with an uppercase first letter that does
 
 Routing in Blazor is achieved by providing a route template to each accessible component in the app.
 
-When a Razor file with an [`@page`][9] directive is compiled, the generated class is given a <xref:Microsoft.AspNetCore.Mvc.RouteAttribute> specifying the route template. At runtime, the router looks for component classes with a `RouteAttribute` and renders whichever component has a route template that matches the requested URL.
+When a Razor file with an [`@page`][9] directive is compiled, the generated class is given a <xref:Microsoft.AspNetCore.Mvc.RouteAttribute> specifying the route template. At runtime, the router looks for component classes with a <xref:Microsoft.AspNetCore.Mvc.RouteAttribute> and renders whichever component has a route template that matches the requested URL.
 
 ```razor
 @page "/ParentComponent"
@@ -137,7 +137,7 @@ Optional parameters aren't supported, so two [`@page`][9] directives are applied
 
 ### Component parameters
 
-Components can have *component parameters*, which are defined using public properties on the component class with the `[Parameter]` attribute. Use attributes to specify arguments for a component in markup.
+Components can have *component parameters*, which are defined using public properties on the component class with the [`[Parameter]`](xref:Microsoft.AspNetCore.Components.ParameterAttribute)](xref:Microsoft.AspNetCore.Components.ParameterAttribute) attribute. Use attributes to specify arguments for a component in markup.
 
 *Components/ChildComponent.razor*:
 
@@ -156,14 +156,14 @@ In the following example from the sample app, the `ParentComponent` sets the val
 
 Components can set the content of another component. The assigning component provides the content between the tags that specify the receiving component.
 
-In the following example, the `ChildComponent` has a `ChildContent` property that represents a `RenderFragment`, which represents a segment of UI to render. The value of `ChildContent` is positioned in the component's markup where the content should be rendered. The value of `ChildContent` is received from the parent component and rendered inside the Bootstrap panel's `panel-body`.
+In the following example, the `ChildComponent` has a `ChildContent` property that represents a <xref:Microsoft.AspNetCore.Components.RenderFragment>, which represents a segment of UI to render. The value of `ChildContent` is positioned in the component's markup where the content should be rendered. The value of `ChildContent` is received from the parent component and rendered inside the Bootstrap panel's `panel-body`.
 
 *Components/ChildComponent.razor*:
 
 [!code-razor[](common/samples/3.x/BlazorWebAssemblySample/Components/ChildComponent.razor?highlight=3,14-15)]
 
 > [!NOTE]
-> The property receiving the `RenderFragment` content must be named `ChildContent` by convention.
+> The property receiving the <xref:Microsoft.AspNetCore.Components.RenderFragment> content must be named `ChildContent` by convention.
 
 The `ParentComponent` in the sample app can provide content for rendering the `ChildComponent` by placing the content inside the `<ChildComponent>` tags.
 
@@ -230,7 +230,7 @@ The rendered `<input>` elements using both approaches is identical:
        size="50">
 ```
 
-To accept arbitrary attributes, define a component parameter using the `[Parameter]` attribute with the `CaptureUnmatchedValues` property set to `true`:
+To accept arbitrary attributes, define a component parameter using the [`[Parameter]`](xref:Microsoft.AspNetCore.Components.ParameterAttribute) attribute with the <xref:Microsoft.AspNetCore.Components.ParameterAttribute.CaptureUnmatchedValues> property set to `true`:
 
 ```razor
 @code {
@@ -239,7 +239,7 @@ To accept arbitrary attributes, define a component parameter using the `[Paramet
 }
 ```
 
-The `CaptureUnmatchedValues` property on `[Parameter]` allows the parameter to match all attributes that don't match any other parameter. A component can only define a single parameter with `CaptureUnmatchedValues`. The property type used with `CaptureUnmatchedValues` must be assignable from `Dictionary<string, object>` with string keys. `IEnumerable<KeyValuePair<string, object>>` or `IReadOnlyDictionary<string, object>` are also options in this scenario.
+The <xref:Microsoft.AspNetCore.Components.ParameterAttribute.CaptureUnmatchedValues> property on [`[Parameter]`](xref:Microsoft.AspNetCore.Components.ParameterAttribute) allows the parameter to match all attributes that don't match any other parameter. A component can only define a single parameter with <xref:Microsoft.AspNetCore.Components.ParameterAttribute.CaptureUnmatchedValues>. The property type used with <xref:Microsoft.AspNetCore.Components.ParameterAttribute.CaptureUnmatchedValues> must be assignable from `Dictionary<string, object>` with string keys. `IEnumerable<KeyValuePair<string, object>>` or `IReadOnlyDictionary<string, object>` are also options in this scenario.
 
 The position of [`@attributes`][3] relative to the position of element attributes is important. When [`@attributes`][3] are splatted on the element, the attributes are processed from right to left (last to first). Consider the following example of a component that consumes a `Child` component:
 
@@ -321,11 +321,11 @@ While capturing component references use a similar syntax to [capturing element 
 
 ## Invoke component methods externally to update state
 
-Blazor uses a synchronization context (`SynchronizationContext`) to enforce a single logical thread of execution. A component's [lifecycle methods](xref:blazor/lifecycle) and any event callbacks that are raised by Blazor are executed on the synchronization context.
+Blazor uses a synchronization context (<xref:System.Threading.SynchronizationContext>) to enforce a single logical thread of execution. A component's [lifecycle methods](xref:blazor/lifecycle) and any event callbacks that are raised by Blazor are executed on the synchronization context.
 
 Blazor Server's synchronization context attempts to emulate a single-threaded environment so that it closely matches the WebAssembly model in the browser, which is single threaded. At any given point in time, work is performed on exactly one thread, giving the impression of a single logical thread. No two operations execute concurrently.
 
-In the event a component must be updated based on an external event, such as a timer or other notifications, use the `InvokeAsync` method, which will dispatch to Blazor's synchronization context. For example, consider a *notifier service* that can notify any listening component of the updated state:
+In the event a component must be updated based on an external event, such as a timer or other notifications, use the `InvokeAsync` method, which dispatches to Blazor's synchronization context. For example, consider a *notifier service* that can notify any listening component of the updated state:
 
 ```csharp
 public class NotifierService
@@ -439,7 +439,7 @@ In some scenarios, use of [`@key`][5] minimizes the complexity of rerendering an
 
 ### When to use \@key
 
-Typically, it makes sense to use [`@key`][5] whenever a list is rendered (for example, in a `@foreach` block) and a suitable value exists to define the [`@key`][5].
+Typically, it makes sense to use [`@key`][5] whenever a list is rendered (for example, in a [foreach](/dotnet/csharp/language-reference/keywords/foreach-in) block) and a suitable value exists to define the [`@key`][5].
 
 You can also use [`@key`][5] to prevent Blazor from preserving an element or component subtree when an object changes:
 
@@ -470,7 +470,7 @@ Ensure that values used for [`@key`][5] don't clash. If clashing values are dete
 
 Parameters are overwritten under the following conditions:
 
-* A child component's content is rendered with a `RenderFragment`.
+* A child component's content is rendered with a <xref:Microsoft.AspNetCore.Components.RenderFragment>.
 * <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is called in the parent component.
 
 Parameters are reset because the parent component rerenders when <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is called and new parameter values are supplied to the child component.
@@ -504,7 +504,7 @@ Consider the following `Expander` component that:
 }
 ```
 
-The `Expander` component is added to a parent component that may call `StateHasChanged`:
+The `Expander` component is added to a parent component that may call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A>:
 
 ```razor
 <Expander Expanded="true">
@@ -518,7 +518,7 @@ The `Expander` component is added to a parent component that may call `StateHasC
 </button>
 ```
 
-Initially, the `Expander` components behave independently when their `Expanded` properties are toggled. The child components maintain their states as expected. When `StateHasChanged` is called in the parent, the `Expanded` parameter of the first child component is reset back to its initial value (`true`). The second `Expander` component's `Expanded` value isn't reset because no child content is rendered in the second component.
+Initially, the `Expander` components behave independently when their `Expanded` properties are toggled. The child components maintain their states as expected. When <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is called in the parent, the `Expanded` parameter of the first child component is reset back to its initial value (`true`). The second `Expander` component's `Expanded` value isn't reset because no child content is rendered in the second component.
 
 To maintain state in the preceding scenario, use a *private field* in the `Expander` component to maintain its toggled state.
 
@@ -633,7 +633,7 @@ using Microsoft.AspNetCore.Components.Web;
 
 ## Specify a base class
 
-The [`@inherits`][6] directive can be used to specify a base class for a component. The following example shows how a component can inherit a base class, `BlazorRocksBase`, to provide the component's properties and methods. The base class should derive from `ComponentBase`.
+The [`@inherits`][6] directive can be used to specify a base class for a component. The following example shows how a component can inherit a base class, `BlazorRocksBase`, to provide the component's properties and methods. The base class should derive from <xref:Microsoft.AspNetCore.Components.ComponentBase>.
 
 *Pages/BlazorRocks.razor*:
 
@@ -661,7 +661,7 @@ namespace BlazorSample
 
 ## Specify an attribute
 
-Attributes can be specified in Razor components with the [`@attribute`][7] directive. The following example applies the `[Authorize]` attribute to the component class:
+Attributes can be specified in Razor components with the [`@attribute`][7] directive. The following example applies the [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute to the component class:
 
 ```razor
 @page "/"
@@ -701,9 +701,9 @@ This is the Index page.
 > [!NOTE]
 > The `global::` qualification isn't supported.
 >
-> Importing components with aliased `using` statements (for example, `@using Foo = Bar`) isn't supported.
+> Importing components with aliased [using](/dotnet/csharp/language-reference/keywords/using-statement) statements (for example, `@using Foo = Bar`) isn't supported.
 >
-> Partially qualified names aren't supported. For example, adding `@using BlazorSample` and referencing `NavMenu.razor` with `<Shared.NavMenu></Shared.NavMenu>` isn't supported.
+> Partially qualified names aren't supported. For example, adding `@using BlazorSample` and referencing the `NavMenu` component (`NavMenu.razor`) with `<Shared.NavMenu></Shared.NavMenu>` isn't supported.
 
 ## Conditional HTML element attributes
 
@@ -772,7 +772,7 @@ public class ThemeInfo
 }
 ```
 
-An ancestor component can provide a cascading value using the Cascading Value component. The `CascadingValue` component wraps a subtree of the component hierarchy and supplies a single value to all components within that subtree.
+An ancestor component can provide a cascading value using the Cascading Value component. The <xref:Microsoft.AspNetCore.Components.CascadingValue%601> component wraps a subtree of the component hierarchy and supplies a single value to all components within that subtree.
 
 For example, the sample app specifies theme information (`ThemeInfo`) in one of the app's layouts as a cascading parameter for all components that make up the layout body of the `@Body` property. `ButtonClass` is assigned a value of `btn-success` in the layout component. Any descendent component can consume this property through the `ThemeInfo` cascading object.
 
@@ -802,7 +802,7 @@ For example, the sample app specifies theme information (`ThemeInfo`) in one of 
 }
 ```
 
-To make use of cascading values, components declare cascading parameters using the `[CascadingParameter]` attribute. Cascading values are bound to cascading parameters by type.
+To make use of cascading values, components declare cascading parameters using the [`[CascadingParameter]`](xref:Microsoft.AspNetCore.Components.CascadingParameterAttribute) attribute. Cascading values are bound to cascading parameters by type.
 
 In the sample app, the `CascadingValuesParametersTheme` component binds the `ThemeInfo` cascading value to a cascading parameter. The parameter is used to set the CSS class for one of the buttons displayed by the component.
 
@@ -842,7 +842,7 @@ In the sample app, the `CascadingValuesParametersTheme` component binds the `The
 }
 ```
 
-To cascade multiple values of the same type within the same subtree, provide a unique `Name` string to each `CascadingValue` component and its corresponding `CascadingParameter`. In the following example, two `CascadingValue` components cascade different instances of `MyCascadingType` by name:
+To cascade multiple values of the same type within the same subtree, provide a unique <xref:Microsoft.AspNetCore.Components.CascadingValue%601.Name%2A> string to each <xref:Microsoft.AspNetCore.Components.CascadingValue%601> component and its corresponding [`[CascadingParameter]`](xref:Microsoft.AspNetCore.Components.CascadingParameterAttribute) attribute. In the following example, two <xref:Microsoft.AspNetCore.Components.CascadingValue%601> components cascade different instances of `MyCascadingType` by name:
 
 ```razor
 <CascadingValue Value=@parentCascadeParameter1 Name="CascadeParam1">
@@ -929,7 +929,7 @@ Render fragments can be defined using Razor template syntax. Razor templates are
 @<{HTML tag}>...</{HTML tag}>
 ```
 
-The following example illustrates how to specify `RenderFragment` and `RenderFragment<T>` values and render templates directly in a component. Render fragments can also be passed as arguments to [templated components](xref:blazor/templated-components).
+The following example illustrates how to specify <xref:Microsoft.AspNetCore.Components.RenderFragment> and <xref:Microsoft.AspNetCore.Components.RenderFragment%601> values and render templates directly in a component. Render fragments can also be passed as arguments to [templated components](xref:blazor/templated-components).
 
 ```razor
 @timeTemplate
@@ -971,7 +971,7 @@ Similarly, SVG images are supported in the CSS rules of a stylesheet file (*.css
 }
 ```
 
-However, inline SVG markup isn't supported in all scenarios. If you place an `<svg>` tag directly into a component file (*.razor*), basic image rendering is supported but many advanced scenarios aren't yet supported. For example, `<use>` tags aren't currently respected, and `@bind` can't be used with some SVG tags. For more information, see [SVG support in Blazor (dotnet/aspnetcore #18271)](https://github.com/dotnet/aspnetcore/issues/18271).
+However, inline SVG markup isn't supported in all scenarios. If you place an `<svg>` tag directly into a component file (*.razor*), basic image rendering is supported but many advanced scenarios aren't yet supported. For example, `<use>` tags aren't currently respected, and [`@bind`][10] can't be used with some SVG tags. For more information, see [SVG support in Blazor (dotnet/aspnetcore #18271)](https://github.com/dotnet/aspnetcore/issues/18271).
 
 ## Additional resources
 

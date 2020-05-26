@@ -46,7 +46,7 @@ In the following example for IIS, add the custom header to the published *web.co
 > [!NOTE]
 > To use a custom *web.config* file for IIS that isn't overwritten when the app is published to the *publish* folder, see <xref:host-and-deploy/blazor/webassembly#use-a-custom-webconfig>.
 
-Obtain the app's environment in a component by injecting `IWebAssemblyHostEnvironment` and reading the `Environment` property:
+Obtain the app's environment in a component by injecting <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> and reading the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.Environment> property:
 
 ```razor
 @page "/"
@@ -58,7 +58,7 @@ Obtain the app's environment in a component by injecting `IWebAssemblyHostEnviro
 <p>Environment: @HostEnvironment.Environment</p>
 ```
 
-During startup, the `WebAssemblyHostBuilder` exposes the `IWebAssemblyHostEnvironment` through the `HostEnvironment` property, which enables developers to have environment-specific logic in their code:
+During startup, the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder> exposes the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> through the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.HostEnvironment> property, which enables developers to have environment-specific logic in their code:
 
 ```csharp
 if (builder.HostEnvironment.Environment == "Custom")
@@ -86,7 +86,7 @@ if (builder.HostEnvironment.IsEnvironment("Custom"))
 };
 ```
 
-The `IWebAssemblyHostEnvironment.BaseAddress` property can be used during startup when the `NavigationManager` service isn't available.
+The <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> property can be used during startup when the <xref:Microsoft.AspNetCore.Components.NavigationManager> service isn't available.
 
 ### Configuration
 
@@ -177,7 +177,7 @@ Inject an <xref:Microsoft.Extensions.Configuration.IConfiguration> instance into
 }
 ```
 
-To read other configuration files from the *wwwroot* folder into configuration, use an `HttpClient` to obtain the file's content. When using this approach, the existing `HttpClient` service registration can use the local client created to read the file, as the following example shows:
+To read other configuration files from the *wwwroot* folder into configuration, use an <xref:System.Net.Http.HttpClient> to obtain the file's content. When using this approach, the existing <xref:System.Net.Http.HttpClient> service registration can use the local client created to read the file, as the following example shows:
 
 *wwwroot/cars.json*:
 
@@ -308,16 +308,16 @@ Blazor Server apps are set up by default to prerender the UI on the server befor
 </body>
 ```
 
-`RenderMode` configures whether the component:
+<xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper.RenderMode> configures whether the component:
 
 * Is prerendered into the page.
 * Is rendered as static HTML on the page or if it includes the necessary information to bootstrap a Blazor app from the user agent.
 
-| `RenderMode`        | Description |
-| ------------------- | ----------- |
-| `ServerPrerendered` | Renders the component into static HTML and includes a marker for a Blazor Server app. When the user-agent starts, this marker is used to bootstrap a Blazor app. |
-| `Server`            | Renders a marker for a Blazor Server app. Output from the component isn't included. When the user-agent starts, this marker is used to bootstrap a Blazor app. |
-| `Static`            | Renders the component into static HTML. |
+| <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper.RenderMode> | Description |
+| --- | --- |
+| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | Renders the component into static HTML and includes a marker for a Blazor Server app. When the user-agent starts, this marker is used to bootstrap a Blazor app. |
+| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | Renders a marker for a Blazor Server app. Output from the component isn't included. When the user-agent starts, this marker is used to bootstrap a Blazor app. |
+| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static> | Renders the component into static HTML. |
 
 Rendering server components from a static HTML page isn't supported.
 
