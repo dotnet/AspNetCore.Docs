@@ -17,7 +17,7 @@ This article provides guidelines for ASP.NET Core Blazor WebAssembly performance
 
 ## Avoid unnecessary component renders
 
-Blazor's diffing algorithm avoids rerendering a component when the algorithm perceives that the component hasn't changed. Override [ComponentBase.ShouldRender](xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A) for fine-grained control over component rendering.
+Blazor's diffing algorithm avoids rerendering a component when the algorithm perceives that the component hasn't changed. Override <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A?displayProperty=nameWithType> for fine-grained control over component rendering.
 
 If authoring a UI-only component that never changes after the initial render, configure <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> to return `false`:
 
