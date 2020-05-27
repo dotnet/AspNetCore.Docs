@@ -133,10 +133,6 @@ Configure routing as follows:
     * Apply the [`[HttpGet]`](xref:Microsoft.AspNetCore.Mvc.HttpGetAttribute) attribute to the `GetAllProducts` action.
     * Apply the `[HttpGet("{id}")]` attribute to the `GetProduct` action.
 
-After the preceding changes and the removal of unused `using` statements, *ProductsController.cs* file looks like this:
-
-[!code-csharp[](webapi/sample/3.x/ProductsCore/Controllers/ProductsController.cs)]
-
 Run the migrated project, and browse to `/api/products`. A full list of three products appears. Browse to `/api/products/1`. The first product appears.
 
 ## Additional resources
@@ -251,10 +247,6 @@ Configure routing as follows:
 1. Enable HTTP Get requests to the `ProductController` actions:
     * Apply the [`[HttpGet]`](xref:Microsoft.AspNetCore.Mvc.HttpGetAttribute) attribute to the `GetAllProducts` action.
     * Apply the `[HttpGet("{id}")]` attribute to the `GetProduct` action.
-
-After the preceding changes and the removal of unused `using` statements, *ProductsController.cs* file looks like this:
-
-[!code-csharp[](webapi/sample/2.x/ProductsCore/Controllers/ProductsController.cs)]
 
 Run the migrated project, and browse to `/api/products`. A full list of three products appears. Browse to `/api/products/1`. The first product appears.
 
