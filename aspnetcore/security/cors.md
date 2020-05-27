@@ -70,7 +70,7 @@ The preceding code:
 * Calls <xref:Microsoft.Extensions.DependencyInjection.CorsServiceCollectionExtensions.AddCors*> with a [lambda expression](/dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions). The lambda takes a <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder> object. [Configuration options](#cors-policy-options), such as `WithOrigins`, are described later in this article.
 * Enables the `_myAllowSpecificOrigins` CORS policy for all controller endpoints. See [endpoint routing](#ecors) to apply a CORS policy to specific endpoints.
 
-With endpoint routing, the CORS middleware ***must*** be configured to execute between the calls to `UseRouting` and `UseEndpoints`.
+With endpoint routing, the CORS middleware **must** be configured to execute between the calls to `UseRouting` and `UseEndpoints`.
 
 See [Test CORS](#testc) for instructions on testing code similar to the preceding code.
 
@@ -100,7 +100,7 @@ The preceding code applies the default CORS policy to all controller endpoints.
 
 ## Enable Cors with endpoint routing
 
-Enabling CORS on a per-endpoint basis using `RequireCors` currently does ***not*** support [automatic preflight requests](#apf). For more information, see [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/20709) and [Test CORS with endpoint routing and [HttpOptions]](#tcer).
+Enabling CORS on a per-endpoint basis using `RequireCors` currently does **not** support [automatic preflight requests](#apf). For more information, see [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/20709) and [Test CORS with endpoint routing and [HttpOptions]](#tcer).
 
 With endpoint routing, CORS can be enabled on a per-endpoint basis using the <xref:Microsoft.AspNetCore.Builder.CorsEndpointConventionBuilderExtensions.RequireCors*> set of extension methods:
 
@@ -110,9 +110,9 @@ In the preceding code:
 
 * `app.UseCors` enables the CORS middleware. Because a default policy hasn't been configured, `app.UseCors()` alone doesn't enable CORS.
 * The `/echo` and controller endpoints allow cross-origin requests using the specified policy.
-* The `/echo2` and Razor Pages endpoints do ***not*** allow cross-origin requests because no default policy was specified.
+* The `/echo2` and Razor Pages endpoints do **not** allow cross-origin requests because no default policy was specified.
 
-The [[DisableCors]](#dc) attribute does ***not***  disable CORS that has been enabled by endpoint routing with `RequireCors`.
+The [[DisableCors]](#dc) attribute does **not**  disable CORS that has been enabled by endpoint routing with `RequireCors`.
 
 See [Test CORS with endpoint routing and [HttpOptions]](#tcer) for instructions on testing code similar to the preceding.
 
@@ -133,7 +133,7 @@ The `[EnableCors]` attribute can be applied to:
 * Controller
 * Controller action method
 
-Different policies can be applied to controllers, page models, or action methods with the `[EnableCors]` attribute. When the `[EnableCors]` attribute is applied to a controller, page model, or action method, and CORS is enabled in middleware, ***both*** policies are applied. ***We recommend against combining policies. Use the*** `[EnableCors]` ***attribute or middleware, not both in the same app.***
+Different policies can be applied to controllers, page models, or action methods with the `[EnableCors]` attribute. When the `[EnableCors]` attribute is applied to a controller, page model, or action method, and CORS is enabled in middleware, **both** policies are applied. **We recommend against combining policies. Use the** `[EnableCors]` **attribute or middleware, not both in the same app.**
 
 The following code applies a different policy to each method:
 
@@ -157,7 +157,7 @@ See [Test CORS](#testc) for instructions on testing code similar to the precedin
 
 ### Disable CORS
 
-The [[DisableCors]](xref:Microsoft.AspNetCore.Cors.DisableCorsAttribute) attribute does ***not***  disable CORS that has been enabled by [endpoint routing](#ecors).
+The [[DisableCors]](xref:Microsoft.AspNetCore.Cors.DisableCorsAttribute) attribute does **not**  disable CORS that has been enabled by [endpoint routing](#ecors).
 
 The following code defines the CORS policy `"MyPolicy"`:
 
@@ -302,7 +302,7 @@ The CORS specification also states that setting origins to `"*"` (all origins) i
 
 ## Preflight requests
 
-For some CORS requests, the browser sends an additional [OPTIONS](https://developer.mozilla.org/docs/Web/HTTP/Methods/OPTIONS) request before making the actual request. This request is called a [preflight request](https://developer.mozilla.org/docs/Glossary/Preflight_request). The browser can skip the preflight request if ***all*** the following conditions are true:
+For some CORS requests, the browser sends an additional [OPTIONS](https://developer.mozilla.org/docs/Web/HTTP/Methods/OPTIONS) request before making the actual request. This request is called a [preflight request](https://developer.mozilla.org/docs/Glossary/Preflight_request). The browser can skip the preflight request if **all** the following conditions are true:
 
 * The request method is GET, HEAD, or POST.
 * The app doesn't set request headers other than `Accept`, `Accept-Language`, `Content-Language`, `Content-Type`, or `Last-Event-ID`.
@@ -381,7 +381,7 @@ When the CORS policy is applied either:
 
 ASP.NET Core responds to the preflight OPTIONS request.
 
-Enabling CORS on a per-endpoint basis using `RequireCors` currently does ***not*** support automatic preflight requests.
+Enabling CORS on a per-endpoint basis using `RequireCors` currently does **not** support automatic preflight requests.
 
 The [Test CORS](#testc) section of this document demonstrates this behavior.
 
@@ -578,7 +578,7 @@ C:\Program Files\Git\mingw64\bin\
 
 ### Test CORS with endpoint routing and [HttpOptions]
 
-Enabling CORS on a per-endpoint basis using `RequireCors` currently does ***not*** support [automatic preflight requests](#apf). Consider the following code which uses [endpoint routing to enable CORS](#ecors):
+Enabling CORS on a per-endpoint basis using `RequireCors` currently does **not** support [automatic preflight requests](#apf). Consider the following code which uses [endpoint routing to enable CORS](#ecors):
 
 [!code-csharp[](cors/3.1sample/Cors/WebAPI/StartupEndPointBugTest.cs?name=snippet2)]
 
@@ -705,7 +705,7 @@ The `[EnableCors]` attribute can be applied to:
 * Controller
 * Controller action method
 
-You can apply different policies to controller/page-model/action with the  `[EnableCors]` attribute. When the `[EnableCors]` attribute is applied to a controllers/page model/action method, and CORS is enabled in middleware, ***both*** policies are applied. We recommend ***not*** combining policies. Use the `[EnableCors]` attribute or middleware, ***not both**. When using `[EnableCors]`, do **not** define a default policy.
+You can apply different policies to controller/page-model/action with the  `[EnableCors]` attribute. When the `[EnableCors]` attribute is applied to a controllers/page model/action method, and CORS is enabled in middleware, **both** policies are applied. We recommend **not** combining policies. Use the `[EnableCors]` attribute or middleware, **not both**. When using `[EnableCors]`, do **not** define a default policy.
 
 The following code applies a different policy to each method:
 
