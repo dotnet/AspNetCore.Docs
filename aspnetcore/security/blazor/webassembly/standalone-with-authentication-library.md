@@ -46,7 +46,7 @@ Support for authenticating users is registered in the service container with the
 ```csharp
 builder.Services.AddOidcAuthentication(options =>
 {
-    builder.Configuration.Bind("Local", options.ProviderOptions);
+    builder.Configuration.Bind("Local", options);
 });
 ```
 
