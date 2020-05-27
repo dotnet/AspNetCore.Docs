@@ -110,8 +110,7 @@ Register the factory in `Program.Main` (*Program.cs*) of the standalone app or C
 builder.Services.AddMsalAuthentication<RemoteAuthenticationState, 
     CustomUserAccount>(options =>
 {
-    builder.Configuration.Bind("AzureAd", 
-        options.ProviderOptions.Authentication);
+    builder.Configuration.Bind("AzureAd", options);
     options.ProviderOptions.DefaultAccessTokenScopes.Add("...");
     
     ...

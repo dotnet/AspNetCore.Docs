@@ -94,7 +94,7 @@ Support for authenticating users is registered in the service container with the
 ```csharp
 builder.Services.AddMsalAuthentication(options =>
 {
-    builder.Configuration.Bind("AzureAdB2C", options.ProviderOptions.Authentication);
+    builder.Configuration.Bind("AzureAdB2C", options);
 });
 ```
 
