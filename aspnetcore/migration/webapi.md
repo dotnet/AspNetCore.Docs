@@ -62,10 +62,7 @@ The solution now contains two projects. The following sections explain migrating
 
 ## Migrate configuration
 
-ASP.NET Core doesn't use:
-
-* *App_Start* folder or the *Global.asax* file
-* *web.config* file is added at publish time.
+ASP.NET Core doesn't use the *App_Start* folder or the *Global.asax* file. Additionally, the *web.config* file is added at publish time.
 
 The `Startup` class:
 
@@ -77,12 +74,12 @@ For more information, see <xref:fundamentals/startup>.
 ## Migrate models and controllers
 
 The following code shows the `ProductsController` update for ASP.NET Core:
+
 [!code-csharp[](webapi/sample/3.x/ProductsApp/Controllers/ProductsController.cs)]
 
 Update the `ProductsController` for ASP.NET Core:
 
-1. Copy *Controllers/ProductsController.cs* from the original project to the new one.
-1. Copy the *Models* folder from the original project to the new one.
+1. Copy *Controllers/ProductsController.cs* and the *Models* folder from the original project to the new one.
 1. Change the copied files' root namespace to `ProductsCore`.
 1. Update the `using ProductsApp.Models;` statement to `using ProductsCore.Models;`.
 
