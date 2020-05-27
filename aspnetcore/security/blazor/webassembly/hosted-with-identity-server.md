@@ -234,7 +234,7 @@ Identity Server can be configured to send `name` and `role` claims for authentic
 
 In the Client app, create a custom user factory. Identity Server sends multiple roles as a JSON array in a single `role` claim. A single role is sent as a string value in the claim. The factory creates an individual `role` claim for each of the user's roles.
 
-*CustomUserFactory.cs*:
+*RolesClaimsPrincipalFactory.cs*:
 
 ```csharp
 using System.Linq;
