@@ -84,7 +84,7 @@ Update the `ProductsController` for ASP.NET Core:
 1. Copy *Controllers/ProductsController.cs* from the original project to the new one.
 1. Copy the *Models* folder from the original project to the new one.
 1. Change the copied files' root namespace to `ProductsCore`.
-1. Update the `using ProductsApp.Models;` statement to `using ProductsCore.Models;".
+1. Update the `using ProductsApp.Models;` statement to `using ProductsCore.Models;`.
 
 The following components don't exist in ASP.NET Core:
 
@@ -206,7 +206,7 @@ Update the `ProductsController` for ASP.NET Core:
 1. Copy *Controllers/ProductsController.cs* from the original project to the new one.
 1. Copy the *Models* folder from the original project to the new one.
 1. Change the copied files' root namespace to `ProductsCore`.
-1. Update the `using ProductsApp.Models;` statement to `using ProductsCore.Models;".
+1. Update the `using ProductsApp.Models;` statement to `using ProductsCore.Models;`.
 
 The following components don't exist in ASP.NET Core:
 
