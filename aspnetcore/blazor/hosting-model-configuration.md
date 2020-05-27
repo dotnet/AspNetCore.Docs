@@ -213,9 +213,9 @@ builder.Configuration.AddJsonStream(stream);
 
 ```json
 {
-  "AzureAD": {
-    "Authority": "https://login.microsoftonline.com/",
-    "ClientId": "aeaebf0f-d416-4d92-a08f-e1d5b51fc494"
+  "Local": {
+    "Authority": "{AUTHORITY}",
+    "ClientId": "{CLIENT ID}"
   }
 }
 ```
@@ -224,7 +224,7 @@ builder.Configuration.AddJsonStream(stream);
 
 ```csharp
 builder.Services.AddOidcAuthentication(options =>
-    builder.Configuration.Bind("AzureAD", options);
+    builder.Configuration.Bind("Local", options);
 ```
 
 #### Logging configuration
