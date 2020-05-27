@@ -25,9 +25,9 @@ namespace BlazorSignalRApp.Server
         }
         #endregion
 
+        #region snippet_Configure
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            
             app.UseResponseCompression();
 
             if (env.IsDevelopment())
@@ -47,14 +47,13 @@ namespace BlazorSignalRApp.Server
 
             app.UseRouting();
 
-            #region snippet_UseEndpoints
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
                 endpoints.MapHub<ChatHub>("/chatHub");
                 endpoints.MapFallbackToFile("index.html");
             });
-            #endregion
         }
+        #endregion
     }
 }

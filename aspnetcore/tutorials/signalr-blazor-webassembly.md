@@ -186,9 +186,12 @@ In the **BlazorSignalRApp.Server** project, create a *Hubs* (plural) folder and 
 
    [!code-csharp[](signalr-blazor-webassembly/samples/3.x/BlazorSignalRApp/Server/Startup.cs?name=snippet_ConfigureServices&highlight=3,5-9)]
 
-1. In `Startup.Configure` between the endpoints for controllers and the client-side fallback, add an endpoint for the hub:
+1. In `Startup.Configure`:
 
-   [!code-csharp[](signalr-blazor-webassembly/samples/3.x/BlazorSignalRApp/Server/Startup.cs?name=snippet_UseEndpoints&highlight=4)]
+   * Use Response Compression Middleware at the top of the processing pipeline's configuration.
+   * Between the endpoints for controllers and the client-side fallback, add an endpoint for the hub.
+
+   [!code-csharp[](signalr-blazor-webassembly/samples/3.x/BlazorSignalRApp/Server/Startup.cs?name=snippet_Configure&highlight=3,25)]
 
 ## Add Razor component code for chat
 
@@ -282,4 +285,3 @@ To learn more about building Blazor apps, see the Blazor documentation:
 ## Additional resources
 
 * <xref:signalr/introduction>
- 
