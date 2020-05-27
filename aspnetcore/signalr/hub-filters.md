@@ -37,27 +37,27 @@ A hub filter can be added in one of the following ways:
 
 * Add a filter by concrete type:
 
-```csharp
-hubOptions.AddFilter<TFilter>();
-```
+    ```csharp
+    hubOptions.AddFilter<TFilter>();
+    ```
 
-This will be resolved from DI or type activated.
+    This will be resolved from DI or type activated.
 
 * Add a filter by runtime type:
 
-```csharp
-hubOptions.AddFilter(typeof(TFilter));
-```
+    ```csharp
+    hubOptions.AddFilter(typeof(TFilter));
+    ```
 
-This will be resolved from DI or type activated.
+    This will be resolved from DI or type activated.
 
 * Add a filter by instance:
 
-```csharp
-hubOptions.AddFilter(new MyFilter());
-```
+    ```csharp
+    hubOptions.AddFilter(new MyFilter());
+    ```
 
-This instance will be used like a singleton. All hub method invocations will use the same instance.
+    This instance will be used like a singleton. All hub method invocations will use the same instance.
 
 Hub filters are created and disposed per hub invocation. If you want to store global state in the filter, or no state, then we recommend adding the hub filter type to DI as a singleton for better performance or add the filter as an instance if you can.
 
