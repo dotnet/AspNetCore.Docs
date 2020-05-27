@@ -33,7 +33,7 @@ The default ASP.NET Core web app templates:
   * [Console](#console)
   * [Debug](#debug)
   * [EventSource](#event-source)
-  * [EventLog](#welog) : Windows only
+  * [EventLog](#welog): Windows only
 
 [!code-csharp[](index/samples/3.x/TodoApiDTO/Program.cs?name=snippet_TemplateCode&highlight=9)]
 
@@ -575,9 +575,9 @@ To log events lower than `Warning`, explicitly set the log level. For example, a
 
 [AddEventLog overloads](xref:Microsoft.Extensions.Logging.EventLoggerFactoryExtensions) can pass in <xref:Microsoft.Extensions.Logging.EventLog.EventLogSettings>. If `null` or not specified, the following default settings are used:
 
-* `LogName : "Application"`
-* `SourceName : ".NET Runtime"`
-* `MachineName` : The local machine name is used.
+* `LogName`: "Application"
+* `SourceName`: ".NET Runtime"
+* `MachineName`: The local machine name is used.
 
 The following code changes the `SourceName` from the default value of `".NET Runtime"` to `MyLogs`:
 
