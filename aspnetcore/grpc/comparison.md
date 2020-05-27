@@ -75,10 +75,10 @@ Propagating the deadline and cancellation through child gRPC calls helps enforce
 
 gRPC is well suited to the following scenarios:
 
-* **Microservices** &ndash; gRPC is designed for low latency and high throughput communication. gRPC is great for lightweight microservices where efficiency is critical.
-* **Point-to-point real-time communication** &ndash; gRPC has excellent support for bi-directional streaming. gRPC services can push messages in real-time without polling.
-* **Polyglot environments** &ndash; gRPC tooling supports all popular development languages, making gRPC a good choice for multi-language environments.
-* **Network constrained environments** &ndash; gRPC messages are serialized with Protobuf, a lightweight message format. A gRPC message is always smaller than an equivalent JSON message.
+* **Microservices**: gRPC is designed for low latency and high throughput communication. gRPC is great for lightweight microservices where efficiency is critical.
+* **Point-to-point real-time communication**: gRPC has excellent support for bi-directional streaming. gRPC services can push messages in real-time without polling.
+* **Polyglot environments**: gRPC tooling supports all popular development languages, making gRPC a good choice for multi-language environments.
+* **Network constrained environments**: gRPC messages are serialized with Protobuf, a lightweight message format. A gRPC message is always smaller than an equivalent JSON message.
 
 ## gRPC weaknesses
 
@@ -105,9 +105,9 @@ Features such as [server reflection](https://github.com/grpc/grpc/blob/master/do
 
 Other frameworks are recommended over gRPC in the following scenarios:
 
-* **Browser accessible APIs** &ndash; gRPC isn't fully supported in the browser. gRPC-Web can offer browser support, but it has limitations and introduces a server proxy.
-* **Broadcast real-time communication** &ndash; gRPC supports real-time communication via streaming, but the concept of broadcasting a message out to registered connections doesn't exist. For example in a chat room scenario where new chat messages should be sent to all clients in the chat room, each gRPC call is required to individually stream new chat messages to the client. [SignalR](xref:signalr/introduction) is a useful framework for this scenario. SignalR has the concept of persistent connections and built-in support for broadcasting messages.
-* **Inter-process communication** &ndash; A process must host an HTTP/2 server to accept incoming gRPC calls. For Windows, inter-process communication [pipes](/dotnet/standard/io/pipe-operations) is a fast, lightweight method of communication.
+* **Browser accessible APIs**: gRPC isn't fully supported in the browser. gRPC-Web can offer browser support, but it has limitations and introduces a server proxy.
+* **Broadcast real-time communication**: gRPC supports real-time communication via streaming, but the concept of broadcasting a message out to registered connections doesn't exist. For example in a chat room scenario where new chat messages should be sent to all clients in the chat room, each gRPC call is required to individually stream new chat messages to the client. [SignalR](xref:signalr/introduction) is a useful framework for this scenario. SignalR has the concept of persistent connections and built-in support for broadcasting messages.
+* **Inter-process communication**: A process must host an HTTP/2 server to accept incoming gRPC calls. For Windows, inter-process communication [pipes](/dotnet/standard/io/pipe-operations) is a fast, lightweight method of communication.
 
 ## Additional resources
 

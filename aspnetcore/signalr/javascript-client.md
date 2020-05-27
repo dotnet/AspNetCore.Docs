@@ -142,10 +142,10 @@ Chain a `catch` method to the end of the `start` method to handle client-side er
 
 Set up client-side log tracing by passing a logger and type of event to log when the connection is made. Messages are logged with the specified log level and higher. Available log levels are as follows:
 
-* `signalR.LogLevel.Error` &ndash; Error messages. Logs `Error` messages only.
-* `signalR.LogLevel.Warning` &ndash; Warning messages about potential errors. Logs `Warning`, and `Error` messages.
-* `signalR.LogLevel.Information` &ndash; Status messages without errors. Logs `Information`, `Warning`, and `Error` messages.
-* `signalR.LogLevel.Trace` &ndash; Trace messages. Logs everything, including data transported between hub and client.
+* `signalR.LogLevel.Error`: Error messages. Logs `Error` messages only.
+* `signalR.LogLevel.Warning`: Warning messages about potential errors. Logs `Warning`, and `Error` messages.
+* `signalR.LogLevel.Information`: Status messages without errors. Logs `Information`, `Warning`, and `Error` messages.
+* `signalR.LogLevel.Trace`: Trace messages. Logs everything, including data transported between hub and client.
 
 Use the [configureLogging](/javascript/api/%40aspnet/signalr/hubconnectionbuilder#configurelogging) method on [HubConnectionBuilder](/javascript/api/%40aspnet/signalr/hubconnectionbuilder) to configure the log level. Messages are logged to the browser console.
 

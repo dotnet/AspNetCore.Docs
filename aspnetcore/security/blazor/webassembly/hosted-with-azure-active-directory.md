@@ -36,7 +36,7 @@ Record the following information:
 
 * *Server API app* Application ID (Client ID) (for example, `11111111-1111-1111-1111-111111111111`)
 * Directory ID (Tenant ID) (for example, `222222222-2222-2222-2222-222222222222`)
-* AAD Tenant domain (for example, `contoso.onmicrosoft.com`) &ndash; The domain is available as the **Publisher domain** in the **Branding** blade of the Azure portal for the registered app.
+* AAD Tenant domain (for example, `contoso.onmicrosoft.com`): The domain is available as the **Publisher domain** in the **Branding** blade of the Azure portal for the registered app.
 
 In **API permissions**, remove the **Microsoft Graph** > **User.Read** permission, as the app doesn't require sign in or user profile access.
 

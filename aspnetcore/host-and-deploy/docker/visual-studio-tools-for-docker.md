@@ -89,10 +89,10 @@ Visual Studio 2017 versions 15.8 or later add an orchestration solution only whe
 
 The Visual Studio Container Tools add a *docker-compose* project to the solution with the following files:
 
-* *docker-compose.dcproj* &ndash; The file representing the project. Includes a `<DockerTargetOS>` element specifying the OS to be used.
-* *.dockerignore* &ndash; Lists the file and directory patterns to exclude when generating a build context.
-* *docker-compose.yml* &ndash; The base [Docker Compose](https://docs.docker.com/compose/overview/) file used to define the collection of images built and run with `docker-compose build` and `docker-compose run`, respectively.
-* *docker-compose.override.yml* &ndash; An optional file, read by Docker Compose, with configuration overrides for services. Visual Studio executes `docker-compose -f "docker-compose.yml" -f "docker-compose.override.yml"` to merge these files.
+* *docker-compose.dcproj*: The file representing the project. Includes a `<DockerTargetOS>` element specifying the OS to be used.
+* *.dockerignore*: Lists the file and directory patterns to exclude when generating a build context.
+* *docker-compose.yml*: The base [Docker Compose](https://docs.docker.com/compose/overview/) file used to define the collection of images built and run with `docker-compose build` and `docker-compose run`, respectively.
+* *docker-compose.override.yml*: An optional file, read by Docker Compose, with configuration overrides for services. Visual Studio executes `docker-compose -f "docker-compose.yml" -f "docker-compose.override.yml"` to merge these files.
 
 The *docker-compose.yml* file references the name of the image that's created when the project runs:
 

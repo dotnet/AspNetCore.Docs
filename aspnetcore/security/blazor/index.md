@@ -77,7 +77,7 @@ The <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvi
     <ul>
         @foreach (var claim in _claims)
         {
-            <li>@claim.Type &ndash; @claim.Value</li>
+            <li>@claim.Type: @claim.Value</li>
         }
     </ul>
 }

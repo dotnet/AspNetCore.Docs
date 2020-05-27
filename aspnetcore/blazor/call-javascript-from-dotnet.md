@@ -71,8 +71,8 @@ To use the <xref:Microsoft.JSInterop.IJSRuntime> abstraction, adopt any of the f
 
 In the client-side sample app that accompanies this topic, two JavaScript functions are available to the app that interact with the DOM to receive user input and display a welcome message:
 
-* `showPrompt` &ndash; Produces a prompt to accept user input (the user's name) and returns the name to the caller.
-* `displayWelcome` &ndash; Assigns a welcome message from the caller to a DOM object with an `id` of `welcome`.
+* `showPrompt`: Produces a prompt to accept user input (the user's name) and returns the name to the caller.
+* `displayWelcome`: Assigns a welcome message from the caller to a DOM object with an `id` of `welcome`.
 
 *wwwroot/exampleJsInterop.js*:
 

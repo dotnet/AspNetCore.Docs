@@ -435,7 +435,7 @@ Configure Kestrel to use HTTPS.
 
 `ListenOptions.UseHttps` extensions:
 
-* `UseHttps` &ndash; Configure Kestrel to use HTTPS with the default certificate. Throws an exception if no default certificate is configured.
+* `UseHttps`: Configure Kestrel to use HTTPS with the default certificate. Throws an exception if no default certificate is configured.
 * `UseHttps(string fileName)`
 * `UseHttps(string fileName, string password)`
 * `UseHttps(string fileName, string password, Action<HttpsConnectionAdapterOptions> configureOptions)`
@@ -710,8 +710,8 @@ TLS restrictions for HTTP/2:
 * Renegotiation disabled
 * Compression disabled
 * Minimum ephemeral key exchange sizes:
-  * Elliptic curve Diffie-Hellman (ECDHE) &lbrack;[RFC4492](https://www.ietf.org/rfc/rfc4492.txt)&rbrack; &ndash; 224 bits minimum
-  * Finite field Diffie-Hellman (DHE) &lbrack;`TLS12`&rbrack; &ndash; 2048 bits minimum
+  * Elliptic curve Diffie-Hellman (ECDHE) &lbrack;[RFC4492](https://www.ietf.org/rfc/rfc4492.txt)&rbrack;: 224 bits minimum
+  * Finite field Diffie-Hellman (DHE) &lbrack;`TLS12`&rbrack;: 2048 bits minimum
 * Cipher suite not blacklisted
 
 `TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256` &lbrack;`TLS-ECDHE`&rbrack; with the P-256 elliptic curve &lbrack;`FIPS186`&rbrack; is supported by default.
@@ -1423,7 +1423,7 @@ Configure Kestrel to use HTTPS.
 
 `ListenOptions.UseHttps` extensions:
 
-* `UseHttps` &ndash; Configure Kestrel to use HTTPS with the default certificate. Throws an exception if no default certificate is configured.
+* `UseHttps`: Configure Kestrel to use HTTPS with the default certificate. Throws an exception if no default certificate is configured.
 * `UseHttps(string fileName)`
 * `UseHttps(string fileName, string password)`
 * `UseHttps(string fileName, string password, Action<HttpsConnectionAdapterOptions> configureOptions)`
@@ -1711,8 +1711,8 @@ TLS restrictions for HTTP/2:
 * Renegotiation disabled
 * Compression disabled
 * Minimum ephemeral key exchange sizes:
-  * Elliptic curve Diffie-Hellman (ECDHE) &lbrack;[RFC4492](https://www.ietf.org/rfc/rfc4492.txt)&rbrack; &ndash; 224 bits minimum
-  * Finite field Diffie-Hellman (DHE) &lbrack;`TLS12`&rbrack; &ndash; 2048 bits minimum
+  * Elliptic curve Diffie-Hellman (ECDHE) &lbrack;[RFC4492](https://www.ietf.org/rfc/rfc4492.txt)&rbrack;: 224 bits minimum
+  * Finite field Diffie-Hellman (DHE) &lbrack;`TLS12`&rbrack;: 2048 bits minimum
 * Cipher suite not blacklisted
 
 `TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256` &lbrack;`TLS-ECDHE`&rbrack; with the P-256 elliptic curve &lbrack;`FIPS186`&rbrack; is supported by default.
@@ -2287,7 +2287,7 @@ Configure Kestrel to use HTTPS.
 
 `ListenOptions.UseHttps` extensions:
 
-* `UseHttps` &ndash; Configure Kestrel to use HTTPS with the default certificate. Throws an exception if no default certificate is configured.
+* `UseHttps`: Configure Kestrel to use HTTPS with the default certificate. Throws an exception if no default certificate is configured.
 * `UseHttps(string fileName)`
 * `UseHttps(string fileName, string password)`
 * `UseHttps(string fileName, string password, Action<HttpsConnectionAdapterOptions> configureOptions)`

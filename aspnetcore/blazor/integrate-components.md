@@ -17,10 +17,10 @@ Razor components can be integrated into Razor Pages and MVC apps. When the page 
 
 After [preparing the app](#prepare-the-app), use the guidance in the following sections depending on the app's requirements:
 
-* Routable components &ndash; For components that are directly routable from user requests. Follow this guidance when visitors should be able to make an HTTP request in their browser for a component with an [`@page`](xref:mvc/views/razor#page) directive.
+* Routable components: For components that are directly routable from user requests. Follow this guidance when visitors should be able to make an HTTP request in their browser for a component with an [`@page`](xref:mvc/views/razor#page) directive.
   * [Use routable components in a Razor Pages app](#use-routable-components-in-a-razor-pages-app)
   * [Use routable components in an MVC app](#use-routable-components-in-an-mvc-app)
-* [Render components from a page or view](#render-components-from-a-page-or-view) &ndash; For components that aren't directly routable from user requests. Follow this guidance when the app embeds components into existing pages and views with the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper).
+* [Render components from a page or view](#render-components-from-a-page-or-view): For components that aren't directly routable from user requests. Follow this guidance when the app embeds components into existing pages and views with the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper).
 
 ## Prepare the app
 

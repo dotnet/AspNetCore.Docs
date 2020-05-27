@@ -65,9 +65,9 @@ Components in Blazor are typically authored using Razor syntax, a natural blend 
 
 gRPC functionality in ASP.NET Core 3.0 includes:
 
-* [Grpc.AspNetCore](https://www.nuget.org/packages/Grpc.AspNetCore) &ndash; An ASP.NET Core framework for hosting gRPC services. gRPC on ASP.NET Core integrates with standard ASP.NET Core features like logging, dependency injection (DI), authentication, and authorization.
-* [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client) &ndash; A gRPC client for .NET Core that builds upon the familiar `HttpClient`.
-* [Grpc.Net.ClientFactory](https://www.nuget.org/packages/Grpc.Net.ClientFactory) &ndash; gRPC client integration with `HttpClientFactory`.
+* [Grpc.AspNetCore](https://www.nuget.org/packages/Grpc.AspNetCore): An ASP.NET Core framework for hosting gRPC services. gRPC on ASP.NET Core integrates with standard ASP.NET Core features like logging, dependency injection (DI), authentication, and authorization.
+* [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client): A gRPC client for .NET Core that builds upon the familiar `HttpClient`.
+* [Grpc.Net.ClientFactory](https://www.nuget.org/packages/Grpc.Net.ClientFactory): gRPC client integration with `HttpClientFactory`.
 
 For more information, see <xref:grpc/index>.
 
@@ -311,8 +311,8 @@ To add Json.NET to ASP.NET Core 3.0, see [Add Newtonsoft.Json-based JSON format 
 
 The following list contains new Razor directives:
 
-* [`@attribute`](xref:mvc/views/razor#attribute) &ndash; The `@attribute` directive applies the given attribute to the class of the generated page or view. For example, `@attribute [Authorize]`.
-* [`@implements`](xref:mvc/views/razor#implements) &ndash; The `@implements` directive implements an interface for the generated class. For example, `@implements IDisposable`.
+* [`@attribute`](xref:mvc/views/razor#attribute): The `@attribute` directive applies the given attribute to the class of the generated page or view. For example, `@attribute [Authorize]`.
+* [`@implements`](xref:mvc/views/razor#implements): The `@implements` directive implements an interface for the generated class. For example, `@implements IDisposable`.
 
 ## IdentityServer4 supports authentication and authorization for web APIs and SPAs
 

@@ -18,8 +18,8 @@ One approach to prevent lingering cookies and site data from interfering with te
   * Select the **Add** button.
   * Provide the path to your browser in the **Program** field.
   * In the **Arguments** field, provide the command-line option that the browser uses to open in incognito or private mode and the URL of the app. For example:
-    * Google Chrome &ndash; `--incognito --new-window https://localhost:5001`
-    * Mozilla Firefox &ndash; `-private -url https://localhost:5001`
+    * Google Chrome: `--incognito --new-window https://localhost:5001`
+    * Mozilla Firefox: `-private -url https://localhost:5001`
   * Provide a name in the **Friendly name** field. For example, `Firefox Auth Testing`.
   * Select the **OK** button.
   * To avoid having to select the browser profile for each iteration of testing with an app, set the profile as the default with the **Set as Default** button.
