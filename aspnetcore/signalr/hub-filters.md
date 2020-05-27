@@ -1,5 +1,5 @@
 ---
-title: Use hub filters in SignalR for ASP.NET Core
+title: Use hub filters in ASP.NET Core SignalR
 author: brecon
 description: Learn how to use hub filters in ASP.NET Core SignalR.
 monikerRange: '>= aspnetcore-5.0'
@@ -10,13 +10,13 @@ no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: signalr/hub-filters
 ---
 
-# Use hub filters in SignalR for ASP.NET Core
+# Use hub filters in ASP.NET Core SignalR
 
-Hub filters allow logic to run before and after hub methods are invoked by clients. This article will provide guidance for writing and using hub filters.
+Hub filters allow logic to run before and after hub methods are invoked by clients. This article provides guidance for writing and using hub filters.
 
 ## Configure hub filters
 
-Hub filters can be applied globally or per hub type. When adding filters the order the filters are added is the order that the filters will run in. Also, global hub filters will run before local hub filters.
+Hub filters can be applied globally or per hub type. The order in which filters are added is the order in which the filters run. Global hub filters run before local hub filters.
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -33,8 +33,9 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-There are 3 ways to add hub filters.
-1. Add a filter by concrete type.
+A hub filter can be added in one of the following ways:
+
+* Add a filter by concrete type:
 
 ```csharp
 hubOptions.AddFilter<TFilter>();
@@ -42,7 +43,7 @@ hubOptions.AddFilter<TFilter>();
 
 This will be resolved from DI or type activated.
 
-2. Add a filter by runtime type.
+* Add a filter by runtime type:
 
 ```csharp
 hubOptions.AddFilter(typeof(TFilter));
@@ -50,13 +51,13 @@ hubOptions.AddFilter(typeof(TFilter));
 
 This will be resolved from DI or type activated.
 
-3. Add a filter by instance.
+* Add a filter by instance:
 
 ```csharp
 hubOptions.AddFilter(new MyFilter());
 ```
 
-This instance will be used like a singleton, all hub method invocations will use the same instance.
+This instance will be used like a singleton. All hub method invocations will use the same instance.
 
 Hub filters are created and disposed per hub invocation. If you want to store global state in the filter, or no state, then we recommend adding the hub filter type to DI as a singleton for better performance or add the filter as an instance if you can.
 
@@ -95,18 +96,19 @@ public class CustomFilter : IHubFilter
 }
 ```
 
-Filters are very similar to middleware, `next` will invoke the next filter and the final filter will invoke the hub method. Filters can also store the result from awaiting `next` and run logic after the hub method has been called before returning the result from `next`.
+Filters are very similar to middleware. The `next` method invokes the next filter. The final filter will invoke the hub method. Filters can also store the result from awaiting `next` and run logic after the hub method has been called before returning the result from `next`.
 
-If a filter wants to skip a hub method invocation we recommend throwing a `HubException` and not calling `next` so the client will receive an error if it was expecting a result.
+To skip a hub method invocation in a filter, throw an exception of type `HubException` instead of calling `next`. The client will receive an error if it was expecting a result.
 
 ## Using hub filters
 
 When writing the filter logic, try to make it generic by using attributes on hub methods instead of checking for hub method names.
 
-For example, lets write a filter that will check an argument to a hub method for banned phrases and replace any phrases it finds with "***".
-For the purposes of this example we'll assume a `LanguageFilterAttribute` class is defined and it has a property named `FilterArgument` that can be set when using the attribute.
+For example, lets write a filter that will check an argument to a hub method for banned phrases and replace any phrases it finds with `"***"`.
+For this example, we'll assume a `LanguageFilterAttribute` class is defined and it has a property named `FilterArgument` that can be set when using the attribute.
 
 First, place the attribute on the hub method that has a string argument that we want to clean up.
+
 ```csharp
 public class ChatHub
 {
@@ -119,6 +121,7 @@ public class ChatHub
 ```
 
 Next, define a hub filter that will check for the attribute and replace banned phrases in an argument to the hub method with "***".
+
 ```csharp
 public class LanguageFilter : IHubFilter
 {
