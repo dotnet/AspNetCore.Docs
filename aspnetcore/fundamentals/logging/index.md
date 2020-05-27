@@ -33,7 +33,7 @@ The default ASP.NET Core web app templates:
   * [Console](#console)
   * [Debug](#debug)
   * [EventSource](#event-source)
-  * [EventLog](#welog) : Windows only
+  * [EventLog](#welog): Windows only
 
 [!code-csharp[](index/samples/3.x/TodoApiDTO/Program.cs?name=snippet_TemplateCode&highlight=9)]
 
@@ -548,8 +548,8 @@ For more information, see:
 * [Trace for performance analysis utility (dotnet-trace)](https://github.com/dotnet/diagnostics/blob/master/documentation/dotnet-trace-instructions.md) (dotnet/diagnostics GitHub repository documentation)
 * [LoggingEventSource Class](xref:Microsoft.Extensions.Logging.EventSource.LoggingEventSource) (.NET API Browser)
 * <xref:System.Diagnostics.Tracing.EventLevel>
-* [LoggingEventSource reference source (3.0)](https://github.com/dotnet/extensions/blob/release/3.0/src/Logging/Logging.EventSource/src/LoggingEventSource.cs) &ndash; To obtain reference source for a different version, change the branch to `release/{Version}`, where `{Version}` is the version of ASP.NET Core desired.
-* [Perfview](#perfview) &ndash; Useful for viewing Event Source traces.
+* [LoggingEventSource reference source (3.0)](https://github.com/dotnet/extensions/blob/release/3.0/src/Logging/Logging.EventSource/src/LoggingEventSource.cs): To obtain reference source for a different version, change the branch to `release/{Version}`, where `{Version}` is the version of ASP.NET Core desired.
+* [Perfview](#perfview): Useful for viewing Event Source traces.
 
 #### Perfview
 
@@ -575,9 +575,9 @@ To log events lower than `Warning`, explicitly set the log level. For example, a
 
 [AddEventLog overloads](xref:Microsoft.Extensions.Logging.EventLoggerFactoryExtensions) can pass in <xref:Microsoft.Extensions.Logging.EventLog.EventLogSettings>. If `null` or not specified, the following default settings are used:
 
-* `LogName : "Application"`
-* `SourceName : ".NET Runtime"`
-* `MachineName` : local machine
+* `LogName`: "Application"
+* `SourceName`: ".NET Runtime"
+* `MachineName`: The local machine name is used.
 
 The following code changes the `SourceName` from the default value of `".NET Runtime"` to `MyLogs`:
 
@@ -1531,9 +1531,9 @@ logging.AddEventLog();
 
 [AddEventLog overloads](xref:Microsoft.Extensions.Logging.EventLoggerFactoryExtensions) let you pass in <xref:Microsoft.Extensions.Logging.EventLog.EventLogSettings>. If `null` or not specified, the following default settings are used:
 
-* `LogName` &ndash; "Application"
-* `SourceName` &ndash; ".NET Runtime"
-* `MachineName` &ndash; local machine
+* `LogName`: "Application"
+* `SourceName`: ".NET Runtime"
+* `MachineName`: The local machine name is used.
 
 Events are logged for [Warning level and higher](#log-level). To log events lower than `Warning`, explicitly set the log level. For example, add the following to the *appsettings.json* file:
 

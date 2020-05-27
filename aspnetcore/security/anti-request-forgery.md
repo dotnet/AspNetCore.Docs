@@ -154,7 +154,7 @@ The most common approach to defending against CSRF attacks is to use the *Synchr
 1. The client sends back the token to the server for verification.
 1. If the server receives a token that doesn't match the authenticated user's identity, the request is rejected.
 
-The token is unique and unpredictable. The token can also be used to ensure proper sequencing of a series of requests (for example, ensuring the request sequence of: page 1 &ndash; page 2 &ndash; page 3). All of the forms in ASP.NET Core MVC and Razor Pages templates generate antiforgery tokens. The following pair of view examples generate antiforgery tokens:
+The token is unique and unpredictable. The token can also be used to ensure proper sequencing of a series of requests (for example, ensuring the request sequence of: page 1 > page 2 > page 3). All of the forms in ASP.NET Core MVC and Razor Pages templates generate antiforgery tokens. The following pair of view examples generate antiforgery tokens:
 
 ```cshtml
 <form asp-controller="Manage" asp-action="ChangePassword" method="post">

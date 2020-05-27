@@ -47,8 +47,8 @@ To preserve state beyond a single circuit, *don't merely store the data in the s
 
 Data persistence is typically only required for high-value state that users have expended effort to create. In the following examples, persisting state either saves time or aids in commercial activities:
 
-* Multistep webform &ndash; It's time-consuming for a user to re-enter data for several completed steps of a multistep process if their state is lost. A user loses state in this scenario if they navigate away from the multistep form and return to the form later.
-* Shopping cart &ndash; Any commercially important component of an app that represents potential revenue can be maintained. A user who loses their state, and thus their shopping cart, may purchase fewer products or services when they return to the site later.
+* Multistep webform: It's time-consuming for a user to re-enter data for several completed steps of a multistep process if their state is lost. A user loses state in this scenario if they navigate away from the multistep form and return to the form later.
+* Shopping cart: Any commercially important component of an app that represents potential revenue can be maintained. A user who loses their state, and thus their shopping cart, may purchase fewer products or services when they return to the site later.
 
 It's usually not necessary to preserve easily-recreated state, such as the username entered into a sign-in dialog that hasn't been submitted.
 

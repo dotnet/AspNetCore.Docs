@@ -5,7 +5,7 @@ description: Get started with Blazor by building a Blazor app with the tooling o
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/19/2020
+ms.date: 05/26/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/get-started
 ---
@@ -33,11 +33,17 @@ To get started with Blazor, follow the guidance for your choice of tooling:
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-1. Install the [.NET Core 3.1 SDK](https://dotnet.microsoft.com/download/dotnet-core/3.1).
+1. Install the latest version of the [.NET Core 3.1 SDK](https://dotnet.microsoft.com/download/dotnet-core/3.1). If you previously installed the SDK, you can determine your installed version by executing the following command in a command shell:
 
-1. Install [Visual Studio Code](https://code.visualstudio.com/).
+   ```dotnetcli
+   dotnet -v
+   ```
+
+1. Install the latest version of [Visual Studio Code](https://code.visualstudio.com/).
 
 1. Install the latest [C# for Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) and the [JavaScript Debugger (Nightly)](https://marketplace.visualstudio.com/items?itemName=ms-vscode.js-debug-nightly) extension with `debug.javascript.usePreview` set to `true`.
+
+  To set `debug.javascript.usePreview` to `true` using the VS Code UI, open **File** > **Preferences** > **Settings** and search for `debug javascript use preview`. Select the check box for **Use the new in-preview JavaScript debugger for Node.js and Chrome**.
 
 1. For a Blazor WebAssembly experience, execute the following command in a command shell:
 

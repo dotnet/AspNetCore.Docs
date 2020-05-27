@@ -96,7 +96,7 @@ A Blazor app is composed of reusable elements of UI called *components*. A compo
 * Turned into HTML text (during prerendering&dagger;).
 * Used to efficiently update the markup during regular rendering.
 
-&dagger;*Prerendering* &ndash; The requested Razor component is compiled on the server into static HTML and sent to the client, where it's rendered to the user. After the connection is made between the client and the server, the component's static prerendered elements are replaced with interactive elements. Prerendering makes the app feel more responsive to the user.
+&dagger;*Prerendering*: The requested Razor component is compiled on the server into static HTML and sent to the client, where it's rendered to the user. After the connection is made between the client and the server, the component's static prerendered elements are replaced with interactive elements. Prerendering makes the app feel more responsive to the user.
 
 A UI update in Blazor is triggered by:
 

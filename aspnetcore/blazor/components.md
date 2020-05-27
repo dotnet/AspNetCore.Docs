@@ -70,8 +70,8 @@ Razor components in Blazor apps extensively use Razor syntax. If you aren't fami
 
 When accessing the content on Razor syntax, pay special attention to the following sections:
 
-* [Directives](xref:mvc/views/razor#directives) &ndash; `@`-prefixed reserved keywords that typically change the way component markup is parsed or function.
-* [Directive attributes](xref:mvc/views/razor#directive-attributes) &ndash; `@`-prefixed reserved keywords that typically change the way component elements are parsed or function.
+* [Directives](xref:mvc/views/razor#directives): `@`-prefixed reserved keywords that typically change the way component markup is parsed or function.
+* [Directive attributes](xref:mvc/views/razor#directive-attributes): `@`-prefixed reserved keywords that typically change the way component elements are parsed or function.
 
 ## Static assets
 
@@ -137,7 +137,7 @@ Optional parameters aren't supported, so two [`@page`][9] directives are applied
 
 ### Component parameters
 
-Components can have *component parameters*, which are defined using public properties on the component class with the [`[Parameter]`](xref:Microsoft.AspNetCore.Components.ParameterAttribute)](xref:Microsoft.AspNetCore.Components.ParameterAttribute) attribute. Use attributes to specify arguments for a component in markup.
+Components can have *component parameters*, which are defined using public properties on the component class with the [`[Parameter]`](xref:Microsoft.AspNetCore.Components.ParameterAttribute) attribute. Use attributes to specify arguments for a component in markup.
 
 *Components/ChildComponent.razor*:
 
@@ -975,7 +975,7 @@ However, inline SVG markup isn't supported in all scenarios. If you place an `<s
 
 ## Additional resources
 
-* <xref:security/blazor/server/threat-mitigation> &ndash; Includes guidance on building Blazor Server apps that must contend with resource exhaustion.
+* <xref:security/blazor/server/threat-mitigation>: Includes guidance on building Blazor Server apps that must contend with resource exhaustion.
 
 <!--Reference links in article-->
 [1]: <xref:mvc/views/razor#code>

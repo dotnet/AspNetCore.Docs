@@ -101,8 +101,8 @@ This isn't possible. Remember the certificate exchange is done that the start of
 
 The handler has two events:
 
-* `OnAuthenticationFailed` &ndash; Called if an exception happens during authentication and allows you to react.
-* `OnCertificateValidated` &ndash; Called after the certificate has been validated, passed validation and a default principal has been created. This event allows you to perform your own validation and augment or replace the principal. For examples include:
+* `OnAuthenticationFailed`: Called if an exception happens during authentication and allows you to react.
+* `OnCertificateValidated`: Called after the certificate has been validated, passed validation and a default principal has been created. This event allows you to perform your own validation and augment or replace the principal. For examples include:
   * Determining if the certificate is known to your services.
   * Constructing your own principal. Consider the following example in `Startup.ConfigureServices`:
 

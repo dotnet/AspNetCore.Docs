@@ -57,9 +57,9 @@ The client's base address is set to the originating server's address. Inject an 
 
 In the following examples, a Todo web API processes create, read, update, and delete (CRUD) operations. The examples are based on a `TodoItem` class that stores the:
 
-* ID (`Id`, `long`) &ndash; Unique ID of the item.
-* Name (`Name`, `string`) &ndash; Name of the item.
-* Status (`IsComplete`, `bool`) &ndash; Indication if the Todo item is finished.
+* ID (`Id`, `long`): Unique ID of the item.
+* Name (`Name`, `string`): Name of the item.
+* Status (`IsComplete`, `bool`): Indication if the Todo item is finished.
 
 ```csharp
 private class TodoItem
@@ -72,7 +72,7 @@ private class TodoItem
 
 JSON helper methods send requests to a URI (a web API in the following examples) and process the response:
 
-* <xref:System.Net.Http.Json.HttpClientJsonExtensions.GetFromJsonAsync%2A> &ndash; Sends an HTTP GET request and parses the JSON response body to create an object.
+* <xref:System.Net.Http.Json.HttpClientJsonExtensions.GetFromJsonAsync%2A>: Sends an HTTP GET request and parses the JSON response body to create an object.
 
   In the following code, the `todoItems` are displayed by the component. The `GetTodoItems` method is triggered when the component is finished rendering ([OnInitializedAsync](xref:blazor/lifecycle#component-initialization-methods)). See the sample app for a complete example.
 
@@ -88,7 +88,7 @@ JSON helper methods send requests to a URI (a web API in the following examples)
   }
   ```
 
-* <xref:System.Net.Http.Json.HttpClientJsonExtensions.PostAsJsonAsync%2A> &ndash; Sends an HTTP POST request, including JSON-encoded content, and parses the JSON response body to create an object.
+* <xref:System.Net.Http.Json.HttpClientJsonExtensions.PostAsJsonAsync%2A>: Sends an HTTP POST request, including JSON-encoded content, and parses the JSON response body to create an object.
 
   In the following code, `newItemName` is provided by a bound element of the component. The `AddItem` method is triggered by selecting a `<button>` element. See the sample app for a complete example.
 
@@ -116,7 +116,7 @@ JSON helper methods send requests to a URI (a web API in the following examples)
   var content = response.Content.ReadFromJsonAsync<WeatherForecast>();
   ```
 
-* <xref:System.Net.Http.Json.HttpClientJsonExtensions.PutAsJsonAsync%2A> &ndash; Sends an HTTP PUT request, including JSON-encoded content.
+* <xref:System.Net.Http.Json.HttpClientJsonExtensions.PutAsJsonAsync%2A>: Sends an HTTP PUT request, including JSON-encoded content.
 
   In the following code, `editItem` values for `Name` and `IsCompleted` are provided by bound elements of the component. The item's `Id` is set when the item is selected in another part of the UI and `EditItem` is called. The `SaveItem` method is triggered by selecting the Save `<button>` element. See the sample app for a complete example.
 
@@ -302,7 +302,7 @@ To allow other sites to make cross-origin resource sharing (CORS) requests to yo
 
 ## Additional resources
 
-* <xref:security/blazor/webassembly/additional-scenarios> &ndash; Includes coverage on using <xref:System.Net.Http.HttpClient> to make secure web API requests.
+* <xref:security/blazor/webassembly/additional-scenarios>: Includes coverage on using <xref:System.Net.Http.HttpClient> to make secure web API requests.
 * <xref:fundamentals/http-requests>
 * <xref:security/enforcing-ssl>
 * [Kestrel HTTPS endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration)

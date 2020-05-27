@@ -4,7 +4,7 @@ author: jamesnk
 description: Learn how to use authentication and authorization in gRPC for ASP.NET Core.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
-ms.date: 12/05/2019
+ms.date: 05/26/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: grpc/authn-and-authz
 ---
@@ -123,7 +123,7 @@ public Ticketer.TicketerClient CreateClientWithCert(
     // Create the gRPC channel
     var channel = GrpcChannel.ForAddress(baseAddress, new GrpcChannelOptions
     {
-        HttpClient = new HttpClient(handler)
+        HttpHandler = handler
     });
 
     return new Ticketer.TicketerClient(channel);
