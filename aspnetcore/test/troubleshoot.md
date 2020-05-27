@@ -68,9 +68,9 @@ Installing the [.NET Core Hosting Bundle](xref:host-and-deploy/iis/index#install
 
 If an app is capable of responding to requests, you can obtain the following data from the app using middleware:
 
-* Request &ndash; Method, scheme, host, pathbase, path, query string, headers
-* Connection &ndash; Remote IP address, remote port, local IP address, local port, client certificate
-* Identity &ndash; Name, display name
+* Request: Method, scheme, host, pathbase, path, query string, headers
+* Connection: Remote IP address, remote port, local IP address, local port, client certificate
+* Identity: Name, display name
 * Configuration settings
 * Environment variables
 

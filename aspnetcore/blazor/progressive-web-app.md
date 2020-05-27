@@ -113,14 +113,14 @@ The built-in *service-worker.published.js* service worker resolves requests usin
 
 The cache-first strategy is valuable because:
 
-* **It ensures reliability.** &ndash; Network access isn't a boolean state. A user isn't simply online or offline:
+* **It ensures reliability.** Network access isn't a boolean state. A user isn't simply online or offline:
 
   * The user's device may assume it's online, but the network might be so slow as to be impractical to wait for.
   * The network might return invalid results for certain URLs, such as when there's a captive WIFI portal that's currently blocking or redirecting certain requests.
   
   This is why the browser's `navigator.onLine` API isn't reliable and shouldn't be depended upon.
 
-* **It ensures correctness.** &ndash; When building a cache of offline resources, the service worker uses content hashing to guarantee it has fetched a complete and self-consistent snapshot of resources at a single instant in time. This cache is then used as an atomic unit. There's no point asking the network for newer resources, since the only versions required are the ones already cached. Anything else risks inconsistency and incompatibility (for example, trying to use versions of .NET assemblies that weren't compiled together).
+* **It ensures correctness.** When building a cache of offline resources, the service worker uses content hashing to guarantee it has fetched a complete and self-consistent snapshot of resources at a single instant in time. This cache is then used as an atomic unit. There's no point asking the network for newer resources, since the only versions required are the ones already cached. Anything else risks inconsistency and incompatibility (for example, trying to use versions of .NET assemblies that weren't compiled together).
 
 ### Background updates
 

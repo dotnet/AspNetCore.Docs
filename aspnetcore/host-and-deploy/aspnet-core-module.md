@@ -301,8 +301,8 @@ Locations (multiple locations are permitted):
 
 The handler settings can also be provided via environment variables:
 
-* `ASPNETCORE_MODULE_DEBUG_FILE` &ndash; Path to the debug log file. (Default: *aspnetcore-debug.log*)
-* `ASPNETCORE_MODULE_DEBUG` &ndash; Debug level setting.
+* `ASPNETCORE_MODULE_DEBUG_FILE`: Path to the debug log file. (Default: *aspnetcore-debug.log*)
+* `ASPNETCORE_MODULE_DEBUG`: Debug level setting.
 
 > [!WARNING]
 > Do **not** leave debug logging enabled in the deployment for longer than required to troubleshoot an issue. The size of the log isn't limited. Leaving the debug log enabled can exhaust the available disk space and crash the server or app service.
@@ -714,8 +714,8 @@ Locations (multiple locations are permitted):
 
 The handler settings can also be provided via environment variables:
 
-* `ASPNETCORE_MODULE_DEBUG_FILE` &ndash; Path to the debug log file. (Default: *aspnetcore-debug.log*)
-* `ASPNETCORE_MODULE_DEBUG` &ndash; Debug level setting.
+* `ASPNETCORE_MODULE_DEBUG_FILE`: Path to the debug log file. (Default: *aspnetcore-debug.log*)
+* `ASPNETCORE_MODULE_DEBUG`: Debug level setting.
 
 > [!WARNING]
 > Do **not** leave debug logging enabled in the deployment for longer than required to troubleshoot an issue. The size of the log isn't limited. Leaving the debug log enabled can exhaust the available disk space and crash the server or app service.
@@ -1042,5 +1042,5 @@ The files can be found by searching for *aspnetcore* in the *applicationHost.con
 
 * <xref:host-and-deploy/iis/index>
 * <xref:host-and-deploy/azure-apps/index>
-* [ASP.NET Core Module reference source (master branch)](https://github.com/dotnet/aspnetcore/tree/master/src/Servers/IIS/AspNetCoreModuleV2) &ndash; Use the **Branch** drop down list to select a specific release (for example, `release/3.1`).
+* [ASP.NET Core Module reference source (master branch)](https://github.com/dotnet/aspnetcore/tree/master/src/Servers/IIS/AspNetCoreModuleV2): Use the **Branch** drop down list to select a specific release (for example, `release/3.1`).
 * <xref:host-and-deploy/iis/modules>

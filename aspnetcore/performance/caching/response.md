@@ -171,9 +171,9 @@ The sample app's Cache4 page model references the `Default30` cache profile:
 
 The <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> can be applied to:
 
-* Razor Page handlers (classes) &ndash; Attributes can't be applied to handler methods.
+* Razor Page handlers (classes): Attributes can't be applied to handler methods.
 * MVC controllers (classes).
-* MVC actions (methods) &ndash; Method-level attributes override the settings specified in class-level attributes.
+* MVC actions (methods): Method-level attributes override the settings specified in class-level attributes.
 
 The resulting header applied to the Cache4 page response by the `Default30` cache profile:
 

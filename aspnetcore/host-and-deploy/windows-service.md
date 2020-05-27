@@ -55,8 +55,8 @@ Host.CreateDefaultBuilder(args)
 
 The following sample apps accompany this topic:
 
-* Background Worker Service Sample &ndash; A non-web app sample based on the [Worker Service template](#worker-service-template) that uses [hosted services](xref:fundamentals/host/hosted-services) for background tasks.
-* Web App Service Sample &ndash; A Razor Pages web app sample that runs as a Windows Service with [hosted services](xref:fundamentals/host/hosted-services) for background tasks.
+* Background Worker Service Sample: A non-web app sample based on the [Worker Service template](#worker-service-template) that uses [hosted services](xref:fundamentals/host/hosted-services) for background tasks.
+* Web App Service Sample: A Razor Pages web app sample that runs as a Windows Service with [hosted services](xref:fundamentals/host/hosted-services) for background tasks.
 
 For MVC guidance, see the articles under <xref:mvc/overview> and <xref:migration/22-to-30>.
 
@@ -161,12 +161,12 @@ $acl | Set-Acl "{EXE PATH}"
 New-Service -Name {SERVICE NAME} -BinaryPathName {EXE FILE PATH} -Credential {DOMAIN OR COMPUTER NAME\USER} -Description "{DESCRIPTION}" -DisplayName "{DISPLAY NAME}" -StartupType Automatic
 ```
 
-* `{EXE PATH}` &ndash; Path to the app's folder on the host (for example, `d:\myservice`). Don't include the app's executable in the path. A trailing slash isn't required.
-* `{DOMAIN OR COMPUTER NAME\USER}` &ndash; Service user account (for example, `Contoso\ServiceUser`).
-* `{SERVICE NAME}` &ndash; Service name (for example, `MyService`).
-* `{EXE FILE PATH}` &ndash; The app's executable path (for example, `d:\myservice\myservice.exe`). Include the executable's file name with extension.
-* `{DESCRIPTION}` &ndash; Service description (for example, `My sample service`).
-* `{DISPLAY NAME}` &ndash; Service display name (for example, `My Service`).
+* `{EXE PATH}`: Path to the app's folder on the host (for example, `d:\myservice`). Don't include the app's executable in the path. A trailing slash isn't required.
+* `{DOMAIN OR COMPUTER NAME\USER}`: Service user account (for example, `Contoso\ServiceUser`).
+* `{SERVICE NAME}`: Service name (for example, `MyService`).
+* `{EXE FILE PATH}`: The app's executable path (for example, `d:\myservice\myservice.exe`). Include the executable's file name with extension.
+* `{DESCRIPTION}`: Service description (for example, `My sample service`).
+* `{DISPLAY NAME}`: Service display name (for example, `My Service`).
 
 ### Start a service
 
@@ -473,12 +473,12 @@ $acl | Set-Acl "{EXE PATH}"
 New-Service -Name {SERVICE NAME} -BinaryPathName {EXE FILE PATH} -Credential {DOMAIN OR COMPUTER NAME\USER} -Description "{DESCRIPTION}" -DisplayName "{DISPLAY NAME}" -StartupType Automatic
 ```
 
-* `{EXE PATH}` &ndash; Path to the app's folder on the host (for example, `d:\myservice`). Don't include the app's executable in the path. A trailing slash isn't required.
-* `{DOMAIN OR COMPUTER NAME\USER}` &ndash; Service user account (for example, `Contoso\ServiceUser`).
-* `{SERVICE NAME}` &ndash; Service name (for example, `MyService`).
-* `{EXE FILE PATH}` &ndash; The app's executable path (for example, `d:\myservice\myservice.exe`). Include the executable's file name with extension.
-* `{DESCRIPTION}` &ndash; Service description (for example, `My sample service`).
-* `{DISPLAY NAME}` &ndash; Service display name (for example, `My Service`).
+* `{EXE PATH}`: Path to the app's folder on the host (for example, `d:\myservice`). Don't include the app's executable in the path. A trailing slash isn't required.
+* `{DOMAIN OR COMPUTER NAME\USER}`: Service user account (for example, `Contoso\ServiceUser`).
+* `{SERVICE NAME}`: Service name (for example, `MyService`).
+* `{EXE FILE PATH}`: The app's executable path (for example, `d:\myservice\myservice.exe`). Include the executable's file name with extension.
+* `{DESCRIPTION}`: Service description (for example, `My sample service`).
+* `{DISPLAY NAME}`: Service display name (for example, `My Service`).
 
 ### Start a service
 
@@ -810,12 +810,12 @@ $acl | Set-Acl "{EXE PATH}"
 New-Service -Name {SERVICE NAME} -BinaryPathName {EXE FILE PATH} -Credential {DOMAIN OR COMPUTER NAME\USER} -Description "{DESCRIPTION}" -DisplayName "{DISPLAY NAME}" -StartupType Automatic
 ```
 
-* `{EXE PATH}` &ndash; Path to the app's folder on the host (for example, `d:\myservice`). Don't include the app's executable in the path. A trailing slash isn't required.
-* `{DOMAIN OR COMPUTER NAME\USER}` &ndash; Service user account (for example, `Contoso\ServiceUser`).
-* `{SERVICE NAME}` &ndash; Service name (for example, `MyService`).
-* `{EXE FILE PATH}` &ndash; The app's executable path (for example, `d:\myservice\myservice.exe`). Include the executable's file name with extension.
-* `{DESCRIPTION}` &ndash; Service description (for example, `My sample service`).
-* `{DISPLAY NAME}` &ndash; Service display name (for example, `My Service`).
+* `{EXE PATH}`: Path to the app's folder on the host (for example, `d:\myservice`). Don't include the app's executable in the path. A trailing slash isn't required.
+* `{DOMAIN OR COMPUTER NAME\USER}`: Service user account (for example, `Contoso\ServiceUser`).
+* `{SERVICE NAME}`: Service name (for example, `MyService`).
+* `{EXE FILE PATH}`: The app's executable path (for example, `d:\myservice\myservice.exe`). Include the executable's file name with extension.
+* `{DESCRIPTION}`: Service description (for example, `My sample service`).
+* `{DISPLAY NAME}`: Service display name (for example, `My Service`).
 
 ### Start a service
 

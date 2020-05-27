@@ -26,7 +26,7 @@ After choosing the **Blazor Server App** template in the **Create a new ASP.NET 
 A dialog opens to offer the same set of authentication mechanisms available for other ASP.NET Core projects:
 
 * **No Authentication**
-* **Individual User Accounts** &ndash; User accounts can be stored:
+* **Individual User Accounts**: User accounts can be stored:
   * Within the app using ASP.NET Core's [Identity](xref:security/authentication/identity) system.
   * With [Azure AD B2C](xref:security/authentication/azure-ad-b2c).
 * **Work or School Accounts**

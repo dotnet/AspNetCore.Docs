@@ -86,8 +86,8 @@ To use the Razor SDK to build class libraries containing Razor views or Razor Pa
 
 The following properties control the Razor's SDK behavior as part of a project build:
 
-* `RazorCompileOnBuild` &ndash; When `true`, compiles and emits the Razor assembly as part of building the project. Defaults to `true`.
-* `RazorCompileOnPublish` &ndash; When `true`, compiles and emits the Razor assembly as part of publishing the project. Defaults to `true`.
+* `RazorCompileOnBuild`: When `true`, compiles and emits the Razor assembly as part of building the project. Defaults to `true`.
+* `RazorCompileOnPublish`: When `true`, compiles and emits the Razor assembly as part of publishing the project. Defaults to `true`.
 
 The properties and items in the following table are used to configure inputs and output to the Razor SDK.
 
@@ -160,9 +160,9 @@ For more information on properties, see [MSBuild properties](/visualstudio/msbui
 
 The Razor SDK defines two primary targets:
 
-* `RazorGenerate` &ndash; Code generates *.cs* files from `RazorGenerate` item elements. Use the `RazorGenerateDependsOn` property to specify additional targets that can run before or after this target.
-* `RazorCompile` &ndash; Compiles generated *.cs* files in to a Razor assembly. Use the `RazorCompileDependsOn` to specify additional targets that can run before or after this target.
-* `RazorComponentGenerate` &ndash; Code generates *.cs* files for `RazorComponent` item elements. Use the `RazorComponentGenerateDependsOn` property to specify additional targets that can run before or after this target.
+* `RazorGenerate`: Code generates *.cs* files from `RazorGenerate` item elements. Use the `RazorGenerateDependsOn` property to specify additional targets that can run before or after this target.
+* `RazorCompile`: Compiles generated *.cs* files in to a Razor assembly. Use the `RazorCompileDependsOn` to specify additional targets that can run before or after this target.
+* `RazorComponentGenerate`: Code generates *.cs* files for `RazorComponent` item elements. Use the `RazorComponentGenerateDependsOn` property to specify additional targets that can run before or after this target.
 
 ### Runtime compilation of Razor views
 

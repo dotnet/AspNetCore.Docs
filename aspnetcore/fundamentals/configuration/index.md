@@ -820,7 +820,7 @@ Adopt the following practices to secure sensitive configuration data:
 For more information, see the following topics:
 
 * <xref:fundamentals/environments>
-* <xref:security/app-secrets> &ndash; Includes advice on using environment variables to store sensitive data. The Secret Manager uses the File Configuration Provider to store user secrets in a JSON file on the local system. The File Configuration Provider is described later in this topic.
+* <xref:security/app-secrets>: Includes advice on using environment variables to store sensitive data. The Secret Manager uses the File Configuration Provider to store user secrets in a JSON file on the local system. The File Configuration Provider is described later in this topic.
 
 [Azure Key Vault](https://azure.microsoft.com/services/key-vault/) safely stores app secrets for ASP.NET Core apps. For more information, see <xref:security/key-vault-configuration>.
 
@@ -1194,8 +1194,8 @@ When an environment variable is discovered and loaded into configuration with an
 
 A custom connection string environment variable is created on the server:
 
-* Name &ndash; `CUSTOMCONNSTR_ReleaseDB`
-* Value &ndash; `Data Source=ReleaseSQLServer;Initial Catalog=MyReleaseDB;Integrated Security=True`
+* Name: `CUSTOMCONNSTR_ReleaseDB`
+* Value: `Data Source=ReleaseSQLServer;Initial Catalog=MyReleaseDB;Integrated Security=True`
 
 If `IConfiguration` is injected and assigned to a field named `_config`, read the value:
 
@@ -1274,8 +1274,8 @@ Overloads permit specifying:
 
 `AddJsonFile` is automatically called twice when a new host builder is initialized with `CreateDefaultBuilder`. The method is called to load configuration from:
 
-* *appsettings.json* &ndash; This file is read first. The environment version of the file can override the values provided by the *appsettings.json* file.
-* *appsettings.{Environment}.json* &ndash; The environment version of the file is loaded based on the [IHostingEnvironment.EnvironmentName](xref:Microsoft.Extensions.Hosting.IHostingEnvironment.EnvironmentName*).
+* *appsettings.json*: This file is read first. The environment version of the file can override the values provided by the *appsettings.json* file.
+* *appsettings.{Environment}.json*: The environment version of the file is loaded based on the [IHostingEnvironment.EnvironmentName](xref:Microsoft.Extensions.Hosting.IHostingEnvironment.EnvironmentName*).
 
 For more information, see the [Default configuration](#default-configuration) section.
 

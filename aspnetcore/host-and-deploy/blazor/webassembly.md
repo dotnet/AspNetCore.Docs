@@ -33,8 +33,8 @@ For IIS *web.config* compression configuration, see the [IIS: Brotli and Gzip co
 
 Routing requests for page components in a Blazor WebAssembly app isn't as straightforward as routing requests in a Blazor Server, hosted app. Consider a Blazor WebAssembly app with two components:
 
-* *Main.razor* &ndash; Loads at the root of the app and contains a link to the `About` component (`href="About"`).
-* *About.razor* &ndash; `About` component.
+* *Main.razor*: Loads at the root of the app and contains a link to the `About` component (`href="About"`).
+* *About.razor*: `About` component.
 
 When the app's default document is requested using the browser's address bar (for example, `https://www.contoso.com/`):
 
@@ -84,11 +84,11 @@ Published assets are created in the */bin/Release/{TARGET FRAMEWORK}/publish* fo
 When a Blazor project is published, a *web.config* file is created with the following IIS configuration:
 
 * MIME types are set for the following file extensions:
-  * *.dll* &ndash; `application/octet-stream`
-  * *.json* &ndash; `application/json`
-  * *.wasm* &ndash; `application/wasm`
-  * *.woff* &ndash; `application/font-woff`
-  * *.woff2* &ndash; `application/font-woff`
+  * *.dll*: `application/octet-stream`
+  * *.json*: `application/json`
+  * *.wasm*: `application/wasm`
+  * *.woff*: `application/font-woff`
+  * *.woff2*: `application/font-woff`
 * HTTP compression is enabled for the following MIME types:
   * `application/octet-stream`
   * `application/wasm`

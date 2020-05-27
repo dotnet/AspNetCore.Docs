@@ -298,10 +298,10 @@ msbuild {PATH}
     /p:Password={PASSWORD}
 ```
 
-* {PATH} &ndash; Path to the app's project file.
-* {PROFILE} &ndash; Name of the publish profile.
-* {USERNAME} &ndash; MSDeploy username. The {USERNAME} can be found in the publish profile.
-* {PASSWORD} &ndash; MSDeploy password. Obtain the {PASSWORD} from the *{PROFILE}.PublishSettings* file. Download the *.PublishSettings* file from either:
+* {PATH}: Path to the app's project file.
+* {PROFILE}: Name of the publish profile.
+* {USERNAME}: MSDeploy username. The {USERNAME} can be found in the publish profile.
+* {PASSWORD}: MSDeploy password. Obtain the {PASSWORD} from the *{PROFILE}.PublishSettings* file. Download the *.PublishSettings* file from either:
   * **Solution Explorer**: Select **View** > **Cloud Explorer**. Connect with your Azure subscription. Open **App Services**. Right-click the app. Select **Download Publish Profile**.
   * Azure portal: Select **Get publish profile** in the web app's **Overview** panel.
 

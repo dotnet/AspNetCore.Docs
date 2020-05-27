@@ -231,7 +231,7 @@ When multiple hosting startup assembles are present, their <xref:Microsoft.AspNe
 
 Options for hosting startup activation are:
 
-* [Runtime store](#runtime-store) &ndash; Activation doesn't require a compile-time reference for activation. The sample app places the hosting startup assembly and dependencies files into a folder, *deployment*, to facilitate deployment of the hosting startup in a multimachine environment. The *deployment* folder also includes a PowerShell script that creates or modifies environment variables on the deployment system to enable the hosting startup.
+* [Runtime store](#runtime-store): Activation doesn't require a compile-time reference for activation. The sample app places the hosting startup assembly and dependencies files into a folder, *deployment*, to facilitate deployment of the hosting startup in a multimachine environment. The *deployment* folder also includes a PowerShell script that creates or modifies environment variables on the deployment system to enable the hosting startup.
 * Compile-time reference required for activation
   * [NuGet package](#nuget-package)
   * [Project bin folder](#project-bin-folder)
@@ -318,10 +318,10 @@ Place the *.deps.json* file into the following location:
 {ADDITIONAL DEPENDENCIES PATH}/shared/{SHARED FRAMEWORK NAME}/{SHARED FRAMEWORK VERSION}/{ENHANCEMENT ASSEMBLY NAME}.deps.json
 ```
 
-* `{ADDITIONAL DEPENDENCIES PATH}` &ndash; Location added to the `DOTNET_ADDITIONAL_DEPS` environment variable.
-* `{SHARED FRAMEWORK NAME}` &ndash; Shared framework required for this additional dependencies file.
-* `{SHARED FRAMEWORK VERSION}` &ndash; Minimum shared framework version.
-* `{ENHANCEMENT ASSEMBLY NAME}` &ndash; The enhancement's assembly name.
+* `{ADDITIONAL DEPENDENCIES PATH}`: Location added to the `DOTNET_ADDITIONAL_DEPS` environment variable.
+* `{SHARED FRAMEWORK NAME}`: Shared framework required for this additional dependencies file.
+* `{SHARED FRAMEWORK VERSION}`: Minimum shared framework version.
+* `{ENHANCEMENT ASSEMBLY NAME}`: The enhancement's assembly name.
 
 In the sample app (*RuntimeStore* project), the additional dependencies file is placed into the following location:
 
@@ -365,8 +365,8 @@ A hosting startup enhancement can be provided by a *bin*-deployed assembly in th
   * A location accessible by the consuming project.
 * The hosting startup's dependencies file is made available to the enhanced app as described in the [Runtime store](#runtime-store) section (without a compile-time reference).
 * When targeting the .NET Framework, the assembly is loadable in the default load context, which on .NET Framework means that the assembly is located at either of the following locations:
-  * Application base path &ndash; The *bin* folder where the app's executable (*.exe*) is located.
-  * Global Assembly Cache (GAC) &ndash; The GAC stores assemblies that several .NET Framework apps share. For more information, see [How to: Install an assembly into the global assembly cache](/dotnet/framework/app-domains/how-to-install-an-assembly-into-the-gac) in the .NET Framework documentation.
+  * Application base path: The *bin* folder where the app's executable (*.exe*) is located.
+  * Global Assembly Cache (GAC): The GAC stores assemblies that several .NET Framework apps share. For more information, see [How to: Install an assembly into the global assembly cache](/dotnet/framework/app-domains/how-to-install-an-assembly-into-the-gac) in the .NET Framework documentation.
 
 ## Sample code
 
@@ -617,7 +617,7 @@ When multiple hosting startup assembles are present, their <xref:Microsoft.AspNe
 
 Options for hosting startup activation are:
 
-* [Runtime store](#runtime-store) &ndash; Activation doesn't require a compile-time reference for activation. The sample app places the hosting startup assembly and dependencies files into a folder, *deployment*, to facilitate deployment of the hosting startup in a multimachine environment. The *deployment* folder also includes a PowerShell script that creates or modifies environment variables on the deployment system to enable the hosting startup.
+* [Runtime store](#runtime-store): Activation doesn't require a compile-time reference for activation. The sample app places the hosting startup assembly and dependencies files into a folder, *deployment*, to facilitate deployment of the hosting startup in a multimachine environment. The *deployment* folder also includes a PowerShell script that creates or modifies environment variables on the deployment system to enable the hosting startup.
 * Compile-time reference required for activation
   * [NuGet package](#nuget-package)
   * [Project bin folder](#project-bin-folder)
@@ -704,10 +704,10 @@ Place the *.deps.json* file into the following location:
 {ADDITIONAL DEPENDENCIES PATH}/shared/{SHARED FRAMEWORK NAME}/{SHARED FRAMEWORK VERSION}/{ENHANCEMENT ASSEMBLY NAME}.deps.json
 ```
 
-* `{ADDITIONAL DEPENDENCIES PATH}` &ndash; Location added to the `DOTNET_ADDITIONAL_DEPS` environment variable.
-* `{SHARED FRAMEWORK NAME}` &ndash; Shared framework required for this additional dependencies file.
-* `{SHARED FRAMEWORK VERSION}` &ndash; Minimum shared framework version.
-* `{ENHANCEMENT ASSEMBLY NAME}` &ndash; The enhancement's assembly name.
+* `{ADDITIONAL DEPENDENCIES PATH}`: Location added to the `DOTNET_ADDITIONAL_DEPS` environment variable.
+* `{SHARED FRAMEWORK NAME}`: Shared framework required for this additional dependencies file.
+* `{SHARED FRAMEWORK VERSION}`: Minimum shared framework version.
+* `{ENHANCEMENT ASSEMBLY NAME}`: The enhancement's assembly name.
 
 In the sample app (*RuntimeStore* project), the additional dependencies file is placed into the following location:
 
@@ -751,8 +751,8 @@ A hosting startup enhancement can be provided by a *bin*-deployed assembly in th
   * A location accessible by the consuming project.
 * The hosting startup's dependencies file is made available to the enhanced app as described in the [Runtime store](#runtime-store) section (without a compile-time reference).
 * When targeting the .NET Framework, the assembly is loadable in the default load context, which on .NET Framework means that the assembly is located at either of the following locations:
-  * Application base path &ndash; The *bin* folder where the app's executable (*.exe*) is located.
-  * Global Assembly Cache (GAC) &ndash; The GAC stores assemblies that several .NET Framework apps share. For more information, see [How to: Install an assembly into the global assembly cache](/dotnet/framework/app-domains/how-to-install-an-assembly-into-the-gac) in the .NET Framework documentation.
+  * Application base path: The *bin* folder where the app's executable (*.exe*) is located.
+  * Global Assembly Cache (GAC): The GAC stores assemblies that several .NET Framework apps share. For more information, see [How to: Install an assembly into the global assembly cache](/dotnet/framework/app-domains/how-to-install-an-assembly-into-the-gac) in the .NET Framework documentation.
 
 ## Sample code
 
