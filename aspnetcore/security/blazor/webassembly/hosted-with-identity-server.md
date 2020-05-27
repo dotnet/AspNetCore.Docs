@@ -230,11 +230,11 @@ Run the app from the Server project. When using Visual Studio, either:
 
 ## Name and role claim with API authorization
 
-Identity Server can be configured to send `name` and `role` claims for authenticated users.
+### Custom user factory
 
 In the Client app, create a custom user factory. Identity Server sends multiple roles as a JSON array in a single `role` claim. A single role is sent as a string value in the claim. The factory creates an individual `role` claim for each of the user's roles.
 
-*RolesClaimsPrincipalFactory.cs*:
+*CustomUserFactory.cs*:
 
 ```csharp
 using System.Linq;
@@ -244,10 +244,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication.Internal;
 
-public class RolesClaimsPrincipalFactory
+public class CustomUserFactory
     : AccountClaimsPrincipalFactory<RemoteUserAccount>
 {
-    public RolesClaimsPrincipalFactory(IAccessTokenProviderAccessor accessor)
+    public CustomUserFactory(IAccessTokenProviderAccessor accessor)
         : base(accessor)
     {
     }
@@ -298,64 +298,56 @@ In the Client app, register the factory in `Program.Main` (*Program.cs*):
 
 ```csharp
 builder.Services.AddApiAuthorization()
-    .AddAccountClaimsPrincipalFactory<RolesClaimsPrincipalFactory>();
+    .AddAccountClaimsPrincipalFactory<CustomUserFactory>();
 ```
 
-* In the Server app, call <xref:Microsoft.AspNetCore.Identity.IdentityBuilder.AddRoles*> on the Identity builder, which adds role-related services:
+In the Server app, call <xref:Microsoft.AspNetCore.Identity.IdentityBuilder.AddRoles*> on the Identity builder, which adds role-related services:
 
-  ```csharp
-  using Microsoft.AspNetCore.Identity;
+```csharp
+using Microsoft.AspNetCore.Identity;
 
-  ...
+...
 
-  services.AddDefaultIdentity<ApplicationUser>(options => 
-      options.SignIn.RequireConfirmedAccount = true)
-      .AddRoles<IdentityRole>()
-      .AddEntityFrameworkStores<ApplicationDbContext>();
-  ```
+services.AddDefaultIdentity<ApplicationUser>(options => 
+    options.SignIn.RequireConfirmedAccount = true)
+    .AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<ApplicationDbContext>();
+```
 
-* In the Server app:
+### Configure Identity Server
 
-  * Configure Identity Server to put the `name` and `role` claims into the ID token and access token.
-  * Prevent the default mapping for roles in the JWT token handler.
+Use **one** of the following approaches:
 
-  ```csharp
-  using System.IdentityModel.Tokens.Jwt;
-  using System.Linq;
+* [API authorization options](#api-authorization-options)
+* [Profile Service](#profile-service)
 
-  ...
+#### API authorization options
 
-  services.AddIdentityServer()
-      .AddApiAuthorization<ApplicationUser, ApplicationDbContext>(options => {
-          options.IdentityResources["openid"].UserClaims.Add("name");
-          options.ApiResources.Single().UserClaims.Add("name");
-          options.IdentityResources["openid"].UserClaims.Add("role");
-          options.ApiResources.Single().UserClaims.Add("role");
-      });
+In the Server app:
 
-  JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Remove("role");
-  ```
+* Configure Identity Server to put the `name` and `role` claims into the ID token and access token.
+* Prevent the default mapping for roles in the JWT token handler.
 
-Component authorization approaches are functional at this point. Any of the authorization mechanisms in components can use a role to authorize the user:
+```csharp
+using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 
-* [AuthorizeView component](xref:security/blazor/index#authorizeview-component) (Example: `<AuthorizeView Roles="admin">`)
-* [`[Authorize]` attribute directive](xref:security/blazor/index#authorize-attribute) (Example: `@attribute [Authorize(Roles = "admin")]`)
-* [Procedural logic](xref:security/blazor/index#procedural-logic) (Example: `if (user.IsInRole("admin")) { ... }`)
+...
 
-  Multiple role tests are supported:
+services.AddIdentityServer()
+    .AddApiAuthorization<ApplicationUser, ApplicationDbContext>(options => {
+        options.IdentityResources["openid"].UserClaims.Add("name");
+        options.ApiResources.Single().UserClaims.Add("name");
+        options.IdentityResources["openid"].UserClaims.Add("role");
+        options.ApiResources.Single().UserClaims.Add("role");
+    });
 
-  ```csharp
-  if (user.IsInRole("admin") && user.IsInRole("developer"))
-  {
-      ...
-  }
-  ```
+JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Remove("role");
+```
 
-`User.Identity.Name` is populated in the Client app with the user's username, which is usually their sign-in email address.
+#### Profile Service
 
-## Profile Service
-
-In the Server app, create a `ProfileService` implementation. The Profile Service example in this section creates `name` and `role` claims for users similar to the scenario shown in the [Name and role claim with API authorization](#name-and-role-claim-with-api-authorization) section. The value of the `role` claim represents the user's assigned roles.
+In the Server app, create a `ProfileService` implementation.
 
 *ProfileService.cs*:
 
@@ -399,10 +391,12 @@ using IdentityServer4.Services;
 services.AddTransient<IProfileService, ProfileService>();
 ```
 
-Component authorization approaches are functional at this point. Any of the authorization mechanisms in components can use a role to authorize the user:
+### Use authorization mechanisms
+
+In the Client app, component authorization approaches are functional at this point. Any of the authorization mechanisms in components can use a role to authorize the user:
 
 * [AuthorizeView component](xref:security/blazor/index#authorizeview-component) (Example: `<AuthorizeView Roles="admin">`)
-* [`[Authorize]` attribute directive](xref:security/blazor/index#authorize-attribute) (Example: `@attribute [Authorize(Roles = "admin")]`)
+* [`[Authorize]` attribute directive](xref:security/blazor/index#authorize-attribute) (<xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute>) (Example: `@attribute [Authorize(Roles = "admin")]`)
 * [Procedural logic](xref:security/blazor/index#procedural-logic) (Example: `if (user.IsInRole("admin")) { ... }`)
 
   Multiple role tests are supported:
@@ -414,7 +408,7 @@ Component authorization approaches are functional at this point. Any of the auth
   }
   ```
 
-`User.Identity.Name` is populated in the Client app with the user's user name, which is usually their sign-in email address.
+`User.Identity.Name` is populated in the Client app with the user's username, which is usually their sign-in email address.
 
 [!INCLUDE[](~/includes/blazor-security/usermanager-signinmanager.md)]
 
