@@ -73,7 +73,10 @@ Use `@bind-{ATTRIBUTE}` with `@bind-{ATTRIBUTE}:event` syntax to bind element at
 }
 ```
 
-Attribute binding is case sensitive. For example, [`@bind`](xref:mvc/views/razor#bind) is valid, and [`@bind`](xref:mvc/views/razor#bind) is invalid.
+Attribute binding is case sensitive:
+
+* `@bind` is valid.
+* `@Bind` and `@BIND` are invalid.
 
 ## Unparsable values
 
