@@ -103,7 +103,7 @@ return product;
 
 ## Configure routing
 
-All ASP.NET Core project templates include attribute routing in the generated code.
+The ASP.NET Core *API* project template includes endpoint routing configuration in the generated code.
 
 The following <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A> and <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints%2A> calls:
 
