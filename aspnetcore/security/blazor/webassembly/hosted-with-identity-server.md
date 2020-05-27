@@ -244,10 +244,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication.Internal;
 
-public class CustomUserFactory
+public class RolesClaimsPrincipalFactory
     : AccountClaimsPrincipalFactory<RemoteUserAccount>
 {
-    public CustomUserFactory(IAccessTokenProviderAccessor accessor)
+    public RolesClaimsPrincipalFactory(IAccessTokenProviderAccessor accessor)
         : base(accessor)
     {
     }
