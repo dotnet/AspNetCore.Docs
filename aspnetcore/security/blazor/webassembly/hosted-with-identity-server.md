@@ -408,7 +408,7 @@ In the Client app, component authorization approaches are functional at this poi
   }
   ```
 
-`User.Identity.Name` is populated in the Client app with the user's username, which is usually their sign-in email address.
+`User.Identity.Name` is populated in the Client app with the user's user name, which is usually their sign-in email address.
 
 [!INCLUDE[](~/includes/blazor-security/usermanager-signinmanager.md)]
 
