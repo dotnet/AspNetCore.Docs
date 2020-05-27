@@ -5,7 +5,7 @@ description: Learn about Blazor hosting model configuration, including how to in
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/19/2020
+ms.date: 05/27/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/hosting-model-configuration
 ---
@@ -213,9 +213,9 @@ builder.Configuration.AddJsonStream(stream);
 
 ```json
 {
-  "AzureAD": {
-    "Authority": "https://login.microsoftonline.com/",
-    "ClientId": "aeaebf0f-d416-4d92-a08f-e1d5b51fc494"
+  "Local": {
+    "Authority": "{AUTHORITY}",
+    "ClientId": "{CLIENT ID}"
   }
 }
 ```
@@ -224,7 +224,7 @@ builder.Configuration.AddJsonStream(stream);
 
 ```csharp
 builder.Services.AddOidcAuthentication(options =>
-    builder.Configuration.Bind("AzureAD", options);
+    builder.Configuration.Bind("Local", options.ProviderOptions);
 ```
 
 #### Logging configuration
