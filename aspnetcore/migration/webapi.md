@@ -94,12 +94,11 @@ Make the following changes:
 1. Change `ApiController` to <xref:Microsoft.AspNetCore.Mvc.ControllerBase>. Add `using Microsoft.AspNetCore.Mvc;` to resolve the `ControllerBase` reference.
 1. Delete `using System.Web.Http;`.
 1. Change the `GetProduct` action's return type from `IHttpActionResult` to `ActionResult<Product>`.
+1. Simplify the `GetProduct` action's `return` statement to the following:
 
-Simplify the `GetProduct` action's `return` statement to the following:
-
-```csharp
-return product;
-```
+    ```csharp
+    return product;
+    ```
 
 ## Configure routing
 
@@ -212,12 +211,11 @@ Make the following changes:
 1. Change `ApiController` to <xref:Microsoft.AspNetCore.Mvc.ControllerBase>. Add `using Microsoft.AspNetCore.Mvc;` to resolve the `ControllerBase` reference.
 1. Delete `using System.Web.Http;`.
 1. Change the `GetProduct` action's return type from `IHttpActionResult` to `ActionResult<Product>`.
+1. Simplify the `GetProduct` action's `return` statement to the following:
 
-Simplify the `GetProduct` action's `return` statement to the following:
-
-```csharp
-return product;
-```
+    ```csharp
+    return product;
+    ```
 
 ## Configure routing
 
