@@ -453,7 +453,7 @@ During an authentication operation, there are cases where you want to save the a
 
 <RemoteAuthenticatorViewCore Action="@Action" 
     AuthenticationState="AuthenticationState" OnLogInSucceeded="RestoreState" 
-    OnLogoutSucceded="RestoreState" />
+    OnLogOutSucceeded="RestoreState" />
 
 @code {
     [Parameter]
