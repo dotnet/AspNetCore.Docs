@@ -5,7 +5,7 @@ description: Learn how to configure Blazor WebAssembly for additional security s
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/19/2020
+ms.date: 05/28/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/blazor/webassembly/additional-scenarios
 ---
@@ -452,7 +452,7 @@ During an authentication operation, there are cases where you want to save the a
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 
 <RemoteAuthenticatorViewCore Action="@Action" 
-    AuthenticationState="AuthenticationState" OnLoginSucceded="RestoreState" 
+    AuthenticationState="AuthenticationState" OnLogInSucceeded="RestoreState" 
     OnLogoutSucceded="RestoreState" />
 
 @code {
