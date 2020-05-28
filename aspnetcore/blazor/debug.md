@@ -5,7 +5,7 @@ description: Learn how to debug Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/19/2020
+ms.date: 05/28/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/debug
 ---
@@ -13,7 +13,7 @@ uid: blazor/debug
 
 [Daniel Roth](https://github.com/danroth27)
 
-Blazor WebAssembly apps can be debugged using the browser dev tools in Chromium-based browsers (Edge/Chrome).  Alternatively you can debug your app using Visual Studio or Visual Studio Code.
+Blazor WebAssembly apps can be debugged using the browser dev tools in Chromium-based browsers (Edge/Chrome). Alternatively, you can debug your app using Visual Studio or Visual Studio Code.
 
 Available scenarios include:
 
@@ -46,6 +46,8 @@ To enable debugging for an existing Blazor WebAssembly app, update the *launchSe
 "inspectUri": "{wsProtocol}://{url.hostname}:{url.port}/_framework/debug/ws-proxy?browser={browserInspectUri}"
 ```
 
+The placeholders in the file
+
 Once updated, the *launchSettings.json* file should look similar to the following example:
 
 [!code-json[](debug/launchSettings.json?highlight=14,22)]
@@ -54,6 +56,8 @@ The `inspectUri` property:
 
 * Enables the IDE to detect that the app is a Blazor WebAssembly app.
 * Instructs the script debugging infrastructure to connect to the browser through Blazor's debugging proxy.
+
+The placeholder values for the WebSockets protocol (`wsProtocol`), host (`url.hostname`), port (`url.port`), and inspector URI on the launched browser (`browserInspectUri`) are provided by the framework.
 
 ## Visual Studio
 
