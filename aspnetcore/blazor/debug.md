@@ -46,8 +46,6 @@ To enable debugging for an existing Blazor WebAssembly app, update the *launchSe
 "inspectUri": "{wsProtocol}://{url.hostname}:{url.port}/_framework/debug/ws-proxy?browser={browserInspectUri}"
 ```
 
-The placeholders in the file
-
 Once updated, the *launchSettings.json* file should look similar to the following example:
 
 [!code-json[](debug/launchSettings.json?highlight=14,22)]
