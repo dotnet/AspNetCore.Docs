@@ -5,7 +5,7 @@ description: Learn how to use forms and field validation scenarios in Blazor.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/17/2020
+ms.date: 05/27/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/forms-validation
 ---
@@ -520,4 +520,16 @@ A side effect of the preceding approach is that a <xref:Microsoft.AspNetCore.Com
         displaySummary = "display:block";
     }
 }
+```
+
+## Troubleshoot
+
+> InvalidOperationException: EditForm requires a Model parameter, or an EditContext parameter, but not both.
+
+Confirm that the <xref:Microsoft.AspNetCore.Components.Forms.EditForm> has a <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model> or <xref:Microsoft.AspNetCore.Components.Forms.EditContext>.
+
+When assigning a <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model> to the form, confirm that the model type is instantiated, as the following example shows:
+
+```csharp
+private ExampleModel exampleModel = new ExampleModel();
 ```
