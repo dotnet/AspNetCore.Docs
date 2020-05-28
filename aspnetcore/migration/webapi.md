@@ -12,7 +12,7 @@ uid: migration/webapi
 
 By [Scott Addie](https://twitter.com/scott_addie) and [Steve Smith](https://ardalis.com/)
 
-An ASP.NET 4.x Web API is an HTTP service that reaches a broad range of clients, including browsers and mobile devices. ASP.NET Core unifies ASP.NET 4.x's MVC and Web API app models into a unified programming model known as ASP.NET Core MVC. This article demonstrates the steps required to migrate from ASP.NET 4.x Web API to ASP.NET Core MVC.
+An ASP.NET 4.x Web API is an HTTP service that reaches a broad range of clients, including browsers and mobile devices. ASP.NET Core combines ASP.NET 4.x's MVC and Web API app models into a single programming model known as ASP.NET Core MVC. This article demonstrates the steps required to migrate from ASP.NET 4.x Web API to ASP.NET Core MVC.
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/migration/webapi/sample) ([how to download](xref:index#how-to-download-a-sample))
 
@@ -73,7 +73,7 @@ For more information, see <xref:fundamentals/startup>.
 
 ## Migrate models and controllers
 
-The following code shows the `ProductsController` update for ASP.NET Core:
+The following code shows the `ProductsController` to be updated for ASP.NET Core:
 
 [!code-csharp[](webapi/sample/3.x/ProductsApp/Controllers/ProductsController.cs)]
 
