@@ -24,7 +24,7 @@ Record the following information:
 * AAD B2C instance (for example, `https://contoso.b2clogin.com/`, which includes the trailing slash).
 * AAD B2C Tenant domain (for example, `contoso.onmicrosoft.com`).
 
-Follow the guidance in [Tutorial: Register an application in Azure Active Directory B2C](/azure/active-directory-b2c/tutorial-register-applications) again to register an AAD app for the *Client app*:
+Follow the guidance in [Tutorial: Register an application in Azure Active Directory B2C](/azure/active-directory-b2c/tutorial-register-applications) again to register an AAD app for the *Client app* and then do the following:
 
 1. In **Azure Active Directory** > **App registrations**, select **New registration**.
 1. Provide a **Name** for the app (for example, **Blazor Standalone AAD B2C**).
