@@ -100,25 +100,103 @@ To debug a Blazor WebAssembly app in Visual Studio Code:
 
    ![JS preview debugger](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vscode-js-use-preview.png)
 
-1. Open an existing Blazor WebAssembly app with debugging enabled.
+**Debugging a standalone Blazor WASM application**
 
-   * If you get the following notification that additional setup is required to enable debugging, confirm that you have the correct extensions installed and JavaScript preview debugging enabled and then reload the window:
+1. Open the standalone Blazor WebAssembly application in VS Code.
+
+* If you get the following notification that additional setup is required to enable debugging, confirm that you have the correct extensions installed and JavaScript preview debugging enabled and then reload the window:
 
      ![Additional setup required](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vscode-additional-setup.png)
 
-   * A notification offers to add the required assets to the app for building and debugging. Select **Yes**:
+2. Start debugging using the <kbd>F5</kbd> keyboard shortcut or the menu item.
 
-     ![Add required assets](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vscode-required-assets.png)
+3. When prompted, select the "Blazor WebAssembly Debug" option to start debugging.
 
-1. Starting the app in the debugger is a two-step process:
+![Screen Shot 2020-05-27 at 11.42.26 AM](ndex/_static/blazor-vscode-debugtypes.png)
 
-   1\. **First**, start the app using the **.NET Core Launch (Blazor Standalone)** launch configuration.
+4. The standalone application will be launched and a debugging brower will be opened.
 
-   2\. **After the app has started**, start the browser using the **.NET Core Debug Blazor Web Assembly in Chrome** launch configuration (requires Chrome). To use Edge instead of Chrome, change the `type` of the launch configuration in *.vscode/launch.json* from `pwa-chrome` to `pwa-msedge`.
-
-1. Set a breakpoint in the `IncrementCount` method in the `Counter` component and then select the button to hit the breakpoint:
+5. Set a breakpoint in the `IncrementCount` method in the `Counter` component and then select the button to hit the breakpoint:
 
    ![Debug Counter in VS Code](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vscode-debug-counter.png)
+
+**Debugging a hosted standalone Blazor WASM application**
+
+1. Open the hosted Blazor WebAssembly application in VS Code.
+
+2. If there is no launch configuration set for the project, you will receive the following notification. Select "Yes."
+
+![Add required assets](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vscode-required-assets.png)
+
+3. In the selection window, select the Server project within your hosted application.
+
+![Screen Shot 2020-05-27 at 11.40.52 AM](/Users/captainsafia/Desktop/Screen Shot 2020-05-27 at 11.40.52 AM.png)
+
+A `launch.json` file will be generated with the launch configuration for launching the debugger for the hosted session.
+
+**Attaching to an existing debugging session**
+
+To attach to an existing running Blazor application, create a `launch.json` with the following configuration.
+
+```
+{
+	"type": "blazorwasm",
+	"request": "attach",
+	"name": "Attach to Existing Blazor WebAssembly Application"
+}
+```
+
+Note, that attaching to a debugging session is only support for standalone applications. To use full-stack debugging, you must launch the application from VS Code.
+
+Launch configuration options**
+
+The following launch configuration options are support for the `blazorwasm` debug type.
+
+* request: Can be either "launch" to launch and attach a debugging session to a Blazor WebAssembly app or "attach" to attach a debugging session to an already-running app.
+* url: The URL to open in the browser when debugging. Defaults to `https://localhost:5001`.
+* browser: The browser to launch the debugging session in. Can be either `edge` or `chrome`. Defaults to `chrome`.
+* trace: Used to generate logs from the JS debugger. Set to true to generate logs.
+* hosted: Must be set to `true` if launching and debugging a hosted Blazor WebAssembly app.
+* webRoot: Specifies the absolute path of the web server. Should be set if an application is served from a sub-route.
+* timeout: The number of milliseconds to wait for the debugging session to attach. Defaults to 30000 milliseconds (30 seconds).
+* program: A reference to the executable to run the server of the hosted app. Must be set if `hosted` is true.
+* cwd: The working directory to launch the application under. Must be set if `hosted` is true.
+* env: The environment variables to provide to the launched process. Only applicable if `hosted` is set to true.
+
+**Example launch configurations**
+
+**Launch and debug a standalone Blazor WebAssembly app **
+
+```
+{
+	"type": "blazorwasm",
+	"request": "launch",
+	"name": "Launch and Debug"
+}
+```
+
+**Attach to an existing running app at a specified URL**
+
+```
+{
+	"type": "blazorwasm",
+	"request": "attach",
+	"name": "Attach and Debug",
+	"url": "http://localhost:5000"
+}
+```
+
+**Launch and debug a hosted app**
+
+```
+{
+	"type": "blazorwasm",
+	"request": "launch",
+	"name": "Launch and Debug Hosted App",
+	"program": "${workspaceFolder}/Server/bin/Debug/netcoreapp3.1/MyHostedApp.Server.dll",
+	"cwd": "${workspaceFolder}"
+}
+```
 
 ## Debug in the browser
 
