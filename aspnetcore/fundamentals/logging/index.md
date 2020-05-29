@@ -814,6 +814,8 @@ builder.Logging.AddProvider(new CustomLoggingProvider());
 
 The `Logging` property is of type <xref:Microsoft.Extensions.Logging.ILoggingBuilder>, so all of the extension methods available on <xref:Microsoft.Extensions.Logging.ILoggingBuilder> are also available on `Logging`.
 
+Logging configuration can be loaded from app settings files. For more information, see <xref:blazor/hosting-model-configuration#logging-configuration>.
+
 #### Log in Razor components
 
 Loggers respect app startup configuration.

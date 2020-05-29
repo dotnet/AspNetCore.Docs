@@ -1,6 +1,7 @@
 ﻿@page "/"
 @using Microsoft.AspNetCore.SignalR.Client
 @inject NavigationManager NavigationManager
+@implements IDisposable
 
 <div class="form-group">
     <label>
@@ -52,4 +53,9 @@
 
     public bool IsConnected =>
         hubConnection.State == HubConnectionState.Connected;
+        
+    public void Dispose()
+    {
+        _ = hubConnection.DisposeAsync();
+    }
 }
