@@ -159,16 +159,16 @@ The following launch configuration options are supported for the `blazorwasm` de
 
 | Option | Description |
 | ------ | ----------- |
-| request | Can be either "launch" to launch and attach a debugging session to a Blazor WebAssembly app or "attach" to attach a debugging session to an already-running app. |
+| request | Can be either `launch` to launch and attach a debugging session to a Blazor WebAssembly app or `attach` to attach a debugging session to an already-running app. |
 | url | The URL to open in the browser when debugging. Defaults to `https://localhost:5001`. |
 | browser | The browser to launch the debugging session in. Can be either `edge` or `chrome`. Defaults to `chrome`. |
-| trace | Used to generate logs from the JS debugger. Set to true to generate logs. |
+| trace | Used to generate logs from the JS debugger. Set to `true` to generate logs. |
 | hosted | Must be set to `true` if launching and debugging a hosted Blazor WebAssembly app. |
-| webRoot | Specifies the absolute path of the web server. Should be set if an application is served from a sub-route. |
-| timeout | The number of milliseconds to wait for the debugging session to attach. Defaults to 30000 milliseconds (30 seconds). |
+| webRoot | Specifies the absolute path of the web server. Should be set if an app is served from a sub-route. |
+| timeout | The number of milliseconds to wait for the debugging session to attach. Defaults to 30,000 milliseconds (30 seconds). |
 | program | A reference to the executable to run the server of the hosted app. Must be set if `hosted` is true. |
-| cwd | The working directory to launch the application under. Must be set if `hosted` is true. |
-| env | The environment variables to provide to the launched process. Only applicable if `hosted` is set to true. |
+| cwd | The working directory to launch the app under. Must be set if `hosted` is `true`. |
+| env | The environment variables to provide to the launched process. Only applicable if `hosted` is set to `true`. |
 
 ### Example launch configurations
 
