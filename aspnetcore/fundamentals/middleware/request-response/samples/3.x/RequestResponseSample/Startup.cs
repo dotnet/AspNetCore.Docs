@@ -1,3 +1,8 @@
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using System;
 using System.Buffers;
 using System.Collections.Generic;
@@ -5,11 +10,6 @@ using System.IO;
 using System.IO.Pipelines;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 
 namespace RequestResponseSample
 {
@@ -26,9 +26,16 @@ namespace RequestResponseSample
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseRouting(routes =>
+            app.UseHttpsRedirection();
+           // app.UseStaticFiles();
+
+            app.UseRouting();
+
+           // app.UseAuthorization();
+
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapPost("/Streams", async context =>
+                endpoints.MapPost("/Streams", async context =>
                 {
                     var list = await GetListOfStringsFromStream(context.Request.Body);
 
@@ -39,7 +46,7 @@ namespace RequestResponseSample
                     }
                 });
 
-                routes.MapPost("/BetterStreams", async context =>
+                endpoints.MapPost("/BetterStreams", async context =>
                 {
                     var list = await GetListOfStringsFromStreamMoreEfficient(context.Request.Body);
 
@@ -50,9 +57,9 @@ namespace RequestResponseSample
                     }
                 });
 
-                routes.MapPost("/Pipes", async context =>
+                endpoints.MapPost("/Pipes", async context =>
                 {
-                    var list = await GetListOfStringFromPipe(context.Request.BodyPipe);
+                    var list = await GetListOfStringFromPipe(context.Request.BodyReader);
                     foreach (var item in list)
                     {
                         await context.Response.WriteAsync(item.ToUpperInvariant());
@@ -60,6 +67,7 @@ namespace RequestResponseSample
                     }
                 });
             });
+
         }
 
         #region GetListOfStringsFromStream
