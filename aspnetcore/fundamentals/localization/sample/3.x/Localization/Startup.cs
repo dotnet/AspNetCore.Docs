@@ -47,15 +47,10 @@ namespace Localization
 
             services.Configure<RequestLocalizationOptions>(options =>
             {
-                var supportedCultures = new List<CultureInfo>
-                {
-                    new CultureInfo("en-US"),
-                    new CultureInfo("fr")
-                };
-
+                var supportedCultures = new [] { "en-US", "fr" };
                 options.SetDefaultCulture(supportedCultures[0])
-                    AddSupportedCultures(supportedCultures)
-                    AddSupportedUICultures(supportedCultures);
+                    .AddSupportedCultures(supportedCultures)
+                    .AddSupportedUICultures(supportedCultures);
             });
         }
 
@@ -65,7 +60,6 @@ namespace Localization
             {
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
-                app.UseBrowserLink();
             }
             else
             {
@@ -86,20 +80,12 @@ namespace Localization
             }
 
             #region snippet2
-            var supportedCultures = new[]
-            {
-                new CultureInfo("en-US"),
-                new CultureInfo("fr"),
-            };
+            var supportedCultures = new[] { "en-US", "fr" };
+            var localizationOptions = new RequestLocalizationOptions().SetDefaultCulture(supportedCultures[0])
+                .AddSupportedCultures(supportedCultures)
+                .AddSupportedUICultures(supportedCultures);
 
-            app.UseRequestLocalization(new RequestLocalizationOptions
-            {
-                DefaultRequestCulture = new RequestCulture("en-US"),
-                // Formatting numbers, dates, etc.
-                SupportedCultures = supportedCultures,
-                // UI strings that we have localized.
-                SupportedUICultures = supportedCultures
-            });
+            app.UseRequestLocalization(localizationOptions);
 
             app.UseStaticFiles();
             // To configure external authentication, 
