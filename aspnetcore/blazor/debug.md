@@ -116,11 +116,11 @@ Install the [C# extension](https://marketplace.visualstudio.com/items?itemName=m
 
 1. When prompted, select the **Blazor WebAssembly Debug** option to start debugging.
 
-   ![Screen Shot 2020-05-27 at 11.42.26 AM](index/_static/blazor-vscode-debugtypes.png)
+   ![List of available debug options](index/_static/blazor-vscode-debugtypes.png)
 
 1. The standalone app is launched, and a debugging brower is opened.
 
-1. Set a breakpoint in the `IncrementCount` method in the `Counter` component and then select the button to hit the breakpoint:
+5. Set a breakpoint in the `IncrementCount` method in the `Counter` component and then select the button to hit the breakpoint:
 
    ![Debug Counter in VS Code](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vscode-debug-counter.png)
 
@@ -133,8 +133,6 @@ Install the [C# extension](https://marketplace.visualstudio.com/items?itemName=m
    ![Add required assets](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vscode-required-assets.png)
 
 1. In the selection window, select the *Server* project within the hosted solution.
-
-   ![Screen Shot 2020-05-27 at 11.40.52 AM](/Users/captainsafia/Desktop/Screen Shot 2020-05-27 at 11.40.52 AM.png)
 
 A *launch.json* file is generated with the launch configuration for launching the debugger for the hosted session.
 
