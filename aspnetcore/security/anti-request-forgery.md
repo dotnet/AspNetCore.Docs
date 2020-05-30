@@ -481,3 +481,4 @@ The [IAntiForgeryAdditionalDataProvider](/dotnet/api/microsoft.aspnetcore.antifo
 
 * [CSRF](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)) on [Open Web Application Security Project](https://www.owasp.org/index.php/Main_Page) (OWASP).
 * <xref:host-and-deploy/web-farm>
+* [ASP.NET Core CSRF defence with Antiforgery](https://www.dotnetcurry.com/aspnet/1343/aspnet-core-csrf-antiforgery-token)
