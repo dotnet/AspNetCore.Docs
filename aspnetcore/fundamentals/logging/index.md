@@ -969,7 +969,6 @@ For the preceding code, provide at least one extension method for the `ILoggerFa
 
 * <xref:fundamentals/logging/loggermessage>
 * Logging bugs should be created in the [github.com/dotnet/runtime/](https://github.com/dotnet/runtime/issues) repo.
-* [How to add custom logging in ASP.NET Core](https://asp.net-hacker.rocks/2017/05/05/add-custom-logging-in-aspnetcore.html)
 
 ::: moniker-end
 
