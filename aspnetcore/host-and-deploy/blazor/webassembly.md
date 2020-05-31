@@ -28,7 +28,7 @@ The following deployment strategies are supported:
 When a Blazor WebAssembly app is published, the output is precompressed to reduce the app's size and remove the need for runtime compression. The following compression algorithms are used:
 
 * [Brotli](https://tools.ietf.org/html/rfc7932) (highest level)
-* [Gzip](https://tools.ietf.org/html/rfc1952))
+* [Gzip](https://tools.ietf.org/html/rfc1952)
 
 To disable compression, add the `BlazorEnableCompression` MSBuild property to the app's project file and set the value to `false`:
 
