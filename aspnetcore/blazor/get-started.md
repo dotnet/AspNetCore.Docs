@@ -92,7 +92,11 @@ If a prompt appears to trust the development certificate, trust the certificate 
 
 # [.NET Core CLI](#tab/netcore-cli/)
 
-1. Install the [.NET Core 3.1 SDK](https://dotnet.microsoft.com/download/dotnet-core/3.1).
+1. Install the latest version of the [.NET Core 3.1 SDK](https://dotnet.microsoft.com/download/dotnet-core/3.1). If you previously installed the SDK, you can determine your installed version by executing the following command in a command shell:
+
+   ```dotnetcli
+   dotnet --version
+   ```
 
 1. For a Blazor WebAssembly experience, execute the following commands in a command shell:
 
