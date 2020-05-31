@@ -5,7 +5,7 @@ description: Get started with Blazor by building a Blazor app with the tooling o
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/26/2020
+ms.date: 05/31/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/get-started
 ---
@@ -36,7 +36,7 @@ To get started with Blazor, follow the guidance for your choice of tooling:
 1. Install the latest version of the [.NET Core 3.1 SDK](https://dotnet.microsoft.com/download/dotnet-core/3.1). If you previously installed the SDK, you can determine your installed version by executing the following command in a command shell:
 
    ```dotnetcli
-   dotnet -v
+   dotnet --version
    ```
 
 1. Install the latest version of [Visual Studio Code](https://code.visualstudio.com/).

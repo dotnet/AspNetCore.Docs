@@ -1,6 +1,6 @@
 ﻿// Set preprocessor directive(s) to enable the scenarios you want to test.
 // For more information on preprocessor directives and sample apps, see:
-// https://docs.microsoft.com/aspnet/core/#preprocessor-directives-in-sample-code
+// https://docs.microsoft.com/aspnet/core/introduction-to-aspnet-core#preprocessor-directives-in-sample-code
 //
 // InvalidModelStateResponseFactory - customize response for automatic 400 on validation error
 // ExceptionFilter - adds a custom exception filter to the filters collection
