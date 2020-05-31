@@ -1,5 +1,7 @@
+using HttpRequestsSample.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -9,6 +11,10 @@ namespace HttpRequestsSample
     {
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<TodoContext>(options =>
+                options.UseInMemoryDatabase("TodoItems"));
+
+            services.AddControllers();
             services.AddRazorPages();
         }
 
@@ -28,6 +34,7 @@ namespace HttpRequestsSample
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllers();
                 endpoints.MapRazorPages();
             });
         }
