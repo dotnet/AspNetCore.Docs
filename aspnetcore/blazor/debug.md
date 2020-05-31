@@ -5,7 +5,7 @@ description: Learn how to debug Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/29/2020
+ms.date: 05/31/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/debug
 ---
@@ -118,9 +118,9 @@ Install the [C# extension](https://marketplace.visualstudio.com/items?itemName=m
 
    ![List of available debug options](index/_static/blazor-vscode-debugtypes.png)
 
-1. The standalone app is launched, and a debugging brower is opened.
+1. The standalone app is launched, and a debugging browser is opened.
 
-5. Set a breakpoint in the `IncrementCount` method in the `Counter` component and then select the button to hit the breakpoint:
+1. Set a breakpoint in the `IncrementCount` method in the `Counter` component and then select the button to hit the breakpoint:
 
    ![Debug Counter in VS Code](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vscode-debug-counter.png)
 
@@ -128,17 +128,17 @@ Install the [C# extension](https://marketplace.visualstudio.com/items?itemName=m
 
 1. Open the hosted Blazor WebAssembly app in VS Code.
 
-1. If there is no launch configuration set for the project, the following notification appears. Select **Yes**.
+1. If there's no launch configuration set for the project, the following notification appears. Select **Yes**.
 
    ![Add required assets](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vscode-required-assets.png)
 
 1. In the selection window, select the *Server* project within the hosted solution.
 
-A *launch.json* file is generated with the launch configuration for launching the debugger for the hosted session.
+A *launch.json* file is generated with the launch configuration for launching the debugger.
 
 ### Attach to an existing debugging session
 
-To attach to an existing running Blazor app, create a *launch.json* with the following configuration:
+To attach to a running Blazor app, create a *launch.json* file with the following configuration:
 
 ```json
 {
@@ -155,18 +155,18 @@ To attach to an existing running Blazor app, create a *launch.json* with the fol
 
 The following launch configuration options are supported for the `blazorwasm` debug type.
 
-| Option | Description |
-| ------ | ----------- |
-| request | Can be either `launch` to launch and attach a debugging session to a Blazor WebAssembly app or `attach` to attach a debugging session to an already-running app. |
-| url | The URL to open in the browser when debugging. Defaults to `https://localhost:5001`. |
-| browser | The browser to launch the debugging session in. Can be either `edge` or `chrome`. Defaults to `chrome`. |
-| trace | Used to generate logs from the JS debugger. Set to `true` to generate logs. |
-| hosted | Must be set to `true` if launching and debugging a hosted Blazor WebAssembly app. |
-| webRoot | Specifies the absolute path of the web server. Should be set if an app is served from a sub-route. |
-| timeout | The number of milliseconds to wait for the debugging session to attach. Defaults to 30,000 milliseconds (30 seconds). |
-| program | A reference to the executable to run the server of the hosted app. Must be set if `hosted` is true. |
-| cwd | The working directory to launch the app under. Must be set if `hosted` is `true`. |
-| env | The environment variables to provide to the launched process. Only applicable if `hosted` is set to `true`. |
+| Option    | Description |
+| --------- | ----------- |
+| `request` | Use `launch` to launch and attach a debugging session to a Blazor WebAssembly app or `attach` to attach a debugging session to an already-running app. |
+| `url`     | The URL to open in the browser when debugging. Defaults to `https://localhost:5001`. |
+| `browser` | The browser to launch for the debugging session. Set to `edge` or `chrome`. Defaults to `chrome`. |
+| `trace`   | Used to generate logs from the JS debugger. Set to `true` to generate logs. |
+| `hosted`  | Must be set to `true` if launching and debugging a hosted Blazor WebAssembly app. |
+| `webRoot` | Specifies the absolute path of the web server. Should be set if an app is served from a sub-route. |
+| `timeout` | The number of milliseconds to wait for the debugging session to attach. Defaults to 30,000 milliseconds (30 seconds). |
+| `program` | A reference to the executable to run the server of the hosted app. Must be set if `hosted` is `true`. |
+| `cwd`     | The working directory to launch the app under. Must be set if `hosted` is `true`. |
+| `env`     | The environment variables to provide to the launched process. Only applicable if `hosted` is set to `true`. |
 
 ### Example launch configurations
 
@@ -180,7 +180,7 @@ The following launch configuration options are supported for the `blazorwasm` de
 }
 ```
 
-#### Attach to an existing running app at a specified URL
+#### Attach to a running app at a specified URL
 
 ```json
 {
