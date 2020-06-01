@@ -164,7 +164,7 @@
           displayName: tutorial
           href: /learn/modules/build-web-api-net-core/
         - name: Cloud-native microservices >>
-          displayName: tutorial, aks, acr, docker
+          displayName: tutorial, kubernetes, aks, acr, docker
           href: /learn/modules/microservices-aspnet-core/
         - name: Data access >>
           displayName: tutorial, ef, entity framework
