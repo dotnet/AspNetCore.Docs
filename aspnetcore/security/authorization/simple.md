@@ -11,7 +11,7 @@ uid: security/authorization/simple
 
 <a name="security-authorization-simple"></a>
 
-Authorization in MVC is controlled through the `AuthorizeAttribute` attribute and its various parameters. At its simplest, applying the `AuthorizeAttribute` attribute to a controller or action limits access to the controller or action to any authenticated user.
+Authorization in ASP.NET Core is controlled with <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> and its various parameters. In its simplest form, applying the `[Authorize]` attribute to a controller, action, or Razor Page, limits access to that component to any authenticated user.
 
 For example, the following code limits access to the `AccountController` to any authenticated user.
 
