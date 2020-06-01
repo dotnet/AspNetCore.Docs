@@ -5,7 +5,7 @@ description: Learn how to secure Blazor WebAssemlby apps as Single Page Applicat
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/19/2020
+ms.date: 06/01/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/blazor/webassembly/index
 ---
@@ -42,7 +42,19 @@ The [Microsoft.AspNetCore.Components.WebAssembly.Authentication](https://www.nug
 * When the Blazor WebAssembly app loads the login callback endpoint (`/authentication/login-callback`), the authentication response is processed.
   * If the authentication process completes successfully, the user is authenticated and optionally sent back to the original protected URL that the user requested.
   * If the authentication process fails for any reason, the user is sent to the login failed page (`/authentication/login-failed`), and an error is displayed.
-  
+
+## Authorization
+
+In Blazor WebAssembly apps, authorization checks can be bypassed because all client-side code can be modified by users. The same is true for all client-side app technologies, including JavaScript SPA frameworks or native apps for any operating system.
+
+**Always perform authorization checks on the server within any API endpoints accessed by your client-side app.**
+
+## Refresh tokens
+
+Refresh tokens can't be secured client-side in Blazor WebAssembly apps. Therefore, refresh tokens shouldn't be sent to the app for direct use.
+
+Refresh tokens can be maintained and used by the server-side app in a Hosted Blazor WebAssembly solution to access third-party APIs. For more information, see <xref:security/blazor/webassembly/additional-scenarios#authenticate-users-with-a-third-party-provider-and-call-protected-apis-on-the-host-server-and-the-third-party>.
+
 ## Implementation guidance
 
 Articles under this *Overview* provide information on authenticating users in Blazor WebAssembly apps against specific providers.

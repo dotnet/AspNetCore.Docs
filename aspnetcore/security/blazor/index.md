@@ -456,14 +456,6 @@ If the app is required to check authorization rules as part of procedural logic,
 >
 > These namespaces can be provided globally by adding them to the app's *_Imports.razor* file.
 
-## Authorization in Blazor WebAssembly apps
-
-In Blazor WebAssembly apps, authorization checks can be bypassed because all client-side code can be modified by users. The same is true for all client-side app technologies, including JavaScript SPA frameworks or native apps for any operating system.
-
-**Always perform authorization checks on the server within any API endpoints accessed by your client-side app.**
-
-For more information, see the articles under <xref:security/blazor/webassembly/index>.
-
 ## Troubleshoot errors
 
 Common errors:
