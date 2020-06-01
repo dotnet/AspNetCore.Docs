@@ -5,13 +5,13 @@ description: Learn how ASP.NET Core implements dependency injection and how to u
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/26/2020
+ms.date: 05/14/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/dependency-injection
 ---
 # Dependency injection in ASP.NET Core
 
-By [Steve Smith](https://ardalis.com/) and [Scott Addie](https://scottaddie.com)
+By [Steve Smith](https://ardalis.com/), [Scott Addie](https://scottaddie.com), and [Brandon Dahler](https://github.com/brandondahler)
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -451,7 +451,40 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-For a discussion of service disposal options, see [Four ways to dispose IDisposables in ASP.NET Core](https://andrewlock.net/four-ways-to-dispose-idisposables-in-asp-net-core/).
+### IDisposable guidance for Transient and shared instances
+
+#### Transient, limited lifetime
+
+**Scenario**
+
+The app requires an <xref:System.IDisposable> instance with a transient lifetime for either of the following scenarios:
+
+* The instance is resolved in the root scope.
+* The instance should be disposed before the scope ends.
+
+**Solution**
+
+Use the factory pattern to create an instance outside of the parent scope. In this situation, the app would generally have a `Create` method that calls the final type's constructor directly. If the final type has other dependencies, the factory can:
+
+* Receive an <xref:System.IServiceProvider> in its constructor.
+* Use <xref:Microsoft.Extensions.DependencyInjection.ActivatorUtilities.CreateInstance%2A?displayProperty=nameWithType> to instantiate the instance outside the container, while using the container for its dependencies.
+
+#### Shared Instance, limited lifetime
+
+**Scenario**
+
+The app requires a shared <xref:System.IDisposable> instance across multiple services, but the <xref:System.IDisposable> should have a limited lifetime.
+
+**Solution**
+
+Register the instance with a Scoped lifetime. Use <xref:Microsoft.Extensions.DependencyInjection.IServiceScopeFactory.CreateScope%2A?displayProperty=nameWithType> to start and create a new <xref:Microsoft.Extensions.DependencyInjection.IServiceScope>. Use the scope's <xref:System.IServiceProvider> to get required services. Dispose the scope when the lifetime should end.
+
+#### General Guidelines
+
+* Don't register <xref:System.IDisposable> instances with a Transient scope. Use the factory pattern instead.
+* Don't resolve Transient or Scoped <xref:System.IDisposable> instances in the root scope. The only general exception is when the app creates/recreates and disposes the <xref:System.IServiceProvider>, which isn't an ideal pattern.
+* Receiving an <xref:System.IDisposable> dependency via DI doesn't require that the receiver implement <xref:System.IDisposable> itself. The receiver of the <xref:System.IDisposable> dependency shouldn't call <xref:System.IDisposable.Dispose%2A> on that dependency.
+* Scopes should be used to control lifetimes of services. Scopes aren't hierarchical, and there's no special connection among scopes.
 
 ## Default service container replacement
 
@@ -531,7 +564,7 @@ The factory method of single service, such as the second argument to [AddSinglet
 
 * Avoid static access to `HttpContext` (for example, [IHttpContextAccessor.HttpContext](xref:Microsoft.AspNetCore.Http.IHttpContextAccessor.HttpContext)).
 
-Like all sets of recommendations, you may encounter situations where ignoring a recommendation is required. Exceptions are rare&mdash;mostly special cases within the framework itself.
+Like all sets of recommendations, you may encounter situations where ignoring a recommendation is required. Exceptions are rare, mostly special cases within the framework itself.
 
 DI is an *alternative* to static/global object access patterns. You may not be able to realize the benefits of DI if you mix it with static object access.
 
@@ -549,6 +582,7 @@ See the samples apps at https://github.com/OrchardCMS/OrchardCore.Samples for ex
 * <xref:blazor/dependency-injection>
 * <xref:fundamentals/startup>
 * <xref:fundamentals/middleware/extensibility>
+* [Four ways to dispose IDisposables in ASP.NET Core](https://andrewlock.net/four-ways-to-dispose-idisposables-in-asp-net-core/)
 * [Writing Clean Code in ASP.NET Core with Dependency Injection (MSDN)](https://msdn.microsoft.com/magazine/mt703433.aspx)
 * [Explicit Dependencies Principle](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#explicit-dependencies)
 * [Inversion of Control Containers and the Dependency Injection Pattern (Martin Fowler)](https://www.martinfowler.com/articles/injection.html)
@@ -992,6 +1026,41 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
+### IDisposable guidance for Transient and shared instances
+
+#### Transient, limited lifetime
+
+**Scenario**
+
+The app requires an <xref:System.IDisposable> instance with a transient lifetime for either of the following scenarios:
+
+* The instance is resolved in the root scope.
+* The instance should be disposed before the scope ends.
+
+**Solution**
+
+Use the factory pattern to create an instance outside of the parent scope. In this situation, the app would generally have a `Create` method that calls the final type's constructor directly. If the final type has other dependencies, the factory can:
+
+* Receive an <xref:System.IServiceProvider> in its constructor.
+* Use <xref:Microsoft.Extensions.DependencyInjection.ActivatorUtilities.CreateInstance%2A?displayProperty=nameWithType> to instantiate the instance outside the container, while using the container for its dependencies.
+
+#### Shared Instance, limited lifetime
+
+**Scenario**
+
+The app requires a shared <xref:System.IDisposable> instance across multiple services, but the <xref:System.IDisposable> should have a limited lifetime.
+
+**Solution**
+
+Register the instance with a Scoped lifetime. Use <xref:Microsoft.Extensions.DependencyInjection.IServiceScopeFactory.CreateScope%2A?displayProperty=nameWithType> to start and create a new <xref:Microsoft.Extensions.DependencyInjection.IServiceScope>. Use the scope's <xref:System.IServiceProvider> to get required services. Dispose the scope when the lifetime should end.
+
+#### General Guidelines
+
+* Don't register <xref:System.IDisposable> instances with a Transient scope. Use the factory pattern instead.
+* Don't resolve Transient or Scoped <xref:System.IDisposable> instances in the root scope. The only general exception is when the app creates/recreates and disposes the <xref:System.IServiceProvider>, which isn't an ideal pattern.
+* Receiving an <xref:System.IDisposable> dependency via DI doesn't require that the receiver implement <xref:System.IDisposable> itself. The receiver of the <xref:System.IDisposable> dependency shouldn't call <xref:System.IDisposable.Dispose%2A> on that dependency.
+* Scopes should be used to control lifetimes of services. Scopes aren't hierarchical, and there's no special connection among scopes.
+
 ## Default service container replacement
 
 The built-in service container is designed to serve the needs of the framework and most consumer apps. We recommend using the built-in container unless you need a specific feature that the built-in container doesn't support, such as:
@@ -1072,7 +1141,7 @@ The factory method of single service, such as the second argument to [AddSinglet
 
 * Avoid static access to `HttpContext` (for example, [IHttpContextAccessor.HttpContext](xref:Microsoft.AspNetCore.Http.IHttpContextAccessor.HttpContext)).
 
-Like all sets of recommendations, you may encounter situations where ignoring a recommendation is required. Exceptions are rare&mdash;mostly special cases within the framework itself.
+Like all sets of recommendations, you may encounter situations where ignoring a recommendation is required. Exceptions are rare, mostly special cases within the framework itself.
 
 DI is an *alternative* to static/global object access patterns. You may not be able to realize the benefits of DI if you mix it with static object access.
 
@@ -1084,6 +1153,7 @@ DI is an *alternative* to static/global object access patterns. You may not be a
 * <xref:blazor/dependency-injection>
 * <xref:fundamentals/startup>
 * <xref:fundamentals/middleware/extensibility>
+* [Four ways to dispose IDisposables in ASP.NET Core](https://andrewlock.net/four-ways-to-dispose-idisposables-in-asp-net-core/)
 * [Writing Clean Code in ASP.NET Core with Dependency Injection (MSDN)](https://msdn.microsoft.com/magazine/mt703433.aspx)
 * [Explicit Dependencies Principle](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#explicit-dependencies)
 * [Inversion of Control Containers and the Dependency Injection Pattern (Martin Fowler)](https://www.martinfowler.com/articles/injection.html)
