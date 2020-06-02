@@ -5,7 +5,7 @@ description: Learn how to read the request body and write the response body in A
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jukotali
 ms.custom: mvc
-ms.date: 08/29/2019
+ms.date: 5/29/2019
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/middleware/request-response
 ---
@@ -29,6 +29,11 @@ Streams aren't being removed from the framework. Streams continue to be used thr
 ## Stream examples
 
 Suppose the goal is to create a middleware that reads the entire request body as a list of strings, splitting on new lines. A simple stream implementation might look like the following example:
+
+> [!WARNING]
+> The following code:
+> * Is used to demonstrate the problems with not using a pipe to read the request body.
+> * Is not intended to be used in production apps.
 
 [!code-csharp[](request-response/samples/3.x/RequestResponseSample/Startup.cs?name=GetListOfStringsFromStream)]
 [!INCLUDE[about the series](~/includes/code-comments-loc.md)]
