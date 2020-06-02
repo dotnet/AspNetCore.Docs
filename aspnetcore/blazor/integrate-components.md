@@ -5,7 +5,7 @@ description: Learn about data binding scenarios for components and DOM elements 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/25/2020
+ms.date: 06/02/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/integrate-components
 ---
@@ -13,7 +13,76 @@ uid: blazor/integrate-components
 
 By [Luke Latham](https://github.com/guardrex) and [Daniel Roth](https://github.com/danroth27)
 
-Razor components can be integrated into Razor Pages and MVC apps. When the page or view is rendered, components can be prerendered at the same time.
+Razor components can be integrated into:
+
+* The *Server* app (Razor Pages/MVC) from the *Client* Blazor WebAssembly app of a hosted Blazor solution.
+* Razor Pages and MVC apps, which results in a [Blazor Server](xref:blazor/hosting-models#blazor-server) app.
+
+## Integrate components from the Client app into the Server app of a hosted Blazor solution
+
+The *Server* app of a hosted Blazor WebAssembly solution can integrate Razor components into pages and views from the *Client* app.
+
+### Prepare the app
+
+1. In the *Server app's* layout file (*_Layout.cshtml*):
+
+   * Add the following `<base>` tag to the `<head>` element:
+
+     ```html
+     <base href="~/" />
+     ```
+
+     The `href` value (the *app base path*) in the preceding example assumes that the app resides at the root URL path (`/`). If the app is a sub-application, follow the guidance in the *App base path* section of the <xref:host-and-deploy/blazor/index#app-base-path> article.
+
+     The *_Layout.cshtml* file is located in the *Pages/Shared* folder in a Razor Pages app or *Views/Shared* folder in an MVC app.
+
+   * Add a `<script>` tag for the *blazor.webassembly.js* script immediately before the closing `</body>` tag:
+
+     ```html
+     <script src="_framework/blazor.webassembly.js"></script>
+     ```
+
+     The framework adds the *blazor.webassembly.js* script to the *Server app*. There's no need to manually add the script to the app.
+
+1. In the *Client app*, add root components in `Program.Main` (*Program.cs*). In the following example, the `Counter` component is added as a root component:
+
+   ```csharp
+   using {CLIENT APP ASSEMBLY}.Client.Pages;
+   
+   ...
+   
+   builder.RootComponents.Add<Counter>("my-counter");
+   ```
+   
+1. In a page or view of the *Server app*, place a CSS selector where you want a component to appear. In the following example, the CSS selector for the `Counter` component is placed in a page:
+
+   ```cshtml
+   <my-counter>Loading...</my-counter>
+   ```
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Integrate components into Razor Pages and MVC apps (Blazor Server scenario)
+
+An existing Razor Pages or MVC app can integrate Razor components into pages and views.
 
 After [preparing the app](#prepare-the-app), use the guidance in the following sections depending on the app's requirements:
 
@@ -22,9 +91,7 @@ After [preparing the app](#prepare-the-app), use the guidance in the following s
   * [Use routable components in an MVC app](#use-routable-components-in-an-mvc-app)
 * [Render components from a page or view](#render-components-from-a-page-or-view): For components that aren't directly routable from user requests. Follow this guidance when the app embeds components into existing pages and views with the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper).
 
-## Prepare the app
-
-An existing Razor Pages or MVC app can integrate Razor components into pages and views:
+### Prepare the app
 
 1. In the app's layout file (*_Layout.cshtml*):
 
@@ -38,7 +105,7 @@ An existing Razor Pages or MVC app can integrate Razor components into pages and
 
      The *_Layout.cshtml* file is located in the *Pages/Shared* folder in a Razor Pages app or *Views/Shared* folder in an MVC app.
 
-   * Add a `<script>` tag for the *blazor.server.js* script immediately before of the closing `</body>` tag:
+   * Add a `<script>` tag for the *blazor.server.js* script immediately before the closing `</body>` tag:
 
      ```html
      <script src="_framework/blazor.server.js"></script>
@@ -73,7 +140,7 @@ An existing Razor Pages or MVC app can integrate Razor components into pages and
 
 1. Integrate components into any page or view. For more information, see the [Render components from a page or view](#render-components-from-a-page-or-view) section.
 
-## Use routable components in a Razor Pages app
+### Use routable components in a Razor Pages app
 
 *This section pertains to adding components that are directly routable from user requests.*
 
@@ -148,7 +215,7 @@ To support routable Razor components in Razor Pages apps:
 
 For more information on namespaces, see the [Component namespaces](#component-namespaces) section.
 
-## Use routable components in an MVC app
+### Use routable components in an MVC app
 
 *This section pertains to adding components that are directly routable from user requests.*
 
@@ -231,13 +298,13 @@ To support routable Razor components in MVC apps:
 
 For more information on namespaces, see the [Component namespaces](#component-namespaces) section.
 
-## Render components from a page or view
+### Render components from a page or view
 
 *This section pertains to adding components to pages or views, where the components aren't directly routable from user requests.*
 
 To render a component from a page or view, use the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper).
 
-### Render stateful interactive components
+#### Render stateful interactive components
 
 Stateful interactive components can be added to a Razor page or view.
 
@@ -263,7 +330,7 @@ The following Razor page renders a `Counter` component:
 
 For more information, see <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
 
-### Render noninteractive components
+#### Render noninteractive components
 
 In the following Razor page, the `Counter` component is statically rendered with an initial value that's specified using a form. Since the component is statically rendered, the component isn't interactive:
 
@@ -286,7 +353,7 @@ In the following Razor page, the `Counter` component is statically rendered with
 
 For more information, see <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
 
-## Component namespaces
+### Component namespaces
 
 When using a custom folder to hold the app's components, add the namespace representing the folder to either the page/view or to the *_ViewImports.cshtml* file. In the following example:
 
