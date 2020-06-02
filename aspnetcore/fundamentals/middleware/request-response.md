@@ -45,6 +45,11 @@ This code works, but there are some issues:
 
 Here's an example that fixes some of the preceding issues:
 
+> [!WARNING]
+> The following code:
+> * Is used to demonstrate the solutions to some problems in the preceding code while not solving all the problems.
+> * Is not intended to be used in production apps.
+
 [!code-csharp[](request-response/samples/3.x/RequestResponseSample/Startup.cs?name=GetListOfStringsFromStreamMoreEfficient)]
 
 This preceding example:
