@@ -139,7 +139,7 @@ public IActionResult Get()
 {
     return Json(model, new JsonSerializerOptions
     {
-        options.WriteIndented = true,
+        WriteIndented = true,
     });
 }
 ```
@@ -178,7 +178,7 @@ public IActionResult Get()
 {
     return Json(model, new JsonSerializerSettings
     {
-        options.Formatting = Formatting.Indented,
+        Formatting = Formatting.Indented,
     });
 }
 ```
