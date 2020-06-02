@@ -354,8 +354,10 @@ See [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/6199).
 The Windows Subsystem for Linux (WSL) generates an HTTPS self-signed cert. To configure the Windows certificate store to trust the WSL certificate:
 
 * Run the following command to export the WSL-generated certificate:
+
   `dotnet dev-certs https -ep %USERPROFILE%\.aspnet\https\aspnetapp.pfx -p <cryptic-password>`
 * In a WSL window, run the following command:
+
   `ASPNETCORE_Kestrel__Certificates__Default__Password="<cryptic-password>" ASPNETCORE_Kestrel__Certificates__Default__Path=/mnt/c/Users/user-name/.aspnet/https/aspnetapp.pfx dotnet watch run`
 
   The preceding command sets the environment variables so Linux uses the Windows trusted certificate.
