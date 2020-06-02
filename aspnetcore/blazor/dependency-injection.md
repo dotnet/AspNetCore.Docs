@@ -335,4 +335,5 @@ If a single component might use a <xref:Microsoft.EntityFrameworkCore.DbContext>
 ## Additional resources
 
 * <xref:fundamentals/dependency-injection>
+* [IDisposable guidance for Transient and shared instances](xref:fundamentals/dependency-injection#idisposable-guidance-for-transient-and-shared-instances)
 * <xref:mvc/views/dependency-injection>

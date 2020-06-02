@@ -5,17 +5,85 @@ description: Learn how to configure Blazor WebAssembly for additional security s
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/28/2020
+ms.date: 06/01/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/blazor/webassembly/additional-scenarios
 ---
 # ASP.NET Core Blazor WebAssembly additional security scenarios
 
-By [Javier Calvarro Nelson](https://github.com/javiercn)
+By [Javier Calvarro Nelson](https://github.com/javiercn) and [Luke Latham](https://github.com/guardrex)
 
 ## Attach tokens to outgoing requests
 
 The <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler> service can be used with <xref:System.Net.Http.HttpClient> to attach access tokens to outgoing requests. Tokens are acquired using the existing <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.IAccessTokenProvider> service. If a token can't be acquired, an <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccessTokenNotAvailableException> is thrown. <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccessTokenNotAvailableException> has a <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccessTokenNotAvailableException.Redirect%2A> method that can be used to navigate the user to the identity provider to acquire a new token. The <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler> can be configured with the authorized URLs, scopes, and return URL using the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler.ConfigureHandler%2A> method.
+
+Use either of the following approaches to configure a message handler for outgoing requests:
+
+* [Custom AuthorizationMessageHandler class](#custom-authorizationmessagehandler-class) (*Recommended*)
+* [Configure AuthorizationMessageHandler](#configure-authorizationmessagehandler)
+
+### Custom AuthorizationMessageHandler class
+
+In the following example, a custom class extends <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler> that can be used to configure an <xref:System.Net.Http.HttpClient>:
+
+```csharp
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+
+public class CustomAuthorizationMessageHandler : AuthorizationMessageHandler
+{
+    public CustomAuthorizationMessageHandler(IAccessTokenProvider provider, 
+        NavigationManager navigationManager)
+        : base(provider, navigationManager)
+    {
+        ConfigureHandler(
+            authorizedUrls: new[] { "https://www.example.com/base" },
+            scopes: new[] { "example.read", "example.write" });
+    }
+}
+```
+
+In `Program.Main` (*Program.cs*), an <xref:System.Net.Http.HttpClient> is configured with the custom authorization message handler:
+
+```csharp
+builder.Services.AddTransient<CustomAuthorizationMessageHandler>();
+
+builder.Services.AddHttpClient("ServerAPI",
+    client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))
+        .AddHttpMessageHandler<CustomAuthorizationMessageHandler>();
+```
+
+The configured <xref:System.Net.Http.HttpClient> is used to make authorized requests using the [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) pattern. Where the client is created with <xref:System.Net.Http.IHttpClientFactory.CreateClient%2A> ([Microsoft.Extensions.Http](https://www.nuget.org/packages/Microsoft.Extensions.Http/) package), the <xref:System.Net.Http.HttpClient> is supplied instances that include access tokens when making requests to the server API:
+
+```razor
+@inject IHttpClientFactory ClientFactory
+
+...
+
+@code {
+    private ExampleType[] examples;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            var client = ClientFactory.CreateClient("ServerAPI");
+
+            examples = 
+                await client.GetFromJsonAsync<ExampleType[]>("{API METHOD}");
+
+            ...
+        }
+        catch (AccessTokenNotAvailableException exception)
+        {
+            exception.Redirect();
+        }
+        
+    }
+}
+```
+
+### Configure AuthorizationMessageHandler
 
 In the following example, <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler> configures an <xref:System.Net.Http.HttpClient> in `Program.Main` (*Program.cs*):
 
@@ -29,7 +97,7 @@ builder.Services.AddTransient(sp =>
 {
     return new HttpClient(sp.GetRequiredService<AuthorizationMessageHandler>()
         .ConfigureHandler(
-            new [] { "https://www.example.com/base" },
+            authorizedUrls: new [] { "https://www.example.com/base" },
             scopes: new[] { "example.read", "example.write" }))
         {
             BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
@@ -37,7 +105,7 @@ builder.Services.AddTransient(sp =>
 });
 ```
 
-For convenience, a <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.BaseAddressAuthorizationMessageHandler> is included that's preconfigured with the app base address as an authorized URL. The authentication-enabled Blazor WebAssembly templates now use <xref:System.Net.Http.IHttpClientFactory> in the Server API project to set up an <xref:System.Net.Http.HttpClient> with the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.BaseAddressAuthorizationMessageHandler>:
+For convenience, a <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.BaseAddressAuthorizationMessageHandler> is included that's preconfigured with the app base address as an authorized URL. The authentication-enabled Blazor WebAssembly templates now use <xref:System.Net.Http.IHttpClientFactory> ([Microsoft.Extensions.Http](https://www.nuget.org/packages/Microsoft.Extensions.Http/) package) in the Server API project to set up an <xref:System.Net.Http.HttpClient> with the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.BaseAddressAuthorizationMessageHandler>:
 
 ```csharp
 using System.Net.Http;
@@ -45,21 +113,19 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 
 ...
 
-builder.Services.AddHttpClient("BlazorWithIdentity.ServerAPI", 
+builder.Services.AddHttpClient("ServerAPI", 
     client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))
         .AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
 
 builder.Services.AddTransient(sp => sp.GetRequiredService<IHttpClientFactory>()
-    .CreateClient("BlazorWithIdentity.ServerAPI"));
+    .CreateClient("ServerAPI"));
 ```
 
 Where the client is created with <xref:System.Net.Http.IHttpClientFactory.CreateClient%2A> in the preceding example, the <xref:System.Net.Http.HttpClient> is supplied instances that include access tokens when making requests to the server project.
 
-The configured <xref:System.Net.Http.HttpClient> is then used to make authorized requests using a simple [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) pattern.
+The configured <xref:System.Net.Http.HttpClient> is used to make authorized requests using the [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) pattern:
 
-`FetchData` component (*Pages/FetchData.razor*):
-
-```csharp
+```razor
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 @inject HttpClient Client
 
@@ -67,10 +133,14 @@ The configured <xref:System.Net.Http.HttpClient> is then used to make authorized
 
 protected override async Task OnInitializedAsync()
 {
+    private ExampleType[] examples;
+
     try
     {
-        forecasts = 
-            await Client.GetFromJsonAsync<WeatherForecast[]>("WeatherForecast");
+        examples = 
+            await Client.GetFromJsonAsync<ExampleType[]>("{API METHOD}");
+
+        ...
     }
     catch (AccessTokenNotAvailableException exception)
     {
@@ -172,7 +242,7 @@ builder.Services.AddHttpClient("ServerAPI.NoAuthenticationClient",
 
 The preceding registration is in addition to the existing secure default <xref:System.Net.Http.HttpClient> registration.
 
-A component creates the <xref:System.Net.Http.HttpClient> from the <xref:System.Net.Http.IHttpClientFactory> to make unauthenticated or unauthorized requests:
+A component creates the <xref:System.Net.Http.HttpClient> from the <xref:System.Net.Http.IHttpClientFactory> ([Microsoft.Extensions.Http](https://www.nuget.org/packages/Microsoft.Extensions.Http/) package) to make unauthenticated or unauthorized requests:
 
 ```razor
 @inject IHttpClientFactory ClientFactory
