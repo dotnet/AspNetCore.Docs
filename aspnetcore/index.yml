@@ -1,17 +1,17 @@
 ### YamlMime:Hub
 
-title: ASP.NET documentation
+title: ASP.NET Core documentation
 summary: Learn to use ASP.NET Core to create web apps and services that are fast, secure, cross-platform, and cloud-based. Browse tutorials, sample code, fundamentals, API reference and more.
 brand: aspnet
 
 metadata:
-  title: ASP.NET documentation
-  description: Learn to use ASP.NET Core to create web apps and services that are fast, secure, cross-platform, and cloud-based. Browse tutorials, sample code, fundamentals, API reference and more.
+  title: ASP.NET Core documentation
+  description: Learn to use ASP.NET Core to create web apps and services that are fast, secure, cross-platform, and cloud-based. Browse tutorials, sample code, fundamentals, API reference and more. For ASP.NET 4.x documentation, see [ASP.NET](https://docs.microsoft.com/aspnet/overview). 
   ms.product: aspnet
   ms.topic: hub-page
   author: WadePickett
   ms.author: wpickett
-  ms.date: 05/01/2020
+  ms.date: 06/03/2020
 
 # highlightedContent section (optional)
 # Maximum of 8 items
@@ -335,7 +335,7 @@ additionalContent:
       - title: Azure and ASP.NET Core
         links:
           - url: https://docs.microsoft.com/azure/app-service/app-service-web-get-started-dotnet
-            text: "Deploy an ASP.NET web app"
+            text: "Deploy an ASP.NET Core web app"
           - url: https://docs.microsoft.com/visualstudio/containers/container-tools?view=vs-2019.md
             text: "ASP.NET Core and Docker"
           - url: https://docs.microsoft.com/learn/modules/host-a-web-app-with-azure-app-service/
@@ -343,7 +343,7 @@ additionalContent:
           - url: https://docs.microsoft.com/azure/app-service/app-service-web-tutorial-dotnet-sqldatabase
             text: "App Service and Azure SQL Database"
           - url: https://docs.microsoft.com/azure/app-service/app-service-web-tutorial-connect-msi
-            text: "Managed identity with ASP.NET and Azure SQL Database"
+            text: "Managed identity with ASP.NET Core and Azure SQL Database"
           - url: https://docs.microsoft.com/azure/app-service/app-service-web-tutorial-rest-api
             text: "Web API with CORS in Azure App Service"
           - url: https://docs.microsoft.com/learn/modules/capture-application-logs-app-service/
@@ -407,4 +407,4 @@ additionalContent:
           - url: https://docs.microsoft.com/dotnet/architecture/modern-web-apps-azure/development-process-for-azure
             text: Development process for Azure
   # footer (optional)
-  footer: "Contribute to ASP.NET docs. Read our [contributor guide](https://github.com/aspnet/AspNetCore.Docs/blob/master/CONTRIBUTING.md)."
+  footer: "Contribute to ASP.NET Core docs. Read our [contributor guide](https://github.com/aspnet/AspNetCore.Docs/blob/master/CONTRIBUTING.md)."
