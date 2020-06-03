@@ -4,6 +4,7 @@ author: rick-anderson
 description: Learn how to get started with ASP.NET Core MVC.
 ms.author: riande
 ms.date: 10/16/2019
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-mvc-app/start-mvc
 ---
 # Get started with ASP.NET Core MVC
@@ -86,19 +87,24 @@ The tutorial assumes familarity with VS Code. See [Getting started with VS Code]
 
 * Select **File** > **New Solution**.
 
-  ![macOS New solution](./start-mvc/_static/new_project_vsmac.png)
+  ![macOS New solution](start-mvc/_static/new_project_vsmac.png)
 
-* Select **.NET Core** > **App** > **Web Application (Model-View-Controller)** > **Next**.
+* In Visual Studio for Mac earlier than version 8.6, select **.NET Core** > **App** > **Web Application (Model-View-Controller)** > **Next**. In version 8.6 or later, select **Web and Console** > **App** > **Web Application (Model-View-Controller)** > **Next**.
 
-  ![macOS New project dialog](./start-mvc/_static/new_project_mvc_vsmac.png)
+  ![macOS web app template selection](start-mvc/_static/web_app_template_vsmac.png)
 
-* In the **Configure your new ASP.NET Core Web API** dialog, set the  **Target Framework** of **.NET Core 3.1**.
+* Confirm the following configurations:
 
-<!-- 
-  ![macOS .NET Core 2.2 selection](./start-mvc/_static/new_project_22_vsmac.png)
--->
+  * **Target Framework** set to **.NET Core 3.1**.
+  * **Authentication** set to **No Authentication**.
+   
+  Select **Next**.
+
+  ![macOS .NET Core 3.1 selection](start-mvc/_static/new_project_31_vsmac.png)
 
 * Name the project **MvcMovie**, and then select **Create**.
+
+  ![macOS name the project](start-mvc/_static/MvcMovie.png)
 
 ---
 
@@ -238,9 +244,7 @@ The tutorial assumes familarity with VS Code. See [Getting started with VS Code]
 
   ![macOS New solution](./start-mvc/_static/new_project_vsmac.png)
 
-* Select **.NET Core** > **App** > **Web Application (Model-View-Controller)** > **Next**.
-
-  ![macOS New project dialog](./start-mvc/_static/new_project_mvc_vsmac.png)
+* In Visual Studio for Mac earlier than version 8.6, select **.NET Core** > **App** > **Web Application (Model-View-Controller)** > **Next**. In version 8.6 or later, select **Web and Console** > **App** > **Web Application (Model-View-Controller)** > **Next**.
 
 * In the **Configure your new ASP.NET Core Web API** dialog, accept the default **Target Framework** of **.NET Core 2.2**.
 

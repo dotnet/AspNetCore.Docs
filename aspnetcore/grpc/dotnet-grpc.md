@@ -5,6 +5,7 @@ description: Learn about adding, updating, removing, and listing Protobuf refere
 monikerRange: '>= aspnetcore-3.0'
 ms.author: johluo
 ms.date: 10/17/2019
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: grpc/dotnet-grpc
 ---
 # Manage Protobuf references with dotnet-grpc

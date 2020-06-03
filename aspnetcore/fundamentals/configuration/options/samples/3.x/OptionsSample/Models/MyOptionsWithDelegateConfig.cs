@@ -5,7 +5,6 @@
     {
         public MyOptionsWithDelegateConfig()
         {
-            // Set default value.
             Option1 = "value1_from_ctor";
         }
         

@@ -1,6 +1,6 @@
 // Set preprocessor directive(s) to enable the scenarios you want to test.
 // For more information on preprocessor directives and sample apps, see:
-// https://docs.microsoft.com/aspnet/core/#preprocessor-directives-in-sample-code
+// https://docs.microsoft.com/aspnet/core/introduction-to-aspnet-core#preprocessor-directives-in-sample-code
 //
 // DefaultBehavior - default ControllerBase and ApiController behavior.
 // SuppressApiControllerBehavior - use 2.1 behaviors although compat version is 2.2.
@@ -9,6 +9,7 @@
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -35,7 +36,7 @@ namespace WebApiSample
                     options.SuppressInferBindingSourcesForParameters = true;
                     options.SuppressModelStateInvalidFilter = true;
                     options.SuppressMapClientErrors = true;
-                    options.ClientErrorMapping[404].Link =
+                    options.ClientErrorMapping[StatusCodes.Status404NotFound].Link =
                         "https://httpstatuses.com/404";
                 });
             #endregion

@@ -18,7 +18,7 @@ namespace HttpSysSample
                 {
                     webBuilder.UseHttpSys(options =>
                     {
-                        options.AllowSynchronousIO = true;
+                        options.AllowSynchronousIO = false;
                         options.Authentication.Schemes = AuthenticationSchemes.None;
                         options.Authentication.AllowAnonymous = true;
                         options.MaxConnections = null;

@@ -5,11 +5,10 @@ description: Learn how to avoid performance and scaling problems in apps that us
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 11/28/2018
-no-loc: [SignalR]
+ms.date: 01/17/2020
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: signalr/scale
 ---
-
 # ASP.NET Core SignalR hosting and scaling
 
 By [Andrew Stanton-Nurse](https://twitter.com/anurse), [Brady Gaster](https://twitter.com/bradygaster), and [Tom Dykstra](https://github.com/tdykstra),
@@ -80,11 +79,14 @@ For more information see the [Azure SignalR Service documentation](/azure/azure-
 
 ![Redis backplane, message sent from one server to all clients](scale/_static/redis-backplane.png)
 
-The Redis backplane is the recommended scale-out approach for apps hosted on your own infrastructure. Azure SignalR Service isn't a practical option for production use with on-premises apps due to connection latency between your data center and an Azure data center.
+The Redis backplane is the recommended scale-out approach for apps hosted on your own infrastructure. If there is significant connection latency between your data center and an Azure data center, Azure SignalR Service may not be a practical option for on-premises apps with low latency or high throughput requirements.
 
 The Azure SignalR Service advantages noted earlier are disadvantages for the Redis backplane:
 
-* Sticky sessions, also known as [client affinity](/iis/extensions/configuring-application-request-routing-arr/http-load-balancing-using-application-request-routing#step-3---configure-client-affinity), is required. Once a connection is initiated on a server, the connection has to stay on that server.
+* Sticky sessions, also known as [client affinity](/iis/extensions/configuring-application-request-routing-arr/http-load-balancing-using-application-request-routing#step-3---configure-client-affinity), is required, except when **both** of the following are true:
+  * All clients are configured to **only** use WebSockets.
+  * The [SkipNegotiation setting](xref:signalr/configuration#configure-additional-options) is enabled in the client configuration. 
+   Once a connection is initiated on a server, the connection has to stay on that server.
 * A SignalR app must scale out based on number of clients even if few messages are being sent.
 * A SignalR app uses significantly more connection resources than a web app without SignalR.
 
@@ -99,6 +101,22 @@ The preceding conditions make it likely to hit the 10 connection limit on a clie
 
 * Avoid IIS.
 * Use Kestrel or IIS Express as deployment targets.
+
+## Linux with Nginx
+
+Set the proxy's `Connection` and `Upgrade` headers to the following for SignalR WebSockets:
+
+```nginx
+proxy_set_header Upgrade $http_upgrade;
+proxy_set_header Connection $connection_upgrade;
+```
+
+For more information, see [NGINX as a WebSocket Proxy](https://www.nginx.com/blog/websocket-nginx/).
+
+## Third-party SignalR backplane providers
+
+* [NCache](https://www.alachisoft.com/ncache/asp-net-core-signalr.html)
+* [Orleans](https://github.com/OrleansContrib/SignalR.Orleans)
 
 ## Next steps
 

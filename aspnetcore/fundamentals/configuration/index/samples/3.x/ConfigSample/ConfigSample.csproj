@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="MyIniConfig.Development.ini" />
+    <None Remove="MyIniConfig.ini" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="MyIniConfig.Development.ini" />
+    <Content Include="MyIniConfig.ini" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.1" />
+  </ItemGroup>
+
+
+
+</Project>

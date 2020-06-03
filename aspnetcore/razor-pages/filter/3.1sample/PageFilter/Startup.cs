@@ -17,16 +17,13 @@ namespace PageFilter
         public IConfiguration Configuration { get; }
 
         #region snippet2
-
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddRazorPages();
-
-            services.AddMvc(options =>
-            {
-                options.Filters.Add(new SampleAsyncPageFilter(Configuration));
-            });
-
+            services.AddRazorPages()
+                .AddMvcOptions(options =>
+                {
+                    options.Filters.Add(new SampleAsyncPageFilter(Configuration));
+                });
         }
         #endregion
 

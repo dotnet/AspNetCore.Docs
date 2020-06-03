@@ -10,7 +10,7 @@
       .then(data => {
         data.push(4);
           console.log(data);
-    });
+      });
   },
   sayHello: function (dotnetHelper) {
     return dotnetHelper.invokeMethodAsync('SayHello')

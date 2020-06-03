@@ -4,6 +4,7 @@ author: rick-anderson
 description: Learn about using SQL Server LocalDB or SQLite in a ASP.NET Core MVC app.
 ms.author: riande
 ms.date: 8/16/2019
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-mvc-app/working-with-sql
 ---
 # Work with SQL in ASP.NET Core
@@ -225,7 +226,7 @@ Delete all the records in the DB (So the seed method will run). Stop and start t
 
 The app shows the seeded data.
 
-![MVC Movie application open in Microsoft Edge showing movie data](working-with-sql/_static/m55.png)
+![MVC Movie application open in Microsoft Edge showing movie data](working-with-sql/_static/m55_mac.png)
 
 > [!div class="step-by-step"]
 > [Previous](adding-model.md)

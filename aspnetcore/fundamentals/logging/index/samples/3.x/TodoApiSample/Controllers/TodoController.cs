@@ -1,5 +1,8 @@
 ﻿#define LoggerDI // or CreateLogger or LogException or Scopes
 
+// Test this with the code in Program snippet_TemplateCode with all the #defines 
+// commented out. That uses the default template code and default providers.
+
 using System;
 using System.Collections.Generic;
 using System.Linq;

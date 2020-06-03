@@ -4,7 +4,8 @@ author: blowdart
 description: Learn how to configure certificate authentication in ASP.NET Core for IIS and HTTP.sys.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: bdorrans
-ms.date: 12/09/2019
+ms.date: 01/02/2020
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/certauth
 ---
 # Configure certificate authentication in ASP.NET Core
@@ -58,23 +59,33 @@ The `CertificateAuthenticationOptions` handler has some built-in validations tha
 
 ### AllowedCertificateTypes = Chained, SelfSigned, or All (Chained | SelfSigned)
 
-This check validates that only the appropriate certificate type is allowed.
+Default value: `CertificateTypes.Chained`
+
+This check validates that only the appropriate certificate type is allowed. If the app is using self-signed certificates, this option needs to be set to `CertificateTypes.All` or `CertificateTypes.SelfSigned`.
 
 ### ValidateCertificateUse
+
+Default value: `true`
 
 This check validates that the certificate presented by the client has the Client Authentication extended key use (EKU), or no EKUs at all. As the specifications say, if no EKU is specified, then all EKUs are deemed valid.
 
 ### ValidateValidityPeriod
 
+Default value: `true`
+
 This check validates that the certificate is within its validity period. On each request, the handler ensures that a certificate that was valid when it was presented hasn't expired during its current session.
 
 ### RevocationFlag
+
+Default value: `X509RevocationFlag.ExcludeRoot`
 
 A flag that specifies which certificates in the chain are checked for revocation.
 
 Revocation checks are only performed when the certificate is chained to a root certificate.
 
 ### RevocationMode
+
+Default value: `X509RevocationMode.Online`
 
 A flag that specifies how revocation checks are performed.
 
@@ -90,8 +101,8 @@ This isn't possible. Remember the certificate exchange is done that the start of
 
 The handler has two events:
 
-* `OnAuthenticationFailed` &ndash; Called if an exception happens during authentication and allows you to react.
-* `OnCertificateValidated` &ndash; Called after the certificate has been validated, passed validation and a default principal has been created. This event allows you to perform your own validation and augment or replace the principal. For examples include:
+* `OnAuthenticationFailed`: Called if an exception happens during authentication and allows you to react.
+* `OnCertificateValidated`: Called after the certificate has been validated, passed validation and a default principal has been created. This event allows you to perform your own validation and augment or replace the principal. For examples include:
   * Determining if the certificate is known to your services.
   * Constructing your own principal. Consider the following example in `Startup.ConfigureServices`:
 
@@ -221,19 +232,26 @@ See the [host and deploy documentation](xref:host-and-deploy/proxy-load-balancer
 
 ### Use certificate authentication in Azure Web Apps
 
+No forwarding configuration is required for Azure. This is already setup in the certificate forwarding middleware.
+
+> [!NOTE]
+> This requires that the CertificateForwardingMiddleware is present.
+
+### Use certificate authentication in custom web proxies
+
 The `AddCertificateForwarding` method is used to specify:
 
 * The client header name.
 * How the certificate is to be loaded (using the `HeaderConverter` property).
 
-In Azure Web Apps, the certificate is passed as a custom request header named `X-ARR-ClientCert`. To use it, configure certificate forwarding in `Startup.ConfigureServices`:
+In custom web proxies, the certificate is passed as a custom request header, for example `X-SSL-CERT`. To use it, configure certificate forwarding in `Startup.ConfigureServices`:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
 {
     services.AddCertificateForwarding(options =>
     {
-        options.CertificateHeader = "X-ARR-ClientCert";
+        options.CertificateHeader = "X-SSL-CERT";
         options.HeaderConverter = (headerValue) =>
         {
             X509Certificate2 clientCertificate = null;
@@ -311,46 +329,81 @@ namespace AspNetCoreCertificateAuthApi
 }
 ```
 
-#### Implement an HttpClient using a certificate
+#### Implement an HttpClient using a certificate and the HttpClientHandler
 
-The web API client uses an `HttpClient`, which was created using an `IHttpClientFactory` instance. This doesn't provide a way to define a handler for the `HttpClient`, so use an `HttpRequestMessage` to add the certificate to the `X-ARR-ClientCert` request header. The certificate is added as a string using the `GetRawCertDataString` method. 
+The HttpClientHandler could be added directly in the constructor of the HttpClient class. Care should be taken when creating instances of the HttpClient. The HttpClient will then send the certificate with each request.
 
 ```csharp
-private async Task<JsonDocument> GetApiDataAsync()
+private async Task<JsonDocument> GetApiDataUsingHttpClientHandler()
 {
-    try
+    var cert = new X509Certificate2(Path.Combine(_environment.ContentRootPath, "sts_dev_cert.pfx"), "1234");
+    var handler = new HttpClientHandler();
+    handler.ClientCertificates.Add(cert);
+    var client = new HttpClient(handler);
+     
+    var request = new HttpRequestMessage()
     {
-        // Do not hardcode passwords in production code
-        // Use thumbprint or key vault
-        var cert = new X509Certificate2(
-            Path.Combine(_environment.ContentRootPath, 
-                "sts_dev_cert.pfx"), "1234");
-        var client = _clientFactory.CreateClient();
-        var request = new HttpRequestMessage()
-        {
-            RequestUri = new Uri("https://localhost:44379/api/values"),
-            Method = HttpMethod.Get,
-        };
-
-        request.Headers.Add("X-ARR-ClientCert", cert.GetRawCertDataString());
-        var response = await client.SendAsync(request);
-
-        if (response.IsSuccessStatusCode)
-        {
-            var responseContent = await response.Content.ReadAsStringAsync();
-            var data = JsonDocument.Parse(responseContent);
-
-            return data;
-        }
-
-        throw new ApplicationException(
-            $"Status code: {response.StatusCode}, " +
-            $"Error: {response.ReasonPhrase}");
-    }
-    catch (Exception e)
+        RequestUri = new Uri("https://localhost:44379/api/values"),
+        Method = HttpMethod.Get,
+    };
+    var response = await client.SendAsync(request);
+    if (response.IsSuccessStatusCode)
     {
-        throw new ApplicationException($"Exception {e}");
+        var responseContent = await response.Content.ReadAsStringAsync();
+        var data = JsonDocument.Parse(responseContent);
+        return data;
     }
+ 
+    throw new ApplicationException($"Status code: {response.StatusCode}, Error: {response.ReasonPhrase}");
+}
+```
+
+#### Implement an HttpClient using a certificate and a named HttpClient from IHttpClientFactory 
+
+In the following example, a client certificate is added to a HttpClientHandler using the ClientCertificates property from the handler. This handler can then be used in a named instance of a HttpClient using the ConfigurePrimaryHttpMessageHandler method. This is setup in the Startup class in the
+ConfigureServices method.
+
+```csharp
+var clientCertificate = 
+    new X509Certificate2(
+      Path.Combine(_environment.ContentRootPath, "sts_dev_cert.pfx"), "1234");
+ 
+var handler = new HttpClientHandler();
+handler.ClientCertificates.Add(clientCertificate);
+ 
+services.AddHttpClient("namedClient", c =>
+{
+}).ConfigurePrimaryHttpMessageHandler(() => handler);
+```
+
+The IHttpClientFactory can then be used to get the named instance with the handler and the certificate. The CreateClient method with the name of the client defined in the Startup class is used to get the instance. The HTTP request can be sent using the client as required.
+
+```csharp
+private readonly IHttpClientFactory _clientFactory;
+ 
+public ApiService(IHttpClientFactory clientFactory)
+{
+    _clientFactory = clientFactory;
+}
+ 
+private async Task<JsonDocument> GetApiDataWithNamedClient()
+{
+    var client = _clientFactory.CreateClient("namedClient");
+ 
+    var request = new HttpRequestMessage()
+    {
+        RequestUri = new Uri("https://localhost:44379/api/values"),
+        Method = HttpMethod.Get,
+    };
+    var response = await client.SendAsync(request);
+    if (response.IsSuccessStatusCode)
+    {
+        var responseContent = await response.Content.ReadAsStringAsync();
+        var data = JsonDocument.Parse(responseContent);
+        return data;
+    }
+ 
+    throw new ApplicationException($"Status code: {response.StatusCode}, Error: {response.ReasonPhrase}");
 }
 ```
 
@@ -371,6 +424,9 @@ Get-ChildItem -Path cert:\localMachine\my\"The thumbprint..." | Export-PfxCertif
 
 Export-Certificate -Cert cert:\localMachine\my\"The thumbprint..." -FilePath root_ca_dev_damienbod.crt
 ```
+
+> [!NOTE]
+> The `-DnsName` parameter value must match the deployment target of the app. For example, "localhost" for development.
 
 #### Install in the trusted root
 

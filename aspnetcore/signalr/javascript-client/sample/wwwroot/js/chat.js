@@ -4,7 +4,7 @@
 // such as Internet Explorer 11, use a transpiler such as 
 // Babel at http://babeljs.io/. 
 //
-// See Es5-chat.js for a Babel transpiled version of the following code:
+// See Es5-chat.js for a Babel-transpiled version of the following code:
 
 const connection = new signalR.HubConnectionBuilder()
     .withUrl("/chatHub")
@@ -12,7 +12,7 @@ const connection = new signalR.HubConnectionBuilder()
     .build();
 
 connection.on("ReceiveMessage", (user, message) => {
-    const encodedMsg = user + " says " + message;
+    const encodedMsg = `${user} says ${message}`;
     const li = document.createElement("li");
     li.textContent = encodedMsg;
     document.getElementById("messagesList").appendChild(li);
@@ -21,7 +21,7 @@ connection.on("ReceiveMessage", (user, message) => {
 document.getElementById("sendButton").addEventListener("click", event => {
     const user = document.getElementById("userInput").value;
     const message = document.getElementById("messageInput").value;
-    connection.invoke("SendMessage", user, message).catch(err => console.error(err.toString()));
+    connection.invoke("SendMessage", user, message).catch(err => console.error(err));
     event.preventDefault();
 });
 
@@ -39,14 +39,13 @@ connection.onclose(async () => {
     await start();
 });
 
+// Start the connection.
+start();
+
 /* this is here to show an alternative to start, with a then
-connection.start().then(function () {
-    console.log("connected");
-});
+connection.start().then(() => console.log("connected"));
 */
 
 /* this is here to show another alternative to start, with a catch
-connection.start().catch(function (err) {
-    return console.error(err.toString());
-});
+connection.start().catch(err => console.error(err));
 */

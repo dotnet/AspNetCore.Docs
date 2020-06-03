@@ -4,6 +4,7 @@ author: rick-anderson
 description: Shows how to add search to a basic ASP.NET Core MVC app
 ms.author: riande
 ms.date: 12/13/2018
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-mvc-app/search
 ---
 
@@ -96,9 +97,9 @@ Now when you submit a search, the URL contains the search query string. Searchin
 
 The following markup shows the change to the `form` tag:
 
-```html
+```cshtml
 <form asp-controller="Movies" asp-action="Index" method="get">
-   ```
+```
 
 ## Add Search by genre
 

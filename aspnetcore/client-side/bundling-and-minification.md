@@ -4,7 +4,8 @@ author: scottaddie
 description: Learn how to optimize static resources in an ASP.NET Core web application by applying bundling and minification techniques.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 06/17/2019
+ms.date: 04/15/2020
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: client-side/bundling-and-minification
 ---
 # Bundle and minify static assets in ASP.NET Core
@@ -57,7 +58,7 @@ Browsers are fairly verbose with regard to HTTP request headers. The total bytes
 
 ## Choose a bundling and minification strategy
 
-The MVC and Razor Pages project templates provide an out-of-the-box solution for bundling and minification consisting of a JSON configuration file. Third-party tools, such as the [Grunt](xref:client-side/using-grunt) task runner, accomplish the same tasks with a bit more complexity. A third-party tool is a great fit when your development workflow requires processing beyond bundling and minification&mdash;such as linting and image optimization. By using design-time bundling and minification, the minified files are created prior to the app's deployment. Bundling and minifying before deployment provides the advantage of reduced server load. However, it's important to recognize that design-time bundling and minification increases build complexity and only works with static files.
+The MVC and Razor Pages project templates provide a solution for bundling and minification consisting of a JSON configuration file. Third-party tools, such as the [Grunt](xref:client-side/using-grunt) task runner, accomplish the same tasks with a bit more complexity. A third-party tool is a great fit when your development workflow requires processing beyond bundling and minification&mdash;such as linting and image optimization. By using design-time bundling and minification, the minified files are created prior to the app's deployment. Bundling and minifying before deployment provides the advantage of reduced server load. However, it's important to recognize that design-time bundling and minification increases build complexity and only works with static files.
 
 ## Configure bundling and minification
 
@@ -89,109 +90,6 @@ Configuration options include:
 * `includeInProject`: Flag indicating whether to add generated files to project file. **optional**, *default - false*
 * `sourceMap`: Flag indicating whether to generate a source map for the bundled file. **optional**, *default - false*
 * `sourceMapRootPath`: The root path for storing the generated source map file.
-
-## Build-time execution of bundling and minification
-
-The [BuildBundlerMinifier](https://www.nuget.org/packages/BuildBundlerMinifier/) NuGet package enables the execution of bundling and minification at build time. The package injects [MSBuild Targets](/visualstudio/msbuild/msbuild-targets) which run at build and clean time. The *bundleconfig.json* file is analyzed by the build process to produce the output files based on the defined configuration.
-
-> [!NOTE]
-> BuildBundlerMinifier belongs to a community-driven project on GitHub for which Microsoft provides no support. Issues should be filed [here](https://github.com/madskristensen/BundlerMinifier/issues).
-
-# [Visual Studio](#tab/visual-studio)
-
-Add the *BuildBundlerMinifier* package to your project.
-
-Build the project. The following appears in the Output window:
-
-```console
-1>------ Build started: Project: BuildBundlerMinifierApp, Configuration: Debug Any CPU ------
-1>
-1>Bundler: Begin processing bundleconfig.json
-1>  Minified wwwroot/css/site.min.css
-1>  Minified wwwroot/js/site.min.js
-1>Bundler: Done processing bundleconfig.json
-1>BuildBundlerMinifierApp -> C:\BuildBundlerMinifierApp\bin\Debug\netcoreapp2.0\BuildBundlerMinifierApp.dll
-========== Build: 1 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========
-```
-
-Clean the project. The following appears in the Output window:
-
-```console
-1>------ Clean started: Project: BuildBundlerMinifierApp, Configuration: Debug Any CPU ------
-1>
-1>Bundler: Cleaning output from bundleconfig.json
-1>Bundler: Done cleaning output file from bundleconfig.json
-========== Clean: 1 succeeded, 0 failed, 0 skipped ==========
-```
-
-# [.NET Core CLI](#tab/netcore-cli)
-
-Add the *BuildBundlerMinifier* package to your project:
-
-```dotnetcli
-dotnet add package BuildBundlerMinifier
-```
-
-If using ASP.NET Core 1.x, restore the newly added package:
-
-```dotnetcli
-dotnet restore
-```
-
-Build the project:
-
-```dotnetcli
-dotnet build
-```
-
-The following appears:
-
-```console
-Microsoft (R) Build Engine version 15.4.8.50001 for .NET Core
-Copyright (C) Microsoft Corporation. All rights reserved.
-
-
-    Bundler: Begin processing bundleconfig.json
-    Bundler: Done processing bundleconfig.json
-    BuildBundlerMinifierApp -> C:\BuildBundlerMinifierApp\bin\Debug\netcoreapp2.0\BuildBundlerMinifierApp.dll
-```
-
-Clean the project:
-
-```dotnetcli
-dotnet clean
-```
-
-The following output appears:
-
-```console
-Microsoft (R) Build Engine version 15.4.8.50001 for .NET Core
-Copyright (C) Microsoft Corporation. All rights reserved.
-
-
-  Bundler: Cleaning output from bundleconfig.json
-  Bundler: Done cleaning output file from bundleconfig.json
-```
-
----
-
-## Ad hoc execution of bundling and minification
-
-It's possible to run the bundling and minification tasks on an ad hoc basis, without building the project. Add the [BundlerMinifier.Core](https://www.nuget.org/packages/BundlerMinifier.Core/) NuGet package to your project:
-
-[!code-xml[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/BuildBundlerMinifierApp.csproj?range=10)]
-
-> [!NOTE]
-> BundlerMinifier.Core belongs to a community-driven project on GitHub for which Microsoft provides no support. Issues should be filed [here](https://github.com/madskristensen/BundlerMinifier/issues).
-
-This package extends the .NET Core CLI to include the *dotnet-bundle* tool. The following command can be executed in the Package Manager Console (PMC) window or in a command shell:
-
-```dotnetcli
-dotnet bundle
-```
-
-> [!IMPORTANT]
-> NuGet Package Manager adds dependencies to the *.csproj file as `<PackageReference />` nodes. The `dotnet bundle` command is registered with the .NET Core CLI only when a `<DotNetCliToolReference />` node is used. Modify the *.csproj file accordingly.
 
 ## Add files to workflow
 
@@ -252,32 +150,7 @@ The following `environment` tag renders the bundled and minified CSS files when 
 
 There are cases in which an app's bundling and minification workflow requires additional processing. Examples include image optimization, cache busting, and CDN asset processing. To satisfy these requirements, you can convert the bundling and minification workflow to use Gulp.
 
-### Use the Bundler & Minifier extension
-
-The Visual Studio [Bundler & Minifier](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.BundlerMinifier) extension handles the conversion to Gulp.
-
-> [!NOTE]
-> The Bundler & Minifier extension belongs to a community-driven project on GitHub for which Microsoft provides no support. Issues should be filed [here](https://github.com/madskristensen/BundlerMinifier/issues).
-
-Right-click the *bundleconfig.json* file in Solution Explorer and select **Bundler & Minifier** > **Convert To Gulp...**:
-
-![Convert To Gulp context menu item](../client-side/bundling-and-minification/_static/convert-to-gulp.png)
-
-The *gulpfile.js* and *package.json* files are added to the project. The supporting [npm](https://www.npmjs.com/) packages listed in the *package.json* file's `devDependencies` section are installed.
-
-Run the following command in the PMC window to install the Gulp CLI as a global dependency:
-
-```console
-npm i -g gulp-cli
-```
-
-The *gulpfile.js* file reads the *bundleconfig.json* file for the inputs, outputs, and settings.
-
-[!code-javascript[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/gulpfile.js?range=1-12&highlight=10)]
-
-### Convert manually
-
-If Visual Studio and/or the Bundler & Minifier extension aren't available, convert manually.
+### Manually convert the bundling and minification workflow to use Gulp
 
 Add a *package.json* file, with the following `devDependencies`, to the project root:
 

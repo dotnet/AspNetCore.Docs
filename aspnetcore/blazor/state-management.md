@@ -2,24 +2,22 @@
 title: ASP.NET Core Blazor state management
 author: guardrex
 description: Learn how to persist state in Blazor Server apps.
-monikerRange: '>= aspnetcore-3.0'
+monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/05/2019
-no-loc: [Blazor]
+ms.date: 05/19/2020
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/state-management
 ---
 # ASP.NET Core Blazor state management
 
 By [Steve Sanderson](https://github.com/SteveSandersonMS)
 
-[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
-
 Blazor Server is a stateful app framework. Most of the time, the app maintains an ongoing connection to the server. The user's state is held in the server's memory in a *circuit*. 
 
 Examples of state held for a user's circuit include:
 
-* The rendered UI&mdash;the hierarchy of component instances and their most recent render output.
+* The rendered UI: The hierarchy of component instances and their most recent render output.
 * The values of any fields and properties in component instances.
 * Data held in [dependency injection (DI)](xref:fundamentals/dependency-injection) service instances that are scoped to the circuit.
 
@@ -45,12 +43,12 @@ In some scenarios, preserving state across circuits is desirable. An app can ret
 
 In general, maintaining state across circuits applies to scenarios where users are actively creating data, not simply reading data that already exists.
 
-To preserve state beyond a single circuit, *don't merely store the data in the server's memory*. The app must persist the data to some other storage location. State persistence isn't automatic&mdash;you must take steps when developing the app to implement stateful data persistence.
+To preserve state beyond a single circuit, *don't merely store the data in the server's memory*. The app must persist the data to some other storage location. State persistence isn't automatic. You must take steps when developing the app to implement stateful data persistence.
 
 Data persistence is typically only required for high-value state that users have expended effort to create. In the following examples, persisting state either saves time or aids in commercial activities:
 
-* Multistep webform &ndash; It's time-consuming for a user to re-enter data for several completed steps of a multistep process if their state is lost. A user loses state in this scenario if they navigate away from the multistep form and return to the form later.
-* Shopping cart &ndash; Any commercially important component of an app that represents potential revenue can be maintained. A user who loses their state, and thus their shopping cart, may purchase fewer products or services when they return to the site later.
+* Multistep webform: It's time-consuming for a user to re-enter data for several completed steps of a multistep process if their state is lost. A user loses state in this scenario if they navigate away from the multistep form and return to the form later.
+* Shopping cart: Any commercially important component of an app that represents potential revenue can be maintained. A user who loses their state, and thus their shopping cart, may purchase fewer products or services when they return to the site later.
 
 It's usually not necessary to preserve easily-recreated state, such as the username entered into a sign-in dialog that hasn't been submitted.
 
@@ -88,7 +86,7 @@ For transient data representing navigation state, model the data as a part of th
 The contents of the browser's address bar are retained:
 
 * If the user manually reloads the page.
-* If the web server becomes unavailable&mdash;the user is forced to reload the page in order to connect to a different server.
+* If the web server becomes unavailable, and the user is forced to reload the page in order to connect to a different server.
 
 For information on defining URL patterns with the `@page` directive, see <xref:blazor/routing>.
 
@@ -150,7 +148,7 @@ To install the `Microsoft.AspNetCore.ProtectedBrowserStorage` package:
 
 ### Save and load data within a component
 
-In any component that requires loading or saving data to browser storage, use [`@inject`](xref:blazor/dependency-injection#request-a-service-in-a-component) to inject an instance of either of the following:
+In any component that requires loading or saving data to browser storage, use [`@inject`](xref:mvc/views/razor#inject) to inject an instance of either of the following:
 
 * `ProtectedLocalStorage`
 * `ProtectedSessionStorage`
@@ -187,7 +185,7 @@ protected override async Task OnInitializedAsync()
 }
 ```
 
-If the component's parameters include navigation state, call `ProtectedSessionStore.GetAsync` and assign the result in `OnParametersSetAsync`, not `OnInitializedAsync`. `OnInitializedAsync` is only called one time when the component is first instantiated. `OnInitializedAsync` isn't called again later if the user navigates to a different URL while remaining on the same page. For more information, see <xref:blazor/lifecycle>.
+If the component's parameters include navigation state, call `ProtectedSessionStore.GetAsync` and assign the result in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A>, not <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>. <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> is only called one time when the component is first instantiated. <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> isn't called again later if the user navigates to a different URL while remaining on the same page. For more information, see <xref:blazor/lifecycle>.
 
 > [!WARNING]
 > The examples in this section only work if the server doesn't have prerendering enabled. With prerendering enabled, an error is generated similar to:
@@ -234,17 +232,7 @@ During prerendering:
 
 One way to resolve the error is to disable prerendering. This is usually the best choice if the app makes heavy use of browser-based storage. Prerendering adds complexity and doesn't benefit the app because the app can't prerender any useful content until `localStorage` or `sessionStorage` are available.
 
-::: moniker range=">= aspnetcore-3.1"
-
-To disable prerendering, open the *Pages/_Host.cshtml* file and change the call to `render-mode` of the `Component` Tag Helper to `Server`.
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-3.1"
-
-To disable prerendering, open the *Pages/_Host.cshtml* file and change the call to `Html.RenderComponentAsync<App>(RenderMode.Server)`.
-
-::: moniker-end
+To disable prerendering, open the *Pages/_Host.cshtml* file and change the `render-mode` of the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) to <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server>.
 
 Prerendering might be useful for other pages that don't use `localStorage` or `sessionStorage`. To keep prerendering enabled, defer the loading operation until the browser is connected to the circuit. The following is an example for storing a counter value:
 
@@ -327,7 +315,7 @@ else
 
 The `CounterStateProvider` component handles the loading phase by not rendering its child content until loading is complete.
 
-To use the `CounterStateProvider` component, wrap an instance of the component around any other component that requires access to the counter state. To make the state accessible to all components in an app, wrap the `CounterStateProvider` component around the `Router` in the `App` component (*App.razor*):
+To use the `CounterStateProvider` component, wrap an instance of the component around any other component that requires access to the counter state. To make the state accessible to all components in an app, wrap the `CounterStateProvider` component around the <xref:Microsoft.AspNetCore.Components.Routing.Router> in the `App` component (*App.razor*):
 
 ```razor
 <CounterStateProvider>

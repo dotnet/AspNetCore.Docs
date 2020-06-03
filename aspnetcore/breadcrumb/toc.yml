@@ -1,0 +1,70 @@
+- name: Docs
+  tocHref: /
+  topicHref: /
+  items:
+  - name: .NET
+    tocHref: /dotnet/
+    topicHref: /dotnet/index
+    items:
+    - name: ASP.NET Core
+      tocHref: /aspnet/core/
+      topicHref: /aspnet/core/index
+
+  - name: ASP.NET
+    tocHref: /dotnet/
+    topicHref: /aspnet/core/index
+    items:
+      - name: ASP.NET Core
+        tocHref: /dotnet/core/
+        topicHref: /aspnet/core/index
+      - name: ASP.NET Core
+        tocHref: /dotnet/standard/
+        topicHref: /aspnet/core/index
+
+  - name: ASP.NET
+    tocHref: /ef/
+    topicHref: /aspnet/core/index
+    items:
+      - name: ASP.NET Core
+        tocHref: /ef/core/
+        topicHref: /aspnet/core/index
+
+  - name: ASP.NET
+    tocHref: /visualstudio/
+    topicHref: /aspnet/core/index
+    items:
+      - name: ASP.NET Core
+        tocHref: /visualstudio/debugger/
+        topicHref: /aspnet/core/index
+      - name: ASP.NET Core
+        tocHref: /visualstudio/mac/
+        topicHref: /aspnet/core/index
+      - name: ASP.NET Core
+        tocHref: /visualstudio/containers/
+        topicHref: /aspnet/core/index
+
+  - name: ASP.NET
+    tocHref: /azure/
+    topicHref: /aspnet/core/index
+    items:
+      - name: ASP.NET Core
+        tocHref: /azure/visual-studio/
+        topicHref: /aspnet/core/index
+      - name: ASP.NET Core
+        tocHref: /azure/devops/
+        topicHref: /aspnet/core/index
+      - name: ASP.NET Core
+        tocHref: /azure/devops/pipelines
+        topicHref: /aspnet/core/index
+      - name: ASP.NET Core
+        tocHref: /azure/app-service/
+        topicHref: /aspnet/core/index
+      - name: ASP.NET Core
+        tocHref: /azure/azure-signalr/
+        topicHref: /aspnet/core/index
+      - name: ASP.NET Core
+        tocHref: /azure/azure-monitor/
+        topicHref: /aspnet/core/index
+      - name: ASP.NET Core
+        tocHref: /azure/azure-monitor/app/
+        topicHref: /aspnet/core/index

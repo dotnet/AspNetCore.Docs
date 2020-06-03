@@ -1,0 +1,1 @@
+If you are reading this in a language other than English, let us know in this [GitHub discussion issue](https://github.com/aspnet/AspNetCore.Docs/issues/16455) if you'd like to see the code comments in your native language.

@@ -1,0 +1,19 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<p>
+    @ViewData["configProviders"]
+</p>
+
+<div>
+    Environment:
+    <environment include="Development">
+        Development
+    </environment>
+    <environment include="Production ">
+        Production
+    </environment>
+</div>
