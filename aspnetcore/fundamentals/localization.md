@@ -3,7 +3,7 @@ title: Globalization and localization in ASP.NET Core
 author: rick-anderson
 description: Learn how ASP.NET Core provides services and middleware for localizing content into different languages and cultures.
 ms.author: riande
-ms.date: 11/30/2019
+ms.date: 6/6/2020
 uid: fundamentals/localization
 ---
 # Globalization and localization in ASP.NET Core
