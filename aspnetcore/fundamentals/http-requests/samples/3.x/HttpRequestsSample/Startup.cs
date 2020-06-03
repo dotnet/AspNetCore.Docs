@@ -14,6 +14,8 @@ namespace HttpRequestsSample
             services.AddDbContext<TodoContext>(options =>
                 options.UseInMemoryDatabase("TodoItems"));
 
+            services.AddHttpClient();
+
             services.AddControllers();
             services.AddRazorPages();
         }

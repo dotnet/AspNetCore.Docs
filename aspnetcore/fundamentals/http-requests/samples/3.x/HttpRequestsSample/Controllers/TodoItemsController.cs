@@ -19,7 +19,7 @@ namespace HttpRequestsSample.Controllers
 
         [HttpGet]
         public async Task<IEnumerable<TodoItem>> Get() =>
-             await _context.TodoItems.ToListAsync();
+             await _context.TodoItems.AsNoTracking().ToListAsync();
 
         [HttpGet("{id}")]
         public async Task<ActionResult<TodoItem>> Get(long id)

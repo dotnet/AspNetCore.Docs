@@ -31,9 +31,10 @@ namespace HttpRequestsSample
 
         private static void SeedContext(TodoContext context)
         {
-            context.TodoItems.Add(new TodoItem { Name = "Todo Item #1" });
-            context.TodoItems.Add(new TodoItem { Name = "Todo Item #2" });
-            context.TodoItems.Add(new TodoItem { Name = "Todo Item #3" });
+            context.TodoItems.Add(new TodoItem { Name = "Task #1", IsComplete = true });
+            context.TodoItems.Add(new TodoItem { Name = "Task #2" });
+            context.TodoItems.Add(new TodoItem { Name = "Task #3" });
+            context.TodoItems.Add(new TodoItem { Name = "Task #4", IsComplete = true });
         }
     }
 }
