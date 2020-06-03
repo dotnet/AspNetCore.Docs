@@ -47,9 +47,9 @@ highlightedContent:
       itemType: get-started
       url: tutorials/signalr.md
     # Card
-    - title: "Create your first data-driven MVC web app"
-      itemType: get-started
-      url: tutorials/first-mvc-app//start-mvc.md
+    - title: "ASP.NET 4.x Documentation"
+      itemType: overview
+      url: https://docs.microsoft.com/aspnet/overview
 
 # conceptualContent section (optional)
 conceptualContent:
