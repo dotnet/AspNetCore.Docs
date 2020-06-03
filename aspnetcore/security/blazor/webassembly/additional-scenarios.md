@@ -570,43 +570,48 @@ The `Authentication` component (*Pages/Authentication.razor*) saves and restores
 
 ```razor
 @page "/authentication/{action}"
-@inject JSRuntime JS
+@inject IJSRuntime JS
 @inject StateContainer State
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 
-<RemoteAuthenticatorViewCore Action="@Action" 
-    AuthenticationState="AuthenticationState" OnLogInSucceeded="RestoreState" 
-    OnLogOutSucceeded="RestoreState" />
+<RemoteAuthenticatorViewCore Action="@Action"
+                             TAuthenticationState="ApplicationAuthenticationState"
+                             AuthenticationState="AuthenticationState"
+                             OnLogInSucceeded="RestoreState"
+                             OnLogOutSucceeded="RestoreState" />
 
 @code {
     [Parameter]
     public string Action { get; set; }
 
+    public ApplicationAuthenticationState AuthenticationState { get; set; } =
+        new ApplicationAuthenticationState();
+
+    protected async override Task OnInitializedAsync()
+    {
+        if (RemoteAuthenticationActions.IsAction(RemoteAuthenticationActions.LogIn,
+            Action))
+        {
+            AuthenticationState.Id = Guid.NewGuid().ToString();
+            await JS.InvokeVoidAsync("sessionStorage.setItem",
+                AuthenticationState.Id, State.ToStore());
+        }
+    }
+
+    private async Task RestoreState(ApplicationAuthenticationState state)
+    {
+        if (state.Id != null)
+        {
+            var stored = await JS.InvokeAsync<string>("sessionStorage.getItem",
+                state.Id);
+            State.FromStore(stored);
+        }
+    }
+
     public class ApplicationAuthenticationState : RemoteAuthenticationState
     {
         public string Id { get; set; }
     }
-
-    protected async override Task OnInitializedAsync()
-    {
-        if (RemoteAuthenticationActions.IsAction(RemoteAuthenticationActions.LogIn, 
-            Action))
-        {
-            AuthenticationState.Id = Guid.NewGuid().ToString();
-            await JS.InvokeVoidAsync("sessionStorage.setKey", 
-                AuthenticationState.Id, State.Store());
-        }
-    }
-
-    public async Task RestoreState(ApplicationAuthenticationState state)
-    {
-        var stored = await JS.InvokeAsync<string>("sessionStorage.getKey", 
-            state.Id);
-        State.FromStore(stored);
-    }
-
-    public ApplicationAuthenticationState AuthenticationState { get; set; } = 
-        new ApplicationAuthenticationState();
 }
 ```
 
