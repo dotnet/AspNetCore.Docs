@@ -5,6 +5,7 @@ ms.author: riande
 description: Discover the ASP.NET Core Link Tag Helper attributes and the role each attribute plays in extending behavior of the HTML Link tag.
 ms.custom: mvc
 ms.date: 09/24/2019
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/views/tag-helpers/builtin-th/link-tag-helper
 ---
 # Link Tag Helper in ASP.NET Core
@@ -50,10 +51,6 @@ The CSS property name to use for the fallback test. For more information, see <x
 ### asp-fallback-test-value
 
 The CSS property value to use for the fallback test. For more information, see <xref:Microsoft.AspNetCore.Mvc.TagHelpers.LinkTagHelper.FallbackTestValue>.
-
-### asp-fallback-test-value
-
-The CSS property value to use for the fallback test. For more information, see <xref:Microsoft.AspNetCore.Mvc.TagHelpers.LinkTagHelper.FallbackTestValue>
 
 ## Additional resources
 

@@ -1,22 +1,23 @@
 ---
 title: Upload files in ASP.NET Core
-author: guardrex
+author: rick-anderson
 description: How to use model binding and streaming to upload files in ASP.NET Core MVC.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/04/2019
+ms.date: 05/03/2020
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/models/file-uploads
 ---
 # Upload files in ASP.NET Core
 
-By [Luke Latham](https://github.com/guardrex), [Steve Smith](https://ardalis.com/), and [Rutger Storm](https://github.com/rutix)
+By [Steve Smith](https://ardalis.com/) and [Rutger Storm](https://github.com/rutix)
 
 ::: moniker range=">= aspnetcore-3.0"
 
 ASP.NET Core supports uploading one or more files using buffered model binding for smaller files and unbuffered streaming for larger files.
 
-[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Security considerations
 
@@ -49,7 +50,7 @@ Security steps that reduce the likelihood of a successful attack are:
 >
 > For information on reducing the attack surface area when accepting files from users, see the following resources:
 >
-> * [Unrestricted File Upload](https://www.owasp.org/index.php/Unrestricted_File_Upload)
+> * [Unrestricted File Upload](https://owasp.org/www-community/vulnerabilities/Unrestricted_File_Upload)
 > * [Azure Security: Ensure appropriate controls are in place when accepting files from users](/azure/security/azure-security-threat-modeling-tool-input-validation#controls-users)
 
 For more information on implementing security measures, including examples from the sample app, see the [Validation](#validation) section.
@@ -77,7 +78,7 @@ Common storage options for files include:
   * Services usually offer improved scalability and resiliency over on-premises solutions that are usually subject to single points of failure.
   * Services are potentially lower cost in large storage infrastructure scenarios.
 
-  For more information, see [Quickstart: Use .NET to create a blob in object storage](/azure/storage/blobs/storage-quickstart-blobs-dotnet). The topic demonstrates <xref:Microsoft.Azure.Storage.File.CloudFile.UploadFromFileAsync*>, but <xref:Microsoft.Azure.Storage.File.CloudFile.UploadFromStreamAsync*> can be used to save a <xref:System.IO.FileStream> to blob storage when working with a <xref:System.IO.Stream>.
+  For more information, see [Quickstart: Use .NET to create a blob in object storage](/azure/storage/blobs/storage-quickstart-blobs-dotnet).
 
 ## File upload scenarios
 
@@ -220,7 +221,7 @@ The individual files uploaded to the server can be accessed through [Model Bindi
 > string untrustedFileName = Path.GetFileName(pathName);
 > ```
 >
-> The examples provided thus far don't take into account security considerations. Additional information is provided by the following sections and the [sample app](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/):
+> The examples provided thus far don't take into account security considerations. Additional information is provided by the following sections and the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/):
 >
 > * [Security considerations](#security-considerations)
 > * [Validation](#validation)
@@ -264,7 +265,7 @@ public async Task<IActionResult> OnPostUploadAsync(List<IFormFile> files)
     // Process uploaded files
     // Don't rely on or trust the FileName property without validation.
 
-    return Ok(new { count = files.Count, size, filePath });
+    return Ok(new { count = files.Count, size });
 }
 ```
 
@@ -391,7 +392,7 @@ The preceding example is similar to a scenario demonstrated in the sample app:
 >
 > Don't rely on or trust the `FileName` property of <xref:Microsoft.AspNetCore.Http.IFormFile> without validation. The `FileName` property should only be used for display purposes and only after HTML encoding.
 >
-> The examples provided don't take into account security considerations. Additional information is provided by the following sections and the [sample app](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/):
+> The examples provided don't take into account security considerations. Additional information is provided by the following sections and the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/):
 >
 > * [Security considerations](#security-considerations)
 > * [Validation](#validation)
@@ -639,14 +640,14 @@ For apps hosted by Kestrel, the default maximum request body size is 30,000,000 
 ```csharp
 public static IHostBuilder CreateHostBuilder(string[] args) =>
     Host.CreateDefaultBuilder(args)
-        .ConfigureKestrel((context, options) =>
-        {
-            // Handle requests up to 50 MB
-            options.Limits.MaxRequestBodySize = 52428800;
-        })
         .ConfigureWebHostDefaults(webBuilder =>
         {
-            webBuilder.UseStartup<Startup>();
+            webBuilder.ConfigureKestrel((context, options) =>
+            {
+                // Handle requests up to 50 MB
+                options.Limits.MaxRequestBodySize = 52428800;
+            })
+            .UseStartup<Startup>();
         });
 ```
 
@@ -710,7 +711,7 @@ The default request limit (`maxAllowedContentLength`) is 30,000,000 bytes, which
 
 This setting only applies to IIS. The behavior doesn't occur by default when hosting on Kestrel. For more information, see [Request Limits \<requestLimits>](/iis/configuration/system.webServer/security/requestFiltering/requestLimits/).
 
-Limitations in the ASP.NET Core Module or presence of the IIS Request Filtering Module may limit uploads to either 2 or 4 GB. For more information, see [Unable to upload file greater than 2GB in size (aspnet/AspNetCore #2711)](https://github.com/aspnet/AspNetCore/issues/2711).
+Limitations in the ASP.NET Core Module or presence of the IIS Request Filtering Module may limit uploads to either 2 or 4 GB. For more information, see [Unable to upload file greater than 2GB in size (dotnet/AspNetCore #2711)](https://github.com/dotnet/AspNetCore/issues/2711).
 
 ## Troubleshoot
 
@@ -745,7 +746,7 @@ The examples in this topic rely upon <xref:System.IO.MemoryStream> to hold the u
 
 ASP.NET Core supports uploading one or more files using buffered model binding for smaller files and unbuffered streaming for larger files.
 
-[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Security considerations
 
@@ -778,7 +779,7 @@ Security steps that reduce the likelihood of a successful attack are:
 >
 > For information on reducing the attack surface area when accepting files from users, see the following resources:
 >
-> * [Unrestricted File Upload](https://www.owasp.org/index.php/Unrestricted_File_Upload)
+> * [Unrestricted File Upload](https://owasp.org/www-community/vulnerabilities/Unrestricted_File_Upload)
 > * [Azure Security: Ensure appropriate controls are in place when accepting files from users](/azure/security/azure-security-threat-modeling-tool-input-validation#controls-users)
 
 For more information on implementing security measures, including examples from the sample app, see the [Validation](#validation) section.
@@ -949,7 +950,7 @@ The individual files uploaded to the server can be accessed through [Model Bindi
 > string untrustedFileName = Path.GetFileName(pathName);
 > ```
 >
-> The examples provided thus far don't take into account security considerations. Additional information is provided by the following sections and the [sample app](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/):
+> The examples provided thus far don't take into account security considerations. Additional information is provided by the following sections and the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/):
 >
 > * [Security considerations](#security-considerations)
 > * [Validation](#validation)
@@ -993,7 +994,7 @@ public async Task<IActionResult> OnPostUploadAsync(List<IFormFile> files)
     // Process uploaded files
     // Don't rely on or trust the FileName property without validation.
 
-    return Ok(new { count = files.Count, size, filePath });
+    return Ok(new { count = files.Count, size });
 }
 ```
 
@@ -1120,7 +1121,7 @@ The preceding example is similar to a scenario demonstrated in the sample app:
 >
 > Don't rely on or trust the `FileName` property of <xref:Microsoft.AspNetCore.Http.IFormFile> without validation. The `FileName` property should only be used for display purposes and only after HTML encoding.
 >
-> The examples provided don't take into account security considerations. Additional information is provided by the following sections and the [sample app](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/):
+> The examples provided don't take into account security considerations. Additional information is provided by the following sections and the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/file-uploads/samples/):
 >
 > * [Security considerations](#security-considerations)
 > * [Validation](#validation)
@@ -1432,7 +1433,7 @@ The default request limit (`maxAllowedContentLength`) is 30,000,000 bytes, which
 
 This setting only applies to IIS. The behavior doesn't occur by default when hosting on Kestrel. For more information, see [Request Limits \<requestLimits>](/iis/configuration/system.webServer/security/requestFiltering/requestLimits/).
 
-Limitations in the ASP.NET Core Module or presence of the IIS Request Filtering Module may limit uploads to either 2 or 4 GB. For more information, see [Unable to upload file greater than 2GB in size (aspnet/AspNetCore #2711)](https://github.com/aspnet/AspNetCore/issues/2711).
+Limitations in the ASP.NET Core Module or presence of the IIS Request Filtering Module may limit uploads to either 2 or 4 GB. For more information, see [Unable to upload file greater than 2GB in size (dotnet/AspNetCore #2711)](https://github.com/dotnet/AspNetCore/issues/2711).
 
 ## Troubleshoot
 
@@ -1466,6 +1467,7 @@ The examples in this topic rely upon <xref:System.IO.MemoryStream> to hold the u
 
 ## Additional resources
 
-* [Unrestricted File Upload](https://www.owasp.org/index.php/Unrestricted_File_Upload)
+* [HTTP connection request draining](xref:fundamentals/servers/kestrel#http11-request-draining)
+* [Unrestricted File Upload](https://owasp.org/www-community/vulnerabilities/Unrestricted_File_Upload)
 * [Azure Security: Security Frame: Input Validation | Mitigations](/azure/security/azure-security-threat-modeling-tool-input-validation)
 * [Azure Cloud Design Patterns: Valet Key pattern](/azure/architecture/patterns/valet-key)

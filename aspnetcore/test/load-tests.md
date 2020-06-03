@@ -5,15 +5,16 @@ description: Learn about several notable tools and approaches for load testing a
 ms.author: riande
 ms.custom: mvc
 ms.date: 4/05/2019
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: test/loadtests
 ---
 # ASP.NET Core load/stress testing
 
 Load testing and stress testing are important to ensure a web app is performant and scalable. Their goals are different even though they often share similar tests.
 
-**Load tests** &ndash; Test whether the app can handle a specified load of users for a certain scenario while still satisfying the response goal. The app is run under normal conditions.
+**Load tests**: Test whether the app can handle a specified load of users for a certain scenario while still satisfying the response goal. The app is run under normal conditions.
 
-**Stress tests** &ndash; Test app stability when running under extreme conditions, often for a long period of time. The tests place high user load, either spikes or gradually increasing load, on the app, or they limit the app's computing resources.
+**Stress tests**: Test app stability when running under extreme conditions, often for a long period of time. The tests place high user load, either spikes or gradually increasing load, on the app, or they limit the app's computing resources.
 
 Stress tests determine if an app under stress can recover from failure and gracefully return to expected behavior. Under stress, the app isn't run under normal conditions.
 
@@ -34,7 +35,9 @@ The following list contains third-party web performance tools with various featu
 * [Apache JMeter](https://jmeter.apache.org/)
 * [ApacheBench (ab)](https://httpd.apache.org/docs/2.4/programs/ab.html)
 * [Gatling](https://gatling.io/)
+* [k6](https://k6.io)
 * [Locust](https://locust.io/)
 * [West Wind WebSurge](https://websurge.west-wind.com/)
 * [Netling](https://github.com/hallatore/Netling)
 * [Vegeta](https://github.com/tsenart/vegeta)
+

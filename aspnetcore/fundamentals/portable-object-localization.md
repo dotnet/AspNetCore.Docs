@@ -4,6 +4,7 @@ author: sebastienros
 description: This article introduces Portable Object files and outlines steps for using them in an ASP.NET Core application with the Orchard Core framework.
 ms.author: scaddie
 ms.date: 09/26/2017
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/portable-object-localization
 ---
 # Configure portable object localization in ASP.NET Core
@@ -14,7 +15,7 @@ This article walks through the steps for using Portable Object (PO) files in an 
 
 **Note:** Orchard Core isn't a Microsoft product. Consequently, Microsoft provides no support for this feature.
 
-[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/localization/sample/POLocalization) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/localization/sample/POLocalization) ([how to download](xref:index#how-to-download-a-sample))
 
 ## What is a PO file?
 

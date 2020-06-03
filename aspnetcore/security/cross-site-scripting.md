@@ -4,6 +4,7 @@ author: rick-anderson
 description: Learn about Cross-Site Scripting (XSS) and techniques for addressing this vulnerability in an ASP.NET Core app.
 ms.author: riande
 ms.date: 10/02/2018
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/cross-site-scripting
 ---
 # Prevent Cross-Site Scripting (XSS) in ASP.NET Core
@@ -103,10 +104,10 @@ This will produce the following HTML
 
 Which, when it runs, will render the following:
 
-```none
+```
 <"123">
    <"123">
-   ```
+```
 
 You can also call the JavaScript encoder directly:
 
@@ -121,15 +122,15 @@ You can also call the JavaScript encoder directly:
    <script>
        document.write("@encoder.Encode(untrustedInput)");
    </script>
-   ```
+```
 
 This will render in the browser as follows:
 
 ```html
 <script>
-       document.write("\u003C\u0022123\u0022\u003E");
-   </script>
-   ```
+    document.write("\u003C\u0022123\u0022\u003E");
+</script>
+```
 
 >[!WARNING]
 > Don't concatenate untrusted input in JavaScript to create DOM elements. You should use `createElement()` and assign property values appropriately such as `node.TextContent=`, or use `element.SetAttribute()`/`element[attribute]=` otherwise you expose yourself to DOM-based XSS.

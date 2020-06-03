@@ -5,6 +5,7 @@ description: This tutorial provides a walkthrough of adding Swagger to generate 
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 12/07/2019
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/web-api-help-pages-using-swagger
 ---
 # ASP.NET Core web API help pages with Swagger / OpenAPI

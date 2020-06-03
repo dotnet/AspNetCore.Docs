@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 11/08/2019
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/identity/spa
 ---
 # Authentication and authorization for SPAs
@@ -52,7 +53,7 @@ The `Startup` class has the following additions:
         .AddEntityFrameworkStores<ApplicationDbContext>();
     ```
 
-  * IdentityServer with an additional `AddApiAuthorization` helper method that setups some default ASP.NET Core conventions on top of IdentityServer:
+  * IdentityServer with an additional `AddApiAuthorization` helper method that sets up some default ASP.NET Core conventions on top of IdentityServer:
 
     ```csharp
     services.AddIdentityServer()
@@ -264,9 +265,11 @@ To deploy the app to production, the following resources need to be provisioned:
   * It can be generated through standard tools like PowerShell or OpenSSL.
   * It can be installed into the certificate store on the target machines or deployed as a *.pfx* file with a strong password.
 
-### Example: Deploy to Azure Websites
+### Example: Deploy to Azure App Service
 
-This section describes deploying the app to Azure websites using a certificate stored in the certificate store. To modify the app to load a certificate from the certificate store, the App Service plan needs to be on at least the Standard tier when you configure in a later step. In the app's *appsettings.json* file, modify the `IdentityServer` section to include the key details:
+This section describes deploying the app to Azure App Service using a certificate stored in the certificate store. To modify the app to load a certificate from the certificate store, a Standard tier service plan or better is required when you configure the app in the Azure portal in a later step.
+
+In the app's *appsettings.json* file, modify the `IdentityServer` section to include the key details:
 
 ```json
 "IdentityServer": {
@@ -279,17 +282,17 @@ This section describes deploying the app to Azure websites using a certificate s
 }
 ```
 
-* The name property on certificate corresponds with the distinguished subject for the certificate.
-* The store location represents where to load the certificate from (`CurrentUser` or `LocalMachine`).
 * The store name represents the name of the certificate store where the certificate is stored. In this case, it points to the personal user store.
+* The store location represents where to load the certificate from (`CurrentUser` or `LocalMachine`).
+* The name property on certificate corresponds with the distinguished subject for the certificate.
 
-To deploy to Azure Websites, deploy the app following the steps in [Deploy the app to Azure](xref:tutorials/publish-to-azure-webapp-using-vs#deploy-the-app-to-azure) to create the necessary Azure resources and deploy the app to production.
+To deploy to Azure App Service, follow the steps in [Deploy the app to Azure](xref:tutorials/publish-to-azure-webapp-using-vs#deploy-the-app-to-azure), which explains how to create the necessary Azure resources and deploy the app to production.
 
-After following the preceding instructions, the app is deployed to Azure but isn't yet functional. The certificate used by the app still needs to be set up. Locate the thumbprint for the certificate to be used, and follow the steps described in [Load your certificates](/azure/app-service/app-service-web-ssl-cert-load#load-the-certificate-in-code).
+After following the preceding instructions, the app is deployed to Azure but isn't yet functional. The certificate used by the app must be configured in the Azure portal. Locate the thumbprint for the certificate and follow the steps described in [Load your certificates](/azure/app-service/app-service-web-ssl-cert-load#load-the-certificate-in-code).
 
-While these steps mention SSL, there's a **Private certificates** section on the portal where you can upload the provisioned certificate to use with the app.
+While these steps mention SSL, there's a **Private certificates** section in the Azure portal where you can upload the provisioned certificate to use with the app.
 
-After this step, restart the app and it should be functional.
+After configuring the app and the app's settings in the Azure portal, restart the app in the portal.
 
 ## Other configuration options
 

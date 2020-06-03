@@ -5,6 +5,7 @@ description: Discover how to add validation to a Razor Page in ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
 ms.date: 7/23/2019
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/razor-pages/validation
 ---
 # Add validation to an ASP.NET Core Razor Page
@@ -145,7 +146,7 @@ The following code shows combining attributes on one line:
 
 ### Apply migrations
 
-The DataAnnotations applied to the class change the schema. For example, the DataAnnotations applied to the `Title` field:
+The DataAnnotations applied to the class changes the schema. For example, the DataAnnotations applied to the `Title` field:
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Models/MovieDateRatingDA.cs?name=snippet11)]
 
@@ -156,7 +157,7 @@ The DataAnnotations applied to the class change the schema. For example, the Dat
 
 The `Movie` table currently has the following schema:
 
-``` sql
+```sql
 CREATE TABLE [dbo].[Movie] (
     [ID]          INT             IDENTITY (1, 1) NOT NULL,
     [Title]       NVARCHAR (MAX)  NULL,
@@ -184,7 +185,7 @@ Update-Database
 
 The updated `Movie` table has the following schema:
 
-``` sql
+```sql
 CREATE TABLE [dbo].[Movie] (
     [ID]          INT             IDENTITY (1, 1) NOT NULL,
     [Title]       NVARCHAR (60)   NOT NULL,

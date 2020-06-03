@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR;
@@ -11,6 +12,7 @@ namespace SignalRChat.Hubs
         public async IAsyncEnumerable<int> Counter(
             int count,
             int delay,
+            [EnumeratorCancellation]
             CancellationToken cancellationToken)
         {
             for (var i = 0; i < count; i++)

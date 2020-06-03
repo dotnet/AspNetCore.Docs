@@ -5,6 +5,7 @@ description: Learn about authentication, authorization, and security basics in A
 ms.author: riande
 ms.custom: mvc
 ms.date: 10/24/2018
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/index
 ---
 # Overview of ASP.NET Core Security
@@ -13,7 +14,7 @@ ASP.NET Core enables developers to easily configure and manage security for thei
 
 ## ASP.NET Core security features
 
-ASP.NET Core provides many tools and libraries to secure your apps including built-in Identity providers but you can use 3rd party identity services such as Facebook, Twitter, or LinkedIn. With ASP.NET Core, you can easily manage app secrets, which are a way to store and use confidential information without having to expose it in the code.
+ASP.NET Core provides many tools and libraries to secure your apps including built-in identity providers, but you can use third-party identity services such as Facebook, Twitter, and LinkedIn. With ASP.NET Core, you can easily manage app secrets, which are a way to store and use confidential information without having to expose it in the code.
 
 ## Authentication vs. Authorization
 

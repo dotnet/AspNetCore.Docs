@@ -2,22 +2,20 @@
 title: Host and deploy ASP.NET Core Blazor WebAssembly
 author: guardrex
 description: Learn how to host and deploy a Blazor app using ASP.NET Core, Content Delivery Networks (CDN), file servers, and GitHub Pages.
-monikerRange: '>= aspnetcore-3.0'
+monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/15/2019
-no-loc: [Blazor]
+ms.date: 05/28/2020
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: host-and-deploy/blazor/webassembly
 ---
 # Host and deploy ASP.NET Core Blazor WebAssembly
 
-By [Luke Latham](https://github.com/guardrex), [Rainer Stropek](https://www.timecockpit.com), and [Daniel Roth](https://github.com/danroth27)
-
-[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
+By [Luke Latham](https://github.com/guardrex), [Rainer Stropek](https://www.timecockpit.com), [Daniel Roth](https://github.com/danroth27), [Ben Adams](https://twitter.com/ben_a_adams), and [Safia Abdalla](https://safia.rocks)
 
 With the [Blazor WebAssembly hosting model](xref:blazor/hosting-models#blazor-webassembly):
 
-* The Blazor app, its dependencies, and the .NET runtime are downloaded to the browser.
+* The Blazor app, its dependencies, and the .NET runtime are downloaded to the browser in parallel.
 * The app is executed directly on the browser UI thread.
 
 The following deployment strategies are supported:
@@ -25,12 +23,29 @@ The following deployment strategies are supported:
 * The Blazor app is served by an ASP.NET Core app. This strategy is covered in the [Hosted deployment with ASP.NET Core](#hosted-deployment-with-aspnet-core) section.
 * The Blazor app is placed on a static hosting web server or service, where .NET isn't used to serve the Blazor app. This strategy is covered in the [Standalone deployment](#standalone-deployment) section, which includes information on hosting a Blazor WebAssembly app as an IIS sub-app.
 
+## Precompression
+
+When a Blazor WebAssembly app is published, the output is precompressed to reduce the app's size and remove the need for runtime compression. The following compression algorithms are used:
+
+* [Brotli](https://tools.ietf.org/html/rfc7932) (highest level)
+* [Gzip](https://tools.ietf.org/html/rfc1952)
+
+To disable compression, add the `BlazorEnableCompression` MSBuild property to the app's project file and set the value to `false`:
+
+```xml
+<PropertyGroup>
+  <BlazorEnableCompression>false</BlazorEnableCompression>
+</PropertyGroup>
+```
+
+For IIS *web.config* compression configuration, see the [IIS: Brotli and Gzip compression](#brotli-and-gzip-compression) section.
+
 ## Rewrite URLs for correct routing
 
 Routing requests for page components in a Blazor WebAssembly app isn't as straightforward as routing requests in a Blazor Server, hosted app. Consider a Blazor WebAssembly app with two components:
 
-* *Main.razor* &ndash; Loads at the root of the app and contains a link to the `About` component (`href="About"`).
-* *About.razor* &ndash; `About` component.
+* *Main.razor*: Loads at the root of the app and contains a link to the `About` component (`href="About"`).
+* *About.razor*: `About` component.
 
 When the app's default document is requested using the browser's address bar (for example, `https://www.contoso.com/`):
 
@@ -51,7 +66,7 @@ When deploying to an IIS server, you can use the URL Rewrite Module with the app
 
 A *hosted deployment* serves the Blazor WebAssembly app to browsers from an [ASP.NET Core app](xref:index) that runs on a web server.
 
-The Blazor app is included with the ASP.NET Core app in the published output so that the two apps are deployed together. A web server that is capable of hosting an ASP.NET Core app is required. For a hosted deployment, Visual Studio includes the **Blazor WebAssembly App** project template (`blazorwasm` template when using the [dotnet new](/dotnet/core/tools/dotnet-new) command) with the **Hosted** option selected.
+The client Blazor WebAssembly app is published into the */bin/Release/{TARGET FRAMEWORK}/publish/wwwroot* folder of the server app, along with any other static web assets of the server app. The two apps are deployed together. A web server that is capable of hosting an ASP.NET Core app is required. For a hosted deployment, Visual Studio includes the **Blazor WebAssembly App** project template (`blazorwasm` template when using the [dotnet new](/dotnet/core/tools/dotnet-new) command) with the **Hosted** option selected (`-ho|--hosted` when using the `dotnet new` command).
 
 For more information on ASP.NET Core app hosting and deployment, see <xref:host-and-deploy/index>.
 
@@ -61,7 +76,13 @@ For information on deploying to Azure App Service, see <xref:tutorials/publish-t
 
 A *standalone deployment* serves the Blazor WebAssembly app as a set of static files that are requested directly by clients. Any static file server is able to serve the Blazor app.
 
-Standalone deployment assets are published to the *bin/Release/{TARGET FRAMEWORK}/publish/{ASSEMBLY NAME}/dist* folder.
+Standalone deployment assets are published into the */bin/Release/{TARGET FRAMEWORK}/publish/wwwroot* folder.
+
+### Azure App Service
+
+Blazor WebAssembly apps can be deployed to Azure App Services on Windows, which hosts the app on [IIS](#iis).
+
+Deploying a standalone Blazor WebAssembly app to Azure App Service for Linux isn't currently supported. A Linux server image to host the app isn't available at this time. Work is in progress to enable this scenario.
 
 ### IIS
 
@@ -74,17 +95,21 @@ Published assets are created in the */bin/Release/{TARGET FRAMEWORK}/publish* fo
 When a Blazor project is published, a *web.config* file is created with the following IIS configuration:
 
 * MIME types are set for the following file extensions:
-  * *.dll* &ndash; `application/octet-stream`
-  * *.json* &ndash; `application/json`
-  * *.wasm* &ndash; `application/wasm`
-  * *.woff* &ndash; `application/font-woff`
-  * *.woff2* &ndash; `application/font-woff`
+  * *.dll*: `application/octet-stream`
+  * *.json*: `application/json`
+  * *.wasm*: `application/wasm`
+  * *.woff*: `application/font-woff`
+  * *.woff2*: `application/font-woff`
 * HTTP compression is enabled for the following MIME types:
   * `application/octet-stream`
   * `application/wasm`
 * URL Rewrite Module rules are established:
-  * Serve the sub-directory where the app's static assets reside (*{ASSEMBLY NAME}/dist/{PATH REQUESTED}*).
-  * Create SPA fallback routing so that requests for non-file assets are redirected to the app's default document in its static assets folder (*{ASSEMBLY NAME}/dist/index.html*).
+  * Serve the sub-directory where the app's static assets reside (*wwwroot/{PATH REQUESTED}*).
+  * Create SPA fallback routing so that requests for non-file assets are redirected to the app's default document in its static assets folder (*wwwroot/index.html*).
+  
+#### Use a custom web.config
+
+To use a custom *web.config* file, place the custom *web.config* file at the root of the project folder and publish the project.
 
 #### Install the URL Rewrite Module
 
@@ -132,6 +157,10 @@ If a standalone app is hosted as an IIS sub-app, perform either of the following
 
 Removing the handler or disabling inheritance is performed in addition to [configuring the app's base path](xref:host-and-deploy/blazor/index#app-base-path). Set the app base path in the app's *index.html* file to the IIS alias used when configuring the sub-app in IIS.
 
+#### Brotli and Gzip compression
+
+IIS can be configured via *web.config* to serve Brotli or Gzip compressed Blazor assets. For an example configuration, see [web.config](webassembly/_samples/web.config?raw=true).
+
 #### Troubleshooting
 
 If a *500 - Internal Server Error* is received and IIS Manager throws errors when attempting to access the website's configuration, confirm that the URL Rewrite Module is installed. When the module isn't installed, the *web.config* file can't be parsed by IIS. This prevents the IIS Manager from loading the website's configuration and the website from serving Blazor's static files.
@@ -146,6 +175,16 @@ When the blob service is enabled for static website hosting on a storage account
 
 * Set the **Index document name** to `index.html`.
 * Set the **Error document path** to `index.html`. Razor components and other non-file endpoints don't reside at physical paths in the static content stored by the blob service. When a request for one of these resources is received that the Blazor router should handle, the *404 - Not Found* error generated by the blob service routes the request to the **Error document path**. The *index.html* blob is returned, and the Blazor router loads and processes the path.
+
+If files aren't loaded at runtime due to inappropriate MIME types in the files' `Content-Type` headers, take either of the following actions:
+
+* Configure your tooling to set the correct MIME types (`Content-Type` headers) when the files are deployed.
+* Change the MIME types (`Content-Type` headers) for the files after the app is deployed.
+
+  In Storage Explorer (Azure portal) for each file:
+  
+  1. Right-click the file and select **Properties**.
+  1. Set the **ContentType** and select the **Save** button.
 
 For more information, see [Static website hosting in Azure Storage](/azure/storage/blobs/storage-blob-static-website).
 
@@ -175,7 +214,7 @@ To host Blazor in Docker using Nginx, setup the Dockerfile to use the Alpine-bas
 
 Add one line to the Dockerfile, as shown in the following example:
 
-```Dockerfile
+```dockerfile
 FROM nginx:alpine
 COPY ./bin/Release/netstandard2.0/publish /usr/share/nginx/html/
 COPY nginx.conf /etc/nginx/nginx.conf
@@ -195,7 +234,7 @@ To deploy a Blazor WebAssembly app to CentOS 7 or later:
        DocumentRoot "/var/www/blazorapp"
        ErrorDocument 404 /index.html
 
-       AddType aplication/wasm .wasm
+       AddType application/wasm .wasm
        AddType application/octet-stream .dll
    
        <Directory "/var/www/blazorapp">
@@ -310,4 +349,144 @@ The `--urls` argument sets the IP addresses or host addresses with ports and pro
 
 ## Configure the Linker
 
-Blazor performs Intermediate Language (IL) linking on each build to remove unnecessary IL from the output assemblies. Assembly linking can be controlled on build. For more information, see <xref:host-and-deploy/blazor/configure-linker>.
+Blazor performs Intermediate Language (IL) linking on each Release build to remove unnecessary IL from the output assemblies. For more information, see <xref:host-and-deploy/blazor/configure-linker>.
+
+## Custom boot resource loading
+
+A Blazor WebAssembly app can be initialized with the `loadBootResource` function to override the built-in boot resource loading mechanism. Use `loadBootResource` for the following scenarios:
+
+* Allow users to load static resources, such as timezone data or *dotnet.wasm* from a CDN.
+* Load compressed assemblies using an HTTP request and decompress them on the client for hosts that don't support fetching compressed contents from the server.
+* Alias resources to a different name by redirecting each `fetch` request to a new name.
+
+`loadBootResource` parameters appear in the following table.
+
+| Parameter    | Description |
+| ------------ | ----------- |
+| `type`       | The type of the resource. Permissable types: `assembly`, `pdb`, `dotnetjs`, `dotnetwasm`, `timezonedata` |
+| `name`       | The name of the resource. |
+| `defaultUri` | The relative or absolute URI of the resource. |
+| `integrity`  | The integrity string representing the expected content in the response. |
+
+`loadBootResource` returns any of the following to override the loading process:
+
+* URI string. In the following example (*wwwroot/index.html*), the following files are served from a CDN at `https://my-awesome-cdn.com/`:
+
+  * *dotnet.\*.js*
+  * *dotnet.wasm*
+  * Timezone data
+
+  ```html
+  ...
+
+  <script src="_framework/blazor.webassembly.js" autostart="false"></script>
+  <script>
+    Blazor.start({
+      loadBootResource: function (type, name, defaultUri, integrity) {
+        console.log(`Loading: '${type}', '${name}', '${defaultUri}', '${integrity}'`);
+        switch (type) {
+          case 'dotnetjs':
+          case 'dotnetwasm':
+          case 'timezonedata':
+            return `https://my-awesome-cdn.com/blazorwebassembly/3.2.0/${name}`;
+        }
+      }
+    });
+  </script>
+  ```
+
+* `Promise<Response>`. Pass the `integrity` parameter in a header to retain the default integrity-checking behavior.
+
+  The following example (*wwwroot/index.html*) adds a custom HTTP header to the outbound requests and passes the `integrity` parameter through to the `fetch` call:
+  
+  ```html
+  <script src="_framework/blazor.webassembly.js" autostart="false"></script>
+  <script>
+    Blazor.start({
+      loadBootResource: function (type, name, defaultUri, integrity) {
+        return fetch(defaultUri, { 
+          cache: 'no-cache',
+          integrity: integrity,
+          headers: { 'MyCustomHeader': 'My custom value' }
+        });
+      }
+    });
+  </script>
+  ```
+
+* `null`/`undefined`, which results in the default loading behavior.
+
+External sources must return the required CORS headers for browsers to allow the cross-origin resource loading. CDNs usually provide the required headers by default.
+
+You only need to specify types for custom behaviors. Types not specified to `loadBootResource` are loaded by the framework per their default loading behaviors.
+
+## Change the filename extension of DLL files
+
+In case you have a need to change the filename extensions of the app's published *.dll* files, follow the guidance in this section.
+
+After publishing the app, use a shell script or DevOps build pipeline to rename *.dll* files to use a different file extension. Target the *.dll* files in the *wwwroot* directory of the app's published output (for example, *{CONTENT ROOT}/bin/Release/netstandard2.1/publish/wwwroot*).
+
+In the following examples, *.dll* files are renamed to use the *.bin* file extension.
+
+On Windows:
+
+```powershell
+dir .\_framework\_bin | rename-item -NewName { $_.name -replace ".dll\b",".bin" }
+((Get-Content .\_framework\blazor.boot.json -Raw) -replace '.dll"','.bin"') | Set-Content .\_framework\blazor.boot.json
+```
+
+If service worker assets are also in use, add the following command:
+
+```powershell
+((Get-Content .\service-worker-assets.js -Raw) -replace '.dll"','.bin"') | Set-Content .\service-worker-assets.js
+```
+
+On Linux or macOS:
+
+```console
+for f in _framework/_bin/*; do mv "$f" "`echo $f | sed -e 's/\.dll\b/.bin/g'`"; done
+sed -i 's/\.dll"/.bin"/g' _framework/blazor.boot.json
+```
+
+If service worker assets are also in use, add the following command:
+
+```console
+sed -i 's/\.dll"/.bin"/g' service-worker-assets.js
+```
+   
+To use a different file extension than *.bin*, replace *.bin* in the preceding commands.
+
+To address the compressed *blazor.boot.json.gz* and *blazor.boot.json.br* files, adopt either of the following approaches:
+
+* Remove the compressed *blazor.boot.json.gz* and *blazor.boot.json.br* files. Compression is disabled with this approach.
+* Recompress the updated *blazor.boot.json* file.
+
+The preceding guidance also applies when service worker assets are in use. Remove or recompress *wwwroot/service-worker-assets.js.br* and *wwwroot/service-worker-assets.js.gz*. Otherwise, file integrity checks fail in the browser.
+
+The following Windows example uses a PowerShell script placed at the root of the project.
+
+*ChangeDLLExtensions.ps1:*:
+
+```powershell
+param([string]$filepath,[string]$tfm)
+dir $filepath\bin\Release\$tfm\wwwroot\_framework\_bin | rename-item -NewName { $_.name -replace ".dll\b",".bin" }
+((Get-Content $filepath\bin\Release\$tfm\wwwroot\_framework\blazor.boot.json -Raw) -replace '.dll"','.bin"') | Set-Content $filepath\bin\Release\$tfm\wwwroot\_framework\blazor.boot.json
+Remove-Item $filepath\bin\Release\$tfm\wwwroot\_framework\blazor.boot.json.gz
+```
+
+If service worker assets are also in use, add the following command:
+
+```powershell
+((Get-Content $filepath\bin\Release\$tfm\wwwroot\service-worker-assets.js -Raw) -replace '.dll"','.bin"') | Set-Content $filepath\bin\Release\$tfm\wwwroot\service-worker-assets.js
+```
+
+In the project file, the script is run after publishing the app:
+
+```xml
+<Target Name="ChangeDLLFileExtensions" AfterTargets="Publish" Condition="'$(Configuration)'=='Release'">
+  <Exec Command="powershell.exe -command &quot;&amp; { .\ChangeDLLExtensions.ps1 '$(SolutionDir)' '$(TargetFramework)'}&quot;" />
+</Target>
+```
+
+To provide feedback, visit [aspnetcore/issues #5477](https://github.com/dotnet/aspnetcore/issues/5477).
+ 

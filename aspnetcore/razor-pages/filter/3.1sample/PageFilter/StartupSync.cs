@@ -19,13 +19,11 @@ namespace PageFilter
         #region snippet2
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddRazorPages();
-
-            services.AddMvc(options =>
-            {
-                options.Filters.Add(new SamplePageFilter(Configuration));
-            });
-
+            services.AddRazorPages()
+                .AddMvcOptions(options =>
+                {
+                    options.Filters.Add(new SamplePageFilter(Configuration));
+                });
         }
         #endregion
 

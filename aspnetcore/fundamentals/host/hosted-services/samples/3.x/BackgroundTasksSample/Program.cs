@@ -9,7 +9,7 @@ namespace BackgroundTasksSample
     {
         public static async Task Main(string[] args)
         {
-            using (var host = Host.CreateDefaultBuilder(args)
+            using var host = Host.CreateDefaultBuilder(args)
                 .ConfigureServices((hostContext, services) =>
                 {
                     #region snippet3
@@ -27,18 +27,16 @@ namespace BackgroundTasksSample
                     services.AddScoped<IScopedProcessingService, ScopedProcessingService>();
                     #endregion
                 })
-                .Build())
-            {
-                // Start the host
-                await host.StartAsync();
+                .Build();
 
-                // Monitor for new background queue work items
-                var monitorLoop = host.Services.GetRequiredService<MonitorLoop>();
-                monitorLoop.StartMonitorLoop();
+            await host.StartAsync();
 
-                // Wait for the host to shutdown
-                await host.WaitForShutdownAsync();
-            }
+            #region snippet4
+            var monitorLoop = host.Services.GetRequiredService<MonitorLoop>();
+            monitorLoop.StartMonitorLoop();
+            #endregion
+
+            await host.WaitForShutdownAsync();
         }
     }
 }

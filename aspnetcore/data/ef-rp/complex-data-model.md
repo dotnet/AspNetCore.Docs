@@ -5,6 +5,7 @@ description: In this tutorial, add more entities and relationships and customize
 ms.author: riande
 ms.custom: mvc
 ms.date: 07/22/2019
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: data/ef-rp/complex-data-model
 ---
 
@@ -730,7 +731,7 @@ The entity classes for the completed data model are shown in the following illus
 ![Entity diagram](complex-data-model/_static/diagram.png)
 
 If you run into problems you can't solve, download the [completed app](
-https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples).
+https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples).
 
 ## Customize the data model with attributes
 
@@ -817,7 +818,7 @@ With the preceding change, `Student.FirstMidName` in the app maps to the `FirstN
 
 The addition of the `Column` attribute changes the model backing the `SchoolContext`. The model backing the `SchoolContext` no longer matches the database. If the app is run before applying migrations, the following exception is generated:
 
-```SQL
+```
 SqlException: Invalid column name 'FirstName'.
 ```
 
@@ -828,7 +829,7 @@ To update the DB:
 
 # [Visual Studio](#tab/visual-studio)
 
-```PMC
+```powershell
 Add-Migration ColumnFirstName
 Update-Database
 ```
@@ -1287,7 +1288,7 @@ The code in the updated `DbInitializer` adds seed data for the new entities. To 
 
 In the **Package Manager Console** (PMC), run the following command:
 
-```PMC
+```powershell
 Drop-Database
 Update-Database
 ```

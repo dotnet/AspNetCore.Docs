@@ -1,21 +1,15 @@
-* Trust the HTTPS development certificate by running the following command:
+Visual Studio for Mac displays the following popup:
 
-    ```dotnetcli
-    dotnet dev-certs https --trust
-    ```
+![HTTPS Development certificate not found. Do you want to install and trust the certificate?](~/getting-started/_static/trustCertMac.png)
 
-* The preceding command displays the following output:
+Select **Yes** if you trust the development certificate.
 
-    ```console
-    Trusting the HTTPS development certificate was requested. If the certificate 
-    is not already trusted we will run the following command:
-    'sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain 
-    <<certificate>>'
-    This command might prompt you for your password to install the certificate on the 
-    system keychain.
-    The HTTPS developer certificate was generated successfully.
-    ```
+The following dialog is displayed:
 
-* Enter the admin username and password if prompted.  The certificate will now be installed and trusted.
+![Security warning dialog](~/getting-started/_static/certMac.png)
 
-    See [Trust the ASP.NET Core HTTPS development certificate](xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos) for more information.
+Enter your password and select **OK**
+
+Select **Yes** if you agree to trust the development certificate.
+
+See [Trust the ASP.NET Core HTTPS development certificate](xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos) for more information

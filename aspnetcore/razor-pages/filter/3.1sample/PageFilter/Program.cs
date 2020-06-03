@@ -14,11 +14,9 @@ namespace PageFilter
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                     //webBuilder.UseStartup<Startup>();
+                    webBuilder.UseStartup<Startup>();
                     //webBuilder.UseStartup<Startup2>();
                     //webBuilder.UseStartup<StartupSync>();
-                    webBuilder.UseStartup<Startup3>();
-
                 });
     }
 }

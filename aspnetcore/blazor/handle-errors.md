@@ -2,11 +2,11 @@
 title: Handle errors in ASP.NET Core Blazor apps
 author: guardrex
 description: Discover how ASP.NET Core Blazor how Blazor manages unhandled exceptions and how to develop apps that detect and handle errors.
-monikerRange: '>= aspnetcore-3.0'
+monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/05/2019
-no-loc: [Blazor, SignalR]
+ms.date: 04/23/2020
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/handle-errors
 ---
 # Handle errors in ASP.NET Core Blazor apps
@@ -15,8 +15,6 @@ By [Steve Sanderson](https://github.com/SteveSandersonMS)
 
 This article describes how Blazor manages unhandled exceptions and how to develop apps that detect and handle errors.
 
-::: moniker range=">= aspnetcore-3.1"
-
 ## Detailed errors during development
 
 When a Blazor app isn't functioning properly during development, receiving detailed error information from the app assists in troubleshooting and fixing the issue. When an error occurs, Blazor apps display a gold bar at the bottom of the screen:
@@ -24,7 +22,9 @@ When a Blazor app isn't functioning properly during development, receiving detai
 * During development, the gold bar directs you to the browser console, where you can see the exception.
 * In production, the gold bar notifies the user that an error has occurred and recommends refreshing the browser.
 
-The UI for this error handling experience is part of the Blazor project templates. In a Blazor WebAssembly app, customize the experience in the *wwwroot/index.html* file:
+The UI for this error handling experience is part of the Blazor project templates.
+
+In a Blazor WebAssembly app, customize the experience in the *wwwroot/index.html* file:
 
 ```html
 <div id="blazor-error-ui">
@@ -49,11 +49,30 @@ In a Blazor Server app, customize the experience in the *Pages/_Host.cshtml* fil
 </div>
 ```
 
-The `blazor-error-ui` element is hidden by the styles included with the Blazor templates and then shown when an error occurs.
+The `blazor-error-ui` element is hidden by the styles included in the Blazor templates (*wwwroot/css/site.css*) and then shown when an error occurs:
 
-::: moniker-end
+```css
+#blazor-error-ui {
+    background: lightyellow;
+    bottom: 0;
+    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+    display: none;
+    left: 0;
+    padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
 
-## How the Blazor framework reacts to unhandled exceptions
+#blazor-error-ui .dismiss {
+    cursor: pointer;
+    position: absolute;
+    right: 0.75rem;
+    top: 0.5rem;
+}
+```
+
+## How a Blazor Server app reacts to unhandled exceptions
 
 Blazor Server is a stateful framework. While users interact with an app, they maintain a connection to the server known as a *circuit*. The circuit holds active component instances, plus many other aspects of state, such as:
 
@@ -62,7 +81,7 @@ Blazor Server is a stateful framework. While users interact with an app, they ma
 
 If a user opens the app in multiple browser tabs, they have multiple independent circuits.
 
-Blazor treats most unhandled exceptions as fatal to the circuit where they occur. If a circuit is terminated due to an unhandled exception, the user can only continue to interact with the app by reloading the page to create a new circuit. Circuits outside of the one that's terminated, which are circuits for other users or other browser tabs, aren't affected. This scenario is similar to a desktop app that crashes&mdash;the crashed app must be restarted, but other apps aren't affected.
+Blazor treats most unhandled exceptions as fatal to the circuit where they occur. If a circuit is terminated due to an unhandled exception, the user can only continue to interact with the app by reloading the page to create a new circuit. Circuits outside of the one that's terminated, which are circuits for other users or other browser tabs, aren't affected. This scenario is similar to a desktop app that crashes. The crashed app must be restarted, but other apps aren't affected.
 
 A circuit is terminated when an unhandled exception occurs for the following reasons:
 
@@ -87,6 +106,8 @@ During development, Blazor usually sends the full details of exceptions to the b
 
 You must decide which incidents to log and the level of severity of logged incidents. Hostile users might be able to trigger errors deliberately. For example, don't log an incident from an error where an unknown `ProductId` is supplied in the URL of a component that displays product details. Not all errors should be treated as high-severity incidents for logging.
 
+For more information, see <xref:fundamentals/logging/index#create-logs-in-blazor>.
+
 ## Places where errors may occur
 
 Framework and app code may trigger unhandled exceptions in any of the following locations:
@@ -97,9 +118,7 @@ Framework and app code may trigger unhandled exceptions in any of the following 
 * [Event handlers](#event-handlers)
 * [Component disposal](#component-disposal)
 * [JavaScript interop](#javascript-interop)
-* [Circuit handlers](#circuit-handlers)
-* [Circuit disposal](#circuit-disposal)
-* [Prerendering](#prerendering)
+* [Blazor Server rerendering](#blazor-server-prerendering)
 
 The preceding unhandled exceptions are described in the following sections of this article.
 
@@ -108,24 +127,24 @@ The preceding unhandled exceptions are described in the following sections of th
 When Blazor creates an instance of a component:
 
 * The component's constructor is invoked.
-* The constructors of any non-singleton DI services supplied to the component's constructor via the [`@inject`](xref:blazor/dependency-injection#request-a-service-in-a-component) directive or the [`[Inject]`](xref:blazor/dependency-injection#request-a-service-in-a-component) attribute are invoked. 
+* The constructors of any non-singleton DI services supplied to the component's constructor via the [`@inject`](xref:mvc/views/razor#inject) directive or the [`[Inject]`](xref:blazor/dependency-injection#request-a-service-in-a-component) attribute are invoked.
 
-A circuit fails when any executed constructor or a setter for any `[Inject]` property throws an unhandled exception. The exception is fatal because the framework can't instantiate the component. If constructor logic may throw exceptions, the app should trap the exceptions using a [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) statement with error handling and logging.
+A Blazor Server circuit fails when any executed constructor or a setter for any `[Inject]` property throws an unhandled exception. The exception is fatal because the framework can't instantiate the component. If constructor logic may throw exceptions, the app should trap the exceptions using a [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) statement with error handling and logging.
 
 ### Lifecycle methods
 
 During the lifetime of a component, Blazor invokes the following [lifecycle methods](xref:blazor/lifecycle):
 
-* `OnInitialized` / `OnInitializedAsync`
-* `OnParametersSet` / `OnParametersSetAsync`
-* `ShouldRender` / `ShouldRenderAsync`
-* `OnAfterRender` / `OnAfterRenderAsync`
+* <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized%2A> / <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>
+* <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSet%2A> / <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A>
+* <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A>
+* <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> / <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A>
 
-If any lifecycle method throws an exception, synchronously or asynchronously, the exception is fatal to the circuit. For components to deal with errors in lifecycle methods, add error handling logic.
+If any lifecycle method throws an exception, synchronously or asynchronously, the exception is fatal to a Blazor Server circuit. For components to deal with errors in lifecycle methods, add error handling logic.
 
-In the following example where `OnParametersSetAsync` calls a method to obtain a product:
+In the following example where <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A> calls a method to obtain a product:
 
-* An exception thrown in the `ProductRepository.GetProductByIdAsync` method is handled by a `try-catch` statement.
+* An exception thrown in the `ProductRepository.GetProductByIdAsync` method is handled by a [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) statement.
 * When the `catch` block is executed:
   * `loadFailed` is set to `true`, which is used to display an error message to the user.
   * The error is logged.
@@ -134,9 +153,9 @@ In the following example where `OnParametersSetAsync` calls a method to obtain a
 
 ### Rendering logic
 
-The declarative markup in a `.razor` component file is compiled into a C# method called `BuildRenderTree`. When a component renders, `BuildRenderTree` executes and builds up a data structure describing the elements, text, and child components of the rendered component.
+The declarative markup in a `.razor` component file is compiled into a C# method called <xref:Microsoft.AspNetCore.Components.ComponentBase.BuildRenderTree%2A>. When a component renders, <xref:Microsoft.AspNetCore.Components.ComponentBase.BuildRenderTree%2A> executes and builds up a data structure describing the elements, text, and child components of the rendered component.
 
-Rendering logic can throw an exception. An example of this scenario occurs when `@someObject.PropertyName` is evaluated but `@someObject` is `null`. An unhandled exception thrown by rendering logic is fatal to the circuit.
+Rendering logic can throw an exception. An example of this scenario occurs when `@someObject.PropertyName` is evaluated but `@someObject` is `null`. An unhandled exception thrown by rendering logic is fatal to a Blazor Server circuit.
 
 To prevent a null reference exception in rendering logic, check for a `null` object before accessing its members. In the following example, `person.Address` properties aren't accessed if `person.Address` is `null`:
 
@@ -155,59 +174,43 @@ Client-side code triggers invocations of C# code when event handlers are created
 
 Event handler code might throw an unhandled exception in these scenarios.
 
-If an event handler throws an unhandled exception (for example, a database query fails), the exception is fatal to the circuit. If the app calls code that could fail for external reasons, trap exceptions using a [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) statement with error handling and logging.
+If an event handler throws an unhandled exception (for example, a database query fails), the exception is fatal to a Blazor Server circuit. If the app calls code that could fail for external reasons, trap exceptions using a [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) statement with error handling and logging.
 
 If user code doesn't trap and handle the exception, the framework logs the exception and terminates the circuit.
 
 ### Component disposal
 
-A component may be removed from the UI, for example, because the user has navigated to another page. When a component that implements <xref:System.IDisposable?displayProperty=fullName> is removed from the UI, the framework calls the component's <xref:System.IDisposable.Dispose*> method. 
+A component may be removed from the UI, for example, because the user has navigated to another page. When a component that implements <xref:System.IDisposable?displayProperty=fullName> is removed from the UI, the framework calls the component's <xref:System.IDisposable.Dispose%2A> method.
 
-If the component's `Dispose` method throws an unhandled exception, the exception is fatal to the circuit. If disposal logic may throw exceptions, the app should trap the exceptions using a [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) statement with error handling and logging.
+If the component's `Dispose` method throws an unhandled exception, the exception is fatal to a Blazor Server circuit. If disposal logic may throw exceptions, the app should trap the exceptions using a [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) statement with error handling and logging.
 
 For more information on component disposal, see <xref:blazor/lifecycle#component-disposal-with-idisposable>.
 
 ### JavaScript interop
 
-`IJSRuntime.InvokeAsync<T>` allows .NET code to make asynchronous calls to the JavaScript runtime in the user's browser.
+<xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType> allows .NET code to make asynchronous calls to the JavaScript runtime in the user's browser.
 
-The following conditions apply to error handling with `InvokeAsync<T>`:
+The following conditions apply to error handling with <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A>:
 
-* If a call to `InvokeAsync<T>` fails synchronously, a .NET exception occurs. A call to `InvokeAsync<T>` may fail, for example, because the supplied arguments can't be serialized. Developer code must catch the exception. If app code in an event handler or component lifecycle method doesn't handle an exception, the resulting exception is fatal to the circuit.
-* If a call to `InvokeAsync<T>` fails asynchronously, the .NET <xref:System.Threading.Tasks.Task> fails. A call to `InvokeAsync<T>` may fail, for example, because the JavaScript-side code throws an exception or returns a `Promise` that completed as `rejected`. Developer code must catch the exception. If using the [await](/dotnet/csharp/language-reference/keywords/await) operator, consider wrapping the method call in a [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) statement with error handling and logging. Otherwise, the failing code results in an unhandled exception that's fatal to the circuit.
-* By default, calls to `InvokeAsync<T>` must complete within a certain period or else the call times out. The default timeout period is one minute. The timeout protects the code against a loss in network connectivity or JavaScript code that never sends back a completion message. If the call times out, the resulting `Task` fails with an <xref:System.OperationCanceledException>. Trap and process the exception with logging.
+* If a call to <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A> fails synchronously, a .NET exception occurs. A call to <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A> may fail, for example, because the supplied arguments can't be serialized. Developer code must catch the exception. If app code in an event handler or component lifecycle method doesn't handle an exception, the resulting exception is fatal to a Blazor Server circuit.
+* If a call to <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A> fails asynchronously, the .NET <xref:System.Threading.Tasks.Task> fails. A call to <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A> may fail, for example, because the JavaScript-side code throws an exception or returns a `Promise` that completed as `rejected`. Developer code must catch the exception. If using the [await](/dotnet/csharp/language-reference/keywords/await) operator, consider wrapping the method call in a [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) statement with error handling and logging. Otherwise, the failing code results in an unhandled exception that's fatal to a Blazor Server circuit.
+* By default, calls to <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A> must complete within a certain period or else the call times out. The default timeout period is one minute. The timeout protects the code against a loss in network connectivity or JavaScript code that never sends back a completion message. If the call times out, the resulting <xref:System.Threading.Tasks> fails with an <xref:System.OperationCanceledException>. Trap and process the exception with logging.
 
-Similarly, JavaScript code may initiate calls to .NET methods indicated by the [`[JSInvokable]`](xref:blazor/javascript-interop#invoke-net-methods-from-javascript-functions) attribute. If these .NET methods throw an unhandled exception:
+Similarly, JavaScript code may initiate calls to .NET methods indicated by the [`[JSInvokable]`](xref:Microsoft.JSInterop.JSInvokableAttribute)](xref:blazor/call-dotnet-from-javascript) attribute. If these .NET methods throw an unhandled exception:
 
-* The exception isn't treated as fatal to the circuit.
+* The exception isn't treated as fatal to a Blazor Server circuit.
 * The JavaScript-side `Promise` is rejected.
 
 You have the option of using error handling code on either the .NET side or the JavaScript side of the method call.
 
-For more information, see <xref:blazor/javascript-interop>.
+For more information, see the following articles:
 
-### Circuit handlers
+* <xref:blazor/call-javascript-from-dotnet>
+* <xref:blazor/call-dotnet-from-javascript>
 
-Blazor allows code to define a *circuit handler*, which receives notifications when the state of a user's circuit changes. The following states are used:
+### Blazor Server prerendering
 
-* `initialized`
-* `connected`
-* `disconnected`
-* `disposed`
-
-Notifications are managed by registering a DI service that inherits from the `CircuitHandler` abstract base class.
-
-If a custom circuit handler's methods throw an unhandled exception, the exception is fatal to the circuit. To tolerate exceptions in a handler's code or called methods, wrap the code in one or more [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) statements with error handling and logging.
-
-### Circuit disposal
-
-When a circuit ends because a user has disconnected and the framework is cleaning up the circuit state, the framework disposes of the circuit's DI scope. Disposing the scope disposes any circuit-scoped DI services that implement <xref:System.IDisposable?displayProperty=fullName>. If any DI service throws an unhandled exception during disposal, the framework logs the exception.
-
-### Prerendering
-
-::: moniker range=">= aspnetcore-3.1"
-
-Blazor components can be prerendered using the `Component` Tag Helper so that their rendered HTML markup is returned as part of the user's initial HTTP request. This works by:
+Blazor components can be prerendered using the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) so that their rendered HTML markup is returned as part of the user's initial HTTP request. This works by:
 
 * Creating a new circuit for all of the prerendered components that are part of the same page.
 * Generating the initial HTML.
@@ -216,32 +219,11 @@ Blazor components can be prerendered using the `Component` Tag Helper so that th
 If any component throws an unhandled exception during prerendering, for example, during a lifecycle method or in rendering logic:
 
 * The exception is fatal to the circuit.
-* The exception is thrown up the call stack from the `Component` Tag Helper. Therefore, the entire HTTP request fails unless the exception is explicitly caught by developer code.
+* The exception is thrown up the call stack from the <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper> Tag Helper. Therefore, the entire HTTP request fails unless the exception is explicitly caught by developer code.
 
 Under normal circumstances when prerendering fails, continuing to build and render the component doesn't make sense because a working component can't be rendered.
 
-To tolerate errors that may occur during prerendering, error handling logic must be placed inside a component that may throw exceptions. Use [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) statements with error handling and logging. Instead of wrapping the `Component` Tag Helper in a `try-catch` statement, place error handling logic in the component rendered by the `Component` Tag Helper.
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-3.1"
-
-Blazor components can be prerendered using `Html.RenderComponentAsync` so that their rendered HTML markup is returned as part of the user's initial HTTP request. This works by:
-
-* Creating a new circuit for all of the prerendered components that are part of the same page.
-* Generating the initial HTML.
-* Treating the circuit as `disconnected` until the user's browser establishes a SignalR connection back to the same server. When the connection is established, interactivity on the circuit is resumed and the components' HTML markup is updated.
-
-If any component throws an unhandled exception during prerendering, for example, during a lifecycle method or in rendering logic:
-
-* The exception is fatal to the circuit.
-* The exception is thrown up the call stack from the `Html.RenderComponentAsync` call. Therefore, the entire HTTP request fails unless the exception is explicitly caught by developer code.
-
-Under normal circumstances when prerendering fails, continuing to build and render the component doesn't make sense because a working component can't be rendered.
-
-To tolerate errors that may occur during prerendering, error handling logic must be placed inside a component that may throw exceptions. Use [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) statements with error handling and logging. Instead of wrapping the call to `RenderComponentAsync` in a `try-catch` statement, place error handling logic in the component rendered by `RenderComponentAsync`.
-
-::: moniker-end
+To tolerate errors that may occur during prerendering, error handling logic must be placed inside a component that may throw exceptions. Use [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) statements with error handling and logging. Instead of wrapping the <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper> Tag Helper in a [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) statement, place error handling logic in the component rendered by the <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper> Tag Helper.
 
 ## Advanced scenarios
 
@@ -260,7 +242,7 @@ Infinite loops during rendering:
 * Causes the rendering process to continue forever.
 * Is equivalent to creating an unterminated loop.
 
-In these scenarios, the affected circuit hangs, and the thread usually attempts to:
+In these scenarios, an affected Blazor Server circuit fails, and the thread usually attempts to:
 
 * Consume as much CPU time as permitted by the operating system, indefinitely.
 * Consume an unlimited amount of server memory. Consuming unlimited memory is equivalent to the scenario where an unterminated loop adds entries to a collection on every iteration.
@@ -269,14 +251,14 @@ To avoid infinite recursion patterns, ensure that recursive rendering code conta
 
 ### Custom render tree logic
 
-Most Blazor components are implemented as *.razor* files and are compiled to produce logic that operates on a `RenderTreeBuilder` to render their output. A developer may manually implement `RenderTreeBuilder` logic using procedural C# code. For more information, see <xref:blazor/components#manual-rendertreebuilder-logic>.
+Most Blazor components are implemented as *.razor* files and are compiled to produce logic that operates on a <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> to render their output. A developer may manually implement <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> logic using procedural C# code. For more information, see <xref:blazor/advanced-scenarios#manual-rendertreebuilder-logic>.
 
 > [!WARNING]
 > Use of manual render tree builder logic is considered an advanced and unsafe scenario, not recommended for general component development.
 
-If `RenderTreeBuilder` code is written, the developer must guarantee the correctness of the code. For example, the developer must ensure that:
+If <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> code is written, the developer must guarantee the correctness of the code. For example, the developer must ensure that:
 
-* Calls to `OpenElement` and `CloseElement` are correctly balanced.
+* Calls to <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder.OpenElement%2A> and <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder.CloseElement%2A> are correctly balanced.
 * Attributes are only added in the correct places.
 
 Incorrect manual render tree builder logic can cause arbitrary undefined behavior, including crashes, server hangs, and security vulnerabilities.

@@ -4,13 +4,14 @@ author: rick-anderson
 description: Learn how to build a web API with ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/05/2019
+ms.date: 2/25/2020
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-web-api
 ---
 
 # Tutorial: Create a web API with ASP.NET Core
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Mike Wasson](https://github.com/mikewasson)
+By [Rick Anderson](https://twitter.com/RickAndMSFT), [Kirk Larkin](https://twitter.com/serpent5), and [Mike Wasson](https://github.com/mikewasson)
 
 This tutorial teaches the basics of building a web API with ASP.NET Core.
 
@@ -33,11 +34,11 @@ This tutorial creates the following API:
 
 |API | Description | Request body | Response body |
 |--- | ---- | ---- | ---- |
-|GET /api/TodoItems | Get all to-do items | None | Array of to-do items|
-|GET /api/TodoItems/{id} | Get an item by ID | None | To-do item|
-|POST /api/TodoItems | Add a new item | To-do item | To-do item |
-|PUT /api/TodoItems/{id} | Update an existing item &nbsp; | To-do item | None |
-|DELETE /api/TodoItems/{id} &nbsp; &nbsp; | Delete an item &nbsp; &nbsp; | None | None|
+|`GET /api/TodoItems` | Get all to-do items | None | Array of to-do items|
+|`GET /api/TodoItems/{id}` | Get an item by ID | None | To-do item|
+|`POST /api/TodoItems` | Add a new item | To-do item | To-do item |
+|`PUT /api/TodoItems/{id}` | Update an existing item &nbsp; | To-do item | None |
+|`DELETE /api/TodoItems/{id}` &nbsp; &nbsp; | Delete an item &nbsp; &nbsp; | None | None|
 
 The following diagram shows the design of the app.
 
@@ -97,11 +98,13 @@ The following diagram shows the design of the app.
 
   ![macOS New solution](first-web-api-mac/_static/sln.png)
 
-* Select **.NET Core** > **App** > **API** > **Next**.
+* In Visual Studio for Mac earlier than version 8.6, select **.NET Core** > **App** > **API** > **Next**. In version 8.6 or later, select **Web and Console** > **App** > **API** > **Next** .
 
-  ![macOS New project dialog](first-web-api-mac/_static/1.png)
-  
-* In the **Configure your new ASP.NET Core Web API** dialog, select **Target Framework** of **.NET Core 3.1*.
+  ![macOS API template selection](first-web-api-mac/_static/api_template.png)
+
+* Confirm the **Target Framework** is set to **.NET Core 3.1**. Select **Next**.
+
+  ![macOS .NET Core 3.1 selection](first-web-api-mac/_static/api_31_config.png)
 
 * Enter *TodoApi* for the **Project Name** and then select **Create**.
 
@@ -130,7 +133,7 @@ If you get a dialog box that asks if you should trust the IIS Express certificat
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-Press Ctrl+F5 to run the app. In a browser, go to following URL: [https://localhost:5001/WeatherForecast](https://localhost:5001/WeatherForecast).
+Press Ctrl+F5 to run the app. In a browser, go to following URL: `https://localhost:5001/WeatherForecast`.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -207,7 +210,7 @@ A *model* is a set of classes that represent the data that the app manages. The 
 
 ---
 
-  [!code-csharp[](first-web-api/samples/3.0/TodoApi/Models/TodoItem.cs)]
+  [!code-csharp[](first-web-api/samples/3.0/TodoApi/Models/TodoItem.cs?name=snippet)]
 
 The `Id` property functions as the unique key in a relational database.
 
@@ -291,9 +294,15 @@ The preceding commands:
 
 The generated code:
 
-* Defines an API controller class without methods.
 * Marks the class with the [`[ApiController]`](/dotnet/api/microsoft.aspnetcore.mvc.apicontrollerattribute) attribute. This attribute indicates that the controller responds to web API requests. For information about specific behaviors that the attribute enables, see <xref:web-api/index>.
 * Uses DI to inject the database context (`TodoContext`) into the controller. The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.
+
+The ASP.NET Core templates for:
+
+* Controllers with views include `[action]` in the route template.
+* API controllers don't include `[action]` in the route template.
+
+When the `[action]` token isn't in the route template, the [action](xref:mvc/controllers/routing#action) name is excluded from the route. That is, the action's associated method name isn't used in the matching route.
 
 ## Examine the PostTodoItem create method
 
@@ -317,7 +326,7 @@ This tutorial uses Postman to test the web API.
 * Start the web app.
 * Start Postman.
 * Disable **SSL certificate verification**
-* From **File** > **Settings** (**General** tab), disable **SSL certificate verification**.
+  * From **File** > **Settings** (**General** tab), disable **SSL certificate verification**.
     > [!WARNING]
     > Re-enable SSL certificate verification after testing the controller.
 
@@ -363,8 +372,8 @@ These methods implement two GET endpoints:
 
 Test the app by calling the two endpoints from a browser or Postman. For example:
 
-* [https://localhost:5001/api/TodoItems](https://localhost:5001/api/TodoItems)
-* [https://localhost:5001/api/TodoItems/1](https://localhost:5001/api/TodoItems/1)
+* `https://localhost:5001/api/TodoItems`
+* `https://localhost:5001/api/TodoItems/1`
 
 A response similar to the following is produced by the call to `GetTodoItems`:
 
@@ -454,6 +463,37 @@ Use Postman to delete a to-do item:
 * Set the URI of the object to delete (for example `https://localhost:5001/api/TodoItems/1`).
 * Select **Send**.
 
+<a name="over-post"></a>
+
+## Prevent over-posting
+
+Currently the sample app exposes the entire `TodoItem` object. Productions apps typically limit the data that's input and returned using a subset of the model. There are multiple reasons behind this and security is a major one. The subset of a model is usually referred to as a Data Transfer Object (DTO), input model, or view model. **DTO** is used in this article.
+
+A DTO may be used to:
+
+* Prevent over-posting.
+* Hide properties that clients are not supposed to view.
+* Omit some properties in order to reduce payload size.
+* Flatten object graphs that contain nested objects. Flattened object graphs can be more convenient for clients.
+
+To demonstrate the DTO approach, update the `TodoItem` class to include a secret field:
+
+[!code-csharp[](first-web-api/samples/3.0/TodoApiDTO/Models/TodoItem.cs?name=snippet&highlight=6)]
+
+The secret field needs to be hidden from this app, but an administrative app could choose to expose it.
+
+Verify you can post and get the secret field.
+
+Create a DTO model:
+
+[!code-csharp[](first-web-api/samples/3.0/TodoApiDTO/Models/TodoItemDTO.cs?name=snippet)]
+
+Update the `TodoItemsController` to use `TodoItemDTO`:
+
+[!code-csharp[](first-web-api/samples/3.0/TodoApiDTO/Controllers/TodoItemsController.cs?name=snippet)]
+
+Verify you can't post or get the secret field.
+
 ## Call the web API with JavaScript
 
 See [Tutorial: Call an ASP.NET Core web API with JavaScript](xref:tutorials/web-api-javascript).
@@ -540,9 +580,7 @@ The following diagram shows the design of the app.
 
   ![macOS New solution](first-web-api-mac/_static/sln.png)
 
-* Select **.NET Core** > **App** > **API** > **Next**.
-
-  ![macOS New project dialog](first-web-api-mac/_static/1.png)
+* In Visual Studio for Mac earlier than version 8.6, select **.NET Core** > **App** > **API** > **Next**. In version 8.6 or later, select **Web and Console** > **App** > **API** > **Next**.
   
 * In the **Configure your new ASP.NET Core Web API** dialog, accept the default **Target Framework** of **.NET Core 2.2*.
 
@@ -564,7 +602,7 @@ If you get a dialog box that asks if you should trust the IIS Express certificat
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-Press Ctrl+F5 to run the app. In a browser, go to following URL: [https://localhost:5001/api/values](https://localhost:5001/api/values).
+Press Ctrl+F5 to run the app. In a browser, go to following URL: `https://localhost:5001/api/values`.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -850,7 +888,7 @@ The `DeleteTodoItem` response is [204 (No Content)](https://www.w3.org/Protocols
 Use Postman to delete a to-do item:
 
 * Set the method to `DELETE`.
-* Set the URI of the object to delete (for example `https://localhost:5001/api/todo/1`).
+* Set the URI of the object to delete (for example, `https://localhost:5001/api/todo/1`).
 * Select **Send**.
 
 The sample app allows you to delete all the items. However, when the last item is deleted, a new one is created by the model class constructor the next time the API is called.
@@ -914,7 +952,7 @@ Deleting a to-do item is accomplished by setting the `type` on the AJAX call to 
 
 ## Additional resources
 
-[View or download sample code for this tutorial](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/first-web-api/samples). See [how to download](xref:index#how-to-download-a-sample).
+[View or download sample code for this tutorial](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/first-web-api/samples). See [how to download](xref:index#how-to-download-a-sample).
 
 For more information, see the following resources:
 

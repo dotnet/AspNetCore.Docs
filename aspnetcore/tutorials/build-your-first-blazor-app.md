@@ -5,21 +5,27 @@ description: Build a Blazor app step-by-step.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/05/2019
-no-loc: [Blazor]
+ms.date: 05/19/2020
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-blazor-app
 ---
 # Build your first Blazor app
 
 By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.com/guardrex)
 
-[!INCLUDE[](~/includes/blazorwasm-preview-notice.md)]
+This tutorial shows you how to build and modify a Blazor app. You learn how to:
 
-This tutorial shows you how to build and modify a Blazor app.
+> [!div class="checklist"]
+> * Create a todo list Blazor app project
+> * Modify Razor components
+> * Use event handling and data binding in components
+> * Use dependency injection (DI) and routing in a Blazor app
 
-Follow the guidance in the <xref:blazor/get-started> article to create a Blazor project for this tutorial. Name the project *ToDoList*.
+At the end of this tutorial, you'll have a working chat app.
 
 ## Build components
+
+1. Follow the guidance in the <xref:blazor/get-started> article to create a Blazor project for this tutorial. Name the project *ToDoList*.
 
 1. Browse to each of the app's three pages in the *Pages* folder: Home, Counter, and Fetch data. These pages are implemented by the Razor component files *Index.razor*, *Counter.razor*, and *FetchData.razor*.
 
@@ -64,21 +70,21 @@ Include a component in another component using an HTML syntax.
 
 ## Component parameters
 
-Components can also have parameters. Component parameters are defined using public properties on the component class with the `[Parameter]` attribute. Use attributes to specify arguments for a component in markup.
+Components can also have parameters. Component parameters are defined using public properties on the component class with the [`[Parameter]`](xref:Microsoft.AspNetCore.Components.ParameterAttribute) attribute. Use attributes to specify arguments for a component in markup.
 
-1. Update the component's `@code` C# code:
+1. Update the component's `@code` C# code as follows:
 
-   * Add a public `IncrementAmount` property with the `[Parameter]` attribute.
-   * Change the `IncrementCount` method to use the `IncrementAmount` when increasing the value of `currentCount`.
+   * Add a public `IncrementAmount` property with the [`[Parameter]`](xref:Microsoft.AspNetCore.Components.ParameterAttribute) attribute.
+   * Change the `IncrementCount` method to use the `IncrementAmount` property when increasing the value of `currentCount`.
 
    *Pages/Counter.razor*:
 
    [!code-razor[](build-your-first-blazor-app/samples_snapshot/3.x/Counter.razor?highlight=13,17)]
 
-<!-- Add back when supported.
-   > [!NOTE]
-   > From Visual Studio, you can quickly add a component parameter by using the `para` snippet. Type `para` and press the `Tab` key twice.
--->
+   <!-- Add back when supported.
+       > [!NOTE]
+       > From Visual Studio, you can quickly add a component parameter by using the `para` snippet. Type `para` and press the `Tab` key twice.
+   -->
 
 1. Specify an `IncrementAmount` parameter in the `Index` component's `<Counter>` element using an attribute. Set the value to increment the counter by ten.
 
@@ -100,7 +106,7 @@ If working with a Blazor Server app, the `WeatherForecastService` service is reg
 
 [!code-csharp[](build-your-first-blazor-app/samples_snapshot/3.x/Startup.cs?highlight=5)]
 
-The `@inject` directive is used to inject the instance of the `WeatherForecastService` service into the `FetchData` component.
+The [`@inject`](xref:mvc/views/razor#inject) directive is used to inject the instance of the `WeatherForecastService` service into the `FetchData` component.
 
 *Pages/FetchData.razor*:
 
@@ -112,11 +118,11 @@ The `FetchData` component uses the injected service, as `ForecastService`, to re
 
 ### Blazor WebAssembly experience
 
-If working with a Blazor WebAssembly app, `HttpClient` is injected to obtain weather forecast data from the *weather.json* file in the *wwwroot/sample-data* folder.
+If working with a Blazor WebAssembly app, <xref:System.Net.Http.HttpClient> is injected to obtain weather forecast data from the *weather.json* file in the *wwwroot/sample-data* folder.
 
 *Pages/FetchData.razor*:
 
-[!code-razor[](build-your-first-blazor-app/samples_snapshot/3.x/FetchData1_client.razor?highlight=7-8)]
+[!code-razor[](build-your-first-blazor-app/samples_snapshot/3.x/FetchData1_client.razor?highlight=7-9)]
 
 An [`@foreach`](/dotnet/csharp/language-reference/keywords/foreach-in) loop is used to render each forecast instance as a row in the table of weather data:
 
@@ -126,14 +132,14 @@ An [`@foreach`](/dotnet/csharp/language-reference/keywords/foreach-in) loop is u
 
 Add a new component to the app that implements a simple todo list.
 
-1. Add an empty file named *Todo.razor* to the app in the *Pages* folder:
+1. Add a new `Todo` Razor component to the app in the *Pages* folder. If you're using Visual Studio, right-click the **Pages** folder and select **Add** > **New Item** > **Razor Component**. Name the component's file *Todo.razor*. In other development environments, add a blank file to the **Pages** folder named *Todo.razor*.
 
 1. Provide the initial markup for the component:
 
    ```razor
    @page "/todo"
 
-   <h1>Todo</h1>
+   <h3>Todo</h3>
    ```
 
 1. Add the `Todo` component to the navigation bar.
@@ -191,10 +197,10 @@ Add a new component to the app that implements a simple todo list.
 
    [!code-razor[](build-your-first-blazor-app/samples_snapshot/3.x/ToDo9.razor?highlight=5-6)]
 
-1. To verify that these values are bound, update the `<h1>` header to show a count of the number of todo items that aren't complete (`IsDone` is `false`).
+1. To verify that these values are bound, update the `<h3>` header to show a count of the number of todo items that aren't complete (`IsDone` is `false`).
 
    ```razor
-   <h1>Todo (@todos.Count(todo => !todo.IsDone))</h1>
+   <h3>Todo (@todos.Count(todo => !todo.IsDone))</h3>
    ```
 
 1. The completed `Todo` component (*Pages/Todo.razor*):
@@ -202,6 +208,18 @@ Add a new component to the app that implements a simple todo list.
    [!code-razor[](build-your-first-blazor-app/samples_snapshot/3.x/Todo.razor)]
 
 1. Rebuild and run the app. Add todo items to test the new code.
+
+## Next steps
+
+In this tutorial, you learned how to:
+
+> [!div class="checklist"]
+> * Create a todo list Blazor app project
+> * Modify Razor components
+> * Use event handling and data binding in components
+> * Use dependency injection (DI) and routing in a Blazor app
+
+Learn how to build and use components:
 
 > [!div class="nextstepaction"]
 > <xref:blazor/components>

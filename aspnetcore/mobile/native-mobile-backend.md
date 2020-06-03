@@ -4,6 +4,7 @@ author: ardalis
 description: Learn how to create backend services using ASP.NET Core MVC to support native mobile apps.
 ms.author: riande
 ms.date: 12/05/2019
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mobile/native-mobile-backend
 ---
 # Create backend services for native mobile apps with ASP.NET Core
@@ -12,7 +13,7 @@ By [Steve Smith](https://ardalis.com/)
 
 Mobile apps can communicate with ASP.NET Core backend services. For instructions on connecting local web services from iOS simulators and Android emulators, see [Connect to Local Web Services from iOS Simulators and Android Emulators](/xamarin/cross-platform/deploy-test/connect-to-local-web-services).
 
-[View or download sample backend services code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mobile/native-mobile-backend/sample)
+[View or download sample backend services code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mobile/native-mobile-backend/sample)
 
 ## The Sample Native Mobile App
 

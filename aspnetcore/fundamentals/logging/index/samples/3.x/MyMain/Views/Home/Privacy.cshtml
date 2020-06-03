@@ -1,0 +1,21 @@
+﻿@{
+    ViewData["Title"] = "Privacy Policy";
+}
+<h1>@ViewData["Title"]</h1>
+
+<p>Use this page to detail your site's privacy policy.</p>
+
+ @ViewData["Message"]
+
+<environment include="Development">
+    <div>The effective tag is: &lt;environment include="Development"&gt;</div>
+</environment>
+<environment exclude="Development">
+    <div>The effective tag is: &lt;environment exclude="Development"&gt;</div>
+</environment>
+<environment include="Staging,Development,Staging_2">
+    <div>
+        The effective tag is:
+        &lt;environment include="Staging,Development,Staging_2"&gt;
+    </div>
+</environment>

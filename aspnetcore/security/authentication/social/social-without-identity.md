@@ -4,9 +4,12 @@ author: rick-anderson
 description: An explanation of using Facebook, Google, Twitter, etc. account user authentication without ASP.NET Core Identity.
 ms.author: riande
 ms.date: 12/10/2019
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/social/social-without-identity
 ---
 # Use social sign-in provider authentication without ASP.NET Core Identity
+
+By [Kirk Larkin](https://twitter.com/serpent5) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ::: moniker range=">= aspnetcore-3.0"
 

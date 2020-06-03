@@ -5,7 +5,7 @@ description: Learn about the new features in ASP.NET Core 2.2.
 ms.author: riande
 ms.custom: mvc
 ms.date: 12/05/2019
-no-loc: [SignalR]
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: aspnetcore-2.2
 ---
 # What's new in ASP.NET Core 2.2
@@ -100,7 +100,7 @@ ASP.NET Core web project templates were updated to [Bootstrap 4](https://getboot
 
 ## Validation performance
 
-MVC’s validation system is designed to be extensible and flexible, allowing you to determine on a per request basis which validators apply to a given model. This is great for authoring complex validation providers. However, in the most common case an application only uses the built-in validators and don’t require this extra flexibility. Built-in validators include DataAnnotations such as [Required] and [StringLength], and `IValidatableObject`.
+MVC's validation system is designed to be extensible and flexible, allowing you to determine on a per request basis which validators apply to a given model. This is great for authoring complex validation providers. However, in the most common case an application only uses the built-in validators and don't require this extra flexibility. Built-in validators include DataAnnotations such as [Required] and [StringLength], and `IValidatableObject`.
 
 In ASP.NET Core 2.2, MVC can short-circuit validation if it determines that a given model graph doesn't require validation. Skipping validation results in significant improvements when validating models that can't or don't have any validators. This includes objects such as collections of primitives (such as `byte[]`, `string[]`, `Dictionary<string, string>`), or complex object graphs without many validators.
 
@@ -112,4 +112,4 @@ For more information, see [the pull request that made this improvement](https://
 
 ## Additional information
 
-For the complete list of changes, see the [ASP.NET Core 2.2 Release Notes](https://github.com/aspnet/Home/releases/tag/2.2.0).
+For the complete list of changes, see the [ASP.NET Core 2.2 Release Notes](https://github.com/dotnet/aspnetcore/releases/tag/2.2.0).

@@ -4,6 +4,7 @@ author: ardalis
 description: Learn how ASP.NET Core supports dependency injection into MVC views.
 ms.author: riande
 ms.date: 10/14/2016
+no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/views/dependency-injection
 ---
 # Dependency injection into views in ASP.NET Core
@@ -12,7 +13,7 @@ By [Steve Smith](https://ardalis.com/)
 
 ASP.NET Core supports [dependency injection](xref:fundamentals/dependency-injection) into views. This can be useful for view-specific services, such as localization or data required only for populating view elements. You should try to maintain [separation of concerns](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#separation-of-concerns) between your controllers and views. Most of the data your views display should be passed in from the controller.
 
-[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/views/dependency-injection/sample) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/views/dependency-injection/sample) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Configuration injection
 
