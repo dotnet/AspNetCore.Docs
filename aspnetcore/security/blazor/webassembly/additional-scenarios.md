@@ -5,7 +5,7 @@ description: Learn how to configure Blazor WebAssembly for additional security s
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/01/2020
+ms.date: 06/03/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/blazor/webassembly/additional-scenarios
 ---
@@ -511,9 +511,62 @@ The following example shows how to:
 
 ## Save app state before an authentication operation
 
-During an authentication operation, there are cases where you want to save the app state before the browser is redirected to the IP. This can be the case when you are using something like a state container and you want to restore the state after the authentication succeeds. You can use a custom authentication state object to preserve app-specific state or a reference to it and restore that state once the authentication operation successfully completes.
+During an authentication operation, there are cases where you want to save the app state before the browser is redirected to the IP. This can be the case when you are using a state container and you want to restore the state after the authentication succeeds. You can use a custom authentication state object to preserve app-specific state or a reference to it and restore that state once the authentication operation successfully completes. The following example demonstrates the approach.
 
-`Authentication` component (*Pages/Authentication.razor*):
+A state container class is created in the app with properties to hold the app's state values. In the following example, the container is used to maintain the counter value of the default template's `Counter` component. Methods for serializing and deserializing the container are based on <xref:System.Text.Json>.
+
+```csharp
+using System.Text.Json;
+
+public class StateContainer
+{
+    public int CounterValue { get; set; }
+
+    public string ToStore()
+    {
+        return JsonSerializer.Serialize(this);
+    }
+
+    public void FromStore(string stored)
+    {
+        var storedState = JsonSerializer.Deserialize<StateContainer>(stored);
+        CounterValue = storedState.CounterValue;
+    }
+}
+```
+
+The `Counter` component uses the container to maintain the `currentCount` value outside of the component:
+
+```razor
+@page "/counter"
+@inject StateContainer State
+
+<h1>Counter</h1>
+
+<p>Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@code {
+    private int currentCount = 0;
+
+    protected override void OnInitialized()
+    {
+        if (State.CounterValue > 0)
+        {
+            currentCount = State.CounterValue;
+        }
+    }
+
+    private void IncrementCount()
+    {
+        currentCount++;
+        State.CounterValue = currentCount;
+    }
+}
+```
+
+The `Authentication` component (*Pages/Authentication.razor*) saves and restores the app's state using local session storage with the `StateContainer` serialization and deserialization methods:
 
 ```razor
 @page "/authentication/{action}"
@@ -555,6 +608,24 @@ During an authentication operation, there are cases where you want to save the a
     public ApplicationAuthenticationState AuthenticationState { get; set; } = 
         new ApplicationAuthenticationState();
 }
+```
+
+This example uses Azure Active Directory (AAD) for authentication. In `Program.Main` (*Program.cs*):
+
+* The `ApplicationAuthenticationState` is configured as the Microsoft Autentication Library (MSAL) `RemoteAuthenticationState` type.
+* The state container is registered in the service container.
+
+```csharp
+using static StandAADRC.Pages.Authentication;
+
+...
+
+builder.Services.AddMsalAuthentication<ApplicationAuthenticationState>(options =>
+{
+    builder.Configuration.Bind("AzureAd", options.ProviderOptions.Authentication);
+});
+
+builder.Services.AddSingleton<StateContainer>();
 ```
 
 ## Customize app routes
