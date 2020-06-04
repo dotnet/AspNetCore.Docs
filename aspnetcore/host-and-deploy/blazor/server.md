@@ -5,7 +5,7 @@ description: Learn how to host and deploy a Blazor Server app using ASP.NET Core
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/03/2020
+ms.date: 06/04/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: host-and-deploy/blazor/server
 ---
@@ -136,6 +136,41 @@ For more information, see the following articles:
 * [NGINX as a WebSocket Proxy](https://www.nginx.com/blog/websocket-nginx/)
 * [WebSocket proxying](http://nginx.org/docs/http/websocket.html)
 * <xref:host-and-deploy/linux-nginx>
+
+## Linux with Apache
+
+To host a Blazor app behind Apache on Linux, configure `ProxyPass` for HTTP and WebSockets traffic.
+
+In the following example:
+
+* Kestrel server is running on the host machine.
+* The app listens for traffic on port 5000.
+
+```
+ProxyRequests       On
+ProxyPreserveHost   On
+ProxyPassMatch      ^/_blazor/(.*) http://localhost:5000/_blazor/$1
+ProxyPass           /_blazor ws://localhost:5000/_blazor
+ProxyPass           / http://localhost:5000/
+ProxyPassReverse    / http://localhost:5000/
+```
+
+Enable the following modules:
+
+```
+a2enmod   proxy
+a2enmod   proxy_wstunnel
+```
+
+Check the browser console for WebSockets errors. Example errors:
+
+* Firefox can't establish a connection to the server at ws://the-domain-name.tld/_blazor?id=XXX.
+* Error: Failed to start the transport 'WebSockets': Error: There was an error with the transport.
+* Error: Failed to start the transport 'LongPolling': TypeError: this.transport is undefined
+* Error: Unable to connect to the server with any of the available transports. WebSockets failed
+* Error: Cannot send data if the connection is not in the 'Connected' State.
+
+For more information, see the [Apache documentation](https://httpd.apache.org/docs/current/mod/mod_proxy.html).
 
 ### Measure network latency
 
