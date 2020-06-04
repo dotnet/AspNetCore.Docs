@@ -1,0 +1,67 @@
+﻿@using System.Globalization
+@using Microsoft.AspNetCore.Http.Features
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+
+@inject IViewLocalizer Localizer
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>@ViewData["Title"] - Localization</title>
+        <environment names="Development">
+            <link rel="stylesheet" href="~/css/bootstrap-3.3.7.css">
+        </environment>
+        <environment names="Staging,Production">
+            <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css" asp-fallback-href="~/css/bootstrap-3.3.7.min.css" asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute">
+        </environment>
+    </head>
+    <body>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">@Localizer["Toggle navigation"]</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a asp-controller="Home" asp-action="Index" class="navbar-brand">Localization</a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a asp-controller="Home" asp-action="Index">@Localizer["Home"]</a></li>
+                        <li><a asp-controller="Home" asp-action="About">@Localizer["About"]</a></li>
+                        <li><a asp-controller="Home" asp-action="Contact">@Localizer["Contact"]</a></li>
+                    </ul>
+                    @await Html.PartialAsync("_LoginPartial")
+                </div>
+            </div>
+        </div>
+        <div class="container body-content" style="margin-top:60px">
+            @RenderBody()
+            <hr>
+            <footer>
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>&copy; @System.DateTime.Now.Year - Localization</p>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        @await Html.PartialAsync("_SelectLanguagePartial")
+                    </div>
+                </div>
+            </footer>
+        </div>
+        <environment include="Development">
+            <script src="~/js/jquery-2.2.0.js"></script>
+            <script src="~/js/bootstrap-3.3.7.js"></script>
+        </environment>
+        <environment exclude="Development">
+            <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.0.min.js" asp-fallback-src="~/js/jquery-2.2.0.min.js" asp-fallback-test="window.jQuery"></script>
+            <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js" asp-fallback-src="~/js/bootstrap-3.3.7.min.js" asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"></script>
+        </environment>
+        @RenderSection("scripts", required: false)
+    </body>
+</html>
