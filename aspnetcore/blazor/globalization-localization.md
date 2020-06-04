@@ -84,14 +84,19 @@ Any technique can be used to assign a culture if the culture is persisted in a l
 The following example shows how to set the current culture in a cookie that can be read by the Localization Middleware. Create a Razor expression in the *Pages/_Host.cshtml* file immediately inside the opening `<body>` tag:
 
 ```cshtml
+@using System.Globalization
+@using Microsoft.AspNetCore.Localization
+
+...
+
 <body>
     @{
         this.HttpContext.Response.Cookies.Append(
-            Microsoft.AspNetCore.Localization.CookieRequestCultureProvider.DefaultCookieName,
-            Microsoft.AspNetCore.Localization.CookieRequestCultureProvider.MakeCookieValue(
-                new Microsoft.AspNetCore.Localization.RequestCulture(
-                    System.Globalization.CultureInfo.CurrentCulture,
-                    System.Globalization.CultureInfo.CurrentUICulture)));
+            CookieRequestCultureProvider.DefaultCookieName,
+            CookieRequestCultureProvider.MakeCookieValue(
+                new RequestCulture(
+                    CultureInfo.CurrentCulture,
+                    CultureInfo.CurrentUICulture)));
     }
 
     ...
