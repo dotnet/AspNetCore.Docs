@@ -157,20 +157,18 @@ ProxyPassReverse    / http://localhost:5000/
 
 Enable the following modules:
 
-```bash
+```
 a2enmod   proxy
 a2enmod   proxy_wstunnel
 ```
 
 Check the browser console for WebSockets errors. Example errors:
 
-```
-Firefox can't establish a connection to the server at ws://the-domain-name.tld/_blazor?id=XXX.
-Error: Failed to start the transport 'WebSockets': Error: There was an error with the transport.
-Error: Failed to start the transport 'LongPolling': TypeError: this.transport is undefined
-Error: Unable to connect to the server with any of the available transports. WebSockets failed
-Error: Cannot send data if the connection is not in the 'Connected' State.
-```
+* Firefox can't establish a connection to the server at ws://the-domain-name.tld/_blazor?id=XXX.
+* Error: Failed to start the transport 'WebSockets': Error: There was an error with the transport.
+* Error: Failed to start the transport 'LongPolling': TypeError: this.transport is undefined
+* Error: Unable to connect to the server with any of the available transports. WebSockets failed
+* Error: Cannot send data if the connection is not in the 'Connected' State.
 
 For more information, see the [Apache documentation](https://httpd.apache.org/docs/current/mod/mod_proxy.html).
 
