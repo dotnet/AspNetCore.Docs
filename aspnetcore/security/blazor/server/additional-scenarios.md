@@ -139,7 +139,7 @@ public class WeatherForecastService
 
 ## Set the authentication scheme
 
-For an app that uses more than one Authentication Middleware and thus has more than one authentication scheme, the scheme that Blazor uses can be explicitly set in the endpoint configuration of `Startup.Configure`. The following example sets the scheme used for Azure Active Directory:
+For an app that uses more than one Authentication Middleware and thus has more than one authentication scheme, the scheme that Blazor uses can be explicitly set in the endpoint configuration of `Startup.Configure`. The following example sets the Azure Active Directory scheme:
 
 ```csharp
 endpoints.MapBlazorHub().RequireAuthorization(
