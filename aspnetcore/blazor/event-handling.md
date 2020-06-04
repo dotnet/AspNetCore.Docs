@@ -5,7 +5,7 @@ description: Learn about Blazor's event handling features, including event argum
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/16/2020
+ms.date: 06/04/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/event-handling
 ---
@@ -121,7 +121,7 @@ It's often convenient to close over additional values, such as when iterating ov
 ```
 
 > [!NOTE]
-> Do **not** use the loop variable (`i`) in a `for` loop directly in a lambda expression. Otherwise the same variable is used by all lambda expressions causing `i`'s value to be the same in all lambdas. Always capture its value in a local variable (`buttonNumber` in the preceding example) and then use it.
+> Do **not** use a loop variable, such as `i` in the preceding example, in a `for` loop or a reference variable in a `foreach` loop directly in a lambda expression. Otherwise, the same variable is used by all lambda expressions, which results in use of the same value in all lambdas. Always capture the variable's value in a local variable (`buttonNumber` in the preceding example) and then use it.
 
 ## EventCallback
 
