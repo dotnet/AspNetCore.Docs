@@ -5,7 +5,7 @@ description: Learn how to make Razor components accessible to users in multiple 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/14/2020
+ms.date: 06/04/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/globalization-localization
 ---
@@ -75,34 +75,39 @@ For more information and examples, see <xref:fundamentals/localization>.
 
 #### Cookies
 
-A localization culture cookie can persist the user's culture. The cookie is created by the `OnGet` method of the app's host page (*Pages/Host.cshtml.cs*). The Localization Middleware reads the cookie on subsequent requests to set the user's culture. 
+A localization culture cookie can persist the user's culture. The Localization Middleware reads the cookie on subsequent requests to set the user's culture. 
 
 Use of a cookie ensures that the WebSocket connection can correctly propagate the culture. If localization schemes are based on the URL path or query string, the scheme might not be able to work with WebSockets, thus fail to persist the culture. Therefore, use of a localization culture cookie is the recommended approach.
 
 Any technique can be used to assign a culture if the culture is persisted in a localization cookie. If the app already has an established localization scheme for server-side ASP.NET Core, continue to use the app's existing localization infrastructure and set the localization culture cookie within the app's scheme.
 
-The following example shows how to set the current culture in a cookie that can be read by the Localization Middleware. Create a *Pages/_Host.cshtml.cs* file with the following contents in the Blazor Server app:
+The following example shows how to set the current culture in a cookie that can be read by the Localization Middleware. Create a Razor expression in the *Pages/_Host.cshtml* file immediately inside the opening `<body>` tag:
 
-```csharp
-public class HostModel : PageModel
-{
-    public void OnGet()
-    {
-        HttpContext.Response.Cookies.Append(
+```cshtml
+@using System.Globalization
+@using Microsoft.AspNetCore.Localization
+
+...
+
+<body>
+    @{
+        this.HttpContext.Response.Cookies.Append(
             CookieRequestCultureProvider.DefaultCookieName,
             CookieRequestCultureProvider.MakeCookieValue(
                 new RequestCulture(
                     CultureInfo.CurrentCulture,
                     CultureInfo.CurrentUICulture)));
     }
-}
+
+    ...
+</body>
 ```
 
 Localization is handled by the app in the following sequence of events:
 
 1. The browser sends an initial HTTP request to the app.
 1. The culture is assigned by the Localization Middleware.
-1. The `OnGet` method in *_Host.cshtml.cs* persists the culture in a cookie as part of the response.
+1. The Razor expression in the `_Host` page (*_Host.cshtml*) persists the culture in a cookie as part of the response.
 1. The browser opens a WebSocket connection to create an interactive Blazor Server session.
 1. The Localization Middleware reads the cookie and assigns the culture.
 1. The Blazor Server session begins with the correct culture.
@@ -136,6 +141,25 @@ public class CultureController : Controller
 
 > [!WARNING]
 > Use the <xref:Microsoft.AspNetCore.Mvc.ControllerBase.LocalRedirect%2A> action result to prevent open redirect attacks. For more information, see <xref:security/preventing-open-redirects>.
+
+If the app isn't configured to process controller actions:
+
+* Add MVC services to the service collection in `Startup.ConfigureServices`:
+
+  ```csharp
+  services.AddControllers();
+  ```
+
+* Add controller endpoint routing in `Startup.Configure`:
+
+  ```csharp
+  app.UseEndpoints(endpoints =>
+  {
+      endpoints.MapControllers();
+      endpoints.MapBlazorHub();
+      endpoints.MapFallbackToPage("/_Host");
+  });
+  ```
 
 The following component shows an example of how to perform the initial redirection when the user selects a culture:
 
