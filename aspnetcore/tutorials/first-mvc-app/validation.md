@@ -1,14 +1,14 @@
 ---
-title: Add validation to an ASP.NET Core MVC app
+title: Part 9, add validation to an ASP.NET Core MVC app
 author: rick-anderson
-description: How to add validation to an ASP.NET Core app.
+description: Part 9 of tutorial series on ASP.NET Core MVC.
 ms.author: riande
 ms.date: 04/13/2017
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-mvc-app/validation
 ---
 
-# Add validation to an ASP.NET Core MVC app
+# Part 9, add validation to an ASP.NET Core MVC app
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 

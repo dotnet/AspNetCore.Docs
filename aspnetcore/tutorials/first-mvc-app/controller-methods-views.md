@@ -1,14 +1,14 @@
 ---
-title: Controller methods and views in ASP.NET Core
+title: Part 6, controller methods and views in ASP.NET Core
 author: rick-anderson
-description: Learn how to work with controller methods, views, and DataAnnotations in ASP.NET Core.
+description: Part 6, add a model to an ASP.NET Core MVC app
 ms.author: riande
 ms.date: 12/13/2018
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-mvc-app/controller-methods-views
 ---
 
-# Controller methods and views in ASP.NET Core
+# Part 6, controller methods and views in ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
