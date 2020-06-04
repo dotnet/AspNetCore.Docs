@@ -1,14 +1,14 @@
 ---
-title: Add a new field to a Razor Page in ASP.NET Core
+title: Part 7, add a new field to a Razor Page in ASP.NET Core
 author: rick-anderson
-description: Shows how to add a new field to a Razor Page with Entity Framework Core
+description: Part 7 of tutorial series on Razor Pages.
 ms.author: riande
 ms.custom: mvc
 ms.date: 7/23/2019
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/razor-pages/new-field
 ---
-# Add a new field to a Razor Page in ASP.NET Core
+# Part 7, add a new field to a Razor Page in ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
