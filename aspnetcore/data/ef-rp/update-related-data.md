@@ -1,14 +1,14 @@
 ---
-title: Razor Pages with EF Core in ASP.NET Core - Update Related Data - 7 of 8
+title: Part 7, Razor Pages with EF Core in ASP.NET Core - Update Related Data
 author: rick-anderson
-description: In this tutorial, you update related data by updating foreign key fields and navigation properties.
+description: Part 7 of Razor Pages and Entity Framework tutorial series.
 ms.author: riande
 ms.date: 07/22/2019
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: data/ef-rp/update-related-data
 ---
 
-# Razor Pages with EF Core in ASP.NET Core - Update Related Data - 7 of 8
+# Part 7, Razor Pages with EF Core in ASP.NET Core - Update Related Data
 
 By [Tom Dykstra](https://github.com/tdykstra), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
