@@ -150,7 +150,7 @@ ProxyPass           / http://localhost:5000/
 ProxyPassReverse    / http://localhost:5000/
 ```
 
-And enable atleast these modules:
+Enable the following modules:
 
 ```bash
 a2enmod   proxy
