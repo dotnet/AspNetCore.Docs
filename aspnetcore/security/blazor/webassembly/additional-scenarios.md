@@ -5,7 +5,7 @@ description: Learn how to configure Blazor WebAssembly for additional security s
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/03/2020
+ms.date: 06/04/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/blazor/webassembly/additional-scenarios
 ---
@@ -511,9 +511,9 @@ The following example shows how to:
 
 ## Save app state before an authentication operation
 
-During an authentication operation, there are cases where you want to save the app state before the browser is redirected to the IP. This can be the case when you are using a state container and you want to restore the state after the authentication succeeds. You can use a custom authentication state object to preserve app-specific state or a reference to it and restore that state once the authentication operation successfully completes. The following example demonstrates the approach.
+During an authentication operation, there are cases where you want to save the app state before the browser is redirected to the IP. This can be the case when you're using a state container and want to restore the state after the authentication succeeds. You can use a custom authentication state object to preserve app-specific state or a reference to it and restore that state after the authentication operation successfully completes. The following example demonstrates the approach.
 
-A state container class is created in the app with properties to hold the app's state values. In the following example, the container is used to maintain the counter value of the default template's `Counter` component. Methods for serializing and deserializing the container are based on <xref:System.Text.Json>.
+A state container class is created in the app with properties to hold the app's state values. In the following example, the container is used to maintain the counter value of the default template's `Counter` component (*Pages/Counter.razor*). Methods for serializing and deserializing the container are based on <xref:System.Text.Json>.
 
 ```csharp
 using System.Text.Json;
@@ -535,7 +535,7 @@ public class StateContainer
 }
 ```
 
-The `Counter` component uses the container to maintain the `currentCount` value outside of the component:
+The `Counter` component uses the state container to maintain the `currentCount` value outside of the component:
 
 ```razor
 @page "/counter"
@@ -621,7 +621,7 @@ This example uses Azure Active Directory (AAD) for authentication. In `Program.M
 * The state container is registered in the service container.
 
 ```csharp
-using static StandAADRC.Pages.Authentication;
+using static {APP ASSEMBLY}.Pages.Authentication;
 
 ...
 
