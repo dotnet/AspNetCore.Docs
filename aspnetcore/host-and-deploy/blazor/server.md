@@ -139,7 +139,12 @@ For more information, see the following articles:
 
 ## Linux with Apache
 
-To host a Blazor app behind Apache on Linux, configure `ProxyPass` for HTTP and WebSockets traffic. In the following example, the Kestrel server is running on the same machine and listening for traffic on port 5000:
+To host a Blazor app behind Apache on Linux, configure `ProxyPass` for HTTP and WebSockets traffic.
+
+In the following example:
+
+* Kestrel server is running on the host machine.
+* The app listens for traffic on port 5000.
 
 ```
 ProxyRequests       On
