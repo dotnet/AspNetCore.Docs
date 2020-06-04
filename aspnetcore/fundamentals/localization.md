@@ -37,7 +37,7 @@ In the preceding code, the `IStringLocalizer<T>` implementation comes from [Depe
 
 Use the `IHtmlLocalizer<T>` implementation for resources that contain HTML. `IHtmlLocalizer` HTML encodes arguments that are formatted in the resource string, but doesn't HTML encode the resource string itself. In the sample highlighted below, only the value of `name` parameter is HTML encoded.
 
-[!code-csharp[](../fundamentals/localization/sample/3.x/Localization/Controllers/BookController.cs?highlight=3,5,20&start=1&end=24)]
+[!code-csharp[](~/fundamentals/localization/sample/3.x/Localization/Controllers/BookController.cs?highlight=3,5,20&start=1&end=24)]
 
 **Note:** You generally want to only localize text and not HTML.
 
@@ -79,7 +79,7 @@ The rendered view would contain the HTML markup from the resource file.
 
 To use a shared resource file in a view, inject `IHtmlLocalizer<T>`:
 
-[!code-cshtml[](../fundamentals/localization/sample/3.x/Localization/Views/Test/About.cshtml?highlight=5,12)]
+[!code-cshtml[](~/fundamentals/localization/sample/3.x/Localization/Views/Test/About.cshtml?highlight=5,12)]
 
 ## DataAnnotations localization
 
@@ -385,7 +385,7 @@ In the preceding code, the `IStringLocalizer<T>` implementation comes from [Depe
 
 Use the `IHtmlLocalizer<T>` implementation for resources that contain HTML. `IHtmlLocalizer` HTML encodes arguments that are formatted in the resource string, but doesn't HTML encode the resource string itself. In the sample highlighted below, only the value of `name` parameter is HTML encoded.
 
-[!code-csharp[](../fundamentals/localization/sample/3.x/Localization/Controllers/BookController.cs?highlight=3,5,20&start=1&end=24)]
+[!code-csharp[](~/fundamentals/localization/sample/3.x/Localization/Controllers/BookController.cs?highlight=3,5,20&start=1&end=24)]
 
 **Note:** You generally want to only localize text and not HTML.
 
@@ -427,7 +427,7 @@ The rendered view would contain the HTML markup from the resource file.
 
 To use a shared resource file in a view, inject `IHtmlLocalizer<T>`:
 
-[!code-cshtml[](../fundamentals/localization/sample/3.x/Localization/Views/Test/About.cshtml?highlight=5,12)]
+[!code-cshtml[](~/fundamentals/localization/sample/3.x/Localization/Views/Test/About.cshtml?highlight=5,12)]
 
 ## DataAnnotations localization
 
@@ -732,7 +732,7 @@ In the preceding code, the `IStringLocalizer<T>` implementation comes from [Depe
 
 Use the `IHtmlLocalizer<T>` implementation for resources that contain HTML. `IHtmlLocalizer` HTML encodes arguments that are formatted in the resource string, but doesn't HTML encode the resource string itself. In the sample highlighted below, only the value of `name` parameter is HTML encoded.
 
-[!code-csharp[](../fundamentals/localization/sample/3.x/Localization/Controllers/BookController.cs?highlight=3,5,20&start=1&end=24)]
+[!code-csharp[](~/fundamentals/localization/sample/3.x/Localization/Controllers/BookController.cs?highlight=3,5,20&start=1&end=24)]
 
 **Note:** You generally want to only localize text and not HTML.
 
@@ -774,7 +774,7 @@ The rendered view would contain the HTML markup from the resource file.
 
 To use a shared resource file in a view, inject `IHtmlLocalizer<T>`:
 
-[!code-cshtml[](../fundamentals/localization/sample/3.x/Localization/Views/Test/About.cshtml?highlight=5,12)]
+[!code-cshtml[](~/fundamentals/localization/sample/3.x/Localization/Views/Test/About.cshtml?highlight=5,12)]
 
 ## DataAnnotations localization
 
