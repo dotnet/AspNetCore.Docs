@@ -6,7 +6,7 @@
 }
 
 <div class="row justify-content-center">
-    <div class="col-6">
+    <div class="col-md-6">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <form asp-page-handler="Create" method="POST">
             <div class="input-group input-group-sm">
@@ -23,7 +23,7 @@
 {
     <hr>
     <div class="row justify-content-center">
-        <div class="col-6">
+        <div class="col-md-6">
             <ul class="list-group mb-2">
                 @foreach (var todoItem in Model.IncompleteTodoItems)
                 {
@@ -37,7 +37,7 @@
 @if (Model.CompleteTodoItems.Any())
 {
     <div class="row justify-content-center">
-        <div class="col-6">
+        <div class="col-md-6">
             <p class="text-center">
                 <small>@Model.CompleteTodoItems.Count completed</small>
             </p>

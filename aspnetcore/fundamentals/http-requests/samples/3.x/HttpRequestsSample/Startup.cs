@@ -1,3 +1,4 @@
+using System;
 using HttpRequestsSample.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -14,7 +15,11 @@ namespace HttpRequestsSample
             services.AddDbContext<TodoContext>(options =>
                 options.UseInMemoryDatabase("TodoItems"));
 
-            services.AddHttpClient();
+            services.AddHttpClient<TodoClient>(httpClient =>
+            {
+                httpClient.BaseAddress = new Uri("https://localhost:5001");
+                httpClient.Timeout = TimeSpan.FromSeconds(5);
+            });
 
             services.AddControllers();
             services.AddRazorPages();
