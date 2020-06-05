@@ -5,7 +5,7 @@ description: Learn about Blazor authentication and authorization scenarios.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/19/2020
+ms.date: 06/05/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/blazor/index
 ---
@@ -49,6 +49,10 @@ For more information on creating apps and configuration, see <xref:security/blaz
 Blazor Server apps operate over a real-time connection that's created using SignalR. [Authentication in SignalR-based apps](xref:signalr/authn-and-authz) is handled when the connection is established. Authentication can be based on a cookie or some other bearer token.
 
 For more information on creating apps and configuration, see <xref:security/blazor/server/index>.
+
+## Avoid sign in with an iframe
+
+Sign in with an iframe isn't recommended due to security and browser compatibility concerns. Configure the app with the identity provider to use the redirect or popup approaches to sign in users.
 
 ## AuthenticationStateProvider service
 
