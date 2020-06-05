@@ -27,8 +27,11 @@ namespace RequestResponseSample
             }
 
             app.UseHttpsRedirection();
+           // app.UseStaticFiles();
 
             app.UseRouting();
+
+           // app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
@@ -111,6 +114,7 @@ namespace RequestResponseSample
 
                 if (bytesRemaining == 0)
                 {
+                    results.Add(builder.ToString());
                     break;
                 }
 
@@ -120,13 +124,13 @@ namespace RequestResponseSample
                 int index;
                 while (true)
                 {
-                    index = Array.IndexOf(buffer, (byte)'\n');
+                    index = Array.IndexOf(buffer, (byte)'\n', prevIndex);
                     if (index == -1)
                     {
                         break;
                     }
 
-                    var encodedString = Encoding.UTF8.GetString(buffer, prevIndex, index);
+                    var encodedString = Encoding.UTF8.GetString(buffer, prevIndex, index - prevIndex);
 
                     if (builder.Length > 0)
                     {
@@ -143,7 +147,7 @@ namespace RequestResponseSample
                     prevIndex = index + 1;
                 }
 
-                var remainingString = Encoding.UTF8.GetString(buffer, index, bytesRemaining - index);
+                var remainingString = Encoding.UTF8.GetString(buffer, prevIndex, bytesRemaining - prevIndex);
                 builder.Append(remainingString);
             }
 
@@ -181,10 +185,16 @@ namespace RequestResponseSample
                 }
                 while (position != null);
 
-                // At this point, buffer will be updated to point one byte after the last
-                // \n character.
+
+                if (readResult.IsCompleted && buffer.Length > 0)
+                {
+                    AddStringToList(ref results, in buffer);
+                }
+
                 reader.AdvanceTo(buffer.Start, buffer.End);
 
+                // At this point, buffer will be updated to point one byte after the last
+                // \n character.
                 if (readResult.IsCompleted)
                 {
                     break;
