@@ -68,3 +68,16 @@ This would allow only authenticated users to the `AccountController`, except for
 
 > [!WARNING]
 > `[AllowAnonymous]` bypasses all authorization statements. If you combine `[AllowAnonymous]` and any `[Authorize]` attribute, the `[Authorize]` attributes are ignored. For example if you apply `[AllowAnonymous]` at the controller level, any `[Authorize]` attributes on the same controller (or on any action within it) is ignored.
+
+<a name="aarp"></a>
+
+## Authorize attribute and Razor Pages
+
+The <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> can ***not*** be applied to Razor Page handlers. For example, `[Authorize]` can't be applied to `OnGet`, `OnPost`, or any other page handler.
+
+The following two approaches can be used to apply authorization to Razor Page handler methods:
+
+* Use separate pages for page handlers requiring different authorization. Moved shared content into one or more [partial views](xref:mvc/views/partial).
+* For content that must share a common page, write a filter that performs authorization as part of [IAsyncPageFilter.OnPageHandlerSelectionAsync(xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncPageFilter.OnPageHandlerSelectionAsync%2A). The [PageHandlerAuth](https://github.com/pranavkm/PageHandlerAuth) GitHub project demonstrates this approach:
+  * The [AuthorizePageHandlerFilter](https://github.com/pranavkm/PageHandlerAuth/blob/0be16c56ec2a2a82d3bc5137213a73938117df84/AuthorizePageHandlerFilter.cs) implements the authorization filter.
+  * The [[AuthorizePageHandler]](https://github.com/pranavkm/PageHandlerAuth/blob/0be16c56ec2a2a82d3bc5137213a73938117df84/Pages/Index.cshtml.cs#L16) attribute is applied to the `OnGet` page handler.
