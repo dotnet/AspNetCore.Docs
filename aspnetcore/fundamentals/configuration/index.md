@@ -895,7 +895,7 @@ Configuration providers can't utilize DI, as it's not available when they're set
 Configuration keys adopt the following conventions:
 
 * Keys are case-insensitive. For example, `ConnectionString` and `connectionstring` are treated as equivalent keys.
-* If a value for the same key is set by the same or different configuration providers, the last value set on the key is the value used.
+* If a value for the same key is set by the same or different configuration providers, the last value set on the key is the value used. For more information on duplicate JSON keys, see [this GitHub issue](https://github.com/dotnet/extensions/issues/2381).
 * Hierarchical keys
   * Within the Configuration API, a colon separator (`:`) works on all platforms.
   * In environment variables, a colon separator may not work on all platforms. A double underscore (`__`) is supported by all platforms and is automatically converted into a colon.
