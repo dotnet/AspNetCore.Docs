@@ -1,17 +1,17 @@
 ### YamlMime:Hub
 
-title: ASP.NET Core documentation
+title: ASP.NET documentation
 summary: Learn to use ASP.NET Core to create web apps and services that are fast, secure, cross-platform, and cloud-based. Browse tutorials, sample code, fundamentals, API reference and more. 
 brand: aspnet
 
 metadata:
-  title: ASP.NET Core documentation
+  title: ASP.NET documentation
   description: Learn to use ASP.NET Core to create web apps and services that are fast, secure, cross-platform, and cloud-based. Browse tutorials, sample code, fundamentals, API reference and more.
   ms.product: aspnet
   ms.topic: hub-page
   author: WadePickett
   ms.author: wpickett
-  ms.date: 06/03/2020
+  ms.date: 06/05/2020
 
 # highlightedContent section (optional)
 # Maximum of 8 items
@@ -55,7 +55,7 @@ highlightedContent:
 conceptualContent:
 # itemType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | video | whats-new
   title: Develop ASP.NET Core apps # < 60 chars (optional)
-  summary: "Choose interactive web apps, web API, MVC-patterned apps, real-time apps, and more. For ASP.NET 4.x documentation, see [ASP.NET](https://docs.microsoft.com/aspnet/overview)."
+  summary: "Choose interactive web apps, web API, MVC-patterned apps, real-time apps, and more"
   items:
     # Card
     - title: "Interactive client-side Blazor apps"
