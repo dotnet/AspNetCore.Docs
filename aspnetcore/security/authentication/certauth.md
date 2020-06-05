@@ -556,11 +556,11 @@ namespace AspNetCoreCertificateAuthApi
 This section provides information for apps that must protect specific Razor Pages or controllers with a certificate. This presents challenges as client certificates:
   
 * Are a TLS feature, not an HTTP feature.
-* Are negotiated per-connection and must be be negotiated at the start of the connection before any HTTP data is available. At the start of the connection, only the Server Name Indication (SNI)[1] is known. The first request on a connection negotiates the certificate and further requests generally won't be able to renegotiate. Renegotiation is prohibited in HTTP/2.
+* Are negotiated per-connection and must be be negotiated at the start of the connection before any HTTP data is available. At the start of the connection, only the Server Name Indication (SNI)&dagger; is known. The first request on a connection negotiates the certificate and further requests generally won't be able to renegotiate. Renegotiation is prohibited in HTTP/2.
 
 The following GitHub issues provide help on optional client certificates:
 
 * [Optional client certificates](https://github.com/dotnet/aspnetcore/issues/21193)
 * [Scope HTTPS client certificate requirement to specific paths in Kestrel](https://github.com/dotnet/aspnetcore/issues/18064)
 
-[1] Server Name Indication (SNI) is a TLS extension to include a virtual domain as a part of SSL negotiation. This effectively means the virtual domain name, or a hostname, can be used to identify the network end point.
+&dagger; Server Name Indication (SNI) is a TLS extension to include a virtual domain as a part of SSL negotiation. This effectively means the virtual domain name, or a hostname, can be used to identify the network end point.
