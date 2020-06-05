@@ -66,7 +66,7 @@ These issues are fixable, but the code is becoming progressively more complicate
 
 ## Pipelines
 
-The following example shows how the same scenario can be handled using a `PipeReader`:
+The following example shows how the same scenario can be handled using a PipeReader]/dotnet/standard/io/pipelines#pipe):
 
 [!code-csharp[](request-response/samples/3.x/RequestResponseSample/Startup.cs?name=GetListOfStringFromPipe)]
 
@@ -74,11 +74,11 @@ This example fixes many issues that the streams implementations had:
 
 * There's no need for a string buffer because the `PipeReader` handles bytes that haven't been used.
 * Encoded strings are directly added to the list of returned strings.
-* String creation is allocation-free besides the memory used by the string (except the `ToArray()` call).
+* Other than the `ToArray` call, and the memory used by the string, string creation is allocation free.
 
 ## Adapters
 
-Both `Body` and `BodyReader/BodyWriter` properties are available for `HttpRequest` and `HttpResponse`. When you set `Body` to a different stream, a new set of adapters automatically adapt each type to the other. If you set `HttpRequest.Body` to a new stream, `HttpRequest.BodyReader` is automatically set to a new `PipeReader` that wraps `HttpRequest.Body`.
+The `Body`, `BodyReader`, and `BodyWriter` properties are available for `HttpRequest` and `HttpResponse`. When you set `Body` to a different stream, a new set of adapters automatically adapt each type to the other. If you set `HttpRequest.Body` to a new stream, `HttpRequest.BodyReader` is automatically set to a new `PipeReader` that wraps `HttpRequest.Body`.
 
 ## StartAsync
 
@@ -86,5 +86,5 @@ Both `Body` and `BodyReader/BodyWriter` properties are available for `HttpReques
 
 ## Additional resources
 
-* [Introducing System.IO.Pipelines](https://devblogs.microsoft.com/dotnet/system-io-pipelines-high-performance-io-in-net/)
+* [System.IO.Pipelines in .NET]/dotnet/standard/io/pipelines)
 * <xref:fundamentals/middleware/write>
