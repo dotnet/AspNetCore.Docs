@@ -88,3 +88,5 @@ The `Body`, `BodyReader`, and `BodyWriter` properties are available for `HttpReq
 
 * [System.IO.Pipelines in .NET]/dotnet/standard/io/pipelines)
 * <xref:fundamentals/middleware/write>
+
+<!-- Test with Postman or other tool. See image in static directory. -->
