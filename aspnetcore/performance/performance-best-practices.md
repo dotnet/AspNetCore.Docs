@@ -212,6 +212,8 @@ Naively storing a large request or response body into a single `byte[]` or `stri
 * May result in quickly running out of space in the LOH.
 * May cause performance issues for the app because of full GCs running.
 
+One solution is to [validate file upload size](https://docs.microsoft.com/en-us/aspnet/core/mvc/models/file-uploads?view=aspnetcore-3.1#size-validation).  
+
 ## Working with a synchronous data processing API
 
 When using a serializer/de-serializer that only supports synchronous reads and writes (for example,  [JSON.NET](https://www.newtonsoft.com/json/help/html/Introduction.htm)):
