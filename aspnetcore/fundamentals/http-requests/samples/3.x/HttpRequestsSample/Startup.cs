@@ -2,6 +2,8 @@ using System;
 using HttpRequestsSample.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -15,9 +17,14 @@ namespace HttpRequestsSample
             services.AddDbContext<TodoContext>(options =>
                 options.UseInMemoryDatabase("TodoItems"));
 
-            services.AddHttpClient<TodoClient>(httpClient =>
+            services.AddHttpContextAccessor();
+
+            services.AddHttpClient<TodoClient>((sp, httpClient) =>
             {
-                httpClient.BaseAddress = new Uri("https://localhost:5001");
+                // For sample purposes, assume TodoClient is used in the context of an incoming request.
+                var httpRequest = sp.GetRequiredService<IHttpContextAccessor>().HttpContext.Request;
+
+                httpClient.BaseAddress = new Uri(UriHelper.BuildAbsolute(httpRequest.Scheme, httpRequest.Host, httpRequest.PathBase));
                 httpClient.Timeout = TimeSpan.FromSeconds(5);
             });
 
