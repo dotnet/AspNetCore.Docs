@@ -21,7 +21,7 @@ This tutorial shows you how to build and modify a Blazor app. You learn how to:
 > * Use event handling and data binding in components
 > * Use dependency injection (DI) and routing in a Blazor app
 
-At the end of this tutorial, you'll have a working chat app.
+At the end of this tutorial, you'll have a working todo list app.
 
 ## Build components
 
