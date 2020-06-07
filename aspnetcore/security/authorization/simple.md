@@ -81,3 +81,6 @@ The following two approaches can be used to apply authorization to Razor Page ha
 * For content that must share a common page, write a filter that performs authorization as part of [IAsyncPageFilter.OnPageHandlerSelectionAsync](xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncPageFilter.OnPageHandlerSelectionAsync%2A). The [PageHandlerAuth](https://github.com/pranavkm/PageHandlerAuth) GitHub project demonstrates this approach:
   * The [AuthorizePageHandlerFilter](https://github.com/pranavkm/PageHandlerAuth/blob/0be16c56ec2a2a82d3bc5137213a73938117df84/AuthorizePageHandlerFilter.cs) implements the authorization filter.
   * The [[AuthorizePageHandler]](https://github.com/pranavkm/PageHandlerAuth/blob/0be16c56ec2a2a82d3bc5137213a73938117df84/Pages/Index.cshtml.cs#L16) attribute is applied to the `OnGet` page handler.
+
+> [!WARNING]
+> The The [PageHandlerAuth](https://github.com/pranavkm/PageHandlerAuth) sample does ***not*** compose with authorization attributes agit pplied either to the page, page model, or globally. Composing authorization attributes results in authentication and authorization executing multiple times when you have `AuthorizeAttributes` or `AuthorizeFilters` independently applied to the page.
