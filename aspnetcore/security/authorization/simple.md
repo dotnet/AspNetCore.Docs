@@ -78,9 +78,12 @@ The <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> can ***not*** b
 The following two approaches can be used to apply authorization to Razor Page handler methods:
 
 * Use separate pages for page handlers requiring different authorization. Moved shared content into one or more [partial views](xref:mvc/views/partial).
-* For content that must share a common page, write a filter that performs authorization as part of [IAsyncPageFilter.OnPageHandlerSelectionAsync](xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncPageFilter.OnPageHandlerSelectionAsync%2A). The [PageHandlerAuth](https://github.com/pranavkm/PageHandlerAuth) GitHub project demonstrates this approach:
-  * The [AuthorizePageHandlerFilter](https://github.com/pranavkm/PageHandlerAuth/blob/0be16c56ec2a2a82d3bc5137213a73938117df84/AuthorizePageHandlerFilter.cs) implements the authorization filter.
-  * The [[AuthorizePageHandler]](https://github.com/pranavkm/PageHandlerAuth/blob/0be16c56ec2a2a82d3bc5137213a73938117df84/Pages/Index.cshtml.cs#L16) attribute is applied to the `OnGet` page handler.
+* For content that must share a common page, write a filter that performs authorization as part of [IAsyncPageFilter.OnPageHandlerSelectionAsync](xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncPageFilter.OnPageHandlerSelectionAsync%2A). The [PageHandlerAuth](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authorization/simple/samples/3.x/PageHandlerAuth) GitHub project demonstrates this approach:
+  * The [AuthorizePageHandlerFilter](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authorization/simple/samples/3.x/PageHandlerAuth/AuthorizePageHandlerFilter.cs) implements the authorization filter:
+  [!code-csharp[](~/security/authorization/simple/samples/3.x/PageHandlerAuth/Pages/Index.cshtml.cs&name=snippet)]
+
+  * The [[AuthorizePageHandler]](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authorization/simple/samples/3.x/PageHandlerAuth/Pages/Index.cshtml.cs#L16) attribute is applied to the `OnGet` page handler:
+    [!code-csharp[](~/security/authorization/simple/samples/3.x/PageHandlerAuth/AuthorizeIndexPageHandlerFilter.cs&name=snippet)]
 
 > [!WARNING]
 > The [PageHandlerAuth](https://github.com/pranavkm/PageHandlerAuth) sample approach does ***not***:
