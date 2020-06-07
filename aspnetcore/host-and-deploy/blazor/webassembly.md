@@ -36,9 +36,7 @@ Blazor relies on the host to the serve the appropriate compressed files. When us
 * When hosting on static hosting solutions that don't support statically-compressed file content negotiation, such as GitHub Pages, consider configuring the app to fetch and decode Brotli compressed files:
 
   * Reference the Brotli decoder from the [google/brotli GitHub repository](https://github.com/google/brotli/) in the app.
-  * Update the app to use the decoder.
-  
-    Update the markup inside the the closing `<body>` tag in *wwwroot/index.html* to the following:
+  * Update the app to use the decoder. Change the markup inside the the closing `<body>` tag in *wwwroot/index.html* to the following:
   
     ```html
     <script src="brotli.decode.min.js"></script>
