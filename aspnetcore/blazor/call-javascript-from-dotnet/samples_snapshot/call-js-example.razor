@@ -35,7 +35,5 @@
             await JSRuntime.InvokeAsync<string>("convertArray", quoteArray);
 
         convertedText = new MarkupString(text);
-
-        StateHasChanged();
     }
 }
