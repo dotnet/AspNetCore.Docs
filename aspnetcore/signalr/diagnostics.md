@@ -199,6 +199,39 @@ You can attach Diagnostics files to GitHub issues by renaming them so they have 
 
 ![Dragging log files on to a GitHub issue](diagnostics/attaching-diagnostics-files.png)
 
+## Metrics
+
+Metrics is a representation of data measures over intervals of time, for example, requests per second. Metrics data allows observation of the state of an app at a high-level. .NET gRPC metrics are emitted using `EventCounter`.
+
+### SignalR server metrics
+
+SignalR server metrics are reported on the `Microsoft.AspNetCore.Http.Connections` event source.
+
+| Name                      | Description                   |
+| --------------------------|-------------------------------|
+| `connections-started`     | Total Connections Started     |
+| `connections-stopped`     | Total Connections Stopped     |
+| `connections-timed-out`   | Total Connections Timed Out   |
+| `current-connections`     | Current Connections           |
+| `connections-duration`    | Average Connection Duration   |
+
+### Observe metrics
+
+[dotnet-counters](https://docs.microsoft.com/dotnet/core/diagnostics/dotnet-counters) is a performance monitoring tool for ad-hoc health monitoring and first-level performance investigation. Monitor a .NET app with `Microsoft.AspNetCore.Http.Connections` as the provider name.
+
+```console
+> dotnet-counters monitor --process-id 37016 Microsoft.AspNetCore.Http.Connections
+
+Press p to pause, r to resume, q to quit.
+    Status: Running
+[Microsoft.AspNetCore.Http.Connections]
+    Average Connection Duration (ms)       16,040.56
+    Current Connections                         1
+    Total Connections Started                   8
+    Total Connections Stopped                   7
+    Total Connections Timed Out                 0
+```
+
 ## Additional resources
 
 * <xref:signalr/configuration>
