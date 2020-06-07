@@ -23,13 +23,43 @@ The following deployment strategies are supported:
 * The Blazor app is served by an ASP.NET Core app. This strategy is covered in the [Hosted deployment with ASP.NET Core](#hosted-deployment-with-aspnet-core) section.
 * The Blazor app is placed on a static hosting web server or service, where .NET isn't used to serve the Blazor app. This strategy is covered in the [Standalone deployment](#standalone-deployment) section, which includes information on hosting a Blazor WebAssembly app as an IIS sub-app.
 
-## Precompression
+## Compression
 
-When a Blazor WebAssembly app is published, the output is precompressed to reduce the app's size and remove the need for runtime compression. The following compression algorithms are used:
+When a Blazor WebAssembly app is published, the output is statically compressed during publish to reduce the app's size and remove the overhead for runtime compression. The following compression algorithms are used:
 
 * [Brotli](https://tools.ietf.org/html/rfc7932) (highest level)
 * [Gzip](https://tools.ietf.org/html/rfc1952)
 
+Blazor's relies on the host to the server the appropriate compressed file. When using an ASP.NET Core hosted project, the host project is capable of performing content negotiation and serving the statically compressed file. When hosting a Blazor WebAssembly self-hosted application, you may have to do additional work to ensure statically compressed are served.
+
+* For IIS *web.config* compression configuration, see the [IIS: Brotli and Gzip compression](#brotli-and-gzip-compression) section. 
+* When hosting on static hosting solutions (such as GitHub Pages) that do not support this form of content negotiation, consider configuring your application to fetch and decode Brotli compressed files:
+   - Reference the Brotli decoder from https://github.com/google/brotli/ in your app
+   - Update your application to use the decoder:
+   ```
+   // index.html
+   <script src="brotli.decode.min.js"></script>
+   <script src="_framework/blazor.webassembly.js" autostart="false"></script>
+   <script>
+   Blazor.start({
+       loadBootResource: function (type, name, defaultUri, integrity) {
+        if (type !== 'dotnetjs' && location.hostname !== 'localhost') {
+          return (async function () {
+            const response = await fetch(defaultUri + '.br', { cache: 'no-cache' });
+            if (!response.ok) {
+              throw new Error(response.statusText);
+            }
+            const originalResponseBuffer = await response.arrayBuffer();
+            const originalResponseArray = new Int8Array(originalResponseBuffer);
+            const decompressedResponseArray = BrotliDecode(originalResponseArray);
+            const contentType = type === 'dotnetwasm' ? 'application/wasm' : 'application/octet-stream';
+            return new Response(decompressedResponseArray, { headers: { 'content-type': contentType } });
+          })();
+        }
+      }
+    });
+  </script>
+   
 To disable compression, add the `BlazorEnableCompression` MSBuild property to the app's project file and set the value to `false`:
 
 ```xml
@@ -38,7 +68,7 @@ To disable compression, add the `BlazorEnableCompression` MSBuild property to th
 </PropertyGroup>
 ```
 
-For IIS *web.config* compression configuration, see the [IIS: Brotli and Gzip compression](#brotli-and-gzip-compression) section.
+
 
 ## Rewrite URLs for correct routing
 
