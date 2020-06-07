@@ -29,25 +29,29 @@ namespace WebApplication22
 
         public async Task OnPageHandlerSelectionAsync(PageHandlerSelectedContext context)
         {
-            if (context.ActionDescriptor.ModelTypeInfo != typeof(Pages.IndexModel))
-            {
-                throw new NotSupportedException("This only works for IndexModel.");
-            }
-
-            if (context.HandlerMethod.MethodInfo != 
-                typeof(Pages.IndexModel).GetMethod(nameof(Pages.IndexModel.OnPostAuthorized)))
+            var attribute = context.HandlerMethod?.MethodInfo?.GetCustomAttribute<AuthorizePageHandlerAttribute>();
+            if (attribute is null)
             {
                 return;
             }
 
-            var policy = await policyProvider.GetPolicyAsync("YourAuthPolicyHere");
-            // Or you may use the default policy if you don't have a specific policy configured.
-            // var policy = policyProvider.GetDefaultPolicyAsync();
-            await AuthoorizeAsync(context, policy);
+            var authorizeAttribute = new AuthorizeAttribute(attribute.Policy)
+            {
+               Roles = attribute.Roles,
+               AuthenticationSchemes = attribute.AuthenticationSchemes,
+            };
+            
+            var policy = await AuthorizationPolicy.CombineAsync(policyProvider, new[] { authorizeAttribute });
+            if (policy is null)
+            {
+                return;
+            }
+
+            await AuthorizeAsync(context, policy);
         }
 
         #region AuthZ - do not change
-        private async Task AuthoorizeAsync(ActionContext actionContext, AuthorizationPolicy policy)
+        private async Task AuthorizeAsync(ActionContext actionContext, AuthorizationPolicy policy)
         {
             var httpContext = actionContext.HttpContext;
             var authenticateResult = await policyEvaluator.AuthenticateAsync(policy, httpContext);
