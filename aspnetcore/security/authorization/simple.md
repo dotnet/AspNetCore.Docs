@@ -87,6 +87,6 @@ The following two approaches can be used to apply authorization to Razor Page ha
 > * Compose with authorization attributes applied to the page, page model, or globally. Composing authorization attributes results in authentication and authorization executing multiple times when you have `AuthorizeAttributes` or `AuthorizeFilters` also applied to the page.
 > * Work in conjunction with the rest of ASP.NET Core authentication and authorization system. You must verify using this approach works correctly for your application.
 
-When possible, moving shared content to a partial view is th prefer approach.
+When possible, moving shared content to a partial view is the preferred approach.
 
 There are no plans to support the `AuthorizeAttribute` on Razor Page handlers. 
