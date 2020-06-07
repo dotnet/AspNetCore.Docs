@@ -83,4 +83,10 @@ The following two approaches can be used to apply authorization to Razor Page ha
   * The [[AuthorizePageHandler]](https://github.com/pranavkm/PageHandlerAuth/blob/0be16c56ec2a2a82d3bc5137213a73938117df84/Pages/Index.cshtml.cs#L16) attribute is applied to the `OnGet` page handler.
 
 > [!WARNING]
-> The The [PageHandlerAuth](https://github.com/pranavkm/PageHandlerAuth) sample does ***not*** compose with authorization attributes agit pplied either to the page, page model, or globally. Composing authorization attributes results in authentication and authorization executing multiple times when you have `AuthorizeAttributes` or `AuthorizeFilters` independently applied to the page.
+> The [PageHandlerAuth](https://github.com/pranavkm/PageHandlerAuth) sample approach does ***not***:
+> * Compose with authorization attributes applied to the page, page model, or globally. Composing authorization attributes results in authentication and authorization executing multiple times when you have `AuthorizeAttributes` or `AuthorizeFilters` also applied to the page.
+> * Work in conjunction with the rest of ASP.NET Core authentication and authorization system. You must verify using this approach works correctly for your application.
+
+When possible, moving shared content to a partial view is th prefer approach.
+
+There are no plans to support the `AuthorizeAttribute` on Razor Page handlers. 
