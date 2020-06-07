@@ -30,19 +30,17 @@ When a Blazor WebAssembly app is published, the output is statically compressed 
 * [Brotli](https://tools.ietf.org/html/rfc7932) (highest level)
 * [Gzip](https://tools.ietf.org/html/rfc1952)
 
-Blazor relies on the host to the serve the appropriate compressed file. When using an ASP.NET Core hosted project, the host project is capable of performing content negotiation and serving the statically-compressed file. When hosting a Blazor WebAssembly standalone app, additional work might be required to ensure statically-compressed are served:
+Blazor relies on the host to the serve the appropriate compressed files. When using an ASP.NET Core hosted project, the host project is capable of performing content negotiation and serving the statically-compressed files. When hosting a Blazor WebAssembly standalone app, additional work might be required to ensure that statically-compressed files are served:
 
 * For IIS *web.config* compression configuration, see the [IIS: Brotli and Gzip compression](#brotli-and-gzip-compression) section. 
-* When hosting on static hosting solutions, such as GitHub Pages, that don't support statically-compressed file content negotiation, consider configuring the app to fetch and decode Brotli compressed files:
+* When hosting on static hosting solutions that don't support statically-compressed file content negotiation, such as GitHub Pages, consider configuring the app to fetch and decode Brotli compressed files:
 
-  * Reference the Brotli decoder from the [google/brotli GitHub repository](https://github.com/google/brotli/) in your app.
-  * Update your app to use the decoder.
+  * Reference the Brotli decoder from the [google/brotli GitHub repository](https://github.com/google/brotli/) in the app.
+  * Update the app to use the decoder.
   
-    *wwwroot/index.html*:
+    Update the markup inside the the closing `<body>` tag in *wwwroot/index.html* to the following:
   
     ```html
-    ...
-
     <script src="brotli.decode.min.js"></script>
     <script src="_framework/blazor.webassembly.js" autostart="false"></script>
     <script>
