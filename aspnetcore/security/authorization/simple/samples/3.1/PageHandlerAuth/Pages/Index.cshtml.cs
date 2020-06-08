@@ -25,6 +25,7 @@ namespace WebApplication22.Pages
 
         }
 
+        [AuthorizePageHandler]
         public void OnPostAuthorized()
         {
 
