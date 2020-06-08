@@ -100,7 +100,7 @@ Filters are very similar to middleware. The `next` method invokes the next filte
 
 To skip a hub method invocation in a filter, throw an exception of type `HubException` instead of calling `next`. The client will receive an error if it was expecting a result.
 
-## Using hub filters
+## Use hub filters
 
 When writing the filter logic, try to make it generic by using attributes on hub methods instead of checking for hub method names.
 
@@ -131,23 +131,22 @@ public class LanguageFilter : IHubFilter
     public async ValueTask<object> InvokeMethodAsync(HubInvocationContext invocationContext, Func<HubInvocationContext, ValueTask<object>> next)
     {
         var languageFilter = (LanguageFilterAttribute)Attribute.GetCustomAttribute(invocationContext.HubMethod, typeof(LanguageFilterAttribute));
-        if (invocationContext.HubMethodArguments.Count > languageFilter.FilterArgument &&
+        if (languageFilter != null &&
+            invocationContext.HubMethodArguments.Count > languageFilter.FilterArgument &&
             invocationContext.HubMethodArguments[languageFilter.FilterArgument] is string str)
         {
             foreach (var bannedPhrase in bannedPhrases)
             {
                 str = str.Replace(bannedPhrase, "***");
             }
-            if (invocationContext.HubMethodArguments is object[] arguments)
-            {
-                arguments[languageFilter.FilterArgument] = str;
-            }
-            else
-            {
-                arguments = invocationContext.HubMethodArguments.ToArray();
-                arguments[languageFilter.FilterArgument] = str;
-                invocationContext = new HubInvocationContext(invocationContext.Context, invocationContext.ServiceProvider, invocationContext.Hub, invocationContext.HubMethod, arguments);
-            }
+
+            arguments = invocationContext.HubMethodArguments.ToArray();
+            arguments[languageFilter.FilterArgument] = str;
+            invocationContext = new HubInvocationContext(invocationContext.Context,
+                invocationContext.ServiceProvider,
+                invocationContext.Hub,
+                invocationContext.HubMethod,
+                arguments);
         }
 
         return await next(invocationContext);
@@ -156,6 +155,7 @@ public class LanguageFilter : IHubFilter
 ```
 
 Finally, we need to register the hub filter. To avoid reinitializing the banned phrases list for every invocation, we register the hub filter as a singleton.
+
 ```csharp
 public void ConfigureServices(IServiceCollection services)
 {
