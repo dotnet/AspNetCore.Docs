@@ -556,7 +556,7 @@ namespace AspNetCoreCertificateAuthApi
 This section provides information for apps that must protect a subset of the app with a certificate. For example, a Razor Page or controller in the app might require client certificates. This presents challenges as client certificates:
   
 * Are a TLS feature, not an HTTP feature.
-* Are negotiated per-connection and must be be negotiated at the start of the connection before any HTTP data is available. At the start of the connection, only the Server Name Indication (SNI)&dagger; is known. The first request on a connection negotiates the certificate and further requests generally won't be able to renegotiate. Renegotiation is prohibited in HTTP/2.
+* Are negotiated per-connection and must be be negotiated at the start of the connection before any HTTP data is available. At the start of the connection, only the Server Name Indication (SNI)&dagger; is known. The client and server certificates are negotiated prior to the first request on a connection and requests generally won't be able to renegotiate. Renegotiation is prohibited in HTTP/2.
 
 The following GitHub issues provide help on optional client certificates:
 
