@@ -133,6 +133,10 @@ Blazor WebAssembly offers two additional versions of <xref:Microsoft.JSInterop.I
 dotnet publish -c Release
 ```
 
+### Compression
+
+When a Blazor WebAssembly app is published, the output is statically compressed during publish to reduce the app's size and remove the overhead for runtime compression. Blazor relies on the server to perform content negotation and serve  statically compressed files. Once deployed, verify that your Blazor application is being served compressed. To do this, inspect the Network tab in a browser's Developer Console and verify that the files are being served with `Content-Encoding: br` or  `Content-Encoding: gz`. If your host is not serving compressed files, follow the instructions at <xref:host-and-deploy/blazor/webassembly#compression /> for more ways to configure your application.
+
 ### Disable unused features
 
 Blazor WebAssembly's runtime includes the following .NET features that can be disabled if the app doesn't require them for a smaller payload size:
