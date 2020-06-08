@@ -5,7 +5,7 @@ description: Learn how to gather diagnostics from your ASP.NET Core SignalR app.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: anurse
 ms.custom: signalr
-ms.date: 11/12/2019
+ms.date: 06/08/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: signalr/diagnostics
 ---
@@ -201,23 +201,23 @@ You can attach Diagnostics files to GitHub issues by renaming them so they have 
 
 ## Metrics
 
-Metrics is a representation of data measures over intervals of time, for example, requests per second. Metrics data allows observation of the state of an app at a high-level. .NET gRPC metrics are emitted using `EventCounter`.
+Metrics is a representation of data measures over intervals of time. For example, requests per second. Metrics data allows observation of the state of an app at a high level. .NET gRPC metrics are emitted using <xref:System.Diagnostics.Tracing.EventCounter>.
 
 ### SignalR server metrics
 
-SignalR server metrics are reported on the `Microsoft.AspNetCore.Http.Connections` event source.
+SignalR server metrics are reported on the <xref:Microsoft.AspNetCore.Http.Connections> event source.
 
-| Name                      | Description                   |
-| --------------------------|-------------------------------|
-| `connections-started`     | Total Connections Started     |
-| `connections-stopped`     | Total Connections Stopped     |
-| `connections-timed-out`   | Total Connections Timed Out   |
-| `current-connections`     | Current Connections           |
-| `connections-duration`    | Average Connection Duration   |
+| Name                    | Description                 |
+|-------------------------|-----------------------------|
+| `connections-started`   | Total connections started   |
+| `connections-stopped`   | Total connections stopped   |
+| `connections-timed-out` | Total connections timed out |
+| `current-connections`   | Current connections         |
+| `connections-duration`  | Average connection duration |
 
 ### Observe metrics
 
-[dotnet-counters](https://docs.microsoft.com/dotnet/core/diagnostics/dotnet-counters) is a performance monitoring tool for ad-hoc health monitoring and first-level performance investigation. Monitor a .NET app with `Microsoft.AspNetCore.Http.Connections` as the provider name.
+[dotnet-counters](/dotnet/core/diagnostics/dotnet-counters) is a performance monitoring tool for ad-hoc health monitoring and first-level performance investigation. Monitor a .NET app with `Microsoft.AspNetCore.Http.Connections` as the provider name. For example:
 
 ```console
 > dotnet-counters monitor --process-id 37016 Microsoft.AspNetCore.Http.Connections
