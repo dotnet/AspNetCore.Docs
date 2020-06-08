@@ -70,7 +70,7 @@ Replace the contents of the *Views/HelloWorld/Index.cshtml* Razor view file with
 
 [!code-HTML[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/HelloWorld/Index1.cshtml?highlight=7)]
 
-Navigate to `https://localhost:{PORT}/HelloWorld`. The `Index` method in the `HelloWorldController` didn't do much; it ran the statement `return View();`, which specified that the method should use a view template file to render a response to the browser. Because a view template file name wasn't specified, MVC defaulted to using the default view file. The default view file has the same name as the method (`Index`), so in the */Views/HelloWorld/Index.cshtml* is used. The image below shows the string "Hello from our View Template!" hard-coded in the view.
+Navigate to `https://localhost:{PORT}/HelloWorld`. The `Index` method in the `HelloWorldController` didn't do much; it ran the statement `return View();`, which specified that the method should use a view template file to render a response to the browser. Because a view template file name wasn't specified, MVC defaulted to using the default view file. The default view file has the same name as the method (`Index`), so the view template in */Views/HelloWorld/Index.cshtml* is used. The image below shows the string "Hello from our View Template!" hard-coded in the view.
 
 ![Browser window](~/tutorials/first-mvc-app/adding-view/_static/hell_template.png)
 
