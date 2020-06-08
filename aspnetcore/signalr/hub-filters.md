@@ -12,7 +12,12 @@ uid: signalr/hub-filters
 
 # Use hub filters in ASP.NET Core SignalR
 
-Hub filters allow logic to run before and after hub methods are invoked by clients. This article provides guidance for writing and using hub filters.
+Hub filters:
+
+* Are available in ASP.NET Core 5.0 or later.
+* Allow logic to run before and after hub methods are invoked by clients.
+
+This article provides guidance for writing and using hub filters.
 
 ## Configure hub filters
 
@@ -68,7 +73,8 @@ Create a filter by declaring a class that inherits from `IHubFilter`, and add th
 ```csharp
 public class CustomFilter : IHubFilter
 {
-    public async ValueTask<object> InvokeMethodAsync(HubInvocationContext invocationContext, Func<HubInvocationContext, ValueTask<object>> next)
+    public async ValueTask<object> InvokeMethodAsync(
+        HubInvocationContext invocationContext, Func<HubInvocationContext, ValueTask<object>> next)
     {
         Console.WriteLine($"Calling hub method '{invocationContext.HubMethodName}'");
         try
@@ -89,7 +95,8 @@ public class CustomFilter : IHubFilter
     }
 
     // Optional method
-    public Task OnDisconnectedAsync(HubLifetimeContext context, Exception exception, Func<HubLifetimeContext, Exception, Task> next)
+    public Task OnDisconnectedAsync(
+        HubLifetimeContext context, Exception exception, Func<HubLifetimeContext, Exception, Task> next)
     {
         return next(context, exception);
     }
@@ -104,69 +111,69 @@ To skip a hub method invocation in a filter, throw an exception of type `HubExce
 
 When writing the filter logic, try to make it generic by using attributes on hub methods instead of checking for hub method names.
 
-For example, lets write a filter that will check an argument to a hub method for banned phrases and replace any phrases it finds with `"***"`.
-For this example, we'll assume a `LanguageFilterAttribute` class is defined and it has a property named `FilterArgument` that can be set when using the attribute.
+Consider a filter that will check a hub method argument for banned phrases and replace any phrases it finds with `***`.
+For this example, assume a `LanguageFilterAttribute` class is defined. The class has a property named `FilterArgument` that can be set when using the attribute.
 
-First, place the attribute on the hub method that has a string argument that we want to clean up.
+1. Place the attribute on the hub method that has a string argument to be cleaned:
 
-```csharp
-public class ChatHub
-{
-    [LanguageFilter(filterArgument: 0)]
-    public async Task SendMessage(string message, string username)
+    ```csharp
+    public class ChatHub
     {
-        await Clients.All.SendAsync("SendMessage", $"{username} says: {message}");
-    }
-}
-```
-
-Next, define a hub filter that will check for the attribute and replace banned phrases in an argument to the hub method with "***".
-
-```csharp
-public class LanguageFilter : IHubFilter
-{
-    // populated from a file or inline
-    private List<string> bannedPhrases = new List<string> { "async void", ".Result" };
-
-    public async ValueTask<object> InvokeMethodAsync(HubInvocationContext invocationContext, Func<HubInvocationContext, ValueTask<object>> next)
-    {
-        var languageFilter = (LanguageFilterAttribute)Attribute.GetCustomAttribute(invocationContext.HubMethod, typeof(LanguageFilterAttribute));
-        if (languageFilter != null &&
-            invocationContext.HubMethodArguments.Count > languageFilter.FilterArgument &&
-            invocationContext.HubMethodArguments[languageFilter.FilterArgument] is string str)
+        [LanguageFilter(filterArgument: 0)]
+        public async Task SendMessage(string message, string username)
         {
-            foreach (var bannedPhrase in bannedPhrases)
+            await Clients.All.SendAsync("SendMessage", $"{username} says: {message}");
+        }
+    }
+    ```
+
+1. Define a hub filter to check for the attribute and replace banned phrases in a hub method argument with `***`:
+
+    ```csharp
+    public class LanguageFilter : IHubFilter
+    {
+        // populated from a file or inline
+        private List<string> bannedPhrases = new List<string> { "async void", ".Result" };
+
+        public async ValueTask<object> InvokeMethodAsync(HubInvocationContext invocationContext, Func<HubInvocationContext, ValueTask<object>> next)
+        {
+            var languageFilter = (LanguageFilterAttribute)Attribute.GetCustomAttribute(invocationContext.HubMethod, typeof(LanguageFilterAttribute));
+            if (languageFilter != null &&
+                invocationContext.HubMethodArguments.Count > languageFilter.FilterArgument &&
+                invocationContext.HubMethodArguments[languageFilter.FilterArgument] is string str)
             {
-                str = str.Replace(bannedPhrase, "***");
+                foreach (var bannedPhrase in bannedPhrases)
+                {
+                    str = str.Replace(bannedPhrase, "***");
+                }
+
+                arguments = invocationContext.HubMethodArguments.ToArray();
+                arguments[languageFilter.FilterArgument] = str;
+                invocationContext = new HubInvocationContext(invocationContext.Context,
+                    invocationContext.ServiceProvider,
+                    invocationContext.Hub,
+                    invocationContext.HubMethod,
+                    arguments);
             }
 
-            arguments = invocationContext.HubMethodArguments.ToArray();
-            arguments[languageFilter.FilterArgument] = str;
-            invocationContext = new HubInvocationContext(invocationContext.Context,
-                invocationContext.ServiceProvider,
-                invocationContext.Hub,
-                invocationContext.HubMethod,
-                arguments);
+            return await next(invocationContext);
         }
-
-        return await next(invocationContext);
     }
-}
-```
+    ```
 
-Finally, we need to register the hub filter. To avoid reinitializing the banned phrases list for every invocation, we register the hub filter as a singleton.
+1. Register the hub filter. To avoid reinitializing the banned phrases list for every invocation, the hub filter is registered as a singleton:
 
-```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    services.AddSignalR(hubOptions =>
+    ```csharp
+    public void ConfigureServices(IServiceCollection services)
     {
-        hubOptions.AddFilter<LanguageFilter>();
-    });
-
-    services.AddSingleton<LanguageFilter>();
-}
-```
+        services.AddSignalR(hubOptions =>
+        {
+            hubOptions.AddFilter<LanguageFilter>();
+        });
+    
+        services.AddSingleton<LanguageFilter>();
+    }
+    ```
 
 ## The HubInvocationContext object
 
