@@ -26,7 +26,7 @@ In Blazor with ASP.NET Core 3.0, components were rendered into pages and views u
 
 The HTML Helper remains supported in ASP.NET Core 3.1, but the Component Tag Helper is recommended.
 
-Blazor Server apps can now pass parameters to top-level components during the initial render. Previously you could only pass parameters to a top-level component with [RenderMode.Static](xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static). With this release, both [RenderMode.Server](xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server) and [RenderModel.ServerPrerendered](xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered) are supported. Any specified parameter values are serialized as JSON and included in the initial response.
+Blazor Server apps can now pass parameters to top-level components during the initial render. Previously you could only pass parameters to a top-level component with [RenderMode.Static](xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static). With this release, both [RenderMode.Server](xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server) and [RenderMode.ServerPrerendered](xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered) are supported. Any specified parameter values are serialized as JSON and included in the initial response.
 
 For example, prerender a `Counter` component with an increment amount (`IncrementAmount`):
 
