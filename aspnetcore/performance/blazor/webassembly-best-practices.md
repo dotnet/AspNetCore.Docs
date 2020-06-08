@@ -5,7 +5,7 @@ description: Tips for increasing performance in ASP.NET Core Blazor WebAssembly 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/13/2020
+ms.date: 06/08/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: performance/blazor/webassembly-best-practices
 ---
@@ -135,7 +135,9 @@ dotnet publish -c Release
 
 ### Compression
 
-When a Blazor WebAssembly app is published, the output is statically compressed during publish to reduce the app's size and remove the overhead for runtime compression. Blazor relies on the server to perform content negotation and serve  statically compressed files. Once deployed, verify that your Blazor application is being served compressed. To do this, inspect the Network tab in a browser's Developer Console and verify that the files are being served with `Content-Encoding: br` or  `Content-Encoding: gz`. If your host is not serving compressed files, follow the instructions at <xref:host-and-deploy/blazor/webassembly#compression /> for more ways to configure your application.
+When a Blazor WebAssembly app is published, the output is statically compressed during publish to reduce the app's size and remove the overhead for runtime compression. Blazor relies on the server to perform content negotation and serve statically-compressed files.
+
+After an app is deployed, verify that the app serves compressed files. Inspect the Network tab in a browser's Developer Tools and verify that the files are served with `Content-Encoding: br` or `Content-Encoding: gz`. If the host isn't serving compressed files, follow the instructions in <xref:host-and-deploy/blazor/webassembly#compression>.
 
 ### Disable unused features
 
