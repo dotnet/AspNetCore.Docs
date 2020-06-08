@@ -558,9 +558,20 @@ This section provides information for apps that must protect a subset of the app
 * Are a TLS feature, not an HTTP feature.
 * Are negotiated per-connection and must be be negotiated at the start of the connection before any HTTP data is available. At the start of the connection, only the Server Name Indication (SNI)&dagger; is known. The client and server certificates are negotiated prior to the first request on a connection and requests generally won't be able to renegotiate. Renegotiation is prohibited in HTTP/2.
 
-The following GitHub issues provide help on optional client certificates:
+The following approach supports optional client certificates:
+
+* Set up binding for the domain and subdomain:
+  * For example, set up bindings on `contoso.com` and `myClient.contoso.com`. `contoso.com` doesn't require a client certificate but `myClient.contoso.com` does. 
+  * For more information, see `[TODO - provide links]()`
+* For requests to the web app that require a client certificate and don't have one:
+  * Redirect to the same page using client certificate protected subdomain.
+  * For example, redirect to `myClient.contoso.com/requestedPage`.
+  * Because the request to `myClient.contoso.com/requestedPage` is a different hostname than `contoso.com/requestedPage`, the client will establish a different connection and the client certificate is provided.
+  * For more information, see <xref:security/authorization/introduction>.
 
 * [Optional client certificates](https://github.com/dotnet/aspnetcore/issues/21193)
 * [Scope HTTPS client certificate requirement to specific paths in Kestrel](https://github.com/dotnet/aspnetcore/issues/18064)
+
+Leave questions, comments, and other feedback on optional client certificates in [this GitHub discussion](https://github.com/dotnet/AspNetCore.Docs/issues/18720) issue.
 
 &dagger; Server Name Indication (SNI) is a TLS extension to include a virtual domain as a part of SSL negotiation. This effectively means the virtual domain name, or a hostname, can be used to identify the network end point.
