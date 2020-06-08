@@ -15,7 +15,7 @@ By [Justin Kotalik](https://github.com/jkotalik)
 
 This article explains how to read from the request body and write to the response body. Code for these operations might be required when writing middleware. Outside of writing middleware, custom code isn't generally required because the operations are handled by MVC and Razor Pages.
 
-There are two abstractions for the request and response bodies: <xref:System.IO.Stream> and <xref:System.IO.Pipelines.Pipe>. For request reading, [HttpRequest.Body](xref:Microsoft.AspNetCore.Http.HttpRequest.Body) is a <xref:System.IO.Stream>, and `HttpRequest.BodyReader` is a <xref:System.IO.Pipelines.PipeReader>. For response writing, [HttpResponse.Body](xref:Microsoft.AspNetCore.Http.HttpResponse.Body) is a <xref:System.IO.Stream>, and `HttpResponse.BodyWriter` is a <xref:System.IO.Pipelines.PipeWriter>.
+There are two abstractions for the request and response bodies: <xref:System.IO.Stream> and <xref:System.IO.Pipelines.Pipe>. For request reading, <xref:Microsoft.AspNetCore.Http.HttpRequest.Body?displayProperty=nameWithType> is a <xref:System.IO.Stream>, and `HttpRequest.BodyReader` is a <xref:System.IO.Pipelines.PipeReader>. For response writing, <xref:Microsoft.AspNetCore.Http.HttpResponse.Body?displayProperty=nameWithType> is a <xref:System.IO.Stream>, and `HttpResponse.BodyWriter` is a <xref:System.IO.Pipelines.PipeWriter>.
 
 [Pipelines](/dotnet/standard/io/pipelines) are recommended over streams. Streams can be easier to use for some simple operations, but pipelines have a performance advantage and are easier to use in most scenarios. ASP.NET Core is starting to use pipelines instead of streams internally. Examples include:
 
@@ -36,6 +36,7 @@ Suppose the goal is to create a middleware that reads the entire request body as
 > * Is not intended to be used in production apps.
 
 [!code-csharp[](request-response/samples/3.x/RequestResponseSample/Startup.cs?name=GetListOfStringsFromStream)]
+
 [!INCLUDE[about the series](~/includes/code-comments-loc.md)]
 
 This code works, but there are some issues:
@@ -66,7 +67,7 @@ These issues are fixable, but the code is becoming progressively more complicate
 
 ## Pipelines
 
-The following example shows how the same scenario can be handled using a PipeReader]/dotnet/standard/io/pipelines#pipe):
+The following example shows how the same scenario can be handled using a [PipeReader](/dotnet/standard/io/pipelines#pipe):
 
 [!code-csharp[](request-response/samples/3.x/RequestResponseSample/Startup.cs?name=GetListOfStringFromPipe)]
 
@@ -86,7 +87,7 @@ The `Body`, `BodyReader`, and `BodyWriter` properties are available for `HttpReq
 
 ## Additional resources
 
-* [System.IO.Pipelines in .NET]/dotnet/standard/io/pipelines)
+* [System.IO.Pipelines in .NET](/dotnet/standard/io/pipelines)
 * <xref:fundamentals/middleware/write>
 
 <!-- Test with Postman or other tool. See image in static directory. -->
