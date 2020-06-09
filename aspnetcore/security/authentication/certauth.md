@@ -558,6 +558,8 @@ This section provides information for apps that must protect a subset of the app
 * Are a TLS feature, not an HTTP feature.
 * Are negotiated per-connection and must be be negotiated at the start of the connection before any HTTP data is available. At the start of the connection, only the Server Name Indication (SNI)&dagger; is known. The client and server certificates are negotiated prior to the first request on a connection and requests generally won't be able to renegotiate. Renegotiation is prohibited in HTTP/2.
 
+ASP.NET Core 5 preview 4 and later supports optional client certificates. For more information, see the [Optional certificates sample](https://github.com/dotnet/aspnetcore/tree/master/src/Security/Authentication/Certificate/samples/Certificate.Optional.Sample).
+
 The following approach supports optional client certificates:
 
 * Set up binding for the domain and subdomain:
