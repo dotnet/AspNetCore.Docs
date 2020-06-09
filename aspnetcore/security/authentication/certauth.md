@@ -563,16 +563,12 @@ ASP.NET Core 5 preview 4 and later supports optional client certificates. For mo
 The following approach supports optional client certificates:
 
 * Set up binding for the domain and subdomain:
-  * For example, set up bindings on `contoso.com` and `myClient.contoso.com`. `contoso.com` doesn't require a client certificate but `myClient.contoso.com` does. 
+  * For example, set up bindings on `contoso.com` and `myClient.contoso.com`. The `contoso.com` host doesn't require a client certificate but `myClient.contoso.com` does.
   * For more information, see `[TODO - provide links]()`
 * For requests to the web app that require a client certificate and don't have one:
-  * Redirect to the same page using client certificate protected subdomain.
-  * For example, redirect to `myClient.contoso.com/requestedPage`.
-  * Because the request to `myClient.contoso.com/requestedPage` is a different hostname than `contoso.com/requestedPage`, the client will establish a different connection and the client certificate is provided.
+  * Redirect to the same page using the client certificate protected subdomain.
+  * For example, redirect to `myClient.contoso.com/requestedPage`. Because the request to `myClient.contoso.com/requestedPage` is a different hostname than `contoso.com/requestedPage`, the client establishes a different connection and the client certificate is provided.
   * For more information, see <xref:security/authorization/introduction>.
-
-* [Optional client certificates](https://github.com/dotnet/aspnetcore/issues/21193)
-* [Scope HTTPS client certificate requirement to specific paths in Kestrel](https://github.com/dotnet/aspnetcore/issues/18064)
 
 Leave questions, comments, and other feedback on optional client certificates in [this GitHub discussion](https://github.com/dotnet/AspNetCore.Docs/issues/18720) issue.
 
