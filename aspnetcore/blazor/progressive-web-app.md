@@ -272,14 +272,11 @@ When an app that's designed for online and offline use is online again:
 
 To create an offline PWA app that interacts with authentication:
 
-* Set up the service worker so that it:
-  * Serves a cached version of *_configuration/clientid* when the app is offline.
-  * Updates the cache in the background.
 * Replace the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccountClaimsPrincipalFactory%601> with a factory that stores the last signed-in user and uses the stored user when the app is offline.
 * Queue operations while the app is offline and apply them when the app returns online.
 * During sign out, clear the stored user.
 
-The [CarChecker](https://github.com/SteveSandersonMS/CarChecker) sample app demonstrates the last three approaches of the preceding list. See the following parts of the app:
+The [CarChecker](https://github.com/SteveSandersonMS/CarChecker) sample app demonstrates the the preceding approaches. See the following parts of the app:
 
 * `OfflineAccountClaimsPrincipalFactory` (*Client/Data/OfflineAccountClaimsPrincipalFactory.cs*)
 * `LocalVehiclesStore` (*Client/Data/LocalVehiclesStore.cs*)
