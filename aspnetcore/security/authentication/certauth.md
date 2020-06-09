@@ -564,7 +564,14 @@ The following approach supports optional client certificates:
 
 * Set up binding for the domain and subdomain:
   * For example, set up bindings on `contoso.com` and `myClient.contoso.com`. The `contoso.com` host doesn't require a client certificate but `myClient.contoso.com` does.
-  * For more information, see `[TODO - provide links]()`
+  * For more information, see:
+    * [Kestrel](/fundamentals/servers/kestrel):
+      * [ListenOptions.UseHttps](xref:fundamentals/servers/kestrel#listenoptionsusehttps)
+      * <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.ClientCertificateMode>
+    * IIS
+      * [Hosting IIS](xref:host-and-deploy/iis/#create-the-iis-site)
+      * [Configure security on IIS](https://docs.microsoft.com/en-us/iis/manage/configuring-security/how-to-set-up-ssl-on-iis#configure-ssl-settings-2)
+    * Http.Sys: [Configure Windows Server](xref:fundamentals/servers/httpsys#configure-windows-server)
 * For requests to the web app that require a client certificate and don't have one:
   * Redirect to the same page using the client certificate protected subdomain.
   * For example, redirect to `myClient.contoso.com/requestedPage`. Because the request to `myClient.contoso.com/requestedPage` is a different hostname than `contoso.com/requestedPage`, the client establishes a different connection and the client certificate is provided.
