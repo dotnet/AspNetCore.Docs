@@ -5,7 +5,7 @@ description: Learn how to configure Blazor WebAssembly for additional security s
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/04/2020
+ms.date: 06/09/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/blazor/webassembly/additional-scenarios
 ---
@@ -522,15 +522,17 @@ public class StateContainer
 {
     public int CounterValue { get; set; }
 
-    public string ToStore()
+    public string GetStateForLocalStorage()
     {
         return JsonSerializer.Serialize(this);
     }
 
-    public void FromStore(string stored)
+    public void SetStateFromLocalStorage(string locallyStoredState)
     {
-        var storedState = JsonSerializer.Deserialize<StateContainer>(stored);
-        CounterValue = storedState.CounterValue;
+        var deserializedState = 
+            JsonSerializer.Deserialize<StateContainer>(locallyStoredState);
+
+        CounterValue = deserializedState.CounterValue;
     }
 }
 ```
@@ -566,7 +568,7 @@ The `Counter` component uses the state container to maintain the `currentCount` 
 }
 ```
 
-The `Authentication` component (*Pages/Authentication.razor*) saves and restores the app's state using local session storage with the `StateContainer` serialization and deserialization methods:
+The `Authentication` component (*Pages/Authentication.razor*) saves and restores the app's state using local session storage with the `StateContainer` serialization and deserialization methods, `GetStateForLocalStorage` and `SetStateFromLocalStorage`:
 
 ```razor
 @page "/authentication/{action}"
@@ -590,11 +592,14 @@ The `Authentication` component (*Pages/Authentication.razor*) saves and restores
     protected async override Task OnInitializedAsync()
     {
         if (RemoteAuthenticationActions.IsAction(RemoteAuthenticationActions.LogIn,
+            Action) ||
+            RemoteAuthenticationActions.IsAction(RemoteAuthenticationActions.LogOut,
             Action))
         {
             AuthenticationState.Id = Guid.NewGuid().ToString();
+
             await JS.InvokeVoidAsync("sessionStorage.setItem",
-                AuthenticationState.Id, State.ToStore());
+                AuthenticationState.Id, State.GetStateForLocalStorage());
         }
     }
 
@@ -602,9 +607,12 @@ The `Authentication` component (*Pages/Authentication.razor*) saves and restores
     {
         if (state.Id != null)
         {
-            var stored = await JS.InvokeAsync<string>("sessionStorage.getItem",
-                state.Id);
-            State.FromStore(stored);
+            var locallyStoredState = await JS.InvokeAsync<string>(
+                "sessionStorage.getItem", state.Id);
+
+            State.SetStateFromLocalStorage(locallyStoredState);
+            
+            await JS.InvokeVoidAsync("sessionStorage.removeItem", state.Id);
         }
     }
 
