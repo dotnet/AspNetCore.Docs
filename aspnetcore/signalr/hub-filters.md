@@ -46,7 +46,7 @@ A hub filter can be added in one of the following ways:
     hubOptions.AddFilter<TFilter>();
     ```
 
-    This will be resolved from DI or type activated.
+    This will be resolved from dependency injection (DI) or type activated.
 
 * Add a filter by runtime type:
 
@@ -64,7 +64,7 @@ A hub filter can be added in one of the following ways:
 
     This instance will be used like a singleton. All hub method invocations will use the same instance.
 
-Hub filters are created and disposed per hub invocation. If you want to store global state in the filter, or no state, then we recommend adding the hub filter type to DI as a singleton for better performance or add the filter as an instance if you can.
+Hub filters are created and disposed per hub invocation. If you want to store global state in the filter, or no state, add the hub filter type to DI as a singleton for better performance. Alternatively, add the filter as an instance if you can.
 
 ## Create hub filters
 
@@ -135,9 +135,11 @@ For this example, assume a `LanguageFilterAttribute` class is defined. The class
         // populated from a file or inline
         private List<string> bannedPhrases = new List<string> { "async void", ".Result" };
 
-        public async ValueTask<object> InvokeMethodAsync(HubInvocationContext invocationContext, Func<HubInvocationContext, ValueTask<object>> next)
+        public async ValueTask<object> InvokeMethodAsync(HubInvocationContext invocationContext, 
+            Func<HubInvocationContext, ValueTask<object>> next)
         {
-            var languageFilter = (LanguageFilterAttribute)Attribute.GetCustomAttribute(invocationContext.HubMethod, typeof(LanguageFilterAttribute));
+            var languageFilter = (LanguageFilterAttribute)Attribute.GetCustomAttribute(
+                invocationContext.HubMethod, typeof(LanguageFilterAttribute));
             if (languageFilter != null &&
                 invocationContext.HubMethodArguments.Count > languageFilter.FilterArgument &&
                 invocationContext.HubMethodArguments[languageFilter.FilterArgument] is string str)
@@ -161,7 +163,7 @@ For this example, assume a `LanguageFilterAttribute` class is defined. The class
     }
     ```
 
-1. Register the hub filter. To avoid reinitializing the banned phrases list for every invocation, the hub filter is registered as a singleton:
+1. Register the hub filter in the `Startup.ConfigureServices` method. To avoid reinitializing the banned phrases list for every invocation, the hub filter is registered as a singleton:
 
     ```csharp
     public void ConfigureServices(IServiceCollection services)
