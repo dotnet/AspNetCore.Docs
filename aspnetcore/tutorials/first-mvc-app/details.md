@@ -1,14 +1,14 @@
 ---
-title: Examine the Details and Delete methods of an ASP.NET Core app
+title: Part 10, examine the Details and Delete methods of an ASP.NET Core app
 author: rick-anderson
-description: Learn about the Details controller method and view in a basic ASP.NET Core MVC app.
+description: Part 10 of tutorial series on ASP.NET Core MVC.
 ms.author: riande
 ms.date: 12/13/2018
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-mvc-app/details
 ---
 
-# Examine the Details and Delete methods of an ASP.NET Core app
+# Part 10, examine the Details and Delete methods of an ASP.NET Core app
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
