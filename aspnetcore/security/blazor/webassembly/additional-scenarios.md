@@ -610,9 +610,11 @@ The `Authentication` component (*Pages/Authentication.razor*) saves and restores
             var locallyStoredState = await JS.InvokeAsync<string>(
                 "sessionStorage.getItem", state.Id);
 
-            State.SetStateFromLocalStorage(locallyStoredState);
-            
-            await JS.InvokeVoidAsync("sessionStorage.removeItem", state.Id);
+            if (locallyStoredState != null)
+            {
+                State.SetStateFromLocalStorage(locallyStoredState);
+                await JS.InvokeVoidAsync("sessionStorage.removeItem", state.Id);
+            }
         }
     }
 
