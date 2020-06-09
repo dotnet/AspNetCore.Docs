@@ -108,7 +108,7 @@ When the scaffolding system created the Edit view, it examined the `Movie` class
 
 Notice how the view template has a `@model MvcMovie.Models.Movie` statement at the top of the file. `@model MvcMovie.Models.Movie` specifies that the view expects the model for the view template to be of type `Movie`.
 
-The scaffolded code uses several Tag Helper methods to streamline the HTML markup. The - [Label Tag Helper](xref:mvc/views/working-with-forms) displays the name of the field ("Title", "ReleaseDate", "Genre", or "Price"). The [Input Tag Helper](xref:mvc/views/working-with-forms) renders an HTML `<input>` element. The [Validation Tag Helper](xref:mvc/views/working-with-forms) displays any validation messages associated with that property.
+The scaffolded code uses several Tag Helper methods to streamline the HTML markup. The [Label Tag Helper](xref:mvc/views/working-with-forms) displays the name of the field ("Title", "ReleaseDate", "Genre", or "Price"). The [Input Tag Helper](xref:mvc/views/working-with-forms) renders an HTML `<input>` element. The [Validation Tag Helper](xref:mvc/views/working-with-forms) displays any validation messages associated with that property.
 
 Run the application and navigate to the `/Movies` URL. Click an **Edit** link. In the browser, view the source for the page. The generated HTML for the `<form>` element is shown below.
 
