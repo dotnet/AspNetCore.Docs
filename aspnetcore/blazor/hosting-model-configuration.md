@@ -285,7 +285,7 @@ For information on Blazor WebAssembly logging support, see <xref:fundamentals/lo
 
 To configure SignalR's underlying client to send credentials, such as cookies or HTTP authentication headers:
 
-* Use <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestCredentials%2A> to set <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.BrowserRequestCredentials.Include> on cross-origin [fetch](https://developer.mozilla.org/docs/Web/API/Fetch_API/Using_Fetch) requests.
+* Use <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestCredentials%2A> to set <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.BrowserRequestCredentials.Include> on cross-origin [fetch](https://developer.mozilla.org/docs/Web/API/Fetch_API/Using_Fetch) requests:
 
   ```csharp
   public class IncludeRequestCredentialsMessagHandler : DelegatingHandler
@@ -299,7 +299,7 @@ To configure SignalR's underlying client to send credentials, such as cookies or
   }
   ```
 
-* Assign an <xref:System.Net.Http.HttpMessageHandler> to the <xref:Microsoft.AspNetCore.Http.Connections.Client.HttpConnectionOptions.HttpMessageHandlerFactory> option.
+* Assign an <xref:System.Net.Http.HttpMessageHandler> to the <xref:Microsoft.AspNetCore.Http.Connections.Client.HttpConnectionOptions.HttpMessageHandlerFactory> option:
 
   ```csharp
   var client = new HubConnectionBuilder()
