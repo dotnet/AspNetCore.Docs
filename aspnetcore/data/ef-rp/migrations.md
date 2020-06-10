@@ -1,14 +1,14 @@
 ---
-title: Razor Pages with EF Core in ASP.NET Core - Migrations - 4 of 8
+title: Part 4, Razor Pages with EF Core in ASP.NET Core - Migrations
 author: rick-anderson
-description: In this tutorial, you start using the EF Core migrations feature for managing data model changes in an ASP.NET Core MVC app.
+description: Part 4 of Razor Pages and Entity Framework tutorial series.
 ms.author: riande
 ms.date: 07/22/2019
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: data/ef-rp/migrations
 ---
 
-# Razor Pages with EF Core in ASP.NET Core - Migrations - 4 of 8
+# Part 4, Razor Pages with EF Core migrations in ASP.NET Core
 
 By [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com/thereformedprog), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 

@@ -1,13 +1,13 @@
 ---
-title: Add a model to a Razor Pages app in ASP.NET Core
+title: Part 2, add a model to a Razor Pages app in ASP.NET Core
 author: rick-anderson
-description: Discover how to add classes for managing movies in a database using Entity Framework Core (EF Core).
+description: Part 2 of tutorial series on Razor Pages.
 ms.author: riande
 ms.date: 12/05/2019
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/razor-pages/model
 ---
-# Add a model to a Razor Pages app in ASP.NET Core
+# Part 2, add a model to a Razor Pages app in ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 

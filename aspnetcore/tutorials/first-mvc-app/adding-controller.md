@@ -1,14 +1,14 @@
 ---
-title: Add a controller to an ASP.NET Core MVC app
+title: Part 2, add a controller to an ASP.NET Core MVC app
 author: rick-anderson
-description: Learn how to add a controller to a simple ASP.NET Core MVC app.
+description: Part 2 of tutorial series on ASP.NET Core MVC.
 ms.author: riande
 ms.date: 08/05/2017
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-mvc-app/adding-controller
 ---
 
-# Add a controller to an ASP.NET Core MVC app
+# Part 2, add a controller to an ASP.NET Core MVC app
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 

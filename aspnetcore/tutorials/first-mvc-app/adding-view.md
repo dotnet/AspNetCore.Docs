@@ -1,14 +1,14 @@
 ---
-title: Add a view to an ASP.NET Core MVC app
+title: Part 3, add a view to an ASP.NET Core MVC app
 author: rick-anderson
-description: Adding a view to a simple ASP.NET Core MVC app
+description: Part 3 of tutorial series on ASP.NET Core MVC.
 ms.author: riande
 ms.date: 8/04/2019
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-mvc-app/adding-view
 ---
 
-# Add a view to an ASP.NET Core MVC app
+# Part 3, add a view to an ASP.NET Core MVC app
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 

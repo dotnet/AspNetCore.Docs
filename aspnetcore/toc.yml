@@ -75,7 +75,7 @@
               uid: tutorials/first-mvc-app/new-field
             - name: Add validation
               uid: tutorials/first-mvc-app/validation
-            - name: Examine the Details and Delete methods
+            - name: Examine Details and Delete
               uid: tutorials/first-mvc-app/details
         - name: Blazor
           displayName: tutorial

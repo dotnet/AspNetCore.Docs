@@ -1,14 +1,14 @@
 ---
-title: Add search to an ASP.NET Core MVC app
+title: Part 7, add search to an ASP.NET Core MVC app
 author: rick-anderson
-description: Shows how to add search to a basic ASP.NET Core MVC app
+description: Part 7 of tutorial series on ASP.NET Core MVC.
 ms.author: riande
 ms.date: 12/13/2018
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-mvc-app/search
 ---
 
-# Add search to an ASP.NET Core MVC app
+# Part 7, add search to an ASP.NET Core MVC app
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 

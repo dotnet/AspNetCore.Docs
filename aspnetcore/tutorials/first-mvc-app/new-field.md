@@ -1,14 +1,14 @@
 ---
-title: Add a new field to an ASP.NET Core MVC app
+title: Part 8, add a new field to an ASP.NET Core MVC app
 author: rick-anderson
-description: Learn how to use Entity Framework Code First Migrations to add a new field to a model and migrate that change to a database.
+description: Part 8 of tutorial series on ASP.NET Core MVC.
 ms.author: riande
 ms.custom: mvc
 ms.date: 12/13/2018
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-mvc-app/new-field
 ---
-# Add a new field to an ASP.NET Core MVC app
+# Part 8, add a new field to an ASP.NET Core MVC app
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 

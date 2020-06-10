@@ -1,13 +1,13 @@
 ---
-title: Work with SQL in an ASP.NET Core MVC app
+title: Part 5, work with a database in an ASP.NET Core MVC app
 author: rick-anderson
-description: Learn about using SQL Server LocalDB or SQLite in a ASP.NET Core MVC app.
+description: Part 5, add a model to an ASP.NET Core MVC app
 ms.author: riande
 ms.date: 8/16/2019
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-mvc-app/working-with-sql
 ---
-# Work with SQL in ASP.NET Core
+# Part 5, work with a database in an ASP.NET Core MVC app
 
 ::: moniker range=">= aspnetcore-3.0"
 

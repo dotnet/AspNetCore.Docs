@@ -5,7 +5,7 @@ description: Learn how to build a Blazor-based Progressive Web Application (PWA)
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/19/2020
+ms.date: 06/09/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/progressive-web-app
 ---
@@ -261,8 +261,23 @@ Implement arbitrary logic to control which subset of the manifest's contents sho
 
 ### Interaction with authentication
 
-It's possible to use the PWA template option in conjunction with the authentication options. An offline-capable PWA can also support authentication when the user has network connectivity.
+The PWA template can be used in conjunction with authentication. An offline-capable PWA can also support authentication when the user has initial network connectivity.
 
-When a user doesn't have network connectivity, they can't authenticate or obtain access tokens. By default, attempting to visit the login page without network access results in a "network error" message.
+When a user doesn't have network connectivity, they can't authenticate or obtain access tokens. By default, attempting to visit the login page without network access results in a "network error" message. You must design a UI flow that allows the user perform useful tasks while offline without attempting to authenticate the user or obtain access tokens. Alternatively, you can design the app to gracefully fail when the network isn't available. If the app can't be designed to handle these scenarios, you might not want to enable offline support.
 
-You must design a UI flow that lets the user do useful things while offline without attempting to authenticate or obtain access tokens. Alternatively, you can design the app to fail in a graceful way when the network isn't available. If this isn't possible in your app, you might not want to enable offline support.
+When an app that's designed for online and offline use is online again:
+
+* The app might need to provision a new access token.
+* The app must detect if a different user is signed into the service so that it can apply operations to the user's account that were made while they were offline.
+
+To create an offline PWA app that interacts with authentication:
+
+* Replace the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccountClaimsPrincipalFactory%601> with a factory that stores the last signed-in user and uses the stored user when the app is offline.
+* Queue operations while the app is offline and apply them when the app returns online.
+* During sign out, clear the stored user.
+
+The [CarChecker](https://github.com/SteveSandersonMS/CarChecker) sample app demonstrates the the preceding approaches. See the following parts of the app:
+
+* `OfflineAccountClaimsPrincipalFactory` (*Client/Data/OfflineAccountClaimsPrincipalFactory.cs*)
+* `LocalVehiclesStore` (*Client/Data/LocalVehiclesStore.cs*)
+* `LoginStatus` component (*Client/Shared/LoginStatus.razor*)

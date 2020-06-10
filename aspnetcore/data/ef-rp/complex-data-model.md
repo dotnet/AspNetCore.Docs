@@ -1,7 +1,7 @@
 ---
-title: Razor Pages with EF Core in ASP.NET Core - Data Model - 5 of 8
+title: Part 5, Razor Pages with EF Core in ASP.NET Core - Data Model
 author: rick-anderson
-description: In this tutorial, add more entities and relationships and customize the data model by specifying formatting, validation, and mapping rules.
+description: Part 5 of Razor Pages and Entity Framework tutorial series.
 ms.author: riande
 ms.custom: mvc
 ms.date: 07/22/2019
@@ -9,7 +9,7 @@ no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: data/ef-rp/complex-data-model
 ---
 
-# Razor Pages with EF Core in ASP.NET Core - Data Model - 5 of 8
+# Part 5, Razor Pages with EF Core in ASP.NET Core - Data Model
 
 By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -92,7 +92,7 @@ The `StringLength` attribute also provides client-side and server-side validatio
 The `StringLength` attribute doesn't prevent a user from entering white space for a name. The [RegularExpression](/dotnet/api/system.componentmodel.dataannotations.regularexpressionattribute?view=netframework-4.7.1) attribute can be used to apply restrictions to the input. For example, the following code requires the first character to be upper case and the remaining characters to be alphabetical:
 
 ```csharp
-[RegularExpression(@"^[A-Z]+[a-zA-Z""'\s-]*$")]
+[RegularExpression(@"^[A-Z]+[a-zA-Z]*$")]
 ```
 
 # [Visual Studio](#tab/visual-studio)
@@ -785,7 +785,7 @@ Update the `Student` model with the following code:
 The preceding code limits names to no more than 50 characters. The `StringLength` attribute doesn't prevent a user from entering white space for a name. The [RegularExpression](/dotnet/api/system.componentmodel.dataannotations.regularexpressionattribute?view=netframework-4.7.1) attribute is used to apply restrictions to the input. For example, the following code requires the first character to be upper case and the remaining characters to be alphabetical:
 
 ```csharp
-[RegularExpression(@"^[A-Z]+[a-zA-Z""'\s-]*$")]
+[RegularExpression(@"^[A-Z]+[a-zA-Z]*$")]
 ```
 
 Run the app:
