@@ -283,7 +283,7 @@ For information on Blazor WebAssembly logging support, see <xref:fundamentals/lo
 
 ### SignalR cross-origin negotiation for authentication
 
-To configure SignalR's underlying client to send credentials, such as cookies or HTTP auth headers:
+To configure SignalR's underlying client to send credentials, such as cookies or HTTP authentication headers:
 
 * Assign an <xref:System.Net.Http.HttpMessageHandler> to the <xref:Microsoft.AspNetCore.Http.Connections.Client.HttpConnectionOptions.HttpMessageHandlerFactory> option.
 * Use <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestCredentials%2A> to set <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.BrowserRequestCredentials.Include> on cross-origin fetch requests.
