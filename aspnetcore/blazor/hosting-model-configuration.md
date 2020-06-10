@@ -299,7 +299,7 @@ To configure SignalR's underlying client to send credentials, such as cookies or
   }
   ```
 
-* Assign an <xref:System.Net.Http.HttpMessageHandler> to the <xref:Microsoft.AspNetCore.Http.Connections.Client.HttpConnectionOptions.HttpMessageHandlerFactory> option:
+* Assign the <xref:System.Net.Http.HttpMessageHandler> to the <xref:Microsoft.AspNetCore.Http.Connections.Client.HttpConnectionOptions.HttpMessageHandlerFactory> option:
 
   ```csharp
   var client = new HubConnectionBuilder()
