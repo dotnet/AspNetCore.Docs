@@ -5,7 +5,7 @@ description: Learn how to configure Blazor WebAssembly for additional security s
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/09/2020
+ms.date: 06/10/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/blazor/webassembly/additional-scenarios
 ---
@@ -568,6 +568,19 @@ The `Counter` component uses the state container to maintain the `currentCount` 
 }
 ```
 
+Create an `ApplicationAuthenticationState` from <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticationState>. Provide an `Id` property, which serves as an identifier for the locally-stored state.
+
+*ApplicationAuthenticationState.cs*:
+
+```csharp
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+
+public class ApplicationAuthenticationState : RemoteAuthenticationState
+{
+    public string Id { get; set; }
+}
+```
+
 The `Authentication` component (*Pages/Authentication.razor*) saves and restores the app's state using local session storage with the `StateContainer` serialization and deserialization methods, `GetStateForLocalStorage` and `SetStateFromLocalStorage`:
 
 ```razor
@@ -617,11 +630,6 @@ The `Authentication` component (*Pages/Authentication.razor*) saves and restores
             }
         }
     }
-
-    public class ApplicationAuthenticationState : RemoteAuthenticationState
-    {
-        public string Id { get; set; }
-    }
 }
 ```
 
@@ -631,10 +639,6 @@ This example uses Azure Active Directory (AAD) for authentication. In `Program.M
 * The state container is registered in the service container.
 
 ```csharp
-using static {APP ASSEMBLY}.Pages.Authentication;
-
-...
-
 builder.Services.AddMsalAuthentication<ApplicationAuthenticationState>(options =>
 {
     builder.Configuration.Bind("AzureAd", options.ProviderOptions.Authentication);
