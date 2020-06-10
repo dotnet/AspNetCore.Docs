@@ -126,10 +126,7 @@ dotnet ef database update
 ---
 <!-- End of VS tabs -->
 
-Run the app and verify you can create, edit, and display movies with a `Rating` field. Update the app:
-
-* Add the `Rating` field to the `Edit`, `Details`, and `Delete` view templates.
-* Update the binding in the edit action method of the `MoviesController`.
+Run the app and verify you can create, edit, and display movies with a `Rating` field.
 
 > [!div class="step-by-step"]
 > [Previous](search.md)
