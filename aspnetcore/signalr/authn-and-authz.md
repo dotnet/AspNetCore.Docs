@@ -153,10 +153,10 @@ var connection = new HubConnectionBuilder()
     .Build();
 ```
 
-Windows Authentication isn't supported in all browsers. In some browsers, such as Chrome and Safari:
+Windows authentication is supported in Internet Explorer and Microsoft Edge, but not in all browsers. For example, in Chrome and Safari, attempting to use Windows authentication and WebSockets:
 
-* WebSockets with Windows Authentication doesn't work.
-* The client tries to fall back to other transports.
+* Fails.
+* The client will attempt to fall back to other transports.
 
 ### Use claims to customize identity handling
 
