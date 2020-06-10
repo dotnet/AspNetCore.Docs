@@ -5,7 +5,7 @@ description: Learn how to build a Blazor-based Progressive Web Application (PWA)
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/09/2020
+ms.date: 06/10/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/progressive-web-app
 ---
@@ -281,3 +281,7 @@ The [CarChecker](https://github.com/SteveSandersonMS/CarChecker) sample app demo
 * `OfflineAccountClaimsPrincipalFactory` (*Client/Data/OfflineAccountClaimsPrincipalFactory.cs*)
 * `LocalVehiclesStore` (*Client/Data/LocalVehiclesStore.cs*)
 * `LoginStatus` component (*Client/Shared/LoginStatus.razor*)
+
+## Additional resources
+
+* [SignalR cross-origin negotiation for authentication](xref:blazor/hosting-model-configuration#signalr-cross-origin-negotiation-for-authentication)
