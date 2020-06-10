@@ -22,7 +22,6 @@ namespace HttpRequestsSample.Models
         public TodoClient(HttpClient httpClient)
         {
             _httpClient = httpClient;
-
         }
 
         public async Task<IEnumerable<TodoItem>> GetItemsAsync()
@@ -50,29 +49,44 @@ namespace HttpRequestsSample.Models
             return await JsonSerializer.DeserializeAsync<TodoItem>(httpResponseStream, _jsonSerializerOptions);
         }
 
+        #region snippet_POST
         public async Task CreateItemAsync(TodoItem todoItem)
         {
-            var todoItemJson = new StringContent(JsonSerializer.Serialize(todoItem, _jsonSerializerOptions), Encoding.UTF8, "application/json");
+            var todoItemJson = new StringContent(
+                JsonSerializer.Serialize(todoItem, _jsonSerializerOptions),
+                Encoding.UTF8,
+                "application/json");
 
-            using var httpResponse = await _httpClient.PostAsync($"/api/TodoItems", todoItemJson);
+            using var httpResponse =
+                await _httpClient.PostAsync("/api/TodoItems", todoItemJson);
 
             httpResponse.EnsureSuccessStatusCode();
         }
+        #endregion
 
+        #region snippet_PUT
         public async Task SaveItemAsync(TodoItem todoItem)
         {
-            var todoItemJson = new StringContent(JsonSerializer.Serialize(todoItem), Encoding.UTF8, "application/json");
+            var todoItemJson = new StringContent(
+                JsonSerializer.Serialize(todoItem),
+                Encoding.UTF8,
+                "application/json");
 
-            using var httpResponse = await _httpClient.PutAsync($"/api/TodoItems/{todoItem.Id}", todoItemJson);
+            using var httpResponse =
+                await _httpClient.PutAsync($"/api/TodoItems/{todoItem.Id}", todoItemJson);
 
             httpResponse.EnsureSuccessStatusCode();
         }
+        #endregion
 
+        #region snippet_DELETE
         public async Task DeleteItemAsync(long itemId)
         {
-            using var httpResponse = await _httpClient.DeleteAsync($"/api/TodoItems/{itemId}");
+            using var httpResponse =
+                await _httpClient.DeleteAsync($"/api/TodoItems/{itemId}");
 
             httpResponse.EnsureSuccessStatusCode();
         }
+        #endregion
     }
 }
