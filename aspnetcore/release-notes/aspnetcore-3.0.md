@@ -79,7 +79,7 @@ In the JavaScript and .NET Clients for SignalR, support was added for automatic 
 
 ```javascript
 const connection = new signalR.HubConnectionBuilder()
-    .withUrl("/chatHub")
+    .withUrl("/chathub")
     .withAutomaticReconnect()
     .build();
 ```
