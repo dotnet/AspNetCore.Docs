@@ -53,7 +53,7 @@ Run the app, select the **Register** link, and register a user. Once registered,
 
 In this tutorial, [SendGrid](https://sendgrid.com) is used to send email. You need a SendGrid account and key to send email. You can use other email providers. We recommend you use SendGrid or another email service to send email. SMTP is difficult to secure and set up correctly.
 
-The SendGrid account my require [adding a Sender](https://sendgrid.com/docs/ui/sending-email/senders/).
+The SendGrid account may require [adding a Sender](https://sendgrid.com/docs/ui/sending-email/senders/).
 
 Create a class to fetch the secure email key. For this sample, create *Services/AuthMessageSenderOptions.cs*:
 
