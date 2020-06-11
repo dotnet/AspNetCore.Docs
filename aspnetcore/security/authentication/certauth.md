@@ -570,8 +570,8 @@ The following approach supports optional client certificates:
       * <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.ClientCertificateMode>
       * Note Kestrel does not currently support multiple TLS configurations on one binding, you'll need two bindings with unique IPs or ports. See https://github.com/dotnet/runtime/issues/31097
     * IIS
-      * [Hosting IIS](xref:host-and-deploy/iis/#create-the-iis-site)
-      * [Configure security on IIS](https://docs.microsoft.com/en-us/iis/manage/configuring-security/how-to-set-up-ssl-on-iis#configure-ssl-settings-2)
+      * [Hosting IIS](xref:host-and-deploy/iis/index#create-the-iis-site)
+      * [Configure security on IIS](/iis/manage/configuring-security/how-to-set-up-ssl-on-iis#configure-ssl-settings-2)
     * Http.Sys: [Configure Windows Server](xref:fundamentals/servers/httpsys#configure-windows-server)
 * For requests to the web app that require a client certificate and don't have one:
   * Redirect to the same page using the client certificate protected subdomain.
