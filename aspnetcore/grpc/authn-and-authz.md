@@ -107,7 +107,7 @@ private static GrpcChannel CreateAuthenticatedChannel(string address)
 A client could alternatively provide a client certificate for authentication. [Certificate authentication](https://tools.ietf.org/html/rfc5246#section-7.4.4) happens at the TLS level, long before it ever gets to ASP.NET Core. When the request enters ASP.NET Core, the [client certificate authentication package](xref:security/authentication/certauth) allows you to resolve the certificate to a `ClaimsPrincipal`.
 
 > [!NOTE]
-> The host needs to be configured to accept client certificates. See [configure your host to require certificates](xref:security/authentication/certauth#configure-your-host-to-require-certificates) for information on accepting client certificates in Kestrel, IIS and Azure.
+> Configure the server to accept client certificates. For information on accepting client certificates in Kestrel, IIS, and Azure, see <xref:security/authentication/certauth#configure-your-server-to-require-certificates>.
 
 In the .NET gRPC client, the client certificate is added to `HttpClientHandler` that is then used to create the gRPC client:
 

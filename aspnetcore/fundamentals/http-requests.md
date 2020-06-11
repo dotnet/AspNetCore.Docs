@@ -179,6 +179,44 @@ public class ValuesController : ControllerBase
 }
 ```
 
+## Make POST, PUT, and DELETE requests
+
+In the preceding examples, all HTTP requests use the GET HTTP verb. `HttpClient` also supports other HTTP verbs, including:
+
+* POST
+* PUT
+* DELETE
+* PATCH
+
+For a complete list of supported HTTP verbs, see <xref:System.Net.Http.HttpMethod>.
+
+The following example shows how to make a HTTP POST request:
+
+[!code-csharp[](http-requests/samples/3.x/HttpRequestsSample/Models/TodoClient.cs?name=snippet_POST)]
+
+In the preceding code, the `CreateItemAsync` method:
+
+* Serializes the `TodoItem` parameter to JSON using `System.Text.Json`. This uses an instance of <xref:System.Text.Json.JsonSerializerOptions> to configure the serialization process.
+* Creates an instance of <xref:System.Net.Http.StringContent> to package the serialized JSON for sending in the HTTP request's body.
+* Calls <xref:System.Net.Http.HttpClient.PostAsync%2A> to send the JSON content to the specified URL. This is a relative URL that gets added to the [HttpClient.BaseAddress](xref:System.Net.Http.HttpClient.BaseAddress).
+* Calls <xref:System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode%2A> to throw an exception if the response status code does not indicate success.
+
+`HttpClient` also supports other types of content. For example, <xref:System.Net.Http.MultipartContent> and <xref:System.Net.Http.StreamContent>. For a complete list of supported content, see <xref:System.Net.Http.HttpContent>.
+
+The following example shows how to make a HTTP PUT request:
+
+[!code-csharp[](http-requests/samples/3.x/HttpRequestsSample/Models/TodoClient.cs?name=snippet_PUT)]
+
+The preceding code is very similar to the POST example. The `SaveItemAsync` method calls <xref:System.Net.Http.HttpClient.PutAsync%2A> instead of `PostAsync`.
+
+The following example shows an HTTP DELETE request:
+
+[!code-csharp[](http-requests/samples/3.x/HttpRequestsSample/Models/TodoClient.cs?name=snippet_DELETE)]
+
+In the preceding code, the `DeleteItemAsync` method calls <xref:System.Net.Http.HttpClient.DeleteAsync%2A>. Because HTTP DELETE requests typically contain no body, the `DeleteAsync` method doesn't provide an overload that accepts an instance of `HttpContent`.
+
+To learn more about using different HTTP verbs with `HttpClient`, see <xref:System.Net.Http.HttpClient>.
+
 ## Outgoing request middleware
 
 `HttpClient` has the concept of delegating handlers that can be linked together for outgoing HTTP requests. `IHttpClientFactory`:

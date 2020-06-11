@@ -1,10 +1,10 @@
 using System;
 using Microsoft.Extensions.Logging;
 
-namespace CustomLogger.ColoredConsoleLogger
+namespace CustomLogger.ColorConsoleLogger
 {
     #region snippet
-    public class ColoredConsoleLoggerConfiguration
+    public class ColorConsoleLoggerConfiguration
     {
         public LogLevel LogLevel { get; set; } = LogLevel.Warning;
         public int EventId { get; set; } = 0;
