@@ -85,7 +85,7 @@ To inject a strongly-typed HubContext, ensure your Hub inherits from `Hub<T>`. I
 ```csharp
 public class ChatController : Controller
 {
-    public IHubContext<ChatHub, IChatClient> _strongChatHubContext { get; }
+    public <IHubContext<ChatHub, IChatClient> _strongChatHubContext { get; }
 
     public ChatController(IHubContext<ChatHub, IChatClient> chatHubContext)
     {
