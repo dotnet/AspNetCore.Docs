@@ -5,7 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using CustomLogger.ColoredConsoleLogger;
+using CustomLogger.ColorConsoleLogger;
 
 namespace CustomLogger
 {
@@ -27,15 +27,15 @@ namespace CustomLogger
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, 
                               ILoggerFactory loggerFactory)
         {
-            loggerFactory.AddProvider(new ColoredConsoleLoggerProvider(
-                                      new ColoredConsoleLoggerConfiguration
+            loggerFactory.AddProvider(new ColorConsoleLoggerProvider(
+                                      new ColorConsoleLoggerConfiguration
             {
                 LogLevel = LogLevel.Information,
                 Color = ConsoleColor.Blue
             }));
 
-            loggerFactory.AddProvider(new ColoredConsoleLoggerProvider(
-                                      new ColoredConsoleLoggerConfiguration
+            loggerFactory.AddProvider(new ColorConsoleLoggerProvider(
+                                      new ColorConsoleLoggerConfiguration
             {
                 LogLevel = LogLevel.Debug,
                 Color = ConsoleColor.Gray

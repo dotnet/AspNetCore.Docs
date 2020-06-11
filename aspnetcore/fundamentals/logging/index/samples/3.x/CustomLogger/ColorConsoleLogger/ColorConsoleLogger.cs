@@ -1,15 +1,15 @@
 using System;
 using Microsoft.Extensions.Logging;
 
-namespace CustomLogger.ColoredConsoleLogger
+namespace CustomLogger.ColorConsoleLogger
 {
     #region snippet
-    public class ColoredConsoleLogger : ILogger
+    public class ColorConsoleLogger : ILogger
     {
         private readonly string _name;
-        private readonly ColoredConsoleLoggerConfiguration _config;
+        private readonly ColorConsoleLoggerConfiguration _config;
 
-        public ColoredConsoleLogger(string name, ColoredConsoleLoggerConfiguration config)
+        public ColorConsoleLogger(string name, ColorConsoleLoggerConfiguration config)
         {
             _name = name;
             _config = config;

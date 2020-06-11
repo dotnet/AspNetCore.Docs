@@ -5,7 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using CustomLogger.ColoredConsoleLogger;
+using CustomLogger.ColorConsoleLogger;
 
 namespace CustomLogger
 {
@@ -28,25 +28,25 @@ namespace CustomLogger
                               ILoggerFactory loggerFactory)
         {
             // Default registration.
-            loggerFactory.AddProvider(new ColoredConsoleLoggerProvider(
-                                      new ColoredConsoleLoggerConfiguration
+            loggerFactory.AddProvider(new ColorConsoleLoggerProvider(
+                                      new ColorConsoleLoggerConfiguration
             {
                 LogLevel = LogLevel.Error,
                 Color = ConsoleColor.Red
             }));
 
             // Custom registration with default values.
-            loggerFactory.AddColoredConsoleLogger();
+            loggerFactory.AddColorConsoleLogger();
 
             // Custom registration with a new configuration instance.
-            loggerFactory.AddColoredConsoleLogger(new ColoredConsoleLoggerConfiguration
+            loggerFactory.AddColorConsoleLogger(new ColorConsoleLoggerConfiguration
             {
                 LogLevel = LogLevel.Debug,
                 Color = ConsoleColor.Gray
             });
 
             // Custom registration with a configuration object.
-            loggerFactory.AddColoredConsoleLogger(c =>
+            loggerFactory.AddColorConsoleLogger(c =>
             {
                 c.LogLevel = LogLevel.Information;
                 c.Color = ConsoleColor.Blue;
