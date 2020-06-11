@@ -209,7 +209,7 @@ The following example shows how to make a HTTP PUT request:
 
 The preceding code is very similar to the POST example. The `SaveItemAsync` method calls <xref:System.Net.Http.HttpClient.PutAsync%2A> instead of `PostAsync`.
 
-The following example shows how to make a HTTP DELETE request:
+The following example shows an HTTP DELETE request:
 
 [!code-csharp[](http-requests/samples/3.x/HttpRequestsSample/Models/TodoClient.cs?name=snippet_DELETE)]
 
