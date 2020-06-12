@@ -826,7 +826,7 @@ Inject an <xref:Microsoft.Extensions.Logging.ILoggerProvider> to add a `WebAssem
 ...
 
 var connection = new HubConnectionBuilder()
-    .WithUrl(NavigationManager.ToAbsoluteUri("/chatHub"))
+    .WithUrl(NavigationManager.ToAbsoluteUri("/chathub"))
     .ConfigureLogging(logging => logging.AddProvider(loggerProvider))
     .Build();
 ```
