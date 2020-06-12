@@ -58,7 +58,7 @@ To enable MessagePack in the .NET Client, install the `Microsoft.AspNetCore.Sign
 
 ```csharp
 var hubConnection = new HubConnectionBuilder()
-                        .WithUrl("/chatHub")
+                        .WithUrl("/chathub")
                         .AddMessagePackProtocol()
                         .Build();
 ```
@@ -93,7 +93,7 @@ Adding `.withHubProtocol(new signalR.protocols.msgpack.MessagePackHubProtocol())
 
 ```javascript
 const connection = new signalR.HubConnectionBuilder()
-    .withUrl("/chatHub")
+    .withUrl("/chathub")
     .withHubProtocol(new signalR.protocols.msgpack.MessagePackHubProtocol())
     .build();
 ```
@@ -233,7 +233,7 @@ To enable MessagePack in the .NET Client, install the `Microsoft.AspNetCore.Sign
 
 ```csharp
 var hubConnection = new HubConnectionBuilder()
-                        .WithUrl("/chatHub")
+                        .WithUrl("/chathub")
                         .AddMessagePackProtocol()
                         .Build();
 ```
@@ -268,7 +268,7 @@ Adding `.withHubProtocol(new signalR.protocols.msgpack.MessagePackHubProtocol())
 
 ```javascript
 const connection = new signalR.HubConnectionBuilder()
-    .withUrl("/chatHub")
+    .withUrl("/chathub")
     .withHubProtocol(new signalR.protocols.msgpack.MessagePackHubProtocol())
     .build();
 ```
@@ -408,7 +408,7 @@ To enable MessagePack in the .NET Client, install the `Microsoft.AspNetCore.Sign
 
 ```csharp
 var hubConnection = new HubConnectionBuilder()
-                        .WithUrl("/chatHub")
+                        .WithUrl("/chathub")
                         .AddMessagePackProtocol()
                         .Build();
 ```
@@ -443,7 +443,7 @@ Adding `.withHubProtocol(new signalR.protocols.msgpack.MessagePackHubProtocol())
 
 ```javascript
 const connection = new signalR.HubConnectionBuilder()
-    .withUrl("/chatHub")
+    .withUrl("/chathub")
     .withHubProtocol(new signalR.protocols.msgpack.MessagePackHubProtocol())
     .build();
 ```

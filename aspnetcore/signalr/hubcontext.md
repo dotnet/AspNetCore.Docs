@@ -42,7 +42,7 @@ Access the `IHubContext` within the middleware pipeline like so:
 app.Use(async (context, next) =>
 {
     var hubContext = context.RequestServices
-                            .GetRequiredService<IHubContext<MyHub>>();
+                            .GetRequiredService<IHubContext<ChatHub>>();
     //...
     
     if (next != null)
@@ -66,7 +66,7 @@ integrating with areas outside of ASP.NET Core, for example, using 3rd party dep
         public static void Main(string[] args)
         {
             var host = CreateHostBuilder(args).Build();
-            var hubContext = host.Services.GetService(typeof(IHubContext<MyHub>));
+            var hubContext = host.Services.GetService(typeof(IHubContext<ChatHub>));
             host.Run();
         }
 

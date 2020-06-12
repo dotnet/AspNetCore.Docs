@@ -30,7 +30,7 @@ public void ConfigureServices(IServiceCollection services)
     {
         // Global filters will run first
         options.AddFilter<CustomFilter>();
-    }).AddHubOptions<MyHub>(options =>
+    }).AddHubOptions<ChatHub>(options =>
     {
         // Local filters will run second
         options.AddFilter<CustomFilter2>();
