@@ -190,7 +190,7 @@ In the preceding examples, all HTTP requests use the GET HTTP verb. `HttpClient`
 
 For a complete list of supported HTTP verbs, see <xref:System.Net.Http.HttpMethod>.
 
-The following example shows how to make a HTTP POST request:
+The following example shows how to make an HTTP POST request:
 
 [!code-csharp[](http-requests/samples/3.x/HttpRequestsSample/Models/TodoClient.cs?name=snippet_POST)]
 
@@ -203,7 +203,7 @@ In the preceding code, the `CreateItemAsync` method:
 
 `HttpClient` also supports other types of content. For example, <xref:System.Net.Http.MultipartContent> and <xref:System.Net.Http.StreamContent>. For a complete list of supported content, see <xref:System.Net.Http.HttpContent>.
 
-The following example shows how to make a HTTP PUT request:
+The following example shows an HTTP PUT request:
 
 [!code-csharp[](http-requests/samples/3.x/HttpRequestsSample/Models/TodoClient.cs?name=snippet_PUT)]
 

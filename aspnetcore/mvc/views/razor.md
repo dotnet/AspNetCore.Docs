@@ -242,7 +242,7 @@ Extra `@` characters in a Razor file can cause compiler errors at statements lat
 
 Control structures are an extension of code blocks. All aspects of code blocks (transitioning to markup, inline C#) also apply to the following structures:
 
-### Conditionals \@if, else if, else, and \@switch
+### Conditionals `@if, else if, else, and @switch`
 
 `@if` controls when code runs:
 
@@ -287,7 +287,7 @@ The following markup shows how to use a switch statement:
 }
 ```
 
-### Looping \@for, \@foreach, \@while, and \@do while
+### Looping `@for, @foreach, @while, and @do while`
 
 Templated HTML can be rendered with looping control statements. To render a list of people:
 
@@ -353,7 +353,7 @@ The following looping statements are supported:
 } while (i < people.Length);
 ```
 
-### Compound \@using
+### Compound `@using`
 
 In C#, a `using` statement is used to ensure an object is disposed. In Razor, the same mechanism is used to create HTML Helpers that contain additional content. In the following code, HTML Helpers render a `<form>` tag with the `@using` statement:
 
@@ -367,13 +367,13 @@ In C#, a `using` statement is used to ensure an object is disposed. In Razor, th
 }
 ```
 
-### \@try, catch, finally
+### `@try, catch, finally`
 
 Exception handling is similar to C#:
 
 [!code-cshtml[](razor/sample/Views/Home/Contact7.cshtml)]
 
-### \@lock
+### `@lock`
 
 Razor has the capability to protect critical sections with lock statements:
 
@@ -440,7 +440,7 @@ public class _Views_Something_cshtml : RazorPage<dynamic>
 
 Later in this article, the section [Inspect the Razor C# class generated for a view](#inspect-the-razor-c-class-generated-for-a-view) explains how to view this generated class.
 
-### \@attribute
+### `@attribute`
 
 The `@attribute` directive adds the given attribute to the class of the generated page or view. The following example adds the `[Authorize]` attribute:
 
@@ -450,7 +450,7 @@ The `@attribute` directive adds the given attribute to the class of the generate
 
 ::: moniker range=">= aspnetcore-3.0"
 
-### \@code
+### `@code`
 
 *This scenario only applies to Razor components (.razor).*
 
@@ -466,7 +466,7 @@ For Razor components, `@code` is an alias of [`@functions`](#functions) and reco
 
 ::: moniker-end
 
-### \@functions
+### `@functions`
 
 The `@functions` directive enables adding C# members (fields, properties, and methods) to the generated class:
 
@@ -521,7 +521,7 @@ The code renders the following HTML:
 <p>Name: <strong>Martin Luther King, Jr.</strong></p>
 ```
 
-### \@implements
+### `@implements`
 
 The `@implements` directive implements an interface for the generated class.
 
@@ -543,7 +543,7 @@ The following example implements <xref:System.IDisposable?displayProperty=fullNa
 
 ::: moniker-end
 
-### \@inherits
+### `@inherits`
 
 The `@inherits` directive provides full control of the class the view inherits:
 
@@ -586,13 +586,13 @@ If "rick@contoso.com" is passed in the model, the view generates the following H
 </div>
 ```
 
-### \@inject
+### `@inject`
 
 The `@inject` directive enables the Razor Page to inject a service from the [service container](xref:fundamentals/dependency-injection) into a view. For more information, see [Dependency injection into views](xref:mvc/views/dependency-injection).
 
 ::: moniker range=">= aspnetcore-3.0"
 
-### \@layout
+### `@layout`
 
 *This scenario only applies to Razor components (.razor).*
 
@@ -600,7 +600,7 @@ The `@layout` directive specifies a layout for a Razor component. Layout compone
 
 ::: moniker-end
 
-### \@model
+### `@model`
 
 *This scenario only applies to MVC views and Razor Pages (.cshtml).*
 
@@ -630,7 +630,7 @@ Razor exposes a `Model` property for accessing the model passed to the view:
 
 The `@model` directive specifies the type of the `Model` property. The directive specifies the `T` in `RazorPage<T>` that the generated class that the view derives from. If the `@model` directive isn't specified, the `Model` property is of type `dynamic`. For more information, see [Strongly typed models and the @model keyword](xref:tutorials/first-mvc-app/adding-model#strongly-typed-models-and-the--keyword).
 
-### \@namespace
+### `@namespace`
 
 The `@namespace` directive:
 
@@ -665,7 +665,7 @@ If the *EvenMorePages* folder in the preceding example has an imports file with 
 | *Pages/MorePages/Page.cshtml*               | `Hello.World.MorePages` |
 | *Pages/MorePages/EvenMorePages/Page.cshtml* | `Another.Planet`        |
 
-### \@page
+### `@page`
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -682,13 +682,13 @@ The `@page` directive on the first line of a *.cshtml* file indicates that the f
 
 ::: moniker-end
 
-### \@section
+### `@section`
 
 *This scenario only applies to MVC views and Razor Pages (.cshtml).*
 
 The `@section` directive is used in conjunction with [MVC and Razor Pages layouts](xref:mvc/views/layout) to enable views or pages to render content in different parts of the HTML page. For more information, see <xref:mvc/views/layout>.
 
-### \@using
+### `@using`
 
 The `@using` directive adds the C# `using` directive to the generated view:
 
@@ -706,19 +706,19 @@ In [Razor components](xref:blazor/components), `@using` also controls which comp
 
 Razor directive attributes are represented by implicit expressions with reserved keywords following the `@` symbol. A directive attribute typically changes the way an element is parsed or enables different functionality.
 
-### \@attributes
+### `@attributes`
 
 *This scenario only applies to Razor components (.razor).*
 
 `@attributes` allows a component to render non-declared attributes. For more information, see <xref:blazor/components#attribute-splatting-and-arbitrary-parameters>.
 
-### \@bind
+### `@bind`
 
 *This scenario only applies to Razor components (.razor).*
 
 Data binding in components is accomplished with the `@bind` attribute. For more information, see <xref:blazor/data-binding>.
 
-### \@on{EVENT}
+### `@on{EVENT}`
 
 *This scenario only applies to Razor components (.razor).*
 
@@ -728,13 +728,13 @@ Razor provides event handling features for components. For more information, see
 
 ::: moniker range=">= aspnetcore-3.1"
 
-### \@on{EVENT}:preventDefault
+### `@on{EVENT}:preventDefault`
 
 *This scenario only applies to Razor components (.razor).*
 
 Prevents the default action for the event.
 
-### \@on{EVENT}:stopPropagation
+### `@on{EVENT}:stopPropagation`
 
 *This scenario only applies to Razor components (.razor).*
 
@@ -744,19 +744,19 @@ Stops event propagation for the event.
 
 ::: moniker range=">= aspnetcore-3.0"
 
-### \@key
+### `@key`
 
 *This scenario only applies to Razor components (.razor).*
 
 The `@key` directive attribute causes the components diffing algorithm to guarantee preservation of elements or components based on the key's value. For more information, see <xref:blazor/components#use-key-to-control-the-preservation-of-elements-and-components>.
 
-### \@ref
+### `@ref`
 
 *This scenario only applies to Razor components (.razor).*
 
 Component references (`@ref`) provide a way to reference a component instance so that you can issue commands to that instance. For more information, see <xref:blazor/components#capture-references-to-components>.
 
-### \@typeparam
+### `@typeparam`
 
 *This scenario only applies to Razor components (.razor).*
 
@@ -879,38 +879,38 @@ There are three directives that pertain to [Tag Helpers](xref:mvc/views/tag-help
 
 ### Razor keywords
 
-* page (Requires ASP.NET Core 2.1 or later)
-* namespace
-* functions
-* inherits
-* model
-* section
-* helper (Not currently supported by ASP.NET Core)
+* `page` (Requires ASP.NET Core 2.1 or later)
+* `namespace`
+* `functions`
+* `inherits`
+* `model`
+* `section`
+* `helper` (Not currently supported by ASP.NET Core)
 
 Razor keywords are escaped with `@(Razor Keyword)` (for example, `@(functions)`).
 
 ### C# Razor keywords
 
-* case
-* do
-* default
-* for
-* foreach
-* if
-* else
-* lock
-* switch
-* try
-* catch
-* finally
-* using
-* while
+* `case`
+* `do`
+* `default`
+* `for`
+* `foreach`
+* `if`
+* `else`
+* `lock`
+* `switch`
+* `try`
+* `catch`
+* `finally`
+* `using`
+* `while`
 
 C# Razor keywords must be double-escaped with `@(@C# Razor Keyword)` (for example, `@(@case)`). The first `@` escapes the Razor parser. The second `@` escapes the C# parser.
 
 ### Reserved keywords not used by Razor
 
-* class
+* `class`
 
 ## Inspect the Razor C# class generated for a view
 

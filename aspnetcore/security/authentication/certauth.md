@@ -548,3 +548,36 @@ namespace AspNetCoreCertificateAuthApi
     }
 }
 ```
+
+<a name="occ"></a>
+
+## Optional client certificates
+
+This section provides information for apps that must protect a subset of the app with a certificate. For example, a Razor Page or controller in the app might require client certificates. This presents challenges as client certificates:
+  
+* Are a TLS feature, not an HTTP feature.
+* Are negotiated per-connection and must be be negotiated at the start of the connection before any HTTP data is available. At the start of the connection, only the Server Name Indication (SNI)&dagger; is known. The client and server certificates are negotiated prior to the first request on a connection and requests generally won't be able to renegotiate. Renegotiation is prohibited in HTTP/2.
+
+ASP.NET Core 5 preview 4 and later adds more convenient support for optional client certificates. For more information, see the [Optional certificates sample](https://github.com/dotnet/aspnetcore/tree/9ce4a970a21bace3fb262da9591ed52359309592/src/Security/Authentication/Certificate/samples/Certificate.Optional.Sample).
+
+The following approach supports optional client certificates:
+
+* Set up binding for the domain and subdomain:
+  * For example, set up bindings on `contoso.com` and `myClient.contoso.com`. The `contoso.com` host doesn't require a client certificate but `myClient.contoso.com` does.
+  * For more information, see:
+    * [Kestrel](/fundamentals/servers/kestrel):
+      * [ListenOptions.UseHttps](xref:fundamentals/servers/kestrel#listenoptionsusehttps)
+      * <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.ClientCertificateMode>
+      * Note Kestrel does not currently support multiple TLS configurations on one binding, you'll need two bindings with unique IPs or ports. See https://github.com/dotnet/runtime/issues/31097
+    * IIS
+      * [Hosting IIS](xref:host-and-deploy/iis/index#create-the-iis-site)
+      * [Configure security on IIS](/iis/manage/configuring-security/how-to-set-up-ssl-on-iis#configure-ssl-settings-2)
+    * Http.Sys: [Configure Windows Server](xref:fundamentals/servers/httpsys#configure-windows-server)
+* For requests to the web app that require a client certificate and don't have one:
+  * Redirect to the same page using the client certificate protected subdomain.
+  * For example, redirect to `myClient.contoso.com/requestedPage`. Because the request to `myClient.contoso.com/requestedPage` is a different hostname than `contoso.com/requestedPage`, the client establishes a different connection and the client certificate is provided.
+  * For more information, see <xref:security/authorization/introduction>.
+
+Leave questions, comments, and other feedback on optional client certificates in [this GitHub discussion](https://github.com/dotnet/AspNetCore.Docs/issues/18720) issue.
+
+&dagger; Server Name Indication (SNI) is a TLS extension to include a virtual domain as a part of SSL negotiation. This effectively means the virtual domain name, or a hostname, can be used to identify the network end point.

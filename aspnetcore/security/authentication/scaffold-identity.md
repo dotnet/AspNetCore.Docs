@@ -387,7 +387,9 @@ cd RPauth
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
 dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --files "Account.Register;Account.Login;Account.RegisterConfirmation"
 -->
-## Disable register page
+## Disable a page
+
+This sections show how to disable the register page but the approach can be used to disable any page.
 
 To disable user registration:
 
@@ -407,13 +409,13 @@ To disable user registration:
 
 * Comment out or remove the registration link from *Areas/Identity/Pages/Account/Login.cshtml*
 
-```cshtml
-@*
-<p>
-    <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
-</p>
-*@
-```
+  ```cshtml
+  @*
+  <p>
+      <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
+  </p>
+  *@
+  ```
 
 * Update the *Areas/Identity/Pages/Account/RegisterConfirmation* page.
 
