@@ -161,7 +161,7 @@ The JavaScript client for SignalR can be configured to automatically reconnect u
 
 ```javascript
 const connection = new signalR.HubConnectionBuilder()
-    .withUrl("/chatHub")
+    .withUrl("/chathub")
     .withAutomaticReconnect()
     .build();
 ```
@@ -235,7 +235,7 @@ In order to configure a custom number of reconnect attempts before disconnecting
 
 ```javascript
 const connection = new signalR.HubConnectionBuilder()
-    .withUrl("/chatHub")
+    .withUrl("/chathub")
     .withAutomaticReconnect([0, 0, 10000])
     .build();
 
@@ -258,7 +258,7 @@ If you want even more control over the timing and number of automatic reconnect 
 
 ```javascript
 const connection = new signalR.HubConnectionBuilder()
-    .withUrl("/chatHub")
+    .withUrl("/chathub")
     .withAutomaticReconnect({
         nextRetryDelayInMilliseconds: retryContext => {
             if (retryContext.elapsedMilliseconds < 60000) {

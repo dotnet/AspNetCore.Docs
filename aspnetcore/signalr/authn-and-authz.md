@@ -94,7 +94,7 @@ In the .NET client, there's a similar [AccessTokenProvider](xref:signalr/configu
 
 ```csharp
 var connection = new HubConnectionBuilder()
-    .WithUrl("https://example.com/myhub", options =>
+    .WithUrl("https://example.com/chathub", options =>
     { 
         options.AccessTokenProvider = () => Task.FromResult(_myAccessToken);
     })
@@ -146,7 +146,7 @@ In the .NET Client, Windows Authentication must be enabled by setting the [UseDe
 
 ```csharp
 var connection = new HubConnectionBuilder()
-    .WithUrl("https://example.com/myhub", options =>
+    .WithUrl("https://example.com/chathub", options =>
     {
         options.UseDefaultCredentials = true;
     })

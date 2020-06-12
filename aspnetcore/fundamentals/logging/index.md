@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to use the logging framework provided by the Microsoft.Extensions.Logging NuGet package.
 ms.author: riande
 ms.custom: mvc
-ms.date: 5/9/2020
+ms.date: 6/12/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/logging/index
 ---
@@ -815,6 +815,22 @@ builder.Logging.AddProvider(new CustomLoggingProvider());
 The `Logging` property is of type <xref:Microsoft.Extensions.Logging.ILoggingBuilder>, so all of the extension methods available on <xref:Microsoft.Extensions.Logging.ILoggingBuilder> are also available on `Logging`.
 
 Logging configuration can be loaded from app settings files. For more information, see <xref:blazor/hosting-model-configuration#logging-configuration>.
+
+#### Blazor WebAssembly SignalR .NET client logging
+
+Inject an <xref:Microsoft.Extensions.Logging.ILoggerProvider> to add a `WebAssemblyConsoleLogger` to the logging providers passed to <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilder>. Unlike a traditional <xref:Microsoft.Extensions.Logging.Console.ConsoleLogger>, `WebAssemblyConsoleLogger` is a wrapper around browser-specific logging APIs (for example, `console.log`). Use of `WebAssemblyConsoleLogger` makes logging possible within Mono inside a browser context.
+
+```csharp
+@using Microsoft.Extensions.Logging
+@inject ILoggerProvider LoggerProvider
+
+...
+
+var connection = new HubConnectionBuilder()
+    .WithUrl(NavigationManager.ToAbsoluteUri("/chathub"))
+    .ConfigureLogging(logging => logging.AddProvider(LoggerProvider))
+    .Build();
+```
 
 #### Log in Razor components
 

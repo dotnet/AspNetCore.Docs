@@ -87,7 +87,7 @@ public void ConfigureServices(IServiceCollection services)
 Options for a single hub override the global options provided in `AddSignalR` and can be configured using <xref:Microsoft.Extensions.DependencyInjection.SignalRDependencyInjectionExtensions.AddHubOptions*>:
 
 ```csharp
-services.AddSignalR().AddHubOptions<MyHub>(options =>
+services.AddSignalR().AddHubOptions<ChatHub>(options =>
 {
     options.EnableDetailedErrors = true;
 });
@@ -104,7 +104,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 
     app.UseEndpoints(endpoints =>
     {
-        endpoints.MapHub<MyHub>("/myhub", options =>
+        endpoints.MapHub<ChatHub>("/chathub", options =>
         {
             options.Transports =
                 HttpTransportType.WebSockets |
@@ -154,7 +154,7 @@ For example, to enable Console logging, install the `Microsoft.Extensions.Loggin
 
 ```csharp
 var connection = new HubConnectionBuilder()
-    .WithUrl("https://example.com/myhub")
+    .WithUrl("https://example.com/chathub")
     .ConfigureLogging(logging => {
         logging.SetMinimumLevel(LogLevel.Information);
         logging.AddConsole();
@@ -166,7 +166,7 @@ In the JavaScript client, a similar `configureLogging` method exists. Provide a 
 
 ```javascript
 let connection = new signalR.HubConnectionBuilder()
-    .withUrl("/myhub")
+    .withUrl("/chathub")
     .configureLogging(signalR.LogLevel.Information)
     .build();
 ```
@@ -175,7 +175,7 @@ Instead of a `LogLevel` value, you can also provide a `string` value representin
 
 ```javascript
 let connection = new signalR.HubConnectionBuilder()
-    .withUrl("/myhub")
+    .withUrl("/chathub")
     .configureLogging("warn")
     .build();
 ```
@@ -221,7 +221,7 @@ For example, to disable the Server-Sent Events transport, but allow WebSockets a
 
 ```csharp
 var connection = new HubConnectionBuilder()
-    .WithUrl("https://example.com/myhub", HttpTransportType.WebSockets | HttpTransportType.LongPolling)
+    .WithUrl("https://example.com/chathub", HttpTransportType.WebSockets | HttpTransportType.LongPolling)
     .Build();
 ```
 
@@ -229,7 +229,7 @@ In the JavaScript client, transports are configured by setting the `transport` f
 
 ```javascript
 let connection = new signalR.HubConnectionBuilder()
-    .withUrl("/myhub", { transport: signalR.HttpTransportType.WebSockets | signalR.HttpTransportType.LongPolling })
+    .withUrl("/chathub", { transport: signalR.HttpTransportType.WebSockets | signalR.HttpTransportType.LongPolling })
     .build();
 ```
 
@@ -238,7 +238,7 @@ In this version of the Java client websockets is the only available transport.
 In the Java client, the transport is selected with the `withTransport` method on the `HttpHubConnectionBuilder`. The Java client defaults to using the WebSockets transport.
 
 ```java
-HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/myhub")
+HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/chathub")
     .withTransport(TransportEnum.WEBSOCKETS)
     .build();
 ```
@@ -254,7 +254,7 @@ In the .NET client, the `AccessTokenProvider` option can be specified using the 
 
 ```csharp
 var connection = new HubConnectionBuilder()
-    .WithUrl("https://example.com/myhub", options => {
+    .WithUrl("https://example.com/chathub", options => {
         options.AccessTokenProvider = async () => {
             // Get and return the access token.
         };
@@ -266,7 +266,7 @@ In the JavaScript client, the access token is configured by setting the `accessT
 
 ```javascript
 let connection = new signalR.HubConnectionBuilder()
-    .withUrl("/myhub", {
+    .withUrl("/chathub", {
         accessTokenFactory: () => {
             // Get and return the access token.
             // This function can return a JavaScript Promise if asynchronous
@@ -279,7 +279,7 @@ let connection = new signalR.HubConnectionBuilder()
 In the SignalR Java client, you can configure a bearer token to use for authentication by providing an access token factory to the [HttpHubConnectionBuilder](/java/api/com.microsoft.signalr._http_hub_connection_builder?view=aspnet-signalr-java). Use [withAccessTokenFactory](/java/api/com.microsoft.signalr._http_hub_connection_builder.withaccesstokenprovider?view=aspnet-signalr-java#com_microsoft_signalr__http_hub_connection_builder_withAccessTokenProvider_Single_String__) to provide an [RxJava](https://github.com/ReactiveX/RxJava) [Single\<String>](https://reactivex.io/documentation/single.html). With a call to [Single.defer](https://reactivex.io/RxJava/javadoc/io/reactivex/Single.html#defer-java.util.concurrent.Callable-), you can write logic to produce access tokens for your client.
 
 ```java
-HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/myhub")
+HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/chathub")
     .withAccessTokenProvider(Single.defer(() -> {
         // Your logic here.
         return Single.just("An Access Token");
@@ -359,7 +359,7 @@ In the .NET Client, these options can be modified by the options delegate provid
 
 ```csharp
 var connection = new HubConnectionBuilder()
-    .WithUrl("https://example.com/myhub", options => {
+    .WithUrl("https://example.com/chathub", options => {
         options.Headers["Foo"] = "Bar";
         options.Cookies.Add(new Cookie(/* ... */);
         options.ClientCertificates.Add(/* ... */);
@@ -371,7 +371,7 @@ In the JavaScript Client, these options can be provided in a JavaScript object p
 
 ```javascript
 let connection = new signalR.HubConnectionBuilder()
-    .withUrl("/myhub", {
+    .withUrl("/chathub", {
         skipNegotiation: true,
         transport: signalR.HttpTransportType.WebSockets
     })
@@ -381,7 +381,7 @@ let connection = new signalR.HubConnectionBuilder()
 In the Java client, these options can be configured with the methods on the `HttpHubConnectionBuilder` returned from the `HubConnectionBuilder.create("HUB URL")`
 
 ```java
-HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/myhub")
+HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/chathub")
         .withHeader("Foo", "Bar")
         .shouldSkipNegotiate(true)
         .withHandshakeResponseTimeout(30*1000)
@@ -473,7 +473,7 @@ public void ConfigureServices(IServiceCollection services)
 Options for a single hub override the global options provided in `AddSignalR` and can be configured using <xref:Microsoft.Extensions.DependencyInjection.SignalRDependencyInjectionExtensions.AddHubOptions*>:
 
 ```csharp
-services.AddSignalR().AddHubOptions<MyHub>(options =>
+services.AddSignalR().AddHubOptions<ChatHub>(options =>
 {
     options.EnableDetailedErrors = true;
 });
@@ -490,7 +490,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 
     app.UseEndpoints(endpoints =>
     {
-        endpoints.MapHub<MyHub>("/myhub", options =>
+        endpoints.MapHub<ChatHub>("/chathub", options =>
         {
             options.Transports =
                 HttpTransportType.WebSockets |
@@ -540,7 +540,7 @@ For example, to enable Console logging, install the `Microsoft.Extensions.Loggin
 
 ```csharp
 var connection = new HubConnectionBuilder()
-    .WithUrl("https://example.com/myhub")
+    .WithUrl("https://example.com/chathub")
     .ConfigureLogging(logging => {
         logging.SetMinimumLevel(LogLevel.Information);
         logging.AddConsole();
@@ -552,7 +552,7 @@ In the JavaScript client, a similar `configureLogging` method exists. Provide a 
 
 ```javascript
 let connection = new signalR.HubConnectionBuilder()
-    .withUrl("/myhub")
+    .withUrl("/chathub")
     .configureLogging(signalR.LogLevel.Information)
     .build();
 ```
@@ -561,7 +561,7 @@ Instead of a `LogLevel` value, you can also provide a `string` value representin
 
 ```javascript
 let connection = new signalR.HubConnectionBuilder()
-    .withUrl("/myhub")
+    .withUrl("/chathub")
     .configureLogging("warn")
     .build();
 ```
@@ -607,7 +607,7 @@ For example, to disable the Server-Sent Events transport, but allow WebSockets a
 
 ```csharp
 var connection = new HubConnectionBuilder()
-    .WithUrl("https://example.com/myhub", HttpTransportType.WebSockets | HttpTransportType.LongPolling)
+    .WithUrl("https://example.com/chathub", HttpTransportType.WebSockets | HttpTransportType.LongPolling)
     .Build();
 ```
 
@@ -615,7 +615,7 @@ In the JavaScript client, transports are configured by setting the `transport` f
 
 ```javascript
 let connection = new signalR.HubConnectionBuilder()
-    .withUrl("/myhub", { transport: signalR.HttpTransportType.WebSockets | signalR.HttpTransportType.LongPolling })
+    .withUrl("/chathub", { transport: signalR.HttpTransportType.WebSockets | signalR.HttpTransportType.LongPolling })
     .build();
 ```
 
@@ -624,7 +624,7 @@ In this version of the Java client websockets is the only available transport.
 In the Java client, the transport is selected with the `withTransport` method on the `HttpHubConnectionBuilder`. The Java client defaults to using the WebSockets transport.
 
 ```java
-HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/myhub")
+HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/chathub")
     .withTransport(TransportEnum.WEBSOCKETS)
     .build();
 ```
@@ -640,7 +640,7 @@ In the .NET client, the `AccessTokenProvider` option can be specified using the 
 
 ```csharp
 var connection = new HubConnectionBuilder()
-    .WithUrl("https://example.com/myhub", options => {
+    .WithUrl("https://example.com/chathub", options => {
         options.AccessTokenProvider = async () => {
             // Get and return the access token.
         };
@@ -652,7 +652,7 @@ In the JavaScript client, the access token is configured by setting the `accessT
 
 ```javascript
 let connection = new signalR.HubConnectionBuilder()
-    .withUrl("/myhub", {
+    .withUrl("/chathub", {
         accessTokenFactory: () => {
             // Get and return the access token.
             // This function can return a JavaScript Promise if asynchronous
@@ -665,7 +665,7 @@ let connection = new signalR.HubConnectionBuilder()
 In the SignalR Java client, you can configure a bearer token to use for authentication by providing an access token factory to the [HttpHubConnectionBuilder](/java/api/com.microsoft.signalr._http_hub_connection_builder?view=aspnet-signalr-java). Use [withAccessTokenFactory](/java/api/com.microsoft.signalr._http_hub_connection_builder.withaccesstokenprovider?view=aspnet-signalr-java#com_microsoft_signalr__http_hub_connection_builder_withAccessTokenProvider_Single_String__) to provide an [RxJava](https://github.com/ReactiveX/RxJava) [Single\<String>](https://reactivex.io/documentation/single.html). With a call to [Single.defer](https://reactivex.io/RxJava/javadoc/io/reactivex/Single.html#defer-java.util.concurrent.Callable-), you can write logic to produce access tokens for your client.
 
 ```java
-HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/myhub")
+HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/chathub")
     .withAccessTokenProvider(Single.defer(() -> {
         // Your logic here.
         return Single.just("An Access Token");
@@ -744,7 +744,7 @@ In the .NET Client, these options can be modified by the options delegate provid
 
 ```csharp
 var connection = new HubConnectionBuilder()
-    .WithUrl("https://example.com/myhub", options => {
+    .WithUrl("https://example.com/chathub", options => {
         options.Headers["Foo"] = "Bar";
         options.Cookies.Add(new Cookie(/* ... */);
         options.ClientCertificates.Add(/* ... */);
@@ -756,7 +756,7 @@ In the JavaScript Client, these options can be provided in a JavaScript object p
 
 ```javascript
 let connection = new signalR.HubConnectionBuilder()
-    .withUrl("/myhub", {
+    .withUrl("/chathub", {
         skipNegotiation: true,
         transport: signalR.HttpTransportType.WebSockets
     })
@@ -766,7 +766,7 @@ let connection = new signalR.HubConnectionBuilder()
 In the Java client, these options can be configured with the methods on the `HttpHubConnectionBuilder` returned from the `HubConnectionBuilder.create("HUB URL")`
 
 ```java
-HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/myhub")
+HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/chathub")
         .withHeader("Foo", "Bar")
         .shouldSkipNegotiate(true)
         .withHandshakeResponseTimeout(30*1000)
@@ -858,7 +858,7 @@ public void ConfigureServices(IServiceCollection services)
 Options for a single hub override the global options provided in `AddSignalR` and can be configured using <xref:Microsoft.Extensions.DependencyInjection.SignalRDependencyInjectionExtensions.AddHubOptions*>:
 
 ```csharp
-services.AddSignalR().AddHubOptions<MyHub>(options =>
+services.AddSignalR().AddHubOptions<ChatHub>(options =>
 {
     options.EnableDetailedErrors = true;
 });
@@ -875,7 +875,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 
     app.UseEndpoints(endpoints =>
     {
-        endpoints.MapHub<MyHub>("/myhub", options =>
+        endpoints.MapHub<ChatHub>("/chathub", options =>
         {
             options.Transports =
                 HttpTransportType.WebSockets |
@@ -924,7 +924,7 @@ For example, to enable Console logging, install the `Microsoft.Extensions.Loggin
 
 ```csharp
 var connection = new HubConnectionBuilder()
-    .WithUrl("https://example.com/myhub")
+    .WithUrl("https://example.com/chathub")
     .ConfigureLogging(logging => {
         logging.SetMinimumLevel(LogLevel.Information);
         logging.AddConsole();
@@ -936,7 +936,7 @@ In the JavaScript client, a similar `configureLogging` method exists. Provide a 
 
 ```javascript
 let connection = new signalR.HubConnectionBuilder()
-    .withUrl("/myhub")
+    .withUrl("/chathub")
     .configureLogging(signalR.LogLevel.Information)
     .build();
 ```
@@ -945,7 +945,7 @@ Instead of a `LogLevel` value, you can also provide a `string` value representin
 
 ```javascript
 let connection = new signalR.HubConnectionBuilder()
-    .withUrl("/myhub")
+    .withUrl("/chathub")
     .configureLogging("warn")
     .build();
 ```
@@ -991,7 +991,7 @@ For example, to disable the Server-Sent Events transport, but allow WebSockets a
 
 ```csharp
 var connection = new HubConnectionBuilder()
-    .WithUrl("https://example.com/myhub", HttpTransportType.WebSockets | HttpTransportType.LongPolling)
+    .WithUrl("https://example.com/chathub", HttpTransportType.WebSockets | HttpTransportType.LongPolling)
     .Build();
 ```
 
@@ -999,7 +999,7 @@ In the JavaScript client, transports are configured by setting the `transport` f
 
 ```javascript
 let connection = new signalR.HubConnectionBuilder()
-    .withUrl("/myhub", { transport: signalR.HttpTransportType.WebSockets | signalR.HttpTransportType.LongPolling })
+    .withUrl("/chathub", { transport: signalR.HttpTransportType.WebSockets | signalR.HttpTransportType.LongPolling })
     .build();
 ```
 
@@ -1008,7 +1008,7 @@ In this version of the Java client websockets is the only available transport.
 In the Java client, the transport is selected with the `withTransport` method on the `HttpHubConnectionBuilder`. The Java client defaults to using the WebSockets transport.
 
 ```java
-HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/myhub")
+HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/chathub")
     .withTransport(TransportEnum.WEBSOCKETS)
     .build();
 ```
@@ -1024,7 +1024,7 @@ In the .NET client, the `AccessTokenProvider` option can be specified using the 
 
 ```csharp
 var connection = new HubConnectionBuilder()
-    .WithUrl("https://example.com/myhub", options => {
+    .WithUrl("https://example.com/chathub", options => {
         options.AccessTokenProvider = async () => {
             // Get and return the access token.
         };
@@ -1036,7 +1036,7 @@ In the JavaScript client, the access token is configured by setting the `accessT
 
 ```javascript
 let connection = new signalR.HubConnectionBuilder()
-    .withUrl("/myhub", {
+    .withUrl("/chathub", {
         accessTokenFactory: () => {
             // Get and return the access token.
             // This function can return a JavaScript Promise if asynchronous
@@ -1049,7 +1049,7 @@ let connection = new signalR.HubConnectionBuilder()
 In the SignalR Java client, you can configure a bearer token to use for authentication by providing an access token factory to the [HttpHubConnectionBuilder](/java/api/com.microsoft.signalr._http_hub_connection_builder?view=aspnet-signalr-java). Use [withAccessTokenFactory](/java/api/com.microsoft.signalr._http_hub_connection_builder.withaccesstokenprovider?view=aspnet-signalr-java#com_microsoft_signalr__http_hub_connection_builder_withAccessTokenProvider_Single_String__) to provide an [RxJava](https://github.com/ReactiveX/RxJava) [Single\<String>](https://reactivex.io/documentation/single.html). With a call to [Single.defer](https://reactivex.io/RxJava/javadoc/io/reactivex/Single.html#defer-java.util.concurrent.Callable-), you can write logic to produce access tokens for your client.
 
 ```java
-HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/myhub")
+HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/chathub")
     .withAccessTokenProvider(Single.defer(() -> {
         // Your logic here.
         return Single.just("An Access Token");
@@ -1128,7 +1128,7 @@ In the .NET Client, these options can be modified by the options delegate provid
 
 ```csharp
 var connection = new HubConnectionBuilder()
-    .WithUrl("https://example.com/myhub", options => {
+    .WithUrl("https://example.com/chathub", options => {
         options.Headers["Foo"] = "Bar";
         options.Cookies.Add(new Cookie(/* ... */);
         options.ClientCertificates.Add(/* ... */);
@@ -1140,7 +1140,7 @@ In the JavaScript Client, these options can be provided in a JavaScript object p
 
 ```javascript
 let connection = new signalR.HubConnectionBuilder()
-    .withUrl("/myhub", {
+    .withUrl("/chathub", {
         skipNegotiation: true,
         transport: signalR.HttpTransportType.WebSockets
     })
@@ -1150,7 +1150,7 @@ let connection = new signalR.HubConnectionBuilder()
 In the Java client, these options can be configured with the methods on the `HttpHubConnectionBuilder` returned from the `HubConnectionBuilder.create("HUB URL")`
 
 ```java
-HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/myhub")
+HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/chathub")
         .withHeader("Foo", "Bar")
         .shouldSkipNegotiate(true)
         .withHandshakeResponseTimeout(30*1000)
@@ -1238,7 +1238,7 @@ public void ConfigureServices(IServiceCollection services)
 Options for a single hub override the global options provided in `AddSignalR` and can be configured using <xref:Microsoft.Extensions.DependencyInjection.SignalRDependencyInjectionExtensions.AddHubOptions*>:
 
 ```csharp
-services.AddSignalR().AddHubOptions<MyHub>(options =>
+services.AddSignalR().AddHubOptions<ChatHub>(options =>
 {
     options.EnableDetailedErrors = true;
 });
@@ -1257,7 +1257,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
             HttpTransportType.WebSockets |
             HttpTransportType.LongPolling;
 
-        configure.MapHub<MyHub>("/myhub", (options) =>
+        configure.MapHub<ChatHub>("/chathub", (options) =>
         {
             options.Transports = desiredTransports;
         });
@@ -1304,7 +1304,7 @@ For example, to enable Console logging, install the `Microsoft.Extensions.Loggin
 
 ```csharp
 var connection = new HubConnectionBuilder()
-    .WithUrl("https://example.com/myhub")
+    .WithUrl("https://example.com/chathub")
     .ConfigureLogging(logging => {
         logging.SetMinimumLevel(LogLevel.Information);
         logging.AddConsole();
@@ -1316,7 +1316,7 @@ In the JavaScript client, a similar `configureLogging` method exists. Provide a 
 
 ```javascript
 let connection = new signalR.HubConnectionBuilder()
-    .withUrl("/myhub")
+    .withUrl("/chathub")
     .configureLogging(signalR.LogLevel.Information)
     .build();
 ```
@@ -1350,7 +1350,7 @@ For example, to disable the Server-Sent Events transport, but allow WebSockets a
 
 ```csharp
 var connection = new HubConnectionBuilder()
-    .WithUrl("https://example.com/myhub", HttpTransportType.WebSockets | HttpTransportType.LongPolling)
+    .WithUrl("https://example.com/chathub", HttpTransportType.WebSockets | HttpTransportType.LongPolling)
     .Build();
 ```
 
@@ -1358,7 +1358,7 @@ In the JavaScript client, transports are configured by setting the `transport` f
 
 ```javascript
 let connection = new signalR.HubConnectionBuilder()
-    .withUrl("/myhub", { transport: signalR.HttpTransportType.WebSockets | signalR.HttpTransportType.LongPolling })
+    .withUrl("/chathub", { transport: signalR.HttpTransportType.WebSockets | signalR.HttpTransportType.LongPolling })
     .build();
 ```
 
@@ -1372,7 +1372,7 @@ In the .NET client, the `AccessTokenProvider` option can be specified using the 
 
 ```csharp
 var connection = new HubConnectionBuilder()
-    .WithUrl("https://example.com/myhub", options => {
+    .WithUrl("https://example.com/chathub", options => {
         options.AccessTokenProvider = async () => {
             // Get and return the access token.
         };
@@ -1384,7 +1384,7 @@ In the JavaScript client, the access token is configured by setting the `accessT
 
 ```javascript
 let connection = new signalR.HubConnectionBuilder()
-    .withUrl("/myhub", {
+    .withUrl("/chathub", {
         accessTokenFactory: () => {
             // Get and return the access token.
             // This function can return a JavaScript Promise if asynchronous
@@ -1397,7 +1397,7 @@ let connection = new signalR.HubConnectionBuilder()
 In the SignalR Java client, you can configure a bearer token to use for authentication by providing an access token factory to the [HttpHubConnectionBuilder](/java/api/com.microsoft.signalr._http_hub_connection_builder?view=aspnet-signalr-java). Use [withAccessTokenFactory](/java/api/com.microsoft.signalr._http_hub_connection_builder.withaccesstokenprovider?view=aspnet-signalr-java#com_microsoft_signalr__http_hub_connection_builder_withAccessTokenProvider_Single_String__) to provide an [RxJava](https://github.com/ReactiveX/RxJava) [Single\<String>](https://reactivex.io/documentation/single.html). With a call to [Single.defer](https://reactivex.io/RxJava/javadoc/io/reactivex/Single.html#defer-java.util.concurrent.Callable-), you can write logic to produce access tokens for your client.
 
 ```java
-HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/myhub")
+HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/chathub")
     .withAccessTokenProvider(Single.defer(() -> {
         // Your logic here.
         return Single.just("An Access Token");
@@ -1476,7 +1476,7 @@ In the .NET Client, these options can be modified by the options delegate provid
 
 ```csharp
 var connection = new HubConnectionBuilder()
-    .WithUrl("https://example.com/myhub", options => {
+    .WithUrl("https://example.com/chathub", options => {
         options.Headers["Foo"] = "Bar";
         options.Cookies.Add(new Cookie(/* ... */);
         options.ClientCertificates.Add(/* ... */);
@@ -1488,7 +1488,7 @@ In the JavaScript Client, these options can be provided in a JavaScript object p
 
 ```javascript
 let connection = new signalR.HubConnectionBuilder()
-    .withUrl("/myhub", {
+    .withUrl("/chathub", {
         skipNegotiation: true,
         transport: signalR.HttpTransportType.WebSockets
     })
@@ -1498,7 +1498,7 @@ let connection = new signalR.HubConnectionBuilder()
 In the Java client, these options can be configured with the methods on the `HttpHubConnectionBuilder` returned from the `HubConnectionBuilder.create("HUB URL")`
 
 ```java
-HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/myhub")
+HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/chathub")
         .withHeader("Foo", "Bar")
         .shouldSkipNegotiate(true)
         .withHandshakeResponseTimeout(30*1000)
@@ -1585,7 +1585,7 @@ public void ConfigureServices(IServiceCollection services)
 Options for a single hub override the global options provided in `AddSignalR` and can be configured using <xref:Microsoft.Extensions.DependencyInjection.SignalRDependencyInjectionExtensions.AddHubOptions*>:
 
 ```csharp
-services.AddSignalR().AddHubOptions<MyHub>(options =>
+services.AddSignalR().AddHubOptions<ChatHub>(options =>
 {
     options.EnableDetailedErrors = true;
 });
@@ -1604,7 +1604,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
             HttpTransportType.WebSockets |
             HttpTransportType.LongPolling;
 
-        configure.MapHub<MyHub>("/myhub", (options) =>
+        configure.MapHub<ChatHub>("/chathub", (options) =>
         {
             options.Transports = desiredTransports;
         });
@@ -1651,7 +1651,7 @@ For example, to enable Console logging, install the `Microsoft.Extensions.Loggin
 
 ```csharp
 var connection = new HubConnectionBuilder()
-    .WithUrl("https://example.com/myhub")
+    .WithUrl("https://example.com/chathub")
     .ConfigureLogging(logging => {
         logging.SetMinimumLevel(LogLevel.Information);
         logging.AddConsole();
@@ -1663,7 +1663,7 @@ In the JavaScript client, a similar `configureLogging` method exists. Provide a 
 
 ```javascript
 let connection = new signalR.HubConnectionBuilder()
-    .withUrl("/myhub")
+    .withUrl("/chathub")
     .configureLogging(signalR.LogLevel.Information)
     .build();
 ```
@@ -1697,7 +1697,7 @@ For example, to disable the Server-Sent Events transport, but allow WebSockets a
 
 ```csharp
 var connection = new HubConnectionBuilder()
-    .WithUrl("https://example.com/myhub", HttpTransportType.WebSockets | HttpTransportType.LongPolling)
+    .WithUrl("https://example.com/chathub", HttpTransportType.WebSockets | HttpTransportType.LongPolling)
     .Build();
 ```
 
@@ -1705,7 +1705,7 @@ In the JavaScript client, transports are configured by setting the `transport` f
 
 ```javascript
 let connection = new signalR.HubConnectionBuilder()
-    .withUrl("/myhub", { transport: signalR.HttpTransportType.WebSockets | signalR.HttpTransportType.LongPolling })
+    .withUrl("/chathub", { transport: signalR.HttpTransportType.WebSockets | signalR.HttpTransportType.LongPolling })
     .build();
 ```
 
@@ -1717,7 +1717,7 @@ In the .NET client, the `AccessTokenProvider` option can be specified using the 
 
 ```csharp
 var connection = new HubConnectionBuilder()
-    .WithUrl("https://example.com/myhub", options => {
+    .WithUrl("https://example.com/chathub", options => {
         options.AccessTokenProvider = async () => {
             // Get and return the access token.
         };
@@ -1729,7 +1729,7 @@ In the JavaScript client, the access token is configured by setting the `accessT
 
 ```javascript
 let connection = new signalR.HubConnectionBuilder()
-    .withUrl("/myhub", {
+    .withUrl("/chathub", {
         accessTokenFactory: () => {
             // Get and return the access token.
             // This function can return a JavaScript Promise if asynchronous
@@ -1742,7 +1742,7 @@ let connection = new signalR.HubConnectionBuilder()
 In the SignalR Java client, you can configure a bearer token to use for authentication by providing an access token factory to the [HttpHubConnectionBuilder](/java/api/com.microsoft.signalr._http_hub_connection_builder?view=aspnet-signalr-java). Use [withAccessTokenFactory](/java/api/com.microsoft.signalr._http_hub_connection_builder.withaccesstokenprovider?view=aspnet-signalr-java#com_microsoft_signalr__http_hub_connection_builder_withAccessTokenProvider_Single_String__) to provide an [RxJava](https://github.com/ReactiveX/RxJava) [Single\<String>](https://reactivex.io/documentation/single.html). With a call to [Single.defer](https://reactivex.io/RxJava/javadoc/io/reactivex/Single.html#defer-java.util.concurrent.Callable-), you can write logic to produce access tokens for your client.
 
 ```java
-HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/myhub")
+HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/chathub")
     .withAccessTokenProvider(Single.defer(() -> {
         // Your logic here.
         return Single.just("An Access Token");
@@ -1818,7 +1818,7 @@ In the .NET Client, these options can be modified by the options delegate provid
 
 ```csharp
 var connection = new HubConnectionBuilder()
-    .WithUrl("https://example.com/myhub", options => {
+    .WithUrl("https://example.com/chathub", options => {
         options.Headers["Foo"] = "Bar";
         options.Cookies.Add(new Cookie(/* ... */);
         options.ClientCertificates.Add(/* ... */);
@@ -1830,7 +1830,7 @@ In the JavaScript Client, these options can be provided in a JavaScript object p
 
 ```javascript
 let connection = new signalR.HubConnectionBuilder()
-    .withUrl("/myhub", {
+    .withUrl("/chathub", {
         skipNegotiation: true,
         transport: signalR.HttpTransportType.WebSockets
     })
@@ -1840,7 +1840,7 @@ let connection = new signalR.HubConnectionBuilder()
 In the Java client, these options can be configured with the methods on the `HttpHubConnectionBuilder` returned from the `HubConnectionBuilder.create("HUB URL")`
 
 ```java
-HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/myhub")
+HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/chathub")
         .withHeader("Foo", "Bar")
         .shouldSkipNegotiate(true)
         .withHandshakeResponseTimeout(30*1000)
