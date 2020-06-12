@@ -2,7 +2,7 @@
 // before a browser can execute it.
 
 const connection = new signalR.HubConnectionBuilder()
-    .withUrl("/chatHub")
+    .withUrl("/chathub")
     .configureLogging(signalR.LogLevel.Information)
     .build();
 
