@@ -821,7 +821,8 @@ Logging configuration can be loaded from app settings files. For more informatio
 Inject an <xref:Microsoft.Extensions.Logging.ILoggerProvider> to add a `WebAssemblyConsoleLogger` to the logging providers passed to <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilder>. Unlike a traditional <xref:Microsoft.Extensions.Logging.Console.ConsoleLogger>, `WebAssemblyConsoleLogger` is a wrapper around browser-specific logging APIs (for example, `console.log`). Use of `WebAssemblyConsoleLogger` makes logging possible within Mono inside a browser context.
 
 ```csharp
-@inject ILoggerProvider loggerprovider;
+@using Microsoft.Extensions.Logging
+@inject ILoggerProvider loggerprovider
 
 ...
 
