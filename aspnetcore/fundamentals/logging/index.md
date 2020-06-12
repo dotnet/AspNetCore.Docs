@@ -818,16 +818,18 @@ Logging configuration can be loaded from app settings files. For more informatio
 
 #### Blazor WebAssembly SignalR .NET client logging
 
-Inject an instance of <xref:Microsoft.Extensions.Logging.ILoggerProvider>, `loggerProvider` in the following example, and call <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilderExtensions.ConfigureLogging%2A> to add the provider:
+Inject an <xref:Microsoft.Extensions.Logging.ILoggerProvider> to add a `WebAssemblyConsoleLogger` to the logging providers passed to <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilder>. Unlike a traditional <xref:Microsoft.Extensions.Logging.Console.ConsoleLogger>, `WebAssemblyConsoleLogger` is a wrapper around browser-specific logging APIs (for example, `console.log`). Use of `WebAssemblyConsoleLogger` makes logging possible within Mono inside a browser context.
 
 ```csharp
+@inject ILoggerProvider loggerprovider;
+
+...
+
 var connection = new HubConnectionBuilder()
     .WithUrl(NavigationManager.ToAbsoluteUri("/chatHub"))
     .ConfigureLogging(logging => logging.AddProvider(loggerProvider))
     .Build();
 ```
-
-Injecting the <xref:Microsoft.Extensions.Logging.ILoggerProvider> adds `WebAssemblyConsoleLogger` to the logging providers passed to <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilder>. Unlike a traditional <xref:Microsoft.Extensions.Logging.Console.ConsoleLogger>, `WebAssemblyConsoleLogger` is a wrapper around browser-specific logging APIs (for example, `console.log`). Use of `WebAssemblyConsoleLogger` makes logging possible within Mono inside a browser context.
 
 #### Log in Razor components
 
