@@ -822,7 +822,7 @@ Inject an <xref:Microsoft.Extensions.Logging.ILoggerProvider> to add a `WebAssem
 
 ```csharp
 @using Microsoft.Extensions.Logging
-@inject ILoggerProvider Loggerprovider
+@inject ILoggerProvider LoggerProvider
 
 ...
 
