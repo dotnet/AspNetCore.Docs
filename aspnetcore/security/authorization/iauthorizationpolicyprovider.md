@@ -12,7 +12,7 @@ uid: security/authorization/iauthorizationpolicyprovider
 
 By [Mike Rousos](https://github.com/mjrousos)
 
-Typically when using [policy-based authorization](xref:security/authorization/policies), policies are registered by calling `AuthorizationOptions.AddPolicy` as part of authorization service configuration. In some scenarios, it may not be possible (or desirable) to register all authorization policies in this way. In those cases, you can use a custom `IAuthorizationPolicyProvider` to control how authorization policies are supplied.
+Typically when using [policy-based authorization](xref:security/authorization/policies), policies are registered by calling `AuthorizationOptions.AddPolicy` as part of authorization service configuration. In some scenarios, it may not be possible (or desirable) to register all authorization policies in this way. In those cases, you can [use a custom `IAuthorizationPolicyProvider`](#ci) to control how authorization policies are supplied.
 
 Examples of scenarios where a custom [IAuthorizationPolicyProvider](/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationpolicyprovider) may be useful include:
 
@@ -168,15 +168,17 @@ public Task<AuthorizationPolicy> GetFallbackPolicyAsync() =>
     Task.FromResult<AuthorizationPolicy>(null);
 ```
 
+<a name="ci"></a>
+
 ## Use a custom IAuthorizationPolicyProvider
 
-To use custom policies from an `IAuthorizationPolicyProvider`, you must:
+To use custom policies from an `IAuthorizationPolicyProvider`, you ***must***:
 
 * Register the appropriate `AuthorizationHandler` types with dependency injection (described in [policy-based authorization](xref:security/authorization/policies#authorization-handlers)), as with all policy-based authorization scenarios.
-* Register the custom `IAuthorizationPolicyProvider` type in the app's dependency injection service collection (in `Startup.ConfigureServices`) to replace the default policy provider.
+* Register the custom `IAuthorizationPolicyProvider` type in the app's dependency injection service collection in `Startup.ConfigureServices` to replace the default policy provider.
 
-```csharp
-services.AddSingleton<IAuthorizationPolicyProvider, MinimumAgePolicyProvider>();
-```
+  ```csharp
+  services.AddSingleton<IAuthorizationPolicyProvider, MinimumAgePolicyProvider>();
+  ```
 
 A complete custom `IAuthorizationPolicyProvider` sample is available in the [dotnet/aspnetcore GitHub repository](https://github.com/dotnet/aspnetcore/tree/v3.1.3/src/Security/samples/CustomPolicyProvider).
