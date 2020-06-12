@@ -822,13 +822,13 @@ Inject an <xref:Microsoft.Extensions.Logging.ILoggerProvider> to add a `WebAssem
 
 ```csharp
 @using Microsoft.Extensions.Logging
-@inject ILoggerProvider loggerprovider
+@inject ILoggerProvider Loggerprovider
 
 ...
 
 var connection = new HubConnectionBuilder()
     .WithUrl(NavigationManager.ToAbsoluteUri("/chathub"))
-    .ConfigureLogging(logging => logging.AddProvider(loggerProvider))
+    .ConfigureLogging(logging => logging.AddProvider(LoggerProvider))
     .Build();
 ```
 
