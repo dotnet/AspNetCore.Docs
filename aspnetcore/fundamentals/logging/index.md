@@ -816,7 +816,7 @@ The `Logging` property is of type <xref:Microsoft.Extensions.Logging.ILoggingBui
 
 Logging configuration can be loaded from app settings files. For more information, see <xref:blazor/hosting-model-configuration#logging-configuration>.
 
-#### Blazor WebAssembly SignalR client logging
+#### Blazor WebAssembly SignalR .NET client logging
 
 Inject an instance of <xref:Microsoft.Extensions.Logging.ILoggerProvider>, `loggerProvider` in the following example, and call <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilderExtensions.ConfigureLogging%2A> to add the provider:
 
