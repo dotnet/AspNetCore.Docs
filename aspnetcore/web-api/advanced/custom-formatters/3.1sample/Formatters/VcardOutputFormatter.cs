@@ -11,6 +11,7 @@ using Microsoft.Extensions.Logging;
 
 namespace CustomFormatterDemo.Formatters
 {
+    #region snippet
     #region classdef
     public class VcardOutputFormatter : TextOutputFormatter
     #endregion
@@ -76,4 +77,5 @@ namespace CustomFormatterDemo.Formatters
         }
         #endregion
     }
+    #endregion
 }

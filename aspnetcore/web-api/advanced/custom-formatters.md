@@ -44,7 +44,7 @@ To create a formatter:
 * Override `CanReadType`/`CanWriteType` methods
 * Override `ReadRequestBodyAsync`/`WriteResponseBodyAsync` methods
 
-The follow code shows the completed `VcardInputFormatter` class from the [sample](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/advanced/custom-formatters/3.1sample):
+The follow code shows the completed `VcardOutputFormatter` class from the [sample](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/advanced/custom-formatters/3.1sample):
 
 [!code-csharp[](custom-formatters/3.1sample/Formatters/VcardOutputFormatter.cs?name=snippet)]
   
