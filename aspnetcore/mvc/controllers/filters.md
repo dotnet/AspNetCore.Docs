@@ -941,24 +941,6 @@ To short-circuit, assign <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutingC
 
 The framework provides an abstract <xref:Microsoft.AspNetCore.Mvc.Filters.ActionFilterAttribute> that can be subclassed.
 
-The `OnActionExecuting` action filter can be used to:
-
-* Validate model state.
-* Return an error if the state is invalid.
-
-[!code-csharp[](./filters/sample/FiltersSample/Filters/ValidateModelAttribute.cs?name=snippet)]
-
-The `OnActionExecuted` method runs after the action method:
-
-* And can see and manipulate the results of the action through the <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext.Result> property.
-* <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext.Canceled> is set to true if the action execution was short-circuited by another filter.
-* <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext.Exception> is set to a non-null value if the action or a subsequent action filter threw an exception. Setting `Exception` to null:
-
-  * Effectively handles an exception.
-  * `ActionExecutedContext.Result` is executed as if it were returned normally from the action method.
-
-[!code-csharp[](./filters/sample/FiltersSample/Filters/ValidateModelAttribute.cs?name=snippet2&higlight=12-99)]
-
 ## Exception filters
 
 Exception filters:
