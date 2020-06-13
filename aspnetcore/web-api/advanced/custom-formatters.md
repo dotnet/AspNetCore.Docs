@@ -43,6 +43,10 @@ To create a formatter:
 * Specify valid media types and encodings in the constructor.
 * Override `CanReadType`/`CanWriteType` methods
 * Override `ReadRequestBodyAsync`/`WriteResponseBodyAsync` methods
+
+The follow code shows the completed `VcardInputFormatter` class from the [sample](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/advanced/custom-formatters/3.1sample):
+
+[!code-csharp[](custom-formatters/3.1sample/Formatters/VcardOutputFormatter.cs?name=snippet)]
   
 ### Derive from the appropriate base class
 
@@ -97,7 +101,17 @@ For an input formatter example, see the [sample app](https://github.com/dotnet/A
 
 To use a custom formatter, add an instance of the formatter class to the `InputFormatters` or `OutputFormatters` collection.
 
+::: moniker range=">= aspnetcore-3.0"
+
+[!code-csharp[](custom-formatters/3.1sample/Startup.cs?name=mvcoptions&highlight=3-4)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
 [!code-csharp[](custom-formatters/sample/Startup.cs?name=mvcoptions&highlight=3-4)]
+
+::: moniker-end
 
 Formatters are evaluated in the order you insert them. The first one takes precedence.
 
@@ -115,6 +129,14 @@ uid:20293482-9240-4d68-b475-325df4a83728
 END:VCARD
 ```
 
-To see vCard output, run the application and send a Get request with Accept header "text/vcard" to `http://localhost:63313/api/contacts/` (when running from Visual Studio) or `http://localhost:5000/api/contacts/` (when running from the command line).
+To see vCard output, run the application and send a Get request with Accept header "text/vcard" to `https://localhost:5001/api/contacts`.
 
-To add a vCard to the in-memory collection of contacts, send a Post request to the same URL, with Content-Type header "text/vcard" and with vCard text in the body, formatted like the example above.
+To add a vCard to the in-memory collection of contacts:
+
+* Send a Post request to `/api/contacts` with a tool like Postman.
+* Set the `Content-Type` header to `text/vcard`.
+* Set vCard text in the body, formatted like the preceding example.
+
+## Additional resources
+
+<xref:grpc/dotnet-grpc>
