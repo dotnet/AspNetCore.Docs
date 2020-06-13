@@ -25,8 +25,6 @@ namespace CustomFormatterDemo
                 options.InputFormatters.Insert(0, new VcardInputFormatter());
                 options.OutputFormatters.Insert(0, new VcardOutputFormatter());
             });
-
-            services.AddSingleton<IContactRepository, ContactRepository>();
         }
         #endregion
 

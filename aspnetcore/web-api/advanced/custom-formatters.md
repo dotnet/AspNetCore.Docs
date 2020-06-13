@@ -124,8 +124,7 @@ BEGIN:VCARD
 VERSION:2.1
 N:Davolio;Nancy
 FN:Nancy Davolio
-no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
-uid:20293482-9240-4d68-b475-325df4a83728
+UID:20293482-9240-4d68-b475-325df4a83728
 END:VCARD
 ```
 

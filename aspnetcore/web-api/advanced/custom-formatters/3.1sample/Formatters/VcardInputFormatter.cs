@@ -62,7 +62,7 @@ namespace CustomFormatterDemo.Formatters
 
                     await ReadLineAsync("FN:", reader, context);
 
-                    var idLine = await ReadLineAsync("UID:", reader, context);
+                    var idLine = await ReadLineAsync("uid:", reader, context);
                     contact.ID = idLine.Substring(4);
 
                     await ReadLineAsync("END:VCARD", reader, context);
