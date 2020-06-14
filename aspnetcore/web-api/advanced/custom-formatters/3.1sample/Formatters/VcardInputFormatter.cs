@@ -54,7 +54,7 @@ namespace CustomFormatterDemo.Formatters
                 try
                 {
                     await ReadLineAsync("BEGIN:VCARD", reader, context);
-                    await ReadLineAsync("VERSION:2.1", reader, context);
+                    await ReadLineAsync("VERSION:", reader, context);
 
                     var nameLine = await ReadLineAsync("N:", reader, context);
                     var split = nameLine.Split(";".ToCharArray());
@@ -62,8 +62,8 @@ namespace CustomFormatterDemo.Formatters
 
                     await ReadLineAsync("FN:", reader, context);
 
-                    var idLine = await ReadLineAsync("uid:", reader, context);
-                    contact.ID = idLine.Substring(4);
+                    //var idLine = await ReadLineAsync("uid:", reader, context);
+                    //contact.ID = idLine.Substring(4);
 
                     await ReadLineAsync("END:VCARD", reader, context);
 

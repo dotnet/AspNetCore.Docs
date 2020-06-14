@@ -18,6 +18,7 @@ namespace CustomFormatterDemo.Controllers
 
         public ContactsController()
         {
+            if (_contacts.Count == 0)
             Add(new Contact() { FirstName = "Nancy", LastName = "Davolio" });
         }
 
