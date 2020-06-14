@@ -190,7 +190,7 @@ public class WeatherForecastClient
 }
 ```
 
-The placeholder `{APP ASSEMBLY}` is the app's namespace (for example, `using static BlazorSample.Data;`).
+The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `using static BlazorSample.Data;`).
 
 `Program.Main` (*Program.cs*):
 
