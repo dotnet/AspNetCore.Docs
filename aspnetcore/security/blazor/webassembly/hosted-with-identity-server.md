@@ -133,6 +133,8 @@ In the app settings file (*appsettings.json*) at the project root, the `Identity
 }
 ```
 
+The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `BlazorSample.Client`).
+
 ## Client app configuration
 
 ### Authentication package
