@@ -45,7 +45,7 @@ ASP.NET Core web apps created with [dotnet new](/dotnet/core/tools/dotnet-new) o
 1. Environment variables using the [Environment Variables configuration provider](#evcp).
 1. Command-line arguments using the [Command-line configuration provider](#command-line).
 
-Configuration providers that are added later override previous key settings. For example, if `MyKey` is set in both *appsettings.json* and the environment, the environment value is used. Using the default configuration providers, the  [Command-line configuration provider](#command-line-configuration-provider) overrides all other providers.
+Configuration providers that are added later override previous key settings. For example, if `MyKey` is set in both *appsettings.json* and the environment, the environment value is used. Using the default configuration providers, the  [Command-line configuration provider](#clcp) overrides all other providers.
 
 For more information on `CreateDefaultBuilder`, see [Default builder settings](xref:fundamentals/host/generic-host#default-builder-settings).
 
