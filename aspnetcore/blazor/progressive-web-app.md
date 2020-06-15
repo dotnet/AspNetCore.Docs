@@ -13,7 +13,7 @@ uid: blazor/progressive-web-app
 
 By [Steve Sanderson](https://github.com/SteveSandersonMS)
 
-A Progressive Web Application (PWA) is a Single Page Application (SPA) that uses modern browser APIs and capabilities to behave like a desktop app. Blazor WebAssembly is a standards-based client-side web app platform, so it can use any browser API, including PWA APIs required for the following capabilities:
+A Progressive Web Application (PWA) is usually a Single Page Application (SPA) that uses modern browser APIs and capabilities to behave like a desktop app. Blazor WebAssembly is a standards-based client-side web app platform, so it can use any browser API, including PWA APIs required for the following capabilities:
 
 * Working offline and loading instantly, independent of network speed.
 * Running in its own app window, not just a browser window.
