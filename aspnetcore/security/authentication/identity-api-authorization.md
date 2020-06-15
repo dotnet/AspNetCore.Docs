@@ -39,6 +39,8 @@ The following sections describe additions to the project when authentication sup
 
 ### Startup class
 
+The code examples below rely on the [Microsoft.AspNetCore.ApiAuthorization.IdentityServer](https://www.nuget.org/packages/Microsoft.AspNetCore.ApiAuthorization.IdentityServer/) nuget pacakge to configure API authentication and authorization using the `AddApiAuthorization` and `AddIdentityServerJwt` extension methods. Projects using the React or Angular SPA project templates with authentication include a reference to this package.
+
 The `Startup` class has the following additions:
 
 * Inside the `Startup.ConfigureServices` method:
