@@ -3,13 +3,13 @@ title: Migrate from ASP.NET MVC to ASP.NET Core MVC
 author: ardalis
 description: Learn how to get started migrating an ASP.NET MVC project to ASP.NET Core MVC.
 ms.author: riande
-ms.date: 06/12/2020
+ms.date: 06/15/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: migration/mvc
 ---
-::: moniker range=">= aspnetcore-3.0"
-
 # Migrate from ASP.NET MVC to ASP.NET Core MVC
+
+::: moniker range=">= aspnetcore-3.0"
 
 This article shows how to get started migrating an ASP.NET MVC project to [ASP.NET Core MVC](../mvc/overview.md). In the process, it highlights related changes from ASP.NET MVC.
 
@@ -177,9 +177,7 @@ ASP.NET Core converts unhandled exceptions in a web app into HTTP 500 error resp
 
 ::: moniker range="= aspnetcore-2.2"
 
-# Migrate from ASP.NET MVC to ASP.NET Core MVC 2.2
-
-This article shows how to get started migrating an ASP.NET MVC project to [ASP.NET Core MVC](../mvc/overview.md). In the process, it highlights many of the things that have changed from ASP.NET MVC. Migrating from ASP.NET MVC is a multiple step process and this article covers the initial setup, basic controllers and views, static content, and client-side dependencies.
+This article shows how to get started migrating an ASP.NET MVC project to [ASP.NET Core MVC](../mvc/overview.md) 2.2. In the process, it highlights many of the things that have changed from ASP.NET MVC. Migrating from ASP.NET MVC is a multiple step process and this article covers the initial setup, basic controllers and views, static content, and client-side dependencies.
 
 For migrating configuration and identity code, see [Migrate configuration to ASP.NET Core](configuration.md) and [Migrate Authentication and Identity to ASP.NET Core](identity.md).
 
@@ -363,9 +361,7 @@ ASP.NET Core converts unhandled exceptions in a web app into HTTP 500 error resp
 
 ::: moniker range="<= aspnetcore-2.1"
 
-# Migrate from ASP.NET MVC to ASP.NET Core MVC 2.1
-
-This article shows how to get started migrating an ASP.NET MVC project to [ASP.NET Core MVC](../mvc/overview.md). In the process, it highlights many of the things that have changed from ASP.NET MVC. Migrating from ASP.NET MVC is a multiple step process and this article covers the initial setup, basic controllers and views, static content, and client-side dependencies.
+This article shows how to get started migrating an ASP.NET MVC project to [ASP.NET Core MVC](../mvc/overview.md) 2.1. In the process, it highlights many of the things that have changed from ASP.NET MVC. Migrating from ASP.NET MVC is a multiple step process and this article covers the initial setup, basic controllers and views, static content, and client-side dependencies.
 
 For migrating configuration and identity code, see [Migrate configuration to ASP.NET Core](configuration.md) and [Migrate Authentication and Identity to ASP.NET Core](identity.md).
 
