@@ -31,7 +31,7 @@ The following Component Tag Helper renders the `Counter` component in a page or 
 <component type="typeof(Counter)" render-mode="ServerPrerendered" />
 ```
 
-The preceding example assumes that the `Counter` component is in the app's *Pages* folder.
+The preceding example assumes that the `Counter` component is in the app's *Pages* folder. The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `@using BlazorSample.Pages`).
 
 The Component Tag Helper can also pass parameters to components. Consider the following `ColorfulCheckbox` component that sets the check box label's color and size:
 
@@ -73,7 +73,7 @@ The `Size` (`int`) and `Color` (`string`) [component parameters](xref:blazor/com
     param-Size="14" param-Color="@("blue")" />
 ```
 
-The preceding example assumes that the `ColorfulCheckbox` component is in the app's *Shared* folder.
+The preceding example assumes that the `ColorfulCheckbox` component is in the app's *Shared* folder. The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `@using BlazorSample.Shared`).
 
 The following HTML is rendered in the page or view:
 
@@ -140,7 +140,7 @@ public class MyClass
     param-MyObject="@myObject" />
 ```
 
-The preceding example assumes that the `MyComponent` component is in the app's *Shared* folder. `MyClass` is in the app's namespace (`{APP ASSEMBLY}`).
+The preceding example assumes that the `MyComponent` component is in the app's *Shared* folder. The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `@using BlazorSample` and `@using BlazorSample.Shared`). `MyClass` is in the app's namespace.
 
 <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode> configures whether the component:
 
