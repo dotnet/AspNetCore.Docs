@@ -549,7 +549,7 @@ dotnet run --scenario writer
 
 Call `RequireHost` on `MapHealthChecks` with a URL pattern that specifies a port to restrict health check requests to the port specified. This is typically used in a container environment to expose a port for monitoring services.
 
-The sample app configures the port using the [Environment Variable Configuration Provider](xref:fundamentals/configuration/index#environment-variables-configuration-provider). The port is set in the *launchSettings.json* file and passed to the configuration provider via an environment variable. You must also configure the server to listen to requests on the management port.
+The sample app configures the port using the [Environment Variable Configuration Provider](xref:fundamentals/configuration/index#environment-variables). The port is set in the *launchSettings.json* file and passed to the configuration provider via an environment variable. You must also configure the server to listen to requests on the management port.
 
 To use the sample app to demonstrate management port configuration, create the *launchSettings.json* file in a *Properties* folder.
 
@@ -778,7 +778,7 @@ app.UseEndpoints(endpoints =>
 });
 ```
 
-For more information, see <xref:fundamentals/middleware/index#use-run-and-map>.
+For more information, see <xref:fundamentals/middleware/index#branch-the-middleware-pipeline>.
 
 ::: moniker-end
 
