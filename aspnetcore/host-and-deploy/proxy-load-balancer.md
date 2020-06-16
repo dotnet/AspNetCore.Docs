@@ -61,19 +61,16 @@ Configure the middleware with <xref:Microsoft.AspNetCore.Builder.ForwardedHeader
 ```csharp
 public void ConfigureServices(IServiceCollection services)
 {
-    services.AddMvc();
-
+    services.AddControllersWithViews();
     services.Configure<ForwardedHeadersOptions>(options =>
     {
-        options.ForwardedHeaders = 
+        options.ForwardedHeaders =
             ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
     });
 }
 
-public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 {
-    app.UseForwardedHeaders();
-
     if (env.IsDevelopment())
     {
         app.UseDeveloperExceptionPage();
@@ -81,12 +78,22 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
     else
     {
         app.UseExceptionHandler("/Home/Error");
+        app.UseHsts();
     }
-
+    app.UseForwardedHeaders();
+    app.UseHttpsRedirection();
     app.UseStaticFiles();
-    // In ASP.NET Core 1.x, replace the following line with: app.UseIdentity();
-    app.UseAuthentication();
-    app.UseMvc();
+
+    app.UseRouting();
+
+    app.UseAuthorization();
+
+    app.UseEndpoints(endpoints =>
+    {
+        endpoints.MapControllerRoute(
+            name: "default",
+            pattern: "{controller=Home}/{action=Index}/{id?}");
+    });
 }
 ```
 
