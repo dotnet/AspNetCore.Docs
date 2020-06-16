@@ -173,6 +173,10 @@ For Single Page Applications (SPAs), the SPA middleware <xref:Microsoft.Extensio
 
 For more details on SPAs, see the guides for the [React](xref:spa/react) and [Angular](xref:spa/angular) project templates.
 
+### Forwarded Headers Middleware
+
+As a general rule, Forwarded Headers Middleware should run before other middleware. This ordering ensures that the middleware relying on forwarded headers information can consume the header values for processing. Forwarded Headers Middleware can run after diagnostics and error handling middleware, but it must must be called before `UseHsts`
+
 ## Branch the middleware pipeline
 
 <xref:Microsoft.AspNetCore.Builder.MapExtensions.Map*> extensions are used as a convention for branching the pipeline. `Map` branches the request pipeline based on matches of the given request path. If the request path starts with the given path, the branch is executed.

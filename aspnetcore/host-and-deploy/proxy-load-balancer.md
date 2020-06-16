@@ -60,7 +60,7 @@ Configure the middleware with <xref:Microsoft.AspNetCore.Builder.ForwardedHeader
 
 As a general rule, Forwarded Headers Middleware should run before other middleware. This ordering ensures that the middleware relying on forwarded headers information can consume the header values for processing. Forwarded Headers Middleware can run after diagnostics and error handling middleware, but it must must be called before `UseHsts`:
 
-[!code-csharp[](~/host-and-deploy/proxy-load-balancer/3.1samples/Startup.cs?name=snippet&highlight=13-17,25,31)]
+[!code-csharp[](~/host-and-deploy/proxy-load-balancer/3.1samples/Startup.cs?name=snippet&highlight=13-17,25,30)]
 
 Alternatively, call `UseForwardedHeaders` before diagnostics:
 
