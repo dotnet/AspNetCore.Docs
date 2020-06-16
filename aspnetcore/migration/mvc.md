@@ -63,7 +63,7 @@ For more information, see <xref:fundamentals/startup>.
 
 The ASP.NET Core runtime is modular, and ASP.NET Core 3.0 added new options for registering MVC scenarios inside *Startup.ConfigureServices*.  You must also explicitly opt in for features such as serving static files and routing.
 
-In the previous code, the **Web Application (Model-View-Controller)** project template opts in the following MVC Scenario and features:
+the previous template  generated code adds the following services and middleware:
 
 * The `AddControllerWithViews` top-level extension method registers MVC service support for controllers, API-related features, and views. For more information on MVC service registration options, see [MVC service registration](xref:migration/22-to-30)
 * The `UseStaticFiles` extension method adds the static file handler `Microsoft.AspNetCore.StaticFiles`. The `UseStaticFiles` extension method must be called before `UseRouting`. For more information, see [Static files](xref:fundamentals/static-files).
