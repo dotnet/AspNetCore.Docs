@@ -9,7 +9,7 @@ uid: web-api/advanced/custom-formatters
 ---
 # Custom formatters in ASP.NET Core Web API
 
-By [Tom Dykstra](https://github.com/tdykstra)
+By [Tom Dykstra](https://github.com/tdykstra) and [Kirk Larkin](https://twitter.com/serpent5)
 
 ASP.NET Core MVC supports data exchange in Web APIs using input and output formatters. Input formatters are used by [Model Binding](xref:mvc/models/model-binding). Output formatters are used to [format responses](xref:web-api/advanced/formatting).
 
@@ -41,8 +41,8 @@ To create a formatter:
 
 * Derive the class from the appropriate base class.
 * Specify valid media types and encodings in the constructor.
-* Override `CanReadType`/`CanWriteType` methods
-* Override `ReadRequestBodyAsync`/`WriteResponseBodyAsync` methods
+* Override `CanReadType` and `CanWriteType` methods
+* Override `ReadRequestBodyAsync` and `WriteResponseBodyAsync` methods
 
 The follow code shows the completed `VcardOutputFormatter` class from the [sample](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/advanced/custom-formatters/3.1sample):
 
@@ -66,12 +66,11 @@ In the constructor, specify valid media types and encodings by adding to the `Su
 
 For an input formatter example, see the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/advanced/custom-formatters/sample).
 
-> [!NOTE]
-> You can't do constructor dependency injection in a formatter class. For example, you can't get a logger by adding a logger parameter to the constructor. To access services, you have to use the context object that gets passed in to your methods. A code example [below](#read-write) shows how to do this.
+Constructor dependency injection can ***not*** be done in a formatter class. For example, the logger cannot be added as logger parameter to the constructor. To access services, use the context object that gets passed in to the methods. A code example in this doc and the [download code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/advanced/custom-formatters/sample) show how to do this.
 
-### Override CanReadType/CanWriteType
+### Override CanReadType and CanWriteType
 
-Specify the type you can deserialize into or serialize from by overriding the `CanReadType` or `CanWriteType` methods. For example, you might only be able to create vCard text from a `Contact` type and vice versa.
+Specify the type to deserialize into or serialize from by overriding the `CanReadType` or `CanWriteType` methods. For example, creating vCard text from a `Contact` type and vice versa.
 
 [!code-csharp[](custom-formatters/sample/Formatters/VcardOutputFormatter.cs?name=canwritetype)]
 
@@ -79,19 +78,27 @@ For an input formatter example, see the [sample app](https://github.com/dotnet/A
 
 #### The CanWriteResult method
 
-In some scenarios you have to override `CanWriteResult` instead of `CanWriteType`. Use `CanWriteResult` if the following conditions are true:
+In some scenarios, `CanWriteResult` must be overridden rather than `CanWriteType`. Use `CanWriteResult` if the following conditions are true:
 
-* Your action method returns a model class.
+* The action method returns a model class.
 * There are derived classes which might be returned at runtime.
-* You need to know at runtime which derived class was returned by the action.
+* The derived class returned by the action must be known at runtime.
 
-For example, suppose your action method signature returns a `Person` type, but it may return a `Student` or `Instructor` type that derives from `Person`. If you want your formatter to handle only `Student` objects, check the type of [Object](/dotnet/api/microsoft.aspnetcore.mvc.formatters.outputformattercanwritecontext.object#Microsoft_AspNetCore_Mvc_Formatters_OutputFormatterCanWriteContext_Object) in the context object provided to the `CanWriteResult` method. Note that it's not necessary to use `CanWriteResult` when the action method returns `IActionResult`; in that case, the `CanWriteType` method receives the runtime type.
+For example, suppose the action method:
+
+* Signature returns a `Person` type.
+* It can return a `Student` or `Instructor` type that derives from `Person`. 
+
+For the formatter to handle only `Student` objects, check the type of [Object](/dotnet/api/microsoft.aspnetcore.mvc.formatters.outputformattercanwritecontext.object#Microsoft_AspNetCore_Mvc_Formatters_OutputFormatterCanWriteContext_Object) in the context object provided to the `CanWriteResult` method. When the action method returns `IActionResult`:
+
+*  It's not necessary to use `CanWriteResult`.
+* The `CanWriteType` method receives the runtime type.
 
 <a id="read-write"></a>
 
-### Override ReadRequestBodyAsync/WriteResponseBodyAsync
+### Override ReadRequestBodyAsync and WriteResponseBodyAsync
 
-You do the actual work of deserializing or serializing in `ReadRequestBodyAsync` or `WriteResponseBodyAsync`. The highlighted lines in the following example show how to get services from the dependency injection container (you can't get them from constructor parameters).
+Deserializing or serializing is performed in `ReadRequestBodyAsync` or `WriteResponseBodyAsync`. The following example shows how to get services from the dependency injection container. Services can't be obtained from constructor parameters.
 
 [!code-csharp[](custom-formatters/sample/Formatters/VcardOutputFormatter.cs?name=writeresponse&highlight=3-4)]
 
@@ -117,18 +124,17 @@ Formatters are evaluated in the order you insert them. The first one takes prece
 
 ## Next steps
 
-* [Sample app for this doc](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/advanced/custom-formatters/sample), which implements simple vCard input and output formatters. The apps reads and writes vCards that look like the following example:
+* [Sample app for this doc](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/advanced/custom-formatters/sample), which implements basic vCard input and output formatters. The app reads and writes vCards that look like the following example:
 
 ```
 BEGIN:VCARD
 VERSION:2.1
 N:Davolio;Nancy
 FN:Nancy Davolio
-UID:20293482-9240-4d68-b475-325df4a83728
 END:VCARD
 ```
 
-To see vCard output, run the application and send a Get request with Accept header "text/vcard" to `https://localhost:5001/api/contacts`.
+To see vCard output, run the app and send a Get request with Accept header "text/vcard" to `https://localhost:5001/api/contacts`.
 
 To add a vCard to the in-memory collection of contacts:
 
