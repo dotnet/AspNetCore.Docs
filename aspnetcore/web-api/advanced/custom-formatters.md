@@ -23,7 +23,7 @@ This article shows how to add support for additional formats by creating custom 
 
 Use a custom formatter for [content negotiation](xref:web-api/advanced/formatting#content-negotiation) types that aren't supported by the built-in formatters.
 
-For example, if some Web API clients support the [Protobuf](https://github.com/google/protobuf) format, consider using [Protobuf(xref:grpc/dotnet-grpc) with those clients because it's more efficient. The sample app provided with this article implements a basic [vCard](https://wikipedia.org/wiki/VCard) formatter. `vCard` is a commonly used format for exchanging contact data.
+For example, if some Web API clients support the [Protobuf](https://github.com/google/protobuf) format, consider using [Protobuf](xref:grpc/dotnet-grpc) because it's more efficient. The sample app provided with this article implements a basic [vCard](https://wikipedia.org/wiki/VCard) formatter. `vCard` is a commonly used format for exchanging contact data.
 
 ## Overview of how to use a custom formatter
 
@@ -37,10 +37,10 @@ The following steps outline creating a custom formatter:
 
 To create a formatter:
 
-* Derive the class from the appropriate base class.
+* Derive the class from the appropriate base class. The sample app derives from <xref:Microsoft.AspNetCore.Mvc.Formatters.TextOutputFormatter> and <xref:Microsoft.AspNetCore.Mvc.Formatters.TextInputFormatter>.
 * Specify valid media types and encodings in the constructor.
-* Override `CanReadType` and `CanWriteType` methods
-* Override `ReadRequestBodyAsync` and `WriteResponseBodyAsync` methods
+* Override <xref:Microsoft.AspNetCore.Mvc.Formatters.InputFormatter.CanReadType%2A> and <xref:Microsoft.AspNetCore.Mvc.Formatters.OutputFormatter.CanWriteType%2A> methods
+* Override <xref:Microsoft.AspNetCore.Mvc.Formatters.InputFormatter.ReadRequestBodyAsync%2A> and `WriteResponseBodyAsync` methods
 
 The follow code shows the completed `VcardOutputFormatter` class from the [sample](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/advanced/custom-formatters/3.1sample):
 
@@ -50,9 +50,7 @@ The follow code shows the completed `VcardOutputFormatter` class from the [sampl
 
 For text media types (for example, vCard), derive from the [TextInputFormatter](/dotnet/api/microsoft.aspnetcore.mvc.formatters.textinputformatter) or [TextOutputFormatter](/dotnet/api/microsoft.aspnetcore.mvc.formatters.textoutputformatter) base class.
 
-[!code-csharp[](custom-formatters/sample/Formatters/VcardOutputFormatter.cs?name=classdef)]
-
-For an input formatter example, see the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/advanced/custom-formatters/sample).
+[!code-csharp[](custom-formatters/3.1sample/Formatters/VcardOutputFormatter.cs?name=classdef)]
 
 For binary types, derive from the [InputFormatter](/dotnet/api/microsoft.aspnetcore.mvc.formatters.inputformatter) or [OutputFormatter](/dotnet/api/microsoft.aspnetcore.mvc.formatters.outputformatter) base class.
 
@@ -60,9 +58,7 @@ For binary types, derive from the [InputFormatter](/dotnet/api/microsoft.aspnetc
 
 In the constructor, specify valid media types and encodings by adding to the `SupportedMediaTypes` and `SupportedEncodings` collections.
 
-[!code-csharp[](custom-formatters/sample/Formatters/VcardOutputFormatter.cs?name=ctor&highlight=3,5-6)]
-
-For an input formatter example, see the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/advanced/custom-formatters/sample).
+[!code-csharp[](custom-formatters/3.1sample/Formatters/VcardOutputFormatter.cs?name=ctor&highlight=3,5-6)]
 
 Constructor dependency injection can ***not*** be done in a formatter class. For example, the logger cannot be added as logger parameter to the constructor. To access services, use the context object that gets passed in to the methods. A code example in this doc and the [download code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/advanced/custom-formatters/sample) show how to do this.
 
@@ -70,9 +66,7 @@ Constructor dependency injection can ***not*** be done in a formatter class. For
 
 Specify the type to deserialize into or serialize from by overriding the `CanReadType` or `CanWriteType` methods. For example, creating vCard text from a `Contact` type and vice versa.
 
-[!code-csharp[](custom-formatters/sample/Formatters/VcardOutputFormatter.cs?name=canwritetype)]
-
-For an input formatter example, see the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/advanced/custom-formatters/sample).
+[!code-csharp[](custom-formatters/3.1sample/Formatters/VcardOutputFormatter.cs?name=canwritetype)]
 
 #### The CanWriteResult method
 
@@ -98,7 +92,7 @@ For the formatter to handle only `Student` objects, check the type of [Object](/
 
 Deserializing or serializing is performed in `ReadRequestBodyAsync` or `WriteResponseBodyAsync`. The following example shows how to get services from the dependency injection container. Services can't be obtained from constructor parameters.
 
-[!code-csharp[](custom-formatters/sample/Formatters/VcardOutputFormatter.cs?name=writeresponse&highlight=3-4)]
+[!code-csharp[](custom-formatters/3.1sample/Formatters/VcardOutputFormatter.cs?name=writeresponse&highlight=3-4)]
 
 For an input formatter example, see the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/advanced/custom-formatters/sample).
 
@@ -114,7 +108,7 @@ To use a custom formatter, add an instance of the formatter class to the `InputF
 
 ::: moniker range="< aspnetcore-3.0"
 
-[!code-csharp[](custom-formatters/sample/Startup.cs?name=mvcoptions&highlight=3-4)]
+[!code-csharp[](custom-formatters/3.1sample/Startup.cs?name=mvcoptions&highlight=3-4)]
 
 ::: moniker-end
 
