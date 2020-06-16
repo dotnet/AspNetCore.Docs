@@ -94,8 +94,6 @@ Deserializing or serializing is performed in `ReadRequestBodyAsync` or `WriteRes
 
 [!code-csharp[](custom-formatters/3.1sample/Formatters/VcardOutputFormatter.cs?name=writeresponse)]
 
-For an input formatter example, see the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/advanced/custom-formatters/sample).
-
 ## How to configure MVC to use a custom formatter
 
 To use a custom formatter, add an instance of the formatter class to the `InputFormatters` or `OutputFormatters` collection.
