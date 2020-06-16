@@ -15,25 +15,23 @@ ASP.NET Core MVC supports data exchange in Web APIs using input and output forma
 
 The framework provides built-in input and output formatters for JSON and XML. It provides a built-in output formatter for plain text, but doesn't provide an input formatter for plain text.
 
-This article shows how to add support for additional formats by creating custom formatters. For an example of a custom input formatter for plain text, see [TextPlainInputFormatter](https://github.com/aspnet/Entropy/blob/master/samples/Mvc.Formatters/TextPlainInputFormatter.cs) on GitHub.
+This article shows how to add support for additional formats by creating custom formatters. For an example of a custom plain text input formatter, see [TextPlainInputFormatter](https://github.com/aspnet/Entropy/blob/master/samples/Mvc.Formatters/TextPlainInputFormatter.cs) on GitHub.
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/advanced/custom-formatters/sample) ([how to download](xref:index#how-to-download-a-sample))
 
 ## When to use custom formatters
 
-Use a custom formatter when you want the [content negotiation](xref:web-api/advanced/formatting#content-negotiation) process to support a content type that isn't supported by the built-in formatters.
+Use a custom formatter for [content negotiation](xref:web-api/advanced/formatting#content-negotiation) types that aren't supported by the built-in formatters.
 
-For example, if some of the clients for your web API can handle the [Protobuf](https://github.com/google/protobuf) format, you might want to use Protobuf with those clients because it's more efficient. Or you might want your web API to send contact names and addresses in [vCard](https://wikipedia.org/wiki/VCard) format, a commonly used format for exchanging contact data. The sample app provided with this article implements a simple vCard formatter.
+For example, if some Web API clients support the [Protobuf](https://github.com/google/protobuf) format, consider using [Protobuf(xref:grpc/dotnet-grpc) with those clients because it's more efficient. The sample app provided with this article implements a basic [vCard](https://wikipedia.org/wiki/VCard) formatter. `vCard` is a commonly used format for exchanging contact data.
 
 ## Overview of how to use a custom formatter
 
-Here are the steps to create and use a custom formatter:
+The following steps outline creating a custom formatter:
 
-* Create an output formatter class if you want to serialize data to send to the client.
-* Create an input formatter class if you want to deserialize data received from the client.
-* Add instances of your formatters to the `InputFormatters` and `OutputFormatters` collections in [MvcOptions](/dotnet/api/microsoft.aspnetcore.mvc.mvcoptions).
-
-The following sections provide guidance and code examples for each of these steps.
+* Create an output formatter class to serialize data sent to the client.
+* Create an input formatter class to deserialize data received from the client.
+* Add instances of formatters to the `InputFormatters` and `OutputFormatters` collections in [MvcOptions](/dotnet/api/microsoft.aspnetcore.mvc.mvcoptions).
 
 ## How to create a custom formatter class
 
@@ -122,6 +120,11 @@ To use a custom formatter, add an instance of the formatter class to the `InputF
 
 Formatters are evaluated in the order you insert them. The first one takes precedence.
 
+## The completed `VcardInputFormatter` class
+
+The follow code shows the completed `VcardInputFormatter` class from the [sample](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/advanced/custom-formatters/3.1sample):
+
+[!code-csharp[](custom-formatters/3.1sample/Formatters/VcardInputFormatter.cs?name=snippet)]
 ## Next steps
 
 * [Sample app for this doc](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/advanced/custom-formatters/sample), which implements basic vCard input and output formatters. The app reads and writes vCards that look like the following example:
