@@ -80,7 +80,7 @@ namespace CustomFormatterDemo.Formatters
                 }
                 catch
                 {
-                    logger.LogError("nameLine = {nameLine}", nameLine);
+                    logger.LogError("Read failed: nameLine = {nameLine}", nameLine);
                     return await InputFormatterResult.FailureAsync();
                 }
             }

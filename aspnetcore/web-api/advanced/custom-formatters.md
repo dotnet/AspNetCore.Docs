@@ -108,7 +108,7 @@ To use a custom formatter, add an instance of the formatter class to the `InputF
 
 ::: moniker range=">= aspnetcore-3.0"
 
-[!code-csharp[](custom-formatters/3.1sample/Startup.cs?name=mvcoptions&highlight=3-4)]
+[!code-csharp[](custom-formatters/3.1sample/Startup.cs?name=mvcoptions)]
 
 ::: moniker-end
 
@@ -125,9 +125,10 @@ Formatters are evaluated in the order you insert them. The first one takes prece
 The follow code shows the completed `VcardInputFormatter` class from the [sample](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/advanced/custom-formatters/3.1sample):
 
 [!code-csharp[](custom-formatters/3.1sample/Formatters/VcardInputFormatter.cs?name=snippet)]
-## Next steps
 
-* [Sample app for this doc](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/advanced/custom-formatters/sample), which implements basic vCard input and output formatters. The app reads and writes vCards that look like the following example:
+## Test the app
+
+[Run the sample app for this doc](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/advanced/custom-formatters/sample), which implements basic vCard input and output formatters. The app reads and writes vCards similar to the following:
 
 ```
 BEGIN:VCARD
@@ -137,13 +138,13 @@ FN:Nancy Davolio
 END:VCARD
 ```
 
-To see vCard output, run the app and send a Get request with Accept header "text/vcard" to `https://localhost:5001/api/contacts`.
+To see vCard output, run the app and send a Get request with Accept header `text/vcard` to `https://localhost:5001/api/contacts`.
 
 To add a vCard to the in-memory collection of contacts:
 
-* Send a Post request to `/api/contacts` with a tool like Postman.
+* Send a `Post` request to `/api/contacts` with a tool like Postman.
 * Set the `Content-Type` header to `text/vcard`.
-* Set vCard text in the body, formatted like the preceding example.
+* Set `vCard` text in the body, formatted like the preceding example.
 
 ## Additional resources
 
