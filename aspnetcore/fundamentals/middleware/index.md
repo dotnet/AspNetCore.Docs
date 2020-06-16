@@ -175,7 +175,7 @@ For more details on SPAs, see the guides for the [React](xref:spa/react) and [An
 
 ### Forwarded Headers Middleware
 
-As a general rule, Forwarded Headers Middleware should run before other middleware. This ordering ensures that the middleware relying on forwarded headers information can consume the header values for processing. Forwarded Headers Middleware can run after diagnostics and error handling middleware, but it must must be called before `UseHsts`.
+[!INCLUDE[](~/includes/ForwardedHeaders.md)]
 
 ## Branch the middleware pipeline
 
