@@ -190,3 +190,7 @@ services.Configure<PasswordHasherOptions>(option =>
     option.IterationCount = 12000;
 });
 ```
+
+## Globally require all users to be authenticated
+
+[!INCLUDE[](~/includes/requireAuth.md)]
