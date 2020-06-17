@@ -173,7 +173,7 @@ For Single Page Applications (SPAs), the SPA middleware <xref:Microsoft.Extensio
 
 For more details on SPAs, see the guides for the [React](xref:spa/react) and [Angular](xref:spa/angular) project templates.
 
-### Forwarded Headers Middleware
+### Forwarded Headers Middleware order
 
 [!INCLUDE[](~/includes/ForwardedHeaders.md)]
 
