@@ -102,15 +102,15 @@ public void ConfigureServices(IServiceCollection services)
 
 Use <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService> or `[Authorize(Policy = "Something")]` for authorization.
 
-## Applying policies to MVC controllers
+## Apply policies to MVC controllers
 
-If you're using Razor Pages, see [Applying policies to Razor Pages](#applying-policies-to-razor-pages) in this document.
+If you're using Razor Pages, see [Apply policies to Razor Pages](#apply-policies-to-razor-pages) in this document.
 
 Policies are applied to controllers by using the `[Authorize]` attribute with the policy name. For example:
 
 [!code-csharp[](policies/samples/PoliciesAuthApp1/Controllers/AlcoholPurchaseController.cs?name=snippet_AlcoholPurchaseControllerClass&highlight=4)]
 
-## Applying policies to Razor Pages
+## Apply policies to Razor Pages
 
 Policies are applied to Razor Pages by using the `[Authorize]` attribute with the policy name. For example:
 
@@ -200,7 +200,7 @@ In cases where you want evaluation to be on an **OR** basis, implement multiple 
 
 Ensure that both handlers are [registered](xref:security/authorization/policies#security-authorization-policies-based-handler-registration). If either handler succeeds when a policy evaluates the `BuildingEntryRequirement`, the policy evaluation succeeds.
 
-## Using a func to fulfill a policy
+## Use a func to fulfill a policy
 
 There may be situations in which fulfilling a policy is simple to express in code. It's possible to supply a `Func<AuthorizationHandlerContext, bool>` when configuring your policy with the `RequireAssertion` policy builder.
 
@@ -208,11 +208,23 @@ For example, the previous `BadgeEntryHandler` could be rewritten as follows:
 
 [!code-csharp[](policies/samples/3.0PoliciesAuthApp1/Startup.cs?range=42-43,47-53)]
 
-## Accessing MVC request context in handlers
+## Access MVC request context in handlers
 
-The `HandleRequirementAsync` method you implement in an authorization handler has two parameters: an `AuthorizationHandlerContext` and the `TRequirement` you are handling. Frameworks such as MVC or Jabbr are free to add any object to the `Resource` property on the `AuthorizationHandlerContext` to pass extra information.
+The `HandleRequirementAsync` method you implement in an authorization handler has two parameters: an `AuthorizationHandlerContext` and the `TRequirement` you are handling. Frameworks such as MVC or SignalR are free to add any object to the `Resource` property on the `AuthorizationHandlerContext` to pass extra information.
 
-For example, MVC passes an instance of [AuthorizationFilterContext](/dotnet/api/?term=AuthorizationFilterContext) in the `Resource` property. This property provides access to `HttpContext`, `RouteData`, and everything else provided by MVC and Razor Pages.
+When using endpoint routing, authorization is typically handled by the Authorization Middleware. In this case, the `Resource` property is an instance of <xref:Microsoft.AspNetCore.Http.Endpoint>. The endpoint can be used to probe the underlying resource to which you're routing. For example:
+
+```csharp
+if (context.Resource is Endpoint endpoint)
+{
+   var actionDescriptor = endpoint.Metadata.GetMetadata<ControllerActionDescriptor>();
+   ...
+}
+```
+
+The endpoint doesn't provide access to the current `HttpContext`. When using endpoint routing, use `IHttpContextAcessor` to access `HttpContext` inside of an authorization handler. For more information, see [Use HttpContext from custom components](xref:fundamentals/httpcontext#use-httpcontext-from-custom-components).
+
+With traditional routing, or when authorization happens as part of MVC's authorization filter, the value of `Resource` is an <xref:Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext> instance. This property provides access to `HttpContext`, `RouteData`, and everything else provided by MVC and Razor Pages.
 
 The use of the `Resource` property is framework specific. Using information in the `Resource` property limits your authorization policies to particular frameworks. You should cast the `Resource` property using the `is` keyword, and then confirm the cast has succeeded to ensure your code doesn't crash with an `InvalidCastException` when run on other frameworks:
 
@@ -319,15 +331,15 @@ public void ConfigureServices(IServiceCollection services)
 
 Use <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService> or `[Authorize(Policy = "Something")]` for authorization.
 
-## Applying policies to MVC controllers
+## Apply policies to MVC controllers
 
-If you're using Razor Pages, see [Applying policies to Razor Pages](#applying-policies-to-razor-pages) in this document.
+If you're using Razor Pages, see [Apply policies to Razor Pages](#apply-policies-to-razor-pages) in this document.
 
 Policies are applied to controllers by using the `[Authorize]` attribute with the policy name. For example:
 
 [!code-csharp[](policies/samples/PoliciesAuthApp1/Controllers/AlcoholPurchaseController.cs?name=snippet_AlcoholPurchaseControllerClass&highlight=4)]
 
-## Applying policies to Razor Pages
+## Apply policies to Razor Pages
 
 Policies are applied to Razor Pages by using the `[Authorize]` attribute with the policy name. For example:
 
@@ -417,7 +429,7 @@ In cases where you want evaluation to be on an **OR** basis, implement multiple 
 
 Ensure that both handlers are [registered](xref:security/authorization/policies#security-authorization-policies-based-handler-registration). If either handler succeeds when a policy evaluates the `BuildingEntryRequirement`, the policy evaluation succeeds.
 
-## Using a func to fulfill a policy
+## Use a func to fulfill a policy
 
 There may be situations in which fulfilling a policy is simple to express in code. It's possible to supply a `Func<AuthorizationHandlerContext, bool>` when configuring your policy with the `RequireAssertion` policy builder.
 
@@ -425,21 +437,11 @@ For example, the previous `BadgeEntryHandler` could be rewritten as follows:
 
 [!code-csharp[](policies/samples/PoliciesAuthApp1/Startup.cs?range=50-51,55-61)]
 
-## Accessing MVC request context in handlers
+## Access MVC request context in handlers
 
 The `HandleRequirementAsync` method you implement in an authorization handler has two parameters: an `AuthorizationHandlerContext` and the `TRequirement` you are handling. Frameworks such as MVC or SignalR are free to add any object to the `Resource` property on the `AuthorizationHandlerContext` to pass extra information.
 
-When using endpoint routing, authorization is typically handled by the Authorization Middleware. In this case, the `Resource` property is an instance of <xref:Microsoft.AspNetCore.Http.Endpoint>. The endpoint can be used to probe the underlying the resource to which you're routing. For example:
-
-```csharp
-if (context.Resource is Endpoint endpoint)
-{
-   var actionDescriptor = endpoint.Metadata.GetMetadata<ControllerActionDescriptor>();
-   ...
-}
-```
-
-With traditional routing, or when authorization happens as part of MVC's authorization filter, the value of `Resource` is an <xref:Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext> instance. This property provides access to `HttpContext`, `RouteData`, and everything else provided by MVC and Razor Pages.
+For example, MVC passes an instance of [AuthorizationFilterContext](/dotnet/api/?term=AuthorizationFilterContext) in the `Resource` property. This property provides access to `HttpContext`, `RouteData`, and everything else provided by MVC and Razor Pages.
 
 The use of the `Resource` property is framework specific. Using information in the `Resource` property limits your authorization policies to particular frameworks. You should cast the `Resource` property using the `is` keyword, and then confirm the cast has succeeded to ensure your code doesn't crash with an `InvalidCastException` when run on other frameworks:
 
