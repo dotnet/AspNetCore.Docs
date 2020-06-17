@@ -369,7 +369,10 @@ Configure the app to use a certificate in development for the `dotnet run` comma
 
 * Adding an `HTTP Strict-Transport-Security` (HSTS) header ensures all subsequent requests made by the client are over HTTPS.
 
-* Don't add the HSTS header or chose an appropriate `max-age` if HTTPS will be disabled in the future.
+* If HTTPS will be disabled in the future, use one of the following approaches:
+
+  * Don't add the HSTS header.
+  * Choose a short `max-age` value.
 
 Add the */etc/nginx/proxy.conf* configuration file:
 
