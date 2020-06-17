@@ -222,6 +222,8 @@ if (context.Resource is Endpoint endpoint)
 }
 ```
 
+The endpoint doesn't provide access to the current `HttpContext`. When using endpoint routing, use `IHttpContextAcessor` to access `HttpContext` inside of an authorization handler. For more information, see [Use HttpContext from custom components](xref:fundamentals/httpcontext#use-httpcontext-from-custom-components).
+
 With traditional routing, or when authorization happens as part of MVC's authorization filter, the value of `Resource` is an <xref:Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext> instance. This property provides access to `HttpContext`, `RouteData`, and everything else provided by MVC and Razor Pages.
 
 The use of the `Resource` property is framework specific. Using information in the `Resource` property limits your authorization policies to particular frameworks. You should cast the `Resource` property using the `is` keyword, and then confirm the cast has succeeded to ensure your code doesn't crash with an `InvalidCastException` when run on other frameworks:
