@@ -222,4 +222,4 @@ In this tutorial, you learned how to:
 Learn how to build and use components:
 
 > [!div class="nextstepaction"]
-> <xref:blazor/components>
+> <xref:blazor/components/index>

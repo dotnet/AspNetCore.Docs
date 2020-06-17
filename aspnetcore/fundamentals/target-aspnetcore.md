@@ -37,7 +37,7 @@ Referencing ASP.NET Core in this manner is only supported for projects targeting
 
 ## Include Blazor extensibility
 
-Blazor supports WebAssembly (WASM) and Server [hosting models](xref:blazor/hosting-models). Unless there's a specific reason not to, a [Razor components](xref:blazor/components) library should support both hosting models. A Razor components library must use the [Microsoft.NET.Sdk.Razor SDK](xref:razor-pages/sdk).
+Blazor supports WebAssembly (WASM) and Server [hosting models](xref:blazor/hosting-models). Unless there's a specific reason not to, a [Razor components](xref:blazor/components/index) library should support both hosting models. A Razor components library must use the [Microsoft.NET.Sdk.Razor SDK](xref:razor-pages/sdk).
 
 ### Support both hosting models
 
@@ -84,7 +84,7 @@ For example:
 
 [!code-xml[](target-aspnetcore/samples/single-tfm/netcoreapp3.0-razor-components-library.csproj)]
 
-For more information on libraries containing Razor components, see [ASP.NET Core Razor components class libraries](xref:blazor/class-libraries).
+For more information on libraries containing Razor components, see [ASP.NET Core Razor components class libraries](xref:blazor/components/class-libraries).
 
 ## Include MVC extensibility
 
@@ -275,6 +275,6 @@ For example, to add the web API client:
 ## Additional resources
 
 * <xref:razor-pages/ui-class>
-* <xref:blazor/class-libraries>
+* <xref:blazor/components/class-libraries>
 * [.NET implementation support](/dotnet/standard/net-standard#net-implementation-support)
 * [.NET support policies](https://dotnet.microsoft.com/platform/support/policy)

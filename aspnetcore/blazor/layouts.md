@@ -15,7 +15,7 @@ By [Rainer Stropek](https://www.timecockpit.com) and [Luke Latham](https://githu
 
 Some app elements, such as menus, copyright messages, and company logos, are usually part of app's overall layout and used by every component in the app. Copying the code of these elements into all of the components of an app isn't an efficient approach. Every time one of the elements requires an update, every component must be updated. Such duplication is difficult to maintain and can lead to inconsistent content over time. *Layouts* solve this problem.
 
-Technically, a layout is just another component. A layout is defined in a Razor template or in C# code and can use [data binding](xref:blazor/data-binding), [dependency injection](xref:blazor/dependency-injection), and other component scenarios.
+Technically, a layout is just another component. A layout is defined in a Razor template or in C# code and can use [data binding](xref:blazor/components/data-binding), [dependency injection](xref:blazor/fundamentals/dependency-injection), and other component scenarios.
 
 To turn a *component* into a *layout*, the component:
 
@@ -38,7 +38,7 @@ To supply a default layout for <xref:Microsoft.AspNetCore.Components.Routing.Rou
 
 [!code-razor[](layouts/sample_snapshot/3.x/App2.razor?highlight=6-9)]
 
-For more information on the <xref:Microsoft.AspNetCore.Components.Routing.Router> component, see <xref:blazor/routing>.
+For more information on the <xref:Microsoft.AspNetCore.Components.Routing.Router> component, see <xref:blazor/fundamentals/routing>.
 
 Specifying the layout as a default layout in the router is a useful practice because it can be overridden on a per-component or per-folder basis. Prefer using the router to set the app's default layout because it's the most general technique.
 
@@ -86,7 +86,7 @@ Finally, `MasterLayout` in *MasterLayout.razor* contains the top-level layout el
 
 ## Share a Razor Pages layout with integrated components
 
-When routable components are integrated into a Razor Pages app, the app's shared layout can be used with the components. For more information, see <xref:blazor/integrate-components>.
+When routable components are integrated into a Razor Pages app, the app's shared layout can be used with the components. For more information, see <xref:blazor/components/integrate-components-into-razor-pages-and-mvc-apps>.
 
 ## Additional resources
 

@@ -115,7 +115,7 @@ When a Blazor WebAssembly app is built and run in a browser:
 
 The size of the published app, its *payload size*, is a critical performance factor for an app's useability. A large app takes a relatively long time to download to a browser, which diminishes the user experience. Blazor WebAssembly optimizes payload size to reduce download times:
 
-* Unused code is stripped out of the app when it's published by the [Intermediate Language (IL) Linker](xref:host-and-deploy/blazor/configure-linker).
+* Unused code is stripped out of the app when it's published by the [Intermediate Language (IL) Linker](xref:blazor/host-and-deploy/configure-linker).
 * HTTP responses are compressed.
 * The .NET runtime and assemblies are cached in the browser.
 
