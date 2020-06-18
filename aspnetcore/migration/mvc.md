@@ -405,7 +405,7 @@ Create a new *empty* ASP.NET Core web app with the same name as the previous pro
 
 * Open the *Startup.cs* file and change the code to match the following:
 
-[!code-csharp[](mvc/samples/2.x/Startup.cs?highlight=6,19-24&name=snippet)]
+[!code-csharp[](mvc/samples/2.x/Startup.cs?highlight=7,20-25&name=snippet)]
 
 The <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*> extension method adds the static file handler. The `UseMvc` extension method adds routing. For more information, see [Application Startup](xref:fundamentals/startup) and [Routing](xref:fundamentals/routing).
 
