@@ -20,7 +20,7 @@ Migrating from ASP.NET MVC is a multi-step process. This article covers:
 * Static content.
 * Client-side dependencies.
 
-For migrating configuration and Identity code, see [Migrate configuration to ASP.NET Core](xref:/migration/configuration) and [Migrate Authentication and Identity to ASP.NET Core](xref:/migration/identity).
+For migrating configuration and Identity code, see [Migrate configuration to ASP.NET Core](xref:migration/configuration) and [Migrate Authentication and Identity to ASP.NET Core](xref:migration/identity).
 
 ## Prerequisites
 
@@ -59,7 +59,7 @@ For more information, see <xref:fundamentals/startup>.
 
 In the ASP.NET Core project, open the *Startup.cs* file.
 
-[!code-csharp[](mvc/samples/3.x/Startup.cs?highlight=12,29,31&name=snippet)]
+[!code-csharp[](mvc/samples/3.x/Startup.cs?highlight=13,30,32&name=snippet)]
 
 ASP.NET Core apps must opt in for middleware. The previous template-generated code adds the following services and middleware:
 
@@ -156,9 +156,9 @@ ASP.NET Core is compatible with several open-source bundling and minification so
 
 There are many problems that can cause an HTTP 500 error message that contains no information on the source of the problem. For example, if the *Views/_ViewImports.cshtml* file contains a namespace that doesn't exist in the project, a HTTP 500 error is generated. By default in ASP.NET Core apps, the `UseDeveloperExceptionPage` extension is added to the `IApplicationBuilder` and executed when the configuration is *Development*. This is detailed in the following code:
 
-[!code-csharp[](mvc/samples/3.x/Startup.cs?highlight=16-21&name=snippet)]
+[!code-csharp[](mvc/samples/3.x/Startup.cs?highlight=17-21&name=snippet)]
 
-ASP.NET Core converts unhandled exceptions in a web app into HTTP 500 error responses. Normally, error details aren't included in these responses to prevent disclosure of potentially sensitive information about the server. For more information, see **Using the Developer Exception Page** in [Handle errors](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/error-handling?view=aspnetcore-3.1#developer-exception-page).
+ASP.NET Core converts unhandled exceptions in a web app into HTTP 500 error responses. Normally, error details aren't included in these responses to prevent disclosure of potentially sensitive information about the server. For more information, see **Using the Developer Exception Page** in [Handle errors](https://docs.microsoft.com/aspnet/core/fundamentals/error-handling?view=aspnetcore-3.1#developer-exception-page).
 
 ## Next steps
 
@@ -180,7 +180,7 @@ This article shows how to start migrating an ASP.NET MVC project to [ASP.NET Cor
 * Static content
 * Client-side dependencies.
 
-For migrating configuration and Identity code, see [Migrate configuration to ASP.NET Core](xref:/migration/configuration) and [Migrate Authentication and Identity to ASP.NET Core](xref:/migration/identity).
+For migrating configuration and Identity code, see [Migrate configuration to ASP.NET Core](xref:migration/configuration) and [Migrate Authentication and Identity to ASP.NET Core](xref:migration/identity).
 
 > [!NOTE]
 > The version numbers in the samples might not be current, update the projects accordingly.
@@ -216,7 +216,7 @@ Create a new *empty* ASP.NET Core web app with the same name as the previous pro
 
 * Open the *Startup.cs* file and change the code to match the following:
 
-[!code-csharp[](mvc/samples/2.x/Startup.cs?highlight=6,19-24&name=snippet)]
+[!code-csharp[](mvc/samples/2.x/Startup.cs?highlight=7,20-25&name=snippet)]
 
 The <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*> extension method adds the static file handler. For more information, see [Application Startup](xref:fundamentals/startup) and [Routing](xref:fundamentals/routing).
 
@@ -349,9 +349,9 @@ For information about how to configure bundling and minification, see [Bundling 
 
 There are many problems that can cause an HTTP 500 error messages that contain no information on the source of the problem. For example, if the *Views/_ViewImports.cshtml* file contains a namespace that doesn't exist in the project, a HTTP 500 error is generated. By default in ASP.NET Core apps, the `UseDeveloperExceptionPage` extension is added to the `IApplicationBuilder` and executed when the configuration is *Development*. See an example in the following code:
 
-[!code-csharp[](mvc/samples/2.x/Startup.cs?highlight=12-215&name=snippet)]
+[!code-csharp[](mvc/samples/2.x/Startup.cs?highlight=11-15&name=snippet)]
 
-ASP.NET Core converts unhandled exceptions in a web app into HTTP 500 error responses. Normally, error details aren't included in these responses to prevent disclosure of potentially sensitive information about the server. For more information, see **Using the Developer Exception Page** in [Handle errors](xref:/fundamentals/errorhandling#developer-exception-page).
+ASP.NET Core converts unhandled exceptions in a web app into HTTP 500 error responses. Normally, error details aren't included in these responses to prevent disclosure of potentially sensitive information about the server. For more information, see **Using the Developer Exception Page** in [Handle errors](xref:fundamentals/errorhandling#developer-exception-page).
 
 ## Additional resources
 
@@ -369,7 +369,7 @@ This article shows how to start migrating an ASP.NET MVC project to [ASP.NET Cor
 * Static content
 * Client-side dependencies.
 
-For migrating configuration and Identity code, see [Migrate configuration to ASP.NET Core](xref:/migration/configuration) and [Migrate Authentication and Identity to ASP.NET Core](xref:/migration/identity).
+For migrating configuration and Identity code, see [Migrate configuration to ASP.NET Core](xref:migration/configuration) and [Migrate Authentication and Identity to ASP.NET Core](xref:migration/identity).
 
 > [!NOTE]
 > The version numbers in the samples might not be current, update the projects accordingly.
@@ -538,9 +538,9 @@ For information about how to configure bundling and minification, see [Bundling 
 
 There are many problems that can cause an HTTP 500 error messages that contain no information on the source of the problem. For example, if the *Views/_ViewImports.cshtml* file contains a namespace that doesn't exist in the project, a HTTP 500 error is generated. By default in ASP.NET Core apps, the `UseDeveloperExceptionPage` extension is added to the `IApplicationBuilder` and executed when the configuration is *Development*. See an example in the following code:
 
-[!code-csharp[](mvc/samples/2.x/Startup.cs?highlight=12-15&name=snippet)]
+[!code-csharp[](mvc/samples/2.x/Startup.cs?highlight=11-15&name=snippet)]
 
-ASP.NET Core converts unhandled exceptions in a web app into HTTP 500 error responses. Normally, error details aren't included in these responses to prevent disclosure of potentially sensitive information about the server. For more information, see **Using the Developer Exception Page** in [Handle errors](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/error-handling?view=aspnetcore-3.1#developer-exception-page).
+ASP.NET Core converts unhandled exceptions in a web app into HTTP 500 error responses. Normally, error details aren't included in these responses to prevent disclosure of potentially sensitive information about the server. For more information, see **Using the Developer Exception Page** in [Handle errors](https://docs.microsoft.com/aspnet/core/fundamentals/error-handling?view=aspnetcore-3.1#developer-exception-page).
 
 ## Additional resources
 
