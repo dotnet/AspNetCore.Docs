@@ -110,11 +110,14 @@ Append [AddRoles](/dotnet/api/microsoft.aspnetcore.identity.identitybuilder.addr
 
 Set the fallback authentication policy to require ***all*** users to be authenticated:
 
-[!code-csharp[](secure-data/samples/final3/Startup.cs?name=snippet&highlight=14-99)]
+[!code-csharp[](secure-data/samples/final3/Startup.cs?name=snippet&highlight=13-99)]
 
-The preceding highlighted code sets the fallback authentication policy to require ***all*** users to be authenticated except for Razor Pages, controllers, or action methods with an authentication attribute. For example, Razor Pages, controllers, or action methods with `[AllowAnonymous]` or [Authorize(PolicyName="MyPolicy")] use the applied authentication attribute rather than the fallback authentication policy.
+The preceding highlighted code sets the [fallback authentication policy(xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy) to require ***all*** users to be authenticated except for Razor Pages, controllers, or action methods with an authentication attribute. For example, Razor Pages, controllers, or action methods with `[AllowAnonymous]` or `[Authorize(PolicyName="MyPolicy")]` use the applied authentication attribute rather than the fallback authentication policy.
 
-The fallback authentication policy is the authentication policy endpoint routing applies when no authentication attribute is applied.
+The fallback authentication policy:
+
+* Is applied when no authentication attribute is applied.
+* Is part of the [endpoint routing system](xref:fundamentals/routing).
 
 Setting the fallback authentication policy to require users to be authenticated protects newly added Razor Pages and controllers. Having authentication required by default is more secure than relying on new controllers and Razor Pages to include the `[Authorize]` attribute.
 
@@ -124,11 +127,13 @@ Add [AllowAnonymous](/dotnet/api/microsoft.aspnetcore.authorization.allowanonymo
 
 An alternative way to require all users be authenticated is adding an authorization filter:
 
-[!code-csharp[](secure-data/samples/final3/Startup2.cs?name=snippet&highlight=15-99)]
+[!code-csharp[](secure-data/samples/final3/Startup2.cs?name=snippet&highlight=14-99)]
 
 The preceding code uses an authorization filter, setting the fallback policy uses endpoint routing. Setting the fallback policy is the preferred way to require all users be authenticated.
 
 For more information on policies, see <xref:security/authorization/policies>
+
+The <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions> class also contains <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.DefaultPolicy?displayProperty=nameWithType>. The `DefaultPolicy` is the policy used with the `[Authorize]` attribute. `[Authorize]` doesn't contain a named policy, unlike `[Authorize(PolicyName="MyPolicy")]`.
 
 ### Configure the test account
 
@@ -452,7 +457,7 @@ dotnet ef database update
 
 Append [AddRoles](/dotnet/api/microsoft.aspnetcore.identity.identitybuilder.addroles#Microsoft_AspNetCore_Identity_IdentityBuilder_AddRoles__1) to add Role services:
 
-[!code-csharp[](secure-data/samples/final2.1/Startup.cs?name=snippet2&highlight=12)]
+[!code-csharp[](secure-data/samples/final2.1/Startup.cs?name=snippet2&highlight=11)]
 
 ### Require authenticated users
 
