@@ -1,23 +1,17 @@
 ---
 title: Create an ASP.NET Core app with user data protected by authorization
 author: rick-anderson
-description: Learn how to create a Razor Pages app with user data protected by authorization. Includes HTTPS, authentication, security, ASP.NET Core Identity.
+description: Learn how to create an ASP.NET Core web app with user data protected by authorization. Includes HTTPS, authentication, security, ASP.NET Core Identity.
 ms.author: riande
-ms.date: 12/18/2018
+ms.date: 7/18/2020
 ms.custom: "mvc, seodec18"
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authorization/secure-data
 ---
 
-# Create an ASP.NET Core app with user data protected by authorization
+# Create an ASP.NET Core web app with user data protected by authorization
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Joe Audette](https://twitter.com/joeaudette)
-
-::: moniker range="<= aspnetcore-1.1"
-
-See [this PDF](https://webpifeed.blob.core.windows.net/webpifeed/Partners/asp.net_repo_pdf_1-16-18.pdf) for the ASP.NET Core MVC version. The ASP.NET Core 1.1 version of this tutorial is in [this](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authorization/secure-data) folder. The 1.1 ASP.NET Core sample is in the [samples](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authorization/secure-data/samples/final2).
-
-::: moniker-end
 
 ::: moniker range="= aspnetcore-2.0"
 
@@ -110,17 +104,31 @@ Append [AddRoles](/dotnet/api/microsoft.aspnetcore.identity.identitybuilder.addr
 
 [!code-csharp[](secure-data/samples/final3/Startup.cs?name=snippet2&highlight=9)]
 
+<a name="rau"></a>
+
 ### Require authenticated users
 
-Set the default authentication policy to require users to be authenticated:
+Set the fallback authentication policy to require ***all*** users to be authenticated:
 
-[!code-csharp[](secure-data/samples/final3/Startup.cs?name=snippet&highlight=15-99)] 
+[!code-csharp[](secure-data/samples/final3/Startup.cs?name=snippet&highlight=14-99)]
 
- You can opt out of authentication at the Razor Page, controller, or action method level with the `[AllowAnonymous]` attribute. Setting the default authentication policy to require users to be authenticated protects newly added Razor Pages and controllers. Having authentication required by default is more secure than relying on new controllers and Razor Pages to include the `[Authorize]` attribute.
+The preceding highlighted code sets the fallback authentication policy to require ***all*** users to be authenticated except for Razor Pages, controllers, or action methods with an authentication attribute. For example, Razor Pages, controllers, or action methods with `[AllowAnonymous]` or [Authorize(PolicyName="MyPolicy")] use the applied authentication attribute rather than the fallback authentication policy.
 
-Add [AllowAnonymous](/dotnet/api/microsoft.aspnetcore.authorization.allowanonymousattribute) to the Index and Privacy pages so anonymous users can get information about the site before they register.
+The fallback authentication policy is the authentication policy endpoint routing applies when no authentication attribute is applied.
+
+Setting the fallback authentication policy to require users to be authenticated protects newly added Razor Pages and controllers. Having authentication required by default is more secure than relying on new controllers and Razor Pages to include the `[Authorize]` attribute.
+
+Add [AllowAnonymous](/dotnet/api/microsoft.aspnetcore.authorization.allowanonymousattribute) to the `Index` and `Privacy` pages so anonymous users can get information about the site before they register:
 
 [!code-csharp[](secure-data/samples/final3/Pages/Index.cshtml.cs?highlight=1,7)]
+
+An alternative way to require all users be authenticated is adding an authorization filter:
+
+[!code-csharp[](secure-data/samples/final3/Startup2.cs?name=snippet&highlight=15-99)]
+
+The preceding code uses an authorization filter, setting the fallback policy uses endpoint routing. Setting the fallback policy is the preferred way to require all users be authenticated.
+
+For more information on policies, see <xref:security/authorization/policies>
 
 ### Configure the test account
 
@@ -272,7 +280,7 @@ See [this issue](https://github.com/dotnet/AspNetCore.Docs/issues/8502) for info
 
 ## Differences between Challenge and Forbid
 
-This app sets the default policy to [require authenticated users](#require-authenticated-users). The following code allows anonymous users. Anonymous users are allowed to show the differences between Challenge vs Forbid.
+This app sets the default policy to [require authenticated users](#rau). The following code allows anonymous users. Anonymous users are allowed to show the differences between Challenge vs Forbid.
 
 [!code-csharp[](secure-data/samples/final3/Pages/Contacts/Details2.cshtml.cs?name=snippet)]
 

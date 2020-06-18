@@ -225,8 +225,13 @@ if (context.Resource is AuthorizationFilterContext mvcContext)
 }
 ```
 
-::: moniker-end
+## Globally require all users to be authenticated
 
+For information on how to globally require all users to be authenticated, see [Require authenticated users](xref:security/authorization/secure-data#rau).
+
+[!INCLUDE[](~/includes/requireAuth.md)]
+
+::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
 

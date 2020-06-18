@@ -123,4 +123,4 @@ See the [Orchard Core](https://github.com/OrchardCMS/OrchardCore) source for an 
 * <xref:security/authorization/limitingidentitybyscheme>
 * <xref:security/authentication/policyschemes>
 * <xref:security/authorization/secure-data>
-* [Globally require authenticated users](xref:security/authorization/secure-data#require-authenticated-users)
+* [Globally require authenticated users](xref:security/authorization/secure-data#rau)
