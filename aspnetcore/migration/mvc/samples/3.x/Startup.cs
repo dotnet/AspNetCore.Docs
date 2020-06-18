@@ -11,6 +11,7 @@ using Microsoft.Extensions.Hosting;
 
 namespace WebApp1
 {
+    #region snippet
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -54,4 +55,5 @@ namespace WebApp1
             });
         }
     }
+    #endregion
 }
