@@ -15,7 +15,16 @@ namespace sample
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    //webBuilder.UseStartup<Startup>();
+                   // webBuilder.UseStartup<StartupRose>();
+                    // webBuilder.UseStartup<StartupAddHeader>();
+                    webBuilder.UseStartup<StartupBrowse>();
+                    //webBuilder.UseStartup<Startup>();
+                    //webBuilder.UseStartup<Startup>();
+                    //webBuilder.UseStartup<Startup>();
+                    //webBuilder.UseStartup<Startup>();
+
+
                 });
     }
     #endregion

@@ -26,7 +26,7 @@ The default web app templates set the content root directory. The <xref:Microsof
 
 [!code-csharp[](~/fundamentals/static-files/samples/3x/sample/Program.cs?name=snippet_Main)]
 
-The preceding code was created with the MVC web app template.
+The preceding code was created with the web app template.
 
 Static files are accessible via a path relative to the [web root](xref:fundamentals/index#web-root). For example, the **Web Application** project templates contains several folders within the *wwwroot* folder:
 
@@ -35,16 +35,15 @@ Static files are accessible via a path relative to the [web root](xref:fundament
   * `js`
   * `lib`
 
-Consider creating the *wwwroot/images* folder and adding the *wwwroot/images/MyImage.jpg* file.The URI format to access a file in the *images* folder is *http://\<server_address>/images/\<image_file_name>*. For example, `https://localhost:5001/images/MyImage.jpg`
+Consider creating the *wwwroot/images* folder and adding the *wwwroot/images/MyImage.jpg* file. The URI format to access a file in the `images` folder is `https://<server_address>/images/<image_file_name>`. For example, `https://localhost:5001/images/MyImage.jpg`
 
 ### Serve files in wwwroot
 
 The default web app templates call <xref:Owin.StaticFileExtensions.UseStaticFiles%2A> method in `Startup.Configure`, which enables static files to be served:
 
-[!code-csharp[](~/fundamentals/static-files/samples/3x/sample/Startup.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/static-files/samples/3x/sample/Startup.cs?name=snippet&highlight=13)]
 
-
-The parameterless `UseStaticFiles` method overload marks the files in [web root](xref:fundamentals/index#web-root) as servable. The following markup references *wwwroot/images/banner1.svg*:
+The parameterless `UseStaticFiles` method overload marks the files in [web root](xref:fundamentals/index#web-root) as servable. The following markup references *wwwroot/images/MyImage.jpg*:
 
 [!code-cshtml[](static-files/samples/1x/Views/Home/Index.cshtml?name=snippet_static_file_wwwroot)]
 
@@ -60,28 +59,27 @@ Consider a directory hierarchy in which the static files to be served reside out
   * `js`
 * `MyStaticFiles`
   * `images`
-    * *banner1.svg*
+    * *red-rose.jpg*
 
-A request can access the *banner1.svg* file by configuring the Static File Middleware as follows:
+A request can access the *red-rose.jpg* file by configuring the Static File Middleware as follows:
 
-[!code-csharp[](static-files/samples/1x/StartupTwoStaticFiles.cs?name=snippet_ConfigureMethod&highlight=5-10)]
+[!code-csharp[](~/fundamentals/static-files/samples/3x/sample/StartupRose.cs?name=snippet&highlight=13-20)]
 
-In the preceding code, the *MyStaticFiles* directory hierarchy is exposed publicly via the *StaticFiles* URI segment. A request to *http://\<server_address>/StaticFiles/images/banner1.svg* serves the *banner1.svg* file.
+In the preceding code, the *MyStaticFiles* directory hierarchy is exposed publicly via the *StaticFiles* URI segment. A request to `https://<server_address>/StaticFiles/images/red-rose.jpg` serves the *red-rose.jpg* file.
 
-The following markup references *MyStaticFiles/images/banner1.svg*:
+The following markup references *MyStaticFiles/images/red-rose.jpg*:
 
-[!code-cshtml[](static-files/samples/1x/Views/Home/Index.cshtml?name=snippet_static_file_outside)]
+```cshtml
+<img src="~/StaticFiles/images/red-rose.jpg" class="img" alt="A red rose" />
+```
 
 ### Set HTTP response headers
 
-A [StaticFileOptions](/dotnet/api/microsoft.aspnetcore.builder.staticfileoptions) object can be used to set HTTP response headers. In addition to configuring static file serving from the [web root](xref:fundamentals/index#web-root), the following code sets the `Cache-Control` header:
+A <xref:Microsoft.AspNetCore.Builder.StaticFileOptions> object can be used to set HTTP response headers. In addition to configuring static file serving from the [web root](xref:fundamentals/index#web-root), the following code sets the `Cache-Control` header:
 
-[!code-csharp[](static-files/samples/1x/StartupAddHeader.cs?name=snippet_ConfigureMethod)]
-[!INCLUDE[about the series](~/includes/code-comments-loc.md)]
+[!code-csharp[](~/fundamentals/static-files/samples/3x/sample/StartupAddHeader.cs?name=snippet&highlight=14-23)]
 
-The [HeaderDictionaryExtensions.Append](/dotnet/api/microsoft.aspnetcore.http.headerdictionaryextensions.append) method exists in the [Microsoft.AspNetCore.Http](https://www.nuget.org/packages/Microsoft.AspNetCore.Http/) package.
-
-The files have been made publicly cacheable for 10 minutes (600 seconds) in the Development environment:
+Static files are publicly cacheable for 600 seconds in the Development environment:
 
 ![Response headers showing the Cache-Control header has been added](static-files/_static/add-header.png)
 
@@ -94,25 +92,22 @@ The Static File Middleware doesn't provide authorization checks. Any files serve
 
   [!code-csharp[](static-files/samples/1x/Controllers/HomeController.cs?name=snippet_BannerImageAction)]
 
-## Enable directory browsing
+## Directory browsing
 
-Directory browsing allows users of your web app to see a directory listing and files within a specified directory. Directory browsing is disabled by default for security reasons (see [Considerations](#considerations)). Enable directory browsing by invoking the [UseDirectoryBrowser](/dotnet/api/microsoft.aspnetcore.builder.directorybrowserextensions.usedirectorybrowser#Microsoft_AspNetCore_Builder_DirectoryBrowserExtensions_UseDirectoryBrowser_Microsoft_AspNetCore_Builder_IApplicationBuilder_Microsoft_AspNetCore_Builder_DirectoryBrowserOptions_) method in `Startup.Configure`:
+Directory browsing allows directory listing and files within specified directories. Directory browsing is disabled by default for security reasons, see [Considerations](#considerations). Enable directory browsing with:
 
-[!code-csharp[](static-files/samples/1x/StartupBrowse.cs?name=snippet_ConfigureMethod&highlight=12-17)]
+* [UseDirectoryBrowser](/dotnet/api/microsoft.aspnetcore.builder.directorybrowserextensions.usedirectorybrowser#Microsoft_AspNetCore_Builder_DirectoryBrowserExtensions_UseDirectoryBrowser_Microsoft_AspNetCore_Builder_IApplicationBuilder_Microsoft_AspNetCore_Builder_DirectoryBrowserOptions_).
+* [AddDirectoryBrowser](/dotnet/api/microsoft.extensions.dependencyinjection.directorybrowserserviceextensions.adddirectorybrowser#Microsoft_Extensions_DependencyInjection_DirectoryBrowserServiceExtensions_AddDirectoryBrowser_Microsoft_Extensions_DependencyInjection_IServiceCollection_).
 
-Add required services by invoking the [AddDirectoryBrowser](/dotnet/api/microsoft.extensions.dependencyinjection.directorybrowserserviceextensions.adddirectorybrowser#Microsoft_Extensions_DependencyInjection_DirectoryBrowserServiceExtensions_AddDirectoryBrowser_Microsoft_Extensions_DependencyInjection_IServiceCollection_) method from `Startup.ConfigureServices`:
+[!code-csharp[](~/fundamentals/static-files/samples/3x/sample/StartupBrowse.cs?name=snippet&highlight=4,20-34)]
 
-[!code-csharp[](static-files/samples/1x/StartupBrowse.cs?name=snippet_ConfigureServicesMethod&highlight=3)]
-
-The preceding code allows directory browsing of the *wwwroot/images* folder using the URL *http://\<server_address>/MyImages*, with links to each file and folder:
+The preceding code allows directory browsing of the *wwwroot/images* folder using the URL `https://\<server_address>/MyImages`, with links to each file and folder:
 
 ![directory browsing](static-files/_static/dir-browse.png)
 
 See [Considerations](#considerations) on the security risks when enabling browsing.
 
-Note the two `UseStaticFiles` calls in the following example. The first call enables the serving of static files in the *wwwroot* folder. The second call enables directory browsing of the *wwwroot/images* folder using the URL *http://\<server_address>/MyImages*:
-
-[!code-csharp[](static-files/samples/1x/StartupBrowse.cs?name=snippet_ConfigureMethod&highlight=3,5)]
+Note the two `UseStaticFiles` calls in the following example. The first call enables the serving of static files in the *wwwroot* folder. The second call enables directory browsing of the *wwwroot/images* folder using the URL `https://<server_address>/MyImages`.
 
 ## Serve a default document
 
@@ -160,7 +155,7 @@ Consider the following directory hierarchy:
   * `js`
 * `MyStaticFiles`
   * `images`
-    * *banner1.svg*
+    * *MyImage.jpg*
   * *default.html*
 
 The following code enables static files, default files, and directory browsing of `MyStaticFiles`:
@@ -175,15 +170,15 @@ Using the file hierarchy and preceding code, URLs resolve as follows:
 
 | URI            |                             Response  |
 | ------- | ------|
-| *http://\<server_address>/StaticFiles/images/banner1.svg*    |      MyStaticFiles/images/banner1.svg |
-| *http://\<server_address>/StaticFiles*             |     MyStaticFiles/default.html |
+| `https://<server_address>/StaticFiles/images/MyImage.jpg`    |      MyStaticFiles/images/MyImage.jpg |
+| `https://<server_address>/StaticFiles`             |     MyStaticFiles/default.html |
 
-If no default-named file exists in the *MyStaticFiles* directory, *http://\<server_address>/StaticFiles* returns the directory listing with clickable links:
+If no default-named file exists in the *MyStaticFiles* directory, `https://<server_address>/StaticFiles` returns the directory listing with clickable links:
 
 ![Static files list](static-files/_static/db2.png)
 
 > [!NOTE]
-> <xref:Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles*> and <xref:Microsoft.AspNetCore.Builder.DirectoryBrowserExtensions.UseDirectoryBrowser*> perform a client-side redirect from `http://{SERVER ADDRESS}/StaticFiles` (without a trailing slash) to `http://{SERVER ADDRESS}/StaticFiles/` (with a trailing slash). Relative URLs within the *StaticFiles* directory are invalid without a trailing slash.
+> <xref:Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles*> and <xref:Microsoft.AspNetCore.Builder.DirectoryBrowserExtensions.UseDirectoryBrowser*> perform a client-side redirect from `https://{SERVER ADDRESS}/StaticFiles` (without a trailing slash) to `https://{SERVER ADDRESS}/StaticFiles/` (with a trailing slash). Relative URLs within the *StaticFiles* directory are invalid without a trailing slash.
 
 ## FileExtensionContentTypeProvider
 

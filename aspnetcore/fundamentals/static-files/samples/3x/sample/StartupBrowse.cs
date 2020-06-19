@@ -2,25 +2,28 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
+using System.IO;
 
 namespace sample
 {
-    public class Startup
+    public class StartupBrowse
     {
-        public Startup(IConfiguration configuration)
+        public StartupBrowse(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
 
+        #region snippet
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddDirectoryBrowser();
         }
 
-        #region snippet
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -33,7 +36,22 @@ namespace sample
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
+
+            // using Microsoft.Extensions.FileProviders;
+            //using System.IO;
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                        Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images")),
+                RequestPath = "/MyImages"
+            });
+
+            app.UseDirectoryBrowser(new DirectoryBrowserOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                    Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images")),
+                RequestPath = "/MyImages"
+            });
 
             app.UseRouting();
 

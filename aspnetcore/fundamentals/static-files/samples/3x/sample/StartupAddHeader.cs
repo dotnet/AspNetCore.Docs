@@ -1,14 +1,15 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 namespace sample
 {
-    public class Startup
+    public class StartupAddHeader
     {
-        public Startup(IConfiguration configuration)
+        public StartupAddHeader(IConfiguration configuration)
         {
             Configuration = configuration;
         }
@@ -33,7 +34,17 @@ namespace sample
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
+
+            var cachePeriod = "604800";
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                OnPrepareResponse = ctx =>
+                {
+                    // using Microsoft.AspNetCore.Http;
+                    ctx.Context.Response.Headers.Append("Cache-Control",
+                                                       $"public, max-age={cachePeriod}");
+                }
+            });
 
             app.UseRouting();
 

@@ -2,13 +2,15 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
+using System.IO;
 
 namespace sample
 {
-    public class Startup
+    public class StartupRose
     {
-        public Startup(IConfiguration configuration)
+        public StartupRose(IConfiguration configuration)
         {
             Configuration = configuration;
         }
@@ -33,7 +35,15 @@ namespace sample
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
+
+            // using Microsoft.Extensions.FileProviders;
+            // using System.IO;
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+            Path.Combine(Directory.GetCurrentDirectory(), "MyStaticFiles")),
+                RequestPath = "/StaticFiles"
+            });
 
             app.UseRouting();
 
