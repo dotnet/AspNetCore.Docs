@@ -30,7 +30,7 @@ The sample download returns the list of authors. Using the F12 browser developer
 * The response header containing **content-type:** `application/json; charset=utf-8` is displayed.
 * The request headers are displayed. For example, the `Accept` header. The `Accept` header is ignored by the preceding code.
 
-To return plain text formatted data, use <xref:Microsoft.AspNetCore.Mvc.ContentResult.Content> and the <xref:Microsoft.AspNetCore.Mvc.ContentResult.Content> helper:
+To return plain text formatted data, use <xref:Microsoft.AspNetCore.Mvc.ContentResult> and the <xref:Microsoft.AspNetCore.Mvc.ControllerBase.Content%2A> helper:
 
 [!code-csharp[](./formatting/sample/Controllers/AuthorsController.cs?name=snippet_about)]
 
