@@ -43,7 +43,7 @@ Create a new solution with a new ASP.NET Core project to migrate to:
 1. From the **File** menu, select **New** > **Project**.
 1. Select **ASP.NET Web Core Web Application** and then select **Next**.
 1. In the **Configure your new project** dialog, Name the project *WebApp1*.
-1. Set the location to a different directory than the previous project to use the same project name. Having the same namespace makes it easier to copy code between the two projects. Select **Create**.
+1. Set the location to a different directory than the previous project to use the same project name. Using the same namespace makes it easier to copy code between the two projects. Select **Create**.
 1. In the **Create a new ASP.NET Core Web Application** dialog, confirm that **.NET Core** and **ASP.NET Core 3.1** are selected. Select the **Web Application (Model-View-Controller)** project template, and select **Create**.
 
 ## Configure the ASP.NET Core site to use MVC
@@ -57,17 +57,17 @@ In ASP.NET Core, the `Startup` class:
 
 For more information, see <xref:fundamentals/startup>.
 
-In the ASP.NET Core project, open the *Startup.cs* file.
+In the ASP.NET Core project, open the *Startup.cs* file:
 
 [!code-csharp[](mvc/samples/3.x/Startup.cs?highlight=13,30,32&name=snippet)]
 
-ASP.NET Core apps must opt in for middleware. The previous template-generated code adds the following services and middleware:
+ASP.NET Core apps must opt in to framework features with middleware. The previous template-generated code adds the following services and middleware:
 
 * The <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllersWithViews*> extension method registers MVC service support for controllers, API-related features, and views. For more information on MVC service registration options, see [MVC service registration](xref:migration/22-to-30#mvc-service-registration)
 * The <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*> extension method adds the static file handler `Microsoft.AspNetCore.StaticFiles`. The `UseStaticFiles` extension method must be called before `UseRouting`. For more information, see [Static files](xref:fundamentals/static-files).
 * The <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*> extension method adds routing. For more information, see [Routing](xref:fundamentals/routing).
 
-This existing configuration includes what is needed to migrate the example ASP.NET MVC project. For more information on ASP.NET Core middleware options, see [Application Startup](xref:fundamentals/startup).
+This existing configuration includes what is needed to migrate the example ASP.NET MVC project. For more information on ASP.NET Core middleware options, see <xref:fundamentals/startup>.
 
 ## Migrate controllers and views
 
@@ -77,7 +77,7 @@ The ASP.NET Core *WebApp1* project already includes a minimal example controller
 
 1. Copy the methods from the ASP.NET MVC `HomeController` to replace the new ASP.NET Core `HomeController` methods. There's no need to change the return type of the action methods. The ASP.NET MVC built-in template's controller action method return type is [ActionResult](https://msdn.microsoft.com/library/system.web.mvc.actionresult(v=vs.118).aspx); in ASP.NET Core MVC, the action methods return `IActionResult` instead. `ActionResult` implements `IActionResult`.
 1. In the ASP.NET Core project, right-click the **Views** > **Home** folder, select **Add** > **Existing Item**.
-1. In the **Add Existing Item** dialog, navigate to the ASP.NET MVC *WebApp1* project > *Views* > *Home* directory.
+1. In the **Add Existing Item** dialog, navigate to the ASP.NET MVC *WebApp1* project's *Views/Home* directory.
 1. Select the *About.cshtml*, *Contact.cshtml*, and *Index.cshtml* Razor view files, then select **Add**, replacing the existing files.
 1. Run the ASP.NET Core app.
 
@@ -85,13 +85,13 @@ For more information, see [ASP.NET Core Controllers](xref:mvc/controllers/action
 
 ## Test each method
 
-The layout file and styles have not been migrated yet, so the rendered views only contain the content in the view files. The layout file generated links for the `About` and `Contact` views will not be available yet.
+The layout file and styles haven't been migrated yet, so the rendered views only contain the content in the view files. The layout file links for the `About` and `Contact` views won't be available yet.
 
-Invoke the rendered views from the browser on the running ASP.NET core app by replacing the current port number with the port number used in the ASP.NET core project. For example: `https://localhost:44375/home/about`.
+Invoke the rendered views from the browser on the running ASP.NET core app by replacing the current port number with the port number used in the ASP.NET Core project. For example, `https://localhost:44375/home/about`.
 
 ## Migrate static content
 
-In ASP.NET MVC 5 and earlier, static content was hosted from the root of the web project and was intermixed with server-side files. In ASP.NET Core, static content is hosted in the *wwwroot* folder.
+In ASP.NET MVC 5 and earlier, static content was hosted from the web project's root directory and was intermixed with server-side files. In ASP.NET Core, static content is hosted in the *wwwroot* folder.
 
 Copy the static content from the ASP.NET MVC *WebApp1* project to the *wwwroot* folder in the ASP.NET Core *WebApp1* project:
 
@@ -109,8 +109,8 @@ Copy the ASP.NET MVC project layout files to the ASP.NET Core project:
 
 Copy the ASP.NET MVC project shared layout files to the ASP.NET Core project:
 
-1. In the ASP.NET Core project, right-click the **Views** > **Shared** folder, select **Add** > **Existing Item**.
-1. In the **Add Existing Item** dialog, navigate to the ASP.NET MVC *WebApp1* project > *Views* > *Shared* directory.
+1. In the ASP.NET Core project, right-click the *Views/Shared* folder, select **Add** > **Existing Item**.
+1. In the **Add Existing Item** dialog, navigate to the ASP.NET MVC *WebApp1* project > *Views/Shared* directory.
 1. Select the *_Layout.cshtml* file, then select **Add**, replacing the existing file.
 
 In the ASP.NET Core project, open the *_Layout.cshtml* file. Make the following changes to match the completed code shown below:
@@ -146,23 +146,23 @@ The updated *_Layout.cshtml* file is shown below:
 
 [!code-cshtml[](mvc/samples/3.x/Views/Shared/_Layout.cshtml?highlight=7-10,40-42)]
 
-View the site in the browser. It should now render with the expected styles in place.
+View the site in the browser. It should render with the expected styles in place.
 
 ## Configure bundling and minification
 
-ASP.NET Core is compatible with several open-source bundling and minification solutions such as [WebOptimizer](https://github.com/ligershark/WebOptimizer) and other similar libraries. ASP.NET Core does not provide a native bundling and minification solution. For information about how to configure bundling and minification, see [Bundling and Minification](xref:client-side/bundling-and-minification).
+ASP.NET Core is compatible with several open-source bundling and minification solutions such as [WebOptimizer](https://github.com/ligershark/WebOptimizer) and other similar libraries. ASP.NET Core doesn't provide a native bundling and minification solution. For information on configuring bundling and minification, see [Bundling and Minification](xref:client-side/bundling-and-minification).
 
 ## Solve HTTP 500 errors
 
-There are many problems that can cause an HTTP 500 error message that contains no information on the source of the problem. For example, if the *Views/_ViewImports.cshtml* file contains a namespace that doesn't exist in the project, a HTTP 500 error is generated. By default in ASP.NET Core apps, the `UseDeveloperExceptionPage` extension is added to the `IApplicationBuilder` and executed when the configuration is *Development*. This is detailed in the following code:
+There are many problems that can cause an HTTP 500 error message that contains no information on the source of the problem. For example, if the *Views/_ViewImports.cshtml* file contains a namespace that doesn't exist in the project, an HTTP 500 error is generated. By default in ASP.NET Core apps, the `UseDeveloperExceptionPage` extension is added to the `IApplicationBuilder` and executed when the environment is *Development*. This is detailed in the following code:
 
 [!code-csharp[](mvc/samples/3.x/Startup.cs?highlight=17-21&name=snippet)]
 
-ASP.NET Core converts unhandled exceptions in a web app into HTTP 500 error responses. Normally, error details aren't included in these responses to prevent disclosure of potentially sensitive information about the server. For more information, see **Using the Developer Exception Page** in [Handle errors](https://docs.microsoft.com/aspnet/core/fundamentals/error-handling?view=aspnetcore-3.1#developer-exception-page).
+ASP.NET Core converts unhandled exceptions into HTTP 500 error responses. Normally, error details aren't included in these responses to prevent disclosure of potentially sensitive information about the server. For more information, see [Developer Exception Page](xref:fundamentals/error-handling#developer-exception-page).
 
 ## Next steps
 
-* [Migrate Authentication and Identity to ASP.NET Core](xref:migration/identity)
+* <xref:migration/identity>
 
 ## Additional resources
 
