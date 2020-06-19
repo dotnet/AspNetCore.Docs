@@ -14,7 +14,7 @@ This article highlights the most significant changes in ASP.NET Core 3.1 with li
 
 ## Partial class support for Razor components
 
-Razor components are now generated as partial classes. Code for a Razor component can be written using a code-behind file defined as a partial class rather than defining all the code for the component in a single file. For more information, see [Partial class support](xref:blazor/components#partial-class-support).
+Razor components are now generated as partial classes. Code for a Razor component can be written using a code-behind file defined as a partial class rather than defining all the code for the component in a single file. For more information, see [Partial class support](xref:blazor/components/index#partial-class-support).
 
 ## Blazor Component Tag Helper and pass parameters to top-level components
 
@@ -35,7 +35,7 @@ For example, prerender a `Counter` component with an increment amount (`Incremen
     param-IncrementAmount="10" />
 ```
 
-For more information, see [Integrate components into Razor Pages and MVC apps](xref:blazor/integrate-components).
+For more information, see [Integrate components into Razor Pages and MVC apps](xref:blazor/components/integrate-components-into-razor-pages-and-mvc-apps).
 
 ## Support for shared queues in HTTP.sys
 
@@ -55,7 +55,7 @@ Use the `@on{EVENT}:preventDefault` directive attribute to prevent the default a
 <input value="@_count" @onkeypress="KeyHandler" @onkeypress:preventDefault />
 ```
 
-For more information, see [Prevent default actions](xref:blazor/event-handling#prevent-default-actions).
+For more information, see [Prevent default actions](xref:blazor/components/event-handling#prevent-default-actions).
 
 ## Stop event propagation in Blazor apps
 
@@ -75,7 +75,7 @@ Use the `@on{EVENT}:stopPropagation` directive attribute to stop event propagati
 }
 ```
 
-For more information, see [Stop event propagation](xref:blazor/event-handling#stop-event-propagation).
+For more information, see [Stop event propagation](xref:blazor/components/event-handling#stop-event-propagation).
 
 ## Detailed errors during Blazor app development
 
@@ -84,4 +84,4 @@ When a Blazor app isn't functioning properly during development, receiving detai
 * During development, the gold bar directs you to the browser console, where you can see the exception.
 * In production, the gold bar notifies the user that an error has occurred and recommends refreshing the browser.
 
-For more information, see [Detailed errors during development](xref:blazor/handle-errors#detailed-errors-during-development).
+For more information, see [Detailed errors during development](xref:blazor/fundamentals/handle-errors#detailed-errors-during-development).

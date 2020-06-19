@@ -74,7 +74,7 @@ JSON helper methods send requests to a URI (a web API in the following examples)
 
 * <xref:System.Net.Http.Json.HttpClientJsonExtensions.GetFromJsonAsync%2A>: Sends an HTTP GET request and parses the JSON response body to create an object.
 
-  In the following code, the `todoItems` are displayed by the component. The `GetTodoItems` method is triggered when the component is finished rendering ([OnInitializedAsync](xref:blazor/lifecycle#component-initialization-methods)). See the sample app for a complete example.
+  In the following code, the `todoItems` are displayed by the component. The `GetTodoItems` method is triggered when the component is finished rendering ([OnInitializedAsync](xref:blazor/components/lifecycle#component-initialization-methods)). See the sample app for a complete example.
 
   ```razor
   @using System.Net.Http
@@ -292,7 +292,7 @@ protected override async Task OnInitializedAsync()
 > [!NOTE]
 > The preceding example is for demonstration purposes. A web API server app can be configured to return JSON even when an endpoint doesn't exist or an unhandled excpetion on the server occurs.
 
-For more information, see <xref:blazor/handle-errors>.
+For more information, see <xref:blazor/fundamentals/handle-errors>.
 
 ## Cross-origin resource sharing (CORS)
 
@@ -304,7 +304,7 @@ To allow other sites to make cross-origin resource sharing (CORS) requests to yo
 
 ## Additional resources
 
-* <xref:security/blazor/webassembly/additional-scenarios>: Includes coverage on using <xref:System.Net.Http.HttpClient> to make secure web API requests.
+* <xref:blazor/security/webassembly/additional-scenarios>: Includes coverage on using <xref:System.Net.Http.HttpClient> to make secure web API requests.
 * <xref:fundamentals/http-requests>
 * <xref:security/enforcing-ssl>
 * [Kestrel HTTPS endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration)
