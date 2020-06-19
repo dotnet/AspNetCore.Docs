@@ -22,10 +22,10 @@ namespace sample
                     //webBuilder.UseStartup<StartupEmpty>();
                     //webBuilder.UseStartup<StartupEmpty2>();
                     //webBuilder.UseStartup<StartupEmpty3>();
-                    webBuilder.UseStartup<StartupDefault>();
+                    //webBuilder.UseStartup<StartupDefault>();
                     // webBuilder.UseStartup<StartupDefault2>();
+                    webBuilder.UseStartup<StartupUseFileServer>();
 
-                    //webBuilder.UseStartup<StartupBrowse>();
                     //webBuilder.UseStartup<StartupEmpty>();
                     //webBuilder.UseStartup<StartupEmpty2>();
                     //webBuilder.UseStartup<StartupEmpty3>();

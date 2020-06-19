@@ -33,7 +33,10 @@ namespace sample
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
+
+            #region snippet2
             app.UseStaticFiles();
+            #endregion
 
             app.UseRouting();
 

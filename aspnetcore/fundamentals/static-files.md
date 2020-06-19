@@ -97,7 +97,7 @@ The Static File Middleware doesn't provide authorization checks. Any files serve
 Directory browsing allows directory listing and files within specified directories. Directory browsing is disabled by default for security reasons, see [Considerations](#considerations). Enable directory browsing with:
 
 * [UseDirectoryBrowser](/dotnet/api/microsoft.aspnetcore.builder.directorybrowserextensions.usedirectorybrowser#Microsoft_AspNetCore_Builder_DirectoryBrowserExtensions_UseDirectoryBrowser_Microsoft_AspNetCore_Builder_IApplicationBuilder_Microsoft_AspNetCore_Builder_DirectoryBrowserOptions_)
-* [AddDirectoryBrowser](/dotnet/api/microsoft.extensions.dependencyinjection.directorybrowserserviceextensions.adddirectorybrowser#Microsoft_Extensions_DependencyInjection_DirectoryBrowserServiceExtensions_AddDirectoryBrowser_Microsoft_Extensions_DependencyInjection_IServiceCollection_)
+* <xref:Microsoft.Extensions.DependencyInjection.DirectoryBrowserServiceExtensions.AddDirectoryBrowser%2A>
 
 [!code-csharp[](~/fundamentals/static-files/samples/3x/sample/StartupBrowse.cs?name=snippet&highlight=4,20-34)]
 
@@ -138,27 +138,18 @@ The following code shows `Startup.Configure` with the preceding code:
 
 <xref:Microsoft.AspNetCore.Builder.FileServerExtensions.UseFileServer*> combines the functionality of `UseStaticFiles`, `UseDefaultFiles`, and optionally `UseDirectoryBrowser`.
 
-The following code enables the serving of static files and the default file. Directory browsing isn't enabled.
-
-[!code-csharp[](~/fundamentals/static-files/samples/3x/sample/StartupDefault.cs?name=snippet2)]
-
-The following code shows `Startup.Configure` with the preceding code:
-
-[!code-csharp[](~/fundamentals/static-files/samples/3x/sample/StartupDefault.cs?name=snippet)]
-
-```csharp
-app.UseFileServer();
-```
+The `app.UseFileServer();` enables the serving of static files and the default file. Directory browsing isn't enabled. The following code shows `Startup.Configure` with `UseFileServer`:
 
 The following code shows `Startup.Configure` with the preceding code:
 
 [!code-csharp[](~/fundamentals/static-files/samples/3x/sample/StartupEmpty2.cs?name=snippet)]
 
-The following code builds upon the parameterless overload by enabling directory browsing:
+The following code enables default documents and directory browsing:
 
 ```csharp
 app.UseFileServer(enableDirectoryBrowsing: true);
 ```
+
 The following code shows `Startup.Configure` with the preceding code:
 
 [!code-csharp[](~/fundamentals/static-files/samples/3x/sample/StartupEmpty3.cs?name=snippet)]
@@ -171,30 +162,27 @@ Consider the following directory hierarchy:
   * `js`
 * `MyStaticFiles`
   * `images`
-    * *MyImage.jpg*
-  * *default.html*
+    * `MyImage.jpg`
+  * `default.html`
 
 The following code enables static files, default files, and directory browsing of `MyStaticFiles`:
 
-[!code-csharp[](static-files/samples/1x/StartupUseFileServer.cs?name=snippet_ConfigureMethod&highlight=5-11)]
+[!code-csharp[](~/fundamentals/static-files/samples/3x/sample/StartupUseFileServer.cs?name=snippet&highlight=4,20-30)]
 
-`AddDirectoryBrowser` must be called when the `EnableDirectoryBrowsing` property value is `true`:
-
-[!code-csharp[](static-files/samples/1x/StartupUseFileServer.cs?name=snippet_ConfigureServicesMethod)]
+<xref:Microsoft.Extensions.DependencyInjection.DirectoryBrowserServiceExtensions.AddDirectoryBrowser%2A> must be called when the `EnableDirectoryBrowsing` property value is `true`.
 
 Using the file hierarchy and preceding code, URLs resolve as follows:
 
-| URI            |                             Response  |
+| URI            |      Response  |
 | ------- | ------|
-| `https://<hostname>/StaticFiles/images/MyImage.jpg`    |      MyStaticFiles/images/MyImage.jpg |
-| `https://<hostname>/StaticFiles`             |     MyStaticFiles/default.html |
+| `https://<hostname>/StaticFiles/images/MyImage.jpg` | *MyStaticFiles/images/MyImage.jpg* |
+| `https://<hostname>/StaticFiles` | *MyStaticFiles/default.html* |
 
 If no default-named file exists in the *MyStaticFiles* directory, `https://<hostname>/StaticFiles` returns the directory listing with clickable links:
 
 ![Static files list](static-files/_static/db2.png)
 
-> [!NOTE]
-> <xref:Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles*> and <xref:Microsoft.AspNetCore.Builder.DirectoryBrowserExtensions.UseDirectoryBrowser*> perform a client-side redirect from `https://{SERVER ADDRESS}/StaticFiles` (without a trailing slash) to `https://{SERVER ADDRESS}/StaticFiles/` (with a trailing slash). Relative URLs within the *StaticFiles* directory are invalid without a trailing slash.
+<xref:Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles*> and <xref:Microsoft.AspNetCore.Builder.DirectoryBrowserExtensions.UseDirectoryBrowser*> perform a client-side redirect from the target URI without a trailing `/`  to the target URI with a trailing `/`. For example, from `https://<hostname>/StaticFiles` to `https://<hostname>/StaticFiles/`. Relative URLs within the *StaticFiles* directory are invalid without a trailing slash.
 
 ## FileExtensionContentTypeProvider
 
@@ -340,7 +328,7 @@ Directory browsing allows users of your web app to see a directory listing and f
 
 [!code-csharp[](static-files/samples/1x/StartupBrowse.cs?name=snippet_ConfigureMethod&highlight=12-17)]
 
-Add required services by invoking the [AddDirectoryBrowser](/dotnet/api/microsoft.extensions.dependencyinjection.directorybrowserserviceextensions.adddirectorybrowser#Microsoft_Extensions_DependencyInjection_DirectoryBrowserServiceExtensions_AddDirectoryBrowser_Microsoft_Extensions_DependencyInjection_IServiceCollection_) method from `Startup.ConfigureServices`:
+Add required services by invoking the <xref:Microsoft.Extensions.DependencyInjection.DirectoryBrowserServiceExtensions.AddDirectoryBrowser%2A> method from `Startup.ConfigureServices`:
 
 [!code-csharp[](static-files/samples/1x/StartupBrowse.cs?name=snippet_ConfigureServicesMethod&highlight=3)]
 

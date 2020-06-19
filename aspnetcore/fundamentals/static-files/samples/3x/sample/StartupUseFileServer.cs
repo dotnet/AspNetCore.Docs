@@ -2,25 +2,28 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
+using System.IO;
 
 namespace sample
 {
-    public class StartupEmpty
+    public class StartupUseFileServer
     {
-        public StartupEmpty(IConfiguration configuration)
+        public StartupUseFileServer(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
 
+        #region snippet
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddDirectoryBrowser();
         }
 
-        #region snippet
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -33,9 +36,18 @@ namespace sample
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
+               
+            app.UseStaticFiles(); // For the wwwroot folder.
 
-            app.UseDefaultFiles();
-            app.UseStaticFiles();
+            //using Microsoft.Extensions.FileProviders;
+            //using System.IO;
+            app.UseFileServer(new FileServerOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                    Path.Combine(Directory.GetCurrentDirectory(), "MyStaticFiles")),
+                RequestPath = "/StaticFiles",
+                EnableDirectoryBrowsing = true
+            });
 
             app.UseRouting();
 
@@ -45,7 +57,7 @@ namespace sample
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=None}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
         #endregion
