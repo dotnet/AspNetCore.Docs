@@ -12,7 +12,7 @@ uid: fundamentals/static-files
 
 ::: moniker range=">= aspnetcore-3.0"
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT) and 
+By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Kirk Larkin](https://twitter.com/serpent5)
 
 Static files, such as HTML, CSS, images, and JavaScript, are assets an ASP.NET Core app serves directly to clients. Some configuration is required to enable serving of these files.
 
@@ -35,7 +35,7 @@ Static files are accessible via a path relative to the [web root](xref:fundament
   * `js`
   * `lib`
 
-Consider creating the *wwwroot/images* folder and adding the *wwwroot/images/MyImage.jpg* file. The URI format to access a file in the `images` folder is `https://<server_address>/images/<image_file_name>`. For example, `https://localhost:5001/images/MyImage.jpg`
+Consider creating the *wwwroot/images* folder and adding the *wwwroot/images/MyImage.jpg* file. The URI format to access a file in the `images` folder is `https://<hostname>/images/<image_file_name>`. For example, `https://localhost:5001/images/MyImage.jpg`
 
 ### Serve files in wwwroot
 
@@ -65,7 +65,7 @@ A request can access the *red-rose.jpg* file by configuring the Static File Midd
 
 [!code-csharp[](~/fundamentals/static-files/samples/3x/sample/StartupRose.cs?name=snippet&highlight=13-20)]
 
-In the preceding code, the *MyStaticFiles* directory hierarchy is exposed publicly via the *StaticFiles* URI segment. A request to `https://<server_address>/StaticFiles/images/red-rose.jpg` serves the *red-rose.jpg* file.
+In the preceding code, the *MyStaticFiles* directory hierarchy is exposed publicly via the *StaticFiles* URI segment. A request to `https://<hostname>/StaticFiles/images/red-rose.jpg` serves the *red-rose.jpg* file.
 
 The following markup references *MyStaticFiles/images/red-rose.jpg*:
 
@@ -96,29 +96,28 @@ The Static File Middleware doesn't provide authorization checks. Any files serve
 
 Directory browsing allows directory listing and files within specified directories. Directory browsing is disabled by default for security reasons, see [Considerations](#considerations). Enable directory browsing with:
 
-* [UseDirectoryBrowser](/dotnet/api/microsoft.aspnetcore.builder.directorybrowserextensions.usedirectorybrowser#Microsoft_AspNetCore_Builder_DirectoryBrowserExtensions_UseDirectoryBrowser_Microsoft_AspNetCore_Builder_IApplicationBuilder_Microsoft_AspNetCore_Builder_DirectoryBrowserOptions_).
-* [AddDirectoryBrowser](/dotnet/api/microsoft.extensions.dependencyinjection.directorybrowserserviceextensions.adddirectorybrowser#Microsoft_Extensions_DependencyInjection_DirectoryBrowserServiceExtensions_AddDirectoryBrowser_Microsoft_Extensions_DependencyInjection_IServiceCollection_).
+* [UseDirectoryBrowser](/dotnet/api/microsoft.aspnetcore.builder.directorybrowserextensions.usedirectorybrowser#Microsoft_AspNetCore_Builder_DirectoryBrowserExtensions_UseDirectoryBrowser_Microsoft_AspNetCore_Builder_IApplicationBuilder_Microsoft_AspNetCore_Builder_DirectoryBrowserOptions_)
+* [AddDirectoryBrowser](/dotnet/api/microsoft.extensions.dependencyinjection.directorybrowserserviceextensions.adddirectorybrowser#Microsoft_Extensions_DependencyInjection_DirectoryBrowserServiceExtensions_AddDirectoryBrowser_Microsoft_Extensions_DependencyInjection_IServiceCollection_)
 
 [!code-csharp[](~/fundamentals/static-files/samples/3x/sample/StartupBrowse.cs?name=snippet&highlight=4,20-34)]
 
-The preceding code allows directory browsing of the *wwwroot/images* folder using the URL `https://\<server_address>/MyImages`, with links to each file and folder:
+The preceding code allows directory browsing of the *wwwroot/images* folder using the URL `https://\<hostname>/MyImages`, with links to each file and folder:
 
 ![directory browsing](static-files/_static/dir-browse.png)
 
 See [Considerations](#considerations) on the security risks when enabling browsing.
 
-Note the two `UseStaticFiles` calls in the following example. The first call enables the serving of static files in the *wwwroot* folder. The second call enables directory browsing of the *wwwroot/images* folder using the URL `https://<server_address>/MyImages`.
+Note the two `UseStaticFiles` calls in the following example. The first call enables the serving of static files in the *wwwroot* folder. The second call enables directory browsing of the *wwwroot/images* folder using the URL `https://<hostname>/MyImages`.
 
-## Serve a default document
+## Serve default documents
 
-Setting a default home page provides visitors a logical starting point when visiting your site. To serve a default page without the user fully qualifying the URI, call the [UseDefaultFiles](/dotnet/api/microsoft.aspnetcore.builder.defaultfilesextensions.usedefaultfiles#Microsoft_AspNetCore_Builder_DefaultFilesExtensions_UseDefaultFiles_Microsoft_AspNetCore_Builder_IApplicationBuilder_) method from `Startup.Configure`:
+Setting a default page provides visitors a starting point on a site. To serve a default page from `wwwroot` without a fully qualified URI, call the <xref:Owin.DefaultFilesExtensions.UseDefaultFiles%2A>.
 
-[!code-csharp[](static-files/samples/1x/StartupEmpty.cs?name=snippet_ConfigureMethod&highlight=3)]
+[!code-csharp[](~/fundamentals/static-files/samples/3x/sample/StartupEmpty.cs?name=snippet&highlight=14)]
 
-> [!IMPORTANT]
-> `UseDefaultFiles` must be called before `UseStaticFiles` to serve the default file. `UseDefaultFiles` is a URL rewriter that doesn't actually serve the file. Enable Static File Middleware via `UseStaticFiles` to serve the file.
+`UseDefaultFiles` must be called before `UseStaticFiles` to serve the default file. `UseDefaultFiles` is a URL rewriter that doesn't serve the file.
 
-With `UseDefaultFiles`, requests to a folder search for:
+With `UseDefaultFiles`, requests to a folder in `wwwroot` search for:
 
 * *default.htm*
 * *default.html*
@@ -129,23 +128,40 @@ The first file found from the list is served as though the request were the full
 
 The following code changes the default file name to *mydefault.html*:
 
-[!code-csharp[](static-files/samples/1x/StartupDefault.cs?name=snippet_ConfigureMethod)]
+[!code-csharp[](~/fundamentals/static-files/samples/3x/sample/StartupDefault.cs?name=snippet2)]
 
-## UseFileServer
+The following code shows `Startup.Configure` with the preceding code:
+
+[!code-csharp[](~/fundamentals/static-files/samples/3x/sample/StartupDefault.cs?name=snippet)]
+
+### UseFileServer for default documents
 
 <xref:Microsoft.AspNetCore.Builder.FileServerExtensions.UseFileServer*> combines the functionality of `UseStaticFiles`, `UseDefaultFiles`, and optionally `UseDirectoryBrowser`.
 
 The following code enables the serving of static files and the default file. Directory browsing isn't enabled.
 
+[!code-csharp[](~/fundamentals/static-files/samples/3x/sample/StartupDefault.cs?name=snippet2)]
+
+The following code shows `Startup.Configure` with the preceding code:
+
+[!code-csharp[](~/fundamentals/static-files/samples/3x/sample/StartupDefault.cs?name=snippet)]
+
 ```csharp
 app.UseFileServer();
 ```
+
+The following code shows `Startup.Configure` with the preceding code:
+
+[!code-csharp[](~/fundamentals/static-files/samples/3x/sample/StartupEmpty2.cs?name=snippet)]
 
 The following code builds upon the parameterless overload by enabling directory browsing:
 
 ```csharp
 app.UseFileServer(enableDirectoryBrowsing: true);
 ```
+The following code shows `Startup.Configure` with the preceding code:
+
+[!code-csharp[](~/fundamentals/static-files/samples/3x/sample/StartupEmpty3.cs?name=snippet)]
 
 Consider the following directory hierarchy:
 
@@ -170,10 +186,10 @@ Using the file hierarchy and preceding code, URLs resolve as follows:
 
 | URI            |                             Response  |
 | ------- | ------|
-| `https://<server_address>/StaticFiles/images/MyImage.jpg`    |      MyStaticFiles/images/MyImage.jpg |
-| `https://<server_address>/StaticFiles`             |     MyStaticFiles/default.html |
+| `https://<hostname>/StaticFiles/images/MyImage.jpg`    |      MyStaticFiles/images/MyImage.jpg |
+| `https://<hostname>/StaticFiles`             |     MyStaticFiles/default.html |
 
-If no default-named file exists in the *MyStaticFiles* directory, `https://<server_address>/StaticFiles` returns the directory listing with clickable links:
+If no default-named file exists in the *MyStaticFiles* directory, `https://<hostname>/StaticFiles` returns the directory listing with clickable links:
 
 ![Static files list](static-files/_static/db2.png)
 

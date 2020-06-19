@@ -18,11 +18,17 @@ namespace sample
                     //webBuilder.UseStartup<Startup>();
                    // webBuilder.UseStartup<StartupRose>();
                     // webBuilder.UseStartup<StartupAddHeader>();
-                    webBuilder.UseStartup<StartupBrowse>();
-                    //webBuilder.UseStartup<Startup>();
-                    //webBuilder.UseStartup<Startup>();
-                    //webBuilder.UseStartup<Startup>();
-                    //webBuilder.UseStartup<Startup>();
+                    //webBuilder.UseStartup<StartupBrowse>();
+                    //webBuilder.UseStartup<StartupEmpty>();
+                    //webBuilder.UseStartup<StartupEmpty2>();
+                    //webBuilder.UseStartup<StartupEmpty3>();
+                    webBuilder.UseStartup<StartupDefault>();
+                    // webBuilder.UseStartup<StartupDefault2>();
+
+                    //webBuilder.UseStartup<StartupBrowse>();
+                    //webBuilder.UseStartup<StartupEmpty>();
+                    //webBuilder.UseStartup<StartupEmpty2>();
+                    //webBuilder.UseStartup<StartupEmpty3>();
 
 
                 });
