@@ -297,6 +297,8 @@ Use the [UseStartup(IWebHostBuilder, String)](/dotnet/api/microsoft.aspnetcore.h
 
 * <xref:fundamentals/startup>
 * <xref:fundamentals/configuration/index>
+* <xref:blazor/fundamentals/environments>
+
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"

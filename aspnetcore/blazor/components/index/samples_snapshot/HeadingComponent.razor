@@ -1,0 +1,30 @@
+@using System.Globalization
+
+<h1 style="font-style:@headingFontStyle">@headingText</h1>
+
+<form>
+    <div>
+        <label class="form-check-label">
+            <input type="checkbox" id="italicsCheck" 
+               @bind="italicsCheck" />
+            Use italics
+        </label>
+    </div>
+
+    <button type="button" class="btn btn-primary" @onclick="UpdateHeading">
+        Update heading
+    </button>
+</form>
+
+@code {
+    private static TextInfo tinfo = CultureInfo.CurrentCulture.TextInfo;
+    private string headingText = 
+        tinfo.ToTitleCase("welcome to blazor!");
+    private string headingFontStyle = "normal";
+    private bool italicsCheck = false;
+
+    public void UpdateHeading()
+    {
+        headingFontStyle = italicsCheck ? "italic" : "normal";
+    }
+}

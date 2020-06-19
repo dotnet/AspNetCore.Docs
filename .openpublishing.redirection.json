@@ -2,7 +2,7 @@
     "redirections": [
         {
             "source_path": "aspnet/core/client-side/bower.md",
-            "redirect_url": "/aspnet/core/client-side/libman/index",
+            "redirect_url": "/aspnet/core/client-side/libman/",
             "redirect_document_id": false
         },
         {
@@ -72,12 +72,12 @@
         },
         {
             "source_path": "aspnetcore/tutorials/first-mvc-app-mac/start-mvc.md",
-            "redirect_url": "/aspnet/core/tutorials/first-mvc-app/index",
+            "redirect_url": "/aspnet/core/tutorials/first-mvc-app/",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/tutorials/first-mvc-app-mac/index.md",
-            "redirect_url": "/aspnet/core/tutorials/first-mvc-app/index",
+            "redirect_url": "/aspnet/core/tutorials/first-mvc-app/",
             "redirect_document_id": false
         },
         {
@@ -312,7 +312,7 @@
         }, 
         {   
             "source_path": "aspnetcore/hosting/dataprotection.md", 
-            "redirect_url": "/aspnet/core/host-and-deploy/iis/index", 
+            "redirect_url": "/aspnet/core/host-and-deploy/iis/", 
             "redirect_document_id": false 
         }, 
         {   
@@ -322,7 +322,7 @@
         }, 
         {   
             "source_path": "aspnetcore/hosting/index.md", 
-            "redirect_url": "/aspnet/core/host-and-deploy/index", 
+            "redirect_url": "/aspnet/core/host-and-deploy/", 
             "redirect_document_id": false 
         }, 
         {   
@@ -372,7 +372,7 @@
         },
         {
             "source_path": "aspnetcore/fundamentals/configuration.md",
-            "redirect_url": "/aspnet/core/fundamentals/configuration/index",
+            "redirect_url": "/aspnet/core/fundamentals/configuration/",
             "redirect_document_id": false
         },
         {
@@ -407,17 +407,17 @@
         },
         {
             "source_path": "aspnetcore/publishing/docker.md",
-            "redirect_url": "/aspnet/core/host-and-deploy/docker/index",
+            "redirect_url": "/aspnet/core/host-and-deploy/docker/",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/publishing/iis.md",
-            "redirect_url": "/aspnet/core/host-and-deploy/iis/index",
+            "redirect_url": "/aspnet/core/host-and-deploy/iis/",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/publishing/index.md",
-            "redirect_url": "/aspnet/core/host-and-deploy/index",
+            "redirect_url": "/aspnet/core/host-and-deploy/",
             "redirect_document_id": false
         },
         {
@@ -502,12 +502,12 @@
         },
         {
             "source_path": "aspnetcore/migration/rc1-to-rtm.md",
-            "redirect_url": "/aspnet/core/migration/index",
+            "redirect_url": "/aspnet/core/migration/",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/migration/rc2-to-rtm.md",
-            "redirect_url": "/aspnet/core/migration/index",
+            "redirect_url": "/aspnet/core/migration/",
             "redirect_document_id": false
         },
         {
@@ -562,7 +562,7 @@
         },
         {
             "source_path": "aspnetcore/security/authentication/sociallogins.md",
-            "redirect_url": "/aspnet/core/security/authentication/social/index",
+            "redirect_url": "/aspnet/core/security/authentication/social/",
             "redirect_document_id": false
         },
         {
@@ -577,7 +577,7 @@
         },
         {
             "source_path": "aspnetcore/fundamentals/middleware.md",
-            "redirect_url": "/aspnet/core/fundamentals/middleware/index",
+            "redirect_url": "/aspnet/core/fundamentals/middleware/",
             "redirect_document_id": false
         },
         {
@@ -617,7 +617,7 @@
         },
         {
             "source_path": "aspnetcore/fundamentals/hosting.md",
-            "redirect_url": "/aspnet/core/fundamentals/host/index",
+            "redirect_url": "/aspnet/core/fundamentals/host/",
             "redirect_document_id": false
         },
         {
@@ -727,7 +727,7 @@
         },
         {
             "source_path": "aspnet/mvc/overview/getting-started/introduction/sample/code-location.md",
-            "redirect_url": "/aspnet/mvc/overview/getting-started/introduction/index",
+            "redirect_url": "/aspnet/mvc/overview/getting-started/introduction/",
             "redirect_document_id": false
         },
         {
@@ -782,7 +782,7 @@
         },
         {
             "source_path": "aspnetcore/razor-components/index.md",
-            "redirect_url": "/aspnet/core/blazor/",
+            "redirect_url": "/aspnet/core/blazor/components/",
             "redirect_document_id": false
         },
         {
@@ -807,7 +807,7 @@
         },
         {
             "source_path": "aspnetcore/razor-components/components.md",
-            "redirect_url": "/aspnet/core/blazor/components",
+            "redirect_url": "/aspnet/core/blazor/components/",
             "redirect_document_id": false
         },
         {
@@ -817,7 +817,7 @@
         },
         {
             "source_path": "aspnetcore/razor-components/class-libraries.md",
-            "redirect_url": "/aspnet/core/blazor/class-libraries",
+            "redirect_url": "/aspnet/core/blazor/components/class-libraries",
             "redirect_document_id": false
         },
         {
@@ -827,12 +827,12 @@
         },
         {
             "source_path": "aspnetcore/razor-components/dependency-injection.md",
-            "redirect_url": "/aspnet/core/blazor/dependency-injection",
+            "redirect_url": "/aspnet/core/blazor/fundamentals/dependency-injection",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/razor-components/routing.md",
-            "redirect_url": "/aspnet/core/blazor/routing",
+            "redirect_url": "/aspnet/core/blazor/fundamentals/routing",
             "redirect_document_id": false
         },
         {
@@ -847,22 +847,22 @@
         },
         {
             "source_path": "aspnetcore/host-and-deploy/razor-components-blazor/index.md",
-            "redirect_url": "/aspnet/core/host-and-deploy/blazor/",
+            "redirect_url": "/aspnet/core/blazor/host-and-deploy/",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/host-and-deploy/razor-components-blazor/blazor.md",
-            "redirect_url": "/aspnet/core/host-and-deploy/blazor/client-side",
+            "redirect_url": "/aspnet/core/blazor/host-and-deploy/",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/host-and-deploy/razor-components-blazor/razor-components.md",
-            "redirect_url": "/aspnet/core/host-and-deploy/blazor/server-side",
+            "redirect_url": "/aspnet/core/blazor/host-and-deploy/",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/host-and-deploy/razor-components-blazor/configure-linker.md",
-            "redirect_url": "/aspnet/core/host-and-deploy/blazor/configure-linker",
+            "redirect_url": "/aspnet/core/blazor/host-and-deploy/configure-linker",
             "redirect_document_id": false
         },
         {
@@ -892,22 +892,22 @@
         },
         {
             "source_path": "aspnetcore/migration/index.md",
-            "redirect_url": "/aspnet/core/migration/proper-to-2x/index",
+            "redirect_url": "/aspnet/core/migration/proper-to-2x/",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/security/blazor/server-side.md",
-            "redirect_url": "/aspnet/core/security/blazor/server",
+            "redirect_url": "/aspnet/core/blazor/security/server/",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/host-and-deploy/blazor/client-side.md",
-            "redirect_url": "/aspnet/core/host-and-deploy/blazor/webassembly",
+            "redirect_url": "/aspnet/core/blazor/host-and-deploy/webassembly",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/host-and-deploy/blazor/server-side.md",
-            "redirect_url": "/aspnet/core/host-and-deploy/blazor/server",
+            "redirect_url": "/aspnet/core/blazor/host-and-deploy/server",
             "redirect_document_id": false
         },
         {
@@ -918,6 +918,161 @@
         {
             "source_path": "aspnetcore/blazor/javascript-interop.md",
             "redirect_url": "/aspnet/core/blazor/call-javascript-from-dotnet",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/security/blazor/server/additional-scenarios.md",
+            "redirect_url": "/aspnet/core/blazor/security/server/additional-scenarios",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/security/blazor/server/index.md",
+            "redirect_url": "/aspnet/core/blazor/security/server/",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/security/blazor/server/threat-mitigation.md",
+            "redirect_url": "/aspnet/core/blazor/security/server/threat-mitigation",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/security/blazor/webassembly/additional-scenarios.md",
+            "redirect_url": "/aspnet/core/blazor/security/webassembly/additional-scenarios",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/security/blazor/webassembly/azure-active-directory-groups-and-roles.md",
+            "redirect_url": "/aspnet/core/blazor/security/webassembly/azure-active-directory-groups-and-roles",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/security/blazor/webassembly/hosted-with-azure-active-directory-b2c.md",
+            "redirect_url": "/aspnet/core/blazor/security/webassembly/hosted-with-azure-active-directory-b2c",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/security/blazor/webassembly/hosted-with-azure-active-directory.md",
+            "redirect_url": "/aspnet/core/blazor/security/webassembly/hosted-with-azure-active-directory",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/security/blazor/webassembly/hosted-with-identity-server.md",
+            "redirect_url": "/aspnet/core/blazor/security/webassembly/hosted-with-identity-server",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/security/blazor/webassembly/index.md",
+            "redirect_url": "/aspnet/core/blazor/security/webassembly/",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/security/blazor/webassembly/standalone-with-authentication-library.md",
+            "redirect_url": "/aspnet/core/blazor/security/webassembly/standalone-with-authentication-library",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/security/blazor/webassembly/standalone-with-azure-active-directory-b2c.md",
+            "redirect_url": "/aspnet/core/blazor/security/webassembly/standalone-with-azure-active-directory-b2c",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/security/blazor/webassembly/standalone-with-azure-active-directory.md",
+            "redirect_url": "/aspnet/core/blazor/security/webassembly/standalone-with-azure-active-directory",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/security/blazor/webassembly/standalone-with-microsoft-accounts.md",
+            "redirect_url": "/aspnet/core/blazor/security/webassembly/standalone-with-microsoft-accounts",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/security/blazor/content-security-policy.md",
+            "redirect_url": "/aspnet/core/blazor/security/content-security-policy",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/security/blazor/index.md",
+            "redirect_url": "/aspnet/core/blazor/security/",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/host-and-deploy/blazor/configure-linker.md",
+            "redirect_url": "/aspnet/core/blazor/host-and-deploy/configure-linker",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/host-and-deploy/blazor/index.md",
+            "redirect_url": "/aspnet/core/blazor/host-and-deploy/",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/host-and-deploy/blazor/server.md",
+            "redirect_url": "/aspnet/core/blazor/host-and-deploy/server",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/host-and-deploy/blazor/webassembly.md",
+            "redirect_url": "/aspnet/core/blazor/host-and-deploy/webassembly",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/performance/blazor/webassembly-best-practices.md",
+            "redirect_url": "/aspnet/core/blazor/webassembly-performance-best-practices",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/blazor/components.md",
+            "redirect_url": "/aspnet/core/blazor/components/",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/blazor/routing.md",
+            "redirect_url": "/aspnet/core/blazor/fundamentals/routing",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/blazor/handle-errors.md",
+            "redirect_url": "/aspnet/core/blazor/fundamentals/handle-errors",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/blazor/hosting-model-configuration.md",
+            "redirect_url": "/aspnet/core/blazor/fundamentals/additional-scenarios",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/blazor/class-libraries.md",
+            "redirect_url": "/aspnet/core/blazor/components/class-libraries",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/blazor/integrate-components.md",
+            "redirect_url": "/aspnet/core/blazor/components/integrate-components",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/blazor/templated-components.md",
+            "redirect_url": "/aspnet/core/blazor/components/templated-components",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/blazor/data-binding.md",
+            "redirect_url": "/aspnet/core/blazor/components/data-binding",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/blazor/lifecycle.md",
+            "redirect_url": "/aspnet/core/blazor/components/lifecycle",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/blazor/event-handling.md",
+            "redirect_url": "/aspnet/core/blazor/components/event-handling",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/blazor/dependency-injection.md",
+            "redirect_url": "/aspnet/core/blazor/fundamentals/dependency-injection",
             "redirect_document_id": false
         }
     ]

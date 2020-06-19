@@ -211,7 +211,7 @@ The `Focus` method is called directly on the object. The following example assum
 [!code-razor[](call-javascript-from-dotnet/samples_snapshot/component2.razor?highlight=1-4,12)]
 
 > [!IMPORTANT]
-> The `username` variable is only populated after the component is rendered. If an unpopulated <xref:Microsoft.AspNetCore.Components.ElementReference> is passed to JavaScript code, the JavaScript code receives a value of `null`. To manipulate element references after the component has finished rendering (to set the initial focus on an element) use the [OnAfterRenderAsync or OnAfterRender component lifecycle methods](xref:blazor/lifecycle#after-component-render).
+> The `username` variable is only populated after the component is rendered. If an unpopulated <xref:Microsoft.AspNetCore.Components.ElementReference> is passed to JavaScript code, the JavaScript code receives a value of `null`. To manipulate element references after the component has finished rendering (to set the initial focus on an element) use the [OnAfterRenderAsync or OnAfterRender component lifecycle methods](xref:blazor/components/lifecycle#after-component-render).
 
 When working with generic types and returning a value, use <xref:System.Threading.Tasks.ValueTask%601>:
 
@@ -448,7 +448,7 @@ JS interop may fail due to networking errors and should be treated as unreliable
       TimeSpan.FromSeconds({SECONDS}), new[] { "Arg1" });
   ```
 
-For more information on resource exhaustion, see <xref:security/blazor/server/threat-mitigation>.
+For more information on resource exhaustion, see <xref:blazor/security/server/threat-mitigation>.
 
 [!INCLUDE[](~/includes/blazor-share-interop-code.md)]
 

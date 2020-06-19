@@ -78,7 +78,7 @@ By default, apps created using the PWA template option have support for running 
 
 To see how offline support works:
 
-1. Publish the app. For more information, see <xref:host-and-deploy/blazor/index#publish-the-app>.
+1. Publish the app. For more information, see <xref:blazor/host-and-deploy/index#publish-the-app>.
 1. Deploy the app to a server that supports HTTPS, and access the app in a browser at its secure HTTPS address.
 1. Open the browser's dev tools and verify that a *Service Worker* is registered for the host on the **Application** tab:
 
@@ -284,4 +284,4 @@ The [CarChecker](https://github.com/SteveSandersonMS/CarChecker) sample app demo
 
 ## Additional resources
 
-* [SignalR cross-origin negotiation for authentication](xref:blazor/hosting-model-configuration#signalr-cross-origin-negotiation-for-authentication)
+* [SignalR cross-origin negotiation for authentication](xref:blazor/fundamentals/additional-scenarios#signalr-cross-origin-negotiation-for-authentication)

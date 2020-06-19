@@ -69,7 +69,7 @@ The following files and folders make up a Blazor app generated from a Blazor tem
 
 * *Shared* folder: Contains other UI components (*.razor*) used by the app:
   * `MainLayout` (*MainLayout.razor*): The app's layout component.
-  * `NavMenu` (*NavMenu.razor*): Implements sidebar navigation. Includes the [NavLink component](xref:blazor/routing#navlink-component) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), which renders navigation links to other Razor components. The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component automatically indicates a selected state when its component is loaded, which helps the user understand which component is currently displayed.
+  * `NavMenu` (*NavMenu.razor*): Implements sidebar navigation. Includes the [NavLink component](xref:blazor/fundamentals/routing#navlink-component) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), which renders navigation links to other Razor components. The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component automatically indicates a selected state when its component is loaded, which helps the user understand which component is currently displayed.
 
 * *_Imports.razor*: Includes common Razor directives to include in the app's components (*.razor*), such as [`@using`](xref:mvc/views/razor#using) directives for namespaces.
 
