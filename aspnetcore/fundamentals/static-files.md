@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to serve and secure static files and configure static file hosting middleware behaviors in an ASP.NET Core web app.
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/07/2019
+ms.date: 6/23/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/static-files
 ---
@@ -14,21 +14,21 @@ uid: fundamentals/static-files
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Kirk Larkin](https://twitter.com/serpent5)
 
-Static files, such as HTML, CSS, images, and JavaScript, are assets an ASP.NET Core app serves directly to clients. Some configuration is required to enable serving of these files.
+Static files, such as HTML, CSS, images, and JavaScript, are assets an ASP.NET Core app serves directly to clients by default.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/static-files/samples) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/static-files/samples/3x) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Serve static files
 
-Static files are stored within the project's [web root](xref:fundamentals/index#web-root) directory. The default directory is *{content root}/wwwroot*, but it can be changed via the [UseWebRoot](/dotnet/api/microsoft.aspnetcore.hosting.hostingabstractionswebhostbuilderextensions.usewebroot#Microsoft_AspNetCore_Hosting_HostingAbstractionsWebHostBuilderExtensions_UseWebRoot_Microsoft_AspNetCore_Hosting_IWebHostBuilder_System_String_) method. See [Content root](xref:fundamentals/index#content-root) and [Web root](xref:fundamentals/index#web-root) for more information.
+Static files are stored within the project's [web root](xref:fundamentals/index#web-root) directory. The default directory is `{content root}/wwwroot`, but it can be changed with the [UseWebRoot](/dotnet/api/microsoft.aspnetcore.hosting.hostingabstractionswebhostbuilderextensions.usewebroot#Microsoft_AspNetCore_Hosting_HostingAbstractionsWebHostBuilderExtensions_UseWebRoot_Microsoft_AspNetCore_Hosting_IWebHostBuilder_System_String_) method. For more information, see [Content root](xref:fundamentals/index#content-root) and [Web root](xref:fundamentals/index#web-root).
 
-The default web app templates set the content root directory. The <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder%2A> method sets the content root to the current directory:
+The <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder%2A> method sets the content root to the current directory:
 
 [!code-csharp[](~/fundamentals/static-files/samples/3x/sample/Program2.cs?name=snippet_Main)]
 
 The preceding code was created with the web app template.
 
-Static files are accessible via a path relative to the [web root](xref:fundamentals/index#web-root). For example, the **Web Application** project templates contains several folders within the *wwwroot* folder:
+Static files are accessible via a path relative to the [web root](xref:fundamentals/index#web-root). For example, the **Web Application** project templates contain several folders within the `wwwroot` folder:
 
 * `wwwroot`
   * `css`
@@ -37,15 +37,17 @@ Static files are accessible via a path relative to the [web root](xref:fundament
 
 Consider creating the *wwwroot/images* folder and adding the *wwwroot/images/MyImage.jpg* file. The URI format to access a file in the `images` folder is `https://<hostname>/images/<image_file_name>`. For example, `https://localhost:5001/images/MyImage.jpg`
 
-### Serve files in wwwroot
+### Serve files in web root
 
 The default web app templates call <xref:Owin.StaticFileExtensions.UseStaticFiles%2A> method in `Startup.Configure`, which enables static files to be served:
 
-[!code-csharp[](~/fundamentals/static-files/samples/3x/sample/Startup.cs?name=snippet&highlight=13)]
+[!code-csharp[](~/fundamentals/static-files/samples/3x/sample/Startup.cs?name=snippet&highlight=14)]
 
 The parameterless `UseStaticFiles` method overload marks the files in [web root](xref:fundamentals/index#web-root) as servable. The following markup references *wwwroot/images/MyImage.jpg*:
 
-[!code-cshtml[](static-files/samples/1x/Views/Home/Index.cshtml?name=snippet_static_file_wwwroot)]
+```html
+<img src="~/images/MyImage.jpg"  class="img" alt="My image." />
+```
 
 In the preceding code, the tilde character `~/` points to the [web root](xref:fundamentals/index#web-root).
 
@@ -59,9 +61,9 @@ Consider a directory hierarchy in which the static files to be served reside out
   * `js`
 * `MyStaticFiles`
   * `images`
-    * *red-rose.jpg*
+    * `red-rose.jpg`
 
-A request can access the *red-rose.jpg* file by configuring the Static File Middleware as follows:
+A request can access the `red-rose.jpg` file by configuring the Static File Middleware as follows:
 
 [!code-csharp[](~/fundamentals/static-files/samples/3x/sample/StartupRose.cs?name=snippet&highlight=13-20)]
 
@@ -69,8 +71,8 @@ In the preceding code, the *MyStaticFiles* directory hierarchy is exposed public
 
 The following markup references *MyStaticFiles/images/red-rose.jpg*:
 
-```cshtml
-<img src="~/StaticFiles/images/red-rose.jpg" class="img" alt="A red rose" />
+```html
+<img src="~/StaticFiles/images/red-rose.jpg" class="img" alt="A red rose." />
 ```
 
 ### Set HTTP response headers
@@ -85,9 +87,9 @@ Static files are publicly cacheable for 600 seconds in the Development environme
 
 ## Static file authorization
 
-The Static File Middleware doesn't provide authorization checks. Any files served by it, including those under *wwwroot*, are publicly accessible. To serve files based on authorization:
+The Static File Middleware doesn't provide authorization checks. Any files served by it, including those under `wwwroot`, are publicly accessible. To serve files based on authorization:
 
-* Store them outside of *wwwroot* and any directory accessible to the Static File Middleware.
+* Store them outside of `wwwroot` and any directory accessible to the Static File Middleware.
 * Serve them via an action method to which authorization is applied. Return a [FileResult](/dotnet/api/microsoft.aspnetcore.mvc.fileresult) object:
 
   [!code-csharp[](static-files/samples/1x/Controllers/HomeController.cs?name=snippet_BannerImageAction)]
@@ -96,18 +98,22 @@ The Static File Middleware doesn't provide authorization checks. Any files serve
 
 Directory browsing allows directory listing and files within specified directories. Directory browsing is disabled by default for security reasons, see [Considerations](#sc). Enable directory browsing with:
 
-* [UseDirectoryBrowser](/dotnet/api/microsoft.aspnetcore.builder.directorybrowserextensions.usedirectorybrowser#Microsoft_AspNetCore_Builder_DirectoryBrowserExtensions_UseDirectoryBrowser_Microsoft_AspNetCore_Builder_IApplicationBuilder_Microsoft_AspNetCore_Builder_DirectoryBrowserOptions_)
-* <xref:Microsoft.Extensions.DependencyInjection.DirectoryBrowserServiceExtensions.AddDirectoryBrowser%2A>
+* <xref:Microsoft.Extensions.DependencyInjection.DirectoryBrowserServiceExtensions.AddDirectoryBrowser%2A> in `Startup.ConfigureServices`.
+* [UseDirectoryBrowser](/dotnet/api/microsoft.aspnetcore.builder.directorybrowserextensions.usedirectorybrowser#Microsoft_AspNetCore_Builder_DirectoryBrowserExtensions_UseDirectoryBrowser_Microsoft_AspNetCore_Builder_IApplicationBuilder_Microsoft_AspNetCore_Builder_DirectoryBrowserOptions_) in `Startup.Configure`.
 
 [!code-csharp[](~/fundamentals/static-files/samples/3x/sample/StartupBrowse.cs?name=snippet&highlight=4,20-34)]
 
-The preceding code allows directory browsing of the *wwwroot/images* folder using the URL `https://\<hostname>/MyImages`, with links to each file and folder:
+The preceding code allows directory browsing of the *wwwroot/images* folder using the URL `https://<hostname>/MyImages`, with links to each file and folder:
 
 ![directory browsing](static-files/_static/dir-browse.png)
 
 See [Security considerations](#sc) on the security risks when enabling browsing.
 
-Note the two `UseStaticFiles` calls in the following example. The first call enables the serving of static files in the *wwwroot* folder. The second call enables directory browsing of the *wwwroot/images* folder using the URL `https://<hostname>/MyImages`.
+<!-- TODO review:  Doesn't need two `UseStaticFiles` calls
+test via  webBuilder.UseStartup<StartupBrowse>(); 
+and navigate to the privacy page
+Note the two `UseStaticFiles` calls in the following example. The first call enables the serving of static files in the `wwwroot` folder. The second call enables directory browsing of the *wwwroot/images* folder using the URL `https://<hostname>/MyImages`.
+-->
 
 ## Serve default documents
 
@@ -138,11 +144,9 @@ The following code shows `Startup.Configure` with the preceding code:
 
 <xref:Microsoft.AspNetCore.Builder.FileServerExtensions.UseFileServer*> combines the functionality of `UseStaticFiles`, `UseDefaultFiles`, and optionally `UseDirectoryBrowser`.
 
-The `app.UseFileServer();` enables the serving of static files and the default file. Directory browsing isn't enabled. The following code shows `Startup.Configure` with `UseFileServer`:
+The call `app.UseFileServer` enables the serving of static files and the default file. Directory browsing isn't enabled. The following code shows `Startup.Configure` with `UseFileServer`:
 
-The following code shows `Startup.Configure` with the preceding code:
-
-[!code-csharp[](~/fundamentals/static-files/samples/3x/sample/StartupEmpty2.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/static-files/samples/3x/sample/StartupEmpty2.cs?name=snippet&highlight=14)]
 
 The following code enables default documents and directory browsing:
 
@@ -152,7 +156,7 @@ app.UseFileServer(enableDirectoryBrowsing: true);
 
 The following code shows `Startup.Configure` with the preceding code:
 
-[!code-csharp[](~/fundamentals/static-files/samples/3x/sample/StartupEmpty3.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/static-files/samples/3x/sample/StartupEmpty3.cs?name=snippet&highlight=14)]
 
 Consider the following directory hierarchy:
 
@@ -182,7 +186,7 @@ If no default-named file exists in the *MyStaticFiles* directory, `https://<host
 
 ![Static files list](static-files/_static/db2.png)
 
-<xref:Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles*> and <xref:Microsoft.AspNetCore.Builder.DirectoryBrowserExtensions.UseDirectoryBrowser*> perform a client-side redirect from the target URI without a trailing `/`  to the target URI with a trailing `/`. For example, from `https://<hostname>/StaticFiles` to `https://<hostname>/StaticFiles/`. Relative URLs within the *StaticFiles* directory are invalid without a trailing slash.
+<xref:Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles*> and <xref:Microsoft.AspNetCore.Builder.DirectoryBrowserExtensions.UseDirectoryBrowser*> perform a client-side redirect from the target URI without a trailing `/`  to the target URI with a trailing `/`. For example, from `https://<hostname>/StaticFiles` to `https://<hostname>/StaticFiles/`. Relative URLs within the *StaticFiles* directory are invalid without a trailing slash (`/`).
 
 ## FileExtensionContentTypeProvider
 
@@ -263,18 +267,18 @@ The `WebHost.CreateDefaultBuilder` method sets the content root to the current d
 
 [!code-csharp[](../common/samples/WebApplication1DotNetCore2.0App/Program.cs?name=snippet_Main&highlight=9)]
 
-Static files are accessible via a path relative to the [web root](xref:fundamentals/index#web-root). For example, the **Web Application** project template contains several folders within the *wwwroot* folder:
+Static files are accessible via a path relative to the [web root](xref:fundamentals/index#web-root). For example, the **Web Application** project template contains several folders within the `wwwroot` folder:
 
-* **wwwroot**
-  * **css**
-  * **images**
-  * **js**
+* `wwwroot`
+  * `css`
+  * `images`
+  * `js`
 
 The URI format to access a file in the *images* subfolder is *http://\<server_address>/images/\<image_file_name>*. For example, *http://localhost:9189/images/banner3.svg*.
 
 If targeting .NET Framework, add the [Microsoft.AspNetCore.StaticFiles](https://www.nuget.org/packages/Microsoft.AspNetCore.StaticFiles/) package to the project. If targeting .NET Core, the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) includes this package.
 
-Configure the [middleware](xref:fundamentals/middleware/index) which enables the serving of static files.
+Configure the [middleware](xref:fundamentals/middleware/index), which enables the serving of static files.
 
 ### Serve files inside of web root
 
@@ -292,13 +296,13 @@ In the preceding code, the tilde character `~/` points to the [web root](xref:fu
 
 Consider a directory hierarchy in which the static files to be served reside outside of the [web root](xref:fundamentals/index#web-root):
 
-* **wwwroot**
-  * **css**
-  * **images**
-  * **js**
-* **MyStaticFiles**
-  * **images**
-    * *banner1.svg*
+* `wwwroot`
+  * `css`
+  * `images`
+  * `js`
+* `MyStaticFiles`
+  * `images`
+    * `banner1.svg`
 
 A request can access the *banner1.svg* file by configuring the Static File Middleware as follows:
 

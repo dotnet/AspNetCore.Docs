@@ -18,7 +18,7 @@ namespace sample
                     //webBuilder.UseStartup<Startup>();
                    // webBuilder.UseStartup<StartupRose>();
                     // webBuilder.UseStartup<StartupAddHeader>();
-                    //webBuilder.UseStartup<StartupBrowse>();
+                    webBuilder.UseStartup<StartupBrowse>();
                     //webBuilder.UseStartup<StartupEmpty>();
                     //webBuilder.UseStartup<StartupEmpty2>();
                     //webBuilder.UseStartup<StartupEmpty3>();
@@ -26,7 +26,7 @@ namespace sample
                     // webBuilder.UseStartup<StartupDefault2>();
                     //webBuilder.UseStartup<StartupUseFileServer>();
                     //webBuilder.UseStartup<StartupFileExtensionContentTypeProvider>();
-                    webBuilder.UseStartup<StartupServeUnknownFileTypes>();
+                    //webBuilder.UseStartup<StartupServeUnknownFileTypes>();
 
                     //webBuilder.UseStartup<StartupEmpty3>();
 
