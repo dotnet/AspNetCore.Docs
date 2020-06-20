@@ -25,15 +25,15 @@ At the end of this tutorial, you'll have a working todo list app.
 
 ## Build components
 
-1. Follow the guidance in the <xref:blazor/get-started> article to create a Blazor project for this tutorial. Name the project *ToDoList*.
+1. Follow the guidance in the <xref:blazor/get-started> article to create a Blazor project for this tutorial. Name the project `ToDoList`.
 
-1. Browse to each of the app's three pages in the *Pages* folder: Home, Counter, and Fetch data. These pages are implemented by the Razor component files *Index.razor*, *Counter.razor*, and *FetchData.razor*.
+1. Browse to each of the app's three pages in the `Pages` folder: `Home`, `Counter`, and `Fetch data`. These pages are implemented by the Razor component files `Index.razor`, `Counter.razor`, and `FetchData.razor`.
 
-1. On the Counter page, select the **Click me** button to increment the counter without a page refresh. Incrementing a counter in a webpage normally requires writing JavaScript. With Blazor, you can write C# instead.
+1. On the `Counter` page, select the button to increment the counter without a page refresh. Incrementing a counter in a webpage normally requires writing JavaScript. With Blazor, you can write C# instead.
 
-1. Examine the implementation of the `Counter` component in the *Counter.razor* file.
+1. Examine the implementation of the `Counter` component in the `Counter.razor` file.
 
-   *Pages/Counter.razor*:
+   `Pages/Counter.razor`:
 
    [!code-razor[](build-your-first-blazor-app/samples_snapshot/3.x/Counter1.razor)]
 
@@ -41,7 +41,7 @@ At the end of this tutorial, you'll have a working todo list app.
 
    Members of the component class are defined in an `@code` block. In the `@code` block, component state (properties, fields) and methods are specified for event handling or for defining other component logic. These members are then used as part of the component's rendering logic and for handling events.
 
-   When the **Click me** button is selected:
+   When the counter increment button is selected:
 
    * The `Counter` component's registered `onclick` handler is called (the `IncrementCount` method).
    * The `Counter` component regenerates its render tree.
@@ -52,17 +52,17 @@ At the end of this tutorial, you'll have a working todo list app.
 
    [!code-razor[](build-your-first-blazor-app/samples_snapshot/3.x/Counter2.razor?highlight=14)]
 
-1. Rebuild and run the app to see the changes. Select the **Click me** button. The counter increments by two.
+1. Rebuild and run the app to see the changes. Select the button. The counter increments by two.
 
 ## Use components
 
 Include a component in another component using an HTML syntax.
 
-1. Add the `Counter` component to the app's `Index` component by adding a `<Counter />` element to the `Index` component (*Index.razor*).
+1. Add the `Counter` component to the app's `Index` component by adding a `<Counter />` element to the `Index` component (`Index.razor`).
 
    If you're using Blazor WebAssembly for this experience, a `SurveyPrompt` component is used by the `Index` component. Replace the `<SurveyPrompt>` element with a `<Counter />` element. If you're using a Blazor Server app for this experience, add the `<Counter />` element to the `Index` component:
 
-   *Pages/Index.razor*:
+   `Pages/Index.razor`:
 
    [!code-razor[](build-your-first-blazor-app/samples_snapshot/3.x/Index1.razor?highlight=7)]
 
@@ -77,7 +77,7 @@ Components can also have parameters. Component parameters are defined using publ
    * Add a public `IncrementAmount` property with the [`[Parameter]`](xref:Microsoft.AspNetCore.Components.ParameterAttribute) attribute.
    * Change the `IncrementCount` method to use the `IncrementAmount` property when increasing the value of `currentCount`.
 
-   *Pages/Counter.razor*:
+   `Pages/Counter.razor`:
 
    [!code-razor[](build-your-first-blazor-app/samples_snapshot/3.x/Counter.razor?highlight=13,17)]
 
@@ -88,15 +88,15 @@ Components can also have parameters. Component parameters are defined using publ
 
 1. Specify an `IncrementAmount` parameter in the `Index` component's `<Counter>` element using an attribute. Set the value to increment the counter by ten.
 
-   *Pages/Index.razor*:
+   `Pages/Index.razor`:
 
    [!code-razor[](build-your-first-blazor-app/samples_snapshot/3.x/Index2.razor?highlight=7)]
 
-1. Reload the `Index` component. The counter increments by ten each time the **Click me** button is selected. The counter in the `Counter` component continues to increment by one.
+1. Reload the `Index` component. The counter increments by ten each time the button is selected. The counter in the `Counter` component continues to increment by one.
 
 ## Route to components
 
-The `@page` directive at the top of the *Counter.razor* file specifies that the `Counter` component is a routing endpoint. The `Counter` component handles requests sent to `/counter`. Without the `@page` directive, a component doesn't handle routed requests, but the component can still be used by other components.
+The `@page` directive at the top of the `Counter.razor` file specifies that the `Counter` component is a routing endpoint. The `Counter` component handles requests sent to `/counter`. Without the `@page` directive, a component doesn't handle routed requests, but the component can still be used by other components.
 
 ## Dependency injection
 
@@ -108,7 +108,7 @@ If working with a Blazor Server app, the `WeatherForecastService` service is reg
 
 The [`@inject`](xref:mvc/views/razor#inject) directive is used to inject the instance of the `WeatherForecastService` service into the `FetchData` component.
 
-*Pages/FetchData.razor*:
+`Pages/FetchData.razor`:
 
 [!code-razor[](build-your-first-blazor-app/samples_snapshot/3.x/FetchData1.razor?highlight=3)]
 
@@ -118,9 +118,9 @@ The `FetchData` component uses the injected service, as `ForecastService`, to re
 
 ### Blazor WebAssembly experience
 
-If working with a Blazor WebAssembly app, <xref:System.Net.Http.HttpClient> is injected to obtain weather forecast data from the *weather.json* file in the *wwwroot/sample-data* folder.
+If working with a Blazor WebAssembly app, <xref:System.Net.Http.HttpClient> is injected to obtain weather forecast data from the `weather.json` file in the `wwwroot/sample-data` folder.
 
-*Pages/FetchData.razor*:
+`Pages/FetchData.razor`:
 
 [!code-razor[](build-your-first-blazor-app/samples_snapshot/3.x/FetchData1_client.razor?highlight=7-9)]
 
@@ -132,7 +132,7 @@ An [`@foreach`](/dotnet/csharp/language-reference/keywords/foreach-in) loop is u
 
 Add a new component to the app that implements a simple todo list.
 
-1. Add a new `Todo` Razor component to the app in the *Pages* folder. If you're using Visual Studio, right-click the **Pages** folder and select **Add** > **New Item** > **Razor Component**. Name the component's file *Todo.razor*. In other development environments, add a blank file to the **Pages** folder named *Todo.razor*.
+1. Add a new `Todo` Razor component to the app in the `Pages` folder. If you're using Visual Studio, right-click the `Pages` folder and select **Add** > **New Item** > **Razor Component**. Name the component's file `Todo.razor`. In other development environments, add a blank file to the `Pages` folder named `Todo.razor`.
 
 1. Provide the initial markup for the component:
 
@@ -144,9 +144,9 @@ Add a new component to the app that implements a simple todo list.
 
 1. Add the `Todo` component to the navigation bar.
 
-   The `NavMenu` component (*Shared/NavMenu.razor*) is used in the app's layout. Layouts are components that allow you to avoid duplication of content in the app.
+   The `NavMenu` component (`Shared/NavMenu.razor`) is used in the app's layout. Layouts are components that allow you to avoid duplication of content in the app.
 
-   Add a `<NavLink>` element for the `Todo` component by adding the following list item markup below the existing list items in the *Shared/NavMenu.razor* file:
+   Add a `<NavLink>` element for the `Todo` component by adding the following list item markup below the existing list items in the `Shared/NavMenu.razor` file:
 
    ```razor
    <li class="nav-item px-3">
@@ -158,11 +158,11 @@ Add a new component to the app that implements a simple todo list.
 
 1. Rebuild and run the app. Visit the new Todo page to confirm that the link to the `Todo` component works.
 
-1. Add a *TodoItem.cs* file to the root of the project to hold a class that represents a todo item. Use the following C# code for the `TodoItem` class:
+1. Add a `TodoItem.cs` file to the root of the project to hold a class that represents a todo item. Use the following C# code for the `TodoItem` class:
 
    [!code-csharp[](build-your-first-blazor-app/samples_snapshot/3.x/TodoItem.cs)]
 
-1. Return to the `Todo` component (*Pages/Todo.razor*):
+1. Return to the `Todo` component (`Pages/Todo.razor`):
 
    * Add a field for the todo items in an `@code` block. The `Todo` component uses this field to maintain the state of the todo list.
    * Add unordered list markup and a `foreach` loop to render each todo item as a list item (`<li>`).
@@ -173,7 +173,7 @@ Add a new component to the app that implements a simple todo list.
 
    [!code-razor[](build-your-first-blazor-app/samples_snapshot/3.x/ToDo5.razor?highlight=12-13)]
 
-1. Rebuild and run the app. When the **Add todo** button is selected, nothing happens because an event handler isn't wired up to the button.
+1. Rebuild and run the app. When the **`Add todo`** button is selected, nothing happens because an event handler isn't wired up to the button.
 
 1. Add an `AddTodo` method to the `Todo` component and register it for button selections using the `@onclick` attribute. The `AddTodo` C# method is called when the button is selected:
 
@@ -203,7 +203,7 @@ Add a new component to the app that implements a simple todo list.
    <h3>Todo (@todos.Count(todo => !todo.IsDone))</h3>
    ```
 
-1. The completed `Todo` component (*Pages/Todo.razor*):
+1. The completed `Todo` component (`Pages/Todo.razor`):
 
    [!code-razor[](build-your-first-blazor-app/samples_snapshot/3.x/Todo.razor)]
 
