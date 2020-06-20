@@ -190,9 +190,6 @@ For migrating configuration and Identity code, see [Migrate configuration to ASP
 
 > [!NOTE]
 > The version numbers in the samples might not be current, update the projects accordingly.
-## Prerequisites
-
-[!INCLUDE [prerequisites](../includes/net-core-prereqs-vs-3.1.md)]
 
 ## Create the starter ASP.NET MVC project
 
@@ -379,9 +376,6 @@ For migrating configuration and Identity code, see [Migrate configuration to ASP
 
 > [!NOTE]
 > The version numbers in the samples might not be current, update the projects accordingly.
-## Prerequisites
-
-[!INCLUDE [prerequisites](../includes/net-core-prereqs-vs-3.1.md)]
 
 ## Create the starter ASP.NET MVC project
 
