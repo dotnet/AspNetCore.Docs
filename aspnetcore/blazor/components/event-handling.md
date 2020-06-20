@@ -62,7 +62,14 @@ In the following example, `UpdateHeading` is called asynchronously when the butt
 
 ## Event argument types
 
-For some events, event argument types are permitted. Specifying an event type in the method call is only necessary if the event type is used in the method.
+For some events, event argument types are permitted. Specifying an event parameter in an event method definition is optional and only necessary if the event type is used in the method. In the following example, the `MouseEventArgs` event argument is used in the `ShowMessage` method to set message text:
+
+```csharp
+private void ShowMessage(MouseEventArgs e)
+{
+    messageText = $"The mouse is at coordinates: {e.ScreenX}:{e.ScreenY}";
+}
+```
 
 Supported <xref:System.EventArgs> are shown in the following table.
 

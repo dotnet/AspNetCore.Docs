@@ -61,16 +61,13 @@ Follow the guidance for your choice of tooling:
 
 1. Select **Blazor App** and select **Next**.
 
-1. Type "BlazorSignalRApp" in the **Project name** field. Confirm the **Location** entry is correct or provide a location for the project. Select **Create**.
+1. Type `BlazorSignalRApp` in the **Project name** field. Confirm the **Location** entry is correct or provide a location for the project. Select **Create**.
 
 1. Choose the **Blazor WebAssembly App** template.
 
 1. Under **Advanced**, select the **ASP.NET Core hosted** check box.
 
 1. Select **Create**.
-
-> [!NOTE]
-> If you upgraded or installed a new version of Visual Studio and the Blazor WebAssembly template doesn't appear in the VS UI, reinstall the template using the `dotnet new` command shown previously.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -82,7 +79,7 @@ Follow the guidance for your choice of tooling:
 
 1. In Visual Studio Code, open the app's project folder.
 
-1. When the dialog appears to add assets to build and debug the app, select **Yes**. Visual Studio Code automatically adds the *.vscode* folder with generated *launch.json* and *tasks.json* files.
+1. When the dialog appears to add assets to build and debug the app, select **Yes**. Visual Studio Code automatically adds the `.vscode` folder with generated `launch.json` and `tasks.json` files.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -107,7 +104,7 @@ Follow the guidance for your choice of tooling:
 
    If a prompt appears to trust the development certificate, trust the certificate and continue. The user and keychain passwords are required to trust the certificate.
 
-1. Open the project by navigating to the project folder and opening the project's solution file (*.sln*).
+1. Open the project by navigating to the project folder and opening the project's solution file (`.sln`).
 
 # [.NET Core CLI](#tab/netcore-cli/)
 
@@ -123,13 +120,13 @@ dotnet new blazorwasm --hosted --output BlazorSignalRApp
 
 # [Visual Studio](#tab/visual-studio/)
 
-1. In **Solution Explorer**, right-click the **BlazorSignalRApp.Client** project and select **Manage NuGet Packages**.
+1. In **Solution Explorer**, right-click the `BlazorSignalRApp.Client` project and select **Manage NuGet Packages**.
 
-1. In the **Manage NuGet Packages** dialog, confirm that the **Package source** is set to *nuget.org*.
+1. In the **Manage NuGet Packages** dialog, confirm that the **Package source** is set to `nuget.org`.
 
-1. With **Browse** selected, type "Microsoft.AspNetCore.SignalR.Client" in the search box.
+1. With **Browse** selected, type `Microsoft.AspNetCore.SignalR.Client` in the search box.
 
-1. In the search results, select the [Microsoft.AspNetCore.SignalR.Client](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client/) package and select **Install**.
+1. In the search results, select the [`Microsoft.AspNetCore.SignalR.Client`](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client) package and select **Install**.
 
 1. If the **Preview Changes** dialog appears, select **OK**.
 
@@ -145,13 +142,13 @@ dotnet add Client package Microsoft.AspNetCore.SignalR.Client
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-1. In the **Solution** sidebar, right-click the **BlazorSignalRApp.Client** project and select **Manage NuGet Packages**.
+1. In the **Solution** sidebar, right-click the `BlazorSignalRApp.Client` project and select **Manage NuGet Packages**.
 
-1. In the **Manage NuGet Packages** dialog, confirm that the source drop-down is set to *nuget.org*.
+1. In the **Manage NuGet Packages** dialog, confirm that the source drop-down is set to `nuget.org`.
 
-1. With **Browse** selected, type "Microsoft.AspNetCore.SignalR.Client" in the search box.
+1. With **Browse** selected, type `Microsoft.AspNetCore.SignalR.Client` in the search box.
 
-1. In the search results, select the check box next to the [Microsoft.AspNetCore.SignalR.Client](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client/) package and select **Add Package**.
+1. In the search results, select the check box next to the [`Microsoft.AspNetCore.SignalR.Client`](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client) package and select **Add Package**.
 
 1. If the **License Acceptance** dialog appears, select **Accept** if you agree with the license terms.
 
@@ -168,13 +165,13 @@ dotnet add Client package Microsoft.AspNetCore.SignalR.Client
 
 ## Add a SignalR hub
 
-In the **BlazorSignalRApp.Server** project, create a *Hubs* (plural) folder and add the following `ChatHub` class (*Hubs/ChatHub.cs*):
+In the `BlazorSignalRApp.Server` project, create a `Hubs` (plural) folder and add the following `ChatHub` class (`Hubs/ChatHub.cs`):
 
 [!code-csharp[](signalr-blazor-webassembly/samples/3.x/BlazorSignalRApp/Server/Hubs/ChatHub.cs)]
 
 ## Add services and an endpoint for the SignalR hub
 
-1. In the **BlazorSignalRApp.Server** project, open the *Startup.cs* file.
+1. In the `BlazorSignalRApp.Server` project, open the `Startup.cs` file.
 
 1. Add the namespace for the `ChatHub` class to the top of the file:
 
@@ -195,7 +192,7 @@ In the **BlazorSignalRApp.Server** project, create a *Hubs* (plural) folder and 
 
 ## Add Razor component code for chat
 
-1. In the **BlazorSignalRApp.Client** project, open the *Pages/Index.razor* file.
+1. In the `BlazorSignalRApp.Client` project, open the `Pages/Index.razor` file.
 
 1. Replace the markup with the following code:
 
@@ -207,11 +204,11 @@ In the **BlazorSignalRApp.Server** project, create a *Hubs* (plural) folder and 
 
 # [Visual Studio](#tab/visual-studio)
 
-1. In **Solution Explorer**, select the **BlazorSignalRApp.Server** project. Press <kbd>F5</kbd> to run the app with debugging or <kbd>Ctrl</kbd>+<kbd>F5</kbd> to run the app without debugging.
+1. In **Solution Explorer**, select the `BlazorSignalRApp.Server` project. Press <kbd>F5</kbd> to run the app with debugging or <kbd>Ctrl</kbd>+<kbd>F5</kbd> to run the app without debugging.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
-1. Choose either browser, enter a name and message, and select the **Send** button. The name and message are displayed on both pages instantly:
+1. Choose either browser, enter a name and message, and select the button to send the message. The name and message are displayed on both pages instantly:
 
    ![SignalR Blazor WebAssembly sample app open in two browser windows showing exchanged messages.](signalr-blazor-webassembly/_static/3.x/signalr-blazor-webassembly-finished.png)
 
@@ -219,7 +216,7 @@ In the **BlazorSignalRApp.Server** project, create a *Hubs* (plural) folder and 
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-1. When VS Code offers to create a launch profile for the Server app (*.vscode/launch.json*), the `program` entry appears similar to the following to point to the app's assembly (`{APPLICATION NAME}.Server.dll`):
+1. When VS Code offers to create a launch profile for the Server app (`.vscode/launch.json`), the `program` entry appears similar to the following to point to the app's assembly (`{APPLICATION NAME}.Server.dll`):
 
    ```json
    "program": "${workspaceFolder}/Server/bin/Debug/netcoreapp3.1/{APPLICATION NAME}.Server.dll"
@@ -229,7 +226,7 @@ In the **BlazorSignalRApp.Server** project, create a *Hubs* (plural) folder and 
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
-1. Choose either browser, enter a name and message, and select the **Send** button. The name and message are displayed on both pages instantly:
+1. Choose either browser, enter a name and message, and select the button to send the message. The name and message are displayed on both pages instantly:
 
    ![SignalR Blazor WebAssembly sample app open in two browser windows showing exchanged messages.](signalr-blazor-webassembly/_static/3.x/signalr-blazor-webassembly-finished.png)
 
@@ -237,11 +234,11 @@ In the **BlazorSignalRApp.Server** project, create a *Hubs* (plural) folder and 
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-1. In the **Solution** sidebar, select the **BlazorSignalRApp.Server** project. Press <kbd>⌘</kbd>+<kbd>↩</kbd> to run the app with debugging or <kbd>⌥</kbd>+<kbd>⌘</kbd>+<kbd>↩</kbd> to run the app without debugging.
+1. In the **Solution** sidebar, select the `BlazorSignalRApp.Server` project. Press <kbd>⌘</kbd>+<kbd>↩</kbd> to run the app with debugging or <kbd>⌥</kbd>+<kbd>⌘</kbd>+<kbd>↩</kbd> to run the app without debugging.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
-1. Choose either browser, enter a name and message, and select the **Send** button. The name and message are displayed on both pages instantly:
+1. Choose either browser, enter a name and message, and select the button to send the message. The name and message are displayed on both pages instantly:
 
    ![SignalR Blazor WebAssembly sample app open in two browser windows showing exchanged messages.](signalr-blazor-webassembly/_static/3.x/signalr-blazor-webassembly-finished.png)
 
@@ -258,7 +255,7 @@ In the **BlazorSignalRApp.Server** project, create a *Hubs* (plural) folder and 
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
-1. Choose either browser, enter a name and message, and select the **Send** button. The name and message are displayed on both pages instantly:
+1. Choose either browser, enter a name and message, and select the button to send the message. The name and message are displayed on both pages instantly:
 
    ![SignalR Blazor WebAssembly sample app open in two browser windows showing exchanged messages.](signalr-blazor-webassembly/_static/3.x/signalr-blazor-webassembly-finished.png)
 
