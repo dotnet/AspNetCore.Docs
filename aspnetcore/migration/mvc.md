@@ -1,8 +1,8 @@
 ---
-title: Migrate from ASP.NET MVC to ASP.NET Core MVC
-author: wpickett
+title: Learn to migrate from ASP.NET MVC to ASP.NET Core MVC
+author: wadepickett
 description: Learn how to start migrating an ASP.NET MVC project to ASP.NET Core MVC.
-ms.author: author: wpickett
+ms.author: wpickett
 ms.date: 06/18/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: migration/mvc
