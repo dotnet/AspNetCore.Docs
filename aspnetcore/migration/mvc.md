@@ -48,7 +48,7 @@ Create a new solution with a new ASP.NET Core project to migrate to:
 
 ## Configure the ASP.NET Core site to use MVC
 
-As of ASP.NET Core 3.0, *.NET Framework* is no longer a supported target framework, the ASP.NET Core 3.x shared framework is used instead. The ASP.NET Core 3.x shared framework contained in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app), no longer requires an explicit `<PackageReference />` element in the project file. The shared framework is automatically referenced when using the `Microsoft.NET.Sdk.Web` SDK in the project file:
+As of ASP.NET Core 3.0, *.NET Framework* is no longer a supported target framework, the ASP.NET Core shared framework is used instead. The ASP.NET Core shared framework contained in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app), no longer requires an explicit `<PackageReference />` element in the project file. The shared framework is automatically referenced when using the `Microsoft.NET.Sdk.Web` SDK in the project file:
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk.Web">
