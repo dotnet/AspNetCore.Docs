@@ -435,6 +435,9 @@ The `OnActionExecuting` action filter can be used to:
 
 [!code-csharp[](./filters/3.1sample/FiltersSample/Filters/ValidateModelAttribute.cs?name=snippet)]
 
+> [!NOTE]
+> Controllers annotated with the `[ApiController]` attribute automatically validate model state and return a 400 response. For more information, see [Automatic HTTP 400 responses](xref:web-api/index#automatic-http-400-responses).
+
 The `OnActionExecuted` method runs after the action method:
 
 * And can see and manipulate the results of the action through the <xref:Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext.Result> property.
