@@ -25,9 +25,9 @@ namespace sample
                     //webBuilder.UseStartup<StartupDefault>();
                     // webBuilder.UseStartup<StartupDefault2>();
                     //webBuilder.UseStartup<StartupUseFileServer>();
-                    webBuilder.UseStartup<StartupFileExtensionContentTypeProvider>();
+                    //webBuilder.UseStartup<StartupFileExtensionContentTypeProvider>();
+                    webBuilder.UseStartup<StartupServeUnknownFileTypes>();
 
-                    //webBuilder.UseStartup<StartupEmpty2>();
                     //webBuilder.UseStartup<StartupEmpty3>();
 
 

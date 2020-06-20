@@ -24,7 +24,7 @@ Static files are stored within the project's [web root](xref:fundamentals/index#
 
 The default web app templates set the content root directory. The <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder%2A> method sets the content root to the current directory:
 
-[!code-csharp[](~/fundamentals/static-files/samples/3x/sample/Program.cs?name=snippet_Main)]
+[!code-csharp[](~/fundamentals/static-files/samples/3x/sample/Program2.cs?name=snippet_Main)]
 
 The preceding code was created with the web app template.
 
@@ -94,7 +94,7 @@ The Static File Middleware doesn't provide authorization checks. Any files serve
 
 ## Directory browsing
 
-Directory browsing allows directory listing and files within specified directories. Directory browsing is disabled by default for security reasons, see [Considerations](#considerations). Enable directory browsing with:
+Directory browsing allows directory listing and files within specified directories. Directory browsing is disabled by default for security reasons, see [Considerations](#sc). Enable directory browsing with:
 
 * [UseDirectoryBrowser](/dotnet/api/microsoft.aspnetcore.builder.directorybrowserextensions.usedirectorybrowser#Microsoft_AspNetCore_Builder_DirectoryBrowserExtensions_UseDirectoryBrowser_Microsoft_AspNetCore_Builder_IApplicationBuilder_Microsoft_AspNetCore_Builder_DirectoryBrowserOptions_)
 * <xref:Microsoft.Extensions.DependencyInjection.DirectoryBrowserServiceExtensions.AddDirectoryBrowser%2A>
@@ -105,7 +105,7 @@ The preceding code allows directory browsing of the *wwwroot/images* folder usin
 
 ![directory browsing](static-files/_static/dir-browse.png)
 
-See [Considerations](#considerations) on the security risks when enabling browsing.
+See [Security considerations](#sc) on the security risks when enabling browsing.
 
 Note the two `UseStaticFiles` calls in the following example. The first call enables the serving of static files in the *wwwroot* folder. The second call enables directory browsing of the *wwwroot/images* folder using the URL `https://<hostname>/MyImages`.
 
@@ -202,7 +202,11 @@ Static File Middleware understands almost 400 known file content types. If the u
 
 The following code enables serving unknown types and renders the unknown file as an image:
 
-[!code-csharp[](static-files/samples/1x/StartupServeUnknownFileTypes.cs?name=snippet_ConfigureMethod)]
+[!code-csharp[](~/fundamentals/static-files/samples/3x/sample/StartupServeUnknownFileTypes.cs?name=snippet2)]
+
+The following code shows `Startup.Configure` with the preceding code:
+
+[!code-csharp[](~/fundamentals/static-files/samples/3x/sample/StartupServeUnknownFileTypes.cs?name=snippet)]
 
 With the preceding code, a request for a file with an unknown content type is returned as an image.
 
@@ -211,14 +215,16 @@ With the preceding code, a request for a file with an unknown content type is re
 
 ## Serve files from multiple locations
 
-`UseStaticFiles` and `UseFileServer` defaults to the file provider pointing at *wwwroot*. You can provide additional instances of `UseStaticFiles` and `UseFileServer` with other file providers to serve files from other locations. For more information, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/15578).
+`UseStaticFiles` and `UseFileServer` defaults to the file provider pointing at `wwwroot`. Additional instances of `UseStaticFiles` and `UseFileServer` can be provided with other file providers to serve files from other locations. For more information, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/15578).
 
-### Considerations
+<a name="sc"></a>
+
+### Security considerations for static files
 
 > [!WARNING]
-> `UseDirectoryBrowser` and `UseStaticFiles` can leak secrets. Disabling directory browsing in production is highly recommended. Carefully review which directories are enabled via `UseStaticFiles` or `UseDirectoryBrowser`. The entire directory and its sub-directories become publicly accessible. Store files suitable for serving to the public in a dedicated directory, such as *\<content_root>/wwwroot*. Separate these files from MVC views, Razor Pages (2.x only), configuration files, etc.
+> `UseDirectoryBrowser` and `UseStaticFiles` can leak secrets. Disabling directory browsing in production is highly recommended. Carefully review which directories are enabled via `UseStaticFiles` or `UseDirectoryBrowser`. The entire directory and its sub-directories become publicly accessible. Store files suitable for serving to the public in a dedicated directory, such as `<content_root>/wwwroot`. Separate these files from MVC views, Razor Pages, configuration files, etc.
 
-* The URLs for content exposed with `UseDirectoryBrowser` and `UseStaticFiles` are subject to the case sensitivity and character restrictions of the underlying file system. For example, Windows is case insensitive&mdash;macOS and Linux aren't.
+* The URLs for content exposed with `UseDirectoryBrowser` and `UseStaticFiles` are subject to the case sensitivity and character restrictions of the underlying file system. For example, Windows is case insensitive, macOS and Linux aren't.
 
 * ASP.NET Core apps hosted in IIS use the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) to forward all requests to the app, including static file requests. The IIS static file handler isn't used. It has no chance to handle requests before they're handled by the module.
 
@@ -328,7 +334,7 @@ The Static File Middleware doesn't provide authorization checks. Any files serve
 
 ## Enable directory browsing
 
-Directory browsing allows users of your web app to see a directory listing and files within a specified directory. Directory browsing is disabled by default for security reasons (see [Considerations](#considerations)). Enable directory browsing by invoking the [UseDirectoryBrowser](/dotnet/api/microsoft.aspnetcore.builder.directorybrowserextensions.usedirectorybrowser#Microsoft_AspNetCore_Builder_DirectoryBrowserExtensions_UseDirectoryBrowser_Microsoft_AspNetCore_Builder_IApplicationBuilder_Microsoft_AspNetCore_Builder_DirectoryBrowserOptions_) method in `Startup.Configure`:
+Directory browsing allows users of your web app to see a directory listing and files within a specified directory. Directory browsing is disabled by default for security reasons (see [Considerations](#sc)). Enable directory browsing by invoking the [UseDirectoryBrowser](/dotnet/api/microsoft.aspnetcore.builder.directorybrowserextensions.usedirectorybrowser#Microsoft_AspNetCore_Builder_DirectoryBrowserExtensions_UseDirectoryBrowser_Microsoft_AspNetCore_Builder_IApplicationBuilder_Microsoft_AspNetCore_Builder_DirectoryBrowserOptions_) method in `Startup.Configure`:
 
 [!code-csharp[](static-files/samples/1x/StartupBrowse.cs?name=snippet_ConfigureMethod&highlight=12-17)]
 
