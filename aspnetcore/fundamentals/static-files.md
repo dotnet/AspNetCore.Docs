@@ -65,7 +65,7 @@ Consider a directory hierarchy in which the static files to be served reside out
 
 A request can access the `red-rose.jpg` file by configuring the Static File Middleware as follows:
 
-[!code-csharp[](~/fundamentals/static-files/samples/3x/sample/StartupRose.cs?name=snippet&highlight=13-20)]
+[!code-csharp[](~/fundamentals/static-files/samples/3x/sample/StartupRose.cs?name=snippet&highlight=14-21)]
 
 In the preceding code, the *MyStaticFiles* directory hierarchy is exposed publicly via the *StaticFiles* URI segment. A request to `https://<hostname>/StaticFiles/images/red-rose.jpg` serves the *red-rose.jpg* file.
 
