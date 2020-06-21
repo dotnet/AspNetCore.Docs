@@ -5,7 +5,7 @@ description: Learn how to set up health checks for ASP.NET Core infrastructure, 
 monikerRange: '>= aspnetcore-2.2'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/20/2020
+ms.date: 06/21/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: host-and-deploy/health-checks
 ---
@@ -434,7 +434,7 @@ In some hosting scenarios, a pair of health checks are used that distinguish two
 * The app and its dependencies are functioning and able to process requests. This state is the app's *readiness*.
 * The app is functioning without checking dependencies. This state is the app's *liveness*.
 
-The readiness check usually performs a more extensive and time-consuming set of checks to determine if all of the app's subsystems and resources are available. After the app passes its readiness check, there's no need to burden the app further with the expensive set of readiness checks. Ongoing checks only require checking for liveness.
+The readiness check usually performs a more extensive and time-consuming set of checks to determine if all of the app's subsystems and resources are available. Design all health check implementations to complete quickly and reliably.
 
 The sample app contains a health check to report the completion of long-running startup task in a [Hosted Service](xref:fundamentals/host/hosted-services). The `StartupHostedServiceHealthCheck` exposes a property, `StartupTaskCompleted`, that the hosted service can set to `true` when its long-running task is finished (*StartupHostedServiceHealthCheck.cs*):
 
@@ -1144,10 +1144,10 @@ Unhealthy
 
 In some hosting scenarios, a pair of health checks are used that distinguish two app states:
 
-* The app is functioning but not yet ready to receive requests. This state is the app's *readiness*.
-* The app is functioning and responding to requests. This state is the app's *liveness*.
+* The app and its dependencies are functioning and able to process requests. This state is the app's *readiness*.
+* The app is functioning without checking dependencies. This state is the app's *liveness*.
 
-The readiness check usually performs a more extensive and time-consuming set of checks to determine if all of the app's subsystems and resources are available. A liveness check merely performs a quick check to determine if the app is available to process requests. After the app passes its readiness check, there's no need to burden the app further with the expensive set of readiness checks&mdash;further checks only require checking for liveness.
+The readiness check usually performs a more extensive and time-consuming set of checks to determine if all of the app's subsystems and resources are available. Design all health check implementations to complete quickly and reliably.
 
 The sample app contains a health check to report the completion of long-running startup task in a [Hosted Service](xref:fundamentals/host/hosted-services). The `StartupHostedServiceHealthCheck` exposes a property, `StartupTaskCompleted`, that the hosted service can set to `true` when its long-running task is finished (*StartupHostedServiceHealthCheck.cs*):
 
