@@ -186,13 +186,13 @@ Choose an appropriate lifetime for each registered service. ASP.NET Core service
 
 Transient lifetime services (<xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddTransient*>) are created each time they're requested from the service container. This lifetime works best for lightweight, stateless services.
 
-In apps that process requests, transient services are disposed at the end of a scope that usually ends when the request ends.
+In apps that process requests, transient services are disposed at the end of a scope that coincides with the end of the request.
 
 ### Scoped
 
 Scoped lifetime services (<xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddScoped*>) are created once per client request (connection).
 
-In apps that process requests, scoped services are disposed at the end of a scope that usually ends when the request ends.
+In apps that process requests, scoped services are disposed at the end of a scope that coincides with the end of the request.
 
 > [!WARNING]
 > When using a scoped service in a middleware, inject the service into the `Invoke` or `InvokeAsync` method. Don't inject via [constructor injection](xref:mvc/controllers/dependency-injection#constructor-injection) because it forces the service to behave like a singleton. For more information, see <xref:fundamentals/middleware/write#per-request-middleware-dependencies>.
