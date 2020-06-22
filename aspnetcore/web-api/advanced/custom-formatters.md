@@ -97,7 +97,7 @@ For an input formatter example, see the [sample app](https://github.com/dotnet/A
 
 To use a custom formatter, add an instance of the formatter class to the `InputFormatters` or `OutputFormatters` collection.
 
-[!code-csharp[](custom-formatters/sample/Startup.cs?name=mvcoptions&highlight=3-4)]
+[!code-csharp[](custom-formatters/sample3_1/Startup.cs?name=mvcoptions&highlight=3-4)]
 
 Formatters are evaluated in the order you insert them. The first one takes precedence.
 
