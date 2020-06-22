@@ -5,7 +5,7 @@ description: Learn how to set up health checks for ASP.NET Core infrastructure, 
 monikerRange: '>= aspnetcore-2.2'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/21/2020
+ms.date: 06/22/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: host-and-deploy/health-checks
 ---
@@ -431,10 +431,10 @@ Unhealthy
 
 In some hosting scenarios, a pair of health checks are used that distinguish two app states:
 
-* The app and its dependencies are functioning and able to process requests. This state is the app's *readiness*.
-* The app is functioning without checking dependencies. This state is the app's *liveness*.
+* *Readiness* indicates if the app is running normally but isn't ready to receive requests.
+* *Liveness* indicates if an app has crashed and must be restarted.
 
-The readiness check usually performs a more extensive and time-consuming set of checks to determine if all of the app's subsystems and resources are available. Design all health check implementations to complete quickly and reliably.
+Consider the following example: An app must download a large configuration file before it's ready to process requests. We don't want the app to be restarted if the initial download fails because the app can retry downloading the file several times. We use a *liveness probe* to describe the liveness of the process, no additional checks are performed. We also want to prevent requests from being sent to the app before the configuration file download has succeeded. We use a *readiness probe* to indicate a "not ready" state until the download succeeds and the app is ready to receive requests.
 
 The sample app contains a health check to report the completion of long-running startup task in a [Hosted Service](xref:fundamentals/host/hosted-services). The `StartupHostedServiceHealthCheck` exposes a property, `StartupTaskCompleted`, that the hosted service can set to `true` when its long-running task is finished (*StartupHostedServiceHealthCheck.cs*):
 
@@ -1144,10 +1144,10 @@ Unhealthy
 
 In some hosting scenarios, a pair of health checks are used that distinguish two app states:
 
-* The app and its dependencies are functioning and able to process requests. This state is the app's *readiness*.
-* The app is functioning without checking dependencies. This state is the app's *liveness*.
+* *Readiness* indicates if the app is running normally but isn't ready to receive requests.
+* *Liveness* indicates if an app has crashed and must be restarted.
 
-The readiness check usually performs a more extensive and time-consuming set of checks to determine if all of the app's subsystems and resources are available. Design all health check implementations to complete quickly and reliably.
+Consider the following example: An app must download a large configuration file before it's ready to process requests. We don't want the app to be restarted if the initial download fails because the app can retry downloading the file several times. We use a *liveness probe* to describe the liveness of the process, no additional checks are performed. We also want to prevent requests from being sent to the app before the configuration file download has succeeded. We use a *readiness probe* to indicate a "not ready" state until the download succeeds and the app is ready to receive requests.
 
 The sample app contains a health check to report the completion of long-running startup task in a [Hosted Service](xref:fundamentals/host/hosted-services). The `StartupHostedServiceHealthCheck` exposes a property, `StartupTaskCompleted`, that the hosted service can set to `true` when its long-running task is finished (*StartupHostedServiceHealthCheck.cs*):
 
