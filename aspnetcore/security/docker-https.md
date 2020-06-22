@@ -57,7 +57,7 @@ dotnet dev-certs https --trust
 
 In the preceding commands, replace `{ password here }` with a password.
 
-Run the container image with ASP.NET Core configured for HTTPS in a command window:
+Run the container image with ASP.NET Core configured for HTTPS in a command shell:
 
 ```console
 docker pull mcr.microsoft.com/dotnet/core/samples:aspnetapp
