@@ -20,7 +20,7 @@ A hosted Blazor WebAssembly app picks up the environment from the server via a m
 
 For a standalone app running locally, the development server adds the `blazor-environment` header to specify the Development environment. To specify the environment for other hosting environments, add the `blazor-environment` header.
 
-In the following example for IIS, add the custom header to the published *web.config* file. The *web.config* file is located in the *bin/Release/{TARGET FRAMEWORK}/publish* folder:
+In the following example for IIS, add the custom header to the published `web.config` file. The `web.config` file is located in the `bin/Release/{TARGET FRAMEWORK}/publish` folder:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -39,7 +39,7 @@ In the following example for IIS, add the custom header to the published *web.co
 ```
 
 > [!NOTE]
-> To use a custom *web.config* file for IIS that isn't overwritten when the app is published to the *publish* folder, see <xref:blazor/host-and-deploy/webassembly#use-a-custom-webconfig>.
+> To use a custom `web.config` file for IIS that isn't overwritten when the app is published to the `publish` folder, see <xref:blazor/host-and-deploy/webassembly#use-a-custom-webconfig>.
 
 Obtain the app's environment in a component by injecting <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> and reading the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.Environment> property:
 

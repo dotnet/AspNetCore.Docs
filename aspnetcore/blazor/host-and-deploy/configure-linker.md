@@ -44,7 +44,7 @@ Control linking on a per-assembly basis by providing an XML configuration file a
 </ItemGroup>
 ```
 
-*LinkerConfig.xml*:
+`LinkerConfig.xml`:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -82,7 +82,7 @@ For more information and examples, see [Data Formats (mono/linker GitHub reposit
 
 To configure the linker for a specific library, add an XML linker configuration file into the library as an embedded resource. The embedded resource must have the same name as the assembly.
 
-In the following example, the *LinkerConfig.xml* file is specified as an embedded resource that has the same name as the library's assembly:
+In the following example, the `LinkerConfig.xml` file is specified as an embedded resource that has the same name as the library's assembly:
 
 ```xml
 <ItemGroup>
@@ -107,12 +107,12 @@ To control which I18N assemblies are retained, set the `<BlazorWebAssemblyI18NAs
 | Region Value     | Mono region assembly    |
 | ---------------- | ----------------------- |
 | `all`            | All assemblies included |
-| `cjk`            | *I18N.CJK.dll*          |
-| `mideast`        | *I18N.MidEast.dll*      |
+| `cjk`            | `I18N.CJK.dll`          |
+| `mideast`        | `I18N.MidEast.dll`      |
 | `none` (default) | None                    |
-| `other`          | *I18N.Other.dll*        |
-| `rare`           | *I18N.Rare.dll*         |
-| `west`           | *I18N.West.dll*         |
+| `other`          | `I18N.Other.dll`        |
+| `rare`           | `I18N.Rare.dll`         |
+| `west`           | `I18N.West.dll`         |
 
 Use a comma to separate multiple values (for example, `mideast,west`).
 

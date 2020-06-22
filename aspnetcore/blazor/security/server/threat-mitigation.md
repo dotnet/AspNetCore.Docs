@@ -123,7 +123,7 @@ For calls from .NET methods to JavaScript:
 
 Take the following precautions to guard against the preceding scenarios:
 
-* Wrap JS interop calls within [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) statements to account for errors that might occur during the invocations. For more information, see <xref:blazor/fundamentals/handle-errors#javascript-interop>.
+* Wrap JS interop calls within [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statements to account for errors that might occur during the invocations. For more information, see <xref:blazor/fundamentals/handle-errors#javascript-interop>.
 * Validate data returned from JS interop invocations, including error messages, before taking any action.
 
 ### .NET methods invoked from the browser
@@ -291,7 +291,7 @@ The client-side error doesn't include the callstack and doesn't provide detail o
 Enable detailed errors in JavaScript with:
 
 * <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DetailedErrors?displayProperty=nameWithType>.
-* The `DetailedErrors` configuration key set to `true`, which can be set in the app settings file (*appsettings.json*). The key can also be set using the `ASPNETCORE_DETAILEDERRORS` environment variable with a value of `true`.
+* The `DetailedErrors` configuration key set to `true`, which can be set in the app settings file (`appsettings.json`). The key can also be set using the `ASPNETCORE_DETAILEDERRORS` environment variable with a value of `true`.
 
 > [!WARNING]
 > Exposing error information to clients on the Internet is a security risk that should always be avoided.
@@ -337,7 +337,7 @@ In addition to the safeguards that the framework implements, the app must be cod
 * Don't trust the input on JS interop calls in either direction between JavaScript and .NET methods.
 * The app is responsible for validating that the content of arguments and results are valid, even if the arguments or results are correctly deserialized.
 
-For a XSS vulnerability to exist, the app must incorporate user input in the rendered page. Blazor Server components execute a compile-time step where the markup in a *.razor* file is transformed into procedural C# logic. At runtime, the C# logic builds a *render tree* describing the elements, text, and child components. This is applied to the browser's DOM via a sequence of JavaScript instructions (or is serialized to HTML in the case of prerendering):
+For a XSS vulnerability to exist, the app must incorporate user input in the rendered page. Blazor Server components execute a compile-time step where the markup in a `.razor` file is transformed into procedural C# logic. At runtime, the C# logic builds a *render tree* describing the elements, text, and child components. This is applied to the browser's DOM via a sequence of JavaScript instructions (or is serialized to HTML in the case of prerendering):
 
 * User input rendered via normal Razor syntax (for example, `@someStringValue`) doesn't expose a XSS vulnerability because the Razor syntax is added to the DOM via commands that can only write text. Even if the value includes HTML markup, the value is displayed as static text. When prerendering, the output is HTML-encoded, which also displays the content as static text.
 * Script tags aren't allowed and shouldn't be included in the app's component render tree. If a script tag is included in a component's markup, a compile-time error is generated.

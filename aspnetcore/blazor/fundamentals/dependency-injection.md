@@ -36,7 +36,7 @@ A custom service provider doesn't automatically provide the default services lis
 
 ### Blazor WebAssembly
 
-Configure services for the app's service collection in the `Main` method of *Program.cs*. In the following example, the `MyDependency` implementation is registered for `IMyDependency`:
+Configure services for the app's service collection in the `Main` method of `Program.cs`. In the following example, the `MyDependency` implementation is registered for `IMyDependency`:
 
 ```csharp
 public class Program
@@ -73,7 +73,7 @@ public class Program
 }
 ```
 
-The host also provides a central configuration instance for the app. Building on the preceding example, the weather service's URL is passed from a default configuration source (for example, *appsettings.json*) to `InitializeWeatherAsync`:
+The host also provides a central configuration instance for the app. Building on the preceding example, the weather service's URL is passed from a default configuration source (for example, `appsettings.json`) to `InitializeWeatherAsync`:
 
 ```csharp
 public class Program
@@ -182,7 +182,7 @@ public class DataAccess : IDataAccess
 Prerequisites for constructor injection:
 
 * One constructor must exist whose arguments can all be fulfilled by DI. Additional parameters not covered by DI are allowed if they specify default values.
-* The applicable constructor must be *public*.
+* The applicable constructor must be `public`.
 * One applicable constructor must exist. In case of an ambiguity, DI throws an exception.
 
 ## Utility base component classes to manage a DI scope
@@ -335,5 +335,5 @@ If a single component might use a <xref:Microsoft.EntityFrameworkCore.DbContext>
 ## Additional resources
 
 * <xref:fundamentals/dependency-injection>
-* [IDisposable guidance for Transient and shared instances](xref:fundamentals/dependency-injection#idisposable-guidance-for-transient-and-shared-instances)
+* [`IDisposable` guidance for Transient and shared instances](xref:fundamentals/dependency-injection#idisposable-guidance-for-transient-and-shared-instances)
 * <xref:mvc/views/dependency-injection>

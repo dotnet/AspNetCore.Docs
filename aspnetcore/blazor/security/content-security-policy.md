@@ -74,7 +74,7 @@ The following sections show example policies for Blazor WebAssembly and Blazor S
 
 ### Blazor WebAssembly
 
-In the `<head>` content of the *wwwroot/index.html* host page, apply the directives described in the [Policy directives](#policy-directives) section:
+In the `<head>` content of the `wwwroot/index.html` host page, apply the directives described in the [Policy directives](#policy-directives) section:
 
 ```html
 <meta http-equiv="Content-Security-Policy" 
@@ -97,7 +97,7 @@ In the `<head>` content of the *wwwroot/index.html* host page, apply the directi
 
 ### Blazor Server
 
-In the `<head>` content of the *Pages/_Host.cshtml* host page, apply the directives described in the [Policy directives](#policy-directives) section:
+In the `<head>` content of the `Pages/_Host.cshtml` host page, apply the directives described in the [Policy directives](#policy-directives) section:
 
 ```cshtml
 <meta http-equiv="Content-Security-Policy" 
