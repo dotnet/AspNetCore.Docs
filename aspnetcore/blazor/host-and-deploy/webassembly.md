@@ -191,7 +191,7 @@ Removing the handler or disabling inheritance is performed in addition to [confi
 
 #### Brotli and Gzip compression
 
-IIS can be configured via `web.config` to serve Brotli or Gzip compressed Blazor assets. For an example configuration, see [`web.config`](webassembly/_samples/web.config?raw=true).
+IIS can be configured via `web.config` to serve Brotli or Gzip compressed Blazor assets. For an example configuration, see [`web.config`](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/blazor/host-and-deploy/webassembly/_samples/web.config?raw=true).
 
 #### Troubleshooting
 
