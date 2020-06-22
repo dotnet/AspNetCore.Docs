@@ -69,9 +69,9 @@ In the ASP.NET Core project, open the *Startup.cs* file:
 
 ASP.NET Core apps must opt in to framework features with middleware. The previous template-generated code adds the following services and middleware:
 
-* The <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllersWithViews*> extension method registers MVC service support for controllers, API-related features, and views. For more information on MVC service registration options, see [MVC service registration](xref:migration/22-to-30#mvc-service-registration)
-* The <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*> extension method adds the static file handler `Microsoft.AspNetCore.StaticFiles`. The `UseStaticFiles` extension method must be called before `UseRouting`. For more information, see [Static files](xref:fundamentals/static-files).
-* The <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*> extension method adds routing. For more information, see [Routing](xref:fundamentals/routing).
+* The <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllersWithViews%2A> extension method registers MVC service support for controllers, API-related features, and views. For more information on MVC service registration options, see [MVC service registration](xref:migration/22-to-30#mvc-service-registration)
+* The <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> extension method adds the static file handler `Microsoft.AspNetCore.StaticFiles`. The `UseStaticFiles` extension method must be called before `UseRouting`. For more information, see <xref:fundamentals/static-files>.
+* The <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A> extension method adds routing. For more information, see <xref:fundamentals/routing>.
 
 This existing configuration includes what is needed to migrate the example ASP.NET MVC project. For more information on ASP.NET Core middleware options, see <xref:fundamentals/startup>.
 
@@ -82,18 +82,18 @@ In the ASP.NET Core project, a new empty controller class and view class would b
 The ASP.NET Core *WebApp1* project already includes a minimal example controller and view by the same name as the ASP.NET MVC project. So those will serve as placeholders for the ASP.NET MVC controller and views to be migrated from the ASP.NET MVC *WebApp1* project.
 
 1. Copy the methods from the ASP.NET MVC `HomeController` to replace the new ASP.NET Core `HomeController` methods. There's no need to change the return type of the action methods. The ASP.NET MVC built-in template's controller action method return type is [ActionResult](https://msdn.microsoft.com/library/system.web.mvc.actionresult(v=vs.118).aspx); in ASP.NET Core MVC, the action methods return `IActionResult` instead. `ActionResult` implements `IActionResult`.
-1. In the ASP.NET Core project, right-click the `Views` > `Home` directory, select `Add` > `Existing Item`.
+1. In the ASP.NET Core project, right-click the *Views/Home* directory, select **Add** > **Existing Item**.
 1. In the **Add Existing Item** dialog, navigate to the ASP.NET MVC *WebApp1* project's *Views/Home* directory.
-1. Select the *About.cshtml*, *Contact.cshtml*, and *Index.cshtml* Razor view files, then select `Add`, replacing the existing files.
+1. Select the *About.cshtml*, *Contact.cshtml*, and *Index.cshtml* Razor view files, then select **Add**, replacing the existing files.
 
-For more information, see [ASP.NET Core Controllers](xref:mvc/controllers/actions) and [ASP.NET Core Views](xref:mvc/views/overview).
+For more information, see <xref:mvc/controllers/actions> and <xref:mvc/views/overview>.
 
 ## Test each method
 
 Each controller endpoint can be tested, however, layout and styles are covered later in the document.
 
 1. Run the ASP.NET Core app.
-1. Invoke the rendered views from the browser on the running ASP.NET core app by replacing the current port number with the port number used in the ASP.NET Core project. For example, `https://localhost:44375/home/about`.
+1. Invoke the rendered views from the browser on the running ASP.NET Core app by replacing the current port number with the port number used in the ASP.NET Core project. For example, `https://localhost:44375/home/about`.
 
 ## Migrate static content
 
@@ -101,23 +101,23 @@ In ASP.NET MVC 5 and earlier, static content was hosted from the web project's r
 
 Copy the static content from the ASP.NET MVC *WebApp1* project to the *wwwroot* directory in the ASP.NET Core *WebApp1* project:
 
-1. In the ASP.NET Core project, right-click the *wwwroot* directory, select `Add` > `Existing Item`.
+1. In the ASP.NET Core project, right-click the *wwwroot* directory, select **Add** > **Existing Item**.
 1. In the **Add Existing Item** dialog, navigate to the ASP.NET MVC *WebApp1* project.
-1. Select the *favicon.ico* file, then select `Add`, replacing the existing file.
+1. Select the *favicon.ico* file, then select **Add**, replacing the existing file.
 
 ## Migrate the layout files
 
 Copy the ASP.NET MVC project layout files to the ASP.NET Core project:
 
-1. In the ASP.NET Core project, right-click the `Views` directory, select `Add` > `Existing Item`.
-1. In the **Add Existing Item** dialog, navigate to the ASP.NET MVC *WebApp1* project > *Views* directory.
-1. Select *_ViewStart.cshtml* file then select `Add`.
+1. In the ASP.NET Core project, right-click the *Views* directory, select **Add** > **Existing Item**.
+1. In the **Add Existing Item** dialog, navigate to the ASP.NET MVC *WebApp1* project's *Views* directory.
+1. Select the *_ViewStart.cshtml* file then select **Add**.
 
 Copy the ASP.NET MVC project shared layout files to the ASP.NET Core project:
 
-1. In the ASP.NET Core project, right-click the *Views/Shared* directory, select `Add` > `Existing Item`.
-1. In the **Add Existing Item** dialog, navigate to the ASP.NET MVC *WebApp1* project > *Views/Shared* directory.
-1. Select the *_Layout.cshtml* file, then select `Add`, replacing the existing file.
+1. In the ASP.NET Core project, right-click the *Views/Shared* directory, select **Add** > **Existing Item**.
+1. In the **Add Existing Item** dialog, navigate to the ASP.NET MVC *WebApp1* project's *Views/Shared* directory.
+1. Select the *_Layout.cshtml* file, then select **Add**, replacing the existing file.
 
 In the ASP.NET Core project, open the *_Layout.cshtml* file. Make the following changes to match the completed code shown below:
 
@@ -186,7 +186,7 @@ This article shows how to start migrating an ASP.NET MVC project to [ASP.NET Cor
 * Static content
 * Client-side dependencies.
 
-For migrating configuration and Identity code, see [Migrate configuration to ASP.NET Core](xref:migration/configuration) and [Migrate Authentication and Identity to ASP.NET Core](xref:migration/identity).
+For migrating configuration and Identity code, see <xref:migration/configuration> and <xref:migration/identity>.
 
 > [!NOTE]
 > The version numbers in the samples might not be current, update the projects accordingly.
