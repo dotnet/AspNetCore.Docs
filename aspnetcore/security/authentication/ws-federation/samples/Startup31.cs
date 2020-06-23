@@ -39,7 +39,7 @@ namespace WebApplication88
                     options.Wtrealm = "https://localhost:44307/";
 
                     // For AAD, use the App ID URI from the app registration's Properties blade:
-                    options.Wtrealm = "https://wsfedsample.onmicrosoft.com/bf0e7e6d-056e-4e37-b9a6-2c36797b9f01";
+                    options.Wtrealm = "api://bbd35166-7c13-49f3-8041-9551f2847b69";
                 });
 
             services.AddControllersWithViews();
