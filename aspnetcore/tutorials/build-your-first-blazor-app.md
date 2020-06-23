@@ -132,7 +132,7 @@ An [`@foreach`](/dotnet/csharp/language-reference/keywords/foreach-in) loop is u
 
 Add a new component to the app that implements a simple todo list.
 
-1. Add a new `Todo` Razor component to the app in the `Pages` folder. If you're using Visual Studio, right-click the `Pages` folder and select **Add** > **New Item** > **Razor Component**. Name the component's file `Todo.razor`. In other development environments, add a blank file to the `Pages` folder named `Todo.razor`.
+1. Add a new `Todo` Razor component to the app in the `Pages` folder. If you're using Visual Studio, right-click the `Pages` folder and select **Add** > **New Item** > **Razor Component**. Name the component's file `Todo.razor`. In other development environments, add a blank file to the `Pages` folder named `Todo.razor`. Razor component file names are case sensitive and require a capitalized first letter, so confirm that the `Todo` component file name starts with a capital letter `T`.
 
 1. Provide the initial markup for the component:
 
