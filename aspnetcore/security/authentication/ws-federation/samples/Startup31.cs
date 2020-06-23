@@ -38,7 +38,7 @@ namespace WebApplication88
                     // For ADFS, use the relying party's identifier, its WS-Federation Passive protocol URL:
                     options.Wtrealm = "https://localhost:44307/";
 
-                    // For AAD, use the App ID URI from the app registration's Properties blade:
+                    // For AAD, use the Application ID URI from the app registration's Overview blade:
                     options.Wtrealm = "api://bbd35166-7c13-49f3-8041-9551f2847b69";
                 });
 
