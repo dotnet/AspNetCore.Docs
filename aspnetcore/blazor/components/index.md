@@ -19,7 +19,7 @@ Blazor apps are built using *components*. A component is a self-contained chunk 
 
 ## Component classes
 
-Components are implemented in [Razor](xref:mvc/views/razor) component files (*.razor*) using a combination of C# and HTML markup. A component in Blazor is formally referred to as a *Razor component*.
+Components are implemented in [Razor](xref:mvc/views/razor) component files (`.razor`) using a combination of C# and HTML markup. A component in Blazor is formally referred to as a *Razor component*.
 
 ### Razor syntax
 
@@ -32,7 +32,7 @@ When accessing the content on Razor syntax, pay special attention to the followi
 
 ### Names
 
-A component's name must start with an uppercase character. For example, *MyCoolComponent.razor* is valid, and *myCoolComponent.razor* is invalid.
+A component's name must start with an uppercase character. For example, `MyCoolComponent.razor` is valid, and `myCoolComponent.razor` is invalid.
 
 ### Routing
 
@@ -66,16 +66,16 @@ Component members can be used as part of the component's rendering logic using C
 
 After the component is initially rendered, the component regenerates its render tree in response to events. Blazor then compares the new render tree against the previous one and applies any modifications to the browser's Document Object Model (DOM).
 
-Components are ordinary C# classes and can be placed anywhere within a project. Components that produce webpages usually reside in the *Pages* folder. Non-page components are frequently placed in the *Shared* folder or a custom folder added to the project.
+Components are ordinary C# classes and can be placed anywhere within a project. Components that produce webpages usually reside in the `Pages` folder. Non-page components are frequently placed in the `Shared` folder or a custom folder added to the project.
 
 ### Namespaces
 
-Typically, a component's namespace is derived from the app's root namespace and the component's location (folder) within the app. If the app's root namespace is `BlazorApp` and the `Counter` component resides in the *Pages* folder:
+Typically, a component's namespace is derived from the app's root namespace and the component's location (folder) within the app. If the app's root namespace is `BlazorApp` and the `Counter` component resides in the `Pages` folder:
 
 * The `Counter` component's namespace is `BlazorApp.Pages`.
 * The fully qualified type name of the component is `BlazorApp.Pages.Counter`.
 
-For custom folders that hold components, add a [`@using`][2] directive to the parent component or to the app's *_Imports.razor* file. The following example makes components in the *Components* folder available:
+For custom folders that hold components, add a [`@using`][2] directive to the parent component or to the app's `_Imports.razor` file. The following example makes components in the `Components` folder available:
 
 ```razor
 @using BlazorApp.Components
@@ -89,16 +89,16 @@ Components can also be referenced using their fully qualified names, which doesn
 
 The namespace of a component authored with Razor is based on (in priority order):
 
-* [`@namespace`][8] designation in Razor file (*.razor*) markup (`@namespace BlazorSample.MyNamespace`).
+* [`@namespace`][8] designation in Razor file (`.razor`) markup (`@namespace BlazorSample.MyNamespace`).
 * The project's `RootNamespace` in the project file (`<RootNamespace>BlazorSample</RootNamespace>`).
-* The project name, taken from the project file's file name (*.csproj*), and the path from the project root to the component. For example, the framework resolves *{PROJECT ROOT}/Pages/Index.razor* (*BlazorSample.csproj*) to the namespace `BlazorSample.Pages`. Components follow C# name binding rules. For the `Index` component in this example, the components in scope are all of the components:
-  * In the same folder, *Pages*.
+* The project name, taken from the project file's file name (`.csproj`), and the path from the project root to the component. For example, the framework resolves `{PROJECT ROOT}/Pages/Index.razor` (`BlazorSample.csproj`) to the namespace `BlazorSample.Pages`. Components follow C# name binding rules. For the `Index` component in this example, the components in scope are all of the components:
+  * In the same folder, `Pages`.
   * The components in the project's root that don't explicitly specify a different namespace.
 
 > [!NOTE]
 > The `global::` qualification isn't supported.
 >
-> Importing components with aliased [using](/dotnet/csharp/language-reference/keywords/using-statement) statements (for example, `@using Foo = Bar`) isn't supported.
+> Importing components with aliased [`using`](/dotnet/csharp/language-reference/keywords/using-statement) statements (for example, `@using Foo = Bar`) isn't supported.
 >
 > Partially qualified names aren't supported. For example, adding `@using BlazorSample` and referencing the `NavMenu` component (`NavMenu.razor`) with `<Shared.NavMenu></Shared.NavMenu>` isn't supported.
 
@@ -111,7 +111,7 @@ Razor components are generated as partial classes. Razor components are authored
 
 The following example shows the default `Counter` component with an [`@code`][1] block in an app generated from a Blazor template. HTML markup, Razor code, and C# code are in the same file:
 
-*Counter.razor*:
+`Pages/Counter.razor`:
 
 ```razor
 @page "/counter"
@@ -134,7 +134,7 @@ The following example shows the default `Counter` component with an [`@code`][1]
 
 The `Counter` component can also be created using a code-behind file with a partial class:
 
-*Counter.razor*:
+`Pages/Counter.razor`:
 
 ```razor
 @page "/counter"
@@ -146,7 +146,7 @@ The `Counter` component can also be created using a code-behind file with a part
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 ```
 
-*Counter.razor.cs*:
+`Counter.razor.cs`:
 
 ```csharp
 namespace BlazorApp.Pages
@@ -178,7 +178,7 @@ using Microsoft.AspNetCore.Components.Web;
 
 The [`@inherits`][6] directive can be used to specify a base class for a component. The following example shows how a component can inherit a base class, `BlazorRocksBase`, to provide the component's properties and methods. The base class should derive from <xref:Microsoft.AspNetCore.Components.ComponentBase>.
 
-*Pages/BlazorRocks.razor*:
+`Pages/BlazorRocks.razor`:
 
 ```razor
 @page "/BlazorRocks"
@@ -187,7 +187,7 @@ The [`@inherits`][6] directive can be used to specify a base class for a compone
 <h1>@BlazorRocksText</h1>
 ```
 
-*BlazorRocksBase.cs*:
+`BlazorRocksBase.cs`:
 
 ```csharp
 using Microsoft.AspNetCore.Components;
@@ -206,13 +206,13 @@ namespace BlazorSample
 
 Components can include other components by declaring them using HTML element syntax. The markup for using a component looks like an HTML tag where the name of the tag is the component type.
 
-The following markup in *Index.razor* renders a `HeadingComponent` instance:
+The following markup in `Pages/Index.razor` renders a `HeadingComponent` instance:
 
 ```razor
 <HeadingComponent />
 ```
 
-*Components/HeadingComponent.razor*:
+`Components/HeadingComponent.razor`:
 
 [!code-razor[](index/samples_snapshot/HeadingComponent.razor)]
 
@@ -224,25 +224,25 @@ If a component contains an HTML element with an uppercase first letter that does
 
 Components can receive route parameters from the route template provided in the [`@page`][9] directive. The router uses route parameters to populate the corresponding component parameters.
 
-*Pages/RouteParameter.razor*:
+`Pages/RouteParameter.razor`:
 
 [!code-razor[](index/samples_snapshot/RouteParameter.razor?highlight=2,7-8)]
 
 Optional parameters aren't supported, so two [`@page`][9] directives are applied in the preceding example. The first permits navigation to the component without a parameter. The second [`@page`][9] directive receives the `{text}` route parameter and assigns the value to the `Text` property.
 
-*Catch-all* parameter syntax (`*`/`**`), which captures the path across multiple folder boundaries, is **not** supported in Razor components (*.razor*).
+*Catch-all* parameter syntax (`*`/`**`), which captures the path across multiple folder boundaries, is **not** supported in Razor components (`.razor`).
 
 ### Component parameters
 
 Components can have *component parameters*, which are defined using public properties on the component class with the [`[Parameter]`](xref:Microsoft.AspNetCore.Components.ParameterAttribute) attribute. Use attributes to specify arguments for a component in markup.
 
-*Components/ChildComponent.razor*:
+`Components/ChildComponent.razor`:
 
 [!code-razor[](../common/samples/3.x/BlazorWebAssemblySample/Components/ChildComponent.razor?highlight=2,11-12)]
 
 In the following example from the sample app, the `ParentComponent` sets the value of the `Title` property of the `ChildComponent`.
 
-*Pages/ParentComponent.razor*:
+`Pages/ParentComponent.razor`:
 
 [!code-razor[](index/samples_snapshot/ParentComponent.razor?highlight=5-6)]
 
@@ -255,7 +255,7 @@ Components can set the content of another component. The assigning component pro
 
 In the following example, the `ChildComponent` has a `ChildContent` property that represents a <xref:Microsoft.AspNetCore.Components.RenderFragment>, which represents a segment of UI to render. The value of `ChildContent` is positioned in the component's markup where the content should be rendered. The value of `ChildContent` is received from the parent component and rendered inside the Bootstrap panel's `panel-body`.
 
-*Components/ChildComponent.razor*:
+`Components/ChildComponent.razor`:
 
 [!code-razor[](../common/samples/3.x/BlazorWebAssemblySample/Components/ChildComponent.razor?highlight=3,14-15)]
 
@@ -264,7 +264,7 @@ In the following example, the `ChildComponent` has a `ChildContent` property tha
 
 The `ParentComponent` in the sample app can provide content for rendering the `ChildComponent` by placing the content inside the `<ChildComponent>` tags.
 
-*Pages/ParentComponent.razor*:
+`Pages/ParentComponent.razor`:
 
 [!code-razor[](index/samples_snapshot/ParentComponent.razor?highlight=7-8)]
 
@@ -340,13 +340,13 @@ The <xref:Microsoft.AspNetCore.Components.ParameterAttribute.CaptureUnmatchedVal
 
 The position of [`@attributes`][3] relative to the position of element attributes is important. When [`@attributes`][3] are splatted on the element, the attributes are processed from right to left (last to first). Consider the following example of a component that consumes a `Child` component:
 
-*ParentComponent.razor*:
+`ParentComponent.razor`:
 
 ```razor
 <ChildComponent extra="10" />
 ```
 
-*ChildComponent.razor*:
+`ChildComponent.razor`:
 
 ```razor
 <div @attributes="AdditionalAttributes" extra="5" />
@@ -363,13 +363,13 @@ The `Child` component's `extra` attribute is set to the right of [`@attributes`]
 
 In the following example, the order of `extra` and [`@attributes`][3] is reversed in the `Child` component's `<div>`:
 
-*ParentComponent.razor*:
+`ParentComponent.razor`:
 
 ```razor
 <ChildComponent extra="10" />
 ```
 
-*ChildComponent.razor*:
+`ChildComponent.razor`:
 
 ```razor
 <div extra="5" @attributes="AdditionalAttributes" />
@@ -407,7 +407,7 @@ Component references provide a way to reference a component instance so that you
 When the component is rendered, the `loginDialog` field is populated with the `MyLoginDialog` child component instance. You can then invoke .NET methods on the component instance.
 
 > [!IMPORTANT]
-> The `loginDialog` variable is only populated after the component is rendered and its output includes the `MyLoginDialog` element. Until that point, there's nothing to reference. To manipulate components references after the component has finished rendering, use the [OnAfterRenderAsync or OnAfterRender methods](xref:blazor/components/lifecycle#after-component-render).
+> The `loginDialog` variable is only populated after the component is rendered and its output includes the `MyLoginDialog` element. Until that point, there's nothing to reference. To manipulate components references after the component has finished rendering, use the [`OnAfterRenderAsync` or `OnAfterRender` methods](xref:blazor/components/lifecycle#after-component-render).
 
 To reference components in a loop, see [Capture references to multiple similar child-components (dotnet/aspnetcore #13358)](https://github.com/dotnet/aspnetcore/issues/13358).
 
@@ -695,7 +695,7 @@ If `IsCompleted` is `false`, the check box is rendered as:
 For more information, see <xref:mvc/views/razor>.
 
 > [!WARNING]
-> Some HTML attributes, such as [aria-pressed](https://developer.mozilla.org/docs/Web/Accessibility/ARIA/Roles/button_role#Toggle_buttons), don't function properly when the .NET type is a `bool`. In those cases, use a `string` type instead of a `bool`.
+> Some HTML attributes, such as [`aria-pressed`](https://developer.mozilla.org/docs/Web/Accessibility/ARIA/Roles/button_role#Toggle_buttons), don't function properly when the .NET type is a `bool`. In those cases, use a `string` type instead of a `bool`.
 
 ## Raw HTML
 
@@ -751,9 +751,9 @@ Rendered output of the preceding code:
 
 ## Static assets
 
-Blazor follows the convention of ASP.NET Core apps placing static assets under the project's [web root (wwwroot) folder](xref:fundamentals/index#web-root).
+Blazor follows the convention of ASP.NET Core apps placing static assets under the project's [`web root (wwwroot)` folder](xref:fundamentals/index#web-root).
 
-Use a base-relative path (`/`) to refer to the web root for a static asset. In the following example, *logo.png* is physically located in the *{PROJECT ROOT}/wwwroot/images* folder:
+Use a base-relative path (`/`) to refer to the web root for a static asset. In the following example, `logo.png` is physically located in the `{PROJECT ROOT}/wwwroot/images` folder:
 
 ```razor
 <img alt="Company logo" src="/images/logo.png" />
@@ -765,17 +765,17 @@ For information on setting an app's base path, see <xref:blazor/host-and-deploy/
 
 ## Tag Helpers aren't supported in components
 
-[Tag Helpers](xref:mvc/views/tag-helpers/intro) aren't supported in Razor components (*.razor* files). To provide Tag Helper-like functionality in Blazor, create a component with the same functionality as the Tag Helper and use the component instead.
+[`Tag Helpers`](xref:mvc/views/tag-helpers/intro) aren't supported in Razor components (`.razor` files). To provide Tag Helper-like functionality in Blazor, create a component with the same functionality as the Tag Helper and use the component instead.
 
 ## Scalable Vector Graphics (SVG) images
 
-Since Blazor renders HTML, browser-supported images, including Scalable Vector Graphics (SVG) images (*.svg*), are supported via the `<img>` tag:
+Since Blazor renders HTML, browser-supported images, including Scalable Vector Graphics (SVG) images (`.svg`), are supported via the `<img>` tag:
 
 ```html
 <img alt="Example image" src="some-image.svg" />
 ```
 
-Similarly, SVG images are supported in the CSS rules of a stylesheet file (*.css*):
+Similarly, SVG images are supported in the CSS rules of a stylesheet file (`.css`):
 
 ```css
 .my-element {
@@ -783,7 +783,7 @@ Similarly, SVG images are supported in the CSS rules of a stylesheet file (*.css
 }
 ```
 
-However, inline SVG markup isn't supported in all scenarios. If you place an `<svg>` tag directly into a component file (*.razor*), basic image rendering is supported but many advanced scenarios aren't yet supported. For example, `<use>` tags aren't currently respected, and [`@bind`][10] can't be used with some SVG tags. For more information, see [SVG support in Blazor (dotnet/aspnetcore #18271)](https://github.com/dotnet/aspnetcore/issues/18271).
+However, inline SVG markup isn't supported in all scenarios. If you place an `<svg>` tag directly into a component file (`.razor`), basic image rendering is supported but many advanced scenarios aren't yet supported. For example, `<use>` tags aren't currently respected, and [`@bind`][10] can't be used with some SVG tags. For more information, see [SVG support in Blazor (dotnet/aspnetcore #18271)](https://github.com/dotnet/aspnetcore/issues/18271).
 
 ## Additional resources
 

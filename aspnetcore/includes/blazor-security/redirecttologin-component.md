@@ -1,4 +1,4 @@
-The `RedirectToLogin` component (*Shared/RedirectToLogin.razor*):
+The `RedirectToLogin` component (`Shared/RedirectToLogin.razor`):
 
 * Manages redirecting unauthorized users to the login page.
 * Preserves the current URL that the user is attempting to access so that they can be returned to that page if authentication is successful.

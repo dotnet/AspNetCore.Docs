@@ -32,11 +32,11 @@ When a Blazor WebAssembly app is published, the output is statically compressed 
 
 Blazor relies on the host to the serve the appropriate compressed files. When using an ASP.NET Core hosted project, the host project is capable of performing content negotiation and serving the statically-compressed files. When hosting a Blazor WebAssembly standalone app, additional work might be required to ensure that statically-compressed files are served:
 
-* For IIS *web.config* compression configuration, see the [IIS: Brotli and Gzip compression](#brotli-and-gzip-compression) section. 
+* For IIS `web.config` compression configuration, see the [IIS: Brotli and Gzip compression](#brotli-and-gzip-compression) section. 
 * When hosting on static hosting solutions that don't support statically-compressed file content negotiation, such as GitHub Pages, consider configuring the app to fetch and decode Brotli compressed files:
 
   * Reference the Brotli decoder from the [google/brotli GitHub repository](https://github.com/google/brotli/) in the app.
-  * Update the app to use the decoder. Change the markup inside the the closing `<body>` tag in *wwwroot/index.html* to the following:
+  * Update the app to use the decoder. Change the markup inside the the closing `<body>` tag in `wwwroot/index.html` to the following:
   
     ```html
     <script src="brotli.decode.min.js"></script>
@@ -76,29 +76,29 @@ To disable compression, add the `BlazorEnableCompression` MSBuild property to th
 
 Routing requests for page components in a Blazor WebAssembly app isn't as straightforward as routing requests in a Blazor Server, hosted app. Consider a Blazor WebAssembly app with two components:
 
-* *Main.razor*: Loads at the root of the app and contains a link to the `About` component (`href="About"`).
-* *About.razor*: `About` component.
+* `Main.razor`: Loads at the root of the app and contains a link to the `About` component (`href="About"`).
+* `About.razor`: `About` component.
 
 When the app's default document is requested using the browser's address bar (for example, `https://www.contoso.com/`):
 
 1. The browser makes a request.
-1. The default page is returned, which is usually *index.html*.
-1. *index.html* bootstraps the app.
+1. The default page is returned, which is usually `index.html`.
+1. `index.html` bootstraps the app.
 1. Blazor's router loads, and the Razor `Main` component is rendered.
 
 In the Main page, selecting the link to the `About` component works on the client because the Blazor router stops the browser from making a request on the Internet to `www.contoso.com` for `About` and serves the rendered `About` component itself. All of the requests for internal endpoints *within the Blazor WebAssembly app* work the same way: Requests don't trigger browser-based requests to server-hosted resources on the Internet. The router handles the requests internally.
 
 If a request is made using the browser's address bar for `www.contoso.com/About`, the request fails. No such resource exists on the app's Internet host, so a *404 - Not Found* response is returned.
 
-Because browsers make requests to Internet-based hosts for client-side pages, web servers and hosting services must rewrite all requests for resources not physically on the server to the *index.html* page. When *index.html* is returned, the app's Blazor router takes over and responds with the correct resource.
+Because browsers make requests to Internet-based hosts for client-side pages, web servers and hosting services must rewrite all requests for resources not physically on the server to the `index.html` page. When `index.html` is returned, the app's Blazor router takes over and responds with the correct resource.
 
-When deploying to an IIS server, you can use the URL Rewrite Module with the app's published *web.config* file. For more information, see the [IIS](#iis) section.
+When deploying to an IIS server, you can use the URL Rewrite Module with the app's published `web.config` file. For more information, see the [IIS](#iis) section.
 
 ## Hosted deployment with ASP.NET Core
 
 A *hosted deployment* serves the Blazor WebAssembly app to browsers from an [ASP.NET Core app](xref:index) that runs on a web server.
 
-The client Blazor WebAssembly app is published into the */bin/Release/{TARGET FRAMEWORK}/publish/wwwroot* folder of the server app, along with any other static web assets of the server app. The two apps are deployed together. A web server that is capable of hosting an ASP.NET Core app is required. For a hosted deployment, Visual Studio includes the **Blazor WebAssembly App** project template (`blazorwasm` template when using the [dotnet new](/dotnet/core/tools/dotnet-new) command) with the **Hosted** option selected (`-ho|--hosted` when using the `dotnet new` command).
+The client Blazor WebAssembly app is published into the `/bin/Release/{TARGET FRAMEWORK}/publish/wwwroot` folder of the server app, along with any other static web assets of the server app. The two apps are deployed together. A web server that is capable of hosting an ASP.NET Core app is required. For a hosted deployment, Visual Studio includes the **Blazor WebAssembly App** project template (`blazorwasm` template when using the [`dotnet new`](/dotnet/core/tools/dotnet-new) command) with the **`Hosted`** option selected (`-ho|--hosted` when using the `dotnet new` command).
 
 For more information on ASP.NET Core app hosting and deployment, see <xref:host-and-deploy/index>.
 
@@ -108,7 +108,7 @@ For information on deploying to Azure App Service, see <xref:tutorials/publish-t
 
 A *standalone deployment* serves the Blazor WebAssembly app as a set of static files that are requested directly by clients. Any static file server is able to serve the Blazor app.
 
-Standalone deployment assets are published into the */bin/Release/{TARGET FRAMEWORK}/publish/wwwroot* folder.
+Standalone deployment assets are published into the `/bin/Release/{TARGET FRAMEWORK}/publish/wwwroot` folder.
 
 ### Azure App Service
 
@@ -120,28 +120,28 @@ Deploying a standalone Blazor WebAssembly app to Azure App Service for Linux isn
 
 IIS is a capable static file server for Blazor apps. To configure IIS to host Blazor, see [Build a Static Website on IIS](/iis/manage/creating-websites/scenario-build-a-static-website-on-iis).
 
-Published assets are created in the */bin/Release/{TARGET FRAMEWORK}/publish* folder. Host the contents of the *publish* folder on the web server or hosting service.
+Published assets are created in the `/bin/Release/{TARGET FRAMEWORK}/publish` folder. Host the contents of the `publish` folder on the web server or hosting service.
 
 #### web.config
 
-When a Blazor project is published, a *web.config* file is created with the following IIS configuration:
+When a Blazor project is published, a `web.config` file is created with the following IIS configuration:
 
 * MIME types are set for the following file extensions:
-  * *.dll*: `application/octet-stream`
-  * *.json*: `application/json`
-  * *.wasm*: `application/wasm`
-  * *.woff*: `application/font-woff`
-  * *.woff2*: `application/font-woff`
+  * `.dll`: `application/octet-stream`
+  * `.json`: `application/json`
+  * `.wasm`: `application/wasm`
+  * `.woff`: `application/font-woff`
+  * `.woff2`: `application/font-woff`
 * HTTP compression is enabled for the following MIME types:
   * `application/octet-stream`
   * `application/wasm`
 * URL Rewrite Module rules are established:
-  * Serve the sub-directory where the app's static assets reside (*wwwroot/{PATH REQUESTED}*).
-  * Create SPA fallback routing so that requests for non-file assets are redirected to the app's default document in its static assets folder (*wwwroot/index.html*).
+  * Serve the sub-directory where the app's static assets reside (`wwwroot/{PATH REQUESTED}`).
+  * Create SPA fallback routing so that requests for non-file assets are redirected to the app's default document in its static assets folder (`wwwroot/index.html`).
   
 #### Use a custom web.config
 
-To use a custom *web.config* file, place the custom *web.config* file at the root of the project folder and publish the project.
+To use a custom `web.config` file, place the custom `web.config` file at the root of the project folder and publish the project.
 
 #### Install the URL Rewrite Module
 
@@ -154,7 +154,7 @@ The [URL Rewrite Module](https://www.iis.net/downloads/microsoft/url-rewrite) is
 
 Set the website's **Physical path** to the app's folder. The folder contains:
 
-* The *web.config* file that IIS uses to configure the website, including the required redirect rules and file content types.
+* The `web.config` file that IIS uses to configure the website, including the required redirect rules and file content types.
 * The app's static asset folder.
 
 #### Host as an IIS sub-app
@@ -163,7 +163,7 @@ If a standalone app is hosted as an IIS sub-app, perform either of the following
 
 * Disable the inherited ASP.NET Core Module handler.
 
-  Remove the handler in the Blazor app's published *web.config* file by adding a `<handlers>` section to the file:
+  Remove the handler in the Blazor app's published `web.config` file by adding a `<handlers>` section to the file:
 
   ```xml
   <handlers>
@@ -187,15 +187,15 @@ If a standalone app is hosted as an IIS sub-app, perform either of the following
   </configuration>
   ```
 
-Removing the handler or disabling inheritance is performed in addition to [configuring the app's base path](xref:blazor/host-and-deploy/index#app-base-path). Set the app base path in the app's *index.html* file to the IIS alias used when configuring the sub-app in IIS.
+Removing the handler or disabling inheritance is performed in addition to [configuring the app's base path](xref:blazor/host-and-deploy/index#app-base-path). Set the app base path in the app's `index.html` file to the IIS alias used when configuring the sub-app in IIS.
 
 #### Brotli and Gzip compression
 
-IIS can be configured via *web.config* to serve Brotli or Gzip compressed Blazor assets. For an example configuration, see [web.config](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/blazor/host-and-deploy/webassembly/_samples/web.config?raw=true).
+IIS can be configured via `web.config` to serve Brotli or Gzip compressed Blazor assets. For an example configuration, see [`web.config`](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/blazor/host-and-deploy/webassembly/_samples/web.config?raw=true).
 
 #### Troubleshooting
 
-If a *500 - Internal Server Error* is received and IIS Manager throws errors when attempting to access the website's configuration, confirm that the URL Rewrite Module is installed. When the module isn't installed, the *web.config* file can't be parsed by IIS. This prevents the IIS Manager from loading the website's configuration and the website from serving Blazor's static files.
+If a *500 - Internal Server Error* is received and IIS Manager throws errors when attempting to access the website's configuration, confirm that the URL Rewrite Module is installed. When the module isn't installed, the `web.config` file can't be parsed by IIS. This prevents the IIS Manager from loading the website's configuration and the website from serving Blazor's static files.
 
 For more information on troubleshooting deployments to IIS, see <xref:test/troubleshoot-azure-iis>.
 
@@ -206,7 +206,7 @@ For more information on troubleshooting deployments to IIS, see <xref:test/troub
 When the blob service is enabled for static website hosting on a storage account:
 
 * Set the **Index document name** to `index.html`.
-* Set the **Error document path** to `index.html`. Razor components and other non-file endpoints don't reside at physical paths in the static content stored by the blob service. When a request for one of these resources is received that the Blazor router should handle, the *404 - Not Found* error generated by the blob service routes the request to the **Error document path**. The *index.html* blob is returned, and the Blazor router loads and processes the path.
+* Set the **Error document path** to `index.html`. Razor components and other non-file endpoints don't reside at physical paths in the static content stored by the blob service. When a request for one of these resources is received that the Blazor router should handle, the *404 - Not Found* error generated by the blob service routes the request to the **Error document path**. The `index.html` blob is returned, and the Blazor router loads and processes the path.
 
 If files aren't loaded at runtime due to inappropriate MIME types in the files' `Content-Type` headers, take either of the following actions:
 
@@ -222,7 +222,7 @@ For more information, see [Static website hosting in Azure Storage](/azure/stora
 
 ### Nginx
 
-The following *nginx.conf* file is simplified to show how to configure Nginx to send the *index.html* file whenever it can't find a corresponding file on disk.
+The following `nginx.conf` file is simplified to show how to configure Nginx to send the `index.html` file whenever it can't find a corresponding file on disk.
 
 ```
 events { }
@@ -242,7 +242,7 @@ For more information on production Nginx web server configuration, see [Creating
 
 ### Nginx in Docker
 
-To host Blazor in Docker using Nginx, setup the Dockerfile to use the Alpine-based Nginx image. Update the Dockerfile to copy the *nginx.config* file into the container.
+To host Blazor in Docker using Nginx, setup the Dockerfile to use the Alpine-based Nginx image. Update the Dockerfile to copy the `nginx.config` file into the container.
 
 Add one line to the Dockerfile, as shown in the following example:
 
@@ -256,7 +256,7 @@ COPY nginx.conf /etc/nginx/nginx.conf
 
 To deploy a Blazor WebAssembly app to CentOS 7 or later:
 
-1. Create the Apache configuration file. The following example is a simplified configuration file (*blazorapp.config*):
+1. Create the Apache configuration file. The following example is a simplified configuration file (`blazorapp.config`):
 
    ```
    <VirtualHost *:80>
@@ -298,13 +298,13 @@ To deploy a Blazor WebAssembly app to CentOS 7 or later:
 
 1. Restart the Apache service.
 
-For more information, see [mod_mime](https://httpd.apache.org/docs/2.4/mod/mod_mime.html) and [mod_deflate](https://httpd.apache.org/docs/current/mod/mod_deflate.html).
+For more information, see [`mod_mime`](https://httpd.apache.org/docs/2.4/mod/mod_mime.html) and [`mod_deflate`](https://httpd.apache.org/docs/current/mod/mod_deflate.html).
 
 ### GitHub Pages
 
-To handle URL rewrites, add a *404.html* file with a script that handles redirecting the request to the *index.html* page. For an example implementation provided by the community, see [Single Page Apps for GitHub Pages](https://spa-github-pages.rafrex.com/) ([rafrex/spa-github-pages on GitHub](https://github.com/rafrex/spa-github-pages#readme)). An example using the community approach can be seen at [blazor-demo/blazor-demo.github.io on GitHub](https://github.com/blazor-demo/blazor-demo.github.io) ([live site](https://blazor-demo.github.io/)).
+To handle URL rewrites, add a `404.html` file with a script that handles redirecting the request to the `index.html` page. For an example implementation provided by the community, see [Single Page Apps for GitHub Pages](https://spa-github-pages.rafrex.com/) ([rafrex/spa-github-pages on GitHub](https://github.com/rafrex/spa-github-pages#readme)). An example using the community approach can be seen at [blazor-demo/blazor-demo.github.io on GitHub](https://github.com/blazor-demo/blazor-demo.github.io) ([live site](https://blazor-demo.github.io/)).
 
-When using a project site instead of an organization site, add or update the `<base>` tag in *index.html*. Set the `href` attribute value to the GitHub repository name with a trailing slash (for example, `my-repository/`.
+When using a project site instead of an organization site, add or update the `<base>` tag in `index.html`. Set the `href` attribute value to the GitHub repository name with a trailing slash (for example, `my-repository/`.
 
 ## Host configuration values
 
@@ -320,13 +320,13 @@ The `--contentroot` argument sets the absolute path to the directory that contai
   dotnet run --contentroot=/content-root-path
   ```
 
-* Add an entry to the app's *launchSettings.json* file in the **IIS Express** profile. This setting is used when the app is run with the Visual Studio Debugger and from a command prompt with `dotnet run`.
+* Add an entry to the app's `launchSettings.json` file in the **IIS Express** profile. This setting is used when the app is run with the Visual Studio Debugger and from a command prompt with `dotnet run`.
 
   ```json
   "commandLineArgs": "--contentroot=/content-root-path"
   ```
 
-* In Visual Studio, specify the argument in **Properties** > **Debug** > **Application arguments**. Setting the argument in the Visual Studio property page adds the argument to the *launchSettings.json* file.
+* In Visual Studio, specify the argument in **Properties** > **Debug** > **Application arguments**. Setting the argument in the Visual Studio property page adds the argument to the `launchSettings.json` file.
 
   ```console
   --contentroot=/content-root-path
@@ -345,13 +345,13 @@ The `--pathbase` argument sets the app base path for an app run locally with a n
   dotnet run --pathbase=/relative-URL-path
   ```
 
-* Add an entry to the app's *launchSettings.json* file in the **IIS Express** profile. This setting is used when running the app with the Visual Studio Debugger and from a command prompt with `dotnet run`.
+* Add an entry to the app's `launchSettings.json` file in the **IIS Express** profile. This setting is used when running the app with the Visual Studio Debugger and from a command prompt with `dotnet run`.
 
   ```json
   "commandLineArgs": "--pathbase=/relative-URL-path"
   ```
 
-* In Visual Studio, specify the argument in **Properties** > **Debug** > **Application arguments**. Setting the argument in the Visual Studio property page adds the argument to the *launchSettings.json* file.
+* In Visual Studio, specify the argument in **Properties** > **Debug** > **Application arguments**. Setting the argument in the Visual Studio property page adds the argument to the `launchSettings.json` file.
 
   ```console
   --pathbase=/relative-URL-path
@@ -367,13 +367,13 @@ The `--urls` argument sets the IP addresses or host addresses with ports and pro
   dotnet run --urls=http://127.0.0.1:0
   ```
 
-* Add an entry to the app's *launchSettings.json* file in the **IIS Express** profile. This setting is used when running the app with the Visual Studio Debugger and from a command prompt with `dotnet run`.
+* Add an entry to the app's `launchSettings.json` file in the **IIS Express** profile. This setting is used when running the app with the Visual Studio Debugger and from a command prompt with `dotnet run`.
 
   ```json
   "commandLineArgs": "--urls=http://127.0.0.1:0"
   ```
 
-* In Visual Studio, specify the argument in **Properties** > **Debug** > **Application arguments**. Setting the argument in the Visual Studio property page adds the argument to the *launchSettings.json* file.
+* In Visual Studio, specify the argument in **Properties** > **Debug** > **Application arguments**. Setting the argument in the Visual Studio property page adds the argument to the `launchSettings.json` file.
 
   ```console
   --urls=http://127.0.0.1:0
@@ -387,7 +387,7 @@ Blazor performs Intermediate Language (IL) linking on each Release build to remo
 
 A Blazor WebAssembly app can be initialized with the `loadBootResource` function to override the built-in boot resource loading mechanism. Use `loadBootResource` for the following scenarios:
 
-* Allow users to load static resources, such as timezone data or *dotnet.wasm* from a CDN.
+* Allow users to load static resources, such as timezone data or `dotnet.wasm` from a CDN.
 * Load compressed assemblies using an HTTP request and decompress them on the client for hosts that don't support fetching compressed contents from the server.
 * Alias resources to a different name by redirecting each `fetch` request to a new name.
 
@@ -402,10 +402,10 @@ A Blazor WebAssembly app can be initialized with the `loadBootResource` function
 
 `loadBootResource` returns any of the following to override the loading process:
 
-* URI string. In the following example (*wwwroot/index.html*), the following files are served from a CDN at `https://my-awesome-cdn.com/`:
+* URI string. In the following example (`wwwroot/index.html`), the following files are served from a CDN at `https://my-awesome-cdn.com/`:
 
-  * *dotnet.\*.js*
-  * *dotnet.wasm*
+  * `dotnet.*.js`
+  * `dotnet.wasm`
   * Timezone data
 
   ```html
@@ -429,7 +429,7 @@ A Blazor WebAssembly app can be initialized with the `loadBootResource` function
 
 * `Promise<Response>`. Pass the `integrity` parameter in a header to retain the default integrity-checking behavior.
 
-  The following example (*wwwroot/index.html*) adds a custom HTTP header to the outbound requests and passes the `integrity` parameter through to the `fetch` call:
+  The following example (`wwwroot/index.html`) adds a custom HTTP header to the outbound requests and passes the `integrity` parameter through to the `fetch` call:
   
   ```html
   <script src="_framework/blazor.webassembly.js" autostart="false"></script>
@@ -454,11 +454,11 @@ You only need to specify types for custom behaviors. Types not specified to `loa
 
 ## Change the filename extension of DLL files
 
-In case you have a need to change the filename extensions of the app's published *.dll* files, follow the guidance in this section.
+In case you have a need to change the filename extensions of the app's published `.dll` files, follow the guidance in this section.
 
-After publishing the app, use a shell script or DevOps build pipeline to rename *.dll* files to use a different file extension. Target the *.dll* files in the *wwwroot* directory of the app's published output (for example, *{CONTENT ROOT}/bin/Release/netstandard2.1/publish/wwwroot*).
+After publishing the app, use a shell script or DevOps build pipeline to rename `.dll` files to use a different file extension. Target the `.dll` files in the `wwwroot` directory of the app's published output (for example, `{CONTENT ROOT}/bin/Release/netstandard2.1/publish/wwwroot`).
 
-In the following examples, *.dll* files are renamed to use the *.bin* file extension.
+In the following examples, `.dll` files are renamed to use the `.bin` file extension.
 
 On Windows:
 
@@ -486,18 +486,18 @@ If service worker assets are also in use, add the following command:
 sed -i 's/\.dll"/.bin"/g' service-worker-assets.js
 ```
    
-To use a different file extension than *.bin*, replace *.bin* in the preceding commands.
+To use a different file extension than `.bin`, replace `.bin` in the preceding commands.
 
-To address the compressed *blazor.boot.json.gz* and *blazor.boot.json.br* files, adopt either of the following approaches:
+To address the compressed `blazor.boot.json.gz` and `blazor.boot.json.br` files, adopt either of the following approaches:
 
-* Remove the compressed *blazor.boot.json.gz* and *blazor.boot.json.br* files. Compression is disabled with this approach.
-* Recompress the updated *blazor.boot.json* file.
+* Remove the compressed `blazor.boot.json.gz` and `blazor.boot.json.br` files. Compression is disabled with this approach.
+* Recompress the updated `blazor.boot.json` file.
 
-The preceding guidance also applies when service worker assets are in use. Remove or recompress *wwwroot/service-worker-assets.js.br* and *wwwroot/service-worker-assets.js.gz*. Otherwise, file integrity checks fail in the browser.
+The preceding guidance also applies when service worker assets are in use. Remove or recompress `wwwroot/service-worker-assets.js.br` and `wwwroot/service-worker-assets.js.gz`. Otherwise, file integrity checks fail in the browser.
 
 The following Windows example uses a PowerShell script placed at the root of the project.
 
-*ChangeDLLExtensions.ps1:*:
+`ChangeDLLExtensions.ps1:`:
 
 ```powershell
 param([string]$filepath,[string]$tfm)

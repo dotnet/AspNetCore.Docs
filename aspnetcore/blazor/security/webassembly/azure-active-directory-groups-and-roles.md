@@ -34,7 +34,7 @@ The guidance in this article applies to the Blazor WebAssembly AAD deployment sc
 To configure the app in the Azure portal to provide a `groups` membership claim, see the following Azure articles. Assign users to user-defined AAD groups and built-in Administrative Roles.
 
 * [Roles using Azure AD security groups](/azure/architecture/multitenant-identity/app-roles#roles-using-azure-ad-security-groups)
-* [groupMembershipClaims attribute](/azure/active-directory/develop/reference-app-manifest#groupmembershipclaims-attribute)
+* [`groupMembershipClaims` attribute](/azure/active-directory/develop/reference-app-manifest#groupmembershipclaims-attribute)
 
 The following examples assume that a user is assigned to the AAD built-in *Billing Administrator* role.
 
@@ -42,7 +42,7 @@ The single `groups` claim sent by AAD presents the user's groups and roles as Ob
 
 Extend <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount> to include array properties for groups and roles.
 
-*CustomUserAccount.cs*:
+`CustomUserAccount.cs`:
 
 ```csharp
 using System.Text.Json.Serialization;
@@ -104,7 +104,7 @@ public class CustomUserFactory
 
 There's no need to provide code to remove the original `groups` claim because it's automatically removed by the framework.
 
-Register the factory in `Program.Main` (*Program.cs*) of the standalone app or Client app of a Hosted solution:
+Register the factory in `Program.Main` (`Program.cs`) of the standalone app or Client app of a Hosted solution:
 
 ```csharp
 builder.Services.AddMsalAuthentication<RemoteAuthenticationState, 
@@ -134,7 +134,7 @@ For the complete list of AAD role Object IDs, see the [AAD Adminstrative Role Gr
 
 In the following examples, the app uses the preceding policy to authorize the user.
 
-The [AuthorizeView component](xref:blazor/security/index#authorizeview-component) works with the policy:
+The [`AuthorizeView` component](xref:blazor/security/index#authorizeview-component) works with the policy:
 
 ```razor
 <AuthorizeView Policy="BillingAdministrator">
@@ -234,7 +234,7 @@ builder.Services.AddMsalAuthentication(options =>
 
 Component authorization approaches are functional at this point. Any of the authorization mechanisms in components can use the `admin` role to authorize the user:
 
-* [AuthorizeView component](xref:blazor/security/index#authorizeview-component) (Example: `<AuthorizeView Roles="admin">`)
+* [`AuthorizeView` component](xref:blazor/security/index#authorizeview-component) (Example: `<AuthorizeView Roles="admin">`)
 * [`[Authorize]` attribute directive](xref:blazor/security/index#authorize-attribute) (<xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute>) (Example: `@attribute [Authorize(Roles = "admin")]`)
 * [Procedural logic](xref:blazor/security/index#procedural-logic) (Example: `if (user.IsInRole("admin")) { ... }`)
 

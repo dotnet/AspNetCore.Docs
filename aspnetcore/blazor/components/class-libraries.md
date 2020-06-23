@@ -34,13 +34,13 @@ Follow the guidance in the <xref:blazor/get-started> article to configure your e
 1. Add the RCL to a solution:
    1. Right-click the solution. Select **Add** > **Existing Project**.
    1. Navigate to the RCL's project file.
-   1. Select the RCL's project file (*.csproj*).
+   1. Select the RCL's project file (`.csproj`).
 1. Add a reference the RCL from the app:
    1. Right-click the app project. Select **Add** > **Reference**.
    1. Select the RCL project. Select **OK**.
 
 > [!NOTE]
-> If the **Support pages and views** check box is selected when generating the RCL from the template, then also add an *_Imports.razor* file to root of the generated project with the following contents to enable Razor component authoring:
+> If the **Support pages and views** check box is selected when generating the RCL from the template, then also add an `_Imports.razor` file to root of the generated project with the following contents to enable Razor component authoring:
 >
 > ```razor
 > @using Microsoft.AspNetCore.Components.Web
@@ -50,14 +50,14 @@ Follow the guidance in the <xref:blazor/get-started> article to configure your e
 
 # [.NET Core CLI](#tab/netcore-cli)
 
-1. Use the **Razor Class Library** template (`razorclasslib`) with the [dotnet new](/dotnet/core/tools/dotnet-new) command in a command shell. In the following example, an RCL is created named `MyComponentLib1`. The folder that holds `MyComponentLib1` is created automatically when the command is executed:
+1. Use the **Razor Class Library** template (`razorclasslib`) with the [`dotnet new`](/dotnet/core/tools/dotnet-new) command in a command shell. In the following example, an RCL is created named `MyComponentLib1`. The folder that holds `MyComponentLib1` is created automatically when the command is executed:
 
    ```dotnetcli
    dotnet new razorclasslib -o MyComponentLib1
    ```
 
    > [!NOTE]
-   > If the `-s|--support-pages-and-views` switch is used when generating the RCL from the template, then also add an *_Imports.razor* file to root of the generated project with the following contents to enable Razor component authoring:
+   > If the `-s|--support-pages-and-views` switch is used when generating the RCL from the template, then also add an `_Imports.razor` file to root of the generated project with the following contents to enable Razor component authoring:
    >
    > ```razor
    > @using Microsoft.AspNetCore.Components.Web
@@ -65,7 +65,7 @@ Follow the guidance in the <xref:blazor/get-started> article to configure your e
    >
    > Manually add the file the root of the generated project.
 
-1. To add the library to an existing project, use the [dotnet add reference](/dotnet/core/tools/dotnet-add-reference) command in a command shell. In the following example, the RCL is added to the app. Execute the following command from the app's project folder with the path to the library:
+1. To add the library to an existing project, use the [`dotnet add reference`](/dotnet/core/tools/dotnet-add-reference) command in a command shell. In the following example, the RCL is added to the app. Execute the following command from the app's project folder with the path to the library:
 
    ```dotnetcli
    dotnet add reference {PATH TO LIBRARY}
@@ -104,7 +104,7 @@ Welcome to your new app.
 <SalesReport />
 ```
 
-Include the `@using MyComponentLib1` directive in the top-level *_Import.razor* file to make the library's components available to an entire project. Add the directive to an *_Import.razor* file at any level to apply the namespace to a single page or set of pages within a folder.
+Include the `@using MyComponentLib1` directive in the top-level `_Import.razor` file to make the library's components available to an entire project. Add the directive to an `_Import.razor` file at any level to apply the namespace to a single page or set of pages within a folder.
 
 ## Create a Razor components class library with static assets
 
@@ -112,13 +112,13 @@ An RCL can include static assets. The static assets are available to any app tha
 
 ## Build, pack, and ship to NuGet
 
-Because component libraries are standard .NET libraries, packaging and shipping them to NuGet is no different from packaging and shipping any library to NuGet. Packaging is performed using the [dotnet pack](/dotnet/core/tools/dotnet-pack) command in a command shell:
+Because component libraries are standard .NET libraries, packaging and shipping them to NuGet is no different from packaging and shipping any library to NuGet. Packaging is performed using the [`dotnet pack`](/dotnet/core/tools/dotnet-pack) command in a command shell:
 
 ```dotnetcli
 dotnet pack
 ```
 
-Upload the package to NuGet using the [dotnet nuget push](/dotnet/core/tools/dotnet-nuget-push) command in a command shell.
+Upload the package to NuGet using the [`dotnet nuget push`](/dotnet/core/tools/dotnet-nuget-push) command in a command shell.
 
 ## Additional resources
 

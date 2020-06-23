@@ -59,7 +59,7 @@ To get started with Blazor, follow the guidance for your choice of tooling:
 
    For information on the two Blazor hosting models, *Blazor WebAssembly* and *Blazor Server*, see <xref:blazor/hosting-models>.
 
-1. Open the *WebApplication1* folder in Visual Studio Code.
+1. Open the `WebApplication1` folder in Visual Studio Code.
 
 1. The IDE requests that you add assets to build and debug the project. Select **Yes**.
 
@@ -126,15 +126,15 @@ Multiple pages are available from tabs in the sidebar:
 * Counter
 * Fetch data
 
-On the Counter page, select the **Click me** button to increment the counter without a page refresh. Incrementing a counter in a webpage normally requires writing JavaScript, but with Blazor you can use C#.
+On the Counter page, select the button to increment the counter without a page refresh. Incrementing a counter in a webpage normally requires writing JavaScript, but with Blazor you can use C#.
 
-*Pages/Counter.razor*:
+`Pages/Counter.razor`:
 
 [!code-razor[](get-started/samples_snapshot/3.x/Counter1.razor?highlight=7,12-15)]
 
 A request for `/counter` in the browser, as specified by the `@page` directive at the top, causes the `Counter` component to render its content. Components render into an in-memory representation of the render tree that can then be used to update the UI in a flexible and efficient way.
 
-Each time the **Click me** button is selected:
+Each time the button is selected:
 
 * The `onclick` event is fired.
 * The `IncrementCount` method is called.
@@ -145,7 +145,7 @@ The runtime compares the new content to the previous content and only applies th
 
 Add a component to another component using HTML syntax. For example, add the `Counter` component to the app's homepage by adding a `<Counter />` element to the `Index` component.
 
-*Pages/Index.razor*:
+`Pages/Index.razor`:
 
 [!code-razor[](get-started/samples_snapshot/3.x/Index1.razor?highlight=7)]
 
@@ -156,17 +156,17 @@ Component parameters are specified using attributes or [child content](xref:blaz
 * Add a public property for `IncrementAmount` with a [`[Parameter]`](xref:Microsoft.AspNetCore.Components.ParameterAttribute) attribute.
 * Change the `IncrementCount` method to use the `IncrementAmount` when increasing the value of `currentCount`.
 
-*Pages/Counter.razor*:
+`Pages/Counter.razor`:
 
 [!code-razor[](get-started/samples_snapshot/3.x/Counter2.razor?highlight=12-13,17)]
 
 Specify the `IncrementAmount` in the `Index` component's `<Counter>` element using an attribute.
 
-*Pages/Index.razor*:
+`Pages/Index.razor`:
 
 [!code-razor[](get-started/samples_snapshot/3.x/Index2.razor?highlight=7)]
 
-Run the app. The `Index` component has its own counter that increments by ten each time the **Click me** button is selected. The `Counter` component (*Counter.razor*) at `/counter` continues to increment by one.
+Run the app. The `Index` component has its own counter that increments by ten each time the button is selected. The `Counter` component (`Pages/Counter.razor`) at `/counter` continues to increment by one.
 
 ## Next steps
 

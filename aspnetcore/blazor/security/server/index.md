@@ -56,7 +56,7 @@ Using the `-o|--output` option, the command uses the value provided for the `{AP
 * Create a folder for the project.
 * Name the project.
 
-For more information, see the [dotnet new](/dotnet/core/tools/dotnet-new) command in the .NET Core Guide.
+For more information, see the [`dotnet new`](/dotnet/core/tools/dotnet-new) command in the .NET Core Guide.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -90,7 +90,7 @@ Using the `-o|--output` option, the command uses the value provided for the `{AP
 * Create a folder for the project.
 * Name the project.
 
-For more information, see the [dotnet new](/dotnet/core/tools/dotnet-new) command in the .NET Core Guide.
+For more information, see the [`dotnet new`](/dotnet/core/tools/dotnet-new) command in the .NET Core Guide.
 
 ---
 

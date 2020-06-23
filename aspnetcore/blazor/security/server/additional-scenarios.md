@@ -65,7 +65,7 @@ services.AddHttpClient();
 services.AddScoped<TokenProvider>();
 ```
 
-In the *_Host.cshtml* file, create and instance of `InitialApplicationState` and pass it as a parameter to the app:
+In the `_Host.cshtml` file, create and instance of `InitialApplicationState` and pass it as a parameter to the app:
 
 ```cshtml
 @using Microsoft.AspNetCore.Authentication
@@ -86,7 +86,7 @@ In the *_Host.cshtml* file, create and instance of `InitialApplicationState` and
 </app>
 ```
 
-In the `App` component (*App.razor*), resolve the service and initialize it with the data from the parameter:
+In the `App` component (`App.razor`), resolve the service and initialize it with the data from the parameter:
 
 ```razor
 @inject TokenProvider TokenProvider
@@ -161,7 +161,7 @@ services.Configure<OpenIdConnectOptions>(AzureADDefaults.OpenIdScheme,
     }
 ```
 
-Alternatively, the setting can be made in the app settings (*appsettings.json*) file:
+Alternatively, the setting can be made in the app settings (`appsettings.json`) file:
 
 ```json
 {
@@ -192,11 +192,11 @@ If tacking on a segment to the authority isn't appropriate for the app's OIDC pr
 
 ### App ID URI
 
-* When using v2.0 endpoints, APIs define an *App ID URI*, which is meant to represent a unique identifier for the API.
+* When using v2.0 endpoints, APIs define an *`App ID URI`*, which is meant to represent a unique identifier for the API.
 * All scopes include the App ID URI as a prefix, and v2.0 endpoints emit access tokens with the App ID URI as the audience.
 * When using V2.0 endpoints, the client ID configured in the Server API changes from the API Application ID (Client ID) to the App ID URI.
 
-*appsettings.json*:
+`appsettings.json`:
 
 ```json
 {

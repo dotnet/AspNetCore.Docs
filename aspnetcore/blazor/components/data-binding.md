@@ -229,10 +229,10 @@ A common scenario is chaining a data-bound parameter to a page element in the co
 
 A chained bind can't be implemented with [`@bind`](xref:mvc/views/razor#bind) syntax in the page's element. The event handler and value must be specified separately. A parent component, however, can use [`@bind`](xref:mvc/views/razor#bind) syntax with the component's parameter.
 
-The following `PasswordField` component (*PasswordField.razor*):
+The following `PasswordField` component (`PasswordField.razor`):
 
 * Sets an `<input>` element's value to a `Password` property.
-* Exposes changes of the `Password` property to a parent component with an [EventCallback](xref:blazor/components/event-handling#eventcallback).
+* Exposes changes of the `Password` property to a parent component with an [`EventCallback`](xref:blazor/components/event-handling#eventcallback).
 * Uses the `onclick` event is used to trigger the `ToggleShowPassword` method. For more information, see <xref:blazor/components/event-handling>.
 
 ```razor

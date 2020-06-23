@@ -37,7 +37,7 @@ By [Luke Latham](https://github.com/guardrex)
 | Safari, including iOS            | Current    |
 | Microsoft Internet Explorer      | 11&dagger; |
 
-&dagger;Additional polyfills are required (for example, promises can be added via a [Polyfill.io](https://polyfill.io/v3/) bundle).
+&dagger;Additional polyfills are required (for example, promises can be added via a [`Polyfill.io`](https://polyfill.io/v3/) bundle).
 
 ## Additional resources
 
