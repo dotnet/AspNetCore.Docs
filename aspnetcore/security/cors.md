@@ -54,7 +54,7 @@ There are three ways to enable CORS:
 Using the [[EnableCors]](#attr) attribute with a named policy provides the finest control in limiting endpoints that support CORS.
 
 > [!WARNING]
-> <xref:Owin.CorsExtensions.UseCors%2A> must be called before <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching%2A>.
+> <xref:Owin.CorsExtensions.UseCors%2A> must be called before <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching%2A> when using `UseResponseCaching`.
 
 Each approach is detailed in the following sections.
 
