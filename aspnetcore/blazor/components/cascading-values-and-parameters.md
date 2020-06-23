@@ -19,7 +19,7 @@ In some scenarios, it's inconvenient to flow data from an ancestor component to 
 
 In the following example from the sample app, the `ThemeInfo` class specifies the theme information to flow down the component hierarchy so that all of the buttons within a given part of the app share the same style.
 
-*UIThemeClasses/ThemeInfo.cs*:
+`UIThemeClasses/ThemeInfo.cs`:
 
 ```csharp
 public class ThemeInfo
@@ -133,7 +133,7 @@ In a descendant component, the cascaded parameters receive their values from the
 
 ### TabSet example
 
-Cascading parameters also enable components to collaborate across the component hierarchy. For example, consider the following *TabSet* example in the sample app.
+Cascading parameters also enable components to collaborate across the component hierarchy. For example, consider the following `TabSet` example in the sample app.
 
 The sample app has an `ITab` interface that tabs implement:
 

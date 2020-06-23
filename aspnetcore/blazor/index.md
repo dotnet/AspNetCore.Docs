@@ -42,9 +42,9 @@ Components are .NET classes built into .NET assemblies that:
 * Can be nested and reused.
 * Can be shared and distributed as [Razor class libraries](xref:razor-pages/ui-class) or [NuGet packages](/nuget/what-is-nuget).
 
-The component class is usually written in the form of a [Razor](xref:mvc/views/razor) markup page with a *.razor* file extension. Components in Blazor are formally referred to as *Razor components*. Razor is a syntax for combining HTML markup with C# code designed for developer productivity. Razor allows you to switch between HTML markup and C# in the same file with [IntelliSense](/visualstudio/ide/using-intellisense) support. Razor Pages and MVC also use Razor. Unlike Razor Pages and MVC, which are built around a request/response model, components are used specifically for client-side UI logic and composition.
+The component class is usually written in the form of a [Razor](xref:mvc/views/razor) markup page with a `.razor` file extension. Components in Blazor are formally referred to as *Razor components*. Razor is a syntax for combining HTML markup with C# code designed for developer productivity. Razor allows you to switch between HTML markup and C# in the same file with [IntelliSense](/visualstudio/ide/using-intellisense) support. Razor Pages and MVC also use Razor. Unlike Razor Pages and MVC, which are built around a request/response model, components are used specifically for client-side UI logic and composition.
 
-The following Razor markup demonstrates a component (*Dialog.razor*), which can be nested within another component:
+The following Razor markup demonstrates a component (`Dialog.razor`), which can be nested within another component:
 
 ```razor
 <div>
@@ -75,7 +75,7 @@ Blazor uses natural HTML tags for UI composition. HTML elements specify componen
 
 In the following example, the `Index` component uses the `Dialog` component. `ChildContent` and `Title` are set by the attributes and content of the `<Dialog>` element.
 
-*Index.razor*:
+`Pages/Index.razor`:
 
 ```razor
 @page "/"
@@ -89,7 +89,7 @@ Welcome to your new app.
 </Dialog>
 ```
 
-The dialog is rendered when the parent (*Index.razor*) is accessed in a browser:
+The dialog is rendered when the parent (`Pages/Index.razor`) is accessed in a browser:
 
 ![Dialog component rendered in the browser](index/_static/dialog.png)
 
@@ -101,7 +101,7 @@ Components render into an in-memory representation of the browser's Document Obj
 
 Blazor WebAssembly is a single-page app framework for building interactive client-side web apps with .NET. Blazor WebAssembly uses open web standards without plugins or code transpilation and works in all modern web browsers, including mobile browsers.
 
-Running .NET code inside web browsers is made possible by [WebAssembly](https://webassembly.org) (abbreviated *wasm*). WebAssembly is a compact bytecode format optimized for fast download and maximum execution speed. WebAssembly is an open web standard and supported in web browsers without plugins.
+Running .NET code inside web browsers is made possible by [WebAssembly](https://webassembly.org) (abbreviated `wasm`). WebAssembly is a compact bytecode format optimized for fast download and maximum execution speed. WebAssembly is an open web standard and supported in web browsers without plugins.
 
 WebAssembly code can access the full functionality of the browser via JavaScript, called *JavaScript interoperability* (or *JavaScript interop*). .NET code executed via WebAssembly in the browser runs in the browser's JavaScript sandbox with the protections that the sandbox provides against malicious actions on the client machine.
 

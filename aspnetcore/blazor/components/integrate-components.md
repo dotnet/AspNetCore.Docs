@@ -26,7 +26,7 @@ After [preparing the app](#prepare-the-app), use the guidance in the following s
 
 An existing Razor Pages or MVC app can integrate Razor components into pages and views:
 
-1. In the app's layout file (*_Layout.cshtml*):
+1. In the app's layout file (`_Layout.cshtml`):
 
    * Add the following `<base>` tag to the `<head>` element:
 
@@ -36,7 +36,7 @@ An existing Razor Pages or MVC app can integrate Razor components into pages and
 
      The `href` value (the *app base path*) in the preceding example assumes that the app resides at the root URL path (`/`). If the app is a sub-application, follow the guidance in the *App base path* section of the <xref:blazor/host-and-deploy/index#app-base-path> article.
 
-     The *_Layout.cshtml* file is located in the *Pages/Shared* folder in a Razor Pages app or *Views/Shared* folder in an MVC app.
+     The `_Layout.cshtml` file is located in the *Pages/Shared* folder in a Razor Pages app or *Views/Shared* folder in an MVC app.
 
    * Add a `<script>` tag for the *blazor.server.js* script immediately before of the closing `</body>` tag:
 
@@ -46,7 +46,7 @@ An existing Razor Pages or MVC app can integrate Razor components into pages and
 
      The framework adds the *blazor.server.js* script to the app. There's no need to manually add the script to the app.
 
-1. Add an *_Imports.razor* file to the root folder of the project with the following content (change the last namespace, `MyAppNamespace`, to the namespace of the app):
+1. Add an `_Imports.razor` file to the root folder of the project with the following content (change the last namespace, `MyAppNamespace`, to the namespace of the app):
 
    ```razor
    @using System.Net.Http
@@ -81,7 +81,7 @@ To support routable Razor components in Razor Pages apps:
 
 1. Follow the guidance in the [Prepare the app](#prepare-the-app) section.
 
-1. Add an *App.razor* file to the project root with the following content:
+1. Add an `App.razor` file to the project root with the following content:
 
    ```razor
    @using Microsoft.AspNetCore.Components.Routing
@@ -97,7 +97,7 @@ To support routable Razor components in Razor Pages apps:
    </Router>
    ```
 
-1. Add a *_Host.cshtml* file to the *Pages* folder with the following content:
+1. Add a `_Host.cshtml` file to the `Pages` folder with the following content:
 
    ```cshtml
    @page "/blazor"
@@ -110,7 +110,7 @@ To support routable Razor components in Razor Pages apps:
    </app>
    ```
 
-   Components use the shared *_Layout.cshtml* file for their layout.
+   Components use the shared `_Layout.cshtml` file for their layout.
 
    <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode> configures whether the `App` component:
 
@@ -125,7 +125,7 @@ To support routable Razor components in Razor Pages apps:
 
    For more information on the Component Tag Helper, see <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
 
-1. Add a low-priority route for the *_Host.cshtml* page to endpoint configuration in `Startup.Configure`:
+1. Add a low-priority route for the `_Host.cshtml` page to endpoint configuration in `Startup.Configure`:
 
    ```csharp
    app.UseEndpoints(endpoints =>
@@ -156,7 +156,7 @@ To support routable Razor components in MVC apps:
 
 1. Follow the guidance in the [Prepare the app](#prepare-the-app) section.
 
-1. Add an *App.razor* file to the root of the project with the following content:
+1. Add an `App.razor` file to the root of the project with the following content:
 
    ```razor
    @using Microsoft.AspNetCore.Components.Routing
@@ -172,7 +172,7 @@ To support routable Razor components in MVC apps:
    </Router>
    ```
 
-1. Add a *_Host.cshtml* file to the *Views/Home* folder with the following content:
+1. Add a `_Host.cshtml` file to the `Views/Home` folder with the following content:
 
    ```cshtml
    @{
@@ -184,7 +184,7 @@ To support routable Razor components in MVC apps:
    </app>
    ```
 
-   Components use the shared *_Layout.cshtml* file for their layout.
+   Components use the shared `_Layout.cshtml` file for their layout.
    
    <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode> configures whether the `App` component:
 
@@ -208,7 +208,7 @@ To support routable Razor components in MVC apps:
    }
    ```
 
-1. Add a low-priority route for the controller action that returns the *_Host.cshtml* view to the endpoint configuration in `Startup.Configure`:
+1. Add a low-priority route for the controller action that returns the `_Host.cshtml` view to the endpoint configuration in `Startup.Configure`:
 
    ```csharp
    app.UseEndpoints(endpoints =>
@@ -219,7 +219,7 @@ To support routable Razor components in MVC apps:
    });
    ```
 
-1. Create a *Pages* folder and add routable components to the app. For example:
+1. Create a `Pages` folder and add routable components to the app. For example:
 
    ```razor
    @page "/counter"
@@ -288,7 +288,7 @@ For more information, see <xref:mvc/views/tag-helpers/builtin-th/component-tag-h
 
 ## Component namespaces
 
-When using a custom folder to hold the app's components, add the namespace representing the folder to either the page/view or to the *_ViewImports.cshtml* file. In the following example:
+When using a custom folder to hold the app's components, add the namespace representing the folder to either the page/view or to the `_ViewImports.cshtml` file. In the following example:
 
 * Change `MyAppNamespace` to the app's namespace.
 * If a folder named *Components* isn't used to hold the components, change `Components` to the folder where the components reside.
@@ -297,6 +297,6 @@ When using a custom folder to hold the app's components, add the namespace repre
 @using MyAppNamespace.Components
 ```
 
-The *_ViewImports.cshtml* file is located in the *Pages* folder of a Razor Pages app or the *Views* folder of an MVC app.
+The `_ViewImports.cshtml` file is located in the `Pages` folder of a Razor Pages app or the `Views` folder of an MVC app.
 
 For more information, see <xref:blazor/components/index#namespaces>.

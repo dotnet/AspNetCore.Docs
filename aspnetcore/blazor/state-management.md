@@ -124,7 +124,7 @@ It's worth considering choosing a package that transparently uses ASP.NET Core's
 
 ## Protected Browser Storage experimental package
 
-An example of a NuGet package that provides [Data Protection](xref:security/data-protection/introduction) for `localStorage` and `sessionStorage` is [Microsoft.AspNetCore.ProtectedBrowserStorage](https://www.nuget.org/packages/Microsoft.AspNetCore.ProtectedBrowserStorage).
+An example of a NuGet package that provides [Data Protection](xref:security/data-protection/introduction) for `localStorage` and `sessionStorage` is [`Microsoft.AspNetCore.ProtectedBrowserStorage`](https://www.nuget.org/packages/Microsoft.AspNetCore.ProtectedBrowserStorage).
 
 > [!WARNING]
 > `Microsoft.AspNetCore.ProtectedBrowserStorage` is an unsupported experimental package unsuitable for production use at this time.
@@ -133,8 +133,8 @@ An example of a NuGet package that provides [Data Protection](xref:security/data
 
 To install the `Microsoft.AspNetCore.ProtectedBrowserStorage` package:
 
-1. In the Blazor Server app project, add a package reference to [Microsoft.AspNetCore.ProtectedBrowserStorage](https://www.nuget.org/packages/Microsoft.AspNetCore.ProtectedBrowserStorage).
-1. In the top-level HTML (for example, in the *Pages/_Host.cshtml* file in the default project template), add the following `<script>` tag:
+1. In the Blazor Server app project, add a package reference to [`Microsoft.AspNetCore.ProtectedBrowserStorage`](https://www.nuget.org/packages/Microsoft.AspNetCore.ProtectedBrowserStorage).
+1. In the top-level HTML (for example, in the `Pages/_Host.cshtml` file in the default project template), add the following `<script>` tag:
 
    ```html
    <script src="_content/Microsoft.AspNetCore.ProtectedBrowserStorage/protectedBrowserStorage.js"></script>
@@ -160,7 +160,7 @@ The choice depends on which backing store you wish to use. In the following exam
 @inject ProtectedSessionStorage ProtectedSessionStore
 ```
 
-The `@using` statement can be placed into an *_Imports.razor* file instead of in the component. Use of the *_Imports.razor* file makes the namespace available to larger segments of the app or the whole app.
+The `@using` statement can be placed into an `_Imports.razor` file instead of in the component. Use of the `_Imports.razor` file makes the namespace available to larger segments of the app or the whole app.
 
 To persist the `currentCount` value in the `Counter` component of the project template, modify the `IncrementCount` method to use `ProtectedSessionStore.SetAsync`:
 
@@ -204,7 +204,7 @@ One approach is to track whether the data is `null` (still loading) or not. In t
 private int? currentCount;
 ```
 
-Instead of unconditionally displaying the count and **Increment** button, choose to display these elements only if the data is loaded:
+Instead of unconditionally displaying the count and **`Increment`** button, choose to display these elements only if the data is loaded:
 
 ```razor
 @if (currentCount.HasValue)
@@ -232,7 +232,7 @@ During prerendering:
 
 One way to resolve the error is to disable prerendering. This is usually the best choice if the app makes heavy use of browser-based storage. Prerendering adds complexity and doesn't benefit the app because the app can't prerender any useful content until `localStorage` or `sessionStorage` are available.
 
-To disable prerendering, open the *Pages/_Host.cshtml* file and change the `render-mode` of the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) to <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server>.
+To disable prerendering, open the `Pages/_Host.cshtml` file and change the `render-mode` of the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) to <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server>.
 
 Prerendering might be useful for other pages that don't use `localStorage` or `sessionStorage`. To keep prerendering enabled, defer the loading operation until the browser is connected to the circuit. The following is an example for storing a counter value:
 
@@ -315,7 +315,7 @@ else
 
 The `CounterStateProvider` component handles the loading phase by not rendering its child content until loading is complete.
 
-To use the `CounterStateProvider` component, wrap an instance of the component around any other component that requires access to the counter state. To make the state accessible to all components in an app, wrap the `CounterStateProvider` component around the <xref:Microsoft.AspNetCore.Components.Routing.Router> in the `App` component (*App.razor*):
+To use the `CounterStateProvider` component, wrap an instance of the component around any other component that requires access to the counter state. To make the state accessible to all components in an app, wrap the `CounterStateProvider` component around the <xref:Microsoft.AspNetCore.Components.Routing.Router> in the `App` component (`App.razor`):
 
 ```razor
 <CounterStateProvider>

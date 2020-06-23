@@ -46,7 +46,7 @@ In **Home** > **Azure AD B2C** > **User flows**:
 
 [Create a sign-up and sign-in user flow](/azure/active-directory-b2c/tutorial-create-user-flows)
 
-At a minimum, select the **Application claims** > **Display Name** user attribute to populate the `context.User.Identity.Name` in the `LoginDisplay` component (*Shared/LoginDisplay.razor*).
+At a minimum, select the **Application claims** > **Display Name** user attribute to populate the `context.User.Identity.Name` in the `LoginDisplay` component (`Shared/LoginDisplay.razor`).
 
 Record the sign-up and sign-in user flow name created for the app (for example, `B2C_1_signupsignin`).
 
@@ -74,7 +74,7 @@ After creating the app, you should be able to:
 
 ## Authentication package
 
-When an app is created to use an Individual B2C Account (`IndividualB2C`), the app automatically receives a package reference for the [Microsoft Authentication Library](/azure/active-directory/develop/msal-overview) ([Microsoft.Authentication.WebAssembly.Msal](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal/)). The package provides a set of primitives that help the app authenticate users and obtain tokens to call protected APIs.
+When an app is created to use an Individual B2C Account (`IndividualB2C`), the app automatically receives a package reference for the [Microsoft Authentication Library](/azure/active-directory/develop/msal-overview) ([`Microsoft.Authentication.WebAssembly.Msal`](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal/)). The package provides a set of primitives that help the app authenticate users and obtain tokens to call protected APIs.
 
 If adding authentication to an app, manually add the package to the app's project file:
 
@@ -83,13 +83,13 @@ If adding authentication to an app, manually add the package to the app's projec
   Version="3.2.0" />
 ```
 
-The [Microsoft.Authentication.WebAssembly.Msal](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal/) package transitively adds the [Microsoft.AspNetCore.Components.WebAssembly.Authentication](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/) package to the app.
+The [`Microsoft.Authentication.WebAssembly.Msal`](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal/) package transitively adds the [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/) package to the app.
 
 ## Authentication service support
 
-Support for authenticating users is registered in the service container with the <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A> extension method provided by the [Microsoft.Authentication.WebAssembly.Msal](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal/) package. This method sets up all of the services required for the app to interact with the Identity Provider (IP).
+Support for authenticating users is registered in the service container with the <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A> extension method provided by the [`Microsoft.Authentication.WebAssembly.Msal`](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal/) package. This method sets up all of the services required for the app to interact with the Identity Provider (IP).
 
-*Program.cs*:
+`Program.cs`:
 
 ```csharp
 builder.Services.AddMsalAuthentication(options =>
@@ -100,7 +100,7 @@ builder.Services.AddMsalAuthentication(options =>
 
 The <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A> method accepts a callback to configure the parameters required to authenticate an app. The values required for configuring the app can be obtained from the AAD configuration when you register the app.
 
-Configuration is supplied by the *wwwroot/appsettings.json* file:
+Configuration is supplied by the `wwwroot/appsettings.json` file:
 
 ```json
 {

@@ -21,7 +21,7 @@ By [Luke Latham](https://github.com/guardrex), [Rainer Stropek](https://www.time
 
 Using the [Blazor Server hosting model](xref:blazor/hosting-models#blazor-server), Blazor is executed on the server from within an ASP.NET Core app. UI updates, event handling, and JavaScript calls are handled over a [SignalR](xref:signalr/introduction) connection.
 
-A web server capable of hosting an ASP.NET Core app is required. Visual Studio includes the **Blazor Server App** project template (`blazorserverside` template when using the [dotnet new](/dotnet/core/tools/dotnet-new) command).
+A web server capable of hosting an ASP.NET Core app is required. Visual Studio includes the **Blazor Server App** project template (`blazorserverside` template when using the [`dotnet new`](/dotnet/core/tools/dotnet-new) command).
 
 ## Scalability
 
@@ -65,7 +65,7 @@ We recommend using the [Azure SignalR Service](/azure/azure-signalr) for Blazor 
 
    * Configuration (use **one** of the following approaches):
   
-     * *appsettings.json*:
+     * `appsettings.json`:
 
        ```json
        "Azure:SignalR:ServerStickyMode": "Required"

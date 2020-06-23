@@ -17,8 +17,8 @@ uid: blazor/fundamentals/configuration
 Blazor WebAssembly loads configuration from:
 
 * App settings files by default:
-  * *wwwroot/appsettings.json*
-  * *wwwroot/appsettings.{ENVIRONMENT}.json*
+  * `wwwroot/appsettings.json`
+  * `wwwroot/appsettings.{ENVIRONMENT}.json`
 * Other [configuration providers](xref:fundamentals/configuration/index) registered by the app. Not all providers are appropriate for Blazor WebAssembly apps. Clarification on which providers are supported for Blazor WebAssembly is tracked by [Clarify configuration providers for Blazor WASM (dotnet/AspNetCore.Docs #18134)](https://github.com/dotnet/AspNetCore.Docs/issues/18134).
 
 > [!WARNING]
@@ -28,7 +28,7 @@ For more information on configuration providers, see <xref:fundamentals/configur
 
 ## App settings configuration
 
-*wwwroot/appsettings.json*:
+`wwwroot/appsettings.json`:
 
 ```json
 {
@@ -101,9 +101,9 @@ Inject an <xref:Microsoft.Extensions.Configuration.IConfiguration> instance into
 }
 ```
 
-To read other configuration files from the *wwwroot* folder into configuration, use an <xref:System.Net.Http.HttpClient> to obtain the file's content. When using this approach, the existing <xref:System.Net.Http.HttpClient> service registration can use the local client created to read the file, as the following example shows:
+To read other configuration files from the `wwwroot` folder into configuration, use an <xref:System.Net.Http.HttpClient> to obtain the file's content. When using this approach, the existing <xref:System.Net.Http.HttpClient> service registration can use the local client created to read the file, as the following example shows:
 
-*wwwroot/cars.json*:
+`wwwroot/cars.json`:
 
 ```json
 {
@@ -133,7 +133,7 @@ builder.Configuration.AddJsonStream(stream);
 
 ## Authentication configuration
 
-*wwwroot/appsettings.json*:
+`wwwroot/appsettings.json`:
 
 ```json
 {
@@ -153,13 +153,13 @@ builder.Services.AddOidcAuthentication(options =>
 
 ## Logging configuration
 
-Add a package reference for [Microsoft.Extensions.Logging.Configuration](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Configuration/):
+Add a package reference for [`Microsoft.Extensions.Logging.Configuration`](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Configuration/):
 
 ```xml
 <PackageReference Include="Microsoft.Extensions.Logging.Configuration" Version="{VERSION}" />
 ```
 
-*wwwroot/appsettings.json*:
+`wwwroot/appsettings.json`:
 
 ```json
 {
@@ -197,6 +197,6 @@ var hostname = builder.Configuration["HostName"];
 Configuration files are cached for offline use. With [Progressive Web Applications (PWAs)](xref:blazor/progressive-web-app), you can only update configuration files when creating a new deployment. Editing configuration files between deployments has no effect because:
 
 * Users have cached versions of the files that they continue to use.
-* The PWA's *service-worker.js* and *service-worker-assets.js* files must be rebuilt on compilation, which signal to the app on the user's next online visit that the app has been redeployed.
+* The PWA's `service-worker.js` and `service-worker-assets.js` files must be rebuilt on compilation, which signal to the app on the user's next online visit that the app has been redeployed.
 
 For more information on how background updates are handled by PWAs, see <xref:blazor/progressive-web-app#background-updates>.

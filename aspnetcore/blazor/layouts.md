@@ -22,15 +22,15 @@ To turn a *component* into a *layout*, the component:
 * Inherits from <xref:Microsoft.AspNetCore.Components.LayoutComponentBase>, which defines a <xref:Microsoft.AspNetCore.Components.LayoutComponentBase.Body> property for the rendered content inside the layout.
 * Uses the Razor syntax `@Body` to specify the location in the layout markup where the content is rendered.
 
-The following code sample shows the Razor template of a layout component, *MainLayout.razor*. The layout inherits <xref:Microsoft.AspNetCore.Components.LayoutComponentBase> and sets the `@Body` between the navigation bar and the footer:
+The following code sample shows the Razor template of a layout component, `MainLayout.razor`. The layout inherits <xref:Microsoft.AspNetCore.Components.LayoutComponentBase> and sets the `@Body` between the navigation bar and the footer:
 
 [!code-razor[](layouts/sample_snapshot/3.x/MainLayout.razor?highlight=1,13)]
 
-In an app based on one of the Blazor app templates, the `MainLayout` component (*MainLayout.razor*) is in the app's *Shared* folder.
+In an app based on one of the Blazor app templates, the `MainLayout` component (`MainLayout.razor`) is in the app's `Shared` folder.
 
 ## Default layout
 
-Specify the default app layout in the <xref:Microsoft.AspNetCore.Components.Routing.Router> component in the app's *App.razor* file. The following <xref:Microsoft.AspNetCore.Components.Routing.Router> component, which is provided by the default Blazor templates, sets the default layout to the `MainLayout` component:
+Specify the default app layout in the <xref:Microsoft.AspNetCore.Components.Routing.Router> component in the app's `App.razor` file. The following <xref:Microsoft.AspNetCore.Components.Routing.Router> component, which is provided by the default Blazor templates, sets the default layout to the `MainLayout` component:
 
 [!code-razor[](layouts/sample_snapshot/3.x/App1.razor?highlight=3)]
 
@@ -50,13 +50,13 @@ The content of the following `MasterList` component is inserted into the `Master
 
 [!code-razor[](layouts/sample_snapshot/3.x/MasterList.razor?highlight=1)]
 
-Specifying the layout directly in a component overrides a *default layout* set in the router or an `@layout` directive imported from *_Imports.razor*.
+Specifying the layout directly in a component overrides a *default layout* set in the router or an `@layout` directive imported from `_Imports.razor`.
 
 ## Centralized layout selection
 
-Every folder of an app can optionally contain a template file named *_Imports.razor*. The compiler includes the directives specified in the imports file in all of the Razor templates in the same folder and recursively in all of its subfolders. Therefore, an *_Imports.razor* file containing `@layout MyCoolLayout` ensures that all of the components in a folder use `MyCoolLayout`. There's no need to repeatedly add `@layout MyCoolLayout` to all of the *.razor* files within the folder and subfolders. `@using` directives are also applied to components in the same way.
+Every folder of an app can optionally contain a template file named `_Imports.razor`. The compiler includes the directives specified in the imports file in all of the Razor templates in the same folder and recursively in all of its subfolders. Therefore, an `_Imports.razor` file containing `@layout MyCoolLayout` ensures that all of the components in a folder use `MyCoolLayout`. There's no need to repeatedly add `@layout MyCoolLayout` to all of the `.razor` files within the folder and subfolders. `@using` directives are also applied to components in the same way.
 
-The following *_Imports.razor* file imports:
+The following `_Imports.razor` file imports:
 
 * `MyCoolLayout`.
 * All Razor components in the same folder and any subfolders.
@@ -64,23 +64,23 @@ The following *_Imports.razor* file imports:
  
 [!code-razor[](layouts/sample_snapshot/3.x/_Imports.razor)]
 
-The *_Imports.razor* file is similar to the [_ViewImports.cshtml file for Razor views and pages](xref:mvc/views/layout#importing-shared-directives) but applied specifically to Razor component files.
+The `_Imports.razor` file is similar to the [_ViewImports.cshtml file for Razor views and pages](xref:mvc/views/layout#importing-shared-directives) but applied specifically to Razor component files.
 
-Specifying a layout in *_Imports.razor* overrides a layout specified as the router's *default layout*.
+Specifying a layout in `_Imports.razor` overrides a layout specified as the router's *default layout*.
 
 ## Nested layouts
 
 Apps can consist of nested layouts. A component can reference a layout which in turn references another layout. For example, nesting layouts are used to create a multi-level menu structure.
 
-The following example shows how to use nested layouts. The *EpisodesComponent.razor* file is the component to display. The component references the `MasterListLayout`:
+The following example shows how to use nested layouts. The `EpisodesComponent.razor` file is the component to display. The component references the `MasterListLayout`:
 
 [!code-razor[](layouts/sample_snapshot/3.x/EpisodesComponent.razor?highlight=1)]
 
-The *MasterListLayout.razor* file provides the `MasterListLayout`. The layout references another layout, `MasterLayout`, where it's rendered. `EpisodesComponent` is rendered where `@Body` appears:
+The `MasterListLayout.razor` file provides the `MasterListLayout`. The layout references another layout, `MasterLayout`, where it's rendered. `EpisodesComponent` is rendered where `@Body` appears:
 
 [!code-razor[](layouts/sample_snapshot/3.x/MasterListLayout.razor?highlight=1,9)]
 
-Finally, `MasterLayout` in *MasterLayout.razor* contains the top-level layout elements, such as the header, main menu, and footer. `MasterListLayout` with the `EpisodesComponent` is rendered where `@Body` appears:
+Finally, `MasterLayout` in `MasterLayout.razor` contains the top-level layout elements, such as the header, main menu, and footer. `MasterListLayout` with the `EpisodesComponent` is rendered where `@Body` appears:
 
 [!code-razor[](layouts/sample_snapshot/3.x/MasterLayout.razor?highlight=6)]
 

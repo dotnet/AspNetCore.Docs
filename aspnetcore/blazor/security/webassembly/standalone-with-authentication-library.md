@@ -15,7 +15,7 @@ By [Javier Calvarro Nelson](https://github.com/javiercn) and [Luke Latham](https
 
 *For Azure Active Directory (AAD) and Azure Active Directory B2C (AAD B2C), don't follow the guidance in this topic. See the AAD and AAD B2C topics in this table of contents node.*
 
-To create a Blazor WebAssembly standalone app that uses [Microsoft.AspNetCore.Components.WebAssembly.Authentication](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/) library, execute the following command in a command shell:
+To create a Blazor WebAssembly standalone app that uses [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/) library, execute the following command in a command shell:
 
 ```dotnetcli
 dotnet new blazorwasm -au Individual
@@ -27,7 +27,7 @@ In Visual Studio, [create a Blazor WebAssembly app](xref:blazor/get-started). Se
 
 ## Authentication package
 
-When an app is created to use Individual User Accounts, the app automatically receives a package reference for the [Microsoft.AspNetCore.Components.WebAssembly.Authentication](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/) package in the app's project file. The package provides a set of primitives that help the app authenticate users and obtain tokens to call protected APIs.
+When an app is created to use Individual User Accounts, the app automatically receives a package reference for the [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/) package in the app's project file. The package provides a set of primitives that help the app authenticate users and obtain tokens to call protected APIs.
 
 If adding authentication to an app, manually add the package to the app's project file:
 
@@ -39,9 +39,9 @@ If adding authentication to an app, manually add the package to the app's projec
 
 ## Authentication service support
 
-Support for authenticating users is registered in the service container with the <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyAuthenticationServiceCollectionExtensions.AddOidcAuthentication%2A> extension method provided by the [Microsoft.AspNetCore.Components.WebAssembly.Authentication](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/) package. This method sets up the services required for the app to interact with the Identity Provider (IP).
+Support for authenticating users is registered in the service container with the <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyAuthenticationServiceCollectionExtensions.AddOidcAuthentication%2A> extension method provided by the [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/) package. This method sets up the services required for the app to interact with the Identity Provider (IP).
 
-*Program.cs*:
+`Program.cs`:
 
 ```csharp
 builder.Services.AddOidcAuthentication(options =>
@@ -50,7 +50,7 @@ builder.Services.AddOidcAuthentication(options =>
 });
 ```
 
-Configuration is supplied by the *wwwroot/appsettings.json* file:
+Configuration is supplied by the `wwwroot/appsettings.json` file:
 
 ```json
 {
@@ -100,7 +100,7 @@ For more information, see the following sections of the *Additional scenarios* a
 
 ## LoginDisplay component
 
-The `LoginDisplay` component (*Shared/LoginDisplay.razor*) is rendered in the `MainLayout` component (*Shared/MainLayout.razor*) and manages the following behaviors:
+The `LoginDisplay` component (`Shared/LoginDisplay.razor`) is rendered in the `MainLayout` component (`Shared/MainLayout.razor`) and manages the following behaviors:
 
 * For authenticated users:
   * Displays the current username.

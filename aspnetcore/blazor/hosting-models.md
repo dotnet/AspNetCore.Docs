@@ -25,9 +25,9 @@ The principal hosting model for Blazor is running client-side in the browser on 
 
 ![Blazor WebAssembly: The Blazor app runs on a UI thread inside the browser.](hosting-models/_static/blazor-webassembly.png)
 
-To create a Blazor app using the client-side hosting model, use the **Blazor WebAssembly App** template ([dotnet new blazorwasm](/dotnet/core/tools/dotnet-new)).
+To create a Blazor app using the client-side hosting model, use the **Blazor WebAssembly App** template ([`dotnet new blazorwasm`](/dotnet/core/tools/dotnet-new)).
 
-After selecting the **Blazor WebAssembly App** template, you have the option of configuring the app to use an ASP.NET Core backend by selecting the **ASP.NET Core hosted** check box ([dotnet new blazorwasm --hosted](/dotnet/core/tools/dotnet-new)). The ASP.NET Core app serves the Blazor app to clients. The Blazor WebAssembly app can interact with the server over the network using web API calls or [SignalR](xref:signalr/introduction) (<xref:tutorials/signalr-blazor-webassembly>).
+After selecting the **Blazor WebAssembly App** template, you have the option of configuring the app to use an ASP.NET Core backend by selecting the **ASP.NET Core hosted** check box ([`dotnet new blazorwasm --hosted`](/dotnet/core/tools/dotnet-new)). The ASP.NET Core app serves the Blazor app to clients. The Blazor WebAssembly app can interact with the server over the network using web API calls or [SignalR](xref:signalr/introduction) (<xref:tutorials/signalr-blazor-webassembly>).
 
 The templates include the `blazor.webassembly.js` script that handles:
 
@@ -56,7 +56,7 @@ With the Blazor Server hosting model, the app is executed on the server from wit
 
 ![The browser interacts with the app (hosted inside of an ASP.NET Core app) on the server over a SignalR connection.](hosting-models/_static/blazor-server.png)
 
-To create a Blazor app using the Blazor Server hosting model, use the ASP.NET Core **Blazor Server App** template ([dotnet new blazorserver](/dotnet/core/tools/dotnet-new)). The ASP.NET Core app hosts the Blazor Server app and creates the SignalR endpoint where clients connect.
+To create a Blazor app using the Blazor Server hosting model, use the ASP.NET Core **Blazor Server App** template ([`dotnet new blazorserver`](/dotnet/core/tools/dotnet-new)). The ASP.NET Core app hosts the Blazor Server app and creates the SignalR endpoint where clients connect.
 
 The ASP.NET Core app references the app's `Startup` class to add:
 
