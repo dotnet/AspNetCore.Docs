@@ -197,6 +197,8 @@ The `AssetUrl` metadata specifies the base-relative URL that the browser should 
 > [!IMPORTANT]
 > Adding a `ServiceWorkerAssetsManifestItem` doesn't cause the file to be published in the app's *wwwroot* directory. The publish output must be controlled separately. The `ServiceWorkerAssetsManifestItem` only causes an additional entry to appear in the service worker assets manifest.
 
+> :warning: **Version might not be updated (always `47DEQpj8`) in the manifest file due to a bug which should be fixed in the next patch.** See [issue](https://github.com/dotnet/aspnetcore/issues/22353) for explanation and possible workaround.
+
 ## Push notifications
 
 Like any other PWA, a Blazor WebAssembly PWA can receive push notifications from a backend server. The server can send push notifications at any time, even when the user isn't actively using the app. For example, push notifications can be sent when a different user performs a relevant action.
