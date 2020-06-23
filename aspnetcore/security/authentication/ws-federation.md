@@ -71,13 +71,9 @@ By default, the new middleware:
 
 ![Azure Active Directory: Endpoints](ws-federation/_static/AadFederationMetadataDocument.png)
 
-* Navigate to the new app registration. Click **Add an Application ID URI**:
+* Navigate to the new app registration. Click **Expose an API**. Click Application ID URI **Set** > **Save**. Make note of the  **Application ID URI**. This is the WS-Federation middleware's `Wtrealm`:
 
 ![Azure Active Directory: App registration properties](ws-federation/_static/AadAppIdUri.png)
-
-* Click **Set** and **Save**. Make note of the  **Application ID URI**. This is the WS-Federation middleware's `Wtrealm`:
-
-![Azure Active Directory: App registration properties App ID](ws-federation/_static/AadAppIdUri2.png)
 
 ## Use WS-Federation without ASP.NET Core Identity
 
