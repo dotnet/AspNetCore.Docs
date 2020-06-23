@@ -31,6 +31,9 @@ Configure the app to use the middleware with the <xref:Microsoft.AspNetCore.Buil
 
 [!code-csharp[](middleware/samples/3.x/ResponseCachingMiddleware/Startup.cs?name=snippet2&highlight=16)]
 
+> [!WARNING]
+> <xref:Owin.CorsExtensions.UseCors%2A> must be called before <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching%2A>.
+
 The sample app adds headers to control caching on subsequent requests:
 
 * [Cache-Control](https://tools.ietf.org/html/rfc7234#section-5.2): Caches cacheable responses for up to 10 seconds.

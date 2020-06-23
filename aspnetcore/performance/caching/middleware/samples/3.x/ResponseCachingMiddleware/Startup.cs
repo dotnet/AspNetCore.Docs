@@ -14,6 +14,19 @@ namespace ResponseCachingMiddleware
         {
             services.AddResponseCaching();
             services.AddRazorPages();
+
+            // When using CORS, uncomment CORS calls.
+            // UseCors must be called before UseResponseCaching
+            // in Configure.
+            //services.AddCors(options =>
+            //{
+            //    options.AddPolicy("myAllowSpecificOrigins",
+            //                      builder =>
+            //                      {
+            //                          builder.WithOrigins("http://example.com",
+            //                                              "http://www.contoso.com");
+            //                      });
+            //});
         }
         #endregion
 
@@ -30,8 +43,8 @@ namespace ResponseCachingMiddleware
             }
 
             app.UseStaticFiles();
-
             app.UseRouting();
+            // app.UseCors("myAllowSpecificOrigins");
 
             app.UseResponseCaching();
 

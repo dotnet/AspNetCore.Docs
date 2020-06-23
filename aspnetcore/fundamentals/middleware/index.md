@@ -80,7 +80,9 @@ The following `Startup.Configure` method adds security-related middleware compon
 In the preceding code:
 
 * Middleware that is not added when creating a new web app with [individual users accounts](xref:security/authentication/identity) is commented out.
-* Not every middleware needs to go in this exact order, but many do. For example, `UseCors`, `UseAuthentication`, and `UseAuthorization` must go in the order shown.
+* Not every middleware needs to go in this exact order, but many do. For example:
+  * `UseCors`, `UseAuthentication`, and `UseAuthorization` must go in the order shown.
+  * `UseCors` must go before `UseResponseCaching`.
 
 The following `Startup.Configure` method adds middleware components for common app scenarios:
 
