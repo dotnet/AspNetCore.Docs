@@ -21,17 +21,15 @@ This article shows how to add support for additional formats by creating custom 
 
 ## When to use custom formatters
 
-Use a custom formatter for [content negotiation](xref:web-api/advanced/formatting#content-negotiation) types that aren't supported by the built-in formatters.
-
-For example, if some Web API clients support the [Protobuf](https://github.com/google/protobuf) format, consider using [Protobuf](xref:grpc/dotnet-grpc) because it's more efficient. The sample app provided with this article implements a basic [vCard](https://wikipedia.org/wiki/VCard) formatter. `vCard` is a commonly used format for exchanging contact data.
+Use a custom formatter to add support for a content type that isn't handled by the bult-in formatters.
 
 ## Overview of how to use a custom formatter
 
-The following steps outline creating a custom formatter:
+To create a custom formatter:
 
-* Create an output formatter class to serialize data sent to the client.
-* Create an input formatter class to deserialize data received from the client.
-* Add instances of formatters to the `InputFormatters` and `OutputFormatters` collections in [MvcOptions](/dotnet/api/microsoft.aspnetcore.mvc.mvcoptions).
+* For serializing data sent to the client, create an output formatter class.
+* For deserialzing data received from the client, create an input formatter class.
+* Add instances of formatter classes to the `InputFormatters` and `OutputFormatters` collections in [MvcOptions](/dotnet/api/microsoft.aspnetcore.mvc.mvcoptions).
 
 ## How to create a custom formatter class
 
@@ -39,10 +37,10 @@ To create a formatter:
 
 * Derive the class from the appropriate base class. The sample app derives from <xref:Microsoft.AspNetCore.Mvc.Formatters.TextOutputFormatter> and <xref:Microsoft.AspNetCore.Mvc.Formatters.TextInputFormatter>.
 * Specify valid media types and encodings in the constructor.
-* Override <xref:Microsoft.AspNetCore.Mvc.Formatters.InputFormatter.CanReadType%2A> and <xref:Microsoft.AspNetCore.Mvc.Formatters.OutputFormatter.CanWriteType%2A> methods
-* Override <xref:Microsoft.AspNetCore.Mvc.Formatters.InputFormatter.ReadRequestBodyAsync%2A> and `WriteResponseBodyAsync` methods
+* Override the <xref:Microsoft.AspNetCore.Mvc.Formatters.InputFormatter.CanReadType%2A> and <xref:Microsoft.AspNetCore.Mvc.Formatters.OutputFormatter.CanWriteType%2A> methods.
+* Override the <xref:Microsoft.AspNetCore.Mvc.Formatters.InputFormatter.ReadRequestBodyAsync%2A> and `WriteResponseBodyAsync` methods.
 
-The follow code shows the completed `VcardOutputFormatter` class from the [sample](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/advanced/custom-formatters/3.1sample):
+The following code shows the `VcardOutputFormatter` class from the [sample](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/advanced/custom-formatters/3.1sample):
 
 [!code-csharp[](custom-formatters/3.1sample/Formatters/VcardOutputFormatter.cs?name=snippet)]
   
@@ -60,7 +58,7 @@ In the constructor, specify valid media types and encodings by adding to the `Su
 
 [!code-csharp[](custom-formatters/3.1sample/Formatters/VcardOutputFormatter.cs?name=ctor)]
 
-Constructor dependency injection can ***not*** be done in a formatter class. For example, the logger cannot be added as logger parameter to the constructor. To access services, use the context object that gets passed in to the methods. A code example in this doc and the [download code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/advanced/custom-formatters/sample) show how to do this.
+A formatter class can **not** use constructor injection for its dependencies. For example, `ILogger<VcardOutputFormatter>` cannot be added as a parameter to the constructor. To access services, use the context object that gets passed in to the methods. A code example in this article and the [sample](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/advanced/custom-formatters/3.1sample) show how to do this.
 
 ### Override CanReadType and CanWriteType
 
@@ -79,18 +77,18 @@ In some scenarios, `CanWriteResult` must be overridden rather than `CanWriteType
 For example, suppose the action method:
 
 * Signature returns a `Person` type.
-* It can return a `Student` or `Instructor` type that derives from `Person`. 
+* Can return a `Student` or `Instructor` type that derives from `Person`. 
 
 For the formatter to handle only `Student` objects, check the type of [Object](/dotnet/api/microsoft.aspnetcore.mvc.formatters.outputformattercanwritecontext.object#Microsoft_AspNetCore_Mvc_Formatters_OutputFormatterCanWriteContext_Object) in the context object provided to the `CanWriteResult` method. When the action method returns `IActionResult`:
 
-*  It's not necessary to use `CanWriteResult`.
+* It's not necessary to use `CanWriteResult`.
 * The `CanWriteType` method receives the runtime type.
 
 <a id="read-write"></a>
 
 ### Override ReadRequestBodyAsync and WriteResponseBodyAsync
 
-Deserializing or serializing is performed in `ReadRequestBodyAsync` or `WriteResponseBodyAsync`. The following example shows how to get services from the dependency injection container. Services can't be obtained from constructor parameters.
+Deserialization or serialization is performed in `ReadRequestBodyAsync` or `WriteResponseBodyAsync`. The following example shows how to get services from the dependency injection container. Services can't be obtained from constructor parameters.
 
 [!code-csharp[](custom-formatters/3.1sample/Formatters/VcardOutputFormatter.cs?name=writeresponse)]
 
@@ -106,7 +104,7 @@ To use a custom formatter, add an instance of the formatter class to the `InputF
 
 ::: moniker range="< aspnetcore-3.0"
 
-[!code-csharp[](custom-formatters/3.1sample/Startup.cs?name=mvcoptions&highlight=3-4)]
+[!code-csharp[](custom-formatters/sample/Startup.cs?name=mvcoptions&highlight=3-4)]
 
 ::: moniker-end
 
@@ -120,7 +118,7 @@ The follow code shows the completed `VcardInputFormatter` class from the [sample
 
 ## Test the app
 
-[Run the sample app for this doc](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/advanced/custom-formatters/sample), which implements basic vCard input and output formatters. The app reads and writes vCards similar to the following:
+[Run the sample app for this article](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/advanced/custom-formatters/sample), which implements basic vCard input and output formatters. The app reads and writes vCards similar to the following:
 
 ```
 BEGIN:VCARD
@@ -140,4 +138,5 @@ To add a vCard to the in-memory collection of contacts:
 
 ## Additional resources
 
-<xref:grpc/dotnet-grpc>
+* <xref:web-api/advanced/formatting>
+* <xref:grpc/dotnet-grpc>
