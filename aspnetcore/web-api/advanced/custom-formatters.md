@@ -9,7 +9,7 @@ uid: web-api/advanced/custom-formatters
 ---
 # Custom formatters in ASP.NET Core Web API
 
-By [Tom Dykstra](https://github.com/tdykstra) and [Kirk Larkin](https://twitter.com/serpent5)
+By [Kirk Larkin](https://twitter.com/serpent5) and [Tom Dykstra](https://github.com/tdykstra).
 
 ASP.NET Core MVC supports data exchange in Web APIs using input and output formatters. Input formatters are used by [Model Binding](xref:mvc/models/model-binding). Output formatters are used to [format responses](xref:web-api/advanced/formatting).
 
