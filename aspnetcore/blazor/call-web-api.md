@@ -5,7 +5,7 @@ description: Learn how to call a web API from a Blazor WebAssembly app using JSO
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/28/2020
+ms.date: 06/24/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/call-web-api
 ---
@@ -301,7 +301,9 @@ Browser security prevents a webpage from making requests to a different domain t
 
 The [Blazor WebAssembly sample app (BlazorWebAssemblySample)](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) demonstrates the use of CORS in the Call Web API component (`Pages/CallWebAPI.razor`).
 
-To allow other sites to make cross-origin resource sharing (CORS) requests to your app, see <xref:security/cors>.
+For more information and code examples of secure requests, see <xref:blazor/security/webassembly/additional-scenarios>. For more information on CORS with secure requests, see the [CORS section](xref:blazor/security/webassembly/additional-scenarios#cross-origin-resource-sharing-cors) of the preceding article.
+
+For more information, see <xref:security/cors>.
 
 ## Additional resources
 
