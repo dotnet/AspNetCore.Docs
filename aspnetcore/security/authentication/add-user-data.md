@@ -226,6 +226,9 @@ Test the app:
 
 ## Add claims to Identity using IUserClaimsPrincipalFactory<ApplicationUser>
 
+> [!NOTE]
+> This section isn't an extension of the previous tutorial. To apply the following steps to the app built using the tutorial, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/18797).
+
 Additional claims can be added to ASP.NET Core Identity by using the `IUserClaimsPrincipalFactory<T>` interface. This class can be added to the app in the `Startup.ConfigureServices` method. Add the custom implementation of the class as follows:
 
 ```csharp
