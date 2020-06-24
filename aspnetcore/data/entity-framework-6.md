@@ -14,4 +14,4 @@ uid: data/entity-framework-6
 
 ## Additional resources
 
-* [Entity Framework - Code-Based Configuration](https://msdn.microsoft.com/data/jj680699.aspx)
+* [Entity Framework - Code-Based Configuration](/ef6/fundamentals/configuring/code-based)
