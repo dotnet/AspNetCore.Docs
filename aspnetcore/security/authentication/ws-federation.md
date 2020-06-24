@@ -71,7 +71,7 @@ By default, the new middleware:
 
 ![Azure Active Directory: Endpoints](ws-federation/_static/AadFederationMetadataDocument.png)
 
-* Navigate to the new app registration. Click **Settings** > **Properties** and make note of the **App ID URI**. This is the WS-Federation middleware's `Wtrealm`:
+* Navigate to the new app registration. Click **Expose an API**. Click Application ID URI **Set** > **Save**. Make note of the  **Application ID URI**. This is the WS-Federation middleware's `Wtrealm`:
 
 ![Azure Active Directory: App registration properties](ws-federation/_static/AadAppIdUri.png)
 
