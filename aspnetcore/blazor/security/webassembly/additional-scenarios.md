@@ -5,7 +5,7 @@ description: Learn how to configure Blazor WebAssembly for additional security s
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/10/2020
+ms.date: 06/24/2020
 no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/security/webassembly/additional-scenarios
 ---
@@ -1004,3 +1004,65 @@ Alternatively, the setting can be made in the app settings (`appsettings.json`) 
 If tacking on a segment to the authority isn't appropriate for the app's OIDC provider, such as with non-AAD providers, set the <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.Authority> property directly. Either set the property in <xref:Microsoft.AspNetCore.Builder.JwtBearerOptions> or in the app settings file (`appsettings.json`) with the `Authority` key.
 
 The list of claims in the ID token changes for v2.0 endpoints. For more information, see [Why update to Microsoft identity platform (v2.0)?](/azure/active-directory/azuread-dev/azure-ad-endpoint-comparison).
+
+## Configure and use gRPC in components
+
+To configure a Blazor WebAssembly app to use the [ASP.NET Core gRPC framework](xref:grpc/index), register gRPC services for the app's message handler. The following example configures the app's authorization message handler to use the [`GreeterClient` service from the gRPC tutorial](xref:tutorials/grpc/grpc-start#create-a-grpc-service) (`Program.Main`):
+
+```csharp
+using System.Net.Http;
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+using Grpc.Net.Client;
+using Grpc.Net.Client.Web;
+using {APP ASSEMBLY}.Shared;
+
+...
+
+builder.Services.AddScoped(sp =>
+{
+    var baseAddressMessageHandler = 
+        sp.GetRequiredService<BaseAddressAuthorizationMessageHandler>();
+    baseAddressMessageHandler.InnerHandler = new HttpClientHandler();
+    var grpcWebHandler = 
+        new GrpcWebHandler(GrpcWebMode.GrpcWeb, baseAddressMessageHandler);
+    var channel = GrpcChannel.ForAddress(builder.HostEnvironment.BaseAddress, 
+        new GrpcChannelOptions { HttpHandler = grpcWebHandler });
+
+    return new Greeter.GreeterClient(channel);
+});
+```
+
+The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `BlazorSample`). Place the `.proto` file in the `Shared` project of the hosted Blazor solution.
+
+A component in the client app can make gRPC calls using the gRPC client (`Pages/Grpc.razor`):
+
+```razor
+@page "/grpc"
+@attribute [Authorize]
+@using Microsoft.AspNetCore.Authorization
+@using BlazorGrpcAuth.Shared
+@inject Greeter.GreeterClient GreeterClient
+
+<h1>Invoke gRPC service</h1>
+
+<p>
+    <input @bind="name" placeholder="Type your name" />
+    <button @onclick="GetGreeting" class="btn btn-primary">Call gRPC service</button>
+</p>
+
+Server response: <strong>@serverResponse</strong>
+
+@code {
+    private string name = "Bert";
+    private string serverResponse;
+
+    private async Task GetGreeting()
+    {
+        var request = new HelloRequest { Name = name };
+        var reply = await GreeterClient.SayHelloAsync(request);
+        serverResponse = reply.Message;
+    }
+}
+```
+
+For more information, see the [ASP.NET Core gRPC articles](xref:grpc/index).
