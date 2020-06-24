@@ -62,11 +62,11 @@ A set of statements (or [Claims](/dotnet/api/system.security.claims.claim)) abou
 
 ### User Logins
 
-Information about the external authentication provider (like Facebook or a Microsoft account) to use when logging in a user. [Example](/dotnet/api/microsoft.aspnet.identity.corecompat.identityuserlogin)
+Information about the external authentication provider (like Facebook or a Microsoft account) to use when logging in a user. [IdentityUserLogin Class](/dotnet/api/microsoft.aspnet.identity.corecompat.identityuserlogin)
 
 ### Roles
 
-Authorization groups for your site. Includes the role Id and role name (like "Admin" or "Employee"). [Example](/dotnet/api/microsoft.aspnet.identity.corecompat.identityrole)
+Authorization groups for your site. Includes the role Id and role name (like "Admin" or "Employee"). [IdentityRole Class](/dotnet/api/microsoft.aspnet.identity.corecompat.identityrole)
 
 ## The data access layer
 
@@ -78,27 +78,27 @@ The data access layer provides the logic to save the data from ASP.NET Core Iden
 
 ### Context class
 
-Encapsulates the information to connect to your persistence mechanism and execute queries. Several data classes require an instance of this class, typically provided through dependency injection. [Example](/dotnet/api/microsoft.aspnet.identity.corecompat.identitydbcontext-1).
+Encapsulates the information to connect to your persistence mechanism and execute queries. Several data classes require an instance of this class, typically provided through dependency injection. [IdentityDbContext\<TUser> Class](/dotnet/api/microsoft.aspnet.identity.corecompat.identitydbcontext-1).
 
 ### User Storage
 
-Stores and retrieves user information (such as user name and password hash). [Example](/dotnet/api/microsoft.aspnet.identity.corecompat.userstore-1)
+Stores and retrieves user information (such as user name and password hash). [UserStore\<TUser> Class](/dotnet/api/microsoft.aspnet.identity.corecompat.userstore-1)
 
 ### Role Storage
 
-Stores and retrieves role information (such as the role name). [Example](/dotnet/api/microsoft.aspnetcore.identity.entityframeworkcore.rolestore-1)
+Stores and retrieves role information (such as the role name). [RoleStore\<TRole> Class](/dotnet/api/microsoft.aspnetcore.identity.entityframeworkcore.rolestore-1)
 
 ### UserClaims Storage
 
-Stores and retrieves user claim information (such as the claim type and value). [Example](/dotnet/api/microsoft.aspnet.identity.corecompat.userstore-1)
+Stores and retrieves user claim information (such as the claim type and value). [UserStore\<TUser> Class](/dotnet/api/microsoft.aspnet.identity.corecompat.userstore-1)
 
 ### UserLogins Storage
 
-Stores and retrieves user login information (such as an external authentication provider). [Example](/dotnet/api/microsoft.aspnet.identity.corecompat.userstore-1)
+Stores and retrieves user login information (such as an external authentication provider). [UserStore\<TUser> Class](/dotnet/api/microsoft.aspnet.identity.corecompat.userstore-1)
 
 ### UserRole Storage
 
-Stores and retrieves which roles are assigned to which users. [Example](/dotnet/api/microsoft.aspnet.identity.corecompat.userstore-1)
+Stores and retrieves which roles are assigned to which users. [UserStore\<TUser> Class](/dotnet/api/microsoft.aspnet.identity.corecompat.userstore-1)
 
 **TIP:** Only implement the classes you intend to use in your app.
 
