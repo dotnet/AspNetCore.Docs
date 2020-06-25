@@ -27,7 +27,7 @@ At the end of this tutorial, you'll have a working todo list app.
 
 1. Follow the guidance in the <xref:blazor/get-started> article to create a Blazor project for this tutorial. Name the project `ToDoList`.
 
-1. Browse to each of the app's three pages in the `Pages` folder: `Home`, `Counter`, and `Fetch data`. These pages are implemented by the Razor component files `Index.razor`, `Counter.razor`, and `FetchData.razor`.
+1. Browse to each of the app's three pages in the `Pages` folder: `Index`, `Counter`, and `Fetch data`. These pages are implemented by the Razor component files `Index.razor`, `Counter.razor`, and `FetchData.razor`.
 
 1. On the `Counter` page, select the button to increment the counter without a page refresh. Incrementing a counter in a webpage normally requires writing JavaScript. With Blazor, you can write C# instead.
 
