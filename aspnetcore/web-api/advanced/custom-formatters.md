@@ -3,7 +3,7 @@ title: Custom formatters in ASP.NET Core Web API
 author: rick-anderson
 description: Learn how to create and use custom formatters for web APIs in ASP.NET Core.
 ms.author: riande
-ms.date: 02/08/2017
+ms.date: 06/25/2020
 no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: web-api/advanced/custom-formatters
 ---
@@ -21,15 +21,15 @@ This article shows how to add support for additional formats by creating custom 
 
 ## When to use custom formatters
 
-Use a custom formatter to add support for a content type that isn't handled by the bult-in formatters.
+Use a custom formatter to add support for a content type that isn't handled by the built-in formatters.
 
 ## Overview of how to use a custom formatter
 
 To create a custom formatter:
 
 * For serializing data sent to the client, create an output formatter class.
-* For deserialzing data received from the client, create an input formatter class.
-* Add instances of formatter classes to the `InputFormatters` and `OutputFormatters` collections in [MvcOptions](/dotnet/api/microsoft.aspnetcore.mvc.mvcoptions).
+* For deserializing data received from the client, create an input formatter class.
+* Add instances of formatter classes to the `InputFormatters` and `OutputFormatters` collections in <xref:Microsoft.AspNetCore.Mvc.MvcOptions>.
 
 ## How to create a custom formatter class
 
@@ -46,11 +46,11 @@ The following code shows the `VcardOutputFormatter` class from the [sample](http
   
 ### Derive from the appropriate base class
 
-For text media types (for example, vCard), derive from the [TextInputFormatter](/dotnet/api/microsoft.aspnetcore.mvc.formatters.textinputformatter) or [TextOutputFormatter](/dotnet/api/microsoft.aspnetcore.mvc.formatters.textoutputformatter) base class.
+For text media types (for example, vCard), derive from the <xref:Microsoft.AspNetCore.Mvc.Formatters.TextInputFormatter> or <xref:Microsoft.AspNetCore.Mvc.Formatters.TextOutputFormatter> base class.
 
 [!code-csharp[](custom-formatters/samples/3.x/CustomFormattersSample/Formatters/VcardOutputFormatter.cs?name=classdef)]
 
-For binary types, derive from the [InputFormatter](/dotnet/api/microsoft.aspnetcore.mvc.formatters.inputformatter) or [OutputFormatter](/dotnet/api/microsoft.aspnetcore.mvc.formatters.outputformatter) base class.
+For binary types, derive from the <xref:Microsoft.AspNetCore.Mvc.Formatters.InputFormatter> or <xref:Microsoft.AspNetCore.Mvc.Formatters.OutputFormatter> base class.
 
 ### Specify valid media types and encodings
 
@@ -79,7 +79,7 @@ For example, suppose the action method:
 * Signature returns a `Person` type.
 * Can return a `Student` or `Instructor` type that derives from `Person`. 
 
-For the formatter to handle only `Student` objects, check the type of [Object](/dotnet/api/microsoft.aspnetcore.mvc.formatters.outputformattercanwritecontext.object#Microsoft_AspNetCore_Mvc_Formatters_OutputFormatterCanWriteContext_Object) in the context object provided to the `CanWriteResult` method. When the action method returns `IActionResult`:
+For the formatter to handle only `Student` objects, check the type of <xref:Microsoft.AspNetCore.Mvc.Formatters.OutputFormatterCanWriteContext.Object> in the context object provided to the `CanWriteResult` method. When the action method returns `IActionResult`:
 
 * It's not necessary to use `CanWriteResult`.
 * The `CanWriteType` method receives the runtime type.
