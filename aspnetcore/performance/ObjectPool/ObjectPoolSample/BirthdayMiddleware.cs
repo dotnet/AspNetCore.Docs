@@ -35,8 +35,10 @@ namespace ObjectPoolSample
 
                 try
                 {
+                    // Clean input to prevent XSS and other vulnerabilities.
                     firstName = CheckAndCleanInput(firstName);
                     lastName = CheckAndCleanInput(lastName);
+
                     stringBuilder.Append("Hi ")
                         .Append(firstName).Append(" ").Append(lastName).Append(". ");
 
