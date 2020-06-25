@@ -128,7 +128,7 @@ It's often convenient to close over additional values, such as when iterating ov
 ```
 
 > [!NOTE]
-> Do **not** use a loop variable directly in a lambda expression, such as `i` in the preceding `for` loop example or a reference variable in a `foreach` loop. Otherwise, the same variable is used by all lambda expressions, which results in use of the same value in all lambdas. Always capture the variable's value in a local variable and then use it. In the preceding example, the loop variable `i` is assigned to `buttonNumber`.
+> Do **not** use a loop variable directly in a lambda expression, such as `i` in the preceding `for` loop example. Otherwise, the same variable is used by all lambda expressions, which results in use of the same value in all lambdas. Always capture the variable's value in a local variable and then use it. In the preceding example, the loop variable `i` is assigned to `buttonNumber`.
 
 ## EventCallback
 
