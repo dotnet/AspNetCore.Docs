@@ -78,6 +78,6 @@ namespace ObjectPoolSample
 
             await _next(context);
         }
-        #endregion
     }
+    #endregion
 }
