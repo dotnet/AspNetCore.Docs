@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn about the ASP.NET Core Data Protection ISecret interface.
 ms.author: riande
 ms.date: 10/14/2016
-no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/data-protection/extensibility/misc-apis
 ---
 # Miscellaneous ASP.NET Core Data Protection APIs
