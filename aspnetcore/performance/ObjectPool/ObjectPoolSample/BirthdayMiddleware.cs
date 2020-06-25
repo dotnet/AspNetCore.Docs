@@ -75,11 +75,11 @@ namespace ObjectPoolSample
             await _next(context);
         }
         #endregion
-        private StringValues CheckAndCleanInput(StringValues firstName)
+        private StringValues CheckAndCleanInput(StringValues stringToClean)
         {
             var rgx = new Regex("[^a-zA-Z0-9 -]", RegexOptions.None,
                                  TimeSpan.FromMilliseconds(500));
-            return rgx.Replace(firstName, "");
+            return rgx.Replace(stringToClean, "");
         }
     }
 }
