@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.ObjectPool;
+using Microsoft.Extensions.Primitives;
 using System;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace ObjectPoolSample
@@ -33,6 +35,8 @@ namespace ObjectPoolSample
 
                 try
                 {
+                    firstName = CheckAndCleanInput(firstName);
+                    lastName = CheckAndCleanInput(lastName);
                     stringBuilder.Append("Hi ")
                         .Append(firstName).Append(" ").Append(lastName).Append(". ");
 
@@ -68,6 +72,12 @@ namespace ObjectPoolSample
 
             await _next(context);
         }
+        #endregion
+        private StringValues CheckAndCleanInput(StringValues firstName)
+        {
+            var rgx = new Regex("[^a-zA-Z0-9 -]", RegexOptions.None,
+                                 TimeSpan.FromMilliseconds(500));
+            return rgx.Replace(firstName, "");
+        }
     }
-    #endregion
 }
