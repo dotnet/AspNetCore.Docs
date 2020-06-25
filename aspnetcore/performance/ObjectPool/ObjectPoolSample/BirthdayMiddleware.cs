@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore.Query.ResultOperators;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.ObjectPool;
 using Microsoft.Extensions.Primitives;
 using System;
 using System.Text;
+using System.Text.Encodings.Web;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
@@ -37,17 +39,17 @@ namespace ObjectPoolSample
 
                 try
                 {
-                    // Clean input to prevent XSS and other vulnerabilities.
-                   var cleanNames = CheckAndCleanInput2( firstName, lastName);
-
                     stringBuilder.Append("Hi ")
-                        .Append(cleanNames.first).Append(" ").Append(cleanNames.last).Append(". ");
+                        .Append(firstName).Append(" ").Append(lastName).Append(". ");
+
+                    var encoder = context.RequestServices.GetRequiredService<HtmlEncoder>();
 
                     if (now.Day == dayOfMonth && now.Month == monthOfYear)
                     {
                         stringBuilder.Append("Happy birthday!!!");
 
-                        await context.Response.WriteAsync(stringBuilder.ToString());
+                        var html = encoder.Encode(stringBuilder.ToString());
+                        await context.Response.WriteAsync(html);
                     }
                     else
                     {
@@ -61,7 +63,8 @@ namespace ObjectPoolSample
                         stringBuilder.Append("There are ")
                             .Append(daysUntilBirthday).Append(" days until your birthday!");
 
-                        await context.Response.WriteAsync(stringBuilder.ToString());
+                        var html = encoder.Encode(stringBuilder.ToString());
+                        await context.Response.WriteAsync(html);
                     }
                 }
                 finally // Ensure this runs even if the main code throws.
@@ -76,14 +79,6 @@ namespace ObjectPoolSample
             await _next(context);
         }
         #endregion
-
-        // First pass, not sure 2nd pass is any cleaner.
-        private string CheckAndCleanInput(string stringToClean)
-        {
-            var rgx = new Regex("[^a-zA-Z0-9 -]", RegexOptions.None,
-                                 TimeSpan.FromMilliseconds(500));
-            return rgx.Replace(stringToClean, "");
-        }
 
         private (string first, string last) CheckAndCleanInput2(string firstN,  string lastN)
         {
