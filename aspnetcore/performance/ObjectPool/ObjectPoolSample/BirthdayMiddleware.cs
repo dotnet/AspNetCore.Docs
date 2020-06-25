@@ -76,7 +76,9 @@ namespace ObjectPoolSample
             await _next(context);
         }
         #endregion
-        private string CheckAndCleanInput(StringValues stringToClean)
+
+        // First pass, not sure 2nd pass is any cleaner.
+        private string CheckAndCleanInput(string stringToClean)
         {
             var rgx = new Regex("[^a-zA-Z0-9 -]", RegexOptions.None,
                                  TimeSpan.FromMilliseconds(500));
