@@ -24,7 +24,6 @@ namespace ObjectPoolSample
         public async Task InvokeAsync(HttpContext context, 
                                       ObjectPool<StringBuilder> builderPool)
         {
-
             if (context.Request.Query.TryGetValue("firstName", out var firstName) &&
                 context.Request.Query.TryGetValue("lastName", out var lastName) && 
                 context.Request.Query.TryGetValue("month", out var month) &&                 
