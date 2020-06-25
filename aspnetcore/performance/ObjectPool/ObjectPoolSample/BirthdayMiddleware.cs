@@ -79,14 +79,5 @@ namespace ObjectPoolSample
             await _next(context);
         }
         #endregion
-
-        private (string first, string last) CheckAndCleanInput2(string firstN,  string lastN)
-        {
-            var rgx = new Regex("[^a-zA-Z0-9 -]", RegexOptions.None,
-                                 TimeSpan.FromMilliseconds(500));
-
-            return (rgx.Replace(firstN, ""), rgx.Replace(lastN, ""));
-        }
-
     }
 }
