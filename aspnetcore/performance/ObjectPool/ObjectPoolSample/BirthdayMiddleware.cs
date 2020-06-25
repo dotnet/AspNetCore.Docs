@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore.Query.ResultOperators;
 using Microsoft.Extensions.ObjectPool;
 using Microsoft.Extensions.Primitives;
 using System;
@@ -21,6 +22,7 @@ namespace ObjectPoolSample
         public async Task InvokeAsync(HttpContext context, 
                                       ObjectPool<StringBuilder> builderPool)
         {
+
             if (context.Request.Query.TryGetValue("firstName", out var firstName) &&
                 context.Request.Query.TryGetValue("lastName", out var lastName) && 
                 context.Request.Query.TryGetValue("month", out var month) &&                 
@@ -36,11 +38,10 @@ namespace ObjectPoolSample
                 try
                 {
                     // Clean input to prevent XSS and other vulnerabilities.
-                    firstName = CheckAndCleanInput(firstName);
-                    lastName = CheckAndCleanInput(lastName);
+                   var cleanNames = CheckAndCleanInput2( firstName, lastName);
 
                     stringBuilder.Append("Hi ")
-                        .Append(firstName).Append(" ").Append(lastName).Append(". ");
+                        .Append(cleanNames.first).Append(" ").Append(cleanNames.last).Append(". ");
 
                     if (now.Day == dayOfMonth && now.Month == monthOfYear)
                     {
@@ -75,11 +76,20 @@ namespace ObjectPoolSample
             await _next(context);
         }
         #endregion
-        private StringValues CheckAndCleanInput(StringValues stringToClean)
+        private string CheckAndCleanInput(StringValues stringToClean)
         {
             var rgx = new Regex("[^a-zA-Z0-9 -]", RegexOptions.None,
                                  TimeSpan.FromMilliseconds(500));
             return rgx.Replace(stringToClean, "");
         }
+
+        private (string first, string last) CheckAndCleanInput2(string firstN,  string lastN)
+        {
+            var rgx = new Regex("[^a-zA-Z0-9 -]", RegexOptions.None,
+                                 TimeSpan.FromMilliseconds(500));
+
+            return (rgx.Replace(firstN, ""), rgx.Replace(lastN, ""));
+        }
+
     }
 }
