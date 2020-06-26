@@ -5,7 +5,7 @@ description: Learn how view components are used in ASP.NET Core and how to add t
 ms.author: riande
 ms.custom: mvc
 ms.date: 12/18/2019
-no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/views/view-components
 ---
 # View components in ASP.NET Core

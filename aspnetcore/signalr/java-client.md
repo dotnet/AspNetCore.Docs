@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-2.2'
 ms.author: mimengis
 ms.custom: mvc
 ms.date: 11/12/2019
-no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: signalr/java-client
 ---
 # ASP.NET Core SignalR Java client
