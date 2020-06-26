@@ -1,13 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc.Formatters;
-using Microsoft.Net.Http.Headers;
-using System;
+﻿using System;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
-using CustomFormatterDemo.Models;
+using CustomFormattersSample.Models;
+using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.Extensions.Logging;
+using Microsoft.Net.Http.Headers;
 
-namespace CustomFormatterDemo.Formatters
+namespace CustomFormattersSample.Formatters
 {
     #region snippet
     #region classdef
