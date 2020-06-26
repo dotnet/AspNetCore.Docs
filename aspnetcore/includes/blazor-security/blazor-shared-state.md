@@ -15,4 +15,4 @@ The recommended way to pass request state to the Blazor app is through parameter
 * Define a parameter in the root component to hold the data being passed to the app.
 * Use the user-specific data within the app; or alternatively, copy that data into a scoped service within <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> so that it can be used across the app.
 
-For more information and example code, see <xref:security/blazor/server/additional-scenarios#pass-tokens-to-a-blazor-server-app>.
+For more information and example code, see <xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-blazor-server-app>.

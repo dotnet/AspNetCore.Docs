@@ -5,7 +5,7 @@ description: Learn how to build a web API with ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
 ms.date: 2/25/2020
-no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-web-api
 ---
 

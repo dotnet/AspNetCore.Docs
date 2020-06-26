@@ -5,7 +5,7 @@ description: Learn how to add Swashbuckle to your ASP.NET Core web API project t
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 01/17/2020
-no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/get-started-with-swashbuckle
 ---
 # Get started with Swashbuckle and ASP.NET Core

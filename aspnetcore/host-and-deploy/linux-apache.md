@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: shboyer
 ms.custom: mvc
 ms.date: 04/10/2020
-no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: host-and-deploy/linux-apache
 ---
 # Host ASP.NET Core on Linux with Apache
@@ -57,7 +57,9 @@ A proxy server is one which forwards client requests to another server instead o
 
 Because requests are forwarded by reverse proxy, use the [Forwarded Headers Middleware](xref:host-and-deploy/proxy-load-balancer) from the [Microsoft.AspNetCore.HttpOverrides](https://www.nuget.org/packages/Microsoft.AspNetCore.HttpOverrides/) package. The middleware updates the `Request.Scheme`, using the `X-Forwarded-Proto` header, so that redirect URIs and other security policies work correctly.
 
-Any component that depends on the scheme, such as authentication, link generation, redirects, and geolocation, must be placed after invoking the Forwarded Headers Middleware. As a general rule, Forwarded Headers Middleware should run before other middleware except diagnostics and error handling middleware. This ordering ensures that the middleware relying on forwarded headers information can consume the header values for processing.
+Any component that depends on the scheme, such as authentication, link generation, redirects, and geolocation, must be placed after invoking the Forwarded Headers Middleware.
+
+[!INCLUDE[](~/includes/ForwardedHeaders.md)]
 
 Invoke the <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*> method at the top of `Startup.Configure` before calling other middleware. Configure the middleware to forward the `X-Forwarded-For` and `X-Forwarded-Proto` headers:
 
@@ -239,7 +241,7 @@ Start the service and verify that it's running:
 sudo systemctl start kestrel-helloapp.service
 sudo systemctl status kestrel-helloapp.service
 
-● kestrel-helloapp.service - Example .NET Web API App running on CentOS 7
+◝ kestrel-helloapp.service - Example .NET Web API App running on CentOS 7
     Loaded: loaded (/etc/systemd/system/kestrel-helloapp.service; enabled)
     Active: active (running) since Thu 2016-10-18 04:09:35 NZDT; 35s ago
 Main PID: 9021 (dotnet)

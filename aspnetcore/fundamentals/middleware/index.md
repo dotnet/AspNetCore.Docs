@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 5/6/2020
-no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/middleware/index
 ---
 # ASP.NET Core Middleware
@@ -80,7 +80,9 @@ The following `Startup.Configure` method adds security-related middleware compon
 In the preceding code:
 
 * Middleware that is not added when creating a new web app with [individual users accounts](xref:security/authentication/identity) is commented out.
-* Not every middleware needs to go in this exact order, but many do. For example, `UseCors`, `UseAuthentication`, and `UseAuthorization` must go in the order shown.
+* Not every middleware needs to go in this exact order, but many do. For example:
+  * `UseCors`, `UseAuthentication`, and `UseAuthorization` must go in the order shown.
+  * `UseCors` currently must go before `UseResponseCaching` due to [this bug](https://github.com/dotnet/aspnetcore/issues/23218).
 
 The following `Startup.Configure` method adds middleware components for common app scenarios:
 
@@ -173,6 +175,10 @@ For Single Page Applications (SPAs), the SPA middleware <xref:Microsoft.Extensio
 
 For more details on SPAs, see the guides for the [React](xref:spa/react) and [Angular](xref:spa/angular) project templates.
 
+### Forwarded Headers Middleware order
+
+[!INCLUDE[](~/includes/ForwardedHeaders.md)]
+
 ## Branch the middleware pipeline
 
 <xref:Microsoft.AspNetCore.Builder.MapExtensions.Map*> extensions are used as a convention for branching the pipeline. `Map` branches the request pipeline based on matches of the given request path. If the request path starts with the given path, the branch is executed.
@@ -233,7 +239,7 @@ ASP.NET Core ships with the following middleware components. The *Order* column 
 | [Authentication](xref:security/authentication/identity) | Provides authentication support. | Before `HttpContext.User` is needed. Terminal for OAuth callbacks. |
 | [Authorization](xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization*) | Provides authorization support. | Immediately after the Authentication Middleware. |
 | [Cookie Policy](xref:security/gdpr) | Tracks consent from users for storing personal information and enforces minimum standards for cookie fields, such as `secure` and `SameSite`. | Before middleware that issues cookies. Examples: Authentication, Session, MVC (TempData). |
-| [CORS](xref:security/cors) | Configures Cross-Origin Resource Sharing. | Before components that use CORS. |
+| [CORS](xref:security/cors) | Configures Cross-Origin Resource Sharing. | Before components that use CORS. `UseCors` currently must go before `UseResponseCaching` due to [this bug](https://github.com/dotnet/aspnetcore/issues/23218).|
 | [Diagnostics](xref:fundamentals/error-handling) | Several separate middlewares that provide a developer exception page, exception handling, status code pages, and the default web page for new apps. | Before components that generate errors. Terminal for exceptions or serving the default web page for new apps. |
 | [Forwarded Headers](xref:host-and-deploy/proxy-load-balancer) | Forwards proxied headers onto the current request. | Before components that consume the updated fields. Examples: scheme, host, client IP, method. |
 | [Health Check](xref:host-and-deploy/health-checks) | Checks the health of an ASP.NET Core app and its dependencies, such as checking database availability. | Terminal if a request matches a health check endpoint. |
@@ -243,7 +249,7 @@ ASP.NET Core ships with the following middleware components. The *Order* column 
 | [HTTP Strict Transport Security (HSTS)](xref:security/enforcing-ssl#http-strict-transport-security-protocol-hsts) | Security enhancement middleware that adds a special response header. | Before responses are sent and after components that modify requests. Examples: Forwarded Headers, URL Rewriting. |
 | [MVC](xref:mvc/overview) | Processes requests with MVC/Razor Pages. | Terminal if a request matches a route. |
 | [OWIN](xref:fundamentals/owin) | Interop with OWIN-based apps, servers, and middleware. | Terminal if the OWIN Middleware fully processes the request. |
-| [Response Caching](xref:performance/caching/middleware) | Provides support for caching responses. | Before components that require caching. |
+| [Response Caching](xref:performance/caching/middleware) | Provides support for caching responses. | Before components that require caching. `UseCORS` must come before `UseResponseCaching`.|
 | [Response Compression](xref:performance/response-compression) | Provides support for compressing responses. | Before components that require compression. |
 | [Request Localization](xref:fundamentals/localization) | Provides localization support. | Before localization sensitive components. |
 | [Endpoint Routing](xref:fundamentals/routing) | Defines and constrains request routes. | Terminal for matching routes. |

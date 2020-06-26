@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 05/19/2020
-no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/hosting-models
 ---
 # ASP.NET Core Blazor hosting models
@@ -17,7 +17,7 @@ Blazor is a web framework designed to run client-side in the browser on a [WebAs
 
 To create a project for the hosting models described in this article, see <xref:blazor/get-started>.
 
-For advanced configuration, see <xref:blazor/hosting-model-configuration>.
+For advanced configuration, see <xref:blazor/fundamentals/configuration>.
 
 ## Blazor WebAssembly
 
@@ -25,9 +25,9 @@ The principal hosting model for Blazor is running client-side in the browser on 
 
 ![Blazor WebAssembly: The Blazor app runs on a UI thread inside the browser.](hosting-models/_static/blazor-webassembly.png)
 
-To create a Blazor app using the client-side hosting model, use the **Blazor WebAssembly App** template ([dotnet new blazorwasm](/dotnet/core/tools/dotnet-new)).
+To create a Blazor app using the client-side hosting model, use the **Blazor WebAssembly App** template ([`dotnet new blazorwasm`](/dotnet/core/tools/dotnet-new)).
 
-After selecting the **Blazor WebAssembly App** template, you have the option of configuring the app to use an ASP.NET Core backend by selecting the **ASP.NET Core hosted** check box ([dotnet new blazorwasm --hosted](/dotnet/core/tools/dotnet-new)). The ASP.NET Core app serves the Blazor app to clients. The Blazor WebAssembly app can interact with the server over the network using web API calls or [SignalR](xref:signalr/introduction) (<xref:tutorials/signalr-blazor-webassembly>).
+After selecting the **Blazor WebAssembly App** template, you have the option of configuring the app to use an ASP.NET Core backend by selecting the **ASP.NET Core hosted** check box ([`dotnet new blazorwasm --hosted`](/dotnet/core/tools/dotnet-new)). The ASP.NET Core app serves the Blazor app to clients. The Blazor WebAssembly app can interact with the server over the network using web API calls or [SignalR](xref:signalr/introduction) (<xref:tutorials/signalr-blazor-webassembly>).
 
 The templates include the `blazor.webassembly.js` script that handles:
 
@@ -56,7 +56,7 @@ With the Blazor Server hosting model, the app is executed on the server from wit
 
 ![The browser interacts with the app (hosted inside of an ASP.NET Core app) on the server over a SignalR connection.](hosting-models/_static/blazor-server.png)
 
-To create a Blazor app using the Blazor Server hosting model, use the ASP.NET Core **Blazor Server App** template ([dotnet new blazorserver](/dotnet/core/tools/dotnet-new)). The ASP.NET Core app hosts the Blazor Server app and creates the SignalR endpoint where clients connect.
+To create a Blazor app using the Blazor Server hosting model, use the ASP.NET Core **Blazor Server App** template ([`dotnet new blazorserver`](/dotnet/core/tools/dotnet-new)). The ASP.NET Core app hosts the Blazor Server app and creates the SignalR endpoint where clients connect.
 
 The ASP.NET Core app references the app's `Startup` class to add:
 
@@ -105,7 +105,7 @@ A UI update in Blazor is triggered by:
 
 The graph is rerendered, and a UI *diff* (difference) is calculated. This diff is the smallest set of DOM edits required to update the UI on the client. The diff is sent to the client in a binary format and applied by the browser.
 
-A component is disposed after the user navigates away from it on the client. While a user is interacting with a component, the component's state (services, resources) must be held in the server's memory. Because the state of many components might be maintained by the server concurrently, memory exhaustion is a concern that must be addressed. For guidance on how to author a Blazor Server app to ensure the best use of server memory, see <xref:security/blazor/server/threat-mitigation>.
+A component is disposed after the user navigates away from it on the client. While a user is interacting with a component, the component's state (services, resources) must be held in the server's memory. Because the state of many components might be maintained by the server concurrently, memory exhaustion is a concern that must be addressed. For guidance on how to author a Blazor Server app to ensure the best use of server memory, see <xref:blazor/security/server/threat-mitigation>.
 
 ### Circuits
 
@@ -125,10 +125,10 @@ For a line of business app that's limited to a private corporate network, the ef
 
 Memory usage can also contribute to app latency. Increased memory usage results in frequent garbage collection or paging memory to disk, both of which degrade app performance and consequently increase UI latency.
 
-Blazor Server apps should be optimized to minimize UI latency by reducing network latency and memory usage. For an approach to measuring network latency, see <xref:host-and-deploy/blazor/server#measure-network-latency>. For more information on SignalR and Blazor, see:
+Blazor Server apps should be optimized to minimize UI latency by reducing network latency and memory usage. For an approach to measuring network latency, see <xref:blazor/host-and-deploy/server#measure-network-latency>. For more information on SignalR and Blazor, see:
 
-* <xref:host-and-deploy/blazor/server>
-* <xref:security/blazor/server/threat-mitigation>
+* <xref:blazor/host-and-deploy/server>
+* <xref:blazor/security/server/threat-mitigation>
 
 ### Connection to the server
 
@@ -136,7 +136,7 @@ Blazor Server apps require an active SignalR connection to the server. If the co
 
 A Blazor Server app prerenders in response to the first client request, which sets up the UI state on the server. When the client attempts to create a SignalR connection, the client must reconnect to the same server. Blazor Server apps that use more than one backend server should implement *sticky sessions* for SignalR connections.
 
-We recommend using the [Azure SignalR Service](/azure/azure-signalr) for Blazor Server apps. The service allows for scaling up a Blazor Server app to a large number of concurrent SignalR connections. Sticky sessions are enabled for the Azure SignalR Service by setting the service's `ServerStickyMode` option or configuration value to `Required`. For more information, see <xref:host-and-deploy/blazor/server#signalr-configuration>.
+We recommend using the [Azure SignalR Service](/azure/azure-signalr) for Blazor Server apps. The service allows for scaling up a Blazor Server app to a large number of concurrent SignalR connections. Sticky sessions are enabled for the Azure SignalR Service by setting the service's `ServerStickyMode` option or configuration value to `Required`. For more information, see <xref:blazor/host-and-deploy/server#signalr-configuration>.
 
 When using IIS, sticky sessions are enabled with Application Request Routing. For more information, see [HTTP Load Balancing using Application Request Routing](/iis/extensions/configuring-application-request-routing-arr/http-load-balancing-using-application-request-routing).
 
@@ -144,5 +144,5 @@ When using IIS, sticky sessions are enabled with Application Request Routing. Fo
 
 * <xref:blazor/get-started>
 * <xref:signalr/introduction>
-* <xref:blazor/hosting-model-configuration>
+* <xref:blazor/fundamentals/additional-scenarios>
 * <xref:tutorials/signalr-blazor-webassembly>

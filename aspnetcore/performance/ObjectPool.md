@@ -5,7 +5,7 @@ description: Tips for increasing performance in ASP.NET Core apps using ObjectPo
 monikerRange: '>= aspnetcore-1.1'
 ms.author: riande
 ms.date: 04/11/2019
-no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: performance/ObjectPool
 ---
 # Object reuse with ObjectPool in ASP.NET Core
@@ -65,3 +65,5 @@ The following code:
 The following code implements `BirthdayMiddleware`
 
 [!code-csharp[](ObjectPool/ObjectPoolSample/BirthdayMiddleware.cs?name=snippet)]
+
+[!INCLUDE[request localized comments](~/includes/code-comments-loc.md)]

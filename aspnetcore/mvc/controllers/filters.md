@@ -5,7 +5,7 @@ description: Learn how filters work and how to use them in ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/04/2020
-no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/controllers/filters
 ---
 # Filters in ASP.NET Core
@@ -23,7 +23,7 @@ Built-in filters handle tasks such as:
 
 Custom filters can be created to handle cross-cutting concerns. Examples of cross-cutting concerns include error handling, caching, configuration, authorization, and logging.  Filters avoid duplicating code. For example, an error handling exception filter could consolidate error handling.
 
-This document applies to Razor Pages, API controllers, and controllers with views. Filters don't work directly with [Razor components](xref:blazor/components). A filter can only indirectly affect a component when:
+This document applies to Razor Pages, API controllers, and controllers with views. Filters don't work directly with [Razor components](xref:blazor/components/index). A filter can only indirectly affect a component when:
 
 * The component is embedded in a page or view.
 * The page or controller/view uses the filter.
@@ -434,6 +434,9 @@ The `OnActionExecuting` action filter can be used to:
 * Return an error if the state is invalid.
 
 [!code-csharp[](./filters/3.1sample/FiltersSample/Filters/ValidateModelAttribute.cs?name=snippet)]
+
+> [!NOTE]
+> Controllers annotated with the `[ApiController]` attribute automatically validate model state and return a 400 response. For more information, see [Automatic HTTP 400 responses](xref:web-api/index#automatic-http-400-responses).
 
 The `OnActionExecuted` method runs after the action method:
 

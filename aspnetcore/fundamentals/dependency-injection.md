@@ -5,8 +5,8 @@ description: Learn how ASP.NET Core implements dependency injection and how to u
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/14/2020
-no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
+ms.date: 06/21/2020
+no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/dependency-injection
 ---
 # Dependency injection in ASP.NET Core
@@ -186,9 +186,13 @@ Choose an appropriate lifetime for each registered service. ASP.NET Core service
 
 Transient lifetime services (<xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddTransient*>) are created each time they're requested from the service container. This lifetime works best for lightweight, stateless services.
 
+In apps that process requests, transient services are disposed at the end of the request.
+
 ### Scoped
 
 Scoped lifetime services (<xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddScoped*>) are created once per client request (connection).
+
+In apps that process requests, scoped services are disposed at the end of the request.
 
 > [!WARNING]
 > When using a scoped service in a middleware, inject the service into the `Invoke` or `InvokeAsync` method. Don't inject via [constructor injection](xref:mvc/controllers/dependency-injection#constructor-injection) because it forces the service to behave like a singleton. For more information, see <xref:fundamentals/middleware/write#per-request-middleware-dependencies>.
@@ -196,6 +200,8 @@ Scoped lifetime services (<xref:Microsoft.Extensions.DependencyInjection.Service
 ### Singleton
 
 Singleton lifetime services (<xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton*>) are created the first time they're requested (or when `Startup.ConfigureServices` is run and an instance is specified with the service registration). Every subsequent request uses the same instance. If the app requires singleton behavior, allowing the service container to manage the service's lifetime is recommended. Don't implement the singleton design pattern and provide user code to manage the object's lifetime in the class.
+
+In apps that process requests, singleton services are disposed when the <xref:Microsoft.Extensions.DependencyInjection.ServiceProvider> is disposed at app shutdown.
 
 > [!WARNING]
 > It's dangerous to resolve a scoped service from a singleton. It may cause the service to have incorrect state when processing subsequent requests.
@@ -579,7 +585,7 @@ See the samples apps at https://github.com/OrchardCMS/OrchardCore.Samples for ex
 * <xref:mvc/views/dependency-injection>
 * <xref:mvc/controllers/dependency-injection>
 * <xref:security/authorization/dependencyinjection>
-* <xref:blazor/dependency-injection>
+* <xref:blazor/fundamentals/dependency-injection>
 * <xref:fundamentals/startup>
 * <xref:fundamentals/middleware/extensibility>
 * [Four ways to dispose IDisposables in ASP.NET Core](https://andrewlock.net/four-ways-to-dispose-idisposables-in-asp-net-core/)
@@ -763,9 +769,13 @@ Choose an appropriate lifetime for each registered service. ASP.NET Core service
 
 Transient lifetime services (<xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddTransient*>) are created each time they're requested from the service container. This lifetime works best for lightweight, stateless services.
 
+In apps that process requests, transient services are disposed at the end of the request.
+
 ### Scoped
 
 Scoped lifetime services (<xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddScoped*>) are created once per client request (connection).
+
+In apps that process requests, scoped services are disposed at the end of the request.
 
 > [!WARNING]
 > When using a scoped service in a middleware, inject the service into the `Invoke` or `InvokeAsync` method. Don't inject via [constructor injection](xref:mvc/controllers/dependency-injection#constructor-injection) because it forces the service to behave like a singleton. For more information, see <xref:fundamentals/middleware/write#per-request-middleware-dependencies>.
@@ -773,6 +783,8 @@ Scoped lifetime services (<xref:Microsoft.Extensions.DependencyInjection.Service
 ### Singleton
 
 Singleton lifetime services (<xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton*>) are created the first time they're requested (or when `Startup.ConfigureServices` is run and an instance is specified with the service registration). Every subsequent request uses the same instance. If the app requires singleton behavior, allowing the service container to manage the service's lifetime is recommended. Don't implement the singleton design pattern and provide user code to manage the object's lifetime in the class.
+
+In apps that process requests, singleton services are disposed when the <xref:Microsoft.Extensions.DependencyInjection.ServiceProvider> is disposed at app shutdown.
 
 > [!WARNING]
 > It's dangerous to resolve a scoped service from a singleton. It may cause the service to have incorrect state when processing subsequent requests.
@@ -1150,7 +1162,7 @@ DI is an *alternative* to static/global object access patterns. You may not be a
 * <xref:mvc/views/dependency-injection>
 * <xref:mvc/controllers/dependency-injection>
 * <xref:security/authorization/dependencyinjection>
-* <xref:blazor/dependency-injection>
+* <xref:blazor/fundamentals/dependency-injection>
 * <xref:fundamentals/startup>
 * <xref:fundamentals/middleware/extensibility>
 * [Four ways to dispose IDisposables in ASP.NET Core](https://andrewlock.net/four-ways-to-dispose-idisposables-in-asp-net-core/)

@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 3/29/2020
-no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/configuration/index
 ---
 # Configuration in ASP.NET Core
@@ -748,6 +748,7 @@ An <xref:Microsoft.AspNetCore.Hosting.IHostingStartup> implementation allows add
 
 * [Configuration source code](https://github.com/dotnet/extensions/tree/master/src/Configuration)
 * <xref:fundamentals/configuration/options>
+* <xref:blazor/fundamentals/configuration>
 
 ::: moniker-end
 

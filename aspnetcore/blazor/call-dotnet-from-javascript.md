@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 05/19/2020
-no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/call-dotnet-from-javascript
 ---
 # Call .NET methods from JavaScript functions in ASP.NET Core Blazor
@@ -25,7 +25,7 @@ To invoke a static .NET method from JavaScript, use the `DotNet.invokeMethod` or
 
 The sample app includes a C# method to return an `int` array. The [`[JSInvokable]`](xref:Microsoft.JSInterop.JSInvokableAttribute) attribute is applied to the method.
 
-*Pages/JsInterop.razor*:
+`Pages/JsInterop.razor`:
 
 ```razor
 <button type="button" class="btn btn-primary"
@@ -44,11 +44,11 @@ The sample app includes a C# method to return an `int` array. The [`[JSInvokable
 
 JavaScript served to the client invokes the C# .NET method.
 
-*wwwroot/exampleJsInterop.js*:
+`wwwroot/exampleJsInterop.js`:
 
 [!code-javascript[](./common/samples/3.x/BlazorWebAssemblySample/wwwroot/exampleJsInterop.js?highlight=8-14)]
 
-When the **Trigger .NET static method ReturnArrayAsync** button is selected, examine the console output in the browser's web developer tools.
+When the **`Trigger .NET static method ReturnArrayAsync`** button is selected, examine the console output in the browser's web developer tools.
 
 The console output is:
 
@@ -94,9 +94,9 @@ You can also call .NET instance methods from JavaScript. To invoke a .NET instan
 > [!NOTE]
 > The sample app logs messages to the client-side console. For the following examples demonstrated by the sample app, examine the browser's console output in the browser's developer tools.
 
-When the **Trigger .NET instance method HelloHelper.SayHello** button is selected, `ExampleJsInterop.CallHelloHelperSayHello` is called and passes a name, `Blazor`, to the method.
+When the **`Trigger .NET instance method HelloHelper.SayHello`** button is selected, `ExampleJsInterop.CallHelloHelperSayHello` is called and passes a name, `Blazor`, to the method.
 
-*Pages/JsInterop.razor*:
+`Pages/JsInterop.razor`:
 
 ```razor
 <button type="button" class="btn btn-primary" @onclick="TriggerNetInstanceMethod">
@@ -114,17 +114,17 @@ When the **Trigger .NET instance method HelloHelper.SayHello** button is selecte
 
 `CallHelloHelperSayHello` invokes the JavaScript function `sayHello` with a new instance of `HelloHelper`.
 
-*JsInteropClasses/ExampleJsInterop.cs*:
+`JsInteropClasses/ExampleJsInterop.cs`:
 
 [!code-csharp[](./common/samples/3.x/BlazorWebAssemblySample/JsInteropClasses/ExampleJsInterop.cs?name=snippet1&highlight=11-18)]
 
-*wwwroot/exampleJsInterop.js*:
+`wwwroot/exampleJsInterop.js`:
 
 [!code-javascript[](./common/samples/3.x/BlazorWebAssemblySample/wwwroot/exampleJsInterop.js?highlight=15-18)]
 
 The name is passed to `HelloHelper`'s constructor, which sets the `HelloHelper.Name` property. When the JavaScript function `sayHello` is executed, `HelloHelper.SayHello` returns the `Hello, {Name}!` message, which is written to the console by the JavaScript function.
 
-*JsInteropClasses/HelloHelper.cs*:
+`JsInteropClasses/HelloHelper.cs`:
 
 [!code-csharp[](./common/samples/3.x/BlazorWebAssemblySample/JsInteropClasses/HelloHelper.cs?name=snippet1&highlight=5,10-11)]
 
@@ -222,7 +222,7 @@ function updateMessageCallerJS() {
 }
 ```
 
-*Pages/JSInteropComponent.razor*:
+`Pages/JSInteropComponent.razor`:
 
 ```razor
 @page "/JSInteropComponent"
@@ -266,7 +266,7 @@ In the following example:
 * Each `ListItem` component is composed of a message and a button.
 * When a `ListItem` component button is selected, that `ListItem`'s `UpdateMessage` method changes the list item text and hides the button.
 
-*MessageUpdateInvokeHelper.cs*:
+`MessageUpdateInvokeHelper.cs`:
 
 ```csharp
 using System;
@@ -298,7 +298,7 @@ window.updateMessageCallerJS = (dotnetHelper) => {
 }
 ```
 
-*Shared/ListItem.razor*:
+`Shared/ListItem.razor`:
 
 ```razor
 @inject IJSRuntime JsRuntime
@@ -333,7 +333,7 @@ window.updateMessageCallerJS = (dotnetHelper) => {
 }
 ```
 
-*Pages/JSInteropExample.razor*:
+`Pages/JSInteropExample.razor`:
 
 ```razor
 @page "/JSInteropExample"
@@ -365,5 +365,5 @@ For more information, see the following issues:
 ## Additional resources
 
 * <xref:blazor/call-javascript-from-dotnet>
-* [InteropComponent.razor example (dotnet/AspNetCore GitHub repository, 3.1 release branch)](https://github.com/dotnet/AspNetCore/blob/release/3.1/src/Components/test/testassets/BasicTestApp/InteropComponent.razor)
+* [`InteropComponent.razor` example (dotnet/AspNetCore GitHub repository, 3.1 release branch)](https://github.com/dotnet/AspNetCore/blob/release/3.1/src/Components/test/testassets/BasicTestApp/InteropComponent.razor)
 * [Perform large data transfers in Blazor Server apps](xref:blazor/advanced-scenarios#perform-large-data-transfers-in-blazor-server-apps)

@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 4/12/2020
-no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/environments
 ---
 # Use multiple environments in ASP.NET Core
@@ -297,6 +297,8 @@ Use the [UseStartup(IWebHostBuilder, String)](/dotnet/api/microsoft.aspnetcore.h
 
 * <xref:fundamentals/startup>
 * <xref:fundamentals/configuration/index>
+* <xref:blazor/fundamentals/environments>
+
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"

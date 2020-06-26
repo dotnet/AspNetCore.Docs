@@ -4,7 +4,7 @@ author: rick-anderson
 description: Use Identity with an ASP.NET Core app. Learn how to set password requirements (RequireDigit, RequiredLength, RequiredUniqueChars, and more).
 ms.author: riande
 ms.date: 01/15/2020
-no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/identity
 ---
 # Introduction to Identity on ASP.NET Core
@@ -227,6 +227,7 @@ To prevent publishing static Identity assets (stylesheets and JavaScript files f
 
 ## Next Steps
 
+* [ASP.NET Core Identity source code](https://github.com/dotnet/aspnetcore/tree/master/src/Identity)
 * See [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/5131) for information on configuring Identity using SQLite.
 * [Configure Identity](xref:security/authentication/identity-configuration)
 * <xref:security/authorization/secure-data>

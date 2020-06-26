@@ -4,7 +4,7 @@ author: ardalis
 description: Learn how ASP.NET Core MVC is a rich framework for building web apps and APIs using the Model-View-Controller design pattern.
 ms.author: riande
 ms.date: 02/12/2020
-no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/overview
 ---
 # Overview of ASP.NET Core MVC
@@ -253,4 +253,4 @@ For more information, see <xref:mvc/compatibility-version>.
 ## Additional resources
 
 * [MyTested.AspNetCore.Mvc - Fluent Testing Library for ASP.NET Core MVC](https://github.com/ivaylokenov/MyTested.AspNetCore.Mvc): Strongly-typed unit testing library, providing a fluent interface for testing MVC and web API apps. (*Not maintained or supported by Microsoft.*)
-* <xref:blazor/integrate-components>
+* <xref:blazor/components/integrate-components-into-razor-pages-and-mvc-apps>

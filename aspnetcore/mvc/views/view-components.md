@@ -5,7 +5,7 @@ description: Learn how view components are used in ASP.NET Core and how to add t
 ms.author: riande
 ms.custom: mvc
 ms.date: 12/18/2019
-no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/views/view-components
 ---
 # View components in ASP.NET Core
@@ -37,7 +37,7 @@ View components are intended anywhere you have reusable rendering logic that's t
 
 A view component consists of two parts: the class (typically derived from [ViewComponent](/dotnet/api/microsoft.aspnetcore.mvc.viewcomponent)) and the result it returns (typically a view). Like controllers, a view component can be a POCO, but most developers will want to take advantage of the methods and properties available by deriving from `ViewComponent`.
 
-When considering if view components meet an app's specifications, consider using Razor Components instead. Razor Components also combine markup with C# code to produce reusable UI units. Razor Components are designed for developer productivity when providing client-side UI logic and composition. For more information, see <xref:blazor/components>.
+When considering if view components meet an app's specifications, consider using Razor Components instead. Razor Components also combine markup with C# code to produce reusable UI units. Razor Components are designed for developer productivity when providing client-side UI logic and composition. For more information, see <xref:blazor/components/index>.
 
 ## Creating a view component
 

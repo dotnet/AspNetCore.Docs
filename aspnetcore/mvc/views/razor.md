@@ -4,14 +4,14 @@ author: rick-anderson
 description: Learn about Razor markup syntax for embedding server-based code into webpages.
 ms.author: riande
 ms.date: 02/12/2020
-no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/views/razor
 ---
 # Razor syntax reference for ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT), [Taylor Mullen](https://twitter.com/ntaylormullen), and [Dan Vicarel](https://github.com/Rabadash8820)
 
-Razor is a markup syntax for embedding server-based code into webpages. The Razor syntax consists of Razor markup, C#, and HTML. Files containing Razor generally have a *.cshtml* file extension. Razor is also found in [Razor components](xref:blazor/components) files (*.razor*).
+Razor is a markup syntax for embedding server-based code into webpages. The Razor syntax consists of Razor markup, C#, and HTML. Files containing Razor generally have a *.cshtml* file extension. Razor is also found in [Razor components](xref:blazor/components/index) files (*.razor*).
 
 ## Rendering HTML
 
@@ -454,7 +454,7 @@ The `@attribute` directive adds the given attribute to the class of the generate
 
 *This scenario only applies to Razor components (.razor).*
 
-The `@code` block enables a [Razor component](xref:blazor/components) to add C# members (fields, properties, and methods) to a component:
+The `@code` block enables a [Razor component](xref:blazor/components/index) to add C# members (fields, properties, and methods) to a component:
 
 ```razor
 @code {
@@ -478,7 +478,7 @@ The `@functions` directive enables adding C# members (fields, properties, and me
 
 ::: moniker range=">= aspnetcore-3.0"
 
-In [Razor components](xref:blazor/components), use `@code` over `@functions` to add C# members.
+In [Razor components](xref:blazor/components/index), use `@code` over `@functions` to add C# members.
 
 ::: moniker-end
 
@@ -672,7 +672,7 @@ If the *EvenMorePages* folder in the preceding example has an imports file with 
 The `@page` directive has different effects depending on the type of the file where it appears. The directive:
 
 * In in a *.cshtml* file indicates that the file is a Razor Page. For more information, see [Custom routes](xref:razor-pages/index#custom-routes) and <xref:razor-pages/index>.
-* Specifies that a Razor component should handle requests directly. For more information, see <xref:blazor/routing>.
+* Specifies that a Razor component should handle requests directly. For more information, see <xref:blazor/fundamentals/routing>.
 
 ::: moniker-end
 
@@ -696,7 +696,7 @@ The `@using` directive adds the C# `using` directive to the generated view:
 
 ::: moniker range=">= aspnetcore-3.0"
 
-In [Razor components](xref:blazor/components), `@using` also controls which components are in scope.
+In [Razor components](xref:blazor/components/index), `@using` also controls which components are in scope.
 
 ::: moniker-end
 
@@ -710,19 +710,19 @@ Razor directive attributes are represented by implicit expressions with reserved
 
 *This scenario only applies to Razor components (.razor).*
 
-`@attributes` allows a component to render non-declared attributes. For more information, see <xref:blazor/components#attribute-splatting-and-arbitrary-parameters>.
+`@attributes` allows a component to render non-declared attributes. For more information, see <xref:blazor/components/index#attribute-splatting-and-arbitrary-parameters>.
 
 ### `@bind`
 
 *This scenario only applies to Razor components (.razor).*
 
-Data binding in components is accomplished with the `@bind` attribute. For more information, see <xref:blazor/data-binding>.
+Data binding in components is accomplished with the `@bind` attribute. For more information, see <xref:blazor/components/data-binding>.
 
 ### `@on{EVENT}`
 
 *This scenario only applies to Razor components (.razor).*
 
-Razor provides event handling features for components. For more information, see <xref:blazor/event-handling>.
+Razor provides event handling features for components. For more information, see <xref:blazor/components/event-handling>.
 
 ::: moniker-end
 
@@ -748,19 +748,19 @@ Stops event propagation for the event.
 
 *This scenario only applies to Razor components (.razor).*
 
-The `@key` directive attribute causes the components diffing algorithm to guarantee preservation of elements or components based on the key's value. For more information, see <xref:blazor/components#use-key-to-control-the-preservation-of-elements-and-components>.
+The `@key` directive attribute causes the components diffing algorithm to guarantee preservation of elements or components based on the key's value. For more information, see <xref:blazor/components/index#use-key-to-control-the-preservation-of-elements-and-components>.
 
 ### `@ref`
 
 *This scenario only applies to Razor components (.razor).*
 
-Component references (`@ref`) provide a way to reference a component instance so that you can issue commands to that instance. For more information, see <xref:blazor/components#capture-references-to-components>.
+Component references (`@ref`) provide a way to reference a component instance so that you can issue commands to that instance. For more information, see <xref:blazor/components/index#capture-references-to-components>.
 
 ### `@typeparam`
 
 *This scenario only applies to Razor components (.razor).*
 
-The `@typeparam` directive declares a generic type parameter for the generated component class. For more information, see <xref:blazor/templated-components#generic-typed-components>.
+The `@typeparam` directive declares a generic type parameter for the generated component class. For more information, see <xref:blazor/components/templated-components#generic-typed-components>.
 
 ::: moniker-end
 

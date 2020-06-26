@@ -5,7 +5,7 @@ description: Learn how to use the logging framework provided by the Microsoft.Ex
 ms.author: riande
 ms.custom: mvc
 ms.date: 6/12/2020
-no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/logging/index
 ---
 # Logging in .NET Core and ASP.NET Core
@@ -795,100 +795,6 @@ Logging should be so fast that it isn't worth the performance cost of asynchrono
 
 <a name="clib"></a>
 
-### Create logs in Blazor
-
-#### Blazor WebAssembly
-
-Configure logging in Blazor WebAssembly apps with the `WebAssemblyHostBuilder.Logging` property in `Program.Main`:
-
-```csharp
-using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-
-...
-
-var builder = WebAssemblyHostBuilder.CreateDefault(args);
-
-builder.Logging.SetMinimumLevel(LogLevel.Debug);
-builder.Logging.AddProvider(new CustomLoggingProvider());
-```
-
-The `Logging` property is of type <xref:Microsoft.Extensions.Logging.ILoggingBuilder>, so all of the extension methods available on <xref:Microsoft.Extensions.Logging.ILoggingBuilder> are also available on `Logging`.
-
-Logging configuration can be loaded from app settings files. For more information, see <xref:blazor/hosting-model-configuration#logging-configuration>.
-
-#### Blazor WebAssembly SignalR .NET client logging
-
-Inject an <xref:Microsoft.Extensions.Logging.ILoggerProvider> to add a `WebAssemblyConsoleLogger` to the logging providers passed to <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilder>. Unlike a traditional <xref:Microsoft.Extensions.Logging.Console.ConsoleLogger>, `WebAssemblyConsoleLogger` is a wrapper around browser-specific logging APIs (for example, `console.log`). Use of `WebAssemblyConsoleLogger` makes logging possible within Mono inside a browser context.
-
-```csharp
-@using Microsoft.Extensions.Logging
-@inject ILoggerProvider LoggerProvider
-
-...
-
-var connection = new HubConnectionBuilder()
-    .WithUrl(NavigationManager.ToAbsoluteUri("/chathub"))
-    .ConfigureLogging(logging => logging.AddProvider(LoggerProvider))
-    .Build();
-```
-
-#### Log in Razor components
-
-Loggers respect app startup configuration.
-
-The `using` directive for <xref:Microsoft.Extensions.Logging> is required to support Intellisense completions for APIs, such as <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogWarning%2A> and <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogError%2A>.
-
-The following example demonstrates logging with an <xref:Microsoft.Extensions.Logging.ILogger> in Razor components:
-
-```razor
-@page "/counter"
-@using Microsoft.Extensions.Logging;
-@inject ILogger<Counter> logger;
-
-<h1>Counter</h1>
-
-<p>Current count: @currentCount</p>
-
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
-
-@code {
-    private int currentCount = 0;
-
-    private void IncrementCount()
-    {
-        logger.LogWarning("Someone has clicked me!");
-
-        currentCount++;
-    }
-}
-```
-
-The following example demonstrates logging with an <xref:Microsoft.Extensions.Logging.ILoggerFactory> in Razor components:
-
-```razor
-@page "/counter"
-@using Microsoft.Extensions.Logging;
-@inject ILoggerFactory LoggerFactory
-
-<h1>Counter</h1>
-
-<p>Current count: @currentCount</p>
-
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
-
-@code {
-    private int currentCount = 0;
-
-    private void IncrementCount()
-    {
-        var logger = LoggerFactory.CreateLogger<Counter>();
-        logger.LogWarning("Someone has clicked me!");
-
-        currentCount++;
-    }
-}
-```
-
 ## Change log levels in a running app
 
 The Logging API doesn't include a scenario to change log levels while an app is running. However, some configuration providers are capable of reloading configuration, which takes immediate effect on logging configuration. For example, the [File Configuration Provider](xref:fundamentals/configuration/index#file-configuration-provider), reloads logging configuration by default. If configuration is changed in code while an app is running, the app can call [IConfigurationRoot.Reload](xref:Microsoft.Extensions.Configuration.IConfigurationRoot.Reload*) to update the app's logging configuration.
@@ -985,6 +891,7 @@ For the preceding code, provide at least one extension method for the `ILoggerFa
 
 * <xref:fundamentals/logging/loggermessage>
 * Logging bugs should be created in the [github.com/dotnet/runtime/](https://github.com/dotnet/runtime/issues) repo.
+* <xref:blazor/fundamentals/logging>
 
 ::: moniker-end
 

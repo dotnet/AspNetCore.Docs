@@ -4,7 +4,7 @@ author: rick-anderson
 description: Part 3 of tutorial series on ASP.NET Core MVC.
 ms.author: riande
 ms.date: 8/04/2019
-no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-mvc-app/adding-view
 ---
 

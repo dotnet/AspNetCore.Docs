@@ -5,8 +5,8 @@ description: Learn how to debug Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/31/2020
-no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
+ms.date: 06/25/2020
+no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/debug
 ---
 # Debug ASP.NET Core Blazor WebAssembly
@@ -40,13 +40,13 @@ Debugging requires either of the following browsers:
 
 ## Enable debugging for Visual Studio and Visual Studio Code
 
-To enable debugging for an existing Blazor WebAssembly app, update the *launchSettings.json* file in the startup project to include the following `inspectUri` property in each launch profile:
+To enable debugging for an existing Blazor WebAssembly app, update the `launchSettings.json` file in the startup project to include the following `inspectUri` property in each launch profile:
 
 ```json
 "inspectUri": "{wsProtocol}://{url.hostname}:{url.port}/_framework/debug/ws-proxy?browser={browserInspectUri}"
 ```
 
-Once updated, the *launchSettings.json* file should look similar to the following example:
+Once updated, the `launchSettings.json` file should look similar to the following example:
 
 [!code-json[](debug/launchSettings.json?highlight=14,22)]
 
@@ -63,8 +63,8 @@ To debug a Blazor WebAssembly app in Visual Studio:
 
 1. Create a new ASP.NET Core hosted Blazor WebAssembly app.
 1. Press <kbd>F5</kbd> to run the app in the debugger.
-1. Set a breakpoint in *Counter.razor* in the `IncrementCount` method.
-1. Browse to the **Counter** tab and select the button to hit the breakpoint:
+1. Set a breakpoint in `Pages/Counter.razor` in the `IncrementCount` method.
+1. Browse to the **`Counter`** tab and select the button to hit the breakpoint:
 
    ![Debug Counter](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vs-debug-counter.png)
 
@@ -76,9 +76,9 @@ To debug a Blazor WebAssembly app in Visual Studio:
 
 While debugging your Blazor WebAssembly app, you can also debug your server code:
 
-1. Set a breakpoint in the *FetchData.razor* page in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>.
+1. Set a breakpoint in the `Pages/FetchData.razor` page in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>.
 1. Set a breakpoint in the `WeatherForecastController` in the `Get` action method.
-1. Browse to the **Fetch Data** tab to hit the first breakpoint in the `FetchData` component just before it issues an HTTP request to the server:
+1. Browse to the **`Fetch Data`** tab to hit the first breakpoint in the `FetchData` component just before it issues an HTTP request to the server:
 
    ![Debug Fetch Data](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vs-debug-fetch-data.png)
 
@@ -134,11 +134,11 @@ Install the [C# extension](https://marketplace.visualstudio.com/items?itemName=m
 
 1. In the selection window, select the *Server* project within the hosted solution.
 
-A *launch.json* file is generated with the launch configuration for launching the debugger.
+A `launch.json` file is generated with the launch configuration for launching the debugger.
 
 ### Attach to an existing debugging session
 
-To attach to a running Blazor app, create a *launch.json* file with the following configuration:
+To attach to a running Blazor app, create a `launch.json` file with the following configuration:
 
 ```json
 {
@@ -211,7 +211,7 @@ The following launch configuration options are supported for the `blazorwasm` de
 
 1. The browser must be run with remote debugging enabled. If remote debugging is disabled, an **Unable to find debuggable browser tab** error page is generated. The error page contains instructions for running the browser with the debugging port open so that the Blazor debugging proxy can connect to the app. *Close all browser instances* and restart the browser as instructed.
 
-Once the browser is running with remote debugging enabled, the debugging keyboard shortcut opens a new debugger tab. After a moment, the **Sources** tab shows a list of the .NET assemblies in the app. Expand each assembly and find the *.cs*/*.razor* source files available for debugging. Set breakpoints, switch back to the app's tab, and the breakpoints are hit when the code executes. After a breakpoint is hit, single-step (<kbd>F10</kbd>) through the code or resume (<kbd>F8</kbd>) code execution normally.
+Once the browser is running with remote debugging enabled, the debugging keyboard shortcut opens a new debugger tab. After a moment, the **Sources** tab shows a list of the .NET assemblies in the app. Expand each assembly and find the `.cs`/`.razor` source files available for debugging. Set breakpoints, switch back to the app's tab, and the breakpoints are hit when the code executes. After a breakpoint is hit, single-step (<kbd>F10</kbd>) through the code or resume (<kbd>F8</kbd>) code execution normally.
 
 Blazor provides a debugging proxy that implements the [Chrome DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/) and augments the protocol with .NET-specific information. When debugging keyboard shortcut is pressed, Blazor points the Chrome DevTools at the proxy. The proxy connects to the browser window you're seeking to debug (hence the need to enable remote debugging).
 
@@ -225,3 +225,4 @@ If you're running into errors, the following tips may help:
 
 * In the **Debugger** tab, open the developer tools in your browser. In the console, execute `localStorage.clear()` to remove any breakpoints.
 * Confirm that you've installed and trusted the ASP.NET Core HTTPS development certificate. For more information, see <xref:security/enforcing-ssl#troubleshoot-certificate-problems>.
+* Visual Studio requires the **Enable JavaScript debugging for ASP.NET (Chrome, Edge and IE)** option in **Tools** > **Options** > **Debugging** > **General**. This is the default setting for Visual Studio. If debugging isn't working, confirm that the option is selected.
