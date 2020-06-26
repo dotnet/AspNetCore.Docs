@@ -425,6 +425,8 @@
               uid: blazor/host-and-deploy/server
             - name: Configure the Linker
               uid: blazor/host-and-deploy/configure-linker
+        - name: Blazor Server and EF Core
+          uid: blazor/blazor-server-ef-core
         - name: Advanced scenarios
           uid: blazor/advanced-scenarios
     - name: Client-side development

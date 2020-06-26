@@ -1,0 +1,33 @@
+﻿@inject IContactFilters Filters
+
+<button class="btn btn-primary" 
+        disabled="@Filters.Loading"
+        @onclick="async () => await ToggleAsync()">
+        @Label
+</button>
+&nbsp;
+@code {
+
+    /// <summary>
+    /// Button text based on current state.
+    /// </summary>
+    public string Label => Filters.ShowFirstNameFirst ?
+        "Show Last Name, First Name" :
+        "Show First Name, Last Name";
+
+    /// <summary>
+    /// Reference to the <see cref="GridWrapper"/>.
+    /// </summary>
+    [CascadingParameter]
+    public GridWrapper GridWrapper { get; set; }
+
+    /// <summary>
+    /// Toggle name preference.
+    /// </summary>
+    /// <returns>A <see cref="Task"/>.</returns>
+    public Task ToggleAsync()
+    {
+        Filters.ShowFirstNameFirst = !Filters.ShowFirstNameFirst;
+        return GridWrapper.FilterChanged.InvokeAsync(this);
+    }
+}
