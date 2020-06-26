@@ -4,7 +4,7 @@ author: rick-anderson
 description: Provides links to the authentication samples in the ASP.NET Core repository.
 ms.author: riande
 ms.date: 01/31/2019
-no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/samples
 ---
 # Authentication samples for ASP.NET Core

@@ -4,7 +4,7 @@ author: wadepickett
 description: Learn how to start migrating an ASP.NET MVC project to ASP.NET Core MVC.
 ms.author: wpickett
 ms.date: 06/18/2020
-no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: migration/mvc
 ---
 # Migrate from ASP.NET MVC to ASP.NET Core MVC

@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn about IAuthenticatedEncryptor, IAuthenticatedEncryptorDescriptor, IAuthenticatedEncryptorDescriptorDeserializer, and the top-level factory.
 ms.author: riande
 ms.date: 08/11/2017
-no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/data-protection/extensibility/core-crypto
 ---
 # Core cryptography extensibility in ASP.NET Core

@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to use the Authorize attribute to restrict access to ASP.NET Core controllers and actions.
 ms.author: riande
 ms.date: 10/14/2016
-no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authorization/simple
 ---
 # Simple authorization in ASP.NET Core
@@ -73,7 +73,7 @@ This would allow only authenticated users to the `AccountController`, except for
 
 ## Authorize attribute and Razor Pages
 
-The <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> can ***not*** be applied to Razor Page handlers. For example, `[Authorize]` can't be applied to `OnGet`, `OnPost`, or any other page handler.
+The <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> can ***not*** be applied to Razor Page handlers. For example, `[Authorize]` can't be applied to `OnGet`, `OnPost`, or any other page handler. Consider using an ASP.NET Core MVC controller for pages with different authorization requirements for different handlers.
 
 The following two approaches can be used to apply authorization to Razor Page handler methods:
 

@@ -5,7 +5,7 @@ description: Learn how to add custom user data to Identity in an ASP.NET Core pr
 ms.author: riande
 ms.date: 03/26/2020
 ms.custom: "mvc, seodec18"
-no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/add-user-data
 ---
 # Add, download, and delete custom user data to Identity in an ASP.NET Core project
@@ -225,6 +225,9 @@ Test the app:
 * Download and view the users personal data from the `/Identity/Account/Manage/PersonalData` page.
 
 ## Add claims to Identity using IUserClaimsPrincipalFactory<ApplicationUser>
+
+> [!NOTE]
+> This section isn't an extension of the previous tutorial. To apply the following steps to the app built using the tutorial, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/18797).
 
 Additional claims can be added to ASP.NET Core Identity by using the `IUserClaimsPrincipalFactory<T>` interface. This class can be added to the app in the `Startup.ConfigureServices` method. Add the custom implementation of the class as follows:
 

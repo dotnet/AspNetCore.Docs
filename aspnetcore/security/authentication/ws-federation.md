@@ -5,7 +5,7 @@ description: This tutorial demonstrates how to use WS-Federation in an ASP.NET C
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 01/16/2019
-no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/ws-federation
 ---
 # Authenticate users with WS-Federation in ASP.NET Core
@@ -71,7 +71,7 @@ By default, the new middleware:
 
 ![Azure Active Directory: Endpoints](ws-federation/_static/AadFederationMetadataDocument.png)
 
-* Navigate to the new app registration. Click **Settings** > **Properties** and make note of the **App ID URI**. This is the WS-Federation middleware's `Wtrealm`:
+* Navigate to the new app registration. Click **Expose an API**. Click Application ID URI **Set** > **Save**. Make note of the  **Application ID URI**. This is the WS-Federation middleware's `Wtrealm`:
 
 ![Azure Active Directory: App registration properties](ws-federation/_static/AadAppIdUri.png)
 
