@@ -10,84 +10,61 @@ namespace CustomFormattersSample.Controllers
     [Route("api/[controller]")]
     public class ContactsController : Controller
     {
-        private static ConcurrentDictionary<string, Contact> _contacts =
-    new ConcurrentDictionary<string, Contact>();
+        private static readonly ConcurrentDictionary<string, Contact> _contacts =
+            new ConcurrentDictionary<string, Contact>();
 
         public ContactsController()
         {
             if (_contacts.Count == 0)
-            Add(new Contact() { FirstName = "Nancy", LastName = "Davolio" });
+                Add(new Contact { FirstName = "Nancy", LastName = "Davolio" });
         }
 
         public void Add(Contact contact)
         {
-            contact.ID = Guid.NewGuid().ToString();
-            _contacts[contact.ID] = contact;
+            contact.Id = Guid.NewGuid().ToString();
+            _contacts[contact.Id] = contact;
         }
 
-
-        // GET api/contacts
         [HttpGet]
         public IEnumerable<Contact> Get()
         {
             return _contacts.Values;
         }
 
-        // GET api/contacts/{guid}
-        [HttpGet("{id}", Name="Get")]
-        public IActionResult Get(string id)
+        [HttpGet("{id}")]
+        public ActionResult<Contact> Get(string id)
         {
-            Contact contact;
-            _contacts.TryGetValue(id, out contact);
-            if (contact == null)
+            if (!_contacts.TryGetValue(id, out var contact))
             {
                 return NotFound();
             }
-            return Ok(contact);
+
+            return contact;
         }
 
-        // POST api/contacts
         [HttpPost]
-        public IActionResult Post([FromBody]Contact contact)
+        public IActionResult Post([FromBody] Contact contact)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                Add(contact);
-                return CreatedAtRoute("Get", new { id = contact.ID }, contact);
+                return BadRequest();
             }
-            return BadRequest();
+
+            Add(contact);
+
+            return CreatedAtAction(nameof(Get), new { id = contact.Id }, contact);
         }
 
-        // This is not a correct PUT so removing
-        // PUT api/contacts/{guid}
-        //[HttpPut("{id}")]
-        //public IActionResult Put(string id, [FromBody]Contact contact)
-        //{
-        //    if (ModelState.IsValid && id == contact.ID)
-        //    {
-        //        var contactToUpdate = Contacts.Get(id);
-        //        if (contactToUpdate != null)
-        //        {
-        //            Contacts.Update(contact);
-        //            return new NoContentResult();
-        //        }
-        //        return NotFound();
-        //    }
-        //    return BadRequest();
-        //}
-
-        // DELETE api/contacts/{guid}
         [HttpDelete("{id}")]
         public IActionResult Delete(string id)
         {
-            Contact contact;
-            _contacts.TryGetValue(id, out contact);
-            if (contact == null)
+            if (!_contacts.ContainsKey(id))
             {
                 return NotFound();
             }
 
-            _contacts.TryRemove(id, out contact);
+            _contacts.TryRemove(id, out _);
+
             return NoContent();
         }
     }

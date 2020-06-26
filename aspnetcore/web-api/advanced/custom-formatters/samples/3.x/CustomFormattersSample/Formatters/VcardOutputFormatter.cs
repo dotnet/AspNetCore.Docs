@@ -5,17 +5,18 @@ using System.Threading.Tasks;
 using CustomFormattersSample.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Formatters;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Net.Http.Headers;
 
 namespace CustomFormattersSample.Formatters
 {
-    #region snippet
-    #region classdef
+    #region snippet_Class
+    #region snippet_ClassDeclaration
     public class VcardOutputFormatter : TextOutputFormatter
     #endregion
     {
-        #region ctor
+        #region snippet_ctor
         public VcardOutputFormatter()
         {
             SupportedMediaTypes.Add(MediaTypeHeaderValue.Parse("text/vcard"));
@@ -25,54 +26,51 @@ namespace CustomFormattersSample.Formatters
         }
         #endregion
 
-        #region canwritetype
+        #region snippet_CanWriteType
         protected override bool CanWriteType(Type type)
         {
-            if (typeof(Contact).IsAssignableFrom(type) 
-                || typeof(IEnumerable<Contact>).IsAssignableFrom(type))
-            {
-                return base.CanWriteType(type);
-            }
-            return false;
+            return typeof(Contact).IsAssignableFrom(type) ||
+                typeof(IEnumerable<Contact>).IsAssignableFrom(type);
         }
         #endregion
 
-        #region writeresponse
-        public override async Task WriteResponseBodyAsync(OutputFormatterWriteContext context,
-                                                          Encoding selectedEncoding)
+        #region snippet_WriteResponseBodyAsync
+        public override async Task WriteResponseBodyAsync(
+            OutputFormatterWriteContext context, Encoding selectedEncoding)
         {
-            IServiceProvider serviceProvider = context.HttpContext.RequestServices;
-            var logger = serviceProvider.GetService(typeof(ILogger<VcardOutputFormatter>)) 
-                                                     as ILogger;
+            var httpContext = context.HttpContext;
+            var serviceProvider = httpContext.RequestServices;
 
-            var response = context.HttpContext.Response;
-
+            var logger = serviceProvider.GetRequiredService<ILogger<VcardOutputFormatter>>();
             var buffer = new StringBuilder();
-            if (context.Object is IEnumerable<Contact>)
+
+            if (context.Object is IEnumerable<Contact> contacts)
             {
-                foreach (Contact contact in context.Object as IEnumerable<Contact>)
+                foreach (var contact in contacts)
                 {
                     FormatVcard(buffer, contact, logger);
                 }
             }
             else
             {
-                var contact = context.Object as Contact;
-                FormatVcard(buffer, contact, logger);
+                FormatVcard(buffer, (Contact)context.Object, logger);
             }
-            await response.WriteAsync(buffer.ToString());
+
+            await httpContext.Response.WriteAsync(buffer.ToString());
         }
 
-        private static void FormatVcard(StringBuilder buffer, Contact contact, ILogger logger)
+        private static void FormatVcard(
+            StringBuilder buffer, Contact contact, ILogger logger)
         {
             buffer.AppendLine("BEGIN:VCARD");
             buffer.AppendLine("VERSION:2.1");
-            buffer.AppendFormat($"N:{contact.LastName};{contact.FirstName}\r\n");
-            buffer.AppendFormat($"FN:{contact.FirstName} {contact.LastName}\r\n");
-            buffer.AppendFormat($"UID:{contact.ID}\r\n");
+            buffer.AppendLine($"N:{contact.LastName};{contact.FirstName}");
+            buffer.AppendLine($"FN:{contact.FirstName} {contact.LastName}");
+            buffer.AppendLine($"UID:{contact.Id}");
             buffer.AppendLine("END:VCARD");
-            logger.LogInformation("Writing {FirstName} {LastName}", contact.FirstName,
-                                   contact.LastName);
+
+            logger.LogInformation("Writing {FirstName} {LastName}",
+                contact.FirstName, contact.LastName);
         }
         #endregion
     }

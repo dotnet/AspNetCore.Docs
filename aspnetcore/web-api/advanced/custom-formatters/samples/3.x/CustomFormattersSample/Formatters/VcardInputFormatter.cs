@@ -4,17 +4,16 @@ using System.Text;
 using System.Threading.Tasks;
 using CustomFormattersSample.Models;
 using Microsoft.AspNetCore.Mvc.Formatters;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Net.Http.Headers;
 
 namespace CustomFormattersSample.Formatters
 {
-    #region snippet
-    #region classdef
+    #region snippet_Class
     public class VcardInputFormatter : TextInputFormatter
-    #endregion
     {
-        #region ctor
+        #region snippet_ctor
         public VcardInputFormatter()
         {
             SupportedMediaTypes.Add(MediaTypeHeaderValue.Parse("text/vcard"));
@@ -24,83 +23,68 @@ namespace CustomFormattersSample.Formatters
         }
         #endregion
 
-        #region canreadtype
         protected override bool CanReadType(Type type)
         {
-            if (type == typeof(Contact))
-            {
-                return base.CanReadType(type);
-            }
-            return false;
+            return type == typeof(Contact);
         }
-        #endregion
 
-        #region readrequest
         public override async Task<InputFormatterResult> ReadRequestBodyAsync(
-                                  InputFormatterContext context, Encoding effectiveEncoding)
+            InputFormatterContext context, Encoding effectiveEncoding)
         {
-            IServiceProvider serviceProvider = context.HttpContext.RequestServices;
-            var logger = serviceProvider.GetService(typeof(ILogger<VcardInputFormatter>)) 
-                                                    as ILogger;
+            var httpContext = context.HttpContext;
+            var serviceProvider = httpContext.RequestServices;
 
-            if (context == null)
+            var logger = serviceProvider.GetRequiredService<ILogger<VcardInputFormatter>>();
+
+            using var reader = new StreamReader(httpContext.Request.Body, effectiveEncoding);
+            string nameLine = null;
+
+            try
             {
-                var nameOfContext = nameof(context);
-                logger.LogError(nameOfContext);
-                throw new ArgumentNullException(nameOfContext);
-            }
+                await ReadLineAsync("BEGIN:VCARD", reader, context, logger);
+                await ReadLineAsync("VERSION:", reader, context, logger);
 
-            if (effectiveEncoding == null)
-            {
-                var nameofEffectiveEncoding = nameof(effectiveEncoding);
-                logger.LogError(nameofEffectiveEncoding);
-                throw new ArgumentNullException(nameofEffectiveEncoding);
-            }
+                nameLine = await ReadLineAsync("N:", reader, context, logger);
 
-            var request = context.HttpContext.Request;
-
-            using (var reader = new StreamReader(request.Body, effectiveEncoding))
-            {
-                string nameLine=null;
-                try
+                var split = nameLine.Split(";".ToCharArray());
+                var contact = new Contact
                 {
-                    await ReadLineAsync("BEGIN:VCARD", reader, context, logger);
-                    await ReadLineAsync("VERSION:", reader, context, logger);
+                    LastName = split[0].Substring(2),
+                    FirstName = split[1]
+                };
 
-                    nameLine = await ReadLineAsync("N:", reader, context, logger);
-                    var split = nameLine.Split(";".ToCharArray());
-                    var contact = new Contact() { LastName = split[0].Substring(2), 
-                                             FirstName = split[1] };
+                await ReadLineAsync("FN:", reader, context, logger);
+                await ReadLineAsync("END:VCARD", reader, context, logger);
 
-                    await ReadLineAsync("FN:", reader, context, logger);
-                    await ReadLineAsync("END:VCARD", reader, context, logger);
-                    logger.LogInformation("nameLine = {nameLine}", nameLine);
+                logger.LogInformation("nameLine = {nameLine}", nameLine);
 
-                    return await InputFormatterResult.SuccessAsync(contact);
-                }
-                catch
-                {
-                    logger.LogError("Read failed: nameLine = {nameLine}", nameLine);
-                    return await InputFormatterResult.FailureAsync();
-                }
+                return await InputFormatterResult.SuccessAsync(contact);
+            }
+            catch
+            {
+                logger.LogError("Read failed: nameLine = {nameLine}", nameLine);
+                return await InputFormatterResult.FailureAsync();
             }
         }
 
-        private async Task<string> ReadLineAsync(string expectedText, StreamReader reader,
-                                                 InputFormatterContext context,
-                                                 ILogger logger)
+        private static async Task<string> ReadLineAsync(
+            string expectedText, StreamReader reader, InputFormatterContext context,
+            ILogger logger)
         {
             var line = await reader.ReadLineAsync();
+
             if (!line.StartsWith(expectedText))
             {
                 var errorMessage = $"Looked for '{expectedText}' and got '{line}'";
+
                 context.ModelState.TryAddModelError(context.ModelName, errorMessage);
                 logger.LogError(errorMessage);
+
                 throw new Exception(errorMessage);
             }
+
             return line;
         }
-        #endregion
     }
     #endregion
 }
