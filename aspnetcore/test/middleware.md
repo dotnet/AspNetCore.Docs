@@ -5,7 +5,7 @@ description: Learn how to test ASP.NET Core middleware with TestServer.
 ms.author: riande
 ms.custom: mvc
 ms.date: 5/12/2020
-no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: test/middleware
 ---
 # Test ASP.NET Core middleware

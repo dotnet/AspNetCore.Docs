@@ -5,7 +5,7 @@ description: A guide that provides end-to-end guidance on building a DevOps pipe
 ms.author: casoper
 ms.date: 08/07/2018
 ms.custom: "mvc, seodec18"
-no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: azure/devops/index
 ---
 # DevOps with ASP.NET Core and Azure

@@ -5,7 +5,7 @@ description: Explains ASP.NET Core vs. ASP.NET 4.x and how to choose between the
 ms.author: riande
 ms.custom: "mvc, seodec18"
 ms.date: 02/12/2020
-no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/choose-between-aspnet-and-aspnetcore
 ---
 # Choose between ASP.NET 4.x and ASP.NET Core

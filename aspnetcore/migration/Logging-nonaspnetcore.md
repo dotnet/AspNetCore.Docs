@@ -5,7 +5,7 @@ description: Learn how to migrate a non-ASP.NET Core application that uses Micro
 ms.author: pakrym
 ms.custom: mvc
 ms.date: 01/04/2019
-no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: migration/logging-nonaspnetcore
 ---
 
