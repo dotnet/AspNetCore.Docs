@@ -5,7 +5,7 @@ description: Continuous integration and deployment in DevOps with ASP.NET Core a
 ms.author: scaddie
 ms.date: 10/24/2018
 ms.custom: "mvc, seodec18"
-no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: azure/devops/cicd
 ---
 # Continuous integration and deployment

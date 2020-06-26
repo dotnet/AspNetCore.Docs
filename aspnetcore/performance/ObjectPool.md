@@ -4,8 +4,8 @@ author: rick-anderson
 description: Tips for increasing performance in ASP.NET Core apps using ObjectPool.
 monikerRange: '>= aspnetcore-1.1'
 ms.author: riande
-ms.date: 6/26/2020
-no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
+ms.date: 04/11/2019
+no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: performance/ObjectPool
 ---
 # Object reuse with ObjectPool in ASP.NET Core
