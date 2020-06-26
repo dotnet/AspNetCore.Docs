@@ -135,6 +135,12 @@ using System.IO;
 
 The configuration action passed to the `AddSwaggerGen` method adds information such as the author, license, and description:
 
+In the `Startup` class, import the following namespace to use the `OpenApiInfo` class:
+
+[!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.Swashbuckle/Startup2.cs?name=snippet_InfoClassNamespace)]
+
+Using the `OpenApiInfo` class, modify the information displayed in the UI.
+
 [!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.Swashbuckle/Startup4.cs?name=snippet_AddSwaggerGen)]
 
 The Swagger UI displays the version's information:
