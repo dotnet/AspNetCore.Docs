@@ -449,7 +449,7 @@ The Swagger UI now clearly documents the expected HTTP response codes:
 
 In ASP.NET Core 2.2 or later, conventions can be used as an alternative to explicitly decorating individual actions with `[ProducesResponseType]`. For more information, see <xref:web-api/advanced/conventions>.
 
-In support of the `[ProducesResponseType]` decoration, the [Swashbuckle.AspNetCore.Annoations](https://github.com/domaindrivendev/Swashbuckle.AspNetCore/blob/master/README.md#swashbuckleaspnetcoreannotations) package offers extensions to enable and enrich the response and parameter metadata.
+In support of the `[ProducesResponseType]` decoration, the [Swashbuckle.AspNetCore.Annoations](https://github.com/domaindrivendev/Swashbuckle.AspNetCore/blob/master/README.md#swashbuckleaspnetcoreannotations) package offers extensions to enable and enrich the response, schema, and parameter metadata.
 
 ::: moniker-end
 
