@@ -165,13 +165,13 @@ Set up a cache profile. The following example shows a 30 second cache profile in
 
 ::: moniker range=">= aspnetcore-3.0"
 
-[!code-csharp[](response/samples/2.x/ResponseCacheSample/Startup31.cs?name=snippet1)]
+[!code-csharp[](response/samples/3.x/ResponseCacheSample/Startup.cs?name=snippet1)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
 
-[!code-csharp[](response/samples/3.x/ResponseCacheSample/Startup.cs?name=snippet1)]
+[!code-csharp[](response/samples/2.x/ResponseCacheSample/Startup.cs?name=snippet1)]
 
 ::: moniker-end
 
