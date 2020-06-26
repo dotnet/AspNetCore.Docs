@@ -116,7 +116,9 @@ Policies are applied to Razor Pages by using the `[Authorize]` attribute with th
 
 [!code-csharp[](policies/samples/PoliciesAuthApp2/Pages/AlcoholPurchase.cshtml.cs?name=snippet_AlcoholPurchaseModelClass&highlight=4)]
 
-Policies can also be applied to Razor Pages by using an [authorization convention](xref:security/authorization/razor-pages-authorization).
+Policies can ***not*** be applied at the Razor Page handler level, they must be applied to the Page.
+
+Policies can be applied to Razor Pages by using an [authorization convention](xref:security/authorization/razor-pages-authorization).
 
 ## Requirements
 
