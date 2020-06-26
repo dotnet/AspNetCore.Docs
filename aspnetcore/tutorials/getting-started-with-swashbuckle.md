@@ -119,6 +119,11 @@ The Swagger UI can be found at `http://localhost:<port>/swagger`. Explore the AP
 
 If using directories with IIS or a reverse proxy, set the Swagger endpoint to a relative path using the `./` prefix. For example, `./swagger/v1/swagger.json`. Using `/swagger/v1/swagger.json` instructs the app to look for the JSON file at the true root of the URL (plus the route prefix, if used). For example, use `http://localhost:<port>/<route_prefix>/swagger/v1/swagger.json` instead of `http://localhost:<port>/<virtual_directory>/<route_prefix>/swagger/v1/swagger.json`.
 
+> [!NOTE]
+> By default, Swashbuckle will generate and expose Swagger JSON in version 3.0 of the specification, officially called the OpenAPI Specification. However, to support backwards compatibility, you can opt to continue exposing it in the 2.0 format with the following option. This option is important for integrations such as Microsoft Power Apps and Microsoft Flow as they currently support OpenAPI version 2.0 
+>
+> [!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/3.0/TodoApi.Swashbuckle/Startup3.cs?name=snippet_Configure&highlight=4-7)]
+
 ## Customize and extend
 
 Swagger provides options for documenting the object model and customizing the UI to match your theme.
@@ -470,20 +475,12 @@ Enable Static File Middleware:
 
 ::: moniker-end
 
-Acquire the contents of the *dist* folder from the [Swagger UI GitHub repository](https://github.com/swagger-api/swagger-ui/tree/master/dist). This folder contains the necessary assets for the Swagger UI page.
+ You can inject additional CSS stylesheets by adding them to the `wwwroot` folder and specifying the relative paths in the middleware options
 
-Create a *wwwroot/swagger/ui* folder, and copy into it the contents of the *dist* folder.
+```dotnetcli
+app.UseSwaggerUI(c =>
+{
+     c.InjectStylesheet("/swagger-ui/custom.css");
+}
+```
 
-Create a *custom.css* file, in *wwwroot/swagger/ui*, with the following CSS to customize the page header:
-
-[!code-css[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.Swashbuckle/wwwroot/swagger/ui/custom.css)]
-
-Reference *custom.css* in the *index.html* file inside ui folder, after any other CSS files:
-
-[!code-html[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.Swashbuckle/wwwroot/swagger/ui/index.html?name=snippet_SwaggerUiCss&highlight=3)]
-
-Browse to the *index.html* page at `http://localhost:<port>/swagger/ui/index.html`. Enter `https://localhost:<port>/swagger/v1/swagger.json` in the header's textbox, and click the **Explore** button. The resulting page looks as follows:
-
-![Swagger UI with custom header title](web-api-help-pages-using-swagger/_static/custom-header.png)
-
-There's much more you can do with the page. See the full capabilities for the UI resources at the [Swagger UI GitHub repository](https://github.com/swagger-api/swagger-ui).
