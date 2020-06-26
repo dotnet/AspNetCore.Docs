@@ -108,7 +108,7 @@ Append [AddRoles](/dotnet/api/microsoft.aspnetcore.identity.identitybuilder.addr
 
 ### Require authenticated users
 
-Set the fallback authentication policy to require ***all*** users to be authenticated:
+Set the fallback authentication policy to require users to be authenticated:
 
 [!code-csharp[](secure-data/samples/final3/Startup.cs?name=snippet&highlight=13-99)]
 
