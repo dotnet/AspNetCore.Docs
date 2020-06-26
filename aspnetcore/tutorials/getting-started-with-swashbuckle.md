@@ -106,6 +106,8 @@ In the `Startup.Configure` method, enable the middleware for serving the generat
 
 ::: moniker-end
 
+> [!NOTE] Swashbuckle relies on the MVC built in `ApiExplorer` to discover the routes and endpoints. If the application is using `.AddMvc()` then everything is discovered automatically. When using `.AddMvcCore()`, the `.AddApiExplorer()` method must be explicity called. See [Swashbuckle, ApiExplorer, and Routing](https://github.com/domaindrivendev/Swashbuckle.AspNetCore#swashbuckle-apiexplorer-and-routing) for more information.
+
 The preceding `UseSwaggerUI` method call enables the [Static File Middleware](xref:fundamentals/static-files). If targeting .NET Framework or .NET Core 1.x, add the [Microsoft.AspNetCore.StaticFiles](https://www.nuget.org/packages/Microsoft.AspNetCore.StaticFiles/) NuGet package to the project.
 
 Launch the app, and navigate to `http://localhost:<port>/swagger/v1/swagger.json`. The generated document describing the endpoints appears as shown in [Swagger specification (swagger.json)](xref:tutorials/web-api-help-pages-using-swagger#swagger-specification-swaggerjson).
@@ -446,6 +448,8 @@ The Swagger UI now clearly documents the expected HTTP response codes:
 ::: moniker range=">= aspnetcore-2.2"
 
 In ASP.NET Core 2.2 or later, conventions can be used as an alternative to explicitly decorating individual actions with `[ProducesResponseType]`. For more information, see <xref:web-api/advanced/conventions>.
+
+In support of the `[ProducesResponseType]` decoration, the [Swashbuckle.AspNetCore.Annoations](https://github.com/domaindrivendev/Swashbuckle.AspNetCore/blob/master/README.md#swashbuckleaspnetcoreannotations) package offers extensions to enable and enrich the response and parameter metadata.
 
 ::: moniker-end
 
