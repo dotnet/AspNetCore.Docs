@@ -83,7 +83,7 @@ The sample app includes a helper method for disposal of the current context and 
 
 [!code-csharp[](./common/samples/3.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/EditContact.razor?range=172-191)]
 
-Finally, `OnInitializedAsync` is overridden to create a new context. In the sample app, it loads the contact at this time. The `DisposeContext` call ensures any previous context is disposed when the component is reused.
+Finally, `OnInitializedAsync` is overridden to create a new context. In the sample app, it loads the contact in the same method. The `DisposeContext` call ensures any previous context is disposed when the component is reused.
 
 [!code-csharp[](./common/samples/3.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/EditContact.razor?range=85-98)]
 
@@ -95,7 +95,7 @@ The sample application was built as a reference for Blazor Server apps the use E
 
 By default, the sample uses [SQL Server Express LocalDB](https://docs.microsoft.com/sql/database-engine/configure-windows/sql-server-express-localdb). You can override the connection string by updating the connection string in `appsettings.json`:
 
-[!code-json[](./common/samples/3.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/appsettings.json)] 
+[!code-json[](./common/samples/3.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/appsettings.json?highlight=3)] 
 
 The sample also configures database logging to show the SQL queries that are generated. This is configured in `appsettings.Development.json`. 
 
@@ -109,7 +109,7 @@ To make it easier to populate the sample database, a call to ensure it is create
 
 [!code-csharp[](./common/samples/3.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Program.cs?highlight=15-23)]
 
-> ![CAUTION]
+> [!CAUTION]
 > The included code is for demo purposes only and should not be copied or included in production apps. Instead, consider creating the database using scripts or EF Core's [migrations](https://docs.microsoft.com/ef/core/managing-schemas/migrations/).
 
 ## Next Steps
