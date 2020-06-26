@@ -73,7 +73,7 @@ This would allow only authenticated users to the `AccountController`, except for
 
 ## Authorize attribute and Razor Pages
 
-The <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> can ***not*** be applied to Razor Page handlers. For example, `[Authorize]` can't be applied to `OnGet`, `OnPost`, or any other page handler. Consider using an ASP.NET Core MVC controller for pages that require mixed authorization attributes on different handlers.
+The <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> can ***not*** be applied to Razor Page handlers. For example, `[Authorize]` can't be applied to `OnGet`, `OnPost`, or any other page handler. Consider using an ASP.NET Core MVC controller for pages with different authorization requirements for different handlers.
 
 The following two approaches can be used to apply authorization to Razor Page handler methods:
 
