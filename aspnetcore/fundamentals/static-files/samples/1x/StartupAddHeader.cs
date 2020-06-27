@@ -13,9 +13,9 @@ namespace StaticFiles
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         #region snippet_ConfigureMethod
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app)
         {
-            var cachePeriod = env.IsDevelopment() ? "600" : "604800";
+            var cachePeriod =  "604800";
             app.UseStaticFiles(new StaticFileOptions
             {
                 OnPrepareResponse = ctx =>
