@@ -111,12 +111,6 @@ The preceding code allows directory browsing of the *wwwroot/images* folder usin
 
 ![directory browsing](static-files/_static/dir-browse.png)
 
-<!-- TODO review:  Doesn't need two `UseStaticFiles` calls
-test via  webBuilder.UseStartup<StartupBrowse>(); 
-and navigate to the privacy page
-Note the two `UseStaticFiles` calls in the following example. The first call enables the serving of static files in the `wwwroot` folder. The second call enables directory browsing of the *wwwroot/images* folder using the URL `https://<hostname>/MyImages`.
--->
-
 ## Serve default documents
 
 Setting a default page provides visitors a starting point on a site. To serve a default page from `wwwroot` without a fully qualified URI, call the <xref:Owin.DefaultFilesExtensions.UseDefaultFiles%2A> method:
