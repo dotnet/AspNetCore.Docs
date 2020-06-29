@@ -1461,7 +1461,7 @@ logging.AddEventLog();
 * `SourceName`: ".NET Runtime"
 * `MachineName`: The local machine name is used.
 
-Events are logged for [Warning level and higher](#log-level). To log events lower than `Warning`, explicitly set the log level. For example, add the following to the *appsettings.json* file:
+Events are logged for [Warning level and higher](#log-level). To log events lower than `Warning`, explicitly set the log level. To log events lower than `Warning`, explicitly set the log level. In the following example, the Event Log default log level is set to <xref:Microsoft.Extensions.Logging.LogLevel.Information?displayProperty=nameWithType>:
 
 ```json
 "Logging": {
