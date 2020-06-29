@@ -5,7 +5,7 @@ description: Shows how to create a Razor Pages app using Entity Framework Core
 ms.author: riande
 ms.custom: "mvc, seodec18"
 ms.date: 09/26/2019
-no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: data/ef-rp/intro
 ---
 

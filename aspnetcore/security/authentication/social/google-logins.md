@@ -5,7 +5,7 @@ description: This tutorial demonstrates the integration of Google account user a
 ms.author: riande
 ms.custom: "mvc, seodec18"
 ms.date: 03/19/2020
-no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/google-logins
 ---
 # Google external login setup in ASP.NET Core

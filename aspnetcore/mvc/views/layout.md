@@ -4,7 +4,7 @@ author: ardalis
 description: Learn how to use common layouts, share directives, and run common code before rendering views in an ASP.NET Core app.
 ms.author: riande
 ms.date: 07/30/2019
-no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/views/layout
 ---
 # Layout in ASP.NET Core
