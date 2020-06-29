@@ -4,7 +4,7 @@ author: jamesnk
 description: Learn how to configure gRPC services on ASP.NET Core to be callable from browser apps using gRPC-Web.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
-ms.date: 06/28/2020
+ms.date: 06/29/2020
 no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: grpc/browser
 ---
@@ -12,7 +12,7 @@ uid: grpc/browser
 
 By [James Newton-King](https://twitter.com/jamesnk)
 
- This article shows how to configure an existing ASP.NET Core gRPC service to be callable from browser apps using gRPC-Web. The [gRPC-Web](https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-WEB.md) protocol allows browser JavaScript and Blazor apps to call gRPC services, since it is not possible to call a HTTP/2 gRPC service from a browser-based app.
+ Learn how to configure an existing ASP.NET Core gRPC service to be callable from browser apps, using the [gRPC-Web](https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-WEB.md) protocol. The gRPC-Web allows browser JavaScript and Blazor apps to call gRPC services. It is not possible to call a HTTP/2 gRPC service from a browser-based app. gRPC services hosted in ASP.NET Core can be configured to support gRPC-Web alongside HTTP/2 gRPC.
 
 See [Add gRPC services to an ASP.NET Core app](xref:grpc/aspnetcore#add-grpc-services-to-an-aspnet-core-app) for detailed instructions on how to add gRPC services to an existing ASP.NET Core app.
 
