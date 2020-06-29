@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to use the logging framework provided by the Microsoft.Extensions.Logging NuGet package.
 ms.author: riande
 ms.custom: mvc
-ms.date: 6/12/2020
+ms.date: 6/29/2020
 no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/logging/index
 ---
@@ -563,7 +563,7 @@ To configure PerfView for collecting events logged by this provider, add the str
 
 The `EventLog` provider sends log output to the Windows Event Log. Unlike the other providers, the `EventLog` provider does ***not*** inherit the default non-provider settings. If `EventLog` log settings aren't specified, they [default to LogLevel.Warning](https://github.com/dotnet/extensions/blob/release/3.1/src/Hosting/Hosting/src/Host.cs#L99-L103).
 
-To log events lower than `Warning`, explicitly set the log level. For example, add the following to the *appsettings.json* file:
+To log events lower than `Warning`, explicitly set the log level. In the following example, the Event Log log default log level is set to <xref:Microsoft.Extensions.Logging.LogLevel.Information?displayProperty=nameWithType>:
 
 ```json
 "Logging": {
