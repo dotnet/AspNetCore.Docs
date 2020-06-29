@@ -5,7 +5,7 @@ description: Discover how ASP.NET Core supports the Open Web Interface for .NET 
 ms.author: riande
 ms.custom: H1Hack27Feb2017
 ms.date: 12/18/2018
-no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/owin
 ---
 # Open Web Interface for .NET (OWIN) with ASP.NET Core

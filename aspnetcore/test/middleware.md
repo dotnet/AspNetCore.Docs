@@ -5,7 +5,7 @@ description: Learn how to test ASP.NET Core middleware with TestServer.
 ms.author: riande
 ms.custom: mvc
 ms.date: 5/12/2020
-no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: test/middleware
 ---
 # Test ASP.NET Core middleware
@@ -30,6 +30,14 @@ In the test project, create a test:
 
 * Build and start a host that uses <xref:Microsoft.AspNetCore.TestHost.TestServer>.
 * Add any required services that the middleware uses.
+* Add the [Microsoft.AspNetCore.TestHost](https://www.nuget.org/packages/Microsoft.AspNetCore.TestHost/) NuGet package to the project:
+  
+  ```dotnetcli
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="3.1.*" />
+  </ItemGroup>
+  ```
+
 * Configure the processing pipeline to use the middleware for the test.
 
 [!code-csharp[](middleware/samples_snapshot/3.x/setup.cs?highlight=4-18)]

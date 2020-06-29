@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 03/26/2020
-no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/components/data-binding
 ---
 # ASP.NET Core Blazor data binding
@@ -233,7 +233,7 @@ The following `PasswordField` component (`PasswordField.razor`):
 
 * Sets an `<input>` element's value to a `Password` property.
 * Exposes changes of the `Password` property to a parent component with an [`EventCallback`](xref:blazor/components/event-handling#eventcallback).
-* Uses the `onclick` event is used to trigger the `ToggleShowPassword` method. For more information, see <xref:blazor/components/event-handling>.
+* Uses the `onclick` event to trigger the `ToggleShowPassword` method. For more information, see <xref:blazor/components/event-handling>.
 
 ```razor
 <h1>Child Component</h1>
