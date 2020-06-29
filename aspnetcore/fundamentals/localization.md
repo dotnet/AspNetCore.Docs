@@ -40,7 +40,7 @@ Use the `IHtmlLocalizer<T>` implementation for resources that contain HTML. `IHt
 [!code-csharp[](~/fundamentals/localization/sample/3.x/Localization/Controllers/BookController.cs?highlight=3,5,20&start=1&end=24)]
 
 > [!NOTE]
-> You generally want to only localize text and not HTML.
+> Generally, only localize text, not HTML.
 
 At the lowest level, you can get `IStringLocalizerFactory` out of [Dependency Injection](dependency-injection.md):
 
@@ -77,7 +77,7 @@ A French resource file could contain the following:
 The rendered view would contain the HTML markup from the resource file.
 
 > [!NOTE]
-> You generally want to only localize text and not HTML.
+> Generally, only localize text, not HTML.
 
 To use a shared resource file in a view, inject `IHtmlLocalizer<T>`:
 
@@ -394,7 +394,7 @@ Use the `IHtmlLocalizer<T>` implementation for resources that contain HTML. `IHt
 [!code-csharp[](~/fundamentals/localization/sample/3.x/Localization/Controllers/BookController.cs?highlight=3,5,20&start=1&end=24)]
 
 > [!NOTE]
-> You generally want to only localize text and not HTML.
+> Generally, only localize text, not HTML.
 
 At the lowest level, you can get `IStringLocalizerFactory` out of [Dependency Injection](dependency-injection.md):
 
@@ -431,7 +431,7 @@ A French resource file could contain the following:
 The rendered view would contain the HTML markup from the resource file.
 
 > [!NOTE]
-> You generally want to only localize text and not HTML.
+> Generally, only localize text, not HTML.
 
 To use a shared resource file in a view, inject `IHtmlLocalizer<T>`:
 
@@ -749,7 +749,7 @@ Use the `IHtmlLocalizer<T>` implementation for resources that contain HTML. `IHt
 [!code-csharp[](~/fundamentals/localization/sample/3.x/Localization/Controllers/BookController.cs?highlight=3,5,20&start=1&end=24)]
 
 > [!NOTE]
-> You generally want to only localize text and not HTML.
+> Generally, only localize text, not HTML.
 
 At the lowest level, you can get `IStringLocalizerFactory` out of [Dependency Injection](dependency-injection.md):
 
@@ -785,7 +785,8 @@ A French resource file could contain the following:
 
 The rendered view would contain the HTML markup from the resource file.
 
-**Note:** You generally want to only localize text and not HTML.
+> [!NOTE]
+> Generally, only localize text, not HTML.
 
 To use a shared resource file in a view, inject `IHtmlLocalizer<T>`:
 
@@ -857,7 +858,6 @@ In the sample project, the `ConfigureServices` method sets the `ResourcesPath` t
 | ------------   | ------------- |
 | Resources/Controllers.HomeController.fr.resx | Dot  |
 | Resources/Controllers/HomeController.fr.resx  | Path |
-|    |     |
 
 Resource files using `@inject IViewLocalizer` in Razor views follow a similar pattern. The resource file for a view can be named using either dot naming or path naming. Razor view resource files mimic the path of their associated view file. Assuming we set the `ResourcesPath` to "Resources", the French resource file associated with the *Views/Home/About.cshtml* view could be either of the following:
 
