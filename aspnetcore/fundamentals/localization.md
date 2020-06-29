@@ -425,7 +425,7 @@ The default implementation of `IViewLocalizer` finds the resource file based on 
 A French resource file could contain the following:
 
 | Key | Value |
-| ----- | ------ |
+| --- | ----- |
 | `<i>Hello</i> <b>{0}!</b>` | `<i>Bonjour</i> <b>{0} !</b>` |
 
 The rendered view would contain the HTML markup from the resource file.
@@ -780,7 +780,7 @@ The default implementation of `IViewLocalizer` finds the resource file based on 
 A French resource file could contain the following:
 
 | Key | Value |
-| ----- | ------ |
+| --- | ----- |
 | `<i>Hello</i> <b>{0}!</b>` | `<i>Bonjour</i> <b>{0} !</b>` |
 
 The rendered view would contain the HTML markup from the resource file.
