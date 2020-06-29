@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to use the logging framework provided by the Microsoft.Extensions.Logging NuGet package.
 ms.author: riande
 ms.custom: mvc
-ms.date: 6/12/2020
+ms.date: 6/29/2020
 no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/logging/index
 ---
@@ -561,14 +561,16 @@ To configure PerfView for collecting events logged by this provider, add the str
 
 ### Windows EventLog
 
-The `EventLog` provider sends log output to the Windows Event Log. Unlike the other providers, the `EventLog` provider does ***not*** inherit the default non-provider settings. If `EventLog` log settings are specified, they [default to LogLevel.Warning](https://github.com/dotnet/extensions/blob/release/3.1/src/Hosting/Hosting/src/Host.cs#L99-L103).
+The `EventLog` provider sends log output to the Windows Event Log. Unlike the other providers, the `EventLog` provider does ***not*** inherit the default non-provider settings. If `EventLog` log settings aren't specified, they [default to LogLevel.Warning](https://github.com/dotnet/extensions/blob/release/3.1/src/Hosting/Hosting/src/Host.cs#L99-L103).
 
-To log events lower than `Warning`, explicitly set the log level. For example, add the following to the *appsettings.json* file:
+To log events lower than <xref:Microsoft.Extensions.Logging.LogLevel.Warning?displayProperty=nameWithType>, explicitly set the log level. The following example sets the Event Log default log level to <xref:Microsoft.Extensions.Logging.LogLevel.Information?displayProperty=nameWithType>:
 
 ```json
-"EventLog": {
-  "LogLevel": {
-    "Default": "Information"
+"Logging": {
+  "EventLog": {
+    "LogLevel": {
+      "Default": "Information"
+    }
   }
 }
 ```
@@ -1459,12 +1461,14 @@ logging.AddEventLog();
 * `SourceName`: ".NET Runtime"
 * `MachineName`: The local machine name is used.
 
-Events are logged for [Warning level and higher](#log-level). To log events lower than `Warning`, explicitly set the log level. For example, add the following to the *appsettings.json* file:
+Events are logged for [Warning level and higher](#log-level). The following example sets the Event Log default log level to <xref:Microsoft.Extensions.Logging.LogLevel.Information?displayProperty=nameWithType>:
 
 ```json
-"EventLog": {
-  "LogLevel": {
-    "Default": "Information"
+"Logging": {
+  "EventLog": {
+    "LogLevel": {
+      "Default": "Information"
+    }
   }
 }
 ```
