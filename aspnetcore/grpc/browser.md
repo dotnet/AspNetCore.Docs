@@ -4,7 +4,7 @@ author: jamesnk
 description: Learn how to configure gRPC services on ASP.NET Core to be callable from browser apps using gRPC-Web.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
-ms.date: 05/26/2020
+ms.date: 06/28/2020
 no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: grpc/browser
 ---
@@ -12,7 +12,11 @@ uid: grpc/browser
 
 By [James Newton-King](https://twitter.com/jamesnk)
 
-It is not possible to call a HTTP/2 gRPC service from a browser-based app. [gRPC-Web](https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-WEB.md) is a protocol that allows browser JavaScript and Blazor apps to call gRPC services. This article explains how to use gRPC-Web in .NET Core.
+ This article explains how to add gRPC-Web to an existing ASP.NET Core gRPC service. The [gRPC-Web](https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-WEB.md) protocol allows browser JavaScript and Blazor apps to call gRPC services, since it is not possible to call a HTTP/2 gRPC service from a browser-based app.
+
+See [Add gRPC services to an ASP.NET Core app](xref:grpc/aspnetcore%23add-grpc-services-to-an-aspnet-core-app) for detailed instructions on how to add gRPC services to an existing ASP.NET Core app.
+
+See [Get started with gRPC services](xref:tutorials/grpc/grpc-start) for detailed instructions on how to create a gRPC project.
 
 ## gRPC-Web in ASP.NET Core vs. Envoy
 
@@ -21,7 +25,7 @@ There are two choices for how to add gRPC-Web to an ASP.NET Core app:
 * Support gRPC-Web alongside gRPC HTTP/2 in ASP.NET Core. This option uses middleware provided by the `Grpc.AspNetCore.Web` package.
 * Use the [Envoy proxy's](https://www.envoyproxy.io/) gRPC-Web support to translate gRPC-Web to gRPC HTTP/2. The translated call is then forwarded onto the ASP.NET Core app.
 
-There are pros and cons to each approach. If you're already using Envoy as a proxy in your app's environment, it might make sense to also use it to provide gRPC-Web support. If you want a simple solution for gRPC-Web that only requires ASP.NET Core, `Grpc.AspNetCore.Web` is a good choice.
+There are pros and cons to each approach. If an app's environment is already using Envoy as a proxy, it might make sense to also use Envoy to provide gRPC-Web support. For a basic solution for gRPC-Web that only requires ASP.NET Core, `Grpc.AspNetCore.Web` is a good choice.
 
 ## Configure gRPC-Web in ASP.NET Core
 
@@ -52,7 +56,7 @@ Alternatively, the gRPC-Web middleware can be configured so all services support
 
 Browser security prevents a web page from making requests to a different domain than the one that served the web page. This restriction applies to making gRPC-Web calls with browser apps. For example, a browser app served by `https://www.contoso.com` is blocked from calling gRPC-Web services hosted on `https://services.contoso.com`. Cross Origin Resource Sharing (CORS) can be used to relax this restriction.
 
-To allow your browser app to make cross-origin gRPC-Web calls, set up [CORS in ASP.NET Core](xref:security/cors). Use the built-in CORS support, and expose gRPC-specific headers with <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.WithExposedHeaders*>.
+To allow a browser app to make cross-origin gRPC-Web calls, set up [CORS in ASP.NET Core](xref:security/cors). Use the built-in CORS support, and expose gRPC-specific headers with <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder.WithExposedHeaders*>.
 
 [!code-csharp[](~/grpc/browser/sample/CORS_Startup.cs?name=snippet_1&highlight=5-11,19,24)]
 
