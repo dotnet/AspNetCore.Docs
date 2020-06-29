@@ -5,7 +5,7 @@ description: Learn how to use response caching to lower bandwidth requirements a
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 11/04/2019
-no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: performance/caching/response
 ---
 # Response caching in ASP.NET Core
@@ -163,7 +163,17 @@ Instead of duplicating response cache settings on many controller action attribu
 
 Set up a cache profile. The following example shows a 30 second cache profile in the sample app's `Startup.ConfigureServices`:
 
+::: moniker range=">= aspnetcore-3.0"
+
+[!code-csharp[](response/samples/3.x/Startup.cs?name=snippet1)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
 [!code-csharp[](response/samples/2.x/ResponseCacheSample/Startup.cs?name=snippet1)]
+
+::: moniker-end
 
 The sample app's Cache4 page model references the `Default30` cache profile:
 
@@ -171,9 +181,9 @@ The sample app's Cache4 page model references the `Default30` cache profile:
 
 The <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> can be applied to:
 
-* Razor Page handlers (classes): Attributes can't be applied to handler methods.
-* MVC controllers (classes).
-* MVC actions (methods): Method-level attributes override the settings specified in class-level attributes.
+* Razor Pages: Attributes can't be applied to handler methods.
+* MVC controllers.
+* MVC action methods: Method-level attributes override the settings specified in class-level attributes.
 
 The resulting header applied to the Cache4 page response by the `Default30` cache profile:
 

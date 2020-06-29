@@ -25,6 +25,7 @@ namespace WebAPI
                                   });
             });
 
+            // services.AddResponseCaching();
             services.AddControllers();
         }
         #endregion
@@ -41,6 +42,8 @@ namespace WebAPI
             app.UseRouting();
 
             app.UseCors(MyAllowSpecificOrigins);
+
+            // app.UseResponseCaching();
 
             app.UseAuthorization();
 

@@ -5,7 +5,7 @@ description: Learn how to use LibMan in an ASP.NET Core project with Visual Stud
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 08/20/2018
-no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: client-side/libman/libman-vs
 ---
 # Use LibMan with ASP.NET Core in Visual Studio

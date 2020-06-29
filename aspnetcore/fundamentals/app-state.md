@@ -5,7 +5,7 @@ description: Discover approaches to preserve session between requests.
 ms.author: riande
 ms.custom: mvc
 ms.date: 03/06/2020
-no-loc: [Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/app-state
 ---
 # Session and state management in ASP.NET Core
