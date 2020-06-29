@@ -1,8 +1,8 @@
 ## Debug diagnostics
 
-For detailed routing diagnostic output, set `Logging:LogLevel:Microsoft` to `Debug`. For example, in the development environment, set *appsettings.Development.json*:
+For detailed routing diagnostic output, set `Logging:LogLevel:Microsoft` to `Debug`. In the development environment, set the log level in *appsettings.Development.json*:
 
-```JSON
+```json
 {
   "Logging": {
     "LogLevel": {
@@ -12,3 +12,4 @@ For detailed routing diagnostic output, set `Logging:LogLevel:Microsoft` to `Deb
     }
   }
 }
+```

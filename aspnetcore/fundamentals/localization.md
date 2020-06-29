@@ -39,7 +39,8 @@ Use the `IHtmlLocalizer<T>` implementation for resources that contain HTML. `IHt
 
 [!code-csharp[](~/fundamentals/localization/sample/3.x/Localization/Controllers/BookController.cs?highlight=3,5,20&start=1&end=24)]
 
-**Note:** You generally want to only localize text and not HTML.
+> [!NOTE]
+> Generally, only localize text, not HTML.
 
 At the lowest level, you can get `IStringLocalizerFactory` out of [Dependency Injection](dependency-injection.md):
 
@@ -70,12 +71,13 @@ The default implementation of `IViewLocalizer` finds the resource file based on 
 A French resource file could contain the following:
 
 | Key | Value |
-| ----- | ------ |
+| --- | ----- |
 | `<i>Hello</i> <b>{0}!</b>` | `<i>Bonjour</i> <b>{0} !</b>` |
 
 The rendered view would contain the HTML markup from the resource file.
 
-**Note:** You generally want to only localize text and not HTML.
+> [!NOTE]
+> Generally, only localize text, not HTML.
 
 To use a shared resource file in a view, inject `IHtmlLocalizer<T>`:
 
@@ -123,19 +125,19 @@ A resource file is a useful mechanism for separating localizable strings from co
 
 1. In **Solution Explorer**, right click on the folder which will contain the resource file > **Add** > **New Item**.
 
-    ![Nested contextual menu: In Solution Explorer, a contextual menu is open for Resources. A second contextual menu is open for Add showing the New Item command highlighted.](localization/_static/newi.png)
+   ![Nested contextual menu: In Solution Explorer, a contextual menu is open for Resources. A second contextual menu is open for Add showing the New Item command highlighted.](localization/_static/newi.png)
 
-2. In the **Search installed templates** box, enter "resource" and name the file.
+1. In the **Search installed templates** box, enter "resource" and name the file.
 
-    ![Add New Item dialog](localization/_static/res.png)
+   ![Add New Item dialog](localization/_static/res.png)
 
-3. Enter the key value (native string) in the **Name** column and the translated string in the **Value** column.
+1. Enter the key value (native string) in the **Name** column and the translated string in the **Value** column.
 
-    ![Welcome.es.resx file (the Welcome resource file for Spanish) with the word Hello in the Name column and the word Hola (Hello in Spanish) in the Value column](localization/_static/hola.png)
+   ![Welcome.es.resx file (the Welcome resource file for Spanish) with the word Hello in the Name column and the word Hola (Hello in Spanish) in the Value column](localization/_static/hola.png)
 
-    Visual Studio shows the *Welcome.es.resx* file.
+   Visual Studio shows the *Welcome.es.resx* file.
 
-    ![Solution Explorer showing the Welcome Spanish (es) resource file](localization/_static/se.png)
+   ![Solution Explorer showing the Welcome Spanish (es) resource file](localization/_static/se.png)
 
 ## Resource file naming
 
@@ -147,7 +149,6 @@ In the sample project, the `ConfigureServices` method sets the `ResourcesPath` t
 | ------------   | ------------- |
 | Resources/Controllers.HomeController.fr.resx | Dot  |
 | Resources/Controllers/HomeController.fr.resx  | Path |
-|    |     |
 
 Resource files using `@inject IViewLocalizer` in Razor views follow a similar pattern. The resource file for a view can be named using either dot naming or path naming. Razor view resource files mimic the path of their associated view file. Assuming we set the `ResourcesPath` to "Resources", the French resource file associated with the *Views/Home/About.cshtml* view could be either of the following:
 
@@ -209,24 +210,25 @@ Localization is configured in the `Startup.ConfigureServices` method:
 
 [!code-csharp[](localization/sample/3.x/Localization/Startup.cs?name=snippet1)]
 
-* `AddLocalization` Adds the localization services to the services container. The code above also sets the resources path to "Resources".
+* `AddLocalization` adds the localization services to the services container. The code above also sets the resources path to "Resources".
 
-* `AddViewLocalization` Adds support for localized view files. In this sample view localization is based on the view file suffix. For example "fr" in the *Index.fr.cshtml* file.
+* `AddViewLocalization` adds support for localized view files. In this sample view localization is based on the view file suffix. For example "fr" in the *Index.fr.cshtml* file.
 
-* `AddDataAnnotationsLocalization` Adds support for localized `DataAnnotations` validation messages through `IStringLocalizer` abstractions.
+* `AddDataAnnotationsLocalization` adds support for localized `DataAnnotations` validation messages through `IStringLocalizer` abstractions.
 
 ### Localization middleware
 
 The current culture on a request is set in the localization [Middleware](xref:fundamentals/middleware/index). The localization middleware is enabled in the `Startup.Configure` method. The localization middleware must be configured before any middleware which might check the request culture (for example, `app.UseMvcWithDefaultRoute()`).
 
 [!code-csharp[](localization/sample/3.x/Localization/Startup.cs?name=snippet2)]
+
 [!INCLUDE[about the series](~/includes/code-comments-loc.md)]
 
 `UseRequestLocalization` initializes a `RequestLocalizationOptions` object. On every request the list of `RequestCultureProvider` in the `RequestLocalizationOptions` is enumerated and the first provider that can successfully determine the request culture is used. The default providers come from the `RequestLocalizationOptions` class:
 
 1. `QueryStringRequestCultureProvider`
-2. `CookieRequestCultureProvider`
-3. `AcceptLanguageHeaderRequestCultureProvider`
+1. `CookieRequestCultureProvider`
+1. `AcceptLanguageHeaderRequestCultureProvider`
 
 The default list goes from most specific to least specific. Later in the article we'll see how you can change the order and even add a custom culture provider. If none of the providers can determine the request culture, the `DefaultRequestCulture` is used.
 
@@ -238,7 +240,9 @@ Some apps will use a query string to set the [culture and UI culture](https://ms
 
 If you only pass in one of the two (`culture` or `ui-culture`), the query string provider will set both values using the one you passed in. For example, setting just the culture will set both the `Culture` and the `UICulture`:
 
-   `http://localhost:5000/?culture=es-MX`
+```
+http://localhost:5000/?culture=es-MX
+```
 
 ### CookieRequestCultureProvider
 
@@ -248,7 +252,9 @@ The `CookieRequestCultureProvider` `DefaultCookieName` returns the default cooki
 
 The cookie format is `c=%LANGCODE%|uic=%LANGCODE%`, where `c` is `Culture` and `uic` is `UICulture`, for example:
 
-    c=en-UK|uic=en-US
+```
+c=en-UK|uic=en-US
+```
 
 If you only specify one of culture info and UI culture, the specified culture will be used for both culture info and UI culture.
 
@@ -260,17 +266,17 @@ The [Accept-Language header](https://www.w3.org/International/questions/qa-accep
 
 1. From the gear icon, tap **Internet Options**.
 
-2. Tap **Languages**.
+1. Tap **Languages**.
 
-    ![Internet Options](localization/_static/lang.png)
+   ![Internet Options](localization/_static/lang.png)
 
-3. Tap **Set Language Preferences**.
+1. Tap **Set Language Preferences**.
 
-4. Tap **Add a language**.
+1. Tap **Add a language**.
 
-5. Add the language.
+1. Add the language.
 
-6. Tap the language, then tap **Move Up**.
+1. Tap the language, then tap **Move Up**.
 
 ### Use a custom provider
 
@@ -387,7 +393,8 @@ Use the `IHtmlLocalizer<T>` implementation for resources that contain HTML. `IHt
 
 [!code-csharp[](~/fundamentals/localization/sample/3.x/Localization/Controllers/BookController.cs?highlight=3,5,20&start=1&end=24)]
 
-**Note:** You generally want to only localize text and not HTML.
+> [!NOTE]
+> Generally, only localize text, not HTML.
 
 At the lowest level, you can get `IStringLocalizerFactory` out of [Dependency Injection](dependency-injection.md):
 
@@ -418,12 +425,13 @@ The default implementation of `IViewLocalizer` finds the resource file based on 
 A French resource file could contain the following:
 
 | Key | Value |
-| ----- | ------ |
+| --- | ----- |
 | `<i>Hello</i> <b>{0}!</b>` | `<i>Bonjour</i> <b>{0} !</b>` |
 
 The rendered view would contain the HTML markup from the resource file.
 
-**Note:** You generally want to only localize text and not HTML.
+> [!NOTE]
+> Generally, only localize text, not HTML.
 
 To use a shared resource file in a view, inject `IHtmlLocalizer<T>`:
 
@@ -471,19 +479,19 @@ A resource file is a useful mechanism for separating localizable strings from co
 
 1. In **Solution Explorer**, right click on the folder which will contain the resource file > **Add** > **New Item**.
 
-    ![Nested contextual menu: In Solution Explorer, a contextual menu is open for Resources. A second contextual menu is open for Add showing the New Item command highlighted.](localization/_static/newi.png)
+   ![Nested contextual menu: In Solution Explorer, a contextual menu is open for Resources. A second contextual menu is open for Add showing the New Item command highlighted.](localization/_static/newi.png)
 
-2. In the **Search installed templates** box, enter "resource" and name the file.
+1. In the **Search installed templates** box, enter "resource" and name the file.
 
-    ![Add New Item dialog](localization/_static/res.png)
+   ![Add New Item dialog](localization/_static/res.png)
 
-3. Enter the key value (native string) in the **Name** column and the translated string in the **Value** column.
+1. Enter the key value (native string) in the **Name** column and the translated string in the **Value** column.
 
-    ![Welcome.es.resx file (the Welcome resource file for Spanish) with the word Hello in the Name column and the word Hola (Hello in Spanish) in the Value column](localization/_static/hola.png)
+   ![Welcome.es.resx file (the Welcome resource file for Spanish) with the word Hello in the Name column and the word Hola (Hello in Spanish) in the Value column](localization/_static/hola.png)
 
-    Visual Studio shows the *Welcome.es.resx* file.
+   Visual Studio shows the *Welcome.es.resx* file.
 
-    ![Solution Explorer showing the Welcome Spanish (es) resource file](localization/_static/se.png)
+   ![Solution Explorer showing the Welcome Spanish (es) resource file](localization/_static/se.png)
 
 ## Resource file naming
 
@@ -495,7 +503,6 @@ In the sample project, the `ConfigureServices` method sets the `ResourcesPath` t
 | ------------   | ------------- |
 | Resources/Controllers.HomeController.fr.resx | Dot  |
 | Resources/Controllers/HomeController.fr.resx  | Path |
-|    |     |
 
 Resource files using `@inject IViewLocalizer` in Razor views follow a similar pattern. The resource file for a view can be named using either dot naming or path naming. Razor view resource files mimic the path of their associated view file. Assuming we set the `ResourcesPath` to "Resources", the French resource file associated with the *Views/Home/About.cshtml* view could be either of the following:
 
@@ -557,24 +564,25 @@ Localization is configured in the `Startup.ConfigureServices` method:
 
 [!code-csharp[](localization/sample/3.x/Localization/Startup.cs?name=snippet1)]
 
-* `AddLocalization` Adds the localization services to the services container. The code above also sets the resources path to "Resources".
+* `AddLocalization` adds the localization services to the services container. The code above also sets the resources path to "Resources".
 
-* `AddViewLocalization` Adds support for localized view files. In this sample view localization is based on the view file suffix. For example "fr" in the *Index.fr.cshtml* file.
+* `AddViewLocalization` adds support for localized view files. In this sample view localization is based on the view file suffix. For example "fr" in the *Index.fr.cshtml* file.
 
-* `AddDataAnnotationsLocalization` Adds support for localized `DataAnnotations` validation messages through `IStringLocalizer` abstractions.
+* `AddDataAnnotationsLocalization` adds support for localized `DataAnnotations` validation messages through `IStringLocalizer` abstractions.
 
 ### Localization middleware
 
 The current culture on a request is set in the localization [Middleware](xref:fundamentals/middleware/index). The localization middleware is enabled in the `Startup.Configure` method. The localization middleware must be configured before any middleware which might check the request culture (for example, `app.UseMvcWithDefaultRoute()`).
 
 [!code-csharp[](localization/sample/3.x/Localization/Startup.cs?name=snippet2)]
+
 [!INCLUDE[about the series](~/includes/code-comments-loc.md)]
 
 `UseRequestLocalization` initializes a `RequestLocalizationOptions` object. On every request the list of `RequestCultureProvider` in the `RequestLocalizationOptions` is enumerated and the first provider that can successfully determine the request culture is used. The default providers come from the `RequestLocalizationOptions` class:
 
 1. `QueryStringRequestCultureProvider`
-2. `CookieRequestCultureProvider`
-3. `AcceptLanguageHeaderRequestCultureProvider`
+1. `CookieRequestCultureProvider`
+1. `AcceptLanguageHeaderRequestCultureProvider`
 
 The default list goes from most specific to least specific. Later in the article we'll see how you can change the order and even add a custom culture provider. If none of the providers can determine the request culture, the `DefaultRequestCulture` is used.
 
@@ -582,11 +590,15 @@ The default list goes from most specific to least specific. Later in the article
 
 Some apps will use a query string to set the [culture and UI culture](https://msdn.microsoft.com/library/system.globalization.cultureinfo.aspx). For apps that use the cookie or Accept-Language header approach, adding a query string to the URL is useful for debugging and testing code. By default, the `QueryStringRequestCultureProvider` is registered as the first localization provider in the `RequestCultureProvider` list. You pass the query string parameters `culture` and `ui-culture`. The following example sets the specific culture (language and region) to Spanish/Mexico:
 
-   `http://localhost:5000/?culture=es-MX&ui-culture=es-MX`
+```
+http://localhost:5000/?culture=es-MX&ui-culture=es-MX
+```
 
 If you only pass in one of the two (`culture` or `ui-culture`), the query string provider will set both values using the one you passed in. For example, setting just the culture will set both the `Culture` and the `UICulture`:
 
-   `http://localhost:5000/?culture=es-MX`
+```
+http://localhost:5000/?culture=es-MX
+```
 
 ### CookieRequestCultureProvider
 
@@ -596,7 +608,9 @@ The `CookieRequestCultureProvider` `DefaultCookieName` returns the default cooki
 
 The cookie format is `c=%LANGCODE%|uic=%LANGCODE%`, where `c` is `Culture` and `uic` is `UICulture`, for example:
 
-    c=en-UK|uic=en-US
+```
+c=en-UK|uic=en-US
+```
 
 If you only specify one of culture info and UI culture, the specified culture will be used for both culture info and UI culture.
 
@@ -608,17 +622,17 @@ The [Accept-Language header](https://www.w3.org/International/questions/qa-accep
 
 1. From the gear icon, tap **Internet Options**.
 
-2. Tap **Languages**.
+1. Tap **Languages**.
 
-    ![Internet Options](localization/_static/lang.png)
+   ![Internet Options](localization/_static/lang.png)
 
-3. Tap **Set Language Preferences**.
+1. Tap **Set Language Preferences**.
 
-4. Tap **Add a language**.
+1. Tap **Add a language**.
 
-5. Add the language.
+1. Add the language.
 
-6. Tap the language, then tap **Move Up**.
+1. Tap the language, then tap **Move Up**.
 
 ### Use a custom provider
 
@@ -734,7 +748,8 @@ Use the `IHtmlLocalizer<T>` implementation for resources that contain HTML. `IHt
 
 [!code-csharp[](~/fundamentals/localization/sample/3.x/Localization/Controllers/BookController.cs?highlight=3,5,20&start=1&end=24)]
 
-**Note:** You generally want to only localize text and not HTML.
+> [!NOTE]
+> Generally, only localize text, not HTML.
 
 At the lowest level, you can get `IStringLocalizerFactory` out of [Dependency Injection](dependency-injection.md):
 
@@ -765,12 +780,13 @@ The default implementation of `IViewLocalizer` finds the resource file based on 
 A French resource file could contain the following:
 
 | Key | Value |
-| ----- | ------ |
+| --- | ----- |
 | `<i>Hello</i> <b>{0}!</b>` | `<i>Bonjour</i> <b>{0} !</b>` |
 
 The rendered view would contain the HTML markup from the resource file.
 
-**Note:** You generally want to only localize text and not HTML.
+> [!NOTE]
+> Generally, only localize text, not HTML.
 
 To use a shared resource file in a view, inject `IHtmlLocalizer<T>`:
 
@@ -818,19 +834,19 @@ A resource file is a useful mechanism for separating localizable strings from co
 
 1. In **Solution Explorer**, right click on the folder which will contain the resource file > **Add** > **New Item**.
 
-    ![Nested contextual menu: In Solution Explorer, a contextual menu is open for Resources. A second contextual menu is open for Add showing the New Item command highlighted.](localization/_static/newi.png)
+   ![Nested contextual menu: In Solution Explorer, a contextual menu is open for Resources. A second contextual menu is open for Add showing the New Item command highlighted.](localization/_static/newi.png)
 
-2. In the **Search installed templates** box, enter "resource" and name the file.
+1. In the **Search installed templates** box, enter "resource" and name the file.
 
-    ![Add New Item dialog](localization/_static/res.png)
+   ![Add New Item dialog](localization/_static/res.png)
 
-3. Enter the key value (native string) in the **Name** column and the translated string in the **Value** column.
+1. Enter the key value (native string) in the **Name** column and the translated string in the **Value** column.
 
-    ![Welcome.es.resx file (the Welcome resource file for Spanish) with the word Hello in the Name column and the word Hola (Hello in Spanish) in the Value column](localization/_static/hola.png)
+   ![Welcome.es.resx file (the Welcome resource file for Spanish) with the word Hello in the Name column and the word Hola (Hello in Spanish) in the Value column](localization/_static/hola.png)
 
-    Visual Studio shows the *Welcome.es.resx* file.
+   Visual Studio shows the *Welcome.es.resx* file.
 
-    ![Solution Explorer showing the Welcome Spanish (es) resource file](localization/_static/se.png)
+   ![Solution Explorer showing the Welcome Spanish (es) resource file](localization/_static/se.png)
 
 ## Resource file naming
 
@@ -842,7 +858,6 @@ In the sample project, the `ConfigureServices` method sets the `ResourcesPath` t
 | ------------   | ------------- |
 | Resources/Controllers.HomeController.fr.resx | Dot  |
 | Resources/Controllers/HomeController.fr.resx  | Path |
-|    |     |
 
 Resource files using `@inject IViewLocalizer` in Razor views follow a similar pattern. The resource file for a view can be named using either dot naming or path naming. Razor view resource files mimic the path of their associated view file. Assuming we set the `ResourcesPath` to "Resources", the French resource file associated with the *Views/Home/About.cshtml* view could be either of the following:
 
@@ -904,24 +919,25 @@ Localization is configured in the `Startup.ConfigureServices` method:
 
 [!code-csharp[](localization/sample/3.x/Localization/Startup.cs?name=snippet1)]
 
-* `AddLocalization` Adds the localization services to the services container. The code above also sets the resources path to "Resources".
+* `AddLocalization` adds the localization services to the services container. The code above also sets the resources path to "Resources".
 
-* `AddViewLocalization` Adds support for localized view files. In this sample view localization is based on the view file suffix. For example "fr" in the *Index.fr.cshtml* file.
+* `AddViewLocalization` adds support for localized view files. In this sample view localization is based on the view file suffix. For example "fr" in the *Index.fr.cshtml* file.
 
-* `AddDataAnnotationsLocalization` Adds support for localized `DataAnnotations` validation messages through `IStringLocalizer` abstractions.
+* `AddDataAnnotationsLocalization` adds support for localized `DataAnnotations` validation messages through `IStringLocalizer` abstractions.
 
 ### Localization middleware
 
 The current culture on a request is set in the localization [Middleware](xref:fundamentals/middleware/index). The localization middleware is enabled in the `Startup.Configure` method. The localization middleware must be configured before any middleware which might check the request culture (for example, `app.UseMvcWithDefaultRoute()`).
 
 [!code-csharp[](localization/sample/3.x/Localization/Startup.cs?name=snippet2)]
+
 [!INCLUDE[about the series](~/includes/code-comments-loc.md)]
 
 `UseRequestLocalization` initializes a `RequestLocalizationOptions` object. On every request the list of `RequestCultureProvider` in the `RequestLocalizationOptions` is enumerated and the first provider that can successfully determine the request culture is used. The default providers come from the `RequestLocalizationOptions` class:
 
 1. `QueryStringRequestCultureProvider`
-2. `CookieRequestCultureProvider`
-3. `AcceptLanguageHeaderRequestCultureProvider`
+1. `CookieRequestCultureProvider`
+1. `AcceptLanguageHeaderRequestCultureProvider`
 
 The default list goes from most specific to least specific. Later in the article we'll see how you can change the order and even add a custom culture provider. If none of the providers can determine the request culture, the `DefaultRequestCulture` is used.
 
@@ -929,11 +945,15 @@ The default list goes from most specific to least specific. Later in the article
 
 Some apps will use a query string to set the [culture and UI culture](https://msdn.microsoft.com/library/system.globalization.cultureinfo.aspx). For apps that use the cookie or Accept-Language header approach, adding a query string to the URL is useful for debugging and testing code. By default, the `QueryStringRequestCultureProvider` is registered as the first localization provider in the `RequestCultureProvider` list. You pass the query string parameters `culture` and `ui-culture`. The following example sets the specific culture (language and region) to Spanish/Mexico:
 
-   `http://localhost:5000/?culture=es-MX&ui-culture=es-MX`
+```
+http://localhost:5000/?culture=es-MX&ui-culture=es-MX
+```
 
 If you only pass in one of the two (`culture` or `ui-culture`), the query string provider will set both values using the one you passed in. For example, setting just the culture will set both the `Culture` and the `UICulture`:
 
-   `http://localhost:5000/?culture=es-MX`
+```
+http://localhost:5000/?culture=es-MX
+```
 
 ### CookieRequestCultureProvider
 
@@ -943,7 +963,9 @@ The `CookieRequestCultureProvider` `DefaultCookieName` returns the default cooki
 
 The cookie format is `c=%LANGCODE%|uic=%LANGCODE%`, where `c` is `Culture` and `uic` is `UICulture`, for example:
 
-    c=en-UK|uic=en-US
+```
+c=en-UK|uic=en-US
+```
 
 If you only specify one of culture info and UI culture, the specified culture will be used for both culture info and UI culture.
 
@@ -955,24 +977,24 @@ The [Accept-Language header](https://www.w3.org/International/questions/qa-accep
 
 1. From the gear icon, tap **Internet Options**.
 
-2. Tap **Languages**.
+1. Tap **Languages**.
 
-    ![Internet Options](localization/_static/lang.png)
+   ![Internet Options](localization/_static/lang.png)
 
-3. Tap **Set Language Preferences**.
+1. Tap **Set Language Preferences**.
 
-4. Tap **Add a language**.
+1. Tap **Add a language**.
 
-5. Add the language.
+1. Add the language.
 
-6. Tap the language, then tap **Move Up**.
+1. Tap the language, then tap **Move Up**.
 
 ### The Content-Language HTTP header
 
 The [Content-Language](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Language) entity header:
 
- - Is used to describe the language(s) intended for the audience.
- - Allows a user to differentiate according to the users' own preferred language.
+* Is used to describe the language(s) intended for the audience.
+* Allows a user to differentiate according to the users' own preferred language.
 
 Entity headers are used in both HTTP requests and responses.
 
@@ -980,8 +1002,8 @@ The `Content-Language` header can be added by setting the property `ApplyCurrent
 
 Adding the `Content-Language` header:
 
- - Allows the RequestLocalizationMiddleware to set the `Content-Language` header with the `CurrentUICulture`.
- - Eliminates the need to set the response header `Content-Language` explicitly.
+* Allows the RequestLocalizationMiddleware to set the `Content-Language` header with the `CurrentUICulture`.
+* Eliminates the need to set the response header `Content-Language` explicitly.
 
 ```csharp
 app.UseRequestLocalization(new RequestLocalizationOptions
