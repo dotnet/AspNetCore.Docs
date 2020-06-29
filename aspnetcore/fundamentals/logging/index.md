@@ -561,14 +561,16 @@ To configure PerfView for collecting events logged by this provider, add the str
 
 ### Windows EventLog
 
-The `EventLog` provider sends log output to the Windows Event Log. Unlike the other providers, the `EventLog` provider does ***not*** inherit the default non-provider settings. If `EventLog` log settings are specified, they [default to LogLevel.Warning](https://github.com/dotnet/extensions/blob/release/3.1/src/Hosting/Hosting/src/Host.cs#L99-L103).
+The `EventLog` provider sends log output to the Windows Event Log. Unlike the other providers, the `EventLog` provider does ***not*** inherit the default non-provider settings. If `EventLog` log settings aren't specified, they [default to LogLevel.Warning](https://github.com/dotnet/extensions/blob/release/3.1/src/Hosting/Hosting/src/Host.cs#L99-L103).
 
 To log events lower than `Warning`, explicitly set the log level. For example, add the following to the *appsettings.json* file:
 
 ```json
-"EventLog": {
-  "LogLevel": {
-    "Default": "Information"
+"Logging": {
+  "EventLog": {
+    "LogLevel": {
+      "Default": "Information"
+    }
   }
 }
 ```
@@ -1462,9 +1464,11 @@ logging.AddEventLog();
 Events are logged for [Warning level and higher](#log-level). To log events lower than `Warning`, explicitly set the log level. For example, add the following to the *appsettings.json* file:
 
 ```json
-"EventLog": {
-  "LogLevel": {
-    "Default": "Information"
+"Logging": {
+  "EventLog": {
+    "LogLevel": {
+      "Default": "Information"
+    }
   }
 }
 ```
