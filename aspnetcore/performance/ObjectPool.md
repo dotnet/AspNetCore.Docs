@@ -10,7 +10,7 @@ uid: performance/ObjectPool
 ---
 # Object reuse with ObjectPool in ASP.NET Core
 
-By [Steve Gordon](https://twitter.com/stevejgordon), [Ryan Nowak](https://github.com/rynowak), and [https://github.com/gfoidl](https://twitter.com/RickAndMSFT)
+By [Steve Gordon](https://twitter.com/stevejgordon), [Ryan Nowak](https://github.com/rynowak), and [Günther Foidl](https://github.com/gfoidl)
 
 <xref:Microsoft.Extensions.ObjectPool> is part of the ASP.NET Core infrastructure that supports keeping a group of objects in memory for reuse rather than allowing the objects to be garbage collected.
 
