@@ -1,10 +1,7 @@
-﻿using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
-using System.IO;
 
-namespace CustomFormatterDemo
+namespace CustomFormattersSample
 {
     public class Program
     {
