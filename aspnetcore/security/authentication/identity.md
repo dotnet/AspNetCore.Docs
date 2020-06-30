@@ -80,7 +80,11 @@ Run the following command in the Package Manager Console (PMC):
 
 # [.NET Core CLI](#tab/netcore-cli)
 
-Migrations are not necessary at this step when using SQLite. For LocalDB, run the following command:
+Migrations are not necessary at this step when using SQLite.
+
+[!INCLUDE [more information on the CLI for EF Core](~/includes/ef-cli.md)]
+
+For LocalDB, run the following command:
 
 ```dotnetcli
 dotnet ef database update
