@@ -69,7 +69,10 @@ The preceding code:
 
 ### gRPC-Web and streaming
 
-Traditional gRPC over HTTP/2 supports streaming in all directions. gRPC-Web offers limited support for streaming. gRPC-Web browser clients don't support calling client streaming and bidirection streaming methods. Additionally some ASP.NET Core hosts, such as Azure App Service and IIS, don't support bidirectional streaming.
+Traditional gRPC over HTTP/2 supports streaming in all directions. gRPC-Web offers limited support for streaming:
+
+* gRPC-Web browser clients don't support calling client streaming and bidirection streaming methods.
+* ASP.NET Core gRPC services hosted on Azure App Service and IIS don't support bidirectional streaming.
 
 When using gRPC-Web it is recommended to only use unary methods and server streaming methods.
 
