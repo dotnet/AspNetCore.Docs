@@ -70,6 +70,12 @@ The preceding code:
 * Calls `UseCors` to add the CORS middleware after routing and before endpoints.
 * Specifies the `endpoints.MapGrpcService<GreeterService>()` method supports CORS with `RequiresCors`.
 
+### gRPC-Web and streaming
+
+Traditional gRPC over HTTP/2 supports streaming in all directions. gRPC-Web offers limited support for streaming. gRPC-Web browser clients don't support calling client streaming and bidirection streaming methods. Additionally some ASP.NET Core hosts, such as Azure App Service and IIS, don't support bidirectional streaming.
+
+When using gRPC-Web it is recommended to only use unary methods and server streaming methods.
+
 ## Call gRPC-Web from the browser
 
 Browser apps can use gRPC-Web to call gRPC services. There are some requirements and limitations when calling gRPC services with gRPC-Web from the browser:
