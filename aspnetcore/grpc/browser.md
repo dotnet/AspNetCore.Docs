@@ -48,6 +48,9 @@ Alternatively, the gRPC-Web middleware can be configured so all services support
 
 [!code-csharp[](~/grpc/browser/sample/AllServicesSupportExample_Startup.cs?name=snippet_1&highlight=12)]
 
+> [!IMPORTANT]
+> Bidirectional streaming is not supported when `Grpc.AspNetCore.Web` is hosted on Azure App Service and IIS.
+
 > [!NOTE]
 > There is a known issue that causes gRPC-Web to fail when [hosted by Http.sys](xref:fundamentals/servers/httpsys) in .NET Core 3.x.
 >
