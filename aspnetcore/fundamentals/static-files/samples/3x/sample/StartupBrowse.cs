@@ -42,14 +42,14 @@ namespace sample
             app.UseStaticFiles(new StaticFileOptions
             {
                 FileProvider = new PhysicalFileProvider(
-                        Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images")),
+                        Path.Combine(env.WebRootPath, "images")),
                 RequestPath = "/MyImages"
             });
 
             app.UseDirectoryBrowser(new DirectoryBrowserOptions
             {
                 FileProvider = new PhysicalFileProvider(
-                    Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images")),
+                    Path.Combine(env.WebRootPath, "images")),
                 RequestPath = "/MyImages"
             });
 

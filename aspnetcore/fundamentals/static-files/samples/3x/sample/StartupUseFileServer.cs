@@ -44,7 +44,7 @@ namespace sample
             app.UseFileServer(new FileServerOptions
             {
                 FileProvider = new PhysicalFileProvider(
-                    Path.Combine(Directory.GetCurrentDirectory(), "MyStaticFiles")),
+                    Path.Combine(env.ContentRootPath, "MyStaticFiles")),
                 RequestPath = "/StaticFiles",
                 EnableDirectoryBrowsing = true
             });

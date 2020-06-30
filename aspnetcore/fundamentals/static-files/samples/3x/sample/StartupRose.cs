@@ -41,7 +41,7 @@ namespace sample
             app.UseStaticFiles(new StaticFileOptions
             {
                 FileProvider = new PhysicalFileProvider(
-            Path.Combine(Directory.GetCurrentDirectory(), "MyStaticFiles")),
+                               Path.Combine(env.ContentRootPath, "MyStaticFiles")),
                 RequestPath = "/StaticFiles"
             });
 
