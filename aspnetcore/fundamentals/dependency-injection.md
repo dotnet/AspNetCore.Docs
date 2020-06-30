@@ -404,6 +404,8 @@ Request Services represent the services configured and requested as part of the 
 
 Generally, the app shouldn't use these properties directly. Instead, request the types that classes require via class constructors and allow the framework to inject the dependencies. This yields classes that are easier to test.
 
+ASP.NET Core creates a scope per request and `RequestServices` exposes the scoped service provider. All scoped services are valid for as long as the request is active.
+
 > [!NOTE]
 > Prefer requesting dependencies as constructor parameters to accessing the `RequestServices` collection.
 
