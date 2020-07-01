@@ -1069,4 +1069,6 @@ Server response: <strong>@serverResponse</strong>
 }
 ```
 
+The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `BlazorSample`).
+
 For more information, see the [ASP.NET Core gRPC articles](xref:grpc/index).
