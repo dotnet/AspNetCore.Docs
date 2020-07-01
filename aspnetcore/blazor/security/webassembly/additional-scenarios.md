@@ -1044,7 +1044,7 @@ A component in the client app can make gRPC calls using the gRPC client (`Pages/
 @page "/grpc"
 @attribute [Authorize]
 @using Microsoft.AspNetCore.Authorization
-@using BlazorGrpcAuth.Shared
+@using {APP ASSEMBLY}.Shared
 @inject Greeter.GreeterClient GreeterClient
 
 <h1>Invoke gRPC service</h1>
