@@ -397,7 +397,7 @@ The most plausible `null` equivalent in HTML is an *empty string* `value`. The B
 
 ::: moniker range="< aspnetcore-5.0"
 
-The Blazor framework prior to ASP.NET Core 5.0, which is in preview, doesn't automatically handle `null` to empty string conversions when attempting two-way binding to a `<select>`'s value. For more information, see [Fix binding `<select>` to a null value (dotnet/aspnetcore #23221)](https://github.com/dotnet/aspnetcore/pull/23221).
+The Blazor framework doesn't automatically handle `null` to empty string conversions when attempting two-way binding to a `<select>`'s value. For more information, see [Fix binding `<select>` to a null value (dotnet/aspnetcore #23221)](https://github.com/dotnet/aspnetcore/pull/23221).
 
 ::: moniker-end
 
