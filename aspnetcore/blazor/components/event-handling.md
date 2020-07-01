@@ -217,8 +217,6 @@ The value of the attribute can also be an expression. In the following example, 
 <input @onkeypress:preventDefault="shouldPreventDefault" />
 ```
 
-An event handler isn't required to prevent the default action. The event handler and prevent default action scenarios can be used independently.
-
 ## Stop event propagation
 
 Use the [`@on{EVENT}:stopPropagation`](xref:mvc/views/razor#oneventstoppropagation) directive attribute to stop event propagation.
