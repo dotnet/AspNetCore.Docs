@@ -85,7 +85,7 @@ In **API permissions**:
 1. Open the **API** list.
 1. Enable access to the API (for example, `API.Access`).
 1. Select **Add permissions**.
-1. Select the **Grant admin content for {TENANT NAME}** button. Select **Yes** to confirm.
+1. Select the **Grant admin consent for {TENANT NAME}** button. Select **Yes** to confirm.
 
 In **Home** > **Azure AD B2C** > **User flows**:
 
