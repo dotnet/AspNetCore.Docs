@@ -24,6 +24,10 @@ The `SameSite=Lax` setting works for most application cookies. Some forms of aut
 
 Each ASP.NET Core component that emits cookies needs to decide if SameSite is appropriate.
 
+## SameSite and Identity
+
+[!INCLUDE[](~/includes/SameSiteIdentity.md)]
+
 ## SameSite test sample code
 
  ::: moniker range=">= aspnetcore-2.1 < aspnetcore-3.0"
