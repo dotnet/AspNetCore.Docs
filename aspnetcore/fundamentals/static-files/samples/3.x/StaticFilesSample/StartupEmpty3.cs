@@ -4,11 +4,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace sample
+namespace StaticFilesSample
 {
-    public class Startup
+    public class StartupEmpty3
     {
-        public Startup(IConfiguration configuration)
+        public StartupEmpty3(IConfiguration configuration)
         {
             Configuration = configuration;
         }
@@ -34,9 +34,7 @@ namespace sample
             }
             app.UseHttpsRedirection();
 
-            #region snippet2
-            app.UseStaticFiles();
-            #endregion
+            app.UseFileServer(enableDirectoryBrowsing: true);
 
             app.UseRouting();
 
@@ -46,7 +44,7 @@ namespace sample
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=None}/{action=Index}/{id?}");
             });
         }
         #endregion

@@ -6,7 +6,7 @@ using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using System.IO;
 
-namespace sample
+namespace StaticFilesSample
 {
     public class StartupBrowse
     {

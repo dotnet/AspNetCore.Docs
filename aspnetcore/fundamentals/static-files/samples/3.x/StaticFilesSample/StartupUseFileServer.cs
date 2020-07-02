@@ -1,27 +1,29 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
+using System.IO;
 
-namespace sample
+namespace StaticFilesSample
 {
-    public class StartupAddHeader
+    public class StartupUseFileServer
     {
-        public StartupAddHeader(IConfiguration configuration)
+        public StartupUseFileServer(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
 
+        #region snippet
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddDirectoryBrowser();
         }
 
-        #region snippet
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -34,16 +36,17 @@ namespace sample
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
+               
+            app.UseStaticFiles(); // For the wwwroot folder.
 
-            var cachePeriod = "604800";
-            app.UseStaticFiles(new StaticFileOptions
+            //using Microsoft.Extensions.FileProviders;
+            //using System.IO;
+            app.UseFileServer(new FileServerOptions
             {
-                OnPrepareResponse = ctx =>
-                {
-                    // using Microsoft.AspNetCore.Http;
-                    ctx.Context.Response.Headers.Append("Cache-Control",
-                                                       $"public, max-age={cachePeriod}");
-                }
+                FileProvider = new PhysicalFileProvider(
+                    Path.Combine(env.ContentRootPath, "MyStaticFiles")),
+                RequestPath = "/StaticFiles",
+                EnableDirectoryBrowsing = true
             });
 
             app.UseRouting();

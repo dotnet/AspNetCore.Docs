@@ -2,15 +2,13 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
-using System.IO;
 
-namespace sample
+namespace StaticFilesSample
 {
-    public class StartupRose
+    public class StartupDefault
     {
-        public StartupRose(IConfiguration configuration)
+        public StartupDefault(IConfiguration configuration)
         {
             Configuration = configuration;
         }
@@ -36,14 +34,13 @@ namespace sample
             }
             app.UseHttpsRedirection();
 
-            // using Microsoft.Extensions.FileProviders;
-            // using System.IO;
-            app.UseStaticFiles(new StaticFileOptions
-            {
-                FileProvider = new PhysicalFileProvider(
-                               Path.Combine(env.ContentRootPath, "MyStaticFiles")),
-                RequestPath = "/StaticFiles"
-            });
+            #region snippet2
+            DefaultFilesOptions options = new DefaultFilesOptions();
+            options.DefaultFileNames.Clear();
+            options.DefaultFileNames.Add("mydefault.html");
+            app.UseDefaultFiles(options);
+            app.UseStaticFiles();
+            #endregion
 
             app.UseRouting();
 
@@ -53,7 +50,7 @@ namespace sample
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=None}/{action=Index}/{id?}");
             });
         }
         #endregion

@@ -4,11 +4,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace sample
+namespace StaticFilesSample
 {
-    public class StartupEmpty
+    public class StartupServeUnknownFileTypes
     {
-        public StartupEmpty(IConfiguration configuration)
+        public StartupServeUnknownFileTypes(IConfiguration configuration)
         {
             Configuration = configuration;
         }
@@ -34,8 +34,13 @@ namespace sample
             }
             app.UseHttpsRedirection();
 
-            app.UseDefaultFiles();
-            app.UseStaticFiles();
+            #region snippet2
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                ServeUnknownFileTypes = true,
+                DefaultContentType = "image/png"
+            });
+            #endregion
 
             app.UseRouting();
 
@@ -45,7 +50,7 @@ namespace sample
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=None}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
         #endregion

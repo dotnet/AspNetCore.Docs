@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Collections.Generic;
 
-namespace sample
+namespace StaticFilesSample
 {
     public class StartupDefault2
     {

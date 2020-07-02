@@ -4,11 +4,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace sample
+namespace StaticFilesSample
 {
-    public class StartupDefault
+    public class StartupEmpty
     {
-        public StartupDefault(IConfiguration configuration)
+        public StartupEmpty(IConfiguration configuration)
         {
             Configuration = configuration;
         }
@@ -34,13 +34,8 @@ namespace sample
             }
             app.UseHttpsRedirection();
 
-            #region snippet2
-            DefaultFilesOptions options = new DefaultFilesOptions();
-            options.DefaultFileNames.Clear();
-            options.DefaultFileNames.Add("mydefault.html");
-            app.UseDefaultFiles(options);
+            app.UseDefaultFiles();
             app.UseStaticFiles();
-            #endregion
 
             app.UseRouting();
 

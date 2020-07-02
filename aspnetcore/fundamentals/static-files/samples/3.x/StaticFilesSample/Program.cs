@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace sample
+namespace StaticFilesSample
 {
     #region snippet_Main
     public class Program

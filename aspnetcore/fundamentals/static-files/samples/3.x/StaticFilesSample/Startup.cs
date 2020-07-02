@@ -4,11 +4,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace sample
+namespace StaticFilesSample
 {
-    public class StartupServeUnknownFileTypes
+    public class Startup
     {
-        public StartupServeUnknownFileTypes(IConfiguration configuration)
+        public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
@@ -35,11 +35,7 @@ namespace sample
             app.UseHttpsRedirection();
 
             #region snippet2
-            app.UseStaticFiles(new StaticFileOptions
-            {
-                ServeUnknownFileTypes = true,
-                DefaultContentType = "image/png"
-            });
+            app.UseStaticFiles();
             #endregion
 
             app.UseRouting();
