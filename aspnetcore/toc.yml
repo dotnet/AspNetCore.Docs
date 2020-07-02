@@ -79,7 +79,7 @@
               uid: tutorials/first-mvc-app/details
         - name: Blazor
           displayName: tutorial
-          uid: tutorials/build-blazor-app
+          uid: tutorials/build-a-blazor-app
     - name: Web API apps
       items:
         - name: Create a web API
@@ -292,7 +292,7 @@
         - name: Tutorials
           items:
             - name: Build a Blazor app
-              uid: tutorials/build-blazor-app
+              uid: tutorials/build-a-blazor-app
             - name: SignalR with Blazor WebAssembly
               uid: tutorials/signalr-blazor-webassembly
         - name: Templates

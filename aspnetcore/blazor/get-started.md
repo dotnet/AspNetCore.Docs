@@ -173,7 +173,7 @@ Run the app. The `Index` component has its own counter that increments by ten ea
 Build a Blazor app step-by-step:
 
 > [!div class="nextstepaction"]
-> <xref:tutorials/build-blazor-app>
+> <xref:tutorials/build-a-blazor-app>
 
 ## Additional resources
 
