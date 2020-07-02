@@ -66,8 +66,8 @@ conceptualContent:
           text: "Overview"
         - url: blazor/get-started.md
           itemType: get-started
-          text: "Create your first Blazor app"
-        - url: tutorials/build-your-first-blazor-app.md
+          text: "Build your first Blazor app"
+        - url: https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro
           itemType: get-started
           text: "Build your first Blazor app with reusable components"
         - url: blazor/hosting-models.md
