@@ -1,5 +1,5 @@
 ---
-title: Build your first Blazor app
+title: Build a Blazor app
 author: guardrex
 description: Build a Blazor app step-by-step.
 monikerRange: '>= aspnetcore-3.0'
