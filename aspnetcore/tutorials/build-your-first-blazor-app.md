@@ -1,15 +1,15 @@
 ---
-title: Build your first Blazor app
+title: Build a Blazor app
 author: guardrex
 description: Build a Blazor app step-by-step.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/19/2020
+ms.date: 07/02/2020
 no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-blazor-app
 ---
-# Build your first Blazor app
+# Build a Blazor app
 
 By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.com/guardrex)
 
@@ -23,114 +23,7 @@ This tutorial shows you how to build and modify a Blazor app. You learn how to:
 
 At the end of this tutorial, you'll have a working todo list app.
 
-## Build components
-
-1. Follow the guidance in the <xref:blazor/get-started> article to create a Blazor project for this tutorial. Name the project `ToDoList`.
-
-1. Browse to each of the app's three pages in the `Pages` folder: `Home`, `Counter`, and `Fetch data`. These pages are implemented by the Razor component files `Index.razor`, `Counter.razor`, and `FetchData.razor`.
-
-1. On the `Counter` page, select the button to increment the counter without a page refresh. Incrementing a counter in a webpage normally requires writing JavaScript. With Blazor, you can write C# instead.
-
-1. Examine the implementation of the `Counter` component in the `Counter.razor` file.
-
-   `Pages/Counter.razor`:
-
-   [!code-razor[](build-your-first-blazor-app/samples_snapshot/3.x/Counter1.razor)]
-
-   The UI of the `Counter` component is defined using HTML. Dynamic rendering logic (for example, loops, conditionals, expressions) is added using an embedded C# syntax called [Razor](xref:mvc/views/razor). The HTML markup and C# rendering logic are converted into a component class at build time. The name of the generated .NET class matches the file name.
-
-   Members of the component class are defined in an `@code` block. In the `@code` block, component state (properties, fields) and methods are specified for event handling or for defining other component logic. These members are then used as part of the component's rendering logic and for handling events.
-
-   When the counter increment button is selected:
-
-   * The `Counter` component's registered `onclick` handler is called (the `IncrementCount` method).
-   * The `Counter` component regenerates its render tree.
-   * The new render tree is compared to the previous one.
-   * Only modifications to the Document Object Model (DOM) are applied. The displayed count is updated.
-
-1. Modify the C# logic of the `Counter` component to make the count increment by two instead of one.
-
-   [!code-razor[](build-your-first-blazor-app/samples_snapshot/3.x/Counter2.razor?highlight=14)]
-
-1. Rebuild and run the app to see the changes. Select the button. The counter increments by two.
-
-## Use components
-
-Include a component in another component using an HTML syntax.
-
-1. Add the `Counter` component to the app's `Index` component by adding a `<Counter />` element to the `Index` component (`Index.razor`).
-
-   If you're using Blazor WebAssembly for this experience, a `SurveyPrompt` component is used by the `Index` component. Replace the `<SurveyPrompt>` element with a `<Counter />` element. If you're using a Blazor Server app for this experience, add the `<Counter />` element to the `Index` component:
-
-   `Pages/Index.razor`:
-
-   [!code-razor[](build-your-first-blazor-app/samples_snapshot/3.x/Index1.razor?highlight=7)]
-
-1. Rebuild and run the app. The `Index` component has its own counter.
-
-## Component parameters
-
-Components can also have parameters. Component parameters are defined using public properties on the component class with the [`[Parameter]`](xref:Microsoft.AspNetCore.Components.ParameterAttribute) attribute. Use attributes to specify arguments for a component in markup.
-
-1. Update the component's `@code` C# code as follows:
-
-   * Add a public `IncrementAmount` property with the [`[Parameter]`](xref:Microsoft.AspNetCore.Components.ParameterAttribute) attribute.
-   * Change the `IncrementCount` method to use the `IncrementAmount` property when increasing the value of `currentCount`.
-
-   `Pages/Counter.razor`:
-
-   [!code-razor[](build-your-first-blazor-app/samples_snapshot/3.x/Counter.razor?highlight=13,17)]
-
-   <!-- Add back when supported.
-       > [!NOTE]
-       > From Visual Studio, you can quickly add a component parameter by using the `para` snippet. Type `para` and press the `Tab` key twice.
-   -->
-
-1. Specify an `IncrementAmount` parameter in the `Index` component's `<Counter>` element using an attribute. Set the value to increment the counter by ten.
-
-   `Pages/Index.razor`:
-
-   [!code-razor[](build-your-first-blazor-app/samples_snapshot/3.x/Index2.razor?highlight=7)]
-
-1. Reload the `Index` component. The counter increments by ten each time the button is selected. The counter in the `Counter` component continues to increment by one.
-
-## Route to components
-
-The `@page` directive at the top of the `Counter.razor` file specifies that the `Counter` component is a routing endpoint. The `Counter` component handles requests sent to `/counter`. Without the `@page` directive, a component doesn't handle routed requests, but the component can still be used by other components.
-
-## Dependency injection
-
-### Blazor Server experience
-
-If working with a Blazor Server app, the `WeatherForecastService` service is registered as a [singleton](xref:fundamentals/dependency-injection#service-lifetimes) in `Startup.ConfigureServices`. An instance of the service is available throughout the app via [dependency injection (DI)](xref:fundamentals/dependency-injection):
-
-[!code-csharp[](build-your-first-blazor-app/samples_snapshot/3.x/Startup.cs?highlight=5)]
-
-The [`@inject`](xref:mvc/views/razor#inject) directive is used to inject the instance of the `WeatherForecastService` service into the `FetchData` component.
-
-`Pages/FetchData.razor`:
-
-[!code-razor[](build-your-first-blazor-app/samples_snapshot/3.x/FetchData1.razor?highlight=3)]
-
-The `FetchData` component uses the injected service, as `ForecastService`, to retrieve an array of `WeatherForecast` objects:
-
-[!code-razor[](build-your-first-blazor-app/samples_snapshot/3.x/FetchData2.razor?highlight=6)]
-
-### Blazor WebAssembly experience
-
-If working with a Blazor WebAssembly app, <xref:System.Net.Http.HttpClient> is injected to obtain weather forecast data from the `weather.json` file in the `wwwroot/sample-data` folder.
-
-`Pages/FetchData.razor`:
-
-[!code-razor[](build-your-first-blazor-app/samples_snapshot/3.x/FetchData1_client.razor?highlight=7-9)]
-
-An [`@foreach`](/dotnet/csharp/language-reference/keywords/foreach-in) loop is used to render each forecast instance as a row in the table of weather data:
-
-[!code-razor[](build-your-first-blazor-app/samples_snapshot/3.x/FetchData3.razor?highlight=11-19)]
-
-## Build a todo list
-
-Add a new component to the app that implements a simple todo list.
+1. Follow the guidance in the [Blazor Tutorial - Build your first Blazor app](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro) to create a Blazor project for this tutorial. Name the project `ToDoList`.
 
 1. Add a new `Todo` Razor component to the app in the `Pages` folder. If you're using Visual Studio, right-click the `Pages` folder and select **Add** > **New Item** > **Razor Component**. Name the component's file `Todo.razor`. In other development environments, add a blank file to the `Pages` folder named `Todo.razor`. Razor component file names require a capitalized first letter, so confirm that the `Todo` component file name starts with a capital letter `T`.
 
@@ -219,7 +112,7 @@ In this tutorial, you learned how to:
 > * Use event handling and data binding in components
 > * Use dependency injection (DI) and routing in a Blazor app
 
-Learn how to build and use components:
+Learn about the Blazor project templates:
 
 > [!div class="nextstepaction"]
-> <xref:blazor/components/index>
+> <xref:blazor/templates>
