@@ -285,8 +285,8 @@
           uid: blazor/index
         - name: Supported platforms
           uid: blazor/supported-platforms
-        - name: Get started
-          uid: blazor/get-started
+        - name: Tooling
+          uid: blazor/tooling
         - name: Hosting models
           uid: blazor/hosting-models
         - name: Tutorials

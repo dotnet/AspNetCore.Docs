@@ -19,7 +19,7 @@ This article explains how to create a new Blazor hosted app that uses [IdentityS
 
 In Visual Studio:
 
-1. Create a new **Blazor WebAssembly** app. For more information, see <xref:blazor/get-started>.
+1. Create a new **Blazor WebAssembly** app.
 1. In the **Create a new Blazor app** dialog, select **Change** in the **Authentication** section.
 1. Select **Individual User Accounts** followed by **OK**.
 1. Select the **ASP.NET Core hosted** checkbox in the **Advanced** section.

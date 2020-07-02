@@ -1,21 +1,20 @@
 ---
-title: Get started with ASP.NET Core Blazor
+title: Tooling for ASP.NET Core Blazor
 author: guardrex
-description: Get started with Blazor by building a Blazor app with the tooling of your choice.
+description: Learn about the tooling available to build Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/31/2020
+ms.date: 07/02/2020
 no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
-uid: blazor/get-started
+uid: blazor/tooling
+zone_pivot_groups: operating-systems-set-one
 ---
 # Get started with ASP.NET Core Blazor
 
 By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.com/guardrex)
 
-To get started with Blazor, follow the guidance for your choice of tooling:
-
-# [Visual Studio](#tab/visual-studio)
+::: zone pivot="os-windows"
 
 1. Install the latest version of [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/) with the **ASP.NET and web development** workload.
 
@@ -31,7 +30,9 @@ To get started with Blazor, follow the guidance for your choice of tooling:
 
 1. Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> to run the app.
 
-# [Visual Studio Code](#tab/visual-studio-code)
+::: zone-end
+
+::: zone pivot="os-linux"
 
 1. Install the latest version of the [.NET Core 3.1 SDK](https://dotnet.microsoft.com/download/dotnet-core/3.1). If you previously installed the SDK, you can determine your installed version by executing the following command in a command shell:
 
@@ -65,7 +66,9 @@ To get started with Blazor, follow the guidance for your choice of tooling:
 
 1. Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> to run the app.
 
-# [Visual Studio for Mac](#tab/visual-studio-mac)
+::: zone-end
+
+::: zone pivot="os-macos"
 
 1. Install [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/).
 
@@ -90,7 +93,9 @@ To get started with Blazor, follow the guidance for your choice of tooling:
 
 If a prompt appears to trust the development certificate, trust the certificate and continue. The user and keychain passwords are required to trust the certificate.
 
-# [.NET Core CLI](#tab/netcore-cli/)
+::: zone-end
+
+<!-- SAVING the .NET Core CLI tab content in case we have a zone pivot tag that we can use for it.
 
 1. Install the latest version of the [.NET Core 3.1 SDK](https://dotnet.microsoft.com/download/dotnet-core/3.1). If you previously installed the SDK, you can determine your installed version by executing the following command in a command shell:
 
@@ -114,68 +119,6 @@ If a prompt appears to trust the development certificate, trust the certificate 
    dotnet run
    ```
 
-   For information on the two Blazor hosting models, *Blazor WebAssembly* and *Blazor Server*, see <xref:blazor/hosting-models>.
+For information on the two Blazor hosting models, *Blazor WebAssembly* and *Blazor Server*, see <xref:blazor/hosting-models>.
 
-1. In a browser, navigate to `https://localhost:5001`.
-
----
-
-Multiple pages are available from tabs in the sidebar:
-
-* Home
-* Counter
-* Fetch data
-
-On the Counter page, select the button to increment the counter without a page refresh. Incrementing a counter in a webpage normally requires writing JavaScript, but with Blazor you can use C#.
-
-`Pages/Counter.razor`:
-
-[!code-razor[](get-started/samples_snapshot/3.x/Counter1.razor?highlight=7,12-15)]
-
-A request for `/counter` in the browser, as specified by the `@page` directive at the top, causes the `Counter` component to render its content. Components render into an in-memory representation of the render tree that can then be used to update the UI in a flexible and efficient way.
-
-Each time the button is selected:
-
-* The `onclick` event is fired.
-* The `IncrementCount` method is called.
-* The `currentCount` is incremented.
-* The component is rendered again.
-
-The runtime compares the new content to the previous content and only applies the changed content to the Document Object Model (DOM).
-
-Add a component to another component using HTML syntax. For example, add the `Counter` component to the app's homepage by adding a `<Counter />` element to the `Index` component.
-
-`Pages/Index.razor`:
-
-[!code-razor[](get-started/samples_snapshot/3.x/Index1.razor?highlight=7)]
-
-Run the app. The homepage has its own counter provided by the `Counter` component.
-
-Component parameters are specified using attributes or [child content](xref:blazor/components/index#child-content), which allow you to set properties on the child component. To add a parameter to the `Counter` component, update the component's `@code` block:
-
-* Add a public property for `IncrementAmount` with a [`[Parameter]`](xref:Microsoft.AspNetCore.Components.ParameterAttribute) attribute.
-* Change the `IncrementCount` method to use the `IncrementAmount` when increasing the value of `currentCount`.
-
-`Pages/Counter.razor`:
-
-[!code-razor[](get-started/samples_snapshot/3.x/Counter2.razor?highlight=12-13,17)]
-
-Specify the `IncrementAmount` in the `Index` component's `<Counter>` element using an attribute.
-
-`Pages/Index.razor`:
-
-[!code-razor[](get-started/samples_snapshot/3.x/Index2.razor?highlight=7)]
-
-Run the app. The `Index` component has its own counter that increments by ten each time the button is selected. The `Counter` component (`Pages/Counter.razor`) at `/counter` continues to increment by one.
-
-## Next steps
-
-Build a Blazor app step-by-step:
-
-> [!div class="nextstepaction"]
-> <xref:tutorials/build-a-blazor-app>
-
-## Additional resources
-
-* <xref:blazor/templates>
-* <xref:signalr/introduction>
+-->

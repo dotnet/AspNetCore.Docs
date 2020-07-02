@@ -20,8 +20,6 @@ The Blazor framework provides templates to develop apps for each of the Blazor h
 
 For more information on Blazor's hosting models, see <xref:blazor/hosting-models>.
 
-For step-by-step instructions on creating a Blazor app from a template, see <xref:blazor/get-started>.
-
 Template options are available by passing the `--help` option to the [`dotnet new`](/dotnet/core/tools/dotnet-new) CLI command:
 
 ```dotnetcli
