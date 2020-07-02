@@ -8,7 +8,7 @@ ms.custom: mvc
 ms.date: 07/02/2020
 no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/tooling
-zone_pivot_groups: operating-systems-set-one
+zone_pivot_groups: tooling
 ---
 # Get started with ASP.NET Core Blazor
 
@@ -95,7 +95,7 @@ If a prompt appears to trust the development certificate, trust the certificate 
 
 ::: zone-end
 
-<!-- SAVING the .NET Core CLI tab content in case we have a zone pivot tag that we can use for it.
+::: zone pivot="cli"
 
 1. Install the latest version of the [.NET Core 3.1 SDK](https://dotnet.microsoft.com/download/dotnet-core/3.1). If you previously installed the SDK, you can determine your installed version by executing the following command in a command shell:
 
@@ -121,4 +121,4 @@ If a prompt appears to trust the development certificate, trust the certificate 
 
 For information on the two Blazor hosting models, *Blazor WebAssembly* and *Blazor Server*, see <xref:blazor/hosting-models>.
 
--->
+::: zone-end

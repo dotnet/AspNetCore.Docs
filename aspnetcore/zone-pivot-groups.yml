@@ -1,0 +1,14 @@
+# YamlMime:ZonePivotGroups
+groups:
+- id: tooling
+  title: Tooling
+  prompt: Choose an operating system or use a command shell
+  pivots:
+    - id: os-windows
+      title: Windows
+    - id: os-linux
+      title: Linux
+    - id: os-macos
+      title: macOS
+    - id: cli
+      title: .NET Core CLI
