@@ -23,7 +23,7 @@ This tutorial shows you how to build and modify a Blazor app. You learn how to:
 
 At the end of this tutorial, you'll have a working todo list app.
 
-1. Follow the guidance in the [Blazor Tutorial - Build your first Blazor app](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro) to create a Blazor project for this tutorial. Name the project `ToDoList`.
+1. Follow the guidance in the [Build your first Blazor app tutorial](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro) to create a Blazor project. Name the project `ToDoList`.
 
 1. Add a new `Todo` Razor component to the app in the `Pages` folder. If you're using Visual Studio, right-click the `Pages` folder and select **Add** > **New Item** > **Razor Component**. Name the component's file `Todo.razor`. In other development environments, add a blank file to the `Pages` folder named `Todo.razor`. Razor component file names require a capitalized first letter, so confirm that the `Todo` component file name starts with a capital letter `T`.
 
