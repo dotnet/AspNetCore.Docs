@@ -289,7 +289,7 @@ The `CustomInputText` component can be used anywhere <xref:Microsoft.AspNetCore.
 }
 ```
 
-## Work with radio buttons
+## Radio buttons
 
 When working with radio buttons in a form, data binding is handled differently than other elements because radio buttons are evaluated as a group. The value of each radio button is fixed, but the value of the radio button group is the value of the selected radio button. The following example shows how to:
 
@@ -376,6 +376,30 @@ The following <xref:Microsoft.AspNetCore.Components.Forms.EditForm> uses the pre
     }
 }
 ```
+
+## Binding `<select>` element options to C# object `null` values
+
+There's no sensible way to represent a `<select>` element option value as a C# object `null` value, because:
+
+* HTML attributes can't have `null` values. The closest equivalent to `null` in HTML is absence of the HTML `value` attribute from the `<option>` element.
+* When selecting an `<option>` with no `value` attribute, the browser treats the value as the *text content* of that `<option>`'s element.
+
+The Blazor framework doesn't attempt to suppress the default behavior because it would involve:
+
+* Creating a chain of special-case workarounds in the framework.
+* Breaking changes to current framework behavior.
+
+::: moniker range=">= aspnetcore-5.0"
+
+The most plausible `null` equivalent in HTML is an *empty string* `value`. The Blazor framework handles `null` to empty string conversions for two-way binding to a `<select>`'s value.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+The Blazor framework doesn't automatically handle `null` to empty string conversions when attempting two-way binding to a `<select>`'s value. For more information, see [Fix binding `<select>` to a null value (dotnet/aspnetcore #23221)](https://github.com/dotnet/aspnetcore/pull/23221).
+
+::: moniker-end
 
 ## Validation support
 
