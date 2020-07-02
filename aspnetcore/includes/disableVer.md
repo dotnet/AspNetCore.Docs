@@ -5,4 +5,4 @@ With the default templates, the user is redirected to the `Account.RegisterConfi
 
 To require a confirmed account and prevent immediate login at registration, comment out `DisplayConfirmAccountLink = true;` in */Areas/Identity/Pages/Account/RegisterConfirmation.cshtml.cs*:
 
-[!code-csharp[](~/security/authentication/identity/sample/WebApp3/Areas/Identity/Pages/Account/RegisterConfirmation.cshtml.cs?name=snippet&highlight=33)]
+[!code-csharp[](~/security/authentication/identity/sample/WebApp3/Areas/Identity/Pages/Account/RegisterConfirmation.cshtml.cs?name=snippet&highlight=34)]
