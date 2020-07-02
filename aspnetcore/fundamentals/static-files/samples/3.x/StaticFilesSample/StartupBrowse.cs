@@ -1,23 +1,15 @@
+using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
-using System.IO;
 
 namespace StaticFilesSample
 {
     public class StartupBrowse
     {
-        public StartupBrowse(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
-
-        public IConfiguration Configuration { get; }
-
-        #region snippet
+        #region snippet_ClassMembers
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
@@ -35,14 +27,15 @@ namespace StaticFilesSample
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
+
             app.UseHttpsRedirection();
 
             // using Microsoft.Extensions.FileProviders;
-            //using System.IO;
+            // using System.IO;
             app.UseStaticFiles(new StaticFileOptions
             {
                 FileProvider = new PhysicalFileProvider(
-                        Path.Combine(env.WebRootPath, "images")),
+                    Path.Combine(env.WebRootPath, "images")),
                 RequestPath = "/MyImages"
             });
 
@@ -59,9 +52,7 @@ namespace StaticFilesSample
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapDefaultControllerRoute();
             });
         }
         #endregion

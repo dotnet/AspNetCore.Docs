@@ -4,7 +4,7 @@ using Microsoft.Extensions.Hosting;
 namespace StaticFilesSample
 {
 #if NEVER
-#region snippet_Main
+    #region snippet_Program
     public class Program
     {
         public static void Main(string[] args)
@@ -19,6 +19,6 @@ namespace StaticFilesSample
                     webBuilder.UseStartup<Startup>();
                 });
     }
-#endregion
+    #endregion
 #endif
 }

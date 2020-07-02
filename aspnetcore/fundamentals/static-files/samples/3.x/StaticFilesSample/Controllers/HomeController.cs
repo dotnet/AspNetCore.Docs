@@ -1,23 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
+using System.IO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using StaticFilesSample.Models;
 
 namespace StaticFilesSample.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
-
         public IActionResult Index()
         {
             return View();
@@ -27,6 +17,17 @@ namespace StaticFilesSample.Controllers
         {
             return View();
         }
+
+        #region snippet_BannerImage
+        [Authorize]
+        public IActionResult BannerImage()
+        {
+            var filePath = Path.Combine(
+                Directory.GetCurrentDirectory(), "MyStaticFiles", "images", "banner1.svg");
+
+            return PhysicalFile(filePath, "image/svg+xml");
+        }
+        #endregion
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
