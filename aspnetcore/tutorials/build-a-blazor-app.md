@@ -1,5 +1,5 @@
 ---
-title: Build a Blazor app
+title: Build a Blazor Todo List app
 author: guardrex
 description: Build a Blazor app step-by-step.
 monikerRange: '>= aspnetcore-3.0'
@@ -9,7 +9,7 @@ ms.date: 07/02/2020
 no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/build-a-blazor-app
 ---
-# Build a Blazor app
+# Build a Blazor Todo List app
 
 By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.com/guardrex)
 
@@ -23,11 +23,28 @@ This tutorial shows you how to build and modify a Blazor app. You learn how to:
 
 At the end of this tutorial, you'll have a working todo list app.
 
-1. Follow the guidance in the [Build your first Blazor app tutorial](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro) to create a Blazor project. Name the project `ToDoList`.
+1. Create a new Blazor app named `TodoList` in a command shell:
 
-1. Add a new `Todo` Razor component to the app in the `Pages` folder. If you're using Visual Studio, right-click the `Pages` folder and select **Add** > **New Item** > **Razor Component**. Name the component's file `Todo.razor`. In other development environments, add a blank file to the `Pages` folder named `Todo.razor`. Razor component file names require a capitalized first letter, so confirm that the `Todo` component file name starts with a capital letter `T`.
+   ```dotnetcli
+   dotnet new blazorserver -o TodoList
+   ```
 
-1. Provide the initial markup for the component:
+   The preceding command creates a folder named `TodoList` to hold the app. Change directories to the `TodoList` folder with the following command:
+
+   ```dotnetcli
+   cd TodoList
+   ```
+
+1. Add a new `Todo` Razor component to the app in the `Pages` folder using the following command:
+
+   ```dotnetcli
+   dotnet new razorcomponent -n Todo -o Pages
+   ```
+
+   > [!IMPORTANT]
+   > Razor component file names require a capitalized first letter, so confirm that the `Todo` component file name starts with a capital letter `T`.
+
+1. In `Pages/Todo.razor` provide the initial markup for the component:
 
    ```razor
    @page "/todo"
