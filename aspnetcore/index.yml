@@ -64,10 +64,10 @@ conceptualContent:
         - url: blazor/index.md
           itemType: overview
           text: "Overview"
-        - url: blazor/get-started.md
+        - url: https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro
           itemType: get-started
           text: "Build your first Blazor app"
-        - url: https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro
+        - url: tutorials/build-a-blazor-app.md
           itemType: get-started
           text: "Build your first Blazor app with reusable components"
         - url: blazor/hosting-models.md

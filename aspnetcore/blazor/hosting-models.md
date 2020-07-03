@@ -15,10 +15,6 @@ By [Daniel Roth](https://github.com/danroth27)
 
 Blazor is a web framework designed to run client-side in the browser on a [WebAssembly](https://webassembly.org/)-based .NET runtime (*Blazor WebAssembly*) or server-side in ASP.NET Core (*Blazor Server*). Regardless of the hosting model, the app and component models *are the same*.
 
-To create a project for the hosting models described in this article, see <xref:blazor/get-started>.
-
-For advanced configuration, see <xref:blazor/fundamentals/configuration>.
-
 ## Blazor WebAssembly
 
 The principal hosting model for Blazor is running client-side in the browser on WebAssembly. The Blazor app, its dependencies, and the .NET runtime are downloaded to the browser. The app is executed directly on the browser UI thread. UI updates and event handling occur within the same process. The app's assets are deployed as static files to a web server or service capable of serving static content to clients.
@@ -142,7 +138,6 @@ When using IIS, sticky sessions are enabled with Application Request Routing. Fo
 
 ## Additional resources
 
-* <xref:blazor/get-started>
 * <xref:signalr/introduction>
 * <xref:blazor/fundamentals/additional-scenarios>
 * <xref:tutorials/signalr-blazor-webassembly>

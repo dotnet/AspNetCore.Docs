@@ -285,13 +285,13 @@
           uid: blazor/index
         - name: Supported platforms
           uid: blazor/supported-platforms
-        - name: Get started
-          uid: blazor/get-started
+        - name: Tooling
+          uid: blazor/tooling
         - name: Hosting models
           uid: blazor/hosting-models
         - name: Tutorials
           items:
-            - name: Build a Blazor Todo List app
+            - name: Build a Blazor todo list app
               uid: tutorials/build-a-blazor-app
             - name: SignalR with Blazor WebAssembly
               uid: tutorials/signalr-blazor-webassembly
