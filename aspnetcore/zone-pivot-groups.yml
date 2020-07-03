@@ -10,5 +10,3 @@ groups:
     title: Linux
   - id: os-macos
     title: macOS
-  - id: cli
-    title: .NET Core CLI

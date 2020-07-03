@@ -94,31 +94,3 @@ By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.
 If a prompt appears to trust the development certificate, trust the certificate and continue. The user and keychain passwords are required to trust the certificate.
 
 ::: zone-end
-
-::: zone pivot="cli"
-
-1. Install the latest version of the [.NET Core 3.1 SDK](https://dotnet.microsoft.com/download/dotnet-core/3.1). If you previously installed the SDK, you can determine your installed version by executing the following command in a command shell:
-
-   ```dotnetcli
-   dotnet --version
-   ```
-
-1. For a Blazor WebAssembly experience, execute the following commands in a command shell:
-
-   ```dotnetcli
-   dotnet new blazorwasm -o WebApplication1
-   cd WebApplication1
-   dotnet run
-   ```
-
-   For a Blazor Server experience, execute the following commands in a command shell:
-
-   ```dotnetcli
-   dotnet new blazorserver -o WebApplication1
-   cd WebApplication1
-   dotnet run
-   ```
-
-For information on the two Blazor hosting models, *Blazor WebAssembly* and *Blazor Server*, see <xref:blazor/hosting-models>.
-
-::: zone-end
