@@ -9,9 +9,8 @@ ms.date: 07/02/2020
 no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/test
 zone_pivot_groups: operating-systems-set-one
-zone_pivot_group_filename: zone-pivot-groups.json
 ---
-# Test 6
+# Test 7
 
 ::: zone pivot="os-windows"
 
