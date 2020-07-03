@@ -10,7 +10,7 @@ no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encry
 uid: blazor/tooling
 ---
 
-<!-- zone_pivot_groups: operating-systems-1 -->
+<!-- zone_pivot_groups: operating-systems-set-one -->
 
 # Tooling for ASP.NET Core Blazor
 
