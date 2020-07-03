@@ -56,7 +56,7 @@
       "searchScope": [
         "ASP.NET Core"
       ],
-      "zone_pivot_group_filename": "aspnetcore/zone-pivot-groups.json"
+      "zone_pivot_group_filename": "zone-pivot-groups.json"
     },
     "fileMetadata": {
       "author": {
