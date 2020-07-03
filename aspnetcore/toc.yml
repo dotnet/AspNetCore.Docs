@@ -291,7 +291,7 @@
           uid: blazor/hosting-models
         - name: Tutorials
           items:
-            - name: Build a Blazor Todo List app
+            - name: Build a Blazor todo list app
               uid: tutorials/build-a-blazor-app
             - name: SignalR with Blazor WebAssembly
               uid: tutorials/signalr-blazor-webassembly

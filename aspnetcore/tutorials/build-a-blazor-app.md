@@ -1,5 +1,5 @@
 ---
-title: Build a Blazor Todo List app
+title: Build a Blazor todo list app
 author: guardrex
 description: Build a Blazor app step-by-step.
 monikerRange: '>= aspnetcore-3.0'
@@ -9,7 +9,7 @@ ms.date: 07/02/2020
 no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/build-a-blazor-app
 ---
-# Build a Blazor Todo List app
+# Build a Blazor todo list app
 
 By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.com/guardrex)
 
