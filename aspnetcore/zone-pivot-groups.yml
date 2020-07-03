@@ -2,7 +2,7 @@
 groups:
 - id: operating-systems
   title: Operating systems
-  prompt: Choose an operating system or use a command shell
+  prompt: Choose an operating system
   pivots:
   - id: os-windows
     title: Windows
