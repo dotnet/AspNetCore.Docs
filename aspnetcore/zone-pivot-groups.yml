@@ -1,6 +1,6 @@
 # YamlMime:ZonePivotGroups
 groups:
-- id: tooling
+- id: operating-systems
   title: Tooling
   prompt: Choose an operating system or use a command shell
   pivots:
