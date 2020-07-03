@@ -1,7 +1,7 @@
 <a name="ddav"></a>
 ### Disable default account verification
 
-With the default templates, the user is redirected to the `Account.RegisterConfirmation` where they can select a link to have the account confirmed. The default `Account.RegisterConfirmation` is used ***only*** for testing, automatic account verification should be disabled in a production app
+With the default templates, the user is redirected to the `Account.RegisterConfirmation` where they can select a link to have the account confirmed. The default `Account.RegisterConfirmation` is used ***only*** for testing, automatic account verification should be disabled in a production app.
 
 To require a confirmed account and prevent immediate login at registration, comment out `DisplayConfirmAccountLink = true;` in */Areas/Identity/Pages/Account/RegisterConfirmation.cshtml.cs*:
 
