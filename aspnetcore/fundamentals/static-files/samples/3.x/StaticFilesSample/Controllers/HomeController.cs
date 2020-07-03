@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using System.IO;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using StaticFilesSample.Models;
 
@@ -8,6 +9,13 @@ namespace StaticFilesSample.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IWebHostEnvironment _env;
+
+        public HomeController(IWebHostEnvironment env)
+        {
+            _env = env;
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -23,9 +31,9 @@ namespace StaticFilesSample.Controllers
         public IActionResult BannerImage()
         {
             var filePath = Path.Combine(
-                Directory.GetCurrentDirectory(), "MyStaticFiles", "images", "banner1.svg");
+                _env.ContentRootPath, "MyStaticFiles", "images", "red-rose.jpg");
 
-            return PhysicalFile(filePath, "image/svg+xml");
+            return PhysicalFile(filePath, "image/jpeg");
         }
         #endregion
 
