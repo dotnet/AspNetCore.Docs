@@ -12,9 +12,15 @@ uid: blazor/tooling
 
 <!-- zone_pivot_groups: operating-systems -->
 
-# Get started with ASP.NET Core Blazor
+# Tooling for ASP.NET Core Blazor
 
 By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.com/guardrex)
+
+Select the tooling for your platform:
+
+* Windows: Select the **Visual Studio** tab.
+* Linux: Select the **Visual Studio Code** tab.
+* macOS: Select the **Visual Studio for Mac** tab.
 
 # [Visual Studio](#tab/visual-studio)
 
