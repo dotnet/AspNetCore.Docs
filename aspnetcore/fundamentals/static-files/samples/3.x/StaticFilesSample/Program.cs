@@ -26,7 +26,6 @@ namespace StaticFilesSample
                     webBuilder.UseStartup<StartupFileServer>();
                     // webBuilder.UseStartup<StartupFileExtensionContentTypeProvider>();
                     // webBuilder.UseStartup<StartupServeUnknownFileTypes>();
-                    // webBuilder.UseStartup<StartupEmpty3>();
                 });
     }
 }
