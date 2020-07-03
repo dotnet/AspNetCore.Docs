@@ -1,12 +1,23 @@
-### YamlMime:ZonePivotGroups
-groups:
-- id: operating-systems-1
-  title: Operating systems
-  prompt: Choose an operating system
-  pivots:
-  - id: os-windows
-    title: Windows
-  - id: os-linux
-    title: Linux
-  - id: os-macos
-    title: macOS
+{
+  "groups": [
+    {
+      "id": "operating-systems-set-one",
+      "title": "Operating System",
+      "prompt": "Choose an operating system",
+      "pivots": [
+        {
+          "id": "os-windows",
+          "title": "Windows"
+        },
+        {
+          "id": "os-linux",
+          "title": "Linux"
+        },
+        {
+          "id": "os-macos",
+          "title": "macOS"
+        }
+      ]
+    }
+  ]
+}
