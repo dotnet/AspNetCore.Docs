@@ -171,6 +171,10 @@ For more information, see [Azure Apps: Override app configuration using the Azur
 
 See [Connection string prefixes](#constr) for information on Azure database connection strings.
 
+### Environment variables set in launchSettings.json
+
+Environment variables set in *launchSettings.json* override those set in the system environment.
+
 <a name="clcp"></a>
 
 ## Command-line
@@ -737,6 +741,8 @@ This topic only pertains to *app configuration*. Other aspects of running and ho
 * *web.config* is a server configuration file, described in the following topics:
   * <xref:host-and-deploy/iis/index>
   * <xref:host-and-deploy/aspnet-core-module>
+
+Environment variables set in *launchSettings.json* override those set in the system environment.
 
 For more information on migrating app configuration from earlier versions of ASP.NET, see <xref:migration/proper-to-2x/index#store-configurations>.
 

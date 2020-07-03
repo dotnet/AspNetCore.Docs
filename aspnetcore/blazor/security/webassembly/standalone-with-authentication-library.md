@@ -23,7 +23,7 @@ dotnet new blazorwasm -au Individual
 
 To specify the output location, which creates a project folder if it doesn't exist, include the output option in the command with a path (for example, `-o BlazorSample`). The folder name also becomes part of the project's name.
 
-In Visual Studio, [create a Blazor WebAssembly app](xref:blazor/get-started). Set **Authentication** to **Individual User Accounts** with the **Store user accounts in-app** option.
+If using Visual Studio to create a Blazor WebAssembly app, set **Authentication** to **Individual User Accounts** with the **Store user accounts in-app** option.
 
 ## Authentication package
 

@@ -352,6 +352,7 @@ Password:
 }
 ```
 
-## Radio buttons
+## Additional resources
 
-For information on binding to radio buttons in a form, see <xref:blazor/forms-validation#work-with-radio-buttons>.
+* [Binding to radio buttons in a form](xref:blazor/forms-validation#radio-buttons)
+* [Binding `<select>` element options to C# object `null` values in a form](xref:blazor/forms-validation#binding-select-element-options-to-c-object-null-values)

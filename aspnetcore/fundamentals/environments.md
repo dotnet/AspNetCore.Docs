@@ -5,7 +5,7 @@ description: Learn how to control app behavior across multiple environments in A
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 4/12/2020
+ms.date: 7/1/2020
 no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/environments
 ---
@@ -114,7 +114,14 @@ The following *launchSettings.json* file contains multiple profiles:
 
 [!code-json[](environments/3.1sample/EnvironmentsSample/Properties/launchSettings.json)]
 
-Profiles can be selected from Visual Studio or using `dotnet run --launch-profile <Profile Name>`.
+Profiles can be selected:
+
+* From the Visual Studio UI.
+* Using the [`dotnet run`](/dotnet/core/tools/dotnet-run) command in a command shell with the `--launch-profile` option set to the profile's name. *This approach only supports Kestrel profiles.*
+
+  ```dotnetcli
+  dotnet run --launch-profile "SampleApp"
+  ```
 
 > [!WARNING]
 > *launchSettings.json* shouldn't store secrets. The [Secret Manager tool](xref:security/app-secrets) can be used to store secrets for local development.
