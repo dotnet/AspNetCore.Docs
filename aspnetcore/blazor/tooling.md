@@ -8,7 +8,7 @@ ms.custom: mvc
 ms.date: 07/02/2020
 no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/tooling
-zone_pivot_groups: tooling
+zone_pivot_groups: operating-systems
 ---
 # Get started with ASP.NET Core Blazor
 
