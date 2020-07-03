@@ -28,7 +28,8 @@
           "**/*.jpg",
           "**/*.gif",
           "**/*.svg",
-          "**/*.pdf"
+          "**/*.pdf",
+          "**/zone-pivot-groups.json"
         ],
         "exclude": [
           "**/obj/**",
@@ -55,8 +56,7 @@
       "uhfHeaderId": [],
       "searchScope": [
         "ASP.NET Core"
-      ],
-      "zone_pivot_group_filename": "/aspnet/core/zone-pivot-groups.json"
+      ]
     },
     "fileMetadata": {
       "author": {
