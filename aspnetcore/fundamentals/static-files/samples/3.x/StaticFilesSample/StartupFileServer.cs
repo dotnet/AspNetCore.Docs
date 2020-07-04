@@ -1,26 +1,21 @@
+using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 
-namespace sample
+namespace StaticFilesSample
 {
-    public class StartupEmpty
+    public class StartupFileServer
     {
-        public StartupEmpty(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
-
-        public IConfiguration Configuration { get; }
-
+        #region snippet_ClassMembers
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddDirectoryBrowser();
         }
 
-        #region snippet
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -32,10 +27,20 @@ namespace sample
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
+
             app.UseHttpsRedirection();
 
-            app.UseDefaultFiles();
-            app.UseStaticFiles();
+            app.UseStaticFiles(); // For the wwwroot folder.
+
+            // using Microsoft.Extensions.FileProviders;
+            // using System.IO;
+            app.UseFileServer(new FileServerOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                    Path.Combine(env.ContentRootPath, "MyStaticFiles")),
+                RequestPath = "/StaticFiles",
+                EnableDirectoryBrowsing = true
+            });
 
             app.UseRouting();
 
@@ -43,9 +48,7 @@ namespace sample
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=None}/{action=Index}/{id?}");
+                endpoints.MapDefaultControllerRoute();
             });
         }
         #endregion
