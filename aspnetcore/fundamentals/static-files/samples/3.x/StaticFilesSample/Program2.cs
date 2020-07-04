@@ -1,10 +1,10 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace sample
+namespace StaticFilesSample
 {
 #if NEVER
-#region snippet_Main
+    #region snippet_Program
     public class Program
     {
         public static void Main(string[] args)
@@ -19,6 +19,6 @@ namespace sample
                     webBuilder.UseStartup<Startup>();
                 });
     }
-#endregion
+    #endregion
 #endif
 }

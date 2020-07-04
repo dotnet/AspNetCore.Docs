@@ -1,6 +1,6 @@
 using System;
 
-namespace sample.Models
+namespace StaticFilesSample.Models
 {
     public class ErrorViewModel
     {
