@@ -1424,7 +1424,7 @@ Route constraints execute when a match has occurred to the incoming URL and the 
 The following table demonstrates example route constraints and their expected behavior.
 
 | Constraint | Example | Example matches | Notes |
-| ---------- | ------- | --------------- | ----- |
+|------------|---------|-----------------|-------|
 | `int` | `{id:int}` | `123456789`, `-123456789` | Matches any integer. |
 | `bool` | `{active:bool}` | `true`, `FALSE` | Matches `true` or `false. Case-insensitive. |
 | `datetime` | `{dob:datetime}` | `2016-12-31`, `2016-12-31 7:32pm` | Matches a valid `DateTime` value in the invariant culture. See  preceding warning.|
