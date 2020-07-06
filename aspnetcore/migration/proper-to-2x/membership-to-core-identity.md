@@ -87,7 +87,7 @@ There are subtle differences in the table structures and fields for both Members
 
 ### User Roles
 
-|*Identity<br>(dbo.AspNetUserRoles)* |*Membership<br>(dbo.aspnet_UsersInRoles)* |
+|*Identity<br>(dbo.AspNetUserRoles)*|&nbsp;|*Membership<br>(dbo.aspnet_UsersInRoles)*|&nbsp;|
 |-------------------------|----------|--------------|---------------------------|
 |**Field Name**           |**Type**  |**Field Name**|**Type**                   |
 |`RoleId`                 |`string`  |`RoleId`      |`string`                   |
