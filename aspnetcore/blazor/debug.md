@@ -207,11 +207,17 @@ The following launch configuration options are supported for the `blazorwasm` de
 
 1. Run a Debug build of the app in the Development environment.
 
-1. Press <kbd>Shift</kbd>+<kbd>Alt</kbd>+<kbd>D</kbd>.
+1. Launch a browser and navigate to the app's URL (for example, `https://localhost:5001`).
 
-1. The browser must be run with remote debugging enabled. If remote debugging is disabled, an **Unable to find debuggable browser tab** error page is generated. The error page contains instructions for running the browser with the debugging port open so that the Blazor debugging proxy can connect to the app. *Close all browser instances* and restart the browser as instructed.
+1. In the browser, attempt to commence remote debugging by pressing <kbd>Shift</kbd>+<kbd>Alt</kbd>+<kbd>D</kbd>.
 
-Once the browser is running with remote debugging enabled, the debugging keyboard shortcut opens a new debugger tab. After a moment, the **Sources** tab shows a list of the .NET assemblies in the app. Expand each assembly and find the `.cs`/`.razor` source files available for debugging. Set breakpoints, switch back to the app's tab, and the breakpoints are hit when the code executes. After a breakpoint is hit, single-step (<kbd>F10</kbd>) through the code or resume (<kbd>F8</kbd>) code execution normally.
+   The browser must be running with remote debugging enabled, which isn't the default. If remote debugging is disabled, an **Unable to find debuggable browser tab** error page is rendered with instructions for launching the browser with the debugging port open. Follow the instructions for your browser, which opens a new browser window. Close the previous browser window.
+
+1. Once the browser is running with remote debugging enabled, the debugging keyboard shortcut (<kbd>Shift</kbd>+<kbd>Alt</kbd>+<kbd>D</kbd>) opens a new debugger tab.
+
+1. After a moment, the **Sources** tab shows a list of the app's .NET assemblies within the `file://` node.
+
+1. In component code (`.razor` files) and C# code files (`.cs`), breakpoints that you set are hit when code executes. After a breakpoint is hit, single-step (<kbd>F10</kbd>) through the code or resume (<kbd>F8</kbd>) code execution normally.
 
 Blazor provides a debugging proxy that implements the [Chrome DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/) and augments the protocol with .NET-specific information. When debugging keyboard shortcut is pressed, Blazor points the Chrome DevTools at the proxy. The proxy connects to the browser window you're seeking to debug (hence the need to enable remote debugging).
 
