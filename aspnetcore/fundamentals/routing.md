@@ -1423,7 +1423,7 @@ Route constraints execute when a match has occurred to the incoming URL and the 
 
 The following table demonstrates example route constraints and their expected behavior.
 
-| constraint | Example | Example Matches | Notes |
+| Constraint | Example | Example matches | Notes |
 | ---------- | ------- | --------------- | ----- |
 | `int` | `{id:int}` | `123456789`, `-123456789` | Matches any integer. |
 | `bool` | `{active:bool}` | `true`, `FALSE` | Matches `true` or `false. Case-insensitive. |

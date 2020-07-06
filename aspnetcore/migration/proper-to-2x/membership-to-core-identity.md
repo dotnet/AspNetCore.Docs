@@ -62,36 +62,36 @@ There are subtle differences in the table structures and fields for both Members
 
 ### Users
 
-|*Identity<br>(dbo.AspNetUsers)*        ||*Membership<br>(dbo.aspnet_Users / dbo.aspnet_Membership)*||
-|----------------------------------------|-----------------------------------------------------------|
-|**Field Name**                 |**Type**|**Field Name**                                    |**Type**|
-|`Id`                           |string  |`aspnet_Users.UserId`                             |string  |
-|`UserName`                     |string  |`aspnet_Users.UserName`                           |string  |
-|`Email`                        |string  |`aspnet_Membership.Email`                         |string  |
-|`NormalizedUserName`           |string  |`aspnet_Users.LoweredUserName`                    |string  |
-|`NormalizedEmail`              |string  |`aspnet_Membership.LoweredEmail`                  |string  |
-|`PhoneNumber`                  |string  |`aspnet_Users.MobileAlias`                        |string  |
-|`LockoutEnabled`               |bit     |`aspnet_Membership.IsLockedOut`                   |bit     |
+| *Identity<br>(dbo.AspNetUsers)*            | *Membership<br>(dbo.aspnet_Users / dbo.aspnet_Membership)*            |
+|--------------------------------------------|-----------------------------------------------------------------------|
+| **Field Name**                  | **Type** | **Field Name**                                             | **Type** |
+| `Id`                            | `string` | `aspnet_Users.UserId`                                      | `string` |
+| `UserName`                      | `string` | `aspnet_Users.UserName`                                    | `string` |
+| `Email`                         | `string` | `aspnet_Membership.Email`                                  | `string` |
+| `NormalizedUserName`            | `string` | `aspnet_Users.LoweredUserName`                             | `string` |
+| `NormalizedEmail`               | `string` | `aspnet_Membership.LoweredEmail`                           | `string` |
+| `PhoneNumber`                   | `string` | `aspnet_Users.MobileAlias`                                 | `string` |
+| `LockoutEnabled`                | `bit`    | `aspnet_Membership.IsLockedOut`                            | `bit`    |
 
 > [!NOTE]
 > Not all the field mappings resemble one-to-one relationships from Membership to ASP.NET Core Identity. The preceding table takes the default Membership User schema and maps it to the ASP.NET Core Identity schema. Any other custom fields that were used for Membership need to be mapped manually. In this mapping, there's no map for passwords, as both password criteria and password salts don't migrate between the two. **It's recommended to leave the password as null and to ask users to reset their passwords.** In ASP.NET Core Identity, `LockoutEnd` should be set to some date in the future if the user is locked out. This is shown in the migration script.
 
 ### Roles
 
-|*Identity<br>(dbo.AspNetRoles)*        ||*Membership<br>(dbo.aspnet_Roles)*||
+|*Identity<br>(dbo.AspNetRoles)*         |*Membership<br>(dbo.aspnet_Roles)* |
 |----------------------------------------|-----------------------------------|
 |**Field Name**                 |**Type**|**Field Name**   |**Type**         |
-|`Id`                           |string  |`RoleId`         | string          |
-|`Name`                         |string  |`RoleName`       | string          |
-|`NormalizedName`               |string  |`LoweredRoleName`| string          |
+|`Id`                           |`string`|`RoleId`         | `string`        |
+|`Name`                         |`string`|`RoleName`       | `string`        |
+|`NormalizedName`               |`string`|`LoweredRoleName`| `string`        |
 
 ### User Roles
 
-|*Identity<br>(dbo.AspNetUserRoles)*||*Membership<br>(dbo.aspnet_UsersInRoles)*||
+|*Identity<br>(dbo.AspNetUserRoles)* |*Membership<br>(dbo.aspnet_UsersInRoles)*||
 |------------------------------------|------------------------------------------|
 |**Field Name**           |**Type**  |**Field Name**|**Type**                   |
-|`RoleId`                 |string    |`RoleId`      |string                     |
-|`UserId`                 |string    |`UserId`      |string                     |
+|`RoleId`                 |`string`  |`RoleId`      |`string`                   |
+|`UserId`                 |`string`  |`UserId`      |`string`                   |
 
 Reference the preceding mapping tables when creating a migration script for *Users* and *Roles*. The following example assumes you have two databases on a database server. One database contains the existing ASP.NET Membership schema and data. The other *CoreIdentitySample* database was created using steps described earlier. Comments are included inline for more details.
 
