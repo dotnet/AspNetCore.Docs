@@ -432,7 +432,7 @@ The <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessage%601> component
 
 The <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessage%601> and <xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary> components support arbitrary attributes. Any attribute that doesn't match a component parameter is added to the generated `<div>` or `<ul>` element.
 
-Control the style of validation messages in the app's stylesheet (`wwwroot/css/app.css`). The default `validation-message` class sets the text color of validation messages to red:
+Control the style of validation messages in the app's stylesheet (`wwwroot/css/app.css` or `wwwroot/css/site.css`). The default `validation-message` class sets the text color of validation messages to red:
 
 ```css
 .validation-message {
