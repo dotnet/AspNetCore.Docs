@@ -644,9 +644,7 @@ The `Expander` component is added to a parent component that may call <xref:Micr
     Expander 1 content
 </Expander>
 
-<Expander Expanded="true">
-    Expander 2 content
-</Expander>
+<Expander Expanded="true" />
 
 <button @onclick="StateHasChanged">
     Call StateHasChanged
