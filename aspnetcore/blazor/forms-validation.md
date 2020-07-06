@@ -5,7 +5,7 @@ description: Learn how to use forms and field validation scenarios in Blazor.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/01/2020
+ms.date: 07/06/2020
 no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/forms-validation
 ---
@@ -431,6 +431,14 @@ The <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessage%601> component
 ```
 
 The <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessage%601> and <xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary> components support arbitrary attributes. Any attribute that doesn't match a component parameter is added to the generated `<div>` or `<ul>` element.
+
+Control the style of validation messages in the app's stylesheet (`wwwroot/css/app.css`). The default `validation-message` class sets the text color of validation messages to red:
+
+```css
+.validation-message {
+    color: red;
+}
+```
 
 ### Custom validation attributes
 
