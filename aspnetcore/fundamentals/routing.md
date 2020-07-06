@@ -1425,8 +1425,8 @@ The following table demonstrates example route constraints and their expected be
 
 | Constraint | Example | Example matches | Notes |
 |------------|---------|-----------------|-------|
-| `int` | `{id:int}` | `123456789`, `-123456789` | Matches any integer. |
-| `bool` | `{active:bool}` | `true`, `FALSE` | Matches `true` or `false. Case-insensitive. |
+| `int` | `{id:int}` | `123456789`, `-123456789` | Matches any integer.|
+| `bool` | `{active:bool}` | `true`, `FALSE` | Matches `true` or `false`. Case-insensitive.|
 | `datetime` | `{dob:datetime}` | `2016-12-31`, `2016-12-31 7:32pm` | Matches a valid `DateTime` value in the invariant culture. See preceding warning.|
 | `decimal` | `{price:decimal}` | `49.99`, `-1,000.01` | Matches a valid `decimal` value in the invariant culture. See  preceding warning.|
 | `double` | `{weight:double}` | `1.234`, `-1,001.01e8` | Matches a valid `double` value in the invariant culture. See  preceding warning.|
