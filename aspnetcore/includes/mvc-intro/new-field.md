@@ -24,7 +24,7 @@ Open the *Models/Movie.cs* file and add a `Rating` property:
 
 ::: moniker-end
 
-Because you've added a new field to the `Movie` class, you also need to update the binding whitelist so this new property will be included. In *MoviesController.cs*, update the `[Bind]` attribute for both the `Create` and `Edit` action methods to include the `Rating` property:
+Because you've added a new field to the `Movie` class, you also need to update the binding's included properties so this new property is included. In *MoviesController.cs*, update the `[Bind]` attribute for both the `Create` and `Edit` action methods to include the `Rating` property:
 
 ```csharp
 [Bind("ID,Title,ReleaseDate,Genre,Price,Rating")]
