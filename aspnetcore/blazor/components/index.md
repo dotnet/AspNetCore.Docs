@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components, including how to bind
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/25/2020
+ms.date: 07/06/2020
 no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/components/index
 ---
@@ -70,15 +70,15 @@ Components are ordinary C# classes and can be placed anywhere within a project. 
 
 ### Namespaces
 
-Typically, a component's namespace is derived from the app's root namespace and the component's location (folder) within the app. If the app's root namespace is `BlazorApp` and the `Counter` component resides in the `Pages` folder:
+Typically, a component's namespace is derived from the app's root namespace and the component's location (folder) within the app. If the app's root namespace is `BlazorSample` and the `Counter` component resides in the `Pages` folder:
 
-* The `Counter` component's namespace is `BlazorApp.Pages`.
-* The fully qualified type name of the component is `BlazorApp.Pages.Counter`.
+* The `Counter` component's namespace is `BlazorSample.Pages`.
+* The fully qualified type name of the component is `BlazorSample.Pages.Counter`.
 
 For custom folders that hold components, add a [`@using`][2] directive to the parent component or to the app's `_Imports.razor` file. The following example makes components in the `Components` folder available:
 
 ```razor
-@using BlazorApp.Components
+@using BlazorSample.Components
 ```
 
 Components can also be referenced using their fully qualified names, which doesn't require the [`@using`][2] directive:
@@ -149,7 +149,7 @@ The `Counter` component can also be created using a code-behind file with a part
 `Counter.razor.cs`:
 
 ```csharp
-namespace BlazorApp.Pages
+namespace BlazorSample.Pages
 {
     public partial class Counter
     {
@@ -468,15 +468,15 @@ public class NotifierService
 }
 ```
 
-Register the `NotifierService` as a singletion:
+Register the `NotifierService`:
 
-* In Blazor WebAssembly, register the service in `Program.Main`:
+* In Blazor WebAssembly, register the service as singleton in `Program.Main`:
 
   ```csharp
   builder.Services.AddSingleton<NotifierService>();
   ```
 
-* In Blazor Server, register the service in `Startup.ConfigureServices`:
+* In Blazor Server, register the service as scoped in `Startup.ConfigureServices`:
 
   ```csharp
   services.AddScoped<NotifierService>();
@@ -606,13 +606,19 @@ Consider the following `Expander` component that:
 * Toggles showing child content with a component parameter.
 
 ```razor
-<div @onclick="@Toggle">
-    Toggle (Expanded = @Expanded)
+<div @onclick="@Toggle" class="card text-white bg-success mb-3">
+    <div class="card-body">
+        <div class="panel-heading">
+            <h2>Toggle (Expanded = @Expanded)</h2>
+        </div>
 
-    @if (Expanded)
-    {
-        @ChildContent
-    }
+        @if (Expanded)
+        {
+            <div class="card-text">
+                @ChildContent
+            </div>
+        }
+    </div>
 </div>
 
 @code {
@@ -632,13 +638,17 @@ Consider the following `Expander` component that:
 The `Expander` component is added to a parent component that may call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A>:
 
 ```razor
+@page "/expander"
+
 <Expander Expanded="true">
-    <h1>Hello, world!</h1>
+    Expander 1 content
 </Expander>
 
-<Expander Expanded="true" />
+<Expander Expanded="true">
+    Expander 2 content
+</Expander>
 
-<button @onclick="@(() => StateHasChanged())">
+<button @onclick="StateHasChanged">
     Call StateHasChanged
 </button>
 ```
@@ -647,30 +657,36 @@ Initially, the `Expander` components behave independently when their `Expanded` 
 
 To maintain state in the preceding scenario, use a *private field* in the `Expander` component to maintain its toggled state.
 
-The following `Expander` component:
+The following revised `Expander` component:
 
 * Accepts the `Expanded` component parameter value from the parent.
 * Assigns the component parameter value to a *private field* (`expanded`) in the [OnInitialized event](xref:blazor/components/lifecycle#component-initialization-methods).
 * Uses the private field to maintain its internal toggle state.
 
 ```razor
-<div @onclick="@Toggle">
-    Toggle (Expanded = @expanded)
+<div @onclick="@Toggle" class="card text-white bg-success mb-3">
+    <div class="card-body">
+        <div class="panel-heading">
+            <h2>Toggle (Expanded = @expanded)</h2>
+        </div>
 
-    @if (expanded)
-    {
-        @ChildContent
-    }
+        @if (Expanded)
+        {
+            <div class="card-text">
+                @ChildContent
+            </div>
+        }
+    </div>
 </div>
 
 @code {
+    private bool expanded;
+
     [Parameter]
     public bool Expanded { get; set; }
 
     [Parameter]
     public RenderFragment ChildContent { get; set; }
-
-    private bool expanded;
 
     protected override void OnInitialized()
     {
