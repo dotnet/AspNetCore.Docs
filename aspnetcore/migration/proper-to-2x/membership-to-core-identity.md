@@ -62,7 +62,7 @@ There are subtle differences in the table structures and fields for both Members
 
 ### Users
 
-|Identity<br>(`dbo.AspNetUsers`)  |Type     |Membership<br>(`dbo.aspnet_Users` / `dbo.aspnet_Membership`)|Type      |
+|Identity<br>(`dbo.AspNetUsers`) column  |Type     |Membership<br>(`dbo.aspnet_Users` / `dbo.aspnet_Membership`) column|Type      |
 |-------------------------------------------|-----------------------------------------------------------------------|
 | `Id`                            | `string`| `aspnet_Users.UserId`                                      | `string` |
 | `UserName`                      | `string`| `aspnet_Users.UserName`                                    | `string` |
@@ -77,7 +77,7 @@ There are subtle differences in the table structures and fields for both Members
 
 ### Roles
 
-|Identity<br>(`dbo.AspNetRoles`) column|Type|Membership<br>(`dbo.aspnet_Roles`)|Type|
+|Identity<br>(`dbo.AspNetRoles`) column|Type|Membership<br>(`dbo.aspnet_Roles`) column|Type|
 |----------------------------------------|-----------------------------------|
 |`Id`                           |`string`|`RoleId`         | `string`        |
 |`Name`                         |`string`|`RoleName`       | `string`        |
@@ -85,7 +85,7 @@ There are subtle differences in the table structures and fields for both Members
 
 ### User Roles
 
-|Identity<br>(`dbo.AspNetUserRoles`) column|Type|Membership<br>(`dbo.aspnet_UsersInRoles`)|Type|
+|Identity<br>(`dbo.AspNetUserRoles`) column|Type|Membership<br>(`dbo.aspnet_UsersInRoles`) column|Type|
 |-------------------------|----------|--------------|---------------------------|
 |`RoleId`                 |`string`  |`RoleId`      |`string`                   |
 |`UserId`                 |`string`  |`UserId`      |`string`                   |
