@@ -96,7 +96,7 @@ The Blazor WebAssembly app responds locally at `http://localhost:port/CoolApp`.
 
 **Blazor Server `MapBlazorHub` configuration**
 
-Pass the following path to <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A>:
+Pass the following path to <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> in `Startup.Configure`:
 
 ```csharp
 endpoints.MapFallbackToPage("/{RELATIVE PATH}/{**path:nonfile}");
