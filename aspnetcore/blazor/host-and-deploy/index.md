@@ -94,7 +94,19 @@ dotnet run --pathbase=/CoolApp
 
 The Blazor WebAssembly app responds locally at `http://localhost:port/CoolApp`.
 
-For information on configuring <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> for non-root URL hosting of Blazor Server apps, see <xref:blazor/fundamentals/routing#non-root-url-server-hosting-with-blazor-server-apps>.
+**Blazor Server `MapBlazorHub` configuration**
+
+Pass the following path to <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A>:
+
+```csharp
+endpoints.MapFallbackToPage("/{RELATIVE PATH}/{**path:nonfile}");
+```
+
+The placeholder `{RELATIVE PATH}` is the non-root path on the server. For example, `CoolApp` is the placeholder segment if the non-root URL to the app is `https://{HOST}:{PORT}/CoolApp/`):
+
+```csharp
+endpoints.MapFallbackToPage("/CoolApp/{**path:nonfile}");
+```
 
 ## Deployment
 
