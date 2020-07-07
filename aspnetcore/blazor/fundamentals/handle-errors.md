@@ -49,7 +49,7 @@ In a Blazor Server app, customize the experience in the `Pages/_Host.cshtml` fil
 </div>
 ```
 
-The `blazor-error-ui` element is hidden by the styles included in the Blazor templates (`wwwroot/css/site.css`) and then shown when an error occurs:
+The `blazor-error-ui` element is hidden by the styles included in the Blazor templates (`wwwroot/css/app.css` or `wwwroot/css/site.css`) and then shown when an error occurs:
 
 ```css
 #blazor-error-ui {

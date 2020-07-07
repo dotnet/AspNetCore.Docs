@@ -5,13 +5,15 @@ description: Learn how to flow data from an ancestor component to descendent com
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/16/2020
+ms.date: 07/06/2020
 no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/components/cascading-values-and-parameters
 ---
 # ASP.NET Core Blazor cascading values and parameters
 
-## Cascading values and parameters
+By [Luke Latham](https://github.com/guardrex) and [Daniel Roth](https://github.com/danroth27)
+
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) ([how to download](xref:index#how-to-download-a-sample))
 
 In some scenarios, it's inconvenient to flow data from an ancestor component to a descendent component using [component parameters](xref:blazor/components/index#component-parameters), especially when there are several component layers. Cascading values and parameters solve this problem by providing a convenient way for an ancestor component to provide a value to all of its descendent components. Cascading values and parameters also provide an approach for components to coordinate.
 
@@ -101,8 +103,8 @@ In the sample app, the `CascadingValuesParametersTheme` component binds the `The
 To cascade multiple values of the same type within the same subtree, provide a unique <xref:Microsoft.AspNetCore.Components.CascadingValue%601.Name%2A> string to each <xref:Microsoft.AspNetCore.Components.CascadingValue%601> component and its corresponding [`[CascadingParameter]`](xref:Microsoft.AspNetCore.Components.CascadingParameterAttribute) attribute. In the following example, two <xref:Microsoft.AspNetCore.Components.CascadingValue%601> components cascade different instances of `MyCascadingType` by name:
 
 ```razor
-<CascadingValue Value=@parentCascadeParameter1 Name="CascadeParam1">
-    <CascadingValue Value=@ParentCascadeParameter2 Name="CascadeParam2">
+<CascadingValue Value="@parentCascadeParameter1" Name="CascadeParam1">
+    <CascadingValue Value="@ParentCascadeParameter2" Name="CascadeParam2">
         ...
     </CascadingValue>
 </CascadingValue>
@@ -142,6 +144,8 @@ The sample app has an `ITab` interface that tabs implement:
 The `CascadingValuesParametersTabSet` component uses the `TabSet` component, which contains several `Tab` components:
 
 ```razor
+@page "/CascadingValuesParametersTabSet"
+
 <TabSet>
     <Tab Title="First tab">
         <h4>Greetings from the first tab!</h4>
@@ -163,6 +167,10 @@ The `CascadingValuesParametersTabSet` component uses the `TabSet` component, whi
         </Tab>
     }
 </TabSet>
+
+@code {
+    private bool showThirdTab;
+}
 ```
 
 The child `Tab` components aren't explicitly passed as parameters to the `TabSet`. Instead, the child `Tab` components are part of the child content of the `TabSet`. However, the `TabSet` still needs to know about each `Tab` component so that it can render the headers and the active tab. To enable this coordination without requiring additional code, the `TabSet` component *can provide itself as a cascading value* that is then picked up by the descendent `Tab` components.

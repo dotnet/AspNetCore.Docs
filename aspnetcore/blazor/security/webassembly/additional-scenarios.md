@@ -49,11 +49,13 @@ In `Program.Main` (`Program.cs`), an <xref:System.Net.Http.HttpClient> is config
 builder.Services.AddTransient<CustomAuthorizationMessageHandler>();
 
 builder.Services.AddHttpClient("ServerAPI",
-    client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))
-        .AddHttpMessageHandler<CustomAuthorizationMessageHandler>();
+        client => client.BaseAddress = new Uri("https://www.example.com/base"))
+    .AddHttpMessageHandler<CustomAuthorizationMessageHandler>();
 ```
 
-The configured <xref:System.Net.Http.HttpClient> is used to make authorized requests using the [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) pattern. Where the client is created with <xref:System.Net.Http.IHttpClientFactory.CreateClient%2A> ([`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http/) package), the <xref:System.Net.Http.HttpClient> is supplied instances that include access tokens when making requests to the server API:
+For a Blazor app based on the Blazor WebAssembly Hosted template, <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> (`new Uri(builder.HostEnvironment.BaseAddress)`) can be assigned to the <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType>.
+
+The configured <xref:System.Net.Http.HttpClient> is used to make authorized requests using the [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) pattern. Where the client is created with <xref:System.Net.Http.IHttpClientFactory.CreateClient%2A> ([`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http) package), the <xref:System.Net.Http.HttpClient> is supplied instances that include access tokens when making requests to the server API:
 
 ```razor
 @inject IHttpClientFactory ClientFactory
@@ -100,12 +102,17 @@ builder.Services.AddTransient(sp =>
             authorizedUrls: new [] { "https://www.example.com/base" },
             scopes: new[] { "example.read", "example.write" }))
         {
-            BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
+            BaseAddress = new Uri("https://www.example.com/base")
         };
 });
 ```
 
-For convenience, a <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.BaseAddressAuthorizationMessageHandler> is included that's preconfigured with the app base address as an authorized URL. The authentication-enabled Blazor WebAssembly templates now use <xref:System.Net.Http.IHttpClientFactory> ([`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http/) package) in the Server API project to set up an <xref:System.Net.Http.HttpClient> with the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.BaseAddressAuthorizationMessageHandler>:
+For a Blazor app based on the Blazor WebAssembly Hosted template, <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> can be assigned to:
+
+* The <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType> (`new Uri(builder.HostEnvironment.BaseAddress)`).
+* A URL of the `authorizedUrls` array.
+
+For convenience, a <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.BaseAddressAuthorizationMessageHandler> is included that's preconfigured with the app's base address as an authorized URL. The authentication-enabled Blazor WebAssembly templates use <xref:System.Net.Http.IHttpClientFactory> ([`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http) package) in the Server API project to set up an <xref:System.Net.Http.HttpClient> with the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.BaseAddressAuthorizationMessageHandler>:
 
 ```csharp
 using System.Net.Http;
@@ -114,12 +121,14 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 ...
 
 builder.Services.AddHttpClient("ServerAPI", 
-    client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))
-        .AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
+        client => client.BaseAddress = new Uri("https://www.example.com/base"))
+    .AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
 
 builder.Services.AddTransient(sp => sp.GetRequiredService<IHttpClientFactory>()
     .CreateClient("ServerAPI"));
 ```
+
+For a Blazor app based on the Blazor WebAssembly Hosted template, <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> (`new Uri(builder.HostEnvironment.BaseAddress)`) can be assigned to the <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType>.
 
 Where the client is created with <xref:System.Net.Http.IHttpClientFactory.CreateClient%2A> in the preceding example, the <xref:System.Net.Http.HttpClient> is supplied instances that include access tokens when making requests to the server project.
 
@@ -201,9 +210,11 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 ...
 
 builder.Services.AddHttpClient<WeatherForecastClient>(
-    client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))
+        client => client.BaseAddress = new Uri("https://www.example.com/base"))
     .AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
 ```
+
+For a Blazor app based on the Blazor WebAssembly Hosted template, <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> (`new Uri(builder.HostEnvironment.BaseAddress)`) can be assigned to the <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType>.
 
 `FetchData` component (`Pages/FetchData.razor`):
 
@@ -225,11 +236,18 @@ The handler can be further configured with <xref:Microsoft.AspNetCore.Components
 `Program.Main` (`Program.cs`):
 
 ```csharp
-builder.Services.AddHttpClient<WeatherForecastClient>(client => client.BaseAddress = new Uri("https://www.example.com/base"))
+builder.Services.AddHttpClient<WeatherForecastClient>(
+        client => client.BaseAddress = new Uri("https://www.example.com/base"))
     .AddHttpMessageHandler(sp => sp.GetRequiredService<AuthorizationMessageHandler>()
-    .ConfigureHandler(new [] { "https://www.example.com/base" },
+    .ConfigureHandler(
+        authorizedUrls: new [] { "https://www.example.com/base" },
         scopes: new[] { "example.read", "example.write" }));
 ```
+
+For a Blazor app based on the Blazor WebAssembly Hosted template, <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> can be assigned to:
+
+* The <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType> (`new Uri(builder.HostEnvironment.BaseAddress)`).
+* A URL of the `authorizedUrls` array.
 
 ## Unauthenticated or unauthorized web API requests in an app with a secure default client
 
@@ -239,8 +257,10 @@ If the Blazor WebAssembly app ordinarily uses a secure default <xref:System.Net.
 
 ```csharp
 builder.Services.AddHttpClient("ServerAPI.NoAuthenticationClient", 
-    client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress));
+    client => client.BaseAddress = new Uri("https://www.example.com/base"));
 ```
+
+For a Blazor app based on the Blazor WebAssembly Hosted template, <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> (`new Uri(builder.HostEnvironment.BaseAddress)`) can be assigned to the <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType>.
 
 The preceding registration is in addition to the existing secure default <xref:System.Net.Http.HttpClient> registration.
 
@@ -321,7 +341,7 @@ if (tokenResult.TryGetToken(out var token))
 
 ## HttpClient and HttpRequestMessage with Fetch API request options
 
-When running on WebAssembly in a Blazor WebAssembly app, [`HttpClient`](xref:fundamentals/http-requests) and <xref:System.Net.Http.HttpRequestMessage> can be used to customize requests. For example, you can specify the HTTP method and request headers. The following component makes a `POST` request to a To Do List API endpoint on the server and shows the response body:
+When running on WebAssembly in a Blazor WebAssembly app, [`HttpClient`](xref:fundamentals/http-requests) ([API documentation](xref:System.Net.Http.HttpClient)) and <xref:System.Net.Http.HttpRequestMessage> can be used to customize requests. For example, you can specify the HTTP method and request headers. The following component makes a `POST` request to a To Do List API endpoint on the server and shows the response body:
 
 ```razor
 @page "/todorequest"
@@ -338,10 +358,10 @@ When running on WebAssembly in a Blazor WebAssembly app, [`HttpClient`](xref:fun
 
 <p>Response body returned by the server:</p>
 
-<p>@_responseBody</p>
+<p>@responseBody</p>
 
 @code {
-    private string _responseBody;
+    private string responseBody;
 
     private async Task PostRequest()
     {
@@ -370,7 +390,7 @@ When running on WebAssembly in a Blazor WebAssembly app, [`HttpClient`](xref:fun
             var response = await Http.SendAsync(requestMessage);
             var responseStatusCode = response.StatusCode;
 
-            _responseBody = await response.Content.ReadAsStringAsync();
+            responseBody = await response.Content.ReadAsStringAsync();
         }
     }
 
@@ -405,6 +425,8 @@ requestMessage.SetBrowserRequestCredentials(BrowserRequestCredentials.Include);
 ```
 
 For more information on Fetch API options, see [MDN web docs: WindowOrWorkerGlobalScope.fetch():Parameters](https://developer.mozilla.org/docs/Web/API/WindowOrWorkerGlobalScope/fetch#Parameters).
+
+## Cross-origin resource sharing (CORS)
 
 When sending credentials (authorization cookies/headers) on CORS requests, the `Authorization` header must be allowed by the CORS policy.
 

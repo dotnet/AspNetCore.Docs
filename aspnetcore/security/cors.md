@@ -783,7 +783,7 @@ For instance, consider an app configured as follows:
 app.UseCors(policy => policy.WithHeaders(HeaderNames.CacheControl));
 ```
 
-CORS Middleware responds successfully to a preflight request with the following request header because `Content-Language` is always whitelisted:
+CORS Middleware responds successfully to a preflight request with the following request header because `Content-Language` is always permitted:
 
 ```
 Access-Control-Request-Headers: Cache-Control, Content-Language

@@ -5,7 +5,7 @@ description: Learn about the tooling available to build Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/02/2020
+ms.date: 07/06/2020
 no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/tooling
 zone_pivot_groups: operating-systems-set-one
@@ -42,9 +42,7 @@ By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.
 
 1. Install the latest version of [Visual Studio Code](https://code.visualstudio.com/).
 
-1. Install the latest [C# for Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) and the [JavaScript Debugger (Nightly)](https://marketplace.visualstudio.com/items?itemName=ms-vscode.js-debug-nightly) extension with `debug.javascript.usePreview` set to `true`.
-
-   To set `debug.javascript.usePreview` to `true` using the VS Code UI, open **File** > **Preferences** > **Settings** and search for `debug javascript use preview`. Select the check box for **Use the new in-preview JavaScript debugger for Node.js and Chrome**.
+1. Install the latest [C# for Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp).
 
 1. For a Blazor WebAssembly experience, execute the following command in a command shell:
 
