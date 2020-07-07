@@ -5,7 +5,7 @@ description: Learn how to route requests in apps and about the NavLink component
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/01/2020
+ms.date: 07/07/2020
 no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/fundamentals/routing
 ---
@@ -22,6 +22,8 @@ Blazor Server is integrated into [ASP.NET Core Endpoint Routing](xref:fundamenta
 [!code-csharp[](routing/samples_snapshot/3.x/Startup.cs?highlight=5)]
 
 The most typical configuration is to route all requests to a Razor page, which acts as the host for the server-side part of the Blazor Server app. By convention, the *host* page is usually named `_Host.cshtml`. The route specified in the host file is called a *fallback route* because it operates with a low priority in route matching. The fallback route is considered when other routes don't match. This allows the app to use others controllers and pages without interfering with the Blazor Server app.
+
+For information on configuring <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> for non-root URL hosting, see the [Non-root URL server hosting with Blazor Server apps](#non-root-url-server-hosting-with-blazor-server-apps) section.
 
 ## Route templates
 
@@ -249,3 +251,33 @@ public void Dispose()
 * <xref:Microsoft.AspNetCore.Components.Routing.LocationChangedEventArgs.IsNavigationIntercepted>: If `true`, Blazor intercepted the navigation from the browser. If `false`, <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A?displayProperty=nameWithType> caused the navigation to occur.
 
 For more information on component disposal, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable>.
+
+## Non-root URL server hosting with Blazor Server apps
+
+When a Blazor Server app is hosted on the server at a non-root URL, pass the following path to <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A>:
+
+```csharp
+endpoints.MapFallbackToPage("/{RELATIVE PATH}/{**path:nonfile}");
+```
+
+The placeholder `{RELATIVE PATH}` is the non-root path on the server. For example, `spa` is the placeholder segment if the non-root URL to the app is `https://{HOST}:{PORT}/spa/`):
+
+```csharp
+endpoints.MapFallbackToPage("/spa/{**path:nonfile}");
+```
+
+Set the [app base path](xref:blazor/host-and-deploy/index#app-base-path). This can be accomplished in a Blazor Server app in either of the following ways:
+
+* Set the `<base>` tag's `href` in the app's `Pages/_Host.cshtml` file. For the preceding example app hosted at `spa/`, the `<base>` tag is:
+
+  ```csthml
+  <base href="/spa/">
+  ```
+
+* Set the app base path using Path Base Middleware by calling <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase*> in the app's request pipeline of `Startup.Configure`:
+
+  ```csharp
+  app.UsePathBase("/spa");
+  ```
+
+For more information on the app base path, see <xref:blazor/host-and-deploy/index#app-base-path>.
