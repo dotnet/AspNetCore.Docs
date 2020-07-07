@@ -5,7 +5,7 @@ description: Learn how to use forms and field validation scenarios in Blazor.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/04/2020
+ms.date: 07/06/2020
 no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/forms-validation
 ---
@@ -289,7 +289,7 @@ The `CustomInputText` component can be used anywhere <xref:Microsoft.AspNetCore.
 }
 ```
 
-## Work with radio buttons
+## Radio buttons
 
 When working with radio buttons in a form, data binding is handled differently than other elements because radio buttons are evaluated as a group. The value of each radio button is fixed, but the value of the radio button group is the value of the selected radio button. The following example shows how to:
 
@@ -377,6 +377,30 @@ The following <xref:Microsoft.AspNetCore.Components.Forms.EditForm> uses the pre
 }
 ```
 
+## Binding `<select>` element options to C# object `null` values
+
+There's no sensible way to represent a `<select>` element option value as a C# object `null` value, because:
+
+* HTML attributes can't have `null` values. The closest equivalent to `null` in HTML is absence of the HTML `value` attribute from the `<option>` element.
+* When selecting an `<option>` with no `value` attribute, the browser treats the value as the *text content* of that `<option>`'s element.
+
+The Blazor framework doesn't attempt to suppress the default behavior because it would involve:
+
+* Creating a chain of special-case workarounds in the framework.
+* Breaking changes to current framework behavior.
+
+::: moniker range=">= aspnetcore-5.0"
+
+The most plausible `null` equivalent in HTML is an *empty string* `value`. The Blazor framework handles `null` to empty string conversions for two-way binding to a `<select>`'s value.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+The Blazor framework doesn't automatically handle `null` to empty string conversions when attempting two-way binding to a `<select>`'s value. For more information, see [Fix binding `<select>` to a null value (dotnet/aspnetcore #23221)](https://github.com/dotnet/aspnetcore/pull/23221).
+
+::: moniker-end
+
 ## Validation support
 
 The <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component attaches validation support using data annotations to the cascaded <xref:Microsoft.AspNetCore.Components.Forms.EditContext>. Enabling support for validation using data annotations requires this explicit gesture. To use a different validation system than data annotations, replace the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> with a custom implementation. The ASP.NET Core implementation is available for inspection in the reference source: [`DataAnnotationsValidator`](https://github.com/dotnet/AspNetCore/blob/master/src/Components/Forms/src/DataAnnotationsValidator.cs)/[`AddDataAnnotationsValidation`](https://github.com/dotnet/AspNetCore/blob/master/src/Components/Forms/src/EditContextDataAnnotationsExtensions.cs). The preceding links to reference source provide code from the repository's `master` branch, which represents the product unit's current development for the next release of ASP.NET Core. To select the branch for a different release, use the GitHub branch selector (for example `release/3.1`).
@@ -408,6 +432,14 @@ The <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessage%601> component
 
 The <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessage%601> and <xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary> components support arbitrary attributes. Any attribute that doesn't match a component parameter is added to the generated `<div>` or `<ul>` element.
 
+Control the style of validation messages in the app's stylesheet (`wwwroot/css/app.css` or `wwwroot/css/site.css`). The default `validation-message` class sets the text color of validation messages to red:
+
+```css
+.validation-message {
+    color: red;
+}
+```
+
 ### Custom validation attributes
 
 To ensure that a validation result is correctly associated with a field when using a [custom validation attribute](xref:mvc/models/validation#custom-attributes), pass the validation context's <xref:System.ComponentModel.DataAnnotations.ValidationContext.MemberName> when creating the <xref:System.ComponentModel.DataAnnotations.ValidationResult>:
@@ -416,7 +448,7 @@ To ensure that a validation result is correctly associated with a field when usi
 using System;
 using System.ComponentModel.DataAnnotations;
 
-private class MyCustomValidator : ValidationAttribute
+private class CustomValidator : ValidationAttribute
 {
     protected override ValidationResult IsValid(object value, 
         ValidationContext validationContext)
@@ -428,6 +460,9 @@ private class MyCustomValidator : ValidationAttribute
     }
 }
 ```
+
+> [!NOTE]
+> <xref:System.ComponentModel.DataAnnotations.ValidationContext.GetService%2A?displayProperty=nameWithType> is `null`. Injecting services for validation in the `IsValid` method isn't supported.
 
 ### Blazor data annotations validation package
 

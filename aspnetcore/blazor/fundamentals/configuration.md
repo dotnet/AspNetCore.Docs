@@ -95,9 +95,12 @@ Inject an <xref:Microsoft.Extensions.Configuration.IConfiguration> instance into
 </ul>
 
 @code {
-    var wheelsSection = Configuration.GetSection("wheels");
-    
-    ...
+    protected override void OnInitialized()
+    {
+        var wheelsSection = Configuration.GetSection("wheels");
+        
+        ...
+    }
 }
 ```
 

@@ -5,7 +5,7 @@ description: Learn about additional scenarios for ASP.NET Core Blazor hosting mo
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/10/2020
+ms.date: 07/07/2020
 no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/fundamentals/additional-scenarios
 ---
@@ -62,6 +62,18 @@ To customize the UI, define an element with an `id` of `components-reconnect-mod
 </div>
 ```
 
+Add the following to the app's stylesheet (`wwwroot/css/app.css` or `wwwroot/css/site.css`):
+
+```css
+#components-reconnect-modal {
+    display: none;
+}
+
+#components-reconnect-modal.components-reconnect-show {
+    display: block;
+}
+```
+
 The following table describes the CSS classes applied to the `components-reconnect-modal` element.
 
 | CSS class                       | Indicates&hellip; |
@@ -92,7 +104,7 @@ Blazor Server apps are set up by default to prerender the UI on the server befor
 * Is prerendered into the page.
 * Is rendered as static HTML on the page or if it includes the necessary information to bootstrap a Blazor app from the user agent.
 
-| <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper.RenderMode> | Description |
+| Render mode | Description |
 | --- | --- |
 | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | Renders the component into static HTML and includes a marker for a Blazor Server app. When the user-agent starts, this marker is used to bootstrap a Blazor app. |
 | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | Renders a marker for a Blazor Server app. Output from the component isn't included. When the user-agent starts, this marker is used to bootstrap a Blazor app. |

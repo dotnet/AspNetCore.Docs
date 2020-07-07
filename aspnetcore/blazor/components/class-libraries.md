@@ -23,8 +23,6 @@ Just as components are regular .NET types, components provided by an RCL are nor
 
 ## Create an RCL
 
-Follow the guidance in the <xref:blazor/get-started> article to configure your environment for Blazor.
-
 # [Visual Studio](#tab/visual-studio)
 
 1. Create a new project.

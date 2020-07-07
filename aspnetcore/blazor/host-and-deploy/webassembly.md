@@ -54,16 +54,16 @@ Blazor relies on the host to the serve the appropriate compressed files. When us
             const originalResponseArray = new Int8Array(originalResponseBuffer);
             const decompressedResponseArray = BrotliDecode(originalResponseArray);
             const contentType = type === 
-	      'dotnetwasm' ? 'application/wasm' : 'application/octet-stream';
+              'dotnetwasm' ? 'application/wasm' : 'application/octet-stream';
             return new Response(decompressedResponseArray, 
-	      { headers: { 'content-type': contentType } });
+              { headers: { 'content-type': contentType } });
           })();
         }
       }
     });
-  </script>
-  ```
-   
+    </script>
+    ```
+ 
 To disable compression, add the `BlazorEnableCompression` MSBuild property to the app's project file and set the value to `false`:
 
 ```xml

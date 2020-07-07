@@ -792,12 +792,12 @@
         },
         {
             "source_path": "aspnetcore/razor-components/get-started.md",
-            "redirect_url": "/aspnet/core/blazor/get-started",
+            "redirect_url": "https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/client-side/spa/blazor/get-started.md",
-            "redirect_url": "/aspnet/core/blazor/get-started",
+            "redirect_url": "https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro",
             "redirect_document_id": false
         },
         {
@@ -872,7 +872,7 @@
         },
         {
             "source_path": "aspnetcore/tutorials/build-your-first-razor-components-app.md",
-            "redirect_url": "/aspnet/core/tutorials/build-your-first-blazor-app",
+            "redirect_url": "/aspnet/core/tutorials/build-a-blazor-app",
             "redirect_document_id": false
         },
         {
@@ -1073,6 +1073,16 @@
         {
             "source_path": "aspnetcore/blazor/dependency-injection.md",
             "redirect_url": "/aspnet/core/blazor/fundamentals/dependency-injection",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/tutorials/build-your-first-blazor-app.md",
+            "redirect_url": "/aspnet/core/tutorials/build-a-blazor-app",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/blazor/get-started.md",
+            "redirect_url": "https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro",
             "redirect_document_id": false
         }
     ]

@@ -79,7 +79,7 @@
               uid: tutorials/first-mvc-app/details
         - name: Blazor
           displayName: tutorial
-          uid: tutorials/first-blazor-app
+          uid: tutorials/build-a-blazor-app
     - name: Web API apps
       items:
         - name: Create a web API
@@ -285,14 +285,14 @@
           uid: blazor/index
         - name: Supported platforms
           uid: blazor/supported-platforms
-        - name: Get started
-          uid: blazor/get-started
+        - name: Tooling
+          uid: blazor/tooling
         - name: Hosting models
           uid: blazor/hosting-models
         - name: Tutorials
           items:
-            - name: Build your first app
-              uid: tutorials/first-blazor-app
+            - name: Build a Blazor todo list app
+              uid: tutorials/build-a-blazor-app
             - name: SignalR with Blazor WebAssembly
               uid: tutorials/signalr-blazor-webassembly
         - name: Templates
@@ -369,6 +369,8 @@
           uid: blazor/call-javascript-from-dotnet
         - name: Call .NET from JavaScript
           uid: blazor/call-dotnet-from-javascript
+        - name: Call a web API from WebAssembly
+          uid: blazor/call-web-api
         - name: Security and Identity
           items:
             - name: Overview
@@ -409,8 +411,6 @@
           uid: blazor/state-management
         - name: Debug WebAssembly
           uid: blazor/debug
-        - name: Call a web API from WebAssembly
-          uid: blazor/call-web-api
         - name: WebAssembly performance
           uid: blazor/webassembly-performance-best-practices
         - name: Progressive Web Applications

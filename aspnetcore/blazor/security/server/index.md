@@ -21,7 +21,7 @@ The Blazor Server project template can be configured for authentication when the
 
 # [Visual Studio](#tab/visual-studio)
 
-Follow the Visual Studio guidance in the <xref:blazor/get-started> article to create a new Blazor Server project with an authentication mechanism.
+Follow the Visual Studio guidance in <xref:blazor/tooling> to create a new Blazor Server project with an authentication mechanism.
 
 After choosing the **Blazor Server App** template in the **Create a new ASP.NET Core Web Application** dialog, select **Change** under **Authentication**.
 
@@ -36,7 +36,7 @@ A dialog opens to offer the same set of authentication mechanisms available for 
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-Follow the Visual Studio Code guidance in the <xref:blazor/get-started> article to create a new Blazor Server project with an authentication mechanism:
+Follow the Visual Studio Code guidance in <xref:blazor/tooling> to create a new Blazor Server project with an authentication mechanism:
 
 ```dotnetcli
 dotnet new blazorserver -o {APP NAME} -au {AUTHENTICATION}
@@ -62,7 +62,7 @@ For more information, see the [`dotnet new`](/dotnet/core/tools/dotnet-new) comm
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-1. Follow the Visual Studio for Mac guidance in the <xref:blazor/get-started> article.
+1. Follow the Visual Studio for Mac guidance in <xref:blazor/tooling>.
 
 1. On the **Configure your new Blazor Server App** step, select **Individual Authentication (in-app)** from the **Authentication** drop down.
 
@@ -70,7 +70,7 @@ For more information, see the [`dotnet new`](/dotnet/core/tools/dotnet-new) comm
 
 # [.NET Core CLI](#tab/netcore-cli/)
 
-Follow the .NET Core CLI guidance in the <xref:blazor/get-started> article to create a new Blazor Server project with an authentication mechanism:
+Create a new Blazor Server project with an authentication mechanism using the following command in a command shell:
 
 ```dotnetcli
 dotnet new blazorserver -o {APP NAME} -au {AUTHENTICATION}

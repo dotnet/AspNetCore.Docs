@@ -312,7 +312,7 @@ The middleware supports the following IIS URL Rewrite Module server variables:
 
 Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.Add*> to implement your own rule logic in a method. `Add` exposes the <xref:Microsoft.AspNetCore.Rewrite.RewriteContext>, which makes available the <xref:Microsoft.AspNetCore.Http.HttpContext> for use in your method. The [RewriteContext.Result](xref:Microsoft.AspNetCore.Rewrite.RewriteContext.Result*) determines how additional pipeline processing is handled. Set the value to one of the <xref:Microsoft.AspNetCore.Rewrite.RuleResult> fields described in the following table.
 
-| `RewriteContext.Result`              | Action                                                           |
+| Rewrite context result               | Action                                                           |
 | ------------------------------------ | ---------------------------------------------------------------- |
 | `RuleResult.ContinueRules` (default) | Continue applying rules.                                         |
 | `RuleResult.EndResponse`             | Stop applying rules and send the response.                       |
@@ -666,7 +666,7 @@ The middleware supports the following IIS URL Rewrite Module server variables:
 
 Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.Add*> to implement your own rule logic in a method. `Add` exposes the <xref:Microsoft.AspNetCore.Rewrite.RewriteContext>, which makes available the <xref:Microsoft.AspNetCore.Http.HttpContext> for use in your method. The [RewriteContext.Result](xref:Microsoft.AspNetCore.Rewrite.RewriteContext.Result*) determines how additional pipeline processing is handled. Set the value to one of the <xref:Microsoft.AspNetCore.Rewrite.RuleResult> fields described in the following table.
 
-| `RewriteContext.Result`              | Action                                                           |
+| Rewrite context result               | Action                                                           |
 | ------------------------------------ | ---------------------------------------------------------------- |
 | `RuleResult.ContinueRules` (default) | Continue applying rules.                                         |
 | `RuleResult.EndResponse`             | Stop applying rules and send the response.                       |
