@@ -41,9 +41,15 @@ The following recommendations are designed to provide a consistent approach to u
     {
         return;
     }
-    Loading = true;
-    // operations go here
-    Loading = false;
+    try 
+    {
+        Loading = true;
+        // operations go here
+    }
+    finally 
+    {
+        Loading = false;
+    }
     ```
 * For longer-lived operations that take advantage of EF Core's [change tracking](https://docs.microsoft.com/ef/core/querying/tracking) and/or [concurrency control](https://docs.microsoft.com/ef/core/saving/concurrency), scope the context to the lifetime of the component.
 
@@ -79,13 +85,13 @@ The second approach is to use the factory to create a context and track it for t
 
 [!code-razor[](./common/samples/3.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/EditContact.razor?range=5-7)]
 
-The sample app includes a helper method for disposal of the current context and ensures it is disposed when the component is:
+The sample app ensures the contact is disposed when the component is:
 
-[!code-csharp[](./common/samples/3.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/EditContact.razor?range=172-191)]
+[!code-csharp[](./common/samples/3.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/EditContact.razor?range=181-184)]
 
-Finally, `OnInitializedAsync` is overridden to create a new context. In the sample app, it loads the contact in the same method. The `DisposeContext` call ensures any previous context is disposed when the component is reused.
+Finally, `OnInitializedAsync` is overridden to create a new context. In the sample app, it loads the contact in the same method.
 
-[!code-csharp[](./common/samples/3.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/EditContact.razor?range=85-98)]
+[!code-csharp[](./common/samples/3.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/EditContact.razor?range=89-104)]
 
 ## The sample app
 

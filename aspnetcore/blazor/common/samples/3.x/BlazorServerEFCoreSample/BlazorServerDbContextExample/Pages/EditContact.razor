@@ -89,11 +89,17 @@ else
     protected override async Task OnInitializedAsync()
     {
         Busy = true; // start async
-        DisposeContext(); // get rid of previous if forced nav
-        Context = DbFactory.CreateDbContext();
-        Contact = await Context.Contacts
-            .SingleOrDefaultAsync(c => c.Id == ContactId);
-        Busy = false; // end async
+        try
+        {
+            Context = DbFactory.CreateDbContext();
+            Contact = await Context.Contacts
+                .SingleOrDefaultAsync(c => c.Id == ContactId);
+            // additional error handling can go in a catch block below
+        }
+        finally
+        {
+            Busy = false; // end async
+        }
         await base.OnInitializedAsync();
     }
 
@@ -170,23 +176,10 @@ else
     }
 
     /// <summary>
-    /// Handles disposing the <see cref="ContactContext"/> and setting
-    /// it to <see langword="null"/>.
-    /// </summary>
-    private void DisposeContext()
-    {
-        if (Context != null)
-        {
-            Context.Dispose();
-            Context = null;
-        }
-    }
-
-    /// <summary>
     /// Implement <see cref="IDisposable"/>.
     /// </summary>
     public void Dispose()
     {
-        DisposeContext();
+        Context.Dispose();
     }
 }
