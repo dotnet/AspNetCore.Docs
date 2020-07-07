@@ -5,7 +5,7 @@ description: Learn about additional scenarios for ASP.NET Core Blazor hosting mo
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/10/2020
+ms.date: 07/07/2020
 no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/fundamentals/additional-scenarios
 ---
@@ -60,6 +60,18 @@ To customize the UI, define an element with an `id` of `components-reconnect-mod
 <div id="components-reconnect-modal">
     ...
 </div>
+```
+
+Add the following to the app's stylesheet (`wwwroot/css/app.css` or `wwwroot/css/site.css`):
+
+```css
+#components-reconnect-modal {
+    display: none;
+}
+
+#components-reconnect-modal.components-reconnect-show {
+    display: block;
+}
 ```
 
 The following table describes the CSS classes applied to the `components-reconnect-modal` element.
