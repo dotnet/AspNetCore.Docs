@@ -5,7 +5,7 @@ description: Learn how to invoke .NET methods from JavaScript functions in Blazo
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/19/2020
+ms.date: 07/07/2020
 no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/call-dotnet-from-javascript
 ---
@@ -74,13 +74,15 @@ In the client-side JavaScript file:
 
 ```javascript
 returnArrayAsyncJs: function () {
-  DotNet.invokeMethodAsync('BlazorSample', 'DifferentMethodName')
+  DotNet.invokeMethodAsync('{APP ASSEMBLY}', 'DifferentMethodName')
     .then(data => {
       data.push(4);
       console.log(data);
     });
 }
 ```
+
+The placeholder `{APP ASSEMBLY}` is the app's app assembly name (for example, `BlazorSample`).
 
 ## Instance method call
 
@@ -169,7 +171,7 @@ To avoid a memory leak and allow garbage collection on a component that creates 
 
   ```razor
   @page "/JSInteropComponent"
-  @using BlazorSample.JsInteropClasses
+  @using {APP ASSEMBLY}.JsInteropClasses
   @implements IDisposable
   @inject IJSRuntime JSRuntime
 
@@ -197,12 +199,14 @@ To avoid a memory leak and allow garbage collection on a component that creates 
       }
   }
   ```
+  
+  The placeholder `{APP ASSEMBLY}` is the app's app assembly name (for example, `BlazorSample`).
 
 * When the component or class doesn't dispose of the <xref:Microsoft.JSInterop.DotNetObjectReference>, dispose of the object on the client by calling `.dispose()`:
 
   ```javascript
   window.myFunction = (dotnetHelper) => {
-    dotnetHelper.invokeMethod('BlazorSample', 'MyMethod');
+    dotnetHelper.invokeMethod('{APP ASSEMBLY}', 'MyMethod');
     dotnetHelper.dispose();
   }
   ```
@@ -218,9 +222,11 @@ In the client-side JavaScript:
 
 ```javascript
 function updateMessageCallerJS() {
-  DotNet.invokeMethod('BlazorSample', 'UpdateMessageCaller');
+  DotNet.invokeMethod('{APP ASSEMBLY}', 'UpdateMessageCaller');
 }
 ```
+
+The placeholder `{APP ASSEMBLY}` is the app's app assembly name (for example, `BlazorSample`).
 
 `Pages/JSInteropComponent.razor`:
 
@@ -281,7 +287,7 @@ public class MessageUpdateInvokeHelper
         action = action;
     }
 
-    [JSInvokable("BlazorSample")]
+    [JSInvokable("{APP ASSEMBLY}")]
     public void UpdateMessageCaller()
     {
         action.Invoke();
@@ -289,11 +295,13 @@ public class MessageUpdateInvokeHelper
 }
 ```
 
+The placeholder `{APP ASSEMBLY}` is the app's app assembly name (for example, `BlazorSample`).
+
 In the client-side JavaScript:
 
 ```javascript
 window.updateMessageCallerJS = (dotnetHelper) => {
-    dotnetHelper.invokeMethod('BlazorSample', 'UpdateMessageCaller');
+    dotnetHelper.invokeMethod('{APP ASSEMBLY}', 'UpdateMessageCaller');
     dotnetHelper.dispose();
 }
 ```
