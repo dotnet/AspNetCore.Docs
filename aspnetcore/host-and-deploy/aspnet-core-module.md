@@ -23,7 +23,7 @@ The ASP.NET Core Module is a native IIS module that plugs into the IIS pipeline 
 Supported Windows versions:
 
 * Windows 7 or later
-* Windows Server 2008 R2 or later
+* Windows Server 2012 R2 or later
 
 When hosting in-process, the module uses an in-process server implementation for IIS, called IIS HTTP Server (`IISHttpServer`).
 
