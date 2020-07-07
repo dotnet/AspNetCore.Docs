@@ -68,7 +68,7 @@ For more information on trusting the ASP.NET Core HTTPS development certificate,
 
 ## Trust a development certificate
 
-There's no centralized way of trusting a certificate on Linux. Typically, one of the following approaches is adopted:
+There's no centralized way to trust a certificate on Linux. Typically, one of the following approaches is adopted:
 
 * Exclude the app's URL in browser's exclude list.
 * Trust all self-signed certificates for `localhost`.
