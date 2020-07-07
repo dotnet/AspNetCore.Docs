@@ -5,7 +5,7 @@ description: Discover how to host and deploy Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/19/2020
+ms.date: 07/07/2020
 no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/host-and-deploy/index
 ---
@@ -93,6 +93,8 @@ dotnet run --pathbase=/CoolApp
 ```
 
 The Blazor WebAssembly app responds locally at `http://localhost:port/CoolApp`.
+
+For information on configuring <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> for non-root URL hosting of Blazor Server apps, see <xref:blazor/fundamentals/routing#non-root-url-server-hosting-with-blazor-server-apps>.
 
 ## Deployment
 
