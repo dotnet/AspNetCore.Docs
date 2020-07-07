@@ -5,7 +5,7 @@ description: Learn how to invoke JavaScript functions from .NET methods in Blazo
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/19/2020
+ms.date: 07/07/2020
 no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/call-javascript-from-dotnet
 ---
@@ -104,7 +104,7 @@ The sample app includes a component to demonstrate JS interop. The component:
 
 ```razor
 @page "/JSInterop"
-@using BlazorSample.JsInteropClasses
+@using {APP ASSEMBLY}.JsInteropClasses
 @inject IJSRuntime JSRuntime
 
 <h1>JavaScript Interop</h1>
@@ -130,6 +130,8 @@ The sample app includes a component to demonstrate JS interop. The component:
     }
 }
 ```
+
+The placeholder `{APP ASSEMBLY}` is the app's app assembly name (for example, `BlazorSample`).
 
 1. When `TriggerJsPrompt` is executed by selecting the component's **`Trigger JavaScript Prompt`** button, the JavaScript `showPrompt` function provided in the `wwwroot/exampleJsInterop.js` file is called.
 1. The `showPrompt` function accepts user input (the user's name), which is HTML-encoded and returned to the component. The component stores the user's name in a local variable, `name`.
@@ -278,7 +280,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Components;
 
-namespace BlazorSample.Pages
+namespace {APP ASSEMBLY}.Pages
 {
     public partial class Index : 
         ComponentBase, IObservable<ElementReference>, IDisposable
@@ -355,6 +357,8 @@ namespace BlazorSample.Pages
 }
 ```
 
+The placeholder `{APP ASSEMBLY}` is the app's app assembly name (for example, `BlazorSample`).
+
 `Shared/SurveyPrompt.razor` (child component):
 
 ```razor
@@ -384,7 +388,7 @@ namespace BlazorSample.Pages
 using System;
 using Microsoft.AspNetCore.Components;
 
-namespace BlazorSample.Shared
+namespace {APP ASSEMBLY}.Shared
 {
     public partial class SurveyPrompt : 
         ComponentBase, IObserver<ElementReference>, IDisposable
@@ -429,6 +433,8 @@ namespace BlazorSample.Shared
     }
 }
 ```
+
+The placeholder `{APP ASSEMBLY}` is the app's app assembly name (for example, `BlazorSample`).
 
 ## Harden JS interop calls
 
