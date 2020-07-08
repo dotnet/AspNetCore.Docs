@@ -5,7 +5,7 @@ description:
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/19/2020
+ms.date: 07/08/2020
 no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/security/webassembly/standalone-with-azure-active-directory
 ---
@@ -27,8 +27,8 @@ Register a AAD app in the **Azure Active Directory** > **App registrations** are
 
 Record the following information:
 
-* Application ID (Client ID) (for example, `11111111-1111-1111-1111-111111111111`)
-* Directory ID (Tenant ID) (for example, `22222222-2222-2222-2222-222222222222`)
+* Application (client) ID (for example, `41451fa7-82d9-4673-8fa5-69eff5a761fd`)
+* Directory (tenant) ID (for example, `e86c78e2-8bb4-4c41-aefd-918e0565a45e`)
 
 In **Authentication** > **Platform configurations** > **Web**:
 
@@ -37,13 +37,19 @@ In **Authentication** > **Platform configurations** > **Web**:
 1. The remaining defaults for the app are acceptable for this experience.
 1. Select the **Save** button.
 
-Create the app. Replace the placeholders in the following command with the information recorded earlier and execute the command in a command shell:
+Create the app in an empty folder. Replace the placeholders in the following command with the information recorded earlier and execute the command in a command shell:
 
 ```dotnetcli
-dotnet new blazorwasm -au SingleOrg --client-id "{CLIENT ID}" --tenant-id "{TENANT ID}"
+dotnet new blazorwasm -au SingleOrg --client-id "{CLIENT ID}" -o {APP NAME} --tenant-id "{TENANT ID}"
 ```
 
-To specify the output location, which creates a project folder if it doesn't exist, include the output option in the command with a path (for example, `-o BlazorSample`). The folder name also becomes part of the project's name.
+| Placeholder   | Azure portal name       | Example                                |
+| ------------- | ----------------------- | -------------------------------------- |
+| `{APP NAME}`  | &mdash;                 | `BlazorSample`                         |
+| `{CLIENT ID}` | Application (client) ID | `41451fa7-82d9-4673-8fa5-69eff5a761fd` |
+| `{TENANT ID}` | Directory (tenant) ID   | `e86c78e2-8bb4-4c41-aefd-918e0565a45e` |
+
+The output location specified with the `-o|--output` option creates a project folder if it doesn't exist and becomes part of the app's name.
 
 > [!NOTE]
 > In the Azure portal, the app's **Authentication** > **Platform configurations** > **Web** > **Redirect URI** is configured for port 5001 for apps that run on the Kestrel server with default settings.
