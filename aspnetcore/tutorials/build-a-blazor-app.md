@@ -129,7 +129,7 @@ In this tutorial, you learned how to:
 > * Use event handling and data binding in components
 > * Use dependency injection (DI) and routing in a Blazor app
 
-Learn about the Blazor project templates:
+Learn about tooling for ASP.NET Core Blazor:
 
 > [!div class="nextstepaction"]
-> <xref:blazor/templates>
+> <xref:blazor/tooling>
