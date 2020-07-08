@@ -90,12 +90,7 @@ For more information, see the guidance provided by your browser and Linux distro
 
    For information on the two Blazor hosting models, *Blazor WebAssembly* and *Blazor Server*, see <xref:blazor/hosting-models>.
 
-1. Confirm the following configurations:
-
-   * **Target Framework** set to **.NET Core 3.1**.
-   * **Authentication** set to **No Authentication**.
-   
-   Select **Next**.
+1. Confirm that **Authentication** is set to **No Authentication**. Select **Next**.
 
 1. In the **Project Name** field, name the app `WebApplication1`. Select **Create**.
 

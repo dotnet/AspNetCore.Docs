@@ -301,9 +301,9 @@ Browser security prevents a webpage from making requests to a different domain t
 
 The [Blazor WebAssembly sample app (BlazorWebAssemblySample)](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) demonstrates the use of CORS in the Call Web API component (`Pages/CallWebAPI.razor`).
 
-For more information and code examples of secure requests, see <xref:blazor/security/webassembly/additional-scenarios>. For more information on CORS with secure requests, see the [CORS section](xref:blazor/security/webassembly/additional-scenarios#cross-origin-resource-sharing-cors) of the preceding article.
+For more information on CORS with secure requests in Blazor apps, see <xref:blazor/security/webassembly/additional-scenarios#cross-origin-resource-sharing-cors>.
 
-For more information, see <xref:security/cors>.
+For general information on CORS with ASP.NET Core apps, see <xref:security/cors>.
 
 ## Additional resources
 
