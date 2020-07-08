@@ -43,6 +43,18 @@ The [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.n
   * If the authentication process completes successfully, the user is authenticated and optionally sent back to the original protected URL that the user requested.
   * If the authentication process fails for any reason, the user is sent to the login failed page (`/authentication/login-failed`), and an error is displayed.
 
+## `Authentication` component
+
+The `Authentication` component (`Pages/Authentication.razor`) handles remote authentication operations and permits the app to:
+
+* Configure app routes for authentication states.
+* Set UI content for authentication states.
+* Manage authentication state.
+
+Authentication actions, such as registering or signing in a user, are passed to the Blazor framework's <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticatorViewCore%601> component, which persists and controls state across authentication operations.
+
+For more information and examples, see <xref:blazor/security/webassembly/additional-scenarios>.
+
 ## Authorization
 
 In Blazor WebAssembly apps, authorization checks can be bypassed because all client-side code can be modified by users. The same is true for all client-side app technologies, including JavaScript SPA frameworks or native apps for any operating system.
