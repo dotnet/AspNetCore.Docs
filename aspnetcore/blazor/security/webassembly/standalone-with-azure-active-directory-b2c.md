@@ -5,7 +5,7 @@ description:
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/19/2020
+ms.date: 07/08/2020
 no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/security/webassembly/standalone-with-azure-active-directory-b2c
 ---
@@ -21,8 +21,8 @@ Follow the guidance in the following topics to create a tenant and register a we
 
 Record the following information:
 
-* AAD B2C instance (for example, `https://contoso.b2clogin.com/`, which includes the trailing slash).
-* AAD B2C Tenant domain (for example, `contoso.onmicrosoft.com`).
+* AAD B2C instance (for example, `https://contoso.b2clogin.com/`, which includes the trailing slash): The instance is the scheme and host of an Azure B2C app registration, which can be found by opening the **Endpoints** window from the **App registrations** page in the Azure portal.
+* AAD B2C Primary/Publisher/Tenant domain (for example, `contoso.onmicrosoft.com`): The domain is available as the **Publisher domain** in the **Branding** blade of the Azure portal for the registered app.
 
 Follow the guidance in [Tutorial: Register an application in Azure Active Directory B2C](/azure/active-directory-b2c/tutorial-register-applications) again to register an AAD app for the *Client app* and then do the following:
 
@@ -33,7 +33,7 @@ Follow the guidance in [Tutorial: Register an application in Azure Active Direct
 1. Confirm that **Permissions** > **Grant admin consent to openid and offline_access permissions** is enabled.
 1. Select **Register**.
 
-Record the Application ID (Client ID) (for example, `11111111-1111-1111-1111-111111111111`).
+Record the Application (client) ID (for example, `41451fa7-82d9-4673-8fa5-69eff5a761fd`).
 
 In **Authentication** > **Platform configurations** > **Web**:
 
@@ -50,13 +50,21 @@ At a minimum, select the **Application claims** > **Display Name** user attribut
 
 Record the sign-up and sign-in user flow name created for the app (for example, `B2C_1_signupsignin`).
 
-Replace the placeholders in the following command with the information recorded earlier and execute the command in a command shell:
+In an empty folder, replace the placeholders in the following command with the information recorded earlier and execute the command in a command shell:
 
 ```dotnetcli
-dotnet new blazorwasm -au IndividualB2C --aad-b2c-instance "{AAD B2C INSTANCE}" --client-id "{CLIENT ID}" --domain "{TENANT DOMAIN}" -ssp "{SIGN UP OR SIGN IN POLICY}"
+dotnet new blazorwasm -au IndividualB2C --aad-b2c-instance "{AAD B2C INSTANCE}" --client-id "{CLIENT ID}" --domain "{TENANT DOMAIN}" -o {APP NAME} -ssp "{SIGN UP OR SIGN IN POLICY}"
 ```
 
-To specify the output location, which creates a project folder if it doesn't exist, include the output option in the command with a path (for example, `-o BlazorSample`). The folder name also becomes part of the project's name.
+| Placeholder                   | Azure portal name               | Example                                |
+| ----------------------------- | ------------------------------- | -------------------------------------- |
+| `{AAD B2C INSTANCE}`          | Instance                        | `https://contoso.b2clogin.com/`        |
+| `{APP NAME}`                  | &mdash;                         | `BlazorSample`                         |
+| `{CLIENT ID}`                 | Application (client) ID         | `41451fa7-82d9-4673-8fa5-69eff5a761fd` |
+| `{SIGN UP OR SIGN IN POLICY}` | Sign-up/sign-in user flow       | `B2C_1_signupsignin1`                  |
+| `{TENANT DOMAIN}`             | Primary/Publisher/Tenant domain | `contoso.onmicrosoft.com`              |
+
+The output location specified with the `-o|--output` option creates a project folder if it doesn't exist and becomes part of the app's name.
 
 > [!NOTE]
 > In the Azure portal, the app's **Authentication** > **Platform configurations** > **Web** > **Redirect URI** is configured for port 5001 for apps that run on the Kestrel server with default settings.

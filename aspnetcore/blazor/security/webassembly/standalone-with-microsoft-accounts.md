@@ -5,7 +5,7 @@ description:
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/19/2020
+ms.date: 07/08/2020
 no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/security/webassembly/standalone-with-microsoft-accounts
 ---
@@ -25,7 +25,7 @@ Register a AAD app in the **Azure Active Directory** > **App registrations** are
 1. Disable the **Permissions** > **Grant admin consent to openid and offline_access permissions** check box.
 1. Select **Register**.
 
-Record the Application ID (Client ID) (for example, `11111111-1111-1111-1111-111111111111`).
+Record the Application (client) ID (for example, `41451fa7-82d9-4673-8fa5-69eff5a761fd`).
 
 In **Authentication** > **Platform configurations** > **Web**:
 
@@ -37,10 +37,15 @@ In **Authentication** > **Platform configurations** > **Web**:
 Create the app. Replace the placeholders in the following command with the information recorded earlier and execute the following command in a command shell:
 
 ```dotnetcli
-dotnet new blazorwasm -au SingleOrg --client-id "{CLIENT ID}" --tenant-id "common"
+dotnet new blazorwasm -au SingleOrg --client-id "{CLIENT ID}" --tenant-id "common" -o {APP NAME}
 ```
 
-To specify the output location, which creates a project folder if it doesn't exist, include the output option in the command with a path (for example, `-o BlazorSample`). The folder name also becomes part of the project's name.
+| Placeholder   | Azure portal name       | Example                                |
+| ------------- | ----------------------- | -------------------------------------- |
+| `{APP NAME}`  | &mdash;                 | `BlazorSample`                         |
+| `{CLIENT ID}` | Application (client) ID | `41451fa7-82d9-4673-8fa5-69eff5a761fd` |
+
+The output location specified with the `-o|--output` option creates a project folder if it doesn't exist and becomes part of the app's name.
 
 > [!NOTE]
 > In the Azure portal, the app's **Authentication** > **Platform configurations** > **Web** > **Redirect URI** is configured for port 5001 for apps that run on the Kestrel server with default settings.

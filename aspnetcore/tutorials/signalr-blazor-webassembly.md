@@ -91,14 +91,7 @@ Follow the guidance for your choice of tooling:
 
 1. Choose the **Blazor WebAssembly App** template. Select **Next**.
 
-   Confirm the following configurations:
-
-   * **Target Framework** set to **.NET Core 3.1**.
-   * **Authentication** set to **No Authentication**.
-
-   Select the **ASP.NET Core Hosted** check box.
-
-   Select **Next**.
+1. Confirm that **Authentication** is set to **No Authentication**. Select the **ASP.NET Core Hosted** check box. Select **Next**.
 
 1. In the **Project Name** field, name the app `BlazorSignalRApp`. Select **Create**.
 
