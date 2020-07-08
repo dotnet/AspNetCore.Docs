@@ -107,7 +107,7 @@ dotnet new blazorwasm -au IndividualB2C --aad-b2c-instance "{AAD B2C INSTANCE}" 
 | `{APP NAME}`                  | &mdash;                                               | `BlazorSample`                         |
 | `{CLIENT APP CLIENT ID}`      | Application (client) ID for the *Client app*          | `4369008b-21fa-427c-abaa-9b53bf58e538` |
 | `{DEFAULT SCOPE}`             | Scope name                                            | `API.Access`                           |
-| `{SERVER API APP CLIENT ID}`  | Application (client) ID for the *Server app*          | `41451fa7-82d9-4673-8fa5-69eff5a761fd` |
+| `{SERVER API APP CLIENT ID}`  | Application (client) ID for the *Server API app*      | `41451fa7-82d9-4673-8fa5-69eff5a761fd` |
 | `{SERVER API APP ID URI}`     | Application ID URI ([see note](#access-token-scopes)) | `41451fa7-82d9-4673-8fa5-69eff5a761fd` |
 | `{SIGN UP OR SIGN IN POLICY}` | Sign-up/sign-in user flow                             | `B2C_1_signupsignin1`                  |
 | `{TENANT DOMAIN}`             | Primary/Publisher/Tenant domain                       | `contoso.onmicrosoft.com`              |
@@ -122,7 +122,7 @@ The output location specified with the `-o|--output` option creates a project fo
 > [!NOTE]
 > In the Azure portal, the *Client app's* **Authentication** > **Platform configurations** > **Web** > **Redirect URI** is configured for port 5001 for apps that run on the Kestrel server with default settings.
 >
-> If the *Client app* is run on a random IIS Express port, the port for the app can be found in the *Server app's* properties in the **Debug** panel.
+> If the *Client app* is run on a random IIS Express port, the port for the app can be found in the *Server API app's* properties in the **Debug** panel.
 >
 > If the port wasn't configured earlier with the *Client app's* known port, return to the *Client app's* registration in the Azure portal and update the redirect URI with the correct port.
 
