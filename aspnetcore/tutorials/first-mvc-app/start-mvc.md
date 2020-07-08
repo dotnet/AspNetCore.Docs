@@ -93,12 +93,7 @@ The tutorial assumes familarity with VS Code. See [Getting started with VS Code]
 
   ![macOS web app template selection](start-mvc/_static/web_app_template_vsmac.png)
 
-* Confirm the following configurations:
-
-  * **Target Framework** set to **.NET Core 3.1**.
-  * **Authentication** set to **No Authentication**.
-   
-  Select **Next**.
+* Confirm that **Authentication** is set to **No Authentication**. Select **Next**.
 
   ![macOS .NET Core 3.1 selection](start-mvc/_static/new_project_31_vsmac.png)
 

@@ -96,12 +96,7 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 
   ![macOS web app template selection](razor-pages-start/_static/web_app_template_vsmac.png)
 
-* Confirm the following configurations:
-
-  * **Target Framework** set to **.NET Core 3.1**.
-  * **Authentication** set to **No Authentication**.
-   
-  Select **Next**.
+* Confirm that **Authentication** is set to **No Authentication**. Select **Next**.
 
   ![macOS .NET Core 3.1 selection](razor-pages-start/_static/targetframework3.png)
 
