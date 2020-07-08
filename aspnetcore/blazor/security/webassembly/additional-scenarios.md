@@ -1011,7 +1011,10 @@ The list of claims in the ID token changes for v2.0 endpoints. For more informat
 
 ## Configure and use gRPC in components
 
-To configure a Blazor WebAssembly app to use the [ASP.NET Core gRPC framework](xref:grpc/index), register gRPC services for the app's message handler. The following example configures the app's authorization message handler to use the [`GreeterClient` service from the gRPC tutorial](xref:tutorials/grpc/grpc-start#create-a-grpc-service) (`Program.Main`):
+To configure a Blazor WebAssembly app to use the [ASP.NET Core gRPC framework](xref:grpc/index):
+
+* Enable gRPC-Web on the server. For more information, see <xref:grpc/browser>.
+* Register gRPC services for the app's message handler. The following example configures the app's authorization message handler to use the [`GreeterClient` service from the gRPC tutorial](xref:tutorials/grpc/grpc-start#create-a-grpc-service) (`Program.Main`):
 
 ```csharp
 using System.Net.Http;
@@ -1062,13 +1065,20 @@ Server response: <strong>@serverResponse</strong>
 
     private async Task GetGreeting()
     {
-        var request = new HelloRequest { Name = name };
-        var reply = await GreeterClient.SayHelloAsync(request);
-        serverResponse = reply.Message;
+        try
+        {
+            var request = new HelloRequest { Name = name };
+            var reply = await GreeterClient.SayHelloAsync(request);
+            serverResponse = reply.Message;
+        }
+        catch (RpcException ex)
+        {
+            // ex.Status.DebugException
+        }
     }
 }
 ```
 
 The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `BlazorSample`).
 
-For more information, see the [ASP.NET Core gRPC articles](xref:grpc/index).
+For more information, see <xref:grpc/browser>.
