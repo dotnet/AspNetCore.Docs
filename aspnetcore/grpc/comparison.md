@@ -91,7 +91,7 @@ It's impossible to directly call a gRPC service from a browser today. gRPC heavi
 Not all of gRPC's features are supported by gRPC-Web. Client and bi-directional streaming isn't supported, and there is limited support for server streaming.
 
 > [!TIP]
-> .NET Core has experimental support for gRPC-Web. Visit <xref:grpc/browser> for more information.
+> .NET Core has support for gRPC-Web. Visit <xref:grpc/browser> for more information.
 
 ### Not human readable
 
