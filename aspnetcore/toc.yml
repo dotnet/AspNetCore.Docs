@@ -320,31 +320,31 @@
             - name: Built-in components
               items:
                 - name: App
-                  uid: blazor/templates#blazor-project-structure
+                  uid: blazor/templates.md#blazor-project-structure
                 - name: Authentication
-                  uid: blazor/security/webassembly/index#authentication-component
+                  uid: blazor/security/webassembly/index.md#authentication-component
                 - name: AuthorizeView
-                  uid: blazor/security/index#authorizeview-component
+                  uid: blazor/security/index.md#authorizeview-component
                 - name: InputCheckbox
-                  uid: blazor/forms-validation#built-in-forms-components
+                  uid: blazor/forms-validation.md#built-in-forms-components
                 - name: InputDate
-                  uid: blazor/forms-validation#built-in-forms-components
+                  uid: blazor/forms-validation.md#built-in-forms-components
                 - name: InputNumber
-                  uid: blazor/forms-validation#built-in-forms-components
+                  uid: blazor/forms-validation.md#built-in-forms-components
                 - name: InputSelect
-                  uid: blazor/forms-validation#built-in-forms-components
+                  uid: blazor/forms-validation.md#built-in-forms-components
                 - name: InputText
-                  uid: blazor/forms-validation#built-in-forms-components
+                  uid: blazor/forms-validation.md#built-in-forms-components
                 - name: InputTextArea
-                  uid: blazor/forms-validation#built-in-forms-components
+                  uid: blazor/forms-validation.md#built-in-forms-components
                 - name: MainLayout
-                  uid: blazor/layouts#mainlayout-component
+                  uid: blazor/layouts.md#mainlayout-component
                 - name: NavLink
-                  uid: blazor/fundamentals/routing#navlink-component
+                  uid: blazor/fundamentals/routing.md#navlink-component
                 - name: NavMenu
-                  uid: blazor/fundamentals/routing#navlink-component
+                  uid: blazor/fundamentals/routing.md#navlink-component
                 - name: Router
-                  uid: blazor/fundamentals/routing#route-templates
+                  uid: blazor/fundamentals/routing.md#route-templates
             - name: Cascading values and parameters
               uid: blazor/components/cascading-values-and-parameters
             - name: Data binding
