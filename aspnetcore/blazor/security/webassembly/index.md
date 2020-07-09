@@ -61,6 +61,13 @@ In Blazor WebAssembly apps, authorization checks can be bypassed because all cli
 
 **Always perform authorization checks on the server within any API endpoints accessed by your client-side app.**
 
+## Require authorization for the entire app
+
+Apply the [`[Authorize]` attribute](xref:blazor/security/index#authorize-attribute) ([API documentation](xref:System.Web.Mvc.AuthorizeAttribute)) to each Razor component in the `Pages` folder of the app.
+
+> [!NOTE]
+> Setting an <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy?displayProperty=nameWithType> to a policy with <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAuthenticatedUser%2A> or attempting to apply an <xref:System.Web.Mvc.AuthorizeAttribute> to all Razor components in the `_Imports.razor` file are **not** supported.
+
 ## Refresh tokens
 
 Refresh tokens can't be secured client-side in Blazor WebAssembly apps. Therefore, refresh tokens shouldn't be sent to the app for direct use.
