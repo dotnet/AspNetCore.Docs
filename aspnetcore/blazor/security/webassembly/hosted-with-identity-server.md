@@ -5,7 +5,7 @@ description: To create a new Blazor hosted app with authentication from within V
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/08/2020
+ms.date: 07/09/2020
 no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/security/webassembly/hosted-with-identity-server
 ---
@@ -135,7 +135,7 @@ To gain full control of the database schema, inherit from one of the available I
 
 In the `OidcConfigurationController` (`Controllers/OidcConfigurationController.cs`), the client endpoint is provisioned to serve OIDC parameters.
 
-### App settings files
+### App settings
 
 In the app settings file (`appsettings.json`) at the project root, the `IdentityServer` section describes the list of configured clients. In the following example, there's a single client. The client name corresponds to the app name and is mapped by convention to the OAuth `ClientId` parameter. The profile indicates the app type being configured. The profile is used internally to drive conventions that simplify the configuration process for the server. <!-- There are several profiles available, as explained in the [Application profiles](#application-profiles) section. -->
 
@@ -164,6 +164,22 @@ If adding authentication to an app, manually add the package to the app's projec
   Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" 
   Version="3.2.0" />
 ```
+
+### `HttpClient` configuration
+
+In `Program.Main` (`Program.cs`), a named <xref:System.Net.Http.HttpClient> (`HostIS.ServerAPI`) is configured to supply <xref:System.Net.Http.HttpClient> instances that include access tokens when making requests to the server API:
+
+```csharp
+builder.Services.AddHttpClient("HostIS.ServerAPI", 
+        client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))
+    .AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
+
+builder.Services.AddTransient(sp => sp.GetRequiredService<IHttpClientFactory>()
+    .CreateClient("HostIS.ServerAPI"));
+```
+
+> [!NOTE]
+> If you're configuring a Blazor WebAssembly app to use an existing Identity Server instance that isn't part of a Blazor Hosted solution, change the <xref:System.Net.Http.HttpClient> base address registration from <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> (`builder.HostEnvironment.BaseAddress`) to the server app's API authorization endpoint URL.
 
 ### API authorization support
 
