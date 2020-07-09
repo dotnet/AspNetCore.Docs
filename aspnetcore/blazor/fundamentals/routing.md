@@ -186,6 +186,9 @@ The following HTML markup is rendered:
 <a href="my-page" target="_blank">My page</a>
 ```
 
+> [!NOTE]
+> Rendering NavLink elements inside a `for` loop requires a local index be instantiated. Alternatively, a `foreach` loop can be used with `Enumerable.Range()`. For more information, see [@for loop increment the counter in-loop (dotnet/aspnetcore #16809)](https://github.com/dotnet/aspnetcore/issues/16809#issuecomment-549484265)
+
 ## URI and navigation state helpers
 
 Use <xref:Microsoft.AspNetCore.Components.NavigationManager> to work with URIs and navigation in C# code. <xref:Microsoft.AspNetCore.Components.NavigationManager> provides the event and methods shown in the following table.
