@@ -123,13 +123,6 @@ gRPC code generation of concrete clients and service base classes requires proto
 
 For more information on generating gRPC C# assets, see <xref:grpc/basics>.
 
-By default, a `<Protobuf>` reference generates a concrete client and a service base class. The reference element's `GrpcServices` attribute can be used to limit C# asset generation. Valid `GrpcServices` options are:
-
-* `Both` (default when not present)
-* `Server`
-* `Client`
-* `None`
-
 An ASP.NET Core web app hosting gRPC services only needs the service base class generated:
 
 ```xml
