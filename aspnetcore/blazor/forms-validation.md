@@ -60,6 +60,8 @@ In the preceding example:
 * The <xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary> component summarizes validation messages.
 * `HandleValidSubmit` is triggered when the form successfully submits (passes validation).
 
+## Built-in forms components
+
 A set of built-in input components are available to receive and validate user input. Inputs are validated when they're changed and when a form is submitted. Available input components are shown in the following table.
 
 | Input component | Rendered as&hellip; |
