@@ -234,7 +234,7 @@ The markup is much cleaner and easier to read, edit, and maintain than the HTML 
 
 Consider the *Email* group:
 
-[!code-csharp[](intro/sample/Register.cshtml?range=12-18)]
+[!code-cshtml[](intro/sample/Register.cshtml?range=12-18)]
 
 Each of the "asp-" attributes has a value of "Email", but "Email" isn't a string. In this context, "Email" is the C# model expression property for the `RegisterViewModel`.
 

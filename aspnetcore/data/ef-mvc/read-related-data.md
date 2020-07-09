@@ -71,7 +71,7 @@ Replace the `Index` method with the following code that uses a more appropriate 
 
 Open *Views/Courses/Index.cshtml* and replace the template code with the following code. The changes are highlighted:
 
-[!code-html[](intro/samples/cu/Views/Courses/Index.cshtml?highlight=4,7,15-17,34-36,44)]
+[!code-cshtml[](intro/samples/cu/Views/Courses/Index.cshtml?highlight=4,7,15-17,34-36,44)]
 
 You've made the following changes to the scaffolded code:
 
@@ -167,7 +167,7 @@ Next, if a course was selected, the selected course is retrieved from the list o
 
 In *Views/Instructors/Index.cshtml*, replace the template code with the following code. The changes are highlighted.
 
-[!code-html[](intro/samples/cu/Views/Instructors/Index1.cshtml?range=1-64&highlight=1,3-7,15-19,24,26-31,41-54,56)]
+[!code-cshtml[](intro/samples/cu/Views/Instructors/Index1.cshtml?range=1-64&highlight=1,3-7,15-19,24,26-31,41-54,56)]
 
 You've made the following changes to the existing code:
 
@@ -209,7 +209,7 @@ Run the app and select the **Instructors** tab. The page displays the Location p
 
 In the *Views/Instructors/Index.cshtml* file, after the closing table element (at the end of the file), add the following code. This code displays a list of courses related to an instructor when an instructor is selected.
 
-[!code-html[](intro/samples/cu/Views/Instructors/Index1.cshtml?range=66-101)]
+[!code-cshtml[](intro/samples/cu/Views/Instructors/Index1.cshtml?range=66-101)]
 
 This code reads the `Courses` property of the view model to display a list of courses. It also provides a **Select** hyperlink that sends the ID of the selected course to the `Index` action method.
 
@@ -219,7 +219,7 @@ Refresh the page and select an instructor. Now you see a grid that displays cour
 
 After the code block you just added, add the following code. This displays a list of the students who are enrolled in a course when that course is selected.
 
-[!code-html[](intro/samples/cu/Views/Instructors/Index1.cshtml?range=103-125)]
+[!code-cshtml[](intro/samples/cu/Views/Instructors/Index1.cshtml?range=103-125)]
 
 This code reads the Enrollments property of the view model in order to display a list of students enrolled in the course.
 

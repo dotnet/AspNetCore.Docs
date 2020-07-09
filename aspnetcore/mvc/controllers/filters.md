@@ -110,7 +110,7 @@ The following code implements an `ActionFilterAttribute` that:
 
 The configuration options are provided from the [configuration system](xref:fundamentals/configuration/index) using the [options pattern](xref:fundamentals/configuration/options). For example, from the *appsettings.json* file:
 
-[!code-csharp[](filters/3.1sample/FiltersSample/appsettings.json)]
+[!code-json[](filters/3.1sample/FiltersSample/appsettings.json)]
 
 In the `StartUp.ConfigureServices`:
 

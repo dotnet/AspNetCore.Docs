@@ -32,7 +32,7 @@ The [Form](https://www.w3.org/TR/html401/interact/forms.html) Tag Helper:
 
 Sample:
 
-[!code-HTML[](working-with-forms/sample/final/Views/Demo/RegisterFormOnly.cshtml)]
+[!code-cshtml[](working-with-forms/sample/final/Views/Demo/RegisterFormOnly.cshtml)]
 
 The Form Tag Helper above generates the following HTML:
 
@@ -49,7 +49,7 @@ The MVC runtime generates the `action` attribute value from the Form Tag Helper 
 
 The `asp-route` Tag Helper attribute can also generate markup for the HTML `action` attribute. An app with a [route](../../fundamentals/routing.md)  named `register` could use the following markup for the registration page:
 
-[!code-HTML[](../../mvc/views/working-with-forms/sample/final/Views/Demo/RegisterRoute.cshtml)]
+[!code-cshtml[](../../mvc/views/working-with-forms/sample/final/Views/Demo/RegisterRoute.cshtml)]
 
 Many of the views in the *Views/Account* folder (generated when you create a new web app with *Individual User Accounts*) contain the [asp-route-returnurl](xref:mvc/views/working-with-forms) attribute:
 
@@ -216,7 +216,7 @@ Sample:
 
 [!code-csharp[](working-with-forms/sample/final/ViewModels/RegisterViewModel.cs)]
 
-[!code-HTML[](working-with-forms/sample/final/Views/Demo/RegisterInput.cshtml)]
+[!code-cshtml[](working-with-forms/sample/final/Views/Demo/RegisterInput.cshtml)]
 
 The code above generates the following HTML:
 
@@ -286,7 +286,7 @@ You can also navigate to child properties using the property path of the view mo
 
 In the view, we bind to `Address.AddressLine1`:
 
-[!code-HTML[](../../mvc/views/working-with-forms/sample/final/Views/Demo/RegisterAddress.cshtml?highlight=6)]
+[!code-cshtml[](../../mvc/views/working-with-forms/sample/final/Views/Demo/RegisterAddress.cshtml?highlight=6)]
 
 The following HTML is generated for `Address.AddressLine1`:
 
@@ -312,11 +312,11 @@ public IActionResult Edit(int id, int colorIndex)
 
 The following Razor shows how you access a specific `Color` element:
 
-[!code-HTML[](working-with-forms/sample/final/Views/Demo/EditColor.cshtml)]
+[!code-cshtml[](working-with-forms/sample/final/Views/Demo/EditColor.cshtml)]
 
 The *Views/Shared/EditorTemplates/String.cshtml* template:
 
-[!code-HTML[](working-with-forms/sample/final/Views/Shared/EditorTemplates/String.cshtml)]
+[!code-cshtml[](working-with-forms/sample/final/Views/Shared/EditorTemplates/String.cshtml)]
 
 Sample using `List<T>`:
 
@@ -324,11 +324,11 @@ Sample using `List<T>`:
 
 The following Razor shows how to iterate over a collection:
 
-[!code-HTML[](working-with-forms/sample/final/Views/Demo/Edit.cshtml)]
+[!code-cshtml[](working-with-forms/sample/final/Views/Demo/Edit.cshtml)]
 
 The *Views/Shared/EditorTemplates/ToDoItem.cshtml* template:
 
-[!code-HTML[](working-with-forms/sample/final/Views/Shared/EditorTemplates/ToDoItem.cshtml)]
+[!code-cshtml[](working-with-forms/sample/final/Views/Shared/EditorTemplates/ToDoItem.cshtml)]
 
 `foreach` should be used if possible when the value is going to be used in an `asp-for` or `Html.DisplayFor` equivalent context. In general, `for` is better than `foreach` (if the scenario allows it) because it doesn't need to allocate an enumerator; however, evaluating an indexer in a LINQ expression can be expensive and should be minimized.
 
@@ -351,7 +351,7 @@ Sample:
 
 [!code-csharp[](working-with-forms/sample/final/ViewModels/DescriptionViewModel.cs)]
 
-[!code-HTML[](../../mvc/views/working-with-forms/sample/final/Views/Demo/RegisterTextArea.cshtml?highlight=4)]
+[!code-cshtml[](../../mvc/views/working-with-forms/sample/final/Views/Demo/RegisterTextArea.cshtml?highlight=4)]
 
 The following HTML is generated:
 
@@ -387,7 +387,7 @@ Sample:
 
 [!code-csharp[](working-with-forms/sample/final/ViewModels/SimpleViewModel.cs)]
 
-[!code-HTML[](../../mvc/views/working-with-forms/sample/final/Views/Demo/RegisterLabel.cshtml?highlight=4)]
+[!code-cshtml[](../../mvc/views/working-with-forms/sample/final/Views/Demo/RegisterLabel.cshtml?highlight=4)]
 
 The following HTML is generated for the `<label>` element:
 
@@ -457,7 +457,7 @@ In the following example, the data model has `DataAnnotation` attributes, which 
 
 [!code-csharp[](working-with-forms/sample/final/ViewModels/RegisterViewModel.cs)]
 
-[!code-HTML[](../../mvc/views/working-with-forms/sample/final/Views/Demo/RegisterValidation.cshtml?highlight=4,6,8&range=1-10)]
+[!code-cshtml[](../../mvc/views/working-with-forms/sample/final/Views/Demo/RegisterValidation.cshtml?highlight=4,6,8&range=1-10)]
 
 The generated HTML (when the model is valid):
 
@@ -488,7 +488,7 @@ The generated HTML (when the model is valid):
 
 The `Select Tag Helper` `asp-for` specifies the model property  name for the [select](https://www.w3.org/wiki/HTML/Elements/select) element  and `asp-items` specifies the [option](https://www.w3.org/wiki/HTML/Elements/option) elements.  For example:
 
-[!code-HTML[](working-with-forms/sample/final/Views/Home/Index.cshtml?range=4)]
+[!code-cshtml[](working-with-forms/sample/final/Views/Home/Index.cshtml?range=4)]
 
 Sample:
 
@@ -525,7 +525,7 @@ Which generates the following HTML (with "CA" selected):
 
 The `asp-for` attribute value is a special case and doesn't require a `Model` prefix, the other Tag Helper attributes do (such as `asp-items`)
 
-[!code-HTML[](working-with-forms/sample/final/Views/Home/Index.cshtml?range=4)]
+[!code-cshtml[](working-with-forms/sample/final/Views/Home/Index.cshtml?range=4)]
 
 ### Enum binding
 
@@ -539,7 +539,7 @@ Sample:
 
 The `GetEnumSelectList` method generates a `SelectList` object for an enum.
 
-[!code-HTML[](../../mvc/views/working-with-forms/sample/final/Views/Home/IndexEnum.cshtml?highlight=5)]
+[!code-cshtml[](../../mvc/views/working-with-forms/sample/final/Views/Home/IndexEnum.cshtml?highlight=5)]
 
 You can mark your enumerator list with the `Display` attribute to get a richer UI:
 
@@ -604,7 +604,7 @@ The Select Tag Helper  will automatically generate the [multiple = "multiple"](h
 
 With the following view:
 
-[!code-HTML[](../../mvc/views/working-with-forms/sample/final/Views/Home/IndexMultiSelect.cshtml?highlight=4)]
+[!code-cshtml[](../../mvc/views/working-with-forms/sample/final/Views/Home/IndexMultiSelect.cshtml?highlight=4)]
 
 Generates the following HTML:
 
@@ -628,17 +628,17 @@ Generates the following HTML:
 
 If you find yourself using the "not specified" option in multiple pages, you can create a template to eliminate repeating the HTML:
 
-[!code-HTML[](../../mvc/views/working-with-forms/sample/final/Views/Home/IndexEmptyTemplate.cshtml?highlight=5)]
+[!code-cshtml[](../../mvc/views/working-with-forms/sample/final/Views/Home/IndexEmptyTemplate.cshtml?highlight=5)]
 
 The *Views/Shared/EditorTemplates/CountryViewModel.cshtml* template:
 
-[!code-HTML[](working-with-forms/sample/final/Views/Shared/EditorTemplates/CountryViewModel.cshtml)]
+[!code-cshtml[](working-with-forms/sample/final/Views/Shared/EditorTemplates/CountryViewModel.cshtml)]
 
 Adding HTML [\<option>](https://www.w3.org/wiki/HTML/Elements/option) elements isn't limited to the *No selection* case. For example, the following view and action method will generate HTML similar to the code above:
 
 [!code-csharp[](working-with-forms/sample/final/Controllers/HomeController.cs?name=snippetNone)]
 
-[!code-HTML[](working-with-forms/sample/final/Views/Home/IndexOption.cshtml)]
+[!code-cshtml[](working-with-forms/sample/final/Views/Home/IndexOption.cshtml)]
 
 The correct `<option>` element will be selected ( contain the `selected="selected"` attribute) depending on the current `Country` value.
 
