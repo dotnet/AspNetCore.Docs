@@ -55,7 +55,7 @@ options.RequestCultureProviders.Insert(0, new CustomRequestCultureProvider(async
         currentCulture = segments[0];
     }
 
-    var requestCulture = new ProviderCultureResult(culture);
+    var requestCulture = new ProviderCultureResult(currentCulture);
     
     return Task.FromResult(requestCulture);
 }));
@@ -76,7 +76,7 @@ options.AddInitialRequestCultureProvider(new CustomRequestCultureProvider(async 
         currentCulture = segments[0];
     }
 
-    var requestCulture = new ProviderCultureResult(culture);
+    var requestCulture = new ProviderCultureResult(currentCulture);
     
     return Task.FromResult(requestCulture);
 }));

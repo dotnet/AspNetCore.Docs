@@ -5,7 +5,7 @@ description: Troubleshoot errors when using gRPC on .NET Core.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.custom: mvc
-ms.date: 05/26/2020
+ms.date: 07/09/2020
 no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: grpc/troubleshoot
 ---
@@ -122,13 +122,6 @@ gRPC code generation of concrete clients and service base classes requires proto
 * Package reference to the gRPC tooling package [Grpc.Tools](https://www.nuget.org/packages/Grpc.Tools/).
 
 For more information on generating gRPC C# assets, see <xref:grpc/basics>.
-
-By default, a `<Protobuf>` reference generates a concrete client and a service base class. The reference element's `GrpcServices` attribute can be used to limit C# asset generation. Valid `GrpcServices` options are:
-
-* `Both` (default when not present)
-* `Server`
-* `Client`
-* `None`
 
 An ASP.NET Core web app hosting gRPC services only needs the service base class generated:
 
