@@ -38,6 +38,13 @@ The *\*.proto* file is included in a project by adding it to the `<Protobuf>` it
 
 [!code-xml[](~/tutorials/grpc/grpc-start/sample/GrpcGreeter/GrpcGreeter.csproj?highlight=2&range=7-9)]
 
+By default, a `<Protobuf>` reference generates a concrete client and a service base class. The reference element's `GrpcServices` attribute can be used to limit C# asset generation. Valid `GrpcServices` options are:
+
+* `Both` (default when not present)
+* `Server`
+* `Client`
+* `None`
+
 ## C# Tooling support for .proto files
 
 The tooling package [Grpc.Tools](https://www.nuget.org/packages/Grpc.Tools/) is required to generate the C# assets from *\*.proto* files. The generated assets (files):
