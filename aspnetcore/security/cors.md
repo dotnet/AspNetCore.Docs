@@ -987,7 +987,7 @@ To test CORS:
 1. Create a web app project (Razor Pages or MVC). The sample uses Razor Pages. You can create the web app in the same solution as the API project.
 1. Add the following highlighted code to the *Index.cshtml* file:
 
-  [!code-csharp[](cors/sample/Cors/ClientApp/Pages/Index2.cshtml?highlight=7-99)]
+  [!code-cshtml[](cors/sample/Cors/ClientApp/Pages/Index2.cshtml?highlight=7-99)]
 
 1. In the preceding code, replace `url: 'https://<web app>.azurewebsites.net/api/values/1',` with the URL to the deployed app.
 1. Deploy the API project. For example, [deploy to Azure](xref:host-and-deploy/azure-apps/index).

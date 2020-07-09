@@ -73,7 +73,7 @@ Razor Pages and MVC projects created with the project templates include the foll
 
 The *\_CookieConsentPartial.cshtml* partial view:
 
-[!code-html[](gdpr/sample/RP2.2/Pages/Shared/_CookieConsentPartial.cshtml)]
+[!code-cshtml[](gdpr/sample/RP2.2/Pages/Shared/_CookieConsentPartial.cshtml)]
 
 This partial:
 
