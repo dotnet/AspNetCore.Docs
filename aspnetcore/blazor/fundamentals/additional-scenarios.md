@@ -143,12 +143,15 @@ In the preceding example, `information` is equivalent to a log level of <xref:Mi
 
 ### Modify the reconnection handler
 
-To modify the reconnection handler's circuit connection events:
+The reconnection handler's circuit connection events can be modified for custom behaviors, such as:
+
+* To notify the user if the connection is dropped.
+* To perform logging (from the client) when a circuit is connected or reconnected.
+
+To modify the connection events:
 
 * Add an `autostart="false"` attribute to the `<script>` tag for the `blazor.server.js` script.
-* Register callbacks for connection changes for either or both of the following events:
-  * Dropped connection (`onConnectionDown`)
-  * Established/re-established connection (`onConnectionUp`)
+* Register callbacks for connection changes for dropped connections (`onConnectionDown`) and established/re-established connections (`onConnectionUp`). **Both** `onConnectionDown` and `onConnectionUp` must be specified.
 
 ```cshtml
     ...
