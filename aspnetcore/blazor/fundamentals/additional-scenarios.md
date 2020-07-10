@@ -139,7 +139,7 @@ To configure SignalR client logging:
 </body>
 ```
 
-In the preceding example, `information` is equilivant to a log level of <xref:Microsoft.Extensions.Logging.LogLevel.Information?displayProperty=nameWithType>.
+In the preceding example, `information` is equivalent to a log level of <xref:Microsoft.Extensions.Logging.LogLevel.Information?displayProperty=nameWithType>.
 
 ### Modify the reconnection handler
 
@@ -208,7 +208,7 @@ To hide the reconnection display:
 
 To replace the reconnection display, set `_reconnectionDisplay` in the preceding example to the element for display:
 
-```javascrpt
+```javascript
 Blazor.defaultReconnectionHandler._reconnectionDisplay = 
   document.getElementById("{ELEMENT ID}");
 ```
