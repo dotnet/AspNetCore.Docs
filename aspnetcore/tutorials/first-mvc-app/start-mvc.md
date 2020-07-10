@@ -93,14 +93,12 @@ The tutorial assumes familarity with VS Code. See [Getting started with VS Code]
 
   ![macOS web app template selection](start-mvc/_static/web_app_template_vsmac.png)
 
-* Confirm the following configurations:
+* In the **Configure your new Web Application** dialog:
 
-  * **Target Framework** set to **.NET Core 3.1**.
-  * **Authentication** set to **No Authentication**.
-   
+  * Confirm that **Authentication** is set to **No Authentication**.
+  * If presented an option to select a **Target Framework**, select the latest 3.x version.
+
   Select **Next**.
-
-  ![macOS .NET Core 3.1 selection](start-mvc/_static/new_project_31_vsmac.png)
 
 * Name the project **MvcMovie**, and then select **Create**.
 
@@ -246,9 +244,12 @@ The tutorial assumes familarity with VS Code. See [Getting started with VS Code]
 
 * In Visual Studio for Mac earlier than version 8.6, select **.NET Core** > **App** > **Web Application (Model-View-Controller)** > **Next**. In version 8.6 or later, select **Web and Console** > **App** > **Web Application (Model-View-Controller)** > **Next**.
 
-* In the **Configure your new ASP.NET Core Web API** dialog, accept the default **Target Framework** of **.NET Core 2.2**.
+* In the **Configure your new Web Application** dialog:
 
-  ![macOS .NET Core 2.2 selection](./start-mvc/_static/new_project_22_vsmac.png)
+  * Confirm that **Authentication** is set to **No Authentication**.
+  * If presented an option to select a **Target Framework**, select the latest 2.x version.
+
+  Select **Next**.
 
 * Name the project **MvcMovie**, and then select **Create**.
 

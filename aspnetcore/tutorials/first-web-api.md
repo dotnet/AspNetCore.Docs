@@ -102,9 +102,7 @@ The following diagram shows the design of the app.
 
   ![macOS API template selection](first-web-api-mac/_static/api_template.png)
 
-* Confirm the **Target Framework** is set to **.NET Core 3.1**. Select **Next**.
-
-  ![macOS .NET Core 3.1 selection](first-web-api-mac/_static/api_31_config.png)
+* In the **Configure your new ASP.NET Core Web API** dialog, select the latest .NET Core 3.x **Target Framework**. Select **Next**.
 
 * Enter *TodoApi* for the **Project Name** and then select **Create**.
 
@@ -582,7 +580,7 @@ The following diagram shows the design of the app.
 
 * In Visual Studio for Mac earlier than version 8.6, select **.NET Core** > **App** > **API** > **Next**. In version 8.6 or later, select **Web and Console** > **App** > **API** > **Next**.
   
-* In the **Configure your new ASP.NET Core Web API** dialog, accept the default **Target Framework** of **.NET Core 2.2*.
+* In the **Configure your new ASP.NET Core Web API** dialog, select the latest .NET Core 2.x **Target Framework**. Select **Next**.
 
 * Enter *TodoApi* for the **Project Name** and then select **Create**.
 
