@@ -1,6 +1,6 @@
 ### YamlMime:ZonePivotGroups
 groups:
-- id: operating-systems-set-one
+- id: operating-systems-set-two
   title: Operating System
   prompt: Choose an operating system
   pivots:
