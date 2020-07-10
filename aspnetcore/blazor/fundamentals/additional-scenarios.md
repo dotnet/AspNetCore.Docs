@@ -146,7 +146,7 @@ In the preceding example, `information` is equivalent to a log level of <xref:Mi
 The reconnection handler's circuit connection events can be modified for custom behaviors, such as:
 
 * To notify the user if the connection is dropped.
-* To perform logging (from the client) when a circuit is connected or reconnected.
+* To perform logging (from the client) when a circuit is connected.
 
 To modify the connection events:
 
