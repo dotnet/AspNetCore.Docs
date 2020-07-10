@@ -66,7 +66,10 @@ In Blazor WebAssembly apps, authorization checks can be bypassed because all cli
 Apply the [`[Authorize]` attribute](xref:blazor/security/index#authorize-attribute) ([API documentation](xref:System.Web.Mvc.AuthorizeAttribute)) to each Razor component in the `Pages` folder of the app.
 
 > [!NOTE]
-> Setting an <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy?displayProperty=nameWithType> to a policy with <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAuthenticatedUser%2A> or attempting to apply an <xref:System.Web.Mvc.AuthorizeAttribute> to all Razor components in the `_Imports.razor` file are **not** supported.
+> The following approaches are **not** supported:
+>
+> * Setting an <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy?displayProperty=nameWithType> to a policy with <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAuthenticatedUser%2A>.
+> * Placing an <xref:System.Web.Mvc.AuthorizeAttribute> in the `_Imports.razor` file in an attempt to apply the attribute to all Razor components.
 
 ## Refresh tokens
 
