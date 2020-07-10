@@ -74,7 +74,7 @@ There's no centralized way to trust a certificate on Linux. Typically, one of th
 * Trust all self-signed certificates for `localhost`.
 * Add the certificate to the list of trusted certificates in the browser.
 
-For more information, see the guidance provided by your browser and Linux distro.
+For more information, see the guidance provided by your browser and Linux distribution.
 
 ::: zone-end
 

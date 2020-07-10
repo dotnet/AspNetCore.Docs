@@ -259,7 +259,7 @@ export ASPNETCORE_ENVIRONMENT=Staging
 
 #### Linux
 
-For Linux distros, use the `export` command at a command prompt for session-based variable settings and *bash_profile* file for machine-level environment settings.
+For Linux distributions, use the `export` command at a command prompt for session-based variable settings and *bash_profile* file for machine-level environment settings.
 
 ### Set the environment in code
 
@@ -581,7 +581,7 @@ export ASPNETCORE_ENVIRONMENT=Development
 
 #### Linux
 
-For Linux distros, use the `export` command at a command prompt for session-based variable settings and *bash_profile* file for machine-level environment settings.
+For Linux distributions, use the `export` command at a command prompt for session-based variable settings and *bash_profile* file for machine-level environment settings.
 
 ### Set the environment in code
 
