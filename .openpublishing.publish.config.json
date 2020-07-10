@@ -15,10 +15,10 @@
       ],
       "open_to_public_contributors": true,
       "type_mapping": {
+        "ZonePivotGroups": "Toc",
         "Conceptual": "Content",
         "ManagedReference": "Content",
-        "RestApi": "Content",
-        "ZonePivotGroups": "Toc"
+        "RestApi": "Content"
       },
       "template_folder": "_themes",
       "version": 0
