@@ -55,8 +55,7 @@
       "uhfHeaderId": [],
       "searchScope": [
         "ASP.NET Core"
-      ],
-      "zone_pivot_group_filename": "core/zone-pivot-groups.yml"
+      ]
     },
     "fileMetadata": {
       "author": {
