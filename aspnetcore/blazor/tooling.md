@@ -5,7 +5,7 @@ description: Learn about the tooling available to build Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/07/2020
+ms.date: 07/10/2020
 no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/tooling
 zone_pivot_groups: operating-systems-set-one
@@ -16,7 +16,7 @@ By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.
 
 ::: zone pivot="os-windows"
 
-1. Install the latest version of [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/) with the **ASP.NET and web development** workload.
+1. Install the latest version of [Visual Studio 2019](https://visualstudio.microsoft.com/downloads) with the **ASP.NET and web development** workload.
 
 1. Create a new project.
 
@@ -74,7 +74,7 @@ There's no centralized way to trust a certificate on Linux. Typically, one of th
 * Trust all self-signed certificates for `localhost`.
 * Add the certificate to the list of trusted certificates in the browser.
 
-For more information, see the guidance provided by your browser and Linux distro.
+For more information, see the guidance provided by your browser and Linux distribution.
 
 ::: zone-end
 
