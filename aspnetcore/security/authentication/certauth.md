@@ -559,7 +559,7 @@ ASP.NET Core 5 preview 7 and later adds the ability to enable caching of validat
 
 To enable the the default implementation that uses Memory cache, just call:
 
-`.AddCertificateCache(o => { o.CacheSize = 1024; o.CacheEntryExpiration = TimeSpan.FromMinutes(2); })`
+`.AddCertificate().AddCertificateCache(o => { o.CacheSize = 1024; o.CacheEntryExpiration = TimeSpan.FromMinutes(2); })`
 
 You also can provide in your own implementation via `services.AddSingleton<ICertificateValidationCache, YourCache>()`
 
