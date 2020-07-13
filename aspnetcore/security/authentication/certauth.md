@@ -39,7 +39,9 @@ public void ConfigureServices(IServiceCollection services)
 {
     services.AddAuthentication(
         CertificateAuthenticationDefaults.AuthenticationScheme)
-        .AddCertificate();
+        .AddCertificate()
+	// Adding a ICertificateValidationCache will result in certificate auth caching the results, the default implementation uses a memory cache
+	.AddCertificateCache()
     // All the other service configuration.
 }
 
@@ -550,6 +552,15 @@ namespace AspNetCoreCertificateAuthApi
 ```
 
 <a name="occ"></a>
+
+## Certificate validation cachine
+
+ASP.NET Core 5 preview 7 and later adds the ability to enable caching of validation results which drastically improves performance as validation is a expensive operation.
+
+`.AddCertificateCache(o => { o.CacheSize = 1024; o.CacheEntryExpiration = TimeSpan.FromMinutes(2); })`
+
+The default implementation uses Memory cache, you can swap in your own implementation via injecting your own `ICertificateValidationCache`
+
 
 ## Optional client certificates
 
