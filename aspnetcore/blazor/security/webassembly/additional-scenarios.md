@@ -1071,7 +1071,7 @@ Server response: <strong>@serverResponse</strong>
             var reply = await GreeterClient.SayHelloAsync(request);
             serverResponse = reply.Message;
         }
-        catch (RpcException ex)
+        catch (Grpc.Core.RpcException ex)
         {
             // ex.Status.DebugException
         }
