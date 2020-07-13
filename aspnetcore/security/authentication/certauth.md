@@ -557,9 +557,12 @@ namespace AspNetCoreCertificateAuthApi
 
 ASP.NET Core 5 preview 7 and later adds the ability to enable caching of validation results which drastically improves performance as validation is a expensive operation.
 
+To enable the the default implementation that uses Memory cache, just call:
+
 `.AddCertificateCache(o => { o.CacheSize = 1024; o.CacheEntryExpiration = TimeSpan.FromMinutes(2); })`
 
-The default implementation uses Memory cache, you can swap in your own implementation via injecting your own `ICertificateValidationCache`
+You also can provide in your own implementation via `services.AddSingleton<ICertificateValidationCache, YourCache>()`
+
 
 
 ## Optional client certificates
