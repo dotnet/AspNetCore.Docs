@@ -561,7 +561,7 @@ By default certificate authentication doesn't have caching enabled. To enable ca
 
 `.AddCertificate().AddCertificateCache(o => { o.CacheSize = 1024; o.CacheEntryExpiration = TimeSpan.FromMinutes(2); })`
 
-You also can provide in your own implementation via `services.AddSingleton<ICertificateValidationCache, YourCache>()`
+The default caching implementation caches results to memory. You can provide your own cache by implementing `ICertificateValidationCache` and registering it with dependency injection. For example, `services.AddSingleton<ICertificateValidationCache, YourCache>()`.
 
 
 
