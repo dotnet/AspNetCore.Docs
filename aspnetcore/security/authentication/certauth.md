@@ -41,8 +41,8 @@ public void ConfigureServices(IServiceCollection services)
         CertificateAuthenticationDefaults.AuthenticationScheme)
         .AddCertificate()
 ::: moniker range=">= aspnetcore-5.0"
-	// Adding a ICertificateValidationCache will result in certificate auth caching the results, the default implementation uses a memory cache
-	.AddCertificateCache()
+        // Adding a ICertificateValidationCache will result in certificate auth caching the results, the default implementation uses a memory cache
+        .AddCertificateCache()
 ::: moniker-end
     // All the other service configuration.
 }
