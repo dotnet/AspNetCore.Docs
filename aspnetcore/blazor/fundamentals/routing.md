@@ -267,28 +267,28 @@ To parse the query string's parameters:
 * Add a package reference for [Microsoft.AspNetCore.WebUtilities](https://www.nuget.org/packages/Microsoft.AspNetCore.WebUtilities).
 * Obtain the value after parsing the query string with <xref:Microsoft.AspNetCore.WebUtilities.QueryHelpers.ParseQuery%2A?displayProperty=nameWithType>.
 
-  ```razor
-  @page "/"
-  @using Microsoft.AspNetCore.WebUtilities
-  @inject NavigationManager NavigationManager
+```razor
+@page "/"
+@using Microsoft.AspNetCore.WebUtilities
+@inject NavigationManager NavigationManager
 
-  <h1>Query string parse example</h1>
+<h1>Query string parse example</h1>
 
-  <p>Value: @queryValue</p>
+<p>Value: @queryValue</p>
 
-  @code {
-      private string queryValue = "Not set";
+@code {
+    private string queryValue = "Not set";
 
-      protected override void OnInitialized()
-      {
-          var query = new Uri(NavigationManager.Uri).Query;
+    protected override void OnInitialized()
+    {
+        var query = new Uri(NavigationManager.Uri).Query;
 
-          if (QueryHelpers.ParseQuery(query).TryGetValue("{KEY}", out var value))
-          {
-              queryValue = value;
-          }
-      }
-  }
-  ```
+        if (QueryHelpers.ParseQuery(query).TryGetValue("{KEY}", out var value))
+        {
+            queryValue = value;
+        }
+    }
+}
+```
 
-  The placeholder `{KEY}` in the preceding example is the query string parameter key. For example, the URL key-value pair `?ship=Tardis` uses a key of `ship`.
+The placeholder `{KEY}` in the preceding example is the query string parameter key. For example, the URL key-value pair `?ship=Tardis` uses a key of `ship`.
