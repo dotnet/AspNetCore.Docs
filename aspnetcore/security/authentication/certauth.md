@@ -563,8 +563,6 @@ By default certificate authentication doesn't have caching enabled. To enable ca
 
 The default caching implementation caches results to memory. You can provide your own cache by implementing `ICertificateValidationCache` and registering it with dependency injection. For example, `services.AddSingleton<ICertificateValidationCache, YourCache>()`.
 
-
-
 ## Optional client certificates
 
 This section provides information for apps that must protect a subset of the app with a certificate. For example, a Razor Page or controller in the app might require client certificates. This presents challenges as client certificates:
