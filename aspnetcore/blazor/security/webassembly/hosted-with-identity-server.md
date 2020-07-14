@@ -5,7 +5,7 @@ description: To create a new Blazor hosted app with authentication from within V
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/19/2020
+ms.date: 07/09/2020
 no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/security/webassembly/hosted-with-identity-server
 ---
@@ -17,23 +17,39 @@ This article explains how to create a new Blazor hosted app that uses [IdentityS
 
 # [Visual Studio](#tab/visual-studio)
 
-In Visual Studio:
+To create a new Blazor WebAssembly project with an authentication mechanism:
 
-1. Create a new **Blazor WebAssembly** app.
-1. In the **Create a new Blazor app** dialog, select **Change** in the **Authentication** section.
-1. Select **Individual User Accounts** followed by **OK**.
-1. Select the **ASP.NET Core hosted** checkbox in the **Advanced** section.
-1. Select the **Create** button.
+1. After choosing the **Blazor WebAssembly App** template in the **Create a new ASP.NET Core Web Application** dialog, select **Change** under **Authentication**.
 
-# [.NET Core CLI](#tab/netcore-cli/)
+1. Select **Individual User Accounts** with the **Store user accounts in-app** option to store users within the app using ASP.NET Core's [Identity](xref:security/authentication/identity) system.
 
-To create the app in a command shell, execute the following command:
+1. Select the **ASP.NET Core hosted** check box in the **Advanced** section.
+
+# [Visual Studio Code / .NET Core CLI](#tab/visual-studio-code+netcore-cli)
+
+To create a new Blazor WebAssembly project with an authentication mechanism in an empty folder, specify the `Individual` authentication mechanism with the `-au|--auth` option to store users within the app using ASP.NET Core's [Identity](xref:security/authentication/identity) system:
 
 ```dotnetcli
-dotnet new blazorwasm -au Individual -ho
+dotnet new blazorwasm -au Individual -ho -o {APP NAME}
 ```
 
-To specify the output location, which creates a project folder if it doesn't exist, include the output option in the command with a path (for example, `-o BlazorSample`). The folder name also becomes part of the project's name.
+| Placeholder  | Example        |
+| ------------ | -------------- |
+| `{APP NAME}` | `BlazorSample` |
+
+The output location specified with the `-o|--output` option creates a project folder if it doesn't exist and becomes part of the app's name.
+
+For more information, see the [`dotnet new`](/dotnet/core/tools/dotnet-new) command in the .NET Core Guide.
+
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+To create a new Blazor WebAssembly project with an authentication mechanism:
+
+1. On the **Configure your new Blazor WebAssembly App** step, select **Individual Authentication (in-app)** from the **Authentication** drop down.
+
+1. The app is created for individual users stored in the app with ASP.NET Core [Identity](xref:security/authentication/identity).
+
+1. Select the **ASP.NET Core hosted** check box.
 
 ---
 
@@ -119,7 +135,7 @@ To gain full control of the database schema, inherit from one of the available I
 
 In the `OidcConfigurationController` (`Controllers/OidcConfigurationController.cs`), the client endpoint is provisioned to serve OIDC parameters.
 
-### App settings files
+### App settings
 
 In the app settings file (`appsettings.json`) at the project root, the `IdentityServer` section describes the list of configured clients. In the following example, there's a single client. The client name corresponds to the app name and is mapped by convention to the OAuth `ClientId` parameter. The profile indicates the app type being configured. The profile is used internally to drive conventions that simplify the configuration process for the server. <!-- There are several profiles available, as explained in the [Application profiles](#application-profiles) section. -->
 
@@ -148,6 +164,22 @@ If adding authentication to an app, manually add the package to the app's projec
   Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" 
   Version="3.2.0" />
 ```
+
+### `HttpClient` configuration
+
+In `Program.Main` (`Program.cs`), a named <xref:System.Net.Http.HttpClient> (`HostIS.ServerAPI`) is configured to supply <xref:System.Net.Http.HttpClient> instances that include access tokens when making requests to the server API:
+
+```csharp
+builder.Services.AddHttpClient("HostIS.ServerAPI", 
+        client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))
+    .AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
+
+builder.Services.AddTransient(sp => sp.GetRequiredService<IHttpClientFactory>()
+    .CreateClient("HostIS.ServerAPI"));
+```
+
+> [!NOTE]
+> If you're configuring a Blazor WebAssembly app to use an existing Identity Server instance that isn't part of a Blazor Hosted solution, change the <xref:System.Net.Http.HttpClient> base address registration from <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> (`builder.HostEnvironment.BaseAddress`) to the server app's API authorization endpoint URL.
 
 ### API authorization support
 

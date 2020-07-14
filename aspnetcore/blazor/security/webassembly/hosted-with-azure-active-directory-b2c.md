@@ -5,7 +5,7 @@ description:
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/19/2020
+ms.date: 07/08/2020
 no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/security/webassembly/hosted-with-azure-active-directory-b2c
 ---
@@ -21,10 +21,7 @@ This article describes how to create a Blazor WebAssembly standalone app that us
 
 Follow the guidance in [Tutorial: Create an Azure Active Directory B2C tenant](/azure/active-directory-b2c/tutorial-create-tenant) to create an AAD B2C tenant.
 
-Record the following information:
-
-* AAD B2C instance (for example, `https://contoso.b2clogin.com/`, which includes the trailing slash)
-* AAD B2C Tenant domain (for example, `contoso.onmicrosoft.com`)
+Record the AAD B2C instance (for example, `https://contoso.b2clogin.com/`, which includes the trailing slash). The instance is the scheme and host of an Azure B2C app registration, which can be found by opening the **Endpoints** window from the **App registrations** page in the Azure portal.
 
 ### Register a server API app
 
@@ -39,9 +36,8 @@ Follow the guidance in [Tutorial: Register an application in Azure Active Direct
 
 Record the following information:
 
-* *Server API app* Application ID (Client ID) (for example, `11111111-1111-1111-1111-111111111111`)
-* Directory ID (Tenant ID) (for example, `222222222-2222-2222-2222-222222222222`)
-* AAD Tenant domain (for example, `contoso.onmicrosoft.com`): The domain is available as the **Publisher domain** in the **Branding** blade of the Azure portal for the registered app.
+* *Server API app* Application (client) ID (for example, `41451fa7-82d9-4673-8fa5-69eff5a761fd`)
+* AAD Primary/Publisher/Tenant domain (for example, `contoso.onmicrosoft.com`): The domain is available as the **Publisher domain** in the **Branding** blade of the Azure portal for the registered app.
 
 In **Expose an API**:
 
@@ -55,8 +51,10 @@ In **Expose an API**:
 
 Record the following information:
 
-* App ID URI (for example, `https://contoso.onmicrosoft.com/11111111-1111-1111-1111-111111111111`, `api://11111111-1111-1111-1111-111111111111`, or the custom value that you provided)
+* App ID URI (for example, `https://contoso.onmicrosoft.com/41451fa7-82d9-4673-8fa5-69eff5a761fd`, `api://41451fa7-82d9-4673-8fa5-69eff5a761fd`, or the custom value that you provided)
 * Default scope (for example, `API.Access`)
+
+The App ID URI might require a special configuration in the client app, which is described in the [Access token scopes](#access-token-scopes) section later in this topic.
 
 ### Register a client app
 
@@ -69,7 +67,7 @@ Follow the guidance in [Tutorial: Register an application in Azure Active Direct
 1. Confirm that **Permissions** > **Grant admin consent to openid and offline_access permissions** is enabled.
 1. Select **Register**.
 
-Record the Application ID (Client ID) (for example, `11111111-1111-1111-1111-111111111111`).
+Record the Application (client) ID (for example, `4369008b-21fa-427c-abaa-9b53bf58e538`).
 
 In **Authentication** > **Platform configurations** > **Web**:
 
@@ -100,10 +98,21 @@ Record the sign-up and sign-in user flow name created for the app (for example, 
 Replace the placeholders in the following command with the information recorded earlier and execute the command in a command shell:
 
 ```dotnetcli
-dotnet new blazorwasm -au IndividualB2C --aad-b2c-instance "{AAD B2C INSTANCE}" --api-client-id "{SERVER API APP CLIENT ID}" --app-id-uri "{SERVER API APP ID URI}" --client-id "{CLIENT APP CLIENT ID}" --default-scope "{DEFAULT SCOPE}" --domain "{TENANT DOMAIN}" -ho -ssp "{SIGN UP OR SIGN IN POLICY}" --tenant-id "{TENANT ID}"
+dotnet new blazorwasm -au IndividualB2C --aad-b2c-instance "{AAD B2C INSTANCE}" --api-client-id "{SERVER API APP CLIENT ID}" --app-id-uri "{SERVER API APP ID URI}" --client-id "{CLIENT APP CLIENT ID}" --default-scope "{DEFAULT SCOPE}" --domain "{TENANT DOMAIN}" -ho -o {APP NAME} -ssp "{SIGN UP OR SIGN IN POLICY}"
 ```
 
-To specify the output location, which creates a project folder if it doesn't exist, include the output option in the command with a path (for example, `-o BlazorSample`). The folder name also becomes part of the project's name.
+| Placeholder                   | Azure portal name                                     | Example                                |
+| ----------------------------- | ----------------------------------------------------- | -------------------------------------- |
+| `{AAD B2C INSTANCE}`          | Instance                                              | `https://contoso.b2clogin.com/`        |
+| `{APP NAME}`                  | &mdash;                                               | `BlazorSample`                         |
+| `{CLIENT APP CLIENT ID}`      | Application (client) ID for the *Client app*          | `4369008b-21fa-427c-abaa-9b53bf58e538` |
+| `{DEFAULT SCOPE}`             | Scope name                                            | `API.Access`                           |
+| `{SERVER API APP CLIENT ID}`  | Application (client) ID for the *Server API app*      | `41451fa7-82d9-4673-8fa5-69eff5a761fd` |
+| `{SERVER API APP ID URI}`     | Application ID URI ([see note](#access-token-scopes)) | `41451fa7-82d9-4673-8fa5-69eff5a761fd` |
+| `{SIGN UP OR SIGN IN POLICY}` | Sign-up/sign-in user flow                             | `B2C_1_signupsignin1`                  |
+| `{TENANT DOMAIN}`             | Primary/Publisher/Tenant domain                       | `contoso.onmicrosoft.com`              |
+
+The output location specified with the `-o|--output` option creates a project folder if it doesn't exist and becomes part of the app's name.
 
 > [!NOTE]
 > Pass the App ID URI to the `app-id-uri` option, but note a configuration change might be required in the client app, which is described in the [Access token scopes](#access-token-scopes) section.
@@ -113,7 +122,7 @@ To specify the output location, which creates a project folder if it doesn't exi
 > [!NOTE]
 > In the Azure portal, the *Client app's* **Authentication** > **Platform configurations** > **Web** > **Redirect URI** is configured for port 5001 for apps that run on the Kestrel server with default settings.
 >
-> If the *Client app* is run on a random IIS Express port, the port for the app can be found in the *Server app's* properties in the **Debug** panel.
+> If the *Client app* is run on a random IIS Express port, the port for the app can be found in the *Server API app's* properties in the **Debug** panel.
 >
 > If the port wasn't configured earlier with the *Client app's* known port, return to the *Client app's* registration in the Azure portal and update the redirect URI with the correct port.
 

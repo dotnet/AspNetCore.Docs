@@ -637,7 +637,7 @@ During development when using [Visual Studio](https://visualstudio.microsoft.com
 
 *hostsettings.json*:
 
-[!code-csharp[](generic-host/samples/2.x/GenericHostSample/hostsettings.json)]
+[!code-json[](generic-host/samples/2.x/GenericHostSample/hostsettings.json)]
 
 Additional configuration can be provided with the [applicationName](#application-key-name) and [contentRoot](#content-root) keys.
 
@@ -657,15 +657,15 @@ Example app configuration using <xref:Microsoft.Extensions.Hosting.HostBuilder.C
 
 *appsettings.json*:
 
-[!code-csharp[](generic-host/samples/2.x/GenericHostSample/appsettings.json)]
+[!code-json[](generic-host/samples/2.x/GenericHostSample/appsettings.json)]
 
 *appsettings.Development.json*:
 
-[!code-csharp[](generic-host/samples/2.x/GenericHostSample/appsettings.Development.json)]
+[!code-json[](generic-host/samples/2.x/GenericHostSample/appsettings.Development.json)]
 
 *appsettings.Production.json*:
 
-[!code-csharp[](generic-host/samples/2.x/GenericHostSample/appsettings.Production.json)]
+[!code-json[](generic-host/samples/2.x/GenericHostSample/appsettings.Production.json)]
 
 To move settings files to the output directory, specify the settings files as [MSBuild project items](/visualstudio/msbuild/common-msbuild-project-items) in the project file. The sample app moves its JSON app settings files and *hostsettings.json* with the following `<Content>` item:
 

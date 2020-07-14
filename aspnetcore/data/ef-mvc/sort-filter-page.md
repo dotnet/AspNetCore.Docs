@@ -66,7 +66,7 @@ This code could get verbose with a large number of columns. [The last tutorial i
 
 Replace the code in *Views/Students/Index.cshtml*, with the following code to add column heading hyperlinks. The changed lines are highlighted.
 
-[!code-html[](intro/samples/cu/Views/Students/Index2.cshtml?highlight=16,22)]
+[!code-cshtml[](intro/samples/cu/Views/Students/Index2.cshtml?highlight=16,22)]
 
 This code uses the information in `ViewData` properties to set up hyperlinks with the appropriate query string values.
 
@@ -95,7 +95,7 @@ You've added a `searchString` parameter to the `Index` method. The search string
 
 In *Views/Student/Index.cshtml*, add the highlighted code immediately before the opening table tag in order to create a caption, a text box, and a **Search** button.
 
-[!code-html[](intro/samples/cu/Views/Students/Index3.cshtml?range=9-23&highlight=5-13)]
+[!code-cshtml[](intro/samples/cu/Views/Students/Index3.cshtml?range=9-23&highlight=5-13)]
 
 This code uses the `<form>` [tag helper](xref:mvc/views/tag-helpers/intro) to add the search text box and button. By default, the `<form>` tag helper submits form data with a POST, which means that parameters are passed in the HTTP message body and not in the URL as query strings. When you specify HTTP GET, the form data is passed in the URL as query strings, which enables users to bookmark the URL. The W3C guidelines recommend that you should use GET when the action doesn't result in an update.
 
@@ -174,7 +174,7 @@ The `PaginatedList.CreateAsync` method takes a page number. The two question mar
 
 In *Views/Students/Index.cshtml*, replace the existing code with the following code. The changes are highlighted.
 
-[!code-html[](intro/samples/cu/Views/Students/Index.cshtml?highlight=1,27,30,33,61-79)]
+[!code-cshtml[](intro/samples/cu/Views/Students/Index.cshtml?highlight=1,27,30,33,61-79)]
 
 The `@model` statement at the top of the page specifies that the view now gets a `PaginatedList<T>` object instead of a `List<T>` object.
 
@@ -238,7 +238,7 @@ The LINQ statement groups the student entities by enrollment date, calculates th
 
 Add a *Views/Home/About.cshtml* file with the following code:
 
-[!code-html[](intro/samples/cu/Views/Home/About.cshtml)]
+[!code-cshtml[](intro/samples/cu/Views/Home/About.cshtml)]
 
 Run the app and go to the About page. The count of students for each enrollment date is displayed in a table.
 

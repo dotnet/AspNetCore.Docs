@@ -393,7 +393,7 @@ The following table contains some categories used by ASP.NET Core and Entity Fra
 
 To view more categories in the console window, set **appsettings.Development.json** to the following:
 
-[!code-csharp[](index/samples/3.x/MyMain/appsettings.Trace.json)]
+[!code-json[](index/samples/3.x/MyMain/appsettings.Trace.json)]
 
 <!-- Review: What other providers support scopes? Console is not generally used in staging/production  -->
 

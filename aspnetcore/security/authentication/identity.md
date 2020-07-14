@@ -172,7 +172,7 @@ In the preceding code, the code `return RedirectToPage();` needs to be a redirec
 
 Post is specified in the *Pages/Shared/_LoginPartial.cshtml*:
 
-[!code-csharp[](identity/sample/WebApp3/Pages/Shared/_LoginPartial.cshtml?highlight=15)]
+[!code-cshtml[](identity/sample/WebApp3/Pages/Shared/_LoginPartial.cshtml?highlight=15)]
 
 ## Test Identity
 
@@ -389,7 +389,7 @@ The **Log out** link invokes the `LogoutModel.OnPost` action.
 
 Post is specified in the *Pages/Shared/_LoginPartial.cshtml*:
 
-[!code-csharp[](identity/sample/WebApp1/Pages/Shared/_LoginPartial.cshtml?highlight=16)]
+[!code-cshtml[](identity/sample/WebApp1/Pages/Shared/_LoginPartial.cshtml?highlight=16)]
 
 ## Test Identity
 

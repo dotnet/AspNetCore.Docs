@@ -5,7 +5,7 @@ description:
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/19/2020
+ms.date: 07/08/2020
 no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/security/webassembly/hosted-with-azure-active-directory
 ---
@@ -34,9 +34,9 @@ Follow the guidance in [Quickstart: Register an application with the Microsoft i
 
 Record the following information:
 
-* *Server API app* Application ID (Client ID) (for example, `11111111-1111-1111-1111-111111111111`)
-* Directory ID (Tenant ID) (for example, `222222222-2222-2222-2222-222222222222`)
-* AAD Tenant domain (for example, `contoso.onmicrosoft.com`): The domain is available as the **Publisher domain** in the **Branding** blade of the Azure portal for the registered app.
+* *Server API app* Application (client) ID (for example, `41451fa7-82d9-4673-8fa5-69eff5a761fd`)
+* Directory (tenant) ID (for example, `e86c78e2-8bb4-4c41-aefd-918e0565a45e`)
+* AAD Primary/Publisher/Tenant domain (for example, `contoso.onmicrosoft.com`): The domain is available as the **Publisher domain** in the **Branding** blade of the Azure portal for the registered app.
 
 In **API permissions**, remove the **Microsoft Graph** > **User.Read** permission, as the app doesn't require sign in or user profile access.
 
@@ -52,8 +52,10 @@ In **Expose an API**:
 
 Record the following information:
 
-* App ID URI (for example, `https://contoso.onmicrosoft.com/11111111-1111-1111-1111-111111111111`, `api://11111111-1111-1111-1111-111111111111`, or the custom value that you provided)
+* App ID URI (for example, `https://contoso.onmicrosoft.com/41451fa7-82d9-4673-8fa5-69eff5a761fd`, `api://41451fa7-82d9-4673-8fa5-69eff5a761fd`, or the custom value that you provided)
 * Default scope (for example, `API.Access`)
+
+The App ID URI might require a special configuration in the client app, which is described in the [Access token scopes](#access-token-scopes) section later in this topic.
 
 ### Register a client app
 
@@ -66,7 +68,7 @@ Follow the guidance in [Quickstart: Register an application with the Microsoft i
 1. Disable the **Permissions** > **Grant admin consent to openid and offline_access permissions** check box.
 1. Select **Register**.
 
-Record the *Client app* Application ID (Client ID) (for example, `33333333-3333-3333-3333-333333333333`).
+Record the *Client app* Application (client) ID (for example, `4369008b-21fa-427c-abaa-9b53bf58e538`).
 
 In **Authentication** > **Platform configurations** > **Web**:
 
@@ -87,13 +89,23 @@ In **API permissions**:
 
 ### Create the app
 
-Replace the placeholders in the following command with the information recorded earlier and execute the command in a command shell:
+In an empty folder, replace the placeholders in the following command with the information recorded earlier and execute the command in a command shell:
 
 ```dotnetcli
-dotnet new blazorwasm -au SingleOrg --api-client-id "{SERVER API APP CLIENT ID}" --app-id-uri "{SERVER API APP ID URI}" --client-id "{CLIENT APP CLIENT ID}" --default-scope "{DEFAULT SCOPE}" --domain "{TENANT DOMAIN}" -ho --tenant-id "{TENANT ID}"
+dotnet new blazorwasm -au SingleOrg --api-client-id "{SERVER API APP CLIENT ID}" --app-id-uri "{SERVER API APP ID URI}" --client-id "{CLIENT APP CLIENT ID}" --default-scope "{DEFAULT SCOPE}" --domain "{TENANT DOMAIN}" -ho -o {APP NAME} --tenant-id "{TENANT ID}"
 ```
 
-To specify the output location, which creates a project folder if it doesn't exist, include the output option in the command with a path (for example, `-o BlazorSample`). The folder name also becomes part of the project's name.
+| Placeholder                  | Azure portal name                                     | Example                                |
+| ---------------------------- | ----------------------------------------------------- | -------------------------------------- |
+| `{APP NAME}`                 | &mdash;                                               | `BlazorSample`                         |
+| `{CLIENT APP CLIENT ID}`     | Application (client) ID for the *Client app*          | `4369008b-21fa-427c-abaa-9b53bf58e538` |
+| `{DEFAULT SCOPE}`            | Scope name                                            | `API.Access`                           |
+| `{SERVER API APP CLIENT ID}` | Application (client) ID for the *Server API app*      | `41451fa7-82d9-4673-8fa5-69eff5a761fd` |
+| `{SERVER API APP ID URI}`    | Application ID URI ([see note](#access-token-scopes)) | `41451fa7-82d9-4673-8fa5-69eff5a761fd` |
+| `{TENANT DOMAIN}`            | Primary/Publisher/Tenant domain                       | `contoso.onmicrosoft.com`              |
+| `{TENANT ID}`                | Directory (tenant) ID                                 | `e86c78e2-8bb4-4c41-aefd-918e0565a45e` |
+
+The output location specified with the `-o|--output` option creates a project folder if it doesn't exist and becomes part of the app's name.
 
 > [!NOTE]
 > Pass the App ID URI to the `app-id-uri` option, but note a configuration change might be required in the client app, which is described in the [Access token scopes](#access-token-scopes) section.
@@ -101,7 +113,7 @@ To specify the output location, which creates a project folder if it doesn't exi
 > [!NOTE]
 > In the Azure portal, the *Client app's* **Authentication** > **Platform configurations** > **Web** > **Redirect URI** is configured for port 5001 for apps that run on the Kestrel server with default settings.
 >
-> If the *Client app* is run on a random IIS Express port, the port for the app can be found in the *Server app's* properties in the **Debug** panel.
+> If the *Client app* is run on a random IIS Express port, the port for the app can be found in the *Server API app's* properties in the **Debug** panel.
 >
 > If the port wasn't configured earlier with the *Client app's* known port, return to the *Client app's* registration in the Azure portal and update the redirect URI with the correct port.
 

@@ -8,7 +8,7 @@ ms.custom: mvc
 ms.date: 07/07/2020
 no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/tooling
-zone_pivot_groups: operating-systems-set-one
+zone_pivot_groups: operating-systems
 ---
 # Tooling for ASP.NET Core Blazor
 
@@ -74,7 +74,7 @@ There's no centralized way to trust a certificate on Linux. Typically, one of th
 * Trust all self-signed certificates for `localhost`.
 * Add the certificate to the list of trusted certificates in the browser.
 
-For more information, see the guidance provided by your browser and Linux distro.
+For more information, see the guidance provided by your browser and Linux distribution.
 
 ::: zone-end
 
@@ -90,12 +90,7 @@ For more information, see the guidance provided by your browser and Linux distro
 
    For information on the two Blazor hosting models, *Blazor WebAssembly* and *Blazor Server*, see <xref:blazor/hosting-models>.
 
-1. Confirm the following configurations:
-
-   * **Target Framework** set to **.NET Core 3.1**.
-   * **Authentication** set to **No Authentication**.
-   
-   Select **Next**.
+1. Confirm that **Authentication** is set to **No Authentication**. Select **Next**.
 
 1. In the **Project Name** field, name the app `WebApplication1`. Select **Create**.
 

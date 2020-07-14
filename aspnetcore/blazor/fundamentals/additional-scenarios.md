@@ -5,7 +5,7 @@ description: Learn about additional scenarios for ASP.NET Core Blazor hosting mo
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/07/2020
+ms.date: 07/10/2020
 no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/fundamentals/additional-scenarios
 ---
@@ -116,23 +116,107 @@ Rendering server components from a static HTML page isn't supported.
 
 *This section applies to Blazor Server.*
 
-Sometimes, you need to configure the SignalR client used by Blazor Server apps. For example, you might want to configure logging on the SignalR client to diagnose a connection issue.
+Configure the SignalR client used by Blazor Server apps in the `Pages/_Host.cshtml` file. Place a script that calls `Blazor.start` after the `_framework/blazor.server.js` script and inside the `</body>` tag.
 
-To configure the SignalR client in the `Pages/_Host.cshtml` file:
+### Logging
+
+To configure SignalR client logging:
 
 * Add an `autostart="false"` attribute to the `<script>` tag for the `blazor.server.js` script.
-* Call `Blazor.start` and pass in a configuration object that specifies the SignalR builder.
+* Pass in a configuration object (`configureSignalR`) that calls `configureLogging` with the log level on the client builder.
 
-```html
-<script src="_framework/blazor.server.js" autostart="false"></script>
-<script>
-  Blazor.start({
-    configureSignalR: function (builder) {
-      builder.configureLogging("information"); // LogLevel.Information
-    }
-  });
-</script>
+```cshtml
+    ...
+
+    <script src="_framework/blazor.server.js" autostart="false"></script>
+    <script>
+      Blazor.start({
+        configureSignalR: function (builder) {
+          builder.configureLogging("information");
+        }
+      });
+    </script>
+</body>
 ```
+
+In the preceding example, `information` is equivalent to a log level of <xref:Microsoft.Extensions.Logging.LogLevel.Information?displayProperty=nameWithType>.
+
+### Modify the reconnection handler
+
+The reconnection handler's circuit connection events can be modified for custom behaviors, such as:
+
+* To notify the user if the connection is dropped.
+* To perform logging (from the client) when a circuit is connected.
+
+To modify the connection events:
+
+* Add an `autostart="false"` attribute to the `<script>` tag for the `blazor.server.js` script.
+* Register callbacks for connection changes for dropped connections (`onConnectionDown`) and established/re-established connections (`onConnectionUp`). **Both** `onConnectionDown` and `onConnectionUp` must be specified.
+
+```cshtml
+    ...
+
+    <script src="_framework/blazor.server.js" autostart="false"></script>
+    <script>
+      Blazor.start({
+        reconnectionHandler: {
+          onConnectionDown: (options, error) => console.error(error);
+          onConnectionUp: () => console.log("Up, up, and away!");
+        }
+      });
+    </script>
+</body>
+```
+
+### Adjust the reconnection retry count and interval
+
+To adjust the reconnection retry count and interval:
+
+* Add an `autostart="false"` attribute to the `<script>` tag for the `blazor.server.js` script.
+* Set the number of retries (`maxRetries`) and period in milliseconds permitted for each retry attempt (`retryIntervalMilliseconds`).
+
+```cshtml
+    ...
+
+    <script src="_framework/blazor.server.js" autostart="false"></script>
+    <script>
+      Blazor.start({
+        reconnectionOptions: {
+          maxRetries: 3,
+          retryIntervalMilliseconds: 2000
+        }
+      });
+    </script>
+</body>
+```
+
+### Hide or replace the reconnection display
+
+To hide the reconnection display:
+
+* Add an `autostart="false"` attribute to the `<script>` tag for the `blazor.server.js` script.
+* Set the reconnection handler's `_reconnectionDisplay` to an empty object (`{}` or `new Object()`).
+
+```cshtml
+    ...
+
+    <script src="_framework/blazor.server.js" autostart="false"></script>
+    <script>
+      window.addEventListener('beforeunload', function () {
+        Blazor.defaultReconnectionHandler._reconnectionDisplay = {};
+      });
+    </script>
+</body>
+```
+
+To replace the reconnection display, set `_reconnectionDisplay` in the preceding example to the element for display:
+
+```javascript
+Blazor.defaultReconnectionHandler._reconnectionDisplay = 
+  document.getElementById("{ELEMENT ID}");
+```
+
+The placeholder `{ELEMENT ID}` is the ID of the HTML element to display.
 
 ## Additional resources
 

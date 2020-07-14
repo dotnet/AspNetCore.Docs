@@ -73,7 +73,7 @@ EF Core throws `DbConcurrencyException` exceptions when it detects conflicts. Th
 
 * Configure EF Core to include the original values of columns configured as [concurrency tokens](/ef/core/modeling/concurrency) in the Where clause of Update and Delete commands.
 
-  When `SaveChanges` is called, the Where clause looks for the original values of any properties annotated with the [ConcurrencyCheck](/dotnet/api/system.componentmodel.dataannotations.concurrencycheckattribute) attribute. The update statement won't find a row to update if any of the concurrency token properties changed since the row was first read. EF Core interprets that as a concurrency conflict. For database tables that have many columns, this approach can result in very large Where clauses, and can require large amounts of state. Therefore this approach is generally not recommended, and it isn't the method used in this tutorial.
+  When `SaveChanges` is called, the Where clause looks for the original values of any properties annotated with the <xref:System.ComponentModel.DataAnnotations.ConcurrencyCheckAttribute> attribute. The update statement won't find a row to update if any of the concurrency token properties changed since the row was first read. EF Core interprets that as a concurrency conflict. For database tables that have many columns, this approach can result in very large Where clauses, and can require large amounts of state. Therefore this approach is generally not recommended, and it isn't the method used in this tutorial.
 
 * In the database table, include a tracking column that can be used to determine when a row has been changed.
 
@@ -85,7 +85,7 @@ In *Models/Department.cs*, add a tracking property named RowVersion:
 
 [!code-csharp[](intro/samples/cu30/Models/Department.cs?highlight=26,27)]
 
-The [Timestamp](/dotnet/api/system.componentmodel.dataannotations.timestampattribute) attribute is what identifies the column as a concurrency tracking column. The fluent API is an alternative way to specify the tracking property:
+The <xref:System.ComponentModel.DataAnnotations.TimestampAttribute> attribute is what identifies the column as a concurrency tracking column. The fluent API is an alternative way to specify the tracking property:
 
 ```csharp
 modelBuilder.Entity<Department>()
@@ -237,7 +237,7 @@ Update *Pages\Departments\Index.cshtml* page:
 
 The following code shows the updated page:
 
-[!code-html[](intro/samples/cu30/Pages/Departments/Index.cshtml?highlight=5,8,29,48,51)]
+[!code-cshtml[](intro/samples/cu30/Pages/Departments/Index.cshtml?highlight=5,8,29,48,51)]
 
 ## Update the Edit page model
 
@@ -245,7 +245,7 @@ Update *Pages\Departments\Edit.cshtml.cs* with the following code:
 
 [!code-csharp[](intro/samples/cu30/Pages/Departments/Edit.cshtml.cs?name=snippet_All)]
 
-The [OriginalValue](/dotnet/api/microsoft.entityframeworkcore.changetracking.propertyentry.originalvalue?view=efcore-2.0#Microsoft_EntityFrameworkCore_ChangeTracking_PropertyEntry_OriginalValue) is updated with the `rowVersion` value from the entity when it was fetched in the `OnGet` method. EF Core generates a SQL UPDATE command with a WHERE clause containing the original `RowVersion` value. If no rows are affected by the UPDATE command (no rows have the original `RowVersion` value), a `DbUpdateConcurrencyException` exception is thrown.
+The <xref:Microsoft.EntityFrameworkCore.ChangeTracking.PropertyEntry.OriginalValue> is updated with the `rowVersion` value from the entity when it was fetched in the `OnGet` method. EF Core generates a SQL UPDATE command with a WHERE clause containing the original `RowVersion` value. If no rows are affected by the UPDATE command (no rows have the original `RowVersion` value), a `DbUpdateConcurrencyException` exception is thrown.
 
 [!code-csharp[](intro/samples/cu30/Pages/Departments/Edit.cshtml.cs?name=snippet_RowVersion&highlight=17-18)]
 
@@ -269,16 +269,16 @@ The following highlighted code sets the `RowVersion` value to the new value retr
 
 The `ModelState.Remove` statement is required because `ModelState` has the old `RowVersion` value. In the Razor Page, the `ModelState` value for a field takes precedence over the model property values when both are present.
 
-### Update the Razor page
+### Update the Edit page
 
 Update *Pages/Departments/Edit.cshtml* with the following code:
 
-[!code-html[](intro/samples/cu30/Pages/Departments/Edit.cshtml?highlight=1,14,16-17,37-39)]
+[!code-cshtml[](intro/samples/cu30/Pages/Departments/Edit.cshtml?highlight=1,14,16-17,37-39)]
 
 The preceding code:
 
 * Updates the `page` directive from `@page` to `@page "{id:int}"`.
-* Adds a hidden row version. `RowVersion` must be added so post back binds the value.
+* Adds a hidden row version. `RowVersion` must be added so postback binds the value.
 * Displays the last byte of `RowVersion` for debugging purposes.
 * Replaces `ViewData` with the strongly-typed `InstructorNameSL`.
 
@@ -310,7 +310,7 @@ This browser window didn't intend to change the Name field. Copy and paste the c
 
 Click **Save** again. The value you entered in the second browser tab is saved. You see the saved values in the Index page.
 
-## Update the Delete page
+## Update the Delete page model
 
 Update *Pages/Departments/Delete.cshtml.cs* with the following code:
 
@@ -322,11 +322,11 @@ The Delete page detects concurrency conflicts when the entity has changed after 
 * A DbUpdateConcurrencyException exception is thrown.
 * `OnGetAsync` is called with the `concurrencyError`.
 
-### Update the Delete Razor page
+### Update the Delete page
 
 Update *Pages/Departments/Delete.cshtml* with the following code:
 
-[!code-html[](intro/samples/cu30/Pages/Departments/Delete.cshtml?highlight=1,10,39,51)]
+[!code-cshtml[](intro/samples/cu30/Pages/Departments/Delete.cshtml?highlight=1,10,39,42,51)]
 
 The preceding code makes the following changes:
 
@@ -334,7 +334,7 @@ The preceding code makes the following changes:
 * Adds an error message.
 * Replaces FirstMidName with FullName in the **Administrator** field.
 * Changes `RowVersion` to display the last byte.
-* Adds a hidden row version. `RowVersion` must be added so postgit add back binds the value.
+* Adds a hidden row version. `RowVersion` must be added so postback binds the value.
 
 ### Test concurrency conflicts
 
@@ -352,7 +352,7 @@ Change the budget in the first browser tab and click **Save**.
 
 The browser shows the Index page with the changed value and updated rowVersion indicator. Note the updated rowVersion indicator, it's displayed on the second postback in the other tab.
 
-Delete the test department from the second tab. A concurrency error is display with the current values from the database. Clicking **Delete** deletes the entity, unless `RowVersion` has been updated.department has been deleted.
+Delete the test department from the second tab. A concurrency error is display with the current values from the database. Clicking **Delete** deletes the entity, unless `RowVersion` has been updated.
 
 ## Additional resources
 
@@ -537,7 +537,7 @@ Update the Index page:
 
 The following markup shows the updated page:
 
-[!code-html[](intro/samples/cu/Pages/Departments/Index.cshtml?highlight=5,8,29,47,50)]
+[!code-cshtml[](intro/samples/cu/Pages/Departments/Index.cshtml?highlight=5,8,29,47,50)]
 
 ### Update the Edit page model
 
@@ -569,7 +569,7 @@ The `ModelState.Remove` statement is required because `ModelState` has the old `
 
 Update *Pages/Departments/Edit.cshtml* with the following markup:
 
-[!code-html[](intro/samples/cu/Pages/Departments/Edit.cshtml?highlight=1,14,16-17,37-39)]
+[!code-cshtml[](intro/samples/cu/Pages/Departments/Edit.cshtml?highlight=1,14,16-17,37-39)]
 
 The preceding markup:
 
@@ -624,7 +624,7 @@ The Delete page detects concurrency conflicts when the entity has changed after 
 
 Update *Pages/Departments/Delete.cshtml* with the following code:
 
-[!code-html[](intro/samples/cu/Pages/Departments/Delete.cshtml?highlight=1,10,39,51)]
+[!code-cshtml[](intro/samples/cu/Pages/Departments/Delete.cshtml?highlight=1,10,39,51)]
 
 The preceding code makes the following changes:
 
@@ -650,7 +650,7 @@ Change the budget in the first browser tab and click **Save**.
 
 The browser shows the Index page with the changed value and updated rowVersion indicator. Note the updated rowVersion indicator, it's displayed on the second postback in the other tab.
 
-Delete the test department from the second tab. A concurrency error is display with the current values from the DB. Clicking **Delete** deletes the entity, unless `RowVersion` has been updated.department has been deleted.
+Delete the test department from the second tab. A concurrency error is display with the current values from the DB. Clicking **Delete** deletes the entity, unless `RowVersion` has been updated.
 
 See [Inheritance](xref:data/ef-mvc/inheritance) on how to inherit a data model.
 
