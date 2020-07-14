@@ -268,7 +268,7 @@ The `ParentComponent` in the sample app can provide content for rendering the `C
 
 [!code-razor[](index/samples_snapshot/ParentComponent.razor?highlight=7-8)]
 
-Due to the way that Blazor renders child content, rendering components inside a `for` loop requires a local index variable if the incrementing loop variable is closed over in the child component's content:
+Due to the way that Blazor renders child content, rendering components inside a `for` loop requires a local index variable if the incrementing loop variable is used in the child component's content:
 >
 > ```razor
 > @for (int c = 0; c < 10; c++)
