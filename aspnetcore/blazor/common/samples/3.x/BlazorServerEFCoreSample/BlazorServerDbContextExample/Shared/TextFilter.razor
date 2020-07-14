@@ -2,7 +2,6 @@
 
 @inject IContactFilters Filters
 @implements IDisposable
-
 Filter by:
 <input type="text" autofocus @bind-value="FilterText" @bind-value:event="oninput" />
 <button class="btn btn-danger" @onclick="@(() => FilterText = string.Empty)">Clear</button>
@@ -63,7 +62,7 @@ Filter on: <select @bind="SelectedColumn">
     /// <summary>
     /// Column to filter on.
     /// </summary>
-    public int SelectedColumn
+    private int SelectedColumn
     {
         get => selectedColumn;
         set
@@ -82,7 +81,7 @@ Filter on: <select @bind="SelectedColumn">
     /// <summary>
     /// Text to filter on.
     /// </summary>
-    public string FilterText
+    private string FilterText
     {
         get => filterText;
         set

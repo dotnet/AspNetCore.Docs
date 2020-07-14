@@ -47,7 +47,7 @@ namespace BlazorServerDbContextExample.Data
         /// <returns>The newly configured <see cref="DbContextOptions{TContext}"/>.</returns>
         private static DbContextOptions<TContext> GetOptions<TContext>(
             Action<DbContextOptionsBuilder> action,
-                IServiceProvider sp = null) where TContext : DbContext
+            IServiceProvider sp = null) where TContext : DbContext
         {
             var optionsBuilder = new DbContextOptionsBuilder<TContext>();
             if (sp != null)

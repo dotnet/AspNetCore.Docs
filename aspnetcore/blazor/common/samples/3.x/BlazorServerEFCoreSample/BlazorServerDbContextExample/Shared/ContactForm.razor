@@ -119,13 +119,13 @@
     /// <summary>
     /// Mode.
     /// </summary>
-    public string Mode => IsAdd ? "Add" : "Edit";
+    private string Mode => IsAdd ? "Add" : "Edit";
 
     /// <summary>
     /// Ask to cancel.
     /// </summary>
     /// <returns>A <see cref="Task"/>.</returns>
-    public Task CancelAsync()
+    private Task CancelAsync()
     {
         return CancelRequest.InvokeAsync(null);
     }
@@ -135,7 +135,7 @@
     /// </summary>
     /// <param name="isValid"><c>True</c> when field validation passed.</param>
     /// <returns>A <see cref="Task"/>.</returns>
-    public Task HandleSubmitAsync(bool isValid)
+    private Task HandleSubmitAsync(bool isValid)
     {
         return ValidationResult.InvokeAsync(isValid);
     }

@@ -15,8 +15,8 @@
 }
 else
 {
-    <ContactForm Busy="@Busy" Contact="@Contact" 
-                 DbContact="@DbContact" 
+    <ContactForm Busy="@Busy" Contact="@Contact"
+                 DbContact="@DbContact"
                  IsAdd="false"
                  CancelRequest="Cancel"
                  ValidationResult="@(async (success) => await ValidationResultAsync(success))" />
@@ -50,37 +50,37 @@ else
     /// <summary>
     /// The <see cref="ContactContext"/> for database access.
     /// </summary>
-    public ContactContext Context { get; private set; }
+    private ContactContext Context { get; set; }
 
     /// <summary>
     /// Contact being edited
     /// </summary>
-    public Contact Contact { get; private set; }
+    private Contact Contact { get; set; }
 
     /// <summary>
     /// Database version when concurrency issues exist
     /// </summary>
-    public Contact DbContact { get; private set; }
+    private Contact DbContact { get; set; }
 
     /// <summary>
     /// Avoid concurrent requests
     /// </summary>
-    public bool Busy;
+    private bool Busy;
 
     /// <summary>
     /// An error occurred in the update
     /// </summary>
-    public bool Error;
+    private bool Error;
 
     /// <summary>
     /// A concurrency error needs resolution
     /// </summary>
-    public bool ConcurrencyError;
+    private bool ConcurrencyError;
 
     /// <summary>
     /// Error message
     /// </summary>
-    public string ErrorMessage = string.Empty;
+    private string ErrorMessage = string.Empty;
 
     /// <summary>
     /// Start it up
@@ -108,7 +108,7 @@ else
     /// </summary>
     /// <param name="success">Success when model is valid</param>
     /// <returns>Task</returns>
-    public async Task ValidationResultAsync(bool success)
+    private async Task ValidationResultAsync(bool success)
     {
         if (Busy)
         {
@@ -169,7 +169,7 @@ else
     /// <summary>
     /// Bail out!
     /// </summary>
-    public void Cancel()
+    private void Cancel()
     {
         Busy = true;
         Nav.NavigateTo($"/{PageHelper.Page}");

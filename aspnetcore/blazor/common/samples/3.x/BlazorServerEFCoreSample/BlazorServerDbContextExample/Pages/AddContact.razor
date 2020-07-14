@@ -27,27 +27,27 @@
     /// <summary>
     /// New <see cref="Contact"/>.
     /// </summary>
-    public Contact Contact { get; set; }
+    private Contact Contact { get; set; }
 
     /// <summary>
     /// <c>True</c> when an asynchronous operation is running.
     /// </summary>
-    public bool Busy;
+    private bool Busy;
 
     /// <summary>
     /// <c>True</c> after successful add.
     /// </summary>
-    public bool Success;
+    private bool Success;
 
     /// <summary>
     /// <c>True</c> when an error occurred.
     /// </summary>
-    public bool Error;
+    private bool Error;
 
     /// <summary>
     /// The error message
     /// </summary>
-    public string ErrorMessage = string.Empty;
+    private string ErrorMessage = string.Empty;
 
     /// <summary>
     /// Start with fresh <see cref="Contact"/>.
@@ -64,7 +64,7 @@
     /// </summary>
     /// <param name="success"><c>True</c> when valid.</param>
     /// <returns>A <see cref="Task"/>.</returns>
-    public async Task ValidationResultAsync(bool success)
+    private async Task ValidationResultAsync(bool success)
     {
         if (Busy)
         {
@@ -106,7 +106,7 @@
     /// <summary>
     /// Back to list.
     /// </summary>
-    public void Cancel()
+    private void Cancel()
     {
         Nav.NavigateTo($"/{PageHelper.Page}");
     }

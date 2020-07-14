@@ -18,7 +18,7 @@
     /// </summary>
     /// <param name="confirmed"><c>True</c> when confirmed.</param>
     /// <returns>A <see cref="Task"/>.</returns>
-    public async Task ConfirmAsync(bool confirmed)
+    private async Task ConfirmAsync(bool confirmed)
     {
         await Confirmation.InvokeAsync(confirmed);
     }

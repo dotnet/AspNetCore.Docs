@@ -9,7 +9,7 @@
             </a>
             @if (CanDelete)
             {
-                <span @onclick="async () => await DeleteRequestAsync()" 
+                <span @onclick="async () => await DeleteRequestAsync()"
                       title="Delete" class="clickable red">❌</span>
             }
             else
@@ -19,7 +19,7 @@
             &nbsp;
         </div>
         <div class="col-2">
-            <a href="@ViewLink" alt="View Details" 
+            <a href="@ViewLink" alt="View Details"
                title="View Details">
                 @Name
             </a>
@@ -35,7 +35,7 @@
         else
         {
             <div class="col-9">
-                <DeletePrompt Confirmation="ConfirmAsync"/>
+                <DeletePrompt Confirmation="ConfirmAsync" />
             </div>
         }
     </div>
@@ -76,26 +76,26 @@
     /// <summary>
     /// Returns <c>true</c> if conditions for delete are met.
     /// </summary>
-    public bool CanDelete => !DeleteConfirmation &&
-        (Wrapper.DeleteRequestId == 0 ||
-        Wrapper.DeleteRequestId == CurrentContact?.Id);
+    private bool CanDelete => !DeleteConfirmation &&
+    (Wrapper.DeleteRequestId == 0 ||
+    Wrapper.DeleteRequestId == CurrentContact?.Id);
 
     /// <summary>
     /// Navigate to view.
     /// </summary>
-    public string ViewLink => $"/View/{CurrentContact?.Id}";
+    private string ViewLink => $"/View/{CurrentContact?.Id}";
 
     /// <summary>
     /// Confirm the delete.
     /// </summary>
-    public bool DeleteConfirmation { get; set; }
+    private bool DeleteConfirmation { get; set; }
 
     /// <summary>
     /// Called based on confirmation.
     /// </summary>
     /// <param name="confirmed"><c>True</c> when confirmed</param>
     /// <returns>A <see cref="Task"/>.</returns>
-    public async Task ConfirmAsync(bool confirmed)
+    private async Task ConfirmAsync(bool confirmed)
     {
         if (confirmed)
         {
@@ -111,7 +111,7 @@
     /// <summary>
     /// Set delete to true.
     /// </summary>
-    public async Task DeleteRequestAsync()
+    private async Task DeleteRequestAsync()
     {
         if (Wrapper.DeleteRequestId == 0)
         {
@@ -132,7 +132,7 @@
     /// <summary>
     /// Correctly formatted name.
     /// </summary>
-    public string Name => Filters.ShowFirstNameFirst ?
-        $"{CurrentContact?.FirstName} {CurrentContact?.LastName}" :
-        $"{CurrentContact?.LastName}, {CurrentContact?.FirstName}";
+    private string Name => Filters.ShowFirstNameFirst ?
+    $"{CurrentContact?.FirstName} {CurrentContact?.LastName}" :
+    $"{CurrentContact?.LastName}, {CurrentContact?.FirstName}";
 }

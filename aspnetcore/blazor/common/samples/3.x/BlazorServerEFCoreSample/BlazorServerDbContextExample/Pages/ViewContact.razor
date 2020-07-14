@@ -62,7 +62,7 @@ else
     /// <summary>
     /// Tracking of asynchronous calls.
     /// </summary>
-    public bool Loading;
+    private bool Loading;
 
     /// <summary>
     /// Id from route of contact.
@@ -84,22 +84,22 @@ else
     /// <summary>
     /// Contact entity.
     /// </summary>
-    public Contact Contact { get; set; }
+    private Contact Contact { get; set; }
 
     /// <summary>
     /// Set to true when not found.
     /// </summary>
-    public bool NotFound = false;
+    private bool NotFound = false;
 
     /// <summary>
     /// Set to true when delete is requested.
     /// </summary>
-    public bool ShowConfirmation = false;
+    private bool ShowConfirmation = false;
 
     /// <summary>
     /// Set to true when delete is successful
     /// </summary>
-    public bool Deleted = false;
+    private bool Deleted = false;
 
     /// <summary>
     /// Navigated
@@ -122,7 +122,7 @@ else
     /// </summary>
     /// <param name="result">True when user confirmed</param>
     /// <returns>Task</returns>
-    public async Task ConfirmAsync(bool result)
+    private async Task ConfirmAsync(bool result)
     {
         if (result)
         {
