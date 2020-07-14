@@ -555,7 +555,7 @@ namespace AspNetCoreCertificateAuthApi
 
 ## Certificate validation cachine
 
-ASP.NET Core 5 preview 7 and later adds the ability to enable caching of validation results which drastically improves performance as validation is a expensive operation.
+ASP.NET Core 5.0 Preview 7 and later adds the ability to enable caching of validation results. The caching dramatically improves performance, as validation is an expensive operation.
 
 By default certificate authentication doesn't have caching enabled. To enable caching, call `AddCertificateCache`:
 
