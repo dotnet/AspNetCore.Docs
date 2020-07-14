@@ -553,7 +553,7 @@ namespace AspNetCoreCertificateAuthApi
 
 <a name="occ"></a>
 
-## Certificate validation cachine
+## Certificate validation caching
 
 ASP.NET Core 5.0 Preview 7 and later adds the ability to enable caching of validation results. The caching dramatically improves performance, as validation is an expensive operation.
 
