@@ -4,7 +4,7 @@ author: blowdart
 description: Learn how to configure certificate authentication in ASP.NET Core for IIS and HTTP.sys.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: bdorrans
-ms.date: 01/02/2020
+ms.date: 07/14/2020
 no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/certauth
 ---
@@ -40,8 +40,10 @@ public void ConfigureServices(IServiceCollection services)
     services.AddAuthentication(
         CertificateAuthenticationDefaults.AuthenticationScheme)
         .AddCertificate()
+::: moniker range=">= aspnetcore-5.0"
 	// Adding a ICertificateValidationCache will result in certificate auth caching the results, the default implementation uses a memory cache
 	.AddCertificateCache()
+::: moniker-end
     // All the other service configuration.
 }
 
@@ -553,6 +555,7 @@ namespace AspNetCoreCertificateAuthApi
 
 <a name="occ"></a>
 
+::: moniker range=">= aspnetcore-5.0"
 ## Certificate validation caching
 
 ASP.NET Core 5.0 Preview 7 and later adds the ability to enable caching of validation results. The caching dramatically improves performance, as validation is an expensive operation.
@@ -563,6 +566,7 @@ By default certificate authentication doesn't have caching enabled. To enable ca
 
 The default caching implementation caches results to memory. You can provide your own cache by implementing `ICertificateValidationCache` and registering it with dependency injection. For example, `services.AddSingleton<ICertificateValidationCache, YourCache>()`.
 
+::: moniker-end
 ## Optional client certificates
 
 This section provides information for apps that must protect a subset of the app with a certificate. For example, a Razor Page or controller in the app might require client certificates. This presents challenges as client certificates:
