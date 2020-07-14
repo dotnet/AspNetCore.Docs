@@ -262,7 +262,7 @@ The query string of a request can be obtained from the <xref:Microsoft.AspNetCor
 var query = new Uri(Navigation.Uri).Query;
 ```
 
-To parse the query string's parameters:
+To parse a query string's parameters:
 
 * Add a package reference for [Microsoft.AspNetCore.WebUtilities](https://www.nuget.org/packages/Microsoft.AspNetCore.WebUtilities).
 * Obtain the value after parsing the query string with <xref:Microsoft.AspNetCore.WebUtilities.QueryHelpers.ParseQuery%2A?displayProperty=nameWithType>.
