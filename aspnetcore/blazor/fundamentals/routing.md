@@ -5,7 +5,7 @@ description: Learn how to route requests in apps and about the NavLink component
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/01/2020
+ms.date: 07/14/2020
 no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/fundamentals/routing
 ---
@@ -249,3 +249,46 @@ public void Dispose()
 * <xref:Microsoft.AspNetCore.Components.Routing.LocationChangedEventArgs.IsNavigationIntercepted>: If `true`, Blazor intercepted the navigation from the browser. If `false`, <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A?displayProperty=nameWithType> caused the navigation to occur.
 
 For more information on component disposal, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable>.
+
+## Query string and parse parameters
+
+The query string of a request can be obtained from the <xref:Microsoft.AspNetCore.Components.NavigationManager>'s <xref:Microsoft.AspNetCore.Components.NavigationManager.Uri> property:
+
+```razor
+@inject NavigationManager Navigation
+
+...
+
+var query = new Uri(Navigation.Uri).Query;
+```
+
+To parse the query string's parameters:
+
+* Add a package reference for [Microsoft.AspNetCore.WebUtilities](https://www.nuget.org/packages/Microsoft.AspNetCore.WebUtilities).
+* Obtain the value after parsing the query string with <xref:Microsoft.AspNetCore.WebUtilities.QueryHelpers.ParseQuery%2A?displayProperty=nameWithType>.
+
+  ```razor
+  @page "/"
+  @using Microsoft.AspNetCore.WebUtilities
+  @inject NavigationManager NavigationManager
+
+  <h1>Query string parse example</h1>
+
+  <p>Value: @queryValue</p>
+
+  @code {
+      private string queryValue = "Not set";
+
+      protected override void OnInitialized()
+      {
+          var query = new Uri(NavigationManager.Uri).Query;
+
+          if (QueryHelpers.ParseQuery(query).TryGetValue("{KEY}", out var value))
+          {
+              queryValue = value;
+          }
+      }
+  }
+  ```
+
+  The placeholder `{KEY}` in the preceding example is the query string parameter key. For example, the URL key-value pair `?ship=Tardis` uses a key of `ship`.
