@@ -147,7 +147,7 @@ To attach to a running Blazor app, create a `launch.json` file with the followin
 
 ### Launch configuration options
 
-The following launch configuration options for the `.vscode/launch.json` file are supported for the `blazorwasm` debug type.
+The following launch configuration options set in the `.vscode/launch.json` file are supported for the `blazorwasm` debug type.
 
 | Option    | Description |
 | --------- | ----------- |
@@ -187,7 +187,7 @@ The following launch configuration options for the `.vscode/launch.json` file ar
 
 #### Launch and debug a hosted Blazor WebAssembly app with Microsoft Edge
 
-Browser configuration defaults to Google Chrome. When using Microsoft Edge for debugging, set `browser` to `edge`. To use Google Chrome, don't set `browser` or set to it `chrome`.
+Browser configuration defaults to Google Chrome. When using Microsoft Edge for debugging, set `browser` to `edge`. To use Google Chrome, don't set `browser` or set it to `chrome`.
 
 ```json
 {
