@@ -147,7 +147,7 @@ To attach to a running Blazor app, create a `launch.json` file with the followin
 
 ### Launch configuration options
 
-The following launch configuration options set in the `.vscode/launch.json` file are supported for the `blazorwasm` debug type.
+The following launch configuration options are supported for the `blazorwasm` debug type (`.vscode/launch.json`).
 
 | Option    | Description |
 | --------- | ----------- |
