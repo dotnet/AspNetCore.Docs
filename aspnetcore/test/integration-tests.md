@@ -297,7 +297,7 @@ The test app can mock an <xref:Microsoft.AspNetCore.Authentication.Authenticatio
 
 [!code-csharp[](integration-tests/samples/3.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/AuthTests.cs?name=snippet4&highlight=11-18)]
 
-The `TestAuthHandler` is called to authenticate a user when the authentication scheme is set to `Test`(Note: its important for this scheme to match the scheme your application expects, or authentication will not work) where `AddAuthentication` is registered for `ConfigureTestServices`:
+The `TestAuthHandler` is called to authenticate a user when the authentication scheme is set to `Test` where `AddAuthentication` is registered for `ConfigureTestServices`. It's important for the `Test` scheme to match the scheme your app expects. Otherwise, authentication won't work.
 
 [!code-csharp[](integration-tests/samples/3.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/AuthTests.cs?name=snippet3&highlight=7-12)]
 
