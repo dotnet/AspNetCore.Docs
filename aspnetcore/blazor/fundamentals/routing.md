@@ -5,7 +5,7 @@ description: Learn how to route requests in apps and about the NavLink component
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/01/2020
+ms.date: 07/14/2020
 no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/fundamentals/routing
 ---
@@ -22,6 +22,8 @@ Blazor Server is integrated into [ASP.NET Core Endpoint Routing](xref:fundamenta
 [!code-csharp[](routing/samples_snapshot/3.x/Startup.cs?highlight=5)]
 
 The most typical configuration is to route all requests to a Razor page, which acts as the host for the server-side part of the Blazor Server app. By convention, the *host* page is usually named `_Host.cshtml`. The route specified in the host file is called a *fallback route* because it operates with a low priority in route matching. The fallback route is considered when other routes don't match. This allows the app to use others controllers and pages without interfering with the Blazor Server app.
+
+For information on configuring <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage%2A> for non-root URL server hosting, see <xref:blazor/host-and-deploy/index#app-base-path>.
 
 ## Route templates
 
@@ -186,6 +188,36 @@ The following HTML markup is rendered:
 <a href="my-page" target="_blank">My page</a>
 ```
 
+> [!WARNING]
+> Due to the way that Blazor renders child content, rendering `NavLink` components inside a `for` loop requires a local index variable if the incrementing loop variable is used in the `NavLink` (child) component's content:
+>
+> ```razor
+> @for (int c = 0; c < 10; c++)
+> {
+>     var current = c;
+>     <li ...>
+>         <NavLink ... href="@c">
+>             <span ...></span> @current
+>         </NavLink>
+>     </li>
+> }
+> ```
+>
+> Using an index variable in this scenario is a requirement for **any** child component that uses a loop variable in its [child content](xref:blazor/components/index#child-content), not just the `NavLink` component.
+>
+> Alternatively, use a `foreach` loop with <xref:System.Linq.Enumerable.Range%2A?displayProperty=nameWithType>:
+>
+> ```razor
+> @foreach(var c in Enumerable.Range(0,10))
+> {
+>     <li ...>
+>         <NavLink ... href="@c">
+>             <span ...></span> @c
+>         </NavLink>
+>     </li>
+> }
+> ```
+
 ## URI and navigation state helpers
 
 Use <xref:Microsoft.AspNetCore.Components.NavigationManager> to work with URIs and navigation in C# code. <xref:Microsoft.AspNetCore.Components.NavigationManager> provides the event and methods shown in the following table.
@@ -249,3 +281,46 @@ public void Dispose()
 * <xref:Microsoft.AspNetCore.Components.Routing.LocationChangedEventArgs.IsNavigationIntercepted>: If `true`, Blazor intercepted the navigation from the browser. If `false`, <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A?displayProperty=nameWithType> caused the navigation to occur.
 
 For more information on component disposal, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable>.
+
+## Query string and parse parameters
+
+The query string of a request can be obtained from the <xref:Microsoft.AspNetCore.Components.NavigationManager>'s <xref:Microsoft.AspNetCore.Components.NavigationManager.Uri> property:
+
+```razor
+@inject NavigationManager Navigation
+
+...
+
+var query = new Uri(Navigation.Uri).Query;
+```
+
+To parse a query string's parameters:
+
+* Add a package reference for [Microsoft.AspNetCore.WebUtilities](https://www.nuget.org/packages/Microsoft.AspNetCore.WebUtilities).
+* Obtain the value after parsing the query string with <xref:Microsoft.AspNetCore.WebUtilities.QueryHelpers.ParseQuery%2A?displayProperty=nameWithType>.
+
+```razor
+@page "/"
+@using Microsoft.AspNetCore.WebUtilities
+@inject NavigationManager NavigationManager
+
+<h1>Query string parse example</h1>
+
+<p>Value: @queryValue</p>
+
+@code {
+    private string queryValue = "Not set";
+
+    protected override void OnInitialized()
+    {
+        var query = new Uri(NavigationManager.Uri).Query;
+
+        if (QueryHelpers.ParseQuery(query).TryGetValue("{KEY}", out var value))
+        {
+            queryValue = value;
+        }
+    }
+}
+```
+
+The placeholder `{KEY}` in the preceding example is the query string parameter key. For example, the URL key-value pair `?ship=Tardis` uses a key of `ship`.

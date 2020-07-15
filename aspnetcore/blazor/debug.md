@@ -5,7 +5,7 @@ description: Learn how to debug Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/06/2020
+ms.date: 07/15/2020
 no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/debug
 ---
@@ -35,8 +35,8 @@ We will continue to improve the debugging experience in upcoming releases.
 
 Debugging requires either of the following browsers:
 
+* Google Chrome (version 70 or later) (default)
 * Microsoft Edge (version 80 or later)
-* Google Chrome (version 70 or later)
 
 ## Enable debugging for Visual Studio and Visual Studio Code
 
@@ -120,13 +120,13 @@ For information on installing Visual Studio Code for Blazor app development, see
 
 ### Debug hosted Blazor WebAssembly
 
-1. Open the hosted Blazor WebAssembly app in VS Code.
+1. Open the hosted Blazor WebAssembly app's solution folder in VS Code.
 
 1. If there's no launch configuration set for the project, the following notification appears. Select **Yes**.
 
    ![Add required assets](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vscode-required-assets.png)
 
-1. In the selection window, select the *Server* project within the hosted solution.
+1. In the command palette at the top of the window, select the *Server* project within the hosted solution.
 
 A `launch.json` file is generated with the launch configuration for launching the debugger.
 
@@ -147,7 +147,7 @@ To attach to a running Blazor app, create a `launch.json` file with the followin
 
 ### Launch configuration options
 
-The following launch configuration options are supported for the `blazorwasm` debug type.
+The following launch configuration options are supported for the `blazorwasm` debug type (`.vscode/launch.json`).
 
 | Option    | Description |
 | --------- | ----------- |
@@ -185,17 +185,23 @@ The following launch configuration options are supported for the `blazorwasm` de
 }
 ```
 
-#### Launch and debug a hosted Blazor WebAssembly app
+#### Launch and debug a hosted Blazor WebAssembly app with Microsoft Edge
+
+Browser configuration defaults to Google Chrome. When using Microsoft Edge for debugging, set `browser` to `edge`. To use Google Chrome, either don't set the `browser` option or set the option's value to `chrome`.
 
 ```json
 {
+  "name": "Launch and Debug Hosted Blazor WebAssembly App",
   "type": "blazorwasm",
   "request": "launch",
-  "name": "Launch and Debug Hosted App",
+  "hosted": true,
   "program": "${workspaceFolder}/Server/bin/Debug/netcoreapp3.1/MyHostedApp.Server.dll",
-  "cwd": "${workspaceFolder}"
+  "cwd": "${workspaceFolder}/Server",
+  "browser": "edge"
 }
 ```
+
+In the preceding example, `MyHostedApp.Server.dll` is the *Server* app's assembly. The `.vscode` folder is located in the solution's folder next to the `Client`, `Server`, and `Shared` folders.
 
 ## Debug in the browser
 
