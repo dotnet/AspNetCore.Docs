@@ -15,6 +15,9 @@ By [Javier Calvarro Nelson](https://github.com/javiercn) and [Luke Latham](https
 
 This article explains how to create a new Blazor hosted app that uses [IdentityServer](https://identityserver.io/) to authenticate users and API calls.
 
+> [!NOTE]
+> To configure a standalone or hosted Blazor WebAssembly app to use an existing, external Identity Server instance, follow the guidance in <xref:blazor/security/webassembly/standalone-with-authentication-library>.
+
 # [Visual Studio](#tab/visual-studio)
 
 To create a new Blazor WebAssembly project with an authentication mechanism:
