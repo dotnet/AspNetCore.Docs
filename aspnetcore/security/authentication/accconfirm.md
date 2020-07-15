@@ -124,6 +124,8 @@ Add the following code to the `ConfigureServices` method in the *Startup.cs* fil
 
 [!code-csharp[](accconfirm/sample/WebPWrecover30/Startup.cs?name=snippet1&highlight=11-15)]
 
+[!INCLUDE[](~/includes/disableVer.md)]
+
 ## Register, confirm email, and reset password
 
 Run the web app, and test the account confirmation and password recovery flow.
