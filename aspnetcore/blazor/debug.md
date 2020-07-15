@@ -5,7 +5,7 @@ description: Learn how to debug Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/06/2020
+ms.date: 07/15/2020
 no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/debug
 ---
@@ -35,8 +35,8 @@ We will continue to improve the debugging experience in upcoming releases.
 
 Debugging requires either of the following browsers:
 
+* Google Chrome (version 70 or later) (default)
 * Microsoft Edge (version 80 or later)
-* Google Chrome (version 70 or later)
 
 ## Enable debugging for Visual Studio and Visual Studio Code
 
@@ -120,13 +120,13 @@ For information on installing Visual Studio Code for Blazor app development, see
 
 ### Debug hosted Blazor WebAssembly
 
-1. Open the hosted Blazor WebAssembly app in VS Code.
+1. Open the hosted Blazor WebAssembly app's solution folder in VS Code.
 
 1. If there's no launch configuration set for the project, the following notification appears. Select **Yes**.
 
    ![Add required assets](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vscode-required-assets.png)
 
-1. In the selection window, select the *Server* project within the hosted solution.
+1. In the command palette at the top of the window, select the *Server* project within the hosted solution.
 
 A `launch.json` file is generated with the launch configuration for launching the debugger.
 
@@ -147,13 +147,13 @@ To attach to a running Blazor app, create a `launch.json` file with the followin
 
 ### Launch configuration options
 
-The following launch configuration options are supported for the `blazorwasm` debug type.
+The following launch configuration options for the `.vscode/launch.json` file are supported for the `blazorwasm` debug type.
 
 | Option    | Description |
 | --------- | ----------- |
 | `request` | Use `launch` to launch and attach a debugging session to a Blazor WebAssembly app or `attach` to attach a debugging session to an already-running app. |
 | `url`     | The URL to open in the browser when debugging. Defaults to `https://localhost:5001`. |
-| `browser` | The browser to launch for the debugging session. Set to `edge` or `chrome`. Defaults to `chrome`. |
+| `browser` | The browser to launch for the debugging session. Set to `edge` or `chrome`. Defaults to `chrome`. See the following example configuration. |
 | `trace`   | Used to generate logs from the JS debugger. Set to `true` to generate logs. |
 | `hosted`  | Must be set to `true` if launching and debugging a hosted Blazor WebAssembly app. |
 | `webRoot` | Specifies the absolute path of the web server. Should be set if an app is served from a sub-route. |
@@ -161,6 +161,20 @@ The following launch configuration options are supported for the `blazorwasm` de
 | `program` | A reference to the executable to run the server of the hosted app. Must be set if `hosted` is `true`. |
 | `cwd`     | The working directory to launch the app under. Must be set if `hosted` is `true`. |
 | `env`     | The environment variables to provide to the launched process. Only applicable if `hosted` is set to `true`. |
+
+Browser configuration defaults to Google Chrome. When using Microsoft Edge for debugging, set `browser` to `edge`:
+
+```json
+{
+   ...
+   "configurations": [
+        {
+            ...
+            "browser": "edge"
+        }
+    ]
+}
+```
 
 ### Example launch configurations
 
