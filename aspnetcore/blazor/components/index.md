@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components, including how to bind
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/06/2020
+ms.date: 07/14/2020
 no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/components/index
 ---
@@ -267,6 +267,29 @@ The `ParentComponent` in the sample app can provide content for rendering the `C
 `Pages/ParentComponent.razor`:
 
 [!code-razor[](index/samples_snapshot/ParentComponent.razor?highlight=7-8)]
+
+Due to the way that Blazor renders child content, rendering components inside a `for` loop requires a local index variable if the incrementing loop variable is used in the child component's content:
+>
+> ```razor
+> @for (int c = 0; c < 10; c++)
+> {
+>     var current = c;
+>     <ChildComponent Param1="@c">
+>         Child Content: Count: @current
+>     </ChildComponent>
+> }
+> ```
+>
+> Alternatively, use a `foreach` loop with <xref:System.Linq.Enumerable.Range%2A?displayProperty=nameWithType>:
+>
+> ```razor
+> @foreach(var c in Enumerable.Range(0,10))
+> {
+>     <ChildComponent Param1="@c">
+>         Child Content: Count: @c
+>     </ChildComponent>
+> }
+> ```
 
 ## Attribute splatting and arbitrary parameters
 
