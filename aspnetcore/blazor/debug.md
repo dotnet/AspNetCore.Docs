@@ -185,28 +185,23 @@ The following launch configuration options for the `.vscode/launch.json` file ar
 }
 ```
 
-#### Launch and debug a hosted Blazor WebAssembly app
+#### Launch and debug a hosted Blazor WebAssembly app with Microsoft Edge
+
+Browser configuration defaults to Google Chrome. When using Microsoft Edge for debugging, set `browser` to `edge`. To use Google Chrome, don't set `browser` or set to it `chrome`.
 
 ```json
 {
+  "name": "Launch and Debug Hosted Blazor WebAssembly App",
   "type": "blazorwasm",
   "request": "launch",
-  "name": "Launch and Debug Hosted App",
+  "hosted": true,
   "program": "${workspaceFolder}/Server/bin/Debug/netcoreapp3.1/MyHostedApp.Server.dll",
-  "cwd": "${workspaceFolder}"
-}
-```
-
-#### Browser configuration
-
-Browser configuration defaults to Google Chrome. When using Microsoft Edge for debugging, set `browser` to `edge`:
-
-```json
-{
-  ...
+  "cwd": "${workspaceFolder}/Server",
   "browser": "edge"
 }
 ```
+
+In the preceding example, `MyHostedApp.Server.dll` is the *Server* app's assembly. The `.vscode` folder is located in the solution's folder next to the `Client`, `Server`, and `Shared` folders.
 
 ## Debug in the browser
 
