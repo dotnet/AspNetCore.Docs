@@ -153,7 +153,7 @@ The following launch configuration options for the `.vscode/launch.json` file ar
 | --------- | ----------- |
 | `request` | Use `launch` to launch and attach a debugging session to a Blazor WebAssembly app or `attach` to attach a debugging session to an already-running app. |
 | `url`     | The URL to open in the browser when debugging. Defaults to `https://localhost:5001`. |
-| `browser` | The browser to launch for the debugging session. Set to `edge` or `chrome`. Defaults to `chrome`. See the following example configuration. |
+| `browser` | The browser to launch for the debugging session. Set to `edge` or `chrome`. Defaults to `chrome`. |
 | `trace`   | Used to generate logs from the JS debugger. Set to `true` to generate logs. |
 | `hosted`  | Must be set to `true` if launching and debugging a hosted Blazor WebAssembly app. |
 | `webRoot` | Specifies the absolute path of the web server. Should be set if an app is served from a sub-route. |
@@ -161,20 +161,6 @@ The following launch configuration options for the `.vscode/launch.json` file ar
 | `program` | A reference to the executable to run the server of the hosted app. Must be set if `hosted` is `true`. |
 | `cwd`     | The working directory to launch the app under. Must be set if `hosted` is `true`. |
 | `env`     | The environment variables to provide to the launched process. Only applicable if `hosted` is set to `true`. |
-
-Browser configuration defaults to Google Chrome. When using Microsoft Edge for debugging, set `browser` to `edge`:
-
-```json
-{
-   ...
-   "configurations": [
-        {
-            ...
-            "browser": "edge"
-        }
-    ]
-}
-```
 
 ### Example launch configurations
 
@@ -208,6 +194,17 @@ Browser configuration defaults to Google Chrome. When using Microsoft Edge for d
   "name": "Launch and Debug Hosted App",
   "program": "${workspaceFolder}/Server/bin/Debug/netcoreapp3.1/MyHostedApp.Server.dll",
   "cwd": "${workspaceFolder}"
+}
+```
+
+#### Browser configuration
+
+Browser configuration defaults to Google Chrome. When using Microsoft Edge for debugging, set `browser` to `edge`:
+
+```json
+{
+  ...
+  "browser": "edge"
 }
 ```
 
