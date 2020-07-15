@@ -124,9 +124,9 @@ Add the following code to the `ConfigureServices` method in the *Startup.cs* fil
 
 [!code-csharp[](accconfirm/sample/WebPWrecover30/Startup.cs?name=snippet1&highlight=11-15)]
 
-## Scaffold Login and LogOut
+## Scaffold RegisterConfirmation
 
-Follow the instructions for [Scaffold Identity](xref:security/authentication/scaffold-identity) and scaffold Login and LogOut.
+Follow the instructions for [Scaffold Identity](xref:security/authentication/scaffold-identity) and scaffold `RegisterConfirmation`.
 
 [!INCLUDE[](~/includes/disableVer.md)]
 
