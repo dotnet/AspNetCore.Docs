@@ -133,6 +133,10 @@ Blazor WebAssembly offers two additional versions of <xref:Microsoft.JSInterop.I
 dotnet publish -c Release
 ```
 
+### Lazy load assemblies
+
+Dynamically load assemblies at runtime only when the assemblies are needed by components. For more information, see <xref:blazor/webassembly-lazy-load-assemblies>.
+
 ### Compression
 
 When a Blazor WebAssembly app is published, the output is statically compressed during publish to reduce the app's size and remove the overhead for runtime compression. Blazor relies on the server to perform content negotation and serve statically-compressed files.
