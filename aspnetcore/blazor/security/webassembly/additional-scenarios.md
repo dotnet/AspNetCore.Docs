@@ -1072,8 +1072,10 @@ Server response: <strong>@serverResponse</strong>
             serverResponse = reply.Message;
         }
         catch (Grpc.Core.RpcException ex)
+            when (ex.Status.DebugException is 
+                AccessTokenNotAvailableException tokenEx)
         {
-            // ex.Status.DebugException
+            tokenEx.Redirect();
         }
     }
 }
