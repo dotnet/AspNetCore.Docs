@@ -143,6 +143,9 @@ When a user clicks the **Register** button on the `Register` page, the `Register
 
 [!code-csharp[](identity/sample/WebApp3/Areas/Identity/Pages/Account/Register.cshtml.cs?name=snippet&highlight=9)]
 
+<!-- .NET 5 fixes this, see
+https://github.com/dotnet/aspnetcore/blob/master/src/Identity/UI/src/Areas/Identity/Pages/V4/Account/RegisterConfirmation.cshtml.cs#L74-L77
+-->
 [!INCLUDE[](~/includes/disableVer.md)]
 
 ### Log in
