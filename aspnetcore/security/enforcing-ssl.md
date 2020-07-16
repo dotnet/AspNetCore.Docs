@@ -356,12 +356,21 @@ The Windows Subsystem for Linux (WSL) generates an HTTPS self-signed cert. To co
 * Run the following command to export the WSL-generated certificate:
 
   ```
-  dotnet dev-certs https -ep %USERPROFILE%\.aspnet\https\aspnetapp.pfx -p <cryptic-password>
+  dotnet dev-certs https -ep %USERPROFILE%\.aspnet\https\aspnetapp.pfx -p <password>
   ```
+* Run the following command:
+
+  ```
+  dotnet dev-certs https --clean --import <<path-to-pfx>> --password <password>
+  ```
+
+  > [!WARNING]
+  > The preceding command replaces any existing asp.net core localhost dev-cert from the WSL distribution with the certificate from your host machine.
+
 * In a WSL window, run the following command:
 
   ```
-    ASPNETCORE_Kestrel__Certificates__Default__Password="<cryptic-password>" 
+    ASPNETCORE_Kestrel__Certificates__Default__Password="<password>" 
     ASPNETCORE_Kestrel__Certificates__Default__Path=/mnt/c/Users/user-name/.aspnet/https/aspnetapp.pfx
     dotnet watch run
   ```
