@@ -46,7 +46,7 @@ public class CustomAuthorizationMessageHandler : AuthorizationMessageHandler
 In `Program.Main` (`Program.cs`), an <xref:System.Net.Http.HttpClient> is configured with the custom authorization message handler:
 
 ```csharp
-builder.Services.AddTransient<CustomAuthorizationMessageHandler>();
+builder.Services.AddScoped<CustomAuthorizationMessageHandler>();
 
 builder.Services.AddHttpClient("ServerAPI",
         client => client.BaseAddress = new Uri("https://www.example.com/base"))
@@ -95,16 +95,14 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 
 ...
 
-builder.Services.AddTransient(sp =>
-{
-    return new HttpClient(sp.GetRequiredService<AuthorizationMessageHandler>()
-        .ConfigureHandler(
-            authorizedUrls: new [] { "https://www.example.com/base" },
-            scopes: new[] { "example.read", "example.write" }))
-        {
-            BaseAddress = new Uri("https://www.example.com/base")
-        };
-});
+builder.Services.AddScoped(sp => new HttpClient(
+    sp.GetRequiredService<AuthorizationMessageHandler>()
+    .ConfigureHandler(
+        authorizedUrls: new[] { "https://www.example.com/base" },
+        scopes: new[] { "example.read", "example.write" }))
+    {
+        BaseAddress = new Uri("https://www.example.com/base")
+    });
 ```
 
 For a Blazor app based on the Blazor WebAssembly Hosted template, <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> can be assigned to:
@@ -124,7 +122,7 @@ builder.Services.AddHttpClient("ServerAPI",
         client => client.BaseAddress = new Uri("https://www.example.com/base"))
     .AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
 
-builder.Services.AddTransient(sp => sp.GetRequiredService<IHttpClientFactory>()
+builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>()
     .CreateClient("ServerAPI"));
 ```
 
@@ -891,10 +889,11 @@ public class Program
         var builder = WebAssemblyHostBuilder.CreateDefault(args);
         builder.RootComponents.Add<App>("app");
 
-        builder.Services.AddTransient(new HttpClient 
-        {
-            BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
-        });
+        builder.Services.AddScoped(sp => 
+            new HttpClient
+            {
+                BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
+            });
 
         services.Add...;
 
