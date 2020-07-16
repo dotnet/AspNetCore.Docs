@@ -556,7 +556,12 @@ namespace AspNetCoreCertificateAuthApi
 This section provides information for apps that must protect a subset of the app with a certificate. For example, a Razor Page or controller in the app might require client certificates. This presents challenges as client certificates:
   
 * Are a TLS feature, not an HTTP feature.
-* Are negotiated per-connection and must be be negotiated at the start of the connection before any HTTP data is available. At the start of the connection, only the Server Name Indication (SNI)&dagger; is known. The client and server certificates are negotiated prior to the first request on a connection and requests generally won't be able to renegotiate. Renegotiation is prohibited in HTTP/2.
+* Are negotiated per-connection and must be be negotiated at the start of the connection before any HTTP data is available. At the start of the connection, only the Server Name Indication (SNI)&dagger; is known. The client and server certificates are negotiated prior to the first request on a connection and requests generally aren't able to renegotiate.
+
+TLS renegotiation was an old way to implement optional client certificates. This is no longer recommended because:
+- In HTTP/1.1, renegotiating during a POST request could cause a deadlock where the request body filled up the TCP window and the renegotiation packets can't be received.
+- HTTP/2 [explicitly prohibits](https://tools.ietf.org/html/rfc7540#section-9.2.1) renegotiation.
+- TLS 1.3 has [removed](https://tools.ietf.org/html/rfc8740#section-1) support for renegotiation.
 
 ASP.NET Core 5 preview 4 and later adds more convenient support for optional client certificates. For more information, see the [Optional certificates sample](https://github.com/dotnet/aspnetcore/tree/9ce4a970a21bace3fb262da9591ed52359309592/src/Security/Authentication/Certificate/samples/Certificate.Optional.Sample).
 
