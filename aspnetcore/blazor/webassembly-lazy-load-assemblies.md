@@ -5,7 +5,7 @@ description: Discover how to lazy load assemblies in ASP.NET Core Blazor WebAsse
 monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/15/2020
+ms.date: 07/16/2020
 no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/webassembly-lazy-load-assemblies
 ---
@@ -13,18 +13,18 @@ uid: blazor/webassembly-lazy-load-assemblies
 
 By [Safia Abdalla](https://safia.rocks) and [Luke Latham](https://github.com/guardrex)
 
-Blazor WebAssembly app startup performance can be improved by dynamically loading assets at runtime when the assets are required, which is called *lazy loading*. For example, assemblies that are only used to render a single component can be set up to load only if the user navigates to that component. After loading, the assemblies are cached client-side and don't require reloading while the app is running.
+Blazor WebAssembly app startup performance can be improved by loading assets at runtime when the assets are required, which is called *lazy loading*. For example, assemblies that are only used to render a single component can be set up to load only if the user navigates to that component. After loading, the assemblies are cached client-side and don't require reloading while the app is running.
 
 > [!NOTE]
 > Assembly lazy loading doesn't benefit Blazor Server apps because assemblies aren't downloaded to the client in a Blazor Server app.
 
 ## Project file
 
-Mark assemblies for lazy loading in the app's project file (`.csproj`) using the `BlazorWebAssemblyLazyLoad` item. The Blazor framework prevents the assemblies from loading at app launch. The following example marks a large custom assembly (`GrantImaharaRobotControls.dll`) for lazy loading. Add a separate `BlazorWebAssemblyLazyLoad` item for each assembly.
+Mark assemblies for lazy loading in the app's project file (`.csproj`) using the `BlazorWebAssemblyLazyLoad` item. Use the assembly name without the `.dll` extension. The Blazor framework prevents the assemblies from loading at app launch. The following example marks a large custom assembly (`GrantImaharaRobotControls.dll`) for lazy loading. Add a separate `BlazorWebAssemblyLazyLoad` item for each assembly.
 
 ```xml
 <ItemGroup>
-  <BlazorWebAssemblyLazyLoad Include="GrantImaharaRobotControls.dll" />
+  <BlazorWebAssemblyLazyLoad Include="GrantImaharaRobotControls" />
 </ItemGroup>
 ```
 
@@ -36,7 +36,9 @@ Code in the `Router` component determines when the assemblies marked for lazy lo
 
 In the app's `Router` component (`App.razor`):
 
-* Add an `OnNavigateAsync` callback. The `OnNavigateAsync` handler is invoked when the user visits a route for the first time or navigates to a new route.
+* Add an `OnNavigateAsync` callback. The `OnNavigateAsync` handler is invoked when the user:
+  * Visits a route for the first time by navigating to it directly from their browser.
+  * Navigates to a new route using a link or a <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A?displayProperty=nameWithType> invocation.
 * Add a [List](xref:System.Collections.Generic.List%601)\<<xref:System.Reflection.Assembly>> (for example, named `lazyLoadedAssemblies`) to the component. The assemblies are passed back to the <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies> collection in case the assemblies contain routable components. The framework searches the assemblies for routes and updates the route collection if any new routes are found.
 
 ```razor
@@ -56,12 +58,14 @@ In the app's `Router` component (`App.razor`):
 }
 ```
 
+If the `OnNavigateAsync` callback throws an unhandled exception, the [Blazor error UI](xref:blazor/fundamentals/handle-errors#detailed-errors-during-development) is invoked.
+
 ### Assembly load logic in `OnNavigateAsync`
 
 `OnNavigateAsync` has a `NavigationContext` parameter that provides information about the current asynchronous navigation event, including the target path (`Path`) and the cancellation token (`CancellationToken`):
 
 * The `Path` property is the user's destination path relative to the app's base path, such as `/robot`.
-* The `CancellationToken` can be used to observe the cancellation of the asynchronous task. `OnNavigateAsync` automatically cancels the currently running navigation task when the user navigates away from a page.
+* The `CancellationToken` can be used to observe the cancellation of the asynchronous task. `OnNavigateAsync` automatically cancels the currently running navigation task when the user navigates to a different page.
 
 Inside `OnNavigateAsync`, implement logic to determine the assemblies to load. Options include:
 
@@ -81,7 +85,7 @@ Inside `OnNavigateAsync`, implement logic to determine the assemblies to load. O
 The `LazyAssemblyLoader` provides the `LoadAssembliesAsync` method that:
 
 * Uses JS interop to fetch assemblies via a network call.
-* Loads assemblies into the runtime executing on WASM in the browser.
+* Loads assemblies into the runtime executing on WebAssembly in the browser.
 
 > [!NOTE]
 > The framework's lazy loading implementation supports prerendering on the server. During prerendering, all assemblies, including those marked for lazy loading, are assumed to be loaded.

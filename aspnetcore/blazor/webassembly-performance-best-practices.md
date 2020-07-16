@@ -135,7 +135,7 @@ dotnet publish -c Release
 
 ### Lazy load assemblies
 
-Dynamically load assemblies at runtime when the assemblies are required by components. For more information, see <xref:blazor/webassembly-lazy-load-assemblies>.
+Load assemblies at runtime when the assemblies are required by a route. For more information, see <xref:blazor/webassembly-lazy-load-assemblies>.
 
 ### Compression
 
