@@ -286,6 +286,11 @@ The console output from the app, showing any errors, is piped to the Kudu consol
 
 ### ASP.NET Core Module stdout log (Azure App Service)
 
+> [!WARNING]
+> Failure to disable the stdout log can lead to app or server failure. There's no limit on log file size or the number of log files created. Only use stdout logging to troubleshoot app startup problems.
+>
+> For general logging in an ASP.NET Core app after startup, use a logging library that limits log file size and rotates logs. For more information, see [third-party logging providers](xref:fundamentals/logging/index#third-party-logging-providers).
+
 The ASP.NET Core Module stdout log often records useful error messages not found in the Application Event Log. To enable and view stdout logs:
 
 1. In the Azure Portal, navigate to the web app.
@@ -296,18 +301,9 @@ The ASP.NET Core Module stdout log often records useful error messages not found
 1. Select the pencil icon to edit the *web.config* file.
 1. In the `<aspNetCore />` element, set `stdoutLogEnabled="true"` and select **Save**.
 
-Disable stdout logging when troubleshooting is complete:
-
-1. In the Kudu **Diagnostic Console**, return to the path **site** > **wwwroot** to reveal the *web.config* file. Open the **web.config** file again by selecting the pencil icon.
-1. Set **stdoutLogEnabled** to `false`.
-1. Select **Save** to save the file.
+Disable stdout logging when troubleshooting is complete by setting `stdoutLogEnabled="false"`.
 
 For more information, see <xref:host-and-deploy/aspnet-core-module#log-creation-and-redirection>.
-
-> [!WARNING]
-> Failure to disable the stdout log can lead to app or server failure. There's no limit on log file size or the number of log files created. Only use stdout logging to troubleshoot app startup problems.
->
-> For general logging in an ASP.NET Core app after startup, use a logging library that limits log file size and rotates logs. For more information, see [third-party logging providers](xref:fundamentals/logging/index#third-party-logging-providers).
 
 ### ASP.NET Core Module debug log (Azure App Service)
 
