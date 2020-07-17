@@ -288,19 +288,13 @@ The console output from the app, showing any errors, is piped to the Kudu consol
 
 The ASP.NET Core Module stdout log often records useful error messages not found in the Application Event Log. To enable and view stdout logs:
 
-1. Navigate to the **Diagnose and solve problems** blade in the Azure portal.
-1. Under **SELECT PROBLEM CATEGORY**, select the **Web App Down** button.
-1. Under **Suggested Solutions** > **Enable Stdout Log Redirection**, select the button to **Open Kudu Console to edit Web.Config**.
-1. In the Kudu **Diagnostic Console**, open the folders to the path **site** > **wwwroot**. Scroll down to reveal the *web.config* file at the bottom of the list.
-1. Click the pencil icon next to the *web.config* file.
-1. Set **stdoutLogEnabled** to `true` and change the **stdoutLogFile** path to: `\\?\%home%\LogFiles\stdout`.
-1. Select **Save** to save the updated *web.config* file.
-1. Make a request to the app.
-1. Return to the Azure portal. Select the **Advanced Tools** blade in the **DEVELOPMENT TOOLS** area. Select the **Go&rarr;** button. The Kudu console opens in a new browser tab or window.
-1. Using the navigation bar at the top of the page, open **Debug console** and select **CMD**.
-1. Select the **LogFiles** folder.
-1. Inspect the **Modified** column and select the pencil icon to edit the stdout log with the latest modification date.
-1. When the log file opens, the error is displayed.
+1. In the Azure Portal, navigate to the web app.
+1. In the **App Service** blade, enter **kudu** in the search box.
+1. Select **Advanced Tools** > **Go**.
+1. Select  **Debug console > CMD**.
+1. Navigate to *site/wwwroot*
+1. Select the pencil icon to edit the *web.config* file.
+1. In the `<aspNetCore />` element, set `stdoutLogEnabled="true"` and select **Save**.
 
 Disable stdout logging when troubleshooting is complete:
 
