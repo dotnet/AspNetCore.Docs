@@ -34,7 +34,7 @@ Reference the [`System.Net.Http.Json`](https://www.nuget.org/packages/System.Net
 In `Program.Main`, add an <xref:System.Net.Http.HttpClient> service if it doesn't already exist:
 
 ```csharp
-builder.Services.AddTransient(sp => 
+builder.Services.AddScoped(sp => 
     new HttpClient
     {
         BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)

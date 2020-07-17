@@ -126,7 +126,7 @@ var client = new HttpClient()
     BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
 };
 
-builder.Services.AddTransient(sp => client);
+builder.Services.AddScoped(sp => client);
 
 using var response = await client.GetAsync("cars.json");
 using var stream = await response.Content.ReadAsStreamAsync();
