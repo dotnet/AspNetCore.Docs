@@ -420,6 +420,8 @@ After upgrading the shared framework on the server, restart the ASP.NET Core app
 
 ## Additional resources
 
+<!-- NOTE: If this topic is rewritten, consider adding a section on subdirectory hosting along the lines of the guidance in Endy Cahyono's blog post below. -->
+
 * [Prerequisites for .NET Core on Linux](/dotnet/core/linux-prerequisites)
 * [Nginx: Binary Releases: Official Debian/Ubuntu packages](https://www.nginx.com/resources/wiki/start/topics/tutorials/install/#official-debian-ubuntu-packages)
 * <xref:test/troubleshoot>
