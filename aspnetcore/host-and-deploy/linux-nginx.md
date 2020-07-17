@@ -425,3 +425,4 @@ After upgrading the shared framework on the server, restart the ASP.NET Core app
 * <xref:test/troubleshoot>
 * <xref:host-and-deploy/proxy-load-balancer>
 * [NGINX: Using the Forwarded header](https://www.nginx.com/resources/wiki/start/topics/examples/forwarded/)
+* [ASP.Net Core 3 App Running under a Subdirectory on Nginx](http://www.endycahyono.com/article/aspnetcore3-running-under-subdirectory-on-nginx)
