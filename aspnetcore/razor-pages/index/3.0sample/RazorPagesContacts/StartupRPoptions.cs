@@ -20,12 +20,11 @@ namespace RazorPagesContacts
         #region snippet
         public void ConfigureServices(IServiceCollection services)
         {            
-            services.AddRazorPages()
-                .AddRazorPagesOptions(options =>
-                {
-                    options.RootDirectory = "/MyPages";
-                    options.Conventions.AuthorizeFolder("/MyPages/Admin");
-                });
+            services.AddRazorPages(options =>
+            {
+                options.RootDirectory = "/MyPages";
+                options.Conventions.AuthorizeFolder("/MyPages/Admin");
+            });
         }
         #endregion
 

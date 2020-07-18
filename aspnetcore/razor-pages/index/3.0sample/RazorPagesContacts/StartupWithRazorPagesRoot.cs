@@ -20,8 +20,8 @@ namespace RazorPagesContacts
         #region snippet
         public void ConfigureServices(IServiceCollection services)
         {            
-            services.AddRazorPages()
-                .AddRazorPagesOptions(options =>
+            services
+                .AddRazorPages(options =>
                 {
                     options.Conventions.AuthorizeFolder("/MyPages/Admin");
                 })
