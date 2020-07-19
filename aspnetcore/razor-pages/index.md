@@ -566,7 +566,7 @@ The `?` following `handler` means the route parameter is optional.
 
 The configuration and settings in following sections is not required by most apps.
 
-To configure advanced options, use the <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddRazorPages%2A> overload that configures an instance of <xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions>:
+To configure advanced options, use the <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddRazorPages%2A> overload that configures <xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions>:
 
 [!code-csharp[](index/3.0sample/RazorPagesContacts/StartupRPoptions.cs?name=snippet)]
 

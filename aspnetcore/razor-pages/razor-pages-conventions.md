@@ -29,7 +29,7 @@ There are reserved words that can't be used as route segments or parameter names
 | [Page route action conventions](#page-route-action-conventions)<ul><li>AddFolderRouteModelConvention</li><li>AddPageRouteModelConvention</li><li>AddPageRoute</li></ul> | Add a route template to pages in a folder and to a single page. |
 | [Page model action conventions](#page-model-action-conventions)<ul><li>AddFolderApplicationModelConvention</li><li>AddPageApplicationModelConvention</li><li>ConfigureFilter (filter class, lambda expression, or filter factory)</li></ul> | Add a header to pages in a folder, add a header to a single page, and configure a [filter factory](xref:mvc/controllers/filters#ifilterfactory) to add a header to an app's pages. |
 
-Razor Pages conventions are added and configured using the <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddRazorPages%2A> overload on the service collection in the `Startup` class that configures an instance of <xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions>. The following convention examples are explained later in this topic:
+Razor Pages conventions are configured using an <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddRazorPages%2A> overload that configures <xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions> in `Startup.ConfigureServices`. The following convention examples are explained later in this topic:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
