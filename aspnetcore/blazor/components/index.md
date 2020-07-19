@@ -635,7 +635,7 @@ Consider the following `Expander` component that:
 <div @onclick="@Toggle" class="card text-white bg-success mb-3">
     <div class="card-body">
         <div class="panel-heading">
-            <h2>Toggle (Expanded = @Expanded)</h2>
+            <h2>Toggle (<code>Expanded</code> = @Expanded)</h2>
         </div>
 
         @if (Expanded)
@@ -691,10 +691,10 @@ The following revised `Expander` component:
 <div @onclick="@Toggle" class="card text-white bg-success mb-3">
     <div class="card-body">
         <div class="panel-heading">
-            <h2>Toggle (Expanded = @expanded)</h2>
+            <h2>Toggle (<code>expanded</code> = @expanded)</h2>
         </div>
 
-        @if (Expanded)
+        @if (expanded)
         {
             <div class="card-text">
                 @ChildContent
