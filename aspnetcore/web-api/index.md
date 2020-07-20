@@ -221,7 +221,7 @@ The `ValidationProblemDetails` type:
 
 ::: moniker range=">= aspnetcore-2.1"
 
-In order to make auromatic and custom responses consistent you can return [`ValidationProblem()`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.validationproblem?view=aspnetcore-2.1#Microsoft_AspNetCore_Mvc_ControllerBase_ValidationProblem) method instead of `BadRequest()`. It returns `ValidationProblemDetails` as well.
+In order to make automatic and custom responses consistent you can use [`ValidationProblem()`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.validationproblem?view=aspnetcore-2.1#Microsoft_AspNetCore_Mvc_ControllerBase_ValidationProblem) method instead of `BadRequest()`. It returns `ValidationProblemDetails` as well as automatic one.
 
 ::: moniker-end
 
