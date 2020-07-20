@@ -85,16 +85,12 @@ The *Problem details for error status codes* feature requires a [compatibility v
 
 ::: moniker-end
 
-::: moniker range="= aspnetcore-2.1"
-
 * [Attribute routing requirement](#attribute-routing-requirement)
 * [Automatic HTTP 400 responses](#automatic-http-400-responses)
 * [Binding source parameter inference](#binding-source-parameter-inference)
 * [Multipart/form-data request inference](#multipartform-data-request-inference)
 
 These features require a [compatibility version](xref:mvc/compatibility-version) of 2.1 or later.
-
-::: moniker-end
 
 ### Attribute on specific controllers
 
@@ -219,11 +215,7 @@ The `ValidationProblemDetails` type:
 
 ::: moniker-end
 
-::: moniker range=">= aspnetcore-2.1"
-
 In order to make automatic and custom responses consistent you can use [`ValidationProblem()`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.validationproblem?view=aspnetcore-2.1#Microsoft_AspNetCore_Mvc_ControllerBase_ValidationProblem) method instead of `BadRequest()`. It returns `ValidationProblemDetails` as well as automatic one.
-
-::: moniker-end
 
 ### Log automatic 400 responses
 
