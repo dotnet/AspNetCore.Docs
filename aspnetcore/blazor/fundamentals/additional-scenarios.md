@@ -234,10 +234,7 @@ When rendered, the `Title`, `Link`, and `Meta` components add or update data in 
 <Meta name="description" content="{DESCRIPTION}" />
 ```
 
-In the preceding example, placeholders for `{TITLE}`, `{FILE NAME}`, and `{DESCRIPTION}` are either of the following:
-
-* Sting values.
-* Razor variables or expressions that produce string values.
+In the preceding example, placeholders for `{TITLE}`, `{FILE NAME}`, and `{DESCRIPTION}` are sting values, Razor variables, or Razor expressions.
 
 The follow characteristics apply:
 
