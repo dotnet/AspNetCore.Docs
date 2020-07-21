@@ -239,7 +239,7 @@ In the preceding example, placeholders for `{TITLE}`, `{FILE NAME}`, and `{DESCR
 The following characteristics apply:
 
 * Server-side prerendering is supported.
-* The `Value` parameter is only valid with the `Title` component.
+* The `Value` parameter is only valid for the `Title` component.
 * All provided attributes are reflected in the rendered HTML tags.
 * For multiple `Title` components, the title of the page reflects the `Value` of the last `Title` component in the Razor markup.
 * If there are multiple `Meta` or `Link` components rendered with identical attributes, there is exactly one tag per component rendered. Two `Meta` or `Link` components can't refer to the same rendered HTML tag.
