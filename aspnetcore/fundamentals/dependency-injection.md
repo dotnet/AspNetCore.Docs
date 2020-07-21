@@ -523,12 +523,10 @@ The factory method of single service, such as the second argument to [AddSinglet
 
 ## Recommendations
 
-* `async/await` and `Task` based service resolution is not supported. C# does not support asynchronous constructors; therefore, the recommended pattern is to use asynchronous methods after synchronously resolving the service.
-
+* `async/await` and `Task` based service resolution is not supported. C# does not support asynchronous constructors. The recommended pattern is to use asynchronous methods after synchronously resolving the service.
 * Avoid storing data and configuration directly in the service container. For example, a user's shopping cart shouldn't typically be added to the service container. Configuration should use the [options pattern](xref:fundamentals/configuration/options). Similarly, avoid "data holder" objects that only exist to allow access to some other object. It's better to request the actual item via DI.
-
-* Avoid static access to services (for example, statically-typing [IApplicationBuilder.ApplicationServices](xref:Microsoft.AspNetCore.Builder.IApplicationBuilder.ApplicationServices) for use elsewhere).
-
+* Avoid static access to services. For example, avoid statically-typing [IApplicationBuilder.ApplicationServices](xref:Microsoft.AspNetCore.Builder.IApplicationBuilder.ApplicationServices) for use elsewhere).
+* Keep DI factories fast and synchronous.
 * Avoid using the *service locator pattern*. For example, don't invoke <xref:System.IServiceProvider.GetService*> to obtain a service instance when you can use DI instead:
 
   **Incorrect:**
@@ -536,6 +534,7 @@ The factory method of single service, such as the second argument to [AddSinglet
   ```csharp
   public class MyClass()
   {
+      // DO NOT USE THIS APPROACH.
       public void MyMethod()
       {
           var optionsMonitor = 
@@ -567,10 +566,10 @@ The factory method of single service, such as the second argument to [AddSinglet
       }
   }
   ```
-
 * Another service locator variation to avoid is injecting a factory that resolves dependencies at runtime. Both of these practices mix [Inversion of Control](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#dependency-inversion) strategies.
-
 * Avoid static access to `HttpContext` (for example, [IHttpContextAccessor.HttpContext](xref:Microsoft.AspNetCore.Http.IHttpContextAccessor.HttpContext)).
+* Disposable transient services are captured by the container for disposal. This can turn into a memory leak if resolved from the top level container.
+* Enable scope validation to make sure the app doesn't have scoped services capturing singletons. For more information, see [Scope validation](#scope-validation).
 
 Like all sets of recommendations, you may encounter situations where ignoring a recommendation is required. Exceptions are rare, mostly special cases within the framework itself.
 
@@ -977,7 +976,7 @@ The root service provider is created when <xref:Microsoft.Extensions.DependencyI
 
 Scoped services are disposed by the container that created them. If a scoped service is created in the root container, the service's lifetime is effectively promoted to singleton because it's only disposed by the root container when app/server is shut down. Validating service scopes catches these situations when `BuildServiceProvider` is called.
 
-For more information, see <xref:fundamentals/host/web-host#scope-validation>.
+For more information, see [Scope validation](xref:fundamentals/host/web-host#scope-validation).
 
 ## Request Services
 
