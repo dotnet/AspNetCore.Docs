@@ -29,11 +29,10 @@ namespace RazorPagesProject
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             #region snippet1
-            services.AddRazorPages()
-                .AddRazorPagesOptions(options =>
-                {
-                    options.Conventions.AuthorizePage("/SecurePage");
-                });
+            services.AddRazorPages(options =>
+            {
+                options.Conventions.AuthorizePage("/SecurePage");
+            });
             #endregion
 
             services.AddHttpClient<IGithubClient, GithubClient>(client =>

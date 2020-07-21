@@ -64,13 +64,12 @@ namespace ClaimsSample
             });
             #endregion
 
-            services.AddRazorPages()
-                .AddRazorPagesOptions(options =>
-                {
-                    options.Conventions.AuthorizeFolder("/Account/Manage");
-                    options.Conventions.AuthorizePage("/Account/Logout");
-                    options.Conventions.AuthorizePage("/MyClaims");
-                });
+            services.AddRazorPages(options =>
+            {
+                options.Conventions.AuthorizeFolder("/Account/Manage");
+                options.Conventions.AuthorizePage("/Account/Logout");
+                options.Conventions.AuthorizePage("/MyClaims");
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

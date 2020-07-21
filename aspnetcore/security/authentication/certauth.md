@@ -618,7 +618,7 @@ TLS renegotiation was an old way to implement optional client certificates. This
 - HTTP/2 [explicitly prohibits](https://tools.ietf.org/html/rfc7540#section-9.2.1) renegotiation.
 - TLS 1.3 has [removed](https://tools.ietf.org/html/rfc8740#section-1) support for renegotiation.
 
-ASP.NET Core 5 preview 4 and later adds more convenient support for optional client certificates. For more information, see the [Optional certificates sample](https://github.com/dotnet/aspnetcore/tree/9ce4a970a21bace3fb262da9591ed52359309592/src/Security/Authentication/Certificate/samples/Certificate.Optional.Sample).
+ASP.NET Core 5 preview 7 and later adds more convenient support for optional client certificates. For more information, see the [Optional certificates sample](https://github.com/dotnet/aspnetcore/tree/9ce4a970a21bace3fb262da9591ed52359309592/src/Security/Authentication/Certificate/samples/Certificate.Optional.Sample).
 
 The following approach supports optional client certificates:
 
