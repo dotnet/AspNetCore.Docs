@@ -11,7 +11,7 @@ uid: blazor/fundamentals/additional-scenarios
 ---
 # ASP.NET Core Blazor hosting model configuration
 
-By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.com/guardrex)
+By [Daniel Roth](https://github.com/danroth27), [Mackinnon Buck](https://github.com/MackinnonBuck), and [Luke Latham](https://github.com/guardrex)
 
 This article covers hosting model configuration.
 
@@ -236,7 +236,7 @@ When rendered, the `Title`, `Link`, and `Meta` components add or update data in 
 
 In the preceding example, placeholders for `{TITLE}`, `{FILE NAME}`, and `{DESCRIPTION}` are sting values, Razor variables, or Razor expressions.
 
-The follow characteristics apply:
+The following characteristics apply:
 
 * Server-side prerendering is supported.
 * The `Value` parameter is only valid with the `Title` component. For `Meta` and `Link` components, all provided parameters are reflected in the rendered HTML tags.
