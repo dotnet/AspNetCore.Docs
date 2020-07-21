@@ -220,7 +220,7 @@ The *database context* is the main class that coordinates Entity Framework funct
 
 # [Visual Studio](#tab/visual-studio)
 
-### Add Microsoft.EntityFrameworkCore.SqlServer
+### Add NuGet packages
 
 * From the **Tools** menu, select **NuGet Package Manager > Manage NuGet Packages for Solution**.
 * Select the **Browse** tab, and then enter **Microsoft.EntityFrameworkCore.SqlServer** in the search box.
