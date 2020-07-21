@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using MySharedApp.Controllers;
 using System.Reflection;
@@ -25,6 +27,11 @@ namespace WebAppParts
             var assembly = typeof(MySharedController).Assembly;
             services.AddControllersWithViews()
                 .AddApplicationPart(assembly);
+
+            services.AddMvc().AddRazorRuntimeCompilation(); 
+
+            services.Configure<MvcRazorRuntimeCompilationOptions>(options => 
+            { options.FileProviders.Add(new EmbeddedFileProvider(assembly)); });
         }
         #endregion
 
