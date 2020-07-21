@@ -1,9 +1,10 @@
-﻿//#define NoOrd
+﻿#define NoOrd
 
 using FiltersSample.Filters;
 using FiltersSample.Helper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.Docs.Samples;
 using System.Reflection;
 
 namespace FiltersSample.Controllers
@@ -16,9 +17,7 @@ namespace FiltersSample.Controllers
     {
         public IActionResult FilterTest2()
         {
-            var m = MethodBase.GetCurrentMethod();
-            MyDebug.Write(m, HttpContext.Request.Path);
-            return Content(m.ReflectedType.Name + "." + m.Name);
+            return ControllerContext.MyDisplayRouteInfo();
         }
 
         public override void OnActionExecuting(ActionExecutingContext context)
@@ -43,9 +42,7 @@ namespace FiltersSample.Controllers
     {
         public IActionResult FilterTest2()
         {
-            var m = MethodBase.GetCurrentMethod();
-            MyDebug.Write(m, HttpContext.Request.Path);
-            return Content(m.ReflectedType.Name + "." + m.Name);
+            return ControllerContext.MyDisplayRouteInfo();
         }
 
         public override void OnActionExecuting(ActionExecutingContext context)
