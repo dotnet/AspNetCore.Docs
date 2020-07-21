@@ -218,6 +218,38 @@ Blazor.defaultReconnectionHandler._reconnectionDisplay =
 
 The placeholder `{ELEMENT ID}` is the ID of the HTML element to display.
 
+::: moniker range=">= aspnetcore-5.0"
+
+## Influence HTML `<head>` tag elements
+
+*This section applies to Blazor WebAssembly and Blazor Server.*
+
+When rendered, the `Title`, `Link`, and `Meta` components add or update data in the HTML `<head>` tag elements:
+
+```razor
+@using Microsoft.AspNetCore.Components.Web.Extensions
+
+<Title Value="{TITLE}" />
+<Link rel="stylesheet" href="{FILE NAME}" />
+<Meta name="description" content="{DESCRIPTION}" />
+```
+
+In the preceding example, placeholders for `{TITLE}`, `{FILE NAME}`, and `{DESCRIPTION}` are either of the following:
+
+* Sting values.
+* Razor variables or expressions that produce string values.
+
+The follow characteristics apply:
+
+* Server-side prerendering is supported.
+* The `Value` parameter is only valid with the `Title` component. For `Meta` and `Link` components, all provided parameters are reflected in the rendered HTML tags.
+* For multiple `Title` components, the title of the page reflects the `Value` of the last `Title` component in the Razor markup.
+* If there are multiple `Meta` or `Link` components rendered with identical attributes, there is exactly one tag per component rendered. Two `Meta` or `Link` components can't refer to the same rendered HTML tag.
+* Changes to parameters of existing `Meta` or `Link` components are reflected in their rendered HTML tags.
+* Disposing a `Meta` or `Link` component removes its rendered HTML tag.
+
+::: moniker-end
+
 ## Additional resources
 
 * <xref:fundamentals/logging/index>
