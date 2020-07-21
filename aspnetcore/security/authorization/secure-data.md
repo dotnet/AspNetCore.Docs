@@ -116,7 +116,7 @@ The preceding highlighted code sets the [fallback authentication policy](xref:Mi
 
 The fallback authentication policy:
 
-* Is applied when no authentication attribute is applied.
+* Is applied to endpoint routing when no authentication attribute is applied.
 * Is part of the [endpoint routing system](xref:fundamentals/routing).
 
 Setting the fallback authentication policy to require users to be authenticated protects newly added Razor Pages and controllers. Having authentication required by default is more secure than relying on new controllers and Razor Pages to include the `[Authorize]` attribute.
@@ -125,7 +125,7 @@ The <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions> class also co
 
 For more information on policies, see <xref:security/authorization/policies>.
 
-An alternative way to require all users be authenticated is adding an authorization filter:
+An alternative way for MVC controllers and Razor Pages to require all users be authenticated is adding an authorization filter:
 
 [!code-csharp[](secure-data/samples/final3/Startup2.cs?name=snippet&highlight=14-99)]
 
