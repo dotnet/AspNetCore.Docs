@@ -71,6 +71,8 @@ Synchronous filters run code before and after their pipeline stage. For example,
 
 [!code-csharp[](./filters/3.1sample/FiltersSample/Filters/MySampleActionFilter.cs?name=snippet_ActionFilter)]
 
+In the preceding code, [MyDebug](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/controllers/filters/3.1sample/FiltersSample/Helper/MyDebug.cs) is a utility function in the [sample download](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/mvc/controllers/filters/3.1sample/FiltersSample/Helper/MyDebug.cs).
+
 Asynchronous filters define an `On-Stage-ExecutionAsync` method. For example, <xref:Microsoft.AspNetCore.Mvc.Controller.OnActionExecutionAsync*>:
 
 [!code-csharp[](./filters/3.1sample/FiltersSample/Filters/SampleAsyncActionFilter.cs?name=snippet)]
@@ -198,6 +200,8 @@ The `TestController`:
 * Overrides `OnActionExecuting` and `OnActionExecuted`.
 
 [!code-csharp[](./filters/3.1sample/FiltersSample/Controllers/TestController.cs?name=snippet)]
+
+[!INCLUDE[](~/includes/MyDisplayRouteInfo.md)]
 
 <!-- test via  webBuilder.UseStartup<Startup>(); -->
 
