@@ -9,7 +9,7 @@ namespace DependencyInjectionSample.Models
         IOperationSingleton,
         IOperationSingletonInstance
     {
-        public Operation() : this(DateTime.Now.ToString("hh:mm:ss.fff"))
+        public Operation() : this(DateTime.Now.Millisecond.ToString())
         {
             DoWork();
         }
