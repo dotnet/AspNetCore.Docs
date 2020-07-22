@@ -4,9 +4,17 @@ groups:
   title: Operating System
   prompt: Choose an operating system
   pivots:
-    - id: os-windows
+    - id: windows
       title: Windows
-    - id: os-linux
+    - id: linux
       title: Linux
-    - id: os-macos
+    - id: macos
       title: macOS
+- id: blazor-hosting-models
+  title: Blazor Hosting Model
+  prompt: Choose a Blazor hosting model
+  pivots:
+    - id: webassembly
+      title: Blazor WebAssembly
+    - id: server
+      title: Blazor Server
