@@ -5,7 +5,7 @@ namespace DependencyInjectionSample.Interfaces
     #region snippet1
     public interface IOperation
     {
-        Guid OperationId { get; }
+        string OperationId { get; }
     }
 
     public interface IOperationTransient : IOperation

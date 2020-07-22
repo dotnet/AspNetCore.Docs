@@ -4,21 +4,32 @@ using DependencyInjectionSample.Interfaces;
 namespace DependencyInjectionSample.Models
 {
     #region snippet1
-    public class Operation : IOperationTransient, 
-        IOperationScoped, 
-        IOperationSingleton, 
+    public class Operation : IOperationTransient,
+        IOperationScoped,
+        IOperationSingleton,
         IOperationSingletonInstance
     {
-        public Operation() : this(Guid.NewGuid())
+        public Operation() : this(DateTime.Now.ToString("hh:mm:ss.fff"))
         {
+            DoWork();
         }
 
-        public Operation(Guid id)
+        public Operation(string id)
         {
             OperationId = id;
         }
 
-        public Guid OperationId { get; private set; }
+        private void DoWork()
+        {
+            // Do work so different times are recorded.
+            int sum = 0;
+            for (int i = 0; i < 1000000; i++)
+            {
+                sum += i;
+            }
+        }
+
+        public string OperationId { get; private set; }
     }
     #endregion
 }
