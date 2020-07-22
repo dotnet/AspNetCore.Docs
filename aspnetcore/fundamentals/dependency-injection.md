@@ -5,13 +5,13 @@ description: Learn how ASP.NET Core implements dependency injection and how to u
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/21/2020
+ms.date: 7/21/2020
 no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/dependency-injection
 ---
 # Dependency injection in ASP.NET Core
 
-By [Steve Smith](https://ardalis.com/), [Scott Addie](https://scottaddie.com), and [Brandon Dahler](https://github.com/brandondahler)
+By [Steve Smith](https://ardalis.com/), Kirk Larkin](https://twitter.com/serpent5), [Scott Addie](https://scottaddie.com), and [Brandon Dahler](https://github.com/brandondahler)
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -84,15 +84,15 @@ This interface is implemented by a concrete type, `MyDependency`:
 The container resolves `ILogger<TCategoryName>` by taking advantage of [(generic) open types](/dotnet/csharp/language-reference/language-specification/types#open-and-closed-types), eliminating the need to register every [(generic) constructed type](/dotnet/csharp/language-reference/language-specification/types#constructed-types):
 
 ```csharp
+// This code provided by the framework.
 services.AddSingleton(typeof(ILogger<>), typeof(Logger<>));
 ```
 
 In the sample app, the `IMyDependency` service is registered with the concrete type `MyDependency`. The registration scopes the service lifetime to the lifetime of a single request. [Service lifetimes](#service-lifetimes) are described later in this topic.
 
-[!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/Startup.cs?name=snippet1&highlight=5)]
+[!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/StartupMyDependency.cs?name=snippet1&highlight=5)]
 
-> [!NOTE]
-> Each `services.Add{SERVICE_NAME}` extension method adds (and potentially configures) services. For example, `services.AddMvc()` adds the services Razor Pages and MVC require. We recommended that apps follow this convention. Place extension methods in the [Microsoft.Extensions.DependencyInjection](/dotnet/api/microsoft.extensions.dependencyinjection) namespace to encapsulate groups of service registrations.
+***Note:*** Each `services.Add{SERVICE_NAME}` extension method adds and potentially configures services. For example, `services.AddMvc()` adds the services Razor Pages and MVC require. We recommended that apps follow this naming convention. Place extension methods in the [Microsoft.Extensions.DependencyInjection](/dotnet/api/microsoft.extensions.dependencyinjection) namespace to encapsulate groups of service registrations.
 
 If the service's constructor requires a [built in type](/dotnet/csharp/language-reference/keywords/built-in-types-table), such as a `string`, the type can be injected by using [configuration](xref:fundamentals/configuration/index) or the [options pattern](xref:fundamentals/configuration/options):
 
@@ -114,7 +114,7 @@ An instance of the service is requested via the constructor of a class where the
 
 In the sample app, the `IMyDependency` instance is requested and used to call the service's `WriteMessage` method:
 
-[!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/Pages/Index.cshtml.cs?name=snippet1&highlight=3,6,13,29-30)]
+[!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/Pages/Index2.cshtml.cs)]
 
 ## Services injected into Startup
 
@@ -570,7 +570,7 @@ The factory method of single service, such as the second argument to [AddSinglet
 * Avoid static access to `HttpContext` (for example, [IHttpContextAccessor.HttpContext](xref:Microsoft.AspNetCore.Http.IHttpContextAccessor.HttpContext)).
 * Disposable transient services are captured by the container for disposal. This can turn into a memory leak if resolved from the top level container.
 * Enable scope validation to make sure the app doesn't have scoped services capturing singletons. For more information, see [Scope validation](#scope-validation).
-
+zz
 Like all sets of recommendations, you may encounter situations where ignoring a recommendation is required. Exceptions are rare, mostly special cases within the framework itself.
 
 DI is an *alternative* to static/global object access patterns. You may not be able to realize the benefits of DI if you mix it with static object access.
