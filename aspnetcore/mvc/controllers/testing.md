@@ -5,7 +5,7 @@ description: Learn how to test controller logic in ASP.NET Core with Moq and xUn
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 22/07/2020
+ms.date: 7/22/2020
 no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/controllers/testing
 ---
@@ -344,5 +344,5 @@ For a valid session `id`, the final test confirms that:
 * <xref:test/integration-tests>
 * [Create and run unit tests with Visual Studio](/visualstudio/test/unit-test-your-code)
 * [MyTested.AspNetCore.Mvc - Fluent Testing Library for ASP.NET Core MVC](https://github.com/ivaylokenov/MyTested.AspNetCore.Mvc): Strongly-typed unit testing library, providing a fluent interface for testing MVC and web API apps. (*Not maintained or supported by Microsoft.*)
-* [JustMockLite](https://github.com/telerik/JustMockLite): The most powerful free mocking framework available for .NET developers. (*Not maintained or supported by Microsoft.*)
+* [JustMockLite](https://github.com/telerik/JustMockLite): A mocking framework for .NET developers. (*Not maintained or supported by Microsoft.*)
 
