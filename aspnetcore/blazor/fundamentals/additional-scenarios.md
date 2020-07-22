@@ -227,7 +227,7 @@ The placeholder `{ELEMENT ID}` is the ID of the HTML element to display.
 When rendered, the `Title`, `Link`, and `Meta` components add or update data in the HTML `<head>` tag elements:
 
 ```razor
-@using Microsoft.AspNetCore.Components.Web.Extensions
+@using Microsoft.AspNetCore.Components.Web.Extensions.Head
 
 <Title Value="{TITLE}" />
 <Link rel="stylesheet" href="{FILE NAME}" />
