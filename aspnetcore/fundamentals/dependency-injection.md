@@ -92,6 +92,11 @@ In the sample app, the `IMyDependency` service is registered with the concrete t
 
 [!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/StartupMyDependency.cs?name=snippet1&highlight=5)]
 
+In dependency injection terminology, a service:
+
+* Is typically an object that provides a service to other code in the app, such as the `IMyDependency` service.
+* Is not related to a web service.
+
 ***Note:*** Each `services.Add{SERVICE_NAME}` extension method adds and potentially configures services. For example, `services.AddMvc()` adds the services Razor Pages and MVC require. We recommended that apps follow this naming convention. Place extension methods in the [Microsoft.Extensions.DependencyInjection](/dotnet/api/microsoft.extensions.dependencyinjection) namespace to encapsulate groups of service registrations.
 
 If the service's constructor requires a [built in type](/dotnet/csharp/language-reference/keywords/built-in-types-table), such as a `string`, the type can be injected by using [configuration](xref:fundamentals/configuration/index) or the [options pattern](xref:fundamentals/configuration/options):
@@ -114,7 +119,7 @@ An instance of the service is requested via the constructor of a class where the
 
 In the sample app, the `IMyDependency` instance is requested and used to call the service's `WriteMessage` method:
 
-[!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/Pages/Index2.cshtml.cs)]
+[!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/Pages/Index2.cshtml.cs?name=snippet1)]
 
 ## Services injected into Startup
 
@@ -142,8 +147,8 @@ The `Startup.ConfigureServices` method is responsible for defining the services 
 | Service Type | Lifetime |
 | ------------ | -------- |
 | <xref:Microsoft.AspNetCore.Hosting.Builder.IApplicationBuilderFactory?displayProperty=fullName> | Transient |
-| `IHostApplicationLifetime` | Singleton |
-| `IWebHostEnvironment` | Singleton |
+| <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime> | Singleton |
+| <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment> | Singleton |
 | <xref:Microsoft.AspNetCore.Hosting.IStartup?displayProperty=fullName> | Singleton |
 | <xref:Microsoft.AspNetCore.Hosting.IStartupFilter?displayProperty=fullName> | Transient |
 | <xref:Microsoft.AspNetCore.Hosting.Server.IServer?displayProperty=fullName> | Singleton |
@@ -158,7 +163,12 @@ The `Startup.ConfigureServices` method is responsible for defining the services 
 
 ## Register additional services with extension methods
 
-When a service collection extension method is available to register a service (and its dependent services, if required), the convention is to use a single `Add{SERVICE_NAME}` extension method to register all of the services required by that service. The following code is an example of how to add additional services to the container using the extension methods [AddDbContext\<TContext>](/dotnet/api/microsoft.extensions.dependencyinjection.entityframeworkservicecollectionextensions.adddbcontext) and <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.AddIdentityCore*>:
+When a service collection extension method is available to register a service:
+
+* The convention is to use a single `Add{SERVICE_NAME}` extension method to register all of the services required by that service.
+* The dependent services are also registered.
+
+The following code is an example of how to add additional services to the container using the extension methods [AddDbContext\<TContext>](/dotnet/api/microsoft.extensions.dependencyinjection.entityframeworkservicecollectionextensions.adddbcontext) and <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.AddIdentityCore*>:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -199,12 +209,17 @@ In apps that process requests, scoped services are disposed at the end of the re
 
 ### Singleton
 
-Singleton lifetime services (<xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton*>) are created the first time they're requested (or when `Startup.ConfigureServices` is run and an instance is specified with the service registration). Every subsequent request uses the same instance. If the app requires singleton behavior, allowing the service container to manage the service's lifetime is recommended. Don't implement the singleton design pattern and provide user code to manage the object's lifetime in the class.
+Singleton lifetime services (<xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton*>) are created either:
 
-In apps that process requests, singleton services are disposed when the <xref:Microsoft.Extensions.DependencyInjection.ServiceProvider> is disposed at app shutdown.
+* The first time they're requested.
+* When `Startup.ConfigureServices` is run and an instance is specified with the service registration.
+<!-- REVIEW what is user code? -->
+Every subsequent request uses the same instance. If the app requires singleton behavior, allowing the service container to manage the service's lifetime is recommended. Don't implement the singleton design pattern and provide user code to manage the object's lifetime in the class.
+
+In apps that process requests, singleton services are disposed when the <xref:Microsoft.Extensions.DependencyInjection.ServiceProvider> is disposed on application shutdown.
 
 > [!WARNING]
-> It's dangerous to resolve a scoped service from a singleton. It may cause the service to have incorrect state when processing subsequent requests.
+> Do ***not*** resolve a scoped service from a singleton. It may cause the service to have incorrect state when processing subsequent requests. It's fine to resolve a singleton service from a scoped service.
 
 ## Service registration methods
 
@@ -213,6 +228,7 @@ Service registration extension methods offer overloads that are useful in specif
 | Method | Automatic<br>object<br>disposal | Multiple<br>implementations | Pass args |
 | ------ | :-----------------------------: | :-------------------------: | :-------: |
 | `Add{LIFETIME}<{SERVICE}, {IMPLEMENTATION}>()`<br>Example:<br>`services.AddSingleton<IMyDep, MyDep>();` | Yes | Yes | No |
+<!-- Review: Auto disposal at end of app lifetime is not what you think of auto disposal  -->
 | `Add{LIFETIME}<{SERVICE}>(sp => new {IMPLEMENTATION})`<br>Examples:<br>`services.AddSingleton<IMyDep>(sp => new MyDep());`<br>`services.AddSingleton<IMyDep>(sp => new MyDep("A string!"));` | Yes | Yes | Yes |
 | `Add{LIFETIME}<{IMPLEMENTATION}>()`<br>Example:<br>`services.AddSingleton<MyDep>();` | Yes | No | No |
 | `AddSingleton<{SERVICE}>(new {IMPLEMENTATION})`<br>Examples:<br>`services.AddSingleton<IMyDep>(new MyDep());`<br>`services.AddSingleton<IMyDep>(new MyDep("A string!"));` | No | Yes | Yes |
@@ -237,7 +253,7 @@ For more information, see:
 * <xref:Microsoft.Extensions.DependencyInjection.Extensions.ServiceCollectionDescriptorExtensions.TryAddScoped*>
 * <xref:Microsoft.Extensions.DependencyInjection.Extensions.ServiceCollectionDescriptorExtensions.TryAddSingleton*>
 
-[TryAddEnumerable(ServiceDescriptor)](xref:Microsoft.Extensions.DependencyInjection.Extensions.ServiceCollectionDescriptorExtensions.TryAddEnumerable*) methods only register the service if there isn't already an implementation *of the same type*. Multiple services are resolved via `IEnumerable<{SERVICE}>`. When registering services, the developer only wants to add an instance if one of the same type hasn't already been added. Generally, this method is used by library authors to avoid registering two copies of an instance in the container.
+[TryAddEnumerable(ServiceDescriptor)](xref:Microsoft.Extensions.DependencyInjection.Extensions.ServiceCollectionDescriptorExtensions.TryAddEnumerable*) methods only register the service if there isn't already an implementation *of the same type*. Multiple services are resolved via `IEnumerable<{SERVICE}>`. When registering services, the developer only wants to add an instance if one of the same type hasn't already been added. Generally, `TryAddEnumerable` is used by library authors to avoid registering two copies of an instance in the container.
 
 In the following example, the first line registers `MyDep` for `IMyDep1`. The second line registers `MyDep` for `IMyDep2`. The third line has no effect because `IMyDep1` already has a registered implementation of `MyDep`:
 
@@ -421,7 +437,7 @@ Best practices are to:
 If a class seems to have too many injected dependencies, this is generally a sign that the class has too many responsibilities and is violating the [Single Responsibility Principle (SRP)](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#single-responsibility). Attempt to refactor the class by moving some of its responsibilities into a new class. Keep in mind that Razor Pages page model classes and MVC controller classes should focus on UI concerns. Business rules and data access implementation details should be kept in classes appropriate to these [separate concerns](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#separation-of-concerns).
 
 ### Disposal of services
-
+<!-- REVIEW: define user code.  -->
 The container calls <xref:System.IDisposable.Dispose*> for the <xref:System.IDisposable> types it creates. If an instance is added to the container by user code, it isn't disposed automatically.
 
 In the following example, the services are created by the service container and disposed automatically:
@@ -466,7 +482,9 @@ public void ConfigureServices(IServiceCollection services)
 **Scenario**
 
 The app requires an <xref:System.IDisposable> instance with a transient lifetime for either of the following scenarios:
-
+<!-- Review need to define root scope. Is that the same as the root container that's only disposed when the app shuts down?
+ Singletons are associated with the root container and disposed when the root container is disposed, that is, on application shutdown.
+-->
 * The instance is resolved in the root scope.
 * The instance should be disposed before the scope ends.
 
@@ -487,7 +505,7 @@ The app requires a shared <xref:System.IDisposable> instance across multiple ser
 
 Register the instance with a Scoped lifetime. Use <xref:Microsoft.Extensions.DependencyInjection.IServiceScopeFactory.CreateScope%2A?displayProperty=nameWithType> to start and create a new <xref:Microsoft.Extensions.DependencyInjection.IServiceScope>. Use the scope's <xref:System.IServiceProvider> to get required services. Dispose the scope when the lifetime should end.
 
-#### General Guidelines
+#### General IDisposable guidelines
 
 * Don't register <xref:System.IDisposable> instances with a Transient scope. Use the factory pattern instead.
 * Don't resolve Transient or Scoped <xref:System.IDisposable> instances in the root scope. The only general exception is when the app creates/recreates and disposes the <xref:System.IServiceProvider>, which isn't an ideal pattern.
