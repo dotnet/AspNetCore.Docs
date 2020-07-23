@@ -182,7 +182,7 @@ To trigger the Gulp minification task before the project builds in Visual Studio
 1. Install the [BuildBundlerMinifier](https://www.nuget.org/packages/BuildBundlerMinifier/) NuGet package.
 1. Add the following [MSBuild Target](/visualstudio/msbuild/msbuild-targets) to the project file:
 
-[!code-xml[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/BuildBundlerMinifierApp.csproj?range=14-16)]
+    [!code-xml[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/BuildBundlerMinifierApp.csproj?range=14-16)]
 
 In this example, any tasks defined within the `MyPreCompileTarget` target run before the predefined `Build` target. Output similar to the following appears in Visual Studio's Output window:
 
