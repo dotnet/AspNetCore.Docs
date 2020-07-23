@@ -23,7 +23,7 @@ namespace RoutingSample
                 endpoints.MapControllerRoute(
                     name: "people",
                     pattern: "People/{ssn}",
-                    constraints: new { controller = "^\\d{3}-\\d{2}-\\d{4}$", },
+                    constraints: new { ssn = "^\\d{3}-\\d{2}-\\d{4}$", },
                     defaults: new { controller = "People", action = "List", });
             });
             #endregion
