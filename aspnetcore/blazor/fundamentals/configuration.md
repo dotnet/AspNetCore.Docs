@@ -19,7 +19,29 @@ Blazor WebAssembly loads configuration from:
 * App settings files by default:
   * `wwwroot/appsettings.json`
   * `wwwroot/appsettings.{ENVIRONMENT}.json`
-* Other [configuration providers](xref:fundamentals/configuration/index) registered by the app. Not all providers are appropriate for Blazor WebAssembly apps. Clarification on which providers are supported for Blazor WebAssembly is tracked by [Clarify configuration providers for Blazor WASM (dotnet/AspNetCore.Docs #18134)](https://github.com/dotnet/AspNetCore.Docs/issues/18134).
+* Other [configuration providers](xref:fundamentals/configuration/index) registered by the app. Not all providers or provider features are appropriate for Blazor WebAssembly apps:
+  * [Azure Key Vault configuration provider](xref:security/key-vault-configuration): The provider isn't supported for managed identity and application (client) ID with client secret scenarios. Application ID with a client secret isn't recommended for any ASP.NET Core app, especially Blazor WebAssembly apps because the client secret can't be secured on the client to access to the service.
+  * [Azure App configuration provider](/azure/azure-app-configuration/quickstart-aspnet-core-app): The provider isn't appropriate for Blazor WebAssembly apps because Blazor WebAssembly apps don't run on a server in Azure.
+  * [Custom configuration provider with EF Core](xref:fundamentals/configuration/index#custom-configuration-provider)
+    * Add the example's configuration provider with the following code in `Program.Main` (`Program.cs`):
+
+      ```csharp
+      builder.Configuration.AddEFConfiguration(
+          options => options.UseInMemoryDatabase("InMemoryDb"));
+      ```
+
+    * Inject an <xref:Microsoft.Extensions.Configuration.IConfiguration> instance into a component to access the configuration data:
+
+      ```razor
+      @using Microsoft.Extensions.Configuration
+      @inject IConfiguration Configuration
+
+      <ul>
+          <li>@Configuration["quote1"]</li>
+          <li>@Configuration["quote2"]</li>
+          <li>@Configuration["quote3"]</li>
+      </ul>
+      ```
 
 > [!WARNING]
 > Configuration in a Blazor WebAssembly app is visible to users. **Don't store app secrets or credentials in configuration.**
