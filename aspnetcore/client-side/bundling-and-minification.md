@@ -179,7 +179,7 @@ Copy the *gulpfile.js* file below to the project root:
 
 To trigger the Gulp minification task before the project builds in Visual Studio:
 
-1. Install the [BuildBundlerMinifier](https://www.nuget.org/packages/BuildBundlerMinifier/) NuGet package.
+1. Install the [BuildBundlerMinifier](https://www.nuget.org/packages/BuildBundlerMinifier) NuGet package.
 1. Add the following [MSBuild Target](/visualstudio/msbuild/msbuild-targets) to the project file:
 
     [!code-xml[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/BuildBundlerMinifierApp.csproj?range=14-16)]
