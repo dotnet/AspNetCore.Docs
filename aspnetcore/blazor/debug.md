@@ -92,8 +92,6 @@ While debugging your Blazor WebAssembly app, you can also debug your server code
 
 ## Visual Studio Code
 
-For information on installing Visual Studio Code for Blazor app development, see <xref:blazor/tooling>.
-
 ### Debug standalone Blazor WebAssembly
 
 1. Open the standalone Blazor WebAssembly app in VS Code.
