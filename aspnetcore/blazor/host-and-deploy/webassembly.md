@@ -5,7 +5,7 @@ description: Learn how to host and deploy a Blazor app using ASP.NET Core, Conte
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/09/2020
+ms.date: 07/24/2020
 no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/host-and-deploy/webassembly
 ---
@@ -103,6 +103,198 @@ The client Blazor WebAssembly app is published into the `/bin/Release/{TARGET FR
 For more information on ASP.NET Core app hosting and deployment, see <xref:host-and-deploy/index>.
 
 For information on deploying to Azure App Service, see <xref:tutorials/publish-to-azure-webapp-using-vs>.
+
+## Hosted deployment with multiple Blazor WebAssembly apps
+
+To configure a Blazor hosted solution to serve multiple Blazor WebAssembly apps:
+
+* Use an existing Blazor hosted solution or create a new solution from the Blazor Hosted project template.
+
+* In the client app's project file, add a `<StaticWebAssetBasePath>` property to the `<PropertyGroup>`:
+
+  ```xml
+  <StaticWebAssetBasePath>FirstApp</StaticWebAssetBasePath>
+  ```
+
+  The `StaticWebAssetBasePath` property sets the base path for the project's assets. The property doesn't set the base path for assets from referenced projects or NuGet packages. For more information, see [Blazor _content folder (dotnet/aspnetcore #21808)](https://github.com/dotnet/aspnetcore/issues/21808).
+
+* Add a second client app to the solution. In the following example:
+
+  * A folder named `SecondClient` is created in the solution's folder.
+  * Create a Blazor WebAssembly app named `SecondBlazorApp.Client` in the `SecondClient` folder from the Blazor WebAssembly project template. In the app's project file:
+
+    * Add a `<StaticWebAssetBasePath>` property to the `<PropertyGroup>`.
+
+      ```xml
+      <StaticWebAssetBasePath>SecondApp</StaticWebAssetBasePath>
+      ```
+
+    * Add a project reference to the `Shared` project:
+
+      ```xml
+      <ItemGroup>
+        <ProjectReference Include="..\Shared\{SOLUTION NAME}.Shared.csproj" />
+      </ItemGroup>
+      ```
+
+      The placeholder `{SOLUTION NAME}` is the solution's name.
+
+* Create a project reference for the new client app in the server app's project file:
+
+  ```xml
+  <ItemGroup>
+    ...
+    <ProjectReference Include="..\SecondClient\SecondBlazorApp.Client.csproj" />
+  </ItemGroup>
+  ```
+
+* In the server app's `Properties/launchSettings.json` file, configure the `applicationUrl` of the Kestrel profile (`{SOLUTION NAME}.Server`) to access the client apps at ports 5001 and 5002:
+
+  ```json
+  "applicationUrl": "https://localhost:5001;https://localhost:5002",
+  ```
+
+* In the server app's `Startup.Configure` method, remove the following lines, which appear after the call to <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A>:
+
+  ```csharp
+  app.UseBlazorFrameworkFiles();
+  app.UseStaticFiles();
+
+  app.UseRouting();
+
+  app.UseEndpoints(endpoints =>
+  {
+      endpoints.MapRazorPages();
+      endpoints.MapControllers();
+      endpoints.MapFallbackToFile("index.html");
+  });
+  ```
+
+  Add middleware that maps requests to the client apps. The following example configures the middleware to run when:
+
+  * The request port is either 5001 for the original client app or 5002 for the added client app.
+  * The request host is either `firstapp.com` for the original client app or `secondapp.com` for the added client app.
+
+    > [!NOTE]
+    > The example shown in this section requires additional configuration for:
+    >
+    > * Accessing the apps at the example host domains, `firstapp.com` and `secondapp.com`.
+    > * Certificates for the client apps to enable TLS security (HTTPS).
+    >
+    > The required configuration is beyond the scope of this article and depends on how the solution is hosted. For more information see the [Host and deploy articles](xref:host-and-deploy/index).
+
+  Place the following code where the lines were removed earlier:
+
+  ```csharp
+  app.MapWhen(ctx => ctx.Request.Host.Port == 5001 || 
+      ctx.Request.Host.Equals("firstapp.com"), first =>
+  {
+      first.Use((ctx, nxt) =>
+      {
+          ctx.Request.Path = "/FirstApp" + ctx.Request.Path;
+          return nxt();
+      });
+
+      first.UseBlazorFrameworkFiles("/FirstApp");
+      first.UseStaticFiles();
+      first.UseStaticFiles("/FirstApp");
+      first.UseRouting();
+
+      first.UseEndpoints(endpoints =>
+      {
+          endpoints.MapControllers();
+          endpoints.MapFallbackToFile("/FirstApp/{*path:nonfile}", 
+              "FirstApp/index.html");
+      });
+  });
+  
+  app.MapWhen(ctx => ctx.Request.Host.Port == 5002 || 
+      ctx.Request.Host.Equals("secondapp.com"), second =>
+  {
+      second.Use((ctx, nxt) =>
+      {
+          ctx.Request.Path = "/SecondApp" + ctx.Request.Path;
+          return nxt();
+      });
+
+      second.UseBlazorFrameworkFiles("/SecondApp");
+      second.UseStaticFiles();
+      second.UseStaticFiles("/SecondApp");
+      second.UseRouting();
+
+      second.UseEndpoints(endpoints =>
+      {
+          endpoints.MapControllers();
+          endpoints.MapFallbackToFile("/SecondApp/{*path:nonfile}", 
+              "SecondApp/index.html");
+      });
+  });
+  ```
+
+* Client app static assets and class library components
+
+  * If a client app references static assets in its own `wwwroot` folder, provide their paths normally (for example, `<img alt="..." src="/{ASSET FILE NAME}" />`).
+  * If a client app references static assets from a Razor Class Library (RCL), reference the static assets per the guidance in the [RCL topic](xref:razor-pages/ui-class#consume-content-from-a-referenced-rcl) (`_content/{LIBRARY NAME}/{ASSET FILE NAME}`). Static File Middleware in the server app that uses the app's static file asset path (for example, `first.UseStaticFiles("/FirstApp");`) serves the files from the library.
+  * Nested components provided by a class library are referenced normally. If any components require stylesheets or JavaScript files, the client app's `wwwroot/index.html` file must include the correct static asset links.
+
+  The following `Jeep` component uses:
+
+  * An image from the client app's `wwwroot` folder.
+  * An image from the `JeepImage` library's `wwwroot` folder.
+  * The example `Component1` component created by the RCL project template.
+
+  ```razor
+  @page "/Jeep"
+
+  <h1>1979 Jeep CJ-5&trade;</h1>
+
+  <p>
+      <img alt="1979 Jeep CJ-5&trade;" src="/jeep-cj.png" />
+  </p>
+
+  <h1>1991 Jeep YJ&trade;</h1>
+
+  <p>
+      <img alt="1991 Jeep YJ&trade;" src="_content/JeepImage/jeep-yj.png" />
+  </p>
+
+  <p>
+      <em>Jeep CJ-5</em> and <em>Jeep YJ</em> are a trademarks of 
+      <a href="https://www.fcagroup.com">Fiat Chrysler Automobiles</a>.
+  </p>
+
+  <JeepImage.Component1 />
+  ```
+
+  The library's image can also be added to the library's `Component1` component (`Component1.razor`):
+
+  ```razor
+  <div class="my-component">
+      <h1>JeepImage.Component1</h1>
+
+      <p>
+          This Blazor component is defined in the <strong>JeepImage</strong> package.
+      </p>
+
+      <p>
+          <img alt="1991 Jeep YJ&trade;" src="_content/JeepImage/jeep-yj.png" />
+      </p>
+  </div>
+  ```
+
+  The client app's `wwwroot/index.html` file requests the library's stylesheet:
+
+  ```html
+  <head>
+      ...
+      <link href="_content/JeepImage/styles.css" rel="stylesheet" />
+  </head>
+  ```
+
+  For more information on RCLs, see:
+
+  * <xref:blazor/components/class-libraries>
+  * <xref:razor-pages/ui-class>
 
 ## Standalone deployment
 
@@ -539,4 +731,3 @@ In the project file, the script is run after publishing the app:
 ```
 
 To provide feedback, visit [aspnetcore/issues #5477](https://github.com/dotnet/aspnetcore/issues/5477).
- 
