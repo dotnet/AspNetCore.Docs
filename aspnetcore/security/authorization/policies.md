@@ -239,8 +239,11 @@ if (context.Resource is AuthorizationFilterContext mvcContext)
 }
 ```
 
-::: moniker-end
+## Globally require all users to be authenticated
 
+[!INCLUDE[](~/includes/requireAuth.md)]
+
+::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
 
