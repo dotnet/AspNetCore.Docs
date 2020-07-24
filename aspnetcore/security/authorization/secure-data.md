@@ -117,7 +117,6 @@ The preceding highlighted code sets the [fallback authentication policy](xref:Mi
 The fallback authentication policy:
 
 * Is applied to all requests that do not explicitly specify an authentication policy. For requests served by endpoint routing, this would include any endpoint that does not specify an authorization attribute. For requests served by other middleware after the authorization middleware, such as [static files](xref:fundamentals/static-files), this would apply the policy to all requests.
-* Is part of the [endpoint routing system](xref:fundamentals/routing).
 
 Setting the fallback authentication policy to require users to be authenticated protects newly added Razor Pages and controllers. Having authentication required by default is more secure than relying on new controllers and Razor Pages to include the `[Authorize]` attribute.
 
