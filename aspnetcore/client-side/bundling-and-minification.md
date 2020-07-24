@@ -4,7 +4,7 @@ author: scottaddie
 description: Learn how to optimize static resources in an ASP.NET Core web application by applying bundling and minification techniques.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 04/15/2020
+ms.date: 07/23/2020
 no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: client-side/bundling-and-minification
 ---
@@ -161,13 +161,13 @@ Add a *package.json* file, with the following `devDependencies`, to the project 
 
 Install the dependencies by running the following command at the same level as *package.json*:
 
-```console
+```bash
 npm i
 ```
 
 Install the Gulp CLI as a global dependency:
 
-```console
+```bash
 npm i -g gulp-cli
 ```
 
@@ -177,9 +177,12 @@ Copy the *gulpfile.js* file below to the project root:
 
 ### Run Gulp tasks
 
-To trigger the Gulp minification task before the project builds in Visual Studio, add the following [MSBuild Target](/visualstudio/msbuild/msbuild-targets) to the *.csproj file:
+To trigger the Gulp minification task before the project builds in Visual Studio:
 
-[!code-xml[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/BuildBundlerMinifierApp.csproj?range=14-16)]
+1. Install the [BuildBundlerMinifier](https://www.nuget.org/packages/BuildBundlerMinifier) NuGet package.
+1. Add the following [MSBuild Target](/visualstudio/msbuild/msbuild-targets) to the project file:
+
+    [!code-xml[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/BuildBundlerMinifierApp.csproj?range=14-16)]
 
 In this example, any tasks defined within the `MyPreCompileTarget` target run before the predefined `Build` target. Output similar to the following appears in Visual Studio's Output window:
 
