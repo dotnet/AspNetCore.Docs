@@ -5,7 +5,7 @@ description: Learn about error handling with ASP.NET Core web APIs.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: prkrishn
 ms.custom: mvc
-ms.date: 12/10/2019
+ms.date: 07/23/2020
 no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: web-api/handle-errors
 ---
@@ -216,6 +216,8 @@ The contents of the response can be modified from outside of the controller. In 
 1. Create an action filter named `HttpResponseExceptionFilter`:
 
     [!code-csharp[](handle-errors/samples/3.x/Filters/HttpResponseExceptionFilter.cs?name=snippet_HttpResponseExceptionFilter)]
+
+    In the preceding filter, the magic number 10 is subtracted from the maximum integer value. Subtracting this number allows other filters to run at the very end of the pipeline.
 
 1. In `Startup.ConfigureServices`, add the action filter to the filters collection:
 
