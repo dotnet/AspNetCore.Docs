@@ -118,9 +118,9 @@ To configure a Blazor hosted solution to serve multiple Blazor WebAssembly apps:
 
   The `StaticWebAssetBasePath` property sets the base path for the project's assets. The property doesn't set the base path for assets from referenced projects or NuGet packages. For more information, see [Blazor _content folder (dotnet/aspnetcore #21808)](https://github.com/dotnet/aspnetcore/issues/21808).
 
-* Add a second client app to the solution. In the following example:
+* Add a second client app to the solution:
 
-  * A folder named `SecondClient` is created in the solution's folder.
+  * Add a folder named `SecondClient` to the solution's folder.
   * Create a Blazor WebAssembly app named `SecondBlazorApp.Client` in the `SecondClient` folder from the Blazor WebAssembly project template. In the app's project file:
 
     * Add a `<StaticWebAssetBasePath>` property to the `<PropertyGroup>`.
@@ -231,17 +231,17 @@ To configure a Blazor hosted solution to serve multiple Blazor WebAssembly apps:
   });
   ```
 
-* Client app static assets and class library components
+* Use client app static assets and class library components:
 
-  * If a client app references static assets in its own `wwwroot` folder, provide their paths normally (for example, `<img alt="..." src="/{ASSET FILE NAME}" />`).
-  * If a client app references static assets from a Razor Class Library (RCL), reference the static assets per the guidance in the [RCL topic](xref:razor-pages/ui-class#consume-content-from-a-referenced-rcl) (`_content/{LIBRARY NAME}/{ASSET FILE NAME}`). Static File Middleware in the server app that uses the app's static file asset path (for example, `first.UseStaticFiles("/FirstApp");`) serves the files from the library.
+  * When a client app references static assets in its own `wwwroot` folder, provide their paths normally (for example, `<img alt="..." src="/{ASSET FILE NAME}" />`).
+  * When a client app references static assets from a Razor Class Library (RCL), reference the static assets per the guidance in the [RCL topic](xref:razor-pages/ui-class#consume-content-from-a-referenced-rcl) (`_content/{LIBRARY NAME}/{ASSET FILE NAME}`). Static File Middleware in the server app that uses the app's static file asset path (for example, `first.UseStaticFiles("/FirstApp");`) serves the files from the library.
   * Nested components provided by a class library are referenced normally. If any components require stylesheets or JavaScript files, the client app's `wwwroot/index.html` file must include the correct static asset links.
 
-  The following `Jeep` component uses:
+  Add the following `Jeep` component to one of the client apps. The `Jeep` component uses:
 
-  * An image from the client app's `wwwroot` folder.
-  * An image from the `JeepImage` library's `wwwroot` folder.
-  * The example `Component1` component created by the RCL project template.
+  * An image from the client app's `wwwroot` folder (`jeep-cj.png`).
+  * An image from an [added Razor component library](xref:blazor/components/class-libraries) (`JeepImage`) `wwwroot` folder (`jeep-yj.png`).
+  * The example component created automatically by the RCL project template when the `JeepImage` library is added to the solution (`JeepImage.Component1`).
 
   ```razor
   @page "/Jeep"
@@ -266,6 +266,30 @@ To configure a Blazor hosted solution to serve multiple Blazor WebAssembly apps:
   <JeepImage.Component1 />
   ```
 
+::: moniker range=">= aspnetcore-5.0"
+
+  The library's image can also be added to the library's `Component1` component (`Component1.razor`). To provide the `my-component` CSS class to the client app's page, link to the library's stylesheet using the framework's `Link` component:
+
+  ```razor
+  <div class="my-component">
+      <Link href="_content/JeepImage/styles.css" rel="stylesheet" />
+
+      <h1>JeepImage.Component1</h1>
+
+      <p>
+          This Blazor component is defined in the <strong>JeepImage</strong> package.
+      </p>
+
+      <p>
+          <img alt="1991 Jeep YJ&trade;" src="_content/JeepImage/jeep-yj.png" />
+      </p>
+  </div>
+  ```
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
   The library's image can also be added to the library's `Component1` component (`Component1.razor`):
 
   ```razor
@@ -282,13 +306,25 @@ To configure a Blazor hosted solution to serve multiple Blazor WebAssembly apps:
   </div>
   ```
 
-  The client app's `wwwroot/index.html` file requests the library's stylesheet:
+  The client app's `wwwroot/index.html` file requests the library's stylesheet with the following added link:
 
   ```html
   <head>
       ...
       <link href="_content/JeepImage/styles.css" rel="stylesheet" />
   </head>
+  ```
+
+::: moniker-end
+
+  Add navigation to the `Jeep` component in the client app's `NavMenu` component (`Shared/NavMenu.razor`):
+
+  ```razor
+  <li class="nav-item px-3">
+      <NavLink class="nav-link" href="Jeep">
+          <span class="oi oi-list-rich" aria-hidden="true"></span> Jeep
+      </NavLink>
+  </li>
   ```
 
   For more information on RCLs, see:
