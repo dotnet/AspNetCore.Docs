@@ -128,7 +128,7 @@ To configure SignalR client logging:
 ```cshtml
     ...
 
-    <script src="_framework/blazor.server.js" autostart="false"></script>
+    <script autostart="false" src="_framework/blazor.server.js"></script>
     <script>
       Blazor.start({
         configureSignalR: function (builder) {
@@ -156,7 +156,7 @@ To modify the connection events:
 ```cshtml
     ...
 
-    <script src="_framework/blazor.server.js" autostart="false"></script>
+    <script autostart="false" src="_framework/blazor.server.js"></script>
     <script>
       Blazor.start({
         reconnectionHandler: {
@@ -178,7 +178,7 @@ To adjust the reconnection retry count and interval:
 ```cshtml
     ...
 
-    <script src="_framework/blazor.server.js" autostart="false"></script>
+    <script autostart="false" src="_framework/blazor.server.js"></script>
     <script>
       Blazor.start({
         reconnectionOptions: {
@@ -200,7 +200,7 @@ To hide the reconnection display:
 ```cshtml
     ...
 
-    <script src="_framework/blazor.server.js" autostart="false"></script>
+    <script autostart="false" src="_framework/blazor.server.js"></script>
     <script>
       window.addEventListener('beforeunload', function () {
         Blazor.defaultReconnectionHandler._reconnectionDisplay = {};
@@ -230,11 +230,11 @@ When rendered, the `Title`, `Link`, and `Meta` components add or update data in 
 @using Microsoft.AspNetCore.Components.Web.Extensions.Head
 
 <Title Value="{TITLE}" />
-<Link rel="stylesheet" href="{FILE NAME}" />
-<Meta name="description" content="{DESCRIPTION}" />
+<Link href="{URL}" rel="stylesheet" />
+<Meta content="{DESCRIPTION}" name="description" />
 ```
 
-In the preceding example, placeholders for `{TITLE}`, `{FILE NAME}`, and `{DESCRIPTION}` are sting values, Razor variables, or Razor expressions.
+In the preceding example, placeholders for `{TITLE}`, `{URL}`, and `{DESCRIPTION}` are sting values, Razor variables, or Razor expressions.
 
 The following characteristics apply:
 
