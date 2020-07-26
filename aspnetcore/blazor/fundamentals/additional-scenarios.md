@@ -240,9 +240,9 @@ The following characteristics apply:
 
 * Server-side prerendering is supported.
 * The `Value` parameter is the only valid parameter for the `Title` component.
-* HTML attributes provided to the `Meta` and `Link` components are captured in [additional attributes](xref:blazor/components/index#attribute-splatting-and-arbitrary-parameters) and passed through to the rendered HTML tags.
+* HTML attributes provided to the `Meta` and `Link` components are captured in [additional attributes](xref:blazor/components/index#attribute-splatting-and-arbitrary-parameters) and passed through to the rendered HTML tag.
 * For multiple `Title` components, the title of the page reflects the `Value` of the last `Title` component rendered.
-* Even if there are multiple `Meta` or `Link` components rendered with identical attributes, there is exactly one tag per component rendered. Two `Meta` or `Link` components can't refer to the same rendered HTML tag.
+* If multiple `Meta` or `Link` components are included with identical attributes, there is exactly one HTML tag rendered per `Meta` or `Link` component. Two `Meta` or `Link` components can't refer to the same rendered HTML tag.
 * Changes to the parameters of existing `Meta` or `Link` components are reflected in their rendered HTML tags.
 * Disposing a `Meta` or `Link` component removes its rendered HTML tag.
 
