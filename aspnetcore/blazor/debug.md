@@ -102,7 +102,7 @@ While debugging your Blazor WebAssembly app, you can also debug your server code
    
    If you receive the notification:
 
-   * Confirm that the latest [C# for Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) is installed. To inspect installed extensions, open **View** > **Extensions** from the menu bar or select the **Extensions** icon in the **Activity** sidebar.
+   * Confirm that the latest [C# for Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) is installed. To inspect the installed extensions, open **View** > **Extensions** from the menu bar or select the **Extensions** icon in the **Activity** sidebar.
    * Confirm that JavaScript preview debugging is enabled. Open the settings from the menu bar (**File** > **Preferences** > **Settings**). Search using the keywords `debug preview`. In the search results, confirm that the check box for **Debug > JavaScript: Use Preview** is checked.
    * Reload the window.
 
