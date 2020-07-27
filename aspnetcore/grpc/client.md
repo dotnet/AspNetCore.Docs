@@ -37,16 +37,16 @@ var counterClient = new Count.CounterClient(channel);
 // Use clients to call gRPC services
 ```
 
-### Make gRPC calls with TLS
+### Configure TLS
 
-A gRPC client must call a service using the same connection-level security. This is configured when the gRPC channel is created. A gRPC client will error when it attempts to make a call and the underlying channel's connection-level security doesn't match the service.
+A gRPC client must use the same connection-level security as the service it is calling. gRPC client TLS (transport layer security) is configured when the gRPC channel is created. A gRPC client will throw an error when it calls a service and the connection-level security of the channel and service don't match.
 
-To configure a gRPC channel to use TLS (transport layer security), ensure the server address starts with `https`. For example, `GrpcChannel.ForAddress("https://localhost:5001")`. The gRPC channel will automatically negotate a connection secured by TLS and use the secured connection to make gRPC calls.
+To configure a gRPC channel to use TLS ensure the server address starts with `https`. For example, `GrpcChannel.ForAddress("https://localhost:5001")`. The gRPC channel will automatically negotate a connection secured by TLS and use a secured connection to make gRPC calls.
 
 > [!TIP]
 > gRPC supports client certificate authentication over TLS. For information on configuring client certificates with a gRPC channel, see <xref:grpc/authn-and-authz#client-certificate-authentication>.
 
-To call unsecured gRPC services ensure the server address starts with `http`. For example, `GrpcChannel.ForAddress("http://localhost:5000")`. In .NET Core 3.1 some [additional configuration is required](xref:grpc/troubleshoot#call-insecure-grpc-services-with-net-core-client).
+To call unsecured gRPC services ensure the server address starts with `http`. For example, `GrpcChannel.ForAddress("http://localhost:5000")`. In .NET Core 3.1 additional configuration is required to [call insecure gRPC services with the .NET client](xref:grpc/troubleshoot#call-insecure-grpc-services-with-net-core-client).
 
 ### Client performance
 
@@ -59,9 +59,6 @@ Channel and client performance and usage:
 * Clients created from the channel can make multiple simultaneous calls.
 
 `GrpcChannel.ForAddress` isn't the only option for creating a gRPC client. If calling gRPC services from an ASP.NET Core app, consider [gRPC client factory integration](xref:grpc/clientfactory). gRPC integration with `HttpClientFactory` offers a centralized alternative to creating gRPC clients.
-
-> [!NOTE]
-> Additional configuration is required to [call insecure gRPC services with the .NET client](xref:grpc/troubleshoot#call-insecure-grpc-services-with-net-core-client).
 
 > [!NOTE]
 > Calling gRPC over HTTP/2 with `Grpc.Net.Client` is currently not supported on Xamarin. We are working to improve HTTP/2 support in a future Xamarin release. [Grpc.Core](https://www.nuget.org/packages/Grpc.Core) and [gRPC-Web](xref:grpc/browser) are viable alternatives that work today.
