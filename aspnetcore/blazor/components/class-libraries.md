@@ -106,7 +106,7 @@ Optionally, include the `@using ComponentLibrary` directive in the top-level `_I
 
 ::: moniker range=">= aspnetcore-5.0"
 
-To provide `Component1`'s `my-component` CSS class only to the component, link to the library's stylesheet using the framework's `Link` component in `Component1.razor`:
+To provide `Component1`'s `my-component` CSS class only to the component, link to the library's stylesheet using the framework's [`Link` component](xref:blazor/fundamentals/additional-scenarios#influence-html-head-tag-elements) in `Component1.razor`:
 
 ```razor
 <div class="my-component">
