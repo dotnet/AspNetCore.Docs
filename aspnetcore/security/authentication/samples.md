@@ -38,11 +38,11 @@ The [ASP.NET Core repository](https://github.com/dotnet/AspNetCore) contains the
 
 * [Claims transformation](https://github.com/dotnet/AspNetCore/tree/release/2.1/src/Security/samples/ClaimsTransformation)
 * [Cookie authentication](https://github.com/dotnet/AspNetCore/tree/release/2.1/src/Security/samples/Cookies)
-* [Custom policy provider - IAuthorizationPolicyProvider](https://github.com/dotnet/AspNetCore/tree/release/2.1/src/Security/samples/CustomPolicyProvider)
+* [Custom policy provider - IAuthorizationPolicyProvider](https://github.com/dotnet/AspNetCore/tree/2.1.3/src/Security/samples/CustomPolicyProvider)
 * [Dynamic authentication schemes and options](https://github.com/dotnet/AspNetCore/tree/release/2.1/src/Security/samples/DynamicSchemes)
 * [External claims](https://github.com/dotnet/AspNetCore/tree/release/2.1/src/Security/samples/Identity.ExternalClaims)
 * [Selecting between cookie and another authentication scheme based on the request](https://github.com/dotnet/AspNetCore/tree/release/2.1/src/Security/samples/PathSchemeSelection)
-* [Restricts access to static files](https://github.com/dotnet/AspNetCore/tree/release/2.1/src/Security/samples/StaticFilesAuth)
+* [Restricts access to static files](https://github.com/dotnet/AspNetCore/tree/2.1.3/src/Security/samples/StaticFilesAuth)
 
 ## Run the samples
 
