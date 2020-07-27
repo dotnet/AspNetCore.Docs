@@ -39,14 +39,14 @@ var counterClient = new Count.CounterClient(channel);
 
 ### Configure TLS
 
-A gRPC client must use the same connection-level security as the service it is calling. gRPC client TLS (transport layer security) is configured when the gRPC channel is created. A gRPC client will throw an error when it calls a service and the connection-level security of the channel and service don't match.
+A gRPC client must use the same connection-level security as the service being called. gRPC client Transport Layer Security (TLS) is configured when the gRPC channel is created. A gRPC client throws an error when it calls a service and the connection-level security of the channel and service don't match.
 
-To configure a gRPC channel to use TLS ensure the server address starts with `https`. For example, `GrpcChannel.ForAddress("https://localhost:5001")`. The gRPC channel will automatically negotate a connection secured by TLS and use a secured connection to make gRPC calls.
+To configure a gRPC channel to use TLS, ensure the server address starts with `https`. For example, `GrpcChannel.ForAddress("https://localhost:5001")` uses HTTPS protocol. The gRPC channel automatically negotates a connection secured by TLS and uses a secure connection to make gRPC calls.
 
 > [!TIP]
 > gRPC supports client certificate authentication over TLS. For information on configuring client certificates with a gRPC channel, see <xref:grpc/authn-and-authz#client-certificate-authentication>.
 
-To call unsecured gRPC services ensure the server address starts with `http`. For example, `GrpcChannel.ForAddress("http://localhost:5000")`. In .NET Core 3.1 additional configuration is required to [call insecure gRPC services with the .NET client](xref:grpc/troubleshoot#call-insecure-grpc-services-with-net-core-client).
+To call unsecured gRPC services, ensure the server address starts with `http`. For example, `GrpcChannel.ForAddress("http://localhost:5000")` uses HTTP protocol. In .NET Core 3.1 or later, additional configuration is required to [call insecure gRPC services with the .NET client](xref:grpc/troubleshoot#call-insecure-grpc-services-with-net-core-client).
 
 ### Client performance
 
