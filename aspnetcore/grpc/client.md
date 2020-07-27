@@ -39,7 +39,7 @@ var counterClient = new Count.CounterClient(channel);
 
 ### Configure TLS
 
-A gRPC client must use the same connection-level security as the service being called. gRPC client Transport Layer Security (TLS) is configured when the gRPC channel is created. A gRPC client throws an error when it calls a service and the connection-level security of the channel and service don't match.
+A gRPC client must use the same connection-level security as the called service. gRPC client Transport Layer Security (TLS) is configured when the gRPC channel is created. A gRPC client throws an error when it calls a service and the connection-level security of the channel and service don't match.
 
 To configure a gRPC channel to use TLS, ensure the server address starts with `https`. For example, `GrpcChannel.ForAddress("https://localhost:5001")` uses HTTPS protocol. The gRPC channel automatically negotates a connection secured by TLS and uses a secure connection to make gRPC calls.
 
