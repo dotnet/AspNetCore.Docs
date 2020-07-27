@@ -5,7 +5,7 @@ description: Discover how components can be included in Blazor apps from an exte
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/23/2020
+ms.date: 07/27/2020
 no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/components/class-libraries
 ---
@@ -28,7 +28,7 @@ Just as components are regular .NET types, components provided by an RCL are nor
 1. Create a new project.
 1. Select **Razor Class Library**. Select **Next**.
 1. In the **Create a new Razor class library** dialog, select **Create**.
-1. Provide a project name in the **Project name** field or accept the default project name. The examples in this topic use the project name `MyComponentLib1`. Select **Create**.
+1. Provide a project name in the **Project name** field or accept the default project name. The examples in this topic use the project name `ComponentLibrary`. Select **Create**.
 1. Add the RCL to a solution:
    1. Right-click the solution. Select **Add** > **Existing Project**.
    1. Navigate to the RCL's project file.
@@ -48,10 +48,10 @@ Just as components are regular .NET types, components provided by an RCL are nor
 
 # [.NET Core CLI](#tab/netcore-cli)
 
-1. Use the **Razor Class Library** template (`razorclasslib`) with the [`dotnet new`](/dotnet/core/tools/dotnet-new) command in a command shell. In the following example, an RCL is created named `MyComponentLib1`. The folder that holds `MyComponentLib1` is created automatically when the command is executed:
+1. Use the **Razor Class Library** template (`razorclasslib`) with the [`dotnet new`](/dotnet/core/tools/dotnet-new) command in a command shell. In the following example, an RCL is created named `ComponentLibrary`. The folder that holds `ComponentLibrary` is created automatically when the command is executed:
 
    ```dotnetcli
-   dotnet new razorclasslib -o MyComponentLib1
+   dotnet new razorclasslib -o ComponentLibrary
    ```
 
    > [!NOTE]
@@ -78,31 +78,61 @@ In order to consume components defined in a library in another project, use eith
 * Use the full type name with the namespace.
 * Use Razor's [`@using`](xref:mvc/views/razor#using) directive. Individual components can be added by name.
 
-In the following examples, `MyComponentLib1` is a component library containing a `SalesReport` component.
+In the following examples, `ComponentLibrary` is a component library containing the `Component1` component (`Component1.razor`), which is an example component automatically added by the RCL project template when the library is created.
 
-The `SalesReport` component can be referenced using its full type name with namespace:
+Reference the `Component1` component using its namespace:
 
 ```razor
 <h1>Hello, world!</h1>
 
 Welcome to your new app.
 
-<MyComponentLib1.SalesReport />
+<ComponentLibrary.Component1 />
 ```
 
-The component can also be referenced if the library is brought into scope with an `@using` directive:
+Alternatively, bring the library into scope with an [`@using`](xref:mvc/views/razor#using) directive and use the component without its namespace:
 
 ```razor
-@using MyComponentLib1
+@using ComponentLibrary
 
 <h1>Hello, world!</h1>
 
 Welcome to your new app.
 
-<SalesReport />
+<Component1 />
 ```
 
-Include the `@using MyComponentLib1` directive in the top-level `_Import.razor` file to make the library's components available to an entire project. Add the directive to an `_Import.razor` file at any level to apply the namespace to a single page or set of pages within a folder.
+Optionally, include the `@using ComponentLibrary` directive in the top-level `_Import.razor` file to make the library's components available to an entire project. Add the directive to an `_Import.razor` file at any level to apply the namespace to a single component or set of components within a folder.
+
+::: moniker range=">= aspnetcore-5.0"
+
+To provide `Component1`'s `my-component` CSS class, link to the library's stylesheet using the framework's `Link` component in `Component1.razor`:
+
+```razor
+<div class="my-component">
+
+    <Link href="_content/ComponentLibrary/styles.css" rel="stylesheet" />
+
+    <p>
+        This Blazor component is defined in the <strong>ComponentLibrary</strong> package.
+    </p>
+</div>
+```
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+To provide `Component1`'s `my-component` CSS class, link to the library's stylesheet in the app's `wwwroot/index.html` file (Blazor WebAssembly) or `Pages/_Host.cshtml` file (Blazor Server):
+
+```html
+<head>
+    ...
+    <link href="_content/ComponentLibrary/styles.css" rel="stylesheet" />
+</head>
+```
+
+::: moniker-end
 
 ## Create a Razor components class library with static assets
 
