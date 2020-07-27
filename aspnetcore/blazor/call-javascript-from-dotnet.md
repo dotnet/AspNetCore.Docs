@@ -458,9 +458,11 @@ For more information on resource exhaustion, see <xref:blazor/security/server/th
 
 [!INCLUDE[](~/includes/blazor-share-interop-code.md)]
 
+::: moniker range="< aspnetcore-5.0"
+
 ## Avoid circular object references
 
-Objects that contain circular references can't be serialized on the client for either:
+In versions of .NET Core prior to 5.0, objects that contain circular references can't be serialized on the client for either:
 
 * .NET method calls.
 * JavaScript method calls from C# when the return type has circular references.
@@ -469,6 +471,8 @@ For more information, see the following issues:
 
 * [Circular references are not supported, take two (dotnet/aspnetcore #20525)](https://github.com/dotnet/aspnetcore/issues/20525)
 * [Proposal: Add mechanism to handle circular references when serializing (dotnet/runtime #30820)](https://github.com/dotnet/runtime/issues/30820)
+
+::: moniker-end
 
 ## Additional resources
 
