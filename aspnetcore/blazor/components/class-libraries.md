@@ -106,7 +106,7 @@ Optionally, include the `@using ComponentLibrary` directive in the top-level `_I
 
 ::: moniker range=">= aspnetcore-5.0"
 
-To provide `Component1`'s `my-component` CSS class, link to the library's stylesheet using the framework's `Link` component in `Component1.razor`:
+To provide `Component1`'s `my-component` CSS class only to the component, link to the library's stylesheet using the framework's `Link` component in `Component1.razor`:
 
 ```razor
 <div class="my-component">
@@ -117,6 +117,15 @@ To provide `Component1`'s `my-component` CSS class, link to the library's styles
         This Blazor component is defined in the <strong>ComponentLibrary</strong> package.
     </p>
 </div>
+```
+
+To provide the stylesheet across the app, link to the library's stylesheet in the app's `wwwroot/index.html` file (Blazor WebAssembly) or `Pages/_Host.cshtml` file (Blazor Server):
+
+```html
+<head>
+    ...
+    <link href="_content/ComponentLibrary/styles.css" rel="stylesheet" />
+</head>
 ```
 
 ::: moniker-end
