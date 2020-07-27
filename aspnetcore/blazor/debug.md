@@ -96,13 +96,15 @@ While debugging your Blazor WebAssembly app, you can also debug your server code
 
 1. Open the standalone Blazor WebAssembly app in VS Code.
 
-   If you receive the following notification that additional setup is required to enable debugging:
+   You may receive the following notification that additional setup is required to enable debugging:
    
-   * Confirm that you have the latest [C# for Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) installed. To inspect installed extensions, open **View** > **Extensions** from the menu bar or select the **Extensions** icon in the **Activity** sidebar.
+   ![Additional setup required](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vscode-additional-setup.png)
+   
+   If you receive the notification:
+
+   * Confirm that the latest [C# for Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) is installed. To inspect installed extensions, open **View** > **Extensions** from the menu bar or select the **Extensions** icon in the **Activity** sidebar.
    * Confirm that JavaScript preview debugging is enabled. Open the settings from the menu bar (**File** > **Preferences** > **Settings**). Search using the keywords `debug preview`. In the search results, confirm that the check box for **Debug > JavaScript: Use Preview** is checked.
    * Reload the window.
-
-   ![Additional setup required](https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2020/03/vscode-additional-setup.png)
 
 1. Start debugging using the <kbd>F5</kbd> keyboard shortcut or the menu item.
 
