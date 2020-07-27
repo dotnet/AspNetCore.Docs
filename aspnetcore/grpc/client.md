@@ -37,6 +37,19 @@ var counterClient = new Count.CounterClient(channel);
 // Use clients to call gRPC services
 ```
 
+### Make gRPC calls with TLS
+
+A gRPC client must call a gRPC service using the same connection-level security. A gRPC client whose underlying channel isn't configured to use the same connection security as the gRPC service will throw an error when attempting to make a call.
+
+To configure a gRPC channel to use TLS (transport layer security), ensure the server address starts with `https`. For example, `GrpcChannel.ForAddress("https://localhost:5001")`. The gRPC channel will automatically negotate a connection secured by TLS and use the secured connection to make gRPC calls.
+
+> [!TIP]
+> gRPC supports client certificate authentication over TLS. For information on configuring client certificates with a gRPC channel, see <xref:grpc/authn-and-authz#client-certificate-authentication>.
+
+To call unsecured gRPC services ensure the server address starts with `http`. For example, `GrpcChannel.ForAddress("http://localhost:5000")`. In .NET Core 3.1 some [additional configuration is required](xref:grpc/troubleshoot#call-insecure-grpc-services-with-net-core-client).
+
+### Client performance
+
 Channel and client performance and usage:
 
 * Creating a channel can be an expensive operation. Reusing a channel for gRPC calls provides performance benefits.
