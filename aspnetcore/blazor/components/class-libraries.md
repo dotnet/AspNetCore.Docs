@@ -78,7 +78,7 @@ In order to consume components defined in a library in another project, use eith
 * Use the full type name with the namespace.
 * Use Razor's [`@using`](xref:mvc/views/razor#using) directive. Individual components can be added by name.
 
-In the following examples, `ComponentLibrary` is a component library containing the `Component1` component (`Component1.razor`), which is an example component automatically added by the RCL project template when the library is created.
+In the following examples, `ComponentLibrary` is a component library containing the `Component1` component (`Component1.razor`). The `Component1` component is an example component automatically added by the RCL project template when the library is created.
 
 Reference the `Component1` component using its namespace:
 
