@@ -43,7 +43,7 @@ public class CustomAuthorizationMessageHandler : AuthorizationMessageHandler
 }
 ```
 
-In `Program.Main` (`Program.cs`), an <xref:System.Net.Http.HttpClient> is configured with the custom authorization message handler:
+In `Program.Main` (`Program.cs`), a named <xref:System.Net.Http.HttpClient> is configured with the custom authorization message handler:
 
 ```csharp
 builder.Services.AddScoped<CustomAuthorizationMessageHandler>();
