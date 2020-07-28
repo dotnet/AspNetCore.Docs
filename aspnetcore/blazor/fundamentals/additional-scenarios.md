@@ -244,7 +244,7 @@ The following characteristics apply:
 * For multiple `Title` components, the title of the page reflects the `Value` of the last `Title` component rendered.
 * If multiple `Meta` or `Link` components are included with identical attributes, there's exactly one HTML tag rendered per `Meta` or `Link` component. Two `Meta` or `Link` components can't refer to the same rendered HTML tag.
 * Changes to the parameters of existing `Meta` or `Link` components are reflected in their rendered HTML tags.
-* Disposing a `Meta` or `Link` component removes its rendered HTML tag.
+* When the `Link` or `Meta` components are no longer rendered and thus disposed by the framework, their rendered HTML tags are removed.
 
 ::: moniker-end
 
