@@ -450,7 +450,7 @@ The [`Microsoft.AspNetCore.ProtectedBrowserStorage`](https://www.nuget.org/packa
 1. Add a package reference to [`Microsoft.AspNetCore.ProtectedBrowserStorage`](https://www.nuget.org/packages/Microsoft.AspNetCore.ProtectedBrowserStorage).
 1. In the `Pages/_Host.cshtml` file, add the following script inside the closing `</body>` tag:
 
-   ```html
+   ```cshtml
    <script src="_content/Microsoft.AspNetCore.ProtectedBrowserStorage/protectedBrowserStorage.js"></script>
    ```
 
