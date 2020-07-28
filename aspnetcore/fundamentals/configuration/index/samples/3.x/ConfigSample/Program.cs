@@ -1,4 +1,5 @@
-#define MAIN
+#define MAINcolor
+//#define MAIN
 //#define MAIN2
 //#define MyCusomPrefix_
 
@@ -25,6 +26,28 @@ namespace ConfigSample
                 });
     }
 #endregion
+}
+#endif
+
+#if MAINcolor
+namespace ConfigSample
+{
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            CreateHostBuilder(args).Build().Run();
+        }
+
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                   // webBuilder.UseStartup<Startup2>();
+                    webBuilder.UseStartup<Startup3>();
+
+                });
+    }
 }
 #endif
 
@@ -59,7 +82,7 @@ namespace ConfigSample
 
 namespace ConfigSample
 {
-    #region snippet4
+#region snippet4
     public class Program
     {
         public static void Main(string[] args)
@@ -78,6 +101,6 @@ namespace ConfigSample
                     webBuilder.UseStartup<Startup>();
                 });
     }
-    #endregion
+#endregion
 }
 #endif

@@ -9,27 +9,16 @@ namespace DependencyInjectionSample.Models
         IOperationSingleton,
         IOperationSingletonInstance
     {
-        public Operation() : this(DateTime.Now.Millisecond.ToString())
+        public Operation() : this(Guid.NewGuid())
         {
-            DoWork();
         }
 
-        public Operation(string id)
+        public Operation(Guid id)
         {
             OperationId = id;
         }
 
-        private void DoWork()
-        {
-            // Do work so different times are recorded.
-            int sum = 0;
-            for (int i = 0; i < 1000000; i++)
-            {
-                sum += i;
-            }
-        }
-
-        public string OperationId { get; private set; }
+        public Guid OperationId { get; private set; }
     }
     #endregion
 }

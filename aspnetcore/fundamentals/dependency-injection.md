@@ -19,6 +19,8 @@ ASP.NET Core supports the dependency injection (DI) software design pattern, whi
 
 For more information specific to dependency injection within MVC controllers, see <xref:mvc/controllers/dependency-injection>.
 
+For more information on dependency injection of options, see <xref:fundamentals/configuration/options>.
+
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/dependency-injection/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Overview of dependency injection
@@ -121,6 +123,11 @@ In the sample app, the `IMyDependency` instance is requested and used to call th
 
 [!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/Pages/Index2.cshtml.cs?name=snippet1)]
 
+With the DI pattern:
+
+* The controller doesn't use the concrete type `MyDependency`, only the interface `IMyDependency`. That makes it easy to change the implementation of the service in only one place.
+* The controller doesn't create an instance of `MyDependency`, it's created by DI container.
+
 ## Services injected into Startup
 
 Only the following service types can be injected into the `Startup` constructor when using the Generic Host (<xref:Microsoft.Extensions.Hosting.IHostBuilder>):
@@ -194,7 +201,7 @@ Choose an appropriate lifetime for each registered service. ASP.NET Core service
 
 ### Transient
 
-Transient lifetime services (<xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddTransient*>) are created each time they're requested from the service container. This lifetime works best for lightweight, stateless services.
+Transient lifetime services (<xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddTransient*>) are created each time they're requested from the service container. This lifetime works best for lightweight, stateless services. Transient services don't need to be thread safe.
 
 In apps that process requests, transient services are disposed at the end of the request.
 
@@ -202,10 +209,19 @@ In apps that process requests, transient services are disposed at the end of the
 
 Scoped lifetime services (<xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddScoped*>) are created once per client request (connection).
 
+When using Entity Framework Core, th [`AddDbContext`]/dotnet/api/microsoft.extensions.dependencyinjection.entityframeworkservicecollectionextensions.adddbcontext) extension method registers `DbContext` types with a scoped lifetime by default.
+
 In apps that process requests, scoped services are disposed at the end of the request.
 
 > [!WARNING]
 > When using a scoped service in a middleware, inject the service into the `Invoke` or `InvokeAsync` method. Don't inject via [constructor injection](xref:mvc/controllers/dependency-injection#constructor-injection) because it forces the service to behave like a singleton. For more information, see <xref:fundamentals/middleware/write#per-request-middleware-dependencies>.
+
+Do ***not*** resolve a scoped service from a singleton. It may cause the service to have incorrect state when processing subsequent requests. It's fine to:
+
+* Resolve a singleton service from a scoped or transient service.
+* Resolve a scoped service from another scoped or transient service.
+
+By default, in the development environment, resolving a service from another service with longer lifetime throws an exception. For more information, see [Scope validation](#sv).
 
 ### Singleton
 
@@ -216,10 +232,12 @@ Singleton lifetime services (<xref:Microsoft.Extensions.DependencyInjection.Serv
 <!-- REVIEW what is user code? -->
 Every subsequent request uses the same instance. If the app requires singleton behavior, allowing the service container to manage the service's lifetime is recommended. Don't implement the singleton design pattern and provide user code to manage the object's lifetime in the class.
 
-In apps that process requests, singleton services are disposed when the <xref:Microsoft.Extensions.DependencyInjection.ServiceProvider> is disposed on application shutdown.
+Singleton services must be thread safe and are often used in stateless services.
+
+In apps that process requests, singleton services are disposed when the <xref:Microsoft.Extensions.DependencyInjection.ServiceProvider> is disposed on application shutdown. Because memory is not released until the app is shut down, memory use with a singleton must be considered.
 
 > [!WARNING]
-> Do ***not*** resolve a scoped service from a singleton. It may cause the service to have incorrect state when processing subsequent requests. It's fine to resolve a singleton service from a scoped service.
+> Do ***not*** resolve a scoped service from a singleton. It may cause the service to have incorrect state when processing subsequent requests. It's fine to resolve a singleton service from a scoped or transient service.
 
 ## Service registration methods
 
@@ -274,7 +292,7 @@ services.TryAddEnumerable(ServiceDescriptor.Singleton<IMyDep1, MyDep>());
 Services can be resolved by two mechanisms:
 
 * <xref:System.IServiceProvider>
-* <xref:Microsoft.Extensions.DependencyInjection.ActivatorUtilities>: Permits object creation without service registration in the dependency injection container. `ActivatorUtilities` is used with user-facing abstractions, such as Tag Helpers, MVC controllers, and model binders.
+* <xref:Microsoft.Extensions.DependencyInjection.ActivatorUtilities>: Permits object creation without service registration in the dependency injection container. `ActivatorUtilities` is used with user-facing abstractions, such as [Tag Helpers](xref:tag-helpers/intro), MVC controllers, and [model binders](xref:mvc/models/model-binding).
 
 Constructors can accept arguments that aren't provided by dependency injection, but the arguments must assign default values.
 
@@ -312,7 +330,7 @@ The `IOperationSingletonInstance` service is using a specific instance with a kn
 
 The sample app demonstrates object lifetimes within and between individual requests. The sample app's `IndexModel` requests each kind of `IOperation` type and the `OperationService`. The page then displays all of the page model class's and service's `OperationId` values through property assignments:
 
-[!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/Pages/Index.cshtml.cs?name=snippet1&highlight=7-11,14-18,21-25)]
+[!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/Pages/Index.cshtml.cs?name=snippet1)]
 
 Two following output shows the results of two requests:
 
@@ -399,12 +417,15 @@ public class Program
 }
 ```
 
+<a name="sv"></a>
+
 ## Scope validation
 
-When the app is running in the Development environment and calls [CreateDefaultBuilder](xref:fundamentals/host/generic-host#default-builder-settings) to build the host, the default service provider performs checks to verify that:
+When the app is running in the [Development environment](xref:/fundamentals/environments) and calls [CreateDefaultBuilder](xref:fundamentals/host/generic-host#default-builder-settings) to build the host, the default service provider performs checks to verify that:
 
 * Scoped services aren't directly or indirectly resolved from the root service provider.
 * Scoped services aren't directly or indirectly injected into singletons.
+* Transient services aren't directly or indirectly injected into singletons or scoped services.
 
 The root service provider is created when <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionContainerBuilderExtensions.BuildServiceProvider*> is called. The root service provider's lifetime corresponds to the app/server's lifetime when the provider starts with the app and is disposed when the app shuts down.
 
@@ -1017,6 +1038,13 @@ Best practices are to:
 * Make app classes small, well-factored, and easily tested.
 
 If a class seems to have too many injected dependencies, this is generally a sign that the class has too many responsibilities and is violating the [Single Responsibility Principle (SRP)](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#single-responsibility). Attempt to refactor the class by moving some of its responsibilities into a new class. Keep in mind that Razor Pages page model classes and MVC controller classes should focus on UI concerns. Business rules and data access implementation details should be kept in classes appropriate to these [separate concerns](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#separation-of-concerns).
+
+### Order of service registration
+
+Service registration is generally not order dependent except when:
+
+* Registering multiple implementations of an interface.
+*  
 
 ### Disposal of services
 

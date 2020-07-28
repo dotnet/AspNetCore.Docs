@@ -1,24 +1,19 @@
-﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using DependencyInjectionSample.Interfaces;
+﻿using DependencyInjectionSample.Interfaces;
 using DependencyInjectionSample.Services;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace DependencyInjectionSample.Pages
 {
     #region snippet1
     public class IndexModel : PageModel
     {
-        private readonly IMyDependency _myDependency;
-
         public IndexModel(
-            IMyDependency myDependency, 
             OperationService operationService,
             IOperationTransient transientOperation,
             IOperationScoped scopedOperation,
             IOperationSingleton singletonOperation,
             IOperationSingletonInstance singletonInstanceOperation)
         {
-            _myDependency = myDependency;
             OperationService = operationService;
             TransientOperation = transientOperation;
             ScopedOperation = scopedOperation;
@@ -32,10 +27,8 @@ namespace DependencyInjectionSample.Pages
         public IOperationSingleton SingletonOperation { get; }
         public IOperationSingletonInstance SingletonInstanceOperation { get; }
 
-        public async Task OnGetAsync()
+        public void  OnGet()
         {
-            await _myDependency.WriteMessage(
-                "IndexModel.OnGetAsync created this message.");
         }
     }
     #endregion
