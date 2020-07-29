@@ -128,10 +128,10 @@ To provide the stylesheet across the app, link to the library's stylesheet in th
 </head>
 ```
 
-When the `Link` component is used in a child component, the linked asset is also available to any other child component of the parent component as long as the child with the `Link` component is rendered. The distinction between using the `Link` component in a component and placing a `<link>` HTML tag in `wwwroot/index.html` or `Pages/_Host.cshtml` is that a `<link>` tag created from the `Link` component:
+When the `Link` component is used in a child component, the linked asset is also available to any other child component of the parent component as long as the child with the `Link` component is rendered. The distinction between using the `Link` component in a child component and placing a `<link>` HTML tag in `wwwroot/index.html` or `Pages/_Host.cshtml` is that:
 
-* Can be modified by application state. A hard-coded `<link>` HTML tag can't be modified by applcation state.
-* Is removed from the HTML `<head>` when the parent component is no longer rendered.
+* A `<link>` tag created from the `Link` component can be modified by application state. A hard-coded `<link>` HTML tag can't be modified by applcation state.
+* A `<link>` tag created from the `Link` component is removed from the HTML `<head>` when the parent component is no longer rendered.
 
 ::: moniker-end
 
