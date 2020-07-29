@@ -662,7 +662,7 @@ An `AddEFConfiguration` extension method permits adding the configuration source
 
 The following code shows how to use the custom `EFConfigurationProvider` in *Program.cs*:
 
-[!code-csharp[](index/samples/3.x/ConfigurationSample/Program.cs?name=snippet_Program&highlight=29-30)]
+[!code-csharp[](index/samples_snippets/3.x/ConfigurationSample/Program.cs?highlight=7-8)]
 
 <a name="acs"></a>
 
