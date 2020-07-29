@@ -5,7 +5,7 @@ description: Build a Blazor app step-by-step.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/02/2020
+ms.date: 07/29/2020
 no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/build-a-blazor-app
 ---
@@ -22,6 +22,12 @@ This tutorial shows you how to build and modify a Blazor app. You learn how to:
 > * Use dependency injection (DI) and routing in a Blazor app
 
 At the end of this tutorial, you'll have a working todo list app.
+
+## Prerequisites
+
+[!INCLUDE[](~/includes/3.1-SDK.md)]
+
+## Create a todo list Blazor app
 
 1. Create a new Blazor app named `TodoList` in a command shell:
 
