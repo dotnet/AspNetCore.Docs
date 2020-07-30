@@ -292,7 +292,7 @@ services.TryAddEnumerable(ServiceDescriptor.Singleton<IMyDep1, MyDep>());
 Services can be resolved by two mechanisms:
 
 * <xref:System.IServiceProvider>
-* <xref:Microsoft.Extensions.DependencyInjection.ActivatorUtilities>: Permits object creation without service registration in the dependency injection container. `ActivatorUtilities` is used with user-facing abstractions, such as [Tag Helpers](xref:tag-helpers/intro/index), MVC controllers, and [model binders](xref:mvc/models/model-binding).
+* <xref:Microsoft.Extensions.DependencyInjection.ActivatorUtilities>: Permits object creation without service registration in the dependency injection container. `ActivatorUtilities` is used with user-facing abstractions, such as [Tag Helpers](xref:mvc/views/tag-helpers/intro), MVC controllers, and [model binders](xref:mvc/models/model-binding).
 
 Constructors can accept arguments that aren't provided by dependency injection, but the arguments must assign default values.
 
@@ -372,6 +372,8 @@ Observe which of the `OperationId` values vary within a request and between requ
 * *Scoped* objects are the same within a client request but different across client requests.
 * *Singleton* objects are the same for every object and every request regardless of whether an `Operation` instance is provided in `Startup.ConfigureServices`.
 
+[!INCLUDE[](~/includes/combine-di.md)]
+
 ## Call services from main
 
 Create an <xref:Microsoft.Extensions.DependencyInjection.IServiceScope> with [IServiceScopeFactory.CreateScope](xref:Microsoft.Extensions.DependencyInjection.IServiceScopeFactory.CreateScope*) to resolve a scoped service within the app's scope. This approach is useful to access a scoped service at startup to run initialization tasks. The following example shows how to obtain a context for the `MyScopedService` in `Program.Main`:
@@ -421,7 +423,7 @@ public class Program
 
 ## Scope validation
 
-When the app is running in the [Development environment](xref:/fundamentals/environments/index) and calls [CreateDefaultBuilder](xref:fundamentals/host/generic-host#default-builder-settings) to build the host, the default service provider performs checks to verify that:
+When the app is running in the [Development environment](xref:fundamentals/environments) and calls [CreateDefaultBuilder](xref:fundamentals/host/generic-host#default-builder-settings) to build the host, the default service provider performs checks to verify that:
 
 * Scoped services aren't directly or indirectly resolved from the root service provider.
 * Scoped services aren't directly or indirectly injected into singletons.
@@ -960,10 +962,6 @@ Observe which of the `OperationId` values vary within a request and between requ
 * *Transient* objects are always different. The transient `OperationId` value for both the first and second client requests are different for both `OperationService` operations and across client requests. A new instance is provided to each service request and client request.
 * *Scoped* objects are the same within a client request but different across client requests.
 * *Singleton* objects are the same for every object and every request regardless of whether an `Operation` instance is provided in `Startup.ConfigureServices`.
-
-zz include
-
-[!INCLUDE[](~/includes/combine-di.md)]
 
 ## Call services from main
 

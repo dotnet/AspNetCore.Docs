@@ -5,28 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="MyIniConfig.Development.ini" />
-    <None Remove="MyIniConfig.ini" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="MyIniConfig.Development.ini" />
-    <Content Include="MyIniConfig.ini" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.1" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="Pages\Test25 - Copy - Copy.cshtml.cs">
-      <DependentUpon>Test25 - Copy.cshtml.cs</DependentUpon>
-    </Compile>
-    <Compile Update="Pages\Test25 - Copy.cshtml.cs">
-      <DependentUpon>Test25.cshtml.cs</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-
 
 </Project>

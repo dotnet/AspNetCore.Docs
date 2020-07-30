@@ -1,10 +1,10 @@
 ## Combining service collection
 
-Consider the following `ConfigureServices` that contains four service collections:
+Consider the following `ConfigureServices` that contains several service collections:
 
 [!code-csharp[](~/fundamentals/configuration/index/samples/3.x/ConfigSample/Startup2.cs?name=snippet)]
 
-Related groups of registrations can be moved to call that creates an extension method to register services. For example, the configuration services are added to the class:
+Related groups of registrations can be moved to an extension method to register services. For example, the configuration services are added to the following class:
 
 [!code-csharp[](~/fundamentals/configuration/index/samples/3.x/ConfigSample/Options/MyConfgServiceCollectionExtensions.cs)]
 
