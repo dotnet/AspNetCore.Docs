@@ -5,7 +5,7 @@ description: Build a Blazor app step-by-step.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/29/2020
+ms.date: 07/30/2020
 no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/build-a-blazor-app
 ---
@@ -19,7 +19,7 @@ This tutorial shows you how to build and modify a Blazor app. You learn how to:
 > * Create a todo list Blazor app project
 > * Modify Razor components
 > * Use event handling and data binding in components
-> * Use dependency injection (DI) and routing in a Blazor app
+> * Use routing in a Blazor app
 
 At the end of this tutorial, you'll have a working todo list app.
 
@@ -133,7 +133,7 @@ In this tutorial, you learned how to:
 > * Create a todo list Blazor app project
 > * Modify Razor components
 > * Use event handling and data binding in components
-> * Use dependency injection (DI) and routing in a Blazor app
+> * Use routing in a Blazor app
 
 Learn about tooling for ASP.NET Core Blazor:
 
