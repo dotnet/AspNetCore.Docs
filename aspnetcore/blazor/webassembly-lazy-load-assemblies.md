@@ -22,7 +22,7 @@ Blazor's lazy loading feature allows you to mark certain app assemblies as lazy-
 
 ## Project file
 
-Mark assemblies for lazy loading in the app's project file (`.csproj`) using the `BlazorWebAssemblyLazyLoad` item. Use the assembly name without the `.dll` extension. The Blazor framework prevents the assemblies marked under this item group from loading at app launch. The following example marks a large custom assembly (`GrantImaharaRobotControls.dll`) for lazy loading.
+Mark assemblies for lazy loading in the app's project file (`.csproj`) using the `BlazorWebAssemblyLazyLoad` item. Use the assembly name without the `.dll` extension. The Blazor framework prevents the assemblies specified by this item group from loading at app launch. The following example marks a large custom assembly (`GrantImaharaRobotControls.dll`) for lazy loading.
 
 ```xml
 <ItemGroup>
@@ -34,7 +34,7 @@ Only assemblies that are used by the app can be lazily loaded. The linker strips
 
 ## `Router` component
 
-Blazor's `Router` component is used to designate which assemblies Blazor will look for routeable components in. It is also responsible for rendering the component associated with the router that the user navigates to. The `Router` component supports an `OnNavigateAsync` feature that can be used in conjunction with lazy-loading.
+Blazor's `Router` component is used to designate which assemblies Blazor searches for routeable components in. It's also responsible for rendering the component associated with the router that the user navigates to. The `Router` component supports an `OnNavigateAsync` feature that can be used in conjunction with lazy-loading.
 
 In the app's `Router` component (`App.razor`):
 
@@ -44,7 +44,7 @@ In the app's `Router` component (`App.razor`):
 * Add a [List](xref:System.Collections.Generic.List%601)\<<xref:System.Reflection.Assembly>> (for example, named `lazyLoadedAssemblies`) to the component. The assemblies are passed back to the <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies> collection in case the assemblies contain routable components. The framework searches the assemblies for routes and updates the route collection if any new routes are found.
 
 > [!NOTE]
-> If lazy-loaded assemblies do not contain any routeable components, can omit this step.
+> If lazy-loaded assemblies don't contain routeable components, omit adding a list of assemblies.
 
 ```razor
 @using System.Reflection
@@ -118,15 +118,15 @@ While loading assemblies, which can take several seconds, the `Router` component
 ...
 ```
 
-### Handelling cancellations in `OnNavigateAsync`
+### Handle cancellations in `OnNavigateAsync`
 
-The `NavigationContext` object passed to the `OnNavigateAsync` callback contains a `CancellationToken` that is set when a new navigaiton event occurs. The `OnNavigateAsync` callback must throw when this cancellation token is set to avoid continuing to run the `OnNavigateAsync` callback on a outdated navigation.
+The `NavigationContext` object passed to the `OnNavigateAsync` callback contains a `CancellationToken` that's set when a new navigation event occurs. The `OnNavigateAsync` callback must throw when this cancellation token is set to avoid continuing to run the `OnNavigateAsync` callback on a outdated navigation.
 
-For example, if a user navigates to Route A, then immediatley to Route B, we do not want to continue running the `OnNavigateAsync` callback for Route A if we've already navigated to Route B.
+If a user navigates to Route A and then immediately to Route B, the app shouldn't continue running the `OnNavigateAsync` callback for Route A:
 
 ```razor
 @inject HttpClient Http
-@inject ProductCatalog products
+@inject ProductCatalog Products
 
 <Router AppAssembly="@typeof(Program).Assembly" 
     OnNavigateAsync="@OnNavigateAsync">
@@ -147,17 +147,15 @@ For example, if a user navigates to Route A, then immediatley to Route B, we do 
             foreach (var productId in productIds) 
             {
                 args.CancellationToken.ThrowIfCancellationRequested();
-                products.Prefetch(productId);
+                Products.Prefetch(productId);
             }
-            
         }
-        
     }
 }
 ```
 
 > [!NOTE]
-> Not throwing if the cancellation token in `NavigationContext` is set can result in unintended behavior.
+> Not throwing if the cancellation token in `NavigationContext` is set can result in unintended behavior, such as rendering a component from a previous navigation.
 
 ### Complete example
 
@@ -208,9 +206,9 @@ The following complete `Router` component demonstrates loading the `GrantImahara
 }
 ```
 
-## Troubleshooting
+## Troubleshoot
 
-* If you are seeing unexpected rendering behavior, for example a component from a previous navigation is rendered, check that you are throwing if the cancellation token is set.
+* If unexpected rendering occurs (for example, a component from a previous navigation is rendered), confirm that the code throws if the cancellation token is set.
 * If assemblies are still loaded at application start, check that the assembly is marked as lazy loaded in the project file.
 
 ## Additional resources
