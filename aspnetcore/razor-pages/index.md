@@ -97,6 +97,8 @@ Razor Pages is designed to make common patterns used with web browsers easy to i
 
 For the samples in this document, the `DbContext` is initialized in the [Startup.cs](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/razor-pages/index/3.0sample/RazorPagesContacts/Startup.cs#L23-L24) file.
 
+The in memory database requires the `Microsoft.EntityFrameworkCore.InMemory` NuGet package.
+
 [!code-csharp[](index/3.0sample/RazorPagesContacts/Startup.cs?name=snippet)]
 
 The data model:
