@@ -829,7 +829,7 @@ In apps that process requests, singleton services are disposed when the <xref:Mi
 > [!WARNING]
 > It's dangerous to resolve a scoped service from a singleton. It may cause the service to have incorrect state when processing subsequent requests.
 
-## Service registration methods
+## Service registration methods zz
 
 Service registration extension methods offer overloads that are useful in specific scenarios.
 
@@ -960,6 +960,8 @@ Observe which of the `OperationId` values vary within a request and between requ
 * *Transient* objects are always different. The transient `OperationId` value for both the first and second client requests are different for both `OperationService` operations and across client requests. A new instance is provided to each service request and client request.
 * *Scoped* objects are the same within a client request but different across client requests.
 * *Singleton* objects are the same for every object and every request regardless of whether an `Operation` instance is provided in `Startup.ConfigureServices`.
+
+[!INCLUDE[](~/includes/combine-di.md)]
 
 ## Call services from main
 

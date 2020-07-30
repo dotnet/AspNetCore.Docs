@@ -23,6 +23,9 @@ namespace ConfigSample
                                                 PositionOptions.Position));
             services.Configure<ColorOptions>(Configuration.GetSection(
                                              ColorOptions.Color));
+            services.AddScoped<IMyDependency, MyDependency>();
+            services.AddScoped<IMyDependency2, MyDependency2>();
+
             services.AddRazorPages();
         }
         #endregion

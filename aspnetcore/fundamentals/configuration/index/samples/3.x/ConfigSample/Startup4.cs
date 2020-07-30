@@ -7,9 +7,9 @@ using Microsoft.Extensions.Hosting;
 
 namespace ConfigSample
 {
-    public class Startup3
+    public class Startup4
     {
-        public Startup3(IConfiguration configuration)
+        public Startup4(IConfiguration configuration)
         {
             Configuration = configuration;
         }
@@ -19,7 +19,9 @@ namespace ConfigSample
         #region snippet
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddConfig(Configuration);
+            services.AddConfig(Configuration)
+                    .AddMyDependencyGroup();
+
             services.AddRazorPages();
         }
         #endregion
