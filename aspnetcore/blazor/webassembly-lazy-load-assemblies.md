@@ -34,14 +34,14 @@ Only assemblies that are used by the app can be lazily loaded. The linker strips
 
 ## `Router` component
 
-Blazor's `Router` component is used to designate which assemblies Blazor searches for routeable components in. It's also responsible for rendering the component associated with the router that the user navigates to. The `Router` component supports an `OnNavigateAsync` feature that can be used in conjunction with lazy-loading.
+Blazor's `Router` component is used to designate which assemblies Blazor searches for routable components in. It's also responsible for rendering the component associated with the router that the user navigates to. The `Router` component supports an `OnNavigateAsync` feature that can be used in conjunction with lazy-loading.
 
 In the app's `Router` component (`App.razor`):
 
 * Add an `OnNavigateAsync` callback. The `OnNavigateAsync` handler is invoked when the user:
   * Visits a route for the first time by navigating to it directly from their browser.
   * Navigates to a new route using a link or a <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A?displayProperty=nameWithType> invocation.
-* If lazy-loaded assemblies contain routeable components,, Add a [List](xref:System.Collections.Generic.List%601)\<<xref:System.Reflection.Assembly>> (for example, named `lazyLoadedAssemblies`) to the component. The assemblies are passed back to the <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies> collection in case the assemblies contain routable components. The framework searches the assemblies for routes and updates the route collection if any new routes are found.
+* If lazy-loaded assemblies contain routable components, add a [List](xref:System.Collections.Generic.List%601)\<<xref:System.Reflection.Assembly>> (for example, named `lazyLoadedAssemblies`) to the component. The assemblies are passed back to the <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies> collection in case the assemblies contain routable components. The framework searches the assemblies for routes and updates the route collection if any new routes are found.
 
 ```razor
 @using System.Reflection
