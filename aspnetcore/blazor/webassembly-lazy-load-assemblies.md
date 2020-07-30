@@ -43,7 +43,6 @@ In the app's `Router` component (`App.razor`):
   * Navigates to a new route using a link or a <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A?displayProperty=nameWithType> invocation.
 * Add a [List](xref:System.Collections.Generic.List%601)\<<xref:System.Reflection.Assembly>> (for example, named `lazyLoadedAssemblies`) to the component. The assemblies are passed back to the <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies> collection in case the assemblies contain routable components. The framework searches the assemblies for routes and updates the route collection if any new routes are found.
 
-> [!NOTE]
 > If lazy-loaded assemblies don't contain routeable components, omit adding a list of assemblies.
 
 ```razor
