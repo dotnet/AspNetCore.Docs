@@ -77,7 +77,7 @@ Use either of the following approaches to configure a message handler for outgoi
 * [Custom `AuthorizationMessageHandler` class](#custom-authorizationmessagehandler-class) (*Recommended*)
 * [Configure `AuthorizationMessageHandler`](#configure-authorizationmessagehandler)
 
-### Custom AuthorizationMessageHandler class
+### Custom `AuthorizationMessageHandler` class
 
 In the following example, a custom class extends <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler> that can be used to configure an <xref:System.Net.Http.HttpClient>:
 
@@ -140,7 +140,7 @@ The configured <xref:System.Net.Http.HttpClient> is used to make authorized requ
 }
 ```
 
-### Configure AuthorizationMessageHandler
+### Configure `AuthorizationMessageHandler`
 
 In the following example, <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler> configures an <xref:System.Net.Http.HttpClient> in `Program.Main` (`Program.cs`):
 
@@ -165,7 +165,7 @@ For a Blazor app based on the Blazor WebAssembly Hosted template, <xref:Microsof
 * The <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType> (`new Uri(builder.HostEnvironment.BaseAddress)`).
 * A URL of the `authorizedUrls` array.
 
-## Typed HttpClient
+## Typed `HttpClient`
 
 A typed client can be defined that handles all of the HTTP and token acquisition concerns within a single class.
 
@@ -236,7 +236,7 @@ protected override async Task OnInitializedAsync()
 }
 ```
 
-## Configure the HttpClient handler
+## Configure the `HttpClient` handler
 
 The handler can be further configured with <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler.ConfigureHandler%2A> for outbound HTTP requests.
 
@@ -346,7 +346,7 @@ if (tokenResult.TryGetToken(out var token))
 * `true` with the `token` for use.
 * `false` if the token isn't retrieved.
 
-## HttpClient and HttpRequestMessage with Fetch API request options
+## `HttpClient` and `HttpRequestMessage` with Fetch API request options
 
 When running on WebAssembly in a Blazor WebAssembly app, [`HttpClient`](xref:fundamentals/http-requests) ([API documentation](xref:System.Net.Http.HttpClient)) and <xref:System.Net.Http.HttpRequestMessage> can be used to customize requests. For example, you can specify the HTTP method and request headers. The following component makes a `POST` request to a To Do List API endpoint on the server and shows the response body:
 
