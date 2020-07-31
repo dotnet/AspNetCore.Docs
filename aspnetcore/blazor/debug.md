@@ -243,7 +243,7 @@ The Blazor framework's debugging proxy takes a short time to launch, so breakpoi
 protected override void OnInitialized()
 {
 #if DEBUG
-    Thread.Sleep(2000)
+    Thread.Sleep(10000)
 #endif
 
     ...
@@ -256,7 +256,7 @@ protected override void OnInitialized()
 protected override async Task OnInitializedAsync()
 {
 #if DEBUG
-    await Task.Delay(2000)
+    await Task.Delay(10000)
 #endif
 
     ...
