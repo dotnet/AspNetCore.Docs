@@ -15,7 +15,7 @@ namespace DependencyInjectionSample.Services
     }
     #endregion
 
-    #region snippet1
+    #region snippet2
     public class MyDependency2 : IMyDependency
     {
         private readonly ILogger<MyDependency> _logger;

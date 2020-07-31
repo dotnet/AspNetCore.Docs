@@ -1,7 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using DependencyInjectionSample.Interfaces;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using DependencyInjectionSample.Interfaces;
-using DependencyInjectionSample.Services;
 
 namespace DependencyInjectionSample.Pages
 {

@@ -7,14 +7,14 @@ using Microsoft.Extensions.Hosting;
 
 namespace DependencyInjectionSample
 {
-    public class StartupMyDependency
+    public class StartupMyDependency2
     {
         #region snippet1
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
 
-            services.AddScoped<IMyDependency, MyDependency>();
+            services.AddScoped<IMyDependency, MyDependency2>();
         }
         #endregion
 
