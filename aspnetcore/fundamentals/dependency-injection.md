@@ -11,7 +11,7 @@ uid: fundamentals/dependency-injection
 ---
 # Dependency injection in ASP.NET Core
 
-By [Steve Smith](https://ardalis.com/), Kirk Larkin](https://twitter.com/serpent5), [Scott Addie](https://scottaddie.com), and [Brandon Dahler](https://github.com/brandondahler)
+By [Steve Smith](https://ardalis.com/), [Kirk Larkin](https://twitter.com/serpent5), [Scott Addie](https://scottaddie.com), and [Brandon Dahler](https://github.com/brandondahler)
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -34,12 +34,10 @@ public class MyDependency
     {
     }
 
-    public Task WriteMessage(string message)
+    public void WriteMessage(string message)
     {
         Console.WriteLine(
             $"MyDependency.WriteMessage called. Message: {message}");
-
-        return Task.FromResult(0);
     }
 }
 ```
@@ -51,9 +49,9 @@ public class IndexModel : PageModel
 {
     MyDependency _dependency = new MyDependency();
 
-    public async Task OnGetAsync()
+    public void OnGet()
     {
-        await _dependency.WriteMessage(
+        _dependency.WriteMessage(
             "IndexModel.OnGetAsync created this message.");
     }
 }
