@@ -132,7 +132,11 @@ public class MyDependency : IMyDependency
 An instance of the service is requested via the constructor of a class where the service is used and assigned to a private field. The field is used to access the service as necessary throughout the class.
 
  -->
- 
+
+The framework provides a robust [logging](xref:fundamentals/logging/index) systems. Most apps shouldn't need to writing loggers. The following code uses the default logging:
+
+[!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/Pages/About.cshtml.cs?name=snippet)]
+
 ## Services injected into Startup
 
 Only the following service types can be injected into the `Startup` constructor when using the Generic Host (<xref:Microsoft.Extensions.Hosting.IHostBuilder>):
@@ -291,6 +295,8 @@ services.TryAddEnumerable(ServiceDescriptor.Singleton<IMyDep2, MyDep>());
 // Two registrations of MyDep for IMyDep1 is avoided by the following line:
 services.TryAddEnumerable(ServiceDescriptor.Singleton<IMyDep1, MyDep>());
 ```
+
+Service registration is generally not order dependent except when registering multiple implementations of an interface.
 
 ### Constructor injection behavior
 
@@ -836,7 +842,7 @@ In apps that process requests, singleton services are disposed when the <xref:Mi
 > [!WARNING]
 > It's dangerous to resolve a scoped service from a singleton. It may cause the service to have incorrect state when processing subsequent requests.
 
-## Service registration methods zz
+## Service registration methods
 
 Service registration extension methods offer overloads that are useful in specific scenarios.
 
@@ -1045,13 +1051,6 @@ Best practices are to:
 * Make app classes small, well-factored, and easily tested.
 
 If a class seems to have too many injected dependencies, this is generally a sign that the class has too many responsibilities and is violating the [Single Responsibility Principle (SRP)](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#single-responsibility). Attempt to refactor the class by moving some of its responsibilities into a new class. Keep in mind that Razor Pages page model classes and MVC controller classes should focus on UI concerns. Business rules and data access implementation details should be kept in classes appropriate to these [separate concerns](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#separation-of-concerns).
-
-### Order of service registration
-
-Service registration is generally not order dependent except when:
-
-* Registering multiple implementations of an interface.
-*  
 
 ### Disposal of services
 
