@@ -195,7 +195,7 @@ Scoped lifetime services (<xref:Microsoft.Extensions.DependencyInjection.Service
 In apps that process requests, scoped services are disposed at the end of the request.
 
 > [!WARNING]
-> When using a scoped service in a middleware, inject the service into the `Invoke` or `InvokeAsync` method. Don't inject via [constructor injection](xref:mvc/controllers/dependency-injection#constructor-injection) because it forces the service to behave like a singleton. For more information, see <xref:fundamentals/middleware/write#per-request-middleware-dependencies>.
+> When using a scoped service in a [convention-based middleware](<xref:fundamentals/middleware/write#per-request-middleware-dependencies>), inject the service into the `Invoke` or `InvokeAsync` method. Don't inject via [constructor injection](xref:mvc/controllers/dependency-injection#constructor-injection) because it forces the service to behave like a singleton. Alternatively you can use [Factory-based middleware](<xref:fundamentals/middleware/extensibility>) using `IMiddleware`, which is activated per client request, so scoped services can be injected into the middleware's constructor.
 
 ### Singleton
 
