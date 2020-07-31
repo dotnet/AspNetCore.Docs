@@ -15,9 +15,9 @@ namespace DependencyInjectionSample.Pages
             _myDependency = myDependency;            
         }
 
-        public async Task OnGetAsync()
+        public void OnGet()
         {
-            await _myDependency.WriteMessage(
+            _myDependency.WriteMessage(
                 "IndexModel.OnGetAsync created this message.");
         }
     }
