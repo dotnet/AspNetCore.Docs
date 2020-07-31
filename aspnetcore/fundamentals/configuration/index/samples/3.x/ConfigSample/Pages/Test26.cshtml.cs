@@ -1,6 +1,7 @@
 ﻿using ConfigSample.Options;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.DependencyInjection.ConfigSample.Options;
 using Microsoft.Extensions.Options;
 
 namespace ConfigSample.Pages

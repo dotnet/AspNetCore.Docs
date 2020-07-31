@@ -79,7 +79,7 @@ This interface is implemented by a concrete type, `MyDependency`:
 
 In the sample app, the `IMyDependency` service is registered with the concrete type `MyDependency`. The registration service lifetime is <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddScoped*>, the lifetime of a single request. [Service lifetimes](#service-lifetimes) are described later in this topic.
 
-[!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/StartupMyDependency.cs?name=snippet1&highlight=5)]
+[!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/StartupMyDependency.cs?name=snippet1)]
 
 In the sample app, the `IMyDependency` instance is requested and used to call the service's `WriteMessage` method:
 
@@ -90,23 +90,29 @@ With the DI pattern:
 * The controller doesn't use the concrete type `MyDependency`, only the interface `IMyDependency`. That makes it easy to change the implementation of the service in only one place.
 * The controller doesn't create an instance of `MyDependency`, it's created by DI container.
 
-`MyDependency` requests an <xref:Microsoft.Extensions.Logging.ILogger`1> in its constructor. It's not unusual to use dependency injection in a chained fashion. Each requested dependency in turn requests its own dependencies. The container resolves the dependencies in the graph and returns the fully resolved service. The collective set of dependencies that must be resolved is typically referred to as a *dependency tree*, *dependency graph*, or *object graph*.
+The implementation of the `IMyDependency` can be improved by using the built in logging:
 
-`IMyDependency` and `ILogger<TCategoryName>` must be registered in the service container. `IMyDependency` is registered in `Startup.ConfigureServices`. `ILogger<TCategoryName>` is registered by the logging abstractions infrastructure, so it's a [framework-provided service](#framework-provided-services) registered by default by the framework.
+[!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/Services/MyDependency.cs?name=snippet2)]
 
+`ConfigureServices` is updated to use the new `IMyDependency` implementation:
+
+[!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/StartupMyDependency2.cs?name=snippet1)]
+
+`MyDependency2` requests an <xref:Microsoft.Extensions.Logging.ILogger`1> in the constructor. It's not unusual to use dependency injection in a chained fashion. Each requested dependency in turn requests its own dependencies. The container resolves the dependencies in the graph and returns the fully resolved service. The collective set of dependencies that must be resolved is typically referred to as a *dependency tree*, *dependency graph*, or *object graph*.
+
+`IMyDependency` and `ILogger<TCategoryName>` must be registered in the service container. `IMyDependency` is registered in `Startup.ConfigureServices`. `ILogger<TCategoryName>` is registered by the logging abstractions infrastructure, a [framework-provided service](#framework-provided-services) registered by default.
+
+<!-- REVIEW Recommend moving this section to the logger document. This is too much esoteric detail at the start of the DI doc.  
 The container resolves `ILogger<TCategoryName>` by taking advantage of [(generic) open types](/dotnet/csharp/language-reference/language-specification/types#open-and-closed-types), eliminating the need to register every [(generic) constructed type](/dotnet/csharp/language-reference/language-specification/types#constructed-types):
 
-zz part 2
-
-
+-->
 
 In dependency injection terminology, a service:
 
 * Is typically an object that provides a service to other code in the app, such as the `IMyDependency` service.
 * Is not related to a web service.
 
-***Note:*** Each `services.Add{SERVICE_NAME}` extension method adds and potentially configures services. For example, `services.AddMvc()` adds the services Razor Pages and MVC require. We recommended that apps follow this naming convention. Place extension methods in the [Microsoft.Extensions.DependencyInjection](/dotnet/api/microsoft.extensions.dependencyinjection) namespace to encapsulate groups of service registrations.
-
+<!-- Review Move to config section, this might not be appropriate this early in the doc
 If the service's constructor requires a [built in type](/dotnet/csharp/language-reference/keywords/built-in-types-table), such as a `string`, the type can be injected by using [configuration](xref:fundamentals/configuration/index) or the [options pattern](xref:fundamentals/configuration/options):
 
 ```csharp
@@ -125,7 +131,8 @@ public class MyDependency : IMyDependency
 
 An instance of the service is requested via the constructor of a class where the service is used and assigned to a private field. The field is used to access the service as necessary throughout the class.
 
-
+ -->
+ 
 ## Services injected into Startup
 
 Only the following service types can be injected into the `Startup` constructor when using the Generic Host (<xref:Microsoft.Extensions.Hosting.IHostBuilder>):

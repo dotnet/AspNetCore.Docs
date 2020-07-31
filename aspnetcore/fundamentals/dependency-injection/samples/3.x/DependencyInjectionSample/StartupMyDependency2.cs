@@ -1,29 +1,20 @@
-using ConfigSample.Options;
+using DependencyInjectionSample.Interfaces;
+using DependencyInjectionSample.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.ConfigSample.Options;
 using Microsoft.Extensions.Hosting;
 
-namespace ConfigSample
+namespace DependencyInjectionSample
 {
-    public class Startup4
+    public class StartupMyDependency
     {
-        public Startup4(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
-
-        public IConfiguration Configuration { get; }
-
-        #region snippet
+        #region snippet1
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddConfig(Configuration)
-                    .AddMyDependencyGroup();
-
             services.AddRazorPages();
+
+            services.AddScoped<IMyDependency, MyDependency>();
         }
         #endregion
 
@@ -36,15 +27,11 @@ namespace ConfigSample
             else
             {
                 app.UseExceptionHandler("/Error");
-                app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();
-
-            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

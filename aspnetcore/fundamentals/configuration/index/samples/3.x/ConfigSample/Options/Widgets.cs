@@ -1,8 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using System.Threading.Tasks;
+﻿using Microsoft.Extensions.Logging;
 
-namespace ConfigSample.Options
+namespace Microsoft.Extensions.DependencyInjection.ConfigSample.Options
 {
     public interface IMyDependency
     {

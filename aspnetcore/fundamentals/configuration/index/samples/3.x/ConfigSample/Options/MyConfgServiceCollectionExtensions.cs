@@ -1,7 +1,7 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
+﻿using ConfigSample.Options;
+using Microsoft.Extensions.Configuration;
 
-namespace ConfigSample.Options
+namespace Microsoft.Extensions.DependencyInjection.ConfigSample.Options
 {
     public static class MyConfgServiceCollectionExtensions
     {
