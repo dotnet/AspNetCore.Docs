@@ -1,3 +1,5 @@
+<a name="csc"></a>
+
 ## Combining service collection
 
 Consider the following `ConfigureServices` that contains several service collections:
