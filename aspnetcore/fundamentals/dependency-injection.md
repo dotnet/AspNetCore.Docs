@@ -317,7 +317,7 @@ The interfaces are implemented in the `Operation` class. The `Operation` constru
 
 [!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/Models/Operation.cs?name=snippet1)]
 
-<!-->
+<!--
 An `OperationService` is registered that depends on each of the other `Operation` types. When `OperationService` is requested via dependency injection, it receives either a new instance of each service or an existing instance based on the lifetime of the dependent service.
 
 * When transient services are created when requested from the container, the `OperationId` of the `IOperationTransient` service is different than the `OperationId` of the `OperationService`. `OperationService` receives a new instance of the `IOperationTransient` class. The new instance yields a different `OperationId`.
@@ -330,7 +330,7 @@ An `OperationService` is registered that depends on each of the other `Operation
 
 In `Startup.ConfigureServices`, each type is added to the container according to its named lifetime:
 
-[!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/Startup.cs?name=snippet1&highlight=6-9,12)]
+[!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/Startup2.cs?name=snippet1)]
 
 The sample app demonstrates object lifetimes within and between requests. The sample app's `IndexModel` and middleware requests each kind of `IOperation` type and logs the `OperationId`:
 
@@ -342,15 +342,17 @@ The middleware is similar to the `IndexModel`:
 
 Scoped services must be resolved in the `InvokeAsync` method:
 
-[!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/Middleware/MyMiddleware.cs?name=snippet2)]
+[!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/Middleware/MyMiddleware.cs?name=snippet2&highlight=2)]
 
-The logger output show:
+The logger output shows:
 
 * *Transient* objects are always different. The transient `OperationId` value is different in the `IndexModel` and the middleware.
-* *Scoped* objects are the same  in each request but different across each requests.
+* *Scoped* objects are the same in each request but different across each requests.
 * *Singleton* objects are the same for every request.
 
-To reduce the logging output, set "Logging:LogLevel:Microsoft:Error" in 
+To reduce the logging output, set "Logging:LogLevel:Microsoft" "Error" in the *appsettings.Development.json* file:
+
+[!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/appsettings.Development.json)]
 
 [!INCLUDE[](~/includes/combine-di.md)]
 

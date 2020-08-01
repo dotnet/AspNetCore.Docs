@@ -1,5 +1,4 @@
 ﻿using DependencyInjectionSample.Interfaces;
-using DependencyInjectionSample.Services;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 
@@ -9,9 +8,9 @@ namespace DependencyInjectionSample.Pages
     public class IndexModel : PageModel
     {
         private readonly ILogger _logger;
-        private readonly IOperationTransient TransientOperation;
-        private readonly IOperationSingleton SingletonOperation;
-        private readonly IOperationScoped ScopedOperation;
+        private readonly IOperationTransient _transientOperation;
+        private readonly IOperationSingleton _singletonOperation;
+        private readonly IOperationScoped _scopedOperation;
 
         public IndexModel(
             ILogger<IndexModel> logger,
@@ -20,16 +19,16 @@ namespace DependencyInjectionSample.Pages
             IOperationSingleton singletonOperation)
         {
             _logger = logger;
-            TransientOperation = transientOperation;
-            ScopedOperation = scopedOperation;
-            SingletonOperation = singletonOperation;
+            _transientOperation = transientOperation;
+            _scopedOperation    = scopedOperation;
+            _singletonOperation = singletonOperation;
         }
 
         public void  OnGet()
         {
-            _logger.LogInformation("IOperationTransient: " + TransientOperation.OperationId);
-            _logger.LogInformation("IOperationScoped: " + ScopedOperation.OperationId);
-            _logger.LogInformation("SingletonOperation: " + SingletonOperation.OperationId);
+            _logger.LogInformation("IOperationTransient: " + _transientOperation.OperationId);
+            _logger.LogInformation("IOperationScoped: "    + _scopedOperation.OperationId);
+            _logger.LogInformation("SingletonOperation: "  + _singletonOperation.OperationId);
         }
     }
     #endregion

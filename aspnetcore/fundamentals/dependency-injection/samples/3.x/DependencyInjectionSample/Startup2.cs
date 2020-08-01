@@ -12,7 +12,7 @@ namespace DependencyInjectionSample
 {
     public class Startup2
     {
-        #region Startup2
+        #region snippet1
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();

@@ -12,25 +12,26 @@ namespace DependencyInjectionSample.Middleware
         private readonly RequestDelegate _next;
         private readonly ILogger _logger;
 
-        private readonly  IOperationTransient TransientOperation;
-        private readonly  IOperationSingleton SingletonOperation;
+        private readonly  IOperationTransient _transientOperation;
+        private readonly  IOperationSingleton _singletonOperation;
 
         public MyMiddleware(RequestDelegate next, ILogger<MyMiddleware> logger,
             IOperationTransient transientOperation,
             IOperationSingleton singletonOperation)
         {
             _logger = logger;
+            _transientOperation = transientOperation;
+            _singletonOperation = singletonOperation;
             _next = next;
-            TransientOperation         = transientOperation;
-            SingletonOperation         = singletonOperation;
         }
 
         #region snippet2
-        public async Task InvokeAsync(HttpContext context, IOperationScoped scopedOperation)
+        public async Task InvokeAsync(HttpContext context, 
+                                      IOperationScoped scopedOperation)
         {
-            _logger.LogInformation("IOperationTransient: " + TransientOperation.OperationId);
-            _logger.LogInformation("IOperationScoped: " + scopedOperation.OperationId);
-            _logger.LogInformation("SingletonOperation: " + SingletonOperation.OperationId);
+            _logger.LogInformation("IOperationTransient: " + _transientOperation.OperationId);
+            _logger.LogInformation("IOperationScoped: "    + scopedOperation.OperationId);
+            _logger.LogInformation("SingletonOperation: "  + _singletonOperation.OperationId);
 
             await _next(context);
         }
