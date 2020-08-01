@@ -212,8 +212,12 @@ When using Entity Framework Core, the [AddDbContext](/dotnet/api/microsoft.exten
 
 In apps that process requests, scoped services are disposed at the end of the request.
 
-> [!WARNING]
-> When using a scoped service in a middleware, inject the service into the `Invoke` or `InvokeAsync` method. Don't inject via [constructor injection](xref:mvc/controllers/dependency-injection#constructor-injection) because it forces the service to behave like a singleton. For more information, see <xref:fundamentals/middleware/write#per-request-middleware-dependencies>.
+Use scoped services in a middleware with one of the following approaches:
+
+* Inject the service into the `Invoke` or `InvokeAsync` method. Injecting via [constructor injection](xref:mvc/controllers/dependency-injection#constructor-injection) throws an exception at run time. The sample in the [Lifetime and registration options](#lifetime-and-registration-options) uses the `InvokeAsync` approach.
+* [Factory-based middleware](<xref:fundamentals/middleware/extensibility>). <xref:Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.UseMiddleware*> extension methods check if a middleware's registered type implements <xref:Microsoft.AspNetCore.Http.IMiddleware>. If it does, the <xref:Microsoft.AspNetCore.Http.IMiddlewareFactory> instance registered in the container is used to resolve the <xref:Microsoft.AspNetCore.Http.IMiddleware> implementation instead of using the convention-based middleware activation logic. The middleware is registered as a scoped or transient service in the app's service container.
+
+For more information, see <xref:fundamentals/middleware/write#per-request-middleware-dependencies>.
 
 Do ***not*** resolve a scoped service from a singleton. It may cause the service to have incorrect state when processing subsequent requests. It's fine to:
 
