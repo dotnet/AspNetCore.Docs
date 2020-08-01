@@ -9,8 +9,7 @@ namespace DependencyInjectionSample.Services
     {
         public void WriteMessage(string message)
         {
-            Console.WriteLine(
-                $"MyDependency.WriteMessage called. Message: {message}");
+            Console.WriteLine($"MyDependency.WriteMessage called. Message: {message}");
         }
     }
     #endregion
@@ -27,9 +26,7 @@ namespace DependencyInjectionSample.Services
 
         public void WriteMessage(string message)
         {
-            _logger.LogInformation(
-                "MyDependency.WriteMessage called. Message: {MESSAGE}",
-                message);
+            _logger.LogInformation( $"MyDependency.WriteMessage called. Message: {message}");
         }
     }
     #endregion

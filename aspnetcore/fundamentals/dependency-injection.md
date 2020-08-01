@@ -11,9 +11,9 @@ uid: fundamentals/dependency-injection
 ---
 # Dependency injection in ASP.NET Core
 
-By [Steve Smith](https://ardalis.com/), [Kirk Larkin](https://twitter.com/serpent5), [Scott Addie](https://scottaddie.com), and [Brandon Dahler](https://github.com/brandondahler)
-
 ::: moniker range=">= aspnetcore-3.0"
+
+By [Kirk Larkin](https://twitter.com/serpent5), [Steve Smith](https://ardalis.com/), [Scott Addie](https://scottaddie.com), and [Brandon Dahler](https://github.com/brandondahler)
 
 ASP.NET Core supports the dependency injection (DI) software design pattern, which is a technique for achieving [Inversion of Control (IoC)](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#dependency-inversion) between classes and their dependencies.
 
@@ -100,7 +100,7 @@ The implementation of the `IMyDependency` can be improved by using the built in 
 
 `MyDependency2` requests an <xref:Microsoft.Extensions.Logging.ILogger`1> in the constructor. It's not unusual to use dependency injection in a chained fashion. Each requested dependency in turn requests its own dependencies. The container resolves the dependencies in the graph and returns the fully resolved service. The collective set of dependencies that must be resolved is typically referred to as a *dependency tree*, *dependency graph*, or *object graph*.
 
-`IMyDependency` and `ILogger<TCategoryName>` must be registered in the service container. `IMyDependency` is registered in `Startup.ConfigureServices`. `ILogger<TCategoryName>` is registered by the logging abstractions infrastructure, a [framework-provided service](#framework-provided-services) registered by default.
+`ILogger<TCategoryName>` is registered by the logging abstractions infrastructure, a [framework-provided service](#framework-provided-services) registered by default.
 
 <!-- REVIEW Recommend moving this section to the logger document. This is too much esoteric detail at the start of the DI doc.  
 The container resolves `ILogger<TCategoryName>` by taking advantage of [(generic) open types](/dotnet/csharp/language-reference/language-specification/types#open-and-closed-types), eliminating the need to register every [(generic) constructed type](/dotnet/csharp/language-reference/language-specification/types#constructed-types):
@@ -336,7 +336,7 @@ The sample app demonstrates object lifetimes within and between requests. The sa
 
 [!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/Pages/Index.cshtml.cs?name=snippet1)]
 
-The middleware is similar to the `IndexModel`:
+The middleware is similar to the `IndexModel` and resolves the same services:
 
 [!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/Middleware/MyMiddleware.cs?name=snippet)]
 
@@ -621,6 +621,8 @@ See the samples apps at https://github.com/OrchardCMS/OrchardCore.Samples for ex
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
+
+By [Steve Smith](https://ardalis.com/), [Scott Addie](https://scottaddie.com), and [Brandon Dahler](https://github.com/brandondahler)
 
 ASP.NET Core supports the dependency injection (DI) software design pattern, which is a technique for achieving [Inversion of Control (IoC)](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#dependency-inversion) between classes and their dependencies.
 

@@ -70,6 +70,8 @@ public class CustomMiddleware
 }
 ```
 
+[Lifetime and registration options](xref:fundamentals/dependency-injection#lifetime-and-registration-options) contains a complete sample of middleware with *scoped* lifetime services.
+
 ## Middleware extension method
 
 The following extension method exposes the middleware through <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder>:
@@ -82,6 +84,7 @@ The following code calls the middleware from `Startup.Configure`:
 
 ## Additional resources
 
+* [Lifetime and registration options](xref:fundamentals/dependency-injection#lifetime-and-registration-options) contains a complete sample of middleware with *scoped*, *transient*, and *singleton* lifetime services.
 * <xref:fundamentals/middleware/index>
 * <xref:test/middleware>
 * <xref:migration/http-modules>

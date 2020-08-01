@@ -26,9 +26,9 @@ namespace DependencyInjectionSample.Pages
 
         public void  OnGet()
         {
-            _logger.LogInformation("IOperationTransient: " + _transientOperation.OperationId);
-            _logger.LogInformation("IOperationScoped: "    + _scopedOperation.OperationId);
-            _logger.LogInformation("SingletonOperation: "  + _singletonOperation.OperationId);
+            _logger.LogInformation("Transient: " + _transientOperation.OperationId);
+            _logger.LogInformation("Scoped: "    + _scopedOperation.OperationId);
+            _logger.LogInformation("Singleton: " + _singletonOperation.OperationId);
         }
     }
     #endregion

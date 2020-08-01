@@ -36,7 +36,7 @@ namespace DependencyInjectionSample
 
             app.UseStaticFiles();
 
-            app.UseMyMiddlewareS();
+            app.UseMyMiddleware();
 
             app.UseRouting();
 

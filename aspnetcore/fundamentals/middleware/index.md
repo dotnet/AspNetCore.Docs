@@ -261,6 +261,7 @@ ASP.NET Core ships with the following middleware components. The *Order* column 
 
 ## Additional resources
 
+* [Lifetime and registration options](xref:fundamentals/dependency-injection#lifetime-and-registration-options) contains a complete sample of middleware with *scoped*, *transient*, and *singleton* lifetime services.
 * <xref:fundamentals/middleware/write>
 * <xref:test/middleware>
 * <xref:migration/http-modules>

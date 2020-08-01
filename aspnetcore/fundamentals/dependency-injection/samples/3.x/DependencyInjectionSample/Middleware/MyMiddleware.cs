@@ -29,9 +29,9 @@ namespace DependencyInjectionSample.Middleware
         public async Task InvokeAsync(HttpContext context, 
                                       IOperationScoped scopedOperation)
         {
-            _logger.LogInformation("IOperationTransient: " + _transientOperation.OperationId);
-            _logger.LogInformation("IOperationScoped: "    + scopedOperation.OperationId);
-            _logger.LogInformation("SingletonOperation: "  + _singletonOperation.OperationId);
+            _logger.LogInformation("Transient: " + _transientOperation.OperationId);
+            _logger.LogInformation("Scoped: "    + scopedOperation.OperationId);
+            _logger.LogInformation("Singleton: " + _singletonOperation.OperationId);
 
             await _next(context);
         }
@@ -40,7 +40,7 @@ namespace DependencyInjectionSample.Middleware
 
     public static class MyMiddlewareExtensions
     {
-        public static IApplicationBuilder UseMyMiddlewareS(this IApplicationBuilder builder)
+        public static IApplicationBuilder UseMyMiddleware(this IApplicationBuilder builder)
         {
             return builder.UseMiddleware<MyMiddleware>();
         }
