@@ -317,6 +317,7 @@ The interfaces are implemented in the `Operation` class. The `Operation` constru
 
 [!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/Models/Operation.cs?name=snippet1)]
 
+<!-->
 An `OperationService` is registered that depends on each of the other `Operation` types. When `OperationService` is requested via dependency injection, it receives either a new instance of each service or an existing instance based on the lifetime of the dependent service.
 
 * When transient services are created when requested from the container, the `OperationId` of the `IOperationTransient` service is different than the `OperationId` of the `OperationService`. `OperationService` receives a new instance of the `IOperationTransient` class. The new instance yields a different `OperationId`.
@@ -325,55 +326,31 @@ An `OperationService` is registered that depends on each of the other `Operation
 
 [!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/Services/OperationService.cs?name=snippet1)]
 
+-->
+
 In `Startup.ConfigureServices`, each type is added to the container according to its named lifetime:
 
 [!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/Startup.cs?name=snippet1&highlight=6-9,12)]
 
-The `IOperationSingletonInstance` service is using a specific instance with a known ID of `Guid.Empty`. It's clear when this type is in use (its GUID is all zeroes).
-
-The sample app demonstrates object lifetimes within and between individual requests. The sample app's `IndexModel` requests each kind of `IOperation` type and the `OperationService`. The page then displays all of the page model class's and service's `OperationId` values through property assignments:
+The sample app demonstrates object lifetimes within and between requests. The sample app's `IndexModel` and middleware requests each kind of `IOperation` type and logs the `OperationId`:
 
 [!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/Pages/Index.cshtml.cs?name=snippet1)]
 
-Two following output shows the results of two requests:
+The middleware is similar to the `IndexModel`:
 
-**First request:**
+[!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/Middleware/MyMiddleware.cs?name=snippet)]
 
-Controller operations:
+Scoped services must be resolved in the `InvokeAsync` method:
 
-Transient: d233e165-f417-469b-a866-1cf1935d2518  
-Scoped: 5d997e2d-55f5-4a64-8388-51c4e3a1ad19  
-Singleton: 01271bc1-9e31-48e7-8f7c-7261b040ded9  
-Instance: 00000000-0000-0000-0000-000000000000
+[!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/Middleware/MyMiddleware.cs?name=snippet2)]
 
-`OperationService` operations:
+The logger output show:
 
-Transient: c6b049eb-1318-4e31-90f1-eb2dd849ff64  
-Scoped: 5d997e2d-55f5-4a64-8388-51c4e3a1ad19  
-Singleton: 01271bc1-9e31-48e7-8f7c-7261b040ded9  
-Instance: 00000000-0000-0000-0000-000000000000
+* *Transient* objects are always different. The transient `OperationId` value is different in the `IndexModel` and the middleware.
+* *Scoped* objects are the same  in each request but different across each requests.
+* *Singleton* objects are the same for every request.
 
-**Second request:**
-
-Controller operations:
-
-Transient: b63bd538-0a37-4ff1-90ba-081c5138dda0  
-Scoped: 31e820c5-4834-4d22-83fc-a60118acb9f4  
-Singleton: 01271bc1-9e31-48e7-8f7c-7261b040ded9  
-Instance: 00000000-0000-0000-0000-000000000000
-
-`OperationService` operations:
-
-Transient: c4cbacb8-36a2-436d-81c8-8c1b78808aaf  
-Scoped: 31e820c5-4834-4d22-83fc-a60118acb9f4  
-Singleton: 01271bc1-9e31-48e7-8f7c-7261b040ded9  
-Instance: 00000000-0000-0000-0000-000000000000
-
-Observe which of the `OperationId` values vary within a request and between requests:
-
-* *Transient* objects are always different. The transient `OperationId` value for both the first and second client requests are different for both `OperationService` operations and across client requests. A new instance is provided to each service request and client request.
-* *Scoped* objects are the same within a client request but different across client requests.
-* *Singleton* objects are the same for every object and every request regardless of whether an `Operation` instance is provided in `Startup.ConfigureServices`.
+To reduce the logging output, set "Logging:LogLevel:Microsoft:Error" in 
 
 [!INCLUDE[](~/includes/combine-di.md)]
 
@@ -900,7 +877,7 @@ Entity Framework contexts are usually added to the service container using the [
 
 ## Lifetime and registration options
 
-To demonstrate the difference between the lifetime and registration options, consider the following interfaces that represent tasks as an operation with a unique identifier, `OperationId`. Depending on how the lifetime of an operations service is configured for the following interfaces, the container provides either the same or a different instance of the service when requested by a class:
+To demonstrate the difference between the lifetime and registration options, consider the following interfaces that represent tasks as an operation with a identifier, `OperationId`. Depending on how the lifetime of an operations service is configured for the following interfaces, the container provides either the same or a different instance of the service when requested by a class:
 
 [!code-csharp[](dependency-injection/samples/2.x/DependencyInjectionSample/Interfaces/IOperation.cs?name=snippet1)]
 

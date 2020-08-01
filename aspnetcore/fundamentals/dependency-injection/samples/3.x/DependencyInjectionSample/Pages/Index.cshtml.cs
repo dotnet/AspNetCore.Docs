@@ -1,34 +1,35 @@
 ﻿using DependencyInjectionSample.Interfaces;
 using DependencyInjectionSample.Services;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Logging;
 
 namespace DependencyInjectionSample.Pages
 {
     #region snippet1
     public class IndexModel : PageModel
     {
+        private readonly ILogger _logger;
+        private readonly IOperationTransient TransientOperation;
+        private readonly IOperationSingleton SingletonOperation;
+        private readonly IOperationScoped ScopedOperation;
+
         public IndexModel(
-            OperationService operationService,
+            ILogger<IndexModel> logger,
             IOperationTransient transientOperation,
             IOperationScoped scopedOperation,
-            IOperationSingleton singletonOperation,
-            IOperationSingletonInstance singletonInstanceOperation)
+            IOperationSingleton singletonOperation)
         {
-            OperationService = operationService;
+            _logger = logger;
             TransientOperation = transientOperation;
             ScopedOperation = scopedOperation;
             SingletonOperation = singletonOperation;
-            SingletonInstanceOperation = singletonInstanceOperation;
         }
-
-        public OperationService OperationService { get; }
-        public IOperationTransient TransientOperation { get; }
-        public IOperationScoped ScopedOperation { get; }
-        public IOperationSingleton SingletonOperation { get; }
-        public IOperationSingletonInstance SingletonInstanceOperation { get; }
 
         public void  OnGet()
         {
+            _logger.LogInformation("IOperationTransient: " + TransientOperation.OperationId);
+            _logger.LogInformation("IOperationScoped: " + ScopedOperation.OperationId);
+            _logger.LogInformation("SingletonOperation: " + SingletonOperation.OperationId);
         }
     }
     #endregion

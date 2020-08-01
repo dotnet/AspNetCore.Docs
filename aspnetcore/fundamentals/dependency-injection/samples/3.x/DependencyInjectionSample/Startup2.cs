@@ -6,23 +6,20 @@ using Microsoft.Extensions.Hosting;
 using DependencyInjectionSample.Interfaces;
 using DependencyInjectionSample.Models;
 using DependencyInjectionSample.Services;
+using DependencyInjectionSample.Middleware;
 
 namespace DependencyInjectionSample
 {
-    public class Startup
+    public class Startup2
     {
-        #region snippet1
+        #region Startup2
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
 
-            services.AddScoped<IMyDependency, MyDependency>();
             services.AddTransient<IOperationTransient, Operation>();
             services.AddScoped<IOperationScoped, Operation>();
             services.AddSingleton<IOperationSingleton, Operation>();
-
-            // OperationService depends on each of the other Operation types.
-            services.AddTransient<OperationService, OperationService>();
         }
         #endregion
 
@@ -38,6 +35,8 @@ namespace DependencyInjectionSample
             }
 
             app.UseStaticFiles();
+
+            app.UseMyMiddlewareS();
 
             app.UseRouting();
 

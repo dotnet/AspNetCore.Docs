@@ -1,3 +1,5 @@
+#if NEVER
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +15,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-#if NEVER
 namespace WebApplication1888
 {
     public class StartupEF
