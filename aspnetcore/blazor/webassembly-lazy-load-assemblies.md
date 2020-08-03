@@ -13,7 +13,7 @@ uid: blazor/webassembly-lazy-load-assemblies
 
 By [Safia Abdalla](https://safia.rocks) and [Luke Latham](https://github.com/guardrex)
 
-Blazor WebAssembly app startup performance can be improved by loading assets at runtime when the assets are required, which is called *lazy loading*. For example, assemblies that are only used to render a single component can be set up to load only if the user navigates to that component. After loading, the assemblies are cached client-side and are available for all future navigations.
+Blazor WebAssembly app startup performance can be improved by ldeferring the loading of some application assemblies until they are required, which is called *lazy loading*. For example, assemblies that are only used to render a single component can be set up to load only if the user navigates to that component. After loading, the assemblies are cached client-side and are available for all future navigations.
 
 Blazor's lazy loading feature allows you to mark certain app assemblies as lazy-loadable then load them during runtime when the user navigates to a particular route. The feature consists of changes to the project file and changes to the application's router.
 
@@ -22,7 +22,7 @@ Blazor's lazy loading feature allows you to mark certain app assemblies as lazy-
 
 ## Project file
 
-Mark assemblies for lazy loading in the app's project file (`.csproj`) using the `BlazorWebAssemblyLazyLoad` item. Use the assembly name without the `.dll` extension. The Blazor framework prevents the assemblies specified by this item group from loading at app launch. The following example marks a large custom assembly (`GrantImaharaRobotControls.dll`) for lazy loading.
+Mark assemblies for lazy loading in the app's project file (`.csproj`) using the `BlazorWebAssemblyLazyLoad` item. Use the assembly name without the `.dll` extension. The Blazor framework prevents the assemblies specified by this item group from loading at app launch. The following example marks a large custom assembly (`GrantImaharaRobotControls.dll`) for lazy loading. If an assembly that is marked for lazy-loading has dependencies, they must also be marked for lazy-loading in the project file.
 
 ```xml
 <ItemGroup>
