@@ -60,7 +60,7 @@ namespace Web6990
             services.ConfigureApplicationCookie(options =>
             {
                 options.LoginPath = $"/Identity/Account/Login";
-                options.LogoutPath = $"/Identity/Account/LogOut";
+                options.LogoutPath = $"/Identity/Account/Logout";
                 options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
             });
             #endregion
