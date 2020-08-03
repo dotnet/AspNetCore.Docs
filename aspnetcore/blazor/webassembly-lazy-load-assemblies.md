@@ -13,7 +13,7 @@ uid: blazor/webassembly-lazy-load-assemblies
 
 By [Safia Abdalla](https://safia.rocks) and [Luke Latham](https://github.com/guardrex)
 
-Blazor WebAssembly app startup performance can be improved by loading assets at runtime when the assets are required, which is called *lazy loading*. For example, assemblies that are only used to render a single component can be set up to load only if the user navigates to that component. After loading, the assemblies are cached client-side and don't require reloading while the app is running.
+Blazor WebAssembly app startup performance can be improved by loading assets at runtime when the assets are required, which is called *lazy loading*. For example, assemblies that are only used to render a single component can be set up to load only if the user navigates to that component. After loading, the assemblies are cached client-side and are available for all future navigations.
 
 Blazor's lazy loading feature allows you to mark certain app assemblies as lazy-loadable then load them during runtime when the user navigates to a particular route. The feature consists of changes to the project file and changes to the application's router.
 
@@ -131,7 +131,7 @@ If a user navigates to Route A and then immediately to Route B, the app shouldn'
 </Router>
 
 @code {
-    private async Task OnNavigateAsync(NavigationContext args)
+    private async Task OnNavigateAsync(NavigationContext context)
     {
         if (args.Path == "/about") 
         {
@@ -152,7 +152,7 @@ If a user navigates to Route A and then immediately to Route B, the app shouldn'
 ```
 
 > [!NOTE]
-> Not throwing if the cancellation token in `NavigationContext` is set can result in unintended behavior, such as rendering a component from a previous navigation.
+> Not throwing if the cancellation token in `NavigationContext` is canceled can result in unintended behavior, such as rendering a component from a previous navigation.
 
 ### Complete example
 
