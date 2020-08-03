@@ -133,17 +133,18 @@ If a user navigates to Route A and then immediately to Route B, the app shouldn'
 @code {
     private async Task OnNavigateAsync(NavigationContext context)
     {
-        if (args.Path == "/about") 
+        if (context.Path == "/about") 
         {
             var stats = new Stats = { Page = "/about" };
-            await Http.PostAsJsonAsync("api/visited", stats, args.CancellationToken);
+            await Http.PostAsJsonAsync("api/visited", stats, context.CancellationToken);
         }
-        else if (args.Path == "/store")
+        else if (context.Path == "/store")
         {
             var productIds = [345, 789, 135, 689];
+
             foreach (var productId in productIds) 
             {
-                args.CancellationToken.ThrowIfCancellationRequested();
+                context.CancellationToken.ThrowIfCancellationRequested();
                 Products.Prefetch(productId);
             }
         }
