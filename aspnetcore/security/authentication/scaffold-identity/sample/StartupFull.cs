@@ -52,7 +52,7 @@ namespace Web6990
                 {
                     options.AllowAreas = true;
                     options.Conventions.AuthorizeAreaFolder("Identity", "/Account/Manage");
-                    options.Conventions.AuthorizeAreaPage("Identity", "/Account/Logout");
+                    options.Conventions.AuthorizeAreaPage("Identity", "/Account/LogOut");
                 });
             #endregion
 
@@ -60,7 +60,7 @@ namespace Web6990
             services.ConfigureApplicationCookie(options =>
             {
                 options.LoginPath = $"/Identity/Account/Login";
-                options.LogoutPath = $"/Identity/Account/Logout";
+                options.LogoutPath = $"/Identity/Account/LogOut";
                 options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
             });
             #endregion
