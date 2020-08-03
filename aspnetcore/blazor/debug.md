@@ -5,7 +5,7 @@ description: Learn how to debug Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/27/2020
+ms.date: 07/30/2020
 no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/debug
 ---
@@ -232,3 +232,33 @@ If you're running into errors, the following tips may help:
 * In the **Debugger** tab, open the developer tools in your browser. In the console, execute `localStorage.clear()` to remove any breakpoints.
 * Confirm that you've installed and trusted the ASP.NET Core HTTPS development certificate. For more information, see <xref:security/enforcing-ssl#troubleshoot-certificate-problems>.
 * Visual Studio requires the **Enable JavaScript debugging for ASP.NET (Chrome, Edge and IE)** option in **Tools** > **Options** > **Debugging** > **General**. This is the default setting for Visual Studio. If debugging isn't working, confirm that the option is selected.
+
+### Breakpoints in `OnInitialized{Async}` not hit
+
+The Blazor framework's debugging proxy takes a short time to launch, so breakpoints in the [`OnInitialized{Async}` lifecycle method](xref:blazor/components/lifecycle#component-initialization-methods) might not be hit. We recommend adding a delay at the start of the method body to give the debug proxy some time to launch before the breakpoint is hit. You can include the delay based on an [`if` compiler directive](/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-if) to ensure that the delay isn't present for a release build of the app.
+
+<xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized%2A>:
+
+```csharp
+protected override void OnInitialized()
+{
+#if DEBUG
+    Thread.Sleep(10000)
+#endif
+
+    ...
+}
+```
+
+<xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>:
+
+```csharp
+protected override async Task OnInitializedAsync()
+{
+#if DEBUG
+    await Task.Delay(10000)
+#endif
+
+    ...
+}
+```
