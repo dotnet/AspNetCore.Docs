@@ -35,7 +35,7 @@ The following files and folders make up a Blazor app generated from a Blazor tem
 
   * ASP.NET Core [host](xref:fundamentals/host/generic-host) (Blazor Server)
   * WebAssembly host (Blazor WebAssembly): The code in this file is unique to apps created from the Blazor WebAssembly template (`blazorwasm`).
-    * The `App` component is the root component of the app. The `App` component is specified as the `app` DOM element (`<app>...</app>`) in the root component collection (`builder.RootComponents.Add<App>("app")`).
+    * The `App` component is the root component of the app. The `App` component is specified as the `app` DOM element (`<app>...</app>`) to the root component collection (`builder.RootComponents.Add<App>("app")`).
     * Services can be added and configured for the host builder (for example, `builder.Services.AddSingleton<IMyDependency, MyDependency>()`).
     * Configuration can be supplied via the host builder (`builder.Configuration`).
 
