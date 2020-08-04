@@ -29,14 +29,14 @@ dotnet new blazorserver --help
 
 ## Blazor project structure
 
-The following files and folders make up a Blazor app generated from a Blazor template:
+The following files and folders make up a Blazor app generated from a Blazor project template:
 
 * `Program.cs`: The app's entry point that sets up the:
 
   * ASP.NET Core [host](xref:fundamentals/host/generic-host) (Blazor Server)
   * WebAssembly host (Blazor WebAssembly): The code in this file is unique to apps created from the Blazor WebAssembly template (`blazorwasm`).
     * The `App` component is the root component of the app. The `App` component is specified as the `app` DOM element (`<app>...</app>`) to the root component collection (`builder.RootComponents.Add<App>("app")`).
-    * Services are added and configured (for example, `builder.Services.AddSingleton<IMyDependency, MyDependency>()`).
+    * [Services](xref:blazor/fundamentals/dependency-injection) are added and configured (for example, `builder.Services.AddSingleton<IMyDependency, MyDependency>()`).
 
 * `Startup.cs` (Blazor Server): Contains the app's startup logic. The `Startup` class defines two methods:
 
@@ -63,9 +63,11 @@ The following files and folders make up a Blazor app generated from a Blazor tem
   * `Error` (`Error.razor`, Blazor Server app only): Rendered when an unhandled exception occurs in the app.
   * `FetchData` (`Pages/FetchData.razor`): Implements the Fetch data page.
   * `Index` (`Pages/Index.razor`): Implements the Home page.
+  
+* `Properties/launchSettings.json`: Holds [development environment configuration](xref:fundamentals/environments#development-and-launchsettingsjson).
 
 * `Shared` folder: Contains other UI components (`.razor`) used by the app:
-  * `MainLayout` (`MainLayout.razor`): The app's layout component.
+  * `MainLayout` (`MainLayout.razor`): The app's [layout component](xref:blazor/layouts).
   * `NavMenu` (`NavMenu.razor`): Implements sidebar navigation. Includes the [`NavLink` component](xref:blazor/fundamentals/routing#navlink-component) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), which renders navigation links to other Razor components. The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component automatically indicates a selected state when its component is loaded, which helps the user understand which component is currently displayed.
 
 * `_Imports.razor`: Includes common Razor directives to include in the app's components (`.razor`), such as [`@using`](xref:mvc/views/razor#using) directives for namespaces.
@@ -74,4 +76,4 @@ The following files and folders make up a Blazor app generated from a Blazor tem
 
 * `wwwroot`: The [Web Root](xref:fundamentals/index#web-root) folder for the app containing the app's public static assets.
 
-* `appsettings.json` (Blazor Server): Configuration settings for the app.
+* `appsettings.json`: Holds [configuration settings](xref:blazor/fundamentals/configuration) for the app. In a Blazor WebAssembly app, the app settings file is located in the `wwwroot` folder. In a Blazor Server app, the app settings file is located at the project root.
