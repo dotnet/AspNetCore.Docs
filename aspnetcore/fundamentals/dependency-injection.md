@@ -112,30 +112,18 @@ In dependency injection terminology, a service:
 * Is typically an object that provides a service to other code in the app, such as the `IMyDependency` service.
 * Is not related to a web service.
 
-<!-- Review Move to config section, this might not be appropriate this early in the doc
-If the service's constructor requires a [built in type](/dotnet/csharp/language-reference/keywords/built-in-types-table), such as a `string`, the type can be injected by using [configuration](xref:fundamentals/configuration/index) or the [options pattern](xref:fundamentals/configuration/options):
-
-```csharp
-public class MyDependency : IMyDependency
-{
-    public MyDependency(IConfiguration config)
-    {
-        var myStringValue = config["MyStringKey"];
-
-        // Use myStringValue
-    }
-
-    ...
-}
-```
-
-An instance of the service is requested via the constructor of a class where the service is used and assigned to a private field. The field is used to access the service as necessary throughout the class.
-
- -->
-
-The framework provides a robust [logging](xref:fundamentals/logging/index) system. The `IMyDependency` implementations were written to demonstrate basic DI, not to implement logging. Most apps shouldn't need to write loggers. The following code demonstrates using the default logging:
+The framework provides a robust [logging](xref:fundamentals/logging/index) system. The `IMyDependency` implementations were written to demonstrate basic DI, not to implement logging. Most apps shouldn't need to write loggers. The following code demonstrates using the default logging, which doesn't require any services to be registered in `ConfigureServices`:
 
 [!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/Pages/About.cshtml.cs?name=snippet)]
+
+Using the preceding code, there is no need to update `ConfigureServices` because [logging](xref:fundamentals/logging/index) is provided by the framework:
+
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddRazorPages();
+}
+```
 
 ## Services injected into Startup
 
@@ -214,7 +202,7 @@ In apps that process requests, scoped services are disposed at the end of the re
 
 Use scoped services in a middleware with one of the following approaches:
 
-* Inject the service into the `Invoke` or `InvokeAsync` method. Injecting via [constructor injection](xref:mvc/controllers/dependency-injection#constructor-injection) throws an exception at run time. The sample in the [Lifetime and registration options](#lifetime-and-registration-options) uses the `InvokeAsync` approach.
+* Inject the service into the `Invoke` or `InvokeAsync` method. Injecting via [constructor injection](xref:mvc/controllers/dependency-injection#constructor-injection) throws an exception at run time. The sample in the [Lifetime and registration options] section(#lifetime-and-registration-options) uses the `InvokeAsync` approach.
 * [Factory-based middleware](<xref:fundamentals/middleware/extensibility>). <xref:Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.UseMiddleware*> extension methods check if a middleware's registered type implements <xref:Microsoft.AspNetCore.Http.IMiddleware>. If it does, the <xref:Microsoft.AspNetCore.Http.IMiddlewareFactory> instance registered in the container is used to resolve the <xref:Microsoft.AspNetCore.Http.IMiddleware> implementation instead of using the convention-based middleware activation logic. The middleware is registered as a scoped or transient service in the app's service container.
 
 For more information, see <xref:fundamentals/middleware/write#per-request-middleware-dependencies>.
@@ -317,7 +305,7 @@ To demonstrate the difference between the lifetime and registration options, con
 
 [!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/Interfaces/IOperation.cs?name=snippet1)]
 
-The interfaces are implemented in the `Operation` class. The `Operation` constructor generates a GUID if one isn't supplied:
+The interfaces are implemented in the `Operation` class. The `Operation` constructor generates the last 4 characters of a GUID if one isn't supplied:
 
 [!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/Models/Operation.cs?name=snippet1)]
 
@@ -354,7 +342,7 @@ The logger output shows:
 * *Scoped* objects are the same in each request but different across each requests.
 * *Singleton* objects are the same for every request.
 
-To reduce the logging output, set "Logging:LogLevel:Microsoft" "Error" in the *appsettings.Development.json* file:
+To reduce the logging output, set "Logging:LogLevel:Microsoft:Error" in the *appsettings.Development.json* file:
 
 [!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/appsettings.Development.json)]
 
@@ -362,38 +350,31 @@ To reduce the logging output, set "Logging:LogLevel:Microsoft" "Error" in the *a
 
 ## Call services from main
 
-Create an <xref:Microsoft.Extensions.DependencyInjection.IServiceScope> with [IServiceScopeFactory.CreateScope](xref:Microsoft.Extensions.DependencyInjection.IServiceScopeFactory.CreateScope*) to resolve a scoped service within the app's scope. This approach is useful to access a scoped service at startup to run initialization tasks. The following example shows how to obtain a context for the `MyScopedService` in `Program.Main`:
+Create an <xref:Microsoft.Extensions.DependencyInjection.IServiceScope> with [IServiceScopeFactory.CreateScope](xref:Microsoft.Extensions.DependencyInjection.IServiceScopeFactory.CreateScope*) to resolve a scoped service within the app's scope. This approach is useful to access a scoped service at startup to run initialization tasks:
 
 ```csharp
-using System;
-using System.Threading.Tasks;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
-
 public class Program
 {
-    public static async Task Main(string[] args)
+    public static void Main(string[] args)
     {
         var host = CreateHostBuilder(args).Build();
 
-        using (var serviceScope = host.Services.CreateScope())
+        using (var scope = host.Services.CreateScope())
         {
-            var services = serviceScope.ServiceProvider;
+            var services = scope.ServiceProvider;
 
             try
             {
-                var serviceContext = services.GetRequiredService<MyScopedService>();
-                // Use the context here
+                SeedData.Initialize(services);
             }
             catch (Exception ex)
             {
                 var logger = services.GetRequiredService<ILogger<Program>>();
-                logger.LogError(ex, "An error occurred.");
+                logger.LogError(ex, "An error occurred seeding the DB.");
             }
         }
-    
-        await host.RunAsync();
+
+        host.Run();
     }
 
     public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -404,6 +385,12 @@ public class Program
             });
 }
 ```
+
+The preceding code is from [Add the seed initializer](xref:tutorials/razor-pages/sql?#add-the-seed-initializer).
+
+The following example shows how to obtain a context for the `IMyDependency` in `Program.Main`:
+
+[!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/Program.cs?name=snippet)]
 
 <a name="sv"></a>
 

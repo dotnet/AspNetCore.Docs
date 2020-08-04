@@ -1,22 +1,26 @@
 using DependencyInjectionSample.Interfaces;
-using DependencyInjectionSample.Services;
+using DependencyInjectionSample.Middleware;
+using DependencyInjectionSample.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace DependencyInjectionSample
+namespace DependencyInjectionSample2
 {
-    public class StartupMyDependency2
+    public class Startup
     {
-        #region snippet1
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<IMyDependency, MyDependency2>();
-
             services.AddRazorPages();
+
+            services.AddTransient<IOperationTransient, Operation>();
+            services.AddScoped<IOperationScoped, Operation>();
+            services.AddSingleton<IOperationSingleton, Operation>();
+
+            services.AddScoped<IMyDependency,
+                DependencyInjectionSample.Services.MyDependency2>();
         }
-        #endregion
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
@@ -30,6 +34,8 @@ namespace DependencyInjectionSample
             }
 
             app.UseStaticFiles();
+
+            app.UseMyMiddleware();
 
             app.UseRouting();
 
