@@ -5,7 +5,7 @@ description: Learn about ASP.NET Core Blazor app templates and Blazor project st
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/19/2020
+ms.date: 08/04/2020
 no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/templates
 ---
@@ -35,8 +35,8 @@ The following files and folders make up a Blazor app generated from a Blazor tem
 
   * ASP.NET Core [host](xref:fundamentals/host/generic-host) (Blazor Server)
   * WebAssembly host (Blazor WebAssembly): The code in this file is unique to apps created from the Blazor WebAssembly template (`blazorwasm`).
-    * The `App` component, which is the root component of the app, is specified as the `app` DOM element to the `Add` method.
-    * Services can be configured with the `ConfigureServices` method on the host builder (for example, `builder.Services.AddSingleton<IMyDependency, MyDependency>();`).
+    * The `App` component is the root component of the app. The `App` component is specified as the `app` DOM element (`<app>...</app>`) in the root component collection (`builder.RootComponents.Add<App>("app")`).
+    * Services can be added and configured for the host builder (for example, `builder.Services.AddSingleton<IMyDependency, MyDependency>()`).
     * Configuration can be supplied via the host builder (`builder.Configuration`).
 
 * `Startup.cs` (Blazor Server): Contains the app's startup logic. The `Startup` class defines two methods:
@@ -48,7 +48,7 @@ The following files and folders make up a Blazor app generated from a Blazor tem
 
 * `wwwroot/index.html` (Blazor WebAssembly): The root page of the app implemented as an HTML page:
   * When any page of the app is initially requested, this page is rendered and returned in the response.
-  * The page specifies where the root `App` component is rendered. The `App` component (`App.razor`) is specified as the `app` DOM element to the `AddComponent` method in `Startup.Configure`.
+  * The page specifies where the root `App` component is rendered. The `App` component (`App.razor`) is specified as the `app` DOM element (`<app>...</app>`) to the root component collection on the host builder in `Program.Main` (`Program.cs`).
   * The `_framework/blazor.webassembly.js` JavaScript file is loaded, which:
     * Downloads the .NET runtime, the app, and the app's dependencies.
     * Initializes the runtime to run the app.
