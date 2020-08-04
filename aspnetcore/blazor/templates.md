@@ -47,7 +47,7 @@ The following files and folders make up a Blazor app generated from a Blazor tem
 
 * `wwwroot/index.html` (Blazor WebAssembly): The root page of the app implemented as an HTML page:
   * When any page of the app is initially requested, this page is rendered and returned in the response.
-  * The page specifies where the root `App` component is rendered. The `App` component (`App.razor`) is specified as the `app` DOM element (`<app>...</app>`) to the root component collection in `Program.Main` (`Program.cs`).
+  * The page specifies where the root `App` component is rendered. The component is rendered at the location of the `app` DOM element (`<app>...</app>`).
   * The `_framework/blazor.webassembly.js` JavaScript file is loaded, which:
     * Downloads the .NET runtime, the app, and the app's dependencies.
     * Initializes the runtime to run the app.
