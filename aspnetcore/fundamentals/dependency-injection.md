@@ -438,21 +438,23 @@ The container calls <xref:System.IDisposable.Dispose*> for the <xref:System.IDis
 
 In the following example, the services are created by the service container and disposed automatically:
 
-```csharp
-public class Service1 : IDisposable {}
-public class Service2 : IDisposable {}
+[!code-csharp[](dependency-injection/samples/3.x/DIsample2/DIsample2/Services/Service1.cs?name=snippet)]
 
-public interface IService3 {}
-public class Service3 : IService3, IDisposable {}
+[!code-csharp[](dependency-injection/samples/3.x/DIsample2/DIsample2/Startup.cs?name=snippet)]
 
-public void ConfigureServices(IServiceCollection services)
-{
-    services.AddScoped<Service1>();
-    services.AddSingleton<Service2>();
-    services.AddSingleton<IService3>(sp => new Service3());
-}
+[!code-csharp[](dependency-injection/samples/3.x/DIsample2/DIsample2/Pages/Index.cshtml.cs?name=snippet)]
+
+The debug console shows the following output after each refresh of the Index page:
+
+```console
+Service1: IndexModel.OnGet
+Service2: IndexModel.OnGet
+Service3: IndexModel.OnGet
+Service1.Dispose
 ```
 
+<!--Review: Who cares that singletons aren't disposed, they aren't disposed until the app shuts down anyway. Should these be added as scoped with the same caveats?
+  -->
 In the following example:
 
 * The service instances aren't created by the service container.
@@ -1119,14 +1121,10 @@ The factory method of single service, such as the second argument to [AddSinglet
 
 ## Recommendations
 
-* `async/await` and `Task` based service resolution is not supported. C# does not support asynchronous constructors; therefore, the recommended pattern is to use asynchronous methods after synchronously resolving the service.
-
+* `async/await` and `Task` based service resolution is not supported. C# does not support asynchronous constructors. The recommended pattern is to use asynchronous methods after synchronously resolving the service.
 * Avoid storing data and configuration directly in the service container. For example, a user's shopping cart shouldn't typically be added to the service container. Configuration should use the [options pattern](xref:fundamentals/configuration/options). Similarly, avoid "data holder" objects that only exist to allow access to some other object. It's better to request the actual item via DI.
-
-* Avoid static access to services (for example, statically-typing [IApplicationBuilder.ApplicationServices](xref:Microsoft.AspNetCore.Builder.IApplicationBuilder.ApplicationServices) for use elsewhere).
-
+* Avoid static access to services. For example, avoid statically-typing [IApplicationBuilder.ApplicationServices](xref:Microsoft.AspNetCore.Builder.IApplicationBuilder.ApplicationServices) for use elsewhere.
 * Avoid using the *service locator pattern*, which mixes [Inversion of Control](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#dependency-inversion) strategies.
-
   * Don't invoke <xref:System.IServiceProvider.GetService*> to obtain a service instance when you can use DI instead:
 
     **Incorrect:**
@@ -1136,6 +1134,7 @@ The factory method of single service, such as the second argument to [AddSinglet
     {
         public void MyMethod()
         {
+            // AVOID this pattern.
             var optionsMonitor = 
                 _services.GetService<IOptionsMonitor<MyOptions>>();
             var option = optionsMonitor.CurrentValue.Option;
@@ -1167,12 +1166,11 @@ The factory method of single service, such as the second argument to [AddSinglet
     ```
 
   * Avoid injecting a factory that resolves dependencies at runtime using <xref:System.IServiceProvider.GetService*>.
-
 * Avoid static access to `HttpContext` (for example, [IHttpContextAccessor.HttpContext](xref:Microsoft.AspNetCore.Http.IHttpContextAccessor.HttpContext)).
 
 Like all sets of recommendations, you may encounter situations where ignoring a recommendation is required. Exceptions are rare, mostly special cases within the framework itself.
 
-DI is an *alternative* to static/global object access patterns. You may not be able to realize the benefits of DI if you mix it with static object access.
+DI is an *alternative* to static/global object access patterns. You may not be able to realize the benefits of DI when mixing DI with static object access.
 
 ## Additional resources
 

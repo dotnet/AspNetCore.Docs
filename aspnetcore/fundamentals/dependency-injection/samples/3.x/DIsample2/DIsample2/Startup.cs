@@ -16,14 +16,16 @@ namespace DIsample2
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        #region snippet
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<Service1>();
-            services.AddTransient<Service2>();
+            services.AddSingleton<Service2>();
             services.AddSingleton<IService3>(sp => new Service3());
+
             services.AddRazorPages();
         }
+        #endregion
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

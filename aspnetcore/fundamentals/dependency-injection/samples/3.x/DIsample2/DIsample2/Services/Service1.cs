@@ -1,85 +1,67 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace DIsample2.Services
 {
+    #region snippet
     public class Service1 : IDisposable
     {
         private bool disposedValue;
 
-        protected virtual void Dispose(bool disposing)
+        public void Write(string message)
         {
-            Console.WriteLine("Service1.Dispose");
-            if (!disposedValue)
-            {
-                if (disposing)
-                {
-                    // TODO: dispose managed state (managed objects)
-                }
-
-                disposedValue = true;
-            }
+            Console.WriteLine($"Service1: {message}");
         }
 
         public void Dispose()
         {
-            Dispose(disposing: true);
-            GC.SuppressFinalize(this);
+            if (!disposedValue)
+            {
+                Console.WriteLine("Service1.Dispose");
+                disposedValue = true;
+            }
         }
     }
+
     public class Service2 : IDisposable
     {
         private bool disposedValue;
 
-        protected virtual void Dispose(bool disposing)
+        public void Write(string message)
         {
-            Console.WriteLine("Service2.Dispose");
-
-            if (!disposedValue)
-            {
-                if (disposing)
-                {
-                    // TODO: dispose managed state (managed objects)
-                }
-
-                disposedValue = true;
-            }
+            Console.WriteLine($"Service2: {message}");
         }
 
         public void Dispose()
         {
-            Dispose(disposing: true);
-            GC.SuppressFinalize(this);
+            if (!disposedValue)
+            {
+                Console.WriteLine("Service2.Dispose");
+                disposedValue = true;
+            }
         }
     }
 
-    public interface IService3 { }
+    public interface IService3 {
+        public void Write(string message);
+    }
+
     public class Service3 : IService3, IDisposable
     {
         private bool disposedValue;
 
-        protected virtual void Dispose(bool disposing)
+        public void Write(string message)
         {
-            Console.WriteLine("Service3.Dispose");
-
-            if (!disposedValue)
-            {
-                if (disposing)
-                {
-                    // TODO: dispose managed state (managed objects)
-                }
-
-                disposedValue = true;
-            }
+            Console.WriteLine($"Service3: {message}");
         }
-
 
         public void Dispose()
         {
-            Dispose(disposing: true);
-            GC.SuppressFinalize(this);
+            if (!disposedValue)
+            {
+                Console.WriteLine("Service3.Dispose");
+                disposedValue = true;
+            }
         }
     }
+    #endregion
 }
