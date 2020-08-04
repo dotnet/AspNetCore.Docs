@@ -36,8 +36,7 @@ The following files and folders make up a Blazor app generated from a Blazor tem
   * ASP.NET Core [host](xref:fundamentals/host/generic-host) (Blazor Server)
   * WebAssembly host (Blazor WebAssembly): The code in this file is unique to apps created from the Blazor WebAssembly template (`blazorwasm`).
     * The `App` component is the root component of the app. The `App` component is specified as the `app` DOM element (`<app>...</app>`) to the root component collection (`builder.RootComponents.Add<App>("app")`).
-    * Services can be added and configured for the host builder (for example, `builder.Services.AddSingleton<IMyDependency, MyDependency>()`).
-    * Configuration can be supplied via the host builder (`builder.Configuration`).
+    * Services are added and configured (for example, `builder.Services.AddSingleton<IMyDependency, MyDependency>()`).
 
 * `Startup.cs` (Blazor Server): Contains the app's startup logic. The `Startup` class defines two methods:
 
@@ -48,7 +47,7 @@ The following files and folders make up a Blazor app generated from a Blazor tem
 
 * `wwwroot/index.html` (Blazor WebAssembly): The root page of the app implemented as an HTML page:
   * When any page of the app is initially requested, this page is rendered and returned in the response.
-  * The page specifies where the root `App` component is rendered. The `App` component (`App.razor`) is specified as the `app` DOM element (`<app>...</app>`) to the root component collection on the host builder in `Program.Main` (`Program.cs`).
+  * The page specifies where the root `App` component is rendered. The `App` component (`App.razor`) is specified as the `app` DOM element (`<app>...</app>`) to the root component collection in `Program.Main` (`Program.cs`).
   * The `_framework/blazor.webassembly.js` JavaScript file is loaded, which:
     * Downloads the .NET runtime, the app, and the app's dependencies.
     * Initializes the runtime to run the app.
