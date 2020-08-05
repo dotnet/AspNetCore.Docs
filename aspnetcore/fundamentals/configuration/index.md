@@ -343,6 +343,35 @@ When an environment variable is discovered and loaded into configuration with an
 | `SQLAZURECONNSTR_{KEY}`  | `ConnectionStrings:{KEY}`   | Key: `ConnectionStrings:{KEY}_ProviderName`:<br>Value: `System.Data.SqlClient`  |
 | `SQLCONNSTR_{KEY}`       | `ConnectionStrings:{KEY}`   | Key: `ConnectionStrings:{KEY}_ProviderName`:<br>Value: `System.Data.SqlClient`  |
 
+## File configuration provider
+
+<xref:Microsoft.Extensions.Configuration.FileConfigurationProvider> is the base class for loading configuration from the file system. The following configuration providers derive from `FileConfigurationProvider`:
+
+* [INI configuration provider](#ini-configuration-provider)
+* [JSON configuration provider](#jcp)
+* [XML configuration provider](#xml-configuration-provider)
+
+### INI configuration provider
+
+The <xref:Microsoft.Extensions.Configuration.Ini.IniConfigurationProvider> loads configuration from INI file key-value pairs at runtime.
+
+The following code clears all the configuration providers and adds several configuration providers:
+
+[!code-csharp[](index/samples/3.x/ConfigSample/ProgramINI.cs?name=snippet&highlight=10-30)]
+
+In the preceding code, settings in the *MyIniConfig.ini* and  *MyIniConfig*.`Environment`.*ini* files are overridden by settings in the:
+
+* [Environment variables configuration provider](#evcp)
+* [Command-line configuration provider](#clcp).
+
+The [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) contains the following *MyIniConfig.ini* file:
+
+[!code-ini[](index/samples/3.x/ConfigSample/MyIniConfig.ini)]
+
+The following code from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) displays several of the preceding configurations settings:
+
+[!code-csharp[](index/samples/3.x/ConfigSample/Pages/Test.cshtml.cs?name=snippet)]
+
 <a name="jcp"></a>
 
 ### JSON configuration provider
@@ -385,35 +414,6 @@ The following code from the [sample download](https://github.com/dotnet/AspNetCo
 [!code-csharp[](index/samples/3.x/ConfigSample/Pages/Test.cshtml.cs?name=snippet)]
 
 <a name="fcp"></a>
-
-## File configuration provider
-
-<xref:Microsoft.Extensions.Configuration.FileConfigurationProvider> is the base class for loading configuration from the file system. The following configuration providers derive from `FileConfigurationProvider`:
-
-* [INI configuration provider](#ini-configuration-provider)
-* [JSON configuration provider](#jcp)
-* [XML configuration provider](#xml-configuration-provider)
-
-### INI configuration provider
-
-The <xref:Microsoft.Extensions.Configuration.Ini.IniConfigurationProvider> loads configuration from INI file key-value pairs at runtime.
-
-The following code clears all the configuration providers and adds several configuration providers:
-
-[!code-csharp[](index/samples/3.x/ConfigSample/ProgramINI.cs?name=snippet&highlight=10-30)]
-
-In the preceding code, settings in the *MyIniConfig.ini* and  *MyIniConfig*.`Environment`.*ini* files are overridden by settings in the:
-
-* [Environment variables configuration provider](#evcp)
-* [Command-line configuration provider](#clcp).
-
-The [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) contains the following *MyIniConfig.ini* file:
-
-[!code-ini[](index/samples/3.x/ConfigSample/MyIniConfig.ini)]
-
-The following code from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) displays several of the preceding configurations settings:
-
-[!code-csharp[](index/samples/3.x/ConfigSample/Pages/Test.cshtml.cs?name=snippet)]
 
 ### XML configuration provider
 
