@@ -102,10 +102,7 @@ The implementation of the `IMyDependency` can be improved by using the built-in 
 
 `ILogger<TCategoryName>` is registered by the logging abstractions infrastructure, a [framework-provided service](#framework-provided-services) registered by default.
 
-<!-- REVIEW Recommend moving this section to the logger document. This is too much esoteric detail at the start of the DI doc.  
 The container resolves `ILogger<TCategoryName>` by taking advantage of [(generic) open types](/dotnet/csharp/language-reference/language-specification/types#open-and-closed-types), eliminating the need to register every [(generic) constructed type](/dotnet/csharp/language-reference/language-specification/types#constructed-types):
-
--->
 
 In dependency injection terminology, a service:
 
@@ -459,10 +456,8 @@ public void ConfigureServices(IServiceCollection services)
 **Scenario**
 
 The app requires an <xref:System.IDisposable> instance with a transient lifetime for either of the following scenarios:
-<!-- Review need to define root scope. Is that the same as the root container that's only disposed when the app shuts down?
- Singletons are associated with the root container and disposed when the root container is disposed, that is, on application shutdown.
--->
-* The instance is resolved in the root scope.
+
+* The instance is resolved in the root scope (root container).
 * The instance should be disposed before the scope ends.
 
 **Solution**
@@ -1157,7 +1152,7 @@ The factory method of single service, such as the second argument to [AddSinglet
 
 Like all sets of recommendations, you may encounter situations where ignoring a recommendation is required. Exceptions are rare, mostly special cases within the framework itself.
 
-DI is an *alternative* to static/global object access patterns. You may not be able to realize the benefits of DI if you mix it with static object access
+DI is an *alternative* to static/global object access patterns. You may not be able to realize the benefits of DI if you mix it with static object access.
 
 ## Additional resources
 
