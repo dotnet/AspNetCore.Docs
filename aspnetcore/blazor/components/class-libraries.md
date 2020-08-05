@@ -110,7 +110,6 @@ To provide `Component1`'s `my-component` CSS class to the component, link to the
 
 ```razor
 <div class="my-component">
-
     <Link href="_content/ComponentLibrary/styles.css" rel="stylesheet" />
 
     <p>
