@@ -246,10 +246,10 @@ The following characteristics apply:
 * Changes to the parameters of existing `Meta` or `Link` components are reflected in their rendered HTML tags.
 * When the `Link` or `Meta` components are no longer rendered and thus disposed by the framework, their rendered HTML tags are removed.
 
-When one of the framework components is used in a child component, the rendered HTML tag influences any other child component of the parent component as long as the child component containing the framework component is rendered. The distinction between using the one of these framework components in a child component and placing a an HTML tag in `wwwroot/index.html` or `Pages/_Host.cshtml` is that:
+When one of the framework components is used in a child component, the rendered HTML tag influences any other child component of the parent component as long as the child component containing the framework component is rendered. The distinction between using the one of these framework components in a child component and placing a an HTML tag in `wwwroot/index.html` or `Pages/_Host.cshtml` is that a framework component's rendered HTML tag:
 
-* An HTML tag created from one of the framework components can be modified by application state. A hard-coded HTML tag can't be modified by applcation state.
-* An HTML tag created from one of the framework components is removed from the HTML `<head>` when the parent component is no longer rendered.
+* Can be modified by application state. A hard-coded HTML tag can't be modified by application state.
+* Is removed from the HTML `<head>` when the parent component is no longer rendered.
 
 ::: moniker-end
 
