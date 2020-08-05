@@ -94,7 +94,7 @@ The `Startup` class has the following additions.
 
 * In `Startup.Configure`:
 
-  * The IdentityServer middleware exposes the Open ID Connect (OIDC) endpoints:
+  * The IdentityServer middleware exposes the OpenID Connect (OIDC) endpoints:
 
     ```csharp
     app.UseIdentityServer();
