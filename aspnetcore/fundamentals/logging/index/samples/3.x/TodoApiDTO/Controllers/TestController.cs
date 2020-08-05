@@ -31,7 +31,7 @@ namespace TodoApi.Controllers
             {
                 if (id == 3)
                 {
-                    throw new Exception("Test expception");
+                    throw new Exception("Test exception");
                 }
             }
             catch (Exception ex)

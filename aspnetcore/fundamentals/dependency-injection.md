@@ -505,7 +505,7 @@ The built-in service container is designed to serve the needs of the framework a
 * `Func<T>` support for lazy initialization
 * Convention-based registration
 
-The following 3rd party containers can be used with ASP.NET Core apps:
+The following third-party containers can be used with ASP.NET Core apps:
 
 * [Autofac](https://autofac.readthedocs.io/en/latest/integration/aspnetcore.html)
 * [DryIoc](https://www.nuget.org/packages/DryIoc.Microsoft.DependencyInjection)
@@ -1086,7 +1086,7 @@ The built-in service container is designed to serve the needs of the framework a
 * `Func<T>` support for lazy initialization
 * Convention-based registration
 
-The following 3rd party containers can be used with ASP.NET Core apps:
+The following third-party containers can be used with ASP.NET Core apps:
 
 * [Autofac](https://autofac.readthedocs.io/en/latest/integration/aspnetcore.html)
 * [DryIoc](https://www.nuget.org/packages/DryIoc.Microsoft.DependencyInjection)
