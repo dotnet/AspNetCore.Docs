@@ -90,7 +90,7 @@ With the DI pattern:
 * The controller doesn't use the concrete type `MyDependency`, only the interface `IMyDependency`. That makes it easy to change the implementation of the service in only one place.
 * The controller doesn't create an instance of `MyDependency`, it's created by DI container.
 
-The implementation of the `IMyDependency` can be improved by using the built in logging:
+The implementation of the `IMyDependency` can be improved by using the built-in logging:
 
 [!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/Services/MyDependency.cs?name=snippet2)]
 
@@ -142,7 +142,7 @@ public void Configure(IApplicationBuilder app, IOptions<MyOptions> options)
 }
 ```
 
-For more information, see <xref:fundamentals/startup> and [Access configuration in Startup](xref:fundamentals/configuration/#access-configuration-in-startup).
+For more information, see <xref:fundamentals/startup> and [Access configuration in Startup](xref:fundamentals/configuration/index#access-configuration-in-startup).
 
 ## Framework-provided services
 
@@ -339,7 +339,7 @@ Scoped services must be resolved in the `InvokeAsync` method:
 The logger output shows:
 
 * *Transient* objects are always different. The transient `OperationId` value is different in the `IndexModel` and the middleware.
-* *Scoped* objects are the same in each request but different across each requests.
+* *Scoped* objects are the same in each request but different across each request.
 * *Singleton* objects are the same for every request.
 
 To reduce the logging output, set "Logging:LogLevel:Microsoft:Error" in the *appsettings.Development.json* file:
@@ -430,7 +430,7 @@ Best practices are to:
 * Avoid direct instantiation of dependent classes within services. Direct instantiation couples the code to a particular implementation.
 * Make app classes small, well-factored, and easily tested.
 
-If a class seems to have too many injected dependencies, this is generally a sign that the class has too many responsibilities and is violating the [Single Responsibility Principle (SRP)](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#single-responsibility). Attempt to refactor the class by moving some of its responsibilities into a new class. Keep in mind that Razor Pages page model classes and MVC controller classes should focus on UI concerns.
+If a class seems to have too many injected dependencies, that's generally a sign that the class has too many responsibilities and is violating the [Single Responsibility Principle (SRP)](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#single-responsibility). Attempt to refactor the class by moving some of its responsibilities into a new class. Keep in mind that Razor Pages page model classes and MVC controller classes should focus on UI concerns.
 
 ### Disposal of services
 
@@ -547,20 +547,7 @@ The factory method of single service, such as the second argument to [AddSinglet
 
   **Incorrect:**
 
-  ```csharp
-  public class MyClass()
-  {
-      // DO NOT USE THIS APPROACH.
-      public void MyMethod()
-      {
-          var optionsMonitor = 
-              _services.GetService<IOptionsMonitor<MyOptions>>();
-          var option = optionsMonitor.CurrentValue.Option;
-
-          ...
-      }
-  }
-  ```
+    ![Incorrect code](dependency-injection/static/bad.png)
 
   **Correct**:
 
@@ -586,7 +573,7 @@ The factory method of single service, such as the second argument to [AddSinglet
 * Avoid static access to `HttpContext` (for example, [IHttpContextAccessor.HttpContext](xref:Microsoft.AspNetCore.Http.IHttpContextAccessor.HttpContext)).
 * Disposable transient services are captured by the container for disposal. This can turn into a memory leak if resolved from the top level container.
 * Enable scope validation to make sure the app doesn't have scoped services capturing singletons. For more information, see [Scope validation](#scope-validation).
-zz
+
 Like all sets of recommendations, you may encounter situations where ignoring a recommendation is required. Exceptions are rare, mostly special cases within the framework itself.
 
 DI is an *alternative* to static/global object access patterns. You may not be able to realize the benefits of DI if you mix it with static object access.
@@ -1128,8 +1115,21 @@ The factory method of single service, such as the second argument to [AddSinglet
   * Don't invoke <xref:System.IServiceProvider.GetService*> to obtain a service instance when you can use DI instead:
 
     **Incorrect:**
-    ![Incorrect code](dependency-injection/static/bad.png)
 
+    ```csharp
+    public class MyClass()
+   
+      // DO NOT USE THIS APPROACH.
+      public void MyMethod()
+      {
+          var optionsMonitor = 
+              _services.GetService<IOptionsMonitor<MyOptions>>();
+          var option = optionsMonitor.CurrentValue.Option;
+   
+          ...
+      }
+      ```
+   
     **Correct**:
 
     ```csharp

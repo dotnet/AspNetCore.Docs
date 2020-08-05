@@ -16,7 +16,7 @@ namespace DIsample2.Pages
         {
             _service1 = service1;
             _service2 = service2;
-           _service3 = service3;
+            _service3 = service3;
         }
 
         public void OnGet()
