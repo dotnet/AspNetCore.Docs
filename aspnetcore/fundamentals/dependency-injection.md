@@ -1128,21 +1128,7 @@ The factory method of single service, such as the second argument to [AddSinglet
   * Don't invoke <xref:System.IServiceProvider.GetService*> to obtain a service instance when you can use DI instead:
 
     **Incorrect:**
-
-    ```csharp
-    public class MyClass()
-    {
-        public void MyMethod()
-        {
-            // AVOID this pattern.
-            var optionsMonitor = 
-                _services.GetService<IOptionsMonitor<MyOptions>>();
-            var option = optionsMonitor.CurrentValue.Option;
-
-            ...
-        }
-    }
-    ```
+    ![Incorrect code](dependency-injection/static/bad.png)
 
     **Correct**:
 
