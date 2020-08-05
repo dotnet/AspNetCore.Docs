@@ -14,7 +14,7 @@ zone_pivot_groups: operating-systems
 
 By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.com/guardrex)
 
-::: zone pivot="os-windows"
+::: zone pivot="windows"
 
 1. Install the latest version of [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/) with the **ASP.NET and web development** workload.
 
@@ -34,7 +34,7 @@ For more information on trusting the ASP.NET Core HTTPS development certificate,
 
 ::: zone-end
 
-::: zone pivot="os-linux"
+::: zone pivot="linux"
 
 1. Install the latest version of the [.NET Core 3.1 SDK](https://dotnet.microsoft.com/download/dotnet-core/3.1). If you previously installed the SDK, you can determine your installed version by executing the following command in a command shell:
 
@@ -78,7 +78,7 @@ For more information, see the guidance provided by your browser and Linux distri
 
 ::: zone-end
 
-::: zone pivot="os-macos"
+::: zone pivot="macos"
 
 1. Install [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/).
 

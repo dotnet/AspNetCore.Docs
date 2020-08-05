@@ -11,7 +11,7 @@ uid: blazor/fundamentals/additional-scenarios
 ---
 # ASP.NET Core Blazor hosting model configuration
 
-By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.com/guardrex)
+By [Daniel Roth](https://github.com/danroth27), [Mackinnon Buck](https://github.com/MackinnonBuck), and [Luke Latham](https://github.com/guardrex)
 
 This article covers hosting model configuration.
 
@@ -128,7 +128,7 @@ To configure SignalR client logging:
 ```cshtml
     ...
 
-    <script src="_framework/blazor.server.js" autostart="false"></script>
+    <script autostart="false" src="_framework/blazor.server.js"></script>
     <script>
       Blazor.start({
         configureSignalR: function (builder) {
@@ -156,7 +156,7 @@ To modify the connection events:
 ```cshtml
     ...
 
-    <script src="_framework/blazor.server.js" autostart="false"></script>
+    <script autostart="false" src="_framework/blazor.server.js"></script>
     <script>
       Blazor.start({
         reconnectionHandler: {
@@ -178,7 +178,7 @@ To adjust the reconnection retry count and interval:
 ```cshtml
     ...
 
-    <script src="_framework/blazor.server.js" autostart="false"></script>
+    <script autostart="false" src="_framework/blazor.server.js"></script>
     <script>
       Blazor.start({
         reconnectionOptions: {
@@ -200,7 +200,7 @@ To hide the reconnection display:
 ```cshtml
     ...
 
-    <script src="_framework/blazor.server.js" autostart="false"></script>
+    <script autostart="false" src="_framework/blazor.server.js"></script>
     <script>
       window.addEventListener('beforeunload', function () {
         Blazor.defaultReconnectionHandler._reconnectionDisplay = {};
@@ -217,6 +217,41 @@ Blazor.defaultReconnectionHandler._reconnectionDisplay =
 ```
 
 The placeholder `{ELEMENT ID}` is the ID of the HTML element to display.
+
+::: moniker range=">= aspnetcore-5.0"
+
+## Influence HTML `<head>` tag elements
+
+*This section applies to Blazor WebAssembly and Blazor Server.*
+
+When rendered, the `Title`, `Link`, and `Meta` components add or update data in the HTML `<head>` tag elements:
+
+```razor
+@using Microsoft.AspNetCore.Components.Web.Extensions.Head
+
+<Title Value="{TITLE}" />
+<Link href="{URL}" rel="stylesheet" />
+<Meta content="{DESCRIPTION}" name="description" />
+```
+
+In the preceding example, placeholders for `{TITLE}`, `{URL}`, and `{DESCRIPTION}` are string values, Razor variables, or Razor expressions.
+
+The following characteristics apply:
+
+* Server-side prerendering is supported.
+* The `Value` parameter is the only valid parameter for the `Title` component.
+* HTML attributes provided to the `Meta` and `Link` components are captured in [additional attributes](xref:blazor/components/index#attribute-splatting-and-arbitrary-parameters) and passed through to the rendered HTML tag.
+* For multiple `Title` components, the title of the page reflects the `Value` of the last `Title` component rendered.
+* If multiple `Meta` or `Link` components are included with identical attributes, there's exactly one HTML tag rendered per `Meta` or `Link` component. Two `Meta` or `Link` components can't refer to the same rendered HTML tag.
+* Changes to the parameters of existing `Meta` or `Link` components are reflected in their rendered HTML tags.
+* When the `Link` or `Meta` components are no longer rendered and thus disposed by the framework, their rendered HTML tags are removed.
+
+When one of the framework components is used in a child component, the rendered HTML tag influences any other child component of the parent component as long as the child component containing the framework component is rendered. The distinction between using the one of these framework components in a child component and placing a an HTML tag in `wwwroot/index.html` or `Pages/_Host.cshtml` is that a framework component's rendered HTML tag:
+
+* Can be modified by application state. A hard-coded HTML tag can't be modified by application state.
+* Is removed from the HTML `<head>` when the parent component is no longer rendered.
+
+::: moniker-end
 
 ## Additional resources
 

@@ -44,7 +44,7 @@ There are downsides to Blazor WebAssembly hosting:
 * Download size is larger, and apps take longer to load.
 * .NET runtime and tooling support is less mature. For example, limitations exist in [.NET Standard](/dotnet/standard/net-standard) support and debugging.
 
-The Blazor Hosted app model supports [Docker containers](/dotnet/standard/microservices-architecture/container-docker-introduction/index). Right-click on the Server project in Visual Studio and select **Add** > **Docker Support**.
+The hosted Blazor app model supports [Docker containers](/dotnet/standard/microservices-architecture/container-docker-introduction/index). Right-click on the Server project in Visual Studio and select **Add** > **Docker Support**.
 
 ## Blazor Server
 
