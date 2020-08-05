@@ -15,7 +15,7 @@ By [Safia Abdalla](https://safia.rocks) and [Luke Latham](https://github.com/gua
 
 Blazor WebAssembly app startup performance can be improved by deferring the loading of some application assemblies until they are required, which is called *lazy loading*. For example, assemblies that are only used to render a single component can be set up to load only if the user navigates to that component. After loading, the assemblies are cached client-side and are available for all future navigations.
 
-Blazor's lazy loading feature allows you to mark certain app assemblies as lazy-loadable then load them during runtime when the user navigates to a particular route. The feature consists of changes to the project file and changes to the application's router.
+Blazor's lazy loading feature allows you to mark app assemblies for lazy loading, which loads the assemblies during runtime when the user navigates to a particular route. The feature consists of changes to the project file and changes to the application's router.
 
 > [!NOTE]
 > Assembly lazy loading doesn't benefit Blazor Server apps because assemblies aren't downloaded to the client in a Blazor Server app.
@@ -34,7 +34,7 @@ Only assemblies that are used by the app can be lazily loaded. The linker strips
 
 ## `Router` component
 
-Blazor's `Router` component is used to designate which assemblies Blazor searches for routable components in. It's also responsible for rendering the component associated with the router that the user navigates to. The `Router` component supports an `OnNavigateAsync` feature that can be used in conjunction with lazy-loading.
+Blazor's `Router` component designates which assemblies Blazor searches for routable components. The `Router` component is also responsible for rendering the component for the route where the user navigates. The `Router` component supports an `OnNavigateAsync` feature that can be used in conjunction with lazy loading.
 
 In the app's `Router` component (`App.razor`):
 
