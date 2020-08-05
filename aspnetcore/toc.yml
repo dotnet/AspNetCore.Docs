@@ -417,6 +417,8 @@
           uid: blazor/state-management
         - name: Debug WebAssembly
           uid: blazor/debug
+        - name: Lazy load assemblies with WebAssembly
+          uid: blazor/webassembly-lazy-load-assemblies
         - name: WebAssembly performance
           uid: blazor/webassembly-performance-best-practices
         - name: Progressive Web Applications
