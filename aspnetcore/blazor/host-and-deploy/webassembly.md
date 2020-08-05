@@ -112,7 +112,7 @@ To configure a hosted Blazor solution to serve multiple Blazor WebAssembly apps:
 
 * Use an existing hosted Blazor solution or create a new solution from the Blazor Hosted project template.
 
-* In the client app's project file, add a `<StaticWebAssetBasePath>` property to the `<PropertyGroup>` with a value of `FirstApp`:
+* In the client app's project file, add a `<StaticWebAssetBasePath>` property to the `<PropertyGroup>` with a value of `FirstApp` to set the base path for the project's static assets:
 
   ```xml
   <PropertyGroup>
@@ -120,8 +120,6 @@ To configure a hosted Blazor solution to serve multiple Blazor WebAssembly apps:
     <StaticWebAssetBasePath>FirstApp</StaticWebAssetBasePath>
   </PropertyGroup>
   ```
-
-  The `StaticWebAssetBasePath` property sets the base path for the project's static assets. The property doesn't set the base path for assets from referenced projects or NuGet packages. For more information, see [Blazor _content folder (dotnet/aspnetcore #21808)](https://github.com/dotnet/aspnetcore/issues/21808).
 
 * Add a second client app to the solution:
 
@@ -272,7 +270,7 @@ Components provided to a client app by a class library are referenced normally. 
 * The client app's `wwwroot/index.html` file can link (`<link>`) to the static assets.
 * The component can use the framework's [`Link` component](xref:blazor/fundamentals/additional-scenarios#influence-html-head-tag-elements) to obtain the static assets.
 
-These approaches are demonstrated in the following examples.
+The preceding approaches are demonstrated in the following examples.
 
 ::: moniker-end
 
