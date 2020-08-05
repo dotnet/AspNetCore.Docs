@@ -259,7 +259,7 @@ Use the following approaches for static assets:
   <img alt="..." src="/{ASSET FILE NAME}" />
   ```
 
-* When the asset is in the `wwwroot` folder in a [Razor Class Library (RCL)](xref:blazor/components/class-libraries) referenced by the client app, reference the static asset per the guidance in the [RCL article](xref:razor-pages/ui-class#consume-content-from-a-referenced-rcl):
+* When the asset is in the `wwwroot` folder of a [Razor Class Library (RCL)](xref:blazor/components/class-libraries), reference the static asset in the client app per the guidance in the [RCL article](xref:razor-pages/ui-class#consume-content-from-a-referenced-rcl):
 
   ```razor
   <img alt="..." src="_content/{LIBRARY NAME}/{ASSET FILE NAME}" />
@@ -363,7 +363,7 @@ The library's `jeep-yj.png` image can also be added to the library's `Component1
 </div>
 ```
 
-The client app's `wwwroot/index.html` file requests the library's stylesheet with the following `<link>` tag:
+The client app's `wwwroot/index.html` file requests the library's stylesheet with the following added `<link>` tag:
 
 ```html
 <head>
