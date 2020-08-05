@@ -106,27 +106,36 @@ For information on deploying to Azure App Service, see <xref:tutorials/publish-t
 
 ## Hosted deployment with multiple Blazor WebAssembly apps
 
-To configure a Blazor hosted solution to serve multiple Blazor WebAssembly apps:
+### App configuration
 
-* Use an existing Blazor hosted solution or create a new solution from the Blazor Hosted project template.
+To configure a hosted Blazor solution to serve multiple Blazor WebAssembly apps:
 
-* In the client app's project file, add a `<StaticWebAssetBasePath>` property to the `<PropertyGroup>`:
+* Use an existing hosted Blazor solution or create a new solution from the Blazor Hosted project template.
+
+* In the client app's project file, add a `<StaticWebAssetBasePath>` property to the `<PropertyGroup>` with a value of `FirstApp`:
 
   ```xml
-  <StaticWebAssetBasePath>FirstApp</StaticWebAssetBasePath>
+  <PropertyGroup>
+    ...
+    <StaticWebAssetBasePath>FirstApp</StaticWebAssetBasePath>
+  </PropertyGroup>
   ```
 
-  The `StaticWebAssetBasePath` property sets the base path for the project's assets. The property doesn't set the base path for assets from referenced projects or NuGet packages. For more information, see [Blazor _content folder (dotnet/aspnetcore #21808)](https://github.com/dotnet/aspnetcore/issues/21808).
+  The `StaticWebAssetBasePath` property sets the base path for the project's static assets. The property doesn't set the base path for assets from referenced projects or NuGet packages. For more information, see [Blazor _content folder (dotnet/aspnetcore #21808)](https://github.com/dotnet/aspnetcore/issues/21808).
 
 * Add a second client app to the solution:
 
   * Add a folder named `SecondClient` to the solution's folder.
-  * Create a Blazor WebAssembly app named `SecondBlazorApp.Client` in the `SecondClient` folder from the Blazor WebAssembly project template. In the app's project file:
+  * Create a Blazor WebAssembly app named `SecondBlazorApp.Client` in the `SecondClient` folder from the Blazor WebAssembly project template.
+  * In the app's project file:
 
-    * Add a `<StaticWebAssetBasePath>` property to the `<PropertyGroup>`.
+    * Add a `<StaticWebAssetBasePath>` property to the `<PropertyGroup>` with a value of `SecondApp`:
 
       ```xml
-      <StaticWebAssetBasePath>SecondApp</StaticWebAssetBasePath>
+      <PropertyGroup>
+        ...
+        <StaticWebAssetBasePath>SecondApp</StaticWebAssetBasePath>
+      </PropertyGroup>
       ```
 
     * Add a project reference to the `Shared` project:
@@ -139,7 +148,7 @@ To configure a Blazor hosted solution to serve multiple Blazor WebAssembly apps:
 
       The placeholder `{SOLUTION NAME}` is the solution's name.
 
-* Create a project reference for the new client app in the server app's project file:
+* In the server app's project file, create a project reference for the added client app:
 
   ```xml
   <ItemGroup>
@@ -154,7 +163,7 @@ To configure a Blazor hosted solution to serve multiple Blazor WebAssembly apps:
   "applicationUrl": "https://localhost:5001;https://localhost:5002",
   ```
 
-* In the server app's `Startup.Configure` method, remove the following lines, which appear after the call to <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A>:
+* In the server app's `Startup.Configure` method (`Startup.cs`), remove the following lines, which appear after the call to <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A>:
 
   ```csharp
   app.UseBlazorFrameworkFiles();
@@ -231,106 +240,154 @@ To configure a Blazor hosted solution to serve multiple Blazor WebAssembly apps:
   });
   ```
 
-* Use client app static assets and class library components:
+* In the server app's weather forecast controller (`Controllers/WeatherForecastController.cs`), replace the existing route (`[Route("[controller]")]`) to `WeatherForecastController` with the following routes:
 
-  * When a client app references static assets in its own `wwwroot` folder, provide their paths normally (for example, `<img alt="..." src="/{ASSET FILE NAME}" />`).
-  * When a client app references static assets from a Razor Class Library (RCL), reference the static assets per the guidance in the [RCL topic](xref:razor-pages/ui-class#consume-content-from-a-referenced-rcl) (`_content/{LIBRARY NAME}/{ASSET FILE NAME}`). Static File Middleware in the server app that uses the app's static file asset path (for example, `first.UseStaticFiles("/FirstApp");`) serves the files from the library.
-  * Nested components provided by a class library are referenced normally. If any components require stylesheets or JavaScript files, the client app's `wwwroot/index.html` file must include the correct static asset links.
+  ```csharp
+  [Route("FirstApp/[controller]")]
+  [Route("SecondApp/[controller]")]
+  ```
 
-  Add the following `Jeep` component to one of the client apps. The `Jeep` component uses:
+  The middleware added to the server app's `Startup.Configure` method earlier modifies incoming requests to `/WeatherForecast` to either `/FirstApp/WeatherForecast` or `/SecondApp/WeatherForecast` depending on the port (5001/5002) or domain (`firstapp.com`/`secondapp.com`). The preceding controller routes are required in order to return weather data from the server app to the client apps.
 
-  * An image from the client app's `wwwroot` folder (`jeep-cj.png`).
-  * An image from an [added Razor component library](xref:blazor/components/class-libraries) (`JeepImage`) `wwwroot` folder (`jeep-yj.png`).
-  * The example component created automatically by the RCL project template when the `JeepImage` library is added to the solution (`JeepImage.Component1`).
+### Static assets and class libraries
+
+Use the following approaches for static assets:
+
+* When the asset is in the client app's `wwwroot` folder, provide their paths normally:
 
   ```razor
-  @page "/Jeep"
+  <img alt="..." src="/{ASSET FILE NAME}" />
+  ```
 
-  <h1>1979 Jeep CJ-5&trade;</h1>
+* When the asset is in the `wwwroot` folder in a [Razor Class Library (RCL)](xref:blazor/components/class-libraries) referenced by the client app, reference the static asset per the guidance in the [RCL article](xref:razor-pages/ui-class#consume-content-from-a-referenced-rcl):
 
-  <p>
-      <img alt="1979 Jeep CJ-5&trade;" src="/jeep-cj.png" />
-  </p>
-
-  <h1>1991 Jeep YJ&trade;</h1>
-
-  <p>
-      <img alt="1991 Jeep YJ&trade;" src="_content/JeepImage/jeep-yj.png" />
-  </p>
-
-  <p>
-      <em>Jeep CJ-5</em> and <em>Jeep YJ</em> are a trademarks of 
-      <a href="https://www.fcagroup.com">Fiat Chrysler Automobiles</a>.
-  </p>
-
-  <JeepImage.Component1 />
+  ```razor
+  <img alt="..." src="_content/{LIBRARY NAME}/{ASSET FILE NAME}" />
   ```
 
 ::: moniker range=">= aspnetcore-5.0"
 
-  The library's image can also be added to the library's `Component1` component (`Component1.razor`). To provide the `my-component` CSS class to the client app's page, link to the library's stylesheet using the framework's `Link` component:
+Components provided to a client app by a class library are referenced normally. If any components require stylesheets or JavaScript files, use either of the following approaches to obtain the static assets:
 
-  ```razor
-  <div class="my-component">
-      <Link href="_content/JeepImage/styles.css" rel="stylesheet" />
+* The client app's `wwwroot/index.html` file can link (`<link>`) to the static assets.
+* The component can use the framework's `Link` component to obtain the static assets.
 
-      <h1>JeepImage.Component1</h1>
-
-      <p>
-          This Blazor component is defined in the <strong>JeepImage</strong> package.
-      </p>
-
-      <p>
-          <img alt="1991 Jeep YJ&trade;" src="_content/JeepImage/jeep-yj.png" />
-      </p>
-  </div>
-  ```
+These approaches are demonstrated in the following examples.
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-  The library's image can also be added to the library's `Component1` component (`Component1.razor`):
-
-  ```razor
-  <div class="my-component">
-      <h1>JeepImage.Component1</h1>
-
-      <p>
-          This Blazor component is defined in the <strong>JeepImage</strong> package.
-      </p>
-
-      <p>
-          <img alt="1991 Jeep YJ&trade;" src="_content/JeepImage/jeep-yj.png" />
-      </p>
-  </div>
-  ```
-
-  The client app's `wwwroot/index.html` file requests the library's stylesheet with the following added link:
-
-  ```html
-  <head>
-      ...
-      <link href="_content/JeepImage/styles.css" rel="stylesheet" />
-  </head>
-  ```
+Components provided to a client app by a class library are referenced normally. If any components require stylesheets or JavaScript files, the client app's `wwwroot/index.html` file must include the correct static asset links. These approaches are demonstrated in the following examples.
 
 ::: moniker-end
 
-  Add navigation to the `Jeep` component in the client app's `NavMenu` component (`Shared/NavMenu.razor`):
+Add the following `Jeep` component to one of the client apps. The `Jeep` component uses:
 
-  ```razor
-  <li class="nav-item px-3">
-      <NavLink class="nav-link" href="Jeep">
-          <span class="oi oi-list-rich" aria-hidden="true"></span> Jeep
-      </NavLink>
-  </li>
-  ```
+* An image from the client app's `wwwroot` folder (`jeep-cj.png`).
+* An image from an [added Razor component library](xref:blazor/components/class-libraries) (`JeepImage`) `wwwroot` folder (`jeep-yj.png`).
+* The example component (`Component1`) is created automatically by the RCL project template when the `JeepImage` library is added to the solution.
 
-  For more information on RCLs, see:
+```razor
+@page "/Jeep"
 
-  * <xref:blazor/components/class-libraries>
-  * <xref:razor-pages/ui-class>
+<h1>1979 Jeep CJ-5&trade;</h1>
+
+<p>
+    <img alt="1979 Jeep CJ-5&trade;" src="/jeep-cj.png" />
+</p>
+
+<h1>1991 Jeep YJ&trade;</h1>
+
+<p>
+    <img alt="1991 Jeep YJ&trade;" src="_content/JeepImage/jeep-yj.png" />
+</p>
+
+<p>
+    <em>Jeep CJ-5</em> and <em>Jeep YJ</em> are a trademarks of 
+    <a href="https://www.fcagroup.com">Fiat Chrysler Automobiles</a>.
+</p>
+
+<JeepImage.Component1 />
+```
+
+> [!WARNING]
+> Do **not** publish images of vehicles publicly unless you own the images. Otherwise, you risk copyright infringement.
+
+::: moniker range=">= aspnetcore-5.0"
+
+The library's `jeep-yj.png` image can also be added to the library's `Component1` component (`Component1.razor`). To provide the `my-component` CSS class to the client app's page, link to the library's stylesheet using the framework's `Link` component:
+
+```razor
+<div class="my-component">
+    <Link href="_content/JeepImage/styles.css" rel="stylesheet" />
+
+    <h1>JeepImage.Component1</h1>
+
+    <p>
+        This Blazor component is defined in the <strong>JeepImage</strong> package.
+    </p>
+
+    <p>
+        <img alt="1991 Jeep YJ&trade;" src="_content/JeepImage/jeep-yj.png" />
+    </p>
+</div>
+```
+
+An alternative to using the `Link` component is to load the stylesheet from the client app's `wwwroot/index.html` file. This approach makes the stylesheet available to all of the components in the client app:
+
+```html
+<head>
+    ...
+    <link href="_content/JeepImage/styles.css" rel="stylesheet" />
+</head>
+```
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+The library's `jeep-yj.png` image can also be added to the library's `Component1` component (`Component1.razor`):
+
+```razor
+<div class="my-component">
+    <h1>JeepImage.Component1</h1>
+
+    <p>
+        This Blazor component is defined in the <strong>JeepImage</strong> package.
+    </p>
+
+    <p>
+        <img alt="1991 Jeep YJ&trade;" src="_content/JeepImage/jeep-yj.png" />
+    </p>
+</div>
+```
+
+The client app's `wwwroot/index.html` file requests the library's stylesheet with the following `<link>` tag:
+
+```html
+<head>
+    ...
+    <link href="_content/JeepImage/styles.css" rel="stylesheet" />
+</head>
+```
+
+::: moniker-end
+
+Add navigation to the `Jeep` component in the client app's `NavMenu` component (`Shared/NavMenu.razor`):
+
+```razor
+<li class="nav-item px-3">
+    <NavLink class="nav-link" href="Jeep">
+        <span class="oi oi-list-rich" aria-hidden="true"></span> Jeep
+    </NavLink>
+</li>
+```
+
+For more information on RCLs, see:
+
+* <xref:blazor/components/class-libraries>
+* <xref:razor-pages/ui-class>
 
 ## Standalone deployment
 

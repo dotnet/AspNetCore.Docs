@@ -110,7 +110,7 @@ endpoints.MapFallbackToPage("/CoolApp/{**path:nonfile}");
 
 **Host multiple Blazor WebAssembly apps**
 
-For more information on hosting multiple Blazor WebAssembly apps in a Blazor hosted solution, see <xref:blazor/host-and-deploy/webassembly#hosted-deployment-with-multiple-blazor-webassembly-apps>.
+For more information on hosting multiple Blazor WebAssembly apps in a hosted Blazor solution, see <xref:blazor/host-and-deploy/webassembly#hosted-deployment-with-multiple-blazor-webassembly-apps>.
 
 ## Deployment
 
