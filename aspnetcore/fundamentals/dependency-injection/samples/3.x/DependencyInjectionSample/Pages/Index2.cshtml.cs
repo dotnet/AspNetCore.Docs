@@ -15,7 +15,7 @@ namespace DependencyInjectionSample.Pages
 
         public void OnGet()
         {
-            _myDependency.WriteMessage("IndexModel.OnGetAsync created this message.");
+            _myDependency.WriteMessage("IndexModel.OnGetAsync");
         }
     }
     #endregion

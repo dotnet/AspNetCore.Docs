@@ -280,7 +280,7 @@ Entity Framework contexts are usually added to the service container using the [
 
 ## Lifetime and registration options
 
-To demonstrate the difference between the lifetime and registration options, consider the following interfaces that represent tasks as an operation with a unique identifier, `OperationId`. Depending on how the lifetime of an operations service is configured for the following interfaces, the container provides either the same or a different instance of the service when requested by a class:
+To demonstrate the difference between the lifetime and registration options, consider the following interfaces that represent tasks as an operation with an identifier, `OperationId`. Depending on how the lifetime of an operations service is configured for the following interfaces, the container provides either the same or a different instance of the service when requested by a class:
 
 [!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/Interfaces/IOperation.cs?name=snippet1)]
 
@@ -385,7 +385,7 @@ The root service provider is created when <xref:Microsoft.Extensions.DependencyI
 
 Scoped services are disposed by the container that created them. If a scoped service is created in the root container, the service's lifetime is effectively promoted to singleton because it's only disposed by the root container when app/server is shut down. Validating service scopes catches these situations when `BuildServiceProvider` is called.
 
-For more information, see <xref:fundamentals/host/web-host#scope-validation>.
+For more information, see [Scope validation](xref:fundamentals/host/web-host#scope-validation).
 
 ## Request Services
 
@@ -861,7 +861,7 @@ Entity Framework contexts are usually added to the service container using the [
 
 ## Lifetime and registration options
 
-To demonstrate the difference between the lifetime and registration options, consider the following interfaces that represent tasks as an operation with a identifier, `OperationId`. Depending on how the lifetime of an operations service is configured for the following interfaces, the container provides either the same or a different instance of the service when requested by a class:
+To demonstrate the difference between the lifetime and registration options, consider the following interfaces that represent tasks as an operation with a unique identifier, `OperationId`. Depending on how the lifetime of an operations service is configured for the following interfaces, the container provides either the same or a different instance of the service when requested by a class:
 
 [!code-csharp[](dependency-injection/samples/2.x/DependencyInjectionSample/Interfaces/IOperation.cs?name=snippet1)]
 
@@ -981,7 +981,7 @@ The root service provider is created when <xref:Microsoft.Extensions.DependencyI
 
 Scoped services are disposed by the container that created them. If a scoped service is created in the root container, the service's lifetime is effectively promoted to singleton because it's only disposed by the root container when app/server is shut down. Validating service scopes catches these situations when `BuildServiceProvider` is called.
 
-For more information, see [Scope validation](xref:fundamentals/host/web-host#scope-validation).
+For more information, see <xref:fundamentals/host/web-host#scope-validation>.	
 
 ## Request Services
 
@@ -1108,9 +1108,11 @@ The factory method of single service, such as the second argument to [AddSinglet
 
 ## Recommendations
 
-* `async/await` and `Task` based service resolution is not supported. C# does not support asynchronous constructors. The recommended pattern is to use asynchronous methods after synchronously resolving the service.
+* `async/await` and `Task` based service resolution is not supported. C# does not support asynchronous constructors; therefore, the recommended pattern is to use asynchronous methods after synchronously resolving the service.
+
 * Avoid storing data and configuration directly in the service container. For example, a user's shopping cart shouldn't typically be added to the service container. Configuration should use the [options pattern](xref:fundamentals/configuration/options). Similarly, avoid "data holder" objects that only exist to allow access to some other object. It's better to request the actual item via DI.
 * Avoid static access to services. For example, avoid statically-typing [IApplicationBuilder.ApplicationServices](xref:Microsoft.AspNetCore.Builder.IApplicationBuilder.ApplicationServices) for use elsewhere.
+
 * Avoid using the *service locator pattern*, which mixes [Inversion of Control](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#dependency-inversion) strategies.
   * Don't invoke <xref:System.IServiceProvider.GetService*> to obtain a service instance when you can use DI instead:
 
@@ -1119,7 +1121,6 @@ The factory method of single service, such as the second argument to [AddSinglet
     ```csharp
     public class MyClass()
    
-      // DO NOT USE THIS APPROACH.
       public void MyMethod()
       {
           var optionsMonitor = 
@@ -1156,7 +1157,7 @@ The factory method of single service, such as the second argument to [AddSinglet
 
 Like all sets of recommendations, you may encounter situations where ignoring a recommendation is required. Exceptions are rare, mostly special cases within the framework itself.
 
-DI is an *alternative* to static/global object access patterns. You may not be able to realize the benefits of DI when mixing DI with static object access.
+DI is an *alternative* to static/global object access patterns. You may not be able to realize the benefits of DI if you mix it with static object access
 
 ## Additional resources
 
