@@ -5,7 +5,7 @@ description: Learn how to use forms and field validation scenarios in Blazor.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/06/2020
+ms.date: 08/06/2020
 no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/forms-validation
 ---
@@ -45,7 +45,7 @@ A form is defined using the <xref:Microsoft.AspNetCore.Components.Forms.EditForm
 
     private void HandleValidSubmit()
     {
-        Console.WriteLine("OnValidSubmit");
+        ...
     }
 }
 ```
@@ -174,23 +174,31 @@ The following form validates user input using the validation defined in the `Sta
 </EditForm>
 
 @code {
-    private Starship starship = new Starship();
+    private Starship starship = new Starship() { ProductionDate = DateTime.UtcNow };
 
     private void HandleValidSubmit()
     {
-        Console.WriteLine("OnValidSubmit");
+        ...
     }
 }
 ```
 
-The <xref:Microsoft.AspNetCore.Components.Forms.EditForm> creates an <xref:Microsoft.AspNetCore.Components.Forms.EditContext> as a [cascading value](xref:blazor/components/cascading-values-and-parameters) that tracks metadata about the edit process, including which fields have been modified and the current validation messages. The <xref:Microsoft.AspNetCore.Components.Forms.EditForm> also provides convenient events for valid and invalid submits (<xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit>, <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnInvalidSubmit>). Alternatively, use <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnSubmit> to trigger the validation and check field values with custom validation code.
+The <xref:Microsoft.AspNetCore.Components.Forms.EditForm> also provides convenient events for valid and invalid form submission:
+
+* <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit>
+* <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnInvalidSubmit>
+
+The <xref:Microsoft.AspNetCore.Components.Forms.EditForm> creates an <xref:Microsoft.AspNetCore.Components.Forms.EditContext> as a [cascading value](xref:blazor/components/cascading-values-and-parameters) that tracks metadata about the edit process, including which fields have been modified and the current validation messages.
+
+An <xref:Microsoft.AspNetCore.Components.Forms.EditForm> can **either** explicitly assign an <xref:Microsoft.AspNetCore.Components.Forms.EditContext> in the `EditForm` component tag **or** assign an <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?displayProperty=nameWithType>. Assignment of both to an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> isn't supported.
+
+Use <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnSubmit> to use custom code to trigger validation and check field values.
 
 In the following example:
 
-* The `HandleSubmit` method runs when the **`Submit`** button is selected.
-* The form is validated using the form's <xref:Microsoft.AspNetCore.Components.Forms.EditContext>.
-* The form is further validated by passing the <xref:Microsoft.AspNetCore.Components.Forms.EditContext> to the `ServerValidate` method that calls a web API endpoint on the server (*not shown*).
-* Additional code is run depending on the result of the client- and server-side validation by checking `isValid`.
+* The `HandleSubmit` method executes when the **`Submit`** button is selected.
+* The form is validated by calling <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Validate%2A?displayProperty=nameWithType>.
+* Additional code is executed depending on the validation result. Place business logic in the method assigned to <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnSubmit>.
 
 ```razor
 <EditForm EditContext="@editContext" OnSubmit="HandleSubmit">
@@ -201,7 +209,7 @@ In the following example:
 </EditForm>
 
 @code {
-    private Starship starship = new Starship();
+    private Starship starship = new Starship() { ProductionDate = DateTime.UtcNow };
     private EditContext editContext;
 
     protected override void OnInitialized()
@@ -211,8 +219,7 @@ In the following example:
 
     private async Task HandleSubmit()
     {
-        var isValid = editContext.Validate() && 
-            await ServerValidate(editContext);
+        var isValid = editContext.Validate();
 
         if (isValid)
         {
@@ -223,15 +230,175 @@ In the following example:
             ...
         }
     }
+}
+```
 
-    private async Task<bool> ServerValidate(EditContext editContext)
+> [!NOTE]
+> The framework API doesn't currently exist to clear manually added validation messages. Therefore, we don't generally recommend adding business logic validation messages directly to the <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore> after calling <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Validate%2A?displayProperty=nameWithType>. The only way to clear manually added validation messages is to assign a new <xref:Microsoft.AspNetCore.Components.Forms.EditContext>, which isn't an ideal approach in most cases. Use a different approach for notifying users about business logic validation failures. For example, write a string-based message to the UI and clear the string when the business logic checks pass. For more information, see [How to clear the Editform validation messages with a button click in Blazor (dotnet/aspnetcore #24563)](https://github.com/dotnet/aspnetcore/issues/24563).
+
+## Server validation
+
+Server validation can be accomplished by sending the <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Model?displayProperty=nameWithType> to a backend server API and receiving back field validation errors for the form. The following example is based on:
+
+* A hosted Blazor solution created by the Blazor Hosted project template.
+* The *Starfleet Starship Database* form example in the preceding [Built-in forms components](#built-in-forms-components) section.
+
+In the following example, the server API validates that the value of the maximum accommodation (`MaximumAccommodation`) is at least 1,000 people if the user selects the `Defense` ship classification (`Classification`).
+
+Place the `Starship` model into the solution's `Shared` project so that both the client and server apps can use the model. Since the model requires data annotations, add a package reference for [`System.ComponentModel.Annotations`](https://www.nuget.org/packages/System.ComponentModel.Annotations) to the `Shared` project's project file:
+
+```xml
+<ItemGroup>
+  <PackageReference Include="System.ComponentModel.Annotations" Version="{VERSION}" />
+</ItemGroup>
+```
+
+Replace the `{VERSION}` placeholder with the correct version of the package.
+
+> [!NOTE]
+> A server API that returns a *Bad Request - 400* status code when the model fails field validation on the server is behaving normally. For example, the model is expected to fail server validation when the user submits the form with invalid fields.
+
+In the server API project, add a controller to process starship validation requests (`Controllers/StarshipValidation.cs`). The controller returns a <xref:System.Collections.Generic.Dictionary%601> of failed validation messages:
+
+```csharp
+using System;
+using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using {SOLUTION NAMESPACE}.Shared;
+
+namespace {SOLUTION NAMESPACE}.Server.Controllers
+{
+    [Authorize]
+    [ApiController]
+    [Route("[controller]")]
+    public class StarshipValidationController : ControllerBase
     {
-        var serverChecksValid = ...
+        private readonly ILogger<StarshipValidationController> logger;
 
-        return serverChecksValid;
+        public StarshipValidationController(
+            ILogger<StarshipValidationController> logger)
+        {
+            this.logger = logger;
+        }
+
+        [HttpPost]
+        public Dictionary<string, string> Post(Starship starship)
+        {
+            var dict = new Dictionary<string, string>();
+
+            try
+            {
+                if (starship.Classification == "Defense" && 
+                    starship.MaximumAccommodation < 1000)
+                {
+                    dict.Add(nameof(starship.MaximumAccommodation),
+                        "For 'Defense' classification, " +
+                        "'Maximum Accommodation' must be at least 1,000.");
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.LogError("Validation Error: {MESSAGE}", ex.Message);
+            }
+
+            return dict;
+        }
     }
 }
 ```
+
+The placeholder `{SOLUTION NAMESPACE}` is the solution's namespace.
+
+In the client project, the *Starfleet Starship Database* form is updated to include server validation in the `ServerValidate` method. When the server API returns validation messages, they're added to the form's <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore>. <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Validate%2A?displayProperty=nameWithType> is called to validate the form. In order to clear prior validation messages, a new <xref:Microsoft.AspNetCore.Components.Forms.EditContext> is assigned to the form each time `HandleSubmit` is called. The approach in the following example isn't ideal for all server-side form validation scenarios. See the **NOTE** following the example for more information.
+
+```csharp
+@page "/FormsValidation"
+@using System.Net.Http.Json
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@using {SOLUTION NAMESPACE}.Shared
+@attribute [Authorize]
+@inject HttpClient Http
+
+<h1>Starfleet Starship Database</h1>
+
+<h2>New Ship Entry Form</h2>
+
+<p>
+    @formStatus
+</p>
+
+<EditForm EditContext="@editContext" OnSubmit="HandleSubmit">
+
+    ...
+
+</EditForm>
+
+@code {
+    private Starship starship = new Starship() { ProductionDate = DateTime.UtcNow };
+    private EditContext editContext;
+    private string formStatus;
+
+    protected override void OnInitialized()
+    {
+        editContext = new EditContext(starship);
+    }
+
+    private async Task HandleSubmit()
+    {
+        editContext = new EditContext(starship);
+        var isValid = await ServerValidate(editContext);
+        formStatus = $"Form submitted: {DateTime.Now} Form status: {isValid}";
+    }
+
+    private async Task<bool> ServerValidate(EditContext editContext)
+    {
+        try
+        {
+            var response = await Http.PostAsJsonAsync<Starship>(
+                "StarshipValidation", (Starship)editContext.Model);
+
+            var errors = await response.Content
+                .ReadFromJsonAsync<Dictionary<string, string>>();
+
+            if (response.IsSuccessStatusCode && errors.Count() > 0)
+            {
+                var messageStore = new ValidationMessageStore(editContext);
+
+                foreach (var error in errors)
+                {
+                    messageStore.Add(editContext.Field(error.Key), error.Value);
+                }
+            }
+        }
+        catch (AccessTokenNotAvailableException ex)
+        {
+            ex.Redirect();
+        }
+        catch (Exception ex)
+        {
+            formStatus = ex.Message;
+        }
+
+        return editContext.Validate();
+    }
+}
+```
+
+The placeholder `{SOLUTION NAMESPACE}` is the solution's namespace.
+
+> [!NOTE]
+> The framework API doesn't currently exist to clear manually added validation messages. The preceding example adds validation messages directly to the <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore> for server API validation failures. The only way to clear these messages and the validation state is to assign a new <xref:Microsoft.AspNetCore.Components.Forms.EditContext> to the form each time the form is submitted. This approach isn't ideal in many scenarios, since it prevents calling for client-side-only validation with <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Validate%2A?displayProperty=nameWithType>.
+>
+> An alternative is to use a different approach for notifying users about server API validation failures. For example, the component can:
+>
+> * Write a string-based message to the UI when the server API fails to return a *200 - OK* status code or sends back errors.
+> * Clear the message when the server API sends back a *200 - OK* status code and no error messages.
+>
+> For more information, see [How to clear the Editform validation messages with a button click in Blazor (dotnet/aspnetcore #24563)](https://github.com/dotnet/aspnetcore/issues/24563).
 
 ## InputText based on the input event
 
@@ -279,7 +446,7 @@ The `CustomInputText` component can be used anywhere <xref:Microsoft.AspNetCore.
 
     private void HandleValidSubmit()
     {
-        Console.WriteLine("OnValidSubmit");
+        ...
     }
 
     public class ExampleModel
@@ -368,7 +535,7 @@ The following <xref:Microsoft.AspNetCore.Components.Forms.EditForm> uses the pre
 
     private void HandleValidSubmit()
     {
-        Console.WriteLine("valid");
+        ...
     }
 
     public class Model
@@ -532,6 +699,9 @@ To enable and disable the submit button based on form validation:
 * Validate the form in the context's <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnFieldChanged> callback to enable and disable the submit button.
 * Unhook the event handler in the `Dispose` method. For more information, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable>.
 
+> [!NOTE]
+> When using an <xref:Microsoft.AspNetCore.Components.Forms.EditContext>, don't also assign a <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model> to the <xref:Microsoft.AspNetCore.Components.Forms.EditForm>.
+
 ```razor
 @implements IDisposable
 
@@ -545,7 +715,7 @@ To enable and disable the submit button based on form validation:
 </EditForm>
 
 @code {
-    private Starship starship = new Starship();
+    private Starship starship = new Starship() { ProductionDate = DateTime.UtcNow };
     private bool formInvalid = true;
     private EditContext editContext;
 
@@ -604,7 +774,7 @@ A side effect of the preceding approach is that a <xref:Microsoft.AspNetCore.Com
 
 > InvalidOperationException: EditForm requires a Model parameter, or an EditContext parameter, but not both.
 
-Confirm that the <xref:Microsoft.AspNetCore.Components.Forms.EditForm> has a <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model> or <xref:Microsoft.AspNetCore.Components.Forms.EditContext>.
+Confirm that the <xref:Microsoft.AspNetCore.Components.Forms.EditForm> has a <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model> **or** <xref:Microsoft.AspNetCore.Components.Forms.EditContext>. Don't use both for the same form.
 
 When assigning a <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model> to the form, confirm that the model type is instantiated, as the following example shows:
 
