@@ -258,7 +258,7 @@ Replace the `{VERSION}` placeholder with the correct version of the package.
 > [!NOTE]
 > A server API that returns a *Bad Request - 400* status code when the model fails field validation on the server is behaving normally. For example, the model is expected to fail server validation when the user submits the form with invalid fields.
 
-In the server API project, add a controller to process starship validation requests (`Controllers/StarshipValidation.cs`). The controller returns a <xref:System.Collections.Generic.Dictionary%601> of failed validation messages:
+In the server API project, add a controller to process starship validation requests (`Controllers/StarshipValidation.cs`). The controller returns a <xref:System.Collections.Generic.Dictionary> of failed validation messages:
 
 ```csharp
 using System;
