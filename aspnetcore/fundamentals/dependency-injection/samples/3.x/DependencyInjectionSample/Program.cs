@@ -17,9 +17,9 @@ namespace DependencyInjectionSample
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     //                   webBuilder.UseStartup<Startup>();
-                    //       webBuilder.UseStartup<Startup2>();
+                         webBuilder.UseStartup<Startup2>();
                     // run https://localhost:44313/Index5  Index has run time error
-                    webBuilder.UseStartup<DependencyInjectionSample5.Startup>(); 
+                    //webBuilder.UseStartup<DependencyInjectionSample5.Startup>(); 
 
                 });
     }

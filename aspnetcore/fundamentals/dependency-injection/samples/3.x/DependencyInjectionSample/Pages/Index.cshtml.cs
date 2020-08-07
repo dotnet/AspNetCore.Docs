@@ -12,11 +12,10 @@ namespace DependencyInjectionSample.Pages
         private readonly IOperationSingleton _singletonOperation;
         private readonly IOperationScoped _scopedOperation;
 
-        public IndexModel(
-            ILogger<IndexModel> logger,
-            IOperationTransient transientOperation,
-            IOperationScoped scopedOperation,
-            IOperationSingleton singletonOperation)
+        public IndexModel(ILogger<IndexModel> logger,
+                          IOperationTransient transientOperation,
+                          IOperationScoped scopedOperation,
+                          IOperationSingleton singletonOperation)
         {
             _logger = logger;
             _transientOperation = transientOperation;
