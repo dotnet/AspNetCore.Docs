@@ -574,7 +574,7 @@ The factory method of single service, such as the second argument to [AddSinglet
 
 * Avoid call services.BuildServiceProvider() method in ConfigureServices. This usually happens when developer want to resolve service in ConfigureServices phase. Some code that a developer will use like below.
 
-**Incorrect:**
+**❌Incorrect:**
 
 ```csharp
 public void ConfigureService(IServiceCollection services)
@@ -594,7 +594,7 @@ public void ConfigureService(IServiceCollection services)
 ```
 Calling BuildServiceProvider would creating a second container, this can create torn singletons and cause reference to object graphs across multiple containers. A correct way of doing so is utilizing DI embedded option pattern, sample code as below
 
-**Correct:**
+**✔️Correct:**
 ```csharp
 services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie();
@@ -1192,7 +1192,7 @@ The factory method of single service, such as the second argument to [AddSinglet
 
 * Avoid call services.BuildServiceProvider() method in ConfigureServices. This usually happens when developer want to resolve service in ConfigureServices phase. Some code that a developer will use like below.
 
-**Incorrect:**
+**❌Incorrect:**
 
 ```csharp
 public void ConfigureService(IServiceCollection services)
@@ -1212,7 +1212,7 @@ public void ConfigureService(IServiceCollection services)
 ```
 Calling BuildServiceProvider would creating a second container, this can create torn singletons and cause reference to object graphs across multiple containers. A correct way of doing so is utilizing DI embedded option pattern, sample code as below
 
-**Correct:**
+**✔️Correct:**
 ```csharp
 services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie();
