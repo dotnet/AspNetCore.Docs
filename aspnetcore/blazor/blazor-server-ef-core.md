@@ -57,7 +57,7 @@ The following recommendations are designed to provide a consistent approach to u
     }
     ```
 
-* For longer-lived operations that take advantage of EF Core's [change tracking](https://docs.microsoft.com/ef/core/querying/tracking) and/or [concurrency control](https://docs.microsoft.com/ef/core/saving/concurrency), scope the context to the lifetime of the component.
+* For longer-lived operations that take advantage of EF Core's [change tracking](https://docs.microsoft.com/ef/core/querying/tracking) and/or [concurrency control](https://docs.microsoft.com/ef/core/saving/concurrency), [scope the context to the lifetime of the component](#scope-to-the-component-lifetime).
 
 ### Create new DbContext instances
 
