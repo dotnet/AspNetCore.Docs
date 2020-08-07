@@ -208,6 +208,10 @@ In apps that process requests, singleton services are disposed when the <xref:Mi
 
 ## Service registration methods
 
+`IServiceCollection` is a collection of <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor>. The following code shows how to add a service with a constructor:
+
+[!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/Startup5.cs?name=snippet)]
+
 Service registration extension methods offer overloads that are useful in specific scenarios.
 <!-- Review: Auto disposal at end of app lifetime is not what you think of auto disposal  -->
 

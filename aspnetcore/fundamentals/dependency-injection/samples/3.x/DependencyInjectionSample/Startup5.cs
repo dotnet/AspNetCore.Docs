@@ -1,24 +1,34 @@
 using DependencyInjectionSample.Interfaces;
-using DependencyInjectionSample.Middleware;
-using DependencyInjectionSample.Models;
+using DependencyInjectionSample.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace DependencyInjectionSample
+namespace DependencyInjectionSample5
 {
-    public class Startup2
+    #region snippet
+    public class Startup
     {
-        #region snippet1
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+
+        public IConfiguration Configuration { get; }
+
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient<IOperationTransient, Operation>();
-            services.AddScoped<IOperationScoped, Operation>();
-            services.AddSingleton<IOperationSingleton, Operation>();
+            var myKey = Configuration["MyKey"];
+            var item = new ServiceDescriptor(typeof(IMyDependency),
+                                             context => new MyDependency5(myKey),
+                                             ServiceLifetime.Transient);
+            services.Add(item);
 
             services.AddRazorPages();
         }
+        // Remaining code ommited for brevity.
         #endregion
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -33,8 +43,6 @@ namespace DependencyInjectionSample
             }
 
             app.UseStaticFiles();
-
-            app.UseMyMiddleware();
 
             app.UseRouting();
 
