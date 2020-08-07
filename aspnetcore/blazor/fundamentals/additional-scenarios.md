@@ -218,11 +218,9 @@ Blazor.defaultReconnectionHandler._reconnectionDisplay =
 
 The placeholder `{ELEMENT ID}` is the ID of the HTML element to display.
 
-::: moniker range=">= aspnetcore-5.0"
-
 ## Influence HTML `<head>` tag elements
 
-*This section applies to Blazor WebAssembly and Blazor Server.*
+*This section applies to the upcoming ASP.NET Core 5.0 release of Blazor WebAssembly and Blazor Server.*
 
 When rendered, the `Title`, `Link`, and `Meta` components add or update data in the HTML `<head>` tag elements:
 
@@ -250,8 +248,6 @@ When one of the framework components is used in a child component, the rendered 
 
 * Can be modified by application state. A hard-coded HTML tag can't be modified by application state.
 * Is removed from the HTML `<head>` when the parent component is no longer rendered.
-
-::: moniker-end
 
 ## Additional resources
 
