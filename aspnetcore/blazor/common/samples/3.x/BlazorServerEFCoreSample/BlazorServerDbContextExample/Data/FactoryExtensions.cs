@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace BlazorServerDbContextExample.Data
 {
@@ -67,9 +68,11 @@ namespace BlazorServerDbContextExample.Data
         /// <param name="factory">The <see cref="DbContextFactory{ContactContext}"/> to use.</param>
         /// <param name="count">The number of contacts to generate.</param>
         /// <returns>A <see cref="Task"/>.</returns>
-        public static async Task EnsureDbCreatedAndSeedWithCountOfAsync(this DbContextFactory<ContactContext> factory, int count)
+        public static async Task EnsureDbCreatedAndSeedWithCountOfAsync(this DbContextOptions<ContactContext> options, int count)
         {
-            using var context = factory.CreateDbContext();
+            var builder = new DbContextOptionsBuilder<ContactContext>(options);
+            builder.UseLoggerFactory(new LoggerFactory());
+            using var context = new ContactContext(builder.Options);
             // result is true if the database had to be created
             if (await context.Database.EnsureCreatedAsync())
             {

@@ -16,7 +16,12 @@ Blazor Server is a stateful app framework. The app maintains an ongoing connecti
 > [!NOTE]
 > This article addresses EF Core in Blazor Server apps. Blazor WebAssembly apps run in a WebAssembly sandbox that prevents most direct database connections. Running EF Core in Blazor WebAssembly is beyond the scope of this article.
 
+:::moniker range="< aspnetcore-5.0"
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/3.x/BlazorServerEFCoreSample) ([how to download](xref:index#how-to-download-a-sample))
+:::moniker-end
+:::moniker range=">= aspnetcore-5.0"
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/5.x/BlazorServerEFCoreSample) ([how to download](xref:index#how-to-download-a-sample))
+:::moniker-end
 
 EF Core relies on a `DbContext` as the means to [configure database access](https://docs.microsoft.com/ef/core/miscellaneous/configuring-dbcontext) and act as a _unit of work_. EF Core provides the `AddDbContext` extension for ASP.NET Core apps that registers the context as a _scoped_ service by default. In Blazor Server apps this can be problematic because the instance is shared across components within the user circuit. `DbContext` is not thread safe and is not designed to be used concurrently. The existing lifetimes are inappropriate for these reasons:
 
@@ -51,72 +56,91 @@ The following recommendations are designed to provide a consistent approach to u
         Loading = false;
     }
     ```
+
 * For longer-lived operations that take advantage of EF Core's [change tracking](https://docs.microsoft.com/ef/core/querying/tracking) and/or [concurrency control](https://docs.microsoft.com/ef/core/saving/concurrency), scope the context to the lifetime of the component.
 
 ### Create new DbContext instances
 
-The fastest way to create a new `DbContext` instance is by using `new` to create a new instance. There are several scenarios that may require additional dependencies to be resolved. For example, you may wish to use [DbContextOptions](https://docs.microsoft.com/ef/core/miscellaneous/configuring-dbcontext#configuring-dbcontextoptions) to configure the context. One approach is to register the options in DI and inject them into the component, like this:
+The fastest way to create a new `DbContext` instance is by using `new` to create a new instance. However, there are several scenarios that may require additional dependencies to be resolved. For example, you may wish to use [DbContextOptions](https://docs.microsoft.com/ef/core/miscellaneous/configuring-dbcontext#configuring-dbcontextoptions) to configure the context. 
 
-```razor
-@inject DbContextOptions<MyContext> Options
+Here is an example that configures SQLite and enables data logging. The code uses an extension method to configure the database factory for dependency injection and provide the default options:
 
-@code {
-    public Task LoadAsync(int id)
-    {
-        using var context = new MyContext(Options);
-        return context.MyEntities.SingleOrDefaultAsync(e => e.Id == id);
-    }
-}
-```
+:::moniker range=">= aspnetcore-5.0"
+[!code-csharp[](./common/samples/5.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Startup.cs?range=29-31)]
+:::moniker-end
+:::moniker range="< aspnetcore-5.0"
+[!code-csharp[](./common/samples/3.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Startup.cs?range=29-31)]
+:::moniker-end
 
-Another solution is to use a factory. EF Core 5.0 (preview) provides a built-in factory for creating new contexts. Because the sample app is based on the latest stable versions and not the preview, it implements its own factory in `Data/DbContextFactory.cs`. 
+:::moniker range=">= aspnetcore-5.0"
+The recommended solution to create a new `DbContext` with dependencies is to use a factory. EF Core 5.0 provides a built-in factory for creating new contexts.
+:::moniker-end
+:::moniker range="< aspnetcore-5.0"
+The recommended solution to create a new `DbContext` with dependencies is to use a factory. The sample app implements its own factory in `Data/DbContextFactory.cs`. 
 
 [!code-csharp[](./common/samples/3.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Data/DbContextFactory.cs)]
+:::moniker-end
 
 The factory is injected into components and used to create new instances. For example, in `Pages/Index.razor`:
 
+:::moniker range=">= aspnetcore-5.0"
+[!code-csharp[](./common/samples/5.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor?range=199-212)]
+:::moniker-end
+:::moniker range="< aspnetcore-5.0"
 [!code-csharp[](./common/samples/3.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor?range=199-212)]
+:::moniker-end
 
 ### Scope to the component lifetime
 
-There are two approaches to scope a context to the component lifetime. If the context is registered with DI, you can use the special `OwningComponentBase` base class to create a control scope. Learn more about the class [here](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.components.owningcomponentbase-1).
+You may wish to create a `DbContext` that exists for the lifetime of a component. This allows you to use it as a unit of work and take advantage of built-in features like change tracking and concurrency resolution.
+You can use the factory to create a context and track it for the lifetime of the component. First, implement `IDisposable` and inject the factory as shown in `Pages/EditContact.razor`.
 
-The second approach is to use the factory to create a context and track it for the lifetime of the component. First, implement `IDisposable` and inject the factory as shown in `Pages/EditContact.razor`.
-
+:::moniker range="< aspnetcore-5.0"
 [!code-razor[](./common/samples/3.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/EditContact.razor?range=5-7)]
+:::moniker-end
+:::moniker range=">= aspnetcore-5.0"
+[!code-razor[](./common/samples/5.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/EditContact.razor?range=5-7)]
+:::moniker-end
 
 The sample app ensures the contact is disposed when the component is:
 
+:::moniker range="< aspnetcore-5.0"
 [!code-csharp[](./common/samples/3.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/EditContact.razor?range=181-184)]
+:::moniker-end
+:::moniker range="< aspnetcore-5.0"
+[!code-csharp[](./common/samples/5.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/EditContact.razor?range=181-184)]
+:::moniker-end
 
 Finally, `OnInitializedAsync` is overridden to create a new context. In the sample app, it loads the contact in the same method.
 
+:::moniker range="< aspnetcore-5.0"
 [!code-csharp[](./common/samples/3.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/EditContact.razor?range=89-104)]
+:::moniker-end
+:::moniker range=">= aspnetcore-5.0"
+[!code-csharp[](./common/samples/5.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/EditContact.razor?range=89-104)]
+:::moniker-end
 
 ## The sample app
 
 The sample application was built as a reference for Blazor Server apps the use EF Core. It includes a grid with sorting and filtering, delete, add, and update operations. It demonstrates use of EF Core to handle optimistic concurrency.
 
+:::moniker range="< aspnetcore-5.0"
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/3.x/BlazorServerEFCoreSample) ([how to download](xref:index#how-to-download-a-sample))
+:::moniker-end
+:::moniker range=">= aspnetcore-5.0"
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/5.x/BlazorServerEFCoreSample) ([how to download](xref:index#how-to-download-a-sample))
+:::moniker-end
 
-By default, the sample uses [SQL Server Express LocalDB](https://docs.microsoft.com/sql/database-engine/configure-windows/sql-server-express-localdb). You can override the connection string by updating the connection string in `appsettings.json`:
+The sample uses a local SQLite database so it can be used on any platform. The sample also configures database logging to show the SQL queries that are generated. This is configured in `appsettings.Development.json`. 
 
-[!code-json[](./common/samples/3.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/appsettings.json?highlight=3)] 
+:::moniker range="< aspnetcore-5.0"
+[!code-json[](./common/samples/3.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/appsettings.Development.json?highlight=5)] 
+:::moniker-end
+:::moniker range=">= aspnetcore-5.0"
+[!code-json[](./common/samples/5.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/appsettings.Development.json?highlight=5)] 
+:::moniker-end
 
-The sample also configures database logging to show the SQL queries that are generated. This is configured in `appsettings.Development.json`. 
-
-[!code-json[](./common/samples/3.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/appsettings.Development.json?highlight=8)] 
-
-The `Startup.cs` class uses the factory extension to register the context and set the options. 
-
-[!code-csharp[](./common/samples/3.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Startup.cs?highlight=28-32)]
-
-To make it easier to populate the sample database, a call to ensure it is created and populate random sample contacts is made in `Program.cs`. 
-
-[!code-csharp[](./common/samples/3.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Program.cs?highlight=15-23)]
-
-> [!CAUTION]
-> The included code is for demo purposes only and should not be copied or included in production apps. Instead, consider creating the database using scripts or EF Core's [migrations](https://docs.microsoft.com/ef/core/managing-schemas/migrations/).
+The grid, add, and view components use the "context-per-operation" pattern. The edit component uses the "context-per-component" pattern.
 
 ## Next Steps
 
