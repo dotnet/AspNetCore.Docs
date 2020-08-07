@@ -63,6 +63,10 @@ To debug a Blazor WebAssembly app in Visual Studio:
 
 1. Create a new ASP.NET Core hosted Blazor WebAssembly app.
 1. Press <kbd>F5</kbd> to run the app in the debugger.
+
+   > [!NOTE]
+   > **Start Without Debugging** (<kbd>Ctrl</kbd>+<kbd>F5</kbd>) isn't supported.
+
 1. Set a breakpoint in `Pages/Counter.razor` in the `IncrementCount` method.
 1. Browse to the **`Counter`** tab and select the button to hit the breakpoint:
 
@@ -107,6 +111,9 @@ While debugging your Blazor WebAssembly app, you can also debug your server code
    * Reload the window.
 
 1. Start debugging using the <kbd>F5</kbd> keyboard shortcut or the menu item.
+
+   > [!NOTE]
+   > **Run Without Debugging** (<kbd>Ctrl</kbd>+<kbd>F5</kbd>) isn't supported.
 
 1. When prompted, select the **Blazor WebAssembly Debug** option to start debugging.
 
