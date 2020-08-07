@@ -107,7 +107,7 @@ The sample app ensures the contact is disposed when the component is:
 :::moniker range="< aspnetcore-5.0"
 [!code-csharp[](./common/samples/3.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/EditContact.razor?range=181-184)]
 :::moniker-end
-:::moniker range="< aspnetcore-5.0"
+:::moniker range=">= aspnetcore-5.0"
 [!code-csharp[](./common/samples/5.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/EditContact.razor?range=181-184)]
 :::moniker-end
 
@@ -134,10 +134,10 @@ The sample application was built as a reference for Blazor Server apps the use E
 The sample uses a local SQLite database so it can be used on any platform. The sample also configures database logging to show the SQL queries that are generated. This is configured in `appsettings.Development.json`. 
 
 :::moniker range="< aspnetcore-5.0"
-[!code-json[](./common/samples/3.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/appsettings.Development.json?highlight=5)] 
+[!code-json[](./common/samples/3.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/appsettings.Development.json?highlight=8)] 
 :::moniker-end
 :::moniker range=">= aspnetcore-5.0"
-[!code-json[](./common/samples/5.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/appsettings.Development.json?highlight=5)] 
+[!code-json[](./common/samples/5.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/appsettings.Development.json?highlight=8)] 
 :::moniker-end
 
 The grid, add, and view components use the "context-per-operation" pattern. The edit component uses the "context-per-component" pattern.
