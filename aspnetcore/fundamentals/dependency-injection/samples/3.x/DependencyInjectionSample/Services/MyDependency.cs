@@ -17,9 +17,9 @@ namespace DependencyInjectionSample.Services
     #region snippet2
     public class MyDependency2 : IMyDependency
     {
-        private readonly ILogger<MyDependency> _logger;
+        private readonly ILogger<MyDependency2> _logger;
 
-        public MyDependency2(ILogger<MyDependency> logger)
+        public MyDependency2(ILogger<MyDependency2> logger)
         {
             _logger = logger;
         }
