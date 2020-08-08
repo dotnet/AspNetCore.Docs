@@ -15,7 +15,7 @@ namespace DependencyInjectionSample.Pages
 
         public void OnGet()
         {
-            _myDependency.WriteMessage("IndexModel.OnGetAsync");
+            _myDependency.WriteMessage("Index2Model.OnGet");
         }
     }
     #endregion
