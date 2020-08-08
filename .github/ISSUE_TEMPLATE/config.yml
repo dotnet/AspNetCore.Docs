@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: docs.microsoft.com site feedback
+    url: https://github.com/MicrosoftDocs/feedback/issues/new/choose
+    about: Log general docs.microsoft.com site issues here
+  - name: .NET platform and other product feedback
+    url: https://developercommunity.visualstudio.com/spaces/61/index.html
+    about: Log product issues here
