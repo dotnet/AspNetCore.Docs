@@ -30,6 +30,7 @@ In the following example:
 
 ```csharp
 using System.Net.Http;
+using Microsoft.Extensions.Http
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 
 ...
