@@ -50,7 +50,7 @@ Select the **EXPLORER** icon and then control-click (right-click) **Controllers 
 In **Solution Explorer**, right-click **Controllers > Add > New File**.
 ![Contextual menu](~/tutorials/first-mvc-app-mac/adding-controller/_static/add_controller.png)
 
-Select **ASP.NET Core** and **MVC Controller Class**.
+Select **ASP.NET Core** and **Controller Class**.
 
 Name the controller **HelloWorldController**.
 
