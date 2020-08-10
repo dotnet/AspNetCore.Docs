@@ -1191,6 +1191,8 @@
       uid: performance/diagnostic-tools
     - name: Load and stress testing
       uid: test/loadtests
+    - name: Event counters
+      href: /dotnet/core/diagnostics/event-counter-perf
 - name: Globalization and localization
   items:
     - name: Overview
