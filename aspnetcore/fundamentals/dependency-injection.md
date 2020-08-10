@@ -257,7 +257,7 @@ Service registration is generally order independent except when registering mult
 
 [!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/Startup5.cs?name=snippet)]
 
-The `Add{LIFETIME}` methods use the same approach. For example the [source code to AddScoped](https://github.com/dotnet/extensions/blob/v3.1.6/src/DependencyInjection/DI.Abstractions/src/ServiceCollectionServiceExtensions.cs#L216-L237);
+The `Add{LIFETIME}` methods use the same approach. For example, see the [source code to AddScoped](https://github.com/dotnet/extensions/blob/v3.1.6/src/DependencyInjection/DI.Abstractions/src/ServiceCollectionServiceExtensions.cs#L216-L237).
 
 ### Constructor injection behavior
 
