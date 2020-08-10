@@ -5,7 +5,7 @@ description: Learn how to use to SameSite cookies in ASP.NET Core
 ms.author: riande
 ms.custom: mvc
 ms.date: 12/03/2019
-no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR, Electron]
+no-loc: [cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR, Electron]
 uid: security/samesite
 ---
 # Work with SameSite cookies in ASP.NET Core
