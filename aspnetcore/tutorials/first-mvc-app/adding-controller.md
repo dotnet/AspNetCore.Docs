@@ -33,7 +33,7 @@ We cover these concepts in this tutorial series and show you how to use them to 
 * In **Solution Explorer**, right-click **Controllers > Add > Controller**
   ![Contextual menu](adding-controller/_static/add_controller.png)
 
-* In the **Add Scaffold** dialog box, select **MVC Controller - Empty**
+* In the **Add Scaffold** dialog box, select **Controller Class - Empty**
 
   ![Add MVC controller and name it](adding-controller/_static/ac.png)
 
@@ -50,7 +50,7 @@ Select the **EXPLORER** icon and then control-click (right-click) **Controllers 
 In **Solution Explorer**, right-click **Controllers > Add > New File**.
 ![Contextual menu](~/tutorials/first-mvc-app-mac/adding-controller/_static/add_controller.png)
 
-Select **ASP.NET Core** and **MVC Controller Class**.
+Select **ASP.NET Core** and **Controller Class**.
 
 Name the controller **HelloWorldController**.
 
