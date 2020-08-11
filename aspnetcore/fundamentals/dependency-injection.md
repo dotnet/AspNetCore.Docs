@@ -576,7 +576,7 @@ The factory method of single service, such as the second argument to [AddSinglet
 
   ![bad code calling BuildServiceProvider](~/fundamentals/dependency-injection/_static/badcodeX.png)
 
-  In the preceding image, selecting the green wavy line under `services.BuildServiceProvider` shows the following ASP0000 error:
+  In the preceding image, selecting the green wavy line under `services.BuildServiceProvider` shows the following ASP0000 warning:
     * ASP0000 Calling 'BuildServiceProvider' from application code results in an additional copy of singleton services being created. Consider alternatives such as dependency injecting services as parameters to 'Configure'.
 
    Calling `BuildServiceProvider` creates a second container, which can create torn singletons and cause references to object graphs across multiple containers. A correct way to get `LoginPath` is using the option pattern with DI:
