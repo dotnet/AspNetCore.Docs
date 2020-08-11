@@ -288,6 +288,12 @@ namespace BlazorSample.Client
 
             CurrentEditContext.NotifyValidationStateChanged();
         }
+
+        public void ClearErrors()
+        {
+            messageStore.Clear();
+            CurrentEditContext.NotifyValidationStateChanged();
+        }
     }
 }
 ```
@@ -324,12 +330,13 @@ When validation messages are set in the component, they're added to the form's <
 </EditForm>
 
 @code {
-    private string formStatus;
     private CustomValidator customValidator;
     private Starship starship = new Starship() { ProductionDate = DateTime.UtcNow };
 
     private void HandleValidSubmit()
     {
+        customValidator.ClearErrors();
+
         var errors = new Dictionary<string, List<string>>();
 
         if (starship.Classification == "Defense" &&
@@ -348,8 +355,6 @@ When validation messages are set in the component, they're added to the form's <
         {
             // Process the form
         }
-
-        formStatus = $"Form submit: {DateTime.Now}";
     }
 }
 ```
@@ -530,6 +535,8 @@ In the client project, the *Starfleet Starship Database* form is updated to show
 
     private async Task HandleValidSubmit(EditContext editContext)
     {
+        customValidator.ClearErrors();
+
         try
         {
             var response = await Http.PostAsJsonAsync<Starship>(
