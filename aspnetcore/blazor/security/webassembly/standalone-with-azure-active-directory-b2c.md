@@ -13,7 +13,7 @@ uid: blazor/security/webassembly/standalone-with-azure-active-directory-b2c
 
 By [Javier Calvarro Nelson](https://github.com/javiercn) and [Luke Latham](https://github.com/guardrex)
 
-To create a Blazor WebAssembly standalone app that uses [Azure Active Directory (AAD) B2C](/azure/active-directory-b2c/overview) for authentication:
+To create a [standalone Blazor WebAssembly app](xref:blazor/hosting-models#blazor-webassembly) that uses [Azure Active Directory (AAD) B2C](/azure/active-directory-b2c/overview) for authentication:
 
 Follow the guidance in the following topics to create a tenant and register a web app in the Azure Portal:
 
