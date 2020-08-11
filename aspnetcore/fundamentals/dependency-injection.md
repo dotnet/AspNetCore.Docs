@@ -571,41 +571,16 @@ The factory method of single service, such as the second argument to [AddSinglet
 * Another service locator variation to avoid is injecting a factory that resolves dependencies at runtime. Both of these practices mix [Inversion of Control](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#dependency-inversion) strategies.
 
 * Avoid static access to `HttpContext` (for example, [IHttpContextAccessor.HttpContext](xref:Microsoft.AspNetCore.Http.IHttpContextAccessor.HttpContext)).
+* Avoid calls to <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionContainerBuilderExtensions.BuildServiceProvider%2A> in `ConfigureServices`. Calling `BuildServiceProvider` typically happens when the developer wants to resolve a service in `ConfigureServices`. For example, avoid the following code:
 
-* Avoid call services.BuildServiceProvider() method in ConfigureServices. This usually happens when developer want to resolve service in ConfigureServices phase. Some code that a developer will use like below.
+  ![bad code calling BuildServiceProvider](~/fundamentals/dependency-injection/_static/badcodeX.png)
 
-**❌Incorrect:**
+  In the preceding image, selecting the green wavy line under `services.BuildServiceProvider` shows the following ASP0000 error:
+    * ASP0000 Calling 'BuildServiceProvider' from application code results in an additional copy of singleton services being created. Consider alternatives such as dependency injecting services as parameters to 'Configure'.
 
-```csharp
-public void ConfigureService(IServiceCollection services)
-{
-    // Configure the services
-    services.AddTransient<IMyService, MyService>();    
-    // Build an intermediate service provider in ConfigureServices, which is not recommended 
-    using (var serviceProvider = services.BuildServiceProvider())
-    {
-        var myService=serviceProvider.GetRequiredService<IMyService>();
-        services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
-            {
-                options.LoginPath = myService.GetLoginPath();
-            });
-    };
-}
-```
-Calling BuildServiceProvider would creating a second container, this can create torn singletons and cause reference to object graphs across multiple containers. A correct way of doing so is utilizing DI embedded option pattern, sample code as below
+   Calling `BuildServiceProvider` creates a second container, which can create torn singletons and cause references to object graphs across multiple containers. A correct way to get `LoginPath` is utilizing DI embedded option pattern:
 
-**✔️Correct:**
-```csharp
-services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddCookie();
-
-services.AddOptions<CookieAuthenticationOptions>(CookieAuthenticationDefaults.AuthenticationScheme)
-    .Configure<IMyService>((options, myService) =>
-    {
-        options.LoginPath = myService.GetLoginPath();
-    });
-```
-
+  [!code-csharp[](dependency-injection/samples/3.x/AntiPattern3/Startup.cs?name=snippet1)]
 
 Like all sets of recommendations, you may encounter situations where ignoring a recommendation is required. Exceptions are rare, mostly special cases within the framework itself.
 
