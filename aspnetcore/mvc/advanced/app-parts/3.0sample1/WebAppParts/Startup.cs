@@ -26,9 +26,8 @@ namespace WebAppParts
         {
             var assembly = typeof(MySharedController).Assembly;
             services.AddControllersWithViews()
-                .AddApplicationPart(assembly);
-
-            services.AddMvc().AddRazorRuntimeCompilation(); 
+                .AddApplicationPart(assembly)
+                .AddRazorRuntimeCompilation();
 
             services.Configure<MvcRazorRuntimeCompilationOptions>(options => 
             { options.FileProviders.Add(new EmbeddedFileProvider(assembly)); });
