@@ -429,7 +429,7 @@ namespace BlazorSample.Server.Controllers
                 {
                     // Process the form asynchronously
 
-                    return Ok();
+                    return Ok(ModelState);
                 }
             }
             catch (Exception ex)
