@@ -25,14 +25,15 @@ To test a Blazor component, the *Component Under Test* (CUT) is:
 
 Two common approaches for testing Blazor components are End-to-end (E2E) testing and unit testing:
 
-* **E2E testing**: A test runner runs a Blazor app containing the CUT and automates a browser instance. The testing tool inspects and interacts with the CUT through the browser. [Selenium](https://github.com/SeleniumHQ/selenium) is an example of an E2E testing framework that can be used with Blazor apps.
 * **Unit testing**: [Unit tests](/dotnet/core/testing/) are written with a unit testing library that provides:
   * Component rendering.
   * Inspection of component output and state.
   * Triggering of event handlers and life cycle methods.
   * Assertions that component behavior is correct.
 
-[bUnit](https://github.com/egil/bUnit) is an example of a library that enables Blazor app testing.
+  [bUnit](https://github.com/egil/bUnit) is an example of a library that enables Razor component unit testing.
+
+* **E2E testing**: A test runner runs a Blazor app containing the CUT and automates a browser instance. The testing tool inspects and interacts with the CUT through the browser. [Selenium](https://github.com/SeleniumHQ/selenium) is an example of an E2E testing framework that can be used with Blazor apps.
 
 In unit testing, only the Blazor component (Razor/C#) is involved. External dependencies, such as services and JS interop, must be mocked. In E2E testing, the Blazor component and all of it's auxiliary infrastructure are part of the test, including CSS, JS, and the DOM and browser APIs.
 
@@ -44,12 +45,12 @@ With regard to the component's environment, E2E tests must make sure that the ex
 
 The following table summarizes the difference between the two testing approaches.
 
-| Capability                       | E2E testing                             | Unit testing                     |
-| -------------------------------- | --------------------------------------- | -------------------------------- |
-| Test scope                       | Blazor component (Razor/C#) with CSS/JS | Blazor component (Razor/C#) only |
-| Test execution time              | Seconds                                 | Milliseconds                     |
-| Access to the component instance | No                                      | Yes                              |
-| Sensitive to the environment     | Yes                                     | No                               |
+| Capability                       | Unit testing                     | E2E testing                             |
+| -------------------------------- | -------------------------------- | --------------------------------------- |
+| Test scope                       | Blazor component (Razor/C#) only | Blazor component (Razor/C#) with CSS/JS |
+| Test execution time              | Milliseconds                     | Seconds                                 |
+| Access to the component instance | Yes                              | No                                      |
+| Sensitive to the environment     | No                               | Yes                                     |
 
 ## Choose the most appropriate test approach
 
@@ -61,13 +62,14 @@ Consider the scenario when choosing the type of testing to perform. Some conside
 | Component with simple JS interop logic | Unit testing | It's common for components to query the DOM or trigger animations through JS interop. Unit testing is usually preferred in this scenario, since it's straightforward to mock the JS interaction through the <xref:Microsoft.JSInterop.IJSRuntime> interface. |
 | Component that depends on complex JS code | Unit testing and separate JS testing | If a component uses JS interop to call a large or complex JS library but the interaction between the Blazor component and JS library is simple, then the best approach is likely to treat the component and JS library or code as two separate parts and test each individually. Test the Blazor component with a unit testing library, and test the JS with a JS testing library. |
 | Component with logic that depends on JS manipulation of the browser DOM | E2E testing | When a component's functionality is dependent on JS and its manipulation of the DOM, verify both the JS and Blazor code together in an E2E test. This is the approach that the Blazor framework developers have taken with Blazor's browser rendering logic, which has tightly-coupled C# and JS code. The C# and JS code must work together to correctly render Blazor components in a browser.
+| Component that depends on 3rd party component library with hard-to-mock dependencies | E2E testing | When a component's functionality is dependent on a 3rd party component library that has hard-to-mock dependencies, such as JS interop, E2E testing might be the only option to test the component. |
 
 ## Test components with bUnit
 
 There's no official Microsoft testing framework for Blazor, but the community-driven project [bUnit](https://github.com/egil/bUnit) provides a convenient way to unit test Blazor components.
 
 > [!NOTE]
-> bUnit is a third-party testing library and isn't supported or maintained by Microsoft or the .NET Foundation.
+> bUnit is a third-party testing library and isn't supported or maintained by Microsoft.
 
 bUnit works with general-purpose testing frameworks, such as [MSTest](/dotnet/core/testing/unit-testing-with-mstest), [NUnit](https://nunit.org/), and [xUnit](https://xunit.github.io/). These testing frameworks make bUnit tests look and feel like regular unit tests. bUnit tests integrated with a general-purpose testing framework are ordinarily executed with:
 
@@ -126,6 +128,9 @@ The following actions take place at each step of the test:
 * *Act*: The button's element (`<button>`) is located and then selected by calling `Click`, which should increment the counter and update the content of the paragraph tag (`<p>`). The paragraph element text content is obtained by calling `TextContent`.
 
 * *Assert*: `MarkupMatches` is called on the text content to verify that it matches the expected string, which is `Current count: 1`.
+
+> [!NOTE]
+> The `MarkupMatches` assert method differs from a regular string comparison assertion (for example, `Assert.Equal("Current count: 1", paraElmText);`) `MarkupMatches` performs a semantic comparison of the input and expected HTML markup. A semantic comparison is aware of HTML semantics, meaning things like insignificant whitespace is ignored. This results in more stable tests. For more information, see [Customizing the Semantic HTML Comparison](https://bunit.egilhansen.com/docs/verification/semantic-html-comparison).
 
 ## Additional resources
 
