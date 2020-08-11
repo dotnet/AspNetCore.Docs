@@ -580,7 +580,7 @@ The factory method of single service, such as the second argument to [AddSinglet
 
    Calling `BuildServiceProvider` creates a second container, which can create torn singletons and cause references to object graphs across multiple containers. A correct way to get `LoginPath` is utilizing DI embedded option pattern:
 
-  [!code-csharp[](dependency-injection/samples/3.x/AntiPattern3/Startup.cs?name=snippet1)]
+  [!code-csharp[](dependency-injection/samples/3.x/AntiPattern3/Startup.cs?name=snippet)]
 
 Like all sets of recommendations, you may encounter situations where ignoring a recommendation is required. Exceptions are rare, mostly special cases within the framework itself.
 
