@@ -13,7 +13,7 @@ uid: blazor/security/webassembly/standalone-with-azure-active-directory
 
 By [Javier Calvarro Nelson](https://github.com/javiercn) and [Luke Latham](https://github.com/guardrex)
 
-To create a Blazor WebAssembly standalone app that uses [Azure Active Directory (AAD)](https://azure.microsoft.com/services/active-directory/) for authentication:
+To create a [standalone Blazor WebAssembly app](xref:blazor/hosting-models#blazor-webassembly) that uses [Azure Active Directory (AAD)](https://azure.microsoft.com/services/active-directory/) for authentication:
 
 [Create an AAD tenant and web application](/azure/active-directory/develop/v2-overview):
 
