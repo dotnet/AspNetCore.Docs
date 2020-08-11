@@ -409,25 +409,22 @@ namespace BlazorSample.Server.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Dictionary<string, List<string>>>> 
-            Post(Starship starship)
+        public async Task<IActionResult> Post(Starship starship)
         {
-            var dict = new Dictionary<string, List<string>>();
-
             try
             {
                 if (starship.Classification == "Defense" && 
                     string.IsNullOrEmpty(starship.Description))
                 {
-                    dict.Add(nameof(starship.Description),
-                        new List<string>() { "For a 'Defense' ship " +
-                        "classification, 'Description' is required." });
+                    ModelState.AddModelError(nameof(starship.Description),
+                        "For a 'Defense' ship " +
+                        "classification, 'Description' is required.");
                 }
                 else
                 {
                     // Process the form asynchronously
 
-                    return Ok(dict);
+                    return Ok();
                 }
             }
             catch (Exception ex)
@@ -435,7 +432,7 @@ namespace BlazorSample.Server.Controllers
                 logger.LogError("Validation Error: {MESSAGE}", ex.Message);
             }
 
-            return BadRequest(dict);
+            return BadRequest(ModelState);
         }
     }
 }
