@@ -1165,40 +1165,6 @@ The factory method of single service, such as the second argument to [AddSinglet
 
 * Avoid static access to `HttpContext` (for example, [IHttpContextAccessor.HttpContext](xref:Microsoft.AspNetCore.Http.IHttpContextAccessor.HttpContext)).
 
-* Avoid call services.BuildServiceProvider() method in ConfigureServices. This usually happens when developer want to resolve service in ConfigureServices phase. Some code that a developer will use like below.
-
-**❌Incorrect:**
-
-```csharp
-public void ConfigureService(IServiceCollection services)
-{
-    // Configure the services
-    services.AddTransient<IMyService, MyService>();    
-    // Build an intermediate service provider in ConfigureServices, which is not recommended 
-    using (var serviceProvider = services.BuildServiceProvider())
-    {
-        var myService=serviceProvider.GetRequiredService<IMyService>();
-        services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
-            {
-                options.LoginPath = myService.GetLoginPath();
-            });
-    };
-}
-```
-Calling BuildServiceProvider would creating a second container, this can create torn singletons and cause reference to object graphs across multiple containers. A correct way of doing so is utilizing DI embedded option pattern, sample code as below
-
-**✔️Correct:**
-```csharp
-services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddCookie();
-
-services.AddOptions<CookieAuthenticationOptions>(CookieAuthenticationDefaults.AuthenticationScheme)
-    .Configure<IMyService>((options, myService) =>
-    {
-        options.LoginPath = myService.GetLoginPath();
-    });
-```
-
 Like all sets of recommendations, you may encounter situations where ignoring a recommendation is required. Exceptions are rare, mostly special cases within the framework itself.
 
 DI is an *alternative* to static/global object access patterns. You may not be able to realize the benefits of DI if you mix it with static object access.
