@@ -387,7 +387,32 @@ Place the `Starship` model into the solution's `Shared` project so that both the
 
 To determine the latest non-preview version of the package, see the package **Version History** in the [`System.ComponentModel.Annotations` page at NuGet.org](https://www.nuget.org/packages/System.ComponentModel.Annotations).
 
-In the server API project, add a controller to process starship validation requests (`Controllers/StarshipValidation.cs`) and return failed validation messages:
+In the server API project, add a custom [action filter](xref:Microsoft.AspNetCore.Mvc.Filters.ActionFilterAttribute) to return a <xref:Microsoft.AspNetCore.Mvc.BadRequestObjectResult> with only model validation errors for automatic model binding:
+
+```csharp
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
+
+namespace HostAAD.Server
+{
+    public class ValidateModelAttribute : ActionFilterAttribute
+    {
+        public override void OnActionExecuting(ActionExecutingContext context)
+        {
+            if (!context.ModelState.IsValid)
+            {
+                context.Result = new BadRequestObjectResult(context.ModelState);
+            }
+        }
+    }
+}
+```
+
+For more information, see <xref:mvc/controllers/filters#action-filters>.
+
+In the server API project, add a controller to process starship validation requests (`Controllers/StarshipValidation.cs`) and return failed validation messages. This scenario calls for the use of a <xref:Microsoft.AspNetCore.Mvc.Controller>, not an API controller based on <xref:Microsoft.AspNetCore.Mvc.ControllerBase> with an <xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute>.
+
+When there's a model binding validation error on the server, an `ApiController` returns a [default bad request response](xref:web-api/index#default-badrequest-response) with a <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails> that contants more than just the validation errors. In order to return a <xref:Microsoft.AspNetCore.Mvc.BadRequestObjectResult> with a JSON response body that **only** contains the validation errors, this example uses a normal <xref:Microsoft.AspNetCore.Mvc.Controller> with an action filter. The client-side Blazor app can easily convert the response into a `Dictionary<string, List<string>>` for the form's validation message store.
 
 ```csharp
 using System;
@@ -401,9 +426,8 @@ using BlazorSample.Shared;
 namespace BlazorSample.Server.Controllers
 {
     [Authorize]
-    [ApiController]
     [Route("[controller]")]
-    public class StarshipValidationController : ControllerBase
+    public class StarshipValidationController : Controller
     {
         private readonly ILogger<StarshipValidationController> logger;
 
@@ -414,6 +438,7 @@ namespace BlazorSample.Server.Controllers
         }
 
         [HttpPost]
+        [ValidateModel]
         public async Task<IActionResult> Post(Starship starship)
         {
             try
