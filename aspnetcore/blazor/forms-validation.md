@@ -238,10 +238,10 @@ In the following example:
 
 ## Custom validation components
 
-Custom validation components are useful in scenarios that require fine control of validation. For example, separate custom validation components can process validation messages for different forms on the same page or the same form at different steps of form processing. The following example, `CustomValidator`, is used in the following scenarios described later in this article:
+Custom validation components are useful in scenarios that require fine control of validation. For example, different custom validation components can process validation messages for different forms on the same page or the same form at different steps of form processing. The following example, `CustomValidator`, is used in the following sections later in this article:
 
 * [Business logic validation](#business-logic-validation)
-* [server validation](#server-validation)
+* [Server validation](#server-validation)
 
 Create a custom validation component from <xref:Microsoft.AspNetCore.Components.ComponentBase> to manage a <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore> for an <xref:Microsoft.AspNetCore.Components.Forms.EditContext>:
 
@@ -358,11 +358,11 @@ When validation messages are set in the component, they're added to the form's <
 
 Server validation can be accomplished with a custom server validation component:
 
-* Process client-side validation on the form.
-* When the form passes client-side validation (<xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit>), send the <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Model?displayProperty=nameWithType> to a backend server API for form processing.
+* Process client-side validation in the form.
+* When the form passes client-side validation (<xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit> is called), send the <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Model?displayProperty=nameWithType> to a backend server API for form processing.
 * Process model validation on the server.
-* If model validation passes on the server, process the form and send back a success (*200 - OK*) status code. If model validation fails, return a failure (*400 - Bad Request*) status code and field validation errors.
-* Either disable the form on success or display the errors with a custom validation component.
+* If model validation passes on the server, process the form and send back a success status code (*200 - OK*). If model validation fails, return a failure status code (*400 - Bad Request*) and a dictionary of field validation errors.
+* Either disable the form on success or display the errors.
 
 The following example is based on:
 
@@ -443,7 +443,7 @@ namespace BlazorSample.Server.Controllers
 
 In the client project, add the custom validation component shown in the [Custom validation components](#custom-validation-components) section.
 
-In the client project, the *Starfleet Starship Database* form is updated to show server validation errors with the `ServerValidaor` component. When the server API returns validation messages, they're added to the form's <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore>:
+In the client project, the *Starfleet Starship Database* form is updated to show server validation errors with the `CustomValidaor` component. When the server API returns validation messages, they're added to the form's <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore>:
 
 ```csharp
 @page "/FormValidation"
