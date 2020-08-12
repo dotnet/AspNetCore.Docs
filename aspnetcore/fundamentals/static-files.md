@@ -433,6 +433,8 @@ The <xref:Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider> cla
 
 See [MIME content types](https://www.iana.org/assignments/media-types/media-types.xhtml).
 
+For information on using a custom <xref:Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider> or to configure other <xref:Microsoft.AspNetCore.Builder.StaticFileOptions> in Blazor Server apps, see <xref:blazor/fundamentals/additional-scenarios#static-files>.
+
 ## Non-standard content types
 
 Static File Middleware understands almost 400 known file content types. If the user requests a file with an unknown file type, Static File Middleware passes the request to the next middleware in the pipeline. If no middleware handles the request, a *404 Not Found* response is returned. If directory browsing is enabled, a link to the file is displayed in a directory listing.
