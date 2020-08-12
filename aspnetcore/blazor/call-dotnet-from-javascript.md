@@ -5,7 +5,7 @@ description: Learn how to invoke .NET methods from JavaScript functions in Blazo
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/07/2020
+ms.date: 08/12/2020
 no-loc: [cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/call-dotnet-from-javascript
 ---
@@ -264,7 +264,7 @@ The placeholder `{APP ASSEMBLY}` is the app's app assembly name (for example, `B
 }
 ```
 
-When there are several components, each with instance methods to call, use a helper class to invoke the instance methods (as <xref:System.Action>s) of each component.
+When several components of the same type are rendered, use a helper class to invoke the instance method (as an <xref:System.Action>) on each component.
 
 In the following example:
 
