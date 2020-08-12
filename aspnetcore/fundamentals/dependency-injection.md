@@ -433,11 +433,11 @@ Service1.Dispose
 ```
 
 ### Services not created by the service container
-<!--Review: Who cares that singletons aren't disposed, they aren't disposed until the app shuts down anyway.
+<!--Review: Who cares that service instances aren't disposed, singletons aren't disposed until the app shuts down anyway.
   -->
 Consider the following code:
 
-![Incorrect code](dependency-injection/_static/bad2.png)
+[!code-csharp[](dependency-injection/samples/3.x/DIsample2/DIsample2/Startup2.cs?name=snippet)]
 
 In the preceding code:
 
