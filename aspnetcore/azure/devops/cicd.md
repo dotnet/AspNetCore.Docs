@@ -4,7 +4,7 @@ author: CamSoper
 description: Continuous integration and deployment in DevOps with ASP.NET Core and Azure
 ms.author: scaddie
 ms.date: 10/24/2018
-ms.custom: "mvc, seodec18"
+ms.custom: "devx-track-csharp, mvc, seodec18"
 no-loc: [cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: azure/devops/cicd
 ---

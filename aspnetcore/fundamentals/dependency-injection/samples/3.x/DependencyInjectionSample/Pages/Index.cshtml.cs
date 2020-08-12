@@ -1,41 +1,33 @@
-﻿using System.Threading.Tasks;
+﻿using DependencyInjectionSample.Interfaces;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using DependencyInjectionSample.Interfaces;
-using DependencyInjectionSample.Services;
+using Microsoft.Extensions.Logging;
 
 namespace DependencyInjectionSample.Pages
 {
     #region snippet1
     public class IndexModel : PageModel
     {
-        private readonly IMyDependency _myDependency;
+        private readonly ILogger _logger;
+        private readonly IOperationTransient _transientOperation;
+        private readonly IOperationSingleton _singletonOperation;
+        private readonly IOperationScoped _scopedOperation;
 
-        public IndexModel(
-            IMyDependency myDependency, 
-            OperationService operationService,
-            IOperationTransient transientOperation,
-            IOperationScoped scopedOperation,
-            IOperationSingleton singletonOperation,
-            IOperationSingletonInstance singletonInstanceOperation)
+        public IndexModel(ILogger<IndexModel> logger,
+                          IOperationTransient transientOperation,
+                          IOperationScoped scopedOperation,
+                          IOperationSingleton singletonOperation)
         {
-            _myDependency = myDependency;
-            OperationService = operationService;
-            TransientOperation = transientOperation;
-            ScopedOperation = scopedOperation;
-            SingletonOperation = singletonOperation;
-            SingletonInstanceOperation = singletonInstanceOperation;
+            _logger = logger;
+            _transientOperation = transientOperation;
+            _scopedOperation    = scopedOperation;
+            _singletonOperation = singletonOperation;
         }
 
-        public OperationService OperationService { get; }
-        public IOperationTransient TransientOperation { get; }
-        public IOperationScoped ScopedOperation { get; }
-        public IOperationSingleton SingletonOperation { get; }
-        public IOperationSingletonInstance SingletonInstanceOperation { get; }
-
-        public async Task OnGetAsync()
+        public void  OnGet()
         {
-            await _myDependency.WriteMessage(
-                "IndexModel.OnGetAsync created this message.");
+            _logger.LogInformation("Transient: " + _transientOperation.OperationId);
+            _logger.LogInformation("Scoped: "    + _scopedOperation.OperationId);
+            _logger.LogInformation("Singleton: " + _singletonOperation.OperationId);
         }
     }
     #endregion

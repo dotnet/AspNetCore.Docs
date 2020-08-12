@@ -4,7 +4,7 @@ author: guardrex
 description: Learn how to configure Blazor WebAssembly to use Azure Active Directory groups and roles.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
-ms.custom: mvc
+ms.custom: "devx-track-csharp, mvc"
 ms.date: 07/28/2020
 no-loc: [cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/security/webassembly/aad-groups-roles
