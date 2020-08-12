@@ -218,6 +218,11 @@ To invoke a component's .NET methods:
 * Use the `invokeMethod` or `invokeMethodAsync` function to make a static method call to the component.
 * The component's static method wraps the call to its instance method as an invoked <xref:System.Action>.
 
+> [!NOTE]
+> For Blazor Server apps, where several users might be concurrently using the same component, use a helper class to invoke instance methods.
+>
+> For more information, see the [Component instance helper class](#component-instance-helper-class) section.
+
 In the client-side JavaScript:
 
 ```javascript
@@ -322,7 +327,12 @@ To pass arguments to the instance method:
   Sarah Jane, UpdateMessage Called!
   ```
 
-When several components of the same type are rendered, use a helper class to invoke an instance method (as an <xref:System.Action>) on each component.
+## Component instance helper class
+
+The helper class is used to invoke an instance method (as an <xref:System.Action>) and are helpful when:
+
+* Several components of the same type are rendered on the same page.
+* A Blazor Server app is used, where multiple users might be using a component concurrently.
 
 In the following example:
 
