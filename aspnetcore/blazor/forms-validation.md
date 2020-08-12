@@ -443,7 +443,7 @@ namespace BlazorSample.Server.Controllers
 }
 ```
 
-When there's a model binding validation error on the server, an `ApiController` normally returns a [default bad request response](xref:web-api/index#default-badrequest-response) with a <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails> that contains more data than just the validation errors, as shown in the following example:
+When there's a model binding validation error on the server, an `ApiController` normally returns a [default bad request response](xref:web-api/index#default-badrequest-response) with a <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails>. The response contains more data than just the validation errors, as shown in the following example:
 
 ```json
 {
@@ -458,7 +458,7 @@ When there's a model binding validation error on the server, an `ApiController` 
 }
 ```
 
-If the server API is permitted to return the preceding JSON response, it's inconvenient for the client to parse the errors directly into a `Dictionary<string, List<string>>` for forms validation error processing with the following code:
+If the server API returns the preceding default JSON response, it's inconvenient for the client to parse the errors directly into a `Dictionary<string, List<string>>` with <xref:System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsync%2A> for forms validation error processing:
 
 ```csharp
 var response = await Http.PostAsJsonAsync<Starship>(
@@ -479,7 +479,7 @@ Ideally, the server API should only return the validation errors:
 }
 ```
 
-To modify the server API's behavior to return the preceding response, change the delegate invoked on actions annotated with <xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute>. For the API endpoint (`/StarshipValidation`), return a <xref:Microsoft.AspNetCore.Mvc.BadRequestObjectResult> with the <xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary>. For any other API endpoints, preserve the default behavior by returning the object result with a new <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails>:
+To modify the server API's response, change the delegate invoked on actions annotated with <xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute> in `Startup.ConfigureServices`. For the API endpoint (`/StarshipValidation`), return a <xref:Microsoft.AspNetCore.Mvc.BadRequestObjectResult> with the <xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary>. For any other API endpoints, preserve the default behavior by returning the object result with a new <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails>:
 
 ```csharp
 using Microsoft.AspNetCore.Mvc;
