@@ -7,26 +7,25 @@ using Microsoft.Extensions.Hosting;
 
 namespace DIsample2
 {
-    public class Startup
+    public class Startup2
     {
-        public Startup(IConfiguration configuration)
+        public Startup2(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
 
-        #region snippet
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<Service1>();
-            services.AddSingleton<Service2>();
+            services.AddSingleton<Service1>(new Service1());
+            services.AddSingleton(new Service2());
+
             var myKey = Configuration["MyKey"];
             services.AddSingleton<IService3>(sp => new Service3(myKey));
 
             services.AddRazorPages();
         }
-        #endregion
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

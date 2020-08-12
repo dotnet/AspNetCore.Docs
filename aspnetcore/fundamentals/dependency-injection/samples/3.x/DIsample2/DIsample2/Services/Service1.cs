@@ -47,12 +47,19 @@ namespace DIsample2.Services
 
     public class Service3 : IService3, IDisposable
     {
+        public Service3(string myKey)
+        {
+            MyKey = myKey;
+        }
+
         private bool disposedValue;
 
         public void Write(string message)
         {
-            Console.WriteLine($"Service3: {message}");
+            Console.WriteLine($"Service3: {message}, MyKey = {MyKey}");
         }
+
+        public string MyKey { get; set; }
 
         public void Dispose()
         {

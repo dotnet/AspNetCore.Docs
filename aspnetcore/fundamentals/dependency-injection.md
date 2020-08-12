@@ -57,7 +57,7 @@ public class IndexModel : PageModel
 }
 ```
 
-The class creates and directly depends on the `MyDependency` instance. Code dependencies (such as the previous example) are problematic and should be avoided for the following reasons:
+The class creates and directly depends on the `MyDependency` instance. Code dependencies, such as the previous example, are problematic and should be avoided for the following reasons:
 
 * To replace `MyDependency` with a different implementation, the class must be modified.
 * If `MyDependency` has dependencies, they must be configured by the class. In a large project with multiple classes depending on `MyDependency`, the configuration code becomes scattered across the app.
@@ -107,7 +107,7 @@ The container resolves `ILogger<TCategoryName>` by taking advantage of [(generic
 In dependency injection terminology, a service:
 
 * Is typically an object that provides a service to other code in the app, such as the `IMyDependency` service.
-* Is not related to a web service.
+* Is not related to a web service, although the service may use a web service.
 
 The framework provides a robust [logging](xref:fundamentals/logging/index) system. The `IMyDependency` implementations were written to demonstrate basic DI, not to implement logging. Most apps shouldn't need to write loggers. The following code demonstrates using the default logging, which doesn't require any services to be registered in `ConfigureServices`:
 
@@ -325,7 +325,7 @@ The logger output shows:
 
 To reduce the logging output, set "Logging:LogLevel:Microsoft:Error" in the *appsettings.Development.json* file:
 
-[!code-json[](dependency-injection/samples/3.x/DependencyInjectionSample/appsettings.Development.json&highlight=7)]
+[!code-json[](dependency-injection/samples/3.x/DependencyInjectionSample/appsettings.Development.json?highlight=7)]
 
 ## Call services from main
 
@@ -365,7 +365,7 @@ public class Program
 }
 ```
 
-The preceding code is from [Add the seed initializer](xref:tutorials/razor-pages/sql?#add-the-seed-initializer).
+The preceding code is from [Add the seed initializer](xref:tutorials/razor-pages/sql?#add-the-seed-initializer) in the Razor Pages tutorial.
 
 The following example shows how to obtain a context for the `IMyDependency` in `Program.Main`:
 
@@ -381,9 +381,9 @@ When the app is running in the [Development environment](xref:fundamentals/envir
 * Scoped services aren't directly or indirectly injected into singletons.
 * Transient services aren't directly or indirectly injected into singletons or scoped services.
 
-The root service provider is created when <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionContainerBuilderExtensions.BuildServiceProvider*> is called. The root service provider's lifetime corresponds to the app/server's lifetime when the provider starts with the app and is disposed when the app shuts down.
+The root service provider is created when <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionContainerBuilderExtensions.BuildServiceProvider*> is called. The root service provider's lifetime corresponds to the app's lifetime when the provider starts with the app and is disposed when the app shuts down.
 
-Scoped services are disposed by the container that created them. If a scoped service is created in the root container, the service's lifetime is effectively promoted to singleton because it's only disposed by the root container when app/server is shut down. Validating service scopes catches these situations when `BuildServiceProvider` is called.
+Scoped services are disposed by the container that created them. If a scoped service is created in the root container, the service's lifetime is effectively promoted to singleton because it's only disposed by the root container when app is shut down. Validating service scopes catches these situations when `BuildServiceProvider` is called.
 
 For more information, see [Scope validation](xref:fundamentals/host/web-host#scope-validation).
 
@@ -432,25 +432,19 @@ Service3: IndexModel.OnGet
 Service1.Dispose
 ```
 
-<!--Review: Who cares that singletons aren't disposed, they aren't disposed until the app shuts down anyway. Should these be added as scoped with the same caveats?
+### Services not created by the service container
+<!--Review: Who cares that singletons aren't disposed, they aren't disposed until the app shuts down anyway.
   -->
-In the following example:
+Consider the following code:
+
+![Incorrect code](dependency-injection/_static/bad2.png)
+
+In the preceding code:
 
 * The service instances aren't created by the service container.
 * The intended service lifetimes aren't known by the framework.
 * The framework doesn't dispose of the services automatically.
 * If the services aren't explicitly disposed in developer code, they persist until the app shuts down.
-
-```csharp
-public class Service1 : IDisposable {}
-public class Service2 : IDisposable {}
-
-public void ConfigureServices(IServiceCollection services)
-{
-    services.AddSingleton<Service1>(new Service1());
-    services.AddSingleton(new Service2());
-}
-```
 
 ### IDisposable guidance for Transient and shared instances
 
@@ -524,7 +518,7 @@ The factory method of single service, such as the second argument to [AddSinglet
 
   **Incorrect:**
 
-    ![Incorrect code](dependency-injection/static/bad.png)
+    ![Incorrect code](dependency-injection/_static/bad.png)
 
   **Correct**:
 
