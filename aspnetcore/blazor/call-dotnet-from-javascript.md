@@ -329,7 +329,7 @@ To pass arguments to the instance method:
 
 ## Component instance method helper class
 
-The helper class is used to invoke an instance method (as an <xref:System.Action>) and are helpful when:
+The helper class is used to invoke an instance method as an <xref:System.Action>. Helper classes are useful when:
 
 * Several components of the same type are rendered on the same page.
 * A Blazor Server app is used, where multiple users might be using a component concurrently.
