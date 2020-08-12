@@ -163,9 +163,14 @@
         - name: Web API apps >>
           displayName: tutorial
           href: /learn/modules/build-web-api-net-core/
-        - name: Cloud-native microservices >>
-          displayName: tutorial, kubernetes, aks, acr, docker
-          href: /learn/modules/microservices-aspnet-core/
+        - name: Cloud-native microservices
+          items:
+            - name: Create and deploy >>
+              displayName: tutorial, kubernetes, aks, acr, docker
+              href: /learn/modules/microservices-aspnet-core/
+            - name: Implement resiliency >>
+              displayName: tutorial, kubernetes, aks, acr, docker
+              href: /learn/modules/microservices-resiliency-aspnet-core/
         - name: Data access >>
           displayName: tutorial, ef, entity framework
           href: /learn/modules/persist-data-ef-core/
@@ -337,14 +342,20 @@
                   href: blazor/forms-validation.md#built-in-forms-components
                 - name: InputTextArea
                   href: blazor/forms-validation.md#built-in-forms-components
+                - name: Link
+                  href: blazor/fundamentals/additional-scenarios.md#influence-html-head-tag-elements
                 - name: MainLayout
                   href: blazor/layouts.md#mainlayout-component
+                - name: Meta
+                  href: blazor/fundamentals/additional-scenarios.md#influence-html-head-tag-elements
                 - name: NavLink
                   href: blazor/fundamentals/routing.md#navlink-component
                 - name: NavMenu
                   href: blazor/fundamentals/routing.md#navlink-component
                 - name: Router
                   href: blazor/fundamentals/routing.md#route-templates
+                - name: Title
+                  href: blazor/fundamentals/additional-scenarios.md#influence-html-head-tag-elements
             - name: Cascading values and parameters
               uid: blazor/components/cascading-values-and-parameters
             - name: Data binding
@@ -411,6 +422,8 @@
           uid: blazor/state-management
         - name: Debug WebAssembly
           uid: blazor/debug
+        - name: Lazy load assemblies with WebAssembly
+          uid: blazor/webassembly-lazy-load-assemblies
         - name: WebAssembly performance
           uid: blazor/webassembly-performance-best-practices
         - name: Progressive Web Applications
@@ -1183,6 +1196,8 @@
       uid: performance/diagnostic-tools
     - name: Load and stress testing
       uid: test/loadtests
+    - name: Event counters
+      href: /dotnet/core/diagnostics/event-counter-perf
 - name: Globalization and localization
   items:
     - name: Overview

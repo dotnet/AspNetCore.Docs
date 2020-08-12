@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 07/14/2020
-no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/fundamentals/routing
 ---
 # ASP.NET Core Blazor routing
@@ -30,7 +30,7 @@ For information on configuring <xref:Microsoft.AspNetCore.Builder.RazorPagesEndp
 The <xref:Microsoft.AspNetCore.Components.Routing.Router> component enables routing to each component with a specified route. The <xref:Microsoft.AspNetCore.Components.Routing.Router> component appears in the `App.razor` file:
 
 ```razor
-<Router AppAssembly="typeof(Startup).Assembly">
+<Router AppAssembly="@typeof(Startup).Assembly">
     <Found Context="routeData">
         <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
     </Found>
@@ -87,7 +87,7 @@ Use the <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblie
 
 ```razor
 <Router
-    AppAssembly="typeof(Program).Assembly"
+    AppAssembly="@typeof(Program).Assembly"
     AdditionalAssemblies="new[] { typeof(Component1).Assembly }">
     ...
 </Router>

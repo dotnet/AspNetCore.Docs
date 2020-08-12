@@ -5,8 +5,8 @@ description: Understand Blazor WebAssembly and Blazor Server hosting models.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/19/2020
-no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+ms.date: 08/11/2020
+no-loc: [cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/hosting-models
 ---
 # ASP.NET Core Blazor hosting models
@@ -17,13 +17,13 @@ Blazor is a web framework designed to run client-side in the browser on a [WebAs
 
 ## Blazor WebAssembly
 
-The principal hosting model for Blazor is running client-side in the browser on WebAssembly. The Blazor app, its dependencies, and the .NET runtime are downloaded to the browser. The app is executed directly on the browser UI thread. UI updates and event handling occur within the same process. The app's assets are deployed as static files to a web server or service capable of serving static content to clients.
+The principal hosting model for Blazor is running client-side in the browser on WebAssembly. The Blazor app, its dependencies, and the .NET runtime are downloaded to the browser. The app is executed directly on the browser UI thread. UI updates and event handling occur within the same process. The app's assets are deployed as static files to a web server or service capable of serving static content to clients. Because the app is created for deployment without a backend ASP.NET Core app, it's called a *standalone Blazor WebAssembly app*.
 
 ![Blazor WebAssembly: The Blazor app runs on a UI thread inside the browser.](hosting-models/_static/blazor-webassembly.png)
 
 To create a Blazor app using the client-side hosting model, use the **Blazor WebAssembly App** template ([`dotnet new blazorwasm`](/dotnet/core/tools/dotnet-new)).
 
-After selecting the **Blazor WebAssembly App** template, you have the option of configuring the app to use an ASP.NET Core backend by selecting the **ASP.NET Core hosted** check box ([`dotnet new blazorwasm --hosted`](/dotnet/core/tools/dotnet-new)). The ASP.NET Core app serves the Blazor app to clients. The Blazor WebAssembly app can interact with the server over the network using web API calls or [SignalR](xref:signalr/introduction) (<xref:tutorials/signalr-blazor-webassembly>).
+After selecting the **Blazor WebAssembly App** template, you have the option of configuring the app to use an ASP.NET Core backend by selecting the **ASP.NET Core hosted** check box ([`dotnet new blazorwasm --hosted`](/dotnet/core/tools/dotnet-new)). The ASP.NET Core app serves the Blazor app to clients. An app with an ASP.NET Core backend is called a *hosted Blazor WebAssembly app*. The Blazor WebAssembly app can interact with the server over the network using web API calls or [SignalR](xref:signalr/introduction) (<xref:tutorials/signalr-blazor-webassembly>).
 
 The templates include the `blazor.webassembly.js` script that handles:
 
@@ -44,7 +44,7 @@ There are downsides to Blazor WebAssembly hosting:
 * Download size is larger, and apps take longer to load.
 * .NET runtime and tooling support is less mature. For example, limitations exist in [.NET Standard](/dotnet/standard/net-standard) support and debugging.
 
-The Blazor Hosted app model supports [Docker containers](/dotnet/standard/microservices-architecture/container-docker-introduction/index). Right-click on the Server project in Visual Studio and select **Add** > **Docker Support**.
+The hosted Blazor app model supports [Docker containers](/dotnet/standard/microservices-architecture/container-docker-introduction/index). Right-click on the Server project in Visual Studio and select **Add** > **Docker Support**.
 
 ## Blazor Server
 

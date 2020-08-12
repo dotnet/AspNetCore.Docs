@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 06/25/2020
-no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/webassembly-performance-best-practices
 ---
 # ASP.NET Core Blazor WebAssembly performance best practices
@@ -132,6 +132,10 @@ Blazor WebAssembly offers two additional versions of <xref:Microsoft.JSInterop.I
 ```dotnetcli
 dotnet publish -c Release
 ```
+
+### Lazy load assemblies
+
+Load assemblies at runtime when the assemblies are required by a route. For more information, see <xref:blazor/webassembly-lazy-load-assemblies>.
 
 ### Compression
 

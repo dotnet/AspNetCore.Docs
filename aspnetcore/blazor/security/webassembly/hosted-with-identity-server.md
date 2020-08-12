@@ -1,19 +1,19 @@
 ---
-title: Secure an ASP.NET Core Blazor WebAssembly hosted app with Identity Server
+title: Secure a hosted ASP.NET Core Blazor WebAssembly app with Identity Server
 author: guardrex
-description: To create a new Blazor hosted app with authentication from within Visual Studio that uses an [IdentityServer](https://identityserver.io/) backend
+description: To create a new hosted Blazor solution with authentication from within Visual Studio that uses an [IdentityServer](https://identityserver.io/) backend
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 07/09/2020
-no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/security/webassembly/hosted-with-identity-server
 ---
 # Secure an ASP.NET Core Blazor WebAssembly hosted app with Identity Server
 
 By [Javier Calvarro Nelson](https://github.com/javiercn) and [Luke Latham](https://github.com/guardrex)
 
-This article explains how to create a new Blazor hosted app that uses [IdentityServer](https://identityserver.io/) to authenticate users and API calls.
+This article explains how to create a [hosted Blazor WebAssembly app](xref:blazor/hosting-models#blazor-webassembly) that uses [IdentityServer](https://identityserver.io/) to authenticate users and API calls.
 
 > [!NOTE]
 > To configure a standalone or hosted Blazor WebAssembly app to use an existing, external Identity Server instance, follow the guidance in <xref:blazor/security/webassembly/standalone-with-authentication-library>.
@@ -94,7 +94,7 @@ The `Startup` class has the following additions.
 
 * In `Startup.Configure`:
 
-  * The IdentityServer middleware exposes the Open ID Connect (OIDC) endpoints:
+  * The IdentityServer middleware exposes the OpenID Connect (OIDC) endpoints:
 
     ```csharp
     app.UseIdentityServer();
@@ -182,7 +182,7 @@ builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>()
 ```
 
 > [!NOTE]
-> If you're configuring a Blazor WebAssembly app to use an existing Identity Server instance that isn't part of a Blazor Hosted solution, change the <xref:System.Net.Http.HttpClient> base address registration from <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> (`builder.HostEnvironment.BaseAddress`) to the server app's API authorization endpoint URL.
+> If you're configuring a Blazor WebAssembly app to use an existing Identity Server instance that isn't part of a hosted Blazor solution, change the <xref:System.Net.Http.HttpClient> base address registration from <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> (`builder.HostEnvironment.BaseAddress`) to the server app's API authorization endpoint URL.
 
 ### API authorization support
 
