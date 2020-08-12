@@ -16,16 +16,15 @@ namespace DIsample2
 
         public IConfiguration Configuration { get; }
 
+        #region snippet
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<Service1>(new Service1());
             services.AddSingleton(new Service2());
 
-            var myKey = Configuration["MyKey"];
-            services.AddSingleton<IService3>(sp => new Service3(myKey));
-
             services.AddRazorPages();
         }
+        #endregion
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
