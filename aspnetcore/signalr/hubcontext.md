@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
 ms.date: 11/12/2019
-no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: signalr/hubcontext
 ---
 # Send messages from outside a hub
@@ -58,7 +58,7 @@ app.Use(async (context, next) =>
 ### Get an instance of IHubContext from IHost
 
 Accessing an `IHubContext` from the web host is useful for
-integrating with areas outside of ASP.NET Core, for example, using 3rd party dependency injection frameworks:
+integrating with areas outside of ASP.NET Core, for example, using third-party dependency injection frameworks:
 
 ```csharp
     public class Program

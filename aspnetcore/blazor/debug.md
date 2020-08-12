@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 07/30/2020
-no-loc: [Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/debug
 ---
 # Debug ASP.NET Core Blazor WebAssembly
@@ -63,6 +63,10 @@ To debug a Blazor WebAssembly app in Visual Studio:
 
 1. Create a new ASP.NET Core hosted Blazor WebAssembly app.
 1. Press <kbd>F5</kbd> to run the app in the debugger.
+
+   > [!NOTE]
+   > **Start Without Debugging** (<kbd>Ctrl</kbd>+<kbd>F5</kbd>) isn't supported.
+
 1. Set a breakpoint in `Pages/Counter.razor` in the `IncrementCount` method.
 1. Browse to the **`Counter`** tab and select the button to hit the breakpoint:
 
@@ -103,10 +107,13 @@ While debugging your Blazor WebAssembly app, you can also debug your server code
    If you receive the notification:
 
    * Confirm that the latest [C# for Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) is installed. To inspect the installed extensions, open **View** > **Extensions** from the menu bar or select the **Extensions** icon in the **Activity** sidebar.
-   * Confirm that JavaScript preview debugging is enabled. Open the settings from the menu bar (**File** > **Preferences** > **Settings**). Search using the keywords `debug preview`. In the search results, confirm that the check box for **Debug > JavaScript: Use Preview** is checked.
+   * Confirm that JavaScript preview debugging is enabled. Open the settings from the menu bar (**File** > **Preferences** > **Settings**). Search using the keywords `debug preview`. In the search results, confirm that the check box for **Debug > JavaScript: Use Preview** is checked. If the option to enable preview debugging isn't present, either upgrade to the latest version of VS Code or install the [JavaScript Debugger Extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.js-debug-nightly) (VS Code versions 1.46 or earlier).
    * Reload the window.
 
 1. Start debugging using the <kbd>F5</kbd> keyboard shortcut or the menu item.
+
+   > [!NOTE]
+   > **Run Without Debugging** (<kbd>Ctrl</kbd>+<kbd>F5</kbd>) isn't supported.
 
 1. When prompted, select the **Blazor WebAssembly Debug** option to start debugging.
 
