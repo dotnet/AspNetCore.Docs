@@ -221,7 +221,7 @@ To invoke a component's .NET methods:
 > [!NOTE]
 > For Blazor Server apps, where several users might be concurrently using the same component, use a helper class to invoke instance methods.
 >
-> For more information, see the [Component instance helper class](#component-instance-helper-class) section.
+> For more information, see the [Component instance method helper class](#component-instance-method-helper-class) section.
 
 In the client-side JavaScript:
 
@@ -327,7 +327,7 @@ To pass arguments to the instance method:
   Sarah Jane, UpdateMessage Called!
   ```
 
-## Component instance helper class
+## Component instance method helper class
 
 The helper class is used to invoke an instance method (as an <xref:System.Action>) and are helpful when:
 
