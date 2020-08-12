@@ -542,6 +542,19 @@ The factory method of single service, such as the second argument to [AddSinglet
   ```
 * Another service locator variation to avoid is injecting a factory that resolves dependencies at runtime. Both of these practices mix [Inversion of Control](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#dependency-inversion) strategies.
 * Avoid static access to `HttpContext` (for example, [IHttpContextAccessor.HttpContext](xref:Microsoft.AspNetCore.Http.IHttpContextAccessor.HttpContext)).
+
+<a name="ASP0000"></a>
+* Avoid calls to <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionContainerBuilderExtensions.BuildServiceProvider%2A> in `ConfigureServices`. Calling `BuildServiceProvider` typically happens when the developer wants to resolve a service in `ConfigureServices`. For example, consider the case where you need go get the `LoginPath` from configuration. Avoid the following code:
+
+  ![bad code calling BuildServiceProvider](~/fundamentals/dependency-injection/_static/badcodeX.png)
+
+  In the preceding image, selecting the green wavy line under `services.BuildServiceProvider` shows the following ASP0000 warning:
+    * ASP0000 Calling 'BuildServiceProvider' from application code results in an additional copy of singleton services being created. Consider alternatives such as dependency injecting services as parameters to 'Configure'.
+
+   Calling `BuildServiceProvider` creates a second container, which can create torn singletons and cause references to object graphs across multiple containers. A correct way to get `LoginPath` is using the option pattern with DI:
+
+  [!code-csharp[](dependency-injection/samples/3.x/AntiPattern3/Startup.cs?name=snippet)]
+
 * Disposable transient services are captured by the container for disposal. This can turn into a memory leak if resolved from the top level container.
 * Enable scope validation to make sure the app doesn't have scoped services capturing singletons. For more information, see [Scope validation](#scope-validation).
 
@@ -1144,7 +1157,7 @@ The factory method of single service, such as the second argument to [AddSinglet
     }
     ```
 
-  * Avoid injecting a factory that resolves dependencies at runtime using <xref:System.IServiceProvider.GetService*>.
+* Avoid injecting a factory that resolves dependencies at runtime using <xref:System.IServiceProvider.GetService*>.
 * Avoid static access to `HttpContext` (for example, [IHttpContextAccessor.HttpContext](xref:Microsoft.AspNetCore.Http.IHttpContextAccessor.HttpContext)).
 
 Like all sets of recommendations, you may encounter situations where ignoring a recommendation is required. Exceptions are rare, mostly special cases within the framework itself.
