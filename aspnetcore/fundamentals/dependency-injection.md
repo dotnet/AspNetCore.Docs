@@ -156,6 +156,8 @@ For more information, see <xref:Microsoft.Extensions.DependencyInjection.IServic
 
 See the section [Combining service collection](#csc) for instructions on writing an extension method to register services.
 
+[!INCLUDE[](~/includes/combine-di.md)]
+
 ## Service lifetimes
 
 Choose an appropriate lifetime for each registered service. ASP.NET Core services can be configured with the following lifetimes:
@@ -193,7 +195,7 @@ By default, in the development environment, resolving a service from another ser
 Singleton lifetime services (<xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton*>) are created either:
 
 * The first time they're requested.
-* When `Startup.ConfigureServices` is run and an instance is specified with the service registration.
+* By the developer, when providing an implementation instance directly to the container. This approach is rarely needed.
 
 Every subsequent request uses the same instance. If the app requires singleton behavior, allow the service container to manage the service's lifetime. Don't implement the singleton design pattern and provide code to dispose of the singleton. Services should never be disposed by code that resolved the service from a container. If a type or factory is registered as a singleton, the container will dispose the singleton automatically.
 
@@ -266,8 +268,7 @@ Services can be resolved by two mechanisms:
 * <xref:System.IServiceProvider>
 * <xref:Microsoft.Extensions.DependencyInjection.ActivatorUtilities>:
   * Creates objects without service registration in the dependency injection container.
-  <!-- Review: what is user-facing abstractions? Frame work features or library features? -->
-  * Used with user-facing abstractions, such as [Tag Helpers](xref:mvc/views/tag-helpers/intro), MVC controllers, and [model binders](xref:mvc/models/model-binding).
+  * Used with framework features, such as [Tag Helpers](xref:mvc/views/tag-helpers/intro), MVC controllers, and [model binders](xref:mvc/models/model-binding).
 
 Constructors can accept arguments that aren't provided by dependency injection, but the arguments must assign default values.
 
@@ -325,8 +326,6 @@ The logger output shows:
 To reduce the logging output, set "Logging:LogLevel:Microsoft:Error" in the *appsettings.Development.json* file:
 
 [!code-json[](dependency-injection/samples/3.x/DependencyInjectionSample/appsettings.Development.json&highlight=7)]
-
-[!INCLUDE[](~/includes/combine-di.md)]
 
 ## Call services from main
 
