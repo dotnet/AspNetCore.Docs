@@ -264,7 +264,7 @@ The placeholder `{APP ASSEMBLY}` is the app's app assembly name (for example, `B
 }
 ```
 
-When several components of the same type are rendered, use a helper class to invoke the instance method (as an <xref:System.Action>) on each component.
+When several components of the same type are rendered, use a helper class to invoke an instance method (as an <xref:System.Action>) on each component.
 
 In the following example:
 
