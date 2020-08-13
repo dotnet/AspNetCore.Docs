@@ -69,7 +69,7 @@
         </p>
         <br />
         <button disabled="@Busy" class="btn btn-warning"
-                @onclick="@(async () => await CancelAsync())">
+                @onclick="CancelAsync">
             Cancel
         </button>&nbsp;
         <button disabled="@Busy" type="submit"

@@ -63,15 +63,6 @@ The following recommendations are designed to provide a consistent approach to u
 
 The fastest way to create a new `DbContext` instance is by using `new` to create a new instance. However, there are several scenarios that may require additional dependencies to be resolved. For example, you may wish to use [DbContextOptions](https://docs.microsoft.com/ef/core/miscellaneous/configuring-dbcontext#configuring-dbcontextoptions) to configure the context. 
 
-Here is an example that configures SQLite and enables data logging. The code uses an extension method to configure the database factory for dependency injection and provide the default options:
-
-:::moniker range=">= aspnetcore-5.0"
-[!code-csharp[](./common/samples/5.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Startup.cs?range=29-31)]
-:::moniker-end
-:::moniker range="< aspnetcore-5.0"
-[!code-csharp[](./common/samples/3.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Startup.cs?range=29-31)]
-:::moniker-end
-
 :::moniker range=">= aspnetcore-5.0"
 The recommended solution to create a new `DbContext` with dependencies is to use a factory. EF Core 5.0 provides a built-in factory for creating new contexts.
 :::moniker-end
@@ -79,6 +70,15 @@ The recommended solution to create a new `DbContext` with dependencies is to use
 The recommended solution to create a new `DbContext` with dependencies is to use a factory. The sample app implements its own factory in `Data/DbContextFactory.cs`. 
 
 [!code-csharp[](./common/samples/3.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Data/DbContextFactory.cs)]
+:::moniker-end
+
+Here is an example that configures SQLite and enables data logging. The code uses an extension method to configure the database factory for dependency injection and provide the default options:
+
+:::moniker range=">= aspnetcore-5.0"
+[!code-csharp[](./common/samples/5.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Startup.cs?range=29-31)]
+:::moniker-end
+:::moniker range="< aspnetcore-5.0"
+[!code-csharp[](./common/samples/3.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Startup.cs?range=29-31)]
 :::moniker-end
 
 The factory is injected into components and used to create new instances. For example, in `Pages/Index.razor`:
@@ -122,7 +122,7 @@ Finally, `OnInitializedAsync` is overridden to create a new context. In the samp
 
 ## The sample app
 
-The sample application was built as a reference for Blazor Server apps the use EF Core. It includes a grid with sorting and filtering, delete, add, and update operations. It demonstrates use of EF Core to handle optimistic concurrency.
+The sample application was built as a reference for Blazor Server apps that use EF Core. It includes a grid with sorting and filtering, delete, add, and update operations. It demonstrates use of EF Core to handle optimistic concurrency.
 
 :::moniker range="< aspnetcore-5.0"
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/3.x/BlazorServerEFCoreSample) ([how to download](xref:index#how-to-download-a-sample))

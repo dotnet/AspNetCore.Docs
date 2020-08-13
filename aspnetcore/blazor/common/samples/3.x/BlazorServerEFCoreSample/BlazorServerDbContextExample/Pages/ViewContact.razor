@@ -34,12 +34,12 @@ else
         <h3>@Contact.Street</h3>
         <h3>@Contact.City, @Contact.State @Contact.ZipCode</h3>
         <br />
-        <a class="btn btn-primary" title="Go Back" href="/@PageHelper.Page">
+        <a class="btn btn-primary" title="Go Back" href="@PageHelper.Page">
             🔙 Back to Grid
         </a>
         @if (!Deleted)
         {
-            <a class="btn btn-primary" href="/edit/@Contact.Id" title="Edit">Edit</a><span>&nbsp;</span>
+            <a class="btn btn-primary" href="edit/@Contact.Id" title="Edit">Edit</a><span>&nbsp;</span>
             @if (!ShowConfirmation)
             {
                 <button class="btn btn-danger" @onclick="@(() => { ShowConfirmation = true; EditSuccess = false; })">Delete</button>

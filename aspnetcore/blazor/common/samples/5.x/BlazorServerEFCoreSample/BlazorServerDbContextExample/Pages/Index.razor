@@ -10,7 +10,7 @@
 
 <h1>Contacts</h1>
 <GridWrapper @ref="Wrapper"
-             FilterChanged="async () => await ReloadAsync()"
+             FilterChanged="ReloadAsync"
              DeleteRequested="id => Wrapper.DeleteRequestId = id">
     <div class="container-fluid contacts-grid">
         <div class="row">
@@ -25,12 +25,12 @@
                 @Filters.PageHelper.TotalItemCount items.
                 <a disabled="@(Filters.Loading || !Filters.PageHelper.HasPrev)"
                    class="btn btn-primary @IsDisabled(Filters.PageHelper.HasPrev)"
-                   href="/@Filters.PageHelper.PrevPage">
+                   href="@Filters.PageHelper.PrevPage">
                     Previous
                 </a>
                 <a disabled="@(Filters.Loading || !Filters.PageHelper.HasNext)"
                    class="btn btn-primary @IsDisabled(Filters.PageHelper.HasNext)"
-                   href="/@Filters.PageHelper.NextPage">
+                   href="@Filters.PageHelper.NextPage">
                     Next
                 </a>
             </div>
@@ -83,8 +83,8 @@
         {
             @foreach (var contact in Contacts)
             {
-                <ContactRow CurrentContact="@contact"
-                            DeleteContact="async () => await DeleteContactAsync()" />
+                <ContactRow @key=contact CurrentContact="@contact"
+                            DeleteContact="DeleteContactAsync" />
             }
         }
     </div>
