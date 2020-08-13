@@ -113,7 +113,7 @@ While debugging your Blazor WebAssembly app, you can also debug your server code
 1. Start debugging using the <kbd>F5</kbd> keyboard shortcut or the menu item.
 
    > [!NOTE]
-   > **Start Without Debugging** (<kbd>Ctrl</kbd>+<kbd>F5</kbd>) isn't supported. When the app is run in the Development environment, debugging overhead always results in a small performance reduction.
+   > **Start Without Debugging** (<kbd>Ctrl</kbd>+<kbd>F5</kbd>) isn't supported. When the app is run in Debug mode, debugging overhead always results in a small performance reduction.
 
 1. When prompted, select the **Blazor WebAssembly Debug** option to start debugging.
 
