@@ -19,6 +19,8 @@ uid: data/entity-framework-6
 
 ::: moniker-end
 
+::: moniker range="< aspnetcore-3.0"
+
 By [Paweł Grudzień](https://github.com/pgrudzien12), [Damien Pontifex](https://github.com/DamienPontifex), and [Tom Dykstra](https://github.com/tdykstra)
 
 This article shows how to use Entity Framework 6 in an ASP.NET Core application.	
@@ -90,4 +92,4 @@ This sample can be created from scratch by the following steps in Visual Studio:
 
 * In the Core project, add a controller and view(s) to verify that you can read and write data. (Note that ASP.NET Core MVC scaffolding won't work with the EF6 context referenced from the class library.)
 
-::: moniker range="< aspnetcore-3.0"
+::: moniker-end
