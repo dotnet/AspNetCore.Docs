@@ -136,6 +136,14 @@ For more information, see the following sections of the *Additional scenarios* a
 * [Request additional access tokens](xref:blazor/security/webassembly/additional-scenarios#request-additional-access-tokens)
 * [Attach tokens to outgoing requests](xref:blazor/security/webassembly/additional-scenarios#attach-tokens-to-outgoing-requests)
 
+::: moniker range=">= aspnetcore-5.0"
+
+## Login mode
+
+[!INCLUDE[](~/includes/blazor-security/msal-login-mode.md)]
+
+::: moniker-end
+
 ## Imports file
 
 [!INCLUDE[](~/includes/blazor-security/imports-file-standalone.md)]

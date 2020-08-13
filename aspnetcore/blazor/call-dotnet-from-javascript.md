@@ -5,7 +5,7 @@ description: Learn how to invoke .NET methods from JavaScript functions in Blazo
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/07/2020
+ms.date: 08/12/2020
 no-loc: [cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/call-dotnet-from-javascript
 ---
@@ -218,11 +218,16 @@ To invoke a component's .NET methods:
 * Use the `invokeMethod` or `invokeMethodAsync` function to make a static method call to the component.
 * The component's static method wraps the call to its instance method as an invoked <xref:System.Action>.
 
+> [!NOTE]
+> For Blazor Server apps, where several users might be concurrently using the same component, use a helper class to invoke instance methods.
+>
+> For more information, see the [Component instance method helper class](#component-instance-method-helper-class) section.
+
 In the client-side JavaScript:
 
 ```javascript
 function updateMessageCallerJS() {
-  DotNet.invokeMethod('{APP ASSEMBLY}', 'UpdateMessageCaller');
+  DotNet.invokeMethodAsync('{APP ASSEMBLY}', 'UpdateMessageCaller');
 }
 ```
 
@@ -264,7 +269,70 @@ The placeholder `{APP ASSEMBLY}` is the app's app assembly name (for example, `B
 }
 ```
 
-When there are several components, each with instance methods to call, use a helper class to invoke the instance methods (as <xref:System.Action>s) of each component.
+To pass arguments to the instance method:
+
+* Add parameters to the JS method invocation. In the following example, a name is passed to the method. Additional parameters can be added to the list as needed.
+
+  ```javascript
+  function updateMessageCallerJS(name) {
+    DotNet.invokeMethodAsync('{APP ASSEMBLY}', 'UpdateMessageCaller', name);
+  }
+  ```
+  
+  The placeholder `{APP ASSEMBLY}` is the app's app assembly name (for example, `BlazorSample`).
+
+* Provide the correct types to the <xref:System.Action> for the parameters. Provide the parameter list to the C# methods. Invoke the <xref:System.Action> (`UpdateMessage`) with the parameters (`action.Invoke(name)`).
+
+  `Pages/JSInteropComponent.razor`:
+
+  ```razor
+  @page "/JSInteropComponent"
+
+  <p>
+      Message: @message
+  </p>
+
+  <p>
+      <button onclick="updateMessageCallerJS('Sarah Jane')">
+          Call JS Method
+      </button>
+  </p>
+
+  @code {
+      private static Action<string> action;
+      private string message = "Select the button.";
+
+      protected override void OnInitialized()
+      {
+          action = UpdateMessage;
+      }
+
+      private void UpdateMessage(string name)
+      {
+          message = $"{name}, UpdateMessage Called!";
+          StateHasChanged();
+      }
+
+      [JSInvokable]
+      public static void UpdateMessageCaller(string name)
+      {
+          action.Invoke(name);
+      }
+  }
+  ```
+
+  Output `message` when the **Call JS Method** button is selected:
+
+  ```
+  Sarah Jane, UpdateMessage Called!
+  ```
+
+## Component instance method helper class
+
+The helper class is used to invoke an instance method as an <xref:System.Action>. Helper classes are useful when:
+
+* Several components of the same type are rendered on the same page.
+* A Blazor Server app is used, where multiple users might be using a component concurrently.
 
 In the following example:
 
