@@ -65,7 +65,7 @@ To debug a Blazor WebAssembly app in Visual Studio:
 1. Press <kbd>F5</kbd> to run the app in the debugger.
 
    > [!NOTE]
-   > **Start Without Debugging** (<kbd>Ctrl</kbd>+<kbd>F5</kbd>) isn't supported. When the app is run in the Development environment, debugging overhead always results in a small performance reduction.
+   > **Start Without Debugging** (<kbd>Ctrl</kbd>+<kbd>F5</kbd>) isn't supported. When the app is run in Debug mode, debugging overhead always results in a small performance reduction.
 
 1. Set a breakpoint in `Pages/Counter.razor` in the `IncrementCount` method.
 1. Browse to the **`Counter`** tab and select the button to hit the breakpoint:
