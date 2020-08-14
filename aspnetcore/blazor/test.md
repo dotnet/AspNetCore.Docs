@@ -43,7 +43,7 @@ Unit testing also provides access to the instance of the CUT, allowing for inspe
 
 With regard to the component's environment, E2E tests must make sure that the expected environmental state has been reached before verification starts. Otherwise, the result is unpredictable. In unit testing, the rendering of the CUT and the life cycle of the test are more integrated, which improves test stability.
 
-E2E testing involves launching multiple processes, network and disk I/O, and other subsystem activity that are often lead to poor test reliability. Unit tests are typically insulated from these sorts of issues.
+E2E testing involves launching multiple processes, network and disk I/O, and other subsystem activity that often lead to poor test reliability. Unit tests are typically insulated from these sorts of issues.
 
 The following table summarizes the difference between the two testing approaches.
 
