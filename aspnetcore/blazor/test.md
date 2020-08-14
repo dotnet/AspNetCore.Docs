@@ -23,7 +23,7 @@ To test a Blazor component, the *Component Under Test* (CUT) is:
 
 ## Test approaches
 
-Two common approaches for testing Blazor components are End-to-end (E2E) testing and unit testing:
+Two common approaches for testing Blazor components are end-to-end (E2E) testing and unit testing:
 
 * **Unit testing**: [Unit tests](/dotnet/core/testing/) are written with a unit testing library that provides:
   * Component rendering.
