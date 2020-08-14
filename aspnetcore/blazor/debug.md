@@ -5,7 +5,7 @@ description: Learn how to debug Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/30/2020
+ms.date: 08/14/2020
 no-loc: [cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/debug
 ---
@@ -269,3 +269,13 @@ protected override async Task OnInitializedAsync()
     ...
 }
 ```
+
+### Visual Studio timeout
+
+If Visual Studio throws an exception that the debug adapter failed to launch mentioning that the timeout was reached, you can adjust the timeout with a Registry setting:
+
+```console
+VsRegEdit.exe set "<VSInstallFolder>" HKCU JSDebugger\Options\Debugging "BlazorTimeoutInMilliseconds" dword {TIMEOUT}
+```
+
+The `{TIMEOUT}` placeholder in the preceding command is in milliseconds. For example, one minute is assigned as `60000`.
