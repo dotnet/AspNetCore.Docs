@@ -247,6 +247,14 @@ The Blazor framework provides the <xref:Microsoft.AspNetCore.Components.Forms.Da
 
 Create a validator component from <xref:Microsoft.AspNetCore.Components.ComponentBase>:
 
+* The form's <xref:Microsoft.AspNetCore.Components.Forms.EditContext> is a [cascading parameter](xref:blazor/components/cascading-values-and-parameters) of the component.
+* When the validator component is initialized, a new <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore> is created to maintain a current list of form errors.
+* The message store receives errors when developer code in the form's component calls the `DisplayErrors` method. The errors are passed to the `DisplayErrors` method in a [`Dictionary<string, List<string>>`](xref:System.Collections.Generic.Dictionary`2). The key is the name of the form field that has one or more errors. The value is the error list.
+* Messages are cleared when any of the following have occurred:
+  * Validation is requested on the <xref:Microsoft.AspNetCore.Components.Forms.EditContext> when the `OnValidationRequested` event is raised. All of the errors are cleared.
+  * A field changes in the form when the `OnFieldChanged` event is raised. Only the errors for the field are cleared.
+  * The `ClearErrors` method is called by developer code. All of the errors are cleared.
+
 ```csharp
 using System;
 using System.Collections.Generic;
@@ -302,14 +310,11 @@ namespace BlazorSample.Client
 
 ## Business logic validation
 
-Business logic validation can be accomplished with a [validator component](#validator-components):
-
-* Process model validation in the form component.
-* Pass field validation errors in a dictionary to the validator component.
+Business logic validation can be accomplished with a [validator component](#validator-components) that receives form errors in a dictionary.
 
 In the following example:
 
-* The validator component, `CustomValidator`, shown in the [Validator components](#validator-components) section is used.
+* The `CustomValidator` component from the [Validator components](#validator-components) section of this article is used.
 * The validation requires that the value of the ship description (`Description`) isn't `null` or empty if the user selects the `Defense` ship classification (`Classification`).
 
 When validation messages are set in the component, they're added to the validator's <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore> and shown in the <xref:Microsoft.AspNetCore.Components.Forms.EditForm>:
@@ -367,14 +372,15 @@ Server validation can be accomplished with a server [validator component](#valid
 * Process client-side validation in the form with the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component.
 * When the form passes client-side validation (<xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit> is called), send the <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Model?displayProperty=nameWithType> to a backend server API for form processing.
 * Process model validation on the server.
-* If model validation passes on the server, process the form and send back a success status code (*200 - OK*). If model validation fails, return a failure status code (*400 - Bad Request*) and the field validation errors.
+* The server API includes both the built-in framework data annotations validation and custom validation logic supplied by the developer. If validation passes on the server, process the form and send back a success status code (*200 - OK*). If validation fails, return a failure status code (*400 - Bad Request*) and the field validation errors.
 * Either disable the form on success or display the errors.
 
 The following example is based on:
 
-* A hosted Blazor solution created by the Blazor Hosted project template.
+* A hosted Blazor solution created by the [Blazor Hosted project template](xref:blazor/hosting-models#blazor-webassembly).
 * The *Starfleet Starship Database* form example in the preceding [Built-in forms components](#built-in-forms-components) section.
-* The validator component shown in the [Validator components](#validator-components) section.
+* The Blazor framework's <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component.
+* The `CustomValidator` component shown in the [Validator components](#validator-components) section.
 
 In the following example, the server API validates that the value of the ship description (`Description`) isn't `null` or empty if the user selects the `Defense` ship classification (`Classification`).
 
@@ -470,7 +476,7 @@ If the server API returns the preceding default JSON response, it's possible, bu
 }
 ```
 
-To modify the server API's response, change the delegate that's invoked on actions that are annotated with <xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute> in `Startup.ConfigureServices`. For the API endpoint (`/StarshipValidation`), return a <xref:Microsoft.AspNetCore.Mvc.BadRequestObjectResult> with the <xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary>. For any other API endpoints, preserve the default behavior by returning the object result with a new <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails>:
+To modify the server API's response to make it only return the validation errors, change the delegate that's invoked on actions that are annotated with <xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute> in `Startup.ConfigureServices`. For the API endpoint (`/StarshipValidation`), return a <xref:Microsoft.AspNetCore.Mvc.BadRequestObjectResult> with the <xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary>. For any other API endpoints, preserve the default behavior by returning the object result with a new <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails>:
 
 ```csharp
 using Microsoft.AspNetCore.Mvc;
@@ -499,7 +505,7 @@ For more information, see <xref:web-api/handle-errors#validation-failure-error-r
 
 In the client project, add the validator component shown in the [Validator components](#validator-components) section.
 
-In the client project, the *Starfleet Starship Database* form is updated to show server validation errors with help of the `CustomValidator` component. When the server API returns validation messages, they're added to the validator component's <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore>. The errors are available in the form's <xref:Microsoft.AspNetCore.Components.Forms.EditContext> for display by the form's <xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary>:
+In the client project, the *Starfleet Starship Database* form is updated to show server validation errors with help of the `CustomValidator` component. When the server API returns validation messages, they're added to the `CustomValidator` component's <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore>. The errors are available in the form's <xref:Microsoft.AspNetCore.Components.Forms.EditContext> for display by the form's <xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary>:
 
 ```csharp
 @page "/FormValidation"
@@ -630,6 +636,13 @@ In the client project, the *Starfleet Starship Database* form is updated to show
     }
 }
 ```
+
+> [!NOTE]
+> The example approach and sample code provided in this section is suitable for any of the Blazor WebAssembly hosted solution examples in this documentation set:
+>
+> * [Azure Active Directory (AAD)](xref:blazor/security/webassembly/hosted-with-azure-active-directory)
+> * [Azure Active Directory (AAD) B2C](xref:blazor/security/webassembly/hosted-with-azure-active-directory-b2c)
+> * [Identity Server](xref:blazor/security/webassembly/hosted-with-identity-server)
 
 ## InputText based on the input event
 
