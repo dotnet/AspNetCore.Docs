@@ -5,7 +5,7 @@ description: Learn how to host and deploy a Blazor Server app using ASP.NET Core
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/04/2020
+ms.date: 08/14/2020
 no-loc: [cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/host-and-deploy/server
 ---
@@ -188,16 +188,19 @@ else
     <span>@(latency.Value.TotalMilliseconds)ms</span>
 }
 
-@code
-{
+@code {
     private DateTime startTime;
     private TimeSpan? latency;
 
-    protected override async Task OnInitializedAsync()
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        startTime = DateTime.UtcNow;
-        var _ = await JS.InvokeAsync<string>("toString");
-        latency = DateTime.UtcNow - startTime;
+        if (firstRender)
+        {
+            startTime = DateTime.UtcNow;
+            var _ = await JS.InvokeAsync<string>("toString");
+            latency = DateTime.UtcNow - startTime;
+            StateHasChanged();
+        }
     }
 }
 ```
