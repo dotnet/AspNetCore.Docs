@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to build a web API with ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 2/25/2020
+ms.date: 08/13/2020
 no-loc: [cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-web-api
 ---
@@ -98,11 +98,11 @@ The following diagram shows the design of the app.
 
   ![macOS New solution](first-web-api-mac/_static/sln.png)
 
-* In Visual Studio for Mac earlier than version 8.6, select **.NET Core** > **App** > **API** > **Next**. In version 8.6 or later, select **Web and Console** > **App** > **API** > **Next** .
+* In Visual Studio for Mac earlier than version 8.6, select **.NET Core** > **App** > **API** > **Next**. In version 8.6 or later, select **Web and Console** > **App** > **API** > **Next**.
 
   ![macOS API template selection](first-web-api-mac/_static/api_template.png)
 
-* In the **Configure your new ASP.NET Core Web API** dialog, select the latest .NET Core 3.x **Target Framework**. Select **Next**.
+* In the **Configure the new ASP.NET Core Web API** dialog, select the latest .NET Core 3.x **Target Framework**. Select **Next**.
 
 * Enter *TodoApi* for the **Project Name** and then select **Create**.
 
@@ -310,6 +310,8 @@ Replace the return statement in the `PostTodoItem` to use the [nameof](/dotnet/c
 
 The preceding code is an HTTP POST method, as indicated by the [`[HttpPost]`](xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute) attribute. The method gets the value of the to-do item from the body of the HTTP request.
 
+For more information, see [Attribute routing with Http[Verb] attributes](xref:mvc/controllers/routing#attribute-routing-with-httpverb-attributes).
+
 The <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction*> method:
 
 * Returns an HTTP 201 status code if successful. HTTP 201 is the standard response for an HTTP POST method that creates a new resource on the server.
@@ -334,6 +336,7 @@ This tutorial uses Postman to test the web API.
 
 * Create a new request.
 * Set the HTTP method to `POST`.
+* Set the URI to `https://localhost:<port>/api/TodoItem`. For example, `https://localhost:5001/api/TodoItem`.
 * Select the **Body** tab.
 * Select the **raw** radio button.
 * Set the type to **JSON (application/json)**.
@@ -350,15 +353,15 @@ This tutorial uses Postman to test the web API.
 
   ![Postman with create request](first-web-api/_static/3/create.png)
 
-### Test the location header URI
+### Test the location header URI with Postman
 
 * Select the **Headers** tab in the **Response** pane.
 * Copy the **Location** header value:
 
   ![Headers tab of the Postman console](first-web-api/_static/3/create.png)
 
-* Set the method to GET.
-* Paste the URI (for example, `https://localhost:5001/api/TodoItems/1`).
+* Set the HTTP method to `GET`.
+* Set the URI to `https://localhost:<port>/api/TodoItems/1`. For example, `https://localhost:5001/api/TodoItems/1`.
 * Select **Send**.
 
 ## Examine the GET methods
@@ -389,7 +392,7 @@ A response similar to the following is produced by the call to `GetTodoItems`:
 
 * Create a new request.
 * Set the HTTP method to **GET**.
-* Set the request URL to `https://localhost:<port>/api/TodoItems`. For example, `https://localhost:5001/api/TodoItems`.
+* Set the request URI to `https://localhost:<port>/api/TodoItems`. For example, `https://localhost:5001/api/TodoItems`.
 * Set **Two pane view** in Postman.
 * Select **Send**.
 
@@ -580,7 +583,7 @@ The following diagram shows the design of the app.
 
 * In Visual Studio for Mac earlier than version 8.6, select **.NET Core** > **App** > **API** > **Next**. In version 8.6 or later, select **Web and Console** > **App** > **API** > **Next**.
   
-* In the **Configure your new ASP.NET Core Web API** dialog, select the latest .NET Core 2.x **Target Framework**. Select **Next**.
+* In the **Configure the new ASP.NET Core Web API** dialog, select the latest .NET Core 2.x **Target Framework**. Select **Next**.
 
 * Enter *TodoApi* for the **Project Name** and then select **Create**.
 
@@ -790,7 +793,7 @@ This tutorial uses Postman to test the web API.
 
 * Create a new request.
   * Set the HTTP method to **GET**.
-  * Set the request URL to `https://localhost:<port>/api/todo`. For example, `https://localhost:5001/api/todo`.
+  * Set the request URI to `https://localhost:<port>/api/todo`. For example, `https://localhost:5001/api/todo`.
 * Set **Two pane view** in Postman.
 * Select **Send**.
 
@@ -816,6 +819,7 @@ The `CreatedAtAction` method:
 
 * Build the project.
 * In Postman, set the HTTP method to `POST`.
+* Set the URI to `https://localhost:<port>/api/TodoItem`. For example, `https://localhost:5001/api/TodoItem`.
 * Select the **Body** tab.
 * Select the **raw** radio button.
 * Set the type to **JSON (application/json)**.
@@ -842,7 +846,7 @@ The `CreatedAtAction` method:
   ![Headers tab of the Postman console](first-web-api/_static/pmc2.png)
 
 * Set the method to GET.
-* Paste the URI (for example, `https://localhost:5001/api/Todo/2`).
+* Set the URI to `https://localhost:<port>/api/TodoItems/2`. For example, `https://localhost:5001/api/TodoItems/2`.
 * Select **Send**.
 
 ## Add a PutTodoItem method
