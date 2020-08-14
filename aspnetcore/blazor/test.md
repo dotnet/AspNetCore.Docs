@@ -37,11 +37,13 @@ Two common approaches for testing Blazor components are end-to-end (E2E) testing
 
 In unit testing, only the Blazor component (Razor/C#) is involved. External dependencies, such as services and JS interop, must be mocked. In E2E testing, the Blazor component and all of it's auxiliary infrastructure are part of the test, including CSS, JS, and the DOM and browser APIs.
 
-Test scope, how extensive the tests are, typically has an influence on the speed of the tests. Unit tests run on a subset of the app's subsystems and usually execute in milliseconds. E2E tests, which test a broad group of the app's subsystems, can take several seconds to complete.
+*Test scope* describes how extensive the tests are. Test scope typically has an influence on the speed of the tests. Unit tests run on a subset of the app's subsystems and usually execute in milliseconds. E2E tests, which test a broad group of the app's subsystems, can take several seconds to complete. 
 
 Unit testing also provides access to the instance of the CUT, allowing for inspection and verification of the component's internal state. This normally isn't possible in E2E testing.
 
 With regard to the component's environment, E2E tests must make sure that the expected environmental state has been reached before verification starts. Otherwise, the result is unpredictable. In unit testing, the rendering of the CUT and the life cycle of the test are more integrated, which improves test stability.
+
+E2E testing involves launching multiple processes, network and disk I/O, and other subsystem activity that are often lead to poor test reliability. Unit tests are typically insulated from these sorts of issues.
 
 The following table summarizes the difference between the two testing approaches.
 
@@ -51,6 +53,7 @@ The following table summarizes the difference between the two testing approaches
 | Test execution time              | Milliseconds                     | Seconds                                 |
 | Access to the component instance | Yes                              | No                                      |
 | Sensitive to the environment     | No                               | Yes                                     |
+| Reliability                      | More reliable                    | Less reliable                           |
 
 ## Choose the most appropriate test approach
 
