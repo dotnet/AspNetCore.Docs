@@ -245,6 +245,9 @@ The Blazor framework provides the <xref:Microsoft.AspNetCore.Components.Forms.Da
 * [Business logic validation](#business-logic-validation)
 * [Server validation](#server-validation)
 
+> [!NOTE]
+> Custom data annotation validation attributes can be used instead of validator components in many cases. Custom attributes applied to the form's model activate with the use of the framework's <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component in the form. When used with server-side validation, the attributes must be executable on the server. For more information, see <xref:mvc/models/validation#alternatives-to-built-in-attributes>.
+
 Create a validator component from <xref:Microsoft.AspNetCore.Components.ComponentBase>:
 
 * The form's <xref:Microsoft.AspNetCore.Components.Forms.EditContext> is a [cascading parameter](xref:blazor/components/cascading-values-and-parameters) of the component.
@@ -364,6 +367,9 @@ When validation messages are set in the component, they're added to the validato
     }
 }
 ```
+
+> [!NOTE]
+> As an alternative to using [validation components](#validator-components), data annotation validation attributes can be used. Custom attributes applied to the form's model activate with the use of the framework's <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component in a form. When used with server-side validation, the attributes must be executable on the server. For more information, see <xref:mvc/models/validation#alternatives-to-built-in-attributes>.
 
 ## Server validation
 
@@ -636,6 +642,9 @@ In the client project, the *Starfleet Starship Database* form is updated to show
     }
 }
 ```
+
+> [!NOTE]
+> As an alternative to [validation components](#validator-components), data annotation validation attributes can be used. Custom attributes applied to the form's model activate with the use of the framework's <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component in a form. When used with server-side validation, the attributes must be executable on the server. For more information, see <xref:mvc/models/validation#alternatives-to-built-in-attributes>.
 
 > [!NOTE]
 > The example approach and sample code provided in this section is suitable for any of the Blazor WebAssembly hosted solution examples in this documentation set:
