@@ -1,0 +1,25 @@
+﻿<div class="alert alert-danger">
+    Are you sure you wish to delete this contact?
+    <button class="btn btn-warning" 
+            @onclick="@(async () => await ConfirmAsync(false))">Cancel</button>
+    <span>&nbsp;</span>
+    <button class="btn btn-danger" 
+            @onclick="@(async () => await ConfirmAsync(true))">Confirm</button>
+</div>
+@code {
+    /// <summary>
+    /// Delegate confirmation to parent.
+    /// </summary>
+    [Parameter]
+    public EventCallback<bool> Confirmation { get; set; }
+
+    /// <summary>
+    /// Confirmation.
+    /// </summary>
+    /// <param name="confirmed"><c>True</c> when confirmed.</param>
+    /// <returns>A <see cref="Task"/>.</returns>
+    private async Task ConfirmAsync(bool confirmed)
+    {
+        await Confirmation.InvokeAsync(confirmed);
+    }
+}
