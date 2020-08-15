@@ -72,6 +72,12 @@ To disable compression, add the `BlazorEnableCompression` MSBuild property to th
 </PropertyGroup>
 ```
 
+The `BlazorEnableCompression` property can be passed to the [`dotnet publish`](/dotnet/core/tools/dotnet-publish) command with the following syntax in a command shell:
+
+```dotnetcli
+dotnet publish -p:BlazorEnableCompression=false
+```
+
 ## Rewrite URLs for correct routing
 
 Routing requests for page components in a Blazor WebAssembly app isn't as straightforward as routing requests in a Blazor Server, hosted app. Consider a Blazor WebAssembly app with two components:
