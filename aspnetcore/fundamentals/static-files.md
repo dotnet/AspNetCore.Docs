@@ -96,7 +96,7 @@ The Static File Middleware doesn't provide authorization checks. Any files serve
 
   [!code-csharp[](static-files/samples/3.x/StaticFileAuth/Startup.cs?name=snippet2)]
   
-  The preceding approach sets requires users to be authenticated:
+  The preceding approach requires users to be authenticated:
 
   [!code-csharp[](static-files/samples/3.x/StaticFileAuth/Startup.cs?name=snippet1&highlight=20-99)]
 
