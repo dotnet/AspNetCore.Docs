@@ -130,7 +130,7 @@ public void Configure(IApplicationBuilder app, ILogger<Startup> logger)
 
 For more information, see <xref:fundamentals/startup> and [Access configuration in Startup](xref:fundamentals/configuration/index#access-configuration-in-startup).
 
-<!-- UP TO HERE -->
+<!-- TO REVIEW -->
 ## Register additional services with extension methods
 
 When a service collection extension method is available to register a service:
@@ -148,6 +148,7 @@ See the section [Combining service collection](#csc) for instructions on writing
 
 [!INCLUDE[](~/includes/combine-di.md)]
 
+<!-- TO REVIEW -->
 ## Service lifetimes
 
 Choose an appropriate lifetime for each registered service. ASP.NET Core services can be configured with the following lifetimes:
@@ -196,6 +197,7 @@ In apps that process requests, singleton services are disposed when the <xref:Mi
 > [!WARNING]
 > Do ***not*** resolve a scoped service from a singleton. It may cause the service to have incorrect state when processing subsequent requests. It's fine to resolve a singleton service from a scoped or transient service.
 
+<!-- TO REVIEW -->
 ## Service registration methods
 
 Service registration extension methods offer overloads that are useful in specific scenarios.
@@ -268,15 +270,15 @@ When services are resolved by `ActivatorUtilities`, [constructor injection](xref
 
 ## Entity Framework contexts
 
-Entity Framework contexts are usually added to the service container using the [scoped lifetime](#service-lifetimes) because web app database operations are normally scoped to the client request. The default lifetime is scoped if a lifetime isn't specified by an [AddDbContext\<TContext>](/dotnet/api/microsoft.extensions.dependencyinjection.entityframeworkservicecollectionextensions.adddbcontext) overload when registering the database context. Services of a given lifetime shouldn't use a database context with a shorter lifetime than the service.
+By default, Entity Framework contexts are added to the service container using the [scoped lifetime](#service-lifetimes) because web app database operations are normally scoped to the client request. To use a different lifetime, specify the lifetime by using an <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext%2A> overload. Services of a given lifetime shouldn't use a database context with a lifetime that's shorter than the service's lifetime.
 
 ## Lifetime and registration options
 
-To demonstrate the difference between the lifetime and registration options, consider the following interfaces that represent tasks as an operation with an identifier, `OperationId`. Depending on how the lifetime of an operation's service is configured for the following interfaces, the container provides either the same or a different instance of the service when requested by a class:
+To demonstrate the difference between service lifetimes and their registration options, consider the following interfaces that represent a task as an operation with an identifier, `OperationId`. Depending on how the lifetime of an operation's service is configured for the following interfaces, the container provides either the same or different instances of the service when requested by a class:
 
 [!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/Interfaces/IOperation.cs?name=snippet1)]
 
-The interfaces are implemented in the `Operation` class. The `Operation` constructor generates the last 4 characters of a GUID if one isn't supplied:
+The following `Operation` class implements all of the preceding interfaces. The `Operation` constructor generates a GUID and stores the last 4 characters in the `OperationId` property:
 
 [!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/Models/Operation.cs?name=snippet1)]
 
@@ -288,18 +290,17 @@ An `OperationService` is registered that depends on each of the other `Operation
 * When singleton and singleton-instance services are created once and used across all client requests and all services, the `OperationId` is constant across all service requests.
 
 [!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/Services/OperationService.cs?name=snippet1)]
-
 -->
 
-In `Startup.ConfigureServices`, each type is added to the container according to its named lifetime:
+The `Startup.ConfigureServices` method creates multiple registrations of the `Operation` class according to the named lifetimes:
 
 [!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/Startup2.cs?name=snippet1)]
 
-The sample app demonstrates object lifetimes within and between requests. The sample app's `IndexModel` and middleware requests each kind of `IOperation` type and logs the `OperationId`:
+The sample app demonstrates object lifetimes both within and between requests. The `IndexModel` and the middleware request each kind of `IOperation` type and log the `OperationId` for each:
 
 [!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/Pages/Index.cshtml.cs?name=snippet1)]
 
-The middleware is similar to the `IndexModel` and resolves the same services:
+Similar to the `IndexModel`, the middleware resolves the same services:
 
 [!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/Middleware/MyMiddleware.cs?name=snippet)]
 
@@ -309,14 +310,15 @@ Scoped services must be resolved in the `InvokeAsync` method:
 
 The logger output shows:
 
-* *Transient* objects are always different. The transient `OperationId` value is different in the `IndexModel` and the middleware.
-* *Scoped* objects are the same in each request but different across each request.
+* *Transient* objects are always different. The transient `OperationId` value is different in the `IndexModel` and in the middleware.
+* *Scoped* objects are the same for each request but different across each request.
 * *Singleton* objects are the same for every request.
 
 To reduce the logging output, set "Logging:LogLevel:Microsoft:Error" in the *appsettings.Development.json* file:
 
 [!code-json[](dependency-injection/samples/3.x/DependencyInjectionSample/appsettings.Development.json?highlight=7)]
 
+<!-- TO REVIEW -->
 ## Call services from main
 
 Create an <xref:Microsoft.Extensions.DependencyInjection.IServiceScope> with [IServiceScopeFactory.CreateScope](xref:Microsoft.Extensions.DependencyInjection.IServiceScopeFactory.CreateScope*) to resolve a scoped service within the app's scope. This approach is useful to access a scoped service at startup to run initialization tasks:
@@ -365,31 +367,28 @@ The following example shows how to obtain a context for the `IMyDependency` in `
 
 ## Scope validation
 
-When the app is running in the [Development environment](xref:fundamentals/environments) and calls [CreateDefaultBuilder](xref:fundamentals/host/generic-host#default-builder-settings) to build the host, the default service provider performs checks to verify that:
+When the app runs in the [Development environment](xref:fundamentals/environments) and calls [CreateDefaultBuilder](xref:fundamentals/host/generic-host#default-builder-settings) to build the host, the default service provider performs checks to verify that:
 
-* Scoped services aren't directly or indirectly resolved from the root service provider.
-* Scoped services aren't directly or indirectly injected into singletons.
-* Transient services aren't directly or indirectly injected into singletons or scoped services.
+* Scoped services aren't resolved from the root service provider.
+* Scoped services aren't injected into singletons.
+* Transient services aren't injected into singletons or scoped services.
 
-The root service provider is created when <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionContainerBuilderExtensions.BuildServiceProvider*> is called. The root service provider's lifetime corresponds to the app's lifetime when the provider starts with the app and is disposed when the app shuts down.
+The root service provider is created when <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionContainerBuilderExtensions.BuildServiceProvider%2A> is called. The root service provider's lifetime corresponds to the app's lifetime when the provider starts with the app and is disposed when the app shuts down.
 
-Scoped services are disposed by the container that created them. If a scoped service is created in the root container, the service's lifetime is effectively promoted to singleton because it's only disposed by the root container when app is shut down. Validating service scopes catches these situations when `BuildServiceProvider` is called.
+Scoped services are disposed by the container that created them. If a scoped service is created in the root container, the service's lifetime is effectively promoted to singleton because it's only disposed by the root container when the app shuts down. Validating service scopes catches these situations when `BuildServiceProvider` is called.
 
 For more information, see [Scope validation](xref:fundamentals/host/web-host#scope-validation).
 
 ## Request Services
 
-The services available within an ASP.NET Core request from `HttpContext` are exposed through the [HttpContext.RequestServices](xref:Microsoft.AspNetCore.Http.HttpContext.RequestServices) collection.
+The services available within an ASP.NET Core request are exposed through the [HttpContext.RequestServices](xref:Microsoft.AspNetCore.Http.HttpContext.RequestServices) collection. When services are requested from inside of a request, the services and their dependencies are resolved from the `RequestServices` collection.
 
-Request Services represent the services configured and requested as part of the app. When the objects specify dependencies, these are satisfied by the types found in `RequestServices`, not `ApplicationServices`.
-
-Generally, the app shouldn't use these properties directly. Instead, request the types that classes require via class constructors and allow the framework to inject the dependencies. This yields classes that are easier to test.
-
-ASP.NET Core creates a scope per request and `RequestServices` exposes the scoped service provider. All scoped services are valid for as long as the request is active.
+The framework creates a scope per request and `RequestServices` exposes the scoped service provider. All scoped services are valid for as long as the request is active.
 
 > [!NOTE]
-> Prefer requesting dependencies as constructor parameters to accessing the `RequestServices` collection.
+> Prefer requesting dependencies as constructor parameters to resolving services from the `RequestServices` collection. This results in classes that are easier to test
 
+<!-- TO REVIEW -->
 ## Design services for dependency injection
 
 Best practices are to:
@@ -473,7 +472,7 @@ Register the instance with a Scoped lifetime. Use <xref:Microsoft.Extensions.Dep
 
 ## Default service container replacement
 
-The built-in service container is designed to serve the needs of the framework and most consumer apps. We recommend using the built-in container unless you need a specific feature that the built-in container doesn't support, such as:
+The built-in service container is designed to serve the needs of the framework and most consumer apps. We recommend using the built-in container unless you need a specific feature that it doesn't support, such as:
 
 * Property injection
 * Injection based on name
@@ -498,6 +497,7 @@ Create thread-safe singleton services. If a singleton service has a dependency o
 
 The factory method of single service, such as the second argument to [AddSingleton\<TService>(IServiceCollection, Func\<IServiceProvider,TService>)](xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton*), doesn't need to be thread-safe. Like a type (`static`) constructor, it's guaranteed to be called once by a single thread.
 
+<!-- TO REVIEW -->
 ## Recommendations
 
 * `async/await` and `Task` based service resolution is not supported. C# does not support asynchronous constructors. The recommended pattern is to use asynchronous methods after synchronously resolving the service.
@@ -554,30 +554,32 @@ DI is an *alternative* to static/global object access patterns. You may not be a
 
 ## Recommended patterns for multi-tenancy in DI
 
-[Orchard Core](https://github.com/OrchardCMS/OrchardCore) provides multi-tenancy. For more information, see the [Orchard Core Documentation](https://docs.orchardcore.net/en/dev/).
+[Orchard Core](https://github.com/OrchardCMS/OrchardCore) is an application framework for building modular, multi-tenant applications on ASP.NET Core. For more information, see the [Orchard Core Documentation](https://docs.orchardcore.net/en/dev/).
 
-See the samples apps at https://github.com/OrchardCMS/OrchardCore.Samples for examples of how to build modular and multi-tenant apps using just Orchard Core Framework without any of the CMS specific features.
+See the [Orchard Core samples](https://github.com/OrchardCMS/OrchardCore.Samples) for examples of how to build modular and multi-tenant apps using just the Orchard Core Framework without any of its CMS-specific features.
 
 ## Framework-provided services
 
-The `Startup.ConfigureServices` method is responsible for defining the services that the app uses, including platform features, such as Entity Framework Core and ASP.NET Core MVC. Initially, the `IServiceCollection` provided to `ConfigureServices` has services defined by the framework depending on [how the host was configured](xref:fundamentals/index#host). Apps based on an ASP.NET Core templates have more than 250 services registered by the framework. A small sample of framework-registered services is listed in the following table.
+The `Startup.ConfigureServices` method registers services that the app uses, including platform features, such as Entity Framework Core and ASP.NET Core MVC. Initially, the `IServiceCollection` provided to `ConfigureServices` has services defined by the framework depending on [how the host was configured](xref:fundamentals/index#host). For apps based on the ASP.NET Core templates, the framework registers more than 250 services. 
 
-| Service Type | Lifetime |
-| ------------ | -------- |
+The following table lists a small sample of these framework-registered services:
+
+| Service Type                                                                                    | Lifetime  |
+|-------------------------------------------------------------------------------------------------|-----------|
 | <xref:Microsoft.AspNetCore.Hosting.Builder.IApplicationBuilderFactory?displayProperty=fullName> | Transient |
-| <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime> | Singleton |
-| <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment> | Singleton |
-| <xref:Microsoft.AspNetCore.Hosting.IStartup?displayProperty=fullName> | Singleton |
-| <xref:Microsoft.AspNetCore.Hosting.IStartupFilter?displayProperty=fullName> | Transient |
-| <xref:Microsoft.AspNetCore.Hosting.Server.IServer?displayProperty=fullName> | Singleton |
-| <xref:Microsoft.AspNetCore.Http.IHttpContextFactory?displayProperty=fullName> | Transient |
-| <xref:Microsoft.Extensions.Logging.ILogger`1?displayProperty=fullName> | Singleton |
-| <xref:Microsoft.Extensions.Logging.ILoggerFactory?displayProperty=fullName> | Singleton |
-| <xref:Microsoft.Extensions.ObjectPool.ObjectPoolProvider?displayProperty=fullName> | Singleton |
-| <xref:Microsoft.Extensions.Options.IConfigureOptions`1?displayProperty=fullName> | Transient |
-| <xref:Microsoft.Extensions.Options.IOptions`1?displayProperty=fullName> | Singleton |
-| <xref:System.Diagnostics.DiagnosticSource?displayProperty=fullName> | Singleton |
-| <xref:System.Diagnostics.DiagnosticListener?displayProperty=fullName> | Singleton |
+| <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime>                                    | Singleton |
+| <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment>                                         | Singleton |
+| <xref:Microsoft.AspNetCore.Hosting.IStartup?displayProperty=fullName>                           | Singleton |
+| <xref:Microsoft.AspNetCore.Hosting.IStartupFilter?displayProperty=fullName>                     | Transient |
+| <xref:Microsoft.AspNetCore.Hosting.Server.IServer?displayProperty=fullName>                     | Singleton |
+| <xref:Microsoft.AspNetCore.Http.IHttpContextFactory?displayProperty=fullName>                   | Transient |
+| <xref:Microsoft.Extensions.Logging.ILogger%601?displayProperty=fullName>                        | Singleton |
+| <xref:Microsoft.Extensions.Logging.ILoggerFactory?displayProperty=fullName>                     | Singleton |
+| <xref:Microsoft.Extensions.ObjectPool.ObjectPoolProvider?displayProperty=fullName>              | Singleton |
+| <xref:Microsoft.Extensions.Options.IConfigureOptions%601?displayProperty=fullName>              | Transient |
+| <xref:Microsoft.Extensions.Options.IOptions%601?displayProperty=fullName>                       | Singleton |
+| <xref:System.Diagnostics.DiagnosticSource?displayProperty=fullName>                             | Singleton |
+| <xref:System.Diagnostics.DiagnosticListener?displayProperty=fullName>                           | Singleton |
 
 ## Additional resources
 
