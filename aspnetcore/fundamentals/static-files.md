@@ -91,6 +91,19 @@ Static files are publicly cacheable for 600 seconds:
 
 The Static File Middleware doesn't provide authorization checks. Any files served by it, including those under `wwwroot`, are publicly accessible. To serve files based on authorization:
 
+* Store them outside of `wwwroot` and any directory accessible to the default Static File Middleware.
+* Call `UseStaticFiles` after `UseAuthorization` and specify the path:
+
+  [!code-csharp[](static-files/samples/3.x/StaticFileAuth/Startup.cs?name=snippet2)]
+  
+  The preceding approach sets requires users to be authenticated:
+
+  [!code-csharp[](static-files/samples/3.x/StaticFileAuth/Startup.cs?name=snippet1&highlight=20-99)]
+
+   [!INCLUDE[](~/includes/requireAuth.md)]
+
+An alternative approach to serve files based on authorization:
+
 * Store them outside of `wwwroot` and any directory accessible to the Static File Middleware.
 * Serve them via an action method to which authorization is applied and return a <xref:Microsoft.AspNetCore.Mvc.FileResult> object:
 
