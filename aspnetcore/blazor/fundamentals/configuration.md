@@ -191,7 +191,7 @@ Add a package reference for [`Microsoft.Extensions.Logging.Configuration`](https
 <PackageReference Include="Microsoft.Extensions.Logging.Configuration" Version="{VERSION}" />
 ```
 
-The latest stable version of the package for the placeholder `{VERSION}` can be found in the package's **Version History** at [NuGet.org](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Configuration).
+For the placeholder `{VERSION}`, the latest stable version of the package that matches the app's shared framework version can be found in the package's **Version History** at [NuGet.org](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Configuration).
 
 `wwwroot/appsettings.json`:
 
