@@ -19,7 +19,7 @@ This article covers common approaches to handling errors in ASP.NET Core web app
 
 ## Developer Exception Page
 
-The *Developer Exception Page* displays detailed information about request exceptions. The page is made available by the [Microsoft.AspNetCore.Diagnostics](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics/) package, which is in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app). Add code to the `Startup.Configure` method to enable the page when the app is running in the Development [environment](xref:fundamentals/environments):
+The *Developer Exception Page* displays detailed information about request exceptions. The page is made available by the Microsoft.AspNetCore.Diagnostics assembly, which is in the [Microsoft.AspNetCore.App shared framework](xref:fundamentals/metapackage-app). Add code to the `Startup.Configure` method to enable the page when the app is running in the Development [environment](xref:fundamentals/environments):
 
 [!code-csharp[](error-handling/samples/2.x/ErrorHandlingSample/Startup.cs?name=snippet_DevPageAndHandlerPage&highlight=1-4)]
 
