@@ -729,8 +729,8 @@ public class ApplicationDbContext
 Notes:
 
 * This example also includes the `UserRole` join entity, which is needed to navigate the many-to-many relationship from Users to Roles.
-* Remember to change the types of the navigation properties to reflect that `ApplicationXxx` types are now being used instead of `IdentityXxx` types.
-* Remember to use the `ApplicationXxx` in the generic `ApplicationContext` definition.
+* Remember to change the types of the navigation properties to reflect that `Application{...}` types are now being used instead of `Identity{...}` types.
+* Remember to use the `Application{...}` in the generic `ApplicationContext` definition.
 
 ### Add all navigation properties
 
