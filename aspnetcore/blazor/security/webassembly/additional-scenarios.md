@@ -682,7 +682,7 @@ builder.Services.AddSingleton<StateContainer>();
 
 ## Customize app routes
 
-By default, the [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication/) library uses the routes shown in the following table for representing different authentication states.
+By default, the [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication) library uses the routes shown in the following table for representing different authentication states.
 
 | Route                            | Purpose |
 | -------------------------------- | ------- |
