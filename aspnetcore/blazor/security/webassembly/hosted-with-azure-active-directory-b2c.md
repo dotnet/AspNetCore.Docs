@@ -136,7 +136,7 @@ The support for authenticating and authorizing calls to ASP.NET Core Web APIs is
 
 ```xml
 <PackageReference Include="Microsoft.AspNetCore.Authentication.AzureADB2C.UI" 
-    Version="{VERSION}" />
+  Version="{VERSION}" />
 ```
 
 The latest stable version of the package for the placeholder `{VERSION}` can be found in the package's **Version History** at [NuGet.org](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.AzureAD.UI).
@@ -239,7 +239,7 @@ If adding authentication to an app, manually add the package to the app's projec
 
 ```xml
 <PackageReference Include="Microsoft.Authentication.WebAssembly.Msal" 
-    Version="{VERSION}" />
+  Version="{VERSION}" />
 ```
 
 The latest stable version of the package for the placeholder `{VERSION}` can be found in the package's **Version History** at [NuGet.org](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal).
