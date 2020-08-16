@@ -321,45 +321,9 @@ To reduce the logging output, set "Logging:LogLevel:Microsoft:Error" in the *app
 <!-- TO REVIEW -->
 ## Call services from main
 
-Create an <xref:Microsoft.Extensions.DependencyInjection.IServiceScope> with [IServiceScopeFactory.CreateScope](xref:Microsoft.Extensions.DependencyInjection.IServiceScopeFactory.CreateScope*) to resolve a scoped service within the app's scope. This approach is useful to access a scoped service at startup to run initialization tasks:
+Create an <xref:Microsoft.Extensions.DependencyInjection.IServiceScope> with [IServiceScopeFactory.CreateScope](xref:Microsoft.Extensions.DependencyInjection.IServiceScopeFactory.CreateScope%2A) to resolve a scoped service within the app's scope. This approach is useful to access a scoped service at startup to run initialization tasks.
 
-```csharp
-public class Program
-{
-    public static void Main(string[] args)
-    {
-        var host = CreateHostBuilder(args).Build();
-
-        using (var scope = host.Services.CreateScope())
-        {
-            var services = scope.ServiceProvider;
-
-            try
-            {
-                SeedData.Initialize(services);
-            }
-            catch (Exception ex)
-            {
-                var logger = services.GetRequiredService<ILogger<Program>>();
-                logger.LogError(ex, "An error occurred seeding the DB.");
-            }
-        }
-
-        host.Run();
-    }
-
-    public static IHostBuilder CreateHostBuilder(string[] args) =>
-        Host.CreateDefaultBuilder(args)
-            .ConfigureWebHostDefaults(webBuilder =>
-            {
-                webBuilder.UseStartup<Startup>();
-            });
-}
-```
-
-The preceding code is from [Add the seed initializer](xref:tutorials/razor-pages/sql?#add-the-seed-initializer) in the Razor Pages tutorial.
-
-The following example shows how to obtain a context for the `IMyDependency` in `Program.Main`:
+The following example shows how to access the scoped `IMyDependency` service and call its `WriteMessage` method in `Program.Main`:
 
 [!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/Program.cs?name=snippet)]
 
@@ -386,7 +350,7 @@ The services available within an ASP.NET Core request are exposed through the [H
 The framework creates a scope per request and `RequestServices` exposes the scoped service provider. All scoped services are valid for as long as the request is active.
 
 > [!NOTE]
-> Prefer requesting dependencies as constructor parameters to resolving services from the `RequestServices` collection. This results in classes that are easier to test
+> Prefer requesting dependencies as constructor parameters to resolving services from the `RequestServices` collection. This results in classes that are easier to test.
 
 <!-- TO REVIEW -->
 ## Design services for dependency injection
