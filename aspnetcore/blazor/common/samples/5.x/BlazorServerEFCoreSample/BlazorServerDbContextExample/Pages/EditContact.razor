@@ -1,7 +1,6 @@
 ﻿@page "/edit/{ContactId:int}"
 
 @using Microsoft.EntityFrameworkCore;
-
 @implements IDisposable
 
 @inject IDbContextFactory<ContactContext> DbFactory
@@ -40,7 +39,6 @@ else
 }
 
 @code {
-
     /// <summary>
     /// Id of contact to edit
     /// </summary>
@@ -86,22 +84,25 @@ else
     /// Start it up
     /// </summary>
     /// <returns>Task</returns>
+    #region snippet2
     protected override async Task OnInitializedAsync()
     {
-        Busy = true; // start async
+        Busy = true;
+
         try
         {
             Context = DbFactory.CreateDbContext();
             Contact = await Context.Contacts
                 .SingleOrDefaultAsync(c => c.Id == ContactId);
-            // additional error handling can go in a catch block below
         }
         finally
         {
-            Busy = false; // end async
+            Busy = false;
         }
+
         await base.OnInitializedAsync();
     }
+    #endregion
 
     /// <summary>
     /// Result of form validation
@@ -178,8 +179,10 @@ else
     /// <summary>
     /// Implement <see cref="IDisposable"/>.
     /// </summary>
+    #region snippet1
     public void Dispose()
     {
         Context.Dispose();
     }
+    #endregion
 }
