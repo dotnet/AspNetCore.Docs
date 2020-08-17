@@ -196,20 +196,27 @@
     /// Deletes a contact.
     /// </summary>
     /// <returns>A <see cref="Task"/>.</returns>
+    #region snippet1
     private async Task DeleteContactAsync()
     {
         using var context = DbFactory.CreateDbContext();
+
         Filters.Loading = true;
+
         var contact = await context.Contacts.FirstAsync(
             c => c.Id == Wrapper.DeleteRequestId);
+
         if (contact != null)
         {
             context.Contacts.Remove(contact);
             await context.SaveChangesAsync();
         }
+
         Filters.Loading = false;
+
         await ReloadAsync();
     }
+    #endregion
 
     /// <summary>
     /// Reload page based on filters and paging controls.
