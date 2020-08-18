@@ -5,7 +5,7 @@ description: Learn how to use forms and field validation scenarios in Blazor.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/17/2020
+ms.date: 08/18/2020
 no-loc: [cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/forms-validation
 ---
@@ -183,14 +183,14 @@ The following form validates user input using the validation defined in the `Sta
 }
 ```
 
-The <xref:Microsoft.AspNetCore.Components.Forms.EditForm> also provides convenient events for valid and invalid form submission:
+The <xref:Microsoft.AspNetCore.Components.Forms.EditForm> creates an <xref:Microsoft.AspNetCore.Components.Forms.EditContext> as a [cascading value](xref:blazor/components/cascading-values-and-parameters) that tracks metadata about the edit process, including which fields have been modified and the current validation messages.
+
+Assign **either** an <xref:Microsoft.AspNetCore.Components.Forms.EditContext> **or** an <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?displayProperty=nameWithType> to an <xref:Microsoft.AspNetCore.Components.Forms.EditForm>. Assignment of both isn't supported and generates a **runtime error**.
+
+The <xref:Microsoft.AspNetCore.Components.Forms.EditForm> provides convenient events for valid and invalid form submission:
 
 * <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit>
 * <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnInvalidSubmit>
-
-The <xref:Microsoft.AspNetCore.Components.Forms.EditForm> creates an <xref:Microsoft.AspNetCore.Components.Forms.EditContext> as a [cascading value](xref:blazor/components/cascading-values-and-parameters) that tracks metadata about the edit process, including which fields have been modified and the current validation messages.
-
-An <xref:Microsoft.AspNetCore.Components.Forms.EditForm> can **either** explicitly assign an <xref:Microsoft.AspNetCore.Components.Forms.EditContext> in the `EditForm` component tag **or** assign an <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?displayProperty=nameWithType>. Assignment of both to an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> isn't supported.
 
 Use <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnSubmit> to use custom code to trigger validation and check field values.
 
@@ -234,19 +234,19 @@ In the following example:
 ```
 
 > [!NOTE]
-> The framework API doesn't currently exist to clear manually added validation messages. Therefore, we don't generally recommend adding validation messages directly to a new <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore> for the form's <xref:Microsoft.AspNetCore.Components.Forms.EditContext>. The only way to clear manually added validation messages is to assign a new <xref:Microsoft.AspNetCore.Components.Forms.EditContext>, which isn't an ideal approach in most cases. Use a different approach for notifying users about business logic validation failures. Suitable approaches are covered in the following sections. For more information, see [How to clear the Editform validation messages with a button click in Blazor (dotnet/aspnetcore #24563)](https://github.com/dotnet/aspnetcore/issues/24563).
+> Framework API doesn't exist to clear validation messages directly from an <xref:Microsoft.AspNetCore.Components.Forms.EditContext>. Therefore, we don't generally recommend adding validation messages to a new <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore> in a form. To manage validation messages, use a [validator component](#validator-components) with your [business logic validation code](#business-logic-validation), as described in this article.
 
 ## Validator components
 
 Validator components support form validation by managing a <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore> for a form's <xref:Microsoft.AspNetCore.Components.Forms.EditContext>.
 
-The Blazor framework provides the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component to attach validation support to forms based on [validation attributes](xref:mvc/models/validation#validation-attributes). Create custom validator components as needed to process validation messages for different forms on the same page or the same form at different steps of form processing, for example client-side validation followed by server-side validation. The validator component example shown in this section, `CustomValidator`, is used in the following sections of this article:
+The Blazor framework provides the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component to attach validation support to forms based on [validation attributes (data annotations)](xref:mvc/models/validation#validation-attributes). Create custom validator components to process validation messages for different forms on the same page or the same form at different steps of form processing, for example client-side validation followed by server-side validation. The validator component example shown in this section, `CustomValidator`, is used in the following sections of this article:
 
 * [Business logic validation](#business-logic-validation)
 * [Server validation](#server-validation)
 
 > [!NOTE]
-> Custom data annotation validation attributes can be used instead of validator components in many cases. Custom attributes applied to the form's model activate with the use of the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. When used with server-side validation, any custom attributes applied to the model must be executable on the server. For more information, see <xref:mvc/models/validation#alternatives-to-built-in-attributes>.
+> Custom data annotation validation attributes can be used instead of custom validator components in many cases. Custom attributes applied to the form's model activate with the use of the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. When used with server-side validation, any custom attributes applied to the model must be executable on the server. For more information, see <xref:mvc/models/validation#alternatives-to-built-in-attributes>.
 
 Create a validator component from <xref:Microsoft.AspNetCore.Components.ComponentBase>:
 
@@ -383,7 +383,7 @@ Server validation can be accomplished with a server [validator component](#valid
 
 The following example is based on:
 
-* A hosted Blazor solution created by the [Blazor Hosted project template](xref:blazor/hosting-models#blazor-webassembly).
+* A hosted Blazor solution created by the [Blazor Hosted project template](xref:blazor/hosting-models#blazor-webassembly). The example can be used with any of the secure hosted Blazor solutions described in the [Security and Identity documentation](xref:blazor/security/webassembly/index#implementation-guidance).
 * The *Starfleet Starship Database* form example in the preceding [Built-in forms components](#built-in-forms-components) section.
 * The Blazor framework's <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component.
 * The `CustomValidator` component shown in the [Validator components](#validator-components) section.
@@ -456,7 +456,7 @@ namespace BlazorSample.Server.Controllers
 }
 ```
 
-When a model binding validation error occurs on the server, an [`ApiController`](xref:web-api/index) (<xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute>) normally returns a [default bad request response](xref:web-api/index#default-badrequest-response) with a <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails>. The response contains more data than just the validation errors, as shown in the following example when all of the fields fail validation:
+When a model binding validation error occurs on the server, an [`ApiController`](xref:web-api/index) (<xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute>) normally returns a [default bad request response](xref:web-api/index#default-badrequest-response) with a <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails>. The response contains more data than just the validation errors, as shown in the following example when all of the fields of the *Starfleet Starship Database* form aren't submitted and the form fails validation:
 
 ```json
 {
@@ -647,7 +647,7 @@ In the client project, the *Starfleet Starship Database* form is updated to show
 > As an alternative to [validation components](#validator-components), data annotation validation attributes can be used. Custom attributes applied to the form's model activate with the use of the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. When used with server-side validation, the attributes must be executable on the server. For more information, see <xref:mvc/models/validation#alternatives-to-built-in-attributes>.
 
 > [!NOTE]
-> The example approach and sample code provided in this section is suitable for any of the Blazor WebAssembly hosted solution examples in this documentation set:
+> The server-side validation approach in this section is suitable for any of the Blazor WebAssembly hosted solution examples in this documentation set:
 >
 > * [Azure Active Directory (AAD)](xref:blazor/security/webassembly/hosted-with-azure-active-directory)
 > * [Azure Active Directory (AAD) B2C](xref:blazor/security/webassembly/hosted-with-azure-active-directory-b2c)
