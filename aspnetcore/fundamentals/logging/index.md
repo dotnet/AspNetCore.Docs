@@ -568,7 +568,7 @@ Use the dotnet trace tooling to collect a trace from an app:
    * Doesn't apply a `FilterSpecs`.
    * Specifies level 5 which maps category Debug.
 
-  Consider the following command:
+   Consider the following command:
 
    ```dotnetcli
    dotnet trace collect -p {PID}  --providers 'Microsoft-Extensions-Logging:4:5:FilterSpecs=*:5
