@@ -121,7 +121,7 @@ await foreach (var response in call.ResponseStream.ReadAllAsync())
 
 ### Client streaming call
 
-A client streaming call starts *without* the client sending a message. The client can choose to send messages with `RequestStream.WriteAsync`. When the client has finished sending messages, `RequestStream.CompleteAsync` should be called to notify the service. The call is finished when the service returns a response message.
+A client streaming call starts *without* the client sending a message. The client can choose to send messages with `RequestStream.WriteAsync`. When the client has finished sending messages, `RequestStream.CompleteAsync()` should be called to notify the service. The call is finished when the service returns a response message.
 
 ```csharp
 var client = new Counter.CounterClient(channel);
@@ -173,6 +173,14 @@ Console.WriteLine("Disconnecting");
 await call.RequestStream.CompleteAsync();
 await readTask;
 ```
+
+For best performance, and to avoid unnecessary errors in the client and service, try to complete bi-directional streaming calls gracefully. A bi-directional call completes gracefully when the server has finished reading the request stream and the client has finished reading the response stream. The sample call above is one example of a bi-directional call that ends gracefully:
+
+1. The client starts a new bi-directional streaming call by calling `EchoClient.Echo`.
+2. Creates a background task that reads incoming messages from the server with `ResponseStream.ReadAllAsync()`.
+3. Sends messages to the server with `RequestStream.WriteAsync`.
+4. Notifies the server it has finished sending messages with `RequestStream.CompleteAsync()`.
+5. Waits until the background task has read all incoming messages.
 
 During a bi-directional streaming call, the client and service can send messages to each other at any time. The best client logic for interacting with a bi-directional call varies depending upon the service logic.
 
