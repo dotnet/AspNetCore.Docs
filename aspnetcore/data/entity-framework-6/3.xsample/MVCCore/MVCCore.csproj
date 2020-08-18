@@ -2,12 +2,10 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>ContosoUniversity</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="EntityFramework" Version="6.4.4" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
   </ItemGroup>
 
 </Project>
