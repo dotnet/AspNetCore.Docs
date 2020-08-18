@@ -11,7 +11,11 @@ uid: data/entity-framework-6
 # ASP.NET Core and Entity Framework 6
 ::: moniker range=">= aspnetcore-3.0"
 
-[Entity Framework](/ef/ef6/) 6.3 and later works with ASP.NET Core 3.1 and later. For more information, see the blog post [Announcing Entity Framework 6.3 with .NET Core Support](https://devblogs.microsoft.com/dotnet/announcing-entity-framework-6-3-preview-with-net-core-support/).
+By [Patrick Goode](https://github.com/attrib75)
+
+## Using Entity Framework 6 with ASP.NET Core
+
+[Entity Framework Core](/ef/) should be used for new development. The [download sample](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/entity-framework-6/3.xsample) uses [Entity Framework 6 (EF6)](/ef/ef6), which can be used to migrate exiting apps to ASP.NET Core.
 
 ## Additional resources
 

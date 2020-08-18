@@ -27,7 +27,7 @@ See the following components in the `BlazorWebAssemblySample` sample app:
 
 ## Packages
 
-Reference the [`System.Net.Http.Json`](https://www.nuget.org/packages/System.Net.Http.Json/) NuGet package in the project file.
+Reference the [`System.Net.Http.Json`](https://www.nuget.org/packages/System.Net.Http.Json) NuGet package in the project file.
 
 ## Add the HttpClient service
 
@@ -171,7 +171,7 @@ In the following code, the Delete `<button>` element calls the `DeleteItem` meth
 
 <xref:System.Net.Http.IHttpClientFactory> services and the configuration of a named <xref:System.Net.Http.HttpClient> are supported.
 
-Reference the [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http/) NuGet package in the project file.
+Reference the [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http) NuGet package in the project file.
 
 `Program.Main` (`Program.cs`):
 

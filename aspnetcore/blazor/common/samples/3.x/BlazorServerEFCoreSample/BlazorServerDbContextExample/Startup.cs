@@ -18,17 +18,17 @@ namespace BlazorServerDbContextExample
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
 
             // register factory and configure the options
+            #region snippet1
             services.AddDbContextFactory<ContactContext>(opt =>
                 opt.UseSqlite($"Data Source={nameof(ContactContext.ContactsDb)}.db")
                 .EnableSensitiveDataLogging());
+            #endregion
 
             // pager
             services.AddScoped<IPageHelper, PageHelper>();
@@ -43,7 +43,6 @@ namespace BlazorServerDbContextExample
             services.AddScoped<EditSuccess>();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
