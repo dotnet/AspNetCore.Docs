@@ -31,7 +31,7 @@ public class ExampleModel
 A form is defined using the <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component. The following form demonstrates typical elements, components, and Razor code:
 
 ```razor
-<EditForm Model="@exampleModel" OnValidSubmit="HandleValidSubmit">
+<EditForm Model="@exampleModel" OnValidSubmit="@HandleValidSubmit">
     <DataAnnotationsValidator />
     <ValidationSummary />
 
@@ -64,14 +64,33 @@ In the preceding example:
 
 A set of built-in input components are available to receive and validate user input. Inputs are validated when they're changed and when a form is submitted. Available input components are shown in the following table.
 
+::: moniker range=">= aspnetcore-5.0"
+
 | Input component | Rendered as&hellip; |
 | --------------- | ------------------- |
-| <xref:Microsoft.AspNetCore.Components.Forms.InputText> | `<input>` |
-| <xref:Microsoft.AspNetCore.Components.Forms.InputTextArea> | `<textarea>` |
-| <xref:Microsoft.AspNetCore.Components.Forms.InputSelect%601> | `<select>` |
-| <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> | `<input type="number">` |
 | <xref:Microsoft.AspNetCore.Components.Forms.InputCheckbox> | `<input type="checkbox">` |
 | <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601> | `<input type="date">` |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> | `<input type="number">` |
+| [`InputRadio`](#radio-buttons) | `<input type="radio">` |
+| [`InputRadioGroup`](#radio-buttons) | `<input type="radio">` |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputSelect%601> | `<select>` |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputText> | `<input>` |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputTextArea> | `<textarea>` |
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+| Input component | Rendered as&hellip; |
+| --------------- | ------------------- |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputCheckbox> | `<input type="checkbox">` |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601> | `<input type="date">` |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> | `<input type="number">` |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputSelect%601> | `<select>` |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputText> | `<input>` |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputTextArea> | `<textarea>` |
+
+::: moniker-end
 
 All of the input components, including <xref:Microsoft.AspNetCore.Components.Forms.EditForm>, support arbitrary attributes. Any attribute that doesn't match a component parameter is added to the rendered HTML element.
 
@@ -118,7 +137,7 @@ The following form validates user input using the validation defined in the `Sta
 
 <h2>New Ship Entry Form</h2>
 
-<EditForm Model="@starship" OnValidSubmit="HandleValidSubmit">
+<EditForm Model="@starship" OnValidSubmit="@HandleValidSubmit">
     <DataAnnotationsValidator />
     <ValidationSummary />
 
@@ -329,7 +348,7 @@ When validation messages are set in the component, they're added to the validato
 
 <h2>New Ship Entry Form</h2>
 
-<EditForm Model="@starship" OnValidSubmit="HandleValidSubmit">
+<EditForm Model="@starship" OnValidSubmit="@HandleValidSubmit">
     <DataAnnotationsValidator />
     <CustomValidator @ref="customValidator" />
     <ValidationSummary />
@@ -529,7 +548,7 @@ In the client project, the *Starfleet Starship Database* form is updated to show
 
 <h2>New Ship Entry Form</h2>
 
-<EditForm Model="@starship" OnValidSubmit="HandleValidSubmit">
+<EditForm Model="@starship" OnValidSubmit="@HandleValidSubmit">
     <DataAnnotationsValidator />
     <CustomValidator @ref="customValidator" />
     <ValidationSummary />
@@ -678,10 +697,10 @@ The `CustomInputText` component can be used anywhere <xref:Microsoft.AspNetCore.
 `Pages/TestForm.razor`:
 
 ```razor
-@page  "/testform"
+@page "/testform"
 @using System.ComponentModel.DataAnnotations;
 
-<EditForm Model="@exampleModel" OnValidSubmit="HandleValidSubmit">
+<EditForm Model="@exampleModel" OnValidSubmit="@HandleValidSubmit">
     <DataAnnotationsValidator />
     <ValidationSummary />
 
@@ -712,6 +731,77 @@ The `CustomInputText` component can be used anywhere <xref:Microsoft.AspNetCore.
 ```
 
 ## Radio buttons
+
+::: moniker range=">= aspnetcore-5.0"
+
+Use `InputRadio` components with the `InputRadioGroup` component to create a radio button group. In the following example, properties are added to the `Starship` model described in the [Built-in forms components](#built-in-forms-components) section:
+
+```csharp
+[Required]
+[Range(typeof(Manufacturer), nameof(Airline.SpaceX), 
+    nameof(Airline.VirginGalactic), ErrorMessage = "Pick a valid manufacturer.")]
+public Manufacturer Manufacturer { get; set; } = Manufacturer.Unknown;
+
+[Required, EnumDataType(typeof(Color))]
+public Color? Color { get; set; } = null;
+
+[Required, EnumDataType(typeof(Engine))]
+public Engine? Engine { get; set; } = null;
+```
+
+Add the following enums to the app. Create a new file to hold them or add them to the `Starship.cs` file. Make them accessible to the `Starship` model and the *Starfleet Starship Database* form:
+
+```csharp
+public enum Manufacturer { SpaceX, NASA, ULA, Virgin, Unknown }
+public enum Color { ImperialRed, SpacecruiserGreen, StarshipBlue, VoyagerOrange }
+public enum Engine { Ion, Plasma, Fusion, Warp }
+```
+
+Update the *Starfleet Starship Database* form described in the [Built-in forms components](#built-in-forms-components) section. Add the components to produce:
+
+* A radio button group for the ship manufacturer.
+* A nested radio button group for ship color and engine.
+
+```razor
+<p>
+    <InputRadioGroup @bind-Value="starship.Manufacturer">
+        Manufacturer:
+        <br>
+        @foreach (var manufacturer in (Manufacturer[])Enum
+            .GetValues(typeof(Manufacturer)))
+        {
+            <InputRadio Value="manufacturer" />
+            @manufacturer.ToString();
+            <br>
+        }
+    </InputRadioGroup>
+</p>
+
+<p>
+    Pick one color and one engine:
+    <InputRadioGroup Name="engine" @bind-Value="starship.Engine">
+        <InputRadioGroup Name="color" @bind-Value="starship.Color">
+            <InputRadio Name="color" Value="Color.ImperialRed" />Imperial Red<br>
+            <InputRadio Name="engine" Value="Engine.Ion" />Ion<br>
+            <InputRadio Name="color" Value="Color.SpacecruiserGreen" />
+                Spacecruiser Green<br>
+            <InputRadio Name="engine" Value="Engine.Plasma" />Plasma<br>
+            <InputRadio Name="color" Value="Color.StarshipBlue" />Starship Blue<br>
+            <InputRadio Name="engine" Value="Engine.Fusion" />Fusion<br>
+            <InputRadio Name="color" Value="Color.VoyagerOrange" />
+                Voyager Orange<br>
+            <InputRadio Name="engine" Value="Engine.Warp" />Warp<br>
+        </InputRadioGroup>
+    </InputRadioGroup>
+</p>
+```
+
+> [!NOTE]
+> If `Name` is omitted, `InputRadio` components are grouped by their most recent ancestor.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
 
 When working with radio buttons in a form, data binding is handled differently than other elements because radio buttons are evaluated as a group. The value of each radio button is fixed, but the value of the radio button group is the value of the selected radio button. The following example shows how to:
 
@@ -766,7 +856,7 @@ The following <xref:Microsoft.AspNetCore.Components.Forms.EditForm> uses the pre
 
 <h1>Radio Button Group Test</h1>
 
-<EditForm Model="model" OnValidSubmit="HandleValidSubmit">
+<EditForm Model="@model" OnValidSubmit="@HandleValidSubmit">
     <DataAnnotationsValidator />
     <ValidationSummary />
 
@@ -798,6 +888,8 @@ The following <xref:Microsoft.AspNetCore.Components.Forms.EditForm> uses the pre
     }
 }
 ```
+
+::: moniker-end
 
 ## Binding `<select>` element options to C# object `null` values
 
@@ -904,7 +996,7 @@ Blazor provides support for validating form input using data annotations with th
 To validate the bound model's entire object graph, including collection- and complex-type properties, use the `ObjectGraphDataAnnotationsValidator` provided by the *experimental* [`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) package:
 
 ```razor
-<EditForm Model="@model" OnValidSubmit="HandleValidSubmit">
+<EditForm Model="@model" OnValidSubmit="@HandleValidSubmit">
     <ObjectGraphDataAnnotationsValidator />
     ...
 </EditForm>
@@ -1005,7 +1097,7 @@ A side effect of the preceding approach is that a <xref:Microsoft.AspNetCore.Com
 * Make the <xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary> component visible when the submit button is selected (for example, in a `HandleValidSubmit` method).
 
 ```razor
-<EditForm EditContext="@editContext" OnValidSubmit="HandleValidSubmit">
+<EditForm EditContext="@editContext" OnValidSubmit="@HandleValidSubmit">
     <DataAnnotationsValidator />
     <ValidationSummary style="@displaySummary" />
 
