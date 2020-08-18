@@ -174,10 +174,10 @@ await call.RequestStream.CompleteAsync();
 await readTask;
 ```
 
-For best performance, and to avoid unnecessary errors in the client and service, try to complete bi-directional streaming calls gracefully. A bi-directional call completes gracefully when the server has finished reading the request stream and the client has finished reading the response stream. The sample call above is one example of a bi-directional call that ends gracefully:
+For best performance, and to avoid unnecessary errors in the client and service, try to complete bi-directional streaming calls gracefully. A bi-directional call completes gracefully when the server has finished reading the request stream and the client has finished reading the response stream. The sample call above is one example of a bi-directional call that ends gracefully. In it the client:
 
-1. The client starts a new bi-directional streaming call by calling `EchoClient.Echo`.
-2. Creates a background task that reads incoming messages from the server with `ResponseStream.ReadAllAsync()`.
+1. Starts a new bi-directional streaming call by calling `EchoClient.Echo`.
+2. Creates a background task to reads messages from the service using `ResponseStream.ReadAllAsync()`.
 3. Sends messages to the server with `RequestStream.WriteAsync`.
 4. Notifies the server it has finished sending messages with `RequestStream.CompleteAsync()`.
 5. Waits until the background task has read all incoming messages.
