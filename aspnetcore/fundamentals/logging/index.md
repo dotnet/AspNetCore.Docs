@@ -5,9 +5,10 @@ description: Learn how to use the logging framework provided by the Microsoft.Ex
 ms.author: riande
 ms.custom: mvc
 ms.date: 6/29/2020
-no-loc: [cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR ]
 uid: fundamentals/logging/index
 ---
+
 # Logging in .NET Core and ASP.NET Core
 
 ::: moniker range=">= aspnetcore-3.0"
@@ -512,6 +513,7 @@ Use the dotnet trace tooling to collect a trace from an app:
    | 4       | Turns on the `FormatMessage` event when `ILogger.Log()` is called. Provides the formatted string version of the information. |
    | 8       | Turns on the `MessageJson` event when `ILogger.Log()` is called. Provides a JSON representation of the arguments. |
 
+   The following table lists the provider levels:
 
    | Provider Level | Description     |
    | :---------: | --------------- |
@@ -524,14 +526,68 @@ Use the dotnet trace tooling to collect a trace from an app:
 
    The parsing for a category level can be either a string or a number:
 
-   | Named value  |   Numeric value |
+   | Category named value  |   Numeric value |
    | :-----: | ----------- |
-   | Trace              |    0 |
-   | Debug              |    1 |
-   | Information        |    2 |
-   | Warning            |    3 |
-   | Error              |    4 |
-   | Critical           |    5 |
+   | `Trace`              |    0 |
+   | `Debug`              |    1 |
+   | `Information`        |    2 |
+   | `Warning`            |    3 |
+   | `Error`              |    4 |
+   | `Critical`           |    5 |
+
+   The provider level and category level:
+
+   * Are in reverse order.
+   * The string constants aren't all identical.
+
+   If no `FilterSpecs` are specified then the `EventSourceLogger` implementation attempts to convert the provider level to a category level and applies it to all categories.
+
+   | Provider Level  |  Category Level      |
+      | :-----: | ----------- |
+   | `Verbose`(5)       |      `Debug`(1)        |
+   | `Informational`(4) |      `Information`(2)  | 
+   | `Warning`(3)       |      `Warning`(3)      |
+   | `Error`(2)         |      `Error`(4)        | 
+   | `Critical`(1)      |      `Critical`(5)     | 
+
+   If `FilterSpecs` are provided, any category that is included in the list uses the category level encoded there, all other categories are filtered out.
+
+   The following examples assume an app that is calling `logger.LogDebug("12345")`.
+   
+   Consider the following command:
+
+      ```dotnetcli
+   dotnet trace collect -p {PID} --providers 'Microsoft-Extensions-Logging:{Keyword}:5
+   ```
+
+   The preceding command:
+
+   * Captures debug messages.
+   * Doesn't apply a `FilterSpecs`.
+   * Specifies level 5 which maps category Debug.
+
+  Consider the following command:
+
+   ```dotnetcli
+   dotnet trace collect -p {PID}  --providers 'Microsoft-Extensions-Logging:{Keyword}:5:FilterSpecs=*:5
+   ```
+
+   The preceding command:
+
+   * Doesn't capture debug messages because the category level 5 is `Critical`.
+   * Provides a `FilterSpecs`.
+
+   The following command captures debug messages because category level 1 specifies `Debug`.
+
+   ```dotnetcli
+   dotnet trace collect -p {PID}  --providers 'Microsoft-Extensions-Logging:{Keyword}:5:FilterSpecs=*:1
+   ```
+
+   The following command captures debug messages because category specifies `Debug`.
+
+   ```dotnetcli
+   dotnet trace collect -p {PID}  --providers 'Microsoft-Extensions-Logging:{Keyword}:5:FilterSpecs=*:Debug
+   ```
 
    `FilterSpecs` entries for `{Logger Category}` and `{Category Level}` represent additional log filtering conditions. Separate `FilterSpecs` entries with the `;` semicolon character.
 
