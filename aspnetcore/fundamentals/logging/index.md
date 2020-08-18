@@ -483,24 +483,24 @@ Use the dotnet trace tooling to collect a trace from an app:
 
    ```dotnetcli
    dotnet trace collect -p {PID} 
-       --providers Microsoft-Extensions-Logging:{Keyword}:{Event Level}
+       --providers Microsoft-Extensions-Logging:{Keyword}:{Provider Level}
            :FilterSpecs=\"
-               {Logger Category 1}:{Event Level 1};
-               {Logger Category 2}:{Event Level 2};
+               {Logger Category 1}:{Category Level 1};
+               {Logger Category 2}:{Category Level 2};
                ...
-               {Logger Category N}:{Event Level N}\"
+               {Logger Category N}:{Category Level N}\"
    ```
 
    When using a PowerShell command shell, enclose the `--providers` value in single quotes (`'`):
 
    ```dotnetcli
    dotnet trace collect -p {PID} 
-       --providers 'Microsoft-Extensions-Logging:{Keyword}:{Event Level}
+       --providers 'Microsoft-Extensions-Logging:{Keyword}:{Provider Level}
            :FilterSpecs=\"
-               {Logger Category 1}:{Event Level 1};
-               {Logger Category 2}:{Event Level 2};
+               {Logger Category 1}:{Category Level 1};
+               {Logger Category 2}:{Category Level 2};
                ...
-               {Logger Category N}:{Event Level N}\"'
+               {Logger Category N}:{Category Level N}\"'
    ```
 
    On non-Windows platforms, add the `-f speedscope` option to change the format of the output trace file to `speedscope`.
@@ -512,7 +512,8 @@ Use the dotnet trace tooling to collect a trace from an app:
    | 4       | Turns on the `FormatMessage` event when `ILogger.Log()` is called. Provides the formatted string version of the information. |
    | 8       | Turns on the `MessageJson` event when `ILogger.Log()` is called. Provides a JSON representation of the arguments. |
 
-   | Event Level | Description     |
+
+   | Provider Level | Description     |
    | :---------: | --------------- |
    | 0           | `LogAlways`     |
    | 1           | `Critical`      |
@@ -521,9 +522,20 @@ Use the dotnet trace tooling to collect a trace from an app:
    | 4           | `Informational` |
    | 5           | `Verbose`       |
 
-   `FilterSpecs` entries for `{Logger Category}` and `{Event Level}` represent additional log filtering conditions. Separate `FilterSpecs` entries with a semicolon (`;`).
+   The parsing for a category level can be either a string or a number:
 
-   Example using a Windows command shell (**no** single quotes around the `--providers` value):
+   | Named value  |   Numeric value |
+   | :-----: | ----------- |
+   | Trace              |    0 |
+   | Debug              |    1 |
+   | Information        |    2 |
+   | Warning            |    3 |
+   | Error              |    4 |
+   | Critical           |    5 |
+
+   `FilterSpecs` entries for `{Logger Category}` and `{Category Level}` represent additional log filtering conditions. Separate `FilterSpecs` entries with the `;` semicolon character.
+
+   Example using a Windows command shell:
 
    ```dotnetcli
    dotnet trace collect -p {PID} --providers Microsoft-Extensions-Logging:4:2:FilterSpecs=\"Microsoft.AspNetCore.Hosting*:4\"
