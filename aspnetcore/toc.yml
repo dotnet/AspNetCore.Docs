@@ -1156,7 +1156,7 @@
       uid: security/anti-request-forgery
     - name: Prevent open redirect attacks
       uid: security/preventing-open-redirects
-    - name: Prevent Cross-Site Scripting
+    - name: Prevent Cross-Site Scripting (XSS)
       uid: security/cross-site-scripting
     - name: Enable Cross-Origin Requests (CORS)
       uid: security/cors
