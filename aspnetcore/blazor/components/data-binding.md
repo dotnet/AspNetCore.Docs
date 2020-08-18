@@ -5,7 +5,7 @@ description: Learn about data binding features for components and DOM elements i
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/26/2020
+ms.date: 08/18/2020
 no-loc: [cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/components/data-binding
 ---
@@ -87,13 +87,13 @@ Consider the following scenario:
 * An `<input>` element is bound to an `int` type with an initial value of `123`:
 
   ```razor
-  <input @bind="MyProperty" />
+  <input @bind="inputValue" />
 
   @code {
-      [Parameter]
-      public int MyProperty { get; set; } = 123;
+      private int inputValue = 123;
   }
   ```
+
 * The user updates the value of the element to `123.45` in the page and changes the element focus.
 
 In the preceding scenario, the element's value is reverted to `123`. When the value `123.45` is rejected in favor of the original value of `123`, the user understands that their value wasn't accepted.
@@ -111,11 +111,10 @@ By default, binding applies to the element's `onchange` event (`@bind="{PROPERTY
 Data binding works with <xref:System.DateTime> format strings using `@bind:format`. Other format expressions, such as currency or number formats, aren't available at this time.
 
 ```razor
-<input @bind="StartDate" @bind:format="yyyy-MM-dd" />
+<input @bind="startDate" @bind:format="yyyy-MM-dd" />
 
 @code {
-    [Parameter]
-    public DateTime StartDate { get; set; } = new DateTime(2020, 1, 1);
+    private DateTime startDate = new DateTime(2020, 1, 1);
 }
 ```
 
@@ -131,103 +130,86 @@ The `@bind:format` attribute specifies the date format to apply to the `value` o
 Specifying a format for the `date` field type isn't recommended because Blazor has built-in support to format dates. In spite of the recommendation, only use the `yyyy-MM-dd` date format for binding to work correctly if a format is supplied with the `date` field type:
 
 ```razor
-<input type="date" @bind="StartDate" @bind:format="yyyy-MM-dd">
+<input type="date" @bind="startDate" @bind:format="yyyy-MM-dd">
 ```
 
 ## Parent-to-child binding with component parameters
 
-Binding recognizes component parameters, where `@bind-{PROPERTY}` can bind a property value from a parent component down to a child component. Binding from a child to a parent is covered in the [Child-to-parent binding with chained bind](#child-to-parent-binding-with-chained-bind) section.
+Component parameters permit binding properties and fields of a parent component with `@bind-{PROPERTY OR FIELD}` syntax.
 
-The following child component (`ChildComponent`) has a `Year` component parameter and `YearChanged` callback:
+The following `Child` component (`Child.razor`) has a `Year` component parameter and `YearChanged` callback:
 
 ```razor
-<h2>Child Component</h2>
-
-<p>Year: @Year</p>
+<div class="card bg-light mt-3" style="width:18rem ">
+    <div class="card-body">
+        <h3 class="card-title">Child</h3>
+        <p class="card-text">Child <code>Year</code>: @Year</p>
+        <p>
+            <button @onclick="UpdateYear">
+                Update Child <code>Year</code> and call 
+                <code>YearChanged.InvokeAsync(Year)</code>
+            </button>
+        </p>
+    </div>
+</div>
 
 @code {
+    private Random r = new Random();
+
     [Parameter]
     public int Year { get; set; }
 
     [Parameter]
     public EventCallback<int> YearChanged { get; set; }
+
+    private Task UpdateYear()
+    {
+        Year = r.Next(10050, 12021);
+
+        return YearChanged.InvokeAsync(Year);
+    }
 }
 ```
 
 The <xref:Microsoft.AspNetCore.Components.EventCallback%601> must be named as the component parameter name followed by the `Changed` suffix (`{PARAMETER NAME}Changed`), `YearChanged` in the preceding example. For more information on <xref:Microsoft.AspNetCore.Components.EventCallback%601>, see <xref:blazor/components/event-handling#eventcallback>.
 
-The following parent component uses:
-
-* `ChildComponent` and binds the `ParentYear` parameter from the parent to the `Year` parameter on the child component.
-* The `onclick` event is used to trigger the `ChangeTheYear` method. For more information, see <xref:blazor/components/event-handling>.
+In the following `Parent` component (`Parent.razor`), the `year` field is bound to the `Year` parameter of the child component:
 
 ```razor
-@page "/ParentComponent"
+@page "/Parent"
 
-<h1>Parent Component</h1>
+<h1>Parent</h1>
 
-<p>ParentYear: @ParentYear</p>
+<p>Parent <code>year</code>: @year</p>
 
-<ChildComponent @bind-Year="ParentYear" />
+<button @onclick="UpdateYear">Update Parent <code>year</code></button>
 
-<button class="btn btn-primary" @onclick="ChangeTheYear">
-    Change Year to 1986
-</button>
+<Child @bind-Year="year" />
 
 @code {
-    [Parameter]
-    public int ParentYear { get; set; } = 1978;
+    private Random r = new Random();
+    private int year = 1978;
 
-    private void ChangeTheYear()
+    private void UpdateYear()
     {
-        ParentYear = 1986;
+        year = r.Next(1950, 2021);
     }
 }
 ```
 
-Loading the `ParentComponent` produces the following markup:
-
-```html
-<h1>Parent Component</h1>
-
-<p>ParentYear: 1978</p>
-
-<h2>Child Component</h2>
-
-<p>Year: 1978</p>
-```
-
-If the value of the `ParentYear` property is changed by selecting the button in the `ParentComponent`, the `Year` property of the `ChildComponent` is updated. The new value of `Year` is rendered in the UI when the `ParentComponent` is rerendered:
-
-```html
-<h1>Parent Component</h1>
-
-<p>ParentYear: 1986</p>
-
-<h2>Child Component</h2>
-
-<p>Year: 1986</p>
-```
-
 The `Year` parameter is bindable because it has a companion `YearChanged` event that matches the type of the `Year` parameter.
 
-By convention, `<ChildComponent @bind-Year="ParentYear" />` is essentially equivalent to writing:
+By convention, a property can be bound to a corresponding event handler by including an `@bind-{PROPERTY}:event` attribute assigned to the handler. `<Child @bind-Year="year" />` is equivalent to writing:
 
 ```razor
-<ChildComponent @bind-Year="ParentYear" @bind-Year:event="YearChanged" />
-```
-
-In general, a property can be bound to a corresponding event handler by including an `@bind-{PROPRETY}:event` attribute. For example, the property `MyProp` can be bound to `MyEventHandler` using the following two attributes:
-
-```razor
-<MyComponent @bind-MyProp="MyValue" @bind-MyProp:event="MyEventHandler" />
+<Child @bind-Year="year" @bind-Year:event="YearChanged" />
 ```
 
 ## Child-to-parent binding with chained bind
 
 A common scenario is chaining a data-bound parameter to a page element in the component's output. This scenario is called a *chained bind* because multiple levels of binding occur simultaneously.
 
-A chained bind can't be implemented with [`@bind`](xref:mvc/views/razor#bind) syntax in the page's element. The event handler and value must be specified separately. A parent component, however, can use [`@bind`](xref:mvc/views/razor#bind) syntax with the component's parameter.
+A chained bind can't be implemented with [`@bind`](xref:mvc/views/razor#bind) syntax in the child component. The event handler and value must be specified separately. A parent component, however, can use [`@bind`](xref:mvc/views/razor#bind) syntax with the child component's parameter.
 
 The following `PasswordField` component (`PasswordField.razor`):
 
@@ -238,7 +220,7 @@ The following `PasswordField` component (`PasswordField.razor`):
 ```razor
 <h1>Child Component</h1>
 
-Password: 
+Password:
 
 <input @oninput="OnPasswordChanged" 
        required 
