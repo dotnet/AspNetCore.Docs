@@ -10,7 +10,7 @@ uid: security/index
 ---
 # Overview of ASP.NET Core Security
 
-ASP.NET Core enables developers to easily configure and manage security for their apps. ASP.NET Core contains features for managing authentication, authorization, data protection, HTTPS enforcement, app secrets, anti-request forgery protection, and CORS management. These security features allow you to build robust yet secure ASP.NET Core apps.
+ASP.NET Core enables developers to easily configure and manage security for their apps. ASP.NET Core contains features for managing authentication, authorization, data protection, HTTPS enforcement, app secrets, XSRF/CSRF prevention, and CORS management. These security features allow you to build robust yet secure ASP.NET Core apps.
 
 ## ASP.NET Core security features
 
@@ -26,9 +26,9 @@ Another way to think of authentication is to consider it as a way to enter a spa
 
 ASP.NET Core and EF contain features that help you secure your apps and prevent security breaches. The following list of links takes you to documentation detailing techniques to avoid the most common security vulnerabilities in web apps:
 
-* [Cross-site scripting attacks](xref:security/cross-site-scripting)
+* [Cross-Site Scripting (XSS) attacks](xref:security/cross-site-scripting)
 * [SQL injection attacks](/ef/core/querying/raw-sql)
-* [Cross-Site Request Forgery (CSRF)](xref:security/anti-request-forgery)
+* [Cross-Site Request Forgery (XSRF/CSRF) attacks](xref:security/anti-request-forgery)
 * [Open redirect attacks](xref:security/preventing-open-redirects)
 
 There are more vulnerabilities that you should be aware of. For more information, see the other articles in the **Security and Identity** section of the table of contents.

@@ -337,7 +337,7 @@ This tutorial uses Postman to test the web API.
 
 * Create a new request.
 * Set the HTTP method to `POST`.
-* Set the URI to `https://localhost:<port>/api/TodoItem`. For example, `https://localhost:5001/api/TodoItem`.
+* Set the URI to `https://localhost:<port>/api/TodoItems`. For example, `https://localhost:5001/api/TodoItems`.
 * Select the **Body** tab.
 * Select the **raw** radio button.
 * Set the type to **JSON (application/json)**.
