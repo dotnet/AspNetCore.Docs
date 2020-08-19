@@ -5,7 +5,7 @@ description: Learn how to require HTTPS/TLS in a ASP.NET Core web app.
 ms.author: riande
 ms.custom: mvc
 ms.date: 12/06/2019
-no-loc: [cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/enforcing-ssl
 ---
 # Enforce HTTPS in ASP.NET Core
@@ -346,6 +346,14 @@ dotnet dev-certs https --help
 ## How to set up a developer certificate for Docker
 
 See [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/6199).
+
+<a name="ssl-linux"></a>
+
+## Trust HTTPS certificate on Linux
+
+<!-- Instructions to be updated by engineering team after 5.0 RTM. -->
+
+For instructions on Linux, refer to the distribution documentation.
 
 <a name="wsl"></a>
 

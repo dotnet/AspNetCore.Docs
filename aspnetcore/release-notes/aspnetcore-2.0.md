@@ -5,7 +5,7 @@ description: Learn about the new features in ASP.NET Core 2.0.
 ms.author: riande
 ms.custom: mvc
 ms.date: 12/05/2019
-no-loc: [cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: aspnetcore-2.0
 ---
 
@@ -116,7 +116,7 @@ For information about the status of planned documentation, see the [GitHub issue
 
 ASP.NET Core has always helped HTML-encode content by default, but with the new version an extra step is taken to help prevent cross-site request forgery (XSRF) attacks. ASP.NET Core will now emit anti-forgery tokens by default and validate them on form POST actions and pages without extra configuration.
 
-For more information, see [Prevent Cross-Site Request Forgery (XSRF/CSRF) attacks](xref:security/anti-request-forgery).
+For more information, see <xref:security/anti-request-forgery>.
 
 ## Automatic precompilation
 

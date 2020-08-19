@@ -5,7 +5,7 @@ description: Learn how model binding in ASP.NET Core works and how to customize 
 ms.assetid: 0be164aa-1d72-4192-bd6b-192c9c301164
 ms.author: riande
 ms.date: 12/18/2019
-no-loc: [cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/models/model-binding
 ---
 
@@ -259,30 +259,16 @@ Model binding starts by looking through the sources for the key `Instructor.ID`.
 
 Several built-in attributes are available for controlling model binding of complex types:
 
+* `[Bind]`
 * `[BindRequired]`
 * `[BindNever]`
-* `[Bind]`
 
-> [!NOTE]
-> These attributes affect model binding when posted form data is the source of values. They do not affect input formatters, which process posted JSON and XML request bodies. Input formatters are explained [later in this article](#input-formatters).
->
-> See also the discussion of the `[Required]` attribute in [Model validation](xref:mvc/models/validation#required-attribute).
-
-### [BindRequired] attribute
-
-Can only be applied to model properties, not to method parameters. Causes model binding to add a model state error if binding cannot occur for a model's property. Here's an example:
-
-[!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Models/InstructorWithCollection.cs?name=snippet_BindRequired&highlight=8-9)]
-
-### [BindNever] attribute
-
-Can only be applied to model properties, not to method parameters. Prevents model binding from setting a model's property. Here's an example:
-
-[!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Models/InstructorWithDictionary.cs?name=snippet_BindNever&highlight=3-4)]
+> [!WARNING]
+> These attributes affect model binding when posted form data is the source of values. They do ***not*** affect input formatters, which process posted JSON and XML request bodies. Input formatters are explained [later in this article](#input-formatters).
 
 ### [Bind] attribute
 
-Can be applied to a class or a method parameter. Specifies which properties of a model should be included in model binding.
+Can be applied to a class or a method parameter. Specifies which properties of a model should be included in model binding. `[Bind]` does ***not*** affect input formatters.
 
 In the following example, only the specified properties of the `Instructor` model are bound when any handler or action method is called:
 
@@ -299,6 +285,20 @@ public IActionResult OnPost([Bind("LastName,FirstMidName,HireDate")] Instructor 
 ```
 
 The `[Bind]` attribute can be used to protect against overposting in *create* scenarios. It doesn't work well in edit scenarios because excluded properties are set to null or a default value instead of being left unchanged. For defense against overposting, view models are recommended rather than the `[Bind]` attribute. For more information, see [Security note about overposting](xref:data/ef-mvc/crud#security-note-about-overposting).
+
+### [BindRequired] attribute
+
+Can only be applied to model properties, not to method parameters. Causes model binding to add a model state error if binding cannot occur for a model's property. Here's an example:
+
+[!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Models/InstructorWithCollection.cs?name=snippet_BindRequired&highlight=8-9)]
+
+See also the discussion of the `[Required]` attribute in [Model validation](xref:mvc/models/validation#required-attribute).
+
+### [BindNever] attribute
+
+Can only be applied to model properties, not to method parameters. Prevents model binding from setting a model's property. Here's an example:
+
+[!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Models/InstructorWithDictionary.cs?name=snippet_BindNever&highlight=3-4)]
 
 ## Collections
 
