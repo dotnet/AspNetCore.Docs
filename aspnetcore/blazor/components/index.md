@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components, including how to bind
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/18/2020
+ms.date: 08/19/2020
 no-loc: [cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/components/index
 ---
@@ -624,7 +624,7 @@ Consider the following `Expander` component that:
 * Toggles showing child content with a component parameter.
 
 ```razor
-<div @onclick="@Toggle" class="card bg-light mb-3">
+<div @onclick="@Toggle" class="card bg-light mb-3" style="width:30rem">
     <div class="card-body">
         <h2 class="card-title">Toggle (<code>Expanded</code> = @Expanded)</h2>
 
@@ -676,7 +676,7 @@ The following revised `Expander` component:
 * Uses the private field to maintain its internal toggle state.
 
 ```razor
-<div @onclick="@Toggle" class="card bg-light mb-3">
+<div @onclick="@Toggle" class="card bg-light mb-3" style="width:30rem">
     <div class="card-body">
         <h2 class="card-title">Toggle (<code>expanded</code> = @expanded)</h2>
 
