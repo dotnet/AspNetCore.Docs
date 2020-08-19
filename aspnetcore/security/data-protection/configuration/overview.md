@@ -5,7 +5,7 @@ description: Learn how to configure Data Protection in ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
 ms.date: 10/07/2019
-no-loc: [cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [ASP.NET Core Identity,  cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/data-protection/configuration/overview
 ---
 # Configure ASP.NET Core Data Protection
