@@ -21,6 +21,7 @@ namespace DIsample2
         {
             services.AddScoped<Service1>();
             services.AddSingleton<Service2>();
+            
             var myKey = Configuration["MyKey"];
             services.AddSingleton<IService3>(sp => new Service3(myKey));
 
