@@ -547,22 +547,22 @@ Use the dotnet trace tooling to collect a trace from an app:
    | Provider Level  |  Category Level      |
       | :-----: | ----------- |
    | `Verbose`(5)       |      `Debug`(1)        |
-   | `Informational`(4) |      `Information`(2)  | 
+   | `Informational`(4) |      `Information`(2)  |
    | `Warning`(3)       |      `Warning`(3)      |
-   | `Error`(2)         |      `Error`(4)        | 
-   | `Critical`(1)      |      `Critical`(5)     | 
+   | `Error`(2)         |      `Error`(4)        |
+   | `Critical`(1)      |      `Critical`(5)     |
 
    If `FilterSpecs` are provided, any category that is included in the list uses the category level encoded there, all other categories are filtered out.
 
    The following examples assume:
    
    * An app is running and calling `logger.LogDebug("12345")`.
-   * The process ID (PID) has been set via `set PID=12345`, where `12345 is the actual PID.
+   * The process ID (PID) has been set via `set PID=12345`, where `12345` is the actual PID.
    
    Consider the following command:
 
-      ```dotnetcli
-   dotnet trace collect -p %PID% --providers 'Microsoft-Extensions-Logging:4:5
+   ```dotnetcli
+   dotnet trace collect -p %PID% --providers Microsoft-Extensions-Logging:4:5
    ```
 
    The preceding command:
@@ -574,7 +574,7 @@ Use the dotnet trace tooling to collect a trace from an app:
    Consider the following command:
 
    ```dotnetcli
-   dotnet trace collect -p %PID%  --providers 'Microsoft-Extensions-Logging:4:5:FilterSpecs=*:5
+   dotnet trace collect -p %PID%  --providers Microsoft-Extensions-Logging:4:5:\"FilterSpecs=*:5\"
    ```
 
    The preceding command:
@@ -585,13 +585,13 @@ Use the dotnet trace tooling to collect a trace from an app:
    The following command captures debug messages because category level 1 specifies `Debug`.
 
    ```dotnetcli
-   dotnet trace collect -p %PID%  --providers 'Microsoft-Extensions-Logging:4:5:FilterSpecs=*:1
+   dotnet trace collect -p %PID%  --providers Microsoft-Extensions-Logging:4:5:\"FilterSpecs=*:1\"
    ```
 
    The following command captures debug messages because category specifies `Debug`.
 
    ```dotnetcli
-   dotnet trace collect -p %PID%  --providers 'Microsoft-Extensions-Logging:4:5:FilterSpecs=*:Debug
+   dotnet trace collect -p %PID%  --providers Microsoft-Extensions-Logging:4:5:\"FilterSpecs=*:Debug\"
    ```
 
    `FilterSpecs` entries for `{Logger Category}` and `{Category Level}` represent additional log filtering conditions. Separate `FilterSpecs` entries with the `;` semicolon character.
