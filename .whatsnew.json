@@ -1,0 +1,93 @@
+{
+  "$schema": "https://whatsnewapi.azurewebsites.net/schema",
+  "docSetProductName": "ASP.NET Core",
+  "rootDirectory": "aspnetcore/",
+  "docLinkSettings": {
+    "linkFormat": "xref"
+  },
+  "inclusionCriteria": {
+    "additionalMicrosoftOrgs": [
+      ".NET Platform",
+      "ASP.NET"
+    ],
+    "minAdditionsToFile": 60
+  },
+  "areas": [
+    {
+      "name": "azure",
+      "heading": "Azure"
+    },
+    {
+      "name": "blazor",
+      "heading": "Blazor"
+    },
+    {
+      "name": "client-side",
+      "heading": "Client-side development"
+    },
+    {
+      "name": "data",
+      "heading": "Data access"
+    },
+    {
+      "name": "fundamentals",
+      "heading": "Fundamentals"
+    },
+    {
+      "name": "getting-started",
+      "heading": "Getting started"
+    },
+    {
+      "name": "grpc",
+      "heading": "gRPC"
+    },
+    {
+      "name": "host-and-deploy",
+      "heading": "Hosting and deployment"
+    },
+    {
+      "name": "migration",
+      "heading": "Migration"
+    },
+    {
+      "name": "mobile",
+      "heading": "Mobile development"
+    },
+    {
+      "name": "mvc",
+      "heading": "MVC"
+    },
+    {
+      "name": "performance",
+      "heading": "Performance"
+    },
+    {
+      "name": "razor-pages",
+      "heading": "Razor Pages"
+    },
+    {
+      "name": "release-notes",
+      "heading": "Release notes"
+    },
+    {
+      "name": "security",
+      "heading": "Security"
+    },
+    {
+      "name": "signalr",
+      "heading": "SignalR"
+    },
+    {
+      "name": "test",
+      "heading": "Testing"
+    },
+    {
+      "name": "tutorials",
+      "heading": "Tutorials"
+    },
+    {
+      "name": "web-api",
+      "heading": "Web API"
+    }
+  ]
+}

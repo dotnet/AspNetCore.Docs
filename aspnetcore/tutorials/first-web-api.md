@@ -5,7 +5,7 @@ description: Learn how to build a web API with ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
 ms.date: 08/13/2020
-no-loc: [cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-web-api
 ---
 
@@ -337,7 +337,7 @@ This tutorial uses Postman to test the web API.
 
 * Create a new request.
 * Set the HTTP method to `POST`.
-* Set the URI to `https://localhost:<port>/api/TodoItem`. For example, `https://localhost:5001/api/TodoItem`.
+* Set the URI to `https://localhost:<port>/api/TodoItems`. For example, `https://localhost:5001/api/TodoItems`.
 * Select the **Body** tab.
 * Select the **raw** radio button.
 * Set the type to **JSON (application/json)**.
