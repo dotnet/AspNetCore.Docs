@@ -26,7 +26,7 @@ namespace DependencyInjectionSample.Services
 
         public void WriteMessage(string message)
         {
-            _logger.LogInformation( $"MyDependency.WriteMessage Message: {message}");
+            _logger.LogInformation( $"MyDependency2.WriteMessage Message: {message}");
         }
     }
     #endregion

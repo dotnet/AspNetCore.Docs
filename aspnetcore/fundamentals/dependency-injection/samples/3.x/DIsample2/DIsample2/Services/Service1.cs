@@ -5,7 +5,7 @@ namespace DIsample2.Services
     #region snippet
     public class Service1 : IDisposable
     {
-        private bool disposedValue;
+        private bool _disposed;
 
         public void Write(string message)
         {
@@ -14,17 +14,17 @@ namespace DIsample2.Services
 
         public void Dispose()
         {
-            if (!disposedValue)
-            {
-                Console.WriteLine("Service1.Dispose");
-                disposedValue = true;
-            }
+            if (_disposed)
+                return;
+
+            Console.WriteLine("Service1.Dispose");
+            _disposed = true;
         }
     }
 
     public class Service2 : IDisposable
     {
-        private bool disposedValue;
+        private bool _disposed;
 
         public void Write(string message)
         {
@@ -33,41 +33,42 @@ namespace DIsample2.Services
 
         public void Dispose()
         {
-            if (!disposedValue)
-            {
-                Console.WriteLine("Service2.Dispose");
-                disposedValue = true;
-            }
+            if (_disposed)
+                return;
+
+            Console.WriteLine("Service2.Dispose");
+            _disposed = true;
         }
     }
 
-    public interface IService3 {
+    public interface IService3
+    {
         public void Write(string message);
     }
 
     public class Service3 : IService3, IDisposable
     {
+        private bool _disposed;
+
         public Service3(string myKey)
         {
             MyKey = myKey;
         }
 
-        private bool disposedValue;
+        public string MyKey { get; }
 
         public void Write(string message)
         {
             Console.WriteLine($"Service3: {message}, MyKey = {MyKey}");
         }
 
-        public string MyKey { get; set; }
-
         public void Dispose()
         {
-            if (!disposedValue)
-            {
-                Console.WriteLine("Service3.Dispose");
-                disposedValue = true;
-            }
+            if (_disposed)
+                return;
+
+            Console.WriteLine("Service3.Dispose");
+            _disposed = true;
         }
     }
     #endregion

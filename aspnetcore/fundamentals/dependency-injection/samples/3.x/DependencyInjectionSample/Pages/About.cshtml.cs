@@ -13,6 +13,7 @@ namespace DependencyInjectionSample.Pages
         {
             _logger = logger;
         }
+        
         public string Message { get; set; }
 
         public void OnGet()

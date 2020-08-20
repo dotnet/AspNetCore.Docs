@@ -20,10 +20,11 @@ namespace ConfigSample
         #region snippet
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<PositionOptions>(Configuration.GetSection(
-                                                PositionOptions.Position));
-            services.Configure<ColorOptions>(Configuration.GetSection(
-                                             ColorOptions.Color));
+            services.Configure<PositionOptions>(
+                Configuration.GetSection(PositionOptions.Position));
+            services.Configure<ColorOptions>(
+                Configuration.GetSection(ColorOptions.Color));
+
             services.AddScoped<IMyDependency, MyDependency>();
             services.AddScoped<IMyDependency2, MyDependency2>();
 
