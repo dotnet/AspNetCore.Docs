@@ -106,7 +106,7 @@ An app configures the cache implementation using a <xref:Microsoft.Extensions.Ca
 
 For more information, see [Azure Cache for Redis](/azure/azure-cache-for-redis/cache-overview).
 
-See [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/19542) for a discussion on alternative approach to a local Redis cache.
+See [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/19542) for a discussion on alternative approaches to a local Redis cache.
 
 ### Distributed NCache Cache
 
