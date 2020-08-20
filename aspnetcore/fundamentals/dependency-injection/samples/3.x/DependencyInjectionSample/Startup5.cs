@@ -23,7 +23,7 @@ namespace DependencyInjectionSample5
             var myKey = Configuration["MyKey"];
             var descriptor = new ServiceDescriptor(
                 typeof(IMyDependency),
-                context => new MyDependency5(myKey),
+                sp => new MyDependency5(myKey),
                 ServiceLifetime.Transient);
 
             services.Add(descriptor);
