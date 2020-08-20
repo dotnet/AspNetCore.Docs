@@ -732,7 +732,7 @@ HTTP 404.13 - Not Found
 The request filtering module is configured to deny a request that exceeds the request content length.
 ```
 
-For more information on increasing the limit, see the [IIS content length limit](#iis-content-length-limit) section.
+For more information on increasing IIS limits, see the [IIS content length and request body size limits](#iis-content-length-and-request-body-size-limits) section.
 
 ### Connection failure
 
@@ -1461,7 +1461,7 @@ HTTP 404.13 - Not Found
 The request filtering module is configured to deny a request that exceeds the request content length.
 ```
 
-For more information on increasing the limit, see the [IIS content length limit](#iis-content-length-limit) section.
+For more information on increasing IIS limits, see the [IIS content length and request body size limits](#iis-content-length-and-request-body-size-limits) section.
 
 ### Connection failure
 
