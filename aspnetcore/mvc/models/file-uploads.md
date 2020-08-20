@@ -692,9 +692,9 @@ Other Kestrel limits may apply for apps hosted by Kestrel:
 * [Maximum client connections](xref:fundamentals/servers/kestrel#maximum-client-connections)
 * [Request and response data rates](xref:fundamentals/servers/kestrel#minimum-request-body-data-rate)
 
-### IIS content length limit
+### IIS content length and request body size limits
 
-The default request limit (`maxAllowedContentLength`) is 30,000,000 bytes, which is approximately 28.6MB. Customize the limit in the *web.config* file:
+The default request limit (`maxAllowedContentLength`) is 30,000,000 bytes, which is approximately 28.6MB. Customize the limit in the `web.config` file:
 
 ```xml
 <system.webServer>
@@ -707,9 +707,18 @@ The default request limit (`maxAllowedContentLength`) is 30,000,000 bytes, which
 </system.webServer>
 ```
 
-This setting only applies to IIS. The behavior doesn't occur by default when hosting on Kestrel. For more information, see [Request Limits \<requestLimits>](/iis/configuration/system.webServer/security/requestFiltering/requestLimits/).
+The `maxAllowedContentLength` setting only applies to IIS. For more information, see [Request Limits `<requestLimits>`](/iis/configuration/system.webServer/security/requestFiltering/requestLimits/).
 
-Limitations in the ASP.NET Core Module or presence of the IIS Request Filtering Module may limit uploads to either 2 or 4 GB. For more information, see [Unable to upload file greater than 2GB in size (dotnet/AspNetCore #2711)](https://github.com/dotnet/AspNetCore/issues/2711).
+Increase the maximum request body size for the HTTP request by setting <xref:Microsoft.AspNetCore.Builder.IISServerOptions.MaxRequestBodySize%2A?displayProperty=nameWithType> in `Startup.ConfigureServices`:
+
+```csharp
+services.Configure<IISServerOptions>(options =>
+{
+    options.MaxRequestBodySize = 52428800;
+});
+```
+
+For more information, see <xref:host-and-deploy/iis/index#iis-options>.
 
 ## Troubleshoot
 
