@@ -19,7 +19,7 @@ namespace DIsample2
         #region snippet
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<Service1>(new Service1());
+            services.AddSingleton(new Service1());
             services.AddSingleton(new Service2());
 
             services.AddRazorPages();

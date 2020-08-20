@@ -38,7 +38,7 @@ using System.Threading.Tasks;
 #region snippet
 public class Program
 {
-    public static async Task Main(string[] args)
+    public static void Main(string[] args)
     {
         var host = CreateHostBuilder(args).Build();
 
@@ -48,8 +48,8 @@ public class Program
 
             try
             {
-                var serviceContext = services.GetRequiredService<IMyDependency>();
-                serviceContext.WriteMessage("Call services from main");
+                var myDependency = services.GetRequiredService<IMyDependency>();
+                myDependency.WriteMessage("Call services from main");
             }
             catch (Exception ex)
             {
@@ -58,7 +58,7 @@ public class Program
             }
         }
 
-        await host.RunAsync();
+        host.Run();
     }
 
     public static IHostBuilder CreateHostBuilder(string[] args) =>

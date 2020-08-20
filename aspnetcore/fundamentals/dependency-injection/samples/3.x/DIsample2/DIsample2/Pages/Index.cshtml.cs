@@ -10,9 +10,7 @@ namespace DIsample2.Pages
         private readonly Service2 _service2;
         private readonly IService3 _service3;
 
-        public IndexModel(Service1 service1, Service2 service2
-            , IService3 service3
-            )
+        public IndexModel(Service1 service1, Service2 service2, IService3 service3)
         {
             _service1 = service1;
             _service2 = service2;

@@ -12,8 +12,8 @@ namespace DependencyInjectionSample.Middleware
         private readonly RequestDelegate _next;
         private readonly ILogger _logger;
 
-        private readonly  IOperationTransient _transientOperation;
-        private readonly  IOperationSingleton _singletonOperation;
+        private readonly IOperationTransient _transientOperation;
+        private readonly IOperationSingleton _singletonOperation;
 
         public MyMiddleware(RequestDelegate next, ILogger<MyMiddleware> logger,
             IOperationTransient transientOperation,
@@ -26,8 +26,8 @@ namespace DependencyInjectionSample.Middleware
         }
 
         #region snippet2
-        public async Task InvokeAsync(HttpContext context, 
-                                      IOperationScoped scopedOperation)
+        public async Task InvokeAsync(HttpContext context,
+            IOperationScoped scopedOperation)
         {
             _logger.LogInformation("Transient: " + _transientOperation.OperationId);
             _logger.LogInformation("Scoped: "    + scopedOperation.OperationId);

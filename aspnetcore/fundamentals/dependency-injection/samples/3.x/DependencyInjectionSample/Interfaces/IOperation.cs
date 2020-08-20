@@ -1,5 +1,3 @@
-using System;
-
 namespace DependencyInjectionSample.Interfaces
 {
     #region snippet1
@@ -8,16 +6,8 @@ namespace DependencyInjectionSample.Interfaces
         string OperationId { get; }
     }
 
-    public interface IOperationTransient : IOperation
-    {
-    }
-
-    public interface IOperationScoped : IOperation
-    {
-    }
-
-    public interface IOperationSingleton : IOperation
-    {
-    }
+    public interface IOperationTransient : IOperation { }
+    public interface IOperationScoped : IOperation { }
+    public interface IOperationSingleton : IOperation { }
     #endregion
 }

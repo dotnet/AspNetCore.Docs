@@ -83,6 +83,8 @@ Using the [default](#default) configuration, the *appsettings.json* and *appsett
 
 See [JSON configuration provider](#jcp) in this document for information on adding additional JSON configuration files.
 
+## Combining service collection
+
 [!INCLUDE[](~/includes/combine-di.md)]
 
 <a name="security"></a>

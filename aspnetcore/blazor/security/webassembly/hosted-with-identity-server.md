@@ -1,7 +1,7 @@
 ---
 title: Secure a hosted ASP.NET Core Blazor WebAssembly app with Identity Server
 author: guardrex
-description: To create a new hosted Blazor solution with authentication from within Visual Studio that uses an [IdentityServer](https://identityserver.io/) backend
+description: Learn how to secure a hosted ASP.NET Core Blazor WebAssembly app with Identity Server.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
