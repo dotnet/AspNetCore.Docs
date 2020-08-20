@@ -8,7 +8,6 @@ using Microsoft.Extensions.Hosting;
 
 namespace DependencyInjectionSample5
 {
-    #region snippet
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -20,16 +19,18 @@ namespace DependencyInjectionSample5
 
         public void ConfigureServices(IServiceCollection services)
         {
+            #region snippet
             var myKey = Configuration["MyKey"];
-            var item = new ServiceDescriptor(typeof(IMyDependency),
-                                             context => new MyDependency5(myKey),
-                                             ServiceLifetime.Transient);
-            services.Add(item);
+            var descriptor = new ServiceDescriptor(
+                typeof(IMyDependency),
+                context => new MyDependency5(myKey),
+                ServiceLifetime.Transient);
+
+            services.Add(descriptor);
+            #endregion
 
             services.AddRazorPages();
         }
-        // Remaining code ommited for brevity.
-        #endregion
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {

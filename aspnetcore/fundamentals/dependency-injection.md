@@ -194,10 +194,10 @@ In apps that process requests, singleton services are disposed when the <xref:Mi
 > [!WARNING]
 > Do ***not*** resolve a scoped service from a singleton. It may cause the service to have incorrect state when processing subsequent requests. It's fine to resolve a singleton service from a scoped or transient service.
 
-<!-- TO REVIEW -->
 ## Service registration methods
 
-Service registration extension methods offer overloads that are useful in specific scenarios.
+The framework provides service registration extension methods that are useful in specific scenarios:
+
 <!-- Review: Auto disposal at end of app lifetime is not what you think of auto disposal  -->
 
 | Method                                                                                                                                                                              | Automatic<br>object<br>disposal | Multiple<br>implementations | Pass args |
@@ -210,9 +210,9 @@ Service registration extension methods offer overloads that are useful in specif
 
 For more information on type disposal, see the [Disposal of services](#disposal-of-services) section. It's common to use multiple implementations when [mocking types for testing](xref:test/integration-tests#inject-mock-services).
 
-`TryAdd{LIFETIME}` methods register the service if there isn't already an implementation registered.
+The framework also provides `TryAdd{LIFETIME}` extension methods, which register the service only if there isn't already an implementation registered.
 
-In the following example, the first line registers `MyDependency` for `IMyDependency`. The second line has no effect because `IMyDependency` already has a registered implementation:
+In the following example, the call to `AddSingleton` registers `MyDependency` as an implementation for `IMyDependency`. The call to `TryAddSingleton` has no effect because `IMyDependency` already has a registered implementation:
 
 ```csharp
 services.AddSingleton<IMyDependency, MyDependency>();
@@ -227,36 +227,36 @@ For more information, see:
 * <xref:Microsoft.Extensions.DependencyInjection.Extensions.ServiceCollectionDescriptorExtensions.TryAddScoped%2A>
 * <xref:Microsoft.Extensions.DependencyInjection.Extensions.ServiceCollectionDescriptorExtensions.TryAddSingleton%2A>
 
-[TryAddEnumerable(ServiceDescriptor)](xref:Microsoft.Extensions.DependencyInjection.Extensions.ServiceCollectionDescriptorExtensions.TryAddEnumerable%2A) methods register the service if there isn't already an implementation *of the same type*. Multiple services are resolved via `IEnumerable<{SERVICE}>`. When registering services, the developer should add an instance if one of the same type hasn't already been added. Generally, library authors use `TryAddEnumerable` to avoid registering multiple copies of an implementation in the container.
+The [TryAddEnumerable(ServiceDescriptor)](xref:Microsoft.Extensions.DependencyInjection.Extensions.ServiceCollectionDescriptorExtensions.TryAddEnumerable%2A) methods register the service only if there isn't already an implementation *of the same type*. Multiple services are resolved via `IEnumerable<{SERVICE}>`. When registering services, the developer should add an instance if one of the same type hasn't already been added. Generally, library authors use `TryAddEnumerable` to avoid registering multiple copies of an implementation in the container.
 
-In the following example, the first line registers `MyDep` for `IMyDep1`. The second line registers `MyDep` for `IMyDep2`. The third line has no effect because `IMyDep1` already has a registered implementation of `MyDep`:
+In the following example, the first call to `TryAddEnumerable` registers `MyDependency` as an implementation for `IMyDependency1`. The second call registers `MyDependency` for `IMyDependency2`. The third call has no effect because `IMyDependency1` already has a registered implementation of `MyDependency`:
 
 ```csharp
-public interface IMyDep1 {}
-public interface IMyDep2 {}
+public interface IMyDependency1 { }
+public interface IMyDependency2 { }
 
-public class MyDep : IMyDep1, IMyDep2 {}
+public class MyDependency : IMyDependency1, IMyDependency2 { }
 
-services.TryAddEnumerable(ServiceDescriptor.Singleton<IMyDep1, MyDep>());
-services.TryAddEnumerable(ServiceDescriptor.Singleton<IMyDep2, MyDep>());
-services.TryAddEnumerable(ServiceDescriptor.Singleton<IMyDep1, MyDep>());
+services.TryAddEnumerable(ServiceDescriptor.Singleton<IMyDependency1, MyDependency>());
+services.TryAddEnumerable(ServiceDescriptor.Singleton<IMyDependency2, MyDependency>());
+services.TryAddEnumerable(ServiceDescriptor.Singleton<IMyDependency1, MyDependency>());
 ```
 
 Service registration is generally order independent except when registering multiple implementations of the same type.
 
-`IServiceCollection` is a collection of <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor>. The following code shows how to add a service with a constructor:
+`IServiceCollection` is a collection of <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor> objects. The following example shows how to register a service by creating and adding a `ServiceDescriptor`:
 
 [!code-csharp[](dependency-injection/samples/3.x/DependencyInjectionSample/Startup5.cs?name=snippet)]
 
-The `Add{LIFETIME}` methods use the same approach. For example, see the [AddScoped source code](https://github.com/dotnet/extensions/blob/v3.1.6/src/DependencyInjection/DI.Abstractions/src/ServiceCollectionServiceExtensions.cs#L216-L237).
+The built-in `Add{LIFETIME}` methods use the same approach. For example, see the [AddScoped source code](https://github.com/dotnet/extensions/blob/v3.1.6/src/DependencyInjection/DI.Abstractions/src/ServiceCollectionServiceExtensions.cs#L216-L237).
 
 ### Constructor injection behavior
 
-Services can be resolved by two mechanisms:
+Services can be resolved by using:
 
 * <xref:System.IServiceProvider>
 * <xref:Microsoft.Extensions.DependencyInjection.ActivatorUtilities>:
-  * Creates objects without service registration in the dependency injection container.
+  * Creates objects that aren't registered in the container.
   * Used with framework features, such as [Tag Helpers](xref:mvc/views/tag-helpers/intro), MVC controllers, and [model binders](xref:mvc/models/model-binding).
 
 Constructors can accept arguments that aren't provided by dependency injection, but the arguments must assign default values.
@@ -356,7 +356,7 @@ When designing services for dependency injection:
 * Avoid direct instantiation of dependent classes within services. Direct instantiation couples the code to a particular implementation.
 * Make services small, well-factored, and easily tested.
 
-If a class has a many injected dependencies, it might be a sign that the class has too many responsibilities and violates the [Single Responsibility Principle (SRP)](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#single-responsibility). Attempt to refactor the class by moving some of its responsibilities into new classes. Keep in mind that Razor Pages page model classes and MVC controller classes should focus on UI concerns.
+If a class has a lot of injected dependencies, it might be a sign that the class has too many responsibilities and violates the [Single Responsibility Principle (SRP)](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#single-responsibility). Attempt to refactor the class by moving some of its responsibilities into new classes. Keep in mind that Razor Pages page model classes and MVC controller classes should focus on UI concerns.
 
 ### Disposal of services
 
