@@ -188,6 +188,12 @@ Directory structure:
     └── web.config
 ```
 
+## [BIND] and Input Formatters
+
+[Previous versions of ASP.NET](/aspnet/mvc/overview/getting-started/introduction/examining-the-edit-methods-and-edit-view) used the `[Bind]` attribute to protect against overposting attacks. [Input formatters](xref:mvc/models/model-binding#input-formatters) work differently in ASP.NET Core. The `[Bind]` attribute is no longer designed to prevent overposting when used with input formatters to parse JSON or XML. These attributes affect model binding when the source of data is form data posted with the `x-www-form-urlencoded` content type.
+
+For apps that post JSON information to controllers and use JSON Input Formatters to parse the data, we recommend replacing the `[Bind]` attribute with a view model that matches the properties defined by the `[Bind]` attribute.
+
 ## Additional resources
 
 - [Porting Libraries to .NET Core](/dotnet/core/porting/libraries)
