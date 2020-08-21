@@ -42,11 +42,11 @@ A common performance problem in ASP.NET Core apps is blocking calls that could b
 
 A profiler, such as [PerfView](https://github.com/Microsoft/perfview), can be used to find threads frequently added to the [Thread Pool](/windows/desktop/procthread/thread-pools). The `Microsoft-Windows-DotNETRuntime/ThreadPoolWorkerThread/Start` event indicates a thread added to the thread pool. <!--  For more information, see [async guidance docs](TBD-Link_To_Davifowl_Doc)  -->
 
-## Return IEnumerable<T> or IAsyncEnumerable<T>
+## Return `IEnumerable<T>` or `IAsyncEnumerable<T>`
 
-In ASP.NET Core 2.2 and earlier, returning IEnumerable<T> from an action results in synchronous collection iteration by the serializer. The result is the blocking of calls and a potential for thread pool starvation. To avoid synchronous enumeration, use `.ToListAsync()` before returning the enumerable.
+In ASP.NET Core 2.2 and earlier, returning `IEnumerable<T>` from an action results in synchronous collection iteration by the serializer. The result is the blocking of calls and a potential for thread pool starvation. To avoid synchronous enumeration, use `.ToListAsync` before returning the enumerable.
 
-Beginning with ASP.NET Core 3.0, IAsyncEnumerable<T> can be used as an alternative to IEnumerable<T> that will always enumerate asynchronously. Read about [Controller action return types in ASP.NET Core web API](../web-api/action-return-types?view=aspnetcore-3.1#return-ienumerablet-or-iasyncenumerablet) for more details.
+Beginning with ASP.NET Core 3.0, `IAsyncEnumerable<T>` can be used as an alternative to `IEnumerable<T>` that enumerates asynchronously. For more information, see [Controller action return types in ASP.NET Core web API](xref:web-api/action-return-types#return-ienumerablet-or-iasyncenumerablet).
 
 ## Minimize large object allocations
 
@@ -350,8 +350,8 @@ Components only expect to be called if it's possible for them to handle and mani
 
 ## Use In-process hosting with IIS
 
-Using in-process hosting, an ASP.NET Core app runs in the same process as its IIS worker process. In-process hosting provides improved performance over out-of-process hosting because requests aren't proxied over the loopback adapter, a network interface that returns outgoing network traffic back to the same machine. IIS handles process management with the [Windows Process Activation Service (WAS)](/iis/manage/provisioning-and-managing-iis/features-of-the-windows-process-activation-service-was).
+Using in-process hosting, an ASP.NET Core app runs in the same process as its IIS worker process. In-process hosting provides improved performance over out-of-process hosting because requests aren't proxied over the loopback adapter. The loopback adapter is a network interface that returns outgoing network traffic back to the same machine. IIS handles process management with the [Windows Process Activation Service (WAS)](/iis/manage/provisioning-and-managing-iis/features-of-the-windows-process-activation-service-was).
 
-Projects default to the in-process hosting model in ASP.NET Core 3.0 or later.
+Projects default to the in-process hosting model in ASP.NET Core 3.0 and later.
 
-To learn more read [Host ASP.NET Core on Windows with IIS](//docs.microsoft.com/en-us/aspnet/core/host-and-deploy/iis/)
+For more information, see [Host ASP.NET Core on Windows with IIS](xref:host-and-deploy/iis/index)
