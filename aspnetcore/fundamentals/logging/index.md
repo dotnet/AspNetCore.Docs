@@ -203,6 +203,8 @@ To explicitly specify the category, call `ILoggerFactory.CreateLogger`:
 
 [!code-csharp[](index/samples/3.x/TodoApiDTO/Pages/Contact.cshtml.cs?name=snippet)]
 
+Calling `CreateLogger` with a fixed name can be useful when used in multiple methods so the events can be organized by category.
+
 `ILogger<T>` is equivalent to calling `CreateLogger` with the fully qualified type name of `T`.
 
 <a name="llvl"></a>
