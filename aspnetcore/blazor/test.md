@@ -111,7 +111,7 @@ The following bUnit test verifies that the CUT's counter is incremented correctl
 public void CounterShouldIncrementWhenSelected()
 {
     // Arrange
-    using var cxt = new TestContext();
+    using var ctx = new TestContext();
     var cut = ctx.RenderComponent<Counter>();
     var paraElm = cut.Find("p");
 
