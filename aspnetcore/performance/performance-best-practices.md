@@ -42,7 +42,7 @@ A common performance problem in ASP.NET Core apps is blocking calls that could b
 
 A profiler, such as [PerfView](https://github.com/Microsoft/perfview), can be used to find threads frequently added to the [Thread Pool](/windows/desktop/procthread/thread-pools). The `Microsoft-Windows-DotNETRuntime/ThreadPoolWorkerThread/Start` event indicates a thread added to the thread pool. <!--  For more information, see [async guidance docs](TBD-Link_To_Davifowl_Doc)  -->
 
-# Prefer IAsyncEnumerable<T> over IEnumerable<T>
+## Prefer IAsyncEnumerable<T> over IEnumerable<T>
 
 In ASP.NET Core 2.2 and earlier, returning IEnumerable<T> from an action results in synchronous collection iteration by the serializer. The result is the blocking of calls and a potential for thread pool starvation. To learn more read the [full details](../web-api/action-return-types?view=aspnetcore-3.1#return-ienumerablet-or-iasyncenumerablet).
 
