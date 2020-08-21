@@ -345,3 +345,9 @@ Checking if the response has not started allows registering a callback that will
 ## Do not call next() if you have already started writing to the response body
 
 Components only expect to be called if it's possible for them to handle and manipulate the response.
+
+# Prefer In-process hosting with IIS
+
+Using in-process hosting, an ASP.NET Core app runs in the same process as its IIS worker process. In-process hosting provides improved performance over out-of-process hosting because requests aren't proxied over the loopback adapter, a network interface that returns outgoing network traffic back to the same machine. IIS handles process management with the [Windows Process Activation Service (WAS)](/iis/manage/provisioning-and-managing-iis/features-of-the-windows-process-activation-service-was).
+
+Projects default to the in-process hosting model in ASP.NET Core 3.0 or later.
