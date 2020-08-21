@@ -67,5 +67,5 @@ More information about how to install and get started with PerfCollect is availa
 The following lists some third-party performance tools that are useful in performance investigation of .NET Core applications.
 
 - [MiniProfiler](https://miniprofiler.com/)
-- dotTrace and dotMemory from JetBrains
-- VTune from Intel
+- [dotTrace](https://www.jetbrains.com/profiler/) and [dotMemory](https://www.jetbrains.com/dotmemory/) from [JetBrains](https://www.jetbrains.com/)
+- [VTune](https://software.intel.com/content/www/us/en/develop/tools/vtune-profiler.html) from Intel
