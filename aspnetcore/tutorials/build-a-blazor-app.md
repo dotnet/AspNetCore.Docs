@@ -74,7 +74,7 @@ At the end of this tutorial, you'll have a working todo list app.
 
 1. Rebuild and run the app. Visit the new Todo page to confirm that the link to the `Todo` component works.
 
-1. Add a `TodoItem.cs` file to the root of the project (the `ToDoList` folder) to hold a class that represents a todo item. Use the following C# code for the `TodoItem` class:
+1. Add a `TodoItem.cs` file to the root of the project (the `TodoList` folder) to hold a class that represents a todo item. Use the following C# code for the `TodoItem` class:
 
    [!code-csharp[](build-a-blazor-app/samples_snapshot/3.x/TodoItem.cs)]
 
