@@ -8,6 +8,7 @@ ms.date: 6/29/2020
 no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/logging/index
 ---
+
 # Logging in .NET Core and ASP.NET Core
 
 ::: moniker range=">= aspnetcore-3.0"
@@ -201,6 +202,8 @@ When an `ILogger` object is created, a *category* is specified. That category is
 To explicitly specify the category, call `ILoggerFactory.CreateLogger`:
 
 [!code-csharp[](index/samples/3.x/TodoApiDTO/Pages/Contact.cshtml.cs?name=snippet)]
+
+Calling `CreateLogger` with a fixed name can be useful when used in multiple methods so the events can be organized by category.
 
 `ILogger<T>` is equivalent to calling `CreateLogger` with the fully qualified type name of `T`.
 
@@ -483,36 +486,40 @@ Use the dotnet trace tooling to collect a trace from an app:
 
    ```dotnetcli
    dotnet trace collect -p {PID} 
-       --providers Microsoft-Extensions-Logging:{Keyword}:{Event Level}
+       --providers Microsoft-Extensions-Logging:{Keyword}:{Provider Level}
            :FilterSpecs=\"
-               {Logger Category 1}:{Event Level 1};
-               {Logger Category 2}:{Event Level 2};
+               {Logger Category 1}:{Category Level 1};
+               {Logger Category 2}:{Category Level 2};
                ...
-               {Logger Category N}:{Event Level N}\"
+               {Logger Category N}:{Category Level N}\"
    ```
 
    When using a PowerShell command shell, enclose the `--providers` value in single quotes (`'`):
 
    ```dotnetcli
    dotnet trace collect -p {PID} 
-       --providers 'Microsoft-Extensions-Logging:{Keyword}:{Event Level}
+       --providers 'Microsoft-Extensions-Logging:{Keyword}:{Provider Level}
            :FilterSpecs=\"
-               {Logger Category 1}:{Event Level 1};
-               {Logger Category 2}:{Event Level 2};
+               {Logger Category 1}:{Category Level 1};
+               {Logger Category 2}:{Category Level 2};
                ...
-               {Logger Category N}:{Event Level N}\"'
+               {Logger Category N}:{Category Level N}\"'
    ```
 
    On non-Windows platforms, add the `-f speedscope` option to change the format of the output trace file to `speedscope`.
 
+   The following table defines the Keyword:
+
    | Keyword | Description |
    | :-----: | ----------- |
-   | 1       | Log meta events about the `LoggingEventSource`. Doesn't log events from `ILogger`). |
+   | 1       | Log meta events about the `LoggingEventSource`. Doesn't log events from `ILogger`. |
    | 2       | Turns on the `Message` event when `ILogger.Log()` is called. Provides information in a programmatic (not formatted) way. |
    | 4       | Turns on the `FormatMessage` event when `ILogger.Log()` is called. Provides the formatted string version of the information. |
    | 8       | Turns on the `MessageJson` event when `ILogger.Log()` is called. Provides a JSON representation of the arguments. |
 
-   | Event Level | Description     |
+   The following table lists the provider levels:
+
+   | Provider Level | Description     |
    | :---------: | --------------- |
    | 0           | `LogAlways`     |
    | 1           | `Critical`      |
@@ -521,12 +528,80 @@ Use the dotnet trace tooling to collect a trace from an app:
    | 4           | `Informational` |
    | 5           | `Verbose`       |
 
-   `FilterSpecs` entries for `{Logger Category}` and `{Event Level}` represent additional log filtering conditions. Separate `FilterSpecs` entries with a semicolon (`;`).
+   The parsing for a category level can be either a string or a number:
 
-   Example using a Windows command shell (**no** single quotes around the `--providers` value):
+   | Category named value  |   Numeric value |
+   | :-----: | ----------- |
+   | `Trace`              |    0 |
+   | `Debug`              |    1 |
+   | `Information`        |    2 |
+   | `Warning`            |    3 |
+   | `Error`              |    4 |
+   | `Critical`           |    5 |
+
+   The provider level and category level:
+
+   * Are in reverse order.
+   * The string constants aren't all identical.
+
+   If no `FilterSpecs` are specified then the `EventSourceLogger` implementation attempts to convert the provider level to a category level and applies it to all categories.
+
+   | Provider Level  |  Category Level      |
+      | :-----: | ----------- |
+   | `Verbose`(5)       |      `Debug`(1)        |
+   | `Informational`(4) |      `Information`(2)  |
+   | `Warning`(3)       |      `Warning`(3)      |
+   | `Error`(2)         |      `Error`(4)        |
+   | `Critical`(1)      |      `Critical`(5)     |
+
+   If `FilterSpecs` are provided, any category that is included in the list uses the category level encoded there, all other categories are filtered out.
+
+   The following examples assume:
+   
+   * An app is running and calling `logger.LogDebug("12345")`.
+   * The process ID (PID) has been set via `set PID=12345`, where `12345` is the actual PID.
+   
+   Consider the following command:
 
    ```dotnetcli
-   dotnet trace collect -p {PID} --providers Microsoft-Extensions-Logging:4:2:FilterSpecs=\"Microsoft.AspNetCore.Hosting*:4\"
+   dotnet trace collect -p %PID% --providers Microsoft-Extensions-Logging:4:5
+   ```
+
+   The preceding command:
+
+   * Captures debug messages.
+   * Doesn't apply a `FilterSpecs`.
+   * Specifies level 5 which maps category Debug.
+
+   Consider the following command:
+
+   ```dotnetcli
+   dotnet trace collect -p %PID%  --providers Microsoft-Extensions-Logging:4:5:\"FilterSpecs=*:5\"
+   ```
+
+   The preceding command:
+
+   * Doesn't capture debug messages because the category level 5 is `Critical`.
+   * Provides a `FilterSpecs`.
+
+   The following command captures debug messages because category level 1 specifies `Debug`.
+
+   ```dotnetcli
+   dotnet trace collect -p %PID%  --providers Microsoft-Extensions-Logging:4:5:\"FilterSpecs=*:1\"
+   ```
+
+   The following command captures debug messages because category specifies `Debug`.
+
+   ```dotnetcli
+   dotnet trace collect -p %PID%  --providers Microsoft-Extensions-Logging:4:5:\"FilterSpecs=*:Debug\"
+   ```
+
+   `FilterSpecs` entries for `{Logger Category}` and `{Category Level}` represent additional log filtering conditions. Separate `FilterSpecs` entries with the `;` semicolon character.
+
+   Example using a Windows command shell:
+
+   ```dotnetcli
+   dotnet trace collect -p %PID% --providers Microsoft-Extensions-Logging:4:2:FilterSpecs=\"Microsoft.AspNetCore.Hosting*:4\"
    ```
 
    The preceding command activates:
