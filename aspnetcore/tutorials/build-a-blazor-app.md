@@ -5,7 +5,7 @@ description: Build a Blazor app step-by-step.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/30/2020
+ms.date: 08/22/2020
 no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/build-a-blazor-app
 ---
@@ -35,7 +35,7 @@ At the end of this tutorial, you'll have a working todo list app.
    dotnet new blazorserver -o TodoList
    ```
 
-   The preceding command creates a folder named `TodoList` to hold the app. Change directories to the `TodoList` folder with the following command:
+   The preceding command creates a folder named `TodoList` to hold the app. The `TodoList` folder is called the *root folder* of the project. Change directories to the `TodoList` folder with the following command:
 
    ```dotnetcli
    cd TodoList
@@ -48,7 +48,7 @@ At the end of this tutorial, you'll have a working todo list app.
    ```
 
    > [!IMPORTANT]
-   > Razor component file names require a capitalized first letter, so confirm that the `Todo` component file name starts with a capital letter `T`.
+   > Razor component file names require a capitalized first letter, so open the `Pages` folder and confirm that the `Todo` component file name starts with a capital letter `T` (`Todo.razor`).
 
 1. In `Pages/Todo.razor` provide the initial markup for the component:
 
@@ -74,7 +74,7 @@ At the end of this tutorial, you'll have a working todo list app.
 
 1. Rebuild and run the app. Visit the new Todo page to confirm that the link to the `Todo` component works.
 
-1. Add a `TodoItem.cs` file to the root of the project to hold a class that represents a todo item. Use the following C# code for the `TodoItem` class:
+1. Add a `TodoItem.cs` file to the root of the project (the `ToDoList` folder) to hold a class that represents a todo item. Use the following C# code for the `TodoItem` class:
 
    [!code-csharp[](build-a-blazor-app/samples_snapshot/3.x/TodoItem.cs)]
 
