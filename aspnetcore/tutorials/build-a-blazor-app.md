@@ -35,7 +35,7 @@ At the end of this tutorial, you'll have a working todo list app.
    dotnet new blazorserver -o TodoList
    ```
 
-   The preceding command creates a folder named `TodoList` to hold the app. The `TodoList` folder is called the *root folder* of the project. Change directories to the `TodoList` folder with the following command:
+   The preceding command creates a folder named `TodoList` to hold the app. The `TodoList` folder is the *root folder* of the project. Change directories to the `TodoList` folder with the following command:
 
    ```dotnetcli
    cd TodoList
