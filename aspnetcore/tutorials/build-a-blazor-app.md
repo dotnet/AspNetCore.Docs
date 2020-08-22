@@ -5,7 +5,7 @@ description: Build a Blazor app step-by-step.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/30/2020
+ms.date: 08/22/2020
 no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/build-a-blazor-app
 ---
@@ -35,7 +35,7 @@ At the end of this tutorial, you'll have a working todo list app.
    dotnet new blazorserver -o TodoList
    ```
 
-   The preceding command creates a folder named `TodoList` to hold the app. Change directories to the `TodoList` folder with the following command:
+   The preceding command creates a folder named `TodoList` to hold the app. The `TodoList` folder is the *root folder* of the project. Change directories to the `TodoList` folder with the following command:
 
    ```dotnetcli
    cd TodoList
@@ -48,7 +48,7 @@ At the end of this tutorial, you'll have a working todo list app.
    ```
 
    > [!IMPORTANT]
-   > Razor component file names require a capitalized first letter, so confirm that the `Todo` component file name starts with a capital letter `T`.
+   > Razor component file names require a capitalized first letter. Open the `Pages` folder and confirm that the `Todo` component file name starts with a capital letter `T`. The file name should be `Todo.razor`.
 
 1. In `Pages/Todo.razor` provide the initial markup for the component:
 
@@ -72,9 +72,9 @@ At the end of this tutorial, you'll have a working todo list app.
    </li>
    ```
 
-1. Rebuild and run the app. Visit the new Todo page to confirm that the link to the `Todo` component works.
+1. Build and run the app by executing the `dotnet run` command in the command shell from the `TodoList` folder. Visit the new Todo page to confirm that the link to the `Todo` component works.
 
-1. Add a `TodoItem.cs` file to the root of the project to hold a class that represents a todo item. Use the following C# code for the `TodoItem` class:
+1. Add a `TodoItem.cs` file to the root of the project (the `TodoList` folder) to hold a class that represents a todo item. Use the following C# code for the `TodoItem` class:
 
    [!code-csharp[](build-a-blazor-app/samples_snapshot/3.x/TodoItem.cs)]
 
@@ -89,7 +89,7 @@ At the end of this tutorial, you'll have a working todo list app.
 
    [!code-razor[](build-a-blazor-app/samples_snapshot/3.x/ToDo5.razor?highlight=12-13)]
 
-1. Rebuild and run the app. When the **`Add todo`** button is selected, nothing happens because an event handler isn't wired up to the button.
+1. Stop the running app in the command shell. Many command shells accept the keyboard command <kbd>Ctrl</kbd>+<kbd>c</kbd> to stop an app. Rebuild and run the app with the `dotnet run` command. When the **`Add todo`** button is selected, nothing happens because an event handler isn't wired up to the button.
 
 1. Add an `AddTodo` method to the `Todo` component and register it for button selections using the `@onclick` attribute. The `AddTodo` C# method is called when the button is selected:
 
@@ -107,7 +107,7 @@ At the end of this tutorial, you'll have a working todo list app.
 
    [!code-razor[](build-a-blazor-app/samples_snapshot/3.x/ToDo8.razor?highlight=19-26)]
 
-1. Rebuild and run the app. Add some todo items to the todo list to test the new code.
+1. Stop the running app in the command shell. Rebuild and run the app with the `dotnet run` command. Add some todo items to the todo list to test the new code.
 
 1. The title text for each todo item can be made editable, and a check box can help the user keep track of completed items. Add a check box input for each todo item and bind its value to the `IsDone` property. Change `@todo.Title` to an `<input>` element bound to `@todo.Title`:
 
@@ -123,7 +123,7 @@ At the end of this tutorial, you'll have a working todo list app.
 
    [!code-razor[](build-a-blazor-app/samples_snapshot/3.x/Todo.razor)]
 
-1. Rebuild and run the app. Add todo items to test the new code.
+1. Stop the running app in the command shell. Rebuild and run the app with the `dotnet run` command. Add todo items to test the new code.
 
 ## Next steps
 
