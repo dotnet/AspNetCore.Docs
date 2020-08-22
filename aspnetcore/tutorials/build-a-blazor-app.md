@@ -72,7 +72,7 @@ At the end of this tutorial, you'll have a working todo list app.
    </li>
    ```
 
-1. Build and run the app by executing the `dotnet run` command in a command shell. Visit the new Todo page to confirm that the link to the `Todo` component works.
+1. Build and run the app by executing the `dotnet run` command in the command shell from the `TodoList` folder. Visit the new Todo page to confirm that the link to the `Todo` component works.
 
 1. Add a `TodoItem.cs` file to the root of the project (the `TodoList` folder) to hold a class that represents a todo item. Use the following C# code for the `TodoItem` class:
 
@@ -89,7 +89,7 @@ At the end of this tutorial, you'll have a working todo list app.
 
    [!code-razor[](build-a-blazor-app/samples_snapshot/3.x/ToDo5.razor?highlight=12-13)]
 
-1. Stop the running program in the command shell. Rebuild and run the app with the `dotnet run` command. When the **`Add todo`** button is selected, nothing happens because an event handler isn't wired up to the button.
+1. Stop the running program in the command shell. Many command shells accept the keyboard command <kbd>Ctrl</kbd>+<kbd>c</kbd> to stop an app. Rebuild and run the app with the `dotnet run` command. When the **`Add todo`** button is selected, nothing happens because an event handler isn't wired up to the button.
 
 1. Add an `AddTodo` method to the `Todo` component and register it for button selections using the `@onclick` attribute. The `AddTodo` C# method is called when the button is selected:
 
