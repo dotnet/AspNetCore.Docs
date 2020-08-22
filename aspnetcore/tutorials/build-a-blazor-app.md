@@ -72,7 +72,7 @@ At the end of this tutorial, you'll have a working todo list app.
    </li>
    ```
 
-1. Rebuild and run the app. Visit the new Todo page to confirm that the link to the `Todo` component works.
+1. Rebuild and run the app by executing the `dotnet run` command in a command shell. Visit the new Todo page to confirm that the link to the `Todo` component works.
 
 1. Add a `TodoItem.cs` file to the root of the project (the `TodoList` folder) to hold a class that represents a todo item. Use the following C# code for the `TodoItem` class:
 
@@ -89,7 +89,7 @@ At the end of this tutorial, you'll have a working todo list app.
 
    [!code-razor[](build-a-blazor-app/samples_snapshot/3.x/ToDo5.razor?highlight=12-13)]
 
-1. Rebuild and run the app. When the **`Add todo`** button is selected, nothing happens because an event handler isn't wired up to the button.
+1. Rebuild and run the app with the `dotnet run` command. When the **`Add todo`** button is selected, nothing happens because an event handler isn't wired up to the button.
 
 1. Add an `AddTodo` method to the `Todo` component and register it for button selections using the `@onclick` attribute. The `AddTodo` C# method is called when the button is selected:
 
@@ -107,7 +107,7 @@ At the end of this tutorial, you'll have a working todo list app.
 
    [!code-razor[](build-a-blazor-app/samples_snapshot/3.x/ToDo8.razor?highlight=19-26)]
 
-1. Rebuild and run the app. Add some todo items to the todo list to test the new code.
+1. Rebuild and run the app with the `dotnet run` command. Add some todo items to the todo list to test the new code.
 
 1. The title text for each todo item can be made editable, and a check box can help the user keep track of completed items. Add a check box input for each todo item and bind its value to the `IsDone` property. Change `@todo.Title` to an `<input>` element bound to `@todo.Title`:
 
@@ -123,7 +123,7 @@ At the end of this tutorial, you'll have a working todo list app.
 
    [!code-razor[](build-a-blazor-app/samples_snapshot/3.x/Todo.razor)]
 
-1. Rebuild and run the app. Add todo items to test the new code.
+1. Rebuild and run the app with the `dotnet run` command. Add todo items to test the new code.
 
 ## Next steps
 
