@@ -296,7 +296,7 @@ Use the [UseStartup(IWebHostBuilder, String)](/dotnet/api/microsoft.aspnetcore.h
 
 ### Startup method conventions
 
-[Configure](/dotnet/api/microsoft.aspnetcore.hosting.startupbase.configure) and [ConfigureServices](/dotnet/api/microsoft.aspnetcore.hosting.startupbase.configureservices) support environment-specific versions of the form `Configure<EnvironmentName>` and `Configure<EnvironmentName>Services`. This approach is useful when the app requires configuring startup for several environments with many code differences per environment:
+[Configure](xref:Microsoft.AspNetCore.Hosting.StartupBase.Configure%2A) and [ConfigureServices](xref:Microsoft.AspNetCore.Hosting.StartupBase.ConfigureServices%2A) support environment-specific versions of the form `Configure<EnvironmentName>` and `Configure<EnvironmentName>Services`. If a matching `Configure<EnvironmentName>Services` or `Configure<EnvironmentName>` method isn't found, the `ConfigureServices` or `Configure` method is used, respectively. This approach is useful when the app requires configuring startup for several environments with many code differences per environment:
 
 [!code-csharp[](environments/3.1sample/EnvironmentsSample/StartupMethodConventions.cs?name=snippet)]
 
@@ -728,7 +728,7 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args)
 
 ### Startup method conventions
 
-[Configure](/dotnet/api/microsoft.aspnetcore.hosting.startupbase.configure) and [ConfigureServices](/dotnet/api/microsoft.aspnetcore.hosting.startupbase.configureservices) support environment-specific versions of the form `Configure<EnvironmentName>` and `Configure<EnvironmentName>Services`. This approach is useful when the app requires configuring startup for several environments with many code differences per environment.
+[Configure](xref:Microsoft.AspNetCore.Hosting.StartupBase.Configure%2A) and [ConfigureServices](xref:Microsoft.AspNetCore.Hosting.StartupBase.ConfigureServices%2A) support environment-specific versions of the form `Configure<EnvironmentName>` and `Configure<EnvironmentName>Services`. If a matching `Configure<EnvironmentName>Services` or `Configure<EnvironmentName>` method isn't found, the `ConfigureServices` or `Configure` method is used, respectively. This approach is useful when the app requires configuring startup for several environments with many code differences per environment:
 
 [!code-csharp[](environments/sample/EnvironmentsSample/Startup.cs?name=snippet_all&highlight=15,42)]
 
