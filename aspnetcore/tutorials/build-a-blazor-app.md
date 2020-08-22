@@ -48,7 +48,7 @@ At the end of this tutorial, you'll have a working todo list app.
    ```
 
    > [!IMPORTANT]
-   > Razor component file names require a capitalized first letter, so open the `Pages` folder and confirm that the `Todo` component file name starts with a capital letter `T` (`Todo.razor`).
+   > Razor component file names require a capitalized first letter. Open the `Pages` folder and confirm that the `Todo` component file name starts with a capital letter `T`. The file name should be `Todo.razor`.
 
 1. In `Pages/Todo.razor` provide the initial markup for the component:
 
