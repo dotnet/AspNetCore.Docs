@@ -11,7 +11,6 @@ uid: tutorials/publish-to-azure-api-management-using-vs
 # Publish an ASP.NET Core app to Azure API Management with Visual Studio
 
 By [Matt Soucoup](https://twitter.com/codemillmatt)
-::: moniker range=">= aspnetcore-3.0"
 
 ## Set up
 
@@ -122,7 +121,7 @@ In the **Publish** dialog:
 
 In the **Publish** dialog select **Create a new Azure App Service...**
 
-![Publish dialog: select Azure Service instance](publish-to-azure-api_management-using-vs/_static/publish_dialog_create_new_app_svc.png)
+![Publish dialog: select Azure Service instance](publish-to-azure-api-management-using-vs/_static/publish_dialog_create_new_app_svc.png)
 
 The **Create App Service** dialog appears:
 
@@ -229,7 +228,7 @@ services.AddSwaggerGen(config =>
 
 Open the publish profile that was just created. It can be found from the Solution Explorer in the **Properties** -> **PublishProfiles** folder.
 
-![Screenshot showing the publish profile file location highlighted](publish-to-azure-api-management-using-vs/_static/vs_publis_profile_highlighted.png)
+![Screenshot showing the publish profile file location highlighted](publish-to-azure-api-management-using-vs/_static/vs_publish_profile_highlighted.png)
 
 Find the `<OpenAPIDocumentName>` element and change its value from `v1` to `WeatherForecasts`.
 
