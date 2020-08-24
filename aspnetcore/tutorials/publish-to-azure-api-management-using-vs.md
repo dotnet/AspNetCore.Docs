@@ -31,17 +31,13 @@ Add the **Swashbuckle.AspNetCore** NuGet package to the ASP.NET Core web API's p
 Open the `Startup.cs` file and add the following line to the `ConfigureServices` function:
 
 ```csharp
-
 services.AddSwaggerGen();
-
 ```
 
 Add the following line to the `Configure` function.
 
 ```csharp
-
 app.UseSwagger();
-
 ```
 
 ### Change the API routing
@@ -53,20 +49,16 @@ Open the `WeatherForecastController.cs` file.
 Delete the `[Route("[controller]")]` class-level attribute. The class definition will look like the following:
 
 ```csharp
-
 [ApiController]
 public class WeatherForecastController : ControllerBase
-
 ```
 
 Add a `[Route("/")]` attribute to the `Get()` function. The function definition will look like the following:
 
 ```csharp
-
 [HttpGet]
 [Route("/")]
 public IEnumerable<WeatherForecast> Get()
-
 ```
 
 ## Publish the API app to Azure API Management
@@ -184,15 +176,12 @@ Here the published API is named **WeatherAPI** whereas you named it **WeatherFor
 To fix the name, open the `Startup.cs` file, navigate to the `ConfigureServices` function and delete the following line:
 
 ```csharp
-
 services.AddSwaggerGen();
-
 ```
 
 Then add in the following code to the `ConfigureServices` function:
 
 ```csharp
-
 services.AddSwaggerGen(config =>
 {
     config.SwaggerDoc("WeatherForecasts", new Microsoft.OpenApi.Models.OpenApiInfo
@@ -201,7 +190,6 @@ services.AddSwaggerGen(config =>
         Version = "v1"
     });
 });
-
 ```
 
 Open the publish profile that was just created. It can be found from the Solution Explorer in the **Properties** -> **PublishProfiles** folder.
