@@ -39,7 +39,7 @@ Before proceeding to ASP.NET Core middleware, let's first recap how HTTP modules
 
 **The order in which modules process incoming requests is determined by:**
 
-1. The [application life cycle](https://msdn.microsoft.com/library/ms227673.aspx), which is a series events fired by ASP.NET: [BeginRequest](/dotnet/api/system.web.httpapplication.beginrequest), [AuthenticateRequest](/dotnet/api/system.web.httpapplication.authenticaterequest), etc. Each module can create a handler for one or more events.
+1. The <https://docs.microsoft.com/en-us/previous-versions/ms227673(v=vs.140)>, which is a series events fired by ASP.NET: [BeginRequest](/dotnet/api/system.web.httpapplication.beginrequest), [AuthenticateRequest](/dotnet/api/system.web.httpapplication.authenticaterequest), etc. Each module can create a handler for one or more events.
 
 2. For the same event, the order in which they're configured in *Web.config*.
 
@@ -76,7 +76,7 @@ In addition to modules, you can add handlers for the life cycle events to your *
 
 **Middleware and modules are processed in a different order:**
 
-* Order of middleware is based on the order in which they're inserted into the request pipeline, while order of modules is mainly based on [application life cycle](https://msdn.microsoft.com/library/ms227673.aspx) events
+* Order of middleware is based on the order in which they're inserted into the request pipeline, while order of modules is mainly based on <https://docs.microsoft.com/en-us/previous-versions/ms227673(v=vs.140)> events
 
 * Order of middleware for responses is the reverse from that for requests, while order of modules is the same for requests and responses
 

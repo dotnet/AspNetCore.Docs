@@ -242,9 +242,9 @@ The Visual Studio editor helps you write **all** of the markup in the Tag Helper
 
 ## Tag Helpers compared to Web Server Controls
 
-* Tag Helpers don't own the element they're associated with; they simply participate in the rendering of the element and content. ASP.NET [Web Server controls](https://msdn.microsoft.com/library/7698y1f0.aspx) are declared and invoked on a page.
+* Tag Helpers don't own the element they're associated with; they simply participate in the rendering of the element and content. ASP.NET <https://docs.microsoft.com/en-us/previous-versions/dotnet/netframework-3.0/7698y1f0(v=vs.85)> are declared and invoked on a page.
 
-* [Web Server controls](https://msdn.microsoft.com/library/zsyt68f1.aspx) have a non-trivial lifecycle that can make developing and debugging difficult.
+* <https://docs.microsoft.com/en-us/previous-versions/zsyt68f1(v=vs.140)> have a non-trivial lifecycle that can make developing and debugging difficult.
 
 * Web Server controls allow you to add functionality to the client Document Object Model (DOM) elements by using a client control. Tag Helpers have no DOM.
 
