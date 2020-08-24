@@ -94,7 +94,7 @@ A set of built-in input components are available to receive and validate user in
 
 All of the input components, including <xref:Microsoft.AspNetCore.Components.Forms.EditForm>, support arbitrary attributes. Any attribute that doesn't match a component parameter is added to the rendered HTML element.
 
-Input components provide default behavior for validating on edit and changing their CSS class to reflect the field state. Some components include useful parsing logic. For example, <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601> and <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> handle unparseable values gracefully by registering them as validation errors. Types that can accept null values also support nullability of the target field (for example, `int?`).
+Input components provide default behavior for validating when a field is changed, including updating the field CSS class to reflect the field state. Some components include useful parsing logic. For example, <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601> and <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> handle unparseable values gracefully by registering unparseable values as validation errors. Types that can accept null values also support nullability of the target field (for example, `int?`).
 
 The following `Starship` type defines validation logic using a larger set of properties and data annotations than the earlier `ExampleModel`:
 
@@ -738,8 +738,8 @@ Use `InputRadio` components with the `InputRadioGroup` component to create a rad
 
 ```csharp
 [Required]
-[Range(typeof(Manufacturer), nameof(Airline.SpaceX), 
-    nameof(Airline.VirginGalactic), ErrorMessage = "Pick a valid manufacturer.")]
+[Range(typeof(Manufacturer), nameof(Manufacturer.SpaceX), 
+    nameof(Manufacturer.VirginGalactic), ErrorMessage = "Pick a manufacturer.")]
 public Manufacturer Manufacturer { get; set; } = Manufacturer.Unknown;
 
 [Required, EnumDataType(typeof(Color))]
@@ -749,7 +749,7 @@ public Color? Color { get; set; } = null;
 public Engine? Engine { get; set; } = null;
 ```
 
-Add the following enums to the app. Create a new file to hold them or add them to the `Starship.cs` file. Make them accessible to the `Starship` model and the *Starfleet Starship Database* form:
+Add the following enums to the app. Create a new file to hold the enums or add the enums to the `Starship.cs` file. Make the enums accessible to the `Starship` model and the *Starfleet Starship Database* form:
 
 ```csharp
 public enum Manufacturer { SpaceX, NASA, ULA, Virgin, Unknown }
