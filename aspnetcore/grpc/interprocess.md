@@ -42,9 +42,9 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 
 ## Client configuration
 
-`GrpcChannel` supports making gRPC calls over custom transports. When a channel is created it should be configured with a `SocketsHttpHandler` with a custom `ConnectionFactory`. The factory allows the client to make connections over custom transports and use them to make HTTP requests.
+`GrpcChannel` supports making gRPC calls over custom transports. When a channel is created can be configured with a `SocketsHttpHandler` that has a custom `ConnectionFactory`. The factory allows the client to make connections over custom transports and then sent HTTP requests over that transport.
 
-Example of a Unix domain sockets (UDS) connection factory:
+Example of a Unix domain sockets connection factory:
 
 ```csharp
 public class UnixDomainSocketConnectionFactory : SocketsConnectionFactory
@@ -84,3 +84,5 @@ public static GrpcChannel CreateChannel()
     });
 }
 ```
+
+Channels created using the preceding code will send gRPC calls over Unix domain sockets.
