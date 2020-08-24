@@ -771,7 +771,7 @@ Update the *Starfleet Starship Database* form described in the [Built-in forms c
             .GetValues(typeof(Manufacturer)))
         {
             <InputRadio Value="manufacturer" />
-            @manufacturer.ToString();
+            @manufacturer
             <br>
         }
     </InputRadioGroup>
