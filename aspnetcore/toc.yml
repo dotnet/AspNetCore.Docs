@@ -707,6 +707,8 @@
       uid: grpc/clientfactory
     - name: Use gRPC in browser apps
       uid: grpc/browser
+    - name: Use gRPC with inter-process communication
+      uid: grpc/interprocess
     - name: Configuration
       uid: grpc/configuration
     - name: Authentication and authorization
