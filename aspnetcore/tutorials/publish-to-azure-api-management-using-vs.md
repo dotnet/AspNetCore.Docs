@@ -16,33 +16,7 @@ By [Matt Soucoup](https://twitter.com/codemillmatt)
 
 - Open a [free Azure account](https://azure.microsoft.com/free/dotnet/) if you don't have one.
 - [Create a new Azure API Management instance](/azure/api-management/get-started-create-service-instance) if you have not already.
-
-## Create a web api app
-
-In the Visual Studio Start dialog, select **Create a new project**
-
-![New project from start dialog](publish-to-azure-api-management-using-vs/_static/file_new_project.png)
-
-Select the **ASP.NET Core Web Application** template
-
-![Template selection dialog](publish-to-azure-api-management-using-vs/_static/select_template.png)
-
-Configure the project by providing:
-
-- A project name
-- Location to save the project's files
-- A solution name
-
-![Configure project dialog](publish-to-azure-api-management-using-vs/_static/configure_prj.png)
-
-Complete the **New Project** dialog:
-
-- Select **API**.
-- Click **Create**.
-
-![Finish](publish-to-azure-api-management-using-vs/_static/select_aspnet_core_webapi.png)
-
-Visual Studio creates the solution.
+- [Create a Web API app project](aspnet/core/tutorials/first-web-api#create-a-web-project)
 
 ## Configure the app
 
@@ -52,7 +26,7 @@ Adding Swagger definitions to the ASP.NET Core web API will allow Azure API Mana
 
 Add the **Swashbuckle.AspNetCore** NuGet package to the ASP.NET Core web API's project.
 
-![configure nuget dialog](publish-to-azure-api-management-using-vs/_static/configure_nuget.png)
+![Screenshot to configure the NuGet dialog](publish-to-azure-api-management-using-vs/_static/configure_nuget.png)
 
 Open the `Startup.cs` file and add the following line to the `ConfigureServices` function:
 
@@ -97,7 +71,11 @@ public IEnumerable<WeatherForecast> Get()
 
 ## Publish the API app to Azure API Management
 
-In order to publish the ASP.NET Core web API to Azure API Management you need to first publish the API app to Azure App Service, add an API in the Azure API Management service, then publish the API there.
+In order to publish the ASP.NET Core web API to Azure API Management you need to perform three steps: 
+
+1. Publish the API app to Azure App Service
+1. Add a blank API to the Azure API Management service instance
+1. Publish the ASP.NET Core web API app to the Azure API Management service instance
 
 ### Publish the API app to Azure App Service
 
