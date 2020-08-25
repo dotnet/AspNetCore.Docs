@@ -62,20 +62,22 @@ In the preceding example:
 
 ## Built-in forms components
 
-A set of built-in input components are available to receive and validate user input. Inputs are validated when they're changed and when a form is submitted. Available input components are shown in the following table.
+A set of built-in input components are available to receive and validate user input. Inputs are validated when they're changed and when a form is submitted. Available input components are shown in the following table. For built-in components that support the `DisplayName` parameter, the display name assigned to the component appears in validation messages.
 
 ::: moniker range=">= aspnetcore-5.0"
 
-| Input component | Rendered as&hellip; |
-| --------------- | ------------------- |
-| <xref:Microsoft.AspNetCore.Components.Forms.InputCheckbox> | `<input type="checkbox">` |
-| <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601> | `<input type="date">` |
-| <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> | `<input type="number">` |
-| [`InputRadio`](#radio-buttons) | `<input type="radio">` |
-| [`InputRadioGroup`](#radio-buttons) | `<input type="radio">` |
-| <xref:Microsoft.AspNetCore.Components.Forms.InputSelect%601> | `<select>` |
-| <xref:Microsoft.AspNetCore.Components.Forms.InputText> | `<input>` |
-| <xref:Microsoft.AspNetCore.Components.Forms.InputTextArea> | `<textarea>` |
+| Input component | Rendered as&hellip; | Supports `DisplayName` |
+| --------------- | ------------------- | ---------------------- |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputCheckbox> | `<input type="checkbox">` | No |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601> | `<input type="date">` | Yes |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> | `<input type="number">` | Yes |
+| [`InputRadio`](#radio-buttons) | `<input type="radio">` | No |
+| [`InputRadioGroup`](#radio-buttons) | `<input type="radio">` | No |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputSelect%601> | `<select>` | Yes |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputText> | `<input>` | No |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputTextArea> | `<textarea>` | No |
+
+For more information on display name support with the `DisplayName` parameter, see the [Display name support](#display-name-support) section.
 
 ::: moniker-end
 
@@ -254,6 +256,35 @@ In the following example:
 
 > [!NOTE]
 > Framework API doesn't exist to clear validation messages directly from an <xref:Microsoft.AspNetCore.Components.Forms.EditContext>. Therefore, we don't generally recommend adding validation messages to a new <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore> in a form. To manage validation messages, use a [validator component](#validator-components) with your [business logic validation code](#business-logic-validation), as described in this article.
+
+::: moniker range=">= aspnetcore-5.0"
+
+## Display name support
+
+The following built-in components support display names with the `DisplayName` parameter:
+
+* <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601>
+* <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601>
+* <xref:Microsoft.AspNetCore.Components.Forms.InputSelect%601>
+
+In the following `InputDate` component example:
+
+* The display name (`DisplayName`) is set to "birthday" (`birthday`).
+* The component is bound to the `DateTime` type.
+
+```razor
+<InputDate @bind-Value="@BirthDate" DisplayName="birthday" />
+
+@code {
+    public DateTime BirthDate { get; set; }
+}
+```
+
+If the user doesn't provide a date value, the validation error appears as:
+
+> The birthday must be a date.
+
+::: moniker-end
 
 ## Validator components
 
