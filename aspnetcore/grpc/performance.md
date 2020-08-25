@@ -65,9 +65,9 @@ There are a couple of workarounds for .NET Core 3.1 apps:
 > [!IMPORTANT]
 > Increasing the maximum concurrent stream limit on the server is another way to solve this problem. In Kestrel this is configured with <xref:Microsoft.AspNetCore.Server.Kestrel.Core.Http2Limits.MaxStreamsPerConnection>.
 >
-> Increasing the maximum concurrent stream limit is not an ideal solution. Too many streams on a single HTTP/2 connection introduces another performance issues:
+> Increasing the maximum concurrent stream limit is not recommended. Too many streams on a single HTTP/2 connection introduces new performance issues:
 >
-> * Thread contention between streams to write to the connection.
+> * Thread contention between streams trying to write to the connection.
 > * Connection packet loss causes all calls to be blocked at the TCP layer.
 
 ::: moniker range=">= aspnetcore-5.0"
