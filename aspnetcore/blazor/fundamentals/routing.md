@@ -162,7 +162,7 @@ For more information, see <xref:fundamentals/routing>.
 
 Catch-all route parameters, which capture paths across multiple folder boundaries, are supported in components. The catch-all route parameter must be:
 
-* Named to match the route segment name. Naming is not case sensitive.
+* Named to match the route segment name. Naming isn't case sensitive.
 * A `string` type. The framework doesn't provide automatic casting.
 * At the end of the URL.
 
