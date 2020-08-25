@@ -62,7 +62,7 @@ In the preceding example:
 
 ## Built-in forms components
 
-A set of built-in input components are available to receive and validate user input. Inputs are validated when they're changed and when a form is submitted. Available input components are shown in the following table.
+A set of built-in components are available to receive and validate user input. Inputs are validated when they're changed and when a form is submitted. Available input components are shown in the following table.
 
 ::: moniker range=">= aspnetcore-5.0"
 
@@ -254,6 +254,39 @@ In the following example:
 
 > [!NOTE]
 > Framework API doesn't exist to clear validation messages directly from an <xref:Microsoft.AspNetCore.Components.Forms.EditContext>. Therefore, we don't generally recommend adding validation messages to a new <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore> in a form. To manage validation messages, use a [validator component](#validator-components) with your [business logic validation code](#business-logic-validation), as described in this article.
+
+::: moniker range=">= aspnetcore-5.0"
+
+## Display name support
+
+*This section applies to .NET 5 Release Candidate 1 (RC1) or later, which will be released in mid-September.*
+
+The following built-in components support display names with the `DisplayName` parameter:
+
+* <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601>
+* <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601>
+* <xref:Microsoft.AspNetCore.Components.Forms.InputSelect%601>
+
+In the following `InputDate` component example:
+
+* The display name (`DisplayName`) is set to `birthday`.
+* The component is bound to the `BirthDate` property as a `DateTime` type.
+
+```razor
+<InputDate @bind-Value="@BirthDate" DisplayName="birthday" />
+
+@code {
+    public DateTime BirthDate { get; set; }
+}
+```
+
+If the user doesn't provide a date value, the validation error appears as:
+
+```
+The birthday must be a date.
+```
+
+::: moniker-end
 
 ## Validator components
 
