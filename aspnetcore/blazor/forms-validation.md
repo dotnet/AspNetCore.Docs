@@ -62,7 +62,7 @@ In the preceding example:
 
 ## Built-in forms components
 
-A set of built-in input components are available to receive and validate user input. Inputs are validated when they're changed and when a form is submitted. Available input components are shown in the following table. For built-in components that support the `DisplayName` parameter, the display name assigned to the component appears in validation messages.
+A set of built-in components are available to receive and validate user input. Inputs are validated when they're changed and when a form is submitted. Available input components are shown in the following table. For built-in components that support the `DisplayName` parameter, the display name assigned to the component appears in validation messages.
 
 ::: moniker range=">= aspnetcore-5.0"
 
