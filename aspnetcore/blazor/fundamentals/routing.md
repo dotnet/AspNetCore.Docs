@@ -160,6 +160,8 @@ For more information, see <xref:fundamentals/routing>.
 
 ## Catch-all route parameters
 
+*This section applies to .NET 5 Release Candidate 1 (RC1) or later, which will be released in mid-September.*
+
 Catch-all route parameters, which capture paths across multiple folder boundaries, are supported in components. The catch-all route parameter must be:
 
 * Named to match the route segment name. Naming isn't case sensitive.
