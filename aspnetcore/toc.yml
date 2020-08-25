@@ -702,7 +702,11 @@
         - name: Get started with a gRPC service
           uid: tutorials/grpc/grpc-start
     - name: gRPC services with C#
-      uid: grpc/basics
+      items:
+        - name: Overview
+          uid: grpc/basics
+        - name: Create gRPC services
+          uid: grpc/services
     - name: gRPC services with ASP.NET Core
       uid: grpc/aspnetcore
     - name: Call gRPC services with .NET client
