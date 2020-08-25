@@ -177,7 +177,7 @@ Catch-all route parameters, which capture paths across multiple folder boundarie
 
 If the user navigates to `/page/this/is/a/test` with a route of `/page/{*pageRoute}`, the value of `PageRoute` is set to `/this/is/a/test`.
 
-Slashes and segments of the captured path are decoded: `/page/this/is/a%2Ftest%2A` yields `/this/is/a/test*`.
+Slashes and segments of the captured path are decoded. For a route of `/page/{*pageRoute}`, the URL `/page/this/is/a%2Ftest%2A` yields `/this/is/a/test*`.
 
 ## NavLink component
 
