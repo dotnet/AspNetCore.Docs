@@ -32,6 +32,15 @@ Mark assemblies for lazy loading in the app's project file (`.csproj`) using the
 
 Only assemblies that are used by the app can be lazily loaded. The linker strips unused assemblies from published output.
 
+> [!NOTE]
+> In .NET 5 Release Candidate 1 (RC1) or later, which will be released in mid-September, the assembly name will require the `.dll` extension:
+>
+> ```xml
+> <ItemGroup>
+>  <BlazorWebAssemblyLazyLoad Include="GrantImaharaRobotControls.dll" />
+> </ItemGroup>
+> ```
+
 ## `Router` component
 
 Blazor's `Router` component designates which assemblies Blazor searches for routable components. The `Router` component is also responsible for rendering the component for the route where the user navigates. The `Router` component supports an `OnNavigateAsync` feature that can be used in conjunction with lazy loading.
