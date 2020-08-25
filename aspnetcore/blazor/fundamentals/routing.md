@@ -153,13 +153,34 @@ In Blazor Server apps, the default route in `_Host.cshtml` is `/` (`@page "/"`).
 
 The `"/{**path}"` template includes:
 
-* Double-asterisk *catch-all* syntax (`**`) to capture the path across multiple folder boundaries without encoding forward slashes (`/`).
+* Double-asterisk *catch-all* syntax (`**`) to capture the path across multiple folder boundaries without decoding forward slashes (`/`).
 * `path` route parameter name.
 
-> [!NOTE]
-> *Catch-all* parameter syntax (`*`/`**`) is **not** supported in Razor components (`.razor`).
-
 For more information, see <xref:fundamentals/routing>.
+
+## Catch-all route parameters
+
+Catch-all route parameters, which capture paths across multiple folder boundaries, are supported in components. The catch-all route parameter must be:
+
+* Named to match the route segment name. Naming is not case sensitive.
+* A `string` type. The framework doesn't provide automatic casting.
+* At the end of the URL.
+
+```razor
+@page "/page/{*pageRoute}"
+
+@code {
+    [Parameter]
+    public string PageRoute { get; set; }
+}
+```
+
+If the user navigates to `/page/this/is/a/test` with a route of `/page/{*pageRoute}`, the value of `PageRoute` is set to `/this/is/a/test`.
+
+Decoding behavior:
+
+* `/page/{*pageRoute}`: Decodes slashes and segments of the captured path: `/page/this/is/a%2Ftest%2A` yields `/this/is/a/test*`.
+* `/page/{**pageRoute}`: Doesn't decode slashes and segments of the captured path: `/page/this/is/a%2Ftest%2A` yields `/this/is/a%2Ftest%2A`.
 
 ## NavLink component
 
