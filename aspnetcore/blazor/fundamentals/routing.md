@@ -153,13 +153,43 @@ In Blazor Server apps, the default route in `_Host.cshtml` is `/` (`@page "/"`).
 
 The `"/{**path}"` template includes:
 
-* Double-asterisk *catch-all* syntax (`**`) to capture the path across multiple folder boundaries without encoding forward slashes (`/`).
+* Double-asterisk *catch-all* syntax (`**`) to capture the path across multiple folder boundaries without decoding forward slashes (`/`).
 * `path` route parameter name.
 
-> [!NOTE]
-> *Catch-all* parameter syntax (`*`/`**`) is **not** supported in Razor components (`.razor`).
-
 For more information, see <xref:fundamentals/routing>.
+
+## Catch-all route parameters
+
+::: moniker range=">= aspnetcore-5.0"
+
+*This section applies to .NET 5 Release Candidate 1 (RC1) or later, which will be released in mid-September.*
+
+Catch-all route parameters, which capture paths across multiple folder boundaries, are supported in components. The catch-all route parameter must be:
+
+* Named to match the route segment name. Naming isn't case sensitive.
+* A `string` type. The framework doesn't provide automatic casting.
+* At the end of the URL.
+
+```razor
+@page "/page/{*pageRoute}"
+
+@code {
+    [Parameter]
+    public string PageRoute { get; set; }
+}
+```
+
+For the URL `/page/this/is/a/test` with a route template of `/page/{*pageRoute}`, the value of `PageRoute` is set to `this/is/a/test`.
+
+Slashes and segments of the captured path are decoded. For a route template of `/page/{*pageRoute}`, the URL `/page/this/is/a%2Ftest%2A` yields `this/is/a/test*`.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+Catch-all route parameters will be supported in .NET 5 Release Candidate 1 (RC1) or later, which will be released in mid-September.*
+
+::: moniker-end
 
 ## NavLink component
 
