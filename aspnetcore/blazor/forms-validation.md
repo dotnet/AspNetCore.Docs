@@ -62,22 +62,20 @@ In the preceding example:
 
 ## Built-in forms components
 
-A set of built-in components are available to receive and validate user input. Inputs are validated when they're changed and when a form is submitted. Available input components are shown in the following table. For built-in components that support the `DisplayName` parameter, the display name assigned to the component appears in validation messages.
+A set of built-in components are available to receive and validate user input. Inputs are validated when they're changed and when a form is submitted. Available input components are shown in the following table.
 
 ::: moniker range=">= aspnetcore-5.0"
 
-| Input component | Rendered as&hellip; | Supports `DisplayName` |
-| --------------- | ------------------- | ---------------------- |
-| <xref:Microsoft.AspNetCore.Components.Forms.InputCheckbox> | `<input type="checkbox">` | No |
-| <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601> | `<input type="date">` | Yes |
-| <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> | `<input type="number">` | Yes |
-| [`InputRadio`](#radio-buttons) | `<input type="radio">` | No |
-| [`InputRadioGroup`](#radio-buttons) | `<input type="radio">` | No |
-| <xref:Microsoft.AspNetCore.Components.Forms.InputSelect%601> | `<select>` | Yes |
-| <xref:Microsoft.AspNetCore.Components.Forms.InputText> | `<input>` | No |
-| <xref:Microsoft.AspNetCore.Components.Forms.InputTextArea> | `<textarea>` | No |
-
-For more information on display name support with the `DisplayName` parameter, see the [Display name support](#display-name-support) section.
+| Input component | Rendered as&hellip; |
+| --------------- | ------------------- |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputCheckbox> | `<input type="checkbox">` |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601> | `<input type="date">` |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> | `<input type="number">` |
+| [`InputRadio`](#radio-buttons) | `<input type="radio">` |
+| [`InputRadioGroup`](#radio-buttons) | `<input type="radio">` |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputSelect%601> | `<select>` |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputText> | `<input>` |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputTextArea> | `<textarea>` |
 
 ::: moniker-end
 
@@ -260,6 +258,8 @@ In the following example:
 ::: moniker range=">= aspnetcore-5.0"
 
 ## Display name support
+
+*This section applies to .NET 5 Release Candidate 1 (RC1) or later, which will be released in mid-September.*
 
 The following built-in components support display names with the `DisplayName` parameter:
 
