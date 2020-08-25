@@ -269,7 +269,7 @@ The following built-in components support display names with the `DisplayName` p
 
 In the following `InputDate` component example:
 
-* The display name (`DisplayName`) is set to "birthday" (`birthday`).
+* The display name (`DisplayName`) is set to `birthday`.
 * The component is bound to the `BirthDate` property as a `DateTime` type.
 
 ```razor
@@ -282,7 +282,9 @@ In the following `InputDate` component example:
 
 If the user doesn't provide a date value, the validation error appears as:
 
-> The birthday must be a date.
+```
+The birthday must be a date.
+```
 
 ::: moniker-end
 
