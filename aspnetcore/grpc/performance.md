@@ -37,11 +37,11 @@ Channels are safe to share and reuse between gRPC calls:
 
 HTTP/2 connections typically have a limit on the number of [maximum concurrent streams (active HTTP requests)](https://http2.github.io/http2-spec/#rfc.section.5.1.2) on a connection at one time. By default, most servers set this limit to 100 concurrent streams.
 
-A gRPC channel uses a single HTTP/2 connection, and concurrent calls are multiplexed on that connection. When the number of active calls reaches the connection stream limit, additional calls will be queued in the client. Queued calls will wait for active calls to complete before they are sent. Applications with very high load, or long running streaming gRPC calls, could see performance issues caused by calls queuing because of this limit.
+A gRPC channel uses a single HTTP/2 connection, and concurrent calls are multiplexed on that connection. When the number of active calls reaches the connection stream limit, additional calls are queued in the client. Queued calls wait for active calls to complete before they are sent. Applications with high load, or long running streaming gRPC calls, could see performance issues caused by calls queuing because of this limit.
 
 ::: moniker range=">= aspnetcore-5.0"
 
-.NET 5 introduces the `SocketsHttpHandler.EnableMultipleHttp2Connections` property. When set to true, additional HTTP/2 connections are created by a channel when the concurrent stream limit is reached. When a `GrpcChannel` is created its internal `SocketsHttpHandler` is automatically configured to create additional HTTP/2 connections. If an app configures its own handler, consider setting `EnableMultipleHttp2Connections` to true:
+.NET 5 introduces the `SocketsHttpHandler.EnableMultipleHttp2Connections` property. When set to `true`, additional HTTP/2 connections are created by a channel when the concurrent stream limit is reached. When a `GrpcChannel` is created its internal `SocketsHttpHandler` is automatically configured to create additional HTTP/2 connections. If an app configures its own handler, consider setting `EnableMultipleHttp2Connections` to `true`:
 
 ```csharp
 var channel = GrpcChannel.ForAddress("https://localhost", new GrpcChannelOptions
@@ -59,8 +59,8 @@ var channel = GrpcChannel.ForAddress("https://localhost", new GrpcChannelOptions
 
 There are a couple of workarounds for .NET Core 3.1 apps:
 
-* Create separate gRPC channels for areas of the app with high load. For example, the `Logger` gRPC service might have very high load. Use a separate channel to create the `LoggerClient` in the app.
-* Use a pool of gRPC channels. A simple way to do this could be to create a list of gRPC channels. `Random` is used to pick a channel from the list each time a gRPC channel is needed. This would randomly distribute calls over multiple connections.
+* Create separate gRPC channels for areas of the app with high load. For example, the `Logger` gRPC service might have a high load. Use a separate channel to create the `LoggerClient` in the app.
+* Use a pool of gRPC channels, for example,  create a list of gRPC channels. `Random` is used to pick a channel from the list each time a gRPC channel is needed. Using `Random` randomly distributes calls over multiple connections.
 
 > [!IMPORTANT]
 > Increasing the maximum concurrent stream limit on the server is another way to solve this problem. In Kestrel this is configured with <xref:Microsoft.AspNetCore.Server.Kestrel.Core.Http2Limits.MaxStreamsPerConnection>.
@@ -93,7 +93,7 @@ var channel = GrpcChannel.ForAddress("https://localhost:5001", new GrpcChannelOp
 });
 ```
 
-The preceding code configures a channel that sends a keep alive ping to the server every 60 seconds during periods of inactivity. The ping will ensure the server and any proxies in use won't close the connection because of inactivity.
+The preceding code configures a channel that sends a keep alive ping to the server every 60 seconds during periods of inactivity. The ping ensures the server and any proxies in use won't close the connection because of inactivity.
 
 ::: moniker-end
 
