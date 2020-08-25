@@ -5,7 +5,7 @@ description: Discover how to lazy load assemblies in ASP.NET Core Blazor WebAsse
 monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/16/2020
+ms.date: 08/25/2020
 no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/webassembly-lazy-load-assemblies
 ---
@@ -154,6 +154,15 @@ If a user navigates to Route A and then immediately to Route B, the app shouldn'
 
 > [!NOTE]
 > Not throwing if the cancellation token in `NavigationContext` is canceled can result in unintended behavior, such as rendering a component from a previous navigation.
+
+### `OnNavigateAsync` events and renamed assembly files
+
+The resource loader relies on the assembly names that are defined in the `blazor.boot.json` file. If assemblies are renamed, the assembly names used in `OnNavigateAsync` methods and the assembly names in the `blazor.boot.json` file are out of sync.
+
+To rectify this:
+
+* Check to see if the app is running in the Production environment when determining which assembly names to use.
+* Store the renamed assembly names in a separate file and read from that file to determine what assembly name to use in the `LazyLoadAssemblyService` and `OnNavigateAsync` methods.
 
 ### Complete example
 
