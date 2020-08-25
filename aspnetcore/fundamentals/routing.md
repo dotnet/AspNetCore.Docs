@@ -402,7 +402,7 @@ In the following example, a middleware uses the <xref:Microsoft.AspNetCore.Routi
 
 Tokens within `{}` define route parameters that are bound if the route is matched. More than one route parameter can be defined in a route segment, but route parameters  must be separated by a literal value. For example, `{controller=Home}{action=Index}` isn't a valid route, since there's no literal value between `{controller}` and `{action}`.  Route parameters must have a name and may have additional attributes specified.
 
-Literal text other than route parameters (for example, `{id}`) and the path separator `/` must match the text in the URL. Text matching is case-insensitive and based on the decoded representation of the URL's path. To match a literal route parameter delimiter `{` or `}`, escape the delimiter by repeating the character. For example `{{` or `}}`.
+Literal text other than route parameters (for example, `{id}`) and the path separator `/` must match the text in the URL. Text matching is not case sensitive and based on the decoded representation of the URL's path. To match a literal route parameter delimiter `{` or `}`, escape the delimiter by repeating the character. For example `{{` or `}}`.
 
 Asterisk `*` or double asterisk `**`:
 
@@ -492,7 +492,7 @@ The following table demonstrates example route constraints and their expected be
 | constraint | Example | Example Matches | Notes |
 | ---------- | ------- | --------------- | ----- |
 | `int` | `{id:int}` | `123456789`, `-123456789` | Matches any integer |
-| `bool` | `{active:bool}` | `true`, `FALSE` | Matches `true` or `false`. Case-insensitive |
+| `bool` | `{active:bool}` | `true`, `FALSE` | Matches `true` or `false`. not case sensitive |
 | `datetime` | `{dob:datetime}` | `2016-12-31`, `2016-12-31 7:32pm` | Matches a valid `DateTime` value in the invariant culture. See preceding warning. |
 | `decimal` | `{price:decimal}` | `49.99`, `-1,000.01` | Matches a valid `decimal` value in the invariant culture. See preceding warning.|
 | `double` | `{weight:double}` | `1.234`, `-1,001.01e8` | Matches a valid `double` value in the invariant culture. See preceding warning.|
@@ -506,7 +506,7 @@ The following table demonstrates example route constraints and their expected be
 | `min(value)` | `{age:min(18)}` | `19` | Integer value must be at least 18 |
 | `max(value)` | `{age:max(120)}` | `91` | Integer value must be no more than 120 |
 | `range(min,max)` | `{age:range(18,120)}` | `91` | Integer value must be at least 18 but no more than 120 |
-| `alpha` | `{name:alpha}` | `Rick` | String must consist of one or more alphabetical characters, `a`-`z` and case-insensitive. |
+| `alpha` | `{name:alpha}` | `Rick` | String must consist of one or more alphabetical characters, `a`-`z` and not case sensitive. |
 | `regex(expression)` | `{ssn:regex(^\\d{{3}}-\\d{{2}}-\\d{{4}}$)}` | `123-45-6789` | String must match the regular expression. See tips about defining a regular expression. |
 | `required` | `{name:required}` | `Rick` | Used to enforce that a non-parameter value is present during URL generation |
 
@@ -1369,7 +1369,7 @@ The `Map[Verb]` methods use constraints to limit the route to the HTTP Verb in t
 
 Tokens within curly braces (`{ ... }`) define *route parameters* that are bound if the route is matched. You can define more than one route parameter in a route segment, but they must be separated by a literal value. For example, `{controller=Home}{action=Index}` isn't a valid route, since there's no literal value between `{controller}` and `{action}`. These route parameters must have a name and may have additional attributes specified.
 
-Literal text other than route parameters (for example, `{id}`) and the path separator `/` must match the text in the URL. Text matching is case-insensitive and based on the decoded representation of the URLs path. To match a literal route parameter delimiter (`{` or `}`), escape the delimiter by repeating the character (`{{` or `}}`).
+Literal text other than route parameters (for example, `{id}`) and the path separator `/` must match the text in the URL. Text matching is not case sensitive and based on the decoded representation of the URLs path. To match a literal route parameter delimiter (`{` or `}`), escape the delimiter by repeating the character (`{{` or `}}`).
 
 URL patterns that attempt to capture a file name with an optional file extension have additional considerations. For example, consider the template `files/{filename}.{ext?}`. When values for both `filename` and `ext` exist, both values are populated. If only a value for `filename` exists in the URL, the route matches because the trailing period (`.`) is  optional. The following URLs match this route:
 
@@ -1426,7 +1426,7 @@ The following table demonstrates example route constraints and their expected be
 | Constraint | Example | Example matches | Notes |
 |------------|---------|-----------------|-------|
 | `int` | `{id:int}` | `123456789`, `-123456789` | Matches any integer.|
-| `bool` | `{active:bool}` | `true`, `FALSE` | Matches `true` or `false`. Case-insensitive.|
+| `bool` | `{active:bool}` | `true`, `FALSE` | Matches `true` or `false`. not case sensitive.|
 | `datetime` | `{dob:datetime}` | `2016-12-31`, `2016-12-31 7:32pm` | Matches a valid `DateTime` value in the invariant culture. See preceding warning.|
 | `decimal` | `{price:decimal}` | `49.99`, `-1,000.01` | Matches a valid `decimal` value in the invariant culture. See  preceding warning.|
 | `double` | `{weight:double}` | `1.234`, `-1,001.01e8` | Matches a valid `double` value in the invariant culture. See  preceding warning.|
@@ -1440,7 +1440,7 @@ The following table demonstrates example route constraints and their expected be
 | `min(value)` | `{age:min(18)}` | `19` | Integer value must be at least 18.|
 | `max(value)` | `{age:max(120)}` | `91` | Integer value maximum of 120.|
 | `range(min,max)` | `{age:range(18,120)}` | `91` | Integer value must be at least 18 and maximum of 120.|
-| `alpha` | `{name:alpha}` | `Rick` | String must consist of one or more alphabetical characters `a`-`z`. Case-insensitive.|
+| `alpha` | `{name:alpha}` | `Rick` | String must consist of one or more alphabetical characters `a`-`z`. not case sensitive.|
 | `regex(expression)` | `{ssn:regex(^\\d{{3}}-\\d{{2}}-\\d{{4}}$)}` | `123-45-6789` | String must match the regular expression. See tips about defining a regular expression.|
 | `required` | `{name:required}` | `Rick` | Used to enforce that a non-parameter value is present during URL generation.|
 
@@ -1831,7 +1831,7 @@ The `Map[Verb]` methods use constraints to limit the route to the HTTP Verb in t
 
 Tokens within curly braces (`{ ... }`) define *route parameters* that are bound if the route is matched. You can define more than one route parameter in a route segment, but they must be separated by a literal value. For example, `{controller=Home}{action=Index}` isn't a valid route, since there's no literal value between `{controller}` and `{action}`. These route parameters must have a name and may have additional attributes specified.
 
-Literal text other than route parameters (for example, `{id}`) and the path separator `/` must match the text in the URL. Text matching is case-insensitive and based on the decoded representation of the URLs path. To match a literal route parameter delimiter (`{` or `}`), escape the delimiter by repeating the character (`{{` or `}}`).
+Literal text other than route parameters (for example, `{id}`) and the path separator `/` must match the text in the URL. Text matching is not case sensitive and based on the decoded representation of the URLs path. To match a literal route parameter delimiter (`{` or `}`), escape the delimiter by repeating the character (`{{` or `}}`).
 
 URL patterns that attempt to capture a file name with an optional file extension have additional considerations. For example, consider the template `files/{filename}.{ext?}`. When values for both `filename` and `ext` exist, both values are populated. If only a value for `filename` exists in the URL, the route matches because the trailing period (`.`) is  optional. The following URLs match this route:
 
@@ -1876,7 +1876,7 @@ The following table demonstrates example route constraints and their expected be
 | constraint | Example | Example Matches | Notes |
 | ---------- | ------- | --------------- | ----- |
 | `int` | `{id:int}` | `123456789`, `-123456789` | Matches any integer |
-| `bool` | `{active:bool}` | `true`, `FALSE` | Matches `true` or `false` (case-insensitive) |
+| `bool` | `{active:bool}` | `true`, `FALSE` | Matches `true` or `false` (not case sensitive) |
 | `datetime` | `{dob:datetime}` | `2016-12-31`, `2016-12-31 7:32pm` | Matches a valid `DateTime` value in the invariant culture. See  preceding warning.|
 | `decimal` | `{price:decimal}` | `49.99`, `-1,000.01` | Matches a valid `decimal` value in the invariant culture. See  preceding warning.|
 | `double` | `{weight:double}` | `1.234`, `-1,001.01e8` | Matches a valid `double` value in the invariant culture. See  preceding warning.|
@@ -1890,7 +1890,7 @@ The following table demonstrates example route constraints and their expected be
 | `min(value)` | `{age:min(18)}` | `19` | Integer value must be at least 18 |
 | `max(value)` | `{age:max(120)}` | `91` | Integer value must be no more than 120 |
 | `range(min,max)` | `{age:range(18,120)}` | `91` | Integer value must be at least 18 but no more than 120 |
-| `alpha` | `{name:alpha}` | `Rick` | String must consist of one or more alphabetical characters (`a`-`z`, case-insensitive) |
+| `alpha` | `{name:alpha}` | `Rick` | String must consist of one or more alphabetical characters (`a`-`z`, not case sensitive) |
 | `regex(expression)` | `{ssn:regex(^\\d{{3}}-\\d{{2}}-\\d{{4}}$)}` | `123-45-6789` | String must match the regular expression (see tips about defining a regular expression) |
 | `required` | `{name:required}` | `Rick` | Used to enforce that a non-parameter value is present during URL generation |
 

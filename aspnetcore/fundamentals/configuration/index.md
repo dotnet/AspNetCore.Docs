@@ -269,7 +269,7 @@ The preferred way to read hierarchical configuration data is using the options p
 
 Configuration keys:
 
-* Are case-insensitive. For example, `ConnectionString` and `connectionstring` are treated as equivalent keys.
+* Are not case sensitive. For example, `ConnectionString` and `connectionstring` are treated as equivalent keys.
 * If a key and value is set in more than one configuration providers, the value from the last provider added is used. For more information, see [Default configuration](#default).
 * Hierarchical keys
   * Within the Configuration API, a colon separator (`:`) works on all platforms.
@@ -644,7 +644,7 @@ Create a class that implements <xref:Microsoft.Extensions.Configuration.IConfigu
 
 [!code-csharp[](index/samples/3.x/ConfigurationSample/EFConfigurationProvider/EFConfigurationSource.cs?name=snippet1)]
 
-Create the custom configuration provider by inheriting from <xref:Microsoft.Extensions.Configuration.ConfigurationProvider>. The configuration provider initializes the database when it's empty. Since [configuration keys are case-insensitive](#keys), the dictionary used to initialize the database is created with the case-insensitive comparer ([StringComparer.OrdinalIgnoreCase](xref:System.StringComparer.OrdinalIgnoreCase)).
+Create the custom configuration provider by inheriting from <xref:Microsoft.Extensions.Configuration.ConfigurationProvider>. The configuration provider initializes the database when it's empty. Since [configuration keys are not case sensitive](#keys), the dictionary used to initialize the database is created with the not case sensitive comparer ([StringComparer.OrdinalIgnoreCase](xref:System.StringComparer.OrdinalIgnoreCase)).
 
 *EFConfigurationProvider/EFConfigurationProvider.cs*:
 
@@ -897,7 +897,7 @@ Configuration providers can't utilize DI, as it's not available when they're set
 
 Configuration keys adopt the following conventions:
 
-* Keys are case-insensitive. For example, `ConnectionString` and `connectionstring` are treated as equivalent keys.
+* Keys are not case sensitive. For example, `ConnectionString` and `connectionstring` are treated as equivalent keys.
 * If a value for the same key is set by the same or different configuration providers, the last value set on the key is the value used. For more information on duplicate JSON keys, see [this GitHub issue](https://github.com/dotnet/extensions/issues/2381).
 * Hierarchical keys
   * Within the Configuration API, a colon separator (`:`) works on all platforms.

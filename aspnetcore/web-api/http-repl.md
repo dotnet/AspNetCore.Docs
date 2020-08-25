@@ -208,7 +208,7 @@ To navigate to a different endpoint on the web API, run the `cd` command:
 https://localhost:5001/~ cd people
 ```
 
-The path following the `cd` command is case insensitive. The following output format is displayed:
+The path following the `cd` command is not case sensitive. The following output format is displayed:
 
 ```console
 /people    [get|post]

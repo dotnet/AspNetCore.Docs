@@ -538,7 +538,7 @@ An alternative to using **Path** and **Password** for any certificate node is to
 
 Schema notes:
 
-* Endpoints names are case-insensitive. For example, `HTTPS` and `Https` are valid.
+* Endpoints names are not case sensitive. For example, `HTTPS` and `Https` are valid.
 * The `Url` parameter is required for each endpoint. The format for this parameter is the same as the top-level `Urls` configuration parameter except that it's limited to a single value.
 * These endpoints replace those defined in the top-level `Urls` configuration rather than adding to them. Endpoints defined in code via `Listen` are cumulative with the endpoints defined in the configuration section.
 * The `Certificate` section is optional. If the `Certificate` section isn't specified, the defaults defined in earlier scenarios are used. If no defaults are available, the server throws an exception and fails to start.
@@ -1530,7 +1530,7 @@ An alternative to using **Path** and **Password** for any certificate node is to
 
 Schema notes:
 
-* Endpoints names are case-insensitive. For example, `HTTPS` and `Https` are valid.
+* Endpoints names are not case sensitive. For example, `HTTPS` and `Https` are valid.
 * The `Url` parameter is required for each endpoint. The format for this parameter is the same as the top-level `Urls` configuration parameter except that it's limited to a single value.
 * These endpoints replace those defined in the top-level `Urls` configuration rather than adding to them. Endpoints defined in code via `Listen` are cumulative with the endpoints defined in the configuration section.
 * The `Certificate` section is optional. If the `Certificate` section isn't specified, the defaults defined in earlier scenarios are used. If no defaults are available, the server throws an exception and fails to start.
@@ -2394,7 +2394,7 @@ An alternative to using **Path** and **Password** for any certificate node is to
 
 Schema notes:
 
-* Endpoints names are case-insensitive. For example, `HTTPS` and `Https` are valid.
+* Endpoints names are not case sensitive. For example, `HTTPS` and `Https` are valid.
 * The `Url` parameter is required for each endpoint. The format for this parameter is the same as the top-level `Urls` configuration parameter except that it's limited to a single value.
 * These endpoints replace those defined in the top-level `Urls` configuration rather than adding to them. Endpoints defined in code via `Listen` are cumulative with the endpoints defined in the configuration section.
 * The `Certificate` section is optional. If the `Certificate` section isn't specified, the defaults defined in earlier scenarios are used. If no defaults are available, the server throws an exception and fails to start.

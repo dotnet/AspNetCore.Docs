@@ -95,7 +95,7 @@ Use the <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblie
 
 ## Route parameters
 
-The router uses route parameters to populate the corresponding component parameters with the same name (case insensitive):
+The router uses route parameters to populate the corresponding component parameters with the same name (not case sensitive):
 
 ```razor
 @page "/RouteParameter"

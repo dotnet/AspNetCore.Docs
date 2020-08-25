@@ -85,7 +85,7 @@ The client library is available on the following CDNs:
 
 ## Connect to a hub
 
-The following code creates and starts a connection. The hub's name is case insensitive.
+The following code creates and starts a connection. The hub's name is not case sensitive.
 
 [!code-javascript[Call hub methods](javascript-client/sample/wwwroot/js/chat.js?range=9-13,28-51)]
 

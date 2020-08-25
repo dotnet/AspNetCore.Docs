@@ -86,7 +86,7 @@ To configure an app for out-of-process hosting, set the value of the `<AspNetCor
 
 In-process hosting is set with `InProcess`, which is the default value.
 
-The value of `<AspNetCoreHostingModel>` is case insensitive, so `inprocess` and `outofprocess` are valid values.
+The value of `<AspNetCoreHostingModel>` is not case sensitive, so `inprocess` and `outofprocess` are valid values.
 
 [Kestrel](xref:fundamentals/servers/kestrel) server is used instead of IIS HTTP Server (`IISHttpServer`).
 
@@ -447,7 +447,7 @@ To configure an app for in-process hosting, add the `<AspNetCoreHostingModel>` p
 
 The in-process hosting model isn't supported for ASP.NET Core apps that target the .NET Framework.
 
-The value of `<AspNetCoreHostingModel>` is case insensitive, so `inprocess` and `outofprocess` are valid values.
+The value of `<AspNetCoreHostingModel>` is not case sensitive, so `inprocess` and `outofprocess` are valid values.
 
 If the `<AspNetCoreHostingModel>` property isn't present in the file, the default value is `OutOfProcess`.
 
@@ -501,7 +501,7 @@ To configure an app for out-of-process hosting, use either of the following appr
 </PropertyGroup>
 ```
 
-The value is case insensitive, so `inprocess` and `outofprocess` are valid values.
+The value is not case sensitive, so `inprocess` and `outofprocess` are valid values.
 
 [Kestrel](xref:fundamentals/servers/kestrel) server is used instead of IIS HTTP Server (`IISHttpServer`).
 
