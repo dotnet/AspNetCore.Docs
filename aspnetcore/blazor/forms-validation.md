@@ -270,7 +270,7 @@ The following built-in components support display names with the `DisplayName` p
 In the following `InputDate` component example:
 
 * The display name (`DisplayName`) is set to "birthday" (`birthday`).
-* The component is bound to the `DateTime` type.
+* The component is bound to the `BirthDate` property as a `DateTime` type.
 
 ```razor
 <InputDate @bind-Value="@BirthDate" DisplayName="birthday" />
