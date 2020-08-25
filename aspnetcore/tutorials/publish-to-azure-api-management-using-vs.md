@@ -193,9 +193,9 @@ services.AddSwaggerGen(config =>
 
 You can test the deployed ASP.NET Core web API in Azure API Management from the Azure portal with the following steps:
 
-- Open the **Test** tab
-- Select **/** or the **Get** operation
-- Click **Send**
+1. Open the **Test** tab.
+1. Select **/** or the **Get** operation.
+1. Select **Send**.
 
 ![Screenshot of the portal before the test](publish-to-azure-api-management-using-vs/_static/portal_pre_test.png)
 
@@ -205,21 +205,21 @@ A successful response will look like the following:
 
 ## Clean up
 
-When you have finished testing the app, go to the [Azure portal](https://portal.azure.com/) and delete the app.
+When you've finished testing the app, go to the [Azure portal](https://portal.azure.com/) and delete the app.
 
-- Select **Resource groups**, then select the resource group you created.
+1. Select **Resource groups**, then select the resource group you created.
 
 ![Azure Portal: Resource Groups in sidebar menu](publish-to-azure-api-management-using-vs/_static/portalrg.png)
 
-- In the **Resource groups** page, select **Delete**.
+1. In the **Resource groups** page, select **Delete**.
 
 ![Azure Portal: Resource Groups page](publish-to-azure-api-management-using-vs/_static/rgd.png)
 
-- Enter the name of the resource group and select **Delete**. Your app and all other resources created in this tutorial are now deleted from Azure.
+1. Enter the name of the resource group and select **Delete**. Your app and all other resources created in this tutorial are now deleted from Azure.
 
 ## Next steps
 
-- <xref:host-and-deploy/azure-apps/azure-continuous-deployment>
+<xref:host-and-deploy/azure-apps/azure-continuous-deployment>
 
 ## Additional resources
 
