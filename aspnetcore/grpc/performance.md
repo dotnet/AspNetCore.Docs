@@ -1,5 +1,5 @@
 ---
-title: Performance best practices
+title: Performance best practices in gRPC for ASP.NET Core
 author: jamesnk
 description: Learn the best practices for building high-performance gRPC services.
 monikerRange: '>= aspnetcore-3.0'
@@ -8,7 +8,7 @@ ms.date: 08/23/2020
 no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: grpc/performance
 ---
-# Performance best practices
+# Performance best practices in gRPC for ASP.NET Core
 
 By [James Newton-King](https://twitter.com/jamesnk)
 
