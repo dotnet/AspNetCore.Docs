@@ -206,7 +206,7 @@ public override async Task<SimpleResponse> StreamingFromClient(
 A bi-directional streaming method starts *without* the method receiving a message. The `requestStream` parameter is used to read messages from the client. The method can choose to send messages with `responseStream.WriteAsync`. A bi-directional streaming call is complete when the the method returns.
 
 ```csharp
-public override async Task ReadySetGo(IAsyncStreamReader<SimpleRequest> requestStream,
+public override async Task StreamingBothWays(IAsyncStreamReader<SimpleRequest> requestStream,
     IServerStreamWriter<SimpleResponse> responseStream, ServerCallContext context)
 {
     await foreach (var message in requestStream.ReadAllAsync())
@@ -215,6 +215,32 @@ public override async Task ReadySetGo(IAsyncStreamReader<SimpleRequest> requestS
     }
 }
 ```
+
+In the preceding method sends a response for each request. This is a simple usage of bi-directional streaming. It is possible to support more complex scenarios, such as reading a requests and sending responses simultaneously:
+
+```csharp
+public override async Task StreamingBothWays(IAsyncStreamReader<SimpleRequest> requestStream,
+    IServerStreamWriter<SimpleResponse> responseStream, ServerCallContext context)
+{
+    // Read requests in a background task
+    var readTask = Task.Run(async () =>
+    {
+        await foreach (var message in requestStream.ReadAllAsync())
+        {
+            // Process request
+        }
+    });
+    
+    // Send responses until the client signals that it is complete
+    while (!readTask.IsCompleted)
+    {
+        await responseStream.WriteAsync(new SimpleResponse());
+        await Task.Delay(TimeSpan.FromSeconds(1), context.CancellationToken);
+    }
+}
+```
+
+In a bi-directional streaming method, the client and service can send messages to each other at any time. The best implementation of a bi-directional method varies depending upon requirements.
 
 ## Access gRPC request headers
 
