@@ -22,9 +22,9 @@ Blazor WebAssembly apps can be debugged using the browser dev tools in Chromium-
 Available scenarios include:
 
 * Set and remove breakpoints.
-* Run the app with debugging support in Visual Studio and Visual Studio Code.
+* Run the app with debugging support in IDEs.
 * Single-step through the code.
-* Resume code execution with a keyboard shortcut in Visual Studio or Visual Studio Code.
+* Resume code execution with a keyboard shortcut in IDEs.
 * In the *Locals* window, observe the values of local variables.
 * See the call stack, including call chains between JavaScript and .NET.
 
@@ -43,7 +43,7 @@ Debugging requires either of the following browsers:
 Visual Studio for Mac requires version 8.8 (build 1532) or later:
 
 1. Install the latest release of Visual Studio for Mac by selecting the **Download Visual Studio for Mac** button at [Microsoft: Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/).
-1. Select the **Preview* channel from within Visual Studio. For more information, see [Install a preview version of Visual Studio for Mac](/visualstudio/mac/install-preview).
+1. Select the *Preview* channel from within Visual Studio. For more information, see [Install a preview version of Visual Studio for Mac](/visualstudio/mac/install-preview).
 
 > [!NOTE]
 > Apple Safari on macOS isn't currently supported.
