@@ -223,7 +223,7 @@ To debug a Blazor WebAssembly app in Visual Studio for Mac:
    > **Start Without Debugging** (<kbd>&#8997;</kbd>+<kbd>&#8984;</kbd>+<kbd>&#8617;</kbd>) isn't supported. When the app is run in Debug configuration, debugging overhead always results in a small performance reduction.
 
    > [!IMPORTANT]
-   > Google Chrome must be the selected browser for the debugging session.
+   > Google Chrome or Microsoft Edge must be the selected browser for the debugging session.
 
 1. In the *Client* app, set a breakpoint on the `currentCount++;` line in `Pages/Counter.razor`.
 1. In the browser, navigate to `Counter` page and select the **Click me** button to hit the breakpoint:
