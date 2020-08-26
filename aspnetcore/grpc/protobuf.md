@@ -353,7 +353,7 @@ message Status {
 ```csharp
 // Create dynamic values
 var status = new Status();
-status.Metadata = Value.FromStruct(new Struct
+status.Data = Value.FromStruct(new Struct
 {
     Fields =
     {
@@ -365,10 +365,10 @@ status.Metadata = Value.FromStruct(new Struct
 });
 
 // Read dynamic values
-switch (status.Metadata.KindCase)
+switch (status.Data.KindCase)
 {
     case Value.KindOneofCase.StructValue:
-        foreach (var field in status.Metadata.StructValue.Fields)
+        foreach (var field in status.Data.StructValue.Fields)
         {
             // Read struct fields...
         }
@@ -384,7 +384,7 @@ This is the JSON equivalent of the previous code:
 ```csharp
 // Create dynamic values from JSON
 var status = new Status();
-status.Metadata = Value.Parser.ParseJson(@"{
+status.Data = Value.Parser.ParseJson(@"{
     ""enabled"": true,
     ""metadata"": [ ""value1"", ""value2"" ]
 }");
