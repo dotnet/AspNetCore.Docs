@@ -86,7 +86,7 @@ While debugging a Blazor WebAssembly app, you can also debug server code:
 1. Press <kbd>F5</kbd> to continue execution and then hit the breakpoint on the server in the `WeatherForecastController`.
 1. Press <kbd>F5</kbd> again to let execution continue and see the weather forecast table rendered in the browser.
 
-> [NOTE]
+> [!NOTE]
 > Breakpoints are **not** hit during app startup before the debug proxy is running. This includes breakpoints in `Program.Main` (`Program.cs`) and breakpoints in the [`OnInitialized{Async}` methods](xref:blazor/components/lifecycle#component-initialization-methods) of components that are loaded by the first page requested from the app.
 
 # [Visual Studio Code](#tab/visual-studio-code)
@@ -120,7 +120,7 @@ While debugging a Blazor WebAssembly app, you can also debug server code:
 
 1. In the browser, navigate to `Counter` page and select the **Click me** button to hit the breakpoint.
 
-> [NOTE]
+> [!NOTE]
 > Breakpoints are **not** hit during app startup before the debug proxy is running. This includes breakpoints in `Program.Main` (`Program.cs`) and breakpoints in the [`OnInitialized{Async}` methods](xref:blazor/components/lifecycle#component-initialization-methods) of components that are loaded by the first page requested from the app.
 
 ## Debug hosted Blazor WebAssembly
@@ -234,7 +234,7 @@ While debugging a Blazor WebAssembly app, you can also debug server code:
 1. Press <kbd>&#8984;</kbd>+<kbd>&#8617;</kbd> to continue execution and then hit the breakpoint on the server in the `WeatherForecastController`.
 1. Press <kbd>&#8984;</kbd>+<kbd>&#8617;</kbd> again to let execution continue and see the weather forecast table rendered in the browser.
 
-> [NOTE]
+> [!NOTE]
 > Breakpoints are **not** hit during app startup before the debug proxy is running. This includes breakpoints in `Program.Main` (`Program.cs`) and breakpoints in the [`OnInitialized{Async}` methods](xref:blazor/components/lifecycle#component-initialization-methods) of components that are loaded by the first page requested from the app.
 
 For more information, see [Debugging with Visual Studio for Mac](/visualstudio/mac/debugging?view=vsmac-2019).
