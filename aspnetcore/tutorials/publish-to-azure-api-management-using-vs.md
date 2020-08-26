@@ -28,11 +28,11 @@ Adding Swagger definitions to the ASP.NET Core web API allows Azure API Manageme
     ![Screenshot to configure the NuGet dialog](publish-to-azure-api-management-using-vs/_static/configure_nuget.png)
 
 1. Add the following line to the `Startup.ConfigureServices` method:
-
-```csharp
-services.AddSwaggerGen();
-```
-
+    
+    ```csharp
+    services.AddSwaggerGen();
+    ```
+    
 1. Add the following line to the `Startup.Configure` method:
 
 ```csharp
@@ -46,18 +46,18 @@ Next, you'll change the URL structure needed to access the `Get` action of the `
 1. Open the *WeatherForecastController.cs* file.
 1. Delete the `[Route("[controller]")]` class-level attribute. The class definition will look like the following:
 
-```csharp
-[ApiController]
-public class WeatherForecastController : ControllerBase
-```
+    ```csharp
+    [ApiController]
+    public class WeatherForecastController : ControllerBase
+    ```
 
 1. Add a `[Route("/")]` attribute to the `Get()` action. The function definition will look like the following:
 
-```csharp
-[HttpGet]
-[Route("/")]
-public IEnumerable<WeatherForecast> Get()
-```
+    ```csharp
+    [HttpGet]
+    [Route("/")]
+    public IEnumerable<WeatherForecast> Get()
+    ```
 
 ## Publish the web API to Azure App Service
 
@@ -112,11 +112,11 @@ At this point, you need to add an API to the Azure API Management service. Leave
 
 1. Enter the following values in the **Create a blank API** dialog that appears:    
 
-- **Display Name**: _WeatherForecasts_
-- **Name**: _weatherforecasts_
-- **API Url suffix**: _v1_
-
-- Leave the **Web service URL** field empty.
+    - **Display Name**: _WeatherForecasts_
+    - **Name**: _weatherforecasts_
+    - **API Url suffix**: _v1_
+    
+    - Leave the **Web service URL** field empty.
 
 1. Select the **Create** button.
 
@@ -158,23 +158,23 @@ Notice the name of the API is different than what you named it. The published AP
 ![Screenshot of populated API with different names highlighted](publish-to-azure-api-management-using-vs/_static/deployed_to_azure_api_mgmt_wrong_name.png)
 
 1. Delete the following line from the `Startup.ConfigureServices` method:
-
-```csharp
-services.AddSwaggerGen();
-```
+    
+    ```csharp
+    services.AddSwaggerGen();
+    ```
 
 1. Add the following code to the `Startup.ConfigureServices` method:
-
-```csharp
-services.AddSwaggerGen(config =>
-{
-    config.SwaggerDoc("WeatherForecasts", new Microsoft.OpenApi.Models.OpenApiInfo
+    
+    ```csharp
+    services.AddSwaggerGen(config =>
     {
-        Title = "Weather Forecasts",
-        Version = "v1"
+        config.SwaggerDoc("WeatherForecasts", new Microsoft.OpenApi.Models.OpenApiInfo
+        {
+            Title = "Weather Forecasts",
+            Version = "v1"
+        });
     });
-});
-```
+    ```
 
 1. Open the publish profile that was just created. It can be found from **Solution Explorer** in the *Properties/PublishProfiles* folder.
 
