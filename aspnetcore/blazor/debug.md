@@ -13,7 +13,11 @@ uid: blazor/debug
 
 [Daniel Roth](https://github.com/danroth27)
 
-Blazor WebAssembly apps can be debugged using the browser dev tools in Chromium-based browsers (Edge/Chrome). Alternatively, you can debug your app using Visual Studio or Visual Studio Code.
+Blazor WebAssembly apps can be debugged using the browser dev tools in Chromium-based browsers (Edge/Chrome). You can also debug your app using the following integrated development environments (IDEs):
+
+* Visual Studio
+* Visual Studio for Mac
+* Visual Studio Code
 
 Available scenarios include:
 
