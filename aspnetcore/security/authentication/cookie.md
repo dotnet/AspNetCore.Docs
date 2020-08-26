@@ -101,6 +101,8 @@ To sign out the current user and delete their cookie, call <xref:Microsoft.AspNe
 
 If `CookieAuthenticationDefaults.AuthenticationScheme` (or "Cookies") isn't used as the scheme (for example, "ContosoCookie"), supply the scheme used when configuring the authentication provider. Otherwise, the default scheme is used.
 
+The server has no control of the clients browser. If the user closes the browser or tab, the server cannot sign out the user. To implement signing out the user when the browser is closed, you must detect that with JavaScript. Search for "How to Detect Browser Window Tab Close Event?".
+
 ## React to back-end changes
 
 Once a cookie is created, the cookie is the single source of identity. If a user account is disabled in back-end systems:
