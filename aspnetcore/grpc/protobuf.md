@@ -250,7 +250,7 @@ message Person {
 }
 ```
 
-In generated .NET code, `map` fields are represented by the `Google.Protobuf.Collections.MapField<TKey, TValue>` generic type. `RepeatedField<TKey, TValue>` implements <xref:System.Collections.Generic.IDictionary%602>. Like `repeated` properties, `map` properties don't have a public setter. Items should be added to the existing collection.
+In generated .NET code, `map` fields are represented by the `Google.Protobuf.Collections.MapField<TKey, TValue>` generic type. `MapField<TKey, TValue>` implements <xref:System.Collections.Generic.IDictionary%602>. Like `repeated` properties, `map` properties don't have a public setter. Items should be added to the existing collection.
 
 ```csharp
 var person = new Person();
