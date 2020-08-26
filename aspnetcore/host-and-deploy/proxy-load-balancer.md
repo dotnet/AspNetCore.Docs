@@ -62,7 +62,7 @@ Configure the middleware with <xref:Microsoft.AspNetCore.Builder.ForwardedHeader
 
 ### Forwarded Headers Middleware order
 
-Forwarded Headers Middleware should run before other middleware. This ordering ensures that the middleware relying on forwarded headers information can consume the header values for processing. Forwarded Headers Middleware can run after diagnostics and error handling, but it must be be run before calling `UseHsts`:
+Forwarded Headers Middleware should run before other middleware. This ordering ensures that the middleware relying on forwarded headers information can consume the header values for processing. Forwarded Headers Middleware can run after diagnostics and error handling, but it must be run before calling `UseHsts`:
 
 [!code-csharp[](~/host-and-deploy/proxy-load-balancer/3.1samples/Startup.cs?name=snippet&highlight=13-17,25,30)]
 
@@ -192,7 +192,7 @@ You can also supply the address in hexadecimal format (`10.11.12.1` represented 
 
 ```csharp
 // To access IPNetwork and IPAddress, add the following namespaces:
-// using using System.Net;
+// using System.Net;
 // using Microsoft.AspNetCore.HttpOverrides;
 services.Configure<ForwardedHeadersOptions>(options =>
 {
@@ -570,7 +570,7 @@ You can also supply the address in hexadecimal format (`10.11.12.1` represented 
 
 ```csharp
 // To access IPNetwork and IPAddress, add the following namespaces:
-// using using System.Net;
+// using System.Net;
 // using Microsoft.AspNetCore.HttpOverrides;
 services.Configure<ForwardedHeadersOptions>(options =>
 {

@@ -17,7 +17,7 @@ In the previous article, we [migrated configuration from an ASP.NET MVC project 
 
 In ASP.NET MVC, authentication and identity features are configured using ASP.NET Identity in *Startup.Auth.cs* and *IdentityConfig.cs*, located in the *App_Start* folder. In ASP.NET Core MVC, these features are configured in *Startup.cs*.
 
-Install the the following NuGet packages:
+Install the following NuGet packages:
 
 * `Microsoft.AspNetCore.Identity.EntityFrameworkCore`
 * `Microsoft.AspNetCore.Authentication.Cookies`

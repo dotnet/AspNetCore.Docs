@@ -671,7 +671,7 @@ If the *EvenMorePages* folder in the preceding example has an imports file with 
 
 The `@page` directive has different effects depending on the type of the file where it appears. The directive:
 
-* In in a *.cshtml* file indicates that the file is a Razor Page. For more information, see [Custom routes](xref:razor-pages/index#custom-routes) and <xref:razor-pages/index>.
+* In a *.cshtml* file indicates that the file is a Razor Page. For more information, see [Custom routes](xref:razor-pages/index#custom-routes) and <xref:razor-pages/index>.
 * Specifies that a Razor component should handle requests directly. For more information, see <xref:blazor/fundamentals/routing>.
 
 ::: moniker-end

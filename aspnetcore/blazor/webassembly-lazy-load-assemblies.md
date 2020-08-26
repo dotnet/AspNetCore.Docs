@@ -5,7 +5,7 @@ description: Discover how to lazy load assemblies in ASP.NET Core Blazor WebAsse
 monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/16/2020
+ms.date: 08/25/2020
 no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/webassembly-lazy-load-assemblies
 ---
@@ -31,6 +31,15 @@ Mark assemblies for lazy loading in the app's project file (`.csproj`) using the
 ```
 
 Only assemblies that are used by the app can be lazily loaded. The linker strips unused assemblies from published output.
+
+> [!NOTE]
+> In .NET 5 Release Candidate 1 (RC1) or later, which will be released in mid-September, the assembly name will require the `.dll` extension:
+>
+> ```xml
+> <ItemGroup>
+>  <BlazorWebAssemblyLazyLoad Include="GrantImaharaRobotControls.dll" />
+> </ItemGroup>
+> ```
 
 ## `Router` component
 
@@ -154,6 +163,15 @@ If a user navigates to Route A and then immediately to Route B, the app shouldn'
 
 > [!NOTE]
 > Not throwing if the cancellation token in `NavigationContext` is canceled can result in unintended behavior, such as rendering a component from a previous navigation.
+
+### `OnNavigateAsync` events and renamed assembly files
+
+The resource loader relies on the assembly names that are defined in the `blazor.boot.json` file. If [assemblies are renamed](xref:blazor/host-and-deploy/webassembly#change-the-filename-extension-of-dll-files), the assembly names used in `OnNavigateAsync` methods and the assembly names in the `blazor.boot.json` file are out of sync.
+
+To rectify this:
+
+* Check to see if the app is running in the Production environment when determining which assembly names to use.
+* Store the renamed assembly names in a separate file and read from that file to determine what assembly name to use in the `LazyLoadAssemblyService` and `OnNavigateAsync` methods.
 
 ### Complete example
 
