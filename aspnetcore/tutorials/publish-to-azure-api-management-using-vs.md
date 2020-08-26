@@ -25,7 +25,7 @@ Adding Swagger definitions to the ASP.NET Core web API allows Azure API Manageme
 
 1. Add the [Swashbuckle.AspNetCore](https://www.nuget.org/packages/Swashbuckle.AspNetCore) NuGet package to the ASP.NET Core web API project:
 
-![Screenshot to configure the NuGet dialog](publish-to-azure-api-management-using-vs/_static/configure_nuget.png)
+    ![Screenshot to configure the NuGet dialog](publish-to-azure-api-management-using-vs/_static/configure_nuget.png)
 
 1. Add the following line to the `Startup.ConfigureServices` method:
 
@@ -73,26 +73,26 @@ Complete the following steps to publish the ASP.NET Core web API to Azure API Ma
 
 1. In **Solution Explorer**, right-click the project and select **Publish**:
 
-![Contextual menu open with Publish link highlighted](publish-to-azure-api-management-using-vs/_static/publish_menu.png)
+    ![Contextual menu open with Publish link highlighted](publish-to-azure-api-management-using-vs/_static/publish_menu.png)
 
 1. In the **Publish** dialog, select **Azure** and select the **Next** button:
 
-![Publish dialog](publish-to-azure-api-management-using-vs/_static/publish_dialog.png)
+    ![Publish dialog](publish-to-azure-api-management-using-vs/_static/publish_dialog.png)
 
 1. Select **Azure App Service (Windows)** and select the **Next** button:
 
-![Publish dialog: select App Service](publish-to-azure-api-management-using-vs/_static/publish_dialog_app_svc.png)
+    ![Publish dialog: select App Service](publish-to-azure-api-management-using-vs/_static/publish_dialog_app_svc.png)
 
 1. Select **Create a new Azure App Service**.
 
-![Publish dialog: select Azure Service instance](publish-to-azure-api-management-using-vs/_static/publish_dialog_create_new_app_svc.png)
+    ![Publish dialog: select Azure Service instance](publish-to-azure-api-management-using-vs/_static/publish_dialog_create_new_app_svc.png)
 
 The **Create App Service** dialog appears:
 
 - The **App Name**, **Resource Group**, and **App Service Plan** entry fields are populated. You can keep these names or change them.
 1. Select the **Create** button.
 
-![Create App Service dialog](publish-to-azure-api-management-using-vs/_static/publish_dialog_app_svc_attributes.png)
+    ![Create App Service dialog](publish-to-azure-api-management-using-vs/_static/publish_dialog_app_svc_attributes.png)
 
 After creation is completed, the dialog is automatically closed and the **Publish** dialog gets focus again. The instance that was created is automatically selected.
 
@@ -104,11 +104,11 @@ At this point, you need to add an API to the Azure API Management service. Leave
 
 1. Open the API Management Service instance created previously in the Azure portal. Select the **APIs** blade:
 
-![APIs blade selected from the API Management Service instance](publish-to-azure-api-management-using-vs/_static/portal_api_overview.png)
+    ![APIs blade selected from the API Management Service instance](publish-to-azure-api-management-using-vs/_static/portal_api_overview.png)
 
 1. From the **Add a new API** panel, click the **Blank API** tile:
 
-![Screen showing the blank API tile highlighted](publish-to-azure-api-management-using-vs/_static/portal_api_create_blank.png)
+    ![Screen showing the blank API tile highlighted](publish-to-azure-api-management-using-vs/_static/portal_api_create_blank.png)
 
 1. Enter the following values in the **Create a blank API** dialog that appears:    
 
@@ -120,7 +120,7 @@ At this point, you need to add an API to the Azure API Management service. Leave
 
 1. Select the **Create** button.
 
-![Screenshot of the completed create a blank api dialog](publish-to-azure-api-management-using-vs/_static/portal_api_blank_complete.png)
+    ![Screenshot of the completed create a blank api dialog](publish-to-azure-api-management-using-vs/_static/portal_api_blank_complete.png)
 
 The blank API is created.
 
@@ -132,16 +132,16 @@ The blank API is created.
 1. Select the Azure App Service that was just published so it's highlighted.
 1. Select the **Next** button.
 
-![Screenshot of the publish dialog with the app service selected](publish-to-azure-api-management-using-vs/_static/publish_dialog_app_svc_created.png)
+    ![Screenshot of the publish dialog with the app service selected](publish-to-azure-api-management-using-vs/_static/publish_dialog_app_svc_created.png)
 
 1. The dialog now shows the Azure API Management service created before. Expand it and the **APIs** folder to see the blank API you just created.
 1. Select the blank API's name and select the **Finish** button.
 
-![Screenshot of the newly created Azure API Management blank API selected in the publish dialog](publish-to-azure-api-management-using-vs/_static/publish_dialog_api_selected.png)
+    ![Screenshot of the newly created Azure API Management blank API selected in the publish dialog](publish-to-azure-api-management-using-vs/_static/publish_dialog_api_selected.png)
 
 1. The dialog closes and a summary screen appears with information regarding the publish. Select the **Publish** button.
 
-![Screenshot of Visual Studio with the publish profile displayed](publish-to-azure-api-management-using-vs/_static/vs_publish_profile.png)
+    ![Screenshot of Visual Studio with the publish profile displayed](publish-to-azure-api-management-using-vs/_static/vs_publish_profile.png)
 
 The web API will publish to both Azure App Service and Azure API Management. A new browser window will appear showing the API running in Azure App Service. You can close that window.
 
@@ -149,7 +149,7 @@ The web API will publish to both Azure App Service and Azure API Management. A n
 1. Refresh the browser window.
 1. Select the blank API you created in the preceding steps. It's now populated and you can explore around.
 
-![Screenshot of the populated API in Azure API Management](publish-to-azure-api-management-using-vs/_static/deployed_to_azure_api_mgmt.png)
+    ![Screenshot of the populated API in Azure API Management](publish-to-azure-api-management-using-vs/_static/deployed_to_azure_api_mgmt.png)
 
 ### Configure the published API name
 
@@ -178,16 +178,16 @@ services.AddSwaggerGen(config =>
 
 1. Open the publish profile that was just created. It can be found from **Solution Explorer** in the *Properties/PublishProfiles* folder.
 
-![Screenshot showing the publish profile file location highlighted](publish-to-azure-api-management-using-vs/_static/vs_publish_profile_highlighted.png)
+    ![Screenshot showing the publish profile file location highlighted](publish-to-azure-api-management-using-vs/_static/vs_publish_profile_highlighted.png)
 
 1. Change the `<OpenAPIDocumentName>` element's value from `v1` to `WeatherForecasts`.
 
-![screenshot of the changes necessary for the publish profile](publish-to-azure-api-management-using-vs/_static/vs_publish_profile_changes.png)
+    ![screenshot of the changes necessary for the publish profile](publish-to-azure-api-management-using-vs/_static/vs_publish_profile_changes.png)
 
 1. Republish the ASP.NET Core web API and open the Azure API Management instance in the Azure portal.
 1. Refresh the page in your browser. You'll see the name of the API is now correct.
 
-![Screenshot of the finished API in the portal](publish-to-azure-api-management-using-vs/_static/portal_finish.png)
+    ![Screenshot of the finished API in the portal](publish-to-azure-api-management-using-vs/_static/portal_finish.png)
 
 ### Verify the web API is working
 
@@ -197,7 +197,7 @@ You can test the deployed ASP.NET Core web API in Azure API Management from the 
 1. Select **/** or the **Get** operation.
 1. Select **Send**.
 
-![Screenshot of the portal before the test](publish-to-azure-api-management-using-vs/_static/portal_pre_test.png)
+    ![Screenshot of the portal before the test](publish-to-azure-api-management-using-vs/_static/portal_pre_test.png)
 
 A successful response will look like the following:
 
@@ -209,11 +209,11 @@ When you've finished testing the app, go to the [Azure portal](https://portal.az
 
 1. Select **Resource groups**, then select the resource group you created.
 
-![Azure Portal: Resource Groups in sidebar menu](publish-to-azure-api-management-using-vs/_static/portalrg.png)
+    ![Azure Portal: Resource Groups in sidebar menu](publish-to-azure-api-management-using-vs/_static/portalrg.png)
 
 1. In the **Resource groups** page, select **Delete**.
 
-![Azure Portal: Resource Groups page](publish-to-azure-api-management-using-vs/_static/rgd.png)
+    ![Azure Portal: Resource Groups page](publish-to-azure-api-management-using-vs/_static/rgd.png)
 
 1. Enter the name of the resource group and select **Delete**. Your app and all other resources created in this tutorial are now deleted from Azure.
 
