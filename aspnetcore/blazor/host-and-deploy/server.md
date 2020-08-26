@@ -89,8 +89,6 @@ To configure an app (and optionally provision) the Azure SignalR Service:
 1. Add the **Azure SignalR Service** dependency to the profile. If the Azure subscription doesn't have a pre-existing Azure SignalR Service instance to assign to the app, select **Create a new Azure SignalR Service instance** to provision a new service instance.
 1. Publish the app to Azure.
 
-
-
 #### IIS
 
 When using IIS, enable:
