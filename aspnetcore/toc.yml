@@ -94,6 +94,9 @@
         - name: Backend for mobile
           displayName: tutorial
           uid: mobile/native-mobile-backend
+        - name: Publish to Azure API Management
+          displayName: tutorial
+          uid: tutorials/publish-to-azure-api-management-using-vs
     - name: Real-time web apps
       items:
         - name: SignalR with JavaScript
