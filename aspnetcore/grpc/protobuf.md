@@ -322,7 +322,7 @@ Fields within the `oneof` set must have unique field numbers in the overall mess
 When using `oneof`, the generated C# code includes an enum that specifies which of the fields has been set. You can test the enum to find which field is set. Fields that aren't set return `null` or the default value, rather than throwing an exception.
 
 ```csharp
-var response = client.GetPersonAsync(new RequestMessage());
+var response = await client.GetPersonAsync(new RequestMessage());
 
 switch (response.ResultCase)
 {
