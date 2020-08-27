@@ -30,7 +30,7 @@ message Person {
 }  
 ```
 
-The preceding message definition specifies three fields as name-value pairs). Like properties on .NET types, each field has a name and a type. The field type can be a [Protobuf scalar value type](#scalar-value-types), e.g. `int32`, or another message.
+The preceding message definition specifies three fields as name-value pairs. Like properties on .NET types, each field has a name and a type. The field type can be a [Protobuf scalar value type](#scalar-value-types), e.g. `int32`, or another message.
 
 In addition to a name, each field in the message definition has a unique number. Field numbers are used to identify fields when the message is serialized to Protobuf. Serializing a small number is faster than serializing the entire field name. Because field numbers identify a field it is important to take care when changing them. For more information about changing Protobuf messages see <xref:grpc/versioning>.
 
