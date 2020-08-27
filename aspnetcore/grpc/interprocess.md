@@ -12,11 +12,16 @@ uid: grpc/interprocess
 
 By [James Newton-King](https://twitter.com/jamesnk)
 
-gRPC calls between a client and service are usually sent over TCP sockets. TCP is great for communicating across a network, but there are more efficient transports when the client and service are on the same machine. This is known as [inter-process communication (IPC)](https://wikipedia.org/wiki/Inter-process_communication). This document explains how to use gRPC with custom transports in IPC scenarios.
+gRPC calls between a client and service are usually sent over TCP sockets. TCP is great for communicating across a network, but [inter-process communication (IPC)](https://wikipedia.org/wiki/Inter-process_communication) is more efficient when the client and service are on the same machine. This document explains how to use gRPC with custom transports in IPC scenarios.
 
 ## Server configuration
 
-Custom transports are supported by Kestrel. Kestrel endpoints are configured with `ConfigureKestrel` in *Program.cs* and custom endpoints, such as [Unix domain sockets](https://wikipedia.org/wiki/Unix_domain_socket), are configured here. Kestrel has built-in support for listening on unix sockets with <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenUnixSocket*>.
+Custom transports are supported by Kestrel. Endpoints are configured in *Program.cs*:
+
+* Kestrel endpoints with `ConfigureKestrel`.
+* Custom endpoints, such as [Unix domain sockets](https://wikipedia.org/wiki/Unix_domain_socket).
+
+Kestrel supports listening on unix sockets with <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenUnixSocket*>.
 
 ```csharp
 public static readonly string SocketPath = Path.Combine(Path.GetTempPath(), "socket.tmp");
@@ -37,14 +42,13 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
         });
 ```
 
-> [!TIP]
-> Unix domain sockets are [supported](https://devblogs.microsoft.com/commandline/af_unix-comes-to-windows/) by modern versions of Windows.
+Unix domain sockets are [supported](https://devblogs.microsoft.com/commandline/af_unix-comes-to-windows/) by modern versions of Windows.
 
 ## Client configuration
 
-`GrpcChannel` supports making gRPC calls over custom transports. When a channel is created can be configured with a `SocketsHttpHandler` that has a custom `ConnectionFactory`. The factory allows the client to make connections over custom transports and then sent HTTP requests over that transport.
+`GrpcChannel` supports making gRPC calls over custom transports. When a channel is created, it can be configured with a `SocketsHttpHandler` that has a custom `ConnectionFactory`. The factory allows the client to make connections over custom transports and then send HTTP requests over that transport.
 
-Example of a Unix domain sockets connection factory:
+Unix domain sockets connection factory example:
 
 ```csharp
 public class UnixDomainSocketConnectionFactory : SocketsConnectionFactory
@@ -85,4 +89,4 @@ public static GrpcChannel CreateChannel()
 }
 ```
 
-Channels created using the preceding code will send gRPC calls over Unix domain sockets.
+Channels created using the preceding code send gRPC calls over Unix domain sockets.
