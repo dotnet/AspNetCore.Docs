@@ -4,7 +4,7 @@ author: codemillmatt
 description: Learn how to publish an ASP.NET Core web API to Azure API Management using Visual Studio.
 ms.author: masoucou
 ms.custom: "devx-track-csharp, mvc"
-ms.date: 08/25/2020
+ms.date: 08/26/2020
 uid: tutorials/publish-to-azure-api-management-using-vs
 ---
 # Publish an ASP.NET Core web API to Azure API Management with Visual Studio
@@ -35,9 +35,9 @@ Adding Swagger definitions to the ASP.NET Core web API allows Azure API Manageme
     
 1. Add the following line to the `Startup.Configure` method:
 
-```csharp
-app.UseSwagger();
-```
+    ```csharp
+    app.UseSwagger();
+    ```
 
 ### Change the API routing
 
@@ -87,9 +87,7 @@ Complete the following steps to publish the ASP.NET Core web API to Azure API Ma
 
     ![Publish dialog: select Azure Service instance](publish-to-azure-api-management-using-vs/_static/publish_dialog_create_new_app_svc.png)
 
-The **Create App Service** dialog appears:
-
-- The **App Name**, **Resource Group**, and **App Service Plan** entry fields are populated. You can keep these names or change them.
+    The **Create App Service** dialog appears. The **App Name**, **Resource Group**, and **App Service Plan** entry fields are populated. You can keep these names or change them.
 1. Select the **Create** button.
 
     ![Create App Service dialog](publish-to-azure-api-management-using-vs/_static/publish_dialog_app_svc_attributes.png)
@@ -106,16 +104,15 @@ At this point, you need to add an API to the Azure API Management service. Leave
 
     ![APIs blade selected from the API Management Service instance](publish-to-azure-api-management-using-vs/_static/portal_api_overview.png)
 
-1. From the **Add a new API** panel, click the **Blank API** tile:
+1. From the **Add a new API** panel, select the **Blank API** tile:
 
     ![Screen showing the blank API tile highlighted](publish-to-azure-api-management-using-vs/_static/portal_api_create_blank.png)
 
 1. Enter the following values in the **Create a blank API** dialog that appears:    
 
-    - **Display Name**: _WeatherForecasts_
-    - **Name**: _weatherforecasts_
-    - **API Url suffix**: _v1_
-    
+    - **Display Name**: *WeatherForecasts*
+    - **Name**: *weatherforecasts*
+    - **API Url suffix**: *v1*
     - Leave the **Web service URL** field empty.
 
 1. Select the **Create** button.
@@ -129,21 +126,21 @@ The blank API is created.
 ### Publish the ASP.NET Core web API to Azure API Management
 
 1. Switch back to Visual Studio. The **Publish** dialog should still be open where you left off before.
-1. Select the Azure App Service that was just published so it's highlighted.
+1. Select the newly published Azure App Service so it's highlighted.
 1. Select the **Next** button.
 
     ![Screenshot of the publish dialog with the app service selected](publish-to-azure-api-management-using-vs/_static/publish_dialog_app_svc_created.png)
 
-1. The dialog now shows the Azure API Management service created before. Expand it and the **APIs** folder to see the blank API you just created.
+1. The dialog now shows the Azure API Management service created before. Expand it and the *APIs* folder to see the blank API you created.
 1. Select the blank API's name and select the **Finish** button.
 
     ![Screenshot of the newly created Azure API Management blank API selected in the publish dialog](publish-to-azure-api-management-using-vs/_static/publish_dialog_api_selected.png)
 
-1. The dialog closes and a summary screen appears with information regarding the publish. Select the **Publish** button.
+1. The dialog closes and a summary screen appears with information about the publish. Select the **Publish** button.
 
     ![Screenshot of Visual Studio with the publish profile displayed](publish-to-azure-api-management-using-vs/_static/vs_publish_profile.png)
 
-The web API will publish to both Azure App Service and Azure API Management. A new browser window will appear showing the API running in Azure App Service. You can close that window.
+    The web API will publish to both Azure App Service and Azure API Management. A new browser window will appear and show the API running in Azure App Service. You can close that window.
 
 1. Switch back to the Azure API Management instance in the Azure portal.
 1. Refresh the browser window.
@@ -176,7 +173,7 @@ Notice the name of the API is different than what you named it. The published AP
     });
     ```
 
-1. Open the publish profile that was just created. It can be found from **Solution Explorer** in the *Properties/PublishProfiles* folder.
+1. Open the newly created publish profile. It can be found from **Solution Explorer** in the *Properties/PublishProfiles* folder.
 
     ![Screenshot showing the publish profile file location highlighted](publish-to-azure-api-management-using-vs/_static/vs_publish_profile_highlighted.png)
 
