@@ -123,7 +123,8 @@ Each call type has a different method signature. Overriding generated methods fr
 A unary method gets the request message as a parameter, and returns the response. A unary call is complete when the response is returned.
 
 ```csharp
-public override Task<BasicResponse> UnaryCall(BasicRequest request, ServerCallContext context)
+public override Task<BasicResponse> UnaryCall(BasicRequest request,
+    ServerCallContext context)
 {
     var response = new BasicResponse();
     return Task.FromResult(response);
