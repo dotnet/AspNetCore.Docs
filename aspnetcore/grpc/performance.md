@@ -72,18 +72,20 @@ There are a couple of workarounds for .NET Core 3.1 apps:
 
 ## Load balancing
 
-Load balancing gRPC calls effectively may require additional work in your environment. L4 (transport) load balancers only work at a connection level, by distributing different TCP connections to different endpoints. This approach works well for loading balancing API calls made with HTTP/1.1. Concurrent calls made with HTTP/1.1 are sent on different connections, allowing calls to be load balanced.
+Load balancing gRPC calls may not work well in some environments by default. L4 (transport) load balancers operate at a connection level, by distributing TCP connections across endpoints. This approach works well for loading balancing API calls made with HTTP/1.1. Concurrent calls made with HTTP/1.1 are sent on different connections, allowing calls to be load balanced across endpoints.
 
-L4 load balancing doesn't work well with gRPC. gRPC uses HTTP/2, which multiplexes multiple calls on a single TCP connection. Because there is a single connection, all calls go to one endpoint. There are two options to effectively load balance gRPC:
+L4 load balancing doesn't work well with gRPC. gRPC uses HTTP/2, which multiplexes multiple calls on a single TCP connection. Because there is a single connection, all calls go to one endpoint.
+
+There are two options to effectively load balance gRPC:
 
 1. Client-side load balancing
-2. L7 (application) proxy
+2. L7 (application) proxy load balancing
 
 ### Client-side load balancing
 
-With client-side load balancing, the client knows about endpoints and selects a different endpoint to send each call to. This is a good choice for when latency is important because there is no proxy between the client and the service. The client calls the service directly. The downside to client-side load balancing is that each client must keep track of available endpoints it should use.
+With client-side load balancing, the client knows about endpoints. For each gRPC call it selects a different endpoint to send the call to. Client-side load balancing is a good choice for when latency is important. There is no proxy between the client and the service so the call is sent to the service directly. The downside to client-side load balancing is that each client must keep track of available endpoints it should use.
 
-Lookaside client load balancing is a technique where load balancing state is stored in a central location. Clients query the central location for endpoints, and other useful information for making load balancing decisions.
+Lookaside client load balancing is a technique where load balancing state is stored in a central location. Clients periodically query the central location for information to use when making load balancing decisions.
 
 `Grpc.Net.Client` currently doesn't support client-side load balancing. The [Grpc.Core](https://www.nuget.org/packages/Grpc.Core) is a good choice if client-side load balancing is required in .NET.
 
@@ -91,9 +93,10 @@ Lookaside client load balancing is a technique where load balancing state is sto
 
 An L7 (application) proxy works at a higher level than an L4 (transport) proxy. L7 proxies understand HTTP/2, and are able to distribute gRPC calls multiplexed to the proxy on one HTTP/2 connection across multiple endpoints. Using a proxy is simpler than client-side load balancing, but can add extra latency to gRPC calls.
 
-There are many L7 proxies available. Two options are:
+There are many L7 proxies available. Some options are:
 
 1. [Envoy](https://www.envoyproxy.io/) proxy - A popular open source proxy.
+2. [Linkerd](https://linkerd.io/) - Service mesh for Kubernetes.
 2. [YARP: A Reverse Proxy](https://microsoft.github.io/reverse-proxy/) - A preview open source proxy written in .NET.
 
 ::: moniker range=">= aspnetcore-5.0"
