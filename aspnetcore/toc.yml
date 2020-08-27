@@ -702,7 +702,11 @@
         - name: Get started with a gRPC service
           uid: tutorials/grpc/grpc-start
     - name: gRPC services with C#
-      uid: grpc/basics
+      items:
+        - name: Overview
+          uid: grpc/basics
+        - name: Create gRPC services
+          uid: grpc/services
     - name: gRPC services with ASP.NET Core
       uid: grpc/aspnetcore
     - name: Call gRPC services with .NET client
@@ -711,6 +715,8 @@
       uid: grpc/clientfactory
     - name: Use gRPC in browser apps
       uid: grpc/browser
+    - name: Inter-process communication with gRPC
+      uid: grpc/interprocess
     - name: Configuration
       uid: grpc/configuration
     - name: Authentication and authorization
@@ -719,6 +725,8 @@
       uid: grpc/diagnostics
     - name: Security considerations
       uid: grpc/security
+    - name: Create Protobuf messages
+      uid: grpc/protobuf
     - name: Performance best practices
       uid: grpc/performance
     - name: Versioning gRPC services
