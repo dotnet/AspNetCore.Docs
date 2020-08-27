@@ -72,9 +72,9 @@ There are a couple of workarounds for .NET Core 3.1 apps:
 
 ## Load balancing
 
-Load balancing gRPC calls may not work well in some environments by default. L4 (transport) load balancers operate at a connection level, by distributing TCP connections across endpoints. This approach works well for loading balancing API calls made with HTTP/1.1. Concurrent calls made with HTTP/1.1 are sent on different connections, allowing calls to be load balanced across endpoints.
+Some load balancers don't work effectively with gRPC. L4 (transport) load balancers operate at a connection level, by distributing TCP connections across endpoints. This approach works well for loading balancing API calls made with HTTP/1.1. Concurrent calls made with HTTP/1.1 are sent on different connections, allowing calls to be load balanced across endpoints.
 
-L4 load balancing doesn't work well with gRPC. gRPC uses HTTP/2, which multiplexes multiple calls on a single TCP connection. Because there is a single connection, all calls go to one endpoint.
+Because L4 load balancers operate at a connection level, they don't work well with gRPC. gRPC uses HTTP/2, which multiplexes multiple calls on a single TCP connection. All gRPC calls over that connection go to one endpoint.
 
 There are two options to effectively load balance gRPC:
 
@@ -83,7 +83,7 @@ There are two options to effectively load balance gRPC:
 
 ### Client-side load balancing
 
-With client-side load balancing, the client knows about endpoints. For each gRPC call it selects a different endpoint to send the call to. Client-side load balancing is a good choice for when latency is important. There is no proxy between the client and the service so the call is sent to the service directly. The downside to client-side load balancing is that each client must keep track of available endpoints it should use.
+With client-side load balancing, the client knows about endpoints. For each gRPC call it selects a different endpoint to send the call to. Client-side load balancing is a good choice when latency is important. There is no proxy between the client and the service so the call is sent to the service directly. The downside to client-side load balancing is that each client must keep track of available endpoints it should use.
 
 Lookaside client load balancing is a technique where load balancing state is stored in a central location. Clients periodically query the central location for information to use when making load balancing decisions.
 
