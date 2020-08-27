@@ -156,7 +156,7 @@ public override async Task StreamingFromServer(BasicRequest request,
 }
 ```
 
-The client has no way to send additional messages or data once the server streaming method has started. Some streaming methods are designed to run forever. In this situation, a client can cancel the call when they no longer need it. When cancellation happens the client sends a signal to the server and the [ServerCallContext.CancellationToken](xref:System.Threading.CancellationToken) is raised. The `CancellationToken` token should be used on the server with async methods so that:
+The client has no way to send additional messages or data once the server streaming method has started. Some streaming methods are designed to run forever. For continuous streaming methods, a client can cancel the call when it's no longer need it. When cancellation happens the client sends a signal to the server and the [ServerCallContext.CancellationToken](xref:System.Threading.CancellationToken) is raised. The `CancellationToken` token should be used on the server with async methods so that:
 
 * Any asynchronous work is canceled together with the streaming call.
 * The method exits quickly.
