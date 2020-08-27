@@ -82,7 +82,7 @@ There are two options to effectively load balance gRPC:
 2. L7 (application) proxy load balancing
 
 > [!NOTE]
-> Only gRPC calls can be load balanced between endpoints. Messages sent over a streaming gRPC call always go to one endpoint.
+> Only gRPC calls can be load balanced between endpoints. Once a streaming gRPC call is established, all messages sent over the stream go to one endpoint.
 
 ### Client-side load balancing
 
