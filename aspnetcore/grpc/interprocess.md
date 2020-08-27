@@ -48,6 +48,9 @@ Kestrel has built-in support for UDS endpoints. UDS are supported on Linux, macO
 
 `GrpcChannel` supports making gRPC calls over custom transports. When a channel is created, it can be configured with a `SocketsHttpHandler` that has a custom `ConnectionFactory`. The factory allows the client to make connections over custom transports and then send HTTP requests over that transport.
 
+> [!IMPORTANT]
+> `ConnectionFactory` is a new API in .NET 5 release candidate 1.
+
 Unix domain sockets connection factory example:
 
 ```csharp
