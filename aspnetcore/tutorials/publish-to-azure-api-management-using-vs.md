@@ -15,7 +15,7 @@ By [Matt Soucoup](https://twitter.com/codemillmatt)
 
 - Open a [free Azure account](https://azure.microsoft.com/free/dotnet/) if you don't have one.
 - [Create a new Azure API Management instance](/azure/api-management/get-started-create-service-instance) if you haven't already.
-- [Create a web API app project](xref:tutorials/first-web-api#create-a-web-project)
+- [Create a web API app project](xref:tutorials/first-web-api#create-a-web-project).
 
 ## Configure the app
 
