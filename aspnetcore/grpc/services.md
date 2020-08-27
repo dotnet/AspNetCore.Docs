@@ -103,16 +103,16 @@ syntax = "proto3";
 
 service ExampleService {
   // Unary
-  rpc UnaryCall (BasicRequest) returns (BasicResponse);
+  rpc UnaryCall (ExampleRequest) returns (ExampleResponse);
 
   // Server streaming
-  rpc StreamingFromServer (BasicRequest) returns (stream BasicResponse);
+  rpc StreamingFromServer (ExampleRequest) returns (stream ExampleResponse);
 
   // Client streaming
-  rpc StreamingFromClient (stream BasicRequest) returns (BasicResponse);
+  rpc StreamingFromClient (stream ExampleRequest) returns (ExampleResponse);
 
   // Bi-directional streaming
-  rpc StreamingBothWays (stream BasicRequest) returns (stream BasicResponse);
+  rpc StreamingBothWays (stream ExampleRequest) returns (stream ExampleResponse);
 }
 ```
 
@@ -123,10 +123,10 @@ Each call type has a different method signature. Overriding generated methods fr
 A unary method gets the request message as a parameter, and returns the response. A unary call is complete when the response is returned.
 
 ```csharp
-public override Task<BasicResponse> UnaryCall(BasicRequest request,
+public override Task<ExampleResponse> UnaryCall(ExampleRequest request,
     ServerCallContext context)
 {
-    var response = new BasicResponse();
+    var response = new ExampleResponse();
     return Task.FromResult(response);
 }
 ```
@@ -134,7 +134,7 @@ public override Task<BasicResponse> UnaryCall(BasicRequest request,
 Unary calls are the most similar to [actions on web API controllers](xref:web-api/index). One important difference gRPC methods have from actions is gRPC methods are not able to bind parts of a request to different method arguments. gRPC methods always have one message argument for the incoming request data. Multiple values can still be sent to a gRPC service by making them fields on the request message:
 
 ```protobuf
-message BasicRequest {
+message ExampleRequest {
     int pageIndex = 1;
     int pageSize = 2;
     bool isDescending = 3;
@@ -146,12 +146,12 @@ message BasicRequest {
 A server streaming method gets the request message as a parameter. Because multiple messages can be streamed back to the caller, `responseStream.WriteAsync` is used to send response messages. A server streaming call is complete when the method returns.
 
 ```csharp
-public override async Task StreamingFromServer(BasicRequest request,
-    IServerStreamWriter<BasicResponse> responseStream, ServerCallContext context)
+public override async Task StreamingFromServer(ExampleRequest request,
+    IServerStreamWriter<ExampleResponse> responseStream, ServerCallContext context)
 {
     for (var i = 0; i < 5; i++)
     {
-        await responseStream.WriteAsync(new BasicResponse());
+        await responseStream.WriteAsync(new ExampleResponse());
         await Task.Delay(TimeSpan.FromSeconds(1));
     }
 }
@@ -163,12 +163,12 @@ The client has no way to send additional messages or data once the server stream
 * The method exits quickly.
 
 ```csharp
-public override async Task StreamingFromServer(BasicRequest request,
-    IServerStreamWriter<BasicResponse> responseStream, ServerCallContext context)
+public override async Task StreamingFromServer(ExampleRequest request,
+    IServerStreamWriter<ExampleResponse> responseStream, ServerCallContext context)
 {
     while (!context.CancellationToken.IsCancellationRequested)
     {
-        await responseStream.WriteAsync(new BasicResponse());
+        await responseStream.WriteAsync(new ExampleResponse());
         await Task.Delay(TimeSpan.FromSeconds(1), context.CancellationToken);
     }
 }
@@ -179,29 +179,29 @@ public override async Task StreamingFromServer(BasicRequest request,
 A client streaming method starts *without* the method receiving a message. The `requestStream` parameter is used to read messages from the client. A client streaming call is complete when a response message is returned:
 
 ```csharp
-public override async Task<BasicResponse> StreamingFromClient(
-    IAsyncStreamReader<BasicRequest> requestStream, ServerCallContext context)
+public override async Task<ExampleResponse> StreamingFromClient(
+    IAsyncStreamReader<ExampleRequest> requestStream, ServerCallContext context)
 {
     while (await requestStream.MoveNext())
     {
         var message = requestStream.Current;
         // ...
     }
-    return new BasicResponse();
+    return new ExampleResponse();
 }
 ```
 
 When using C# 8 or later, the `await foreach` syntax can be used to read messages. The `IAsyncStreamReader<T>.ReadAllAsync()` extension method reads all messages from the request stream:
 
 ```csharp
-public override async Task<BasicResponse> StreamingFromClient(
-    IAsyncStreamReader<BasicRequest> requestStream, ServerCallContext context)
+public override async Task<ExampleResponse> StreamingFromClient(
+    IAsyncStreamReader<ExampleRequest> requestStream, ServerCallContext context)
 {
     await foreach (var message in requestStream.ReadAllAsync())
     {
         // ...
     }
-    return new BasicResponse();
+    return new ExampleResponse();
 }
 ```
 
@@ -210,12 +210,12 @@ public override async Task<BasicResponse> StreamingFromClient(
 A bi-directional streaming method starts *without* the method receiving a message. The `requestStream` parameter is used to read messages from the client. The method can choose to send messages with `responseStream.WriteAsync`. A bi-directional streaming call is complete when the the method returns:
 
 ```csharp
-public override async Task StreamingBothWays(IAsyncStreamReader<BasicRequest> requestStream,
-    IServerStreamWriter<BasicResponse> responseStream, ServerCallContext context)
+public override async Task StreamingBothWays(IAsyncStreamReader<ExampleRequest> requestStream,
+    IServerStreamWriter<ExampleResponse> responseStream, ServerCallContext context)
 {
     await foreach (var message in requestStream.ReadAllAsync())
     {
-        await responseStream.WriteAsync(new BasicResponse());
+        await responseStream.WriteAsync(new ExampleResponse());
     }
 }
 ```
@@ -228,8 +228,8 @@ The preceding code:
 It is possible to support more complex scenarios, such as reading requests and sending responses simultaneously:
 
 ```csharp
-public override async Task StreamingBothWays(IAsyncStreamReader<BasicRequest> requestStream,
-    IServerStreamWriter<BasicResponse> responseStream, ServerCallContext context)
+public override async Task StreamingBothWays(IAsyncStreamReader<ExampleRequest> requestStream,
+    IServerStreamWriter<ExampleResponse> responseStream, ServerCallContext context)
 {
     // Read requests in a background task.
     var readTask = Task.Run(async () =>
@@ -243,7 +243,7 @@ public override async Task StreamingBothWays(IAsyncStreamReader<BasicRequest> re
     // Send responses until the client signals that it is complete.
     while (!readTask.IsCompleted)
     {
-        await responseStream.WriteAsync(new BasicResponse());
+        await responseStream.WriteAsync(new ExampleResponse());
         await Task.Delay(TimeSpan.FromSeconds(1), context.CancellationToken);
     }
 }
@@ -256,12 +256,12 @@ In a bi-directional streaming method, the client and service can send messages t
 A request message is not the only way for a client to send data to a gRPC service. Header values are available in a service using `ServerCallContext.RequestHeaders`.
 
 ```csharp
-public override Task<BasicResponse> UnaryCall(BasicRequest request, ServerCallContext context)
+public override Task<ExampleResponse> UnaryCall(ExampleRequest request, ServerCallContext context)
 {
     var userAgent = context.RequestHeaders.GetValue("user-agent");
     // ...
 
-    return Task.FromResult(new BasicResponse());
+    return Task.FromResult(new ExampleResponse());
 }
 ```
 
