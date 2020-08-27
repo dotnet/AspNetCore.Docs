@@ -12,11 +12,11 @@ uid: grpc/interprocess
 
 By [James Newton-King](https://twitter.com/jamesnk)
 
-gRPC calls between a client and service are usually sent over TCP sockets. TCP is great for communicating across a network, but there are more efficient transports when the client and service are on the same machine. This is known as [inter-process communication (IPC)](https://en.wikipedia.org/wiki/Inter-process_communication). This document explains how to use gRPC with custom transports in IPC scenarios.
+gRPC calls between a client and service are usually sent over TCP sockets. TCP is great for communicating across a network, but there are more efficient transports when the client and service are on the same machine. This is known as [inter-process communication (IPC)](https://wikipedia.org/wiki/Inter-process_communication). This document explains how to use gRPC with custom transports in IPC scenarios.
 
 ## Server configuration
 
-Custom transports are supported by Kestrel. Kestrel endpoints are configured with `ConfigureKestrel` in *Program.cs* and custom endpoints, such as [Unix domain sockets](https://en.wikipedia.org/wiki/Unix_domain_socket), are configured here. Kestrel has built-in support for listening on unix sockets with <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenUnixSocket*>.
+Custom transports are supported by Kestrel. Kestrel endpoints are configured with `ConfigureKestrel` in *Program.cs* and custom endpoints, such as [Unix domain sockets](https://wikipedia.org/wiki/Unix_domain_socket), are configured here. Kestrel has built-in support for listening on unix sockets with <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenUnixSocket*>.
 
 ```csharp
 public static readonly string SocketPath = Path.Combine(Path.GetTempPath(), "socket.tmp");
