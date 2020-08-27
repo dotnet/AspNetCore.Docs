@@ -76,7 +76,7 @@ public class GreeterService : GreeterBase
 }
 ```
 
-The final step is to register the service implementation with the app. If the service is hosted by ASP.NET Core gRPC then it should be added to the routing pipeline with the `MapGrpcService` method.
+The service implementation is registered with the app. If the service is hosted by ASP.NET Core gRPC, it should be added to the routing pipeline with the `MapGrpcService` method.
 
 ```csharp
 app.UseEndpoints(endpoints =>
@@ -103,16 +103,16 @@ syntax = "proto3";
 
 service ExampleService {
   // Unary
-  rpc UnaryCall (SimpleRequest) returns (SimpleResponse);
+  rpc UnaryCall (BasicRequest) returns (BasicResponse);
 
   // Server streaming
-  rpc StreamingFromServer (SimpleRequest) returns (stream SimpleResponse);
+  rpc StreamingFromServer (BasicRequest) returns (stream BasicResponse);
 
   // Client streaming
-  rpc StreamingFromClient (stream SimpleRequest) returns (SimpleResponse);
+  rpc StreamingFromClient (stream BasicRequest) returns (BasicResponse);
 
   // Bi-directional streaming
-  rpc StreamingBothWays (stream SimpleRequest) returns (stream SimpleResponse);
+  rpc StreamingBothWays (stream BasicRequest) returns (stream BasicResponse);
 }
 ```
 
@@ -123,9 +123,10 @@ Each call type has a different method signature. Overriding generated methods fr
 A unary method gets the request message as a parameter, and returns the response. A unary call is complete when the response is returned.
 
 ```csharp
-public override Task<SimpleResponse> UnaryCall(SimpleRequest request, ServerCallContext context)
+public override Task<BasicResponse> UnaryCall(BasicRequest request,
+    ServerCallContext context)
 {
-    var response = new SimpleResponse();
+    var response = new BasicResponse();
     return Task.FromResult(response);
 }
 ```
@@ -133,7 +134,7 @@ public override Task<SimpleResponse> UnaryCall(SimpleRequest request, ServerCall
 Unary calls are the most similar to [actions on web API controllers](xref:web-api/index). One important difference gRPC methods have from actions is gRPC methods are not able to bind parts of a request to different method arguments. gRPC methods always have one message argument for the incoming request data. Multiple values can still be sent to a gRPC service by making them fields on the request message:
 
 ```protobuf
-message SimpleRequest {
+message BasicRequest {
     int pageIndex = 1;
     int pageSize = 2;
     bool isDescending = 3;
@@ -145,26 +146,29 @@ message SimpleRequest {
 A server streaming method gets the request message as a parameter. Because multiple messages can be streamed back to the caller, `responseStream.WriteAsync` is used to send response messages. A server streaming call is complete when the method returns.
 
 ```csharp
-public override async Task StreamingFromServer(SimpleRequest request,
-    IServerStreamWriter<SimpleResponse> responseStream, ServerCallContext context)
+public override async Task StreamingFromServer(BasicRequest request,
+    IServerStreamWriter<BasicResponse> responseStream, ServerCallContext context)
 {
     for (var i = 0; i < 5; i++)
     {
-        await responseStream.WriteAsync(new SimpleResponse());
+        await responseStream.WriteAsync(new BasicResponse());
         await Task.Delay(TimeSpan.FromSeconds(1));
     }
 }
 ```
 
-The client has no way to send additional messages or data once the server streaming method has started. Some streaming methods are designed to run forever. In this situation a client can cancel the call when they no longer need it. When cancellation happens the client sends a signal to the server and the `ServerCallContext.CancellationToken` <xref:System.Threading.CancellationToken> is raised. The token should be used on the server with async methods used so that any asynchronous work is canceled together with the streaming call, and the method exits quickly.
+The client has no way to send additional messages or data once the server streaming method has started. Some streaming methods are designed to run forever. For continuous streaming methods, a client can cancel the call when it's no longer need it. When cancellation happens the client sends a signal to the server and the [ServerCallContext.CancellationToken](xref:System.Threading.CancellationToken) is raised. The `CancellationToken` token should be used on the server with async methods so that:
+
+* Any asynchronous work is canceled together with the streaming call.
+* The method exits quickly.
 
 ```csharp
-public override async Task StreamingFromServer(SimpleRequest request,
-    IServerStreamWriter<SimpleResponse> responseStream, ServerCallContext context)
+public override async Task StreamingFromServer(BasicRequest request,
+    IServerStreamWriter<BasicResponse> responseStream, ServerCallContext context)
 {
     while (!context.CancellationToken.IsCancellationRequested)
     {
-        await responseStream.WriteAsync(new SimpleResponse());
+        await responseStream.WriteAsync(new BasicResponse());
         await Task.Delay(TimeSpan.FromSeconds(1), context.CancellationToken);
     }
 }
@@ -172,69 +176,74 @@ public override async Task StreamingFromServer(SimpleRequest request,
 
 ### Client streaming method
 
-A client streaming method starts *without* the method receiving a message. The `requestStream` parameter is used to read messages from the client. A client streaming call is complete when a response message is returned.
+A client streaming method starts *without* the method receiving a message. The `requestStream` parameter is used to read messages from the client. A client streaming call is complete when a response message is returned:
 
 ```csharp
-public override async Task<SimpleResponse> StreamingFromClient(
-    IAsyncStreamReader<SimpleRequest> requestStream, ServerCallContext context)
+public override async Task<BasicResponse> StreamingFromClient(
+    IAsyncStreamReader<BasicRequest> requestStream, ServerCallContext context)
 {
     while (await requestStream.MoveNext())
     {
         var message = requestStream.Current;
         // ...
     }
-    return new SimpleResponse();
+    return new BasicResponse();
 }
 ```
 
 When using C# 8 or later, the `await foreach` syntax can be used to read messages. The `IAsyncStreamReader<T>.ReadAllAsync()` extension method reads all messages from the request stream:
 
 ```csharp
-public override async Task<SimpleResponse> StreamingFromClient(
-    IAsyncStreamReader<SimpleRequest> requestStream, ServerCallContext context)
+public override async Task<BasicResponse> StreamingFromClient(
+    IAsyncStreamReader<BasicRequest> requestStream, ServerCallContext context)
 {
     await foreach (var message in requestStream.ReadAllAsync())
     {
         // ...
     }
-    return new SimpleResponse();
+    return new BasicResponse();
 }
 ```
 
 ### Bi-directional streaming method
 
-A bi-directional streaming method starts *without* the method receiving a message. The `requestStream` parameter is used to read messages from the client. The method can choose to send messages with `responseStream.WriteAsync`. A bi-directional streaming call is complete when the the method returns.
+A bi-directional streaming method starts *without* the method receiving a message. The `requestStream` parameter is used to read messages from the client. The method can choose to send messages with `responseStream.WriteAsync`. A bi-directional streaming call is complete when the the method returns:
 
 ```csharp
-public override async Task StreamingBothWays(IAsyncStreamReader<SimpleRequest> requestStream,
-    IServerStreamWriter<SimpleResponse> responseStream, ServerCallContext context)
+public override async Task StreamingBothWays(IAsyncStreamReader<BasicRequest> requestStream,
+    IServerStreamWriter<BasicResponse> responseStream, ServerCallContext context)
 {
     await foreach (var message in requestStream.ReadAllAsync())
     {
-        await responseStream.WriteAsync(new SimpleResponse());
+        await responseStream.WriteAsync(new BasicResponse());
     }
 }
 ```
 
-In the preceding method sends a response for each request. This is a simple usage of bi-directional streaming. It is possible to support more complex scenarios, such as reading a requests and sending responses simultaneously:
+The preceding code:
+
+* Sends a response for each request.
+* Is a basic usage of bi-directional streaming.
+
+It is possible to support more complex scenarios, such as reading requests and sending responses simultaneously:
 
 ```csharp
-public override async Task StreamingBothWays(IAsyncStreamReader<SimpleRequest> requestStream,
-    IServerStreamWriter<SimpleResponse> responseStream, ServerCallContext context)
+public override async Task StreamingBothWays(IAsyncStreamReader<BasicRequest> requestStream,
+    IServerStreamWriter<BasicResponse> responseStream, ServerCallContext context)
 {
-    // Read requests in a background task
+    // Read requests in a background task.
     var readTask = Task.Run(async () =>
     {
         await foreach (var message in requestStream.ReadAllAsync())
         {
-            // Process request
+            // Process request.
         }
     });
     
-    // Send responses until the client signals that it is complete
+    // Send responses until the client signals that it is complete.
     while (!readTask.IsCompleted)
     {
-        await responseStream.WriteAsync(new SimpleResponse());
+        await responseStream.WriteAsync(new BasicResponse());
         await Task.Delay(TimeSpan.FromSeconds(1), context.CancellationToken);
     }
 }
@@ -247,12 +256,12 @@ In a bi-directional streaming method, the client and service can send messages t
 A request message is not the only way for a client to send data to a gRPC service. Header values are available in a service using `ServerCallContext.RequestHeaders`.
 
 ```csharp
-public override Task<SimpleResponse> UnaryCall(SimpleRequest request, ServerCallContext context)
+public override Task<BasicResponse> UnaryCall(BasicRequest request, ServerCallContext context)
 {
     var userAgent = context.RequestHeaders.GetValue("user-agent");
     // ...
 
-    return Task.FromResult(new SimpleResponse());
+    return Task.FromResult(new BasicResponse());
 }
 ```
 
