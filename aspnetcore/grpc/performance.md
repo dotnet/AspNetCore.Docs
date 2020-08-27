@@ -81,6 +81,9 @@ There are two options to effectively load balance gRPC:
 1. Client-side load balancing
 2. L7 (application) proxy load balancing
 
+> [!NOTE]
+> Only gRPC calls can be load balanced between endpoints. Messages sent over a streaming gRPC call always go to one endpoint.
+
 ### Client-side load balancing
 
 With client-side load balancing, the client knows about endpoints. For each gRPC call it selects a different endpoint to send the call to. Client-side load balancing is a good choice when latency is important. There is no proxy between the client and the service so the call is sent to the service directly. The downside to client-side load balancing is that each client must keep track of available endpoints it should use.
