@@ -16,12 +16,7 @@ gRPC calls between a client and service are usually sent over TCP sockets. TCP i
 
 ## Server configuration
 
-Custom transports are supported by Kestrel. Endpoints are configured in *Program.cs*:
-
-* Kestrel endpoints with `ConfigureKestrel`.
-* Custom endpoints, such as [Unix domain sockets](https://wikipedia.org/wiki/Unix_domain_socket).
-
-Kestrel supports listening on unix sockets with <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenUnixSocket*>.
+Custom transports are supported by Kestrel. Kestrel is configured in *Program.cs*:
 
 ```csharp
 public static readonly string SocketPath = Path.Combine(Path.GetTempPath(), "socket.tmp");
@@ -42,7 +37,12 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
         });
 ```
 
-Unix domain sockets are [supported](https://devblogs.microsoft.com/commandline/af_unix-comes-to-windows/) by modern versions of Windows.
+The preceding example:
+
+* Configures Kestrel's endpoints in `ConfigureKestrel`.
+* Calls <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenUnixSocket*> to listen to a [Unix domain socket (UDS)](https://en.wikipedia.org/wiki/Unix_domain_socket) with the specified path.
+
+Kestrel has built-in support for UDS endpoints. UDS are supported on Linux, macOS and [modern versions of Windows](https://devblogs.microsoft.com/commandline/af_unix-comes-to-windows/).
 
 ## Client configuration
 
