@@ -1,5 +1,5 @@
 ---
-title: Performance best practices in gRPC for ASP.NET Core
+title: Performance best practices with gRPC
 author: jamesnk
 description: Learn the best practices for building high-performance gRPC services.
 monikerRange: '>= aspnetcore-3.0'
@@ -8,17 +8,17 @@ ms.date: 08/23/2020
 no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: grpc/performance
 ---
-# Performance best practices in gRPC for ASP.NET Core
+# Performance best practices with gRPC
 
 By [James Newton-King](https://twitter.com/jamesnk)
 
 gRPC is designed for high-performance services. This document explains how to get the best performance possible from gRPC.
 
-## Reuse channel
+## Reuse gRPC channels
 
 A gRPC channel should be reused when making gRPC calls. Reusing a channel allows calls to be multiplexed through an existing HTTP/2 connection.
 
-If a new channel is created for each gRPC call then the amount of time it takes to complete can increase significantly. Each call will require multiple network round-trips between the client and the server to create an HTTP/2 connection:
+If a new channel is created for each gRPC call then the amount of time it takes to complete can increase significantly. Each call will require multiple network round-trips between the client and the server to create a new HTTP/2 connection:
 
 1. Opening a socket
 2. Establishing TCP connection
@@ -70,7 +70,45 @@ There are a couple of workarounds for .NET Core 3.1 apps:
 > * Thread contention between streams trying to write to the connection.
 > * Connection packet loss causes all calls to be blocked at the TCP layer.
 
+## Load balancing
+
+Some load balancers don't work effectively with gRPC. L4 (transport) load balancers operate at a connection level, by distributing TCP connections across endpoints. This approach works well for loading balancing API calls made with HTTP/1.1. Concurrent calls made with HTTP/1.1 are sent on different connections, allowing calls to be load balanced across endpoints.
+
+Because L4 load balancers operate at a connection level, they don't work well with gRPC. gRPC uses HTTP/2, which multiplexes multiple calls on a single TCP connection. All gRPC calls over that connection go to one endpoint.
+
+There are two options to effectively load balance gRPC:
+
+1. Client-side load balancing
+2. L7 (application) proxy load balancing
+
+> [!NOTE]
+> Only gRPC calls can be load balanced between endpoints. Once a streaming gRPC call is established, all messages sent over the stream go to one endpoint.
+
+### Client-side load balancing
+
+With client-side load balancing, the client knows about endpoints. For each gRPC call it selects a different endpoint to send the call to. Client-side load balancing is a good choice when latency is important. There is no proxy between the client and the service so the call is sent to the service directly. The downside to client-side load balancing is that each client must keep track of available endpoints it should use.
+
+Lookaside client load balancing is a technique where load balancing state is stored in a central location. Clients periodically query the central location for information to use when making load balancing decisions.
+
+`Grpc.Net.Client` currently doesn't support client-side load balancing. [Grpc.Core](https://www.nuget.org/packages/Grpc.Core) is a good choice if client-side load balancing is required in .NET.
+
+### Proxy load balancing
+
+An L7 (application) proxy works at a higher level than an L4 (transport) proxy. L7 proxies understand HTTP/2, and are able to distribute gRPC calls multiplexed to the proxy on one HTTP/2 connection across multiple endpoints. Using a proxy is simpler than client-side load balancing, but can add extra latency to gRPC calls.
+
+There are many L7 proxies available. Some options are:
+
+1. [Envoy](https://www.envoyproxy.io/) proxy - A popular open source proxy.
+2. [Linkerd](https://linkerd.io/) - Service mesh for Kubernetes.
+2. [YARP: A Reverse Proxy](https://microsoft.github.io/reverse-proxy/) - A preview open source proxy written in .NET.
+
 ::: moniker range=">= aspnetcore-5.0"
+
+## Inter-process communication
+
+gRPC calls between a client and service are usually sent over TCP sockets. TCP is great for communicating across a network, but [inter-process communication (IPC)](https://wikipedia.org/wiki/Inter-process_communication) is more efficient when the client and service are on the same machine.
+
+Consider using a transport like Unix domain sockets or named pipes for gRPC calls between processes on the same machine. For more information, see <xref:grpc/interprocess>.
 
 ## Keep alive pings
 
