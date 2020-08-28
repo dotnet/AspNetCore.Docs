@@ -17,7 +17,7 @@ Azure Active Directory (AAD) provides several authorization approaches that can 
 
 * User-defined groups
   * Security
-  * O365
+  * Microsoft 365
   * Distribution
 * Roles
   * Built-in Administrative Roles
