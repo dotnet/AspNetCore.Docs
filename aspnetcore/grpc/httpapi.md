@@ -95,8 +95,20 @@ This is a basic example. See [HttpRule](https://cloud.google.com/service-infrast
 
 Both gRPC HTTP API and gRPC-Web allow gRPC services to be called from a browser. However, the way each does this is different:
 
-* gRPC-Web lets browser apps call gRPC services from the browser with the gRPC-Web client and Protobuf. gRPC-Web requires the browser app generate a gRPC client, but has the advantage of sending small, fast Protobuf messages.
+* gRPC-Web lets browser apps call gRPC services from the browser with the gRPC-Web client and Protobuf. gRPC-Web requires the browser app generate a gRPC client, and has the advantage of sending small, fast Protobuf messages.
 * gRPC HTTP API allows browser apps to call gRPC services as if they were RESTful APIs with JSON. The browser app doesn't need to generate a gRPC client or know anything about gRPC.
+
+No generated client is created for gRPC HTTP API. The previous `Greeter` service can be called with a browser JavaScript API like `fetch`:
+
+```javascript
+var name = nameInput.value;
+
+fetch("/v1/greeter/" + name).then(function (response) {
+  response.json().then(function (data) {
+    console.log("Result: " + data.message);
+  });
+});
+```
 
 ### Experimental status
 
