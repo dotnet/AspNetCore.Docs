@@ -13,8 +13,6 @@ uid: grpc/httpapi
 By [James Newton-King](https://twitter.com/jamesnk)
 
 > [!IMPORTANT]
-> ***gRPC HTTP API is experimental***
->
 > gRPC HTTP API is an experimental project, not a committed product. We want to:
 >
 > * Test that our approach to creating JSON Web APIs for gRPC services works.
@@ -26,7 +24,7 @@ gRPC is a modern way to communicate between apps. gRPC uses HTTP/2, streaming, P
 
 One limitation with gRPC is not every platform can use it. Browsers don't fully support HTTP/2, making REST and JSON the primary way to get data into browser apps. Even with the benefits that gRPC brings, REST and JSON have an important place in modern apps. Building gRPC ***and*** JSON Web APIs adds unwanted overhead to app development.
 
-This document discusses how to create JSON Web APIs using gRPC services.
+This document discusses how to quickly create JSON Web APIs using gRPC services.
 
 ## gRPC HTTP API
 
@@ -74,7 +72,7 @@ The `SayHello` gRPC method can now be invoked as gRPC+Protobuf and as an HTTP AP
 * Request: `HTTP/1.1 GET /v1/greeter/world`
 * Response: `{ "message": "Hello world" }`
 
-Server logs show that the HTTP call is executed by the gRPC service and a JSON response is returned:
+Server logs show that the HTTP call is executed by a gRPC service. gRPC HTTP API maps the incoming HTTP request to a gRPC message, and then converts the response message to JSON.
 
 ```
 info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
