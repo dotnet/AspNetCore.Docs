@@ -100,7 +100,7 @@ Both gRPC HTTP API and gRPC-Web allow gRPC services to be called from a browser.
 
 ### Experimental status
 
-gRPC HTTP API is an experiment. It is not complete and it is not supported. We're interested in this technology but there is no commitment to completing it.
+gRPC HTTP API is an experiment. It is not complete and it is not supported. We're interested in this technology, and the ability it gives app developers to quickly create gRPC and JSON services at the same time, but there is no commitment to completing it.
 
 We want to gauge developer interest in gRPC HTTP API. If gRPC HTTP API is interesting to you then please [give feedback](https://github.com/grpc/grpc-dotnet/issues/167).
 
