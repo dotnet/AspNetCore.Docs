@@ -13,7 +13,7 @@ uid: grpc/httpapi
 By [James Newton-King](https://twitter.com/jamesnk)
 
 > [!IMPORTANT]
-> **gRPC HTTP API is experimental**
+> ***gRPC HTTP API is experimental***
 >
 > gRPC HTTP API is an experimental project, not a committed product. We want to:
 >
@@ -22,28 +22,28 @@ By [James Newton-King](https://twitter.com/jamesnk)
 >
 > Please [leave feedback](https://github.com/grpc/grpc-dotnet/issues/167) to ensure we build something that developers like and are productive with.
 
-gRPC is a modern way to communicate between apps. gRPC uses HTTP/2, streaming, Protobuf and message contracts to create high-performance, realtime services.
+gRPC is a modern way to communicate between apps. gRPC uses HTTP/2, streaming, Protobuf and message contracts to create high-performance, real-time services.
 
-The catch with gRPC is not every platform can use it. Browsers don't fully support HTTP/2, making REST and JSON still the primary way to get data into your browser apps. Even with the benefits that gRPC brings, REST and JSON still have an important place in modern apps. Building gRPC **and** JSON Web APIs adds unwanted overhead to app development.
+One limitation with gRPC is not every platform can use it. Browsers don't fully support HTTP/2, making REST and JSON the primary way to get data into browser apps. Even with the benefits that gRPC brings, REST and JSON have an important place in modern apps. Building gRPC ***and*** JSON Web APIs adds unwanted overhead to app development.
 
 This document discusses how to create JSON Web APIs using gRPC services.
 
 ## gRPC HTTP API
 
-gRPC HTTP API is an experimental extension for ASP.NET Core that creates RESTful JSON APIs for gRPC services. Once configured, gRPC HTTP API allows you to call gRPC services with familiar HTTP concepts:
+gRPC HTTP API is an experimental extension for ASP.NET Core that creates RESTful JSON APIs for gRPC services. Once configured, gRPC HTTP API allows apps to call gRPC services with familiar HTTP concepts:
 
 * HTTP verbs
 * URL parameter binding
 * JSON requests/responses
 
-Of course gRPC can continue to be used to call the services as well.
+gRPC can still be used to call services.
 
 ### Usage
 
-1. Add a package reference to [`Microsoft.AspNetCore.Grpc.HttpApi`](https://www.nuget.org/packages/Microsoft.AspNetCore.Grpc.HttpApi).
-2. Register services in *Startup.cs* with `AddGrpcHttpApi()`.
-3. Add [*google/api/http.proto*](https://github.com/aspnet/AspLabs/blob/c1e59cacf7b9606650d6ec38e54fa3a82377f360/src/GrpcHttpApi/sample/Proto/google/api/http.proto) and [*google/api/annotations.proto*](https://github.com/aspnet/AspLabs/blob/c1e59cacf7b9606650d6ec38e54fa3a82377f360/src/GrpcHttpApi/sample/Proto/google/api/annotations.proto) files to your project.
-4. Annotate gRPC methods in your *.proto* files with HTTP bindings and routes:
+1. Add a package reference to [Microsoft.AspNetCore.Grpc.HttpApi](https://www.nuget.org/packages/Microsoft.AspNetCore.Grpc.HttpApi).
+1. Register services in *Startup.cs* with `AddGrpcHttpApi`.
+1. Add [google/api/http.proto](https://github.com/aspnet/AspLabs/blob/c1e59cacf7b9606650d6ec38e54fa3a82377f360/src/GrpcHttpApi/sample/Proto/google/api/http.proto) and [google/api/annotations.proto](https://github.com/aspnet/AspLabs/blob/c1e59cacf7b9606650d6ec38e54fa3a82377f360/src/GrpcHttpApi/sample/Proto/google/api/annotations.proto) files to your project.
+1. Annotate gRPC methods in your *.proto* files with HTTP bindings and routes:
 
 ```protobuf
 syntax = "proto3";
@@ -89,18 +89,18 @@ info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
       Request finished in 1.996ms 200 application/json
 ```
 
-This is a simple example. See [HttpRule](https://cloud.google.com/service-infrastructure/docs/service-management/reference/rpc/google.api#google.api.HttpRule) for more customization options.
+This is a basic example. See [HttpRule](https://cloud.google.com/service-infrastructure/docs/service-management/reference/rpc/google.api#google.api.HttpRule) for more customization options.
 
 ### gRPC HTTP API vs gRPC-Web
 
 Both gRPC HTTP API and gRPC-Web allow gRPC services to be called from a browser. However, the way each does this is different:
 
-* gRPC-Web lets browser apps call gRPC services from the browser with the gRPC-Web client and Protobuf. gRPC-Web requires the browser app to generate a gRPC client, but has the advantage of sending small, fast Protobuf messages.
-* gRPC HTTP API allows browser apps to call gRPC services as if they were RESTful APIs with JSON. The browser app doesn't need to know anything about gRPC.
+* gRPC-Web lets browser apps call gRPC services from the browser with the gRPC-Web client and Protobuf. gRPC-Web requires the browser app generate a gRPC client, but has the advantage of sending small, fast Protobuf messages.
+* gRPC HTTP API allows browser apps to call gRPC services as if they were RESTful APIs with JSON. The browser app doesn't need to generate a gRPC client or know anything about gRPC.
 
 ### Experimental status
 
-gRPC HTTP API is an experiment. It is not complete and it is not supported. We're interested in this technology, and the ability it gives app developers to quickly create gRPC and JSON services at the same time, but there is no commitment to completing it.
+gRPC HTTP API is an experiment. It is not complete and it is not supported. We're interested in this technology, and the ability it gives app developers to quickly create gRPC and JSON services at the same time. There is no commitment to completing the gRPC HTTP API.
 
 We want to gauge developer interest in gRPC HTTP API. If gRPC HTTP API is interesting to you then please [give feedback](https://github.com/grpc/grpc-dotnet/issues/167).
 
