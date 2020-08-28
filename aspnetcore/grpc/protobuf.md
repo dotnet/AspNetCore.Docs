@@ -272,7 +272,7 @@ Protobuf is a contract-first messaging format. An apps messages, including all f
 
 * Messages with unknown payloads. For example, a message with a field that could contain any message.
 * Conditional messages. For example, a message returned from a gRPC service might be a success result, or an error result.
-* Dynamic values. For example, a message with a field that contains an unstructed collection of values, similar to JSON.
+* Dynamic values. For example, a message with a field that contains an unstructured collection of values, similar to JSON.
 
 Protobuf offers language features and well known types to support these scenarios.
 
