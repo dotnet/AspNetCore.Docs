@@ -331,7 +331,6 @@ When the app runs in the [Development environment](xref:fundamentals/environment
 
 * Scoped services aren't resolved from the root service provider.
 * Scoped services aren't injected into singletons.
-* Transient services aren't injected into singletons or scoped services.
 
 The root service provider is created when <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionContainerBuilderExtensions.BuildServiceProvider%2A> is called. The root service provider's lifetime corresponds to the app's lifetime when the provider starts with the app and is disposed when the app shuts down.
 
