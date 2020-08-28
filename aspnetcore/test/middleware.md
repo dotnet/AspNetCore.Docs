@@ -43,6 +43,7 @@ In the test project, create a test:
 [!code-csharp[](middleware/samples_snapshot/3.x/setup.cs?highlight=4-18)]
 
 ## Send requests with HttpClient
+
 Send a request using <xref:System.Net.Http.HttpClient>:
 
 [!code-csharp[](middleware/samples_snapshot/3.x/request.cs?highlight=20)]
@@ -51,7 +52,7 @@ Assert the result. First, make an assertion the opposite of the result that you 
 
 In the following example, the middleware should return a 404 status code (*Not Found*) when the root endpoint is requested. Make the first test run with `Assert.NotEqual( ... );`, which should fail:
 
-[!code-csharp[](middleware/samples_snapshot/3.x/false-failure-check.cs?highlight=22)]
+[!code-csharp[](middleware/samples_snapshot/3.x/false-failure-check.cs?highlight=20)]
 
 Change the assertion to test the middleware under normal operating conditions. The final test uses `Assert.Equal( ... );`. Run the test again to confirm that it passes.
 
