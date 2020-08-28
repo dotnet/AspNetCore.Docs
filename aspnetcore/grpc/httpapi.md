@@ -74,7 +74,7 @@ The `SayHello` gRPC method can now be invoked as gRPC+Protobuf and as an HTTP AP
 * Request: `HTTP/1.1 GET /v1/greeter/world`
 * Response: `{ "message": "Hello world" }`
 
-Server logs:
+Server logs show that the HTTP call is executed by the gRPC service and a JSON response is returned:
 
 ```
 info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
