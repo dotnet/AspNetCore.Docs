@@ -30,7 +30,7 @@ This document discusses how to create JSON Web APIs using gRPC services.
 
 ## gRPC HTTP API
 
-gRPC HTTP API is an experimental extension for ASP.NET Core that creates RESTful HTTP APIs for gRPC services. Once configured, gRPC HTTP API allows you to call gRPC services with familiar HTTP concepts:
+gRPC HTTP API is an experimental extension for ASP.NET Core that creates RESTful JSON APIs for gRPC services. Once configured, gRPC HTTP API allows you to call gRPC services with familiar HTTP concepts:
 
 * HTTP verbs
 * URL parameter binding
@@ -40,7 +40,7 @@ Of course gRPC can continue to be used to call the services as well.
 
 ### Usage
 
-1. Add a package reference to [`Microsoft.AspNetCore.Grpc.HttpApi`](https://www.nuget.org/packages/Microsoft.AspNetCore.Grpc.HttpApi) in *.csproj*.
+1. Add a package reference to [`Microsoft.AspNetCore.Grpc.HttpApi`](https://www.nuget.org/packages/Microsoft.AspNetCore.Grpc.HttpApi).
 2. Register services in *Startup.cs* with `AddGrpcHttpApi()`.
 3. Add [*google/api/http.proto*](https://github.com/aspnet/AspLabs/blob/c1e59cacf7b9606650d6ec38e54fa3a82377f360/src/GrpcHttpApi/sample/Proto/google/api/http.proto) and [*google/api/annotations.proto*](https://github.com/aspnet/AspLabs/blob/c1e59cacf7b9606650d6ec38e54fa3a82377f360/src/GrpcHttpApi/sample/Proto/google/api/annotations.proto) files to your project.
 4. Annotate gRPC methods in your *.proto* files with HTTP bindings and routes:
@@ -106,7 +106,7 @@ We want to gauge developer interest in gRPC HTTP API. If gRPC HTTP API is intere
 
 ## grpc-gateway
 
-[grpc-gateway](https://grpc-ecosystem.github.io/grpc-gateway/) is another technology for creating RESTful Web APIs from gRPC services. It uses the same *.proto* annotations to map HTTP concepts to gRPC services.
+[grpc-gateway](https://grpc-ecosystem.github.io/grpc-gateway/) is another technology for creating RESTful JSON APIs from gRPC services. It uses the same *.proto* annotations to map HTTP concepts to gRPC services.
 
 The biggest difference between grpc-gateway and gRPC HTTP API is grpc-gateway uses code generation to create a reverse-proxy server. The reverse-proxy translates RESTful calls into gRPC and then sends them on to the gRPC service.
 
@@ -114,4 +114,5 @@ For installation and usage of grpc-gateway, see the [grpc-gateway documentation]
 
 ## Additional resources
 
+* [google.api.HttpRule documentation](https://cloud.google.com/service-infrastructure/docs/service-management/reference/rpc/google.api#google.api.HttpRule)
 * <xref:grpc/browser>
