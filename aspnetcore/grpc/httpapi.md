@@ -96,7 +96,7 @@ Both gRPC HTTP API and gRPC-Web allow gRPC services to be called from a browser.
 * gRPC-Web lets browser apps call gRPC services from the browser with the gRPC-Web client and Protobuf. gRPC-Web requires the browser app generate a gRPC client, and has the advantage of sending small, fast Protobuf messages.
 * gRPC HTTP API allows browser apps to call gRPC services as if they were RESTful APIs with JSON. The browser app doesn't need to generate a gRPC client or know anything about gRPC.
 
-No generated client is created for gRPC HTTP API. The previous `Greeter` service can be called with a browser JavaScript API like `fetch`:
+No generated client is created for gRPC HTTP API. The previous `Greeter` service can be called using browser JavaScript APIs:
 
 ```javascript
 var name = nameInput.value;
