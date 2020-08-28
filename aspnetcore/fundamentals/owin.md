@@ -88,80 +88,6 @@ app.UseOwin(pipeline =>
 
 <a name="hosting-on-owin"></a>
 
-## Using ASP.NET Core Hosting on an OWIN-based server
-
-OWIN-based servers can host ASP.NET Core apps. One such server is [Nowin](https://github.com/Bobris/Nowin), a .NET OWIN web server. In the sample for this article, I've included a project that references Nowin and uses it to create an `IServer` capable of self-hosting ASP.NET Core.
-
-[!code-csharp[](owin/sample/src/NowinSample/Program.cs?highlight=15)]
-
-`IServer` is an interface that requires a `Features` property and a `Start` method.
-
-`Start` is responsible for configuring and starting the server, which in this case is done through a series of fluent API calls that set addresses parsed from the IServerAddressesFeature. Note that the fluent configuration of the `_builder` variable specifies that requests will be handled by the `appFunc` defined earlier in the method. This `Func` is called on each request to process incoming requests.
-
-We'll also add an `IWebHostBuilder` extension to make it easy to add and configure the Nowin server.
-
-```csharp
-using System;
-using Microsoft.AspNetCore.Hosting.Server;
-using Microsoft.Extensions.DependencyInjection;
-using Nowin;
-using NowinSample;
-
-namespace Microsoft.AspNetCore.Hosting
-{
-    public static class NowinWebHostBuilderExtensions
-    {
-        public static IWebHostBuilder UseNowin(this IWebHostBuilder builder)
-        {
-            return builder.ConfigureServices(services =>
-            {
-                services.AddSingleton<IServer, NowinServer>();
-            });
-        }
-
-        public static IWebHostBuilder UseNowin(this IWebHostBuilder builder, Action<ServerBuilder> configure)
-        {
-            builder.ConfigureServices(services =>
-            {
-                services.Configure(configure);
-            });
-            return builder.UseNowin();
-        }
-    }
-}
-```
-
-With this in place, invoke the extension in *Program.cs* to run an ASP.NET Core app using this custom server:
-
-```csharp
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Hosting;
-
-namespace NowinSample
-{
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            var host = new WebHostBuilder()
-                .UseNowin()
-                .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseIISIntegration()
-                .UseStartup<Startup>()
-                .Build();
-
-            host.Run();
-        }
-    }
-}
-```
-
-Learn more about [ASP.NET Core Servers](xref:fundamentals/servers/index).
-
 ## Run ASP.NET Core on an OWIN-based server and use its WebSockets support
 
 Another example of how OWIN-based servers' features can be leveraged by ASP.NET Core is access to features like WebSockets. The .NET OWIN web server used in the previous example has support for Web Sockets built in, which can be leveraged by an ASP.NET Core application. The example below shows a simple web app that supports Web Sockets and echoes back everything sent to the server through WebSockets.
@@ -211,10 +137,6 @@ public class Startup
     }
 }
 ```
-
-This [sample](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/owin/sample) is configured using the same `NowinServer` as the previous one - the only difference is in how the application is configured in its `Configure` method. A test using [a simple websocket client](https://chrome.google.com/webstore/detail/simple-websocket-client/pfdhoblngboilpfeibdedpjgfnlcodoo?hl=en) demonstrates  the application:
-
-![Web Socket Test Client](owin/_static/websocket-test.png)
 
 ## OWIN environment
 
