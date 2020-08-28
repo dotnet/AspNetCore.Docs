@@ -2,6 +2,7 @@
 title: Test ASP.NET Core middleware
 author: tratcher
 description: Learn how to test ASP.NET Core middleware with TestServer.
+monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 5/12/2020
@@ -52,7 +53,7 @@ Assert the result. First, make an assertion the opposite of the result that you 
 
 In the following example, the middleware should return a 404 status code (*Not Found*) when the root endpoint is requested. Make the first test run with `Assert.NotEqual( ... );`, which should fail:
 
-[!code-csharp[](middleware/samples_snapshot/3.x/false-failure-check.cs?highlight=20)]
+[!code-csharp[](middleware/samples_snapshot/3.x/false-failure-check.cs?highlight=22)]
 
 Change the assertion to test the middleware under normal operating conditions. The final test uses `Assert.Equal( ... );`. Run the test again to confirm that it passes.
 
