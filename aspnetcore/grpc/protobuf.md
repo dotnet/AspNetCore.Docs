@@ -268,10 +268,10 @@ person.Attributes.Add(attributes);
 
 ## Unstructured and conditional messages
 
-Protobuf is a contract-first messaging format. An apps messages, including all fields and types, must be specified in *.proto* files when the app is built. Protobuf's contract-first nature is great at helping enforce message content, but can appear to limit some scenarios:
+Protobuf is a contract-first messaging format. An apps messages, including all fields and types, must be specified in *.proto* files when the app is built. Protobuf's contract-first nature is great at helping enforce message content, but can appear to limit scenarios where a strict contract isn't required:
 
 * Messages with unknown payloads. For example, a message with a field that could contain any message.
-* Conditional messages. For example, a response message returned from a gRPC service might be a successful result, or an error result.
+* Conditional messages. For example, a message returned from a gRPC service might be a success result, or an error result.
 * Dynamic values. For example, a message with a field that contains an unstructed collection of values, similar to JSON.
 
 Protobuf offers language features and well known types to support these scenarios.
