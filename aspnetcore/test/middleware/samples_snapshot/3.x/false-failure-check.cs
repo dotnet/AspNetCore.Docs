@@ -17,10 +17,7 @@ public async Task MiddlewareTest_ReturnsNotFoundForRequest()
         })
         .StartAsync();
 
-    var testServer = host.GetTestServer();
-    
-    var testClient = testServer.CreateClient();
-    var response = await testClient.GetAsync("/");
+    var response = await host.GetTestClient().GetAsync("/");
 
     Assert.NotEqual(HttpStatusCode.NotFound, response.StatusCode);
 }
