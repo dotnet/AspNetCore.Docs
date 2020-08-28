@@ -120,3 +120,4 @@ The preceding code:
 
 * [gRPC for Web Clients GitHub project](https://github.com/grpc/grpc-web)
 * <xref:security/cors>
+* <xref:security/httpapi>
