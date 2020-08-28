@@ -24,7 +24,7 @@ gRPC is a modern way to communicate between apps. gRPC uses HTTP/2, streaming, P
 
 One limitation with gRPC is not every platform can use it. Browsers don't fully support HTTP/2, making REST and JSON the primary way to get data into browser apps. Even with the benefits that gRPC brings, REST and JSON have an important place in modern apps. Building gRPC ***and*** JSON Web APIs adds unwanted overhead to app development.
 
-This document discusses how to quickly create JSON Web APIs using gRPC services.
+This document discusses how to create JSON Web APIs using gRPC services.
 
 ## gRPC HTTP API
 
