@@ -145,6 +145,7 @@ Run the following .NET Core CLI command:
 
 ```dotnetcli
 dotnet tool install --global dotnet-ef
+dotnet tool update --global dotnet-ef
 ```
 
 The preceding command adds the Entity Framework Core Tools for the .NET Core CLI.

@@ -69,6 +69,7 @@ Enter the following command in the command window:
 
 ```dotnetcli
 dotnet tool install --global dotnet-ef
+dotnet tool update --global dotnet-ef
 dotnet ef migrations add InitialCreate
 ```
 

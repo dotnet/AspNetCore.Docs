@@ -42,6 +42,7 @@ Drop-Database
 
   ```dotnetcli
   dotnet tool install --global dotnet-ef
+  dotnet tool update --global dotnet-ef
   ```
 
 * In the command prompt, navigate to the project folder. The project folder contains the *ContosoUniversity.csproj* file.

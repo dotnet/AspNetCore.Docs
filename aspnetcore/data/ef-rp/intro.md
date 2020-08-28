@@ -84,6 +84,7 @@ To run the app after downloading the completed project:
 
   ```dotnetcli
   dotnet tool install --global dotnet-ef
+  dotnet tool update --global dotnet-ef
   dotnet ef database update
   ```
 

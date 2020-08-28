@@ -2,6 +2,7 @@ Run the following .NET Core CLI commands:
 
 ```dotnetcli
 dotnet tool install --global dotnet-ef
+dotnet tool update --global dotnet-ef
 dotnet tool install --global dotnet-aspnet-codegenerator
 dotnet add package Microsoft.EntityFrameworkCore.SQLite
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
