@@ -12,7 +12,7 @@ uid: grpc/protobuf
 
 By [James Newton-King](https://twitter.com/jamesnk) and [Mark Rendle](https://twitter.com/markrendle)
 
-gRPC uses [Protobuf](https://developers.google.com/protocol-buffers) as its Interface Definition Language (IDL). Protobuf IDL is a language neutral format for specifying the messages sent and received by gRPC services. Protobuf messages are defined in *.proto* files. This document explains how Protobuf concepts map to .NET.
+gRPC uses [Protobuf](https://developers.google.com/protocol-buffers) as its Interface Definition Language (IDL). Protobuf IDL is a language neutral format for specifying the messages sent and received by gRPC services. Protobuf messages are defined in `.proto` files. This document explains how Protobuf concepts map to .NET.
 
 ## Protobuf messages
 
@@ -34,7 +34,7 @@ The preceding message definition specifies three fields as name-value pairs. Lik
 
 In addition to a name, each field in the message definition has a unique number. Field numbers are used to identify fields when the message is serialized to Protobuf. Serializing a small number is faster than serializing the entire field name. Because field numbers identify a field it is important to take care when changing them. For more information about changing Protobuf messages see <xref:grpc/versioning>.
 
-When an app is built the Protobuf tooling generates .NET types from *.proto* files. The `Person` message generates a .NET class:
+When an app is built the Protobuf tooling generates .NET types from `.proto` files. The `Person` message generates a .NET class:
 
 ```csharp
 public class Person
@@ -71,15 +71,15 @@ Protobuf supports a range of native scalar value types. The following table list
 
 ### Dates and times
 
-The native scalar types don't provide for date and time values, equivalent to .NET's <xref:System.DateTimeOffset>, <xref:System.DateTime>, and <xref:System.TimeSpan>. These types can be specified by using some of Protobuf's "Well Known Types" extensions. These extensions provide code generation and runtime support for complex field types across the supported platforms.
+The native scalar types don't provide for date and time values, equivalent to .NET's <xref:System.DateTimeOffset>, <xref:System.DateTime>, and <xref:System.TimeSpan>. These types can be specified by using some of Protobuf's *Well-Known Types* extensions. These extensions provide code generation and runtime support for complex field types across the supported platforms.
 
 The following table shows the date and time types:
 
-| .NET type | Protobuf well-known type |
-| ------- | ------------------------ |
+| .NET type        | Protobuf Well-Known Type    |
+| ---------------- | --------------------------- |
 | `DateTimeOffset` | `google.protobuf.Timestamp` |
-| `DateTime` | `google.protobuf.Timestamp` |
-| `TimeSpan` | `google.protobuf.Duration` |
+| `DateTime`       | `google.protobuf.Timestamp` |
+| `TimeSpan`       | `google.protobuf.Duration`  |
 
 ```protobuf  
 syntax = "proto3"
@@ -116,7 +116,7 @@ var duration = meeting.Duration?.ToTimeSpan();
 
 The Protobuf code generation for C# uses the native types, such as `int` for `int32`. So the values are always included and can't be `null`.
 
-For values that require explicit `null`, such as using `int?` in C# code, Protobuf's "Well Known Types" include wrappers that are compiled to nullable C# types. To use them, import `wrappers.proto` into your `.proto` file, like the following code:
+For values that require explicit `null`, such as using `int?` in C# code, Protobuf's Well-Known Types include wrappers that are compiled to nullable C# types. To use them, import `wrappers.proto` into your `.proto` file, like the following code:
 
 ```protobuf  
 syntax = "proto3"
@@ -133,7 +133,7 @@ Protobuf uses .NET nullable types, for example, `int?`, for the generated messag
 
 The following table shows the complete list of wrapper types with their equivalent C# type:
 
-| C# type   | Well Known Type wrapper       |
+| C# type   | Well-Known Type wrapper       |
 | --------- | ----------------------------- |
 | `bool?`   | `google.protobuf.BoolValue`   |
 | `double?` | `google.protobuf.DoubleValue` |
@@ -145,7 +145,7 @@ The following table shows the complete list of wrapper types with their equivale
 
 ### Decimals
 
-Protobuf doesn't natively support the .NET `decimal` type, just `double` and `float`. There's an ongoing discussion in the Protobuf project about the possibility of adding a standard decimal type to the well-known types, with platform support for languages and frameworks that support it. Nothing has been implemented yet.
+Protobuf doesn't natively support the .NET `decimal` type, just `double` and `float`. There's an ongoing discussion in the Protobuf project about the possibility of adding a standard decimal type to the Well-Known Types, with platform support for languages and frameworks that support it. Nothing has been implemented yet.
 
 It's possible to create a message definition to represent the `decimal` type that works for safe serialization between .NET clients and servers. But developers on other platforms would have to understand the format being used and implement their own handling for it.
 
@@ -268,11 +268,17 @@ person.Attributes.Add(attributes);
 
 ## Unstructured and conditional messages
 
-Protobuf is a contract-first messaging format, and an apps messages need to be specified in *.proto* files when the app is built. For advanced scenarios, Protobuf offers language features and well known types to support conditional and unknown messages.
+Protobuf is a contract-first messaging format. An app's messages, including its fields and types, must be specified in `.proto` files when the app is built. Protobuf's contract-first design is great at enforcing message content but can limit scenarios where a strict contract isn't required:
+
+* Messages with unknown payloads. For example, a message with a field that could contain any message.
+* Conditional messages. For example, a message returned from a gRPC service might be a success result or an error result.
+* Dynamic values. For example, a message with a field that contains an unstructured collection of values, similar to JSON.
+
+Protobuf offers language features and types to support these scenarios.
 
 ### Any
 
-The `Any` type lets you use messages as embedded types without having their *.proto* definition. To use the `Any` type, import `any.proto`.
+The `Any` type lets you use messages as embedded types without having their `.proto` definition. To use the `Any` type, import `any.proto`.
 
 ```protobuf
 import "google/protobuf/any.proto";
@@ -339,7 +345,7 @@ switch (response.ResultCase)
 
 ### Value
 
-The `Value` type represents a dynamically typed value. It can be either `null`, a number, a string, a boolean, a dictionary of values (`Struct`), or a list of values (`ValueList`). `Value` is a well known type that uses the previously discussed `oneof` feature. To use the `Value` type, import `struct.proto`.
+The `Value` type represents a dynamically typed value. It can be either `null`, a number, a string, a boolean, a dictionary of values (`Struct`), or a list of values (`ValueList`). `Value` is a Protobuf Well-Known Type that uses the previously discussed `oneof` feature. To use the `Value` type, import `struct.proto`.
 
 ```protobuf
 import "google/protobuf/struct.proto";
