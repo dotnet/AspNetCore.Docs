@@ -355,15 +355,13 @@ public class MessageUpdateInvokeHelper
         this.action = action;
     }
 
-    [JSInvokable("{APP ASSEMBLY}")]
+    [JSInvokable]
     public void UpdateMessageCaller()
     {
         action.Invoke();
     }
 }
 ```
-
-The placeholder `{APP ASSEMBLY}` is the app's app assembly name (for example, `BlazorSample`).
 
 In the client-side JavaScript:
 
@@ -373,6 +371,8 @@ window.updateMessageCallerJS = (dotnetHelper) => {
     dotnetHelper.dispose();
 }
 ```
+
+The placeholder `{APP ASSEMBLY}` is the app's app assembly name (for example, `BlazorSample`).
 
 `Shared/ListItem.razor`:
 
