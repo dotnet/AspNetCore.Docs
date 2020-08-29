@@ -352,7 +352,7 @@ public class MessageUpdateInvokeHelper
 
     public MessageUpdateInvokeHelper(Action action)
     {
-        action = action;
+        this.action = action;
     }
 
     [JSInvokable("{APP ASSEMBLY}")]
