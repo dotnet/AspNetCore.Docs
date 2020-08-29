@@ -2,6 +2,7 @@
 title: Test ASP.NET Core middleware
 author: tratcher
 description: Learn how to test ASP.NET Core middleware with TestServer.
+monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 5/12/2020
@@ -43,6 +44,7 @@ In the test project, create a test:
 [!code-csharp[](middleware/samples_snapshot/3.x/setup.cs?highlight=4-18)]
 
 ## Send requests with HttpClient
+
 Send a request using <xref:System.Net.Http.HttpClient>:
 
 [!code-csharp[](middleware/samples_snapshot/3.x/request.cs?highlight=20)]
