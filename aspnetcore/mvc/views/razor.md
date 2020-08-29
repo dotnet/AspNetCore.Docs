@@ -121,11 +121,7 @@ The code renders the following HTML:
 &lt;span&gt;Hello World&lt;/span&gt;
 ```
 
-The HTML is shown in the browser as:
-
-```html
-<span>Hello World</span>
-```
+The HTML is shown in the browser as plain text: &lsquo;&lt;span&gt;Hello World&lt;/span&gt;&lsquo;.
 
 `HtmlHelper.Raw` output isn't encoded but rendered as HTML markup.
 
