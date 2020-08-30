@@ -503,7 +503,7 @@ The factory method of single service, such as the second argument to [AddSinglet
   [!code-csharp[](dependency-injection/samples/3.x/AntiPattern3/Startup.cs?name=snippet)]
 
 * Disposable transient services are captured by the container for disposal. This can turn into a memory leak if resolved from the top level container.
-* Enable scope validation to make sure the app doesn't have scoped services that capture singletons. For more information, see [Scope validation](#scope-validation).
+* Enable scope validation to make sure the app doesn't have singletons that capture scoped services. For more information, see [Scope validation](#scope-validation).
 
 Like all sets of recommendations, you may encounter situations where ignoring a recommendation is required. Exceptions are rare, mostly special cases within the framework itself.
 
