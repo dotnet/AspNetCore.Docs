@@ -10,11 +10,9 @@ uid: security/data-protection/extensibility/key-management
 ---
 # Key management extensibility in ASP.NET Core
 
-> [!TIP]
-> Read the [key management](xref:security/data-protection/implementation/key-management#data-protection-implementation-key-management) section before reading this section, as it explains some of the fundamental concepts behind these APIs.
+Read the [key management](xref:security/data-protection/implementation/key-management#data-protection-implementation-key-management) section before reading this section, as it explains some of the fundamental concepts behind these APIs.
 
-> [!WARNING]
-> Types that implement any of the following interfaces should be thread-safe for multiple callers.
+**Warning**: Types that implement any of the following interfaces should be thread-safe for multiple callers.
 
 ## Key
 
