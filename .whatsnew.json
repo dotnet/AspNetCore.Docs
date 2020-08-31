@@ -7,7 +7,6 @@
   },
   "inclusionCriteria": {
     "additionalMicrosoftOrgs": [
-      ".NET Platform",
       "ASP.NET"
     ],
     "minAdditionsToFile": 60
