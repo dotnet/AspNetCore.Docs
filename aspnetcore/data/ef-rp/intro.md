@@ -313,6 +313,8 @@ To make the Razor Pages code match the new DBSet name, make a global change acro
 
 Build the project to verify there are no compiler errors.
 
+OnModelCreating explanation
+
 ## Startup.cs
 
 ASP.NET Core is built with [dependency injection](xref:fundamentals/dependency-injection). Services (such as the EF Core database context) are registered with dependency injection during application startup. Components that require these services (such as Razor Pages) are provided these services via constructor parameters. The constructor code that gets a database context instance is shown later in the tutorial.
