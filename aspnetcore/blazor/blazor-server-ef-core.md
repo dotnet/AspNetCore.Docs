@@ -228,4 +228,4 @@ In the preceding example:
 
 ## Additional resources
 
-> [EF Core documentation](/ef/)
+* [EF Core documentation](/ef/)
