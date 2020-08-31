@@ -276,6 +276,8 @@ The scaffolding process:
 * Adds the context to dependency injection in *Startup.cs*.
 * Adds a database connection string to *appsettings.json*.
 
+Repeat scaffolding process for the Course and Enrollment entities.
+
 ## Database connection string
 
 # [Visual Studio](#tab/visual-studio)
