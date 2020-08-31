@@ -206,7 +206,7 @@ To avoid a memory leak and allow garbage collection on a component that creates 
 
   ```javascript
   window.myFunction = (dotnetHelper) => {
-    dotnetHelper.invokeMethod('{APP ASSEMBLY}', 'MyMethod');
+    dotnetHelper.invokeMethodAsync('{APP ASSEMBLY}', 'MyMethod');
     dotnetHelper.dispose();
   }
   ```
@@ -355,7 +355,7 @@ public class MessageUpdateInvokeHelper
         this.action = action;
     }
 
-    [JSInvokable]
+    [JSInvokable("{APP ASSEMBLY}")]
     public void UpdateMessageCaller()
     {
         action.Invoke();
@@ -363,11 +363,13 @@ public class MessageUpdateInvokeHelper
 }
 ```
 
+The placeholder `{APP ASSEMBLY}` is the app's app assembly name (for example, `BlazorSample`).
+
 In the client-side JavaScript:
 
 ```javascript
 window.updateMessageCallerJS = (dotnetHelper) => {
-    dotnetHelper.invokeMethod('{APP ASSEMBLY}', 'UpdateMessageCaller');
+    dotnetHelper.invokeMethodAsync('{APP ASSEMBLY}', 'UpdateMessageCaller');
     dotnetHelper.dispose();
 }
 ```
