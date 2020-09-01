@@ -63,27 +63,7 @@ Bind a property or field on other events by also including an `@bind:event` attr
 
 Unlike `onchange`, which fires when the element loses focus, `oninput` fires when the value of the text box changes.
 
-Use `@bind-{ATTRIBUTE}` with `@bind-{ATTRIBUTE}:event` syntax to bind element attributes other than `value`. In the following example:
-
-* The paragraph's style is **red** when the component loads (`style="color:red"`).
-* The user changes the value of the text box to reflect a different CSS color style and changes the page's element focus. For example, the user changes the text box value to `color:blue` and presses the <kbd>Tab</kbd> key on the keyboard.
-* When the element focus changes:
-  * The value of `paragraphStyle` is assigned from the `<input>` element's value.
-  * The paragraph style is updated to reflect the new style in `paragraphStyle`. If the style is updated to `color:blue`, the text color changes to **blue**.
-
-```razor
-<p>
-    <input type="text" @bind="paragraphStyle" />
-</p>
-
-<p @bind-style="paragraphStyle" @bind-style:event="onchange">
-    Blazorify the app!
-</p>
-
-@code {
-    private string paragraphStyle = "color:red";
-}
-```
+<!-- Hold location for resolution of https://github.com/dotnet/AspNetCore.Docs/issues/19721 -->
 
 Attribute binding is case sensitive:
 

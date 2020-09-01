@@ -1048,7 +1048,8 @@ public class Starship
     ...
 
     [ValidateComplexType]
-    public ShipDescription ShipDescription { get; set; }
+    public ShipDescription ShipDescription { get; set; } = 
+        new ShipDescription();
 
     ...
 }

@@ -69,6 +69,9 @@ The Blazor Server hosting model offers several benefits:
 * Thin clients are supported. For example, Blazor Server apps work with browsers that don't support WebAssembly and on resource-constrained devices.
 * The app's .NET/C# code base, including the app's component code, isn't served to clients.
 
+> [!IMPORTANT]
+> A Blazor Server app prerenders in response to the first client request, which sets up the UI state on the server. When the client attempts to create a SignalR connection, **the client must reconnect to the same server**. Blazor Server apps that use more than one backend server should implement *sticky sessions* for SignalR connections. For more information, see the [Connection to the server](#connection-to-the-server) section.
+
 There are downsides to Blazor Server hosting:
 
 * Higher latency usually exists. Every user interaction involves a network hop.
