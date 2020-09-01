@@ -5,7 +5,7 @@ description: Learn how to secure a hosted ASP.NET Core Blazor WebAssembly app wi
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/09/2020
+ms.date: 09/02/2020
 no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/security/webassembly/hosted-with-identity-server
 ---
@@ -450,6 +450,86 @@ In the Client app, component authorization approaches are functional at this poi
 `User.Identity.Name` is populated in the Client app with the user's user name, which is usually their sign-in email address.
 
 [!INCLUDE[](~/includes/blazor-security/usermanager-signinmanager.md)]
+
+## Host in Azure App Service with a custom domain
+
+The following guidance explains how to deploy a hosted Blazor WebAssembly with Identity Server solution to [Azure App Service](https://azure.microsoft.com/services/app-service/).
+
+When hosting an app in App Service on a custom domain, do **not** use the same certificate for [Identity Server's token signing key](https://docs.identityserver.io/en/latest/topics/crypto.html#token-signing-and-validation) and the site's HTTPS secure communication with the browser. Using different certificates for these two purposes:
+
+* Is a good security practice because it isolates private keys for each purpose.
+* The site can have as many custom domains and dedicated HTTPS certificates as needed for communication with browsers without affecting Identity Server's token signing.
+* Identity Server fails to obtain a shared certificate when `SigningKeysLoader.LoadFromStoreCert` is called by its API unless the certificate is physically loaded by the app. Although configuring Identity Server to use a certificate from a physical path is possible, placing security certificates into source control is a **poor practice and should be avoided in most scenarios**.
+
+In the following guidance, a self-signed certificate is created in [Azure Key Vault](https://azure.microsoft.com/services/key-vault/) solely for Identity Server token signing. The certificate is specified in the app settings file (*appsettings.json* or *appsettings.Production.json*) for the app's `My` > `CurrentUser` certificate store and safely maintained and provided by Azure Key Vault:
+
+```json
+"Key": {
+  "Type": "Store",
+  "StoreName": "My",
+  "StoreLocation": "CurrentUser",
+  "Name": "CN={COMMON NAME}"
+}
+```
+
+The placeholder `{COMMON NAME}` is the certificate's common name, which is specified when the self-signed certificate is created in Azure Key Vault. For example, the following `Name` value is provided for a site with a certificate common name of `HostedBlazorWASMIdSSigning`:
+
+```json
+"Name": "CN=HostedBlazorWASMIdSSigning"
+```
+
+To configure an app, Azure App Service, and Azure Key Vault to host with a custom domain and HTTPS:
+
+1. Create an App Service Plan with an plan level of **Basic B1** or higher.
+1. Create a PFX certificate for the site's HTTPS communication with a common name of the site's fully qualified domain name (FQDN) that your organization controls. Create the certificate for Server Authentication (1.3.6.1.5.5.7.3.1) and Client Authentication (1.3.6.1.5.5.7.3.2) with key uses of `digitalSignature` and `keyEncipherment`. To create the certificate, use [MakeCert on Windows](/windows/desktop/seccrypto/makecert), [OpenSSL](https://www.openssl.org), or any other suitable tool or online service. Make note of the password because the password is provided when importing the certificate into Azure Key Vault later.
+1. Create a new Azure Key Vault or use an existing key vault in your subscription.
+1. In the key vault's **Certificates** area, import the PFX site certificate that will be used for the site's HTTPS traffic. Record the certificate's thumbprint, which is used in the app's configuration later.
+1. Generate a new self-signed signing certificate for Identity Server token signing. Give the certificate a reasonable **Certificate Name** and **Subject**. For a certificate named `HostedBlazorWASMIdSSigning`, set the **Subject** to `CN=HostedBlazorWASMIdSSigning`. Use the default **Advanced Policy Configuration** settings. Record the certificate's thumbprint, which is used in the app's configuration later.
+1. Navigate to Azure App Service in the portal and create a new App Service with the following configuration:
+   * **Publish** set to `Code`.
+   * **Runtime stack** set to the app's runtime.
+   * Confirm that the **Sku and size** are `Basic B1` or higher. App Service requires `Basic B1` or higher to use custom domains.
+1. After Azure creates the App Service, open the app's **Configuration** and add a new application setting with a key of `WEBSITE_LOAD_CERTIFICATES`. For the value, provide the two certificate thumbprints separated by a comma. In the Azure UI, saving app settings is a two-step process: Save the `WEBSITE_LOAD_CERTIFICATES` key-value setting, then select the **Save** button at the top of the blade.
+1. Select the app's **TLS/SSL settings**. Select **Private Key Certificates (.pfx)**. Use the **Import Key Vault Certificate** twice to import both the site's HTTPS certificate and the site's self-signed Identity Server token signing certificate.
+1. Navigate to the **Custom domains** blade. At your domain registrar's website, use the **IP address** and **Custom Domain Verification ID** to configure the domain. A typical domain configuration includes:
+   * An **A Record** with a **Host** of `@` and a value of the IP address from the Azure portal.
+   * A **TXT Record** with a **Host** of `asuid` and the value of the verification ID generated by Azure and provided by the Azure portal.
+
+   Make sure that you save the changes at your domain registrar's website, which might require a two-step process where the setting is saved before a second action saves the domain's configuration.
+1. Back in the **Custom domains** blade in the Azure portal, select **Add custom domain**. Select the **A Record** option (if not using the CNAME approach). Provide the domain and select **Validate**. If the domain records are correct and propagated across domain name servers (DNS) on the Internet, the portal allows you to select the **Add custom domain** button.
+1. In the **Custom domains** blade, the **SSL STATE** for the domain is marked `Not Secure`. Select the **Add binding** link. Select the site HTTPS certificate from the key vault for the custom domain binding.
+1. In Visual Studio, select the *Server* project. In the app settings file (`appsettings.json` or `appsettings.Production.json`) provide the key vault **Name** of the self-signed signing certificate for Identity Server. In the following example, the certificate's common name assigned in key vault when the certificate was created is `HostedBlazorWASMIdSSigning`:
+
+   ```json
+   "IdentityServer": {
+     "Clients": {
+       "HostISRC.Client": {
+         "Profile": "IdentityServerSPA"
+       }
+     },
+     "Key": {
+       "Type": "Store",
+       "StoreName": "My",
+       "StoreLocation": "CurrentUser",
+       "Name": "CN=HostedBlazorWASMIdSSigning"
+     }
+   },
+   ```
+
+1. In Visual Studio, create an Azure App Service publishing profile for the *Server* project. If you view Azure resources by **Resource type**, you should be able to navigate within the **Web App** list to find the app's service and select it.
+1. When Visual Studio returns to the **Publish** window, the key vault and SQL Server database service dependencies are automatically detected. No configuration changes to the default settings are required for the key vault service.
+1. Select the **Edit** link under the deployment profile name at the top of the window. Change the destination URL to the site's custom domain URL (for example, `https://www.contoso.com`). Save the settings.
+1. Publish the app. Visual Studio opens a browser window and requests the site at its custom domain.
+
+We recommend using a new in-private or incognito browser window for each app test run after a change to the app, app configuration, or App Service in the Azure portal. Lingering cookies from a previous test run can result in failed authorization HTTP status codes when testing the site even when the site's configuration is correct. For more information on how to configure Visual Studio to open a new in-private or incognito browser window for each test run, see the [Cookies and site data](#cookies-and-site-data) section.
+
+When App Service configuration is changed in the Azure portal, the updates generally take effect quickly but aren't instant. Sometimes, you must wait a few seconds up to a few minutes for an App Service to restart in order for a configuration change to take effect.
+
+If troubleshooting a certificate loading problem, execute the following command in an Azure portal [Kudu](https://github.com/projectkudu/kudu/wiki/Accessing-the-kudu-service) PowerShell command shell to see a list of certificates that the app can access from the `My` > `CurrentUser` certificate store:
+
+```powershell
+Get-ChildItem -path Cert:\CurrentUser\My -Recurse | Format-List DnsNameList, Subject, Thumbprint, EnhancedKeyUsageList
+```
 
 [!INCLUDE[](~/includes/blazor-security/troubleshoot.md)]
 
