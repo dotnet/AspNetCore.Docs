@@ -11,11 +11,13 @@ uid: signalr/javascript-client
 ---
 # ASP.NET Core SignalR JavaScript client
 
+::: moniker range="< aspnetcore-3.0"
+
 By [Rachel Appel](https://twitter.com/rachelappel)
 
 The ASP.NET Core SignalR JavaScript client library enables developers to call server-side hub code.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetcore/signalr/javascript-client/sample) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/signalr/javascript-client/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Install the SignalR client package
 
@@ -25,27 +27,12 @@ The SignalR JavaScript client library is delivered as an [npm](https://www.npmjs
 
 If using Visual Studio, run the following commands from **Package Manager Console** while in the root folder. For Visual Studio Code, run the following commands from the **Integrated Terminal**.
 
-::: moniker range=">= aspnetcore-3.0"
-
-```bash
-npm init -y
-npm install @microsoft/signalr
-```
-
-npm installs the package contents in the *node_modules\\@microsoft\signalr\dist\browser* folder. Create a new folder named *signalr* under the *wwwroot\\lib* folder. Copy the *signalr.js* file to the *wwwroot\lib\signalr* folder.
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-3.0"
-
 ```bash
 npm init -y
 npm install @aspnet/signalr
 ```
 
 npm installs the package contents in the *node_modules\\@aspnet\signalr\dist\browser* folder. Create a new folder named *signalr* under the *wwwroot\\lib* folder. Copy the *signalr.js* file to the *wwwroot\lib\signalr* folder.
-
-::: moniker-end
 
 Reference the SignalR JavaScript client in the `<script>` element. For example:
 
@@ -63,21 +50,9 @@ To use the client library without the npm prerequisite, reference a CDN-hosted c
 
 The client library is available on the following CDNs:
 
-::: moniker range=">= aspnetcore-3.0"
-
-* [cdnjs](https://cdnjs.com/libraries/microsoft-signalr)
-* [jsDelivr](https://www.jsdelivr.com/package/npm/@microsoft/signalr)
-* [unpkg](https://unpkg.com/@microsoft/signalr@next/dist/browser/signalr.min.js)
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-3.0"
-
 * [cdnjs](https://cdnjs.com/libraries/aspnet-signalr)
 * [jsDelivr](https://www.jsdelivr.com/package/npm/@aspnet/signalr)
 * [unpkg](https://unpkg.com/@aspnet/signalr@next/dist/browser/signalr.min.js)
-
-::: moniker-end
 
 ### Install with LibMan
 
@@ -153,139 +128,10 @@ Use the [configureLogging](/javascript/api/%40aspnet/signalr/hubconnectionbuilde
 
 ## Reconnect clients
 
-::: moniker range=">= aspnetcore-3.0"
-
-### Automatically reconnect
-
-The JavaScript client for SignalR can be configured to automatically reconnect using the `withAutomaticReconnect` method on [HubConnectionBuilder](/javascript/api/%40aspnet/signalr/hubconnectionbuilder). It won't automatically reconnect by default.
-
-```javascript
-const connection = new signalR.HubConnectionBuilder()
-    .withUrl("/chathub")
-    .withAutomaticReconnect()
-    .build();
-```
-
-Without any parameters, `withAutomaticReconnect()` configures the client to wait 0, 2, 10, and 30 seconds respectively before trying each reconnect attempt, stopping after four failed attempts.
-
-Before starting any reconnect attempts, the `HubConnection` will transition to the `HubConnectionState.Reconnecting` state and fire its `onreconnecting` callbacks instead of transitioning to the `Disconnected` state and triggering its `onclose` callbacks like a `HubConnection` without automatic reconnect configured. This provides an opportunity to warn users that the connection has been lost and to disable UI elements.
-
-```javascript
-connection.onreconnecting(error => {
-    console.assert(connection.state === signalR.HubConnectionState.Reconnecting);
-
-    document.getElementById("messageInput").disabled = true;
-
-    const li = document.createElement("li");
-    li.textContent = `Connection lost due to error "${error}". Reconnecting.`;
-    document.getElementById("messagesList").appendChild(li);
-});
-```
-
-If the client successfully reconnects within its first four attempts, the `HubConnection` will transition back to the `Connected` state and fire its `onreconnected` callbacks. This provides an opportunity to inform users the connection has been reestablished.
-
-Since the connection looks entirely new to the server, a new `connectionId` will be provided to the `onreconnected` callback.
-
-> [!WARNING]
-> The `onreconnected` callback's `connectionId` parameter will be undefined if the `HubConnection` was configured to [skip negotiation](xref:signalr/configuration#configure-client-options).
-
-```javascript
-connection.onreconnected(connectionId => {
-    console.assert(connection.state === signalR.HubConnectionState.Connected);
-
-    document.getElementById("messageInput").disabled = false;
-
-    const li = document.createElement("li");
-    li.textContent = `Connection reestablished. Connected with connectionId "${connectionId}".`;
-    document.getElementById("messagesList").appendChild(li);
-});
-```
-
-`withAutomaticReconnect()` won't configure the `HubConnection` to retry initial start failures, so start failures need to be handled manually:
-
-```javascript
-async function start() {
-    try {
-        await connection.start();
-        console.assert(connection.state === signalR.HubConnectionState.Connected);
-        console.log("connected");
-    } catch (err) {
-        console.assert(connection.state === signalR.HubConnectionState.Disconnected);
-        console.log(err);
-        setTimeout(() => start(), 5000);
-    }
-};
-```
-
-If the client doesn't successfully reconnect within its first four attempts, the `HubConnection` will transition to the `Disconnected` state and fire its [onclose](/javascript/api/%40aspnet/signalr/hubconnection#onclose) callbacks. This provides an opportunity to inform users the connection has been permanently lost and recommend refreshing the page:
-
-```javascript
-connection.onclose(error => {
-    console.assert(connection.state === signalR.HubConnectionState.Disconnected);
-
-    document.getElementById("messageInput").disabled = true;
-
-    const li = document.createElement("li");
-    li.textContent = `Connection closed due to error "${error}". Try refreshing this page to restart the connection.`;
-    document.getElementById("messagesList").appendChild(li);
-});
-```
-
-In order to configure a custom number of reconnect attempts before disconnecting or change the reconnect timing, `withAutomaticReconnect` accepts an array of numbers representing the delay in milliseconds to wait before starting each reconnect attempt.
-
-```javascript
-const connection = new signalR.HubConnectionBuilder()
-    .withUrl("/chathub")
-    .withAutomaticReconnect([0, 0, 10000])
-    .build();
-
-    // .withAutomaticReconnect([0, 2000, 10000, 30000]) yields the default behavior
-```
-
-The preceding example configures the `HubConnection` to start attempting reconnects immediately after the connection is lost. This is also true for the default configuration.
-
-If the first reconnect attempt fails, the second reconnect attempt will also start immediately instead of waiting 2 seconds like it would in the default configuration.
-
-If the second reconnect attempt fails, the third reconnect attempt will start in 10 seconds which is again like the default configuration.
-
-The custom behavior then diverges again from the default behavior by stopping after the third reconnect attempt failure instead of trying one more reconnect attempt in another 30 seconds like it would in the default configuration.
-
-If you want even more control over the timing and number of automatic reconnect attempts, `withAutomaticReconnect` accepts an object implementing the `IRetryPolicy` interface, which has a single method named `nextRetryDelayInMilliseconds`.
-
-`nextRetryDelayInMilliseconds` takes a single argument with the type `RetryContext`. The `RetryContext` has three properties: `previousRetryCount`, `elapsedMilliseconds` and `retryReason` which are a `number`, a `number` and an `Error` respectively. Before the first reconnect attempt, both `previousRetryCount` and `elapsedMilliseconds` will be zero, and the `retryReason` will be the Error that caused the connection to be lost. After each failed retry attempt, `previousRetryCount` will be incremented by one, `elapsedMilliseconds` will be updated to reflect the amount of time spent reconnecting so far in milliseconds, and the `retryReason` will be the Error that caused the last reconnect attempt to fail.
-
-`nextRetryDelayInMilliseconds` must return either a number representing the number of milliseconds to wait before the next reconnect attempt or `null` if the `HubConnection` should stop reconnecting.
-
-```javascript
-const connection = new signalR.HubConnectionBuilder()
-    .withUrl("/chathub")
-    .withAutomaticReconnect({
-        nextRetryDelayInMilliseconds: retryContext => {
-            if (retryContext.elapsedMilliseconds < 60000) {
-                // If we've been reconnecting for less than 60 seconds so far,
-                // wait between 0 and 10 seconds before the next reconnect attempt.
-                return Math.random() * 10000;
-            } else {
-                // If we've been reconnecting for more than 60 seconds so far, stop reconnecting.
-                return null;
-            }
-        }
-    })
-    .build();
-```
-
-Alternatively, you can write code that will reconnect your client manually as demonstrated in [Manually reconnect](#manually-reconnect).
-
-::: moniker-end
-
 ### Manually reconnect
-
-::: moniker range="< aspnetcore-3.0"
 
 > [!WARNING]
 > Prior to 3.0, the JavaScript client for SignalR doesn't automatically reconnect. You must write code that will reconnect your client manually.
-
-::: moniker-end
 
 The following code demonstrates a typical manual reconnection approach:
 
@@ -306,3 +152,5 @@ A real-world implementation would use an exponential back-off or retry a specifi
 * [Publish to Azure](xref:signalr/publish-to-azure-web-app)
 * [Cross-Origin Requests (CORS)](xref:security/cors)
 * [Azure SignalR Service serverless documentation](/azure/azure-signalr/signalr-concept-serverless-development-config)
+
+::: moniker-end
