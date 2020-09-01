@@ -27,27 +27,12 @@ The SignalR JavaScript client library is delivered as an [npm](https://www.npmjs
 
 If using Visual Studio, run the following commands from **Package Manager Console** while in the root folder. For Visual Studio Code, run the following commands from the **Integrated Terminal**.
 
-::: moniker range=">= aspnetcore-3.0"
-
 ```bash
 npm init -y
 npm install @microsoft/signalr
 ```
 
 npm installs the package contents in the *node_modules\\@microsoft\signalr\dist\browser* folder. Create a new folder named *signalr* under the *wwwroot\\lib* folder. Copy the *signalr.js* file to the *wwwroot\lib\signalr* folder.
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-3.0"
-
-```bash
-npm init -y
-npm install @aspnet/signalr
-```
-
-npm installs the package contents in the *node_modules\\@aspnet\signalr\dist\browser* folder. Create a new folder named *signalr* under the *wwwroot\\lib* folder. Copy the *signalr.js* file to the *wwwroot\lib\signalr* folder.
-
-::: moniker-end
 
 Reference the SignalR JavaScript client in the `<script>` element. For example:
 
@@ -65,21 +50,9 @@ To use the client library without the npm prerequisite, reference a CDN-hosted c
 
 The client library is available on the following CDNs:
 
-::: moniker range=">= aspnetcore-3.0"
-
 * [cdnjs](https://cdnjs.com/libraries/microsoft-signalr)
 * [jsDelivr](https://www.jsdelivr.com/package/npm/@microsoft/signalr)
 * [unpkg](https://unpkg.com/@microsoft/signalr@next/dist/browser/signalr.min.js)
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-3.0"
-
-* [cdnjs](https://cdnjs.com/libraries/aspnet-signalr)
-* [jsDelivr](https://www.jsdelivr.com/package/npm/@aspnet/signalr)
-* [unpkg](https://unpkg.com/@aspnet/signalr@next/dist/browser/signalr.min.js)
-
-::: moniker-end
 
 ### Install with LibMan
 
@@ -154,8 +127,6 @@ Use the [configureLogging](/javascript/api/%40aspnet/signalr/hubconnectionbuilde
 [!code-javascript[Logging levels](javascript-client/samples/2.x/SignalRChat/wwwroot/js/chat.js?range=9-12)]
 
 ## Reconnect clients
-
-::: moniker range=">= aspnetcore-3.0"
 
 ### Automatically reconnect
 
@@ -278,16 +249,7 @@ const connection = new signalR.HubConnectionBuilder()
 
 Alternatively, you can write code that will reconnect your client manually as demonstrated in [Manually reconnect](#manually-reconnect).
 
-::: moniker-end
-
 ### Manually reconnect
-
-::: moniker range="< aspnetcore-3.0"
-
-> [!WARNING]
-> Prior to 3.0, the JavaScript client for SignalR doesn't automatically reconnect. You must write code that will reconnect your client manually.
-
-::: moniker-end
 
 The following code demonstrates a typical manual reconnection approach:
 
