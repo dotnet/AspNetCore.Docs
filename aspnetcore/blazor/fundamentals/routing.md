@@ -152,9 +152,11 @@ Consider the following `Example` component that can receive a route parameter fr
 ```razor
 @page "/example"
 @page "/example/{param}"
+
 <p>
     Param: @Param
 </p>
+
 @code {
     [Parameter]
     public string Param { get; set; }
