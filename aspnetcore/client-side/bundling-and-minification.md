@@ -62,6 +62,9 @@ The MVC and Razor Pages project templates provide a solution for bundling and mi
 
 ## Configure bundling and minification
 
+> [!NOTE]
+> The `BuildBundlerMinifier` Nuget package needs to be added to your project for this to work.
+
 ::: moniker range="<= aspnetcore-2.0"
 
 In ASP.NET Core 2.0 or earlier, the MVC and Razor Pages project templates provide a *bundleconfig.json* configuration file that defines the options for each bundle:
