@@ -116,15 +116,15 @@ The preceding code:
 > [!IMPORTANT]
 > Generated gRPC clients have sync and async methods for calling unary methods. For example, `SayHello` is sync and `SayHelloAsync` is async. Calling a sync method in a Blazor WebAssembly app will cause the app to become unresponsive. Async methods must always be used in Blazor WebAssembly.
 
-#### Use gRPC client factory with gRPC-Web
+### Use gRPC client factory with gRPC-Web
 
-A gRPC-Web compatible .NET client can be created using `HttpClientFactory`. Factory integration is available in the [Grpc.Net.ClientFactory](https://www.nuget.org/packages/Grpc.Net.ClientFactory) NuGet package.
+A gRPC-Web compatible .NET client can be created using gRPC's integration with `HttpClientFactory`.
 
 To use gRPC-Web with client factory:
 
 * Add a reference to the [Grpc.Net.Client.Web](https://www.nuget.org/packages/Grpc.Net.Client.Web) package.
 * Add a reference to [Grpc.Net.ClientFactory](https://www.nuget.org/packages/Grpc.Net.ClientFactory) package.
-* Register a gRPC client with dependency injection (DI) using the generic `AddGrpcClient` extension method. In a Blazor WebAssembly apps services are registered in *Program.cs*.
+* Register a gRPC client with dependency injection (DI) using the generic `AddGrpcClient` extension method. In a Blazor WebAssembly apps services are registered with DI in *Program.cs*.
 * Configure `GrpcWebHandler` using the `ConfigurePrimaryHttpMessageHandler` extension method.
 
 ```csharp
@@ -137,7 +137,7 @@ builder.Services
         () => new GrpcWebHandler(GrpcWebMode.GrpcWebText, new HttpClientHandler()));
 ```
 
-To find out more about gRPC client factory, see <xref:grpc/clientfactory>.
+For more information about gRPC client factory, see <xref:grpc/clientfactory>.
 
 ## Additional resources
 
