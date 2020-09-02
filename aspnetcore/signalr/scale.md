@@ -11,7 +11,7 @@ uid: signalr/scale
 ---
 # ASP.NET Core SignalR hosting and scaling
 
-By [Andrew Stanton-Nurse](https://twitter.com/anurse), [Brady Gaster](https://twitter.com/bradygaster), and [Tom Dykstra](https://github.com/tdykstra),
+By [Andrew Stanton-Nurse](https://twitter.com/anurse), [Brady Gaster](https://twitter.com/bradygaster), and [Tom Dykstra](https://github.com/tdykstra)
 
 This article explains hosting and scaling considerations for high-traffic apps that use ASP.NET Core SignalR.
 
