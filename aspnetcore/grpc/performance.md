@@ -33,6 +33,8 @@ Channels are safe to share and reuse between gRPC calls:
 * A channel and clients created from the channel can safely be used by multiple threads.
 * Clients created from the channel can make multiple simultaneous calls.
 
+gRPC client factory offers a centralized way to configure and reuse channels and client. For more information, see <xref:grpc/clientfactory>.
+
 ## Connection concurrency
 
 HTTP/2 connections typically have a limit on the number of [maximum concurrent streams (active HTTP requests)](https://http2.github.io/http2-spec/#rfc.section.5.1.2) on a connection at one time. By default, most servers set this limit to 100 concurrent streams.
@@ -78,8 +80,8 @@ Because L4 load balancers operate at a connection level, they don't work well wi
 
 There are two options to effectively load balance gRPC:
 
-1. Client-side load balancing
-2. L7 (application) proxy load balancing
+* Client-side load balancing
+* L7 (application) proxy load balancing
 
 > [!NOTE]
 > Only gRPC calls can be load balanced between endpoints. Once a streaming gRPC call is established, all messages sent over the stream go to one endpoint.
@@ -98,9 +100,9 @@ An L7 (application) proxy works at a higher level than an L4 (transport) proxy. 
 
 There are many L7 proxies available. Some options are:
 
-1. [Envoy](https://www.envoyproxy.io/) proxy - A popular open source proxy.
-2. [Linkerd](https://linkerd.io/) - Service mesh for Kubernetes.
-2. [YARP: A Reverse Proxy](https://microsoft.github.io/reverse-proxy/) - A preview open source proxy written in .NET.
+* [Envoy](https://www.envoyproxy.io/) - A popular open source proxy.
+* [Linkerd](https://linkerd.io/) - Service mesh for Kubernetes.
+* [YARP: A Reverse Proxy](https://microsoft.github.io/reverse-proxy/) - A preview open source proxy written in .NET.
 
 ::: moniker range=">= aspnetcore-5.0"
 
