@@ -137,7 +137,7 @@ builder.Services
         () => new GrpcWebHandler(GrpcWebMode.GrpcWebText, new HttpClientHandler()));
 ```
 
-For more information about gRPC client factory, see <xref:grpc/clientfactory>.
+For more information, see <xref:grpc/clientfactory>.
 
 ## Additional resources
 
