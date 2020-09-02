@@ -145,7 +145,7 @@ The route constraints shown in the following table are available. For the route 
 
 ### Routing with URLs that contain dots
 
-For hosted Blazor WebAssembly and Blazor Server apps, the server-side default route template assumes that if the last segment of a request URL contains a dot (`.`) that a file is requested (for example, `https://localhost.com:5001/example/some.thing`). Without additional configuration, an app returns a *404 - Not Found* response for a static file that doesn't exist. To use a route with one or more parameters that contains a dot, the app must configure the route with a custom template.
+For hosted Blazor WebAssembly and Blazor Server apps, the server-side default route template assumes that if the last segment of a request URL contains a dot (`.`) that a file is requested (for example, `https://localhost.com:5001/example/some.thing`). Without additional configuration, an app returns a *404 - Not Found* response if this was meant to route to a component. To use a route with one or more parameters that contains a dot, the app must configure the route with a custom template.
 
 Consider the following `Example` component that can receive a route parameter from the last segment of the URL:
 
