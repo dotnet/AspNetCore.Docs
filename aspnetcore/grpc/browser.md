@@ -125,7 +125,7 @@ To use gRPC-Web with client factory:
 * Add package references to the project file for the following packages:
   * [Grpc.Net.Client.Web](https://www.nuget.org/packages/Grpc.Net.Client.Web)
   * [Grpc.Net.ClientFactory](https://www.nuget.org/packages/Grpc.Net.ClientFactory)
-* Register a gRPC client with dependency injection (DI) using the generic `AddGrpcClient` extension method. In a Blazor WebAssembly app, services are registered with DI in *Program.cs*.
+* Register a gRPC client with dependency injection (DI) using the generic `AddGrpcClient` extension method. In a Blazor WebAssembly app, services are registered with DI in `Program.cs`.
 * Configure `GrpcWebHandler` using the <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler%2A> extension method.
 
 ```csharp
