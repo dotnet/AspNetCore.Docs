@@ -118,14 +118,15 @@ The preceding code:
 
 ### Use gRPC client factory with gRPC-Web
 
-A gRPC-Web compatible .NET client can be created using gRPC's integration with `HttpClientFactory`.
+A gRPC-Web compatible .NET client can be created using gRPC's integration with [HttpClientFactory](xref:System.Net.Http.IHttpClientFactory).
 
 To use gRPC-Web with client factory:
 
-* Add a reference to the [Grpc.Net.Client.Web](https://www.nuget.org/packages/Grpc.Net.Client.Web) package.
-* Add a reference to [Grpc.Net.ClientFactory](https://www.nuget.org/packages/Grpc.Net.ClientFactory) package.
-* Register a gRPC client with dependency injection (DI) using the generic `AddGrpcClient` extension method. In a Blazor WebAssembly apps services are registered with DI in *Program.cs*.
-* Configure `GrpcWebHandler` using the `ConfigurePrimaryHttpMessageHandler` extension method.
+* Add a package references to the project file for the following packages:
+  * [Grpc.Net.Client.Web](https://www.nuget.org/packages/Grpc.Net.Client.Web)
+  * [Grpc.Net.ClientFactory](https://www.nuget.org/packages/Grpc.Net.ClientFactory)
+* Register a gRPC client with dependency injection (DI) using the generic `AddGrpcClient` extension method. In a Blazor WebAssembly apps, services are registered with DI in *Program.cs*.
+* Configure `GrpcWebHandler` using the <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler%2A> extension method.
 
 ```csharp
 builder.Services
