@@ -49,7 +49,7 @@ public async Task<IActionResult> Delete(int id, bool notUsed)
 
 ### Publish to Azure
 
-For information on deploying to Azure, see [Tutorial: Build a .NET Core and SQL Database web app in Azure App Service](/azure/app-service/app-service-web-tutorial-dotnetcore-sqldb).
+For information on deploying to Azure, see [Tutorial: Build an ASP.NET Core and SQL Database app in Azure App Service](/azure/app-service/tutorial-dotnetcore-sqldb-app).
 
 > [!div class="step-by-step"]
 > [Previous](validation.md)
