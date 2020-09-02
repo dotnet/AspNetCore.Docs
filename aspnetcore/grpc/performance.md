@@ -33,7 +33,7 @@ Channels are safe to share and reuse between gRPC calls:
 * A channel and clients created from the channel can safely be used by multiple threads.
 * Clients created from the channel can make multiple simultaneous calls.
 
-gRPC client factory offers a centralized way to configure and reuse channels and client. For more information, see <xref:grpc/clientfactory>.
+gRPC client factory offers a centralized way to configure channels. It automatically reuses underlying channels. For more information, see <xref:grpc/clientfactory>.
 
 ## Connection concurrency
 
