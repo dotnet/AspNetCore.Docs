@@ -4,7 +4,7 @@ author: scottaddie
 description: Learn how to optimize static resources in an ASP.NET Core web application by applying bundling and minification techniques.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 07/23/2020
+ms.date: 09/02/2020
 no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: client-side/bundling-and-minification
 ---
@@ -63,7 +63,7 @@ The MVC and Razor Pages project templates provide a solution for bundling and mi
 ## Configure bundling and minification
 
 > [!NOTE]
-> The `BuildBundlerMinifier` Nuget package needs to be added to your project for this to work.
+> The [BuildBundlerMinifier](https://www.nuget.org/packages/BuildBundlerMinifier) NuGet package needs to be added to your project for this to work.
 
 ::: moniker range="<= aspnetcore-2.0"
 
