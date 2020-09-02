@@ -44,9 +44,7 @@ Reference the SignalR JavaScript client in the `<script>` element. For example:
 
 To use the client library without the npm prerequisite, reference a CDN-hosted copy of the client library. For example:
 
-```html
-<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/3.1.3/signalr.min.js"></script>
-```
+[!code-html[](javascript-client/samples/3.x/SignalRChat/Pages/Index.cshtml?name=snippet_CDN)]
 
 The client library is available on the following CDNs:
 
@@ -68,9 +66,9 @@ The following code creates and starts a connection. The hub's name is case insen
 
 Typically, browsers load connections from the same domain as the requested page. However, there are occasions when a connection to another domain is required.
 
-To prevent a malicious site from reading sensitive data from another site, [cross-origin connections](xref:security/cors) are disabled by default. To allow a cross-origin request, enable it in the `Startup` class.
+To prevent a malicious site from reading sensitive data from another site, [cross-origin connections](xref:security/cors) are disabled by default. To allow a cross-origin request, enable it in the `Startup` class:
 
-[!code-csharp[Cross-origin connections](javascript-client/samples/2.x/SignalRChat/Startup.cs?highlight=29-35,56)]
+[!code-csharp[](javascript-client/samples/3.x/SignalRChat/Startup.cs?highlight=16-23,40)]
 
 ## Call hub methods from client
 
