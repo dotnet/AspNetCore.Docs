@@ -151,7 +151,7 @@ To fix this error, repair the installation of the [.NET Core Hosting Bundle](xre
 
 ### 500.37 ANCM Failed to Start Within Startup Time Limit
 
-ANCM failed to start within the provied startup time limit. By default, the timeout is 120 seconds.
+ANCM failed to start within the provided startup time limit. By default, the timeout is 120 seconds.
 
 This error can occur when starting a large number of apps on the same machine. Check for CPU/Memory usage spikes on the server during startup. You may need to stagger the startup process of multiple apps.
 
