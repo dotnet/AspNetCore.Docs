@@ -60,7 +60,7 @@ The client library is available on the following CDNs:
 
 The following code creates and starts a connection. The hub's name is case insensitive:
 
-[!code-javascript[](javascript-client/samples/3.x/SignalRChat/wwwroot/chat.js?range=7-10,30-44)]
+[!code-javascript[](javascript-client/samples/3.x/SignalRChat/wwwroot/chat.js?range=3-6,29-43)]
 
 ### Cross-origin connections
 
@@ -84,9 +84,9 @@ In the following example, the method name on the hub is `SendMessage`. The secon
 > [!NOTE]
 > Calling hub methods from a client is only supported when using the Azure SignalR Service in *Default* mode. For more information, see [Frequently Asked Questions (azure-signalr GitHub repository)](https://github.com/Azure/azure-signalr/blob/dev/docs/faq.md#what-is-the-meaning-of-service-mode-defaultserverlessclassic-how-can-i-choose).
 
-The `invoke` method returns a JavaScript [Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise). The `Promise` is resolved with the return value (if any) when the method on the server returns. If the method on the server throws an error, the `Promise` is rejected with the error message. Use the `then` and `catch` methods on the `Promise` itself to handle these cases (or `await` syntax).
+The `invoke` method returns a JavaScript [Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise). The `Promise` is resolved with the return value (if any) when the method on the server returns. If the method on the server throws an error, the `Promise` is rejected with the error message. Use `async` and `await` or the `Promise`'s `then` and `catch` methods to handle these cases.
 
-The `send` method returns a JavaScript `Promise`. The `Promise` is resolved when the message has been sent to the server. If there is an error sending the message, the `Promise` is rejected with the error message. Use the `then` and `catch` methods on the `Promise` itself to handle these cases (or `await` syntax).
+The `send` method returns a JavaScript `Promise`. The `Promise` is resolved when the message has been sent to the server. If there is an error sending the message, the `Promise` is rejected with the error message. Use `async` and `await` or the `Promise`'s `then` and `catch` methods to handle these cases.
 
 > [!NOTE]
 > Using `send` doesn't wait until the server has received the message. Consequently, it's not possible to return data or errors from the server.
@@ -113,8 +113,7 @@ SignalR determines which client method to call by matching the method name and a
 
 ## Error handling and logging
 
-<!-- TODO: No catch cos ES2015 -->
-Chain a `catch` method to the end of the `start` method to handle client-side errors. Use `console.error` to output errors to the browser's console:
+Use `try` and `catch` with `async` and `await` or the `Promise`'s `catch` method to handle client-side errors. Use `console.error` to output errors to the browser's console:
 
 [!code-javascript[](javascript-client/samples/3.x/SignalRChat/wwwroot/chat.js?name=snippet_Invoke&highlight=1,3-5)]
 
@@ -259,7 +258,7 @@ The following code demonstrates a typical manual reconnection approach:
 1. A function (in this case, the `start` function) is created to start the connection.
 1. Call the `start` function in the connection's `onclose` event handler.
 
-[!code-javascript[](javascript-client/samples/3.x/SignalRChat/wwwroot/chat.js?range=31-41)]
+[!code-javascript[](javascript-client/samples/3.x/SignalRChat/wwwroot/chat.js?range=30-40)]
 
 A real-world implementation would use an exponential back-off or retry a specified number of times before giving up.
 

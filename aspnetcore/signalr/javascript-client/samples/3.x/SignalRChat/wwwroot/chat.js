@@ -1,8 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const userInput = document.getElementById("user");
-    const messageInput = document.getElementById("message");
-    const chatLogUl = document.getElementById("chatLog");
-
     // <snippet_Connection>
     const connection = new signalR.HubConnectionBuilder()
         .withUrl("/chathub")
@@ -14,14 +10,17 @@ document.addEventListener("DOMContentLoaded", () => {
     connection.on("ReceiveMessage", (user, message) => {
         const li = document.createElement("li");
         li.textContent = `${user}: ${message}`;
-        chatLogUl.appendChild(li);
+        document.getElementById("messageList").appendChild(li);
     });
     // </snippet_ReceiveMessage>
 
     document.getElementById("send").addEventListener("click", async () => {
+        const user = document.getElementById("user").value;
+        const message = document.getElementById("message").value;
+
         // <snippet_Invoke>
         try {
-            await connection.invoke("SendMessage", userInput.value, messageInput.value);
+            await connection.invoke("SendMessage", user, message);
         } catch (err) {
             console.error(err);
         }
