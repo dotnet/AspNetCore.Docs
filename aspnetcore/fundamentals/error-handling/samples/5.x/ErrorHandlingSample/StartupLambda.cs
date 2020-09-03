@@ -28,7 +28,7 @@ namespace ErrorHandlingSample
             services.AddRazorPages();
         }
 
-        #region
+        #region snippet
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
