@@ -76,7 +76,7 @@ This attribute type has a `Policy` string based on the hard-coded prefix (`"Mini
 You can apply it to actions in the same way as other `Authorize` attributes except that it takes an integer as a parameter.
 
 ```csharp
-[MinimumAgeAuthorize(10)]
+[MinimumAgeAuthorizeAttribute(10)]
 public IActionResult RequiresMinimumAge10()
 ```
 
