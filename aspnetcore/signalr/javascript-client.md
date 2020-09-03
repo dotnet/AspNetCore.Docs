@@ -58,9 +58,9 @@ The client library is available on the following CDNs:
 
 ## Connect to a hub
 
-The following code creates and starts a connection. The hub's name is case insensitive.
+The following code creates and starts a connection. The hub's name is case insensitive:
 
-[!code-javascript[Call hub methods](javascript-client/samples/2.x/SignalRChat/wwwroot/js/chat.js?range=9-13,28-51)]
+[!code-javascript[](javascript-client/samples/3.x/SignalRChat/wwwroot/chat.js?range=7-10,30-44)]
 
 ### Cross-origin connections
 
@@ -72,12 +72,14 @@ To prevent a malicious site from reading sensitive data from another site, [cros
 
 ## Call hub methods from client
 
-JavaScript clients call public methods on hubs via the [invoke](/javascript/api/%40aspnet/signalr/hubconnection#invoke) method of the [HubConnection](/javascript/api/%40aspnet/signalr/hubconnection). The `invoke` method accepts two arguments:
+JavaScript clients call public methods on hubs via the [invoke](/javascript/api/%40aspnet/signalr/hubconnection#invoke) method of the [HubConnection](/javascript/api/%40aspnet/signalr/hubconnection). The `invoke` method accepts:
 
-* The name of the hub method. In the following example, the method name on the hub is `SendMessage`.
-* Any arguments defined in the hub method. In the following example, the argument name is `message`. The example code uses arrow function syntax that is supported in current versions of all major browsers except Internet Explorer.
+* The name of the hub method.
+* Any arguments defined in the hub method.
 
-  [!code-javascript[Call hub methods](javascript-client/samples/2.x/SignalRChat/wwwroot/js/chat.js?range=24)]
+In the following example, the method name on the hub is `SendMessage`. The second and third arguments passed to `invoke` map to the hub method's `user` and `message` arguments:
+
+[!code-javascript[](javascript-client/samples/3.x/SignalRChat/wwwroot/chat.js?name=snippet_Invoke&highlight=2)]
 
 > [!NOTE]
 > Calling hub methods from a client is only supported when using the Azure SignalR Service in *Default* mode. For more information, see [Frequently Asked Questions (azure-signalr GitHub repository)](https://github.com/Azure/azure-signalr/blob/dev/docs/faq.md#what-is-the-meaning-of-service-mode-defaultserverlessclassic-how-can-i-choose).
@@ -93,14 +95,16 @@ The `send` method returns a JavaScript `Promise`. The `Promise` is resolved when
 
 To receive messages from the hub, define a method using the [on](/javascript/api/%40aspnet/signalr/hubconnection#on) method of the `HubConnection`.
 
-* The name of the JavaScript client method. In the following example, the method name is `ReceiveMessage`.
-* Arguments the hub passes to the method. In the following example, the argument value is `message`.
+* The name of the JavaScript client method.
+* Arguments the hub passes to the method.
 
-[!code-javascript[Receive calls from hub](javascript-client/samples/2.x/SignalRChat/wwwroot/js/chat.js?range=14-19)]
+In the following example, the method name is `ReceiveMessage`. The argument names are `user` and `message`:
 
-The preceding code in `connection.on` runs when server-side code calls it using the [SendAsync](/dotnet/api/microsoft.aspnetcore.signalr.clientproxyextensions.sendasync) method.
+[!code-javascript[](javascript-client/samples/3.x/SignalRChat/wwwroot/chat.js?name=snippet_ReceiveMessage)]
 
-[!code-csharp[Call client-side](javascript-client/samples/2.x/SignalRChat/hubs/chathub.cs?range=8-11)]
+The preceding code in `connection.on` runs when server-side code calls it using the [SendAsync](/dotnet/api/microsoft.aspnetcore.signalr.clientproxyextensions.sendasync) method:
+
+[!code-csharp[Call client-side](javascript-client/samples/3.x/SignalRChat/Hubs/ChatHub.cs?name=snippet_SendMessage)]
 
 SignalR determines which client method to call by matching the method name and arguments defined in `SendAsync` and `connection.on`.
 
@@ -109,9 +113,10 @@ SignalR determines which client method to call by matching the method name and a
 
 ## Error handling and logging
 
-Chain a `catch` method to the end of the `start` method to handle client-side errors. Use `console.error` to output errors to the browser's console.
+<!-- TODO: No catch cos ES2015 -->
+Chain a `catch` method to the end of the `start` method to handle client-side errors. Use `console.error` to output errors to the browser's console:
 
-[!code-javascript[Error handling](javascript-client/samples/2.x/SignalRChat/wwwroot/js/chat.js?range=50)]
+[!code-javascript[](javascript-client/samples/3.x/SignalRChat/wwwroot/chat.js?name=snippet_Invoke&highlight=1,3-5)]
 
 Set up client-side log tracing by passing a logger and type of event to log when the connection is made. Messages are logged with the specified log level and higher. Available log levels are as follows:
 
@@ -120,9 +125,9 @@ Set up client-side log tracing by passing a logger and type of event to log when
 * `signalR.LogLevel.Information`: Status messages without errors. Logs `Information`, `Warning`, and `Error` messages.
 * `signalR.LogLevel.Trace`: Trace messages. Logs everything, including data transported between hub and client.
 
-Use the [configureLogging](/javascript/api/%40aspnet/signalr/hubconnectionbuilder#configurelogging) method on [HubConnectionBuilder](/javascript/api/%40aspnet/signalr/hubconnectionbuilder) to configure the log level. Messages are logged to the browser console.
+Use the [configureLogging](/javascript/api/%40aspnet/signalr/hubconnectionbuilder#configurelogging) method on [HubConnectionBuilder](/javascript/api/%40aspnet/signalr/hubconnectionbuilder) to configure the log level. Messages are logged to the browser console:
 
-[!code-javascript[Logging levels](javascript-client/samples/2.x/SignalRChat/wwwroot/js/chat.js?range=9-12)]
+[!code-javascript[](javascript-client/samples/3.x/SignalRChat/wwwroot/chat.js?name=snippet_Connection&highlight=3)]
 
 ## Reconnect clients
 
@@ -254,7 +259,7 @@ The following code demonstrates a typical manual reconnection approach:
 1. A function (in this case, the `start` function) is created to start the connection.
 1. Call the `start` function in the connection's `onclose` event handler.
 
-[!code-javascript[Reconnect the JavaScript client](javascript-client/samples/2.x/SignalRChat/wwwroot/js/chat.js?range=28-40)]
+[!code-javascript[](javascript-client/samples/3.x/SignalRChat/wwwroot/chat.js?range=31-41)]
 
 A real-world implementation would use an exponential back-off or retry a specified number of times before giving up.
 
