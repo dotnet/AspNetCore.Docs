@@ -25,7 +25,7 @@ gRPC stands above other solutions for the following reasons.
 
 ### Performance
 
-Using HTTP/2 rather than HTTP/1.1 removes the requirement for human-readable messages and instead uses the smaller, faster binary protocol. This is more efficient for computers to parse. HTTP/2 also supports multiplexing requests over a single connection. This support enables responses to be sent as soon as they're ready without the need to wait in a queue. (In HTTP/1.1, this issue is known as "head-of-line (HOL) blocking.") You need fewer resources when using gRPC, which makes it a good solution to use for mobile devices and over slower networks.
+gRPC uses HTTP/2, a smaller, faster binary protocol than HTTP/1.1. This is more efficient for computers to parse. HTTP/2 also supports multiplexing requests over a single connection. Multiplexing enables multiple requests to be sent over one connection without requests blocking each other. (In HTTP/1.1, this issue is known as "head-of-line (HOL) blocking.") gRPC uses the Protobuf, an efficient binary format, to serialize messages. Protobuf messages are very small in size and use less bandwidth than text based formats. gRPC is a good solution to use for mobile devices and over slower networks where bandwidth is important.
 
 ### Interoperability
 
