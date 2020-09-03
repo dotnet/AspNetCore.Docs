@@ -40,9 +40,12 @@ To store keys in [Azure Key Vault](https://azure.microsoft.com/services/key-vaul
 ```csharp
 public void ConfigureServices(IServiceCollection services)
 {
+    //Uri to the key in azure keyvault that is being used to protect the keys in blob storage
+    var keyUri = new Uri($"https://{vaultName}.vault.azure.net/keys/{keyname}");
+    
     services.AddDataProtection()
-        .PersistKeysToAzureBlobStorage(new Uri("<blobUriWithSasToken>"))
-        .ProtectKeysWithAzureKeyVault("<keyIdentifier>", "<clientId>", "<clientSecret>");
+                    .PersistKeysToAzureBlobStorage("<storageAccountConnectionString>", "<storageContainerName>", "<keyStorageBlobName>")
+                    .ProtectKeysWithAzureKeyVault(keyUri, new DefaultAzureCredential());
 }
 ```
 
