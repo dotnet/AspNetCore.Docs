@@ -746,6 +746,8 @@
       href: https://github.com/grpc/grpc-dotnet/tree/master/examples
     - name: Troubleshoot
       uid: grpc/troubleshoot
+    - name: Why migrate WCF to ASP.NET Core gRPC
+      uid: grpc/wcf
 - name: Test, debug, and troubleshoot
   items:
     - name: Razor Pages unit tests
