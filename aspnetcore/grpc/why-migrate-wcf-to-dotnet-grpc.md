@@ -33,7 +33,7 @@ There are gRPC tools and libraries for all major programming languages and platf
 
 ### Usability and productivity
 
-gRPC is a comprehensive RPC solution. It works consistently across multiple languages and platforms. It also provides excellent tooling, with much of the necessary boilerplate code automatically generated. So more developer time is freed up to focus on business logic.
+gRPC is a comprehensive RPC solution. It works consistently across multiple languages and platforms. It also provides excellent tooling, with much of the necessary boilerplate code automatically generated. Like WCF, gRPC automatically generates messages and a strongly typed client for you. Developer time is freed up to focus on business logic.
 
 ### Streaming
 
