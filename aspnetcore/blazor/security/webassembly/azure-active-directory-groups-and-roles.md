@@ -337,12 +337,12 @@ A policy check can also be [performed in code with procedural logic](xref:blazor
 In addition to authorizing users in the client-side WebAssembly app to access pages and resources, the server API can authorize users for access to secure API endpoints. After the *Server* app validates the user's access token:
 
 * The app uses the User Principal Name claim (`upn`) to obtain an access token for Graph API.
-* A Graph API call obtains the user's Azure security group and Administrator Role memberships.
-* Memberships are used to establish additional `group` claims.
-* An [authorization policy](xref:security/authorization/policies) limits user access to server API endpoints.
+* A Graph API call obtains the user's Azure user-defined security group and Administrator Role memberships.
+* Memberships are used to establish `group` claims.
+* [Authorization policies](xref:security/authorization/policies) can be used to limit user access to server API endpoints.
 
 > [!NOTE]
-> This guidance doesn't currently include authorizing users on the basis of their [User-defined roles](#user-defined-roles).
+> This guidance doesn't currently include authorizing users on the basis of their [AAD user-defined roles](#user-defined-roles).
 
 ### Packages
 
@@ -356,7 +356,7 @@ Add package references to the *Server* app for the following packages:
 * Confirm that the *Server* app registration is given API access to the Graph API permission for `Directory.Read.All`, which is the least-privileged access level for security groups. Confirm that admin consent is applied to the permission after making the permission assignment.
 * Assign a new client secret to the *Server* app. Note the secret for the app's configuration in the [App settings](#app-settings) section.
 
-## App settings
+### App settings
 
 In the app settings file (`appsettings.json` or `appsettings.Production.json`), create a `ClientSecret` entry with the *Server* app's client secret from the Azure portal:
 
@@ -382,9 +382,9 @@ For example:
 },
 ```
 
-## Authorization policies
+### Authorization policies
 
-Create [authorization policies](xref:security/authorization/policies) for AAD security groups and AAD Administrator Roles in the *Server* app's `Startup.ConfigureServices` based on group object IDs and [AAD Administrator Role Object IDs](#aad-administrator-role-object-ids).
+Create [authorization policies](xref:security/authorization/policies) for AAD security groups and AAD Administrator Roles in the *Server* app's `Startup.ConfigureServices` (`Startup.cs`) based on group object IDs and [AAD Administrator Role object IDs](#aad-administrator-role-object-ids).
 
 For example, an Azure Billing Administrator Role policy has the following configuration:
 
@@ -398,11 +398,11 @@ services.AddAuthorization(options =>
 
 For more information, see <xref:security/authorization/policies>.
 
-## Controller access
+### Controller access
 
 Require policies on the *Server* app's controllers.
 
-The following example limits access to billing data from the `BillingDataController` to Azure Billing Administrators with a policy name of `BillingAdmin`:
+The following example limits access to billing data from the `BillingDataController` to Azure Billing Administrators with a policy name of `BillingAdmin`, as configured in the [Authorization policies](#authorization-policies) section:
 
 ```csharp
 [Authorize(Policy = "BillingAdmin")]
@@ -414,14 +414,14 @@ public class BillingDataController : ControllerBase
 }
 ```
 
-## Service configuration
+### Service configuration
 
 In the *Server* app's `Startup.ConfigureServices` method add logic to make the Graph API call and establish user `group` claims for the user's security groups and roles.
 
 > [!NOTE]
 > The example code in this section uses the Active Directory Authentication Library (ADAL), which is based on Microsoft Identity Platform v1.0. This topic will be updated for Identity v2.0 for .NET 5. Track progress on this work by monitoring [[RC1] Microsoft Identity Platform 2.0 for Blazor (dotnet/AspNetCore.Docs #19503)](https://github.com/dotnet/AspNetCore.Docs/issues/19503).
 
-Additional namespaces are required for the code in the `Startup` class of the *Server* app. The following indicates the full set of namespaces for the code that follows in this section:
+Additional namespaces are required for the code in the `Startup` class of the *Server* app. The following set of `using` statements includes the required namespaces for the code that follows in this section:
 
 ```csharp
 using System;
@@ -444,15 +444,17 @@ using Microsoft.IdentityModel.Clients.ActiveDirectory;
 using Microsoft.IdentityModel.Logging;
 ```
 
-In `Startup.ConfigureServices`, provide logic for <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents.OnAuthenticationFailed?displayProperty=nameWithType> (optional) and <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents.OnTokenValidated?displayProperty=nameWithType>:
+When configuring <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents>:
 
-* <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents.OnAuthenticationFailed>: Optionally, log failed authentication events.
-* <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents.OnTokenValidated>: Make a Graph API call to obtain the user's groups and roles.
+* Optionally include processing for <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents.OnAuthenticationFailed?displayProperty=nameWithType>. For example, the app can log failed authentication.
+* In <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents.OnTokenValidated?displayProperty=nameWithType>, make a Graph API call to obtain the user's groups and roles.
 
 > [!WARNING]
 > <xref:Microsoft.IdentityModel.Logging.IdentityModelEventSource.ShowPII?displayProperty=nameWithType> provides Personally Identifiable Information (PII) in logging messages. Only activate PII for debugging with test user accounts.
 
 In the following example, note that the authentication services scheme of <xref:Microsoft.AspNetCore.Authentication.AzureAD.UI.AzureADDefaults.BearerAuthenticationScheme?displayProperty=nameWithType> in a default app based on the Blazor Hosted WebAssembly app template is changed to <xref:Microsoft.AspNetCore.Authentication.AzureAD.UI.AzureADDefaults.JwtBearerAuthenticationScheme?displayProperty=nameWithType>.
+
+In `Startup.ConfigureServices`:
 
 ```csharp
 #if DEBUG
@@ -475,7 +477,7 @@ services.Configure<JwtBearerOptions>(AzureADDefaults.JwtBearerAuthenticationSche
             Console.WriteLine($"OnAuthenticationFailed: {context.Exception}");
 #endif
 
-            return Task.CompletedTask;
+            return Task.FromResult(0);
         },
         OnTokenValidated = async context =>
         {
@@ -562,13 +564,18 @@ services.Configure<JwtBearerOptions>(AzureADDefaults.JwtBearerAuthenticationSche
 #endif
             }
 
-            await Task.CompletedTask;
+            await Task.FromResult(0);
         }
     };
 });
 ```
 
-The code in `OnTokenValidated` doesn't obtain transient memberships. To change the code to obtain direct and transient memberships:
+In the preceding example:
+
+* Silent token acquisition (<xref:Microsoft.IdentityModel.Clients.ActiveDirectory.AuthenticationContext.AcquireTokenSilentAsync%2A>) is attempted first because the access token may have already been stored in the ADAL token cache. It's faster to obtain the token from cache than to request a new token.
+* If the access token isn't acquired from cache (<xref:Microsoft.IdentityModel.Clients.ActiveDirectory.AdalError.FailedToAcquireTokenSilently?displayProperty=nameWithType> or <xref:Microsoft.IdentityModel.Clients.ActiveDirectory.AdalError.UserInteractionRequired?displayProperty=nameWithType> is thrown), a user assertion (<xref:Microsoft.IdentityModel.Clients.ActiveDirectory.UserAssertion>) is made with the client credential (<xref:Microsoft.IdentityModel.Clients.ActiveDirectory.ClientCredential>) to obtain the token on behalf of the user (<xref:Microsoft.IdentityModel.Clients.ActiveDirectory.AuthenticationContext.AcquireTokenAsync%2A>). Next, the `Microsoft.Graph.GraphServiceClient` can proceed to use the token to make the Graph API call. The token is placed into the ADAL token cache. For future Graph API calls for the same user, the token is acquired from cache silently with <xref:Microsoft.IdentityModel.Clients.ActiveDirectory.AuthenticationContext.AcquireTokenSilentAsync%2A>.
+
+The code in <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents.OnTokenValidated> doesn't obtain transitive memberships. To change the code to obtain direct and transitive memberships:
 
 * For the code line:
 
@@ -579,7 +586,7 @@ The code in `OnTokenValidated` doesn't obtain transient memberships. To change t
   Replace the preceding line with:
 
   ```csharp
-  IUserTransitiveMemberOfCollectionWithReferencesPage groupsAndRoles = null;
+  IUserTransitiveMemberOfCollectionWithReferencesPage groupsAndAzureRoles = null;
   ```
 
 * For the code line:
@@ -595,7 +602,7 @@ The code in `OnTokenValidated` doesn't obtain transient memberships. To change t
       .GetAsync();
   ```
 
-The code in `OnTokenValidated` doesn't distinguish between AAD security groups and AAD Administrator Roles when creating claims. For the app to distinguish between groups and roles, check the `entry.ODataType` when iterating through the groups and roles. For example, to create security group claims separately (`group` claim) from role claims (`role` claim), use code similar to the following:
+The code in <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents.OnTokenValidated> doesn't distinguish between AAD security groups and AAD Administrator Roles when creating claims. For the app to distinguish between groups and roles, check the `entry.ODataType` when iterating through the groups and roles. To create separate security group and role claims, use code similar to the following:
 
 ```csharp
 foreach (var entry in groupsAndAzureRoles)
