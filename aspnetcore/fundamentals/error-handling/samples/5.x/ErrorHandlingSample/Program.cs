@@ -20,19 +20,12 @@ namespace ErrorHandlingSample
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                  // webBuilder.UseStartup<Startup>();
+                   webBuilder.UseStartup<Startup>();
                     // webBuilder.UseStartup<StartupLambda>();
                     // webBuilder.UseStartup<StartupUseStatusCodePages>();
                     // webBuilder.UseStartup<StartupFormat>();
                     // webBuilder.UseStartup<StartupSCredirect>();
-                     webBuilder.UseStartup<StartupSCreX>();
-                    // webBuilder.UseStartup<Startup>();
-                    // webBuilder.UseStartup<Startup>();
-                    // webBuilder.UseStartup<Startup>();
-                    // webBuilder.UseStartup<Startup>();
-                    // webBuilder.UseStartup<Startup>();
-                    // webBuilder.UseStartup<Startup>();
-
+                    // webBuilder.UseStartup<StartupSCreX>();
                 });
     }
 }
