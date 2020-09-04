@@ -35,7 +35,7 @@ The following NuGet packages are required for the Data Protection extensions use
 
 ## ProtectKeysWithAzureKeyVault
 
-To store keys in [Azure Key Vault](https://azure.microsoft.com/services/key-vault/), configure the system with [ProtectKeysWithAzureKeyVault](/dotnet/api/microsoft.aspnetcore.dataprotection.azuredataprotectionbuilderextensions.protectkeyswithazurekeyvault) in the `Startup` class. `blobUriWithSasToken` is the URI to the key in Azure Key Vault for use to protect the keys in blob storage:
+To store keys in [Azure Key Vault](https://azure.microsoft.com/services/key-vault/), configure the system with [ProtectKeysWithAzureKeyVault](/dotnet/api/microsoft.aspnetcore.dataprotection.azuredataprotectionbuilderextensions.protectkeyswithazurekeyvault) in the `Startup` class. `blobUriWithSasToken` is the full URI where the key file should be stored. The URI must contain the SAS token as a query string parameter:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
