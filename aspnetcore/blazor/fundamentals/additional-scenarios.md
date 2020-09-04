@@ -112,18 +112,52 @@ Blazor Server apps are set up by default to prerender the UI on the server befor
 
 Rendering server components from a static HTML page isn't supported.
 
-## Configure the SignalR client for Blazor Server apps
+## Manual start of the Blazor app
 
 *This section applies to Blazor Server.*
 
-Configure the SignalR client used by Blazor Server apps in the `Pages/_Host.cshtml` file. Place a script that calls `Blazor.start` after the `_framework/blazor.server.js` script and inside the `</body>` tag.
-
-### Logging
-
-To configure SignalR client logging:
+Configure the manual start of a Blazor Server app in the `Pages/_Host.cshtml` file:
 
 * Add an `autostart="false"` attribute to the `<script>` tag for the `blazor.server.js` script.
-* Pass in a configuration object (`configureSignalR`) that calls `configureLogging` with the log level on the client builder.
+* Place a script that calls `Blazor.start` after the `_framework/blazor.server.js` script and inside the closing `</body>` tag.
+
+### Initialize Blazor when the document is ready
+
+To initialize the Blazor app when the document is ready:
+
+```cshtml
+    ...
+
+    <script autostart="false" src="_framework/blazor.server.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        Blazor.start();
+      });
+    </script>
+</body>
+```
+
+### Chain to the `Promise` that results from a manual start
+
+To perform additional tasks, such as JS interop initialization, use `then` to chain to the `Promise` that results from a manual Blazor app start:
+
+```cshtml
+    ...
+
+    <script autostart="false" src="_framework/blazor.server.js"></script>
+    <script>
+      Blazor.start().then(function () {
+        ...
+      });
+    </script>
+</body>
+```
+
+### Configure the SignalR client
+
+#### Logging
+
+To configure SignalR client logging, pass in a configuration object (`configureSignalR`) that calls `configureLogging` with the log level on the client builder:
 
 ```cshtml
     ...
@@ -148,10 +182,12 @@ The reconnection handler's circuit connection events can be modified for custom 
 * To notify the user if the connection is dropped.
 * To perform logging (from the client) when a circuit is connected.
 
-To modify the connection events:
+To modify the connection events, register callbacks for the following connection changes:
 
-* Add an `autostart="false"` attribute to the `<script>` tag for the `blazor.server.js` script.
-* Register callbacks for connection changes for dropped connections (`onConnectionDown`) and established/re-established connections (`onConnectionUp`). **Both** `onConnectionDown` and `onConnectionUp` must be specified.
+* Dropped connections use `onConnectionDown`.
+* Established/re-established connections use `onConnectionUp`.
+
+**Both** `onConnectionDown` and `onConnectionUp` must be specified:
 
 ```cshtml
     ...
@@ -170,10 +206,7 @@ To modify the connection events:
 
 ### Adjust the reconnection retry count and interval
 
-To adjust the reconnection retry count and interval:
-
-* Add an `autostart="false"` attribute to the `<script>` tag for the `blazor.server.js` script.
-* Set the number of retries (`maxRetries`) and period in milliseconds permitted for each retry attempt (`retryIntervalMilliseconds`).
+To adjust the reconnection retry count and interval, set the number of retries (`maxRetries`) and period in milliseconds permitted for each retry attempt (`retryIntervalMilliseconds`):
 
 ```cshtml
     ...
@@ -190,12 +223,9 @@ To adjust the reconnection retry count and interval:
 </body>
 ```
 
-### Hide or replace the reconnection display
+## Hide or replace the reconnection display
 
-To hide the reconnection display:
-
-* Add an `autostart="false"` attribute to the `<script>` tag for the `blazor.server.js` script.
-* Set the reconnection handler's `_reconnectionDisplay` to an empty object (`{}` or `new Object()`).
+To hide the reconnection display, set the reconnection handler's `_reconnectionDisplay` to an empty object (`{}` or `new Object()`):
 
 ```cshtml
     ...
@@ -205,6 +235,8 @@ To hide the reconnection display:
       window.addEventListener('beforeunload', function () {
         Blazor.defaultReconnectionHandler._reconnectionDisplay = {};
       });
+
+      Blazor.start();
     </script>
 </body>
 ```
