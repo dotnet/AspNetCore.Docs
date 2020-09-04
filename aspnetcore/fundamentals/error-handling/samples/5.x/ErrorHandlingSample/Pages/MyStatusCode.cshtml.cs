@@ -24,7 +24,7 @@ namespace ErrorHandlingSample.Pages
             }
             else if (ErrorStatusCode == 500)
             {
-                ErrorMessage = "My 500 error message.";
+                ErrorMessage = "My custom 500 error message.";
             }
             else
             {

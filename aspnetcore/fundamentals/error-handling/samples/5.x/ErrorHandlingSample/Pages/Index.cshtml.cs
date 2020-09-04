@@ -32,7 +32,7 @@ namespace ErrorHandlingSample.Pages
                 }
             }
 
-            return StatusCode(200);
+            return Page();
         }
     }
 }

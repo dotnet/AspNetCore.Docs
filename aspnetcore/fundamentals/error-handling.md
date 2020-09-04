@@ -74,7 +74,7 @@ An alternative to a [custom exception handler page](#exception-handler-page) is 
 
 The following code uses a lambda for exception handling:
 
-[!code-csharp[](error-handling/samples/5.x/ErrorHandlingSample/Startup.cs?name=snippet)]
+[!code-csharp[](error-handling/samples/5.x/ErrorHandlingSample/StartupLambda.cs?name=snippet)]
 
 <!-- 
 In the preceding code, `await context.Response.WriteAsync(new string(' ', 512));` is added so the Internet Explorer browser displays the error message rather than an IE error message. For more information, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/16144).
@@ -95,7 +95,12 @@ By default, an ASP.NET Core app doesn't provide a status code page for HTTP erro
 
 [!code-csharp[](error-handling/samples/5.x/ErrorHandlingSample/StartupUseStatusCodePages.cs?name=snippet&highlight=13)]
 
-In the preceding code, in production, exceptions are handled by `app.UseExceptionHandler("/Error");`, which provides a body response. Because a body is supplied, the `UseStatusCodePages` middleware isn't invoked.
+In the preceding code, in production, exceptions are handled by `app.UseExceptionHandler("/Error");`.
+<!-- Review: 
+When you comment out // UseExceptionHandler("/Error");`
+you get a browser dependant error, not the codepage as I expected.
+call /index/2 -> return StatusCode(500); -> you get the codepage 
+-->
 
 Call `UseStatusCodePages` before request handling middleware. For example, call `UseStatusCodePages` before Static File Middleware and MVC Middleware).
 
@@ -111,7 +116,7 @@ Status Code: 404; Not Found
 
 To customize the response content type and text, use the overload of <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePages%2A> that takes a content type and format string:
 
-[!code-csharp[](error-handling/samples/5.x/ErrorHandlingSample/StartupFormat.cs?name=snippet&highlight=13)]
+[!code-csharp[](error-handling/samples/5.x/ErrorHandlingSample/StartupFormat.cs?name=snippet&highlight=13-14)]
 
 In the preceding code, `{0}` is a placeholder for the error code.
 
@@ -121,7 +126,7 @@ In the preceding code, `{0}` is a placeholder for the error code.
 
 To specify custom error-handling and response-writing code, use the overload of <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePages%2A> that takes a lambda expression:
 
-[!code-csharp[](error-handling/samples/5.x/ErrorHandlingSample/StartupStatusLambda.cs?name=snippet&highlight=13)]
+[!code-csharp[](error-handling/samples/5.x/ErrorHandlingSample/StartupStatusLambda.cs?name=snippet&highlight=13-20)]
 
 `UseStatusCodePages` with a lambda isn't typically used in production because it returns a message that isn't useful to users.
 

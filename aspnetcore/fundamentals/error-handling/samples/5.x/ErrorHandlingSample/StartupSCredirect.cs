@@ -29,7 +29,7 @@ namespace ErrorHandlingSample
             }
             else
             {
-                app.UseExceptionHandler("/Error");
+                //app.UseExceptionHandler("/Error");
                 app.UseHsts();
             }
 
