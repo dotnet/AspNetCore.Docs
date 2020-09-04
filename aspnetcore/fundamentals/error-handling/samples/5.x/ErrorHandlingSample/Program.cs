@@ -24,8 +24,8 @@ namespace ErrorHandlingSample
                     // webBuilder.UseStartup<StartupLambda>();
                     // webBuilder.UseStartup<StartupUseStatusCodePages>();
                     // webBuilder.UseStartup<StartupFormat>();
-                     webBuilder.UseStartup<StartupSCredirect>();
-                    // webBuilder.UseStartup<Startup>();
+                    // webBuilder.UseStartup<StartupSCredirect>();
+                     webBuilder.UseStartup<StartupSCreX>();
                     // webBuilder.UseStartup<Startup>();
                     // webBuilder.UseStartup<Startup>();
                     // webBuilder.UseStartup<Startup>();

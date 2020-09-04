@@ -6,9 +6,9 @@ using Microsoft.Extensions.Hosting;
 
 namespace ErrorHandlingSample
 {
-    public class StartupSCredirect
+    public class StartupSCreX
     {
-        public StartupSCredirect(IConfiguration configuration)
+        public StartupSCreX(IConfiguration configuration)
         {
             Configuration = configuration;
         }
@@ -33,7 +33,7 @@ namespace ErrorHandlingSample
                 app.UseHsts();
             }
 
-            app.UseStatusCodePagesWithRedirects("/MyStatusCode?code={0}");
+            app.UseStatusCodePagesWithReExecute("/MyStatusCode2", "?code={0}");
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

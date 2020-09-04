@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 
 namespace ErrorHandlingSample.Pages
 {
+    #region snippet_StatusCodeReExecute
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public class MyStatusCode2Model : PageModel
     {
@@ -35,7 +36,6 @@ namespace ErrorHandlingSample.Pages
             RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
             ErrorStatusCode = code;
 
-            #region snippet_StatusCodeReExecute
             var statusCodeReExecuteFeature = HttpContext.Features.Get<
                                                    IStatusCodeReExecuteFeature>();
             if (statusCodeReExecuteFeature != null)
@@ -45,7 +45,7 @@ namespace ErrorHandlingSample.Pages
                     + statusCodeReExecuteFeature.OriginalPath
                     + statusCodeReExecuteFeature.OriginalQueryString;
             }
-            #endregion
         }
+        #endregion
     }
 }

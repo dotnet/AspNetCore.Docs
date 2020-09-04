@@ -1,26 +1,36 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WebRP_AppAuth.Data;
 
-namespace ErrorHandlingSample
+namespace WebRP_AppAuth
 {
-    public class StartupSCredirect
+    public class Startup
     {
-        public StartupSCredirect(IConfiguration configuration)
+        public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
 
+        #region snippet
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDatabaseDeveloperPageExceptionFilter();
+            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddRazorPages();
         }
+        #endregion
 
-        #region snippet
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -33,13 +43,12 @@ namespace ErrorHandlingSample
                 app.UseHsts();
             }
 
-            app.UseStatusCodePagesWithRedirects("/MyStatusCode?code={0}");
-
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -47,6 +56,5 @@ namespace ErrorHandlingSample
                 endpoints.MapRazorPages();
             });
         }
-        #endregion
     }
 }
