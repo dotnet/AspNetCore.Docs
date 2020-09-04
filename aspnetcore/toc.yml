@@ -740,14 +740,14 @@
       uid: grpc/dotnet-grpc
     - name: Migrate gRPC services from C-core
       uid: grpc/migration
+    - name: Why migrate WCF to ASP.NET Core gRPC
+      uid: grpc/wcf
     - name: Compare gRPC services with HTTP APIs
       uid: grpc/comparison
     - name: Samples
       href: https://github.com/grpc/grpc-dotnet/tree/master/examples
     - name: Troubleshoot
       uid: grpc/troubleshoot
-    - name: Why migrate WCF to ASP.NET Core gRPC
-      uid: grpc/wcf
 - name: Test, debug, and troubleshoot
   items:
     - name: Razor Pages unit tests
