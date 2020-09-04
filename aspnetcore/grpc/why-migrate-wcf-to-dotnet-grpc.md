@@ -17,7 +17,7 @@ This article provides a summary of why ASP.NET Core gRPC is a good fit for Windo
 
 Although the implementation and approach are different for gRPC, the experience of developing and consuming services with gRPC should be intuitive for WCF developers. WCF and gRPC are RPC (remote procedure call) frameworks with the same goal: 
 
-•*Make it possible to code as though the client and server are on the same platform.
+* Make it possible to code as though the client and server are on the same platform.
 * Provide a simplified portable networking API.
 
 Both platforms share the requirement of declaring and implementing an interface, although the process for declaring the interface is different. The many types of RPC calls that gRPC supports map well to the bindings available to WCF services. For more information and examples, see [Migrate a WCF solution to gRPC](/dotnet/architecture/grpc-for-wcf-developers/migrate-wcf-to-grpc)
@@ -34,7 +34,11 @@ gRPC uses HTTP/2.  HTTP/2 compared to HTTP/1.1, HTTP/2:
 * Is more efficient for computers to parse.
 * Supports multiplexing requests over a single connection. Multiplexing enables multiple requests to be sent over one connection without requests blocking each other. In HTTP/1.1, the blocking is known as "head-of-line (HOL) blocking."
 
-gRPC uses the Protobuf, an efficient binary format, to serialize messages. Protobuf messages are small in size and use less bandwidth than text-based formats. gRPC is a good solution to use for mobile devices and over slower networks where bandwidth is important.
+gRPC uses the Protobuf, an efficient binary format, to serialize messages. Protobuf messages are:
+* Small in size.
+* Use less bandwidth than text-based formats. 
+
+gRPC is a good solution to use for mobile devices and over slower networks where bandwidth is important.
 
 ### Interoperability
 
