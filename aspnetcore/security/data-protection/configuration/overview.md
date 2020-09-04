@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to configure Data Protection in ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/07/2019
+ms.date: 09/04/2020
 no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/data-protection/configuration/overview
 ---
@@ -42,8 +42,8 @@ public void ConfigureServices(IServiceCollection services)
 {
     //Uri to the key in azure keyvault that is being used to protect the keys in blob storage
     services.AddDataProtection()
-                    .PersistKeysToAzureBlobStorage(new Uri("<blobUriWithSasToken>"))
-                    .ProtectKeysWithAzureKeyVault("<keyIdentifier>", "<clientId>", "<clientSecret>");
+        .PersistKeysToAzureBlobStorage(new Uri("<blobUriWithSasToken>"))
+        .ProtectKeysWithAzureKeyVault("<keyIdentifier>", "<clientId>", "<clientSecret>");
 }
 ```
 
@@ -57,7 +57,12 @@ The `keyIdentifier` is the key vault key identifier used for key encryption. For
 * [ProtectKeysWithAzureKeyVault(IDataProtectionBuilder, String, String, X509Certificate2)](/dotnet/api/microsoft.aspnetcore.dataprotection.azuredataprotectionbuilderextensions.protectkeyswithazurekeyvault#Microsoft_AspNetCore_DataProtection_AzureDataProtectionBuilderExtensions_ProtectKeysWithAzureKeyVault_Microsoft_AspNetCore_DataProtection_IDataProtectionBuilder_System_String_System_String_System_Security_Cryptography_X509Certificates_X509Certificate2_) permits the use of a `ClientId` and [X509Certificate](/dotnet/api/system.security.cryptography.x509certificates.x509certificate2) to enable the data protection system to use the key vault.
 * [ProtectKeysWithAzureKeyVault(IDataProtectionBuilder, String, String, String)](/dotnet/api/microsoft.aspnetcore.dataprotection.azuredataprotectionbuilderextensions.protectkeyswithazurekeyvault#Microsoft_AspNetCore_DataProtection_AzureDataProtectionBuilderExtensions_ProtectKeysWithAzureKeyVault_Microsoft_AspNetCore_DataProtection_IDataProtectionBuilder_System_String_System_String_System_String_) permits the use of a `ClientId` and `ClientSecret` to enable the data protection system to use the key vault.
 
-If using the older packages (`Microsoft.AspNetCore.DataProtection.AzureStorage` and `Microsoft.AspNetCore.DataProtection.AzureKeyVault`) and a combination of keyvault and azure storage to store and protect keys, a `System.UriFormatException` will be thrown if the blob to store the keys in does not already exist. This can be manually created ahead of running the application, or `.ProtectKeysWithAzureKeyVault()` can be removed for the first run to create the blob in place, then adding it on for subsequent runs. Removing `.ProtectKeysWithAzureKeyVault()` is advised, as this will ensure that the file is created with the proper schema and values in place. 
+If the app uses the prior Azure packages (`Microsoft.AspNetCore.DataProtection.AzureStorage` and `Microsoft.AspNetCore.DataProtection.AzureKeyVault`) and a combination of Azure Key Vault and Azure Storage to store and protect keys because <xref:System.UriFormatException?displayProperty=nameWithType> is thrown if the blob for key storage doesn't exist. The blob can be manually created ahead of running the app in the Azure portal, or use the following procedure:
+
+1. Remove the call to `ProtectKeysWithAzureKeyVault` for the first run to create the blob in place.
+1. Add the call to `ProtectKeysWithAzureKeyVault` for subsequent runs.
+
+Removing `ProtectKeysWithAzureKeyVault` is advised, as it ensures that the file is created with the proper schema and values in place. 
 
 It is recommended that you upgrade to the new `Azure.Extensions.AspNetCore.DataProtection.Blobs` and `Azure.Extensions.AspNetCore.DataProtection.Keys` packages however, as this issue has been resolved.
 
