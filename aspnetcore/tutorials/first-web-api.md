@@ -67,9 +67,9 @@ The following diagram shows the design of the app.
 * From the **File** menu, select **New** > **Project**.
 * Select the **ASP.NET Core Web Application** template and click **Next**.
 * Name the project *TodoApi* and click **Create**.
-* In the **Create a new ASP.NET Core Web Application** dialog, confirm that **.NET Core** and **ASP.NET Core 3.1** are selected. Select the **API** template and click **Create**.
+* In the **Create a new ASP.NET Core Web Application** dialog, confirm that **.NET Core** and **ASP.NET Core 5.0** are selected. Select the **API** template and click **Create**.
 
-![VS new project dialog](first-web-api/_static/vs3.png)
+![VS new project dialog](first-web-api/_static/5/vs.png)
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -119,25 +119,37 @@ Open a command terminal in the project folder and run the following commands:
 
 ---
 
-### Test the API
+### Test the project
 
-The project template creates a `WeatherForecast` API. Call the `Get` method from a browser to test the app.
+The project template creates a `WeatherForecast` API with support for [Swagger](xref:tutorials/web-api-help-pages-using-swagger).
 
 # [Visual Studio](#tab/visual-studio)
 
-Press Ctrl+F5 to run the app. Visual Studio launches a browser and navigates to `https://localhost:<port>/WeatherForecast`, where `<port>` is a randomly chosen port number.
+Press Ctrl+F5 to run the app. Visual Studio launches:
 
-If you get a dialog box that asks if you should trust the IIS Express certificate, select **Yes**. In the **Security Warning** dialog that appears next, select **Yes**.
+* The IIS Express web server.
+* The default browser and navigates to `https://localhost:<port>/https://localhost:5001/swagger/index.html`, where `<port>` is a randomly chosen port number.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-Press Ctrl+F5 to run the app. In a browser, go to following URL: `https://localhost:5001/WeatherForecast`.
+Press Ctrl+F5 to run the app. In a browser, go to following URL: [https://localhost:5001/swagger](https://localhost:5001/swagger)
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-Select **Run** > **Start Debugging** to launch the app. Visual Studio for Mac launches a browser and navigates to `https://localhost:<port>`, where `<port>` is a randomly chosen port number. An HTTP 404 (Not Found) error is returned. Append `/WeatherForecast` to the URL (change the URL to `https://localhost:<port>/WeatherForecast`).
+Select **Run** > **Start Debugging** to launch the app. Visual Studio for Mac launches a browser and navigates to `https://localhost:<port>`, where `<port>` is a randomly chosen port number. An HTTP 404 (Not Found) error is returned. Append `/swagger` to the URL (change the URL to `https://localhost:<port>/swagger`).
 
 ---
+
+The Swagger page `/swagger/index.html` is displayed. Select **GET** > **Try it out** > **Execute**. The page displays:
+
+* The [Curl](https://curl.haxx.se/) command to test the WeatherForecast API.
+* The URL to test the WeatherForecast API.
+* The response code, body, and headers.
+* A drop down list box with media types and the example value and schema.
+
+Swagger is used to generate useful documentation and help pages for web APIs. This tutorial focuses on creating a web API. For more information on Swagger, see <xref:tutorials/web-api-help-pages-using-swagger>.
+
+Copy and past the **Request URL** in the browser:  `https://localhost:<port>/WeatherForecast`
 
 JSON similar to the following is returned:
 
