@@ -15,7 +15,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT), [Kirk Larkin](https://twitt
 
 This tutorial teaches the basics of building a web API with ASP.NET Core.
 
-::: moniker range=">= aspnetcore-5.0
+::: moniker range=">= aspnetcore-5.0"
 
 In this tutorial, you learn how to:
 
@@ -147,6 +147,8 @@ The Swagger page `/swagger/index.html` is displayed. Select **GET** > **Try it o
 * The response code, body, and headers.
 * A drop down list box with media types and the example value and schema.
 
+<!-- Review: Do we care the IE generates several errors. It shows the data, but with  Unrecognized response type; displaying content as text.
+-->
 Swagger is used to generate useful documentation and help pages for web APIs. This tutorial focuses on creating a web API. For more information on Swagger, see <xref:tutorials/web-api-help-pages-using-swagger>.
 
 Copy and past the **Request URL** in the browser:  `https://localhost:<port>/WeatherForecast`
@@ -216,11 +218,11 @@ A *model* is a set of classes that represent the data that the app manages. The 
 
 * Name the class *TodoItem*, and then click **New**.
 
-* Replace the template code with the following code:
+* Replace the template code with the following:
 
 ---
 
-  [!code-csharp[](first-web-api/samples/3.0/TodoApi/Models/TodoItem.cs?name=snippet)]
+  [!code-csharp[](first-web-api/samples/5.x/TodoApi/Models/TodoItem.cs?name=snippet)]
 
 The `Id` property functions as the unique key in a relational database.
 
@@ -228,18 +230,22 @@ Model classes can go anywhere in the project, but the *Models* folder is used by
 
 ## Add a database context
 
-The *database context* is the main class that coordinates Entity Framework functionality for a data model. This class is created by deriving from the `Microsoft.EntityFrameworkCore.DbContext` class.
+The *database context* is the main class that coordinates Entity Framework functionality for a data model. This class is created by deriving from the <xref:Microsoft.EntityFrameworkCore.DbContext?displayProperty=fullName> class.
 
 # [Visual Studio](#tab/visual-studio)
 
 ### Add NuGet packages
 
 * From the **Tools** menu, select **NuGet Package Manager > Manage NuGet Packages for Solution**.
-* Select the **Browse** tab, and then enter **Microsoft.EntityFrameworkCore.SqlServer** in the search box.
+* Select the **Browse** tab, and then enter **Microsoft.
+**EntityFrameworkCore.SqlServer** in the search box.
+<!-- https://github.com/dotnet/AspNetCore.Docs/issues/19782 Delete this line at RTM -->
+* Select the **Include prerelease** checkbox so the 5.0 RC version is available. 
 * Select **Microsoft.EntityFrameworkCore.SqlServer** in the left pane.
 * Select the **Project** check box in the right pane and then select **Install**.
 * Use the preceding instructions to add the **Microsoft.EntityFrameworkCore.InMemory** NuGet package.
 
+<!-- https://github.com/dotnet/AspNetCore.Docs/issues/19782 Update this image at RTM -->
 ![NuGet Package Manager](first-web-api/_static/vs3NuGet.png)
 
 ## Add the TodoContext database context
@@ -254,18 +260,19 @@ The *database context* is the main class that coordinates Entity Framework funct
 
 * Enter the following code:
 
-  [!code-csharp[](first-web-api/samples/3.0/TodoApi/Models/TodoContext.cs)]
+  [!code-csharp[](first-web-api/samples/5.x/TodoApi/Models/TodoContext.cs)]
 
 ## Register the database context
 
 In ASP.NET Core, services such as the DB context must be registered with the [dependency injection (DI)](xref:fundamentals/dependency-injection) container. The container provides the service to controllers.
 
-Update *Startup.cs* with the following highlighted code:
+Update *Startup.cs* with the following code:
 
-[!code-csharp[](first-web-api/samples/3.0/TodoApi/Startup.cs?highlight=7-8,23-24&name=snippet_all)]
+[!code-csharp[](first-web-api/samples/5.x/TodoApi/Startup.cs?highlight=7-8,23-24&name=snippet_all)]
 
 The preceding code:
 
+* Removes the Swagger calls.
 * Removes unused `using` declarations.
 * Adds the database context to the DI container.
 * Specifies that the database context will use an in-memory database.
