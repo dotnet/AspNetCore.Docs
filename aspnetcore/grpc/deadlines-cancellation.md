@@ -16,14 +16,21 @@ Reliable gRPC apps shouldn't waste resources on calls that are no longer needed.
 
 ## Deadlines
 
-Deadlines allows a gRPC client to specify how long it will wait for a call to complete. Setting a deadline is important because it provides an upper limit on how long a call can run for. It stops misbehaving services from running forever and consuming server resources.
+Deadlines allows a gRPC client to specify how long it will wait for a call to complete. When a deadline is exceeded the call is canceled. Setting a deadline is important because it provides an upper limit on how long a call can run for. It stops misbehaving services from running forever and consuming server resources.
 
-When a deadline is configured, the deadline is sent with the gRPC call to the service and is tracked by both the client and the service. If a deadline is exceeded, the client and service handle a deadline cancellation differently:
+gRPC call deadline configuration:
+
+* A deadline is configured per-call with `CallOptions.Deadline`.
+* There is no default deadline value. gRPC calls are not time limited unless a value is specified.
+* A deadline is the UTC time of when the deadline will be exceeded. For example, `DateTime.UtcNow.AddSeconds(5)` is a deadline of 5 seconds from now.
+* The deadline is sent with the gRPC call to the service and is independently tracked by both the client and the service. It is possible that a gRPC call completes on the server, but by the time the response has returned to the client the deadline has been exceeded.
+
+If a deadline is exceeded, the client and service have different behavior:
 
 * The client immediately aborts the underlying HTTP request and throws a `DeadlineExceeded` error. The client app can choose to catch the error and display a timeout message to the user.
-* On the server, the executing HTTP request is aborted and [ServerCallContext.CancellationToken](xref:System.Threading.CancellationToken) is raised. Although the HTTP request is aborted, the gRPC call will continue to run on the server until the method completes. It is important that the cancellation token is passed to async methods, such as database queries and HTTP requests, so they are cancelled along with the call. When the gRPC call completes on the server, all resources are returned.
+* On the server, the executing HTTP request is aborted and [ServerCallContext.CancellationToken](xref:System.Threading.CancellationToken) is raised. Although the HTTP request is aborted, the gRPC call will continue to run on the server until the method completes. It is important that the cancellation token is passed to async methods, such as database queries and HTTP requests, so they are cancelled along with the call. This allows the canceled call to complete quickly on the server and free up resources for other calls.
 
-gRPC calls run without a deadline by default. Configure `CallOptions.Deadline` to set a deadline for a gRPC call:
+Configure `CallOptions.Deadline` to set a deadline for a gRPC call:
 
 [!code-csharp[](~/grpc/deadlines-cancellation/deadline-client.cs?highlight=7,12)]
 
