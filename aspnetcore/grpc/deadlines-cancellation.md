@@ -23,7 +23,7 @@ Deadline configuration:
 * A deadline is configured for a gRPC call with `CallOptions.Deadline`.
 * There is no default deadline value. gRPC calls aren't time limited unless a deadline is specified.
 * A deadline is the UTC time of when the deadline will be exceeded. For example, `DateTime.UtcNow.AddSeconds(5)` is a deadline of 5 seconds from now.
-* If a past or current or is used as the deadline then the call will immediately exceed the deadline.
+* If a past or current time is used then the call immediately exceeds the deadline.
 * The deadline is sent with the gRPC call to the service and is independently tracked by both the client and the service. It is possible that a gRPC call completes on one machine, but by the time the response has returned to the client the deadline has been exceeded.
 
 If a deadline is exceeded, the client and service have different behavior:
