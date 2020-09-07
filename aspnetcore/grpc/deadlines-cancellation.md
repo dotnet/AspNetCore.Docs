@@ -12,15 +12,15 @@ uid: grpc/deadlines-cancellation
 
 By [James Newton-King](https://twitter.com/jamesnk)
 
-Reliable gRPC apps shouldn't waste resources on calls that are no longer needed. Deadlines and cancellation can be used by gRPC clients to abort gRPC calls and reclaim resources. This article discusses why deadlines and cancellation are important, and how to use them in .NET gRPC apps.
+Deadlines and cancellation are features used by gRPC clients to abort in-progress calls. This article discusses why deadlines and cancellation are important, and how to use them in .NET gRPC apps.
 
 ## Deadlines
 
-A deadline allows a gRPC client to specify how long it will wait for a call to complete. When a deadline is exceeded the call is canceled. Setting a deadline is important because it provides an upper limit on how long a call can run for. It stops misbehaving services from running forever and consuming server resources.
+A deadline allows a gRPC client to specify how long it will wait for a call to complete. When a deadline is exceeded the call is canceled. Setting a deadline is important because it provides an upper limit on how long a call can run for. It stops misbehaving services from running forever and exhausting server resources. Deadlines are a useful tool for building reliable apps and should be configured.
 
 Deadline configuration:
 
-* A deadline is configured for a gRPC call with `CallOptions.Deadline`.
+* A deadline is configured using `CallOptions.Deadline` when a call is made.
 * There is no default deadline value. gRPC calls aren't time limited unless a deadline is specified.
 * A deadline is the UTC time of when the deadline will be exceeded. For example, `DateTime.UtcNow.AddSeconds(5)` is a deadline of 5 seconds from now.
 * If a past or current time is used then the call immediately exceeds the deadline.

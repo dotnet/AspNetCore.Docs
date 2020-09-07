@@ -244,7 +244,18 @@ catch (RpcException ex)
 }
 ```
 
+## Configure deadline
+
+Configuring a gRPC call deadline is recommended because it provides an upper limit on how long a call can run for. It stops misbehaving services from running forever and exhausting server resources. Deadlines are a useful tool for building reliable apps.
+
+Configure `CallOptions.Deadline` to set a deadline for a gRPC call:
+
+[!code-csharp[](~/grpc/deadlines-cancellation/deadline-client.cs?highlight=7,12)]
+
+For more information, see <xref:grpc/deadlines-cancellation#deadlines>.
+
 ## Additional resources
 
 * <xref:grpc/clientfactory>
+* <xref:grpc/deadlines-cancellation>
 * <xref:grpc/basics>
