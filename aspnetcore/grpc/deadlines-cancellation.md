@@ -18,12 +18,13 @@ Reliable gRPC apps shouldn't waste resources on calls that are no longer needed.
 
 A deadline allows a gRPC client to specify how long it will wait for a call to complete. When a deadline is exceeded the call is canceled. Setting a deadline is important because it provides an upper limit on how long a call can run for. It stops misbehaving services from running forever and consuming server resources.
 
-gRPC call deadline configuration:
+Deadline configuration:
 
-* A deadline is configured per-call with `CallOptions.Deadline`.
-* There is no default deadline value. gRPC calls are not time limited unless a deadline is specified.
+* A deadline is configured for a gRPC call with `CallOptions.Deadline`.
+* There is no default deadline value. gRPC calls aren't time limited unless a deadline is specified.
 * A deadline is the UTC time of when the deadline will be exceeded. For example, `DateTime.UtcNow.AddSeconds(5)` is a deadline of 5 seconds from now.
-* The deadline is sent with the gRPC call to the service and is independently tracked by both the client and the service. It is possible that a gRPC call completes on the server, but by the time the response has returned to the client the deadline has been exceeded.
+* If a past or current or is used as the deadline then the call will immediately exceed the deadline.
+* The deadline is sent with the gRPC call to the service and is independently tracked by both the client and the service. It is possible that a gRPC call completes on one machine, but by the time the response has returned to the client the deadline has been exceeded.
 
 If a deadline is exceeded, the client and service have different behavior:
 
