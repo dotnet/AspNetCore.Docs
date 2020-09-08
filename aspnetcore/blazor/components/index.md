@@ -250,7 +250,7 @@ In the following example from the sample app, the `ParentComponent` sets the val
 [!code-razor[](index/samples_snapshot/ParentComponent.razor?highlight=5-6)]
 
 > [!WARNING]
-> Don't create components that write to their own *component parameters* when the component's content is rendered with a <xref:Microsoft.AspNetCore.Components.RenderFragment>, use a private field instead. For more information, see the [Overwritten parameters with `RenderFragment`](#overwritten-parameters-with-renderfragment) section.
+> Don't create components that write to their own *component parameters*, use a private field instead. For more information, see the [Overwritten parameters](#overwritten-parameters) section.
 
 ## Child content
 
@@ -609,14 +609,9 @@ Generally, it makes sense to supply one of the following kinds of value for [`@k
 
 Ensure that values used for [`@key`][5] don't clash. If clashing values are detected within the same parent element, Blazor throws an exception because it can't deterministically map old elements or components to new elements or components. Only use distinct values, such as object instances or primary key values.
 
-## Overwritten parameters with `RenderFragment`
+## Overwritten parameters
 
-Parameters are overwritten under the following conditions:
-
-* A child component's content is rendered with a <xref:Microsoft.AspNetCore.Components.RenderFragment>.
-* <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is called in the parent component.
-
-Parameters are reset because the parent component rerenders when <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is called and new parameter values are supplied to the child component.
+New parameter values are supplied, typically overwriting existing ones, when the parent component rerenders.
 
 Consider the following `Expander` component that:
 
