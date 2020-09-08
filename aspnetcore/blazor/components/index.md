@@ -611,7 +611,7 @@ Ensure that values used for [`@key`][5] don't clash. If clashing values are dete
 
 ## Overwritten parameters
 
-New parameter values are supplied, typically overwriting existing ones, when the parent component re-renders.
+New parameter values are supplied, typically overwriting existing ones, when the parent component rerenders.
 
 Consider the following `Expander` component that:
 
