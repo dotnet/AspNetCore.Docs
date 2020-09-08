@@ -1,18 +1,18 @@
 ---
-title: Test gRPC services with gRPCurl and gRPCui
+title: Test services with gRPC tools
 author: jamesnk
-description: Learn how to test gRPC services with, gRPCurl a command-line tool for interacting with gRPC services.
+description: Learn how to test services with gRPC tools. gRPCurl a command-line tool for interacting with gRPC services. gRPCui is an interactive web UI.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.date: 08/09/2020
 no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
-uid: grpc/test-apps
+uid: grpc/test-tools
 ---
-# Test gRPC services with gRPCurl and gRPCui
+# Test services with gRPC tools
 
 By [James Newton-King](https://twitter.com/jamesnk)
 
-[gRPCurl](https://github.com/fullstorydev/grpcurl) is a command-line tool that lets you interact with gRPC services. [gRPCui](https://github.com/fullstorydev/grpcui) adds an interactive web UI for gRPC.
+Tooling is available for gRPC that allow developers to test services without building client apps. [gRPCurl](https://github.com/fullstorydev/grpcurl) is a command-line tool that lets you interact with gRPC services. [gRPCui](https://github.com/fullstorydev/grpcui) adds an interactive web UI for gRPC.
 
 This article discusses how to:
 
@@ -46,7 +46,7 @@ It is much easier to use gRPCurl with gRPC reflection and service discovery. gRP
   * `AddGrpcReflection()` to register services that enable reflection.
   * `MapGrpcReflectionService()` to add reflection service endpoint.
 
-[!code-csharp[](~/grpc/test-apps/Startup.cs?name=snippet_1&highlight=4,14)]
+[!code-csharp[](~/grpc/test-tools/Startup.cs?name=snippet_1&highlight=4,14)]
 
 ## Use `grpcurl`
 
@@ -124,7 +124,7 @@ gRPC Web UI available at http://127.0.0.1:55038/
 
 The tool will launch a browser window with the interactive web UI. gRPC services are automatically discovered using gRPC reflection.
 
-![gRPCui web UI](~/grpc/test-apps/static/grpcui.png)
+![gRPCui web UI](~/grpc/test-tools/static/grpcui.png)
 
 ## Additional resources
 
