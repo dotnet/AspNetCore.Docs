@@ -116,16 +116,20 @@ Rendering server components from a static HTML page isn't supported.
 
 *This section applies to Blazor Server.*
 
-Configure the manual start of a Blazor Server app in the `Pages/_Host.cshtml` file:
+Configure the manual start of a Blazor Server app's [SignalR circuit](xref:blazor/hosting-models#circuits) in the `Pages/_Host.cshtml` file:
 
 * Add an `autostart="false"` attribute to the `<script>` tag for the `blazor.server.js` script.
-* Place a script that calls `Blazor.start` after the `_framework/blazor.server.js` script and inside the closing `</body>` tag.
+* Place a script that calls `Blazor.start` after the `blazor.server.js` script's tag and inside the closing `</body>` tag.
+
+When `autostart` is disabled, any aspect of the app that doesn't depend on the circuit works normally. For example, client-side routing is operational. However, any aspect that depends on the circuit isn't operational until `Blazor.start` is called. For example, component methods fail to execute when called while the circuit is disconnected.
 
 ### Initialize Blazor when the document is ready
 
 To initialize the Blazor app when the document is ready:
 
 ```cshtml
+<body>
+
     ...
 
     <script autostart="false" src="_framework/blazor.server.js"></script>
@@ -142,6 +146,8 @@ To initialize the Blazor app when the document is ready:
 To perform additional tasks, such as JS interop initialization, use `then` to chain to the `Promise` that results from a manual Blazor app start:
 
 ```cshtml
+<body>
+
     ...
 
     <script autostart="false" src="_framework/blazor.server.js"></script>
@@ -160,6 +166,8 @@ To perform additional tasks, such as JS interop initialization, use `then` to ch
 To configure SignalR client logging, pass in a configuration object (`configureSignalR`) that calls `configureLogging` with the log level on the client builder:
 
 ```cshtml
+<body>
+
     ...
 
     <script autostart="false" src="_framework/blazor.server.js"></script>
@@ -190,6 +198,8 @@ To modify the connection events, register callbacks for the following connection
 **Both** `onConnectionDown` and `onConnectionUp` must be specified:
 
 ```cshtml
+<body>
+
     ...
 
     <script autostart="false" src="_framework/blazor.server.js"></script>
@@ -209,6 +219,8 @@ To modify the connection events, register callbacks for the following connection
 To adjust the reconnection retry count and interval, set the number of retries (`maxRetries`) and period in milliseconds permitted for each retry attempt (`retryIntervalMilliseconds`):
 
 ```cshtml
+<body>
+
     ...
 
     <script autostart="false" src="_framework/blazor.server.js"></script>
@@ -228,6 +240,8 @@ To adjust the reconnection retry count and interval, set the number of retries (
 To hide the reconnection display, set the reconnection handler's `_reconnectionDisplay` to an empty object (`{}` or `new Object()`):
 
 ```cshtml
+<body>
+
     ...
 
     <script autostart="false" src="_framework/blazor.server.js"></script>
