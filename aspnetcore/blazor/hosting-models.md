@@ -59,7 +59,7 @@ The ASP.NET Core app references the app's `Startup` class to add:
 * Server-side services.
 * The app to the request handling pipeline.
 
-On the client, the `blazor.server.js` script establishes the SignalR connection with the server. The script is served to the client-side app from an embedded resource in the ASP.NET Core shared framework. It's the client-side app's responsibility to persist and restore app state as required. 
+On the client, the `blazor.server.js` script establishes the SignalR connection with the server. The script is served to the client-side app from an embedded resource in the ASP.NET Core shared framework. The client-side app is responsible for persisting and restoring app state as required. 
 
 The Blazor Server hosting model offers several benefits:
 
