@@ -5,7 +5,7 @@ description: Learn how to build a web API with ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
 ms.date: 08/13/2020
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR, Models]
 uid: tutorials/first-web-api
 ---
 
@@ -190,6 +190,19 @@ JSON similar to the following is returned:
 ]
 ```
 
+<!-- 
+### Update the launchUrl
+
+In *Properties\launchSettings.json*, update `launchUrl` from `"swagger"` to `"api/TodoItems"`:
+
+```json
+"launchUrl": "api/TodoItems",
+```
+
+Because Swagger has been removed, the preceding markup changes the 
+
+-->
+
 ## Add a model class
 
 A *model* is a set of classes that represent the data that the app manages. The model for this app is a single `TodoItem` class.
@@ -200,7 +213,7 @@ A *model* is a set of classes that represent the data that the app manages. The 
 
 * Right-click the *Models* folder and select **Add** > **Class**. Name the class *TodoItem* and select **Add**.
 
-* Replace the template code with the following code:
+* Replace the template code with the following:
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -246,7 +259,7 @@ The *database context* is the main class that coordinates Entity Framework funct
 * Use the preceding instructions to add the **Microsoft.EntityFrameworkCore.InMemory** NuGet package.
 
 <!-- https://github.com/dotnet/AspNetCore.Docs/issues/19782 Update this image at RTM -->
-![NuGet Package Manager](first-web-api/_static/vs3NuGet.png)
+![NuGet Package Manager](first-web-api/_static/5/vsNuGet.png)
 
 ## Add the TodoContext database context
 
@@ -322,11 +335,11 @@ The ASP.NET Core templates for:
 
 When the `[action]` token isn't in the route template, the [action](xref:mvc/controllers/routing#action) name is excluded from the route. That is, the action's associated method name isn't used in the matching route.
 
-## Examine the PostTodoItem create method
+## Update the PostTodoItem create method
 
 Replace the return statement in the `PostTodoItem` to use the [nameof](/dotnet/csharp/language-reference/operators/nameof) operator:
 
-[!code-csharp[](first-web-api/samples/3.0/TodoApi/Controllers/TodoItemsController.cs?name=snippet_Create)]
+[!code-csharp[](first-web-api/samples/5.x/TodoApi/Controllers/TodoItemsController.cs?name=snippet_Create)]
 
 The preceding code is an HTTP POST method, as indicated by the [`[HttpPost]`](xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute) attribute. The method gets the value of the to-do item from the body of the HTTP request.
 
@@ -334,7 +347,7 @@ For more information, see [Attribute routing with Http[Verb] attributes](xref:mv
 
 The <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction*> method:
 
-* Returns an HTTP 201 status code if successful. HTTP 201 is the standard response for an HTTP POST method that creates a new resource on the server.
+* Returns an [HTTP 201 status code](https://developer.mozilla.org/docs/Web/HTTP/Status/201) if successful. HTTP 201 is the standard response for an HTTP POST method that creates a new resource on the server.
 * Adds a [Location](https://developer.mozilla.org/docs/Web/HTTP/Headers/Location) header to the response. The `Location` header specifies the [URI](https://developer.mozilla.org/docs/Glossary/URI) of the newly created to-do item. For more information, see [10.2.2 201 Created](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html).
 * References the `GetTodoItem` action to create the `Location` header's URI. The C# `nameof` keyword is used to avoid hard-coding the action name in the `CreatedAtAction` call.
 
@@ -373,7 +386,11 @@ This tutorial uses Postman to test the web API.
 
   ![Postman with create request](first-web-api/_static/3/create.png)
 
-### Test the location header URI with Postman
+### Test the location header URI
+
+The location header URI can be tested in the browser. Copy and paste the location header URI into the browser.
+
+To test in Postman:
 
 * Select the **Headers** tab in the **Response** pane.
 * Copy the **Location** header value:
@@ -386,7 +403,7 @@ This tutorial uses Postman to test the web API.
 
 ## Examine the GET methods
 
-These methods implement two GET endpoints:
+Two GET endpoints are implemented:
 
 * `GET /api/TodoItems`
 * `GET /api/TodoItems/{id}`
@@ -424,7 +441,7 @@ The [`[HttpGet]`](xref:Microsoft.AspNetCore.Mvc.HttpGetAttribute) attribute deno
 
 * Start with the template string in the controller's `Route` attribute:
 
-  [!code-csharp[](first-web-api/samples/3.0/TodoApi/Controllers/TodoItemsController.cs?name=TodoController&highlight=1)]
+  [!code-csharp[](first-web-api/samples/5.x/TodoApi/Controllers/TodoItemsController.cs?name=TodoController&highlight=1)]
 
 * Replace `[controller]` with the name of the controller, which by convention is the controller class name minus the "Controller" suffix. For this sample, the controller class name is **TodoItems**Controller, so the controller name is "TodoItems". ASP.NET Core [routing](xref:mvc/controllers/routing) is case insensitive.
 * If the `[HttpGet]` attribute has a route template (for example, `[HttpGet("products")]`), append that to the path. This sample doesn't use a template. For more information, see [Attribute routing with Http[Verb] attributes](xref:mvc/controllers/routing#attribute-routing-with-httpverb-attributes).
@@ -435,18 +452,18 @@ In the following `GetTodoItem` method, `"{id}"` is a placeholder variable for th
 
 ## Return values
 
-The return type of the `GetTodoItems` and `GetTodoItem` methods is [ActionResult\<T> type](xref:web-api/action-return-types#actionresultt-type). ASP.NET Core automatically serializes the object to [JSON](https://www.json.org/) and writes the JSON into the body of the response message. The response code for this return type is 200, assuming there are no unhandled exceptions. Unhandled exceptions are translated into 5xx errors.
+The return type of the `GetTodoItems` and `GetTodoItem` methods is [ActionResult\<T> type](xref:web-api/action-return-types#actionresultt-type). ASP.NET Core automatically serializes the object to [JSON](https://www.json.org/) and writes the JSON into the body of the response message. The response code for this return type is [200 OK](https://developer.mozilla.org/docs/Web/HTTP/Status/200), assuming there are no unhandled exceptions. Unhandled exceptions are translated into 5xx errors.
 
 `ActionResult` return types can represent a wide range of HTTP status codes. For example, `GetTodoItem` can return two different status values:
 
-* If no item matches the requested ID, the method returns a 404 <xref:Microsoft.AspNetCore.Mvc.ControllerBase.NotFound%2A> error code.
+* If no item matches the requested ID, the method returns a [404 status](https://developer.mozilla.org/docs/Web/HTTP/Status/404) <xref:Microsoft.AspNetCore.Mvc.ControllerBase.NotFound%2A> error code.
 * Otherwise, the method returns 200 with a JSON response body. Returning `item` results in an HTTP 200 response.
 
 ## The PutTodoItem method
 
 Examine the `PutTodoItem` method:
 
-[!code-csharp[](first-web-api/samples/3.0/TodoApi/Controllers/TodoItemsController.cs?name=snippet_Update)]
+[!code-csharp[](first-web-api/samples/5.x/TodoApi/Controllers/TodoItemsController.cs?name=snippet_Update)]
 
 `PutTodoItem` is similar to `PostTodoItem`, except it uses HTTP PUT. The response is [204 (No Content)](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html). According to the HTTP specification, a PUT request requires the client to send the entire updated entity, not just the changes. To support partial updates, use [HTTP PATCH](xref:Microsoft.AspNetCore.Mvc.HttpPatchAttribute).
 
@@ -474,7 +491,7 @@ The following image shows the Postman update:
 
 Examine the `DeleteTodoItem` method:
 
-[!code-csharp[](first-web-api/samples/3.0/TodoApi/Controllers/TodoItemsController.cs?name=snippet_Delete)]
+[!code-csharp[](first-web-api/samples/5.x/TodoApi/Controllers/TodoItemsController.cs?name=snippet_Delete)]
 
 ### Test the DeleteTodoItem method
 
@@ -499,7 +516,7 @@ A DTO may be used to:
 
 To demonstrate the DTO approach, update the `TodoItem` class to include a secret field:
 
-[!code-csharp[](first-web-api/samples/3.0/TodoApiDTO/Models/TodoItem.cs?name=snippet&highlight=6)]
+[!code-csharp[](first-web-api/samples/5.x/TodoApiDTO/Models/TodoItem.cs?name=snippet&highlight=6)]
 
 The secret field needs to be hidden from this app, but an administrative app could choose to expose it.
 
@@ -507,11 +524,11 @@ Verify you can post and get the secret field.
 
 Create a DTO model:
 
-[!code-csharp[](first-web-api/samples/3.0/TodoApiDTO/Models/TodoItemDTO.cs?name=snippet)]
+[!code-csharp[](first-web-api/samples/5.x/TodoApiDTO/Models/TodoItemDTO.cs?name=snippet)]
 
 Update the `TodoItemsController` to use `TodoItemDTO`:
 
-[!code-csharp[](first-web-api/samples/3.0/TodoApiDTO/Controllers/TodoItemsController.cs?name=snippet)]
+[!code-csharp[](first-web-api/samples/5.x/TodoApiDTO/Controllers/TodoItemsController.cs?name=snippet)]
 
 Verify you can't post or get the secret field.
 
