@@ -1,5 +1,5 @@
 ---
-title: Test gRPC services with gRPCurl
+title: Test gRPC services with gRPCurl and gRPCui
 author: jamesnk
 description: Learn how to test gRPC services with, gRPCurl a command-line tool for interacting with gRPC services.
 monikerRange: '>= aspnetcore-3.0'
@@ -8,15 +8,18 @@ ms.date: 08/09/2020
 no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: grpc/test-apps
 ---
-# Test gRPC services with gRPCurl
+# Test gRPC services with gRPCurl and gRPCui
 
 By [James Newton-King](https://twitter.com/jamesnk)
 
-[grpcurl](https://github.com/fullstorydev/grpcurl) is a command-line tool that lets you interact with gRPC services. This article discusses how to:
+[gRPCurl](https://github.com/fullstorydev/grpcurl) is a command-line tool that lets you interact with gRPC services. [gRPCui](https://github.com/fullstorydev/grpcui) adds an interactive web UI for gRPC.
 
-* Download and install gRPCurl.
+This article discusses how to:
+
+* Download and install gRPCurl and gRPCui.
 * Setup gRPC reflection with a gRPC ASP.NET Core app.
 * Discover and test gRPC services with `grpcurl`.
+* Interact with gRPC services via a browser using `grpcui`.
 
 ## About gRPCurl
 
@@ -104,7 +107,27 @@ The preceding example:
 * Calls the `SayHello` method on the `greeter.Greeter` service.
 * Prints the response message as JSON.
 
+## About gRPCui
+
+gRPCui is an interactive web UI for gRPC. It builds on top of gRPCurl, and offers a GUI for discovering and testing gRPC services, similar to HTTP tools like Postman.
+
+For information about downloading and installing `grpcui`, see the [gRPCui GitHub homepage](https://github.com/fullstorydev/grpcui#installation).
+
+## Using `grpcui`
+
+Run `grpcui` with the server address to interact with as an argument.
+
+```powershell
+> grpcui.exe localhost:5001
+gRPC Web UI available at http://127.0.0.1:55038/
+```
+
+The tool will launch a browser window with the interactive web UI. gRPC services are automatically discovered using gRPC reflection.
+
+![gRPCui web UI](~/grpc/test-apps/static/grpcui.png)
+
 ## Additional resources
 
-* [gRPCurl GitHub homepage](https://github.com/fullstorydev/grpcurl#installation)
+* [gRPCurl GitHub homepage](https://github.com/fullstorydev/grpcurl)
+* [gRPCui GitHub homepage](https://github.com/fullstorydev/grpcui)
 * [Grpc.AspNetCore.Server.Reflection](https://www.nuget.org/packages/Grpc.AspNetCore.Server.Reflection)

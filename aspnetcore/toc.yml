@@ -736,7 +736,7 @@
       uid: grpc/versioning
     - name: Manage Protobuf references with dotnet-grpc
       uid: grpc/dotnet-grpc
-    - name: Test gRPC services with gRPCurl
+    - name: Test gRPC services with gRPCurl and gRPCui
       uid: grpc/test-apps
     - name: Migrate gRPC services from C-core
       uid: grpc/migration
