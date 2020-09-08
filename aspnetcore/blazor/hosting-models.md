@@ -25,7 +25,7 @@ To create a Blazor app using the client-side hosting model, use the **Blazor Web
 
 After selecting the **Blazor WebAssembly App** template, you have the option of configuring the app to use an ASP.NET Core backend by selecting the **ASP.NET Core hosted** check box ([`dotnet new blazorwasm --hosted`](/dotnet/core/tools/dotnet-new)). The ASP.NET Core app serves the Blazor app to clients. An app with an ASP.NET Core backend is called a *hosted Blazor WebAssembly app*. The Blazor WebAssembly app can interact with the server over the network using web API calls or [SignalR](xref:signalr/introduction) (<xref:tutorials/signalr-blazor-webassembly>).
 
-The templates include the `blazor.webassembly.js` script that handles:
+The `blazor.webassembly.js` script is provided by the framework and handles:
 
 * Downloading the .NET runtime, the app, and the app's dependencies.
 * Initialization of the runtime to run the app.
@@ -59,7 +59,7 @@ The ASP.NET Core app references the app's `Startup` class to add:
 * Server-side services.
 * The app to the request handling pipeline.
 
-The `blazor.server.js` script establishes the client connection. It's the app's responsibility to persist and restore app state as required (for example, in the event of a lost network connection). The `blazor.server.js` script is served from an embedded resource in the ASP.NET Core shared framework.
+On the client, the `blazor.server.js` script establishes the SignalR connection with the server. The script is served to the client-side app from an embedded resource in the ASP.NET Core shared framework. The client-side app is responsible for persisting and restoring app state as required. 
 
 The Blazor Server hosting model offers several benefits:
 
