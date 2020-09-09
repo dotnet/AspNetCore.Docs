@@ -98,7 +98,7 @@ The `LazyAssemblyLoader` provides the `LoadAssembliesAsync` method that:
 * Uses JS interop to fetch assemblies via a network call.
 * Loads assemblies into the runtime executing on WebAssembly in the browser.
 
-The framework's lazy loading implementation supports prerendering on the server. During prerendering, all assemblies, including those marked for lazy loading, are assumed to be loaded. When using lazy loading with prerendering in a hosted Blazor solution, manually register `LazyAssemblyLoader` in the *Server* project's `Startup.ConfigureServices` method (`Startup.cs`):
+The framework's lazy loading implementation supports lazy loading with prerendering in a hosted Blazor solution. During prerendering, all assemblies, including those marked for lazy loading, are assumed to be loaded. Manually register `LazyAssemblyLoader` in the *Server* project's `Startup.ConfigureServices` method (`Startup.cs`):
 
 ```csharp
 services.AddSingleton<LazyAssemblyLoader>();
