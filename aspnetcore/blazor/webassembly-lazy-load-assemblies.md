@@ -41,14 +41,6 @@ Only assemblies that are used by the app can be lazily loaded. The linker strips
 > </ItemGroup>
 > ```
 
-## Prerendering
-
-When using lazy loading with prerendering in a hosted Blazor solution, manually register `LazyAssemblyLoader` in the *Server* project's `Startup.ConfigureServices` method (`Startup.cs`):
-
-```csharp
-services.AddScoped<LazyAssemblyLoader>();
-```
-
 ## `Router` component
 
 Blazor's `Router` component designates which assemblies Blazor searches for routable components. The `Router` component is also responsible for rendering the component for the route where the user navigates. The `Router` component supports an `OnNavigateAsync` feature that can be used in conjunction with lazy loading.
@@ -106,8 +98,11 @@ The `LazyAssemblyLoader` provides the `LoadAssembliesAsync` method that:
 * Uses JS interop to fetch assemblies via a network call.
 * Loads assemblies into the runtime executing on WebAssembly in the browser.
 
-> [!NOTE]
-> The framework's lazy loading implementation supports prerendering on the server. During prerendering, all assemblies, including those marked for lazy loading, are assumed to be loaded.
+The framework's lazy loading implementation supports prerendering on the server. During prerendering, all assemblies, including those marked for lazy loading, are assumed to be loaded. When using lazy loading with prerendering in a hosted Blazor solution, manually register `LazyAssemblyLoader` in the *Server* project's `Startup.ConfigureServices` method (`Startup.cs`):
+
+```csharp
+services.AddSingleton<LazyAssemblyLoader>();
+```
 
 ### User interaction with `<Navigating>` content
 
