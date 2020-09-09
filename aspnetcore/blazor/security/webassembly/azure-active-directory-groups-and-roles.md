@@ -336,7 +336,7 @@ A policy check can also be [performed in code with procedural logic](xref:blazor
 
 In addition to authorizing users in the client-side WebAssembly app to access pages and resources, the server API can authorize users for access to secure API endpoints. After the *Server* app validates the user's access token:
 
-* The app uses the User Principal Name claim (`upn`) to obtain an access token for Graph API.
+* The app uses the user's immutable [object identifier claim (`oid`)](/azure/active-directory/develop/id-tokens#payload-claims) from the JWT (`id_token`) to obtain an access token for Graph API.
 * A Graph API call obtains the user's Azure user-defined security group and Administrator Role memberships.
 * Memberships are used to establish `group` claims.
 * [Authorization policies](xref:security/authorization/policies) can be used to limit user access to server API endpoints.
@@ -480,10 +480,10 @@ services.Configure<JwtBearerOptions>(AzureADDefaults.JwtBearerAuthenticationSche
         OnTokenValidated = async context =>
         {
             var accessToken = context.SecurityToken as JwtSecurityToken;
-            var upn = accessToken.Claims.FirstOrDefault(x => x.Type == "upn")?
+            var oid = accessToken.Claims.FirstOrDefault(x => x.Type == "oid")?
                 .Value;
 
-            if (!string.IsNullOrEmpty(upn))
+            if (!string.IsNullOrEmpty(oid))
             {
                 var authContext = new AuthenticationContext(
                     Configuration["AzureAd:Instance"] +
@@ -504,7 +504,7 @@ services.Configure<JwtBearerOptions>(AzureADDefaults.JwtBearerAuthenticationSche
                         AdalError.UserInteractionRequired)
                     {
                         var userAssertion = new UserAssertion(accessToken.RawData,
-                            "urn:ietf:params:oauth:grant-type:jwt-bearer", upn);
+                            "urn:ietf:params:oauth:grant-type:jwt-bearer", oid);
                         var clientCredential = new ClientCredential(
                             Configuration["AzureAd:ClientId"],
                             Configuration["AzureAd:ClientSecret"]);
@@ -530,7 +530,7 @@ services.Configure<JwtBearerOptions>(AzureADDefaults.JwtBearerAuthenticationSche
 
                 try
                 {
-                    groupsAndAzureRoles = await graphClient.Users[upn].MemberOf
+                    groupsAndAzureRoles = await graphClient.Users[oid].MemberOf
                         .Request().GetAsync();
                 }
                 catch (ServiceException serviceException)
@@ -554,10 +554,10 @@ services.Configure<JwtBearerOptions>(AzureADDefaults.JwtBearerAuthenticationSche
             }
             else
             {
-                // Optional: Log missing UPN claim
+                // Optional: Log missing OID claim
 
 #if DEBUG
-                Console.WriteLine($"OnTokenValidated: UPN missing: " +
+                Console.WriteLine($"OnTokenValidated: OID missing: " +
                     $"{accessToken.RawData}");
 #endif
             }
@@ -590,13 +590,13 @@ The code in <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents.
 * For the code line:
 
   ```csharp
-  groupsAndAzureRoles = await graphClient.Users[upn].MemberOf.Request().GetAsync();
+  groupsAndAzureRoles = await graphClient.Users[oid].MemberOf.Request().GetAsync();
   ```
 
   Replace the preceding line with:
 
   ```csharp
-  groupsAndAzureRoles = await graphClient.Users[upn].TransitiveMemberOf.Request()
+  groupsAndAzureRoles = await graphClient.Users[oid].TransitiveMemberOf.Request()
       .GetAsync();
   ```
 
