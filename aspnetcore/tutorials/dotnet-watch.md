@@ -69,11 +69,15 @@ Any [.NET Core CLI command](/dotnet/core/tools#cli-commands) can be run with `do
 | Command | Command with watch |
 | ---- | ----- |
 | dotnet run | dotnet watch run |
-| dotnet run -f netcoreapp2.0 | dotnet watch run -f netcoreapp2.0 |
-| dotnet run -f netcoreapp2.0 -- --arg1 | dotnet watch run -f netcoreapp2.0 -- --arg1 |
+| dotnet run -f netcoreapp3.1 | dotnet watch run -f netcoreapp3.1 |
+| dotnet run -f netcoreapp3.1 -- --arg1 | dotnet watch run -f netcoreapp3.1 -- --arg1 |
 | dotnet test | dotnet watch test |
 
 Run `dotnet watch run` in the *WebApp* folder. The console output indicates `watch` has started.
+
+::: moniker range=">= aspnetcore-3.1"
+Running `dotnet watch run` on a webapp will launch a browser that navigates to the app's url once ready. In addition, the browser should refresh when dotnet watch detects changes to your watched files. 
+::: moniker-end
 
 > [!NOTE]
 > You can use `dotnet watch --project <PROJECT>` to specify a project to watch. For example, running `dotnet watch --project WebApp run` from the root of the sample app will also run and watch the *WebApp* project.
@@ -177,6 +181,16 @@ dotnet watch msbuild /t:Test
 ```
 
 VSTest executes when any file changes in either test project.
+
+
+## dotnet-watch configuration
+
+Some configuration options can be passed to `dotnet watch` through environment variables. The available variables are:
+
+| DOTNET_USE_POLLING_FILE_WATCHER                | If set to "1" or "true", `dotnet watch` will use a polling file watcher instead of CoreFx's `FileSystemWatcher`. Used when watching files on network shares or Docker mounted volumes.                       |
+| DOTNET_WATCH_SUPPRESS_MSBUILD_INCREMENTALISM   | By default, `dotnet watch` optimizes the build by avoiding certain operations such as running restore or re-evaluating the set of watched files on every file change. If set to "1" or "true",  these optimizations are disabled. |
+| DOTNET_WATCH_SUPPRESS_LAUNCH_BROWSER   | `dotnet watch run` will attempt to launch browsers for web apps with `launchBrowser` configured in `launchSettings.json`. If set to "1" or "true", this behavior is suppressed. |
+| DOTNET_WATCH_SUPPRESS_BROWSER_REFRESH   | `dotnet watch run` will attempt to refresh browsers when it detects file changes. If set to "1" or "true", this behavior is suppressed. This behavior is also suppressed if DOTNET_WATCH_SUPPRESS_LAUNCH_BROWSER is set. |
 
 ## `dotnet-watch` in GitHub
 
