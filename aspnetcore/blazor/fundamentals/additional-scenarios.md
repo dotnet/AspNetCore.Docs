@@ -112,7 +112,7 @@ Blazor Server apps are set up by default to prerender the UI on the server befor
 
 Rendering server components from a static HTML page isn't supported.
 
-## Manual start of the Blazor app
+## Initialize the Blazor circuit
 
 *This section applies to Blazor Server.*
 
@@ -121,7 +121,7 @@ Configure the manual start of a Blazor Server app's [SignalR circuit](xref:blazo
 * Add an `autostart="false"` attribute to the `<script>` tag for the `blazor.server.js` script.
 * Place a script that calls `Blazor.start` after the `blazor.server.js` script's tag and inside the closing `</body>` tag.
 
-When `autostart` is disabled, any aspect of the app that doesn't depend on the circuit works normally. For example, client-side routing is operational. However, any aspect that depends on the circuit isn't operational until `Blazor.start` is called. For example, component methods fail to execute while the circuit is disconnected.
+When `autostart` is disabled, any aspect of the app that doesn't depend on the circuit works normally. For example, client-side routing is operational. However, any aspect that depends on the circuit isn't operational until `Blazor.start` is called. App behavior is unpredictable without an established circuit. For example, component methods fail to execute while the circuit is disconnected.
 
 ### Initialize Blazor when the document is ready
 
@@ -263,6 +263,18 @@ Blazor.defaultReconnectionHandler._reconnectionDisplay =
 ```
 
 The placeholder `{ELEMENT ID}` is the ID of the HTML element to display.
+
+::: moniker range=">= aspnetcore-5.0"
+
+Customize the delay before the reconnection display appears by setting the `transition-delay` property in the app's CSS (`wwwroot/css/site.css`) for the modal element. The following example sets the transition delay from 500 ms (default) to 1,000 ms (1 second):
+
+```css
+#transition-delay {
+    transition: visibility 0s linear 1000ms;
+}
+```
+
+::: moniker-end
 
 ## Influence HTML `<head>` tag elements
 
