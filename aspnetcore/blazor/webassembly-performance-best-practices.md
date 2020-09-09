@@ -155,6 +155,18 @@ Blazor WebAssembly's runtime includes the following .NET features that can be di
   </PropertyGroup>
   ```
 
+::: moniker range=">= aspnetcore-5.0"
+
+* By default, Blazor WebAssembly carries globalization resources required to correctly to display values such dates, currency etc based on the user's culture. If your application does not require these, you may configure the app to only support invariant (en-US) culture:
+
+  ```xml
+  <PropertyGroup>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+  ```
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
 * Collation information is included to make APIs such as <xref:System.StringComparison.InvariantCultureIgnoreCase?displayProperty=nameWithType> work correctly. If you're certain that the app doesn't require the collation data, consider disabling it by setting the `BlazorWebAssemblyPreserveCollationData` MSBuild property in the app's project file to `false`:
 
   ```xml
@@ -162,3 +174,4 @@ Blazor WebAssembly's runtime includes the following .NET features that can be di
     <BlazorWebAssemblyPreserveCollationData>false</BlazorWebAssemblyPreserveCollationData>
   </PropertyGroup>
   ```
+  ::: moniker-end
