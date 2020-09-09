@@ -269,7 +269,7 @@ The placeholder `{ELEMENT ID}` is the ID of the HTML element to display.
 Customize the delay before the reconnection display appears by setting the `transition-delay` property in the app's CSS (`wwwroot/css/site.css`) for the modal element. The following example sets the transition delay from 500 ms (default) to 1,000 ms (1 second):
 
 ```css
-#transition-delay {
+#components-reconnect-modal {
     transition: visibility 0s linear 1000ms;
 }
 ```
