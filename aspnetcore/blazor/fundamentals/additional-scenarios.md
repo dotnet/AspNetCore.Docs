@@ -121,7 +121,7 @@ Configure the manual start of a Blazor Server app's [SignalR circuit](xref:blazo
 * Add an `autostart="false"` attribute to the `<script>` tag for the `blazor.server.js` script.
 * Place a script that calls `Blazor.start` after the `blazor.server.js` script's tag and inside the closing `</body>` tag.
 
-When `autostart` is disabled, any aspect of the app that doesn't depend on the circuit works normally. For example, client-side routing is operational. However, any aspect that depends on the circuit isn't operational until `Blazor.start` is called. For example, component methods fail to execute when called while the circuit is disconnected.
+When `autostart` is disabled, any aspect of the app that doesn't depend on the circuit works normally. For example, client-side routing is operational. However, any aspect that depends on the circuit isn't operational until `Blazor.start` is called. For example, component methods fail to execute while the circuit is disconnected.
 
 ### Initialize Blazor when the document is ready
 
