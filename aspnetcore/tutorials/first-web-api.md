@@ -127,7 +127,7 @@ The project template creates a `WeatherForecast` API with support for [Swagger](
 
 * Press Ctrl+F5 to run without the debugger.
 
-[!INCLUDE[](~/includes/trustCertVSC.md)]
+[!INCLUDE[](~/includes/trustCertVS.md)]
 
   Visual Studio launches:
 
