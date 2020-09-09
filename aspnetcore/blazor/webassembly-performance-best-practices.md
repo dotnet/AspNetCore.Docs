@@ -5,7 +5,7 @@ description: Tips for increasing performance in ASP.NET Core Blazor WebAssembly 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/25/2020
+ms.date: 09/09/2020
 no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/webassembly-performance-best-practices
 ---
@@ -157,7 +157,7 @@ Blazor WebAssembly's runtime includes the following .NET features that can be di
 
 ::: moniker range=">= aspnetcore-5.0"
 
-* By default, Blazor WebAssembly carries globalization resources required to correctly to display values such dates, currency etc based on the user's culture. If your application does not require these, you may configure the app to only support invariant (en-US) culture:
+* By default, Blazor WebAssembly carries globalization resources required to display values, such as dates and currency, in the user's culture. If the app doesn't require localization, you may configure the app to support the invariant culture, which is based on the `en-US` culture:
 
   ```xml
   <PropertyGroup>
@@ -167,6 +167,7 @@ Blazor WebAssembly's runtime includes the following .NET features that can be di
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
+
 * Collation information is included to make APIs such as <xref:System.StringComparison.InvariantCultureIgnoreCase?displayProperty=nameWithType> work correctly. If you're certain that the app doesn't require the collation data, consider disabling it by setting the `BlazorWebAssemblyPreserveCollationData` MSBuild property in the app's project file to `false`:
 
   ```xml
@@ -174,4 +175,5 @@ Blazor WebAssembly's runtime includes the following .NET features that can be di
     <BlazorWebAssemblyPreserveCollationData>false</BlazorWebAssemblyPreserveCollationData>
   </PropertyGroup>
   ```
-  ::: moniker-end
+
+::: moniker-end
