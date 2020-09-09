@@ -125,12 +125,18 @@ The project template creates a `WeatherForecast` API with support for [Swagger](
 
 # [Visual Studio](#tab/visual-studio)
 
-Press Ctrl+F5 to run the app. Visual Studio launches:
+* Press Ctrl+F5 to run without the debugger.
+
+[!INCLUDE[](~/includes/trustCertVSC.md)]
+
+  Visual Studio launches:
 
 * The IIS Express web server.
 * The default browser and navigates to `https://localhost:<port>/https://localhost:5001/swagger/index.html`, where `<port>` is a randomly chosen port number.
 
 # [Visual Studio Code](#tab/visual-studio-code)
+
+[!INCLUDE[](~/includes/trustCertVSC.md)]
 
 Press Ctrl+F5 to run the app. In a browser, go to following URL: [https://localhost:5001/swagger](https://localhost:5001/swagger)
 
@@ -190,7 +196,6 @@ JSON similar to the following is returned:
 ]
 ```
 
-<!-- 
 ### Update the launchUrl
 
 In *Properties\launchSettings.json*, update `launchUrl` from `"swagger"` to `"api/TodoItems"`:
@@ -199,9 +204,7 @@ In *Properties\launchSettings.json*, update `launchUrl` from `"swagger"` to `"ap
 "launchUrl": "api/TodoItems",
 ```
 
-Because Swagger has been removed, the preceding markup changes the 
-
--->
+Because Swagger has been removed, the preceding markup changes the URL that is launched to the GET method of the controller added in the following sections.
 
 ## Add a model class
 
