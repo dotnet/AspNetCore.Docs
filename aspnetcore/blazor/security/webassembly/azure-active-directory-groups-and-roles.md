@@ -452,8 +452,6 @@ When configuring <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEv
 > [!WARNING]
 > <xref:Microsoft.IdentityModel.Logging.IdentityModelEventSource.ShowPII?displayProperty=nameWithType> provides Personally Identifiable Information (PII) in logging messages. Only activate PII for debugging with test user accounts.
 
-In the following example, note that the authentication services scheme of <xref:Microsoft.AspNetCore.Authentication.AzureAD.UI.AzureADDefaults.BearerAuthenticationScheme?displayProperty=nameWithType> in a default app based on the Blazor Hosted WebAssembly app template is changed to <xref:Microsoft.AspNetCore.Authentication.AzureAD.UI.AzureADDefaults.JwtBearerAuthenticationScheme?displayProperty=nameWithType>.
-
 In `Startup.ConfigureServices`:
 
 ```csharp
@@ -461,7 +459,7 @@ In `Startup.ConfigureServices`:
 IdentityModelEventSource.ShowPII = true;
 #endif
 
-services.AddAuthentication(AzureADDefaults.JwtBearerAuthenticationScheme)
+services.AddAuthentication(AzureADDefaults.BearerAuthenticationScheme)
     .AddAzureADBearer(options => Configuration.Bind("AzureAd", options));
 
 services.Configure<JwtBearerOptions>(AzureADDefaults.JwtBearerAuthenticationScheme, 
