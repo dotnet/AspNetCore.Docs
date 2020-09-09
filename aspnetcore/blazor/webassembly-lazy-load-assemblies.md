@@ -5,7 +5,7 @@ description: Discover how to lazy load assemblies in ASP.NET Core Blazor WebAsse
 monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/25/2020
+ms.date: 09/09/2020
 no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/webassembly-lazy-load-assemblies
 ---
@@ -40,6 +40,14 @@ Only assemblies that are used by the app can be lazily loaded. The linker strips
 >  <BlazorWebAssemblyLazyLoad Include="GrantImaharaRobotControls.dll" />
 > </ItemGroup>
 > ```
+
+## Prerendering
+
+When using lazy loading with prerendering in a hosted Blazor solution, manually register `LazyAssemblyLoader` in the *Server* project's `Startup.ConfigureServices` method (`Startup.cs`):
+
+```csharp
+services.AddScoped<LazyAssemblyLoader>();
+```
 
 ## `Router` component
 
