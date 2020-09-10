@@ -3,7 +3,7 @@ title: Multi-factor authentication in ASP.NET Core
 author: damienbod
 description: Learn how to set up multi-factor authentication (MFA) in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: rick-anderson
+ms.author: riande
 ms.custom: mvc
 ms.date: 03/17/2020
 no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
