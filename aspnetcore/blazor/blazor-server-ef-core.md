@@ -104,7 +104,7 @@ You can use the factory to create a context and track it for the lifetime of the
 @inject IDbContextFactory<ContactContext> DbFactory
 ```
 
-The sample app ensures the contact is disposed when the component is disposed:
+The sample app ensures the context is disposed when the component is disposed:
 
 [!code-csharp[](./common/samples/5.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/EditContact.razor?name=snippet1)]
 
@@ -211,7 +211,7 @@ You can use the factory to create a context and track it for the lifetime of the
 @inject IDbContextFactory<ContactContext> DbFactory
 ```
 
-The sample app ensures the contact is disposed when the component is disposed:
+The sample app ensures the context is disposed when the component is disposed:
 
 [!code-csharp[](./common/samples/3.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/EditContact.razor?name=snippet1)]
 
