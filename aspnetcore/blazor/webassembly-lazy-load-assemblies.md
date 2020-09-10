@@ -5,7 +5,7 @@ description: Discover how to lazy load assemblies in ASP.NET Core Blazor WebAsse
 monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/25/2020
+ms.date: 09/09/2020
 no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/webassembly-lazy-load-assemblies
 ---
@@ -98,8 +98,11 @@ The `LazyAssemblyLoader` provides the `LoadAssembliesAsync` method that:
 * Uses JS interop to fetch assemblies via a network call.
 * Loads assemblies into the runtime executing on WebAssembly in the browser.
 
-> [!NOTE]
-> The framework's lazy loading implementation supports prerendering on the server. During prerendering, all assemblies, including those marked for lazy loading, are assumed to be loaded.
+The framework's lazy loading implementation supports lazy loading with prerendering in a hosted Blazor solution. During prerendering, all assemblies, including those marked for lazy loading, are assumed to be loaded. Manually register `LazyAssemblyLoader` in the *Server* project's `Startup.ConfigureServices` method (`Startup.cs`):
+
+```csharp
+services.AddSingleton<LazyAssemblyLoader>();
+```
 
 ### User interaction with `<Navigating>` content
 

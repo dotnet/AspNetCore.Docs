@@ -5,7 +5,7 @@ description: Learn how to route requests in apps and about the NavLink component
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/14/2020
+ms.date: 09/02/2020
 no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/fundamentals/routing
 ---
@@ -145,16 +145,35 @@ The route constraints shown in the following table are available. For the route 
 
 ### Routing with URLs that contain dots
 
-In Blazor Server apps, the default route in `_Host.cshtml` is `/` (`@page "/"`). A request URL that contains a dot (`.`) isn't matched by the default route because the URL appears to request a file. A Blazor app returns a *404 - Not Found* response for a static file that doesn't exist. To use routes that contain a dot, configure `_Host.cshtml` with the following route template:
+For hosted Blazor WebAssembly and Blazor Server apps, the server-side default route template assumes that if the last segment of a request URL contains a dot (`.`) that a file is requested (for example, `https://localhost.com:5001/example/some.thing`). Without additional configuration, an app returns a *404 - Not Found* response if this was meant to route to a component. To use a route with one or more parameters that contains a dot, the app must configure the route with a custom template.
 
-```cshtml
-@page "/{**path}"
+Consider the following `Example` component that can receive a route parameter from the last segment of the URL:
+
+```razor
+@page "/example"
+@page "/example/{param}"
+
+<p>
+    Param: @Param
+</p>
+
+@code {
+    [Parameter]
+    public string Param { get; set; }
+}
 ```
 
-The `"/{**path}"` template includes:
+To permit the *Server* app of a hosted Blazor WebAssembly solution to route the request with a dot in the `param` parameter, add a fallback file route template with the optional parameter in `Startup.Configure` (`Startup.cs`):
 
-* Double-asterisk *catch-all* syntax (`**`) to capture the path across multiple folder boundaries without decoding forward slashes (`/`).
-* `path` route parameter name.
+```csharp
+endpoints.MapFallbackToFile("/example/{param?}", "index.html");
+```
+
+To configure a Blazor Server app to route the request with a dot in the `param` parameter, add a fallback page route template with the optional parameter in `Startup.Configure` (`Startup.cs`):
+
+```csharp
+endpoints.MapFallbackToPage("/example/{param?}", "/_Host");
+```
 
 For more information, see <xref:fundamentals/routing>.
 

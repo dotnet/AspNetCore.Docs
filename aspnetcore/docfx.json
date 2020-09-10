@@ -75,7 +75,7 @@
         "getting-started/**/**.md": "aspnetcore-getstarted",
         "grpc/**/**.md": "aspnetcore-grpc",
         "host-and-deploy/**/**.md": "aspnetcore-hostdeploy",
-        "index.md": "aspnetcore",
+        "introduction-to-aspnet-core.md": "aspnetcore",
         "migration/**/**.md": "aspnetcore-migration",
         "mobile/**/**.md": "aspnetcore-mobile",
         "mvc/**/**.md": "aspnetcore-mvc",

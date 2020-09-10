@@ -136,7 +136,7 @@ Most apps should choose a basic and descriptive routing scheme so that URLs are 
 
 * Supports a basic and descriptive routing scheme.
 * Is a useful starting point for UI-based apps.
-* Is the only route template needed for many web UI apps. For larger web UI apps, another route using [Areas](#areas) if frequently all that's needed.
+* Is the only route template needed for many web UI apps. For larger web UI apps, another route using [Areas](#areas) is frequently all that's needed.
 
 <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute%2A> and <xref:Microsoft.AspNetCore.Builder.MvcAreaRouteBuilderExtensions.MapAreaRoute%2A> :
 
