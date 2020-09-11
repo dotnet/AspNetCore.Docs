@@ -76,7 +76,7 @@ Any [.NET Core CLI command](/dotnet/core/tools#cli-commands) can be run with `do
 Run `dotnet watch run` in the *WebApp* folder. The console output indicates `watch` has started.
 
 ::: moniker range=">= aspnetcore-3.1"
-Starting with the .NET Core 5.0 SDK, invoking `dotnet watch run` on a webapp will launch a browser that navigates to the app's url once ready. `dotnet watch` does this by reading the app's console output and waiting for the the ready message printed by <xref:microsoft.aspnetcore.webhost />. 
+Starting with the .NET Core 5.0 SDK, invoking `dotnet watch run` on a webapp launches a browser that navigates to the app's url once ready. `dotnet watch` does this by reading the app's console output and waiting for the the ready message printed by <xref:Microsoft.AspNetCore.WebHost>. 
 
 In addition to this, `dotnet watch` can also refresh the browser when it detects changes to watched files. To do this, watch command injects a middleware to the app that modifies HTML responses created by the app. The middleware adds a JavaScript script block to the page that allows `dotnet watch` to instruct the browser to refresh.
 ::: moniker-end
