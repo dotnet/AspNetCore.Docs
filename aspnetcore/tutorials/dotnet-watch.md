@@ -78,7 +78,7 @@ Run `dotnet watch run` in the *WebApp* folder. The console output indicates `wat
 ::: moniker range=">= aspnetcore-5.0"
 Running `dotnet watch run` on a web app launches a browser that navigates to the app's URL once ready. `dotnet watch` does this by reading the app's console output and waiting for the the ready message displayed by <xref:Microsoft.AspNetCore.WebHost>.
 
-`dotnet watch` refreshes the browser when it detects changes to watched files. To do this, the watch command injects a middleware to the app that modifies HTML responses created by the app. The middleware adds a JavaScript script block to the page that allows `dotnet watch` to instruct the browser to refresh.
+`dotnet watch` refreshes the browser when it detects changes to watched files. To do this, the watch command injects a middleware to the app that modifies HTML responses created by the app. The middleware adds a JavaScript script block to the page that allows `dotnet watch` to instruct the browser to refresh. Currently, changes to all watched files, including static content such as *.html* and *.css* files cause the app to be rebuilt.
 
 `dotnet watch`:
 
@@ -196,7 +196,7 @@ VSTest executes when any file changes in either test project.
 
 Some configuration options can be passed to `dotnet watch` through environment variables. The available variables are:
 
-| Configuration  | impact |
+| Setting  | Behavior |
 | ------------- | ------------- |
 | `DOTNET_USE_POLLING_FILE_WATCHER`                | If set to "1" or "true", `dotnet watch` uses a polling file watcher instead of CoreFx's `FileSystemWatcher`. Used when watching files on network shares or Docker mounted volumes.                       |
 | `DOTNET_WATCH_SUPPRESS_MSBUILD_INCREMENTALISM`   | By default, `dotnet watch` optimizes the build by avoiding certain operations such as running restore or re-evaluating the set of watched files on every file change. If set to "1" or "true",  these optimizations are disabled. |
