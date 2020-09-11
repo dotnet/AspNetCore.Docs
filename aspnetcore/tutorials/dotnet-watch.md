@@ -85,7 +85,7 @@ Running `dotnet watch run` on a web app launches a browser that navigates to the
 * Only watches files that impact builds by default.
 * Any additionally watched files (via configuration) still results in a build taking place.
 
-For more information on configuration, see [dotnet-watch configuration](3dotnet-watch-configuration) in this document
+For more information on configuration, see [dotnet-watch configuration](#dotnet-watch-configuration) in this document
 
 ::: moniker-end
 
@@ -191,7 +191,6 @@ dotnet watch msbuild /t:Test
 ```
 
 VSTest executes when any file changes in either test project.
-
 
 ## dotnet-watch configuration
 
