@@ -445,8 +445,8 @@
               uid: blazor/host-and-deploy/webassembly
             - name: Blazor Server
               uid: blazor/host-and-deploy/server
-            - name: Configure the Linker
-              uid: blazor/host-and-deploy/configure-linker
+            - name: Configure the Trimmer
+              uid: blazor/host-and-deploy/configure-trimmer
         - name: Blazor Server and EF Core
           uid: blazor/blazor-server-ef-core
         - name: Advanced scenarios
