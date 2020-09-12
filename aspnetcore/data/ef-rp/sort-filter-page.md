@@ -23,7 +23,7 @@ The following illustration shows a completed page. The column headings are click
 
 ![Students index page](sort-filter-page/_static/paging30.png)
 
-## Add sorting 3.1
+## Add sorting
 
 Replace the code in *Pages/Students/Index.cshtml.cs* with the following code to add sorting.
 
@@ -66,7 +66,7 @@ When an`IQueryable` is created or modified, no query is sent to the database. Th
 
 `OnGetAsync` could get verbose with a large number of sortable columns. For information about an alternative way to code this functionality, see [Use dynamic LINQ to simplify code](xref:data/ef-mvc/advanced#dynamic-linq) in the MVC version of this tutorial series.
 
-### Add column heading hyperlinks to the Student Index page 3.1
+### Add column heading hyperlinks to the Student Index page
 
 Replace the code in *Students/Index.cshtml*, with the following code. The changes are highlighted.
 
@@ -84,14 +84,14 @@ To verify that sorting works:
 * Run the app and select the **Students** tab.
 * Click the column headings.
 
-## Add filtering 3.1
+## Add filtering
 
 To add filtering to the Students Index page:
 
 * A text box and a submit button is added to the Razor Page. The text box supplies a search string on the first or last name.
 * The page model is updated to use the text box value.
 
-### Update the OnGetAsync method 3.1
+### Update the OnGetAsync method
 
 Replace the code in *Students/Index.cshtml.cs* with the following code to add filtering:
 
@@ -102,7 +102,7 @@ The preceding code:
 * Adds the `searchString` parameter to the `OnGetAsync` method, and saves the parameter value in the `CurrentFilter` property. The search string value is received from a text box that's added in the next section.
 * Adds to the LINQ statement a `Where` clause. The `Where` clause selects only students whose first name or last name contains the search string. The LINQ statement is executed only if there's a value to search for.
 
-### IQueryable vs. IEnumerable 3.1
+### IQueryable vs. IEnumerable
 
 The code calls the `Where` method on an `IQueryable` object, and the filter is processed on the server. In some scenarios, the app might be calling the `Where` method as an extension method on an in-memory collection. For example, suppose `_context.Students` changes from EF Core `DbSet` to a repository method that returns an `IEnumerable` collection. The result would normally be the same but in some cases may be different.
 
@@ -122,7 +122,7 @@ There's a performance penalty for calling `ToUpper`. The `ToUpper` code adds a f
 
 For more information, see [How to use case-insensitive query with Sqlite provider](https://github.com/aspnet/EntityFrameworkCore/issues/11414).
 
-### Update the Razor page 3.1
+### Update the Razor page
 
 Replace the code in *Pages/Students/Index.cshtml* to create a **Search** button and assorted chrome.
 
@@ -146,13 +146,13 @@ If the page is bookmarked, the bookmark contains the URL to the page and the `Se
 
 Currently, when a column heading sort link is selected, the filter value from the **Search** box is lost. The lost filter value is fixed in the next section.
 
-## Add paging 3.1
+## Add paging
 
 In this section, a `PaginatedList` class is created to support paging. The `PaginatedList` class uses `Skip` and `Take` statements to filter data on the server instead of retrieving all rows of the table. The following illustration shows the paging buttons.
 
 ![Students index page with paging links](sort-filter-page/_static/paging30.png)
 
-### Create the PaginatedList class 3.1
+### Create the PaginatedList class
 
 In the project folder, create `PaginatedList.cs` with the following code:
 
@@ -162,7 +162,7 @@ The `CreateAsync` method in the preceding code takes page size and page number a
 
 The `CreateAsync` method is used to create the `PaginatedList<T>`. A constructor can't create the `PaginatedList<T>` object; constructors can't run asynchronous code.
 
-### Add paging to the PageModel class 3.1
+### Add paging to the PageModel class
 
 Replace the code in *Students/Index.cshtml.cs* to add paging.
 
@@ -199,7 +199,7 @@ If the search string is changed while paging, the page is reset to 1. The page h
 
   The two question marks after `pageIndex` in the `PaginatedList.CreateAsync` call represent the [null-coalescing operator](/dotnet/csharp/language-reference/operators/null-conditional-operator). The null-coalescing operator defines a default value for a nullable type. The expression `(pageIndex ?? 1)` means return the value of `pageIndex` if it has a value. If `pageIndex` doesn't have a value, return 1.
 
-### Add paging links to the Razor Page 3.1
+### Add paging links to the Razor Page
 
 Replace the code in *Students/Index.cshtml* with the following code. The changes are highlighted:
 
@@ -220,14 +220,14 @@ Run the app and navigate to the students page.
 
 ![students index page with paging links](sort-filter-page/_static/paging30.png)
 
-## Add grouping 3.1
+## Add grouping
 
 This section creates an About page that displays how many students have enrolled for each enrollment date. The update uses grouping and includes the following steps:
 
 * Create a view model for the data used by the **About** page.
 * Update the About page to use the view model.
 
-### Create the view model 3.1
+### Create the view model
 
 Create a *Models/SchoolViewModels* folder.
 
@@ -235,13 +235,13 @@ Create *SchoolViewModels/EnrollmentDateGroup.cs* with the following code:
 
 [!code-csharp[Main](intro/samples/cu30/Models/SchoolViewModels/EnrollmentDateGroup.cs)]
 
-### Create the Razor Page 3.1
+### Create the Razor Page
 
 Create a *Pages/About.cshtml* file with the following code:
 
 [!code-cshtml[Main](intro/samples/cu30/Pages/About.cshtml)]
 
-### Create the page model 3.1
+### Create the page model
 
 Create a *Pages/About.cshtml.cs* file with the following code:
 
@@ -253,7 +253,7 @@ Run the app and navigate to the About page. The count of students for each enrol
 
 ![About page](sort-filter-page/_static/about30.png)
 
-## Next steps 3.1
+## Next steps
 
 In the next tutorial, the app uses migrations to update the data model.
 
@@ -273,7 +273,7 @@ The following illustration shows a completed page. The column headings are click
 
 If you run into problems you can't solve, download the [completed app](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples).
 
-## Add sorting to the Index page
+## Add sorting to the Index page 2.1
 
 Add strings to the *Students/Index.cshtml.cs* `PageModel` to contain the sorting parameters:
 
@@ -321,7 +321,7 @@ The method uses LINQ to Entities to specify the column to sort by. The code init
 
 `OnGetAsync` could get verbose with a large number of sortable columns.
 
-### Add column heading hyperlinks to the Student Index page
+### Add column heading hyperlinks to the Student Index page 2.1
 
 Replace the code in *Students/Index.cshtml*, with the following highlighted code:
 
@@ -346,14 +346,14 @@ To get a better understanding of the code:
 
 Step through the debugger.
 
-## Add a Search Box to the Students Index page
+## Add a Search Box to the Students Index page 2.1
 
 To add filtering to the Students Index page:
 
 * A text box and a submit button is added to the Razor Page. The text box supplies a search string on the first or last name.
 * The page model is updated to use the text box value.
 
-### Add filtering functionality to the Index method
+### Add filtering functionality to the Index method 2.1
 
 Update the *Students/Index.cshtml.cs* `OnGetAsync` with the following code:
 
@@ -377,7 +377,7 @@ The preceding code would ensure that results are case-insensitive if the code ch
 
 There's a performance penalty for calling `ToUpper`. The `ToUpper` code adds a function in the WHERE clause of the TSQL SELECT statement. The added function prevents the optimizer from using an index. Given that SQL is installed as case-insensitive, it's best to avoid the `ToUpper` call when it's not needed.
 
-### Add a Search Box to the Student Index page
+### Add a Search Box to the Student Index page 2.1
 
 In *Pages/Students/Index.cshtml*, add the following highlighted code to create a **Search** button and assorted chrome.
 
@@ -400,7 +400,7 @@ If the page is bookmarked, the bookmark contains the URL to the page and the `Se
 
 Currently, when a column heading sort link is selected, the filter value from the **Search** box is lost. The lost filter value is fixed in the next section.
 
-## Add paging functionality to the Students Index page
+## Add paging functionality to the Students Index page 2.1
 
 In this section, a `PaginatedList` class is created to support paging. The `PaginatedList` class uses `Skip` and `Take` statements to filter data on the server instead of retrieving all rows of the table. The following illustration shows the paging buttons.
 
@@ -414,7 +414,7 @@ The `CreateAsync` method in the preceding code takes page size and page number a
 
 The `CreateAsync` method is used to create the `PaginatedList<T>`. A constructor can't create the `PaginatedList<T>` object, constructors can't run asynchronous code.
 
-## Add paging functionality to the Index method
+## Add paging functionality to the Index method 2.1
 
 In *Students/Index.cshtml.cs*, update the type of `Student` from `IList<Student>` to `PaginatedList<Student>`:
 
@@ -455,7 +455,7 @@ The `PaginatedList.CreateAsync` method converts the student query to a single pa
 
 The two question marks in `PaginatedList.CreateAsync` represent the [null-coalescing operator](/dotnet/csharp/language-reference/operators/null-conditional-operator). The null-coalescing operator defines a default value for a nullable type. The expression `(pageIndex ?? 1)` means return the value of `pageIndex` if it has a value. If `pageIndex` doesn't have a value, return 1.
 
-## Add paging links to the student Razor Page
+## Add paging links to the student Razor Page 2.1
 
 Update the markup in *Students/Index.cshtml*. The changes are highlighted:
 
@@ -484,14 +484,14 @@ To get a better understanding of the code:
 
 Step through the debugger.
 
-## Update the About page to show student statistics
+## Update the About page to show student statistics 2.1
 
 In this step, *Pages/About.cshtml* is updated to display how many students have enrolled for each enrollment date. The update uses grouping and includes the following steps:
 
 * Create a view model for the data used by the **About** Page.
 * Update the About page to use the view model.
 
-### Create the view model
+### Create the view model 2.1
 
 Create a *SchoolViewModels* folder in the *Models* folder.
 
@@ -499,7 +499,7 @@ In the *SchoolViewModels* folder, add a *EnrollmentDateGroup.cs* with the follow
 
 [!code-csharp[](intro/samples/cu21/Models/SchoolViewModels/EnrollmentDateGroup.cs)]
 
-### Update the About page model
+### Update the About page model 2.1
 
 The web templates in ASP.NET Core 2.2 do not include the About page. If you are using ASP.NET Core 2.2, create the About Razor Page.
 
@@ -509,7 +509,7 @@ Update the *Pages/About.cshtml.cs* file with the following code:
 
 The LINQ statement groups the student entities by enrollment date, calculates the number of entities in each group, and stores the results in a collection of `EnrollmentDateGroup` view model objects.
 
-### Modify the About Razor Page
+### Modify the About Razor Page 2.1
 
 Replace the code in the *Pages/About.cshtml* file with the following code:
 
@@ -521,7 +521,7 @@ If you run into problems you can't solve, download the [completed app for this s
 
 ![About page](sort-filter-page/_static/about.png)
 
-## Additional resources
+## Additional resources 2.1
 
 * [Debugging ASP.NET Core 2.x source](https://github.com/dotnet/AspNetCore.Docs/issues/4155)
 * [YouTube version of this tutorial](https://www.youtube.com/watch?v=MDs7PFpoMqI)

@@ -26,7 +26,7 @@ The completed data model is shown in the following illustration:
 
 ![Entity diagram](complex-data-model/_static/diagram.png)
 
-## The Student entity 3.1
+## The Student entity
 
 ![Student entity](complex-data-model/_static/student-entity.png)
 
@@ -43,11 +43,11 @@ The preceding code adds a `FullName` property and adds the following attributes 
 * `[Required]`
 * `[Display]`
 
-### The FullName calculated property 3.1
+### The FullName calculated property
 
 `FullName` is a calculated property that returns a value that's created by concatenating two other properties. `FullName` can't be set, so it has only a get accessor. No `FullName` column is created in the database.
 
-### The DataType attribute 3.1
+### The DataType attribute
 
 ```csharp
 [DataType(DataType.Date)]
@@ -62,7 +62,7 @@ The [DataType](/dotnet/api/system.componentmodel.dataannotations.datatypeattribu
 
 The `DataType` attribute emits HTML 5 `data-` (pronounced data dash) attributes. The `DataType` attributes don't provide validation.
 
-### The DisplayFormat attribute 3.1
+### The DisplayFormat attribute
 
 ```csharp
 [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
@@ -79,7 +79,7 @@ The `DisplayFormat` attribute can be used by itself. It's generally a good idea 
 
 For more information, see the [\<input> Tag Helper documentation](xref:mvc/views/working-with-forms#the-input-tag-helper).
 
-### The StringLength attribute 3.1
+### The StringLength attribute
 
 ```csharp
 [StringLength(50, ErrorMessage = "First name cannot be longer than 50 characters.")]
@@ -109,7 +109,7 @@ In your SQLite tool, examine the column definitions for the `Student` table. The
 
 ---
 
-### The Column attribute 3.1
+### The Column attribute
 
 ```csharp
 [Column("FirstName")]
@@ -122,7 +122,7 @@ When the database is created, property names on the model are used for column na
 
 With the `[Column]` attribute, `Student.FirstMidName` in the data model maps to the `FirstName` column of the `Student` table. The addition of the `Column` attribute changes the model backing the `SchoolContext`. The model backing the `SchoolContext` no longer matches the database. That discrepancy will be resolved by adding a migration later in this tutorial.
 
-### The Required attribute 3.1
+### The Required attribute
 
 ```csharp
 [Required]
@@ -141,7 +141,7 @@ public string LastName { get; set; }
 
 `MinimumLength` and `Required` allow whitespace to satisfy the validation. Use the `RegularExpression` attribute for full control over the string.
 
-### The Display attribute 3.1
+### The Display attribute
 
 ```csharp
 [Display(Name = "Last Name")]
@@ -149,7 +149,7 @@ public string LastName { get; set; }
 
 The `Display` attribute specifies that the caption for the text boxes should be "First Name", "Last Name", "Full Name", and "Enrollment Date." The default captions had no space dividing the words, for example "Lastname."
 
-### Create a migration 3.1
+### Create a migration
 
 Run the app and go to the Students page. An exception is thrown. The `[Column]` attribute causes EF to expect to find a column named `FirstName`, but the column name in the database is still `FirstMidName`.
 
@@ -226,7 +226,7 @@ For this tutorial, the way to get past this error is to delete and re-create the
 > [!Note]
 > In the following sections, building the app at some stages generates compiler errors. The instructions specify when to build the app.
 
-## The Instructor Entity 3.1
+## The Instructor Entity
 
 ![Instructor entity](complex-data-model/_static/instructor-entity.png)
 
@@ -240,7 +240,7 @@ Multiple attributes can be on one line. The `HireDate` attributes could be writt
 [DataType(DataType.Date),Display(Name = "Hire Date"),DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
 ```
 
-### Navigation properties 3.1
+### Navigation properties
 
 The `CourseAssignments` and `OfficeAssignment` properties are navigation properties.
 
@@ -256,7 +256,7 @@ An instructor can have at most one office, so the `OfficeAssignment` property ho
 public OfficeAssignment OfficeAssignment { get; set; }
 ```
 
-## The OfficeAssignment entity 3.1
+## The OfficeAssignment entity
 
 ![OfficeAssignment entity](complex-data-model/_static/officeassignment-entity.png)
 
@@ -264,7 +264,7 @@ Create *Models/OfficeAssignment.cs* with the following code:
 
 [!code-csharp[](intro/samples/cu30/Models/OfficeAssignment.cs)]
 
-### The Key attribute 3.1
+### The Key attribute
 
 The `[Key]` attribute is used to identify a property as the primary key (PK) when the property name is something other than classnameID or ID.
 
@@ -279,7 +279,7 @@ public int InstructorID { get; set; }
 
 By default, EF Core treats the key as non-database-generated because the column is for an identifying relationship.
 
-### The Instructor navigation property 3.1
+### The Instructor navigation property
 
 The `Instructor.OfficeAssignment` navigation property can be null because there might not be an `OfficeAssignment` row for a given instructor. An instructor might not have an office assignment.
 
@@ -287,7 +287,7 @@ The `OfficeAssignment.Instructor` navigation property will always have an instru
 
 When an `Instructor` entity has a related `OfficeAssignment` entity, each entity has a reference to the other one in its navigation property.
 
-## The Course Entity 3.1
+## The Course Entity
 
 ![Course entity](complex-data-model/_static/course-entity.png)
 
@@ -304,7 +304,7 @@ EF Core doesn't require a foreign key property for a data model when the model h
 
 When the FK property `DepartmentID` is included in the data model, there's no need to fetch the `Department` entity before an update.
 
-### The DatabaseGenerated attribute 3.1
+### The DatabaseGenerated attribute
 
 The `[DatabaseGenerated(DatabaseGeneratedOption.None)]` attribute specifies that the PK is provided by the application rather than generated by the database.
 
@@ -318,7 +318,7 @@ By default, EF Core assumes that PK values are generated by the database. Databa
 
 The `DatabaseGenerated` attribute can also be used to generate default values. For example, the database can automatically generate a date field to record the date a row was created or updated. For more information, see [Generated Properties](/ef/core/modeling/generated-properties).
 
-### Foreign key and navigation properties 3.1
+### Foreign key and navigation properties
 
 The foreign key (FK) properties and navigation properties in the `Course` entity reflect the following relationships:
 
@@ -343,7 +343,7 @@ public ICollection<CourseAssignment> CourseAssignments { get; set; }
 
 `CourseAssignment` is explained [later](#many-to-many-relationships).
 
-## The Department entity 3.1
+## The Department entity
 
 ![Department entity](complex-data-model/_static/department-entity.png)
 
@@ -351,7 +351,7 @@ Create *Models/Department.cs* with the following code:
 
 [!code-csharp[](intro/samples/cu30snapshots/5-complex/Models/Department1.cs)]
 
-### The Column attribute 3.1
+### The Column attribute
 
 Previously the `Column` attribute was used to change column name mapping. In the code for the `Department` entity, the `Column` attribute is used to change SQL data type mapping. The `Budget` column is defined using the SQL Server money type in the database:
 
@@ -362,7 +362,7 @@ public decimal Budget { get; set; }
 
 Column mapping is generally not required. EF Core chooses the appropriate SQL Server data type based on the CLR type for the property. The CLR `decimal` type maps to a SQL Server `decimal` type. `Budget` is for currency, and the money data type is more appropriate for currency.
 
-### Foreign key and navigation properties 3.1
+### Foreign key and navigation properties
 
 The FK and navigation properties reflect the following relationships:
 
@@ -395,7 +395,7 @@ For example, if the `Department.InstructorID` property was defined as non-nullab
      .OnDelete(DeleteBehavior.Restrict)
   ```
 
-## The Enrollment entity 3.1
+## The Enrollment entity
 
 An enrollment record is for one course taken by one student.
 
@@ -405,7 +405,7 @@ Update *Models/Enrollment.cs* with the following code:
 
 [!code-csharp[](intro/samples/cu30/Models/Enrollment.cs?highlight=1-2,16)]
 
-### Foreign key and navigation properties 3.1
+### Foreign key and navigation properties
 
 The FK properties and navigation properties reflect the following relationships:
 
@@ -423,7 +423,7 @@ public int StudentID { get; set; }
 public Student Student { get; set; }
 ```
 
-## Many-to-Many Relationships 3.1
+## Many-to-Many Relationships
 
 There's a many-to-many relationship between the `Student` and `Course` entities. The `Enrollment` entity functions as a many-to-many join table *with payload* in the database. "With payload" means that the `Enrollment` table contains additional data besides FKs for the joined tables (in this case, the PK and `Grade`).
 
@@ -439,7 +439,7 @@ The `Instructor` and `Course` entities have a many-to-many relationship using a 
 
 Note: EF 6.x supports implicit join tables for many-to-many relationships, but EF Core doesn't. For more information, see [Many-to-many relationships in EF Core 2.0](https://blog.oneunicorn.com/2017/09/25/many-to-many-relationships-in-ef-core-2-0-part-1-the-basics/).
 
-## The CourseAssignment entity 3.1
+## The CourseAssignment entity
 
 ![CourseAssignment entity](complex-data-model/_static/courseassignment-entity.png)
 
@@ -455,7 +455,7 @@ It's common to name a join entity `EntityName1EntityName2`. For example, the Ins
 
 Data models start out simple and grow. Join tables without payload (PJTs) frequently evolve to include payload. By starting with a descriptive entity name, the name doesn't need to change when the join table changes. Ideally, the join entity would have its own natural (possibly single word) name in the business domain. For example, Books and Customers could be linked with a join entity called Ratings. For the Instructor-to-Courses many-to-many relationship, `CourseAssignment` is preferred over `CourseInstructor`.
 
-### Composite key 3.1
+### Composite key
 
 The two FKs in `CourseAssignment` (`InstructorID` and `CourseID`) together uniquely identify each row of the `CourseAssignment` table. `CourseAssignment` doesn't require a dedicated PK. The `InstructorID` and `CourseID` properties function as a composite PK. The only way to specify composite PKs to EF Core is with the *fluent API*. The next section shows how to configure the composite PK.
 
@@ -470,7 +470,7 @@ The `Enrollment` join entity defines its own PK, so duplicates of this sort are 
 * Add a unique index on the FK fields, or
 * Configure `Enrollment` with a primary composite key similar to `CourseAssignment`. For more information, see [Indexes](/ef/core/modeling/indexes).
 
-## Update the database context 3.1
+## Update the database context
 
 Update *Data/SchoolContext.cs* with the following code:
 
@@ -478,7 +478,7 @@ Update *Data/SchoolContext.cs* with the following code:
 
 The preceding code adds the new entities and configures the `CourseAssignment` entity's composite PK.
 
-## Fluent API alternative to attributes 3.1
+## Fluent API alternative to attributes
 
 The `OnModelCreating` method in the preceding code uses the *fluent API* to configure EF Core behavior. The API is called "fluent" because it's often used by stringing a series of method calls together into a single statement. The [following code](/ef/core/modeling/#use-fluent-api-to-configure-a-model) is an example of the fluent API:
 
@@ -508,7 +508,7 @@ Some of the attributes used in this tutorial are used for:
 
 For more information about attributes vs. fluent API, see [Methods of configuration](/ef/core/modeling/).
 
-## Entity diagram 3.1
+## Entity diagram
 
 The following illustration shows the diagram that EF Power Tools create for the completed School model.
 
@@ -520,7 +520,7 @@ The preceding diagram shows:
 * The one-to-zero-or-one relationship line (1 to 0..1) between the `Instructor` and `OfficeAssignment` entities.
 * The zero-or-one-to-many relationship line (0..1 to *) between the `Instructor` and `Department` entities.
 
-## Seed the database 3.1
+## Seed the database
 
 Update the code in *Data/DbInitializer.cs*:
 
@@ -528,7 +528,7 @@ Update the code in *Data/DbInitializer.cs*:
 
 The preceding code provides seed data for the new entities. Most of this code creates new entity objects and loads sample data. The sample data is used for testing. See `Enrollments` and `CourseAssignments` for examples of how many-to-many join tables can be seeded.
 
-## Add a migration 3.1
+## Add a migration
 
 Build the project.
 
@@ -570,7 +570,7 @@ In the next section, you see how to avoid this error.
 
 ---
 
-## Apply the migration or drop and re-create 3.1
+## Apply the migration or drop and re-create
 
 Now that you have an existing database, you need to think about how to apply changes to it. This tutorial shows two alternatives:
 
@@ -581,7 +581,7 @@ Either choice works for SQL Server. While the apply-migration method is more com
 
 <a name="drop"></a>
 
-## Drop and re-create the database 3.1
+## Drop and re-create the database
 
 [Skip this section](#apply-the-migration) if you're using SQL Server and want to do the apply-migration approach in the following section.
 
@@ -650,7 +650,7 @@ Use your SQLite tool to examine the database:
 
 <a name="applyexisting"></a>
 
-## Apply the migration 3.1
+## Apply the migration
 
 This section is optional. These steps work only for SQL Server LocalDB and only if you skipped the preceding [Drop and re-create the database](#drop) section.
 
@@ -667,7 +667,7 @@ To make the `ComplexDataModel` migration work with existing data:
 * Change the code to give the new column (`DepartmentID`) a default value.
 * Create a fake department named "Temp" to act as the default department.
 
-#### Fix the foreign key constraints 3.1
+#### Fix the foreign key constraints
 
 In the `ComplexDataModel` migration class, update the `Up` method:
 
@@ -709,7 +709,7 @@ Because the `DbInitializer.Initialize` method is designed to work only with an e
 
 Run the app. Running the app runs the `DbInitializer.Initialize` method. The `DbInitializer.Initialize` populates the new database.
 
-## Next steps 3.1
+## Next steps
 
 The next two tutorials show how to read and update related data.
 
@@ -733,11 +733,11 @@ The entity classes for the completed data model are shown in the following illus
 If you run into problems you can't solve, download the [completed app](
 https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples).
 
-## Customize the data model with attributes
+## Customize the data model with attributes 2.1
 
 In this section, the data model is customized using attributes.
 
-### The DataType attribute
+### The DataType attribute 2.1
 
 The student pages currently displays the time of the enrollment date. Typically, date fields show only the date and not the time.
 
@@ -773,7 +773,7 @@ Run the app. Navigate to the Students Index page. Times are no longer displayed.
 
 ![Students index page showing dates without times](complex-data-model/_static/dates-no-times.png)
 
-### The StringLength attribute
+### The StringLength attribute 2.1
 
 Data validation rules and validation error messages can be specified with attributes. The [StringLength](/dotnet/api/system.componentmodel.dataannotations.stringlengthattribute?view=netframework-4.7.1) attribute specifies the minimum and maximum length of characters that are allowed in a data field. The `StringLength` attribute
 also provides client-side and server-side validation. The minimum value has no impact on the database schema.
@@ -802,7 +802,7 @@ In **SQL Server Object Explorer** (SSOX), open the Student table designer by dou
 
 The preceding image shows the schema for the `Student` table. The name fields have type `nvarchar(MAX)` because migrations has not been run on the DB. When migrations are run later in this tutorial, the name fields become `nvarchar(50)`.
 
-### The Column attribute
+### The Column attribute 2.1
 
 Attributes can control how classes and properties are mapped to the database. In this section, the `Column` attribute is used to map the name of the `FirstMidName` property to "FirstName" in the DB.
 
@@ -863,7 +863,7 @@ Before migration was applied, the name columns were of type [nvarchar(MAX)](/sql
 > [!Note]
 > In the following section, building the app at some stages generates compiler errors. The instructions specify when to build the app.
 
-## Student entity update
+## Student entity update 2.1
 
 ![Student entity](complex-data-model/_static/student-entity.png)
 
@@ -871,7 +871,7 @@ Update *Models/Student.cs* with the following code:
 
 [!code-csharp[](intro/samples/cu21/Models/Student.cs?name=snippet_BeforeInheritance&highlight=11,13,15,18,22,24-31)]
 
-### The Required attribute
+### The Required attribute 2.1
 
 The `Required` attribute makes the name properties required fields. The `Required` attribute isn't needed for non-nullable types such as value types (`DateTime`, `int`, `double`, etc.). Types that can't be null are automatically treated as required fields.
 
@@ -883,15 +883,15 @@ The `Required` attribute could be replaced with a minimum length parameter in th
 public string LastName { get; set; }
 ```
 
-### The Display attribute
+### The Display attribute 2.1
 
 The `Display` attribute specifies that the caption for the text boxes should be "First Name", "Last Name", "Full Name", and "Enrollment Date." The default captions had no space dividing the words, for example "Lastname."
 
-### The FullName calculated property
+### The FullName calculated property 2.1
 
 `FullName` is a calculated property that returns a value that's created by concatenating two other properties. `FullName` cannot be set, it has only a get accessor. No `FullName` column is created in the database.
 
-## Create the Instructor Entity
+## Create the Instructor Entity 2.1
 
 ![Instructor entity](complex-data-model/_static/instructor-entity.png)
 
@@ -905,7 +905,7 @@ Multiple attributes can be on one line. The `HireDate` attributes could be writt
 [DataType(DataType.Date),Display(Name = "Hire Date"),DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
 ```
 
-### The CourseAssignments and OfficeAssignment navigation properties
+### The CourseAssignments and OfficeAssignment navigation properties 2.1
 
 The `CourseAssignments` and `OfficeAssignment` properties are navigation properties.
 
@@ -935,7 +935,7 @@ Contoso University business rules state that an instructor can have at most one 
 public OfficeAssignment OfficeAssignment { get; set; }
 ```
 
-## Create the OfficeAssignment entity
+## Create the OfficeAssignment entity 2.1
 
 ![OfficeAssignment entity](complex-data-model/_static/officeassignment-entity.png)
 
@@ -943,7 +943,7 @@ Create *Models/OfficeAssignment.cs* with the following code:
 
 [!code-csharp[](intro/samples/cu21/Models/OfficeAssignment.cs)]
 
-### The Key attribute
+### The Key attribute 2.1
 
 The `[Key]` attribute is used to identify a property as the primary key (PK) when the property name is something other than classnameID or ID.
 
@@ -960,7 +960,7 @@ public int InstructorID { get; set; }
 
 By default, EF Core treats the key as non-database-generated because the column is for an identifying relationship.
 
-### The Instructor navigation property
+### The Instructor navigation property 2.1
 
 The `OfficeAssignment` navigation property for the `Instructor` entity is nullable because:
 
@@ -983,7 +983,7 @@ public Instructor Instructor { get; set; }
 
 The preceding code specifies that there must be a related instructor. The preceding code is unnecessary because the `InstructorID` foreign key (which is also the PK) is non-nullable.
 
-## Modify the Course Entity
+## Modify the Course Entity 2.1
 
 ![Course entity](complex-data-model/_static/course-entity.png)
 
@@ -1003,7 +1003,7 @@ EF Core automatically creates FKs in the database wherever they're needed. EF Co
 When the FK property `DepartmentID` is included in the data model, there's no need to
 fetch the `Department` entity before an update.
 
-### The DatabaseGenerated attribute
+### The DatabaseGenerated attribute 2.1
 
 The `[DatabaseGenerated(DatabaseGeneratedOption.None)]` attribute specifies that the PK is provided by the application rather than generated by the database.
 
@@ -1017,7 +1017,7 @@ By default, EF Core assumes that PK values are generated by the DB. DB generated
 
 The `DatabaseGenerated` attribute can also be used to generate default values. For example, the DB can automatically generate a date field to record the date a row was created or updated. For more information, see [Generated Properties](/ef/core/modeling/generated-properties).
 
-### Foreign key and navigation properties
+### Foreign key and navigation properties 2.1
 
 The foreign key (FK) properties and navigation properties in the `Course` entity reflect the following relationships:
 
@@ -1042,7 +1042,7 @@ public ICollection<CourseAssignment> CourseAssignments { get; set; }
 
 `CourseAssignment` is explained [later](#many-to-many-relationships).
 
-## Create the Department entity
+## Create the Department entity 2.1
 
 ![Department entity](complex-data-model/_static/department-entity.png)
 
@@ -1050,7 +1050,7 @@ Create *Models/Department.cs* with the following code:
 
 [!code-csharp[](intro/samples/cu21/Models/Department.cs?name=snippet_Begin)]
 
-### The Column attribute
+### The Column attribute 2.1
 
 Previously the `Column` attribute was used to change column name mapping. In the code for the `Department` entity, the `Column` attribute is used to change SQL data type mapping. The `Budget` column is defined using the SQL Server money type in the DB:
 
@@ -1061,7 +1061,7 @@ public decimal Budget { get; set; }
 
 Column mapping is generally not required. EF Core generally chooses the appropriate SQL Server data type based on the CLR type for the property. The CLR `decimal` type maps to a SQL Server `decimal` type. `Budget` is for currency, and the money data type is more appropriate for currency.
 
-### Foreign key and navigation properties
+### Foreign key and navigation properties 2.1
 
 The FK and navigation properties reflect the following relationships:
 
@@ -1100,7 +1100,7 @@ For example, if the `Department.InstructorID` property was defined as non-nullab
 
 The preceding code disables cascade delete on the department-instructor relationship.
 
-## Update the Enrollment entity
+## Update the Enrollment entity 2.1
 
 An enrollment record is for one course taken by one student.
 
@@ -1110,7 +1110,7 @@ Update *Models/Enrollment.cs* with the following code:
 
 [!code-csharp[](intro/samples/cu21/Models/Enrollment.cs?name=snippet_Final&highlight=1-2,16)]
 
-### Foreign key and navigation properties
+### Foreign key and navigation properties 2.1
 
 The FK properties and navigation properties reflect the following relationships:
 
@@ -1128,7 +1128,7 @@ public int StudentID { get; set; }
 public Student Student { get; set; }
 ```
 
-## Many-to-Many Relationships
+## Many-to-Many Relationships 2.1
 
 There's a many-to-many relationship between the `Student` and `Course` entities. The `Enrollment` entity functions as a many-to-many join table *with payload* in the database. "With payload" means that the `Enrollment` table contains additional data besides FKs for the joined tables (in this case, the PK and `Grade`).
 
@@ -1144,7 +1144,7 @@ The `Instructor` and `Course` entities have a many-to-many relationship using a 
 
 Note: EF 6.x supports implicit join tables for many-to-many relationships, but EF Core doesn't. For more information, see [Many-to-many relationships in EF Core 2.0](https://blog.oneunicorn.com/2017/09/25/many-to-many-relationships-in-ef-core-2-0-part-1-the-basics/).
 
-## The CourseAssignment entity
+## The CourseAssignment entity 2.1
 
 ![CourseAssignment entity](complex-data-model/_static/courseassignment-entity.png)
 
@@ -1152,7 +1152,7 @@ Create *Models/CourseAssignment.cs* with the following code:
 
 [!code-csharp[](intro/samples/cu21/Models/CourseAssignment.cs)]
 
-### Instructor-to-Courses
+### Instructor-to-Courses 2.1
 
 ![Instructor-to-Courses m:M](complex-data-model/_static/courseassignment.png)
 
@@ -1165,7 +1165,7 @@ It's common to name a join entity `EntityName1EntityName2`. For example, the Ins
 
 Data models start out simple and grow. No-payload joins (PJTs) frequently evolve to include payload. By starting with a descriptive entity name, the name doesn't need to change when the join table changes. Ideally, the join entity would have its own natural (possibly single word) name in the business domain. For example, Books and Customers could be linked with a join entity called Ratings. For the Instructor-to-Courses many-to-many relationship, `CourseAssignment` is preferred over `CourseInstructor`.
 
-### Composite key
+### Composite key 2.1
 
 FKs are not nullable. The two FKs in `CourseAssignment` (`InstructorID` and `CourseID`) together uniquely identify each row of the `CourseAssignment` table. `CourseAssignment` doesn't require a dedicated PK. The `InstructorID` and `CourseID` properties function as a composite PK. The only way to specify composite PKs to EF Core is with the *fluent API*. The next section shows how to configure the composite PK.
 
@@ -1180,7 +1180,7 @@ The `Enrollment` join entity defines its own PK, so duplicates of this sort are 
 * Add a unique index on the FK fields, or
 * Configure `Enrollment` with a primary composite key similar to `CourseAssignment`. For more information, see [Indexes](/ef/core/modeling/indexes).
 
-## Update the DB context
+## Update the DB context 2.1
 
 Add the following highlighted code to *Data/SchoolContext.cs*:
 
@@ -1188,7 +1188,7 @@ Add the following highlighted code to *Data/SchoolContext.cs*:
 
 The preceding code adds the new entities and configures the `CourseAssignment` entity's composite PK.
 
-## Fluent API alternative to attributes
+## Fluent API alternative to attributes 2.1
 
 The `OnModelCreating` method in the preceding code uses the *fluent API* to configure EF Core behavior. The API is called "fluent" because it's often used by stringing a series of method calls together into a single statement. The [following code](/ef/core/modeling/#use-fluent-api-to-configure-a-model) is an example of the fluent API:
 
@@ -1218,7 +1218,7 @@ Some of the attributes used in the this tutorial are used for:
 
 For more information about attributes vs. fluent API, see [Methods of configuration](/ef/core/modeling/).
 
-## Entity Diagram Showing Relationships
+## Entity Diagram Showing Relationships 2.1
 
 The following illustration shows the diagram that EF Power Tools create for the completed School model.
 
@@ -1230,7 +1230,7 @@ The preceding diagram shows:
 * The one-to-zero-or-one relationship line (1 to 0..1) between the `Instructor` and `OfficeAssignment` entities.
 * The zero-or-one-to-many relationship line (0..1 to *) between the `Instructor` and `Department` entities.
 
-## Seed the DB with Test Data
+## Seed the DB with Test Data 2.1
 
 Update the code in *Data/DbInitializer.cs*:
 
@@ -1238,7 +1238,7 @@ Update the code in *Data/DbInitializer.cs*:
 
 The preceding code provides seed data for the new entities. Most of this code creates new entity objects and loads sample data. The sample data is used for testing. See `Enrollments` and `CourseAssignments` for examples of how many-to-many join tables can be seeded.
 
-## Add a migration
+## Add a migration 2.1
 
 Build the project.
 
@@ -1271,7 +1271,7 @@ The ALTER TABLE statement conflicted with the FOREIGN KEY constraint "FK_dbo.Cou
 database "ContosoUniversity", table "dbo.Department", column 'DepartmentID'.
 ```
 
-## Apply the migration
+## Apply the migration 2.1
 
 Now that you have an existing database, you need to think about how to apply future changes to it. This tutorial shows two approaches:
 
@@ -1280,7 +1280,7 @@ Now that you have an existing database, you need to think about how to apply fut
 
 <a name="drop"></a>
 
-### Drop and re-create the database
+### Drop and re-create the database 2.1
 
 The code in the updated `DbInitializer` adds seed data for the new entities. To force EF Core to create a new  DB, drop and update the DB:
 
@@ -1326,7 +1326,7 @@ Examine the **CourseAssignment** table:
 
 <a name="applyexisting"></a>
 
-### Apply the migration to the existing database
+### Apply the migration to the existing database 2.1
 
 This section is optional. These steps work only if you skipped the preceding [Drop and re-create the database](#drop) section.
 
@@ -1343,7 +1343,7 @@ To make the `ComplexDataModel` migration work with existing data:
 * Change the code to give the new column (`DepartmentID`) a default value.
 * Create a fake department named "Temp" to act as the default department.
 
-#### Fix the foreign key constraints
+#### Fix the foreign key constraints 2.1
 
 Update the `ComplexDataModel` classes `Up` method:
 
@@ -1365,7 +1365,7 @@ A production app would:
 
 The next tutorial covers related data.
 
-## Additional resources
+## Additional resources 2.1
 
 * [YouTube version of this tutorial(Part 1)](https://www.youtube.com/watch?v=0n2f0ObgCoA)
 * [YouTube version of this tutorial(Part 2)](https://www.youtube.com/watch?v=Je0Z5K1TNmY)

@@ -17,15 +17,15 @@ By [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com
 
 In this tutorial, the scaffolded CRUD (create, read, update, delete) code is reviewed and customized.
 
-## No repository 3.1
+## No repository
 
 Some developers use a service layer or repository pattern to create an abstraction layer between the UI (Razor Pages) and the data access layer. This tutorial doesn't do that. To minimize complexity and keep the tutorial focused on EF Core, EF Core code is added directly to the page model classes. 
 
-## Update the Details page 3.1
+## Update the Details page
 
 The scaffolded code for the Students pages doesn't include enrollment data. In this section, you add enrollments to the Details page.
 
-### Read enrollments 3.1
+### Read enrollments
 
 To display a student's enrollment data on the page, you need to read it. The scaffolded code in *Pages/Students/Details.cshtml.cs* reads only the Student data, without the Enrollment data:
 
@@ -39,7 +39,7 @@ The [Include](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryable
 
 The [AsNoTracking](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.asnotracking#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_AsNoTracking__1_System_Linq_IQueryable___0__) method improves performance in scenarios where the entities returned are not updated in the current context. `AsNoTracking` is discussed later in this tutorial.
 
-### Display enrollments 3.1
+### Display enrollments
 
 Replace the code in *Pages/Students/Details.cshtml* with the following code to display a list of enrollments. The changes are highlighted.
 
@@ -49,18 +49,18 @@ The preceding code loops through the entities in the `Enrollments` navigation pr
 
 Run the app, select the **Students** tab, and click the **Details** link for a student. The list of courses and grades for the selected student is displayed.
 
-### Ways to read one entity 3.1
+### Ways to read one entity
 
 The generated code uses [FirstOrDefaultAsync](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.firstordefaultasync#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_FirstOrDefaultAsync__1_System_Linq_IQueryable___0__System_Threading_CancellationToken_) to read one entity. This method returns null if nothing is found; otherwise, it returns the first row found that satisfies the query filter criteria. `FirstOrDefaultAsync` is generally a better choice than the following alternatives:
 
 * [SingleOrDefaultAsync](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.singleordefaultasync#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_SingleOrDefaultAsync__1_System_Linq_IQueryable___0__System_Linq_Expressions_Expression_System_Func___0_System_Boolean___System_Threading_CancellationToken_) - Throws an exception if there's more than one entity that satisfies the query filter. To determine if more than one row could be returned by the query, `SingleOrDefaultAsync` tries to fetch multiple rows. This extra work is unnecessary if the query can only return one entity, as when it searches on a unique key.
 * [FindAsync](/dotnet/api/microsoft.entityframeworkcore.dbcontext.findasync#Microsoft_EntityFrameworkCore_DbContext_FindAsync_System_Type_System_Object___) - Finds an entity with the primary key (PK). If an entity with the PK is being tracked by the context, it's returned without a request to the database. This method is optimized to look up a single entity, but you can't call `Include` with `FindAsync`.  So if related data is needed, `FirstOrDefaultAsync` is the better choice.
 
-### Route data vs. query string 3.1
+### Route data vs. query string
 
 The URL for the Details page is `https://localhost:<port>/Students/Details?id=1`. The entity's primary key value is in the query string. Some developers prefer to pass the key value in route data: `https://localhost:<port>/Students/Details/1`. For more information, see [Update the generated code](xref:tutorials/razor-pages/da1#update-the-generated-code).
 
-## Update the Create page 3.1
+## Update the Create page
 
 The scaffolded `OnPostAsync` code for the Create page is vulnerable to [overposting](#overposting). Replace the `OnPostAsync` method in *Pages/Students/Create.cshtml.cs* with the following code.
 
@@ -68,7 +68,7 @@ The scaffolded `OnPostAsync` code for the Create page is vulnerable to [overpost
 
 <a name="TryUpdateModelAsync"></a>
 
-### TryUpdateModelAsync 3.1
+### TryUpdateModelAsync
 
 The preceding code creates a Student object and then uses posted form fields to update the Student object's properties. The [TryUpdateModelAsync](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.tryupdatemodelasync#Microsoft_AspNetCore_Mvc_ControllerBase_TryUpdateModelAsync_System_Object_System_Type_System_String_) method:
 
@@ -79,7 +79,7 @@ The preceding code creates a Student object and then uses posted form fields to 
 
 Run the app, and create a student entity to test the Create page.
 
-## Overposting 3.1
+## Overposting
 
 Using `TryUpdateModel` to update fields with posted values is a security best practice because it prevents overposting. For example, suppose the Student entity includes a `Secret` property that this web page shouldn't update or add:
 
@@ -93,7 +93,7 @@ Whatever value the hacker specified for the `Secret` form field is updated in th
 
 The value "OverPost" is successfully added to the `Secret` property of the inserted row. That happens even though the app designer never intended the `Secret` property to be set with the Create page.
 
-### View model 3.1
+### View model
 
 View models provide an alternative way to prevent overposting.
 
@@ -113,7 +113,7 @@ The [SetValues](/dotnet/api/microsoft.entityframeworkcore.changetracking.propert
 
 Using `StudentVM` requires [Create.cshtml](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu30snapshots/2-crud/Pages/Students/CreateVM.cshtml) be updated to use `StudentVM` rather than `Student`.
 
-## Update the Edit page 3.1
+## Update the Edit page
 
 In *Pages/Students/Edit.cshtml.cs*, replace the `OnGetAsync` and `OnPostAsync` methods with the following code.
 
@@ -127,7 +127,7 @@ The code changes are similar to the Create page with a few exceptions:
 
 Run the app, and test it by creating and editing a student.
 
-## Entity States 3.1
+## Entity States
 
 The database context keeps track of whether entities in memory are in sync with their corresponding rows in the database. This tracking information determines what happens when [SaveChangesAsync](/dotnet/api/microsoft.entityframeworkcore.dbcontext.savechangesasync#Microsoft_EntityFrameworkCore_DbContext_SaveChangesAsync_System_Threading_CancellationToken_) is called. For example, when a new entity is passed to the [AddAsync](/dotnet/api/microsoft.entityframeworkcore.dbcontext.addasync) method, that entity's state is set to [Added](/dotnet/api/microsoft.entityframeworkcore.entitystate#Microsoft_EntityFrameworkCore_EntityState_Added). When `SaveChangesAsync` is called, the database context issues a SQL INSERT command.
 
@@ -147,7 +147,7 @@ In a desktop app, state changes are typically set automatically. An entity is re
 
 In a web app, the `DbContext` that reads an entity and displays the data is disposed after a page is rendered. When a page's `OnPostAsync` method is called, a new web request is made and with a new instance of the `DbContext`. Rereading the entity in that new context simulates desktop processing.
 
-## Update the Delete page 3.1
+## Update the Delete page
 
 In this section, you implement a custom error message when the call to `SaveChanges` fails.
 
@@ -168,7 +168,7 @@ Add an error message to the Delete Razor Page (*Pages/Students/Delete.cshtml*):
 
 Run the app and delete a student to test the Delete page.
 
-## Next steps 3.1
+## Next steps
 
 > [!div class="step-by-step"]
 > [Previous tutorial](xref:data/ef-rp/intro)
@@ -191,7 +191,7 @@ The scaffolded code uses the following pattern for Create, Edit, and Delete page
 
 The Index and Details pages get and display the requested data with the HTTP GET method `OnGetAsync`
 
-## SingleOrDefaultAsync vs. FirstOrDefaultAsync
+## SingleOrDefaultAsync vs. FirstOrDefaultAsync 2.1
 
 The generated code uses [FirstOrDefaultAsync](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.firstordefaultasync#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_FirstOrDefaultAsync__1_System_Linq_IQueryable___0__System_Threading_CancellationToken_), which is generally preferred over [SingleOrDefaultAsync](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.singleordefaultasync#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_SingleOrDefaultAsync__1_System_Linq_IQueryable___0__System_Linq_Expressions_Expression_System_Func___0_System_Boolean___System_Threading_CancellationToken_).
 
@@ -204,7 +204,7 @@ The generated code uses [FirstOrDefaultAsync](/dotnet/api/microsoft.entityframew
 
 <a name="FindAsync"></a>
 
-### FindAsync
+### FindAsync 2.1
 
 In much of the scaffolded code, [FindAsync](/dotnet/api/microsoft.entityframeworkcore.dbcontext.findasync#Microsoft_EntityFrameworkCore_DbContext_FindAsync_System_Type_System_Object___) can be used in place of `FirstOrDefaultAsync`.
 
@@ -218,7 +218,7 @@ In much of the scaffolded code, [FindAsync](/dotnet/api/microsoft.entityframewor
 
 But if you want to `Include` other entities, then `FindAsync` is no longer appropriate. This means that you may need to abandon `FindAsync` and move to a query as your app progresses.
 
-## Customize the Details page
+## Customize the Details page 2.1
 
 Browse to `Pages/Students` page. The **Edit**, **Details**, and **Delete** links are generated by the [Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper)
 in the *Pages/Students/Index.cshtml* file.
@@ -241,7 +241,7 @@ Don't globally change `@page` to `@page "{id:int}"`, doing so breaks the links t
 
 <!-- See https://github.com/aspnet/Scaffolding/issues/590 -->
 
-### Add related data
+### Add related data 2.1
 
 The scaffolded code for the Students Index page doesn't include the `Enrollments` property. In this section, the contents of the `Enrollments` collection is displayed in the Details page.
 
@@ -253,7 +253,7 @@ The [Include](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryable
 
 The [AsNoTracking](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.asnotracking#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_AsNoTracking__1_System_Linq_IQueryable___0__) method improves performance in scenarios when the entities returned are not updated in the current context. `AsNoTracking` is discussed later in this tutorial.
 
-### Display related enrollments on the Details page
+### Display related enrollments on the Details page 2.1
 
 Open *Pages/Students/Details.cshtml*. Add the following highlighted code to display a list of enrollments:
 
@@ -265,7 +265,7 @@ The preceding code loops through the entities in the `Enrollments` navigation pr
 
 Run the app, select the **Students** tab, and click the **Details** link for a student. The list of courses and grades for the selected student is displayed.
 
-## Update the Create page
+## Update the Create page 2.1
 
 Update the `OnPostAsync` method in *Pages/Students/Create.cshtml.cs* with the following code:
 
@@ -273,7 +273,7 @@ Update the `OnPostAsync` method in *Pages/Students/Create.cshtml.cs* with the fo
 
 <a name="TryUpdateModelAsync"></a>
 
-### TryUpdateModelAsync
+### TryUpdateModelAsync 2.1
 
 Examine the [TryUpdateModelAsync](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.tryupdatemodelasync#Microsoft_AspNetCore_Mvc_ControllerBase_TryUpdateModelAsync_System_Object_System_Type_System_String_) code:
 
@@ -288,7 +288,7 @@ In the preceding sample:
 
 <a id="overpost"></a>
 
-### Overposting
+### Overposting 2.1
 
 Using `TryUpdateModel` to update fields with posted values is a security best practice because it prevents overposting. For example, suppose the Student entity includes a `Secret` property that this web page shouldn't update or add:
 
@@ -304,7 +304,7 @@ The value "OverPost" is successfully added to the `Secret` property of the inser
 
 <a name="vm"></a>
 
-### View model
+### View model 2.1
 
 A view model typically contains a subset of the properties included in the model used by the application. The application model is often called the domain model. The domain model typically contains all the properties required by the corresponding entity in the DB. The view model contains only the properties needed for the UI layer (for example, the Create page). In addition to the view model, some apps use a binding model or input model to pass data between the Razor Pages page model class and the browser. Consider the following `Student` view model:
 
@@ -322,7 +322,7 @@ Using `StudentVM` requires [CreateVM.cshtml](https://github.com/dotnet/AspNetCor
 
 In Razor Pages, the `PageModel` derived class is the view model.
 
-## Update the Edit page
+## Update the Edit page 2.1
 
 Update the page model for the Edit page. The major changes are highlighted:
 
@@ -334,11 +334,11 @@ The code changes are similar to the Create page with a few exceptions:
 * The current student is fetched from the DB, rather than creating an empty student.
 * `FirstOrDefaultAsync` has been replaced with [FindAsync](/dotnet/api/microsoft.entityframeworkcore.dbset-1.findasync). `FindAsync` is a good choice when selecting an entity from the primary key. See [FindAsync](#FindAsync) for more information.
 
-### Test the Edit and Create pages
+### Test the Edit and Create pages 2.1
 
 Create and edit a few student entities.
 
-## Entity States
+## Entity States 2.1
 
 The DB context keeps track of whether entities in memory are in sync with their corresponding rows in the DB. The DB context sync information determines what happens when [SaveChangesAsync](/dotnet/api/microsoft.entityframeworkcore.dbcontext.savechangesasync#Microsoft_EntityFrameworkCore_DbContext_SaveChangesAsync_System_Threading_CancellationToken_) is called. For example, when a new entity is passed to the [AddAsync](/dotnet/api/microsoft.entityframeworkcore.dbcontext.addasync) method, that entity's state is set to [Added](/dotnet/api/microsoft.entityframeworkcore.entitystate#Microsoft_EntityFrameworkCore_EntityState_Added). When `SaveChangesAsync` is called, the DB context issues a SQL INSERT command.
 
@@ -358,7 +358,7 @@ In a desktop app, state changes are typically set automatically. An entity is re
 
 In a web app, the `DbContext` that reads an entity and displays the data is disposed after a page is rendered. When a page's `OnPostAsync` method is called, a new web request is made and with a new instance of the `DbContext`. Re-reading the entity in that new context simulates desktop processing.
 
-## Update the Delete page
+## Update the Delete page 2.1
 
 In this section, code is added to implement a custom error message when the call to `SaveChanges` fails. Add a string to contain possible error messages:
 
@@ -370,7 +370,7 @@ Replace the `OnGetAsync` method with the following code:
 
 The preceding code contains the optional parameter `saveChangesError`. `saveChangesError` indicates whether the method was called after a failure to delete the student object. The delete operation might fail because of transient network problems. Transient network errors are more likely in the cloud. `saveChangesError`is false when the Delete page `OnGetAsync` is called from the UI. When `OnGetAsync` is called by `OnPostAsync` (because the delete operation failed), the `saveChangesError` parameter is true.
 
-### The Delete pages OnPostAsync method
+### The Delete pages OnPostAsync method 2.1
 
 Replace the `OnPostAsync` with the following code:
 
@@ -381,7 +381,7 @@ The preceding code retrieves the selected entity, then calls the [Remove](/dotne
 * The DB exception is caught.
 * The Delete pages `OnGetAsync` method is called with `saveChangesError=true`.
 
-### Update the Delete Razor Page
+### Update the Delete Razor Page 2.1
 
 Add the following highlighted error message to the Delete Razor Page.
 <!--
@@ -391,7 +391,7 @@ Add the following highlighted error message to the Delete Razor Page.
 
 Test Delete.
 
-## Common errors
+## Common errors 2.1
 
 Students/Index or other links don't work:
 
@@ -405,7 +405,7 @@ Each Razor Page must include the `@page` directive.
 
 
 
-## Additional resources
+## Additional resources 2.1
 
 * [YouTube version of this tutorial](https://www.youtube.com/watch?v=K4X1MT2jt6o)
 

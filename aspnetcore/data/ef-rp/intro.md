@@ -19,7 +19,7 @@ This is the first in a series of tutorials that show how to use Entity Framework
 
 [Download or view the completed app.](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples) [Download instructions](xref:index#how-to-download-a-sample).
 
-## Prerequisites 3.1
+## Prerequisites
 
 * If you're new to Razor Pages, go through the [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start) tutorial series before starting this one.
 
@@ -33,7 +33,7 @@ This is the first in a series of tutorials that show how to use Entity Framework
 
 ---
 
-## Database engines 3.1
+## Database engines
 
 The Visual Studio instructions use [SQL Server LocalDB](/sql/database-engine/configure-windows/sql-server-2016-express-localdb), a version of SQL Server Express that runs only on Windows.
 
@@ -41,11 +41,11 @@ The Visual Studio Code instructions use [SQLite](https://www.sqlite.org/), a cro
 
 If you choose to use SQLite, download and install a third-party tool for managing and viewing a SQLite database, such as [DB Browser for SQLite](https://sqlitebrowser.org/).
 
-## Troubleshooting 3.1
+## Troubleshooting
 
 If you run into a problem you can't resolve, compare your code to the [completed project](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples). A good way to get help is by posting a question to StackOverflow.com, using the [ASP.NET Core tag](https://stackoverflow.com/questions/tagged/asp.net-core) or the [EF Core tag](https://stackoverflow.com/questions/tagged/entity-framework-core).
 
-## The sample app 3.1
+## The sample app
 
 The app built in these tutorials is a basic university web site. Users can view and update student, course, and instructor information. Here are a few of the screens created in the tutorial.
 
@@ -97,7 +97,7 @@ To run the app after downloading the completed project:
 
 ---
 
-## Create the web app project 3.1
+## Create the web app project
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -119,7 +119,7 @@ To run the app after downloading the completed project:
 
 ---
 
-## Set up the site style 3.1
+## Set up the site style
 
 Set up the site header, footer, and menu by updating *Pages/Shared/_Layout.cshtml*:
 
@@ -137,7 +137,7 @@ In *Pages/Index.cshtml*, replace the contents of the file with the following cod
 
 Run the app to verify that the home page appears.
 
-## The data model 3.1
+## The data model
 
 The following sections create a data model:
 
@@ -145,7 +145,7 @@ The following sections create a data model:
 
 A student can enroll in any number of courses, and a course can have any number of students enrolled in it.
 
-## The Student entity 3.1
+## The Student entity
 
 ![Student entity diagram](intro/_static/student-entity.png)
 
@@ -163,7 +163,7 @@ In the database, an Enrollment row is related to a Student row if its StudentID 
 
 The `Enrollments` property is defined as `ICollection<Enrollment>` because there may be multiple related Enrollment entities. You can use other collection types, such as `List<Enrollment>` or `HashSet<Enrollment>`. When `ICollection<Enrollment>` is used, EF Core creates a `HashSet<Enrollment>` collection by default.
 
-## The Enrollment entity 3.1
+## The Enrollment entity
 
 ![Enrollment entity diagram](intro/_static/enrollment-entity.png)
 
@@ -181,7 +181,7 @@ The `CourseID` property is a foreign key, and the corresponding navigation prope
 
 EF Core interprets a property as a foreign key if it's named `<navigation property name><primary key property name>`. For example,`StudentID` is the foreign key for the `Student` navigation property, since the `Student` entity's primary key is `ID`. Foreign key properties can also be named `<primary key property name>`. For example, `CourseID` since the `Course` entity's primary key is `CourseID`.
 
-## The Course entity 3.1
+## The Course entity
 
 ![Course entity diagram](intro/_static/course-entity.png)
 
@@ -195,7 +195,7 @@ The `DatabaseGenerated` attribute allows the app to specify the primary key rath
 
 Build the project to validate that there are no compiler errors.
 
-## Scaffold Student pages 3.1
+## Scaffold Student pages
 
 In this section, you use the ASP.NET Core scaffolding tool to generate:
 
@@ -276,7 +276,7 @@ The scaffolding process:
 * Adds the context to dependency injection in *Startup.cs*.
 * Adds a database connection string to *appsettings.json*.
 
-## Database connection string 3.1
+## Database connection string
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -294,7 +294,7 @@ Change the connection string to point to a SQLite database file named *CU.db*:
 
 ---
 
-## Update the database context class 3.1
+## Update the database context class
 
 The main class that coordinates EF Core functionality for a given data model is the database context class. The context is derived from [Microsoft.EntityFrameworkCore.DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext). The context specifies which entities are included in the data model. In this project, the class is named `SchoolContext`.
 
@@ -313,7 +313,7 @@ To make the Razor Pages code match the new DBSet name, make a global change acro
 
 Build the project to verify there are no compiler errors.
 
-## Startup.cs 3.1
+## Startup.cs
 
 ASP.NET Core is built with [dependency injection](xref:fundamentals/dependency-injection). Services (such as the EF Core database context) are registered with dependency injection during application startup. Components that require these services (such as Razor Pages) are provided these services via constructor parameters. The constructor code that gets a database context instance is shown later in the tutorial.
 
@@ -335,7 +335,7 @@ The scaffolding tool automatically registered the context class with the depende
 
 The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions) object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.
 
-## Create the database 3.1
+## Create the database
 
 Update *Program.cs* to create the database if it doesn't exist:
 
@@ -352,13 +352,13 @@ This workflow works well early in development when the schema is rapidly evolvin
 
 Later in the tutorial series, you delete the database that was created by `EnsureCreated` and use migrations instead. A database that is created by `EnsureCreated` can't be updated by using migrations.
 
-### Test the app 3.1
+### Test the app
 
 * Run the app.
 * Select the **Students** link and then **Create New**.
 * Test the Edit, Details, and Delete links.
 
-## Seed the database 3.1
+## Seed the database
 
 The `EnsureCreated` method creates an empty database. This section adds code that populates the database with test data.
 
@@ -393,7 +393,7 @@ Drop-Database
 
 * Select the Students page to see the seeded data.
 
-## View the database 3.1
+## View the database
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -409,7 +409,7 @@ Use your SQLite tool to view the database schema and seeded data. The database f
 
 ---
 
-## Asynchronous code 3.1
+## Asynchronous code
 
 Asynchronous programming is the default mode for ASP.NET Core and EF Core.
 
@@ -441,7 +441,7 @@ Some things to be aware of when writing asynchronous code that uses EF Core:
 
 For more information about asynchronous programming in .NET, see [Async Overview](/dotnet/standard/async) and [Asynchronous programming with async and await](/dotnet/csharp/programming-guide/concepts/async/).
 
-## Next steps 3.1
+## Next steps
 
 > [!div class="step-by-step"]
 > [Next tutorial](xref:data/ef-rp/crud)
@@ -456,7 +456,7 @@ The sample app is a web site for a fictional Contoso University. It includes fun
 
 [Download or view the completed app.](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples) [Download instructions](xref:index#how-to-download-a-sample).
 
-## Prerequisites
+## Prerequisites 2.1
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -470,11 +470,11 @@ The sample app is a web site for a fictional Contoso University. It includes fun
 
 Familiarity with [Razor Pages](xref:razor-pages/index). New programmers should complete [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start) before starting this series.
 
-## Troubleshooting
+## Troubleshooting 2.1
 
 If you run into a problem you can't resolve, you can generally find the solution by comparing your code to the [completed project](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples). A good way to get help is by posting a question to [StackOverflow.com](https://stackoverflow.com/questions/tagged/asp.net-core) for [ASP.NET Core](https://stackoverflow.com/questions/tagged/asp.net-core) or [EF Core](https://stackoverflow.com/questions/tagged/entity-framework-core).
 
-## The Contoso University web app
+## The Contoso University web app 2.1
 
 The app built in these tutorials is a basic university web site.
 
@@ -486,7 +486,7 @@ Users can view and update student, course, and instructor information. Here are 
 
 The UI style of this site is close to what's generated by the built-in templates. The tutorial focus is on EF Core with Razor Pages, not the UI.
 
-## Create the ContosoUniversity Razor Pages web app
+## Create the ContosoUniversity Razor Pages web app 2.1
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -507,7 +507,7 @@ dotnet run
 
 ---
 
-## Set up the site style
+## Set up the site style 2.1
 
 A few changes set up the site menu, layout, and home page. Update *Pages/Shared/_Layout.cshtml* with the following changes:
 
@@ -523,7 +523,7 @@ In *Pages/Index.cshtml*, replace the contents of the file with the following cod
 
 [!code-cshtml[](intro/samples/cu21/Pages/Index.cshtml)]
 
-## Create the data model
+## Create the data model 2.1
 
 Create entity classes for the Contoso University app. Start with the following three entities:
 
@@ -533,7 +533,7 @@ There's a one-to-many relationship between `Student` and `Enrollment` entities. 
 
 In the following sections, a class for each one of these entities is created.
 
-### The Student entity
+### The Student entity 2.1
 
 ![Student entity diagram](intro/_static/student-entity.png)
 
@@ -547,7 +547,7 @@ The `Enrollments` property is a [navigation property](/ef/core/modeling/relation
 
 If a navigation property can hold multiple entities, the navigation property must be a list type, such as `ICollection<T>`. `ICollection<T>` can be specified, or a type such as `List<T>` or `HashSet<T>`. When `ICollection<T>` is used, EF Core creates a `HashSet<T>` collection by default. Navigation properties that hold multiple entities come from many-to-many and one-to-many relationships.
 
-### The Enrollment entity
+### The Enrollment entity 2.1
 
 ![Enrollment entity diagram](intro/_static/enrollment-entity.png)
 
@@ -565,7 +565,7 @@ The `CourseID` property is a foreign key, and the corresponding navigation prope
 
 EF Core interprets a property as a foreign key if it's named `<navigation property name><primary key property name>`. For example,`StudentID` for the `Student` navigation property, since the `Student` entity's primary key is `ID`. Foreign key properties can also be named `<primary key property name>`. For example, `CourseID` since the `Course` entity's primary key is `CourseID`.
 
-### The Course entity
+### The Course entity 2.1
 
 ![Course entity diagram](intro/_static/course-entity.png)
 
@@ -577,7 +577,7 @@ The `Enrollments` property is a navigation property. A `Course` entity can be re
 
 The `DatabaseGenerated` attribute allows the app to specify the primary key rather than having the DB generate it.
 
-## Scaffold the student model
+## Scaffold the student model 2.1
 
 In this section, the student model is scaffolded. That is, the scaffolding tool produces pages for Create, Read, Update, and Delete (CRUD) operations for the student model.
 
@@ -614,17 +614,17 @@ dotnet aspnet-codegenerator razorpage -m Student -dc ContosoUniversity.Models.Sc
 
 The scaffold process created and changed the following files:
 
-### Files created
+### Files created 2.1
 
 * *Pages/Students* Create, Delete, Details, Edit, Index.
 * *Data/SchoolContext.cs*
 
-### File updates
+### File updates 2.1
 
 * *Startup.cs* : Changes to this file are detailed in the next section.
 * *appsettings.json* : The connection string used to connect to a local database is added.
 
-## Examine the context registered with dependency injection
+## Examine the context registered with dependency injection 2.1
 
 ASP.NET Core is built with [dependency injection](xref:fundamentals/dependency-injection). Services (such as the EF Core DB context) are registered with dependency injection during application startup. Components that require these services (such as Razor Pages) are provided these services via constructor parameters. The constructor code that gets a db context instance is shown later in the tutorial.
 
@@ -636,7 +636,7 @@ Examine the `ConfigureServices` method in *Startup.cs*. The highlighted line was
 
 The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions) object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.
 
-## Update main
+## Update main 2.1
 
 In *Program.cs*, modify the `Main` method to do the following:
 
@@ -659,14 +659,14 @@ The following code shows the updated *Program.cs* file.
 
 `EnsureCreated` is convenient early in development when the schema is rapidly evolving. Later in the tutorial the DB is deleted and migrations are used.
 
-### Test the app
+### Test the app 2.1
 
 Run the app and accept the cookie policy. This app doesn't keep personal information. You can read about the cookie policy at [EU General Data Protection Regulation (GDPR) support](xref:security/gdpr).
 
 * Select the **Students** link and then **Create New**.
 * Test the Edit, Details, and Delete links.
 
-## Examine the SchoolContext DB context
+## Examine the SchoolContext DB context 2.1
 
 The main class that coordinates EF Core functionality for a given data model is the DB context class. The data context is derived from [Microsoft.EntityFrameworkCore.DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext). The data context specifies which entities are included in the data model. In this project, the class is named `SchoolContext`.
 
@@ -681,11 +681,11 @@ The highlighted code creates a [DbSet\<TEntity>](/dotnet/api/microsoft.entityfra
 
 `DbSet<Enrollment>` and `DbSet<Course>` could be omitted. EF Core includes them implicitly because the `Student` entity references the `Enrollment` entity, and the `Enrollment` entity references the `Course` entity. For this tutorial, keep `DbSet<Enrollment>` and `DbSet<Course>` in the `SchoolContext`.
 
-### SQL Server Express LocalDB
+### SQL Server Express LocalDB 2.1
 
 The connection string specifies [SQL Server LocalDB](/sql/database-engine/configure-windows/sql-server-2016-express-localdb). LocalDB is a lightweight version of the SQL Server Express Database Engine and is intended for app development, not production use. LocalDB starts on demand and runs in user mode, so there's no complex configuration. By default, LocalDB creates *.mdf* DB files in the `C:/Users/<user>` directory.
 
-## Add code to initialize the DB with test data
+## Add code to initialize the DB with test data 2.1
 
 EF Core creates an empty DB. In this section, an `Initialize` method is written to populate it with test data.
 
@@ -717,7 +717,7 @@ Drop-Database
 
 ---
 
-## View the DB
+## View the DB 2.1
 
 The database name is generated from the context name you provided earlier plus a dash and a GUID. Thus, the database name will be "SchoolContext-{GUID}". The GUID will be different for each user.
 Open **SQL Server Object Explorer** (SSOX) from the **View** menu in Visual Studio.
@@ -727,7 +727,7 @@ Expand the **Tables** node.
 
 Right-click the **Student** table and click **View Data** to see the columns created and the rows inserted into the table.
 
-## Asynchronous code
+## Asynchronous code 2.1
 
 Asynchronous programming is the default mode for ASP.NET Core and EF Core.
 
@@ -759,7 +759,7 @@ In the next tutorial, basic CRUD (create, read, update, delete) operations are e
 
 
 
-## Additional resources
+## Additional resources 2.1
 
 * [YouTube version of this tutorial](https://www.youtube.com/watch?v=P7iTtQnkrNs)
 
