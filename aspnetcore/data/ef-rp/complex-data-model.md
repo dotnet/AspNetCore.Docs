@@ -55,7 +55,7 @@ The preceding code adds a `FullName` property and adds the following attributes 
 
 For student enrollment dates, all of the pages currently display the time of day along with the date, although only the date is relevant. By using data annotation attributes, you can make one code change that will fix the display format in every page that shows the data. 
 
-The [DataType](/dotnet/api/system.componentmodel.dataannotations.datatypeattribute?view=netframework-4.7.1) attribute specifies a data type that's more specific than the database intrinsic type. In this case only the date should be displayed, not the date and time. The [DataType Enumeration](/dotnet/api/system.componentmodel.dataannotations.datatype?view=netframework-4.7.1) provides for many data types, such as Date, Time, PhoneNumber, Currency, EmailAddress, etc. The `DataType` attribute can also enable the app to automatically provide type-specific features. For example:
+The [DataType](/dotnet/api/system.componentmodel.dataannotations.datatypeattribute?view=netframework-4.7.1&preserve-view=true) attribute specifies a data type that's more specific than the database intrinsic type. In this case only the date should be displayed, not the date and time. The [DataType Enumeration](/dotnet/api/system.componentmodel.dataannotations.datatype?view=netframework-4.7.1&preserve-view=true) provides for many data types, such as Date, Time, PhoneNumber, Currency, EmailAddress, etc. The `DataType` attribute can also enable the app to automatically provide type-specific features. For example:
 
 * The `mailto:` link is automatically created for `DataType.EmailAddress`.
 * The date selector is provided for `DataType.Date` in most browsers.
@@ -85,11 +85,11 @@ For more information, see the [\<input> Tag Helper documentation](xref:mvc/views
 [StringLength(50, ErrorMessage = "First name cannot be longer than 50 characters.")]
 ```
 
-Data validation rules and validation error messages can be specified with attributes. The [StringLength](/dotnet/api/system.componentmodel.dataannotations.stringlengthattribute?view=netframework-4.7.1) attribute specifies the minimum and maximum length of characters that are allowed in a data field. The code shown limits names to no more than 50 characters. An example that sets the minimum string length is shown [later](#the-required-attribute).
+Data validation rules and validation error messages can be specified with attributes. The [StringLength](/dotnet/api/system.componentmodel.dataannotations.stringlengthattribute?view=netframework-4.7.1&preserve-view=true) attribute specifies the minimum and maximum length of characters that are allowed in a data field. The code shown limits names to no more than 50 characters. An example that sets the minimum string length is shown [later](#the-required-attribute).
 
 The `StringLength` attribute also provides client-side and server-side validation. The minimum value has no impact on the database schema.
 
-The `StringLength` attribute doesn't prevent a user from entering white space for a name. The [RegularExpression](/dotnet/api/system.componentmodel.dataannotations.regularexpressionattribute?view=netframework-4.7.1) attribute can be used to apply restrictions to the input. For example, the following code requires the first character to be upper case and the remaining characters to be alphabetical:
+The `StringLength` attribute doesn't prevent a user from entering white space for a name. The [RegularExpression](/dotnet/api/system.componentmodel.dataannotations.regularexpressionattribute?view=netframework-4.7.1&preserve-view=true) attribute can be used to apply restrictions to the input. For example, the following code requires the first character to be upper case and the remaining characters to be alphabetical:
 
 ```csharp
 [RegularExpression(@"^[A-Z]+[a-zA-Z]*$")]
@@ -728,7 +728,7 @@ The previous tutorials worked with a basic data model that was composed of three
 
 The entity classes for the completed data model are shown in the following illustration:
 
-![Entity diagram](complex-data-model/_static/diagram.png)
+![Entity diagram v-2.1](complex-data-model/_static/diagram.png)
 
 If you run into problems you can't solve, download the [completed app](
 https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples).
@@ -745,7 +745,7 @@ Update *Models/Student.cs* with the following highlighted code:
 
 [!code-csharp[](intro/samples/cu21/Models/Student.cs?name=snippet_DataType&highlight=3,12-13)]
 
-The [DataType](/dotnet/api/system.componentmodel.dataannotations.datatypeattribute?view=netframework-4.7.1) attribute specifies a data type that's more specific than the database intrinsic type. In this case only the date should be displayed, not the date and time. The [DataType Enumeration](/dotnet/api/system.componentmodel.dataannotations.datatype?view=netframework-4.7.1) provides for many data types, such as Date, Time, PhoneNumber, Currency, EmailAddress, etc. The `DataType` attribute can also enable the app to automatically provide type-specific features. For example:
+The [DataType](/dotnet/api/system.componentmodel.dataannotations.datatypeattribute?view=netframework-4.7.1&preserve-view=true) attribute specifies a data type that's more specific than the database intrinsic type. In this case only the date should be displayed, not the date and time. The [DataType Enumeration](/dotnet/api/system.componentmodel.dataannotations.datatype?view=netframework-4.7.1&preserve-view=true) provides for many data types, such as Date, Time, PhoneNumber, Currency, EmailAddress, etc. The `DataType` attribute can also enable the app to automatically provide type-specific features. For example:
 
 * The `mailto:` link is automatically created for `DataType.EmailAddress`.
 * The date selector is provided for `DataType.Date` in most browsers.
@@ -771,18 +771,18 @@ For more information, see the [\<input> Tag Helper documentation](xref:mvc/views
 
 Run the app. Navigate to the Students Index page. Times are no longer displayed. Every view that uses the `Student` model displays the date without time.
 
-![Students index page showing dates without times](complex-data-model/_static/dates-no-times.png)
+![Students index page showing dates without times v-2.1](complex-data-model/_static/dates-no-times.png)
 
 ### The StringLength attribute 2.1
 
-Data validation rules and validation error messages can be specified with attributes. The [StringLength](/dotnet/api/system.componentmodel.dataannotations.stringlengthattribute?view=netframework-4.7.1) attribute specifies the minimum and maximum length of characters that are allowed in a data field. The `StringLength` attribute
+Data validation rules and validation error messages can be specified with attributes. The [StringLength](/dotnet/api/system.componentmodel.dataannotations.stringlengthattribute?view=netframework-4.7.1&preserve-view=true) attribute specifies the minimum and maximum length of characters that are allowed in a data field. The `StringLength` attribute
 also provides client-side and server-side validation. The minimum value has no impact on the database schema.
 
 Update the `Student` model with the following code:
 
 [!code-csharp[](intro/samples/cu21/Models/Student.cs?name=snippet_StringLength&highlight=10,12)]
 
-The preceding code limits names to no more than 50 characters. The `StringLength` attribute doesn't prevent a user from entering white space for a name. The [RegularExpression](/dotnet/api/system.componentmodel.dataannotations.regularexpressionattribute?view=netframework-4.7.1) attribute is used to apply restrictions to the input. For example, the following code requires the first character to be upper case and the remaining characters to be alphabetical:
+The preceding code limits names to no more than 50 characters. The `StringLength` attribute doesn't prevent a user from entering white space for a name. The [RegularExpression](/dotnet/api/system.componentmodel.dataannotations.regularexpressionattribute?view=netframework-4.7.1&preserve-view=true) attribute is used to apply restrictions to the input. For example, the following code requires the first character to be upper case and the remaining characters to be alphabetical:
 
 ```csharp
 [RegularExpression(@"^[A-Z]+[a-zA-Z]*$")]
@@ -794,11 +794,11 @@ Run the app:
 * Select **Create New**, and enter a name longer than 50 characters.
 * Select **Create**, client-side validation shows an error message.
 
-![Students index page showing string length errors](complex-data-model/_static/string-length-errors.png)
+![Students index page showing string length errors v-2.1](complex-data-model/_static/string-length-errors.png)
 
 In **SQL Server Object Explorer** (SSOX), open the Student table designer by double-clicking the **Student** table.
 
-![Students table in SSOX before migrations](complex-data-model/_static/ssox-before-migration.png)
+![Students table in SSOX before migrations v-2.1](complex-data-model/_static/ssox-before-migration.png)
 
 The preceding image shows the schema for the `Student` table. The name fields have type `nvarchar(MAX)` because migrations has not been run on the DB. When migrations are run later in this tutorial, the name fields become `nvarchar(50)`.
 
@@ -856,7 +856,7 @@ The warning is generated because the name fields are now limited to 50 character
 
 Open the Student table in SSOX:
 
-![Students table in SSOX after migrations](complex-data-model/_static/ssox-after-migration.png)
+![Students table in SSOX after migrations v-2.1](complex-data-model/_static/ssox-after-migration.png)
 
 Before migration was applied, the name columns were of type [nvarchar(MAX)](/sql/t-sql/data-types/nchar-and-nvarchar-transact-sql). The name columns are now `nvarchar(50)`. The column name has changed from `FirstMidName` to `FirstName`.
 
@@ -865,7 +865,7 @@ Before migration was applied, the name columns were of type [nvarchar(MAX)](/sql
 
 ## Student entity update 2.1
 
-![Student entity](complex-data-model/_static/student-entity.png)
+![Student entity v-2.1](complex-data-model/_static/student-entity.png)
 
 Update *Models/Student.cs* with the following code:
 
@@ -893,7 +893,7 @@ The `Display` attribute specifies that the caption for the text boxes should be 
 
 ## Create the Instructor Entity 2.1
 
-![Instructor entity](complex-data-model/_static/instructor-entity.png)
+![Instructor entity v-2.1](complex-data-model/_static/instructor-entity.png)
 
 Create *Models/Instructor.cs* with the following code:
 
@@ -937,7 +937,7 @@ public OfficeAssignment OfficeAssignment { get; set; }
 
 ## Create the OfficeAssignment entity 2.1
 
-![OfficeAssignment entity](complex-data-model/_static/officeassignment-entity.png)
+![OfficeAssignment entity v-2.1](complex-data-model/_static/officeassignment-entity.png)
 
 Create *Models/OfficeAssignment.cs* with the following code:
 
@@ -985,7 +985,7 @@ The preceding code specifies that there must be a related instructor. The preced
 
 ## Modify the Course Entity 2.1
 
-![Course entity](complex-data-model/_static/course-entity.png)
+![Course entity v-2.1](complex-data-model/_static/course-entity.png)
 
 Update *Models/Course.cs* with the following code:
 
@@ -1044,7 +1044,7 @@ public ICollection<CourseAssignment> CourseAssignments { get; set; }
 
 ## Create the Department entity 2.1
 
-![Department entity](complex-data-model/_static/department-entity.png)
+![Department entity v-2.1](complex-data-model/_static/department-entity.png)
 
 Create *Models/Department.cs* with the following code:
 
@@ -1104,7 +1104,7 @@ The preceding code disables cascade delete on the department-instructor relation
 
 An enrollment record is for one course taken by one student.
 
-![Enrollment entity](complex-data-model/_static/enrollment-entity.png)
+![Enrollment entity v-2.1](complex-data-model/_static/enrollment-entity.png)
 
 Update *Models/Enrollment.cs* with the following code:
 
@@ -1134,7 +1134,7 @@ There's a many-to-many relationship between the `Student` and `Course` entities.
 
 The following illustration shows what these relationships look like in an entity diagram. (This diagram was generated using [EF Power Tools](https://marketplace.visualstudio.com/items?itemName=ErikEJ.EntityFramework6PowerToolsCommunityEdition) for EF 6.x. Creating the diagram isn't part of the tutorial.)
 
-![Student-Course many to many relationship](complex-data-model/_static/student-course.png)
+![Student-Course many to many relationship v-2.1](complex-data-model/_static/student-course.png)
 
 Each relationship line has a 1 at one end and an asterisk (*) at the other, indicating a one-to-many relationship.
 
@@ -1146,7 +1146,7 @@ Note: EF 6.x supports implicit join tables for many-to-many relationships, but E
 
 ## The CourseAssignment entity 2.1
 
-![CourseAssignment entity](complex-data-model/_static/courseassignment-entity.png)
+![CourseAssignment entity v-2.1](complex-data-model/_static/courseassignment-entity.png)
 
 Create *Models/CourseAssignment.cs* with the following code:
 
@@ -1154,7 +1154,7 @@ Create *Models/CourseAssignment.cs* with the following code:
 
 ### Instructor-to-Courses 2.1
 
-![Instructor-to-Courses m:M](complex-data-model/_static/courseassignment.png)
+![Instructor-to-Courses m:M v-2.1](complex-data-model/_static/courseassignment.png)
 
 The Instructor-to-Courses many-to-many relationship:
 
@@ -1222,7 +1222,7 @@ For more information about attributes vs. fluent API, see [Methods of configurat
 
 The following illustration shows the diagram that EF Power Tools create for the completed School model.
 
-![Entity diagram](complex-data-model/_static/diagram.png)
+![Entity diagram v-2.1](complex-data-model/_static/diagram.png)
 
 The preceding diagram shows:
 
@@ -1315,14 +1315,14 @@ Open the DB in SSOX:
 * If SSOX was opened previously, click the **Refresh** button.
 * Expand the **Tables** node. The created tables are displayed.
 
-![Tables in SSOX](complex-data-model/_static/ssox-tables.png)
+![Tables in SSOX v-2.1](complex-data-model/_static/ssox-tables.png)
 
 Examine the **CourseAssignment** table:
 
 * Right-click the **CourseAssignment** table and select **View Data**.
 * Verify the **CourseAssignment** table contains data.
 
-![CourseAssignment data in SSOX](complex-data-model/_static/ssox-ci-data.png)
+![CourseAssignment data in SSOX v-2.1](complex-data-model/_static/ssox-ci-data.png)
 
 <a name="applyexisting"></a>
 

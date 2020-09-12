@@ -334,9 +334,9 @@ If you run into problems you can't solve, [download or view the completed app.](
 
 The following illustrations show the completed pages for this tutorial:
 
-![Courses Index page](read-related-data/_static/courses-index.png)
+![Courses Index page v-2.1](read-related-data/_static/courses-index.png)
 
-![Instructors Index page](read-related-data/_static/instructors-index.png)
+![Instructors Index page v-2.1](read-related-data/_static/instructors-index.png)
 
 ## Eager, explicit, and lazy Loading of related data 2.1
 
@@ -374,7 +374,7 @@ To display the name of the assigned department in a list of courses:
 * Get the `Name` property from the `Department` entity.
 * The `Department` entity comes from the `Course.Department` navigation property.
 
-![Course.Department](read-related-data/_static/dep-crs.png)
+![Course.Department v-2.1](read-related-data/_static/dep-crs.png)
 
 <a name="scaffold"></a>
 
@@ -422,7 +422,7 @@ The following changes have been made to the scaffolded code:
 
 Run the app and select the **Courses** tab to see the list with department names.
 
-![Courses Index page](read-related-data/_static/courses-index.png)
+![Courses Index page v-2.1](read-related-data/_static/courses-index.png)
 
 <a name="select"></a>
 
@@ -449,7 +449,7 @@ See [IndexSelect.cshtml](https://github.com/dotnet/AspNetCore.Docs/tree/master/a
 In this section, the Instructors page is created.
 
 <a name="IP"></a>
-![Instructors Index page](read-related-data/_static/instructors-index.png)
+![Instructors Index page v-2.1](read-related-data/_static/instructors-index.png)
 
 This page reads and displays related data in the following ways:
 
@@ -570,7 +570,7 @@ The following code executes when an instructor is selected (`id != null`). The s
 
 The `Where` method returns a collection. In the preceding `Where` method, only a single `Instructor` entity is returned. The `Single` method converts the collection into a single `Instructor` entity. The `Instructor` entity provides access to the `CourseAssignments` property. `CourseAssignments` provides access to the related `Course` entities.
 
-![Instructor-to-Courses m:M](complex-data-model/_static/courseassignment.png)
+![Instructor-to-Courses m:M v-2.1](complex-data-model/_static/courseassignment.png)
 
 The `Single` method is used on a collection when the collection has only one item. The `Single` method throws an exception if the collection is empty or if there's more than one item. An alternative is `SingleOrDefault`, which returns a default value (null in this case) if the collection is empty. Using `SingleOrDefault` on an empty collection:
 
@@ -605,7 +605,7 @@ The preceding markup displays a list of the students who are enrolled in the sel
 
 Refresh the page and select an instructor. Select a course to see the list of enrolled students and their grades.
 
-![Instructors Index page instructor and course selected](read-related-data/_static/instructors-index.png)
+![Instructors Index page instructor and course selected v-2.1](read-related-data/_static/instructors-index.png)
 
 ## Using Single 2.1
 

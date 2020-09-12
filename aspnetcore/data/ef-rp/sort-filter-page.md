@@ -269,7 +269,7 @@ In this tutorial, sorting, filtering, grouping, and paging, functionality is add
 
 The following illustration shows a completed page. The column headings are clickable links to sort the column. Clicking a column heading repeatedly switches between ascending and descending sort order.
 
-![Students index page](sort-filter-page/_static/paging.png)
+![Students index page v-2.1](sort-filter-page/_static/paging.png)
 
 If you run into problems you can't solve, download the [completed app](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples).
 
@@ -404,7 +404,7 @@ Currently, when a column heading sort link is selected, the filter value from th
 
 In this section, a `PaginatedList` class is created to support paging. The `PaginatedList` class uses `Skip` and `Take` statements to filter data on the server instead of retrieving all rows of the table. The following illustration shows the paging buttons.
 
-![Students index page with paging links](sort-filter-page/_static/paging.png)
+![Students index page with paging links v-2.1](sort-filter-page/_static/paging.png)
 
 In the project folder, create `PaginatedList.cs` with the following code:
 
@@ -474,7 +474,7 @@ Run the app and navigate to the students page.
 * To make sure paging works, click the paging links in different sort orders.
 * To verify that paging works correctly with sorting and filtering, enter a search string and try paging.
 
-![students index page with paging links](sort-filter-page/_static/paging.png)
+![students index page with paging links v-2.1](sort-filter-page/_static/paging.png)
 
 To get a better understanding of the code:
 
@@ -519,7 +519,7 @@ Run the app and navigate to the About page. The count of students for each enrol
 
 If you run into problems you can't solve, download the [completed app for this stage](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/StageSnapShots/cu-part3-sorting).
 
-![About page](sort-filter-page/_static/about.png)
+![About page v-2.1](sort-filter-page/_static/about.png)
 
 ## Additional resources 2.1
 

@@ -298,7 +298,7 @@ Even if the app doesn't have a `Secret` field on the create/update Razor Page, a
 
 Whatever value the hacker specified for the `Secret` form field is updated in the DB. The following image shows the Fiddler tool adding the `Secret` field (with the value "OverPost") to the posted form values.
 
-![Fiddler adding Secret field](../ef-mvc/crud/_static/fiddler.png)
+![Fiddler adding Secret field v-2.1](../ef-mvc/crud/_static/fiddler.png)
 
 The value "OverPost" is successfully added to the `Secret` property of the inserted row. The app designer never intended the `Secret` property to be set with the Create page.
 
