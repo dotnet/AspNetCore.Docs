@@ -427,8 +427,8 @@ Optimistic concurrency includes the following options:
 
 When a property is configured as a [concurrency token](/ef/core/modeling/concurrency):
 
-* EF Core verifies that property has not been modified after it was fetched. The check occurs when [SaveChanges](/dotnet/api/microsoft.entityframeworkcore.dbcontext.savechanges?view=efcore-2.0#Microsoft_EntityFrameworkCore_DbContext_SaveChanges) or [SaveChangesAsync](/dotnet/api/microsoft.entityframeworkcore.dbcontext.savechangesasync?view=efcore-2.0#Microsoft_EntityFrameworkCore_DbContext_SaveChangesAsync_System_Threading_CancellationToken_) is called.
-* If the property has been changed after it was fetched, a [DbUpdateConcurrencyException](/dotnet/api/microsoft.entityframeworkcore.dbupdateconcurrencyexception?view=efcore-2.0) is thrown. 
+* EF Core verifies that property has not been modified after it was fetched. The check occurs when <xref:Microsoft.EntityFrameworkCore.DbContext.SaveChanges%2A> or <xref:Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync%2A>) is called.
+* If the property has been changed after it was fetched, a <xref:Microsoft.EntityFrameworkCore.DbUpdateConcurrencyException> is thrown.
 
 The DB and data model must be configured to support throwing `DbUpdateConcurrencyException`.
 
@@ -545,7 +545,7 @@ Update *Pages\Departments\Edit.cshtml.cs* with the following code:
 
 [!code-csharp[](intro/samples/cu/Pages/Departments/Edit.cshtml.cs?name=snippet)]
 
-To detect a concurrency issue, the [OriginalValue](/dotnet/api/microsoft.entityframeworkcore.changetracking.propertyentry.originalvalue?view=efcore-2.0#Microsoft_EntityFrameworkCore_ChangeTracking_PropertyEntry_OriginalValue) is updated with the `rowVersion` value from the entity it was fetched. EF Core generates a SQL UPDATE command with a WHERE clause containing the original `RowVersion` value. If no rows are affected by the UPDATE command (no rows have the original `RowVersion` value), a `DbUpdateConcurrencyException` exception is thrown.
+To detect a concurrency issue, the <xref:Microsoft.EntityFrameworkCore.ChangeTracking.PropertyEntry.OriginalValue> is updated with the `rowVersion` value from the entity it was fetched. EF Core generates a SQL UPDATE command with a WHERE clause containing the original `RowVersion` value. If no rows are affected by the UPDATE command (no rows have the original `RowVersion` value), a `DbUpdateConcurrencyException` exception is thrown.
 
 [!code-csharp[](intro/samples/cu/Pages/Departments/Edit.cshtml.cs?name=snippet_rv&highlight=24-999)]
 
@@ -600,11 +600,11 @@ Change a different field in the second browser tab.
 
 Click **Save**. You see error messages for all fields that don't match the DB values:
 
-![Department Edit page error message v-2.1](concurrency/_static/edit-error.png)
+![Department Edit page error message after save v-2.1](concurrency/_static/edit-error.png)
 
 This browser window didn't intend to change the Name field. Copy and paste the current value (Languages) into the Name field. Tab out. Client-side validation removes the error message.
 
-![Department Edit page error message v-2.1](concurrency/_static/cv.png)
+![Department Edit page error message tab out v-2.1](concurrency/_static/cv.png)
 
 Click **Save** again. The value you entered in the second browser tab is saved. You see the saved values in the Index page.
 
