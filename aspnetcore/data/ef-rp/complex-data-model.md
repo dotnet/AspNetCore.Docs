@@ -1,4 +1,4 @@
---- 
+---
 title: Part 5, Razor Pages with EF Core in ASP.NET Core - Data Model
 author: rick-anderson
 description: Part 5 of Razor Pages and Entity Framework tutorial series.
@@ -55,7 +55,7 @@ The preceding code adds a `FullName` property and adds the following attributes 
 
 For student enrollment dates, all of the pages currently display the time of day along with the date, although only the date is relevant. By using data annotation attributes, you can make one code change that will fix the display format in every page that shows the data. 
 
-The [DataType](/dotnet/api/system.componentmodel.dataannotations.datatypeattribute) attribute specifies a data type that's more specific than the database intrinsic type. In this case only the date should be displayed, not the date and time. The [DataType Enumeration](/dotnet/api/system.componentmodel.dataannotations.datatype) provides for many data types, such as Date, Time, PhoneNumber, Currency, EmailAddress, etc. The `DataType` attribute can also enable the app to automatically provide type-specific features. For example:
+The [DataType](/dotnet/api/system.componentmodel.dataannotations.datatypeattribute?view=netframework-4.7.1) attribute specifies a data type that's more specific than the database intrinsic type. In this case only the date should be displayed, not the date and time. The [DataType Enumeration](/dotnet/api/system.componentmodel.dataannotations.datatype?view=netframework-4.7.1) provides for many data types, such as Date, Time, PhoneNumber, Currency, EmailAddress, etc. The `DataType` attribute can also enable the app to automatically provide type-specific features. For example:
 
 * The `mailto:` link is automatically created for `DataType.EmailAddress`.
 * The date selector is provided for `DataType.Date` in most browsers.
@@ -85,11 +85,11 @@ For more information, see the [\<input> Tag Helper documentation](xref:mvc/views
 [StringLength(50, ErrorMessage = "First name cannot be longer than 50 characters.")]
 ```
 
-Data validation rules and validation error messages can be specified with attributes. The [StringLength](/dotnet/api/system.componentmodel.dataannotations.stringlengthattribute) attribute specifies the minimum and maximum length of characters that are allowed in a data field. The code shown limits names to no more than 50 characters. An example that sets the minimum string length is shown [later](#the-required-attribute).
+Data validation rules and validation error messages can be specified with attributes. The [StringLength](/dotnet/api/system.componentmodel.dataannotations.stringlengthattribute?view=netframework-4.7.1) attribute specifies the minimum and maximum length of characters that are allowed in a data field. The code shown limits names to no more than 50 characters. An example that sets the minimum string length is shown [later](#the-required-attribute).
 
 The `StringLength` attribute also provides client-side and server-side validation. The minimum value has no impact on the database schema.
 
-The `StringLength` attribute doesn't prevent a user from entering white space for a name. The [RegularExpression](/dotnet/api/system.componentmodel.dataannotations.regularexpressionattribute) attribute can be used to apply restrictions to the input. For example, the following code requires the first character to be upper case and the remaining characters to be alphabetical:
+The `StringLength` attribute doesn't prevent a user from entering white space for a name. The [RegularExpression](/dotnet/api/system.componentmodel.dataannotations.regularexpressionattribute?view=netframework-4.7.1) attribute can be used to apply restrictions to the input. For example, the following code requires the first character to be upper case and the remaining characters to be alphabetical:
 
 ```csharp
 [RegularExpression(@"^[A-Z]+[a-zA-Z]*$")]
@@ -728,16 +728,16 @@ The previous tutorials worked with a basic data model that was composed of three
 
 The entity classes for the completed data model are shown in the following illustration:
 
-![Entity diagram v-2.1](complex-data-model/_static/diagram.png)
+![Entity diagram](complex-data-model/_static/diagram.png)
 
 If you run into problems you can't solve, download the [completed app](
 https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples).
 
-## Customize the data model with attributes 2.1
+## Customize the data model with attributes
 
 In this section, the data model is customized using attributes.
 
-### The DataType attribute 2.1
+### The DataType attribute
 
 The student pages currently displays the time of the enrollment date. Typically, date fields show only the date and not the time.
 
@@ -745,7 +745,7 @@ Update *Models/Student.cs* with the following highlighted code:
 
 [!code-csharp[](intro/samples/cu21/Models/Student.cs?name=snippet_DataType&highlight=3,12-13)]
 
-The [DataType](/dotnet/api/system.componentmodel.dataannotations.datatypeattribute) attribute specifies a data type that's more specific than the database intrinsic type. In this case only the date should be displayed, not the date and time. The [DataType Enumeration](/dotnet/api/system.componentmodel.dataannotations.datatype) provides for many data types, such as Date, Time, PhoneNumber, Currency, EmailAddress, etc. The `DataType` attribute can also enable the app to automatically provide type-specific features. For example:
+The [DataType](/dotnet/api/system.componentmodel.dataannotations.datatypeattribute?view=netframework-4.7.1) attribute specifies a data type that's more specific than the database intrinsic type. In this case only the date should be displayed, not the date and time. The [DataType Enumeration](/dotnet/api/system.componentmodel.dataannotations.datatype?view=netframework-4.7.1) provides for many data types, such as Date, Time, PhoneNumber, Currency, EmailAddress, etc. The `DataType` attribute can also enable the app to automatically provide type-specific features. For example:
 
 * The `mailto:` link is automatically created for `DataType.EmailAddress`.
 * The date selector is provided for `DataType.Date` in most browsers.
@@ -771,18 +771,18 @@ For more information, see the [\<input> Tag Helper documentation](xref:mvc/views
 
 Run the app. Navigate to the Students Index page. Times are no longer displayed. Every view that uses the `Student` model displays the date without time.
 
-![Students index page showing dates without times v-2.1](complex-data-model/_static/dates-no-times.png)
+![Students index page showing dates without times](complex-data-model/_static/dates-no-times.png)
 
-### The StringLength attribute 2.1
+### The StringLength attribute
 
-Data validation rules and validation error messages can be specified with attributes. The [StringLength](/dotnet/api/system.componentmodel.dataannotations.stringlengthattribute) attribute specifies the minimum and maximum length of characters that are allowed in a data field. The `StringLength` attribute
+Data validation rules and validation error messages can be specified with attributes. The [StringLength](/dotnet/api/system.componentmodel.dataannotations.stringlengthattribute?view=netframework-4.7.1) attribute specifies the minimum and maximum length of characters that are allowed in a data field. The `StringLength` attribute
 also provides client-side and server-side validation. The minimum value has no impact on the database schema.
 
 Update the `Student` model with the following code:
 
 [!code-csharp[](intro/samples/cu21/Models/Student.cs?name=snippet_StringLength&highlight=10,12)]
 
-The preceding code limits names to no more than 50 characters. The `StringLength` attribute doesn't prevent a user from entering white space for a name. The [RegularExpression](/dotnet/api/system.componentmodel.dataannotations.regularexpressionattribute) attribute is used to apply restrictions to the input. For example, the following code requires the first character to be upper case and the remaining characters to be alphabetical:
+The preceding code limits names to no more than 50 characters. The `StringLength` attribute doesn't prevent a user from entering white space for a name. The [RegularExpression](/dotnet/api/system.componentmodel.dataannotations.regularexpressionattribute?view=netframework-4.7.1) attribute is used to apply restrictions to the input. For example, the following code requires the first character to be upper case and the remaining characters to be alphabetical:
 
 ```csharp
 [RegularExpression(@"^[A-Z]+[a-zA-Z]*$")]
@@ -794,15 +794,15 @@ Run the app:
 * Select **Create New**, and enter a name longer than 50 characters.
 * Select **Create**, client-side validation shows an error message.
 
-![Students index page showing string length errors v-2.1](complex-data-model/_static/string-length-errors.png)
+![Students index page showing string length errors](complex-data-model/_static/string-length-errors.png)
 
 In **SQL Server Object Explorer** (SSOX), open the Student table designer by double-clicking the **Student** table.
 
-![Students table in SSOX before migrations v-2.1](complex-data-model/_static/ssox-before-migration.png)
+![Students table in SSOX before migrations](complex-data-model/_static/ssox-before-migration.png)
 
 The preceding image shows the schema for the `Student` table. The name fields have type `nvarchar(MAX)` because migrations has not been run on the DB. When migrations are run later in this tutorial, the name fields become `nvarchar(50)`.
 
-### The Column attribute 2.1
+### The Column attribute
 
 Attributes can control how classes and properties are mapped to the database. In this section, the `Column` attribute is used to map the name of the `FirstMidName` property to "FirstName" in the DB.
 
@@ -856,22 +856,22 @@ The warning is generated because the name fields are now limited to 50 character
 
 Open the Student table in SSOX:
 
-![Students table in SSOX after migrations v-2.1](complex-data-model/_static/ssox-after-migration.png)
+![Students table in SSOX after migrations](complex-data-model/_static/ssox-after-migration.png)
 
 Before migration was applied, the name columns were of type [nvarchar(MAX)](/sql/t-sql/data-types/nchar-and-nvarchar-transact-sql). The name columns are now `nvarchar(50)`. The column name has changed from `FirstMidName` to `FirstName`.
 
 > [!Note]
 > In the following section, building the app at some stages generates compiler errors. The instructions specify when to build the app.
 
-## Student entity update 2.1
+## Student entity update
 
-![Student entity v-2.1](complex-data-model/_static/student-entity.png)
+![Student entity](complex-data-model/_static/student-entity.png)
 
 Update *Models/Student.cs* with the following code:
 
 [!code-csharp[](intro/samples/cu21/Models/Student.cs?name=snippet_BeforeInheritance&highlight=11,13,15,18,22,24-31)]
 
-### The Required attribute 2.1
+### The Required attribute
 
 The `Required` attribute makes the name properties required fields. The `Required` attribute isn't needed for non-nullable types such as value types (`DateTime`, `int`, `double`, etc.). Types that can't be null are automatically treated as required fields.
 
@@ -883,17 +883,17 @@ The `Required` attribute could be replaced with a minimum length parameter in th
 public string LastName { get; set; }
 ```
 
-### The Display attribute 2.1
+### The Display attribute
 
 The `Display` attribute specifies that the caption for the text boxes should be "First Name", "Last Name", "Full Name", and "Enrollment Date." The default captions had no space dividing the words, for example "Lastname."
 
-### The FullName calculated property 2.1
+### The FullName calculated property
 
 `FullName` is a calculated property that returns a value that's created by concatenating two other properties. `FullName` cannot be set, it has only a get accessor. No `FullName` column is created in the database.
 
-## Create the Instructor Entity 2.1
+## Create the Instructor Entity
 
-![Instructor entity v-2.1](complex-data-model/_static/instructor-entity.png)
+![Instructor entity](complex-data-model/_static/instructor-entity.png)
 
 Create *Models/Instructor.cs* with the following code:
 
@@ -905,7 +905,7 @@ Multiple attributes can be on one line. The `HireDate` attributes could be writt
 [DataType(DataType.Date),Display(Name = "Hire Date"),DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
 ```
 
-### The CourseAssignments and OfficeAssignment navigation properties 2.1
+### The CourseAssignments and OfficeAssignment navigation properties
 
 The `CourseAssignments` and `OfficeAssignment` properties are navigation properties.
 
@@ -935,15 +935,15 @@ Contoso University business rules state that an instructor can have at most one 
 public OfficeAssignment OfficeAssignment { get; set; }
 ```
 
-## Create the OfficeAssignment entity 2.1
+## Create the OfficeAssignment entity
 
-![OfficeAssignment entity v-2.1](complex-data-model/_static/officeassignment-entity.png)
+![OfficeAssignment entity](complex-data-model/_static/officeassignment-entity.png)
 
 Create *Models/OfficeAssignment.cs* with the following code:
 
 [!code-csharp[](intro/samples/cu21/Models/OfficeAssignment.cs)]
 
-### The Key attribute 2.1
+### The Key attribute
 
 The `[Key]` attribute is used to identify a property as the primary key (PK) when the property name is something other than classnameID or ID.
 
@@ -960,7 +960,7 @@ public int InstructorID { get; set; }
 
 By default, EF Core treats the key as non-database-generated because the column is for an identifying relationship.
 
-### The Instructor navigation property 2.1
+### The Instructor navigation property
 
 The `OfficeAssignment` navigation property for the `Instructor` entity is nullable because:
 
@@ -983,9 +983,9 @@ public Instructor Instructor { get; set; }
 
 The preceding code specifies that there must be a related instructor. The preceding code is unnecessary because the `InstructorID` foreign key (which is also the PK) is non-nullable.
 
-## Modify the Course Entity 2.1
+## Modify the Course Entity
 
-![Course entity v-2.1](complex-data-model/_static/course-entity.png)
+![Course entity](complex-data-model/_static/course-entity.png)
 
 Update *Models/Course.cs* with the following code:
 
@@ -1003,7 +1003,7 @@ EF Core automatically creates FKs in the database wherever they're needed. EF Co
 When the FK property `DepartmentID` is included in the data model, there's no need to
 fetch the `Department` entity before an update.
 
-### The DatabaseGenerated attribute 2.1
+### The DatabaseGenerated attribute
 
 The `[DatabaseGenerated(DatabaseGeneratedOption.None)]` attribute specifies that the PK is provided by the application rather than generated by the database.
 
@@ -1017,7 +1017,7 @@ By default, EF Core assumes that PK values are generated by the DB. DB generated
 
 The `DatabaseGenerated` attribute can also be used to generate default values. For example, the DB can automatically generate a date field to record the date a row was created or updated. For more information, see [Generated Properties](/ef/core/modeling/generated-properties).
 
-### Foreign key and navigation properties 2.1
+### Foreign key and navigation properties
 
 The foreign key (FK) properties and navigation properties in the `Course` entity reflect the following relationships:
 
@@ -1042,15 +1042,15 @@ public ICollection<CourseAssignment> CourseAssignments { get; set; }
 
 `CourseAssignment` is explained [later](#many-to-many-relationships).
 
-## Create the Department entity 2.1
+## Create the Department entity
 
-![Department entity v-2.1](complex-data-model/_static/department-entity.png)
+![Department entity](complex-data-model/_static/department-entity.png)
 
 Create *Models/Department.cs* with the following code:
 
 [!code-csharp[](intro/samples/cu21/Models/Department.cs?name=snippet_Begin)]
 
-### The Column attribute 2.1
+### The Column attribute
 
 Previously the `Column` attribute was used to change column name mapping. In the code for the `Department` entity, the `Column` attribute is used to change SQL data type mapping. The `Budget` column is defined using the SQL Server money type in the DB:
 
@@ -1061,7 +1061,7 @@ public decimal Budget { get; set; }
 
 Column mapping is generally not required. EF Core generally chooses the appropriate SQL Server data type based on the CLR type for the property. The CLR `decimal` type maps to a SQL Server `decimal` type. `Budget` is for currency, and the money data type is more appropriate for currency.
 
-### Foreign key and navigation properties 2.1
+### Foreign key and navigation properties
 
 The FK and navigation properties reflect the following relationships:
 
@@ -1100,17 +1100,17 @@ For example, if the `Department.InstructorID` property was defined as non-nullab
 
 The preceding code disables cascade delete on the department-instructor relationship.
 
-## Update the Enrollment entity 2.1
+## Update the Enrollment entity
 
 An enrollment record is for one course taken by one student.
 
-![Enrollment entity v-2.1](complex-data-model/_static/enrollment-entity.png)
+![Enrollment entity](complex-data-model/_static/enrollment-entity.png)
 
 Update *Models/Enrollment.cs* with the following code:
 
 [!code-csharp[](intro/samples/cu21/Models/Enrollment.cs?name=snippet_Final&highlight=1-2,16)]
 
-### Foreign key and navigation properties 2.1
+### Foreign key and navigation properties
 
 The FK properties and navigation properties reflect the following relationships:
 
@@ -1128,13 +1128,13 @@ public int StudentID { get; set; }
 public Student Student { get; set; }
 ```
 
-## Many-to-Many Relationships 2.1
+## Many-to-Many Relationships
 
 There's a many-to-many relationship between the `Student` and `Course` entities. The `Enrollment` entity functions as a many-to-many join table *with payload* in the database. "With payload" means that the `Enrollment` table contains additional data besides FKs for the joined tables (in this case, the PK and `Grade`).
 
 The following illustration shows what these relationships look like in an entity diagram. (This diagram was generated using [EF Power Tools](https://marketplace.visualstudio.com/items?itemName=ErikEJ.EntityFramework6PowerToolsCommunityEdition) for EF 6.x. Creating the diagram isn't part of the tutorial.)
 
-![Student-Course many to many relationship v-2.1](complex-data-model/_static/student-course.png)
+![Student-Course many to many relationship](complex-data-model/_static/student-course.png)
 
 Each relationship line has a 1 at one end and an asterisk (*) at the other, indicating a one-to-many relationship.
 
@@ -1144,17 +1144,17 @@ The `Instructor` and `Course` entities have a many-to-many relationship using a 
 
 Note: EF 6.x supports implicit join tables for many-to-many relationships, but EF Core doesn't. For more information, see [Many-to-many relationships in EF Core 2.0](https://blog.oneunicorn.com/2017/09/25/many-to-many-relationships-in-ef-core-2-0-part-1-the-basics/).
 
-## The CourseAssignment entity 2.1
+## The CourseAssignment entity
 
-![CourseAssignment entity v-2.1](complex-data-model/_static/courseassignment-entity.png)
+![CourseAssignment entity](complex-data-model/_static/courseassignment-entity.png)
 
 Create *Models/CourseAssignment.cs* with the following code:
 
 [!code-csharp[](intro/samples/cu21/Models/CourseAssignment.cs)]
 
-### Instructor-to-Courses 2.1
+### Instructor-to-Courses
 
-![Instructor-to-Courses m:M v-2.1](complex-data-model/_static/courseassignment.png)
+![Instructor-to-Courses m:M](complex-data-model/_static/courseassignment.png)
 
 The Instructor-to-Courses many-to-many relationship:
 
@@ -1165,7 +1165,7 @@ It's common to name a join entity `EntityName1EntityName2`. For example, the Ins
 
 Data models start out simple and grow. No-payload joins (PJTs) frequently evolve to include payload. By starting with a descriptive entity name, the name doesn't need to change when the join table changes. Ideally, the join entity would have its own natural (possibly single word) name in the business domain. For example, Books and Customers could be linked with a join entity called Ratings. For the Instructor-to-Courses many-to-many relationship, `CourseAssignment` is preferred over `CourseInstructor`.
 
-### Composite key 2.1
+### Composite key
 
 FKs are not nullable. The two FKs in `CourseAssignment` (`InstructorID` and `CourseID`) together uniquely identify each row of the `CourseAssignment` table. `CourseAssignment` doesn't require a dedicated PK. The `InstructorID` and `CourseID` properties function as a composite PK. The only way to specify composite PKs to EF Core is with the *fluent API*. The next section shows how to configure the composite PK.
 
@@ -1180,7 +1180,7 @@ The `Enrollment` join entity defines its own PK, so duplicates of this sort are 
 * Add a unique index on the FK fields, or
 * Configure `Enrollment` with a primary composite key similar to `CourseAssignment`. For more information, see [Indexes](/ef/core/modeling/indexes).
 
-## Update the DB context 2.1
+## Update the DB context
 
 Add the following highlighted code to *Data/SchoolContext.cs*:
 
@@ -1188,7 +1188,7 @@ Add the following highlighted code to *Data/SchoolContext.cs*:
 
 The preceding code adds the new entities and configures the `CourseAssignment` entity's composite PK.
 
-## Fluent API alternative to attributes 2.1
+## Fluent API alternative to attributes
 
 The `OnModelCreating` method in the preceding code uses the *fluent API* to configure EF Core behavior. The API is called "fluent" because it's often used by stringing a series of method calls together into a single statement. The [following code](/ef/core/modeling/#use-fluent-api-to-configure-a-model) is an example of the fluent API:
 
@@ -1218,11 +1218,11 @@ Some of the attributes used in the this tutorial are used for:
 
 For more information about attributes vs. fluent API, see [Methods of configuration](/ef/core/modeling/).
 
-## Entity Diagram Showing Relationships 2.1
+## Entity Diagram Showing Relationships
 
 The following illustration shows the diagram that EF Power Tools create for the completed School model.
 
-![Entity diagram v-2.1](complex-data-model/_static/diagram.png)
+![Entity diagram](complex-data-model/_static/diagram.png)
 
 The preceding diagram shows:
 
@@ -1230,7 +1230,7 @@ The preceding diagram shows:
 * The one-to-zero-or-one relationship line (1 to 0..1) between the `Instructor` and `OfficeAssignment` entities.
 * The zero-or-one-to-many relationship line (0..1 to *) between the `Instructor` and `Department` entities.
 
-## Seed the DB with Test Data 2.1
+## Seed the DB with Test Data
 
 Update the code in *Data/DbInitializer.cs*:
 
@@ -1238,7 +1238,7 @@ Update the code in *Data/DbInitializer.cs*:
 
 The preceding code provides seed data for the new entities. Most of this code creates new entity objects and loads sample data. The sample data is used for testing. See `Enrollments` and `CourseAssignments` for examples of how many-to-many join tables can be seeded.
 
-## Add a migration 2.1
+## Add a migration
 
 Build the project.
 
@@ -1271,7 +1271,7 @@ The ALTER TABLE statement conflicted with the FOREIGN KEY constraint "FK_dbo.Cou
 database "ContosoUniversity", table "dbo.Department", column 'DepartmentID'.
 ```
 
-## Apply the migration 2.1
+## Apply the migration
 
 Now that you have an existing database, you need to think about how to apply future changes to it. This tutorial shows two approaches:
 
@@ -1280,7 +1280,7 @@ Now that you have an existing database, you need to think about how to apply fut
 
 <a name="drop"></a>
 
-### Drop and re-create the database 2.1
+### Drop and re-create the database
 
 The code in the updated `DbInitializer` adds seed data for the new entities. To force EF Core to create a new  DB, drop and update the DB:
 
@@ -1315,18 +1315,18 @@ Open the DB in SSOX:
 * If SSOX was opened previously, click the **Refresh** button.
 * Expand the **Tables** node. The created tables are displayed.
 
-![Tables in SSOX v-2.1](complex-data-model/_static/ssox-tables.png)
+![Tables in SSOX](complex-data-model/_static/ssox-tables.png)
 
 Examine the **CourseAssignment** table:
 
 * Right-click the **CourseAssignment** table and select **View Data**.
 * Verify the **CourseAssignment** table contains data.
 
-![CourseAssignment data in SSOX v-2.1](complex-data-model/_static/ssox-ci-data.png)
+![CourseAssignment data in SSOX](complex-data-model/_static/ssox-ci-data.png)
 
 <a name="applyexisting"></a>
 
-### Apply the migration to the existing database 2.1
+### Apply the migration to the existing database
 
 This section is optional. These steps work only if you skipped the preceding [Drop and re-create the database](#drop) section.
 
@@ -1343,7 +1343,7 @@ To make the `ComplexDataModel` migration work with existing data:
 * Change the code to give the new column (`DepartmentID`) a default value.
 * Create a fake department named "Temp" to act as the default department.
 
-#### Fix the foreign key constraints 2.1
+#### Fix the foreign key constraints
 
 Update the `ComplexDataModel` classes `Up` method:
 
@@ -1365,7 +1365,7 @@ A production app would:
 
 The next tutorial covers related data.
 
-## Additional resources 2.1
+## Additional resources
 
 * [YouTube version of this tutorial(Part 1)](https://www.youtube.com/watch?v=0n2f0ObgCoA)
 * [YouTube version of this tutorial(Part 2)](https://www.youtube.com/watch?v=Je0Z5K1TNmY)
