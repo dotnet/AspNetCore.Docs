@@ -1,4 +1,4 @@
----
+--- 
 title: Part 7, Razor Pages with EF Core in ASP.NET Core - Update Related Data
 author: rick-anderson
 description: Part 7 of Razor Pages and Entity Framework tutorial series.
@@ -31,7 +31,7 @@ Create a *Pages/Courses/DepartmentNamePageModel.cs* file with the following code
 
 [!code-csharp[](intro/samples/cu30/Pages/Courses/DepartmentNamePageModel.cs)]
 
-The preceding code creates a <xref:Microsoft.AspNetCore.Mvc.Rendering.SelectList> to contain the list of department names. If `selectedDepartment` is specified, that department is selected in the `SelectList`.
+The preceding code creates a [SelectList](/dotnet/api/microsoft.aspnetcore.mvc.rendering.selectlist?view=aspnetcore-2.0) to contain the list of department names. If `selectedDepartment` is specified, that department is selected in the `SelectList`.
 
 The Create and Edit page model classes will derive from `DepartmentNamePageModel`.
 
@@ -96,7 +96,7 @@ The page contains a hidden field (`<input type="hidden">`) for the course number
 
 ## Update the Course Details and Delete pages
 
-<xref:Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.AsNoTracking%2A> can improve performance when tracking isn't required.
+[AsNoTracking](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.asnotracking?view=efcore-2.0#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_AsNoTracking__1_System_Linq_IQueryable___0__) can improve performance when tracking isn't required.
 
 ### Update the Course page models
 
@@ -237,26 +237,26 @@ This tutorial demonstrates updating related data. If you run into problems you c
 
 The following illustrations shows some of the completed pages.
 
-![Course Edit page v-2.1](update-related-data/_static/course-edit.png)
-![Instructor Edit page v-2.1](update-related-data/_static/instructor-edit-courses.png)
+![Course Edit page](update-related-data/_static/course-edit.png)
+![Instructor Edit page](update-related-data/_static/instructor-edit-courses.png)
 
 Examine and test the Create and Edit course pages. Create a new course. The department is selected by its primary key (an integer), not its name. Edit the new course. When you have finished testing, delete the new course.
 
-## Create a base class to share common code 2.1
+## Create a base class to share common code
 
 The Courses/Create and Courses/Edit pages each need a list of department names. Create the *Pages/Courses/DepartmentNamePageModel.cshtml.cs* base class for the Create and Edit pages:
 
 [!code-csharp[](intro/samples/cu/Pages/Courses/DepartmentNamePageModel.cshtml.cs?highlight=9,11,20-21)]
 
-The preceding code creates a <xref:Microsoft.AspNetCore.Mvc.Rendering.SelectList>) to contain the list of department names. If `selectedDepartment` is specified, that department is selected in the `SelectList`.
+The preceding code creates a [SelectList](/dotnet/api/microsoft.aspnetcore.mvc.rendering.selectlist?view=aspnetcore-2.0) to contain the list of department names. If `selectedDepartment` is specified, that department is selected in the `SelectList`.
 
 The Create and Edit page model classes will derive from `DepartmentNamePageModel`.
 
-## Customize the Courses Pages 2.1
+## Customize the Courses Pages
 
 When a new course entity is created, it must have a relationship to an existing department. To add a department while creating a course, the base class for Create and Edit contains a drop-down list for selecting the department. The drop-down list sets the `Course.DepartmentID` foreign key (FK) property. EF Core uses the `Course.DepartmentID` FK to load the `Department` navigation property.
 
-![Create course v-2.1](update-related-data/_static/ddl.png)
+![Create course](update-related-data/_static/ddl.png)
 
 Update the Create page model with the following code:
 
@@ -270,7 +270,7 @@ The preceding code:
 
 `ViewData["DepartmentID"]` is replaced with the strongly typed `DepartmentNameSL`. Strongly typed models are preferred over weakly typed. For more information, see [Weakly typed data (ViewData and ViewBag)](xref:mvc/views/overview#VD_VB).
 
-### Update the Courses Create page 2.1
+### Update the Courses Create page
 
 Update *Pages/Courses/Create.cshtml* with the following code:
 
@@ -289,7 +289,7 @@ The Razor Page uses the [Select Tag Helper](xref:mvc/views/working-with-forms#th
 
 Test the Create page. The Create page displays the department name rather than the department ID.
 
-### Update the Courses Edit page. 2.1
+### Update the Courses Edit page.
 
 Replace the code in *Pages/Courses/Edit.cshtml.cs* with the following code:
 
@@ -311,9 +311,9 @@ The page contains a hidden field (`<input type="hidden">`) for the course number
 
 Test the updated code. Create, edit, and delete a course.
 
-## Add AsNoTracking to the Details and Delete page models 2.1
+## Add AsNoTracking to the Details and Delete page models
 
-<xref:Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.AsNoTracking%2A> can improve performance when tracking isn't required. Add `AsNoTracking` to the Delete and Details page model. The following code shows the updated Delete page model:
+[AsNoTracking](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.asnotracking?view=efcore-2.0#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_AsNoTracking__1_System_Linq_IQueryable___0__) can improve performance when tracking isn't required. Add `AsNoTracking` to the Delete and Details page model. The following code shows the updated Delete page model:
 
 [!code-csharp[](intro/samples/cu/Pages/Courses/Delete.cshtml.cs?name=snippet&highlight=21,23,40,41)]
 
@@ -321,7 +321,7 @@ Update the `OnGetAsync` method in the *Pages/Courses/Details.cshtml.cs* file:
 
 [!code-csharp[](intro/samples/cu/Pages/Courses/Details.cshtml.cs?name=snippet)]
 
-### Modify the Delete and Details pages 2.1
+### Modify the Delete and Details pages
 
 Update the Delete Razor page with the following markup:
 
@@ -329,15 +329,15 @@ Update the Delete Razor page with the following markup:
 
 Make the same changes to the Details page.
 
-### Test the Course pages 2.1
+### Test the Course pages
 
 Test create, edit, details, and delete.
 
-## Update the instructor pages 2.1
+## Update the instructor pages
 
 The following sections update the instructor pages.
 
-### Add office location 2.1
+### Add office location
 
 When editing an instructor record, you may want to update the instructor's office assignment. The `Instructor` entity has a one-to-zero-or-one relationship with the `OfficeAssignment` entity. The instructor code must handle:
 
@@ -355,7 +355,7 @@ The preceding code:
 * Updates the retrieved `Instructor` entity with values from the model binder. `TryUpdateModel` prevents [overposting](xref:data/ef-rp/crud#overposting).
 * If the office location is blank, sets `Instructor.OfficeAssignment` to null. When `Instructor.OfficeAssignment` is null, the related row in the `OfficeAssignment` table is deleted.
 
-### Update the instructor Edit page 2.1
+### Update the instructor Edit page
 
 Update *Pages/Instructors/Edit.cshtml* with the office location:
 
@@ -363,11 +363,11 @@ Update *Pages/Instructors/Edit.cshtml* with the office location:
 
 Verify you can change an instructors office location.
 
-## Add Course assignments to the instructor Edit page 2.1
+## Add Course assignments to the instructor Edit page
 
 Instructors may teach any number of courses. In this section, you add the ability to change course assignments. The following image shows the updated instructor Edit page:
 
-![Instructor Edit page with courses v-2.1](update-related-data/_static/instructor-edit-courses.png)
+![Instructor Edit page with courses](update-related-data/_static/instructor-edit-courses.png)
 
 `Course` and `Instructor` has a many-to-many relationship. To add and remove relationships, you add and remove entities from the `CourseAssignments` join entity set.
 
@@ -376,7 +376,7 @@ Check boxes enable changes to courses an instructor is assigned to. A check box 
 * You'd probably use a different user interface to display the courses.
 * The method of manipulating a join entity to create or delete relationships wouldn't change.
 
-### Add classes to support Create and Edit instructor pages 2.1
+### Add classes to support Create and Edit instructor pages
 
 Create *SchoolViewModels/AssignedCourseData.cs* with the following code:
 
@@ -390,7 +390,7 @@ Create the *Pages/Instructors/InstructorCoursesPageModel.cshtml.cs* base class:
 
 The `InstructorCoursesPageModel` is the base class you will use for the Edit and Create page models. `PopulateAssignedCourseData` reads all `Course` entities to populate `AssignedCourseDataList`. For each course, the code sets the `CourseID`, title, and whether or not the instructor is assigned to the course. A [HashSet](/dotnet/api/system.collections.generic.hashset-1) is used to create efficient lookups.
 
-### Instructors Edit page model 2.1
+### Instructors Edit page model
 
 Update the instructor Edit page model with the following code:
 
@@ -414,7 +414,7 @@ Run the app and test the updated instructors Edit page. Change some course assig
 
 Note: The approach taken here to edit instructor course data works well when there's a limited number of courses. For collections that are much larger, a different UI and a different updating method would be more useable and efficient.
 
-### Update the instructors Create page 2.1
+### Update the instructors Create page
 
 Update the instructor Create page model with the following code:
 
@@ -428,7 +428,7 @@ Update the instructor Create Razor page with the following markup:
 
 Test the instructor Create page.
 
-## Update the Delete page 2.1
+## Update the Delete page
 
 Update the Delete page model with the following code:
 
@@ -440,7 +440,7 @@ The preceding code makes the following changes:
 
 * If the instructor to be deleted is assigned as administrator of any departments, removes the instructor assignment from those departments.
 
-## Additional resources 2.1
+## Additional resources
 
 * [YouTube version of this tutorial (Part 1)](https://www.youtube.com/watch?v=Csh6gkmwc9E)
 * [YouTube version of this tutorial (Part 2)](https://www.youtube.com/watch?v=mOAankB_Zgc)

@@ -1,4 +1,4 @@
----
+--- 
 title: Part 4, Razor Pages with EF Core in ASP.NET Core - Migrations
 author: rick-anderson
 description: Part 4 of Razor Pages and Entity Framework tutorial series.
@@ -117,7 +117,7 @@ Run the app and verify that the database is seeded.
 
 ## Applying migrations in production
 
-We recommend that production apps **not** call [Database.Migrate](xref:Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.Migrate%2A) at application startup. `Migrate` shouldn't be called from an app that is deployed to a server farm. If the app is scaled out to multiple server instances, it's hard to ensure database schema updates don't happen from multiple servers or conflict with read/write access.
+We recommend that production apps **not** call [Database.Migrate](/dotnet/api/microsoft.entityframeworkcore.relationaldatabasefacadeextensions.migrate?view=efcore-2.0#Microsoft_EntityFrameworkCore_RelationalDatabaseFacadeExtensions_Migrate_Microsoft_EntityFrameworkCore_Infrastructure_DatabaseFacade_) at application startup. `Migrate` shouldn't be called from an app that is deployed to a server farm. If the app is scaled out to multiple server instances, it's hard to ensure database schema updates don't happen from multiple servers or conflict with read/write access.
 
 Database migration should be done as part of deployment, and in a controlled way. Production database migration approaches include:
 
@@ -168,7 +168,7 @@ This approach to keeping the DB in sync with the data model works well until you
 
 Rather than dropping and recreating the DB when the data model changes, migrations updates the schema and retains existing data.
 
-## Drop the database 2.1
+## Drop the database
 
 Use **SQL Server Object Explorer** (SSOX) or the `database drop` command:
 
@@ -194,7 +194,7 @@ Enter the following in the command window:
 
 ---
 
-## Create an initial migration and update the DB 2.1
+## Create an initial migration and update the DB
 
 Build the project and create the first migration.
 
@@ -214,7 +214,7 @@ dotnet ef database update
 
 ---
 
-### Examine the Up and Down methods 2.1
+### Examine the Up and Down methods
 
 The EF Core `migrations add` command  generated code to create the DB. This migrations code is in the *Migrations\<timestamp>_InitialCreate.cs* file. The `Up` method of the `InitialCreate` class creates the DB tables that correspond to the data model entity sets. The `Down` method deletes them, as shown in the following example:
 
@@ -233,7 +233,7 @@ When the app is deployed to a new environment, the DB creation code must be run 
 
 Previously the DB was dropped and doesn't exist, so migrations creates the new DB.
 
-### The data model snapshot 2.1
+### The data model snapshot
 
 Migrations create a *snapshot* of the current database schema in *Migrations/SchoolContextModelSnapshot.cs*. When you add a migration, EF determines what changed by comparing the data model to the snapshot file.
 
@@ -255,7 +255,7 @@ For more information, see [dotnet ef migrations remove](/ef/core/miscellaneous/c
 
 The remove migrations command deletes the migration and ensures the snapshot is correctly reset.
 
-### Remove EnsureCreated and test the app 2.1
+### Remove EnsureCreated and test the app
 
 For early development, `EnsureCreated` was used. In this tutorial, migrations are used. `EnsureCreated` has the following limitations:
 
@@ -272,15 +272,15 @@ context.Database.EnsureCreated();
 
 Run the app and verify the DB is seeded.
 
-### Inspect the database 2.1
+### Inspect the database
 
 Use **SQL Server Object Explorer** to inspect the DB. Notice the addition of an `__EFMigrationsHistory` table. The `__EFMigrationsHistory` table keeps track of which migrations have been applied to the DB. View the data in the `__EFMigrationsHistory` table, it shows one row for the first migration. The last log in the preceding CLI output example shows the INSERT statement that creates this row.
 
 Run the app and verify that everything works.
 
-## Applying migrations in production 2.1
+## Applying migrations in production
 
-We recommend that production apps **not** call [Database.Migrate](xref:Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.Migrate%2A) at application startup. `Migrate` shouldn't be called from an app that is deployed to a server farm. If the app is scaled out to multiple server instances, it's hard to ensure database schema updates don't happen from multiple servers or conflict with read/write access.
+We recommend production apps should **not** call [Database.Migrate](/dotnet/api/microsoft.entityframeworkcore.relationaldatabasefacadeextensions.migrate?view=efcore-2.0#Microsoft_EntityFrameworkCore_RelationalDatabaseFacadeExtensions_Migrate_Microsoft_EntityFrameworkCore_Infrastructure_DatabaseFacade_) at application startup. `Migrate` shouldn't be called from an app in server farm. For example, if the app has been cloud deployed with scale-out (multiple instances of the app are running).
 
 Database migration should be done as part of deployment, and in a controlled way. Production database migration approaches include:
 
@@ -289,7 +289,7 @@ Database migration should be done as part of deployment, and in a controlled way
 
 EF Core uses the `__MigrationsHistory` table to see if any migrations need to run. If the DB is up-to-date, no migration is run.
 
-## Troubleshooting 2.1
+## Troubleshooting
 
 Download the [completed app](
 https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu21snapshots/cu-part4-migrations).
@@ -304,7 +304,7 @@ Login failed for user 'user name'.
 
 Solution: Run `dotnet ef database update`
 
-### Additional resources 2.1
+### Additional resources
 
 * [YouTube version of this tutorial](https://www.youtube.com/watch?v=OWSUuMLKTJo)
 * [.NET Core CLI](/ef/core/miscellaneous/cli/dotnet).
