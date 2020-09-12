@@ -1,9 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Globalization;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -87,18 +84,18 @@ namespace Localization
 
             app.UseRequestLocalization(localizationOptions);
 
+            app.UseRouting();
             app.UseStaticFiles();
-            // To configure external authentication, 
-            // see: http://go.microsoft.com/fwlink/?LinkID=532715
+
             app.UseAuthentication();
-            app.UseMvcWithDefaultRoute();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(name: "default", pattern: "{controller=Home}/{action=Index}/{id?}");
+            });
             #endregion
 
-            app.UseStaticFiles();
-
             app.UseRequestLocalization();
-
-            app.UseMvcWithDefaultRoute();
         }
     }
 }
