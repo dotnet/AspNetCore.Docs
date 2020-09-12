@@ -434,7 +434,7 @@ The DB and data model must be configured to support throwing `DbUpdateConcurrenc
 
 ### Detecting concurrency conflicts on a property 2.1
 
-Concurrency conflicts can be detected at the property level with the [ConcurrencyCheck](/dotnet/api/system.componentmodel.dataannotations.concurrencycheckattribute?view=netcore-2.0) attribute. The attribute can be applied to multiple properties on the model. For more information, see [Data Annotations-ConcurrencyCheck](/ef/core/modeling/concurrency#data-annotations).
+Concurrency conflicts can be detected at the property level with the <xref:System.ComponentModel.DataAnnotations.ConcurrencyCheckAttribute> attribute. The attribute can be applied to multiple properties on the model. For more information, see [Data Annotations-ConcurrencyCheck](/ef/core/modeling/concurrency#data-annotations).
 
 The `[ConcurrencyCheck]` attribute isn't used in this tutorial.
 
