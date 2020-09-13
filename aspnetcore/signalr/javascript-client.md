@@ -25,7 +25,7 @@ The SignalR JavaScript client library is delivered as an [npm](https://www.npmjs
 
 ### Install with npm
 
-If using Visual Studio, run the following commands from **Package Manager Console** while in the root folder. For Visual Studio Code, run the following commands from the **Integrated Terminal**.
+For Visual Studio, run the following commands from **Package Manager Console** while in the root folder. For Visual Studio Code, run the following commands from the **Integrated Terminal**.
 
 ```bash
 npm init -y
@@ -70,9 +70,9 @@ To prevent a malicious site from reading sensitive data from another site, [cros
 
 [!code-csharp[](javascript-client/samples/3.x/SignalRChat/Startup.cs?highlight=16-23,40)]
 
-## Call hub methods from client
+## Call hub methods from the client
 
-JavaScript clients call public methods on hubs via the [invoke](/javascript/api/%40aspnet/signalr/hubconnection#invoke) method of the [HubConnection](/javascript/api/%40aspnet/signalr/hubconnection). The `invoke` method accepts:
+JavaScript clients call public methods on hubs via the [invoke](/javascript/api/%40microsoft/signalr/hubconnection#invoke-string--any---) method of the [HubConnection](/javascript/api/%40microsoft/signalr/hubconnection). The `invoke` method accepts:
 
 * The name of the hub method.
 * Any arguments defined in the hub method.
@@ -86,14 +86,14 @@ In the following example, the method name on the hub is `SendMessage`. The secon
 
 The `invoke` method returns a JavaScript [Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise). The `Promise` is resolved with the return value (if any) when the method on the server returns. If the method on the server throws an error, the `Promise` is rejected with the error message. Use `async` and `await` or the `Promise`'s `then` and `catch` methods to handle these cases.
 
-The `send` method returns a JavaScript `Promise`. The `Promise` is resolved when the message has been sent to the server. If there is an error sending the message, the `Promise` is rejected with the error message. Use `async` and `await` or the `Promise`'s `then` and `catch` methods to handle these cases.
+JavaScript clients can also call public methods on hubs via the the [send](/javascript/api/%40microsoft/signalr/hubconnection#send-string--any---) method of the `HubConnection`. Unlike the `invoke` method, the `send` method doesn't wait for a response from the server. The `send` method returns a JavaScript `Promise`. The `Promise` is resolved when the message has been sent to the server. If there is an error sending the message, the `Promise` is rejected with the error message. Use `async` and `await` or the `Promise`'s `then` and `catch` methods to handle these cases.
 
 > [!NOTE]
 > Using `send` doesn't wait until the server has received the message. Consequently, it's not possible to return data or errors from the server.
 
-## Call client methods from hub
+## Call client methods from the hub
 
-To receive messages from the hub, define a method using the [on](/javascript/api/%40aspnet/signalr/hubconnection#on) method of the `HubConnection`.
+To receive messages from the hub, define a method using the [on](/javascript/api/%40microsoft/signalr/hubconnection#on-string---args--any-------void-) method of the `HubConnection`.
 
 * The name of the JavaScript client method.
 * Arguments the hub passes to the method.
@@ -102,7 +102,7 @@ In the following example, the method name is `ReceiveMessage`. The argument name
 
 [!code-javascript[](javascript-client/samples/3.x/SignalRChat/wwwroot/chat.js?name=snippet_ReceiveMessage)]
 
-The preceding code in `connection.on` runs when server-side code calls it using the [SendAsync](/dotnet/api/microsoft.aspnetcore.signalr.clientproxyextensions.sendasync) method:
+The preceding code in `connection.on` runs when server-side code calls it using the <xref:Microsoft.AspNetCore.SignalR.ClientProxyExtensions.SendAsync%2A> method:
 
 [!code-csharp[Call client-side](javascript-client/samples/3.x/SignalRChat/Hubs/ChatHub.cs?name=snippet_SendMessage)]
 
@@ -183,7 +183,7 @@ async function start() {
     try {
         await connection.start();
         console.assert(connection.state === signalR.HubConnectionState.Connected);
-        console.log("connected");
+        console.log("SignalR Connected.");
     } catch (err) {
         console.assert(connection.state === signalR.HubConnectionState.Disconnected);
         console.log(err);
@@ -364,7 +364,7 @@ To receive messages from the hub, define a method using the [on](/javascript/api
 
 [!code-javascript[Receive calls from hub](javascript-client/samples/2.x/SignalRChat/wwwroot/js/chat.js?range=14-19)]
 
-The preceding code in `connection.on` runs when server-side code calls it using the [SendAsync](/dotnet/api/microsoft.aspnetcore.signalr.clientproxyextensions.sendasync) method.
+The preceding code in `connection.on` runs when server-side code calls it using the <xref:Microsoft.AspNetCore.SignalR.ClientProxyExtensions.SendAsync%2A> method.
 
 [!code-csharp[Call client-side](javascript-client/samples/2.x/SignalRChat/hubs/chathub.cs?range=8-11)]
 
