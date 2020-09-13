@@ -1,4 +1,4 @@
---- 
+---
 title: Part 2, Razor Pages with EF Core in ASP.NET Core - CRUD 
 author: rick-anderson
 description: Part 2 of Razor Pages and Entity Framework tutorial series.

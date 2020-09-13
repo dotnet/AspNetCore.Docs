@@ -1,4 +1,4 @@
---- 
+---
 title: Part 6, Razor Pages with EF Core in ASP.NET Core - Read Related Data
 author: rick-anderson
 description: Part 6 of Razor Pages and Entity Framework tutorial series.
