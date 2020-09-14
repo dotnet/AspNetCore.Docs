@@ -169,7 +169,7 @@ Blazor WebAssembly's runtime includes the following .NET features that can be di
 
 ::: moniker range=">= aspnetcore-5.0"
 
-* By default, Blazor WebAssembly carries globalization resources required to display values, such as dates and currency, in the user's culture. If the app doesn't require localization, you may [configure the app to support the invariant culture](xref:blazor/globalization-localization), which is based on the `en-US` culture.
+* By default, Blazor WebAssembly carries globalization resources required to display values, such as dates and currency, in the user's culture. If the app doesn't require localization, you may [configure the app to support the invariant culture](xref:blazor/globalization-localization), which is based on the `en-US` culture:
 
   ```xml
   <PropertyGroup>
