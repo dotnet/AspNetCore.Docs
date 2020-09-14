@@ -692,9 +692,21 @@ The `--urls` argument sets the IP addresses or host addresses with ports and pro
   --urls=http://127.0.0.1:0
   ```
 
+::: moniker range=">= aspnetcore-5.0"
+
+## Configure the Trimmer
+
+Blazor performs Intermediate Language (IL) trimming on each Release build to remove unnecessary IL from the output assemblies. For more information, see <xref:blazor/host-and-deploy/configure-trimmer>.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
 ## Configure the Linker
 
 Blazor performs Intermediate Language (IL) linking on each Release build to remove unnecessary IL from the output assemblies. For more information, see <xref:blazor/host-and-deploy/configure-linker>.
+
+::: moniker-end
 
 ## Custom boot resource loading
 
