@@ -75,7 +75,7 @@ The following recommendations are designed to provide a consistent approach to u
 
   Place operations after the `Loading = true;` line in the `try` block.
 
-* For longer-lived operations that take advantage of EF Core's [change tracking](/ef/core/querying/tracking) or [concurrency control](/ef/core/saving/concurrency), [scope the context to the lifetime of the component](#scope-to-the-component-lifetime).
+* For longer-lived operations that take advantage of EF Core's [change tracking](/ef/core/querying/tracking) or [concurrency control](/ef/core/saving/concurrency), [scope the context to the lifetime of the component](#scope-to-the-component-lifetime-5x).
 
 <h3 id="new-dbcontext-instances-5x">New DbContext instances</h3>
 
@@ -176,7 +176,7 @@ The following recommendations are designed to provide a consistent approach to u
 
   Place operations after the `Loading = true;` line in the `try` block.
 
-* For longer-lived operations that take advantage of EF Core's [change tracking](/ef/core/querying/tracking) or [concurrency control](/ef/core/saving/concurrency), [scope the context to the lifetime of the component](#scope-to-the-component-lifetime).
+* For longer-lived operations that take advantage of EF Core's [change tracking](/ef/core/querying/tracking) or [concurrency control](/ef/core/saving/concurrency), [scope the context to the lifetime of the component](#scope-to-the-component-lifetime-3x).
 
 <h3 id="new-dbcontext-instances-3x">New DbContext instances</h3>
 
