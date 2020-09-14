@@ -60,7 +60,13 @@ To explicitly configure the culture, set <xref:System.Globalization.CultureInfo.
 
 ::: moniker range=">= aspnetcore-5.0"
 
-By default, the trimming configuration for removing unused assemblies in Blazor WebAssembly apps strips out internationalization information except for locales explicitly requested. For more information, see <xref:blazor/host-and-deploy/configure-trimmer>.
+By default, Blazor WebAssembly carries globalization resources required to display values, such as dates and currency, in the user's culture. If the app doesn't require localization, you may configure the app to support the invariant culture, which is based on the `en-US` culture:
+
+```xml
+<PropertyGroup>
+  <InvariantGlobalization>true</InvariantGlobalization>
+</PropertyGroup>
+```
 
 ::: moniker-end
 
