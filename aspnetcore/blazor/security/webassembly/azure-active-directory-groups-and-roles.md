@@ -147,16 +147,16 @@ using Microsoft.Extensions.Logging;
 public class CustomUserFactory
     : AccountClaimsPrincipalFactory<CustomUserAccount>
 {
-    private readonly ILogger<CustomUserFactory> _logger;
-    private readonly IHttpClientFactory _clientFactory;
+    private readonly ILogger<CustomUserFactory> logger;
+    private readonly IHttpClientFactory clientFactory;
 
     public CustomUserFactory(IAccessTokenProviderAccessor accessor, 
         IHttpClientFactory clientFactory, 
         ILogger<CustomUserFactory> logger)
         : base(accessor)
     {
-        _clientFactory = clientFactory;
-        _logger = logger;
+        this.clientFactory = clientFactory;
+        this.logger = logger;
     }
 
     public async override ValueTask<ClaimsPrincipal> CreateUserAsync(
@@ -178,7 +178,7 @@ public class CustomUserFactory
             {
                 try
                 {
-                    var client = _clientFactory.CreateClient("GraphAPI");
+                    var client = clientFactory.CreateClient("GraphAPI");
 
                     var response = await client.GetAsync("v1.0/me/memberOf");
 
@@ -199,13 +199,13 @@ public class CustomUserFactory
                     }
                     else
                     {
-                        _logger.LogError("Graph API request failure: {REASON}", 
+                        logger.LogError("Graph API request failure: {REASON}", 
                             response.ReasonPhrase);
                     }
                 }
                 catch (AccessTokenNotAvailableException exception)
                 {
-                    _logger.LogError("Graph API access token failure: {MESSAGE}", 
+                    logger.LogError("Graph API access token failure: {MESSAGE}", 
                         exception.Message);
                 }
             }
