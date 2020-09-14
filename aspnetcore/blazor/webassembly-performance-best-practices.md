@@ -125,9 +125,21 @@ Blazor WebAssembly offers two additional versions of <xref:Microsoft.JSInterop.I
 
 ## Reduce app size
 
+::: moniker range=">= aspnetcore-5.0"
+
+### Intermediate Language (IL) trimming
+
+[Trimming unused assemblies from a Blazor WebAssembly app](xref:blazor/host-and-deploy/configure-trimmer) reduces the app's size by removing unused code in the app's binaries. By default, the Trimmer is executed when publishing an application. To benefit from trimming, publish the app for deployment using the [`dotnet publish`](/dotnet/core/tools/dotnet-publish) command with the [-c|--configuration](/dotnet/core/tools/dotnet-publish#options) option set to `Release`:
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
 ### Intermediate Language (IL) linking
 
-[Linking a Blazor WebAssembly app](xref:blazor/host-and-deploy/configure-linker) reduces the app's size by trimming unused code in the app's binaries. By default, the linker is only enabled when building in `Release` configuration. To benefit from this, publish the app for deployment using the [`dotnet publish`](/dotnet/core/tools/dotnet-publish) command with the [-c|--configuration](/dotnet/core/tools/dotnet-publish#options) option set to `Release`:
+[Linking a Blazor WebAssembly app](xref:blazor/host-and-deploy/configure-linker) reduces the app's size by trimming unused code in the app's binaries. By default, the Intermediate Language (IL) Linker is only enabled when building in `Release` configuration. To benefit from this, publish the app for deployment using the [`dotnet publish`](/dotnet/core/tools/dotnet-publish) command with the [-c|--configuration](/dotnet/core/tools/dotnet-publish#options) option set to `Release`:
+
+::: moniker-end
 
 ```dotnetcli
 dotnet publish -c Release
@@ -157,13 +169,14 @@ Blazor WebAssembly's runtime includes the following .NET features that can be di
 
 ::: moniker range=">= aspnetcore-5.0"
 
-* By default, Blazor WebAssembly carries globalization resources required to display values, such as dates and currency, in the user's culture. If the app doesn't require localization, you may configure the app to support the invariant culture, which is based on the `en-US` culture:
+* By default, Blazor WebAssembly carries globalization resources required to display values, such as dates and currency, in the user's culture. If the app doesn't require localization, you may [configure the app to support the invariant culture](xref:blazor/globalization-localization), which is based on the `en-US` culture:
 
   ```xml
   <PropertyGroup>
     <InvariantGlobalization>true</InvariantGlobalization>
   </PropertyGroup>
   ```
+
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
