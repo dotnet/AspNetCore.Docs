@@ -69,11 +69,25 @@ Any [.NET Core CLI command](/dotnet/core/tools#cli-commands) can be run with `do
 | Command | Command with watch |
 | ---- | ----- |
 | dotnet run | dotnet watch run |
-| dotnet run -f netcoreapp2.0 | dotnet watch run -f netcoreapp2.0 |
-| dotnet run -f netcoreapp2.0 -- --arg1 | dotnet watch run -f netcoreapp2.0 -- --arg1 |
+| dotnet run -f netcoreapp3.1 | dotnet watch run -f netcoreapp3.1 |
+| dotnet run -f netcoreapp3.1 -- --arg1 | dotnet watch run -f netcoreapp3.1 -- --arg1 |
 | dotnet test | dotnet watch test |
 
 Run `dotnet watch run` in the *WebApp* folder. The console output indicates `watch` has started.
+
+::: moniker range=">= aspnetcore-5.0"
+Running `dotnet watch run` on a web app launches a browser that navigates to the app's URL once ready. `dotnet watch` does this by reading the app's console output and waiting for the the ready message displayed by <xref:Microsoft.AspNetCore.WebHost>.
+
+`dotnet watch` refreshes the browser when it detects changes to watched files. To do this, the watch command injects a middleware to the app that modifies HTML responses created by the app. The middleware adds a JavaScript script block to the page that allows `dotnet watch` to instruct the browser to refresh. Currently, changes to all watched files, including static content such as *.html* and *.css* files cause the app to be rebuilt.
+
+`dotnet watch`:
+
+* Only watches files that impact builds by default.
+* Any additionally watched files (via configuration) still results in a build taking place.
+
+For more information on configuration, see [dotnet-watch configuration](#dotnet-watch-configuration) in this document
+
+::: moniker-end
 
 > [!NOTE]
 > You can use `dotnet watch --project <PROJECT>` to specify a project to watch. For example, running `dotnet watch --project WebApp run` from the root of the sample app will also run and watch the *WebApp* project.
@@ -177,6 +191,17 @@ dotnet watch msbuild /t:Test
 ```
 
 VSTest executes when any file changes in either test project.
+
+## dotnet-watch configuration
+
+Some configuration options can be passed to `dotnet watch` through environment variables. The available variables are:
+
+| Setting  | Description |
+| ------------- | ------------- |
+| `DOTNET_USE_POLLING_FILE_WATCHER`                | If set to "1" or "true", `dotnet watch` uses a polling file watcher instead of CoreFx's `FileSystemWatcher`. Used when watching files on network shares or Docker mounted volumes.                       |
+| `DOTNET_WATCH_SUPPRESS_MSBUILD_INCREMENTALISM`   | By default, `dotnet watch` optimizes the build by avoiding certain operations such as running restore or re-evaluating the set of watched files on every file change. If set to "1" or "true",  these optimizations are disabled. |
+| `DOTNET_WATCH_SUPPRESS_LAUNCH_BROWSER`   | `dotnet watch run` attempts to launch browsers for web apps with `launchBrowser` configured in *launchSettings.json*. If set to "1" or "true", this behavior is suppressed. |
+| `DOTNET_WATCH_SUPPRESS_BROWSER_REFRESH`   | `dotnet watch run` attempts to refresh browsers when it detects file changes. If set to "1" or "true", this behavior is suppressed. This behavior is also suppressed if `DOTNET_WATCH_SUPPRESS_LAUNCH_BROWSER` is set. |
 
 ## `dotnet-watch` in GitHub
 
