@@ -77,17 +77,18 @@ There may be times you want to insert a value into JavaScript to process in your
         injectedData.dataset.untrustedinput;
 
     // Put the injected, untrusted data into the scriptedWrite div tag.
-    // Do NOT use document.write() on text sourced from attributes as
-    // unicode escapes will be unescape in document.write() which can lead to XSS.
+    // Do NOT use document.write() on dynamically generated data as it
+    // can lead to XSS.
+
     document.getElementById("scriptedWrite").innerText += clientSideUntrustedInputOldStyle;
 
     // Or you can use createElement() to dynamically create document elements
-    // This time we're using textContent to ensure the data is not unescaped.
+    // This time we're using textContent to ensure the data is properly encoded.
     var x = document.createElement("div");
     x.textContent = clientSideUntrustedInputHtml5;
     document.body.appendChild(x);
 
-    // You can also use createTextNode on an element to ensure data is not unescaped.
+    // You can also use createTextNode on an element to ensure data is properly encoded.
     var y = document.createElement("div");
     y.appendChild(document.createTextNode(clientSideUntrustedInputHtml5));
     document.body.appendChild(y);
@@ -116,17 +117,18 @@ The preceding markup generates the following HTML:
         injectedData.dataset.untrustedinput;
 
     // Put the injected, untrusted data into the scriptedWrite div tag.
-    // Do NOT use document.write() on text sourced from attributes as
-    // unicode escapes will be unescape in document.write() which can lead to XSS.
+// Do NOT use document.write() on dynamically generated data as it can
+// lead to XSS.
+
     document.getElementById("scriptedWrite").innerText += clientSideUntrustedInputOldStyle;
 
     // Or you can use createElement() to dynamically create document elements
-    // This time we're using textContent to ensure the data is not unescaped.
+    // This time we're using textContent to ensure the data is properly encoded.
     var x = document.createElement("div");
     x.textContent = clientSideUntrustedInputHtml5;
     document.body.appendChild(x);
 
-    // You can also use createTextNode on an element to ensure data is not unescaped.
+    // You can also use createTextNode on an element to ensure data is properly encoded.
     var y = document.createElement("div");
     y.appendChild(document.createTextNode(clientSideUntrustedInputHtml5));
     document.body.appendChild(y);
@@ -143,7 +145,7 @@ The preceding code generates the following output:
 ```
 
 >[!WARNING]
-> Do ***NOT*** concatenate untrusted input in JavaScript to create DOM elements or use `document.write()` on data sourced from attributes.
+> Do ***NOT*** concatenate untrusted input in JavaScript to create DOM elements or use `document.write()` on dynamically generated content.
 >
 > Use one of the following approaches to prevent code from being exposed to DOM-based XSS:
 > * `createElement()` and assign property values with appropriate methods or properties such as `node.textContent=` or node.InnerText=`.
