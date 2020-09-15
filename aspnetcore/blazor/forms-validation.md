@@ -90,6 +90,9 @@ A set of built-in components are available to receive and validate user input. I
 | <xref:Microsoft.AspNetCore.Components.Forms.InputText> | `<input>` |
 | <xref:Microsoft.AspNetCore.Components.Forms.InputTextArea> | `<textarea>` |
 
+> [!NOTE]
+> The `InputRadio` and `InputRadioGroup` components are available in ASP.NET Core 5.0 or later. For more information, select a 5.0 or later version of this article.
+
 ::: moniker-end
 
 All of the input components, including <xref:Microsoft.AspNetCore.Components.Forms.EditForm>, support arbitrary attributes. Any attribute that doesn't match a component parameter is added to the rendered HTML element.
@@ -374,7 +377,7 @@ In the following example:
 
 When validation messages are set in the component, they're added to the validator's <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore> and shown in the <xref:Microsoft.AspNetCore.Components.Forms.EditForm>:
 
-```csharp
+```razor
 @page "/FormsValidation"
 
 <h1>Starfleet Starship Database</h1>
@@ -565,7 +568,7 @@ In the client project, add the validator component shown in the [Validator compo
 
 In the client project, the *Starfleet Starship Database* form is updated to show server validation errors with help of the `CustomValidator` component. When the server API returns validation messages, they're added to the `CustomValidator` component's <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore>. The errors are available in the form's <xref:Microsoft.AspNetCore.Components.Forms.EditContext> for display by the form's <xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary>:
 
-```csharp
+```razor
 @page "/FormValidation"
 @using System.Net
 @using System.Net.Http.Json
