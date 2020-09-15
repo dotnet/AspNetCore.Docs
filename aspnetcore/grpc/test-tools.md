@@ -12,7 +12,7 @@ uid: grpc/test-tools
 
 By [James Newton-King](https://twitter.com/jamesnk)
 
-Tooling is available for gRPC that allow developers to test services without building client apps. [gRPCurl](https://github.com/fullstorydev/grpcurl) is a command-line tool that lets you interact with gRPC services. [gRPCui](https://github.com/fullstorydev/grpcui) adds an interactive web UI for gRPC.
+Tooling is available for gRPC that allows developers to test services without building client apps. [gRPCurl](https://github.com/fullstorydev/grpcurl) is a command-line tool that provides interaction with gRPC services. [gRPCui](https://github.com/fullstorydev/grpcui) adds an interactive web UI for gRPC.
 
 This article discusses how to:
 
@@ -28,7 +28,7 @@ gRPCurl is a command-line tool created by the gRPC community. Its features inclu
 * Calling gRPC services, including streaming services.
 * Service discovery using [gRPC reflection](https://github.com/grpc/grpc/blob/master/doc/server-reflection.md).
 * Listing and describing gRPC services.
-* Works with secure (TLS) and unsecure (plain-text) servers.
+* Works with secure (TLS) and insecure (plain-text) servers.
 
 For information about downloading and installing `grpcurl`, see the [gRPCurl GitHub homepage](https://github.com/fullstorydev/grpcurl#installation).
 
@@ -39,12 +39,12 @@ For information about downloading and installing `grpcurl`, see the [gRPCurl Git
 * Use gRPC reflection to discover service contracts.
 * Specify *.proto* files in command-line arguments.
 
-It is much easier to use gRPCurl with gRPC reflection and service discovery. gRPC ASP.NET Core has built-in support for gRPC reflection with the [Grpc.AspNetCore.Server.Reflection](https://www.nuget.org/packages/Grpc.AspNetCore.Server.Reflection) package. To configure reflection in an app:
+It's easier to use gRPCurl with gRPC reflection and service discovery. gRPC ASP.NET Core has built-in support for gRPC reflection with the [Grpc.AspNetCore.Server.Reflection](https://www.nuget.org/packages/Grpc.AspNetCore.Server.Reflection) package. To configure reflection in an app:
 
 * Add `Grpc.AspNetCore.Server.Reflection` package reference.
 * Register reflection in *Startup.cs*:
-  * `AddGrpcReflection()` to register services that enable reflection.
-  * `MapGrpcReflectionService()` to add reflection service endpoint.
+  * `AddGrpcReflection` to register services that enable reflection.
+  * `MapGrpcReflectionService` to add reflection service endpoint.
 
 [!code-csharp[](~/grpc/test-tools/Startup.cs?name=snippet_1&highlight=4,14)]
 
