@@ -38,7 +38,7 @@ landingContent:
       - linkListType: concept
         links:
           - text: Microsoft docs contributor guide
-            url: https://docs.microsoft.com/contribute
+            url: /contribute
           - text: "ASP.NET Core docs contributor guide"
             url: https://github.com/dotnet/AspNetCore.Docs/blob/master/CONTRIBUTING.md
           - text: "ASP.NET Core API reference docs contributor guide"
@@ -62,7 +62,7 @@ landingContent:
           - text: .NET Core release notes
             url: https://github.com/dotnet/core/blob/master/release-notes/README.md
           - text: ASP.NET Core release notes
-            url: /aspnet/core/release-notes/aspnetcore-3.1
+            url: ../release-notes/aspnetcore-3.1.md
           - text: C# compiler (Roslyn) release notes
             url: https://github.com/dotnet/roslyn/tree/master/docs/ide
           - text: Visual Studio release notes

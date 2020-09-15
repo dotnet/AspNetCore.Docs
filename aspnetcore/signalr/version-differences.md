@@ -141,7 +141,7 @@ The ability to pass arbitrary state between clients and the hub (often called `H
 
 ### PersistentConnection removal
 
-In ASP.NET Core SignalR, the [PersistentConnection](https://docs.microsoft.com/previous-versions/aspnet/jj919047(v%3dvs.118)) class has been removed.
+In ASP.NET Core SignalR, the [PersistentConnection](/previous-versions/aspnet/jj919047(v=vs.118)) class has been removed.
 
 ### GlobalHost
 
