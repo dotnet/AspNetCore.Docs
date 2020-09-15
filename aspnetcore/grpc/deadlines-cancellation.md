@@ -22,14 +22,14 @@ Deadline configuration:
 
 * A deadline is configured using `CallOptions.Deadline` when a call is made.
 * There is no default deadline value. gRPC calls aren't time limited unless a deadline is specified.
-* A deadline is the UTC time of when the deadline will be exceeded. For example, `DateTime.UtcNow.AddSeconds(5)` is a deadline of 5 seconds from now.
+* A deadline is the UTC time of when the deadline is exceeded. For example, `DateTime.UtcNow.AddSeconds(5)` is a deadline of 5 seconds from now.
 * If a past or current time is used then the call immediately exceeds the deadline.
 * The deadline is sent with the gRPC call to the service and is independently tracked by both the client and the service. It is possible that a gRPC call completes on one machine, but by the time the response has returned to the client the deadline has been exceeded.
 
 If a deadline is exceeded, the client and service have different behavior:
 
 * The client immediately aborts the underlying HTTP request and throws a `DeadlineExceeded` error. The client app can choose to catch the error and display a timeout message to the user.
-* On the server, the executing HTTP request is aborted and [ServerCallContext.CancellationToken](xref:System.Threading.CancellationToken) is raised. Although the HTTP request is aborted, the gRPC call will continue to run on the server until the method completes. It's important that the cancellation token is passed to async methods so they are cancelled along with the call. For example, passing a cancellation token to async database queries and HTTP requests. Passing a cancellation token allows the canceled call to complete quickly on the server and free up resources for other calls.
+* On the server, the executing HTTP request is aborted and [ServerCallContext.CancellationToken](xref:System.Threading.CancellationToken) is raised. Although the HTTP request is aborted, the gRPC call continues to run on the server until the method completes. It's important that the cancellation token is passed to async methods so they are cancelled along with the call. For example, passing a cancellation token to async database queries and HTTP requests. Passing a cancellation token allows the canceled call to complete quickly on the server and free up resources for other calls.
 
 Configure `CallOptions.Deadline` to set a deadline for a gRPC call:
 
@@ -45,7 +45,7 @@ When a gRPC call is made from an executing gRPC service, the deadline should be 
 
 1. Client app calls `FrontendService.GetUser` with a deadline.
 2. `FrontendService` calls `UserService.GetUser`. The deadline specified by the client should be specified with the new gRPC call.
-3. `UserService.GetUser` receives the deadline. It will correctly timeout if the client app's deadline is exceeded.
+3. `UserService.GetUser` receives the deadline. It correctly times-out if the client app's deadline is exceeded.
 
 The call context provides the deadline with `ServerCallContext.Deadline`:
 
