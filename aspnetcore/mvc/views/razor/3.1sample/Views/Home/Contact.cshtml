@@ -1,0 +1,138 @@
+<!-- Single statement blocks.  -->
+@{ var total = 7; }
+
+<!-- Multi-statement block.  -->
+@{
+    var greeting = "Welcome!";
+    var weekDay = DateTime.Now.DayOfWeek;
+    var leapYear = DateTime.IsLeapYear(DateTime.Now.Year);
+    var greetingMessage = greeting + " Today is: " + weekDay
+        + " -Leap year: " + leapYear;
+
+    <p>The greeting is :<br /> @greetingMessage</p>
+    <p>The value of your account is: @total </p>
+}
+@* End of greeting *@
+
+<p>Last week: @DateTime.Now - TimeSpan.FromDays(7)</p>
+
+@*Add () to get correct time.*@
+<p>Last week: @(DateTime.Now - TimeSpan.FromDays(7))</p>
+@*End of correct time*@
+
+<a href="mailto:Support@contoso.com">Support@contoso.com</a>
+
+<br /><br />
+
+@("<span>Hello World</span>")
+
+<br /><br />
+
+@Html.Raw("<span>Hello World</span>")
+
+<br /><br />
+
+<!-- Embedding a backslash in a string -->
+@{ var myFilePath = @"C:\MyFolder\"; }
+<p>The path is: @myFilePath</p>
+
+
+<br /><br />
+
+<!-- Embedding double quotation marks in a string -->
+@{ var myQuote = @"The person said: ""Hello, today is Monday."""; }
+<p>@myQuote</p>
+
+@{
+    var inCSharp = true;
+    <p>Now in HTML, was in C# @inCSharp</p>
+}
+
+@{
+/* C# */<text>I'm HTML</text>            /* C# */
+}
+
+<br /><br />
+
+@{
+/* Still C# */@: <p>Hello World</p> /* This is not C#, it's HTML */
+}
+
+
+<br /><br />
+@{
+/* Still C# */<text> <p>Hello World</p> /* This is not C#, it's HTML */</text>
+}
+
+
+
+
+@{ var @value = 77; }
+
+@if (value % 2 == 0)
+{
+    <p>The value was even</p>
+}
+else if (value >= 1337)
+{
+    <p>The value is large.</p>
+}
+else
+{
+    <p>The value was not large and is odd.</p>
+}
+
+<br /><br />
+
+@switch (value)
+{
+    case 1:
+        <p>The value is 1!</p>
+        break;
+    case 1337:
+        <p>Your number is 1337!</p>
+        break;
+    default:
+        <p>Your number was not 1 or 1337.</p>
+        break;
+}
+@*  *@
+  @try
+  {
+      throw new InvalidOperationException("You did something invalid.");
+  }
+  catch (Exception ex)
+  {
+      <p>The exception message: @ex.Message</p>
+  }
+  finally
+  {
+      // Do something.
+  }
+
+<br /><br />
+
+  @{
+      /* C# comment. */
+      // Another C# comment.
+  }
+  <!-- HTML comment -->
+
+    @*
+    @{
+        /* C# comment. */
+        // Another C# comment.
+    }
+    <!-- HTML comment -->
+   *@
+
+  <!-- HTML comment 2 -->
+
+
+
+<!-- Single statement blocks.  -->
+
+<!-- Multi-statement block.  -->
+    <p>The greeting is :<br /> Welcome! Today is: Tuesday -Leap year: True</p>
+    <p>The value of your account is: 7 </p>
+    <p>The value of myMessage is: Hello World</p>

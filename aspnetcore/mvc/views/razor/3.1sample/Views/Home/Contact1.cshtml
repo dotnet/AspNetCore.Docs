@@ -1,0 +1,71 @@
+﻿@using RazorSample.Models
+
+ <!-- Embedding a backslash in a string -->
+@{ var myFilePath = @"C:\MyFolder\"; }
+<p>The path is: @myFilePath</p>
+
+<!-- Embedding double quotation marks in a string -->
+@{ var myQuote = @"The person said: ""Hello, today is Monday."""; }
+<p>@myQuote</p>
+
+
+<br /><br />
+
+@{
+    var people = new Person[]
+    {
+        new Person("John", 33),
+        new Person("Doe", 41),
+    };
+}
+
+
+@*@for (var i = 0; i < people.Length; i++)
+{
+    var person = people[i];
+    <p>Name: @person.Name</p>
+    <p>Age: @person.Age</p>
+}*@
+
+<br /><br />
+
+@foreach (var person in people)
+{
+    <p>Name: @person.Name</p>
+    <p>Age: @person.Age</p>
+}
+
+<br /><br />
+
+@*@{ var i = 0; }
+@while (i < people.Length)
+{
+    var person = people[i];
+    <p>Name: @person.Name</p>
+    <p>Age: @person.Age</p>
+
+    i++;
+}*@
+
+
+<br /><br />
+
+
+
+@{ var i = 0; }
+@do
+{
+    var person = people[i];
+    <p>Name: @person.Name</p>
+    <p>Age: @person.Age</p>
+
+    i++;
+} while (i < people.Length);
+
+<br /><br />
+
+@{
+    var joe = new Person("Joe", 33);
+}
+
+<p>Age@(joe.Age)</p>
