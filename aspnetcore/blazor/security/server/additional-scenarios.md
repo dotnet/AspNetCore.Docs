@@ -107,25 +107,31 @@ In the `App` component (`App.razor`), resolve the service and initialize it with
 }
 ```
 
+Add a package reference to the app for the [Microsoft.AspNet.WebApi.Client](https://www.nuget.org/packages/Microsoft.AspNet.WebApi.Client) NuGet package.
+
 In the service that makes a secure API request, inject the token provider and retrieve the token to call the API:
 
 ```csharp
+using System;
+using System.Net.Http;
+using System.Threading.Tasks;
+
 public class WeatherForecastService
 {
-    private readonly TokenProvider _store;
+    private readonly TokenProvider store;
 
     public WeatherForecastService(IHttpClientFactory clientFactory, 
         TokenProvider tokenProvider)
     {
         Client = clientFactory.CreateClient();
-        _store = tokenProvider;
+        store = tokenProvider;
     }
 
     public HttpClient Client { get; }
 
     public async Task<WeatherForecast[]> GetForecastAsync(DateTime startDate)
     {
-        var token = _store.AccessToken;
+        var token = store.AccessToken;
         var request = new HttpRequestMessage(HttpMethod.Get, 
             "https://localhost:5003/WeatherForecast");
         request.Headers.Add("Authorization", $"Bearer {token}");
