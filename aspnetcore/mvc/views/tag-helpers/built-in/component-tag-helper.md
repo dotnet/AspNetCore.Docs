@@ -4,7 +4,7 @@ author: guardrex
 ms.author: riande
 description: Learn how to use the ASP.NET Core Component Tag Helper to render Razor components in pages and views.
 ms.custom: mvc
-ms.date: 04/15/2020
+ms.date: 09/15/2020
 no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/views/tag-helpers/builtin-th/component-tag-helper
 ---
@@ -12,15 +12,64 @@ uid: mvc/views/tag-helpers/builtin-th/component-tag-helper
 
 By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.com/guardrex)
 
-To render a component from a page or view, use the [Component Tag Helper](xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper).
-
 ## Prerequisites
 
-Follow the guidance in the *Prepare the app to use components in pages and views* section of the <xref:blazor/components/integrate-components-into-razor-pages-and-mvc-apps#prepare-the-app> article.
+Follow the guidance in the *Prepare the app* section for either:
+
+* [Blazor WebAssembly](xref:blazor/components/integrate-components-into-razor-pages-and-mvc-apps?pivots=webassembly#prepare-the-app)
+* [Blazor Server](xref:blazor/components/integrate-components-into-razor-pages-and-mvc-apps?pivots=server#prepare-the-app)
 
 ## Component Tag Helper
 
-The following Component Tag Helper renders the `Counter` component in a page or view:
+To render a component from a page or view in a Blazor Server app, use the [Component Tag Helper](xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper) (`<component>` tag).
+
+> [!NOTE]
+> Integrating Razor components into Razor Pages and MVC apps in a *hosted Blazor WebAssembly app* is supported in ASP.NET Core in .NET 5 or later.
+
+<xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode> configures whether the component:
+
+* Is prerendered into the page.
+* Is rendered as static HTML on the page or if it includes the necessary information to bootstrap a Blazor app from the user agent.
+
+::: moniker range=">= aspnetcore-5.0"
+
+Blazor Server app render modes are shown in the following table.
+
+| Render Mode | Description |
+| ----------- | ----------- |
+| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | Renders the component into static HTML and includes a marker for a Blazor Server app. When the user-agent starts, this marker is used to bootstrap a Blazor app. |
+| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | Renders a marker for a Blazor Server app. Output from the component isn't included. When the user-agent starts, this marker is used to bootstrap a Blazor app. |
+| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static> | Renders the component into static HTML. |
+
+Blazor WebAssembly app render modes are shown in the following table.
+
+| Render Mode | Description |
+| ----------- | ----------- |
+| `WebAssembly` | Renders a marker for a Blazor WebAssembly app for use to include an interactive component when loaded in the browser. The component isn't prerendered. This option makes it easier to render different Blazor WebAssembly components on different pages. |
+| `WebAssemblyPrerendered` | Prerenders the component into static HTML and includes a marker for a Blazor WebAssembly app for later use to make the component interactive when loaded in the browser. |
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+Blazor Server app render modes are shown in the following table.
+
+| Render Mode | Description |
+| ----------- | ----------- |
+| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | Renders the component into static HTML and includes a marker for a Blazor Server app. When the user-agent starts, this marker is used to bootstrap a Blazor app. |
+| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | Renders a marker for a Blazor Server app. Output from the component isn't included. When the user-agent starts, this marker is used to bootstrap a Blazor app. |
+| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static> | Renders the component into static HTML. |
+
+::: moniker-end
+
+Additional characteristics include:
+
+* Multiple Component Tag Helpers rendering multiple Razor components is allowed.
+* Components can't be dynamically rendered after the app has started.
+* While pages and views can use components, the converse isn't true. Components can't use view- and page-specific features, such as partial views and sections. To use logic from a partial view in a component, factor out the partial view logic into a component.
+* Rendering server components from a static HTML page isn't supported.
+
+The following Component Tag Helper renders the `Counter` component in a page or view in a Blazor Server app with `ServerPrerendered`:
 
 ```cshtml
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
@@ -86,6 +135,13 @@ The following HTML is rendered in the page or view:
 
 Passing a quoted string requires an [explicit Razor expression](xref:mvc/views/razor#explicit-razor-expressions), as shown for `param-Color` in the preceding example. The Razor parsing behavior for a `string` type value doesn't apply to a `param-*` attribute because the attribute is an `object` type.
 
+A types of parameters are supported, except:
+
+* Generic parameters.
+* Non-serializable parameters.
+* Inheritance in collection parameters.
+* Parameters whose type is defined outside of the Blazor WebAssembly app or within a lazily-loaded assembly.
+
 The parameter type must be JSON serializable, which typically means that the type must have a default constructor and settable properties. For example, you can specify a value for `Size` and `Color` in the preceding example because the types of `Size` and `Color` are primitive types (`int` and `string`), which are supported by the JSON serializer.
 
 In the following example, a class object is passed to the component:
@@ -141,21 +197,6 @@ public class MyClass
 ```
 
 The preceding example assumes that the `MyComponent` component is in the app's *Shared* folder. The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `@using BlazorSample` and `@using BlazorSample.Shared`). `MyClass` is in the app's namespace.
-
-<xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode> configures whether the component:
-
-* Is prerendered into the page.
-* Is rendered as static HTML on the page or if it includes the necessary information to bootstrap a Blazor app from the user agent.
-
-| Render Mode | Description |
-| ----------- | ----------- |
-| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | Renders the component into static HTML and includes a marker for a Blazor Server app. When the user-agent starts, this marker is used to bootstrap a Blazor app. |
-| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | Renders a marker for a Blazor Server app. Output from the component isn't included. When the user-agent starts, this marker is used to bootstrap a Blazor app. |
-| <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static> | Renders the component into static HTML. |
-
-While pages and views can use components, the converse isn't true. Components can't use view- and page-specific features, such as partial views and sections. To use logic from a partial view in a component, factor out the partial view logic into a component.
-
-Rendering server components from a static HTML page isn't supported.
 
 ## Additional resources
 
