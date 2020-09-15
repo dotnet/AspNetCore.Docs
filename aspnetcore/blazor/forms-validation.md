@@ -262,7 +262,7 @@ In the following example:
 
 ## Display name support
 
-*This section applies to .NET 5 Release Candidate 1 (RC1) or later, which will be released in mid-September.*
+*This section applies to ASP.NET Core in .NET 5 Release Candidate 1 (RC1) or later.*
 
 The following built-in components support display names with the `DisplayName` parameter:
 
