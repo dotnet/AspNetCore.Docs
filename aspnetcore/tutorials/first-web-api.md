@@ -476,11 +476,11 @@ If you get an error calling `PutTodoItem`, call `GET` to ensure there's an item 
 
 This sample uses an in-memory database that must be initialized each time the app is started. There must be an item in the database before you make a PUT call. Call GET to ensure there's an item in the database before making a PUT call.
 
-Update the to-do item that has ID = 1 and set its name to "feed fish":
+Update the to-do item that has Id = 1 and set its name to "feed fish":
 
 ```json
   {
-    "ID":1,
+    "Id":1,
     "name":"feed fish",
     "isComplete":true
   }
@@ -967,7 +967,7 @@ Update the to-do item that has ID = 1 and set its name to "feed fish":
 
 ```json
   {
-    "ID":1,
+    "Id":1,
     "name":"feed fish",
     "isComplete":true
   }
@@ -1394,7 +1394,7 @@ Update the to-do item that has id = 1 and set its name to "feed fish":
 
 ```json
   {
-    "ID":1,
+    "Id":1,
     "name":"feed fish",
     "isComplete":true
   }
