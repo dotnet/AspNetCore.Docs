@@ -91,7 +91,7 @@ A set of built-in components are available to receive and validate user input. I
 | <xref:Microsoft.AspNetCore.Components.Forms.InputTextArea> | `<textarea>` |
 
 > [!NOTE]
-> The `InputRadio` and `InputRadioGroup` components are new for ASP.NET Core 5.0. For more information, select a 5.0 or later version of this article.
+> The `InputRadio` and `InputRadioGroup` components are available in ASP.NET Core 5.0 or later. For more information, select a 5.0 or later version of this article.
 
 ::: moniker-end
 
