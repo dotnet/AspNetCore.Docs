@@ -26,20 +26,9 @@ Mark assemblies for lazy loading in the app's project file (`.csproj`) using the
 
 ```xml
 <ItemGroup>
-  <BlazorWebAssemblyLazyLoad Include="GrantImaharaRobotControls" />
+  <BlazorWebAssemblyLazyLoad Include="GrantImaharaRobotControls.dll" />
 </ItemGroup>
 ```
-
-Only assemblies that are used by the app can be lazily loaded. The linker strips unused assemblies from published output.
-
-> [!NOTE]
-> In .NET 5 Release Candidate 1 (RC1) or later, which will be released in mid-September, the assembly name will require the `.dll` extension:
->
-> ```xml
-> <ItemGroup>
->  <BlazorWebAssemblyLazyLoad Include="GrantImaharaRobotControls.dll" />
-> </ItemGroup>
-> ```
 
 ## `Router` component
 
