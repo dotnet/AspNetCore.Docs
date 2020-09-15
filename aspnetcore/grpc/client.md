@@ -17,7 +17,7 @@ A .NET gRPC client library is available in the [Grpc.Net.Client](https://www.nug
 
 ## Configure gRPC client
 
-gRPC clients are concrete client types that are [generated from *\*.proto* files](xref:grpc/basics#generated-c-assets). The concrete gRPC client has methods that translate to the gRPC service in the *\*.proto* file. For example, a service called `Greeter` generates a type called `GreeterClient`.
+gRPC clients are concrete client types that are [generated from *\*.proto* files](xref:grpc/basics#generated-c-assets). The concrete gRPC client has methods that translate to the gRPC service in the *\*.proto* file. For example, a service called `Greeter` generates a `GreeterClient` type with methods to call the service.
 
 A gRPC client is created from a channel. Start by using `GrpcChannel.ForAddress` to create a channel, and then use the channel to create a gRPC client:
 
@@ -41,7 +41,7 @@ var counterClient = new Count.CounterClient(channel);
 
 A gRPC client must use the same connection-level security as the called service. gRPC client Transport Layer Security (TLS) is configured when the gRPC channel is created. A gRPC client throws an error when it calls a service and the connection-level security of the channel and service don't match.
 
-To configure a gRPC channel to use TLS, ensure the server address starts with `https`. For example, `GrpcChannel.ForAddress("https://localhost:5001")` uses HTTPS protocol. The gRPC channel automatically negotates a connection secured by TLS and uses a secure connection to make gRPC calls.
+To configure a gRPC channel to use TLS, ensure the server address starts with `https`. For example, `GrpcChannel.ForAddress("https://localhost:5001")` uses HTTPS protocol. The gRPC channel automatically negotiates a connection secured by TLS and uses a secure connection to make gRPC calls.
 
 > [!TIP]
 > gRPC supports client certificate authentication over TLS. For information on configuring client certificates with a gRPC channel, see <xref:grpc/authn-and-authz#client-certificate-authentication>.
