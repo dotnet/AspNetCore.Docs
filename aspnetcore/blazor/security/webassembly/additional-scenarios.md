@@ -195,20 +195,20 @@ builder.Services.AddHttpClient("GraphAPI",
     .AddHttpMessageHandler<GraphAPIAuthorizationMessageHandler>();
 ```
 
-In a Razor component (`Pages/CallCrewMember.razor`):
+In a Razor component (`Pages/CallUser.razor`):
 
 ```razor
-@page "/CallCrewMember"
+@page "/CallUser"
 @using System.ComponentModel.DataAnnotations
 @using System.Text.Json.Serialization
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 @using Microsoft.Extensions.Logging
 @inject IAccessTokenProvider TokenProvider
 @inject IHttpClientFactory ClientFactory
-@inject ILogger<CallCrewMember> Logger
-@inject IStarfleetCallProcessor CallProcessor
+@inject ILogger<CallUser> Logger
+@inject ICallProcessor CallProcessor
 
-<h3>Starfleet Red Alert Call</h3>
+<h3>Call User</h3>
 
 <EditForm Model="@callInfo" OnValidSubmit="@HandleValidSubmit">
     <DataAnnotationsValidator />
@@ -216,7 +216,7 @@ In a Razor component (`Pages/CallCrewMember.razor`):
 
     <p>
         <label>
-            Red Alert Message:
+            Message:
             <InputTextArea @bind-Value="callInfo.Message" />
         </label>
     </p>
@@ -225,12 +225,6 @@ In a Razor component (`Pages/CallCrewMember.razor`):
 
     <p>
         @formStatus
-    </p>
-
-    <p>
-        <a href="http://www.startrek.com/">Star Trek</a>,
-        &copy;1966-2019 CBS Studios, Inc. and
-        <a href="https://www.paramount.com">Paramount Pictures</a>
     </p>
 </EditForm>
 
@@ -254,12 +248,12 @@ In a Razor component (`Pages/CallCrewMember.razor`):
 
             if (userInfo != null)
             {
-                CallProcessor.Send(userInfo.Communicator, callInfo.Message);
+                CallProcessor.Send(userInfo.MobilePhone, callInfo.Message);
 
                 formStatus = "Form successfully processed.";
                 Logger.LogInformation(
                     $"Form successfully processed at {DateTime.Now} " +
-                    $"Communicator: {userInfo.Communicator}");
+                    $"Mobile Phone: {userInfo.MobilePhone}");
             }
         }
         else
@@ -279,13 +273,13 @@ In a Razor component (`Pages/CallCrewMember.razor`):
     private class UserInfo
     {
         [JsonPropertyName("mobilePhone")]
-        public string Communicator { get; set; }
+        public string MobilePhone { get; set; }
     }
 }
 ```
 
 > [!NOTE]
-> In the preceding example, the developer implements the `IStarfleetCallProcessor` (`CallProcessor`) to queue and then place automated calls.
+> In the preceding example, the developer implements the `ICallProcessor` (`CallProcessor`) to queue and then place automated calls.
 
 ## Typed `HttpClient`
 
