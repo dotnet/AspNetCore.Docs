@@ -340,7 +340,7 @@ The `HttpClient` instance is released when the app stops. This example shows tha
 
 See the following for a better way to handle the lifetime of an `HttpClient` instance:
 
-* [HttpClient and lifetime management](/aspnet/core/fundamentals/http-requests#httpclient-and-lifetime-management)
+* [HttpClient and lifetime management](../fundamentals/http-requests.md#httpclient-and-lifetime-management)
 * [HTTPClient factory blog](https://devblogs.microsoft.com/aspnet/asp-net-core-2-1-preview1-introducing-httpclient-factory/)
  
 ### Object pooling
