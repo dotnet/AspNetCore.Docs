@@ -117,8 +117,8 @@ The preceding markup generates the following HTML:
         injectedData.dataset.untrustedinput;
 
     // Put the injected, untrusted data into the scriptedWrite div tag.
-// Do NOT use document.write() on dynamically generated data as it can
-// lead to XSS.
+    // Do NOT use document.write() on dynamically generated data as it can
+    // lead to XSS.
 
     document.getElementById("scriptedWrite").innerText += clientSideUntrustedInputOldStyle;
 
