@@ -164,7 +164,7 @@ For a Blazor app based on the Blazor WebAssembly Hosted project template, <xref:
 In the following example, a named <xref:System.Net.Http.HttpClient> for Graph API is used to obtain a user's mobile phone number to process a call. After adding the Microsoft Graph API `User.Read` permission in the AAD area of the Azure portal, the scope is configured for the named client in the standalone app or Client app of a hosted Blazor solution.
 
 > [!NOTE]
-> The example in this section obtains Graph API data for the user in *component code*. To create user claims when the user is authenticated for use *globally across the app* from Graph API, see the following resources:
+> The example in this section obtains Graph API data for the user in *component code*. To create user claims from Graph API, see the following resources:
 >
 > * [Customize the user](#customize-the-user) section
 > * <xref:blazor/security/webassembly/aad-groups-roles>
@@ -430,7 +430,7 @@ builder.Services.AddMsalAuthentication(options =>
 }
 ```
 
-The `{CUSTOM SCOPE 1}` and `{CUSTOM SCOPE 2}` placeholders in the preceding example are the custom scopes.
+The `{CUSTOM SCOPE 1}` and `{CUSTOM SCOPE 2}` placeholders in the preceding example are custom scopes.
 
 The `IAccessTokenProvider.RequestToken` method provides an overload that allows an app to provision an access token with a given set of scopes.
 
@@ -454,7 +454,7 @@ if (tokenResult.TryGetToken(out var token))
 }
 ```
 
-The `{CUSTOM SCOPE 1}` and `{CUSTOM SCOPE 2}` placeholders in the preceding example are the custom scopes.
+The `{CUSTOM SCOPE 1}` and `{CUSTOM SCOPE 2}` placeholders in the preceding example are custom scopes.
 
 <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccessTokenResult.TryGetToken%2A?displayProperty=nameWithType> returns:
 
@@ -1023,7 +1023,7 @@ public class CustomAccountFactory
 }
 ```
 
-In `Program.Main` (`Program.cs`), configure the app to use the custom factory. If a custom user account class that extends <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount>, swap the custom user account class for <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount> in the following code:
+In `Program.Main` (`Program.cs`), configure the app to use the custom factory. If the app uses a custom user account class that extends <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount>, swap the custom user account class for <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount> in the following code:
 
 ```csharp
 using Microsoft.Extensions.Configuration;
@@ -1041,7 +1041,7 @@ builder.Services.AddMsalAuthentication<RemoteAuthenticationState,
         CustomAccountFactory>();
 ```
 
-The preceding example is for an app that uses AAD authentication with MSAL. Similar patterns exist for general OIDC and API authentication. For more information, see the examples at the end of the [Customize the user with a payload claim](#customize-the-user-with-a-payload-claim) section.
+The preceding example is for an app that uses AAD authentication with MSAL. Similar patterns exist for OIDC and API authentication. For more information, see the examples at the end of the [Customize the user with a payload claim](#customize-the-user-with-a-payload-claim) section.
 
 ### AAD security groups and roles with a custom user account class
 
