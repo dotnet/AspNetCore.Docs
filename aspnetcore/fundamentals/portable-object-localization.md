@@ -68,7 +68,7 @@ Add a reference to the `OrchardCore.Localization.Core` NuGet package. It's avail
 
 The *.csproj* file now contains a line similar to the following (version number may vary):
 
-[!code-xml[](localization/sample/3.x/POLocalization/POLocalization.csproj?range=9)]
+[!code-xml[](localization/sample/3.x/POLocalization/POLocalization.csproj?range=8)]
 
 ### Registering the service
 
