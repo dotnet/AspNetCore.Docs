@@ -45,15 +45,39 @@ To set up prerendering for a Blazor WebAssembly app:
      ```cshtml
      <script src="_framework/blazor.webassembly.js"></script>
      ```
-1. In `Startup.Configure` (`Startup.cs`) of the server project, change the fallback from the `index.html` page (`endpoints.MapFallbackToFile("index.html");`) to the `_Host.cshtml` page:
+1. In `Startup.Configure` (`Startup.cs`) of the server project:
+
+   * Call `UseDeveloperExceptionPage` on the app builder in the Development environment.
+   * Call `UseBlazorFrameworkFiles` on the app builder.
+   * Change the fallback from the `index.html` page (`endpoints.MapFallbackToFile("index.html");`) to the `_Host.cshtml` page.
 
    ```csharp
-   app.UseEndpoints(endpoints =>
+   public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
    {
-       endpoints.MapRazorPages();
-       endpoints.MapControllers();
-       endpoints.MapFallbackToPage("/_Host");
-   });
+       if (env.IsDevelopment())
+       {
+           app.UseDeveloperExceptionPage();
+           app.UseWebAssemblyDebugging();
+       }
+       else
+       {
+           app.UseExceptionHandler("/Error");
+           app.UseHsts();
+       }
+
+       app.UseHttpsRedirection();
+       app.UseBlazorFrameworkFiles();
+       app.UseStaticFiles();
+
+       app.UseRouting();
+
+       app.UseEndpoints(endpoints =>
+       {
+           endpoints.MapRazorPages();
+           endpoints.MapControllers();
+           endpoints.MapFallbackToPage("/_Host");
+       });
+   }
    ```
 
 ## Render components from a page or view
