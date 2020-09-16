@@ -26,6 +26,7 @@ Trimming for .NET apps can be disabled by setting the `PublishTrimmed` MSBuild p
   <PublishTrimmed>false</PublishTrimmed>
 </PropertyGroup>
 ```
+Additional options to configure the trimmer can be found at [Trimming options](/dotnet/core/deploying/trimming-options).
 
 ## Additional resources
 
