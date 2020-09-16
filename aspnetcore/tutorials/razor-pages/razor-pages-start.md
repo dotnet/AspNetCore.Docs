@@ -3,7 +3,7 @@ title: "Tutorial: Get started with Razor Pages in ASP.NET Core"
 author: rick-anderson
 description: This is the first tutorial of a series that teaches the basics of building an ASP.NET Core Razor Pages web app.
 ms.author: riande
-ms.date: 09/08/2020
+ms.date: 09/15/2020
 no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/razor-pages/razor-pages-start
 ---
@@ -58,9 +58,9 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 * Name the project **RazorPagesMovie**. It's important to name the project *RazorPagesMovie* so the namespaces will match when you copy and paste code.
   ![new ASP.NET Core Web Application](razor-pages-start/_static/config.png)
 
-* Select **ASP.NET Core 3.1** in the dropdown, **Web Application**, and then select **Create**.
+* Select **ASP.NET Core 5.0** in the dropdown, **Web Application**, and then select **Create**.
 
-![new ASP.NET Core Web Application](razor-pages-start/_static/3/npx.png)
+![new ASP.NET Core Web Application](razor-pages-start/_static/5/npx.png)
 
   The following starter project is created:
 
