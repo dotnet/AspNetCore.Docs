@@ -740,6 +740,10 @@
       uid: grpc/security
     - name: Performance best practices
       uid: grpc/performance
+    - name: Inter-process communication
+      uid: grpc/interprocess
+    - name: Create JSON Web APIs from gRPC
+      uid: grpc/httpapi
     - name: Manage Protobuf references with dotnet-grpc
       uid: grpc/dotnet-grpc
     - name: Test services with gRPC tools
@@ -750,8 +754,6 @@
       uid: grpc/wcf
     - name: Compare gRPC services with HTTP APIs
       uid: grpc/comparison
-    - name: Create JSON Web APIs from gRPC
-      uid: grpc/httpapi
     - name: Samples
       href: https://github.com/grpc/grpc-dotnet/tree/master/examples
     - name: Troubleshoot
