@@ -12,7 +12,7 @@ uid: grpc/interprocess
 
 By [James Newton-King](https://twitter.com/jamesnk)
 
-gRPC calls between a client and service are usually sent over TCP sockets. TCP was designed for communicating across a network. [inter-process communication (IPC)](https://wikipedia.org/wiki/Inter-process_communication) is more efficient than TCP when the client and service are on the same machine. This document explains how to use gRPC with custom transports in IPC scenarios.
+gRPC calls between a client and service are usually sent over TCP sockets. TCP was designed for communicating across a network. [Inter-process communication (IPC)](https://wikipedia.org/wiki/Inter-process_communication) is more efficient than TCP when the client and service are on the same machine. This document explains how to use gRPC with custom transports in IPC scenarios.
 
 ## Server configuration
 
