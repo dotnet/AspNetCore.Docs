@@ -264,7 +264,7 @@ A real-world implementation would use an exponential back-off or retry a specifi
 
 ## Additional resources
 
-* [JavaScript API reference](/javascript/api/?view=signalr-js-latest)
+* [JavaScript API reference](/javascript/api/?view=signalr-js-latest&preserve-view=true )
 * [JavaScript tutorial](xref:tutorials/signalr)
 * [WebPack and TypeScript tutorial](xref:tutorials/signalr-typescript-webpack)
 * [Hubs](xref:signalr/hubs)
