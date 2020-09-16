@@ -738,7 +738,7 @@
       uid: grpc/security
     - name: Performance best practices
       uid: grpc/performance
-    - name: Inter-process communication with gRPC
+    - name: Inter-process communication
       uid: grpc/interprocess
     - name: Create JSON Web APIs from gRPC
       uid: grpc/httpapi
