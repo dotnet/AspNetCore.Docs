@@ -12,11 +12,11 @@ uid: grpc/interprocess
 
 By [James Newton-King](https://twitter.com/jamesnk)
 
-gRPC calls between a client and service are usually sent over TCP sockets. TCP is great for communicating across a network, but [inter-process communication (IPC)](https://wikipedia.org/wiki/Inter-process_communication) is more efficient when the client and service are on the same machine. This document explains how to use gRPC with custom transports in IPC scenarios.
+gRPC calls between a client and service are usually sent over TCP sockets. TCP was designed for communicating across a network. [inter-process communication (IPC)](https://wikipedia.org/wiki/Inter-process_communication) is more efficient than TCP when the client and service are on the same machine. This document explains how to use gRPC with custom transports in IPC scenarios.
 
 ## Server configuration
 
-Custom transports are supported by Kestrel. Kestrel is configured in *Program.cs*:
+Custom transports are supported by [Kestrel](xref:fundamentals/servers/kestrel). Kestrel is configured in *Program.cs*:
 
 ```csharp
 public static readonly string SocketPath = Path.Combine(Path.GetTempPath(), "socket.tmp");
@@ -40,7 +40,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 The preceding example:
 
 * Configures Kestrel's endpoints in `ConfigureKestrel`.
-* Calls <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenUnixSocket*> to listen to a [Unix domain socket (UDS)](https://en.wikipedia.org/wiki/Unix_domain_socket) with the specified path.
+* Calls <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenUnixSocket*> to listen to a [Unix domain socket (UDS)](https://wikipedia.org/wiki/Unix_domain_socket) with the specified path.
 
 Kestrel has built-in support for UDS endpoints. UDS are supported on Linux, macOS and [modern versions of Windows](https://devblogs.microsoft.com/commandline/af_unix-comes-to-windows/).
 
