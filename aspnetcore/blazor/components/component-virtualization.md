@@ -85,7 +85,8 @@ The items provider receives an `ItemsProviderRequest`, which specifies the requi
 The following example loads employees from an `EmployeeService`:
 
 ```csharp
-private async ValueTask<ItemsProviderResult<Employee>> LoadEmployees(ItemsProviderRequest request)
+private async ValueTask<ItemsProviderResult<Employee>> LoadEmployees(
+    ItemsProviderRequest request)
 {
     var numEmployees = Math.Min(request.Count, totalEmployees - request.StartIndex);
     var employees = await EmployeesService.GetEmployeesAsync(request.StartIndex, 
