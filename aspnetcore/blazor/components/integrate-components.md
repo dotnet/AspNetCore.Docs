@@ -24,8 +24,8 @@ Razor components can be integrated into Razor Pages and MVC apps in a hosted Bla
 
 To set up prerendering for a Blazor WebAssembly app:
 
-1. Host the Blazor WebAssembly app in an ASP.NET Core app. A standalone Blazor WebAssembly app can be added to the ASP.NET Core app's solution, or your can use a hosted Blazor WebAssembly app created from the Blazor Hosted project template.
-1. Remove the default static `wwwroot/index.html` file from the client project.
+1. Host the Blazor WebAssembly app in an ASP.NET Core app. A standalone Blazor WebAssembly app can be added to an ASP.NET Core solution, or you can use a hosted Blazor WebAssembly app created from the Blazor Hosted project template.
+1. Remove the default static `wwwroot/index.html` file from the Blazor WebAssembly client project.
 1. Add a `Pages/_Host.cshtml` file to the server project. You can obtain a `_Host.cshtml` file from an app created from the Blazor Server template with the `dotnet new blazorserver -o BlazorServer` command in a command shell. After placing the `Pages/_Host.cshtml` file into the server app of the hosted Blazor WebAssembly solution, make the following changes to the file:
    * Set the namespace to the server app's `Pages` folder (for example, `@namespace BlazorHosted.Server.Pages`).
    * Set an [`@using`](xref:mvc/views/razor#using) directive for the client project (for example, `@using BlazorHosted.Client`).
@@ -40,7 +40,7 @@ To set up prerendering for a Blazor WebAssembly app:
      ```cshtml
      <component type="typeof(App)" render-mode="WebAssemblyPrerendered" />
      ```
-   * Update the Blazor script source to use the client-side WebAssembly script:
+   * Update the Blazor script source to use the client-side Blazor WebAssembly script:
 
      ```cshtml
      <script src="_framework/blazor.webassembly.js"></script>
@@ -60,7 +60,7 @@ To set up prerendering for a Blazor WebAssembly app:
 
 *This section pertains to adding components to pages or views, where the components aren't directly routable from user requests.*
 
-The Component Tag Helper supports two render modes for prerendering a component from a Blazor WebAssembly app:
+The Component Tag Helper supports two render modes for rendering a component from a Blazor WebAssembly app in a page or view:
 
 * `WebAssembly`: Renders a marker for a Blazor WebAssembly app for use to include an interactive component when loaded in the browser. The component isn't prerendered. This option makes it easier to render different Blazor WebAssembly components on different pages.
 * `WebAssemblyPrerendered`: Prerenders the component into static HTML and includes a marker for a Blazor WebAssembly app for later use to make the component interactive when loaded in the browser.
@@ -77,14 +77,20 @@ In the following Razor Pages example, the `Counter` component is rendered in a p
 }
 ```
 
-   <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode> configures whether the `App` component:
+The preceding example requires the layout (`Pages/Shared/_Layout.cshtml`) to include a render section for the script inside the closing `</body>` tag:
 
-   * Is prerendered into the page.
-   * Is rendered as static HTML on the page or if it includes the necessary information to bootstrap a Blazor app from the user agent.
+```cshtml
+@RenderSection("Scripts", required: false)
+```
+
+<xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode> configures whether the `App` component:
+
+* Is prerendered into the page.
+* Is rendered as static HTML on the page or if it includes the necessary information to bootstrap a Blazor app from the user agent.
 
 For more information on the Component Tag Helper, including passing parameters and <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode> configuration, see <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
 
-If the app should also style components with the styles in the Blazor WebAssembly app, include the app's styles in the Razor Pages `Shared/_Layout.cshtml` file:
+If the app should also style components with the styles in the Blazor WebAssembly app, include the app's styles in the Razor Pages `Pages/Shared/_Layout.cshtml` file:
 
 ```cshtml
 <head>
