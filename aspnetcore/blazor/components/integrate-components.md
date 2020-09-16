@@ -77,12 +77,6 @@ In the following Razor Pages example, the `Counter` component is rendered in a p
 }
 ```
 
-The preceding example requires the layout (`Pages/Shared/_Layout.cshtml`) to include a render section for the script inside the closing `</body>` tag:
-
-```cshtml
-@RenderSection("Scripts", required: false)
-```
-
 <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode> configures whether the `App` component:
 
 * Is prerendered into the page.
@@ -90,7 +84,18 @@ The preceding example requires the layout (`Pages/Shared/_Layout.cshtml`) to inc
 
 For more information on the Component Tag Helper, including passing parameters and <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode> configuration, see <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
 
-If the app should also style components with the styles in the Blazor WebAssembly app, include the app's styles in the Razor Pages `Pages/Shared/_Layout.cshtml` file:
+The preceding example requires that the server app's layout (`_Layout.cshtml`) include a [render section](xref:mvc/views/layout#sections) (<xref:Microsoft.AspNetCore.Mvc.Razor.RazorPage.RenderSection%2A>) for the script inside the closing `</body>` tag:
+
+```cshtml
+    ...
+
+    @RenderSection("Scripts", required: false)
+</body>
+```
+
+The `_Layout.cshtml` file is located in the *Pages/Shared* folder in a Razor Pages app or *Views/Shared* folder in an MVC app.
+
+If the app should also style components with the styles in the Blazor WebAssembly app, include the app's styles in the `_Layout.cshtml` file:
 
 ```cshtml
 <head>
