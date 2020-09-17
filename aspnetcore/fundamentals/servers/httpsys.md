@@ -239,7 +239,7 @@ In Visual Studio, the default launch profile is for IIS Express. To run the proj
 
    Reference documentation for *netsh.exe*:
 
-   * [Netsh Commands for Hypertext Transfer Protocol (HTTP)](https://technet.microsoft.com/library/cc725882.aspx)
+   * [Netsh Commands for Hypertext Transfer Protocol (HTTP)](/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc725882(v=ws.10))
    * [UrlPrefix Strings](/windows/win32/http/urlprefix-strings)
 
 1. Run the app.
@@ -490,7 +490,7 @@ In Visual Studio, the default launch profile is for IIS Express. To run the proj
 
    Reference documentation for *netsh.exe*:
 
-   * [Netsh Commands for Hypertext Transfer Protocol (HTTP)](https://technet.microsoft.com/library/cc725882.aspx)
+   * [Netsh Commands for Hypertext Transfer Protocol (HTTP)](/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc725882(v=ws.10))
    * [UrlPrefix Strings](/windows/win32/http/urlprefix-strings)
 
 1. Run the app.
@@ -743,7 +743,7 @@ In Visual Studio, the default launch profile is for IIS Express. To run the proj
 
    Reference documentation for *netsh.exe*:
 
-   * [Netsh Commands for Hypertext Transfer Protocol (HTTP)](https://technet.microsoft.com/library/cc725882.aspx)
+   * [Netsh Commands for Hypertext Transfer Protocol (HTTP)](/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc725882(v=ws.10))
    * [UrlPrefix Strings](/windows/win32/http/urlprefix-strings)
 
 1. Run the app.
@@ -996,7 +996,7 @@ In Visual Studio, the default launch profile is for IIS Express. To run the proj
 
    Reference documentation for *netsh.exe*:
 
-   * [Netsh Commands for Hypertext Transfer Protocol (HTTP)](https://technet.microsoft.com/library/cc725882.aspx)
+   * [Netsh Commands for Hypertext Transfer Protocol (HTTP)](/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc725882(v=ws.10))
    * [UrlPrefix Strings](/windows/win32/http/urlprefix-strings)
 
 1. Run the app.

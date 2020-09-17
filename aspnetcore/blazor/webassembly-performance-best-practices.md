@@ -65,10 +65,7 @@ For more information, see <xref:blazor/components/lifecycle#after-component-rend
 
 Components offer a convenient approach to produce re-usable fragments of code and markup. In general, we recommend authoring individual components that best align with the app's requirements. One caveat is that each additional child component contributes to the total time it takes to render a parent component. For most apps, the additional overhead is negligible. Apps that produce a large number of components should consider using strategies to reduce processing overhead, such as limiting the number of rendered components.
 
-For example, a grid or list that renders hundreds of rows containing components is processor intensive to render. Consider virtualizing a grid or list layout so that only a subset of the components is rendered at any given time. For an example of component subset rendering, see the following components in the [`Virtualization` sample app (aspnet/samples GitHub repository)](https://github.com/aspnet/samples/tree/master/samples/aspnetcore/blazor/Virtualization):
-
-* `Virtualize` component ([`Shared/Virtualize.razor`](https://github.com/aspnet/samples/blob/master/samples/aspnetcore/blazor/Virtualization/Shared/Virtualize.cs)): A component written in C# that implements <xref:Microsoft.AspNetCore.Components.ComponentBase> to render a set of weather data rows based on user scrolling.
-* `FetchData` component ([`Pages/FetchData.razor`](https://github.com/aspnet/samples/blob/master/samples/aspnetcore/blazor/Virtualization/Pages/FetchData.razor)): Uses the `Virtualize` component to display 25 rows of weather data at a time.
+For more information, see <xref:blazor/components/virtualization>.
 
 ## Avoid JavaScript interop to marshal data
 

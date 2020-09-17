@@ -5,14 +5,18 @@ public void ConfigureServices(IServiceCollection services)
     services.AddGrpcReflection();
 }
 
-public void Configure(IApplicationBuilder app)
+public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 {
     app.UseRouting();
     
     app.UseEndpoints(endpoints =>
     {
         endpoints.MapGrpcService<GreeterService>();
-        endpoints.MapGrpcReflectionService();
+
+        if (env.IsDevelopment())
+        {
+            endpoints.MapGrpcReflectionService();
+        }
     });
 }
 #endregion
