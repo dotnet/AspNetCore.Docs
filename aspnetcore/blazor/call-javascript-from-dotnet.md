@@ -484,7 +484,7 @@ For more information, see the following issues:
 Blazor enables JavaScript isolation in standard [JavaScript modules](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules). JavaScript isolation provides the following benefits:
 
 * Imported JavaScript no longer pollutes the global namespace.
-* Consumers of a library and components no longer must manually import the related JavaScript.
+* Consumers of a library and components aren't required to import the related JavaScript.
 
 For example, the following JavaScript module exports a simple JavaScript function for showing a browser prompt:
 
