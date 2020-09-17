@@ -746,7 +746,7 @@
       uid: grpc/httpapi
     - name: Manage Protobuf references with dotnet-grpc
       uid: grpc/dotnet-grpc
-    - name: Test services with gRPC tools
+    - name: Test gRPC services with gRPCurl
       uid: grpc/test-tools
     - name: Migrate gRPC services from C-core
       uid: grpc/migration
