@@ -337,6 +337,8 @@
                   href: blazor/forms-validation.md#built-in-forms-components
                 - name: InputDate
                   href: blazor/forms-validation.md#built-in-forms-components
+                - name: InputFile
+                  href: blazor/file-uploads.md
                 - name: InputNumber
                   href: blazor/forms-validation.md#built-in-forms-components
                 - name: InputRadio
@@ -363,6 +365,8 @@
                   href: blazor/fundamentals/routing.md#route-templates
                 - name: Title
                   href: blazor/fundamentals/additional-scenarios.md#influence-html-head-tag-elements
+                - name: Virtualize
+                  href: blazor/components/virtualization.md
             - name: Cascading values and parameters
               uid: blazor/components/cascading-values-and-parameters
             - name: Data binding
@@ -385,6 +389,8 @@
           uid: blazor/layouts
         - name: Forms and validation
           uid: blazor/forms-validation
+        - name: File uploads
+          uid: blazor/file-uploads
         - name: Call JavaScript from .NET
           uid: blazor/call-javascript-from-dotnet
         - name: Call .NET from JavaScript
