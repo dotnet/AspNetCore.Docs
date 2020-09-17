@@ -199,6 +199,7 @@ Upload the package to NuGet using the [`dotnet nuget push`](/dotnet/core/tools/d
 
 * <xref:razor-pages/ui-class>
 * [Add an XML Intermediate Language (IL) Trimmer configuration file to a library](xref:blazor/host-and-deploy/configure-trimmer)
+* [Blazor JavaScript isolation and object references](xref:blazor/call-javascript-from-dotnet#blazor-javascript-isolation-and-object-references)
 
 ::: moniker-end
 
