@@ -186,7 +186,7 @@ For more information, see [Annotating APIs as unsupported on specific platforms 
 Blazor enables JavaScript isolation in standard [JavaScript modules](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules). JavaScript isolation provides the following benefits:
 
 * Imported JavaScript no longer pollutes the global namespace.
-* Consumers of the library and components no longer must manually import the related JavaScript.
+* Consumers of the library and components aren't required to manually import the related JavaScript.
 
 For more information, see <xref:blazor/call-javascript-from-dotnet#blazor-javascript-isolation-and-object-references>.
 
