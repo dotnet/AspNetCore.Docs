@@ -94,6 +94,13 @@ Don't place a `<script>` tag in a component file because the `<script>` tag can'
 
 The <xref:Microsoft.JSInterop.IJSRuntime> abstraction is asynchronous to allow for Blazor Server scenarios. If the app is a Blazor WebAssembly app and you want to invoke a JavaScript function synchronously, downcast to <xref:Microsoft.JSInterop.IJSInProcessRuntime> and call <xref:Microsoft.JSInterop.IJSInProcessRuntime.Invoke%2A> instead. We recommend that most JS interop libraries use the async APIs to ensure that the libraries are available in all scenarios.
 
+::: moniker range=">= aspnetcore-5.0"
+
+> [!NOTE]
+> To enable JavaScript isolation in standard [JavaScript modules](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules), see the [Blazor JavaScript isolation and object references](#blazor-javascript-isolation-and-object-references) section.
+
+::: moniker-end
+
 The sample app includes a component to demonstrate JS interop. The component:
 
 * Receives user input via a JavaScript prompt.
@@ -469,6 +476,45 @@ For more information, see the following issues:
 
 * [Circular references are not supported, take two (dotnet/aspnetcore #20525)](https://github.com/dotnet/aspnetcore/issues/20525)
 * [Proposal: Add mechanism to handle circular references when serializing (dotnet/runtime #30820)](https://github.com/dotnet/runtime/issues/30820)
+
+::: moniker range=">= aspnetcore-5.0"
+
+## Blazor JavaScript isolation and object references
+
+Blazor enables JavaScript isolation in standard [JavaScript modules](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules). JavaScript isolation has a couple of benefits:
+
+* Imported JavaScript no longer pollutes the global namespace.
+* Consumers of the library and components no longer must manually import the related JavaScript.
+
+For example, the following JavaScript module exports a simple JavaScript function for showing a browser prompt:
+
+```javascript
+export function showPrompt(message) {
+  return prompt(message, 'Type anything here');
+}
+```
+
+You can add the preceding JavaScript module to a .NET library as a static web asset (`wwwroot/exampleJsInterop.js`) and then import the module into the .NET code using the <xref:Microsoft.JSInterop.IJSRuntime> service. The service is injected as `jsRuntime` (not shown) for the following example:
+
+```csharp
+var module = await jsRuntime.InvokeAsync<JSObjectReference>(
+    "import", "./_content/MyComponents/exampleJsInterop.js");
+```
+
+The `import` identifier in the preceding example is a special identifier used specifically for importing a JavaScript module. Specify the module using its stable static web asset path: `_content/{LIBRARY NAME}/{PATH UNDER WWWROOT}`. The placeholder `{LIBRARY NAME}` is the library name. The placeholder `{PATH UNDER WWWROOT}` is the path to the script under `wwwroot`.
+
+<xref:Microsoft.JSInterop.IJSRuntime> imports the module as a `JSObjectReference`, which represents a reference to a JavaScript object from .NET code. Use the `JSObjectReference` to invoke exported JavaScript functions from the module:
+
+```csharp
+public async ValueTask<string> Prompt(string message)
+{
+    return await module.InvokeAsync<string>("showPrompt", message);
+}
+```
+
+`JSObjectReference` simplifies interacting with JavaScript libraries where you want to capture JavaScript object references and then later invoke their functions from .NET.
+
+::: moniker-end
 
 ## Additional resources
 
