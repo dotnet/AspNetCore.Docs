@@ -181,6 +181,15 @@ private static string GetLoggingDirectory()
 
 For more information, see [Annotating APIs as unsupported on specific platforms (dotnet/designs GitHub repository](https://github.com/dotnet/designs/blob/main/accepted/2020/platform-exclusion/platform-exclusion.md#build-configuration-for-platforms).
 
+## Blazor JavaScript isolation and object references
+
+Blazor enables JavaScript isolation in standard [JavaScript modules](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules). JavaScript isolation provides the following benefits:
+
+* Imported JavaScript no longer pollutes the global namespace.
+* Consumers of the library and components no longer must manually import the related JavaScript.
+
+For more information, see <xref:blazor/call-javascript-from-dotnet#blazor-javascript-isolation-and-object-references>.
+
 ::: moniker-end
 
 ## Build, pack, and ship to NuGet
@@ -199,7 +208,6 @@ Upload the package to NuGet using the [`dotnet nuget push`](/dotnet/core/tools/d
 
 * <xref:razor-pages/ui-class>
 * [Add an XML Intermediate Language (IL) Trimmer configuration file to a library](xref:blazor/host-and-deploy/configure-trimmer)
-* [Blazor JavaScript isolation and object references](xref:blazor/call-javascript-from-dotnet#blazor-javascript-isolation-and-object-references)
 
 ::: moniker-end
 
