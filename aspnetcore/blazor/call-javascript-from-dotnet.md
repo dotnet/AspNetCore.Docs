@@ -486,7 +486,7 @@ Blazor enables JavaScript isolation in standard [JavaScript modules](https://dev
 * Imported JavaScript no longer pollutes the global namespace.
 * Consumers of a library and components aren't required to import the related JavaScript.
 
-For example, the following JavaScript module exports a simple JavaScript function for showing a browser prompt:
+For example, the following JavaScript module exports a JavaScript function for showing a browser prompt:
 
 ```javascript
 export function showPrompt(message) {
