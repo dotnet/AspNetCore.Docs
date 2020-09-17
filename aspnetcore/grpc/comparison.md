@@ -79,7 +79,7 @@ gRPC is well suited to the following scenarios:
 * **Point-to-point real-time communication**: gRPC has excellent support for bi-directional streaming. gRPC services can push messages in real-time without polling.
 * **Polyglot environments**: gRPC tooling supports all popular development languages, making gRPC a good choice for multi-language environments.
 * **Network constrained environments**: gRPC messages are serialized with Protobuf, a lightweight message format. A gRPC message is always smaller than an equivalent JSON message.
-* **Inter-process communication**: Alternative transports to TCP can be used with gRPC and .NET. For more information, see <xref:grpc/interprocess>.
+* **Inter-process communication (IPC)**: IPC transports such as Unix domain sockets and named pipes can be used with gRPC to communicate between apps on the same machine. For more information, see <xref:grpc/interprocess>.
 
 ## gRPC weaknesses
 
