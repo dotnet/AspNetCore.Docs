@@ -79,6 +79,7 @@ gRPC is well suited to the following scenarios:
 * **Point-to-point real-time communication**: gRPC has excellent support for bi-directional streaming. gRPC services can push messages in real-time without polling.
 * **Polyglot environments**: gRPC tooling supports all popular development languages, making gRPC a good choice for multi-language environments.
 * **Network constrained environments**: gRPC messages are serialized with Protobuf, a lightweight message format. A gRPC message is always smaller than an equivalent JSON message.
+* **Inter-process communication**: Alternative transports to TCP can be used with gRPC and .NET. For more information, see <xref:grpc/interprocess>.
 
 ## gRPC weaknesses
 
@@ -86,12 +87,15 @@ gRPC is well suited to the following scenarios:
 
 It's impossible to directly call a gRPC service from a browser today. gRPC heavily uses HTTP/2 features and no browser provides the level of control required over web requests to support a gRPC client. For example, browsers do not allow a caller to require that HTTP/2 be used, or provide access to underlying HTTP/2 frames.
 
-[gRPC-Web](https://grpc.io/docs/tutorials/basic/web.html) is an additional technology from the gRPC team that provides limited gRPC support in the browser. gRPC-Web consists of two parts: a JavaScript client that supports all modern browsers, and a gRPC-Web proxy on the server. The gRPC-Web client calls the proxy and the proxy will forward on the gRPC requests to the gRPC server.
+There are two common approaches to bring gRPC to browser apps:
 
-Not all of gRPC's features are supported by gRPC-Web. Client and bi-directional streaming isn't supported, and there is limited support for server streaming.
+* [gRPC-Web](https://grpc.io/docs/tutorials/basic/web.html) is an additional technology from the gRPC team that provides gRPC support in the browser. gRPC-Web allows browser apps to benefit from the high-performance and low network usage of gRPC. Not all of gRPC's features are supported by gRPC-Web. Client and bi-directional streaming isn't supported, and there is limited support for server streaming.
 
-> [!TIP]
-> .NET Core has support for gRPC-Web. Visit <xref:grpc/browser> for more information.
+  .NET Core has support for gRPC-Web. Visit <xref:grpc/browser> for more information.
+
+* RESTful JSON Web APIs can be automatically created from gRPC services by annotating the *.proto* with [HTTP metadata](https://cloud.google.com/service-infrastructure/docs/service-management/reference/rpc/google.api#google.api.HttpRule). This allows an app to support both gRPC and JSON Web APIs, without duplicating effort of building separate services for both.
+
+  .NET Core has experimental support for creating JSON Web APIs from gRPC services. Visit <xref:grpc/httpapi> for more information.
 
 ### Not human readable
 
@@ -107,7 +111,6 @@ Other frameworks are recommended over gRPC in the following scenarios:
 
 * **Browser accessible APIs**: gRPC isn't fully supported in the browser. gRPC-Web can offer browser support, but it has limitations and introduces a server proxy.
 * **Broadcast real-time communication**: gRPC supports real-time communication via streaming, but the concept of broadcasting a message out to registered connections doesn't exist. For example in a chat room scenario where new chat messages should be sent to all clients in the chat room, each gRPC call is required to individually stream new chat messages to the client. [SignalR](xref:signalr/introduction) is a useful framework for this scenario. SignalR has the concept of persistent connections and built-in support for broadcasting messages.
-* **Inter-process communication**: A process must host an HTTP/2 server to accept incoming gRPC calls. For Windows, inter-process communication [pipes](/dotnet/standard/io/pipe-operations) is a fast, lightweight method of communication.
 
 ## Additional resources
 
