@@ -5,7 +5,7 @@ description: Learn how to invoke JavaScript functions from .NET methods in Blazo
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/07/2020
+ms.date: 09/17/2020
 no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/call-javascript-from-dotnet
 ---
@@ -511,8 +511,6 @@ public async ValueTask<string> Prompt(string message)
     return await module.InvokeAsync<string>("showPrompt", message);
 }
 ```
-
-`JSObjectReference` simplifies interacting with JavaScript libraries where you want to capture JavaScript object references and then later invoke their functions from .NET.
 
 ::: moniker-end
 
