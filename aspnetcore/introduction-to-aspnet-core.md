@@ -233,7 +233,7 @@ For more information, see [Contribute to the ASP.NET documentation: Code snippet
 
 For more information, see the following resources:
 
-* <xref:getting-started>
+* <xref:getting-started%23trust-the-development-certificate>
 * <xref:tutorials/publish-to-azure-webapp-using-vs>
 * [ASP.NET Core fundamentals](xref:fundamentals/index)
 * [The weekly ASP.NET community standup](https://live.asp.net/) covers the team's progress and plans. It features new blogs and third-party software.
