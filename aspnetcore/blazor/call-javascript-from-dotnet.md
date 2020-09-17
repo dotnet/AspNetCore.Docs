@@ -481,10 +481,10 @@ For more information, see the following issues:
 
 ## Blazor JavaScript isolation and object references
 
-Blazor enables JavaScript isolation in standard [JavaScript modules](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules). JavaScript isolation has a couple of benefits:
+Blazor enables JavaScript isolation in standard [JavaScript modules](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules). JavaScript isolation provides the following benefits:
 
 * Imported JavaScript no longer pollutes the global namespace.
-* Consumers of the library and components no longer must manually import the related JavaScript.
+* Consumers of a library and components no longer must manually import the related JavaScript.
 
 For example, the following JavaScript module exports a simple JavaScript function for showing a browser prompt:
 
@@ -494,7 +494,7 @@ export function showPrompt(message) {
 }
 ```
 
-You can add the preceding JavaScript module to a .NET library as a static web asset (`wwwroot/exampleJsInterop.js`) and then import the module into the .NET code using the <xref:Microsoft.JSInterop.IJSRuntime> service. The service is injected as `jsRuntime` (not shown) for the following example:
+Add the preceding JavaScript module to a .NET library as a static web asset (`wwwroot/exampleJsInterop.js`) and then import the module into the .NET code using the <xref:Microsoft.JSInterop.IJSRuntime> service. The service is injected as `jsRuntime` (not shown) for the following example:
 
 ```csharp
 var module = await jsRuntime.InvokeAsync<JSObjectReference>(
