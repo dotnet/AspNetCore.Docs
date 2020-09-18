@@ -367,22 +367,22 @@
                   href: blazor/fundamentals/additional-scenarios.md#influence-html-head-tag-elements
                 - name: Virtualize
                   uid: blazor/components/virtualization
-                - name: Cascading values and parameters
-                  uid: blazor/components/cascading-values-and-parameters
-                - name: Data binding
-                  uid: blazor/components/data-binding
-                - name: Event handling
-                  uid: blazor/components/event-handling
-                - name: Lifecycle
-                  uid: blazor/components/lifecycle
-                - name: Component virtualization
-                  uid: blazor/components/virtualization
-                - name: Templated components
-                  uid: blazor/components/templated-components
-                - name: Integrate components
-                  uid: blazor/components/integrate-components-into-razor-pages-and-mvc-apps
-                - name: Component libraries
-                  uid: blazor/components/class-libraries
+            - name: Cascading values and parameters
+              uid: blazor/components/cascading-values-and-parameters
+            - name: Data binding
+              uid: blazor/components/data-binding
+            - name: Event handling
+              uid: blazor/components/event-handling
+            - name: Lifecycle
+              uid: blazor/components/lifecycle
+            - name: Component virtualization
+              uid: blazor/components/virtualization
+            - name: Templated components
+              uid: blazor/components/templated-components
+            - name: Integrate components
+              uid: blazor/components/integrate-components-into-razor-pages-and-mvc-apps
+            - name: Component libraries
+              uid: blazor/components/class-libraries
         - name: Globalization and localization
           uid: blazor/globalization-localization
         - name: Layouts
