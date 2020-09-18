@@ -120,14 +120,6 @@ By default, scope identifiers use the format `b-10-character-string`. To customi
 </ItemGroup>
 ```
 
-### Change isolated CSS file format
-
-By default, isolated CSS files follow the `MyComponent.styles.css` format. To customize the format, add the following to your project file:
-
-```xml
-<FigureThisOut>true</FigureThisOut>
-```
-
 ### Change base path for static web assets
 
 The `scoped.styles.css` file is generated under the root of your app. In your project file, use the `StaticWebAssetBasePath` property to change the default path. The following example places the `scoped.styles.css` file, and the rest of the app's assets, in a `_content` path instead.
