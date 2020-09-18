@@ -93,9 +93,9 @@ There are two common approaches to bring gRPC to browser apps:
 
   .NET Core has support for gRPC-Web. Visit <xref:grpc/browser> for more information.
 
-* RESTful JSON Web APIs can be automatically created from gRPC services by annotating the *.proto* with [HTTP metadata](https://cloud.google.com/service-infrastructure/docs/service-management/reference/rpc/google.api#google.api.HttpRule). This allows an app to support both gRPC and JSON Web APIs, without duplicating effort of building separate services for both.
+* RESTful JSON Web APIs can be automatically created from gRPC services by annotating the *.proto* file with [HTTP metadata](https://cloud.google.com/service-infrastructure/docs/service-management/reference/rpc/google.api#google.api.HttpRule). This allows an app to support both gRPC and JSON web APIs, without duplicating effort of building separate services for both.
 
-  .NET Core has experimental support for creating JSON Web APIs from gRPC services. Visit <xref:grpc/httpapi> for more information.
+  .NET Core has experimental support for creating JSON web APIs from gRPC services. For more information, see <xref:grpc/httpapi>.
 
 ### Not human readable
 
