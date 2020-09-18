@@ -325,68 +325,6 @@
           items:
             - name: Overview
               uid: blazor/components/index
-            - name: Built-in components
-              items:
-                - name: App
-                  href: blazor/templates.md#blazor-project-structure
-                  topicHref: blazor/templates.md#blazor-project-structure
-                - name: Authentication
-                  href: blazor/security/webassembly/index.md#authentication-component
-                  topicHref: blazor/security/webassembly/index.md#authentication-component
-                - name: AuthorizeView
-                  href: blazor/security/index.md#authorizeview-component
-                  topicHref: blazor/security/index.md#authorizeview-component
-                - name: InputCheckbox
-                  href: blazor/forms-validation.md#built-in-forms-components
-                  topicHref: blazor/forms-validation.md#built-in-forms-components
-                - name: InputDate
-                  href: blazor/forms-validation.md#built-in-forms-components
-                  topicHref: blazor/forms-validation.md#built-in-forms-components
-                - name: InputFile
-                  uid: blazor/file-uploads
-                  topicHref: blazor/file-uploads.md
-                - name: InputNumber
-                  href: blazor/forms-validation.md#built-in-forms-components
-                  topicHref: blazor/forms-validation.md#built-in-forms-components
-                - name: InputRadio
-                  href: blazor/forms-validation.md#built-in-forms-components
-                  topicHref: blazor/forms-validation.md#built-in-forms-components
-                - name: InputRadioGroup
-                  href: blazor/forms-validation.md#built-in-forms-components
-                  topicHref: blazor/forms-validation.md#built-in-forms-components
-                - name: InputSelect
-                  href: blazor/forms-validation.md#built-in-forms-components
-                  topicHref: blazor/forms-validation.md#built-in-forms-components
-                - name: InputText
-                  href: blazor/forms-validation.md#built-in-forms-components
-                  topicHref: blazor/forms-validation.md#built-in-forms-components
-                - name: InputTextArea
-                  href: blazor/forms-validation.md#built-in-forms-components
-                  topicHref: blazor/forms-validation.md#built-in-forms-components
-                - name: Link
-                  href: blazor/fundamentals/additional-scenarios.md#influence-html-head-tag-elements
-                  topicHref: blazor/fundamentals/additional-scenarios.md#influence-html-head-tag-elements
-                - name: MainLayout
-                  href: blazor/layouts.md#mainlayout-component
-                  topicHref: blazor/layouts.md#mainlayout-component
-                - name: Meta
-                  href: blazor/fundamentals/additional-scenarios.md#influence-html-head-tag-elements
-                  topicHref: blazor/fundamentals/additional-scenarios.md#influence-html-head-tag-elements
-                - name: NavLink
-                  href: blazor/fundamentals/routing.md#navlink-component
-                  topicHref: blazor/fundamentals/routing.md#navlink-component
-                - name: NavMenu
-                  href: blazor/fundamentals/routing.md#navlink-component
-                  topicHref: blazor/fundamentals/routing.md#navlink-component
-                - name: Router
-                  href: blazor/fundamentals/routing.md#route-templates
-                  topicHref: blazor/fundamentals/routing.md#route-templates
-                - name: Title
-                  href: blazor/fundamentals/additional-scenarios.md#influence-html-head-tag-elements
-                  topicHref: blazor/fundamentals/additional-scenarios.md#influence-html-head-tag-elements
-                - name: Virtualize
-                  uid: blazor/components/virtualization
-                  topicHref: blazor/components/virtualization.md
             - name: Cascading values and parameters
               uid: blazor/components/cascading-values-and-parameters
             - name: Data binding
@@ -481,6 +419,48 @@
           uid: blazor/blazor-server-ef-core
         - name: Advanced scenarios
           uid: blazor/advanced-scenarios
+        - name: Built-in components
+          items:
+            - name: App
+              href: blazor/templates.md#blazor-project-structure
+            - name: Authentication
+              href: blazor/security/webassembly/index.md#authentication-component
+            - name: AuthorizeView
+              href: blazor/security/index.md#authorizeview-component
+            - name: InputCheckbox
+              href: blazor/forms-validation.md#built-in-forms-components
+            - name: InputDate
+              href: blazor/forms-validation.md#built-in-forms-components
+            - name: InputFile
+              uid: blazor/file-uploads
+            - name: InputNumber
+              href: blazor/forms-validation.md#built-in-forms-components
+            - name: InputRadio
+              href: blazor/forms-validation.md#built-in-forms-components
+            - name: InputRadioGroup
+              href: blazor/forms-validation.md#built-in-forms-components
+            - name: InputSelect
+              href: blazor/forms-validation.md#built-in-forms-components
+            - name: InputText
+              href: blazor/forms-validation.md#built-in-forms-components
+            - name: InputTextArea
+              href: blazor/forms-validation.md#built-in-forms-components
+            - name: Link
+              href: blazor/fundamentals/additional-scenarios.md#influence-html-head-tag-elements
+            - name: MainLayout
+              href: blazor/layouts.md#mainlayout-component
+            - name: Meta
+              href: blazor/fundamentals/additional-scenarios.md#influence-html-head-tag-elements
+            - name: NavLink
+              href: blazor/fundamentals/routing.md#navlink-component
+            - name: NavMenu
+              href: blazor/fundamentals/routing.md#navlink-component
+            - name: Router
+              href: blazor/fundamentals/routing.md#route-templates
+            - name: Title
+              href: blazor/fundamentals/additional-scenarios.md#influence-html-head-tag-elements
+            - name: Virtualize
+              uid: blazor/components/virtualization
     - name: Client-side development
       items:
         - name: Single Page Apps
