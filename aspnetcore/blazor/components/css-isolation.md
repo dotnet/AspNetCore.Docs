@@ -13,18 +13,18 @@ uid: blazor/components/css-isolation
 
 By [Dave Brock](https://twitter.com/daveabrock)
 
-Use CSS isolation to apply styles to the current component only. CSS isolation simplifies an app's CSS footprint by preventing dependencies on global styles, and also helps to avoid styling conflicts between other components or libraries.
+Use cascading style sheets (CSS) isolation to apply styles to only the current component. CSS isolation simplifies an app's CSS footprint by preventing dependencies on global styles, and also helps to avoid styling conflicts between other components or libraries.
 
 ## Enable CSS isolation 
 
-To enable CSS isolation, in the `Pages` directory of your app create a new file with the format `MyComponent.razor.css`. 
+In the `Pages` directory of your app, create a new file with the format `MyComponent.razor.css`. The `MyComponent` value must match the value of the component, and is *not* case-sensitive.
 
 To add CSS isolation to the `Counter` component in the sample app, add a new file named `Counter.razor.css`, then add the following CSS:
 
 ```css
 h1 { 
     color: brown;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana,sans-serif;
+    font-family: Tahoma, Geneva, Verdana, sans-serif;
 }
 ```
 
@@ -48,11 +48,11 @@ The following example shows a parent component containing a child component, `Co
 
     <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
-    < />
+    <CounterChild />
 </div>
 ```
 
-The `CounterChild` contains an `h1` that should be styled the same as `Counter`:
+The `CounterChild` component contains an `h1` element, to be styled the same as `Counter`:
 
 ```razor
 @page "/counter-child"
@@ -70,7 +70,7 @@ Update the `h1` declaration in `Counter.razor.css` with the `::deep` combinator 
 
 ```
 
-The `h1` style now applies to both the `Counter` and `CounterChild` without needing to create a separate `razor.css` file for `CounterChild`.
+The `h1` style now applies to both the `Counter` and `CounterChild` without needing to create a separate `CounterChild.razor.css` file.
 
 ## CSS isolation bundling
 
@@ -82,7 +82,7 @@ In your app, locate the reference inside the `<head>` tag of the generated HTML:
 <link href="_framework/scoped.styles.css" rel="stylesheet">
 ```
 
-The bundle associates each component with a unique identifier. Each style declaration applies this identifier. For example, for the styled `h1` in the `Counter` component:
+The bundle associates each component with a scope identifier. For each styled component, an HTML attribute is appended with the format `b-10-character-string`. For example, for the styled `h1` in the `Counter` component:
 
 ```html
 <h1 b-3xxtam6d07>
@@ -98,33 +98,49 @@ h1[b-3xxtam6d07] {
 }
 ```
 
-Additionally, at build time a project bundle is created with the convention `<<StaticWebAssetsBasePath>>/<<project>>.lib.scp.css`. 
-
-## Discuss import order
-
-Discuss import order here
+Additionally, at build time a project bundle is created with the convention `StaticWebAssetsBasePath/MyProject.lib.scp.css`. This is referenced when projects are used for NuGet packages or a Razor Class Library, which both support CSS isolation.  
 
 ## CSS preprocessor support
 
-Include some stuff about preprocessor support here
+CSS preprocessors are useful with improving CSS development by utilizing features like variables, nesting, modules, mixins, and inheritance. While CSS isolation does not *natively* support CSS preprocessors such as SASS or LESS, integrating them is seamless as long as preprocessor compilation occurs before the CSS isolation build step. 
 
-## Configuration
+Many third-party NuGet packages can work with these use cases. For example, if working with SASS, when you add a `MyComponent.razor.scss` file, these tools can compile SASS changes to `MyComponent.razor.css`. With that step complete, the isolation step is ready. 
 
-To configure CSS isolation, add properties to your project file.
+## CSS isolation configuration
 
-### Change isolated CSS file convention
+When working with isolated CSS, no configuration is required. However, configuration is available for advanced scenarios, or when there are dependencies on other existing tools or workflows.
 
-By default, Blazor follows the `MyComponent.styles.css` convention. To customize the convention, add the following to your project file:
+### Customize scope identifier format
+
+By default, scope identifiers use the format `b-10-character-string`. To customize the scope identifier format, update the project file to a desired pattern.
+
+```xml
+<ItemGroup>
+    <None Update="MyComponent.razor.css" CopyToOutputDirectory="my-custom-scope-identifier" />
+</ItemGroup>
+```
+
+### Change isolated CSS file format
+
+By default, isolated CSS files follow the `MyComponent.styles.css` format. To customize the format, add the following to your project file:
 
 ```xml
 <FigureThisOut>true</FigureThisOut>
 ```
 
+### Change base path for static web assets
+
+The `scoped.styles.css` file is generated under the root of your app. In your project file, use the `StaticWebAssetBasePath` property to change the default path. The following example places the `scoped.styles.css` file, and the rest of the app's assets, in a `_content` path instead.
+
+```xml
+<PropertyGroup>
+  <StaticWebAssetBasePath>_content/$(PackageId)</StaticWebAssetBasePath>
+</PropertyGroup>
+```
+
 ### Disable automatic bundling
 
-To opt-out of how Blazor publishes and loads scoped files at runtime, use the `DisableScopedCssBundling` property. 
-
-When specifying this property, you will grab the scoped CSS files from the obj directory and do the required steps to publish and load them during runtime.
+To opt out of how Blazor publishes and loads scoped files at runtime, use the `DisableScopedCssBundling` property. When using this property, it means other tools or processes are responsible for taking the isolated CSS files from the `obj` directory and publishing and loading them at runtime.
 
 ```xml
 <PropertyGroup>
