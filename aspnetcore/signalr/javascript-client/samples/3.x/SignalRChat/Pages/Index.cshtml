@@ -1,0 +1,35 @@
+@page
+@model IndexModel
+
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="form-group row">
+    <label for="user" class="col-2 col-form-label">User</label>
+    <div class="col col-sm-6">
+        <input id="user" class="form-control" />
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="message" class="col-2 col-form-label">Message</label>
+    <div class="col col-sm-6">
+        <input id="message" class="form-control" />
+    </div>
+</div>
+
+<button id="send" type="button" class="btn btn-primary">Send Message</button>
+
+<hr>
+
+<ul id="messageList"></ul>
+
+@section Scripts
+{
+    <!-- <snippet_CDN> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/3.1.7/signalr.min.js"></script>
+    <!-- </snippet_CDN> -->
+
+    <script src="~/chat.js"></script>
+}
