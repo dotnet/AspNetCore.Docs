@@ -21,6 +21,7 @@ namespace ContosoUniversity
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+                    //  webBuilder.UseStartup<StartupSQLite>();
                 });
     }
 }
