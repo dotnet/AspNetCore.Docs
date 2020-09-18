@@ -25,11 +25,11 @@ This is the first in a series of tutorials that show how to use Entity Framework
 
 # [Visual Studio](#tab/visual-studio)
 
-[!INCLUDE[VS prereqs](~/includes/net-core-prereqs-vs-3.0.md)]
+[!INCLUDE[VS prereqs](~/includes/net-core-prereqs-vs-5.0.md)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!INCLUDE[VS Code prereqs](~/includes/net-core-prereqs-vsc-3.0.md)]
+[!INCLUDE[VS Code prereqs](~/includes/net-core-prereqs-vsc-5.0.md)]
 
 ---
 
@@ -53,9 +53,9 @@ The app built in these tutorials is a basic university web site. Users can view 
 
 ![Students Edit page](intro/_static/student-edit30.png)
 
-The UI style of this site is based on the built-in project templates. The tutorial's focus is on how to use EF Core, not how to customize the UI.
+The UI style of this site is based on the built-in project templates. The tutorial's focus is on how to use EF Core with ASP.NET Core, not how to customize the UI.
 
-Follow the link at the top of the page to get the source code for the completed project. The *cu30* folder has the code for the ASP.NET Core 3.0 version of the tutorial. Files that reflect the state of the code for tutorials 1-7 can be found in the *cu30snapshots* folder.
+Follow the link at the top of the page to get the source code for the completed project. The *cu50* folder has the code for the ASP.NET Core 5.0 version of the tutorial. Files that reflect the state of the code for tutorials 1-7 can be found in the *cu50snapshots* folder.
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -74,9 +74,8 @@ To run the app after downloading the completed project:
 
 To run the app after downloading the completed project:
 
-* Delete *ContosoUniversity.csproj*, and rename *ContosoUniversitySQLite.csproj* to *ContosoUniversity.csproj*.
-* In *Program.cs*, comment out `#define Startup` so `StartupSQLite` is used.
-* Delete *appSettings.json*, and rename *appSettingsSQLite.json* to *appSettings.json*.
+* In *Program.cs*, remove the comments from `// webBuilder.UseStartup<StartupSQLite>();`  so `StartupSQLite` is used.
+* Copy the contents of *appSettingsSQLite.json* into *appSettings.json*.
 * Delete the *Migrations* folder, and rename *MigrationsSQL* to *Migrations*.
 * Do a global search for `#if SQLiteVersion` and remove `#if SQLiteVersion` and the associated `#endif` statement.
 * Build the project.
@@ -104,7 +103,7 @@ To run the app after downloading the completed project:
 * From the Visual Studio **File** menu, select **New** > **Project**.
 * Select **ASP.NET Core Web Application**.
 * Name the project *ContosoUniversity*. It's important to use this exact name including capitalization, so the namespaces match when code is copied and pasted.
-* Select **.NET Core** and **ASP.NET Core 3.0** in the dropdowns, and then select **Web Application**.
+* Select **.NET Core** and **ASP.NET Core 5.0** in the dropdowns, and then select **Web Application**.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -121,19 +120,21 @@ To run the app after downloading the completed project:
 
 ## Set up the site style
 
-Set up the site header, footer, and menu by updating *Pages/Shared/_Layout.cshtml*:
+Copy and paste the following code into the *Pages/Shared/_Layout.cshtml* file:
 
-* Change each occurrence of "ContosoUniversity" to "Contoso University". There are three occurrences.
+[!code-cshtml[Main](intro/samples/cu50/Pages/Shared/_Layout.cshtml?highlight=6,14,21-35,49)]
 
-* Delete the **Home** and **Privacy** menu entries, and add entries for **About**, **Students**, **Courses**, **Instructors**, and **Departments**.
+The layout file sets the site header, footer, and menu. The preceding code makes the following changes:
 
-The changes are highlighted.
+* Each occurrence of "ContosoUniversity" to "Contoso University". There are three occurrences.
+* The **Home** and **Privacy** menu entries are deleted.
+* Entries are added for **About**, **Students**, **Courses**, **Instructors**, and **Departments**.
 
-[!code-cshtml[Main](intro/samples/cu30/Pages/Shared/_Layout.cshtml?highlight=6,14,21-35,49)]
+In *Pages/Index.cshtml*, replace the contents of the file with the following code:
 
-In *Pages/Index.cshtml*, replace the contents of the file with the following code to replace the text about ASP.NET Core with text about this app:
+[!code-cshtml[Main](intro/samples/cu50/Pages/Index.cshtml)]
 
-[!code-cshtml[Main](intro/samples/cu30/Pages/Index.cshtml)]
+The preceding code replaces the text about ASP.NET Core with text about this app.
 
 Run the app to verify that the home page appears.
 
@@ -282,7 +283,7 @@ The scaffolding process:
 
 The connection string specifies [SQL Server LocalDB](/sql/database-engine/configure-windows/sql-server-2016-express-localdb). 
 
-[!code-json[Main](intro/samples/cu30/appsettings.json?highlight=11)]
+[!code-json[Main](intro/samples/cu50/appsettings.json?highlight=11)]
 
 LocalDB is a lightweight version of the SQL Server Express Database Engine and is intended for app development, not production use. By default, LocalDB creates *.mdf* files in the `C:/Users/<user>` directory.
 
@@ -290,7 +291,7 @@ LocalDB is a lightweight version of the SQL Server Express Database Engine and i
 
 Change the connection string to point to a SQLite database file named *CU.db*:
 
-[!code-json[Main](intro/samples/cu30/appsettingsSQLite.json?highlight=11)]
+[!code-json[Main](intro/samples/cu50/appsettingsSQLite.json?highlight=11)]
 
 ---
 
@@ -323,13 +324,13 @@ The scaffolding tool automatically registered the context class with the depende
 
 * In `ConfigureServices`, the highlighted lines were added by the scaffolder:
 
-  [!code-csharp[Main](intro/samples/cu30/Startup.cs?name=snippet_ConfigureServices&highlight=5-6)]
+  [!code-csharp[Main](intro/samples/cu50/Startup.cs?name=snippet_ConfigureServices&highlight=5-6)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
 * In `ConfigureServices`, make sure the code added by the scaffolder calls `UseSqlite`.
 
-  [!code-csharp[Main](intro/samples/cu30/StartupSQLite.cs?name=snippet_ConfigureServices&highlight=5-6)]
+  [!code-csharp[Main](intro/samples/cu50/StartupSQLite.cs?name=snippet_ConfigureServices&highlight=5-6)]
 
 ---
 
@@ -584,8 +585,7 @@ A student can enroll in any number of courses, and a course can have any number 
 
 ![Student entity diagram](intro/_static/student-entity.png)
 
-* Create a *Models* folder in the project folder. 
-
+* Create a *Models* folder in the project folder.
 * Create *Models/Student.cs* with the following code:
 
   [!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Models/Student.cs)]
