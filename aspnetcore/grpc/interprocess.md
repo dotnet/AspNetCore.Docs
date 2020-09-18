@@ -93,7 +93,7 @@ public static GrpcChannel CreateChannel()
     var connectionFactory = new UnixDomainSocketConnectionFactory(udsEndPoint);
     var socketsHttpHandler = new SocketsHttpHandler
     {
-        ConnectionFactory = connectionFactory.ConnectAsync
+        ConnectCallback = connectionFactory.ConnectAsync
     };
 
     return GrpcChannel.ForAddress("http://localhost", new GrpcChannelOptions
