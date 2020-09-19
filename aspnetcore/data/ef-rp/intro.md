@@ -199,42 +199,43 @@ Build the project to validate that there are no compiler errors.
 
 In this section, you use the ASP.NET Core scaffolding tool to generate:
 
-* An EF Core *context* class. The context is the main class that coordinates Entity Framework functionality for a given data model. It derives from the `Microsoft.EntityFrameworkCore.DbContext` class.
+* An EF Core `DbContext` class. The context is the main class that coordinates Entity Framework functionality for a given data model. It derives from the <xref:Microsoft.EntityFrameworkCore.DbContext?displayProperty=fullName> class.
 * Razor pages that handle Create, Read, Update, and Delete (CRUD) operations for the `Student` entity.
 
 # [Visual Studio](#tab/visual-studio)
 
-* Create a *Students* folder in the *Pages* folder.
+* Create a *Pages/Students* folder.
 * In **Solution Explorer**, right-click the *Pages/Students* folder and select **Add** > **New Scaffolded Item**.
-* In the **Add Scaffold** dialog, select **Razor Pages using Entity Framework (CRUD)** > **ADD**.
+* In the **Add New Scaffold Item** dialog:
+  * In the left tab, select **Installed > Common > Razor Pages**
+  * Select **Razor Pages using Entity Framework (CRUD)** > **ADD**.
 * In the **Add Razor Pages using Entity Framework (CRUD)** dialog:
   * In the **Model class** drop-down, select **Student (ContosoUniversity.Models)**.
   * In the **Data context class** row, select the **+** (plus) sign.
-  * Change the data context name from *ContosoUniversity.Models.ContosoUniversityContext* to *ContosoUniversity.Data.SchoolContext*.
-  * Select **Add**.
+    * Change the data context name to end in `SchoolContext` rather than `ContosoUniversityContext`. The updated context name: `ContosoUniversity.Data.SchoolContext`
+   * Select **Add**.
 
 The following packages are automatically installed:
 
-* `Microsoft.VisualStudio.Web.CodeGeneration.Design`
 * `Microsoft.EntityFrameworkCore.SqlServer`
-* `Microsoft.Extensions.Logging.Debug`
 * `Microsoft.EntityFrameworkCore.Tools`
+* `Microsoft.VisualStudio.Web.CodeGeneration.Design`
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
 * Run the following .NET Core CLI commands to install required NuGet packages:
-<!-- TO DO  After testing, Replace with
-[!INCLUDE[](~/includes/includes/add-EF-NuGet-SQLite-CLI.md)]
-remove dotnet tool install --global  below
- -->
+
   ```dotnetcli
   dotnet add package Microsoft.EntityFrameworkCore.SQLite
   dotnet add package Microsoft.EntityFrameworkCore.SqlServer
   dotnet add package Microsoft.EntityFrameworkCore.Design
   dotnet add package Microsoft.EntityFrameworkCore.Tools
   dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
-  dotnet add package Microsoft.Extensions.Logging.Debug
+  dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore --version 5.0.0-rc.1.20451.17
   ```
+
+  <!--   dotnet add package Microsoft.Extensions.Logging.Debug
+-->
 
   The Microsoft.VisualStudio.Web.CodeGeneration.Design package is required for scaffolding. Although the app won't use SQL Server, the scaffolding tool needs the SQL Server package.
 
@@ -262,7 +263,7 @@ remove dotnet tool install --global  below
 
 ---
 
-If you have a problem with the preceding step, build the project and retry the scaffold step.
+If the preceding step fails, build the project and retry the scaffold step.
 
 The scaffolding process:
 
@@ -302,38 +303,67 @@ Update *SchoolContext.cs* with the following code:
 
 [!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Data/SchoolContext.cs?highlight=13-22)]
 
-The highlighted code creates a [DbSet\<TEntity>](/dotnet/api/microsoft.entityframeworkcore.dbset-1) property for each entity set. In EF Core terminology:
+The preceding code changes from the singular `DbSet<Student> Student` to the  plural `DbSet<Student> Student`. To make the Razor Pages code match the new `DBSet` name, make a global change from  `_context.Student` to `_context.Students`.  There are 8 occurrences.
 
-* An entity set typically corresponds to a database table.
-* An entity corresponds to a row in the table.
+Because an entity set contains multiple entities, many developers prefer the `DBSet` property names should be plural.
 
-Since an entity set contains multiple entities, the DBSet properties should be plural names. Since the scaffolding tool created a`Student` DBSet, this step changes it to plural `Students`. 
+The highlighted code:
 
-To make the Razor Pages code match the new DBSet name, make a global change across the whole project of `_context.Student` to `_context.Students`.  There are 8 occurrences.
+* Creates a [DbSet\<TEntity>](/dotnet/api/microsoft.entityframeworkcore.dbset-1) property for each entity set. In EF Core terminology:
+  * An entity set typically corresponds to a database table.
+  * An entity corresponds to a row in the table.
+* Calls <xref:Microsoft.EntityFrameworkCore.DbContext.OnModelCreating%2A>. `OnModelCreating`:
+  * Is called when `SchoolContext` has been initialized, but before the model has been locked down and used to initialize the context.
+  * Is required because later in the tutorial The `Student` entity will have references to the other entities.
+  <!-- Review, OnModelCreating needs review -->
 
 Build the project to verify there are no compiler errors.
 
 ## Startup.cs
 
-ASP.NET Core is built with [dependency injection](xref:fundamentals/dependency-injection). Services (such as the EF Core database context) are registered with dependency injection during application startup. Components that require these services (such as Razor Pages) are provided these services via constructor parameters. The constructor code that gets a database context instance is shown later in the tutorial.
+ASP.NET Core is built with [dependency injection](xref:fundamentals/dependency-injection). Services such as the `SchoolContext` are registered with dependency injection during app startup. Components that require these services, such as Razor Pages, are provided these services via constructor parameters. The constructor code that gets a database context instance is shown later in the tutorial.
 
 The scaffolding tool automatically registered the context class with the dependency injection container.
 
 # [Visual Studio](#tab/visual-studio)
 
-* In `ConfigureServices`, the highlighted lines were added by the scaffolder:
+The following highlighted lines were added by the scaffolder:
 
-  [!code-csharp[Main](intro/samples/cu50/Startup.cs?name=snippet_ConfigureServices&highlight=5-6)]
+[!code-csharp[Main](intro/samples/cu30/Startup.cs?name=snippet_ConfigureServices&highlight=5-6)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* In `ConfigureServices`, make sure the code added by the scaffolder calls `UseSqlite`.
+Verify the code added by the scaffolder calls `UseSqlite`.
 
-  [!code-csharp[Main](intro/samples/cu50/StartupSQLite.cs?name=snippet_ConfigureServices&highlight=5-6)]
+[!code-csharp[Main](intro/samples/cu30/StartupSQLite.cs?name=snippet_ConfigureServices&highlight=5-6)]
 
 ---
 
 The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions) object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.
+
+### Add the database exception filter
+
+Add `AddDatabaseDeveloperPageExceptionFilter` to `ConfigureServices` as shown in the following code:
+
+# [Visual Studio](#tab/visual-studio)
+
+[!code-csharp[Main](intro/samples/cu50/Startup.cs?name=snippet_ConfigureServices&highlight=8)]
+
+Add the [Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore). The `Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore` NuGet package provides ASP.NET Core middleware for Entity Framework Core error pages. This middleware helps to detect and diagnose errors with Entity Framework Core migrations.
+
+In the PMC, enter the following command to add the NuGet package:
+
+```powershell
+Install-Package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore -Version 5.0.0-rc.1.20451.17
+```
+
+# [Visual Studio Code](#tab/visual-studio-code)
+
+[!code-csharp[Main](intro/samples/cu50/StartupSQLite.cs?name=snippet_ConfigureServices&highlight=8)]
+
+Add the [Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore). The `Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore` NuGet package provides ASP.NET Core middleware for Entity Framework Core error pages. This middleware helps to detect and diagnose errors with Entity Framework Core migrations.
+
+---
 
 ## Create the database
 

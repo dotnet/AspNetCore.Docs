@@ -27,6 +27,8 @@ namespace ContosoUniversity
 
             services.AddDbContext<SchoolContext>(options =>
                     options.UseSqlite(Configuration.GetConnectionString("SchoolContext")));
+
+            services.AddDatabaseDeveloperPageExceptionFilter()
         }
         #endregion
         */
