@@ -23,7 +23,7 @@ namespace ContosoUniversity.Pages.Students
 
         public async Task OnGetAsync()
         {
-            Student = await _context.Students.ToListAsync();
+            Student = await _context.Students.Take(100).ToListAsync();
         }
     }
 }
