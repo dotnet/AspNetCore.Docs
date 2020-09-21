@@ -48,6 +48,9 @@ This pattern of generating an entity inheritance structure from a single databas
 
 An alternative is to make the database look more like the inheritance structure. For example, you could have only the name fields in the Person table and have separate Instructor and Student tables with the date fields.
 
+> [!WARNING]
+> Table Per Type (TPT) is not supported by EF Core 3.x, however it is has been implemented in [EF Core 5.0](https://docs.microsoft.com/ef/core/what-is-new/ef-core-5.0/plan).
+
 ![Table-per-type inheritance](inheritance/_static/tpt.png)
 
 This pattern of making a database table for each entity class is called table per type (TPT) inheritance.
