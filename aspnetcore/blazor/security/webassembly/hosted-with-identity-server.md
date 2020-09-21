@@ -474,7 +474,15 @@ To configure an app, Azure App Service, and Azure Key Vault to host with a custo
      * Client Authentication (1.3.6.1.5.5.7.3.2)
      * Server Authentication (1.3.6.1.5.5.7.3.1)
 
-   To create the certificate, use [MakeCert on Windows](/windows/desktop/seccrypto/makecert), [OpenSSL](https://www.openssl.org), or any other suitable tool or online service. Make note of the password, which is used later to import the certificate into Azure Key Vault.
+   To create the certificate, use one of the following approaches or any other suitable tool or online service:
+
+   * [Azure Key Vault](/azure/key-vault/certificates/quick-create-portal#add-a-certificate-to-key-vault)
+   * [MakeCert on Windows](/windows/desktop/seccrypto/makecert)
+   * [OpenSSL](https://www.openssl.org)
+
+   Make note of the password, which is used later to import the certificate into Azure Key Vault.
+
+   For more information on Azure Key Vault certificates, see [Azure Key Vault: Certificates](/azure/key-vault/certificates/).
 1. Create a new Azure Key Vault or use an existing key vault in your Azure subscription.
 1. In the key vault's **Certificates** area, import the PFX site certificate. Record the certificate's thumbprint, which is used in the app's configuration later.
 1. In Azure Key Vault, generate a new self-signed certificate for Identity Server token signing. Give the certificate a **Certificate Name** and **Subject**. The **Subject** is specified as `CN={COMMON NAME}`, where the `{COMMON NAME}` placeholder is the certificate's common name. The common name can be any alphanumeric string. For example, `CN=IdentityServerSigning` is a valid certificate **Subject**. Use the default **Advanced Policy Configuration** settings. Record the certificate's thumbprint, which is used in the app's configuration later.
