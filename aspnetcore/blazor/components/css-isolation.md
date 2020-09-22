@@ -146,8 +146,3 @@ To opt out of how Blazor publishes and loads scoped files at runtime, use the `D
 </PropertyGroup>
 ```
 
-
-
-
-
-
