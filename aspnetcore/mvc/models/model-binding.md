@@ -380,6 +380,37 @@ For `Dictionary` targets, model binding looks for matches to *parameter_name* or
   * selectedCourses["2000"]="Economics"
 
 <a name="glob"></a>
+::: moniker range="> aspnetcore-5.0"
+## Constructor binding and record types
+Model binding requires that complex types have a parameterless constructor. Both System.Text.Json and Newtonsoft.Json-based input formatters support deserialization of classes that do not have a parameterless constructor. 
+
+C# 9 introduces record types which are a great way to succintly represent data over the wire. MVC adds support for model binding and validating record types with a single constructor.
+
+```C#
+public record Person([Required] string Name, [Range(0, 150)] int Age);
+
+public class PersonController
+{
+   public IActionResult Index() => View();
+
+   [HttpPost]
+   public IActionResult Index(Person person)
+   {
+          // ...
+   }
+}
+
+// Person/Index.cshtml
+@model Person
+
+Name: <input asp-for="Name" />
+...
+Age: <input asp-for="Age" />
+```
+
+When validating record types, MVC will look for validation metadata specifically on parameters rather than on properties. 
+
+::: moniker-end
 
 ## Globalization behavior of model binding route data and query strings
 
