@@ -379,7 +379,6 @@ For `Dictionary` targets, model binding looks for matches to *parameter_name* or
   * selectedCourses["1050"]="Chemistry"
   * selectedCourses["2000"]="Economics"
 
-<a name="glob"></a>
 ::: moniker range="> aspnetcore-5.0"
 
 ## Constructor binding and record types
@@ -414,6 +413,7 @@ When validating record types, MVC looks for validation metadata specifically on 
 
 ::: moniker-end
 
+<a name="glob"></a>
 ## Globalization behavior of model binding route data and query strings
 
 The ASP.NET Core route value provider and query string value provider:
