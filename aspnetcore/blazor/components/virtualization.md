@@ -55,6 +55,12 @@ If not specifying a context to the component with `Context`, use the `context` v
 
 The `Virtualize` component calculates how many items to render based on the height of the container and the size of the rendered items.
 
+The item content for the `Virtualize` component can include:
+
+* Plain HTML and Razor code, as the preceding example shows.
+* One or more Razor components.
+* A mix of HTML/Razor and Razor components.
+
 ## Item provider delegate
 
 If you don't want to load all of the items into memory, you can specify an items provider delegate method to the component's `ItemsProvider` parameter that asynchronously retrieves the requested items on demand:
