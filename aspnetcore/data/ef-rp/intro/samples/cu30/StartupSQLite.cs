@@ -29,7 +29,7 @@ namespace ContosoUniversity
             services.AddRazorPages();
 
             services.AddDbContext<SchoolContext>(options =>
-                    options.UseSqlite(Configuration.GetConnectionString("SchoolContext")));
+                 options.UseSqlite(Configuration.GetConnectionString("SchoolContext")));
         }
         #endregion
         

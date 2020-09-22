@@ -1,21 +1,18 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using ContosoUniversity.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
 
 namespace ContosoUniversity
 {
-    public class StartupSQLite
+    public class StartupMaxMBsize
     {
-        public StartupSQLite(IConfiguration configuration)
+        public StartupMaxMBsize(IConfiguration configuration)
         {
             Configuration = configuration;
         }
@@ -25,15 +22,23 @@ namespace ContosoUniversity
         #region snippet_ConfigureServices
         public void ConfigureServices(IServiceCollection services)
         {
+            int MyMaxModelBindingCollectionSize = 100;
+            Int32.TryParse(Configuration["MyMaxModelBindingCollectionSize"],
+                                       out MyMaxModelBindingCollectionSize);
+            
+            services.Configure<MvcOptions>(options => 
+                         options.MaxModelBindingCollectionSize = MyMaxModelBindingCollectionSize);
+
             services.AddRazorPages();
 
             services.AddDbContext<SchoolContext>(options =>
-                    options.UseSqlite(Configuration.GetConnectionString("SchoolContext")));
+                    options.UseSqlServer(Configuration.GetConnectionString("ContosoUniversityContext")));
 
             services.AddDatabaseDeveloperPageExceptionFilter();
         }
-        #endregion        
+        #endregion
 
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())

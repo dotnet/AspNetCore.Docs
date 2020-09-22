@@ -226,18 +226,15 @@ The following packages are automatically installed:
 * Run the following .NET Core CLI commands to install required NuGet packages:
 
   ```dotnetcli
-  dotnet add package Microsoft.EntityFrameworkCore.SQLite
-  dotnet add package Microsoft.EntityFrameworkCore.SqlServer
-  dotnet add package Microsoft.EntityFrameworkCore.Design
-  dotnet add package Microsoft.EntityFrameworkCore.Tools
-  dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
+  dotnet add package Microsoft.EntityFrameworkCore.SQLite --version 5.0.0-rc.1.20451.13
+  dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 5.0.0-rc.1.20451.13
+  dotnet add package Microsoft.EntityFrameworkCore.Design --version 5.0.0-rc.1.20451.13
+  dotnet add package Microsoft.EntityFrameworkCore.Tools --version 5.0.0-rc.1.20451.13
+  dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --version 5.0.0-rc.1.20453.2
   dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore --version 5.0.0-rc.1.20451.17
   ```
 
-  <!--   dotnet add package Microsoft.Extensions.Logging.Debug
--->
-
-  The Microsoft.VisualStudio.Web.CodeGeneration.Design package is required for scaffolding. Although the app won't use SQL Server, the scaffolding tool needs the SQL Server package.
+   The Microsoft.VisualStudio.Web.CodeGeneration.Design package is required for scaffolding. Although the app won't use SQL Server, the scaffolding tool needs the SQL Server package.
 
 * Create a *Pages/Students* folder.
 
@@ -476,9 +473,7 @@ For more information about asynchronous programming in .NET, see [Async Overview
 
 In general, a web page shouldn't be loading an arbitrary number of rows. A query should use paging or a limiting approach. For example, the preceding query could use `Take` to limit the rows returned:
 
-```csharp
-Student = await _context.Students.Take(100).ToListAsync();
-```
+[!code-csharp[Main](intro/samples/cu50snapshots/Index.cshtml.cs?name)]
 
 Paging and limiting is covered later in the tutorial.
 
