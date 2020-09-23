@@ -386,7 +386,7 @@ Edit the */etc/nginx/nginx.conf* configuration file. The example contains both `
 > [!NOTE]
 > Blazor WebAssembly apps require a larger `burst` parameter value to accommodate the larger number of requests made by an app. For more information, see <xref:blazor/host-and-deploy/webassembly#nginx>.
 
-You now have configured HTTPS for `example.com`. Then edit the */etc/nginx/sites-available/default* file again to redirect all HTTP requests to HTTPS:
+Update the `/etc/nginx/sites-available/default` file to redirect HTTP requests to HTTPS. The following example redirects requests for `example.com`:
 
 ```nginx
 server {
