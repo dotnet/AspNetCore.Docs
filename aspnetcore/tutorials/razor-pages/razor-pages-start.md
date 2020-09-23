@@ -82,10 +82,6 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
   * The `dotnet new` command creates a new Razor Pages project in the *RazorPagesMovie* folder.
   * The `code` command opens the *RazorPagesMovie* folder in the current instance of Visual Studio Code.
 
-* After the status bar's OmniSharp flame icon turns green, a dialog asks **Required assets to build and debug are missing from 'RazorPagesMovie'. Add them?** Select **Yes**.
-
-  A *.vscode* directory, containing *launch.json* and *tasks.json* files, is added to the project's root directory.
-
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 * Select **File** > **New Solution**.
@@ -99,7 +95,7 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 * In the **Configure the new Web Application** dialog:
 
   * Confirm that **Authentication** is set to **No Authentication**.
-  * If presented an option to select a **Target Framework**, select the latest 3.x version.
+  * If presented an option to select a **Target Framework**, select the latest .NET 5.x version.
 
   Select **Next**.
 
@@ -156,6 +152,7 @@ Advance to the next tutorial in the series:
 <!--::: moniker range=">= aspnetcore-5.0" -->
 
 ::: moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
+
 This is the first tutorial of a series that teaches the basics of building an ASP.NET Core Razor Pages web app.
 
 For a more advanced introduction aimed at developers who are familiar with controllers and views, see [Introduction to Razor Pages](xref:razor-pages/index).
@@ -406,6 +403,9 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 
 * Press Ctrl+F5 to run without the debugger.
 
+  Launching the app with Ctrl+F5 (non-debug mode) allows you to make code changes, save the file, refresh the browser, and see the code changes. Many developers prefer to use non-debug mode to quickly launch the app and view changes.
+
+
   [!INCLUDE[](~/includes/trustCertVS.md)]
 
   Visual Studio starts [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) and runs the app. The address bar shows `localhost:port#` and not something like `example.com`. That's because `localhost` is the standard hostname for the local computer. Localhost only serves web requests from the local computer. When Visual Studio creates a web project, a random port is used for the web server.
@@ -424,7 +424,9 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 
   [!INCLUDE[](~/includes/trustCertVSC.md)]
 
-* Press **Ctrl-F5** to run without the debugger.
+* Press **Ctrl+F5** to run without the debugger.
+
+  Launching the app with Ctrl+F5 (non-debug mode) allows you to make code changes, save the file, refresh the browser, and see the code changes. Many developers prefer to use non-debug mode to quickly launch the app and view changes.
 
   Visual Studio Code starts [Kestrel](xref:fundamentals/servers/kestrel), launches a browser, and goes to `http://localhost:5001`. The address bar shows `localhost:port#` and not something like `example.com`. That's because `localhost` is the standard hostname for  local computer. Localhost only serves web requests from the local computer.
 
@@ -443,6 +445,8 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
   [!INCLUDE[](~/includes/trustCertMac.md)]
 
 * Press **Cmd-Opt-F5** to run without the debugger.
+
+  Launching the app with Cmd-Opt-F5 (non-debug mode) allows you to make code changes, save the file, refresh the browser, and see the code changes. Many developers prefer to use non-debug mode to quickly launch the app and view changes.
 
   Visual Studio starts [Kestrel](xref:fundamentals/servers/kestrel), launches a browser, and goes to `http://localhost:5001`.
 
@@ -491,7 +495,7 @@ Contains code that configures app behavior, such as whether it requires consent 
 
 ## Additional resources
 
-* [Youtube version of this tutorial](https://www.youtube.com/watch?v=F0SP7Ry4flQ&feature=youtu.be)
+* [YouTube version of this tutorial](https://www.youtube.com/watch?v=F0SP7Ry4flQ&feature=youtu.be)
 
 ## Next steps
 
