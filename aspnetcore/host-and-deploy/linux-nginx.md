@@ -386,6 +386,17 @@ Edit the */etc/nginx/nginx.conf* configuration file. The example contains both `
 > [!NOTE]
 > Blazor WebAssembly apps require a larger `burst` parameter value to accommodate the larger number of requests made by an app. For more information, see <xref:blazor/host-and-deploy/webassembly#nginx>.
 
+You now have configured HTTPS for `example.com`. Then edit the */etc/nginx/sites-available/default* file again to redirect all HTTP requests to HTTPS:
+
+```nginx
+server {
+    listen        80;
+    server_name   example.com *.example.com;
+    add_header    Strict-Transport-Security max-age=15768000;
+    return        301 https://example.com$request_uri;
+}
+```
+
 #### Secure Nginx from clickjacking
 
 [Clickjacking](https://blog.qualys.com/securitylabs/2015/10/20/clickjacking-a-common-implementation-mistake-that-can-put-your-websites-in-danger), also known as a *UI redress attack*, is a malicious attack where a website visitor is tricked into clicking a link or button on a different page than they're currently visiting. Use `X-FRAME-OPTIONS` to secure the site.
