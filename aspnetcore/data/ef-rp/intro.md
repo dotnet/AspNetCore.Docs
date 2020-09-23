@@ -475,7 +475,7 @@ For more information about asynchronous programming in .NET, see [Async Overview
 
 In general, a web page shouldn't be loading an arbitrary number of rows. A query should use paging or a limiting approach. For example, the preceding query could use `Take` to limit the rows returned:
 
-[!code-csharp[Main](intro/samples/cu50snapshots/Index.cshtml.cs?name)]
+[!code-csharp[Main](intro/samples/cu50snapshots/Index.cshtml.cs?name=snippet)]
 
 Paging and limiting is covered later in the tutorial.
 
