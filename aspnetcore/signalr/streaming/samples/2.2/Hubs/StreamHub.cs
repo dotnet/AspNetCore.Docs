@@ -32,6 +32,7 @@ namespace SignalRChat.Hubs
             int delay,
             CancellationToken cancellationToken)
         {
+            Exception localException = null;
             try
             {
                 for (var i = 0; i < count; i++)
@@ -48,10 +49,12 @@ namespace SignalRChat.Hubs
             }
             catch (Exception ex)
             {
-                writer.TryComplete(ex);
+                localException = ex;
             }
-
-            writer.TryComplete();
+            finally
+            {
+                writer.Complete(localException);
+            }
         }
     }
     #endregion

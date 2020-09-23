@@ -58,7 +58,7 @@ The following sample shows the basics of streaming data to the client using Chan
 > [!NOTE]
 > Write to the `ChannelWriter<T>` on a background thread and return the `ChannelReader` as soon as possible. Other hub invocations are blocked until a `ChannelReader` is returned.
 >
-> Wrap logic in a `try ... catch`. Complete the `Channel` in the `catch` and outside the `catch` to make sure the hub method invocation is completed properly.
+> Wrap logic in a `try ... catch`. Capture any exceptions inside the `catch` if you want to flow the error and complete the `Channel` in a `finally` to make sure the hub method invocation is completed properly.
 
 ::: moniker range=">= aspnetcore-3.0"
 
