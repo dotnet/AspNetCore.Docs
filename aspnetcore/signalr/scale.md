@@ -104,14 +104,70 @@ The preceding conditions make it likely to hit the 10 connection limit on a clie
 
 ## Linux with Nginx
 
-Set the proxy's `Connection` and `Upgrade` headers to the following for SignalR WebSockets:
+The following contains the minimum required settings to enable WebSockets, ServerSentEvents, and LongPolling for SignalR:
 
 ```nginx
-proxy_set_header Upgrade $http_upgrade;
-proxy_set_header Connection $connection_upgrade;
+http {
+  map $http_upgrade $connection_upgrade {
+    default Upgrade;
+    '' close;
+  }
+
+  server {
+    listen 80;
+    server_name example.com *.example.com;
+
+    root /path/to/wwwroot;
+
+    # Configure the SignalR Endpoint
+    location /hubroute {
+      # App server url
+      proxy_pass http://localhost:5000;
+
+      # Configuration for WebSockets
+      proxy_set_header Upgrade $http_upgrade;
+      proxy_set_header Connection $connection_upgrade;
+      proxy_cache_bypass $http_upgrade;
+
+      # Configuration for ServerSentEvents
+      proxy_buffering off;
+
+      # Configuration for LongPolling
+      proxy_read_timeout 100s;
+
+      proxy_set_header Host $host;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header X-Forwarded-Proto $scheme;
+    }
+  }
+}
 ```
 
-For more information, see [NGINX as a WebSocket Proxy](https://www.nginx.com/blog/websocket-nginx/).
+When multiple backend servers are used sticky sessions must be added so SignalR connections do not switch servers when connecting.
+There are multiple ways to add sticky sessions in Nginx, we show two below depending on what you have available to you.
+The following is added in addition to the previous configuration:
+
+```nginx
+http {
+  # 'backend' is the name of our group of servers
+  upstream backend {
+    # App server 1
+    server http://localhost:5000;
+    # App server 2
+    server http://localhost:5002;
+
+    # for Nginx Plus
+    sticky cookie srv_id expires=max domain=.example.com path=/ httponly;
+
+    # for Nginx Open Source
+    ip_hash;
+  }
+}
+```
+
+Finally, change `proxy_pass http://localhost:5000` in the `server {` section to `proxy_pass http://backend`.
+
+For more information on WebSockets over Nginx, see [NGINX as a WebSocket Proxy](https://www.nginx.com/blog/websocket-nginx/).
 
 ## Third-party SignalR backplane providers
 
