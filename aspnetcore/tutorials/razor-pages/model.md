@@ -3,7 +3,7 @@ title: Part 2, add a model to a Razor Pages app in ASP.NET Core
 author: rick-anderson
 description: Part 2 of tutorial series on Razor Pages. In this section model classes are added.
 ms.author: riande
-ms.date: 09/22/2020
+ms.date: 09/23/2020
 no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/razor-pages/model
 ---
@@ -491,43 +491,6 @@ Register the database context with the [dependency injection](xref:fundamentals/
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Startup.cs?name=snippet_UseSqlite&highlight=11-12)]
 
-::: moniker-end
-
-::: moniker range="< aspnetcore-3.0"
-
-[!code-json[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/appsettings_SQLite.json?highlight=8-9)]
-
-### Add required NuGet packages
-
-Run the following .NET Core CLI command to add SQLite and CodeGeneration.Design to the project:
-
-```dotnetcli
-dotnet add package Microsoft.EntityFrameworkCore.SQLite
-dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
-dotnet add package Microsoft.EntityFrameworkCore.Design
-```
-
-The `Microsoft.VisualStudio.Web.CodeGeneration.Design` package is required for scaffolding.
-
-<a name="reg"></a>
-
-### Register the database context
-
-Add the following `using` statements at the top of *Startup.cs*:
-
-```csharp
-using RazorPagesMovie.Models;
-using Microsoft.EntityFrameworkCore;
-```
-
-Register the database context with the [dependency injection](xref:fundamentals/dependency-injection) container in `Startup.ConfigureServices`.
-
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Startup.cs?name=snippet_UseSqlite&highlight=11-12)]
-
-Build the project as a check for errors.
-
-::: moniker-end
-
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 * In Solution Pad, right-click the **RazorPagesMovie** project, and then select **Add** > **New Folder...**. Name the folder *Models*.
@@ -835,17 +798,7 @@ In this section, classes are added for managing movies in a cross-platform [SQLi
 
 The model classes are known as POCO classes (from "plain-old CLR objects") because they don't have any dependency on EF Core. They define the properties of the data that are stored in the database.
 
-::: moniker range=">= aspnetcore-3.0"
-
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30) ([how to download](xref:index#how-to-download-a-sample)).
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-3.0"
-
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start) ([how to download](xref:index#how-to-download-a-sample)).
-
-::: moniker-end
 
 ## Add a data model
 
@@ -909,29 +862,6 @@ The preceding code creates a `DbSet` property for the entity set. In Entity Fram
 
 Add a connection string to the *appsettings.json* file as shown in the following highlighted code:
 
-::: moniker range=">= aspnetcore-3.0"
-
-[!code-json[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/appsettings_SQLite.json?highlight=10-12)]
-
-<a name="reg"></a>
-
-### Register the database context
-
-Add the following `using` statements at the top of *Startup.cs*:
-
-```csharp
-using RazorPagesMovie.Data;
-using Microsoft.EntityFrameworkCore;
-```
-
-Register the database context with the [dependency injection](xref:fundamentals/dependency-injection) container in `Startup.ConfigureServices`.
-
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Startup.cs?name=snippet_UseSqlite&highlight=11-12)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-3.0"
-
 [!code-json[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/appsettings_SQLite.json?highlight=8-9)]
 
 ### Add required NuGet packages
@@ -962,8 +892,6 @@ Register the database context with the [dependency injection](xref:fundamentals/
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Startup.cs?name=snippet_UseSqlite&highlight=11-12)]
 
 Build the project as a check for errors.
-
-::: moniker-end
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
