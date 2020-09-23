@@ -64,3 +64,37 @@ The [IIS Integration Middleware](#enable-the-iisintegration-components) and the 
 The [IIS Integration Middleware](#enable-the-iisintegration-components) configures Forwarded Headers Middleware.
 
 Additional configuration might be required for apps hosted behind additional proxy servers and load balancers. For more information, see [Configure ASP.NET Core to work with proxy servers and load balancers](xref:host-and-deploy/proxy-load-balancer).
+
+
+### Out-of-process hosting model
+
+To configure an app for out-of-process hosting, set the value of the `<AspNetCoreHostingModel>` property to `OutOfProcess` in the project file (*.csproj*):
+
+```xml
+<PropertyGroup>
+  <AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>
+</PropertyGroup>
+```
+
+In-process hosting is set with `InProcess`, which is the default value.
+
+The value of `<AspNetCoreHostingModel>` is case insensitive, so `inprocess` and `outofprocess` are valid values.
+
+[Kestrel](xref:fundamentals/servers/kestrel) server is used instead of IIS HTTP Server (`IISHttpServer`).
+
+For out-of-process, [CreateDefaultBuilder](xref:fundamentals/host/generic-host#default-builder-settings) calls <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIISIntegration*> to:
+
+* Configure the port and base path the server should listen on when running behind the ASP.NET Core Module.
+* Configure the host to capture startup errors.
+
+### Process name
+
+`Process.GetCurrentProcess().ProcessName` reports `w3wp`/`iisexpress` (in-process) or `dotnet` (out-of-process).
+
+Many native modules, such as Windows Authentication, remain active. To learn more about IIS modules active with the ASP.NET Core Module, see <xref:host-and-deploy/iis/modules>.
+
+The ASP.NET Core Module can also:
+
+* Set environment variables for the worker process.
+* Log stdout output to file storage for troubleshooting startup issues.
+* Forward Windows authentication tokens.

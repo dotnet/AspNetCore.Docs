@@ -62,3 +62,60 @@ services.Configure<IISServerOptions>(options =>
 | `AuthenticationDisplayName`    | `null`  | Sets the display name shown to users on login pages. |
 | `AllowSynchronousIO`           | `false` | Whether synchronous I/O is allowed for the `HttpContext.Request` and the `HttpContext.Response`. |
 | `MaxRequestBodySize`           | `30000000`  | Gets or sets the max request body size for the `HttpRequest`. Note that IIS itself has the limit `maxAllowedContentLength` which will be processed before the `MaxRequestBodySize` set in the `IISServerOptions`. Changing the `MaxRequestBodySize` won't affect the `maxAllowedContentLength`. To increase `maxAllowedContentLength`, add an entry in the *web.config* to set `maxAllowedContentLength` to a higher value. For more details, see [Configuration](/iis/configuration/system.webServer/security/requestFiltering/requestLimits/#configuration). |
+
+
+
+### In-process hosting model
+
+ASP.NET Core apps default to the in-process hosting model.
+
+The following characteristics apply when hosting in-process:
+
+* IIS HTTP Server (`IISHttpServer`) is used instead of [Kestrel](xref:fundamentals/servers/kestrel) server. For in-process, [CreateDefaultBuilder](xref:fundamentals/host/generic-host#default-builder-settings) calls <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIIS*> to:
+
+  * Register the `IISHttpServer`.
+  * Configure the port and base path the server should listen on when running behind the ASP.NET Core Module.
+  * Configure the host to capture startup errors.
+
+* The [requestTimeout attribute](#attributes-of-the-aspnetcore-element) doesn't apply to in-process hosting.
+
+* Sharing an app pool among apps isn't supported. Use one app pool per app.
+
+* When using [Web Deploy](/iis/publish/using-web-deploy/introduction-to-web-deploy) or manually placing an [app_offline.htm file in the deployment](xref:host-and-deploy/iis/index#locked-deployment-files), the app might not shut down immediately if there's an open connection. For example, a websocket connection may delay app shut down.
+
+* The architecture (bitness) of the app and installed runtime (x64 or x86) must match the architecture of the app pool.
+
+* Client disconnects are detected. The [HttpContext.RequestAborted](xref:Microsoft.AspNetCore.Http.HttpContext.RequestAborted*) cancellation token is cancelled when the client disconnects.
+
+* In ASP.NET Core 2.2.1 or earlier, <xref:System.IO.Directory.GetCurrentDirectory*> returns the worker directory of the process started by IIS rather than the app's directory (for example, *C:\Windows\System32\inetsrv* for *w3wp.exe*).
+
+  For sample code that sets the app's current directory, see the [CurrentDirectoryHelpers class](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/host-and-deploy/aspnet-core-module/samples_snapshot/3.x/CurrentDirectoryHelpers.cs). Call the `SetCurrentDirectory` method. Subsequent calls to <xref:System.IO.Directory.GetCurrentDirectory*> provide the app's directory.
+
+* When hosting in-process, <xref:Microsoft.AspNetCore.Authentication.AuthenticationService.AuthenticateAsync*> isn't called internally to initialize a user. Therefore, an <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> implementation used to transform claims after every authentication isn't activated by default. When transforming claims with an <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> implementation, call <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*> to add authentication services:
+
+  ```csharp
+  public void ConfigureServices(IServiceCollection services)
+  {
+      services.AddTransient<IClaimsTransformation, ClaimsTransformer>();
+      services.AddAuthentication(IISServerDefaults.AuthenticationScheme);
+  }
+
+  public void Configure(IApplicationBuilder app)
+  {
+      app.UseAuthentication();
+  }
+  ```
+  
+  * [Web Package (single-file) deployments](/aspnet/web-forms/overview/deployment/web-deployment-in-the-enterprise/deploying-web-packages) aren't supported.
+
+### Process name
+
+`Process.GetCurrentProcess().ProcessName` reports `w3wp`/`iisexpress` (in-process) or `dotnet` (out-of-process).
+
+Many native modules, such as Windows Authentication, remain active. To learn more about IIS modules active with the ASP.NET Core Module, see <xref:host-and-deploy/iis/modules>.
+
+The ASP.NET Core Module can also:
+
+* Set environment variables for the worker process.
+* Log stdout output to file storage for troubleshooting startup issues.
+* Forward Windows authentication tokens.
