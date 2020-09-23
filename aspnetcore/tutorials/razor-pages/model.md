@@ -474,8 +474,6 @@ The preceding code creates a `DbSet` property for the entity set. In Entity Fram
 
 Add a connection string to the *appsettings.json* file as shown in the following highlighted code:
 
-::: moniker range=">= aspnetcore-3.0"
-
 [!code-json[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/appsettings_SQLite.json?highlight=10-12)]
 
 <a name="reg"></a>
