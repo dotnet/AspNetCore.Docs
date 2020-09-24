@@ -18,4 +18,4 @@ The preceding commands add:
 
 For guidance on multiple environment configuration that permits an app to configure its database contexts by environment, see <xref:fundamentals/environments#environment-based-startup-class-and-methods>.
 
-[!INCLUDE[](~/includes/scaffoldTFM.md)]
+[!INCLUDE[](~/includes/scaffoldTFM-5.md)]
