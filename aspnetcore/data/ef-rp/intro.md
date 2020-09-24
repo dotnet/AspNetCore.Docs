@@ -82,7 +82,7 @@ To run the app after downloading the completed project:
 * At a command prompt in the project folder, run the following commands:
 
   ```dotnetcli
-  dotnet tool install --global dotnet-ef
+  dotnet tool install --global dotnet-ef -v 5.0.0-*
   dotnet ef database update
   ```
 
@@ -226,12 +226,12 @@ The following packages are automatically installed:
 * Run the following .NET Core CLI commands to install required NuGet packages:
 
   ```dotnetcli
-  dotnet add package Microsoft.EntityFrameworkCore.SQLite --version 5.0.0-rc.1.20451.13
-  dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 5.0.0-rc.1.20451.13
-  dotnet add package Microsoft.EntityFrameworkCore.Design --version 5.0.0-rc.1.20451.13
-  dotnet add package Microsoft.EntityFrameworkCore.Tools --version 5.0.0-rc.1.20451.13
-  dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --version 5.0.0-rc.1.20453.2
-  dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore --version 5.0.0-rc.1.20451.17
+  dotnet add package Microsoft.EntityFrameworkCore.SQLite -v 5.0.0-*
+  dotnet add package Microsoft.EntityFrameworkCore.SqlServer -v 5.0.0-*
+  dotnet add package Microsoft.EntityFrameworkCore.Design -v 5.0.0-*
+  dotnet add package Microsoft.EntityFrameworkCore.Tools -v 5.0.0-*
+  dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design -v 5.0.0-*
+  dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore -v 5.0.0-*
   ```
 
    The Microsoft.VisualStudio.Web.CodeGeneration.Design package is required for scaffolding. Although the app won't use SQL Server, the scaffolding tool needs the SQL Server package.
@@ -241,7 +241,7 @@ The following packages are automatically installed:
 * Run the following command to install the [aspnet-codegenerator scaffolding tool](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
 
   ```dotnetcli
-  dotnet tool install --global dotnet-aspnet-codegenerator
+  dotnet tool install --global dotnet-aspnet-codegenerator --version 5.0.0-*
   ```
 
 * Run the following command to scaffold Student pages.
@@ -560,7 +560,7 @@ To run the app after downloading the completed project:
 * At a command prompt in the project folder, run the following commands:
 
   ```dotnetcli
-  dotnet tool install --global dotnet-ef
+  dotnet tool install --global dotnet-ef --version 5.0.0-*
   dotnet ef database update
   ```
 
