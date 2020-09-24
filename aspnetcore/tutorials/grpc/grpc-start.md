@@ -199,6 +199,11 @@ dotnet add GrpcGreeterClient.csproj package Grpc.Tools
 
 * Create a *Protos* folder in the gRPC client project.
 * Copy the *Protos\greet.proto* file from the gRPC Greeter service to the gRPC client project.
+* Update namespace inside your greet.proto file to your project namespace:
+```
+option csharp_namespace = "GrpcGreeterClient";
+```
+
 * Edit the *GrpcGreeterClient.csproj* project file:
 
   # [Visual Studio](#tab/visual-studio)
