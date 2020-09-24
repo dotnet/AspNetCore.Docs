@@ -127,7 +127,7 @@ http {
       # Configuration for WebSockets
       proxy_set_header Upgrade $http_upgrade;
       proxy_set_header Connection $connection_upgrade;
-      proxy_cache_bypass $http_upgrade;
+      proxy_cache off;
 
       # Configuration for ServerSentEvents
       proxy_buffering off;
@@ -143,13 +143,12 @@ http {
 }
 ```
 
-When multiple backend servers are used sticky sessions must be added so SignalR connections do not switch servers when connecting.
-There are multiple ways to add sticky sessions in Nginx, we show two below depending on what you have available to you.
-The following is added in addition to the previous configuration:
+When multiple backend servers are used, sticky sessions must be added to prevent SignalR connections from switching servers when connecting. There are multiple ways to add sticky sessions in Nginx. Two approaches are shown below depending on what you have available.
+
+The following is added in addition to the previous configuration. `backend` in the following example is the name of the group of servers:
 
 ```nginx
 http {
-  # 'backend' is the name of our group of servers
   upstream backend {
     # App server 1
     server http://localhost:5000;
@@ -165,9 +164,9 @@ http {
 }
 ```
 
-Finally, change `proxy_pass http://localhost:5000` in the `server {` section to `proxy_pass http://backend`.
+Finally, change `proxy_pass http://localhost:5000` in the `server` section to `proxy_pass http://backend`.
 
-For more information on WebSockets over Nginx, see [NGINX as a WebSocket Proxy](https://www.nginx.com/blog/websocket-nginx/).
+For more information on WebSockets over Nginx, see [NGINX as a WebSocket Proxy](https://www.nginx.com/blog/websocket-nginx).
 
 ## Third-party SignalR backplane providers
 
