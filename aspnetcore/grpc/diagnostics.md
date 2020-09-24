@@ -15,8 +15,8 @@ By [James Newton-King](https://twitter.com/jamesnk)
 This article provides guidance for gathering diagnostics from a gRPC app to help troubleshoot issues. Topics covered include:
 
 * **Logging** - Structured logs written to [.NET Core logging](xref:fundamentals/logging/index). <xref:Microsoft.Extensions.Logging.ILogger> is used by app frameworks to write logs, and by users for their own logging in an app.
-* **Tracing** - Events related to an operation written using `DiaganosticSource` and `Activity`. Traces from diagnostic source are commonly used to collect app telemetry by libraries such as [Application Insights](https://docs.microsoft.com/azure/azure-monitor/app/asp-net-core) and [OpenTelemetry](https://github.com/open-telemetry/opentelemetry-dotnet).
-* **Metrics** - Representation of data measures over intervals of time, for example, requests per second. Metrics are emitted using `EventCounter` and can be observed using [dotnet-counters](https://docs.microsoft.com/dotnet/core/diagnostics/dotnet-counters) command line tool or with [Application Insights](https://docs.microsoft.com/azure/azure-monitor/app/eventcounters).
+* **Tracing** - Events related to an operation written using `DiaganosticSource` and `Activity`. Traces from diagnostic source are commonly used to collect app telemetry by libraries such as [Application Insights](/azure/azure-monitor/app/asp-net-core) and [OpenTelemetry](https://github.com/open-telemetry/opentelemetry-dotnet).
+* **Metrics** - Representation of data measures over intervals of time, for example, requests per second. Metrics are emitted using `EventCounter` and can be observed using [dotnet-counters](/dotnet/core/diagnostics/dotnet-counters) command line tool or with [Application Insights](/azure/azure-monitor/app/eventcounters).
 
 ## Logging
 
@@ -95,7 +95,7 @@ If your app isn't using DI then you can create a new `ILoggerFactory` instance w
 
 #### gRPC client log scopes
 
-The gRPC client adds a [logging scope](https://docs.microsoft.com/aspnet/core/fundamentals/logging#log-scopes) to logs made during a gRPC call. The scope has metadata related to the gRPC call:
+The gRPC client adds a [logging scope](../fundamentals/logging/index.md#log-scopes) to logs made during a gRPC call. The scope has metadata related to the gRPC call:
 
 * **GrpcMethodType** - The gRPC method type. Possible values are names from `Grpc.Core.MethodType` enum, e.g. Unary
 * **GrpcUri** - The relative URI of the gRPC method, e.g. /greet.Greeter/SayHellos
@@ -117,7 +117,7 @@ dbug: Grpc.Net.Client.Internal.GrpcCall[4]
 
 ## Tracing
 
-gRPC services and the gRPC client provide information about gRPC calls using [DiagnosticSource](https://docs.microsoft.com/dotnet/api/system.diagnostics.diagnosticsource) and [Activity](https://docs.microsoft.com/dotnet/api/system.diagnostics.activity).
+gRPC services and the gRPC client provide information about gRPC calls using [DiagnosticSource](/dotnet/api/system.diagnostics.diagnosticsource) and [Activity](/dotnet/api/system.diagnostics.activity).
 
 * .NET gRPC uses an activity to represent a gRPC call.
 * Tracing events are written to the diagnostic source at the start and stop of the gRPC call activity.
@@ -143,7 +143,7 @@ The .NET gRPC client uses `HttpClient` to make gRPC calls. Although `HttpClient`
 
 ### Collecting tracing
 
-The easiest way to use `DiagnosticSource` is to configure a telemetry library such as [Application Insights](https://docs.microsoft.com/azure/azure-monitor/app/asp-net-core) or [OpenTelemetry](https://github.com/open-telemetry/opentelemetry-dotnet) in your app. The library will process information about gRPC calls along-side other app telemetry.
+The easiest way to use `DiagnosticSource` is to configure a telemetry library such as [Application Insights](/azure/azure-monitor/app/asp-net-core) or [OpenTelemetry](https://github.com/open-telemetry/opentelemetry-dotnet) in your app. The library will process information about gRPC calls along-side other app telemetry.
 
 Tracing can be viewed in a managed service like Application Insights, or you can choose to run your own distributed tracing system. OpenTelemetry supports exporting tracing data to [Jaeger](https://www.jaegertracing.io/) and [Zipkin](https://zipkin.io/).
 
@@ -187,7 +187,7 @@ gRPC client metrics are reported on `Grpc.Net.Client` event source.
 
 ### Observe metrics
 
-[dotnet-counters](https://docs.microsoft.com/dotnet/core/diagnostics/dotnet-counters) is a performance monitoring tool for ad-hoc health monitoring and first-level performance investigation. Monitor a .NET app with either `Grpc.AspNetCore.Server` or `Grpc.Net.Client` as the provider name.
+[dotnet-counters](/dotnet/core/diagnostics/dotnet-counters) is a performance monitoring tool for ad-hoc health monitoring and first-level performance investigation. Monitor a .NET app with either `Grpc.AspNetCore.Server` or `Grpc.Net.Client` as the provider name.
 
 ```console
 > dotnet-counters monitor --process-id 1902 Grpc.AspNetCore.Server
@@ -204,7 +204,7 @@ Press p to pause, r to resume, q to quit.
     Total Calls Unimplemented                   0
 ```
 
-Another way to observe gRPC metrics is to capture counter data using Application Insights's [Microsoft.ApplicationInsights.EventCounterCollector package](https://docs.microsoft.com/azure/azure-monitor/app/eventcounters). Once setup, Application Insights collects common .NET counters at runtime. gRPC's counters are not collected by default, but App Insights can be [customized to include additional counters](https://docs.microsoft.com/azure/azure-monitor/app/eventcounters#customizing-counters-to-be-collected).
+Another way to observe gRPC metrics is to capture counter data using Application Insights's [Microsoft.ApplicationInsights.EventCounterCollector package](/azure/azure-monitor/app/eventcounters). Once setup, Application Insights collects common .NET counters at runtime. gRPC's counters are not collected by default, but App Insights can be [customized to include additional counters](/azure/azure-monitor/app/eventcounters#customizing-counters-to-be-collected).
 
 Specify the gRPC counters for Application Insight to collect in *Startup.cs*:
 

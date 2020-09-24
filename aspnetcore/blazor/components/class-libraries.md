@@ -155,6 +155,43 @@ An RCL can include static assets. The static assets are available to any app tha
 
 For more information, see <xref:blazor/host-and-deploy/webassembly#static-assets-and-class-libraries>.
 
+::: moniker range=">= aspnetcore-5.0"
+
+## Browser compatibility analyzer for Blazor WebAssembly
+
+Blazor WebAssembly apps target the full .NET API surface area, but not all .NET APIs are supported on WebAssembly due to browser sandbox constraints. Unsupported APIs throw <xref:System.PlatformNotSupportedException> when running on WebAssembly. A platform compatibility analyzer warns the developer when the app uses APIs that aren't supported by the app's target platforms. For Blazor WebAssembly apps, this means checking that APIs are supported in browsers. Annotating .NET framework APIs for the compatibility analyzer is an on-going process, so not all .NET framework API is currently annotated.
+
+Blazor WebAssembly and Razor class library projects *automatically* enable browser compatibilty checks by adding `browser` as a supported platform with the `SupportedPlatform` MSBuild item. Library developers can manually add the `SupportedPlatform` item to a library's project file to enable the feature:
+
+```xml
+<ItemGroup>
+  <SupportedPlatform Include="browser" />
+</ItemGroup>
+```
+
+When authoring a library, indicate that a particular API isn't supported in browsers by specifying `browser` to <xref:System.Runtime.Versioning.UnsupportedOSPlatformAttribute>:
+
+```csharp
+[UnsupportedOSPlatform("browser")]
+private static string GetLoggingDirectory()
+{
+    ...
+}
+```
+
+For more information, see [Annotating APIs as unsupported on specific platforms (dotnet/designs GitHub repository](https://github.com/dotnet/designs/blob/main/accepted/2020/platform-exclusion/platform-exclusion.md#build-configuration-for-platforms).
+
+## Blazor JavaScript isolation and object references
+
+Blazor enables JavaScript isolation in standard [JavaScript modules](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules). JavaScript isolation provides the following benefits:
+
+* Imported JavaScript no longer pollutes the global namespace.
+* Consumers of the library and components aren't required to manually import the related JavaScript.
+
+For more information, see <xref:blazor/call-javascript-from-dotnet#blazor-javascript-isolation-and-object-references>.
+
+::: moniker-end
+
 ## Build, pack, and ship to NuGet
 
 Because component libraries are standard .NET libraries, packaging and shipping them to NuGet is no different from packaging and shipping any library to NuGet. Packaging is performed using the [`dotnet pack`](/dotnet/core/tools/dotnet-pack) command in a command shell:

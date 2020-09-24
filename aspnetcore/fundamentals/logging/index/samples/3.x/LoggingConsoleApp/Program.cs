@@ -5,7 +5,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        var loggerFactory = LoggerFactory.Create(builder =>
+        using var loggerFactory = LoggerFactory.Create(builder =>
         {
             builder
                 .AddFilter("Microsoft", LogLevel.Warning)

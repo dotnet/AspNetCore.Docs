@@ -249,8 +249,8 @@ As noted in the preceding Dockerfile, the `*.csproj` files are copied and restor
 * [Docker build command](https://docs.docker.com/engine/reference/commandline/build)
 * [Docker run command](https://docs.docker.com/engine/reference/commandline/run)
 * [ASP.NET Core Docker sample](https://github.com/dotnet/dotnet-docker) (The one used in this tutorial.)
-* [Configure ASP.NET Core to work with proxy servers and load balancers](/aspnet/core/host-and-deploy/proxy-load-balancer)
-* [Working with Visual Studio Docker Tools](https://docs.microsoft.com/aspnet/core/publishing/visual-studio-tools-for-docker)
+* [Configure ASP.NET Core to work with proxy servers and load balancers](../proxy-load-balancer.md)
+* [Working with Visual Studio Docker Tools](./visual-studio-tools-for-docker.md)
 * [Debugging with Visual Studio Code](https://code.visualstudio.com/docs/nodejs/debugging-recipes#_debug-nodejs-in-docker-containers)
 * [GC using Docker and small containers](xref:performance/memory#sc)
 

@@ -434,12 +434,16 @@ Generally, logging should be specified in configuration and not code.
 
 ## Built-in logging providers
 
-ASP.NET Core includes the following logging providers:
+ASP.NET Core includes the following logging providers as part of the shared framework:
 
 * [Console](#console)
 * [Debug](#debug)
 * [EventSource](#event-source)
 * [EventLog](#welog)
+
+The following logging providers are shipped by Microsoft, but not as part of the 
+shared framework. They must be installed as additional nuget.
+
 * [AzureAppServicesFile and AzureAppServicesBlob](#azure-app-service)
 * [ApplicationInsights](#azure-application-insights)
 
@@ -662,7 +666,7 @@ The following code changes the `SourceName` from the default value of `".NET Run
 
 ### Azure App Service
 
-The [Microsoft.Extensions.Logging.AzureAppServices](https://www.nuget.org/packages/Microsoft.Extensions.Logging.AzureAppServices) provider package writes logs to text files in an Azure App Service app's file system and to [blob storage](https://azure.microsoft.com/documentation/articles/storage-dotnet-how-to-use-blobs/#what-is-blob-storage) in an Azure Storage account.
+The [Microsoft.Extensions.Logging.AzureAppServices](https://www.nuget.org/packages/Microsoft.Extensions.Logging.AzureAppServices) provider package writes logs to text files in an Azure App Service app's file system and to [blob storage](/azure/storage/blobs/storage-quickstart-blobs-dotnet#what-is-blob-storage) in an Azure Storage account.
 
 The provider package isn't included in the shared framework. To use the provider, add the provider package to the project.
 
@@ -708,7 +712,7 @@ For more information, see the following resources:
 * [Application Insights overview](/azure/application-insights/app-insights-overview)
 * [Application Insights for ASP.NET Core applications](/azure/azure-monitor/app/asp-net-core) - Start here if you want to implement the full range of Application Insights telemetry along with logging.
 * [ApplicationInsightsLoggerProvider for .NET Core ILogger logs](/azure/azure-monitor/app/ilogger) - Start here if you want to implement the logging provider without the rest of Application Insights telemetry.
-* [Application Insights logging adapters](https://docs.microsoft.com/azure/azure-monitor/app/asp-net-trace-logs).
+* [Application Insights logging adapters](/azure/azure-monitor/app/asp-net-trace-logs).
 * [Install, configure, and initialize the Application Insights SDK](/learn/modules/instrument-web-app-code-with-application-insights) - Interactive tutorial on the Microsoft Learn site.
 
 ## Third-party logging providers
@@ -758,7 +762,7 @@ The following example creates a logger with `LoggingConsoleApp.Program` as the c
 
 [!code-csharp[](index/samples/3.x/LoggingConsoleApp/Program.cs?name=snippet_LoggerFactory&highlight=14)]
 
-In the following ASP.NET CORE examples, the logger is used to create logs with `Information` as the level. The Log *level* indicates the severity of the logged event.
+In the following example, the logger is used to create logs with `Information` as the level. The Log *level* indicates the severity of the logged event.
 
 [!code-csharp[](index/samples/3.x/LoggingConsoleApp/Program.cs?name=snippet_LoggerFactory&highlight=15)]
 
@@ -1562,7 +1566,7 @@ To use this provider, an app has to run on the .NET Framework (rather than .NET 
 
 ### Azure App Service provider
 
-The [Microsoft.Extensions.Logging.AzureAppServices](https://www.nuget.org/packages/Microsoft.Extensions.Logging.AzureAppServices) provider package writes logs to text files in an Azure App Service app's file system and to [blob storage](https://azure.microsoft.com/documentation/articles/storage-dotnet-how-to-use-blobs/#what-is-blob-storage) in an Azure Storage account.
+The [Microsoft.Extensions.Logging.AzureAppServices](https://www.nuget.org/packages/Microsoft.Extensions.Logging.AzureAppServices) provider package writes logs to text files in an Azure App Service app's file system and to [blob storage](/azure/storage/blobs/storage-quickstart-blobs-dotnet#what-is-blob-storage) in an Azure Storage account.
 
 ```csharp
 logging.AddAzureWebAppDiagnostics();
@@ -1601,6 +1605,7 @@ Navigate to the **Log Stream** page to view app messages. They're logged by the 
 
 The [Microsoft.Extensions.Logging.ApplicationInsights](https://www.nuget.org/packages/Microsoft.Extensions.Logging.ApplicationInsights) provider package writes logs to Azure Application Insights. Application Insights is a service that monitors a web app and provides tools for querying and analyzing the telemetry data. If you use this provider, you can query and analyze your logs by using the Application Insights tools.
 
+The provider package isn't included in the shared framework. To use the provider, add the provider package to the project.
 The logging provider is included as a dependency of [Microsoft.ApplicationInsights.AspNetCore](https://www.nuget.org/packages/Microsoft.ApplicationInsights.AspNetCore), which is the package that provides all available telemetry for ASP.NET Core. If you use this package, you don't have to install the provider package.
 
 Don't use the [Microsoft.ApplicationInsights.Web](https://www.nuget.org/packages/Microsoft.ApplicationInsights.Web) package&mdash;that's for ASP.NET 4.x.
@@ -1610,7 +1615,7 @@ For more information, see the following resources:
 * [Application Insights overview](/azure/application-insights/app-insights-overview)
 * [Application Insights for ASP.NET Core applications](/azure/azure-monitor/app/asp-net-core) - Start here if you want to implement the full range of Application Insights telemetry along with logging.
 * [ApplicationInsightsLoggerProvider for .NET Core ILogger logs](/azure/azure-monitor/app/ilogger) - Start here if you want to implement the logging provider without the rest of Application Insights telemetry.
-* [Application Insights logging adapters](https://docs.microsoft.com/azure/azure-monitor/app/asp-net-trace-logs).
+* [Application Insights logging adapters](/azure/azure-monitor/app/asp-net-trace-logs).
 * [Install, configure, and initialize the Application Insights SDK](/learn/modules/instrument-web-app-code-with-application-insights) - Interactive tutorial on the Microsoft Learn site.
 
 ## Third-party logging providers
@@ -1633,7 +1638,7 @@ Some third-party frameworks can perform [semantic logging, also known as structu
 Using a third-party framework is similar to using one of the built-in providers:
 
 1. Add a NuGet package to your project.
-1. Call an `ILoggerFactory` extension method provided by the logging framework.
+1. Call an `ILoggerFactory` or `ILoggingBuilder` extension method provided by the logging framework.
 
 For more information, see each provider's documentation. Third-party logging providers aren't supported by Microsoft.
 

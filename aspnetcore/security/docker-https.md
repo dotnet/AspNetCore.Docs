@@ -13,7 +13,7 @@ uid: security/docker-https
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-ASP.NET Core uses [HTTPS by default](/aspnet/core/security/enforcing-ssl). [HTTPS](https://en.wikipedia.org/wiki/HTTPS) relies on [certificates](https://en.wikipedia.org/wiki/Public_key_certificate) for trust, identity, and encryption.
+ASP.NET Core uses [HTTPS by default](./enforcing-ssl.md). [HTTPS](https://en.wikipedia.org/wiki/HTTPS) relies on [certificates](https://en.wikipedia.org/wiki/Public_key_certificate) for trust, identity, and encryption.
 
 This document explains how to run pre-built container images with HTTPS.
 

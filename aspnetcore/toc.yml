@@ -174,6 +174,9 @@
             - name: Implement resiliency >>
               displayName: tutorial, kubernetes, aks, acr, docker
               href: /learn/modules/microservices-resiliency-aspnet-core/
+            - name: Deploy with GitHub Actions >>
+              display: tutorial, kubernetes, aks, acr, docker, devops
+              href: /learn/modules/microservices-devops-aspnet-core/
         - name: Data access >>
           displayName: tutorial, ef, entity framework
           href: /learn/modules/persist-data-ef-core/
@@ -337,6 +340,8 @@
                   href: blazor/forms-validation.md#built-in-forms-components
                 - name: InputDate
                   href: blazor/forms-validation.md#built-in-forms-components
+                - name: InputFile
+                  uid: blazor/file-uploads
                 - name: InputNumber
                   href: blazor/forms-validation.md#built-in-forms-components
                 - name: InputRadio
@@ -363,6 +368,8 @@
                   href: blazor/fundamentals/routing.md#route-templates
                 - name: Title
                   href: blazor/fundamentals/additional-scenarios.md#influence-html-head-tag-elements
+                - name: Virtualize
+                  uid: blazor/components/virtualization
             - name: Cascading values and parameters
               uid: blazor/components/cascading-values-and-parameters
             - name: Data binding
@@ -371,6 +378,8 @@
               uid: blazor/components/event-handling
             - name: Lifecycle
               uid: blazor/components/lifecycle
+            - name: Component virtualization
+              uid: blazor/components/virtualization
             - name: Templated components
               uid: blazor/components/templated-components
             - name: Integrate components
@@ -383,6 +392,8 @@
           uid: blazor/layouts
         - name: Forms and validation
           uid: blazor/forms-validation
+        - name: File uploads
+          uid: blazor/file-uploads
         - name: Call JavaScript from .NET
           uid: blazor/call-javascript-from-dotnet
         - name: Call .NET from JavaScript
@@ -714,16 +725,20 @@
           uid: grpc/services
         - name: Create Protobuf messages
           uid: grpc/protobuf
+        - name: Versioning gRPC services
+          uid: grpc/versioning
+    - name: Call gRPC services with C#
+      items:
+        - name: Overview
+          uid: grpc/client
+        - name: gRPC client factory integration
+          uid: grpc/clientfactory
+        - name: Deadlines and cancellation
+          uid: grpc/deadlines-cancellation
     - name: gRPC services with ASP.NET Core
       uid: grpc/aspnetcore
-    - name: Call gRPC services with .NET client
-      uid: grpc/client
-    - name: gRPC client factory integration
-      uid: grpc/clientfactory
     - name: Use gRPC in browser apps
       uid: grpc/browser
-    - name: Create JSON Web APIs from gRPC
-      uid: grpc/httpapi
     - name: Configuration
       uid: grpc/configuration
     - name: Authentication and authorization
@@ -734,10 +749,14 @@
       uid: grpc/security
     - name: Performance best practices
       uid: grpc/performance
-    - name: Versioning gRPC services
-      uid: grpc/versioning
+    - name: Inter-process communication
+      uid: grpc/interprocess
+    - name: Create JSON Web APIs from gRPC
+      uid: grpc/httpapi
     - name: Manage Protobuf references with dotnet-grpc
       uid: grpc/dotnet-grpc
+    - name: Test gRPC services with gRPCurl
+      uid: grpc/test-tools
     - name: Migrate gRPC services from C-core
       uid: grpc/migration
     - name: Why migrate WCF to ASP.NET Core gRPC

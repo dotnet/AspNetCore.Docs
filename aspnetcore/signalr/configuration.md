@@ -70,6 +70,7 @@ The following table describes options for configuring SignalR hubs:
 | `EnableDetailedErrors` | `false` | If `true`, detailed exception messages are returned to clients when an exception is thrown in a Hub method. The default is `false`, as these exception messages can contain sensitive information. |
 | `StreamBufferCapacity` | `10` | The maximum number of items that can be buffered for client upload streams. If this limit is reached, the processing of invocations is blocked until the server processes stream items.|
 | `MaximumReceiveMessageSize` | 32 KB | Maximum size of a single incoming hub message. |
+| `MaximumParallelInvocationsPerClient` | 1 | The maximum number of hub methods that each client can call in parallel before queueing. |
 
 Options can be configured for all hubs by providing an options delegate to the `AddSignalR` call in `Startup.ConfigureServices`.
 
