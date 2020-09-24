@@ -24,21 +24,14 @@ uid: host-and-deploy/iis/index
 
 ::: moniker range=">= aspnetcore-3.0"
 
-The ASP.NET Core Module is a native IIS module that plugs into the IIS pipeline to either:
+Internet Information Services (IIS) is a flexible, secure and manageable Web Server for hosting web apps, including ASP.NET Core.
 
-* Host an ASP.NET Core app inside of the IIS worker process (`w3wp.exe`), called the [in-process hosting model](xref:host-and-deploy/iis/inprocesshosting).
-* Forward web requests to a backend ASP.NET Core app running the [Kestrel server](xref:fundamentals/servers/kestrel), called the [out-of-process hosting model](xref:host-and-deploy/iis/outofprocesshosting).
+## Supported platforms
 
 The following operating systems are supported:
 
 * Windows 7 or later
 * Windows Server 2012 R2 or later
-
-[HTTP.sys server](xref:fundamentals/servers/httpsys) (formerly called WebListener) doesn't work in a reverse proxy configuration with IIS. Use the [Kestrel server](xref:fundamentals/servers/kestrel).
-
-For information on hosting in Azure, see <xref:host-and-deploy/azure-apps/index>.
-
-## Supported platforms
 
 Apps published for 32-bit (x86) or 64-bit (x64) deployment are supported. Deploy a 32-bit app with a 32-bit (x86) .NET Core SDK unless the app:
 
@@ -64,7 +57,7 @@ For a tutorial experience on publishing an ASP.NET Core app to an IIS server, se
 
 ## Getting started
 
-For getting started with hosting a website on IIS, see our [getting started guide](xref:host-and-deploy/iis/gettingstarted).
+For getting started with hosting a website on IIS, see our [getting started guide](xref:host-and-deploy/iis/get-started).
 
 For getting started with hosting a website on Azure App Services, see our [deploying to Azure App Service guide](xref:host-and-deploy/azure-apps/index).
 

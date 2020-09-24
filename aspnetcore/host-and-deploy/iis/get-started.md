@@ -1,3 +1,15 @@
+---
+title: Host ASP.NET Core on Windows with IIS
+author: rick-anderson
+description: Learn how to host ASP.NET Core apps on Windows Server Internet Information Services (IIS).
+monikerRange: '>= aspnetcore-2.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 5/7/2020
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+uid: host-and-deploy/iis/index
+---
+
 ## Create the IIS site
 
 1. On the hosting system, create a folder to contain the app's published folders and files. In a following step, the folder's path is provided to IIS as the physical path to the app. For more information on an app's deployment folder and file layout, see <xref:host-and-deploy/directory-structure>.

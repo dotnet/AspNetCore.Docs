@@ -61,7 +61,7 @@ Follow the <xref:getting-started> tutorial to create a Razor Pages app.
 ## Publish and deploy the app
 
 *Publish an app* means to produce a compiled app that can be hosted by a server. *Deploy an app* means to move the published app to a hosting system. The publish step is handled by the [.NET Core SDK](/dotnet/core/sdk), while the deployment step can be handled by a variety of approaches. This tutorial adopts the *folder* deployment approach, where:
-
+ 
 * The app is published to a folder.
 * The folder's contents are moved to the IIS site's folder (the **Physical path** to the site in IIS Manager).
 

@@ -1,3 +1,15 @@
+---
+title: ASP.NET Core Module
+author: rick-anderson
+description: Learn how to use app_offline.htm with the ASP.NET Core Module.
+monikerRange: '>= aspnetcore-2.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 01/13/2020
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+uid: host-and-deploy/iis/app-offline
+---
+
 ## Locked deployment files
 
 Files in the deployment folder are locked when the app is running. Locked files can't be overwritten during deployment. To release locked files in a deployment, stop the app pool using **one** of the following approaches:

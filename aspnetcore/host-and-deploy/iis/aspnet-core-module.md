@@ -9,9 +9,32 @@ ms.date: 01/13/2020
 no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: host-and-deploy/aspnet-core-module
 ---
+
 # ASP.NET Core Module
 
 By [Tom Dykstra](https://github.com/tdykstra), [Rick Strahl](https://github.com/RickStrahl), [Chris Ross](https://github.com/Tratcher), [Rick Anderson](https://twitter.com/RickAndMSFT), [Sourabh Shirhatti](https://twitter.com/sshirhatti), and [Justin Kotalik](https://github.com/jkotalik)
+
+::: moniker range=">= aspnetcore-3.0"
+
+The ASP.NET Core Module is a native IIS module that plugs into the IIS pipeline, allowing ASP.NET Core applications to work with IIS. ASP.NET Core apps can be run with IIS by either: 
+- Host an ASP.NET Core app inside of the IIS worker process (w3wp.exe), called the [in-process hosting model](xref:host-and-deploy/iis/in-process-hosting).
+- Forward web requests to a backend ASP.NET Core app running the Kestrel server, called the [out-of-process hosting model](xref:host-and-deploy/iis/out-of-process-hosting).
+
+There are trade-offs between each of the models, but by default, the in-process model is used, due to better performance and diagnostics.
+
+## Installing ASP.NET Core Module
+
+Download the installer using the following link:
+
+[Current .NET Core Hosting Bundle installer (direct download)](https://dotnet.microsoft.com/permalink/dotnetcore-current-windows-runtime-bundle-installer)
+
+For more details instructions on how to install the ASP.NET Core Module, or installing different versions, see [Install the .NET Core Hosting Bundle](xref:host-and-deploy/iis/hostingbundle).
+
+For a tutorial experience on publishing an ASP.NET Core app to an IIS server, see <xref:tutorials/publish-to-iis>.
+
+[Install the .NET Core Hosting Bundle](#install-the-net-core-hosting-bundle)
+
+::: moniker-end
 
 ::: moniker range="= aspnetcore-2.2"
 
