@@ -192,7 +192,7 @@ If tacking on a segment to the authority isn't appropriate for the app's OIDC pr
           options.Resource = "...";    // REMOVE THIS LINE
           ...
       }
-      ```
+  ```
 
   For more information, see [Scopes, not resources](/azure/active-directory/azuread-dev/azure-ad-endpoint-comparison#scopes-not-resources) in the Azure documentation.
 
