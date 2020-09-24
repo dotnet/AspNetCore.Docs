@@ -117,8 +117,6 @@ http {
     listen 80;
     server_name example.com *.example.com;
 
-    root /path/to/wwwroot;
-
     # Configure the SignalR Endpoint
     location /hubroute {
       # App server url
@@ -147,6 +145,8 @@ When multiple backend servers are used, sticky sessions must be added to prevent
 
 The following is added in addition to the previous configuration. `backend` in the following example is the name of the group of servers:
 
+With Nginx Open Source, use `ip_hash` to route connections to a server based on the clients IP address.
+
 ```nginx
 http {
   upstream backend {
@@ -155,11 +155,22 @@ http {
     # App server 2
     server http://localhost:5002;
 
-    # for Nginx Plus
-    sticky cookie srv_id expires=max domain=.example.com path=/ httponly;
-
-    # for Nginx Open Source
     ip_hash;
+  }
+}
+```
+
+With Nginx Plus, use `sticky` to add a cookie to requests and pin them to a server.
+
+```nginx
+http {
+  upstream backend {
+    # App server 1
+    server http://localhost:5000;
+    # App server 2
+    server http://localhost:5002;
+
+    sticky cookie srv_id expires=max domain=.example.com path=/ httponly;
   }
 }
 ```
@@ -167,6 +178,8 @@ http {
 Finally, change `proxy_pass http://localhost:5000` in the `server` section to `proxy_pass http://backend`.
 
 For more information on WebSockets over Nginx, see [NGINX as a WebSocket Proxy](https://www.nginx.com/blog/websocket-nginx).
+
+For more information on load balancing and sticky sessions, see [NGINX load balancing](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/).
 
 ## Third-party SignalR backplane providers
 
