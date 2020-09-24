@@ -66,7 +66,7 @@ The `Movie` class contains:
 
 ### Add NuGet packages and EF tools
 
-[!INCLUDE[](~/includes/add-EF-NuGet-SQLite-CLI.md)]
+[!INCLUDE[](~/includes/add-EF-NuGet-SQLite-CLI-5.md)]
 
 ### Add a database context class
 
@@ -141,7 +141,7 @@ Create a *Pages/Movies* folder:
 
 Right-click on the *Pages/Movies* folder > **Add** > **New Scaffolded Item**.
 
-![Image from the previous instructions.](model/_static/sca.png)
+![Image from the previous instructions.](model/_static/5/sca.png)
 
 In the **Add Scaffold** dialog, select **Razor Pages using Entity Framework (CRUD)** > **Add**.
 
@@ -150,7 +150,7 @@ In the **Add Scaffold** dialog, select **Razor Pages using Entity Framework (CRU
 Complete the **Add Razor Pages using Entity Framework (CRUD)** dialog:
 
 * In the **Model class** drop down, select **Movie (RazorPagesMovie.Models)**.
-* In the **Data context class** row, select the **+** (plus) sign and change the generated name from RazorPagesMovie.**Models**.RazorPagesMovieContext to RazorPagesMovie.**Data**.RazorPagesMovieContext. [This change](https://developercommunity.visualstudio.com/content/problem/652166/aspnet-core-ef-scaffolder-uses-incorrect-namespace.html) is not required. It creates the database context class with the correct namespace.
+* In the **Data context class** row, select the **+** (plus) sign. Verify the name is RazorPagesMovie.**Data**.RazorPagesMovieContext. This name creates the database context class with the correct namespace.
 * Select **Add**.
 
 ![Image from the previous instructions.](model/_static/3/arp.png)
@@ -295,7 +295,7 @@ In this section, the Package Manager Console (PMC) is used to:
 
 From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Console**.
 
-  ![PMC menu](../first-mvc-app/adding-model/_static/pmc.png)
+  ![PMC menu](../first-mvc-app/adding-model/_static/5/pmc.png)
 
 In the PMC, enter the following commands:
 
@@ -330,7 +330,7 @@ dotnet ef database update
 
 The preceding commands generate the following warning: "No type was specified for the decimal column 'Price' on entity type 'Movie'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'."
 
-Ignore that warning, it will be fixed in a later tutorial.
+Ignore that warning, you will be shown how to fix this in a following tutorial in this series.
 
 The migrations command generates code to create the initial database schema. The schema is based on the model specified in `DbContext`. The `InitialCreate` argument is used to name the migrations. Any name can be used, but by convention a name is selected that describes the migration.
 
