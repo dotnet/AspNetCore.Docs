@@ -137,8 +137,7 @@ In the following examples, the app is hosted at `/OAT` with an app base path con
 "inspectUri": "{wsProtocol}://{url.hostname}:{url.port}/OAT/_framework/debug/ws-proxy?browser={browserInspectUri}",
 ```
 
-> [!NOTE]
-> Using a custom app base path for Blazor WebAssembly apps requires special configuration, including a configuration in the app's `Program.Main` (`Program.cs`). For more information, see <xref:blazor/host-and-deploy/index#app-base-path>.
+For information on using a custom app base path for Blazor WebAssembly apps, see <xref:blazor/host-and-deploy/index#app-base-path>.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
