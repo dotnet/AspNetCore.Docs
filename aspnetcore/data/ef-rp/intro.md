@@ -55,6 +55,7 @@ The app built in these tutorials is a basic university web site. Users can view 
 
 The UI style of this site is based on the built-in project templates. The tutorial's focus is on how to use EF Core with ASP.NET Core, not how to customize the UI.
 
+<!-- 
 Follow the link at the top of the page to get the source code for the completed project. The *cu50* folder has the code for the ASP.NET Core 5.0 version of the tutorial. Files that reflect the state of the code for tutorials 1-7 can be found in the *cu50snapshots* folder.
 
 # [Visual Studio](#tab/visual-studio)
@@ -95,6 +96,8 @@ To run the app after downloading the completed project:
 * Run the project to seed the database.
 
 ---
+
+-->
 
 ## Create the web app project
 
@@ -478,11 +481,13 @@ In general, a web page shouldn't be loading an arbitrary number of rows. A query
 
 [!code-csharp[Main](intro/samples/cu50snapshots/Index.cshtml.cs?name=snippet)]
 
-Paging and limiting is covered later in the tutorial.
+Enumerating a large table in a view could return a partially constructed HTTP 200 response if a database exception occurs part way through the enumeration.
 
 <xref:Microsoft.AspNetCore.Mvc.MvcOptions.MaxModelBindingCollectionSize> defaults to 1024. The following code sets `MaxModelBindingCollectionSize`:
 
 [!code-csharp[Main](intro/samples/cu50/StartupMaxMBsize.cs?name=snippet_ConfigureServices)]
+
+Paging is covered later in the tutorial.
 
 ## Next steps
 
