@@ -111,7 +111,6 @@ To run the app after downloading the completed project:
 # [Visual Studio Code](#tab/visual-studio-code)
 
 * In a terminal, navigate to the folder in which the project folder should be created.
-
 * Run the following commands to create a Razor Pages project and `cd` into the new project folder:
 
   ```dotnetcli
@@ -262,8 +261,6 @@ The following packages are automatically installed:
   dotnet aspnet-codegenerator razorpage -m Student -dc ContosoUniversity.Data.SchoolContext -udl -outDir Pages/Students --referenceScriptLibraries
   ```
 
-If the preceding step fails, see [this GitHub issue](https://github.com/dotnet/Scaffolding/issues/1419)
-
 ---
 
 If the preceding step fails, build the project and retry the scaffold step.
@@ -401,7 +398,7 @@ Create *Data/DbInitializer.cs* with the following code:
 
   The code checks if there are any students in the database. If there are no students, it adds test data to the database. It creates the test data in arrays rather than `List<T>` collections to optimize performance.
 
-* In *Program.cs*, replace the `EnsureCreated` call with a `DbInitializer.Initialize` call:
+In *Program.cs*, replace the `EnsureCreated` call with a `DbInitializer.Initialize` call:
 
   ```csharp
   // context.Database.EnsureCreated();
@@ -423,7 +420,6 @@ Drop-Database
 ---
 
 * Restart the app.
-
 * Select the Students page to see the seeded data.
 
 ## View the database
@@ -763,7 +759,7 @@ The scaffolding process:
 
 # [Visual Studio](#tab/visual-studio)
 
-The connection string specifies [SQL Server LocalDB](/sql/database-engine/configure-windows/sql-server-2016-express-localdb). 
+The *appsettings.json* file specifies the connection string [SQL Server LocalDB](/sql/database-engine/configure-windows/sql-server-2016-express-localdb).
 
 [!code-json[Main](intro/samples/cu30/appsettings.json?highlight=11)]
 
@@ -781,7 +777,7 @@ Change the connection string to point to a SQLite database file named *CU.db*:
 
 The main class that coordinates EF Core functionality for a given data model is the database context class. The context is derived from [Microsoft.EntityFrameworkCore.DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext). The context specifies which entities are included in the data model. In this project, the class is named `SchoolContext`.
 
-Update *SchoolContext.cs* with the following code:
+Update *Data/SchoolContext.cs* with the following code:
 
 [!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Data/SchoolContext.cs?highlight=13-22)]
 
