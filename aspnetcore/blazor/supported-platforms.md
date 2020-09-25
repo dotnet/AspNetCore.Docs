@@ -15,29 +15,29 @@ By [Luke Latham](https://github.com/guardrex)
 
 ## Blazor WebAssembly
 
-| Browser                          | Version&dagger;       |
+| Browser                          | Version               |
 | -------------------------------- | :-------------------: |
-| Apple Safari, including iOS      | Current               |
-| Google Chrome, including Android | Current               |
+| Apple Safari, including iOS      | Current&dagger;       |
+| Google Chrome, including Android | Current&dagger;       |
+| Microsoft Edge                   | Current&dagger;       |
 | Microsoft Internet Explorer      | Not Supported&Dagger; |
-| Microsoft Edge                   | Current               |
-| Mozilla Firefox                  | Current               |
+| Mozilla Firefox                  | Current&dagger;       |  
 
-&dagger;Resource limitations prevent testing the Blazor framework APIs with all versions of the most popular browsers. Therefore, Blazor WebAssembly is generally supported for the latest versions of browsers. If a browser incompatibility is discovered for a current Blazor framework feature, open an issue at the [ASP.NET Core GitHub repository](https://github.com/dotnet/aspnetcore/issues) with complete details of the incompatibility.
+&dagger;*Current* refers to the latest version of the browser.
 
 &Dagger;Microsoft Internet Explorer doesn't support [WebAssembly](https://webassembly.org).
 
 ## Blazor Server
 
-| Browser                          | Version&dagger; |
+| Browser                          | Version         |
 | -------------------------------- | :-------------: |
-| Apple Safari, including iOS      | Current         |
-| Google Chrome, including Android | Current         |
-| Microsoft Edge                   | Current         |
+| Apple Safari, including iOS      | Current&dagger; |
+| Google Chrome, including Android | Current&dagger; |
+| Microsoft Edge                   | Current&dagger; |
 | Microsoft Internet Explorer      | 11&Dagger;      |
-| Mozilla Firefox                  | Current         |
+| Mozilla Firefox                  | Current&dagger; |
 
-&dagger;Resource limitations prevent testing the Blazor framework APIs with all versions of the most popular browsers. Therefore, Blazor Server is generally supported for the latest versions of browsers. Additionally, Blazor Server relies on [SignalR](xref:signalr/introduction), which is [generally supported for the latest versions of popular browsers](xref:signalr/supported-platforms). If a browser incompatibility is discovered for a current Blazor framework feature, open an issue at the [ASP.NET Core GitHub repository](https://github.com/dotnet/aspnetcore/issues) with complete details of the incompatibility.
+&dagger;*Current* refers to the latest version of the browser.
 
 &Dagger;Additional polyfills are required. For example, promises can be added via a [`Polyfill.io`](https://polyfill.io/v3/) bundle.
 
