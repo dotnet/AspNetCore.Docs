@@ -1,7 +1,20 @@
+---
+title: Development-time IIS support in Visual Studio for ASP.NET Core
+author: rick-anderson
+description: Discover support for debugging ASP.NET Core apps when running with IIS on Windows Server.
+monikerRange: '>= aspnetcore-2.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 02/07/2020
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+uid: host-and-deploy/iis/development-time-iis-support
+---
+
+# The .NET Core Hosting Bundle
+
+The .NET Core Hosting bundle is an installer for the .NET Core Runtime and the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module). The bundle allows ASP.NET Core apps to run with IIS.
 
 ## Install the .NET Core Hosting Bundle
-
-Install the *.NET Core Hosting Bundle* on the hosting system. The bundle installs the .NET Core Runtime, .NET Core Library, and the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module). The module allows ASP.NET Core apps to run behind IIS.
 
 > [!IMPORTANT]
 > If the Hosting Bundle is installed before IIS, the bundle installation must be repaired. Run the Hosting Bundle installer again after installing IIS.
@@ -53,17 +66,12 @@ net start w3svc
 > [!NOTE]
 > For information on IIS Shared Configuration, see [ASP.NET Core Module with IIS Shared Configuration](xref:host-and-deploy/aspnet-core-module#aspnet-core-module-with-an-iis-shared-configuration).
 
-## Install Web Deploy when publishing with Visual Studio
-
-When deploying apps to servers with [Web Deploy](/iis/install/installing-publishing-technologies/installing-and-configuring-web-deploy-on-iis-80-or-later), install the latest version of Web Deploy on the server. To install Web Deploy, use the [Web Platform Installer (WebPI)](https://www.microsoft.com/web/downloads/platform.aspx) or obtain an installer directly from the [Microsoft Download Center](https://www.microsoft.com/download/details.aspx?id=43717). The preferred method is to use WebPI. WebPI offers a standalone setup and a configuration for hosting providers.
-
-
 ## Module version and Hosting Bundle installer logs
 
 To determine the version of the installed ASP.NET Core Module:
 
-1. On the hosting system, navigate to *%windir%\System32\inetsrv*.
-1. Locate the *aspnetcore.dll* file.
+1. On the hosting system, navigate to *%PROGRAMFILES%\IIS\Asp.Net Core Module\V2*.
+1. Locate the *aspnetcorev2.dll* file.
 1. Right-click the file and select **Properties** from the contextual menu.
 1. Select the **Details** tab. The **File version** and **Product version** represent the installed version of the module.
 

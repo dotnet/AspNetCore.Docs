@@ -7,8 +7,18 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 5/7/2020
 no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
-uid: host-and-deploy/iis/index
+uid: host-and-deploy/iis/get-started
 ---
+# Getting started by Publishing an ASP.NET Core app to IIS
+
+This tutorial shows how to host an ASP.NET Core app on an IIS server.
+
+This tutorial covers the following subjects:
+
+> [!div class="checklist"]
+> * Install the .NET Core Hosting Bundle on Windows Server.
+> * Create an IIS site in IIS Manager.
+> * Deploy an ASP.NET Core app.
 
 ## Create the IIS site
 

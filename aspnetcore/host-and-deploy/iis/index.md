@@ -57,7 +57,7 @@ For a tutorial experience on publishing an ASP.NET Core app to an IIS server, se
 
 ## Getting started
 
-For getting started with hosting a website on IIS, see our [getting started guide](xref:host-and-deploy/iis/get-started).
+For getting started with hosting a website on IIS, see our [getting started guide](xref:tutorials/publish-to-iis).
 
 For getting started with hosting a website on Azure App Services, see our [deploying to Azure App Service guide](xref:host-and-deploy/azure-apps/index).
 

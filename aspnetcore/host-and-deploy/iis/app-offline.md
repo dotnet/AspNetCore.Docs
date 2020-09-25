@@ -1,7 +1,7 @@
 ---
 title: ASP.NET Core Module
 author: rick-anderson
-description: Learn how to use app_offline.htm with the ASP.NET Core Module.
+description: Learn how app_offline works with the ASP.NET Core Module.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
