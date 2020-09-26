@@ -10,8 +10,6 @@ uid: tutorials/razor-pages/page
 
 # Part 3, scaffolded Razor Pages in ASP.NET Core
 
-::: moniker range=">= aspnetcore-3.0"
-
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 This tutorial examines the Razor Pages created by scaffolding in the [previous tutorial](xref:tutorials/razor-pages/model).
@@ -28,6 +26,7 @@ This tutorial examines the Razor Pages created by scaffolding in the [previous t
 
 ::: moniker-end
 
+::: moniker range=">= aspnetcore-3.0"
 
 ## The Create, Delete, Details, and Edit pages
 
