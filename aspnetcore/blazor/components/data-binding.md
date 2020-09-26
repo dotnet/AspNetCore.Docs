@@ -33,7 +33,7 @@ The following example binds an `<input>` element to the `currentValue` field and
 }
 ```
 
-When one of the elements looses focus, its bound field or property is updated.
+When one of the elements loses focus, its bound field or property is updated.
 
 The text box is updated in the UI only when the component is rendered, not in response to changing the field's or property's value. Since components render themselves after event handler code executes, field and property updates are *usually* reflected in the UI immediately after an event handler is triggered.
 
