@@ -285,7 +285,7 @@ While debugging a Blazor WebAssembly app, you can also debug server code:
 > [!NOTE]
 > Breakpoints are **not** hit during app startup before the debug proxy is running. This includes breakpoints in `Program.Main` (`Program.cs`) and breakpoints in the [`OnInitialized{Async}` methods](xref:blazor/components/lifecycle#component-initialization-methods) of components that are loaded by the first page requested from the app.
 
-For more information, see [Debugging with Visual Studio for Mac](/visualstudio/mac/debugging?view=vsmac-2019).
+For more information, see [Debugging with Visual Studio for Mac](/visualstudio/mac/debugging).
 
 ---
 
