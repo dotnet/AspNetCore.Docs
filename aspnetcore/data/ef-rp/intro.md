@@ -116,6 +116,7 @@ To run the app after downloading the completed project:
   ```dotnetcli
   dotnet new webapp -o ContosoUniversity
   cd ContosoUniversity
+
   ```
 
 ---
@@ -234,6 +235,7 @@ The following packages are automatically installed:
   dotnet add package Microsoft.EntityFrameworkCore.Tools -v 5.0.0-*
   dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design -v 5.0.0-*
   dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore -v 5.0.0-*
+
   ```
 
    The Microsoft.VisualStudio.Web.CodeGeneration.Design package is required for scaffolding. Although the app won't use SQL Server, the scaffolding tool needs the SQL Server package.
@@ -245,6 +247,7 @@ The following packages are automatically installed:
   ```dotnetcli
   dotnet tool uninstall --global dotnet-aspnet-codegenerator
   dotnet tool install --global dotnet-aspnet-codegenerator --version 5.0.0-*
+
   ```
 
 * Run the following command to scaffold Student pages.
@@ -252,13 +255,15 @@ The following packages are automatically installed:
   **On Windows**
 
   ```dotnetcli
-  dotnet aspnet-codegenerator razorpage -m Student -dc ContosoUniversity.Data.SchoolContext -udl -outDir Pages\Students --referenceScriptLibraries
+  dotnet aspnet-codegenerator razorpage -m Student -dc ContosoUniversity.Data.SchoolContext -udl -outDir Pages\Students --referenceScriptLibraries -sqlite
+
   ```
 
   **On macOS or Linux**
 
   ```dotnetcli
-  dotnet aspnet-codegenerator razorpage -m Student -dc ContosoUniversity.Data.SchoolContext -udl -outDir Pages/Students --referenceScriptLibraries
+  dotnet aspnet-codegenerator razorpage -m Student -dc ContosoUniversity.Data.SchoolContext -udl -outDir Pages/Students --referenceScriptLibraries -sqlite
+
   ```
 
 ---
@@ -279,9 +284,11 @@ The scaffolding process:
 
 ## Database connection string
 
+The scaffolding tool generates a connection string in the *appsettings.json* file.
+
 # [Visual Studio](#tab/visual-studio)
 
-The connection string specifies [SQL Server LocalDB](/sql/database-engine/configure-windows/sql-server-2016-express-localdb). 
+The connection string specifies [SQL Server LocalDB](/sql/database-engine/configure-windows/sql-server-2016-express-localdb):
 
 [!code-json[Main](intro/samples/cu50/appsettings.json?highlight=11)]
 
@@ -289,7 +296,7 @@ LocalDB is a lightweight version of the SQL Server Express Database Engine and i
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-Change the connection string to point to a SQLite database file named *CU.db*:
+Shorten the SQLite connection string to *CU.db*:
 
 [!code-json[Main](intro/samples/cu50/appsettingsSQLite.json?highlight=11)]
 
@@ -299,11 +306,11 @@ Change the connection string to point to a SQLite database file named *CU.db*:
 
 The main class that coordinates EF Core functionality for a given data model is the database context class. The context is derived from [Microsoft.EntityFrameworkCore.DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext). The context specifies which entities are included in the data model. In this project, the class is named `SchoolContext`.
 
-Update *SchoolContext.cs* with the following code:
+Update *Data/SchoolContext.cs* with the following code:
 
 [!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Data/SchoolContext.cs?highlight=13-22)]
 
-The preceding code changes from the singular `DbSet<Student> Student` to the  plural `DbSet<Student> Student`. To make the Razor Pages code match the new `DBSet` name, make a global change from  `_context.Student` to `_context.Students`.  There are 8 occurrences.
+The preceding code changes from the singular `DbSet<Student> Student` to the  plural `DbSet<Student> Student`. To make the Razor Pages code match the new `DBSet` name, make a global change from  `_context.Student.` to `_context.Students.`.  There are 8 occurrences.
 
 Because an entity set contains multiple entities, many developers prefer the `DBSet` property names should be plural.
 
@@ -410,8 +417,10 @@ In *Program.cs*, replace the `EnsureCreated` call with a `DbInitializer.Initiali
 Stop the app if it's running, and run the following command in the **Package Manager Console** (PMC):
 
 ```powershell
-Drop-Database
+Drop-Database -Confirm
 ```
+
+Respond with `Y` to delete the database.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
