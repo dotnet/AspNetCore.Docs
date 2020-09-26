@@ -150,8 +150,9 @@ In the **Add Scaffold** dialog, select **Razor Pages using Entity Framework (CRU
 Complete the **Add Razor Pages using Entity Framework (CRUD)** dialog:
 
 * In the **Model class** drop down, select **Movie (RazorPagesMovie.Models)**.
-* In the **Data context class** row, select the **+** (plus) sign. Verify the name is RazorPagesMovie.**Data**.RazorPagesMovieContext. This name creates the database context class with the correct namespace.
-* Select **Add**.
+* In the **Data context class** row, select the **+** (plus) sign.
+* In the **Add Data Context** dialog, the class name *RazorPagesMovie.Data.RazorPagesMovieContext* is generated. Select **Add**.
+* In the **Add Razor Pages using Entity Framework (CRUD)** dialog, select **Add**.
 
 ![Image from the previous instructions.](model/_static/3/arp.png)
 
@@ -225,41 +226,18 @@ In the **New Scaffolding** dialog, select **Razor Pages using Entity Framework (
 Complete the **Add Razor Pages using Entity Framework (CRUD)** dialog:
 
 * In the **Model class** drop down, select, or type, **Movie (RazorPagesMovie.Models)**.
-* In the **Data context class** row, type the name for the new class, RazorPagesMovie.**Data**.RazorPagesMovieContext. [This change](https://developercommunity.visualstudio.com/content/problem/652166/aspnet-core-ef-scaffolder-uses-incorrect-namespace.html) is not required. It creates the database context class with the correct namespace.
-* Select **Add**.
+* In the **DbContext Class to use:** row, name the class *RazorPagesMovie.Data.RazorPagesMovieContext*.
+* Select **Finish**.
 
-![Image from the previous instructions.](model/_static/arpMac.png)
+![Image from the previous instructions.](model/_static/5/arpMac.png)
 
 The *appsettings.json* file is updated with the connection string used to connect to a local database.
-
-### Add EF tools
-
-Run the following .NET Core CLI command:
-
-```dotnetcli
-dotnet tool install --global dotnet-ef
-```
-
-The preceding command adds the Entity Framework Core Tools for the .NET Core CLI.
 
 ---
 
 ### Files created
 
 # [Visual Studio](#tab/visual-studio)
-
-The scaffold process creates and updates the following files:
-
-* *Pages/Movies*: Create, Delete, Details, Edit, and Index.
-* *Data/RazorPagesMovieContext.cs*
-
-### Updated
-
-* *Startup.cs*
-
-The created and updated files are explained in the next section.
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
 
 The scaffold process creates and updates the following files:
 
@@ -280,11 +258,28 @@ The scaffold process creates the following files:
 
 The created files are explained in the next section.
 
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+The scaffold process creates and updates the following files:
+
+* *Pages/Movies*: Create, Delete, Details, Edit, and Index.
+* *Data/RazorPagesMovieContext.cs*
+
+### Updated
+
+* *Startup.cs*
+
+The created and updated files are explained in the next section.
+
 ---
 
 <a name="pmc"></a>
 
-## Initial migration
+## Create the initial database schema using EF's migration feature
+
+The migrations feature in Entity Framework Core provides a way to:
+* Initially create the database schema.
+* Incrementally update the database schema to keep it in sync with the application's data model while preserving existing data in the database.
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -319,7 +314,8 @@ dotnet ef database update
 
 [!INCLUDE [more information on the CLI for EF Core](~/includes/ef-cli.md)]
 
-Run the following .NET Core CLI commands:
+* From the Visual Studio **View** menu, select **Pads** > **Terminal**.
+* Run the following .NET Core CLI commands:
 
 ```dotnetcli
 dotnet ef migrations add InitialCreate
