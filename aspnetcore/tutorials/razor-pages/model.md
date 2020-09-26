@@ -682,7 +682,7 @@ In this section, the Package Manager Console (PMC) is used to:
 
 From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Console**.
 
-  ![PMC menu](../first-mvc-app/adding-model/_static/pmc.png)
+  ![PMC menu](model/_static/5/pmc.png)
 
 In the PMC, enter the following commands:
 
