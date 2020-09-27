@@ -3,7 +3,7 @@ title: Part 5, update the generated pages in an ASP.NET Core app
 author: rick-anderson
 description: Part 5 of tutorial series on Razor Pages.
 ms.author: riande
-ms.date: 12/20/2018
+ms.date: 09/20/2020
 no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/razor-pages/da1
 ---
@@ -12,6 +12,14 @@ uid: tutorials/razor-pages/da1
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ::: moniker range=">= aspnetcore-3.0"
+
+In this section you will:
+
+> [!div class="checklist"]
+> * Update the generated page model code to the project examples' specific needs.
+> * Add the route template.
+> * Review the project's concurrency exception handling.
+> * Review the project's posting and binding.
 
 The scaffolded movie app has a good start, but the presentation isn't ideal. **ReleaseDate** should be **Release Date** (two words).
 
@@ -23,9 +31,14 @@ Open the *Models/Movie.cs* file and add the highlighted lines shown in the follo
 
 [!code-csharp[Main](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Models/MovieDateFixed.cs?name=snippet_1&highlight=3,12,17)]
 
-The `[Column(TypeName = "decimal(18, 2)")]` data annotation enables Entity Framework Core to correctly map `Price` to currency in the database. For more information, see [Data Types](/ef/core/modeling/relational/data-types).
 
-[DataAnnotations](/aspnet/mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-6) is covered in the next tutorial. The [Display](/dotnet/api/microsoft.aspnetcore.mvc.modelbinding.metadata.displaymetadata) attribute specifies what to display for the name of a field (in this case "Release Date" instead of "ReleaseDate"). The [DataType](/dotnet/api/microsoft.aspnetcore.mvc.dataannotations.internal.datatypeattributeadapter) attribute specifies the type of the data (Date), so the time information stored in the field isn't displayed.
+In the previous code:
+
+* The `[Column(TypeName = "decimal(18, 2)")]` data annotation enables Entity Framework Core to correctly map `Price` to currency in the database. For more information, see [Data Types](/ef/core/modeling/relational/data-types).
+* The [Display](/dotnet/api/microsoft.aspnetcore.mvc.modelbinding.metadata.displaymetadata) attribute specifies what to display for the name of a field (in this case "Release Date" instead of "ReleaseDate"). 
+* The [DataType](/dotnet/api/microsoft.aspnetcore.mvc.dataannotations.internal.datatypeattributeadapter) attribute specifies the type of the data (Date), so the time information stored in the field isn't displayed.
+
+[DataAnnotations](/aspnet/mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-6) is covered in the next tutorial. 
 
 Browse to Pages/Movies and  hover over an **Edit** link to see the target URL.
 
@@ -36,9 +49,11 @@ in the *Pages/Movies/Index.cshtml* file.
 
 [!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample/RazorPagesMovie/Pages/Movies/Index.cshtml?highlight=16-18&range=32-)]
 
-[Tag Helpers](xref:mvc/views/tag-helpers/intro) enable server-side code to participate in creating and rendering HTML elements in Razor files. In the preceding code, the `AnchorTagHelper` dynamically generates the HTML `href` attribute value from the Razor Page (the route is relative), the `asp-page`,  and the route id (`asp-route-id`). See [URL generation for Pages](xref:razor-pages/index#url-generation-for-pages) for more information.
+[Tag Helpers](xref:mvc/views/tag-helpers/intro) enable server-side code to participate in creating and rendering HTML elements in Razor files. 
 
-Use **View Source** from your favorite browser to examine the generated markup. A portion of the generated HTML is shown below:
+In the preceding code, the `AnchorTagHelper` dynamically generates the HTML `href` attribute value from the Razor Page (the route is relative), the `asp-page`,  and the route id (`asp-route-id`). See [URL generation for Pages](xref:razor-pages/index#url-generation-for-pages) for more information.
+
+Use **View Source** from a favorite browser to examine the generated markup. A portion of the generated HTML is shown below:
 
 ```html
 <td>
@@ -48,11 +63,13 @@ Use **View Source** from your favorite browser to examine the generated markup. 
 </td>
 ```
 
-The dynamically-generated links pass the movie ID with a query string (for example, the `?id=1` in  `https://localhost:5001/Movies/Details?id=1`).
+The dynamically-generated links pass the movie ID with a query string. For example, the `?id=1` in  `https://localhost:5001/Movies/Details?id=1`.
 
 ### Add route template
 
-Update the Edit, Details, and Delete Razor Pages to use the "{id:int}" route template. Change the page directive for each of these pages from `@page` to `@page "{id:int}"`. Run the app and then view source. The generated HTML adds the ID to the path portion of the URL:
+Update the Edit, Details, and Delete Razor Pages to use the "{id:int}" route template. Change the page directive for each of these pages from `@page` to `@page "{id:int}"`. Run the app and then view source. 
+
+The generated HTML adds the ID to the path portion of the URL:
 
 ```html
 <td>
@@ -62,7 +79,7 @@ Update the Edit, Details, and Delete Razor Pages to use the "{id:int}" route tem
 </td>
 ```
 
-A request to the page with the "{id:int}" route template that does **not** include the integer will return an HTTP 404 (not found) error. For example, `http://localhost:5000/Movies/Details` will return a 404 error. To make the ID optional, append `?` to the route constraint:
+A request to the page with the "{id:int}" route template that does **not** include the integer, will return an HTTP 404 (not found) error. For example, `http://localhost:5000/Movies/Details` will return a 404 error. To make the ID optional, append `?` to the route constraint:
 
  ```cshtml
 @page "{id:int?}"
@@ -82,7 +99,7 @@ Review the `OnPostAsync` method in the *Pages/Movies/Edit.cshtml.cs* file:
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Pages/Movies/Edit.cshtml.cs?name=snippet)]
 
-The previous code detects concurrency exceptions when the one client deletes the movie and the other client posts changes to the movie.
+The previous code detects concurrency exceptions when one client deletes the movie and the other client posts changes to the movie.
 
 To test the `catch` block:
 
@@ -154,7 +171,7 @@ in the *Pages/Movies/Index.cshtml* file.
 
 [Tag Helpers](xref:mvc/views/tag-helpers/intro) enable server-side code to participate in creating and rendering HTML elements in Razor files. In the preceding code, the `AnchorTagHelper` dynamically generates the HTML `href` attribute value from the Razor Page (the route is relative), the `asp-page`,  and the route id (`asp-route-id`). See [URL generation for Pages](xref:razor-pages/index#url-generation-for-pages) for more information.
 
-Use **View Source** from your favorite browser to examine the generated markup. A portion of the generated HTML is shown below:
+Use **View Source** from a favorite browser to examine the generated markup. A portion of the generated HTML is shown below:
 
 ```html
 <td>
