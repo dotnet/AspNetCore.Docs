@@ -1,9 +1,9 @@
 ---
-title: Part 4, with a database and ASP.NET Core
+title: Part 4, work with a database and ASP.NET Core
 author: rick-anderson
 description: Part 4 of tutorial series on Razor Pages.
 ms.author: riande
-ms.date: 7/22/2019
+ms.date: 09/26/2020
 no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/razor-pages/sql
 ---
@@ -13,7 +13,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Joe Audette](https://tw
 
 ::: moniker range=">= aspnetcore-3.0"
 
-[!INCLUDE[](~/includes/rp/download.md)]
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30) ([how to download](xref:index#how-to-download-a-sample)).
 
 The `RazorPagesMovieContext` object handles the task of connecting to the database and mapping `Movie` objects to database records. The database context is registered with the [Dependency Injection](xref:fundamentals/dependency-injection) container in the `ConfigureServices` method in *Startup.cs*:
 
@@ -31,7 +31,7 @@ The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system r
 
 # [Visual Studio](#tab/visual-studio)
 
-The name value for the database (`Database={Database name}`) will be different for your generated code. The name value is arbitrary.
+The name value for the database (`Database={Database name}`) will be different for the generated code. The name value is arbitrary.
 
 [!code-json[](razor-pages-start/sample/RazorPagesMovie30/appsettings.json?highlight=10-12)]
 
@@ -52,24 +52,47 @@ LocalDB is a lightweight version of the SQL Server Express database engine that'
 <a name="ssox"></a>
 * From the **View** menu, open **SQL Server Object Explorer** (SSOX).
 
-  ![View menu](sql/_static/ssox.png)
+  ![View menu](sql/_static/5/ssox.png)
 
-* Right click on the `Movie` table and select **View Designer**:
+* Right-click on the `Movie` table and select **View Designer**:
 
-  ![Contextual menus open on Movie table](sql/_static/design.png)
+  ![Contextual menus open on Movie table](sql/_static/5/design.png)
 
   ![Movie tables open in Designer](sql/_static/dv.png)
 
 Note the key icon next to `ID`. By default, EF creates a property named `ID` for the primary key.
 
-* Right click on the `Movie` table and select **View Data**:
+* Right-click on the `Movie` table and select **View Data**:
 
   ![Movie table open showing table data](sql/_static/vd22.png)
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-[!INCLUDE[](~/includes/rp/sqlite.md)]
-[!INCLUDE[](~/includes/RP-mvc-shared/sqlite-warn.md)]
+## SQLite
+
+The [SQLite](https://www.sqlite.org/) website states:
+
+> SQLite is a self-contained, high-reliability, embedded, full-featured, public-domain, SQL database engine. SQLite is the most used database engine in the world.
+
+There are many third party tools you can download to manage and view a SQLite database. The image below is from [DB Browser for SQLite](https://sqlitebrowser.org/). If you have a favorite SQLite tool, leave a comment on what you like about it.
+
+![DB Browser for SQLite showing movie db](~/tutorials/first-mvc-app-xplat/working-with-sql/_static/dbb.png)
+
+> [!NOTE]
+> For this tutorial the Entity Framework Core *migrations* feature is used where possible. Migrations updates the database schema to match changes in the data model. However, migrations can only do the kinds of changes that the EF Core provider supports, and the SQLite provider's capabilities are limited. For example, adding a column is supported, but removing or changing a column is not supported. If a migration is created to remove or change a column, the `ef migrations add` command succeeds but the `ef database update` command fails. Due to these limitations, this tutorial doesn't use migrations for SQLite schema changes. Instead, when the schema changes, the database is dropped and re-created.
+>
+>The workaround for the SQLite limitations is to manually write migrations code to perform a table rebuild when something in the table changes. A table rebuild involves:
+>
+>* Creating a new table.
+>* Copying data from the old table to the new table.
+>* Dropping the old table.
+>* Renaming the new table.
+>
+>For more information, see the following resources:
+> * [SQLite EF Core Database Provider Limitations](/ef/core/providers/sqlite/limitations)
+> * [Customize migration code](/ef/core/managing-schemas/migrations/#customize-migration-code)
+> * [Data seeding](/ef/core/modeling/data-seeding)
+  * [SQLite ALTER TABLE statement](https://sqlite.org/lang_altertable.html)
 
 ---
 
@@ -111,17 +134,17 @@ The following exception occurs when `Update-Database` has not been run:
 
 # [Visual Studio](#tab/visual-studio)
 
-* Delete all the records in the DB. You can do this with the delete links in the browser or from [SSOX](xref:tutorials/razor-pages/new-field#ssox)
-* Force the app to initialize (call the methods in the `Startup` class) so the seed method runs. To force initialization, IIS Express must be stopped and restarted. You can do this with any of the following approaches:
+* Delete all the records in the DB. Use the delete links in the browser or from [SSOX](xref:tutorials/razor-pages/new-field#ssox)
+* Force the app to initialize (call the methods in the `Startup` class) so the seed method runs. To force initialization, IIS Express must be stopped and restarted. Stop and restart IIS with any of the following approaches:
 
-  * Right click the IIS Express system tray icon in the notification area and tap **Exit** or **Stop Site**:
+  * Right-click the IIS Express system tray icon in the notification area and tap **Exit** or **Stop Site**:
 
     ![IIS Express system tray icon](../first-mvc-app/working-with-sql/_static/iisExIcon.png)
 
     ![Contextual menu](sql/_static/stopIIS.png)
 
-    * If you were running VS in non-debug mode, press F5 to run in debug mode.
-    * If you were running VS in debug mode, stop the debugger and press F5.
+    * If the app is running in non-debug mode, press F5 to run in debug mode.
+    * If the app in debug mode, stop the debugger and press F5.
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
@@ -143,7 +166,7 @@ The next tutorial will improve the presentation of the data.
 
 ::: moniker range="< aspnetcore-3.0"
 
-[!INCLUDE[](~/includes/rp/download.md)]
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start) ([how to download](xref:index#how-to-download-a-sample)).
 
 The `RazorPagesMovieContext` object handles the task of connecting to the database and mapping `Movie` objects to database records. The database context is registered with the [Dependency Injection](xref:fundamentals/dependency-injection) container in the `ConfigureServices` method in *Startup.cs*:
 
@@ -166,7 +189,7 @@ The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system r
 
 # [Visual Studio](#tab/visual-studio)
 
-The name value for the database (`Database={Database name}`) will be different for your generated code. The name value is arbitrary.
+The name value for the database (`Database={Database name}`) will be different for the generated code. The name value is arbitrary.
 
 [!code-json[](razor-pages-start/sample/RazorPagesMovie22/appsettings.json)]
 
@@ -193,7 +216,7 @@ LocalDB is a lightweight version of the SQL Server Express database engine that'
 
   ![View menu](sql/_static/ssox.png)
 
-* Right click on the `Movie` table and select **View Designer**:
+* Right-click on the `Movie` table and select **View Designer**:
 
   ![Contextual menu open on Movie table](sql/_static/design.png)
 
@@ -201,7 +224,7 @@ LocalDB is a lightweight version of the SQL Server Express database engine that'
 
 Note the key icon next to `ID`. By default, EF creates a property named `ID` for the primary key.
 
-* Right click on the `Movie` table and select **View Data**:
+* Right-click on the `Movie` table and select **View Data**:
 
   ![Movie table open showing table data](sql/_static/vd22.png)
 
@@ -264,8 +287,8 @@ Login failed for user 'user name'.
 
     ![Contextual menu](sql/_static/stopIIS.png)
 
-    * If you were running VS in non-debug mode, press F5 to run in debug mode.
-    * If you were running VS in debug mode, stop the debugger and press F5.
+    * If the app is running in non-debug mode, press F5 to run in debug mode.
+    * If the app in debug mode, stop the debugger and press F5.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
