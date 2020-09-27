@@ -18,11 +18,13 @@ Templated components are components that accept one or more UI templates as para
 * A table component that allows a user to specify templates for the table's header, rows, and footer.
 * A list component that allows a user to specify a template for rendering items in a list.
 
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) ([how to download](xref:index#how-to-download-a-sample))
+
 ## Template parameters
 
 A templated component is defined by specifying one or more component parameters of type <xref:Microsoft.AspNetCore.Components.RenderFragment> or <xref:Microsoft.AspNetCore.Components.RenderFragment%601>. A render fragment represents a segment of UI to render. <xref:Microsoft.AspNetCore.Components.RenderFragment%601> takes a type parameter that can be specified when the render fragment is invoked.
 
-`TableTemplate` component:
+`TableTemplate` component (`TableTemplate.razor`):
 
 [!code-razor[](../common/samples/3.x/BlazorWebAssemblySample/Components/TableTemplate.razor)]
 
@@ -39,6 +41,21 @@ When using a templated component, the template parameters can be specified using
         <td>@context.Name</td>
     </RowTemplate>
 </TableTemplate>
+
+@code {
+    private List<Pet> pets = new List<Pet>
+    {
+        new Pet { PetId = 2, Name = "Mr. Bigglesworth" },
+        new Pet { PetId = 4, Name = "Salem Saberhagen" },
+        new Pet { PetId = 7, Name = "K-9" }
+    };
+
+    private class Pet
+    {
+        public int PetId { get; set; }
+        public string Name { get; set; }
+    }
+}
 ```
 
 > [!NOTE]
@@ -59,6 +76,10 @@ Component arguments of type <xref:Microsoft.AspNetCore.Components.RenderFragment
         <td>@pet.Name</td>
     </RowTemplate>
 </TableTemplate>
+
+@code {
+    ...
+}
 ```
 
 Alternatively, you can specify the `Context` attribute on the component element. The specified `Context` attribute applies to all specified template parameters. This can be useful when you want to specify the content parameter name for implicit child content (without any wrapping child element). In the following example, the `Context` attribute appears on the `TableTemplate` element and applies to all template parameters:
@@ -74,11 +95,15 @@ Alternatively, you can specify the `Context` attribute on the component element.
         <td>@pet.Name</td>
     </RowTemplate>
 </TableTemplate>
+
+@code {
+    ...
+}
 ```
 
 ## Generic-typed components
 
-Templated components are often generically typed. For example, a generic `ListViewTemplate` component can be used to render `IEnumerable<T>` values. To define a generic component, use the [`@typeparam`](xref:mvc/views/razor#typeparam) directive to specify type parameters:
+Templated components are often generically typed. For example, a generic `ListViewTemplate` component (`ListViewTemplate.razor`) can be used to render `IEnumerable<T>` values. To define a generic component, use the [`@typeparam`](xref:mvc/views/razor#typeparam) directive to specify type parameters:
 
 [!code-razor[](../common/samples/3.x/BlazorWebAssemblySample/Components/ListViewTemplate.razor)]
 
@@ -90,6 +115,20 @@ When using generic-typed components, the type parameter is inferred if possible:
         <li>@pet.Name</li>
     </ItemTemplate>
 </ListViewTemplate>
+
+@code {
+    private List<Pet> pets = new List<Pet>
+    {
+        new Pet { Name = "Mr. Bigglesworth" },
+        new Pet { Name = "Salem Saberhagen" },
+        new Pet { Name = "K-9" }
+    };
+
+    private class Pet
+    {
+        public string Name { get; set; }
+    }
+}
 ```
 
 Otherwise, the type parameter must be explicitly specified using an attribute that matches the name of the type parameter. In the following example, `TItem="Pet"` specifies the type:
@@ -100,4 +139,8 @@ Otherwise, the type parameter must be explicitly specified using an attribute th
         <li>@pet.Name</li>
     </ItemTemplate>
 </ListViewTemplate>
+
+@code {
+    ...
+}
 ```

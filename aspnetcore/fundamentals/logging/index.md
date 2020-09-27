@@ -447,6 +447,8 @@ shared framework. They must be installed as additional nuget.
 * [AzureAppServicesFile and AzureAppServicesBlob](#azure-app-service)
 * [ApplicationInsights](#azure-application-insights)
 
+ASP.NET Core doesn't include a logging provider for writing logs to files. To write logs to files from an ASP.NET Core app, consider using a [third-party logging provider](#third-party-logging-providers).
+
 For information on `stdout` and debug logging with the ASP.NET Core Module, see <xref:test/troubleshoot-azure-iis> and <xref:host-and-deploy/aspnet-core-module#log-creation-and-redirection>.
 
 ### Console

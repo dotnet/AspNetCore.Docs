@@ -58,7 +58,7 @@ In the preceding commands, replace `{ password here }` with a password.
 
 Create a _docker-compose.debug.yml_ file with the following content:
 
-```json
+```yaml
 version: '3.4'
 
 services:
@@ -98,7 +98,7 @@ In the preceding commands, replace `{ password here }` with a password.
 
 Create a _docker-compose.debug.yml_ file with the following content:
 
-```json
+```yaml
 version: '3.4'
 
 services:
@@ -136,7 +136,7 @@ In the preceding commands, replace `{ password here }` with a password.
 
 Create a _docker-compose.debug.yml_ file with the following content:
 
-```json
+```yaml
 version: '3.4'
 
 services:

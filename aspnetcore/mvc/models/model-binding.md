@@ -378,6 +378,47 @@ For `Dictionary` targets, model binding looks for matches to *parameter_name* or
 
   * selectedCourses["1050"]="Chemistry"
   * selectedCourses["2000"]="Economics"
+  
+::: moniker-end
+
+::: moniker range=">= aspnetcore-5.0"
+
+## Constructor binding and record types
+
+Model binding requires that complex types have a parameterless constructor. Both `System.Text.Json` and `Newtonsoft.Json` based input formatters support deserialization of classes that don't have a parameterless constructor. 
+
+C# 9 introduces record types, which are a great way to succinctly represent data over the network. ASP.NET Core adds support for model binding and validating record types with a single constructor:
+
+```csharp
+public record Person([Required] string Name, [Range(0, 150)] int Age);
+
+public class PersonController
+{
+   public IActionResult Index() => View();
+
+   [HttpPost]
+   public IActionResult Index(Person person)
+   {
+       ...
+   }
+}
+```
+
+`Person/Index.cshtml`:
+
+```cshtml
+@model Person
+
+Name: <input asp-for="Name" />
+...
+Age: <input asp-for="Age" />
+```
+
+When validating record types, the runtime searches for validation metadata specifically on parameters rather than on properties.
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-3.0"
 
 <a name="glob"></a>
 
@@ -497,6 +538,7 @@ This attribute's name follows the pattern of model binding attributes that speci
 * <xref:mvc/advanced/custom-model-binding>
 
 ::: moniker-end
+
 ::: moniker range="< aspnetcore-3.0"
 
 This article explains what model binding is, how it works, and how to customize its behavior.
