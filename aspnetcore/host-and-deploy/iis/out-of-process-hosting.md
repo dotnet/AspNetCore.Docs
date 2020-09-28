@@ -10,9 +10,7 @@ no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blaz
 uid: host-and-deploy/iis/development-time-iis-support
 ---
 
-[HTTP.sys server](xref:fundamentals/servers/httpsys) (formerly called WebListener) doesn't work in a reverse proxy configuration with IIS. Use the [Kestrel server](xref:fundamentals/servers/kestrel).
-
-### Out-of-process hosting model
+# Out-Of-Process Hosting with IIS and ASP.NET Core 
 
 Because ASP.NET Core apps run in a process separate from the IIS worker process, the ASP.NET Core Module handles process management. The module starts the process for the ASP.NET Core app when the first request arrives and restarts the app if it shuts down or crashes. This is essentially the same behavior as seen with apps that run in-process that are managed by the [Windows Process Activation Service (WAS)](/iis/manage/provisioning-and-managing-iis/features-of-the-windows-process-activation-service-was).
 

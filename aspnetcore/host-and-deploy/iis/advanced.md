@@ -10,9 +10,9 @@ no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blaz
 uid: host-and-deploy/iis/advanced
 ---
 
-# Advanced configuration of the ASP.NET Core Module
+# Advanced configuration of the ASP.NET Core Module and IIS
 
-This article goes over advanced configuration options and scenarios for the ASP.NET Core Module.
+This article goes over advanced configuration options and scenarios for the ASP.NET Core Module and IIS.
 
 ## Modify the stack size
 
@@ -56,7 +56,6 @@ When the path to the shared configuration isn't on the same machine as the IIS i
 1. Run the installer.
 1. Export the updated *applicationHost.config* file to the share.
 1. Re-enable the IIS Shared Configuration.
-
 
 ## Data protection
 
@@ -102,7 +101,7 @@ To configure data protection under IIS to persist the key ring, use **one** of t
 
   The data protection system has limited support for setting a default [machine-wide policy](xref:security/data-protection/configuration/machine-wide-policy) for all apps that consume the Data Protection APIs. For more information, see <xref:security/data-protection/introduction>.
 
-  ## IIS configuration
+## IIS configuration
 
 **Windows Server operating systems**
 
@@ -148,60 +147,6 @@ Enable the **IIS Management Console** and **World Wide Web Services**.
 
 ![IIS Management Console and World Wide Web Services are selected in Windows Features.](index/_static/windows-features-win10.png)
 
-
-## Module, schema, and configuration file locations
-
-### Module
-
-**IIS (x86/amd64):**
-
-* %windir%\System32\inetsrv\aspnetcore.dll
-
-* %windir%\SysWOW64\inetsrv\aspnetcore.dll
-
-* %ProgramFiles%\IIS\Asp.Net Core Module\V2\aspnetcorev2.dll
-
-* %ProgramFiles(x86)%\IIS\Asp.Net Core Module\V2\aspnetcorev2.dll
-
-**IIS Express (x86/amd64):**
-
-* %ProgramFiles%\IIS Express\aspnetcore.dll
-
-* %ProgramFiles(x86)%\IIS Express\aspnetcore.dll
-
-* %ProgramFiles%\IIS Express\Asp.Net Core Module\V2\aspnetcorev2.dll
-
-* %ProgramFiles(x86)%\IIS Express\Asp.Net Core Module\V2\aspnetcorev2.dll
-
-### Schema
-
-**IIS**
-
-* %windir%\System32\inetsrv\config\schema\aspnetcore_schema.xml
-
-* %windir%\System32\inetsrv\config\schema\aspnetcore_schema_v2.xml
-
-**IIS Express**
-
-* %ProgramFiles%\IIS Express\config\schema\aspnetcore_schema.xml
-
-* %ProgramFiles%\IIS Express\config\schema\aspnetcore_schema_v2.xml
-
-### Configuration
-
-**IIS**
-
-* %windir%\System32\inetsrv\config\applicationHost.config
-
-**IIS Express**
-
-* Visual Studio: {APPLICATION ROOT}\\.vs\config\applicationHost.config
-
-* *iisexpress.exe* CLI: %USERPROFILE%\Documents\IISExpress\config\applicationhost.config
-
-The files can be found by searching for *aspnetcore* in the *applicationHost.config* file.
-
-
 ## Virtual Directories
 
 [IIS Virtual Directories](/iis/get-started/planning-your-iis-architecture/understanding-sites-applications-and-virtual-directories-on-iis#virtual-directories) aren't supported with ASP.NET Core apps. An app can be hosted as a [sub-application](#sub-applications).
@@ -227,7 +172,6 @@ To host an ASP.NET Core app as a sub-app under another ASP.NET Core app:
 The assignment of a separate app pool to the sub-app is a requirement when using the in-process hosting model.
 
 For more information on the in-process hosting model and configuring the ASP.NET Core Module, see <xref:host-and-deploy/aspnet-core-module>.
-
 
 ## Application Pools
 
@@ -297,3 +241,56 @@ HTTP/2 is enabled by default. Connections fall back to HTTP/1.1 if an HTTP/2 con
 *This section only applies to ASP.NET Core apps that target the .NET Framework.*
 
 For an ASP.NET Core app that targets the .NET Framework, OPTIONS requests aren't passed to the app by default in IIS. To learn how to configure the app's IIS handlers in *web.config* to pass OPTIONS requests, see [Enable cross-origin requests in ASP.NET Web API 2: How CORS Works](/aspnet/web-api/overview/security/enabling-cross-origin-requests-in-web-api#how-cors-works).
+
+
+## Module, schema, and configuration file locations
+
+### Module
+
+**IIS (x86/amd64):**
+
+* %windir%\System32\inetsrv\aspnetcore.dll
+
+* %windir%\SysWOW64\inetsrv\aspnetcore.dll
+
+* %ProgramFiles%\IIS\Asp.Net Core Module\V2\aspnetcorev2.dll
+
+* %ProgramFiles(x86)%\IIS\Asp.Net Core Module\V2\aspnetcorev2.dll
+
+**IIS Express (x86/amd64):**
+
+* %ProgramFiles%\IIS Express\aspnetcore.dll
+
+* %ProgramFiles(x86)%\IIS Express\aspnetcore.dll
+
+* %ProgramFiles%\IIS Express\Asp.Net Core Module\V2\aspnetcorev2.dll
+
+* %ProgramFiles(x86)%\IIS Express\Asp.Net Core Module\V2\aspnetcorev2.dll
+
+### Schema
+
+**IIS**
+
+* %windir%\System32\inetsrv\config\schema\aspnetcore_schema.xml
+
+* %windir%\System32\inetsrv\config\schema\aspnetcore_schema_v2.xml
+
+**IIS Express**
+
+* %ProgramFiles%\IIS Express\config\schema\aspnetcore_schema.xml
+
+* %ProgramFiles%\IIS Express\config\schema\aspnetcore_schema_v2.xml
+
+### Configuration
+
+**IIS**
+
+* %windir%\System32\inetsrv\config\applicationHost.config
+
+**IIS Express**
+
+* Visual Studio: {APPLICATION ROOT}\\.vs\config\applicationHost.config
+
+* *iisexpress.exe* CLI: %USERPROFILE%\Documents\IISExpress\config\applicationhost.config
+
+The files can be found by searching for *aspnetcore* in the *applicationHost.config* file.
