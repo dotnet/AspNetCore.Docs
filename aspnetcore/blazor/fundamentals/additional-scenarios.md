@@ -274,17 +274,17 @@ Customize the delay before the reconnection display appears by setting the `tran
 }
 ```
 
-::: moniker-end
+## Disconnect the Blazor circuit from the client
 
-## Disconnect the Blazor circuit from the client.
+By default, a Blazor circuit is disconnected when the `unload` page event is triggered. To disconnect the circuit for other scenarios on the client, invoke `Blazor.disconnect` in the appropriate event handler. In the following example, the circuit is disconnected when the page is hidden ([`pagehide` event](https://developer.mozilla.org/docs/Web/API/Window/pagehide_event)):
 
-By default, the Blazor circuit will be disconnected when the `unload` event is triggered on the page. To disconnect the circuit under different scenarios on the client, invoke `Blazor.disconnect` in the appropriate event handler.
-
-```js
+```javascript
 window.addEventListener('pagehide', () => {
   Blazor.disconnect();
 })
 ```
+
+::: moniker-end
 
 ## Influence HTML `<head>` tag elements
 
