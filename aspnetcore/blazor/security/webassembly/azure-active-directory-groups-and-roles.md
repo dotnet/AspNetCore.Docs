@@ -467,7 +467,7 @@ services.Configure<JwtBearerOptions>(AzureADDefaults.JwtBearerAuthenticationSche
 {
     options.Events = new JwtBearerEvents()
     {
-        OnAuthenticationFailed = (context) =>
+        OnAuthenticationFailed = context =>
         {
             // Optional: Log the exception
 
