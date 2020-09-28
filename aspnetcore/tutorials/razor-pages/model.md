@@ -102,8 +102,8 @@ Register the database context with the [dependency injection](xref:fundamentals/
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-* In Solution Pad, right-click the **RazorPagesMovie** project, and then select **Add** > **New Folder...**. Name the folder *Models*.
-* Right-click the *Models* folder, and then select **Add** > **New File...**.
+* In Solution Pad, control-click the **RazorPagesMovie** project, and then select **Add** > **New Folder...**. Name the folder *Models*.
+* Control-click the *Models* folder, and then select **Add** > **New File...**.
 * In the **New File** dialog:
 
   * Select **General** in the left pane.
@@ -212,10 +212,10 @@ When SQLite is selected, the template generated code is ready for development. T
 
 Create a *Pages/Movies* folder:
 
-* Right-click on the *Pages* folder > **Add** > **New Folder**.
+* Control-click on the *Pages* folder > **Add** > **New Folder**.
 * Name the folder *Movies*
 
-Right-click on the *Pages/Movies* folder > **Add** > **New Scaffolding...**.
+Control-click on the *Pages/Movies* folder > **Add** > **New Scaffolding...**.
 
 ![Image from the previous instructions.](model/_static/scaMac.png)
 
@@ -891,8 +891,8 @@ Build the project as a check for errors.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-* In Solution Explorer, right-click the **RazorPagesMovie** project, and then select **Add** > **New Folder**. Name the folder *Models*.
-* Right-click the *Models* folder, and then select **Add** > **New File**.
+* In Solution Explorer, control-click the **RazorPagesMovie** project, and then select **Add** > **New Folder**. Name the folder *Models*.
+* Control-click the *Models* folder, and then select **Add** > **New File**.
 * In the **New File** dialog:
 
   * Select **General** in the left pane.
@@ -992,10 +992,10 @@ For more information, see [dotnet aspnet-codegenerator](xref:fundamentals/tools/
 
 Create a *Pages/Movies* folder:
 
-* Right-click on the *Pages* folder > **Add** > **New Folder**.
+* Control-click on the *Pages* folder > **Add** > **New Folder**.
 * Name the folder *Movies*
 
-Right-click on the *Pages/Movies* folder > **Add** > **New Scaffolded Item**.
+Control-click on the *Pages/Movies* folder > **Add** > **New Scaffolded Item**.
 
 ![Image from the previous instructions.](model/_static/scaMac.png)
 
