@@ -276,6 +276,16 @@ Customize the delay before the reconnection display appears by setting the `tran
 
 ::: moniker-end
 
+## Disconnect the Blazor circuit from the client.
+
+By default, the Blazor circuit will be disconnected when the `unload` event is triggered on the page. To disconnect the circuit under different scenarios on the client, invoke `Blazor.disconnect` in the appropriate event handler.
+
+```js
+window.addEventListener('pagehide', () => {
+  Blazor.disconnect();
+})
+```
+
 ## Influence HTML `<head>` tag elements
 
 *This section applies to the upcoming ASP.NET Core 5.0 release of Blazor WebAssembly and Blazor Server.*
