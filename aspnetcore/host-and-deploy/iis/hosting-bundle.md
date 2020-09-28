@@ -1,13 +1,13 @@
 ---
-title: Development-time IIS support in Visual Studio for ASP.NET Core
+title: Hosting Bundle
 author: rick-anderson
-description: Discover support for debugging ASP.NET Core apps when running with IIS on Windows Server.
-monikerRange: '>= aspnetcore-2.1'
+description: Learn how to configure the .NET Core Hosting Bundle.  
+monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2020
 no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
-uid: host-and-deploy/iis/development-time-iis-support
+uid: host-and-deploy/iis/hosting-bundle
 ---
 
 # The .NET Core Hosting Bundle

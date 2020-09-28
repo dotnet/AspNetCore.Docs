@@ -1,3 +1,15 @@
+---
+title: Out-Of-Process Hosting with IIS and ASP.NET Core
+author: rick-anderson
+description: Learn about Out-Of-Process Hosting with IIS and the ASP.NET Core Module.
+monikerRange: '>= aspnetcore-5.0'
+ms.author: riande
+ms.custom: mvc
+ms.date: 02/07/2020
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+uid: host-and-deploy/iis/development-time-iis-support
+---
+
 [HTTP.sys server](xref:fundamentals/servers/httpsys) (formerly called WebListener) doesn't work in a reverse proxy configuration with IIS. Use the [Kestrel server](xref:fundamentals/servers/kestrel).
 
 ### Out-of-process hosting model

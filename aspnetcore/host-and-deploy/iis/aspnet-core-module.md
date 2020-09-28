@@ -1,7 +1,7 @@
 ---
 title: ASP.NET Core Module
 author: rick-anderson
-description: Learn how to configure the ASP.NET Core Module for hosting ASP.NET Core apps.
+description: Learn about the ASP.NET Core Module for hosting ASP.NET Core apps with IIS.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc

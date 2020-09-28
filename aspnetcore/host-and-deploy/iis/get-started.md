@@ -2,13 +2,14 @@
 title: Host ASP.NET Core on Windows with IIS
 author: rick-anderson
 description: Learn how to host ASP.NET Core apps on Windows Server Internet Information Services (IIS).
-monikerRange: '>= aspnetcore-2.1'
+monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 5/7/2020
 no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: host-and-deploy/iis/get-started
 ---
+
 # Getting started by Publishing an ASP.NET Core app to IIS
 
 This tutorial shows how to host an ASP.NET Core app on an IIS server.

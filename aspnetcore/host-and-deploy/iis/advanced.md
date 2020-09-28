@@ -2,7 +2,7 @@
 title: Advanced configuration
 author: rick-anderson
 description: Advanced configuration with the ASP.NET Core Module and Internet Information Services (IIS).
-monikerRange: '>= aspnetcore-2.1'
+monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 5/7/2020

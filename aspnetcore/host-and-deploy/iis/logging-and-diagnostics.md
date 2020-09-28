@@ -1,3 +1,14 @@
+---
+title: Logging and Diagnostics with the ASP.NET Core Module
+author: rick-anderson
+description: Configure IIS and the ASP.NET Core Module to capture logs and diagnostic information.
+monikerRange: '>= aspnetcore-5.0'
+ms.author: riande
+ms.custom: mvc
+ms.date: 02/07/2020
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+uid: host-and-deploy/iis/logging-and-diagnostics
+---
 
 ## Log creation and redirection
 

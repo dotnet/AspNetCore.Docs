@@ -1,8 +1,8 @@
 ---
-title: ASP.NET Core Module
+title: App Offline
 author: rick-anderson
 description: Learn how app_offline works with the ASP.NET Core Module.
-monikerRange: '>= aspnetcore-2.1'
+monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 01/13/2020
