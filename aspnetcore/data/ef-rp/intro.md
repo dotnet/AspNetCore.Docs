@@ -116,7 +116,7 @@ To run the app after downloading the completed project:
   ```dotnetcli
   dotnet new webapp -o ContosoUniversity
   cd ContosoUniversity
-
+  
   ```
 
 ---
@@ -235,7 +235,7 @@ The following packages are automatically installed:
   dotnet add package Microsoft.EntityFrameworkCore.Tools -v 5.0.0-*
   dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design -v 5.0.0-*
   dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore -v 5.0.0-*
-
+  
   ```
 
    The Microsoft.VisualStudio.Web.CodeGeneration.Design package is required for scaffolding. Although the app won't use SQL Server, the scaffolding tool needs the SQL Server package.
@@ -247,7 +247,7 @@ The following packages are automatically installed:
   ```dotnetcli
   dotnet tool uninstall --global dotnet-aspnet-codegenerator
   dotnet tool install --global dotnet-aspnet-codegenerator --version 5.0.0-*
-
+  
   ```
 
 * Run the following command to scaffold Student pages.
@@ -256,14 +256,14 @@ The following packages are automatically installed:
 
   ```dotnetcli
   dotnet aspnet-codegenerator razorpage -m Student -dc ContosoUniversity.Data.SchoolContext -udl -outDir Pages\Students --referenceScriptLibraries -sqlite
-
+  
   ```
 
   **On macOS or Linux**
 
   ```dotnetcli
   dotnet aspnet-codegenerator razorpage -m Student -dc ContosoUniversity.Data.SchoolContext -udl -outDir Pages/Students --referenceScriptLibraries -sqlite
-
+  
   ```
 
 ---
@@ -310,7 +310,12 @@ Update *Data/SchoolContext.cs* with the following code:
 
 [!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Data/SchoolContext.cs?highlight=13-22)]
 
-The preceding code changes from the singular `DbSet<Student> Student` to the  plural `DbSet<Student> Student`. To make the Razor Pages code match the new `DBSet` name, make a global change from  `_context.Student.` to `_context.Students.`.  There are 8 occurrences.
+The preceding code changes from the singular `DbSet<Student> Student` to the  plural `DbSet<Student> Students`. To make the Razor Pages code match the new `DBSet` name, make a global change from:
+  `_context.Student.`
+to:
+  `_context.Students.`
+
+There are 8 occurrences.
 
 Because an entity set contains multiple entities, many developers prefer the `DBSet` property names should be plural.
 
@@ -581,7 +586,7 @@ To run the app after downloading the completed project:
   ```sql
   UPDATE Department SET RowVersion = randomblob(8)
   ```
-
+  
 * Run the project to seed the database.
 
 ---
