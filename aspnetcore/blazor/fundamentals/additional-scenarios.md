@@ -274,7 +274,15 @@ Customize the delay before the reconnection display appears by setting the `tran
 }
 ```
 
-::: moniker-end
+## Disconnect the Blazor circuit from the client
+
+By default, a Blazor circuit is disconnected when the [`unload` page event](https://developer.mozilla.org/docs/Web/API/Window/unload_event) is triggered. To disconnect the circuit for other scenarios on the client, invoke `Blazor.disconnect` in the appropriate event handler. In the following example, the circuit is disconnected when the page is hidden ([`pagehide` event](https://developer.mozilla.org/docs/Web/API/Window/pagehide_event)):
+
+```javascript
+window.addEventListener('pagehide', () => {
+  Blazor.disconnect();
+});
+```
 
 ## Influence HTML `<head>` tag elements
 
@@ -306,6 +314,8 @@ When one of the framework components is used in a child component, the rendered 
 
 * Can be modified by application state. A hard-coded HTML tag can't be modified by application state.
 * Is removed from the HTML `<head>` when the parent component is no longer rendered.
+
+::: moniker-end
 
 ## Static files
 
