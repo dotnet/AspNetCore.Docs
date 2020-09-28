@@ -148,6 +148,10 @@ The placeholder `{APP ASSEMBLY}` is the app's app assembly name (for example, `B
 
 JavaScript functions that return [void(0)/void 0](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/void) or [undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined) are called with <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A?displayProperty=nameWithType>.
 
+## Call an asynchronous JavaScript function
+
+JavaScript functions that return a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) are called with <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A> . `InvokeAsync` will unwrap the Promise and return the value awaited by the Promise.
+
 ## Detect when a Blazor Server app is prerendering
  
 [!INCLUDE[](~/includes/blazor-prerendering.md)]
