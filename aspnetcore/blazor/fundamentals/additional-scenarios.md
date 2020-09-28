@@ -281,10 +281,8 @@ By default, a Blazor circuit is disconnected when the `unload` page event is tri
 ```javascript
 window.addEventListener('pagehide', () => {
   Blazor.disconnect();
-})
+});
 ```
-
-::: moniker-end
 
 ## Influence HTML `<head>` tag elements
 
@@ -316,6 +314,8 @@ When one of the framework components is used in a child component, the rendered 
 
 * Can be modified by application state. A hard-coded HTML tag can't be modified by application state.
 * Is removed from the HTML `<head>` when the parent component is no longer rendered.
+
+::: moniker-end
 
 ## Static files
 
