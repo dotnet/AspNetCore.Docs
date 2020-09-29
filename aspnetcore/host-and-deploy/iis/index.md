@@ -39,21 +39,13 @@ Apps published for 32-bit (x86) or 64-bit (x64) deployment are supported. Deploy
 * Requires the larger IIS stack size.
 * Has 64-bit native dependencies.
 
-Apps published for 32-bit (x86) must have 32-bit enabled for their IIS Application Pools. For more information, see the [Create the IIS site](#create-the-iis-site) section.
-
-Use a 64-bit (x64) .NET Core SDK to publish a 64-bit app. A 64-bit runtime must be present on the host system.
-
-## Installing ASP.NET Core Module
+## Installing ASP.NET Core Module/Hosting Bundle
 
 Download the installer using the following link:
 
 [Current .NET Core Hosting Bundle installer (direct download)](https://dotnet.microsoft.com/permalink/dotnetcore-current-windows-runtime-bundle-installer)
 
 For more details instructions on how to install the ASP.NET Core Module, or installing different versions, see [Install the .NET Core Hosting Bundle](xref:host-and-deploy/iis/hostingbundle).
-
-For a tutorial experience on publishing an ASP.NET Core app to an IIS server, see <xref:tutorials/publish-to-iis>.
-
-[Install the .NET Core Hosting Bundle](#install-the-net-core-hosting-bundle)
 
 ## Getting started
 
@@ -80,8 +72,8 @@ For getting started with hosting a website on Azure App Services, see our [deplo
 * [Windows Server technical content library](/windows-server/windows-server)
 * [HTTP/2 on IIS](/iis/get-started/whats-new-in-iis-10/http2-on-iis)
 * <xref:host-and-deploy/iis/transform-webconfig>
-::: moniker-end
 
+::: moniker-end
 
 ::: moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
 

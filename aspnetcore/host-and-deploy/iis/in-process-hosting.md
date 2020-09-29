@@ -81,7 +81,7 @@ The following characteristics apply when hosting in-process:
 
 * Sharing an app pool among apps isn't supported. Use one app pool per app.
 
-* The architecture (bitness) of the app and installed runtime (x64 or x86) must match the architecture of the app pool.
+* The architecture (bitness) of the app and installed runtime (x64 or x86) must match the architecture of the app pool. For example, apps published for 32-bit (x86) must have 32-bit enabled for their IIS Application Pools. For more information, see the [Create the IIS site](#create-the-iis-site) section.
 
 * Client disconnects are detected. The [HttpContext.RequestAborted](xref:Microsoft.AspNetCore.Http.HttpContext.RequestAborted*) cancellation token is cancelled when the client disconnects.
 
