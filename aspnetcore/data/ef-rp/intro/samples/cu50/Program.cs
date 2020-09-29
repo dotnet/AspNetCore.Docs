@@ -23,11 +23,12 @@ namespace ContosoUniversity
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
+
                 try
                 {
                     var context = services.GetRequiredService<SchoolContext>();
-                    context.Database.EnsureCreated();
-                    // DbInitializer.Initialize(context);
+                    // context.Database.EnsureCreated();
+                    DbInitializer.Initialize(context);
                 }
                 catch (Exception ex)
                 {
