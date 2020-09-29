@@ -24,7 +24,7 @@ Use the `InputFile` component to read browser file data into .NET code, includin
 
 The `InputFile` component renders as an HTML input of type `file`.
 
-By default, the user selects single files. Add the `multiple` attribute to permit the user to upload multiple files at once. When one or more files is selected by the user, the `InputFile` component fires an `OnChange` event and passes in an `FileChangeEventArgs` that provides access to the selected file list and details about each file.
+By default, the user selects single files. Add the `multiple` attribute to permit the user to upload multiple files at once. When one or more files is selected by the user, the `InputFile` component fires an `OnChange` event and passes in an `InputFileChangeEventArgs` that provides access to the selected file list and details about each file.
 
 To read data from a user-selected file:
 
@@ -33,7 +33,7 @@ To read data from a user-selected file:
 
 A component that receives an image file can call the `RequestImageFileAsync` convenience method on the file to resize the image data within the browser's JavaScript runtime before the image is streamed into the app.
 
-The following example demonstrates multiple image file upload in a component. `FileChangeEventArgs.GetMultipleFiles` allows reading multiple files. Specify the maximum number of files you expect to read to prevent a malicious user from uploading a larger number of files than the app expects. FileChangeEventArgs.File allows reading the first and only file if the file upload does not support multiple files.
+The following example demonstrates multiple image file upload in a component. `InputFileChangeEventArgs.GetMultipleFiles` allows reading multiple files. Specify the maximum number of files you expect to read to prevent a malicious user from uploading a larger number of files than the app expects. `InputFileChangeEventArgs.File` allows reading the first and only file if the file upload does not support multiple files.
 
 ```razor
 <h3>Upload PNG images</h3>
@@ -59,7 +59,7 @@ The following example demonstrates multiple image file upload in a component. `F
 @code {
     IList<string> imageDataUrls = new List<string>();
 
-    private async Task OnInputFileChange(FileChangeEventArgs e)
+    private async Task OnInputFileChange(InputFileChangeEventArgs e)
     {
         var maxAllowedFiles = 3;
         var format = "image/png";
@@ -84,13 +84,7 @@ The following example demonstrates multiple image file upload in a component. `F
 
 In a Blazor WebAssembly app, the data is streamed directly into the .NET code within the browser.
 
-In a Blazor Server app, the file data is streamed over the SignalR connection into .NET code on the server as the file is read from the stream. In the following table, `Forms.RemoteBrowserFileStreamOptions` allows configuring file upload characteristics for Blazor Server.
-
-| Blazor Server Property | Description | Default |
-| ---------------------- | ----------- | ------- |
-| `MaxBufferSize` | Maximum internal buffer size for unread data sent over a SignalR circuit. | 20,480 KB (20 KB) |
-| `MaxSegmentSize` | Maximum segment size for file data sent over a SignalR circuit. The maximum permitted value is 32,768 KB (32 KB). | 1,048,576 KB (1 MB) |
-| `SegmentFetchTimeout` | Time limit for fetching a segment of file data. | 1 minute |
+In a Blazor Server app, the file data is streamed over the SignalR connection into .NET code on the server as the file is read from the stream. [`Forms.RemoteBrowserFileStreamOptions`](https://github.com/dotnet/aspnetcore/blob/master/src/Components/Web/src/Forms/InputFile/InputFileChangeEventArgs.cs) allows configuring file upload characteristics for Blazor Server.
 
 ## Additional resources
 
