@@ -115,8 +115,7 @@ To run the app after downloading the completed project:
 
   ```dotnetcli
   dotnet new webapp -o ContosoUniversity
-  cd ContosoUniversity
-  
+  cd ContosoUniversity  
   ```
 
 ---
@@ -234,8 +233,7 @@ The following packages are automatically installed:
   dotnet add package Microsoft.EntityFrameworkCore.Design -v 5.0.0-*
   dotnet add package Microsoft.EntityFrameworkCore.Tools -v 5.0.0-*
   dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design -v 5.0.0-*
-  dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore -v 5.0.0-*
-  
+  dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore -v 5.0.0-*  
   ```
 
    The Microsoft.VisualStudio.Web.CodeGeneration.Design package is required for scaffolding. Although the app won't use SQL Server, the scaffolding tool needs the SQL Server package.
@@ -246,8 +244,7 @@ The following packages are automatically installed:
 
   ```dotnetcli
   dotnet tool uninstall --global dotnet-aspnet-codegenerator
-  dotnet tool install --global dotnet-aspnet-codegenerator --version 5.0.0-*
-  
+  dotnet tool install --global dotnet-aspnet-codegenerator --version 5.0.0-*  
   ```
 
 * Run the following command to scaffold Student pages.
@@ -255,15 +252,13 @@ The following packages are automatically installed:
   **On Windows**
 
   ```dotnetcli
-  dotnet aspnet-codegenerator razorpage -m Student -dc ContosoUniversity.Data.SchoolContext -udl -outDir Pages\Students --referenceScriptLibraries -sqlite
-  
+  dotnet aspnet-codegenerator razorpage -m Student -dc ContosoUniversity.Data.SchoolContext -udl -outDir Pages\Students --referenceScriptLibraries -sqlite  
   ```
 
   **On macOS or Linux**
 
   ```dotnetcli
-  dotnet aspnet-codegenerator razorpage -m Student -dc ContosoUniversity.Data.SchoolContext -udl -outDir Pages/Students --referenceScriptLibraries -sqlite
-  
+  dotnet aspnet-codegenerator razorpage -m Student -dc ContosoUniversity.Data.SchoolContext -udl -outDir Pages/Students --referenceScriptLibraries -sqlite  
   ```
 
 ---
