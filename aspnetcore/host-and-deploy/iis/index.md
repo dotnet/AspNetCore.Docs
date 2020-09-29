@@ -83,7 +83,7 @@ For getting started with hosting a website on Azure App Services, see our [deplo
 ::: moniker-end
 
 
-::: moniker range=">= aspnetcore-3.0"
+::: moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
 
 For a tutorial experience on publishing an ASP.NET Core app to an IIS server, see <xref:tutorials/publish-to-iis>.
 
