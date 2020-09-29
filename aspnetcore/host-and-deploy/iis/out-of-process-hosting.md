@@ -7,7 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2020
 no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
-uid: host-and-deploy/iis/development-time-iis-support
+uid: host-and-deploy/iis/out-of-process-hosting
 ---
 
 # Out-Of-Process Hosting with IIS and ASP.NET Core 
