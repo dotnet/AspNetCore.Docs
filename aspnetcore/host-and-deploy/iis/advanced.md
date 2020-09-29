@@ -242,6 +242,78 @@ HTTP/2 is enabled by default. Connections fall back to HTTP/1.1 if an HTTP/2 con
 
 For an ASP.NET Core app that targets the .NET Framework, OPTIONS requests aren't passed to the app by default in IIS. To learn how to configure the app's IIS handlers in *web.config* to pass OPTIONS requests, see [Enable cross-origin requests in ASP.NET Web API 2: How CORS Works](/aspnet/web-api/overview/security/enabling-cross-origin-requests-in-web-api#how-cors-works).
 
+## Application Initialization Module and Idle Timeout
+
+When hosted in IIS by the ASP.NET Core Module version 2:
+
+* [Application Initialization Module](#application-initialization-module): App's hosted [in-process](#in-process-hosting-model) or [out-of-process](#out-of-process-hosting-model) can be configured to start automatically on a worker process restart or server restart.
+* [Idle Timeout](#idle-timeout): App's hosted [in-process](#in-process-hosting-model) can be configured not to timeout during periods of inactivity.
+
+### Application Initialization Module
+
+*Applies to apps hosted in-process and out-of-process.*
+
+[IIS Application Initialization](/iis/get-started/whats-new-in-iis-8/iis-80-application-initialization) is an IIS feature that sends an HTTP request to the app when the app pool starts or is recycled. The request triggers the app to start. By default, IIS issues a request to the app's root URL (`/`) to initialize the app (see the [additional resources](#application-initialization-module-and-idle-timeout-additional-resources) for more details on configuration).
+
+Confirm that the IIS Application Initialization role feature in enabled:
+
+On Windows 7 or later desktop systems when using IIS locally:
+
+1. Navigate to **Control Panel** > **Programs** > **Programs and Features** > **Turn Windows features on or off** (left side of the screen).
+1. Open **Internet Information Services** > **World Wide Web Services** > **Application Development Features**.
+1. Select the check box for **Application Initialization**.
+
+On Windows Server 2008 R2 or later:
+
+1. Open the **Add Roles and Features Wizard**.
+1. In the **Select role services** panel, open the **Application Development** node.
+1. Select the check box for **Application Initialization**.
+
+Use either of the following approaches to enable the Application Initialization Module for the site:
+
+* Using IIS Manager:
+
+  1. Select **Application Pools** in the **Connections** panel.
+  1. Right-click the app's app pool in the list and select **Advanced Settings**.
+  1. The default **Start Mode** is **OnDemand**. Set the **Start Mode** to **AlwaysRunning**. Select **OK**.
+  1. Open the **Sites** node in the **Connections** panel.
+  1. Right-click the app and select **Manage Website** > **Advanced Settings**.
+  1. The default **Preload Enabled** setting is **False**. Set **Preload Enabled** to **True**. Select **OK**.
+
+* Using *web.config*, add the `<applicationInitialization>` element with `doAppInitAfterRestart` set to `true` to the `<system.webServer>` elements in the app's *web.config* file:
+
+  ```xml
+  <?xml version="1.0" encoding="utf-8"?>
+  <configuration>
+    <location path="." inheritInChildApplications="false">
+      <system.webServer>
+        <applicationInitialization doAppInitAfterRestart="true" />
+      </system.webServer>
+    </location>
+  </configuration>
+  ```
+
+### Idle Timeout
+
+*Only applies to apps hosted in-process.*
+
+To prevent the app from idling, set the app pool's idle timeout using IIS Manager:
+
+1. Select **Application Pools** in the **Connections** panel.
+1. Right-click the app's app pool in the list and select **Advanced Settings**.
+1. The default **Idle Time-out (minutes)** is **20** minutes. Set the **Idle Time-out (minutes)** to **0** (zero). Select **OK**.
+1. Recycle the worker process.
+
+To prevent apps hosted [out-of-process](#out-of-process-hosting-model) from timing out, use either of the following approaches:
+
+* Ping the app from an external service in order to keep it running.
+* If the app only hosts background services, avoid IIS hosting and use a [Windows Service to host the ASP.NET Core app](xref:host-and-deploy/windows-service).
+
+### Application Initialization Module and Idle Timeout additional resources
+
+* [IIS 8.0 Application Initialization](/iis/get-started/whats-new-in-iis-8/iis-80-application-initialization)
+* [Application Initialization \<applicationInitialization>](/iis/configuration/system.webserver/applicationinitialization/).
+* [Process Model Settings for an Application Pool \<processModel>](/iis/configuration/system.applicationhost/applicationpools/add/processmodel).
 
 ## Module, schema, and configuration file locations
 
