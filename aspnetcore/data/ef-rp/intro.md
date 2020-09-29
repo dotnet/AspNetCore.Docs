@@ -344,7 +344,7 @@ Verify the code added by the scaffolder calls `UseSqlite`.
 
 [!code-csharp[Main](intro/samples/cu30/StartupSQLite.cs?name=snippet_ConfigureServices&highlight=5-6)]
 
-See [Use SQLite for development, SQL Server for production](xref:https:tutorials/razor-pages/model#use-sqlite-for-development-sql-server-for-production) for information on using a production database.
+See [Use SQLite for development, SQL Server for production](xref:tutorials/razor-pages/model#use-sqlite-for-development-sql-server-for-production) for information on using a production database.
 
 ---
 
