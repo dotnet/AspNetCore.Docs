@@ -22,7 +22,7 @@ Blazor's lazy loading feature allows you to mark app assemblies for lazy loading
 
 ## Project file
 
-Mark assemblies for lazy loading in the app's project file (`.csproj`) using the `BlazorWebAssemblyLazyLoad` item. Use the assembly name without the `.dll` extension. The Blazor framework prevents the assemblies specified by this item group from loading at app launch. The following example marks a large custom assembly (`GrantImaharaRobotControls.dll`) for lazy loading. If an assembly that's marked for lazy loading has dependencies, they must also be marked for lazy loading in the project file.
+Mark assemblies for lazy loading in the app's project file (`.csproj`) using the `BlazorWebAssemblyLazyLoad` item. Use the assembly name with the `.dll` extension. The Blazor framework prevents the assemblies specified by this item group from loading at app launch. The following example marks a large custom assembly (`GrantImaharaRobotControls.dll`) for lazy loading. If an assembly that's marked for lazy loading has dependencies, they must also be marked for lazy loading in the project file.
 
 ```xml
 <ItemGroup>
