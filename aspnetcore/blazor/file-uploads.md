@@ -84,7 +84,7 @@ The following example demonstrates multiple image file upload in a component. `I
 
 In a Blazor WebAssembly app, the data is streamed directly into the .NET code within the browser.
 
-In a Blazor Server app, the file data is streamed over the SignalR connection into .NET code on the server as the file is read from the stream. [`Forms.RemoteBrowserFileStreamOptions`](https://github.com/dotnet/aspnetcore/blob/master/src/Components/Web/src/Forms/InputFile/InputFileChangeEventArgs.cs) allows configuring file upload characteristics for Blazor Server.
+In a Blazor Server app, the file data is streamed over the SignalR connection into .NET code on the server as the file is read from the stream. [`Forms.RemoteBrowserFileStreamOptions`](https://github.com/dotnet/aspnetcore/blob/master/src/Components/Web/src/Forms/InputFile/RemoteBrowserFileStreamOptions.cs) allows configuring file upload characteristics for Blazor Server.
 
 ## Additional resources
 
