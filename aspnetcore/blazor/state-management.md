@@ -42,7 +42,7 @@ An app can only persist *app state*. UIs can't be persisted, such as component i
 
 ## Where to persist state
 
-Three common locations exist for persisting state:
+Common locations exist for persisting state:
 
 * [Server-side storage](#server-side-storage)
 * [URL](#url)
@@ -151,7 +151,7 @@ An app can only persist *app state*. UIs can't be persisted, such as component i
 
 ## Where to persist state
 
-Three common locations exist for persisting state:
+Common locations exist for persisting state:
 
 * [Server-side storage](#server-side-storage)
 * [URL](#url)
