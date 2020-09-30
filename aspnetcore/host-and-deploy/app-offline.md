@@ -1,7 +1,7 @@
 ---
-title: App Offline file (app_offline.htm)
+title: App Offline file (`app_offline.htm`)
 author: rick-anderson
-description: Learn how the App Offline file (app_offline.htm) works with the ASP.NET Core Module.
+description: Learn how the App Offline file (`app_offline.htm`) works with the ASP.NET Core Module.
 monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
@@ -9,7 +9,7 @@ ms.date: 01/13/2020
 no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: host-and-deploy/iis/app-offline
 ---
-# App Offline file (app_offline.htm)
+# App Offline file (`app_offline.htm`)
 
 The App Offline file (`app_offline.htm`) is used by the ASP.NET Core Module to shut down an app.
 
