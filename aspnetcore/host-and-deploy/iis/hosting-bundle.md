@@ -74,4 +74,4 @@ To determine the version of the installed ASP.NET Core Module:
 1. Right-click the file and select **Properties** from the contextual menu.
 1. Select the **Details** tab. The **File version** and **Product version** represent the installed version of the module.
 
-The Hosting Bundle installer logs for the module are found at `C:\Users\%UserName%\AppData\Local\Temp`. The file is named `dd_DotNetCoreWinSvrHosting__{TIMESTAMP}timestamp>_000_AspNetCoreModule_x64.log`.
+The Hosting Bundle installer logs for the module are found at `C:\Users\%UserName%\AppData\Local\Temp`. The file is named `dd_DotNetCoreWinSvrHosting__{TIMESTAMP}_000_AspNetCoreModule_x64.log`, where the placeholder `{TIMESTAMP}` is the timestamp of the file.
