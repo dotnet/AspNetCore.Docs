@@ -103,7 +103,7 @@ In addition to the view model, some apps use a binding model or input model to p
 
 Consider the following `StudentVM` view model:
 
-[!code-csharp[Main](ntro/samples/cu50/ViewModels/StudentVM.cs?name=snippet)]
+[!code-csharp[Main](intro/samples/cu50/ViewModels/StudentVM.cs?name=snippet)]
 
 The following code uses the `StudentVM` view model to create a new student:
 
