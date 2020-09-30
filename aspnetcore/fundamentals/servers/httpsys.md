@@ -258,43 +258,45 @@ For apps hosted by HTTP.sys that interact with requests from the Internet or a c
 
 ## Advanced HTTP/2 features to support gRPC
 
-Additional HTTP/2 features were added to HTTP.SYS to support gRPC. This includes support for response trailers and sending reset frame.
+Additional HTTP/2 features in HTTP.sys support gRPC, including support for response trailers and sending reset frames.
 
 Requirements to run gRPC with HTTP.SYS:
 
-- Windows 10 Version 2004, OS Build 20300.1000 or later
-- TLS 1.2 or later connection
+* Windows 10 Version 2004, OS Build 20300.1000 or later
+* TLS 1.2 or later connection
 
 ### Trailers
 
-HTTP Trailers are similar to HTTP Headers, except they are sent after the response body is sent. For HTTP.SYS, only HTTP/2 response trailers are supported.
+HTTP Trailers are similar to HTTP Headers, except they are sent after the response body is sent. For HTTP.sys, only HTTP/2 response trailers are supported.
 
-```c#
-
-// Check that trailers are supported for response.
+```csharp
 if (httpContext.Response.SupportsTrailers())
 {
-  // Adds the give trailer name to the 'Trailer' response header. This must happen before the response headers are sent.
-  httpContext.Response.DeclareTrailer("trailername");
+    httpContext.Response.DeclareTrailer("trailername");
 
-  // Write body
-  httpContext.Response.WriteAsync("Hello world");
+    // Write body
+    httpContext.Response.WriteAsync("Hello world");
 
-  // Append trailers
-  httpContext.Response.AppendTrailer("trailername", "TrailerValue");
+    httpContext.Response.AppendTrailer("trailername", "TrailerValue");
 }
 ```
 
+In the preceding example code:
+
+* `SupportsTrailers` ensures that trailers are supported for the response.
+* `DeclareTrailer` adds the given trailer name to the `Trailer` response header. This must occur before the response headers are sent.
+* `AppendTrailer` appends the trailer value.
+
 ### Reset
 
-Reset allows for a consumer to reset a HTTP/2 request and abort it.
+Reset allows for a consumer to reset a HTTP/2 request and abort it:
 
-```c#
-
+```csharp
 var resetFeature = httpContext.Features.Get<IHttpResetFeature>();
-resetFeature.Reset(errorCode: 1111); // Custom error code.
-
+resetFeature.Reset(errorCode: 1111);
 ```
+
+`Reset` in the preceding code example specifies the custom error code.
 
 ## Additional resources
 
