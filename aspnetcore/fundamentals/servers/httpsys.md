@@ -256,6 +256,46 @@ In Visual Studio, the default launch profile is for IIS Express. To run the proj
 
 For apps hosted by HTTP.sys that interact with requests from the Internet or a corporate network, additional configuration might be required when hosting behind proxy servers and load balancers. For more information, see [Configure ASP.NET Core to work with proxy servers and load balancers](xref:host-and-deploy/proxy-load-balancer).
 
+## Advanced HTTP/2 features to support gRPC
+
+Additional HTTP/2 features were added to HTTP.SYS to support gRPC. This includes support for response trailers and sending reset frame.
+
+Requirements to run gRPC with HTTP.SYS:
+
+- Windows 10 Version 2004, OS Build 20300.1000 or later
+- TLS 1.2 or later connection
+
+### Trailers
+
+HTTP Trailers are similar to HTTP Headers, except they are sent after the response body is sent. For HTTP.SYS, only HTTP/2 response trailers are supported.
+
+```c#
+
+// Check that trailers are supported for response.
+if (httpContext.Response.SupportsTrailers())
+{
+  // Adds the give trailer name to the 'Trailer' response header. This must happen before the response headers are sent.
+  httpContext.Response.DeclareTrailer("trailername");
+
+  // Write body
+  httpContext.Response.WriteAsync("Hello world");
+
+  // Append trailers
+  httpContext.Response.AppendTrailer("trailername", "TrailerValue");
+}
+```
+
+### Reset
+
+Reset allows for a consumer to reset a HTTP/2 request and abort it.
+
+```c#
+
+var resetFeature = httpContext.Features.Get<IHttpResetFeature>();
+resetFeature.Reset(errorCode: 1111); // Custom error code.
+
+```
+
 ## Additional resources
 
 * [Enable Windows Authentication with HTTP.sys](xref:security/authentication/windowsauth#httpsys)
