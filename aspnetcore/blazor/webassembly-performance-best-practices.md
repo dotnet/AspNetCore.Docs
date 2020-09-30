@@ -193,7 +193,7 @@ This will work fine and perform well as long as you're not showing thousands of 
 
 This avoids the per-component overhead of rendering so many child components, at the cost of not being able to re-render each of them independently.
 
-##### Defining resable RenderFragments
+##### Defining reusable RenderFragments in code
 
 You may be factoring out child components purely as a way of reusing rendering logic. If that's the case, it is still possible to do that even without declaring actual components. For example, in any `.razor` component's `@code` block, you can define a `RenderFragment` that emits UI and can be called from anywhere:
 
