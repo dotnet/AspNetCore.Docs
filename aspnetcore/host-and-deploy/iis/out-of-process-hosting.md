@@ -1,7 +1,7 @@
 ---
-title: Out-Of-Process Hosting with IIS and ASP.NET Core
+title: Out-of-process hosting with IIS and ASP.NET Core
 author: rick-anderson
-description: Learn about Out-Of-Process Hosting with IIS and the ASP.NET Core Module.
+description: Learn about out-of-process Hosting with IIS and the ASP.NET Core Module.
 monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
@@ -9,8 +9,7 @@ ms.date: 02/07/2020
 no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: host-and-deploy/iis/out-of-process-hosting
 ---
-
-# Out-Of-Process Hosting with IIS and ASP.NET Core 
+# Out-of-process hosting with IIS and ASP.NET Core 
 
 Because ASP.NET Core apps run in a process separate from the IIS worker process, the ASP.NET Core Module handles process management. The module starts the process for the ASP.NET Core app when the first request arrives and restarts the app if it shuts down or crashes. This is essentially the same behavior as seen with apps that run in-process that are managed by the [Windows Process Activation Service (WAS)](/iis/manage/provisioning-and-managing-iis/features-of-the-windows-process-activation-service-was).
 
@@ -35,7 +34,7 @@ For more information on hosting, see [Host in ASP.NET Core](xref:fundamentals/in
 
 ### Enable the IISIntegration components
 
-When building a host in `CreateHostBuilder` (*Program.cs*), call <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*> to enable IIS integration:
+When building a host in `CreateHostBuilder` (`Program.cs`), call <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*> to enable IIS integration:
 
 ```csharp
 public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -92,7 +91,7 @@ The value of `<AspNetCoreHostingModel>` is case insensitive, so `inprocess` and 
 
 [Kestrel](xref:fundamentals/servers/kestrel) server is used instead of IIS HTTP Server (`IISHttpServer`).
 
-For out-of-process, [CreateDefaultBuilder](xref:fundamentals/host/generic-host#default-builder-settings) calls <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIISIntegration*> to:
+For out-of-process, [`CreateDefaultBuilder`](xref:fundamentals/host/generic-host#default-builder-settings) calls <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIISIntegration*> to:
 
 * Configure the port and base path the server should listen on when running behind the ASP.NET Core Module.
 * Configure the host to capture startup errors.
