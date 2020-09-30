@@ -16,7 +16,7 @@ By [Luke Latham](https://github.com/guardrex)
 ## Blazor WebAssembly
 
 | Browser                          | Version               |
-| -------------------------------- | :-------------------: |
+| -------------------------------- | --------------------- |
 | Apple Safari, including iOS      | Current&dagger;       |
 | Google Chrome, including Android | Current&dagger;       |
 | Microsoft Edge                   | Current&dagger;       |
@@ -30,7 +30,7 @@ By [Luke Latham](https://github.com/guardrex)
 ## Blazor Server
 
 | Browser                          | Version         |
-| -------------------------------- | :-------------: |
+| -------------------------------- | --------------- |
 | Apple Safari, including iOS      | Current&dagger; |
 | Google Chrome, including Android | Current&dagger; |
 | Microsoft Edge                   | Current&dagger; |
