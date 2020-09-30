@@ -143,9 +143,9 @@ http {
 
 When multiple backend servers are used, sticky sessions must be added to prevent SignalR connections from switching servers when connecting. There are multiple ways to add sticky sessions in Nginx. Two approaches are shown below depending on what you have available.
 
-The following is added in addition to the previous configuration. `backend` in the following example is the name of the group of servers:
+The following is added in addition to the previous configuration. In the following examples, `backend` is the name of the group of servers.
 
-With Nginx Open Source, use `ip_hash` to route connections to a server based on the clients IP address.
+With [Nginx Open Source](https://nginx.org/en/), use `ip_hash` to route connections to a server based on the client's IP address:
 
 ```nginx
 http {
@@ -160,7 +160,7 @@ http {
 }
 ```
 
-With Nginx Plus, use `sticky` to add a cookie to requests and pin them to a server.
+With [Nginx Plus](https://www.nginx.com/products/nginx), use `sticky` to add a cookie to requests and pin the user's requests to a server:
 
 ```nginx
 http {
