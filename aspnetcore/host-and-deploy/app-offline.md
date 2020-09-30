@@ -40,8 +40,8 @@ Remove-Item -Path $pathToApp app_offline.htm
 In the preceding PowerShell script:
 
 * The placeholder `{PATH TO APP}` is the path to the app.
-* The `New-Item` command stops the App Pool.
-* The `Remove-Item` command starts the App Pool.
+* The `New-Item` command stops the app pool.
+* The `Remove-Item` command starts the app pool.
 * Commands between the `New-Item` command and the `Remove-Item` command are provided by the developer to deploy the app.
 
-Files can also be unlocked by manually stopping the App Pool in the IIS Manager on the server. Don't use the `app_offine.htm` file when using the IIS Manager to stop and restart the App Pool.
+Files can also be unlocked by manually stopping the app pool in the IIS Manager on the server. Don't use the `app_offine.htm` file when using the IIS Manager to stop and restart the app pool.
