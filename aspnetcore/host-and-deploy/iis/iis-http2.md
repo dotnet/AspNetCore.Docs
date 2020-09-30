@@ -1,7 +1,7 @@
 ---
-title: Using HTTP/2 features with IIS
+title: Using HTTP/2 with IIS
 author: rick-anderson
-description: Learn how to transform the web.config file when publishing an ASP.NET Core app.
+description: Learn how to use HTTP/2 features with IIS.
 monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
