@@ -9,8 +9,7 @@ ms.date: 5/7/2020
 no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: host-and-deploy/iis/get-started
 ---
-
-# Getting started by Publishing an ASP.NET Core app to IIS
+# Get started by publishing an ASP.NET Core app to IIS
 
 This tutorial shows how to host an ASP.NET Core app on an IIS server.
 
@@ -59,7 +58,7 @@ For more information, see [Configure Windows authentication](xref:security/authe
 
 ## Deploy the app
 
-Deploy the app to the IIS **Physical path** folder that was established in the [Create the IIS site](#create-the-iis-site) section. [Web Deploy](/iis/publish/using-web-deploy/introduction-to-web-deploy) is the recommended mechanism for deployment, but several options exist for moving the app from the project's *publish* folder to the hosting system's deployment folder.
+Deploy the app to the IIS **Physical path** folder that was established in the [Create the IIS site](#create-the-iis-site) section. [Web Deploy](/iis/publish/using-web-deploy/introduction-to-web-deploy) is the recommended mechanism for deployment, but several options exist for moving the app from the project's `publish` folder to the hosting system's deployment folder.
 
 ### Web Deploy with Visual Studio
 
