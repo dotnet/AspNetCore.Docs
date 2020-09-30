@@ -285,7 +285,7 @@ In the preceding example code:
 
 * `SupportsTrailers` ensures that trailers are supported for the response.
 * `DeclareTrailer` adds the given trailer name to the `Trailer` response header. This must occur before the response headers are sent.
-* `AppendTrailer` appends the trailer value.
+* `AppendTrailer` appends the trailer.
 
 ### Reset
 
