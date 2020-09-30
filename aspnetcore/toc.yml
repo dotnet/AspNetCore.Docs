@@ -918,16 +918,16 @@
         - name: ASP.NET Core Module
           displayName: deploy, publish
           uid: host-and-deploy/aspnet-core-module
-        - name: In-Process Hosting
+        - name: In-process hosting
           displayName: deploy, publish
           uid: host-and-deploy/iis/in-process-hosting
-        - name: Out-Of-Process Hosting
+        - name: Out-of-process hosting
           displayName: deploy, publish
           uid: host-and-deploy/iis/out-of-process-hosting
         - name: Hosting Bundle
           displayName: deploy, publish
           uid: host-and-deploy/iis/hosting-bundle
-        - name: web.config
+        - name: web.config file
           displayName: deploy, publish
           uid: host-and-deploy/iis/web-config
         - name: IIS support in Visual Studio
