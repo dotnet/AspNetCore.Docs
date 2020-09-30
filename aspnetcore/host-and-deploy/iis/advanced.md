@@ -360,7 +360,7 @@ To prevent apps hosted [out-of-process](#out-of-process-hosting-model) from timi
 
 **IIS Express**
 
-* Visual Studio: `{APPLICATION ROOT}\\.vs\config\applicationHost.config`
+* Visual Studio: `{APPLICATION ROOT}\.vs\config\applicationHost.config`
 
 * *iisexpress.exe* CLI: `%USERPROFILE%\Documents\IISExpress\config\applicationhost.config`
 
