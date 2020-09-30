@@ -15,8 +15,8 @@ By [Pranav Krishnamoorthy](https://github.com/pranavkm) and [Steve Sanderson](ht
 
 Blazor WebAssembly is carefully designed and optimized to enable strong performance in almost any realistic application UI scenario. However, producing the best results depends on developers using the right patterns and features. Two aspects to consider are:
 
- * **Startup time**. Your application needs to transfer a .NET runtime into the browser, so it's important to use features that [minimize the application download size](#link).
- * **Runtime throughput**. Your .NET code runs on an interpreter within the WebAssembly runtime, so CPU throughput is limited, and in demanding scenarios you will benefit from [optimizing rendering speed](#link).
+ * **Startup time**. Your application needs to transfer a .NET runtime into the browser, so it's important to use features that [minimize the application download size](#minimizing-application-download-size).
+ * **Runtime throughput**. Your .NET code runs on an interpreter within the WebAssembly runtime, so CPU throughput is limited, and in demanding scenarios you will benefit from [optimizing rendering speed](#optimizing-rendering-speed).
 
 ## Optimizing rendering speed
 
@@ -83,7 +83,7 @@ Or, if the component only needs to change when its parameter values mutate in pa
 
 For most components this level of manual control isn't necessary. You should only be concerned about skipping rendering subtrees if those subtrees are particularly expensive to render and are causing UI lag.
 
-For more information, see [ASP.NET Core Blazor lifecycle](https://docs.microsoft.com/en-gb/aspnet/core/blazor/components/lifecycle).
+For more information, see <xref:blazor/components/lifecycle>.
 
 ::: moniker range=">= aspnetcore-5.0"
 
@@ -124,7 +124,7 @@ Even though the resulting UI looks the same to a user, behind the scenes this wi
 
 `<Virtualize>` has other benefits too. For example, when you are requesting the data from an external API, it makes it easy to only fetch the slice of records that correspond to the current visible region, instead of downloading all the data from the collection.
 
-For more information, see [ASP.NET Core Blazor component virtualization](https://docs.microsoft.com/en-gb/aspnet/core/blazor/components/virtualization).
+For more information, see <xref:blazor/components/virtualization>.
 
 ::: moniker-end
 
@@ -284,7 +284,7 @@ So wherever possible, you should use `IsFixed="true"` on cascaded values. You ca
 </CascadingValue>
 ```
 
-This makes a huge difference if there are a large number of other components that receive the cascaded value.
+This makes a huge difference if there are a large number of other components that receive the cascaded value. For more information, see <xref:blazor/components/cascading-values-and-parameters>.
 
 #### Avoid CaptureUnmatchedValues (attribute splatting)
 
@@ -303,6 +303,8 @@ This is a way of passing through arbitrary additional attributes. However it is 
 
 You should feel free to use `CaptureUnmatchedValues` on non-performance-critical components, such as ones that are not repeated frequently. However for components that render at scale, such as each item in a very large list or cells in a grid, try to avoid use of this feature.
 
+For more information, see <xref:blazor/components#attribute-splatting-and-arbitrary-parameters>.
+
 #### Implement SetParametersAsync manually
 
 One of the main aspects of the per-component rendering overhead is writing incoming parameter values to the `[Parameter]` properties. The renderer has to use reflection to do this. Even though this is somewhat optimized, the absence of JIT support on the WebAssembly runtime imposes limits.
@@ -313,7 +315,7 @@ In some extreme cases, you may wish to avoid the reflection and implement your o
  * It accepts many parameters
  * You find that the overhead of receiving parameters has an observable impact on UI responsiveness
 
-In these cases you can override the component's virtual `SetParametersAsync` method and implement your own component-specific logic. The following example is optimized aggressively to avoid any dictionay lookups or long sequences of string comparisons:
+In these cases you can override the component's virtual <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> method and implement your own component-specific logic. The following example is optimized aggressively to avoid any dictionary lookups or long sequences of string comparisons:
 
 ```razor
 @code {
@@ -475,7 +477,7 @@ For Blazor WebAssembly, this usually only matters if you are making a large numb
 
 ### Consider making synchronous calls
 
-JavaScript interop calls are asynchronous by default, regardless of whether the code being called is synchronous or asynchronous. This is to ensure components are compatible with both Blazor WebAssembly and Blazor Server. On Blazor Server, JavaScript interop call must be asynchronous because they are sent over a network connection.
+JavaScript interop calls are asynchronous by default, regardless of whether the code being called is synchronous or asynchronous. This is to ensure components are compatible with both Blazor WebAssembly and Blazor Server. On Blazor Server, all JavaScript interop calls must be asynchronous because they are sent over a network connection.
 
 If you know for certain that your application only needs to run on Blazor WebAssembly, then you can choose to make synchronous JavaScript interop calls. This has slightly less overhead than making asynchronous calls, and can result in fewer render cycles because there is no intermediate state while awaiting the result.
 
@@ -509,6 +511,8 @@ Synchronous calls will work if:
  * The function you are calling returns a value synchronously (i.e., it is not an `async` method and does not return a .NET `Task` or JavaScript `Promise`)
 
  ::: moniker range=">= aspnetcore-5.0"
+ 
+For more information, see <xref:blazor/call-javascript-from-dotnet>.
 
 ### Consider making unmarshalled calls
 
