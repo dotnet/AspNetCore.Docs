@@ -306,7 +306,7 @@ The ASP.NET Core Module is configurable to provide enhanced diagnostics logs. Ad
 </aspNetCore>
 ```
 
-Any folders in the path (`logs` in the preceding example) are created by the module when the log file is created. The app pool must have write access to the location where the logs are written (use `IIS AppPool\<app_pool_name>` to provide write permission).
+Any folders in the path (`logs` in the preceding example) are created by the module when the log file is created. The app pool must have write access to the location where the logs are written (use `IIS AppPool\{APP POOL NAME}`, where the placeholder `{APP POOL NAME}` is the app pool name, to provide write permission).
 
 Debug level (`debugLevel`) values can include both the level and the location.
 
@@ -385,7 +385,7 @@ To determine the version of the installed ASP.NET Core Module:
 1. Right-click the file and select **Properties** from the contextual menu.
 1. Select the **Details** tab. The **File version** and **Product version** represent the installed version of the module.
 
-The Hosting Bundle installer logs for the module are found at `C:\\Users\\%UserName%\\AppData\\Local\\Temp`. The file is named `dd_DotNetCoreWinSvrHosting__\<timestamp>_000_AspNetCoreModule_x64.log`.
+The Hosting Bundle installer logs for the module are found at `C:\Users\%UserName%\AppData\Local\Temp`. The file is named `dd_DotNetCoreWinSvrHosting__{TIMESTAMP}_000_AspNetCoreModule_x64.log`.
 
 ## Module, schema, and configuration file locations
 
@@ -433,7 +433,7 @@ The Hosting Bundle installer logs for the module are found at `C:\\Users\\%UserN
 
 **IIS Express**
 
-* Visual Studio: `{APPLICATION ROOT}\\.vs\config\applicationHost.config`
+* Visual Studio: `{APPLICATION ROOT}\.vs\config\applicationHost.config`
 
 * *iisexpress.exe* CLI: `%USERPROFILE%\Documents\IISExpress\config\applicationhost.config`
 
