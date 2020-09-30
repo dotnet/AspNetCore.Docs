@@ -44,7 +44,7 @@ Download the installer using the following link:
 
 1. Run the installer on the IIS server.
 
-1. Restart the server or execute **net stop was /y** followed by **net start w3svc** in a command shell.
+1. Restart the server or execute `net stop was /y` followed by `net start w3svc` in a command shell.
 
 ## Create the IIS site
 
@@ -71,7 +71,7 @@ Follow the <xref:getting-started> tutorial to create a Razor Pages app.
 1. In the **Pick a publish target** dialog, select the **Folder** publish option.
 1. Set the **Folder or File Share** path.
    * If you created a folder for the IIS site that's available on the development machine as a network share, provide the path to the share. The current user must have write access to publish to the share.
-   * If you're unable to deploy directly to the IIS site folder on the IIS server, publish to a folder on removeable media and physically move the published app to the IIS site folder on the server, which is the site's **Physical path** in IIS Manager. Move the contents of the *bin/Release/{TARGET FRAMEWORK}/publish* folder to the IIS site folder on the server, which is the site's **Physical path** in IIS Manager.
+   * If you're unable to deploy directly to the IIS site folder on the IIS server, publish to a folder on removeable media and physically move the published app to the IIS site folder on the server, which is the site's **Physical path** in IIS Manager. Move the contents of the `bin/Release/{TARGET FRAMEWORK}/publish` folder to the IIS site folder on the server, which is the site's **Physical path** in IIS Manager.
 
 # [.NET Core CLI](#tab/netcore-cli)
 
@@ -81,14 +81,14 @@ Follow the <xref:getting-started> tutorial to create a Razor Pages app.
    dotnet publish --configuration Release
    ```
 
-1. Move the contents of the *bin/Release/{TARGET FRAMEWORK}/publish* folder to the IIS site folder on the server, which is the site's **Physical path** in IIS Manager.
+1. Move the contents of the `bin/Release/{TARGET FRAMEWORK}/publish` folder to the IIS site folder on the server, which is the site's **Physical path** in IIS Manager.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 1. Right-click on the project in **Solution** and select **Publish** > **Publish to Folder**.
 1. Set the **Choose a folder** path.
    * If you created a folder for the IIS site that's available on the development machine as a network share, provide the path to the share. The current user must have write access to publish to the share.
-   * If you're unable to deploy directly to the IIS site folder on the IIS server, publish to a folder on removeable media and physically move the published app to the IIS site folder on the server, which is the site's **Physical path** in IIS Manager. Move the contents of the *bin/Release/{TARGET FRAMEWORK}/publish* folder to the IIS site folder on the server, which is the site's **Physical path** in IIS Manager.
+   * If you're unable to deploy directly to the IIS site folder on the IIS server, publish to a folder on removeable media and physically move the published app to the IIS site folder on the server, which is the site's **Physical path** in IIS Manager. Move the contents of the `bin/Release/{TARGET FRAMEWORK}/publish` folder to the IIS site folder on the server, which is the site's **Physical path** in IIS Manager.
 
 ---
 
