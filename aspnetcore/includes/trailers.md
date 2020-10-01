@@ -15,5 +15,5 @@ if (httpContext.Response.SupportsTrailers())
 In the preceding example code:
 
 * `SupportsTrailers` ensures that trailers are supported for the response.
-* `DeclareTrailer` adds the given trailer name to the `Trailer` response header. This must occur before the response headers are sent.	
+* `DeclareTrailer` adds the given trailer name to the `Trailer` response header. Declaring a response's trailers is optional, but recommended. If `DeclareTrailer` is called, it must be before the response headers are sent.
 * `AppendTrailer` appends the trailer.
