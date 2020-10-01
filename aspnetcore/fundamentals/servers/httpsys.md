@@ -267,11 +267,11 @@ Requirements to run gRPC with HTTP.SYS:
 
 ### Trailers
 
-[!INCLUDE[](~/includes/trailers)]
+[!INCLUDE[](~/includes/trailers.md)]
 
 ### Reset
 
-[!INCLUDE[](~/includes/reset)]
+[!INCLUDE[](~/includes/reset.md)]
 
 ## Additional resources
 

@@ -342,11 +342,11 @@ The default value is 96 KB (98,304).
 
 ### Trailers
 
-[!INCLUDE[](~/includes/trailers)]
+[!INCLUDE[](~/includes/trailers.md)]
 
 ### Reset
 
-[!INCLUDE[](~/includes/reset)]
+[!INCLUDE[](~/includes/reset.md)]
 
 ### Synchronous I/O
 

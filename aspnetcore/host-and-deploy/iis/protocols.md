@@ -9,6 +9,7 @@ ms.date: 01/13/2020
 no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: host-and-deploy/iis/protocols
 ---
+
 # Using HTTP/2 with IIS
 
 By [Justin Kotalik](https://github.com/jkotalik)
@@ -41,8 +42,8 @@ Requirements to run gRPC on IIS:
 
 ### Trailers
 
-[!INCLUDE[](~/includes/trailers)]
+[!INCLUDE[](~/includes/trailers.md)]
 
 ### Reset
 
-[!INCLUDE[](~/includes/reset)]
+[!INCLUDE[](~/includes/reset.md)]
