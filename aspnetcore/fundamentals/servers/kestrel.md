@@ -340,6 +340,14 @@ webBuilder.ConfigureKestrel(serverOptions =>
 
 The default value is 96 KB (98,304).
 
+### Trailers
+
+[!INCLUDE[](/host-and-deploy/includes/trailers.md)]
+
+### Reset
+
+[!INCLUDE[](/host-and-deploy/includes/reset.md)]
+
 ### Synchronous I/O
 
 <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.AllowSynchronousIO> controls whether synchronous I/O is allowed for the request and response. The default value is `false`.

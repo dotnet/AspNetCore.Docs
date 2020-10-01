@@ -267,33 +267,11 @@ Requirements to run gRPC with HTTP.SYS:
 
 ### Trailers
 
-HTTP Trailers are similar to HTTP Headers, except they are sent after the response body is sent. For HTTP.sys, only HTTP/2 response trailers are supported.
-
-```csharp
-if (httpContext.Response.SupportsTrailers())
-{
-    // Write body
-    httpContext.Response.WriteAsync("Hello world");
-
-    httpContext.Response.AppendTrailer("trailername", "TrailerValue");
-}
-```
-
-In the preceding example code:
-
-* `SupportsTrailers` ensures that trailers are supported for the response.
-* `AppendTrailer` appends the trailer.
+[!INCLUDE[](/host-and-deploy/includes/trailers.md)]
 
 ### Reset
 
-Reset allows for the server to reset a HTTP/2 request with a specified error code. A reset request is considered aborted.
-
-```csharp
-var resetFeature = httpContext.Features.Get<IHttpResetFeature>();
-resetFeature.Reset(errorCode: 2);
-```
-
-`Reset` in the preceding code example specifies the `INTERNAL_ERROR` error code. For more information about HTTP/2 error codes, visit the [HTTP/2 specification error code section](https://tools.ietf.org/html/rfc7540#page-50).
+[!INCLUDE[](/host-and-deploy/includes/reset.md)]
 
 ## Additional resources
 
