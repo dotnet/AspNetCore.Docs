@@ -14,7 +14,7 @@ Consider
     }
 ```
 
-The parameter `page` on the page handler will not be bound correctly since `page` is a reserved keyword.
+The parameter `page` on the page handler is not bound correctly since `page` is a reserved keyword.
 
 * The following keywords are reserved in the context of a Razor view or a Razor Page:
    * `page`
