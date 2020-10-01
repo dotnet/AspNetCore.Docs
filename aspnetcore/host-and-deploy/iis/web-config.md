@@ -12,7 +12,7 @@ uid: host-and-deploy/iis/web-config
 
 # `web.config` file
 
-The `web.config` is a file that is read by IIS and the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) to configure an app. 
+The `web.config` is a file that is read by IIS and the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) to configure an app hosted with IIS.
 
 ## `web.config` file location
 
@@ -22,17 +22,17 @@ Sensitive files exist on the app's physical path, such as `{ASSEMBLY}.runtimecon
 
 **The `web.config` file must be present in the deployment at all times, correctly named, and able to configure the site for normal start up. Never remove the `web.config` file from a production deployment.**
 
-## Transform web.config
-
-If you need to transform `web.config` on publish, see <xref:host-and-deploy/iis/transform-webconfig>. You might need to transform `web.config` on publish to set environment variables based on the configuration, profile, or environment.
-
-## web.config default
-
 If a `web.config` file isn't present in the project, the file is created with the correct `processPath` and `arguments` to configure the ASP.NET Core Module and moved to [published output](xref:host-and-deploy/directory-structure).
 
 If a `web.config` file is present in the project, the file is transformed with the correct `processPath` and `arguments` to configure the ASP.NET Core Module and moved to published output. The transformation doesn't modify IIS configuration settings in the file.
 
 The `web.config` file may provide additional IIS configuration settings that control active IIS modules. For information on IIS modules that are capable of processing requests with ASP.NET Core apps, see the [IIS modules](xref:host-and-deploy/iis/modules) topic.
+
+Creating, transforming, and publishing the `web.config` file is handled by an MSBuild target (`_TransformWebConfig`) when the project is published. This target is present in the Web SDK targets (`Microsoft.NET.Sdk.Web`). The SDK is set at the top of the project file:
+
+```xml
+<Project Sdk="Microsoft.NET.Sdk.Web">
+```
 
 To prevent the Web SDK from transforming the `web.config` file, use the `<IsTransformWebConfigDisabled>` property in the project file:
 
@@ -44,36 +44,7 @@ To prevent the Web SDK from transforming the `web.config` file, use the `<IsTran
 
 When disabling the Web SDK from transforming the file, the `processPath` and `arguments` should be manually set by the developer. For more information, see <xref:host-and-deploy/aspnet-core-module>.
 
-Creating, transforming, and publishing the `web.config` file is handled by an MSBuild target (`_TransformWebConfig`) when the project is published. This target is present in the Web SDK targets (`Microsoft.NET.Sdk.Web`). The SDK is set at the top of the project file:
-
-```xml
-<Project Sdk="Microsoft.NET.Sdk.Web">
-```
-
-## Configuration of IIS with `web.config`
-
-IIS configuration is influenced by the `<system.webServer>` section of `web.config` for IIS scenarios that are functional for ASP.NET Core apps with the ASP.NET Core Module. For example, IIS configuration is functional for dynamic compression. If IIS is configured at the server level to use dynamic compression, the `<urlCompression>` element in the app's `web.config` file can disable it for an ASP.NET Core app.
-
-For more information, see the following topics:
-
-* [Configuration reference for `<system.webServer>`](/iis/configuration/system.webServer/)
-* <xref:host-and-deploy/aspnet-core-module>
-* <xref:host-and-deploy/iis/modules>
-
-To set environment variables for individual apps running in isolated app pools (supported for IIS 10.0 or later), see the *`AppCmd.exe` command* section of the [Environment Variables `<environmentVariables>`](/iis/configuration/system.applicationHost/applicationPools/add/environmentVariables/#appcmdexe) topic in the IIS reference documentation.
-
-## Configuration sections of `web.config`
-
-Configuration sections of ASP.NET 4.x apps in `web.config` aren't used by ASP.NET Core apps for configuration:
-
-* `<system.web>`
-* `<appSettings>`
-* `<connectionStrings>`
-* `<location>`
-
-ASP.NET Core apps are configured using other configuration providers. For more information, see [Configuration](xref:fundamentals/configuration/index).
-
-## Configuration with `web.config`
+## Configuration of ASP.NET Core Module with `web.config`
 
 The ASP.NET Core Module is configured with the `aspNetCore` section of the `system.webServer` node in the site's `web.config` file.
 
@@ -169,3 +140,36 @@ The following example sets two environment variables in `web.config`. `ASPNETCOR
 
 > [!WARNING]
 > Only set the `ASPNETCORE_ENVIRONMENT` environment variable to `Development` on staging and testing servers that aren't accessible to untrusted networks, such as the Internet.
+
+## Configuration of IIS with `web.config`
+
+IIS configuration is influenced by the `<system.webServer>` section of `web.config` for IIS scenarios that are functional for ASP.NET Core apps with the ASP.NET Core Module. For example, IIS configuration is functional for dynamic compression. If IIS is configured at the server level to use dynamic compression, the `<urlCompression>` element in the app's `web.config` file can disable it for an ASP.NET Core app.
+
+For more information, see the following topics:
+
+* [Configuration reference for `<system.webServer>`](/iis/configuration/system.webServer/)
+* <xref:host-and-deploy/aspnet-core-module>
+* <xref:host-and-deploy/iis/modules>
+
+To set environment variables for individual apps running in isolated app pools (supported for IIS 10.0 or later), see the *`AppCmd.exe` command* section of the [Environment Variables `<environmentVariables>`](/iis/configuration/system.applicationHost/applicationPools/add/environmentVariables/#appcmdexe) topic in the IIS reference documentation.
+
+## Configuration sections of `web.config`
+
+Configuration sections of ASP.NET 4.x apps in `web.config` aren't used by ASP.NET Core apps for configuration:
+
+* `<system.web>`
+* `<appSettings>`
+* `<connectionStrings>`
+* `<location>`
+
+ASP.NET Core apps are configured using other configuration providers. For more information, see [Configuration](xref:fundamentals/configuration/index).
+
+## Transform web.config
+
+If you need to transform `web.config` on publish, see <xref:host-and-deploy/iis/transform-webconfig>. You might need to transform `web.config` on publish to set environment variables based on the configuration, profile, or environment.
+
+## Additional resources
+
+* [IIS \<system.webServer>](/iis/configuration/system.webServer/)
+* <xref:host-and-deploy/iis/modules>
+* <xref:host-and-deploy/iis/transform-webconfig>
