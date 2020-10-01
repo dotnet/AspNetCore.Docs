@@ -11,17 +11,6 @@ uid: host-and-deploy/iis/index
 ---
 # Host ASP.NET Core on Windows with IIS
 
-<!-- 
-
-    NOTE FOR 5.0
-    
-    When making the 5.0 version of this topic, remove the Hosting Bundle
-    direct download section from the (new) <5.0 & >2.2 version and modify 
-    the text and heading for the *Earlier versions of the installer* 
-    section. See the 2.2 version for an example.
-    
--->
-
 ::: moniker range=">= aspnetcore-5.0"
 
 Internet Information Services (IIS) is a flexible, secure and manageable Web Server for hosting web apps, including ASP.NET Core.
