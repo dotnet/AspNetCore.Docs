@@ -3,6 +3,8 @@ HTTP Trailers are similar to HTTP Headers, except they are sent after the respon
 ```csharp
 if (httpContext.Response.SupportsTrailers())
 {
+    httpContext.Response.DeclareTrailer("trailername");	
+
     // Write body
     httpContext.Response.WriteAsync("Hello world");
 
@@ -13,18 +15,5 @@ if (httpContext.Response.SupportsTrailers())
 In the preceding example code:
 
 * `SupportsTrailers` ensures that trailers are supported for the response.
+* `DeclareTrailer` adds the given trailer name to the `Trailer` response header. This must occur before the response headers are sent.	
 * `AppendTrailer` appends the trailer.
-
-For HTTP/1.1 requests, Response Trailers must be declared before writing to the response body, by calling `DeclareTrailer`.
-
-```csharp
-if (httpContext.Response.SupportsTrailers())
-{
-    httpContext.Response.DeclareTrailer("trailername");	
-
-    // Write body
-    httpContext.Response.WriteAsync("Hello world");
-
-    httpContext.Response.AppendTrailer("trailername", "TrailerValue");
-}
-```
