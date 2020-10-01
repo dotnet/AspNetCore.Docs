@@ -46,9 +46,9 @@ HTTP Trailers are similar to HTTP Headers, except they are sent after the respon
 ```csharp
 if (httpContext.Response.SupportsTrailers())
 {
-    httpContext.Response.DeclareTrailer("trailername");
     // Write body
     httpContext.Response.WriteAsync("Hello world");
+
     httpContext.Response.AppendTrailer("trailername", "TrailerValue");
 }
 ```
@@ -56,16 +56,15 @@ if (httpContext.Response.SupportsTrailers())
 In the preceding example code:
 
 * `SupportsTrailers` ensures that trailers are supported for the response.
-* `DeclareTrailer` adds the given trailer name to the `Trailer` response header. This must occur before the response headers are sent.
 * `AppendTrailer` appends the trailer.
 
 ### Reset
 
-RReset allows for a consumer to reset a HTTP/2 request and abort it:
+Reset allows for the server to reset a HTTP/2 request with a specified error code. A reset request is considered aborted.
 
 ```csharp
 var resetFeature = httpContext.Features.Get<IHttpResetFeature>();
-resetFeature.Reset(errorCode: 1111);
+resetFeature.Reset(errorCode: 2);
 ```
 
-`Reset` in the preceding code example specifies the custom error code.
+`Reset` in the preceding code example specifies the `INTERNAL_ERROR` error code. For more information about HTTP/2 error codes, visit the [HTTP/2 specification error code section](https://tools.ietf.org/html/rfc7540#page-50).
