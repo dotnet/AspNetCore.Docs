@@ -47,7 +47,7 @@ Download the installer using the following link:
 
 For more details instructions on how to install the ASP.NET Core Module, or installing different versions, see [Install the .NET Core Hosting Bundle](xref:host-and-deploy/iis/hostingbundle).
 
-## Getting started
+## Get started
 
 For getting started with hosting a website on IIS, see our [getting started guide](xref:tutorials/publish-to-iis).
 
