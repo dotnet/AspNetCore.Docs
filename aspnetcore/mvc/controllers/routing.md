@@ -304,6 +304,19 @@ Using `page` as a route parameter with attribute routing is a common error. Doin
 
 The special parameter names are used by the URL generation to determine if a URL generation operation refers to a Razor Page or to a Controller.
 
+* The following keywords are reserved in the context of a Razor view or a Razor Page:
+   * `page`
+   * `using`
+   * `namespace`
+   * `inject`
+   * `section`
+   * `inherits`
+   * `model`
+   * `addTagHelper`
+   * `removeTagHelper`
+
+These keywords should not be used for link generations, model bound parameters, or top level properties.
+
 <a name="verb"></a>
 
 ## HTTP verb templates
