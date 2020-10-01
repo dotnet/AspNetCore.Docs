@@ -514,6 +514,8 @@ public async ValueTask<string> Prompt(string message)
 }
 ```
 
+`IJSInProcessObjectReference` represents a reference to a JavaScript object whose functions can be invoked synchronously.
+
 ::: moniker-end
 
 ## Additional resources
