@@ -205,11 +205,11 @@ LocalDB is a lightweight version of the SQL Server Express database engine that'
 <a name="ssox"></a>
 * From the **View** menu, open **SQL Server Object Explorer** (SSOX).
 
-  ![View menu](sql/_static/3/ssox.png)
+  ![View menu](sql/_static/ssox.png)
 
 * Right-click on the `Movie` table and select **View Designer**:
 
-  ![Contextual menus open on Movie table](sql/_static/3/design.png)
+  ![Contextual menus open on Movie table](sql/_static/design.png)
 
   ![Movie tables open in Designer](sql/_static/dv.png)
 
