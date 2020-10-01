@@ -264,7 +264,7 @@ A real-world implementation would use an exponential back-off or retry a specifi
 
 ## Troubleshoot WebSocket handshake errors
 
-This section provides help on the *"Error during WevSocket handshake"* exception that occurs when trying to establish connection to ASP.NET Core SignalR hub.
+This section provides help on the *"Error during WebSocket handshake"* exception that occurs when trying to establish connection to ASP.NET Core SignalR hub.
 
 ### Response code 400 or 503
 
@@ -289,7 +289,7 @@ Frequently this occurs when the SignalR hub server:
 * Listens to and responds over both HTTP and HTTPS.
 * Is configured to enforce HTTPS by calling `UseHttpsRedirection` in `Startup`, or enforces HTTPS via URL rewrite rule.
 
-This error can be caused by specifying the HTTP URL on client side using `.withUrl("http://xxx/HubName")`. The fix for this case is modifying the code to use HTTPS URL or not enforcing HTTPS.
+This error can be caused by specifying the HTTP URL on client side using `.withUrl("http://xxx/HubName")`. The fix for this case is modifying the code to use an HTTPS URL.
 
 ### Response code 404
 
