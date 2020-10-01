@@ -262,6 +262,46 @@ The following code demonstrates a typical manual reconnection approach:
 
 A real-world implementation would use an exponential back-off or retry a specified number of times before giving up.
 
+## Troubleshoot WebSocket handshake errors
+
+This section provides help on the *"Error during WebSocket handshake"* exception that occurs when trying to establish connection to ASP.NET Core SignalR hub.
+
+### Response code 400 or 503
+
+For the following error:
+
+```log
+WebSocket connection to 'wss://xxx/HubName' failed: Error during WebSocket handshake: Unexpected response code: 400
+
+Error: Failed to start the connection: Error: There was an error with the transport.
+```
+
+The error is usually caused by client only use WebSockets transport but WebSockets protocol is not enabled on server.
+
+### Response code 307
+
+```log
+WebSocket connection to 'ws://xxx/HubName' failed: Error during WebSocket handshake: Unexpected response code: 307
+```
+
+Frequently this occurs when the SignalR hub server:
+
+* Listens to and responds over both HTTP and HTTPS.
+* Is configured to enforce HTTPS by calling `UseHttpsRedirection` in `Startup`, or enforces HTTPS via URL rewrite rule.
+
+This error can be caused by specifying the HTTP URL on client side using `.withUrl("http://xxx/HubName")`. The fix for this case is modifying the code to use an HTTPS URL.
+
+### Response code 404
+
+```log
+WebSocket connection to 'wss://xxx/HubName' failed: Error during WebSocket handshake: Unexpected response code: 404
+```
+
+If the app works on localhost, but returns this error after publishing to IIS server:
+
+* Verify the ASP.NET Core SignalR app is hosted as an IIS sub-application.
+* Don't set URL with the sub-app's pathbase on SignalR JavaScript client side `.withUrl("/SubAppName/HubName")`.
+
 ## Additional resources
 
 * [JavaScript API reference](/javascript/api/?view=signalr-js-latest&preserve-view=true )
