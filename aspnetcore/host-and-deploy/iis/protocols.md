@@ -1,5 +1,5 @@
 ---
-title: Using HTTP/2 with IIS
+title: Using ASP.NET Core with HTTP/2 on IIS
 author: rick-anderson
 description: Learn how to use HTTP/2 features with IIS.
 monikerRange: '>= aspnetcore-5.0'
@@ -10,7 +10,7 @@ no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blaz
 uid: host-and-deploy/iis/protocols
 ---
 
-# Using HTTP/2 with IIS
+# Using ASP.NET Core with HTTP/2 on IIS
 
 By [Justin Kotalik](https://github.com/jkotalik)
 
