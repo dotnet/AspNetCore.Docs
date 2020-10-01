@@ -1,5 +1,5 @@
 ---
-title: Using HTTP/2 with IIS
+title: Use ASP.NET Core with HTTP/2 on IIS
 author: rick-anderson
 description: Learn how to use HTTP/2 features with IIS.
 monikerRange: '>= aspnetcore-5.0'
@@ -10,19 +10,16 @@ no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blaz
 uid: host-and-deploy/iis/protocols
 ---
 
-# Using HTTP/2 with IIS
+# Use ASP.NET Core with HTTP/2 on IIS
 
 By [Justin Kotalik](https://github.com/jkotalik)
 
 [HTTP/2](https://httpwg.org/specs/rfc7540.html) is supported with ASP.NET Core in the following IIS deployment scenarios:
 
-* In-process
-  * Windows Server 2016/Windows 10 or later; IIS 10 or later
-  * TLS 1.2 or later connection
-* Out-of-process
-  * Windows Server 2016/Windows 10 or later; IIS 10 or later
-  * Public-facing edge server connections use HTTP/2, but the reverse proxy connection to the [Kestrel server](xref:fundamentals/servers/kestrel) uses HTTP/1.1.
-  * TLS 1.2 or later connection
+* Windows Server 2016 or later / Windows 10 or later
+* IIS 10 or later
+* TLS 1.2 or later connection
+* When [hosting out-of-process](xref:host-and-deploy/iis/index#out-of-process-hosting-model): Public-facing edge server connections use HTTP/2, but the reverse proxy connection to the [Kestrel server](xref:fundamentals/servers/kestrel) uses HTTP/1.1.
 
 For an in-process deployment when an HTTP/2 connection is established, [`HttpRequest.Protocol`](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol*) reports `HTTP/2`. For an out-of-process deployment when an HTTP/2 connection is established, [`HttpRequest.Protocol`](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol*) reports `HTTP/1.1`.
 
@@ -36,8 +33,8 @@ Additional HTTP/2 features in IIS support gRPC, including support for response t
 
 Requirements to run gRPC on IIS:
 
-* Must use in-process hosting.
-* Windows 10, OS Build 20300.1000 or later (may require being on Windows Insider Builds).
+* In-process hosting.
+* Windows 10, OS Build 20300.1000 or later. May require use of Windows Insider Builds.
 * TLS 1.2 or later connection
 
 ### Trailers
