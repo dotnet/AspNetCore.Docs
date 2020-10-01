@@ -110,7 +110,7 @@ The following contains the minimum required settings to enable WebSockets, Serve
 http {
   map $http_upgrade $connection_upgrade {
     default Upgrade;
-    '' close;
+    '' keep-alive;
   }
 
   server {
