@@ -315,7 +315,7 @@ The special parameter names are used by the URL generation to determine if a URL
    * `addTagHelper`
    * `removeTagHelper`
 
-These keywords should not be used for link generations, model bound parameters, or top level properties.
+These keywords shouldn't be used for link generations, model bound parameters, or top level properties.
 
 <a name="verb"></a>
 
