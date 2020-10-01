@@ -22,7 +22,7 @@ The following diagram illustrates the relationship between IIS, the ASP.NET Core
 1. The module forwards the requests to Kestrel on a random port for the app. The random port isn't 80 or 443.
 
 <!-- make this a bullet list -->
-The ASP.NET Core Module specifies the port via an environment variable at startup. The <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIISIntegration*> extension configures the server to listen on `http://localhost:{PORT}`. Additional checks are performed, and requests that don't originate from the module are rejected. The module doesn't support HTTPS forwarding. Requests are forwarded over HTTP even if received by IIS over HTTPS.
+The ASP.NET Core Module specifies the port via an environment variable at startup. The <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIISIntegration%2A> extension configures the server to listen on `http://localhost:{PORT}`. Additional checks are performed, and requests that don't originate from the module are rejected. The module doesn't support HTTPS forwarding. Requests are forwarded over HTTP even if received by IIS over HTTPS.
 
 After Kestrel picks up the request from the module, the request is forwarded into the ASP.NET Core middleware pipeline. The middleware pipeline handles the request and passes it on as an `HttpContext` instance to the app's logic. Middleware added by IIS Integration updates the scheme, remote IP, and pathbase to account for forwarding the request to Kestrel. The app's response is passed back to IIS, which forwards it back to the HTTP client that initiated the request.
 
@@ -34,7 +34,7 @@ For more information on hosting, see [Host in ASP.NET Core](xref:fundamentals/in
 
 ### Enable the IISIntegration components
 
-When building a host in `CreateHostBuilder` (`Program.cs`), call <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*> to enable IIS integration:
+When building a host in `CreateHostBuilder` (`Program.cs`), call <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder%2A> to enable IIS integration:
 
 ```csharp
 public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -47,7 +47,7 @@ For more information on `CreateDefaultBuilder`, see <xref:fundamentals/host/gene
 
 **Out-of-process hosting model**
 
-To configure IIS options, include a service configuration for <xref:Microsoft.AspNetCore.Builder.IISOptions> in <xref:Microsoft.AspNetCore.Hosting.IStartup.ConfigureServices*>. The following example prevents the app from populating `HttpContext.Connection.ClientCertificate`:
+To configure IIS options, include a service configuration for <xref:Microsoft.AspNetCore.Builder.IISOptions> in <xref:Microsoft.AspNetCore.Hosting.IStartup.ConfigureServices%2A>. The following example prevents the app from populating `HttpContext.Connection.ClientCertificate`:
 
 ```csharp
 services.Configure<IISOptions>(options => 
@@ -77,7 +77,7 @@ Additional configuration might be required for apps hosted behind additional pro
 
 ### Out-of-process hosting model
 
-To configure an app for out-of-process hosting, set the value of the `<AspNetCoreHostingModel>` property to `OutOfProcess` in the project file (*.csproj*):
+To configure an app for out-of-process hosting, set the value of the `<AspNetCoreHostingModel>` property to `OutOfProcess` in the project file (`.csproj`):
 
 ```xml
 <PropertyGroup>
@@ -91,7 +91,7 @@ The value of `<AspNetCoreHostingModel>` is case insensitive, so `inprocess` and 
 
 [Kestrel](xref:fundamentals/servers/kestrel) server is used instead of IIS HTTP Server (`IISHttpServer`).
 
-For out-of-process, [`CreateDefaultBuilder`](xref:fundamentals/host/generic-host#default-builder-settings) calls <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIISIntegration*> to:
+For out-of-process, [`CreateDefaultBuilder`](xref:fundamentals/host/generic-host#default-builder-settings) calls <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIISIntegration%2A> to:
 
 * Configure the port and base path the server should listen on when running behind the ASP.NET Core Module.
 * Configure the host to capture startup errors.
