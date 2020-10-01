@@ -205,7 +205,7 @@ The `TestController`:
 
 <!-- test via  webBuilder.UseStartup<Startup>(); -->
 
-Navigating to `https://localhost:5001/Test2/FilterTest2` runs the following code:
+Navigating to `https://localhost:5001/Test/FilterTest2` runs the following code:
 
 * `TestController.OnActionExecuting`
   * `MySampleActionFilter.OnActionExecuting`
