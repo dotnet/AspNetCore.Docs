@@ -27,10 +27,11 @@ The following illustration shows a completed page. The column headings are click
 
 Replace the code in *Pages/Students/Index.cshtml.cs* with the following code to add sorting.
 
-[!code-csharp[Main](intro/samples/cu30snapshots/3-sorting/Pages/Students/Index1.cshtml.cs?name=snippet_All&highlight=21-24,26,28-52)]
+[!code-csharp[Main](intro/samples/cu30snapshots/3-sorting/Pages/Students/Index1.cshtml.cs?name=snippet_All)]
 
 The preceding code:
 
+* Requires adding `using System;`.
 * Adds properties to contain the sorting parameters.
 * Changes the name of the `Student` property to `Students`.
 * Replaces the code in the `OnGetAsync` method.

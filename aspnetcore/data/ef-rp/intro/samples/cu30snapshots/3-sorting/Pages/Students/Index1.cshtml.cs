@@ -1,4 +1,3 @@
-#region snippet_All
 using ContosoUniversity.Data;
 using ContosoUniversity.Models;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -10,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace ContosoUniversity.Pages.Students
 {
+    #region snippet_All
     public class IndexModel : PageModel
     {
         private readonly SchoolContext _context;
-
         public IndexModel(SchoolContext context)
         {
             _context = context;
@@ -29,6 +28,7 @@ namespace ContosoUniversity.Pages.Students
         public async Task OnGetAsync(string sortOrder)
         {
             #region snippet_Ternary
+            // using System;
             NameSort = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             DateSort = sortOrder == "Date" ? "date_desc" : "Date";
             #endregion
@@ -59,5 +59,5 @@ namespace ContosoUniversity.Pages.Students
             #endregion
         }
     }
+    #endregion
 }
-#endregion
