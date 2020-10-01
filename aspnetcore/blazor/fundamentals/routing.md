@@ -116,18 +116,6 @@ The router uses route parameters to populate the corresponding component paramet
 
 Optional parameters aren't supported. Two `@page` directives are applied in the previous example. The first permits navigation to the component without a parameter. The second `@page` directive takes the `{text}` route parameter and assigns the value to the `Text` property.
 
-## Reserved routing names
-
-The following keywords are reserved names and can't be used as route names or parameters:
-
-* `action`
-* `area`
-* `controller`
-* `handler`
-* `page`
-
-[!INCLUDE[](~/includes/reservedRouting.md)]
-
 ## Route constraints
 
 A route constraint enforces type matching on a route segment to a component.
