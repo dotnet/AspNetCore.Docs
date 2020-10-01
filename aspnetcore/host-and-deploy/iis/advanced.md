@@ -245,8 +245,8 @@ For an ASP.NET Core app that targets the .NET Framework, OPTIONS requests aren't
 
 When hosted in IIS by the ASP.NET Core Module version 2:
 
-* [Application Initialization Module](#application-initialization-module): App's hosted [in-process](#in-process-hosting-model) or [out-of-process](#out-of-process-hosting-model) can be configured to start automatically on a worker process restart or server restart.
-* [Idle Timeout](#idle-timeout): App's hosted [in-process](#in-process-hosting-model) can be configured not to time out during periods of inactivity.
+* [Application Initialization Module](#application-initialization-module): App's hosted [in-process](xref:host-and-deploy/iis/in-process-hosting) or [out-of-process](xref:host-and-deploy/iis/out-of-process-hosting) can be configured to start automatically on a worker process restart or server restart.
+* [Idle Timeout](#idle-timeout): App's hosted [in-process](xref:host-and-deploy/iis/in-process-hosting) can be configured not to time out during periods of inactivity.
 
 ### Application Initialization Module
 
@@ -303,7 +303,7 @@ To prevent the app from idling, set the app pool's idle timeout using IIS Manage
 1. The default **Idle Time-out (minutes)** is `20` minutes. Set the **Idle Time-out (minutes)** to `0` (zero). Select **OK**.
 1. Recycle the worker process.
 
-To prevent apps hosted [out-of-process](#out-of-process-hosting-model) from timing out, use either of the following approaches:
+To prevent apps hosted [out-of-process](xref:host-and-deploy/iis/out-of-process-hosting) from timing out, use either of the following approaches:
 
 * Ping the app from an external service in order to keep it running.
 * If the app only hosts background services, avoid IIS hosting and use a [Windows Service to host the ASP.NET Core app](xref:host-and-deploy/windows-service).

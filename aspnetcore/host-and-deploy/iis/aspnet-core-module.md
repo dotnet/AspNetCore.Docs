@@ -29,11 +29,9 @@ Download the installer using the following link:
 
 [Current .NET Core Hosting Bundle installer (direct download)](https://dotnet.microsoft.com/permalink/dotnetcore-current-windows-runtime-bundle-installer)
 
-For more details instructions on how to install the ASP.NET Core Module, or installing different versions of the module, see [Install the .NET Core Hosting Bundle](xref:host-and-deploy/iis/hostingbundle).
+For more details instructions on how to install the ASP.NET Core Module, or installing different versions of the module, see [Install the .NET Core Hosting Bundle](xref:host-and-deploy/iis/hosting-bundle).
 
 For a tutorial experience on publishing an ASP.NET Core app to an IIS server, see <xref:tutorials/publish-to-iis>.
-
-[Install the .NET Core Hosting Bundle](#install-the-net-core-hosting-bundle)
 
 ::: moniker-end
 
@@ -851,7 +849,7 @@ Because ASP.NET Core apps run in a process separate from the IIS worker process,
 
 The following diagram illustrates the relationship between IIS, the ASP.NET Core Module, and an app:
 
-![ASP.NET Core Module](aspnet-core-module/_static/ancm-outofprocess.png)
+![ASP.NET Core Module](index/_static/ancm-outofprocess.png)
 
 Requests arrive from the web to the kernel-mode HTTP.sys driver. The driver routes the requests to IIS on the website's configured port, usually 80 (HTTP) or 443 (HTTPS). The module forwards the requests to Kestrel on a random port for the app, which isn't port 80 or 443.
 
@@ -962,7 +960,7 @@ While the *app_offline.htm* file is present, the ASP.NET Core Module responds to
 
 If the ASP.NET Core Module fails to launch the backend process or the backend process starts but fails to listen on the configured port, a *502.5 - Process Failure* status code page appears. To suppress this page and revert to the default IIS 502 status code page, use the `disableStartUpErrorPage` attribute. For more information on configuring custom error messages, see [HTTP Errors \<httpErrors>](/iis/configuration/system.webServer/httpErrors/).
 
-![502.5 Process Failure Status Code Page](aspnet-core-module/_static/ANCM-502_5.png)
+![502.5 Process Failure Status Code Page](index/_static/ANCM-502_5.png)
 
 ## Log creation and redirection
 

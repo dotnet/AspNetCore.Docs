@@ -76,11 +76,11 @@ The following characteristics apply when hosting in-process:
   * Configure the port and base path the server should listen on when running behind the ASP.NET Core Module.
   * Configure the host to capture startup errors.
 
-* The [`requestTimeout` attribute](#attributes-of-the-aspnetcore-element) doesn't apply to in-process hosting.
+* The [`requestTimeout` attribute](xref:host-and-deploy/iis/web-config#attributes-of-the-aspnetcore-element) doesn't apply to in-process hosting.
 
 * Sharing an app pool among apps isn't supported. Use one app pool per app.
 
-* The architecture (bitness) of the app and installed runtime (x64 or x86) must match the architecture of the app pool. For example, apps published for 32-bit (x86) must have 32-bit enabled for their IIS Application Pools. For more information, see the [Create the IIS site](#create-the-iis-site) section.
+* The architecture (bitness) of the app and installed runtime (x64 or x86) must match the architecture of the app pool. For example, apps published for 32-bit (x86) must have 32-bit enabled for their IIS Application Pools. For more information, see the [Create the IIS site](xref:host-and-deploy/iis/get-started#create-the-iis-site) section.
 
 * Client disconnects are detected. The [`HttpContext.RequestAborted`](xref:Microsoft.AspNetCore.Http.HttpContext.RequestAborted%2A) cancellation token is cancelled when the client disconnects.
 
