@@ -42,11 +42,12 @@ An app can only persist *app state*. UIs can't be persisted, such as component i
 
 ## Where to persist state
 
-Three common locations exist for persisting state:
+Common locations exist for persisting state:
 
 * [Server-side storage](#server-side-storage)
 * [URL](#url)
 * [Browser storage](#browser-storage)
+* [In-memory state container service](#in-memory-state-container-service)
 
 ### Server-side storage
 
@@ -103,6 +104,10 @@ Generally, `sessionStorage` is safer to use. `sessionStorage` avoids the risk th
 > [!WARNING]
 > Users may view or tamper with the data stored in `localStorage` and `sessionStorage`.
 
+## In-memory state container service
+
+[!INCLUDE[](~/includes/blazor-state-management/state-container.md)]
+
 ## Additional resources
 
 * [Save app state before an authentication operation](xref:blazor/security/webassembly/additional-scenarios#save-app-state-before-an-authentication-operation)
@@ -146,11 +151,12 @@ An app can only persist *app state*. UIs can't be persisted, such as component i
 
 ## Where to persist state
 
-Three common locations exist for persisting state:
+Common locations exist for persisting state:
 
 * [Server-side storage](#server-side-storage)
 * [URL](#url)
 * [Browser storage](#browser-storage)
+* [In-memory state container service](#in-memory-state-container-service)
 
 ### Server-side storage
 
@@ -685,5 +691,9 @@ In general, *state provider parent component* pattern is recommended:
 To persist many different state objects and consume different subsets of objects in different places, it's better to avoid persisting state globally.
 
 ::: moniker-end
+
+## In-memory state container service
+
+[!INCLUDE[](~/includes/blazor-state-management/state-container.md)]
 
 ::: zone-end

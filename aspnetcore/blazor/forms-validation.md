@@ -1194,6 +1194,10 @@ When assigning a <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model> to 
 private ExampleModel exampleModel = new ExampleModel();
 ```
 
+::: moniker range=">= aspnetcore-5.0"
+
 ## Additional resources
 
 * <xref:blazor/file-uploads>
+
+::: moniker-end
