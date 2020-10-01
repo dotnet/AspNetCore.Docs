@@ -7,7 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 01/13/2020
 no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
-uid: host-and-deploy/iis/iis-http2
+uid: host-and-deploy/iis/protocols
 ---
 # Using HTTP/2 with IIS
 
