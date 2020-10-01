@@ -27,8 +27,8 @@ namespace ContosoUniversity.Pages.Students
 
         public async Task OnGetAsync(string sortOrder)
         {
-            #region snippet_Ternary
             // using System;
+            #region snippet_Ternary
             NameSort = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             DateSort = sortOrder == "Date" ? "date_desc" : "Date";
             #endregion
