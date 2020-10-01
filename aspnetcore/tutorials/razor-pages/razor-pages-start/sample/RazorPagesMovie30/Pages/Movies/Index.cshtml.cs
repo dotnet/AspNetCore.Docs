@@ -1,4 +1,5 @@
 ﻿#define  SearchGenreAndString   //SearchString
+#region snippet_newProps
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace RazorPagesMovie.Pages.Movies
 {
-    #region snippet_newProps
+
     public class IndexModel : PageModel
     {
         private readonly RazorPagesMovie.Data.RazorPagesMovieContext _context;

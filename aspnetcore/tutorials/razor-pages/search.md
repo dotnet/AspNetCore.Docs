@@ -29,7 +29,7 @@ In the following sections, searching movies by *genre* or *name* is added.
 
 Add the following highlighted properties to *Pages/Movies/Index.cshtml.cs*:
 
-[!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Pages/Movies/Index.cshtml.cs?name=snippet_newProps&highlight=11-999)]
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Pages/Movies/Index.cshtml.cs?name=snippet_newProps&highlight=3,23-999)]
 
 In the previous code:
 

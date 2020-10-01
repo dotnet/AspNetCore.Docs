@@ -54,7 +54,7 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 
 * From the Visual Studio **File** menu, select **New** > **Project**.
 * Create a new ASP.NET Core Web Application and select **Next**.
-  ![new ASP.NET Core Web Application](razor-pages-start/_static/np_2.1.png)
+  ![new ASP.NET Core Web Application](razor-pages-start/_static/5/np.png)
 * Name the project **RazorPagesMovie**. It's important to name the project *RazorPagesMovie* so the namespaces will match when you copy and paste code.
   ![new ASP.NET Core Web Application](razor-pages-start/_static/config.png)
 
