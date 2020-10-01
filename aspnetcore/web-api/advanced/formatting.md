@@ -156,7 +156,7 @@ In the preceding code, the call to `AddNewtonsoftJson` configures the following 
 * <xref:Microsoft.AspNetCore.Mvc.JsonResult>
 * [JSON Patch](xref:web-api/jsonpatch)
 * <xref:Microsoft.AspNetCore.Mvc.Rendering.IJsonHelper>
-* [TempData](xref:fundamentals/app-state.html#tempdata)
+* [TempData](xref:fundamentals/app-state#tempdata)
 
 Some features may not work well with `System.Text.Json`-based formatters and require a reference to the `Newtonsoft.Json`-based formatters. Continue using the `Newtonsoft.Json`-based formatters if the app:
 
