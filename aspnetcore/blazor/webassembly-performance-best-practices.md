@@ -315,7 +315,7 @@ In some extreme cases, you may wish to avoid the reflection and implement your o
  * It accepts many parameters
  * You find that the overhead of receiving parameters has an observable impact on UI responsiveness
 
-In these cases you can override the component's virtual <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> method and implement your own component-specific logic. The following example is optimized aggressively to avoid any dictionary lookups or long sequences of string comparisons:
+In these cases you can override the component's virtual <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> method and implement your own component-specific logic. The following example deliberately avoids any dictionary lookups:
 
 ```razor
 @code {
@@ -328,51 +328,32 @@ In these cases you can override the component's virtual <xref:Microsoft.AspNetCo
     {
         foreach (var parameter in parameters)
         {
-            WriteSingleParameter(parameter.Name, parameter.Value);
+            switch (parameter.Name)
+            {
+                case nameof(MessageId):
+                    MessageId = (int)parameter.Value;
+                    break;
+                case nameof(Text):
+                    Text = (string)parameter.Value;
+                    break;
+                case nameof(TextChanged):
+                    TextChanged = (EventCallback<string>)parameter.Value;
+                    break;
+                case nameof(CurrentTheme):
+                    CurrentTheme = (Theme)parameter.Value;
+                    break;
+                default:
+                    throw new ArgumentException($"Unknown parameter: {parameter.Name}");
+            }
         }
 
         // Run the normal lifecycle methods, but without assigning parameters again
         return base.SetParametersAsync(ParameterView.Empty);
     }
-
-    private void WriteSingleParameter(string name, object value)
-    {
-        switch (name[0])
-        {
-            case 'C':
-                if (name == nameof(CurrentTheme))
-                {
-                    CurrentTheme = (Theme)value;
-                    return;
-                }
-                break;
-            case 'M':
-                if (name == nameof(MessageId))
-                {
-                    MessageId = (int)value;
-                    return;
-                }
-                break;
-            case 'T':
-                if (name == nameof(Text))
-                {
-                    Text = (string)value;
-                    return;
-                }
-                else if (name == nameof(TextChanged))
-                {
-                    TextChanged = (EventCallback<string>)value;
-                    return;
-                }
-                break;
-        }
-
-        throw new ArgumentException($"Unknown parameter: {name}");
-    }
 }
 ```
 
-As you can see, this is very complicated and laborious, so we don't recommend it in general. In extreme cases it can improve rendering performance by 20-25% but you should only consider it in the scenarios listed above.
+As you can see, this is complicated and laborious, so we don't recommend it in general. In extreme cases it can improve rendering performance by 20-25% but you should only consider it in the scenarios listed above.
 
 ### Don't trigger events too rapidly
 
