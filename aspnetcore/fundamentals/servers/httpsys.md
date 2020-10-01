@@ -262,7 +262,7 @@ Additional HTTP/2 features in HTTP.sys support gRPC, including support for respo
 
 Requirements to run gRPC with HTTP.SYS:
 
-* Windows 10 Version 2004, OS Build 20300.1000 or later
+* Windows 10, OS Build 19041.508 or later
 * TLS 1.2 or later connection
 
 ### Trailers

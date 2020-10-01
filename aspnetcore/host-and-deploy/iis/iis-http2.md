@@ -36,7 +36,7 @@ Additional HTTP/2 features in IIS support gRPC, including support for response t
 Requirements to run gRPC on IIS:
 
 * Must use in-process hosting.
-* Windows 10 Version 2004, OS Build 20300.1000 or later
+* Windows 10, OS Build 20300.1000 or later (may require being on Windows Insider Builds).
 * TLS 1.2 or later connection
 
 ### Trailers
