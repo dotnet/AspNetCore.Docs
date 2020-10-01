@@ -342,11 +342,11 @@ The default value is 96 KB (98,304).
 
 ### Trailers
 
-[!INCLUDE[](xref:host-and-deploy/includes/trailers)]
+[!INCLUDE[](~/includes/trailers)]
 
 ### Reset
 
-[!INCLUDE[](xref:host-and-deploy/includes/reset)]
+[!INCLUDE[](~/includes/reset)]
 
 ### Synchronous I/O
 

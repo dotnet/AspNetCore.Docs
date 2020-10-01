@@ -41,8 +41,8 @@ Requirements to run gRPC on IIS:
 
 ### Trailers
 
-[!INCLUDE[](xref:host-and-deploy/includes/trailers)]
+[!INCLUDE[](~/includes/trailers)]
 
 ### Reset
 
-[!INCLUDE[](xref:host-and-deploy/includes/reset)]
+[!INCLUDE[](~/includes/reset)]
