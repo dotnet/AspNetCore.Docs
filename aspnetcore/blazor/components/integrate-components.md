@@ -122,7 +122,7 @@ The preceding example requires that the server app's layout (`_Layout.cshtml`) i
 </body>
 ```
 
-The `_Layout.cshtml` file is located in the *Pages/Shared* folder in a Razor Pages app or *Views/Shared* folder in an MVC app.
+The `_Layout.cshtml` file is located in the `Pages/Shared` folder in a Razor Pages app or `Views/Shared` folder in an MVC app.
 
 If the app should also style components with the styles in the Blazor WebAssembly app, include the app's styles in the `_Layout.cshtml` file:
 
@@ -170,7 +170,7 @@ The preceding example requires that the server app's layout (`_Layout.cshtml`) i
 </body>
 ```
 
-The `_Layout.cshtml` file is located in the *Pages/Shared* folder in a Razor Pages app or *Views/Shared* folder in an MVC app.
+The `_Layout.cshtml` file is located in the `Pages/Shared` folder in a Razor Pages app or `Views/Shared` folder in an MVC app.
 
 If the app should also style components with the styles in the Blazor WebAssembly app, include the app's styles in the `_Layout.cshtml` file:
 
@@ -218,15 +218,15 @@ An existing Razor Pages or MVC app can integrate Razor components into pages and
 
      The `href` value (the *app base path*) in the preceding example assumes that the app resides at the root URL path (`/`). If the app is a sub-application, follow the guidance in the *App base path* section of the <xref:blazor/host-and-deploy/index#app-base-path> article.
 
-     The `_Layout.cshtml` file is located in the *Pages/Shared* folder in a Razor Pages app or *Views/Shared* folder in an MVC app.
+     The `_Layout.cshtml` file is located in the `Pages/Shared` folder in a Razor Pages app or `Views/Shared` folder in an MVC app.
 
-   * Add a `<script>` tag for the *blazor.server.js* script immediately before the closing `</body>` tag:
+   * Add a `<script>` tag for the `blazor.server.js` script immediately before the closing `</body>` tag:
 
      ```html
      <script src="_framework/blazor.server.js"></script>
      ```
 
-     The framework adds the *blazor.server.js* script to the app. There's no need to manually add the script to the app.
+     The framework adds the `blazor.server.js` script to the app. There's no need to manually add the script to the app.
 
 1. Add an `_Imports.razor` file to the root folder of the project with the following content (change the last namespace, `MyAppNamespace`, to the namespace of the app):
 
@@ -461,7 +461,7 @@ For more information, see <xref:mvc/views/tag-helpers/builtin-th/component-tag-h
 When using a custom folder to hold the app's components, add the namespace representing the folder to either the page/view or to the `_ViewImports.cshtml` file. In the following example:
 
 * Change `MyAppNamespace` to the app's namespace.
-* If a folder named *Components* isn't used to hold the components, change `Components` to the folder where the components reside.
+* If a folder named `Components` isn't used to hold the components, change `Components` to the folder where the components reside.
 
 ```cshtml
 @using MyAppNamespace.Components
