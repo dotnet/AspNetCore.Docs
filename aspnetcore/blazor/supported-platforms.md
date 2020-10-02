@@ -15,12 +15,12 @@ By [Luke Latham](https://github.com/guardrex)
 
 ::: moniker range=">= aspnetcore-5.0"
 
-| Browser                          | Version                 |
-| -------------------------------- | ----------------------- |
-| Apple Safari, including iOS      | Current&dagger;         |
-| Google Chrome, including Android | Current&dagger;         |
+| Browser                          | Version         |
+| -------------------------------- | --------------- |
+| Apple Safari, including iOS      | Current&dagger; |
+| Google Chrome, including Android | Current&dagger; |
 | Microsoft Edge                   | Current&dagger; |
-| Mozilla Firefox                  | Current&dagger;         |  
+| Mozilla Firefox                  | Current&dagger; |  
 
 &dagger;*Current* refers to the latest version of the browser.  
 
