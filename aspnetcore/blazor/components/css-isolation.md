@@ -32,47 +32,10 @@ h1 {
 
 The styles defined in `Counter.razor.css` are only applied to the rendered output of the `Counter` component. Any `h1` CSS declarations defined elsewhere do not conflict with `Counter` styles.
 
-In order to guarantee style isolation when bundling occurs, `@import` blocks are not supported with scoped CSS files.
+> [!NOTE]
+> In order to guarantee style isolation when bundling occurs, `@import` blocks are not supported with scoped CSS files.
 
-## Child component support
 
-By default, CSS isolation only applies to the component you associate with `MyComponent.razor.css`. To apply changes to a child component, use the `::deep` combinator in the parent component's `razor.css` file.
-
-The following example shows a parent component containing a child component, `CounterChild`, in `Pages/Counter.razor`:
-
-```razor
-@page "/counter"
-
-<h1>Counter</h1>
-
-<div>
-    <p>Current count: @currentCount</p>
-
-    <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
-
-    <CounterChild />
-</div>
-```
-
-The `CounterChild` component contains an `h1` element, to be styled the same as `Counter`:
-
-```razor
-@page "/counter-child"
-
-<h1>Child component</h1>
-```
-
-Update the `h1` declaration in `Counter.razor.css` with the `::deep` combinator to signify the `h1` style declaration must cascade to the child component.
-
-```css
-::deep h1 { 
-    color: brown;
-    font-family: Tahoma, Geneva, Verdana, sans-serif;
-}
-
-```
-
-The `h1` style now applies to both the `Counter` and `CounterChild` components without the need to create a separate scoped CSS file for `CounterChild`.
 
 ## CSS isolation bundling
 
@@ -84,7 +47,7 @@ In the app, reference the bundled file by inspecting the reference inside the `<
 <link href="_framework/scoped.styles.css" rel="stylesheet">
 ```
 
-The bundle associates each component with a scope identifier. For each styled component, an HTML attribute is appended with the format `b-<10-character-string>`. For example, in the rendered `Counter` component, Blazor appends a scope identifier to the `h1` (this is unique and different for each app):
+The bundle associates each component with a scope identifier. For each styled component, an HTML attribute is appended with the format `b-<10-character-string>`. For example, in the rendered `Counter` component, Blazor appends a scope identifier to the `h1` (the identifier is unique and different for each app):
 
 ```html
 <h1 b-3xxtam6d07>
@@ -96,11 +59,63 @@ The `scoped.styles.css` file uses the scope identifier to group a style declarat
 /* /Pages/Counter.razor.rz.scp.css */
 h1[b-3xxtam6d07] {
     color: brown;
-    font-family: Tahoma, Geneva, Verdana, sans-serif;
 }
 ```
 
 Additionally, at build time a project bundle is created with the convention `StaticWebAssetsBasePath/MyProject.lib.scp.css`. This is referenced when projects are used for NuGet packages or a Razor Class Library, which both support CSS isolation. This `lib.scp.css` file is not published as a static web asset.
+
+## Child component support
+
+By default, CSS isolation only applies to the component you associate with `MyComponent.razor.css`. To apply changes to a child component, use the `::deep` combinator to any descendant elements in the parent component's `razor.css` file. The `::deep` combinator selects elements that are *descendants* of an element's generated scope identifier. 
+
+The following example shows a parent component, called `ChildExample` in a file called `Pages/ChildExample.razor`, with a child component called `MyChild`:
+
+`ChildExample.razor`:
+```razor
+@page "/child-example"
+
+<div>
+    <h1>Child Example</h1>
+    <MyChild />
+</div>
+```
+
+`MyChild.razor`:
+```razor
+@page "/first-child"
+
+<h1>A Child Component</h1>
+```
+
+Update the `h1` declaration in `MyComponent.razor.css` with the `::deep` combinator to signify the `h1` style declaration must apply to the parent component and its children.
+
+```css
+::deep h1 { 
+    color: red;
+}
+```
+
+The `h1` style now applies to the `ChildExample` and `FirstChild` components without the need to create separate scoped CSS files for the child components.
+
+> [!NOTE]
+> The `::deep` combinator works only with descendant elements. The following HTML structure applies the `h2` styles to components as expected:
+> 
+>```razor
+><div>
+>    <h1>Child Example</h1>
+>    <MyChild />
+></div>
+>```
+> In this scenario, ASP.NET Core applies the parent component's scope identifier to the `div` element, so it knows to inherit styles from the parent component.
+>
+>However, excluding the `div` element removes the descendant relationship, and the style will *not* be applied to the child component. 
+>
+>```razor
+><h1>Child Example</h1>
+><MyChild />
+>```
+
+
 
 ## CSS preprocessor support
 
@@ -122,9 +137,11 @@ By default, scope identifiers use the format `b-<10-character-string>`. To custo
 
 ```xml
 <ItemGroup>
-    <None Update="MyComponent.razor.css" CopyToOutputDirectory="my-custom-scope-identifier" />
+    <None Update="MyComponent.razor.css" CssScope="my-custom-scope-identifier" />
 </ItemGroup>
 ```
+
+In this example, the scope identifier changes from `b-<10-character-string>` to `my-custom-scope-identifier`.
 
 ### Change base path for static web assets
 
