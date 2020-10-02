@@ -35,8 +35,6 @@ The styles defined in `Counter.razor.css` are only applied to the rendered outpu
 > [!NOTE]
 > In order to guarantee style isolation when bundling occurs, `@import` blocks are not supported with scoped CSS files.
 
-
-
 ## CSS isolation bundling
 
 CSS isolation occurs at build time. During this process, Blazor rewrites CSS selectors to only match markup rendered by the component. These rewritten CSS styles are bundled together and produced as a static web asset at `_framework/scoped.styles.css`.
@@ -115,8 +113,6 @@ The `h1` style now applies to the `ChildExample` and `FirstChild` components wit
 ><MyChild />
 >```
 
-
-
 ## CSS preprocessor support
 
 CSS preprocessors are useful with improving CSS development by utilizing features like variables, nesting, modules, mixins, and inheritance. While CSS isolation does not *natively* support CSS preprocessors such as Sass or Less, integrating them is seamless as long as preprocessor compilation occurs before Blazor rewrites the CSS selectors during the build process.
@@ -162,4 +158,3 @@ To opt out of how Blazor publishes and loads scoped files at runtime, use the `D
   <DisableScopedCssBundling>true</DisableScopedCssBundling>
 </PropertyGroup>
 ```
-
