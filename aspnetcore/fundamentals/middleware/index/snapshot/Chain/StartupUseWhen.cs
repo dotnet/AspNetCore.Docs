@@ -1,4 +1,4 @@
-﻿public class Startup
+public class Startup
 {
     private void HandleBranchAndRejoin(IApplicationBuilder app, ILogger<Startup> logger)
     {
