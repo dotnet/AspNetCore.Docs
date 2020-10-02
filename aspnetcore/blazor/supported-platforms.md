@@ -13,25 +13,22 @@ uid: blazor/supported-platforms
 
 By [Luke Latham](https://github.com/guardrex)
 
-## Blazor WebAssembly
-
 ::: moniker range=">= aspnetcore-5.0"
 
 | Browser                          | Version                 |
 | -------------------------------- | ----------------------- |
 | Apple Safari, including iOS      | Current&dagger;         |
 | Google Chrome, including Android | Current&dagger;         |
-| Microsoft Edge                   | Current&dagger;&Dagger; |
-| Microsoft Internet Explorer      | Not Supported&sect;     |
+| Microsoft Edge                   | Current&dagger; |
 | Mozilla Firefox                  | Current&dagger;         |  
 
 &dagger;*Current* refers to the latest version of the browser.  
-&Dagger;[Microsoft Edge Legacy](https://support.microsoft.com/help/4533505/what-is-microsoft-edge-legacy) is incompatible with Blazor Server, and Windows support for Microsoft Edge Legacy ends on March 9, 2021. [Microsoft Edge based on Chromium](https://www.microsoft.com/edge) is supported and recommended.  
-&sect;Microsoft Internet Explorer doesn't support [WebAssembly](https://webassembly.org).
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
+
+## Blazor WebAssembly
 
 | Browser                          | Version               |
 | -------------------------------- | --------------------- |
@@ -44,27 +41,7 @@ By [Luke Latham](https://github.com/guardrex)
 &dagger;*Current* refers to the latest version of the browser.  
 &Dagger;Microsoft Internet Explorer doesn't support [WebAssembly](https://webassembly.org).
 
-::: moniker-end
-
 ## Blazor Server
-
-::: moniker range=">= aspnetcore-5.0"
-
-| Browser                          | Version                 |
-| -------------------------------- | ----------------------- |
-| Apple Safari, including iOS      | Current&dagger;         |
-| Google Chrome, including Android | Current&dagger;         |
-| Microsoft Edge                   | Current&dagger;&Dagger; |
-| Microsoft Internet Explorer      | Not Supported&sect;     |
-| Mozilla Firefox                  | Current&dagger;         |
-
-&dagger;*Current* refers to the latest version of the browser.  
-&Dagger;[Microsoft Edge Legacy](https://support.microsoft.com/help/4533505/what-is-microsoft-edge-legacy) is incompatible with Blazor Server, and Windows support for Microsoft Edge Legacy ends on March 9, 2021. [Microsoft Edge based on Chromium](https://www.microsoft.com/edge) is supported and recommended.  
-&sect;Microsoft Internet Explorer doesn't support several Blazor Server features introduced with .NET 5.
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
 
 | Browser                          | Version         |
 | -------------------------------- | --------------- |
