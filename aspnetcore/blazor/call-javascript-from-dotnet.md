@@ -616,7 +616,7 @@ The preceding example produces an interactive map UI, in which the user:
 * Can drag to scroll or zoom.
 * Click buttons to jump to predefined locations.
 
-<img src="https://user-images.githubusercontent.com/1101362/94939821-92ef6700-04ca-11eb-858e-fff6df0053ae.png" width="600" />
+![Mapbox street map of Tokyo, Japan with buttons to select Bristol, United Kingdom and Tokyo, Japan](https://user-images.githubusercontent.com/1101362/94939821-92ef6700-04ca-11eb-858e-fff6df0053ae.png)
 
 The key points to understand are:
 
