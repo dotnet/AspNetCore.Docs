@@ -96,7 +96,7 @@ To add filtering to the Students Index page:
 
 Replace the code in *Students/Index.cshtml.cs* with the following code to add filtering:
 
-[!code-csharp[Main](intro/samples/cu30snapshots/3-sorting/Pages/Students/Index2.cshtml.cs?name=snippet_All&highlight=28,33,37-41)]
+[!code-csharp[Main](intro/samples/cu30snapshots/3-sorting/Pages/Students/Index2.cshtml.cs?name=snippet_All&highlight=17,22,26-30)]
 
 The preceding code:
 
@@ -105,7 +105,7 @@ The preceding code:
 
 ### IQueryable vs. IEnumerable
 
-The code calls the `Where` method on an `IQueryable` object, and the filter is processed on the server. In some scenarios, the app might be calling the `Where` method as an extension method on an in-memory collection. For example, suppose `_context.Students` changes from EF Core `DbSet` to a repository method that returns an `IEnumerable` collection. The result would normally be the same but in some cases may be different.
+The code calls the <xref:System.Linq.Queryable.Where%2A> method on an `IQueryable` object, and the filter is processed on the server. In some scenarios, the app might be calling the `Where` method as an extension method on an in-memory collection. For example, suppose `_context.Students` changes from EF Core `DbSet` to a repository method that returns an `IEnumerable` collection. The result would normally be the same but in some cases may be different.
 
 For example, the .NET Framework implementation of `Contains` performs a case-sensitive comparison by default. In SQL Server, `Contains` case-sensitivity is determined by the collation setting of the SQL Server instance. SQL Server defaults to case-insensitive. SQLite defaults to case-sensitive. `ToUpper` could be called to make the test explicitly case-insensitive:
 
@@ -125,7 +125,7 @@ For more information, see [How to use case-insensitive query with Sqlite provide
 
 ### Update the Razor page
 
-Replace the code in *Pages/Students/Index.cshtml* to create a **Search** button and assorted chrome.
+Replace the code in *Pages/Students/Index.cshtml* to add a **Search** button.
 
 [!code-cshtml[Main](intro/samples/cu30snapshots/3-sorting/Pages/Students/Index2.cshtml?highlight=14-23)]
 
@@ -139,8 +139,8 @@ Test the app:
 
 Notice that the URL contains the search string. For example:
 
-```
-https://localhost:<port>/Students?SearchString=an
+```browser-address-bar
+https://localhost:5001/Students?SearchString=an
 ```
 
 If the page is bookmarked, the bookmark contains the URL to the page and the `SearchString` query string. The `method="get"` in the `form` tag is what caused the query string to be generated.
@@ -173,9 +173,10 @@ The preceding code:
 
 * Changes the type of the `Students` property from `IList<Student>` to `PaginatedList<Student>`.
 * Adds the page index, the current `sortOrder`, and the `currentFilter` to the `OnGetAsync` method signature.
-* Saves the sort order in the CurrentSort property.
+* Saves the sort order in the `CurrentSort` property.
 * Resets page index to 1 when there's a new search string.
 * Uses the `PaginatedList` class to get Student entities.
+* `pageSize` is set to 3. A real app would use [Configuration](xref:fundamentals/configuration) to set the page size value.
 
 All the parameters that `OnGetAsync` receives are null when:
 
@@ -198,7 +199,7 @@ If the search string is changed while paging, the page is reset to 1. The page h
 
   The `PaginatedList.CreateAsync` method converts the student query to a single page of students in a collection type that supports paging. That single page of students is passed to the Razor Page.
 
-  The two question marks after `pageIndex` in the `PaginatedList.CreateAsync` call represent the [null-coalescing operator](/dotnet/csharp/language-reference/operators/null-conditional-operator). The null-coalescing operator defines a default value for a nullable type. The expression `(pageIndex ?? 1)` means return the value of `pageIndex` if it has a value. If `pageIndex` doesn't have a value, return 1.
+  The two question marks after `pageIndex` in the `PaginatedList.CreateAsync` call represent the [null-coalescing operator](/dotnet/csharp/language-reference/operators/null-conditional-operator). The null-coalescing operator defines a default value for a nullable type. The expression `pageIndex ?? 1` returns the value of `pageIndex` if it has a value, otherwise, it returns 1.
 
 ### Add paging links to the Razor Page
 
