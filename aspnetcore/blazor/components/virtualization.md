@@ -179,15 +179,15 @@ public class Virtualize<TItem> : ComponentBase
 
         var translateY = numItemsToSkipBefore * ItemHeight;
         builder.AddAttribute(2, "style", $"transform: translateY({ translateY }px);");
-        builder.AddAttribute(2, "data-translateY", translateY);
-        builder.AddElementReferenceCapture(3, @ref => { contentElement = @ref; });
+        builder.AddAttribute(3, "data-translateY", translateY);
+        builder.AddElementReferenceCapture(4, @ref => { contentElement = @ref; });
 
         // As an important optimization, *don't* use builder.AddContent(seq, ChildContent, item)
         // because that implicitly wraps a new region around each item, which in turn means that 
         // @key does nothing (because keys are scoped to regions). Instead, create a single 
         // container region and then invoke the fragments directly.
 
-        builder.OpenRegion(4);
+        builder.OpenRegion(5);
 
         foreach (var item in Items.Skip(numItemsToSkipBefore).Take(numItemsToShow))
         {
@@ -201,9 +201,9 @@ public class Virtualize<TItem> : ComponentBase
         // Also emit a spacer that causes the total vertical height to add up to 
         // Items.Count()*numItems
 
-        builder.OpenElement(5, "div");
+        builder.OpenElement(6, "div");
         var numHiddenItems = Items.Count - numItemsToShow;
-        builder.AddAttribute(6, "style", 
+        builder.AddAttribute(7, "style", 
             $"width: 1px; height: { numHiddenItems * ItemHeight }px;");
         builder.CloseElement();
     }
