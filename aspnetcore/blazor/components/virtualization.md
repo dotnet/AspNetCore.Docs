@@ -250,7 +250,7 @@ public class Virtualize<TItem> : ComponentBase
 }
 ```
 
-The following `FetchData` component `FetchData.razor` uses the preceding `Virtualize` component to display 25 rows of weather data at a time:
+The following `FetchData` component (`FetchData.razor`) uses the preceding `Virtualize` component to display 25 rows of weather data at a time:
 
 ```razor
 @page "/"
