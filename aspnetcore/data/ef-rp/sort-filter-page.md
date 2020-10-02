@@ -176,7 +176,7 @@ The preceding code:
 * Saves the sort order in the `CurrentSort` property.
 * Resets page index to 1 when there's a new search string.
 * Uses the `PaginatedList` class to get Student entities.
-* Sets `pageSize` to 3. A real app would use [Configuration](xref:fundamentals/configuration) to set the page size value.
+* Sets `pageSize` to 3. A real app would use [Configuration](xref:fundamentals/configuration/index) to set the page size value.
 
 All the parameters that `OnGetAsync` receives are null when:
 
