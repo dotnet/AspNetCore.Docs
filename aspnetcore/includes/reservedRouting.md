@@ -1,4 +1,4 @@
-There are also certain sets of keywords that ASP.NET Core MVC uses internally, which should ***not*** be used in user-code as it can result in unexpected outcomes in certain scenarios.
+There are also certain sets of keywords that ASP.NET Core MVC uses internally, which should ***not*** be used in ASP.NET Core apps as it can result in unexpected outcomes in certain scenarios.
 
 * `controller`, `action`, `area`, and `page` are reserved keywords used by MVC's routing system. Using these as part of link generations, model bound parameters, or top level properties can bind the reserved route value.
 
