@@ -1,5 +1,5 @@
 ---
-title: .NET Generic Host in ASP.NET Core apps
+title: .NET Generic Host
 author: rick-anderson
 description: Learn about the .NET Core Generic Host, which is responsible for app startup and lifetime management.
 monikerRange: '>= aspnetcore-2.1'
@@ -9,7 +9,7 @@ ms.date: 4/17/2020
 no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/host/generic-host
 ---
-# .NET Generic Host in ASP.NET Core apps
+# .NET Generic Host
 
 ::: moniker range=">= aspnetcore-5.0"
 
