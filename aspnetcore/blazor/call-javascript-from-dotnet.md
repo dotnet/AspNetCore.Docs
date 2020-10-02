@@ -603,7 +603,7 @@ export function setMapCenter(map, latitude, longitude) {
 }
 ```
 
-The placeholder `{ACCESS TOKEN}` in the preceding code is a valid access token from https://account.mapbox.com.
+In the preceding example, replace the string `{ACCESS TOKEN}` with a valid access token that you can get from https://account.mapbox.com.
 
 To produce correct styling, add the following stylesheet tag to the host HTML page (`index.html` or `_Host.cshtml`):
 
