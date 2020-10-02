@@ -22,8 +22,6 @@ For demonstration purposes in the sample app, the user account for the hypotheti
 
 ## Configuration
 
-If the app doesn't use the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app), create a package reference in the project file for the [Microsoft.AspNetCore.Authentication.Cookies](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Cookies/) package.
-
 In the `Startup.ConfigureServices` method, create the Authentication Middleware services with the <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*> and <xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie*> methods:
 
 [!code-csharp[](cookie/samples/3.x/CookieSample/Startup.cs?name=snippet1)]

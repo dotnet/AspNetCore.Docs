@@ -1,18 +1,11 @@
-﻿public class Startup
+public class Startup
 {
-    private readonly ILogger<Startup> _logger;
-
-    public Startup(ILogger<Startup> logger)
-    {
-        _logger = logger;
-    }
-
-    private void HandleBranchAndRejoin(IApplicationBuilder app)
+    private void HandleBranchAndRejoin(IApplicationBuilder app, ILogger<Startup> logger)
     {
         app.Use(async (context, next) =>
         {
             var branchVer = context.Request.Query["branch"];
-            _logger.LogInformation("Branch used = {branchVer}", branchVer);
+            logger.LogInformation("Branch used = {branchVer}", branchVer);
 
             // Do work that doesn't write to the Response.
             await next();
@@ -20,10 +13,10 @@
         });
     }
 
-    public void Configure(IApplicationBuilder app)
+    public void Configure(IApplicationBuilder app, ILogger<Startup> logger)
     {
         app.UseWhen(context => context.Request.Query.ContainsKey("branch"),
-                               HandleBranchAndRejoin);
+                               appBuilder => HandleBranchAndRejoin(appBuilder, logger));
 
         app.Run(async context =>
         {
