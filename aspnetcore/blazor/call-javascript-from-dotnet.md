@@ -585,6 +585,8 @@ The corresponding JavaScript module, which should be placed at `wwwroot/mapCompo
 ```javascript
 import 'https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js';
 
+// TO MAKE THE MAP APPEAR YOU MUST ADD YOUR ACCESS TOKEN FROM 
+// https://account.mapbox.com
 mapboxgl.accessToken = '{ACCESS TOKEN}';
 
 export function addMapToElement(element) {
