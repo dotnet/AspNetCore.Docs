@@ -510,7 +510,7 @@ public class Program
 
 ::: moniker-end
 
-::: moniker range=">= aspnetcore-3.0 <= aspnetcore-3.1"
+::: moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
 
 The ASP.NET Core templates create a .NET Core Generic Host, <xref:Microsoft.Extensions.Hosting.HostBuilder>.
 
