@@ -24,7 +24,6 @@ The [JavaScript client](xref:signalr/javascript-client) runs on NodeJS 8 and lat
 | Apple Safari, including iOS      | Current&dagger; |
 | Google Chrome, including Android | Current&dagger; |
 | Microsoft Edge                   | Current&dagger; |
-| Microsoft Internet Explorer      | 11              |
 | Mozilla Firefox                  | Current&dagger; |
 
 &dagger;*Current* refers to the latest version of the browser.
