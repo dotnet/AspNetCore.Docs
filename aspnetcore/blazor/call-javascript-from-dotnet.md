@@ -5,7 +5,7 @@ description: Learn how to invoke JavaScript functions from .NET methods in Blazo
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/17/2020
+ms.date: 10/02/2020
 no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/call-javascript-from-dotnet
 ---
@@ -513,6 +513,117 @@ public async ValueTask<string> Prompt(string message)
     return await module.InvokeAsync<string>("showPrompt", message);
 }
 ```
+
+## Use of JavaScript libraries that render UI (DOM elements)
+
+Sometimes you may wish to use JavaScript libraries that produce visible user interface elements within the browser DOM. At first glance, this might seem difficult because Blazor's diffing system relies on having control over the tree of DOM elements and runs into errors if some external code mutates the DOM tree and invalidates its mechanism for applying diffs. This isn't a Blazor-specific limitation. The same challenge occurs with any diff-based UI framework.
+
+Fortunately, it's straightforward to embed externally-generated UI within a Blazor component UI reliably. The recommended technique is to have the component's code (`.razor` file) produce an empty element. As far as Blazor's diffing system is concerned, the element is always empty, so the renderer does not recurse into the element and instead leaves its contents alone. This makes it safe to populate the element with arbitrary externally-managed content.
+
+The following example demonstrates the concept. Within the `if` statement when `firstRender` is `true`, do something with `myElement`. For example, call an external JavaScript library to populate it. Blazor leaves the element's contents alone until this component itself is removed. When the component is removed, the component's entire DOM subtree is also removed.
+
+```razor
+<h1>Hello! This is a Blazor component rendered at @DateTime.Now</h1>
+
+<div @ref="myElement"></div>
+
+@code {
+    HtmlElement myElement;
+    
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            ...
+        }
+    }
+}
+```
+
+As a more detailed example, consider the following component that renders an interactive map using the [open-source Mapbox APIs](https://www.mapbox.com/):
+
+```razor
+@inject IJSRuntime JS
+@implements IAsyncDisposable
+
+<div @ref="mapElement" style='width: 400px; height: 300px;'></div>
+
+<button @onclick="() => ShowAsync(51.454514, -2.587910)">Show Bristol, UK</button>
+<button @onclick="() => ShowAsync(35.6762, 139.6503)">Show Tokyo, Japan</button>
+
+@code
+{
+    ElementReference mapElement;
+    IJSObjectReference mapModule;
+    IJSObjectReference mapInstance;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            mapModule = await JS.InvokeAsync<IJSObjectReference>(
+                "import", "./mapComponent.js");
+            mapInstance = await mapModule.InvokeAsync<IJSObjectReference>(
+                "addMapToElement", mapElement);
+        }
+    }
+
+    Task ShowAsync(double latitude, double longitude)
+        => mapModule.InvokeVoidAsync("setMapCenter", mapInstance, latitude, 
+            longitude).AsTask();
+
+    private async ValueTask IAsyncDisposable.DisposeAsync()
+    {
+        await mapInstance.DisposeAsync();
+        await mapModule.DisposeAsync();
+    }
+}
+```
+
+The corresponding JavaScript module, which should be placed at `wwwroot/mapComponent.js`, is as follows:
+
+```javascript
+import 'https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js';
+
+// TO MAKE THE MAP APPEAR YOU MUST ADD YOUR ACCESS TOKEN FROM 
+// https://account.mapbox.com
+mapboxgl.accessToken = '{ACCESS TOKEN}';
+
+export function addMapToElement(element) {
+  return new mapboxgl.Map({
+    container: element,
+    style: 'mapbox://styles/mapbox/streets-v11',
+    center: [-74.5, 40],
+    zoom: 9
+  });
+}
+
+export function setMapCenter(map, latitude, longitude) {
+  map.setCenter([longitude, latitude]);
+}
+```
+
+In the preceding example, replace the string `{ACCESS TOKEN}` with a valid access token that you can get from https://account.mapbox.com.
+
+To produce correct styling, add the following stylesheet tag to the host HTML page (`index.html` or `_Host.cshtml`):
+
+```html
+<link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css" />
+```
+
+The preceding example produces an interactive map UI, in which the user:
+
+* Can drag to scroll or zoom.
+* Click buttons to jump to predefined locations.
+
+<img src="https://user-images.githubusercontent.com/1101362/94939821-92ef6700-04ca-11eb-858e-fff6df0053ae.png" width="600" />
+
+The key points to understand are:
+
+ * The `<div>` with `@ref="mapElement"` is left empty as far as Blazor is concerned. It's therefore safe for `mapbox-gl.js` to populate it and modify its contents over time. You can use this technique with any JavaScript library that renders UI. You could even embed components from a third-party JavaScript SPA framework inside Blazor components, as long as they don't try to reach out and modify other parts of the page. It is *not* safe for external JavaScript code to modify elements that Blazor does not regard as empty.
+ * When using this approach, bear in mind the rules about how Blazor retains or destroys DOM elements. In the preceding example, the component safely handles button click events and updates the existing map instance because DOM elements are retained where possible by default. If you were rendering a list of map elements from inside a `@foreach` loop, you want to use `@key` to ensure the preservation of component instances. Otherwise, changes in the list data could cause component instances to retain the state of previous instances in an undesirable manner. For more information, see [using @key to preserve elements and components](xref:blazor/components/index#use-key-to-control-the-preservation-of-elements-and-components).
+
+Additionally, the preceding example shows how it's possible to encapsulate JavaScript logic and dependencies within an ES6 module and load it dynamically using the `import` identifier. For more information, see [JavaScript isolation and object references](#blazor-javascript-isolation-and-object-references).
 
 ::: moniker-end
 
