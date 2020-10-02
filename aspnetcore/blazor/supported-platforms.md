@@ -15,7 +15,7 @@ By [Luke Latham](https://github.com/guardrex)
 
 ::: moniker range=">= aspnetcore-5.0"
 
-Blazor Server and Blazor WebAssembly are supported in the browsers shown in the following table.
+Blazor WebAssembly and Blazor Server are supported in the browsers shown in the following table.
 
 | Browser                          | Version         |
 | -------------------------------- | --------------- |
