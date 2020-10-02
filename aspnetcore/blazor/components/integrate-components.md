@@ -85,7 +85,7 @@ To set up prerendering for a Blazor WebAssembly app:
    }
    ```
 
-## Render components from a page or view
+## Render components in a page or view with the Component Tag Helper
 
 *This section pertains to adding components to pages or views, where the components aren't directly routable from user requests.*
 
@@ -94,7 +94,7 @@ The Component Tag Helper supports two render modes for rendering a component fro
 * `WebAssembly`: Renders a marker for a Blazor WebAssembly app for use to include an interactive component when loaded in the browser. The component isn't prerendered. This option makes it easier to render different Blazor WebAssembly components on different pages.
 * `WebAssemblyPrerendered`: Prerenders the component into static HTML and includes a marker for a Blazor WebAssembly app for later use to make the component interactive when loaded in the browser.
 
-In the following Razor Pages example, the `Counter` component is rendered in a page. To make the component interactive, the Blazor WebAssembly script is included in the page's render section:
+In the following Razor Pages example, the `Counter` component is rendered in a page. To make the component interactive, the Blazor WebAssembly script is included in the page's [render section](xref:mvc/views/layout#sections):
 
 ```cshtml
 <h1>My Razor Page</h1>
@@ -106,12 +106,60 @@ In the following Razor Pages example, the `Counter` component is rendered in a p
 }
 ```
 
-<xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode> configures whether the `App` component:
+<xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode> configures whether the component:
 
 * Is prerendered into the page.
 * Is rendered as static HTML on the page or if it includes the necessary information to bootstrap a Blazor app from the user agent.
 
 For more information on the Component Tag Helper, including passing parameters and <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode> configuration, see <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
+
+The preceding example requires that the server app's layout (`_Layout.cshtml`) include a [render section](xref:mvc/views/layout#sections) (<xref:Microsoft.AspNetCore.Mvc.Razor.RazorPage.RenderSection%2A>) for the script inside the closing `</body>` tag:
+
+```cshtml
+    ...
+
+    @RenderSection("Scripts", required: false)
+</body>
+```
+
+The `_Layout.cshtml` file is located in the *Pages/Shared* folder in a Razor Pages app or *Views/Shared* folder in an MVC app.
+
+If the app should also style components with the styles in the Blazor WebAssembly app, include the app's styles in the `_Layout.cshtml` file:
+
+```cshtml
+<head>
+    ...
+
+    <link href="css/app.css" rel="stylesheet" />
+    <link href="_framework/scoped.styles.css" rel="stylesheet" />
+</head>
+```
+
+## Render components in a page or view from a hosted Blazor WebAssembly app
+
+*This section pertains to adding components to pages or views from a hosted Blazor WebAssembly app, where the components aren't directly routable from user requests.*
+
+Add root components to the *Client* project in `Program.Main` (`Program.cs`). In the following example, the `Counter` component is declared as a root component with a CSS selector that selects the element with the `id` that matches `my-counter`:
+
+```csharp
+using {APP ASSEMBLY}.Client.Pages;
+
+...
+
+builder.RootComponents.Add<Counter>("#my-counter");
+```
+
+In the following Razor Pages example, the `Counter` component is rendered in a page. To make the component interactive, the Blazor WebAssembly script is included in the page's [render section](xref:mvc/views/layout#sections):
+
+```cshtml
+<h1>My Razor Page</h1>
+
+<div id="my-counter">Loading...</div>
+
+@section Scripts {
+    <script src="_framework/blazor.webassembly.js"></script>
+}
+```
 
 The preceding example requires that the server app's layout (`_Layout.cshtml`) include a [render section](xref:mvc/views/layout#sections) (<xref:Microsoft.AspNetCore.Mvc.Razor.RazorPage.RenderSection%2A>) for the script inside the closing `</body>` tag:
 
