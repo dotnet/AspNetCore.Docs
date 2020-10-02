@@ -933,6 +933,9 @@
         - name: Transform web.config
           displayName: deploy, publish
           uid: host-and-deploy/iis/transform-webconfig
+        - name: HTTP/2
+          displayName: deploy, publish
+          uid: host-and-deploy/iis/protocols
     - name: Kestrel
       uid: fundamentals/servers/kestrel
       displayName: deploy, publish, server
