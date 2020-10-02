@@ -7,7 +7,7 @@ namespace WebApiSample.Filters
     #region snippet_HttpResponseExceptionFilter
     public class HttpResponseExceptionFilter : IActionFilter, IOrderedFilter
     {
-        public int Order { get; set; } = int.MaxValue - 10;
+        public int Order { get; } = int.MaxValue - 10;
 
         public void OnActionExecuting(ActionExecutingContext context) { }
 
