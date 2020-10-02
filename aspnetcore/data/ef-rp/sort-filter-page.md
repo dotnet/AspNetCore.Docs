@@ -167,7 +167,7 @@ The `CreateAsync` method is used to create the `PaginatedList<T>`. A constructor
 
 Replace the code in *Students/Index.cshtml.cs* to add paging.
 
-[!code-csharp[Main](intro/samples/cu30/Pages/Students/Index.cshtml.cs?name=snippet_All&highlight=26,28-29,31,34-41,68-70)]
+[!code-csharp[Main](intro/samples/cu30/Pages/Students/Index.cshtml.cs?name=snippet_All&highlight=15-20,23-30,57-59)]
 
 The preceding code:
 
@@ -176,7 +176,7 @@ The preceding code:
 * Saves the sort order in the `CurrentSort` property.
 * Resets page index to 1 when there's a new search string.
 * Uses the `PaginatedList` class to get Student entities.
-* `pageSize` is set to 3. A real app would use [Configuration](xref:fundamentals/configuration) to set the page size value.
+* Sets `pageSize` to 3. A real app would use [Configuration](xref:fundamentals/configuration) to set the page size value.
 
 All the parameters that `OnGetAsync` receives are null when:
 
@@ -245,7 +245,7 @@ Create a *Pages/About.cshtml* file with the following code:
 
 ### Create the page model
 
-Create a *Pages/About.cshtml.cs* file with the following code:
+Update the *Pages/About.cshtml.cs* file with the following code:
 
 [!code-csharp[Main](intro/samples/cu30/Pages/About.cshtml.cs)]
 
