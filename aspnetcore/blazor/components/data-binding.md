@@ -277,6 +277,8 @@ Password:
 
     private Task OnPasswordChanged(ChangeEventArgs e)
     {
+        password = e.Value.ToString();
+        
         if (password.Contains(' '))
         {
             validationMessage = "Spaces not allowed!";
