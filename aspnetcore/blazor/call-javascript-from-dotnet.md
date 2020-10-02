@@ -514,6 +514,108 @@ public async ValueTask<string> Prompt(string message)
 }
 ```
 
+## Using JavaScript libraries that render UI (DOM elements)
+
+Sometimes you may wish to use JavaScript libraries that produce visible user interface elements within the browser DOM. At first glance this might seem difficult because Blazor's diffing system relies on having control over the tree of DOM elements, and will run into errors if some external code mutates the DOM tree and invalidates its mechanism for applying diffs. This is not a Blazor-specific limitation - the same challenge occurs with any diff-based UI framework.
+
+Fortunately it is actually quite simple to embed externally-generated UI within your Blazor component UI reliably. The recommended technique is to have your `.razor` code produce an empty element. As far as Blazor's diffing system is concerned, the element will always be empty, so it doesn't need to recurse into it and will simply leave its contents alone. This makes it safe to populate that element with arbitrary externally-managed content. Here is an example:
+
+```razor
+<h1>Hello! This is a Blazor component rendered at @DateTime.Now</h1>
+
+<div @ref="myElement"></div>
+
+@code {
+    HtmlElement myElement;
+    
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            // Here, do something with myElement. For example call an external JavaScript library to populate it.
+            // Blazor will leave the element's contents alone until this component itself is removed, at which
+            // point the component's entire DOM subtree will be removed.
+        }
+    }
+}
+```
+
+As a more detailed example, consider the following component that renders an interactive map using the [open-source Mapbox APIs](https://www.mapbox.com/):
+
+```razor
+@inject IJSRuntime JS
+@implements IAsyncDisposable
+
+<div @ref="mapElement" style='width: 400px; height: 300px;'></div>
+
+<button @onclick="() => ShowAsync(51.454514, -2.587910)">Show Bristol, UK</button>
+<button @onclick="() => ShowAsync(35.6762, 139.6503)">Show Tokyo, Japan</button>
+
+@code
+{
+    ElementReference mapElement;
+    IJSObjectReference mapModule;
+    IJSObjectReference mapInstance;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            mapModule = await JS.InvokeAsync<IJSObjectReference>("import", "./mapComponent.js");
+            mapInstance = await mapModule.InvokeAsync<IJSObjectReference>("addMapToElement", mapElement);
+        }
+    }
+
+    Task ShowAsync(double latitude, double longitude)
+        => mapModule.InvokeVoidAsync("setMapCenter", mapInstance, latitude, longitude).AsTask();
+
+    async ValueTask IAsyncDisposable.DisposeAsync()
+    {
+        await mapInstance.DisposeAsync();
+        await mapModule.DisposeAsync();
+    }
+}
+```
+
+The corresponding JavaScript module, which should be placed at `wwwroot/mapComponent.js`, is as follows:
+
+```js
+import 'https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js';
+
+// TO MAKE THE MAP APPEAR YOU MUST ADD YOUR ACCESS TOKEN FROM https://account.mapbox.com
+mapboxgl.accessToken = '<your access token here>';
+
+export function addMapToElement(element) {
+    return new mapboxgl.Map({
+        container: element,
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: [-74.5, 40],
+        zoom: 9
+    });
+}
+
+export function setMapCenter(map, latitude, longitude) {
+    map.setCenter([longitude, latitude]);
+}
+```
+
+Finally, to produce correct styling, you should also add the following stylesheet tag to the host HTML page (`index.html` or `_Host.cshtml`):
+
+```html
+<link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css" />
+```
+
+Altogether this produces an interactive map UI, in which the user can drag to scroll or zoom, and click buttons to jump to predefined locations.
+
+<img src="https://user-images.githubusercontent.com/1101362/94939821-92ef6700-04ca-11eb-858e-fff6df0053ae.png" width="600" />
+
+The key points to understand are:
+
+ * The `<div>` with `@ref="mapElement"` is left empty as far as Blazor is concerned. It's therefore safe for `mapbox-gl.js` to populate it and modify its contents over time. You can use this technique with any JavaScript library that renders UI. You could even embed components from a third-party JavaScript SPA framework inside Blazor components, as long as they don't try to reach out and modify other parts of the page. It is *not* be safe for external JavaScript code to modify the contents of elements that Blazor does not think are empty.
+ * When doing this, bear in mind the rules about how Blazor retains or destroys DOM elements. In the example above, the component safely handles button click events and updates the existing map instance, because DOM elements are retained where possible by default. If you were rendering a list of map elements from inside a `@foreach` loop, you'd definitely want to use `@key` to ensure the preservation of component instances, because otherwise changes in the list data could cause component instances to retain the state of previous ones in an undesirable manner. See also: [using @key to preserve elements and components](xref:blazor/components#use-key-to-control-the-preservation-of-elements-and-components).
+
+Additionally, this example shows how it's possible to encapsulate JavaScript logic and dependencies within an ES6 module and load it dynamically using the `import` identifier. For more details, see [JavaScript isolation and object references](#blazor-javascript-isolation-and-object-references).
+
 ::: moniker-end
 
 ## Additional resources
