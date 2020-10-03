@@ -54,7 +54,7 @@ public class Program
 }
 ```
 
-The following code creates a non-HTTP workload with a `IHostedService` implementation added to the DI container.
+The following code creates a non-HTTP workload with an `IHostedService` implementation added to the DI container.
 
 ```csharp
 public class Program
@@ -252,7 +252,7 @@ To set this value, use the environment variable or configure `HostOptions`. The 
 
 ### Disable app configuration reload on change
 
-By [default](xref:fundamentals/configuration/index#default), *appsettings.json* and *appsettings.{Environment}.json* are reloaded when the file changes. To disable this reload behavior in ASP.NET Core 5.0 Preview 3 or later, set the `hostBuilder:reloadConfigOnChange` key to `false`.
+By [default](xref:fundamentals/configuration/index#default), *appsettings.json* and *appsettings.{Environment}.json* are reloaded when the file changes. To disable this reload behavior in ASP.NET Core 5.0 or later, set the `hostBuilder:reloadConfigOnChange` key to `false`.
 
 **Key**: `hostBuilder:reloadConfigOnChange`  
 **Type**: `bool` (`true` or `1`)  
@@ -512,7 +512,7 @@ public class Program
 
 ::: moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
 
-The ASP.NET Core templates create a .NET Core Generic Host, <xref:Microsoft.Extensions.Hosting.HostBuilder>.
+The ASP.NET Core templates create a .NET Core Generic Host (<xref:Microsoft.Extensions.Hosting.HostBuilder>).
 
 ## Host definition
 
@@ -589,9 +589,9 @@ If the app uses Entity Framework Core, don't change the name or signature of the
 
 ## Default builder settings
 
-The <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*> method:
+The <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder%2A> method:
 
-* Sets the [content root](xref:fundamentals/index#content-root) to the path returned by <xref:System.IO.Directory.GetCurrentDirectory*>.
+* Sets the [content root](xref:fundamentals/index#content-root) to the path returned by <xref:System.IO.Directory.GetCurrentDirectory%2A>.
 * Loads host configuration from:
   * Environment variables prefixed with `DOTNET_`.
   * Command-line arguments.
@@ -642,7 +642,7 @@ The <xref:Microsoft.Extensions.Hosting.IHostLifetime> implementation controls wh
 
 `Microsoft.Extensions.Hosting.Internal.ConsoleLifetime` is the default `IHostLifetime` implementation. `ConsoleLifetime`:
 
-* Listens for <kbd>Ctrl</kbd>+<kbd>C</kbd>/SIGINT or SIGTERM and calls <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime.StopApplication*> to start the shutdown process.
+* Listens for <kbd>Ctrl</kbd>+<kbd>C</kbd>/SIGINT or SIGTERM and calls <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime.StopApplication%2A> to start the shutdown process.
 * Unblocks extensions such as [RunAsync](#runasync) and [WaitForShutdownAsync](#waitforshutdownasync).
 
 ## IHostEnvironment
@@ -659,9 +659,9 @@ Web apps implement the `IWebHostEnvironment` interface, which inherits `IHostEnv
 
 Host configuration is used for the properties of the <xref:Microsoft.Extensions.Hosting.IHostEnvironment> implementation.
 
-Host configuration is available from [HostBuilderContext.Configuration](xref:Microsoft.Extensions.Hosting.HostBuilderContext.Configuration) inside <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration*>. After `ConfigureAppConfiguration`, `HostBuilderContext.Configuration` is replaced with the app config.
+Host configuration is available from [HostBuilderContext.Configuration](xref:Microsoft.Extensions.Hosting.HostBuilderContext.Configuration) inside <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration%2A>. After `ConfigureAppConfiguration`, `HostBuilderContext.Configuration` is replaced with the app config.
 
-To add host configuration, call <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureHostConfiguration*> on `IHostBuilder`. `ConfigureHostConfiguration` can be called multiple times with additive results. The host uses whichever option sets a value last on a given key.
+To add host configuration, call <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureHostConfiguration%2A> on `IHostBuilder`. `ConfigureHostConfiguration` can be called multiple times with additive results. The host uses whichever option sets a value last on a given key.
 
 The environment variable provider with prefix `DOTNET_` and command-line arguments are included by `CreateDefaultBuilder`. For web apps, the environment variable provider with prefix `ASPNETCORE_` is added. The prefix is removed when the environment variables are read. For example, the environment variable value for `ASPNETCORE_ENVIRONMENT` becomes the host configuration value for the `environment` key.
 
