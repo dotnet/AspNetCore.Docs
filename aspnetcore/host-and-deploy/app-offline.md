@@ -1,5 +1,5 @@
 ---
-title: App Offline file (`app_offline.htm`)
+title: App Offline file (app_offline.htm)
 author: rick-anderson
 description: Learn how the App Offline file (`app_offline.htm`) works with the ASP.NET Core Module.
 monikerRange: '>= aspnetcore-5.0'
