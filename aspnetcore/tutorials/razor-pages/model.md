@@ -173,13 +173,13 @@ The *appsettings.json* file is updated with the connection string used to connec
 * **For Windows**: Run the following command:
 
   ```dotnetcli
-  dotnet aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages\Movies --referenceScriptLibraries
+  dotnet-aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages\Movies --referenceScriptLibraries
   ```
 
 * **For macOS and Linux**: Run the following command:
 
   ```dotnetcli
-  dotnet aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages/Movies --referenceScriptLibraries
+  dotnet-aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages/Movies --referenceScriptLibraries
   dotnet tool install --global dotnet-aspnet-codegenerator
   ```
 
@@ -197,10 +197,10 @@ The following table details the ASP.NET Core code generator parameters:
 Use the `h` switch to get help on the `aspnet-codegenerator razorpage` command:
 
 ```dotnetcli
-dotnet aspnet-codegenerator razorpage -h
+dotnet-aspnet-codegenerator razorpage -h
 ```
 
-For more information, see [dotnet aspnet-codegenerator](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
+For more information, see [dotnet-aspnet-codegenerator](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
 
 ### Use SQLite for development, SQL Server for production
 
@@ -559,13 +559,13 @@ The *appsettings.json* file is updated with the connection string used to connec
 * **For Windows**: Run the following command:
 
   ```dotnetcli
-  dotnet aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages\Movies --referenceScriptLibraries
+  dotnet-aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages\Movies --referenceScriptLibraries
   ```
 
 * **For macOS and Linux**: Run the following command:
 
   ```dotnetcli
-  dotnet aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages/Movies --referenceScriptLibraries
+  dotnet-aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages/Movies --referenceScriptLibraries
   dotnet tool install --global dotnet-aspnet-codegenerator
   ```
 
@@ -583,10 +583,10 @@ The following table details the ASP.NET Core code generator parameters:
 Use the `h` switch to get help on the `aspnet-codegenerator razorpage` command:
 
 ```dotnetcli
-dotnet aspnet-codegenerator razorpage -h
+dotnet-aspnet-codegenerator razorpage -h
 ```
 
-For more information, see [dotnet aspnet-codegenerator](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
+For more information, see [dotnet-aspnet-codegenerator](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
 
 ### Use SQLite for development, SQL Server for production
 
@@ -960,13 +960,13 @@ The *appsettings.json* file is updated with the connection string used to connec
 * **For Windows**: Run the following command:
 
   ```dotnetcli
-  dotnet aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages\Movies --referenceScriptLibraries
+  dotnet-aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages\Movies --referenceScriptLibraries
   ```
 
 * **For macOS and Linux**: Run the following command:
 
   ```dotnetcli
-  dotnet aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages/Movies --referenceScriptLibraries
+  dotnet-aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages/Movies --referenceScriptLibraries
   ```
 
 <a name="codegenerator"></a>
@@ -983,10 +983,10 @@ The following table details the ASP.NET Core code generator parameters:
 Use the `h` switch to get help on the `aspnet-codegenerator razorpage` command:
 
 ```dotnetcli
-dotnet aspnet-codegenerator razorpage -h
+dotnet-aspnet-codegenerator razorpage -h
 ```
 
-For more information, see [dotnet aspnet-codegenerator](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
+For more information, see [dotnet-aspnet-codegenerator](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
