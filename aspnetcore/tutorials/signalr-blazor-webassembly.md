@@ -43,7 +43,7 @@ At the end of this tutorial, you'll have a working chat app.
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 <!-- * [Visual Studio for Mac version 8.8 or later (in preview)](https://visualstudio.microsoft.com/vs/mac/) -->
-* [Visual Studio for Mac version 8.8 or later (in preview)](https://docs.microsoft.com/visualstudio/releasenotes/vs2019-mac-preview-relnotes)
+* [Visual Studio for Mac version 8.8 or later (in preview)](/visualstudio/releasenotes/vs2019-mac-preview-relnotes)
 * [!INCLUDE [.NET Core 5.0 SDK](~/includes/5.0-SDK.md)]
 
 # [.NET Core CLI](#tab/netcore-cli/)
