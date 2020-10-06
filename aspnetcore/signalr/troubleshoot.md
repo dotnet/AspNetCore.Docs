@@ -20,9 +20,12 @@ When using WebSockets and `skipNegotiation = true`
 WebSocket connection to 'wss://xxx/HubName' failed: Error during WebSocket handshake: Unexpected response code: 404
 ```
 
-* If the connection takes too long to send a request to the server after the negotiate the server will delete the ID and return a 404 if the connection uses that ID
-* If you have multiple servers and aren't using sticky sessions, the connection can start on one server and then switch to another server that doesn't know about it
-* Double check that the client is connecting to the correct endpoint. e.g. Server is hosted at http://127.0.0.1:5000/hub/myHub and client is trying to connect to http://127.0.0.1:5000/myHub.
+* If the connection uses the ID and takes too long to send a request to the server after the negotiate, the server:
+
+  * Deletes the ID.
+  * Returns a 404.
+* When using multiple servers without sticky sessions, the connection can start on one server and then switch to another server. The other server is not aware of the previous connection.
+* Verify the client is connecting to the correct endpoint. For example, the server is hosted at `http://127.0.0.1:5000/hub/myHub` and client is trying to connect to `http://127.0.0.1:5000/myHub`.
 
 ### Response code 400 or 503
 
@@ -34,7 +37,7 @@ WebSocket connection to 'wss://xxx/HubName' failed: Error during WebSocket hands
 Error: Failed to start the connection: Error: There was an error with the transport.
 ```
 
-The error is usually caused by client only use WebSockets transport but WebSockets protocol is not enabled on server.
+This error is usually caused by client using only WebSockets transport but the WebSockets protocol is not enabled on the server.
 
 ### Response code 307
 
@@ -43,7 +46,7 @@ When using WebSockets and `skipNegotiation = true`
 WebSocket connection to 'ws://xxx/HubName' failed: Error during WebSocket handshake: Unexpected response code: 307
 ```
 
-This can also happen during the negotiate request.
+This error can also happen during the negotiate request.
 
 Common cause:
 * App is configured to enforce HTTPS by calling `UseHttpsRedirection` in `Startup`, or enforces HTTPS via URL rewrite rule.
