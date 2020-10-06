@@ -300,19 +300,13 @@ public class CustomUserFactory
         if (user.Identity.IsAuthenticated)
         {
             var identity = (ClaimsIdentity)user.Identity;
-            var roleClaims = identity.FindAll(identity.RoleClaimType);
-            var claimsToRemove = new List<Claim>();
+            var roleClaims = identity.FindAll(identity.RoleClaimType).ToArray();
 
             if (roleClaims != null && roleClaims.Any())
             {
                 foreach (var existingClaim in roleClaims)
                 {
-                    claimsToRemove.Add(existingClaim);                   
-                }
-                
-                foreach(var c in claimsToRemove)
-                {
-                    identity.RemoveClaim(c);
+                    identity.RemoveClaim(existingClaim);
                 }
 
                 var rolesElem = account.AdditionalProperties[identity.RoleClaimType];
