@@ -331,7 +331,7 @@ If you're running into errors, the following tips may help:
 * Visual Studio requires the **Enable JavaScript debugging for ASP.NET (Chrome, Edge and IE)** option in **Tools** > **Options** > **Debugging** > **General**. This is the default setting for Visual Studio. If debugging isn't working, confirm that the option is selected.
 * If your environment uses an HTTP proxy, make sure that `localhost` is included in the proxy bypass settings. This can be done by setting the `NO_PROXY` environment variable in either:
   * The `launchSettings.json` file for the project.
-  * At the user or system environment variables level for it to apply to all apps. When using an environment variable, restart Visual Studio for change to take effect.
+  * At the user or system environment variables level for it to apply to all apps. When using an environment variable, restart Visual Studio for the change to take effect.
 
 ### Breakpoints in `OnInitialized{Async}` not hit
 
