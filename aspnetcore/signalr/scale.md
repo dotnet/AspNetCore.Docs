@@ -181,6 +181,9 @@ For more information on WebSockets over Nginx, see [NGINX as a WebSocket Proxy](
 
 For more information on load balancing and sticky sessions, see [NGINX load balancing](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/).
 
+For more information about ASP.NET Core with Nginx see the following article:
+* <xref:host-and-deploy/linux-nginx>
+
 ## Third-party SignalR backplane providers
 
 * [NCache](https://www.alachisoft.com/ncache/asp-net-core-signalr.html)
