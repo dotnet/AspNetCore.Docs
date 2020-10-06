@@ -849,7 +849,7 @@ Because ASP.NET Core apps run in a process separate from the IIS worker process,
 
 The following diagram illustrates the relationship between IIS, the ASP.NET Core Module, and an app:
 
-![ASP.NET Core Module](index/_static/ancm-outofprocess.png)
+![ASP.NET Core Module](../index/_static/ancm-outofprocess.png)
 
 Requests arrive from the web to the kernel-mode HTTP.sys driver. The driver routes the requests to IIS on the website's configured port, usually 80 (HTTP) or 443 (HTTPS). The module forwards the requests to Kestrel on a random port for the app, which isn't port 80 or 443.
 
