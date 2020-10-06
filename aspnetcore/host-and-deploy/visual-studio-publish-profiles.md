@@ -103,7 +103,7 @@ The `dotnet publish` command calls MSBuild, which invokes the `Publish` target. 
 
 MSBuild properties can be passed using either of the following formats:
 
-* `p:<NAME>=<VALUE>`
+* `-p:<NAME>=<VALUE>`
 * `/p:<NAME>=<VALUE>`
 
 For example, the following command publishes a `Release` build to a network share. The network share is specified with forward slashes (*//r8/*) and works on all .NET Core supported platforms.
