@@ -130,7 +130,7 @@ http {
       # Configuration for ServerSentEvents
       proxy_buffering off;
 
-      # Configuration for LongPolling
+      # Configuration for LongPolling or if your KeepAliveInterval is longer than 60 seconds
       proxy_read_timeout 100s;
 
       proxy_set_header Host $host;
