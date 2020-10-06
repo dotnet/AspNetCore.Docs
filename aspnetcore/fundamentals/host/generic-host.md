@@ -1,7 +1,7 @@
 ---
-title: .NET Generic Host
+title: .NET Generic Host in ASP.NET Core
 author: rick-anderson
-description: Learn about the .NET Core Generic Host, which is responsible for app startup and lifetime management.
+description: Use .NET Core Generic Host in ASP.NET Core apps.  Generic Host is responsible for app startup and lifetime management.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
@@ -9,11 +9,13 @@ ms.date: 4/17/2020
 no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/host/generic-host
 ---
-# .NET Generic Host
+# .NET Generic Host in ASP.NET Core
 
 ::: moniker range=">= aspnetcore-5.0"
 
 The ASP.NET Core templates create a .NET Core Generic Host (<xref:Microsoft.Extensions.Hosting.HostBuilder>).
+
+This topic provides information on using .NET Generic Host in ASP.NET Core. For information on using .NET Generic Host in console apps, see [.NET Generic Host](/dotnet/core/extensions/generic-host).
 
 ## Host definition
 
@@ -513,6 +515,8 @@ public class Program
 ::: moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
 
 The ASP.NET Core templates create a .NET Core Generic Host (<xref:Microsoft.Extensions.Hosting.HostBuilder>).
+
+This topic provides information on using .NET Generic Host in ASP.NET Core. For information on using .NET Generic Host in console apps, see [.NET Generic Host](/dotnet/core/extensions/generic-host).
 
 ## Host definition
 
