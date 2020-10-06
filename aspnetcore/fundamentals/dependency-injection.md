@@ -21,6 +21,8 @@ For more information specific to dependency injection within MVC controllers, se
 
 For more information on dependency injection of options, see <xref:fundamentals/configuration/options>.
 
+This topic provides information on dependency injection  in ASP.NET Core. For information on using dependency injection  in console apps, see [Dependency injection in .NET](/dotnet/core/extensions/dependency-injection).
+
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/dependency-injection/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Overview of dependency injection

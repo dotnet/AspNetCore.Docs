@@ -516,6 +516,8 @@ public class Program
 
 The ASP.NET Core templates create a .NET Core Generic Host (<xref:Microsoft.Extensions.Hosting.HostBuilder>).
 
+This topic provides information on using .NET Generic Host in ASP.NET Core. For information on using .NET Generic Host in console apps, see [.NET Generic Host](/dotnet/core/extensions/generic-host).
+
 ## Host definition
 
 A *host* is an object that encapsulates an app's resources, such as:
