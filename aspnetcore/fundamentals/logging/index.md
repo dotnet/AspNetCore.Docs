@@ -19,7 +19,7 @@ By [Kirk Larkin](https://twitter.com/serpent5), [Juergen Gutsch](https://github.
 
 Most of the code examples shown in this article are from ASP.NET Core apps. The logging-specific parts of these code snippets apply to any .NET Core app that uses the [Generic Host](xref:fundamentals/host/generic-host). The ASP.NET Core web app templates use the Generic Host.
 
-This topic provides information on Logging in ASP.NET Core. For information on using configuration in console apps, see [.NET Logging](/dotnet/core/extensions/logging).
+This topic provides information on logging in ASP.NET Core. For information on logging in console apps, see [.NET Logging](/dotnet/core/extensions/logging).
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/logging/index/samples/3.x) ([how to download](xref:index#how-to-download-a-sample))
 
