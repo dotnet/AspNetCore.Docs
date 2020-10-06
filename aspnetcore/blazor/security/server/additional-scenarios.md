@@ -38,16 +38,6 @@ services.Configure<OpenIdConnectOptions>(AzureADDefaults.OpenIdScheme, options =
 
 Optionally, additional scopes are added with `options.Scope.Add("{SCOPE}");`, where the placeholder `{SCOPE}` is the additional scope to add.
 
-Define a class to pass in the initial app state with the access and refresh tokens:
-
-```csharp
-public class InitialApplicationState
-{
-    public string AccessToken { get; set; }
-    public string RefreshToken { get; set; }
-}
-```
-
 Define a **scoped** token provider service that can be used within the Blazor app to resolve the tokens from [dependency injection (DI)](xref:blazor/fundamentals/dependency-injection):
 
 ```csharp
@@ -66,6 +56,16 @@ In `Startup.ConfigureServices`, add services for:
 ```csharp
 services.AddHttpClient();
 services.AddScoped<TokenProvider>();
+```
+
+Define a class to pass in the initial app state with the access and refresh tokens:
+
+```csharp
+public class InitialApplicationState
+{
+    public string AccessToken { get; set; }
+    public string RefreshToken { get; set; }
+}
 ```
 
 In the `_Host.cshtml` file, create and instance of `InitialApplicationState` and pass it as a parameter to the app:
@@ -309,7 +309,7 @@ endpoints.MapBlazorHub().RequireAuthorization(
 
 ## Use OpenID Connect (OIDC) v2.0 endpoints
 
-The authentication library and Blazor templates use OpenID Connect (OIDC) v1.0 endpoints in versions of ASP.NET Core prior to 5.0. To use a v2.0 endpoint with versions of ASP.NET Core prior to 5.0, configure the <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.Authority?displayProperty=nameWithType> option in the <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions>:
+In versions of ASP.NET Core prior to 5.0, the authentication library and Blazor templates use OpenID Connect (OIDC) v1.0 endpoints. To use a v2.0 endpoint with versions of ASP.NET Core prior to 5.0, configure the <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions.Authority?displayProperty=nameWithType> option in the <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions>:
 
 ```csharp
 services.Configure<OpenIdConnectOptions>(AzureADDefaults.OpenIdScheme, 
