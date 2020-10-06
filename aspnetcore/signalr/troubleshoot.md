@@ -9,7 +9,7 @@ ms.date: 04/08/2020
 no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: signalr/troubleshoot
 ---
-## Troubleshoot connection errors
+# Troubleshoot connection errors
 
 This section provides help with errors that can occur when trying to establish a connection to a ASP.NET Core SignalR hub.
 
