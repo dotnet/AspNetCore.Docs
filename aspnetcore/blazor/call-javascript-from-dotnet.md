@@ -499,19 +499,41 @@ export function showPrompt(message) {
 Add the preceding JavaScript module to a .NET library as a static web asset (`wwwroot/exampleJsInterop.js`) and then import the module into the .NET code using the <xref:Microsoft.JSInterop.IJSRuntime> service. The service is injected as `jsRuntime` (not shown) for the following example:
 
 ```csharp
-var module = await jsRuntime.InvokeAsync<JSObjectReference>(
+var module = await jsRuntime.InvokeAsync<IJSObjectReference>(
     "import", "./_content/MyComponents/exampleJsInterop.js");
 ```
 
 The `import` identifier in the preceding example is a special identifier used specifically for importing a JavaScript module. Specify the module using its stable static web asset path: `_content/{LIBRARY NAME}/{PATH UNDER WWWROOT}`. The placeholder `{LIBRARY NAME}` is the library name. The placeholder `{PATH UNDER WWWROOT}` is the path to the script under `wwwroot`.
 
-<xref:Microsoft.JSInterop.IJSRuntime> imports the module as a `JSObjectReference`, which represents a reference to a JavaScript object from .NET code. Use the `JSObjectReference` to invoke exported JavaScript functions from the module:
+<xref:Microsoft.JSInterop.IJSRuntime> imports the module as a `IJSObjectReference`, which represents a reference to a JavaScript object from .NET code. Use the `IJSObjectReference` to invoke exported JavaScript functions from the module:
 
 ```csharp
 public async ValueTask<string> Prompt(string message)
 {
     return await module.InvokeAsync<string>("showPrompt", message);
 }
+```
+
+`IJSInProcessObjectReference` represents a reference to a JavaScript object whose functions can be invoked synchronously.
+
+`IJSUnmarshalledObjectReference` represents a reference to an JavaScript object whose functions can be invoked without the overhead of serializing .NET data. This can be used in Blazor WebAssembly when performance is crucial:
+
+```javascript
+window.unmarshalledInstance = {
+  helloWorld: function (personNamePointer) {
+    const personName = Blazor.platform.readStringField(value, 0);
+    return `Hello ${personName}`;
+  }
+};
+```
+
+```csharp
+var unmarshalledRuntime = (IJSUnmarshalledRuntime)jsRuntime;
+var jsUnmarshalledReference = unmarshalledRuntime
+    .InvokeUnmarshalled<IJSUnmarshalledObjectReference>("unmarshalledInstance");
+
+string helloWorldString = jsUnmarshalledReference.InvokeUnmarshalled<string, string>(
+    "helloWorld");
 ```
 
 ## Use of JavaScript libraries that render UI (DOM elements)

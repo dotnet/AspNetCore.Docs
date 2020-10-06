@@ -26,6 +26,8 @@ Configuration in ASP.NET Core is performed using one or more [configuration prov
 * Directory files
 * In-memory .NET objects
 
+This topic provides information on configuration in ASP.NET Core. For information on using configuration in console apps, see [.NET Configuration](/dotnet/core/extensions/configuration).
+
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 <a name="default"></a>

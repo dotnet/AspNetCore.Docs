@@ -5,7 +5,7 @@ description: Learn about the tooling available to build Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/07/2020
+ms.date: 09/28/2020
 no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/tooling
 zone_pivot_groups: operating-systems
@@ -36,13 +36,13 @@ For more information on trusting the ASP.NET Core HTTPS development certificate,
 
 ::: zone pivot="linux"
 
-1. Install the latest version of the [.NET Core 3.1 SDK](https://dotnet.microsoft.com/download/dotnet-core/3.1). If you previously installed the SDK, you can determine your installed version by executing the following command in a command shell:
+1. Install the latest version of the [.NET Core SDK](https://dotnet.microsoft.com/download). If you previously installed the SDK, you can determine your installed version by executing the following command in a command shell:
 
    ```dotnetcli
    dotnet --version
    ```
 
-1. Install the latest version of [Visual Studio Code](https://code.visualstudio.com/).
+1. Install the latest version of [Visual Studio Code](https://code.visualstudio.com).
 
 1. Install the latest [C# for Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp).
 
@@ -74,7 +74,7 @@ There's no centralized way to trust a certificate on Linux. Typically, one of th
 * Trust all self-signed certificates for `localhost`.
 * Add the certificate to the list of trusted certificates in the browser.
 
-For more information, see the guidance provided by your browser and Linux distribution.
+For more information, see the guidance provided by your browser manufacturer and Linux distribution.
 
 ::: zone-end
 
