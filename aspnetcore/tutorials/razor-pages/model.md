@@ -627,7 +627,7 @@ Run the following .NET Core CLI command:
 dotnet tool install --global dotnet-ef
 ```
 
-The preceding command adds the Entity Framework Core Tools for the .NET Core CLI.
+The preceding command adds the Entity Framework Core Tools for the .NET Core CLI. For more information, see [Entity Framework Core tools reference - .NET Core CLI](/ef/core/miscellaneous/cli/dotnet).
 
 ---
 
