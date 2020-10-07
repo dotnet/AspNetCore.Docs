@@ -96,7 +96,7 @@ Update the `h1` declaration in `MyComponent.razor.css` with the `::deep` combina
 The `h1` style now applies to the `ChildExample` and `FirstChild` components without the need to create separate scoped CSS files for the child components.
 
 > [!NOTE]
-> The `::deep` combinator works only with descendant elements. The following HTML structure applies the `h2` styles to components as expected:
+> The `::deep` combinator works only with descendant elements. The following HTML structure applies the `h1` styles to components as expected:
 > 
 >```razor
 ><div>
