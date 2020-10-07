@@ -145,7 +145,7 @@ The output location specified with the `-o|--output` option creates a project fo
 
 ::: moniker range=">= aspnetcore-5.0"
 
-[!INCLUDE[](~/includes/blazor-security/additional-scopes-hosted.md)]
+[!INCLUDE[](~/includes/blazor-security/additional-scopes-hosted-nonAAD.md)]
 
 ::: moniker-end
 
