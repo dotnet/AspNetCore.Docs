@@ -310,6 +310,14 @@ dotnet ef migrations add InitialCreate
 dotnet ef database update
 ```
 
+The preceding commands generate the following warning: "No type was specified for the decimal column 'Price' on entity type 'Movie'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'."
+
+Ignore that warning, you will be shown how to fix this in a following tutorial in this series.
+
+The migrations command generates code to create the initial database schema. The schema is based on the model specified in `DbContext`. The `InitialCreate` argument is used to name the migrations. Any name can be used, but by convention a name is selected that describes the migration.
+
+The `update` command runs the `Up` method in migrations that have not been applied. In this case, `update` runs the `Up` method in  *Migrations/\<time-stamp>_InitialCreate.cs* file, which creates the database.
+
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 [!INCLUDE [more information on the CLI for EF Core](~/includes/ef-cli.md)]
