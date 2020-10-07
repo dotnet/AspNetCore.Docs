@@ -12,8 +12,10 @@
       href: /dotnet/standard/choosing-core-framework-server?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
 - name: Get started
   uid: getting-started
-- name: Release notes
-  items:
+- name: What's new
+  items: 
+    - name: What's new in 5.0
+      uid: aspnetcore-5.0
     - name: What's new in 3.1
       uid: aspnetcore-3.1
     - name: What's new in 3.0
