@@ -691,18 +691,7 @@ Add-Migration InitialCreate
 Update-Database
 ```
 
-# [Visual Studio Code](#tab/visual-studio-code)
-
-[!INCLUDE [more information on the CLI for EF Core](~/includes/ef-cli.md)]
-
-Run the following .NET Core CLI commands:
-
-```dotnetcli
-dotnet ef migrations add InitialCreate
-dotnet ef database update
-```
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
+# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
 [!INCLUDE [more information on the CLI for EF Core](~/includes/ef-cli.md)]
 
@@ -1054,18 +1043,7 @@ The `Add-Migration` command generates code to create the initial database schema
 
 The `Update-Database` command runs the `Up` method in the *Migrations/\<time-stamp>_InitialCreate.cs* file. The `Up` method creates the database.
 
-# [Visual Studio Code](#tab/visual-studio-code)
-
-[!INCLUDE [more information on the CLI for EF Core](~/includes/ef-cli.md)]
-
-Run the following .NET Core CLI commands:
-
-```dotnetcli
-dotnet ef migrations add InitialCreate
-dotnet ef database update
-```
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
+# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
 [!INCLUDE [more information on the CLI for EF Core](~/includes/ef-cli.md)]
 
