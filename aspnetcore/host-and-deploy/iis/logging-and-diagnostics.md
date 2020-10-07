@@ -82,4 +82,4 @@ The handler settings can also be provided via environment variables:
 > [!WARNING]
 > Do **not** leave debug logging enabled in the deployment for longer than required to troubleshoot an issue. The size of the log isn't limited. Leaving the debug log enabled can exhaust the available disk space and crash the server or app service.
 
-See [Configuration with `web.config`](xref:host-and-deploy/iis/web-config#configuration-with-webconfig) for an example of the `aspNetCore` element in the `web.config` file.
+See [Configuration with `web.config`](xref:host-and-deploy/iis/web-config#configuration-of-aspnet-core-module-with-webconfig) for an example of the `aspNetCore` element in the `web.config` file.
