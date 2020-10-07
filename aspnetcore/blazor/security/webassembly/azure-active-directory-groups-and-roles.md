@@ -33,7 +33,7 @@ The guidance in this article applies to the Blazor WebAssembly AAD deployment sc
 
 A [Microsoft Graph API](/graph/use-the-api) call is required for any app user with more than five AAD Administrator role and security group memberships.
 
-To permit Graph API calls, give the standalone or client app of a hosted Blazor solution any of the following [Graph API permissions](/graph/permissions-reference) in the Azure portal:
+To permit Graph API calls, give the standalone or *`Client`* app of a hosted Blazor solution any of the following [Graph API permissions](/graph/permissions-reference) in the Azure portal:
 
 * `Directory.Read.All`
 * `Directory.ReadWrite.All`
@@ -72,7 +72,7 @@ public class CustomUserAccount : RemoteUserAccount
 }
 ```
 
-In the standalone app or the client app of a hosted Blazor solution, create a custom <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler> class. Use the correct scope (permission) for Graph API calls that obtain role and group information.
+In the standalone app or the *`Client`* app of a hosted Blazor solution, create a custom <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler> class. Use the correct scope (permission) for Graph API calls that obtain role and group information.
 
 `GraphAPIAuthorizationMessageHandler.cs`:
 
@@ -234,7 +234,7 @@ There's no need to provide code to remove the original `groups` claim, if presen
 >
 > General coverage for this approach is found in the <xref:blazor/security/webassembly/additional-scenarios#custom-authorizationmessagehandler-class> article.
 
-Register the factory in `Program.Main` (`Program.cs`) of the standalone app or client app of a hosted Blazor solution. Consent to the `Directory.Read.All` permission scope as an additional scope for the app:
+Register the factory in `Program.Main` (`Program.cs`) of the standalone app or *`Client`* app of a hosted Blazor solution. Consent to the `Directory.Read.All` permission scope as an additional scope for the app:
 
 ```csharp
 builder.Services.AddMsalAuthentication<RemoteAuthenticationState, 
@@ -635,9 +635,9 @@ The following example assumes that an app is configured with two roles:
 
 The single `roles` claim sent by AAD presents the user-defined roles as the `appRoles`'s `value`s in a JSON array. The app must convert the JSON array of roles into individual `role` claims.
 
-The `CustomUserFactory` shown in the [User-defined groups and AAD Administrator Roles](#user-defined-groups-and-administrator-roles) section is set up to act on a `roles` claim with a JSON array value. Add and register the `CustomUserFactory` in the standalone app or client app of a hosted Blazor solution as shown in the [User-defined groups and AAD Administrator Roles](#user-defined-groups-and-administrator-roles) section. There's no need to provide code to remove the original `roles` claim because it's automatically removed by the framework.
+The `CustomUserFactory` shown in the [User-defined groups and AAD Administrator Roles](#user-defined-groups-and-administrator-roles) section is set up to act on a `roles` claim with a JSON array value. Add and register the `CustomUserFactory` in the standalone app or *`Client`* app of a hosted Blazor solution as shown in the [User-defined groups and AAD Administrator Roles](#user-defined-groups-and-administrator-roles) section. There's no need to provide code to remove the original `roles` claim because it's automatically removed by the framework.
 
-In `Program.Main` of the standalone app or client app of a hosted Blazor solution, specify the claim named "`role`" as the role claim:
+In `Program.Main` of the standalone app or *`Client`* app of a hosted Blazor solution, specify the claim named "`role`" as the role claim:
 
 ```csharp
 builder.Services.AddMsalAuthentication(options =>
