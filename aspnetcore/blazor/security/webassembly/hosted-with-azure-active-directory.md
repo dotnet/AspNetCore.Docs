@@ -5,7 +5,7 @@ description: Learn how to secure an ASP.NET Core Blazor WebAssembly hosted app w
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: "devx-track-csharp, mvc"
-ms.date: 07/08/2020
+ms.date: 10/08/2020
 no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/security/webassembly/hosted-with-azure-active-directory
 ---
@@ -122,7 +122,7 @@ dotnet new blazorwasm -au SingleOrg --api-client-id "{SERVER API APP CLIENT ID}"
 | Placeholder                  | Azure portal name                                     | Example                                |
 | ---------------------------- | ----------------------------------------------------- | -------------------------------------- |
 | `{APP NAME}`                 | &mdash;                                               | `BlazorSample`                         |
-| `{CLIENT APP CLIENT ID}`     | Application (client) ID for the *`Client`* app          | `4369008b-21fa-427c-abaa-9b53bf58e538` |
+| `{CLIENT APP CLIENT ID}`     | Application (client) ID for the *`Client`* app        | `4369008b-21fa-427c-abaa-9b53bf58e538` |
 | `{DEFAULT SCOPE}`            | Scope name                                            | `API.Access`                           |
 | `{SERVER API APP CLIENT ID}` | Application (client) ID for the *Server API app*      | `41451fa7-82d9-4673-8fa5-69eff5a761fd` |
 | `{SERVER API APP ID URI}`    | Application ID URI ([see note](#access-token-scopes)) | `41451fa7-82d9-4673-8fa5-69eff5a761fd` |
@@ -132,13 +132,7 @@ dotnet new blazorwasm -au SingleOrg --api-client-id "{SERVER API APP CLIENT ID}"
 The output location specified with the `-o|--output` option creates a project folder if it doesn't exist and becomes part of the app's name.
 
 > [!NOTE]
-> Pass the App ID URI to the `app-id-uri` option, but note a configuration change might be required in the client app, which is described in the [Access token scopes](#access-token-scopes) section.
-
-::: moniker range=">= aspnetcore-5.0"
-
-[!INCLUDE[](~/includes/blazor-security/additional-scopes-hosted-AAD.md)]
-
-::: moniker-end
+> Pass the App ID URI to the `app-id-uri` option, but note that a configuration change might be required, which is described in the [Access token scopes](#access-token-scopes) section.
 
 > [!NOTE]
 > In the Azure portal, the *`Client`* app's platform configuration **Redirect URI** is configured for port 5001 for apps that run on the Kestrel server with default settings.
@@ -153,6 +147,24 @@ The output location specified with the `-o|--output` option creates a project fo
 
 ### Authentication package
 
+::: moniker range=">= aspnetcore-5.0"
+
+The support for authenticating and authorizing calls to ASP.NET Core Web APIs is provided by the following packages:
+
+* [`Microsoft.Identity.Web`](https://www.nuget.org/packages/Microsoft.Identity.Web)
+* [`Microsoft.Identity.Web.UI`](https://www.nuget.org/packages/Microsoft.Identity.Web.UI)
+
+```xml
+<PackageReference Include="Microsoft.Identity.Web" Version="{VERSION}" />
+<PackageReference Include="Microsoft.Identity.Web.UI" Version="{VERSION}" />
+```
+
+For the placeholder `{VERSION}`, the latest stable version of the package that matches the app's shared framework version can be found in the package's **Version History** at NuGet.org.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
 The support for authenticating and authorizing calls to ASP.NET Core Web APIs is provided by the [`Microsoft.AspNetCore.Authentication.AzureAD.UI`](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.AzureAD.UI) package:
 
 ```xml
@@ -162,7 +174,22 @@ The support for authenticating and authorizing calls to ASP.NET Core Web APIs is
 
 For the placeholder `{VERSION}`, the latest stable version of the package that matches the app's shared framework version can be found in the package's **Version History** at [NuGet.org](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.AzureAD.UI).
 
+::: moniker-end
+
 ### Authentication service support
+
+::: moniker range=">= aspnetcore-5.0"
+
+The `AddAuthentication` method sets up authentication services within the app and configures the JWT Bearer handler as the default authentication method. The <xref:Microsoft.Identity.Web.MicrosoftIdentityWebApiAuthenticationBuilderExtensions.AddMicrosoftIdentityWebApi%2A> method configures services to protect the web API with Microsoft Identity Platform v2.0. This method expects an `AzureAd` section in the app's configuration with the necessary settings to initialize authentication options.
+
+```csharp
+services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddMicrosoftIdentityWebApi(Configuration.GetSection("AzureAd"));
+```
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
 
 The `AddAuthentication` method sets up authentication services within the app and configures the JWT Bearer handler as the default authentication method. The <xref:Microsoft.AspNetCore.Authentication.AzureADAuthenticationBuilderExtensions.AddAzureADBearer%2A> method sets up the specific parameters in the JWT Bearer handler required to validate tokens emitted by the Azure Active Directory:
 
@@ -170,6 +197,8 @@ The `AddAuthentication` method sets up authentication services within the app an
 services.AddAuthentication(AzureADDefaults.BearerAuthenticationScheme)
     .AddAzureADBearer(options => Configuration.Bind("AzureAd", options));
 ```
+
+::: moniker-end
 
 <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A> and <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A> ensure that:
 
@@ -201,6 +230,40 @@ services.Configure<JwtBearerOptions>(
 
 ### App settings
 
+::: moniker range=">= aspnetcore-5.0"
+
+The `appsettings.json` file contains the options to configure the JWT bearer handler used to validate access tokens:
+
+```json
+{
+  "AzureAd": {
+    "Instance": "https://login.microsoftonline.com/",
+    "Domain": "{DOMAIN}",
+    "TenantId": "{TENANT ID}",
+    "ClientId": "{SERVER API APP CLIENT ID}",
+    "CallbackPath": "/signin-oidc"
+  }
+}
+```
+
+Example:
+
+```json
+{
+  "AzureAd": {
+    "Instance": "https://login.microsoftonline.com/",
+    "Domain": "contoso.onmicrosoft.com",
+    "TenantId": "e86c78e2-8bb4-4c41-aefd-918e0565a45e",
+    "ClientId": "41451fa7-82d9-4673-8fa5-69eff5a761fd",
+    "CallbackPath": "/signin-oidc"
+  }
+}
+```
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
 The `appsettings.json` file contains the options to configure the JWT bearer handler used to validate access tokens:
 
 ```json
@@ -226,6 +289,8 @@ Example:
   }
 }
 ```
+
+::: moniker-end
 
 ### WeatherForecast controller
 

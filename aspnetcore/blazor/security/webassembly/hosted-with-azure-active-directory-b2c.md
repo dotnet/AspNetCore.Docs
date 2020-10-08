@@ -5,7 +5,7 @@ description: Learn how to secure an ASP.NET Core Blazor WebAssembly hosted app w
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/08/2020
+ms.date: 10/08/2020
 no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/security/webassembly/hosted-with-azure-active-directory-b2c
 ---
@@ -129,7 +129,7 @@ dotnet new blazorwasm -au IndividualB2C --aad-b2c-instance "{AAD B2C INSTANCE}" 
 | ----------------------------- | ----------------------------------------------------- | -------------------------------------- |
 | `{AAD B2C INSTANCE}`          | Instance                                              | `https://contoso.b2clogin.com/`        |
 | `{APP NAME}`                  | &mdash;                                               | `BlazorSample`                         |
-| `{CLIENT APP CLIENT ID}`      | Application (client) ID for the *`Client`* app          | `4369008b-21fa-427c-abaa-9b53bf58e538` |
+| `{CLIENT APP CLIENT ID}`      | Application (client) ID for the *`Client`* app        | `4369008b-21fa-427c-abaa-9b53bf58e538` |
 | `{DEFAULT SCOPE}`             | Scope name                                            | `API.Access`                           |
 | `{SERVER API APP CLIENT ID}`  | Application (client) ID for the *Server API app*      | `41451fa7-82d9-4673-8fa5-69eff5a761fd` |
 | `{SERVER API APP ID URI}`     | Application ID URI ([see note](#access-token-scopes)) | `41451fa7-82d9-4673-8fa5-69eff5a761fd` |
@@ -139,15 +139,9 @@ dotnet new blazorwasm -au IndividualB2C --aad-b2c-instance "{AAD B2C INSTANCE}" 
 The output location specified with the `-o|--output` option creates a project folder if it doesn't exist and becomes part of the app's name.
 
 > [!NOTE]
-> Pass the App ID URI to the `app-id-uri` option, but note a configuration change might be required in the client app, which is described in the [Access token scopes](#access-token-scopes) section.
+> Pass the App ID URI to the `app-id-uri` option, but note a configuration change might be required, which is described in the [Access token scopes](#access-token-scopes) section.
 >
 > Additionally, the scope set up by the Hosted Blazor template might have the App ID URI host repeated. Confirm that the scope configured for the `DefaultAccessTokenScopes` collection is correct in `Program.Main` (`Program.cs`) of the *`Client`* app.
-
-::: moniker range=">= aspnetcore-5.0"
-
-[!INCLUDE[](~/includes/blazor-security/additional-scopes-hosted-nonAAD.md)]
-
-::: moniker-end
 
 > [!NOTE]
 > In the Azure portal, the *`Client`* app's platform configuration **Redirect URI** is configured for port 5001 for apps that run on the Kestrel server with default settings.
@@ -353,8 +347,6 @@ Specify additional scopes with `AdditionalScopesToConsent`:
 ```csharp
 options.ProviderOptions.AdditionalScopesToConsent.Add("{ADDITIONAL SCOPE URI}");
 ```
-
-[!INCLUDE[](~/includes/blazor-security/azure-scope.md)]
 
 For more information, see the following sections of the *Additional scenarios* article:
 
