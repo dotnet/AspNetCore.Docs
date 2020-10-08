@@ -149,7 +149,7 @@ The output location specified with the `-o|--output` option creates a project fo
 
 ::: moniker range=">= aspnetcore-5.0"
 
-The support for authenticating and authorizing calls to ASP.NET Core Web APIs is provided by the following packages:
+The support for authenticating and authorizing calls to ASP.NET Core Web APIs with the Microsoft Identity Platform is provided by the following packages:
 
 * [`Microsoft.Identity.Web`](https://www.nuget.org/packages/Microsoft.Identity.Web)
 * [`Microsoft.Identity.Web.UI`](https://www.nuget.org/packages/Microsoft.Identity.Web.UI)
