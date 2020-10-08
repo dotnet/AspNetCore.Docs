@@ -13,13 +13,13 @@ uid: blazor/components/css-isolation
 
 By [Dave Brock](https://twitter.com/daveabrock)
 
-Use cascading style sheets (CSS) isolation to only apply styles to the current component. CSS isolation simplifies an app's CSS footprint by preventing dependencies on global styles, and also helps to avoid styling conflicts between other components or libraries.
+CSS isolation simplifies an app's CSS footprint by preventing dependencies on global styles, and also helps to avoid styling conflicts between other components or libraries. Use CSS isolation to only apply styles to the current component. 
 
 ## Enable CSS isolation 
 
 To define component-specific styles, create a `razor.css` file matching the name of the `.razor` file for the component. This `razor.css` file is a *scoped CSS file*. 
 
-For a `MyComponent` that has a `MyComponent.razor` file, create a file in the `Pages` folder called `MyComponent.razor.css`. The `MyComponent` value in the `razor.css` filename is **not** case-sensitive.
+For a `MyComponent` that has a `MyComponent.razor` file, create a file alongside your component called `MyComponent.razor.css`. The `MyComponent` value in the `razor.css` filename is **not** case-sensitive.
 
 For example, to add CSS isolation to the `Counter` component in the sample app, add a new file named `Counter.razor.css`, then add the following CSS:
 
@@ -64,9 +64,9 @@ Additionally, at build time a project bundle is created with the convention `Sta
 
 ## Child component support
 
-By default, CSS isolation only applies to the component you associate with `MyComponent.razor.css`. To apply changes to a child component, use the `::deep` combinator to any descendant elements in the parent component's `razor.css` file. The `::deep` combinator selects elements that are *descendants* of an element's generated scope identifier. 
+By default, CSS isolation only applies to the component you associate with the format `MyComponent.razor.css`. To apply changes to a child component, use the `::deep` combinator to any descendant elements in the parent component's `razor.css` file. The `::deep` combinator selects elements that are *descendants* of an element's generated scope identifier. 
 
-The following example shows a parent component, called `ChildExample` in a file called `Pages/ChildExample.razor`, with a child component called `MyChild`:
+The following example shows a parent component, called `ChildExample` in a file called `ChildExample.razor`, with a child component called `MyChild`:
 
 `ChildExample.razor`:
 ```razor
@@ -85,7 +85,7 @@ The following example shows a parent component, called `ChildExample` in a file 
 <h1>A Child Component</h1>
 ```
 
-Update the `h1` declaration in `MyComponent.razor.css` with the `::deep` combinator to signify the `h1` style declaration must apply to the parent component and its children.
+Update the `h1` declaration in `ChildExample.razor.css` with the `::deep` combinator to signify the `h1` style declaration must apply to the parent component and its children.
 
 ```css
 ::deep h1 { 
@@ -93,7 +93,7 @@ Update the `h1` declaration in `MyComponent.razor.css` with the `::deep` combina
 }
 ```
 
-The `h1` style now applies to the `ChildExample` and `FirstChild` components without the need to create separate scoped CSS files for the child components.
+The `h1` style now applies to the parent `ChildExample` and `FirstChild` component without the need to create separate scoped CSS files for the child component.
 
 > [!NOTE]
 > The `::deep` combinator works only with descendant elements. The following HTML structure applies the `h1` styles to components as expected:
@@ -125,7 +125,7 @@ For example, when you add a `MyComponent.razor.scss` file, these tools can compi
 
 ## CSS isolation configuration
 
-When working with isolated CSS, no configuration is required. However, configuration is available for advanced scenarios or when there are dependencies on other existing tools or workflows.
+CSS isolation is designed to work out-of-the-box, but provides configuration for some advanced scenarios—such as when there are dependencies on existing tools or workflows.
 
 ### Customize scope identifier format
 
@@ -137,7 +137,7 @@ By default, scope identifiers use the format `b-<10-character-string>`. To custo
 </ItemGroup>
 ```
 
-In this example, the scope identifier changes from `b-<10-character-string>` to `my-custom-scope-identifier`.
+In this example, the CSS generated from `MyComponent.Razor.css` changes its scope identifier from `b-<10-character-string>` to `my-custom-scope-identifier`.
 
 ### Change base path for static web assets
 
