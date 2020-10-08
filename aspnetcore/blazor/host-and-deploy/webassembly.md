@@ -851,3 +851,75 @@ In the project file, the script is run after publishing the app:
 
 > [!NOTE]
 > When renaming and lazy loading the same assemblies, see the guidance in <xref:blazor/webassembly-lazy-load-assemblies#onnavigateasync-events-and-renamed-assembly-files>.
+
+## Resolve integrity check failures
+
+When Blazor WebAssembly downloads your application's startup files, it instructs the browser to perform integrity checks on the responses. It uses information in the `blazor.boot.json` file to specify the expected SHA-256 hash values for `.dll`, `.wasm` and certain other files. This is beneficial because:
+
+* It ensures you don't risk loading an inconsistent set of files, for example if a new deployment is applied to your web server while the user is in process of downloading the application files. Inconsistent files could lead to undefined behavior.
+* It ensures the user's browser never caches inconsistent or invalid responses, which could prevent them from starting the application even if they manually refresh the page.
+* It makes it safe to cache the responses and not even check for server-side changes until the expected SHA-256 hashes themselves change, so subsequent page loads involve fewer requests and complete much faster.
+
+If your web server returns responses that don't match the expected SHA-256 hashes, you will see an error similar to the following appear in the browser's developer console:
+
+```
+Failed to find a valid digest in the 'integrity' attribute for resource 'https://myapp.example.com/_framework/MyBlazorApp.dll' with computed SHA-256 integrity 'IIa70iwvmEg5WiDV17OpQ5eCztNYqL186J56852RpJY='. The resource has been blocked.
+```
+
+In most cases, this is *not* a problem with integrity checking itself. Instead, it means there is some other problem, and the integrity check is warning you about that other problem.
+
+### Diagnosing integrity problems
+
+When you application is built, the generated `blazor.boot.json` manifest describes the SHA-256 hashes of your boot resources (e.g., `.dll`, `.wasm`, and other files) at the time that the build output is produced. The integrity check will pass as long as the SHA-256 hashes in `blazor.boot.json` continue to match up with the responses delivered to the browser.
+
+Common reasons why this fails are:
+
+ * If your web server's response is an error (e.g., a `404 Not Found` or a `500 Internal Error`) instead of the file the browser requested. This is reported by the browser as an integrity check failure, and not as a response failure.
+ * Or, if something has changed the contents of your files in between build and delivery to the browser. This might happen:
+   * If you manually modified the build output, or you have build tools that do so.
+   * If some aspect of your deployment process modified the files. For example, if you use a Git-based deployment mechanism, bear in mind that Git will transparently convert Windows-style line endings to Unix-style ones if you commit files on Windows and check them out on Linux. Changes of line endings will change the SHA-256 hashes. To avoid this problem, consider [using `.gitattributes` to treat build artifacts as `binary` files](https://git-scm.com/book/en/v2/Customizing-Git-Git-Attributes).
+   * If your web server modifies the file contents as part of serving them. For example some content distribution networks (CDNs) automatically attempt to "minify" HTML, thereby modifying it. You may need to disable such features.
+
+To diagnose which of these applies in your case,
+
+ 1. Note which file is triggering the error by reading the error message
+ 2. Open your browser's developer tools and look in the *Network* tab. If necessary, reload the page to see the list of requests and responses. Find the file that is triggering the error in that list.
+ 3. Check the HTTP status code in the response. If the server returns anything other than `200 OK` (or another 2xx status code), then you have a server-side problem to diagnose. For example, status `403` means there's an authorization problem, whereas `500` means the server is failing in an unspecified manner. Consult server-side logs as needed to diagnose and fix this.
+ 4. If you are getting `200 OK` for the affected resource, look at the response contents in your browser's developer tools, and check they match up with the data you expect. For example, a common problem is to misconfigure routing so that requests return your `index.html` data even for other files. Make sure that responses to `.wasm` requests are WebAssembly binaries, and that responses to `.dll` requests are .NET assembly binaries. If not, you have a server-side routing problem to diagnose.
+
+If you confirm that the server is returning plausibly correct data, it must be something else modifying the contents in between build and delivery. To investigate this:
+
+ * Examine your build toolchain and deployment mechanism, in case they are modifying files after they were built (for example, Git transforming file line endings as described above)
+ * Examine your web server or CDN configuration, in case they are set up to modify responses dynamically (for example, trying to minify HTML). It is fine for your web server to implement HTTP compression (for example, returning `content-encoding: br` or `content-encoding: gzip`) since this doesn't affect the result after decompression. However it is *not* fine for your webserver to modify the uncompressed data.
+
+### Disabling integrity checking
+
+In most cases you should not disable integrity checking. Disabling integrity checking does not solve whatever underlying problem has caused the unexpected responses, and means you're giving up on the benefits listed above.
+
+There may be cases where your web server cannot be relied upon to return consistent responses and you have no choice but to disable integrity checks. To do this, add the following to a property group in your Blazor WebAssembly project's `.csproj` file:
+
+```xml
+<BlazorCacheBootResources>false</BlazorCacheBootResources>
+```
+
+This disables integrity checks (except for PWAs - see below).
+
+It also disables Blazor's default behavior of caching the `.dll`, `.wasm`, and other files based on their SHA-256 hashes, because you are indicating that the SHA-256 hashes cannot be relied upon for correctness. Even with this setting, the browser's normal HTTP cache may still cache those files, but whether or not this happens depends on your web server configuration and the `cache-control` headers that it serves.
+
+#### Disabling integrity checking for PWAs
+
+Blazor's Progressive Web Application (PWA) template contains a suggested `service-worker.published.js` file that is responsible for fetching and storing application files for offline use. This is a separate process from the normal app startup mechanism, and has its own separate integrity checking logic.
+
+Inside that file, you will find the following line:
+
+```js
+.map(asset => new Request(asset.url, { integrity: asset.hash }));
+```
+
+If you want to disable integrity checking, simply remove the `integrity` parameter, e.g.:
+
+```js
+.map(asset => new Request(asset.url));
+```
+
+Again, disabling this means you lose the safety guarantees offered by integrity checking. For example there is a risk that, if the user's browser is caching the app at the exact moment that you deploy a new version, it could cache some files from the old deployment and some from the new deployment, and then become stuck in a broken state until you deploy a further update.
