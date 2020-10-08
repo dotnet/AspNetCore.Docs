@@ -56,7 +56,7 @@ To create a new Blazor WebAssembly project with an authentication mechanism:
 
 ---
 
-## Server app configuration
+## *`Server`* app configuration
 
 The following sections describe additions to the project when authentication support is included.
 
@@ -154,7 +154,7 @@ In the app settings file (`appsettings.json`) at the project root, the `Identity
 
 The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `BlazorSample.Client`).
 
-## Client app configuration
+## *`Client`* app configuration
 
 ### Authentication package
 
@@ -271,7 +271,7 @@ Run the app from the Server project. When using Visual Studio, either:
 
 ### Custom user factory
 
-In the Client app, create a custom user factory. Identity Server sends multiple roles as a JSON array in a single `role` claim. A single role is sent as a string value in the claim. The factory creates an individual `role` claim for each of the user's roles.
+In the *`Client`* app, create a custom user factory. Identity Server sends multiple roles as a JSON array in a single `role` claim. A single role is sent as a string value in the claim. The factory creates an individual `role` claim for each of the user's roles.
 
 `CustomUserFactory.cs`:
 
@@ -333,14 +333,14 @@ public class CustomUserFactory
 }
 ```
 
-In the Client app, register the factory in `Program.Main` (`Program.cs`):
+In the *`Client`* app, register the factory in `Program.Main` (`Program.cs`):
 
 ```csharp
 builder.Services.AddApiAuthorization()
     .AddAccountClaimsPrincipalFactory<CustomUserFactory>();
 ```
 
-In the Server app, call <xref:Microsoft.AspNetCore.Identity.IdentityBuilder.AddRoles*> on the Identity builder, which adds role-related services:
+In the *`Server`* app, call <xref:Microsoft.AspNetCore.Identity.IdentityBuilder.AddRoles*> on the Identity builder, which adds role-related services:
 
 ```csharp
 using Microsoft.AspNetCore.Identity;
@@ -362,7 +362,7 @@ Use **one** of the following approaches:
 
 #### API authorization options
 
-In the Server app:
+In the *`Server`* app:
 
 * Configure Identity Server to put the `name` and `role` claims into the ID token and access token.
 * Prevent the default mapping for roles in the JWT token handler.
@@ -386,7 +386,7 @@ JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Remove("role");
 
 #### Profile Service
 
-In the Server app, create a `ProfileService` implementation.
+In the *`Server`* app, create a `ProfileService` implementation.
 
 `ProfileService.cs`:
 
@@ -420,7 +420,7 @@ public class ProfileService : IProfileService
 }
 ```
 
-In the Server app, register the Profile Service in `Startup.ConfigureServices`:
+In the *`Server`* app, register the Profile Service in `Startup.ConfigureServices`:
 
 ```csharp
 using IdentityServer4.Services;
@@ -432,7 +432,7 @@ services.AddTransient<IProfileService, ProfileService>();
 
 ### Use authorization mechanisms
 
-In the Client app, component authorization approaches are functional at this point. Any of the authorization mechanisms in components can use a role to authorize the user:
+In the *`Client`* app, component authorization approaches are functional at this point. Any of the authorization mechanisms in components can use a role to authorize the user:
 
 * [`AuthorizeView` component](xref:blazor/security/index#authorizeview-component) (Example: `<AuthorizeView Roles="admin">`)
 * [`[Authorize]` attribute directive](xref:blazor/security/index#authorize-attribute) (<xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute>) (Example: `@attribute [Authorize(Roles = "admin")]`)
@@ -447,7 +447,7 @@ In the Client app, component authorization approaches are functional at this poi
   }
   ```
 
-`User.Identity.Name` is populated in the Client app with the user's user name, which is usually their sign-in email address.
+`User.Identity.Name` is populated in the *`Client`* app with the user's user name, which is usually their sign-in email address.
 
 [!INCLUDE[](~/includes/blazor-security/usermanager-signinmanager.md)]
 

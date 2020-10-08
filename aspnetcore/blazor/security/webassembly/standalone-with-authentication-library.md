@@ -93,6 +93,8 @@ Authentication support for standalone apps is offered using OpenID Connect (OIDC
 
 ## Access token scopes
 
+The Blazor WebAssembly template automatically configures default scopes for `openid` and `profile`.
+
 The Blazor WebAssembly template doesn't automatically configure the app to request an access token for a secure API. To provision an access token as part of the sign-in flow, add the scope to the default token scopes of the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.OidcProviderOptions>:
 
 ```csharp

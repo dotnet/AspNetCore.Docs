@@ -12,7 +12,7 @@ One approach to prevent lingering cookies and site data from interfering with te
 
 * Configure a browser
   * Use a browser for testing that you can configure to delete all cookie and site data each time the browser is closed.
-  * Make sure that the browser is closed manually or by the IDE between any change to the app, test user, or provider configuration.
+  * Make sure that the browser is closed manually or by the IDE for any change to the app, test user, or provider configuration.
 * Use a custom command to open a browser in incognito or private mode in Visual Studio:
   * Open **Browse With** dialog box from Visual Studio's **Run** button.
   * Select the **Add** button.
@@ -21,13 +21,13 @@ One approach to prevent lingering cookies and site data from interfering with te
     * Google Chrome: `C:\Program Files (x86)\Google\Chrome\Application\chrome.exe`
     * Mozilla Firefox: `C:\Program Files\Mozilla Firefox\firefox.exe`
   * In the **Arguments** field, provide the command-line option that the browser uses to open in incognito or private mode. Some browsers require the URL of the app.
-    * Microsoft Edge: `-inprivate`
-    * Google Chrome: `--incognito --new-window https://localhost:5001`
-    * Mozilla Firefox: `-private -url https://localhost:5001`
+    * Microsoft Edge: Use `-inprivate`.
+    * Google Chrome: Use `--incognito --new-window {URL}`, where the placeholder `{URL}` is the URL to open (for example, `https://localhost:5001`).
+    * Mozilla Firefox: Use `-private -url {URL}`, where the placeholder `{URL}` is the URL to open (for example, `https://localhost:5001`).
   * Provide a name in the **Friendly name** field. For example, `Firefox Auth Testing`.
   * Select the **OK** button.
   * To avoid having to select the browser profile for each iteration of testing with an app, set the profile as the default with the **Set as Default** button.
-  * Make sure that the browser is closed by the IDE between any change to the app, test user, or provider configuration.
+  * Make sure that the browser is closed by the IDE for any change to the app, test user, or provider configuration.
 
 ### Run the Server app
 
