@@ -280,10 +280,10 @@ In the preceding example, `Data` is different for every cell, but `Options` is c
 
 The `<CascadingValue>` component has an optional parameter called `IsFixed`.
 
- * If the `IsFixed` value is `false` (the default), then every recipient of the cascaded value will set up a subscription to receive change notifications. In this case, each each `[CascadingParameter]` is **substantially more expensive** than a regular `[Parameter]` due to the subscription tracking.
- * If the `IsFixed` value is `true` (e.g., `<CascadingValue Value="@someValue" IsFixed="true">`), then receipients receive the initial value but do *not* set up any subscription to receive updates. In this case, each `[CascadingParameter]` is lightweight and **no more expensive** than a regular `[Parameter]`.
+ * If the `IsFixed` value is `false` (the default), then every recipient of the cascaded value sets up a subscription to receive change notifications. In this case, each each `[CascadingParameter]` is **substantially more expensive** than a regular `[Parameter]` due to the subscription tracking.
+ * If the `IsFixed` value is `true` (for example, `<CascadingValue Value="@someValue" IsFixed="true">`), then receipients receive the initial value but do *not* set up any subscription to receive updates. In this case, each `[CascadingParameter]` is lightweight and **no more expensive** than a regular `[Parameter]`.
 
-So wherever possible, you should use `IsFixed="true"` on cascaded values. You can do this whenever the value being supplied does not change over time. For example, in the common pattern where a component passes `this` as a cascaded value, you should use `IsFixed="true"`:
+So wherever possible, you should use `IsFixed="true"` on cascaded values. You can do this whenever the value being supplied doesn't change over time. In the common pattern where a component passes `this` as a cascaded value, you should use `IsFixed="true"`:
 
 ```razor
 <CascadingValue Value="this" IsFixed="true">
@@ -295,7 +295,7 @@ This makes a huge difference if there are a large number of other components tha
 
 #### Avoid attribute splatting with `CaptureUnmatchedValues`
 
-Components can elect to receive "unmatched" parameter values using the `CaptureUnmatchedValues` flag:
+Components can elect to receive "unmatched" parameter values using the <xref:Microsoft.AspNetCore.Components.ParameterAttribute.CaptureUnmatchedValues> flag:
 
 ```razor
 <div @attributes="OtherAttributes">...</div>
@@ -306,9 +306,12 @@ Components can elect to receive "unmatched" parameter values using the `CaptureU
 }
 ```
 
-This is a way of passing through arbitrary additional attributes. However it is also quite expensive, because the renderer has to match all the supplied parameters against the set of known ones to build a dictionary, and keep track of how multiple copies of the same attribute overwrite each other.
+This approach allows passing through arbitrary additional attributes to the element. However, it is also quite expensive because the renderer must:
 
-You should feel free to use `CaptureUnmatchedValues` on non-performance-critical components, such as ones that are not repeated frequently. However for components that render at scale, such as each item in a very large list or cells in a grid, try to avoid use of this feature.
+* Match all of the supplied parameters against the set of known parameters to build a dictionary.
+* Keep track of how multiple copies of the same attribute overwrite each other.
+
+Feel free to use <xref:Microsoft.AspNetCore.Components.ParameterAttribute.CaptureUnmatchedValues> on non-performance-critical components, such as ones that are not repeated frequently. However for components that render at scale, such as each items in a large list or cells in a grid, try to avoid attribute splatting.
 
 For more information, see <xref:blazor/components#attribute-splatting-and-arbitrary-parameters>.
 
@@ -318,18 +321,25 @@ One of the main aspects of the per-component rendering overhead is writing incom
 
 In some extreme cases, you may wish to avoid the reflection and implement your own parameter setting logic manually. This may be applicable when:
 
- * You have a component that renders extremely often (e.g., there are hundreds or thousands of copies of it in the UI)
- * It accepts many parameters
- * You find that the overhead of receiving parameters has an observable impact on UI responsiveness
+ * You have a component that renders extremely often (for example, there are hundreds or thousands of copies of it in the UI).
+ * It accepts many parameters.
+ * You find that the overhead of receiving parameters has an observable impact on UI responsiveness.
 
-In these cases you can override the component's virtual <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> method and implement your own component-specific logic. The following example deliberately avoids any dictionary lookups:
+In these cases, you can override the component's virtual <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> method and implement your own component-specific logic. The following example deliberately avoids any dictionary lookups:
 
 ```razor
 @code {
-    [Parameter] public int MessageId { get; set; }
-    [Parameter] public string Text { get; set; }
-    [Parameter] public EventCallback<string> TextChanged { get; set; }
-    [Parameter] public Theme CurrentTheme { get; set; }
+    [Parameter]
+    public int MessageId { get; set; }
+
+    [Parameter]
+    public string Text { get; set; }
+
+    [Parameter]
+    public EventCallback<string> TextChanged { get; set; }
+
+    [Parameter]
+    public Theme CurrentTheme { get; set; }
 
     public override Task SetParametersAsync(ParameterView parameters)
     {
@@ -354,19 +364,20 @@ In these cases you can override the component's virtual <xref:Microsoft.AspNetCo
             }
         }
 
-        // Run the normal lifecycle methods, but without assigning parameters again
         return base.SetParametersAsync(ParameterView.Empty);
     }
 }
 ```
 
-As you can see, this is complicated and laborious, so we don't recommend it in general. In extreme cases it can improve rendering performance by 20-25% but you should only consider it in the scenarios listed above.
+In the preceding code, returning the base class <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> runs the normal lifecycle methods without assigning parameters again.
+
+As you can see in the preceding code, overriding <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> and supplying custom logic is complicated and laborious, so we don't recommend this approach in general. In extreme cases, it can improve rendering performance by 20-25%, but you should only consider this approach in the scenarios listed earlier.
 
 ### Don't trigger events too rapidly
 
-Some browser events fire extremely frequently, for example `onmousemove` and `onscroll` which can fire tens or hundreds of times per second. In most cases you won't need to perform UI updates this frequently, and if you try to do so, you may harm UI responsiveness or consume excessive CPU time.
+Some browser events fire extremely frequently, for example `onmousemove` and `onscroll`, which can fire tens or hundreds of times per second. In most cases, you don't need to perform UI updates this frequently. If you try to do so, you may harm UI responsiveness or consume excessive CPU time.
 
-Rather than using native `@onmousemove` or `@onscroll` events, you may prefer to use JS interop to register a callback that fires less frequently. For example, the following component (`MyComponent.razor`) displays the position of the mouse, but only updates at most once every 500ms:
+Rather than using native `@onmousemove` or `@onscroll` events, you may prefer to use JS interop to register a callback that fires less frequently. For example, the following component (`MyComponent.razor`) displays the position of the mouse but only updates at most once every 500 ms:
 
 ```razor
 @inject IJSRuntime JS
@@ -374,14 +385,14 @@ Rather than using native `@onmousemove` or `@onscroll` events, you may prefer to
 
 <h1>@message</h1>
 
-<div @ref="myMouseMoveElement" style="border: 1px dashed red; height: 200px;">
+<div @ref="myMouseMoveElement" style="border:1px dashed red;height:200px;">
     Move mouse here
 </div>
 
 @code {
     ElementReference myMouseMoveElement;
     DotNetObjectReference<MyComponent> selfReference;
-    string message = "Move the mouse in the box";
+    private string message = "Move the mouse in the box";
 
     [JSInvokable]
     public void HandleMouseMove(int x, int y)
@@ -395,8 +406,9 @@ Rather than using native `@onmousemove` or `@onscroll` events, you may prefer to
         if (firstRender)
         {
             selfReference = DotNetObjectReference.Create(this);
-            var minInterval = 500; // Only notify every 500ms
-            await JS.InvokeVoidAsync("onThrottledMouseMove", myMouseMoveElement, selfReference, minInterval);
+            var minInterval = 500; // Only notify every 500 ms
+            await JS.InvokeVoidAsync("onThrottledMouseMove", 
+                myMouseMoveElement, selfReference, minInterval);
         }
     }
 
@@ -404,72 +416,73 @@ Rather than using native `@onmousemove` or `@onscroll` events, you may prefer to
 }
 ```
 
-The corresponding JavaScript code, which can be placed in the `index.html` page or loaded as an ES6 module, registers the actual DOM event listener and in this example uses [Lodash's `throttle` function](https://lodash.com/docs/4.17.15#throttle) to limit the rate of invocations:
+The corresponding JavaScript code, which can be placed in the `index.html` page or loaded as an ES6 module, registers the actual DOM event listener. In this example, the event listener uses [Lodash's `throttle` function](https://lodash.com/docs/4.17.15#throttle) to limit the rate of invocations:
 
 ```html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.20/lodash.min.js"></script>
 <script>
-    function onThrottledMouseMove(elem, component, interval) {
-        elem.addEventListener('mousemove', _.throttle(e => {
-            component.invokeMethodAsync('HandleMouseMove', e.offsetX, e.offsetY);
-        }, interval));
-    }
+  function onThrottledMouseMove(elem, component, interval) {
+    elem.addEventListener('mousemove', _.throttle(e => {
+      component.invokeMethodAsync('HandleMouseMove', e.offsetX, e.offsetY);
+    }, interval));
+  }
 </script>
 ```
 
-This technique can be even more important for Blazor Server, since each event invocation involves delivering a message over the network. It's valuable for Blazor WebAssembly too because it can greatly reduce the amount of rendering work.
+This technique can be even more important for Blazor Server, since each event invocation involves delivering a message over the network. It's valuable for Blazor WebAssembly because it can greatly reduce the amount of rendering work.
 
 ## Optimize JavaScript interop speed
 
 Calls between .NET and JavaScript involve some additional overhead because:
 
- * By default, they are asynchronous
- * By default, parameters and return values are JSON-serialized. This is to provide an easy-to-understand conversion mechanism between .NET and JavaScript types
+ * By default, calls are asynchronous.
+ * By default, parameters and return values are JSON-serialized. This is to provide an easy-to-understand conversion mechanism between .NET and JavaScript types.
 
-Additionally, on Blazor Server, these calls are passed across the network.
+Additionally on Blazor Server, these calls are passed across the network.
 
 ### Avoid excessively fine-grained calls
 
 Since each call involves some overhead, it can be valuable to reduce the number of calls. Consider the following code, which stores a collection of items in the browser's `localStorage` store:
 
-```cs
+```csharp
 private async Task StoreAllInLocalStorage(IEnumerable<TodoItem> items)
 {
     foreach (var item in items)
     {
-        await JS.InvokeVoidAsync("localStorage.setItem", item.Id, JsonSerializer.Serialize(item));
+        await JS.InvokeVoidAsync("localStorage.setItem", item.Id, 
+            JsonSerializer.Serialize(item));
     }
 }
 ```
 
-This makes a separate JS interop call for each item. Instead, this could be reduced to a single JS interop call:
+The preceding example makes a separate JS interop call for each item. Instead, the following approach reduces the JS interop to a single call:
 
-```cs
+```csharp
 private async Task StoreAllInLocalStorage(IEnumerable<TodoItem> items)
 {
     await JS.InvokeVoidAsync("storeAllInLocalStorage", items);
 }
 ```
 
-... with a corresponding JavaScript function defined as follows:
+The corresponding JavaScript function defined as follows:
 
-```js
+```javascript
 function storeAllInLocalStorage(items) {
-    items.forEach(item => {
-        localStorage.setItem(item.id, JSON.stringify(item));
-    });
+  items.forEach(item => {
+    localStorage.setItem(item.id, JSON.stringify(item));
+  });
 }
 ```
 
-For Blazor WebAssembly, this usually only matters if you are making a large number of JS interop calls.
+For Blazor WebAssembly, this usually only matters if you're making a large number of JS interop calls.
 
 ### Consider making synchronous calls
 
 JavaScript interop calls are asynchronous by default, regardless of whether the code being called is synchronous or asynchronous. This is to ensure components are compatible with both Blazor WebAssembly and Blazor Server. On Blazor Server, all JavaScript interop calls must be asynchronous because they are sent over a network connection.
 
-If you know for certain that your application only needs to run on Blazor WebAssembly, then you can choose to make synchronous JavaScript interop calls. This has slightly less overhead than making asynchronous calls, and can result in fewer render cycles because there is no intermediate state while awaiting the result.
+If you know for certain that your app only ever runs on Blazor WebAssembly, you can choose to make synchronous JavaScript interop calls. This has slightly less overhead than making asynchronous calls and can result in fewer render cycles because there is no intermediate state while awaiting results.
 
-To make a synchronous call from .NET to JavaScript, cast `IJSRuntime` to `IJSInProcessRuntime`:
+To make a synchronous call from .NET to JavaScript, cast <xref:Microsoft.JSInterop.IJSRuntime> to <xref:Microsoft.JSInterop.IJSInProcessRuntime>:
 
 ```razor
 @inject IJSRuntime JS
@@ -487,24 +500,24 @@ To make a synchronous call from .NET to JavaScript, cast `IJSRuntime` to `IJSInP
 
 ::: moniker range=">= aspnetcore-5.0"
 
-Similarly, when working with `IJSObjectReference`, you can make a synchronous call by casting it to `IJSInProcessObjectReference`.
+When working with `IJSObjectReference`, you can make a synchronous call by casting to `IJSInProcessObjectReference`.
 
 ::: moniker-end
 
 To make a synchronous call from JavaScript to .NET, use `DotNet.invokeMethod` instead of `DotNet.invokeMethodAsync`.
 
-Synchronous calls will work if:
+Synchronous calls work if:
 
- * Your application is running on Blazor WebAssembly, not Blazor Server
- * The function you are calling returns a value synchronously (i.e., it is not an `async` method and does not return a .NET `Task` or JavaScript `Promise`)
+* The app is running on Blazor WebAssembly, not Blazor Server.
+* The called function returns a value synchronously (it isn't an `async` method and doesn't return a .NET <xref:System.Threading.Tasks.Task> or JavaScript `Promise`).
 
- ::: moniker range=">= aspnetcore-5.0"
- 
 For more information, see <xref:blazor/call-javascript-from-dotnet>.
 
+::: moniker range=">= aspnetcore-5.0"
+ 
 ### Consider making unmarshalled calls
 
-When running on Blazor WebAssembly, it's possible to make unmarshalled calls from .NET to JavaScript. These are synchronous calls that do not perform any JSON serialization of arguments or return values. All aspects of memory management and translations between .NET and JavaScript representations are left up to the developer.
+When running on Blazor WebAssembly, it's possible to make unmarshalled calls from .NET to JavaScript. These are synchronous calls that don't perform JSON serialization of arguments or return values. All aspects of memory management and translations between .NET and JavaScript representations are left up to the developer.
 
 > [!WARNING]
 > While using `IJSUnmarshalledRuntime` has the least overhead of the JS interop approaches, the JavaScript APIs required to interact with these APIs are currently undocumented and subject to breaking changes in future releases.
