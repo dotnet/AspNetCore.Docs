@@ -161,7 +161,7 @@ For a Blazor app based on the Blazor WebAssembly Hosted project template, <xref:
 
 ### Graph API example
 
-In the following example, a named <xref:System.Net.Http.HttpClient> for Graph API is used to obtain a user's mobile phone number to process a call. After adding the Microsoft Graph API `User.Read` permission in the AAD area of the Azure portal, the scope is configured for the named client in the standalone app or Client app of a hosted Blazor solution.
+In the following example, a named <xref:System.Net.Http.HttpClient> for Graph API is used to obtain a user's mobile phone number to process a call. After adding the Microsoft Graph API `User.Read` permission in the AAD area of the Azure portal, the scope is configured for the named client in the standalone app or *`Client`* app of a hosted Blazor solution.
 
 > [!NOTE]
 > The example in this section obtains Graph API data for the user in *component code*. To create user claims from Graph API, see the following resources:
@@ -1054,7 +1054,7 @@ After following the guidance in one of the hosted Blazor WebAssembly app topics,
 * Prerenders paths for which authorization isn't required.
 * Doesn't prerender paths for which authorization is required.
 
-In the Client app's `Program` class (`Program.cs`), factor common service registrations into a separate method (for example, `ConfigureCommonServices`):
+In the *`Client`* app's `Program` class (`Program.cs`), factor common service registrations into a separate method (for example, `ConfigureCommonServices`):
 
 ```csharp
 public class Program
@@ -1114,7 +1114,7 @@ app.UseEndpoints(endpoints =>
 });
 ```
 
-In the server app, create a `Pages` folder if it doesn't exist. Create a `_Host.cshtml` page inside the server app's `Pages` folder. Paste the contents from the Client app's `wwwroot/index.html` file into the `Pages/_Host.cshtml` file. Update the file's contents:
+In the server app, create a `Pages` folder if it doesn't exist. Create a `_Host.cshtml` page inside the server app's `Pages` folder. Paste the contents from the *`Client`* app's `wwwroot/index.html` file into the `Pages/_Host.cshtml` file. Update the file's contents:
 
 * Add `@page "_Host"` to the top of the file.
 * Replace the `<app>Loading...</app>` tag with the following:

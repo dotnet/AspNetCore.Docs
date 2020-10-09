@@ -77,7 +77,7 @@ To debug a Blazor WebAssembly app in Visual Studio:
    > [!NOTE]
    > **Start Without Debugging** (<kbd>Ctrl</kbd>+<kbd>F5</kbd>) isn't supported. When the app is run in Debug configuration, debugging overhead always results in a small performance reduction.
 
-1. In the *Client* app, set a breakpoint on the `currentCount++;` line in `Pages/Counter.razor`.
+1. In the `*Client*` app, set a breakpoint on the `currentCount++;` line in `Pages/Counter.razor`.
 1. In the browser, navigate to `Counter` page and select the **Click me** button to hit the breakpoint.
 1. In Visual Studio, inspect the value of the `currentCount` field in the **Locals** window.
 1. Press <kbd>F5</kbd> to continue execution.
@@ -164,7 +164,7 @@ For information on using a custom app base path for Blazor WebAssembly apps, see
 
 1. The standalone app is launched, and a debugging browser is opened.
 
-1. In the *Client* app, set a breakpoint on the `currentCount++;` line in `Pages/Counter.razor`.
+1. In the `*Client*` app, set a breakpoint on the `currentCount++;` line in `Pages/Counter.razor`.
 
 1. In the browser, navigate to `Counter` page and select the **Click me** button to hit the breakpoint.
 
@@ -269,7 +269,7 @@ To debug a Blazor WebAssembly app in Visual Studio for Mac:
    > [!IMPORTANT]
    > Google Chrome or Microsoft Edge must be the selected browser for the debugging session.
 
-1. In the *Client* app, set a breakpoint on the `currentCount++;` line in `Pages/Counter.razor`.
+1. In the `*Client*` app, set a breakpoint on the `currentCount++;` line in `Pages/Counter.razor`.
 1. In the browser, navigate to `Counter` page and select the **Click me** button to hit the breakpoint:
 1. In Visual Studio, inspect the value of the `currentCount` field in the **Locals** window.
 1. Press <kbd>&#8984;</kbd>+<kbd>&#8617;</kbd> to continue execution.

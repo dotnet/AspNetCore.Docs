@@ -5,7 +5,7 @@ description: Learn how to secure an ASP.NET Core Blazor WebAssembly standalone a
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/08/2020
+ms.date: 10/08/2020
 no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/security/webassembly/standalone-with-microsoft-accounts
 ---
@@ -19,10 +19,31 @@ To create a [standalone Blazor WebAssembly app](xref:blazor/hosting-models#blazo
 
 Register a AAD app in the **Azure Active Directory** > **App registrations** area of the Azure portal:
 
+::: moniker range=">= aspnetcore-5.0"
+
+1. Provide a **Name** for the app (for example, **Blazor Standalone AAD Microsoft Accounts**).
+1. In **Supported account types**, select **Accounts in any organizational directory**.
+1. Set the **Redirect URI** drop down to **Single-page application (SPA)** and provide the following redirect URI: `https://localhost:{PORT}/authentication/login-callback`. The default port for an app running on Kestrel is 5001. If the app is run on a different Kestrel port, use the app's port. For IIS Express, the randomly generated port for the app can be found in the app's properties in the **Debug** panel. Since the app doesn't exist at this point and the IIS Express port isn't known, return to this step after the app is created and update the redirect URI. A remark appears later in this topic to remind IIS Express users to update the redirect URI.
+1. Clear the **Permissions** > **Grant admin consent to openid and offline_access permissions** check box.
+1. Select **Register**.
+
+Record the Application (client) ID (for example, `41451fa7-82d9-4673-8fa5-69eff5a761fd`).
+
+In **Authentication** > **Platform configurations** > **Single-page application (SPA)**:
+
+1. Confirm the **Redirect URI** of `https://localhost:{PORT}/authentication/login-callback` is present.
+1. For **Implicit grant**, ensure that the check boxes for **Access tokens** and **ID tokens** are **not** selected.
+1. The remaining defaults for the app are acceptable for this experience.
+1. Select the **Save** button.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
 1. Provide a **Name** for the app (for example, **Blazor Standalone AAD Microsoft Accounts**).
 1. In **Supported account types**, select **Accounts in any organizational directory**.
 1. Leave the **Redirect URI** drop down set to **Web** and provide the following redirect URI: `https://localhost:{PORT}/authentication/login-callback`. The default port for an app running on Kestrel is 5001. If the app is run on a different Kestrel port, use the app's port. For IIS Express, the randomly generated port for the app can be found in the app's properties in the **Debug** panel. Since the app doesn't exist at this point and the IIS Express port isn't known, return to this step after the app is created and update the redirect URI. A remark appears later in this topic to remind IIS Express users to update the redirect URI.
-1. Disable the **Permissions** > **Grant admin consent to openid and offline_access permissions** check box.
+1. Clear the **Permissions** > **Grant admin consent to openid and offline_access permissions** check box.
 1. Select **Register**.
 
 Record the Application (client) ID (for example, `41451fa7-82d9-4673-8fa5-69eff5a761fd`).
@@ -33,6 +54,8 @@ In **Authentication** > **Platform configurations** > **Web**:
 1. For **Implicit grant**, select the check boxes for **Access tokens** and **ID tokens**.
 1. The remaining defaults for the app are acceptable for this experience.
 1. Select the **Save** button.
+
+::: moniker-end
 
 Create the app. Replace the placeholders in the following command with the information recorded earlier and execute the following command in a command shell:
 
@@ -48,11 +71,17 @@ dotnet new blazorwasm -au SingleOrg --client-id "{CLIENT ID}" --tenant-id "commo
 The output location specified with the `-o|--output` option creates a project folder if it doesn't exist and becomes part of the app's name.
 
 > [!NOTE]
-> In the Azure portal, the app's **Authentication** > **Platform configurations** > **Web** > **Redirect URI** is configured for port 5001 for apps that run on the Kestrel server with default settings.
+> In the Azure portal, the app's platform configuration **Redirect URI** is configured for port 5001 for apps that run on the Kestrel server with default settings.
 >
 > If the app is run on a random IIS Express port, the port for the app can be found in the app's properties in the **Debug** panel.
 >
 > If the port wasn't configured earlier with the app's known port, return to the app's registration in the Azure portal and update the redirect URI with the correct port.
+
+::: moniker range=">= aspnetcore-5.0"
+
+[!INCLUDE[](~/includes/blazor-security/additional-scopes-standalone-nonAAD.md)]
+
+::: moniker-end
 
 After creating the app, you should be able to:
 
@@ -127,7 +156,13 @@ builder.Services.AddMsalAuthentication(options =>
 });
 ```
 
-[!INCLUDE[](~/includes/blazor-security/azure-scope.md)]
+Specify additional scopes with `AdditionalScopesToConsent`:
+
+```csharp
+options.ProviderOptions.AdditionalScopesToConsent.Add("{ADDITIONAL SCOPE URI}");
+```
+
+[!INCLUDE[](~/includes/blazor-security/azure-scope-3x.md)]
 
 For more information, see the following sections of the *Additional scenarios* article:
 

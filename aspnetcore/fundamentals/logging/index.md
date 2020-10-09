@@ -317,18 +317,20 @@ Each log API uses a message template. The message template can contain placehold
 
 [!code-csharp[](index/samples/3.x/TodoApiDTO/Controllers/TodoItemsController.cs?name=snippet_CallLogMethods&highlight=4,10)]
 
-The order of placeholders, not their names, determines which parameters are used to provide their values. In the following code, the parameter names are out of sequence in the message template:
+The *order of the parameters*, not their placeholder names, determines which parameters are used to provide placeholder values in log messages. In the following code, the parameter names are out of sequence in the placeholders of the message template:
 
 ```csharp
-string p1 = "param1";
-string p2 = "param2";
-_logger.LogInformation("Parameter values: {p2}, {p1}", p1, p2);
+string apples = 1;
+string pears = 2;
+string bananas = 3;
+
+_logger.LogInformation("Parameters: {pears}, {bananas}, {apples}", apples, pears, bananas);
 ```
 
-The preceding code creates a log message with the parameter values in sequence:
+However, the parameters are assigned to the placeholders in the order: `apples`, `pears`, `bananas`. The log message reflects the *order of the parameters*:
 
 ```text
-Parameter values: param1, param2
+Parameters: 1, 2, 3
 ```
 
 This approach allows logging providers to implement [semantic or structured logging](https://github.com/NLog/NLog/wiki/How-to-use-structured-logging). The arguments themselves are passed to the logging system, not just the formatted message template. This enables logging providers to store the parameter values as fields. For example, consider the following logger method:
