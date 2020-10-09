@@ -55,8 +55,6 @@ Record the following information:
 * App ID URI (for example, `api://41451fa7-82d9-4673-8fa5-69eff5a761fd`, `https://contoso.onmicrosoft.com/41451fa7-82d9-4673-8fa5-69eff5a761fd`, or the custom value that you provide)
 * Scope name (for example, `API.Access`)
 
-The App ID URI might require a special configuration in the client app, which is described in the [Access token scopes](#access-token-scopes) section later in this topic.
-
 ### Register a client app
 
 Follow the guidance in [Quickstart: Register an application with the Microsoft identity platform](/azure/active-directory/develop/quickstart-register-app) and subsequent Azure AAD topics to register a AAD app for the *`Client`* app and then do the following:
@@ -271,6 +269,8 @@ Example:
 }
 ```
 
+[!INCLUDE[](~/includes/blazor-security/azure-scope-5x.md)]
+
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
@@ -302,8 +302,6 @@ Example:
 ```
 
 ::: moniker-end
-
-[!INCLUDE[](~/includes/blazor-security/azure-scope-5x.md)]
 
 ### WeatherForecast controller
 
@@ -423,7 +421,11 @@ Specify additional scopes with `AdditionalScopesToConsent`:
 options.ProviderOptions.AdditionalScopesToConsent.Add("{ADDITIONAL SCOPE URI}");
 ```
 
+::: moniker range="< aspnetcore-5.0"
+
 [!INCLUDE[](~/includes/blazor-security/azure-scope-3x.md)]
+
+::: moniker-end
 
 For more information, see the following sections of the *Additional scenarios* article:
 

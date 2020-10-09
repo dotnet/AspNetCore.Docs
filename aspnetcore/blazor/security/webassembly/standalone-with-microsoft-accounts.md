@@ -162,7 +162,11 @@ Specify additional scopes with `AdditionalScopesToConsent`:
 options.ProviderOptions.AdditionalScopesToConsent.Add("{ADDITIONAL SCOPE URI}");
 ```
 
+::: moniker range="< aspnetcore-5.0"
+
 [!INCLUDE[](~/includes/blazor-security/azure-scope-3x.md)]
+
+::: moniker-end
 
 For more information, see the following sections of the *Additional scenarios* article:
 
