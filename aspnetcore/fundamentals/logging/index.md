@@ -322,13 +322,14 @@ The order of placeholders, not their names, determines which parameters are used
 ```csharp
 string p1 = "param1";
 string p2 = "param2";
-_logger.LogInformation("Parameter values: {p2}, {p1}", p1, p2);
+string p3 = "param2";
+_logger.LogInformation("Parameter values: {P2}, {P3}, {P1}", p3, p1, p2);
 ```
 
-The preceding code creates a log message with the parameter values in sequence:
+The preceding code creates a log message with the parameter values in input sequence:
 
 ```text
-Parameter values: param2, param1
+Parameter values: param3, param1, param2
 ```
 
 This approach allows logging providers to implement [semantic or structured logging](https://github.com/NLog/NLog/wiki/How-to-use-structured-logging). The arguments themselves are passed to the logging system, not just the formatted message template. This enables logging providers to store the parameter values as fields. For example, consider the following logger method:
