@@ -313,7 +313,7 @@ This approach allows passing through arbitrary additional attributes to the elem
 
 Feel free to use <xref:Microsoft.AspNetCore.Components.ParameterAttribute.CaptureUnmatchedValues> on non-performance-critical components, such as ones that are not repeated frequently. However for components that render at scale, such as each items in a large list or cells in a grid, try to avoid attribute splatting.
 
-For more information, see <xref:blazor/components#attribute-splatting-and-arbitrary-parameters>.
+For more information, see <xref:blazor/components/index#attribute-splatting-and-arbitrary-parameters>.
 
 #### Implement `SetParametersAsync` manually
 
