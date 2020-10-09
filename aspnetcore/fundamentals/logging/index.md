@@ -328,7 +328,7 @@ _logger.LogInformation("Parameter values: {p2}, {p1}", p1, p2);
 The preceding code creates a log message with the parameter values in sequence:
 
 ```text
-Parameter values: param1, param2
+Parameter values: param2, param1
 ```
 
 This approach allows logging providers to implement [semantic or structured logging](https://github.com/NLog/NLog/wiki/How-to-use-structured-logging). The arguments themselves are passed to the logging system, not just the formatted message template. This enables logging providers to store the parameter values as fields. For example, consider the following logger method:
