@@ -320,17 +320,17 @@ Each log API uses a message template. The message template can contain placehold
 The *order of the parameters*, not their placeholder names, determines which parameters are used to provide placeholder values in log messages. In the following code, the parameter names are out of sequence in the placeholders of the message template:
 
 ```csharp
-string p1 = "param1";
-string p2 = "param2";
-string p3 = "param3";
+string apples = 1;
+string pears = 2;
+string bananas = 3;
 
-_logger.LogInformation("Parameter values: {p3}, {p2}, {p1}", p1, p2, p3);
+_logger.LogInformation("Parameters: {pears}, {bananas}, {apples}", apples, pears, bananas);
 ```
 
-However, the parameters are assigned to the placeholders in the order: `p1`, `p2`, `p3`. The log message reflects the *order of the parameters*:
+However, the parameters are assigned to the placeholders in the order: `apples`, `pears`, `bananas`. The log message reflects the *order of the parameters*:
 
 ```text
-Parameter values: param1, param2, param3
+Parameters: 1, 2, 3
 ```
 
 This approach allows logging providers to implement [semantic or structured logging](https://github.com/NLog/NLog/wiki/How-to-use-structured-logging). The arguments themselves are passed to the logging system, not just the formatted message template. This enables logging providers to store the parameter values as fields. For example, consider the following logger method:
