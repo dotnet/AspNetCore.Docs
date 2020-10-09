@@ -327,7 +327,7 @@ string p3 = "param3";
 _logger.LogInformation("Parameter values: {p3}, {p2}, {p1}", p1, p2, p3);
 ```
 
-However, the parameters are assigned to the placeholders in the order `p1`&mdash;`p2`&mdash;`p3`. The log message reflects the *order of the parameters*:
+However, the parameters are assigned to the placeholders in the order: `p1`, `p2`, `p3`. The log message reflects the *order of the parameters*:
 
 ```text
 Parameter values: param1, param2, param3
