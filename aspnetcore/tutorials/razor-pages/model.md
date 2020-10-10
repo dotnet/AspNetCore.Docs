@@ -15,9 +15,9 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 <!-- In the next update on the CLI version, let the scaffolder do the same work the VS driven scaffolder does. That is, create the DB context, etc -->
 
-In this section, classes are added for managing movies. The app's model classes use [Entity Framework Core (EF Core)](/ef/core) to work with the database. EF Core is an object-relational mapper (O/RM) that simplifies data access.
+In this section, classes are added for managing movies in a database. The app's model classes use [Entity Framework Core (EF Core)](/ef/core) to work with the database. EF Core is an object-relational mapper (O/RM) that simplifies data access. You write the model classes first, and EF Core creates the database.
 
-The model classes are known as POCO classes (from "plain-old CLR objects") because they don't have any dependency on EF Core. They define the properties of the data that are stored in the database.
+The model classes are known as POCO classes (from "**P**lain-**O**ld **C**LR **O**bjects") because they don't have any dependency on EF Core. They define the properties of the data that are stored in the database.
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie50) ([how to download](xref:index#how-to-download-a-sample)).
 
@@ -70,7 +70,7 @@ The `Movie` class contains:
 
 ### Add a database context class
 
-In the RazorPagesMovie project, create a new folder called *Data*. 
+In the RazorPagesMovie project, create a new folder called *Data*.
 Add the following `RazorPagesMovieContext` class to the *Data* folder:
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Data/RazorPagesMovieContext.cs)]
@@ -558,11 +558,6 @@ The *appsettings.json* file is updated with the connection string used to connec
 -->
 
 * Open a command window in the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).
-* Install the scaffolding tool:
-
-  ```dotnetcli
-   dotnet tool install --global dotnet-aspnet-codegenerator
-   ```
 
 * **For Windows**: Run the following command:
 
@@ -574,7 +569,6 @@ The *appsettings.json* file is updated with the connection string used to connec
 
   ```dotnetcli
   dotnet-aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages/Movies --referenceScriptLibraries
-  dotnet tool install --global dotnet-aspnet-codegenerator
   ```
 
 <a name="codegenerator"></a>
