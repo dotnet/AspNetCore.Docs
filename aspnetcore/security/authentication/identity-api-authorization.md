@@ -265,6 +265,23 @@ To deploy the app to production, the following resources need to be provisioned:
   * There are no specific requirements for this certificate; it can be a self-signed certificate or a certificate provisioned through a CA authority.
   * It can be generated through standard tools like PowerShell or OpenSSL.
   * It can be installed into the certificate store on the target machines or deployed as a *.pfx* file with a strong password.
+### Example: Deploy to a Web Hosting
+In your web Hosting panel create or load your certificate. Then in the app's *appsettings.json* file, modify the `IdentityServer` section to include the key details:
+
+```json
+"IdentityServer": {
+  "Key": {
+    "Type": "Store",
+    "StoreName": "WebHosting",
+    "StoreLocation": "CurrentUser",
+    "Name": "CN=MyApplication"
+  }
+}
+```
+* The store name represents the name of the certificate store where the certificate is stored. In this case, it points to the web hosting store.
+* The store location represents where to load the certificate from (In this case, `CurrentUser`).
+* The name property on certificate corresponds with the distinguished subject for the certificate.
+
 
 ### Example: Deploy to Azure App Service
 
