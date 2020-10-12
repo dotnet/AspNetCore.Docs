@@ -94,7 +94,7 @@ The factory is injected into components and used to create new instances. For ex
 > [!NOTE]
 > `Wrapper` is a [component reference](xref:blazor/components/index#capture-references-to-components) to the `GridWrapper` component. See the `Index` component (`Pages/Index.razor`) in the [sample app](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/blazor/common/samples/5.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor).
 
-New <xref:Microsoft.EntityFrameworkCore.DbContext> instances can be created with a factory that allows you to configure the connection string per `DbContext` (such as when you use [ASP.NET Core's Identity model])(xref:security/authentication/customize_identity_model)):
+New <xref:Microsoft.EntityFrameworkCore.DbContext> instances can be created with a factory that allows you to configure the connection string per `DbContext`, such as when you use [ASP.NET Core's Identity model])(xref:security/authentication/customize_identity_model):
 
 ```csharp
 services.AddDbContextFactory<ApplicationDbContext>(options =>
@@ -232,7 +232,7 @@ The factory is injected into components and used to create new instances. For ex
 > [!NOTE]
 > `Wrapper` is a [component reference](xref:blazor/components/index#capture-references-to-components) to the `GridWrapper` component. See the `Index` component (`Pages/Index.razor`) in the [sample app](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/blazor/common/samples/3.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor).
 
-New <xref:Microsoft.EntityFrameworkCore.DbContext> instances can be created with a factory that allows you to configure the connection string per `DbContext` (such as when you use [ASP.NET Core's Identity model])(xref:security/authentication/customize_identity_model)):
+New <xref:Microsoft.EntityFrameworkCore.DbContext> instances can be created with a factory that allows you to configure the connection string per `DbContext`, such as when you use [ASP.NET Core's Identity model])(xref:security/authentication/customize_identity_model):
 
 ```csharp
 services.AddDbContextFactory<ApplicationDbContext>(options =>
