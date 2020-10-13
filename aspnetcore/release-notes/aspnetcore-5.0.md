@@ -38,7 +38,7 @@ For more information, see <xref:grpc/index>.
 
 ## SignalR
 
-SignalR Hub filters, called Hub pipelines in ASP.NET SignalR, is a feature that allows code code to run before and after Hub methods are called. Running code before and after Hub methods are called is similar to how middleware has the ability to run code before and after an HTTP request. Common uses include logging, error handling, and argument validation.
+SignalR Hub filters, called Hub pipelines in ASP.NET SignalR, is a feature that allows code to run before and after Hub methods are called. Running code before and after Hub methods are called is similar to how middleware has the ability to run code before and after an HTTP request. Common uses include logging, error handling, and argument validation.
 
 For more information, see [Use hub filters in ASP.NET Core SignalR](xref:signalr/hub-filters).
 
@@ -51,16 +51,60 @@ See [Update SignalR code](xref:migration/31-to-50#signalr) for migration instruc
 
 * Reloadable endpoints via configuration: Kestrel can detect changes to configuration passed to [KestrelServerOptions.Configure](xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Configure%2A) and unbind from existing endpoints and bind to new endpoints without requiring an application restart.
 * HTTP/2 response headers improvements. For more information, see [Performance improvements](#performance-improvements) in the next section.
+* Support for additional endpoints types in the sockets transport: Adding to the new API introduced in <xref:System.Net.Sockets?displayProperty=nameWithType>, the sockets default transport in [Kestrel](xref:fundamentals/servers/kestrel) allows binding to both existing file handles and unix domain sockets. Support for binding to existing file handles enables using the existing `Systemd` integration without requiring the `libuv` transport.
+* Custom header decoding in Kestrel: Apps can now specify which <xref:System.Text.Encoding> to use to interpret incoming headers based on the header name instead of defaulting to `UTF-8`. Set the <xref:System.Net.Http.SocketsHttpHandler.RequestHeaderEncodingSelector> property on <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions> to specify which encoding to use:
+ 
+  ```csharp
+  public static IHostBuilder CreateHostBuilder(string[] args) =>
+    Host.CreateDefaultBuilder(args)
+        .ConfigureWebHostDefaults(webBuilder =>
+        {
+            webBuilder.ConfigureKestrel(options =>
+            {
+                options.RequestHeaderEncodingSelector = encoding =>
+                {
+                    switch (encoding)
+                    {
+                        case "Host":
+                            return System.Text.Encoding.Latin1;
+                        default:
+                            return System.Text.Encoding.UTF8;
+                    }
+                };
+            });
+            webBuilder.UseStartup<Startup>();
+        });
+  ```
 
 ## Performance improvements
 
-* HTTP/2:
-  * Significant reductions in allocations in the HTTP/2 code path.
-  * Support for [HPack dynamic compression](https://tools.ietf.org/html/rfc7541) of HTTP/2 response headers in [Kestrel](xref:fundamentals/servers/kestrel). For more information, see [Header table size](xref:fundamentals/servers/kestrel#header-table-size) and [HPACK: the silent killer (feature) of HTTP/2](https://blog.cloudflare.com/hpack-the-silent-killer-feature-of-http-2/).
+### HTTP/2
 
-## Containers
+* Significant reductions in allocations in the HTTP/2 code path.
+* Support for [HPack dynamic compression](https://tools.ietf.org/html/rfc7541) of HTTP/2 response headers in [Kestrel](xref:fundamentals/servers/kestrel). For more information, see [Header table size](xref:fundamentals/servers/kestrel#header-table-size) and [HPACK: the silent killer (feature) of HTTP/2](https://blog.cloudflare.com/hpack-the-silent-killer-feature-of-http-2/).
+* Sending HTTP/2 PING frames: HTTP/2 has a mechanism for sending PING frames to ensure an idle connection is still functional. Ensuring a viable connection is especially useful when working with long-lived streams that are often idle but only intermittently see activity, for example, gRPC streams. Apps can send periodic PING frames in [Kestrel](xref:fundamentals/servers/kestrel) by setting limits on 
+<xref:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions>:
 
-Prior to .NET 5, building and publishing a Dockerfile ASP.NET app required pulling the .NET Core SDK and the ASP.NET image. With this release, the SDK images size is reduced and the ASP.NET image is eliminated, only the small manifest needs to be pulled. For more information, see [this GitHub issue comment](https://github.com/dotnet/dotnet-docker/issues/1814#issuecomment-625294750).
+   ```csharp
+   public static IHostBuilder CreateHostBuilder(string[] args) =>
+    Host.CreateDefaultBuilder(args)
+        .ConfigureWebHostDefaults(webBuilder =>
+        {
+            webBuilder.ConfigureKestrel(options =>
+            {
+                options.Limits.Http2.KeepAlivePingInterval =
+                                               TimeSpan.FromSeconds(10);
+                options.Limits.Http2.KeepAlivePingTimeout =
+                                               TimeSpan.FromSeconds(1);
+            });
+            webBuilder.UseStartup<Startup>();
+        });
+   ```
+   <!-- review: KeepAlivePingInterval not found in RC1. Try testing with RC1. See https://github.com/dotnet/aspnetcore/pull/22565/files see C:\Users\riande\source\repos\WebApplication128\WebApplication128 -->
+
+### Containers
+
+Prior to .NET 5, building and publishing a Dockerfile for an ASP.NET app required pulling the entire .NET Core SDK and the ASP.NET image. With this release, pulling the SDK images bytes is reduced and the bytes pulled for the ASP.NET image is largely eliminated. For more information, See [this GitHub issue comment](https://github.com/dotnet/dotnet-docker/issues/1814#issuecomment-625294750)
 
 ## API improvements
 
@@ -107,4 +151,13 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 
 ### Custom handling of authorization failures
 
-Custom handling of authorization failures is now easier with the new [IAuthorizationMiddlewareResultHandler](https://github.com/dotnet/aspnetcore/blob/v5.0.0-rc.1.20451.17/src/Security/Authorization/Policy/src/IAuthorizationMiddlewareResultHandler.cs) interface that is invoked by the [authorization](xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A) [Middleware](fundamentals/middleware). The default implementation remains the same, but a custom handler can be be registered in [Dependency injection](xref:fundamentals/dependency-injection) which allows custom HTTP responses based on why authorization failed. See [this sample](https://github.com/dotnet/aspnetcore/blob/master/src/Security/samples/CustomAuthorizationFailureResponse/Authorization/SampleAuthorizationMiddlewareResultHandler.cs) that demonstrates usage of the `IAuthorizationMiddlewareResultHandler`.
+Custom handling of authorization failures is now easier with the new [IAuthorizationMiddlewareResultHandler](https://github.com/dotnet/aspnetcore/blob/v5.0.0-rc.1.20451.17/src/Security/Authorization/Policy/src/IAuthorizationMiddlewareResultHandler.cs) interface that is invoked by the [authorization](xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A) [Middleware](fundamentals/middleware). The default implementation remains the same, but a custom handler can be registered in [Dependency injection, which allows custom HTTP responses based on why authorization failed. See [this sample](https://github.com/dotnet/aspnetcore/blob/master/src/Security/samples/CustomAuthorizationFailureResponse/Authorization/SampleAuthorizationMiddlewareResultHandler.cs) that demonstrates usage of the `IAuthorizationMiddlewareResultHandler`.
+
+## Miscellaneous changes
+
+* The <xref:System.ComponentModel.DataAnnotations.CompareAttribute> can now be applied to properties on Razor Page model.
+* Parameters and properties bound from the body are considered required by default. <!-- Review: How is this different from 3.1
+The validation system in .NET Core 3.0 and later treats non-nullable parameters or bound properties as if they had a [Required] attribute.
+see https://docs.microsoft.com/en-us/aspnet/core/mvc/models/validation?view=aspnetcore-3.1   
+-->
+* We’ve started applying nullable annotations to ASP.NET Core assemblies. We plan to annotate most of the common public API surface of the .NET 5 framework. <!-- Review: what's the impact of this? How does it work. Need more info.  -->
