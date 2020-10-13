@@ -665,4 +665,3 @@ Increasing the SignalR limits comes with a cost, more server resources are used 
 
 * <xref:blazor/call-dotnet-from-javascript>
 * [InteropComponent.razor example (dotnet/AspNetCore GitHub repository, 3.1 release branch)](https://github.com/dotnet/AspNetCore/blob/release/3.1/src/Components/test/testassets/BasicTestApp/InteropComponent.razor)
-* [Perform large data transfers in Blazor Server apps](xref:blazor/advanced-scenarios#perform-large-data-transfers-in-blazor-server-apps)
