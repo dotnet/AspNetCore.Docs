@@ -148,7 +148,7 @@ The placeholder `{APP ASSEMBLY}` is the app's app assembly name (for example, `B
 
 ## Call a void JavaScript function
 
-Use use <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A?displayProperty=nameWithType> for the following:
+Use <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A?displayProperty=nameWithType> for the following:
 
 * JavaScript functions that return [void(0)/void 0](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/void) or [undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined).
 * If .NET isn't required to read the result of a JavaScript call.
