@@ -10,6 +10,8 @@ uid: aspnetcore-5.0
 ---
 # What's new in ASP.NET Core 5.0
 
+https://docs.microsoft.com/en-us
+
 This article highlights the most significant changes in ASP.NET Core 5.0 with links to relevant documentation.
 
 ## Blazor
@@ -153,6 +155,23 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 
 Custom handling of authorization failures is now easier with the new [IAuthorizationMiddlewareResultHandler](https://github.com/dotnet/aspnetcore/blob/v5.0.0-rc.1.20451.17/src/Security/Authorization/Policy/src/IAuthorizationMiddlewareResultHandler.cs) interface that is invoked by the [authorization](xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A) [Middleware](fundamentals/middleware). The default implementation remains the same, but a custom handler can be registered in [Dependency injection, which allows custom HTTP responses based on why authorization failed. See [this sample](https://github.com/dotnet/aspnetcore/blob/master/src/Security/samples/CustomAuthorizationFailureResponse/Authorization/SampleAuthorizationMiddlewareResultHandler.cs) that demonstrates usage of the `IAuthorizationMiddlewareResultHandler`.
 
+### Authorization when using endpoint routing
+
+Authorization when using endpoint routing now receives the `HttpContext` rather than the endpoint instance. This allows the authorization middleware to access the `RouteData` and other properties of the `HttpContext` that were not accessible though the <xref:Microsoft.AspNetCore.Http.Endpoint> class. The endpoint can be fetched from the context using [context.GetEndpoint(xref:Microsoft.AspNetCore.Http.EndpointHttpContextExtensions.GetEndpoint%2A).
+
+### System.Diagnostics.Activity
+
+The default format for <xref:System.Diagnostics.Activity?displayProperty=fullName> now defaults to the W3C format. This makes distributed tracing support in ASP.NET Core interoperable with more frameworks by default.
+
+### FromBodyAttribute 
+
+<xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute> ow supports configuring an option that allows these parameters or properties to be considered optional:
+
+```csharp
+public IActionResult Post([FromBody(EmptyBodyBehavior = EmptyBodyBehavior.Allow)] MyModel model) {
+     ... 
+     }
+```
 ## Miscellaneous changes
 
 * The <xref:System.ComponentModel.DataAnnotations.CompareAttribute> can now be applied to properties on Razor Page model.
@@ -160,4 +179,4 @@ Custom handling of authorization failures is now easier with the new [IAuthoriza
 The validation system in .NET Core 3.0 and later treats non-nullable parameters or bound properties as if they had a [Required] attribute.
 see https://docs.microsoft.com/en-us/aspnet/core/mvc/models/validation?view=aspnetcore-3.1   
 -->
-* We’ve started applying nullable annotations to ASP.NET Core assemblies. We plan to annotate most of the common public API surface of the .NET 5 framework. <!-- Review: what's the impact of this? How does it work. Need more info.  -->
+* We’ve started applying [nullable annotations](https://docs.microsoft.com/en-us/dotnet/csharp/nullable-references#attributes-describe-apis) to ASP.NET Core assemblies. We plan to annotate most of the common public API surface of the .NET 5 framework. <!-- Review: what's the impact of this? How does it work? Need more info.  Check the link I added -->
