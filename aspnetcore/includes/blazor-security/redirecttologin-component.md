@@ -5,7 +5,7 @@ The `RedirectToLogin` component (`Shared/RedirectToLogin.razor`):
 
 ```razor
 @inject NavigationManager Navigation
-@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+
 @code {
     protected override void OnInitialized()
     {
