@@ -148,7 +148,10 @@ The placeholder `{APP ASSEMBLY}` is the app's app assembly name (for example, `B
 
 ## Call a void JavaScript function
 
-JavaScript functions that return [void(0)/void 0](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/void) or [undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined), or if .NET does not need to read the result of a JavaScript call, use <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A?displayProperty=nameWithType>. <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A?displayProperty=nameWithType>
+Use use <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A?displayProperty=nameWithType> for the following:
+
+* JavaScript functions that return [void(0)/void 0](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/void) or [undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined).
+* If .NET isn't required to read the result of a JavaScript call.
 
 ## Detect when a Blazor Server app is prerendering
  
@@ -649,18 +652,20 @@ Additionally, the preceding example shows how it's possible to encapsulate JavaS
 
 ::: moniker-end
 
-## Size limits on JSInterop calls
+## Size limits on JS interop calls
 
-In Blazor WebAssembly, the framework does not impose any limits on the sizes of inputs and outputs of a JSInterop calls. In Blazor Server, the result of a JSInterop call is limited by the maximum payload size enforced by SignalR - <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize /> that defaults to 32KB. Applications that attempt to respond to a JSInterop call with a payload larger than this size will encounter an error. A larger limit can be configured by modifying your application startup:
+In Blazor WebAssembly, the framework doesn't impose limits on the size of inputs and outputs of JS interop calls.
+
+In Blazor Server, the result of a JS interop call is limited by the maximum payload size enforced by SignalR (<xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize>), which defaults to 32 KB. Applications that attempt to respond to a JS interop call with a payload larger than <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize> throw an error. A larger limit can be configured by modifying <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize>. The following example sets the maximum receive message size to 64 KB (64 * 1024 * 1024):
 
 ```csharp
 services.AddServerSideBlazor()
-   .AddHubOptions(options => options.MaximumReceiveMessageSize = 64 * 1024 * 104); // Configured to 64kb.
+   .AddHubOptions(options => options.MaximumReceiveMessageSize = 64 * 1024 * 1024);
 ```
 
-Increasing the SignalR limits comes with a cost, more server resources are used and it exposes the server to increased risks from a malicious actor. Addititionally, reading large content in to memory as strings or byte arrays can also result in allocation that work poorly with the garbage collector resulting in additional performance penalties. One option to read large payloads is to consider sending the content in smaller chunks and processing it as a <xref:System.IO.Stream />. This can be used when reading large JSON payloads, or if data is available in JavaScript as raw bytes. https://github.com/aspnet/samples/tree/master/samples/aspnetcore/blazor/BinarySubmit shows an example of sending large binary payloads in Blazor Server that uses techniques similar to the InputFile component.
+Increasing the SignalR limit comes at the cost of requiring the use of more server resources, and it exposes the server to increased risks from a malicious user. Additionally, reading a large amount of content in to memory as strings or byte arrays can also result in allocations that work poorly with the garbage collector, resulting in additional performance penalties. One option for reading large payloads is to consider sending the content in smaller chunks and processing the payload as a <xref:System.IO.Stream>. This can be used when reading large JSON payloads or if data is available in JavaScript as raw bytes. For an example that demonstrates sending large binary payloads in Blazor Server that uses techniques similar to the `InputFile` component, see the [Binary Submit sample app](https://github.com/aspnet/samples/tree/master/samples/aspnetcore/blazor/BinarySubmit).
 
-Consider the following guidance when developing code that transfers large data between JavaScript and Blazor:
+Consider the following guidance when developing code that transfers a large amount of data between JavaScript and Blazor:
 
 * Slice the data into smaller pieces, and send the data segments sequentially until all of the data is received by the server.
 * Don't allocate large objects in JavaScript and C# code.
