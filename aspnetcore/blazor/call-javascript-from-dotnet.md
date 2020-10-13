@@ -154,7 +154,6 @@ JavaScript functions that return [void(0)/void 0](https://developer.mozilla.org/
  
 [!INCLUDE[](~/includes/blazor-prerendering.md)]
 
-
 ## Capture references to elements
 
 Some JS interop scenarios require references to HTML elements. For example, a UI library may require an element reference for initialization, or you might need to call command-like APIs on an element, such as `focus` or `play`.
@@ -660,6 +659,19 @@ services.AddServerSideBlazor()
 ```
 
 Increasing the SignalR limits comes with a cost, more server resources are used and it exposes the server to increased risks from a malicious actor. Addititionally, reading large content in to memory as strings or byte arrays can also result in allocation that work poorly with the garbage collector resulting in additional performance penalties. One option to read large payloads is to consider sending the content in smaller chunks and processing it as a <xref:System.IO.Stream />. This can be used when reading large JSON payloads, or if data is available in JavaScript as raw bytes. https://github.com/aspnet/samples/tree/master/samples/aspnetcore/blazor/BinarySubmit shows an example of sending large binary payloads in Blazor Server that uses techniques similar to the InputFile component.
+
+Consider the following guidance when developing code that transfers large data between JavaScript and Blazor:
+
+* Slice the data into smaller pieces, and send the data segments sequentially until all of the data is received by the server.
+* Don't allocate large objects in JavaScript and C# code.
+* Don't block the main UI thread for long periods when sending or receiving data.
+* Free any memory consumed when the process is completed or cancelled.
+* Enforce the following additional requirements for security purposes:
+  * Declare the maximum file or data size that can be passed.
+  * Declare the minimum upload rate from the client to the server.
+* After the data is received by the server, the data can be:
+  * Temporarily stored in a memory buffer until all of the segments are collected.
+  * Consumed immediately. For example, the data can be stored immediately in a database or written to disk as each segment is received.
 
 ## Additional resources
 
