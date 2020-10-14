@@ -88,7 +88,7 @@ Blazor now has a `FocusAsync` convenience method on Elem`entReference for settin
 
 ### Control Blazor component instantiation
 
-You can now control how Blazor components are instantiated by providing an `IComponentActivator` service implementation.
+You can control how Blazor components are instantiated by providing an `IComponentActivator` service implementation.
 
 ### Influencing the HTML head in Blazor apps
 
@@ -110,8 +110,6 @@ The following example programmatically sets the page title to show the number of
     <Link rel="icon" href="icon-unread.ico" />
 }
 ```
-
-
 
 ### Blazor Server
 
@@ -236,7 +234,7 @@ See [Update SignalR code](xref:migration/31-to-50#signalr) for migration instruc
 * Reloadable endpoints via configuration: Kestrel can detect changes to configuration passed to [KestrelServerOptions.Configure](xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Configure%2A) and unbind from existing endpoints and bind to new endpoints without requiring an application restart.
 * HTTP/2 response headers improvements. For more information, see [Performance improvements](#performance-improvements) in the next section.
 * Support for additional endpoints types in the sockets transport: Adding to the new API introduced in <xref:System.Net.Sockets?displayProperty=nameWithType>, the sockets default transport in [Kestrel](xref:fundamentals/servers/kestrel) allows binding to both existing file handles and unix domain sockets. Support for binding to existing file handles enables using the existing `Systemd` integration without requiring the `libuv` transport.
-* Custom header decoding in Kestrel: Apps can now specify which <xref:System.Text.Encoding> to use to interpret incoming headers based on the header name instead of defaulting to `UTF-8`. Set the <xref:System.Net.Http.SocketsHttpHandler.RequestHeaderEncodingSelector> property on <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions> to specify which encoding to use:
+* Custom header decoding in Kestrel: Apps can specify which <xref:System.Text.Encoding> to use to interpret incoming headers based on the header name instead of defaulting to `UTF-8`. Set the <xref:System.Net.Http.SocketsHttpHandler.RequestHeaderEncodingSelector> property on <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions> to specify which encoding to use:
  
   ```csharp
   public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -330,7 +328,44 @@ Custom handling of authorization failures is now easier with the new [IAuthoriza
 
 Authorization when using endpoint routing now receives the `HttpContext` rather than the endpoint instance. This allows the authorization middleware to access the `RouteData` and other properties of the `HttpContext` that were not accessible though the <xref:Microsoft.AspNetCore.Http.Endpoint> class. The endpoint can be fetched from the context using [context.GetEndpoint(xref:Microsoft.AspNetCore.Http.EndpointHttpContextExtensions.GetEndpoint%2A).
 
-## API improvements
+## API and ASP.NET Core MVC improvements
+
+### Model binding and validation with C# 9 record types
+
+[C# 9 record types](https://docs.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-9#record-types) can be used with model binding in an MVC controller or a Razor Page. Record types are a great way to model data being transmitted over the network.
+
+For example, the following `PersonController` uses the `Person` record type with model binding and form validation:
+
+```csharp
+public record Person([Required] string Name, [Range(0, 150)] int Age);
+
+public class PersonController
+{
+   public IActionResult Index() => View();
+
+   [HttpPost]
+   public IActionResult Index(Person person)
+   {
+          // ...
+   }
+}
+```
+
+The `Person/Index.cshtml` file:
+
+```cshtml
+@model Person
+
+Name: <input asp-for="Model.Name" />
+<span asp-validation-for="Model.Name" />
+
+Age: <input asp-for="Model.Age" />
+<span asp-validation-for="Model.Age" />
+```
+
+### Improvements to DynamicRouteValueTransformer
+
+ASP.NET Core 3.1 introduced <xref:Microsoft.AspNetCore.Mvc.Routing.DynamicRouteValueTransformer> as a way to use use a custom endpoint to dynamically select an MVC controller action or a razor page.  ASP.NET Core 5.0 apps can pass state to a `DynamicRouteValueTransformer` and filter the set of endpoints chosen.
 
 ### JSON extension methods for HttpRequest and HttpResponse
 
@@ -365,11 +400,64 @@ public IActionResult Post([FromBody(EmptyBodyBehavior = EmptyBodyBehavior.Allow)
      }
 ```
 
-### Miscellaneous changes
+### Miscellaneous API changes
 
-* The <xref:System.ComponentModel.DataAnnotations.CompareAttribute> can now be applied to properties on Razor Page model.
+* The <xref:System.ComponentModel.DataAnnotations.CompareAttribute> can be applied to properties on Razor Page model.
 * Parameters and properties bound from the body are considered required by default. <!-- Review: How is this different from 3.1
 The validation system in .NET Core 3.0 and later treats non-nullable parameters or bound properties as if they had a [Required] attribute.
 see https://docs.microsoft.com/en-us/aspnet/core/mvc/models/validation?view=aspnetcore-3.1   
 -->
 * We’ve started applying [nullable annotations](https://docs.microsoft.com/en-us/dotnet/csharp/nullable-references#attributes-describe-apis) to ASP.NET Core assemblies. We plan to annotate most of the common public API surface of the .NET 5 framework. <!-- Review: what's the impact of this? How does it work? Need more info.  Check the link I added -->
+
+## Miscellaneous improvements
+
+### Auto refresh with dotnet watch
+
+In .NET 5, running [dotnet watch](xref:tutorials/dotnet-watch) on an ASP.NET Core project both launches the default browser and auto refreshes the browser as changes are made to the code. This means you can:
+
+* Open an ASP.NET Core project in a text editor.
+* Run `dotnet watch`
+* Focus on the code changes while the tooling handles rebuilding, restarting, and reloading the app.
+
+We hope to bring the auto refresh functionality to Visual Studio in the future.
+
+### Console Logger Formatter
+
+Improvements have been made to the console log provider in the `Microsoft.Extensions.Logging` library. Developers can now implement a custom `ConsoleFormatter` to exercise complete control over formatting and colorization of the console output. The formatter APIs allow for rich formatting by implementing a subset of the VT-100 escape sequences. VT-100 is supported by most modern terminals. The console logger can parse out escape sequences on unsupported terminals allowing developers to author a single formatter for all terminals.
+
+### JSON Console Logger
+
+In addition to support for custom formatters, we’ve also added a built-in JSON formatter that emits structured JSON logs to the console. You can switch from the default simple logger to JSON, add to following snippet to your Program.cs:
+
+```csharp
+ public static IHostBuilder CreateHostBuilder(string[] args) =>
+                   Host.CreateDefaultBuilder(args)
+   .ConfigureLogging(logging =>
+   {
+       logging.AddJsonConsole(options =>
+       {
+           options.JsonWriterOptions = new JsonWriterOptions()
+           { Indented = true };
+       });
+   })
+  .ConfigureWebHostDefaults(webBuilder =>
+  {
+      webBuilder.UseStartup<Startup>();
+  });
+```
+
+Log messages emitted to the console are  JSON formatted:
+
+```json
+{
+  "EventId": 0,
+  "LogLevel": "Information",
+  "Category": "Microsoft.Hosting.Lifetime",
+  "Message": "Now listening on: https://localhost:5001",
+  "State": {
+    "Message": "Now listening on: https://localhost:5001",
+    "address": "https://localhost:5001",
+    "{OriginalFormat}": "Now listening on: {address}"
+  }
+}
+```
