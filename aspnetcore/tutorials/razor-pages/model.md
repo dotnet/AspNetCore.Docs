@@ -25,11 +25,9 @@ The model classes are known as POCO classes (from "**P**lain-**O**ld **C**LR **O
 
 # [Visual Studio](#tab/visual-studio)
 
-Right-click the **RazorPagesMovie** project > **Add** > **New Folder**. Name the folder *Models*.
-
-Right-click the *Models* folder. Select **Add** > **Class**. Name the class **Movie**.
-
-Add the following properties to the `Movie` class:
+1. Right-click the **RazorPagesMovie** project > **Add** > **New Folder**. Name the folder *Models*.
+1. Right-click the *Models* folder. Select **Add** > **Class**. Name the class **Movie**.
+1. Add the following properties to the `Movie` class:
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Models/Movie.cs?name=snippet1)]
 
@@ -45,8 +43,8 @@ The `Movie` class contains:
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* Add a folder named *Models*.
-* Add a class to the *Models* folder named *Movie.cs*.
+1. Add a folder named *Models*.
+1. Add a class to the *Models* folder named *Movie.cs*.
 
 Add the following properties to the `Movie` class:
 
@@ -102,15 +100,14 @@ Register the database context with the [dependency injection](xref:fundamentals/
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-* In Solution Pad, control-click the **RazorPagesMovie** project, and then select **Add** > **New Folder...**. Name the folder *Models*.
-* Control-click the *Models* folder, and then select **Add** > **New File...**.
-* In the **New File** dialog:
+1. In Solution Pad, control-click the **RazorPagesMovie** project, and then select **Add** > **New Folder...**. Name the folder *Models*.
+1. Control-click the *Models* folder, and then select **Add** > **New File...**.
+1. In the **New File** dialog:
+   1. Select **General** in the left pane.
+   1. Select **Empty Class** in the center pane.
+   1. Name the class **Movie** and select **New**.
 
-  * Select **General** in the left pane.
-  * Select **Empty Class** in the center pane.
-  * Name the class **Movie** and select **New**.
-
-Add the following properties to the `Movie` class:
+1. Add the following properties to the `Movie` class:
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Models/Movie.cs?name=snippet1)]
 
@@ -126,7 +123,7 @@ The `Movie` class contains:
 
 ---
 
-Build the project to verify there are no compilation errors.
+1. Build the project to verify there are no compilation errors.
 
 ## Scaffold the movie model
 
@@ -134,10 +131,9 @@ In this section, the movie model is scaffolded. That is, the scaffolding tool pr
 
 # [Visual Studio](#tab/visual-studio)
 
-Create a *Pages/Movies* folder:
-
-* Right-click on the *Pages* folder > **Add** > **New Folder**.
-* Name the folder *Movies*
+1. Create a *Pages/Movies* folder:
+   1. Right-click on the *Pages* folder > **Add** > **New Folder**.
+   1. Name the folder *Movies*
 
 Right-click on the *Pages/Movies* folder > **Add** > **New Scaffolded Item**.
 
@@ -147,12 +143,11 @@ In the **Add Scaffold** dialog, select **Razor Pages using Entity Framework (CRU
 
 ![Image from the previous instructions.](model/_static/add_scaffold.png)
 
-Complete the **Add Razor Pages using Entity Framework (CRUD)** dialog:
-
-* In the **Model class** drop down, select **Movie (RazorPagesMovie.Models)**.
-* In the **Data context class** row, select the **+** (plus) sign.
-* In the **Add Data Context** dialog, the class name *RazorPagesMovie.Data.RazorPagesMovieContext* is generated. Select **Add**.
-* In the **Add Razor Pages using Entity Framework (CRUD)** dialog, select **Add**.
+1. Complete the **Add Razor Pages using Entity Framework (CRUD)** dialog:
+   1. In the **Model class** drop down, select **Movie (RazorPagesMovie.Models)**.
+   1. In the **Data context class** row, select the **+** (plus) sign.
+   1. In the **Add Data Context** dialog, the class name *RazorPagesMovie.Data.RazorPagesMovieContext* is generated. Select **Add**.
+   1. In the **Add Razor Pages using Entity Framework (CRUD)** dialog, select **Add**.
 
 ![Image from the previous instructions.](model/_static/3/arp.png)
 
@@ -196,6 +191,8 @@ dotnet-aspnet-codegenerator razorpage -h
 
 For more information, see [dotnet-aspnet-codegenerator](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
 
+---
+
 ### Use SQLite for development, SQL Server for production
 
 When SQLite is selected, the template generated code is ready for development. The following code shows how to inject <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment> into Startup. `IWebHostEnvironment` is injected so `ConfigureServices` can use SQLite in development and SQL Server in production.
@@ -204,26 +201,23 @@ When SQLite is selected, the template generated code is ready for development. T
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-Create a *Pages/Movies* folder:
+1. Create a *Pages/Movies* folder:
+   1. Control-click on the *Pages* folder > **Add** > **New Folder**.
+   1. Name the folder *Movies*
 
-* Control-click on the *Pages* folder > **Add** > **New Folder**.
-* Name the folder *Movies*
+1. Control-click on the *Pages/Movies* folder > **Add** > **New Scaffolding...**.
 
-Control-click on the *Pages/Movies* folder > **Add** > **New Scaffolding...**.
+   ![Image from the previous instructions.](model/_static/scaMac.png)
 
-![Image from the previous instructions.](model/_static/scaMac.png)
+1. In the **New Scaffolding** dialog, select **Razor Pages using Entity Framework (CRUD)** > **Next**.
 
-In the **New Scaffolding** dialog, select **Razor Pages using Entity Framework (CRUD)** > **Next**.
+   ![Image from the previous instructions.](model/_static/add_scaffoldMac.png)
 
-![Image from the previous instructions.](model/_static/add_scaffoldMac.png)
+1. Complete the **Add Razor Pages using Entity Framework (CRUD)** dialog:
+   1. In the **DbContext Class to use:** row, name the class *RazorPagesMovie.Data.RazorPagesMovieContext*.
+   1. Select **Finish**.
 
-Complete the **Add Razor Pages using Entity Framework (CRUD)** dialog:
-
-* In the **Model class** drop down, select, or type, **Movie (RazorPagesMovie.Models)**.
-* In the **DbContext Class to use:** row, name the class *RazorPagesMovie.Data.RazorPagesMovieContext*.
-* Select **Finish**.
-
-![Image from the previous instructions.](model/_static/5/arpMac.png)
+   ![Image from the previous instructions.](model/_static/5/arpMac.png)
 
 The *appsettings.json* file is updated with the connection string used to connect to a local database.
 
@@ -272,6 +266,7 @@ The created and updated files are explained in the next section.
 ## Create the initial database schema using EF's migration feature
 
 The migrations feature in Entity Framework Core provides a way to:
+
 * Initially create the database schema.
 * Incrementally update the database schema to keep it in sync with the application's data model while preserving existing data in the database.
 
@@ -282,47 +277,27 @@ In this section, the Package Manager Console (PMC) is used to:
 * Add an initial migration.
 * Update the database with the initial migration.
 
-From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Console**.
+1. From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Console**.
 
-  ![PMC menu](model/_static/5/pmc.png)
+   ![PMC menu](model/_static/5/pmc.png)
 
-In the PMC, enter the following commands:
+1. In the PMC, enter the following commands:
 
-```powershell
-Add-Migration InitialCreate
-Update-Database
-```
+   ```powershell
+   Add-Migration InitialCreate
+   Update-Database
+   ```
 
-# [Visual Studio Code](#tab/visual-studio-code)
-
-[!INCLUDE [more information on the CLI for EF Core](~/includes/ef-cli.md)]
-
-Run the following .NET Core CLI commands:
-
-```dotnetcli
-dotnet ef migrations add InitialCreate
-dotnet ef database update
-```
-
-The preceding commands generate the following warning: "No type was specified for the decimal column 'Price' on entity type 'Movie'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'."
-
-Ignore that warning, you will be shown how to fix this in a following tutorial in this series.
-
-The migrations command generates code to create the initial database schema. The schema is based on the model specified in `DbContext`. The `InitialCreate` argument is used to name the migrations. Any name can be used, but by convention a name is selected that describes the migration.
-
-The `update` command runs the `Up` method in migrations that have not been applied. In this case, `update` runs the `Up` method in  *Migrations/\<time-stamp>_InitialCreate.cs* file, which creates the database.
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
+# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
 [!INCLUDE [more information on the CLI for EF Core](~/includes/ef-cli.md)]
 
-* From the Visual Studio **View** menu, select **Pads** > **Terminal**.
 * Run the following .NET Core CLI commands:
 
-```dotnetcli
-dotnet ef migrations add InitialCreate
-dotnet ef database update
-```
+  ```dotnetcli
+  dotnet ef migrations add InitialCreate
+  dotnet ef database update
+  ```
 
 The preceding commands generate the following warning: "No type was specified for the decimal column 'Price' on entity type 'Movie'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'."
 
@@ -368,7 +343,7 @@ Examine the `Up` method.
 
 ### Test the app
 
-* Run the app and append `/Movies` to the URL in the browser (`http://localhost:port/movies`).
+1. Run the app and append `/Movies` to the URL in the browser (`http://localhost:port/movies`).
 
 If you get the error:
 
@@ -379,14 +354,14 @@ Login failed for user 'User-name'.
 
 You missed the [migrations step](#pmc).
 
-* Test the **Create** link.
+1. Test the **Create** link.
 
   ![Create page](model/_static/conan.png)
 
   > [!NOTE]
   > You may not be able to enter decimal commas in the `Price` field. To support [jQuery validation](https://jqueryvalidation.org/) for non-English locales that use a comma (",") for a decimal point and for non US-English date formats, the app must be globalized. For globalization instructions, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/4076#issuecomment-326590420).
 
-* Test the **Edit**, **Details**, and **Delete** links.
+1. Test the **Edit**, **Details**, and **Delete** links.
 
 The next tutorial explains the files created by scaffolding.
 
@@ -583,6 +558,8 @@ dotnet-aspnet-codegenerator razorpage -h
 ```
 
 For more information, see [dotnet-aspnet-codegenerator](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
+
+# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
 ### Use SQLite for development, SQL Server for production
 
