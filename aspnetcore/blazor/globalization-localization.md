@@ -60,7 +60,7 @@ To explicitly configure the culture, set <xref:System.Globalization.CultureInfo.
 
 ::: moniker range=">= aspnetcore-5.0"
 
-By default, Blazor WebAssembly carries minimal amount of globalization resources required to display values, such as dates and currency, in the user's culture. Applications that need to support dynamically changing the culture should configure `BlazorWebAssemblyLoadAllGlobalizationData` in the project file.
+By default, Blazor WebAssembly carries minimal globalization resources required to display values, such as dates and currency, in the user's culture. Applications that must support dynamically changing the culture should configure `BlazorWebAssemblyLoadAllGlobalizationData` in the project file:
 
 ```xml
 <PropertyGroup>
