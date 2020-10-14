@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 public class MyAuthorizationMiddlewareResultHandler : AuthorizationMiddlewareResultHandler
 {
-    public async Task HandleAsync(
+    public override async Task HandleAsync(
         RequestDelegate requestDelegate,
         HttpContext httpContext,
         AuthorizationPolicy authorizationPolicy,
