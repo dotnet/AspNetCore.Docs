@@ -62,11 +62,11 @@ Having validation rules automatically enforced by ASP.NET Core:
 
 ### Validation Error UI in Razor Pages
 
-Run the app and navigate to Pages/Movies.
+1. Run the app and navigate to Pages/Movies.
 
-Select the **Create New** link. Complete the form with some invalid values. When jQuery client-side validation detects the error, it displays an error message.
+1. Select the **Create New** link. Complete the form with some invalid values. When jQuery client-side validation detects the error, it displays an error message.
 
-![Movie view form with multiple jQuery client-side validation errors](validation/_static/val.png)
+   ![Movie view form with multiple jQuery client-side validation errors](validation/_static/val.png)
 
 [!INCLUDE[](~/includes/localization/currency.md)]
 
@@ -86,17 +86,17 @@ When JavaScript is disabled in the browser, submitting the form with errors will
 
 Optional, test server-side validation:
 
-* Disable JavaScript in the browser. JavaScript can be disabled using browser's developer tools. If JavaScript cannot be disabled in the browser, try another browser.
-* Set a break point in the `OnPostAsync` method of the Create or Edit page.
-* Submit a form with invalid data.
-* Verify the model state is invalid:
+1. Disable JavaScript in the browser. JavaScript can be disabled using browser's developer tools. If JavaScript cannot be disabled in the browser, try another browser.
+1. Set a break point in the `OnPostAsync` method of the Create or Edit page.
+1. Submit a form with invalid data.
+1. Verify the model state is invalid:
 
-  ```csharp
-   if (!ModelState.IsValid)
-   {
-      return Page();
-   }
-  ```
+   ```csharp
+    if (!ModelState.IsValid)
+    {
+       return Page();
+    }
+   ```
   
 Alternatively, [Disable client-side validation on the server](xref:mvc/models/validation#disable-client-side-validation).
 
