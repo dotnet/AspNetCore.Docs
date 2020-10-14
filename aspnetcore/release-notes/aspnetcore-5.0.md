@@ -16,11 +16,131 @@ This article highlights the most significant changes in ASP.NET Core 5.0 with li
 
 ## Blazor
 
-For more information, see <xref:blazor/index>.
+### CSS isolation for Blazor components
+
+Blazor now supports defining CSS styles that are scoped to a given component. Component specific CSS styles make it easier to reason about the styles in an app and to avoid unintentional side effects from global styles. Component specific styles are defined in a *.razor.css* file that matches the name of the *.razor* file for the component.
+
+For example, consider the following component *MyComponent.razor* file:
+
+```html
+<h1>My Component</h1>
+
+<ul class="cool-list">
+    <li>Item1</li>
+    <li>Item2</li>
+</ul>
+```
+
+A *MyComponent.razor.css* can be defined with the styles for `MyComponent`:
+
+```html
+h1 {
+    font-family: 'Comic Sans MS'
+}
+
+.cool-list li {
+    color: red;
+}
+```
+
+The styles in *MyComponent.razor.css* are only get applied to the rendered output of `MyComponent`. The `h1` elements rendered by other components, for example, aren't affected.
+
+To write a selector in component specific styles that affects child components, use the `::deep` combinator:
+
+```
+.parent ::deep .child {
+    color: red;
+}
+```
+
+By using the `::deep` combinator, only the *.parent* class selector is scoped to the component. The *.child* class selector isn't scoped, and matches content from child components.
+
+Blazor achieves CSS isolation by rewriting the CSS selectors as part of the build so that they only match markup rendered by the component. Blazor then bundles together the rewritten CSS files and makes the bundle available to the app as a static web asset at the path *_framework/scoped.styles.css*.
+
+While Blazor doesn’t natively support CSS preprocessors like Sass or Less, CSS preprocessors can be used to generate component specific styles before they are rewritten as part of the building the project.
+
+### New InputRadio Blazor component
+
+Blazor in .NET 5 now includes built-in `InputRadio` and `InputRadioGroup` components. These components simplify data binding to radio button groups with integrated validation alongside the other Blazor form input components.
+
+Opinion about blazor:
+
+```
+<InputRadioGroup @bind-Value="survey.OpinionAboutBlazor">
+    @foreach (var opinion in opinions)
+    {
+        <div class="form-check">
+            <InputRadio class="form-check-input" id="@opinion.id" Value="@opinion.id" />
+            <label class="form-check-label" for="@opinion.id">@opinion.label</label>
+        </div>
+    }
+</InputRadioGroup>
+```
+
+### Set UI focus in Blazor apps
+
+Blazor now has a `FocusAsync` convenience method on Elem`entReference for setting the UI focus on that element.
+
+```html
+<button @onclick="() => textInput.FocusAsync()">Set focus</button>
+<input @ref="textInput"/>
+```
+
+### Control Blazor component instantiation
+
+You can now control how Blazor components are instantiated by providing an `IComponentActivator` service implementation.
+
+### Influencing the HTML head in Blazor apps
+
+Use the new `Title`, `Link`, and `Meta` components to programmatically set the title of a page and dynamically add links and meta tags to the HTML head in a Blazor app.
+
+To use the new `Title`, `Link`, and `Meta` components:
+
+1. Add a package reference to the [Microsoft.AspNetCore.Components.Web.Extensions NuGet package](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Web.Extensions/).
+1. Include a script reference to *_content/Microsoft.AspNetCore.Components.Web.Extensions/headManager.js*.
+1. Add a `@using` directive for `Microsoft.AspNetCore.Components.Web.Extensions.Head`.
+
+The following example programmatically sets the page title to show the number of unread user notifications and updates the page icon:
+
+```
+@if (unreadNotificationsCount > 0)
+{
+    var title = $"Notifications ({unreadNotificationsCount})";
+    <Title Value="title"></Title>
+    <Link rel="icon" href="icon-unread.ico" />
+}
+```
+
+
 
 ### Blazor Server
 
+#### Protected browser storage
+
+In Blazor Server apps, you may want to persist app state in local or session storage so that the app can rehydrate it later if needed. When storing app state in the user’s browser, you also need to ensure that it hasn’t been tampered with.
+
+Blazor in .NET 5 helps solve this problem by providing two new services: `ProtectedLocalStorage` and `ProtectedSessionStorage`. These services help you store state in local and session storage respectively, and they take care of protecting the stored data using the ASP.NET Core data protection APIs.
+
+To use the new protected browser storage services:
+
+1. Add a package reference to Microsoft.AspNetCore.Components.Web.Extensions.
+1. Configure the services by calling services.AddProtectedBrowserStorage() from Startup.ConfigureServcies.
+1. Inject either ProtectedLocalStorage and ProtectedSessionStorage into your component implementation:
+  ```
+    @inject ProtectedLocalStorage ProtectedLocalStorage
+    @inject ProtectedSessionStorage ProtectedSessionStorage
+  ```
+1. Use the desired service to get, set, and delete state asynchronously:
+  ```
+    private async Task IncrementCount()
+    {
+        await ProtectedLocalStorage.SetAsync("count", ++currentCount);
+    }
+  ```
+
 ### Blazor WebAssembly
+
+#### Blazor can run client-side C# code directly in the browser
 
 Blazor can run client-side C# code directly in the browser, using [WebAssembly](xref:blazor/hosting-models#blazor-webassembly).
 
@@ -30,7 +150,69 @@ To create a Blazor WebAssembly project, run the following command in a console w
 
 ```dotnetcli
 dotnet new blazorwasm
-``` 
+```
+
+#### Lazy loading in Blazor WebAssembly
+
+Lazy loading enables improve  load time of the Blazor WebAssembly app by deferring the download of specific app dependencies until they are required. Lazy loading may be helpful when a Blazor WebAssembly app has large dependencies that are only used for specific parts of the app.
+
+To delay the loading of an assembly, add it to the `BlazorWebAssemblyLazyLoad` item group in the project file:
+
+Assemblies marked for lazy loading must be explicitly loaded by the app before they are used. To lazy load assemblies at runtime, use the `LazyAssemblyLoader` service:
+
+```
+@inject LazyAssemblyLoader LazyAssemblyLoader
+
+@code {
+    var assemblies = await LazyAssemblyLoader.LoadAssembliesAsync(new string[] { "Lib1.dll" });
+}
+```
+
+To lazy load assemblies for a specific page, use the `OnNavigateAsync` event on the `Router` component. The `OnNavigateAsync` event is fired on every page navigation and can be used to lazy load assemblies for a particular route. The entire page can be lazily loaded for a route by passing any lazy loaded assemblies as additional assemblies to the Router.
+
+The following examples demonstrates using the `LazyAssemblyLoader` service to lazy load a specific dependency (Lib1.dll) when the user navigates to `/page1`. The lazy loaded assembly is then added to the additional assemblies list passed to the `Router` component, so that it can discover any routable components in that assembly.
+
+```
+@using System.Reflection
+@using Microsoft.AspNetCore.Components.Routing
+@using Microsoft.AspNetCore.Components.WebAssembly.Services
+@inject LazyAssemblyLoader LazyAssemblyLoader
+
+<Router AppAssembly="typeof(Program).Assembly" AdditionalAssemblies="lazyLoadedAssemblies" OnNavigateAsync="@OnNavigateAsync">
+    <Navigating>
+        <div>
+            <p>Loading the requested page...</p>
+        </div>
+    </Navigating>
+    <Found Context="routeData">
+        <RouteView RouteData="@routeData" DefaultLayout="typeof(MainLayout)" />
+    </Found>
+    <NotFound>
+        <LayoutView Layout="typeof(MainLayout)">
+            <p>Sorry, there is nothing at this address.</p>
+        </LayoutView>
+    </NotFound>
+</Router>
+
+@code {
+    private List<Assembly> lazyLoadedAssemblies = 
+        new List<Assembly>();
+
+    private async Task OnNavigateAsync(NavigationContext args)
+    {
+        if (args.Path.EndsWith("/page1"))
+        {
+            var assemblies = await LazyAssemblyLoader.LoadAssembliesAsync(new string[] { "Lib1.dll"  });
+            lazyLoadedAssemblies.AddRange(assemblies);
+        }
+    }
+}
+```
+
+#### Updated Blazor WebAssembly globalization support
+
+.NET 5 Preview 8 reintroduces globalization support for Blazor WebAssembly based on International Components for Unicode (ICU). Part of introducing the ICU data and logic is optimizing these payloads for download size. This work is not fully completed yet. We expect to reduce the size of the ICU data in future .NET 5 updates.
+<!-- Review: is this completed? -->
 
 ## gRPC
 
@@ -108,27 +290,16 @@ See [Update SignalR code](xref:migration/31-to-50#signalr) for migration instruc
 
 Prior to .NET 5, building and publishing a Dockerfile for an ASP.NET app required pulling the entire .NET Core SDK and the ASP.NET image. With this release, pulling the SDK images bytes is reduced and the bytes pulled for the ASP.NET image is largely eliminated. For more information, See [this GitHub issue comment](https://github.com/dotnet/dotnet-docker/issues/1814#issuecomment-625294750)
 
-## API improvements
+## Security API improvements
 
-### JSON extension methods for HttpRequest and HttpResponse
+### Azure Active Directory authentication with Microsoft.Identity.Web
 
-JSON data can be read and written to from an `HttpRequest` and `HttpResponse` using the new <xref:System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsync%2A> and `WriteAsJsonAsync` extension methods. These extension methods use the [System.Text.Json](xref:System.Text.Json) serializer to handle the JSON data. You can also check if a request has a JSON content type using the new `HasJsonContentType` extension method.
+The ASP.NET Core project templates now integrate with <xref:Microsoft.Identity.Web?displayProperty=fullName> to handle authentication with [Azure Activity Directory](https://docs.microsoft.com/en-us/azure/active-directory/fundamentals/active-directory-whatis) (Azure AD). The [Microsoft.Identity.Web package](https://www.nuget.org/packages/Microsoft.Identity.Web/) provides:
 
-The JSON extension methods can be combined with [endpoint routing](xref:fundamentals/routing) to create JSON APIs in a style of programming we call ***route to code***. It is a new option for developers who want to create basic JSON APIs in a lightweight way. For example, a web app that has only a handful of endpoints might choose to use route to code rather than the full functionality of ASP.NET Core MVC:
+* A better experience for authentication through Azure AD.
+* An easier way to access Azure resources on behalf of your users, including [Microsoft Graph](https://docs.microsoft.com/en-us/graph/overview). See the [Microsoft.Identity.Web sample](https://github.com/Azure-Samples/active-directory-aspnetcore-webapp-openidconnect-v2) starts with a basic login and advances through multi-tenancy, using Azure APIs, using Microsoft Graph, and protecting your own APIs. `Microsoft.Identity.Web` is available alongside .NET 5.
 
-```csharp
-endpoints.MapGet("/weather/{city:alpha}", async context =>
-{
-    var city = (string)context.Request.RouteValues["city"];
-    var weather = GetFromDatabase(city);
-
-    await context.Response.WriteAsJsonAsync(weather);
-});
-```
-
-For more information on the new JSON extension methods and route to code, see [this .NET show](WriteAsJsonAsync).
-
-### allow anonymous access to an endpoint
+### Allow anonymous access to an endpoint
 
 The `AllowAnonymous` extension method allows anonymous access to an endpoint:
 
@@ -159,20 +330,42 @@ Custom handling of authorization failures is now easier with the new [IAuthoriza
 
 Authorization when using endpoint routing now receives the `HttpContext` rather than the endpoint instance. This allows the authorization middleware to access the `RouteData` and other properties of the `HttpContext` that were not accessible though the <xref:Microsoft.AspNetCore.Http.Endpoint> class. The endpoint can be fetched from the context using [context.GetEndpoint(xref:Microsoft.AspNetCore.Http.EndpointHttpContextExtensions.GetEndpoint%2A).
 
+## API improvements
+
+### JSON extension methods for HttpRequest and HttpResponse
+
+JSON data can be read and written to from an `HttpRequest` and `HttpResponse` using the new <xref:System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsync%2A> and `WriteAsJsonAsync` extension methods. These extension methods use the [System.Text.Json](xref:System.Text.Json) serializer to handle the JSON data. You can also check if a request has a JSON content type using the new `HasJsonContentType` extension method.
+
+The JSON extension methods can be combined with [endpoint routing](xref:fundamentals/routing) to create JSON APIs in a style of programming we call ***route to code***. It is a new option for developers who want to create basic JSON APIs in a lightweight way. For example, a web app that has only a handful of endpoints might choose to use route to code rather than the full functionality of ASP.NET Core MVC:
+
+```csharp
+endpoints.MapGet("/weather/{city:alpha}", async context =>
+{
+    var city = (string)context.Request.RouteValues["city"];
+    var weather = GetFromDatabase(city);
+
+    await context.Response.WriteAsJsonAsync(weather);
+});
+```
+
+For more information on the new JSON extension methods and route to code, see [this .NET show](WriteAsJsonAsync).
+
 ### System.Diagnostics.Activity
 
 The default format for <xref:System.Diagnostics.Activity?displayProperty=fullName> now defaults to the W3C format. This makes distributed tracing support in ASP.NET Core interoperable with more frameworks by default.
 
-### FromBodyAttribute 
+### FromBodyAttribute
 
 <xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute> ow supports configuring an option that allows these parameters or properties to be considered optional:
 
 ```csharp
-public IActionResult Post([FromBody(EmptyBodyBehavior = EmptyBodyBehavior.Allow)] MyModel model) {
-     ... 
+public IActionResult Post([FromBody(EmptyBodyBehavior = EmptyBodyBehavior.Allow)]
+                           MyModel model) {
+     ...
      }
 ```
-## Miscellaneous changes
+
+### Miscellaneous changes
 
 * The <xref:System.ComponentModel.DataAnnotations.CompareAttribute> can now be applied to properties on Razor Page model.
 * Parameters and properties bound from the body are considered required by default. <!-- Review: How is this different from 3.1
