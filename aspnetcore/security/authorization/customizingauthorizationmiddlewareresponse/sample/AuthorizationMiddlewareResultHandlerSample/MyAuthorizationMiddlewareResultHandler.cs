@@ -33,6 +33,4 @@ public class MyAuthorizationMiddlewareResultHandler : AuthorizationMiddlewareRes
     }
 }
 
-internal class Show404Requirement
-{
-}
+public class Show404Requirement : IAuthorizationRequirement { }
