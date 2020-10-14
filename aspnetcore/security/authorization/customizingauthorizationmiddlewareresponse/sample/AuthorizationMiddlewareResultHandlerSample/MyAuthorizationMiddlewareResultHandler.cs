@@ -26,10 +26,12 @@ public class MyAuthorizationMiddlewareResultHandler : AuthorizationMiddlewareRes
         await base.HandleAsync(requestDelegate, httpContext, authorizationPolicy, 
                                policyAuthorizationResult);
     }
+
     bool Show404ForForbiddenResult(PolicyAuthorizationResult policyAuthorizationResult)
     {
         return policyAuthorizationResult.Forbidden &&
-            policyAuthorizationResult.AuthorizationFailure.FailedRequirements.OfType<Show404Requirement>().Any();
+            policyAuthorizationResult.AuthorizationFailure.FailedRequirements.OfType<
+                                                           Show404Requirement>().Any();
     }
 }
 
