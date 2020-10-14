@@ -126,6 +126,8 @@ dotnet ef migrations add InitialCreate
 dotnet ef database update
 ```
 
+`dotnet ef migrations remove` removes the last migration. If there are more than one migration, delete the Migrations folder.
+
 ---
 <!-- End of VS tabs -->
 
