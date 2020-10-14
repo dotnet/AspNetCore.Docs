@@ -123,7 +123,7 @@ The `Movie` class contains:
 
 ---
 
-1. Build the project to verify there are no compilation errors.
+* Build the project to verify there are no compilation errors.
 
 ## Scaffold the movie model
 
@@ -190,8 +190,6 @@ dotnet-aspnet-codegenerator razorpage -h
 ```
 
 For more information, see [dotnet-aspnet-codegenerator](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
-
----
 
 ### Use SQLite for development, SQL Server for production
 
