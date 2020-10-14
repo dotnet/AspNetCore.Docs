@@ -40,23 +40,22 @@ Automatic verification of schema/model in sync makes it easier to find inconsist
 
 ## Adding a Rating Property to the Movie Model
 
-Open the *Models/Movie.cs* file and add a `Rating` property:
+1. Open the *Models/Movie.cs* file and add a `Rating` property:
 
-[!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Models/MovieDateRating.cs?highlight=13&name=snippet)]
+   [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Models/MovieDateRating.cs?highlight=13&name=snippet)]
 
-Build the app.
+1. Build the app.
 
-Edit *Pages/Movies/Index.cshtml*, and add a `Rating` field:
+1. Edit *Pages/Movies/Index.cshtml*, and add a `Rating` field:
 
-<a name="addrat"></a>
+   <a name="addrat"></a>
 
-[!code-cshtml[](razor-pages-start/sample/RazorPagesMovie30/SnapShots/IndexRating.cshtml?highlight=40-42,62-64)]
+   [!code-cshtml[](razor-pages-start/sample/RazorPagesMovie30/SnapShots/IndexRating.cshtml?highlight=40-42,62-64)]
 
-Update the following pages:
-
-* Add the `Rating` field to the Delete and Details pages.
-* Update [Create.cshtml](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Pages/Movies/Create.cshtml) with a `Rating` field.
-* Add the `Rating` field to the Edit Page.
+1. Update the following pages:
+   1. Add the `Rating` field to the Delete and Details pages.
+   1. Update [Create.cshtml](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Pages/Movies/Create.cshtml) with a `Rating` field.
+   1. Add the `Rating` field to the Edit Page.
 
 The app won't work until the DB is updated to include the new field. Running the app without updating the database throws a `SqlException`:
 
@@ -80,7 +79,7 @@ Update the `SeedData` class so that it provides a value for the new column. A sa
 
 See the [completed SeedData.cs file](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Models/SeedDataRating.cs).
 
-Build the solution.
+1. Build the solution.
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -88,13 +87,13 @@ Build the solution.
 
 ### Add a migration for the rating field
 
-From the **Tools** menu, select **NuGet Package Manager > Package Manager Console**.
-In the PMC, enter the following commands:
+1. From the **Tools** menu, select **NuGet Package Manager > Package Manager Console**.
+2. In the PMC, enter the following commands:
 
-```powershell
-Add-Migration Rating
-Update-Database
-```
+   ```powershell
+   Add-Migration Rating
+   Update-Database
+   ```
 
 The `Add-Migration` command tells the framework to:
 
@@ -142,17 +141,19 @@ Another option is to delete the database and use migrations to re-create the dat
 > * [Data seeding](/ef/core/modeling/data-seeding)
 > * [SQLite ALTER TABLE statement](https://sqlite.org/lang_altertable.html)
 
-Delete the migration folder.  Use the following commands to recreate the database.
+1. Delete the migration folder.  
 
-```dotnetcli
-dotnet ef database drop
-dotnet ef migrations add InitialCreate
-dotnet ef database update
-```
+1. Use the following commands to recreate the database.
+
+   ```dotnetcli
+   dotnet ef database drop
+   dotnet ef migrations add InitialCreate
+   dotnet ef database update
+   ```
 
 ---
 
-Run the app and verify you can create/edit/display movies with a `Rating` field. If the database isn't seeded, set a break point in the `SeedData.Initialize` method.
+1. Run the app and verify you can create/edit/display movies with a `Rating` field. If the database isn't seeded, set a break point in the `SeedData.Initialize` method.
 
 ## Additional resources
 

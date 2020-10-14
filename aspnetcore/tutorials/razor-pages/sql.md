@@ -50,11 +50,11 @@ When the app is deployed to a test or production server, an environment variable
 LocalDB is a lightweight version of the SQL Server Express database engine that's targeted for program development. LocalDB starts on demand and runs in user mode, so there's no complex configuration. By default, LocalDB database creates `*.mdf` files in the `C:\Users\<user>\` directory.
 
 <a name="ssox"></a>
-* From the **View** menu, open **SQL Server Object Explorer** (SSOX).
+1. From the **View** menu, open **SQL Server Object Explorer** (SSOX).
 
   ![View menu](sql/_static/5/ssox.png)
 
-* Right-click on the `Movie` table and select **View Designer**:
+1. Right-click on the `Movie` table and select **View Designer**:
 
   ![Contextual menus open on Movie table](sql/_static/5/design.png)
 
@@ -62,7 +62,7 @@ LocalDB is a lightweight version of the SQL Server Express database engine that'
 
 Note the key icon next to `ID`. By default, EF creates a property named `ID` for the primary key.
 
-* Right-click on the `Movie` table and select **View Data**:
+1. Right-click on the `Movie` table and select **View Data**:
 
   ![Movie table open showing table data](sql/_static/vd22.png)
 
@@ -98,28 +98,28 @@ There are many third party tools you can download to manage and view a SQLite da
 
 ## Seed the database
 
-Create a new class named `SeedData` in the *Models* folder with the following code:
+1. Create a new class named `SeedData` in the *Models* folder with the following code:
 
-[!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Models/SeedData.cs?name=snippet_1)]
+   [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Models/SeedData.cs?name=snippet_1)]
 
-If there are any movies in the DB, the seed initializer returns and no movies are added.
+1. If there are any movies in the DB, the seed initializer returns and no movies are added.
 
-```csharp
-if (context.Movie.Any())
-{
-    return;   // DB has been seeded.
-}
-```
+   ```csharp
+   if (context.Movie.Any())
+   {
+       return;   // DB has been seeded.
+   }
+   ```
 
 <a name="si"></a>
 
 ### Add the seed initializer
 
-In *Program.cs*, modify the `Main` method to do the following:
+1. In *Program.cs*, modify the `Main` method to do the following:
 
-* Get a DB context instance from the dependency injection container.
-* Call the seed method, passing to it the context.
-* Dispose the context when the seed method completes.
+   1. Get a DB context instance from the dependency injection container.
+   1. Call the seed method, passing to it the context.
+   1. Dispose the context when the seed method completes.
 
 The following code shows the updated *Program.cs* file.
 
@@ -134,21 +134,22 @@ The following exception occurs when `Update-Database` has not been run:
 
 # [Visual Studio](#tab/visual-studio)
 
-* Delete all the records in the DB. Use the delete links in the browser or from [SSOX](xref:tutorials/razor-pages/new-field#ssox)
-* Force the app to initialize (call the methods in the `Startup` class) so the seed method runs. To force initialization, IIS Express must be stopped and restarted. Stop and restart IIS with any of the following approaches:
+1. Delete all the records in the DB. Use the delete links in the browser or from [SSOX](xref:tutorials/razor-pages/new-field#ssox)
 
-  * Right-click the IIS Express system tray icon in the notification area and tap **Exit** or **Stop Site**:
+1. Force the app to initialize (call the methods in the `Startup` class) so the seed method runs. To force initialization, IIS Express must be stopped and restarted. Stop and restart IIS with any of the following approaches:
 
-    ![IIS Express system tray icon](../first-mvc-app/working-with-sql/_static/iisExIcon.png)
+     1. Right-click the IIS Express system tray icon in the notification area and tap **Exit** or **Stop Site**:
 
-    ![Contextual menu](sql/_static/stopIIS.png)
+       ![IIS Express system tray icon](../first-mvc-app/working-with-sql/_static/iisExIcon.png)
 
-    * If the app is running in non-debug mode, press F5 to run in debug mode.
-    * If the app in debug mode, stop the debugger and press F5.
+       ![Contextual menu](sql/_static/stopIIS.png)
+
+    1. If the app is running in non-debug mode, press F5 to run in debug mode.
+    1. If the app in debug mode, stop the debugger and press F5.
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-Delete all the records in the DB (So the seed method will run). Stop and start the app to seed the database.
+1. Delete all the records in the DB (So the seed method will run). Stop and start the app to seed the database.
 
 The app shows the seeded data.
 
