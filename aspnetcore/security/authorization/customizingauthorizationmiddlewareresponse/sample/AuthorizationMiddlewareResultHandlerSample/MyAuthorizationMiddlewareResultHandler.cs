@@ -5,9 +5,11 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 
-public class MyAuthorizationMiddlewareResultHandler : AuthorizationMiddlewareResultHandler
+public class MyAuthorizationMiddlewareResultHandler : IAuthorizationMiddlewareResultHandler
 {
-    public new async Task HandleAsync(
+   private readonly AuthorizationMiddlewareResultHandler DefaultHandler = new AuthorizationMiddlewareResultHandler();
+	
+    public async Task HandleAsync(
         RequestDelegate requestDelegate,
         HttpContext httpContext,
         AuthorizationPolicy authorizationPolicy,
@@ -23,7 +25,7 @@ public class MyAuthorizationMiddlewareResultHandler : AuthorizationMiddlewareRes
         }
 
         // Fallback to the default implementation.
-        await base.HandleAsync(requestDelegate, httpContext, authorizationPolicy, 
+        await DefaultHandler.HandleAsync(requestDelegate, httpContext, authorizationPolicy, 
                                policyAuthorizationResult);
     }
 
