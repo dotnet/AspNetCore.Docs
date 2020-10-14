@@ -107,4 +107,17 @@ Hosted Blazor WebAssembly apps:
 * [Azure Active Directory (AAD) B2C](xref:blazor/security/webassembly/hosted-with-azure-active-directory-b2c)
 * [Identity Server](xref:blazor/security/webassembly/hosted-with-identity-server)
 
-For further guidance on configuration, see <xref:blazor/security/webassembly/additional-scenarios>.
+::: moniker range=">= aspnetcore-5.0"
+
+Further configuration guidance is found in the following articles:
+
+* <xref:blazor/security/webassembly/additional-scenarios>
+* <xref:blazor/security/webassembly/graph-api>
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+For further configuration guidance, see <xref:blazor/security/webassembly/additional-scenarios>.
+
+::: moniker-end

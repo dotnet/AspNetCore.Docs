@@ -1,0 +1,505 @@
+---
+title: Use Graph API with ASP.NET Core Blazor WebAssembly
+author: guardrex
+description: Learn how to use Graph API with Blazor WebAssemlby apps.
+monikerRange: '>= aspnetcore-3.1'
+ms.author: riande
+ms.custom: mvc
+ms.date: 10/15/2020
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+uid: blazor/security/webassembly/graph-api
+---
+# Use Graph API with ASP.NET Core Blazor WebAssembly
+
+By [Luke Latham](https://github.com/guardrex) and [Javier Calvarro Nelson](https://github.com/javiercn)
+
+::: moniker range=">= aspnetcore-5.0"
+
+[Microsoft Graph API](/graph/use-the-api) is a RESTful web API that enables Blazor and other .NET Framework apps to access Microsoft Cloud service resources.
+
+## Graph SDK
+
+[Microsoft Graph SDKs](/graph/sdks/sdks-overview) are designed to simplify building high-quality, efficient, and resilient applications that access Microsoft Graph.
+
+The examples in this section require project file package references for the following packages:
+
+* [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http)
+* [`Microsoft.Graph`](https://www.nuget.org/packages/Microsoft.Graph)
+
+Create the following utility classes (`GraphClientExtensions.cs`) for working with Graph SDK. The following classes are used in each of the following subsections of this article:
+
+* [Call Graph API from a component using the Graph SDK](#call-graph-api-from-a-component-using-the-graph-sdk)
+* [Customize user claims with Graph SDK](#customize-user-claims-with-graph-sdk)
+
+After adding the Microsoft Graph API permissions (scopes) in the AAD area of the Azure portal, provide the required scopes to `Scopes` in the `AuthenticateRequestAsync` method.
+
+`GraphClientExtensions.cs`:
+
+```csharp
+using System;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+using Microsoft.Authentication.WebAssembly.Msal.Models;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Graph;
+
+internal static class GraphClientExtensions
+{
+    public static IServiceCollection AddGraphClient(
+        this IServiceCollection services, params string[] scopes)
+    {
+        services.Configure<RemoteAuthenticationOptions<MsalProviderOptions>>(
+            options =>
+            {
+                foreach (var scope in scopes)
+                {
+                    options.ProviderOptions.AdditionalScopesToConsent.Add(scope);
+                }
+            });
+
+        services.AddScoped<IAuthenticationProvider, 
+            NoOpGraphAuthenticationProvider>();
+        services.AddScoped<IHttpProvider, HttpClientHttpProvider>(sp => 
+            new HttpClientHttpProvider(new HttpClient()));
+        services.AddScoped(sp =>
+        {
+            return new GraphServiceClient(
+                sp.GetRequiredService<IAuthenticationProvider>(),
+                sp.GetRequiredService<IHttpProvider>());
+        });
+
+        return services;
+    }
+
+    private class NoOpGraphAuthenticationProvider : IAuthenticationProvider
+    {
+        public NoOpGraphAuthenticationProvider(IAccessTokenProvider provider)
+        {
+            Provider = provider;
+        }
+
+        public IAccessTokenProvider Provider { get; }
+
+        public async Task AuthenticateRequestAsync(HttpRequestMessage request)
+        {
+            var result = await Provider.RequestAccessToken(
+                new AccessTokenRequestOptions()
+                {
+                    Scopes = new[] { "https://graph.microsoft.com/User.Read" }
+                });
+
+            if (result.TryGetToken(out var token))
+            {
+                request.Headers.Authorization ??= new AuthenticationHeaderValue(
+                    "Bearer", token.Value);
+            }
+        }
+    }
+
+    private class HttpClientHttpProvider : IHttpProvider
+    {
+        private readonly HttpClient client;
+
+        public HttpClientHttpProvider(HttpClient client)
+        {
+            this.client = client;
+        }
+
+        public ISerializer Serializer { get; } = new Serializer();
+
+        public TimeSpan OverallTimeout { get; set; } = TimeSpan.FromSeconds(300);
+
+        public void Dispose()
+        {
+        }
+
+        public Task<HttpResponseMessage> SendAsync(HttpRequestMessage request)
+        {
+            return client.SendAsync(request);
+        }
+
+        public Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, 
+            HttpCompletionOption completionOption, 
+            CancellationToken cancellationToken)
+        {
+            return client.SendAsync(request, completionOption, cancellationToken);
+        }
+    }
+}
+```
+
+In `Program.Main` (`Program.cs`), add the graph client for Graph SDK. Provide a scope array for the app's required Graph API scopes:
+
+```csharp
+builder.Services.AddGraphClient("https://graph.microsoft.com/User.Read");
+```
+
+### Call Graph API from a component using the Graph SDK
+
+This section uses the [utility classes (`GraphClientExtensions.cs`)](#graph-sdk) described earlier in this article:
+
+```razor
+@page "/GraphExample"
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.Graph
+@attribute [Authorize]
+@inject GraphServiceClient GraphClient
+
+<h3>Graph Client Example</h3>
+
+@if (user != null)
+{
+    <p>Mobile Phone: @user.MobilePhone</p>
+}
+
+@code {
+    private User user;
+
+    protected async override Task OnInitializedAsync()
+    {
+        var request = GraphClient.Me.Request();
+        user = await request.GetAsync();
+    }
+}
+```
+
+### Customize user claims with Graph SDK
+
+This section uses the [utility classes (`GraphClientExtensions.cs`)](#graph-sdk) described earlier in this article. In the following `CustomAccountFactory` (`CustomAccountFactory.cs`), the framework's <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount> represents the user's account. If the app requires a custom user account class that extends <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount>, swap the custom user account class for <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount> in the following code. The following example creates a `mobilephone` claim for each user from their AAD user registration.
+
+`CustomAccountFactory.cs`:
+
+```csharp
+using System;
+using System.Net.Http;
+using System.Net.Http.Json;
+using System.Security.Claims;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication.Internal;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Microsoft.Graph;
+
+public class CustomAccountFactory
+    : AccountClaimsPrincipalFactory<RemoteUserAccount>
+{
+    private readonly ILogger<CustomAccountFactory> logger;
+    private readonly IServiceProvider serviceProvider;
+
+    public CustomAccountFactory(IAccessTokenProviderAccessor accessor, 
+        IServiceProvider serviceProvider,
+        ILogger<CustomAccountFactory> logger)
+        : base(accessor)
+    {
+        this.serviceProvider = serviceProvider;
+        this.logger = logger;
+    }
+
+    public async override ValueTask<ClaimsPrincipal> CreateUserAsync(
+        RemoteUserAccount account,
+        RemoteAuthenticationUserOptions options)
+    {
+        var initialUser = await base.CreateUserAsync(account, options);
+
+        if (initialUser.Identity.IsAuthenticated)
+        {
+            var userIdentity = (ClaimsIdentity)initialUser.Identity;
+
+            try
+            {
+                var graphClient = ActivatorUtilities
+                    .CreateInstance<GraphServiceClient>(serviceProvider);
+                var request = graphClient.Me.Request();
+                var user = await request.GetAsync();
+
+                if (user != null)
+                {
+                    userIdentity.AddClaim(new Claim("mobilephone", 
+                        user.MobilePhone));
+                }
+            }
+            catch (ServiceException exception)
+            {
+                logger.LogError("Graph API service failure: {Message}",
+                    exception.Message);
+            }
+        }
+
+        return initialUser;
+    }
+}
+```
+
+In `Program.Main` (`Program.cs`):
+
+```csharp
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+using Microsoft.Extensions.Configuration;
+
+builder.Services.AddMsalAuthentication<RemoteAuthenticationState, 
+    RemoteUserAccount>(options =>
+    {
+        builder.Configuration.Bind("AzureAd", 
+            options.ProviderOptions.Authentication);
+        options.ProviderOptions.DefaultAccessTokenScopes.Add(
+            "https://graph.microsoft.com/User.Read");
+    })
+    .AddAccountClaimsPrincipalFactory<RemoteAuthenticationState, RemoteUserAccount, 
+        CustomAccountFactory>();
+```
+
+::: moniker-end
+
+## Named client with Graph API
+
+The examples in this section use a named <xref:System.Net.Http.HttpClient> for Graph API to obtain a user's mobile phone number to process a call. After adding the Microsoft Graph API `User.Read` permission in the AAD area of the Azure portal, the scope is configured for the named client in the standalone app or *`Client`* app of a hosted Blazor solution.
+
+The examples require a package reference for [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http) in the project file of the standalone or *`Client`* app's project file.
+
+After adding the Microsoft Graph API permissions (scopes) in the AAD area of the Azure portal, provide the required scopes to the configured handler. The following example configures the handler for the `https://graph.microsoft.com/User.Read` permission (scope).
+
+`GraphAuthorizationMessageHandler.cs`:
+
+```csharp
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+
+public class GraphAPIAuthorizationMessageHandler : AuthorizationMessageHandler
+{
+    public GraphAPIAuthorizationMessageHandler(IAccessTokenProvider provider,
+        NavigationManager navigationManager)
+        : base(provider, navigationManager)
+    {
+        ConfigureHandler(
+            authorizedUrls: new[] { "https://graph.microsoft.com" },
+            scopes: new[] { "https://graph.microsoft.com/User.Read" });
+    }
+}
+```
+
+In `Program.Main` (`Program.cs`), create the named <xref:System.Net.Http.HttpClient>:
+
+```csharp
+builder.Services.AddScoped<GraphAPIAuthorizationMessageHandler>();
+
+builder.Services.AddHttpClient("GraphAPI",
+        client => client.BaseAddress = new Uri("https://graph.microsoft.com"))
+    .AddHttpMessageHandler<GraphAPIAuthorizationMessageHandler>();
+```
+
+### Call Graph API from a component
+
+In a Razor component (`Pages/CallUser.razor`):
+
+```razor
+@page "/CallUser"
+@using System.ComponentModel.DataAnnotations
+@using System.Text.Json.Serialization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@using Microsoft.Extensions.Logging
+@inject IAccessTokenProvider TokenProvider
+@inject IHttpClientFactory ClientFactory
+@inject ILogger<CallUser> Logger
+@inject ICallProcessor CallProcessor
+
+<h3>Call User</h3>
+
+<EditForm Model="@callInfo" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <p>
+        <label>
+            Message:
+            <InputTextArea @bind-Value="callInfo.Message" />
+        </label>
+    </p>
+
+    <button type="submit">Place call</button>
+
+    <p>
+        @formStatus
+    </p>
+</EditForm>
+
+@code {
+    private string formStatus;
+    private CallInfo callInfo = new CallInfo();
+
+    private async Task HandleValidSubmit()
+    {
+        var tokenResult = await TokenProvider.RequestAccessToken(
+            new AccessTokenRequestOptions
+            {
+                Scopes = new[] { "https://graph.microsoft.com/User.Read" }
+            });
+
+        if (tokenResult.TryGetToken(out var token))
+        {
+            var client = ClientFactory.CreateClient("GraphAPI");
+
+            var userInfo = await client.GetFromJsonAsync<UserInfo>("v1.0/me");
+
+            if (userInfo != null)
+            {
+                CallProcessor.Send(userInfo.MobilePhone, callInfo.Message);
+
+                formStatus = "Form successfully processed.";
+                Logger.LogInformation(
+                    $"Form successfully processed at {DateTime.UtcNow}. " +
+                    $"Mobile Phone: {userInfo.MobilePhone}");
+            }
+        }
+        else
+        {
+            formStatus = "There was a problem processing the form.";
+            Logger.LogError("Token failure");
+        }
+    }
+
+    private class CallInfo
+    {
+        [Required]
+        [StringLength(1000, ErrorMessage = "Message too long (1,000 char limit)")]
+        public string Message { get; set; }
+    }
+
+    private class UserInfo
+    {
+        [JsonPropertyName("mobilePhone")]
+        public string MobilePhone { get; set; }
+    }
+}
+```
+
+> [!NOTE]
+> In the preceding example, the developer implements the custom `ICallProcessor` (`CallProcessor`) to queue and then place automated calls.
+
+### Customize user claims with Graph API and a named client
+
+In the following example, the app creates a mobile phone number claim for the user from Graph API using the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount>. The app must have the `User.Read` Graph API permission (scope) configured in AAD.
+
+`GraphAuthorizationMessageHandler.cs`:
+
+```csharp
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+
+public class GraphAPIAuthorizationMessageHandler : AuthorizationMessageHandler
+{
+    public GraphAPIAuthorizationMessageHandler(IAccessTokenProvider provider,
+        NavigationManager navigationManager)
+        : base(provider, navigationManager)
+    {
+        ConfigureHandler(
+            authorizedUrls: new[] { "https://graph.microsoft.com" },
+            scopes: new[] { "https://graph.microsoft.com/User.Read" });
+    }
+}
+```
+
+A named <xref:System.Net.Http.HttpClient> for Graph API is created in `Program.Main` (`Program.cs`) using the `GraphAPIAuthorizationMessageHandler`:
+
+```csharp
+builder.Services.AddScoped<GraphAPIAuthorizationMessageHandler>();
+
+builder.Services.AddHttpClient("GraphAPI",
+        client => client.BaseAddress = new Uri("https://graph.microsoft.com"))
+    .AddHttpMessageHandler<GraphAPIAuthorizationMessageHandler>();
+```
+
+`UserInfo.cs`:
+
+```csharp
+using System.Text.Json.Serialization;
+
+public class UserInfo
+{
+    [JsonPropertyName("mobilePhone")]
+    public string MobilePhone { get; set; }
+}
+```
+
+In the following `CustomAccountFactory` (`CustomAccountFactory.cs`), the framework's <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount> represents the user's account. If the app requires a custom user account class that extends <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount>, swap the custom user account class for <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount> in the following code. The following example creates a `mobilephone` claim for each user from their AAD user registration.
+
+```csharp
+using System.Net.Http;
+using System.Net.Http.Json;
+using System.Security.Claims;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication.Internal;
+using Microsoft.Extensions.Logging;
+
+public class CustomAccountFactory
+    : AccountClaimsPrincipalFactory<RemoteUserAccount>
+{
+    private readonly ILogger<CustomAccountFactory> logger;
+    private readonly IHttpClientFactory clientFactory;
+
+    public CustomAccountFactory(IAccessTokenProviderAccessor accessor, 
+        IHttpClientFactory clientFactory, 
+        ILogger<CustomAccountFactory> logger)
+        : base(accessor)
+    {
+        this.clientFactory = clientFactory;
+        this.logger = logger;
+    }
+
+    public async override ValueTask<ClaimsPrincipal> CreateUserAsync(
+        RemoteUserAccount account,
+        RemoteAuthenticationUserOptions options)
+    {
+        var initialUser = await base.CreateUserAsync(account, options);
+
+        if (initialUser.Identity.IsAuthenticated)
+        {
+            var userIdentity = (ClaimsIdentity)initialUser.Identity;
+
+            try
+            {
+                var client = clientFactory.CreateClient("GraphAPI");
+
+                var userInfo = await client.GetFromJsonAsync<UserInfo>("v1.0/me");
+
+                if (userInfo != null)
+                {
+                    userIdentity.AddClaim(new Claim("mobilephone", 
+                        userInfo.MobilePhone));
+                }
+            }
+            catch (AccessTokenNotAvailableException exception)
+            {
+                logger.LogError("Graph API access token failure: {Message}",
+                    exception.Message);
+            }
+        }
+
+        return initialUser;
+    }
+}
+```
+
+In `Program.Main` (`Program.cs`), configure the app to use the custom factory. If the app uses a custom user account class that extends <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount>, swap the custom user account class for <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount> in the following code:
+
+```csharp
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+
+...
+
+builder.Services.AddMsalAuthentication<RemoteAuthenticationState, 
+    RemoteUserAccount>(options =>
+    {
+        builder.Configuration.Bind("AzureAd", 
+            options.ProviderOptions.Authentication);
+    })
+    .AddAccountClaimsPrincipalFactory<RemoteAuthenticationState, RemoteUserAccount, 
+        CustomAccountFactory>();
+```
+
+The preceding example is for an app that uses AAD authentication with MSAL. Similar patterns exist for OIDC and API authentication. For more information, see the examples in [Customize the user with a payload claim](xref:blazor/security/webassembly/additional-scenarios#customize-the-user-with-a-payload-claim) section.
