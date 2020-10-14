@@ -120,6 +120,7 @@ If all the records in the DB are deleted, the initialize method will seed the DB
 Delete the database and use migrations to re-create the database. To delete the database, delete the *MvcMovie.db* database file. Then run the `ef database update` command:
 
 ```dotnetcli
+dotnet ef migrations add InitialCreate
 dotnet ef database update
 ```
 
