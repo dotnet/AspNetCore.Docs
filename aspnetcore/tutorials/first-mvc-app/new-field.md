@@ -117,9 +117,10 @@ If all the records in the DB are deleted, the initialize method will seed the DB
 
 [!INCLUDE[](~/includes/RP-mvc-shared/sqlite-warn.md)]
 
-Delete the database and use migrations to re-create the database. To delete the database, delete the *MvcMovie.db* database file. Then run the `ef database update` command:
+Delete the database and the previous migration and use migrations to re-create the database. To delete the database, delete the *MvcMovie.db* database file. Then run the the following commands:
 
 ```dotnetcli
+dotnet ef migrations remove
 dotnet ef migrations add InitialCreate
 dotnet ef database update
 ```
