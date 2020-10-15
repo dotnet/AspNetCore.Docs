@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 07/05/2019
-no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/docker-https
 ---
 # Hosting ASP.NET Core images with Docker over HTTPS
@@ -30,6 +30,8 @@ The [.NET Core 2.2 SDK](https://dotnet.microsoft.com/download) or later is requi
 A certificate from a [certificate authority](https://wikipedia.org/wiki/Certificate_authority) is required for [production hosting](https://blogs.msdn.microsoft.com/webdev/2017/11/29/configuring-https-in-asp-net-core-across-different-platforms/) for a domain. [Let's Encrypt](https://letsencrypt.org/) is a certificate authority that offers free certificates.
 
 This document uses [self-signed development certificates](https://en.wikipedia.org/wiki/Self-signed_certificate) for hosting pre-built images over `localhost`. The instructions are similar to using production certificates.
+
+You can use [dotnet dev-certs](https://docs.microsoft.com/en-us/dotnet/core/additional-tools/self-signed-certificates-guide) to create self-signed certificates for development and testing scenarios among other options.
 
 For production certs:
 
@@ -67,6 +69,9 @@ docker run --rm -it -p 8000:80 -p 8001:443 -e ASPNETCORE_URLS="https://+;http://
 When using [PowerShell](/powershell/scripting/overview), replace `%USERPROFILE%` with `$env:USERPROFILE`.
 
 The password must match the password used for the certificate.
+
+
+Note: The certificate in this case must be a *.pfx* file.  Utilizing a *.crt* or *.key* file with or without the password isn't supported with the sample container.  For example, when specifying a *.crt* file, the container may return error messages such as 'The server mode SSL must use a certificate with the associated private key.'. When using [WSL](/windows/wsl/about), validate the mount path to ensure that the certificate loads correctly.
 
 ### macOS or Linux
 
