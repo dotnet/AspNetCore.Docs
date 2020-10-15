@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 public class MyAuthorizationMiddlewareResultHandler : IAuthorizationMiddlewareResultHandler
 {
-   private readonly AuthorizationMiddlewareResultHandler DefaultHandler = new AuthorizationMiddlewareResultHandler();
+   private readonly AuthorizationMiddlewareResultHandler 
+        DefaultHandler = new AuthorizationMiddlewareResultHandler();
 	
     public async Task HandleAsync(
         RequestDelegate requestDelegate,
