@@ -82,7 +82,7 @@ var channel = GrpcChannel.ForAddress("http://localhost:5000");
 var client = new Greet.GreeterClient(channel);
 ```
 
-.NET 5 apps don't need additional configuration, but they must use `Grpc.Net.Client` version 2.32.0 or later.
+.NET 5 apps don't need additional configuration, but to call insecure gRPC services they must use `Grpc.Net.Client` version 2.32.0 or later.
 
 ## Unable to start ASP.NET Core gRPC app on macOS
 
