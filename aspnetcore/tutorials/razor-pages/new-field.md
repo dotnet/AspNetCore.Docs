@@ -153,7 +153,7 @@ Another option is to delete the database and use migrations to re-create the dat
 
 ---
 
-1. Run the app and verify you can create/edit/display movies with a `Rating` field. If the database isn't seeded, set a break point in the `SeedData.Initialize` method.
+Run the app and verify you can create/edit/display movies with a `Rating` field. If the database isn't seeded, set a break point in the `SeedData.Initialize` method.
 
 ## Additional resources
 

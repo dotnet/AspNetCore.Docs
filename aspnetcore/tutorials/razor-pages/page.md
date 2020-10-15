@@ -110,19 +110,19 @@ The line `@*Markup removed for brevity.*@` is a Razor comment. Unlike HTML comme
 
 1. Change the `<title>` element in the *Pages/Shared/_Layout.cshtml* file to display **Movie** rather than **RazorPagesMovie**.
 
-[!code-cshtml[](razor-pages-start/sample/RazorPagesMovie30/Pages/Shared/_Layout.cshtml?range=1-6&highlight=6)]
+   [!code-cshtml[](razor-pages-start/sample/RazorPagesMovie30/Pages/Shared/_Layout.cshtml?range=1-6&highlight=6)]
 
 1. Find the following anchor element in the *Pages/Shared/_Layout.cshtml* file.
 
-```cshtml
-<a class="navbar-brand" asp-area="" asp-page="/Index">RazorPagesMovie</a>
-```
+   ```cshtml
+   <a class="navbar-brand" asp-area="" asp-page="/Index">RazorPagesMovie</a>
+   ```
 
 1. Replace the preceding element with the following markup:
 
-```cshtml
-<a class="navbar-brand" asp-page="/Movies/Index">RpMovie</a>
-```
+   ```cshtml
+   <a class="navbar-brand" asp-page="/Movies/Index">RpMovie</a>
+   ```
 
 The preceding anchor element is a [Tag Helper](xref:mvc/views/tag-helpers/intro). In this case, it's the [Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper). The `asp-page="/Movies/Index"` Tag Helper attribute and value creates a link to the `/Movies/Index` Razor Page. The `asp-area` attribute value is empty, so the area isn't used in the link. See [Areas](xref:mvc/controllers/areas) for more information.
 

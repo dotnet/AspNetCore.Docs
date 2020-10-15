@@ -96,7 +96,7 @@ However, users cannot be expected to modify the URL to search for a movie. In th
 
 ## Search by genre
 
-1. Update the Index page's `OnGetAsync` method with the following code:
+Update the Index page's `OnGetAsync` method with the following code:
 
    [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Pages/Movies/Index.cshtml.cs?name=snippet_SearchGenre)]
 

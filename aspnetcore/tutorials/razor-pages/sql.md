@@ -52,19 +52,19 @@ LocalDB is a lightweight version of the SQL Server Express database engine that'
 <a name="ssox"></a>
 1. From the **View** menu, open **SQL Server Object Explorer** (SSOX).
 
-  ![View menu](sql/_static/5/ssox.png)
+   ![View menu](sql/_static/5/ssox.png)
 
 1. Right-click on the `Movie` table and select **View Designer**:
 
-  ![Contextual menus open on Movie table](sql/_static/5/design.png)
+   ![Contextual menus open on Movie table](sql/_static/5/design.png)
 
-  ![Movie tables open in Designer](sql/_static/dv.png)
+   ![Movie tables open in Designer](sql/_static/dv.png)
 
 Note the key icon next to `ID`. By default, EF creates a property named `ID` for the primary key.
 
 1. Right-click on the `Movie` table and select **View Data**:
 
-  ![Movie table open showing table data](sql/_static/vd22.png)
+   ![Movie table open showing table data](sql/_static/vd22.png)
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
@@ -138,18 +138,18 @@ The following exception occurs when `Update-Database` has not been run:
 
 1. Force the app to initialize (call the methods in the `Startup` class) so the seed method runs. To force initialization, IIS Express must be stopped and restarted. Stop and restart IIS with any of the following approaches:
 
-     1. Right-click the IIS Express system tray icon in the notification area and tap **Exit** or **Stop Site**:
+   1. Right-click the IIS Express system tray icon in the notification area and tap **Exit** or **Stop Site**:
 
-       ![IIS Express system tray icon](../first-mvc-app/working-with-sql/_static/iisExIcon.png)
+      ![IIS Express system tray icon](../first-mvc-app/working-with-sql/_static/iisExIcon.png)
 
-       ![Contextual menu](sql/_static/stopIIS.png)
+      ![Contextual menu](sql/_static/stopIIS.png)
 
-    1. If the app is running in non-debug mode, press F5 to run in debug mode.
-    1. If the app in debug mode, stop the debugger and press F5.
+   1. If the app is running in non-debug mode, press F5 to run in debug mode.
+   1. If the app in debug mode, stop the debugger and press F5.
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-1. Delete all the records in the DB (So the seed method will run). Stop and start the app to seed the database.
+Delete all the records in the DB (So the seed method will run). Stop and start the app to seed the database.
 
 The app shows the seeded data.
 
