@@ -1118,7 +1118,7 @@
           uid: security/authorization/policies
         - name: Authorization policy providers
           uid: security/authorization/iauthorizationpolicyprovider
-       - name: Customize the behavior of AuthorizationMiddleware
+        - name: Customize the behavior of AuthorizationMiddleware
           uid: security/authorization/authorizationmiddlewareresulthandler
         - name: Dependency injection in requirement handlers
           uid: security/authorization/dependencyinjection
