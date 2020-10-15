@@ -349,21 +349,21 @@ Examine the `Up` method.
 
 1. Run the app and append `/Movies` to the URL in the browser (`http://localhost:port/movies`).
 
-If you get the error:
+   If you get the error:
 
-```console
-SqlException: Cannot open database "RazorPagesMovieContext-GUID" requested by the login. The login failed.
-Login failed for user 'User-name'.
-```
+   ```console
+   SqlException: Cannot open database "RazorPagesMovieContext-GUID" requested by the login. The login failed.
+   Login failed for user 'User-name'.
+   ```
 
-You missed the [migrations step](#pmc).
+   You missed the [migrations step](#pmc).
 
 1. Test the **Create** link.
 
-  ![Create page](model/_static/conan.png)
+   ![Create page](model/_static/conan.png)
 
-  > [!NOTE]
-  > You may not be able to enter decimal commas in the `Price` field. To support [jQuery validation](https://jqueryvalidation.org/) for non-English locales that use a comma (",") for a decimal point and for non US-English date formats, the app must be globalized. For globalization instructions, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/4076#issuecomment-326590420).
+   > [!NOTE]
+   > You may not be able to enter decimal commas in the `Price` field. To support [jQuery validation](https://jqueryvalidation.org/) for non-English locales that use a comma (",") for a decimal point and for non US-English date formats, the app must be globalized. For globalization instructions, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/4076#issuecomment-326590420).
 
 1. Test the **Edit**, **Details**, and **Delete** links.
 
