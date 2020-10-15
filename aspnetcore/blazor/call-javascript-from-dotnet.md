@@ -148,7 +148,10 @@ The placeholder `{APP ASSEMBLY}` is the app's app assembly name (for example, `B
 
 ## Call a void JavaScript function
 
-JavaScript functions that return [void(0)/void 0](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/void) or [undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined) are called with <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A?displayProperty=nameWithType>.
+Use <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A?displayProperty=nameWithType> for the following:
+
+* JavaScript functions that return [void(0)/void 0](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/void) or [undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined).
+* If .NET isn't required to read the result of a JavaScript call.
 
 ## Detect when a Blazor Server app is prerendering
  
@@ -649,8 +652,33 @@ Additionally, the preceding example shows how it's possible to encapsulate JavaS
 
 ::: moniker-end
 
+## Size limits on JS interop calls
+
+In Blazor WebAssembly, the framework doesn't impose limits on the size of inputs and outputs of JS interop calls.
+
+In Blazor Server, the result of a JS interop call is limited by the maximum payload size enforced by SignalR (<xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize>), which defaults to 32 KB. Applications that attempt to respond to a JS interop call with a payload larger than <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize> throw an error. A larger limit can be configured by modifying <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize>. The following example sets the maximum receive message size to 64 KB (64 * 1024 * 1024):
+
+```csharp
+services.AddServerSideBlazor()
+   .AddHubOptions(options => options.MaximumReceiveMessageSize = 64 * 1024 * 1024);
+```
+
+Increasing the SignalR limit comes at the cost of requiring the use of more server resources, and it exposes the server to increased risks from a malicious user. Additionally, reading a large amount of content in to memory as strings or byte arrays can also result in allocations that work poorly with the garbage collector, resulting in additional performance penalties. One option for reading large payloads is to consider sending the content in smaller chunks and processing the payload as a <xref:System.IO.Stream>. This can be used when reading large JSON payloads or if data is available in JavaScript as raw bytes. For an example that demonstrates sending large binary payloads in Blazor Server that uses techniques similar to the `InputFile` component, see the [Binary Submit sample app](https://github.com/aspnet/samples/tree/master/samples/aspnetcore/blazor/BinarySubmit).
+
+Consider the following guidance when developing code that transfers a large amount of data between JavaScript and Blazor:
+
+* Slice the data into smaller pieces, and send the data segments sequentially until all of the data is received by the server.
+* Don't allocate large objects in JavaScript and C# code.
+* Don't block the main UI thread for long periods when sending or receiving data.
+* Free any memory consumed when the process is completed or cancelled.
+* Enforce the following additional requirements for security purposes:
+  * Declare the maximum file or data size that can be passed.
+  * Declare the minimum upload rate from the client to the server.
+* After the data is received by the server, the data can be:
+  * Temporarily stored in a memory buffer until all of the segments are collected.
+  * Consumed immediately. For example, the data can be stored immediately in a database or written to disk as each segment is received.
+
 ## Additional resources
 
 * <xref:blazor/call-dotnet-from-javascript>
 * [InteropComponent.razor example (dotnet/AspNetCore GitHub repository, 3.1 release branch)](https://github.com/dotnet/AspNetCore/blob/release/3.1/src/Components/test/testassets/BasicTestApp/InteropComponent.razor)
-* [Perform large data transfers in Blazor Server apps](xref:blazor/advanced-scenarios#perform-large-data-transfers-in-blazor-server-apps)

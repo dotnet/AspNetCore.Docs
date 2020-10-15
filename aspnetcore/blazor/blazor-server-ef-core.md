@@ -94,6 +94,19 @@ The factory is injected into components and used to create new instances. For ex
 > [!NOTE]
 > `Wrapper` is a [component reference](xref:blazor/components/index#capture-references-to-components) to the `GridWrapper` component. See the `Index` component (`Pages/Index.razor`) in the [sample app](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/blazor/common/samples/5.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor).
 
+New <xref:Microsoft.EntityFrameworkCore.DbContext> instances can be created with a factory that allows you to configure the connection string per `DbContext`, such as when you use [ASP.NET Core's Identity model])(xref:security/authentication/customize_identity_model):
+
+```csharp
+services.AddDbContextFactory<ApplicationDbContext>(options =>
+{
+    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+});
+
+services.AddScoped<ApplicationDbContext>(p => 
+    p.GetRequiredService<IDbContextFactory<ApplicationDbContext>>()
+    .CreateDbContext());
+```
+
 <h3 id="scope-to-the-component-lifetime-5x">Scope to the component lifetime</h3>
 
 You may wish to create a <xref:Microsoft.EntityFrameworkCore.DbContext> that exists for the lifetime of a component. This allows you to use it as a [unit of work](https://martinfowler.com/eaaCatalog/unitOfWork.html) and take advantage of built-in features, such as change tracking and concurrency resolution.
@@ -111,6 +124,23 @@ The sample app ensures the context is disposed when the component is disposed:
 Finally, [`OnInitializedAsync`](xref:blazor/components/lifecycle) is overridden to create a new context. In the sample app, [`OnInitializedAsync`](xref:blazor/components/lifecycle) loads the contact in the same method:
 
 [!code-csharp[](./common/samples/5.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/EditContact.razor?name=snippet2)]
+
+<h3 id="enable-sensitive-data-logging">Enable sensitive data logging</h3>
+
+<xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.EnableSensitiveDataLogging%2A> includes application data in exception messages and framework logging. The logged data can include the values assigned to properties of entity instances and parameter values for commands sent to the database. Logging data with <xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.EnableSensitiveDataLogging%2A> is a **security risk**, as it may expose passwords and other personally identifiable information (PII) when it logs SQL statements executed against the database.
+
+We recommend only enabling <xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.EnableSensitiveDataLogging%2A> for development and testing:
+
+```csharp
+#if DEBUG
+    services.AddDbContextFactory<ContactContext>(opt =>
+        opt.UseSqlite($"Data Source={nameof(ContactContext.ContactsDb)}.db")
+        .EnableSensitiveDataLogging());
+#else
+    services.AddDbContextFactory<ContactContext>(opt =>
+        opt.UseSqlite($"Data Source={nameof(ContactContext.ContactsDb)}.db"));
+#endif
+```
 
 :::moniker-end
 
@@ -202,6 +232,19 @@ The factory is injected into components and used to create new instances. For ex
 > [!NOTE]
 > `Wrapper` is a [component reference](xref:blazor/components/index#capture-references-to-components) to the `GridWrapper` component. See the `Index` component (`Pages/Index.razor`) in the [sample app](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/blazor/common/samples/3.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor).
 
+New <xref:Microsoft.EntityFrameworkCore.DbContext> instances can be created with a factory that allows you to configure the connection string per `DbContext`, such as when you use [ASP.NET Core's Identity model])(xref:security/authentication/customize_identity_model):
+
+```csharp
+services.AddDbContextFactory<ApplicationDbContext>(options =>
+{
+    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+});
+
+services.AddScoped<ApplicationDbContext>(p => 
+    p.GetRequiredService<IDbContextFactory<ApplicationDbContext>>()
+    .CreateDbContext());
+```
+
 <h3 id="scope-to-the-component-lifetime-3x">Scope to the component lifetime</h3>
 
 You may wish to create a <xref:Microsoft.EntityFrameworkCore.DbContext> that exists for the lifetime of a component. This allows you to use it as a [unit of work](https://martinfowler.com/eaaCatalog/unitOfWork.html) and take advantage of built-in features, such as change tracking and concurrency resolution.
@@ -224,6 +267,23 @@ In the preceding example:
 
 * When `Busy` is set to `true`, asynchronous operations may begin. When `Busy` is set back to `false`, asynchronous operations should be finished.
 * Place additional error handling logic in a `catch` block.
+
+<h3 id="enable-sensitive-data-logging">Enable sensitive data logging</h3>
+
+<xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.EnableSensitiveDataLogging%2A> includes application data in exception messages and framework logging. The logged data can include the values assigned to properties of entity instances and parameter values for commands sent to the database. Logging data with <xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.EnableSensitiveDataLogging%2A> is a **security risk**, as it may expose passwords and other personally identifiable information (PII) when it logs SQL statements executed against the database.
+
+We recommend only enabling <xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.EnableSensitiveDataLogging%2A> for development and testing:
+
+```csharp
+#if DEBUG
+    services.AddDbContextFactory<ContactContext>(opt =>
+        opt.UseSqlite($"Data Source={nameof(ContactContext.ContactsDb)}.db")
+        .EnableSensitiveDataLogging());
+#else
+    services.AddDbContextFactory<ContactContext>(opt =>
+        opt.UseSqlite($"Data Source={nameof(ContactContext.ContactsDb)}.db"));
+#endif
+```
 
 :::moniker-end
 
