@@ -60,7 +60,7 @@ LocalDB is a lightweight version of the SQL Server Express database engine that'
 
    ![Movie tables open in Designer](sql/_static/dv.png)
 
-Note the key icon next to `ID`. By default, EF creates a property named `ID` for the primary key.
+   Note the key icon next to `ID`. By default, EF creates a property named `ID` for the primary key.
 
 1. Right-click on the `Movie` table and select **View Data**:
 

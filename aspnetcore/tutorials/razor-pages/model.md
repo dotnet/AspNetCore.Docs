@@ -345,7 +345,7 @@ Examine the `Up` method.
 
 <a name="test"></a>
 
-### Test the app
+## Test the app
 
 1. Run the app and append `/Movies` to the URL in the browser (`http://localhost:port/movies`).
 

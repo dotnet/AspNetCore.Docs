@@ -79,7 +79,7 @@ Update the `SeedData` class so that it provides a value for the new column. A sa
 
 See the [completed SeedData.cs file](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Models/SeedDataRating.cs).
 
-1. Build the solution.
+Build the solution.
 
 # [Visual Studio](#tab/visual-studio)
 
