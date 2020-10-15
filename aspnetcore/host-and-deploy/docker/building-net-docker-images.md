@@ -84,7 +84,7 @@ The sample Dockerfile uses the [Docker multi-stage build feature](https://docs.d
 
 ## Run in a Linux container
 
-* In the Docker client, switch to Linux containers.
+* In the Docker client, [switch to Linux containers](https://docs.docker.com/docker-for-windows/#switch-between-windows-and-linux-containers).
 
 * Navigate to the Dockerfile folder at *dotnet-docker/samples/aspnetapp*.
 
@@ -110,7 +110,7 @@ The sample Dockerfile uses the [Docker multi-stage build feature](https://docs.d
 
 ## Run in a Windows container
 
-* In the Docker client, switch to Windows containers.
+* In the Docker client, [switch to Windows containers](https://docs.docker.com/docker-for-windows/#switch-between-windows-and-linux-containers).
 
 Navigate to the docker file folder at `dotnet-docker/samples/aspnetapp`.
 
