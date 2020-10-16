@@ -200,7 +200,7 @@ services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
     });
 ```
 
-By default the negotiate authentication handler will resolve nested domains, however in a large or complicated LDAP environment this may result in a slow lookup, or a lot of memory being used for each user. Nested domain resolution can be disabled using the `IgnoreNestedGroups` option.
+By default, the negotiate authentication handler resolves nested domains. In a large or complicated LDAP environment, resolving nested domains may result in a slow lookup or a lot of memory being used for each user. Nested domain resolution can be disabled using the `IgnoreNestedGroups` option.
 
 Anonymous requests are allowed. Use [ASP.NET Core Authorization](xref:security/authorization/introduction) to challenge anonymous requests for authentication.
 
