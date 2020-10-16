@@ -185,7 +185,7 @@ services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
     });
 ```
 
-Some configurations may require specific credentials to query the LDAP domain, this can also be specified in the options;
+Some configurations may require specific credentials to query the LDAP domain. The credentials can be specified in the options:
 
 ```csharp
 services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
