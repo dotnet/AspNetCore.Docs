@@ -33,25 +33,25 @@ h1 {
 The styles defined in `Counter.razor.css` are only applied to the rendered output of the `Counter` component. Any `h1` CSS declarations defined elsewhere do not conflict with `Counter` styles.
 
 > [!NOTE]
-> In order to guarantee style isolation when bundling occurs, `@import` blocks are not supported with scoped CSS files.
+> In order to guarantee style isolation when bundling occurs, `@import` Razor blocks are not supported with scoped CSS files.
 
 ## CSS isolation bundling
 
-CSS isolation occurs at build time. During this process, Blazor rewrites CSS selectors to only match markup rendered by the component. These rewritten CSS styles are bundled together and produced as a static web asset at `_framework/scoped.styles.css`.
+CSS isolation occurs at build time. During this process, Blazor rewrites CSS selectors to only match markup rendered by the component. These rewritten CSS styles are bundled and produced as a static asset, by referenced package or product names, at `MyProjectName.styles.css`.
 
-In the app, reference the bundled file by inspecting the reference inside the `<head>` tag of the generated HTML:
+These static files are referenced from the root path of the app by default. In the app, reference the bundled file by inspecting the reference inside the `<head>` tag of the generated HTML:
 
 ```html
-<link href="_framework/scoped.styles.css" rel="stylesheet">
+<link href="MyProjectName.styles.css" rel="stylesheet">
 ```
 
-The bundle associates each component with a scope identifier. For each styled component, an HTML attribute is appended with the format `b-<10-character-string>`. For example, in the rendered `Counter` component, Blazor appends a scope identifier to the `h1` (the identifier is unique and different for each app):
+Within the bundled file, each component is associated with a scope identifier. For each styled component, an HTML attribute is appended with the format `b-<10-character-string>`. For example, in the rendered `Counter` component, Blazor appends a scope identifier to the `h1` (the identifier is unique and different for each app):
 
 ```html
 <h1 b-3xxtam6d07>
 ```
 
-The `scoped.styles.css` file uses the scope identifier to group a style declaration with its component.
+The `MyProjectName.styles.css` file uses the scope identifier to group a style declaration with its component.
 
 ```css
 /* /Pages/Counter.razor.rz.scp.css */
@@ -59,6 +59,8 @@ h1[b-3xxtam6d07] {
     color: brown;
 }
 ```
+
+If other projects are utilized, such as Razor Class Libraries, the bundled file references them using CSS imports.
 
 Additionally, at build time a project bundle is created with the convention `StaticWebAssetsBasePath/MyProject.lib.scp.css`. This is referenced when projects are used for NuGet packages or a Razor Class Library, which both support CSS isolation. This `lib.scp.css` file is not published as a static web asset.
 
