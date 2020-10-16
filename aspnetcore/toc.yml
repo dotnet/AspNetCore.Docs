@@ -177,6 +177,9 @@
             - name: Deploy with GitHub Actions >>
               display: tutorial, kubernetes, aks, acr, docker, devops
               href: /learn/modules/microservices-devops-aspnet-core/
+            - name: Log and monitor >>
+              display: tutorial, kubernetes, aks, acr, docker, serilog
+              href: /learn/modules/microservices-logging-aspnet-core/
         - name: Data access >>
           displayName: tutorial, ef, entity framework
           href: /learn/modules/persist-data-ef-core/
