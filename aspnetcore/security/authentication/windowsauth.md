@@ -172,7 +172,7 @@ app.UseAuthentication();
 
 For more information on middleware, see <xref:fundamentals/middleware/index>.
 
-Kerberos authentication does not provide any role information for an authenticated users. In order to add role and group information to a kerberos user the kerberos  authentication handler must be configured to retreive the roles from an LDAP domain. The most basic configuration only specifies an LDAP domain to query against and will use the authenticated user's context to query the LDAP domain;
+Kerberos authentication on Linux or macOS doesn't provide any role information for an authenticated user. To add role and group information to a Kerberos user, the authentication handler must be configured to retrieve the roles from an LDAP domain. The most basic configuration only specifies an LDAP domain to query against and will use the authenticated user's context to query the LDAP domain:
 
 ```csharp
 services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
