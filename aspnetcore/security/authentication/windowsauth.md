@@ -152,7 +152,7 @@ The [Microsoft.AspNetCore.Authentication.Negotiate](https://www.nuget.org/packag
 > Credentials can be persisted across requests on a connection. *Negotiate authentication must not be used with proxies unless the proxy maintains a 1:1 connection affinity (a persistent connection) with Kestrel.*
 
 > [!NOTE]
-> The Negotiate handler detects if the underlying server supports Windows Authentication natively and if it's enabled. If the server supports Windows Authentication but it's disabled, an error is thrown asking you to enable the server implementation. When Windows Authentication is enabled in the server, the Negotiate handler transparently forwards to it.
+> The Negotiate handler detects if the underlying server supports Windows Authentication natively and if it is enabled. If the server supports Windows Authentication but it is disabled, an error is thrown asking you to enable the server implementation. When Windows Authentication is enabled in the server, the Negotiate handler transparently forwards authentication requests to it.
 
 Add authentication services by invoking <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*> and <xref:Microsoft.Extensions.DependencyInjection.NegotiateExtensions.AddNegotiate*> in `Startup.ConfigureServices`:
 
@@ -171,6 +171,36 @@ app.UseAuthentication();
 ```
 
 For more information on middleware, see <xref:fundamentals/middleware/index>.
+
+Kerberos authentication on Linux or macOS doesn't provide any role information for an authenticated user. To add role and group information to a Kerberos user, the authentication handler must be configured to retrieve the roles from an LDAP domain. The most basic configuration only specifies an LDAP domain to query against and will use the authenticated user's context to query the LDAP domain:
+
+```csharp
+services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
+    .AddNegotiate(options =>
+    {
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+        {
+            options.EnableLdap("contoso.com");
+        }
+    });
+```
+
+Some configurations may require specific credentials to query the LDAP domain. The credentials can be specified in the options:
+
+```csharp
+services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
+    .AddNegotiate(options =>
+    {
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+        {
+            options.EnableLdap("contoso.com");
+            options.MachineAccountName = "machineName";
+            options.MachineAccountPassword = "PassW0rd";            
+        }
+    });
+```
+
+By default, the negotiate authentication handler resolves nested domains. In a large or complicated LDAP environment, resolving nested domains may result in a slow lookup or a lot of memory being used for each user. Nested domain resolution can be disabled using the `IgnoreNestedGroups` option.
 
 Anonymous requests are allowed. Use [ASP.NET Core Authorization](xref:security/authorization/introduction) to challenge anonymous requests for authentication.
 
