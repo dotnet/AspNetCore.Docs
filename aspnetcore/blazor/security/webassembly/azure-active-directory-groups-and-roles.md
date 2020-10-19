@@ -1028,22 +1028,6 @@ In the preceding example:
 
 ::: moniker-end
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 The code in <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents.OnTokenValidated> doesn't obtain transitive memberships. To change the code to obtain direct and transitive memberships:
 
 * For the code line:
