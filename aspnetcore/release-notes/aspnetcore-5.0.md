@@ -334,7 +334,13 @@ Authorization when using endpoint routing now receives the `HttpContext` rather 
 
 ## API and ASP.NET Core MVC improvements
 
-### Model binding and validation with C# 9 record types
+### Model binding improvements
+
+#### Model binding DateTime as UTC
+
+Model binding now supports binding UTC time strings to `DateTime`. If the request contains a UTC time string, model binding binds it to a UTC `DateTime`. For example, the following time string is bound the UTC `DateTime`:  `https://example.com/mycontroller/myaction?time=2019-06-14T02%3A30%3A04.0576719Z`
+
+#### Model binding and validation with C# 9 record types
 
 [C# 9 record types](https://docs.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-9#record-types) can be used with model binding in an MVC controller or a Razor Page. Record types are a great way to model data being transmitted over the network.
 
@@ -365,6 +371,28 @@ Name: <input asp-for="Model.Name" />
 
 Age: <input asp-for="Model.Age" />
 <span asp-validation-for="Model.Age" />
+```
+
+### Control Startup class activation
+
+An additional <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseStartup%2A> overload has been added that lets an app provide a factory method for controlling `Startup` class activation. Controlling `Startup` class activation is useful to pass additional parameters to `Startup` that are initialized along with the host:
+
+```csharp
+public class Program
+{
+    public static async Task Main(string[] args)
+    {
+        var logger = CreateLogger();
+        var host = Host.CreateDefaultBuilder()
+            .ConfigureWebHost(builder =>
+            {
+                builder.UseStartup(context => new Startup(logger));
+            })
+            .Build();
+
+        await host.RunAsync();
+    }
+}
 ```
 
 ### Improvements to DynamicRouteValueTransformer
