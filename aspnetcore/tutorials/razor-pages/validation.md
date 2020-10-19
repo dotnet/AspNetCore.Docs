@@ -151,7 +151,7 @@ The `ApplyFormatInEditMode` setting specifies that the formatting will be applie
 The `DisplayFormat` attribute can be used by itself, but it's generally a good idea to use the `DataType` attribute. The `DataType` attribute conveys the semantics of the data as opposed to how to render it on a screen. The `DataType` attribute provides the following benefits that are not available with DisplayFormat:
 
 * The browser can enable HTML5 features (for example to show a calendar control, the locale-appropriate currency symbol, email links, etc.)
-* By default, the browser will render data using the correct format based on it's locale.
+* By default, the browser will render data using the correct format based on its locale.
 * The `DataType` attribute can enable the ASP.NET Core framework to choose the right field template to render the data. The `DisplayFormat`, if used by itself, uses the string template.
 
 **Note:** jQuery validation doesn't work with the `Range` attribute and `DateTime`. For example, the following code will always display a client-side validation error, even when the date is in the specified range:

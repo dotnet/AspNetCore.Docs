@@ -128,7 +128,7 @@ Supporting files have names that begin with an underscore. For example, the *_La
 
 Contains static files, like HTML files, JavaScript files, and CSS files. For more information, see <xref:fundamentals/static-files>.
 
-### appSettings.json
+### appsettings.json
 
 Contains configuration data, like connection strings. For more information, see <xref:fundamentals/configuration/index>.
 
@@ -424,7 +424,7 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 
   [!INCLUDE[](~/includes/trustCertVSC.md)]
 
-* Press **Ctrl+F5** to run without the debugger.
+* Press <kbd>Ctrl+F5</kbd> to run without the debugger.
 
   Launching the app with Ctrl+F5 (non-debug mode) allows you to make code changes, save the file, refresh the browser, and see the code changes. Many developers prefer to use non-debug mode to quickly launch the app and view changes.
 

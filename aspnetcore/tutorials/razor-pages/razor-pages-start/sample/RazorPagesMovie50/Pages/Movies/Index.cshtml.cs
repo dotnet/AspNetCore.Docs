@@ -34,8 +34,7 @@ namespace RazorPagesMovie.Pages.Movies
         #region snippet_1stSearch
         public async Task OnGetAsync()
         {
-            var movies = from m in _context.Movie
-                         select m;
+            var movies = _context.Movie;
         #region snippet_SearchNull
             if (!string.IsNullOrEmpty(SearchString))
             {

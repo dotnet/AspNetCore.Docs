@@ -34,9 +34,9 @@ The model classes are known as POCO classes (from "**P**lain-**O**ld **C**LR **O
 The `Movie` class contains:
 
 * The `ID` field is required by the database for the primary key.
-* `[DataType(DataType.Date)]`:  The [DataType](xref:System.ComponentModel.DataAnnotations.DataTypeAttribute) attribute specifies the type of the data (Date). With this attribute:
+* `[DataType(DataType.Date)]`:  The [[DataType]](xref:System.ComponentModel.DataAnnotations.DataTypeAttribute) attribute specifies the type of the data (Date). With this attribute:
 
-  * The user is not required to enter time information in the date field.
+  * The user isn't required to enter time information in the date field.
   * Only the date is displayed, not time information.
 
 [DataAnnotations](/dotnet/api/system.componentmodel.dataannotations) are covered in a later tutorial.
@@ -68,12 +68,12 @@ The `Movie` class contains:
 
 ### Add a database context class
 
-In the RazorPagesMovie project, create a new folder called *Data*.
-Add the following `RazorPagesMovieContext` class to the *Data* folder:
+1. In the *RazorPagesMovie* project, create a folder named *Data*.
+1. In the *Data* folder, add a file named *RazorPagesMovieContext.cs* with the following code:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Data/RazorPagesMovieContext.cs)]
+	[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Data/RazorPagesMovieContext.cs)]
 
-The preceding code creates a `DbSet` property for the entity set. In Entity Framework terminology, an entity set typically corresponds to a database table, and an entity corresponds to a row in the table. The code won't compile until dependencies are added in a later step.
+	The preceding code creates a `DbSet` property for the entity set. In Entity Framework terminology, an entity set typically corresponds to a database table, and an entity corresponds to a row in the table. The code won't compile until dependencies are added in a later step.
 
 <a name="cs"></a>
 
@@ -173,17 +173,17 @@ The *appsettings.json* file is updated with the connection string used to connec
   ```
 
 <a name="codegenerator"></a>
-The following table details the ASP.NET Core code generator parameters:
+The following table details the ASP.NET Core code generator options.
 
-| Parameter               | Description|
+| Option               | Description|
 | ----------------- | ------------ |
-| -m  | The name of the model. |
-| -dc  | The `DbContext` class to use. |
-| -udl | Use the default layout. |
-| -outDir | The relative output folder path to create the views. |
-| --referenceScriptLibraries | Adds `_ValidationScriptsPartial` to Edit and Create pages |
+| `-m`  | The name of the model. |
+| `-dc`  | The `DbContext` class to use. |
+| `-udl` | Use the default layout. |
+| `-outDir` | The relative output folder path to create the views. |
+| `--referenceScriptLibraries` | Adds `_ValidationScriptsPartial` to Edit and Create pages |
 
-Use the `h` switch to get help on the `aspnet-codegenerator razorpage` command:
+Use the `-h` option to get help on the `aspnet-codegenerator razorpage` command:
 
 ```dotnetcli
 dotnet-aspnet-codegenerator razorpage -h
@@ -193,7 +193,7 @@ For more information, see [dotnet-aspnet-codegenerator](xref:fundamentals/tools/
 
 ### Use SQLite for development, SQL Server for production
 
-When SQLite is selected, the template generated code is ready for development. The following code shows how to inject <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment> into Startup. `IWebHostEnvironment` is injected so `ConfigureServices` can use SQLite in development and SQL Server in production.
+When SQLite is selected, the template generated code is ready for development. The following code shows how to inject <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment> into `Startup`. `IWebHostEnvironment` is injected so the app can use SQLite in development and SQL Server in production.
 
 [!code-csharp[](~/includes/RP/code/StartupDevProd.cs?name=snippet&highlight=5,10,14)]
 
@@ -221,7 +221,7 @@ The *appsettings.json* file is updated with the connection string used to connec
 
 ### Use SQLite for development, SQL Server for production
 
-When SQLite is selected, the template generated code is ready for development. The following code shows how to inject <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment> into Startup. `IWebHostEnvironment` is injected so `ConfigureServices` can use SQLite in development and SQL Server in production.
+When SQLite is selected, the template generated code is ready for development. The following code shows how to inject <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment> into `Startup`. `IWebHostEnvironment` is injected so the app can use SQLite in development and SQL Server in production.
 
 [!code-csharp[](~/includes/RP/code/StartupDevProd.cs?name=snippet&highlight=5,10,14)]
 
@@ -305,9 +305,9 @@ In this section, the Package Manager Console (PMC) is used to:
 
 The preceding commands generate the following warning: "No type was specified for the decimal column 'Price' on entity type 'Movie'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'."
 
-Ignore that warning, you will be shown how to fix this in a following tutorial in this series.
+Ignore that warning. You'll learn how to fix it in a following tutorial in this series.
 
-The migrations command generates code to create the initial database schema. The schema is based on the model specified in `DbContext`. The `InitialCreate` argument is used to name the migrations. Any name can be used, but by convention a name is selected that describes the migration.
+The `migrations` command generates code to create the initial database schema. The schema is based on the model specified in `DbContext`. The `InitialCreate` argument is used to name the migrations. Any name can be used, but by convention a name is selected that describes the migration.
 
 The `update` command runs the `Up` method in migrations that have not been applied. In this case, `update` runs the `Up` method in  *Migrations/\<time-stamp>_InitialCreate.cs* file, which creates the database.
 
@@ -317,9 +317,9 @@ The `update` command runs the `Up` method in migrations that have not been appli
 
 ### Examine the context registered with dependency injection
 
-ASP.NET Core is built with [dependency injection](xref:fundamentals/dependency-injection). Services (such as the EF Core DB context) are registered with dependency injection during application startup. Components that require these services (such as Razor Pages) are provided these services via constructor parameters. The constructor code that gets a DB context instance is shown later in the tutorial.
+ASP.NET Core is built with [dependency injection](xref:fundamentals/dependency-injection). Services (such as the EF Core database context) are registered with dependency injection during application startup. Components that require these services (such as Razor Pages) are provided these services via constructor parameters. The constructor code that gets a database context instance is shown later in the tutorial.
 
-The scaffolding tool automatically created a DB context and registered it with the dependency injection container.
+The scaffolding tool automatically created a database context and registered it with the dependency injection container.
 
 Examine the `Startup.ConfigureServices` method. The highlighted line was added by the scaffolder:
 
@@ -861,7 +861,7 @@ Build the project as a check for errors.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-* In Solution Explorer, control-click the **RazorPagesMovie** project, and then select **Add** > **New Folder**. Name the folder *Models*.
+* In **Solution Explorer**, control-click the *RazorPagesMovie* project, and then select **Add** > **New Folder**. Name the folder *Models*.
 * Control-click the *Models* folder, and then select **Add** > **New File**.
 * In the **New File** dialog:
 

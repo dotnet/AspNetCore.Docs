@@ -13,7 +13,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ::: moniker range=">= aspnetcore-3.0"
 
-In this section you will:
+In this section, you will:
 
 > [!div class="checklist"]
 > * Update the generated page model code to the project examples' specific needs.
@@ -34,12 +34,12 @@ The scaffolded movie app has a good start, but the presentation isn't ideal. **R
    In the previous code:
 
    * The `[Column(TypeName = "decimal(18, 2)")]` data annotation enables Entity Framework Core to correctly map `Price` to currency in the database. For more information, see [Data Types](/ef/core/modeling/relational/data-types).
-   * The [Display](/dotnet/api/microsoft.aspnetcore.mvc.modelbinding.metadata.displaymetadata) attribute specifies what to display for the name of a field (in this case "Release Date" instead of "ReleaseDate"). 
-   * The [DataType](/dotnet/api/microsoft.aspnetcore.mvc.dataannotations.internal.datatypeattributeadapter) attribute specifies the type of the data (Date), so the time information stored in the field isn't displayed.
+   * The [[Display]](xref:Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.DisplayMetadata) attribute specifies the display name of a field (in this case, "Release Date" instead of "ReleaseDate"). 
+   * The [[DataType]](xref:System.ComponentModel.DataAnnotations.DataTypeAttribute) attribute specifies the type of the data (Date). The time information stored in the field isn't displayed.
 
    [DataAnnotations](/aspnet/mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-6) is covered in the next tutorial.
 
-1. Browse to Pages/Movies and  hover over an **Edit** link to see the target URL.
+1. Browse to *Pages/Movies* and hover over an **Edit** link to see the target URL.
 
    ![Browser window with mouse over the Edit link and a link Url of http://localhost:1234/Movies/Edit/5 is shown](~/tutorials/razor-pages/da1/edit7.png)
 
@@ -49,7 +49,7 @@ The scaffolded movie app has a good start, but the presentation isn't ideal. **R
 
    [Tag Helpers](xref:mvc/views/tag-helpers/intro) enable server-side code to participate in creating and rendering HTML elements in Razor files.
 
-   In the preceding code, the `AnchorTagHelper` dynamically generates the HTML `href` attribute value from the Razor Page (the route is relative), the `asp-page`,  and the route id (`asp-route-id`). See [URL generation for Pages](xref:razor-pages/index#url-generation-for-pages) for more information.
+   In the preceding code, the `AnchorTagHelper` dynamically generates the HTML `href` attribute value from the Razor Page (the route is relative), the `asp-page`,  and the route id (`asp-route-id`). For more information, see [URL generation for Pages](xref:razor-pages/index#url-generation-for-pages).
 
 1. Use **View Source** from a favorite browser to examine the generated markup. A portion of the generated HTML is shown below:
 
@@ -61,7 +61,7 @@ The scaffolded movie app has a good start, but the presentation isn't ideal. **R
    </td>
    ```
 
-   The dynamically-generated links pass the movie ID with a query string. For example, the `?id=1` in  `https://localhost:5001/Movies/Details?id=1`.
+   The dynamically generated links pass the movie ID with a query string. For example, the `?id=1` in  `https://localhost:5001/Movies/Details?id=1`.
 
 ### Add route template
 
@@ -77,7 +77,7 @@ The scaffolded movie app has a good start, but the presentation isn't ideal. **R
    </td>
    ```
 
-  A request to the page with the "{id:int}" route template that does **not** include the integer, will return an HTTP 404 (not found) error. For example, `http://localhost:5000/Movies/Details` will return a 404 error. To make the ID optional, append `?` to the route constraint:
+  A request to the page with the `{id:int}` route template that does **not** include the integer will return an HTTP 404 (not found) error. For example, `http://localhost:5000/Movies/Details` will return a 404 error. To make the ID optional, append `?` to the route constraint:
   
   ```cshtml
   @page "{id:int?}"
@@ -100,7 +100,7 @@ The previous code detects concurrency exceptions when one client deletes the mov
 
 To test the `catch` block:
 
-1. Set a breakpoint on `catch (DbUpdateConcurrencyException)`
+1. Set a breakpoint on `catch (DbUpdateConcurrencyException)`.
 1. Select **Edit** for a movie, make changes, but don't enter **Save**.
 1. In another browser window, select the **Delete** link for the same movie, and then delete the movie.
 1. In the previous browser window, post changes to the movie.
