@@ -86,6 +86,10 @@ Blazor now has a `FocusAsync` convenience method on Elem`entReference for settin
 <input @ref="textInput"/>
 ```
 
+### IAsyncDisposable support for Blazor components
+
+Blazor components now support the <xref:System.IAsyncDisposable> interface for the asynchronous release of allocated resources.
+
 ### Control Blazor component instantiation
 
 You can control how Blazor components are instantiated by providing an `IComponentActivator` service implementation.
