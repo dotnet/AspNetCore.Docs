@@ -5,7 +5,7 @@ description: Learn how to configure Blazor WebAssembly to use Azure Active Direc
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: "devx-track-csharp, mvc"
-ms.date: 07/28/2020
+ms.date: 10/20/2020
 no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/security/webassembly/aad-groups-roles
 ---
@@ -81,7 +81,7 @@ Use **either** of the following approaches to create claims for AAD groups and r
 
 ### Use the Graph SDK
 
-Add a package reference to the standalone app or *`Client`* app of a hosted Blazor solution for [`Microsoft.Graph`]().
+Add a package reference to the standalone app or *`Client`* app of a hosted Blazor solution for [`Microsoft.Graph`](https://www.nuget.org/packages/Microsoft.Graph).
 
 Add the Graph SDK utility classes and configuration shown in the <xref:blazor/security/webassembly/graph-api#graph-sdk> article.
 
@@ -509,24 +509,24 @@ A policy check can also be [performed in code with procedural logic](xref:blazor
 
 In addition to authorizing users in the client-side WebAssembly app to access pages and resources, the server API can authorize users for access to secure API endpoints. After the *Server* app validates the user's access token:
 
-* The app uses the user's immutable [object identifier claim (`oid`)](/azure/active-directory/develop/id-tokens#payload-claims) from the JWT (`id_token`) to obtain an access token for Graph API.
-* A Graph API call obtains the user's Azure user-defined security group and Administrator Role memberships.
+* The server API app uses the user's immutable [object identifier claim (`oid`)](/azure/active-directory/develop/id-tokens#payload-claims) from their access token to obtain an access token for Graph API.
+* A Graph API call obtains the user's Azure user-defined security group and Administrator Role memberships by calling [`memberOf`](/graph/api/user-list-memberof) on the user.
 * Memberships are used to establish `group` claims.
-* [Authorization policies](xref:security/authorization/policies) can be used to limit user access to server API endpoints.
+* [Authorization policies](xref:security/authorization/policies) can be used to limit user access to server API endpoints throughout the app.
 
 > [!NOTE]
 > This guidance doesn't currently include authorizing users on the basis of their [AAD user-defined roles](#user-defined-roles).
 
-### Packages
+The guidance in this section configures the server API app as a [*daemon app*](/azure/active-directory/develop/scenario-daemon-overview) for the Microsoft Graph API call. This approach does **not**:
 
-Add package references to the *Server* app for the following packages:
+* Require the the `access_as_user` scope.
+* Access Graph API on behalf of the user/client making the API request.
 
-* [Microsoft.Graph](https://www.nuget.org/packages/Microsoft.Graph)
-* [Microsoft.IdentityModel.Clients.ActiveDirectory](https://www.nuget.org/packages?q=Microsoft.IdentityModel.Clients.ActiveDirectory)
+The call to Graph API by the server API app only requires a server API app **Application** Graph API permission (scope) for `Directory.Read.All` in the Azure portal. This approach absolutely prevents the client app from accessing directory data that the server API doesn't explicitly permit. The client app is only able to access the server API app's controller endpoints.
 
 ### Azure configuration
 
-* Confirm that the *Server* app registration is given API access to the Graph API permission for `Directory.Read.All`, which is the least-privileged access level for security groups. Confirm that admin consent is applied to the permission after making the permission assignment.
+* Confirm that the *Server* app registration is given **Application** (not **Delegated**) Graph API permission (scope) for `Directory.Read.All`, which is the least-privileged access level for security groups. Confirm that admin consent is applied to the permission after making the permission assignment.
 * Assign a new client secret to the *Server* app. Note the secret for the app's configuration in the [App settings](#app-settings) section.
 
 ### App settings
@@ -554,6 +554,40 @@ For example:
   "ClientSecret": "54uE~9a.-wW91fe8cRR25ag~-I5gEq_92~"
 },
 ```
+
+::: moniker range=">= aspnetcore-5.0"
+
+> [!NOTE]
+> If the tenant publisher domain isn't verified, the server API scope for user/client access uses an `https://`-based URI. In this scenario, the server API app requires `Audience` configuration in the `appsettings.json` file:
+>
+> ```json
+> {
+>   "AzureAd": {
+>     ...
+>
+>     "Audience": "https://{TENANT}.onmicrosoft.com/{SERVER API APP CLIENT ID OR CUSTOM VALUE}"
+>   }
+> }
+>
+> In the preceding configuration, the end of the `Audience` value does **not** include the default scope `/{DEFAULT SCOPE}`.
+>
+> Example:
+>
+> ```json
+> {
+>   "AzureAd": {
+>     ...
+>
+>     "Audience": "https://contoso.onmicrosoft.com/41451fa7-82d9-4673-8fa5-69eff5a761fd"
+>   }
+> }
+> ```
+>
+> The preceding configuration usually is **not** required for app's with a verified publisher domain that has an `api://`-based API scope.
+>
+> For more information, see <xref:blazor/security/webassembly/hosted-with-azure-active-directory#app-settings>.
+
+::: moniker-end
 
 ### Authorization policies
 
@@ -586,6 +620,252 @@ public class BillingDataController : ControllerBase
     ...
 }
 ```
+
+::: moniker range=">= aspnetcore-5.0"
+
+### Packages
+
+Add package references to the *Server* app for the following packages:
+
+* [Microsoft.Graph](https://www.nuget.org/packages/Microsoft.Graph)
+* [Microsoft.Identity.Client](https://www.nuget.org/packages/Microsoft.Identity.Client)
+
+### Services
+
+Create an interface for a Graph API client service (`IGraphApiService`):
+
+```csharp
+using System.Threading.Tasks;
+using Microsoft.Graph;
+
+public interface IGraphApiService
+{
+    GraphServiceClient GraphClient { get; set; }
+
+    Task CreateGraphClient();
+}
+```
+
+Create a Graph API client service implementation (`GraphApiService`):
+
+```csharp
+using System;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Graph;
+using Microsoft.Identity.Client;
+
+public class GraphApiService : IGraphApiService
+{
+    private readonly IConfiguration configuration;
+
+    public GraphApiService(IConfiguration configuration)
+    {
+        this.configuration = configuration;
+    }
+
+    public GraphServiceClient GraphClient { get; set; }
+
+    public async Task CreateGraphClient()
+    {
+        var scopes = new string[] { "https://graph.microsoft.com/.default" };
+
+        var app = ConfidentialClientApplicationBuilder.Create(configuration["AzureAd:ClientId"])
+            .WithClientSecret(configuration["AzureAd:ClientSecret"])
+            .WithAuthority(new Uri(configuration["AzureAd:Instance"] + configuration["AzureAd:Domain"]))
+            .Build();
+
+        AuthenticationResult authResult = null;
+
+        try
+        {
+            authResult = await app.AcquireTokenForClient(scopes).ExecuteAsync();
+        }
+        catch (MsalUiRequiredException ex)
+        {
+            // Optional: Log the exception
+        }
+        catch (MsalServiceException ex)
+        {
+            // Optional: Log the exception
+        }
+
+        GraphClient = new GraphServiceClient(
+            new DelegateAuthenticationProvider(async requestMessage => {
+                requestMessage.Headers.Authorization =
+                    new AuthenticationHeaderValue("Bearer", authResult.AccessToken);
+
+                await Task.CompletedTask;
+            }));
+    }
+}
+```
+
+In the preceding code, handling the following token errors is optional:
+
+* `MsalUiRequiredException`: The app doesn't have sufficient permissions.
+  * Determine if the server API app permissions in the Azure portal include an **Application** permission for `Directory.Read.All`.
+  * Confirm that the tenant administrator has granted permissions to the app.
+* `MsalServiceException` (`AADSTS70011`): Confirm that the scope is `https://graph.microsoft.com/.default`.
+
+The Graph API service client is populated when the app starts with the use of an <xref:Microsoft.Extensions.Hosting.IHostedService>. Add the following hosted service to the server API app:
+
+```csharp
+using System;
+using System.Threading;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+
+public class GraphApiHostedService: IHostedService
+{
+    private readonly IServiceProvider serviceProvider;
+
+    public GraphApiHostedService(IServiceProvider serviceProvider)
+    {
+        this.serviceProvider = serviceProvider;
+    }
+
+    public async Task StartAsync(CancellationToken cancellationToken)
+    {
+        using(var scope = serviceProvider.CreateScope())
+        {
+            var graphApiService = scope.ServiceProvider
+                .GetRequiredService<IGraphApiService>();
+
+            await graphApiService.CreateGraphClient();
+        }
+    }
+
+    public Task StopAsync(CancellationToken cancellationToken) => Task.CompletedTask;
+}
+```
+
+For more information on hosted services, see <xref:fundamentals/host/hosted-services>.
+
+In the *Server* app's `Startup.ConfigureServices` method:
+
+* Add a service registrations for:
+  * `GraphApiService` to provide a Graph API service client.
+  * `GraphApiHostedService` to populate the `IGraphApiService`'s  Graph API service client on app start.
+* Use the Graph API service client to obtain Azure user-defined security groups and Azure Administrative Roles.
+
+Additional namespaces are required for the code in the `Startup` class of the *Server* app. The following set of `using` statements includes the required namespaces for the code that follows in this section and the default namespaces required by a server API app created from the hosted Blazor project template:
+
+```csharp
+using System;
+using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Graph;
+using Microsoft.Identity.Web;
+using Microsoft.IdentityModel.Logging;
+```
+
+When configuring <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents>:
+
+* Optionally include processing for <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents.OnAuthenticationFailed?displayProperty=nameWithType>. For example, the app can log failed authentication.
+* In <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents.OnTokenValidated?displayProperty=nameWithType>, make a Graph API call to obtain the user's groups and roles.
+
+> [!WARNING]
+> <xref:Microsoft.IdentityModel.Logging.IdentityModelEventSource.ShowPII?displayProperty=nameWithType> provides Personally Identifiable Information (PII) in logging messages. Only activate PII for debugging with test user accounts.
+
+In `Startup.ConfigureServices`:
+
+```csharp
+JwtSecurityTokenHandler.DefaultMapInboundClaims = false;
+
+#if DEBUG
+IdentityModelEventSource.ShowPII = true;
+#endif
+
+services.AddSingleton<IGraphApiService, GraphApiService>();
+services.AddHostedService<GraphApiHostedService>();
+
+services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddMicrosoftIdentityWebApi(options =>
+{
+    Configuration.Bind("AzureAd", options);
+
+    options.Events = new JwtBearerEvents()
+    {
+        OnAuthenticationFailed = context =>
+        {
+            // Optional: Log the exception
+#if DEBUG
+            Console.WriteLine($"OnAuthenticationFailed: {context.Exception}");
+#endif
+
+            return Task.FromResult(0);
+        },
+        OnTokenValidated = async context =>
+        {
+            var accessToken = context.SecurityToken as JwtSecurityToken;
+
+            var oid = accessToken.Claims.FirstOrDefault(x => x.Type == "oid")?.Value;
+
+            if (!string.IsNullOrEmpty(oid))
+            {
+                var userIdentity = (ClaimsIdentity)context.Principal.Identity;
+
+                IUserMemberOfCollectionWithReferencesPage groupsAndAzureRoles = null;
+
+                var graphService = context.HttpContext.RequestServices
+                    .GetService<IGraphApiService>();
+                var graphClient = graphService.GraphClient;
+
+                try
+                {
+                    groupsAndAzureRoles = await graphClient.Users[oid].MemberOf
+                        .Request().GetAsync();
+                }
+                catch (ServiceException ex)
+                {
+                    // Optional: Log the exception
+#if DEBUG
+                    Console.WriteLine("OnTokenValidated: Service Exception: " +
+                        $"{ex.Message}");
+#endif
+                }
+
+                if (groupsAndAzureRoles != null)
+                {
+                    foreach (var entry in groupsAndAzureRoles)
+                    {
+                        userIdentity.AddClaim(new Claim("group", entry.Id));
+                    }
+                }
+            }
+
+            await Task.FromResult(0);
+        }
+    };
+},
+options =>
+{
+    Configuration.Bind("AzureAd", options);
+});
+```
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+### Packages
+
+Add package references to the *Server* app for the following packages:
+
+* [Microsoft.Graph](https://www.nuget.org/packages/Microsoft.Graph)
+* [Microsoft.IdentityModel.Clients.ActiveDirectory](https://www.nuget.org/packages?q=Microsoft.IdentityModel.Clients.ActiveDirectory)
 
 ### Service configuration
 
@@ -745,6 +1025,24 @@ In the preceding example:
 
 * Silent token acquisition (<xref:Microsoft.IdentityModel.Clients.ActiveDirectory.AuthenticationContext.AcquireTokenSilentAsync%2A>) is attempted first because the access token may have already been stored in the ADAL token cache. It's faster to obtain the token from cache than to request a new token.
 * If the access token isn't acquired from cache (<xref:Microsoft.IdentityModel.Clients.ActiveDirectory.AdalError.FailedToAcquireTokenSilently?displayProperty=nameWithType> or <xref:Microsoft.IdentityModel.Clients.ActiveDirectory.AdalError.UserInteractionRequired?displayProperty=nameWithType> is thrown), a user assertion (<xref:Microsoft.IdentityModel.Clients.ActiveDirectory.UserAssertion>) is made with the client credential (<xref:Microsoft.IdentityModel.Clients.ActiveDirectory.ClientCredential>) to obtain the token on behalf of the user (<xref:Microsoft.IdentityModel.Clients.ActiveDirectory.AuthenticationContext.AcquireTokenAsync%2A>). Next, the `Microsoft.Graph.GraphServiceClient` can proceed to use the token to make the Graph API call. The token is placed into the ADAL token cache. For future Graph API calls for the same user, the token is acquired from cache silently with <xref:Microsoft.IdentityModel.Clients.ActiveDirectory.AuthenticationContext.AcquireTokenSilentAsync%2A>.
+
+::: moniker-end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 The code in <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents.OnTokenValidated> doesn't obtain transitive memberships. To change the code to obtain direct and transitive memberships:
 
