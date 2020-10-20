@@ -434,11 +434,11 @@ When a Blazor project is published, a `web.config` file is created with the foll
   
 #### Use a custom web.config
 
-To use a custom `web.config` file, place the custom `web.config` file at the root of the project folder. Configure the project to publish IIS specific assets using `PublishIISAssets` and publish the project. 
+To use a custom `web.config` file, place the custom `web.config` file at the root of the project folder. Configure the project to publish IIS-specific assets using `PublishIISAssets` in the app's project file and publish the project:
 
 ```xml
 <PropertyGroup>
-    <PublishIISAssets>true</PublishIISAssets>
+  <PublishIISAssets>true</PublishIISAssets>
 </PropertyGroup>
 ```
 
