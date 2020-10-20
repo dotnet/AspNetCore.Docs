@@ -22,7 +22,7 @@ The <xref:Microsoft.AspNetCore.Http.HttpContext.Features> property of `HttpConte
 
 ASP.NET Core defines a number of common HTTP feature interfaces in <xref:Microsoft.AspNetCore.Http.Features?displayProperty=fullName>, which are shared by various servers and middleware to identify the features that they support. Servers and middleware may also provide their own interfaces with additional functionality.
 
-Most feature interfaces provide optional, light-up functionality, and their associated `HttpContext` APIs provide defaults if the feature isn't present. A few interfaces are indicated in the following content as required beacause they provide core request and response functionality and must be implemented in order to process the request.
+Most feature interfaces provide optional, light-up functionality, and their associated `HttpContext` APIs provide defaults if the feature isn't present. A few interfaces are indicated in the following content as required because they provide core request and response functionality and must be implemented in order to process the request.
 
 The following feature interfaces are from <xref:Microsoft.AspNetCore.Http.Features?displayProperty=fullName>:
 
