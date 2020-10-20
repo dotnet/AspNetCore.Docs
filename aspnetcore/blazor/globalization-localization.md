@@ -151,13 +151,15 @@ Localization is handled by the app in the following sequence of events:
 
 When working with a <xref:Microsoft.AspNetCore.Mvc.Razor.RazorPage>, use the <xref:Microsoft.AspNetCore.Mvc.Razor.RazorPage.Context> property:
 
-```csharp
-this.Context.Response.Cookies.Append(
-    CookieRequestCultureProvider.DefaultCookieName,
-    CookieRequestCultureProvider.MakeCookieValue(
-        new RequestCulture(
-            CultureInfo.CurrentCulture,
-            CultureInfo.CurrentUICulture)));
+```razor
+@{
+    this.Context.Response.Cookies.Append(
+        CookieRequestCultureProvider.DefaultCookieName,
+        CookieRequestCultureProvider.MakeCookieValue(
+            new RequestCulture(
+                CultureInfo.CurrentCulture,
+                CultureInfo.CurrentUICulture)));
+}
 ```
 
 #### Provide UI to choose the culture
