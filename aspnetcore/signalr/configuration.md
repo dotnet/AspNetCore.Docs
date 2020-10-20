@@ -366,6 +366,7 @@ var connection = new HubConnectionBuilder()
     .WithUrl("https://example.com/chathub", options => {
         options.Headers["Foo"] = "Bar";
         options.SkipNegotiation = true;
+        options.Transports = HttpTransportType.WebSockets;
         options.Cookies.Add(new Cookie(/* ... */);
         options.ClientCertificates.Add(/* ... */);
     })
@@ -379,7 +380,6 @@ let connection = new signalR.HubConnectionBuilder()
     .withUrl("/chathub", {
         // "Foo: Bar" will not be sent with WebSockets or Server-Sent Events requests
         headers: { "Foo": "Bar" },
-        skipNegotiation: true,
         transport: signalR.HttpTransportType.LongPolling 
     })
     .build();
