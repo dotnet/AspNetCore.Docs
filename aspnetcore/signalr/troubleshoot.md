@@ -1,9 +1,9 @@
 ---
 title: ASP.NET Core SignalR connection troubleshooting
-author: 
+author: bradygaster
 description: ASP.NET Core SignalR connection troubleshooting.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: 
+ms.author: bradyg
 ms.custom: mvc
 ms.date: 04/08/2020
 no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
