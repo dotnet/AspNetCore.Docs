@@ -128,7 +128,7 @@ The following example shows how to set the current culture in a cookie that can 
 
 <body>
     @{
-        this.Context.Response.Cookies.Append(
+        this.HttpContext.Response.Cookies.Append(
             CookieRequestCultureProvider.DefaultCookieName,
             CookieRequestCultureProvider.MakeCookieValue(
                 new RequestCulture(
@@ -148,6 +148,17 @@ Localization is handled by the app in the following sequence of events:
 1. The browser opens a WebSocket connection to create an interactive Blazor Server session.
 1. The Localization Middleware reads the cookie and assigns the culture.
 1. The Blazor Server session begins with the correct culture.
+
+When working with a <xref:Microsoft.AspNetCore.Mvc.Razor.RazorPage>, use the <xref:Microsoft.AspNetCore.Mvc.Razor.RazorPage.Context> property:
+
+```csharp
+this.Context.Response.Cookies.Append(
+    CookieRequestCultureProvider.DefaultCookieName,
+    CookieRequestCultureProvider.MakeCookieValue(
+        new RequestCulture(
+            CultureInfo.CurrentCulture,
+            CultureInfo.CurrentUICulture)));
+```
 
 #### Provide UI to choose the culture
 
