@@ -5,7 +5,7 @@ description: Learn how to invoke JavaScript functions from .NET methods in Blazo
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/02/2020
+ms.date: 10/20/2020
 no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/call-javascript-from-dotnet
 ---
@@ -192,7 +192,29 @@ The following example shows capturing a reference to the `username` `<input>` el
 >
 > If JS interop mutates the contents of element `MyList` and Blazor attempts to apply diffs to the element, the diffs won't match the DOM.
 
-As far as .NET code is concerned, an <xref:Microsoft.AspNetCore.Components.ElementReference> is an opaque handle. The *only* thing you can do with <xref:Microsoft.AspNetCore.Components.ElementReference> is pass it through to JavaScript code via JS interop. When you do so, the JavaScript-side code receives an `HTMLElement` instance, which it can use with normal DOM APIs.
+::: moniker range=">= aspnetcore-5.0"
+
+In most cases as far as .NET code is concerned, an <xref:Microsoft.AspNetCore.Components.ElementReference> is an opaque handle. For the most part, the only thing you can do with an <xref:Microsoft.AspNetCore.Components.ElementReference> is pass it through to JavaScript code via JS interop. When you do so, the JavaScript-side code receives an [`HTMLElement`](https://developer.mozilla.org/docs/Web/API/HTMLElement) instance, which it can use with normal DOM APIs.
+
+For example, the following code defines a .NET extension method that enables sending a mouse click to an element:
+
+`exampleJsInterop.js`:
+
+```javascript
+window.exampleJsFunctions = {
+  focusElement : function (element) {
+    element.click();
+  }
+}
+```
+
+Use [`FocusAsync`](xref:blazor/components/event-handling#focus-an-element) in C# code to focus an element, which is built-into the Blazor framework and works with element references.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+As far as .NET code is concerned, an <xref:Microsoft.AspNetCore.Components.ElementReference> is an opaque handle. The *only* thing you can do with an <xref:Microsoft.AspNetCore.Components.ElementReference> is pass it through to JavaScript code via JS interop. When you do so, the JavaScript-side code receives an `HTMLElement` instance, which it can use with normal DOM APIs.
 
 For example, the following code defines a .NET extension method that enables setting the focus on an element:
 
@@ -205,6 +227,8 @@ window.exampleJsFunctions = {
   }
 }
 ```
+
+::: moniker-end
 
 To call a JavaScript function that doesn't return a value, use <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A?displayProperty=nameWithType>. The following code sets the focus on the username input by calling the preceding JavaScript function with the captured <xref:Microsoft.AspNetCore.Components.ElementReference>:
 
