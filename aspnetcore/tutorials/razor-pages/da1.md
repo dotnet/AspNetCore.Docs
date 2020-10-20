@@ -61,11 +61,11 @@ The scaffolded movie app has a good start, but the presentation isn't ideal. **R
    </td>
    ```
 
-   The dynamically generated links pass the movie ID with a query string. For example, the `?id=1` in  `https://localhost:5001/Movies/Details?id=1`.
+   The dynamically generated links pass the movie ID with a query string. For example, the `?id=1` in `https://localhost:5001/Movies/Details?id=1`.
 
 ### Add route template
 
-1. Update the Edit, Details, and Delete Razor Pages to use the "{id:int}" route template. Change the page directive for each of these pages from `@page` to `@page "{id:int}"`. Run the app and then view source.
+1. Update the Edit, Details, and Delete Razor Pages to use the `{id:int}` route template. Change the page directive for each of these pages from `@page` to `@page "{id:int}"`. Run the app and then view source.
 
    The generated HTML adds the ID to the path portion of the URL:
 

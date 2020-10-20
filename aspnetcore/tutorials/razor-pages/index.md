@@ -11,7 +11,7 @@ uid: tutorials/razor-pages/index
 
 This series of tutorials explains the basics of building a Razor Pages web app. 
 
-For a more advanced introduction aimed at developers who are familiar with controllers and views, see [Introduction to Razor Pages](xref:razor-pages/index).
+For a more advanced introduction aimed at developers who are familiar with controllers and views, see <xref:razor-pages/index>.
 
 This series includes the following tutorials:
 
