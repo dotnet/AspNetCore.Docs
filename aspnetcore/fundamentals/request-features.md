@@ -96,7 +96,7 @@ The following feature interfaces are from <xref:Microsoft.AspNetCore.Http.Featur
 
 ::: moniker range=">= aspnetcore-3.0"
 
-<xref:Microsoft.AspNetCore.Http.Features.IHttpsCompressionFeature>: Controls if response compression should be used over https connections.
+<xref:Microsoft.AspNetCore.Http.Features.IHttpsCompressionFeature>: Controls if response compression should be used over HTTPS connections.
 
 ::: moniker-end
 
