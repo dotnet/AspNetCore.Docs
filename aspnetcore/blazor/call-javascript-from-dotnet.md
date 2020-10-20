@@ -244,7 +244,7 @@ public static ValueTask<T> GenericMethod<T>(this ElementReference elementRef,
 
 ## Reference elements across components
 
-An <xref:Microsoft.AspNetCore.Components.ElementReference> is only guaranteed valid in a component's <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> method (and an element reference is a `struct`), so an element reference can't be passed between components.
+An <xref:Microsoft.AspNetCore.Components.ElementReference> instance is only guaranteed valid in a component's <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> method (and an element reference is a `struct`), so an element reference can't be passed between components.
 
 For a parent component to make an element reference available to other components, the parent component can:
 
