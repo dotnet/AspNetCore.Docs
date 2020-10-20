@@ -429,7 +429,7 @@ The template generated code won't accidentally expose the API’s description wh
 
 When ASP.NET Core API projects enable OpenAPI, the Visual Studio 2019 version 16.8 Preview 3.2 and later publishing automatically offer an additional step in the publishing flow. Developers who use [Azure API Management](xref:tutorials/publish-to-azure-api-management-using-vs) have an opportunity to automatically import the APIs into Azure API Management during the publish flow:
 
-![Azure API Management Import VS publishing](complex-data-model/_static/diagram.png)
+![Azure API Management Import VS publishing](~/release-notes/static/publish-to-apim.png)
 
 #### Console Logger Formatter
 
