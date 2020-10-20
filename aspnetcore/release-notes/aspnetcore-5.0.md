@@ -124,7 +124,28 @@ SignalR Hub filters, called Hub pipelines in ASP.NET SignalR, is a feature that 
 
 For more information, see [Use hub filters in ASP.NET Core SignalR](xref:signalr/hub-filters).
 
+<!--Review: what page?  -->
 You can read more about this Hub filters on the docs page.
+
+### SignalR parallel hub invocations
+
+ASP.NET Core SignalR is now capable of handling parallel hub invocations. The default behavior can be changed to allow clients to invoke more than one hub method at a time:
+
+[!code-csharp[](~/release-notes/sample/StartupSignalRhubs.cs?name=snippet)]
+
+### Added Messagepack support in SignalR Java client
+
+<!-- Review: I can't find NuGet com.microsoft.signalr.messagepack  -->
+A new package, `com.microsoft.signalr.messagepack`, adds messagepack support to the SignalR java client. To use the messagepack hub protocol, add `.withHubProtocol(new MessagePackHubProtocol())` to the connection builder:
+
+```csharp
+HubConnection hubConnection = HubConnectionBuilder.create(
+                           "http://localhost:53353/MyHub")
+               .withHubProtocol(new MessagePackHubProtocol())
+               .build();
+               
+```
+
 <!--
 See [Update SignalR code](xref:migration/31-to-50#signalr) for migration instructions.
 -->
@@ -157,6 +178,55 @@ See [Update SignalR code](xref:migration/31-to-50#signalr) for migration instruc
             webBuilder.UseStartup<Startup>();
         });
   ```
+
+### Kestrel endpoint-specific options via configuration
+
+Support has been added for configuring Kestrel’s endpoint-specific options via [configuration](xref:fundamentals/configuration). The endpoint-specific configurations includes the:
+
+* Http protocols used
+* TLS protocols used
+* Certificate selected
+* Cient certificate mode
+
+Configuration allows specifying which certificate is selected based on the specified server name. The server name is part of the Server Name Indication (SNI) extension to the TLS protocol as indicated by the client. Kestrel’s configuration also supports a wildcard prefix in the host name.
+
+The following example shows how to specify endpoint-specific using a configuration file:
+
+```xml
+{
+  "Kestrel": {
+    "Endpoints": {
+      "EndpointName": {
+        "Url": "https://*",
+        "Sni": {
+          "a.example.org": {
+            "Protocols": "Http1AndHttp2",
+            "SslProtocols": [ "Tls11", "Tls12"],
+            "Certificate": {
+              "Path": "testCert.pfx",
+              "Password": "testPassword"
+            },
+            "ClientCertificateMode" : "NoCertificate"
+          },
+          "*.example.org": {
+            "Certificate": {
+              "Path": "testCert2.pfx",
+              "Password": "testPassword"
+            }
+          },
+          "*": {
+            // At least one sub-property needs to exist per
+            // SNI section or it cannot be discovered via
+            // IConfiguration
+            "Protocols": "Http1",
+          }
+        }
+      }
+    }
+  }
+}
+
+```
 
 ## Performance improvements
 
@@ -326,6 +396,12 @@ The template generated code won't accidentally expose the API’s description wh
 When ASP.NET Core API projects enable OpenAPI, the Visual Studio 2019 version 16.8 Preview 3.2 and later publishing automatically offer an additional step in the publishing flow. Developers who use [Azure API Management](xref:tutorials/publish-to-azure-api-management-using-vs) have an opportunity to automatically import the APIs into Azure API Management during the publish flow:
 
 ![Azure API Management Import VS publishing](~/release-notes/static/publish-to-apim.png)
+
+#### Better F5 Experience for Web API Projects
+
+With OpenAPI enabled by default, the F5 experience for Web API developers significantly improves. With .NET, the Web API template comes pre-configured to load up the Swagger UI page. The Swagger UI page provides both the documentation added for the published API, and enables testing the APIs with a single click.
+
+![swagger/index.html view](~/release-notes/static/swagger-ui-page-rc1.png)
 
 #### Console Logger Formatter
 
