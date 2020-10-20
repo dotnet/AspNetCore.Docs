@@ -343,6 +343,7 @@ Additional options can be configured in the `WithUrl` (`withUrl` in JavaScript) 
 | JavaScript Option | Default Value | Description |
 | ----------------- | ------------- | ----------- |
 | `accessTokenFactory` | `null` | A function returning a string that is provided as a Bearer authentication token in HTTP requests. |
+| `transport` | `null` | An <xref:Microsoft.AspNetCore.Http.Connections.HttpTransportType> value specifying the transport to use for the connection. |
 | `headers` | `null` | Dictionary of headers sent with every HTTP request. Sending headers in the browser doesn't work for WebSockets or the <xref:Microsoft.AspNetCore.Http.Connections.HttpTransportType.ServerSentEvents> stream. |
 | `logMessageContent` | `null` | Set to `true` to log the bytes/chars of messages sent and received by the client. |
 | `skipNegotiation` | `false` | Set this to `true` to skip the negotiation step. **Only supported when the WebSockets transport is the only enabled transport**. This setting can't be enabled when using the Azure SignalR Service. |
@@ -364,6 +365,7 @@ In the .NET Client, these options can be modified by the options delegate provid
 var connection = new HubConnectionBuilder()
     .WithUrl("https://example.com/chathub", options => {
         options.Headers["Foo"] = "Bar";
+        options.SkipNegotiation = true;
         options.Cookies.Add(new Cookie(/* ... */);
         options.ClientCertificates.Add(/* ... */);
     })
@@ -375,6 +377,8 @@ In the JavaScript Client, these options can be provided in a JavaScript object p
 ```javascript
 let connection = new signalR.HubConnectionBuilder()
     .withUrl("/chathub", {
+        // "Foo: Bar" will not be sent with WebSockets or Server-Sent Events requests
+        headers: { "Foo": "Bar" },
         skipNegotiation: true,
         transport: signalR.HttpTransportType.WebSockets
     })
