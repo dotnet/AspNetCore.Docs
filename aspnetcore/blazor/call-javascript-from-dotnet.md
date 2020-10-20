@@ -208,7 +208,8 @@ window.exampleJsFunctions = {
 }
 ```
 
-Use [`FocusAsync`](xref:blazor/components/event-handling#focus-an-element) in C# code to focus an element, which is built-into the Blazor framework and works with element references.
+> [!NOTE]
+> Use [`FocusAsync`](xref:blazor/components/event-handling#focus-an-element) in C# code to focus an element, which is built-into the Blazor framework and works with element references.
 
 ::: moniker-end
 
