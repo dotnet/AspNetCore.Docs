@@ -106,7 +106,7 @@ The following feature interfaces are from <xref:Microsoft.AspNetCore.Http.Featur
    
 ::: moniker range=">= aspnetcore-3.0"
 
-<xref:Microsoft.AspNetCore.Http.Features.IRequestBodyPipeFeature>: Represents the request body as a PipeReader.
+<xref:Microsoft.AspNetCore.Http.Features.IRequestBodyPipeFeature>: Represents the request body as a <xref:System.IO.Pipelines.PipeReader>.
  
 ::: moniker-end
 
