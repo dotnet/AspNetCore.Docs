@@ -108,10 +108,10 @@ The following contains the minimum required settings to enable WebSockets, Serve
 
 ```nginx
 http {
-  map $http_upgrade $connection_upgrade {
-    default Upgrade;
-    '' keep-alive;
-  }
+  map $http_connection $connection_upgrade {
+  "~*Upgrade" Upgrade;
+  default keep-alive;
+}
 
   server {
     listen 80;
