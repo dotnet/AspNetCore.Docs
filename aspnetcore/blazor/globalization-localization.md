@@ -68,14 +68,14 @@ By default, Blazor WebAssembly carries minimal globalization resources required 
 </PropertyGroup>
 ```
 
-Blazor WebAssembly can also be configured to launch using a specific application culture using options passed to `Blazor.start`. For instance, the sample below shows an app being configured to launch using the `en-GB` culture.
+Blazor WebAssembly can also be configured to launch using a specific application culture using options passed to `Blazor.start`. For instance, the sample below shows an app configured to launch using the `en-GB` culture:
 
-```js
+```html
 <script src="_framework/blazor.webassembly.js" autostart="false"></script>
 <script>
-    Blazor.start({
-        applicationCulture: 'en-GB'
-    });
+  Blazor.start({
+    applicationCulture: 'en-GB'
+  });
 </script>
 
 The value for `applicationCulture` should conform to the [BCP-47 language tag format](https://tools.ietf.org/html/bcp47).
