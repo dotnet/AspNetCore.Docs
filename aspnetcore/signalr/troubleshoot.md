@@ -20,12 +20,12 @@ When using WebSockets and `skipNegotiation = true`
 WebSocket connection to 'wss://xxx/HubName' failed: Error during WebSocket handshake: Unexpected response code: 404
 ```
 
+* When using multiple servers without sticky sessions, the connection can start on one server and then switch to another server. The other server is not aware of the previous connection.
+* Verify the client is connecting to the correct endpoint. For example, the server is hosted at `http://127.0.0.1:5000/hub/myHub` and client is trying to connect to `http://127.0.0.1:5000/myHub`.
 * If the connection uses the ID and takes too long to send a request to the server after the negotiate, the server:
 
   * Deletes the ID.
   * Returns a 404.
-* When using multiple servers without sticky sessions, the connection can start on one server and then switch to another server. The other server is not aware of the previous connection.
-* Verify the client is connecting to the correct endpoint. For example, the server is hosted at `http://127.0.0.1:5000/hub/myHub` and client is trying to connect to `http://127.0.0.1:5000/myHub`.
 
 ### Response code 400 or 503
 
@@ -37,7 +37,7 @@ WebSocket connection to 'wss://xxx/HubName' failed: Error during WebSocket hands
 Error: Failed to start the connection: Error: There was an error with the transport.
 ```
 
-This error is usually caused by client using only WebSockets transport but the WebSockets protocol is not enabled on the server.
+This error is usually caused by a client using only the WebSockets transport but the WebSockets protocol is not enabled on the server.
 
 ### Response code 307
 
