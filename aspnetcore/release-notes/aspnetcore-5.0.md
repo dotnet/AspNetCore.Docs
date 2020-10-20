@@ -91,7 +91,7 @@ Blazor security now uses Microsoft Identity v2.0 ([`Microsoft.Identity.Web`](htt
 
 ### Component integration across hosting models
 
-Component intergration is improved across hosting models.
+Component integration is improved across hosting models.
 
 For more information, see <xref:blazor/components/integrate-components-into-razor-pages-and-mvc-apps>.
 
