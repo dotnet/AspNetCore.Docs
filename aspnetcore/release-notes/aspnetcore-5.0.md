@@ -16,206 +16,102 @@ This article highlights the most significant changes in ASP.NET Core 5.0 with li
 
 ## Blazor
 
-### CSS isolation for Blazor components
+### `JSObjectReference` replacement
 
-Blazor now supports defining CSS styles that are scoped to a given component. Component specific CSS styles make it easier to reason about the styles in an app and to avoid unintentional side effects from global styles. Component specific styles are defined in a *.razor.css* file that matches the name of the *.razor* file for the component.
+`JSObjectReference` has been made internal, and `IJSObjectReference` takes its place in the public API. For more information, see the [official announcement (aspnet/Announcements #435)](https://github.com/aspnet/Announcements/issues/435) and <xref:blazor/call-javascript-from-dotnet?view=aspnetcore-5.0#blazor-javascript-isolation-and-object-references>.
 
-For example, consider the following component *MyComponent.razor* file:
+### CSS isolation
 
-```html
-<h1>My Component</h1>
+Blazor now supports defining CSS styles that are scoped to a given component. Component specific CSS styles make it easier to reason about the styles in an app and to avoid unintentional side effects from global styles. <!-- UNCOMMENT CROSS-LINK AFTER https://github.com/dotnet/AspNetCore.Docs/pull/19956 MERGES: For more information, see <xref:blazor/components/css-isolation>.-->
 
-<ul class="cool-list">
-    <li>Item1</li>
-    <li>Item2</li>
-</ul>
-```
+### New `InputFile` component
 
-A *MyComponent.razor.css* can be defined with the styles for `MyComponent`:
+The InputFile component allows reading one or more files selected by a user to be upload. For more information, see <xref:blazor/file-uploads>. For more information, see <xref:blazor/file-uploads>.
 
-```html
-h1 {
-    font-family: 'Comic Sans MS'
-}
+### New `InputRadio` and `InputRadioGroup` components
 
-.cool-list li {
-    color: red;
-}
-```
+Blazor has built-in `InputRadio` and `InputRadioGroup` components that simplify data binding to radio button groups with integrated validation. For more information, see <xref:blazor/forms-validation>.
 
-The styles in *MyComponent.razor.css* are only get applied to the rendered output of `MyComponent`. The `h1` elements rendered by other components, for example, aren't affected.
+### Component virtualization
 
-To write a selector in component specific styles that affects child components, use the `::deep` combinator:
+Improve the perceived performance of component rendering using the Blazor framework's built-in virtualization support. For more information, see <xref:blazor/components/virtualization>.
 
-```
-.parent ::deep .child {
-    color: red;
-}
-```
+### `ontoggle` event support
 
-By using the `::deep` combinator, only the *.parent* class selector is scoped to the component. The *.child* class selector isn't scoped, and matches content from child components.
-
-Blazor achieves CSS isolation by rewriting the CSS selectors as part of the build so that they only match markup rendered by the component. Blazor then bundles together the rewritten CSS files and makes the bundle available to the app as a static web asset at the path *_framework/scoped.styles.css*.
-
-While Blazor doesn’t natively support CSS preprocessors like Sass or Less, CSS preprocessors can be used to generate component specific styles before they are rewritten as part of the building the project.
-
-### New InputRadio Blazor component
-
-Blazor in .NET 5 now includes built-in `InputRadio` and `InputRadioGroup` components. These components simplify data binding to radio button groups with integrated validation alongside the other Blazor form input components.
-
-Opinion about blazor:
-
-```
-<InputRadioGroup @bind-Value="survey.OpinionAboutBlazor">
-    @foreach (var opinion in opinions)
-    {
-        <div class="form-check">
-            <InputRadio class="form-check-input" id="@opinion.id" Value="@opinion.id" />
-            <label class="form-check-label" for="@opinion.id">@opinion.label</label>
-        </div>
-    }
-</InputRadioGroup>
-```
+Blazor events now support the `ontoggle` DOM event. For more information, see <xref:blazor/components/event-handling#event-argument-types>.
 
 ### Set UI focus in Blazor apps
 
-Blazor now has a `FocusAsync` convenience method on Elem`entReference for setting the UI focus on that element.
+Use the `FocusAsync` convenience method on element references for setting the UI focus on that element.
+<!-- UNCOMMENT CROSS-LINK WHEN https://github.com/dotnet/AspNetCore.Docs/issues/20232 IS WORKED. For more information, see <xref:blazor/components/event-handling#{ADD BOOKMARK}>.-->
 
-```html
-<button @onclick="() => textInput.FocusAsync()">Set focus</button>
-<input @ref="textInput"/>
-```
+### Custom validation class attributes
 
-### IAsyncDisposable support for Blazor components
+Custom validation class names are useful when integrating with CSS frameworks, such as Bootstrap. For more information, see <xref:blazor/forms-validation#custom-validation-class-attributes>.
+
+### IAsyncDisposable support
 
 Blazor components now support the <xref:System.IAsyncDisposable> interface for the asynchronous release of allocated resources.
 
-### Control Blazor component instantiation
+### JavaScript isolation and object references
 
-You can control how Blazor components are instantiated by providing an `IComponentActivator` service implementation.
+Blazor enables JavaScript isolation in standard [JavaScript modules](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules). For more information, see <xref:blazor/call-javascript-from-dotnet#blazor-javascript-isolation-and-object-references>.
 
-### Influencing the HTML head in Blazor apps
+### Influence the HTML head in Blazor apps
 
-Use the new `Title`, `Link`, and `Meta` components to programmatically set the title of a page and dynamically add links and meta tags to the HTML head in a Blazor app.
+Use the new `Title`, `Link`, and `Meta` components to programmatically set the title of a page and dynamically add links and meta tags to the HTML head in a Blazor app. For more information, see <xref:blazor/fundamentals/additional-scenarios#influence-html-head-tag-elements>.
 
-To use the new `Title`, `Link`, and `Meta` components:
+### Form components support display name
 
-1. Add a package reference to the [Microsoft.AspNetCore.Components.Web.Extensions NuGet package](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Web.Extensions/).
-1. Include a script reference to *_content/Microsoft.AspNetCore.Components.Web.Extensions/headManager.js*.
-1. Add a `@using` directive for `Microsoft.AspNetCore.Components.Web.Extensions.Head`.
+The following built-in components support display names with the DisplayName parameter:
 
-The following example programmatically sets the page title to show the number of unread user notifications and updates the page icon:
+* InputDate
+* InputNumber
+* InputSelect
 
-```
-@if (unreadNotificationsCount > 0)
-{
-    var title = $"Notifications ({unreadNotificationsCount})";
-    <Title Value="title"></Title>
-    <Link rel="icon" href="icon-unread.ico" />
-}
-```
+For more information, see <xref:blazor/forms-validation#display-name-support>.
 
-### Blazor Server
+### Catch-all route parameters
 
-#### Protected browser storage
+Catch-all route parameters, which capture paths across multiple folder boundaries, are supported in components. For more information, see <xref:blazor/fundamentals/routing#catch-all-route-parameters>.
 
-In Blazor Server apps, you may want to persist app state in local or session storage so that the app can rehydrate it later if needed. When storing app state in the user’s browser, you also need to ensure that it hasn’t been tampered with.
+### Debugging improvements
 
-Blazor in .NET 5 helps solve this problem by providing two new services: `ProtectedLocalStorage` and `ProtectedSessionStorage`. These services help you store state in local and session storage respectively, and they take care of protecting the stored data using the ASP.NET Core data protection APIs.
+Debugging Blazor WebAssembly apps is improved in ASP.NET Core 5.0. Additiionally, debugging is now supported on Visual Studio for Mac. For more information, see <xref:blazor/debug>.
 
-To use the new protected browser storage services:
+### Microsoft Identity v2.0 and MSAL v2.0
 
-1. Add a package reference to Microsoft.AspNetCore.Components.Web.Extensions.
-1. Configure the services by calling services.AddProtectedBrowserStorage() from Startup.ConfigureServcies.
-1. Inject either ProtectedLocalStorage and ProtectedSessionStorage into your component implementation:
-  ```
-    @inject ProtectedLocalStorage ProtectedLocalStorage
-    @inject ProtectedSessionStorage ProtectedSessionStorage
-  ```
-1. Use the desired service to get, set, and delete state asynchronously:
-  ```
-    private async Task IncrementCount()
-    {
-        await ProtectedLocalStorage.SetAsync("count", ++currentCount);
-    }
-  ```
+Blazor security now uses Microsoft Identity v2.0 ([`Microsoft.Identity.Web`](https://www.nuget.org/packages/Microsoft.Identity.Web) and [`Microsoft.Identity.Web.UI`](https://www.nuget.org/packages/Microsoft.Identity.Web.UI)) and MSAL v2.0. For more information, see the topics in the [Blazor Security and Identity node](xref:blazor/security/index).
 
-### Blazor WebAssembly
+### State management support
 
-#### Blazor can run client-side C# code directly in the browser
+`Microsoft.AspNetCore.ProtectedBrowserStorage` has been moved to `Microsoft.AspNetCore.Components.Web.Extensions` and has undergone API changes. State management documentation has been split across Blazor hosting models. For more information, see <xref:blazor/state-management>.
 
-Blazor can run client-side C# code directly in the browser, using [WebAssembly](xref:blazor/hosting-models#blazor-webassembly).
+<!-- WAIT ON THIS ENTRY UNTIL https://github.com/dotnet/AspNetCore.Docs/pull/19887 MERGES.
 
-The Blazor WebAssembly template and the Blazor Server template are included in the .NET 5 SDK. along with the Blazor Server template.
+### Component integration across hosting models
 
-To create a Blazor WebAssembly project, run the following command in a console window:
+Component intergration is improved across hosting models.
 
-```dotnetcli
-dotnet new blazorwasm
-```
+For more information, see <xref:blazor/components/integrate-components-into-razor-pages-and-mvc-apps>.
 
-#### Lazy loading in Blazor WebAssembly
+-->
 
-Lazy loading enables improve  load time of the Blazor WebAssembly app by deferring the download of specific app dependencies until they are required. Lazy loading may be helpful when a Blazor WebAssembly app has large dependencies that are only used for specific parts of the app.
+### Linker is now a Trimmer
 
-To delay the loading of an assembly, add it to the `BlazorWebAssemblyLazyLoad` item group in the project file:
+Prior to the release of ASP.NET Core 5.0, Blazor WebAssembly performs Intermediate Language (IL) linking during a build to trim unnecessary IL from the app's output assemblies. After the release of 5.0, Blazor WebAssembly performs *trimming* to reduce the size of the published output. For more information, see <xref:blazor/host-and-deploy/configure-trimmer>.
 
-Assemblies marked for lazy loading must be explicitly loaded by the app before they are used. To lazy load assemblies at runtime, use the `LazyAssemblyLoader` service:
+### Browser compatibility analyzer
 
-```
-@inject LazyAssemblyLoader LazyAssemblyLoader
+Blazor WebAssembly apps target the full .NET API surface area, but not all .NET APIs are supported on WebAssembly due to browser sandbox constraints. Unsupported APIs throw <xref:System.PlatformNotSupportedException> when running on WebAssembly. A platform compatibility analyzer warns the developer when the app uses APIs that aren't supported by the app's target platforms. For more information, see <xref:blazor/components/class-libraries#browser-compatibility-analyzer-for-blazor-webassembly>.
 
-@code {
-    var assemblies = await LazyAssemblyLoader.LoadAssembliesAsync(new string[] { "Lib1.dll" });
-}
-```
+### Lazy load assemblies
 
-To lazy load assemblies for a specific page, use the `OnNavigateAsync` event on the `Router` component. The `OnNavigateAsync` event is fired on every page navigation and can be used to lazy load assemblies for a particular route. The entire page can be lazily loaded for a route by passing any lazy loaded assemblies as additional assemblies to the Router.
+Blazor WebAssembly app startup performance can be improved by deferring the loading of some application assemblies until they are required. For more information, see <xref:blazor/webassembly-lazy-load-assemblies>.
 
-The following examples demonstrates using the `LazyAssemblyLoader` service to lazy load a specific dependency (Lib1.dll) when the user navigates to `/page1`. The lazy loaded assembly is then added to the additional assemblies list passed to the `Router` component, so that it can discover any routable components in that assembly.
+### Updated globalization support
 
-```
-@using System.Reflection
-@using Microsoft.AspNetCore.Components.Routing
-@using Microsoft.AspNetCore.Components.WebAssembly.Services
-@inject LazyAssemblyLoader LazyAssemblyLoader
-
-<Router AppAssembly="typeof(Program).Assembly" AdditionalAssemblies="lazyLoadedAssemblies" OnNavigateAsync="@OnNavigateAsync">
-    <Navigating>
-        <div>
-            <p>Loading the requested page...</p>
-        </div>
-    </Navigating>
-    <Found Context="routeData">
-        <RouteView RouteData="@routeData" DefaultLayout="typeof(MainLayout)" />
-    </Found>
-    <NotFound>
-        <LayoutView Layout="typeof(MainLayout)">
-            <p>Sorry, there is nothing at this address.</p>
-        </LayoutView>
-    </NotFound>
-</Router>
-
-@code {
-    private List<Assembly> lazyLoadedAssemblies = 
-        new List<Assembly>();
-
-    private async Task OnNavigateAsync(NavigationContext args)
-    {
-        if (args.Path.EndsWith("/page1"))
-        {
-            var assemblies = await LazyAssemblyLoader.LoadAssembliesAsync(new string[] { "Lib1.dll"  });
-            lazyLoadedAssemblies.AddRange(assemblies);
-        }
-    }
-}
-```
-
-#### Updated Blazor WebAssembly globalization support
-
-.NET 5 Preview 8 reintroduces globalization support for Blazor WebAssembly based on International Components for Unicode (ICU). Part of introducing the ICU data and logic is optimizing these payloads for download size. This work is not fully completed yet. We expect to reduce the size of the ICU data in future .NET 5 updates.
-<!-- Review: is this completed? -->
-
+Globalization support is available for Blazor WebAssembly based on International Components for Unicode (ICU). For more information, see <xref:blazor/globalization-localization>.
 ## gRPC
 
 [gRPC](https://grpc.io/):
