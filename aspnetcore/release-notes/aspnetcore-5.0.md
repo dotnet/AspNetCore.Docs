@@ -286,7 +286,7 @@ See [Update SignalR code](xref:migration/31-to-50#signalr) for migration instruc
             webBuilder.UseStartup<Startup>();
         });
    ```
-   <!-- review: KeepAlivePingInterval not found in RC1. Try testing with RC1. See https://github.com/dotnet/aspnetcore/pull/22565/files see C:\Users\riande\source\repos\WebApplication128\WebApplication128 -->
+   <!-- review: KeepAlivePingInterval not found in RC1. Try testing with RC1. See https://github.com/dotnet/aspnetcore/pull/22565/files see C:/Users/riande/source/repos/WebApplication128/WebApplication128 -->
 
 ### Containers
 
@@ -332,7 +332,7 @@ Custom handling of authorization failures is now easier with the new [IAuthoriza
 
 Authorization when using endpoint routing now receives the `HttpContext` rather than the endpoint instance. This allows the authorization middleware to access the `RouteData` and other properties of the `HttpContext` that were not accessible though the <xref:Microsoft.AspNetCore.Http.Endpoint> class. The endpoint can be fetched from the context using [context.GetEndpoint(xref:Microsoft.AspNetCore.Http.EndpointHttpContextExtensions.GetEndpoint%2A).
 
-## API and ASP.NET Core MVC improvements
+## ASP.NET Core improvements
 
 ### Model binding improvements
 
@@ -395,6 +395,79 @@ public class Program
 }
 ```
 
+### Open API Specification on by default
+
+[OpenAPI Specification](http://spec.openapis.org/oas/v3.0.3) is a industry adopted convention for describing HTTP APIs and integrating them into complex business processes or with 3rd parties. Open API is widely supported by all cloud providers and many API registries. Apps that emit Open API documents from Web APIs have a variety of new opportunities in which those APIs can be used. In partnership with the maintainers of the open-source project [Swashbuckle.AspNetCore](https://www.nuget.org/packages/Swashbuckle.AspNetCore/), we’re excited to announce that the ASP.NET Core API template contains a NuGet dependency on [Swashbuckle](https://github.com/domaindrivendev/Swashbuckle.AspNetCore), a popular open-source NuGet package that emits Open API documents dynamically. Swashbuckle does this by introspecting over the API Controllers and generating the Open API document at run-time, or at build time using the Swashbuckle CLI.
+
+In .NET 5, the Web API templates enable the Open API output being enabled by default. To disable OpenAPI:
+
+* From the command line: `dotnet new webapi --no-openapi true`
+* From Visual Studio: Uncheck **Enable OpenAPI support**.
+
+All *.csproj* files created for Web API projects contain the [Swashbuckle.AspNetCore](https://www.nuget.org/packages/Swashbuckle.AspNetCore/) NuGet package reference.
+
+```xml
+<ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.5.1" />
+</ItemGroup>
+```
+
+The template generated code contains code in `Startup.ConfigureServices`that activates Open API document generation:
+
+[!code-csharp[](~/release-notes/sample/StartupSwagger.cs?name=snippet)]
+
+The `Configure` method adds the Swashbuckle middleware, which enables the:
+
+* Document generation process.
+* Swagger UI page by default in development mode.
+
+The template generated code won't accidentally expose the API’s description when publishing to production.
+
+[!code-csharp[](~/release-notes/sample/StartupSwagger.cs?name=snippet2)]
+
+#### Console Logger Formatter
+
+Improvements have been made to the console log provider in the `Microsoft.Extensions.Logging` library. Developers can now implement a custom `ConsoleFormatter` to exercise complete control over formatting and colorization of the console output. The formatter APIs allow for rich formatting by implementing a subset of the VT-100 escape sequences. VT-100 is supported by most modern terminals. The console logger can parse out escape sequences on unsupported terminals allowing developers to author a single formatter for all terminals.
+
+#### JSON Console Logger
+
+In addition to support for custom formatters, we’ve also added a built-in JSON formatter that emits structured JSON logs to the console. You can switch from the default simple logger to JSON, add to following snippet to your Program.cs:
+
+```csharp
+ public static IHostBuilder CreateHostBuilder(string[] args) =>
+                   Host.CreateDefaultBuilder(args)
+   .ConfigureLogging(logging =>
+   {
+       logging.AddJsonConsole(options =>
+       {
+           options.JsonWriterOptions = new JsonWriterOptions()
+           { Indented = true };
+       });
+   })
+  .ConfigureWebHostDefaults(webBuilder =>
+  {
+      webBuilder.UseStartup<Startup>();
+  });
+```
+
+Log messages emitted to the console are  JSON formatted:
+
+```json
+{
+  "EventId": 0,
+  "LogLevel": "Information",
+  "Category": "Microsoft.Hosting.Lifetime",
+  "Message": "Now listening on: https://localhost:5001",
+  "State": {
+    "Message": "Now listening on: https://localhost:5001",
+    "address": "https://localhost:5001",
+    "{OriginalFormat}": "Now listening on: {address}"
+  }
+}
+```
+
+## API improvements
+
 ### Improvements to DynamicRouteValueTransformer
 
 ASP.NET Core 3.1 introduced <xref:Microsoft.AspNetCore.Mvc.Routing.DynamicRouteValueTransformer> as a way to use use a custom endpoint to dynamically select an MVC controller action or a razor page.  ASP.NET Core 5.0 apps can pass state to a `DynamicRouteValueTransformer` and filter the set of endpoints chosen.
@@ -452,44 +525,3 @@ In .NET 5, running [dotnet watch](xref:tutorials/dotnet-watch) on an ASP.NET Cor
 * Focus on the code changes while the tooling handles rebuilding, restarting, and reloading the app.
 
 We hope to bring the auto refresh functionality to Visual Studio in the future.
-
-### Console Logger Formatter
-
-Improvements have been made to the console log provider in the `Microsoft.Extensions.Logging` library. Developers can now implement a custom `ConsoleFormatter` to exercise complete control over formatting and colorization of the console output. The formatter APIs allow for rich formatting by implementing a subset of the VT-100 escape sequences. VT-100 is supported by most modern terminals. The console logger can parse out escape sequences on unsupported terminals allowing developers to author a single formatter for all terminals.
-
-### JSON Console Logger
-
-In addition to support for custom formatters, we’ve also added a built-in JSON formatter that emits structured JSON logs to the console. You can switch from the default simple logger to JSON, add to following snippet to your Program.cs:
-
-```csharp
- public static IHostBuilder CreateHostBuilder(string[] args) =>
-                   Host.CreateDefaultBuilder(args)
-   .ConfigureLogging(logging =>
-   {
-       logging.AddJsonConsole(options =>
-       {
-           options.JsonWriterOptions = new JsonWriterOptions()
-           { Indented = true };
-       });
-   })
-  .ConfigureWebHostDefaults(webBuilder =>
-  {
-      webBuilder.UseStartup<Startup>();
-  });
-```
-
-Log messages emitted to the console are  JSON formatted:
-
-```json
-{
-  "EventId": 0,
-  "LogLevel": "Information",
-  "Category": "Microsoft.Hosting.Lifetime",
-  "Message": "Now listening on: https://localhost:5001",
-  "State": {
-    "Message": "Now listening on: https://localhost:5001",
-    "address": "https://localhost:5001",
-    "{OriginalFormat}": "Now listening on: {address}"
-  }
-}
-```
