@@ -11,29 +11,80 @@ uid: fundamentals/request-features
 
 By [Steve Smith](https://ardalis.com/)
 
-Web server implementation details related to HTTP requests and responses are defined in interfaces. These interfaces are used by server implementations and middleware to create and modify the application's hosting pipeline.
+The `HttpContext` API that applications and middleware use to process requests has an abstraction layer undernieth it called feature interfaces. Each feature interface provides a granular subset of the functionality exposed by `HttpContext`. These interfaces can be added, modified, wrapped, replaced, or even removed by the server or middleware as the request is processed without having to re-implement the entire HttpContext. They can also be used to mock functionality when testing.
+
+## Feature collections
+
+The `Features` property of `HttpContext` provides access to the collection of feature interfaces for the current request. Since the feature collection is mutable even within the context of a request, middleware can be used to modify the collection and add support for additional features. Some advanced features are only available by accessing the associated interface through the feature collection.
 
 ## Feature interfaces
 
-ASP.NET Core defines a number of HTTP feature interfaces in `Microsoft.AspNetCore.Http.Features` which are used by servers to identify the features they support. The following feature interfaces handle requests and return responses:
+ASP.NET Core defines a number of common HTTP feature interfaces in `Microsoft.AspNetCore.Http.Features` which are shared by various servers and middleware to identify the features they support. Servers and middleware may also provide their own interfaces with additional functionality.
+
+Most feature interfaces provide optional, light-up functionality and their associated `HttpCotext` APIs provide defaults if the feature is not preasent. A few interfaces are indicated below as required beacause the provide core request and response functionality and must be implemented in order to process the request.
+
+The following feature interfaces are from `Microsoft.AspNetCore.Http.Features`:
 
 `IHttpRequestFeature`
-   Defines the structure of an HTTP request, including the protocol, path, query string, headers, and body.
+   Defines the structure of an HTTP request, including the protocol, path, query string, headers, and body. This feature is required in order to process requests.
 
 `IHttpResponseFeature`
-   Defines the structure of an HTTP response, including the status code, headers, and body of the response.
+   Defines the structure of an HTTP response, including the status code, headers, and body of the response. This feature is required in order to process requests.
+
+::: moniker range=">= aspnetcore-3.0"
+
+ `IHttpResponseBodyFeature`
+   Defines different ways of writing out the response body, using either a `Stream`, a `PipeWriter`, or a file. This feature is required in order to process requests. This replaces `IHttpResponseFeature.Body` and `IHttpSendFileFeature`.
+
+::: moniker-end
 
 `IHttpAuthenticationFeature`
-   Defines support for identifying users based on a `ClaimsPrincipal` and specifying an authentication handler.
+   Holds the `ClaimsPrincipal` currently associated with the request.
 
-`IHttpUpgradeFeature`
-   Defines support for [HTTP Upgrades](https://tools.ietf.org/html/rfc2616.html#section-14.42), which allow the client to specify which additional protocols it would like to use if the server wishes to switch protocols.
+`IFormFeature`
+   Used to parse and cache incoming HTTP and multipart form submissions.
+
+::: moniker range=">= aspnetcore-2.0"
+
+`IHttpBodyControlFeature`
+   Used to control if synchronous IO operations are allowed for the request or response bodies.
+
+::: moniker-end
+   
+::: moniker range="< aspnetcore-3.0"
 
 `IHttpBufferingFeature`
    Defines methods for disabling buffering of requests and/or responses.
 
+::: moniker-end
+
 `IHttpConnectionFeature`
-   Defines properties for local and remote addresses and ports.
+   Defines properties for the connection id and local and remote addresses and ports.
+
+::: moniker range=">= aspnetcore-2.0"
+
+`IHttpMaxRequestBodySizeFeature`
+   Controls the maximum allowed request body size for the current request.
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-5.0"
+
+`IHttpRequestBodyDetectionFeature`
+   Indicates if the request can have a body.
+
+::: moniker-end
+
+
+
+
+
+
+
+`IHttpUpgradeFeature`
+   Defines support for [HTTP Upgrades](https://tools.ietf.org/html/rfc2616.html#section-14.42), which allow the client to specify which additional protocols it would like to use if the server wishes to switch protocols.
+
+
 
 `IHttpRequestLifetimeFeature`
    Defines support for aborting connections, or detecting if a request has been terminated prematurely, such as by a client disconnect.
@@ -59,25 +110,11 @@ ASP.NET Core defines a number of HTTP feature interfaces in `Microsoft.AspNetCor
 > [!NOTE]
 > `ISessionFeature` isn't a server feature, but is implemented by the `SessionMiddleware` (see [Managing Application State](app-state.md)).
 
-## Feature collections
-
-The `Features` property of `HttpContext` provides an interface for getting and setting the available HTTP features for the current request. Since the feature collection is mutable even within the context of a request, middleware can be used to modify the collection and add support for additional features.
-
-## Middleware and request features
-
-While servers are responsible for creating the feature collection, middleware can both add to this collection and consume features from the collection. For example, the `StaticFileMiddleware` accesses the `IHttpSendFileFeature` feature. If the feature exists, it's used to send the requested static file from its physical path. Otherwise, a slower alternative method is used to send the file. When available, the `IHttpSendFileFeature` allows the operating
-system to open the file and perform a direct kernel mode copy to the network card.
-
-Additionally, middleware can add to the feature collection established by the server. Existing features can even be replaced by middleware, allowing the middleware to augment the functionality of the server. Features added to the collection are available immediately to other middleware or the underlying application itself later in the request pipeline.
-
-By combining custom server implementations and specific middleware enhancements, the precise set of features an application requires can be constructed. This allows missing features to be added without requiring a change in server, and ensures only the minimal amount of features are exposed, thus limiting attack surface area and improving performance.
-
 ## Summary
 
-Feature interfaces define specific HTTP features that a given request may support. Servers define collections of features, and the initial set of features supported by that server, but middleware can be used to enhance these features.
+Feature interfaces define specific HTTP functionality that a given request may support. Servers define collections of features, and the initial set of features supported by that server, but middleware can be used to enhance these features.
 
 ## Additional resources
 
 * [Servers](xref:fundamentals/servers/index)
 * [Middleware](xref:fundamentals/middleware/index)
-* [Open Web Interface for .NET (OWIN)](xref:fundamentals/owin)
