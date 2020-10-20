@@ -395,7 +395,7 @@ public class Program
 }
 ```
 
-### Open API Specification on by default
+### OpenAPI Specification on by default
 
 [OpenAPI Specification](http://spec.openapis.org/oas/v3.0.3) is a industry adopted convention for describing HTTP APIs and integrating them into complex business processes or with 3rd parties. Open API is widely supported by all cloud providers and many API registries. Apps that emit Open API documents from Web APIs have a variety of new opportunities in which those APIs can be used. In partnership with the maintainers of the open-source project [Swashbuckle.AspNetCore](https://www.nuget.org/packages/Swashbuckle.AspNetCore/), we’re excited to announce that the ASP.NET Core API template contains a NuGet dependency on [Swashbuckle](https://github.com/domaindrivendev/Swashbuckle.AspNetCore), a popular open-source NuGet package that emits Open API documents dynamically. Swashbuckle does this by introspecting over the API Controllers and generating the Open API document at run-time, or at build time using the Swashbuckle CLI.
 
@@ -424,6 +424,12 @@ The `Configure` method adds the Swashbuckle middleware, which enables the:
 The template generated code won't accidentally expose the API’s description when publishing to production.
 
 [!code-csharp[](~/release-notes/sample/StartupSwagger.cs?name=snippet2)]
+
+#### Azure API Management Import
+
+When ASP.NET Core API projects enable OpenAPI, the Visual Studio 2019 version 16.8 Preview 3.2 and later publishing automatically offer an additional step in the publishing flow. Developers who use [Azure API Management](xref:tutorials/publish-to-azure-api-management-using-vs) have an opportunity to automatically import the APIs into Azure API Management during the publish flow:
+
+![Azure API Management Import VS publishing](complex-data-model/_static/diagram.png)
 
 #### Console Logger Formatter
 
