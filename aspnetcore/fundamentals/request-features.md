@@ -68,7 +68,7 @@ The following feature interfaces are from <xref:Microsoft.AspNetCore.Http.Featur
 
 <xref:Microsoft.AspNetCore.Http.Features.IHttpRequestIdentifierFeature>: Adds a property that can be implemented to uniquely identify requests.
 
-<xref:Microsoft.AspNetCore.Http.Features.IHttpRequestLifetimeFeature>: Defines support for aborting connections, or detecting if a request has been terminated prematurely, such as by a client disconnect.
+<xref:Microsoft.AspNetCore.Http.Features.IHttpRequestLifetimeFeature>: Defines support for aborting connections or detecting if a request has been terminated prematurely, such as by a client disconnect.
 
 ::: moniker range=">= aspnetcore-3.0"
 
