@@ -128,7 +128,7 @@ The following example shows how to set the current culture in a cookie that can 
 
 <body>
     @{
-        this.HttpContext.Response.Cookies.Append(
+        this.Context.Response.Cookies.Append(
             CookieRequestCultureProvider.DefaultCookieName,
             CookieRequestCultureProvider.MakeCookieValue(
                 new RequestCulture(
