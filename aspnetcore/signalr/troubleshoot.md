@@ -89,3 +89,7 @@ This is often caused by having an access token that is over 4k.
     options.ClaimsProvider = context => context.User.Claims;
 });
 ```
+
+### Transient network failures
+
+Transient network failures may close the SignalR connection. The server may interpret the closed connection as a graceful client disconnect. To get more info on why a client disconnected in those cases [gather logs from the client and server](xref:signalr/diagnostics).
