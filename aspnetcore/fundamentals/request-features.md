@@ -75,40 +75,93 @@ The following feature interfaces are from `Microsoft.AspNetCore.Http.Features`:
 
 ::: moniker-end
 
-
-
-
-
-
-
-`IHttpUpgradeFeature`
-   Defines support for [HTTP Upgrades](https://tools.ietf.org/html/rfc2616.html#section-14.42), which allow the client to specify which additional protocols it would like to use if the server wishes to switch protocols.
-
-
+`IHttpRequestIdentifierFeature`
+   Adds a property that can be implemented to uniquely identify requests.
 
 `IHttpRequestLifetimeFeature`
    Defines support for aborting connections, or detecting if a request has been terminated prematurely, such as by a client disconnect.
 
+::: moniker range=">= aspnetcore-3.0"
+
+`IHttpRequestTrailersFeature`
+   Provides access to the request trailer headers, if any.
+
+`IHttpResetFeature`
+   Used to send reset messages for protocols that support them such as HTTP/2 or HTTP/3.
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-2.2"
+
+`IHttpResponseTrailersFeature`
+   Enables the application to provide response trailer headers if supported.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
 `IHttpSendFileFeature`
    Defines a method for sending files asynchronously.
+
+::: moniker-end
+
+`IHttpUpgradeFeature`
+   Defines support for [HTTP Upgrades](https://tools.ietf.org/html/rfc2616.html#section-14.42), which allow the client to specify which additional protocols it would like to use if the server wishes to switch protocols.
 
 `IHttpWebSocketFeature`
    Defines an API for supporting web sockets.
 
-`IHttpRequestIdentifierFeature`
-   Adds a property that can be implemented to uniquely identify requests.
+::: moniker range=">= aspnetcore-3.0"
+
+`IHttpsCompressionFeature`
+   Controls if response compression should be used over https connections.
+
+::: moniker-end
+
+`IItemsFeature`
+   Stores the Items collection for per request application state.
+
+`IQueryFeature`
+   Parses and caches the query string.
+   
+::: moniker range=">= aspnetcore-3.0"
+
+`IRequestBodyPipeFeature`
+   Represents the request body as a PipeReader.
+ 
+::: moniker-end
+
+`IRequestCookiesFeature`
+   Parses and caches the request `Cookie` header values.
+
+`IResponseCookiesFeature`
+   Controls how response cookies are applied to the `Set-Cookie` header.
+
+::: moniker range=">= aspnetcore-2.2"
+
+`IServerVariablesFeature`
+   This feature provides access to request server variables such as those provided by IIS.
+
+::: moniker-end
+   
+`IServiceProvidersFeature`
+   Provides access to an `IServiceProvider` with scoped request services.
 
 `ISessionFeature`
-   Defines `ISessionFactory` and `ISession` abstractions for supporting user sessions.
+   Defines `ISessionFactory` and `ISession` abstractions for supporting user sessions. `ISessionFeature` is implemented by the `SessionMiddleware` (see [Managing Application State](app-state.md)).
 
 `ITlsConnectionFeature`
    Defines an API for retrieving client certificates.
 
 `ITlsTokenBindingFeature`
    Defines methods for working with TLS token binding parameters.
-
-> [!NOTE]
-> `ISessionFeature` isn't a server feature, but is implemented by the `SessionMiddleware` (see [Managing Application State](app-state.md)).
+   
+::: moniker range=">= aspnetcore-2.2"
+   
+`ITrackingConsentFeature`
+   Used to query, grant, and withdraw user consent regarding the storage of user information related to site activity and functionality.
+   
+::: moniker-end
 
 ## Summary
 
