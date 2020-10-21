@@ -274,7 +274,7 @@ See [Update SignalR code](xref:migration/31-to-50#signalr) for migration instruc
 
 ### Kestrel endpoint-specific options via configuration
 
-Support has been added for configuring Kestrel’s endpoint-specific options via [configuration](xref:fundamentals/configuration). The endpoint-specific configurations includes the:
+Support has been added for configuring Kestrel’s endpoint-specific options via [configuration](xref:fundamentals/configuration/index). The endpoint-specific configurations includes the:
 
 * Http protocols used
 * TLS protocols used
@@ -385,7 +385,7 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 
 ### Custom handling of authorization failures
 
-Custom handling of authorization failures is now easier with the new [IAuthorizationMiddlewareResultHandler](https://github.com/dotnet/aspnetcore/blob/v5.0.0-rc.1.20451.17/src/Security/Authorization/Policy/src/IAuthorizationMiddlewareResultHandler.cs) interface that is invoked by the [authorization](xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A) [Middleware](xref:fundamentals/middleware). The default implementation remains the same, but a custom handler can be registered in [Dependency injection, which allows custom HTTP responses based on why authorization failed. See [this sample](https://github.com/dotnet/aspnetcore/blob/master/src/Security/samples/CustomAuthorizationFailureResponse/Authorization/SampleAuthorizationMiddlewareResultHandler.cs) that demonstrates usage of the `IAuthorizationMiddlewareResultHandler`.
+Custom handling of authorization failures is now easier with the new [IAuthorizationMiddlewareResultHandler](https://github.com/dotnet/aspnetcore/blob/v5.0.0-rc.1.20451.17/src/Security/Authorization/Policy/src/IAuthorizationMiddlewareResultHandler.cs) interface that is invoked by the [authorization](xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A) [Middleware](xref:fundamentals/middleware/index). The default implementation remains the same, but a custom handler can be registered in [Dependency injection, which allows custom HTTP responses based on why authorization failed. See [this sample](https://github.com/dotnet/aspnetcore/blob/master/src/Security/samples/CustomAuthorizationFailureResponse/Authorization/SampleAuthorizationMiddlewareResultHandler.cs) that demonstrates usage of the `IAuthorizationMiddlewareResultHandler`.
 
 ### Authorization when using endpoint routing
 
