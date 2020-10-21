@@ -281,16 +281,16 @@ In the following example, selecting the check box prevents click events from the
 Call `FocusAsync` on an [element reference](xref:blazor/call-javascript-from-dotnet#capture-references-to-elements) to focus an element in code:
 
 ```razor
-<input @ref="myInput" />
+<input @ref="exampleInput" />
 
 <button @onclick="ChangeFocus">Focus the Input Element</button>
 
 @code {
-    private ElementReference myInput;
+    private ElementReference exampleInput;
 	
     private void ChangeFocus()
     {
-        myInput.FocusAsync();
+        exampleInput.FocusAsync();
     }
 }
 ```
