@@ -20,7 +20,7 @@ Model binding now supports binding UTC time strings to `DateTime`. If the reques
 
 ### Model binding and validation with C# 9 record types
 
-[C# 9 record types](/dotnet/csharp/whats-new/csharp-9#record-types) can be used with model binding in an MVC controller or a Razor Page. Record types are a great way to model data being transmitted over the network.
+[C# 9 record types](/dotnet/csharp/whats-new/csharp-9#record-types) can be used with model binding in an MVC controller or a Razor Page. Record types are a good way to model data being transmitted over the network.
 
 For example, the following `PersonController` uses the `Person` record type with model binding and form validation:
 
@@ -67,9 +67,9 @@ see https://docs.microsoft.com/aspnet/core/mvc/models/validation?view=aspnetcore
 
 ### OpenAPI Specification on by default
 
-[OpenAPI Specification](http://spec.openapis.org/oas/v3.0.3) is a industry adopted convention for describing HTTP APIs and integrating them into complex business processes or with 3rd parties. Open API is widely supported by all cloud providers and many API registries. Apps that emit Open API documents from Web APIs have a variety of new opportunities in which those APIs can be used. In partnership with the maintainers of the open-source project [Swashbuckle.AspNetCore](https://www.nuget.org/packages/Swashbuckle.AspNetCore/), we’re excited to announce that the ASP.NET Core API template contains a NuGet dependency on [Swashbuckle](https://github.com/domaindrivendev/Swashbuckle.AspNetCore), a popular open-source NuGet package that emits Open API documents dynamically. Swashbuckle does this by introspecting over the API Controllers and generating the Open API document at run-time, or at build time using the Swashbuckle CLI.
+[OpenAPI Specification](http://spec.openapis.org/oas/v3.0.3) is a industry adopted convention for describing HTTP APIs and integrating them into complex business processes or with 3rd parties. OpenAPI is widely supported by all cloud providers and many API registries. Apps that emit OpenAPI documents from Web APIs have a variety of new opportunities in which those APIs can be used. In partnership with the maintainers of the open-source project [Swashbuckle.AspNetCore](https://www.nuget.org/packages/Swashbuckle.AspNetCore/), the ASP.NET Core API template contains a NuGet dependency on [Swashbuckle](https://github.com/domaindrivendev/Swashbuckle.AspNetCore), a popular open-source NuGet package that emits OpenAPI documents dynamically. Swashbuckle does this by introspecting over the API Controllers and generating the OpenAPI document at run-time, or at build time using the Swashbuckle CLI.
 
-In .NET 5, the Web API templates enable the Open API output being enabled by default. To disable OpenAPI:
+In .NET 5, the Web API templates enable the OpenAPI output being enabled by default. To disable OpenAPI:
 
 * From the command line: `dotnet new webapi --no-openapi true`
 * From Visual Studio: Uncheck **Enable OpenAPI support**.
@@ -82,7 +82,7 @@ All *.csproj* files created for Web API projects contain the [Swashbuckle.AspNet
 </ItemGroup>
 ```
 
-The template generated code contains code in `Startup.ConfigureServices`that activates Open API document generation:
+The template generated code contains code in `Startup.ConfigureServices` that activates OpenAPI document generation:
 
 [!code-csharp[](~/release-notes/sample/StartupSwagger.cs?name=snippet)]
 
@@ -205,10 +205,12 @@ Blazor WebAssembly app startup performance can be improved by deferring the load
 ### Updated globalization support
 
 Globalization support is available for Blazor WebAssembly based on International Components for Unicode (ICU). For more information, see <xref:blazor/globalization-localization>.
+
 ## gRPC
 
-[gRPC](https://grpc.io/):
-
+Many preformance improvements have been made in [gRPC](https://grpc.io/). <!-- For more information, see [this ]
+Waiting for https://github.com/aspnet/specs/pull/523
+--> 
 For more information, see <xref:grpc/index>.
 
 ## SignalR
@@ -216,9 +218,6 @@ For more information, see <xref:grpc/index>.
 SignalR Hub filters, called Hub pipelines in ASP.NET SignalR, is a feature that allows code to run before and after Hub methods are called. Running code before and after Hub methods are called is similar to how middleware has the ability to run code before and after an HTTP request. Common uses include logging, error handling, and argument validation.
 
 For more information, see [Use hub filters in ASP.NET Core SignalR](xref:signalr/hub-filters).
-
-<!--Review: what docs page?  -->
-You can read more about this Hub filters on the docs page.
 
 ### SignalR parallel hub invocations
 
@@ -321,6 +320,8 @@ The following example shows how to specify endpoint-specific using a configurati
 
 ```
 
+Server Name Indication (SNI) is a TLS extension to include a virtual domain as a part of SSL negotiation. What this effectively means is that the virtual domain name, or a hostname, can be used to identify the network end point.
+
 ## Performance improvements
 
 ### HTTP/2
@@ -349,7 +350,7 @@ The following example shows how to specify endpoint-specific using a configurati
 
 ### Containers
 
-Prior to .NET 5, building and publishing a Dockerfile for an ASP.NET app required pulling the entire .NET Core SDK and the ASP.NET image. With this release, pulling the SDK images bytes is reduced and the bytes pulled for the ASP.NET image is largely eliminated. For more information, See [this GitHub issue comment](https://github.com/dotnet/dotnet-docker/issues/1814#issuecomment-625294750)
+Prior to .NET 5, building and publishing a Dockerfile for an ASP.NET app required pulling the entire .NET Core SDK and the ASP.NET image. With this release, pulling the SDK images bytes is reduced and the bytes pulled for the ASP.NET image is largely eliminated. For more information, See [this GitHub issue comment](https://github.com/dotnet/dotnet-docker/issues/1814#issuecomment-625294750).
 
 ## Authentication and authorization
 
@@ -358,30 +359,13 @@ Prior to .NET 5, building and publishing a Dockerfile for an ASP.NET app require
 The ASP.NET Core project templates now integrate with <xref:Microsoft.Identity.Web?displayProperty=fullName> to handle authentication with [Azure Activity Directory](/azure/active-directory/fundamentals/active-directory-whatis) (Azure AD). The [Microsoft.Identity.Web package](https://www.nuget.org/packages/Microsoft.Identity.Web/) provides:
 
 * A better experience for authentication through Azure AD.
-* An easier way to access Azure resources on behalf of your users, including [Microsoft Graph](/graph/overview). See the [Microsoft.Identity.Web sample](https://github.com/Azure-Samples/active-directory-aspnetcore-webapp-openidconnect-v2) starts with a basic login and advances through multi-tenancy, using Azure APIs, using Microsoft Graph, and protecting your own APIs. `Microsoft.Identity.Web` is available alongside .NET 5.
+* An easier way to access Azure resources on behalf of your users, including [Microsoft Graph](/graph/overview). See the [Microsoft.Identity.Web sample](https://github.com/Azure-Samples/active-directory-aspnetcore-webapp-openidconnect-v2), which starts with a basic login and advances through multi-tenancy, using Azure APIs, using Microsoft Graph, and protecting your own APIs. `Microsoft.Identity.Web` is available alongside .NET 5.
 
 ### Allow anonymous access to an endpoint
 
 The `AllowAnonymous` extension method allows anonymous access to an endpoint:
 
-```csharp
-public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-{
-    app.UseRouting();
-
-    app.UseAuthentication();
-    app.UseAuthorization();
-
-    app.UseEndpoints(endpoints =>
-    {
-        endpoints.MapGet("/", async context =>
-        {
-            await context.Response.WriteAsync("Hello World!");
-        })
-        .AllowAnonymous();
-    });
-}
-```
+[!code-csharp[](~/release-notes/sample/StartupAnonEndpoint.cs?name=snippet)]
 
 ### Custom handling of authorization failures
 
@@ -399,7 +383,7 @@ See [Kerberos authentication and role-based access control (RBAC)](xref:security
 
 ### JSON extension methods for HttpRequest and HttpResponse
 
-JSON data can be read and written to from an `HttpRequest` and `HttpResponse` using the new <xref:System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsync%2A> and `WriteAsJsonAsync` extension methods. These extension methods use the [System.Text.Json](xref:System.Text.Json) serializer to handle the JSON data. You can also check if a request has a JSON content type using the new `HasJsonContentType` extension method.
+JSON data can be read and written to from an `HttpRequest` and `HttpResponse` using the new <xref:System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsync%2A> and `WriteAsJsonAsync` extension methods. These extension methods use the [System.Text.Json](xref:System.Text.Json) serializer to handle the JSON data. The new `HasJsonContentType` extension method can also check if a request has a JSON content type.
 
 The JSON extension methods can be combined with [endpoint routing](xref:fundamentals/routing) to create JSON APIs in a style of programming we call ***route to code***. It is a new option for developers who want to create basic JSON APIs in a lightweight way. For example, a web app that has only a handful of endpoints might choose to use route to code rather than the full functionality of ASP.NET Core MVC:
 
@@ -472,24 +456,9 @@ Improvements have been made to the console log provider in the `Microsoft.Extens
 
 ### JSON Console Logger
 
-In addition to support for custom formatters, we’ve also added a built-in JSON formatter that emits structured JSON logs to the console. You can switch from the default simple logger to JSON, add to following snippet to your Program.cs:
+In addition to support for custom formatters, we’ve also added a built-in JSON formatter that emits structured JSON logs to the console. The following code shows how to switch from the default logger to JSON:
 
-```csharp
- public static IHostBuilder CreateHostBuilder(string[] args) =>
-                   Host.CreateDefaultBuilder(args)
-   .ConfigureLogging(logging =>
-   {
-       logging.AddJsonConsole(options =>
-       {
-           options.JsonWriterOptions = new JsonWriterOptions()
-           { Indented = true };
-       });
-   })
-  .ConfigureWebHostDefaults(webBuilder =>
-  {
-      webBuilder.UseStartup<Startup>();
-  });
-```
+[!code-csharp[](~/release-notes/sample/ProgramJsonLog.cs?name=snippet)]
 
 Log messages emitted to the console are  JSON formatted:
 
