@@ -197,7 +197,7 @@ An <xref:Microsoft.AspNetCore.Components.ElementReference> is passed through to 
 `exampleJsInterop.js`:
 
 ```javascript
-window.exampleJsFunctions = {
+window.interopFunctions = {
   clickElement : function (element) {
     element.click();
   }
@@ -222,7 +222,7 @@ public static async Task TriggerClickEvent(this ElementReference elementRef,
     IJSRuntime jsRuntime)
 {
     await jsRuntime.InvokeVoidAsync(
-        "exampleJsFunctions.clickElement", elementRef);
+        "interopFunctions.clickElement", elementRef);
 }
 ```
 

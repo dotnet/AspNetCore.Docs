@@ -288,12 +288,11 @@ Call `FocusAsync` on an [element reference](xref:blazor/call-javascript-from-dot
 @code {
     private ElementReference exampleInput;
 	
-    private void ChangeFocus()
+    private async Task ChangeFocus()
     {
-        exampleInput.FocusAsync();
+        await exampleInput.FocusAsync();
     }
 }
 ```
 
 ::: moniker-end
-

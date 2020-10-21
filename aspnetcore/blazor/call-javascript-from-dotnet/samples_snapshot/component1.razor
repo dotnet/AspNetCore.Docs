@@ -1,6 +1,6 @@
 @inject IJSRuntime JSRuntime
 
-<button @ref="exampleButton" />
+<button @ref="exampleButton">Example Button</button>
 
 <button @onclick="TriggerClick">
     Trigger button click on exampleButton
@@ -12,6 +12,6 @@
     public async Task TriggerClick()
     {
         await JSRuntime.InvokeVoidAsync(
-            "exampleJsFunctions.clickElement", exampleButton);
+            "interopFunctions.clickElement", exampleButton);
     }
 }
