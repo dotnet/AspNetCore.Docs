@@ -226,7 +226,7 @@ public static async Task TriggerClickEvent(this ElementReference elementRef,
 }
 ```
 
-The `clickElement` method is called directly on the object. The following example assumes that the `clickElement` method is available from the `JsInteropClasses` namespace:
+The `clickElement` method is called directly on the object. The following example assumes that the `TriggerClickEvent` method is available from the `JsInteropClasses` namespace:
 
 [!code-razor[](call-javascript-from-dotnet/samples_snapshot/component2.razor?highlight=15)]
 
