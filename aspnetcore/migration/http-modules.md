@@ -340,7 +340,7 @@ Gives you a unique id for each request. Very useful to include in your logs.
 
 **HttpContext.Response.TransmitFile**
 
-Serving up a file is discussed in [Middleware and request features](xref:hfundamentals/request-features#middleware-and-request-features).
+Serving up a file is discussed in [Middleware and request features](xref:fundamentals/request-features#middleware-and-request-features).
 
 **HttpContext.Response.Headers**
 
