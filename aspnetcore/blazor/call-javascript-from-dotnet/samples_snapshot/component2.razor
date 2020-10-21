@@ -4,7 +4,7 @@
 <button @ref="exampleButton" />
 
 <button @onclick="TriggerClickEvent">
-    Set button click on exampleButton
+    Trigger button click on exampleButton
 </button>
 
 @code {
@@ -12,6 +12,6 @@
 
     public async Task TriggerClickEvent()
     {
-        await exampleButton.TriggerClick(JSRuntime);
+        await exampleButton.TriggerClickEvent(JSRuntime);
     }
 }
