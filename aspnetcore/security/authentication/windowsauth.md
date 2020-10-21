@@ -173,7 +173,7 @@ app.UseAuthentication();
 For more information on middleware, see <xref:fundamentals/middleware/index>.
 
 <a name="rbac"></a>
-### Kerberos authentication and role-based access controll (RBAC)
+### Kerberos authentication and role-based access control (RBAC)
 
 Kerberos authentication on Linux or macOS doesn't provide any role information for an authenticated user. To add role and group information to a Kerberos user, the authentication handler must be configured to retrieve the roles from an LDAP domain. The most basic configuration only specifies an LDAP domain to query against and will use the authenticated user's context to query the LDAP domain:
 
