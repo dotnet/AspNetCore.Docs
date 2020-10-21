@@ -3,14 +3,14 @@
 
 <button @ref="exampleButton" />
 
-<button @onclick="TriggerClickEvent">
+<button @onclick="TriggerClick">
     Trigger button click on exampleButton
 </button>
 
 @code {
     private ElementReference exampleButton;
 
-    public async Task TriggerClickEvent()
+    public async Task TriggerClick()
     {
         await exampleButton.TriggerClickEvent(JSRuntime);
     }
