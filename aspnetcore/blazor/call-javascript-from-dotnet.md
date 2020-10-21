@@ -192,42 +192,22 @@ The following example shows capturing a reference to the `username` `<input>` el
 >
 > If JS interop mutates the contents of element `MyList` and Blazor attempts to apply diffs to the element, the diffs won't match the DOM.
 
-::: moniker range=">= aspnetcore-5.0"
-
-In most cases as far as .NET code is concerned, an <xref:Microsoft.AspNetCore.Components.ElementReference> is an opaque handle. For the most part, the only thing you can do with an <xref:Microsoft.AspNetCore.Components.ElementReference> is pass it through to JavaScript code via JS interop. When you do so, the JavaScript-side code receives an [`HTMLElement`](https://developer.mozilla.org/docs/Web/API/HTMLElement) instance, which it can use with normal DOM APIs.
-
-For example, the following code defines a .NET extension method that enables sending a mouse click to an element:
+An <xref:Microsoft.AspNetCore.Components.ElementReference> is passed through to JavaScript code via JS interop. The JavaScript code receives an `HTMLElement` instance, which it can use with normal DOM APIs. For example, the following code defines a .NET extension method that enables sending a mouse click to an element:
 
 `exampleJsInterop.js`:
 
 ```javascript
 window.exampleJsFunctions = {
-  focusElement : function (element) {
+  clickElement : function (element) {
     element.click();
   }
 }
 ```
 
+::: moniker range=">= aspnetcore-5.0"
+
 > [!NOTE]
 > Use [`FocusAsync`](xref:blazor/components/event-handling#focus-an-element) in C# code to focus an element, which is built-into the Blazor framework and works with element references.
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-As far as .NET code is concerned, an <xref:Microsoft.AspNetCore.Components.ElementReference> is an opaque handle. The *only* thing you can do with an <xref:Microsoft.AspNetCore.Components.ElementReference> is pass it through to JavaScript code via JS interop. When you do so, the JavaScript-side code receives an `HTMLElement` instance, which it can use with normal DOM APIs.
-
-For example, the following code defines a .NET extension method that enables setting the focus on an element:
-
-`exampleJsInterop.js`:
-
-```javascript
-window.exampleJsFunctions = {
-  focusElement : function (element) {
-    element.focus();
-  }
-}
-```
 
 ::: moniker-end
 
@@ -238,19 +218,20 @@ To call a JavaScript function that doesn't return a value, use <xref:Microsoft.J
 To use an extension method, create a static extension method that receives the <xref:Microsoft.JSInterop.IJSRuntime> instance:
 
 ```csharp
-public static async Task Focus(this ElementReference elementRef, IJSRuntime jsRuntime)
+public static async Task TriggerClick(this ElementReference elementRef, 
+    IJSRuntime jsRuntime)
 {
     await jsRuntime.InvokeVoidAsync(
-        "exampleJsFunctions.focusElement", elementRef);
+        "exampleJsFunctions.clickElement", elementRef);
 }
 ```
 
-The `Focus` method is called directly on the object. The following example assumes that the `Focus` method is available from the `JsInteropClasses` namespace:
+The `Click` event is called directly on the object. The following example assumes that the `Click` method is available from the `JsInteropClasses` namespace:
 
 [!code-razor[](call-javascript-from-dotnet/samples_snapshot/component2.razor?highlight=1-4,12)]
 
 > [!IMPORTANT]
-> The `username` variable is only populated after the component is rendered. If an unpopulated <xref:Microsoft.AspNetCore.Components.ElementReference> is passed to JavaScript code, the JavaScript code receives a value of `null`. To manipulate element references after the component has finished rendering (to set the initial focus on an element) use the [`OnAfterRenderAsync` or `OnAfterRender` component lifecycle methods](xref:blazor/components/lifecycle#after-component-render).
+> The `username` variable is only populated after the component is rendered. If an unpopulated <xref:Microsoft.AspNetCore.Components.ElementReference> is passed to JavaScript code, the JavaScript code receives a value of `null`. To manipulate element references after the component has finished rendering use the [`OnAfterRenderAsync` or `OnAfterRender` component lifecycle methods](xref:blazor/components/lifecycle#after-component-render).
 
 When working with generic types and returning a value, use <xref:System.Threading.Tasks.ValueTask%601>:
 
