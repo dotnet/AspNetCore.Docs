@@ -357,6 +357,14 @@ To create additional file mappings with a <xref:Microsoft.AspNetCore.StaticFiles
   app.UseStaticFiles();
   ```
 
+* You can avoid interfering with serving `_framework/blazor.server.js` by using <xref:Microsoft.AspNetCore.Builder.MapWhenExtensions.MapWhen%2A> to execute a custom Static File Middleware:
+
+  ```csharp
+  app.MapWhen(ctx => !ctx.Request.Path
+      .StartsWithSegments("_framework/blazor.server.js", 
+          subApp => subApp.UseStaticFiles(new StaticFileOptions(){ ... })));
+  ```
+
 ## Additional resources
 
 * <xref:fundamentals/logging/index>
