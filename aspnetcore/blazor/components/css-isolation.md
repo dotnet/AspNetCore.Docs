@@ -21,7 +21,7 @@ To define component-specific styles, create a `razor.css` file matching the name
 
 For a `MyComponent` component that has a `MyComponent.razor` file, create a file alongside the component called `MyComponent.razor.css`. The `MyComponent` value in the `razor.css` filename is **not** case-sensitive.
 
-For example to add CSS isolation to the `Counter` component in the default Blazor project template, add a new file named `Counter.razor.css` along side the `Counter.razor` file, then add the following CSS:
+For example to add CSS isolation to the `Counter` component in the default Blazor project template, add a new file named `Counter.razor.css` alongside the `Counter.razor` file, then add the following CSS:
 
 ```css
 h1 { 
