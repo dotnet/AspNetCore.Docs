@@ -15,10 +15,10 @@ By [James Newton-King](https://github.com/jamesnk)
 
 ASP.NET Core supports a number of ways of creating JSON web APIs:
 
-* [ASP.NET Core Web API](xref:web-api/index) provides a complete framework for creating APIs. Services are created by inheriting from <xref:Microsoft.AspNetCore.Mvc.ControllerBase>. and the framework provides support for model binding, validation, content negotiation, input and output formatting, OpenAPI, and much more.
-* Route to code is a no-framework alternative to Web API. The route to code approach connects HTTP routing directly to your code. Your code reads directly from the request and writes the response. Route to code doesn't have Web API's advanced features, but there is also no configuration required to start using it.
+* [ASP.NET Core Web API](xref:web-api/index) provides a complete framework for creating APIs. Services are created by inheriting from <xref:Microsoft.AspNetCore.Mvc.ControllerBase>. The framework provides support for model binding, validation, content negotiation, input and output formatting, OpenAPI, and much more.
+* Route to code is a non-framework alternative to Web API. The route to code approach connects HTTP routing directly to your code. Your code reads directly from the request and writes the response. Route to code doesn't have Web API's advanced features, but there is also no configuration required to use it.
 
-Route to code is a good approach when building very small and simple JSON web APIs.
+Route to code is a good approach when building small and basic JSON web APIs.
 
 ## Read and write JSON
 
@@ -26,20 +26,11 @@ ASP.NET Core provides helper methods to make it easy to create JSON APIs:
 
 * `HasJsonContentType` checks the `Content-Type` header for a JSON content type.
 * `ReadFromJsonAsync` reads JSON from the request and deserializes it to the specified type.
-* `WriteAsJsonAsync` writes the specified value as JSON to the response body and sets the response content type to `application\json`.
+* `WriteAsJsonAsync` writes the specified value as JSON to the response body and sets the response content type to `application/json`.
 
-Lightweight route-based JSON APIs are specified in *Startup.cs*. The route and the API logic is configure in `UseEndpoints` as part of an app's request pipeline.
+Lightweight route-based JSON APIs are specified in *Startup.cs*. The route and the API logic is configured in `UseEndpoints` as part of an app's request pipeline.
 
-```csharp
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapGet("/hello/{name:alpha}", async context =>
-    {
-        var name = context.Request.RouteValues["name"];
-        await context.Response.WriteAsJsonAsync(new { message = $"Hello {name}!" });
-    });
-});
-```
+[!code-csharp[](route-to-code/sample/Startup3.cs?name=snippet)]
 
 The preceding code configures a JSON API for an app:
 
@@ -49,58 +40,12 @@ The preceding code configures a JSON API for an app:
 
 `ReadFromJsonAsync` can be used to deserialize a JSON response in a route-based JSON API:
 
-```csharp
-endpoints.MapPost("/weather", async context =>
-{
-    if (!context.Request.HasJsonContentType())
-    {
-        context.Response.StatusCode = StatusCodes.Status415UnsupportedMediaType;
-        return;
-    }
-
-    var weather = await context.Request.ReadAsJsonAsync<WeatherForecast>();
-    await UpdateDatabase(weather);
-
-    context.Response.StatusCode = StatusCodes.Status202Accepted;
-});
-```
+[!code-csharp[](route-to-code/sample/Startup2.cs?name=snippet)]
 
 Attributes can't be placed on endpoints that register a request delegate. Instead, metadata is added using extension methods. For example, `RequireAuthorization` can be called when registering an endpoint to notify authorization middleware that callers of this endpoint must be authenticated.
 
-```csharp
-public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-{
-    if (env.IsDevelopment())
-    {
-        app.UseDeveloperExceptionPage();
-    }
+[!code-csharp[](route-to-code/sample/Startup.cs?name=snippet)]
 
-    // Matches request to an endpoint.
-    app.UseRouting();
-
-    // Endpoint aware middleware. 
-    // Middleware can use metadata from the matched endpoint.
-    app.UseAuthentication();
-    app.UseAuthorization();
-
-    // Execute the matched endpoint.
-    app.UseEndpoints(endpoints =>
-    {
-        // Configure this endpoint to not require a user.
-        endpoints.MapPost("/login", async context =>
-        {
-            // App login logic...
-        });
-
-        // Configure this endpoint to require an authorized user.
-        endpoints.MapGet("/hello/{name:alpha}", async context =>
-        {
-            var name = context.Request.RouteValues["name"];
-            await context.Response.WriteAsJsonAsync(new { message = $"Hello {name}!" });
-        }).RequireAuthorization();
-    });
-}
-```
 
 ## Additional resources
 
