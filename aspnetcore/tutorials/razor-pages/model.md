@@ -114,7 +114,7 @@ Register the database context with the [dependency injection](xref:fundamentals/
 The `Movie` class contains:
 
 * The `ID` field is required by the database for the primary key.
-* `[DataType(DataType.Date)]`: The [[DataType]](xref:System.ComponentModel.DataAnnotations.DataTypeAttribute) attribute specifies the type of the data (Date). With this attribute:
+* `[DataType(DataType.Date)]`: The [[DataType]](xref:System.ComponentModel.DataAnnotations.DataTypeAttribute) attribute specifies the type of the data (`Date`). With this attribute:
 
   * The user is not required to enter time information in the date field.
   * Only the date is displayed, not time information.
@@ -158,7 +158,7 @@ The *appsettings.json* file is updated with the connection string used to connec
 <!--  Until https://github.com/aspnet/Scaffolding/issues/582 is fixed windows needs backslash or the namespace is namespace RazorPagesMovie.Pages_Movies rather than namespace RazorPagesMovie.Pages.Movies
 -->
 
-* Open a command window in the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).
+* Open a command shell to the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).
 
 * **For Windows**: Run the following command:
 
@@ -296,7 +296,7 @@ In this section, the Package Manager Console (PMC) is used to:
 
 [!INCLUDE [more information on the CLI for EF Core](~/includes/ef-cli.md)]
 
-* Run the following .NET Core CLI commands:
+* Run the following .NET CLI commands:
 
   ```dotnetcli
   dotnet ef migrations add InitialCreate
@@ -423,7 +423,7 @@ Add the following properties to the `Movie` class:
 The `Movie` class contains:
 
 * The `ID` field is required by the database for the primary key.
-* `[DataType(DataType.Date)]`:  The [DataType](xref:System.ComponentModel.DataAnnotations.DataTypeAttribute) attribute specifies the type of the data (Date). With this attribute:
+* `[DataType(DataType.Date)]`:  The [DataType](xref:System.ComponentModel.DataAnnotations.DataTypeAttribute) attribute specifies the type of the data (`Date`). With this attribute:
 
   * The user is not required to enter time information in the date field.
   * Only the date is displayed, not time information.
@@ -485,7 +485,7 @@ Add the following properties to the `Movie` class:
 The `Movie` class contains:
 
 * The `ID` field is required by the database for the primary key.
-* `[DataType(DataType.Date)]`:  The [DataType](xref:System.ComponentModel.DataAnnotations.DataTypeAttribute) attribute specifies the type of the data (Date). With this attribute:
+* `[DataType(DataType.Date)]`:  The [DataType](xref:System.ComponentModel.DataAnnotations.DataTypeAttribute) attribute specifies the type of the data (`Date`). With this attribute:
 
   * The user is not required to enter time information in the date field.
   * Only the date is displayed, not time information.
@@ -549,11 +549,11 @@ The following table details the ASP.NET Core code generator parameters:
 
 | Parameter               | Description|
 | ----------------- | ------------ |
-| -m  | The name of the model. |
-| -dc  | The `DbContext` class to use. |
-| -udl | Use the default layout. |
-| -outDir | The relative output folder path to create the views. |
-| --referenceScriptLibraries | Adds `_ValidationScriptsPartial` to Edit and Create pages |
+| `-m`  | The name of the model. |
+| `-dc`  | The `DbContext` class to use. |
+| `-udl` | Use the default layout. |
+| `-outDir` | The relative output folder path to create the views. |
+| `--referenceScriptLibraries` | Adds `_ValidationScriptsPartial` to Edit and Create pages |
 
 Use the `h` switch to get help on the `aspnet-codegenerator razorpage` command:
 

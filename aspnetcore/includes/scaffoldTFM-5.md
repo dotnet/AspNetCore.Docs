@@ -1,4 +1,4 @@
-If you get a scaffolding error, verify the Target Framework Moniker (TFM) matches the NuGet package version in the project file. For example, the following project file contains the version 3.1 for .NET Core and the listed NuGet packages:
+If you get a scaffolding error, verify the Target Framework Moniker (TFM) matches the NuGet package version in the project file. For example, the following project file uses version 5.0 for .NET and the listed NuGet packages:
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk.Web">
