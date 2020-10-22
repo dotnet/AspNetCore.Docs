@@ -325,13 +325,13 @@ Examine the `Startup.ConfigureServices` method. The highlighted line was added b
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Startup.cs?name=snippet_ConfigureServices&highlight=5-6)]
 
-The `RazorPagesMovieContext` coordinates EF Core functionality (Create, Read, Update, Delete, etc.) for the `Movie` model. The data context (`RazorPagesMovieContext`) is derived from [Microsoft.EntityFrameworkCore.DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext). The data context specifies which entities are included in the data model.
+The `RazorPagesMovieContext` coordinates EF Core functionality (Create, Read, Update, Delete, etc.) for the `Movie` model. The data context (`RazorPagesMovieContext`) is derived from [Microsoft.EntityFrameworkCore.DbContext](xref:Microsoft.EntityFrameworkCore.DbContext). The data context specifies which entities are included in the data model.
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie50/Data/RazorPagesMovieContext.cs)]
 
 The preceding code creates a [DbSet\<Movie>](xref:Microsoft.EntityFrameworkCore.DbSet) property for the entity set. In Entity Framework terminology, an entity set typically corresponds to a database table. An entity corresponds to a row in the table.
 
-The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions) object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.
+The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](xref:Microsoft.EntityFrameworkCore.DbContextOptions) object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -409,7 +409,7 @@ The `Movie` class contains:
   * The user is not required to enter time information in the date field.
   * Only the date is displayed, not time information.
 
-[DataAnnotations](/dotnet/api/system.componentmodel.dataannotations) are covered in a later tutorial.
+[DataAnnotations](xref:System.ComponentModel.DataAnnotations) are covered in a later tutorial.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -428,7 +428,7 @@ The `Movie` class contains:
   * The user is not required to enter time information in the date field.
   * Only the date is displayed, not time information.
 
-[DataAnnotations](/dotnet/api/system.componentmodel.dataannotations) are covered in a later tutorial.
+[DataAnnotations](xref:System.ComponentModel.DataAnnotations) are covered in a later tutorial.
 
 <a name="dc"></a>
 
@@ -490,7 +490,7 @@ The `Movie` class contains:
   * The user is not required to enter time information in the date field.
   * Only the date is displayed, not time information.
 
-[DataAnnotations](/dotnet/api/system.componentmodel.dataannotations) are covered in a later tutorial.
+[DataAnnotations](xref:System.ComponentModel.DataAnnotations) are covered in a later tutorial.
 
 ---
 
@@ -705,13 +705,13 @@ Examine the `Startup.ConfigureServices` method. The highlighted line was added b
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Startup.cs?name=snippet_ConfigureServices&highlight=5-6)]
 
-The `RazorPagesMovieContext` coordinates EF Core functionality (Create, Read, Update, Delete, etc.) for the `Movie` model. The data context (`RazorPagesMovieContext`) is derived from [Microsoft.EntityFrameworkCore.DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext). The data context specifies which entities are included in the data model.
+The `RazorPagesMovieContext` coordinates EF Core functionality (Create, Read, Update, Delete, etc.) for the `Movie` model. The data context (`RazorPagesMovieContext`) is derived from [Microsoft.EntityFrameworkCore.DbContext](xref:Microsoft.EntityFrameworkCore.DbContext). The data context specifies which entities are included in the data model.
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Data/RazorPagesMovieContext.cs)]
 
 The preceding code creates a [DbSet\<Movie>](/dotnet/api/microsoft.entityframeworkcore.dbset-1) property for the entity set. In Entity Framework terminology, an entity set typically corresponds to a database table. An entity corresponds to a row in the table.
 
-The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions) object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.
+The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](xref:Microsoft.EntityFrameworkCore.DbContextOptions) object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -786,7 +786,7 @@ The `Movie` class contains:
   * The user is not required to enter time information in the date field.
   * Only the date is displayed, not time information.
 
-[DataAnnotations](/dotnet/api/system.componentmodel.dataannotations) are covered in a later tutorial.
+[DataAnnotations](xref:System.ComponentModel.DataAnnotations) are covered in a later tutorial.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -805,7 +805,7 @@ The `Movie` class contains:
   * The user is not required to enter time information in the date field.
   * Only the date is displayed, not time information.
 
-[DataAnnotations](/dotnet/api/system.componentmodel.dataannotations) are covered in a later tutorial.
+[DataAnnotations](xref:System.ComponentModel.DataAnnotations) are covered in a later tutorial.
 
 <a name="dc"></a>
 
@@ -881,7 +881,7 @@ The `Movie` class contains:
   * The user is not required to enter time information in the date field.
   * Only the date is displayed, not time information.
 
-[DataAnnotations](/dotnet/api/system.componentmodel.dataannotations) are covered in a later tutorial.
+[DataAnnotations](xref:System.ComponentModel.DataAnnotationsdataannotations) are covered in a later tutorial.
 
 ---
 
@@ -1052,13 +1052,13 @@ Examine the `Startup.ConfigureServices` method. The highlighted line was added b
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Startup.cs?name=snippet_ConfigureServices&highlight=15-18)]
 
-The `RazorPagesMovieContext` coordinates EF Core functionality (Create, Read, Update, Delete, etc.) for the `Movie` model. The data context (`RazorPagesMovieContext`) is derived from [Microsoft.EntityFrameworkCore.DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext). The data context specifies which entities are included in the data model.
+The `RazorPagesMovieContext` coordinates EF Core functionality (Create, Read, Update, Delete, etc.) for the `Movie` model. The data context (`RazorPagesMovieContext`) is derived from [Microsoft.EntityFrameworkCore.DbContext](xref:Microsoft.EntityFrameworkCore.DbContext). The data context specifies which entities are included in the data model.
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Data/RazorPagesMovieContext.cs)]
 
 The preceding code creates a [DbSet\<Movie>](/dotnet/api/microsoft.entityframeworkcore.dbset-1) property for the entity set. In Entity Framework terminology, an entity set typically corresponds to a database table. An entity corresponds to a row in the table.
 
-The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions) object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.
+The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](xref:Microsoft.EntityFrameworkCore.DbContextOptions) object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
