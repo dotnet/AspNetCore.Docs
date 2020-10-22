@@ -1,7 +1,7 @@
 ---
 title: Read and write JSON with ASP.NET Core Route to Code
 author: jamesnk
-description: Learn the basics of creating a web API in ASP.NET Core.
+description: Learn how to use route to code and JSON extension methods to create lightweight JSON web APIs.
 monikerRange: '>= aspnetcore-5.0'
 ms.author: jamesnk
 ms.custom: mvc
@@ -15,7 +15,7 @@ By [James Newton-King](https://github.com/jamesnk)
 
 ASP.NET Core supports a number of ways of creating JSON web APIs:
 
-* ASP.NET Core Web API provides a complete framework for creating APIs. Services are created by inheriting from <xref:Microsoft.AspNetCore.Mvc.ControllerBase>. and the framework provides support for model binding, validation, content negotiation, input and output formatting, OpenAPI, and much more.
+* [ASP.NET Core Web API](xref:web-api/index) provides a complete framework for creating APIs. Services are created by inheriting from <xref:Microsoft.AspNetCore.Mvc.ControllerBase>. and the framework provides support for model binding, validation, content negotiation, input and output formatting, OpenAPI, and much more.
 * Route to code is a no-framework alternative to Web API. The route to code approach connects HTTP routing directly to your code. Your code reads directly from the request and writes the response. Route to code doesn't have Web API's advanced features, but there is also no configuration required to start using it.
 
 Route to code is a good approach when building very small and simple JSON web APIs.
