@@ -1,5 +1,5 @@
 ---
-title: Read and write JSON with ASP.NET Core Route to Code
+title: Read and write JSON with Route to Code in ASP.NET Core
 author: jamesnk
 description: Learn how to use route to code and JSON extension methods to create lightweight JSON web APIs.
 monikerRange: '>= aspnetcore-5.0'
@@ -9,7 +9,7 @@ ms.date: 10/22/2020
 no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: web-api/route-to-code
 ---
-# Read and write JSON with ASP.NET Core Route to Code
+# Read and write JSON with Route to Code in ASP.NET Core
 
 By [James Newton-King](https://github.com/jamesnk)
 
