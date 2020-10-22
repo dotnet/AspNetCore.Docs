@@ -449,7 +449,7 @@
           uid: blazor/webassembly-lazy-load-assemblies
         - name: WebAssembly performance
           uid: blazor/webassembly-performance-best-practices
-        - name: Test
+        - name: Test components
           uid: blazor/test
         - name: Progressive Web Applications
           uid: blazor/progressive-web-app
