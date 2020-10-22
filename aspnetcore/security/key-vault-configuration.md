@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to use the Azure Key Vault Configuration Provider to configure an app using name-value pairs loaded at runtime.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
-ms.custom: mvc
+ms.custom: mvc, devx-track-azurecli
 ms.date: 02/07/2020
 no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/key-vault-configuration
