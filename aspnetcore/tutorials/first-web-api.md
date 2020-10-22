@@ -504,7 +504,7 @@ Use Postman to delete a to-do item:
 * Set the URI of the object to delete (for example `https://localhost:5001/api/TodoItems/1`).
 * Select **Send**.
 
-<a name="over-post"></a>
+<a name="over-post-v5"></a>
 
 ## Prevent over-posting
 
@@ -992,6 +992,7 @@ Use Postman to delete a to-do item:
 * Select **Send**.
 
 <a name="over-post"></a>
+<a name="over-post-v3"></a>
 
 ## Prevent over-posting
 
