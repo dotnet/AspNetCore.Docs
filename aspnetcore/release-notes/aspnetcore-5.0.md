@@ -16,7 +16,7 @@ This article highlights the most significant changes in ASP.NET Core 5.0 with li
 
 ### Model binding DateTime as UTC
 
-Model binding now supports binding UTC time strings to `DateTime`. If the request contains a UTC time string, model binding binds it to a UTC `DateTime`. For example, the following time string is bound the UTC `DateTime`:  `https://example.com/mycontroller/myaction?time=2019-06-14T02%3A30%3A04.0576719Z`
+Model binding now supports binding UTC time strings to `DateTime`. If the request contains a UTC time string, model binding binds it to a UTC `DateTime`. For example, the following time string is bound the UTC `DateTime`: `https://example.com/mycontroller/myaction?time=2019-06-14T02%3A30%3A04.0576719Z`
 
 ### Model binding and validation with C# 9 record types
 
@@ -53,7 +53,7 @@ Age: <input asp-for="Model.Age" />
 
 ### Improvements to DynamicRouteValueTransformer
 
-ASP.NET Core 3.1 introduced <xref:Microsoft.AspNetCore.Mvc.Routing.DynamicRouteValueTransformer> as a way to use use a custom endpoint to dynamically select an MVC controller action or a razor page.  ASP.NET Core 5.0 apps can pass state to a `DynamicRouteValueTransformer` and filter the set of endpoints chosen.
+ASP.NET Core 3.1 introduced <xref:Microsoft.AspNetCore.Mvc.Routing.DynamicRouteValueTransformer> as a way to use use a custom endpoint to dynamically select an MVC controller action or a Razor page. ASP.NET Core 5.0 apps can pass state to a `DynamicRouteValueTransformer` and filter the set of endpoints chosen.
 
 ### Miscellaneous
 
@@ -69,12 +69,16 @@ see https://docs.microsoft.com/aspnet/core/mvc/models/validation?view=aspnetcore
 
 [OpenAPI Specification](http://spec.openapis.org/oas/v3.0.3) is a industry adopted convention for describing HTTP APIs and integrating them into complex business processes or with 3rd parties. OpenAPI is widely supported by all cloud providers and many API registries. Apps that emit OpenAPI documents from Web APIs have a variety of new opportunities in which those APIs can be used. In partnership with the maintainers of the open-source project [Swashbuckle.AspNetCore](https://www.nuget.org/packages/Swashbuckle.AspNetCore/), the ASP.NET Core API template contains a NuGet dependency on [Swashbuckle](https://github.com/domaindrivendev/Swashbuckle.AspNetCore), a popular open-source NuGet package that emits OpenAPI documents dynamically. Swashbuckle does this by introspecting over the API Controllers and generating the OpenAPI document at run-time, or at build time using the Swashbuckle CLI.
 
-In .NET 5, the Web API templates enable the OpenAPI output being enabled by default. To disable OpenAPI:
+In ASP.NET Core 5.0, the web API templates enable the OpenAPI support by default. To disable OpenAPI:
 
-* From the command line: `dotnet new webapi --no-openapi true`
+* From the command line:
+
+	```dotnetcli
+	dotnet new webapi --no-openapi true`
+	```
 * From Visual Studio: Uncheck **Enable OpenAPI support**.
 
-All *.csproj* files created for Web API projects contain the [Swashbuckle.AspNetCore](https://www.nuget.org/packages/Swashbuckle.AspNetCore/) NuGet package reference.
+All *.csproj* files created for web API projects contain the [Swashbuckle.AspNetCore](https://www.nuget.org/packages/Swashbuckle.AspNetCore/) NuGet package reference.
 
 ```xml
 <ItemGroup>
@@ -91,7 +95,7 @@ The `Configure` method adds the Swashbuckle middleware, which enables the:
 * Document generation process.
 * Swagger UI page by default in development mode.
 
-The template generated code won't accidentally expose the API’s description when publishing to production.
+The template generated code won't accidentally expose the API's description when publishing to production.
 
 [!code-csharp[](~/release-notes/sample/StartupSwagger.cs?name=snippet2)]
 
@@ -228,14 +232,13 @@ ASP.NET Core SignalR is now capable of handling parallel hub invocations. The de
 ### Added Messagepack support in SignalR Java client
 
 <!-- Review: I can't find NuGet com.microsoft.signalr.messagepack  -->
-A new package, `com.microsoft.signalr.messagepack`, adds messagepack support to the SignalR java client. To use the messagepack hub protocol, add `.withHubProtocol(new MessagePackHubProtocol())` to the connection builder:
+A new package, `com.microsoft.signalr.messagepack`, adds MessagePack support to the SignalR Java client. To use the MessagePack hub protocol, add `.withHubProtocol(new MessagePackHubProtocol())` to the connection builder:
 
-```csharp
+```java
 HubConnection hubConnection = HubConnectionBuilder.create(
                            "http://localhost:53353/MyHub")
                .withHubProtocol(new MessagePackHubProtocol())
                .build();
-               
 ```
 
 <!--
@@ -246,7 +249,7 @@ See [Update SignalR code](xref:migration/31-to-50#signalr) for migration instruc
 
 * Reloadable endpoints via configuration: Kestrel can detect changes to configuration passed to [KestrelServerOptions.Configure](xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Configure%2A) and unbind from existing endpoints and bind to new endpoints without requiring an application restart.
 * HTTP/2 response headers improvements. For more information, see [Performance improvements](#performance-improvements) in the next section.
-* Support for additional endpoints types in the sockets transport: Adding to the new API introduced in <xref:System.Net.Sockets?displayProperty=nameWithType>, the sockets default transport in [Kestrel](xref:fundamentals/servers/kestrel) allows binding to both existing file handles and unix domain sockets. Support for binding to existing file handles enables using the existing `Systemd` integration without requiring the `libuv` transport.
+* Support for additional endpoints types in the sockets transport: Adding to the new API introduced in <xref:System.Net.Sockets?displayProperty=nameWithType>, the sockets default transport in [Kestrel](xref:fundamentals/servers/kestrel) allows binding to both existing file handles and Unix domain sockets. Support for binding to existing file handles enables using the existing `Systemd` integration without requiring the `libuv` transport.
 * Custom header decoding in Kestrel: Apps can specify which <xref:System.Text.Encoding> to use to interpret incoming headers based on the header name instead of defaulting to `UTF-8`. Set the <xref:System.Net.Http.SocketsHttpHandler.RequestHeaderEncodingSelector> property on <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions> to specify which encoding to use:
  
   ```csharp
@@ -284,7 +287,7 @@ Configuration allows specifying which certificate is selected based on the speci
 
 The following example shows how to specify endpoint-specific using a configuration file:
 
-```xml
+```json
 {
   "Kestrel": {
     "Endpoints": {
@@ -350,7 +353,7 @@ Server Name Indication (SNI) is a TLS extension to include a virtual domain as a
 
 ### Containers
 
-Prior to .NET 5, building and publishing a Dockerfile for an ASP.NET app required pulling the entire .NET Core SDK and the ASP.NET image. With this release, pulling the SDK images bytes is reduced and the bytes pulled for the ASP.NET image is largely eliminated. For more information, See [this GitHub issue comment](https://github.com/dotnet/dotnet-docker/issues/1814#issuecomment-625294750).
+Prior to .NET 5.0, building and publishing a *Dockerfile* for an ASP.NET Core app required pulling the entire .NET Core SDK and the ASP.NET Core image. With this release, pulling the SDK images bytes is reduced and the bytes pulled for the ASP.NET Core image is largely eliminated. For more information, see [this GitHub issue comment](https://github.com/dotnet/dotnet-docker/issues/1814#issuecomment-625294750).
 
 ## Authentication and authorization
 
@@ -445,7 +448,7 @@ public class Program
 In .NET 5, running [dotnet watch](xref:tutorials/dotnet-watch) on an ASP.NET Core project both launches the default browser and auto refreshes the browser as changes are made to the code. This means you can:
 
 * Open an ASP.NET Core project in a text editor.
-* Run `dotnet watch`
+* Run `dotnet watch`.
 * Focus on the code changes while the tooling handles rebuilding, restarting, and reloading the app.
 
 We hope to bring the auto refresh functionality to Visual Studio in the future.
@@ -460,7 +463,7 @@ In addition to support for custom formatters, we’ve also added a built-in JSON
 
 [!code-csharp[](~/release-notes/sample/ProgramJsonLog.cs?name=snippet)]
 
-Log messages emitted to the console are  JSON formatted:
+Log messages emitted to the console are JSON formatted:
 
 ```json
 {
