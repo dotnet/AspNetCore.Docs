@@ -28,7 +28,7 @@ ASP.NET Core provides helper methods to make it easy to create JSON APIs:
 * `ReadFromJsonAsync` reads JSON from the request and deserializes it to the specified type.
 * `WriteAsJsonAsync` writes the specified value as JSON to the response body and sets the response content type to `application\json`.
 
-Lightweight route-based JSON APIs are specified in *Startup.cs*. The route and the API logic is configure in `UseEndpoint` as part of an app's request pipeline.
+Lightweight route-based JSON APIs are specified in *Startup.cs*. The route and the API logic is configure in `UseEndpoints` as part of an app's request pipeline.
 
 ```csharp
 app.UseEndpoints(endpoints =>
