@@ -340,6 +340,8 @@ webBuilder.ConfigureKestrel(serverOptions =>
 
 The default value is 96 KB (98,304).
 
+::: moniker range=">= aspnetcore-5.0"
+
 ### HTTP/2 keep alive ping configuration
 
 Kestrel can be configured to send HTTP/2 pings to connected clients. HTTP/2 pings serve multiple purposes:
@@ -359,6 +361,8 @@ webBuilder.ConfigureKestrel(serverOptions =>
     serverOptions.Limits.Http2.KeepAlivePingTimeout = TimeSpan.FromSeconds(60);
 });
 ```
+
+::: moniker-end
 
 ### Trailers
 
