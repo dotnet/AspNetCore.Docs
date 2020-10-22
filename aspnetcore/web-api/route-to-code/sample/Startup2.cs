@@ -45,9 +45,8 @@ namespace WebR2C
                         return;
                     }
 
-                  //var weather = await context.Request.ReadAsJsonAsync<WeatherForecast>();
                     var weather = await context.Request.ReadFromJsonAsync<WeatherForecast>();
-                    await UpdateDatabase(weather);
+                    await UpdateDatabaseAsync(weather);
 
                     context.Response.StatusCode = StatusCodes.Status202Accepted;
                 });
@@ -56,7 +55,7 @@ namespace WebR2C
 
         }
 
-        private Task UpdateDatabase(object weather)
+        private Task UpdateDatabaseAsync(object weather)
         {
             throw new NotImplementedException();
         }

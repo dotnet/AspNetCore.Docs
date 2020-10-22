@@ -37,7 +37,7 @@ namespace WebR2C
             // Execute the matched endpoint.
             app.UseEndpoints(endpoints =>
             {
-                // Configure this endpoint to not require a user.
+                // This endpoint doesn't require authorization.
                 endpoints.MapPost("/login", async context =>
                 {
                     // App login logic...

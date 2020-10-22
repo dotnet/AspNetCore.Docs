@@ -46,10 +46,5 @@ namespace WebR2C
             #endregion
 
         }
-
-        private Task UpdateDatabase(object weather)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
