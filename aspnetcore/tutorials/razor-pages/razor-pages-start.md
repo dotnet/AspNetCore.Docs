@@ -142,10 +142,8 @@ Contains code that configures app behavior. For more information, see <xref:fund
 
 ## Next steps
 
-Advance to the next tutorial in the series:
-
 > [!div class="step-by-step"]
-> [Add a model](xref:tutorials/razor-pages/model)
+> [Next: Add a model](xref:tutorials/razor-pages/model)
 
 ::: moniker-end
 
@@ -286,10 +284,8 @@ Contains code that configures app behavior. For more information, see <xref:fund
 
 ## Next steps
 
-Advance to the next tutorial in the series:
-
 > [!div class="step-by-step"]
-> [Add a model](xref:tutorials/razor-pages/model)
+> [Next: Add a model](xref:tutorials/razor-pages/model)
 
 ::: moniker-end
 
@@ -499,9 +495,7 @@ Contains code that configures app behavior, such as whether it requires consent 
 
 ## Next steps
 
-Advance to the next tutorial in the series:
-
 > [!div class="step-by-step"]
-> [Add a model](xref:tutorials/razor-pages/model)
+> [Next: Add a model](xref:tutorials/razor-pages/model)
 
 ::: moniker-end
