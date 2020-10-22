@@ -385,6 +385,8 @@
               uid: blazor/components/virtualization
             - name: Templated components
               uid: blazor/components/templated-components
+            - name: CSS isolation
+              uid: blazor/components/css-isolation
             - name: Integrate components
               uid: blazor/components/integrate-components-into-razor-pages-and-mvc-apps
             - name: Component libraries
