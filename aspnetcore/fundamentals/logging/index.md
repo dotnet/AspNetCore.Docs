@@ -67,7 +67,7 @@ The following example:
 
 [Levels](#log-level) and [categories](#log-category) are explained in more detail later in this document.
 
-For information on Blazor, see [Create logs in Blazor and Blazor WebAssembly](#clib) in this document.
+For information on Blazor, see <xref:blazor/fundamentals/logging>.
 
 [Create logs in Main and Startup](#clms) shows how to create logs in `Main` and `Startup`.
 
