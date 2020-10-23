@@ -105,9 +105,9 @@ When ASP.NET Core API projects enable OpenAPI, the Visual Studio 2019 version 16
 
 ![Azure API Management Import VS publishing](~/release-notes/static/publish-to-apim.png)
 
-### Better F5 Experience for Web API Projects
+### Better launch Experience for Web API Projects
 
-With OpenAPI enabled by default, the F5 experience for Web API developers significantly improves. With .NET, the Web API template comes pre-configured to load up the Swagger UI page. The Swagger UI page provides both the documentation added for the published API, and enables testing the APIs with a single click.
+With OpenAPI enabled by default, the app launching experience (F5) for Web API developers significantly improves. With .NET, the Web API template comes pre-configured to load up the Swagger UI page. The Swagger UI page provides both the documentation added for the published API, and enables testing the APIs with a single click.
 
 ![swagger/index.html view](~/release-notes/static/swagger-ui-page-rc1.png)
 
