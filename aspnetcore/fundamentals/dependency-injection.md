@@ -223,7 +223,8 @@ services.TryAddSingleton<IMyDependency, DifferentDependency>();
 
 public class MyService
 {
-    public MyService(IMyDependency myDependency, IEnumberable<IMyDependency> myDependencies)
+    public MyService(IMyDependency myDependency, 
+        IEnumberable<IMyDependency> myDependencies)
     {
         Trace.Assert(myDependency is MyDependency);
         Trace.Assert(myDependencies.Single() is MyDependency);
@@ -231,17 +232,18 @@ public class MyService
 }
 ```
 
-`DifferentDependency` replaces `MyDependency` if the call to `TryAddSingleton` is changed to a second call to `AddSingleton` unless multiple `IMyDependency` instances are resolved via `IEnumerable<IMyDependency>`. In that case, the second call to `AddSingleton` adds `DifferentDependency` after `MyDependency` in the `IEnumerable<IMyDependency>`.
+`DifferentDependency` replaces `MyDependency` if the call to `TryAddSingleton` is changed to a second call to `AddSingleton`, unless multiple `IMyDependency` instances are resolved via `IEnumerable<IMyDependency>`. In that case, the second call to `AddSingleton` adds `DifferentDependency` after `MyDependency` in the `IEnumerable<IMyDependency>`.
+
+In the following example, the second call to `AddSingleton` overrides the previous one or adds to the previous one when multiple services are resolved via `IEnumerable<IMyDependency>`:
 
 ```csharp
 services.AddSingleton<IMyDependency, MyDependency>();
-// The following line overrides the previous one or adds to the previous one when
-// multiple services are resolved via IEnumerable<IMyDependency>:
 services.AddSingleton<IMyDependency, DifferentDependency>();
 
 public class MyService
 {
-    public MyService(IMyDependency myDependency, IEnumberable<IMyDependency> myDependencies)
+    public MyService(IMyDependency myDependency, 
+       IEnumberable<IMyDependency> myDependencies)
     {
         Debug.Assert(myDependency is DifferentDependency);
 
@@ -807,7 +809,8 @@ services.TryAddSingleton<IMyDependency, DifferentDependency>();
 
 public class MyService
 {
-    public MyService(IMyDependency myDependency, IEnumberable<IMyDependency> myDependencies)
+    public MyService(IMyDependency myDependency, 
+        IEnumberable<IMyDependency> myDependencies)
     {
         Trace.Assert(myDependency is MyDependency);
         Trace.Assert(myDependencies.Single() is MyDependency);
@@ -815,17 +818,18 @@ public class MyService
 }
 ```
 
-`DifferentDependency` replaces `MyDependency` if the call to `TryAddSingleton` is changed to a second call to `AddSingleton` unless multiple `IMyDependency` instances are resolved via `IEnumerable<IMyDependency>`. In that case, the second call to `AddSingleton` adds `DifferentDependency` after `MyDependency` in the `IEnumerable<IMyDependency>`.
+`DifferentDependency` replaces `MyDependency` if the call to `TryAddSingleton` is changed to a second call to `AddSingleton`, unless multiple `IMyDependency` instances are resolved via `IEnumerable<IMyDependency>`. In that case, the second call to `AddSingleton` adds `DifferentDependency` after `MyDependency` in the `IEnumerable<IMyDependency>`.
+
+In the following example, the second call to `AddSingleton` overrides the previous one or adds to the previous one when multiple services are resolved via `IEnumerable<IMyDependency>`:
 
 ```csharp
 services.AddSingleton<IMyDependency, MyDependency>();
-// The following line overrides the previous one or adds to the previous one when
-// multiple services are resolved via IEnumerable<IMyDependency>:
 services.AddSingleton<IMyDependency, DifferentDependency>();
 
 public class MyService
 {
-    public MyService(IMyDependency myDependency, IEnumberable<IMyDependency> myDependencies)
+    public MyService(IMyDependency myDependency, 
+        IEnumberable<IMyDependency> myDependencies)
     {
         Debug.Assert(myDependency is DifferentDependency);
 
