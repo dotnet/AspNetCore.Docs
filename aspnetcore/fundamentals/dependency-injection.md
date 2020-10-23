@@ -214,7 +214,7 @@ For more information on type disposal, see the [Disposal of services](#disposal-
 
 Registering a service with only an implementation type is equivalent to registering that service with the same implementation and service type. This is why multiple implementations of a service cannot be registered using the methods that don't take an explicit service type. These methods can register multiple *instances* of a service, but they will all have the same *implementation* type.
 
-Any of the above service registration methods can be used to register multiple service instances of the same service type. In the following example, `AddSingleton` is called twice with `IMyDependency` as the service type. The second call to `AddSingleton` overrides the previous one when resolved as `IMyDependency` and adds to the previous one when multiple services are resolved as `IEnumerable<IMyDependency>`:
+Any of the above service registration methods can be used to register multiple service instances of the same service type. In the following example, `AddSingleton` is called twice with `IMyDependency` as the service type. The second call to `AddSingleton` overrides the previous one when resolved as `IMyDependency` and adds to the previous one when multiple services are resolved via `IEnumerable<IMyDependency>`. Services appear in the order they were registered when resolved via `IEnumerable<{SERVICE}>`.
 
 ```csharp
 services.AddSingleton<IMyDependency, MyDependency>();
@@ -236,7 +236,7 @@ public class MyService
 
 The framework also provides `TryAdd{LIFETIME}` extension methods, which register the service only if there isn't already an implementation registered.
 
-In the following example, the call to `AddSingleton` registers `MyDependency` as an implementation for `IMyDependency`. The call to `TryAddSingleton` has no effect because `IMyDependency` already has a registered implementation:
+In the following example, the call to `AddSingleton` registers `MyDependency` as an implementation for `IMyDependency`. The call to `TryAddSingleton` has no effect because `IMyDependency` already has a registered implementation.
 
 ```csharp
 services.AddSingleton<IMyDependency, MyDependency>();
@@ -800,7 +800,7 @@ For more information on type disposal, see the [Disposal of services](#disposal-
 
 Registering a service with only an implementation type is equivalent to registering that service with the same implementation and service type. This is why multiple implementations of a service cannot be registered using the methods that don't take an explicit service type. These methods can register multiple *instances* of a service, but they will all have the same *implementation* type.
 
-Any of the above service registration methods can be used to register multiple service instances of the same service type. In the following example, `AddSingleton` is called twice with `IMyDependency` as the service type. The second call to `AddSingleton` overrides the previous one when resolved as `IMyDependency` and adds to the previous one when multiple services are resolved as `IEnumerable<IMyDependency>`:
+Any of the above service registration methods can be used to register multiple service instances of the same service type. In the following example, `AddSingleton` is called twice with `IMyDependency` as the service type. The second call to `AddSingleton` overrides the previous one when resolved as `IMyDependency` and adds to the previous one when multiple services are resolved via `IEnumerable<IMyDependency>`. Services appear in the order they were registered when resolved via `IEnumerable<{SERVICE}>`.
 
 ```csharp
 services.AddSingleton<IMyDependency, MyDependency>();
@@ -822,7 +822,7 @@ public class MyService
 
 The framework also provides `TryAdd{LIFETIME}` extension methods, which register the service only if there isn't already an implementation registered.
 
-In the following example, the call to `AddSingleton` registers `MyDependency` as an implementation for `IMyDependency`. The call to `TryAddSingleton` has no effect because `IMyDependency` already has a registered implementation:
+In the following example, the call to `AddSingleton` registers `MyDependency` as an implementation for `IMyDependency`. The call to `TryAddSingleton` has no effect because `IMyDependency` already has a registered implementation.
 
 ```csharp
 services.AddSingleton<IMyDependency, MyDependency>();
