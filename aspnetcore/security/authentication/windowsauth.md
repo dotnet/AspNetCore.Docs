@@ -172,7 +172,7 @@ Anonymous requests are allowed. Use [ASP.NET Core Authorization](xref:security/a
 
 ### Windows environment configuration
 
-The [Microsoft.AspNetCore.Authentication.Negotiate](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Negotiate) component performs User Mode authentication. Service Principal Names (SPNs) must be added to the user account running the service, not the machine account. Execute `setspn -S HTTP/mysrevername.mydomain.com myuser` in an administrative command shell.
+The [Microsoft.AspNetCore.Authentication.Negotiate](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Negotiate) component performs User Mode authentication. Service Principal Names (SPNs) must be added to the user account running the service, not the machine account. Execute `setspn -S HTTP/myservername.mydomain.com myservername` in an administrative command shell.
 
 ### Linux and macOS environment configuration
 
