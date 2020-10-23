@@ -340,6 +340,8 @@ webBuilder.ConfigureKestrel(serverOptions =>
 
 The default value is 96 KB (98,304).
 
+::: moniker-end
+
 ::: moniker range=">= aspnetcore-5.0"
 
 ### HTTP/2 keep alive ping configuration
@@ -363,6 +365,8 @@ webBuilder.ConfigureKestrel(serverOptions =>
 ```
 
 ::: moniker-end
+
+::: moniker range=">= aspnetcore-3.0"
 
 ### Trailers
 
