@@ -100,7 +100,7 @@ Register the database context with the [dependency injection](xref:fundamentals/
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-1. In Solution Pad, control-click the **RazorPagesMovie** project, and then select **Add** > **New Folder...**. Name the folder *Models*.
+1. In the **Solution Tool Window**, control-click the **RazorPagesMovie** project, and then select **Add** > **New Folder...**. Name the folder *Models*.
 1. Control-click the *Models* folder, and then select **Add** > **New File...**.
 1. In the **New File** dialog:
    1. Select **General** in the left pane.
@@ -438,10 +438,10 @@ The `Movie` class contains:
 
 ### Add a database context class
 
-In the RazorPagesMovie project, create a new folder called *Data*. 
-Add the following `RazorPagesMovieContext` class to the *Data* folder:
+1. In the RazorPagesMovie project, create a new folder named *Data*. 
+1. Add the following `RazorPagesMovieContext` class to the *Data* folder:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Data/RazorPagesMovieContext.cs)]
+   [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Data/RazorPagesMovieContext.cs)]
 
 The preceding code creates a `DbSet` property for the entity set. In Entity Framework terminology, an entity set typically corresponds to a database table, and an entity corresponds to a row in the table. The code won't compile until dependencies are added in a later step.
 
@@ -470,7 +470,7 @@ Register the database context with the [dependency injection](xref:fundamentals/
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-* In Solution Pad, right-click the **RazorPagesMovie** project, and then select **Add** > **New Folder...**. Name the folder *Models*.
+* In the **Solution Tool Window**, right-click the **RazorPagesMovie** project, and then select **Add** > **New Folder...**. Name the folder *Models*.
 * Right-click the *Models* folder, and then select **Add** > **New File...**.
 * In the **New File** dialog:
 
@@ -815,7 +815,7 @@ The `Movie` class contains:
 
 ### Add a database context class
 
-In the RazorPagesMovie project, create a new folder called *Data*. 
+In the RazorPagesMovie project, create a new folder named *Data*. 
 Add the following `RazorPagesMovieContext` class to the *Data* folder:
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Data/RazorPagesMovieContext.cs)]
