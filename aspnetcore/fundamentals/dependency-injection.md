@@ -245,7 +245,7 @@ public class MyService
     public MyService(IMyDependency myDependency, 
        IEnumberable<IMyDependency> myDependencies)
     {
-        Debug.Assert(myDependency is DifferentDependency);
+        Trace.Assert(myDependency is DifferentDependency);
 
         var dependencyArray = myDependencies.ToArray();
         Trace.Assert(dependencyArray[0] is MyDependency);
@@ -831,7 +831,7 @@ public class MyService
     public MyService(IMyDependency myDependency, 
         IEnumberable<IMyDependency> myDependencies)
     {
-        Debug.Assert(myDependency is DifferentDependency);
+        Trace.Assert(myDependency is DifferentDependency);
 
         var dependencyArray = myDependencies.ToArray();
         Trace.Assert(dependencyArray[0] is MyDependency);
