@@ -8,21 +8,28 @@ using Microsoft.JSInterop;
 namespace BlazorSample.JsInteropClasses
 {
     #region snippet1
-    public class ExampleJsInterop
+    public class ExampleJsInterop : IDisposable
     {
-        private readonly IJSRuntime _jsRuntime;
+        private readonly IJSRuntime jsRuntime;
+        private DotNetObjectReference<HelloHelper> objRef;
 
         public ExampleJsInterop(IJSRuntime jsRuntime)
         {
-            _jsRuntime = jsRuntime;
+            this.jsRuntime = jsRuntime;
         }
 
-        public ValueTask<object> CallHelloHelperSayHello(string name)
+        public ValueTask<string> CallHelloHelperSayHello(string name)
         {
-            // sayHello is implemented in wwwroot/exampleJsInterop.js
-            return _jsRuntime.InvokeAsync<object>(
+            objRef = DotNetObjectReference.Create(new HelloHelper(name));
+
+            return jsRuntime.InvokeAsync<string>(
                 "exampleJsFunctions.sayHello",
-                DotNetObjectReference.Create(new HelloHelper(name)));
+                objRef);
+        }
+
+        public void Dispose()
+        {
+            objRef?.Dispose();
         }
     }
     #endregion

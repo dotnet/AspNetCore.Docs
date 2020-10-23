@@ -14,9 +14,7 @@ namespace FileProviderSample.Pages
 
         public IDirectoryContents DirectoryContents { get; private set; }
 
-        public void OnGet()
-        {
+        public void OnGet() => 
             DirectoryContents = _fileProvider.GetDirectoryContents(string.Empty);
-        }
     }
 }

@@ -1,13 +1,14 @@
 ---
-title: Add search to an ASP.NET Core MVC app
+title: Part 7, add search to an ASP.NET Core MVC app
 author: rick-anderson
-description: Shows how to add search to a basic ASP.NET Core MVC app
+description: Part 7 of tutorial series on ASP.NET Core MVC.
 ms.author: riande
 ms.date: 12/13/2018
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-mvc-app/search
 ---
 
-# Add search to an ASP.NET Core MVC app
+# Part 7, add search to an ASP.NET Core MVC app
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -62,7 +63,7 @@ However, you can't expect users to modify the URL every time they want to search
 
 Open the *Views/Movies/Index.cshtml* file, and add the `<form>` markup highlighted below:
 
-[!code-HTML[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/Movies/IndexForm1.cshtml?highlight=10-16&range=4-21)]
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/Movies/IndexForm1.cshtml?highlight=10-16&range=4-21)]
 
 The HTML `<form>` tag uses the [Form Tag Helper](xref:mvc/views/working-with-forms), so when you submit the form, the filter string is posted to the `Index` action of the movies controller. Save your changes and then test the filter.
 
@@ -88,7 +89,7 @@ You can see the search parameter and [XSRF](xref:security/anti-request-forgery) 
 
 Because the search parameter is in the request body and not the URL, you can't capture that search information to bookmark or share with others. Fix this by specifying the request should be `HTTP GET` found in the *Views/Movies/Index.cshtml* file.
 
-[!code-html[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/IndexGet.cshtml?highlight=12&range=1-23)]
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/IndexGet.cshtml?highlight=12&range=1-23)]
 
 Now when you submit a search, the URL contains the search query string. Searching will also go to the `HttpGet Index` action method, even if you have a `HttpPost Index` method.
 
@@ -96,9 +97,9 @@ Now when you submit a search, the URL contains the search query string. Searchin
 
 The following markup shows the change to the `form` tag:
 
-```html
+```cshtml
 <form asp-controller="Movies" asp-action="Index" method="get">
-   ```
+```
 
 ## Add Search by genre
 

@@ -8,6 +8,9 @@ using ConfigurationSample.Models;
 namespace ConfigurationSample.EFConfigurationProvider
 {
     #region snippet1
+    // using Microsoft.EntityFrameworkCore;
+    // using Microsoft.Extensions.Configuration;
+
     public class EFConfigurationProvider : ConfigurationProvider
     {
         public EFConfigurationProvider(Action<DbContextOptionsBuilder> optionsAction)
@@ -17,7 +20,6 @@ namespace ConfigurationSample.EFConfigurationProvider
 
         Action<DbContextOptionsBuilder> OptionsAction { get; }
 
-        // Load config data from EF DB.
         public override void Load()
         {
             var builder = new DbContextOptionsBuilder<EFConfigurationContext>();

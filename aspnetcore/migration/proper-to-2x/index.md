@@ -4,6 +4,7 @@ author: isaac2004
 description: Receive guidance for migrating existing ASP.NET MVC or Web API apps to ASP.NET Core.web
 ms.author: scaddie
 ms.date: 10/18/2019
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: migration/proper-to-2x/index
 ---
 # Migrate from ASP.NET to ASP.NET Core
@@ -14,7 +15,7 @@ This article serves as a reference guide for migrating ASP.NET apps to ASP.NET C
 
 ## Prerequisites
 
-[.NET Core SDK 2.2 or later](https://www.microsoft.com/net/download)
+[.NET Core SDK 2.2 or later](https://dotnet.microsoft.com/download)
 
 ## Target frameworks
 
@@ -96,10 +97,10 @@ The app reads from `Configuration` to get the settings:
 
 There are extensions to this approach to make the process more robust, such as using [Dependency Injection](xref:fundamentals/dependency-injection) (DI) to load a service with these values. The DI approach provides a strongly-typed set of configuration objects.
 
-````csharp
+```csharp
 // Assume AppConfiguration is a class representing a strongly-typed version of AppConfiguration section
 services.Configure<AppConfiguration>(Configuration.GetSection("AppConfiguration"));
-````
+```
 
 > [!NOTE]
 > For a more in-depth reference to ASP.NET Core configuration, see [Configuration in ASP.NET Core](xref:fundamentals/configuration/index).
@@ -139,7 +140,7 @@ In ASP.NET, static files are stored in various directories and referenced in the
 
 In ASP.NET Core, static files are stored in the "web root" (*&lt;content root&gt;/wwwroot*), unless configured otherwise. The files are loaded into the request pipeline by invoking the `UseStaticFiles` extension method from `Startup.Configure`:
 
-[!code-csharp[](../../fundamentals/static-files/samples/1x/StartupStaticFiles.cs?highlight=3&name=snippet_ConfigureMethod)]
+[!code-csharp[](../../fundamentals/static-files/samples/1.x/StaticFilesSample/StartupStaticFiles.cs?highlight=3&name=snippet_ConfigureMethod)]
 
 > [!NOTE]
 > If targeting .NET Framework, install the NuGet package `Microsoft.AspNetCore.StaticFiles`.
@@ -152,6 +153,46 @@ For example, an image asset in the *wwwroot/images* folder is accessible to the 
 ## Multi-value cookies
 
 [Multi-value cookies](xref:System.Web.HttpCookie.Values) aren't supported in ASP.NET Core. Create one cookie per value.
+
+## Partial app migration
+
+One approach to partial app migration is to create an IIS sub-application and only move certain routes from ASP.NET 4.x to ASP.NET Core while preserving the URL structure the app. For example, consider the URL structure of the app from the *applicationHost.config* file:
+
+```xml
+<sites>
+    <site name="Default Web Site" id="1" serverAutoStart="true">
+        <application path="/">
+            <virtualDirectory path="/" physicalPath="D:\sites\MainSite\" />
+        </application>
+        <application path="/api" applicationPool="DefaultAppPool">
+            <virtualDirectory path="/" physicalPath="D:\sites\netcoreapi" />
+        </application>
+        <bindings>
+            <binding protocol="http" bindingInformation="*:80:" />
+            <binding protocol="https" bindingInformation="*:443:" sslFlags="0" />
+        </bindings>
+    </site>
+	...
+</sites>
+```
+
+Directory structure:
+
+```
+.
+├── MainSite
+│   ├── ...
+│   └── Web.config
+└── NetCoreApi
+    ├── ...
+    └── web.config
+```
+
+## [BIND] and Input Formatters
+
+[Previous versions of ASP.NET](/aspnet/mvc/overview/getting-started/introduction/examining-the-edit-methods-and-edit-view) used the `[Bind]` attribute to protect against overposting attacks. [Input formatters](xref:mvc/models/model-binding#input-formatters) work differently in ASP.NET Core. The `[Bind]` attribute is no longer designed to prevent overposting when used with input formatters to parse JSON or XML. These attributes affect model binding when the source of data is form data posted with the `x-www-form-urlencoded` content type.
+
+For apps that post JSON information to controllers and use JSON Input Formatters to parse the data, we recommend replacing the `[Bind]` attribute with a view model that matches the properties defined by the `[Bind]` attribute.
 
 ## Additional resources
 

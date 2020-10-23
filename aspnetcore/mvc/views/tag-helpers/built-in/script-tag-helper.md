@@ -4,7 +4,8 @@ author: rick-anderson
 ms.author: riande
 description: Discover the ASP.NET Core Script Tag Helper attributes and the role each attribute plays in extending behavior of the HTML Script tag.
 ms.custom: mvc
-ms.date: 12/18/2018
+ms.date: 12/02/2019
+no-loc: [cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/views/tag-helpers/builtin-th/script-tag-helper
 ---
 # Script Tag Helper in ASP.NET Core
@@ -19,7 +20,7 @@ The Script Tag Helper allows you to specify a CDN for the script file and a fall
 
 The following Razor markup shows a `script` element with a fallback:
 
-```HTML
+```html
 <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
         asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
         asp-fallback-test="window.jQuery"
@@ -27,6 +28,8 @@ The following Razor markup shows a `script` element with a fallback:
         integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
 </script>
 ```
+
+Don't use the `<script>` element's [defer](https://developer.mozilla.org/docs/Web/HTML/Element/script) attribute to defer loading the CDN script. The Script Tag Helper renders JavaScript that immediately executes the [asp-fallback-test](#asp-fallback-test) expression. The expression fails if loading the CDN script is deferred.
 
 ## Commonly used Script Tag Helper attributes
 

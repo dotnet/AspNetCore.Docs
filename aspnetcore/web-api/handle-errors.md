@@ -5,14 +5,15 @@ description: Learn about error handling with ASP.NET Core web APIs.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: prkrishn
 ms.custom: mvc
-ms.date: 09/27/2019
+ms.date: 07/23/2020
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: web-api/handle-errors
 ---
 # Handle errors in ASP.NET Core web APIs
 
 This article describes how to handle and customize error handling with ASP.NET Core web APIs.
 
-[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/handle-errors/samples) ([How to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/handle-errors/samples) ([How to download](xref:index#how-to-download-a-sample))
 
 ## Developer Exception Page
 
@@ -143,7 +144,7 @@ In non-development environments, [Exception Handling Middleware](xref:fundamenta
 
     ::: moniker-end
 
-The preceding `Error` action sends an [RFC7807](https://tools.ietf.org/html/rfc7807)-compliant payload to the client.
+The preceding `Error` action sends an [RFC 7807](https://tools.ietf.org/html/rfc7807)-compliant payload to the client.
 
 Exception Handling Middleware can also provide more detailed content-negotiated output in the local development environment. Use the following steps to produce a consistent payload format across development and production environments:
 
@@ -216,6 +217,8 @@ The contents of the response can be modified from outside of the controller. In 
 
     [!code-csharp[](handle-errors/samples/3.x/Filters/HttpResponseExceptionFilter.cs?name=snippet_HttpResponseExceptionFilter)]
 
+    In the preceding filter, the magic number 10 is subtracted from the maximum integer value. Subtracting this number allows other filters to run at the very end of the pipeline.
+
 1. In `Startup.ConfigureServices`, add the action filter to the filters collection:
 
     ::: moniker range=">= aspnetcore-3.0"
@@ -262,6 +265,13 @@ For web API controllers, MVC responds with a <xref:Microsoft.AspNetCore.Mvc.Vali
 
 An *error result* is defined as a result with an HTTP status code of 400 or higher. For web API controllers, MVC transforms an error result to a result with <xref:Microsoft.AspNetCore.Mvc.ProblemDetails>.
 
+::: moniker range="= aspnetcore-2.1"
+
+> [!IMPORTANT]
+> ASP.NET Core 2.1 generates a problem details response that's nearly RFC 7807-compliant. If 100 percent compliance is important, upgrade the project to ASP.NET Core 2.2 or later.
+
+::: moniker-end
+
 ::: moniker range=">= aspnetcore-3.0"
 
 The error response can be configured in one of the following ways:
@@ -269,11 +279,11 @@ The error response can be configured in one of the following ways:
 1. [Implement ProblemDetailsFactory](#implement-problemdetailsfactory)
 1. [Use ApiBehaviorOptions.ClientErrorMapping](#use-apibehavioroptionsclienterrormapping)
 
-### Implement ProblemDetailsFactory
+### Implement `ProblemDetailsFactory`
 
-MVC uses `Microsoft.AspNetCore.Mvc.ProblemDetailsFactory` to produce all instances of <xref:Microsoft.AspNetCore.Mvc.ProblemDetails> and <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails>. This includes client error responses, validation failure error responses, and the `Microsoft.AspNetCore.Mvc.ControllerBase.Problem` and <xref:Microsoft.AspNetCore.Mvc.ControllerBase.ValidationProblem> helper methods.
+MVC uses <xref:Microsoft.AspNetCore.Mvc.Infrastructure.ProblemDetailsFactory?displayProperty=fullName> to produce all instances of <xref:Microsoft.AspNetCore.Mvc.ProblemDetails> and <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails>. This includes client error responses, validation failure error responses, and the <xref:Microsoft.AspNetCore.Mvc.ControllerBase.Problem%2A?displayProperty=nameWithType> and <xref:Microsoft.AspNetCore.Mvc.ControllerBase.ValidationProblem%2A?displayProperty=nameWithType> helper methods.
 
-To customize the problem details response, register a custom implementation of `ProblemDetailsFactory` in `Startup.ConfigureServices`:
+To customize the problem details response, register a custom implementation of <xref:Microsoft.AspNetCore.Mvc.Infrastructure.ProblemDetailsFactory> in `Startup.ConfigureServices`:
 
 ```csharp
 public void ConfigureServices(IServiceCollection serviceCollection)

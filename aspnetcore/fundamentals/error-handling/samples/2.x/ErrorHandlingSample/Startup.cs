@@ -1,6 +1,6 @@
 // Set preprocessor directive(s) to enable the scenarios you want to test.
 // For more information on preprocessor directives and sample apps, see:
-//  https://docs.microsoft.com/aspnet/core/#preprocessor-directives-in-sample-code
+//  https://docs.microsoft.com/aspnet/core/introduction-to-aspnet-core#preprocessor-directives-in-sample-code
 //
 // StatusCodePages
 // StatusCodePagesWithLambda
@@ -14,7 +14,7 @@
 // The ErrorHandler directives must be used along with the ProdEnvironment directive.
 // The DeveloperExceptionPage is seen only when the DevEnvironment directive is used.
 
-#define StatusCodePages // or StatusCodePagesWithLambda or // StatusCodePagesWithFormatString or StatusCodePagesWithRedirect or StatusCodePagesWithReExecute
+#define StatusCodePagesWithRedirect // StatusCodePages // or StatusCodePagesWithLambda or // StatusCodePagesWithFormatString or StatusCodePagesWithRedirect or StatusCodePagesWithReExecute
 #define ErrorHandlerPage // or ErrorHandlerLambda
 #define ProdEnvironment // or DevEnvironment
 
@@ -98,10 +98,6 @@ namespace ErrorHandlingSample
 
                         var exceptionHandlerPathFeature = 
                             context.Features.Get<IExceptionHandlerPathFeature>();
-
-                        // Use exceptionHandlerPathFeature to process the exception (for example, 
-                        // logging), but do NOT expose sensitive error information directly to 
-                        // the client.
 
                         if (exceptionHandlerPathFeature?.Error is FileNotFoundException)
                         {

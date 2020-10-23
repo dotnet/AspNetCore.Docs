@@ -3,7 +3,8 @@ title: Work with the application model in ASP.NET Core
 author: ardalis
 description: Learn how to read and manipulate the application model to modify how MVC elements behave in ASP.NET Core.
 ms.author: riande
-ms.date: 10/14/2016
+ms.date: 12/05/2019
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/controllers/application-model
 ---
 # Work with the application model in ASP.NET Core
@@ -65,7 +66,7 @@ The `CorsApplicationModelProvider` implements behavior associated with the `IEna
 
 ## Conventions
 
-The application model defines convention abstractions that provide a simpler way to customize the behavior of the models than overriding the entire model or provider. These abstractions are the recommended way to modify your app's behavior. Conventions provide a way for you to write code that will dynamically apply customizations. While [filters](xref:mvc/controllers/filters) provide a means of modifying the framework's behavior, customizations let you control how the whole app is wired together.
+The application model defines convention abstractions that provide a simpler way to customize the behavior of the models than overriding the entire model or provider. These abstractions are the recommended way to modify your app's behavior. Conventions provide a way for you to write code that will dynamically apply customizations. While [filters](xref:mvc/controllers/filters) provide a means of modifying the framework's behavior, customizations let you control how the whole app works together.
 
 The following conventions are available:
 
@@ -190,7 +191,7 @@ The `UseWebApiParameterConventionsAttribute` is used to apply the `WebApiParamet
 
 The `UseWebApiRoutesAttribute` controls whether the `WebApiApplicationModelConvention` controller convention is applied. When enabled, this convention is used to add support for [areas](xref:mvc/controllers/areas) to the route.
 
-In addition to a set of conventions, the compatibility package includes a `System.Web.Http.ApiController` base class that replaces the one provided by Web API. This allows your controllers written for Web API and inheriting from its `ApiController` to work as they were designed, while running on ASP.NET Core MVC. This base controller class is decorated with all of the `UseWebApi*` attributes listed above. The `ApiController` exposes properties, methods, and result types that are compatible with those found in Web API.
+In addition to a set of conventions, the compatibility package includes a `System.Web.Http.ApiController` base class that replaces the one provided by Web API. This allows your controllers written for Web API and inheriting from its `ApiController` to work as they were designed, while running on ASP.NET Core MVC. All of the `UseWebApi*` attributes listed earlier are applied to the base controller class. The `ApiController` exposes properties, methods, and result types that are compatible with those found in Web API.
 
 ## Using ApiExplorer to Document Your App
 

@@ -53,6 +53,7 @@ namespace WebApplication51
             app.UseAuthentication();
             app.UseAuthorization();
             // app.UseSession();
+            // app.UseResponseCaching();
 
             app.UseEndpoints(endpoints =>
             {

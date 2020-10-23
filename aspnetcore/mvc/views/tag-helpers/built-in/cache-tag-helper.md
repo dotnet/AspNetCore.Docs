@@ -5,11 +5,12 @@ description: Learn how to use the Cache Tag Helper.
 ms.author: riande
 ms.custom: mvc
 ms.date: 10/10/2018
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/views/tag-helpers/builtin-th/cache-tag-helper
 ---
 # Cache Tag Helper in ASP.NET Core MVC
 
-By [Peter Kellner](https://peterkellner.net) and [Luke Latham](https://github.com/guardrex) 
+By [Peter Kellner](https://peterkellner.net)
 
 The Cache Tag Helper provides the ability to improve the performance of your ASP.NET Core app by caching its content to the internal ASP.NET Core cache provider.
 

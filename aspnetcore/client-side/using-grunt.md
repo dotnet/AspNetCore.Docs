@@ -3,7 +3,8 @@ title: Use Grunt in ASP.NET Core
 author: rick-anderson
 description: Use Grunt in ASP.NET Core
 ms.author: riande
-ms.date: 06/18/2019
+ms.date: 12/05/2019
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: client-side/using-grunt
 ---
 # Use Grunt in ASP.NET Core
@@ -267,13 +268,13 @@ Right-click the watch task in Task Runner Explorer and select Run from the conte
 
 ## Binding to Visual Studio events
 
-Unless you want to manually start your tasks every time you work in Visual Studio, you can bind tasks to **Before Build**, **After Build**, **Clean**, and **Project Open** events.
+Unless you want to manually start your tasks every time you work in Visual Studio, bind tasks to **Before Build**, **After Build**, **Clean**, and **Project Open** events.
 
-Let’s bind `watch` so that it runs every time Visual Studio opens. In Task Runner Explorer, right-click the watch task and select **Bindings > Project Open** from the context menu.
+Bind `watch` so that it runs every time Visual Studio opens. In Task Runner Explorer, right-click the watch task and select **Bindings** > **Project Open** from the context menu.
 
 ![bind a task to the project opening](using-grunt/_static/bindings-project-open.png)
 
-Unload and reload the project. When the project loads again, the watch task will start running automatically.
+Unload and reload the project. When the project loads again, the watch task starts running automatically.
 
 ## Summary
 

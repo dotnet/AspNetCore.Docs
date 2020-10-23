@@ -3,8 +3,9 @@ title: Cloud authentication with Azure Active Directory B2C in ASP.NET Core
 author: camsoper
 description: Discover how to set up Azure Active Directory B2C authentication with ASP.NET Core.
 ms.author: casoper
-ms.custom: mvc
-ms.date: 02/27/2019
+ms.custom: "devx-track-csharp, mvc"
+ms.date: 01/21/2019
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/azure-ad-b2c
 ---
 # Cloud authentication with Azure Active Directory B2C in ASP.NET Core
@@ -28,7 +29,7 @@ In this tutorial, learn how to:
 
 The following are required for this walkthrough:
 
-* [Microsoft Azure subscription](https://azure.microsoft.com/free/?ref=microsoft.com&utm_source=microsoft.com&utm_medium=docs&utm_campaign=visualstudio)
+* [Microsoft Azure subscription](https://azure.microsoft.com/free/dotnet/?ref=microsoft.com&utm_source=microsoft.com&utm_medium=docs&utm_campaign=visualstudio)
 * [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019)
 
 ## Create the Azure Active Directory B2C tenant
@@ -155,5 +156,5 @@ Now that the ASP.NET Core app is configured to use Azure AD B2C for authenticati
 * [Enable multi-factor authentication](/azure/active-directory-b2c/active-directory-b2c-reference-mfa).
 * Configure additional identity providers, such as [Microsoft](/azure/active-directory-b2c/active-directory-b2c-setup-msa-app), [Facebook](/azure/active-directory-b2c/active-directory-b2c-setup-fb-app), [Google](/azure/active-directory-b2c/active-directory-b2c-setup-goog-app), [Amazon](/azure/active-directory-b2c/active-directory-b2c-setup-amzn-app), [Twitter](/azure/active-directory-b2c/active-directory-b2c-setup-twitter-app), and others.
 * [Use the Azure AD Graph API](/azure/active-directory-b2c/active-directory-b2c-devquickstarts-graph-dotnet) to retrieve additional user information, such as group membership, from the Azure AD B2C tenant.
-* [Secure an ASP.NET Core web API using Azure AD B2C](xref:security/authentication/azure-ad-b2c-webapi).
-* [Call a .NET web API from a .NET web app using Azure AD B2C](/azure/active-directory-b2c/active-directory-b2c-devquickstarts-web-api-dotnet).
+* [How to secure a Web API built with ASP.NET Core using the Azure AD B2C](https://github.com/Azure-Samples/active-directory-aspnetcore-webapp-openidconnect-v2/tree/master/4-WebApp-your-API/4-2-B2C).
+* [Tutorial: Grant access to an ASP.NET web API using Azure Active Directory B2C](/azure/active-directory-b2c/tutorial-web-api-dotnet).

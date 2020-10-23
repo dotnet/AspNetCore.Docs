@@ -35,7 +35,7 @@ namespace RazorPagesContacts.Pages.Customers
             {
                 return Page();
             }
-            Customer.Name = Customer.Name?.ToUpper();
+            Customer.Name = Customer.Name?.ToUpperInvariant();
             return await OnPostJoinListAsync();
         }
     }

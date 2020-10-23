@@ -4,8 +4,7 @@
       {
         "files": [
           "**/*.md",
-          "**/*.yml",
-          "breadcrumb/TOC.yml"
+          "**/*.yml"
         ],
         "exclude": [
           "**/obj/**",
@@ -29,7 +28,8 @@
           "**/*.jpg",
           "**/*.gif",
           "**/*.svg",
-          "**/*.pdf"
+          "**/*.pdf",
+          "**/zone-pivot-groups.json"
         ],
         "exclude": [
           "**/obj/**",
@@ -43,23 +43,29 @@
     ],
     "overwrite": [],
     "externalReference": [],
-    "xrefService": [
-      "https://xref.docs.microsoft.com/query?uid={uid}"
-    ],
     "globalMetadata": {
       "_navPath": "/foo",
       "_navRel": "/foo",
-      "breadcrumb_path": "/aspnet/breadcrumb/toc.json",
-      "feedback_github_repo": "aspnet/AspNetCore.Docs",
-      "feedback_product_url": "https://github.com/aspnet/Home/blob/master/CONTRIBUTING.md",
+      "breadcrumb_path": "/aspnet/core/breadcrumb/toc.json",
+      "extendBreadcrumb": true,
+      "feedback_github_repo": "dotnet/AspNetCore.Docs",
+      "feedback_product_url": "https://github.com/dotnet/aspnetcore/blob/master/CONTRIBUTING.md",
       "feedback_system": "GitHub",
       "ms.prod": "aspnet-core",
-      "uhfHeaderId": "MSDocsHeader-DotNet",
+      "ms.topic": "conceptual",
+      "uhfHeaderId": "MSDocsHeader-AspNet",
       "searchScope": [
         "ASP.NET Core"
-      ]
+      ],
+      "zone_pivot_group_filename": "core/zone-pivot-groups.json"
     },
     "fileMetadata": {
+      "author": {
+        "whats-new/**/**.md": "scottaddie"
+      },
+      "ms.author": {
+        "whats-new/**/**.md": "scaddie"
+      },
       "ms.technology": {
         "azure/**/**.md": "aspnetcore-azure",
         "client-side/**/**.md": "aspnetcore-clientside",
@@ -69,7 +75,7 @@
         "getting-started/**/**.md": "aspnetcore-getstarted",
         "grpc/**/**.md": "aspnetcore-grpc",
         "host-and-deploy/**/**.md": "aspnetcore-hostdeploy",
-        "index.md": "aspnetcore",
+        "introduction-to-aspnet-core.md": "aspnetcore",
         "migration/**/**.md": "aspnetcore-migration",
         "mobile/**/**.md": "aspnetcore-mobile",
         "mvc/**/**.md": "aspnetcore-mvc",
@@ -80,29 +86,12 @@
         "signalr/**/**.md": "aspnetcore-signalr",
         "test/**/**.md": "aspnetcore-test",
         "tutorials/**/**.md": "aspnetcore-tutorials",
-        "web-api/**/**.md": "aspnetcore-webapi"
+        "web-api/**/**.md": "aspnetcore-webapi",
+        "whats-new/**/**.md": "aspnetcore-whatsnew"
       },
       "ms.topic": {
-        "azure/**/**.md": "conceptual",
-        "blazor/**/**.md": "conceptual",
-        "client-side/**/**.md": "conceptual",
-        "data/**/**.md": "conceptual",
-        "fundamentals/**/**.md": "conceptual",
         "getting-started/**/**.md": "tutorial",
-        "grpc/**/**.md": "conceptual",
-        "host-and-deploy/**/**.md": "conceptual",
-        "index.md": "conceptual",
-        "migration/**/**.md": "conceptual",
-        "mobile/**/**.md": "conceptual",
-        "mvc/**/**.md": "conceptual",
-        "performance/**/**.md": "conceptual",
-        "razor-pages/**/**.md": "conceptual",
-        "release-notes/**/**.md": "conceptual",
-        "security/**/**.md": "conceptual",
-        "signalr/**/**.md": "conceptual",
-        "test/**/**.md": "conceptual",
-        "tutorials/**/**.md": "tutorial",
-        "web-api/**/**.md": "conceptual"
+        "tutorials/**/**.md": "tutorial"
       }
     },
     "template": [],

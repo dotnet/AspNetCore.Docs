@@ -1,13 +1,14 @@
 ---
-title: Add a controller to an ASP.NET Core MVC app
+title: Part 2, add a controller to an ASP.NET Core MVC app
 author: rick-anderson
-description: Learn how to add a controller to a simple ASP.NET Core MVC app.
+description: Part 2 of tutorial series on ASP.NET Core MVC.
 ms.author: riande
 ms.date: 08/05/2017
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-mvc-app/adding-controller
 ---
 
-# Add a controller to an ASP.NET Core MVC app
+# Part 2, add a controller to an ASP.NET Core MVC app
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -32,7 +33,7 @@ We cover these concepts in this tutorial series and show you how to use them to 
 * In **Solution Explorer**, right-click **Controllers > Add > Controller**
   ![Contextual menu](adding-controller/_static/add_controller.png)
 
-* In the **Add Scaffold** dialog box, select **MVC Controller - Empty**
+* In the **Add Scaffold** dialog box, select **Controller Class - Empty**
 
   ![Add MVC controller and name it](adding-controller/_static/ac.png)
 
@@ -49,7 +50,7 @@ Select the **EXPLORER** icon and then control-click (right-click) **Controllers 
 In **Solution Explorer**, right-click **Controllers > Add > New File**.
 ![Contextual menu](~/tutorials/first-mvc-app-mac/adding-controller/_static/add_controller.png)
 
-Select **ASP.NET Core** and **MVC Controller Class**.
+Select **ASP.NET Core** and **Controller Class**.
 
 Name the controller **HelloWorldController**.
 
@@ -103,9 +104,9 @@ Run the app and browse to:
 
 (Replace `{PORT}` with your port number.) You can try different values for `name` and `numtimes` in the URL. The MVC [model binding](xref:mvc/models/model-binding) system automatically maps the named parameters from the query string in the address bar to parameters in your method. See [Model Binding](xref:mvc/models/model-binding) for more information.
 
-![Browser window showing an application response of Hello Rick, NumTimes is: 4](~/tutorials/first-mvc-app/adding-controller/_static/rick4.png)
+![Browser window showing an application response of Hello Rick, NumTimes is\: 4](~/tutorials/first-mvc-app/adding-controller/_static/rick4.png)
 
-In the image above, the URL segment (`Parameters`) isn't used, the `name` and `numTimes` parameters are passed as [query strings](https://wikipedia.org/wiki/Query_string). The `?` (question mark) in the above URL is a separator, and the query strings follow. The `&` character separates query strings.
+In the image above, the URL segment (`Parameters`) isn't used, the `name` and `numTimes` parameters are passed in the [query string](https://wikipedia.org/wiki/Query_string). The `?` (question mark) in the above URL is a separator, and the query string follows. The `&` character separates field-value pairs.
 
 Replace the `Welcome` method with the following code:
 
@@ -222,9 +223,9 @@ Run the app and browse to:
 
 (Replace `{PORT}` with your port number.) You can try different values for `name` and `numtimes` in the URL. The MVC [model binding](xref:mvc/models/model-binding) system automatically maps the named parameters from the query string in the address bar to parameters in your method. See [Model Binding](xref:mvc/models/model-binding) for more information.
 
-![Browser window showing an application response of Hello Rick, NumTimes is: 4](~/tutorials/first-mvc-app/adding-controller/_static/rick4.png)
+![Browser window showing an application response of Hello Rick, NumTimes is\: 4](~/tutorials/first-mvc-app/adding-controller/_static/rick4.png)
 
-In the image above, the URL segment (`Parameters`) isn't used, the `name` and `numTimes` parameters are passed as [query strings](https://wikipedia.org/wiki/Query_string). The `?` (question mark) in the above URL is a separator, and the query strings follow. The `&` character separates query strings.
+In the image above, the URL segment (`Parameters`) isn't used, the `name` and `numTimes` parameters are passed in the [query string](https://wikipedia.org/wiki/Query_string). The `?` (question mark) in the above URL is a separator, and the query string follows. The `&` character separates field-value pairs.
 
 Replace the `Welcome` method with the following code:
 

@@ -5,6 +5,7 @@ description: Useful tools for diagnosing performance issues in ASP.NET Core apps
 monikerRange: '>= aspnetcore-1.1'
 ms.author: riande
 ms.date: 04/11/2019
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: performance/diagnostic-tools
 ---
 # Performance Diagnostic Tools
@@ -66,5 +67,5 @@ More information about how to install and get started with PerfCollect is availa
 The following lists some third-party performance tools that are useful in performance investigation of .NET Core applications.
 
 - [MiniProfiler](https://miniprofiler.com/)
-- dotTrace and dotMemory from JetBrains
-- VTune from Intel
+- [dotTrace](https://www.jetbrains.com/profiler/) and [dotMemory](https://www.jetbrains.com/dotmemory/) from [JetBrains](https://www.jetbrains.com/)
+- [VTune](https://software.intel.com/content/www/us/en/develop/tools/vtune-profiler.html) from Intel

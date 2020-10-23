@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 03/27/2019
 ms.topic: tutorial
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: data/ef-mvc/concurrency
 ---
 
@@ -135,7 +136,7 @@ The scaffolding engine created a RowVersion column in the Index view, but that f
 
 Replace the code in *Views/Departments/Index.cshtml* with the following code.
 
-[!code-html[](intro/samples/cu/Views/Departments/Index.cshtml?highlight=4,7,44)]
+[!code-cshtml[](intro/samples/cu/Views/Departments/Index.cshtml?highlight=4,7,44)]
 
 This changes the heading to "Departments", deletes the RowVersion column, and shows full name instead of first name for the administrator.
 
@@ -185,7 +186,7 @@ In *Views/Departments/Edit.cshtml*, make the following changes:
 
 * Add a "Select Administrator" option to the drop-down list.
 
-[!code-html[](intro/samples/cu/Views/Departments/Edit.cshtml?highlight=16,34-36)]
+[!code-cshtml[](intro/samples/cu/Views/Departments/Edit.cshtml?highlight=16,34-36)]
 
 ## Test concurrency conflicts
 
@@ -245,7 +246,7 @@ If a concurrency error is caught, the code redisplays the Delete confirmation pa
 
 In *Views/Departments/Delete.cshtml*, replace the scaffolded code with the following code that adds an error message field and hidden fields for the DepartmentID and RowVersion properties. The changes are highlighted.
 
-[!code-html[](intro/samples/cu/Views/Departments/Delete.cshtml?highlight=9,38,44,45,48)]
+[!code-cshtml[](intro/samples/cu/Views/Departments/Delete.cshtml?highlight=9,38,44,45,48)]
 
 This makes the following changes:
 
@@ -275,15 +276,15 @@ You can optionally clean up scaffolded code in the Details and Create views.
 
 Replace the code in *Views/Departments/Details.cshtml* to delete the RowVersion column and show the full name of the Administrator.
 
-[!code-html[](intro/samples/cu/Views/Departments/Details.cshtml?highlight=35)]
+[!code-cshtml[](intro/samples/cu/Views/Departments/Details.cshtml?highlight=35)]
 
 Replace the code in *Views/Departments/Create.cshtml* to add a Select option to the drop-down list.
 
-[!code-html[](intro/samples/cu/Views/Departments/Create.cshtml?highlight=32-34)]
+[!code-cshtml[](intro/samples/cu/Views/Departments/Create.cshtml?highlight=32-34)]
 
 ## Get the code
 
-[Download or view the completed application.](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)
+[Download or view the completed application.](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)
 
 ## Additional resources
 

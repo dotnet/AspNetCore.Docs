@@ -1,3 +1,8 @@
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using System;
 using System.Buffers;
 using System.Collections.Generic;
@@ -5,11 +10,6 @@ using System.IO;
 using System.IO.Pipelines;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 
 namespace RequestResponseSample
 {
@@ -26,40 +26,45 @@ namespace RequestResponseSample
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseRouting(routes =>
+            app.UseHttpsRedirection();
+
+            app.UseRouting();
+
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapPost("/Streams", async context =>
+                endpoints.MapPost("/Streams", async context =>
                 {
                     var list = await GetListOfStringsFromStream(context.Request.Body);
 
                     foreach (var item in list)
                     {
-                        await context.Response.WriteAsync(item.ToUpper());
+                        await context.Response.WriteAsync(item.ToUpperInvariant());
                         await context.Response.WriteAsync(Environment.NewLine);
                     }
                 });
 
-                routes.MapPost("/BetterStreams", async context =>
+                endpoints.MapPost("/BetterStreams", async context =>
                 {
                     var list = await GetListOfStringsFromStreamMoreEfficient(context.Request.Body);
 
                     foreach (var item in list)
                     {
-                        await context.Response.WriteAsync(item.ToUpper());
+                        await context.Response.WriteAsync(item.ToUpperInvariant());
                         await context.Response.WriteAsync(Environment.NewLine);
                     }
                 });
 
-                routes.MapPost("/Pipes", async context =>
+                endpoints.MapPost("/Pipes", async context =>
                 {
-                    var list = await GetListOfStringFromPipe(context.Request.BodyPipe);
+                    var list = await GetListOfStringFromPipe(context.Request.BodyReader);
                     foreach (var item in list)
                     {
-                        await context.Response.WriteAsync(item.ToUpper());
+                        await context.Response.WriteAsync(item.ToUpperInvariant());
                         await context.Response.WriteAsync(Environment.NewLine);
                     }
                 });
             });
+
         }
 
         #region GetListOfStringsFromStream
@@ -106,6 +111,7 @@ namespace RequestResponseSample
 
                 if (bytesRemaining == 0)
                 {
+                    results.Add(builder.ToString());
                     break;
                 }
 
@@ -115,13 +121,13 @@ namespace RequestResponseSample
                 int index;
                 while (true)
                 {
-                    index = Array.IndexOf(buffer, (byte)'\n');
+                    index = Array.IndexOf(buffer, (byte)'\n', prevIndex);
                     if (index == -1)
                     {
                         break;
                     }
 
-                    var encodedString = Encoding.UTF8.GetString(buffer, prevIndex, index);
+                    var encodedString = Encoding.UTF8.GetString(buffer, prevIndex, index - prevIndex);
 
                     if (builder.Length > 0)
                     {
@@ -138,7 +144,7 @@ namespace RequestResponseSample
                     prevIndex = index + 1;
                 }
 
-                var remainingString = Encoding.UTF8.GetString(buffer, index, bytesRemaining - index);
+                var remainingString = Encoding.UTF8.GetString(buffer, prevIndex, bytesRemaining - prevIndex);
                 builder.Append(remainingString);
             }
 
@@ -176,10 +182,16 @@ namespace RequestResponseSample
                 }
                 while (position != null);
 
-                // At this point, buffer will be updated to point one byte after the last
-                // \n character.
+
+                if (readResult.IsCompleted && buffer.Length > 0)
+                {
+                    AddStringToList(ref results, in buffer);
+                }
+
                 reader.AdvanceTo(buffer.Start, buffer.End);
 
+                // At this point, buffer will be updated to point one byte after the last
+                // \n character.
                 if (readResult.IsCompleted)
                 {
                     break;

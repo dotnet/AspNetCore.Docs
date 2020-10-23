@@ -10,8 +10,8 @@ Articles are stored in the repository as Markdown files. Simple changes to the c
 
 You need a basic understanding of [Git and GitHub.com](https://guides.github.com/activities/hello-world/).
 
-* Open an [issue](https://github.com/aspnet/Docs/issues/new) describing what you want to do, such as changing an existing article or creating a new one. We often request an outline for a new topic suggestion. Wait for approval from the team before you invest much time.
-* Fork the [aspnet/Docs](https://github.com/aspnet/Docs/) repo and create a branch for your changes.
+* Open an [issue](https://github.com/dotnet/AspNetCore.Docs/issues/new) describing what you want to do, such as changing an existing article or creating a new one. We often request an outline for a new topic suggestion. Wait for approval from the team before you invest much time.
+* Fork the [aspnet/Docs](https://github.com/dotnet/AspNetCore.Docs/) repo and create a branch for your changes.
 * Submit a PR to master with your changes.
 * If your PR has the label 'cla-required' assigned, [complete the Contribution License Agreement (CLA)](https://cla.dotnetfoundation.org/).
 * Respond to PR feedback.
@@ -28,7 +28,7 @@ Articles are written in [DocFx-flavored Markdown](https://dotnet.github.io/docfx
 
 ## Folder structure conventions
 
-For each Markdown file, a folder for images and a folder for sample code may exist. If the article is [fundamentals/configuration/index.md](https://github.com/aspnet/Docs/blob/master/aspnetcore/fundamentals/configuration/index.md), the images are in [fundamentals/configuration/index/\_static](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/configuration/index/_static) and the sample app project files are in [fundamentals/configuration/index/sample](https://github.com/aspnet/Docs/tree/master/aspnetcore/fundamentals/configuration/index/sample). An image in the *fundamentals/configuration/index.md* file is rendered by the following Markdown:
+For each Markdown file, a folder for images and a folder for sample code may exist. If the article is [fundamentals/configuration/index.md](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/fundamentals/configuration/index.md), the images are in [fundamentals/configuration/index/\_static](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/_static) and the sample app project files are in [fundamentals/configuration/index/sample](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/sample). An image in the *fundamentals/configuration/index.md* file is rendered by the following Markdown:
 
 ```md
 ![description of image for alt attribute](configuration/index/_static/imagename.png)
@@ -157,4 +157,4 @@ The [Microsoft Writing Style Guide](https://docs.microsoft.com/style-guide/welco
 
 ## Redirects
 
-If you delete an article, change its file name, or move it to a different folder, create a redirect so that people who bookmarked the article don't receive a *404 Not Found* error. Add redirects to the [master redirect file](https://github.com/aspnet/Docs/blob/master/.openpublishing.redirection.json).
+If you delete an article, change its file name, or move it to a different folder, create a redirect so that people who bookmarked the article don't receive a *404 Not Found* error. Add redirects to the [master redirect file](https://github.com/dotnet/AspNetCore.Docs/blob/master/.openpublishing.redirection.json).

@@ -15,7 +15,7 @@ namespace SampleApp.Pages.OtherPages
 
         public string RouteDataOtherPagesTemplateValue { get; private set; }
 
-        public void Get()
+        public void OnGet()
         {
             Message = "Your application Page2 page.";
 

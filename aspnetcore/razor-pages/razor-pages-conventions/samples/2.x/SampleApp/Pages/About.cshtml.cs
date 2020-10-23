@@ -15,7 +15,7 @@ namespace SampleApp.Pages
 
         public string RouteDataAboutTemplateValue { get; private set; }
 
-        public void Get()
+        public void OnGet()
         {
             Message = "Your application description page.";
 

@@ -5,6 +5,7 @@ description: Learn how to use LibMan in an ASP.NET Core project with Visual Stud
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 08/20/2018
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: client-side/libman/libman-vs
 ---
 # Use LibMan with ASP.NET Core in Visual Studio
@@ -18,7 +19,7 @@ Visual Studio has built-in support for [LibMan](xref:client-side/libman/index) i
 * Search dialog for finding libraries and adding the files to a project.
 * Editing support for *libman.json*&mdash;the LibMan manifest file.
 
-[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/client-side/libman/samples/) [(how to download)](xref:index#how-to-download-a-sample)
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/client-side/libman/samples/) [(how to download)](xref:index#how-to-download-a-sample)
 
 ## Prerequisites
 

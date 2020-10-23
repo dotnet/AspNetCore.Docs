@@ -3,7 +3,8 @@ title: Create backend services for native mobile apps with ASP.NET Core
 author: ardalis
 description: Learn how to create backend services using ASP.NET Core MVC to support native mobile apps.
 ms.author: riande
-ms.date: 10/14/2016
+ms.date: 12/05/2019
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mobile/native-mobile-backend
 ---
 # Create backend services for native mobile apps with ASP.NET Core
@@ -12,7 +13,7 @@ By [Steve Smith](https://ardalis.com/)
 
 Mobile apps can communicate with ASP.NET Core backend services. For instructions on connecting local web services from iOS simulators and Android emulators, see [Connect to Local Web Services from iOS Simulators and Android Emulators](/xamarin/cross-platform/deploy-test/connect-to-local-web-services).
 
-[View or download sample backend services code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mobile/native-mobile-backend/sample)
+[View or download sample backend services code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mobile/native-mobile-backend/sample)
 
 ## The Sample Native Mobile App
 
@@ -57,7 +58,7 @@ The application should respond to all requests made to port 5000. Update *Progra
 > [!NOTE]
 > Make sure you run the application directly, rather than behind IIS Express, which ignores non-local requests by default. Run [dotnet run](/dotnet/core/tools/dotnet-run) from a command prompt, or choose the application name profile from the Debug Target dropdown in the Visual Studio toolbar.
 
-Add a model class to represent To-Do items. Mark required fields using the `[Required]` attribute:
+Add a model class to represent To-Do items. Mark required fields with the `[Required]` attribute:
 
 [!code-csharp[](native-mobile-backend/sample/ToDoApi/src/ToDoApi/Models/ToDoItem.cs)]
 
@@ -102,7 +103,7 @@ You can test your new API method using a variety of tools, such as [Postman](htt
 
 ### Creating Items
 
-By convention, creating new data items is mapped to the HTTP POST verb. The `Create` method has an `[HttpPost]` attribute applied to it, and accepts a `ToDoItem` instance. Since the `item` argument will be passed in the body of the POST, this parameter is decorated with the `[FromBody]` attribute.
+By convention, creating new data items is mapped to the HTTP POST verb. The `Create` method has an `[HttpPost]` attribute applied to it and accepts a `ToDoItem` instance. Since the `item` argument is passed in the body of the POST, this parameter specifies the `[FromBody]` attribute.
 
 Inside the method, the item is checked for validity and prior existence in the data store, and if no issues occur, it's added using the repository. Checking `ModelState.IsValid` performs [model validation](../mvc/models/validation.md), and should be done in every API method that accepts user input.
 
@@ -144,7 +145,7 @@ Note that when testing the delete functionality, nothing is required in the Body
 
 As you develop the backend services for your app, you will want to come up with a consistent set of conventions or policies for handling cross-cutting concerns. For example, in the service shown above, requests for specific records that weren't found received a `NotFound` response, rather than a `BadRequest` response. Similarly, commands made to this service that passed in model bound types always checked `ModelState.IsValid` and returned a `BadRequest` for invalid model types.
 
-Once you've identified a common policy for your APIs, you can usually encapsulate it in a [filter](../mvc/controllers/filters.md). Learn more about [how to encapsulate common API policies in ASP.NET Core MVC applications](https://msdn.microsoft.com/magazine/mt767699.aspx).
+Once you've identified a common policy for your APIs, you can usually encapsulate it in a [filter](../mvc/controllers/filters.md). Learn more about [how to encapsulate common API policies in ASP.NET Core MVC applications](/archive/msdn-magazine/2016/august/asp-net-core-real-world-asp-net-core-mvc-filters).
 
 ## Additional resources
 

@@ -4,6 +4,7 @@ author: scottaddie
 description: This article outlines the most common steps for migrating ASP.NET Core 1.x authentication and Identity to ASP.NET Core 2.0.
 ms.author: scaddie
 ms.date: 06/21/2019
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: migration/1x-to-2x/identity-2x
 ---
 # Migrate authentication and Identity to ASP.NET Core 2.0
@@ -212,6 +213,8 @@ Make the following changes in *Startup.cs*:
     ```
 
 ### Microsoft Account authentication
+
+For more information on Microsoft account authentication, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/14455).
 
 Make the following changes in *Startup.cs*:
 - Replace the `UseMicrosoftAccountAuthentication` method call in the `Configure` method with `UseAuthentication`:

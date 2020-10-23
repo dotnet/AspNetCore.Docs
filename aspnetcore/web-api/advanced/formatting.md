@@ -4,7 +4,8 @@ author: ardalis
 description: Learn how to format response data in ASP.NET Core Web API.
 ms.author: riande
 ms.custom: H1Hack27Feb2017
-ms.date: 8/22/2019
+ms.date: 04/17/2020
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: web-api/advanced/formatting
 ---
 # Format response data in ASP.NET Core Web API
@@ -13,7 +14,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Steve Smith](https://ar
 
 ASP.NET Core MVC has support for formatting response data. Response data can be formatted using specific formats or in response to client requested format.
 
-[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/advanced/formatting) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/advanced/formatting) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Format-specific Action Results
 
@@ -29,7 +30,7 @@ The sample download returns the list of authors. Using the F12 browser developer
 * The response header containing **content-type:** `application/json; charset=utf-8` is displayed.
 * The request headers are displayed. For example, the `Accept` header. The `Accept` header is ignored by the preceding code.
 
-To return plain text formatted data, use <xref:Microsoft.AspNetCore.Mvc.ContentResult.Content> and the <xref:Microsoft.AspNetCore.Mvc.ContentResult.Content> helper:
+To return plain text formatted data, use <xref:Microsoft.AspNetCore.Mvc.ContentResult> and the <xref:Microsoft.AspNetCore.Mvc.ControllerBase.Content%2A> helper:
 
 [!code-csharp[](./formatting/sample/Controllers/AuthorsController.cs?name=snippet_about)]
 
@@ -114,7 +115,7 @@ XML formatters implemented using <xref:System.Xml.Serialization.XmlSerializer> a
 
 The preceding code serializes results using `XmlSerializer`.
 
-When using the preceding code, controller methods should return the appropriate format based on the request's `Accept` header.
+When using the preceding code, controller methods return the appropriate format based on the request's `Accept` header.
 
 ### Configure System.Text.Json-based formatters
 
@@ -124,10 +125,10 @@ Features for the `System.Text.Json`-based formatters can be configured using `Mi
 services.AddControllers().AddJsonOptions(options =>
 {
     // Use the default property (Pascal) casing.
-    options.SerializerOptions.PropertyNamingPolicy = null;
+    options.JsonSerializerOptions.PropertyNamingPolicy = null;
 
     // Configure a custom converter.
-    options.SerializerOptions.Converters.Add(new MyCustomJsonConverter());
+    options.JsonSerializerOptions.Converters.Add(new MyCustomJsonConverter());
 });
 ```
 
@@ -138,16 +139,24 @@ public IActionResult Get()
 {
     return Json(model, new JsonSerializerOptions
     {
-        options.WriteIndented = true,
+        WriteIndented = true,
     });
 }
 ```
 
 ### Add Newtonsoft.Json-based JSON format support
 
-Prior to ASP.NET Core 3.0, the default used JSON formatters implemented using the `Newtonsoft.Json` package. In ASP.NET Core 3.0 or later, the default JSON formatters are based on `System.Text.Json`. Support for `Newtonsoft.Json` based formatters and features is available by installing the [Microsoft.AspNetCore.Mvc.NewtonsoftJson](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson/) NuGet package and configuring it in `Startup.ConfigureServices`.
+Prior to ASP.NET Core 3.0, the default used JSON formatters implemented using the `Newtonsoft.Json` package. In ASP.NET Core 3.0 or later, the default JSON formatters are based on `System.Text.Json`. Support for `Newtonsoft.Json` based formatters and features is available by installing the [`Microsoft.AspNetCore.Mvc.NewtonsoftJson`](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson/) NuGet package and configuring it in `Startup.ConfigureServices`.
 
 [!code-csharp[](./formatting/3.0sample/StartupNewtonsoftJson.cs?name=snippet)]
+
+In the preceding code, the call to `AddNewtonsoftJson` configures the following Web API, MVC, and Razor Pages features to use `Newtonsoft.Json`:
+
+* Input and output formatters that read and write JSON
+* <xref:Microsoft.AspNetCore.Mvc.JsonResult>
+* [JSON Patch](xref:web-api/jsonpatch)
+* <xref:Microsoft.AspNetCore.Mvc.Rendering.IJsonHelper>
+* [TempData](xref:fundamentals/app-state#tempdata)
 
 Some features may not work well with `System.Text.Json`-based formatters and require a reference to the `Newtonsoft.Json`-based formatters. Continue using the `Newtonsoft.Json`-based formatters if the app:
 
@@ -166,7 +175,7 @@ services.AddControllers().AddNewtonsoftJson(options =>
     options.SerializerSettings.ContractResolver = new DefaultContractResolver();
 
     // Configure a custom converter
-    options.SerializerOptions.Converters.Add(new MyCustomJsonConverter());
+    options.SerializerSettings.Converters.Add(new MyCustomJsonConverter());
 });
 ```
 
@@ -177,7 +186,7 @@ public IActionResult Get()
 {
     return Json(model, new JsonSerializerSettings
     {
-        options.Formatting = Formatting.Indented,
+        Formatting = Formatting.Indented,
     });
 }
 ```

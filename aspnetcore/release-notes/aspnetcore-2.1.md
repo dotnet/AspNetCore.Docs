@@ -4,8 +4,8 @@ author: isaac2004
 description: Learn about the new features in ASP.NET Core 2.1.
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/12/2019
-no-loc: [SignalR]
+ms.date: 12/05/2019
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: aspnetcore-2.1
 ---
 # What's new in ASP.NET Core 2.1
@@ -44,7 +44,7 @@ For more information, see [Scaffold Identity in ASP.NET Core projects](xref:secu
 
 ## HTTPS
 
-With the increased focus on security and privacy, enabling HTTPS for web apps is important. HTTPS enforcement is becoming increasingly strict on the web. Sites that don’t use HTTPS are considered insecure. Browsers (Chromium, Mozilla) are starting to enforce that web features must be used from a secure context. [GDPR](xref:security/gdpr) requires the use of HTTPS to protect user privacy. While using HTTPS in production is critical, using HTTPS in development can help prevent issues in deployment (for example, insecure links). ASP.NET Core 2.1 includes a number of improvements that make it easier to use HTTPS in development and to configure HTTPS in production. For more information, see [Enforce HTTPS](xref:security/enforcing-ssl).
+With the increased focus on security and privacy, enabling HTTPS for web apps is important. HTTPS enforcement is becoming increasingly strict on the web. Sites that don't use HTTPS are considered insecure. Browsers (Chromium, Mozilla) are starting to enforce that web features must be used from a secure context. [GDPR](xref:security/gdpr) requires the use of HTTPS to protect user privacy. While using HTTPS in production is critical, using HTTPS in development can help prevent issues in deployment (for example, insecure links). ASP.NET Core 2.1 includes a number of improvements that make it easier to use HTTPS in development and to configure HTTPS in production. For more information, see [Enforce HTTPS](xref:security/enforcing-ssl).
 
 ### On by default
 
@@ -70,7 +70,7 @@ In production, HTTPS must be explicitly configured. In 2.1, default configuratio
 
 ## GDPR
 
-ASP.NET Core provides APIs and templates to help meet some of the [EU General Data Protection Regulation (GDPR)](https://www.eugdpr.org/) requirements. For more information, see [GDPR support in ASP.NET Core](xref:security/gdpr). A [sample app](https://github.com/aspnet/AspNetCore.Docs/tree/live/aspnetcore/security/gdpr/sample) shows how to use and lets you test most of the GDPR extension points and APIs added to the ASP.NET Core 2.1 templates.
+ASP.NET Core provides APIs and templates to help meet some of the [EU General Data Protection Regulation (GDPR)](https://www.eugdpr.org/) requirements. For more information, see [GDPR support in ASP.NET Core](xref:security/gdpr). A [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetcore/security/gdpr/sample) shows how to use and lets you test most of the GDPR extension points and APIs added to the ASP.NET Core 2.1 templates.
 
 ## Integration tests
 
@@ -170,4 +170,4 @@ See [Migrate from ASP.NET Core 2.0 to 2.1](xref:migration/20_21).
 
 ## Additional information
 
-For the complete list of changes, see the [ASP.NET Core 2.1 Release Notes](https://github.com/aspnet/Home/releases/tag/2.1.0).
+For the complete list of changes, see the [ASP.NET Core 2.1 Release Notes](https://github.com/dotnet/aspnetcore/releases/tag/2.1.0).

@@ -30,8 +30,9 @@ namespace ResponseCachingMiddleware
             }
 
             app.UseStaticFiles();
-
             app.UseRouting();
+            // UseCors must be called before UseResponseCaching
+            // app.UseCors("myAllowSpecificOrigins");
 
             app.UseResponseCaching();
 

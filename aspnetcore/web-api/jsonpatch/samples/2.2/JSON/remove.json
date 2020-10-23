@@ -5,6 +5,6 @@
   },
   {
     "op": "remove",
-    "path": "/orders/0",
+    "path": "/orders/0"
   }
 ]

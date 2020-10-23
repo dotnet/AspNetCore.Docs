@@ -3,7 +3,8 @@ title: Handle requests with controllers in ASP.NET Core MVC
 author: ardalis
 description: 
 ms.author: riande
-ms.date: 07/03/2017
+ms.date: 12/05/2019
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/controllers/actions
 ---
 # Handle requests with controllers in ASP.NET Core MVC
@@ -17,13 +18,15 @@ Controllers, actions, and action results are a fundamental part of how developer
 A controller is used to define and group a set of actions. An action (or *action method*) is a method on a controller which handles requests. Controllers logically group similar actions together. This aggregation of actions allows common sets of rules, such as routing, caching, and authorization, to be applied collectively. Requests are mapped to actions through [routing](xref:mvc/controllers/routing).
 
 By convention, controller classes:
-* Reside in the project's root-level *Controllers* folder
-* Inherit from `Microsoft.AspNetCore.Mvc.Controller`
+
+* Reside in the project's root-level *Controllers* folder.
+* Inherit from `Microsoft.AspNetCore.Mvc.Controller`.
 
 A controller is an instantiable class in which at least one of the following conditions is true:
-* The class name is suffixed with "Controller"
-* The class inherits from a class whose name is suffixed with "Controller"
-* The class is decorated with the `[Controller]` attribute
+
+* The class name is suffixed with `Controller`.
+* The class inherits from a class whose name is suffixed with `Controller`.
+* The `[Controller]` attribute is applied to the class.
 
 A controller class must not have an associated `[NonController]` attribute.
 
@@ -37,7 +40,7 @@ The controller is a *UI-level* abstraction. Its responsibilities are to ensure r
 
 ## Defining Actions
 
-Public methods on a controller, except those decorated with the `[NonAction]` attribute, are actions. Parameters on actions are bound to request data and are validated using [model binding](xref:mvc/models/model-binding). Model validation occurs for everything that's model-bound. The `ModelState.IsValid` property value indicates whether model binding and validation succeeded.
+Public methods on a controller, except those with the `[NonAction]` attribute, are actions. Parameters on actions are bound to request data and are validated using [model binding](xref:mvc/models/model-binding). Model validation occurs for everything that's model-bound. The `ModelState.IsValid` property value indicates whether model binding and validation succeeded.
 
 Action methods should contain logic for mapping a request to a business concern. Business concerns should typically be represented as services that the controller accesses through [dependency injection](xref:mvc/controllers/dependency-injection). Actions then map the result of the business action to an application state.
 

@@ -4,6 +4,7 @@ author: rick-anderson
 description: Learn implementation details of the ASP.NET Core Data Protection key management APIs.
 ms.author: riande
 ms.date: 10/14/2016
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/data-protection/implementation/key-management
 ---
 # Key management in ASP.NET Core
@@ -69,6 +70,8 @@ Any operation which modifies the key ring (creating a new key explicitly or perf
 The sample below demonstrates using the `IKeyManager` interface to inspect and manipulate the key ring, including revoking existing keys and generating a new key manually.
 
 [!code-csharp[](key-management/samples/key-management.cs)]
+
+[!INCLUDE[about the series](~/includes/code-comments-loc.md)]
 
 ## Key storage
 

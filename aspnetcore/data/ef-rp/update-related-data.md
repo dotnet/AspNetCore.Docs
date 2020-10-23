@@ -1,13 +1,14 @@
 ---
-title: Razor Pages with EF Core in ASP.NET Core - Update Related Data - 7 of 8
+title: Part 7, Razor Pages with EF Core in ASP.NET Core - Update Related Data
 author: rick-anderson
-description: In this tutorial, you update related data by updating foreign key fields and navigation properties.
+description: Part 7 of Razor Pages and Entity Framework tutorial series.
 ms.author: riande
 ms.date: 07/22/2019
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: data/ef-rp/update-related-data
 ---
 
-# Razor Pages with EF Core in ASP.NET Core - Update Related Data - 7 of 8
+# Part 7, Razor Pages with EF Core in ASP.NET Core - Update Related Data
 
 By [Tom Dykstra](https://github.com/tdykstra), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -30,7 +31,7 @@ Create a *Pages/Courses/DepartmentNamePageModel.cs* file with the following code
 
 [!code-csharp[](intro/samples/cu30/Pages/Courses/DepartmentNamePageModel.cs)]
 
-The preceding code creates a [SelectList](/dotnet/api/microsoft.aspnetcore.mvc.rendering.selectlist?view=aspnetcore-2.0) to contain the list of department names. If `selectedDepartment` is specified, that department is selected in the `SelectList`.
+The preceding code creates a [SelectList](/dotnet/api/microsoft.aspnetcore.mvc.rendering.selectlist) to contain the list of department names. If `selectedDepartment` is specified, that department is selected in the `SelectList`.
 
 The Create and Edit page model classes will derive from `DepartmentNamePageModel`.
 
@@ -43,6 +44,8 @@ A Course is assigned to a Department. The base class for the Create and Edit pag
 Update *Pages/Courses/Create.cshtml.cs* with the following code:
 
 [!code-csharp[](intro/samples/cu30/Pages/Courses/Create.cshtml.cs?highlight=7,18,27-41)]
+
+[!INCLUDE[about the series](~/includes/code-comments-loc.md)]
 
 The preceding code:
 
@@ -93,7 +96,7 @@ The page contains a hidden field (`<input type="hidden">`) for the course number
 
 ## Update the Course Details and Delete pages
 
-[AsNoTracking](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.asnotracking?view=efcore-2.0#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_AsNoTracking__1_System_Linq_IQueryable___0__) can improve performance when tracking isn't required.
+[AsNoTracking](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.asnotracking#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_AsNoTracking__1_System_Linq_IQueryable___0__) can improve performance when tracking isn't required.
 
 ### Update the Course page models
 
@@ -143,7 +146,7 @@ Create the *Pages/Instructors/InstructorCoursesPageModel.cs* base class:
 
 The `InstructorCoursesPageModel` is the base class you will use for the Edit and Create page models. `PopulateAssignedCourseData` reads all `Course` entities to populate `AssignedCourseDataList`. For each course, the code sets the `CourseID`, title, and whether or not the instructor is assigned to the course. A [HashSet](/dotnet/api/system.collections.generic.hashset-1) is used for efficient lookups.
 
-Since the Razor page doesn't have a collection of Course entities, the model binder can't automatically update the `CourseAssignments` navigation property. Instead of using the model binder to update the `CourseAssignments` navigation property, you do that in the new `UpdateInstructorCourses` method. Therefore you need to exclude the `CourseAssignments` property from model binding. This doesn't require any change to the code that calls `TryUpdateModel` because you're using the whitelisting overload and `CourseAssignments` isn't in the include list.
+Since the Razor page doesn't have a collection of Course entities, the model binder can't automatically update the `CourseAssignments` navigation property. Instead of using the model binder to update the `CourseAssignments` navigation property, you do that in the new `UpdateInstructorCourses` method. Therefore you need to exclude the `CourseAssignments` property from model binding. This doesn't require any change to the code that calls `TryUpdateModel` because you're using the overload with declared properties and `CourseAssignments` isn't in the include list.
 
 If no check boxes were selected, the code in `UpdateInstructorCourses` initializes the `CourseAssignments` navigation property with an empty collection and returns:
 
@@ -230,7 +233,7 @@ Run the app and test the Delete page.
 
 ::: moniker range="< aspnetcore-3.0"
 
-This tutorial demonstrates updating related data. If you run into problems you can't solve, [download or view the completed app.](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples) [Download instructions](xref:index#how-to-download-a-sample).
+This tutorial demonstrates updating related data. If you run into problems you can't solve, [download or view the completed app.](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples) [Download instructions](xref:index#how-to-download-a-sample).
 
 The following illustrations shows some of the completed pages.
 
@@ -245,7 +248,7 @@ The Courses/Create and Courses/Edit pages each need a list of department names. 
 
 [!code-csharp[](intro/samples/cu/Pages/Courses/DepartmentNamePageModel.cshtml.cs?highlight=9,11,20-21)]
 
-The preceding code creates a [SelectList](/dotnet/api/microsoft.aspnetcore.mvc.rendering.selectlist?view=aspnetcore-2.0) to contain the list of department names. If `selectedDepartment` is specified, that department is selected in the `SelectList`.
+The preceding code creates a [SelectList](/dotnet/api/microsoft.aspnetcore.mvc.rendering.selectlist) to contain the list of department names. If `selectedDepartment` is specified, that department is selected in the `SelectList`.
 
 The Create and Edit page model classes will derive from `DepartmentNamePageModel`.
 
@@ -310,7 +313,7 @@ Test the updated code. Create, edit, and delete a course.
 
 ## Add AsNoTracking to the Details and Delete page models
 
-[AsNoTracking](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.asnotracking?view=efcore-2.0#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_AsNoTracking__1_System_Linq_IQueryable___0__) can improve performance when tracking isn't required. Add `AsNoTracking` to the Delete and Details page model. The following code shows the updated Delete page model:
+[AsNoTracking](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.asnotracking#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_AsNoTracking__1_System_Linq_IQueryable___0__) can improve performance when tracking isn't required. Add `AsNoTracking` to the Delete and Details page model. The following code shows the updated Delete page model:
 
 [!code-csharp[](intro/samples/cu/Pages/Courses/Delete.cshtml.cs?name=snippet&highlight=21,23,40,41)]
 

@@ -1,0 +1,20 @@
+### YamlMime:ZonePivotGroups
+groups:
+- id: operating-systems
+  title: Operating System
+  prompt: Choose an operating system
+  pivots:
+    - id: windows
+      title: Windows
+    - id: linux
+      title: Linux
+    - id: macos
+      title: macOS
+- id: blazor-hosting-models
+  title: Blazor Hosting Model
+  prompt: Choose a Blazor hosting model
+  pivots:
+    - id: webassembly
+      title: Blazor WebAssembly
+    - id: server
+      title: Blazor Server

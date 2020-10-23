@@ -1,12 +1,13 @@
 ---
-title: Work with a database and ASP.NET Core
+title: Part 4, with a database and ASP.NET Core
 author: rick-anderson
-description: Explains working with a database and ASP.NET Core.
+description: Part 4 of tutorial series on Razor Pages.
 ms.author: riande
 ms.date: 7/22/2019
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/razor-pages/sql
 ---
-# Work with a database and ASP.NET Core
+# Part 4, with a database and ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Joe Audette](https://twitter.com/joeaudette)
 

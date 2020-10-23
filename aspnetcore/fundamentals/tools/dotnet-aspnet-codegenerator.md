@@ -5,6 +5,7 @@ description: The dotnet aspnet-codegenerator command scaffolds ASP.NET Core proj
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 07/04/2019
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/tools/dotnet-aspnet-codegenerator
 ---
 
@@ -47,13 +48,13 @@ The `dotnet aspnet-codegenerator` global command runs the ASP.NET Core code gene
 
 The code generator to run. The following generators are available:
 
-| Generator | Operation |
-| ----------------- | ------------ | 
-| area      | [Scaffolds an Area](/aspnet/core/mvc/controllers/areas) |
-  controller| [Scaffolds a controller](/aspnet/core/tutorials/first-mvc-app/adding-model) |
-  identity  | [Scaffolds Identity](/aspnet/core/security/authentication/scaffold-identity) |
-  razorpage | [Scaffolds Razor Pages](/aspnet/core/tutorials/razor-pages/model) |
-  view      | [Scaffolds a view](/aspnet/core/mvc/views/overview) |
+| Generator  | Operation                                                            |
+| ---------- | -------------------------------------------------------------------- |
+| area       | [Scaffolds an Area](xref:mvc/controllers/areas)                      |
+| controller | [Scaffolds a controller](xref:tutorials/first-mvc-app/adding-model)  |
+| identity   | [Scaffolds Identity](xref:security/authentication/scaffold-identity) |
+| razorpage  | [Scaffolds Razor Pages](xref:tutorials/razor-pages/model)            |
+| view       | [Scaffolds a view](xref:mvc/views/overview)                          |
 
 ## Options
 
@@ -122,13 +123,13 @@ The following table lists options for  `aspnet-codegenerator` `controller` and `
 
 The following table lists options unique to  `aspnet-codegenerator controller`:
 
-| Option               | Description|
-| ----------------- | ------------ |
-| --controllerName or -name | Name of the controller. |
-| --useAsyncActions or -async | Generate async controller actions. |
-| --noViews or -nv | Generate **no** views. |
-| --restWithNoViews or -api  | Generate a Controller with REST style API. `noViews` is assumed and any view related options are ignored. |
-| --readWriteActions or -actions | Generate controller with read/write actions without a model. |
+| Option                         | Description                                                                                               |
+| ------------------------------ | --------------------------------------------------------------------------------------------------------- |
+| --controllerName or -name      | Name of the controller.                                                                                   |
+| --useAsyncActions or -async    | Generate async controller actions.                                                                        |
+| --noViews or -nv               | Generate **no** views.                                                                                    |
+| --restWithNoViews or -api      | Generate a Controller with REST style API. `noViews` is assumed and any view related options are ignored. |
+| --readWriteActions or -actions | Generate controller with read/write actions without a model.                                              |
 
 Use the `-h` switch for help on the `aspnet-codegenerator controller` command:
 
@@ -136,7 +137,7 @@ Use the `-h` switch for help on the `aspnet-codegenerator controller` command:
 dotnet aspnet-codegenerator controller -h
 ```
 
-See [Scaffold the movie model](/aspnet/core/tutorials/razor-pages/model) for an example of `dotnet aspnet-codegenerator controller`.
+See [Scaffold the movie model](xref:tutorials/first-mvc-app/adding-model) for an example of `dotnet aspnet-codegenerator controller`.
 
 ### Razorpage
 
@@ -171,11 +172,11 @@ The following table lists options for  `aspnet-codegenerator` `razorpage` and `c
 
 The following table lists options unique to  `aspnet-codegenerator razorpage`:
 
-| Option               | Description|
-| ----------------- | ------------ |
-|   --namespaceName or -namespace | The name of the namespace to use for the generated PageModel |
-| --partialView or -partial | Generate a partial view. Layout options -l and -udl are ignored if this is specified. |
-| --noPageModel or -npm | Switch to not generate a PageModel class for Empty template |
+| Option                        | Description                                                                           |
+| ----------------------------- | ------------------------------------------------------------------------------------- |
+| --namespaceName or -namespace | The name of the namespace to use for the generated PageModel                          |
+| --partialView or -partial     | Generate a partial view. Layout options -l and -udl are ignored if this is specified. |
+| --noPageModel or -npm         | Switch to not generate a PageModel class for Empty template                           |
 
 Use the `-h` switch for help on the `aspnet-codegenerator razorpage` command:
 
@@ -183,8 +184,8 @@ Use the `-h` switch for help on the `aspnet-codegenerator razorpage` command:
 dotnet aspnet-codegenerator razorpage -h
 ```
 
-See [Scaffold the movie model](/aspnet/core/tutorials/razor-pages/model) for an example of `dotnet aspnet-codegenerator razorpage`.
+See [Scaffold the movie model](xref:tutorials/razor-pages/model) for an example of `dotnet aspnet-codegenerator razorpage`.
 
 ### Identity
 
-See [Scaffold Identity](/aspnet/core/security/authentication/scaffold-identity)
+See [Scaffold Identity](xref:security/authentication/scaffold-identity)

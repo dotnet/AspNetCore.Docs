@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 08/03/2019
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/localization-extensibility
 ---
 # Localization Extensibility
@@ -54,7 +55,7 @@ options.RequestCultureProviders.Insert(0, new CustomRequestCultureProvider(async
         currentCulture = segments[0];
     }
 
-    var requestCulture = new ProviderCultureResult(culture);
+    var requestCulture = new ProviderCultureResult(currentCulture);
     
     return Task.FromResult(requestCulture);
 }));
@@ -75,7 +76,7 @@ options.AddInitialRequestCultureProvider(new CustomRequestCultureProvider(async 
         currentCulture = segments[0];
     }
 
-    var requestCulture = new ProviderCultureResult(culture);
+    var requestCulture = new ProviderCultureResult(currentCulture);
     
     return Task.FromResult(requestCulture);
 }));

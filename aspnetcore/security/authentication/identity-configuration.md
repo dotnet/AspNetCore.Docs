@@ -3,10 +3,11 @@ title: Configure ASP.NET Core Identity
 author: AdrienTorris
 description: Understand ASP.NET Core Identity default values and learn how to configure Identity properties to use custom values.
 ms.author: riande
+ms.custom: mvc
 ms.date: 02/11/2019
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/identity-configuration
 ---
-
 # Configure ASP.NET Core Identity
 
 ASP.NET Core Identity uses default values for settings such as password policy, lockout, and cookie configuration. These settings can be overridden in the `Startup` class.
@@ -52,29 +53,18 @@ A successful authentication resets the failed access attempts count and resets t
 
 ### Password
 
-By default, Identity requires that passwords contain an uppercase character, lowercase character, a digit, and a non-alphanumeric character. Passwords must be at least six characters long. [PasswordOptions](/dotnet/api/microsoft.aspnetcore.identity.passwordoptions) can be set in `Startup.ConfigureServices`.
+By default, Identity requires that passwords contain an uppercase character, lowercase character, a digit, and a non-alphanumeric character. Passwords must be at least six characters long.
 
-::: moniker range=">= aspnetcore-2.1"
+Passwords are configured with:
+
+* <xref:Microsoft.AspNetCore.Identity.PasswordOptions> in `Startup.ConfigureServices`.
+* [`[StringLength]` attributes](xref:System.ComponentModel.DataAnnotations.StringLengthAttribute) of `Password` properties if Identity is [scaffolded into the app](xref:security/authentication/scaffold-identity). `InputModel` `Password` properties are found in the following files:
+  * `Areas/Identity/Pages/Account/Register.cshtml.cs`
+  * `Areas/Identity/Pages/Account/ResetPassword.cshtml.cs`
 
 [!code-csharp[](identity-configuration/sample/Startup.cs?name=snippet_pw)]
 
-::: moniker-end
-
-::: moniker range="= aspnetcore-2.0"
-
-[!code-csharp[](identity/sample/src/ASPNETv2-IdentityDemo-Configuration/Startup.cs?range=29-37,50-52)]
-
-::: moniker-end
-
-::: moniker range="<= aspnetcore-1.1"
-
-[!code-csharp[](identity/sample/src/ASPNET-IdentityDemo-PrimaryKeysConfig/Startup.cs?range=58-65,84)]
-
-::: moniker-end
-
 [IdentityOptions.Password](/dotnet/api/microsoft.aspnetcore.identity.identityoptions.password) specifies the [PasswordOptions](/dotnet/api/microsoft.aspnetcore.identity.passwordoptions) with the properties shown in the table.
-
-::: moniker range=">= aspnetcore-2.0"
 
 | Property | Description | Default |
 | -------- | ----------- | :-----: |
@@ -85,35 +75,11 @@ By default, Identity requires that passwords contain an uppercase character, low
 | [RequiredUniqueChars](/dotnet/api/microsoft.aspnetcore.identity.passwordoptions.requireduniquechars) | Only applies to ASP.NET Core 2.0 or later.<br><br> Requires the number of distinct characters in the password. | 1 |
 | [RequireUppercase](/dotnet/api/microsoft.aspnetcore.identity.passwordoptions.requireuppercase) | Requires an uppercase character in the password. | `true` |
 
-::: moniker-end
-
-::: moniker range="< aspnetcore-2.0"
-
-| Property | Description | Default |
-| -------- | ----------- | :-----: |
-| [RequireDigit](/dotnet/api/microsoft.aspnetcore.identity.passwordoptions.requiredigit) | Requires a number between 0-9 in the password. | `true` |
-| [RequiredLength](/dotnet/api/microsoft.aspnetcore.identity.passwordoptions.requiredlength) | The minimum length of the password. | 6 |
-| [RequireLowercase](/dotnet/api/microsoft.aspnetcore.identity.passwordoptions.requirelowercase) | Requires a lowercase character in the password. | `true` |
-| [RequireNonAlphanumeric](/dotnet/api/microsoft.aspnetcore.identity.passwordoptions.requirenonalphanumeric) | Requires a non-alphanumeric character in the password. | `true` |
-| [RequireUppercase](/dotnet/api/microsoft.aspnetcore.identity.passwordoptions.requireuppercase) | Requires an uppercase character in the password. | `true` |
-
-::: moniker-end
-
 ### Sign-in
 
 The following code sets `SignIn` settings (to default values):
 
-::: moniker range=">= aspnetcore-2.1"
-
 [!code-csharp[](identity-configuration/sample/Startup.cs?name=snippet_si)]
-
-::: moniker-end
-
-::: moniker range="<= aspnetcore-2.0"
-
-[!code-csharp[](identity/sample/src/ASPNETv2-IdentityDemo-Configuration/Startup.cs?range=29-30,44-46,50-52)] 
-
-::: moniker-end
 
 [IdentityOptions.SignIn](/dotnet/api/microsoft.aspnetcore.identity.identityoptions.signin) specifies the [SignInOptions](/dotnet/api/microsoft.aspnetcore.identity.signinoptions) with the properties shown in the table.
 
@@ -126,14 +92,14 @@ The following code sets `SignIn` settings (to default values):
 
 [IdentityOptions.Tokens](/dotnet/api/microsoft.aspnetcore.identity.identityoptions.tokens) specifies the [TokenOptions](/dotnet/api/microsoft.aspnetcore.identity.tokenoptions) with the properties shown in the table.
 
-|                                                        Property                                                         |                                                                                      Description                                                                                      |
-|-------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|     [AuthenticatorTokenProvider](/dotnet/api/microsoft.aspnetcore.identity.tokenoptions.authenticatortokenprovider)     |                                       Gets or sets the `AuthenticatorTokenProvider` used to validate two-factor sign-ins with an authenticator.                                       |
-|       [ChangeEmailTokenProvider](/dotnet/api/microsoft.aspnetcore.identity.tokenoptions.changeemailtokenprovider)       |                                     Gets or sets the `ChangeEmailTokenProvider` used to generate tokens used in email change confirmation emails.                                     |
-| [ChangePhoneNumberTokenProvider](/dotnet/api/microsoft.aspnetcore.identity.tokenoptions.changephonenumbertokenprovider) |                                      Gets or sets the `ChangePhoneNumberTokenProvider` used to generate tokens used when changing phone numbers.                                      |
-| [EmailConfirmationTokenProvider](/dotnet/api/microsoft.aspnetcore.identity.tokenoptions.emailconfirmationtokenprovider) |                                             Gets or sets the token provider used to generate tokens used in account confirmation emails.                                              |
-|     [PasswordResetTokenProvider](/dotnet/api/microsoft.aspnetcore.identity.tokenoptions.passwordresettokenprovider)     | Gets or sets the [IUserTwoFactorTokenProvider\<TUser>](/dotnet/api/microsoft.aspnetcore.identity.iusertwofactortokenprovider-1) used to generate tokens used in password reset emails. |
-|                    [ProviderMap](/dotnet/api/microsoft.aspnetcore.identity.tokenoptions.providermap)                    |                Used to construct a [User Token Provider](/dotnet/api/microsoft.aspnetcore.identity.tokenproviderdescriptor) with the key used as the provider's name.                 |
+| Property | Description |
+| -------- | ----------- |
+| [AuthenticatorTokenProvider](/dotnet/api/microsoft.aspnetcore.identity.tokenoptions.authenticatortokenprovider) | Gets or sets the `AuthenticatorTokenProvider` used to validate two-factor sign-ins with an authenticator. |
+| [ChangeEmailTokenProvider](/dotnet/api/microsoft.aspnetcore.identity.tokenoptions.changeemailtokenprovider) | Gets or sets the `ChangeEmailTokenProvider` used to generate tokens used in email change confirmation emails. |
+| [ChangePhoneNumberTokenProvider](/dotnet/api/microsoft.aspnetcore.identity.tokenoptions.changephonenumbertokenprovider) | Gets or sets the `ChangePhoneNumberTokenProvider` used to generate tokens used when changing phone numbers. |
+| [EmailConfirmationTokenProvider](/dotnet/api/microsoft.aspnetcore.identity.tokenoptions.emailconfirmationtokenprovider) | Gets or sets the token provider used to generate tokens used in account confirmation emails. |
+| [PasswordResetTokenProvider](/dotnet/api/microsoft.aspnetcore.identity.tokenoptions.passwordresettokenprovider) | Gets or sets the [IUserTwoFactorTokenProvider\<TUser>](/dotnet/api/microsoft.aspnetcore.identity.iusertwofactortokenprovider-1) used to generate tokens used in password reset emails. |
+| [ProviderMap](/dotnet/api/microsoft.aspnetcore.identity.tokenoptions.providermap) | Used to construct a [User Token Provider](/dotnet/api/microsoft.aspnetcore.identity.tokenproviderdescriptor) with the key used as the provider's name. |
 
 ### User
 
@@ -150,23 +116,7 @@ The following code sets `SignIn` settings (to default values):
 
 Configure the app's cookie in `Startup.ConfigureServices`. [ConfigureApplicationCookie](/dotnet/api/microsoft.extensions.dependencyinjection.identityservicecollectionextensions.configureapplicationcookie#Microsoft_Extensions_DependencyInjection_IdentityServiceCollectionExtensions_ConfigureApplicationCookie_Microsoft_Extensions_DependencyInjection_IServiceCollection_System_Action_Microsoft_AspNetCore_Authentication_Cookies_CookieAuthenticationOptions__) must be called **after** calling `AddIdentity` or `AddDefaultIdentity`.
 
-::: moniker range=">= aspnetcore-2.1"
-
 [!code-csharp[](identity-configuration/sample/Startup.cs?name=snippet_cookie)]
-
-::: moniker-end
-
-::: moniker range="= aspnetcore-2.0"
-
-[!code-csharp[](identity/sample/src/ASPNETv2-IdentityDemo-Configuration/Startup.cs?name=snippet_configurecookie)]
-
-::: moniker-end
-
-::: moniker range="<= aspnetcore-1.1"
-
-[!code-csharp[](identity/sample/src/ASPNET-IdentityDemo-PrimaryKeysConfig/Startup.cs?range=58-59,72-80,84)]
-
-::: moniker-end
 
 For more information, see [CookieAuthenticationOptions](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions).
 
@@ -189,3 +139,7 @@ services.Configure<PasswordHasherOptions>(option =>
     option.IterationCount = 12000;
 });
 ```
+
+## Globally require all users to be authenticated
+
+[!INCLUDE[](~/includes/requireAuth.md)]

@@ -73,7 +73,7 @@ The `ValidateAntiForgeryToken` attribute is used to [prevent forgery of a reques
 
 [!code-HTML[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/Movies/Edit.cshtml?range=9)]
 
-The [Form Tag Helper](xref:mvc/views/working-with-forms) generates a hidden anti-forgery token that must match the `[ValidateAntiForgeryToken]` generated anti-forgery token in the `Edit` method of the Movies controller. For more information, see [Anti-Request Forgery](xref:security/anti-request-forgery).
+The [Form Tag Helper](xref:mvc/views/working-with-forms) generates a hidden anti-forgery token that must match the `[ValidateAntiForgeryToken]` generated anti-forgery token in the `Edit` method of the Movies controller. For more information, see <xref:security/anti-request-forgery>.
 
 The `HttpGet Edit` method takes the movie `ID` parameter, looks up the movie using the Entity Framework `SingleOrDefaultAsync` method, and returns the selected movie to the Edit view. If a movie cannot be found, `NotFound` (HTTP 404) is returned.
 
@@ -134,7 +134,7 @@ All the `HttpGet` methods in the movie controller follow a similar pattern. They
 * [Globalization and localization](xref:fundamentals/localization)
 * [Introduction to Tag Helpers](xref:mvc/views/tag-helpers/intro)
 * [Author Tag Helpers](xref:mvc/views/tag-helpers/authoring)
-* [Anti-Request Forgery](xref:security/anti-request-forgery)
+* <xref:security/anti-request-forgery>
 * Protect your controller from [over-posting](/aspnet/mvc/overview/getting-started/getting-started-with-ef-using-mvc/implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application)
 * [ViewModels](https://rachelappel.com/use-viewmodels-to-manage-data-amp-organize-code-in-asp-net-mvc-applications/)
 * [Form Tag Helper](xref:mvc/views/working-with-forms)

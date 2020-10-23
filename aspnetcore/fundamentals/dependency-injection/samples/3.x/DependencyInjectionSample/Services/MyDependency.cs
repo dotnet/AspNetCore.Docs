@@ -1,27 +1,49 @@
-using System.Threading.Tasks;
 using DependencyInjectionSample.Interfaces;
 using Microsoft.Extensions.Logging;
+using System;
 
 namespace DependencyInjectionSample.Services
 {
     #region snippet1
     public class MyDependency : IMyDependency
     {
-        private readonly ILogger<MyDependency> _logger;
+        public void WriteMessage(string message)
+        {
+            Console.WriteLine($"MyDependency.WriteMessage Message: {message}");
+        }
+    }
+    #endregion
 
-        public MyDependency(ILogger<MyDependency> logger)
+    #region snippet2
+    public class MyDependency2 : IMyDependency
+    {
+        private readonly ILogger<MyDependency2> _logger;
+
+        public MyDependency2(ILogger<MyDependency2> logger)
         {
             _logger = logger;
         }
 
-        public Task WriteMessage(string message)
+        public void WriteMessage(string message)
         {
-            _logger.LogInformation(
-                "MyDependency.WriteMessage called. Message: {MESSAGE}", 
-                message);
-
-            return Task.FromResult(0);
+            _logger.LogInformation( $"MyDependency2.WriteMessage Message: {message}");
         }
     }
     #endregion
+
+    public class MyDependency5 : IMyDependency
+    {
+        public MyDependency5(string myInt)
+        {
+            MyInt = myInt;
+        }
+
+        string MyInt { get; set; }
+
+        public void WriteMessage(string message)
+        {
+            Console.WriteLine($"MyDependency5.WriteMessage {MyInt} Message: {message}");
+        }
+    }
+
 }

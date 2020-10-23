@@ -5,17 +5,18 @@ description: Learn how to use response caching to lower bandwidth requirements a
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 11/04/2019
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: performance/caching/response
 ---
 # Response caching in ASP.NET Core
 
-By [John Luo](https://github.com/JunTaoLuo), [Rick Anderson](https://twitter.com/RickAndMSFT), [Steve Smith](https://ardalis.com/), and [Luke Latham](https://github.com/guardrex)
+By [John Luo](https://github.com/JunTaoLuo), [Rick Anderson](https://twitter.com/RickAndMSFT), and [Steve Smith](https://ardalis.com/)
 
-[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/performance/caching/response/samples) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/performance/caching/response/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 Response caching reduces the number of requests a client or proxy makes to a web server. Response caching also reduces the amount of work the web server performs to generate a response. Response caching is controlled by headers that specify how you want client, proxy, and middleware to cache responses.
 
-The [ResponseCache attribute](#responsecache-attribute) participates in setting response caching headers. Clients and intermediate proxies should honor the headers for caching responses under the the [HTTP 1.1 Caching specification](https://tools.ietf.org/html/rfc7234).
+The [ResponseCache attribute](#responsecache-attribute) participates in setting response caching headers. Clients and intermediate proxies should honor the headers for caching responses under the [HTTP 1.1 Caching specification](https://tools.ietf.org/html/rfc7234).
 
 For server-side caching that follows the HTTP 1.1 Caching specification, use [Response Caching Middleware](xref:performance/caching/middleware). The middleware can use the <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> properties to influence server-side caching behavior.
 
@@ -48,7 +49,7 @@ The [HTTP 1.1 Caching specification for the Cache-Control header](https://tools.
 
 Always honoring client `Cache-Control` request headers makes sense if you consider the goal of HTTP caching. Under the official specification, caching is meant to reduce the latency and network overhead of satisfying requests across a network of clients, proxies, and servers. It isn't necessarily a way to control the load on an origin server.
 
-There's no developer control over this caching behavior when using the [Response Caching Middleware](xref:performance/caching/middleware) because the middleware adheres to the official caching specification. [Planned enhancements to the middleware](https://github.com/aspnet/AspNetCore/issues/2612) are an opportunity to configure the middleware to ignore a request's `Cache-Control` header when deciding to serve a cached response. Planned enhancements provide an opportunity to better control server load.
+There's no developer control over this caching behavior when using the [Response Caching Middleware](xref:performance/caching/middleware) because the middleware adheres to the official caching specification. [Planned enhancements to the middleware](https://github.com/dotnet/AspNetCore/issues/2612) are an opportunity to configure the middleware to ignore a request's `Cache-Control` header when deciding to serve a cached response. Planned enhancements provide an opportunity to better control server load.
 
 ## Other caching technology in ASP.NET Core
 
@@ -60,7 +61,7 @@ For more information, see <xref:performance/caching/memory>.
 
 ### Distributed Cache
 
-Use a distributed cache to store data in memory when the app is hosted in a cloud or server farm. The cache is shared across the servers that process requests. A client can submit a request that's handled by any server in the group if cached data for the client is available. ASP.NET Core offers SQL Server and Redis distributed caches.
+Use a distributed cache to store data in memory when the app is hosted in a cloud or server farm. The cache is shared across the servers that process requests. A client can submit a request that's handled by any server in the group if cached data for the client is available. ASP.NET Core works with SQL Server, [Redis](https://www.nuget.org/packages/Microsoft.Extensions.Caching.StackExchangeRedis), and [NCache](https://www.nuget.org/packages/Alachisoft.NCache.OpenSource.SDK/) distributed caches.
 
 For more information, see <xref:performance/caching/distributed>.
 
@@ -72,7 +73,7 @@ For more information, see <xref:mvc/views/tag-helpers/builtin-th/cache-tag-helpe
 
 ### Distributed Cache Tag Helper
 
-Cache the content from an MVC view or Razor Page in distributed cloud or web farm scenarios with the Distributed Cache Tag Helper. The Distributed Cache Tag Helper uses SQL Server or Redis to store data.
+Cache the content from an MVC view or Razor Page in distributed cloud or web farm scenarios with the Distributed Cache Tag Helper. The Distributed Cache Tag Helper uses SQL Server, [Redis](https://www.nuget.org/packages/Microsoft.Extensions.Caching.StackExchangeRedis), or [NCache](https://www.nuget.org/packages/Alachisoft.NCache.OpenSource.SDK/) to store data.
 
 For more information, see <xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper>.
 
@@ -162,7 +163,17 @@ Instead of duplicating response cache settings on many controller action attribu
 
 Set up a cache profile. The following example shows a 30 second cache profile in the sample app's `Startup.ConfigureServices`:
 
+::: moniker range=">= aspnetcore-3.0"
+
+[!code-csharp[](response/samples/3.x/Startup.cs?name=snippet1)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
 [!code-csharp[](response/samples/2.x/ResponseCacheSample/Startup.cs?name=snippet1)]
+
+::: moniker-end
 
 The sample app's Cache4 page model references the `Default30` cache profile:
 
@@ -170,9 +181,9 @@ The sample app's Cache4 page model references the `Default30` cache profile:
 
 The <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> can be applied to:
 
-* Razor Page handlers (classes) &ndash; Attributes can't be applied to handler methods.
-* MVC controllers (classes).
-* MVC actions (methods) &ndash; Method-level attributes override the settings specified in class-level attributes.
+* Razor Pages: Attributes can't be applied to handler methods.
+* MVC controllers.
+* MVC action methods: Method-level attributes override the settings specified in class-level attributes.
 
 The resulting header applied to the Cache4 page response by the `Default30` cache profile:
 

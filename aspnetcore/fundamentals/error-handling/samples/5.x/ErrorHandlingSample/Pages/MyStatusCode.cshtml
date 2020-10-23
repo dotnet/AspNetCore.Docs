@@ -1,0 +1,24 @@
+﻿@page "{code:int?}"
+@{
+    Layout = null;  // clean up F12 tool network tab
+}
+@model MyStatusCodeModel
+@{
+    ViewData["Title"] = "Status Code @Model.ErrorStatusCode";
+}
+<head>
+    <!-- prevent favicon.ico from being requested. -->
+    <link rel="icon" href="data:,">
+</head>
+
+<h1>MyStatusCode page</h1>
+<h2 class="text-danger">Status Code: @Model.ErrorStatusCode</h2>
+<h2 class="text-danger"> @Model.ErrorMessage</h2>
+
+@if (Model.ShowRequestId)
+{
+    <h3>Request ID</h3>
+    <p>
+        <code>@Model.RequestId</code>
+    </p>
+}

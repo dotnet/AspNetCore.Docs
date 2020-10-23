@@ -1,11 +1,12 @@
 ---
 title: Host ASP.NET Core on Linux with Apache
-author: guardrex
+author: rick-anderson
 description: Learn how to set up Apache as a reverse proxy server on CentOS to redirect HTTP traffic to an ASP.NET Core web app running on Kestrel.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: shboyer
 ms.custom: mvc
-ms.date: 11/05/2019
+ms.date: 04/10/2020
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: host-and-deploy/linux-apache
 ---
 # Host ASP.NET Core on Linux with Apache
@@ -18,10 +19,13 @@ Using this guide, learn how to set up [Apache](https://httpd.apache.org/) as a r
 
 * Server running CentOS 7 with a standard user account with sudo privilege.
 * Install the .NET Core runtime on the server.
-   1. Visit the [.NET Core All Downloads page](https://www.microsoft.com/net/download/all).
-   1. Select the latest non-preview runtime from the list under **Runtime**.
-   1. Select and follow the instructions for CentOS/Oracle.
+   1. Visit the [Download .NET Core page](https://dotnet.microsoft.com/download/dotnet-core).
+   1. Select the latest non-preview .NET Core version.
+   1. Download the latest non-preview runtime in the table under **Run apps - Runtime**.
+   1. Select the Linux **Package manager instructions** link and follow the CentOS instructions.
 * An existing ASP.NET Core app.
+
+At any point in the future after upgrading the shared framework, restart the ASP.NET Core apps hosted by the server.
 
 ## Publish and copy over the app
 
@@ -53,11 +57,15 @@ A proxy server is one which forwards client requests to another server instead o
 
 Because requests are forwarded by reverse proxy, use the [Forwarded Headers Middleware](xref:host-and-deploy/proxy-load-balancer) from the [Microsoft.AspNetCore.HttpOverrides](https://www.nuget.org/packages/Microsoft.AspNetCore.HttpOverrides/) package. The middleware updates the `Request.Scheme`, using the `X-Forwarded-Proto` header, so that redirect URIs and other security policies work correctly.
 
-Any component that depends on the scheme, such as authentication, link generation, redirects, and geolocation, must be placed after invoking the Forwarded Headers Middleware. As a general rule, Forwarded Headers Middleware should run before other middleware except diagnostics and error handling middleware. This ordering ensures that the middleware relying on forwarded headers information can consume the header values for processing.
+Any component that depends on the scheme, such as authentication, link generation, redirects, and geolocation, must be placed after invoking the Forwarded Headers Middleware.
 
-Invoke the <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*> method in `Startup.Configure` before calling <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> or similar authentication scheme middleware. Configure the middleware to forward the `X-Forwarded-For` and `X-Forwarded-Proto` headers:
+[!INCLUDE[](~/includes/ForwardedHeaders.md)]
+
+Invoke the <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*> method at the top of `Startup.Configure` before calling other middleware. Configure the middleware to forward the `X-Forwarded-For` and `X-Forwarded-Proto` headers:
 
 ```csharp
+// using Microsoft.AspNetCore.HttpOverrides;
+
 app.UseForwardedHeaders(new ForwardedHeadersOptions
 {
     ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
@@ -71,6 +79,8 @@ If no <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions> are specified 
 Proxies running on loopback addresses (127.0.0.0/8, [::1]), including the standard localhost address (127.0.0.1), are trusted by default. If other trusted proxies or networks within the organization handle requests between the Internet and the web server, add them to the list of <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownProxies*> or <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownNetworks*> with <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions>. The following example adds a trusted proxy server at IP address 10.0.0.100 to the Forwarded Headers Middleware `KnownProxies` in `Startup.ConfigureServices`:
 
 ```csharp
+// using System.Net;
+
 services.Configure<ForwardedHeadersOptions>(options =>
 {
     options.KnownProxies.Add(IPAddress.Parse("10.0.0.100"));
@@ -189,7 +199,7 @@ Environment=ASPNETCORE_ENVIRONMENT=Production
 WantedBy=multi-user.target
 ```
 
-If the user *apache* isn't used by the configuration, the user must be created first and given proper ownership of files.
+In the preceding example, the user that manages the service is specified by the `User` option. The user (`apache`) must exist and have proper ownership of the app's files.
 
 Use `TimeoutStopSec` to configure the duration of time to wait for the app to shut down after it receives the initial interrupt signal. If the app doesn't shut down in this period, SIGKILL is issued to terminate the app. Provide the value as unitless seconds (for example, `150`), a time span value (for example, `2min 30s`), or `infinity` to disable the timeout. `TimeoutStopSec` defaults to the value of `DefaultTimeoutStopSec` in the manager configuration file (*systemd-system.conf*, *system.conf.d*, *systemd-user.conf*, *user.conf.d*). The default timeout for most distributions is 90 seconds.
 
@@ -204,7 +214,16 @@ Some values (for example, SQL connection strings) must be escaped for the config
 systemd-escape "<value-to-escape>"
 ```
 
+::: moniker range=">= aspnetcore-3.0"
+
 Colon (`:`) separators aren't supported in environment variable names. Use a double underscore (`__`) in place of a colon. The [Environment Variables configuration provider](xref:fundamentals/configuration/index#environment-variables-configuration-provider) converts double-underscores into colons when environment variables are read into configuration. In the following example, the connection string key `ConnectionStrings:DefaultConnection` is set into the service definition file as `ConnectionStrings__DefaultConnection`:
+
+::: moniker-end
+::: moniker range="< aspnetcore-3.0"
+
+Colon (`:`) separators aren't supported in environment variable names. Use a double underscore (`__`) in place of a colon. The [Environment Variables configuration provider](xref:fundamentals/configuration/index#environment-variables) converts double-underscores into colons when environment variables are read into configuration. In the following example, the connection string key `ConnectionStrings:DefaultConnection` is set into the service definition file as `ConnectionStrings__DefaultConnection`:
+
+::: moniker-end
 
 ```
 Environment=ConnectionStrings__DefaultConnection={Connection String}
@@ -222,7 +241,7 @@ Start the service and verify that it's running:
 sudo systemctl start kestrel-helloapp.service
 sudo systemctl status kestrel-helloapp.service
 
-● kestrel-helloapp.service - Example .NET Web API App running on CentOS 7
+◝ kestrel-helloapp.service - Example .NET Web API App running on CentOS 7
     Loaded: loaded (/etc/systemd/system/kestrel-helloapp.service; enabled)
     Active: active (running) since Thu 2016-10-18 04:09:35 NZDT; 35s ago
 Main PID: 9021 (dotnet)
@@ -374,6 +393,10 @@ sudo systemctl restart httpd
 ```
 
 ## Additional Apache suggestions
+
+### Restart apps with shared framework updates
+
+After upgrading the shared framework on the server, restart the ASP.NET Core apps hosted by the server.
 
 ### Additional headers
 

@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-2.2'
 ms.author: mimengis
 ms.custom: mvc
 ms.date: 11/12/2019
-no-loc: [SignalR]
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: signalr/java-client
 ---
 # ASP.NET Core SignalR Java client
@@ -17,7 +17,7 @@ The Java client enables connecting to an ASP.NET Core SignalR server from Java c
 
 The sample Java console app referenced in this article uses the SignalR Java client.
 
-[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/signalr/java-client/sample) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/signalr/java-client/sample) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Install the SignalR Java client package
 
@@ -46,7 +46,7 @@ A call to `send` invokes a hub method. Pass the hub method name and any argument
 [!code-java[send method](java-client/sample/src/main/java/Chat.java?range=28)]
 
 > [!NOTE]
-> If you're using Azure SignalR Service in *Serverless mode*, you cannot call hub methods from a client. For more information, see the [SignalR Service documentation](/azure/azure-signalr/signalr-concept-serverless-development-config).
+> Calling hub methods from a client is only supported when using the Azure SignalR Service in *Default* mode. For more information, see [Frequently Asked Questions (azure-signalr GitHub repository)](https://github.com/Azure/azure-signalr/blob/dev/docs/faq.md#what-is-the-meaning-of-service-mode-defaultserverlessclassic-how-can-i-choose).
 
 ## Call client methods from hub
 

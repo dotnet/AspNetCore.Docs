@@ -5,13 +5,14 @@ description: Learn how to access the GDPR extension points in a ASP.NET Core web
 ms.author: riande
 ms.custom: mvc
 ms.date: 07/11/2019
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/gdpr
 ---
 # EU General Data Protection Regulation (GDPR) support in ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-ASP.NET Core provides APIs and templates to help meet some of the [EU General Data Protection Regulation (GDPR)](https://www.eugdpr.org/) requirements:
+ASP.NET Core provides APIs and templates to help meet some of the [EU General Data Protection Regulation (GDPR)](https://ec.europa.eu/info/law/law-topic/data-protection/reform/what-does-general-data-protection-regulation-gdpr-govern_en) requirements:
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -45,9 +46,9 @@ To enable the default cookie consent feature like that found in the ASP.NET Core
 * [TempData and Session cookies](#tempdata) aren't functional when tracking is disabled.
 * The [Identity manage](#pd) page provides a link to download and delete user data.
 
-The [sample app](https://github.com/aspnet/AspNetCore.Docs/tree/live/aspnetcore/security/gdpr/sample) allows you test most of the GDPR extension points and APIs added to the ASP.NET Core 2.1 templates. See the [ReadMe](https://github.com/aspnet/AspNetCore.Docs/tree/live/aspnetcore/security/gdpr/sample) file for testing instructions.
+The [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetcore/security/gdpr/sample) allows you test most of the GDPR extension points and APIs added to the ASP.NET Core 2.1 templates. See the [ReadMe](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetcore/security/gdpr/sample) file for testing instructions.
 
-[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/live/aspnetcore/security/gdpr/sample) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetcore/security/gdpr/sample) ([how to download](xref:index#how-to-download-a-sample))
 
 ## ASP.NET Core GDPR support in template-generated code
 
@@ -72,7 +73,7 @@ Razor Pages and MVC projects created with the project templates include the foll
 
 The *\_CookieConsentPartial.cshtml* partial view:
 
-[!code-html[](gdpr/sample/RP2.2/Pages/Shared/_CookieConsentPartial.cshtml)]
+[!code-cshtml[](gdpr/sample/RP2.2/Pages/Shared/_CookieConsentPartial.cshtml)]
 
 This partial:
 

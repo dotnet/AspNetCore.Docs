@@ -4,6 +4,7 @@ author: rick-anderson
 description: 
 ms.author: riande
 ms.date: 12/07/2016
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: migration/http-modules
 ---
 # Migrate HTTP handlers and modules to ASP.NET Core middleware
@@ -38,7 +39,7 @@ Before proceeding to ASP.NET Core middleware, let's first recap how HTTP modules
 
 **The order in which modules process incoming requests is determined by:**
 
-1. The [application life cycle](https://msdn.microsoft.com/library/ms227673.aspx), which is a series events fired by ASP.NET: [BeginRequest](/dotnet/api/system.web.httpapplication.beginrequest), [AuthenticateRequest](/dotnet/api/system.web.httpapplication.authenticaterequest), etc. Each module can create a handler for one or more events.
+1. The <https://docs.microsoft.com/previous-versions/ms227673(v=vs.140)>, which is a series events fired by ASP.NET: [BeginRequest](/dotnet/api/system.web.httpapplication.beginrequest), [AuthenticateRequest](/dotnet/api/system.web.httpapplication.authenticaterequest), etc. Each module can create a handler for one or more events.
 
 2. For the same event, the order in which they're configured in *Web.config*.
 
@@ -54,7 +55,16 @@ In addition to modules, you can add handlers for the life cycle events to your *
 
 * Middleware are configured using code rather than in *Web.config*
 
+::: moniker range=">= aspnetcore-3.0"
+
+* [Pipeline branching](xref:fundamentals/middleware/index#branch-the-middleware-pipeline) lets you send requests to specific middleware, based on not only the URL but also on request headers, query strings, etc.
+
+::: moniker-end
+::: moniker range="< aspnetcore-3.0"
+
 * [Pipeline branching](xref:fundamentals/middleware/index#use-run-and-map) lets you send requests to specific middleware, based on not only the URL but also on request headers, query strings, etc.
+
+::: moniker-end
 
 **Middleware are very similar to modules:**
 
@@ -66,7 +76,7 @@ In addition to modules, you can add handlers for the life cycle events to your *
 
 **Middleware and modules are processed in a different order:**
 
-* Order of middleware is based on the order in which they're inserted into the request pipeline, while order of modules is mainly based on [application life cycle](https://msdn.microsoft.com/library/ms227673.aspx) events
+* Order of middleware is based on the order in which they're inserted into the request pipeline, while order of modules is mainly based on <https://docs.microsoft.com/previous-versions/ms227673(v=vs.140)> events
 
 * Order of middleware for responses is the reverse from that for requests, while order of modules is the same for requests and responses
 
@@ -330,7 +340,7 @@ Gives you a unique id for each request. Very useful to include in your logs.
 
 **HttpContext.Response.TransmitFile**
 
-Serving up a file is discussed [here](../fundamentals/request-features.md#middleware-and-request-features).
+Serving up a file is discussed in [Middleware and request features](xref:fundamentals/request-features#middleware-and-request-features).
 
 **HttpContext.Response.Headers**
 

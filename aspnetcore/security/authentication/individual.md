@@ -3,7 +3,8 @@ title: Articles based on ASP.NET Core projects created with individual user acco
 author: rick-anderson
 description: Discover articles based on ASP.NET Core projects created with individual user accounts.
 ms.author: riande
-ms.date: 11/30/2017
+ms.date: 12/11/2019
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/individual
 ---
 # Articles based on ASP.NET Core projects created with individual user accounts
@@ -30,7 +31,7 @@ dotnet new razor -au Individual
 
 ::: moniker-end
 
-See [this GitHub issue](https://github.com/aspnet/AspNetCore/issues/5833) for web API authentication.
+See [this GitHub issue](https://github.com/dotnet/AspNetCore/issues/5833) for web API authentication.
 
 <a name="no"></a>
 
@@ -50,6 +51,32 @@ Projects created with no authentication:
 Windows Authentication is specified for new web apps in the .NET Core CLI with the `-au Windows` option. In Visual Studio, the **Change Authentication** dialog provides the **Windows Authentication** options.
 
 If Windows Authentication is selected, the app is configured to use the [Windows Authentication IIS module](xref:host-and-deploy/iis/modules). Windows Authentication is intended for Intranet web sites.
+
+## dotnet new webapp authentication options
+
+The following table shows the authentication options available for new web apps:
+
+| Option | Type of authentication | Link for more information |
+ | ----------------- | ------------ | ---------- |
+| None            |  No authentication | | 
+| Individual      |  Individual authentication | <xref:security/authentication/identity>
+| IndividualB2C   |  Cloud-hosted individual authentication with Azure AD B2C | [Azure AD B2C](/azure/active-directory-b2c/) |
+| SingleOrg       |  Organizational authentication for a single tenant | [Azure AD](/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp) |
+| MultiOrg        |  Organizational authentication for multiple tenants | [Azure AD](/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp) |
+| Windows         |  Windows authentication | [Windows Authentication](xref:security/authentication/windowsauth)
+
+## Visual Studio new webapp authentication options
+
+The following table shows the authentication options available when creating a new web app with Visual Studio:
+
+| Option | Type of authentication | Link for more information |
+ | ----------------- | ------------ | ---------- |
+| None            |  No authentication | | 
+| Individual User Accounts / Store user accounts in-app |  Individual authentication | <xref:security/authentication/identity> |
+| Individual User Accounts / Connect to an existing user store in the cloud |  Cloud-hosted individual authentication with Azure AD B2C | [Azure AD B2C](/azure/active-directory-b2c/) |
+| Work or School Cloud / Single Org  |  Organizational authentication for a single tenant | [Azure AD](/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp) |
+| Work or School Cloud / Multiple Org |  Organizational authentication for multiple tenants | [Azure AD](/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp) |
+| Windows         |  Windows authentication | [Windows Authentication](xref:security/authentication/windowsauth)
 
 ## Additional resources
 

@@ -1,12 +1,13 @@
 ---
-title: Add search to ASP.NET Core Razor Pages
+title: Part 6, add search to ASP.NET Core Razor Pages
 author: rick-anderson
-description: Shows how to add search to ASP.NET Core Razor Pages
+description: Part 6 of tutorial series on Razor Pages.
 ms.author: riande
-ms.date: 7/23/2019
+ms.date: 12/05/2019
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/razor-pages/search
 ---
-# Add search to ASP.NET Core Razor Pages
+# Part 6, add search to ASP.NET Core Razor Pages
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -20,7 +21,7 @@ Add the following highlighted properties to *Pages/Movies/Index.cshtml.cs*:
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Pages/Movies/Index.cshtml.cs?name=snippet_newProps&highlight=11-999)]
 
-* `SearchString`: contains the text users enter in the search text box. `SearchString` is decorated with the [`[BindProperty]`](/dotnet/api/microsoft.aspnetcore.mvc.bindpropertyattribute) attribute. `[BindProperty]` binds form values and query strings with the same name as the property. `(SupportsGet = true)` is required for binding on GET requests.
+* `SearchString`: contains the text users enter in the search text box. `SearchString` has the [`[BindProperty]`](/dotnet/api/microsoft.aspnetcore.mvc.bindpropertyattribute) attribute. `[BindProperty]` binds form values and query strings with the same name as the property. `(SupportsGet = true)` is required for binding on GET requests.
 * `Genres`: contains the list of genres. `Genres` allows the user to select a genre from the list. `SelectList` requires `using Microsoft.AspNetCore.Mvc.Rendering;`
 * `MovieGenre`: contains the specific genre the user selects (for example, "Western").
 * `Genres` and `MovieGenre` are used later in this tutorial.
@@ -123,7 +124,7 @@ Add the following highlighted properties to *Pages/Movies/Index.cshtml.cs*:
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Pages/Movies/Index.cshtml.cs?name=snippet_newProps&highlight=11-999)]
 
-* `SearchString`: contains the text users enter in the search text box. `SearchString` is decorated with the [`[BindProperty]`](/dotnet/api/microsoft.aspnetcore.mvc.bindpropertyattribute) attribute. `[BindProperty]` binds form values and query strings with the same name as the property. `(SupportsGet = true)` is required for binding on GET requests.
+* `SearchString`: contains the text users enter in the search text box. `SearchString` has the [`[BindProperty]`](/dotnet/api/microsoft.aspnetcore.mvc.bindpropertyattribute) attribute. `[BindProperty]` binds form values and query strings with the same name as the property. `(SupportsGet = true)` is required for binding on GET requests.
 * `Genres`: contains the list of genres. `Genres` allows the user to select a genre from the list. `SelectList` requires `using Microsoft.AspNetCore.Mvc.Rendering;`
 * `MovieGenre`: contains the specific genre the user selects (for example, "Western").
 * `Genres` and `MovieGenre` are used later in this tutorial.

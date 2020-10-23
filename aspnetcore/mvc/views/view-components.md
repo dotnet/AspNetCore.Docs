@@ -4,14 +4,15 @@ author: rick-anderson
 description: Learn how view components are used in ASP.NET Core and how to add them to apps.
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/14/2019
+ms.date: 12/18/2019
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/views/view-components
 ---
 # View components in ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/views/view-components/sample) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/views/view-components/sample) ([how to download](xref:index#how-to-download-a-sample))
 
 ## View components
 
@@ -36,7 +37,7 @@ View components are intended anywhere you have reusable rendering logic that's t
 
 A view component consists of two parts: the class (typically derived from [ViewComponent](/dotnet/api/microsoft.aspnetcore.mvc.viewcomponent)) and the result it returns (typically a view). Like controllers, a view component can be a POCO, but most developers will want to take advantage of the methods and properties available by deriving from `ViewComponent`.
 
-When considering if view components meet an app's specifications, consider using Razor Components instead. Razor Components also combine markup with C# code to produce reusable UI units. Razor Components are designed for developer productivity when providing client-side UI logic and composition. For more information, see <xref:blazor/components>.
+When considering if view components meet an app's specifications, consider using Razor Components instead. Razor Components also combine markup with C# code to produce reusable UI units. Razor Components are designed for developer productivity when providing client-side UI logic and composition. For more information, see <xref:blazor/components/index>.
 
 ## Creating a view component
 
@@ -81,6 +82,14 @@ The search path applies to projects using controllers + views and Razor Pages.
 The default view name for a view component is *Default*, which means your view file will typically be named *Default.cshtml*. You can specify a different view name when creating the view component result or when calling the `View` method.
 
 We recommend you name the view file *Default.cshtml* and use the *Views/Shared/Components/{View Component Name}/{View Name}* path. The `PriorityList` view component used in this sample uses *Views/Shared/Components/PriorityList/Default.cshtml* for the view component view.
+
+### Customize the view search path
+
+To customize the view search path, modify Razor's <xref:Microsoft.AspNetCore.Mvc.Razor.RazorViewEngineOptions.ViewLocationFormats> collection. For example, to search for views within the path "/Components/{View Component Name}/{View Name}", add a new item to the collection:
+
+[!code-csharp[](view-components/samples_snapshot/2.x/Startup.cs?name=snippet_ViewLocationFormats&highlight=4)]
+
+In the preceding code, the placeholder "{0}" represents the path "Components/{View Component Name}/{View Name}".
 
 ## Invoking a view component
 
@@ -141,7 +150,7 @@ In this example, the view component is called directly from the controller:
 
 ## Walkthrough: Creating a simple view component
 
-[Download](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/views/view-components/sample), build and test the starter code. It's a simple project with a `ToDo` controller that displays a list of *ToDo* items.
+[Download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/views/view-components/sample), build and test the starter code. It's a simple project with a `ToDo` controller that displays a list of *ToDo* items.
 
 ![List of ToDos](view-components/_static/2dos.png)
 
@@ -323,7 +332,7 @@ The method signature of `PriorityList.Invoke` is synchronous, but Razor finds an
 
 ## All view component parameters are required
 
-Each parameter in a view component is a required attribute. See [this GitHub issue](https://github.com/aspnet/AspNetCore/issues/5011). If any  parameter is omitted:
+Each parameter in a view component is a required attribute. See [this GitHub issue](https://github.com/dotnet/AspNetCore/issues/5011). If any  parameter is omitted:
 
 * The `InvokeAsync` method signature won't match, therefore the method won't execute.
 * The ViewComponent won't render any markup.

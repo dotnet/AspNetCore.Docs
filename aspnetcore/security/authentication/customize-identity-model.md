@@ -4,6 +4,7 @@ author: ajcvickers
 description: This article describes how to customize the underlying Entity Framework Core data model for ASP.NET Core Identity.
 ms.author: avickers
 ms.date: 07/01/2019
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/customize_identity_model
 ---
 # Identity model customization in ASP.NET Core
@@ -344,7 +345,7 @@ Update *Pages/Shared/_LoginPartial.cshtml* and replace `IdentityUser` with `Appl
 Update *Areas/Identity/IdentityHostingStartup.cs*  or `Startup.ConfigureServices` and replace `IdentityUser` with `ApplicationUser`.
 
 ```csharp
-services.AddDefaultIdentity<ApplicationUser>()
+services.AddIdentity<ApplicationUser>()
         .AddEntityFrameworkStores<ApplicationDbContext>()
         .AddDefaultUI();
 ```
@@ -393,8 +394,7 @@ Follow these steps to change the PK type:
 
     ```csharp
     services.AddDefaultIdentity<IdentityUser<Guid>>()
-            .AddEntityFrameworkStores<ApplicationDbContext>()
-            .AddDefaultTokenProviders();
+            .AddEntityFrameworkStores<ApplicationDbContext>();
     ```
 
     ::: moniker-end
@@ -451,7 +451,7 @@ Follow these steps to change the PK type:
     ::: moniker range=">= aspnetcore-2.1"
 
     ```csharp
-    services.AddDefaultIdentity<ApplicationUser>()
+    services.AddIdentity<ApplicationUser>()
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultUI()
             .AddDefaultTokenProviders();
@@ -729,8 +729,8 @@ public class ApplicationDbContext
 Notes:
 
 * This example also includes the `UserRole` join entity, which is needed to navigate the many-to-many relationship from Users to Roles.
-* Remember to change the types of the navigation properties to reflect that `ApplicationXxx` types are now being used instead of `IdentityXxx` types.
-* Remember to use the `ApplicationXxx` in the generic `ApplicationContext` definition.
+* Remember to change the types of the navigation properties to reflect that `Application{...}` types are now being used instead of `Identity{...}` types.
+* Remember to use the `Application{...}` in the generic `ApplicationContext` definition.
 
 ### Add all navigation properties
 

@@ -3,10 +3,13 @@ title: Facebook, Google, and external provider authentication without ASP.NET Co
 author: rick-anderson
 description: An explanation of using Facebook, Google, Twitter, etc. account user authentication without ASP.NET Core Identity.
 ms.author: riande
-ms.date: 11/19/2019
+ms.date: 12/10/2019
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/social/social-without-identity
 ---
 # Use social sign-in provider authentication without ASP.NET Core Identity
+
+By [Kirk Larkin](https://twitter.com/serpent5) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -41,7 +44,7 @@ In `Startup.Configure`, call `UseAuthentication` and `UseAuthorization` between 
 
 [!code-csharp[](social-without-identity/samples_snapshot/3.x/Startup.cs?name=snippet2&highlight=3-4)]
 
-To learn more about authentication schemes and cookie authentication, see <xref:security/authentication/cookie>.
+To learn more about authentication schemes, see [Authentication Concepts](xref:security/authentication/index#authentication-concepts). To learn more about cookie authentication, see <xref:security/authentication/cookie>.
 
 ## Apply authorization
 
@@ -96,7 +99,7 @@ In the `Configure` method, call the `UseAuthentication` method to invoke the Aut
 
 [!code-csharp[](social-without-identity/samples_snapshot/2.x/Startup.cs?name=snippet2)]
 
-To learn more about authentication schemes and cookie authentication, see <xref:security/authentication/cookie>.
+To learn more about authentication schemes, see [Authentication Concepts](xref:security/authentication/index#authentication-concepts). To learn more about cookie authentication, see <xref:security/authentication/cookie>.
 
 ## Apply authorization
 

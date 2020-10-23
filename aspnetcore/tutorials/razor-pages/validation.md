@@ -1,13 +1,14 @@
 ---
-title: Add validation to an ASP.NET Core Razor Page
+title: Part 8, add validation to an ASP.NET Core Razor Page
 author: rick-anderson
-description: Discover how to add validation to a Razor Page in ASP.NET Core.
+description: Part 8 of tutorial series on Razor Pages.
 ms.author: riande
 ms.custom: mvc
 ms.date: 7/23/2019
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/razor-pages/validation
 ---
-# Add validation to an ASP.NET Core Razor Page
+# Part 8, add validation to an ASP.NET Core Razor Page
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -87,6 +88,8 @@ Optional, test server-side validation:
       return Page();
    }
   ```
+  
+Alternatively, you can [Disable client-side validation on the server](xref:mvc/models/validation#disable-client-side-validation).
 
 The following code shows a portion of the *Create.cshtml* page scaffolded earlier in the tutorial. It's used by the Create and Edit pages to display the initial form and to redisplay the form in the event of an error.
 
@@ -106,7 +109,7 @@ Examine the `Movie` class. The `System.ComponentModel.DataAnnotations` namespace
 
 The `DataType` attributes only provide hints for the view engine to format the data (and supplies attributes such as `<a>` for URL's and `<a href="mailto:EmailAddress.com">` for email). Use the `RegularExpression` attribute to validate the format of the data. The `DataType` attribute is used to specify a data type that's more specific than the database intrinsic type. `DataType` attributes are not validation attributes. In the sample application, only the date is displayed, without time.
 
-The `DataType` Enumeration provides for many data types, such as Date, Time, PhoneNumber, Currency, EmailAddress, and more. The `DataType` attribute can also enable the application to automatically provide type-specific features. For example, a `mailto:` link can be created for `DataType.EmailAddress`. A date selector can be provided for `DataType.Date` in browsers that support HTML5. The `DataType` attributes emits HTML 5 `data-` (pronounced data dash) attributes that HTML 5 browsers consume. The `DataType` attributes do **not** provide any validation.
+The `DataType` Enumeration provides for many data types, such as Date, Time, PhoneNumber, Currency, EmailAddress, and more. The `DataType` attribute can also enable the application to automatically provide type-specific features. For example, a `mailto:` link can be created for `DataType.EmailAddress`. A date selector can be provided for `DataType.Date` in browsers that support HTML5. The `DataType` attributes emit HTML 5 `data-` (pronounced data dash) attributes that HTML 5 browsers consume. The `DataType` attributes do **not** provide any validation.
 
 `DataType.Date` doesn't specify the format of the date that's displayed. By default, the data field is displayed according to the default formats based on the server's `CultureInfo`.
 
@@ -125,9 +128,9 @@ The `DisplayFormat` attribute can be used by itself, but it's generally a good i
 
 * The browser can enable HTML5 features (for example to show a calendar control, the locale-appropriate currency symbol, email links, etc.)
 * By default, the browser will render data using the correct format based on your locale.
-* The `DataType` attribute can enable the ASP.NET Core framework to choose the right field template to render the data. The `DisplayFormat` if used by itself uses the string template.
+* The `DataType` attribute can enable the ASP.NET Core framework to choose the right field template to render the data. The `DisplayFormat`, if used by itself, uses the string template.
 
-Note: jQuery validation doesn't work with the `Range` attribute and `DateTime`. For example, the following code will always display a client-side validation error, even when the date is in the specified range:
+**Note:** jQuery validation doesn't work with the `Range` attribute and `DateTime`. For example, the following code will always display a client-side validation error, even when the date is in the specified range:
 
 ```csharp
 [Range(typeof(DateTime), "1/1/1966", "1/1/2020")]
@@ -143,7 +146,7 @@ The following code shows combining attributes on one line:
 
 ### Apply migrations
 
-The DataAnnotations applied to the class change the schema. For example, the DataAnnotations applied to the `Title` field:
+The DataAnnotations applied to the class changes the schema. For example, the DataAnnotations applied to the `Title` field:
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Models/MovieDateRatingDA.cs?name=snippet11)]
 
@@ -154,7 +157,7 @@ The DataAnnotations applied to the class change the schema. For example, the Dat
 
 The `Movie` table currently has the following schema:
 
-``` sql
+```sql
 CREATE TABLE [dbo].[Movie] (
     [ID]          INT             IDENTITY (1, 1) NOT NULL,
     [Title]       NVARCHAR (MAX)  NULL,
@@ -182,7 +185,7 @@ Update-Database
 
 The updated `Movie` table has the following schema:
 
-``` sql
+```sql
 CREATE TABLE [dbo].[Movie] (
     [ID]          INT             IDENTITY (1, 1) NOT NULL,
     [Title]       NVARCHAR (60)   NOT NULL,

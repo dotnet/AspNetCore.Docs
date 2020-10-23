@@ -3,7 +3,8 @@ title: Migrate Authentication and Identity to ASP.NET Core
 author: ardalis
 description: Learn how to migrate authentication and identity from an ASP.NET MVC project to an ASP.NET Core MVC project.
 ms.author: riande
-ms.date: 10/14/2016
+ms.date: 3/22/2020
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: migration/identity
 ---
 # Migrate Authentication and Identity to ASP.NET Core
@@ -16,9 +17,13 @@ In the previous article, we [migrated configuration from an ASP.NET MVC project 
 
 In ASP.NET MVC, authentication and identity features are configured using ASP.NET Identity in *Startup.Auth.cs* and *IdentityConfig.cs*, located in the *App_Start* folder. In ASP.NET Core MVC, these features are configured in *Startup.cs*.
 
-Install the `Microsoft.AspNetCore.Identity.EntityFrameworkCore` and `Microsoft.AspNetCore.Authentication.Cookies` NuGet packages.
+Install the following NuGet packages:
 
-Then, open *Startup.cs* and update the `Startup.ConfigureServices` method to use Entity Framework and Identity services:
+* `Microsoft.AspNetCore.Identity.EntityFrameworkCore`
+* `Microsoft.AspNetCore.Authentication.Cookies`
+* `Microsoft.EntityFrameworkCore.SqlServer`
+
+In *Startup.cs*, update the `Startup.ConfigureServices` method to use Entity Framework and Identity services:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)

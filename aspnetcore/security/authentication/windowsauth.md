@@ -5,12 +5,13 @@ description: Learn how to configure Windows Authentication in ASP.NET Core for I
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: "mvc, seodec18"
-ms.date: 10/21/2019
+ms.date: 02/26/2020
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/windowsauth
 ---
 # Configure Windows Authentication in ASP.NET Core
 
-By [Scott Addie](https://twitter.com/Scott_Addie) and [Luke Latham](https://github.com/guardrex)
+By [Scott Addie](https://twitter.com/Scott_Addie)
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -151,11 +152,14 @@ The [Microsoft.AspNetCore.Authentication.Negotiate](https://www.nuget.org/packag
 > Credentials can be persisted across requests on a connection. *Negotiate authentication must not be used with proxies unless the proxy maintains a 1:1 connection affinity (a persistent connection) with Kestrel.*
 
 > [!NOTE]
-> The Negotiate handler detects if the underlying server supports Windows Authentication natively and if it's enabled. If the server supports Windows Authentication but it's disabled, an error is thrown asking you to enable the server implementation. When Windows Authentication is enabled in the server, the Negotiate handler transparently forwards to it.
+> The Negotiate handler detects if the underlying server supports Windows Authentication natively and if it is enabled. If the server supports Windows Authentication but it is disabled, an error is thrown asking you to enable the server implementation. When Windows Authentication is enabled in the server, the Negotiate handler transparently forwards authentication requests to it.
 
-Add authentication services by invoking <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*> (`Microsoft.AspNetCore.Authentication.Negotiate` namespace) and `AddNegotitate` (`Microsoft.AspNetCore.Authentication.Negotiate` namespace) in `Startup.ConfigureServices`:
+Add authentication services by invoking <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*> and <xref:Microsoft.Extensions.DependencyInjection.NegotiateExtensions.AddNegotiate*> in `Startup.ConfigureServices`:
 
  ```csharp
+// using Microsoft.AspNetCore.Authentication.Negotiate;
+// using Microsoft.Extensions.DependencyInjection;
+
 services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
     .AddNegotiate();
 ```
@@ -168,11 +172,44 @@ app.UseAuthentication();
 
 For more information on middleware, see <xref:fundamentals/middleware/index>.
 
+<a name="rbac"></a>
+### Kerberos authentication and role-based access control (RBAC)
+
+Kerberos authentication on Linux or macOS doesn't provide any role information for an authenticated user. To add role and group information to a Kerberos user, the authentication handler must be configured to retrieve the roles from an LDAP domain. The most basic configuration only specifies an LDAP domain to query against and will use the authenticated user's context to query the LDAP domain:
+
+```csharp
+services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
+    .AddNegotiate(options =>
+    {
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+        {
+            options.EnableLdap("contoso.com");
+        }
+    });
+```
+
+Some configurations may require specific credentials to query the LDAP domain. The credentials can be specified in the options:
+
+```csharp
+services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
+    .AddNegotiate(options =>
+    {
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+        {
+            options.EnableLdap("contoso.com");
+            options.MachineAccountName = "machineName";
+            options.MachineAccountPassword = "PassW0rd";            
+        }
+    });
+```
+
+By default, the negotiate authentication handler resolves nested domains. In a large or complicated LDAP environment, resolving nested domains may result in a slow lookup or a lot of memory being used for each user. Nested domain resolution can be disabled using the `IgnoreNestedGroups` option.
+
 Anonymous requests are allowed. Use [ASP.NET Core Authorization](xref:security/authorization/introduction) to challenge anonymous requests for authentication.
 
 ### Windows environment configuration
 
-The [Microsoft.AspNetCore.Authentication.Negotiate](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Negotiate) component performs User Mode authentication. Service Principal Names (SPNs) must be added to the user account running the service, not the machine account. Execute `setspn -S HTTP/myservername.mydomain.com myservername` in an administrative command shell.
+The [Microsoft.AspNetCore.Authentication.Negotiate](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Negotiate) component performs [User Mode](/windows-hardware/drivers/gettingstarted/user-mode-and-kernel-mode) authentication. Service Principal Names (SPNs) must be added to the user account running the service, not the machine account. Execute `setspn -S HTTP/myservername.mydomain.com myservername` in an administrative command shell.
 
 ### Linux and macOS environment configuration
 
@@ -181,7 +218,7 @@ Instructions for joining a Linux or macOS machine to a Windows domain are availa
 > [!NOTE]
 > When following the guidance in the [Connect Azure Data Studio to your SQL Server using Windows authentication - Kerberos](/sql/azure-data-studio/enable-kerberos?view=sql-server-2017#join-your-os-to-the-active-directory-domain-controller) article, replace `python-software-properties` with `python3-software-properties` if needed.
 
-Once the Linux or macOS machine is joined to the domain, additional steps are required to provide a [keytab file](https://blogs.technet.microsoft.com/pie/2018/01/03/all-you-need-to-know-about-keytab-files/) with the SPNs:
+Once the Linux or macOS machine is joined to the domain, additional steps are required to provide a [keytab file](/archive/blogs/pie/all-you-need-to-know-about-keytab-files) with the SPNs:
 
 * On the domain controller, add new web service SPNs to the machine account:
   * `setspn -S HTTP/mywebservice.mydomain.com mymachine`
@@ -200,7 +237,7 @@ Once the Linux or macOS machine is joined to the domain, additional steps are re
 
 ## HTTP.sys
 
-[HTTP.sys](xref:fundamentals/servers/httpsys) supports Kernel Mode Windows Authentication using Negotiate, NTLM, or Basic authentication.
+[HTTP.sys](xref:fundamentals/servers/httpsys) supports [Kernel Mode](/windows-hardware/drivers/gettingstarted/user-mode-and-kernel-mode) Windows Authentication using Negotiate, NTLM, or Basic authentication.
 
 Add authentication services by invoking <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*> (<xref:Microsoft.AspNetCore.Server.HttpSys?displayProperty=fullName> namespace) in `Startup.ConfigureServices`:
 
@@ -223,7 +260,7 @@ Configure the app's web host to use HTTP.sys with Windows Authentication (*Progr
 ::: moniker-end
 
 > [!NOTE]
-> HTTP.sys delegates to kernel mode authentication with the Kerberos authentication protocol. User mode authentication isn't supported with Kerberos and HTTP.sys. The machine account must be used to decrypt the Kerberos token/ticket that's obtained from Active Directory and forwarded by the client to the server to authenticate the user. Register the Service Principal Name (SPN) for the host, not the user of the app.
+> HTTP.sys delegates to [Kernel Mode](/windows-hardware/drivers/gettingstarted/user-mode-and-kernel-mode) authentication with the Kerberos authentication protocol. [User Mode](/windows-hardware/drivers/gettingstarted/user-mode-and-kernel-mode) authentication isn't supported with Kerberos and HTTP.sys. The machine account must be used to decrypt the Kerberos token/ticket that's obtained from Active Directory and forwarded by the client to the server to authenticate the user. Register the Service Principal Name (SPN) for the host, not the user of the app.
 
 > [!NOTE]
 > HTTP.sys isn't supported on Nano Server version 1709 or later. To use Windows Authentication and HTTP.sys with Nano Server, use a [Server Core (microsoft/windowsservercore) container](https://hub.docker.com/r/microsoft/windowsservercore/). For more information on Server Core, see [What is the Server Core installation option in Windows Server?](/windows-server/administration/server-core/what-is-server-core).

@@ -4,7 +4,8 @@ author: rick-anderson
 description: Learn about model validation in ASP.NET Core MVC and Razor Pages.
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/21/2019
+ms.date: 12/15/2019
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/models/validation
 ---
 
@@ -16,7 +17,7 @@ By [Kirk Larkin](https://github.com/serpent5)
 
 This article explains how to validate user input in an ASP.NET Core MVC or Razor Pages app.
 
-[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/validation/samples) ([how to download](xref:index#how-to-download-a-sample)).
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/validation/samples) ([how to download](xref:index#how-to-download-a-sample)).
 
 ## Model state
 
@@ -44,16 +45,16 @@ Validation attributes let you specify validation rules for model properties. The
 
 Here are some of the built-in validation attributes:
 
-* `[CreditCard]`: Validates that the property has a credit card format.
+* `[CreditCard]`: Validates that the property has a credit card format. Requires [jQuery Validation Additional Methods](https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/additional-methods.min.js).
 * `[Compare]`: Validates that two properties in a model match.
 * `[EmailAddress]`: Validates that the property has an email format.
 * `[Phone]`: Validates that the property has a telephone number format.
 * `[Range]`: Validates that the property value falls within a specified range.
 * `[RegularExpression]`: Validates that the property value matches a specified regular expression.
-* `[Required]`: Validates that the field is not null. See [[Required] attribute](#required-attribute) for details about this attribute's behavior.
+* `[Required]`: Validates that the field is not null. See [`[Required]` attribute](#required-attribute) for details about this attribute's behavior.
 * `[StringLength]`: Validates that a string property value doesn't exceed a specified length limit.
 * `[Url]`: Validates that the property has a URL format.
-* `[Remote]`: Validates input on the client by calling an action method on the server. See [[Remote] attribute](#remote-attribute) for details about this attribute's behavior.
+* `[Remote]`: Validates input on the client by calling an action method on the server. See [`[Remote]` attribute](#remote-attribute) for details about this attribute's behavior.
 
 A complete list of validation attributes can be found in the [System.ComponentModel.DataAnnotations](xref:System.ComponentModel.DataAnnotations) namespace.
 
@@ -73,11 +74,15 @@ Internally, the attributes call `String.Format` with a placeholder for the field
 
 When applied to a `Name` property, the error message created by the preceding code would be "Name length must be between 6 and 8.".
 
-To find out which parameters are passed to `String.Format` for a particular attribute's error message, see the [DataAnnotations source code](https://github.com/dotnet/corefx/tree/master/src/System.ComponentModel.Annotations/src/System/ComponentModel/DataAnnotations).
+To find out which parameters are passed to `String.Format` for a particular attribute's error message, see the [DataAnnotations source code](https://github.com/dotnet/runtime/tree/master/src/libraries/System.ComponentModel.Annotations/src/System/ComponentModel/DataAnnotations).
 
 ## [Required] attribute
 
-By default, the validation system treats non-nullable parameters or properties as if they had a `[Required]` attribute. [Value types](/dotnet/csharp/language-reference/keywords/value-types) such as `decimal` and `int` are non-nullable.
+The validation system in .NET Core 3.0 and later treats non-nullable parameters or bound properties as if they had a `[Required]` attribute. [Value types](/dotnet/csharp/language-reference/keywords/value-types) such as `decimal` and `int` are non-nullable. This behavior can be disabled by configuring <xref:Microsoft.AspNetCore.Mvc.MvcOptions.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes> in `Startup.ConfigureServices`:
+
+```csharp
+services.AddControllers(options => options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true);
+```
 
 ### [Required] validation on the server
 
@@ -107,7 +112,7 @@ The `[Remote]` attribute implements client-side validation that requires calling
 
 To implement remote validation:
 
-1. Create an action method for JavaScript to call.  The jQuery Validate [remote](https://jqueryvalidation.org/remote-method/) method expects a JSON response:
+1. Create an action method for JavaScript to call.  The jQuery Validation [remote](https://jqueryvalidation.org/remote-method/) method expects a JSON response:
 
    * `true` means the input data is valid.
    * `false`, `undefined`, or `null` means the input is invalid. Display the default error message.
@@ -129,7 +134,7 @@ The `AdditionalFields` property of the `[Remote]` attribute lets you validate co
 
 [!code-csharp[](validation/samples/3.x/ValidationSample/Models/User.cs?name=snippet_Name&highlight=1,5)]
 
-`AdditionalFields` could be set explicitly to the strings `"FirstName"` and `"LastName"`, but using the [`nameof`](/dotnet/csharp/language-reference/keywords/nameof) operator simplifies later refactoring. The action method for this validation must accept both `firstName` and `lastName` arguments:
+`AdditionalFields` could be set explicitly to the strings "FirstName" and "LastName", but using the [nameof](/dotnet/csharp/language-reference/keywords/nameof) operator simplifies later refactoring. The action method for this validation must accept both `firstName` and `lastName` arguments:
 
 [!code-csharp[](validation/samples/3.x/ValidationSample/Controllers/UsersController.cs?name=snippet_VerifyName)]
 
@@ -137,7 +142,7 @@ When the user enters a first or last name, JavaScript makes a remote call to see
 
 To validate two or more additional fields, provide them as a comma-delimited list. For example, to add a `MiddleName` property to the model, set the `[Remote]` attribute as shown in the following example:
 
-```cs
+```csharp
 [Remote(action: "VerifyName", controller: "Users", AdditionalFields = nameof(FirstName) + "," + nameof(LastName))]
 public string MiddleName { get; set; }
 ```
@@ -233,7 +238,7 @@ Client-side validation avoids an unnecessary round trip to the server when there
 
 [!code-cshtml[](validation/samples/3.x/ValidationSample/Views/Shared/_ValidationScriptsPartial.cshtml?name=snippet_Scripts)]
 
-The [jQuery Unobtrusive Validation](https://github.com/aspnet/jquery-validation-unobtrusive) script is a custom Microsoft front-end library that builds on the popular [jQuery Validate](https://jqueryvalidation.org/) plugin. Without jQuery Unobtrusive Validation, you would have to code the same validation logic in two places: once in the server-side validation attributes on model properties, and then again in client-side scripts. Instead, [Tag Helpers](xref:mvc/views/tag-helpers/intro) and [HTML helpers](xref:mvc/views/overview) use the validation attributes and type metadata from model properties to render HTML 5 `data-` attributes for the form elements that need validation. jQuery Unobtrusive Validation parses the `data-` attributes and passes the logic to jQuery Validate, effectively "copying" the server-side validation logic to the client. You can display validation errors on the client using tag helpers as shown here:
+The [jQuery Unobtrusive Validation](https://github.com/aspnet/jquery-validation-unobtrusive) script is a custom Microsoft front-end library that builds on the popular [jQuery Validation](https://jqueryvalidation.org/) plugin. Without jQuery Unobtrusive Validation, you would have to code the same validation logic in two places: once in the server-side validation attributes on model properties, and then again in client-side scripts. Instead, [Tag Helpers](xref:mvc/views/tag-helpers/intro) and [HTML helpers](xref:mvc/views/overview) use the validation attributes and type metadata from model properties to render HTML 5 `data-` attributes for the form elements that need validation. jQuery Unobtrusive Validation parses the `data-` attributes and passes the logic to jQuery Validation, effectively "copying" the server-side validation logic to the client. You can display validation errors on the client using tag helpers as shown here:
 
 [!code-cshtml[](validation/samples/3.x/ValidationSample/Pages/Movies/Create.cshtml?name=snippet_ReleaseDate&highlight=3-4)]
 
@@ -250,15 +255,19 @@ The preceding tag helpers render the following HTML:
 </div>
 ```
 
-Notice that the `data-` attributes in the HTML output correspond to the validation attributes for the `Movie.ReleaseDate` property. The `data-val-required` attribute contains an error message to display if the user doesn't fill in the release date field. jQuery Unobtrusive Validation passes this value to the jQuery Validate [`required()`](https://jqueryvalidation.org/required-method/) method, which then displays that message in the accompanying **\<span>** element.
+Notice that the `data-` attributes in the HTML output correspond to the validation attributes for the `Movie.ReleaseDate` property. The `data-val-required` attribute contains an error message to display if the user doesn't fill in the release date field. jQuery Unobtrusive Validation passes this value to the jQuery Validation [required()](https://jqueryvalidation.org/required-method/) method, which then displays that message in the accompanying **\<span>** element.
 
 Data type validation is based on the .NET type of a property, unless that is overridden by a `[DataType]` attribute. Browsers have their own default error messages, but the jQuery Validation Unobtrusive Validation package can override those messages. `[DataType]` attributes and subclasses such as `[EmailAddress]` let you specify the error message.
 
+## Unobtrusive validation
+
+For information on unobtrusive validation, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/1111).
+
 ### Add Validation to Dynamic Forms
 
-jQuery Unobtrusive Validation passes validation logic and parameters to jQuery Validate when the page first loads. Therefore, validation doesn't work automatically on dynamically generated forms. To enable validation, tell jQuery Unobtrusive Validation to parse the dynamic form immediately after you create it. For example, the following code sets up client-side validation on a form added via AJAX.
+jQuery Unobtrusive Validation passes validation logic and parameters to jQuery Validation when the page first loads. Therefore, validation doesn't work automatically on dynamically generated forms. To enable validation, tell jQuery Unobtrusive Validation to parse the dynamic form immediately after you create it. For example, the following code sets up client-side validation on a form added via AJAX.
 
-```js
+```javascript
 $.get({
     url: "https://url/that/returns/a/form",
     dataType: "html",
@@ -275,13 +284,13 @@ $.get({
 })
 ```
 
-The `$.validator.unobtrusive.parse()` method accepts a jQuery selector for its one argument. This method tells jQuery Unobtrusive Validation to parse the `data-` attributes of forms within that selector. The values of those attributes are then passed to the jQuery Validate plugin.
+The `$.validator.unobtrusive.parse()` method accepts a jQuery selector for its one argument. This method tells jQuery Unobtrusive Validation to parse the `data-` attributes of forms within that selector. The values of those attributes are then passed to the jQuery Validation plugin.
 
 ### Add Validation to Dynamic Controls
 
 The `$.validator.unobtrusive.parse()` method works on an entire form, not on individual dynamically generated controls, such as `<input>` and `<select/>`. To reparse the form, remove the validation data that was added when the form was parsed earlier, as shown in the following example:
 
-```js
+```javascript
 $.get({
     url: "https://url/that/returns/a/control",
     dataType: "html",
@@ -291,7 +300,7 @@ $.get({
     success: function(newInputHTML) {
         var form = document.getElementById("my-form");
         form.insertAdjacentHTML("beforeend", newInputHTML);
-        $(form).removeData("validator")    // Added by jQuery Validate
+        $(form).removeData("validator")    // Added by jQuery Validation
                .removeData("unobtrusiveValidation");   // Added by jQuery Unobtrusive Validation
         $.validator.unobtrusive.parse(form);
     }
@@ -300,11 +309,11 @@ $.get({
 
 ## Custom client-side validation
 
-Custom client-side validation is done by generating `data-` HTML attributes that work with a custom jQuery Validate adapter. The following sample adapter code was written for the `[ClassicMovie]` and `[ClassicMovieWithClientValidator]` attributes that were introduced earlier in this article:
+Custom client-side validation is done by generating `data-` HTML attributes that work with a custom jQuery Validation adapter. The following sample adapter code was written for the `[ClassicMovie]` and `[ClassicMovieWithClientValidator]` attributes that were introduced earlier in this article:
 
 [!code-javascript[](validation/samples/3.x/ValidationSample/wwwroot/js/classicMovieValidator.js)]
 
-For information about how to write adapters, see the [jQuery Validate documentation](https://jqueryvalidation.org/documentation/).
+For information about how to write adapters, see the [jQuery Validation documentation](https://jqueryvalidation.org/documentation/).
 
 The use of an adapter for a given field is triggered by `data-` attributes that:
 
@@ -376,7 +385,7 @@ The preceding approach won't prevent client side validation of ASP.NET Core Iden
 
 This article explains how to validate user input in an ASP.NET Core MVC or Razor Pages app.
 
-[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/validation/sample) ([how to download](xref:index#how-to-download-a-sample)).
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/validation/sample) ([how to download](xref:index#how-to-download-a-sample)).
 
 ## Model state
 
@@ -396,7 +405,7 @@ Validation is automatic, but you might want to repeat it manually. For example, 
 
 ## Validation attributes
 
-Validation attributes let you specify validation rules for model properties. The following example from [the sample app](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/validation/sample) shows a model class that is annotated with validation attributes. The `[ClassicMovie]` attribute is a custom validation attribute and the others are built-in. Not shown is `[ClassicMovie2]`, which shows an alternative way to implement a custom attribute.
+Validation attributes let you specify validation rules for model properties. The following example from [the sample app](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/validation/sample) shows a model class that is annotated with validation attributes. The `[ClassicMovie]` attribute is a custom validation attribute and the others are built-in. Not shown is `[ClassicMovie2]`, which shows an alternative way to implement a custom attribute.
 
 [!code-csharp[](validation/samples/2.x/ValidationSample/Models/Movie.cs?name=snippet_ModelClass)]
 
@@ -410,10 +419,12 @@ Built-in validation attributes include:
 * `[Phone]`: Validates that the property has a telephone number format.
 * `[Range]`: Validates that the property value falls within a specified range.
 * `[RegularExpression]`: Validates that the property value matches a specified regular expression.
-* `[Required]`: Validates that the field is not null. See [[Required] attribute](#required-attribute) for details about this attribute's behavior.
+* `[Required]`: Validates that the field is not null. See [`[Required]` attribute](#required-attribute) for details about this attribute's behavior.
 * `[StringLength]`: Validates that a string property value doesn't exceed a specified length limit.
 * `[Url]`: Validates that the property has a URL format.
-* `[Remote]`: Validates input on the client by calling an action method on the server. See [[Remote] attribute](#remote-attribute) for details about this attribute's behavior.
+* `[Remote]`: Validates input on the client by calling an action method on the server. See [`[Remote]` attribute](#remote-attribute) for details about this attribute's behavior.
+
+When using the `[RegularExpression]` attribute with client-side validation, the regex is executed in JavaScript on the client. This means [ECMAScript](/dotnet/standard/base-types/regular-expression-options#ecmascript-matching-behavior) matching behavior will be used. For more information, see [this GitHub issue](https://github.com/dotnet/corefx/issues/42487).
 
 A complete list of validation attributes can be found in the [System.ComponentModel.DataAnnotations](xref:System.ComponentModel.DataAnnotations) namespace.
 
@@ -489,7 +500,7 @@ The `AdditionalFields` property of the `[Remote]` attribute lets you validate co
 
 [!code-csharp[](validation/samples/2.x/ValidationSample/Models/User.cs?name=snippet_UserNameProperties)]
 
-`AdditionalFields` could be set explicitly to the strings `"FirstName"` and `"LastName"`, but using the [`nameof`](/dotnet/csharp/language-reference/keywords/nameof) operator simplifies later refactoring. The action method for this validation must accept both first name and last name arguments:
+`AdditionalFields` could be set explicitly to the strings `"FirstName"` and `"LastName"`, but using the [nameof](/dotnet/csharp/language-reference/keywords/nameof) operator simplifies later refactoring. The action method for this validation must accept both first name and last name arguments:
 
 [!code-csharp[](validation/samples/2.x/ValidationSample/Controllers/UsersController.cs?name=snippet_VerifyName)]
 
@@ -497,7 +508,7 @@ When the user enters a first or last name, JavaScript makes a remote call to see
 
 To validate two or more additional fields, provide them as a comma-delimited list. For example, to add a `MiddleName` property to the model, set the `[Remote]` attribute as shown in the following example:
 
-```cs
+```csharp
 [Remote(action: "VerifyName", controller: "Users", AdditionalFields = nameof(FirstName) + "," + nameof(LastName))]
 public string MiddleName { get; set; }
 ```
@@ -619,7 +630,7 @@ The preceding tag helpers render the following HTML.
 </form>
 ```
 
-Notice that the `data-` attributes in the HTML output correspond to the validation attributes for the `ReleaseDate` property. The `data-val-required` attribute contains an error message to display if the user doesn't fill in the release date field. jQuery Unobtrusive Validation passes this value to the jQuery Validate [`required()`](https://jqueryvalidation.org/required-method/) method, which then displays that message in the accompanying **\<span>** element.
+Notice that the `data-` attributes in the HTML output correspond to the validation attributes for the `ReleaseDate` property. The `data-val-required` attribute contains an error message to display if the user doesn't fill in the release date field. jQuery Unobtrusive Validation passes this value to the jQuery Validate [required()](https://jqueryvalidation.org/required-method/) method, which then displays that message in the accompanying **\<span>** element.
 
 Data type validation is based on the .NET type of a property, unless that is overridden by a `[DataType]` attribute. Browsers have their own default error messages, but the jQuery Validation Unobtrusive Validation package can override those messages. `[DataType]` attributes and subclasses such as `[EmailAddress]` let you specify the error message.
 
@@ -627,7 +638,7 @@ Data type validation is based on the .NET type of a property, unless that is ove
 
 jQuery Unobtrusive Validation passes validation logic and parameters to jQuery Validate when the page first loads. Therefore, validation doesn't work automatically on dynamically generated forms. To enable validation, tell jQuery Unobtrusive Validation to parse the dynamic form immediately after you create it. For example, the following code sets up client-side validation on a form added via AJAX.
 
-```js
+```javascript
 $.get({
     url: "https://url/that/returns/a/form",
     dataType: "html",
@@ -650,7 +661,7 @@ The `$.validator.unobtrusive.parse()` method accepts a jQuery selector for its o
 
 The `$.validator.unobtrusive.parse()` method works on an entire form, not on individual dynamically generated controls, such as `<input>` and `<select/>`. To reparse the form, remove the validation data that was added when the form was parsed earlier, as shown in the following example:
 
-```js
+```javascript
 $.get({
     url: "https://url/that/returns/a/control",
     dataType: "html",

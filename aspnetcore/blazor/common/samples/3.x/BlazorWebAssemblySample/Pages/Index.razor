@@ -8,9 +8,7 @@
     Razor components can be nested. HeadingComponent is a component 
     supplied by the Razor file HeadingComponent.razor.
 *@
-<!-- <snippet_HeadingComponent> -->
 <HeadingComponent />
-<!-- </snippet_HeadingComponent> -->
 
 <h2>Index.razor</h2>
 
@@ -29,18 +27,18 @@
 *@@
 
 @@*
-    Heading text is rendered by evaluating the _headingText field.
+    Heading text is rendered by evaluating the headingText field.
     The font-style of the heading is rendered by evaluating the
-    _headingFontStyle field.
+    headingFontStyle field.
 *@@
-&lt;h1 style="font-style:@@_headingFontStyle"&gt;@@_headingText&lt;/h1&gt;
+&lt;h1 style="font-style:@@headingFontStyle"&gt;@@headingText&lt;/h1&gt;
 
 &lt;form&gt;
     &lt;div&gt;
         @@*
-            A check box sets the font style and is bound to the _italicsCheck field.
+            A check box sets the font style and is bound to the italicsCheck field.
         *@@
-        &lt;input type="checkbox" id="italicsCheck" @@bind="_italicsCheck" /&gt;
+        &lt;input type="checkbox" id="italicsCheck" @@bind="italicsCheck" /&gt;
         &lt;label class="form-check-label" for="italicsCheck"&gt;Use italics&lt;/label&gt;
     &lt;/div&gt;
 
@@ -54,16 +52,16 @@
 &lt;/form&gt;
 
 @@code {
-    private static TextInfo _tinfo = CultureInfo.CurrentCulture.TextInfo;
-    private string _headingText = _tinfo.ToTitleCase("welcome to blazor!");
-    private string _headingFontStyle = "normal";
-    private bool _italicsCheck = false;
+    private static TextInfo tinfo = CultureInfo.CurrentCulture.TextInfo;
+    private string headingText = tinfo.ToTitleCase("welcome to blazor!");
+    private string headingFontStyle = "normal";
+    private bool italicsCheck = false;
 
-    // When UpdateHeading is executed, _italicsCheck determines
-    // the value of _headingFontStyle to set the font style of the
+    // When UpdateHeading is executed, italicsCheck determines
+    // the value of headingFontStyle to set the font style of the
     // heading.
     public void UpdateHeading()
     {
-        _headingFontStyle = _italicsCheck ? "italic" : "normal";
+        headingFontStyle = italicsCheck ? "italic" : "normal";
     }
 }</code></pre>

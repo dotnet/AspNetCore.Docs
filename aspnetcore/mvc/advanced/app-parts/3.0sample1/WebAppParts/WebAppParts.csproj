@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MySharedApp\MySharedApp.csproj" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Reference Include="MySharedApp">
+      <HintPath>..\MySharedApp\bin\Debug\netcoreapp3.0\MySharedApp.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="3.1.6" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.0.0" />
+                      </ItemGroup>
+
+</Project>

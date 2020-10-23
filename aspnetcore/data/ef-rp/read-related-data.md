@@ -1,14 +1,15 @@
 ---
-title: Razor Pages with EF Core in ASP.NET Core - Read Related Data - 6 of 8
+title: Part 6, Razor Pages with EF Core in ASP.NET Core - Read Related Data
 author: rick-anderson
-description: In this tutorial you read and display related data -- that is, data that the Entity Framework loads into navigation properties.
+description: Part 6 of Razor Pages and Entity Framework tutorial series.
 ms.author: riande
 ms.custom: mvc
 ms.date: 09/28/2019
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: data/ef-rp/read-related-data
 ---
 
-# Razor Pages with EF Core in ASP.NET Core - Read Related Data - 6 of 8
+# Part 6, Razor Pages with EF Core in ASP.NET Core - Read Related Data
 
 By [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com/thereformedprog), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -41,13 +42,13 @@ There are several ways that EF Core can load related data into the navigation pr
 
   ![Separate queries example](read-related-data/_static/separate-queries.png)
 
-  Note: EF Core automatically fixes up navigation properties to any other entities that were previously loaded into the context instance. Even if the data for a navigation property is *not* explicitly included, the property may still be populated if some or all of the related entities were previously loaded.
+  **Note:** EF Core automatically fixes up navigation properties to any other entities that were previously loaded into the context instance. Even if the data for a navigation property is *not* explicitly included, the property may still be populated if some or all of the related entities were previously loaded.
 
 * [Explicit loading](/ef/core/querying/related-data#explicit-loading). When the entity is first read, related data isn't retrieved. Code must be written to retrieve the related data when it's needed. Explicit loading with separate queries results in multiple queries sent to the database. With explicit loading, the code specifies the navigation properties to be loaded. Use the `Load` method to do explicit loading. For example:
 
   ![Explicit loading example](read-related-data/_static/explicit-loading.png)
 
-* [Lazy loading](/ef/core/querying/related-data#lazy-loading). [Lazy loading was added to EF Core in version 2.1](/ef/core/querying/related-data#lazy-loading). When the entity is first read, related data isn't retrieved. The first time a navigation property is accessed, the data required for that navigation property is automatically retrieved. A query is sent to the database each time a navigation property is accessed for the first time.
+* [Lazy loading](/ef/core/querying/related-data#lazy-loading). When the entity is first read, related data isn't retrieved. The first time a navigation property is accessed, the data required for that navigation property is automatically retrieved. A query is sent to the database each time a navigation property is accessed for the first time. Lazy loading can hurt performance, for example when developers use N+1 patterns, loading a parent and enumerating through children.
 
 ## Create Course pages
 
@@ -132,11 +133,13 @@ The following code loads related data with the `Select` method:
 
 [!code-csharp[](intro/samples/cu30snapshots/6-related/Pages/Courses/IndexSelect.cshtml.cs?name=snippet_RevisedIndexMethod&highlight=6)]
 
+The preceding code doesn't return any entity types, therefore no tracking is done. For more information about the EF tracking, see [Tracking vs. No-Tracking Queries](/ef/core/querying/tracking).
+
 The `CourseViewModel`:
 
 [!code-csharp[](intro/samples/cu30snapshots/6-related/Models/SchoolViewModels/CourseViewModel.cs?name=snippet)]
 
-See [IndexSelect.cshtml](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu30snapshots/6-related/Pages/Courses/IndexSelect.cshtml) and [IndexSelect.cshtml.cs](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu30snapshots/6-related/Pages/Courses/IndexSelect.cshtml.cs) for a complete example.
+See [IndexSelect.cshtml](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu30snapshots/6-related/Pages/Courses/IndexSelect.cshtml) and [IndexSelect.cshtml.cs](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu30snapshots/6-related/Pages/Courses/IndexSelect.cshtml.cs) for a complete example.
 
 ## Create Instructor pages
 
@@ -218,7 +221,7 @@ The following code executes when an instructor is selected (`id != null`).
 
 The selected instructor is retrieved from the list of instructors in the view model. The view model's `Courses` property is loaded with the `Course` entities from that instructor's `CourseAssignments` navigation property.
 
-The `Where` method returns a collection. But in this case, the filter will select a single entity. so the `Single` method is called to convert the collection into a single `Instructor` entity. The `Instructor` entity provides access to the `CourseAssignments` property. `CourseAssignments` provides access to the related `Course` entities.
+The `Where` method returns a collection. But in this case, the filter will select a single entity, so the `Single` method is called to convert the collection into a single `Instructor` entity. The `Instructor` entity provides access to the `CourseAssignments` property. `CourseAssignments` provides access to the related `Course` entities.
 
 ![Instructor-to-Courses m:M](complex-data-model/_static/courseassignment.png)
 
@@ -327,7 +330,7 @@ The next tutorial shows how to update related data.
 
 In this tutorial, related data is read and displayed. Related data is data that EF Core loads into navigation properties.
 
-If you run into problems you can't solve, [download or view the completed app.](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples) [Download instructions](xref:index#how-to-download-a-sample).
+If you run into problems you can't solve, [download or view the completed app.](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples) [Download instructions](xref:index#how-to-download-a-sample).
 
 The following illustrations show the completed pages for this tutorial:
 
@@ -405,7 +408,7 @@ The preceding code adds `AsNoTracking`. `AsNoTracking` improves performance beca
 
 Update *Pages/Courses/Index.cshtml* with the following highlighted markup:
 
-[!code-html[](intro/samples/cu/Pages/Courses/Index.cshtml?highlight=4,7,15-17,34-36,44)]
+[!code-cshtml[](intro/samples/cu/Pages/Courses/Index.cshtml?highlight=4,7,15-17,34-36,44)]
 
 The following changes have been made to the scaffolded code:
 
@@ -439,7 +442,7 @@ The `CourseViewModel`:
 
 [!code-csharp[](intro/samples/cu/Models/SchoolViewModels/CourseViewModel.cs?name=snippet)]
 
-See [IndexSelect.cshtml](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu/Pages/Courses/IndexSelect.cshtml) and [IndexSelect.cshtml.cs](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu/Pages/Courses/IndexSelect.cshtml.cs) for a complete example.
+See [IndexSelect.cshtml](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu/Pages/Courses/IndexSelect.cshtml) and [IndexSelect.cshtml.cs](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu/Pages/Courses/IndexSelect.cshtml.cs) for a complete example.
 
 ## Create an Instructors page that shows Courses and Enrollments
 
@@ -500,7 +503,7 @@ The query has two includes:
 
 Update *Pages/Instructors/Index.cshtml* with the following markup:
 
-[!code-html[](intro/samples/cu/Pages/Instructors/IndexRRD.cshtml?range=1-65&highlight=1,5,8,16-21,25-32,43-57)]
+[!code-cshtml[](intro/samples/cu/Pages/Instructors/IndexRRD.cshtml?range=1-65&highlight=1,5,8,16-21,25-32,43-57)]
 
 The preceding markup makes the following changes:
 
@@ -580,7 +583,7 @@ The following code populates the view model's `Enrollments` property when a cour
 
 Add the following markup to the end of the *Pages/Instructors/Index.cshtml* Razor Page:
 
-[!code-html[](intro/samples/cu/Pages/Instructors/IndexRRD.cshtml?range=60-102&highlight=7-999)]
+[!code-cshtml[](intro/samples/cu/Pages/Instructors/IndexRRD.cshtml?range=60-102&highlight=7-999)]
 
 The preceding markup displays a list of courses related to an instructor when an instructor is selected.
 
@@ -596,7 +599,7 @@ Update the query in the `OnGetAsync` method in *Pages/Instructors/Index.cshtml.c
 
 Update *Pages/Instructors/Index.cshtml*. Add the following markup to the end of the file:
 
-[!code-html[](intro/samples/cu/Pages/Instructors/IndexRRD.cshtml?range=103-)]
+[!code-cshtml[](intro/samples/cu/Pages/Instructors/IndexRRD.cshtml?range=103-)]
 
 The preceding markup displays a list of the students who are enrolled in the selected course.
 

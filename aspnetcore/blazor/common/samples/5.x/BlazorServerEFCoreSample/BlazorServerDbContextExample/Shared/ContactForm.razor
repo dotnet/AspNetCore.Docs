@@ -1,0 +1,142 @@
+﻿@using Microsoft.AspNetCore.Components.Forms;
+
+<h1>@Mode Contact</h1>
+<hr />
+@if (Contact != null)
+{
+    <EditForm Model="@Contact"
+              OnInvalidSubmit="(async () => await HandleSubmitAsync(false))"
+              OnValidSubmit="(async () => await HandleSubmitAsync(true))">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+        <h2>🆔 Identification</h2>
+        <p>
+            <label>
+                First Name:
+                <InputText @bind-Value="Contact.FirstName" />
+                <ConcurrencyField Model="@Contact"
+                                  DbModel="@DbContact"
+                                  Property="obj => obj?.FirstName" />
+            </label>
+            <label>
+                Last Name (optional):
+                <InputText @bind-Value="Contact.LastName" />
+                <ConcurrencyField Model="@Contact"
+                                  DbModel="@DbContact"
+                                  Property="obj => obj?.LastName" />
+            </label>
+        </p>
+        <h2>📞 Phone</h2>
+        <p>
+            <label>
+                Phone (optional):
+                <InputText @bind-Value="Contact.Phone" />
+                <ConcurrencyField Model="@Contact"
+                                  DbModel="@DbContact"
+                                  Property="obj => obj?.Phone" />
+            </label>
+        </p>
+        <h2>🏠 Home Address</h2>
+        <p>
+            <label>
+                Street:
+                <InputText @bind-Value="Contact.Street" />
+                <ConcurrencyField Model="@Contact"
+                                  DbModel="@DbContact"
+                                  Property="obj => obj?.Street" />
+            </label>
+            <label>
+                City:
+                <InputText @bind-Value="Contact.City" />
+                <ConcurrencyField Model="@Contact"
+                                  DbModel="@DbContact"
+                                  Property="obj => obj?.City" />
+            </label>
+            <label>
+                State:
+                <InputText @bind-Value="Contact.State" />
+                <ConcurrencyField Model="@Contact"
+                                  DbModel="@DbContact"
+                                  Property="obj => obj?.State" />
+            </label>
+            <label>
+                ZipCode:
+                <InputText @bind-Value="Contact.ZipCode" />
+                <ConcurrencyField Model="@Contact"
+                                  DbModel="@DbContact"
+                                  Property="obj => obj?.ZipCode" />
+            </label>
+        </p>
+        <br />
+        <button disabled="@Busy" class="btn btn-warning"
+                @onclick="CancelAsync">
+            Cancel
+        </button>&nbsp;
+        <button disabled="@Busy" type="submit"
+                class="btn btn-primary">
+            Submit
+        </button>
+    </EditForm>
+}
+@code {
+    /// <summary>
+    /// Let parent handle result of validation.
+    /// </summary>
+    [Parameter]
+    public EventCallback<bool> ValidationResult { get; set; }
+
+    /// <summary>
+    /// Let parent handle what to do on cancel.
+    /// </summary>
+    [Parameter]
+    public EventCallback CancelRequest { get; set; }
+
+    /// <summary>
+    /// <c>True</c> if add mode.
+    /// </summary>
+    [Parameter]
+    public bool IsAdd { get; set; }
+
+    /// <summary>
+    /// The <see cref="Contact"/> to upsert.
+    /// </summary>
+    [Parameter]
+    public Contact Contact { get; set; }
+
+    /// <summary>
+    /// The database version of <see cref="Contact"/> if a concurrency issue
+    /// exists.
+    /// </summary>
+    [Parameter]
+    public Contact DbContact { get; set; }
+
+    /// <summary>
+    /// Prevent multiple asynchronous operations at the same time.
+    /// </summary>
+    [Parameter]
+    public bool Busy { get; set; }
+
+    /// <summary>
+    /// Mode.
+    /// </summary>
+    private string Mode => IsAdd ? "Add" : "Edit";
+
+    /// <summary>
+    /// Ask to cancel.
+    /// </summary>
+    /// <returns>A <see cref="Task"/>.</returns>
+    private Task CancelAsync()
+    {
+        return CancelRequest.InvokeAsync(null);
+    }
+
+    /// <summary>
+    /// Handle form submission request.
+    /// </summary>
+    /// <param name="isValid"><c>True</c> when field validation passed.</param>
+    /// <returns>A <see cref="Task"/>.</returns>
+    private Task HandleSubmitAsync(bool isValid)
+    {
+        return ValidationResult.InvokeAsync(isValid);
+    }
+}

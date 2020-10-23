@@ -20,6 +20,8 @@ namespace ObjectPoolSample
                 var policy = new StringBuilderPooledObjectPolicy();
                 return provider.Create(policy);
             });
+
+            services.AddWebEncoders();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

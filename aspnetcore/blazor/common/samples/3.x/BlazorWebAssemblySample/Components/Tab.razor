@@ -1,8 +1,8 @@
-﻿@using BlazorSample.UIInterfaces
+@using BlazorSample.UIInterfaces
 @implements ITab
 
 <li>
-    <a @onclick="Activate" class="nav-link @TitleCssClass" role="button">
+    <a @onclick="ActivateTab" class="nav-link @TitleCssClass" role="button">
         @Title
     </a>
 </li>
@@ -24,8 +24,8 @@
         ContainerTabSet.AddTab(this);
     }
 
-    private void Activate()
+    private void ActivateTab()
     {
-        ContainerTabSet.SetActivateTab(this);
+        ContainerTabSet.SetActiveTab(this);
     }
 }

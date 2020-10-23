@@ -36,7 +36,7 @@ namespace SignalR_CORS
 
             app.UseSignalR(routes =>
             {
-                routes.MapHub<ChatHub>("/chatHub");
+                routes.MapHub<ChatHub>("/chathub");
             });
 
             // ... other middleware ...
@@ -86,7 +86,7 @@ namespace SignalR_CORS
 
             app.UseSignalR(routes =>
             {
-                routes.MapHub<ChatHub>("/chatHub");
+                routes.MapHub<ChatHub>("/chathub");
             });
 
             // ... other middleware ...

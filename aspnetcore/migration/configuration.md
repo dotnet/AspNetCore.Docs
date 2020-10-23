@@ -4,6 +4,7 @@ author: ardalis
 description: Learn how to migrate configuration from an ASP.NET MVC project to an ASP.NET Core MVC project.
 ms.author: riande
 ms.date: 10/14/2016
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: migration/configuration
 ---
 # Migrate configuration to ASP.NET Core
@@ -12,7 +13,7 @@ By [Steve Smith](https://ardalis.com/) and [Scott Addie](https://scottaddie.com)
 
 In the previous article, we began to [migrate an ASP.NET MVC project to ASP.NET Core MVC](xref:migration/mvc). In this article, we migrate configuration.
 
-[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/migration/configuration/samples) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/migration/configuration/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Setup configuration
 

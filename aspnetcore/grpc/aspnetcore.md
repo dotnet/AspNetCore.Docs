@@ -5,11 +5,14 @@ description: Learn the basic concepts when writing gRPC services with ASP.NET Co
 monikerRange: '>= aspnetcore-3.0'
 ms.author: johluo
 ms.date: 09/03/2019
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: grpc/aspnetcore
 ---
 # gRPC services with ASP.NET Core
 
 This document shows how to get started with gRPC services using ASP.NET Core.
+
+[!INCLUDE[](~/includes/gRPCazure.md)]
 
 ## Prerequisites
 
@@ -29,7 +32,7 @@ This document shows how to get started with gRPC services using ASP.NET Core.
 
 ## Get started with gRPC service in ASP.NET Core
 
-[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/grpc/grpc-start/sample) ([how to download](xref:index#how-to-download-a-sample)).
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/grpc/grpc-start/sample) ([how to download](xref:index#how-to-download-a-sample)).
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -53,6 +56,7 @@ In *Startup.cs*:
 * Each gRPC service is added to the routing pipeline through the `MapGrpcService` method.
 
 [!code-csharp[](~/tutorials/grpc/grpc-start/sample/GrpcGreeter/Startup.cs?name=snippet&highlight=7,24)]
+[!INCLUDE[about the series](~/includes/code-comments-loc.md)]
 
 ASP.NET Core middlewares and features share the routing pipeline, therefore an app can be configured to serve additional request handlers. The additional request handlers, such as MVC controllers, work in parallel with the configured gRPC services.
 
@@ -117,7 +121,6 @@ The gRPC API provides access to some HTTP/2 message data, such as the method, ho
 
 [!code-csharp[](~/grpc/aspnetcore/sample/GrcpService/GreeterService2.cs?highlight=6-7&name=snippet)]
 
-[!INCLUDE[](~/includes/gRPCazure.md)]
 
 ## Additional resources
 

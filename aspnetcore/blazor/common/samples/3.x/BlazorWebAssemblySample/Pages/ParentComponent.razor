@@ -1,10 +1,9 @@
-<!-- <snippet_ParentComponent> -->
 @page "/ParentComponent"
 
 <h1>Parent-child example</h1>
 
 <ChildComponent Title="Panel Title from Parent"
-                OnClick="@ShowMessage">
+                OnClickCallback="@ShowMessage">
     Content of the child component is supplied
     by the parent component.
 </ChildComponent>
@@ -16,10 +15,9 @@
 
     private void ShowMessage(MouseEventArgs e)
     {
-        messageText = "Blaze a new trail with Blazor!";
+        messageText = $"Blaze a new trail with Blazor! ({e.ScreenX}, {e.ScreenY})";
     }
 }
-<!-- </snippet_ParentComponent> -->
 
 <p>
     <code>ParentComponent</code> (<em>ParentComponent</em>; this page)
@@ -35,7 +33,7 @@
 
 <h2>Parent component</h2>
 
-<pre><code>&lt;ChildComponent Title="Panel Title from Parent" OnClick="@@ShowMessage"&gt;
+<pre><code>&lt;ChildComponent Title="Panel Title from Parent" OnClickCallback="@@ShowMessage"&gt;
     Content of the child component is supplied by the parent component.
 &lt;/ChildComponent&gt;
 
@@ -46,7 +44,7 @@
 
     private void ShowMessage(MouseEventArgs e)
     {
-        messageText = "Blaze a new trail with Blazor!";
+        messageText = $"Blaze a new trail with Blazor! ({e.ScreenX}, {e.ScreenY})";
     }
 }</code></pre>
 
@@ -56,7 +54,7 @@
     &lt;div class="panel-heading"&gt;@@Title&lt;/div&gt;
     &lt;div class="panel-body"&gt;@@ChildContent&lt;/div&gt;
 
-    &lt;button class="btn btn-primary" @@onclick="OnClick"&gt;Trigger a Parent component method&lt;/button&gt;
+    &lt;button class="btn btn-primary" @@onclick="OnClickCallback"&gt;Trigger a Parent component method&lt;/button&gt;
 &lt;/div&gt;
 
 @@code {
@@ -67,5 +65,5 @@
     public RenderFragment ChildContent { get; set; }
 
     [Parameter]
-    public EventCallback&lt;MouseEventArgs&gt; OnClick { get; set; }
+    public EventCallback&lt;MouseEventArgs&gt; OnClickCallback { get; set; }
 }</code></pre>

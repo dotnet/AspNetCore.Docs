@@ -4,7 +4,8 @@ author: rick-anderson
 description: Learn how memory is managed in ASP.NET Core and how the garbage collector (GC) works.
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/05/2019
+ms.date: 4/05/2019
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: performance/memory
 ---
 
@@ -148,6 +149,12 @@ The differences between this chart and the server version are significant:
 
 On a typical web server environment, CPU usage is more important than memory, therefore the Server GC is better. If memory utilization is high and CPU usage is relatively low, the Workstation GC might be more performant. For example, high density hosting several web apps where memory is scarce.
 
+<a name="sc"></a>
+
+### GC using Docker and small containers
+
+When multiple containerized apps are running on one machine, Workstation GC might be more preformant than Server GC. For more information, see [Running with Server GC in a Small Container](https://devblogs.microsoft.com/dotnet/running-with-server-gc-in-a-small-container-scenario-part-0/) and [Running with Server GC in a Small Container Scenario Part 1 – Hard Limit for the GC Heap](https://devblogs.microsoft.com/dotnet/running-with-server-gc-in-a-small-container-scenario-part-1-hard-limit-for-the-gc-heap/).
+
 ### Persistent object references
 
 The GC cannot free objects that are referenced. Objects that are referenced but no longer needed result in a memory leak. If the app frequently allocates objects and fails to free them after they are no longer needed, memory usage will increase over time.
@@ -198,13 +205,13 @@ public void GetFileProvider()
 }
 ```
 
-[PhysicaFileProvider](/dotnet/api/microsoft.extensions.fileproviders.physicalfileprovider?view=dotnet-plat-ext-3.0) is a managed class, so any instance will be collected at the end of the request.
+[PhysicalFileProvider](/dotnet/api/microsoft.extensions.fileproviders.physicalfileprovider?view=dotnet-plat-ext-3.0) is a managed class, so any instance will be collected at the end of the request.
 
 The following image shows the memory profile while invoking the `fileprovider` API continuously.
 
 ![preceding chart](memory/_static/fileprovider.png)
 
-The preceding chart shows an obvious issue with the implementation of this class, as it keeps increasing memory usage. This is a known problem that is being tracked in [this issue](https://github.com/aspnet/Home/issues/3110).
+The preceding chart shows an obvious issue with the implementation of this class, as it keeps increasing memory usage. This is a known problem that is being tracked in [this issue](https://github.com/dotnet/aspnetcore/issues/3110).
 
 The same leak could be happen in user code, by one of the following:
 
@@ -213,7 +220,7 @@ The same leak could be happen in user code, by one of the following:
 
 ### Large objects heap
 
-Frequent memory allocation/free cycles can fragment memory, especially when allocating large chunks of memory. Objects are allocated in contiguous blocks of memory. To mitigate fragmentation, when the GC frees memory, it trys to defragment it. This process is called **compaction**. Compaction involves moving objects. Moving large objects imposes a performance penalty. For this reason the GC creates a special memory zone for _large_ objects, called the [large object heap](/dotnet/standard/garbage-collection/large-object-heap) (LOH). Objects that are greater than 85,000 bytes (approximately 83 KB) are:
+Frequent memory allocation/free cycles can fragment memory, especially when allocating large chunks of memory. Objects are allocated in contiguous blocks of memory. To mitigate fragmentation, when the GC frees memory, it tries to defragment it. This process is called **compaction**. Compaction involves moving objects. Moving large objects imposes a performance penalty. For this reason the GC creates a special memory zone for _large_ objects, called the [large object heap](/dotnet/standard/garbage-collection/large-object-heap) (LOH). Objects that are greater than 85,000 bytes (approximately 83 KB) are:
 
 * Placed on the LOH.
 * Not compacted.
@@ -266,8 +273,9 @@ Temporary large objects are particularly problematic because they cause gen2 GCs
 For maximum performance, large object use should be minimized. If possible, split up large objects. For example, [Response Caching](xref:performance/caching/response) middleware in ASP.NET Core split the cache entries into blocks less than 85,000 bytes.
 
 The following links show the ASP.NET Core approach to keeping objects under the LOH limit:
-- [ResponseCaching/Streams/StreamUtilities.cs](https://github.com/aspnet/AspNetCore/blob/v3.0.0/src/Middleware/ResponseCaching/src/Streams/StreamUtilities.cs#L16)
-- [ResponseCaching/MemoryResponseCache.cs](https://github.com/aspnet/ResponseCaching/blob/c1cb7576a0b86e32aec990c22df29c780af29ca5/src/Microsoft.AspNetCore.ResponseCaching/Internal/MemoryResponseCache.cs#L55)
+
+* [ResponseCaching/Streams/StreamUtilities.cs](https://github.com/dotnet/AspNetCore/blob/v3.0.0/src/Middleware/ResponseCaching/src/Streams/StreamUtilities.cs#L16)
+* [ResponseCaching/MemoryResponseCache.cs](https://github.com/aspnet/ResponseCaching/blob/c1cb7576a0b86e32aec990c22df29c780af29ca5/src/Microsoft.AspNetCore.ResponseCaching/Internal/MemoryResponseCache.cs#L55)
 
 For more information, see:
 
@@ -332,7 +340,7 @@ The `HttpClient` instance is released when the app stops. This example shows tha
 
 See the following for a better way to handle the lifetime of an `HttpClient` instance:
 
-* [HttpClient and lifetime management](/aspnet/core/fundamentals/http-requests#httpclient-and-lifetime-management)
+* [HttpClient and lifetime management](../fundamentals/http-requests.md#httpclient-and-lifetime-management)
 * [HTTPClient factory blog](https://devblogs.microsoft.com/aspnet/asp-net-core-2-1-preview1-introducing-httpclient-factory/)
  
 ### Object pooling
@@ -368,7 +376,7 @@ The following chart display calling the preceding API with moderate load:
 
 In the preceding chart, generation 0 collections happen approximately once per second.
 
-The preceding code can be optimized by pooling the `byte` buffer by using [`ArrayPool<T>`](xref:System.Buffers.ArrayPool`1). A static instance is reused across requests.
+The preceding code can be optimized by pooling the `byte` buffer by using [ArrayPool\<T>](xref:System.Buffers.ArrayPool`1). A static instance is reused across requests.
 
 What's different with this approach is that a pooled object is returned from the API. That means:
 

@@ -1,13 +1,14 @@
 ---
-title: Troubleshoot ASP.NET Core projects
+title: Troubleshoot and debug ASP.NET Core projects
 author: Rick-Anderson
 description: Understand and troubleshoot warnings and errors with ASP.NET Core projects.
 ms.author: riande
 ms.custom: mvc
 ms.date: 07/10/2019
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: test/troubleshoot
 ---
-# Troubleshoot ASP.NET Core projects
+# Troubleshoot and debug ASP.NET Core projects
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -26,7 +27,7 @@ In the **New Project** dialog for ASP.NET Core, you may see the following warnin
 
 > Both 32-bit and 64-bit versions of the .NET Core SDK are installed. Only templates from the 64-bit versions installed at 'C:\\Program Files\\dotnet\\sdk\\' are displayed.
 
-This warning appears when both 32-bit (x86) and 64-bit (x64) versions of the [.NET Core SDK](https://www.microsoft.com/net/download/all) are installed. Common reasons both versions may be installed include:
+This warning appears when both 32-bit (x86) and 64-bit (x64) versions of the [.NET Core SDK](https://dotnet.microsoft.com/download/dotnet-core) are installed. Common reasons both versions may be installed include:
 
 * You originally downloaded the .NET Core SDK installer using a 32-bit machine but then copied it across and installed it on a 64-bit machine.
 * The 32-bit .NET Core SDK was installed by another application.
@@ -67,9 +68,9 @@ Installing the [.NET Core Hosting Bundle](xref:host-and-deploy/iis/index#install
 
 If an app is capable of responding to requests, you can obtain the following data from the app using middleware:
 
-* Request &ndash; Method, scheme, host, pathbase, path, query string, headers
-* Connection &ndash; Remote IP address, remote port, local IP address, local port, client certificate
-* Identity &ndash; Name, display name
+* Request: Method, scheme, host, pathbase, path, query string, headers
+* Connection: Remote IP address, remote port, local IP address, local port, client certificate
+* Identity: Name, display name
 * Configuration settings
 * Environment variables
 
@@ -156,3 +157,12 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env,
     }
 }
 ```
+
+## Debug ASP.NET Core apps
+
+The following links provide information on debugging ASP.NET Core apps.
+
+* [Debugging ASP Core on Linux](https://devblogs.microsoft.com/premier-developer/debugging-asp-core-on-linux-with-visual-studio-2017/)
+* [Debugging .NET Core on Unix over SSH](https://devblogs.microsoft.com/devops/debugging-net-core-on-unix-over-ssh/)
+* [Quickstart: Debug ASP.NET with the Visual Studio debugger](/visualstudio/debugger/quickstart-debug-aspnet)
+* See [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/2960) for more debugging information.

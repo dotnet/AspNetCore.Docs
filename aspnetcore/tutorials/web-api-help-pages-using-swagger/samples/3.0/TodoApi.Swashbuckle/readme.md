@@ -328,7 +328,7 @@ Notice the UI enhancements with these additional comments:
 
 ### Data annotations
 
-Decorate the model with attributes, found in the [System.ComponentModel.DataAnnotations](/dotnet/api/system.componentmodel.dataannotations) namespace, to help drive the Swagger UI components.
+Mark the model with attributes, found in the [System.ComponentModel.DataAnnotations](/dotnet/api/system.componentmodel.dataannotations) namespace, to help drive the Swagger UI components.
 
 Add the `[Required]` attribute to the `Name` property of the `TodoItem` class:
 

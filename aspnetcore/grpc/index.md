@@ -5,6 +5,7 @@ description: Learn about gRPC services with Kestrel server and the ASP.NET Core 
 monikerRange: '>= aspnetcore-3.0'
 ms.author: johluo
 ms.date: 09/20/2019
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: grpc/index
 ---
 # Introduction to gRPC on .NET Core
@@ -24,6 +25,8 @@ These benefits make gRPC ideal for:
 * Lightweight microservices where efficiency is critical.
 * Polyglot systems where multiple languages are required for development.
 * Point-to-point real-time services that need to handle streaming requests or responses.
+
+[!INCLUDE[](~/includes/gRPCazure.md)]
 
 ## C# Tooling support for .proto files
 
@@ -105,7 +108,7 @@ gRPC clients are concrete client types that are [generated from *\*.proto* files
 var channel = GrpcChannel.ForAddress("https://localhost:5001");
 var client = new Greeter.GreeterClient(channel);
 
-var response = await client.SayHello(
+var response = await client.SayHelloAsync(
     new HelloRequest { Name = "World" });
 
 Console.WriteLine(response.Message);
@@ -114,8 +117,6 @@ Console.WriteLine(response.Message);
 A gRPC client is created using a channel, which represents a long-lived connection to a gRPC service. A channel can be created using `GrpcChannel.ForAddress`.
 
 For more information on creating clients, and calling different service methods, see <xref:grpc/client>.
-
-[!INCLUDE[](~/includes/gRPCazure.md)]
 
 ## Additional resources
 

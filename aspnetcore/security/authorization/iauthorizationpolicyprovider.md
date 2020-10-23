@@ -5,27 +5,28 @@ description: Learn how to use a custom IAuthorizationPolicyProvider in an ASP.NE
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/14/2019
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authorization/iauthorizationpolicyprovider
 ---
 # Custom Authorization Policy Providers using IAuthorizationPolicyProvider in ASP.NET Core 
 
 By [Mike Rousos](https://github.com/mjrousos)
 
-Typically when using [policy-based authorization](xref:security/authorization/policies), policies are registered by calling `AuthorizationOptions.AddPolicy` as part of authorization service configuration. In some scenarios, it may not be possible (or desirable) to register all authorization policies in this way. In those cases, you can use a custom `IAuthorizationPolicyProvider` to control how authorization policies are supplied.
+Typically when using [policy-based authorization](xref:security/authorization/policies), policies are registered by calling `AuthorizationOptions.AddPolicy` as part of authorization service configuration. In some scenarios, it may not be possible (or desirable) to register all authorization policies in this way. In those cases, you can [use a custom `IAuthorizationPolicyProvider`](#ci) to control how authorization policies are supplied.
 
 Examples of scenarios where a custom [IAuthorizationPolicyProvider](/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationpolicyprovider) may be useful include:
 
 * Using an external service to provide policy evaluation.
-* Using a large range of policies (for different room numbers or ages, for example), so it doesn’t make sense to add each individual authorization policy with an `AuthorizationOptions.AddPolicy` call.
+* Using a large range of policies (for different room numbers or ages, for example), so it doesn't make sense to add each individual authorization policy with an `AuthorizationOptions.AddPolicy` call.
 * Creating policies at runtime based on information in an external data source (like a database) or determining authorization requirements dynamically through another mechanism.
 
-[View or download sample code](https://github.com/aspnet/AspNetCore/tree/release/2.2/src/Security/samples/CustomPolicyProvider) from the [AspNetCore GitHub repository](https://github.com/aspnet/AspNetCore). Download the aspnet/AspNetCore repository ZIP file. Unzip the file. Navigate to the *src/Security/samples/CustomPolicyProvider* project folder.
+[View or download sample code](https://github.com/dotnet/aspnetcore/tree/v3.1.3/src/Security/samples/CustomPolicyProvider) from the [AspNetCore GitHub repository](https://github.com/dotnet/AspNetCore). Download the dotnet/AspNetCore repository ZIP file. Unzip the file. Navigate to the *src/Security/samples/CustomPolicyProvider* project folder.
 
 ## Customize policy retrieval
 
 ASP.NET Core apps use an implementation of the `IAuthorizationPolicyProvider` interface to retrieve authorization policies. By default, [DefaultAuthorizationPolicyProvider](/dotnet/api/microsoft.aspnetcore.authorization.defaultauthorizationpolicyprovider) is registered and used. `DefaultAuthorizationPolicyProvider` returns policies from the `AuthorizationOptions` provided in an `IServiceCollection.AddAuthorization` call.
 
-You can customize this behavior by registering a different `IAuthorizationPolicyProvider` implementation in the app’s [dependency injection](xref:fundamentals/dependency-injection) container. 
+Customize this behavior by registering a different `IAuthorizationPolicyProvider` implementation in the app's [dependency injection](xref:fundamentals/dependency-injection) container. 
 
 The `IAuthorizationPolicyProvider` interface contains three APIs:
 
@@ -167,15 +168,17 @@ public Task<AuthorizationPolicy> GetFallbackPolicyAsync() =>
     Task.FromResult<AuthorizationPolicy>(null);
 ```
 
+<a name="ci"></a>
+
 ## Use a custom IAuthorizationPolicyProvider
 
-To use custom policies from an `IAuthorizationPolicyProvider`, you must:
+To use custom policies from an `IAuthorizationPolicyProvider`, you ***must***:
 
 * Register the appropriate `AuthorizationHandler` types with dependency injection (described in [policy-based authorization](xref:security/authorization/policies#authorization-handlers)), as with all policy-based authorization scenarios.
-* Register the custom `IAuthorizationPolicyProvider` type in the app's dependency injection service collection (in `Startup.ConfigureServices`) to replace the default policy provider.
+* Register the custom `IAuthorizationPolicyProvider` type in the app's dependency injection service collection in `Startup.ConfigureServices` to replace the default policy provider.
 
-```csharp
-services.AddSingleton<IAuthorizationPolicyProvider, MinimumAgePolicyProvider>();
-```
+  ```csharp
+  services.AddSingleton<IAuthorizationPolicyProvider, MinimumAgePolicyProvider>();
+  ```
 
-A complete custom `IAuthorizationPolicyProvider` sample is available in the [aspnet/AuthSamples GitHub repository](https://github.com/aspnet/AspNetCore/tree/release/2.2/src/Security/samples/CustomPolicyProvider).
+A complete custom `IAuthorizationPolicyProvider` sample is available in the [dotnet/aspnetcore GitHub repository](https://github.com/dotnet/aspnetcore/tree/v3.1.3/src/Security/samples/CustomPolicyProvider).

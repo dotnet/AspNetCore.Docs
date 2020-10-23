@@ -19,7 +19,7 @@ namespace MvcMovie.Models
     [DataType(DataType.Currency)]
     public decimal Price { get; set; }
 
-    [RegularExpression(@"^[A-Z]+[a-zA-Z""'\s-]*$")]
+    [RegularExpression(@"^[A-Z]+[a-zA-Z]*$")]
     [Required]
     [StringLength(30)]
     public string Genre { get; set; }

@@ -5,6 +5,7 @@ description: Learn how to migrate existing ASP.NET apps using Membership authent
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 01/10/2019
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: migration/proper-to-2x/membership-to-core-identity
 ---
 # Migrate from ASP.NET Membership authentication to ASP.NET Core 2.0 Identity
@@ -18,7 +19,7 @@ This article demonstrates migrating the database schema for ASP.NET apps using M
 
 ## Review of Membership schema
 
-Prior to ASP.NET 2.0, developers were tasked with creating the entire authentication and authorization process for their apps. With ASP.NET 2.0, Membership was introduced, providing a boilerplate solution to handling security within ASP.NET apps. Developers were now able to bootstrap a schema into a SQL Server database with the [aspnet_regsql.exe](https://msdn.microsoft.com/library/ms229862.aspx) command. After running this command, the following tables were created in the database.
+Prior to ASP.NET 2.0, developers were tasked with creating the entire authentication and authorization process for their apps. With ASP.NET 2.0, Membership was introduced, providing a boilerplate solution to handling security within ASP.NET apps. Developers were now able to bootstrap a schema into a SQL Server database with the <https://docs.microsoft.com/previous-versions/ms229862(v=vs.140)> command. After running this command, the following tables were created in the database.
 
   ![Membership Tables](identity/_static/membership-tables.png)
 
@@ -61,36 +62,33 @@ There are subtle differences in the table structures and fields for both Members
 
 ### Users
 
-|*Identity<br>(dbo.AspNetUsers)*        ||*Membership<br>(dbo.aspnet_Users / dbo.aspnet_Membership)*||
-|----------------------------------------|-----------------------------------------------------------|
-|**Field Name**                 |**Type**|**Field Name**                                    |**Type**|
-|`Id`                           |string  |`aspnet_Users.UserId`                             |string  |
-|`UserName`                     |string  |`aspnet_Users.UserName`                           |string  |
-|`Email`                        |string  |`aspnet_Membership.Email`                         |string  |
-|`NormalizedUserName`           |string  |`aspnet_Users.LoweredUserName`                    |string  |
-|`NormalizedEmail`              |string  |`aspnet_Membership.LoweredEmail`                  |string  |
-|`PhoneNumber`                  |string  |`aspnet_Users.MobileAlias`                        |string  |
-|`LockoutEnabled`               |bit     |`aspnet_Membership.IsLockedOut`                   |bit     |
+|Identity<br>(`dbo.AspNetUsers`) column  |Type     |Membership<br>(`dbo.aspnet_Users` / `dbo.aspnet_Membership`) column|Type      |
+|-------------------------------------------|-----------------------------------------------------------------------|
+| `Id`                            | `string`| `aspnet_Users.UserId`                                      | `string` |
+| `UserName`                      | `string`| `aspnet_Users.UserName`                                    | `string` |
+| `Email`                         | `string`| `aspnet_Membership.Email`                                  | `string` |
+| `NormalizedUserName`            | `string`| `aspnet_Users.LoweredUserName`                             | `string` |
+| `NormalizedEmail`               | `string`| `aspnet_Membership.LoweredEmail`                           | `string` |
+| `PhoneNumber`                   | `string`| `aspnet_Users.MobileAlias`                                 | `string` |
+| `LockoutEnabled`                | `bit`   | `aspnet_Membership.IsLockedOut`                            | `bit`    |
 
 > [!NOTE]
 > Not all the field mappings resemble one-to-one relationships from Membership to ASP.NET Core Identity. The preceding table takes the default Membership User schema and maps it to the ASP.NET Core Identity schema. Any other custom fields that were used for Membership need to be mapped manually. In this mapping, there's no map for passwords, as both password criteria and password salts don't migrate between the two. **It's recommended to leave the password as null and to ask users to reset their passwords.** In ASP.NET Core Identity, `LockoutEnd` should be set to some date in the future if the user is locked out. This is shown in the migration script.
 
 ### Roles
 
-|*Identity<br>(dbo.AspNetRoles)*        ||*Membership<br>(dbo.aspnet_Roles)*||
+|Identity<br>(`dbo.AspNetRoles`) column|Type|Membership<br>(`dbo.aspnet_Roles`) column|Type|
 |----------------------------------------|-----------------------------------|
-|**Field Name**                 |**Type**|**Field Name**   |**Type**         |
-|`Id`                           |string  |`RoleId`         | string          |
-|`Name`                         |string  |`RoleName`       | string          |
-|`NormalizedName`               |string  |`LoweredRoleName`| string          |
+|`Id`                           |`string`|`RoleId`         | `string`        |
+|`Name`                         |`string`|`RoleName`       | `string`        |
+|`NormalizedName`               |`string`|`LoweredRoleName`| `string`        |
 
 ### User Roles
 
-|*Identity<br>(dbo.AspNetUserRoles)*||*Membership<br>(dbo.aspnet_UsersInRoles)*||
-|------------------------------------|------------------------------------------|
-|**Field Name**           |**Type**  |**Field Name**|**Type**                   |
-|`RoleId`                 |string    |`RoleId`      |string                     |
-|`UserId`                 |string    |`UserId`      |string                     |
+|Identity<br>(`dbo.AspNetUserRoles`) column|Type|Membership<br>(`dbo.aspnet_UsersInRoles`) column|Type|
+|-------------------------|----------|--------------|---------------------------|
+|`RoleId`                 |`string`  |`RoleId`      |`string`                   |
+|`UserId`                 |`string`  |`UserId`      |`string`                   |
 
 Reference the preceding mapping tables when creating a migration script for *Users* and *Roles*. The following example assumes you have two databases on a database server. One database contains the existing ASP.NET Membership schema and data. The other *CoreIdentitySample* database was created using steps described earlier. Comments are included inline for more details.
 

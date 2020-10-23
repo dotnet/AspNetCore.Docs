@@ -5,8 +5,8 @@ description: Learn how to use authentication and authorization in ASP.NET Core S
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 11/12/2019
-no-loc: [SignalR]
+ms.date: 12/05/2019
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: signalr/authn-and-authz
 ---
 
@@ -14,11 +14,11 @@ uid: signalr/authn-and-authz
 
 By [Andrew Stanton-Nurse](https://twitter.com/anurse)
 
-[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/signalr/authn-and-authz/sample/) [(how to download)](xref:index#how-to-download-a-sample)
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/signalr/authn-and-authz/sample/) [(how to download)](xref:index#how-to-download-a-sample)
 
 ## Authenticate users connecting to a SignalR hub
 
-SignalR can be used with [ASP.NET Core authentication](xref:security/authentication/identity) to associate a user with each connection. In a hub, authentication data can be accessed from the [`HubConnectionContext.User`](/dotnet/api/microsoft.aspnetcore.signalr.hubconnectioncontext.user) property. Authentication allows the hub to call methods on all connections associated with a user. For more information, see [Manage users and groups in SignalR](xref:signalr/groups). Multiple connections may be associated with a single user.
+SignalR can be used with [ASP.NET Core authentication](xref:security/authentication/identity) to associate a user with each connection. In a hub, authentication data can be accessed from the [HubConnectionContext.User](/dotnet/api/microsoft.aspnetcore.signalr.hubconnectioncontext.user) property. Authentication allows the hub to call methods on all connections associated with a user. For more information, see [Manage users and groups in SignalR](xref:signalr/groups). Multiple connections may be associated with a single user.
 
 The following is an example of `Startup.Configure` which uses SignalR and ASP.NET Core authentication:
 
@@ -84,8 +84,6 @@ Cookies are a browser-specific way to send access tokens, but non-browser client
 
 The client can provide an access token instead of using a cookie. The server validates the token and uses it to identify the user. This validation is done only when the connection is established. During the life of the connection, the server doesn't automatically revalidate to check for token revocation.
 
-On the server, bearer token authentication is configured using the [JWT Bearer middleware](/dotnet/api/microsoft.extensions.dependencyinjection.jwtbearerextensions.addjwtbearer).
-
 In the JavaScript client, the token can be provided using the [accessTokenFactory](xref:signalr/configuration#configure-bearer-authentication) option.
 
 [!code-typescript[Configure Access Token](authn-and-authz/sample/wwwroot/js/chat.ts?range=52-55)]
@@ -94,7 +92,7 @@ In the .NET client, there's a similar [AccessTokenProvider](xref:signalr/configu
 
 ```csharp
 var connection = new HubConnectionBuilder()
-    .WithUrl("https://example.com/myhub", options =>
+    .WithUrl("https://example.com/chathub", options =>
     { 
         options.AccessTokenProvider = () => Task.FromResult(_myAccessToken);
     })
@@ -104,12 +102,60 @@ var connection = new HubConnectionBuilder()
 > [!NOTE]
 > The access token function you provide is called before **every** HTTP request made by SignalR. If you need to renew the token in order to keep the connection active (because it may expire during the connection), do so from within this function and return the updated token.
 
-In standard web APIs, bearer tokens are sent in an HTTP header. However, SignalR is unable to set these headers in browsers when using some transports. When using WebSockets and Server-Sent Events, the token is transmitted as a query string parameter. To support this on the server, additional configuration is required:
+In standard web APIs, bearer tokens are sent in an HTTP header. However, SignalR is unable to set these headers in browsers when using some transports. When using WebSockets and Server-Sent Events, the token is transmitted as a query string parameter. 
+
+#### Built-in JWT authentication
+
+On the server, bearer token authentication is configured using the [JWT Bearer middleware](xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer%2A):
 
 [!code-csharp[Configure Server to accept access token from Query String](authn-and-authz/sample/Startup.cs?name=snippet)]
 
+[!INCLUDE[request localized comments](~/includes/code-comments-loc.md)]
+
 > [!NOTE]
 > The query string is used on browsers when connecting with WebSockets and Server-Sent Events due to browser API limitations. When using HTTPS, query string values are secured by the TLS connection. However, many servers log query string values. For more information, see [Security considerations in ASP.NET Core SignalR](xref:signalr/security). SignalR uses headers to transmit tokens in environments which support them (such as the .NET and Java clients).
+
+#### Identity Server JWT authentication
+
+When using Identity Server, add a <xref:Microsoft.Extensions.Options.PostConfigureOptions%601> service to the project:
+
+```csharp
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.Options;
+public class ConfigureJwtBearerOptions : IPostConfigureOptions<JwtBearerOptions>
+{
+    public void PostConfigure(string name, JwtBearerOptions options)
+    {
+        var originalOnMessageReceived = options.Events.OnMessageReceived;
+        options.Events.OnMessageReceived = async context =>
+        {
+            await originalOnMessageReceived(context);
+                
+            if (string.IsNullOrEmpty(context.Token))
+            {
+                var accessToken = context.Request.Query["access_token"];
+                var path = context.HttpContext.Request.Path;
+                
+                if (!string.IsNullOrEmpty(accessToken) && 
+                    path.StartsWithSegments("/hubs"))
+                {
+                    context.Token = accessToken;
+                }
+            }
+        };
+    }
+}
+```
+
+Register the service in `Startup.ConfigureServices` after adding services for authentication (<xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication%2A>) and the authentication handler for Identity Server (<xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt%2A>):
+
+```csharp
+services.AddAuthentication()
+    .AddIdentityServerJwt();
+services.TryAddEnumerable(
+    ServiceDescriptor.Singleton<IPostConfigureOptions<JwtBearerOptions>, 
+        ConfigureJwtBearerOptions>());
+```
 
 ### Cookies vs. bearer tokens 
 
@@ -144,14 +190,14 @@ In the .NET Client, Windows Authentication must be enabled by setting the [UseDe
 
 ```csharp
 var connection = new HubConnectionBuilder()
-    .WithUrl("https://example.com/myhub", options =>
+    .WithUrl("https://example.com/chathub", options =>
     {
         options.UseDefaultCredentials = true;
     })
     .Build();
 ```
 
-Windows Authentication is only supported by the browser client when using Microsoft Internet Explorer or Microsoft Edge.
+Windows authentication is supported in Internet Explorer and Microsoft Edge, but not in all browsers. For example, in Chrome and Safari, attempting to use Windows authentication and WebSockets fails. When Windows authentication fails, the client attempts to fall back to other transports which might work.
 
 ### Use claims to customize identity handling
 

@@ -3,8 +3,9 @@ title: Deploy an app to App Service - DevOps with ASP.NET Core and Azure
 author: CamSoper
 description: Deploy an ASP.NET Core app to Azure App Service, the first step for DevOps with ASP.NET Core and Azure.
 ms.author: casoper
-ms.custom: "mvc, seodec18"
+ms.custom: "devx-track-csharp, mvc, seodec18, devx-track-azurecli"
 ms.date: 10/24/2018
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: azure/devops/deploy-to-app-service
 ---
 # Deploy an app to App Service
@@ -79,7 +80,7 @@ To deploy the app, you'll need to create an App Service [Web App](/azure/app-ser
 
     b. Create a resource group. Resource groups provide a means to aggregate Azure resources to be managed as a group.
 
-    ```azure-cli
+    ```azurecli
     az group create --location centralus --name AzureTutorial
     ```
 
@@ -87,25 +88,25 @@ To deploy the app, you'll need to create an App Service [Web App](/azure/app-ser
 
     c. Create an App Service plan in the S1 tier. An App Service plan is a grouping of web apps that share the same pricing tier. The S1 tier isn't free, but it's required for the staging slots feature.
 
-    ```azure-cli
+    ```azurecli
     az appservice plan create --name $webappname --resource-group AzureTutorial --sku S1
     ```
 
     d. Create the web app resource using the App Service plan in the same resource group.
 
-    ```azure-cli
+    ```azurecli
     az webapp create --name $webappname --resource-group AzureTutorial --plan $webappname
     ```
 
     e. Set the deployment credentials. These deployment credentials apply to all the web apps in your subscription. Don't use special characters in the user name.
 
-    ```azure-cli
+    ```azurecli
     az webapp deployment user set --user-name REPLACE_WITH_USER_NAME --password REPLACE_WITH_PASSWORD
     ```
 
     f. Configure the web app to accept deployments from local Git and display the *Git deployment URL*. **Note this URL for reference later**.
 
-    ```azure-cli
+    ```azurecli
     echo Git deployment URL: $(az webapp deployment source config-local-git --name $webappname --resource-group AzureTutorial --query url --output tsv)
     ```
 
@@ -164,13 +165,13 @@ Deployment slots support the staging of changes without impacting the app runnin
 
     a. Create a deployment slot with the name *staging*.
 
-    ```azure-cli
+    ```azurecli
     az webapp deployment slot create --name $webappname --resource-group AzureTutorial --slot staging
     ```
 
     b. Configure the staging slot to use deployment from local Git and get the **staging** deployment URL. **Note this URL for reference later**.
 
-    ```azure-cli
+    ```azurecli
     echo Git deployment URL for staging: $(az webapp deployment source config-local-git --name $webappname --resource-group AzureTutorial --slot staging --query url --output tsv)
     ```
 
@@ -210,7 +211,7 @@ Deployment slots support the staging of changes without impacting the app runnin
 
 7. In the Cloud Shell, swap the verified/warmed-up staging slot into production.
 
-    ```azure-cli
+    ```azurecli
     az webapp deployment slot swap --name $webappname --resource-group AzureTutorial --slot staging
     ```
 

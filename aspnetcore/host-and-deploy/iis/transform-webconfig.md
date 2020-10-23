@@ -1,16 +1,17 @@
 ---
 title: Transform web.config
-author: guardrex
+author: rick-anderson
 description: Learn how to transform the web.config file when publishing an ASP.NET Core app.
 monikerRange: '>= aspnetcore-2.2'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/07/2019
+ms.date: 01/13/2020
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: host-and-deploy/iis/transform-webconfig
 ---
 # Transform web.config
 
-By [Vijay Ramakrishnan](https://github.com/vijayrkn) and [Luke Latham](https://github.com/guardrex)
+By [Vijay Ramakrishnan](https://github.com/vijayrkn)
 
 Transformations to the *web.config* file can be applied automatically when an app is published based on:
 
@@ -176,5 +177,5 @@ dotnet publish /p:IsWebConfigTransformDisabled=true
 
 ## Additional resources
 
-* [Web.config Transformation Syntax for Web Application Project Deployment](https://go.microsoft.com/fwlink/?LinkId=301874)
-* [Web.config Transformation Syntax for Web Project Deployment Using Visual Studio](https://docs.microsoft.com/previous-versions/aspnet/dd465326(v=vs.110))
+* [Web.config Transformation Syntax for Web Application Project Deployment](/previous-versions/dd465326(v=vs.100))
+* [Web.config Transformation Syntax for Web Project Deployment Using Visual Studio](/previous-versions/aspnet/dd465326(v=vs.110))

@@ -25,7 +25,7 @@ connection.on("messageReceived", (username: string, message: string) => {
 connection.start().catch(err => document.write(err));
 
 tbMessage.addEventListener("keyup", (e: KeyboardEvent) => {
-    if (e.keyCode === 13) {
+    if (e.key === "Enter") {
         send();
     }
 });

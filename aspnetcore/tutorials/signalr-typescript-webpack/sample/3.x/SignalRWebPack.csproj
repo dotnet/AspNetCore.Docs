@@ -9,7 +9,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <TypeScriptCompile Include="src\index.ts" />
+    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="3.7.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
 </Project>

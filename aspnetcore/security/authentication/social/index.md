@@ -4,7 +4,8 @@ author: rick-anderson
 description: This tutorial demonstrates how to build an ASP.NET Core app using OAuth 2.0 with external authentication providers.
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/21/2019
+ms.date: 01/23/2020
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/social/index
 ---
 # Facebook, Google, and external provider authentication in ASP.NET Core
@@ -29,7 +30,7 @@ For examples of how social logins can drive traffic and customer conversions, se
 * Create a new project.
 * Select **ASP.NET Core Web Application** and **Next**.
 * Provide a **Project name** and confirm or change the **Location**. Select **Create**.
-* Select **ASP.NET Core 3.0** in the drop-down, and then select **Web Application**.
+* Select the latest version of ASP.NET Core in the drop-down (**ASP.NET Core {X.Y}**), and then select **Web Application**.
 * Under **Authentication**, select **Change** and set the authentication to **Individual User Accounts**. Select **OK**.
 * In the **Create a new ASP.NET Core Web Application** window, select **Create**.
 
@@ -105,8 +106,7 @@ To create a password and sign in using your email that you set during the sign i
 
 ## Next steps
 
+* See [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/10563) for information on how to customize the login buttons.
 * This article introduced external authentication and explained the prerequisites required to add external logins to your ASP.NET Core app.
-
 * Reference provider-specific pages to configure logins for the providers required by your app.
-
 * You may want to persist additional data about the user and their access and refresh tokens. For more information, see <xref:security/authentication/social/additional-claims>.

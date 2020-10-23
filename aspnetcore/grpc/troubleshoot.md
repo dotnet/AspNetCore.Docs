@@ -5,7 +5,8 @@ description: Troubleshoot errors when using gRPC on .NET Core.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.custom: mvc
-ms.date: 10/16/2019
+ms.date: 07/09/2020
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: grpc/troubleshoot
 ---
 # Troubleshoot gRPC on .NET Core
@@ -54,14 +55,13 @@ You may see this error if you are testing your app locally and the ASP.NET Core 
 If you are calling a gRPC service on another machine and are unable to trust the certificate then the gRPC client can be configured to ignore the invalid certificate. The following code uses [HttpClientHandler.ServerCertificateCustomValidationCallback](/dotnet/api/system.net.http.httpclienthandler.servercertificatecustomvalidationcallback) to allow calls without a trusted certificate:
 
 ```csharp
-var httpClientHandler = new HttpClientHandler();
+var httpHandler = new HttpClientHandler();
 // Return `true` to allow certificates that are untrusted/invalid
-httpClientHandler.ServerCertificateCustomValidationCallback = 
+httpHandler.ServerCertificateCustomValidationCallback = 
     HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
-var httpClient = new HttpClient(httpClientHandler);
 
 var channel = GrpcChannel.ForAddress("https://localhost:5001",
-    new GrpcChannelOptions { HttpClient = httpClient });
+    new GrpcChannelOptions { HttpHandler = httpHandler });
 var client = new Greet.GreeterClient(channel);
 ```
 
@@ -70,7 +70,7 @@ var client = new Greet.GreeterClient(channel);
 
 ## Call insecure gRPC services with .NET Core client
 
-Additional configuration is required to call insecure gRPC services with the .NET Core client. The gRPC client must set the `System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport` switch to `true` and use `http` in the server address:
+When an app is using .NET Core 3.x, additional configuration is required to call insecure gRPC services with the .NET Core client. The gRPC client must set the `System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport` switch to `true` and use `http` in the server address:
 
 ```csharp
 // This switch must be set before creating the GrpcChannel/HttpClient.
@@ -81,6 +81,8 @@ AppContext.SetSwitch(
 var channel = GrpcChannel.ForAddress("http://localhost:5000");
 var client = new Greet.GreeterClient(channel);
 ```
+
+.NET 5 apps don't need additional configuration, but to call insecure gRPC services they must use `Grpc.Net.Client` version 2.32.0 or later.
 
 ## Unable to start ASP.NET Core gRPC app on macOS
 
@@ -122,13 +124,6 @@ gRPC code generation of concrete clients and service base classes requires proto
 * Package reference to the gRPC tooling package [Grpc.Tools](https://www.nuget.org/packages/Grpc.Tools/).
 
 For more information on generating gRPC C# assets, see <xref:grpc/basics>.
-
-By default, a `<Protobuf>` reference generates a concrete client and a service base class. The reference element's `GrpcServices` attribute can be used to limit C# asset generation. Valid `GrpcServices` options are:
-
-* `Both` (default when not present)
-* `Server`
-* `Client`
-* `None`
 
 An ASP.NET Core web app hosting gRPC services only needs the service base class generated:
 

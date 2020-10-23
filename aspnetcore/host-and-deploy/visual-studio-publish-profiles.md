@@ -5,7 +5,8 @@ description: Learn how to create publish profiles in Visual Studio and use them 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/07/2019
+ms.date: 07/28/2020
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: host-and-deploy/visual-studio-publish-profiles
 ---
 # Visual Studio publish profiles (.pubxml) for ASP.NET Core app deployment
@@ -24,7 +25,7 @@ The `dotnet new mvc` command produces a project file containing the following ro
 
 The preceding `<Project>` element's `Sdk` attribute imports the MSBuild [properties](/visualstudio/msbuild/msbuild-properties) and [targets](/visualstudio/msbuild/msbuild-targets) from *$(MSBuildSDKsPath)\Microsoft.NET.Sdk.Web\Sdk\Sdk.props* and *$(MSBuildSDKsPath)\Microsoft.NET.Sdk.Web\Sdk\Sdk.targets*, respectively. The default location for `$(MSBuildSDKsPath)` (with Visual Studio 2019 Enterprise) is the *%programfiles(x86)%\Microsoft Visual Studio\2019\Enterprise\MSBuild\Sdks* folder.
 
-`Microsoft.NET.Sdk.Web` (Web SDK) depends on other SDKs, including `Microsoft.NET.Sdk` (.NET Core SDK) and `Microsoft.NET.Sdk.Razor` ([Razor SDK](xref:razor-pages/sdk)). The MSBuild properties and targets associated with each dependent SDK are imported. Publish targets import the appropriate set of targets based on the publish method used.
+`Microsoft.NET.Sdk.Web` ([Web SDK](xref:razor-pages/web-sdk)) depends on other SDKs, including `Microsoft.NET.Sdk` ([.NET Core SDK](/dotnet/core/project-sdk/msbuild-props)) and `Microsoft.NET.Sdk.Razor` ([Razor SDK](xref:razor-pages/sdk)). The MSBuild properties and targets associated with each dependent SDK are imported. Publish targets import the appropriate set of targets based on the publish method used.
 
 When MSBuild or Visual Studio loads a project, the following high-level actions occur:
 
@@ -40,13 +41,13 @@ The `Content` item list contains files that are published in addition to the bui
 
 ::: moniker range=">= aspnetcore-3.0"
 
-The Web SDK imports the [Razor SDK](xref:razor-pages/sdk). As a result, files matching the patterns `**\*.cshtml` and `**\*.razor` are also included in the `Content` item list.
+The [Web SDK](xref:razor-pages/web-sdk) imports the [Razor SDK](xref:razor-pages/sdk). As a result, files matching the patterns `**\*.cshtml` and `**\*.razor` are also included in the `Content` item list.
 
 ::: moniker-end
 
 ::: moniker range=">= aspnetcore-2.1 <= aspnetcore-2.2"
 
-The Web SDK imports the [Razor SDK](xref:razor-pages/sdk). As a result, files matching the `**\*.cshtml` pattern are also included in the `Content` item list.
+The [Web SDK](xref:razor-pages/web-sdk) imports the [Razor SDK](xref:razor-pages/sdk). As a result, files matching the `**\*.cshtml` pattern are also included in the `Content` item list.
 
 ::: moniker-end
 
@@ -102,7 +103,7 @@ The `dotnet publish` command calls MSBuild, which invokes the `Publish` target. 
 
 MSBuild properties can be passed using either of the following formats:
 
-* `p:<NAME>=<VALUE>`
+* `-p:<NAME>=<VALUE>`
 * `/p:<NAME>=<VALUE>`
 
 For example, the following command publishes a `Release` build to a network share. The network share is specified with forward slashes (*//r8/*) and works on all .NET Core supported platforms.
@@ -146,21 +147,15 @@ When publishing to an Azure target, the *.pubxml* file contains your Azure subsc
 
 Sensitive information (like the publish password) is encrypted on a per user/machine level. It's stored in the *Properties/PublishProfiles/{PROFILE NAME}.pubxml.user* file. Because this file can store sensitive information, it shouldn't be checked into source control.
 
-For an overview of how to publish an ASP.NET Core web app, see <xref:host-and-deploy/index>. The MSBuild tasks and targets necessary to publish an ASP.NET Core web app are open-source in the [aspnet/websdk repository](https://github.com/aspnet/websdk).
+For an overview of how to publish an ASP.NET Core web app, see <xref:host-and-deploy/index>. The MSBuild tasks and targets necessary to publish an ASP.NET Core web app are open-source in the [dotnet/websdk repository](https://github.com/dotnet/websdk).
 
 The following commands can use folder, MSDeploy, and [Kudu](https://github.com/projectkudu/kudu/wiki) publish profiles. Because MSDeploy lacks cross-platform support, the following MSDeploy options are supported only on Windows.
 
 **Folder (works cross-platform):**
 
-<!--
-
-NOTE: Add back the following 'dotnet publish' folder publish example after https://github.com/aspnet/websdk/issues/888 is resolved.
-
 ```dotnetcli
 dotnet publish WebApplication.csproj /p:PublishProfile=<FolderProfileName>
 ```
-
--->
 
 ```dotnetcli
 dotnet build WebApplication.csproj /p:DeployOnBuild=true /p:PublishProfile=<FolderProfileName>
@@ -191,7 +186,7 @@ In the preceding examples:
 * `dotnet publish` and `dotnet build` support Kudu APIs to publish to Azure from any platform. Visual Studio publish supports the Kudu APIs, but it's supported by WebSDK for cross-platform publish to Azure.
 * Don't pass `DeployOnBuild` to the `dotnet publish` command.
 
-For more information, see [Microsoft.NET.Sdk.Publish](https://github.com/aspnet/websdk#microsoftnetsdkpublish).
+For more information, see [Microsoft.NET.Sdk.Publish](https://github.com/dotnet/websdk#microsoftnetsdkpublish).
 
 Add a publish profile to the project's *Properties/PublishProfiles* folder with the following content:
 
@@ -208,18 +203,19 @@ Add a publish profile to the project's *Properties/PublishProfiles* folder with 
 
 ## Folder publish example
 
-When publishing with a profile named *FolderProfile*, use either of the following commands:
+When publishing with a profile named *FolderProfile*, use any of the following commands:
 
-<!--
+```dotnetcli
+dotnet publish /p:Configuration=Release /p:PublishProfile=FolderProfile`
+```
 
-NOTE: Temporarily removed until https://github.com/aspnet/websdk/issues/888 is resolved.
+```dotnetcli
+dotnet build /p:DeployOnBuild=true /p:PublishProfile=FolderProfile
+```
 
-* `dotnet publish /p:Configuration=Release /p:PublishProfile=FolderProfile`
-
--->
-
-* `dotnet build /p:DeployOnBuild=true /p:PublishProfile=FolderProfile`
-* `msbuild /p:DeployOnBuild=true /p:PublishProfile=FolderProfile`
+```bash
+msbuild /p:DeployOnBuild=true /p:PublishProfile=FolderProfile
+```
 
 The .NET Core CLI's [dotnet build](/dotnet/core/tools/dotnet-build) command calls `msbuild` to run the build and publish process. The `dotnet build` and `msbuild` commands are equivalent when passing in a folder profile. When calling `msbuild` directly on Windows, the .NET Framework version of MSBuild is used. Calling `dotnet build` on a non-folder profile:
 
@@ -255,19 +251,12 @@ MSBuild file.
 In the preceding example:
 
 * The `<ExcludeApp_Data>` property is present merely to satisfy an XML schema requirement. The `<ExcludeApp_Data>` property has no effect on the publish process, even if there's an *App_Data* folder in the project root. The *App_Data* folder doesn't receive special treatment as it does in ASP.NET 4.x projects.
-
-<!--
-
-NOTE: Temporarily removed from 'Using the .NET Core CLI' below until https://github.com/aspnet/websdk/issues/888 is resolved.
+* The `<LastUsedBuildConfiguration>` property is set to `Release`. When publishing from Visual Studio, the value of `<LastUsedBuildConfiguration>` is set using the value when the publish process is started. `<LastUsedBuildConfiguration>` is special and shouldn't be overridden in an imported MSBuild file. This property can, however, be overridden from the command line using one of the following approaches.
+  * Using the .NET Core CLI:
 
     ```dotnetcli
     dotnet publish /p:Configuration=Release /p:PublishProfile=FolderProfile
     ```
-
--->
-
-* The `<LastUsedBuildConfiguration>` property is set to `Release`. When publishing from Visual Studio, the value of `<LastUsedBuildConfiguration>` is set using the value when the publish process is started. `<LastUsedBuildConfiguration>` is special and shouldn't be overridden in an imported MSBuild file. This property can, however, be overridden from the command line using one of the following approaches.
-  * Using the .NET Core CLI:
 
     ```dotnetcli
     dotnet build -c Release /p:DeployOnBuild=true /p:PublishProfile=FolderProfile
@@ -275,7 +264,7 @@ NOTE: Temporarily removed from 'Using the .NET Core CLI' below until https://git
 
   * Using MSBuild:
 
-    ```console
+    ```bash
     msbuild /p:Configuration=Release /p:DeployOnBuild=true /p:PublishProfile=FolderProfile
     ```
 
@@ -289,7 +278,7 @@ To deploy the app using a publish profile, execute the `msbuild` command from a 
 
 MSBuild uses the following command syntax:
 
-```console
+```bash
 msbuild {PATH} 
     /p:DeployOnBuild=true 
     /p:PublishProfile={PROFILE} 
@@ -297,16 +286,16 @@ msbuild {PATH}
     /p:Password={PASSWORD}
 ```
 
-* {PATH} &ndash; Path to the app's project file.
-* {PROFILE} &ndash; Name of the publish profile.
-* {USERNAME} &ndash; MSDeploy username. The {USERNAME} can be found in the publish profile.
-* {PASSWORD} &ndash; MSDeploy password. Obtain the {PASSWORD} from the *{PROFILE}.PublishSettings* file. Download the *.PublishSettings* file from either:
+* `{PATH}`: Path to the app's project file.
+* `{PROFILE}`: Name of the publish profile.
+* `{USERNAME}`: MSDeploy username. The `{USERNAME}` can be found in the publish profile.
+* `{PASSWORD}`: MSDeploy password. Obtain the `{PASSWORD}` from the *{PROFILE}.PublishSettings* file. Download the *.PublishSettings* file from either:
   * **Solution Explorer**: Select **View** > **Cloud Explorer**. Connect with your Azure subscription. Open **App Services**. Right-click the app. Select **Download Publish Profile**.
   * Azure portal: Select **Get publish profile** in the web app's **Overview** panel.
 
 The following example uses a publish profile named *AzureWebApp - Web Deploy*:
 
-```console
+```bash
 msbuild "AzureWebApp.csproj" 
     /p:DeployOnBuild=true 
     /p:PublishProfile="AzureWebApp - Web Deploy" 
@@ -428,7 +417,7 @@ Done Building Project "C:\Webs\Web1\Web1.csproj" (default targets).
 
 ## Include files
 
-The following sections outline different approaches for file inclusion at publish time. The [General file inclusion](#general-file-inclusion) section uses the `DotNetPublishFiles` item, which is provided by a publish targets file in the Web SDK. The [Selective file inclusion](#selective-file-inclusion) section uses the `ResolvedFileToPublish` item, which is provided by a publish targets file in the .NET Core SDK. Because the Web SDK depends on the .NET Core SDK, either item can be used in an ASP.NET Core project.
+The following sections outline different approaches for file inclusion at publish time. The [General file inclusion](#general-file-inclusion) section uses the `DotNetPublishFiles` item, which is provided by a publish targets file in the [Web SDK](xref:razor-pages/web-sdk). The [Selective file inclusion](#selective-file-inclusion) section uses the `ResolvedFileToPublish` item, which is provided by a publish targets file in the [.NET Core SDK](/dotnet/core/project-sdk/msbuild-props). Because the Web SDK depends on the .NET Core SDK, either item can be used in an ASP.NET Core project.
 
 ### General file inclusion
 
@@ -468,7 +457,7 @@ The preceding example uses the `ResolvedFileToPublish` item, whose default behav
 </ResolvedFileToPublish>
 ```
 
-For more deployment samples, see the [Web SDK repository Readme](https://github.com/aspnet/websdk).
+For more deployment samples, see the [Web SDK README file](https://github.com/dotnet/sdk/tree/master/src/WebSdk).
 
 ## Run a target before or after publishing
 
@@ -507,6 +496,6 @@ Select the [Debug Console](https://github.com/projectkudu/kudu/wiki/Kudu-console
 ## Additional resources
 
 * [Web Deploy](https://www.iis.net/downloads/microsoft/web-deploy) (MSDeploy) simplifies deployment of web apps and websites to IIS servers.
-* [Web SDK GitHub repository](https://github.com/aspnet/websdk/issues): File issues and request features for deployment.
+* [Web SDK GitHub repository](https://github.com/dotnet/websdk/issues): File issues and request features for deployment.
 * [Publish an ASP.NET Web App to an Azure VM from Visual Studio](/azure/virtual-machines/windows/publish-web-app-from-visual-studio)
 * <xref:host-and-deploy/iis/transform-webconfig>

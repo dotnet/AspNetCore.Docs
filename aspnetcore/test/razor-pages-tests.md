@@ -1,16 +1,15 @@
 ---
 title: Razor Pages unit tests in ASP.NET Core
-author: guardrex
+author: rick-anderson
 description: Learn how to create unit tests for Razor Pages apps.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/14/2019
+ms.date: 7/22/2020
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: test/razor-pages-tests
 ---
 # Razor Pages unit tests in ASP.NET Core
-
-By [Luke Latham](https://github.com/guardrex)
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -27,7 +26,7 @@ This topic assumes that you have a basic understanding of Razor Pages apps and u
 * <xref:tutorials/razor-pages/razor-pages-start>
 * [Unit testing C# in .NET Core using dotnet test and xUnit](/dotnet/articles/core/testing/unit-testing-with-dotnet-test)
 
-[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/test/razor-pages-tests/samples) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/test/razor-pages-tests/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 The sample project is composed of two apps:
 
@@ -211,7 +210,7 @@ This topic assumes that you have a basic understanding of Razor Pages apps and u
 * <xref:tutorials/razor-pages/razor-pages-start>
 * [Unit testing C# in .NET Core using dotnet test and xUnit](/dotnet/articles/core/testing/unit-testing-with-dotnet-test)
 
-[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/test/razor-pages-tests/samples) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/test/razor-pages-tests/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 The sample project is composed of two apps:
 
@@ -377,5 +376,6 @@ Other tests in this group create page model objects that include the <xref:Micro
 * [Getting started with xUnit.net: Using .NET Core with the .NET SDK command line](https://xunit.github.io/docs/getting-started-dotnet-core)
 * [Moq](https://github.com/moq/moq4)
 * [Moq Quickstart](https://github.com/Moq/moq4/wiki/Quickstart)
+* [JustMockLite](https://github.com/telerik/JustMockLite): A mocking framework for .NET developers. (*Not maintained or supported by Microsoft.*)
 
 ::: moniker-end

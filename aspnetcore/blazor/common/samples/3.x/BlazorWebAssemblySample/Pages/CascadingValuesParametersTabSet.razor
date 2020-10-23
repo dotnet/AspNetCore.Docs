@@ -2,7 +2,6 @@
 
 <h1>Cascading Values & Parameters - TabSet</h1>
 
-<!-- <snippet_TabSet> -->
 <TabSet>
     <Tab Title="First tab">
         <h4>Greetings from the first tab!</h4>
@@ -24,7 +23,6 @@
         </Tab>
     }
 </TabSet>
-<!-- </snippet_TabSet> -->
 
 <h2>ITab.cs</h2>
 
@@ -99,19 +97,11 @@ namespace BlazorSample.UIInterfaces
     {
         if (ActiveTab == null)
         {
-            SetActivateTab(tab);
+            SetActiveTab(tab);
         }
     }
 
-    public void RemoveTab(ITab tab)
-    {
-        if (ActiveTab == tab)
-        {
-            SetActivateTab(null);
-        }
-    }
-
-    public void SetActivateTab(ITab tab)
+    public void SetActiveTab(ITab tab)
     {
         if (ActiveTab != tab)
         {
@@ -129,7 +119,7 @@ namespace BlazorSample.UIInterfaces
 @@implements ITab
 
 &lt;li&gt;
-    &lt;a @@onclick="Activate" class="nav-link @@TitleCssClass" role="button"&gt;
+    &lt;a @@onclick="ActivateTab" class="nav-link @@TitleCssClass" role="button"&gt;
         @@Title
     &lt;/a&gt;
 &lt;/li&gt;
@@ -151,9 +141,9 @@ namespace BlazorSample.UIInterfaces
         ContainerTabSet.AddTab(this);
     }
 
-    private void Activate()
+    private void ActivateTab()
     {
-        ContainerTabSet.SetActivateTab(this);
+        ContainerTabSet.SetActiveTab(this);
     }
 }</code></pre>
 

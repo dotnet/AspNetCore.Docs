@@ -1,16 +1,15 @@
 ---
 title: High-performance logging with LoggerMessage in ASP.NET Core
-author: guardrex
+author: rick-anderson
 description: Learn how to use LoggerMessage to create cacheable delegates that require fewer object allocations for high-performance logging scenarios.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 08/26/2019
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/logging/loggermessage
 ---
 # High-performance logging with LoggerMessage in ASP.NET Core
-
-By [Luke Latham](https://github.com/guardrex)
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -21,7 +20,7 @@ By [Luke Latham](https://github.com/guardrex)
 * Logger extension methods require "boxing" (converting) value types, such as `int`, into `object`. The <xref:Microsoft.Extensions.Logging.LoggerMessage> pattern avoids boxing by using static <xref:System.Action> fields and extension methods with strongly-typed parameters.
 * Logger extension methods must parse the message template (named format string) every time a log message is written. <xref:Microsoft.Extensions.Logging.LoggerMessage> only requires parsing a template once when the message is defined.
 
-[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/logging/loggermessage/samples/) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/logging/loggermessage/samples/) ([how to download](xref:index#how-to-download-a-sample))
 
 The sample app demonstrates <xref:Microsoft.Extensions.Logging.LoggerMessage> features with a basic quote tracking system. The app adds and deletes quotes using an in-memory database. As these operations occur, log messages are generated using the <xref:Microsoft.Extensions.Logging.LoggerMessage> pattern.
 
@@ -92,7 +91,7 @@ info: LoggerMessageSample.Pages.IndexModel[2]
           consequences of avoiding reality. - Ayn Rand')
 ```
 
-The sample app implements a [try&ndash;catch](/dotnet/csharp/language-reference/keywords/try-catch) pattern for quote deletion. An informational message is logged for a successful delete operation. An error message is logged for a delete operation when an exception is thrown. The log message for the unsuccessful delete operation includes the exception stack trace (*Internal/LoggerExtensions.cs*):
+The sample app implements a [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) pattern for quote deletion. An informational message is logged for a successful delete operation. An error message is logged for a delete operation when an exception is thrown. The log message for the unsuccessful delete operation includes the exception stack trace (*Internal/LoggerExtensions.cs*):
 
 [!code-csharp[](loggermessage/samples/3.x/LoggerMessageSample/Internal/LoggerExtensions.cs?name=snippet3)]
 
@@ -102,7 +101,7 @@ Note how the exception is passed to the delegate in `QuoteDeleteFailed`:
 
 [!code-csharp[](loggermessage/samples/3.x/LoggerMessageSample/Internal/LoggerExtensions.cs?name=snippet11)]
 
-In the page model for the Index page, a successful quote deletion calls the `QuoteDeleted` method on the logger. When a quote isn't found for deletion, an <xref:System.ArgumentNullException> is thrown. The exception is trapped by the [try&ndash;catch](/dotnet/csharp/language-reference/keywords/try-catch) statement and logged by calling the `QuoteDeleteFailed` method on the logger in the [catch](/dotnet/csharp/language-reference/keywords/try-catch) block (*Pages/Index.cshtml.cs*):
+In the page model for the Index page, a successful quote deletion calls the `QuoteDeleted` method on the logger. When a quote isn't found for deletion, an <xref:System.ArgumentNullException> is thrown. The exception is trapped by the [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) statement and logged by calling the `QuoteDeleteFailed` method on the logger in the [catch](/dotnet/csharp/language-reference/keywords/try-catch) block (*Pages/Index.cshtml.cs*):
 
 [!code-csharp[](loggermessage/samples/3.x/LoggerMessageSample/Pages/Index.cshtml.cs?name=snippet5&highlight=9,13)]
 
@@ -141,7 +140,7 @@ The sample app has a **Clear All** button for deleting all of the quotes in the 
 
 Enable `IncludeScopes` in the console logger section of *appsettings.json*:
 
-[!code-csharp[](loggermessage/samples/3.x/LoggerMessageSample/appsettings.json?highlight=3-5)]
+[!code-json[](loggermessage/samples/3.x/LoggerMessageSample/appsettings.json?highlight=3-5)]
 
 To create a log scope, add a field to hold a <xref:System.Func%601> delegate for the scope. The sample app creates a field called `_allQuotesDeletedScope` (*Internal/LoggerExtensions.cs*):
 
@@ -187,7 +186,7 @@ info: LoggerMessageSample.Pages.IndexModel[4]
 * Logger extension methods require "boxing" (converting) value types, such as `int`, into `object`. The <xref:Microsoft.Extensions.Logging.LoggerMessage> pattern avoids boxing by using static <xref:System.Action> fields and extension methods with strongly-typed parameters.
 * Logger extension methods must parse the message template (named format string) every time a log message is written. <xref:Microsoft.Extensions.Logging.LoggerMessage> only requires parsing a template once when the message is defined.
 
-[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/logging/loggermessage/samples/) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/logging/loggermessage/samples/) ([how to download](xref:index#how-to-download-a-sample))
 
 The sample app demonstrates <xref:Microsoft.Extensions.Logging.LoggerMessage> features with a basic quote tracking system. The app adds and deletes quotes using an in-memory database. As these operations occur, log messages are generated using the <xref:Microsoft.Extensions.Logging.LoggerMessage> pattern.
 
@@ -258,7 +257,7 @@ info: LoggerMessageSample.Pages.IndexModel[2]
           consequences of avoiding reality. - Ayn Rand')
 ```
 
-The sample app implements a [try&ndash;catch](/dotnet/csharp/language-reference/keywords/try-catch) pattern for quote deletion. An informational message is logged for a successful delete operation. An error message is logged for a delete operation when an exception is thrown. The log message for the unsuccessful delete operation includes the exception stack trace (*Internal/LoggerExtensions.cs*):
+The sample app implements a [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) pattern for quote deletion. An informational message is logged for a successful delete operation. An error message is logged for a delete operation when an exception is thrown. The log message for the unsuccessful delete operation includes the exception stack trace (*Internal/LoggerExtensions.cs*):
 
 [!code-csharp[](loggermessage/samples/2.x/LoggerMessageSample/Internal/LoggerExtensions.cs?name=snippet3)]
 
@@ -268,7 +267,7 @@ Note how the exception is passed to the delegate in `QuoteDeleteFailed`:
 
 [!code-csharp[](loggermessage/samples/2.x/LoggerMessageSample/Internal/LoggerExtensions.cs?name=snippet11)]
 
-In the page model for the Index page, a successful quote deletion calls the `QuoteDeleted` method on the logger. When a quote isn't found for deletion, an <xref:System.ArgumentNullException> is thrown. The exception is trapped by the [try&ndash;catch](/dotnet/csharp/language-reference/keywords/try-catch) statement and logged by calling the `QuoteDeleteFailed` method on the logger in the [catch](/dotnet/csharp/language-reference/keywords/try-catch) block (*Pages/Index.cshtml.cs*):
+In the page model for the Index page, a successful quote deletion calls the `QuoteDeleted` method on the logger. When a quote isn't found for deletion, an <xref:System.ArgumentNullException> is thrown. The exception is trapped by the [try-catch](/dotnet/csharp/language-reference/keywords/try-catch) statement and logged by calling the `QuoteDeleteFailed` method on the logger in the [catch](/dotnet/csharp/language-reference/keywords/try-catch) block (*Pages/Index.cshtml.cs*):
 
 [!code-csharp[](loggermessage/samples/2.x/LoggerMessageSample/Pages/Index.cshtml.cs?name=snippet5&highlight=14,18)]
 
@@ -309,7 +308,7 @@ The sample app has a **Clear All** button for deleting all of the quotes in the 
 
 Enable `IncludeScopes` in the console logger section of *appsettings.json*:
 
-[!code-csharp[](loggermessage/samples/2.x/LoggerMessageSample/appsettings.json?highlight=3-5)]
+[!code-json[](loggermessage/samples/2.x/LoggerMessageSample/appsettings.json?highlight=3-5)]
 
 To create a log scope, add a field to hold a <xref:System.Func%601> delegate for the scope. The sample app creates a field called `_allQuotesDeletedScope` (*Internal/LoggerExtensions.cs*):
 

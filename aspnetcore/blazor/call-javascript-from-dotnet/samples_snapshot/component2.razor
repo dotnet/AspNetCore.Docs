@@ -1,0 +1,17 @@
+@inject IJSRuntime JSRuntime
+@using JsInteropClasses
+
+<button @ref="exampleButton" />
+
+<button @onclick="TriggerClick">
+    Trigger button click on exampleButton
+</button>
+
+@code {
+    private ElementReference exampleButton;
+
+    public async Task TriggerClick()
+    {
+        await exampleButton.TriggerClickEvent(JSRuntime);
+    }
+}

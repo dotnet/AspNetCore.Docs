@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-2.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 10/25/2018
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/metapackage
 ---
 # Microsoft.AspNetCore.All metapackage for ASP.NET Core 2.0
@@ -41,7 +42,7 @@ The following *.csproj* file references the `Microsoft.AspNetCore.All` metapacka
 
 ## Implicit versioning
 
-In ASP.NET Core 2.1 or later, you can specify the `Microsoft.AspNetCore.All` package reference without a version. When the version isn't specified, an implicit version is specified by the SDK (`Microsoft.NET.Sdk.Web`). We recommend relying on the implicit version specified by the SDK and not explicitly setting the version number on the package reference. If you have questions about this approach, leave a GitHub comment at the [Discussion for the Microsoft.AspNetCore.App implicit version](https://github.com/aspnet/AspNetCore.Docs/issues/6430).
+In ASP.NET Core 2.1 or later, you can specify the `Microsoft.AspNetCore.All` package reference without a version. When the version isn't specified, an implicit version is specified by the SDK (`Microsoft.NET.Sdk.Web`). We recommend relying on the implicit version specified by the SDK and not explicitly setting the version number on the package reference. If you have questions about this approach, leave a GitHub comment at the [Discussion for the Microsoft.AspNetCore.App implicit version](https://github.com/dotnet/AspNetCore.Docs/issues/6430).
 
 The implicit version is set to `major.minor.0` for portable apps. The shared framework roll-forward mechanism runs the app on the latest compatible version among the installed shared frameworks. To guarantee the same version is used in development, test, and production, ensure the same version of the shared framework is installed in all environments. For self-contained apps, the implicit version number is set to the `major.minor.patch` of the shared framework bundled in the installed SDK.
 
@@ -88,6 +89,6 @@ Any dependencies of the preceding packages that otherwise aren't dependencies of
 
 We recommend migrating to the `Microsoft.AspNetCore.App` metapackage for 2.1 and later. To keep using the `Microsoft.AspNetCore.All` metapackage and ensure the latest patch version is deployed:
 
-* On development machines and build servers: Install the latest [.NET Core SDK](https://www.microsoft.com/net/download).
-* On deployment servers: Install the latest [.NET Core runtime](https://www.microsoft.com/net/download).
+* On development machines and build servers: Install the latest [.NET Core SDK](https://dotnet.microsoft.com/download).
+* On deployment servers: Install the latest [.NET Core runtime](https://dotnet.microsoft.com/download).
  Your app will roll forward to the latest installed version on an application restart.

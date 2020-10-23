@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -25,25 +25,26 @@ namespace SignalRWebPack
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        #region snippet_UseStaticDefaultFiles
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            #region snippet_UseStaticDefaultFiles
+            
             app.UseRouting();
             app.UseDefaultFiles();
             app.UseStaticFiles();
-            #endregion
-
+            
             #region snippet_UseSignalR
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapHub<ChatHub>("/hub");
             });
             #endregion
+                
         }
+        #endregion
     }
 }

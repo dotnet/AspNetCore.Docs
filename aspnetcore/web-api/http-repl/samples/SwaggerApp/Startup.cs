@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using SwaggerApp.Data;
 
 [assembly: ApiController]
@@ -24,13 +25,11 @@ namespace SwaggerApp
             services.AddDbContext<SampleContext>(options =>
                 options.UseInMemoryDatabase("SampleData"));
 
-            services.AddMvc()
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
+            services.AddControllers();
             services.AddSwaggerDocument();
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseOpenApi();
             app.UseSwaggerUi3();
@@ -45,7 +44,11 @@ namespace SwaggerApp
             }
 
             app.UseHttpsRedirection();
-            app.UseMvc();
+            app.UseRouting();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
         }
     }
 }

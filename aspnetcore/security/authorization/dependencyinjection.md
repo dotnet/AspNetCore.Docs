@@ -4,6 +4,7 @@ author: rick-anderson
 description: Learn how to inject authorization requirement handlers into an ASP.NET Core app using dependency injection.
 ms.author: riande
 ms.date: 10/14/2016
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authorization/dependencyinjection
 ---
 # Dependency injection in requirement handlers in ASP.NET Core

@@ -5,13 +5,14 @@ description: Learn how to use Visual Studio tooling and Docker for Windows to co
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 09/12/2018
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: host-and-deploy/docker/visual-studio-tools-for-docker
 ---
 # Visual Studio Container Tools with ASP.NET Core
 
 Visual Studio 2017 and later versions support building, debugging, and running containerized ASP.NET Core apps targeting .NET Core. Both Windows and Linux containers are supported.
 
-[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/host-and-deploy/docker/visual-studio-tools-for-docker/samples) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/host-and-deploy/docker/visual-studio-tools-for-docker/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Prerequisites
 
@@ -78,16 +79,20 @@ The preceding *Dockerfile* is based on the [microsoft/aspnetcore](https://hub.do
 
 Visual Studio 2017 versions 15.7 or earlier support [Docker Compose](https://docs.docker.com/compose/overview/) as the sole container orchestration solution. The Docker Compose artifacts are added via **Add** > **Docker Support**.
 
-Visual Studio 2017 versions 15.8 or later add an orchestration solution only when instructed. Right-click the project in **Solution Explorer** and select **Add** > **Container Orchestrator Support**. Two different choices are offered: [Docker Compose](#docker-compose) and [Service Fabric](#service-fabric).
+Visual Studio 2017 versions 15.8 or later add an orchestration solution only when instructed. Right-click the project in **Solution Explorer** and select **Add** > **Container Orchestrator Support**. The following choices are available: 
+
+* [Docker Compose](#docker-compose)
+* [Service Fabric](#service-fabric)
+* [Kubernetes/Helm ](https://helm.sh/)
 
 ### Docker Compose
 
 The Visual Studio Container Tools add a *docker-compose* project to the solution with the following files:
 
-* *docker-compose.dcproj* &ndash; The file representing the project. Includes a `<DockerTargetOS>` element specifying the OS to be used.
-* *.dockerignore* &ndash; Lists the file and directory patterns to exclude when generating a build context.
-* *docker-compose.yml* &ndash; The base [Docker Compose](https://docs.docker.com/compose/overview/) file used to define the collection of images built and run with `docker-compose build` and `docker-compose run`, respectively.
-* *docker-compose.override.yml* &ndash; An optional file, read by Docker Compose, with configuration overrides for services. Visual Studio executes `docker-compose -f "docker-compose.yml" -f "docker-compose.override.yml"` to merge these files.
+* *docker-compose.dcproj*: The file representing the project. Includes a `<DockerTargetOS>` element specifying the OS to be used.
+* *.dockerignore*: Lists the file and directory patterns to exclude when generating a build context.
+* *docker-compose.yml*: The base [Docker Compose](https://docs.docker.com/compose/overview/) file used to define the collection of images built and run with `docker-compose build` and `docker-compose run`, respectively.
+* *docker-compose.override.yml*: An optional file, read by Docker Compose, with configuration overrides for services. Visual Studio executes `docker-compose -f "docker-compose.yml" -f "docker-compose.override.yml"` to merge these files.
 
 The *docker-compose.yml* file references the name of the image that's created when the project runs:
 
@@ -100,6 +105,8 @@ Prefix the image name with the [Docker Hub](https://hub.docker.com/) username (f
 If you want different behavior based on the build configuration (for example, Debug or Release), add configuration-specific *docker-compose* files. The files should be named according to the build configuration (for example, *docker-compose.vs.debug.yml* and *docker-compose.vs.release.yml*) and placed in the same location as the *docker-compose-override.yml* file. 
 
 Using the configuration-specific override files, you can specify different configuration settings (such as environment variables or entry points) for Debug and Release build configurations.
+
+For Docker Compose to display an option to run in Visual Studio, the docker project must be the startup project.
 
 ### Service Fabric
 
@@ -230,3 +237,4 @@ There may be an expectation for the production or release image to be smaller in
 * [Deploy a .NET app in a Windows container to Azure Service Fabric](/azure/service-fabric/service-fabric-host-app-in-a-container)
 * [Troubleshoot Visual Studio development with Docker](/azure/vs-azure-tools-docker-troubleshooting-docker-errors)
 * [Visual Studio Container Tools GitHub repository](https://github.com/Microsoft/DockerTools)
+* [GC using Docker and small containers](xref:performance/memory#sc)

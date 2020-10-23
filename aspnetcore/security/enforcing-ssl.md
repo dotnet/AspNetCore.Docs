@@ -4,7 +4,8 @@ author: rick-anderson
 description: Learn how to require HTTPS/TLS in a ASP.NET Core web app.
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/14/2019
+ms.date: 12/06/2019
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/enforcing-ssl
 ---
 # Enforce HTTPS in ASP.NET Core
@@ -92,7 +93,7 @@ Specify the HTTPS port using any of the following approaches:
 
 ::: moniker range=">= aspnetcore-3.0"
 
-* Set the `https_port` [host setting](/aspnet/core/fundamentals/host/generic-host?view=aspnetcore-3.0#https_port):
+* Set the `https_port` [host setting](../fundamentals/host/generic-host.md?view=aspnetcore-3.0#https_port):
 
   * In host configuration.
   * By setting the `ASPNETCORE_HTTPS_PORT` environment variable.
@@ -100,7 +101,7 @@ Specify the HTTPS port using any of the following approaches:
 
     [!code-json[](enforcing-ssl/sample-snapshot/3.x/appsettings.json?highlight=2)]
 
-* Indicate a port with the secure scheme using the [ASPNETCORE_URLS environment variable](/aspnet/core/fundamentals/host/generic-host?view=aspnetcore-3.0#urls). The environment variable configures the server. The middleware indirectly discovers the HTTPS port via <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature>. This approach doesn't work in reverse proxy deployments.
+* Indicate a port with the secure scheme using the [ASPNETCORE_URLS environment variable](../fundamentals/host/generic-host.md?view=aspnetcore-3.0#urls). The environment variable configures the server. The middleware indirectly discovers the HTTPS port via <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature>. This approach doesn't work in reverse proxy deployments.
 
 ::: moniker-end
 
@@ -167,7 +168,7 @@ Calling `AddHttpsRedirection` is only necessary to change the values of `HttpsPo
 The preceding highlighted code:
 
 * Sets [HttpsRedirectionOptions.RedirectStatusCode](xref:Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionOptions.RedirectStatusCode*) to <xref:Microsoft.AspNetCore.Http.StatusCodes.Status307TemporaryRedirect>, which is the default value. Use the fields of the <xref:Microsoft.AspNetCore.Http.StatusCodes> class for assignments to `RedirectStatusCode`.
-* Sets the HTTPS port to 5001. The default value is 443.
+* Sets the HTTPS port to 5001.
 
 #### Configure permanent redirects in production
 
@@ -231,7 +232,7 @@ Per [OWASP](https://www.owasp.org/index.php/About_The_Open_Web_Application_Secur
 * The browser stores configuration for the domain that prevents sending any communication over HTTP. The browser forces all communication over HTTPS.
 * The browser prevents the user from using untrusted or invalid certificates. The browser disables prompts that allow a user to temporarily trust such a certificate.
 
-Because HSTS is enforced by the client it has some limitations:
+Because HSTS is enforced by the client, it has some limitations:
 
 * The client must support HSTS.
 * HSTS requires at least one successful HTTPS request to establish the HSTS policy.
@@ -253,7 +254,7 @@ ASP.NET Core 2.1 and later implements HSTS with the `UseHsts` extension method. 
 
 `UseHsts` isn't recommended in development because the HSTS settings are highly cacheable by browsers. By default, `UseHsts` excludes the local loopback address.
 
-For production environments that are implementing HTTPS for the first time, set the initial [HstsOptions.MaxAge](xref:Microsoft.AspNetCore.HttpsPolicy.HstsOptions.MaxAge*) to a small value using one of the <xref:System.TimeSpan> methods. Set the value from hours to no more than a single day in case you need to revert the HTTPS infrastructure to HTTP. After you're confident in the sustainability of the HTTPS configuration, increase the HSTS max-age value; a commonly used value is one year.
+For production environments that are implementing HTTPS for the first time, set the initial [HstsOptions.MaxAge](xref:Microsoft.AspNetCore.HttpsPolicy.HstsOptions.MaxAge*) to a small value using one of the <xref:System.TimeSpan> methods. Set the value from hours to no more than a single day in case you need to revert the HTTPS infrastructure to HTTP. After you're confident in the sustainability of the HTTPS configuration, increase the HSTS `max-age` value; a commonly used value is one year.
 
 The following code:
 
@@ -271,9 +272,9 @@ The following code:
 ::: moniker-end
 
 
-* Sets the preload parameter of the Strict-Transport-Security header. Preload isn't part of the [RFC HSTS specification](https://tools.ietf.org/html/rfc6797), but is supported by web browsers to preload HSTS sites on fresh install. See [https://hstspreload.org/](https://hstspreload.org/) for more information.
+* Sets the preload parameter of the `Strict-Transport-Security` header. Preload isn't part of the [RFC HSTS specification](https://tools.ietf.org/html/rfc6797), but is supported by web browsers to preload HSTS sites on fresh install. For more information, see [https://hstspreload.org/](https://hstspreload.org/).
 * Enables [includeSubDomain](https://tools.ietf.org/html/rfc6797#section-6.1.2), which applies the HSTS policy to Host subdomains.
-* Explicitly sets the max-age parameter of the Strict-Transport-Security header to 60 days. If not set, defaults to 30 days. See the [max-age directive](https://tools.ietf.org/html/rfc6797#section-6.1.1) for more information.
+* Explicitly sets the `max-age` parameter of the `Strict-Transport-Security` header to 60 days. If not set, defaults to 30 days. For more information, see the [max-age directive](https://tools.ietf.org/html/rfc6797#section-6.1.1).
 * Adds `example.com` to the list of hosts to exclude.
 
 `UseHsts` excludes the following loopback hosts:
@@ -319,9 +320,9 @@ dotnet new webapp --no-https
 
 ## Trust the ASP.NET Core HTTPS development certificate on Windows and macOS
 
-The .NET Core SDK includes an HTTPS development certificate. The certificate is installed as part of the first-run experience. For example, `dotnet --info` produces output similar to the following:
+The .NET Core SDK includes an HTTPS development certificate. The certificate is installed as part of the first-run experience. For example, `dotnet --info` produces a variation of the following output:
 
-```text
+```
 ASP.NET Core
 ------------
 Successfully installed the ASP.NET Core HTTPS Development Certificate.
@@ -330,7 +331,7 @@ For establishing trust on other platforms refer to the platform specific documen
 For more information on configuring HTTPS see https://go.microsoft.com/fwlink/?linkid=848054.
 ```
 
-Installing the .NET Core SDK installs the ASP.NET Core HTTPS development certificate to the local user certificate store. The certificate has been installed, but it's not trusted. To trust the certificate perform the one-time step to run the dotnet `dev-certs` tool:
+Installing the .NET Core SDK installs the ASP.NET Core HTTPS development certificate to the local user certificate store. The certificate has been installed, but it's not trusted. To trust the certificate, perform the one-time step to run the dotnet `dev-certs` tool:
 
 ```dotnetcli
 dotnet dev-certs https --trust
@@ -344,18 +345,34 @@ dotnet dev-certs https --help
 
 ## How to set up a developer certificate for Docker
 
-See [this GitHub issue](https://github.com/aspnet/AspNetCore.Docs/issues/6199).
+See [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/6199).
+
+<a name="ssl-linux"></a>
+
+## Trust HTTPS certificate on Linux
+
+<!-- Instructions to be updated by engineering team after 5.0 RTM. -->
+
+For instructions on Linux, refer to the distribution documentation.
 
 <a name="wsl"></a>
 
 ## Trust HTTPS certificate from Windows Subsystem for Linux
 
-The Windows Subsystem for Linux (WSL) generates a HTTPS self-signed cert. To configure the Windows certificate store to trust the WSL certificate:
+The Windows Subsystem for Linux (WSL) generates an HTTPS self-signed cert. To configure the Windows certificate store to trust the WSL certificate:
 
-* Run the following command to export the WSL generated certificate:
-  `dotnet dev-certs https -ep %USERPROFILE%\.aspnet\https\aspnetapp.pfx -p <cryptic-password>`
+* Run the following command to export the WSL-generated certificate:
+
+  ```
+  dotnet dev-certs https -ep %USERPROFILE%\.aspnet\https\aspnetapp.pfx -p <cryptic-password>
+  ```
 * In a WSL window, run the following command:
-  `ASPNETCORE_Kestrel__Certificates__Default__Password="<cryptic-password>" ASPNETCORE_Kestrel__Certificates__Default__Path=/mnt/c/Users/user-name/.aspnet/https/aspnetapp.pfx dotnet watch run`
+
+  ```
+    ASPNETCORE_Kestrel__Certificates__Default__Password="<cryptic-password>" 
+    ASPNETCORE_Kestrel__Certificates__Default__Path=/mnt/c/Users/user-name/.aspnet/https/aspnetapp.pfx
+    dotnet watch run
+  ```
 
   The preceding command sets the environment variables so Linux uses the Windows trusted certificate.
 
@@ -374,7 +391,7 @@ dotnet dev-certs https --trust
 
 Close any browser instances open. Open a new browser window to app. Certificate trust is cached by browsers.
 
-The preceding commands solve most browser trust issues. If the browser is still not trusting the certificate, follow the platform specific suggestions that follow.
+The preceding commands solve most browser trust issues. If the browser is still not trusting the certificate, follow the platform-specific suggestions that follow.
 
 ### Docker - certificate not trusted
 
@@ -400,7 +417,7 @@ Close any browser instances open. Open a new browser window to app.
 * Open KeyChain Access.
 * Select the System keychain.
 * Check for the presence of a localhost certificate.
-* Check that it contains a `+` symbol on the icon to indicate its trusted for all users.
+* Check that it contains a `+` symbol on the icon to indicate it's trusted for all users.
 * Remove the certificate from the system keychain.
 * Run the following commands:
 
@@ -411,11 +428,11 @@ dotnet dev-certs https --trust
 
 Close any browser instances open. Open a new browser window to app.
 
-See [HTTPS Error using IIS Express (aspnet/AspNetCore #16892)](https://github.com/aspnet/AspNetCore/issues/16892) for troubleshooting certificate issues with Visual Studio.
+See [HTTPS Error using IIS Express (dotnet/AspNetCore #16892)](https://github.com/dotnet/AspNetCore/issues/16892) for troubleshooting certificate issues with Visual Studio.
 
 ### IIS Express SSL certificate used with Visual Studio
 
-To fix problems with the IIS Express certificate, select **Repair** from the Visual Studio installer.
+To fix problems with the IIS Express certificate, select **Repair** from the Visual Studio installer. For more information, see [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/16892).
 
 ## Additional information
 
