@@ -227,11 +227,11 @@ Password:
     [Parameter]
     public EventCallback<string> PasswordChanged { get; set; }
 
-    private Task OnPasswordChanged(ChangeEventArgs e)
+    private async Task OnPasswordChanged(ChangeEventArgs e)
     {
         password = e.Value.ToString();
 
-        return PasswordChanged.InvokeAsync(password);
+        await PasswordChanged.InvokeAsync(password);
     }
 
     private void ToggleShowPassword()
@@ -287,7 +287,7 @@ Password:
     private Task OnPasswordChanged(ChangeEventArgs e)
     {
         password = e.Value.ToString();
-        
+
         if (password.Contains(' '))
         {
             validationMessage = "Spaces not allowed!";
@@ -373,9 +373,9 @@ The following components demonstrate the preceding concepts:
         set => PropertyChanged.InvokeAsync(value);
     }
 
-    private Task ChangeValue()
+    private async Task ChangeValue()
     {
-        return PropertyChanged.InvokeAsync($"Set in Child {DateTime.Now}");
+        await PropertyChanged.InvokeAsync($"Set in Child {DateTime.Now}");
     }
 }
 ```
@@ -400,9 +400,9 @@ The following components demonstrate the preceding concepts:
     [Parameter]
     public EventCallback<string> PropertyChanged { get; set; }
 
-    private Task ChangeValue()
+    private async Task ChangeValue()
     {
-        return PropertyChanged.InvokeAsync($"Set in Grandchild {DateTime.Now}");
+        await PropertyChanged.InvokeAsync($"Set in Grandchild {DateTime.Now}");
     }
 }
 ```

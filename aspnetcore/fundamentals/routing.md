@@ -323,8 +323,6 @@ Due to the kinds of extensibility provided by routing, it isn't possible for the
 > 
 > * Doesn't have a concept of routes.
 > * Doesn't provide ordering guarantees. All endpoints are processed at once.
->
-> If this means you're stuck using the legacy routing system, [open a GitHub issue for assistance](https://github.com/dotnet/aspnetcore/issues).
 
 <a name="rtp"></a>
 

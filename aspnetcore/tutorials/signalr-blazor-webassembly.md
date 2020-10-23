@@ -364,6 +364,7 @@ To learn more about building Blazor apps, see the Blazor documentation:
 
 > [!div class="nextstepaction"]
 > <xref:blazor/index>
+> [Bearer token authentication with Identity Server, WebSockets, and Server-Sent Events](xref:signalr/authn-and-authz#bearer-token-authentication)
 
 ## Additional resources
 
