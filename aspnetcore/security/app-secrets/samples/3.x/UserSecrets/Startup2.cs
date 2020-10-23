@@ -1,51 +1,41 @@
+#if never
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+using System.Data.SqlClient;
 
 namespace UserSecrets
 {
-    #region snippet_StartupClass
+#region snippet_StartupClass
     public class Startup
     {
-        private string _moviesApiKey = null;
-        
-        #region snippet_StartupConstructor
-        public Startup(IWebHostEnvironment env)
+        private string _connection = null;
+
+        public Startup(IConfiguration configuration)
         {
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", 
-                             optional: false, 
-                             reloadOnChange: true)
-                .AddEnvironmentVariables();
-
-            if (env.IsDevelopment())
-            {
-                builder.AddUserSecrets<Startup>();
-            }
-
-            Configuration = builder.Build();
+            Configuration = configuration;
         }
-        #endregion snippet_StartupConstructor
 
         public IConfiguration Configuration { get; }
 
         public void ConfigureServices(IServiceCollection services)
         {
-            _moviesApiKey = Configuration["Movies:ServiceApiKey"];
+            var builder = new SqlConnectionStringBuilder(
+                Configuration.GetConnectionString("Movies"));
+            builder.Password = Configuration["DbPassword"];
+            _connection = builder.ConnectionString;
         }
 
         public void Configure(IApplicationBuilder app)
         {
             app.Run(async (context) =>
             {
-                var result = string.IsNullOrEmpty(_moviesApiKey) ? "Null" : "Not Null";
-                await context.Response.WriteAsync($"Secret is {result}");
+                await context.Response.WriteAsync($"DB Connection: {_connection}");
             });
         }
     }
-    #endregion snippet_StartupClass
+#endregion snippet_StartupClass
 }
+#endif

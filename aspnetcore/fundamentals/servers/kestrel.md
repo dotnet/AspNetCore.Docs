@@ -1,16 +1,17 @@
 ---
 title: Kestrel web server implementation in ASP.NET Core
-author: guardrex
+author: rick-anderson
 description: Learn about Kestrel, the cross-platform web server for ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/26/2019
+ms.date: 05/04/2020
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/servers/kestrel
 ---
 # Kestrel web server implementation in ASP.NET Core
 
-By [Tom Dykstra](https://github.com/tdykstra), [Chris Ross](https://github.com/Tratcher), [Stephen Halter](https://twitter.com/halter73), and [Luke Latham](https://github.com/guardrex)
+By [Tom Dykstra](https://github.com/tdykstra), [Chris Ross](https://github.com/Tratcher), and [Stephen Halter](https://twitter.com/halter73)
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -27,7 +28,7 @@ Kestrel supports the following scenarios:
 
 Kestrel is supported on all platforms and versions that .NET Core supports.
 
-[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/servers/kestrel/samples) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/servers/kestrel/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 ## HTTP/2 support
 
@@ -111,7 +112,7 @@ The following examples use the <xref:Microsoft.AspNetCore.Server.Kestrel.Core> n
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 ```
 
-Kestrel options, which are configured in C# code in the following examples, can also be set using a [configuration provider](xref:fundamentals/configuration/index). For example, the File Configuration Provider can load Kestrel configuration from an *appsettings.json* or *appsettings.{Environment}.json* file:
+In examples shown later in this article, Kestrel options are configured in C# code. Kestrel options can also be set using a [configuration provider](xref:fundamentals/configuration/index). For example, the [File Configuration Provider](xref:fundamentals/configuration/index#file-configuration-provider) can load Kestrel configuration from an *appsettings.json* or *appsettings.{Environment}.json* file:
 
 ```json
 {
@@ -124,6 +125,9 @@ Kestrel options, which are configured in C# code in the following examples, can 
   }
 }
 ```
+
+> [!NOTE]
+> <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions> and [endpoint configuration](#endpoint-configuration) are configurable from configuration providers. Remaining Kestrel configuration must be configured in C# code.
 
 Use **one** of the following approaches:
 
@@ -336,14 +340,46 @@ webBuilder.ConfigureKestrel(serverOptions =>
 
 The default value is 96 KB (98,304).
 
-### Synchronous IO
+::: moniker range=">= aspnetcore-5.0"
 
-<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.AllowSynchronousIO> controls whether synchronous IO is allowed for the request and response. The default value is `false`.
+### HTTP/2 keep alive ping configuration
+
+Kestrel can be configured to send HTTP/2 pings to connected clients. HTTP/2 pings serve multiple purposes:
+
+* Keep idle connections alive. Some clients and proxy servers close connections that are idle. HTTP/2 pings are considered as activity on a connection and prevent the connection from being closed as idle.
+* Close unhealthy connections. Connections where the client doesn't respond to the keep alive ping in the configured time are closed by the server.
+
+There are two configuration options related to HTTP/2 keep alive pings:
+
+* `Http2.KeepAlivePingInterval` is a `TimeSpan` that configures the ping internal. The server sends a keep alive ping to the client if it doesn't receive any frames for this period of time. Keep alive pings are disabled when this option is set to `TimeSpan.MaxValue`. The default value is `TimeSpan.MaxValue`.
+* `Http2.KeepAlivePingTimeout` is a `TimeSpan` that configures the ping timeout. If the server doesn't receive any frames, such as a response ping, during this timeout then the connection is closed. Keep alive timeout is disabled when this option is set to `TimeSpan.MaxValue`. The default value is 20 seconds.
+
+```csharp
+webBuilder.ConfigureKestrel(serverOptions =>
+{
+    serverOptions.Limits.Http2.KeepAlivePingInterval = TimeSpan.FromSeconds(30);
+    serverOptions.Limits.Http2.KeepAlivePingTimeout = TimeSpan.FromSeconds(60);
+});
+```
+
+::: moniker-end
+
+### Trailers
+
+[!INCLUDE[](~/includes/trailers.md)]
+
+### Reset
+
+[!INCLUDE[](~/includes/reset.md)]
+
+### Synchronous I/O
+
+<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.AllowSynchronousIO> controls whether synchronous I/O is allowed for the request and response. The default value is `false`.
 
 > [!WARNING]
-> A large number of blocking synchronous IO operations can lead to thread pool starvation, which makes the app unresponsive. Only enable `AllowSynchronousIO` when using a library that doesn't support asynchronous IO.
+> A large number of blocking synchronous I/O operations can lead to thread pool starvation, which makes the app unresponsive. Only enable `AllowSynchronousIO` when using a library that doesn't support asynchronous I/O.
 
-The following example enables synchronous IO:
+The following example enables synchronous I/O:
 
 [!code-csharp[](kestrel/samples/3.x/KestrelSample/Program.cs?name=snippet_SyncIO)]
 
@@ -431,7 +467,7 @@ Configure Kestrel to use HTTPS.
 
 `ListenOptions.UseHttps` extensions:
 
-* `UseHttps` &ndash; Configure Kestrel to use HTTPS with the default certificate. Throws an exception if no default certificate is configured.
+* `UseHttps`: Configure Kestrel to use HTTPS with the default certificate. Throws an exception if no default certificate is configured.
 * `UseHttps(string fileName)`
 * `UseHttps(string fileName, string password)`
 * `UseHttps(string fileName, string password, Action<HttpsConnectionAdapterOptions> configureOptions)`
@@ -484,7 +520,6 @@ In the following *appsettings.json* example:
       "Http": {
         "Url": "http://localhost:5000"
       },
-
       "HttpsInlineCertFile": {
         "Url": "https://localhost:5001",
         "Certificate": {
@@ -492,7 +527,6 @@ In the following *appsettings.json* example:
           "Password": "<certificate password>"
         }
       },
-
       "HttpsInlineCertStore": {
         "Url": "https://localhost:5002",
         "Certificate": {
@@ -502,11 +536,9 @@ In the following *appsettings.json* example:
           "AllowInvalid": "<true or false; defaults to false>"
         }
       },
-
       "HttpsDefaultCert": {
         "Url": "https://localhost:5003"
       },
-
       "Https": {
         "Url": "https://*:5004",
         "Certificate": {
@@ -659,6 +691,9 @@ Listen on a Unix socket with <xref:Microsoft.AspNetCore.Server.Kestrel.Core.Kest
 
 [!code-csharp[](kestrel/samples/3.x/KestrelSample/Program.cs?name=snippet_UnixSocket)]
 
+* In the Nginx configuration file, set the `server` > `location` > `proxy_pass` entry to `http://unix:/tmp/{KESTREL SOCKET}:/;`. `{KESTREL SOCKET}` is the name of the socket provided to <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenUnixSocket*> (for example, `kestrel-test.sock` in the preceding example).
+* Ensure that the socket is writeable by Nginx (for example, `chmod go+w /tmp/kestrel-test.sock`).
+
 ### Port 0
 
 When the port number `0` is specified, Kestrel dynamically binds to an available port. The following example shows how to determine which port Kestrel actually bound at runtime:
@@ -707,9 +742,9 @@ TLS restrictions for HTTP/2:
 * Renegotiation disabled
 * Compression disabled
 * Minimum ephemeral key exchange sizes:
-  * Elliptic curve Diffie-Hellman (ECDHE) &lbrack;[RFC4492](https://www.ietf.org/rfc/rfc4492.txt)&rbrack; &ndash; 224 bits minimum
-  * Finite field Diffie-Hellman (DHE) &lbrack;`TLS12`&rbrack; &ndash; 2048 bits minimum
-* Cipher suite not blacklisted
+  * Elliptic curve Diffie-Hellman (ECDHE) &lbrack;[RFC4492](https://www.ietf.org/rfc/rfc4492.txt)&rbrack;: 224 bits minimum
+  * Finite field Diffie-Hellman (DHE) &lbrack;`TLS12`&rbrack;: 2048 bits minimum
+* Cipher suite not prohibited. 
 
 `TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256` &lbrack;`TLS-ECDHE`&rbrack; with the P-256 elliptic curve &lbrack;`FIPS186`&rbrack; is supported by default.
 
@@ -979,7 +1014,7 @@ Kestrel supports the following scenarios:
 
 Kestrel is supported on all platforms and versions that .NET Core supports.
 
-[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/servers/kestrel/samples) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/servers/kestrel/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 ## HTTP/2 support
 
@@ -1318,14 +1353,14 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
 
 The default value is 96 KB (98,304).
 
-### Synchronous IO
+### Synchronous I/O
 
-<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.AllowSynchronousIO> controls whether synchronous IO is allowed for the request and response. The  default value is `true`.
+<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.AllowSynchronousIO> controls whether synchronous I/O is allowed for the request and response. The  default value is `true`.
 
 > [!WARNING]
-> A large number of blocking synchronous IO operations can lead to thread pool starvation, which makes the app unresponsive. Only enable `AllowSynchronousIO` when using a library that doesn't support asynchronous IO.
+> A large number of blocking synchronous I/O operations can lead to thread pool starvation, which makes the app unresponsive. Only enable `AllowSynchronousIO` when using a library that doesn't support asynchronous I/O.
 
-The following example enables synchronous IO:
+The following example enables synchronous I/O:
 
 [!code-csharp[](kestrel/samples/2.x/KestrelSample/Program.cs?name=snippet_SyncIO)]
 
@@ -1420,7 +1455,7 @@ Configure Kestrel to use HTTPS.
 
 `ListenOptions.UseHttps` extensions:
 
-* `UseHttps` &ndash; Configure Kestrel to use HTTPS with the default certificate. Throws an exception if no default certificate is configured.
+* `UseHttps`: Configure Kestrel to use HTTPS with the default certificate. Throws an exception if no default certificate is configured.
 * `UseHttps(string fileName)`
 * `UseHttps(string fileName, string password)`
 * `UseHttps(string fileName, string password, Action<HttpsConnectionAdapterOptions> configureOptions)`
@@ -1657,6 +1692,9 @@ Listen on a Unix socket with <xref:Microsoft.AspNetCore.Server.Kestrel.Core.Kest
 
 [!code-csharp[](kestrel/samples/2.x/KestrelSample/Program.cs?name=snippet_UnixSocket)]
 
+* In the Nginx confiuguration file, set the `server` > `location` > `proxy_pass` entry to `http://unix:/tmp/{KESTREL SOCKET}:/;`. `{KESTREL SOCKET}` is the name of the socket provided to <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenUnixSocket*> (for example, `kestrel-test.sock` in the preceding example).
+* Ensure that the socket is writeable by Nginx (for example, `chmod go+w /tmp/kestrel-test.sock`). 
+
 ### Port 0
 
 When the port number `0` is specified, Kestrel dynamically binds to an available port. The following example shows how to determine which port Kestrel actually bound at runtime:
@@ -1705,9 +1743,9 @@ TLS restrictions for HTTP/2:
 * Renegotiation disabled
 * Compression disabled
 * Minimum ephemeral key exchange sizes:
-  * Elliptic curve Diffie-Hellman (ECDHE) &lbrack;[RFC4492](https://www.ietf.org/rfc/rfc4492.txt)&rbrack; &ndash; 224 bits minimum
-  * Finite field Diffie-Hellman (DHE) &lbrack;`TLS12`&rbrack; &ndash; 2048 bits minimum
-* Cipher suite not blacklisted
+  * Elliptic curve Diffie-Hellman (ECDHE) &lbrack;[RFC4492](https://www.ietf.org/rfc/rfc4492.txt)&rbrack;: 224 bits minimum
+  * Finite field Diffie-Hellman (DHE) &lbrack;`TLS12`&rbrack;: 2048 bits minimum
+* Cipher suite not blocked
 
 `TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256` &lbrack;`TLS-ECDHE`&rbrack; with the P-256 elliptic curve &lbrack;`FIPS186`&rbrack; is supported by default.
 
@@ -1924,7 +1962,7 @@ Kestrel supports the following scenarios:
 
 Kestrel is supported on all platforms and versions that .NET Core supports.
 
-[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/servers/kestrel/samples) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/servers/kestrel/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 ## When to use Kestrel with a reverse proxy
 
@@ -2172,14 +2210,14 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
         });
 ```
 
-### Synchronous IO
+### Synchronous I/O
 
-<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.AllowSynchronousIO> controls whether synchronous IO is allowed for the request and response. The  default value is `true`.
+<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.AllowSynchronousIO> controls whether synchronous I/O is allowed for the request and response. The  default value is `true`.
 
 > [!WARNING]
-> A large number of blocking synchronous IO operations can lead to thread pool starvation, which makes the app unresponsive. Only enable `AllowSynchronousIO` when using a library that doesn't support asynchronous IO.
+> A large number of blocking synchronous I/O operations can lead to thread pool starvation, which makes the app unresponsive. Only enable `AllowSynchronousIO` when using a library that doesn't support asynchronous I/O.
 
-The following example disables synchronous IO:
+The following example disables synchronous I/O:
 
 ```csharp
 public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
@@ -2281,7 +2319,7 @@ Configure Kestrel to use HTTPS.
 
 `ListenOptions.UseHttps` extensions:
 
-* `UseHttps` &ndash; Configure Kestrel to use HTTPS with the default certificate. Throws an exception if no default certificate is configured.
+* `UseHttps`: Configure Kestrel to use HTTPS with the default certificate. Throws an exception if no default certificate is configured.
 * `UseHttps(string fileName)`
 * `UseHttps(string fileName, string password)`
 * `UseHttps(string fileName, string password, Action<HttpsConnectionAdapterOptions> configureOptions)`
@@ -2567,6 +2605,9 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
         });
 ```
 
+* In the Nginx confiuguration file, set the `server` > `location` > `proxy_pass` entry to `http://unix:/tmp/{KESTREL SOCKET}:/;`. `{KESTREL SOCKET}` is the name of the socket provided to <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenUnixSocket*> (for example, `kestrel-test.sock` in the preceding example).
+* Ensure that the socket is writeable by Nginx (for example, `chmod go+w /tmp/kestrel-test.sock`). 
+
 ### Port 0
 
 When the port number `0` is specified, Kestrel dynamically binds to an available port. The following example shows how to determine which port Kestrel actually bound at runtime:
@@ -2699,8 +2740,39 @@ Host Filtering Middleware is disabled by default. To enable the middleware, defi
 
 ::: moniker-end
 
+## HTTP/1.1 request draining
+
+Opening HTTP connections is time consuming. For HTTPS, it's also resource intensive. Therefore, Kestrel tries to reuse connections per the HTTP/1.1 protocol. A request body must be fully consumed to allow the connection to be reused. The app doesn't always consume the request body, such as a `POST` requests where the server returns a redirect or 404 response. In the `POST`-redirect case:
+
+* The client may already have sent part of the `POST` data.
+* The server writes the 301 response.
+* The connection can't be used for a new request until the `POST` data from the previous request body has been fully read.
+* Kestrel tries to drain the request body. Draining the request body means reading and discarding the data without processing it.
+
+The draining process makes a tradoff between allowing the connection to be reused and the time it takes to drain any remaining data:
+
+* Draining has a timeout of five seconds, which isn't configurable.
+* If all of the data specified by the `Content-Length` or `Transfer-Encoding` header hasn't been read before the timeout, the connection is closed.
+
+Sometimes you may want to terminate the request immediately, before or after writing the response. For example, clients may have restrictive data caps, so limiting uploaded data might be a priority. In such cases to terminate a request, call [HttpContext.Abort](xref:Microsoft.AspNetCore.Http.HttpContext.Abort%2A) from a controller, Razor Page, or middleware.
+
+There are caveats to calling `Abort`:
+
+* Creating new connections can be slow and expensive.
+* There's no guarantee that the client has read the response before the connection closes.
+* Calling `Abort` should be rare and reserved for severe error cases, not common errors.
+  * Only call `Abort` when a specific problem needs to be solved. For example, call `Abort` if malicious clients are trying to `POST` data or when there's a bug in client code that causes large or numerous requests.
+  * Don't call `Abort` for common error situations, such as HTTP 404 (Not Found).
+
+Calling [HttpResponse.CompleteAsync](xref:Microsoft.AspNetCore.Http.HttpResponse.CompleteAsync%2A) before calling `Abort` ensures that the server has completed writing the response. However, client behavior isn't predictable and they may not read the response before the connection is aborted.
+
+This process is different for HTTP/2 because the protocol supports aborting individual request streams without closing the connection. The five second drain timeout doesn't apply. If there's any unread request body data after completing a response, then the server sends an HTTP/2 RST frame. Additional request body data frames are ignored.
+
+If possible, it's better for clients to utilize the [Expect: 100-continue](https://developer.mozilla.org/docs/Web/HTTP/Status/100) request header and wait for the server to respond before starting to send the request body. That gives the client an opportunity to examine the response and abort before sending unneeded data.
+
 ## Additional resources
 
+* When using UNIX sockets on Linux, the socket is not automatically deleted on app shut down. For more information, see [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/14134).
 * <xref:test/troubleshoot>
 * <xref:security/enforcing-ssl>
 * <xref:host-and-deploy/proxy-load-balancer>

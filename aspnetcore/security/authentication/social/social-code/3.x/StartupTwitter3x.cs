@@ -13,6 +13,7 @@ public void ConfigureServices(IServiceCollection services)
     {
         twitterOptions.ConsumerKey = Configuration["Authentication:Twitter:ConsumerAPIKey"];
         twitterOptions.ConsumerSecret = Configuration["Authentication:Twitter:ConsumerSecret"];
+        twitterOptions.RetrieveUserDetails = true;
     });
 
 }

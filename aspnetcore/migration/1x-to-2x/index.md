@@ -5,6 +5,7 @@ description: This article outlines the prerequisites and most common steps for m
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 12/05/2019
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: migration/1x-to-2x/index
 ---
 # Migrate from ASP.NET Core 1.x to 2.0
@@ -36,7 +37,7 @@ Projects targeting .NET Framework should use the TFM of a version greater than o
 > [!NOTE]
 > .NET Core 2.0 offers a much larger surface area than .NET Core 1.x. If you're targeting .NET Framework solely because of missing APIs in .NET Core 1.x, targeting .NET Core 2.0 is likely to work.
 
-If the project file contains `<RuntimeFrameworkVersion>1.{sub-version}</RuntimeFrameworkVersion>`, see [this GitHub issue](https://github.com/aspnet/AspNetCore/issues/3221#issuecomment-413094268).
+If the project file contains `<RuntimeFrameworkVersion>1.{sub-version}</RuntimeFrameworkVersion>`, see [this GitHub issue](https://github.com/dotnet/AspNetCore/issues/3221#issuecomment-413094268).
 
 <a name="global-json"></a>
 

@@ -3,8 +3,9 @@ title: Add, download, and delete user data to Identity in an ASP.NET Core projec
 author: rick-anderson
 description: Learn how to add custom user data to Identity in an ASP.NET Core project. Delete data per GDPR.
 ms.author: riande
-ms.date: 12/05/2019
+ms.date: 03/26/2020
 ms.custom: "mvc, seodec18"
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/add-user-data
 ---
 # Add, download, and delete custom user data to Identity in an ASP.NET Core project
@@ -18,7 +19,7 @@ This article shows how to:
 
 The project sample is created from a Razor Pages web app, but the instructions are similar for a ASP.NET Core MVC web app.
 
-[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/security/authentication/add-user-data) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authentication/add-user-data) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Prerequisites
 
@@ -40,7 +41,7 @@ The project sample is created from a Razor Pages web app, but the instructions a
 
 ::: moniker range=">= aspnetcore-3.0"
 
-* From the Visual Studio **File** menu, select **New** > **Project**. Name the project **WebApp1** if you want to it match the namespace of the [download sample](https://github.com/aspnet/AspNetCore.Docs/tree/live/aspnetcore/security/authentication/add-user-data) code.
+* From the Visual Studio **File** menu, select **New** > **Project**. Name the project **WebApp1** if you want to it match the namespace of the [download sample](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetcore/security/authentication/add-user-data) code.
 * Select **ASP.NET Core Web Application** > **OK**
 * Select **ASP.NET Core 3.0** in the dropdown
 * Select **Web Application** > **OK**
@@ -50,7 +51,7 @@ The project sample is created from a Razor Pages web app, but the instructions a
 
 ::: moniker range="< aspnetcore-3.0"
 
-* From the Visual Studio **File** menu, select **New** > **Project**. Name the project **WebApp1** if you want to it match the namespace of the [download sample](https://github.com/aspnet/AspNetCore.Docs/tree/live/aspnetcore/security/authentication/add-user-data) code.
+* From the Visual Studio **File** menu, select **New** > **Project**. Name the project **WebApp1** if you want to it match the namespace of the [download sample](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetcore/security/authentication/add-user-data) code.
 * Select **ASP.NET Core Web Application** > **OK**
 * Select **ASP.NET Core 2.2** in the dropdown
 * Select **Web Application** > **OK**
@@ -72,15 +73,15 @@ dotnet new webapp -o WebApp1
 # [Visual Studio](#tab/visual-studio)
 
 * From **Solution Explorer**, right-click on the project > **Add** > **New Scaffolded Item**.
-* From the left pane of the **Add Scaffold** dialog, select **Identity** > **ADD**.
-* In the **ADD Identity** dialog, the following options:
+* From the left pane of the **Add Scaffold** dialog, select **Identity** > **Add**.
+* In the **Add Identity** dialog, the following options:
   * Select the existing layout  file  *~/Pages/Shared/_Layout.cshtml*
   * Select the following files to override:
     * **Account/Register**
     * **Account/Manage/Index**
   * Select the **+** button to create a new **Data context class**. Accept the type (**WebApp1.Models.WebApp1Context** if the project is named **WebApp1**).
   * Select the **+** button to create a new **User class**. Accept the type (**WebApp1User** if the project is named **WebApp1**) > **Add**.
-* Select **ADD**.
+* Select **Add**.
 
 # [.NET Core CLI](#tab/netcore-cli)
 
@@ -164,7 +165,7 @@ Update the *Areas/Identity/Pages/Account/Manage/Index.cshtml* with the following
 
 Update the *Areas/Identity/Pages/Account/Manage/Index.cshtml* with the following highlighted markup:
 
-[!code-chtml[](add-user-data/samples/2.x/SampleApp/Areas/Identity/Pages/Account/Manage/Index.cshtml?highlight=35-42)]
+[!code-cshtml[](add-user-data/samples/2.x/SampleApp/Areas/Identity/Pages/Account/Manage/Index.cshtml?highlight=35-42)]
 
 ::: moniker-end
 
@@ -188,7 +189,7 @@ Update the *Areas/Identity/Pages/Account/Register.cshtml* with the following hig
 
 Update the *Areas/Identity/Pages/Account/Register.cshtml* with the following highlighted markup:
 
-[!code-chtml[](add-user-data/samples/2.x/SampleApp/Areas/Identity/Pages/Account/Register.cshtml?highlight=16-25)]
+[!code-cshtml[](add-user-data/samples/2.x/SampleApp/Areas/Identity/Pages/Account/Register.cshtml?highlight=16-25)]
 
 ::: moniker-end
 
@@ -222,3 +223,80 @@ Test the app:
 * Register a new user.
 * View the custom user data on the `/Identity/Account/Manage` page.
 * Download and view the users personal data from the `/Identity/Account/Manage/PersonalData` page.
+
+## Add claims to Identity using IUserClaimsPrincipalFactory<ApplicationUser>
+
+> [!NOTE]
+> This section isn't an extension of the previous tutorial. To apply the following steps to the app built using the tutorial, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/18797).
+
+Additional claims can be added to ASP.NET Core Identity by using the `IUserClaimsPrincipalFactory<T>` interface. This class can be added to the app in the `Startup.ConfigureServices` method. Add the custom implementation of the class as follows:
+
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+	services.AddIdentity<ApplicationUser, IdentityRole>()
+		.AddEntityFrameworkStores<ApplicationDbContext>()
+		.AddDefaultTokenProviders();
+
+	services.AddScoped<IUserClaimsPrincipalFactory<ApplicationUser>, 
+		AdditionalUserClaimsPrincipalFactory>();
+```
+
+The demo code uses the `ApplicationUser` class. This class adds an `IsAdmin` property which is used to add the additional claim.
+
+```csharp
+public class ApplicationUser : IdentityUser
+{
+	public bool IsAdmin { get; set; }
+}
+```
+
+The `AdditionalUserClaimsPrincipalFactory` implements the `UserClaimsPrincipalFactory` interface. A new role claim is added to the `ClaimsPrincipal`.
+
+```csharp
+public class AdditionalUserClaimsPrincipalFactory 
+		: UserClaimsPrincipalFactory<ApplicationUser, IdentityRole>
+{
+	public AdditionalUserClaimsPrincipalFactory( 
+		UserManager<ApplicationUser> userManager,
+		RoleManager<IdentityRole> roleManager, 
+		IOptions<IdentityOptions> optionsAccessor) 
+		: base(userManager, roleManager, optionsAccessor)
+	{}
+
+	public async override Task<ClaimsPrincipal> CreateAsync(ApplicationUser user)
+	{
+		var principal = await base.CreateAsync(user);
+		var identity = (ClaimsIdentity)principal.Identity;
+
+		var claims = new List<Claim>();
+		if (user.IsAdmin)
+		{
+			claims.Add(new Claim(JwtClaimTypes.Role, "admin"));
+		}
+		else
+		{
+			claims.Add(new Claim(JwtClaimTypes.Role, "user"));
+		}
+
+		identity.AddClaims(claims);
+		return principal;
+	}
+}
+```
+
+The additional claim can then be used in the app. In a Razor Page, the `IAuthorizationService` instance can be used to access the claim value.
+
+```cshtml
+@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService AuthorizationService
+
+@if ((await AuthorizationService.AuthorizeAsync(User, "IsAdmin")).Succeeded)
+{
+	<ul class="mr-auto navbar-nav">
+		<li class="nav-item">
+			<a class="nav-link" asp-controller="Admin" asp-action="Index">ADMIN</a>
+		</li>
+	</ul>
+}
+```

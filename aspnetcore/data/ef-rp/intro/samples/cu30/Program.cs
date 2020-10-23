@@ -1,3 +1,5 @@
+#define Startup
+
 using ContosoUniversity.Data;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Hosting;
@@ -41,7 +43,11 @@ namespace ContosoUniversity
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
+#if Startup
                     webBuilder.UseStartup<Startup>();
+#else
+                    webBuilder.UseStartup<StartupSQLite>();
+#endif
                 });
     }
 }

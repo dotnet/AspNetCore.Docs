@@ -1,13 +1,14 @@
 ---
-title: Examine the Details and Delete methods of an ASP.NET Core app
+title: Part 10, examine the Details and Delete methods of an ASP.NET Core app
 author: rick-anderson
-description: Learn about the Details controller method and view in a basic ASP.NET Core MVC app.
+description: Part 10 of tutorial series on ASP.NET Core MVC.
 ms.author: riande
 ms.date: 12/13/2018
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-mvc-app/details
 ---
 
-# Examine the Details and Delete methods of an ASP.NET Core app
+# Part 10, examine the Details and Delete methods of an ASP.NET Core app
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -48,7 +49,7 @@ public async Task<IActionResult> Delete(int id, bool notUsed)
 
 ### Publish to Azure
 
-For information on deploying to Azure, see [Tutorial: Build a .NET Core and SQL Database web app in Azure App Service](/azure/app-service/app-service-web-tutorial-dotnetcore-sqldb).
+For information on deploying to Azure, see [Tutorial: Build an ASP.NET Core and SQL Database app in Azure App Service](/azure/app-service/tutorial-dotnetcore-sqldb-app).
 
 > [!div class="step-by-step"]
 > [Previous](validation.md)

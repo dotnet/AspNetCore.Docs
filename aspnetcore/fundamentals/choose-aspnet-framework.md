@@ -4,8 +4,8 @@ author: rick-anderson
 description: Explains ASP.NET Core vs. ASP.NET 4.x and how to choose between them.
 ms.author: riande
 ms.custom: "mvc, seodec18"
-ms.date: 11/12/2019
-no-loc: [SignalR]
+ms.date: 02/12/2020
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/choose-between-aspnet-and-aspnetcore
 ---
 # Choose between ASP.NET 4.x and ASP.NET Core
@@ -41,7 +41,7 @@ See [ASP.NET Core targeting .NET Framework](xref:index#target-framework) for inf
 
 * [Websites](xref:tutorials/first-mvc-app/index)
 * [APIs](xref:tutorials/first-web-api)
-* [Real-time](xref:signalr/index)
+* [Real-time](xref:signalr/introduction)
 * [Deploy an ASP.NET Core app to Azure](/azure/app-service/app-service-web-get-started-dotnet)
 
 ## ASP.NET 4.x scenarios

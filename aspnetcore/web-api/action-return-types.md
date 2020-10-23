@@ -4,14 +4,15 @@ author: scottaddie
 description: Learn about using the various controller action method return types in an ASP.NET Core web API.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 09/09/2019
+ms.date: 02/03/2020
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: web-api/action-return-types
 ---
 # Controller action return types in ASP.NET Core web API
 
 By [Scott Addie](https://github.com/scottaddie)
 
-[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/action-return-types/samples) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/action-return-types/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 ASP.NET Core offers the following options for web API controller action return types:
 
@@ -40,7 +41,7 @@ The simplest action returns a primitive or complex data type (for example, `stri
 
 Without known conditions to safeguard against during action execution, returning a specific type could suffice. The preceding action accepts no parameters, so parameter constraints validation isn't needed.
 
-When known conditions need to be accounted for in an action, multiple return paths are introduced. In such a case, it's common to mix an <xref:Microsoft.AspNetCore.Mvc.ActionResult> return type with the primitive or complex return type. Either [IActionResult](#iactionresult-type) or [ActionResult\<T>](#actionresultt-type) are necessary to accommodate this type of action.
+When multiple return types are possible, it's common to mix an <xref:Microsoft.AspNetCore.Mvc.ActionResult> return type with the primitive or complex return type. Either [IActionResult](#iactionresult-type) or [ActionResult\<T>](#actionresultt-type) are necessary to accommodate this type of action. Several samples of multiple return types are provided in this document.
 
 ### Return IEnumerable\<T> or IAsyncEnumerable\<T>
 
@@ -54,8 +55,8 @@ public IEnumerable<Product> GetOnSaleProducts() =>
 To avoid synchronous enumeration and blocking waits on the database in ASP.NET Core 2.2 and earlier, invoke `ToListAsync`:
 
 ```csharp
-public IEnumerable<Product> GetOnSaleProducts() =>
-    _context.Products.Where(p => p.IsOnSale).ToListAsync();
+public async Task<IEnumerable<Product>> GetOnSaleProducts() =>
+    await _context.Products.Where(p => p.IsOnSale).ToListAsync();
 ```
 
 In ASP.NET Core 3.0 and later, returning `IAsyncEnumerable<T>` from an action:

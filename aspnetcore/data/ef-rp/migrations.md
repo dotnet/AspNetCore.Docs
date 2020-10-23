@@ -1,13 +1,14 @@
 ---
-title: Razor Pages with EF Core in ASP.NET Core - Migrations - 4 of 8
+title: Part 4, Razor Pages with EF Core in ASP.NET Core - Migrations
 author: rick-anderson
-description: In this tutorial, you start using the EF Core migrations feature for managing data model changes in an ASP.NET Core MVC app.
+description: Part 4 of Razor Pages and Entity Framework tutorial series.
 ms.author: riande
 ms.date: 07/22/2019
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: data/ef-rp/migrations
 ---
 
-# Razor Pages with EF Core in ASP.NET Core - Migrations - 4 of 8
+# Part 4, Razor Pages with EF Core migrations in ASP.NET Core
 
 By [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com/thereformedprog), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -37,7 +38,7 @@ Drop-Database
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* Run the following command at a command prompt to install the EF CLI tools:
+* Run the following command at a command prompt to install the EF CLI:
 
   ```dotnetcli
   dotnet tool install --global dotnet-ef
@@ -116,7 +117,7 @@ Run the app and verify that the database is seeded.
 
 ## Applying migrations in production
 
-We recommend that production apps **not** call [Database.Migrate](/dotnet/api/microsoft.entityframeworkcore.relationaldatabasefacadeextensions.migrate?view=efcore-2.0#Microsoft_EntityFrameworkCore_RelationalDatabaseFacadeExtensions_Migrate_Microsoft_EntityFrameworkCore_Infrastructure_DatabaseFacade_) at application startup. `Migrate` shouldn't be called from an app that is deployed to a server farm. If the app is scaled out to multiple server instances, it's hard to ensure database schema updates don't happen from multiple servers or conflict with read/write access.
+We recommend that production apps **not** call [Database.Migrate](/dotnet/api/microsoft.entityframeworkcore.relationaldatabasefacadeextensions.migrate#Microsoft_EntityFrameworkCore_RelationalDatabaseFacadeExtensions_Migrate_Microsoft_EntityFrameworkCore_Infrastructure_DatabaseFacade_) at application startup. `Migrate` shouldn't be called from an app that is deployed to a server farm. If the app is scaled out to multiple server instances, it's hard to ensure database schema updates don't happen from multiple servers or conflict with read/write access.
 
 Database migration should be done as part of deployment, and in a controlled way. Production database migration approaches include:
 
@@ -155,7 +156,7 @@ The next tutorial builds out the data model, adding entity properties and new en
 In this tutorial, the EF Core migrations feature for managing data model changes is used.
 
 If you run into problems you can't solve, download the [completed app](
-https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples).
+https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples).
 
 When a new app is developed, the data model changes frequently. Each time the model changes, the model gets out of sync with the database. This tutorial started by configuring the Entity Framework to create the database if it doesn't exist. Each time the data model changes:
 
@@ -175,7 +176,7 @@ Use **SQL Server Object Explorer** (SSOX) or the `database drop` command:
 
 In the **Package Manager Console** (PMC), run the following command:
 
-```PMC
+```powershell
 Drop-Database
 ```
 
@@ -199,7 +200,7 @@ Build the project and create the first migration.
 
 # [Visual Studio](#tab/visual-studio)
 
-```PMC
+```powershell
 Add-Migration InitialCreate
 Update-Database
 ```
@@ -279,7 +280,7 @@ Run the app and verify that everything works.
 
 ## Applying migrations in production
 
-We recommend production apps should **not** call [Database.Migrate](/dotnet/api/microsoft.entityframeworkcore.relationaldatabasefacadeextensions.migrate?view=efcore-2.0#Microsoft_EntityFrameworkCore_RelationalDatabaseFacadeExtensions_Migrate_Microsoft_EntityFrameworkCore_Infrastructure_DatabaseFacade_) at application startup. `Migrate` shouldn't be called from an app in server farm. For example, if the app has been cloud deployed with scale-out (multiple instances of the app are running).
+We recommend production apps should **not** call [Database.Migrate](/dotnet/api/microsoft.entityframeworkcore.relationaldatabasefacadeextensions.migrate#Microsoft_EntityFrameworkCore_RelationalDatabaseFacadeExtensions_Migrate_Microsoft_EntityFrameworkCore_Infrastructure_DatabaseFacade_) at application startup. `Migrate` shouldn't be called from an app in server farm. For example, if the app has been cloud deployed with scale-out (multiple instances of the app are running).
 
 Database migration should be done as part of deployment, and in a controlled way. Production database migration approaches include:
 
@@ -291,7 +292,7 @@ EF Core uses the `__MigrationsHistory` table to see if any migrations need to ru
 ## Troubleshooting
 
 Download the [completed app](
-https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu21snapshots/cu-part4-migrations).
+https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu21snapshots/cu-part4-migrations).
 
 The app generates the following exception:
 

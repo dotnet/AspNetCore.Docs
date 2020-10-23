@@ -20,7 +20,7 @@
 
 <h3>Todo Items</h3>
 
-@if (_todoItems == null)
+@if (todoItems == null)
 {
     <p>No Todo Items found.</p>
 }
@@ -35,19 +35,19 @@ else
             </tr>
         </thead>
         <tbody>
-            <tr id="editRow" style="display:@_editRowStyle">
+            <tr id="editRow" style="display:@editRowStyle">
                 <td class="text-center">
-                    <input type="checkbox" @bind="_editItem.IsComplete" />
+                    <input type="checkbox" @bind="editItem.IsComplete" />
                 </td>
                 <td>
-                    <input @bind="_editItem.Name" />
+                    <input @bind="editItem.Name" />
                 </td>
                 <td class="text-center">
                     <button class="btn btn-success" @onclick="@SaveItem">Save</button>
-                    <button class="btn btn-danger" @onclick="@(() => _editRowStyle = "none")">Cancel</button>
+                    <button class="btn btn-danger" @onclick="@(() => editRowStyle = "none")">Cancel</button>
                 </td>
             </tr>
-            @foreach (var item in _todoItems)
+            @foreach (var item in todoItems)
             {
                 <tr>
                     <td class="text-center">
@@ -66,7 +66,7 @@ else
             <tr id="addRow">
                 <td></td>
                 <td>
-                    <input @bind="_newItemName" placeholder="New Todo Item" />
+                    <input @bind="newItemName" placeholder="New Todo Item" />
                 </td>
                 <td class="text-center">
                     <button class="btn btn-success" @onclick="@AddItem">Add</button>
@@ -80,43 +80,42 @@ else
 
 @code {
     private const string ServiceEndpoint = "https://localhost:10000/api/TodoItems";
-    private TodoItem[] _todoItems;
-    private TodoItem _editItem = new TodoItem();
-    private string _editRowStyle = "none";
-    private string _newItemName;
+    private TodoItem[] todoItems;
+    private TodoItem editItem = new TodoItem();
+    private string editRowStyle = "none";
+    private string newItemName;
 
     protected override async Task OnInitializedAsync() => await GetTodoItems();
 
-    private async Task GetTodoItems() => _todoItems = await Http.GetJsonAsync<TodoItem[]>(ServiceEndpoint);
+    private async Task GetTodoItems() => todoItems = await Http.GetFromJsonAsync<TodoItem[]>(ServiceEndpoint);
 
     private void EditItem(long id)
     {
-        var editItem = _todoItems.Single(i => i.Id == id);
-        _editItem = new TodoItem { Id = editItem.Id, Name = editItem.Name, IsComplete = editItem.IsComplete };
-        _editRowStyle = "table-row";
+        editItem = todoItems.Single(i => i.Id == id);
+        editRowStyle = "table-row";
     }
 
     private async Task AddItem()
     {
-        var addItem = new TodoItem { Name = _newItemName, IsComplete = false };
-        await Http.PostJsonAsync(ServiceEndpoint, addItem);
-        _newItemName = string.Empty;
+        var addItem = new TodoItem { Name = newItemName, IsComplete = false };
+        await Http.PostAsJsonAsync(ServiceEndpoint, addItem);
+        newItemName = string.Empty;
         await GetTodoItems();
-        _editRowStyle = "none";
+        editRowStyle = "none";
     }
 
     private async Task SaveItem()
     {
-        await Http.PutJsonAsync($"{ServiceEndpoint}/{_editItem.Id}", _editItem);
+        await Http.PutAsJsonAsync($"{ServiceEndpoint}/{editItem.Id}", editItem);
         await GetTodoItems();
-        _editRowStyle = "none";
+        editRowStyle = "none";
     }
 
     private async Task DeleteItem(long id)
     {
         await Http.DeleteAsync($"{ServiceEndpoint}/{id}");
         await GetTodoItems();
-        _editRowStyle = "none";
+        editRowStyle = "none";
     }
 
     private class TodoItem

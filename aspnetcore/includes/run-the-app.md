@@ -19,7 +19,7 @@
 
   [!INCLUDE[](~/includes/trustCertMac.md)]
 
-* From Visual Studio, press **Alt-Cmd-Enter** to run without the debugger. Alternatively, navigate to the menu bar and go to **Run>Start Without Debugging**.
+* From Visual Studio, press **Opt-Cmd-Return** to run without the debugger. Alternatively, navigate to the menu bar and go to **Run>Start Without Debugging**.
 
   Visual Studio starts [Kestrel](xref:fundamentals/servers/kestrel), launches a browser, and navigates to `http://localhost:5001`.
 

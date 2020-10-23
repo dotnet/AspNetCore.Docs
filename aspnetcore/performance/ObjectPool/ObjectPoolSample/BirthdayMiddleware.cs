@@ -1,7 +1,12 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore.Query.ResultOperators;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.ObjectPool;
+using Microsoft.Extensions.Primitives;
 using System;
 using System.Text;
+using System.Text.Encodings.Web;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace ObjectPoolSample
@@ -36,11 +41,14 @@ namespace ObjectPoolSample
                     stringBuilder.Append("Hi ")
                         .Append(firstName).Append(" ").Append(lastName).Append(". ");
 
+                    var encoder = context.RequestServices.GetRequiredService<HtmlEncoder>();
+
                     if (now.Day == dayOfMonth && now.Month == monthOfYear)
                     {
                         stringBuilder.Append("Happy birthday!!!");
 
-                        await context.Response.WriteAsync(stringBuilder.ToString());
+                        var html = encoder.Encode(stringBuilder.ToString());
+                        await context.Response.WriteAsync(html);
                     }
                     else
                     {
@@ -54,7 +62,8 @@ namespace ObjectPoolSample
                         stringBuilder.Append("There are ")
                             .Append(daysUntilBirthday).Append(" days until your birthday!");
 
-                        await context.Response.WriteAsync(stringBuilder.ToString());
+                        var html = encoder.Encode(stringBuilder.ToString());
+                        await context.Response.WriteAsync(html);
                     }
                 }
                 finally // Ensure this runs even if the main code throws.

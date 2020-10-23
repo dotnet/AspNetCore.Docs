@@ -1,13 +1,14 @@
 ---
-title: Razor Pages with EF Core in ASP.NET Core - Concurrency - 8 of 8
+title: Part 8, Razor Pages with EF Core in ASP.NET Core - Concurrency
 author: rick-anderson
-description: This tutorial shows how to handle conflicts when multiple users update the same entity at the same time.
+description: Part 8 of Razor Pages and Entity Framework tutorial series.
 ms.author: riande
 ms.custom: mvc
 ms.date: 07/22/2019
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: data/ef-rp/concurrency
 ---
-# Razor Pages with EF Core in ASP.NET Core - Concurrency - 8 of 8
+# Part 8, Razor Pages with EF Core in ASP.NET Core - Concurrency
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT), [Tom Dykstra](https://github.com/tdykstra), and [Jon P Smith](https://twitter.com/thereformedprog)
 
@@ -72,7 +73,7 @@ EF Core throws `DbConcurrencyException` exceptions when it detects conflicts. Th
 
 * Configure EF Core to include the original values of columns configured as [concurrency tokens](/ef/core/modeling/concurrency) in the Where clause of Update and Delete commands.
 
-  When `SaveChanges` is called, the Where clause looks for the original values of any properties annotated with the [ConcurrencyCheck](/dotnet/api/system.componentmodel.dataannotations.concurrencycheckattribute) attribute. The update statement won't find a row to update if any of the concurrency token properties changed since the row was first read. EF Core interprets that as a concurrency conflict. For database tables that have many columns, this approach can result in very large Where clauses, and can require large amounts of state. Therefore this approach is generally not recommended, and it isn't the method used in this tutorial.
+  When `SaveChanges` is called, the Where clause looks for the original values of any properties annotated with the <xref:System.ComponentModel.DataAnnotations.ConcurrencyCheckAttribute> attribute. The update statement won't find a row to update if any of the concurrency token properties changed since the row was first read. EF Core interprets that as a concurrency conflict. For database tables that have many columns, this approach can result in very large Where clauses, and can require large amounts of state. Therefore this approach is generally not recommended, and it isn't the method used in this tutorial.
 
 * In the database table, include a tracking column that can be used to determine when a row has been changed.
 
@@ -84,7 +85,7 @@ In *Models/Department.cs*, add a tracking property named RowVersion:
 
 [!code-csharp[](intro/samples/cu30/Models/Department.cs?highlight=26,27)]
 
-The [Timestamp](/dotnet/api/system.componentmodel.dataannotations.timestampattribute) attribute is what identifies the column as a concurrency tracking column. The fluent API is an alternative way to specify the tracking property:
+The <xref:System.ComponentModel.DataAnnotations.TimestampAttribute> attribute is what identifies the column as a concurrency tracking column. The fluent API is an alternative way to specify the tracking property:
 
 ```csharp
 modelBuilder.Entity<Department>()
@@ -236,7 +237,7 @@ Update *Pages\Departments\Index.cshtml* page:
 
 The following code shows the updated page:
 
-[!code-html[](intro/samples/cu30/Pages/Departments/Index.cshtml?highlight=5,8,29,48,51)]
+[!code-cshtml[](intro/samples/cu30/Pages/Departments/Index.cshtml?highlight=5,8,29,48,51)]
 
 ## Update the Edit page model
 
@@ -244,7 +245,7 @@ Update *Pages\Departments\Edit.cshtml.cs* with the following code:
 
 [!code-csharp[](intro/samples/cu30/Pages/Departments/Edit.cshtml.cs?name=snippet_All)]
 
-The [OriginalValue](/dotnet/api/microsoft.entityframeworkcore.changetracking.propertyentry.originalvalue?view=efcore-2.0#Microsoft_EntityFrameworkCore_ChangeTracking_PropertyEntry_OriginalValue) is updated with the `rowVersion` value from the entity when it was fetched in the `OnGet` method. EF Core generates a SQL UPDATE command with a WHERE clause containing the original `RowVersion` value. If no rows are affected by the UPDATE command (no rows have the original `RowVersion` value), a `DbUpdateConcurrencyException` exception is thrown.
+The <xref:Microsoft.EntityFrameworkCore.ChangeTracking.PropertyEntry.OriginalValue> is updated with the `rowVersion` value from the entity when it was fetched in the `OnGet` method. EF Core generates a SQL UPDATE command with a WHERE clause containing the original `RowVersion` value. If no rows are affected by the UPDATE command (no rows have the original `RowVersion` value), a `DbUpdateConcurrencyException` exception is thrown.
 
 [!code-csharp[](intro/samples/cu30/Pages/Departments/Edit.cshtml.cs?name=snippet_RowVersion&highlight=17-18)]
 
@@ -268,16 +269,16 @@ The following highlighted code sets the `RowVersion` value to the new value retr
 
 The `ModelState.Remove` statement is required because `ModelState` has the old `RowVersion` value. In the Razor Page, the `ModelState` value for a field takes precedence over the model property values when both are present.
 
-### Update the Razor page
+### Update the Edit page
 
 Update *Pages/Departments/Edit.cshtml* with the following code:
 
-[!code-html[](intro/samples/cu30/Pages/Departments/Edit.cshtml?highlight=1,14,16-17,37-39)]
+[!code-cshtml[](intro/samples/cu30/Pages/Departments/Edit.cshtml?highlight=1,14,16-17,37-39)]
 
 The preceding code:
 
 * Updates the `page` directive from `@page` to `@page "{id:int}"`.
-* Adds a hidden row version. `RowVersion` must be added so post back binds the value.
+* Adds a hidden row version. `RowVersion` must be added so postback binds the value.
 * Displays the last byte of `RowVersion` for debugging purposes.
 * Replaces `ViewData` with the strongly-typed `InstructorNameSL`.
 
@@ -309,7 +310,7 @@ This browser window didn't intend to change the Name field. Copy and paste the c
 
 Click **Save** again. The value you entered in the second browser tab is saved. You see the saved values in the Index page.
 
-## Update the Delete page
+## Update the Delete page model
 
 Update *Pages/Departments/Delete.cshtml.cs* with the following code:
 
@@ -321,11 +322,11 @@ The Delete page detects concurrency conflicts when the entity has changed after 
 * A DbUpdateConcurrencyException exception is thrown.
 * `OnGetAsync` is called with the `concurrencyError`.
 
-### Update the Delete Razor page
+### Update the Delete page
 
 Update *Pages/Departments/Delete.cshtml* with the following code:
 
-[!code-html[](intro/samples/cu30/Pages/Departments/Delete.cshtml?highlight=1,10,39,51)]
+[!code-cshtml[](intro/samples/cu30/Pages/Departments/Delete.cshtml?highlight=1,10,39,42,51)]
 
 The preceding code makes the following changes:
 
@@ -333,7 +334,7 @@ The preceding code makes the following changes:
 * Adds an error message.
 * Replaces FirstMidName with FullName in the **Administrator** field.
 * Changes `RowVersion` to display the last byte.
-* Adds a hidden row version. `RowVersion` must be added so postgit add back binds the value.
+* Adds a hidden row version. `RowVersion` must be added so postback binds the value.
 
 ### Test concurrency conflicts
 
@@ -351,13 +352,13 @@ Change the budget in the first browser tab and click **Save**.
 
 The browser shows the Index page with the changed value and updated rowVersion indicator. Note the updated rowVersion indicator, it's displayed on the second postback in the other tab.
 
-Delete the test department from the second tab. A concurrency error is display with the current values from the database. Clicking **Delete** deletes the entity, unless `RowVersion` has been updated.department has been deleted.
+Delete the test department from the second tab. A concurrency error is display with the current values from the database. Clicking **Delete** deletes the entity, unless `RowVersion` has been updated.
 
 ## Additional resources
 
 * [Concurrency Tokens in EF Core](/ef/core/modeling/concurrency)
 * [Handle concurrency in EF Core](/ef/core/saving/concurrency)
-* [Debugging ASP.NET Core 2.x source](https://github.com/aspnet/AspNetCore.Docs/issues/4155)
+* [Debugging ASP.NET Core 2.x source](https://github.com/dotnet/AspNetCore.Docs/issues/4155)
 
 ## Next steps
 
@@ -370,7 +371,7 @@ This is the last tutorial in the series. Additional topics are covered in the [M
 
 ::: moniker range="< aspnetcore-3.0"
 
-This tutorial shows how to handle conflicts when multiple users update an entity concurrently (at the same time). If you run into problems you can't solve, [download or view the completed app.](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples) [Download instructions](xref:index#how-to-download-a-sample).
+This tutorial shows how to handle conflicts when multiple users update an entity concurrently (at the same time). If you run into problems you can't solve, [download or view the completed app.](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples) [Download instructions](xref:index#how-to-download-a-sample).
 
 ## Concurrency conflicts
 
@@ -426,14 +427,14 @@ Optimistic concurrency includes the following options:
 
 When a property is configured as a [concurrency token](/ef/core/modeling/concurrency):
 
-* EF Core verifies that property has not been modified after it was fetched. The check occurs when [SaveChanges](/dotnet/api/microsoft.entityframeworkcore.dbcontext.savechanges?view=efcore-2.0#Microsoft_EntityFrameworkCore_DbContext_SaveChanges) or [SaveChangesAsync](/dotnet/api/microsoft.entityframeworkcore.dbcontext.savechangesasync?view=efcore-2.0#Microsoft_EntityFrameworkCore_DbContext_SaveChangesAsync_System_Threading_CancellationToken_) is called.
-* If the property has been changed after it was fetched, a [DbUpdateConcurrencyException](/dotnet/api/microsoft.entityframeworkcore.dbupdateconcurrencyexception?view=efcore-2.0) is thrown. 
+* EF Core verifies that property has not been modified after it was fetched. The check occurs when [SaveChanges](/dotnet/api/microsoft.entityframeworkcore.dbcontext.savechanges#Microsoft_EntityFrameworkCore_DbContext_SaveChanges) or [SaveChangesAsync](/dotnet/api/microsoft.entityframeworkcore.dbcontext.savechangesasync#Microsoft_EntityFrameworkCore_DbContext_SaveChangesAsync_System_Threading_CancellationToken_) is called.
+* If the property has been changed after it was fetched, a [DbUpdateConcurrencyException](/dotnet/api/microsoft.entityframeworkcore.dbupdateconcurrencyexception) is thrown. 
 
 The DB and data model must be configured to support throwing `DbUpdateConcurrencyException`.
 
 ### Detecting concurrency conflicts on a property
 
-Concurrency conflicts can be detected at the property level with the [ConcurrencyCheck](/dotnet/api/system.componentmodel.dataannotations.concurrencycheckattribute?view=netcore-2.0) attribute. The attribute can be applied to multiple properties on the model. For more information, see [Data Annotations-ConcurrencyCheck](/ef/core/modeling/concurrency#data-annotations).
+Concurrency conflicts can be detected at the property level with the [ConcurrencyCheck](/dotnet/api/system.componentmodel.dataannotations.concurrencycheckattribute) attribute. The attribute can be applied to multiple properties on the model. For more information, see [Data Annotations-ConcurrencyCheck](/ef/core/modeling/concurrency#data-annotations).
 
 The `[ConcurrencyCheck]` attribute isn't used in this tutorial.
 
@@ -536,7 +537,7 @@ Update the Index page:
 
 The following markup shows the updated page:
 
-[!code-html[](intro/samples/cu/Pages/Departments/Index.cshtml?highlight=5,8,29,47,50)]
+[!code-cshtml[](intro/samples/cu/Pages/Departments/Index.cshtml?highlight=5,8,29,47,50)]
 
 ### Update the Edit page model
 
@@ -544,7 +545,7 @@ Update *Pages\Departments\Edit.cshtml.cs* with the following code:
 
 [!code-csharp[](intro/samples/cu/Pages/Departments/Edit.cshtml.cs?name=snippet)]
 
-To detect a concurrency issue, the [OriginalValue](/dotnet/api/microsoft.entityframeworkcore.changetracking.propertyentry.originalvalue?view=efcore-2.0#Microsoft_EntityFrameworkCore_ChangeTracking_PropertyEntry_OriginalValue) is updated with the `rowVersion` value from the entity it was fetched. EF Core generates a SQL UPDATE command with a WHERE clause containing the original `RowVersion` value. If no rows are affected by the UPDATE command (no rows have the original `RowVersion` value), a `DbUpdateConcurrencyException` exception is thrown.
+To detect a concurrency issue, the [OriginalValue](/dotnet/api/microsoft.entityframeworkcore.changetracking.propertyentry.originalvalue#Microsoft_EntityFrameworkCore_ChangeTracking_PropertyEntry_OriginalValue) is updated with the `rowVersion` value from the entity it was fetched. EF Core generates a SQL UPDATE command with a WHERE clause containing the original `RowVersion` value. If no rows are affected by the UPDATE command (no rows have the original `RowVersion` value), a `DbUpdateConcurrencyException` exception is thrown.
 
 [!code-csharp[](intro/samples/cu/Pages/Departments/Edit.cshtml.cs?name=snippet_rv&highlight=24-999)]
 
@@ -568,7 +569,7 @@ The `ModelState.Remove` statement is required because `ModelState` has the old `
 
 Update *Pages/Departments/Edit.cshtml* with the following markup:
 
-[!code-html[](intro/samples/cu/Pages/Departments/Edit.cshtml?highlight=1,14,16-17,37-39)]
+[!code-cshtml[](intro/samples/cu/Pages/Departments/Edit.cshtml?highlight=1,14,16-17,37-39)]
 
 The preceding markup:
 
@@ -623,7 +624,7 @@ The Delete page detects concurrency conflicts when the entity has changed after 
 
 Update *Pages/Departments/Delete.cshtml* with the following code:
 
-[!code-html[](intro/samples/cu/Pages/Departments/Delete.cshtml?highlight=1,10,39,51)]
+[!code-cshtml[](intro/samples/cu/Pages/Departments/Delete.cshtml?highlight=1,10,39,51)]
 
 The preceding code makes the following changes:
 
@@ -649,7 +650,7 @@ Change the budget in the first browser tab and click **Save**.
 
 The browser shows the Index page with the changed value and updated rowVersion indicator. Note the updated rowVersion indicator, it's displayed on the second postback in the other tab.
 
-Delete the test department from the second tab. A concurrency error is display with the current values from the DB. Clicking **Delete** deletes the entity, unless `RowVersion` has been updated.department has been deleted.
+Delete the test department from the second tab. A concurrency error is display with the current values from the DB. Clicking **Delete** deletes the entity, unless `RowVersion` has been updated.
 
 See [Inheritance](xref:data/ef-mvc/inheritance) on how to inherit a data model.
 

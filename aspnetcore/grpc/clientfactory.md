@@ -4,8 +4,8 @@ author: jamesnk
 description: Learn how to create gRPC clients using the client factory.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
-ms.date: 11/12/2019
-no-loc: [SignalR]
+ms.date: 05/26/2020
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: grpc/clientfactory
 ---
 # gRPC client factory integration in .NET Core
@@ -109,6 +109,17 @@ services
         o.Address = new Uri("https://localhost:5001");
     })
     .EnableCallContextPropagation();
+```
+
+By default, `EnableCallContextPropagation` raises an error if the client is used outside the context of a gRPC call. The error is designed to alert you that there isn't a call context to propagate. If you want to use the client outside of a call context, suppress the error when the client is configured with `SuppressContextNotFoundErrors`:
+
+```csharp
+services
+    .AddGrpcClient<Greeter.GreeterClient>(o =>
+    {
+        o.Address = new Uri("https://localhost:5001");
+    })
+    .EnableCallContextPropagation(o => o.SuppressContextNotFoundErrors = true);
 ```
 
 For more information about deadlines and RPC cancellation, see [RPC life cycle](https://www.grpc.io/docs/guides/concepts/#rpc-life-cycle).

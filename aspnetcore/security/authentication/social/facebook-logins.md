@@ -4,14 +4,18 @@ author: rick-anderson
 description: Tutorial with code examples demonstrating the integration of Facebook account user authentication into an existing ASP.NET Core app.
 ms.author: riande
 ms.custom: "seoapril2019, mvc, seodec18"
-ms.date: 12/02/2019
+ms.date: 03/19/2020
 monikerRange: '>= aspnetcore-3.0'
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/facebook-logins
 ---
 
 # Facebook external login setup in ASP.NET Core
 
 By [Valeriy Novytskyy](https://github.com/01binary) and [Rick Anderson](https://twitter.com/RickAndMSFT)
+
+<!-- per @rick-anderson and scott addie, don't update images. Remove images and point the customer to the FB set up page. FB needs to maintain  instructions to get key and secret.
+-->
 
 This tutorial with code examples shows how to enable your users to sign in with their Facebook account using a sample ASP.NET Core 3.0 project created on the [previous page](xref:security/authentication/social/index). We start by creating a Facebook App ID by following the [official steps](https://developers.facebook.com).
 
@@ -54,18 +58,19 @@ This tutorial with code examples shows how to enable your users to sign in with 
 
 * When deploying the site you need to revisit the **Facebook Login** setup page and register a new public URI.
 
-## Store Facebook App ID and App Secret
+## Store the Facebook app ID and secret
 
-Link sensitive settings like Facebook `App ID` and `App Secret` to your application configuration using the [Secret Manager](xref:security/app-secrets). For the purposes of this tutorial, name the tokens `Authentication:Facebook:AppId` and `Authentication:Facebook:AppSecret`.
+Store sensitive settings such as the Facebook app ID and secret values with [Secret Manager](xref:security/app-secrets). For this sample, use the following steps:
+
+1. Initialize the project for secret storage per the instructions at [Enable secret storage](xref:security/app-secrets#enable-secret-storage).
+1. Store the sensitive settings in the local secret store with the secret keys `Authentication:Facebook:AppId` and `Authentication:Facebook:AppSecret`:
+
+    ```dotnetcli
+    dotnet user-secrets set "Authentication:Facebook:AppId" "<app-id>"
+    dotnet user-secrets set "Authentication:Facebook:AppSecret" "<app-secret>"
+    ```
 
 [!INCLUDE[](~/includes/environmentVarableColon.md)]
-
-Execute the following commands to securely store `App ID` and `App Secret` using Secret Manager:
-
-```dotnetcli
-dotnet user-secrets set Authentication:Facebook:AppId <app-id>
-dotnet user-secrets set Authentication:Facebook:AppSecret <app-secret>
-```
 
 ## Configure Facebook Authentication
 
@@ -81,34 +86,48 @@ services.AddAuthentication().AddFacebook(facebookOptions =>
 
 [!INCLUDE [default settings configuration](includes/default-settings.md)]
 
+## Sign in with Facebook
+
+* Run the app and select **Log in**. 
+* Under **Use another service to log in.**, select Facebook.
+* You are redirected to **Facebook** for authentication.
+* Enter your Facebook credentials.
+* You are redirected back to your site where you can set your email.
+
+You are now logged in using your Facebook credentials:
+
+<a name="react"></a>
+
+## React to cancel authorize external sign-in
+
+<xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.AccessDeniedPath> can provide a redirect path to the user agent when the user doesn't approve the requested authorization demand.
+
+The following code sets the `AccessDeniedPath` to `"/AccessDeniedPathInfo"`:
+
+[!code-csharp[](~/security/authentication/social/social-code/StartupAccessDeniedPath.cs?name=snippetFB)]
+
+We recommend the `AccessDeniedPath` page contain the following information:
+
+*  Remote authentication was canceled.
+* This app requires authentication.
+* To try sign-in again, select the Login link.
+
+### Test AccessDeniedPath
+
+* Navigate to [facebook.com](https://www.facebook.com/)
+* If you are signed in, you must sign out.
+* Run the app and select Facebook sign-in.
+* Select **Not now**. You are redirected to the specified `AccessDeniedPath` page.
+
+<!-- End of React  -->
+[!INCLUDE[Forward request information when behind a proxy or load balancer section](includes/forwarded-headers-middleware.md)]
+
 [!INCLUDE[](includes/chain-auth-providers.md)]
 
 See the [FacebookOptions](/dotnet/api/microsoft.aspnetcore.builder.facebookoptions) API reference for more information on configuration options supported by Facebook authentication. Configuration options can be used to:
 
 * Request different information about the user.
 * Add query string arguments to customize the login experience.
-
-## Sign in with Facebook
-
-Run your application and click **Log in**. You see an option to sign in with Facebook.
-
-![Web application: User not authenticated](index/_static/DoneFacebook.png)
-
-When you click on **Facebook**, you are redirected to Facebook for authentication:
-
-![Facebook authentication page](index/_static/FBLogin.png)
-
-Facebook authentication requests public profile and email address by default:
-
-![Facebook authentication page consent screen](index/_static/FBLoginDone.png)
-
-Once you enter your Facebook credentials you are redirected back to your site where you can set your email.
-
-You are now logged in using your Facebook credentials:
-
-![Web application: User authenticated](index/_static/Done.png)
-
-[!INCLUDE[Forward request information when behind a proxy or load balancer section](includes/forwarded-headers-middleware.md)]
 
 ## Troubleshooting
 

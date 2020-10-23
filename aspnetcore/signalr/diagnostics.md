@@ -4,9 +4,9 @@ author: anurse
 description: Learn how to gather diagnostics from your ASP.NET Core SignalR app.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: anurse
-ms.custom: signalr
-ms.date: 11/12/2019
-no-loc: [SignalR]
+ms.custom: "devx-track-csharp, signalr"
+ms.date: 06/12/2020
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: signalr/diagnostics
 ---
 # Logging and diagnostics in ASP.NET Core SignalR
@@ -24,8 +24,8 @@ Since SignalR is part of ASP.NET Core, it uses the ASP.NET Core logging system. 
 
 SignalR uses two logger categories:
 
-* `Microsoft.AspNetCore.SignalR` &ndash; for logs related to Hub Protocols, activating Hubs, invoking methods, and other Hub-related activities.
-* `Microsoft.AspNetCore.Http.Connections` &ndash; for logs related to transports such as WebSockets, Long Polling and Server-Sent Events and low-level SignalR infrastructure.
+* `Microsoft.AspNetCore.SignalR`: For logs related to Hub Protocols, activating Hubs, invoking methods, and other Hub-related activities.
+* `Microsoft.AspNetCore.Http.Connections`: For logs related to transports, such as WebSockets, Long Polling, Server-Sent Events, and low-level SignalR infrastructure.
 
 To enable detailed logs from SignalR, configure both of the preceding prefixes to the `Debug` level in your *appsettings.json* file by adding the following items to the `LogLevel` sub-section in `Logging`:
 
@@ -50,7 +50,7 @@ How you access server-side logs depends on the environment in which you're runni
 
 ### As a console app outside IIS
 
-If you're running in a console app, the [Console logger](xref:fundamentals/logging/index#console-provider) should be enabled by default. SignalR logs will appear in the console.
+If you're running in a console app, the [Console logger](xref:fundamentals/logging/index#console) should be enabled by default. SignalR logs will appear in the console.
 
 ### Within IIS Express from Visual Studio
 
@@ -99,6 +99,8 @@ If you want to send logs to a custom logging system, you can provide a JavaScrip
 > Client-side logs may contain sensitive information from your app. **Never** post raw logs from production apps to public forums like GitHub.
 
 To get logs from the .NET client, you can use the `ConfigureLogging` method on `HubConnectionBuilder`. This works the same way as the `ConfigureLogging` method on `WebHostBuilder` and `HostBuilder`. You can configure the same logging providers you use in ASP.NET Core. However, you have to manually install and enable the NuGet packages for the individual logging providers.
+
+To add .NET client logging to a Blazor WebAssembly app, see <xref:blazor/fundamentals/logging#blazor-webassembly-signalr-net-client-logging>.
 
 ### Console logging
 
@@ -198,6 +200,39 @@ You can attach Diagnostics files to GitHub issues by renaming them so they have 
 > Please don't paste the content of log files or network traces into a GitHub issue. These logs and traces can be quite large, and GitHub usually truncates them.
 
 ![Dragging log files on to a GitHub issue](diagnostics/attaching-diagnostics-files.png)
+
+## Metrics
+
+Metrics is a representation of data measures over intervals of time. For example, requests per second. Metrics data allows observation of the state of an app at a high level. .NET gRPC metrics are emitted using <xref:System.Diagnostics.Tracing.EventCounter>.
+
+### SignalR server metrics
+
+SignalR server metrics are reported on the <xref:Microsoft.AspNetCore.Http.Connections> event source.
+
+| Name                    | Description                 |
+|-------------------------|-----------------------------|
+| `connections-started`   | Total connections started   |
+| `connections-stopped`   | Total connections stopped   |
+| `connections-timed-out` | Total connections timed out |
+| `current-connections`   | Current connections         |
+| `connections-duration`  | Average connection duration |
+
+### Observe metrics
+
+[dotnet-counters](/dotnet/core/diagnostics/dotnet-counters) is a performance monitoring tool for ad-hoc health monitoring and first-level performance investigation. Monitor a .NET app with `Microsoft.AspNetCore.Http.Connections` as the provider name. For example:
+
+```console
+> dotnet-counters monitor --process-id 37016 Microsoft.AspNetCore.Http.Connections
+
+Press p to pause, r to resume, q to quit.
+    Status: Running
+[Microsoft.AspNetCore.Http.Connections]
+    Average Connection Duration (ms)       16,040.56
+    Current Connections                         1
+    Total Connections Started                   8
+    Total Connections Stopped                   7
+    Total Connections Timed Out                 0
+```
 
 ## Additional resources
 

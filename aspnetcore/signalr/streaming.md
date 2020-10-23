@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
 ms.date: 11/12/2019
-no-loc: [SignalR]
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: signalr/streaming
 ---
 # Use streaming in ASP.NET Core SignalR
@@ -25,7 +25,7 @@ ASP.NET Core SignalR supports streaming return values of server methods. This is
 
 ::: moniker-end
 
-[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/live/aspnetcore/signalr/streaming/samples/) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetcore/signalr/streaming/samples/) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Set up a hub for streaming
 
@@ -58,7 +58,7 @@ The following sample shows the basics of streaming data to the client using Chan
 > [!NOTE]
 > Write to the `ChannelWriter<T>` on a background thread and return the `ChannelReader` as soon as possible. Other hub invocations are blocked until a `ChannelReader` is returned.
 >
-> Wrap logic in a `try ... catch`. Complete the `Channel` in the `catch` and outside the `catch` to make sure the hub method invocation is completed properly.
+> Wrap logic in a [`try ... catch` statement](/dotnet/csharp/language-reference/keywords/try-catch). Complete the `Channel` in a [`finally` block](/dotnet/csharp/language-reference/keywords/try-catch-finally). If you want to flow an error, capture it inside the `catch` block and write it in the `finally` block.
 
 ::: moniker range=">= aspnetcore-3.0"
 

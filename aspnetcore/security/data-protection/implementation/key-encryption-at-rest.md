@@ -1,12 +1,13 @@
 ---
-title: Key encryption At rest in ASP.NET Core
+title: Key encryption at rest in Windows and Azure using ASP.NET Core
 author: rick-anderson
 description: Learn implementation details of ASP.NET Core Data Protection key encryption at rest.
 ms.author: riande
 ms.date: 07/16/2018
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/data-protection/implementation/key-encryption-at-rest
 ---
-# Key encryption at rest in ASP.NET Core
+# Key encryption at rest in Windows and Azure using ASP.NET Core
 
 The data protection system [employs a discovery mechanism by default](xref:security/data-protection/configuration/default-settings) to determine how cryptographic keys should be encrypted at rest. The developer can override the discovery mechanism and manually specify how keys should be encrypted at rest.
 

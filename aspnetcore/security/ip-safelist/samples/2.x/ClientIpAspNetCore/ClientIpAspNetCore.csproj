@@ -2,22 +2,15 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
+    <ProjectUISubcaption>ASP.NET Core 2.x</ProjectUISubcaption>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="NLog.Extensions.Logging" Version="1.2.1" />
-    <PackageReference Include="NLog.Web.AspNetCore" Version="4.6.0" />
-    <PackageReference Include="NLog" Version="4.5.9" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="nlog.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Update="nlog.file.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <ProjectReference Include="..\..\Shared\ClientIpSafelistComponents\ClientIpSafelistComponents.csproj" />
   </ItemGroup>
 
 </Project>

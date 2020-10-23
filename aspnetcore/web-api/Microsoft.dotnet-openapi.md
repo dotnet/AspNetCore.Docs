@@ -5,6 +5,7 @@ description: Demonstrates how to use the 'Microsoft.dotnet-openapi' tool to add 
 ms.author: rybrande
 ms.date: 09/26/2019
 monikerRange: '>= aspnetcore-3.0'
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: web-api/Microsoft.dotnet-openapi
 ---
 # Develop ASP.NET Core apps using OpenAPI tools
@@ -31,7 +32,7 @@ Adding an OpenAPI reference using any of the commands on this page adds an `<Ope
 
 The preceding reference is required for the app to call the generated client code.
 
-<!-- TODO: Restore after https://github.com/aspnet/AspNetCore/issues/12738
+<!-- TODO: Restore after https://github.com/dotnet/AspNetCore/issues/12738
 ### Add Project
 
 #### Options

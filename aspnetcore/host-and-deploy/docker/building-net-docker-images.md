@@ -4,7 +4,8 @@ author: rick-anderson
 description: Learn how to use the published .NET Core Docker images from the Docker Registry. Pull images and build your own images.
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/18/2019
+ms.date: 05/12/2020
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: host-and-deploy/docker/building-net-docker-images
 ---
 
@@ -38,7 +39,7 @@ The sample Dockerfile uses the [Docker multi-stage build feature](https://docs.d
 ## Prerequisites
 ::: moniker range="< aspnetcore-3.0"
 
-* [.NET Core 2.2 SDK](https://www.microsoft.com/net/core)
+* [.NET Core 2.2 SDK](https://dotnet.microsoft.com/download/dotnet-core)
 ::: moniker-end
 
 ::: moniker range=">= aspnetcore-3.0"
@@ -83,7 +84,7 @@ The sample Dockerfile uses the [Docker multi-stage build feature](https://docs.d
 
 ## Run in a Linux container
 
-* In the Docker client, switch to Linux containers.
+* In the Docker client, [switch to Linux containers](https://docs.docker.com/docker-for-windows/#switch-between-windows-and-linux-containers).
 
 * Navigate to the Dockerfile folder at *dotnet-docker/samples/aspnetapp*.
 
@@ -109,7 +110,7 @@ The sample Dockerfile uses the [Docker multi-stage build feature](https://docs.d
 
 ## Run in a Windows container
 
-* In the Docker client, switch to Windows containers.
+* In the Docker client, [switch to Windows containers](https://docs.docker.com/docker-for-windows/#switch-between-windows-and-linux-containers).
 
 Navigate to the docker file folder at `dotnet-docker/samples/aspnetapp`.
 
@@ -173,7 +174,7 @@ To use the manually published application within a Docker container, create a ne
 
 ::: moniker range="< aspnetcore-3.0"
 
-```console
+```dockerfile
 FROM mcr.microsoft.com/dotnet/core/aspnet:2.2 AS runtime
 WORKDIR /app
 COPY published/aspnetapp.dll ./
@@ -198,7 +199,6 @@ COPY aspnetapp/. ./aspnetapp/
 WORKDIR /app/aspnetapp
 RUN dotnet publish -c Release -o out
 
-
 FROM mcr.microsoft.com/dotnet/core/aspnet:2.2 AS runtime
 WORKDIR /app
 COPY --from=build /app/aspnetapp/out ./
@@ -209,7 +209,7 @@ ENTRYPOINT ["dotnet", "aspnetapp.dll"]
 
 ::: moniker range=">= aspnetcore-3.0"
 
-```console
+```dockerfile
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.0 AS runtime
 WORKDIR /app
 COPY published/aspnetapp.dll ./
@@ -234,34 +234,29 @@ COPY aspnetapp/. ./aspnetapp/
 WORKDIR /app/aspnetapp
 RUN dotnet publish -c Release -o out
 
-
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.0 AS runtime
 WORKDIR /app
 COPY --from=build /app/aspnetapp/out ./
 ENTRYPOINT ["dotnet", "aspnetapp.dll"]
 ```
 
-::: moniker-end
+As noted in the preceding Dockerfile, the `*.csproj` files are copied and restored as distinct *layers*. When the `docker build` command builds an image, it uses a built-in cache. If the `*.csproj` files haven't changed since the `docker build` command last ran, the `dotnet restore` command doesn't need to run again. Instead, the built-in cache for the corresponding `dotnet restore` layer is reused. For more information, see [Best practices for writing Dockerfiles](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#leverage-build-cache).
 
-```console
-FROM mcr.microsoft.com/dotnet/core/aspnet:3.0 AS runtime
-WORKDIR /app
-COPY published/aspnetapp.dll ./
-ENTRYPOINT ["dotnet", "aspnetapp.dll"]
-```
+::: moniker-end
 
 ## Additional resources
 
 * [Docker build command](https://docs.docker.com/engine/reference/commandline/build)
 * [Docker run command](https://docs.docker.com/engine/reference/commandline/run)
 * [ASP.NET Core Docker sample](https://github.com/dotnet/dotnet-docker) (The one used in this tutorial.)
-* [Configure ASP.NET Core to work with proxy servers and load balancers](/aspnet/core/host-and-deploy/proxy-load-balancer)
-* [Working with Visual Studio Docker Tools](https://docs.microsoft.com/aspnet/core/publishing/visual-studio-tools-for-docker)
-* [Debugging with Visual Studio Code](https://code.visualstudio.com/docs/nodejs/debugging-recipes#_debug-nodejs-in-docker-containers) 
+* [Configure ASP.NET Core to work with proxy servers and load balancers](../proxy-load-balancer.md)
+* [Working with Visual Studio Docker Tools](./visual-studio-tools-for-docker.md)
+* [Debugging with Visual Studio Code](https://code.visualstudio.com/docs/nodejs/debugging-recipes#_debug-nodejs-in-docker-containers)
+* [GC using Docker and small containers](xref:performance/memory#sc)
 
 ## Next steps
 
 The Git repository that contains the sample app also includes documentation. For an overview of the resources available in the repository, see [the README file](https://github.com/dotnet/dotnet-docker/blob/master/samples/aspnetapp/README.md). In particular, learn how to implement HTTPS:
 
 > [!div class="nextstepaction"]
-> [Developing ASP.NET Core Applications with Docker over HTTPS](https://github.com/dotnet/dotnet-docker/blob/master/samples/aspnetapp/aspnetcore-docker-https-development.md)
+> [Developing ASP.NET Core Applications with Docker over HTTPS](https://github.com/dotnet/dotnet-docker/blob/master/samples/run-aspnetcore-https-development.md)

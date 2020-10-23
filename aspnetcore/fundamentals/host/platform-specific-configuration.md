@@ -1,22 +1,23 @@
 ---
 title: Use hosting startup assemblies in ASP.NET Core
-author: guardrex
+author: rick-anderson
 description: Discover how to enhance an ASP.NET Core app from an external assembly using an IHostingStartup implementation.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: "mvc, seodec18"
 ms.date: 09/26/2019
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/configuration/platform-specific-configuration
 ---
 # Use hosting startup assemblies in ASP.NET Core
 
-By [Luke Latham](https://github.com/guardrex) and [Pavel Krymets](https://github.com/pakrym)
+By [Pavel Krymets](https://github.com/pakrym)
 
 ::: moniker range=">= aspnetcore-3.0"
 
 An <xref:Microsoft.AspNetCore.Hosting.IHostingStartup> (hosting startup) implementation adds enhancements to an app at startup from an external assembly. For example, an external library can use a hosting startup implementation to provide additional configuration providers or services to an app.
 
-[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/host/platform-specific-configuration/samples/) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/host/platform-specific-configuration/samples/) ([how to download](xref:index#how-to-download-a-sample))
 
 ## HostingStartup attribute
 
@@ -88,7 +89,7 @@ Create a hosting startup with either of the following project types:
 
 A hosting startup enhancement can be provided in a class library. The library contains a `HostingStartup` attribute.
 
-The [sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/host/platform-specific-configuration/samples/) includes a Razor Pages app, *HostingStartupApp*, and a class library, *HostingStartupLibrary*. The class library:
+The [sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/host/platform-specific-configuration/samples/) includes a Razor Pages app, *HostingStartupApp*, and a class library, *HostingStartupLibrary*. The class library:
 
 * Contains a hosting startup class, `ServiceKeyInjection`, which implements `IHostingStartup`. `ServiceKeyInjection` adds a pair of service strings to the app's configuration using the in-memory configuration provider ([AddInMemoryCollection](xref:Microsoft.Extensions.Configuration.MemoryConfigurationBuilderExtensions.AddInMemoryCollection*)).
 * Includes a `HostingStartup` attribute that identifies the hosting startup's namespace and class.
@@ -105,7 +106,7 @@ The app's Index page reads and renders the configuration values for the two keys
 
 [!code-csharp[](platform-specific-configuration/samples/3.x/HostingStartupApp/Pages/Index.cshtml.cs?name=snippet1&highlight=5-6,11-12)]
 
-The [sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/host/platform-specific-configuration/samples/) also includes a NuGet package project that provides a separate hosting startup, *HostingStartupPackage*. The package has the same characteristics of the class library described earlier. The package:
+The [sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/host/platform-specific-configuration/samples/) also includes a NuGet package project that provides a separate hosting startup, *HostingStartupPackage*. The package has the same characteristics of the class library described earlier. The package:
 
 * Contains a hosting startup class, `ServiceKeyInjection`, which implements `IHostingStartup`. `ServiceKeyInjection` adds a pair of service strings to the app's configuration.
 * Includes a `HostingStartup` attribute.
@@ -230,7 +231,7 @@ When multiple hosting startup assembles are present, their <xref:Microsoft.AspNe
 
 Options for hosting startup activation are:
 
-* [Runtime store](#runtime-store) &ndash; Activation doesn't require a compile-time reference for activation. The sample app places the hosting startup assembly and dependencies files into a folder, *deployment*, to facilitate deployment of the hosting startup in a multimachine environment. The *deployment* folder also includes a PowerShell script that creates or modifies environment variables on the deployment system to enable the hosting startup.
+* [Runtime store](#runtime-store): Activation doesn't require a compile-time reference for activation. The sample app places the hosting startup assembly and dependencies files into a folder, *deployment*, to facilitate deployment of the hosting startup in a multimachine environment. The *deployment* folder also includes a PowerShell script that creates or modifies environment variables on the deployment system to enable the hosting startup.
 * Compile-time reference required for activation
   * [NuGet package](#nuget-package)
   * [Project bin folder](#project-bin-folder)
@@ -317,10 +318,10 @@ Place the *.deps.json* file into the following location:
 {ADDITIONAL DEPENDENCIES PATH}/shared/{SHARED FRAMEWORK NAME}/{SHARED FRAMEWORK VERSION}/{ENHANCEMENT ASSEMBLY NAME}.deps.json
 ```
 
-* `{ADDITIONAL DEPENDENCIES PATH}` &ndash; Location added to the `DOTNET_ADDITIONAL_DEPS` environment variable.
-* `{SHARED FRAMEWORK NAME}` &ndash; Shared framework required for this additional dependencies file.
-* `{SHARED FRAMEWORK VERSION}` &ndash; Minimum shared framework version.
-* `{ENHANCEMENT ASSEMBLY NAME}` &ndash; The enhancement's assembly name.
+* `{ADDITIONAL DEPENDENCIES PATH}`: Location added to the `DOTNET_ADDITIONAL_DEPS` environment variable.
+* `{SHARED FRAMEWORK NAME}`: Shared framework required for this additional dependencies file.
+* `{SHARED FRAMEWORK VERSION}`: Minimum shared framework version.
+* `{ENHANCEMENT ASSEMBLY NAME}`: The enhancement's assembly name.
 
 In the sample app (*RuntimeStore* project), the additional dependencies file is placed into the following location:
 
@@ -364,12 +365,12 @@ A hosting startup enhancement can be provided by a *bin*-deployed assembly in th
   * A location accessible by the consuming project.
 * The hosting startup's dependencies file is made available to the enhanced app as described in the [Runtime store](#runtime-store) section (without a compile-time reference).
 * When targeting the .NET Framework, the assembly is loadable in the default load context, which on .NET Framework means that the assembly is located at either of the following locations:
-  * Application base path &ndash; The *bin* folder where the app's executable (*.exe*) is located.
-  * Global Assembly Cache (GAC) &ndash; The GAC stores assemblies that several .NET Framework apps share. For more information, see [How to: Install an assembly into the global assembly cache](/dotnet/framework/app-domains/how-to-install-an-assembly-into-the-gac) in the .NET Framework documentation.
+  * Application base path: The *bin* folder where the app's executable (*.exe*) is located.
+  * Global Assembly Cache (GAC): The GAC stores assemblies that several .NET Framework apps share. For more information, see [How to: Install an assembly into the global assembly cache](/dotnet/framework/app-domains/how-to-install-an-assembly-into-the-gac) in the .NET Framework documentation.
 
 ## Sample code
 
-The [sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/host/platform-specific-configuration/samples/) ([how to download](xref:index#how-to-download-a-sample)) demonstrates hosting startup implementation scenarios:
+The [sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/host/platform-specific-configuration/samples/) ([how to download](xref:index#how-to-download-a-sample)) demonstrates hosting startup implementation scenarios:
 
 * Two hosting startup assemblies (class libraries) set a pair of in-memory configuration key-value pairs each:
   * NuGet package (*HostingStartupPackage*)
@@ -423,7 +424,7 @@ dotnet nuget locals all --clear
 
 **Activation from a runtime store-deployed assembly**
 
-1. The *StartupDiagnostics* project uses [PowerShell](/powershell/scripting/powershell-scripting) to modify its *StartupDiagnostics.deps.json* file. PowerShell is installed by default on Windows starting with Windows 7 SP1 and Windows Server 2008 R2 SP1. To obtain PowerShell on other platforms, see [Installing Windows PowerShell](/powershell/scripting/setup/installing-powershell#powershell-core).
+1. The *StartupDiagnostics* project uses [PowerShell](/powershell/scripting/powershell-scripting) to modify its *StartupDiagnostics.deps.json* file. PowerShell is installed by default on Windows starting with Windows 7 SP1 and Windows Server 2008 R2 SP1. To obtain PowerShell on other platforms, see [Installing various versions of PowerShell](/powershell/scripting/install/installing-powershell).
 1. Execute the *build.ps1* script in the *RuntimeStore* folder. The script:
    * Generates the `StartupDiagnostics` package in the *obj\packages* folder.
    * Generates the runtime store for `StartupDiagnostics` in the *store* folder. The `dotnet store` command in the script uses the `win7-x64` [runtime identifier (RID)](/dotnet/core/rid-catalog) for a hosting startup deployed to Windows. When providing the hosting startup for a different runtime, substitute the correct RID on line 37 of the script. The runtime store for `StartupDiagnostics` would later be moved to the user's or system's runtime store on the machine where the assembly will be consumed. The user runtime store install location for the `StartupDiagnostics` assembly is *.dotnet/store/x64/netcoreapp3.0/startupdiagnostics/1.0.0/lib/netcoreapp3.0/StartupDiagnostics.dll*.
@@ -442,7 +443,7 @@ dotnet nuget locals all --clear
 
 An <xref:Microsoft.AspNetCore.Hosting.IHostingStartup> (hosting startup) implementation adds enhancements to an app at startup from an external assembly. For example, an external library can use a hosting startup implementation to provide additional configuration providers or services to an app.
 
-[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/host/platform-specific-configuration/samples/) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/host/platform-specific-configuration/samples/) ([how to download](xref:index#how-to-download-a-sample))
 
 ## HostingStartup attribute
 
@@ -486,7 +487,7 @@ Create a hosting startup with either of the following project types:
 
 A hosting startup enhancement can be provided in a class library. The library contains a `HostingStartup` attribute.
 
-The [sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/host/platform-specific-configuration/samples/) includes a Razor Pages app, *HostingStartupApp*, and a class library, *HostingStartupLibrary*. The class library:
+The [sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/host/platform-specific-configuration/samples/) includes a Razor Pages app, *HostingStartupApp*, and a class library, *HostingStartupLibrary*. The class library:
 
 * Contains a hosting startup class, `ServiceKeyInjection`, which implements `IHostingStartup`. `ServiceKeyInjection` adds a pair of service strings to the app's configuration using the in-memory configuration provider ([AddInMemoryCollection](xref:Microsoft.Extensions.Configuration.MemoryConfigurationBuilderExtensions.AddInMemoryCollection*)).
 * Includes a `HostingStartup` attribute that identifies the hosting startup's namespace and class.
@@ -503,7 +504,7 @@ The app's Index page reads and renders the configuration values for the two keys
 
 [!code-csharp[](platform-specific-configuration/samples/2.x/HostingStartupApp/Pages/Index.cshtml.cs?name=snippet1&highlight=5-6,11-12)]
 
-The [sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/host/platform-specific-configuration/samples/) also includes a NuGet package project that provides a separate hosting startup, *HostingStartupPackage*. The package has the same characteristics of the class library described earlier. The package:
+The [sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/host/platform-specific-configuration/samples/) also includes a NuGet package project that provides a separate hosting startup, *HostingStartupPackage*. The package has the same characteristics of the class library described earlier. The package:
 
 * Contains a hosting startup class, `ServiceKeyInjection`, which implements `IHostingStartup`. `ServiceKeyInjection` adds a pair of service strings to the app's configuration.
 * Includes a `HostingStartup` attribute.
@@ -616,7 +617,7 @@ When multiple hosting startup assembles are present, their <xref:Microsoft.AspNe
 
 Options for hosting startup activation are:
 
-* [Runtime store](#runtime-store) &ndash; Activation doesn't require a compile-time reference for activation. The sample app places the hosting startup assembly and dependencies files into a folder, *deployment*, to facilitate deployment of the hosting startup in a multimachine environment. The *deployment* folder also includes a PowerShell script that creates or modifies environment variables on the deployment system to enable the hosting startup.
+* [Runtime store](#runtime-store): Activation doesn't require a compile-time reference for activation. The sample app places the hosting startup assembly and dependencies files into a folder, *deployment*, to facilitate deployment of the hosting startup in a multimachine environment. The *deployment* folder also includes a PowerShell script that creates or modifies environment variables on the deployment system to enable the hosting startup.
 * Compile-time reference required for activation
   * [NuGet package](#nuget-package)
   * [Project bin folder](#project-bin-folder)
@@ -703,10 +704,10 @@ Place the *.deps.json* file into the following location:
 {ADDITIONAL DEPENDENCIES PATH}/shared/{SHARED FRAMEWORK NAME}/{SHARED FRAMEWORK VERSION}/{ENHANCEMENT ASSEMBLY NAME}.deps.json
 ```
 
-* `{ADDITIONAL DEPENDENCIES PATH}` &ndash; Location added to the `DOTNET_ADDITIONAL_DEPS` environment variable.
-* `{SHARED FRAMEWORK NAME}` &ndash; Shared framework required for this additional dependencies file.
-* `{SHARED FRAMEWORK VERSION}` &ndash; Minimum shared framework version.
-* `{ENHANCEMENT ASSEMBLY NAME}` &ndash; The enhancement's assembly name.
+* `{ADDITIONAL DEPENDENCIES PATH}`: Location added to the `DOTNET_ADDITIONAL_DEPS` environment variable.
+* `{SHARED FRAMEWORK NAME}`: Shared framework required for this additional dependencies file.
+* `{SHARED FRAMEWORK VERSION}`: Minimum shared framework version.
+* `{ENHANCEMENT ASSEMBLY NAME}`: The enhancement's assembly name.
 
 In the sample app (*RuntimeStore* project), the additional dependencies file is placed into the following location:
 
@@ -750,12 +751,12 @@ A hosting startup enhancement can be provided by a *bin*-deployed assembly in th
   * A location accessible by the consuming project.
 * The hosting startup's dependencies file is made available to the enhanced app as described in the [Runtime store](#runtime-store) section (without a compile-time reference).
 * When targeting the .NET Framework, the assembly is loadable in the default load context, which on .NET Framework means that the assembly is located at either of the following locations:
-  * Application base path &ndash; The *bin* folder where the app's executable (*.exe*) is located.
-  * Global Assembly Cache (GAC) &ndash; The GAC stores assemblies that several .NET Framework apps share. For more information, see [How to: Install an assembly into the global assembly cache](/dotnet/framework/app-domains/how-to-install-an-assembly-into-the-gac) in the .NET Framework documentation.
+  * Application base path: The *bin* folder where the app's executable (*.exe*) is located.
+  * Global Assembly Cache (GAC): The GAC stores assemblies that several .NET Framework apps share. For more information, see [How to: Install an assembly into the global assembly cache](/dotnet/framework/app-domains/how-to-install-an-assembly-into-the-gac) in the .NET Framework documentation.
 
 ## Sample code
 
-The [sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/host/platform-specific-configuration/samples/) ([how to download](xref:index#how-to-download-a-sample)) demonstrates hosting startup implementation scenarios:
+The [sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/host/platform-specific-configuration/samples/) ([how to download](xref:index#how-to-download-a-sample)) demonstrates hosting startup implementation scenarios:
 
 * Two hosting startup assemblies (class libraries) set a pair of in-memory configuration key-value pairs each:
   * NuGet package (*HostingStartupPackage*)
@@ -809,7 +810,7 @@ dotnet nuget locals all --clear
 
 **Activation from a runtime store-deployed assembly**
 
-1. The *StartupDiagnostics* project uses [PowerShell](/powershell/scripting/powershell-scripting) to modify its *StartupDiagnostics.deps.json* file. PowerShell is installed by default on Windows starting with Windows 7 SP1 and Windows Server 2008 R2 SP1. To obtain PowerShell on other platforms, see [Installing Windows PowerShell](/powershell/scripting/setup/installing-powershell#powershell-core).
+1. The *StartupDiagnostics* project uses [PowerShell](/powershell/scripting/powershell-scripting) to modify its *StartupDiagnostics.deps.json* file. PowerShell is installed by default on Windows starting with Windows 7 SP1 and Windows Server 2008 R2 SP1. To obtain PowerShell on other platforms, see [Installing various versions of PowerShell](/powershell/scripting/install/installing-powershell).
 1. Execute the *build.ps1* script in the *RuntimeStore* folder. The script:
    * Generates the `StartupDiagnostics` package in the *obj\packages* folder.
    * Generates the runtime store for `StartupDiagnostics` in the *store* folder. The `dotnet store` command in the script uses the `win7-x64` [runtime identifier (RID)](/dotnet/core/rid-catalog) for a hosting startup deployed to Windows. When providing the hosting startup for a different runtime, substitute the correct RID on line 37 of the script. The runtime store for `StartupDiagnostics` would later be moved to the user's or system's runtime store on the machine where the assembly will be consumed. The user runtime store install location for the `StartupDiagnostics` assembly is *.dotnet/store/x64/netcoreapp2.2/startupdiagnostics/1.0.0/lib/netcoreapp2.2/StartupDiagnostics.dll*.

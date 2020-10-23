@@ -4,21 +4,14 @@ using DependencyInjectionSample.Interfaces;
 namespace DependencyInjectionSample.Models
 {
     #region snippet1
-    public class Operation : IOperationTransient, 
-        IOperationScoped, 
-        IOperationSingleton, 
-        IOperationSingletonInstance
+    public class Operation : IOperationTransient, IOperationScoped, IOperationSingleton
     {
-        public Operation() : this(Guid.NewGuid())
+        public Operation()
         {
+            OperationId = Guid.NewGuid().ToString()[^4..];
         }
 
-        public Operation(Guid id)
-        {
-            OperationId = id;
-        }
-
-        public Guid OperationId { get; private set; }
+        public string OperationId { get; }
     }
     #endregion
 }

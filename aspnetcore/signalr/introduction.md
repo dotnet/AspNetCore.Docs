@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
 ms.date: 11/27/2019
-no-loc: [SignalR]
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: signalr/introduction
 ---
 # Introduction to ASP.NET Core SignalR
@@ -31,7 +31,7 @@ Here are some features of SignalR for ASP.NET Core:
 * Sends messages to specific clients or groups of clients.
 * Scales to handle increasing traffic.
 
-The source is hosted in a [SignalR repository on GitHub](https://github.com/aspnet/AspNetCore/tree/master/src/SignalR).
+The source is hosted in a [SignalR repository on GitHub](https://github.com/dotnet/AspNetCore/tree/master/src/SignalR).
 
 ## Transports
 

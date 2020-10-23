@@ -1,12 +1,13 @@
 ---
-title: Update the generated pages in an ASP.NET Core app
+title: Part 5, update the generated pages in an ASP.NET Core app
 author: rick-anderson
-description: Learn how to update the generated pages in an ASP.NET Core app.
+description: Part 5 of tutorial series on Razor Pages.
 ms.author: riande
 ms.date: 12/20/2018
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/razor-pages/da1
 ---
-# Update the generated pages in an ASP.NET Core app
+# Part 5, update the generated pages in an ASP.NET Core app
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 

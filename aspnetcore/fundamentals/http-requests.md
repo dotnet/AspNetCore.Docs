@@ -5,7 +5,8 @@ description: Learn about using the IHttpClientFactory interface to manage logica
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 12/16/2019
+ms.date: 02/09/2020
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/http-requests
 ---
 # Make HTTP requests using IHttpClientFactory in ASP.NET Core
@@ -21,7 +22,7 @@ An <xref:System.Net.Http.IHttpClientFactory> can be registered and used to confi
 * Manages the pooling and lifetime of underlying `HttpClientMessageHandler` instances. Automatic management avoids common DNS (Domain Name System) problems that occur when manually managing `HttpClient` lifetimes.
 * Adds a configurable logging experience (via `ILogger`) for all requests sent through clients created by the factory.
 
-[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/http-requests/samples) ([how to download](xref:index#how-to-download-a-sample)).
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/http-requests/samples) ([how to download](xref:index#how-to-download-a-sample)).
 
 The sample code in this topic version uses <xref:System.Text.Json> to deserialize JSON content returned in HTTP responses. For samples that use `Json.NET` and `ReadAsAsync<T>`, use the version selector to select a 2.x version of this topic.
 
@@ -91,6 +92,7 @@ Typed clients:
 A typed client accepts an `HttpClient` parameter in its constructor:
 
 [!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/GitHub/GitHubService.cs?name=snippet1&highlight=5)]
+[!INCLUDE[about the series](~/includes/code-comments-loc.md)]
 
 In the preceding code:
 
@@ -103,7 +105,12 @@ The following code calls <xref:Microsoft.Extensions.DependencyInjection.HttpClie
 
 [!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup.cs?name=snippet3)]
 
-The typed client is registered as transient with DI. The typed client can be injected and consumed directly:
+The typed client is registered as transient with DI. In the preceding code, `AddHttpClient` registers `GitHubService` as a transient service. This registration uses a factory method to:
+
+1. Create an instance of `HttpClient`.
+1. Create an instance of `GitHubService`, passing in the instance of `HttpClient` to its constructor.
+
+The typed client can be injected and consumed directly:
 
 [!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Pages/TypedClient.cshtml.cs?name=snippet1&highlight=11-14,20)]
 
@@ -171,6 +178,44 @@ public class ValuesController : ControllerBase
     }
 }
 ```
+
+## Make POST, PUT, and DELETE requests
+
+In the preceding examples, all HTTP requests use the GET HTTP verb. `HttpClient` also supports other HTTP verbs, including:
+
+* POST
+* PUT
+* DELETE
+* PATCH
+
+For a complete list of supported HTTP verbs, see <xref:System.Net.Http.HttpMethod>.
+
+The following example shows how to make an HTTP POST request:
+
+[!code-csharp[](http-requests/samples/3.x/HttpRequestsSample/Models/TodoClient.cs?name=snippet_POST)]
+
+In the preceding code, the `CreateItemAsync` method:
+
+* Serializes the `TodoItem` parameter to JSON using `System.Text.Json`. This uses an instance of <xref:System.Text.Json.JsonSerializerOptions> to configure the serialization process.
+* Creates an instance of <xref:System.Net.Http.StringContent> to package the serialized JSON for sending in the HTTP request's body.
+* Calls <xref:System.Net.Http.HttpClient.PostAsync%2A> to send the JSON content to the specified URL. This is a relative URL that gets added to the [HttpClient.BaseAddress](xref:System.Net.Http.HttpClient.BaseAddress).
+* Calls <xref:System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode%2A> to throw an exception if the response status code does not indicate success.
+
+`HttpClient` also supports other types of content. For example, <xref:System.Net.Http.MultipartContent> and <xref:System.Net.Http.StreamContent>. For a complete list of supported content, see <xref:System.Net.Http.HttpContent>.
+
+The following example shows an HTTP PUT request:
+
+[!code-csharp[](http-requests/samples/3.x/HttpRequestsSample/Models/TodoClient.cs?name=snippet_PUT)]
+
+The preceding code is very similar to the POST example. The `SaveItemAsync` method calls <xref:System.Net.Http.HttpClient.PutAsync%2A> instead of `PostAsync`.
+
+The following example shows an HTTP DELETE request:
+
+[!code-csharp[](http-requests/samples/3.x/HttpRequestsSample/Models/TodoClient.cs?name=snippet_DELETE)]
+
+In the preceding code, the `DeleteItemAsync` method calls <xref:System.Net.Http.HttpClient.DeleteAsync%2A>. Because HTTP DELETE requests typically contain no body, the `DeleteAsync` method doesn't provide an overload that accepts an instance of `HttpContent`.
+
+To learn more about using different HTTP verbs with `HttpClient`, see <xref:System.Net.Http.HttpClient>.
 
 ## Outgoing request middleware
 
@@ -260,8 +305,8 @@ An approach to managing regularly used policies is to define them once and regis
 
 In the following code:
 
-* The "regular" and "long" polices are added.
-* <xref:Microsoft.Extensions.DependencyInjection.PollyHttpClientBuilderExtensions.AddPolicyHandlerFromRegistry*>  adds the "regular" and "long" policies from the registry.
+* The "regular" and "long" policies are added.
+* <xref:Microsoft.Extensions.DependencyInjection.PollyHttpClientBuilderExtensions.AddPolicyHandlerFromRegistry*> adds the "regular" and "long" policies from the registry.
 
 [!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup4.cs?name=snippet1)]
 
@@ -294,7 +339,7 @@ There are alternative ways to solve the preceding problems using a long-lived <x
 
 - Create an instance of `SocketsHttpHandler` when the app starts and use it for the life of the app.
 - Configure <xref:System.Net.Http.SocketsHttpHandler.PooledConnectionLifetime> to an appropriate value based on DNS refresh times.
-- Create `HttpClient` instances using `new HttpClient(handler, dispostHandler: false)` as needed.
+- Create `HttpClient` instances using `new HttpClient(handler, disposeHandler: false)` as needed.
 
 The preceding approaches solve the resource management problems that `IHttpClientFactory` solves in a similar way.
 
@@ -347,6 +392,22 @@ In the following example:
 
 [!code-csharp[](http-requests/samples/3.x/HttpClientFactoryConsoleSample/Program.cs?highlight=14-15,20,26-27,59-62)]
 
+## Header propagation middleware
+
+Header propagation is an ASP.NET Core middleware to propagate HTTP headers from the incoming request to the outgoing HTTP Client requests. To use header propagation:
+
+* Reference the [Microsoft.AspNetCore.HeaderPropagation](https://www.nuget.org/packages/Microsoft.AspNetCore.HeaderPropagation) package.
+* Configure the middleware and `HttpClient` in `Startup`:
+
+  [!code-csharp[](http-requests/samples/3.x/Startup.cs?highlight=5-9,21&name=snippet)]
+
+* The client includes the configured headers on outbound requests:
+
+  ```csharp
+  var client = clientFactory.CreateClient("MyForwardingClient");
+  var response = client.GetAsync(...);
+  ```
+
 ## Additional resources
 
 * [Use HttpClientFactory to implement resilient HTTP requests](/dotnet/standard/microservices-architecture/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests)
@@ -367,7 +428,7 @@ An <xref:System.Net.Http.IHttpClientFactory> can be registered and used to confi
 * Manages the pooling and lifetime of underlying `HttpClientMessageHandler` instances to avoid common DNS problems that occur when manually managing `HttpClient` lifetimes.
 * Adds a configurable logging experience (via `ILogger`) for all requests sent through clients created by the factory.
 
-[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/http-requests/samples) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/http-requests/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Consumption patterns
 
@@ -596,7 +657,7 @@ There are alternative ways to solve the preceding problems using a long-lived <x
 
 - Create an instance of `SocketsHttpHandler` when the app starts and use it for the life of the app.
 - Configure <xref:System.Net.Http.SocketsHttpHandler.PooledConnectionLifetime> to an appropriate value based on DNS refresh times.
-- Create `HttpClient` instances using `new HttpClient(handler, dispostHandler: false)` as needed.
+- Create `HttpClient` instances using `new HttpClient(handler, disposeHandler: false)` as needed.
 
 The preceding approaches solve the resource management problems that `IHttpClientFactory` solves in a similar way.
 
@@ -668,7 +729,7 @@ An <xref:System.Net.Http.IHttpClientFactory> can be registered and used to confi
 * Manages the pooling and lifetime of underlying `HttpClientMessageHandler` instances to avoid common DNS problems that occur when manually managing `HttpClient` lifetimes.
 * Adds a configurable logging experience (via `ILogger`) for all requests sent through clients created by the factory.
 
-[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/http-requests/samples) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/http-requests/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Prerequisites
 
@@ -904,7 +965,7 @@ There are alternative ways to solve the preceding problems using a long-lived <x
 
 - Create an instance of `SocketsHttpHandler` when the app starts and use it for the life of the app.
 - Configure <xref:System.Net.Http.SocketsHttpHandler.PooledConnectionLifetime> to an appropriate value based on DNS refresh times.
-- Create `HttpClient` instances using `new HttpClient(handler, dispostHandler: false)` as needed.
+- Create `HttpClient` instances using `new HttpClient(handler, disposeHandler: false)` as needed.
 
 The preceding approaches solve the resource management problems that `IHttpClientFactory` solves in a similar way.
 
@@ -956,6 +1017,23 @@ In the following example:
 * `Main` creates a scope to execute the service's `GetPage` method and write the first 500 characters of the webpage content to the console.
 
 [!code-csharp[](http-requests/samples/2.x/HttpClientFactoryConsoleSample/Program.cs?highlight=14-15,20,26-27,59-62)]
+
+## Header propagation middleware
+
+Header propagation is a community supported middleware to propagate HTTP headers from the incoming request to the outgoing HTTP Client requests. To use header propagation:
+
+* Reference the community supported port of the package [HeaderPropagation](https://www.nuget.org/packages/HeaderPropagation). ASP.NET Core 3.1 and later supports [Microsoft.AspNetCore.HeaderPropagation](https://www.nuget.org/packages/Microsoft.AspNetCore.HeaderPropagation).
+
+* Configure the middleware and `HttpClient` in `Startup`:
+
+  [!code-csharp[](http-requests/samples/2.x/Startup21.cs?highlight=5-9,25&name=snippet)]
+
+* The client includes the configured headers on outbound requests:
+
+  ```csharp
+  var client = clientFactory.CreateClient("MyForwardingClient");
+  var response = client.GetAsync(...);
+  ```
 
 ## Additional resources
 

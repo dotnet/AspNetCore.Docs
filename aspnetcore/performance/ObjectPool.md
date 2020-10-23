@@ -5,11 +5,12 @@ description: Tips for increasing performance in ASP.NET Core apps using ObjectPo
 monikerRange: '>= aspnetcore-1.1'
 ms.author: riande
 ms.date: 04/11/2019
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: performance/ObjectPool
 ---
 # Object reuse with ObjectPool in ASP.NET Core
 
-By [Steve Gordon](https://twitter.com/stevejgordon), [Ryan Nowak](https://github.com/rynowak), and [Rick Anderson](https://twitter.com/RickAndMSFT)
+By [Steve Gordon](https://twitter.com/stevejgordon), [Ryan Nowak](https://github.com/rynowak), and [Günther Foidl](https://github.com/gfoidl)
 
 <xref:Microsoft.Extensions.ObjectPool> is part of the ASP.NET Core infrastructure that supports keeping a group of objects in memory for reuse rather than allowing the objects to be garbage collected.
 
@@ -28,7 +29,9 @@ Object pooling doesn't always improve performance:
 
 Use object pooling only after collecting performance data using realistic scenarios for your app or library.
 
-**WARNING: The `ObjectPool` doesn't implement `IDisposable`. We don't recommend using it with types that need disposal.**
+::: moniker range="< aspnetcore-3.0"
+**WARNING: The `ObjectPool` doesn't implement `IDisposable`. We don't recommend using it with types that need disposal.** `ObjectPool` in ASP.NET Core 3.0 and later supports `IDisposable`.
+::: moniker-end
 
 **NOTE: The ObjectPool doesn't place a limit on the number of objects that it will allocate, it places a limit on the number of objects it will retain.**
 
@@ -49,7 +52,20 @@ The ObjectPool can be used in an app in multiple ways:
 
 ## How to use ObjectPool
 
-Call <xref:Microsoft.Extensions.ObjectPool.ObjectPool`1> to get an object and <xref:Microsoft.Extensions.ObjectPool.ObjectPool`1.Return*> to return the object.  There's no requirement that you return every object. If you don't return an object, it will be garbage collected.
+Call <xref:Microsoft.Extensions.ObjectPool.ObjectPool`1.Get*> to get an object and <xref:Microsoft.Extensions.ObjectPool.ObjectPool`1.Return*> to return the object.  There's no requirement that you return every object. If you don't return an object, it will be garbage collected.
+
+::: moniker range=">= aspnetcore-3.0"
+When <xref:Microsoft.Extensions.ObjectPool.DefaultObjectPoolProvider> is used and `T` implements `IDisposable`:
+
+* Items that are ***not*** returned to the pool will be disposed.
+* When the pool gets disposed by DI, all items in the pool are disposed.
+
+NOTE: After the pool is disposed:
+
+* Calling `Get` throws a `ObjectDisposedException`.
+* `return` disposes the given item.
+
+::: moniker-end
 
 ## ObjectPool sample
 
@@ -64,3 +80,5 @@ The following code:
 The following code implements `BirthdayMiddleware`
 
 [!code-csharp[](ObjectPool/ObjectPoolSample/BirthdayMiddleware.cs?name=snippet)]
+
+[!INCLUDE[request localized comments](~/includes/code-comments-loc.md)]

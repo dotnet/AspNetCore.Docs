@@ -5,6 +5,9 @@ using Microsoft.Extensions.Configuration;
 namespace ConfigurationSample.EFConfigurationProvider
 {
     #region snippet1
+    // using Microsoft.EntityFrameworkCore;
+    // using Microsoft.Extensions.Configuration;
+
     public class EFConfigurationSource : IConfigurationSource
     {
         private readonly Action<DbContextOptionsBuilder> _optionsAction;

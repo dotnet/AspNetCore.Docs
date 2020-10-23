@@ -4,6 +4,7 @@ author: rick-anderson
 description: Learn how to add claims checks for authorization in an ASP.NET Core app.
 ms.author: riande
 ms.date: 10/14/2016
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authorization/claims
 ---
 # Claims-based authorization in ASP.NET Core
@@ -136,7 +137,7 @@ public void ConfigureServices(IServiceCollection services)
 ::: moniker-end
 ### Add a generic claim check
 
-If the claim value isn't a single value or a transformation is required, use [RequireAssertion](/dotnet/api/microsoft.aspnetcore.authorization.authorizationpolicybuilder.requireassertion). For more information, see [Using a func to fulfill a policy](xref:security/authorization/policies#using-a-func-to-fulfill-a-policy).
+If the claim value isn't a single value or a transformation is required, use [RequireAssertion](/dotnet/api/microsoft.aspnetcore.authorization.authorizationpolicybuilder.requireassertion). For more information, see [Use a func to fulfill a policy](xref:security/authorization/policies#use-a-func-to-fulfill-a-policy).
 
 ## Multiple Policy Evaluation
 

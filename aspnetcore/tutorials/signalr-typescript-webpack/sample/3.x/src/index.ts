@@ -1,5 +1,5 @@
 import "./css/main.css";
-import * as signalR from "@aspnet/signalr";
+import * as signalR from "@microsoft/signalr";
 
 const divMessages: HTMLDivElement = document.querySelector("#divMessages");
 const tbMessage: HTMLInputElement = document.querySelector("#tbMessage");
@@ -11,19 +11,19 @@ const connection = new signalR.HubConnectionBuilder()
     .build();
 
 connection.on("messageReceived", (username: string, message: string) => {
-    let messageContainer = document.createElement("div");
+    let messages = document.createElement("div");
 
-    messageContainer.innerHTML =
+    messages.innerHTML =
         `<div class="message-author">${username}</div><div>${message}</div>`;
 
-    divMessages.appendChild(messageContainer);
+    divMessages.appendChild(messages);
     divMessages.scrollTop = divMessages.scrollHeight;
 });
 
 connection.start().catch(err => document.write(err));
 
 tbMessage.addEventListener("keyup", (e: KeyboardEvent) => {
-    if (e.keyCode === 13) {
+    if (e.key === "Enter") {
         send();
     }
 });
@@ -32,5 +32,5 @@ btnSend.addEventListener("click", send);
 
 function send() {
     connection.send("newMessage", username, tbMessage.value)
-              .then(() => tbMessage.value = "");
+        .then(() => tbMessage.value = "");
 }

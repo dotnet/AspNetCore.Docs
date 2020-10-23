@@ -13,9 +13,9 @@ using ContosoUniversity.Data;
 
 namespace ContosoUniversity
 {
-    public class Startup
+    public class StartupSQLite
     {
-        public Startup(IConfiguration configuration)
+        public StartupSQLite(IConfiguration configuration)
         {
             Configuration = configuration;
         }
@@ -29,7 +29,7 @@ namespace ContosoUniversity
             services.AddRazorPages();
 
             services.AddDbContext<SchoolContext>(options =>
-                    options.UseSqlite(Configuration.GetConnectionString("SchoolContext")));
+                 options.UseSqlite(Configuration.GetConnectionString("SchoolContext")));
         }
         #endregion
         

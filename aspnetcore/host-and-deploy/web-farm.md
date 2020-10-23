@@ -1,23 +1,24 @@
 ---
 title: Host ASP.NET Core in a web farm
-author: guardrex
+author: rick-anderson
 description: Learn how to host multiple instances of an ASP.NET Core app with shared resources in a web farm environment.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/07/2019
+ms.date: 01/13/2020
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: host-and-deploy/web-farm
 ---
 # Host ASP.NET Core in a web farm
 
-By [Luke Latham](https://github.com/guardrex) and [Chris Ross](https://github.com/Tratcher)
+By [Chris Ross](https://github.com/Tratcher)
 
 A *web farm* is a group of two or more web servers (or *nodes*) that host multiple instances of an app. When requests from users arrive to a web farm, a *load balancer* distributes the requests to the web farm's nodes. Web farms improve:
 
-* **Reliability/availability** &ndash; When one or more nodes fail, the load balancer can route requests to other functioning nodes to continue processing requests.
-* **Capacity/performance** &ndash; Multiple nodes can process more requests than a single server. The load balancer balances the workload by distributing requests to the nodes.
-* **Scalability** &ndash; When more or less capacity is required, the number of active nodes can be increased or decreased to match the workload. Web farm platform technologies, such as [Azure App Service](https://azure.microsoft.com/services/app-service/), can automatically add or remove nodes at the request of the system administrator or automatically without human intervention.
-* **Maintainability** &ndash; Nodes of a web farm can rely on a set of shared services, which results in easier system management. For example, the nodes of a web farm can rely upon a single database server and a common network location for static resources, such as images and downloadable files.
+* **Reliability/availability**: When one or more nodes fail, the load balancer can route requests to other functioning nodes to continue processing requests.
+* **Capacity/performance**: Multiple nodes can process more requests than a single server. The load balancer balances the workload by distributing requests to the nodes.
+* **Scalability**: When more or less capacity is required, the number of active nodes can be increased or decreased to match the workload. Web farm platform technologies, such as [Azure App Service](https://azure.microsoft.com/services/app-service/), can automatically add or remove nodes at the request of the system administrator or automatically without human intervention.
+* **Maintainability**: Nodes of a web farm can rely on a set of shared services, which results in easier system management. For example, the nodes of a web farm can rely upon a single database server and a common network location for static resources, such as images and downloadable files.
 
 This topic describes configuration and dependencies for ASP.NET core apps hosted in a web farm that rely upon shared resources.
 
@@ -56,8 +57,8 @@ The following scenarios don't require additional configuration, but they depend 
 | -------- | ------------------- |
 | Authentication | Data Protection (see <xref:security/data-protection/configuration/overview>).<br><br>For more information, see <xref:security/authentication/cookie> and <xref:security/cookie-sharing>. |
 | Identity | Authentication and database configuration.<br><br>For more information, see <xref:security/authentication/identity>. |
-| Session | Data Protection (encrypted cookies) (see <xref:security/data-protection/configuration/overview>) and Caching (see <xref:performance/caching/distributed>).<br><br>For more information, see [Session and app state: Session state](xref:fundamentals/app-state#session-state). |
-| TempData | Data Protection (encrypted cookies) (see <xref:security/data-protection/configuration/overview>) or Session (see [Session and app state: Session state](xref:fundamentals/app-state#session-state)).<br><br>For more information, see [Session and app state: TempData](xref:fundamentals/app-state#tempdata). |
+| Session | Data Protection (encrypted cookies) (see <xref:security/data-protection/configuration/overview>) and Caching (see <xref:performance/caching/distributed>).<br><br>For more information, see [Session and state management: Session state](xref:fundamentals/app-state#session-state). |
+| TempData | Data Protection (encrypted cookies) (see <xref:security/data-protection/configuration/overview>) or Session (see [Session and state management: Session state](xref:fundamentals/app-state#session-state)).<br><br>For more information, see [Session and state management: TempData](xref:fundamentals/app-state#tempdata). |
 | Anti-forgery | Data Protection (see <xref:security/data-protection/configuration/overview>).<br><br>For more information, see <xref:security/anti-request-forgery>. |
 
 ## Troubleshoot
@@ -70,12 +71,12 @@ Consider a user who signs into the app using cookie authentication. The user sig
 
 When any of the following symptoms occur **intermittently**, the problem is usually traced to improper Data Protection or caching configuration for a web farm environment:
 
-* Authentication breaks &ndash; The authentication cookie is misconfigured or can't be decrypted. OAuth (Facebook, Microsoft, Twitter) or OpenIdConnect logins fail with the error "Correlation failed."
-* Authorization breaks &ndash; Identity is lost.
+* Authentication breaks: The authentication cookie is misconfigured or can't be decrypted. OAuth (Facebook, Microsoft, Twitter) or OpenIdConnect logins fail with the error "Correlation failed."
+* Authorization breaks: Identity is lost.
 * Session state loses data.
 * Cached items disappear.
 * TempData fails.
-* POSTs fail &ndash; The anti-forgery check fails.
+* POSTs fail: The anti-forgery check fails.
 
 For more information on Data Protection configuration for web farm deployments, see <xref:security/data-protection/configuration/overview>. For more information on caching configuration for web farm deployments, see <xref:performance/caching/distributed>.
 
@@ -85,4 +86,6 @@ If the web farm apps are capable of responding to requests, obtain request, conn
 
 ## Additional resources
 
-* [Custom Script Extension for Windows](/azure/virtual-machines/extensions/custom-script-windows) &ndash; Downloads and executes scripts on Azure virtual machines, which is useful for post-deployment configuration and software installation.
+* [Custom Script Extension for Windows](/azure/virtual-machines/extensions/custom-script-windows): Downloads and executes scripts on Azure virtual machines, which is useful for post-deployment configuration and software installation.
+* <xref:host-and-deploy/proxy-load-balancer>
+ 

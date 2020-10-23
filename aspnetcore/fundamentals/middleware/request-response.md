@@ -5,7 +5,8 @@ description: Learn how to read the request body and write the response body in A
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jukotali
 ms.custom: mvc
-ms.date: 08/29/2019
+ms.date: 5/29/2019
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/middleware/request-response
 ---
 # Request and response operations in ASP.NET Core
@@ -14,9 +15,9 @@ By [Justin Kotalik](https://github.com/jkotalik)
 
 This article explains how to read from the request body and write to the response body. Code for these operations might be required when writing middleware. Outside of writing middleware, custom code isn't generally required because the operations are handled by MVC and Razor Pages.
 
-There are two abstractions for the request and response bodies: <xref:System.IO.Stream> and <xref:System.IO.Pipelines.Pipe>. For request reading, [HttpRequest.Body](xref:Microsoft.AspNetCore.Http.HttpRequest.Body) is a <xref:System.IO.Stream>, and `HttpRequest.BodyReader` is a <xref:System.IO.Pipelines.PipeReader>. For response writing, [HttpResponse.Body](xref:Microsoft.AspNetCore.Http.HttpResponse.Body) is a <xref:System.IO.Stream>, and `HttpResponse.BodyWriter` is a <xref:System.IO.Pipelines.PipeWriter>.
+There are two abstractions for the request and response bodies: <xref:System.IO.Stream> and <xref:System.IO.Pipelines.Pipe>. For request reading, <xref:Microsoft.AspNetCore.Http.HttpRequest.Body?displayProperty=nameWithType> is a <xref:System.IO.Stream>, and `HttpRequest.BodyReader` is a <xref:System.IO.Pipelines.PipeReader>. For response writing, <xref:Microsoft.AspNetCore.Http.HttpResponse.Body?displayProperty=nameWithType> is a <xref:System.IO.Stream>, and `HttpResponse.BodyWriter` is a <xref:System.IO.Pipelines.PipeWriter>.
 
-Pipelines are recommended over streams. Streams can be easier to use for some simple operations, but pipelines have a performance advantage and are easier to use in most scenarios. ASP.NET Core is starting to use pipelines instead of streams internally. Examples include:
+[Pipelines](/dotnet/standard/io/pipelines) are recommended over streams. Streams can be easier to use for some simple operations, but pipelines have a performance advantage and are easier to use in most scenarios. ASP.NET Core is starting to use pipelines instead of streams internally. Examples include:
 
 * `FormReader`
 * `TextReader`
@@ -29,7 +30,14 @@ Streams aren't being removed from the framework. Streams continue to be used thr
 
 Suppose the goal is to create a middleware that reads the entire request body as a list of strings, splitting on new lines. A simple stream implementation might look like the following example:
 
+> [!WARNING]
+> The following code:
+> * Is used to demonstrate the problems with not using a pipe to read the request body.
+> * Is not intended to be used in production apps.
+
 [!code-csharp[](request-response/samples/3.x/RequestResponseSample/Startup.cs?name=GetListOfStringsFromStream)]
+
+[!INCLUDE[about the series](~/includes/code-comments-loc.md)]
 
 This code works, but there are some issues:
 
@@ -37,6 +45,11 @@ This code works, but there are some issues:
 * The example reads the entire string before splitting on new lines. It's more efficient to check for new lines in the byte array.
 
 Here's an example that fixes some of the preceding issues:
+
+> [!WARNING]
+> The following code:
+> * Is used to demonstrate the solutions to some problems in the preceding code while not solving all the problems.
+> * Is not intended to be used in production apps.
 
 [!code-csharp[](request-response/samples/3.x/RequestResponseSample/Startup.cs?name=GetListOfStringsFromStreamMoreEfficient)]
 
@@ -54,7 +67,7 @@ These issues are fixable, but the code is becoming progressively more complicate
 
 ## Pipelines
 
-The following example shows how the same scenario can be handled using a `PipeReader`:
+The following example shows how the same scenario can be handled using a [PipeReader](/dotnet/standard/io/pipelines#pipe):
 
 [!code-csharp[](request-response/samples/3.x/RequestResponseSample/Startup.cs?name=GetListOfStringFromPipe)]
 
@@ -62,11 +75,11 @@ This example fixes many issues that the streams implementations had:
 
 * There's no need for a string buffer because the `PipeReader` handles bytes that haven't been used.
 * Encoded strings are directly added to the list of returned strings.
-* String creation is allocation-free besides the memory used by the string (except the `ToArray()` call).
+* Other than the `ToArray` call, and the memory used by the string, string creation is allocation free.
 
 ## Adapters
 
-Both `Body` and `BodyReader/BodyWriter` properties are available for `HttpRequest` and `HttpResponse`. When you set `Body` to a different stream, a new set of adapters automatically adapt each type to the other. If you set `HttpRequest.Body` to a new stream, `HttpRequest.BodyReader` is automatically set to a new `PipeReader` that wraps `HttpRequest.Body`.
+The `Body`, `BodyReader`, and `BodyWriter` properties are available for `HttpRequest` and `HttpResponse`. When you set `Body` to a different stream, a new set of adapters automatically adapt each type to the other. If you set `HttpRequest.Body` to a new stream, `HttpRequest.BodyReader` is automatically set to a new `PipeReader` that wraps `HttpRequest.Body`.
 
 ## StartAsync
 
@@ -74,5 +87,7 @@ Both `Body` and `BodyReader/BodyWriter` properties are available for `HttpReques
 
 ## Additional resources
 
-* [Introducing System.IO.Pipelines](https://devblogs.microsoft.com/dotnet/system-io-pipelines-high-performance-io-in-net/)
+* [System.IO.Pipelines in .NET](/dotnet/standard/io/pipelines)
 * <xref:fundamentals/middleware/write>
+
+<!-- Test with Postman or other tool. See image in static directory. -->

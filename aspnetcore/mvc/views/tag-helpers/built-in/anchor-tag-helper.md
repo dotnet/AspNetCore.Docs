@@ -5,6 +5,7 @@ description: Discover the ASP.NET Core Anchor Tag Helper attributes and the role
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 10/13/2019
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/views/tag-helpers/builtin-th/anchor-tag-helper
 ---
 # Anchor Tag Helper in ASP.NET Core
@@ -15,7 +16,7 @@ The [Anchor Tag Helper](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper
 
 For an overview of Tag Helpers, see <xref:mvc/views/tag-helpers/intro>.
 
-[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/views/tag-helpers/built-in/samples) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/views/tag-helpers/built-in/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 *SpeakerController* is used in samples throughout this document:
 

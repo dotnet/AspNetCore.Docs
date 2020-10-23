@@ -1,4 +1,4 @@
-﻿@using BlazorSample.UIInterfaces
+@using BlazorSample.UIInterfaces
 
 <!-- Display the tab headers -->
 <CascadingValue Value=this>
@@ -22,19 +22,11 @@
     {
         if (ActiveTab == null)
         {
-            SetActivateTab(tab);
+            SetActiveTab(tab);
         }
     }
 
-    public void RemoveTab(ITab tab)
-    {
-        if (ActiveTab == tab)
-        {
-            SetActivateTab(null);
-        }
-    }
-
-    public void SetActivateTab(ITab tab)
+    public void SetActiveTab(ITab tab)
     {
         if (ActiveTab != tab)
         {

@@ -4,8 +4,8 @@ author: mjrousos
 description: Tips for increasing performance in ASP.NET Core apps and avoiding common performance problems.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
-ms.date: 12/05/2019
-no-loc: [SignalR]
+ms.date: 04/06/2020
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: performance/performance-best-practices
 ---
 # ASP.NET Core Performance Best Practices
@@ -26,7 +26,7 @@ In this document, a *hot code path* is defined as a code path that is frequently
 
 ASP.NET Core apps should be designed to process many requests simultaneously. Asynchronous APIs allow a small pool of threads to handle thousands of concurrent requests by not waiting on blocking calls. Rather than waiting on a long-running synchronous task to complete, the thread can work on another request.
 
-A common performance problem in ASP.NET Core apps is blocking calls that could be asynchronous. Many synchronous blocking calls lead to [Thread Pool starvation](https://blogs.msdn.microsoft.com/vancem/2018/10/16/diagnosing-net-core-threadpool-starvation-with-perfview-why-my-service-is-not-saturating-all-cores-or-seems-to-stall/) and degraded response times.
+A common performance problem in ASP.NET Core apps is blocking calls that could be asynchronous. Many synchronous blocking calls lead to [Thread Pool starvation](/archive/blogs/vancem/diagnosing-net-core-threadpool-starvation-with-perfview-why-my-service-is-not-saturating-all-cores-or-seems-to-stall) and degraded response times.
 
 **Do not**:
 
@@ -37,10 +37,16 @@ A common performance problem in ASP.NET Core apps is blocking calls that could b
 **Do**:
 
 * Make [hot code paths](#understand-hot-code-paths) asynchronous.
-* Call data access and long-running operations APIs asynchronously if an asynchronous API is available. Once again, do not use [Task.Run](/dotnet/api/system.threading.tasks.task.run) to make a synchronus API asynchronous.
+* Call data access, I/O, and long-running operations APIs asynchronously if an asynchronous API is available. Do **not** use [Task.Run](/dotnet/api/system.threading.tasks.task.run) to make a synchronous API asynchronous.
 * Make controller/Razor Page actions asynchronous. The entire call stack is asynchronous in order to benefit from [async/await](/dotnet/csharp/programming-guide/concepts/async/) patterns.
 
 A profiler, such as [PerfView](https://github.com/Microsoft/perfview), can be used to find threads frequently added to the [Thread Pool](/windows/desktop/procthread/thread-pools). The `Microsoft-Windows-DotNETRuntime/ThreadPoolWorkerThread/Start` event indicates a thread added to the thread pool. <!--  For more information, see [async guidance docs](TBD-Link_To_Davifowl_Doc)  -->
+
+## Return IEnumerable\<T> or IAsyncEnumerable\<T>
+
+Returning `IEnumerable<T>` from an action results in synchronous collection iteration by the serializer. The result is the blocking of calls and a potential for thread pool starvation. To avoid synchronous enumeration, use `ToListAsync` before returning the enumerable.
+
+Beginning with ASP.NET Core 3.0, `IAsyncEnumerable<T>` can be used as an alternative to `IEnumerable<T>` that enumerates asynchronously. For more information, see [Controller action return types](xref:web-api/action-return-types#return-ienumerablet-or-iasyncenumerablet).
 
 ## Minimize large object allocations
 
@@ -60,7 +66,7 @@ Memory issues, such as the preceding, can be diagnosed by reviewing garbage coll
 
 For more information, see [Garbage Collection and Performance](/dotnet/standard/garbage-collection/performance).
 
-## Optimize Data Access
+## Optimize data access and I/O
 
 Interactions with a data store and other remote services are often the slowest parts of an ASP.NET Core app. Reading and writing data efficiently is critical for good performance.
 
@@ -95,7 +101,7 @@ Recommendations:
 
 ## Keep common code paths fast
 
-You want all of your code to be fast, frequently called code paths are the most critical to optimize:
+You want all of your code to be fast. Frequently-called code paths are the most critical to optimize. These include:
 
 * Middleware components in the app's request processing pipeline, especially middleware run early in the pipeline. These components have a large impact on performance.
 * Code that's executed for every request or multiple times per request. For example, custom logging, authorization handlers, or initialization of transient services.
@@ -133,7 +139,7 @@ Recommendations:
 
 ## Use the latest ASP.NET Core release
 
-Each new release of ASP.NET Core includes performance improvements. Optimizations in .NET Core and ASP.NET Core mean that newer versions generally outperform older versions. For example, .NET Core 2.1 added support for compiled regular expressions and benefitted from [Span\<T>](https://msdn.microsoft.com/magazine/mt814808.aspx). ASP.NET Core 2.2 added support for HTTP/2. [ASP.NET Core 3.0 adds many improvements](xref:aspnetcore-3.0) that reduce memory usage and improve throughput. If performance is a priority, consider upgrading to the current version of ASP.NET Core.
+Each new release of ASP.NET Core includes performance improvements. Optimizations in .NET Core and ASP.NET Core mean that newer versions generally outperform older versions. For example, .NET Core 2.1 added support for compiled regular expressions and benefitted from [Span\<T>](/archive/msdn-magazine/2018/january/csharp-all-about-span-exploring-a-new-net-mainstay). ASP.NET Core 2.2 added support for HTTP/2. [ASP.NET Core 3.0 adds many improvements](xref:aspnetcore-3.0) that reduce memory usage and improve throughput. If performance is a priority, consider upgrading to the current version of ASP.NET Core.
 
 ## Minimize exceptions
 
@@ -153,7 +159,7 @@ The following sections provide performance tips and known reliability problems a
 
 ## Avoid synchronous read or write on HttpRequest/HttpResponse body
 
-All IO in ASP.NET Core is asynchronous. Servers implement the `Stream` interface, which has both synchronous and asynchronous overloads. The asynchronous ones should be preferred to avoid blocking thread pool threads. Blocking threads can lead to thread pool starvation.
+All I/O in ASP.NET Core is asynchronous. Servers implement the `Stream` interface, which has both synchronous and asynchronous overloads. The asynchronous ones should be preferred to avoid blocking thread pool threads. Blocking threads can lead to thread pool starvation.
 
 **Do not do this:** The following example uses the <xref:System.IO.StreamReader.ReadToEnd*>. It blocks the current thread to wait for the result. This is an example of [sync over async](https://github.com/davidfowl/AspNetCoreDiagnosticScenarios/blob/master/AsyncGuidance.md#warning-sync-over-async
 ).
@@ -205,7 +211,7 @@ In .NET, every object allocation greater than 85 KB ends up in the large object 
 
 This [blog post](https://adamsitnik.com/Array-Pool/#the-problem) describes the problem succinctly:
 
-> When a large object is allocated, it’s marked as Gen 2 object. Not Gen 0 as for small objects. The consequences are that if you run out of memory in LOH, GC cleans up the whole managed heap, not only LOH. So it cleans up Gen 0, Gen 1 and Gen 2 including LOH. This is called full garbage collection and is the most time-consuming garbage collection. For many applications, it can be acceptable. But definitely not for high-performance web servers, where few big memory buffers are needed to handle an average web request (read from a socket, decompress, decode JSON & more).
+> When a large object is allocated, it's marked as Gen 2 object. Not Gen 0 as for small objects. The consequences are that if you run out of memory in LOH, GC cleans up the whole managed heap, not only LOH. So it cleans up Gen 0, Gen 1 and Gen 2 including LOH. This is called full garbage collection and is the most time-consuming garbage collection. For many applications, it can be acceptable. But definitely not for high-performance web servers, where few big memory buffers are needed to handle an average web request (read from a socket, decompress, decode JSON & more).
 
 Naively storing a large request or response body into a single `byte[]` or `string`:
 
@@ -231,7 +237,7 @@ ASP.NET Core 3.0 uses <xref:System.Text.Json> by default for JSON serialization.
 
 The [IHttpContextAccessor.HttpContext](xref:Microsoft.AspNetCore.Http.IHttpContextAccessor.HttpContext) returns the `HttpContext` of the active request when accessed from the request thread. The `IHttpContextAccessor.HttpContext` should **not** be stored in a field or variable.
 
-**Do not do this:** The following example stores the `HttpContext` in a field, and then attempts to use it later.
+**Do not do this:** The following example stores the `HttpContext` in a field and then attempts to use it later.
 
 [!code-csharp[](performance-best-practices/samples/3.0/MyType.cs?name=snippet1)]
 
@@ -268,7 +274,7 @@ The preceding code frequently captures a null or incorrect `HttpContext` in the 
 
 [!code-csharp[](performance-best-practices/samples/3.0/Controllers/AsyncBadVoidController.cs?name=snippet1)]
 
-**Do this:** The following example returns a `Task` to the framework so the HTTP request doesn't complete until the action completes.
+**Do this:** The following example returns a `Task` to the framework, so the HTTP request doesn't complete until the action completes.
 
 [!code-csharp[](performance-best-practices/samples/3.0/Controllers/AsyncSecondController.cs?name=snippet1)]
 
@@ -341,3 +347,11 @@ Checking if the response has not started allows registering a callback that will
 ## Do not call next() if you have already started writing to the response body
 
 Components only expect to be called if it's possible for them to handle and manipulate the response.
+
+## Use In-process hosting with IIS
+
+Using in-process hosting, an ASP.NET Core app runs in the same process as its IIS worker process. In-process hosting provides improved performance over out-of-process hosting because requests aren't proxied over the loopback adapter. The loopback adapter is a network interface that returns outgoing network traffic back to the same machine. IIS handles process management with the [Windows Process Activation Service (WAS)](/iis/manage/provisioning-and-managing-iis/features-of-the-windows-process-activation-service-was).
+
+Projects default to the in-process hosting model in ASP.NET Core 3.0 and later.
+
+For more information, see [Host ASP.NET Core on Windows with IIS](xref:host-and-deploy/iis/index)

@@ -6,17 +6,17 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/06/2019
 ms.topic: tutorial
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: data/ef-mvc/intro
 ---
 # Tutorial: Get started with EF Core in an ASP.NET MVC web app
 
-::: moniker range=">= aspnetcore-3.0"
+This tutorial has **not** been updated to ASP.NET Core 3.0. The [Razor Pages version](xref:data/ef-rp/intro) has been updated. Most of the code changes for the ASP.NET Core 3.0 and later version of this tutorial:
 
-This tutorial has **not** been updated to ASP.NET Core 3.0. The [Razor Pages version](xref:data/ef-rp/intro) has been updated. For information on when this might be updated, see [this GitHub issue](https://github.com/aspnet/AspNetCore.Docs/issues/13920).
+* Are in the *Startup.cs* and *Program.cs* files.
+* Can be found in the [Razor Pages version](xref:data/ef-rp/intro). 
 
-::: moniker-end
-
-::: moniker range="< aspnetcore-3.0"
+For information on when this might be updated, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/13920).
 
 [!INCLUDE [RP better than MVC](~/includes/RP-EF/rp-over-mvc.md)]
 
@@ -39,14 +39,14 @@ In this tutorial, you:
 
 ## Prerequisites
 
-* [.NET Core SDK 2.2](https://www.microsoft.com/net/download)
+* [.NET Core SDK 2.2](https://dotnet.microsoft.com/download)
 * [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019) with the following workloads:
   * **ASP.NET and web development** workload
   * **.NET Core cross-platform development** workload
 
 ## Troubleshooting
 
-If you run into a problem you can't resolve, you can generally find the solution by comparing your code to the [completed project](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final). For a list of common errors and how to solve them, see [the Troubleshooting section of the last tutorial in the series](advanced.md#common-errors). If you don't find what you need there, you can post a question to StackOverflow.com for [ASP.NET Core](https://stackoverflow.com/questions/tagged/asp.net-core) or [EF Core](https://stackoverflow.com/questions/tagged/entity-framework-core).
+If you run into a problem you can't resolve, you can generally find the solution by comparing your code to the [completed project](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final). For a list of common errors and how to solve them, see [the Troubleshooting section of the last tutorial in the series](advanced.md#common-errors). If you don't find what you need there, you can post a question to StackOverflow.com for [ASP.NET Core](https://stackoverflow.com/questions/tagged/asp.net-core) or [EF Core](https://stackoverflow.com/questions/tagged/entity-framework-core).
 
 > [!TIP]
 > This is a series of 10 tutorials, each of which builds on what is done in earlier tutorials. Consider saving a copy of the project after each successful tutorial completion. Then if you run into problems, you can start over from the previous tutorial instead of going back to the beginning of the whole series.
@@ -357,7 +357,7 @@ For more information about asynchronous programming in .NET, see [Async Overview
 
 ## Get the code
 
-[Download or view the completed application.](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)
+[Download or view the completed application.](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)
 
 ## Next steps
 
@@ -381,4 +381,3 @@ Advance to the next tutorial to learn how to perform basic CRUD (create, read, u
 > [!div class="nextstepaction"]
 > [Implement basic CRUD functionality](crud.md)
 
-::: moniker-end

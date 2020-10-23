@@ -13,14 +13,13 @@ namespace AuthorizationSample
             services.AddControllers();
 
             #region snippet1
-            services.AddRazorPages()
-                .AddRazorPagesOptions(options =>
-                {
-                    options.Conventions.AuthorizePage("/Contact");
-                    options.Conventions.AuthorizeFolder("/Private");
-                    options.Conventions.AllowAnonymousToPage("/Private/PublicPage");
-                    options.Conventions.AllowAnonymousToFolder("/Private/PublicPages");
-                });
+            services.AddRazorPages(options =>
+            {
+                options.Conventions.AuthorizePage("/Contact");
+                options.Conventions.AuthorizeFolder("/Private");
+                options.Conventions.AllowAnonymousToPage("/Private/PublicPage");
+                options.Conventions.AllowAnonymousToFolder("/Private/PublicPages");
+            });
             #endregion
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)

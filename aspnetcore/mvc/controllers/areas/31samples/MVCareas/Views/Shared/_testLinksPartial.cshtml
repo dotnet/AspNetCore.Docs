@@ -1,0 +1,79 @@
+﻿<div>
+    @ViewData["routeInfo"]
+</div>
+<div>
+    <h3>Links generated using area </h3>
+
+    <ul>
+        <!-- <snippet> -->
+        <li>Anchor Tag Helper links</li>
+        <ul>
+            <li>
+                <a asp-area="Products" asp-controller="Home" asp-action="About">
+                    Products/Home/About
+                </a>
+            </li>
+            <li>
+                <a asp-area="Services" asp-controller="Home" asp-action="About">
+                    Services About
+                </a>
+            </li>
+            <li>
+                <a asp-area="" asp-controller="Home" asp-action="About">
+                    /Home/About
+                </a>
+            </li>
+        </ul>
+        <li>Html.ActionLink generated links</li>
+        <ul>
+            <li>
+                @Html.ActionLink("Product/Manage/About", "About", "Manage",
+                                                        new { area = "Products" })
+            </li>
+        </ul>
+        <li>Url.Action generated links</li>
+        <ul>
+            <li>
+                <a href='@Url.Action("About", "Manage", new { area = "Products" })'>
+                    Products/Manage/About
+                </a>
+            </li>
+        </ul>
+        <!-- </snippet> -->
+    </ul>
+
+</div>
+
+<div>
+    <h3>Ambient links NOT using area </h3>
+
+    <ul>
+        <li>Anchor Tag Helper links</li>
+        <ul>
+            <li>
+                <a asp-controller="Home" asp-action="About">Products/Home/About</a>
+            </li>
+            <li>
+                <a asp-controller="Home" asp-action="About">Services About</a>
+            </li>
+            <li>
+                <a asp-controller="Home" asp-action="About">/Home/About</a>
+            </li>
+        </ul>
+        <li>Url.Action generated links <strong>NOT</strong> using Area</li>
+        <ul>
+            <li>
+                <a href='@Url.Action("About", "Manage")'>
+                    Products/Manage/About
+                </a>
+            </li>
+        </ul>
+        <li>Html.ActionLink generated links</li>
+        <ul>
+            <li>
+                @Html.ActionLink("Product About", "About", "Manage")
+            </li>
+        </ul>
+    </ul>
+</div>
+

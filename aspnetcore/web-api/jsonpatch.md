@@ -4,7 +4,8 @@ author: rick-anderson
 description: Learn how to handle JSON Patch requests in an ASP.NET Core web API.
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/01/2019
+ms.date: 04/02/2020
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: web-api/jsonpatch
 ---
 
@@ -18,30 +19,30 @@ This article explains how to handle JSON Patch requests in an ASP.NET Core web A
 
 ## Package installation
 
-Support for JsonPatch is enabled using the `Microsoft.AspNetCore.Mvc.NewtonsoftJson` package. To enable this feature, apps must:
+To enable JSON Patch support in your app, complete the following steps:
 
-* Install the [Microsoft.AspNetCore.Mvc.NewtonsoftJson](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson/) NuGet package.
-* Update the project's `Startup.ConfigureServices` method to include a call to `AddNewtonsoftJson`:
+1. Install the [`Microsoft.AspNetCore.Mvc.NewtonsoftJson`](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson/) NuGet package.
+1. Update the project's `Startup.ConfigureServices` method to call <xref:Microsoft.Extensions.DependencyInjection.NewtonsoftJsonMvcBuilderExtensions.AddNewtonsoftJson*>. For example:
 
-  ```csharp
-  services
-      .AddControllersWithViews()
-      .AddNewtonsoftJson();
-  ```
+    ```csharp
+    services
+        .AddControllersWithViews()
+        .AddNewtonsoftJson();
+    ```
 
 `AddNewtonsoftJson` is compatible with the MVC service registration methods:
 
-  * `AddRazorPages`
-  * `AddControllersWithViews`
-  * `AddControllers`
+* <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddRazorPages*>
+* <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllersWithViews*>
+* <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllers*>
 
-## JsonPatch, AddNewtonsoftJson, and System.Text.Json
-  
-`AddNewtonsoftJson` replaces the `System.Text.Json` based input and output formatters used for formatting **all** JSON content. To add support for `JsonPatch` using `Newtonsoft.Json`, while leaving the other formatters unchanged, update the project's `Startup.ConfigureServices` as follows:
+## JSON Patch, AddNewtonsoftJson, and System.Text.Json
+
+`AddNewtonsoftJson` replaces the `System.Text.Json`-based input and output formatters used for formatting **all** JSON content. To add support for JSON Patch using `Newtonsoft.Json`, while leaving the other formatters unchanged, update the project's `Startup.ConfigureServices` method as follows:
 
 [!code-csharp[](jsonpatch/samples/3.0/WebApp1/Startup.cs?name=snippet)]
 
-The preceding code requires a reference to [Microsoft.AspNetCore.Mvc.NewtonsoftJson](https://nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson) and the following using statements:
+The preceding code requires the `Microsoft.AspNetCore.Mvc.NewtonsoftJson` package and the following `using` statements:
 
 [!code-csharp[](jsonpatch/samples/3.0/WebApp1/Startup.cs?name=snippet1)]
 
@@ -51,9 +52,9 @@ The PUT and [PATCH](https://tools.ietf.org/html/rfc5789) methods are used to upd
 
 ## JSON Patch
 
-[JSON Patch](https://tools.ietf.org/html/rfc6902) is a format for specifying updates to be applied to a resource. A JSON Patch document has an array of *operations*. Each operation identifies a particular type of change, such as add an array element or replace a property value.
+[JSON Patch](https://tools.ietf.org/html/rfc6902) is a format for specifying updates to be applied to a resource. A JSON Patch document has an array of *operations*. Each operation identifies a particular type of change. Examples of such changes include adding an array element or replacing a property value.
 
-For example, the following JSON documents represent a resource, a JSON patch document for the resource, and the result of applying the patch operations.
+For example, the following JSON documents represent a resource, a JSON Patch document for the resource, and the result of applying the Patch operations.
 
 ### Resource example
 
@@ -93,13 +94,13 @@ Here's the resource after applying the preceding JSON Patch document:
 }
 ```
 
-The changes made by applying a JSON Patch document to a resource are atomic: if any operation in the list fails, no operation in the list is applied.
+The changes made by applying a JSON Patch document to a resource are atomic. If any operation in the list fails, no operation in the list is applied.
 
 ## Path syntax
 
 The [path](https://tools.ietf.org/html/rfc6901) property of an operation object has slashes between levels. For example, `"/address/zipCode"`.
 
-Zero-based indexes are used to specify array elements. The first element of the `addresses` array would be at `/addresses/0`. To `add` to the end of an array, use a hyphen (-) rather than an index number: `/addresses/-`.
+Zero-based indexes are used to specify array elements. The first element of the `addresses` array would be at `/addresses/0`. To `add` to the end of an array, use a hyphen (`-`) rather than an index number: `/addresses/-`.
 
 ### Operations
 
@@ -114,7 +115,7 @@ The following table shows supported operations as defined in the [JSON Patch spe
 | `copy`    | Same as `add` to destination using value from source. |
 | `test`    | Return success status code if value at `path` = provided `value`.|
 
-## JsonPatch in ASP.NET Core
+## JSON Patch in ASP.NET Core
 
 The ASP.NET Core implementation of JSON Patch is provided in the [Microsoft.AspNetCore.JsonPatch](https://www.nuget.org/packages/microsoft.aspnetcore.jsonpatch/) NuGet package.
 
@@ -130,7 +131,7 @@ Here's an example:
 
 [!code-csharp[](jsonpatch/samples/2.2/Controllers/HomeController.cs?name=snippet_PatchAction&highlight=1,3,9)]
 
-This code from the sample app works with the following `Customer` model.
+This code from the sample app works with the following `Customer` model:
 
 [!code-csharp[](jsonpatch/samples/2.2/Models/Customer.cs?name=snippet_Customer)]
 
@@ -142,7 +143,7 @@ The sample action method:
 * Applies the patch.
 * Returns the result in the body of the response.
 
- In a real app, the code would retrieve the data from a store such as a database and update the database after applying the patch.
+In a real app, the code would retrieve the data from a store such as a database and update the database after applying the patch.
 
 ### Model state
 
@@ -158,7 +159,7 @@ The preceding action method example calls an overload of `ApplyTo` that takes mo
 
 ### Dynamic objects
 
-The following action method example shows how to apply a patch to a dynamic object.
+The following action method example shows how to apply a patch to a dynamic object:
 
 [!code-csharp[](jsonpatch/samples/2.2/Controllers/HomeController.cs?name=snippet_Dynamic)]
 
@@ -183,7 +184,7 @@ The following sample patch document sets the value of `CustomerName` and adds an
     * If the property is nullable: sets it to null.
     * If the property is non-nullable, sets it to `default<T>`.
 
-The following sample patch document sets `CustomerName` to null and deletes `Orders[0]`.
+The following sample patch document sets `CustomerName` to null and deletes `Orders[0]`:
 
 [!code-json[](jsonpatch/samples/2.2/JSON/remove.json)]
 
@@ -191,7 +192,7 @@ The following sample patch document sets `CustomerName` to null and deletes `Ord
 
 This operation is functionally the same as a `remove` followed by an `add`.
 
-The following sample patch document sets the value of `CustomerName` and replaces `Orders[0]`with a new `Order` object.
+The following sample patch document sets the value of `CustomerName` and replaces `Orders[0]`with a new `Order` object:
 
 [!code-json[](jsonpatch/samples/2.2/JSON/replace.json)]
 
@@ -234,7 +235,7 @@ The following sample patch document has no effect if the initial value of `Custo
 
 ## Get the code
 
-[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/jsonpatch/samples/2.2). ([How to download](xref:index#how-to-download-a-sample)).
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/jsonpatch/samples). ([How to download](xref:index#how-to-download-a-sample)).
 
 To test the sample, run the app and send HTTP requests with the following settings:
 
@@ -249,7 +250,7 @@ To test the sample, run the app and send HTTP requests with the following settin
 * [IETF RFC 6902 JSON Patch specification](https://tools.ietf.org/html/rfc6902)
 * [IETF RFC 6901 JSON Patch path format spec](https://tools.ietf.org/html/rfc6901)
 * [JSON Patch documentation](https://jsonpatch.com/). Includes links to resources for creating JSON Patch documents.
-* [ASP.NET Core JSON Patch source code](https://github.com/aspnet/AspNetCore/tree/master/src/Features/JsonPatch/src)
+* [ASP.NET Core JSON Patch source code](https://github.com/dotnet/AspNetCore/tree/master/src/Features/JsonPatch/src)
 
 ::: moniker-end
 
@@ -446,7 +447,7 @@ The following sample patch document has no effect if the initial value of `Custo
 
 ## Get the code
 
-[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/jsonpatch/samples/2.2). ([How to download](xref:index#how-to-download-a-sample)).
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/jsonpatch/samples/2.2). ([How to download](xref:index#how-to-download-a-sample)).
 
 To test the sample, run the app and send HTTP requests with the following settings:
 
@@ -461,6 +462,6 @@ To test the sample, run the app and send HTTP requests with the following settin
 * [IETF RFC 6902 JSON Patch specification](https://tools.ietf.org/html/rfc6902)
 * [IETF RFC 6901 JSON Patch path format spec](https://tools.ietf.org/html/rfc6901)
 * [JSON Patch documentation](https://jsonpatch.com/). Includes links to resources for creating JSON Patch documents.
-* [ASP.NET Core JSON Patch source code](https://github.com/aspnet/AspNetCore/tree/master/src/Features/JsonPatch/src)
+* [ASP.NET Core JSON Patch source code](https://github.com/dotnet/AspNetCore/tree/master/src/Features/JsonPatch/src)
 
 ::: moniker-end

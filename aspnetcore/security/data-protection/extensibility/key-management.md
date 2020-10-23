@@ -5,15 +5,14 @@ description: Learn about ASP.NET Core Data Protection key management extensibili
 ms.author: riande
 ms.custom: "mvc, seodec18"
 ms.date: 10/24/2018
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/data-protection/extensibility/key-management
 ---
 # Key management extensibility in ASP.NET Core
 
-> [!TIP]
-> Read the [key management](xref:security/data-protection/implementation/key-management#data-protection-implementation-key-management) section before reading this section, as it explains some of the fundamental concepts behind these APIs.
+Read the [key management](xref:security/data-protection/implementation/key-management#data-protection-implementation-key-management) section before reading this section, as it explains some of the fundamental concepts behind these APIs.
 
-> [!WARNING]
-> Types that implement any of the following interfaces should be thread-safe for multiple callers.
+**Warning**: Types that implement any of the following interfaces should be thread-safe for multiple callers.
 
 ## Key
 

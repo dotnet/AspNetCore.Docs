@@ -1,0 +1,222 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="&lt;a href=&quot;http://go.microsoft.com/fwlink/?LinkId=518007&quot;&gt;Gulp&lt;/a&gt; and &lt;a href=&quot;http://go.microsoft.com/fwlink/?LinkId=518004&quot;&gt;Bower&lt;/a&gt; for managing client-side libraries" xml:space="preserve">
+    <value>&lt;a href="https://go.microsoft.com/fwlink/?LinkId=518007"&gt;Gulp&lt;/a&gt; et &lt;a href="https://go.microsoft.com/fwlink/?LinkId=518004"&gt;Bower&lt;/a&gt; pour la gestion des bibliothèques côté client</value>
+  </data>
+  <data name="Add a Controller and View" xml:space="preserve">
+    <value>&lt;h1&gt;Home Version Ajouter un contrôleur et Vue (Add a Controller and View) Resources\Views\Book\Index.fr.resx &lt;/h1&gt;</value>
+  </data>
+  <data name="Application uses" xml:space="preserve">
+    <value>Utilisations d'application</value>
+  </data>
+  <data name="Bring in libraries from NuGet, Bower, and npm, and automate tasks using Grunt or Gulp." xml:space="preserve">
+    <value>Apportez dans les bibliothèques de NuGet , Bower , et NPM , et automatiser les tâches à l'aide Grunt ou Gulp .</value>
+  </data>
+  <data name="Home Page" xml:space="preserve">
+    <value>Page D'accueil</value>
+  </data>
+  <data name="How to" xml:space="preserve">
+    <value>Comment</value>
+  </data>
+  <data name="Learn how Microsoft's Azure cloud platform allows you to build, deploy, and scale web apps." xml:space="preserve">
+    <value>Découvrez comment la plate-forme Azure cloud de Microsoft vous permet de construire, déployer et applications Web à grande échelle .</value>
+  </data>
+  <data name="Learn how to build ASP.NET apps that can run anywhere." xml:space="preserve">
+    <value>Apprenez à créer des applications ASP.NET qui peuvent fonctionner n'importe où .</value>
+  </data>
+  <data name="Learn More" xml:space="preserve">
+    <value>Apprendre Encore Plus</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Prochain</value>
+  </data>
+  <data name="Package Management" xml:space="preserve">
+    <value>Gestion des Paquetages</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>Précédent</value>
+  </data>
+  <data name="Sample pages using ASP.NET MVC 6" xml:space="preserve">
+    <value>Pages échantillon en utilisant ASP.NET MVC 6</value>
+  </data>
+  <data name="Theming using &lt;a href=&quot;http://go.microsoft.com/fwlink/?LinkID=398939&quot;&gt;Bootstrap&lt;/a&gt;" xml:space="preserve">
+    <value>Thématisation aide &lt;a href="https://go.microsoft.com/fwlink/?LinkID=398939"&gt;Bootstrap&lt;/a&gt;</value>
+  </data>
+  <data name="There are powerful new features in Visual Studio for building modern web apps." xml:space="preserve">
+    <value>Il ya de puissantes nouvelles fonctionnalités de Visual Studio pour la création d'applications web modernes .</value>
+  </data>
+  <data name="Add an appsetting in config and access it in app." xml:space="preserve">
+    <value>Ajoutez un appsetting dans la configuration et y accéder à l'application .</value>
+  </data>
+  <data name="Add client packages using Bower." xml:space="preserve">
+    <value>Ajouter des packages de clients à l'aide Bower.</value>
+  </data>
+  <data name="Add packages using NuGet." xml:space="preserve">
+    <value>Ajouter paquets en utilisant NuGet.</value>
+  </data>
+  <data name="Client side development" xml:space="preserve">
+    <value>Le développement côté client</value>
+  </data>
+  <data name="Conceptual overview of what is ASP.NET 5" xml:space="preserve">
+    <value>Aperçu conceptuel de ce qui est ASP.NET 5</value>
+  </data>
+  <data name="Develop on different platforms" xml:space="preserve">
+    <value>Développer sur différentes plateformes</value>
+  </data>
+  <data name="Fundamentals of ASP.NET 5 such as Startup and middleware." xml:space="preserve">
+    <value>Notions de base ASP.NET 5 tels que le démarrage et middleware.</value>
+  </data>
+  <data name="Manage User Secrets using Secret Manager." xml:space="preserve">
+    <value>Gérer Secrets de l'utilisateur à l'aide de Secret Manager.</value>
+  </data>
+  <data name="Overview" xml:space="preserve">
+    <value>Vue D'ensemble</value>
+  </data>
+  <data name="Publish to Microsoft Azure Web Apps" xml:space="preserve">
+    <value>Publier sur Microsoft Azure Web Apps</value>
+  </data>
+  <data name="Read more on the documentation site" xml:space="preserve">
+    <value>Lire la suite sur le site de documentation</value>
+  </data>
+  <data name="Run &amp; Deploy" xml:space="preserve">
+    <value>Déployer &amp; Exécuter</value>
+  </data>
+  <data name="Run commands in your bash" xml:space="preserve">
+    <value>Exécuter des commandes dans votre bash</value>
+  </data>
+  <data name="Run your app" xml:space="preserve">
+    <value>Exécutez votre application</value>
+  </data>
+  <data name="Run your app on .NET Core" xml:space="preserve">
+    <value>Exécutez votre application sur .NET de base</value>
+  </data>
+  <data name="Security" xml:space="preserve">
+    <value>Sécurité</value>
+  </data>
+  <data name="Target development, staging or production environment." xml:space="preserve">
+    <value>Cibler le développement, la mise en scène ou de l'environnement de production.</value>
+  </data>
+  <data name="Use logging to log a message." xml:space="preserve">
+    <value>Utilisez la journalisation pour enregistrer un message.</value>
+  </data>
+  <data name="Working with Data" xml:space="preserve">
+    <value>Utilisation des données</value>
+  </data>
+</root>

@@ -4,6 +4,7 @@ author: rick-anderson
 description: This series of tutorials shows how to use Razor Pages in ASP.NET Core. Learn how to create a model, generate code for Razor pages, use Entity Framework Core and SQL Server for data access, add search functionality, add input validation, and use migrations to update the model.
 ms.author: riande
 ms.date: 11/12/2019
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/razor-pages/razor-pages-start
 ---
 
@@ -89,24 +90,22 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 
 * Select **File** > **New Solution**.
 
-![macOS New solution](../first-mvc-app/start-mvc/_static/new_project_vsmac.png)
+  ![macOS New solution](../first-mvc-app/start-mvc/_static/new_project_vsmac.png)
 
-* Select **.NET Core** > **App** > **Web Application** > **Next**.
+* In Visual Studio for Mac earlier than version 8.6, select **.NET Core** > **App** > **Web Application** > **Next**. In version 8.6 or later, select **Web and Console** > **App** > **Web Application** > **Next**.
 
-  ![macOS New project dialog](razor-pages-start/_static/webapp.png)
+  ![macOS web app template selection](razor-pages-start/_static/web_app_template_vsmac.png)
 
-* In the **Configure your new ASP.NET Core Web API** dialog, set the  **Target Framework** to **.NET Core 3.1**.
+* In the **Configure your new Web Application** dialog:
 
-  ![macOS .NET Core 3.0 selection](razor-pages-start/_static/targetframework3.png)
+  * Confirm that **Authentication** is set to **No Authentication**.
+  * If presented an option to select a **Target Framework**, select the latest 3.x version.
+
+  Select **Next**.
 
 * Name the project **RazorPagesMovie**, and then select **Create**.
 
-  ![nameproj](razor-pages-start/_static/RazorPagesMovie.png)
-
-
-## Open the project
-
-From Visual Studio, select **File > Open**, and then select the *RazorPagesMovie.csproj* file.
+  ![macOS name the project](razor-pages-start/_static/RazorPagesMovie.png)
 
 <!-- End of VS tabs -->
 
@@ -237,19 +236,22 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-From a terminal, run the following command:
+* Select **File** > **New Solution**.
 
-<!-- TODO: update these instruction once mac support 2.2 projects -->
+![macOS New solution](../first-mvc-app/start-mvc/_static/new_project_vsmac.png)
 
-```dotnetcli
-dotnet new webapp -o RazorPagesMovie
-```
+* In Visual Studio for Mac earlier than version 8.6, select **.NET Core** > **App** > **Web Application** > **Next**. In version 8.6 or later, select **Web and Console** > **App** > **Web Application** > **Next**.
 
-The preceding commands use the [.NET Core CLI](/dotnet/core/tools/dotnet) to create a Razor Pages project.
+* In the **Configure your new Web Application** dialog:
 
-## Open the project
+  * Confirm that **Authentication** is set to **No Authentication**.
+  * If presented an option to select a **Target Framework**, select the latest 2.x version.
 
-From Visual Studio, select **File > Open**, and then select the *RazorPagesMovie.csproj* file.
+  Select **Next**.
+
+* Name the project **RazorPagesMovie**, and then select **Create**.
+
+  ![nameproj](razor-pages-start/_static/RazorPagesMovie.png)
 
 <!-- End of VS tabs -->
 

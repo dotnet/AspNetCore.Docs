@@ -4,8 +4,8 @@ author: rick-anderson
 description: Learn about the new features in ASP.NET Core 3.1.
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/05/2019
-no-loc: [Blazor, SignalR]
+ms.date: 02/12/2020
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: aspnetcore-3.1
 ---
 # What's new in ASP.NET Core 3.1
@@ -14,7 +14,7 @@ This article highlights the most significant changes in ASP.NET Core 3.1 with li
 
 ## Partial class support for Razor components
 
-Razor components are now generated as partial classes. Code for a Razor component can be written using a code-behind file defined as a partial class rather than defining all the code for the component in a single file. For more information, see [Partial class support](xref:blazor/components#partial-class-support).
+Razor components are now generated as partial classes. Code for a Razor component can be written using a code-behind file defined as a partial class rather than defining all the code for the component in a single file. For more information, see [Partial class support](xref:blazor/components/index#partial-class-support).
 
 ## Blazor Component Tag Helper and pass parameters to top-level components
 
@@ -26,16 +26,16 @@ In Blazor with ASP.NET Core 3.0, components were rendered into pages and views u
 
 The HTML Helper remains supported in ASP.NET Core 3.1, but the Component Tag Helper is recommended.
 
-Blazor Server apps can now pass parameters to top-level components during the initial render. Previously you could only pass parameters to a top-level component with [RenderMode.Static](xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static). With this release, both [RenderMode.Server](xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server) and [RenderModel.ServerPrerendered](xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered) are supported. Any specified parameter values are serialized as JSON and included in the initial response.
+Blazor Server apps can now pass parameters to top-level components during the initial render. Previously you could only pass parameters to a top-level component with [RenderMode.Static](xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static). With this release, both [RenderMode.Server](xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server) and [RenderMode.ServerPrerendered](xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered) are supported. Any specified parameter values are serialized as JSON and included in the initial response.
 
 For example, prerender a `Counter` component with an increment amount (`IncrementAmount`):
 
-```razor
+```cshtml
 <component type="typeof(Counter)" render-mode="ServerPrerendered" 
     param-IncrementAmount="10" />
 ```
 
-For more information, see [Integrate components into Razor Pages and MVC apps](xref:blazor/components#integrate-components-into-razor-pages-and-mvc-apps).
+For more information, see [Integrate components into Razor Pages and MVC apps](xref:blazor/components/integrate-components-into-razor-pages-and-mvc-apps).
 
 ## Support for shared queues in HTTP.sys
 
@@ -55,7 +55,7 @@ Use the `@on{EVENT}:preventDefault` directive attribute to prevent the default a
 <input value="@_count" @onkeypress="KeyHandler" @onkeypress:preventDefault />
 ```
 
-For more information, see [Prevent default actions](xref:blazor/components#prevent-default-actions).
+For more information, see [Prevent default actions](xref:blazor/components/event-handling#prevent-default-actions).
 
 ## Stop event propagation in Blazor apps
 
@@ -75,7 +75,7 @@ Use the `@on{EVENT}:stopPropagation` directive attribute to stop event propagati
 }
 ```
 
-For more information, see [Stop event propagation](xref:blazor/components#stop-event-propagation).
+For more information, see [Stop event propagation](xref:blazor/components/event-handling#stop-event-propagation).
 
 ## Detailed errors during Blazor app development
 
@@ -84,4 +84,4 @@ When a Blazor app isn't functioning properly during development, receiving detai
 * During development, the gold bar directs you to the browser console, where you can see the exception.
 * In production, the gold bar notifies the user that an error has occurred and recommends refreshing the browser.
 
-For more information, see [Detailed errors during development](xref:blazor/handle-errors#detailed-errors-during-development).
+For more information, see [Detailed errors during development](xref:blazor/fundamentals/handle-errors#detailed-errors-during-development).

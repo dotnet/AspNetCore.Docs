@@ -1,4 +1,4 @@
-﻿@page
+@page
 @inject Microsoft.AspNetCore.Hosting.IHostingEnvironment hostingEnv
 @model AboutModel
 @{
@@ -10,13 +10,14 @@
 <p> ASPNETCORE_ENVIRONMENT = @hostingEnv.EnvironmentName</p>
 
 <environment include="Development">
-    <div>&lt;environment include="Development"&gt;</div>
+    <div>The effective tag is: &lt;environment include="Development"&gt;</div>
 </environment>
 <environment exclude="Development">
-    <div>&lt;environment exclude="Development"&gt;</div>
+    <div>The effective tag is: &lt;environment exclude="Development"&gt;</div>
 </environment>
 <environment include="Staging,Development,Staging_2">
     <div>
+        The effective tag is:
         &lt;environment include="Staging,Development,Staging_2"&gt;
     </div>
 </environment>

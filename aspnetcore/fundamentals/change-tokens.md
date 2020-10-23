@@ -1,21 +1,20 @@
 ---
 title: Detect changes with change tokens in ASP.NET Core
-author: guardrex
+author: rick-anderson
 description: Learn how to use change tokens to track changes.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 10/07/2019
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/change-tokens
 ---
 # Detect changes with change tokens in ASP.NET Core
-
-By [Luke Latham](https://github.com/guardrex)
 
 ::: moniker range=">= aspnetcore-3.0"
 
 A *change token* is a general-purpose, low-level building block used to track state changes.
 
-[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/change-tokens/samples/) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/change-tokens/samples/) ([how to download](xref:index#how-to-download-a-sample))
 
 ## IChangeToken interface
 
@@ -109,8 +108,8 @@ The constructor of the implemented class, `ConfigurationMonitor`, registers a ca
 
 `config.GetReloadToken()` supplies the token. `InvokeChanged` is the callback method. The `state` in this instance is a reference to the `IConfigurationMonitor` instance that's used to access the monitoring state. Two properties are used:
 
-* `MonitoringEnabled` &ndash; Indicates if the callback should run its custom code.
-* `CurrentState` &ndash; Describes the current monitoring state for use in the UI.
+* `MonitoringEnabled`: Indicates if the callback should run its custom code.
+* `CurrentState`: Describes the current monitoring state for use in the UI.
 
 The `InvokeChanged` method is similar to the earlier approach, except that it:
 
@@ -213,7 +212,7 @@ var compositeChangeToken =
 
 A *change token* is a general-purpose, low-level building block used to track state changes.
 
-[View or download sample code](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/change-tokens/samples/) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/change-tokens/samples/) ([how to download](xref:index#how-to-download-a-sample))
 
 ## IChangeToken interface
 
@@ -307,8 +306,8 @@ The constructor of the implemented class, `ConfigurationMonitor`, registers a ca
 
 `config.GetReloadToken()` supplies the token. `InvokeChanged` is the callback method. The `state` in this instance is a reference to the `IConfigurationMonitor` instance that's used to access the monitoring state. Two properties are used:
 
-* `MonitoringEnabled` &ndash; Indicates if the callback should run its custom code.
-* `CurrentState` &ndash; Describes the current monitoring state for use in the UI.
+* `MonitoringEnabled`: Indicates if the callback should run its custom code.
+* `CurrentState`: Describes the current monitoring state for use in the UI.
 
 The `InvokeChanged` method is similar to the earlier approach, except that it:
 

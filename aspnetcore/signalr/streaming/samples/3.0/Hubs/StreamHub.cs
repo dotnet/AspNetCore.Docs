@@ -48,8 +48,10 @@ namespace SignalRChat.Hubs
             {
                 localException = ex;
             }
-
-            writer.Complete(localException);
+            finally
+            {
+                writer.Complete(localException);
+            }
         }
         #endregion
 

@@ -4,6 +4,7 @@ author: rick-anderson
 description: Learn about the new features in ASP.NET Core 1.1.
 ms.author: riande
 ms.date: 12/18/2018
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: aspnetcore-1.1
 ---
 
@@ -28,5 +29,5 @@ ASP.NET Core 1.1 has more features than ASP.NET Core 1.0. In general, we recomme
 
 ## Additional Information
 
-- [ASP.NET Core 1.1.0 Release Notes](https://github.com/aspnet/Home/releases/tag/1.1.0)
+- [ASP.NET Core 1.1.0 Release Notes](https://github.com/dotnet/aspnetcore/releases/tag/1.1.0)
 - To connect with the ASP.NET Core development team's progress and plans, tune in to the [ASP.NET Community Standup](https://live.asp.net/).

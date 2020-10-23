@@ -4,11 +4,12 @@ author: ardalis
 description: Learn how views handle the app's data presentation and user interaction in ASP.NET Core MVC.
 ms.author: riande
 ms.date: 12/05/2019
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/views/overview
 ---
 # Views in ASP.NET Core MVC
 
-By [Steve Smith](https://ardalis.com/) and [Luke Latham](https://github.com/guardrex)
+By [Steve Smith](https://ardalis.com/)
 
 This document explains views used in ASP.NET Core MVC applications. For information on Razor Pages, see [Introduction to Razor Pages](xref:razor-pages/index).
 
@@ -264,12 +265,6 @@ public class HomeController : Controller
         return View();
     }
 }
-```
-
-In the About view, access the `Title` property as a model property:
-
-```cshtml
-<h1>@Model.Title</h1>
 ```
 
 In the layout, the title is read from the ViewData dictionary:

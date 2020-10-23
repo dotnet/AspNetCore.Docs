@@ -4,6 +4,7 @@ author: ardalis
 description: Learn how to use common layouts, share directives, and run common code before rendering views in an ASP.NET Core app.
 ms.author: riande
 ms.date: 07/30/2019
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/views/layout
 ---
 # Layout in ASP.NET Core
@@ -103,7 +104,7 @@ The body and every section in a Razor page must be either rendered or ignored.
 
 ## Importing Shared Directives
 
-Views and pages can use Razor directives to importing namespaces and use [dependency injection](dependency-injection.md). Directives shared by many views may be specified in a common *_ViewImports.cshtml* file. The `_ViewImports` file supports the following directives:
+Views and pages can use Razor directives to import namespaces and use [dependency injection](dependency-injection.md). Directives shared by many views may be specified in a common *_ViewImports.cshtml* file. The `_ViewImports` file supports the following directives:
 
 * `@addTagHelper`
 * `@removeTagHelper`

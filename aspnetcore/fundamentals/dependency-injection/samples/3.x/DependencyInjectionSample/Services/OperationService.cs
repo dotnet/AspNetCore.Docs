@@ -8,19 +8,16 @@ namespace DependencyInjectionSample.Services
         public OperationService(
             IOperationTransient transientOperation,
             IOperationScoped scopedOperation,
-            IOperationSingleton singletonOperation,
-            IOperationSingletonInstance instanceOperation)
+            IOperationSingleton singletonOperation)
         {
             TransientOperation = transientOperation;
             ScopedOperation = scopedOperation;
             SingletonOperation = singletonOperation;
-            SingletonInstanceOperation = instanceOperation;
         }
 
         public IOperationTransient TransientOperation { get; }
         public IOperationScoped ScopedOperation { get; }
         public IOperationSingleton SingletonOperation { get; }
-        public IOperationSingletonInstance SingletonInstanceOperation { get; }
     }
     #endregion
 }

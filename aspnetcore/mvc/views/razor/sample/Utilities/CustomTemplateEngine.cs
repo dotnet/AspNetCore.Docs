@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Razor.Extensions;
+﻿#if V2
+using Microsoft.AspNetCore.Mvc.Razor.Extensions;
 using Microsoft.AspNetCore.Razor.Language;
 
 public class CustomTemplateEngine : MvcRazorTemplateEngine
@@ -18,3 +19,4 @@ public class CustomTemplateEngine : MvcRazorTemplateEngine
         return csharpDocument;
     }
 }
+#endif

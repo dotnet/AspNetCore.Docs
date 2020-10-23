@@ -24,28 +24,27 @@ namespace SampleApp
             services.AddControllers();
 
             #region snippet_AddRazorPages
-            services.AddRazorPages()
-                .AddRazorPagesOptions(options =>
-                    {
-                        options.Conventions
-                            .AddPageApplicationModelConvention("/StreamedSingleFileUploadDb",
-                                model =>
-                                {
-                                    model.Filters.Add(
-                                        new GenerateAntiforgeryTokenCookieAttribute());
-                                    model.Filters.Add(
-                                        new DisableFormValueModelBindingAttribute());
-                                });
-                        options.Conventions
-                            .AddPageApplicationModelConvention("/StreamedSingleFileUploadPhysical",
-                                model =>
-                                {
-                                    model.Filters.Add(
-                                        new GenerateAntiforgeryTokenCookieAttribute());
-                                    model.Filters.Add(
-                                        new DisableFormValueModelBindingAttribute());
-                                });
-                    });
+            services.AddRazorPages(options =>
+            {
+                options.Conventions
+                    .AddPageApplicationModelConvention("/StreamedSingleFileUploadDb",
+                        model =>
+                        {
+                            model.Filters.Add(
+                                new GenerateAntiforgeryTokenCookieAttribute());
+                            model.Filters.Add(
+                                new DisableFormValueModelBindingAttribute());
+                        });
+                options.Conventions
+                    .AddPageApplicationModelConvention("/StreamedSingleFileUploadPhysical",
+                        model =>
+                        {
+                            model.Filters.Add(
+                                new GenerateAntiforgeryTokenCookieAttribute());
+                            model.Filters.Add(
+                                new DisableFormValueModelBindingAttribute());
+                        });
+            });
             #endregion
 
             // To list physical files from a path provided by configuration:

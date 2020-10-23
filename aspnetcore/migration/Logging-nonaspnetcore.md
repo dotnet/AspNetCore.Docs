@@ -5,6 +5,7 @@ description: Learn how to migrate a non-ASP.NET Core application that uses Micro
 ms.author: pakrym
 ms.custom: mvc
 ms.date: 01/04/2019
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: migration/logging-nonaspnetcore
 ---
 
@@ -66,4 +67,5 @@ using (var loggerFactory = LoggerFactory.Create(builder => builder.AddConsole())
 
 ## Additional resources
 
-<xref:fundamentals/logging/index>
+* [Microsoft.Extensions.Logging.Console NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Console/).
+* <xref:fundamentals/logging/index>

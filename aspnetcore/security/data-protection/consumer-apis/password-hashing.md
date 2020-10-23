@@ -4,6 +4,7 @@ author: rick-anderson
 description: Learn how to hash passwords using the ASP.NET Core Data Protection APIs.
 ms.author: riande
 ms.date: 10/14/2016
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/data-protection/consumer-apis/password-hashing
 ---
 
@@ -21,4 +22,4 @@ The package currently offers a method `KeyDerivation.Pbkdf2` which allows hashin
 
 [!code-csharp[](password-hashing/samples/passwordhasher.cs)]
 
-See the [source code](https://github.com/aspnet/AspNetCore/blob/master/src/Identity/Extensions.Core/src/PasswordHasher.cs) for ASP.NET Core Identity's `PasswordHasher` type for a real-world use case.
+See the [source code](https://github.com/dotnet/AspNetCore/blob/master/src/Identity/Extensions.Core/src/PasswordHasher.cs) for ASP.NET Core Identity's `PasswordHasher` type for a real-world use case.

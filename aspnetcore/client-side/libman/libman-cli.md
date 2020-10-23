@@ -1,14 +1,14 @@
 ---
-title: Use the LibMan command-line interface (CLI) with ASP.NET Core
+title: Use the LibMan CLI with ASP.NET Core
 author: scottaddie
-description: Learn how to use the LibMan command-line interface (CLI) in an ASP.NET Core project.
+description: Learn how to use the LibMan CLI in an ASP.NET Core project.
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 11/12/2019
-no-loc: [SignalR]
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: client-side/libman/libman-cli
 ---
-# Use the LibMan command-line interface (CLI) with ASP.NET Core
+# Use the LibMan CLI with ASP.NET Core
 
 By [Scott Addie](https://twitter.com/Scott_Addie)
 

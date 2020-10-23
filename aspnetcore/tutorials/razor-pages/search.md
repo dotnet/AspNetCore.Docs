@@ -1,12 +1,13 @@
 ---
-title: Add search to ASP.NET Core Razor Pages
+title: Part 6, add search to ASP.NET Core Razor Pages
 author: rick-anderson
-description: Shows how to add search to ASP.NET Core Razor Pages
+description: Part 6 of tutorial series on Razor Pages.
 ms.author: riande
 ms.date: 12/05/2019
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/razor-pages/search
 ---
-# Add search to ASP.NET Core Razor Pages
+# Part 6, add search to ASP.NET Core Razor Pages
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 

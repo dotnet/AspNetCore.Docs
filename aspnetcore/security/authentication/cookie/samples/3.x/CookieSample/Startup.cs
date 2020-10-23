@@ -11,11 +11,10 @@ namespace CookieSample
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddRazorPages()
-                .AddRazorPagesOptions(options =>
-                {
-                    options.Conventions.AuthorizePage("/Contact");
-                });
+            services.AddRazorPages(options =>
+            {
+                options.Conventions.AuthorizePage("/Contact");
+            });
 
             #region snippet1
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)

@@ -1,4 +1,4 @@
-@using Microsoft.AspNetCore.Blazor.Http
+@using Microsoft.AspNetCore.Components.WebAssembly.Http
 @inject HttpClient Http
 @inject NavigationManager NavigationManager
 
@@ -25,12 +25,12 @@
 
 <p>
     <div>URI:</div>
-    <input id="request-uri" @bind="_uri" size="120" />
+    <input id="request-uri" @bind="uri" size="120" />
 </p>
 
 <p>
     <div>Method:</div>
-    <select id="request-method" @bind="_method">
+    <select id="request-method" @bind="method">
         <option value="GET">GET</option>
         <option value="POST" selected>POST</option>
         <option value="PUT">PUT</option>
@@ -40,12 +40,12 @@
 
 <p>
     <div>Request body:</div>
-    <textarea id="request-body" @bind="_requestBody"></textarea>
+    <textarea id="request-body" @bind="requestBody"></textarea>
 </p>
 
 <p>
     <div>Request headers:</div>
-    @foreach (var header in _requestHeaders)
+    @foreach (var header in requestHeaders)
     {
         <div class="header-entry">
             Name: <input @bind="header.Name" />
@@ -58,41 +58,41 @@
 
 <button class="btn btn-success" id="send-request" @onclick="@DoRequest">Request</button>
 
-@if (_responseStatusCode.HasValue)
+@if (responseStatusCode.HasValue)
 {
     <h2>Response</h2>
-    <p><div>Status:</div><span id="response-status">@_responseStatusCode</span></p>
-    <p><div>Body:</div><textarea id="response-body" readonly>@_responseBody</textarea></p>
-    <p><div>Headers:</div><textarea id="response-headers" readonly>@_responseHeaders</textarea></p>
+    <p><div>Status:</div><span id="response-status">@responseStatusCode</span></p>
+    <p><div>Body:</div><textarea id="response-body" readonly>@responseBody</textarea></p>
+    <p><div>Headers:</div><textarea id="response-headers" readonly>@responseHeaders</textarea></p>
 }
 
 @code {
-    private string _uri = "https://localhost:10000/api/TodoItems";
-    private string _method = "POST";
-    private string _requestBody = @"{""name"":""A New Todo Item"",""isComplete"":false}";
-    private List<RequestHeader> _requestHeaders = new List<RequestHeader>()
+    private string uri = "https://localhost:10000/api/TodoItems";
+    private string method = "POST";
+    private string requestBody = @"{""name"":""A New Todo Item"",""isComplete"":false}";
+    private List<RequestHeader> requestHeaders = new List<RequestHeader>()
     {
         new RequestHeader() { Name = "Content-Type", Value = "application/json" },
         new RequestHeader() { Name = "Authorization", Value = "Bearer MHrHDcEfxjoYZgeFONFh7HgQ" }
     };
-    private System.Net.HttpStatusCode? _responseStatusCode;
-    private string _responseBody;
-    private string _responseHeaders;
+    private System.Net.HttpStatusCode? responseStatusCode;
+    private string responseBody;
+    private string responseHeaders;
 
     private async void DoRequest()
     {
-        _responseStatusCode = null;
+        responseStatusCode = null;
 
         try
         {
             var requestMessage = new HttpRequestMessage()
             {
-                Method = new HttpMethod(_method),
-                RequestUri = new Uri(_uri),
-                Content = string.IsNullOrEmpty(_requestBody) ? null : new StringContent(_requestBody)
+                Method = new HttpMethod(method),
+                RequestUri = new Uri(uri),
+                Content = string.IsNullOrEmpty(requestBody) ? null : new StringContent(requestBody)
             };
 
-            foreach (var header in _requestHeaders)
+            foreach (var header in requestHeaders)
             {
                 // StringContent automatically adds its own Content-Type header with default value "text/plain"
                 // If the developer is trying to specify a content type explicitly, we need to replace the default value,
@@ -110,10 +110,10 @@
             }
 
             var response = await Http.SendAsync(requestMessage);
-            _responseStatusCode = response.StatusCode;
-            _responseBody = await response.Content.ReadAsStringAsync();
+            responseStatusCode = response.StatusCode;
+            responseBody = await response.Content.ReadAsStringAsync();
             var allHeaders = response.Headers.Concat(response.Content?.Headers ?? Enumerable.Empty<KeyValuePair<string, IEnumerable<string>>>());
-            _responseHeaders = string.Join(Environment.NewLine, allHeaders.Select(pair => $"{pair.Key}: {pair.Value.First()}").ToArray());
+            responseHeaders = string.Join(Environment.NewLine, allHeaders.Select(pair => $"{pair.Key}: {pair.Value.First()}").ToArray());
         }
         catch (Exception ex)
         {
@@ -121,18 +121,18 @@
             {
                 ex = ex.InnerException;
             }
-            _responseStatusCode = System.Net.HttpStatusCode.SeeOther;
-            _responseBody = ex.Message + Environment.NewLine + ex.StackTrace;
+            responseStatusCode = System.Net.HttpStatusCode.SeeOther;
+            responseBody = ex.Message + Environment.NewLine + ex.StackTrace;
         }
 
         StateHasChanged();
     }
 
     private void AddHeader()
-        => _requestHeaders.Add(new RequestHeader());
+        => requestHeaders.Add(new RequestHeader());
 
     private void RemoveHeader(RequestHeader header)
-        => _requestHeaders.Remove(header);
+        => requestHeaders.Remove(header);
 
     private class RequestHeader
     {

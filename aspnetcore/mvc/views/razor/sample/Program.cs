@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore;
+﻿#if V2
+
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -17,3 +19,4 @@ namespace RazorSample
                 .Build();
     }
 }
+#endif

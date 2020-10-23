@@ -1,13 +1,14 @@
 ---
-title: Add a new field to an ASP.NET Core MVC app
+title: Part 8, add a new field to an ASP.NET Core MVC app
 author: rick-anderson
-description: Learn how to use Entity Framework Code First Migrations to add a new field to a model and migrate that change to a database.
+description: Part 8 of tutorial series on ASP.NET Core MVC.
 ms.author: riande
 ms.custom: mvc
 ms.date: 12/13/2018
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-mvc-app/new-field
 ---
-# Add a new field to an ASP.NET Core MVC app
+# Part 8, add a new field to an ASP.NET Core MVC app
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -45,7 +46,7 @@ Command ⌘ + B
 
 ------
 
-Because you've added a new field to the `Movie` class, you need to update the binding white list so this new property will be included. In *MoviesController.cs*, update the `[Bind]` attribute for both the `Create` and `Edit` action methods to include the `Rating` property:
+Because you've added a new field to the `Movie` class, you need to update the property binding list so this new property will be included. In *MoviesController.cs*, update the `[Bind]` attribute for both the `Create` and `Edit` action methods to include the `Rating` property:
 
 ```csharp
 [Bind("Id,Title,ReleaseDate,Genre,Price,Rating")]
@@ -55,7 +56,7 @@ Update the view templates in order to display, create, and edit the new `Rating`
 
 Edit the */Views/Movies/Index.cshtml* file and add a `Rating` field:
 
-[!code-HTML[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/IndexGenreRating.cshtml?highlight=16,38&range=24-64)]
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/IndexGenreRating.cshtml?highlight=16,38&range=24-64)]
 
 Update the */Views/Movies/Create.cshtml* with a `Rating` field.
 
@@ -116,16 +117,21 @@ If all the records in the DB are deleted, the initialize method will seed the DB
 
 [!INCLUDE[](~/includes/RP-mvc-shared/sqlite-warn.md)]
 
-Delete the database and use migrations to re-create the database. To delete the database, delete the database file (*MvcMovie.db*). Then run the `ef database update` command:
+Delete the database and the previous migration and use migrations to re-create the database:
 
 ```dotnetcli
+dotnet ef migrations remove
+dotnet ef database drop
+dotnet ef migrations add InitialCreate
 dotnet ef database update
 ```
+
+`dotnet ef migrations remove` removes the last migration. If there are more than one migration, delete the Migrations folder.
 
 ---
 <!-- End of VS tabs -->
 
-Run the app and verify you can create/edit/display movies with a `Rating` field. You should add the `Rating` field to the `Edit`, `Details`, and `Delete` view templates.
+Run the app and verify you can create, edit, and display movies with a `Rating` field.
 
 > [!div class="step-by-step"]
 > [Previous](search.md)

@@ -1,7 +1,7 @@
 // To configure the app to use a distributed Redis cache,
 // change the preprocessor directive to 'Redis'.
 // For more information, see: 
-// https://docs.microsoft.com/aspnet/core/#preprocessor-directives-in-sample-code
+// https://docs.microsoft.com/aspnet/core/introduction-to-aspnet-core#preprocessor-directives-in-sample-code
 #define  SQLServer // Redis
 
 using System;

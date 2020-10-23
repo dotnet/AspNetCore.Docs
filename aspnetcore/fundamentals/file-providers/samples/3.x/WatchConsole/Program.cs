@@ -9,12 +9,11 @@ namespace WatchConsole
     public class Program
     {
         #region snippet1
-        private static PhysicalFileProvider _fileProvider = 
-            new PhysicalFileProvider(Directory.GetCurrentDirectory());
+        private static readonly string _fileFilter = Path.Combine("TextFiles", "*.txt");
 
         public static void Main(string[] args)
         {
-            Console.WriteLine("Monitoring quotes.txt for changes (Ctrl-c to quit)...");
+            Console.WriteLine($"Monitoring for changes with filter '{_fileFilter}' (Ctrl + C to quit)...");
 
             while (true)
             {
@@ -24,15 +23,16 @@ namespace WatchConsole
 
         private static async Task MainAsync()
         {
-            IChangeToken token = _fileProvider.Watch("quotes.txt");
+            var fileProvider = new PhysicalFileProvider(Directory.GetCurrentDirectory());
+            IChangeToken token = fileProvider.Watch(_fileFilter);
             var tcs = new TaskCompletionSource<object>();
 
-            token.RegisterChangeCallback(state => 
+            token.RegisterChangeCallback(state =>
                 ((TaskCompletionSource<object>)state).TrySetResult(null), tcs);
 
             await tcs.Task.ConfigureAwait(false);
 
-            Console.WriteLine("quotes.txt changed");
+            Console.WriteLine("file changed");
         }
         #endregion
     }

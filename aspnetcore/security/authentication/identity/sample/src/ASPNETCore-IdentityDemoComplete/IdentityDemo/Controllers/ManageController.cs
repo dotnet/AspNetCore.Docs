@@ -337,7 +337,7 @@ namespace IdentityDemo.Controllers
 
             if (!user.TwoFactorEnabled)
             {
-                throw new ApplicationException($"Unexpected error occured disabling 2FA for user with ID '{user.Id}'.");
+                throw new ApplicationException($"Unexpected error occurred disabling 2FA for user with ID '{user.Id}'.");
             }
 
             return View(nameof(Disable2fa));
@@ -356,7 +356,7 @@ namespace IdentityDemo.Controllers
             var disable2faResult = await _userManager.SetTwoFactorEnabledAsync(user, false);
             if (!disable2faResult.Succeeded)
             {
-                throw new ApplicationException($"Unexpected error occured disabling 2FA for user with ID '{user.Id}'.");
+                throw new ApplicationException($"Unexpected error occurred disabling 2FA for user with ID '{user.Id}'.");
             }
 
             _logger.LogInformation("User with ID {UserId} has disabled 2fa.", user.Id);

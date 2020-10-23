@@ -5,7 +5,7 @@ description: Learn how to use ASP.NET Core APIs in a class library.
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 12/16/2019
-no-loc: [Blazor]
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/target-aspnetcore
 ---
 # Use ASP.NET Core APIs in a class library
@@ -37,7 +37,7 @@ Referencing ASP.NET Core in this manner is only supported for projects targeting
 
 ## Include Blazor extensibility
 
-Blazor supports WebAssembly (WASM) and Server [hosting models](xref:blazor/hosting-models). Unless there's a specific reason not to, a [Razor components](xref:blazor/components) library should support both hosting models. A Razor components library must use the [Microsoft.NET.Sdk.Razor SDK](xref:razor-pages/sdk).
+Blazor supports WebAssembly (WASM) and Server [hosting models](xref:blazor/hosting-models). Unless there's a specific reason not to, a [Razor components](xref:blazor/components/index) library should support both hosting models. A Razor components library must use the [Microsoft.NET.Sdk.Razor SDK](xref:razor-pages/sdk).
 
 ### Support both hosting models
 
@@ -84,7 +84,7 @@ For example:
 
 [!code-xml[](target-aspnetcore/samples/single-tfm/netcoreapp3.0-razor-components-library.csproj)]
 
-For more information on libraries containing Razor components, see [ASP.NET Core Razor components class libraries](xref:blazor/class-libraries).
+For more information on libraries containing Razor components, see [ASP.NET Core Razor components class libraries](xref:blazor/components/class-libraries).
 
 ## Include MVC extensibility
 
@@ -201,7 +201,7 @@ If you can't rewrite the library, take the following steps:
 * Add a `<FrameworkReference>` element for the shared framework.
 * Use the [#if preprocessor directive](/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-if) with the appropriate target framework symbol to conditionally compile code.
 
-For example, synchronous reads and writes on HTTP request and response streams are disabled by default as of ASP.NET Core 3.0. ASP.NET Core 2.2 supports the synchronous behavior by default. Consider a middleware library in which synchronous reads and writes should be enabled where IO is occurring. The library should enclose the code to enable synchronous features in the appropriate preprocessor directive. For example:
+For example, synchronous reads and writes on HTTP request and response streams are disabled by default as of ASP.NET Core 3.0. ASP.NET Core 2.2 supports the synchronous behavior by default. Consider a middleware library in which synchronous reads and writes should be enabled where I/O is occurring. The library should enclose the code to enable synchronous features in the appropriate preprocessor directive. For example:
 
 [!code-csharp[](target-aspnetcore/samples/middleware.cs?highlight=9-24)]
 
@@ -275,6 +275,6 @@ For example, to add the web API client:
 ## Additional resources
 
 * <xref:razor-pages/ui-class>
-* <xref:blazor/class-libraries>
+* <xref:blazor/components/class-libraries>
 * [.NET implementation support](/dotnet/standard/net-standard#net-implementation-support)
 * [.NET support policies](https://dotnet.microsoft.com/platform/support/policy)

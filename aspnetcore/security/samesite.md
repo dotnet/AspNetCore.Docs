@@ -5,22 +5,75 @@ description: Learn how to use to SameSite cookies in ASP.NET Core
 ms.author: riande
 ms.custom: mvc
 ms.date: 12/03/2019
+no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR, Electron]
 uid: security/samesite
 ---
 # Work with SameSite cookies in ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-[SameSite](https://tools.ietf.org/html/draft-west-first-party-cookies-07) is an [IETF](https://ietf.org/about/) draft designed to provide some protection against cross-site request forgery (CSRF) attacks. The [SameSite 2019 draft](https://tools.ietf.org/html/draft-west-cookie-incrementalism-00):
+SameSite is an [IETF](https://ietf.org/about/) draft standard designed to provide some protection against cross-site request forgery (CSRF) attacks. Originally drafted in [2016](https://tools.ietf.org/html/draft-west-first-party-cookies-07), the draft standard was updated in [2019](https://tools.ietf.org/html/draft-west-cookie-incrementalism-00). The updated standard is not backward compatible with the previous standard, with the following being the most noticeable differences:
 
-* Treats cookies as `SameSite=Lax` by default.
-* States cookies that explicitly assert `SameSite=None` in order to enable cross-site delivery should be marked as `Secure`.
+* Cookies without SameSite header are treated as `SameSite=Lax` by default.
+* `SameSite=None` must be used to allow cross-site cookie use.
+* Cookies that assert `SameSite=None` must also be marked as `Secure`.
+* Applications that use [`<iframe>`](https://developer.mozilla.org/docs/Web/HTML/Element/iframe) may experience issues with `sameSite=Lax` or `sameSite=Strict` cookies because `<iframe>` is treated as cross-site scenarios.
+* The value `SameSite=None` is not allowed by the [2016 standard](https://tools.ietf.org/html/draft-west-first-party-cookies-07) and causes some implementations to treat such cookies as `SameSite=Strict`. See [Supporting older browsers](#sob) in this document.
 
-`Lax` works for most app cookies. Some forms of authentication like [OpenID Connect](https://openid.net/connect/) (OIDC) and [WS-Federation](https://auth0.com/docs/protocols/ws-fed) default to POST based redirects. The POST based redirects trigger the SameSite browser protections, so SameSite is disabled for these components. Most [OAuth](https://oauth.net/) logins are not affected due to differences in how the request flows.
-
-The `None` parameter causes compatibility problems with clients that implemented the prior 2016 draft standard (for example, iOS 12). See [Supporting older browsers](#sob) in this document.
+The `SameSite=Lax` setting works for most application cookies. Some forms of authentication like [OpenID Connect](https://openid.net/connect/) (OIDC) and [WS-Federation](https://auth0.com/docs/protocols/ws-fed) default to POST based redirects. The POST based redirects trigger the SameSite browser protections, so SameSite is disabled for these components. Most [OAuth](https://oauth.net/) logins are not affected due to differences in how the request flows.
 
 Each ASP.NET Core component that emits cookies needs to decide if SameSite is appropriate.
+
+## SameSite and Identity
+
+[!INCLUDE[](~/includes/SameSiteIdentity.md)]
+
+## SameSite test sample code
+
+ ::: moniker range=">= aspnetcore-2.1 < aspnetcore-3.0"
+
+The following samples can be downloaded and tested:
+
+| Sample               | Document |
+| ----------------- | ------------ |
+| [.NET Core MVC](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore21MVC)  | <xref:security/samesite/mvc21> |
+| [.NET Core Razor Pages](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore21RazorPages)  | <xref:security/samesite/rp21> |
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-3.0"
+
+The following sample can be downloaded and tested:
+
+
+| Sample               | Document |
+| ----------------- | ------------ |
+| [.NET Core Razor Pages](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore31RazorPages)  | <xref:security/samesite/rp31> |
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-2.2"
+
+## .NET Core support for the sameSite attribute
+
+.NET Core 2.2 and later support the 2019 draft standard for SameSite since the release of updates in December 2019. Developers are able to programmatically control the value of the sameSite attribute using the `HttpCookie.SameSite` property. Setting the `SameSite` property to Strict, Lax, or None results in those values being written on the network with the cookie. Setting it equal to `(SameSiteMode)(-1)` indicates that no sameSite attribute should be included on the network with the cookie
+
+[!code-csharp[](samesite/snippets/Privacy.cshtml.cs?name=snippet)]
+
+.NET Core 3.0 and later support the updated SameSite values and adds an extra enum value, `SameSiteMode.Unspecified` to the `SameSiteMode` enum.
+This new value indicates no sameSite should be sent with the cookie.
+
+::: moniker-end
+
+::: moniker range="= aspnetcore-2.1"
+
+## December patch behavior changes
+
+The specific behavior change for .NET Framework and .NET Core 2.1 is how the `SameSite` property interprets the `None` value. Before the patch a value of `None` meant "Do not emit the attribute at all", after the patch it means "Emit the attribute with a value of `None`". After the patch a `SameSite` value of `(SameSiteMode)(-1)` causes the attribute not to be emitted.
+
+The default SameSite value for forms authentication and session state cookies was changed from `None` to `Lax`.
+
+::: moniker-end
 
 ## API usage with SameSite
 
@@ -66,7 +119,7 @@ In ASP.NET Core 3.0 and later the SameSite defaults were changed to avoid confli
 
 SameSite support was first implemented in ASP.NET Core in 2.0 using the [2016 draft standard](https://tools.ietf.org/html/draft-west-first-party-cookies-07#section-4.1). The 2016 standard was opt-in. ASP.NET Core opted-in by setting several cookies to `Lax` by default. After encountering several [issues](https://github.com/aspnet/Announcements/issues/318) with authentication, most SameSite usage was [disabled](https://github.com/aspnet/Announcements/issues/348).
 
-Patches were issued in November 2019 to update from the 2016 standard to the 2019 standard. The [2019 draft of the SameSite specification](https://github.com/aspnet/Announcements/issues/390):
+[Patches](https://devblogs.microsoft.com/dotnet/net-core-November-2019/) were issued in November 2019 to update from the 2016 standard to the 2019 standard. The [2019 draft of the SameSite specification](https://github.com/aspnet/Announcements/issues/390):
 
 * Is **not** backwards compatible with the 2016 draft. For more information, see [Supporting older browsers](#sob) in this document.
 * Specifies cookies are treated as `SameSite=Lax` by default.
@@ -138,6 +191,8 @@ Google does not make older chrome versions available. Follow the instructions at
 * [Chromium 76 Win64](https://commondatastorage.googleapis.com/chromium-browser-snapshots/index.html?prefix=Win_x64/664998/)
 * [Chromium 74 Win64](https://commondatastorage.googleapis.com/chromium-browser-snapshots/index.html?prefix=Win_x64/638880/)
 
+Starting in Canary version `80.0.3975.0`, the Lax+POST temporary mitigation can be disabled for testing purposes using the new flag `--enable-features=SameSiteDefaultChecksMethodRigorously` to allow testing of sites and services in the eventual end state of the feature where the mitigation has been removed. For more information, see The Chromium Projects [SameSite Updates](https://www.chromium.org/updates/same-site)
+
 ### Test with Safari
 
 Safari 12 strictly implemented the prior draft and fails when the new `None` value is in a cookie. `None` is avoided via the browser detection code [Supporting older browsers](#sob) in this document. Test Safari 12, Safari 13, and WebKit based OS style logins using MSAL, ADAL or whatever library you are using. The problem is dependent on the underlying OS version. OSX Mojave (10.14) and iOS 12 are known to have compatibility problems with the new SameSite behavior. Upgrading the OS to OSX Catalina (10.15) or iOS 13 fixes the problem. Safari does not currently have an opt-in flag for testing the new spec behavior.
@@ -162,3 +217,21 @@ Versions of Electron include older versions of Chromium. For example, the versio
 
 * [Chromium Blog:Developers: Get Ready for New SameSite=None; Secure Cookie Settings](https://blog.chromium.org/2019/10/developers-get-ready-for-new.html)
 * [SameSite cookies explained](https://web.dev/samesite-cookies-explained/)
+* [November 2019 Patches](https://devblogs.microsoft.com/dotnet/net-core-November-2019/)
+
+ ::: moniker range=">= aspnetcore-2.1 < aspnetcore-3.0"
+
+| Sample               | Document |
+| ----------------- | ------------ |
+| [.NET Core MVC](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore21MVC)  | <xref:security/samesite/mvc21> |
+| [.NET Core Razor Pages](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore21RazorPages)  | <xref:security/samesite/rp21> |
+
+::: moniker-end
+
+ ::: moniker range=">= aspnetcore-3.0"
+
+| Sample               | Document |
+| ----------------- | ------------ |
+| [.NET Core Razor Pages](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore31RazorPages)  | <xref:security/samesite/rp31> |
+
+::: moniker-end
