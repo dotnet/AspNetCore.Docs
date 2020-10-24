@@ -55,7 +55,7 @@ In the following example, `UpdateHeading` is called asynchronously when the butt
 @code {
     private async Task UpdateHeading(MouseEventArgs e)
     {
-        ...
+        await ...
     }
 }
 ```
