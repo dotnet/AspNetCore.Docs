@@ -82,7 +82,7 @@ APIs that heavily use DI should consider using an ASP.NET Core framework that su
 
 ## API project structure
 
-Route-based APIs don't have to be mapped in *Startup.cs*. They can be mapped in a static type to reduce the startup configuration file size.
+Route-based APIs don't have to be located in *Startup.cs*. APIs can be placed in other files and mapped at startup with `UseEndpoints`. This is a good approach to reducing the startup configuration file size.
 
 [!code-csharp[](route-to-code/sample/UserApi.cs?name=snippet)]
 
