@@ -61,7 +61,7 @@ There are two ways to customize JSON serialization:
 
 [!code-csharp[](route-to-code/sample/Startup6.cs?name=snippet)]
 
-## Security
+## Authentication and authorization
 
 Route to code supports authentication and authorization. Attributes, such as `[Authorize]` and `[AllowAnonymous]` can't be placed on endpoints that map to a request delegate. Instead, authorization metadata is added using the `RequireAuthorization` and `AllowAnonymous` extension methods.
 

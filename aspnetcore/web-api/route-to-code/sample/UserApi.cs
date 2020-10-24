@@ -18,12 +18,12 @@ namespace WebR2C
         {
             endpoints.MapGet("/user/{id}", async context =>
             {
-                // Get user logic ...
+                // Get user logic...
             });
 
             endpoints.MapGet("/user", async context =>
             {
-                // Get all users logic ...
+                // Get all users logic...
             });
         }
     }
