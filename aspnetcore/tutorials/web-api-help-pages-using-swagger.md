@@ -16,8 +16,8 @@ Swagger (OpenAPI) is a language-agnostic specification for describing REST APIs.
 
 The two main OpenAPI implementations for .Net are [Swashbuckle](https://github.com/domaindrivendev/Swashbuckle.AspNetCore) and [NSwag](https://github.com/RicoSuter/NSwag), see:
 
-* [Getting Started with Swashbuckle](xref:aspnet/core/tutorials/getting-started-with-swashbuckle)
-* [Getting Started with NSwag](xref:tutorials/getting-started-with-nswag)
+* [Getting Started with Swashbuckle](xref:tutorials/getting-started-with-swashbuckle)
+* [Getting Started with NSwag](xref:tutorials/get-started-with-nswag)
 
 ## OpenApi vs Swagger
 
