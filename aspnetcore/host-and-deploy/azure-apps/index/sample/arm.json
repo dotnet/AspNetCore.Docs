@@ -1,12 +1,24 @@
 {
-    "type": "siteextensions",
-    "name": "AspNetCoreRuntime",
-    "apiVersion": "2015-04-01",
-    "location": "[resourceGroup().location]",
-    "properties": {
-        "version": "[parameters('aspnetcoreVersion')]"
-    },
-    "dependsOn": [
-        "[resourceId('Microsoft.Web/Sites', parameters('siteName'))]"
+    ...
+    "parameters": {
+        "site_name": {
+            "defaultValue": "{SITE NAME}",
+            "type": "String"
+        },
+        ...
+    },       
+    ...
+    "resources": [
+        ...
+        {
+            "type": "Microsoft.Web/sites/siteextensions",
+            "apiVersion": "2018-11-01",
+            "name": "[concat(parameters('site_name'), '/AspNetCoreRuntime.5.0.x64')]",
+            "location": "[resourceGroup().location]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('site_name'))]"
+            ]
+        }
     ]
 }
+    
