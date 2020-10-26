@@ -232,9 +232,9 @@ When the operation completes, the latest .NET Core preview is installed. Verify 
 
 **Use the preview site extension with an ARM template**
 
-If an ARM template is used to create and deploy apps, the `siteextensions` resource type can be used to add the site extension to a web app. For example:
+If an ARM template is used to create and deploy apps, the `Microsoft.Web/sites/siteextensions` resource type can be used to add the site extension to a web app. For example:
 
-[!code-json[](index/sample/arm.json?highlight=2)]
+[!code-json[](index/sample/arm.json?highlight=14)]
 
 ## Publish and deploy the app
 
