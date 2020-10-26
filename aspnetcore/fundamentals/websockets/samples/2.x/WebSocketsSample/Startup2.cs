@@ -40,7 +40,8 @@ namespace EchoApp
             }
 
             #region AcceptWebSocket
-            app.Use(async (context, next) => {
+            app.Use(async (context, next) =>
+            {
                 using (WebSocket webSocket = await context.WebSockets.AcceptWebSocketAsync())
                 {
                     var socketFinishedTcs = new TaskCompletionSource<object>();
