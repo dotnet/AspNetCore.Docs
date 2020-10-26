@@ -236,6 +236,8 @@ If an ARM template is used to create and deploy apps, the `Microsoft.Web/sites/s
 
 [!code-json[](index/sample/arm.json?highlight=14)]
 
+For the placeholder `{SITE NAME}`, use the app's name in Azure App Service (for example, `contoso`).
+
 ## Publish and deploy the app
 
 ::: moniker range=">= aspnetcore-2.2"
