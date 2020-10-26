@@ -166,7 +166,7 @@ In apps that process requests, scoped services are disposed at the end of the re
 
 When using Entity Framework Core, the <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext%2A> extension method registers `DbContext` types with a scoped lifetime by default.
 
-Do ***not*** resolve a scoped service from a singleton. It's also dangerous to resolve a scoped service from a singleton indirectly, for example, through a transient service. It may cause the service to have incorrect state when processing subsequent requests. It's fine to:
+Do ***not*** resolve a scoped service from a singleton and be careful not to do so indirectly, for example, through a transient service. It may cause the service to have incorrect state when processing subsequent requests. It's fine to:
 
 * Resolve a singleton service from a scoped or transient service.
 * Resolve a scoped service from another scoped or transient service.
