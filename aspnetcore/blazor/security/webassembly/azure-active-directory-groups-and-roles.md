@@ -5,7 +5,7 @@ description: Learn how to configure Blazor WebAssembly to use Azure Active Direc
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: "devx-track-csharp, mvc"
-ms.date: 10/20/2020
+ms.date: 10/27/2020
 no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/security/webassembly/aad-groups-roles
 ---
@@ -632,131 +632,13 @@ Add package references to the *Server* app for the following packages:
 
 ### Services
 
-Create an interface for a Graph API client service (`IGraphApiService`):
-
-```csharp
-using System.Threading.Tasks;
-using Microsoft.Graph;
-
-public interface IGraphApiService
-{
-    GraphServiceClient GraphClient { get; set; }
-
-    Task CreateGraphClient();
-}
-```
-
-Create a Graph API client service implementation (`GraphApiService`):
-
-```csharp
-using System;
-using System.Net.Http.Headers;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Graph;
-using Microsoft.Identity.Client;
-
-public class GraphApiService : IGraphApiService
-{
-    private readonly IConfiguration configuration;
-
-    public GraphApiService(IConfiguration configuration)
-    {
-        this.configuration = configuration;
-    }
-
-    public GraphServiceClient GraphClient { get; set; }
-
-    public async Task CreateGraphClient()
-    {
-        var scopes = new string[] { "https://graph.microsoft.com/.default" };
-
-        var app = ConfidentialClientApplicationBuilder.Create(configuration["AzureAd:ClientId"])
-            .WithClientSecret(configuration["AzureAd:ClientSecret"])
-            .WithAuthority(new Uri(configuration["AzureAd:Instance"] + configuration["AzureAd:Domain"]))
-            .Build();
-
-        AuthenticationResult authResult = null;
-
-        try
-        {
-            authResult = await app.AcquireTokenForClient(scopes).ExecuteAsync();
-        }
-        catch (MsalUiRequiredException ex)
-        {
-            // Optional: Log the exception
-        }
-        catch (MsalServiceException ex)
-        {
-            // Optional: Log the exception
-        }
-
-        GraphClient = new GraphServiceClient(
-            new DelegateAuthenticationProvider(async requestMessage => {
-                requestMessage.Headers.Authorization =
-                    new AuthenticationHeaderValue("Bearer", authResult.AccessToken);
-
-                await Task.CompletedTask;
-            }));
-    }
-}
-```
-
-In the preceding code, handling the following token errors is optional:
-
-* `MsalUiRequiredException`: The app doesn't have sufficient permissions.
-  * Determine if the server API app permissions in the Azure portal include an **Application** permission for `Directory.Read.All`.
-  * Confirm that the tenant administrator has granted permissions to the app.
-* `MsalServiceException` (`AADSTS70011`): Confirm that the scope is `https://graph.microsoft.com/.default`.
-
-The Graph API service client is populated when the app starts with the use of an <xref:Microsoft.Extensions.Hosting.IHostedService>. Add the following hosted service to the server API app:
-
-```csharp
-using System;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-
-public class GraphApiHostedService: IHostedService
-{
-    private readonly IServiceProvider serviceProvider;
-
-    public GraphApiHostedService(IServiceProvider serviceProvider)
-    {
-        this.serviceProvider = serviceProvider;
-    }
-
-    public async Task StartAsync(CancellationToken cancellationToken)
-    {
-        using(var scope = serviceProvider.CreateScope())
-        {
-            var graphApiService = scope.ServiceProvider
-                .GetRequiredService<IGraphApiService>();
-
-            await graphApiService.CreateGraphClient();
-        }
-    }
-
-    public Task StopAsync(CancellationToken cancellationToken) => Task.CompletedTask;
-}
-```
-
-For more information on hosted services, see <xref:fundamentals/host/hosted-services>.
-
-In the *Server* app's `Startup.ConfigureServices` method:
-
-* Add a service registrations for:
-  * `GraphApiService` to provide a Graph API service client.
-  * `GraphApiHostedService` to populate the `IGraphApiService`'s  Graph API service client on app start.
-* Use the Graph API service client to obtain Azure user-defined security groups and Azure Administrative Roles.
-
-Additional namespaces are required for the code in the `Startup` class of the *Server* app. The following set of `using` statements includes the required namespaces for the code that follows in this section and the default namespaces required by a server API app created from the hosted Blazor project template:
+In the *Server* app's `Startup.ConfigureServices` method, additional namespaces are required for the code in the `Startup` class of the *Server* app. The following set of `using` statements includes the required namespaces for the code that follows in this section and the default namespaces required by a server API app created from the hosted Blazor project template:
 
 ```csharp
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
@@ -767,6 +649,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Graph;
+using Microsoft.Identity.Client;
 using Microsoft.Identity.Web;
 using Microsoft.IdentityModel.Logging;
 ```
@@ -788,8 +671,12 @@ JwtSecurityTokenHandler.DefaultMapInboundClaims = false;
 IdentityModelEventSource.ShowPII = true;
 #endif
 
-services.AddSingleton<IGraphApiService, GraphApiService>();
-services.AddHostedService<GraphApiHostedService>();
+var scopes = new string[] { "https://graph.microsoft.com/.default" };
+
+var app = ConfidentialClientApplicationBuilder.Create(Configuration["AzureAd:ClientId"])
+   .WithClientSecret(Configuration["AzureAd:ClientSecret"])
+   .WithAuthority(new Uri(Configuration["AzureAd:Instance"] + Configuration["AzureAd:Domain"]))
+   .Build();
 
 services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddMicrosoftIdentityWebApi(options =>
@@ -798,42 +685,56 @@ services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
     options.Events = new JwtBearerEvents()
     {
-        OnAuthenticationFailed = context =>
-        {
-            // Optional: Log the exception
-#if DEBUG
-            Console.WriteLine($"OnAuthenticationFailed: {context.Exception}");
-#endif
-
-            return Task.FromResult(0);
-        },
         OnTokenValidated = async context =>
         {
             var accessToken = context.SecurityToken as JwtSecurityToken;
 
-            var oid = accessToken.Claims.FirstOrDefault(x => x.Type == "oid")?.Value;
+            var oid = accessToken.Claims.FirstOrDefault(x => x.Type == "oid")?
+                .Value;
 
             if (!string.IsNullOrEmpty(oid))
             {
                 var userIdentity = (ClaimsIdentity)context.Principal.Identity;
 
-                IUserMemberOfCollectionWithReferencesPage groupsAndAzureRoles = null;
-
-                var graphService = context.HttpContext.RequestServices
-                    .GetService<IGraphApiService>();
-                var graphClient = graphService.GraphClient;
+                AuthenticationResult authResult = null;
 
                 try
                 {
-                    groupsAndAzureRoles = await graphClient.Users[oid].MemberOf
-                        .Request().GetAsync();
+                    authResult = await app.AcquireTokenForClient(scopes)
+                        .ExecuteAsync();
                 }
-                catch (ServiceException ex)
+                catch (MsalUiRequiredException ex)
+                {
+                    // Optional: Log the exception
+                }
+                catch (MsalServiceException ex)
+                {
+                    // Optional: Log the exception
+                }
+
+                var graphClient = new GraphServiceClient(
+                    new DelegateAuthenticationProvider(async requestMessage => {
+                        requestMessage.Headers.Authorization =
+                            new AuthenticationHeaderValue("Bearer", authResult.AccessToken);
+
+                        await Task.CompletedTask;
+                    }));
+
+                IUserMemberOfCollectionWithReferencesPage groupsAndAzureRoles = 
+                    null;
+
+                try
+                {
+                    groupsAndAzureRoles = await graphClient.Users[oid].MemberOf.Request()
+                        .GetAsync();
+                }
+                catch (ServiceException serviceException)
                 {
                     // Optional: Log the exception
 #if DEBUG
-                    Console.WriteLine("OnTokenValidated: Service Exception: " +
-                        $"{ex.Message}");
+                    Console.WriteLine(
+                        "OnTokenValidated: Service Exception: " +
+                        $"{serviceException.Message}");
 #endif
                 }
 
@@ -849,12 +750,19 @@ services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             await Task.FromResult(0);
         }
     };
-},
+}, 
 options =>
 {
     Configuration.Bind("AzureAd", options);
 });
 ```
+
+In the preceding code, handling the following token errors is optional:
+
+* `MsalUiRequiredException`: The app doesn't have sufficient permissions.
+  * Determine if the server API app permissions in the Azure portal include an **Application** permission for `Directory.Read.All`.
+  * Confirm that the tenant administrator has granted permissions to the app.
+* `MsalServiceException` (`AADSTS70011`): Confirm that the scope is `https://graph.microsoft.com/.default`.
 
 ::: moniker-end
 
