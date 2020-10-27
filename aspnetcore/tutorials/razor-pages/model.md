@@ -876,7 +876,7 @@ Add the following properties to the `Movie` class:
 The `Movie` class contains:
 
 * The `ID` field is required by the database for the primary key.
-* `[DataType(DataType.Date)]`:  The <xref:System.ComponentModel.DataAnnotations?displayProperty=nameWithType> attribute specifies the type of the data (`Date`). With this attribute:
+* `[DataType(DataType.Date)]`:  The [DataType](xref:System.ComponentModel.DataAnnotations.DataTypeAttribute) attribute specifies the type of the data (`Date`). With this attribute:
 
   * The user is not required to enter time information in the date field.
   * Only the date is displayed, not time information.
