@@ -115,7 +115,7 @@ With OpenAPI enabled by default, the app launching experience (F5) for web API d
 
 ### CSS isolation
 
-Blazor now supports defining CSS styles that are scoped to a given component. Component specific CSS styles make it easier to reason about the styles in an app and to avoid unintentional side effects from global styles. For more information, see <xref:blazor/components/css-isolation>.
+Blazor now supports defining CSS styles that are scoped to a given component. Component-specific CSS styles make it easier to reason about the styles in an app and to avoid unintentional side effects of global styles. For more information, see <xref:blazor/components/css-isolation>.
 
 ### New `InputFile` component
 
