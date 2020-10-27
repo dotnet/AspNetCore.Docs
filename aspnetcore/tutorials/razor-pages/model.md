@@ -34,7 +34,7 @@ The model classes are known as POCO classes (from "**P**lain-**O**ld **C**LR **O
 The `Movie` class contains:
 
 * The `ID` field is required by the database for the primary key.
-* `[DataType(DataType.Date)]`: The [[DataType]](xref:System.ComponentModel.DataAnnotations.DataTypeAttribute) attribute specifies the type of the data (Date). With this attribute:
+* `[DataType(DataType.Date)]`: The [[DataType]](xref:System.ComponentModel.DataAnnotations.DataTypeAttribute) attribute specifies the type of the data (`Date`). With this attribute:
 
   * The user isn't required to enter time information in the date field.
   * Only the date is displayed, not time information.
@@ -53,7 +53,7 @@ Add the following properties to the `Movie` class:
 The `Movie` class contains:
 
 * The `ID` field is required by the database for the primary key.
-* `[DataType(DataType.Date)]`: The [[DataType]](xref:System.ComponentModel.DataAnnotations.DataTypeAttribute) attribute specifies the type of the data (Date). With this attribute:
+* `[DataType(DataType.Date)]`: The [[DataType]](xref:System.ComponentModel.DataAnnotations.DataTypeAttribute) attribute specifies the type of the data (`Date`). With this attribute:
 
   * The user is not required to enter time information in the date field.
   * Only the date is displayed, not time information.
@@ -158,7 +158,7 @@ The *appsettings.json* file is updated with the connection string used to connec
 <!--  Until https://github.com/aspnet/Scaffolding/issues/582 is fixed windows needs backslash or the namespace is namespace RazorPagesMovie.Pages_Movies rather than namespace RazorPagesMovie.Pages.Movies
 -->
 
-* Open a command shell to the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).
+* Open a command shell to the project directory, which contains the *Program.cs*, *Startup.cs*, and *.csproj* files.
 
 * **For Windows**: Run the following command:
 
@@ -303,6 +303,8 @@ In this section, the Package Manager Console (PMC) is used to:
   dotnet ef database update
   ```
 
+---
+
 The preceding commands generate the following warning: "No type was specified for the decimal column 'Price' on entity type 'Movie'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'."
 
 Ignore that warning. You'll learn how to fix it in a following tutorial in this series.
@@ -310,8 +312,6 @@ Ignore that warning. You'll learn how to fix it in a following tutorial in this 
 The `migrations` command generates code to create the initial database schema. The schema is based on the model specified in `DbContext`. The `InitialCreate` argument is used to name the migrations. Any name can be used, but by convention a name is selected that describes the migration.
 
 The `update` command runs the `Up` method in migrations that have not been applied. In this case, `update` runs the `Up` method in the *Migrations/\<time-stamp>_InitialCreate.cs* file, which creates the database.
-
----
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -331,7 +331,7 @@ The `RazorPagesMovieContext` coordinates EF Core functionality (Create, Read, Up
 
 The preceding code creates a [DbSet\<Movie>](xref:Microsoft.EntityFrameworkCore.DbSet) property for the entity set. In Entity Framework terminology, an entity set typically corresponds to a database table. An entity corresponds to a row in the table.
 
-The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](xref:Microsoft.EntityFrameworkCore.DbContextOptions) object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.
+The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](xref:Microsoft.EntityFrameworkCore.DbContextOptions) object. For local development, the [Configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -404,7 +404,7 @@ Add the following properties to the `Movie` class:
 The `Movie` class contains:
 
 * The `ID` field is required by the database for the primary key.
-* `[DataType(DataType.Date)]`:  The [DataType](xref:System.ComponentModel.DataAnnotations.DataTypeAttribute) attribute specifies the type of the data (Date). With this attribute:
+* `[DataType(DataType.Date)]`:  The [DataType](xref:System.ComponentModel.DataAnnotations.DataTypeAttribute) attribute specifies the type of the data (`Date`). With this attribute:
 
   * The user is not required to enter time information in the date field.
   * Only the date is displayed, not time information.
@@ -530,7 +530,7 @@ The *appsettings.json* file is updated with the connection string used to connec
 <!--  Until https://github.com/aspnet/Scaffolding/issues/582 is fixed windows needs backslash or the namespace is namespace RazorPagesMovie.Pages_Movies rather than namespace RazorPagesMovie.Pages.Movies
 -->
 
-* Open a command window in the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).
+* Open a command window in the project directory, which contains the *Program.cs*, *Startup.cs*, and *.csproj* files.
 
 * **For Windows**: Run the following command:
 
@@ -711,7 +711,7 @@ The `RazorPagesMovieContext` coordinates EF Core functionality (Create, Read, Up
 
 The preceding code creates a [DbSet\<Movie>](/dotnet/api/microsoft.entityframeworkcore.dbset-1) property for the entity set. In Entity Framework terminology, an entity set typically corresponds to a database table. An entity corresponds to a row in the table.
 
-The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](xref:Microsoft.EntityFrameworkCore.DbContextOptions) object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.
+The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](xref:Microsoft.EntityFrameworkCore.DbContextOptions) object. For local development, the [Configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -781,7 +781,7 @@ Add the following properties to the `Movie` class:
 The `Movie` class contains:
 
 * The `ID` field is required by the database for the primary key.
-* `[DataType(DataType.Date)]`:  The [DataType](xref:System.ComponentModel.DataAnnotations.DataTypeAttribute) attribute specifies the type of the data (Date). With this attribute:
+* `[DataType(DataType.Date)]`:  The [DataType](xref:System.ComponentModel.DataAnnotations.DataTypeAttribute) attribute specifies the type of the data (`Date`). With this attribute:
 
   * The user is not required to enter time information in the date field.
   * Only the date is displayed, not time information.
@@ -800,7 +800,7 @@ Add the following properties to the `Movie` class:
 The `Movie` class contains:
 
 * The `ID` field is required by the database for the primary key.
-* `[DataType(DataType.Date)]`:  The [DataType](xref:System.ComponentModel.DataAnnotations.DataTypeAttribute) attribute specifies the type of the data (Date). With this attribute:
+* `[DataType(DataType.Date)]`:  The [DataType](xref:System.ComponentModel.DataAnnotations.DataTypeAttribute) attribute specifies the type of the data (`Date`). With this attribute:
 
   * The user is not required to enter time information in the date field.
   * Only the date is displayed, not time information.
@@ -876,7 +876,7 @@ Add the following properties to the `Movie` class:
 The `Movie` class contains:
 
 * The `ID` field is required by the database for the primary key.
-* `[DataType(DataType.Date)]`:  The [DataType](xref:System.ComponentModel.DataAnnotations.DataTypeAttribute) attribute specifies the type of the data (Date). With this attribute:
+* `[DataType(DataType.Date)]`:  The [DataType](xref:System.ComponentModel.DataAnnotations.DataTypeAttribute) attribute specifies the type of the data (`Date`). With this attribute:
 
   * The user is not required to enter time information in the date field.
   * Only the date is displayed, not time information.
@@ -925,7 +925,7 @@ The *appsettings.json* file is updated with the connection string used to connec
 <!--  Until https://github.com/aspnet/Scaffolding/issues/582 is fixed windows needs backslash or the namespace is namespace RazorPagesMovie.Pages_Movies rather than namespace RazorPagesMovie.Pages.Movies
 -->
 
-* Open a command window in the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).
+* Open a command window in the project directory, which contains the *Program.cs*, *Startup.cs*, and *.csproj* files.
 
 * **For Windows**: Run the following command:
 
@@ -1020,7 +1020,7 @@ Add-Migration Initial
 Update-Database
 ```
 
-The `Add-Migration` command generates code to create the initial database schema. The schema is based on the model specified in the `DbContext` (In the *RazorPagesMovieContext.cs* file). The `InitialCreate` argument is used to name the migration. Any name can be used, but by convention a name that describes the migration is used. For more information, see <xref:data/ef-mvc/migrations>.
+The `Add-Migration` command generates code to create the initial database schema. The schema is based on the model specified in the `DbContext`, in the *RazorPagesMovieContext.cs* file. The `InitialCreate` argument is used to name the migration. Any name can be used, but by convention a name that describes the migration is used. For more information, see <xref:data/ef-mvc/migrations>.
 
 The `Update-Database` command runs the `Up` method in the *Migrations/\<time-stamp>_InitialCreate.cs* file. The `Up` method creates the database.
 
@@ -1058,7 +1058,7 @@ The `RazorPagesMovieContext` coordinates EF Core functionality (Create, Read, Up
 
 The preceding code creates a [DbSet\<Movie>](/dotnet/api/microsoft.entityframeworkcore.dbset-1) property for the entity set. In Entity Framework terminology, an entity set typically corresponds to a database table. An entity corresponds to a row in the table.
 
-The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](xref:Microsoft.EntityFrameworkCore.DbContextOptions) object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.
+The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](xref:Microsoft.EntityFrameworkCore.DbContextOptions) object. For local development, the [Configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 

@@ -27,11 +27,11 @@ The `RazorPagesMovieContext` object handles the task of connecting to the databa
 
 ---
 
-The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system reads the `ConnectionString`. For local development, it gets the connection string from the *appsettings.json* file.
+The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system reads the `ConnectionString`. For local development, configuration gets the connection string from the *appsettings.json* file.
 
 # [Visual Studio](#tab/visual-studio)
 
-The name value for the database (`Database={Database name}`) will be different for the generated code. The name value is arbitrary.
+The generated connection string will be similar to the following:
 
 [!code-json[](razor-pages-start/sample/RazorPagesMovie30/appsettings.json?highlight=10-12)]
 
@@ -115,11 +115,11 @@ There are many third party tools you can download to manage and view a SQLite da
 
 ### Add the seed initializer
 
-1. In *Program.cs*, modify the `Main` method to do the following:
+In *Program.cs*, modify the `Main` method to do the following:
 
-   1. Get a DB context instance from the dependency injection container.
-   1. Call the seed method, passing to it the context.
-   1. Dispose the context when the seed method completes.
+* Get a DB context instance from the dependency injection container.
+* Call the seed method, passing to it the context.
+* Dispose the context when the seed method completes.
 
 The following code shows the updated *Program.cs* file.
 
@@ -149,7 +149,7 @@ The following exception occurs when `Update-Database` has not been run:
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-Delete all the records in the DB (So the seed method will run). Stop and start the app to seed the database.
+Delete all the records in the DB, so the seed method will run. Stop and start the app to seed the database.
 
 The app shows the seeded data.
 
@@ -181,11 +181,11 @@ The `RazorPagesMovieContext` object handles the task of connecting to the databa
 
 ---
 
-The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system reads the `ConnectionString`. For local development, it gets the connection string from the *appsettings.json* file.
+The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system reads the `ConnectionString`. For local development, configuration gets the connection string from the *appsettings.json* file.
 
 # [Visual Studio](#tab/visual-studio)
 
-The name value for the database (`Database={Database name}`) will be different for the generated code. The name value is arbitrary.
+The generated connection string will be similar to the following:
 
 [!code-json[](razor-pages-start/sample/RazorPagesMovie30/appsettings.json?highlight=10-12)]
 
@@ -302,7 +302,7 @@ The following exception occurs when `Update-Database` has not been run:
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-Delete all the records in the DB (So the seed method will run). Stop and start the app to seed the database.
+Delete all the records in the DB, so the seed method will run. Stop and start the app to seed the database.
 
 The app shows the seeded data.
 
@@ -339,11 +339,11 @@ For more information on the methods used in `ConfigureServices`, see:
 * [EU General Data Protection Regulation (GDPR) support in ASP.NET Core](xref:security/gdpr) for `CookiePolicyOptions`.
 * [SetCompatibilityVersion](xref:mvc/compatibility-version)
 
-The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system reads the `ConnectionString`. For local development, it gets the connection string from the *appsettings.json* file.
+The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system reads the `ConnectionString`. For local development, configuration gets the connection string from the *appsettings.json* file.
 
 # [Visual Studio](#tab/visual-studio)
 
-The name value for the database (`Database={Database name}`) will be different for the generated code. The name value is arbitrary.
+The generated connection string will be similar to the following:
 
 [!code-json[](razor-pages-start/sample/RazorPagesMovie22/appsettings.json)]
 
@@ -446,13 +446,13 @@ Login failed for user 'user name'.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-Delete all the records in the DB (So the seed method will run). Stop and start the app to seed the database.
+Delete all the records in the DB, so the seed method will run. Stop and start the app to seed the database.
 
 The app shows the seeded data.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-Delete all the records in the DB (So the seed method will run). Stop and start the app to seed the database.
+Delete all the records in the DB, so the seed method will run. Stop and start the app to seed the database.
 
 The app shows the seeded data.
 

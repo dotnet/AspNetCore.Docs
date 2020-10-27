@@ -27,9 +27,9 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 In the following sections, searching movies by *genre* or *name* is added.
 
-Add the following highlighted properties to *Pages/Movies/Index.cshtml.cs*:
+Add the following highlighted using statement and properties to *Pages/Movies/Index.cshtml.cs*:
 
-[!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Pages/Movies/Index.cshtml.cs?name=snippet_newProps&highlight=3,23,24,25,26,27,28)]
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Pages/Movies/Index.cshtml.cs?name=snippet_newProps&highlight=3,23,24,25,26,27)]
 
 In the previous code:
 
@@ -63,11 +63,11 @@ The `s => s.Title.Contains()` code is a [Lambda Expression](/dotnet/csharp/progr
 > [!NOTE]
 > The [Contains](/dotnet/api/system.data.objects.dataclasses.entitycollection-1.contains) method is run on the database, not in the C# code. The case sensitivity on the query depends on the database and the collation. On SQL Server, `Contains` maps to [SQL LIKE](/sql/t-sql/language-elements/like-transact-sql), which is case insensitive. In SQLite, with the default collation, it's case sensitive.
 
-Navigate to the Movies page and append a query string such as `?searchString=Ghost` to the URL (for example, `https://localhost:5001/Movies?searchString=Ghost`). The filtered movies are displayed.
+Navigate to the Movies page and append a query string such as `?searchString=Ghost` to the URL, for example, `https://localhost:5001/Movies?searchString=Ghost`. The filtered movies are displayed.
 
 ![Index view](search/_static/ghost.png)
 
-If the following route template is added to the Index page, the search string can be passed as a URL segment (for example, `https://localhost:5001/Movies/Ghost`).
+If the following route template is added to the Index page, the search string can be passed as a URL segment, for example, `https://localhost:5001/Movies/Ghost`.
 
 ```cshtml
 @page "{searchString?}"
@@ -81,18 +81,18 @@ The ASP.NET Core runtime uses [model binding](xref:mvc/models/model-binding) to 
 
 However, users cannot be expected to modify the URL to search for a movie. In this step, UI is added to filter movies. If you added the route constraint `"{searchString?}"`, remove it.
 
-1. Open the *Pages/Movies/Index.cshtml* file, and add the `<form>` markup highlighted in the following code:
+Open the *Pages/Movies/Index.cshtml* file, and add the markup highlighted in the following code:
 
-   [!code-cshtml[](razor-pages-start/sample/RazorPagesMovie30/SnapShots/Index2.cshtml?highlight=14-19&range=1-22)]
+[!code-cshtml[](razor-pages-start/sample/RazorPagesMovie30/SnapShots/Index2.cshtml?highlight=14-19&range=1-22)]
 
-   The HTML `<form>` tag uses the following [Tag Helpers](xref:mvc/views/tag-helpers/intro):
+The HTML `<form>` tag uses the following [Tag Helpers](xref:mvc/views/tag-helpers/intro):
 
-   * [Form Tag Helper](xref:mvc/views/working-with-forms#the-form-tag-helper). When the form is submitted, the filter string is sent to the *Pages/Movies/Index* page via query string.
-   * [Input Tag Helper](xref:mvc/views/working-with-forms#the-input-tag-helper)
+* [Form Tag Helper](xref:mvc/views/working-with-forms#the-form-tag-helper). When the form is submitted, the filter string is sent to the *Pages/Movies/Index* page via query string.
+* [Input Tag Helper](xref:mvc/views/working-with-forms#the-input-tag-helper)
 
-1. Save the changes and test the filter.
+Save the changes and test the filter.
 
-   ![Index view with the word ghost typed into the Title filter textbox](search/_static/filter.png)
+![Index view with the word ghost typed into the Title filter textbox](search/_static/filter.png)
 
 ## Search by genre
 
@@ -138,7 +138,7 @@ Add the following highlighted properties to *Pages/Movies/Index.cshtml.cs*:
 
 * `SearchString`: contains the text users enter in the search text box. `SearchString` has the [`[BindProperty]`](xref:Microsoft.AspNetCore.Mvc.BindPropertyAttribute) attribute. `[BindProperty]` binds form values and query strings with the same name as the property. `(SupportsGet = true)` is required for binding on GET requests.
 * `Genres`: contains the list of genres. `Genres` allows the user to select a genre from the list. `SelectList` requires `using Microsoft.AspNetCore.Mvc.Rendering;`
-* `MovieGenre`: contains the specific genre the user selects (for example, "Western").
+* `MovieGenre`: contains the specific genre the user selects, for example, "Western".
 * `Genres` and `MovieGenre` are used later in this tutorial.
 
 [!INCLUDE[](~/includes/bind-get.md)]
@@ -165,11 +165,11 @@ The `s => s.Title.Contains()` code is a [Lambda Expression](/dotnet/csharp/progr
 
 **Note:** The [Contains](/dotnet/api/system.data.objects.dataclasses.entitycollection-1.contains) method is run on the database, not in the C# code. The case sensitivity on the query depends on the database and the collation. On SQL Server, `Contains` maps to [SQL LIKE](/sql/t-sql/language-elements/like-transact-sql), which is case insensitive. In SQLite, with the default collation, it's case sensitive.
 
-Navigate to the Movies page and append a query string such as `?searchString=Ghost` to the URL (for example, `https://localhost:5001/Movies?searchString=Ghost`). The filtered movies are displayed.
+Navigate to the Movies page and append a query string such as `?searchString=Ghost` to the URL, for example, `https://localhost:5001/Movies?searchString=Ghost`. The filtered movies are displayed.
 
 ![Index view](search/_static/ghost.png)
 
-If the following route template is added to the Index page, the search string can be passed as a URL segment (for example, `https://localhost:5001/Movies/Ghost`).
+If the following route template is added to the Index page, the search string can be passed as a URL segment, for example, `https://localhost:5001/Movies/Ghost`.
 
 ```cshtml
 @page "{searchString?}"

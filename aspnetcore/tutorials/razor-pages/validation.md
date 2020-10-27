@@ -23,7 +23,7 @@ A key tenet of software development is called [DRY](https://wikipedia.org/wiki/D
 
 The validation support provided by Razor Pages and Entity Framework is a good example of the DRY principle:
 
-* Validation rules are declaratively specified in one place (in the model class).
+* Validation rules are declaratively specified in one place, in the model class.
 * Rules are enforced everywhere in the app.
 
 ## Add validation rules to the movie model
@@ -39,21 +39,23 @@ Update the `Movie` class to take advantage of the built-in `Required`, `StringLe
 
 The validation attributes specify behavior to enforce on the model properties they're applied to:
 
-* The `Required` and `MinimumLength` attributes indicate that a property must have a value; but nothing prevents a user from entering white space to satisfy this validation.
-* The `RegularExpression` attribute is used to limit what characters can be input. In the preceding code, "Genre":
+* The `Required` and `MinimumLength` attributes indicate that a property must have a value, but nothing prevents a user from entering white space to satisfy this validation.
+* The `RegularExpression` attribute is used to limit what characters can be input. In the preceding code, `Genre`:
 
   * Must only use letters.
   * The first letter is required to be uppercase. White space, numbers, and special
    characters are not allowed.
 
-* The `RegularExpression` "Rating":
+* The `RegularExpression` `Rating`:
 
   * Requires that the first character be an uppercase letter.
-  * Allows special characters and numbers in  subsequent spaces. "PG-13" is valid for a rating, but fails for a "Genre".
+  * Allows special characters and numbers in  subsequent spaces. "PG-13" is valid for a rating, but fails for a `Genre`.
 
 * The `Range` attribute constrains a value to within a specified range.
 * The `StringLength` attribute can set a maximum length of a string property, and optionally its minimum length.
 * Value types (such as `decimal`, `int`, `float`, `DateTime`) are inherently required and don't need the `[Required]` attribute.
+
+The preceding validation rules are used for demonstration, they are not optimal for a production system. For example, the preceding prevents entering a movie with only two chars and doesn't allow special characters in `Genre`.
 
 Having validation rules automatically enforced by ASP.NET Core:
 
@@ -62,17 +64,17 @@ Having validation rules automatically enforced by ASP.NET Core:
 
 ### Validation Error UI in Razor Pages
 
-1. Run the app and navigate to Pages/Movies.
+Run the app and navigate to Pages/Movies.
 
-1. Select the **Create New** link. Complete the form with some invalid values. When jQuery client-side validation detects the error, it displays an error message.
+Select the **Create New** link. Complete the form with some invalid values. When jQuery client-side validation detects the error, it displays an error message.
 
-   ![Movie view form with multiple jQuery client-side validation errors](validation/_static/val.png)
+![Movie view form with multiple jQuery client-side validation errors](validation/_static/val.png)
 
 [!INCLUDE[](~/includes/localization/currency.md)]
 
-Notice how the form has automatically rendered a validation error message in each field containing an invalid value. The errors are enforced both client-side (using JavaScript and jQuery) and server-side (when a user has JavaScript disabled).
+Notice how the form has automatically rendered a validation error message in each field containing an invalid value. The errors are enforced both client-side, using JavaScript and jQuery, and server-side, when a user has JavaScript disabled.
 
-A significant benefit is that **no** code changes were necessary in the Create or Edit pages. Once DataAnnotations were applied to the model, the validation UI was enabled. The Razor Pages created in this tutorial automatically picked up the validation rules (using validation attributes on the properties of the `Movie` model class). Test validation using the Edit page, the same validation is applied.
+A significant benefit is that **no** code changes were necessary in the Create or Edit pages. Once DataAnnotations were applied to the model, the validation UI was enabled. The Razor Pages created in this tutorial automatically picked up the validation rules, using validation attributes on the properties of the `Movie` model class. Test validation using the Edit page, the same validation is applied.
 
 The form data isn't posted to the server until there are no client-side validation errors. Verify form data isn't posted by one or more of the following approaches:
 
@@ -111,7 +113,7 @@ The [Input Tag Helper](xref:mvc/views/working-with-forms) uses the [DataAnnotati
 
 The Create and Edit pages have no validation rules in them. The validation rules and the error strings are specified only in the `Movie` class. These validation rules are automatically applied to Razor Pages that edit the `Movie` model.
 
-When validation logic needs to change, it's done only in the model. Validation is applied consistently throughout the application (validation logic is defined in one place). Validation in one place helps keep the code clean, and makes it easier to maintain and update.
+When validation logic needs to change, it's done only in the model. Validation is applied consistently throughout the application, validation logic is defined in one place. Validation in one place helps keep the code clean, and makes it easier to maintain and update.
 
 ## Using DataType Attributes
 
@@ -132,7 +134,7 @@ The `DataType` attributes:
 
 * Can enable the application to automatically provide type-specific features. For example, a `mailto:` link can be created for `DataType.EmailAddress`.
 * Can provide a date selector `DataType.Date` in browsers that support HTML5.
-* Emit HTML 5 `data-` (pronounced data dash) attributes that HTML 5 browsers consume.
+* Emit HTML 5 `data-`, pronounced "data dash", attributes that HTML 5 browsers consume.
 * Do **not** provide any validation.
 
 `DataType.Date` doesn't specify the format of the date that's displayed. By default, the data field is displayed according to the default formats based on the server's `CultureInfo`.
@@ -150,8 +152,8 @@ The `ApplyFormatInEditMode` setting specifies that the formatting will be applie
 
 The `DisplayFormat` attribute can be used by itself, but it's generally a good idea to use the `DataType` attribute. The `DataType` attribute conveys the semantics of the data as opposed to how to render it on a screen. The `DataType` attribute provides the following benefits that are not available with DisplayFormat:
 
-* The browser can enable HTML5 features (for example to show a calendar control, the locale-appropriate currency symbol, email links, etc.)
-* By default, the browser will render data using the correct format based on its locale.
+* The browser can enable HTML5 features, for example to show a calendar control, the locale-appropriate currency symbol, email links, etc.
+* By default, the browser renders data using the correct format based on its locale.
 * The `DataType` attribute can enable the ASP.NET Core framework to choose the right field template to render the data. The `DisplayFormat`, if used by itself, uses the string template.
 
 **Note:** jQuery validation doesn't work with the `Range` attribute and `DateTime`. For example, the following code will always display a client-side validation error, even when the date is in the specified range:
@@ -160,7 +162,7 @@ The `DisplayFormat` attribute can be used by itself, but it's generally a good i
 [Range(typeof(DateTime), "1/1/1966", "1/1/2020")]
    ```
 
-It is a best practice to avoid compiling hard dates in models, so using the `Range` attribute and `DateTime` is discouraged.
+It is a best practice to avoid compiling hard dates in models, so using the `Range` attribute and `DateTime` is discouraged. Use [Configuration]<xref:fundamentals/configuration/index> for date ranges and other values that are subject to frequent change rather than specifying it in code.
 
 The following code shows combining attributes on one line:
 

@@ -27,9 +27,8 @@ namespace RazorPagesMovie
                     logger.LogError(ex, "An error occurred seeding the DB.");
                 }
             }
-
+            
             host.Run();
-
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
