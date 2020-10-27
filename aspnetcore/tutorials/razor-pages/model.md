@@ -942,7 +942,7 @@ The *appsettings.json* file is updated with the connection string used to connec
 <a name="codegenerator"></a>
 The following table details the ASP.NET Core code generator options:
 
-| Option | Description|
+| Option               | Description|
 | ----------------- | ------------ |
 | `-m`  | The name of the model. |
 | `-dc`  | The `DbContext` class to use. |
