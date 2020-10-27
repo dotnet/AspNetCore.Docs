@@ -1,7 +1,7 @@
 ---
 title: Part 2, add a model to a Razor Pages app in ASP.NET Core
 author: rick-anderson
-description: Part 2 of tutorial series on Razor Pages. In this section model classes are added.
+description: Part 2 of tutorial series on Razor Pages. In this section, model classes are added.
 ms.author: riande
 ms.date: 09/30/2020
 no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
@@ -25,11 +25,11 @@ The model classes are known as POCO classes (from "**P**lain-**O**ld **C**LR **O
 
 # [Visual Studio](#tab/visual-studio)
 
-1. Right-click the **RazorPagesMovie** project > **Add** > **New Folder**. Name the folder *Models*.
-1. Right-click the *Models* folder. Select **Add** > **Class**. Name the class **Movie**.
+1. In **Solution Explorer**, right-click the *RazorPagesMovie* project > **Add** > **New Folder**. Name the folder *Models*.
+1. Right-click the *Models* folder. Select **Add** > **Class**. Name the class *Movie*.
 1. Add the following properties to the `Movie` class:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Models/Movie.cs?name=snippet1)]
+	[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Models/Movie.cs?name=snippet1)]
 
 The `Movie` class contains:
 
@@ -87,20 +87,20 @@ Add a connection string to the *appsettings.json* file as shown in the following
 
 ### Register the database context
 
-Add the following `using` statements at the top of *Startup.cs*:
+1. Add the following `using` statements at the top of *Startup.cs*:
 
-```csharp
-using RazorPagesMovie.Data;
-using Microsoft.EntityFrameworkCore;
-```
+	```csharp
+	using RazorPagesMovie.Data;
+	using Microsoft.EntityFrameworkCore;
+	```
 
-Register the database context with the [dependency injection](xref:fundamentals/dependency-injection) container in `Startup.ConfigureServices`:
+1. Register the database context with the [dependency injection](xref:fundamentals/dependency-injection) container in `Startup.ConfigureServices`:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Startup.cs?name=snippet_UseSqlite&highlight=11-12)]
+	[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Startup.cs?name=snippet_UseSqlite&highlight=11-12)]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-1. In the **Solution Tool Window**, control-click the **RazorPagesMovie** project, and then select **Add** > **New Folder...**. Name the folder *Models*.
+1. In the **Solution Tool Window**, control-click the *RazorPagesMovie* project, and then select **Add** > **New Folder...**. Name the folder *Models*.
 1. Control-click the *Models* folder, and then select **Add** > **New File...**.
 1. In the **New File** dialog:
    1. Select **General** in the left pane.
@@ -135,13 +135,13 @@ In this section, the movie model is scaffolded. That is, the scaffolding tool pr
    1. Right-click on the *Pages* folder > **Add** > **New Folder**.
    1. Name the folder *Movies*
 
-Right-click on the *Pages/Movies* folder > **Add** > **New Scaffolded Item**.
+1. Right-click on the *Pages/Movies* folder > **Add** > **New Scaffolded Item**.
 
-![Image from the previous instructions.](model/_static/5/sca.png)
+	![Image from the previous instructions.](model/_static/5/sca.png)
 
-In the **Add Scaffold** dialog, select **Razor Pages using Entity Framework (CRUD)** > **Add**.
+1. In the **Add Scaffold** dialog, select **Razor Pages using Entity Framework (CRUD)** > **Add**.
 
-![Image from the previous instructions.](model/_static/add_scaffold.png)
+	![Image from the previous instructions.](model/_static/add_scaffold.png)
 
 1. Complete the **Add Razor Pages using Entity Framework (CRUD)** dialog:
    1. In the **Model class** drop down, select **Movie (RazorPagesMovie.Models)**.
@@ -276,7 +276,7 @@ The migrations feature in Entity Framework Core provides a way to:
 
 # [Visual Studio](#tab/visual-studio)
 
-In this section, the Package Manager Console (PMC) is used to:
+In this section, the **Package Manager Console** (PMC) window is used to:
 
 * Add an initial migration.
 * Update the database with the initial migration.
@@ -349,7 +349,7 @@ Examine the `Up` method.
 
 1. Run the app and append `/Movies` to the URL in the browser (`http://localhost:port/movies`).
 
-   If you get the error:
+   If you receive the following error:
 
    ```console
    SqlException: Cannot open database "RazorPagesMovieContext-GUID" requested by the login. The login failed.
@@ -438,7 +438,7 @@ The `Movie` class contains:
 
 ### Add a database context class
 
-1. In the RazorPagesMovie project, create a new folder named *Data*. 
+1. In the *RazorPagesMovie* project, create a new folder named *Data*. 
 1. Add the following `RazorPagesMovieContext` class to the *Data* folder:
 
    [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Data/RazorPagesMovieContext.cs)]
@@ -545,9 +545,9 @@ The *appsettings.json* file is updated with the connection string used to connec
   ```
 
 <a name="codegenerator"></a>
-The following table details the ASP.NET Core code generator parameters:
+The following table details the ASP.NET Core code generator options:
 
-| Parameter               | Description|
+| Option               | Description|
 | ----------------- | ------------ |
 | `-m`  | The name of the model. |
 | `-dc`  | The `DbContext` class to use. |
@@ -555,7 +555,7 @@ The following table details the ASP.NET Core code generator parameters:
 | `-outDir` | The relative output folder path to create the views. |
 | `--referenceScriptLibraries` | Adds `_ValidationScriptsPartial` to Edit and Create pages |
 
-Use the `h` switch to get help on the `aspnet-codegenerator razorpage` command:
+Use the `-h` option to get help on the `aspnet-codegenerator razorpage` command:
 
 ```dotnetcli
 dotnet-aspnet-codegenerator razorpage -h
@@ -685,7 +685,7 @@ dotnet ef database update
 
 The preceding commands generate the following warning: "No type was specified for the decimal column 'Price' on entity type 'Movie'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'."
 
-Ignore the warning, it will be addressed in a step later in a following tutorial.
+Ignore the warning, as it will be addressed in a later step.
 
 The migrations command generates code to create the initial database schema. The schema is based on the model specified in `DbContext`. The `InitialCreate` argument is used to name the migrations. Any name can be used, but by convention a name is selected that describes the migration.
 
@@ -940,17 +940,17 @@ The *appsettings.json* file is updated with the connection string used to connec
   ```
 
 <a name="codegenerator"></a>
-The following table details the ASP.NET Core code generator parameters:
+The following table details the ASP.NET Core code generator options:
 
-| Parameter               | Description|
+| Option | Description|
 | ----------------- | ------------ |
-| -m  | The name of the model. |
-| -dc  | The `DbContext` class to use. |
-| -udl | Use the default layout. |
-| -outDir | The relative output folder path to create the views. |
-| --referenceScriptLibraries | Adds `_ValidationScriptsPartial` to Edit and Create pages |
+| `-m`  | The name of the model. |
+| `-dc`  | The `DbContext` class to use. |
+| `-udl` | Use the default layout. |
+| `-outDir` | The relative output folder path to create the views. |
+| `--referenceScriptLibraries` | Adds `_ValidationScriptsPartial` to Edit and Create pages |
 
-Use the `h` switch to get help on the `aspnet-codegenerator razorpage` command:
+Use the `-h` option to get help on the `aspnet-codegenerator razorpage` command:
 
 ```dotnetcli
 dotnet-aspnet-codegenerator razorpage -h
