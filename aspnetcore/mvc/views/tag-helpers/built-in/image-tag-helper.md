@@ -5,7 +5,7 @@ description: Shows how to work with Image Tag Helper.
 ms.author: riande
 ms.custom: mvc
 ms.date: 04/06/2019
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/views/tag-helpers/builtin-th/image-tag-helper
 ---
 # Image Tag Helper in ASP.NET Core

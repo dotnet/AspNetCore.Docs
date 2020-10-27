@@ -5,7 +5,7 @@ description: Explains how Browser Link is a Visual Studio feature that links the
 ms.author: riande
 ms.custom: H1Hack27Feb2017
 ms.date: 01/09/2020
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: client-side/using-browserlink
 ---
 # Browser Link in ASP.NET Core

@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to use the ASP.NET Core data protection APIs for protecting and unprotecting data in an app.
 ms.author: riande
 ms.date: 11/12/2019
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/data-protection/using-data-protection
 ---
 # Get started with the Data Protection APIs in ASP.NET Core

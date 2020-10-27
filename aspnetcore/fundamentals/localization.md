@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how ASP.NET Core provides services and middleware for localizing content into different languages and cultures.
 ms.author: riande
 ms.date: 11/30/2019
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/localization
 ---
 # Globalization and localization in ASP.NET Core

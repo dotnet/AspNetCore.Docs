@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to create and use custom formatters for web APIs in ASP.NET Core.
 ms.author: riande
 ms.date: 06/25/2020
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: web-api/advanced/custom-formatters
 ---
 # Custom formatters in ASP.NET Core Web API

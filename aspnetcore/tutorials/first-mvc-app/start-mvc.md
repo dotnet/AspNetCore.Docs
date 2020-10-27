@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to get started with ASP.NET Core MVC.
 ms.author: riande
 ms.date: 10/16/2019
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-mvc-app/start-mvc
 ---
 # Get started with ASP.NET Core MVC

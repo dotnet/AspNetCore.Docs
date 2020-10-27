@@ -4,7 +4,7 @@ author: ardalis
 description: Learn how views handle the app's data presentation and user interaction in ASP.NET Core MVC.
 ms.author: riande
 ms.date: 12/05/2019
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/views/overview
 ---
 # Views in ASP.NET Core MVC

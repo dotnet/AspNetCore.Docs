@@ -4,7 +4,7 @@ author: rick-anderson
 description: Part 5, add a model to an ASP.NET Core MVC app
 ms.author: riande
 ms.date: 8/16/2019
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-mvc-app/working-with-sql
 ---
 # Part 5, work with a database in an ASP.NET Core MVC app

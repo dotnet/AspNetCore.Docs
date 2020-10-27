@@ -6,7 +6,7 @@ monikerRange: '< aspnetcore-2.0'
 ms.author: riande
 ms.date: 09/22/2018
 ms.custom: "mvc, seodec18"
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/2fa
 ---
 # Two-factor authentication with SMS in ASP.NET Core

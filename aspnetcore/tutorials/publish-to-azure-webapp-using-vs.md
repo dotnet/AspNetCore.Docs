@@ -5,7 +5,7 @@ description: Learn how to publish an ASP.NET Core app to Azure App Service using
 ms.author: riande
 ms.custom: "devx-track-csharp, mvc"
 ms.date: 07/10/2019
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/publish-to-azure-webapp-using-vs
 ---
 # Publish an ASP.NET Core app to Azure with Visual Studio

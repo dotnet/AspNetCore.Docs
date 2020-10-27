@@ -5,7 +5,7 @@ description: This article outlines the prerequisites and most common steps for m
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 12/05/2019
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: migration/1x-to-2x/index
 ---
 # Migrate from ASP.NET Core 1.x to 2.0

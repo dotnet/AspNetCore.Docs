@@ -4,7 +4,7 @@ author: rick-anderson
 description: Discover how to replace machineKey in ASP.NET to allow the use of a new and more secure data protection system.
 ms.author: riande
 ms.date: 04/06/2019
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/data-protection/compatibility/replacing-machinekey
 ---
 # Replace the ASP.NET machineKey in ASP.NET Core

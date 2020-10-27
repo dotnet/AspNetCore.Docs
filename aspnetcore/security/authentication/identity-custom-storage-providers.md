@@ -5,7 +5,7 @@ description: Learn how to configure custom storage providers for ASP.NET Core Id
 ms.author: riande
 ms.custom: mvc
 ms.date: 07/23/2019
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/identity-custom-storage-providers
 ---
 # Custom storage providers for ASP.NET Core Identity

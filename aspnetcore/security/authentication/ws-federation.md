@@ -5,7 +5,7 @@ description: This tutorial demonstrates how to use WS-Federation in an ASP.NET C
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 01/16/2019
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/ws-federation
 ---
 # Authenticate users with WS-Federation in ASP.NET Core

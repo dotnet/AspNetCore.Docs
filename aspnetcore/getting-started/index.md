@@ -5,7 +5,7 @@ description: A short tutorial that creates and runs a basic Hello World app usin
 ms.author: riande
 ms.custom: mvc
 ms.date: 01/07/2020
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: getting-started
 ---
 # Tutorial: Get started with ASP.NET Core
