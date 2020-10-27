@@ -133,7 +133,11 @@ internal static class GraphClientExtensions
 }
 ```
 
-The placeholder `{STRING ARRAY OF SCOPES}` in the preceding code is a string array of the permitted scopes. For example, set `Scopes` to `new[] { "https://graph.microsoft.com/User.Read" }` to specify the `User.Read` scope for the examples in the following sections of this article.
+The placeholder `{STRING ARRAY OF SCOPES}` in the preceding code is a string array of the permitted scopes. For example, set `Scopes` to the `User.Read` scope for the examples in the following sections of this article:
+
+```csharp
+Scopes = new[] { "https://graph.microsoft.com/User.Read" }
+```
 
 In `Program.Main` (`Program.cs`), add the Graph client services and configuration with the `AddGraphClient` extension method. Provide a scope array for the app's required Graph API scopes:
 
@@ -141,7 +145,11 @@ In `Program.Main` (`Program.cs`), add the Graph client services and configuratio
 builder.Services.AddGraphClient({STRING ARRAY OF SCOPES});
 ```
 
-The placeholder `{STRING ARRAY OF SCOPES}` in the preceding code is a string array of the permitted scopes. For example, pass the `"https://graph.microsoft.com/User.Read"` argument to `AddGraphClient` to specify the `User.Read` scope for the examples in the following sections of this article.
+The placeholder `{STRING ARRAY OF SCOPES}` in the preceding code is a string array of the permitted scopes. For example, pass the `User.Read` scope to `AddGraphClient` for the examples in the following sections of this article:
+
+```csharp
+builder.Services.AddGraphClient("https://graph.microsoft.com/User.Read");
+```
 
 ### Call Graph API from a component using the Graph SDK
 
