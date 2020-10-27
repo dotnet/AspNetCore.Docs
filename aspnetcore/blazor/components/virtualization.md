@@ -2,11 +2,11 @@
 title: ASP.NET Core Blazor component virtualization
 author: guardrex
 description: Learn how to use component virtualization in ASP.NET Core Blazor apps.
-monikerRange: '>= aspnetcore-3.1'
+monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/22/2020
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+ms.date: 10/02/2020
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/components/virtualization
 ---
 # ASP.NET Core Blazor component virtualization
@@ -14,8 +14,6 @@ uid: blazor/components/virtualization
 By [Daniel Roth](https://github.com/danroth27)
 
 Improve the perceived performance of component rendering using the Blazor framework's built-in virtualization support. Virtualization is a technique for limiting UI rendering to just the parts that are currently visible. For example, virtualization is helpful when the app must render a long list of items and only a subset of items is required to be visible at any given time. Blazor provides the `Virtualize` component that can be used to add virtualization to an app's components.
-
-::: moniker range=">= aspnetcore-5.0"
 
 Without virtualization, a typical list might use a C# [`foreach`](/dotnet/csharp/language-reference/keywords/foreach-in) loop to render each item in the list:
 
@@ -129,17 +127,6 @@ The size of each item in pixels can be set with `ItemSize` (default: 50px):
     ...
 </Virtualize>
 ```
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-For example, a grid or list that renders hundreds of rows containing components is processor intensive to render. Consider virtualizing a grid or list layout so that only a subset of the components is rendered at any given time. For an example of component subset rendering, see the following components in the [`Virtualization` sample app (aspnet/samples GitHub repository)](https://github.com/aspnet/samples/tree/master/samples/aspnetcore/blazor/Virtualization):
-
-* `Virtualize` component ([`Shared/Virtualize.razor`](https://github.com/aspnet/samples/blob/master/samples/aspnetcore/blazor/Virtualization/Shared/Virtualize.cs)): A component written in C# that implements <xref:Microsoft.AspNetCore.Components.ComponentBase> to render a set of weather data rows based on user scrolling.
-* `FetchData` component ([`Pages/FetchData.razor`](https://github.com/aspnet/samples/blob/master/samples/aspnetcore/blazor/Virtualization/Pages/FetchData.razor)): Uses the `Virtualize` component to display 25 rows of weather data at a time.
-
-::: moniker-end
 
 ## State changes
 

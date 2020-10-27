@@ -5,8 +5,8 @@ description: Learn how to use Razor component lifecycle methods in ASP.NET Core 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/06/2020
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+ms.date: 10/14/2020
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/components/lifecycle
 ---
 # ASP.NET Core Blazor lifecycle
@@ -14,6 +14,36 @@ uid: blazor/components/lifecycle
 By [Luke Latham](https://github.com/guardrex) and [Daniel Roth](https://github.com/danroth27)
 
 The Blazor framework includes synchronous and asynchronous lifecycle methods. Override lifecycle methods to perform additional operations on components during component initialization and rendering.
+
+The following diagrams illustrate the Blazor lifecycle. Lifecycle methods are defined with examples in the following sections of this article.
+
+Component lifecycle events:
+
+1. If the component is rendering for the first time on a request:
+   * Create the component's instance.
+   * Perform property injection. Run [`SetParametersAsync`](#before-parameters-are-set).
+   * Call [`OnInitialized{Async}`](#component-initialization-methods). If a <xref:System.Threading.Tasks.Task> is returned, the <xref:System.Threading.Tasks.Task> is awaited and then the component is rendered. If a <xref:System.Threading.Tasks.Task> isn't returned, render the component.
+1. Call [`OnParametersSet{Async}`](#after-parameters-are-set). If a <xref:System.Threading.Tasks.Task> is returned, the <xref:System.Threading.Tasks.Task> is awaited and then the component is rendered. If a <xref:System.Threading.Tasks.Task> isn't returned, render the component.
+
+![Component lifecycle events of a Razor component in Blazor](lifecycle/_static/lifecycle1.png)
+
+Document Object Model (DOM) event processing:
+
+1. The event handler is run.
+1. If a <xref:System.Threading.Tasks.Task> is returned, the <xref:System.Threading.Tasks.Task> is awaited and then the component is rendered. If a <xref:System.Threading.Tasks.Task> isn't returned, the component is rendered.
+
+![Document Object Model (DOM) event processing](lifecycle/_static/lifecycle2.png)
+
+The `Render` lifecycle:
+
+1. If this isn't the component's first render or [`ShouldRender`](#suppress-ui-refreshing) is evaluated as `false`, don't perform further operations on the component.
+1. Build the render tree diff (difference) and render the component.
+1. Await the DOM to update.
+1. Call [`OnAfterRender{Async}`](#after-component-render).
+
+![Render lifecycle](lifecycle/_static/lifecycle3.png)
+
+Developer calls to [`StateHasChanged`](#state-changes) result in a render.
 
 ## Lifecycle methods
 
@@ -159,7 +189,7 @@ protected override bool ShouldRender()
 
 Even if <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> is overridden, the component is always initially rendered.
 
-For more information, see <xref:blazor/webassembly-performance-best-practices#avoid-unnecessary-component-renders>.
+For more information, see <xref:blazor/webassembly-performance-best-practices#avoid-unnecessary-rendering-of-component-subtrees>.
 
 ## State changes
 
@@ -175,7 +205,7 @@ In the `FetchData` component of the Blazor templates, <xref:Microsoft.AspNetCore
 
 `Pages/FetchData.razor` in the Blazor Server template:
 
-[!code-razor[](lifecycle/samples_snapshot/3.x/FetchData.razor?highlight=9,21,25)]
+[!code-razor[](lifecycle/samples_snapshot/FetchData.razor?highlight=9,21,25)]
 
 ## Handle errors
 
@@ -270,11 +300,11 @@ Unsubscribe event handlers from .NET events. The following [Blazor form](xref:bl
 
 * Private field and lambda approach
 
-  [!code-razor[](lifecycle/samples_snapshot/3.x/event-handler-disposal-1.razor?highlight=23,28)]
+  [!code-razor[](lifecycle/samples_snapshot/event-handler-disposal-1.razor?highlight=23,28)]
 
 * Private method approach
 
-  [!code-razor[](lifecycle/samples_snapshot/3.x/event-handler-disposal-2.razor?highlight=16,26)]
+  [!code-razor[](lifecycle/samples_snapshot/event-handler-disposal-2.razor?highlight=16,26)]
 
 ## Cancelable background work
 

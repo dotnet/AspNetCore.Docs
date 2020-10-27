@@ -26,8 +26,7 @@ namespace BlazorServerDbContextExample
             // register factory and configure the options
             #region snippet1
             services.AddDbContextFactory<ContactContext>(opt =>
-                opt.UseSqlite($"Data Source={nameof(ContactContext.ContactsDb)}.db")
-                .EnableSensitiveDataLogging());
+                opt.UseSqlite($"Data Source={nameof(ContactContext.ContactsDb)}.db"));
             #endregion
 
             // pager

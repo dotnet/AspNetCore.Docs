@@ -5,7 +5,7 @@ description: Learn how to create gRPC services and methods.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.date: 08/25/2020
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: grpc/services
 ---
 # Create gRPC services and methods
@@ -71,7 +71,7 @@ By default the generated `GreeterBase` doesn't do anything. Its virtual `SayHell
 ```csharp
 public class GreeterService : GreeterBase
 {
-    public override Task<HelloReply> UnaryCall(HelloRequest request, ServerCallContext context)
+    public override Task<HelloReply> SayHello(HelloRequest request, ServerCallContext context)
     {
         return Task.FromResult(new HelloRequest { Message = $"Hello {request.Name}" });
     }

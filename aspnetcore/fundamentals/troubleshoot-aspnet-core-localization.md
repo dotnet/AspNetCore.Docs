@@ -4,7 +4,7 @@ author: hishamco
 description: Learn how to diagnose problems with localization in ASP.NET Core apps.
 ms.author: riande
 ms.date: 01/24/2019
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/troubleshoot-aspnet-core-localization
 ---
 # Troubleshoot ASP.NET Core Localization

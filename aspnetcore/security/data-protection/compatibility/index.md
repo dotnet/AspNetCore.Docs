@@ -4,7 +4,7 @@ author: rick-anderson
 description: This document serves as a table of contents for various ASP.NET Core data protection compatibility topics.
 ms.author: riande
 ms.date: 10/14/2016
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/data-protection/compatibility/index
 ---
 # Compatibility in ASP.NET Core

@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2020
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/servers/httpsys
 ---
 # HTTP.sys web server implementation in ASP.NET Core
@@ -255,6 +255,23 @@ In Visual Studio, the default launch profile is for IIS Express. To run the proj
 ## Proxy server and load balancer scenarios
 
 For apps hosted by HTTP.sys that interact with requests from the Internet or a corporate network, additional configuration might be required when hosting behind proxy servers and load balancers. For more information, see [Configure ASP.NET Core to work with proxy servers and load balancers](xref:host-and-deploy/proxy-load-balancer).
+
+## Advanced HTTP/2 features to support gRPC
+
+Additional HTTP/2 features in HTTP.sys support gRPC, including support for response trailers and sending reset frames.
+
+Requirements to run gRPC with HTTP.SYS:
+
+* Windows 10, OS Build 19041.508 or later
+* TLS 1.2 or later connection
+
+### Trailers
+
+[!INCLUDE[](~/includes/trailers.md)]
+
+### Reset
+
+[!INCLUDE[](~/includes/reset.md)]
 
 ## Additional resources
 

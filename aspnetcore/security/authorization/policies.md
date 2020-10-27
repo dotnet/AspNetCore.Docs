@@ -5,7 +5,7 @@ description: Learn how to create and use authorization policy handlers for enfor
 ms.author: riande
 ms.custom: mvc
 ms.date: 04/15/2020
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authorization/policies
 ---
 # Policy-based authorization in ASP.NET Core
@@ -20,7 +20,7 @@ An authorization policy consists of one or more requirements. It's registered as
 
 In the preceding example, an "AtLeast21" policy is created. It has a single requirement&mdash;that of a minimum age, which is supplied as a parameter to the requirement.
 
-## IAuthorizationService 
+## IAuthorizationService
 
 The primary service that determines if authorization is successful is <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService>:
 

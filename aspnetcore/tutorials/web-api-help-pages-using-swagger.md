@@ -5,7 +5,7 @@ description: This tutorial provides a walkthrough of adding Swagger to generate 
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 07/06/2020
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/web-api-help-pages-using-swagger
 ---
 # ASP.NET Core web API help pages with Swagger / OpenAPI

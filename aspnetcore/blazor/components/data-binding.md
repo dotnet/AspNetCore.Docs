@@ -5,8 +5,8 @@ description: Learn about data binding features for components and DOM elements i
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/19/2020
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+ms.date: 10/22/2020
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/components/data-binding
 ---
 # ASP.NET Core Blazor data binding
@@ -125,9 +125,15 @@ Specifying a format for the `date` field type isn't recommended because Blazor h
 <input type="date" @bind="startDate" @bind:format="yyyy-MM-dd">
 ```
 
-## Parent-to-child binding with component parameters
+## Binding with component parameters
+
+A common scenario is binding a property in a child component to a property in its parent. This scenario is called a *chained bind* because multiple levels of binding occur simultaneously.
 
 Component parameters permit binding properties and fields of a parent component with `@bind-{PROPERTY OR FIELD}` syntax.
+
+Chained binds can't be implemented with [`@bind`](xref:mvc/views/razor#bind) syntax in the child component. An event handler and value must be specified separately to support updating the property in the parent from the child component.
+
+The parent component still leverages the [`@bind`](xref:mvc/views/razor#bind) syntax to set up the data-binding with the child component.
 
 The following `Child` component (`Shared/Child.razor`) has a `Year` component parameter and `YearChanged` callback:
 
@@ -139,16 +145,25 @@ The following `Child` component (`Shared/Child.razor`) has a `Year` component pa
     </div>
 </div>
 
+<button @onclick="UpdateYearFromChild">Update Year from Child</button>
+
 @code {
+    private Random r = new Random();
+
     [Parameter]
     public int Year { get; set; }
 
     [Parameter]
     public EventCallback<int> YearChanged { get; set; }
+
+    private async Task UpdateYearFromChild()
+    {
+        await YearChanged.InvokeAsync(r.Next(1950, 2021));
+    }
 }
 ```
 
-The callback (<xref:Microsoft.AspNetCore.Components.EventCallback%601>) must be named as the component parameter name followed by the "`Changed`" suffix (`{PARAMETER NAME}Changed`). In the preceding example, the callback is named `YearChanged`. For more information on <xref:Microsoft.AspNetCore.Components.EventCallback%601>, see <xref:blazor/components/event-handling#eventcallback>.
+The callback (<xref:Microsoft.AspNetCore.Components.EventCallback%601>) must be named as the component parameter name followed by the "`Changed`" suffix (`{PARAMETER NAME}Changed`). In the preceding example, the callback is named `YearChanged`. <xref:Microsoft.AspNetCore.Components.EventCallback.InvokeAsync%2A?displayProperty=nameWithType> invokes the delegate associated with the binding with the provided argument and dispatches an event notification for the changed property.
 
 In the following `Parent` component (`Parent.razor`), the `year` field is bound to the `Year` parameter of the child component:
 
@@ -182,13 +197,7 @@ By convention, a property can be bound to a corresponding event handler by inclu
 <Child @bind-Year="year" @bind-Year:event="YearChanged" />
 ```
 
-## Child-to-parent binding with chained bind
-
-A common scenario is chaining a data-bound parameter to a page element in the component's output. This scenario is called a *chained bind* because multiple levels of binding occur simultaneously.
-
-A chained bind can't be implemented with [`@bind`](xref:mvc/views/razor#bind) syntax in the child component. The event handler and value must be specified separately. A parent component, however, can use [`@bind`](xref:mvc/views/razor#bind) syntax with the child component's parameter.
-
-The following `PasswordField` component (`PasswordField.razor`):
+In a more sophisticated and real-world example, the following `PasswordField` component (`PasswordField.razor`):
 
 * Sets an `<input>` element's value to a `password` field.
 * Exposes changes of a `Password` property to a parent component with an [`EventCallback`](xref:blazor/components/event-handling#eventcallback) that passes in the current value of the child's `password` field as its argument.
@@ -218,11 +227,11 @@ Password:
     [Parameter]
     public EventCallback<string> PasswordChanged { get; set; }
 
-    private Task OnPasswordChanged(ChangeEventArgs e)
+    private async Task OnPasswordChanged(ChangeEventArgs e)
     {
         password = e.Value.ToString();
 
-        return PasswordChanged.InvokeAsync(password);
+        await PasswordChanged.InvokeAsync(password);
     }
 
     private void ToggleShowPassword()
@@ -277,6 +286,8 @@ Password:
 
     private Task OnPasswordChanged(ChangeEventArgs e)
     {
+        password = e.Value.ToString();
+
         if (password.Contains(' '))
         {
             validationMessage = "Spaces not allowed!";
@@ -297,6 +308,8 @@ Password:
     }
 }
 ```
+
+For more information on <xref:Microsoft.AspNetCore.Components.EventCallback%601>, see <xref:blazor/components/event-handling#eventcallback>.
 
 ## Bind across more than two components
 
@@ -360,9 +373,9 @@ The following components demonstrate the preceding concepts:
         set => PropertyChanged.InvokeAsync(value);
     }
 
-    private Task ChangeValue()
+    private async Task ChangeValue()
     {
-        return PropertyChanged.InvokeAsync($"Set in Child {DateTime.Now}");
+        await PropertyChanged.InvokeAsync($"Set in Child {DateTime.Now}");
     }
 }
 ```
@@ -387,9 +400,9 @@ The following components demonstrate the preceding concepts:
     [Parameter]
     public EventCallback<string> PropertyChanged { get; set; }
 
-    private Task ChangeValue()
+    private async Task ChangeValue()
     {
-        return PropertyChanged.InvokeAsync($"Set in Grandchild {DateTime.Now}");
+        await PropertyChanged.InvokeAsync($"Set in Grandchild {DateTime.Now}");
     }
 }
 ```

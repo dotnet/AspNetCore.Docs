@@ -177,6 +177,9 @@
             - name: Deploy with GitHub Actions >>
               display: tutorial, kubernetes, aks, acr, docker, devops
               href: /learn/modules/microservices-devops-aspnet-core/
+            - name: Log and monitor >>
+              display: tutorial, kubernetes, aks, acr, docker, serilog
+              href: /learn/modules/microservices-logging-aspnet-core/
         - name: Data access >>
           displayName: tutorial, ef, entity framework
           href: /learn/modules/persist-data-ef-core/
@@ -354,20 +357,14 @@
                   href: blazor/forms-validation.md#built-in-forms-components
                 - name: InputTextArea
                   href: blazor/forms-validation.md#built-in-forms-components
-                - name: Link
-                  href: blazor/fundamentals/additional-scenarios.md#influence-html-head-tag-elements
                 - name: MainLayout
                   href: blazor/layouts.md#mainlayout-component
-                - name: Meta
-                  href: blazor/fundamentals/additional-scenarios.md#influence-html-head-tag-elements
                 - name: NavLink
                   href: blazor/fundamentals/routing.md#navlink-component
                 - name: NavMenu
                   href: blazor/fundamentals/routing.md#navlink-component
                 - name: Router
                   href: blazor/fundamentals/routing.md#route-templates
-                - name: Title
-                  href: blazor/fundamentals/additional-scenarios.md#influence-html-head-tag-elements
                 - name: Virtualize
                   uid: blazor/components/virtualization
             - name: Cascading values and parameters
@@ -382,6 +379,8 @@
               uid: blazor/components/virtualization
             - name: Templated components
               uid: blazor/components/templated-components
+            - name: CSS isolation
+              uid: blazor/components/css-isolation
             - name: Integrate components
               uid: blazor/components/integrate-components-into-razor-pages-and-mvc-apps
             - name: Component libraries
@@ -426,6 +425,8 @@
                   uid: blazor/security/webassembly/additional-scenarios
                 - name: AAD groups and roles
                   uid: blazor/security/webassembly/aad-groups-roles
+                - name: Graph API
+                  uid: blazor/security/webassembly/graph-api
             - name: Blazor Server
               items:
                 - name: Overview
@@ -444,7 +445,7 @@
           uid: blazor/webassembly-lazy-load-assemblies
         - name: WebAssembly performance
           uid: blazor/webassembly-performance-best-practices
-        - name: Test
+        - name: Test components
           uid: blazor/test
         - name: Progressive Web Applications
           uid: blazor/progressive-web-app
@@ -702,6 +703,9 @@
     - name: Logging and diagnostics
       displayName: signalr
       uid: signalr/diagnostics
+    - name: Troubleshooting
+      displayName: signalr
+      uid: signalr/troubleshoot
     - name: Specifications
       displayName: signalr, specs
       items:
@@ -918,21 +922,42 @@
         - name: ASP.NET Core Module
           displayName: deploy, publish
           uid: host-and-deploy/aspnet-core-module
+        - name: In-process hosting
+          displayName: deploy, publish
+          uid: host-and-deploy/iis/in-process-hosting
+        - name: Out-of-process hosting
+          displayName: deploy, publish
+          uid: host-and-deploy/iis/out-of-process-hosting
+        - name: Hosting Bundle
+          displayName: deploy, publish
+          uid: host-and-deploy/iis/hosting-bundle
+        - name: web.config file
+          displayName: deploy, publish
+          uid: host-and-deploy/iis/web-config
         - name: IIS support in Visual Studio
           displayName: deploy, publish
           uid: host-and-deploy/iis/development-time-iis-support
         - name: IIS Modules
           displayName: deploy, publish
           uid: host-and-deploy/iis/modules
+        - name: Logging and diagnostics
+          displayName: deploy, publish
+          uid: host-and-deploy/iis/logging-and-diagnostics
         - name: Troubleshoot
           displayName: deploy, publish
           uid: test/troubleshoot-azure-iis
         - name: Errors reference
           displayName: deploy, publish
           uid: host-and-deploy/azure-iis-errors-reference
+        - name: Advanced
+          displayName: deploy, publish
+          uid: host-and-deploy/iis/advanced
         - name: Transform web.config
           displayName: deploy, publish
           uid: host-and-deploy/iis/transform-webconfig
+        - name: HTTP/2
+          displayName: deploy, publish
+          uid: host-and-deploy/iis/protocols
     - name: Kestrel
       uid: fundamentals/servers/kestrel
       displayName: deploy, publish, server
@@ -1097,6 +1122,8 @@
           uid: security/authorization/policies
         - name: Authorization policy providers
           uid: security/authorization/iauthorizationpolicyprovider
+        - name: Customize the behavior of AuthorizationMiddleware
+          uid: security/authorization/authorizationmiddlewareresulthandler
         - name: Dependency injection in requirement handlers
           uid: security/authorization/dependencyinjection
         - name: Resource-based authorization

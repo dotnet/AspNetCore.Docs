@@ -4,7 +4,7 @@ author: rick-anderson
 description: 
 ms.author: riande
 ms.date: 12/07/2016
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: migration/http-modules
 ---
 # Migrate HTTP handlers and modules to ASP.NET Core middleware
@@ -340,7 +340,7 @@ Gives you a unique id for each request. Very useful to include in your logs.
 
 **HttpContext.Response.TransmitFile**
 
-Serving up a file is discussed [here](../fundamentals/request-features.md#middleware-and-request-features).
+Serving up a file is discussed in [Middleware and request features](xref:fundamentals/request-features#middleware-and-request-features).
 
 **HttpContext.Response.Headers**
 

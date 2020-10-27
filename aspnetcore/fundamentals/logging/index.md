@@ -5,7 +5,7 @@ description: Learn how to use the logging framework provided by the Microsoft.Ex
 ms.author: riande
 ms.custom: mvc
 ms.date: 6/29/2020
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/logging/index
 ---
 
@@ -18,6 +18,8 @@ By [Kirk Larkin](https://twitter.com/serpent5), [Juergen Gutsch](https://github.
 .NET Core supports a logging API that works with a variety of built-in and third-party logging providers. This article shows how to use the logging API with built-in providers.
 
 Most of the code examples shown in this article are from ASP.NET Core apps. The logging-specific parts of these code snippets apply to any .NET Core app that uses the [Generic Host](xref:fundamentals/host/generic-host). The ASP.NET Core web app templates use the Generic Host.
+
+This topic provides information on logging in ASP.NET Core. For information on logging in console apps, see [.NET Logging](/dotnet/core/extensions/logging).
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/logging/index/samples/3.x) ([how to download](xref:index#how-to-download-a-sample))
 
@@ -65,7 +67,7 @@ The following example:
 
 [Levels](#log-level) and [categories](#log-category) are explained in more detail later in this document.
 
-For information on Blazor, see [Create logs in Blazor and Blazor WebAssembly](#clib) in this document.
+For information on Blazor, see <xref:blazor/fundamentals/logging>.
 
 [Create logs in Main and Startup](#clms) shows how to create logs in `Main` and `Startup`.
 
@@ -315,18 +317,20 @@ Each log API uses a message template. The message template can contain placehold
 
 [!code-csharp[](index/samples/3.x/TodoApiDTO/Controllers/TodoItemsController.cs?name=snippet_CallLogMethods&highlight=4,10)]
 
-The order of placeholders, not their names, determines which parameters are used to provide their values. In the following code, the parameter names are out of sequence in the message template:
+The *order of the parameters*, not their placeholder names, determines which parameters are used to provide placeholder values in log messages. In the following code, the parameter names are out of sequence in the placeholders of the message template:
 
 ```csharp
-string p1 = "param1";
-string p2 = "param2";
-_logger.LogInformation("Parameter values: {p2}, {p1}", p1, p2);
+string apples = 1;
+string pears = 2;
+string bananas = 3;
+
+_logger.LogInformation("Parameters: {pears}, {bananas}, {apples}", apples, pears, bananas);
 ```
 
-The preceding code creates a log message with the parameter values in sequence:
+However, the parameters are assigned to the placeholders in the order: `apples`, `pears`, `bananas`. The log message reflects the *order of the parameters*:
 
 ```text
-Parameter values: param1, param2
+Parameters: 1, 2, 3
 ```
 
 This approach allows logging providers to implement [semantic or structured logging](https://github.com/NLog/NLog/wiki/How-to-use-structured-logging). The arguments themselves are passed to the logging system, not just the formatted message template. This enables logging providers to store the parameter values as fields. For example, consider the following logger method:

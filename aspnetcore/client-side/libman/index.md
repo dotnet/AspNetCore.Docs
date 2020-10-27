@@ -5,7 +5,7 @@ description: Learn how to install client-side library assets in an ASP.NET Core 
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 08/14/2018
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: client-side/libman/index
 ---
 # Client-side library acquisition in ASP.NET Core with LibMan
