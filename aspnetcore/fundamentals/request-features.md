@@ -5,7 +5,7 @@ description: Learn about web server implementation details related to HTTP reque
 ms.author: riande
 ms.custom: mvc
 ms.date: 10/20/2020
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/request-features
 ---
 # Request Features in ASP.NET Core

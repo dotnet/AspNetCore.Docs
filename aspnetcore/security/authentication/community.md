@@ -4,7 +4,7 @@ author: rick-anderson
 description: Discover open-source authentication options for ASP.NET Core.
 ms.author: riande
 ms.date: 10/28/2019
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/community
 ---
 # Community OSS authentication options for ASP.NET Core

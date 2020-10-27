@@ -4,7 +4,7 @@ author: ardalis
 description: Shows how to prevent open redirect attacks against an ASP.NET Core app
 ms.author: riande
 ms.date: 07/07/2017
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/preventing-open-redirects
 ---
 # Prevent open redirect attacks in ASP.NET Core

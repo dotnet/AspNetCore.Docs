@@ -4,7 +4,7 @@ author: rick-anderson
 description: Part 4 of tutorial series on Razor Pages.
 ms.author: riande
 ms.date: 7/22/2019
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/razor-pages/sql
 ---
 # Part 4, with a database and ASP.NET Core

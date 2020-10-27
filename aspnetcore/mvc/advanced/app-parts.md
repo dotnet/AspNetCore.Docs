@@ -4,7 +4,7 @@ author: rick-anderson
 description: Share controllers, view, Razor Pages and more with Application Parts in ASP.NET Core
 ms.author: riande
 ms.date: 11/11/2019
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/extensibility/app-parts
 ---
 
