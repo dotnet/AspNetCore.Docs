@@ -139,7 +139,7 @@ The placeholder `{STRING ARRAY OF SCOPES}` in the preceding code is a string arr
 Scopes = new[] { "https://graph.microsoft.com/User.Read" }
 ```
 
-In `Program.Main` (`Program.cs`), add the Graph client services and configuration with the `AddGraphClient` extension method. Provide a scope array for the app's required Graph API scopes:
+In `Program.Main` (`Program.cs`), add the Graph client services and configuration with the `AddGraphClient` extension method:
 
 ```csharp
 builder.Services.AddGraphClient({STRING ARRAY OF SCOPES});
