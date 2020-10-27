@@ -165,7 +165,7 @@ Catch-all route parameters, which capture paths across multiple folder boundarie
 
 ### Debugging improvements
 
-Debugging Blazor WebAssembly apps is improved in ASP.NET Core 5.0. Additiionally, debugging is now supported on Visual Studio for Mac. For more information, see <xref:blazor/debug>.
+Debugging Blazor WebAssembly apps is improved in ASP.NET Core 5.0. Additionally, debugging is now supported on Visual Studio for Mac. For more information, see <xref:blazor/debug>.
 
 ### Microsoft Identity v2.0 and MSAL v2.0
 
