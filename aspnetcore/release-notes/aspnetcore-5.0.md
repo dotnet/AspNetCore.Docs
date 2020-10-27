@@ -113,13 +113,9 @@ With OpenAPI enabled by default, the app launching experience (F5) for web API d
 
 ## Blazor
 
-### `JSObjectReference` replacement
-
-`JSObjectReference` has been made internal, and `IJSObjectReference` takes its place in the public API. For more information, see the [official announcement (aspnet/Announcements #435)](https://github.com/aspnet/Announcements/issues/435) and <xref:blazor/call-javascript-from-dotnet?view=aspnetcore-5.0#blazor-javascript-isolation-and-object-references>.
-
 ### CSS isolation
 
-Blazor now supports defining CSS styles that are scoped to a given component. Component specific CSS styles make it easier to reason about the styles in an app and to avoid unintentional side effects from global styles. <!-- UNCOMMENT CROSS-LINK AFTER https://github.com/dotnet/AspNetCore.Docs/pull/19956 MERGES: For more information, see <xref:blazor/components/css-isolation>.-->
+Blazor now supports defining CSS styles that are scoped to a given component. Component specific CSS styles make it easier to reason about the styles in an app and to avoid unintentional side effects from global styles. For more information, see <xref:blazor/components/css-isolation>.
 
 ### New `InputFile` component
 
@@ -131,7 +127,7 @@ Blazor has built-in `InputRadio` and `InputRadioGroup` components that simplify 
 
 ### Component virtualization
 
-Improve the perceived performance of component rendering using the Blazor framework's built-in virtualization support. For more information, see <xref:blazor/components/virtualization>.
+Improve the perceived performance of component rendering using the Blazor framework's built-in virtualization support. For more information, see <xref:blazor/forms-validation#radio-buttons>.
 
 ### `ontoggle` event support
 
@@ -139,8 +135,7 @@ Blazor events now support the `ontoggle` DOM event. For more information, see <x
 
 ### Set UI focus in Blazor apps
 
-Use the `FocusAsync` convenience method on element references for setting the UI focus on that element.
-<!-- UNCOMMENT CROSS-LINK WHEN https://github.com/dotnet/AspNetCore.Docs/issues/20232 IS WORKED. For more information, see <xref:blazor/components/event-handling#{ADD BOOKMARK}>.-->
+Use the `FocusAsync` convenience method on element references to set the UI focus to that element. For more information, see <xref:blazor/components/event-handling#focus-an-element>.
 
 ### Custom validation class attributes
 
@@ -153,10 +148,6 @@ Blazor components now support the <xref:System.IAsyncDisposable> interface for t
 ### JavaScript isolation and object references
 
 Blazor enables JavaScript isolation in standard [JavaScript modules](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules). For more information, see <xref:blazor/call-javascript-from-dotnet#blazor-javascript-isolation-and-object-references>.
-
-### Influence the HTML head in Blazor apps
-
-Use the new `Title`, `Link`, and `Meta` components to programmatically set the title of a page and dynamically add links and meta tags to the HTML head in a Blazor app. For more information, see <xref:blazor/fundamentals/additional-scenarios#influence-html-head-tag-elements>.
 
 ### Form components support display name
 
