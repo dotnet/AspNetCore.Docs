@@ -119,7 +119,7 @@ Blazor now supports defining CSS styles that are scoped to a given component. Co
 
 ### New `InputFile` component
 
-The `InputFile` component allows reading one or more files selected by a user to be upload. For more information, see <xref:blazor/file-uploads>.
+The `InputFile` component allows reading one or more files selected by a user for upload. For more information, see <xref:blazor/file-uploads>.
 
 ### New `InputRadio` and `InputRadioGroup` components
 
@@ -179,9 +179,7 @@ Blazor security now uses Microsoft Identity v2.0 ([`Microsoft.Identity.Web`](htt
 
 ### Component integration across hosting models
 
-Component integration is improved across hosting models.
-
-For more information, see <xref:blazor/components/integrate-components-into-razor-pages-and-mvc-apps>.
+Component integration is improved across hosting models. For more information, see <xref:blazor/components/integrate-components-into-razor-pages-and-mvc-apps>.
 
 -->
 
@@ -195,7 +193,7 @@ Blazor WebAssembly apps target the full .NET API surface area, but not all .NET 
 
 ### Lazy load assemblies
 
-Blazor WebAssembly app startup performance can be improved by deferring the loading of some application assemblies until they are required. For more information, see <xref:blazor/webassembly-lazy-load-assemblies>.
+Blazor WebAssembly app startup performance can be improved by deferring the loading of some application assemblies until they're required. For more information, see <xref:blazor/webassembly-lazy-load-assemblies>.
 
 ### Updated globalization support
 
