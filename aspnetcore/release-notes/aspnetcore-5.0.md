@@ -246,10 +246,10 @@ See [Update SignalR code](xref:migration/31-to-50#signalr) for migration instruc
 
 ## Kestrel
 
-* Reloadable endpoints via configuration: Kestrel can detect changes to configuration passed to [KestrelServerOptions.Configure](xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Configure%2A) and unbind from existing endpoints and bind to new endpoints without requiring an application restart.
+* Reloadable endpoints via configuration: Kestrel can detect changes to configuration passed to [KestrelServerOptions.Configure](xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Configure%2A) and unbind from existing endpoints and bind to new endpoints without requiring an application restart. By default when using <xref:Microsoft.Extensions.Hosting.GenericHostBuilderExtensions.ConfigureWebHostDefaults%2A> or <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder%2A>, Kestrel binds to the "Kestrel" configuration subsection.
 * HTTP/2 response headers improvements. For more information, see [Performance improvements](#performance-improvements) in the next section.
 * Support for additional endpoints types in the sockets transport: Adding to the new API introduced in <xref:System.Net.Sockets?displayProperty=nameWithType>, the sockets default transport in [Kestrel](xref:fundamentals/servers/kestrel) allows binding to both existing file handles and Unix domain sockets. Support for binding to existing file handles enables using the existing `Systemd` integration without requiring the `libuv` transport.
-* Custom header decoding in Kestrel: Apps can specify which <xref:System.Text.Encoding> to use to interpret incoming headers based on the header name instead of defaulting to `UTF-8`. Set the <xref:System.Net.Http.SocketsHttpHandler.RequestHeaderEncodingSelector> property on <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions> to specify which encoding to use:
+* Custom header decoding in Kestrel: Apps can specify which <xref:System.Text.Encoding> to use to interpret incoming headers based on the header name instead of defaulting to `UTF-8`. Set the <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions.RequestHeaderEncodingSelector> property to specify which encoding to use:
  
   ```csharp
   public static IHostBuilder CreateHostBuilder(string[] args) =>
