@@ -189,7 +189,7 @@ protected override bool ShouldRender()
 
 Even if <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> is overridden, the component is always initially rendered.
 
-For more information, see <xref:blazor/webassembly-performance-best-practices#avoid-unnecessary-component-renders>.
+For more information, see <xref:blazor/webassembly-performance-best-practices#avoid-unnecessary-rendering-of-component-subtrees>.
 
 ## State changes
 
