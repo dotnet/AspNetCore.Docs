@@ -5,7 +5,7 @@ description: Learn how to call an ASP.NET Core web API with JavaScript.
 ms.author: riande
 ms.custom: mvc, devx-track-js
 ms.date: 11/26/2019
-no-loc: [appsettings.json,"ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/web-api-javascript
 ---
 # Tutorial: Call an ASP.NET Core web API with JavaScript
