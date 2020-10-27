@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn about the new features in ASP.NET Core 5.0.
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/05/2019
+ms.date: 10/27/2020
 no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: aspnetcore-5.0
 ---
@@ -53,11 +53,11 @@ Age: <input asp-for="Model.Age" />
 
 ### Improvements to DynamicRouteValueTransformer
 
-ASP.NET Core 3.1 introduced <xref:Microsoft.AspNetCore.Mvc.Routing.DynamicRouteValueTransformer> as a way to use use a custom endpoint to dynamically select an MVC controller action or a Razor page. ASP.NET Core 5.0 apps can pass state to a `DynamicRouteValueTransformer` and filter the set of endpoints chosen.
+ASP.NET Core 3.1 introduced <xref:Microsoft.AspNetCore.Mvc.Routing.DynamicRouteValueTransformer> as a way to use custom endpoint to dynamically select an MVC controller action or a Razor page. ASP.NET Core 5.0 apps can pass state to a `DynamicRouteValueTransformer` and filter the set of endpoints chosen.
 
 ### Miscellaneous
 
-* The <xref:System.ComponentModel.DataAnnotations.CompareAttribute> can be applied to properties on Razor Page model.
+* The [[Compare]](xref:System.ComponentModel.DataAnnotations.CompareAttribute) attribute can be applied to properties on a Razor Page model.
 * Parameters and properties bound from the body are considered required by default. <!-- Review: How is this different from 3.1
 The validation system in .NET Core 3.0 and later treats non-nullable parameters or bound properties as if they had a [Required] attribute.
 see https://docs.microsoft.com/aspnet/core/mvc/models/validation?view=aspnetcore-3.1   
@@ -67,14 +67,14 @@ see https://docs.microsoft.com/aspnet/core/mvc/models/validation?view=aspnetcore
 
 ### OpenAPI Specification on by default
 
-[OpenAPI Specification](http://spec.openapis.org/oas/v3.0.3) is a industry adopted convention for describing HTTP APIs and integrating them into complex business processes or with 3rd parties. OpenAPI is widely supported by all cloud providers and many API registries. Apps that emit OpenAPI documents from Web APIs have a variety of new opportunities in which those APIs can be used. In partnership with the maintainers of the open-source project [Swashbuckle.AspNetCore](https://www.nuget.org/packages/Swashbuckle.AspNetCore/), the ASP.NET Core API template contains a NuGet dependency on [Swashbuckle](https://github.com/domaindrivendev/Swashbuckle.AspNetCore), a popular open-source NuGet package that emits OpenAPI documents dynamically. Swashbuckle does this by introspecting over the API Controllers and generating the OpenAPI document at run-time, or at build time using the Swashbuckle CLI.
+[OpenAPI Specification](http://spec.openapis.org/oas/v3.0.3) is an industry standard for describing HTTP APIs and integrating them into complex business processes or with third parties. OpenAPI is widely supported by all cloud providers and many API registries. Apps that emit OpenAPI documents from web APIs have a variety of new opportunities in which those APIs can be used. In partnership with the maintainers of the open-source project [Swashbuckle.AspNetCore](https://www.nuget.org/packages/Swashbuckle.AspNetCore/), the ASP.NET Core API template contains a NuGet dependency on [Swashbuckle](https://github.com/domaindrivendev/Swashbuckle.AspNetCore). Swashbuckle is a popular open-source NuGet package that emits OpenAPI documents dynamically. Swashbuckle does this by introspecting over the API controllers and generating the OpenAPI document at run-time, or at build time using the Swashbuckle CLI.
 
 In ASP.NET Core 5.0, the web API templates enable the OpenAPI support by default. To disable OpenAPI:
 
 * From the command line:
 
 	```dotnetcli
-	dotnet new webapi --no-openapi true`
+	dotnet new webapi --no-openapi true
 	```
 * From Visual Studio: Uncheck **Enable OpenAPI support**.
 
@@ -90,7 +90,7 @@ The template generated code contains code in `Startup.ConfigureServices` that ac
 
 [!code-csharp[](~/release-notes/sample/StartupSwagger.cs?name=snippet)]
 
-The `Configure` method adds the Swashbuckle middleware, which enables the:
+The `Startup.Configure` method adds the Swashbuckle middleware, which enables the:
 
 * Document generation process.
 * Swagger UI page by default in development mode.
@@ -105,9 +105,9 @@ When ASP.NET Core API projects enable OpenAPI, the Visual Studio 2019 version 16
 
 ![Azure API Management Import VS publishing](~/release-notes/static/publish-to-apim.png)
 
-### Better launch Experience for Web API Projects
+### Better launch experience for web API projects
 
-With OpenAPI enabled by default, the app launching experience (F5) for Web API developers significantly improves. With .NET, the Web API template comes pre-configured to load up the Swagger UI page. The Swagger UI page provides both the documentation added for the published API, and enables testing the APIs with a single click.
+With OpenAPI enabled by default, the app launching experience (F5) for web API developers significantly improves. With .NET, the web API template comes pre-configured to load up the Swagger UI page. The Swagger UI page provides both the documentation added for the published API, and enables testing the APIs with a single click.
 
 ![swagger/index.html view](~/release-notes/static/swagger-ui-page-rc1.png)
 
@@ -123,7 +123,7 @@ Blazor now supports defining CSS styles that are scoped to a given component. Co
 
 ### New `InputFile` component
 
-The InputFile component allows reading one or more files selected by a user to be upload. For more information, see <xref:blazor/file-uploads>. For more information, see <xref:blazor/file-uploads>.
+The `InputFile` component allows reading one or more files selected by a user to be upload. For more information, see <xref:blazor/file-uploads>.
 
 ### New `InputRadio` and `InputRadioGroup` components
 
@@ -160,11 +160,11 @@ Use the new `Title`, `Link`, and `Meta` components to programmatically set the t
 
 ### Form components support display name
 
-The following built-in components support display names with the DisplayName parameter:
+The following built-in components support display names with the `DisplayName` parameter:
 
-* InputDate
-* InputNumber
-* InputSelect
+* `InputDate`
+* `InputNumber`
+* `InputSelect`
 
 For more information, see <xref:blazor/forms-validation#display-name-support>.
 
@@ -231,8 +231,7 @@ ASP.NET Core SignalR is now capable of handling parallel hub invocations. The de
 
 ### Added Messagepack support in SignalR Java client
 
-<!-- Review: I can't find NuGet com.microsoft.signalr.messagepack  -->
-A new package, `com.microsoft.signalr.messagepack`, adds MessagePack support to the SignalR Java client. To use the MessagePack hub protocol, add `.withHubProtocol(new MessagePackHubProtocol())` to the connection builder:
+A new package, [com.microsoft.signalr.messagepack](https://search.maven.org/search?q=g:com.microsoft.signalr.messagepack), adds MessagePack support to the SignalR Java client. To use the MessagePack hub protocol, add `.withHubProtocol(new MessagePackHubProtocol())` to the connection builder:
 
 ```java
 HubConnection hubConnection = HubConnectionBuilder.create(
@@ -261,13 +260,11 @@ See [Update SignalR code](xref:migration/31-to-50#signalr) for migration instruc
             {
                 options.RequestHeaderEncodingSelector = encoding =>
                 {
-                    switch (encoding)
-                    {
-                        case "Host":
-                            return System.Text.Encoding.Latin1;
-                        default:
-                            return System.Text.Encoding.UTF8;
-                    }
+                          return encoding switch
+                          {
+                              "Host" => System.Text.Encoding.Latin1,
+                              _ => System.Text.Encoding.UTF8,
+                          };
                 };
             });
             webBuilder.UseStartup<Startup>();
@@ -278,12 +275,12 @@ See [Update SignalR code](xref:migration/31-to-50#signalr) for migration instruc
 
 Support has been added for configuring Kestrel’s endpoint-specific options via [configuration](xref:fundamentals/configuration/index). The endpoint-specific configurations includes the:
 
-* Http protocols used
+* HTTP protocols used
 * TLS protocols used
 * Certificate selected
 * Cient certificate mode
 
-Configuration allows specifying which certificate is selected based on the specified server name. The server name is part of the Server Name Indication (SNI) extension to the TLS protocol as indicated by the client. Kestrel’s configuration also supports a wildcard prefix in the host name.
+Configuration allows specifying which certificate is selected based on the specified server name. The server name is part of the Server Name Indication (SNI) extension to the TLS protocol as indicated by the client. Kestrel's configuration also supports a wildcard prefix in the host name.
 
 The following example shows how to specify endpoint-specific using a configuration file:
 
@@ -320,7 +317,6 @@ The following example shows how to specify endpoint-specific using a configurati
     }
   }
 }
-
 ```
 
 Server Name Indication (SNI) is a TLS extension to include a virtual domain as a part of SSL negotiation. What this effectively means is that the virtual domain name, or a hostname, can be used to identify the network end point.
