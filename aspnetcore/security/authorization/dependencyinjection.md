@@ -11,11 +11,11 @@ uid: security/authorization/dependencyinjection
 
 <a name="security-authorization-di"></a>
 
-[Authorization handlers must be registered](xref:security/authorization/policies#handler-registration) in the service collection during configuration (using [dependency injection](xref:fundamentals/dependency-injection)).
+[Authorization handlers must be registered](xref:security/authorization/policies#handler-registration) in the service collection during configuration using [dependency injection](xref:fundamentals/dependency-injection).
 
-Suppose you had a repository of rules you wanted to evaluate inside an authorization handler and that repository was registered in the service collection. Authorization will resolve and inject that into your constructor.
+Suppose you had a repository of rules you wanted to evaluate inside an authorization handler and that repository was registered in the service collection. Authorization resolves and injects that into the constructor.
 
-For example, if you wanted to use ASP.NET's logging infrastructure you would want to inject `ILoggerFactory` into your handler. Such a handler might look like:
+For example, to use ASP.NET's logging infrastructure, inject `ILoggerFactory` into the handler. Such a handler might look like the following code:
 
 ```csharp
 public class LoggingAuthorizationHandler : AuthorizationHandler<MyRequirement>
@@ -36,13 +36,13 @@ public class LoggingAuthorizationHandler : AuthorizationHandler<MyRequirement>
    }
    ```
 
-You would register the handler with `services.AddSingleton()`:
+The preceding handler can be registered with any [service lifetime](/dotnet/core/extensions/dependency-injection#service-lifetimes). The following code uses `AddSingleton` to register the preceding handler:
 
 ```csharp
 services.AddSingleton<IAuthorizationHandler, LoggingAuthorizationHandler>();
 ```
 
-An instance of the handler will be created when your application starts, and DI will inject the registered `ILoggerFactory` into your constructor.
+An instance of the handler is created when the app starts, and DI injects the registered `ILoggerFactory` into the constructor.
 
 > [!NOTE]
 > Handlers that use Entity Framework shouldn't be registered as singletons.
