@@ -231,7 +231,7 @@ ASP.NET Core SignalR is now capable of handling parallel hub invocations. The de
 
 ### Added Messagepack support in SignalR Java client
 
-A new package, [com.microsoft.signalr.messagepack](https://search.maven.org/search?q=g:com.microsoft.signalr.messagepack), adds MessagePack support to the SignalR Java client. To use the MessagePack hub protocol, add `.withHubProtocol(new MessagePackHubProtocol())` to the connection builder:
+A new package, [com.microsoft.signalr.messagepack](https://mvnrepository.com/artifact/com.microsoft.signalr.messagepack), adds MessagePack support to the SignalR Java client. To use the MessagePack hub protocol, add `.withHubProtocol(new MessagePackHubProtocol())` to the connection builder:
 
 ```java
 HubConnection hubConnection = HubConnectionBuilder.create(
