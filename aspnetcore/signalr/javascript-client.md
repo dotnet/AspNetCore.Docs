@@ -4,7 +4,7 @@ author: bradygaster
 description: Overview of ASP.NET Core SignalR JavaScript client.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
-ms.custom: mvc
+ms.custom: mvc, devx-track-js
 ms.date: 04/08/2020
 no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: signalr/javascript-client
