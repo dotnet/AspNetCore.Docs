@@ -329,7 +329,7 @@ The `RazorPagesMovieContext` coordinates EF Core functionality (Create, Read, Up
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie50/Data/RazorPagesMovieContext.cs)]
 
-The preceding code creates a [DbSet\<Movie>](xref:Microsoft.EntityFrameworkCore.DbSet) property for the entity set. In Entity Framework terminology, an entity set typically corresponds to a database table. An entity corresponds to a row in the table.
+The preceding code creates a [DbSet\<Movie>]<xref:Microsoft.EntityFrameworkCore.DbSet%601> property for the entity set. In Entity Framework terminology, an entity set typically corresponds to a database table. An entity corresponds to a row in the table.
 
 The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](xref:Microsoft.EntityFrameworkCore.DbContextOptions) object. For local development, the [Configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.
 
@@ -876,12 +876,12 @@ Add the following properties to the `Movie` class:
 The `Movie` class contains:
 
 * The `ID` field is required by the database for the primary key.
-* `[DataType(DataType.Date)]`:  The [DataType](xref:System.ComponentModel.DataAnnotations.DataTypeAttribute) attribute specifies the type of the data (`Date`). With this attribute:
+* `[DataType(DataType.Date)]`:  The <xref:System.ComponentModel.DataAnnotations?displayProperty=nameWithType> attribute specifies the type of the data (`Date`). With this attribute:
 
   * The user is not required to enter time information in the date field.
   * Only the date is displayed, not time information.
 
-[DataAnnotations](xref:System.ComponentModel.DataAnnotationsdataannotations) are covered in a later tutorial.
+[DataAnnotations]<xref:System.ComponentModel.DataAnnotations> are covered in a later tutorial.
 
 ---
 

@@ -36,8 +36,8 @@ Examine the *Pages/Movies/Index.cshtml.cs* Page Model:
 
 The scaffolded pages follow this pattern:
 * Razor Pages are derived from `PageModel`. 
-* By convention, the `PageModel`-derived class is named `<PageName>Model`. 
-* The constructor uses [dependency injection](xref:fundamentals/dependency-injection) to add the `RazorPagesMovieContext` to the page. 
+* By convention, the `PageModel`-derived class is named `<PageName>Model`.
+* The constructor uses [dependency injection](xref:fundamentals/dependency-injection) to add the `RazorPagesMovieContext` to the page.
 
 See [Asynchronous code](xref:data/ef-rp/intro#asynchronous-code) for more information on asynchronous programming with Entity Framework.
 
@@ -93,7 +93,7 @@ Find the `@RenderBody()` line. `RenderBody` is a placeholder where all the page-
 
 Consider the following markup from the *Pages/Movies/Index.cshtml* file:
 
-[!code-cshtml[](razor-pages-start/snapshot_sample3/RazorPagesMovie50/Pages/Movies/Index.cshtml?range=1-6&highlight=4-999)]
+[!code-cshtml[](razor-pages-start/snapshot_sample3/RazorPagesMovie30/Pages/Movies/Index.cshtml?range=1-6&highlight=4-999)]
 
 The preceding highlighted markup is an example of Razor transitioning into C#. The `{` and `}` characters enclose a block of C# code.
 
