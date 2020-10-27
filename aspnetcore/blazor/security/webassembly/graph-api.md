@@ -5,7 +5,7 @@ description: Learn how to use Graph API with Blazor WebAssemlby apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/15/2020
+ms.date: 10/27/2020
 no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/security/webassembly/graph-api
 ---
@@ -31,10 +31,10 @@ The following utility classes and configuration are used in each of the followin
 * [Call Graph API from a component using the Graph SDK](#call-graph-api-from-a-component-using-the-graph-sdk)
 * [Customize user claims with the Graph SDK](#customize-user-claims-with-the-graph-sdk)
 
-After adding the Microsoft Graph API permissions (scopes) in the AAD area of the Azure portal:
+After adding the Microsoft Graph API scopes in the AAD area of the Azure portal:
 
 * Add the following `GraphClientExtensions.cs` class to the standalone app or *`Client`* app of a hosted Blazor solution.
-* Provide the required scopes to the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccessTokenRequestOptions.Scopes> property of the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccessTokenRequestOptions> in the `AuthenticateRequestAsync` method. The `User.Read` permission (scope) is specified in the following example for use by the examples in the following sections of this article.
+* Provide the required scopes to the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccessTokenRequestOptions.Scopes> property of the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccessTokenRequestOptions> in the `AuthenticateRequestAsync` method. In the following example, the `User.Read` scope is specified to match the examples in later sections of this article.
 
 ```csharp
 using System;
@@ -133,7 +133,15 @@ internal static class GraphClientExtensions
 }
 ```
 
-In `Program.Main` (`Program.cs`), add the graph client services and configuration with the `AddGraphClient` extension method. Provide a scope array for the app's required Graph API permissions (scopes). The following example specifies the `User.Read` permission (scope) for the examples in the following sections of this article. Additional permissions (scopes) can be added as required by the app.
+In `Program.Main` (`Program.cs`), add the Graph client services and configuration with the `AddGraphClient` extension method. Provide a scope array for the app's required Graph API scopes:
+
+```csharp
+builder.Services.AddGraphClient({STRING ARRAY OF SCOPES});
+```
+
+The placeholder `{STRING ARRAY OF SCOPES}` in the preceding code is a string array of the permitted scopes.
+
+The following example specifies the `User.Read` scope for the examples in the following sections of this article. Additional scopes can be added as required by the app.
 
 ```csharp
 builder.Services.AddGraphClient("https://graph.microsoft.com/User.Read");
@@ -172,7 +180,7 @@ This section uses the [utility classes (`GraphClientExtensions.cs`)](#graph-sdk)
 
 This section uses the [utility classes (`GraphClientExtensions.cs`)](#graph-sdk) described earlier in this article.
 
-In the following example, the app creates a mobile phone number claim for a user from their AAD user profile's mobile phone number. The app must have the `User.Read` Graph API permission (scope) configured in AAD.
+In the following example, the app creates a mobile phone number claim for a user from their AAD user profile's mobile phone number. The app must have the `User.Read` Graph API scope configured in AAD.
 
 In the following custom user account factory, the framework's <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount> represents the user's account. If the app requires a custom user account class that extends <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount>, swap the custom user account class for <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount> in the following code.
 
@@ -271,7 +279,7 @@ Create the following class and project configuration for working with Graph API.
 * [Call Graph API from a component](#call-graph-api-from-a-component)
 * [Customize user claims with Graph API and a named client](#customize-user-claims-with-graph-api-and-a-named-client)
 
-After adding the Microsoft Graph API permissions (scopes) in the AAD area of the Azure portal, provide the required permissions (scopes) to the app's configured handler for Graph API. The following example configures the handler for the `User.Read` permission (scope). Additional permissions (scopes) can be added.
+After adding the Microsoft Graph API scopes in the AAD area of the Azure portal, provide the required scopes to the app's configured handler for Graph API. The following example configures the handler for the `User.Read` scope. Additional scopes can be added.
 
 `GraphAuthorizationMessageHandler.cs`:
 
@@ -401,7 +409,7 @@ In a Razor component:
 
 This section uses the [Graph Authorization Message Handler (`GraphAuthorizationMessageHandler.cs`) and `Program.Main` additions to the app](#named-client-with-graph-api) described earlier in this article, which provides a named <xref:System.Net.Http.HttpClient> for Graph API.
 
-In the following example, the app creates a mobile phone number claim for the user from their AAD user profile's mobile phone number. The app must have the `User.Read` Graph API permission (scope) configured in AAD.
+In the following example, the app creates a mobile phone number claim for the user from their AAD user profile's mobile phone number. The app must have the `User.Read` Graph API scope configured in AAD.
 
 Add a `UserInfo.cs` class to the app and designate the required user profile properties with the <xref:System.Text.Json.Serialization.JsonPropertyNameAttribute> attribute and the JSON name used by AAD for those properties:
 

@@ -29,17 +29,17 @@ The guidance in this article applies to the Blazor WebAssembly AAD deployment sc
 * [Standalone with AAD](xref:blazor/security/webassembly/standalone-with-azure-active-directory)
 * [Hosted with AAD](xref:blazor/security/webassembly/hosted-with-azure-active-directory)
 
-## Microsoft Graph API permission
+## Scopes
 
 A [Microsoft Graph API](/graph/use-the-api) call is required for any app user with more than five AAD Administrator role and security group memberships.
 
-To permit Graph API calls, give the standalone or *`Client`* app of a hosted Blazor solution any of the following [Graph API permissions](/graph/permissions-reference) in the Azure portal:
+To permit Graph API calls, give the standalone or *`Client`* app of a hosted Blazor solution any of the following [Graph API permissions (scopes)](/graph/permissions-reference) in the Azure portal:
 
 * `Directory.Read.All`
 * `Directory.ReadWrite.All`
 * `Directory.AccessAsUser.All`
 
-`Directory.Read.All` is the least-privileged permission and is the permission used for the example described in this article.
+`Directory.Read.All` is the least-privileged scope and is the scope used for the example described in this article.
 
 ## User-defined groups and Administrator Roles
 
@@ -74,7 +74,7 @@ public class CustomUserAccount : RemoteUserAccount
 
 ::: moniker range=">= aspnetcore-5.0"
 
-Use **either** of the following approaches to create claims for AAD groups and roles, which are detailed in the following sections:
+Use **either** of the following approaches to create claims for AAD groups and roles:
 
 * [Use the Graph SDK](#use-the-graph-sdk)
 * [Use a named `HttpClient`](#use-a-named-httpclient)
@@ -83,7 +83,7 @@ Use **either** of the following approaches to create claims for AAD groups and r
 
 Add a package reference to the standalone app or *`Client`* app of a hosted Blazor solution for [`Microsoft.Graph`](https://www.nuget.org/packages/Microsoft.Graph).
 
-Add the Graph SDK utility classes and configuration shown in the <xref:blazor/security/webassembly/graph-api#graph-sdk> article.
+Add the Graph SDK utility classes and configuration in the *Graph SDK* section of the <xref:blazor/security/webassembly/graph-api#graph-sdk> article.
 
 Add the following custom user account factory to the standalone appo or *`Client`* app of a hosted Blazor solution (`CustomAccountFactory.cs`). The custom user factory is used to process roles and groups claims. The `roles` claim array is covered in the [User-defined roles](#user-defined-roles) section. If the `hasgroups` claim is present, the Graph SDK is used to make an authorized request to Graph API to obtain the user's roles and groups:
 
@@ -150,12 +150,6 @@ public class CustomAccountFactory
                 catch (ServiceException serviceException)
                 {
                     // Optional: Log the error
-
-#if DEBUG
-                    Console.WriteLine(
-                        "OnTokenValidated: Service Exception: " +
-                        $"{serviceException.Message}");
-#endif
                 }
 
                 if (groupsAndAzureRoles != null)
@@ -185,32 +179,10 @@ public class CustomAccountFactory
 }
 ```
 
-The preceding code doesn't obtain transitive memberships. If the app requires direct and transitive group membership claims, change the code:
+The preceding code doesn't include transitive memberships. If the app requires direct and transitive group membership claims:
 
-* For the code line:
-
-  ```csharp
-  IUserMemberOfCollectionWithReferencesPage groupsAndAzureRoles = null;
-  ```
-
-  Replace the preceding line with:
-
-  ```csharp
-  IUserTransitiveMemberOfCollectionWithReferencesPage groupsAndAzureRoles = null;
-  ```
-
-* For the code line:
-
-  ```csharp
-  groupsAndAzureRoles = await graphClient.Users[oid].MemberOf.Request().GetAsync();
-  ```
-
-  Replace the preceding line with:
-
-  ```csharp
-  groupsAndAzureRoles = await graphClient.Users[oid].TransitiveMemberOf.Request()
-      .GetAsync();
-  ```
+* Change the `IUserMemberOfCollectionWithReferencesPage` type for `groupsAndAzureRoles` to `IUserTransitiveMemberOfCollectionWithReferencesPage`.
+* When requesting the user's groups and roles, replace the `MemberOf` property with `TransitiveMemberOf`.
 
 In `Program.Main` (`Program.cs`), configure the MSAL authentication to use the custom user account factory: If the app uses a custom user account class that extends <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount>, swap the custom user account class for <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount> in the following code:
 
@@ -238,7 +210,7 @@ builder.Services.AddMsalAuthentication<RemoteAuthenticationState,
 
 ::: moniker-end
 
-In the standalone app or the *`Client`* app of a hosted Blazor solution, create a custom <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler> class. Use the correct scope (permission) for Graph API calls that obtain role and group information.
+In the standalone app or the *`Client`* app of a hosted Blazor solution, create a custom <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler> class. Use the correct scope for Graph API calls that obtain role and group information.
 
 `GraphAPIAuthorizationMessageHandler.cs`:
 
@@ -400,7 +372,7 @@ There's no need to provide code to remove the original `groups` claim, if presen
 >
 > General coverage for this approach is found in the <xref:blazor/security/webassembly/additional-scenarios#custom-authorizationmessagehandler-class> article.
 
-Register the factory in `Program.Main` (`Program.cs`) of the standalone app or *`Client`* app of a hosted Blazor solution. Consent to the `Directory.Read.All` permission scope as an additional scope for the app:
+Register the factory in `Program.Main` (`Program.cs`) of the standalone app or *`Client`* app of a hosted Blazor solution. Consent to the `Directory.Read.All` scope as an additional scope for the app:
 
 ```csharp
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
@@ -522,11 +494,11 @@ The guidance in this section configures the server API app as a [*daemon app*](/
 * Require the the `access_as_user` scope.
 * Access Graph API on behalf of the user/client making the API request.
 
-The call to Graph API by the server API app only requires a server API app **Application** Graph API permission (scope) for `Directory.Read.All` in the Azure portal. This approach absolutely prevents the client app from accessing directory data that the server API doesn't explicitly permit. The client app is only able to access the server API app's controller endpoints.
+The call to Graph API by the server API app only requires a server API app **Application** Graph API scope for `Directory.Read.All` in the Azure portal. This approach absolutely prevents the client app from accessing directory data that the server API doesn't explicitly permit. The client app is only able to access the server API app's controller endpoints.
 
 ### Azure configuration
 
-* Confirm that the *Server* app registration is given **Application** (not **Delegated**) Graph API permission (scope) for `Directory.Read.All`, which is the least-privileged access level for security groups. Confirm that admin consent is applied to the permission after making the permission assignment.
+* Confirm that the *Server* app registration is given **Application** (not **Delegated**) Graph API scope for `Directory.Read.All`, which is the least-privileged access level for security groups. Confirm that admin consent is applied to the scope after making the scope assignment.
 * Assign a new client secret to the *Server* app. Note the secret for the app's configuration in the [App settings](#app-settings) section.
 
 ### App settings
@@ -558,7 +530,7 @@ For example:
 ::: moniker range=">= aspnetcore-5.0"
 
 > [!NOTE]
-> If the tenant publisher domain isn't verified, the server API scope for user/client access uses an `https://`-based URI. In this scenario, the server API app requires `Audience` configuration in the `appsettings.json` file:
+> If the tenant publisher domain isn't verified, the server API scope for user/client access uses an `https://`-based URI. In this scenario, the server API app requires `Audience` configuration in the `appsettings.json` file. In the following configuration, the end of the `Audience` value does **not** include the default scope `/{DEFAULT SCOPE}`, where the placeholder `{DEFAULT SCOPE}` is the default scope:
 >
 > ```json
 > {
@@ -569,7 +541,7 @@ For example:
 >   }
 > }
 >
-> In the preceding configuration, the end of the `Audience` value does **not** include the default scope `/{DEFAULT SCOPE}`.
+> In the preceding configuration, the placeholder `{TENANT}` is the app's tenant, and the placeholder `{SERVER API APP CLIENT ID OR CUSTOM VALUE}` is the server API app's `ClientId` or custom value provided in the Azure portal's app registration.
 >
 > Example:
 >
@@ -583,7 +555,13 @@ For example:
 > }
 > ```
 >
-> The preceding configuration usually is **not** required for app's with a verified publisher domain that has an `api://`-based API scope.
+> In the preceding example configuration:
+>
+> * The tenant domain is `contoso.onmicrosoft.com`.
+> * The server API app `ClientId` is `41451fa7-82d9-4673-8fa5-69eff5a761fd`.
+>
+> > [!NOTE]
+> > Configuring an `Audience` explicitly usually is **not** required for app's with a verified publisher domain that has an `api://`-based API scope.
 >
 > For more information, see <xref:blazor/security/webassembly/hosted-with-azure-active-directory#app-settings>.
 
@@ -632,25 +610,16 @@ Add package references to the *Server* app for the following packages:
 
 ### Services
 
-In the *Server* app's `Startup.ConfigureServices` method, additional namespaces are required for the code in the `Startup` class of the *Server* app. The following set of `using` statements includes the required namespaces for the code that follows in this section and the default namespaces required by a server API app created from the hosted Blazor project template:
+In the *Server* app's `Startup.ConfigureServices` method, additional namespaces are required for the code in the `Startup` class of the *Server* app. Add the following namespaces to `Startup.cs`:
 
 ```csharp
 using System;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Net.Http.Headers;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Graph;
 using Microsoft.Identity.Client;
-using Microsoft.Identity.Web;
 using Microsoft.IdentityModel.Logging;
 ```
 
@@ -731,11 +700,6 @@ services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 catch (ServiceException serviceException)
                 {
                     // Optional: Log the exception
-#if DEBUG
-                    Console.WriteLine(
-                        "OnTokenValidated: Service Exception: " +
-                        $"{serviceException.Message}");
-#endif
                 }
 
                 if (groupsAndAzureRoles != null)
@@ -759,8 +723,8 @@ options =>
 
 In the preceding code, handling the following token errors is optional:
 
-* `MsalUiRequiredException`: The app doesn't have sufficient permissions.
-  * Determine if the server API app permissions in the Azure portal include an **Application** permission for `Directory.Read.All`.
+* `MsalUiRequiredException`: The app doesn't have sufficient permissions (scopes).
+  * Determine if the server API app scopes in the Azure portal include an **Application** permission for `Directory.Read.All`.
   * Confirm that the tenant administrator has granted permissions to the app.
 * `MsalServiceException` (`AADSTS70011`): Confirm that the scope is `https://graph.microsoft.com/.default`.
 
@@ -828,16 +792,6 @@ services.Configure<JwtBearerOptions>(AzureADDefaults.JwtBearerAuthenticationSche
 {
     options.Events = new JwtBearerEvents()
     {
-        OnAuthenticationFailed = context =>
-        {
-            // Optional: Log the exception
-
-#if DEBUG
-            Console.WriteLine($"OnAuthenticationFailed: {context.Exception}");
-#endif
-
-            return Task.FromResult(0);
-        },
         OnTokenValidated = async context =>
         {
             var accessToken = context.SecurityToken as JwtSecurityToken;
@@ -897,12 +851,6 @@ services.Configure<JwtBearerOptions>(AzureADDefaults.JwtBearerAuthenticationSche
                 catch (ServiceException serviceException)
                 {
                     // Optional: Log the error
-
-#if DEBUG
-                    Console.WriteLine(
-                        "OnTokenValidated: Service Exception: " +
-                        $"{serviceException.Message}");
-#endif
                 }
 
                 if (groupsAndAzureRoles != null)
@@ -912,15 +860,6 @@ services.Configure<JwtBearerOptions>(AzureADDefaults.JwtBearerAuthenticationSche
                         userIdentity.AddClaim(new Claim("group", entry.Id));
                     }
                 }
-            }
-            else
-            {
-                // Optional: Log missing OID claim
-
-#if DEBUG
-                Console.WriteLine($"OnTokenValidated: OID missing: " +
-                    $"{accessToken.RawData}");
-#endif
             }
 
             await Task.FromResult(0);
