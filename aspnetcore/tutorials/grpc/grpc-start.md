@@ -47,7 +47,7 @@ In this tutorial, you:
 * Start Visual Studio and select **Create a new project**. Alternatively, from the Visual Studio **File** menu, select **New** > **Project**.
 * In the **Create a new project** dialog, select **gRPC Service** and select **Next**:
 
-  ![Create a new project dialog](~/tutorials/grpc/grpc-start/static/cnp.png)
+  ![Create a new project dialog in Visual Studio](~/tutorials/grpc/grpc-start/static/cnp.png)
 
 * Name the project **GrpcGreeter**. It's important to name the project *GrpcGreeter* so the namespaces match when you copy and paste code.
 * Select **Create**.
@@ -77,7 +77,7 @@ In this tutorial, you:
 * Start Visual Studio for Mac and select **Create a new project**. Alternatively, from the Visual Studio **File** menu, select **New** > **Project**.
 * In the **Create a new project** dialog, select **Web and Console** > **App** > **gRPC Service** and select **Next**:
 
-  ![Create a new project dialog](~/tutorials/grpc/grpc-start/static/cnp-mac.png)
+  ![Create a new project dialog on macOS](~/tutorials/grpc/grpc-start/static/cnp-mac.png)
 
 * Select **.NET Core 3.1** for the target framework and select **Next**.
 * Name the project **GrpcGreeter**. It's important to name the project *GrpcGreeter* so the namespaces match when you copy and paste code.
