@@ -113,6 +113,10 @@ With OpenAPI enabled by default, the app launching experience (F5) for web API d
 
 ## Blazor
 
+### Performance improvements
+
+For .NET 5, we made significant improvements to Blazor WebAssembly runtime performance with a specific focus on complex UI rendering and JSON serialization. In our performance tests, Blazor WebAssembly in .NET 5 is two to three times faster for most scenarios. For more information, see [ASP.NET Blog: ASP.NET Core updates in .NET 5 Release Candidate 1](https://devblogs.microsoft.com/aspnet/asp-net-core-updates-in-net-5-release-candidate-1/#blazor-webassembly-performance-improvements).
+
 ### CSS isolation
 
 Blazor now supports defining CSS styles that are scoped to a given component. Component-specific CSS styles make it easier to reason about the styles in an app and to avoid unintentional side effects of global styles. For more information, see <xref:blazor/components/css-isolation>.
@@ -173,19 +177,17 @@ Blazor security now uses Microsoft Identity v2.0 ([`Microsoft.Identity.Web`](htt
 
 ### State management support
 
-`Microsoft.AspNetCore.ProtectedBrowserStorage` has been moved to `Microsoft.AspNetCore.Components.Web.Extensions` and has undergone API changes. State management documentation has been split across Blazor hosting models. For more information, see <xref:blazor/state-management>.
+Protected browser storage APIs (`Microsoft.AspNetCore.ProtectedBrowserStorage`) have been moved to `Microsoft.AspNetCore.Components.Web.Extensions` in the shared framework and have undergone API changes. State management documentation has been split across Blazor hosting models. For more information, see <xref:blazor/state-management>.
 
-<!-- WAIT ON THIS ENTRY UNTIL https://github.com/dotnet/AspNetCore.Docs/pull/19887 MERGES.
+<!-- WAIT ON THIS ENTRY UNTIL https://github.com/dotnet/AspNetCore.Docs/pull/19887 MERGES ...
 
-### Component integration across hosting models
+### Blazor WebAssembly prerendering
 
-Component integration is improved across hosting models. For more information, see <xref:blazor/components/integrate-components-into-razor-pages-and-mvc-apps>.
+Component integration is improved across hosting models, and Blazor WebAssembly apps can now prerender output on the server. <!-- UNCOMMENT AFTER https://github.com/dotnet/AspNetCore.Docs/pull/19887 MERGES: For more information, see <xref:blazor/components/integrate-components-into-razor-pages-and-mvc-apps> and <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>. -->
 
--->
+### Trimming/linking improvements
 
-### Linker is now a Trimmer
-
-Prior to the release of ASP.NET Core 5.0, Blazor WebAssembly performs Intermediate Language (IL) linking during a build to trim unnecessary IL from the app's output assemblies. After the release of 5.0, Blazor WebAssembly performs *trimming* to reduce the size of the published output. For more information, see <xref:blazor/host-and-deploy/configure-trimmer>.
+Blazor WebAssembly performs Intermediate Language (IL) trimming/linking during a build to trim unnecessary IL from the app's output assemblies. With the release of ASP.NET Core 5.0, Blazor WebAssembly performs improved trimming with additional configuration options. For more information, see <xref:blazor/host-and-deploy/configure-trimmer> and [Trimming options](/dotnet/core/deploying/trimming-options).
 
 ### Browser compatibility analyzer
 
