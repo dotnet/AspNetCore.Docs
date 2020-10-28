@@ -49,7 +49,7 @@ In this tutorial, you:
 
   ![Create a new project dialog](~/tutorials/grpc/grpc-start/static/cnp.png)
 
-* Name the project **GrpcGreeter**. It's important to name the project *GrpcGreeter* so the namespaces will match when you copy and paste code.
+* Name the project **GrpcGreeter**. It's important to name the project *GrpcGreeter* so the namespaces match when you copy and paste code.
 * Select **Create**.
 * In the **Create a new gRPC service** dialog:
   * The **gRPC Service** template is selected.
@@ -58,7 +58,7 @@ In this tutorial, you:
 # [Visual Studio Code](#tab/visual-studio-code)
 
 * Open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
-* Change directories (`cd`) to a folder which will contain the project.
+* Change directories (`cd`) to a folder for the project.
 * Run the following commands:
 
   ```dotnetcli
@@ -125,7 +125,7 @@ info: Microsoft.Hosting.Lifetime[0]
 # [Visual Studio Code](#tab/visual-studio-code)
 
 * Open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
-* Change directories (`cd`) to a folder which will contain the project.
+* Change directories (`cd`) to a folder for the project.
 * Run the following commands:
 
   ```dotnetcli
