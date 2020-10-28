@@ -47,9 +47,9 @@ In this tutorial, you:
 * Start Visual Studio and select **Create a new project**. Alternatively, from the Visual Studio **File** menu, select **New** > **Project**.
 * In the **Create a new project** dialog, select **gRPC Service** and select **Next**:
 
-  ![Create a new project dialog](~/tutorials/grpc/grpc-start/static/cnp.png)
+  ![Create a new project dialog in Visual Studio](~/tutorials/grpc/grpc-start/static/cnp.png)
 
-* Name the project **GrpcGreeter**. It's important to name the project *GrpcGreeter* so the namespaces will match when you copy and paste code.
+* Name the project **GrpcGreeter**. It's important to name the project *GrpcGreeter* so the namespaces match when you copy and paste code.
 * Select **Create**.
 * In the **Create a new gRPC service** dialog:
   * The **gRPC Service** template is selected.
@@ -58,7 +58,7 @@ In this tutorial, you:
 # [Visual Studio Code](#tab/visual-studio-code)
 
 * Open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
-* Change directories (`cd`) to a folder which will contain the project.
+* Change directories (`cd`) to a folder for the project.
 * Run the following commands:
 
   ```dotnetcli
@@ -77,10 +77,10 @@ In this tutorial, you:
 * Start Visual Studio for Mac and select **Create a new project**. Alternatively, from the Visual Studio **File** menu, select **New** > **Project**.
 * In the **Create a new project** dialog, select **Web and Console** > **App** > **gRPC Service** and select **Next**:
 
-  ![Create a new project dialog](~/tutorials/grpc/grpc-start/static/cnp-mac.png)
+  ![Create a new project dialog on macOS](~/tutorials/grpc/grpc-start/static/cnp-mac.png)
 
-* Select **.NET Core 3.1** for the target framework and select **Next**
-* Name the project **GrpcGreeter**. It's important to name the project *GrpcGreeter* so the namespaces will match when you copy and paste code.
+* Select **.NET Core 3.1** for the target framework and select **Next**.
+* Name the project **GrpcGreeter**. It's important to name the project *GrpcGreeter* so the namespaces match when you copy and paste code.
 * Select **Create**.
 ---
 
@@ -125,7 +125,7 @@ info: Microsoft.Hosting.Lifetime[0]
 # [Visual Studio Code](#tab/visual-studio-code)
 
 * Open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
-* Change directories (`cd`) to a folder which will contain the project.
+* Change directories (`cd`) to a folder for the project.
 * Run the following commands:
 
   ```dotnetcli
@@ -165,7 +165,7 @@ Install the packages using either the Package Manager Console (PMC) or Manage Nu
 
 #### Manage NuGet Packages option to install packages
 
-* Right-click the project in **Solution Explorer** > **Manage NuGet Packages**
+* Right-click the project in **Solution Explorer** > **Manage NuGet Packages**.
 * Select the **Browse** tab.
 * Enter **Grpc.Net.Client** in the search box.
 * Select the **Grpc.Net.Client** package from the **Browse** tab and select **Install**.
@@ -183,9 +183,9 @@ dotnet add GrpcGreeterClient.csproj package Grpc.Tools
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-* Right-click **GrpcGreeterClient** project in the **Solution Pad** and select **Manage NuGet Packages**
+* Right-click **GrpcGreeterClient** project in the **Solution Pad** and select **Manage NuGet Packages**.
 * Enter **Grpc.Net.Client** in the search box.
-* Select the **Grpc.Net.Client** package from the results pane and select **Add Package**
+* Select the **Grpc.Net.Client** package from the results pane and select **Add Package**.
 * Select the **Accept** button on the **Accept License** dialog.
 * Repeat for `Google.Protobuf` and `Grpc.Tools`.
 
