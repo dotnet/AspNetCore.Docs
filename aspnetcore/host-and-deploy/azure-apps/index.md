@@ -155,6 +155,8 @@ To deploy an app that uses a preview release of .NET Core, see the following res
 
 See the [ASP.NET Core on App Service Dashboard](https://aspnetcoreon.azurewebsites.net/) for the version of ASP.NET Core available on Azure App service.
 
+See [Select the .NET Core version to use](/dotnet/core/versions/selection) for information on selecting the version of the .NET SDK for self-contained deployments.
+
 ### Specify the .NET Core SDK Version using Azure Pipelines
 
 Use [Azure App Service CI/CD scenarios](/azure/app-service/deploy-continuous-deployment) to set up a continuous integration build with Azure DevOps. After the Azure DevOps build is created, optionally configure the build to use a specific SDK version. 
