@@ -92,12 +92,14 @@ public class ChatController : Controller
         _strongChatHubContext = chatHubContext;
     }
 
-    public async Task SendMessage(string message)
+    public async Task SendMessage(string user, string message)
     {
-        await _strongChatHubContext.Clients.All.ReceiveMessage(message);
+        await _strongChatHubContext.Clients.All.ReceiveMessage(user, message);
     }
 }
 ```
+
+Read [Strongly typed hubs](xref:signalr/hubs#strongly-typed-hubs) for more information.
 
 ## Related resources
 
