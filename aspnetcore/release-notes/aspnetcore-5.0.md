@@ -179,8 +179,6 @@ Blazor security now uses Microsoft Identity v2.0 ([`Microsoft.Identity.Web`](htt
 
 Protected browser storage APIs (`Microsoft.AspNetCore.ProtectedBrowserStorage`) have been moved to `Microsoft.AspNetCore.Components.Web.Extensions` in the shared framework and have undergone API changes. State management documentation has been split across Blazor hosting models. For more information, see <xref:blazor/state-management>.
 
-<!-- WAIT ON THIS ENTRY UNTIL https://github.com/dotnet/AspNetCore.Docs/pull/19887 MERGES ...
-
 ### Blazor WebAssembly prerendering
 
 Component integration is improved across hosting models, and Blazor WebAssembly apps can now prerender output on the server. <!-- UNCOMMENT AFTER https://github.com/dotnet/AspNetCore.Docs/pull/19887 MERGES: For more information, see <xref:blazor/components/integrate-components-into-razor-pages-and-mvc-apps> and <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>. -->
