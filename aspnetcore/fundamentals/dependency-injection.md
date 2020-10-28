@@ -19,7 +19,7 @@ ASP.NET Core supports the dependency injection (DI) software design pattern, whi
 
 For more information specific to dependency injection within MVC controllers, see <xref:mvc/controllers/dependency-injection>.
 
-For information on using dependency injection in applications other than web apps, see [Dependency injection in .NET](/dotnet/core/extensions/dependency-injection)
+For information on using dependency injection in applications other than web apps, see [Dependency injection in .NET](/dotnet/core/extensions/dependency-injection).
 
 For more information on dependency injection of options, see <xref:fundamentals/configuration/options>.
 
