@@ -79,8 +79,8 @@ In this tutorial, you:
 
   ![Create a new project dialog](~/tutorials/grpc/grpc-start/static/cnp-mac.png)
 
-* Select **.NET Core 3.1** for the target framework and select **Next**
-* Name the project **GrpcGreeter**. It's important to name the project *GrpcGreeter* so the namespaces will match when you copy and paste code.
+* Select **.NET Core 3.1** for the target framework and select **Next**.
+* Name the project **GrpcGreeter**. It's important to name the project *GrpcGreeter* so the namespaces match when you copy and paste code.
 * Select **Create**.
 ---
 
@@ -165,7 +165,7 @@ Install the packages using either the Package Manager Console (PMC) or Manage Nu
 
 #### Manage NuGet Packages option to install packages
 
-* Right-click the project in **Solution Explorer** > **Manage NuGet Packages**
+* Right-click the project in **Solution Explorer** > **Manage NuGet Packages**.
 * Select the **Browse** tab.
 * Enter **Grpc.Net.Client** in the search box.
 * Select the **Grpc.Net.Client** package from the **Browse** tab and select **Install**.
@@ -183,9 +183,9 @@ dotnet add GrpcGreeterClient.csproj package Grpc.Tools
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-* Right-click **GrpcGreeterClient** project in the **Solution Pad** and select **Manage NuGet Packages**
+* Right-click **GrpcGreeterClient** project in the **Solution Pad** and select **Manage NuGet Packages**.
 * Enter **Grpc.Net.Client** in the search box.
-* Select the **Grpc.Net.Client** package from the results pane and select **Add Package**
+* Select the **Grpc.Net.Client** package from the results pane and select **Add Package**.
 * Select the **Accept** button on the **Accept License** dialog.
 * Repeat for `Google.Protobuf` and `Grpc.Tools`.
 
