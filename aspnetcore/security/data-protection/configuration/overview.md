@@ -35,7 +35,7 @@ The following NuGet packages are required for the Data Protection extensions use
 
 ## ProtectKeysWithAzureKeyVault
 
-Log in to Azure using the CLI, you can type:
+Log in to Azure using the CLI, for example:
 
 ```Bash
 az login
