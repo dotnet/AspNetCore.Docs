@@ -99,7 +99,7 @@ public class ChatController : Controller
 }
 ```
 
-Read [Strongly typed hubs](xref:signalr/hubs#strongly-typed-hubs) for more information.
+See [Strongly typed hubs](xref:signalr/hubs#strongly-typed-hubs) for more information.
 
 ## Related resources
 
