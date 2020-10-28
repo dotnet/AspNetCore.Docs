@@ -5,7 +5,7 @@ description: Monitoring and debugging your code as part of a DevOps solution wit
 ms.author: casoper
 ms.custom: "devx-track-csharp, mvc, seodec18"
 ms.date: 07/10/2019
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: azure/devops/monitor
 ---
 # Monitor and debug

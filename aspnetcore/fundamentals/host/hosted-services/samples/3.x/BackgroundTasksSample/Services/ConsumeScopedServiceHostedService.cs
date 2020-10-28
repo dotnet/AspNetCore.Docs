@@ -49,7 +49,7 @@ namespace BackgroundTasksSample.Services
             _logger.LogInformation(
                 "Consume Scoped Service Hosted Service is stopping.");
 
-            await Task.CompletedTask;
+            await base.StopAsync(stoppingToken);
         }
     }
     #endregion

@@ -5,8 +5,8 @@ description: Learn how to use forms and field validation scenarios in Blazor.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/18/2020
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+ms.date: 09/17/2020
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/forms-validation
 ---
 # ASP.NET Core Blazor forms and validation
@@ -70,6 +70,7 @@ A set of built-in components are available to receive and validate user input. I
 | --------------- | ------------------- |
 | <xref:Microsoft.AspNetCore.Components.Forms.InputCheckbox> | `<input type="checkbox">` |
 | <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601> | `<input type="date">` |
+| [`InputFile`](xref:blazor/file-uploads) | `<input type="file">` |
 | <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> | `<input type="number">` |
 | [`InputRadio`](#radio-buttons) | `<input type="radio">` |
 | [`InputRadioGroup`](#radio-buttons) | `<input type="radio">` |
@@ -223,7 +224,7 @@ In the following example:
 * Additional code is executed depending on the validation result. Place business logic in the method assigned to <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnSubmit>.
 
 ```razor
-<EditForm EditContext="@editContext" OnSubmit="HandleSubmit">
+<EditForm EditContext="@editContext" OnSubmit="@HandleSubmit">
 
     ...
 
@@ -502,7 +503,7 @@ namespace BlazorSample.Server.Controllers
             }
             catch (Exception ex)
             {
-                logger.LogError("Validation Error: {MESSAGE}", ex.Message);
+                logger.LogError("Validation Error: {Message}", ex.Message);
             }
 
             return BadRequest(ModelState);
@@ -689,7 +690,7 @@ In the client project, the *Starfleet Starship Database* form is updated to show
         }
         catch (Exception ex)
         {
-            Logger.LogError("Form processing error: {MESSAGE}", ex.Message);
+            Logger.LogError("Form processing error: {Message}", ex.Message);
             disabled = true;
             messageStyles = "color:red";
             message = "There was an error processing the form.";
@@ -788,7 +789,7 @@ public Engine? Engine { get; set; } = null;
 Add the following `enums` to the app. Create a new file to hold the `enums` or add the `enums` to the `Starship.cs` file. Make the `enums` accessible to the `Starship` model and the *Starfleet Starship Database* form:
 
 ```csharp
-public enum Manufacturer { SpaceX, NASA, ULA, Virgin, Unknown }
+public enum Manufacturer { SpaceX, NASA, ULA, VirginGalactic, Unknown }
 public enum Color { ImperialRed, SpacecruiserGreen, StarshipBlue, VoyagerOrange }
 public enum Engine { Ion, Plasma, Fusion, Warp }
 ```
@@ -1014,6 +1015,32 @@ private class CustomValidator : ValidationAttribute
 > [!NOTE]
 > <xref:System.ComponentModel.DataAnnotations.ValidationContext.GetService%2A?displayProperty=nameWithType> is `null`. Injecting services for validation in the `IsValid` method isn't supported.
 
+::: moniker range=">= aspnetcore-5.0"
+
+## Custom validation class attributes
+
+Custom validation class names are useful when integrating with CSS frameworks, such as [Bootstrap](https://getbootstrap.com/). To specify custom validation class names, create a class derived from `FieldCssClassProvider` and set the class on the <xref:Microsoft.AspNetCore.Components.Forms.EditContext> instance:
+
+```csharp
+var editContext = new EditContext(model);
+editContext.SetFieldCssClassProvider(new MyFieldClassProvider());
+
+...
+
+private class MyFieldClassProvider : FieldCssClassProvider
+{
+    public override string GetFieldCssClass(EditContext editContext, 
+        in FieldIdentifier fieldIdentifier)
+    {
+        var isValid = !editContext.GetValidationMessages(fieldIdentifier).Any();
+
+        return isValid ? "good field" : "bad field";
+    }
+}
+```
+
+::: moniker-end
+
 ### Blazor data annotations validation package
 
 The [`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) is a package that fills validation experience gaps using the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. The package is currently *experimental*.
@@ -1069,7 +1096,7 @@ public class ShipDescription
     [Required]
     [StringLength(40, ErrorMessage = "Description too long (40 char).")]
     public string ShortDescription { get; set; }
-    
+
     [Required]
     [StringLength(240, ErrorMessage = "Description too long (240 char).")]
     public string LongDescription { get; set; }
@@ -1166,3 +1193,11 @@ When assigning a <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model> to 
 ```csharp
 private ExampleModel exampleModel = new ExampleModel();
 ```
+
+::: moniker range=">= aspnetcore-5.0"
+
+## Additional resources
+
+* <xref:blazor/file-uploads>
+
+::: moniker-end

@@ -5,7 +5,7 @@ description: Learn which features are supported by the various ASP.NET Core Sign
 ms.author: bradyg
 ms.custom: mvc
 ms.date: 11/12/2019
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: signalr/client-features
 ---
 # ASP.NET Core SignalR clients
@@ -35,7 +35,7 @@ The table below shows the features and support for the clients that offer real-t
 | Azure SignalR Service Support |2.1.0|1.0.0|1.0.0|1.0.0|
 | [Server-to-client Streaming](xref:signalr/streaming)          |2.1.0|1.0.0|1.0.0|1.0.0|
 | [Client-to-server Streaming](xref:signalr/streaming)          |3.0.0|3.0.0|3.0.0|3.0.0|
-| Automatic Reconnection ([.NET](/aspnet/core/signalr/dotnet-client?view=aspnetcore-3.0&tabs=visual-studio#handle-lost-connection), [JavaScript](/aspnet/core/signalr/javascript-client?view=aspnetcore-3.0#reconnect-clients))          |3.0.0|3.0.0|3.0.0|❌|
+| Automatic Reconnection ([.NET](./dotnet-client.md?tabs=visual-studio&view=aspnetcore-3.0#handle-lost-connection), [JavaScript](./javascript-client.md?view=aspnetcore-3.0#reconnect-clients))          |3.0.0|3.0.0|3.0.0|❌|
 | WebSockets Transport |2.1.0|1.0.0|1.0.0|1.0.0|
 | Server-Sent Events Transport |2.1.0|1.0.0|1.0.0|❌|
 | Long Polling Transport |2.1.0|1.0.0|1.0.0|3.0.0|

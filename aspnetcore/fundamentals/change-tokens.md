@@ -5,7 +5,7 @@ description: Learn how to use change tokens to track changes.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 10/07/2019
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/change-tokens
 ---
 # Detect changes with change tokens in ASP.NET Core

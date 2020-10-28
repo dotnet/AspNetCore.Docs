@@ -4,7 +4,7 @@ author: rick-anderson
 description: Part 7 of tutorial series on ASP.NET Core MVC.
 ms.author: riande
 ms.date: 12/13/2018
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-mvc-app/search
 ---
 

@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn the implementation details of the ASP.NET Core Data Protection key immutability APIs.
 ms.author: riande
 ms.date: 10/14/2016
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/data-protection/implementation/key-immutability
 ---
 

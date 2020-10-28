@@ -5,7 +5,7 @@ description: Part 6 of Razor Pages and Entity Framework tutorial series.
 ms.author: riande
 ms.custom: mvc
 ms.date: 09/28/2019
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: data/ef-rp/read-related-data
 ---
 
@@ -48,7 +48,7 @@ There are several ways that EF Core can load related data into the navigation pr
 
   ![Explicit loading example](read-related-data/_static/explicit-loading.png)
 
-* [Lazy loading](/ef/core/querying/related-data#lazy-loading). [Lazy loading was added to EF Core in version 2.1](/ef/core/querying/related-data#lazy-loading). When the entity is first read, related data isn't retrieved. The first time a navigation property is accessed, the data required for that navigation property is automatically retrieved. A query is sent to the database each time a navigation property is accessed for the first time.
+* [Lazy loading](/ef/core/querying/related-data#lazy-loading). When the entity is first read, related data isn't retrieved. The first time a navigation property is accessed, the data required for that navigation property is automatically retrieved. A query is sent to the database each time a navigation property is accessed for the first time. Lazy loading can hurt performance, for example when developers use N+1 patterns, loading a parent and enumerating through children.
 
 ## Create Course pages
 

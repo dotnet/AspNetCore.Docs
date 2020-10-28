@@ -5,7 +5,7 @@ description: Learn about the new features in ASP.NET Core 2.2.
 ms.author: riande
 ms.custom: mvc
 ms.date: 12/05/2019
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: aspnetcore-2.2
 ---
 # What's new in ASP.NET Core 2.2
@@ -78,7 +78,7 @@ For more information, see [in-process hosting for IIS](xref:host-and-deploy/aspn
 
 ASP.NET Core 2.2 introduces a Java Client for SignalR. This client supports connecting to an ASP.NET Core SignalR Server from Java code, including Android apps.
 
-For more information, see [ASP.NET Core SignalR Java client](https://docs.microsoft.com/aspnet/core/signalr/java-client?view=aspnetcore-2.2).
+For more information, see [ASP.NET Core SignalR Java client](../signalr/java-client.md?view=aspnetcore-2.2).
 
 ## CORS improvements
 

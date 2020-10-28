@@ -5,7 +5,7 @@ description: Learn how to use the published .NET Core Docker images from the Doc
 ms.author: riande
 ms.custom: mvc
 ms.date: 05/12/2020
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: host-and-deploy/docker/building-net-docker-images
 ---
 
@@ -84,7 +84,7 @@ The sample Dockerfile uses the [Docker multi-stage build feature](https://docs.d
 
 ## Run in a Linux container
 
-* In the Docker client, switch to Linux containers.
+* In the Docker client, [switch to Linux containers](https://docs.docker.com/docker-for-windows/#switch-between-windows-and-linux-containers).
 
 * Navigate to the Dockerfile folder at *dotnet-docker/samples/aspnetapp*.
 
@@ -110,7 +110,7 @@ The sample Dockerfile uses the [Docker multi-stage build feature](https://docs.d
 
 ## Run in a Windows container
 
-* In the Docker client, switch to Windows containers.
+* In the Docker client, [switch to Windows containers](https://docs.docker.com/docker-for-windows/#switch-between-windows-and-linux-containers).
 
 Navigate to the docker file folder at `dotnet-docker/samples/aspnetapp`.
 
@@ -249,8 +249,8 @@ As noted in the preceding Dockerfile, the `*.csproj` files are copied and restor
 * [Docker build command](https://docs.docker.com/engine/reference/commandline/build)
 * [Docker run command](https://docs.docker.com/engine/reference/commandline/run)
 * [ASP.NET Core Docker sample](https://github.com/dotnet/dotnet-docker) (The one used in this tutorial.)
-* [Configure ASP.NET Core to work with proxy servers and load balancers](/aspnet/core/host-and-deploy/proxy-load-balancer)
-* [Working with Visual Studio Docker Tools](https://docs.microsoft.com/aspnet/core/publishing/visual-studio-tools-for-docker)
+* [Configure ASP.NET Core to work with proxy servers and load balancers](../proxy-load-balancer.md)
+* [Working with Visual Studio Docker Tools](./visual-studio-tools-for-docker.md)
 * [Debugging with Visual Studio Code](https://code.visualstudio.com/docs/nodejs/debugging-recipes#_debug-nodejs-in-docker-containers)
 * [GC using Docker and small containers](xref:performance/memory#sc)
 

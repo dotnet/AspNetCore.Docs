@@ -5,7 +5,7 @@ description: In this tutorial, you create a chat app that uses ASP.NET Core Sign
 ms.author: bradyg
 ms.custom: mvc
 ms.date: 11/21/2019
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/signalr
 
 # Customer intent: As a developer, I want to get a quick proof-of-concept app running, so I can get a practical introduction to ASP.NET Core SignalR.
@@ -32,15 +32,15 @@ At the end, you'll have a working chat app:
 
 # [Visual Studio](#tab/visual-studio)
 
-[!INCLUDE[](~/includes/net-core-prereqs-vs-3.0.md)]
+[!INCLUDE[](~/includes/net-core-prereqs-vs-3.1.md)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!INCLUDE[](~/includes/net-core-prereqs-vsc-3.0.md)]
+[!INCLUDE[](~/includes/net-core-prereqs-vsc-3.1.md)]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-[!INCLUDE[](~/includes/net-core-prereqs-mac-3.0.md)]
+[!INCLUDE[](~/includes/net-core-prereqs-mac-3.1.md)]
 
 ---
 
@@ -54,7 +54,7 @@ At the end, you'll have a working chat app:
 
 * In the **Configure your new project** dialog, name the project *SignalRChat*, and then select **Create**.
 
-* In the **Create a new ASP.NET Core web Application** dialog, select **.NET Core** and **ASP.NET Core 3.0**. 
+* In the **Create a new ASP.NET Core web Application** dialog, select **.NET Core** and **ASP.NET Core 3.1**. 
 
 * Select **Web Application** to create a project that uses Razor Pages, and then select **Create**.
 
@@ -77,7 +77,7 @@ At the end, you'll have a working chat app:
 
 * Select **.NET Core > App > Web Application** (Don't select **Web Application (Model-View-Controller)**), and then select **Next**.
 
-* Make sure the **Target Framework** is set to **.NET Core 3.0**, and then select **Next**.
+* Make sure the **Target Framework** is set to **.NET Core 3.1**, and then select **Next**.
 
 * Name the project *SignalRChat*, and then select **Create**.
 
@@ -85,7 +85,7 @@ At the end, you'll have a working chat app:
 
 ## Add the SignalR client library
 
-The SignalR server library is included in the ASP.NET Core 3.0 shared framework. The JavaScript client library isn't automatically included in the project. For this tutorial, you use Library Manager (LibMan) to get the client library from *unpkg*. unpkg is a content delivery network (CDN) that can deliver anything found in npm, the Node.js package manager.
+The SignalR server library is included in the ASP.NET Core 3.1 shared framework. The JavaScript client library isn't automatically included in the project. For this tutorial, you use Library Manager (LibMan) to get the client library from *unpkg*. unpkg is a content delivery network (CDN) that can deliver anything found in npm, the Node.js package manager.
 
 # [Visual Studio](#tab/visual-studio/)
 

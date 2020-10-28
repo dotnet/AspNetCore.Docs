@@ -5,15 +5,15 @@ description: Learn how to secure Blazor Server apps as ASP.NET Core applications
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/02/2020
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+ms.date: 10/06/2020
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/security/server/index
 ---
 # Secure ASP.NET Core Blazor Server apps
 
 By [Luke Latham](https://github.com/guardrex)
 
-Blazor Server apps are configured for security in the same manner as ASP.NET Core apps. For more information, see the articles under <xref:security/index>. Topics under this overview apply specifically to Blazor Server. 
+Blazor Server apps are configured for security in the same manner as ASP.NET Core apps. For more information, see the articles under <xref:security/index>. Topics under this overview apply specifically to Blazor Server.
 
 ## Blazor Server project template
 
@@ -92,7 +92,14 @@ Using the `-o|--output` option, the command uses the value provided for the `{AP
 * Create a folder for the project.
 * Name the project.
 
-For more information, see the [`dotnet new`](/dotnet/core/tools/dotnet-new) command in the .NET Core Guide.
+For more information:
+
+* See the [`dotnet new`](/dotnet/core/tools/dotnet-new) command in the .NET Core Guide.
+* Execute the help command for the Blazor Server template (`blazorserver`) in a command shell:
+
+  ```dotnetcli
+  dotnet new blazorserver --help
+  ```
 
 ---
 
@@ -102,3 +109,8 @@ Scaffold Identity into a Blazor Server project:
 
 * [Without existing authorization](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-blazor-server-project-without-existing-authorization).
 * [With authorization](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-blazor-server-project-with-authorization).
+
+## Additional resources
+
+* [Quickstart: Add sign-in with Microsoft to an ASP.NET Core web app](/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp)
+* [Quickstart: Protect an ASP.NET Core web API with Microsoft identity platform](/azure/active-directory/develop/quickstart-v2-aspnet-core-web-api)

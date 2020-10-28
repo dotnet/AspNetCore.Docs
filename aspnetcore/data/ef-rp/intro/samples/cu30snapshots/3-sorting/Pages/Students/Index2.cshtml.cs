@@ -1,5 +1,4 @@
-﻿#region snippet_All
-using ContosoUniversity.Data;
+﻿using ContosoUniversity.Data;
 using ContosoUniversity.Models;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace ContosoUniversity.Pages.Students
 {
+    #region snippet_All
     public class IndexModel : PageModel
     {
         private readonly SchoolContext _context;
@@ -60,5 +60,5 @@ namespace ContosoUniversity.Pages.Students
             Students = await studentsIQ.AsNoTracking().ToListAsync();
         }
     }
+    #endregion
 }
-#endregion

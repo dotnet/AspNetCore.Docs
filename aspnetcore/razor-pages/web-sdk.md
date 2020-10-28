@@ -4,7 +4,7 @@ author: Rick-Anderson
 description: Overview of Microsoft.NET.Sdk.Web.
 ms.author: riande
 ms.date: 01/25/2020
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: razor-pages/web-sdk
 ---
 
@@ -12,7 +12,7 @@ uid: razor-pages/web-sdk
 
 ### Overview
 
-`Microsoft.NET.Sdk.Web` is an [MSBuild project SDK](https://docs.microsoft.com/visualstudio/msbuild/how-to-use-project-sdk) for building ASP.NET Core apps. It's possible to build an ASP.NET Core app without this SDK, however, the Web SDK is:
+`Microsoft.NET.Sdk.Web` is an [MSBuild project SDK](/visualstudio/msbuild/how-to-use-project-sdk) for building ASP.NET Core apps. It's possible to build an ASP.NET Core app without this SDK, however, the Web SDK is:
 
 * Tailored towards providing a first-class experience.
 * The recommended target for most users.

@@ -5,8 +5,8 @@ description: Learn about additional scenarios for ASP.NET Core Blazor hosting mo
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/12/2020
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+ms.date: 10/27/2020
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/fundamentals/additional-scenarios
 ---
 # ASP.NET Core Blazor hosting model configuration
@@ -274,7 +274,17 @@ Customize the delay before the reconnection display appears by setting the `tran
 }
 ```
 
-::: moniker-end
+## Disconnect the Blazor circuit from the client
+
+By default, a Blazor circuit is disconnected when the [`unload` page event](https://developer.mozilla.org/docs/Web/API/Window/unload_event) is triggered. To disconnect the circuit for other scenarios on the client, invoke `Blazor.disconnect` in the appropriate event handler. In the following example, the circuit is disconnected when the page is hidden ([`pagehide` event](https://developer.mozilla.org/docs/Web/API/Window/pagehide_event)):
+
+```javascript
+window.addEventListener('pagehide', () => {
+  Blazor.disconnect();
+});
+```
+
+<!-- HOLD for reactivation at 5x
 
 ## Influence HTML `<head>` tag elements
 
@@ -306,6 +316,10 @@ When one of the framework components is used in a child component, the rendered 
 
 * Can be modified by application state. A hard-coded HTML tag can't be modified by application state.
 * Is removed from the HTML `<head>` when the parent component is no longer rendered.
+
+-->
+
+::: moniker-end
 
 ## Static files
 
@@ -345,6 +359,14 @@ To create additional file mappings with a <xref:Microsoft.AspNetCore.StaticFiles
 
   app.UseStaticFiles(new StaticFileOptions { ContentTypeProvider = provider });
   app.UseStaticFiles();
+  ```
+
+* You can avoid interfering with serving `_framework/blazor.server.js` by using <xref:Microsoft.AspNetCore.Builder.MapWhenExtensions.MapWhen%2A> to execute a custom Static File Middleware:
+
+  ```csharp
+  app.MapWhen(ctx => !ctx.Request.Path
+      .StartsWithSegments("_framework/blazor.server.js", 
+          subApp => subApp.UseStaticFiles(new StaticFileOptions(){ ... })));
   ```
 
 ## Additional resources

@@ -4,7 +4,7 @@ author: wadepickett
 description: Learn how to start migrating an ASP.NET MVC project to ASP.NET Core MVC.
 ms.author: wpickett
 ms.date: 06/18/2020
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: migration/mvc
 ---
 # Migrate from ASP.NET MVC to ASP.NET Core MVC
@@ -41,7 +41,7 @@ Create a new solution with a new ASP.NET Core project to migrate to:
 
 1. Launch a second instance of Visual Studio.
 1. From the **File** menu, select **New** > **Project**.
-1. Select **ASP.NET Web Core Web Application** and then select **Next**.
+1. Select **ASP.NET Core Web Application** and then select **Next**.
 1. In the **Configure your new project** dialog, Name the project *WebApp1*.
 1. Set the location to a different directory than the previous project to use the same project name. Using the same namespace makes it easier to copy code between the two projects. Select **Create**.
 1. In the **Create a new ASP.NET Core Web Application** dialog, confirm that **.NET Core** and **ASP.NET Core 3.1** are selected. Select the **Web Application (Model-View-Controller)** project template, and select **Create**.

@@ -27,6 +27,7 @@ namespace SignalRChat.Hubs
             int count,
             int delay)
         {
+            Exception localException = null;
             try
             {
                 for (var i = 0; i < count; i++)
@@ -37,10 +38,13 @@ namespace SignalRChat.Hubs
             }
             catch (Exception ex)
             {
-                writer.TryComplete(ex);
+                localException = ex;
+            }
+            finally
+            {
+                writer.Complete(localException);
             }
 
-            writer.TryComplete();
         }
     }
     #endregion

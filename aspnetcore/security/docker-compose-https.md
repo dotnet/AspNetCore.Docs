@@ -6,13 +6,13 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: ravipal
 ms.custom: mvc
 ms.date: 03/28/2020
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/docker-compose-https
 ---
 # Hosting ASP.NET Core images with Docker Compose over HTTPS
 
 
-ASP.NET Core uses [HTTPS by default](/aspnet/core/security/enforcing-ssl). [HTTPS](https://en.wikipedia.org/wiki/HTTPS) relies on [certificates](https://en.wikipedia.org/wiki/Public_key_certificate) for trust, identity, and encryption.
+ASP.NET Core uses [HTTPS by default](./enforcing-ssl.md). [HTTPS](https://en.wikipedia.org/wiki/HTTPS) relies on [certificates](https://en.wikipedia.org/wiki/Public_key_certificate) for trust, identity, and encryption.
 
 This document explains how to run pre-built container images with HTTPS.
 
@@ -58,7 +58,7 @@ In the preceding commands, replace `{ password here }` with a password.
 
 Create a _docker-compose.debug.yml_ file with the following content:
 
-```json
+```yaml
 version: '3.4'
 
 services:
@@ -98,7 +98,7 @@ In the preceding commands, replace `{ password here }` with a password.
 
 Create a _docker-compose.debug.yml_ file with the following content:
 
-```json
+```yaml
 version: '3.4'
 
 services:
@@ -136,7 +136,7 @@ In the preceding commands, replace `{ password here }` with a password.
 
 Create a _docker-compose.debug.yml_ file with the following content:
 
-```json
+```yaml
 version: '3.4'
 
 services:

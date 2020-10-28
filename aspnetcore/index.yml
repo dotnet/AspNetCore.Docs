@@ -49,7 +49,7 @@ highlightedContent:
     # Card
     - title: "ASP.NET 4.x Documentation"
       itemType: overview
-      url: https://docs.microsoft.com/aspnet/overview
+      url: /aspnet/overview
 
 # conceptualContent section (optional)
 conceptualContent:
@@ -80,7 +80,7 @@ conceptualContent:
         - url: tutorials/first-web-api.md
           itemType: get-started
           text: "Create a web API with ASP.NET Core"
-        - url: https://docs.microsoft.com/learn/modules/build-web-api-net-core/
+        - url: /learn/modules/build-web-api-net-core/
           itemType: learn
           text: "Create web APIs with ASP.NET Core"
         - url: tutorials/web-api-help-pages-using-swagger.md
@@ -105,7 +105,7 @@ conceptualContent:
         - url: tutorials/razor-pages/razor-pages-start.md
           itemType: get-started
           text: "Create your first Razor Pages web app"
-        - url: https://docs.microsoft.com/learn/modules/create-razor-pages-aspnet-core/
+        - url: /learn/modules/create-razor-pages-aspnet-core/
           itemType: tutorial
           text: "Create a page-focused web UI that consumes a web API"
         - url: mvc/views/razor.md
@@ -205,7 +205,7 @@ conceptualContent:
         - url: tutorials/first-mvc-app/start-mvc.md
           itemType: tutorial
           text: "SQL with ASP.NET Core"
-        - url: blazor/data-binding.md
+        - url: ./blazor/components/data-binding.md
           itemType: concept
           text: "Data binding in ASP.NET Core Blazor"
         - url: tutorials/razor-pages/razor-pages-start.md
@@ -217,20 +217,20 @@ conceptualContent:
         - url: data/ef-rp/intro.md
           itemType: tutorial
           text: "Entity Framework Core with ASP.NET Core MVC"
-        - url: https://docs.microsoft.com/visualstudio/azure/vs-azure-tools-connected-services-storage?view=vs-2019&viewFallbackFrom=aspnetcore-3.1
+        - url: /visualstudio/azure/vs-azure-tools-connected-services-storage?view=vs-2019&viewFallbackFrom=aspnetcore-3.1
           itemType: tutorial
           text: "Azure Storage"
-        - url: https://docs.microsoft.com/azure/visual-studio/vs-storage-aspnet5-getting-started-blobs?toc=%2Faspnet%2Fcore%2Ftoc.json&bc=%2Faspnet%2Fcore%2Fbreadcrumb%2Ftoc.json&view=aspnetcore-3.1
+        - url: /azure/visual-studio/vs-storage-aspnet5-getting-started-blobs?bc=%252faspnet%252fcore%252fbreadcrumb%252ftoc.json&toc=%252faspnet%252fcore%252ftoc.json&view=aspnetcore-3.1
           itemType: tutorial
           text: "Blob Storage"
-        - url: https://docs.microsoft.com/azure/visual-studio/vs-storage-aspnet5-getting-started-tables?toc=%2Faspnet%2Fcore%2Ftoc.json&bc=%2Faspnet%2Fcore%2Fbreadcrumb%2Ftoc.json&view=aspnetcore-3.1
+        - url: /azure/visual-studio/vs-storage-aspnet5-getting-started-tables?bc=%252faspnet%252fcore%252fbreadcrumb%252ftoc.json&toc=%252faspnet%252fcore%252ftoc.json&view=aspnetcore-3.1
           itemType: concept
           text: "Azure Table Storage"
       # Card
     - title: Previous ASP.NET framework versions
       summary: "Explore overviews, tutorials, fundamental concepts, architecture and API reference for previous ASP.NET framework versions"
       links:
-        - url: https://docs.microsoft.com/aspnet/overview
+        - url: /aspnet/overview
           itemType: concept
           text: "ASP.NET 4.x"
       # Card
@@ -261,7 +261,7 @@ additionalContent:
       # Card
       - title: API reference for ASP.NET Core
         links:
-          - url: https://docs.microsoft.com/dotnet/api/?view=aspnetcore-3.1
+          - url: /dotnet/api/?view=aspnetcore-3.1
             text: ".NET API browser"
       # Card
       - title: Host and deploy
@@ -291,7 +291,7 @@ additionalContent:
             text: "Authentication"
           - url: security/authorization/introduction.md
             text: "Authorization"
-          - url: https://docs.microsoft.com/learn/modules/secure-aspnet-core-identity/
+          - url: /learn/modules/secure-aspnet-core-identity/
             text: "Course: Secure an ASP.NET Core web app with the Identity framework"
           - url: security/data-protection/introduction.md
             text: "Data protection"
@@ -317,9 +317,9 @@ additionalContent:
         links:
           - url: test/razor-pages-tests.md
             text: "Razor Pages unit tests"
-          - url: https://docs.microsoft.com/visualstudio/debugger/remote-debugging-azure?view=vs-2019&viewFallbackFrom=aspnetcore-3.1
+          - url: /visualstudio/debugger/remote-debugging-azure?view=vs-2019&viewFallbackFrom=aspnetcore-3.1
             text: "Remote debugging"
-          - url: https://docs.microsoft.com/azure/azure-monitor/app/snapshot-debugger?toc=%2Faspnet%2Fcore%2Ftoc.json&bc=%2Faspnet%2Fcore%2Fbreadcrumb%2Ftoc.json&view=aspnetcore-3.1
+          - url: /azure/azure-monitor/app/snapshot-debugger?bc=%252faspnet%252fcore%252fbreadcrumb%252ftoc.json&toc=%252faspnet%252fcore%252ftoc.json&view=aspnetcore-3.1
             text: "Snapshot debugging"
           - url: test/integration-tests.md
             text: "Integration tests"
@@ -329,24 +329,24 @@ additionalContent:
             text: "Troubleshoot and debug"
           - url: fundamentals/logging/index.md
             text: "Logging"
-          - url: https://docs.microsoft.com/learn/modules/load-test-web-app-azure-devops/
+          - url: /learn/modules/load-test-web-app-azure-devops/
             text: "Load test Azure web apps by using Azure DevOps"
       # Card
       - title: Azure and ASP.NET Core
         links:
-          - url: https://docs.microsoft.com/azure/app-service/app-service-web-get-started-dotnet
+          - url: /azure/app-service/app-service-web-get-started-dotnet
             text: "Deploy an ASP.NET Core web app"
-          - url: https://docs.microsoft.com/visualstudio/containers/container-tools?view=vs-2019.md
+          - url: /visualstudio/containers/container-tools?view=vs-2019.md
             text: "ASP.NET Core and Docker"
-          - url: https://docs.microsoft.com/learn/modules/host-a-web-app-with-azure-app-service/
+          - url: /learn/modules/host-a-web-app-with-azure-app-service/
             text: "Host a web application with Azure App Service"
-          - url: https://docs.microsoft.com/azure/app-service/app-service-web-tutorial-dotnet-sqldatabase
+          - url: /azure/app-service/app-service-web-tutorial-dotnet-sqldatabase
             text: "App Service and Azure SQL Database"
-          - url: https://docs.microsoft.com/azure/app-service/app-service-web-tutorial-connect-msi
+          - url: /azure/app-service/app-service-web-tutorial-connect-msi
             text: "Managed identity with ASP.NET Core and Azure SQL Database"
-          - url: https://docs.microsoft.com/azure/app-service/app-service-web-tutorial-rest-api
+          - url: /azure/app-service/app-service-web-tutorial-rest-api
             text: "Web API with CORS in Azure App Service"
-          - url: https://docs.microsoft.com/learn/modules/capture-application-logs-app-service/
+          - url: /learn/modules/capture-application-logs-app-service/
             text: "Capture Web Application Logs with App Service Diagnostics Logging"
       # Card
       - title: Performance
@@ -370,7 +370,7 @@ additionalContent:
             text: "Model binding"
           - url: mvc/models/validation.md
             text: "Model validation"
-          - url: fundamentals/middleware.md
+          - url: ./fundamentals/middleware/index.md
             text: "Write middleware"
           - url: fundamentals/middleware/request-response.md
             text: "Request and response operations"
@@ -396,15 +396,15 @@ additionalContent:
       # Card
       - title: Architecture
         links:
-          - url: https://docs.microsoft.com/dotnet/architecture/modern-web-apps-azure/choose-between-traditional-web-and-single-page-apps
+          - url: /dotnet/architecture/modern-web-apps-azure/choose-between-traditional-web-and-single-page-apps
             text: Choose between traditional web apps and Single Page Apps (SPAs)
-          - url: https://docs.microsoft.com/dotnet/architecture/modern-web-apps-azure/architectural-principles
+          - url: /dotnet/architecture/modern-web-apps-azure/architectural-principles
             text: Architectural principles
-          - url: https://docs.microsoft.com/dotnet/architecture/modern-web-apps-azure/common-web-application-architectures
+          - url: /dotnet/architecture/modern-web-apps-azure/common-web-application-architectures
             text: Common web application architectures
-          - url: https://docs.microsoft.com/dotnet/architecture/modern-web-apps-azure/common-client-side-web-technologies
+          - url: /dotnet/architecture/modern-web-apps-azure/common-client-side-web-technologies
             text: Common client-side web technologies
-          - url: https://docs.microsoft.com/dotnet/architecture/modern-web-apps-azure/development-process-for-azure
+          - url: /dotnet/architecture/modern-web-apps-azure/development-process-for-azure
             text: Development process for Azure
   # footer (optional)
   footer: "Contribute to ASP.NET Core docs. Read our [contributor guide](https://github.com/aspnet/AspNetCore.Docs/blob/master/CONTRIBUTING.md)."

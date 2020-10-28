@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2020
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: performance/caching/middleware
 ---
 # Response Caching Middleware in ASP.NET Core
@@ -43,7 +43,7 @@ The sample app adds headers to control caching on subsequent requests:
 
 The preceding headers are not written to the response and are overridden when a controller, action, or Razor Page:
 
-* Has a [[ResponseCache]](xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute) attribute. This applies even if a property isn't set. For example, omitting the [VaryByHeader](/aspnet/core/performance/caching/response#vary) property will cause the corresponding header to be removed from the response.
+* Has a [[ResponseCache]](xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute) attribute. This applies even if a property isn't set. For example, omitting the [VaryByHeader](./response.md#vary) property will cause the corresponding header to be removed from the response.
 
 Response Caching Middleware only caches server responses that result in a 200 (OK) status code. Any other responses, including [error pages](xref:fundamentals/error-handling), are ignored by the middleware.
 
@@ -187,7 +187,7 @@ The sample app adds headers to control caching on subsequent requests:
 
 The preceding headers are not written to the response and are overridden when a controller, action, or Razor Page:
 
-* Has a [[ResponseCache]](xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute) attribute. This applies even if a property isn't set. For example, omitting the [VaryByHeader](/aspnet/core/performance/caching/response#vary) property will cause the corresponding header to be removed from the response.
+* Has a [[ResponseCache]](xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute) attribute. This applies even if a property isn't set. For example, omitting the [VaryByHeader](./response.md#vary) property will cause the corresponding header to be removed from the response.
 
 Response Caching Middleware only caches server responses that result in a 200 (OK) status code. Any other responses, including [error pages](xref:fundamentals/error-handling), are ignored by the middleware.
 

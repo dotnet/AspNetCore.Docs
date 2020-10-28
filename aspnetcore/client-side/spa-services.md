@@ -4,9 +4,9 @@ author: scottaddie
 description: Learn about the benefits of using JavaScript Services to create a Single Page Application (SPA) backed by ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
-ms.custom: H1Hack27Feb2017
+ms.custom: H1Hack27Feb2017, devx-track-js
 ms.date: 09/06/2019
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: client-side/spa-services
 ---
 # Use JavaScript Services to Create Single Page Applications in ASP.NET Core

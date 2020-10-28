@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
 ms.date: 12/16/2019
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: host-and-deploy/azure-apps/index
 ---
 # Deploy ASP.NET Core apps to Azure App Service
@@ -154,6 +154,8 @@ To deploy an app that uses a preview release of .NET Core, see the following res
 * [Install the preview site extension](#install-the-preview-site-extension)
 
 See the [ASP.NET Core on App Service Dashboard](https://aspnetcoreon.azurewebsites.net/) for the version of ASP.NET Core available on Azure App service.
+
+See [Select the .NET Core version to use](/dotnet/core/versions/selection) for information on selecting the version of the .NET SDK for self-contained deployments.
 
 ### Specify the .NET Core SDK Version using Azure Pipelines
 

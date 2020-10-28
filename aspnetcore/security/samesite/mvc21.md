@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-2.1 < aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 12/03/2019
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/samesite/mvc21
 ---
 
@@ -42,7 +42,7 @@ Response.Cookies.Append(CookieName, "cookieValue", cookieOptions);
 
 ## Setting Cookie Authentication and Session State cookies
 
-Cookie authentication, session state and [various other components](https://docs.microsoft.com/aspnet/core/security/samesite?view=aspnetcore-2.1) set their sameSite options via Cookie options, for example
+Cookie authentication, session state and [various other components](../samesite.md?view=aspnetcore-2.1) set their sameSite options via Cookie options, for example
 
 ```c#
 services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
@@ -159,5 +159,5 @@ versions (2.1.14 or later 2.1 versions).
 ### More Information
  
 [Chrome Updates](https://www.chromium.org/updates/same-site)
-[ASP.NET Core SameSite Documentation](https://docs.microsoft.com/aspnet/core/security/samesite?view=aspnetcore-2.1)
+[ASP.NET Core SameSite Documentation](../samesite.md?view=aspnetcore-2.1)
 [ASP.NET Core 2.1 SameSite Change Announcement](https://github.com/dotnet/aspnetcore/issues/8212)

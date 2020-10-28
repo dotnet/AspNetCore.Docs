@@ -5,7 +5,7 @@ description: Learn how to serve and secure static files and configure static fil
 ms.author: riande
 ms.custom: mvc
 ms.date: 6/23/2020
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/static-files
 ---
 # Static files in ASP.NET Core
@@ -113,7 +113,7 @@ An alternative approach to serve files based on authorization:
 
 Directory browsing allows directory listing within specified directories.
 
-Directory browsing is disabled by default for security reasons. For more information, see [Considerations](#sc).
+Directory browsing is disabled by default for security reasons. For more information, see [Considerations](#considerations).
 
 Enable directory browsing with:
 
@@ -349,7 +349,7 @@ The Static File Middleware doesn't provide authorization checks. Any files serve
 
 ## Enable directory browsing
 
-Directory browsing allows users of your web app to see a directory listing and files within a specified directory. Directory browsing is disabled by default for security reasons (see [Considerations](#sc)). Enable directory browsing by invoking the <xref:Microsoft.AspNetCore.Builder.DirectoryBrowserExtensions.UseDirectoryBrowser%2A> method in `Startup.Configure`:
+Directory browsing allows users of your web app to see a directory listing and files within a specified directory. Directory browsing is disabled by default for security reasons (see [Considerations](#considerations)). Enable directory browsing by invoking the <xref:Microsoft.AspNetCore.Builder.DirectoryBrowserExtensions.UseDirectoryBrowser%2A> method in `Startup.Configure`:
 
 [!code-csharp[](static-files/samples/1.x/StaticFilesSample/StartupBrowse.cs?name=snippet_ConfigureMethod&highlight=12-17)]
 

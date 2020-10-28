@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to get started with ASP.NET Core MVC.
 ms.author: riande
 ms.date: 10/16/2019
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-mvc-app/start-mvc
 ---
 # Get started with ASP.NET Core MVC
@@ -51,7 +51,7 @@ At the end, you have an app that can manage and display movie data.
 
 * From the Visual Studio select **Create a new project**.
 
-* Select **ASP.NET Core Web Application** and then select **Next**.
+* Select **ASP.NET Core Web Application** > **Next**.
 
 ![new ASP.NET Core Web Application](start-mvc/_static/np_2.1.png)
 
@@ -59,7 +59,7 @@ At the end, you have an app that can manage and display movie data.
 
   ![new ASP.NET Core Web Application](start-mvc/_static/config.png)
 
-* Select **Web Application(Model-View-Controller)**, and then select **Create**.
+* Select **Web Application(Model-View-Controller)**. From the dropdown boxes, select **.NET Core** and **ASP.NET Core 3.1**, then select **Create**.
 
 ![New project dialog, .NET Core in left pane, ASP.NET Core web ](start-mvc/_static/new_project30.png)
 

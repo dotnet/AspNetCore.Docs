@@ -4,7 +4,7 @@ author: ardalis
 description: Learn how to create backend services using ASP.NET Core MVC to support native mobile apps.
 ms.author: riande
 ms.date: 12/05/2019
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mobile/native-mobile-backend
 ---
 # Create backend services for native mobile apps with ASP.NET Core

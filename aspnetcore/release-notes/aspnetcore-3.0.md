@@ -5,7 +5,7 @@ description: Learn about the new features in ASP.NET Core 3.0.
 ms.author: riande
 ms.custom: mvc
 ms.date: 12/05/2019
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: aspnetcore-3.0
 ---
 # What's new in ASP.NET Core 3.0
@@ -381,7 +381,7 @@ Host requirements:
 * Windows hosts must have [Service Principal Names](/windows/win32/ad/service-principal-names) (SPNs) added to the user account hosting the app.
 * Linux and macOS machines must be joined to the domain.
   * SPNs must be created for the web process.
-  * [Keytab files](https://blogs.technet.microsoft.com/pie/2018/01/03/all-you-need-to-know-about-keytab-files/) must be generated and configured on the host machine.
+  * [Keytab files](/archive/blogs/pie/all-you-need-to-know-about-keytab-files) must be generated and configured on the host machine.
 
 For more information, see <xref:security/authentication/windowsauth>.
 
@@ -534,4 +534,3 @@ For a complete list of assemblies removed from the shared framework, see [Assemb
 ## Additional information
 For the complete list of changes, see the [ASP.NET Core 3.0 Release Notes](WHERE IS THIS????).
 -->
- 

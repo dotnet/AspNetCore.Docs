@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
 ms.date: 04/12/2020
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: signalr/configuration
 ---
 
@@ -70,6 +70,7 @@ The following table describes options for configuring SignalR hubs:
 | `EnableDetailedErrors` | `false` | If `true`, detailed exception messages are returned to clients when an exception is thrown in a Hub method. The default is `false`, as these exception messages can contain sensitive information. |
 | `StreamBufferCapacity` | `10` | The maximum number of items that can be buffered for client upload streams. If this limit is reached, the processing of invocations is blocked until the server processes stream items.|
 | `MaximumReceiveMessageSize` | 32 KB | Maximum size of a single incoming hub message. |
+| `MaximumParallelInvocationsPerClient` | 1 | The maximum number of hub methods that each client can call in parallel before queueing. |
 
 Options can be configured for all hubs by providing an options delegate to the `AddSignalR` call in `Startup.ConfigureServices`.
 
@@ -342,6 +343,7 @@ Additional options can be configured in the `WithUrl` (`withUrl` in JavaScript) 
 | JavaScript Option | Default Value | Description |
 | ----------------- | ------------- | ----------- |
 | `accessTokenFactory` | `null` | A function returning a string that is provided as a Bearer authentication token in HTTP requests. |
+| `transport` | `null` | An <xref:Microsoft.AspNetCore.Http.Connections.HttpTransportType> value specifying the transport to use for the connection. |
 | `headers` | `null` | Dictionary of headers sent with every HTTP request. Sending headers in the browser doesn't work for WebSockets or the <xref:Microsoft.AspNetCore.Http.Connections.HttpTransportType.ServerSentEvents> stream. |
 | `logMessageContent` | `null` | Set to `true` to log the bytes/chars of messages sent and received by the client. |
 | `skipNegotiation` | `false` | Set this to `true` to skip the negotiation step. **Only supported when the WebSockets transport is the only enabled transport**. This setting can't be enabled when using the Azure SignalR Service. |
@@ -363,6 +365,8 @@ In the .NET Client, these options can be modified by the options delegate provid
 var connection = new HubConnectionBuilder()
     .WithUrl("https://example.com/chathub", options => {
         options.Headers["Foo"] = "Bar";
+        options.SkipNegotiation = true;
+        options.Transports = HttpTransportType.WebSockets;
         options.Cookies.Add(new Cookie(/* ... */);
         options.ClientCertificates.Add(/* ... */);
     })
@@ -374,8 +378,9 @@ In the JavaScript Client, these options can be provided in a JavaScript object p
 ```javascript
 let connection = new signalR.HubConnectionBuilder()
     .withUrl("/chathub", {
-        skipNegotiation: true,
-        transport: signalR.HttpTransportType.WebSockets
+        // "Foo: Bar" will not be sent with WebSockets or Server-Sent Events requests
+        headers: { "Foo": "Bar" },
+        transport: signalR.HttpTransportType.LongPolling 
     })
     .build();
 ```
@@ -730,6 +735,7 @@ Additional options can be configured in the `WithUrl` (`withUrl` in JavaScript) 
 | JavaScript Option | Default Value | Description |
 | ----------------- | ------------- | ----------- |
 | `accessTokenFactory` | `null` | A function returning a string that is provided as a Bearer authentication token in HTTP requests. |
+| `transport` | `null` | An <xref:Microsoft.AspNetCore.Http.Connections.HttpTransportType> value specifying the transport to use for the connection. |
 | `logMessageContent` | `null` | Set to `true` to log the bytes/chars of messages sent and received by the client. |
 | `skipNegotiation` | `false` | Set this to `true` to skip the negotiation step. **Only supported when the WebSockets transport is the only enabled transport**. This setting can't be enabled when using the Azure SignalR Service. |
 
@@ -1115,6 +1121,7 @@ Additional options can be configured in the `WithUrl` (`withUrl` in JavaScript) 
 | JavaScript Option | Default Value | Description |
 | ----------------- | ------------- | ----------- |
 | `accessTokenFactory` | `null` | A function returning a string that is provided as a Bearer authentication token in HTTP requests. |
+| `transport` | `null` | An <xref:Microsoft.AspNetCore.Http.Connections.HttpTransportType> value specifying the transport to use for the connection. |
 | `logMessageContent` | `null` | Set to `true` to log the bytes/chars of messages sent and received by the client. |
 | `skipNegotiation` | `false` | Set this to `true` to skip the negotiation step. **Only supported when the WebSockets transport is the only enabled transport**. This setting can't be enabled when using the Azure SignalR Service. |
 
@@ -1464,6 +1471,7 @@ Additional options can be configured in the `WithUrl` (`withUrl` in JavaScript) 
 | JavaScript Option | Default Value | Description |
 | ----------------- | ------------- | ----------- |
 | `accessTokenFactory` | `null` | A function returning a string that is provided as a Bearer authentication token in HTTP requests. |
+| `transport` | `null` | An <xref:Microsoft.AspNetCore.Http.Connections.HttpTransportType> value specifying the transport to use for the connection. |
 | `logMessageContent` | `null` | Set to `true` to log the bytes/chars of messages sent and received by the client. |
 | `skipNegotiation` | `false` | Set this to `true` to skip the negotiation step. **Only supported when the WebSockets transport is the only enabled transport**. This setting can't be enabled when using the Azure SignalR Service. |
 
@@ -1807,6 +1815,7 @@ Additional options can be configured in the `WithUrl` (`withUrl` in JavaScript) 
 | JavaScript Option | Default Value | Description |
 | ----------------- | ------------- | ----------- |
 | `accessTokenFactory` | `null` | A function returning a string that is provided as a Bearer authentication token in HTTP requests. |
+| `transport` | `null` | An <xref:Microsoft.AspNetCore.Http.Connections.HttpTransportType> value specifying the transport to use for the connection. |
 | `logMessageContent` | `null` | Set to `true` to log the bytes/chars of messages sent and received by the client. |
 | `skipNegotiation` | `false` | Set this to `true` to skip the negotiation step. **Only supported when the WebSockets transport is the only enabled transport**. This setting can't be enabled when using the Azure SignalR Service. |
 

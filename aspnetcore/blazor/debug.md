@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 08/26/2020
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/debug
 ---
 # Debug ASP.NET Core Blazor WebAssembly
@@ -77,7 +77,7 @@ To debug a Blazor WebAssembly app in Visual Studio:
    > [!NOTE]
    > **Start Without Debugging** (<kbd>Ctrl</kbd>+<kbd>F5</kbd>) isn't supported. When the app is run in Debug configuration, debugging overhead always results in a small performance reduction.
 
-1. In the *Client* app, set a breakpoint on the `currentCount++;` line in `Pages/Counter.razor`.
+1. In the `*Client*` app, set a breakpoint on the `currentCount++;` line in `Pages/Counter.razor`.
 1. In the browser, navigate to `Counter` page and select the **Click me** button to hit the breakpoint.
 1. In Visual Studio, inspect the value of the `currentCount` field in the **Locals** window.
 1. Press <kbd>F5</kbd> to continue execution.
@@ -93,11 +93,55 @@ While debugging a Blazor WebAssembly app, you can also debug server code:
 > [!NOTE]
 > Breakpoints are **not** hit during app startup before the debug proxy is running. This includes breakpoints in `Program.Main` (`Program.cs`) and breakpoints in the [`OnInitialized{Async}` methods](xref:blazor/components/lifecycle#component-initialization-methods) of components that are loaded by the first page requested from the app.
 
+If the app is hosted at a different [app base path](xref:blazor/host-and-deploy/index#app-base-path) than `/`, update the following properties in `Properties/launchSettings.json` to reflect the app's base path:
+
+* `applicationUrl`:
+
+  ```json
+  "iisSettings": {
+    ...
+    "iisExpress": {
+      "applicationUrl": "http://localhost:{INSECURE PORT}/{APP BASE PATH}/",
+      "sslPort": {SECURE PORT}
+    }
+  },
+  ```
+
+* `inspectUri` of each profile:
+
+  ```json
+  "profiles": {
+    ...
+    "{PROFILE 1, 2, ... N}": {
+      ...
+      "inspectUri": "{wsProtocol}://{url.hostname}:{url.port}/{APP BASE PATH}/_framework/debug/ws-proxy?browser={browserInspectUri}",
+      ...
+    }
+  }
+  ```
+
+The placeholders in the preceding settings:
+
+* `{INSECURE PORT}`: The insecure port. A random value is provided by default, but a custom port is permitted.
+* `{APP BASE PATH}`: The app's base path.
+* `{SECURE PORT}`: The secure port. A random value is provided by default, but a custom port is permitted.
+* `{PROFILE 1, 2, ... N}`: Launch settings profiles. Usually, an app specifies more than one profile by default (for example, a profile for IIS Express and a project profile, which is used by Kestrel server).
+
+In the following examples, the app is hosted at `/OAT` with an app base path configured in `wwwroot/index.html` as `<base href="/OAT/">`:
+
+```json
+"applicationUrl": "http://localhost:{INSECURE PORT}/OAT/",
+```
+
+```json
+"inspectUri": "{wsProtocol}://{url.hostname}:{url.port}/OAT/_framework/debug/ws-proxy?browser={browserInspectUri}",
+```
+
+For information on using a custom app base path for Blazor WebAssembly apps, see <xref:blazor/host-and-deploy/index#app-base-path>.
+
 # [Visual Studio Code](#tab/visual-studio-code)
 
-<a id="vscode"></a>
-
-## Debug standalone Blazor WebAssembly
+<h2 id="vscode">Debug standalone Blazor WebAssembly</h2>
 
 1. Open the standalone Blazor WebAssembly app in VS Code.
 
@@ -120,7 +164,7 @@ While debugging a Blazor WebAssembly app, you can also debug server code:
 
 1. The standalone app is launched, and a debugging browser is opened.
 
-1. In the *Client* app, set a breakpoint on the `currentCount++;` line in `Pages/Counter.razor`.
+1. In the `*Client*` app, set a breakpoint on the `currentCount++;` line in `Pages/Counter.razor`.
 
 1. In the browser, navigate to `Counter` page and select the **Click me** button to hit the breakpoint.
 
@@ -225,7 +269,7 @@ To debug a Blazor WebAssembly app in Visual Studio for Mac:
    > [!IMPORTANT]
    > Google Chrome or Microsoft Edge must be the selected browser for the debugging session.
 
-1. In the *Client* app, set a breakpoint on the `currentCount++;` line in `Pages/Counter.razor`.
+1. In the `*Client*` app, set a breakpoint on the `currentCount++;` line in `Pages/Counter.razor`.
 1. In the browser, navigate to `Counter` page and select the **Click me** button to hit the breakpoint:
 1. In Visual Studio, inspect the value of the `currentCount` field in the **Locals** window.
 1. Press <kbd>&#8984;</kbd>+<kbd>&#8617;</kbd> to continue execution.
@@ -241,7 +285,7 @@ While debugging a Blazor WebAssembly app, you can also debug server code:
 > [!NOTE]
 > Breakpoints are **not** hit during app startup before the debug proxy is running. This includes breakpoints in `Program.Main` (`Program.cs`) and breakpoints in the [`OnInitialized{Async}` methods](xref:blazor/components/lifecycle#component-initialization-methods) of components that are loaded by the first page requested from the app.
 
-For more information, see [Debugging with Visual Studio for Mac](/visualstudio/mac/debugging?view=vsmac-2019).
+For more information, see [Debugging with Visual Studio for Mac](/visualstudio/mac/debugging).
 
 ---
 
@@ -285,6 +329,9 @@ If you're running into errors, the following tips may help:
 * In the **Debugger** tab, open the developer tools in your browser. In the console, execute `localStorage.clear()` to remove any breakpoints.
 * Confirm that you've installed and trusted the ASP.NET Core HTTPS development certificate. For more information, see <xref:security/enforcing-ssl#troubleshoot-certificate-problems>.
 * Visual Studio requires the **Enable JavaScript debugging for ASP.NET (Chrome, Edge and IE)** option in **Tools** > **Options** > **Debugging** > **General**. This is the default setting for Visual Studio. If debugging isn't working, confirm that the option is selected.
+* If your environment uses an HTTP proxy, make sure that `localhost` is included in the proxy bypass settings. This can be done by setting the `NO_PROXY` environment variable in either:
+  * The `launchSettings.json` file for the project.
+  * At the user or system environment variables level for it to apply to all apps. When using an environment variable, restart Visual Studio for the change to take effect.
 
 ### Breakpoints in `OnInitialized{Async}` not hit
 

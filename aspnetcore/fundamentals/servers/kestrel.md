@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 05/04/2020
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/servers/kestrel
 ---
 # Kestrel web server implementation in ASP.NET Core
@@ -339,6 +339,42 @@ webBuilder.ConfigureKestrel(serverOptions =>
 ```
 
 The default value is 96 KB (98,304).
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-5.0"
+
+### HTTP/2 keep alive ping configuration
+
+Kestrel can be configured to send HTTP/2 pings to connected clients. HTTP/2 pings serve multiple purposes:
+
+* Keep idle connections alive. Some clients and proxy servers close connections that are idle. HTTP/2 pings are considered as activity on a connection and prevent the connection from being closed as idle.
+* Close unhealthy connections. Connections where the client doesn't respond to the keep alive ping in the configured time are closed by the server.
+
+There are two configuration options related to HTTP/2 keep alive pings:
+
+* `Http2.KeepAlivePingInterval` is a `TimeSpan` that configures the ping internal. The server sends a keep alive ping to the client if it doesn't receive any frames for this period of time. Keep alive pings are disabled when this option is set to `TimeSpan.MaxValue`. The default value is `TimeSpan.MaxValue`.
+* `Http2.KeepAlivePingTimeout` is a `TimeSpan` that configures the ping timeout. If the server doesn't receive any frames, such as a response ping, during this timeout then the connection is closed. Keep alive timeout is disabled when this option is set to `TimeSpan.MaxValue`. The default value is 20 seconds.
+
+```csharp
+webBuilder.ConfigureKestrel(serverOptions =>
+{
+    serverOptions.Limits.Http2.KeepAlivePingInterval = TimeSpan.FromSeconds(30);
+    serverOptions.Limits.Http2.KeepAlivePingTimeout = TimeSpan.FromSeconds(60);
+});
+```
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-3.0"
+
+### Trailers
+
+[!INCLUDE[](~/includes/trailers.md)]
+
+### Reset
+
+[!INCLUDE[](~/includes/reset.md)]
 
 ### Synchronous I/O
 
