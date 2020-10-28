@@ -7,9 +7,9 @@ namespace SignalRChat.Hubs
 {
     public class StronglyTypedChatHub : Hub<IChatClient>
     {
-        public async Task SendMessage(string user, string message)
+        public async Task SendMessage(string message)
         {
-            await Clients.All.ReceiveMessage(user, message);
+            await Clients.All.ReceiveMessage(message);
         }
 
         public Task SendMessageToCaller(string message)
