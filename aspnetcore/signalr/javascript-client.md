@@ -66,6 +66,9 @@ The following code creates and starts a connection. The hub's name is case insen
 
 Typically, browsers load connections from the same domain as the requested page. However, there are occasions when a connection to another domain is required.
 
+> [!NOTE]
+> The client code will need to use a full url now instead of a partial url. Change `.withUrl("/chathub")` to `.withUrl("https:/myappurl/chathub")`.
+
 To prevent a malicious site from reading sensitive data from another site, [cross-origin connections](xref:security/cors) are disabled by default. To allow a cross-origin request, enable it in the `Startup` class:
 
 [!code-csharp[](javascript-client/samples/3.x/SignalRChat/Startup.cs?highlight=16-23,40)]
