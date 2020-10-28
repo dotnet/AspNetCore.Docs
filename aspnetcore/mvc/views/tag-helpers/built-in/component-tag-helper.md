@@ -16,8 +16,8 @@ By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.
 
 Follow the guidance in the *Prepare the app* section for either:
 
-* [Blazor WebAssembly](xref:blazor/components/integrate-components-into-razor-pages-and-mvc-apps?pivots=webassembly#prepare-the-app)
-* [Blazor Server](xref:blazor/components/integrate-components-into-razor-pages-and-mvc-apps?pivots=server#prepare-the-app)
+* [Blazor WebAssembly](xref:blazor/components/prerendering-and-integration?pivots=webassembly#prepare-the-app)
+* [Blazor Server](xref:blazor/components/prerendering-and-integration?pivots=server#prepare-the-app)
 
 ## Component Tag Helper
 

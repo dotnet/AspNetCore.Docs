@@ -1,16 +1,16 @@
 ---
-title: Integrate ASP.NET Core Razor components into Razor Pages and MVC apps
+title: Prerender and integrate ASP.NET Core Razor components
 author: guardrex
-description: Learn about data binding scenarios for components and DOM elements in Blazor apps.
+description: Learn about Razor component integration scenarios for Blazor apps, including prerendering of Razor components on the server.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/25/2020
+ms.date: 10/28/2020
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
-uid: blazor/components/integrate-components-into-razor-pages-and-mvc-apps
+uid: blazor/components/prerendering-and-integration
 zone_pivot_groups: blazor-hosting-models
 ---
-# Integrate ASP.NET Core Razor components into Razor Pages and MVC apps
+# Prerender and integrate ASP.NET Core Razor components
 
 By [Luke Latham](https://github.com/guardrex) and [Daniel Roth](https://github.com/danroth27)
 
@@ -31,6 +31,7 @@ To set up prerendering for a Blazor WebAssembly app:
    ```csharp
    builder.RootComponents.Add<App>("#app");
    ```
+
 1. Add a `Pages/_Host.cshtml` file to the server project. You can obtain a `_Host.cshtml` file from an app created from the Blazor Server template with the `dotnet new blazorserver -o BlazorServer` command in a command shell. After placing the `Pages/_Host.cshtml` file into the server app of the hosted Blazor WebAssembly solution, make the following changes to the file:
    * Set the namespace to the server app's `Pages` folder (for example, `@namespace BlazorHosted.Server.Pages`).
    * Set an [`@using`](xref:mvc/views/razor#using) directive for the client project (for example, `@using BlazorHosted.Client`).
@@ -40,16 +41,19 @@ To set up prerendering for a Blazor WebAssembly app:
      <link href="css/app.css" rel="stylesheet" />
      <link href="_framework/scoped.styles.css" rel="stylesheet" />
      ```
+
    * Update the `render-mode` of the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) to prerender the root `App` component:
 
      ```cshtml
      <component type="typeof(App)" render-mode="WebAssemblyPrerendered" />
      ```
+
    * Update the Blazor script source to use the client-side Blazor WebAssembly script:
 
      ```cshtml
      <script src="_framework/blazor.webassembly.js"></script>
      ```
+
 1. In `Startup.Configure` (`Startup.cs`) of the server project:
 
    * Call `UseDeveloperExceptionPage` on the app builder in the Development environment.

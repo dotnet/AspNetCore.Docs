@@ -382,7 +382,7 @@
             - name: CSS isolation
               uid: blazor/components/css-isolation
             - name: Integrate components
-              uid: blazor/components/integrate-components-into-razor-pages-and-mvc-apps
+              uid: blazor/components/prerendering-and-integration
             - name: Component libraries
               uid: blazor/components/class-libraries
         - name: Globalization and localization
