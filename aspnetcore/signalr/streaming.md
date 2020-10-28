@@ -304,6 +304,22 @@ hubConnection.stream(String.class, "ExampleStreamingHubMethod", "Arg1")
 
 The `stream` method on `HubConnection` returns an Observable of the stream item type. The Observable type's `subscribe` method is where `onNext`, `onError` and `onCompleted` handlers are defined.
 
+### Client-to-server streaming
+
+The SignalR Java client can call client-to-server streaming methods on hubs by passing in an [Observable](https://rxjs-dev.firebaseapp.com/api/index/class/Observable) as an argument to `send`, `invoke`, or `stream`, depending on the hub method invoked.
+
+```java
+ReplaySubject<String> stream = ReplaySubject.create();
+hubConnection.send("UploadStream", stream);
+stream.onNext("FirstItem");
+stream.onNext("SecondItem");
+stream.onComplete();
+```
+
+Calling `stream.onNext(item)` with an item writes the item to the stream, and the hub method receives the item on the server.
+
+To end the stream, call `stream.onComplete()`.
+
 ::: moniker-end
 
 ## Additional resources
