@@ -89,7 +89,7 @@ The *launchSettings.json* file:
 * Is not deployed.
 * contains profile settings.
 
-The following JSON shows the *launchSettings.json* file for an ASP.NET Core web projected named *EnvironmentsSample* created with Visual Studio or `dotnet new`:
+The following JSON shows the *launchSettings.json* file for an ASP.NET Core web project named *EnvironmentsSample* created with Visual Studio or `dotnet new`:
 
 [!code-json[](environments/3.1sample/EnvironmentsSample/Properties/launchSettingsCopy.json)]
 
