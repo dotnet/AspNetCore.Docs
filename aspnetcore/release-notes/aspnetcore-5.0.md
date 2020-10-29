@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn about the new features in ASP.NET Core 5.0.
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/27/2020
+ms.date: 10/29/2020
 no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: aspnetcore-5.0
 ---
@@ -175,9 +175,9 @@ Debugging Blazor WebAssembly apps is improved in ASP.NET Core 5.0. Additionally,
 
 Blazor security now uses Microsoft Identity v2.0 ([`Microsoft.Identity.Web`](https://www.nuget.org/packages/Microsoft.Identity.Web) and [`Microsoft.Identity.Web.UI`](https://www.nuget.org/packages/Microsoft.Identity.Web.UI)) and MSAL v2.0. For more information, see the topics in the [Blazor Security and Identity node](xref:blazor/security/index).
 
-### State management support
+### Protected Browser Support API
 
-Protected browser storage APIs (`Microsoft.AspNetCore.ProtectedBrowserStorage`) have been moved to `Microsoft.AspNetCore.Components.Web.Extensions` in the shared framework and have undergone API changes. State management documentation has been split across Blazor hosting models. For more information, see <xref:blazor/state-management>.
+The Protected Browser Support API for Blazor Server has moved into the shared framework. You no longer need to add a separate package to the app, and the services are registered by the framework. For more information, see <xref:blazor/state-management>.
 
 ### Blazor WebAssembly prerendering
 
