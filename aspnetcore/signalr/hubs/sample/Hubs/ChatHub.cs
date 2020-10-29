@@ -13,14 +13,14 @@ namespace SignalRChat.Hubs
             return Clients.All.SendAsync("ReceiveMessage", user, message);
         }
 
-        public Task SendMessageToCaller(string message)
+        public Task SendMessageToCaller(string user, string message)
         {
-            return Clients.Caller.SendAsync("ReceiveMessage", message);
+            return Clients.Caller.SendAsync("ReceiveMessage", user, message);
         }
 
-        public Task SendMessageToGroup(string message)
+        public Task SendMessageToGroup(string user, string message)
         {
-            return Clients.Group("SignalR Users").SendAsync("ReceiveMessage", message);
+            return Clients.Group("SignalR Users").SendAsync("ReceiveMessage", user, message);
         }
         #endregion
 
@@ -28,7 +28,7 @@ namespace SignalRChat.Hubs
         [HubMethodName("SendMessageToUser")]
         public Task DirectMessage(string user, string message)
         {
-            return Clients.User(user).SendAsync("ReceiveMessage", message);
+            return Clients.User(user).SendAsync("ReceiveMessage", user, message);
         }
         #endregion
 

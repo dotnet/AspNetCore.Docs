@@ -12,14 +12,14 @@ namespace SignalRChat.Hubs
             await Clients.All.ReceiveMessage(user, message);
         }
 
-        public Task SendMessageToCaller(string message)
+        public Task SendMessageToCaller(string user, string message)
         {
-            return Clients.Caller.ReceiveMessage(message);
+            return Clients.Caller.ReceiveMessage(user, message);
         }
 
-        public Task SendMessageToGroups(string message)
+        public Task SendMessageToGroups(string user, string message)
         {
-            return Clients.Group("SignalR Users").ReceiveMessage(message);
+            return Clients.Group("SignalR Users").ReceiveMessage(user, message);
         }
 
         public override async Task OnConnectedAsync()
