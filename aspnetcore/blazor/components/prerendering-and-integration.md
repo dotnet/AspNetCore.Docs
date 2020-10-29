@@ -5,7 +5,7 @@ description: Learn about Razor component integration scenarios for Blazor apps, 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/28/2020
+ms.date: 10/29/2020
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/components/prerendering-and-integration
 zone_pivot_groups: blazor-hosting-models
@@ -35,11 +35,11 @@ To set up prerendering for a Blazor WebAssembly app:
 1. Add a `Pages/_Host.cshtml` file to the server project. You can obtain a `_Host.cshtml` file from an app created from the Blazor Server template with the `dotnet new blazorserver -o BlazorServer` command in a command shell. After placing the `Pages/_Host.cshtml` file into the server app of the hosted Blazor WebAssembly solution, make the following changes to the file:
    * Set the namespace to the server app's `Pages` folder (for example, `@namespace BlazorHosted.Server.Pages`).
    * Set an [`@using`](xref:mvc/views/razor#using) directive for the client project (for example, `@using BlazorHosted.Client`).
-   * Update the stylesheet links to point to the WebAssembly app's stylesheet:
+   * Update the stylesheet links to point to the WebAssembly app's stylesheet. In the following example, the client app's namespace is `BlazorHosted.Client`:
 
      ```cshtml
      <link href="css/app.css" rel="stylesheet" />
-     <link href="_framework/scoped.styles.css" rel="stylesheet" />
+     <link href="BlazorHosted.Client.styles.css" rel="stylesheet" />
      ```
 
    * Update the `render-mode` of the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) to prerender the root `App` component:
@@ -98,10 +98,13 @@ The Component Tag Helper supports two render modes for rendering a component fro
 * `WebAssembly`: Renders a marker for a Blazor WebAssembly app for use to include an interactive component when loaded in the browser. The component isn't prerendered. This option makes it easier to render different Blazor WebAssembly components on different pages.
 * `WebAssemblyPrerendered`: Prerenders the component into static HTML and includes a marker for a Blazor WebAssembly app for later use to make the component interactive when loaded in the browser.
 
-In the following Razor Pages example, the `Counter` component is rendered in a page. To make the component interactive, the Blazor WebAssembly script is included in the page's [render section](xref:mvc/views/layout#sections):
+In the following Razor Pages example, the `Counter` component is rendered in a page. To make the component interactive, the Blazor WebAssembly script is included in the page's [render section](xref:mvc/views/layout#sections). To avoid using the full namespace for the `Counter` component with the Component Tag Helper (`BlazorHosted.Client.Pages.Counter`), add an [`@using`](xref:xref:mvc/views/razor#using) directive for the client app's `Pages` namespace:
 
 ```cshtml
-<h1>My Razor Page</h1>
+...
+@using BlazorHosted.Client.Pages
+
+<h1>@ViewData["Title"]</h1>
 
 <component type="typeof(Counter)" render-mode="WebAssemblyPrerendered" />
 
@@ -128,14 +131,14 @@ The preceding example requires that the server app's layout (`_Layout.cshtml`) i
 
 The `_Layout.cshtml` file is located in the `Pages/Shared` folder in a Razor Pages app or `Views/Shared` folder in an MVC app.
 
-If the app should also style components with the styles in the Blazor WebAssembly app, include the app's styles in the `_Layout.cshtml` file:
+If the app should also style components with the styles in the Blazor WebAssembly app, include the app's styles in the `_Layout.cshtml` file. In the following example, the client app's namespace is `BlazorHosted.Client`:
 
 ```cshtml
 <head>
     ...
 
     <link href="css/app.css" rel="stylesheet" />
-    <link href="_framework/scoped.styles.css" rel="stylesheet" />
+    <link href="BlazorHosted.Client.styles.css" rel="stylesheet" />
 </head>
 ```
 
