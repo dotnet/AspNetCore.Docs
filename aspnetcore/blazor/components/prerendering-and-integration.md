@@ -99,7 +99,7 @@ The Component Tag Helper supports two render modes for rendering a component fro
 * `WebAssembly`: Renders a marker for a Blazor WebAssembly app for use to include an interactive component when loaded in the browser. The component isn't prerendered. This option makes it easier to render different Blazor WebAssembly components on different pages.
 * `WebAssemblyPrerendered`: Prerenders the component into static HTML and includes a marker for a Blazor WebAssembly app for later use to make the component interactive when loaded in the browser.
 
-In the following Razor Pages example, the `Counter` component is rendered in a page. To make the component interactive, the Blazor WebAssembly script is included in the page's [render section](xref:mvc/views/layout#sections). To avoid using the full namespace for the `Counter` component with the Component Tag Helper (`BlazorHosted.Client.Pages.Counter`), add an [`@using`](xref:xref:mvc/views/razor#using) directive for the client app's `Pages` namespace:
+In the following Razor Pages example, the `Counter` component is rendered in a page. To make the component interactive, the Blazor WebAssembly script is included in the page's [render section](xref:mvc/views/layout#sections). To avoid using the full namespace for the `Counter` component with the Component Tag Helper (`{APP ASSEMBLY}.Pages.Counter`), add an [`@using`](xref:xref:mvc/views/razor#using) directive for the client app's `Pages` namespace. In the following example, the client app's namespace is `BlazorHosted.Client`:
 
 ```cshtml
 ...
@@ -145,10 +145,10 @@ If the app should also style components with the styles in the Blazor WebAssembl
 
 ## Render components in a page or view with a CSS selector
 
-Add root components to the *Client* project in `Program.Main` (`Program.cs`). In the following example, the `Counter` component is declared as a root component with a CSS selector that selects the element with the `id` that matches `my-counter`:
+Add root components to the *Client* project in `Program.Main` (`Program.cs`). In the following example, the `Counter` component is declared as a root component with a CSS selector that selects the element with the `id` that matches `my-counter`. In the following example, the client app's namespace is `BlazorHosted.Client`:
 
 ```csharp
-using {APP ASSEMBLY}.Client.Pages;
+using BlazorHosted.Client.Pages;
 
 ...
 

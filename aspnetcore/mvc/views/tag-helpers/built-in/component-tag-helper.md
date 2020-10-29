@@ -14,17 +14,17 @@ By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.
 
 ## Prerequisites
 
-Follow the guidance in the *Prepare the app* section for either:
+Follow the guidance in the *Configuration* section for either:
 
-* [Blazor WebAssembly](xref:blazor/components/prerendering-and-integration?pivots=webassembly#prepare-the-app)
-* [Blazor Server](xref:blazor/components/prerendering-and-integration?pivots=server#prepare-the-app)
+* [Blazor WebAssembly](xref:blazor/components/prerendering-and-integration?pivots=webassembly)
+* [Blazor Server](xref:blazor/components/prerendering-and-integration?pivots=server)
 
 ## Component Tag Helper
 
-To render a component from a page or view in a Blazor Server app, use the [Component Tag Helper](xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper) (`<component>` tag).
+To render a component from a page or view, use the [Component Tag Helper](xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper) (`<component>` tag).
 
 > [!NOTE]
-> Integrating Razor components into Razor Pages and MVC apps in a *hosted Blazor WebAssembly app* is supported in ASP.NET Core in .NET 5 or later.
+> Integrating Razor components into Razor Pages and MVC apps in a *hosted Blazor WebAssembly app* is supported in ASP.NET Core in .NET 5.0 or later.
 
 <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode> configures whether the component:
 
@@ -33,6 +33,13 @@ To render a component from a page or view in a Blazor Server app, use the [Compo
 
 ::: moniker range=">= aspnetcore-5.0"
 
+Blazor WebAssembly app render modes are shown in the following table.
+
+| Render Mode | Description |
+| ----------- | ----------- |
+| `WebAssembly` | Renders a marker for a Blazor WebAssembly app for use to include an interactive component when loaded in the browser. The component isn't prerendered. This option makes it easier to render different Blazor WebAssembly components on different pages. |
+| `WebAssemblyPrerendered` | Prerenders the component into static HTML and includes a marker for a Blazor WebAssembly app for later use to make the component interactive when loaded in the browser. |
+
 Blazor Server app render modes are shown in the following table.
 
 | Render Mode | Description |
@@ -40,13 +47,6 @@ Blazor Server app render modes are shown in the following table.
 | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered> | Renders the component into static HTML and includes a marker for a Blazor Server app. When the user-agent starts, this marker is used to bootstrap a Blazor app. |
 | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server> | Renders a marker for a Blazor Server app. Output from the component isn't included. When the user-agent starts, this marker is used to bootstrap a Blazor app. |
 | <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static> | Renders the component into static HTML. |
-
-Blazor WebAssembly app render modes are shown in the following table.
-
-| Render Mode | Description |
-| ----------- | ----------- |
-| `WebAssembly` | Renders a marker for a Blazor WebAssembly app for use to include an interactive component when loaded in the browser. The component isn't prerendered. This option makes it easier to render different Blazor WebAssembly components on different pages. |
-| `WebAssemblyPrerendered` | Prerenders the component into static HTML and includes a marker for a Blazor WebAssembly app for later use to make the component interactive when loaded in the browser. |
 
 ::: moniker-end
 
@@ -80,7 +80,7 @@ The following Component Tag Helper renders the `Counter` component in a page or 
 <component type="typeof(Counter)" render-mode="ServerPrerendered" />
 ```
 
-The preceding example assumes that the `Counter` component is in the app's *Pages* folder. The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `@using BlazorSample.Pages`).
+The preceding example assumes that the `Counter` component is in the app's *Pages* folder. The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `@using BlazorSample.Pages` or `@using BlazorSample.Client.Pages` in a hosted Blazor solution).
 
 The Component Tag Helper can also pass parameters to components. Consider the following `ColorfulCheckbox` component that sets the check box label's color and size:
 
