@@ -1,4 +1,5 @@
 ﻿#define  SearchGenreAndString   //SearchString
+#region snippet_newProps
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace RazorPagesMovie.Pages.Movies
 {
-    #region snippet_newProps
+
     public class IndexModel : PageModel
     {
         private readonly RazorPagesMovie.Data.RazorPagesMovieContext _context;
@@ -23,7 +24,6 @@ namespace RazorPagesMovie.Pages.Movies
         public IList<Movie> Movie { get; set; }
         [BindProperty(SupportsGet = true)]
         public string SearchString { get; set; }
-        // Requires using Microsoft.AspNetCore.Mvc.Rendering;
         public SelectList Genres { get; set; }
         [BindProperty(SupportsGet = true)]
         public string MovieGenre { get; set; }
