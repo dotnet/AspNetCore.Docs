@@ -158,7 +158,9 @@ builder.RootComponents.Add<Counter>("#my-counter");
 In the following Razor Pages example, the `Counter` component is rendered in a page. To make the component interactive, the Blazor WebAssembly script is included in the page's [render section](xref:mvc/views/layout#sections):
 
 ```cshtml
-<h1>My Razor Page</h1>
+...
+
+<h1>@ViewData["Title"]</h1>
 
 <div id="my-counter">Loading...</div>
 
@@ -178,14 +180,14 @@ The preceding example requires that the server app's layout (`_Layout.cshtml`) i
 
 The `_Layout.cshtml` file is located in the `Pages/Shared` folder in a Razor Pages app or `Views/Shared` folder in an MVC app.
 
-If the app should also style components with the styles in the Blazor WebAssembly app, include the app's styles in the `_Layout.cshtml` file:
+If the app should also style components with the styles in the Blazor WebAssembly app, include the app's styles in the `_Layout.cshtml` file. In the following example, the client app's namespace is `BlazorHosted.Client`:
 
 ```cshtml
 <head>
     ...
 
     <link href="css/app.css" rel="stylesheet" />
-    <link href="_framework/scoped.styles.css" rel="stylesheet" />
+    <link href="BlazorHosted.Client.styles.css" rel="stylesheet" />
 </head>
 ```
 
