@@ -230,7 +230,7 @@ In any component that requires loading or saving data to browser storage, use th
 The choice depends on which browser storage location you wish to use. In the following example, `sessionStorage` is used:
 
 ```razor
-@using Microsoft.AspNetCore.Componets.Server.ProtectedBrowserStorage
+@using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage
 @inject ProtectedSessionStorage ProtectedSessionStore
 ```
 
@@ -311,7 +311,7 @@ To disable prerendering, open the `Pages/_Host.cshtml` file and change the `rend
 Prerendering might be useful for other pages that don't use `localStorage` or `sessionStorage`. To retain prerendering, defer the loading operation until the browser is connected to the circuit. The following is an example for storing a counter value:
 
 ```razor
-@using Microsoft.AspNetCore.Componets.Server.ProtectedBrowserStorage
+@using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage
 @inject ProtectedLocalStorage ProtectedLocalStore
 
 @if (isConnected)
@@ -359,7 +359,7 @@ If many components rely on browser-based storage, re-implementing state provider
 In the following example of a `CounterStateProvider` component, counter data is persisted to `sessionStorage`:
 
 ```razor
-@using Microsoft.AspNetCore.Componets.Server.ProtectedBrowserStorage
+@using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage
 @inject ProtectedSessionStorage ProtectedSessionStore
 
 @if (isLoaded)
