@@ -470,7 +470,7 @@ Register the database context with the [dependency injection](xref:fundamentals/
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-* In the **Solution Tool Window**, right-click the **RazorPagesMovie** project, and then select **Add** > **New Folder...**. Name the folder *Models*.
+* In the **Solution Tool Window**, control-click the **RazorPagesMovie** project, and then select **Add** > **New Folder...**. Name the folder *Models*.
 * Right-click the *Models* folder, and then select **Add** > **New File...**.
 * In the **New File** dialog:
 
@@ -861,7 +861,7 @@ Build the project as a check for errors.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-* In **Solution Explorer**, control-click the *RazorPagesMovie* project, and then select **Add** > **New Folder**. Name the folder *Models*.
+* In **Solution Tool Window**, control-click the *RazorPagesMovie* project, and then select **Add** > **New Folder**. Name the folder *Models*.
 * Control-click the *Models* folder, and then select **Add** > **New File**.
 * In the **New File** dialog:
 
