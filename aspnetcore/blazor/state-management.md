@@ -5,7 +5,7 @@ description: Learn how to persist state in Blazor Server apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/22/2020
+ms.date: 10/29/2020
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/state-management
 zone_pivot_groups: blazor-hosting-models
@@ -220,15 +220,6 @@ ASP.NET Core Protected Browser Storage leverages [ASP.NET Core Data Protection](
 > [!NOTE]
 > Protected Browser Storage relies on ASP.NET Core Data Protection and is only supported for Blazor Server apps.
 
-### Configuration
-
-1. Add a package reference to [`Microsoft.AspNetCore.Components.Web.Extensions`](https://www.nuget.org/packages/Microsoft.AspNetCore.Http.Extensions).
-1. In `Startup.ConfigureServices`, call `AddProtectedBrowserStorage` to add `localStorage` and `sessionStorage` services to the service collection:
-
-   ```csharp
-   services.AddProtectedBrowserStorage();
-   ```
-
 ### Save and load data within a component
 
 In any component that requires loading or saving data to browser storage, use the [`@inject`](xref:mvc/views/razor#inject) directive to inject an instance of either of the following:
@@ -239,7 +230,7 @@ In any component that requires loading or saving data to browser storage, use th
 The choice depends on which browser storage location you wish to use. In the following example, `sessionStorage` is used:
 
 ```razor
-@using Microsoft.AspNetCore.Components.Web.Extensions
+@using Microsoft.AspNetCore.Componets.Server.ProtectedBrowserStorage
 @inject ProtectedSessionStorage ProtectedSessionStore
 ```
 
@@ -320,7 +311,7 @@ To disable prerendering, open the `Pages/_Host.cshtml` file and change the `rend
 Prerendering might be useful for other pages that don't use `localStorage` or `sessionStorage`. To retain prerendering, defer the loading operation until the browser is connected to the circuit. The following is an example for storing a counter value:
 
 ```razor
-@using Microsoft.AspNetCore.Components.Web.Extensions
+@using Microsoft.AspNetCore.Componets.Server.ProtectedBrowserStorage
 @inject ProtectedLocalStorage ProtectedLocalStore
 
 @if (isConnected)
@@ -368,7 +359,7 @@ If many components rely on browser-based storage, re-implementing state provider
 In the following example of a `CounterStateProvider` component, counter data is persisted to `sessionStorage`:
 
 ```razor
-@using Microsoft.AspNetCore.Components.Web.Extensions
+@using Microsoft.AspNetCore.Componets.Server.ProtectedBrowserStorage
 @inject ProtectedSessionStorage ProtectedSessionStore
 
 @if (isLoaded)
