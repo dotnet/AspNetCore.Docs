@@ -123,7 +123,7 @@ The `Movie` class contains:
 
 ---
 
-* Build the project to verify there are no compilation errors.
+1. Build the project to verify there are no compilation errors.
 
 ## Scaffold the movie model
 
@@ -835,9 +835,9 @@ Add a connection string to the *appsettings.json* file as shown in the following
 Run the following .NET Core CLI command to add SQLite and CodeGeneration.Design to the project:
 
 ```dotnetcli
-dotnet add package Microsoft.EntityFrameworkCore.SQLite
-dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
-dotnet add package Microsoft.EntityFrameworkCore.Design
+dotnet add package Microsoft.EntityFrameworkCore.Sqlite --version 2.2.6
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --version 2.2.4
+dotnet add package Microsoft.EntityFrameworkCore.Design --version 2.2.6
 ```
 
 The `Microsoft.VisualStudio.Web.CodeGeneration.Design` package is required for scaffolding.
