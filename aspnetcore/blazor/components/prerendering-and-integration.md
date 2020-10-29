@@ -20,7 +20,7 @@ By [Luke Latham](https://github.com/guardrex) and [Daniel Roth](https://github.c
 
 Razor components can be integrated into Razor Pages and MVC apps in a hosted Blazor WebAssembly solution. When the page or view is rendered, components can be prerendered at the same time.
 
-## Prepare the app
+## Configuration
 
 To set up prerendering for a Blazor WebAssembly app:
 
@@ -94,8 +94,6 @@ To set up prerendering for a Blazor WebAssembly app:
 
 ## Render components in a page or view with the Component Tag Helper
 
-*This section pertains to adding components to pages or views, where the components aren't directly routable from user requests.*
-
 The Component Tag Helper supports two render modes for rendering a component from a Blazor WebAssembly app in a page or view:
 
 * `WebAssembly`: Renders a marker for a Blazor WebAssembly app for use to include an interactive component when loaded in the browser. The component isn't prerendered. This option makes it easier to render different Blazor WebAssembly components on different pages.
@@ -145,9 +143,7 @@ If the app should also style components with the styles in the Blazor WebAssembl
 </head>
 ```
 
-## Render components in a page or view from a hosted Blazor WebAssembly app
-
-*This section pertains to adding components to pages or views from a hosted Blazor WebAssembly app, where the components aren't directly routable from user requests.*
+## Render components in a page or view with a CSS selector
 
 Add root components to the *Client* project in `Program.Main` (`Program.cs`). In the following example, the `Counter` component is declared as a root component with a CSS selector that selects the element with the `id` that matches `my-counter`:
 
@@ -207,14 +203,14 @@ Integrating Razor components into Razor Pages and MVC apps in a hosted Blazor We
 
 Razor components can be integrated into Razor Pages and MVC apps in a Blazor Server app. When the page or view is rendered, components can be prerendered at the same time.
 
-After [preparing the app](#prepare-the-app), use the guidance in the following sections depending on the app's requirements:
+After [configuring the app](#configuration), use the guidance in the following sections depending on the app's requirements:
 
 * Routable components: For components that are directly routable from user requests. Follow this guidance when visitors should be able to make an HTTP request in their browser for a component with an [`@page`](xref:mvc/views/razor#page) directive.
   * [Use routable components in a Razor Pages app](#use-routable-components-in-a-razor-pages-app)
   * [Use routable components in an MVC app](#use-routable-components-in-an-mvc-app)
 * [Render components from a page or view](#render-components-from-a-page-or-view): For components that aren't directly routable from user requests. Follow this guidance when the app embeds components into existing pages and views with the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper).
 
-## Prepare the app
+## Configuration
 
 An existing Razor Pages or MVC app can integrate Razor components into pages and views:
 
@@ -271,7 +267,7 @@ An existing Razor Pages or MVC app can integrate Razor components into pages and
 
 To support routable Razor components in Razor Pages apps:
 
-1. Follow the guidance in the [Prepare the app](#prepare-the-app) section.
+1. Follow the guidance in the [Configuration](#configuration) section.
 
 1. Add an `App.razor` file to the project root with the following content:
 
@@ -340,7 +336,7 @@ For more information on namespaces, see the [Component namespaces](#component-na
 
 To support routable Razor components in MVC apps:
 
-1. Follow the guidance in the [Prepare the app](#prepare-the-app) section.
+1. Follow the guidance in the [Configuration](#configuration) section.
 
 1. Add an `App.razor` file to the root of the project with the following content:
 
