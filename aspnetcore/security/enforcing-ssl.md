@@ -126,7 +126,7 @@ Specify the HTTPS port using any of the following approaches:
 > [!NOTE]
 > When an app is run in a reverse proxy configuration, <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature> isn't available. Set the port using one of the other approaches described in this section.
 
-### Edge deployments 
+### Edge server deployments
 
 When Kestrel or HTTP.sys is used as a public-facing edge server, Kestrel or HTTP.sys must be configured to listen on both:
 
@@ -379,6 +379,8 @@ The Windows Subsystem for Linux (WSL) generates an HTTPS self-signed cert. To co
 ## Troubleshoot certificate problems
 
 This section provides help when the ASP.NET Core HTTPS development certificate has been [installed and trusted](#trust), but you still have browser warnings that the certificate is not trusted. The ASP.NET Core HTTPS development certificate is used by [Kestrel](xref:fundamentals/servers/kestrel).
+
+The Firefox browser does ***not*** trust the ASP.NET Core HTTPS development certificate. Use another browser when using the ASP.NET Core HTTPS development certificate.
 
 ### All platforms - certificate not trusted
 
