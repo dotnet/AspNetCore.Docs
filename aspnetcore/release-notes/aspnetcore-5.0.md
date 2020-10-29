@@ -175,9 +175,9 @@ Debugging Blazor WebAssembly apps is improved in ASP.NET Core 5.0. Additionally,
 
 Blazor security now uses Microsoft Identity v2.0 ([`Microsoft.Identity.Web`](https://www.nuget.org/packages/Microsoft.Identity.Web) and [`Microsoft.Identity.Web.UI`](https://www.nuget.org/packages/Microsoft.Identity.Web.UI)) and MSAL v2.0. For more information, see the topics in the [Blazor Security and Identity node](xref:blazor/security/index).
 
-### Protected Browser Support API
+### Protected Browser Storage for Blazor Server
 
-The Protected Browser Support API for Blazor Server has moved into the shared framework. You no longer need to add a separate package to the app, and the services are registered by the framework. For more information, see <xref:blazor/state-management>.
+Blazor Server apps can now use built-in support for storing app state in the browser that has been protected from tampering using ASP.NET Core data protection. Data can be stored in either local browser storage or session storage. For more information, see <xref:blazor/state-management>.
 
 ### Blazor WebAssembly prerendering
 
