@@ -135,7 +135,7 @@ The following HTML is rendered in the page or view:
 
 Passing a quoted string requires an [explicit Razor expression](xref:mvc/views/razor#explicit-razor-expressions), as shown for `param-Color` in the preceding example. The Razor parsing behavior for a `string` type value doesn't apply to a `param-*` attribute because the attribute is an `object` type.
 
-A types of parameters are supported, except:
+All types of parameters are supported, except:
 
 * Generic parameters.
 * Non-serializable parameters.
