@@ -438,7 +438,7 @@ The `Movie` class contains:
 
 ### Add a database context class
 
-1. In the *RazorPagesMovie* project, create a new folder named *Data*. 
+1. In the *RazorPagesMovie* project, create a new folder named *Data*.
 1. Add the following `RazorPagesMovieContext` class to the *Data* folder:
 
    [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Data/RazorPagesMovieContext.cs)]
