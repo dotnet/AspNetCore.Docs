@@ -4,7 +4,7 @@ author: RicoSuter
 description: This tutorial provides a walkthrough of adding Swagger to generate documentation and help pages for a Web API app.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 07/06/2020
+ms.date: 10/29/2020
 no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/web-api-help-pages-using-swagger
 ---
@@ -12,25 +12,28 @@ uid: tutorials/web-api-help-pages-using-swagger
 
 By [Christoph Nienaber](https://twitter.com/zuckerthoben) and [Rico Suter](https://blog.rsuter.com/)
 
-Swagger (OpenAPI) is a language-agnostic specification for describing REST APIs. It allows both computers and humans to understand the capabilities of an API service without any direct access to the implementation (source code, network access, documentation). Its main goals are to help minimise the amount of work needed to connect decoupled services, as well as reduce the amount of time needed to accurately document a service.
+Swagger (OpenAPI) is a language-agnostic specification for describing REST APIs. It allows both computers and humans to understand the capabilities of a REST API without direct access to the source code. Its main goals are to:
 
-The two main OpenAPI implementations for .Net are [Swashbuckle](https://github.com/domaindrivendev/Swashbuckle.AspNetCore) and [NSwag](https://github.com/RicoSuter/NSwag), see:
+* Minimize the amount of work needed to connect decoupled services.
+* Reduce the amount of time needed to accurately document a service.
+
+The two main OpenAPI implementations for .NET are [Swashbuckle](https://github.com/domaindrivendev/Swashbuckle.AspNetCore) and [NSwag](https://github.com/RicoSuter/NSwag), see:
 
 * [Getting Started with Swashbuckle](xref:tutorials/get-started-with-swashbuckle)
 * [Getting Started with NSwag](xref:tutorials/get-started-with-nswag)
 
-## OpenApi vs Swagger
+## OpenApi vs. Swagger
 
-The Swagger project was donated to the OpenAPI Initiative in 2015, and has since been referred to as OpenAPI. Both names are used interchangeably, however strictly "OpenAPI" refers to the specification, whilst "Swagger" refers to the family of open-source and commercial products produced by SmartBear that work with the OpenAPI Specification (subsequent open-source products such as [OpenAPIGenerator](https://github.com/OpenAPITools/openapi-generator) also fall under the Swagger family name, despite not being released by SmartBear).
+The Swagger project was donated to the OpenAPI Initiative in 2015 and has since been referred to as OpenAPI. Both names are used interchangeably. However, "OpenAPI" refers to the specification. "Swagger" refers to the family of open-source and commercial products from SmartBear that work with the OpenAPI Specification. Subsequent open-source products, such as [OpenAPIGenerator](https://github.com/OpenAPITools/openapi-generator), also fall under the Swagger family name, despite not being released by SmartBear.
 
 In short:
 
-* OpenAPI = specification
-* Swagger = tooling that uses the OpenAPI specification (OpenAPIGenerator, SwaggerUI, etc.)
+* OpenAPI is a specification.
+* Swagger is tooling that uses the OpenAPI specification. For example, OpenAPIGenerator and SwaggerUI.
 
 ## OpenAPI specification (openapi.json)
 
-The OpenAPI specification is a document that describes the capabilities of your API, based on the XML and Attribute definitions within the Controllers and Models. It is the core part of the OpenAPI flow, and is used to drive tooling such as SwaggerUI. By default it's named _openapi.json_. Here's an example of an OpenAPI specification, reduced for brevity:
+The OpenAPI specification is a document that describes the capabilities of your API. The document is based on the XML and attribute annotations within the controllers and models. It's the core part of the OpenAPI flow and is used to drive tooling such as SwaggerUI. By default, it's named *openapi.json*. Here's an example of an OpenAPI specification, reduced for brevity:
 
 ```json
 {
@@ -124,7 +127,7 @@ The OpenAPI specification is a document that describes the capabilities of your 
 
 ![Swagger UI](web-api-help-pages-using-swagger/_static/swagger-ui.png)
 
-Each public action method in your controllers can be tested from the UI. Click a method name to expand the section. Add any necessary parameters, and click **Try it out!**.
+Each public action method in your controllers can be tested from the UI. Select a method name to expand the section. Add any necessary parameters, and select **Try it out!**.
 
 ![Example Swagger GET test](web-api-help-pages-using-swagger/_static/get-try-it-out.png)
 
