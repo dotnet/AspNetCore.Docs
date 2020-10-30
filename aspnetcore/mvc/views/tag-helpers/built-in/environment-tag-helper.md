@@ -5,7 +5,7 @@ description: ASP.NET Core Environment Tag Helper defined including all propertie
 ms.author: riande
 ms.custom: mvc
 ms.date: 10/10/2018
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/views/tag-helpers/builtin-th/environment-tag-helper
 ---
 # Environment Tag Helper in ASP.NET Core

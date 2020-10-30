@@ -6,7 +6,7 @@ ms.author: riande
 ms.custom: "seoapril2019, mvc, seodec18"
 ms.date: 03/19/2020
 monikerRange: '>= aspnetcore-3.0'
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/facebook-logins
 ---
 

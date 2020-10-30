@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: jukotali
 ms.custom: mvc
 ms.date: 5/29/2019
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/middleware/request-response
 ---
 # Request and response operations in ASP.NET Core

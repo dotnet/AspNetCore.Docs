@@ -5,7 +5,7 @@ description: Part 8 of tutorial series on Razor Pages.
 ms.author: riande
 ms.custom: mvc
 ms.date: 7/23/2019
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/razor-pages/validation
 ---
 # Part 8, add validation to an ASP.NET Core Razor Page

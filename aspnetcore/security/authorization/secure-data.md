@@ -5,7 +5,7 @@ description: Learn how to create an ASP.NET Core web app with user data protecte
 ms.author: riande
 ms.date: 7/18/2020
 ms.custom: "mvc, seodec18"
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authorization/secure-data
 ---
 

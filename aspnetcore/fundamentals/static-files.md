@@ -5,7 +5,7 @@ description: Learn how to serve and secure static files and configure static fil
 ms.author: riande
 ms.custom: mvc
 ms.date: 6/23/2020
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/static-files
 ---
 # Static files in ASP.NET Core

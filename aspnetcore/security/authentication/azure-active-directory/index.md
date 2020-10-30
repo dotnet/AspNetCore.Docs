@@ -5,7 +5,7 @@ description: Discover topics related to authentication with Microsoft identity p
 ms.author: riande
 ms.date: 01/21/2020
 ms.custom: "mvc, seodec18"
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/azure-active-directory/index
 ---
 # Azure Active Directory with ASP.NET Core

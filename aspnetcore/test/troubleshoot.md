@@ -5,7 +5,7 @@ description: Understand and troubleshoot warnings and errors with ASP.NET Core p
 ms.author: riande
 ms.custom: mvc
 ms.date: 07/10/2019
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: test/troubleshoot
 ---
 # Troubleshoot and debug ASP.NET Core projects

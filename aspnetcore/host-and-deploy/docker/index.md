@@ -5,7 +5,7 @@ description: Discover links to resources for learning how to host ASP.NET Core a
 ms.author: riande
 ms.custom: mvc
 ms.date: 01/08/2018
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: host-and-deploy/docker/index
 ---
 # Host ASP.NET Core in Docker containers

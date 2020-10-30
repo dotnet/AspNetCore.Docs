@@ -5,7 +5,7 @@ description: Learn how to implement resource-based authorization in an ASP.NET C
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 11/15/2018
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authorization/resourcebased
 ---
 # Resource-based authorization in ASP.NET Core

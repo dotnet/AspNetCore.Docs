@@ -5,7 +5,7 @@ description: Discover External OAuth authentication providers that work with ASP
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/11/2018
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/otherlogins
 ---
 # External OAuth authentication providers

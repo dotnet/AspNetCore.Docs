@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn about support for setting a default machine-wide policy for all apps that consume ASP.NET Core Data Protection.
 ms.author: riande
 ms.date: 10/14/2016
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/data-protection/configuration/machine-wide-policy
 ---
 # Data Protection machine-wide policy support in ASP.NET Core
