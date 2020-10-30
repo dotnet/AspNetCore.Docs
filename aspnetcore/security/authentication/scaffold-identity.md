@@ -355,6 +355,14 @@ In the *Pages/Shared/Layout.cshtml* file, make the following changes:
 
 Some Identity options are configured in *Areas/Identity/IdentityHostingStartup.cs*. For more information, see [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).
 
+## Standalone or hosted Blazor WebAssembly apps
+
+Client-side Blazor WebAssembly apps use their own Identity UI approaches and can't use ASP.NET Core Identity scaffolding. Server-side ASP.NET Core apps of hosted Blazor solutions can follow the Razor Pages/MVC guidance in this article and are configured just like any other type of ASP.NET Core app that supports Identity.
+
+The Blazor framework doesn't include Razor component versions of Identity UI pages. Identity UI Razor components can be custom built or obtained from unsupported third-party sources.
+
+For more information, see the [Blazor Security and Identity articles](xref:blazor/security/index).
+
 <a name="full"></a>
 
 ## Create full Identity UI source
