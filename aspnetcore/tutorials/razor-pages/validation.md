@@ -28,7 +28,7 @@ The validation support provided by Razor Pages and Entity Framework is a good ex
 
 ## Add validation rules to the movie model
 
-The DataAnnotations namespace provides:
+The `DataAnnotations` namespace provides:
 
 * A set of built-in validation attributes that are applied declaratively to a class or property.
 * Formatting attributes like `DataType` that help with formatting and don't provide any validation.
@@ -49,7 +49,7 @@ The validation attributes specify behavior to enforce on the model properties th
 * The `RegularExpression` `Rating`:
 
   * Requires that the first character be an uppercase letter.
-  * Allows special characters and numbers in  subsequent spaces. "PG-13" is valid for a rating, but fails for a `Genre`.
+  * Allows special characters and numbers in subsequent spaces. "PG-13" is valid for a rating, but fails for a `Genre`.
 
 * The `Range` attribute constrains a value to within a specified range.
 * The `StringLength` attribute can set a maximum length of a string property, and optionally its minimum length.
@@ -74,7 +74,7 @@ Select the **Create New** link. Complete the form with some invalid values. When
 
 Notice how the form has automatically rendered a validation error message in each field containing an invalid value. The errors are enforced both client-side, using JavaScript and jQuery, and server-side, when a user has JavaScript disabled.
 
-A significant benefit is that **no** code changes were necessary in the Create or Edit pages. Once DataAnnotations were applied to the model, the validation UI was enabled. The Razor Pages created in this tutorial automatically picked up the validation rules, using validation attributes on the properties of the `Movie` model class. Test validation using the Edit page, the same validation is applied.
+A significant benefit is that **no** code changes were necessary in the Create or Edit pages. Once data annotations were applied to the model, the validation UI was enabled. The Razor Pages created in this tutorial automatically picked up the validation rules, using validation attributes on the properties of the `Movie` model class. Test validation using the Edit page, the same validation is applied.
 
 The form data isn't posted to the server until there are no client-side validation errors. Verify form data isn't posted by one or more of the following approaches:
 
@@ -128,7 +128,7 @@ The `DataType` attributes provide:
 
 Use the `RegularExpression` attribute to validate the format of the data. The `DataType` attribute is used to specify a data type that's more specific than the database intrinsic type. `DataType` attributes are not validation attributes. In the sample application, only the date is displayed, without time.
 
-The `DataType` Enumeration provides for many data types, such as Date, Time, PhoneNumber, Currency, EmailAddress, and more. 
+The `DataType` enumeration provides many data types, such as `Date`, `Time`, `PhoneNumber`, `Currency`, `EmailAddress`, and more. 
 
 The `DataType` attributes:
 
@@ -150,7 +150,7 @@ public DateTime ReleaseDate { get; set; }
 
 The `ApplyFormatInEditMode` setting specifies that the formatting will be applied when the value is displayed for editing. That behavior may not be wanted for some fields. For example, in currency values, the currency symbol is usually not wanted in the edit UI.
 
-The `DisplayFormat` attribute can be used by itself, but it's generally a good idea to use the `DataType` attribute. The `DataType` attribute conveys the semantics of the data as opposed to how to render it on a screen. The `DataType` attribute provides the following benefits that are not available with DisplayFormat:
+The `[DisplayFormat]` attribute can be used by itself, but it's generally a good idea to use the `DataType` attribute. The `[DataType]` attribute conveys the semantics of the data as opposed to how to render it on a screen. The `[DataType]` attribute provides the following benefits that aren't available with `[DisplayFormat]`:
 
 * The browser can enable HTML5 features, for example to show a calendar control, the locale-appropriate currency symbol, email links, etc.
 * By default, the browser renders data using the correct format based on its locale.
@@ -162,7 +162,7 @@ The `DisplayFormat` attribute can be used by itself, but it's generally a good i
 [Range(typeof(DateTime), "1/1/1966", "1/1/2020")]
    ```
 
-It is a best practice to avoid compiling hard dates in models, so using the `Range` attribute and `DateTime` is discouraged. Use [Configuration]<xref:fundamentals/configuration/index> for date ranges and other values that are subject to frequent change rather than specifying it in code.
+It's a best practice to avoid compiling hard dates in models, so using the `[Range]` attribute and `DateTime` is discouraged. Use [Configuration]<xref:fundamentals/configuration/index> for date ranges and other values that are subject to frequent change rather than specifying it in code.
 
 The following code shows combining attributes on one line:
 

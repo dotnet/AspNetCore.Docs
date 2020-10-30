@@ -27,7 +27,7 @@ The `RazorPagesMovieContext` object handles the task of connecting to the databa
 
 ---
 
-The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system reads the `ConnectionString`. For local development, configuration gets the connection string from the *appsettings.json* file.
+The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system reads the `ConnectionString` key. For local development, configuration gets the connection string from the *appsettings.json* file.
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -41,7 +41,7 @@ The generated connection string will be similar to the following:
 
 ---
 
-When the app is deployed to a test or production server, an environment variable can be used to set the connection string to a real database server. See [Configuration](xref:fundamentals/configuration/index) for more information.
+When the app is deployed to a test or production server, an environment variable can be used to set the connection string to a real database server. For more information, see [Configuration](xref:fundamentals/configuration/index).
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -288,7 +288,7 @@ The following exception occurs when `Update-Database` has not been run:
 
 # [Visual Studio](#tab/visual-studio)
 
-* Delete all the records in the DB. Use the delete links in the browser or from [SSOX](xref:tutorials/razor-pages/new-field#ssox)
+* Delete all the records in the database. Use the delete links in the browser or from [SSOX](xref:tutorials/razor-pages/new-field#ssox).
 * Force the app to initialize (call the methods in the `Startup` class) so the seed method runs. To force initialization, IIS Express must be stopped and restarted. Stop and restart IIS with any of the following approaches:
 
   * Right-click the IIS Express system tray icon in the notification area and tap **Exit** or **Stop Site**:
@@ -302,7 +302,7 @@ The following exception occurs when `Update-Database` has not been run:
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-Delete all the records in the DB, so the seed method will run. Stop and start the app to seed the database.
+Delete all the records in the database, so the seed method will run. Stop and start the app to seed the database.
 
 The app shows the seeded data.
 
@@ -339,7 +339,7 @@ For more information on the methods used in `ConfigureServices`, see:
 * [EU General Data Protection Regulation (GDPR) support in ASP.NET Core](xref:security/gdpr) for `CookiePolicyOptions`.
 * [SetCompatibilityVersion](xref:mvc/compatibility-version)
 
-The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system reads the `ConnectionString`. For local development, configuration gets the connection string from the *appsettings.json* file.
+The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system reads the `ConnectionString` key. For local development, configuration gets the connection string from the *appsettings.json* file.
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -441,18 +441,18 @@ Login failed for user 'user name'.
 
     ![Contextual menu](sql/_static/stopIIS.png)
 
-    * If the app is running in non-debug mode, press F5 to run in debug mode.
+    * If the app is running in non-debug mode, press <kbd>F5</kbd> to run in debug mode.
     * If the app in debug mode, stop the debugger and press F5.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-Delete all the records in the DB, so the seed method will run. Stop and start the app to seed the database.
+Delete all the records in the database, so the seed method will run. Stop and start the app to seed the database.
 
 The app shows the seeded data.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-Delete all the records in the DB, so the seed method will run. Stop and start the app to seed the database.
+Delete all the records in the database, so the seed method will run. Stop and start the app to seed the database.
 
 The app shows the seeded data.
 

@@ -33,7 +33,7 @@ Add the following highlighted using statement and properties to *Pages/Movies/In
 
 In the previous code:
 
-* `SearchString`: contains the text users enter in the search text box. `SearchString` has the [`[BindProperty]`](xref:Microsoft.AspNetCore.Mvc.BindPropertyAttribute) attribute. `[BindProperty]` binds form values and query strings with the same name as the property. `(SupportsGet = true)` is required for binding on GET requests.
+* `SearchString`: contains the text users enter in the search text box. `SearchString` has the [`[BindProperty]`](xref:Microsoft.AspNetCore.Mvc.BindPropertyAttribute) attribute. `[BindProperty]` binds form values and query strings with the same name as the property. `[BindProperty(SupportsGet = true)]` is required for binding on HTTP GET requests.
 * `Genres`: contains the list of genres. `Genres` allows the user to select a genre from the list. `SelectList` requires `using Microsoft.AspNetCore.Mvc.Rendering;`
 * `MovieGenre`: contains the specific genre the user selects. For example, "Western".
 * `Genres` and `MovieGenre` are used later in this tutorial.
@@ -63,7 +63,7 @@ The `s => s.Title.Contains()` code is a [Lambda Expression](/dotnet/csharp/progr
 > [!NOTE]
 > The [Contains](/dotnet/api/system.data.objects.dataclasses.entitycollection-1.contains) method is run on the database, not in the C# code. The case sensitivity on the query depends on the database and the collation. On SQL Server, `Contains` maps to [SQL LIKE](/sql/t-sql/language-elements/like-transact-sql), which is case insensitive. In SQLite, with the default collation, it's case sensitive.
 
-Navigate to the Movies page and append a query string such as `?searchString=Ghost` to the URL, for example, `https://localhost:5001/Movies?searchString=Ghost`. The filtered movies are displayed.
+Navigate to the Movies page and append a query string such as `?searchString=Ghost` to the URL. For example, `https://localhost:5001/Movies?searchString=Ghost`. The filtered movies are displayed.
 
 ![Index view](search/_static/ghost.png)
 
@@ -136,9 +136,9 @@ Add the following highlighted properties to *Pages/Movies/Index.cshtml.cs*:
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Pages/Movies/Index.cshtml.cs?name=snippet_newProps&highlight=11-999)]
 
-* `SearchString`: contains the text users enter in the search text box. `SearchString` has the [`[BindProperty]`](xref:Microsoft.AspNetCore.Mvc.BindPropertyAttribute) attribute. `[BindProperty]` binds form values and query strings with the same name as the property. `(SupportsGet = true)` is required for binding on GET requests.
+* `SearchString`: contains the text users enter in the search text box. `SearchString` has the [`[BindProperty]`](xref:Microsoft.AspNetCore.Mvc.BindPropertyAttribute) attribute. `[BindProperty]` binds form values and query strings with the same name as the property. `[BindProperty(SupportsGet = true)]` is required for binding on HTTP GET requests.
 * `Genres`: contains the list of genres. `Genres` allows the user to select a genre from the list. `SelectList` requires `using Microsoft.AspNetCore.Mvc.Rendering;`
-* `MovieGenre`: contains the specific genre the user selects, for example, "Western".
+* `MovieGenre`: contains the specific genre the user selects. For example, "Western".
 * `Genres` and `MovieGenre` are used later in this tutorial.
 
 [!INCLUDE[](~/includes/bind-get.md)]
@@ -165,11 +165,11 @@ The `s => s.Title.Contains()` code is a [Lambda Expression](/dotnet/csharp/progr
 
 **Note:** The [Contains](/dotnet/api/system.data.objects.dataclasses.entitycollection-1.contains) method is run on the database, not in the C# code. The case sensitivity on the query depends on the database and the collation. On SQL Server, `Contains` maps to [SQL LIKE](/sql/t-sql/language-elements/like-transact-sql), which is case insensitive. In SQLite, with the default collation, it's case sensitive.
 
-Navigate to the Movies page and append a query string such as `?searchString=Ghost` to the URL, for example, `https://localhost:5001/Movies?searchString=Ghost`. The filtered movies are displayed.
+Navigate to the Movies page and append a query string such as `?searchString=Ghost` to the URL. For example, `https://localhost:5001/Movies?searchString=Ghost`. The filtered movies are displayed.
 
 ![Index view](search/_static/ghost.png)
 
-If the following route template is added to the Index page, the search string can be passed as a URL segment, for example, `https://localhost:5001/Movies/Ghost`.
+If the following route template is added to the Index page, the search string can be passed as a URL segment. For example, `https://localhost:5001/Movies/Ghost`.
 
 ```cshtml
 @page "{searchString?}"

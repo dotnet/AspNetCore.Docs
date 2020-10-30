@@ -55,7 +55,7 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 1. From the Visual Studio **File** menu, select **New** > **Project**.
 1. Create a new ASP.NET Core Web Application and select **Next**.
   ![new ASP.NET Core Web Application](razor-pages-start/_static/5/np.png)
-1. Name the project **RazorPagesMovie**. It's important to name the project *RazorPagesMovie* so the namespaces will match when you copy and paste code.
+1. Name the project *RazorPagesMovie*. It's important to name the project *RazorPagesMovie* so the namespaces will match when you copy and paste code.
   ![new ASP.NET Core Web Application](razor-pages-start/_static/config.png)
 
 1. Select **ASP.NET Core 5.0** in the dropdown, **Web Application**, and then select **Create**.
@@ -99,7 +99,7 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 
   Select **Next**.
 
-1. Name the project **RazorPagesMovie**, and then select **Create**.
+1. Name the project *RazorPagesMovie*, and then select **Create**.
 
   ![macOS name the project](razor-pages-start/_static/RazorPagesMovie.png)
 
@@ -399,7 +399,7 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 
 * Press Ctrl+F5 to run without the debugger.
 
-  Launching the app with Ctrl+F5 (non-debug mode) allows you to make code changes, save the file, refresh the browser, and see the code changes. Many developers prefer to use non-debug mode to quickly launch the app and view changes.
+  Launching the app with <kbd>Ctrl+F5</kbd> (non-debug mode) allows you to make code changes, save the file, refresh the browser, and see the code changes. Many developers prefer to use non-debug mode to quickly launch the app and view changes.
 
 
   [!INCLUDE[](~/includes/trustCertVS.md)]
@@ -422,7 +422,7 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 
 * Press <kbd>Ctrl+F5</kbd> to run without the debugger.
 
-  Launching the app with Ctrl+F5 (non-debug mode) allows you to make code changes, save the file, refresh the browser, and see the code changes. Many developers prefer to use non-debug mode to quickly launch the app and view changes.
+  Launching the app with <kbd>Ctrl+F5</kbd> (non-debug mode) allows you to make code changes, save the file, refresh the browser, and see the code changes. Many developers prefer to use non-debug mode to quickly launch the app and view changes.
 
   Visual Studio Code starts [Kestrel](xref:fundamentals/servers/kestrel), launches a browser, and goes to `http://localhost:5001`. The address bar shows `localhost:port#` and not something like `example.com`. That's because `localhost` is the standard hostname for  local computer. Localhost only serves web requests from the local computer.
 
@@ -442,7 +442,7 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 
 * Press **Cmd-Opt-F5** to run without the debugger.
 
-  Launching the app with Cmd-Opt-F5 (non-debug mode) allows you to make code changes, save the file, refresh the browser, and see the code changes. Many developers prefer to use non-debug mode to quickly launch the app and view changes.
+  Launching the app with <kbd>Cmd+Opt+F5</kbd> (non-debug mode) allows you to make code changes, save the file, refresh the browser, and see the code changes. Many developers prefer to use non-debug mode to quickly launch the app and view changes.
 
   Visual Studio starts [Kestrel](xref:fundamentals/servers/kestrel), launches a browser, and goes to `http://localhost:5001`.
 
