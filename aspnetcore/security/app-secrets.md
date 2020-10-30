@@ -5,7 +5,7 @@ description: Learn how to store and retrieve sensitive information as app secret
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 4/20/2020
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/app-secrets
 ---
 # Safe storage of app secrets in development in ASP.NET Core

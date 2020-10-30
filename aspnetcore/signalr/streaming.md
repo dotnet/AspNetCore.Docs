@@ -4,9 +4,9 @@ author: bradygaster
 description: Learn how to stream data between the client and the server.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
-ms.custom: mvc
-ms.date: 11/12/2019
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+ms.custom: mvc, devx-track-js
+ms.date: 10/29/2020
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: signalr/streaming
 ---
 # Use streaming in ASP.NET Core SignalR
@@ -303,6 +303,22 @@ hubConnection.stream(String.class, "ExampleStreamingHubMethod", "Arg1")
 ```
 
 The `stream` method on `HubConnection` returns an Observable of the stream item type. The Observable type's `subscribe` method is where `onNext`, `onError` and `onCompleted` handlers are defined.
+
+### Client-to-server streaming
+
+The SignalR Java client can call client-to-server streaming methods on hubs by passing in an [Observable](https://rxjs-dev.firebaseapp.com/api/index/class/Observable) as an argument to `send`, `invoke`, or `stream`, depending on the hub method invoked.
+
+```java
+ReplaySubject<String> stream = ReplaySubject.create();
+hubConnection.send("UploadStream", stream);
+stream.onNext("FirstItem");
+stream.onNext("SecondItem");
+stream.onComplete();
+```
+
+Calling `stream.onNext(item)` with an item writes the item to the stream, and the hub method receives the item on the server.
+
+To end the stream, call `stream.onComplete()`.
 
 ::: moniker-end
 

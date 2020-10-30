@@ -5,7 +5,7 @@ description: Learn how to use gRPC for inter-process communication.
 monikerRange: '>= aspnetcore-5.0'
 ms.author: jamesnk
 ms.date: 09/16/2020
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: grpc/interprocess
 ---
 # Inter-process communication with gRPC

@@ -4,9 +4,9 @@ author: guardrex
 description: Explore ASP.NET Core Blazor, a way to build interactive client-side web UI with .NET in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
-ms.custom: "mvc, seoapril2019"
+ms.custom: "mvc, seoapril2019, devx-track-js"
 ms.date: 09/25/2020
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/index
 ---
 # Introduction to ASP.NET Core Blazor

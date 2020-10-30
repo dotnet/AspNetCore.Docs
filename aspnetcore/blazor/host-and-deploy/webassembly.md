@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 10/09/2020
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/host-and-deploy/webassembly
 ---
 # Host and deploy ASP.NET Core Blazor WebAssembly
@@ -273,6 +273,8 @@ Use the following approaches for static assets:
   <img alt="..." src="_content/{LIBRARY NAME}/{ASSET FILE NAME}" />
   ```
 
+<!-- HOLD for reactivation at 5.x
+
 ::: moniker range=">= aspnetcore-5.0"
 
 Components provided to a client app by a class library are referenced normally. If any components require stylesheets or JavaScript files, use either of the following approaches to obtain the static assets:
@@ -286,9 +288,15 @@ The preceding approaches are demonstrated in the following examples.
 
 ::: moniker range="< aspnetcore-5.0"
 
+-->
+
 Components provided to a client app by a class library are referenced normally. If any components require stylesheets or JavaScript files, the client app's `wwwroot/index.html` file must include the correct static asset links. These approaches are demonstrated in the following examples.
 
+<!-- HOLD for reactivation at 5.x
+
 ::: moniker-end
+
+-->
 
 Add the following `Jeep` component to one of the client apps. The `Jeep` component uses:
 
@@ -321,6 +329,8 @@ Add the following `Jeep` component to one of the client apps. The `Jeep` compone
 
 > [!WARNING]
 > Do **not** publish images of vehicles publicly unless you own the images. Otherwise, you risk copyright infringement.
+
+<!-- HOLD for reactivation at 5.x
 
 ::: moniker range=">= aspnetcore-5.0"
 
@@ -355,6 +365,8 @@ An alternative to using the [`Link` component](xref:blazor/fundamentals/addition
 
 ::: moniker range="< aspnetcore-5.0"
 
+-->
+
 The library's `jeep-yj.png` image can also be added to the library's `Component1` component (`Component1.razor`):
 
 ```razor
@@ -380,7 +392,11 @@ The client app's `wwwroot/index.html` file requests the library's stylesheet wit
 </head>
 ```
 
+<!-- HOLD for reactivation at 5.x
+
 ::: moniker-end
+
+-->
 
 Add navigation to the `Jeep` component in the client app's `NavMenu` component (`Shared/NavMenu.razor`):
 

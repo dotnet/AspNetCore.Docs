@@ -5,7 +5,7 @@ description: Learn how to unprotect data, protected with keys that have since be
 ms.author: riande
 ms.custom: mvc
 ms.date: 10/24/2018
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/data-protection/consumer-apis/dangerous-unprotect
 ---
 

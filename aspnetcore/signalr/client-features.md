@@ -5,7 +5,7 @@ description: Learn which features are supported by the various ASP.NET Core Sign
 ms.author: bradyg
 ms.custom: mvc
 ms.date: 11/12/2019
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: signalr/client-features
 ---
 # ASP.NET Core SignalR clients

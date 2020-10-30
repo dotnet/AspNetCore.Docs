@@ -5,7 +5,7 @@ description: Learn how to create an ASP.NET Core web app using Visual Studio and
 ms.author: riande
 ms.custom: "devx-track-csharp, mvc"
 ms.date: 12/06/2018
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: host-and-deploy/azure-apps/azure-continuous-deployment
 ---
 # Continuous deployment to Azure with Visual Studio and Git with ASP.NET Core

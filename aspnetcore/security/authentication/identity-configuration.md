@@ -5,7 +5,7 @@ description: Understand ASP.NET Core Identity default values and learn how to co
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/11/2019
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/identity-configuration
 ---
 # Configure ASP.NET Core Identity

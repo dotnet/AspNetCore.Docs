@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
 ms.date: 11/12/2019
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: signalr/hubcontext
 ---
 # Send messages from outside a hub
@@ -92,12 +92,14 @@ public class ChatController : Controller
         _strongChatHubContext = chatHubContext;
     }
 
-    public async Task SendMessage(string message)
+    public async Task SendMessage(string user, string message)
     {
-        await _strongChatHubContext.Clients.All.ReceiveMessage(message);
+        await _strongChatHubContext.Clients.All.ReceiveMessage(user, message);
     }
 }
 ```
+
+See [Strongly typed hubs](xref:signalr/hubs#strongly-typed-hubs) for more information.
 
 ## Related resources
 

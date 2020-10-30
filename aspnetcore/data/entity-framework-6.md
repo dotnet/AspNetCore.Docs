@@ -5,7 +5,7 @@ description: Entity Framework 6.3 and later works with ASP.NET Core 3.1 and late
 ms.author: riande
 ms.custom: mvc
 ms.date: 7/14/2020
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: data/entity-framework-6
 ---
 # ASP.NET Core and Entity Framework 6

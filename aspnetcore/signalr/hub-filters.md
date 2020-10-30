@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-5.0'
 ms.author: brecon
 ms.custom: mvc
 ms.date: 05/22/2020
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: signalr/hub-filters
 ---
 

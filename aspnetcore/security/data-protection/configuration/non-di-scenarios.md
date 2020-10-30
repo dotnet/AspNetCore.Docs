@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to support data protection scenarios where you can't or don't want to use a service provided by dependency injection.
 ms.author: riande
 ms.date: 10/14/2016
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/data-protection/configuration/non-di-scenarios
 ---
 # Non-DI aware scenarios for Data Protection in ASP.NET Core

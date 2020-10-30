@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 7/1/2020
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/environments
 ---
 # Use multiple environments in ASP.NET Core
@@ -89,7 +89,7 @@ The *launchSettings.json* file:
 * Is not deployed.
 * contains profile settings.
 
-The following JSON shows the *launchSettings.json* file for an ASP.NET Core web projected named *EnvironmentsSample* created with Visual Studio or `dotnet new`:
+The following JSON shows the *launchSettings.json* file for an ASP.NET Core web project named *EnvironmentsSample* created with Visual Studio or `dotnet new`:
 
 [!code-json[](environments/3.1sample/EnvironmentsSample/Properties/launchSettingsCopy.json)]
 

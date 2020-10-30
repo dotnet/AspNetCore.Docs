@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to restrict ASP.NET Core controller and action access by passing roles to the Authorize attribute.
 ms.author: riande
 ms.date: 10/14/2016
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authorization/roles
 ---
 # Role-based authorization in ASP.NET Core

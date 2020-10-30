@@ -5,8 +5,8 @@ description: Use Identity with a Single Page App hosted inside an ASP.NET Core a
 monikerRange: '>= aspnetcore-3.0'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 11/08/2019
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+ms.date: 10/27/2020
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/identity/spa
 ---
 # Authentication and authorization for SPAs
@@ -265,6 +265,27 @@ To deploy the app to production, the following resources need to be provisioned:
   * There are no specific requirements for this certificate; it can be a self-signed certificate or a certificate provisioned through a CA authority.
   * It can be generated through standard tools like PowerShell or OpenSSL.
   * It can be installed into the certificate store on the target machines or deployed as a *.pfx* file with a strong password.
+
+### Example: Deploy to a non-Azure web hosting provider
+
+In your web hosting panel, create or load your certificate. Then in the app's *appsettings.json* file, modify the `IdentityServer` section to include the key details. For example:
+
+```json
+"IdentityServer": {
+  "Key": {
+    "Type": "Store",
+    "StoreName": "WebHosting",
+    "StoreLocation": "CurrentUser",
+    "Name": "CN=MyApplication"
+  }
+}
+```
+
+In the preceding example:
+
+* `StoreName` represents the name of the certificate store where the certificate is stored. In this case, it points to the web hosting store.
+* `StoreLocation` represents where to load the certificate from (`CurrentUser` in this case).
+* `Name` corresponds with the distinguished subject for the certificate.
 
 ### Example: Deploy to Azure App Service
 

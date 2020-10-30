@@ -5,8 +5,8 @@ description: Learn how to upload files in Blazor with the InputFile component.
 monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/29/2020
-no-loc: ["ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+ms.date: 10/27/2020
 uid: blazor/file-uploads
 ---
 # ASP.NET Core Blazor file uploads
@@ -28,8 +28,9 @@ By default, the user selects single files. Add the `multiple` attribute to permi
 
 To read data from a user-selected file:
 
-* Call `OpenReadStream` on the file and read from the returned stream. For more information, see the [File streams](#file-streams) section.
-* Use `ReadAsync`. By default, `ReadAsync` only allows reading a file smaller than 524,288 KB (512 KB) in size. This limit is present to prevent developers from accidentally reading large files in to memory. Specify a reasonable approximation for the maximum expected file size if larger files must be supported. Avoid reading the incoming file stream directly into memory. For example, don't copy file bytes into a <xref:System.IO.MemoryStream> or read as a byte array. These approaches can result in performance and security problems, especially in Blazor Server. Instead, consider copying file bytes to an external store, such as a a blob or a file on disk.
+* Call `Microsoft.AspNetCore.Components.Forms.IBrowserFile.OpenReadStream` on the file and read from the returned stream. For more information, see the [File streams](#file-streams) section.
+* The <xref:System.IO.Stream> returned by `OpenReadStream` enforces a maximum size in bytes of the `Stream` being read. By default, only files smaller than 524,288 KB (512 KB) in size are allowed to be read before any further reads would result in an exception. This limit is present to prevent developers from accidentally reading large files in to memory. The `maxAllowedSize` parameter on `Microsoft.AspNetCore.Components.Forms.IBrowserFile.OpenReadStream` can be used to specify a larger size if required.
+* Avoid reading the incoming file stream directly into memory. For example, don't copy file bytes into a <xref:System.IO.MemoryStream> or read as a byte array. These approaches can result in performance and security problems, especially in Blazor Server. Instead, consider copying file bytes to an external store, such as a a blob or a file on disk.
 
 A component that receives an image file can call the `RequestImageFileAsync` convenience method on the file to resize the image data within the browser's JavaScript runtime before the image is streamed into the app.
 
