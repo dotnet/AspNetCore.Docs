@@ -5,7 +5,7 @@ description: Learn how to setup Nginx as a reverse proxy on Ubuntu 16.04 to forw
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/09/2020
+ms.date: 10/30/2020
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: host-and-deploy/linux-nginx
 ---
@@ -370,6 +370,8 @@ Configure the app to use a certificate in development for the `dotnet run` comma
 
 * Adding an `HTTP Strict-Transport-Security` (HSTS) header ensures all subsequent requests made by the client are over HTTPS.
 
+  For important guidance on HSTS, see <xref:security/enforcing-ssl#http-strict-transport-security-protocol-hsts>.
+
 * If HTTPS will be disabled in the future, use one of the following approaches:
 
   * Don't add the HSTS header.
@@ -379,7 +381,7 @@ Add the */etc/nginx/proxy.conf* configuration file:
 
 [!code-nginx[](linux-nginx/proxy.conf)]
 
-Edit the */etc/nginx/nginx.conf* configuration file. The example contains both `http` and `server` sections in one configuration file.
+**Replace** the contents of the */etc/nginx/nginx.conf* configuration file with the following file. The example contains both `http` and `server` sections in one configuration file.
 
 [!code-nginx[](linux-nginx/nginx.conf?highlight=2)]
 
