@@ -109,7 +109,7 @@ The <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*> method:
   * EventLog (only when running on Windows)
 * Enables [scope validation](xref:fundamentals/dependency-injection#scope-validation) and [dependency validation](xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions.ValidateOnBuild) when the environment is Development.
 
-The `ConfigureWebHostDefaults` method:
+The <xref:Microsoft.Extensions.Hosting.GenericHostBuilderExtensions.ConfigureWebHostDefaults*> method:
 
 * Loads host configuration from environment variables prefixed with `ASPNETCORE_`.
 * Sets [Kestrel](xref:fundamentals/servers/kestrel) server as the web server and configures it using the app's hosting configuration providers. For the Kestrel server's default options, see <xref:fundamentals/servers/kestrel#kestrel-options>.
@@ -180,7 +180,9 @@ For more information, see [Configuration in ASP.NET Core](xref:fundamentals/conf
 
 ## Settings for all app types
 
-This section lists host settings that apply to both HTTP and non-HTTP workloads. By default, environment variables used to configure these settings can have a `DOTNET_` prefix.
+This section lists host settings that apply to both HTTP and non-HTTP workloads. By default, environment variables used to configure these settings can have a `DOTNET_` or `ASPNETCORE_` prefix.
+
+For more information, see the [Default builder settings](#default-builder-settings) section.
 
 <!-- In the following sections, two spaces at end of line are used to force line breaks in the rendered page. -->
 
