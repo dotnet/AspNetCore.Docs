@@ -318,7 +318,7 @@ Use Visual Studio or the .NET Core CLI for a [self-contained deployment (SCD)](/
    dotnet publish --configuration Release --runtime win-x86 --self-contained
    ```
 
-1. Move the contents of the *bin/Release/{TARGET FRAMEWORK}/{RUNTIME IDENTIFIER}/publish* directory to the site in App Service. If dragging the *publish* folder contents from your local hard drive or network share directly to App Service in the Kudu console, drag the files to the `D:\home\site\wwwroot` folder in the Kudu console.
+1. Move the contents of the *bin/Release/{TARGET FRAMEWORK}/{RUNTIME IDENTIFIER}/publish* directory to the site in App Service. If dragging the *publish* folder contents from your local hard drive or network share directly to App Service in the [Kudu console](https://github.com/projectkudu/kudu/wiki), drag the files to the `D:\home\site\wwwroot` folder in the Kudu console.
 
 ---
 
