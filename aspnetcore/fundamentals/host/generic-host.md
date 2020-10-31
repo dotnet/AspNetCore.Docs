@@ -180,7 +180,7 @@ For more information, see [Configuration in ASP.NET Core](xref:fundamentals/conf
 
 ## Settings for all app types
 
-This section lists host settings that apply to both HTTP and non-HTTP workloads. By default, environment variables used to configure these settings can have a `DOTNET_` or `ASPNETCORE_` prefix.
+This section lists host settings that apply to both HTTP and non-HTTP workloads. By default, environment variables used to configure these settings can have a `DOTNET_` prefix.
 
 <!-- In the following sections, two spaces at end of line are used to force line breaks in the rendered page. -->
 
