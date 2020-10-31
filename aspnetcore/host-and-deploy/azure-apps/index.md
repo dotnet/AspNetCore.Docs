@@ -5,7 +5,7 @@ description: This article contains links to Azure host and deploy resources.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 12/16/2019
+ms.date: 11/6/2020
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: host-and-deploy/azure-apps/index
 ---
@@ -68,7 +68,7 @@ For more information on .NET Core framework components and distribution methods,
 
 Include the following NuGet packages to provide automatic logging features for apps deployed to Azure App Service:
 
-* [Microsoft.AspNetCore.AzureAppServices.HostingStartup](https://www.nuget.org/packages/Microsoft.AspNetCore.AzureAppServices.HostingStartup/) uses [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration) to provide ASP.NET Core light-up integration with Azure App Service. The added logging features are provided by the `Microsoft.AspNetCore.AzureAppServicesIntegration` package.
+* [Microsoft.AspNetCore.AzureAppServices.HostingStartup](https://www.nuget.org/packages/Microsoft.AspNetCore.AzureAppServices.HostingStartup/) uses [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration) to provide ASP.NET Core logging integration with Azure App Service. The added logging features are provided by the `Microsoft.AspNetCore.AzureAppServicesIntegration` package.
 * [Microsoft.AspNetCore.AzureAppServicesIntegration](https://www.nuget.org/packages/Microsoft.AspNetCore.AzureAppServicesIntegration/) executes [AddAzureWebAppDiagnostics](/dotnet/api/microsoft.extensions.logging.azureappservicesloggerfactoryextensions.addazurewebappdiagnostics) to add Azure App Service diagnostics logging providers in the `Microsoft.Extensions.Logging.AzureAppServices` package.
 * [Microsoft.Extensions.Logging.AzureAppServices](https://www.nuget.org/packages/Microsoft.Extensions.Logging.AzureAppServices/) provides logger implementations to support Azure App Service diagnostics logs and log streaming features.
 
@@ -286,20 +286,24 @@ Use Visual Studio or the .NET Core CLI for a [self-contained deployment (SCD)](/
 
 # [Visual Studio](#tab/visual-studio)
 
-1. Select **Build** > **Publish {Application Name}** from the Visual Studio toolbar or right-click the project in **Solution Explorer** and select **Publish**.
-1. In the **Pick a publish target** dialog, confirm that **App Service** is selected.
+1. Right-click the project in **Solution Explorer** and select **Publish**. Alternatively, select **Build** > **Publish {Application Name}** from the Visual Studio toolbar.
+1. In the **Publish** dialog, select **Azure** > **Next**.
+1. Select the Azure service.
 1. Select **Advanced**. The **Publish** dialog opens.
-1. In the **Publish** dialog:
-   * Confirm that the **Release** configuration is selected.
-   * Open the **Deployment Mode** drop-down list and select **Self-Contained**.
-   * Select the target runtime from the **Target Runtime** drop-down list. The default is `win-x86`.
-   * If you need to remove additional files upon deployment, open **File Publish Options** and select the check box to remove additional files at the destination.
+1. Select a Resource group and Hosting plan, or create new ones.
+1. Select **Finish**.
+1. In the **Publish** page:
+   * For **Configuration**, select the pen icon **Edit Configuration**:   
+      * Confirm that the **Release** configuration is selected.
+      * In the **Deployment Mode** drop-down list, select **Self-Contained**.
+      * In the **Target Runtime** drop-down list, select the desired runtime. The default is `win-x86`.
+    * To remove additional files upon deployment, open **File Publish Options** and select the check box to remove additional files at the destination.
    * Select **Save**.
-1. Create a new site or update an existing site by following the remaining prompts of the publish wizard.
+   * Select **Publish**.
 
 # [.NET Core CLI](#tab/netcore-cli/)
 
-1. In the project file, specify one or more [Runtime Identifiers (RIDs)](/dotnet/core/rid-catalog). Use `<RuntimeIdentifier>` (singular) for a single RID, or use `<RuntimeIdentifiers>` (plural) to provide a semicolon-delimited list of RIDs. In the following example, the `win-x86` RID is specified:
+1. In the project file, specify one or more [Runtime Identifiers (RIDs)](/dotnet/core/rid-catalog). Use `<RuntimeIdentifier>` for a single RID, or use `<RuntimeIdentifiers>` to provide a semicolon-delimited list of multiple RIDs. In the following example, the `win-x86` RID is specified:
 
    ```xml
    <PropertyGroup>
