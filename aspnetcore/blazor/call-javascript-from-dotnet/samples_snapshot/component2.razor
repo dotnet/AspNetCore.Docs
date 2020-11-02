@@ -1,4 +1,4 @@
-@inject IJSRuntime JSRuntime
+@inject IJSRuntime JS
 @using JsInteropClasses
 
 <button @ref="exampleButton" />
@@ -12,6 +12,6 @@
 
     public async Task TriggerClick()
     {
-        await exampleButton.TriggerClickEvent(JSRuntime);
+        await exampleButton.TriggerClickEvent(JS);
     }
 }

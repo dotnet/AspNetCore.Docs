@@ -150,14 +150,14 @@ using Microsoft.Extensions.Configuration;
 
 ...
 
-var client = new HttpClient()
+var http = new HttpClient()
 {
     BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
 };
 
-builder.Services.AddScoped(sp => client);
+builder.Services.AddScoped(sp => http);
 
-using var response = await client.GetAsync("cars.json");
+using var response = await http.GetAsync("cars.json");
 using var stream = await response.Content.ReadAsStreamAsync();
 
 builder.Configuration.AddJsonStream(stream);
