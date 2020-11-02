@@ -211,29 +211,29 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 
-public class WeatherForecastClient
+public class WeatherForecastHttpClient
 {
-    private readonly HttpClient client;
+    private readonly HttpClient http;
 
-    public WeatherForecastClient(HttpClient client)
+    public WeatherForecastHttpClient(HttpClient http)
     {
-        this.client = client;
+        this.http = http;
     }
 
     public async Task<WeatherForecast[]> GetForecastAsync()
     {
         var forecasts = new WeatherForecast[0];
-    
+
         try
         {
-            forecasts = await client.GetFromJsonAsync<WeatherForecast[]>(
+            forecasts = await http.GetFromJsonAsync<WeatherForecast[]>(
                 "WeatherForecast");
         }
         catch
         {
             ...
         }
-    
+
         return forecasts;
     }
 }
@@ -242,7 +242,7 @@ public class WeatherForecastClient
 `Program.Main` (`Program.cs`):
 
 ```csharp
-builder.Services.AddHttpClient<WeatherForecastClient>(client => 
+builder.Services.AddHttpClient<WeatherForecastHttpClient>(client => 
     client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress));
 ```
 
@@ -251,7 +251,7 @@ Components inject the typed <xref:System.Net.Http.HttpClient> to call the web AP
 `FetchData` component (`Pages/FetchData.razor`):
 
 ```razor
-@inject WeatherForecastClient Client
+@inject WeatherForecastHttpClient Http
 
 ...
 
@@ -260,7 +260,7 @@ Components inject the typed <xref:System.Net.Http.HttpClient> to call the web AP
 
     protected override async Task OnInitializedAsync()
     {
-        forecasts = await Client.GetForecastAsync();
+        forecasts = await Http.GetForecastAsync();
     }
 }
 ```

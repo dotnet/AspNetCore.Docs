@@ -83,11 +83,11 @@ internal static class GraphClientExtensions
             Provider = provider;
         }
 
-        public IAccessTokenProvider Provider { get; }
+        public IAccessTokenProvider TokenProvider { get; }
 
         public async Task AuthenticateRequestAsync(HttpRequestMessage request)
         {
-            var result = await Provider.RequestAccessToken(
+            var result = await TokenProvider.RequestAccessToken(
                 new AccessTokenRequestOptions()
                 {
                     Scopes = {STRING ARRAY OF SCOPES}
@@ -103,11 +103,11 @@ internal static class GraphClientExtensions
 
     private class HttpClientHttpProvider : IHttpProvider
     {
-        private readonly HttpClient client;
+        private readonly HttpClient http;
 
-        public HttpClientHttpProvider(HttpClient client)
+        public HttpClientHttpProvider(HttpClient http)
         {
-            this.client = client;
+            this.http = http;
         }
 
         public ISerializer Serializer { get; } = new Serializer();
@@ -120,14 +120,14 @@ internal static class GraphClientExtensions
 
         public Task<HttpResponseMessage> SendAsync(HttpRequestMessage request)
         {
-            return client.SendAsync(request);
+            return http.SendAsync(request);
         }
 
         public Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, 
             HttpCompletionOption completionOption, 
             CancellationToken cancellationToken)
         {
-            return client.SendAsync(request, completionOption, cancellationToken);
+            return http.SendAsync(request, completionOption, cancellationToken);
         }
     }
 }
