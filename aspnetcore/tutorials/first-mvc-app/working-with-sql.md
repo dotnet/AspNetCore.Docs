@@ -61,6 +61,8 @@ Note the key icon next to `ID`. By default, EF will make a property named `ID` t
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
+<h2 id="sqllite">SQLite database engine</h2>
+
 [!INCLUDE[](~/includes/rp/sqlite.md)]
 [!INCLUDE[](~/includes/RP-mvc-shared/sqlite-warn.md)]
 
@@ -172,6 +174,8 @@ Note the key icon next to `ID`. By default, EF will make a property named `ID` t
   ![Movie table open showing table data](working-with-sql/_static/vd22.png)
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+
+<h2 id="sqllite">SQLite database</h2>
 
 [!INCLUDE[](~/includes/rp/sqlite.md)]
 [!INCLUDE[](~/includes/RP-mvc-shared/sqlite-warn.md)]
