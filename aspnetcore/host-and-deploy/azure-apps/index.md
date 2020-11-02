@@ -255,16 +255,20 @@ For a 64-bit deployment:
 
 # [Visual Studio](#tab/visual-studio)
 
-1. Select **Build** > **Publish {Application Name}** from the Visual Studio toolbar or right-click the project in **Solution Explorer** and select **Publish**.
-1. In the **Pick a publish target** dialog, confirm that **App Service** is selected.
+1. Right-click the project in **Solution Explorer** and select **Publish**. Alternatively, select **Build** > **Publish {Application Name}** from the Visual Studio toolbar.
+1. In the **Publish** dialog, select **Azure** > **Next**.
+1. Select the Azure service.
 1. Select **Advanced**. The **Publish** dialog opens.
-1. In the **Publish** dialog:
-   * Confirm that the **Release** configuration is selected.
-   * Open the **Deployment Mode** drop-down list and select **Framework-Dependent**.
-   * Select **Portable** as the **Target Runtime**.
-   * If you need to remove additional files upon deployment, open **File Publish Options** and select the check box to remove additional files at the destination.
+1. Select a Resource group and Hosting plan, or create new ones.
+1. Select **Finish**.
+1. In the **Publish** page:
+   * For **Configuration**, select the pen icon **Edit Configuration**:   
+      * Confirm that the **Release** configuration is selected.
+      * In the **Deployment Mode** drop-down list, select  **Framework-Dependent**.
+      * In the **Target Runtime** drop-down list, select the desired runtime. The default is `win-x86`.
+    * To remove additional files upon deployment, open **File Publish Options** and select the check box to remove additional files at the destination.
    * Select **Save**.
-1. Create a new site or update an existing site by following the remaining prompts of the publish wizard.
+   * Select **Publish**.
 
 # [.NET Core CLI](#tab/netcore-cli/)
 
