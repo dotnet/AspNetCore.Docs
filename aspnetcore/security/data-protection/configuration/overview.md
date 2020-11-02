@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to configure Data Protection in ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/04/2020
+ms.date: 11/02/2020
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/data-protection/configuration/overview
 ---
@@ -37,7 +37,7 @@ The following NuGet packages are required for the Data Protection extensions use
 
 Log in to Azure using the CLI, for example:
 
-```Bash
+```azurecli
 az login
 ``` 
 
