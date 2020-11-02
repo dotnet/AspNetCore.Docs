@@ -5,7 +5,7 @@ description: Learn how to secure an ASP.NET Core Blazor WebAssembly hosted app w
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/27/2020
+ms.date: 11/02/2020
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/security/webassembly/hosted-with-azure-active-directory-b2c
 ---
@@ -123,16 +123,18 @@ Replace the placeholders in the following command with the information recorded 
 dotnet new blazorwasm -au IndividualB2C --aad-b2c-instance "{AAD B2C INSTANCE}" --api-client-id "{SERVER API APP CLIENT ID}" --app-id-uri "{SERVER API APP ID URI}" --client-id "{CLIENT APP CLIENT ID}" --default-scope "{DEFAULT SCOPE}" --domain "{TENANT DOMAIN}" -ho -o {APP NAME} -ssp "{SIGN UP OR SIGN IN POLICY}"
 ```
 
-| Placeholder                   | Azure portal name                                     | Example                                      |
-| ----------------------------- | ----------------------------------------------------- | -------------------------------------------- |
-| `{AAD B2C INSTANCE}`          | Instance                                              | `https://contoso.b2clogin.com/`              |
-| `{APP NAME}`                  | &mdash;                                               | `BlazorSample`                               |
-| `{CLIENT APP CLIENT ID}`      | Application (client) ID for the *`Client`* app        | `4369008b-21fa-427c-abaa-9b53bf58e538`       |
-| `{DEFAULT SCOPE}`             | Scope name                                            | `API.Access`                                 |
-| `{SERVER API APP CLIENT ID}`  | Application (client) ID for the *Server API app*      | `41451fa7-82d9-4673-8fa5-69eff5a761fd`       |
-| `{SERVER API APP ID URI}`     | Application ID URI                                    | `api://41451fa7-82d9-4673-8fa5-69eff5a761fd` |
-| `{SIGN UP OR SIGN IN POLICY}` | Sign-up/sign-in user flow                             | `B2C_1_signupsignin1`                        |
-| `{TENANT DOMAIN}`             | Primary/Publisher/Tenant domain                       | `contoso.onmicrosoft.com`                    |
+| Placeholder                   | Azure portal name                                     | Example                                        |
+| ----------------------------- | ----------------------------------------------------- | ---------------------------------------------- |
+| `{AAD B2C INSTANCE}`          | Instance                                              | `https://contoso.b2clogin.com/`                |
+| `{APP NAME}`                  | &mdash;                                               | `BlazorSample`                                 |
+| `{CLIENT APP CLIENT ID}`      | Application (client) ID for the *`Client`* app        | `4369008b-21fa-427c-abaa-9b53bf58e538`         |
+| `{DEFAULT SCOPE}`             | Scope name                                            | `API.Access`                                   |
+| `{SERVER API APP CLIENT ID}`  | Application (client) ID for the *Server API app*      | `41451fa7-82d9-4673-8fa5-69eff5a761fd`         |
+| `{SERVER API APP ID URI}`     | Application ID URI&dagger;                            | `41451fa7-82d9-4673-8fa5-69eff5a761fd`&dagger; |
+| `{SIGN UP OR SIGN IN POLICY}` | Sign-up/sign-in user flow                             | `B2C_1_signupsignin1`                          |
+| `{TENANT DOMAIN}`             | Primary/Publisher/Tenant domain                       | `contoso.onmicrosoft.com`                      |
+
+&dagger;The Blazor WebAssembly template automatically adds a scheme of `api://` to the App ID URI argument passed in the `dotnet new` command. When providing the App ID URI for the `{SERVER API APP ID URI}` placeholder and if the scheme is `api://`, remove the scheme (`api://`) from the argument, as the example value in the preceding table shows. If the App ID URI is a custom value or has some other scheme (for example, `https://` for an untrusted publisher domain similar to `https://contoso.onmicrosoft.com/41451fa7-82d9-4673-8fa5-69eff5a761fd`), you must manually update the default scope URI and remove the `api://` scheme after the *`Client`* app is created by the template. For more information, see the note in the [Access token scopes](#access-token-scopes) section. The Blazor WebAssembly template might be changed in a future release of ASP.NET Core to address these scenarios. For more information, see [Double scheme for App ID URI with Blazor WASM template (hosted, single org) (dotnet/aspnetcore #27417)](https://github.com/dotnet/aspnetcore/issues/27417).
 
 The output location specified with the `-o|--output` option creates a project folder if it doesn't exist and becomes part of the app's name.
 
@@ -337,6 +339,29 @@ builder.Services.AddMsalAuthentication(options =>
     options.ProviderOptions.DefaultAccessTokenScopes.Add("{SCOPE URI}");
 });
 ```
+
+> [!NOTE]
+> The Blazor WebAssembly template automatically adds a scheme of `api://` to the App ID URI argument passed in the `dotnet new` command. When generating an app from the Blazor project template, confirm that the value of the default access token scope uses either the correct custom App ID URI value that you provided in the Azure portal or a value with **one** of the following formats:
+>
+> * When the publisher domain of the directory is **trusted**, the default access token scope is typically a value similar to the following example, where `API.Access` is the default scope name:
+>
+>   ```csharp
+>   options.ProviderOptions.DefaultAccessTokenScopes.Add(
+>       "api://41451fa7-82d9-4673-8fa5-69eff5a761fd/API.Access");
+>   ```
+>
+>   Inspect the value for a double scheme (`api://api://...`). If a double scheme is present, remove the first `api://` scheme from the value.
+>
+> * When the publisher domain of the directory is **untrusted**, the default access token scope is typically a value similar to the following example, where `API.Access` is the default scope name:
+>
+>   ```csharp
+>   options.ProviderOptions.DefaultAccessTokenScopes.Add(
+>       "https://contoso.onmicrosoft.com/41451fa7-82d9-4673-8fa5-69eff5a761fd/API.Access");
+>   ```
+>
+>   Inspect the value for an extra `api://` scheme (`api://https://contoso.onmicrosoft.com/...`). If an extra `api://` scheme is present, remove the `api://` scheme from the value.
+>
+> The Blazor WebAssembly template might be changed in a future release of ASP.NET Core to address these scenarios. For more information, see [Double scheme for App ID URI with Blazor WASM template (hosted, single org) (dotnet/aspnetcore #27417)](https://github.com/dotnet/aspnetcore/issues/27417).
 
 Specify additional scopes with `AdditionalScopesToConsent`:
 
