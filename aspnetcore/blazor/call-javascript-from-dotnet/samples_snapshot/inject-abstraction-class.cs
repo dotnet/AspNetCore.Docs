@@ -1,15 +1,15 @@
 public class JsInteropClasses
 {
-    private readonly IJSRuntime jsRuntime;
+    private readonly IJSRuntime js;
 
-    public JsInteropClasses(IJSRuntime jsRuntime)
+    public JsInteropClasses(IJSRuntime js)
     {
-        this.jsRuntime = jsRuntime;
+        this.js = js;
     }
 
     public ValueTask<string> TickerChanged(string data)
     {
-        return jsRuntime.InvokeAsync<string>(
+        return js.InvokeAsync<string>(
             "handleTickerChanged",
             stockUpdate.symbol,
             stockUpdate.price);
