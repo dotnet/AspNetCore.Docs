@@ -37,7 +37,7 @@ This article covers publishing using the tools in Visual Studio. Visual Studio C
    | **Resource Group** | Group of related resources to which the app belongs. |
    | **Hosting Plan**   | Pricing plan for the web app. |
 
-1. Select the **Azure SignalR Service** in the **Service Dependencies** section. Select the **+** button:
+1. Select **Azure SignalR Service** in the **Service Dependencies** section. Select the **+** button:
 
    ![Dependencies area showing the selection of Azure SignalR Service in the Add drop-down list](publish-to-azure-web-app/_static/signalr-service-dependency.png)
 
