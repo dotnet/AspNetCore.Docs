@@ -5,7 +5,7 @@ description: Learn how to publish an ASP.NET Core SignalR app to Azure App Servi
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 11/12/2019
+ms.date: 11/02/2020
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: signalr/publish-to-azure-web-app
 ---
@@ -37,7 +37,7 @@ This article covers publishing using the tools in Visual Studio. Visual Studio C
    | **Resource Group** | Group of related resources to which the app belongs. |
    | **Hosting Plan**   | Pricing plan for the web app. |
 
-1. Select the **Azure SignalR Service** in the **Dependencies** > **Add** drop-down list:
+1. Select **Azure SignalR Service** in the **Service Dependencies** section. Select the **+** button:
 
    ![Dependencies area showing the selection of Azure SignalR Service in the Add drop-down list](publish-to-azure-web-app/_static/signalr-service-dependency.png)
 
