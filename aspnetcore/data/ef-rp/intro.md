@@ -106,6 +106,7 @@ To run the app after downloading the completed project:
 * From the Visual Studio **File** menu, select **New** > **Project**.
 * Select **ASP.NET Core Web Application**.
 * Name the project *ContosoUniversity*. It's important to use this exact name including capitalization, so the namespaces match when code is copied and pasted.
+* Select **Create**.
 * Select **.NET Core** and **ASP.NET Core 5.0** in the dropdowns, and then select **Web Application**.
 
 # [Visual Studio Code](#tab/visual-studio-code)
