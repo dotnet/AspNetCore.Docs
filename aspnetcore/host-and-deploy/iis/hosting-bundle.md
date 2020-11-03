@@ -20,13 +20,20 @@ The .NET Core Hosting bundle is an installer for the .NET Core Runtime and the [
 >
 > If the Hosting Bundle is installed after installing the 64-bit (x64) version of .NET Core, SDKs might appear to be missing ([No .NET Core SDKs were detected](xref:test/troubleshoot#no-net-core-sdks-were-detected)). To resolve the problem, see <xref:test/troubleshoot#missing-sdk-after-installing-the-net-core-hosting-bundle>.
 
-### Direct download (current version)
+## Direct download (current version)
 
 Download the installer using the following link:
 
 [Current .NET Core Hosting Bundle installer (direct download)](https://dotnet.microsoft.com/permalink/dotnetcore-current-windows-runtime-bundle-installer)
 
-### Earlier versions of the installer
+## Visual C++ Redistributable Requirement
+
+On older versions of Windows, for example Windows Server 2012 R2, install the Visual Studio C++ 2015, 2017, 2019 Redistributable. Otherwise, a confusing error message in the Windows Event Log reports that `The data is the error.`
+
+[Current x64 VS C++ redistributable](https://aka.ms/vs/16/release/vc_redist.x64.exe)
+[Current x86 VS C++ redistributable](https://aka.ms/vs/16/release/vc_redist.x86.exe)
+
+## Earlier versions of the installer
 
 To obtain an earlier version of the installer:
 
@@ -38,32 +45,29 @@ To obtain an earlier version of the installer:
 > [!WARNING]
 > Some installers contain release versions that have reached their end of life (EOL) and are no longer supported by Microsoft. For more information, see the [support policy](https://dotnet.microsoft.com/platform/support/policy/dotnet-core).
 
-### Install the Hosting Bundle
+## Options
 
-1. Run the installer on the server. The following parameters are available when running the installer from an administrator command shell:
+1. The following parameters are available when running the installer from an administrator command shell:
 
    * `OPT_NO_ANCM=1`: Skip installing the ASP.NET Core Module.
    * `OPT_NO_RUNTIME=1`: Skip installing the .NET Core runtime. Used when the server only hosts [self-contained deployments (SCD)](/dotnet/core/deploying/#self-contained-deployments-scd).
    * `OPT_NO_SHAREDFX=1`: Skip installing the ASP.NET Shared Framework (ASP.NET runtime). Used when the server only hosts [self-contained deployments (SCD)](/dotnet/core/deploying/#self-contained-deployments-scd).
    * `OPT_NO_X86=1`: Skip installing x86 runtimes. Use this parameter when you know that you won't be hosting 32-bit apps. If there's any chance that you will host both 32-bit and 64-bit apps in the future, don't use this parameter and install both runtimes.
    * `OPT_NO_SHARED_CONFIG_CHECK=1`: Disable the check for using an IIS Shared Configuration when the shared configuration (`applicationHost.config`) is on the same machine as the IIS installation. *Only available for ASP.NET Core 2.2 or later Hosting Bundler installers.* For more information, see <xref:host-and-deploy/aspnet-core-module#aspnet-core-module-with-an-iis-shared-configuration>.
-1. Restart the system or execute the following commands in a command shell:
 
-   ```console
-   net stop was /y
-   net start w3svc
-   ```
-   Restarting IIS picks up a change to the system PATH, which is an environment variable, made by the installer.
+> [!NOTE]
+> For information on IIS Shared Configuration, see [ASP.NET Core Module with IIS Shared Configuration](xref:host-and-deploy/aspnet-core-module#aspnet-core-module-with-an-iis-shared-configuration).
 
-ASP.NET Core doesn't adopt roll-forward behavior for patch releases of shared framework packages. After upgrading the shared framework by installing a new hosting bundle, restart the system or execute the following commands in a command shell:
+## Restart IIS
+
+After the Hosting Bundle is installed, a manual IIS restart may be required. For example, the `dotnet` CLI tooling (command) might not exist on the PATH for running IIS worker processes.
+
+To manually stop and start IIS, execute the following commands in an elevated command shell:
 
 ```console
 net stop was /y
 net start w3svc
 ```
-
-> [!NOTE]
-> For information on IIS Shared Configuration, see [ASP.NET Core Module with IIS Shared Configuration](xref:host-and-deploy/aspnet-core-module#aspnet-core-module-with-an-iis-shared-configuration).
 
 ## Module version and Hosting Bundle installer logs
 
