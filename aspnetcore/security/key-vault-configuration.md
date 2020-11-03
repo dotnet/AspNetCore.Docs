@@ -136,7 +136,7 @@ The `Certificate` sample app obtains its configuration values from `IConfigurati
   * `config["Section:SecretName"]`
   * `config.GetSection("Section")["SecretName"]`
 
-The X.509 certificate is managed by the OS. The app calls <xref:Microsoft.Extensions.Configuration.AzureKeyVaultConfigurationExtensions.AddAzureKeyVault*> with values supplied by the *appsettings.json* file:
+The X.509 certificate is managed by the OS. The app calls **AddAzureKeyVault** with values supplied by the *appsettings.json* file:
 
 [!code-csharp[](key-vault-configuration/samples/3.x/SampleApp/Program.cs?name=snippet1&highlight=46-49)]
 
@@ -198,7 +198,7 @@ For information on using the provider with a managed identity and an Azure DevOp
 
 ## Configuration options
 
-<xref:Microsoft.Extensions.Configuration.AzureKeyVaultConfigurationExtensions.AddAzureKeyVault*> can accept an <xref:Microsoft.Extensions.Configuration.AzureKeyVault.AzureKeyVaultConfigurationOptions>:
+AddAzureKeyVault can accept an AzureKeyVaultConfigurationOptions:
 
 ```csharp
 config.AddAzureKeyVault(
