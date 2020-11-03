@@ -20,7 +20,7 @@ This document explains how to use the [Azure Key Vault](https://azure.microsoft.
 * Controlling access to sensitive configuration data.
 * Meeting the requirement for FIPS 140-2 Level 2 validated Hardware Security Modules (HSM's) when storing configuration data.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/key-vault-configuration/samples) ([how to download](https://docs.microsoft.com/aspnet/core/introduction-to-aspnet-core#how-to-download-a-sample))
+[View or download sample code](xref:index#how-to-download-a-sample))
 
 ## Packages
 
@@ -138,7 +138,7 @@ The `Certificate` sample app obtains its configuration values from `IConfigurati
 
 The X.509 certificate is managed by the OS. The app calls <xref:Microsoft.Extensions.Configuration.AzureKeyVaultConfigurationExtensions.AddAzureKeyVault*> with values supplied by the *appsettings.json* file:
 
-[!code-csharp[](key-vault-configuration/samples/3.x/SampleApp/Program.cs?name=snippet1&highlight=45-48)]
+[!code-csharp[](key-vault-configuration/samples/3.x/SampleApp/Program.cs?name=snippet1&highlight=46-49)]
 
 Example values:
 
@@ -178,7 +178,7 @@ The sample app:
 * A new <xref:Azure.Security.KeyVault.Secrets.Secrets> is created with the `DefaultAzureCredential` instance.
 * The <xref:Azure.Security.KeyVault.Secrets.Secrets> instance is used with a default implementation of <xref:Azure.Extensions.Aspnetcore.Configuration.Secrets.KeyVaultSecretManager> that loads all secret values and replaces double-dashes (`--`) with colons (`:`) in key names.
 
-[!code-csharp[](key-vault-configuration/samples/3.x/SampleApp/Program.cs?name=snippet2&highlight=13-21)]
+[!code-csharp[](key-vault-configuration/samples/3.x/SampleApp/Program.cs?name=snippet2&highlight=12-14)]
 
 Key vault name example value: `contosovault`
     
