@@ -28,7 +28,7 @@ Download the installer using the following link:
 
 ## Visual C++ Redistributable Requirement
 
-On older versions of Windows, for example Windows Server 2012 R2, you'll need to install the Visual Studio C++ 2015, 2017, 2019 Redistributable. Otherwise, a confusing error messaging saying: `The data is the error.` will be output in the Windows Event Log.
+On older versions of Windows, for example Windows Server 2012 R2, install the Visual Studio C++ 2015, 2017, 2019 Redistributable. Otherwise, a confusing error message in the Windows Event Log reports that `The data is the error.`
 
 [Current x64 VS C++ redistributable](https://aka.ms/vs/16/release/vc_redist.x64.exe)
 [Current x86 VS C++ redistributable](https://aka.ms/vs/16/release/vc_redist.x86.exe)
@@ -47,7 +47,7 @@ To obtain an earlier version of the installer:
 
 ## Options
 
-1.  The following parameters are available when running the installer from an administrator command shell:
+1. The following parameters are available when running the installer from an administrator command shell:
 
    * `OPT_NO_ANCM=1`: Skip installing the ASP.NET Core Module.
    * `OPT_NO_RUNTIME=1`: Skip installing the .NET Core runtime. Used when the server only hosts [self-contained deployments (SCD)](/dotnet/core/deploying/#self-contained-deployments-scd).
@@ -58,11 +58,11 @@ To obtain an earlier version of the installer:
 > [!NOTE]
 > For information on IIS Shared Configuration, see [ASP.NET Core Module with IIS Shared Configuration](xref:host-and-deploy/aspnet-core-module#aspnet-core-module-with-an-iis-shared-configuration).
 
-## Restarting IIS
+## Restart IIS
 
-On install, the hosting bundle may require IIS to restart. For example, this can be due to `dotnet` not being on the PATH for already running IIS worker processes.
+After the Hosting Bundle is installed, a manual IIS restart may be required. For example, the `dotnet` CLI tooling (command) might not exist on the PATH for running IIS worker processes.
 
-To fix this, you may stop and start IIS by running this in an elevated commandline:
+To manually stop and start IIS, execute the following commands in an elevated command shell:
 
 ```console
 net stop was /y
