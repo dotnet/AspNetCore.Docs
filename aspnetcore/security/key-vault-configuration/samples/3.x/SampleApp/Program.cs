@@ -3,13 +3,14 @@
 // For details, see the Azure Key Vault Configuration Provider topic:
 // https://docs.microsoft.com/aspnet/core/security/key-vault-configuration
 
+using Azure.Extensions.AspNetCore.Configuration.Secrets;
+using Azure.Identity;
+using Azure.Security.KeyVault.Secrets;
+using System;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Azure.KeyVault;
-using Microsoft.Azure.Services.AppAuthentication;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Configuration.AzureKeyVault;
 using Microsoft.Extensions.Hosting;
 
 namespace SampleApp
@@ -25,7 +26,8 @@ namespace SampleApp
         #region snippet1
         // using System.Linq;
         // using System.Security.Cryptography.X509Certificates;
-        // using Microsoft.Extensions.Configuration;
+        // using Azure.Extensions.AspNetCore.Configuration.Secrets;
+        // using Azure.Identity;
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
@@ -42,10 +44,10 @@ namespace SampleApp
                                 .Find(X509FindType.FindByThumbprint,
                                     builtConfig["AzureADCertThumbprint"], false);
 
-                            config.AddAzureKeyVault(
-                                $"https://{builtConfig["KeyVaultName"]}.vault.azure.net/",
-                                builtConfig["AzureADApplicationId"],
-                                certs.OfType<X509Certificate2>().Single());
+                            config.AddAzureKeyVault(new Uri($"https://{builtConfig["KeyVaultName"]}.vault.azure.net/"),
+                                                    new ClientCertificateCredential(builtConfig["AzureADDirectoryId"], builtConfig["AzureADApplicationId"], certs.OfType<X509Certificate2>().Single()),
+                                                    new KeyVaultSecretManager());
+
 
                             store.Close();
                         }
@@ -60,9 +62,9 @@ namespace SampleApp
 
 #if Managed
         #region snippet2
-        // using Microsoft.Azure.KeyVault;
-        // using Microsoft.Azure.Services.AppAuthentication;
-        // using Microsoft.Extensions.Configuration.AzureKeyVault;
+        // using Azure.Security.KeyVault.Secrets;
+        // using Azure.Identity;
+        // using Azure.Extensions.AspNetCore.Configuration.Secrets;
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
@@ -71,16 +73,11 @@ namespace SampleApp
                     if (context.HostingEnvironment.IsProduction())
                     {
                         var builtConfig = config.Build();
+                        var SecretClient = new SecretClient(new Uri($"https://{builtConfig["KeyVaultName"]}.vault.azure.net/"),
+                                                                 new DefaultAzureCredential());
+                        config.AddAzureKeyVault(SecretClient, new KeyVaultSecretManager());
 
-                        var azureServiceTokenProvider = new AzureServiceTokenProvider();
-                        var keyVaultClient = new KeyVaultClient(
-                            new KeyVaultClient.AuthenticationCallback(
-                                azureServiceTokenProvider.KeyVaultTokenCallback));
 
-                        config.AddAzureKeyVault(
-                            $"https://{builtConfig["KeyVaultName"]}.vault.azure.net/",
-                            keyVaultClient,
-                            new DefaultKeyVaultSecretManager());
                     }
                 })
                 .ConfigureWebHostDefaults(webBuilder =>
