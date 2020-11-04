@@ -44,6 +44,6 @@ namespace RazorPagesMovie.Pages.Movies
 
             return RedirectToPage("./Index");
         }
+        #endregion
     }
-    #endregion
 }

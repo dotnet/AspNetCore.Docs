@@ -67,7 +67,7 @@ Navigate to the Movies page and append a query string such as `?searchString=Gho
 
 ![Index view](search/_static/ghost.png)
 
-If the following route template is added to the Index page, the search string can be passed as a URL segment, for example, `https://localhost:5001/Movies/Ghost`.
+If the following route template is added to the Index page, the search string can be passed as a URL segment. For example, `https://localhost:5001/Movies/Ghost`.
 
 ```cshtml
 @page "{searchString?}"

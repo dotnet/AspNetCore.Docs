@@ -79,7 +79,7 @@ There are many third-party tools you can download to manage and view a SQLite da
 ![DB Browser for SQLite showing movie database](~/tutorials/first-mvc-app-xplat/working-with-sql/_static/dbb.png)
 
 > [!NOTE]
-> For this tutorial the Entity Framework Core *migrations* feature is used where possible. Migrations updates the database schema to match changes in the data model. However, migrations can only do the kinds of changes that the EF Core provider supports, and the SQLite provider's capabilities are limited. For example, adding a column is supported, but removing or changing a column is not supported. If a migration is created to remove or change a column, the `ef migrations add` command succeeds but the `ef database update` command fails. Due to these limitations, this tutorial doesn't use migrations for SQLite schema changes. Instead, when the schema changes, the database is dropped and re-created.
+> For this tutorial, the Entity Framework Core *migrations* feature is used where possible. Migrations updates the database schema to match changes in the data model. However, migrations can only do the kinds of changes that the EF Core provider supports, and the SQLite provider's capabilities are limited. For example, adding a column is supported, but removing or changing a column is not supported. If a migration is created to remove or change a column, the `ef migrations add` command succeeds but the `ef database update` command fails. Due to these limitations, this tutorial doesn't use migrations for SQLite schema changes. Instead, when the schema changes, the database is dropped and re-created.
 >
 >The workaround for the SQLite limitations is to manually write migrations code to perform a table rebuild when something in the table changes. A table rebuild involves:
 >
@@ -92,7 +92,7 @@ There are many third-party tools you can download to manage and view a SQLite da
 > * [SQLite EF Core Database Provider Limitations](/ef/core/providers/sqlite/limitations)
 > * [Customize migration code](/ef/core/managing-schemas/migrations/#customize-migration-code)
 > * [Data seeding](/ef/core/modeling/data-seeding)
-  * [SQLite ALTER TABLE statement](https://sqlite.org/lang_altertable.html)
+> * [SQLite ALTER TABLE statement](https://sqlite.org/lang_altertable.html)
 
 ---
 
@@ -138,14 +138,14 @@ The following exception occurs when `Update-Database` has not been run:
 
 1. Force the app to initialize by calling the methods in the `Startup` class, so the seed method runs. To force initialization, IIS Express must be stopped and restarted. Stop and restart IIS with any of the following approaches:
 
-   1. Right-click the IIS Express system tray icon in the notification area and tap **Exit** or **Stop Site**:
+   1. Right-click the IIS Express system tray icon in the notification area and select **Exit** or **Stop Site**:
 
       ![IIS Express system tray icon](../first-mvc-app/working-with-sql/_static/iisExIcon.png)
 
       ![Contextual menu](sql/_static/stopIIS.png)
 
-   1. If the app is running in non-debug mode, press F5 to run in debug mode.
-   1. If the app in debug mode, stop the debugger and press F5.
+   1. If the app is running in non-debug mode, press <kbd>F5</kbd> to run in debug mode.
+   1. If the app in debug mode, stop the debugger and press <kbd>F5</kbd>.
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
@@ -181,7 +181,7 @@ The `RazorPagesMovieContext` object handles the task of connecting to the databa
 
 ---
 
-The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system reads the `ConnectionString`. For local development, configuration gets the connection string from the *appsettings.json* file.
+The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system reads the `ConnectionString` key. For local development, configuration gets the connection string from the *appsettings.json* file.
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -233,7 +233,7 @@ There are many third-party tools you can download to manage and view a SQLite da
 ![DB Browser for SQLite showing movie database](~/tutorials/first-mvc-app-xplat/working-with-sql/_static/dbb.png)
 
 > [!NOTE]
-> For this tutorial the Entity Framework Core *migrations* feature is used where possible. Migrations updates the database schema to match changes in the data model. However, migrations can only do the kinds of changes that the EF Core provider supports, and the SQLite provider's capabilities are limited. For example, adding a column is supported, but removing or changing a column is not supported. If a migration is created to remove or change a column, the `ef migrations add` command succeeds but the `ef database update` command fails. Due to these limitations, this tutorial doesn't use migrations for SQLite schema changes. Instead, when the schema changes, the database is dropped and re-created.
+> For this tutorial, the Entity Framework Core *migrations* feature is used where possible. Migrations updates the database schema to match changes in the data model. However, migrations can only do the kinds of changes that the EF Core provider supports, and the SQLite provider's capabilities are limited. For example, adding a column is supported, but removing or changing a column is not supported. If a migration is created to remove or change a column, the `ef migrations add` command succeeds but the `ef database update` command fails. Due to these limitations, this tutorial doesn't use migrations for SQLite schema changes. Instead, when the schema changes, the database is dropped and re-created.
 >
 >The workaround for the SQLite limitations is to manually write migrations code to perform a table rebuild when something in the table changes. A table rebuild involves:
 >
@@ -246,7 +246,7 @@ There are many third-party tools you can download to manage and view a SQLite da
 > * [SQLite EF Core Database Provider Limitations](/ef/core/providers/sqlite/limitations)
 > * [Customize migration code](/ef/core/managing-schemas/migrations/#customize-migration-code)
 > * [Data seeding](/ef/core/modeling/data-seeding)
-  * [SQLite ALTER TABLE statement](https://sqlite.org/lang_altertable.html)
+> * [SQLite ALTER TABLE statement](https://sqlite.org/lang_altertable.html)
 
 ---
 
@@ -297,8 +297,8 @@ The following exception occurs when `Update-Database` has not been run:
 
     ![Contextual menu](sql/_static/stopIIS.png)
 
-    * If the app is running in non-debug mode, press F5 to run in debug mode.
-    * If the app in debug mode, stop the debugger and press F5.
+    * If the app is running in non-debug mode, press <kbd>F5</kbd> to run in debug mode.
+    * If the app in debug mode, stop the debugger and press <kbd>F5</kbd>.
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
@@ -442,7 +442,7 @@ Login failed for user 'user name'.
     ![Contextual menu](sql/_static/stopIIS.png)
 
     * If the app is running in non-debug mode, press <kbd>F5</kbd> to run in debug mode.
-    * If the app in debug mode, stop the debugger and press F5.
+    * If the app in debug mode, stop the debugger and press <kbd>F5</kbd>.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
