@@ -13,22 +13,14 @@ uid: blazor/security/webassembly/standalone-with-azure-active-directory
 
 By [Javier Calvarro Nelson](https://github.com/javiercn) and [Luke Latham](https://github.com/guardrex)
 
-This article covers how to secure an ASP.NET Core Blazor WebAssembly standalone app with Azure Active Directory (AAD).
+This article covers how to create a [standalone Blazor WebAssembly app](xref:blazor/hosting-models#blazor-webassembly) that uses [Azure Active Directory (AAD)](https://azure.microsoft.com/services/active-directory/) for authentication.
 
 ::: moniker range=">= aspnetcore-5.0"
 
 > [!NOTE]
 > For Blazor WebAssembly apps created in Visual Studio that are configured to support accounts in an AAD organizational directory, Visual Studio doesn't configure the app correctly on project generation. This will be addressed in a future release of Visual Studio. This article shows how to create the app with the .NET Core CLI's `dotnet new` command. If you prefer to create the app with Visual Studio before the IDE is updated for the latest Blazor templates in ASP.NET Core 5.0, refer to each section of this article and confirm or update the app's configuration after Visual Studio creates the app.
 
-::: moniker-end
-
-To create a [standalone Blazor WebAssembly app](xref:blazor/hosting-models#blazor-webassembly) that uses [Azure Active Directory (AAD)](https://azure.microsoft.com/services/active-directory/) for authentication:
-
-[Create an AAD tenant and web application](/azure/active-directory/develop/v2-overview):
-
-Register a AAD app in the **Azure Active Directory** > **App registrations** area of the Azure portal:
-
-::: moniker range=">= aspnetcore-5.0"
+Register an AAD app in the **Azure Active Directory** > **App registrations** area of the Azure portal:
 
 1. Provide a **Name** for the app (for example, **Blazor Standalone AAD**).
 1. Choose a **Supported account types**. You may select **Accounts in this organizational directory only** for this experience.
@@ -51,6 +43,8 @@ In **Authentication** > **Platform configurations** > **Single-page application 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
+
+Register an AAD app in the **Azure Active Directory** > **App registrations** area of the Azure portal:
 
 1. Provide a **Name** for the app (for example, **Blazor Standalone AAD**).
 1. Choose a **Supported account types**. You may select **Accounts in this organizational directory only** for this experience.
