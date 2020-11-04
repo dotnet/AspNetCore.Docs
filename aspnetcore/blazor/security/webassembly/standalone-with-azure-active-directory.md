@@ -20,11 +20,7 @@ This article covers how to create a [standalone Blazor WebAssembly app](xref:bla
 > [!NOTE]
 > For Blazor WebAssembly apps created in Visual Studio that are configured to support accounts in an AAD organizational directory, Visual Studio doesn't configure the app correctly on project generation. This will be addressed in a future release of Visual Studio. This article shows how to create the app with the .NET Core CLI's `dotnet new` command. If you prefer to create the app with Visual Studio before the IDE is updated for the latest Blazor templates in ASP.NET Core 5.0, refer to each section of this article and confirm or update the app's configuration after Visual Studio creates the app.
 
-::: moniker-end
-
 Register an AAD app in the **Azure Active Directory** > **App registrations** area of the Azure portal:
-
-::: moniker range=">= aspnetcore-5.0"
 
 1. Provide a **Name** for the app (for example, **Blazor Standalone AAD**).
 1. Choose a **Supported account types**. You may select **Accounts in this organizational directory only** for this experience.
@@ -47,6 +43,8 @@ In **Authentication** > **Platform configurations** > **Single-page application 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
+
+Register an AAD app in the **Azure Active Directory** > **App registrations** area of the Azure portal:
 
 1. Provide a **Name** for the app (for example, **Blazor Standalone AAD**).
 1. Choose a **Supported account types**. You may select **Accounts in this organizational directory only** for this experience.
