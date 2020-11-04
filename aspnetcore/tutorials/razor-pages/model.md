@@ -39,8 +39,6 @@ The `Movie` class contains:
   * The user isn't required to enter time information in the date field.
   * Only the date is displayed, not time information.
 
-[DataAnnotations](xref:System.ComponentModel.DataAnnotations) are covered in a later tutorial.
-
 # [Visual Studio Code](#tab/visual-studio-code)
 
 1. Add a folder named *Models*.
@@ -57,8 +55,6 @@ The `Movie` class contains:
 
   * The user is not required to enter time information in the date field.
   * Only the date is displayed, not time information.
-
-[DataAnnotations](xref:System.ComponentModel.DataAnnotations) are covered in a later tutorial.
 
 <a name="dc"></a>
 
@@ -121,7 +117,7 @@ The `Movie` class contains:
 
 ---
 
-[DataAnnotations]<xref:System.ComponentModel.DataAnnotations> are covered in a later tutorial.
+[DataAnnotations](xref:System.ComponentModel.DataAnnotations) are covered in a later tutorial.
 
 Build the project to verify there are no compilation errors.
 
