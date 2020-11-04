@@ -201,7 +201,7 @@ When SQLite is selected, the template generated code is ready for development. T
 
 1. Create a *Pages/Movies* folder:
    1. Control-click on the *Pages* folder > **Add** > **New Folder**.
-   1. Name the folder *Movies*
+   1. Name the folder *Movies*.
 
 1. Control-click on the *Pages/Movies* folder > **Add** > **New Scaffolding...**.
 
@@ -501,7 +501,7 @@ In this section, the movie model is scaffolded. That is, the scaffolding tool pr
 Create a *Pages/Movies* folder:
 
 * Right-click on the *Pages* folder > **Add** > **New Folder**.
-* Name the folder *Movies*
+* Name the folder *Movies*.
 
 Right-click on the *Pages/Movies* folder > **Add** > **New Scaffolded Item**.
 
@@ -570,7 +570,7 @@ When SQLite is selected, the template generated code is ready for development. T
 Create a *Pages/Movies* folder:
 
 * Right-click on the *Pages* folder > **Add** > **New Folder**.
-* Name the folder *Movies*
+* Name the folder *Movies*.
 
 Right-click on the *Pages/Movies* folder > **Add** > **New Scaffolding...**.
 
@@ -888,7 +888,7 @@ In this section, the movie model is scaffolded. That is, the scaffolding tool pr
 Create a *Pages/Movies* folder:
 
 * Right-click on the *Pages* folder > **Add** > **New Folder**.
-* Name the folder *Movies*
+* Name the folder *Movies*.
 
 Right-click on the *Pages/Movies* folder > **Add** > **New Scaffolded Item**.
 
@@ -955,7 +955,7 @@ For more information, see [dotnet-aspnet-codegenerator](xref:fundamentals/tools/
 Create a *Pages/Movies* folder:
 
 * Control-click on the *Pages* folder > **Add** > **New Folder**.
-* Name the folder *Movies*
+* Name the folder *Movies*.
 
 Control-click on the *Pages/Movies* folder > **Add** > **New Scaffolded Item**.
 
