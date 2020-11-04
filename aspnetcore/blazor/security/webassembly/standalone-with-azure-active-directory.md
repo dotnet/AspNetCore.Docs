@@ -24,7 +24,7 @@ This article covers how to secure an ASP.NET Core Blazor WebAssembly standalone 
 
 To create a [standalone Blazor WebAssembly app](xref:blazor/hosting-models#blazor-webassembly) that uses [Azure Active Directory (AAD)](https://azure.microsoft.com/services/active-directory/) for authentication:
 
-Register an AAD app in the **Azure Active Directory** > **App registrations** area of the Azure portal (related guidance in the Azure documentation: [Create an AAD tenant and web application](/azure/active-directory/develop/v2-overview)):
+Register an AAD app in the **Azure Active Directory** > **App registrations** area of the Azure portal:
 
 ::: moniker range=">= aspnetcore-5.0"
 
