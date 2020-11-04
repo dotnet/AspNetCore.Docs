@@ -1,11 +1,11 @@
 ---
-title: Part 8, add validation to an ASP.NET Core Razor Page
+title: Part 8, add validation
 author: rick-anderson
 description: Part 8 of tutorial series on Razor Pages.
 ms.author: riande
 ms.custom: mvc
 ms.date: 09/29/2020
-no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Index, Create, Delete, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/razor-pages/validation
 ---
 # Part 8, add validation to an ASP.NET Core Razor Page
@@ -31,16 +31,16 @@ The validation support provided by Razor Pages and Entity Framework is a good ex
 The `DataAnnotations` namespace provides:
 
 * A set of built-in validation attributes that are applied declaratively to a class or property.
-* Formatting attributes like `DataType` that help with formatting and don't provide any validation.
+* Formatting attributes like `[DataType]` that help with formatting and don't provide any validation.
 
-Update the `Movie` class to take advantage of the built-in `Required`, `StringLength`, `RegularExpression`, and `Range` validation attributes.
+Update the `Movie` class to take advantage of the built-in `[Required]`, `[StringLength]`, `[RegularExpression]`, and `[Range]` validation attributes.
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Models/MovieDateRatingDA.cs?name=snippet1)]
 
 The validation attributes specify behavior to enforce on the model properties they're applied to:
 
-* The `Required` and `MinimumLength` attributes indicate that a property must have a value, but nothing prevents a user from entering white space to satisfy this validation.
-* The `RegularExpression` attribute is used to limit what characters can be input. In the preceding code, `Genre`:
+* The `[Required]` and `[MinimumLength]` attributes indicate that a property must have a value. Nothing prevents a user from entering white space to satisfy this validation.
+* The `[RegularExpression]` attribute is used to limit what characters can be input. In the preceding code, `Genre`:
 
   * Must only use letters.
   * The first letter is required to be uppercase. White space, numbers, and special
@@ -51,16 +51,16 @@ The validation attributes specify behavior to enforce on the model properties th
   * Requires that the first character be an uppercase letter.
   * Allows special characters and numbers in subsequent spaces. "PG-13" is valid for a rating, but fails for a `Genre`.
 
-* The `Range` attribute constrains a value to within a specified range.
-* The `StringLength` attribute can set a maximum length of a string property, and optionally its minimum length.
-* Value types (such as `decimal`, `int`, `float`, `DateTime`) are inherently required and don't need the `[Required]` attribute.
+* The `[Range]` attribute constrains a value to within a specified range.
+* The `[StringLength]` attribute can set a maximum length of a string property, and optionally its minimum length.
+* Value types, such as `decimal`, `int`, `float`, `DateTime`, are inherently required and don't need the `[Required]` attribute.
 
 The preceding validation rules are used for demonstration, they are not optimal for a production system. For example, the preceding prevents entering a movie with only two chars and doesn't allow special characters in `Genre`.
 
-Having validation rules automatically enforced by ASP.NET Core:
+Having validation rules automatically enforced by ASP.NET Core helps:
 
 * Helps make the app more robust.
-* Ensures that you can't forget to validate something and inadvertently let bad data into the database.
+* Reduce chances of saving invalid data to the database.
 
 ### Validation Error UI in Razor Pages
 
@@ -78,7 +78,7 @@ A significant benefit is that **no** code changes were necessary in the Create o
 
 The form data isn't posted to the server until there are no client-side validation errors. Verify form data isn't posted by one or more of the following approaches:
 
-* Put a break point in the `OnPostAsync` method. Submit the form (select **Create** or **Save**). The break point is never hit.
+* Put a break point in the `OnPostAsync` method. Submit the form by selecting **Create** or **Save**. The break point is never hit.
 * Use the [Fiddler tool](https://www.telerik.com/fiddler).
 * Use the browser developer tools to monitor network traffic.
 
@@ -115,22 +115,22 @@ The Create and Edit pages have no validation rules in them. The validation rules
 
 When validation logic needs to change, it's done only in the model. Validation is applied consistently throughout the application, validation logic is defined in one place. Validation in one place helps keep the code clean, and makes it easier to maintain and update.
 
-## Using DataType Attributes
+## Use DataType Attributes
 
-Examine the `Movie` class. The `System.ComponentModel.DataAnnotations` namespace provides formatting attributes in addition to the built-in set of validation attributes. The `DataType` attribute is applied to the `ReleaseDate` and `Price` properties.
+Examine the `Movie` class. The `System.ComponentModel.DataAnnotations` namespace provides formatting attributes in addition to the built-in set of validation attributes. The `[DataType]` attribute is applied to the `ReleaseDate` and `Price` properties.
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie/Models/MovieDateRatingDA.cs?highlight=2,6&name=snippet2)]
 
-The `DataType` attributes provide:
+The `[DataType]` attributes provide:
 
 * Hints for the view engine to format the data.
 * Supplies attributes such as `<a>` for URL's and `<a href="mailto:EmailAddress.com">` for email.
 
-Use the `RegularExpression` attribute to validate the format of the data. The `DataType` attribute is used to specify a data type that's more specific than the database intrinsic type. `DataType` attributes are not validation attributes. In the sample application, only the date is displayed, without time.
+Use the `[RegularExpression]` attribute to validate the format of the data. The `[DataType]` attribute is used to specify a data type that's more specific than the database intrinsic type. `[DataType]` attributes aren't validation attributes. In the sample application, only the date is displayed, without time.
 
 The `DataType` enumeration provides many data types, such as `Date`, `Time`, `PhoneNumber`, `Currency`, `EmailAddress`, and more. 
 
-The `DataType` attributes:
+The `[DataType]` attributes:
 
 * Can enable the application to automatically provide type-specific features. For example, a `mailto:` link can be created for `DataType.EmailAddress`.
 * Can provide a date selector `DataType.Date` in browsers that support HTML5.
@@ -141,7 +141,7 @@ The `DataType` attributes:
 
 The `[Column(TypeName = "decimal(18, 2)")]` data annotation is required so Entity Framework Core can correctly map `Price` to currency in the database. For more information, see [Data Types](/ef/core/modeling/relational/data-types).
 
-The `DisplayFormat` attribute is used to explicitly specify the date format:
+The `[DisplayFormat]` attribute is used to explicitly specify the date format:
 
 ```csharp
 [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
@@ -150,19 +150,19 @@ public DateTime ReleaseDate { get; set; }
 
 The `ApplyFormatInEditMode` setting specifies that the formatting will be applied when the value is displayed for editing. That behavior may not be wanted for some fields. For example, in currency values, the currency symbol is usually not wanted in the edit UI.
 
-The `[DisplayFormat]` attribute can be used by itself, but it's generally a good idea to use the `DataType` attribute. The `[DataType]` attribute conveys the semantics of the data as opposed to how to render it on a screen. The `[DataType]` attribute provides the following benefits that aren't available with `[DisplayFormat]`:
+The `[DisplayFormat]` attribute can be used by itself, but it's generally a good idea to use the `[DataType]` attribute. The `[DataType]` attribute conveys the semantics of the data as opposed to how to render it on a screen. The `[DataType]` attribute provides the following benefits that aren't available with `[DisplayFormat]`:
 
 * The browser can enable HTML5 features, for example to show a calendar control, the locale-appropriate currency symbol, email links, etc.
 * By default, the browser renders data using the correct format based on its locale.
-* The `DataType` attribute can enable the ASP.NET Core framework to choose the right field template to render the data. The `DisplayFormat`, if used by itself, uses the string template.
+* The `[DataType]` attribute can enable the ASP.NET Core framework to choose the right field template to render the data. The `DisplayFormat`, if used by itself, uses the string template.
 
-**Note:** jQuery validation doesn't work with the `Range` attribute and `DateTime`. For example, the following code will always display a client-side validation error, even when the date is in the specified range:
+**Note:** jQuery validation doesn't work with the `[Range]` attribute and `DateTime`. For example, the following code will always display a client-side validation error, even when the date is in the specified range:
 
 ```csharp
 [Range(typeof(DateTime), "1/1/1966", "1/1/2020")]
    ```
 
-It's a best practice to avoid compiling hard dates in models, so using the `[Range]` attribute and `DateTime` is discouraged. Use [Configuration]<xref:fundamentals/configuration/index> for date ranges and other values that are subject to frequent change rather than specifying it in code.
+It's a best practice to avoid compiling hard dates in models, so using the `[Range]` attribute and `DateTime` is discouraged. Use [Configuration](xref:fundamentals/configuration/index) for date ranges and other values that are subject to frequent change rather than specifying it in code.
 
 The following code shows combining attributes on one line:
 
@@ -241,7 +241,6 @@ Thanks for completing this introduction to Razor Pages. [Get started with Razor 
 * <xref:fundamentals/localization>
 * <xref:mvc/views/tag-helpers/intro>
 * <xref:mvc/views/tag-helpers/authoring>
-* [YouTube version of this tutorial](https://youtu.be/b63m66eu7us)
 
 > [!div class="step-by-step"]
-> [Previous: Adding a new field](xref:tutorials/razor-pages/new-field)
+> [Previous: Add a new field](xref:tutorials/razor-pages/new-field)

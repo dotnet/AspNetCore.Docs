@@ -4,7 +4,7 @@ author: rick-anderson
 description: This is the first tutorial of a series that teaches the basics of building an ASP.NET Core Razor Pages web app.
 ms.author: riande
 ms.date: 09/15/2020
-no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Index, Create, Delete, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/razor-pages/razor-pages-start
 ---
 
@@ -30,7 +30,7 @@ In this tutorial, you:
 
 At the end of this tutorial, you'll have a working Razor Pages web app that you'll build on in later tutorials.
 
-![Home or Index page](razor-pages-start/_static/home2.2.png)
+![Home or Index page](razor-pages-start/_static/5/home5.png)
 
 ## Prerequisites
 
@@ -60,7 +60,7 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 
 1. Select **ASP.NET Core 5.0** in the dropdown, **Web Application**, and then select **Create**.
 
-![new ASP.NET Core Web Application](razor-pages-start/_static/5/npx.png)
+  ![new ASP.NET Core Web Application](razor-pages-start/_static/5/npx.png)
 
   The following starter project is created:
 
@@ -74,13 +74,13 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 
 1. Run the following commands:
 
-  ```dotnetcli
-  dotnet new webapp -o RazorPagesMovie
-  code -r RazorPagesMovie
-  ```
+   ```dotnetcli
+   dotnet new webapp -o RazorPagesMovie
+   code -r RazorPagesMovie
+   ```
 
-  * The `dotnet new` command creates a new Razor Pages project in the *RazorPagesMovie* folder.
-  * The `code` command opens the *RazorPagesMovie* folder in the current instance of Visual Studio Code.
+   * The `dotnet new` command creates a new Razor Pages project in the *RazorPagesMovie* folder.
+   * The `code` command opens the *RazorPagesMovie* folder in the current instance of Visual Studio Code.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -94,8 +94,8 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 
 1. In the **Configure the new Web Application** dialog:
 
-  * Confirm that **Authentication** is set to **No Authentication**.
-  * If presented an option to select a **Target Framework**, select the latest .NET 5.x version.
+   * Confirm that **Authentication** is set to **No Authentication**.
+   * If presented an option to select a **Target Framework**, select the latest .NET 5.x version.
 
   Select **Next**.
 
@@ -472,6 +472,8 @@ Contains Razor pages and supporting files. Each Razor page is a pair of files:
 * A *.cshtml.cs* file that has C# code that handles page events.
 
 Supporting files have names that begin with an underscore. For example, the *_Layout.cshtml* file configures UI elements common to all pages. This file sets up the navigation menu at the top of the page and the copyright notice at the bottom of the page. For more information, see <xref:mvc/views/layout>.
+
+Razor Pages are derived from `PageModel`. By convention, the `PageModel`-derived class is named `<PageName>Model`.
 
 ### wwwroot folder
 

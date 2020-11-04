@@ -1,10 +1,10 @@
 ---
-title: Part 2, add a model to a Razor Pages app in ASP.NET Core
+title: Part 2, add a model
 author: rick-anderson
 description: Part 2 of tutorial series on Razor Pages. In this section, model classes are added.
 ms.author: riande
 ms.date: 09/30/2020
-no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Index, Create, Delete, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/razor-pages/model
 ---
 # Part 2, add a model to a Razor Pages app in ASP.NET Core
@@ -29,7 +29,7 @@ The model classes are known as POCO classes (from "**P**lain-**O**ld **C**LR **O
 1. Right-click the *Models* folder. Select **Add** > **Class**. Name the class *Movie*.
 1. Add the following properties to the `Movie` class:
 
-	[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Models/Movie.cs?name=snippet1)]
+   [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Models/Movie.cs?name=snippet1)]
 
 The `Movie` class contains:
 
@@ -39,7 +39,7 @@ The `Movie` class contains:
   * The user isn't required to enter time information in the date field.
   * Only the date is displayed, not time information.
 
-[DataAnnotations](xref:System.ComponentModel.DataAnnotations Namespace) are covered in a later tutorial.
+[DataAnnotations](xref:System.ComponentModel.DataAnnotations) are covered in a later tutorial.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -71,9 +71,9 @@ The `Movie` class contains:
 1. In the *RazorPagesMovie* project, create a folder named *Data*.
 1. In the *Data* folder, add a file named *RazorPagesMovieContext.cs* with the following code:
 
-	[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Data/RazorPagesMovieContext.cs)]
+   [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Data/RazorPagesMovieContext.cs)]
 
-	The preceding code creates a `DbSet` property for the entity set. In Entity Framework terminology, an entity set typically corresponds to a database table, and an entity corresponds to a row in the table. The code won't compile until dependencies are added in a later step.
+   The preceding code creates a `DbSet` property for the entity set. In Entity Framework terminology, an entity set typically corresponds to a database table, and an entity corresponds to a row in the table. The code won't compile until dependencies are added in a later step.
 
 <a name="cs"></a>
 
@@ -89,14 +89,14 @@ Add a connection string to the *appsettings.json* file as shown in the following
 
 1. Add the following `using` statements at the top of *Startup.cs*:
 
-	```csharp
-	using RazorPagesMovie.Data;
-	using Microsoft.EntityFrameworkCore;
-	```
+   ```csharp
+   using RazorPagesMovie.Data;
+   using Microsoft.EntityFrameworkCore;
+   ```
 
 1. Register the database context with the [dependency injection](xref:fundamentals/dependency-injection) container in `Startup.ConfigureServices`:
 
-	[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Startup.cs?name=snippet_UseSqlite&highlight=11-12)]
+   [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Startup.cs?name=snippet_UseSqlite&highlight=11-12)]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -109,7 +109,7 @@ Add a connection string to the *appsettings.json* file as shown in the following
 
 1. Add the following properties to the `Movie` class:
 
-	[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Models/Movie.cs?name=snippet1)]
+   [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Models/Movie.cs?name=snippet1)]
 
 The `Movie` class contains:
 
@@ -119,11 +119,11 @@ The `Movie` class contains:
   * The user is not required to enter time information in the date field.
   * Only the date is displayed, not time information.
 
-[DataAnnotations](xref:System.ComponentModel.DataAnnotations) are covered in a later tutorial.
-
 ---
 
-1. Build the project to verify there are no compilation errors.
+[DataAnnotations]<xref:System.ComponentModel.DataAnnotations> are covered in a later tutorial.
+
+Build the project to verify there are no compilation errors.
 
 ## Scaffold the movie model
 
@@ -133,23 +133,23 @@ In this section, the movie model is scaffolded. That is, the scaffolding tool pr
 
 1. Create a *Pages/Movies* folder:
    1. Right-click on the *Pages* folder > **Add** > **New Folder**.
-   1. Name the folder *Movies*
+   1. Name the folder *Movies*.
 
 1. Right-click on the *Pages/Movies* folder > **Add** > **New Scaffolded Item**.
 
-	![Image from the previous instructions.](model/_static/5/sca.png)
+   ![Image from the previous instructions.](model/_static/5/sca.png)
 
 1. In the **Add Scaffold** dialog, select **Razor Pages using Entity Framework (CRUD)** > **Add**.
 
-	![Image from the previous instructions.](model/_static/add_scaffold.png)
+   ![Image from the previous instructions.](model/_static/add_scaffold.png)
 
 1. Complete the **Add Razor Pages using Entity Framework (CRUD)** dialog:
    1. In the **Model class** drop down, select **Movie (RazorPagesMovie.Models)**.
    1. In the **Data context class** row, select the **+** (plus) sign.
-   1. In the **Add Data Context** dialog, the class name *RazorPagesMovie.Data.RazorPagesMovieContext* is generated. Select **Add**.
-   1. In the **Add Razor Pages using Entity Framework (CRUD)** dialog, select **Add**.
+      1. In the **Add Data Context** dialog, the class name *RazorPagesMovie.Data.RazorPagesMovieContext* is generated.
+   1. Select **Add**.
 
-![Image from the previous instructions.](model/_static/3/arp.png)
+   ![Image from the previous instructions.](model/_static/3/arp.png)
 
 The *appsettings.json* file is updated with the connection string used to connect to a local database.
 
@@ -271,8 +271,8 @@ The created and updated files are explained in the next section.
 
 The migrations feature in Entity Framework Core provides a way to:
 
-* Initially create the database schema.
-* Incrementally update the database schema to keep it in sync with the application's data model while preserving existing data in the database.
+* Create the initial database schema.
+* Incrementally update the database schema to keep it in sync with the application's data model.  Existing data in the database is preserved.
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -307,7 +307,7 @@ In this section, the **Package Manager Console** (PMC) window is used to:
 
 The preceding commands generate the following warning: "No type was specified for the decimal column 'Price' on entity type 'Movie'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'."
 
-Ignore that warning. You'll learn how to fix it in a following tutorial in this series.
+Ignore the warning, as it will be addressed in a later step.
 
 The `migrations` command generates code to create the initial database schema. The schema is based on the model specified in `DbContext`. The `InitialCreate` argument is used to name the migrations. Any name can be used, but by convention a name is selected that describes the migration.
 
@@ -317,7 +317,7 @@ The `update` command runs the `Up` method in migrations that have not been appli
 
 ### Examine the context registered with dependency injection
 
-ASP.NET Core is built with [dependency injection](xref:fundamentals/dependency-injection). Services (such as the EF Core database context) are registered with dependency injection during application startup. Components that require these services (such as Razor Pages) are provided these services via constructor parameters. The constructor code that gets a database context instance is shown later in the tutorial.
+ASP.NET Core is built with [dependency injection](xref:fundamentals/dependency-injection). Services, such as the EF Core database context, are registered with dependency injection during application startup. Components that require these services (such as Razor Pages) are provided these services via constructor parameters. The constructor code that gets a database context instance is shown later in the tutorial.
 
 The scaffolding tool automatically created a database context and registered it with the dependency injection container.
 
@@ -325,7 +325,7 @@ Examine the `Startup.ConfigureServices` method. The highlighted line was added b
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Startup.cs?name=snippet_ConfigureServices&highlight=5-6)]
 
-The `RazorPagesMovieContext` coordinates EF Core functionality (Create, Read, Update, Delete, etc.) for the `Movie` model. The data context (`RazorPagesMovieContext`) is derived from [Microsoft.EntityFrameworkCore.DbContext](xref:Microsoft.EntityFrameworkCore.DbContext). The data context specifies which entities are included in the data model.
+The `RazorPagesMovieContext` coordinates EF Core functionality, such as Create, Read, Update and Delete, for the `Movie` model. The data context (`RazorPagesMovieContext`) is derived from [Microsoft.EntityFrameworkCore.DbContext](xref:Microsoft.EntityFrameworkCore.DbContext). The data context specifies which entities are included in the data model.
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie50/Data/RazorPagesMovieContext.cs)]
 
@@ -333,11 +333,7 @@ The preceding code creates a [DbSet\<Movie>](xref:Microsoft.EntityFrameworkCore.
 
 The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](xref:Microsoft.EntityFrameworkCore.DbContextOptions) object. For local development, the [Configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.
 
-# [Visual Studio Code](#tab/visual-studio-code)
-
-Examine the `Up` method.
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
+# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
 Examine the `Up` method.
 
@@ -360,7 +356,7 @@ Examine the `Up` method.
 
 1. Test the **Create** link.
 
-   ![Create page](model/_static/conan.png)
+   ![Create page](model/_static/conan5.png)
 
    > [!NOTE]
    > You may not be able to enter decimal commas in the `Price` field. To support [jQuery validation](https://jqueryvalidation.org/) for non-English locales that use a comma (",") for a decimal point and for non US-English date formats, the app must be globalized. For globalization instructions, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/4076#issuecomment-326590420).
@@ -404,12 +400,12 @@ Add the following properties to the `Movie` class:
 The `Movie` class contains:
 
 * The `ID` field is required by the database for the primary key.
-* `[DataType(DataType.Date)]`:  The [DataType](xref:System.ComponentModel.DataAnnotations.DataTypeAttribute) attribute specifies the type of the data (`Date`). With this attribute:
+* `[DataType(DataType.Date)]`: The [DataType](xref:System.ComponentModel.DataAnnotations.DataTypeAttribute) attribute specifies the type of the data (`Date`). With this attribute:
 
   * The user is not required to enter time information in the date field.
   * Only the date is displayed, not time information.
 
-[DataAnnotations](xref:System.ComponentModel.DataAnnotations) are covered in a later tutorial.
+[DataAnnotations]<xref:System.ComponentModel.DataAnnotations> are covered in a later tutorial.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -423,12 +419,12 @@ Add the following properties to the `Movie` class:
 The `Movie` class contains:
 
 * The `ID` field is required by the database for the primary key.
-* `[DataType(DataType.Date)]`:  The [DataType](xref:System.ComponentModel.DataAnnotations.DataTypeAttribute) attribute specifies the type of the data (`Date`). With this attribute:
+* `[DataType(DataType.Date)]`: The [DataType](xref:System.ComponentModel.DataAnnotations.DataTypeAttribute) attribute specifies the type of the data (`Date`). With this attribute:
 
   * The user is not required to enter time information in the date field.
   * Only the date is displayed, not time information.
 
-[DataAnnotations](xref:System.ComponentModel.DataAnnotations) are covered in a later tutorial.
+[DataAnnotations]<xref:System.ComponentModel.DataAnnotations> are covered in a later tutorial.
 
 <a name="dc"></a>
 
@@ -485,14 +481,14 @@ Add the following properties to the `Movie` class:
 The `Movie` class contains:
 
 * The `ID` field is required by the database for the primary key.
-* `[DataType(DataType.Date)]`:  The [DataType](xref:System.ComponentModel.DataAnnotations.DataTypeAttribute) attribute specifies the type of the data (`Date`). With this attribute:
+* `[DataType(DataType.Date)]`: The [DataType](xref:System.ComponentModel.DataAnnotations.DataTypeAttribute) attribute specifies the type of the data (`Date`). With this attribute:
 
   * The user is not required to enter time information in the date field.
   * Only the date is displayed, not time information.
 
-[DataAnnotations](xref:System.ComponentModel.DataAnnotations) are covered in a later tutorial.
-
 ---
+
+[DataAnnotations]<xref:System.ComponentModel.DataAnnotations> are covered in a later tutorial.
 
 Build the project to verify there are no compilation errors.
 
@@ -683,6 +679,8 @@ dotnet ef migrations add InitialCreate
 dotnet ef database update
 ```
 
+---
+
 The preceding commands generate the following warning: "No type was specified for the decimal column 'Price' on entity type 'Movie'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'."
 
 Ignore the warning, as it will be addressed in a later step.
@@ -691,21 +689,19 @@ The migrations command generates code to create the initial database schema. The
 
 The `update` command runs the `Up` method in migrations that have not been applied. In this case, `update` runs the `Up` method in  *Migrations/\<time-stamp>_InitialCreate.cs* file, which creates the database.
 
----
-
 # [Visual Studio](#tab/visual-studio)
 
 ### Examine the context registered with dependency injection
 
-ASP.NET Core is built with [dependency injection](xref:fundamentals/dependency-injection). Services (such as the EF Core DB context) are registered with dependency injection during application startup. Components that require these services (such as Razor Pages) are provided these services via constructor parameters. The constructor code that gets a DB context instance is shown later in the tutorial.
+ASP.NET Core is built with [dependency injection](xref:fundamentals/dependency-injection). Services, such as the EF Core database context context, are registered with dependency injection during application startup. Components that require these services, such as Razor Pages, are provided these services via constructor parameters. The constructor code that gets a database context context instance is shown later in the tutorial.
 
-The scaffolding tool automatically created a DB context and registered it with the dependency injection container.
+The scaffolding tool automatically created a database context context and registered it with the dependency injection container.
 
 Examine the `Startup.ConfigureServices` method. The highlighted line was added by the scaffolder:
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Startup.cs?name=snippet_ConfigureServices&highlight=5-6)]
 
-The `RazorPagesMovieContext` coordinates EF Core functionality (Create, Read, Update, Delete, etc.) for the `Movie` model. The data context (`RazorPagesMovieContext`) is derived from [Microsoft.EntityFrameworkCore.DbContext](xref:Microsoft.EntityFrameworkCore.DbContext). The data context specifies which entities are included in the data model.
+The `RazorPagesMovieContext` coordinates EF Core functionality, such as Create, Read, Update and Delete, for the `Movie` model. The data context (`RazorPagesMovieContext`) is derived from [Microsoft.EntityFrameworkCore.DbContext](xref:Microsoft.EntityFrameworkCore.DbContext). The data context specifies which entities are included in the data model.
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Data/RazorPagesMovieContext.cs)]
 
@@ -713,11 +709,7 @@ The preceding code creates a [DbSet\<Movie>](/dotnet/api/microsoft.entityframewo
 
 The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](xref:Microsoft.EntityFrameworkCore.DbContextOptions) object. For local development, the [Configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.
 
-# [Visual Studio Code](#tab/visual-studio-code)
-
-Examine the `Up` method.
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
+# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
 Examine the `Up` method.
 
@@ -740,7 +732,7 @@ You missed the [migrations step](#pmc).
 
 * Test the **Create** link.
 
-  ![Create page](model/_static/conan.png)
+  ![Create page](model/_static/conan5.png)
 
   > [!NOTE]
   > You may not be able to enter decimal commas in the `Price` field. To support [jQuery validation](https://jqueryvalidation.org/) for non-English locales that use a comma (",") for a decimal point and for non US-English date formats, the app must be globalized. For globalization instructions, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/4076#issuecomment-326590420).
@@ -781,7 +773,7 @@ Add the following properties to the `Movie` class:
 The `Movie` class contains:
 
 * The `ID` field is required by the database for the primary key.
-* `[DataType(DataType.Date)]`:  The [DataType](xref:System.ComponentModel.DataAnnotations.DataTypeAttribute) attribute specifies the type of the data (`Date`). With this attribute:
+* `[DataType(DataType.Date)]`: The [DataType](xref:System.ComponentModel.DataAnnotations.DataTypeAttribute) attribute specifies the type of the data (`Date`). With this attribute:
 
   * The user is not required to enter time information in the date field.
   * Only the date is displayed, not time information.
@@ -800,7 +792,7 @@ Add the following properties to the `Movie` class:
 The `Movie` class contains:
 
 * The `ID` field is required by the database for the primary key.
-* `[DataType(DataType.Date)]`:  The [DataType](xref:System.ComponentModel.DataAnnotations.DataTypeAttribute) attribute specifies the type of the data (`Date`). With this attribute:
+* `[DataType(DataType.Date)]`: The [DataType](xref:System.ComponentModel.DataAnnotations.DataTypeAttribute) attribute specifies the type of the data (`Date`). With this attribute:
 
   * The user is not required to enter time information in the date field.
   * Only the date is displayed, not time information.
@@ -876,7 +868,7 @@ Add the following properties to the `Movie` class:
 The `Movie` class contains:
 
 * The `ID` field is required by the database for the primary key.
-* `[DataType(DataType.Date)]`:  The [DataType](xref:System.ComponentModel.DataAnnotations.DataTypeAttribute) attribute specifies the type of the data (`Date`). With this attribute:
+* `[DataType(DataType.Date)]`: The [DataType](xref:System.ComponentModel.DataAnnotations.DataTypeAttribute) attribute specifies the type of the data (`Date`). With this attribute:
 
   * The user is not required to enter time information in the date field.
   * Only the date is displayed, not time information.
@@ -976,7 +968,7 @@ In the **Add New Scaffolding** dialog, select **Razor Pages using Entity Framewo
 Complete the **Add Razor Pages using Entity Framework (CRUD)** dialog:
 
 * In the **Model class** drop down, select or type **Movie**.
-* In the **Data context class** row, type select the **RazorPagesMovieContext** this will create a new db context class with the correct namespace. In this case it will be  **RazorPagesMovie.Models.RazorPagesMovieContext**.
+* In the **Data context class** row, type select the **RazorPagesMovieContext** this will create a new database context class with the correct namespace. In this case it will be  **RazorPagesMovie.Models.RazorPagesMovieContext**.
 * Select **Add**.
 
 ![Image from the previous instructions.](model/_static/arpMac.png)
@@ -1035,24 +1027,25 @@ dotnet ef migrations add InitialCreate
 dotnet ef database update
 ```
 
-> [!NOTE]
-> The preceding commands generate the following warning: "*No type was specified for the decimal column 'Price' on entity type 'Movie'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.*" Ignore that warning, it will be fixed in a later tutorial.
-
 ---
+
+The preceding commands generate the following warning: "No type was specified for the decimal column 'Price' on entity type 'Movie'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'."
+
+Ignore the warning, as it will be addressed in a later step.
 
 # [Visual Studio](#tab/visual-studio)
 
 ### Examine the context registered with dependency injection
 
-ASP.NET Core is built with [dependency injection](xref:fundamentals/dependency-injection). Services (such as the EF Core DB context) are registered with dependency injection during application startup. Components that require these services (such as Razor Pages) are provided these services via constructor parameters. The constructor code that gets a DB context instance is shown later in the tutorial.
+ASP.NET Core is built with [dependency injection](xref:fundamentals/dependency-injection). Services (such as the EF Core database context context) are registered with dependency injection during application startup. Components that require these services (such as Razor Pages) are provided these services via constructor parameters. The constructor code that gets a database context contextB context instance is shown later in the tutorial.
 
-The scaffolding tool automatically created a DB context and registered it with the dependency injection container.
+The scaffolding tool automatically created a database context context and registered it with the dependency injection container.
 
 Examine the `Startup.ConfigureServices` method. The highlighted line was added by the scaffolder:
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Startup.cs?name=snippet_ConfigureServices&highlight=15-18)]
 
-The `RazorPagesMovieContext` coordinates EF Core functionality (Create, Read, Update, Delete, etc.) for the `Movie` model. The data context (`RazorPagesMovieContext`) is derived from [Microsoft.EntityFrameworkCore.DbContext](xref:Microsoft.EntityFrameworkCore.DbContext). The data context specifies which entities are included in the data model.
+The `RazorPagesMovieContext` coordinates EF Core functionality, such as Create, Read, Update, and Delete, for the `Movie` model. The data context (`RazorPagesMovieContext`) is derived from [Microsoft.EntityFrameworkCore.DbContext](xref:Microsoft.EntityFrameworkCore.DbContext). The data context specifies which entities are included in the data model.
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Data/RazorPagesMovieContext.cs)]
 
@@ -1060,11 +1053,7 @@ The preceding code creates a [DbSet\<Movie>](/dotnet/api/microsoft.entityframewo
 
 The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](xref:Microsoft.EntityFrameworkCore.DbContextOptions) object. For local development, the [Configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.
 
-# [Visual Studio Code](#tab/visual-studio-code)
-
-Examine the `Up` method.
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
+# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
 Examine the `Up` method.
 

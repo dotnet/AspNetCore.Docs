@@ -1,10 +1,10 @@
 ---
-title: Part 4, work with a database and ASP.NET Core
+title: Part 4, work with a database
 author: rick-anderson
 description: Part 4 of tutorial series on Razor Pages.
 ms.author: riande
 ms.date: 09/26/2020
-no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Index, Create, Delete, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/razor-pages/sql
 ---
 # Part 4, work with a database and ASP.NET Core
@@ -41,7 +41,7 @@ The generated connection string will be similar to the following:
 
 ---
 
-When the app is deployed to a test or production server, an environment variable can be used to set the connection string to a real database server. For more information, see [Configuration](xref:fundamentals/configuration/index).
+When the app is deployed to a test or production server, an environment variable can be used to set the connection string to a test or production database server. For more information, see [Configuration](xref:fundamentals/configuration/index).
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -74,9 +74,9 @@ The [SQLite](https://www.sqlite.org/) website states:
 
 > SQLite is a self-contained, high-reliability, embedded, full-featured, public-domain, SQL database engine. SQLite is the most used database engine in the world.
 
-There are many third party tools you can download to manage and view a SQLite database. The image below is from [DB Browser for SQLite](https://sqlitebrowser.org/). If you have a favorite SQLite tool, leave a comment on what you like about it.
+There are many third-party tools you can download to manage and view a SQLite database. The image below is from [DB Browser for SQLite](https://sqlitebrowser.org/). If you have a favorite SQLite tool, leave a comment on what you like about it.
 
-![DB Browser for SQLite showing movie db](~/tutorials/first-mvc-app-xplat/working-with-sql/_static/dbb.png)
+![DB Browser for SQLite showing movie database](~/tutorials/first-mvc-app-xplat/working-with-sql/_static/dbb.png)
 
 > [!NOTE]
 > For this tutorial the Entity Framework Core *migrations* feature is used where possible. Migrations updates the database schema to match changes in the data model. However, migrations can only do the kinds of changes that the EF Core provider supports, and the SQLite provider's capabilities are limited. For example, adding a column is supported, but removing or changing a column is not supported. If a migration is created to remove or change a column, the `ef migrations add` command succeeds but the `ef database update` command fails. Due to these limitations, this tutorial doesn't use migrations for SQLite schema changes. Instead, when the schema changes, the database is dropped and re-created.
@@ -98,32 +98,32 @@ There are many third party tools you can download to manage and view a SQLite da
 
 ## Seed the database
 
-1. Create a new class named `SeedData` in the *Models* folder with the following code:
+Create a new class named `SeedData` in the *Models* folder with the following code:
 
-   [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Models/SeedData.cs?name=snippet_1)]
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Models/SeedData.cs?name=snippet_1)]
 
-1. If there are any movies in the DB, the seed initializer returns and no movies are added.
+If there are any movies in the database, the seed initializer returns and no movies are added.
 
-   ```csharp
-   if (context.Movie.Any())
-   {
-       return;   // DB has been seeded.
-   }
-   ```
+```csharp
+if (context.Movie.Any())
+{
+    return;
+}
+```
 
 <a name="si"></a>
 
 ### Add the seed initializer
 
-In *Program.cs*, modify the `Main` method to do the following:
+Replace the contents of the *Program.cs* with the following code:
 
-* Get a DB context instance from the dependency injection container.
-* Call the seed method, passing to it the context.
-* Dispose the context when the seed method completes.
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie50/Program.cs)]
 
-The following code shows the updated *Program.cs* file.
+In the previous code, the `Main` method has been modified to do the following:
 
-[!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Program.cs)]
+* Get a database context instance from the dependency injection container.
+* Call the `seedData.Initialize` method, passing to it the database context instance.
+* Dispose the context when the seed method completes. The [using statement](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/using-statement) ensures the context is disposed.
 
 The following exception occurs when `Update-Database` has not been run:
 
@@ -134,9 +134,9 @@ The following exception occurs when `Update-Database` has not been run:
 
 # [Visual Studio](#tab/visual-studio)
 
-1. Delete all the records in the DB. Use the delete links in the browser or from [SSOX](xref:tutorials/razor-pages/new-field#ssox)
+1. Delete all the records in the database. Use the delete links in the browser or from [SSOX](xref:tutorials/razor-pages/new-field#ssox)
 
-1. Force the app to initialize (call the methods in the `Startup` class) so the seed method runs. To force initialization, IIS Express must be stopped and restarted. Stop and restart IIS with any of the following approaches:
+1. Force the app to initialize by calling the methods in the `Startup` class, so the seed method runs. To force initialization, IIS Express must be stopped and restarted. Stop and restart IIS with any of the following approaches:
 
    1. Right-click the IIS Express system tray icon in the notification area and tap **Exit** or **Stop Site**:
 
@@ -149,19 +149,19 @@ The following exception occurs when `Update-Database` has not been run:
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-Delete all the records in the DB, so the seed method will run. Stop and start the app to seed the database.
-
-The app shows the seeded data.
+Delete all the records in the database, so the seed method will run. Stop and start the app to seed the database.
 
 ---
 
-The next tutorial will improve the presentation of the data.
+The app shows the seeded data:
+
+![Movie application open in browser showing movie data](sql/_static/5/m55.png)
 
 ## Additional resources
 
 > [!div class="step-by-step"]
 > [Previous: Scaffolded Razor Pages](xref:tutorials/razor-pages/page)
-> [Next: Updating the pages](xref:tutorials/razor-pages/da1)
+> [Next: Update the pages](xref:tutorials/razor-pages/da1)
 
 ::: moniker-end
 
@@ -195,7 +195,7 @@ The generated connection string will be similar to the following:
 
 ---
 
-When the app is deployed to a test or production server, an environment variable can be used to set the connection string to a real database server. See [Configuration](xref:fundamentals/configuration/index) for more information.
+When the app is deployed to a test or production server, an environment variable can be used to set the connection string to a test or production database server. See [Configuration](xref:fundamentals/configuration/index) for more information.
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -228,9 +228,9 @@ The [SQLite](https://www.sqlite.org/) website states:
 
 > SQLite is a self-contained, high-reliability, embedded, full-featured, public-domain, SQL database engine. SQLite is the most used database engine in the world.
 
-There are many third party tools you can download to manage and view a SQLite database. The image below is from [DB Browser for SQLite](https://sqlitebrowser.org/). If you have a favorite SQLite tool, leave a comment on what you like about it.
+There are many third-party tools you can download to manage and view a SQLite database. The image below is from [DB Browser for SQLite](https://sqlitebrowser.org/). If you have a favorite SQLite tool, leave a comment on what you like about it.
 
-![DB Browser for SQLite showing movie db](~/tutorials/first-mvc-app-xplat/working-with-sql/_static/dbb.png)
+![DB Browser for SQLite showing movie database](~/tutorials/first-mvc-app-xplat/working-with-sql/_static/dbb.png)
 
 > [!NOTE]
 > For this tutorial the Entity Framework Core *migrations* feature is used where possible. Migrations updates the database schema to match changes in the data model. However, migrations can only do the kinds of changes that the EF Core provider supports, and the SQLite provider's capabilities are limited. For example, adding a column is supported, but removing or changing a column is not supported. If a migration is created to remove or change a column, the `ef migrations add` command succeeds but the `ef database update` command fails. Due to these limitations, this tutorial doesn't use migrations for SQLite schema changes. Instead, when the schema changes, the database is dropped and re-created.
@@ -256,12 +256,12 @@ Create a new class named `SeedData` in the *Models* folder with the following co
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Models/SeedData.cs?name=snippet_1)]
 
-If there are any movies in the DB, the seed initializer returns and no movies are added.
+If there are any movies in the database, the seed initializer returns and no movies are added.
 
 ```csharp
 if (context.Movie.Any())
 {
-    return;   // DB has been seeded.
+    return;
 }
 ```
 
@@ -269,15 +269,15 @@ if (context.Movie.Any())
 
 ### Add the seed initializer
 
-In *Program.cs*, modify the `Main` method to do the following:
-
-* Get a DB context instance from the dependency injection container.
-* Call the seed method, passing to it the context.
-* Dispose the context when the seed method completes.
-
-The following code shows the updated *Program.cs* file.
+Replace the contents of the *Program.cs* with the following code:
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Program.cs)]
+
+In the previous code, the `Main` method has been modified to do the following:
+
+* Get a database context instance from the dependency injection container.
+* Call the `seedData.Initialize` method, passing to it the database context instance.
+* Dispose the context when the seed method completes. The [using statement](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/using-statement) ensures the context is disposed.
 
 The following exception occurs when `Update-Database` has not been run:
 
@@ -289,7 +289,7 @@ The following exception occurs when `Update-Database` has not been run:
 # [Visual Studio](#tab/visual-studio)
 
 * Delete all the records in the database. Use the delete links in the browser or from [SSOX](xref:tutorials/razor-pages/new-field#ssox).
-* Force the app to initialize (call the methods in the `Startup` class) so the seed method runs. To force initialization, IIS Express must be stopped and restarted. Stop and restart IIS with any of the following approaches:
+* Force the app to initialize by calling the methods in the `Startup` class, so the seed method runs. To force initialization, IIS Express must be stopped and restarted. Stop and restart IIS with any of the following approaches:
 
   * Right-click the IIS Express system tray icon in the notification area and tap **Exit** or **Stop Site**:
 
@@ -304,17 +304,17 @@ The following exception occurs when `Update-Database` has not been run:
 
 Delete all the records in the database, so the seed method will run. Stop and start the app to seed the database.
 
-The app shows the seeded data.
-
 ---
 
-The next tutorial will improve the presentation of the data.
+The app shows the seeded data:
+
+![Movie application open in Chrome showing movie data](sql/_static/m55.png)
 
 ## Additional resources
 
 > [!div class="step-by-step"]
 > [Previous: Scaffolded Razor Pages](xref:tutorials/razor-pages/page)
-> [Next: Updating the pages](xref:tutorials/razor-pages/da1)
+> [Next: Update the pages](xref:tutorials/razor-pages/da1)
 
 ::: moniker-end
 
@@ -357,7 +357,7 @@ The generated connection string will be similar to the following:
 
 ---
 
-When the app is deployed to a test or production server, an environment variable can be used to set the connection string to a real database server. See [Configuration](xref:fundamentals/configuration/index) for more information.
+When the app is deployed to a test or production server, an environment variable can be used to set the connection string to a test or production database server. See [Configuration](xref:fundamentals/configuration/index) for more information.
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -400,12 +400,12 @@ Create a new class named `SeedData` in the *Models* folder with the following co
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Models/SeedData.cs?name=snippet_1)]
 
-If there are any movies in the DB, the seed initializer returns and no movies are added.
+If there are any movies in the database, the seed initializer returns and no movies are added.
 
 ```csharp
 if (context.Movie.Any())
 {
-    return;   // DB has been seeded.
+    return;
 }
 ```
 
@@ -413,15 +413,15 @@ if (context.Movie.Any())
 
 ### Add the seed initializer
 
-In *Program.cs*, modify the `Main` method to do the following:
-
-* Get a DB context instance from the dependency injection container.
-* Call the seed method, passing to it the context.
-* Dispose the context when the seed method completes.
-
-The following code shows the updated *Program.cs* file.
+Replace the contents of the *Program.cs* with the following code:
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Program.cs)]
+
+In the previous code, the `Main` method has been modified to do the following:
+
+* Get a database context instance from the dependency injection container.
+* Call the `seedData.Initialize` method, passing to it the database context instance.
+* Dispose the context when the seed method completes. The [using statement](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/using-statement) ensures the context is disposed.
 
 A production app would not call `Database.Migrate`. It's added to the preceding code to prevent the following exception when `Update-Database` has not been run:
 
@@ -432,8 +432,8 @@ Login failed for user 'user name'.
 
 # [Visual Studio](#tab/visual-studio)
 
-* Delete all the records in the DB. You can do this with the delete links in the browser or from [SSOX](xref:tutorials/razor-pages/new-field#ssox)
-* Force the app to initialize (call the methods in the `Startup` class) so the seed method runs. To force initialization, IIS Express must be stopped and restarted. You can do this with any of the following approaches:
+* Delete all the records in the database. You can do this with the delete links in the browser or from [SSOX](xref:tutorials/razor-pages/new-field#ssox)
+* Force the app to initialize by calling the methods in the `Startup` class, so the seed method runs. To force initialization, IIS Express must be stopped and restarted. You can do this with any of the following approaches:
 
   * Right-click the IIS Express system tray icon in the notification area and tap **Exit** or **Stop Site**:
 
@@ -448,13 +448,9 @@ Login failed for user 'user name'.
 
 Delete all the records in the database, so the seed method will run. Stop and start the app to seed the database.
 
-The app shows the seeded data.
-
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 Delete all the records in the database, so the seed method will run. Stop and start the app to seed the database.
-
-The app shows the seeded data.
 
 ---
 
@@ -470,6 +466,6 @@ The next tutorial will clean up the presentation of the data.
 
 > [!div class="step-by-step"]
 > [Previous: Scaffolded Razor Pages](xref:tutorials/razor-pages/page)
-> [Next: Updating the pages](xref:tutorials/razor-pages/da1)
+> [Next: Update the pages](xref:tutorials/razor-pages/da1)
 
 ::: moniker-end

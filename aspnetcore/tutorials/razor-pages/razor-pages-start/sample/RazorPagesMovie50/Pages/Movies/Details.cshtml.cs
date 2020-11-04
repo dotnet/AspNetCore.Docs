@@ -21,6 +21,7 @@ namespace RazorPagesMovie.Pages.Movies
 
         public Movie Movie { get; set; }
 
+        #region snippet1
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
@@ -36,5 +37,6 @@ namespace RazorPagesMovie.Pages.Movies
             }
             return Page();
         }
+        #endregion
     }
 }
