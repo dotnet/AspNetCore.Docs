@@ -28,7 +28,7 @@ In this tutorial, you:
 > * Run the app.
 > * Examine the project files.
 
-At the end of this tutorial, you'll have a working Razor Pages web app that you'll build on in later tutorials.
+At the end of this tutorial, you'll have a working Razor Pages web app that you'll enhance in later tutorials.
 
 ![Home or Index page](razor-pages-start/_static/5/home5.png)
 
