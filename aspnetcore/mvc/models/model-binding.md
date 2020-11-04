@@ -288,14 +288,14 @@ The `[Bind]` attribute can be used to protect against overposting in *create* sc
 
 ### [ModelBinder] attribute
 
-<xref:Microsoft.AspNetCore.Mvc.ModelBinderAttribute /> can be applied to types, properties, or parameters. It allows specifying the type of model binder used to bind the specific instance or type. For e.g.
+<xref:Microsoft.AspNetCore.Mvc.ModelBinderAttribute> can be applied to types, properties, or parameters. It allows specifying the type of model binder used to bind the specific instance or type. For example:
 
 ```C#
 [HttpPost]
 public IActionResult OnPost([ModelBinder(typeof(MyInstructorModelBinder))] Instructor instructor)
 ```
 
-It can also be used to change the name of a property or parameter when it's being model bound.
+The `[ModelBinder]` attribute can also be used to change the name of a property or parameter when it's being model bound:
 
 ```C#
 public class Instructor
