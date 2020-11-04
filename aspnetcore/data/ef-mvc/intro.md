@@ -327,11 +327,8 @@ Because you're calling `EnsureCreated` in the initializer method that runs on ap
 The amount of code you had to write in order for the Entity Framework to be able to create a complete database for you is minimal because of the use of conventions, or assumptions that the Entity Framework makes.
 
 * The names of `DbSet` properties are used as table names. For entities not referenced by a `DbSet` property, entity class names are used as table names.
-
 * Entity property names are used for column names.
-
 * Entity properties that are named ID or classnameID are recognized as primary key properties.
-
 * A property is interpreted as a foreign key property if it's named *\<navigation property name>\<primary key property name>* (for example, `StudentID` for the `Student` navigation property since the `Student` entity's primary key is `ID`). Foreign key properties can also be named simply *\<primary key property name>* (for example, `EnrollmentID` since the `Enrollment` entity's primary key is `EnrollmentID`).
 
 Conventional behavior can be overridden. For example, you can explicitly specify table names, as you saw earlier in this tutorial. And you can set column names and set any property as primary key or foreign key, as you'll see in a [later tutorial](complex-data-model.md) in this series.
@@ -349,28 +346,17 @@ In the following code, the `async` keyword, `Task<T>` return value, `await` keyw
 [!code-csharp[](intro/samples/cu/Controllers/StudentsController.cs?name=snippet_ScaffoldedIndex)]
 
 * The `async` keyword tells the compiler to generate callbacks for parts of the method body and to automatically create the `Task<IActionResult>` object that's returned.
-
 * The return type `Task<IActionResult>` represents ongoing work with a result of type `IActionResult`.
-
 * The `await` keyword causes the compiler to split the method into two parts. The first part ends with the operation that's started asynchronously. The second part is put into a callback method that's called when the operation completes.
-
 * `ToListAsync` is the asynchronous version of the `ToList` extension method.
 
-Some things to be aware of when you are writing asynchronous code that uses the Entity Framework:
+Some things to be aware of when  writing asynchronous code that uses the Entity Framework:
 
 * Only statements that cause queries or commands to be sent to the database are executed asynchronously. That includes, for example, `ToListAsync`, `SingleOrDefaultAsync`, and `SaveChangesAsync`. It doesn't include, for example, statements that just change an `IQueryable`, such as `var students = context.Students.Where(s => s.LastName == "Davolio")`.
-
 * An EF context isn't thread safe: don't try to do multiple operations in parallel. When you call any async EF method, always use the `await` keyword.
-
 * If you want to take advantage of the performance benefits of async code, make sure that any library packages that you're using (such as for paging), also use async if they call any Entity Framework methods that cause queries to be sent to the database.
 
 For more information about asynchronous programming in .NET, see [Async Overview](/dotnet/articles/standard/async).
-
-## Get the code
-
-[Download or view the completed application.](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)
-
-In the following tutorial, you learn how to perform basic CRUD (create, read, update, delete) operations.
 
 Advance to the next tutorial to learn how to perform basic CRUD (create, read, update, delete) operations.
 
@@ -593,38 +579,28 @@ In this section, the scaffolding engine in Visual Studio is used to add an MVC c
 The automatic creation of CRUD action methods and views is known as scaffolding. Scaffolding differs from code generation in that the scaffolded code is a starting point that you can modify to suit your own requirements, whereas you typically don't modify generated code. When you need to customize generated code, you use partial classes or you regenerate the code when things change.
 
 * Right-click the **Controllers** folder in **Solution Explorer** and select **Add > New Scaffolded Item**.
-
 * In the **Add Scaffold** dialog box:
-
   * Select **MVC controller with views, using Entity Framework**.
-
-  * Click **Add**. The **Add MVC Controller with views, using Entity Framework** dialog box appears.
-
+  * Click **Add**. The **Add MVC Controller with views, using Entity Framework** dialog box appears:
     ![Scaffold Student](intro/_static/scaffold-student2.png)
-
   * In **Model class** select **Student**.
-
   * In **Data context class** select **SchoolContext**.
-
   * Accept the default **StudentsController** as the name.
-
   * Click **Add**.
 
-  When you click **Add**, the Visual Studio scaffolding engine creates a *StudentsController.cs* file and a set of views (*.cshtml* files) that work with the controller.
+The Visual Studio scaffolding engine creates a *StudentsController.cs* file and a set of views (*.cshtml* files) that work with the controller.
 
-(The scaffolding engine can also create the database context for you if you don't create it manually first as you did earlier for this tutorial. You can specify a new context class in the **Add Controller** box by clicking the plus sign to the right of **Data context class**.  Visual Studio will then create your `DbContext` class as well as the controller and views.)
-
-You'll notice that the controller takes a `SchoolContext` as a constructor parameter.
+Notice the controller takes a `SchoolContext` as a constructor parameter.
 
 [!code-csharp[](intro/samples/cu/Controllers/StudentsController.cs?name=snippet_Context&highlight=5,7,9)]
 
-ASP.NET Core dependency injection takes care of passing an instance of `SchoolContext` into the controller. You configured that in the *Startup.cs* file earlier.
+ASP.NET Core dependency injection takes care of passing an instance of `SchoolContext` into the controller. That was configured  in the *Startup.cs* file.
 
 The controller contains an `Index` action method, which displays all students in the database. The method gets a list of students from the Students entity set by reading the `Students` property of the database context instance:
 
 [!code-csharp[](intro/samples/cu/Controllers/StudentsController.cs?name=snippet_ScaffoldedIndex&highlight=3)]
 
-You'll learn about the asynchronous programming elements in this code later in the tutorial.
+You learn about the asynchronous programming elements in this code later in the tutorial.
 
 The *Views/Students/Index.cshtml* view displays this list in a table:
 
@@ -646,9 +622,9 @@ Close the browser.
 
 If the SSOX window isn't already open, select it from the **View** menu in Visual Studio.
 
-In SSOX, click **(localdb)\MSSQLLocalDB > Databases**, and then click the entry for the database name that's in the connection string in your *appsettings.json* file.
+In SSOX, click **(localdb)\MSSQLLocalDB > Databases**, and then click the entry for the database name that's in the connection string in the *appsettings.json* file.
 
-Expand the **Tables** node to see the tables in your database.
+Expand the **Tables** node to see the tables in the database.
 
 ![Tables in SSOX](intro/_static/ssox-tables.png)
 
@@ -656,7 +632,7 @@ Right-click the **Student** table and click **View Data** to see the columns tha
 
 ![Student table in SSOX](intro/_static/ssox-student-table.png)
 
-The *.mdf* and *.ldf* database files are in the *C:\Users\\\<yourusername>* folder.
+The *.mdf* and *.ldf* database files are in the *C:\Users\\\<username>* folder.
 
 Because you're calling `EnsureCreated` in the initializer method that runs on app start, you could now make a change to the `Student` class, delete the database, run the application again, and the database would automatically be re-created to match your change. For example, if you add an `EmailAddress` property to the `Student` class, you'll see a new `EmailAddress` column in the re-created table.
 
@@ -665,11 +641,8 @@ Because you're calling `EnsureCreated` in the initializer method that runs on ap
 The amount of code you had to write in order for the Entity Framework to be able to create a complete database for you is minimal because of the use of conventions, or assumptions that the Entity Framework makes.
 
 * The names of `DbSet` properties are used as table names. For entities not referenced by a `DbSet` property, entity class names are used as table names.
-
 * Entity property names are used for column names.
-
 * Entity properties that are named ID or classnameID are recognized as primary key properties.
-
 * A property is interpreted as a foreign key property if it's named *\<navigation property name>\<primary key property name>* (for example, `StudentID` for the `Student` navigation property since the `Student` entity's primary key is `ID`). Foreign key properties can also be named simply *\<primary key property name>* (for example, `EnrollmentID` since the `Enrollment` entity's primary key is `EnrollmentID`).
 
 Conventional behavior can be overridden. For example, you can explicitly specify table names, as you saw earlier in this tutorial. And you can set column names and set any property as primary key or foreign key, as you'll see in a [later tutorial](complex-data-model.md) in this series.
@@ -687,43 +660,19 @@ In the following code, the `async` keyword, `Task<T>` return value, `await` keyw
 [!code-csharp[](intro/samples/cu/Controllers/StudentsController.cs?name=snippet_ScaffoldedIndex)]
 
 * The `async` keyword tells the compiler to generate callbacks for parts of the method body and to automatically create the `Task<IActionResult>` object that's returned.
-
 * The return type `Task<IActionResult>` represents ongoing work with a result of type `IActionResult`.
-
 * The `await` keyword causes the compiler to split the method into two parts. The first part ends with the operation that's started asynchronously. The second part is put into a callback method that's called when the operation completes.
-
 * `ToListAsync` is the asynchronous version of the `ToList` extension method.
 
 Some things to be aware of when you are writing asynchronous code that uses the Entity Framework:
 
 * Only statements that cause queries or commands to be sent to the database are executed asynchronously. That includes, for example, `ToListAsync`, `SingleOrDefaultAsync`, and `SaveChangesAsync`. It doesn't include, for example, statements that just change an `IQueryable`, such as `var students = context.Students.Where(s => s.LastName == "Davolio")`.
-
 * An EF context isn't thread safe: don't try to do multiple operations in parallel. When you call any async EF method, always use the `await` keyword.
-
 * If you want to take advantage of the performance benefits of async code, make sure that any library packages that you're using (such as for paging), also use async if they call any Entity Framework methods that cause queries to be sent to the database.
 
 For more information about asynchronous programming in .NET, see [Async Overview](/dotnet/articles/standard/async).
 
-## Get the code
-
-[Download or view the completed application.](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)
-
 ## Next steps
-
-In this tutorial, you:
-
-> [!div class="checklist"]
-> * Created ASP.NET Core MVC web app
-> * Set up the site style
-> * Learned about EF Core NuGet packages
-> * Created the data model
-> * Created the database context
-> * Registered the SchoolContext
-> * Initialized DB with test data
-> * Created controller and views
-> * Viewed the database
-
-In the following tutorial, you'll learn how to perform basic CRUD (create, read, update, delete) operations.
 
 Advance to the next tutorial to learn how to perform basic CRUD (create, read, update, delete) operations.
 
