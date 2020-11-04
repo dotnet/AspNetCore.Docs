@@ -15,7 +15,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 The scaffolded movie app has a good start, but the presentation isn't ideal. **ReleaseDate** should be two words, **Release Date**.
 
-![Movie application open in Chrome](sql/_static/m55.png)
+![Movie application open in Chrome](sql/_static/5/m55.png)
 
 ## Update the generated code
 
@@ -140,7 +140,7 @@ The HTTP GET methods in the Index, Create, and Delete Razor pages follow a simil
 
 The scaffolded movie app has a good start, but the presentation isn't ideal. **ReleaseDate** should be two words, **Release Date**.
 
-![Movie application open in Chrome](sql/_static/m55.png)
+![Movie application open in Chrome](sql/_static/m55https.png)
 
 ## Update the generated code
 
