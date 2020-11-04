@@ -123,7 +123,7 @@ In the previous code, the `Main` method has been modified to do the following:
 
 * Get a database context instance from the dependency injection container.
 * Call the `seedData.Initialize` method, passing to it the database context instance.
-* Dispose the context when the seed method completes. The [using statement](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/using-statement) ensures the context is disposed.
+* Dispose the context when the seed method completes. The [using statement](https://docs.microsoft.com/dotnet/csharp/language-reference/keywords/using-statement) ensures the context is disposed.
 
 The following exception occurs when `Update-Database` has not been run:
 
@@ -277,7 +277,7 @@ In the previous code, the `Main` method has been modified to do the following:
 
 * Get a database context instance from the dependency injection container.
 * Call the `seedData.Initialize` method, passing to it the database context instance.
-* Dispose the context when the seed method completes. The [using statement](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/using-statement) ensures the context is disposed.
+* Dispose the context when the seed method completes. The [using statement](https://docs.microsoft.com/dotnet/csharp/language-reference/keywords/using-statement) ensures the context is disposed.
 
 The following exception occurs when `Update-Database` has not been run:
 
@@ -421,7 +421,7 @@ In the previous code, the `Main` method has been modified to do the following:
 
 * Get a database context instance from the dependency injection container.
 * Call the `seedData.Initialize` method, passing to it the database context instance.
-* Dispose the context when the seed method completes. The [using statement](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/using-statement) ensures the context is disposed.
+* Dispose the context when the seed method completes. The [using statement](https://docs.microsoft.com/dotnet/csharp/language-reference/keywords/using-statement) ensures the context is disposed.
 
 A production app would not call `Database.Migrate`. It's added to the preceding code to prevent the following exception when `Update-Database` has not been run:
 
