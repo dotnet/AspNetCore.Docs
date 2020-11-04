@@ -11,8 +11,6 @@ uid: data/ef-mvc/intro
 ---
 # Tutorial: Get started with EF Core in an ASP.NET MVC web app
 
-https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-value-types
-
 By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ::: moniker range=">= aspnetcore-5.0"
@@ -147,7 +145,7 @@ In the *Models* folder, create *Enrollment.cs* and replace the existing code wit
 
 The `EnrollmentID` property is the primary key. This entity uses the `classnameID` pattern instead of `ID` by itself. The `Student` entity used the `ID` pattern. Typically, one pattern is selected and used throughout the data model. Here, the variation illustrates that either pattern can be used. A [later tutorial](inheritance.md) shows how using `ID` without classname makes it easier to implement inheritance in the data model.
 
-The `Grade` property is an `enum`. The `?` after the `Grade` type declaration indicates that the `Grade` property is [nullable](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-value-types). A grade that's null is different from a zero grade. `null` means a grade isn't known or hasn't been assigned yet.
+The `Grade` property is an `enum`. The `?` after the `Grade` type declaration indicates that the `Grade` property is [nullable](/dotnet/csharp/language-reference/builtin-types/nullable-value-types). A grade that's null is different from a zero grade. `null` means a grade isn't known or hasn't been assigned yet.
 
 The `StudentID` property is a foreign key, and the corresponding navigation property is `Student`. An `Enrollment` entity is associated with one `Student` entity, so the property can only hold a single `Student` entity (unlike the `Student.Enrollments` navigation property you saw earlier, which can hold multiple `Enrollment` entities).
 
