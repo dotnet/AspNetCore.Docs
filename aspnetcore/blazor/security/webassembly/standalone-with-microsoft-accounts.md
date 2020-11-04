@@ -13,7 +13,7 @@ uid: blazor/security/webassembly/standalone-with-microsoft-accounts
 
 By [Javier Calvarro Nelson](https://github.com/javiercn) and [Luke Latham](https://github.com/guardrex)
 
-To create a [standalone Blazor WebAssembly app](xref:blazor/hosting-models#blazor-webassembly) that uses [Microsoft Accounts with Azure Active Directory (AAD)](/azure/active-directory/develop/quickstart-register-app#register-a-new-application-using-the-azure-portal) for authentication (related guidance in the Azure documentation: [Create an AAD tenant and web application](/azure/active-directory/develop/v2-overview)):
+This article covers how to create a [standalone Blazor WebAssembly app](xref:blazor/hosting-models#blazor-webassembly) that uses [Microsoft Accounts with Azure Active Directory (AAD)](/azure/active-directory/develop/quickstart-register-app#register-a-new-application-using-the-azure-portal) for authentication.
 
 Register a AAD app in the **Azure Active Directory** > **App registrations** area of the Azure portal:
 
