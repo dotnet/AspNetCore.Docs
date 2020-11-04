@@ -54,17 +54,19 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 
 1. From the Visual Studio **File** menu, select **New** > **Project**.
 1. Create a new ASP.NET Core Web Application and select **Next**.
-  ![new ASP.NET Core Web Application](razor-pages-start/_static/5/np.png)
+	![new ASP.NET Core Web Application](razor-pages-start/_static/5/np.png)
+	
 1. Name the project *RazorPagesMovie*. It's important to name the project *RazorPagesMovie* so the namespaces will match when you copy and paste code.
-  ![new ASP.NET Core Web Application](razor-pages-start/_static/config.png)
+
+	![new ASP.NET Core Web Application](razor-pages-start/_static/config.png)
 
 1. Select **ASP.NET Core 5.0** in the dropdown, **Web Application**, and then select **Create**.
 
-  ![new ASP.NET Core Web Application](razor-pages-start/_static/5/npx.png)
+	![new ASP.NET Core Web Application](razor-pages-start/_static/5/npx.png)
 
-  The following starter project is created:
+	The following starter project is created:
 
-  ![Solution Explorer](razor-pages-start/_static/se2.2.png)
+	![Solution Explorer](razor-pages-start/_static/se2.2.png)
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -86,22 +88,21 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 
 1. Select **File** > **New Solution**.
 
-  ![macOS New solution](../first-mvc-app/start-mvc/_static/new_project_vsmac.png)
+	![macOS New solution](../first-mvc-app/start-mvc/_static/new_project_vsmac.png)
 
 1. In Visual Studio for Mac earlier than version 8.6, select **.NET Core** > **App** > **Web Application** > **Next**. In version 8.6 or later, select **Web and Console** > **App** > **Web Application** > **Next**.
 
-  ![macOS web app template selection](razor-pages-start/_static/web_app_template_vsmac.png)
+	![macOS web app template selection](razor-pages-start/_static/web_app_template_vsmac.png)
 
 1. In the **Configure the new Web Application** dialog:
 
-   * Confirm that **Authentication** is set to **No Authentication**.
-   * If presented an option to select a **Target Framework**, select the latest .NET 5.x version.
+	1. Confirm that **Authentication** is set to **No Authentication**.
+	1. If presented an option to select a **Target Framework**, select the latest .NET 5.x version.
+  	1. Select **Next**.
 
-  Select **Next**.
+1. Name the project *RazorPagesMovie* and select **Create**.
 
-1. Name the project *RazorPagesMovie*, and then select **Create**.
-
-  ![macOS name the project](razor-pages-start/_static/RazorPagesMovie.png)
+	![macOS name the project](razor-pages-start/_static/RazorPagesMovie.png)
 
 <!-- End of VS tabs -->
 
@@ -126,7 +127,7 @@ Supporting files have names that begin with an underscore. For example, the *_La
 
 ### wwwroot folder
 
-Contains static files, like HTML files, JavaScript files, and CSS files. For more information, see <xref:fundamentals/static-files>.
+Contains static assets, like HTML files, JavaScript files, and CSS files. For more information, see <xref:fundamentals/static-files>.
 
 ### appsettings.json
 
@@ -134,7 +135,7 @@ Contains configuration data, like connection strings. For more information, see 
 
 ### Program.cs
 
-Contains the entry point for the program. For more information, see <xref:fundamentals/host/generic-host>.
+Contains the entry point for the app. For more information, see <xref:fundamentals/host/generic-host>.
 
 ### Startup.cs
 
