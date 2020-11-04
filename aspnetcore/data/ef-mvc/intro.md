@@ -98,8 +98,6 @@ The EF SQL Server package and its dependencies (`Microsoft.EntityFrameworkCore` 
 
 For information about other database providers that are available for Entity Framework Core, see [Database providers](/ef/core/providers/).
 
-To use Visual Studio Code on non-Windows platforms, follow the instructions on the [Razor Pages](xref:data/ef-rp/intro) version of the tutorial and select the ***Visual Studio Code*** tab.
-
 Add the [Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore) NuGet package and the [Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore) NuGet package.
 
 In the Program Manager Console (PMC), enter the following commands to add the NuGet packages:
