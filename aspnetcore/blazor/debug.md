@@ -40,6 +40,8 @@ Debugging requires either of the following browsers:
 * Google Chrome (version 70 or later) (default)
 * Microsoft Edge (version 80 or later)
 
+Ensure that no firewalls or proxies block communication with the debug proxy.
+
 Visual Studio for Mac requires version 8.8 (build 1532) or later:
 
 1. Install the latest release of Visual Studio for Mac by selecting the **Download Visual Studio for Mac** button at [Microsoft: Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/).
@@ -332,6 +334,7 @@ If you're running into errors, the following tips may help:
 * If your environment uses an HTTP proxy, make sure that `localhost` is included in the proxy bypass settings. This can be done by setting the `NO_PROXY` environment variable in either:
   * The `launchSettings.json` file for the project.
   * At the user or system environment variables level for it to apply to all apps. When using an environment variable, restart Visual Studio for the change to take effect.
+* Ensure that no firewalls or proxies block communication with the debug proxy. If the [Windows Firewall](/windows/security/threat-protection/windows-firewall/windows-firewall-with-advanced-security) is blocking the communication, [create an inbound port rule](/windows/security/threat-protection/windows-firewall/create-an-inbound-port-rule) for any blocked ports.
 
 ### Breakpoints in `OnInitialized{Async}` not hit
 
