@@ -11,6 +11,8 @@ uid: data/ef-mvc/intro
 ---
 # Tutorial: Get started with EF Core in an ASP.NET MVC web app
 
+https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-value-types
+
 By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ::: moniker range=">= aspnetcore-5.0"
@@ -80,7 +82,7 @@ Open *Views/Shared/_Layout.cshtml* and make the following changes:
 
 The changes are highlighted.
 
-[!code-cshtml[](intro/samples/5cu/Views/Shared/_Layout.cshtml?highlight=6,34-48,63)]
+[!code-cshtml[](intro/samples/5cu/Views/Shared/_Layout.cshtml?highlight=6,24-38,52)]
 
 In *Views/Home/Index.cshtml*, replace the contents of the file with the following code to replace the text about ASP.NET and MVC with text about this application:
 
@@ -90,71 +92,84 @@ Press CTRL+F5 to run the project or choose **Debug > Start Without Debugging** f
 
 ![Contoso University home page](intro/_static/home-page5.png)
 
-## About EF Core NuGet packages
+## EF Core NuGet packages
 
-To add EF Core support to a project, install the database provider that you want to target. This tutorial uses SQL Server, and the provider package is [Microsoft.EntityFrameworkCore.SqlServer](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer/). This package is included in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app), so you don't need to reference the package.
+This tutorial uses SQL Server, and the provider package is [Microsoft.EntityFrameworkCore.SqlServer](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer/). This package is included in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app), so you don't need to reference the package.
 
 The EF SQL Server package and its dependencies (`Microsoft.EntityFrameworkCore` and `Microsoft.EntityFrameworkCore.Relational`) provide runtime support for EF. You'll add a tooling package later, in the [Migrations](migrations.md) tutorial.
 
 For information about other database providers that are available for Entity Framework Core, see [Database providers](/ef/core/providers/).
 
+To use Visual Studio Code on non-Windows platforms, follow the instructions on the [Razor Pages](xref:data/ef-rp/intro) version of the tutorial and select the ***Visual Studio Code*** tab.
+
+Add the [Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore) NuGet package and the [Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore) NuGet package.
+
+In the Program Manager Console (PMC), enter the following commands to add the NuGet packages:
+
+```powershell
+Install-Package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore -Version 5.0.0-rc.2.20475.17
+Install-Package Microsoft.EntityFrameworkCore.SqlServer -Version 5.0.0-rc.2.20475.6
+```
+
+The `Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore` NuGet package provides ASP.NET Core middleware for Entity Framework Core error pages. This middleware helps to detect and diagnose errors with Entity Framework Core migrations.
+
 ## Create the data model
 
-Next you'll create entity classes for the Contoso University application. You'll start with the following three entities.
+Create entity classes for the Contoso University app. Start with the following three entities.
 
 ![Course-Enrollment-Student data model diagram](intro/_static/data-model-diagram.png)
 
-There's a one-to-many relationship between `Student` and `Enrollment` entities, and there's a one-to-many relationship between `Course` and `Enrollment` entities. In other words, a student can be enrolled in any number of courses, and a course can have any number of students enrolled in it.
+There's a one-to-many relationship between `Student` and `Enrollment` entities. There's a one-to-many relationship between `Course` and `Enrollment` entities. A student can be enrolled in any number of courses. A course can have any number of students enrolled in it.
 
-In the following sections you'll create a class for each one of these entities.
+In the following sections, a class is created for each of these entities.
 
 ### The Student entity
 
 ![Student entity diagram](intro/_static/student-entity.png)
 
-In the *Models* folder, create a class file named *Student.cs* and replace the template code with the following code.
+In the *Models* folder, create the `Student.cs` and replace the template code with the following:
 
 [!code-csharp[](intro/samples/cu/Models/Student.cs?name=snippet_Intro)]
 
-The `ID` property will become the primary key column of the database table that corresponds to this class. By default, the Entity Framework interprets a property that's named `ID` or `classnameID` as the primary key.
+The `ID` property is the primary key column of the database table that corresponds to this class. By default, Entity Framework interprets a property that's named `ID` or `classnameID` as the primary key. For example, the primary key could be named `StudentID` rather than `ID`.
 
-The `Enrollments` property is a [navigation property](/ef/core/modeling/relationships). Navigation properties hold other entities that are related to this entity. In this case, the `Enrollments` property of a `Student entity` will hold all of the `Enrollment` entities that are related to that `Student` entity. In other words, if a given Student row in the database has two related Enrollment rows (rows that contain that student's primary key value in their StudentID foreign key column), that `Student` entity's `Enrollments` navigation property will contain those two `Enrollment` entities.
+The `Enrollments` property is a [navigation property](/ef/core/modeling/relationships). Navigation properties hold other entities that are related to this entity. In this case, the `Enrollments` property of a `Student entity` holds all of the `Enrollment` entities that are related to that `Student` entity. In other words, if a given `Student` row in the database has two related `Enrollment` rows, that `Student` entity's `Enrollments` navigation property will contain those two `Enrollment` entities. `Enrollment` rows contain a student's primary key value in their `StudentID` foreign key column.
 
-If a navigation property can hold multiple entities (as in many-to-many or one-to-many relationships), its type must be a list in which entries can be added, deleted, and updated, such as `ICollection<T>`. You can specify `ICollection<T>` or a type such as `List<T>` or `HashSet<T>`. If you specify `ICollection<T>`, EF creates a `HashSet<T>` collection by default.
+If a navigation property can hold multiple entities, its type must be a list in which entries can be added, deleted, and updated, such as `ICollection<T>`. For example, navigation property with multiple entities include many-to-many and one-to-many relationships. `ICollection<T>` or a type such as `List<T>` or `HashSet<T>` can be used for multiple entities. When `ICollection<T>` is used, EF creates a `HashSet<T>` collection by default.
 
 ### The Enrollment entity
 
 ![Enrollment entity diagram](intro/_static/enrollment-entity.png)
 
-In the *Models* folder, create *Enrollment.cs* and replace the existing code with the following code:
+In the *Models* folder, create *Enrollment.cs* and replace the existing code with the following:
 
 [!code-csharp[](intro/samples/cu/Models/Enrollment.cs?name=snippet_Intro)]
 
-The `EnrollmentID` property will be the primary key; this entity uses the `classnameID` pattern instead of `ID` by itself as you saw in the `Student` entity. Ordinarily you would choose one pattern and use it throughout your data model. Here, the variation illustrates that you can use either pattern. In a [later tutorial](inheritance.md), you'll see how using ID without classname makes it easier to implement inheritance in the data model.
+The `EnrollmentID` property is the primary key. This entity uses the `classnameID` pattern instead of `ID` by itself. The `Student` entity used the `ID` pattern. Typically, one pattern is selected and used throughout the data model. Here, the variation illustrates that either pattern can be used. A [later tutorial](inheritance.md) shows how using `ID` without classname makes it easier to implement inheritance in the data model.
 
-The `Grade` property is an `enum`. The question mark after the `Grade` type declaration indicates that the `Grade` property is nullable. A grade that's null is different from a zero grade -- null means a grade isn't known or hasn't been assigned yet.
+The `Grade` property is an `enum`. The `?` after the `Grade` type declaration indicates that the `Grade` property is [nullable](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-value-types). A grade that's null is different from a zero grade. `null` means a grade isn't known or hasn't been assigned yet.
 
 The `StudentID` property is a foreign key, and the corresponding navigation property is `Student`. An `Enrollment` entity is associated with one `Student` entity, so the property can only hold a single `Student` entity (unlike the `Student.Enrollments` navigation property you saw earlier, which can hold multiple `Enrollment` entities).
 
 The `CourseID` property is a foreign key, and the corresponding navigation property is `Course`. An `Enrollment` entity is associated with one `Course` entity.
 
-Entity Framework interprets a property as a foreign key property if it's named `<navigation property name><primary key property name>` (for example, `StudentID` for the `Student` navigation property since the `Student` entity's primary key is `ID`). Foreign key properties can also be named simply `<primary key property name>` (for example, `CourseID` since the `Course` entity's primary key is `CourseID`).
+Entity Framework interprets a property as a foreign key property if it's named `<`navigation property name`><`primary key property name`>`.For example, `StudentID` for the `Student` navigation property since the `Student` entity's primary key is `ID`. Foreign key properties can also be named  `<`primary key property name`>`. For example, `CourseID` since the `Course` entity's primary key is `CourseID`.
 
 ### The Course entity
 
 ![Course entity diagram](intro/_static/course-entity.png)
 
-In the *Models* folder, create *Course.cs* and replace the existing code with the following code:
+In the *Models* folder, create *Course.cs* and replace the existing code with the following:
 
 [!code-csharp[](intro/samples/cu/Models/Course.cs?name=snippet_Intro)]
 
 The `Enrollments` property is a navigation property. A `Course` entity can be related to any number of `Enrollment` entities.
 
-We'll say more about the `DatabaseGenerated` attribute in a [later tutorial](complex-data-model.md) in this series. Basically, this attribute lets you enter the primary key for the course rather than having the database generate it.
+the `DatabaseGenerated` attribute is detailed in a [later tutorial](complex-data-model.md). Basically, this attribute allows entering the primary key for the course rather than having the database generate it.
 
 ## Create the database context
 
-The main class that coordinates Entity Framework functionality for a given data model is the database context class. You create this class by deriving from the `Microsoft.EntityFrameworkCore.DbContext` class. In your code you specify which entities are included in the data model. You can also customize certain Entity Framework behavior. In this project, the class is named `SchoolContext`.
+The main class that coordinates Entity Framework functionality for a given data model is the database context class. This class is created by deriving from the `Microsoft.EntityFrameworkCore.DbContext` class. The `DbContext` derived class specifies which entities are included in the data model. You can also customize certain Entity Framework behavior. In this project, the class is named `SchoolContext`.
 
 In the project folder, create a folder named *Data*.
 
@@ -162,47 +177,60 @@ In the *Data* folder create a new class file named *SchoolContext.cs*, and repla
 
 [!code-csharp[](intro/samples/cu/Data/SchoolContext.cs?name=snippet_Intro)]
 
-This code creates a `DbSet` property for each entity set. In Entity Framework terminology, an entity set typically corresponds to a database table, and an entity corresponds to a row in the table.
+The preceding code creates a `DbSet` property for each entity set. In Entity Framework terminology:
 
-You could've omitted the `DbSet<Enrollment>` and `DbSet<Course>` statements and it would work the same. The Entity Framework would include them implicitly because the `Student` entity references the `Enrollment` entity and the `Enrollment` entity references the `Course` entity.
+* An entity set typically corresponds to a database table.
+* An entity corresponds to a row in the table.
 
-When the database is created, EF creates tables that have names the same as the `DbSet` property names. Property names for collections are typically plural (Students rather than Student), but developers disagree about whether table names should be pluralized or not. For these tutorials you'll override the default behavior by specifying singular table names in the DbContext. To do that, add the following highlighted code after the last DbSet property.
+The `DbSet<Enrollment>` and `DbSet<Course>` statements could be ommitted and it would work the same. The Entity Framework would include them implicitly because:
+
+* The `Student` entity references the `Enrollment` entity.
+* The `Enrollment` entity references the `Course` entity.
+
+When the database is created, EF creates tables that have names the same as the `DbSet` property names. Property names for collections are typically plural. For example, Students rather than Student. Developers disagree about whether table names should be pluralized or not. For these tutorials, the default behavior is overridden by specifying singular table names in the `DbContext`. To do that, add the following highlighted code after the last DbSet property.
 
 [!code-csharp[](intro/samples/cu/Data/SchoolContext.cs?name=snippet_TableNames&highlight=16-21)]
 
-## Register the SchoolContext
+## Register the `SchoolContext`
 
-ASP.NET Core implements [dependency injection](../../fundamentals/dependency-injection.md) by default. Services (such as the EF database context) are registered with dependency injection during application startup. Components that require these services (such as MVC controllers) are provided these services via constructor parameters. You'll see the controller constructor code that gets a context instance later in this tutorial.
+ASP.NET Core includes [dependency injection](../../fundamentals/dependency-injection.md). Services, such as the EF database context, are registered with dependency injection during app startup. Components that require these services, such as MVC controllers, are provided these services via constructor parameters. The controller constructor code that gets a context instance is shown later in this tutorial.
 
 To register `SchoolContext` as a service, open *Startup.cs*, and add the highlighted lines to the `ConfigureServices` method.
 
-[!code-csharp[](intro/samples/cu/Startup.cs?name=snippet_SchoolContext&highlight=9-10)]
+[!code-csharp[](intro/samples/5cu-snap/Startup.cs?name=snippet&highlight=1=2,22-23)]
 
 The name of the connection string is passed in to the context by calling a method on a `DbContextOptionsBuilder` object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.
 
-Add `using` statements for `ContosoUniversity.Data` and `Microsoft.EntityFrameworkCore` namespaces, and then build the project.
+Open the *appsettings.json* file and add a connection string as shown in the following markup:
 
-[!code-csharp[](intro/samples/cu/Startup.cs?name=snippet_Usings)]
+[!code-json[](./intro/samples/5cu/appsettings1.json?highlight=2-4)]
 
-Open the *appsettings.json* file and add a connection string as shown in the following example.
+### Add the database exception filter
 
-[!code-json[](./intro/samples/cu/appsettings1.json?highlight=2-4)]
+Add <xref:Microsoft.Extensions.DependencyInjection.DatabaseDeveloperPageExceptionFilterServiceExtensions.AddDatabaseDeveloperPageExceptionFilter%2A> to `ConfigureServices` as shown in the following code:
+
+[!code-csharp[](intro/samples/5cu/Startup.cs?name=snippet&highlight=1=2,22-23)]
+
+The `AddDatabaseDeveloperPageExceptionFilter` provides helpful error information in the [development environment](xref:fundamentals/environments).
 
 ### SQL Server Express LocalDB
 
-The connection string specifies a SQL Server LocalDB database. LocalDB is a lightweight version of the SQL Server Express Database Engine and is intended for application development, not production use. LocalDB starts on demand and runs in user mode, so there's no complex configuration. By default, LocalDB creates *.mdf* database files in the `C:/Users/<user>` directory.
+The connection string specifies [SQL Server LocalDB](/sql/database-engine/configure-windows/sql-server-2016-express-localdb). LocalDB is a lightweight version of the SQL Server Express Database Engine and is intended for app development, not production use. LocalDB starts on demand and runs in user mode, so there's no complex configuration. By default, LocalDB creates *.mdf* DB files in the `C:/Users/<user>` directory.
 
 ## Initialize DB with test data
 
-The Entity Framework will create an empty database for you. In this section, you write a method that's called after the database is created in order to populate it with test data.
+The Entity Framework creates an empty database. In this section, a method is added that's called after the database is created in order to populate it with test data.
 
-Here you'll use the `EnsureCreated` method to automatically create the database. In a [later tutorial](migrations.md) you'll see how to handle model changes by using Code First Migrations to change the database schema instead of dropping and re-creating the database.
+The `EnsureCreated` method is used to automatically create the database. In a [later tutorial](migrations.md) you see how to handle model changes by using Code First Migrations to change the database schema instead of dropping and re-creating the database.
 
 In the *Data* folder, create a new class file named *DbInitializer.cs* and replace the template code with the following code, which causes a database to be created when needed and loads test data into the new database.
 
-[!code-csharp[](intro/samples/cu/Data/DbInitializer.cs?name=snippet_Intro)]
+[!code-csharp[](intro/samples/5cu-snap/Program.cs?highlight=1-2,14-18,21-38)] zz
 
-The code checks if there are any students in the database, and if not, it assumes the database is new and needs to be seeded with test data. It loads test data into arrays rather than `List<T>` collections to optimize performance.
+The preceding code checks if the database exists:
+
+* If the database is not found, it assumes the database is new and needs to be seeded with test data. It loads test data into arrays rather than `List<T>` collections to optimize performance.
+* If the database if found, it takes no action.
 
 In *Program.cs*, modify the `Main` method to do the following on application startup:
 
@@ -342,22 +370,7 @@ For more information about asynchronous programming in .NET, see [Async Overview
 
 [Download or view the completed application.](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)
 
-## Next steps
-
-In this tutorial, you:
-
-> [!div class="checklist"]
-> * Created ASP.NET Core MVC web app
-> * Set up the site style
-> * Learned about EF Core NuGet packages
-> * Created the data model
-> * Created the database context
-> * Registered the SchoolContext
-> * Initialized DB with test data
-> * Created controller and views
-> * Viewed the database
-
-In the following tutorial, you'll learn how to perform basic CRUD (create, read, update, delete) operations.
+In the following tutorial, you learn how to perform basic CRUD (create, read, update, delete) operations.
 
 Advance to the next tutorial to learn how to perform basic CRUD (create, read, update, delete) operations.
 
@@ -564,19 +577,18 @@ In *Program.cs*, modify the `Main` method to do the following on application sta
 * Call the seed method, passing to it the context.
 * Dispose the context when the seed method is done.
 
-[!code-csharp[](intro/samples/cu/Program.cs?name=snippet_Seed&highlight=3-20)]
+[!code-csharp[](intro/samples/5cu-snap/Program.cs?highlight=1-2,14-18,21-38)]
 
-Add `using` statements:
+The first time you run the application, the database will be created and seeded with test data. Whenever you change the data model:
 
-[!code-csharp[](intro/samples/cu/Program.cs?name=snippet_Usings)]
-
-In older tutorials, you may see similar code in the `Configure` method in *Startup.cs*. We recommend that you use the `Configure` method only to set up the request pipeline. Application startup code belongs in the `Main` method.
-
-Now the first time you run the application, the database will be created and seeded with test data. Whenever you change your data model, you can delete the database, update your seed method, and start afresh with a new database the same way. In later tutorials, you'll see how to modify the database when the data model changes, without deleting and re-creating it.
+ * Delete the database.
+ * Update the seed method, and start afresh with a new database the same way.
+ 
+In later tutorials, you'll see how to modify the database when the data model changes, without deleting and re-creating it.
 
 ## Create controller and views
 
-Next, you'll use the scaffolding engine in Visual Studio to add an MVC controller and views that will use EF to query and save data.
+In this section, the scaffolding engine in Visual Studio is used to add an MVC controller and views that will use EF to query and save data.
 
 The automatic creation of CRUD action methods and views is known as scaffolding. Scaffolding differs from code generation in that the scaffolded code is a starting point that you can modify to suit your own requirements, whereas you typically don't modify generated code. When you need to customize generated code, you use partial classes or you regenerate the code when things change.
 
