@@ -238,43 +238,32 @@ In *Program.cs*, modify the `Main` method to do the following on application sta
 
 [!code-csharp[](intro/samples/cu/Program.cs?name=snippet_Seed&highlight=3-20)]
 
-Add `using` statements:
+The first time the app is run, the database is created and seeded with test data. Whenever the data model changes:
 
-[!code-csharp[](intro/samples/cu/Program.cs?name=snippet_Usings)]
+* Delete the database.
+* Update the seed method, and start afresh with a new database.
 
-In older tutorials, you may see similar code in the `Configure` method in *Startup.cs*. We recommend that you use the `Configure` method only to set up the request pipeline. Application startup code belongs in the `Main` method.
-
-Now the first time you run the application, the database will be created and seeded with test data. Whenever you change your data model, you can delete the database, update your seed method, and start afresh with a new database the same way. In later tutorials, you'll see how to modify the database when the data model changes, without deleting and re-creating it.
+ In later tutorials, the database is modified when the data model changes, without deleting and re-creating it. No data is lost when the data model changes.
 
 ## Create controller and views
 
-Next, you'll use the scaffolding engine in Visual Studio to add an MVC controller and views that will use EF to query and save data.
+Use the scaffolding engine in Visual Studio to add an MVC controller and views that will use EF to query and save data.
 
-The automatic creation of CRUD action methods and views is known as scaffolding. Scaffolding differs from code generation in that the scaffolded code is a starting point that you can modify to suit your own requirements, whereas you typically don't modify generated code. When you need to customize generated code, you use partial classes or you regenerate the code when things change.
+The automatic creation of CRUD action methods and views is known as scaffolding.
 
 * Right-click the **Controllers** folder in **Solution Explorer** and select **Add > New Scaffolded Item**.
-
 * In the **Add Scaffold** dialog box:
-
   * Select **MVC controller with views, using Entity Framework**.
-
-  * Click **Add**. The **Add MVC Controller with views, using Entity Framework** dialog box appears.
-
+  * Click **Add**. The **Add MVC Controller with views, using Entity Framework** dialog box appears:
     ![Scaffold Student](intro/_static/scaffold-student2.png)
-
   * In **Model class** select **Student**.
-
   * In **Data context class** select **SchoolContext**.
-
   * Accept the default **StudentsController** as the name.
-
   * Click **Add**.
 
-  When you click **Add**, the Visual Studio scaffolding engine creates a *StudentsController.cs* file and a set of views (*.cshtml* files) that work with the controller.
+The Visual Studio scaffolding engine creates a *StudentsController.cs* file and a set of views (*.cshtml* files) that work with the controller.
 
-(The scaffolding engine can also create the database context for you if you don't create it manually first as you did earlier for this tutorial. You can specify a new context class in the **Add Controller** box by clicking the plus sign to the right of **Data context class**.  Visual Studio will then create your `DbContext` class as well as the controller and views.)
-
-You'll notice that the controller takes a `SchoolContext` as a constructor parameter.
+Notice the controller takes a `SchoolContext` as a constructor parameter.
 
 [!code-csharp[](intro/samples/cu/Controllers/StudentsController.cs?name=snippet_Context&highlight=5,7,9)]
 
@@ -284,7 +273,7 @@ The controller contains an `Index` action method, which displays all students in
 
 [!code-csharp[](intro/samples/cu/Controllers/StudentsController.cs?name=snippet_ScaffoldedIndex&highlight=3)]
 
-You'll learn about the asynchronous programming elements in this code later in the tutorial.
+The asynchronous programming elements in this code are explained later in the tutorial.
 
 The *Views/Students/Index.cshtml* view displays this list in a table:
 
@@ -300,15 +289,11 @@ Click the Students tab to see the test data that the `DbInitializer.Initialize` 
 
 ## View the database
 
-When you started the application, the `DbInitializer.Initialize` method calls `EnsureCreated`. EF saw that there was no database and so it created one, then the remainder of the `Initialize` method code populated the database with data. You can use **SQL Server Object Explorer** (SSOX) to view the database in Visual Studio.
+When you started the application, the `DbInitializer.Initialize` method calls `EnsureCreated`. EF saw that there was no database and so it created one, then the remainder of the `Initialize` method code populated the database with data. You can use **SQL Server Object Explorer** (SSOX) to view the database in Visual Studio:
 
-Close the browser.
-
-If the SSOX window isn't already open, select it from the **View** menu in Visual Studio.
-
-In SSOX, click **(localdb)\MSSQLLocalDB > Databases**, and then click the entry for the database name that's in the connection string in your *appsettings.json* file.
-
-Expand the **Tables** node to see the tables in your database.
+* If the SSOX window isn't already open, select it from the **View** menu in Visual Studio.
+* In SSOX, click **(localdb)\MSSQLLocalDB > Databases**, and then click the entry for the database name that's in the connection string in the *appsettings.json* file.
+* Expand the **Tables** node to see the tables in your database.
 
 ![Tables in SSOX](intro/_static/ssox-tables.png)
 
@@ -316,7 +301,7 @@ Right-click the **Student** table and click **View Data** to see the columns tha
 
 ![Student table in SSOX](intro/_static/ssox-student-table.png)
 
-The *.mdf* and *.ldf* database files are in the *C:\Users\\\<yourusername>* folder.
+The *.mdf* and *.ldf* database files are in the *C:\Users\\\<username>* folder.
 
 Because you're calling `EnsureCreated` in the initializer method that runs on app start, you could now make a change to the `Student` class, delete the database, run the application again, and the database would automatically be re-created to match your change. For example, if you add an `EmailAddress` property to the `Student` class, you'll see a new `EmailAddress` column in the re-created table.
 
