@@ -308,7 +308,7 @@ Delete all the records in the database, so the seed method will run. Stop and st
 
 The app shows the seeded data:
 
-![Movie application open in Chrome showing movie data](sql/_static/m55.png)
+![Movie application open in Chrome showing movie data](sql/_static/m55https.png)
 
 ## Additional resources
 
@@ -456,7 +456,7 @@ Delete all the records in the database, so the seed method will run. Stop and st
 
 The app shows the seeded data:
 
-![Movie application open in Chrome showing movie data](sql/_static/m55.png)
+![Movie application open in Chrome showing movie data](sql/_static/m55https.png)
 
 The next tutorial will clean up the presentation of the data.
 
