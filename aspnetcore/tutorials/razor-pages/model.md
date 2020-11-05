@@ -27,22 +27,22 @@ The model classes are known as POCO classes (from "**P**lain-**O**ld **C**LR **O
 
 1. In **Solution Explorer**, right-click the *RazorPagesMovie* project > **Add** > **New Folder**. Name the folder *Models*.
 1. Right-click the *Models* folder. Select **Add** > **Class**. Name the class *Movie*.
-1. Add the following properties to the `Movie` class:
-
-   [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Models/Movie.cs?name=snippet1)]
-
-The `Movie` class contains:
-
-* The `ID` field is required by the database for the primary key.
-* `[DataType(DataType.Date)]`: The [[DataType]](xref:System.ComponentModel.DataAnnotations.DataTypeAttribute) attribute specifies the type of the data (`Date`). With this attribute:
-
-  * The user isn't required to enter time information in the date field.
-  * Only the date is displayed, not time information.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
 1. Add a folder named *Models*.
 1. Add a class to the *Models* folder named *Movie.cs*.
+
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+1. In the **Solution Tool Window**, control-click the *RazorPagesMovie* project, and then select **Add** > **New Folder...**. Name the folder *Models*.
+1. Control-click the *Models* folder, and then select **Add** > **New File...**.
+1. In the **New File** dialog:
+   1. Select **General** in the left pane.
+   1. Select **Empty Class** in the center pane.
+   1. Name the class **Movie** and select **New**.
+
+---
 
 Add the following properties to the `Movie` class:
 
@@ -55,6 +55,8 @@ The `Movie` class contains:
 
   * The user is not required to enter time information in the date field.
   * Only the date is displayed, not time information.
+
+# [Visual Studio Code](#tab/visual-studio-code)
 
 <a name="dc"></a>
 
@@ -94,18 +96,11 @@ Add a connection string to the *appsettings.json* file as shown in the following
 
    [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Startup.cs?name=snippet_UseSqlite&highlight=11-12)]
 
-# [Visual Studio for Mac](#tab/visual-studio-mac)
+---
 
-1. In the **Solution Tool Window**, control-click the *RazorPagesMovie* project, and then select **Add** > **New Folder...**. Name the folder *Models*.
-1. Control-click the *Models* folder, and then select **Add** > **New File...**.
-1. In the **New File** dialog:
-   1. Select **General** in the left pane.
-   1. Select **Empty Class** in the center pane.
-   1. Name the class **Movie** and select **New**.
+Add the following properties to the `Movie` class:
 
-1. Add the following properties to the `Movie` class:
-
-   [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Models/Movie.cs?name=snippet1)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Models/Movie.cs?name=snippet1)]
 
 The `Movie` class contains:
 
@@ -114,8 +109,6 @@ The `Movie` class contains:
 
   * The user is not required to enter time information in the date field.
   * Only the date is displayed, not time information.
-
----
 
 [DataAnnotations](xref:System.ComponentModel.DataAnnotations) are covered in a later tutorial.
 
@@ -385,29 +378,26 @@ The model classes are known as POCO classes (from "plain-old CLR objects") becau
 
 # [Visual Studio](#tab/visual-studio)
 
-Right-click the **RazorPagesMovie** project > **Add** > **New Folder**. Name the folder *Models*.
-
-Right-click the *Models* folder. Select **Add** > **Class**. Name the class **Movie**.
-
-Add the following properties to the `Movie` class:
-
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Models/Movie.cs?name=snippet1)]
-
-The `Movie` class contains:
-
-* The `ID` field is required by the database for the primary key.
-* `[DataType(DataType.Date)]`: The [DataType](xref:System.ComponentModel.DataAnnotations.DataTypeAttribute) attribute specifies the type of the data (`Date`). With this attribute:
-
-  * The user is not required to enter time information in the date field.
-  * Only the date is displayed, not time information.
-
-[DataAnnotations]<xref:System.ComponentModel.DataAnnotations> are covered in a later tutorial.
+* Right-click the **RazorPagesMovie** project > **Add** > **New Folder**. Name the folder *Models*.
+* Right-click the *Models* folder. Select **Add** > **Class**. Name the class **Movie**.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
 * Add a folder named *Models*.
 * Add a class to the *Models* folder named *Movie.cs*.
 
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+* In the **Solution Tool Window**, control-click the **RazorPagesMovie** project, and then select **Add** > **New Folder...**. Name the folder *Models*.
+* Control-click the *Models* folder, and then select **Add** > **New File...**.
+* In the **New File** dialog:
+
+  * Select **General** in the left pane.
+  * Select **Empty Class** in the center pane.
+  * Name the class **Movie** and select **New**.
+
+---
+
 Add the following properties to the `Movie` class:
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Models/Movie.cs?name=snippet1)]
@@ -420,7 +410,9 @@ The `Movie` class contains:
   * The user is not required to enter time information in the date field.
   * Only the date is displayed, not time information.
 
-[DataAnnotations]<xref:System.ComponentModel.DataAnnotations> are covered in a later tutorial.
+[DataAnnotations](xref:System.ComponentModel.DataAnnotations) are covered in a later tutorial.
+
+# [Visual Studio Code](#tab/visual-studio-code)
 
 <a name="dc"></a>
 
@@ -430,10 +422,10 @@ The `Movie` class contains:
 
 ### Add a database context class
 
-1. In the *RazorPagesMovie* project, create a new folder named *Data*.
-1. Add the following `RazorPagesMovieContext` class to the *Data* folder:
+* In the *RazorPagesMovie* project, create a new folder named *Data*.
+* Add the following `RazorPagesMovieContext` class to the *Data* folder:
 
-   [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Data/RazorPagesMovieContext.cs)]
+  [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Data/RazorPagesMovieContext.cs)]
 
 The preceding code creates a `DbSet` property for the entity set. In Entity Framework terminology, an entity set typically corresponds to a database table, and an entity corresponds to a row in the table. The code won't compile until dependencies are added in a later step.
 
@@ -460,31 +452,7 @@ Register the database context with the [dependency injection](xref:fundamentals/
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Startup.cs?name=snippet_UseSqlite&highlight=11-12)]
 
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-* In the **Solution Tool Window**, control-click the **RazorPagesMovie** project, and then select **Add** > **New Folder...**. Name the folder *Models*.
-* Right-click the *Models* folder, and then select **Add** > **New File...**.
-* In the **New File** dialog:
-
-  * Select **General** in the left pane.
-  * Select **Empty Class** in the center pane.
-  * Name the class **Movie** and select **New**.
-
-Add the following properties to the `Movie` class:
-
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Models/Movie.cs?name=snippet1)]
-
-The `Movie` class contains:
-
-* The `ID` field is required by the database for the primary key.
-* `[DataType(DataType.Date)]`: The [DataType](xref:System.ComponentModel.DataAnnotations.DataTypeAttribute) attribute specifies the type of the data (`Date`). With this attribute:
-
-  * The user is not required to enter time information in the date field.
-  * Only the date is displayed, not time information.
-
 ---
-
-[DataAnnotations]<xref:System.ComponentModel.DataAnnotations> are covered in a later tutorial.
 
 Build the project to verify there are no compilation errors.
 
@@ -758,29 +726,26 @@ The model classes are known as POCO classes (from "plain-old CLR objects") becau
 
 # [Visual Studio](#tab/visual-studio)
 
-Right-click the **RazorPagesMovie** project > **Add** > **New Folder**. Name the folder *Models*.
-
-Right-click the *Models* folder. Select **Add** > **Class**. Name the class **Movie**.
-
-Add the following properties to the `Movie` class:
-
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Models/Movie.cs?name=snippet1)]
-
-The `Movie` class contains:
-
-* The `ID` field is required by the database for the primary key.
-* `[DataType(DataType.Date)]`: The [DataType](xref:System.ComponentModel.DataAnnotations.DataTypeAttribute) attribute specifies the type of the data (`Date`). With this attribute:
-
-  * The user is not required to enter time information in the date field.
-  * Only the date is displayed, not time information.
-
-[DataAnnotations](xref:System.ComponentModel.DataAnnotations) are covered in a later tutorial.
+* Right-click the **RazorPagesMovie** project > **Add** > **New Folder**. Name the folder *Models*.
+* Right-click the *Models* folder. Select **Add** > **Class**. Name the class **Movie**.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
 * Add a folder named *Models*.
 * Add a class to the *Models* folder named *Movie.cs*.
 
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+* In **Solution Tool Window**, control-click the *RazorPagesMovie* project, and then select **Add** > **New Folder**. Name the folder *Models*.
+* Control-click the *Models* folder, and then select **Add** > **New File**.
+* In the **New File** dialog:
+
+  * Select **General** in the left pane.
+  * Select **Empty Class** in the center pane.
+  * Name the class **Movie** and select **New**.
+
+---
+
 Add the following properties to the `Movie` class:
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Models/Movie.cs?name=snippet1)]
@@ -794,6 +759,8 @@ The `Movie` class contains:
   * Only the date is displayed, not time information.
 
 [DataAnnotations](xref:System.ComponentModel.DataAnnotations) are covered in a later tutorial.
+
+# [Visual Studio](#tab/visual-studio)
 
 <a name="dc"></a>
 
@@ -803,7 +770,7 @@ The `Movie` class contains:
 
 ### Add a database context class
 
-In the RazorPagesMovie project, create a new folder named *Data*. 
+In the *RazorPagesMovie* project, create a new folder named *Data*. 
 Add the following `RazorPagesMovieContext` class to the *Data* folder:
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Data/RazorPagesMovieContext.cs)]
@@ -846,30 +813,6 @@ Register the database context with the [dependency injection](xref:fundamentals/
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Startup.cs?name=snippet_UseSqlite&highlight=11-12)]
 
 Build the project as a check for errors.
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-* In **Solution Tool Window**, control-click the *RazorPagesMovie* project, and then select **Add** > **New Folder**. Name the folder *Models*.
-* Control-click the *Models* folder, and then select **Add** > **New File**.
-* In the **New File** dialog:
-
-  * Select **General** in the left pane.
-  * Select **Empty Class** in the center pane.
-  * Name the class **Movie** and select **New**.
-
-Add the following properties to the `Movie` class:
-
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Models/Movie.cs?name=snippet1)]
-
-The `Movie` class contains:
-
-* The `ID` field is required by the database for the primary key.
-* `[DataType(DataType.Date)]`: The [DataType](xref:System.ComponentModel.DataAnnotations.DataTypeAttribute) attribute specifies the type of the data (`Date`). With this attribute:
-
-  * The user is not required to enter time information in the date field.
-  * Only the date is displayed, not time information.
-
-[DataAnnotations]<xref:System.ComponentModel.DataAnnotations> are covered in a later tutorial.
 
 ---
 
