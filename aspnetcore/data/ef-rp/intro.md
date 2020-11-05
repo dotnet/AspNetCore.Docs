@@ -103,9 +103,10 @@ To run the app after downloading the completed project:
 
 # [Visual Studio](#tab/visual-studio)
 
-* From the Visual Studio **File** menu, select **New** > **Project**.
-* Select **ASP.NET Core Web Application**.
+* Start Visual Studio and select **Create a new project**.
+* Select **ASP.NET Core Web Application** > **NEXT**.
 * Name the project *ContosoUniversity*. It's important to use this exact name including capitalization, so the namespaces match when code is copied and pasted.
+* Select **Create**.
 * Select **.NET Core** and **ASP.NET Core 5.0** in the dropdowns, and then select **Web Application**.
 
 # [Visual Studio Code](#tab/visual-studio-code)
@@ -352,7 +353,7 @@ The name of the connection string is passed in to the context by calling a metho
 
 ### Add the database exception filter
 
-Add `AddDatabaseDeveloperPageExceptionFilter` to `ConfigureServices` as shown in the following code:
+Add <xref:Microsoft.Extensions.DependencyInjection.DatabaseDeveloperPageExceptionFilterServiceExtensions.AddDatabaseDeveloperPageExceptionFilter%2A> to `ConfigureServices` as shown in the following code:
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -360,10 +361,10 @@ Add `AddDatabaseDeveloperPageExceptionFilter` to `ConfigureServices` as shown in
 
 Add the [Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore) NuGet package.
 
-In the PMC, enter the following command to add the NuGet package:
+In the PMC, enter the following to add the NuGet package:
 
 ```powershell
-Install-Package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore -Version 5.0.0-rc.1.20451.17
+Install-Package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore -Version 5.0.0-rc.2.20475.17
 ```
 
 # [Visual Studio Code](#tab/visual-studio-code)
@@ -373,6 +374,8 @@ Install-Package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore -Version 5.
 ---
 
 The `Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore` NuGet package provides ASP.NET Core middleware for Entity Framework Core error pages. This middleware helps to detect and diagnose errors with Entity Framework Core migrations.
+
+The `AddDatabaseDeveloperPageExceptionFilter` provides helpful error information in the [development environment](xref:fundamentals/environments).
 
 ## Create the database
 
