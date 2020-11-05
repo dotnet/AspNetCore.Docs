@@ -40,7 +40,7 @@ Debugging requires either of the following browsers:
 * Google Chrome (version 70 or later) (default)
 * Microsoft Edge (version 80 or later)
 
-Ensure that no firewalls or proxies block communication with the debug proxy.
+Ensure that firewalls or proxies don't block communication with the debug proxy (`NodeJS` process). For more information, see the [Firewall configuration](#firewall-configuration) section.
 
 Visual Studio for Mac requires version 8.8 (build 1532) or later:
 
@@ -324,6 +324,15 @@ Blazor provides a debugging proxy that implements the [Chrome DevTools Protocol]
 
 Browser source maps allow the browser to map compiled files back to their original source files and are commonly used for client-side debugging. However, Blazor doesn't currently map C# directly to JavaScript/WASM. Instead, Blazor does IL interpretation within the browser, so source maps aren't relevant.
 
+## Firewall configuration
+
+If a firewall blocks communication with the debug proxy, create a service rule that permits communication with the `NodeJs` service.
+
+For [Windows Firewall](/windows/security/threat-protection/windows-firewall/windows-firewall-with-advanced-security) configuration, see [Create an Inbound Program or Service Rule](/windows/security/threat-protection/windows-firewall/create-an-inbound-program-or-service-rule). For more information, see [Windows Defender Firewall with Advanced Security](/windows/security/threat-protection/windows-firewall/windows-firewall-with-advanced-security) and related articles in the Windows Firewall documentation set.
+
+> [!WARNING]
+> Modification of a network firewall configuration must be made with care to avoid making a system vulnerable to attack by malicious users and apps. Carefully apply security guidance, follow best security practices, and respect warnings issued by the firewall's manufacturer.
+
 ## Troubleshoot
 
 If you're running into errors, the following tips may help:
@@ -334,7 +343,7 @@ If you're running into errors, the following tips may help:
 * If your environment uses an HTTP proxy, make sure that `localhost` is included in the proxy bypass settings. This can be done by setting the `NO_PROXY` environment variable in either:
   * The `launchSettings.json` file for the project.
   * At the user or system environment variables level for it to apply to all apps. When using an environment variable, restart Visual Studio for the change to take effect.
-* Ensure that no firewalls or proxies block communication with the debug proxy. If the [Windows Firewall](/windows/security/threat-protection/windows-firewall/windows-firewall-with-advanced-security) is blocking the communication, [create an inbound port rule](/windows/security/threat-protection/windows-firewall/create-an-inbound-port-rule) for any blocked ports.
+* Ensure that firewalls or proxies don't block communication with the debug proxy (`NodeJS` process). For more information, see the [Firewall configuration](#firewall-configuration) section.
 
 ### Breakpoints in `OnInitialized{Async}` not hit
 
