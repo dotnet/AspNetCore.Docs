@@ -227,7 +227,7 @@ The `EnsureCreated` method is used to automatically create the database. In a [l
 
 In the *Data* folder, create a new class named `DbInitializer` with the following code:
 
-[!DbInitializer[Program file](intro/samples/5cu-snap/DbInitializer.cs)]
+[!code-csharp[DbInitializer](intro/samples/5cu-snap/DbInitializer.cs)]
 
 The preceding code checks if the database exists:
 
