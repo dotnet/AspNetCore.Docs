@@ -56,9 +56,8 @@ Users can view and update student, course, and instructor information. Here are 
 
 ## Create web app
 
-* Start Visual Studio and select **Create a new project**.
-* Select **ASP.NET Core Web Application** > **NEXT**.
-* Name the project *ContosoUniversity*. It's important to use this exact name including capitalization, so the namespaces match when code is copied.
+* Start Visual Studio and select **ASP.NET Core Web Application** > **NEXT**.
+* Name the project `ContosoUniversity`. It's important to use this exact name including capitalization, so the namespaces match when code is copied.
 * Select **Create**.
 * Select **.NET Core** and **ASP.NET Core 5.0** in the dropdowns, and then select **Web Application (Model-View-Controller)** template.
   ![New ASP.NET Core Project dialog](intro/_static/new-aspnet5.png)
@@ -69,7 +68,7 @@ A few basic changes set up the site menu, layout, and home page.
 
 Open *Views/Shared/_Layout.cshtml* and make the following changes:
 
-* Change each occurrence of "ContosoUniversity" to "Contoso University". There are three occurrences.
+* Change each occurrence of `ContosoUniversity` to `Contoso University`. There are three occurrences.
 * Add menu entries for **About**, **Students**, **Courses**, **Instructors**, and **Departments**, and delete the **Privacy** menu entry.
 
 The preceding changes are highlighted in the following code:
@@ -173,7 +172,7 @@ The [DatabaseGenerated](xref:System.ComponentModel.DataAnnotations.DatabaseGener
 
 The main class that coordinates EF functionality for a given data model is the <xref:Microsoft.EntityFrameworkCore.DbContext> database context class. This class is created by deriving from the `Microsoft.EntityFrameworkCore.DbContext` class. The `DbContext` derived class specifies which entities are included in the data model. Some EF behaviors can be customized. In this project, the class is named `SchoolContext`.
 
-In the project folder, create a folder named *Data*.
+In the project folder, create a folder named `Data`.
 
 In the *Data* folder create a `SchoolContext` class with the following code:
 
@@ -530,6 +529,8 @@ You could've omitted the `DbSet<Enrollment>` and `DbSet<Course>` statements and 
 When the database is created, EF creates tables that have names the same as the `DbSet` property names. Property names for collections are typically plural (Students rather than Student), but developers disagree about whether table names should be pluralized or not. For these tutorials you'll override the default behavior by specifying singular table names in the DbContext. To do that, add the following highlighted code after the last DbSet property.
 
 [!code-csharp[](intro/samples/cu/Data/SchoolContext.cs?name=snippet_TableNames&highlight=16-21)]
+
+Build the project as a check for compiler errors.
 
 ## Register the SchoolContext
 
