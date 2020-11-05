@@ -326,12 +326,12 @@ Browser source maps allow the browser to map compiled files back to their origin
 
 ## Firewall configuration
 
-If a firewall blocks communication with the debug proxy, create a service rule that permits communication with the `NodeJs` service.
+If a firewall blocks communication with the debug proxy, create a firewall exception rule that permits communication between the browser and the `NodeJs` service.
 
-For [Windows Firewall](/windows/security/threat-protection/windows-firewall/windows-firewall-with-advanced-security) configuration, see [Create an Inbound Program or Service Rule](/windows/security/threat-protection/windows-firewall/create-an-inbound-program-or-service-rule). For more information, see [Windows Defender Firewall with Advanced Security](/windows/security/threat-protection/windows-firewall/windows-firewall-with-advanced-security) and related articles in the Windows Firewall documentation set.
+For [Windows Firewall](/windows/security/threat-protection/windows-firewall/windows-firewall-with-advanced-security) configuration guidance, see [Create an Inbound Program or Service Rule](/windows/security/threat-protection/windows-firewall/create-an-inbound-program-or-service-rule). For more information, see [Windows Defender Firewall with Advanced Security](/windows/security/threat-protection/windows-firewall/windows-firewall-with-advanced-security) and related articles in the Windows Firewall documentation set.
 
 > [!WARNING]
-> Modification of a network firewall configuration must be made with care to avoid making a system vulnerable to attack by malicious users and apps. Carefully apply security guidance, follow best security practices, and respect warnings issued by the firewall's manufacturer.
+> Modification of a firewall configuration must be made with care to avoid creating security vulnerablities. Carefully apply security guidance, follow best security practices, and respect warnings issued by the firewall's manufacturer.
 
 ## Troubleshoot
 
