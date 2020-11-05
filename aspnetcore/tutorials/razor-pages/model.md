@@ -56,6 +56,8 @@ The `Movie` class contains:
   * The user is not required to enter time information in the date field.
   * Only the date is displayed, not time information.
 
+[DataAnnotations](xref:System.ComponentModel.DataAnnotations) are covered in a later tutorial.
+
 # [Visual Studio Code](#tab/visual-studio-code)
 
 <a name="dc"></a>
@@ -97,20 +99,6 @@ Add a connection string to the *appsettings.json* file as shown in the following
    [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Startup.cs?name=snippet_UseSqlite&highlight=11-12)]
 
 ---
-
-Add the following properties to the `Movie` class:
-
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/Models/Movie.cs?name=snippet1)]
-
-The `Movie` class contains:
-
-* The `ID` field is required by the database for the primary key.
-* `[DataType(DataType.Date)]`: The [[DataType]](xref:System.ComponentModel.DataAnnotations.DataTypeAttribute) attribute specifies the type of the data (`Date`). With this attribute:
-
-  * The user is not required to enter time information in the date field.
-  * Only the date is displayed, not time information.
-
-[DataAnnotations](xref:System.ComponentModel.DataAnnotations) are covered in a later tutorial.
 
 Build the project to verify there are no compilation errors.
 
