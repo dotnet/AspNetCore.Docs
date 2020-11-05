@@ -124,3 +124,4 @@ See the [Orchard Core](https://github.com/OrchardCMS/OrchardCore) source for an 
 * <xref:security/authentication/policyschemes>
 * <xref:security/authorization/secure-data>
 * [Globally require authenticated users](xref:security/authorization/secure-data#rau)
+* [GitHub issue on using multiple authentication schemes](https://github.com/dotnet/aspnetcore/issues/26002)
