@@ -237,7 +237,7 @@ The preceding code checks if the database exists:
 
 Update *Program.cs* with the following code:
 
-[!code-csharp[Program file](intro/samples/5cu-snap/Program.cs?highlight=1-2,14-18,21-38)]
+[!code-csharp[Program file](intro/samples/5cu-snap/Program.cs?highlight=1-2,14-18,21-37)]
 
 *Program.cs* does the following on app startup:
 
@@ -260,7 +260,7 @@ Use the scaffolding engine in Visual Studio to add an MVC controller and views t
 
 The automatic creation of [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) action methods and views is known as scaffolding.
 
-* Right-click the **Controllers** folder in **Solution Explorer** and select **Add > New Scaffolded Item**.
+* In **Solution Explorer**, right-click the `Controllers` folder  and select **Add > New Scaffolded Item**.
 * In the **Add Scaffold** dialog box:
   * Select **MVC controller with views, using Entity Framework**.
   * Click **Add**. The **Add MVC Controller with views, using Entity Framework** dialog box appears:
