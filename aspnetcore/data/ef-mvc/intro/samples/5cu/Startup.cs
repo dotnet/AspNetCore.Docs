@@ -20,9 +20,10 @@ namespace ContosoUniversity
         #region snippet
         public void ConfigureServices(IServiceCollection services)
         {
-            // requires using ContosoUniversity.Data;
             services.AddDbContext<SchoolContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddControllersWithViews();
         }

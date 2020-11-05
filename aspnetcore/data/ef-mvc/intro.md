@@ -46,9 +46,9 @@ If you run into a problem you can't resolve, you can generally find the solution
 
 ## Contoso University web app
 
-The app you build in these tutorials is a basic university web site.
+The app built in these tutorials is a basic university web site.
 
-Users can view and update student, course, and instructor information. Here are a few of the screens you create.
+Users can view and update student, course, and instructor information. Here are a few of the screens in the app:
 
 ![Students Index page](intro/_static/students-index.png)
 
@@ -56,8 +56,8 @@ Users can view and update student, course, and instructor information. Here are 
 
 ## Create web app
 
-* From the Visual Studio **File** menu, select **New** > **Project**.
-* Select **ASP.NET Core Web Application**.
+* Start Visual Studio and select **Create a new project**.
+* Select **ASP.NET Core Web Application** > **NEXT**.
 * Name the project *ContosoUniversity*. It's important to use this exact name including capitalization, so the namespaces match when code is copied.
 * Select **Create**.
 * Select **.NET Core** and **ASP.NET Core 5.0** in the dropdowns, and then select **Web Application (Model-View-Controller)** template.
@@ -88,13 +88,9 @@ Press CTRL+F5 to run the project or choose **Debug > Start Without Debugging** f
 
 This tutorial uses SQL Server, and the provider package is [Microsoft.EntityFrameworkCore.SqlServer](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer/).
 
-The EF SQL Server package and its dependencies (`Microsoft.EntityFrameworkCore` and `Microsoft.EntityFrameworkCore.Relational`) provide runtime support for EF.
+The EF SQL Server package and its dependencies, `Microsoft.EntityFrameworkCore` and `Microsoft.EntityFrameworkCore.Relational`, provide runtime support for EF.
 
-For information about other database providers that are available for EF Core, see [Database providers](/ef/core/providers/).
-
-Add the [Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore) NuGet package and the [Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore) NuGet package.
-
-In the Program Manager Console (PMC), enter the following commands to add the NuGet packages:
+Add the [Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore) NuGet package and the [Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore) NuGet package. In the Program Manager Console (PMC), enter the following commands to add the NuGet packages:
 
 ```powershell
 Install-Package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore -Version 5.0.0-rc.2.20475.17
@@ -102,6 +98,8 @@ Install-Package Microsoft.EntityFrameworkCore.SqlServer -Version 5.0.0-rc.2.2047
 ```
 
 The `Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore` NuGet package provides ASP.NET Core middleware for EF Core error pages. This middleware helps to detect and diagnose errors with EF Core migrations.
+
+For information about other database providers that are available for EF Core, see [Database providers](/ef/core/providers/).
 
 ## Create the data model
 
@@ -132,7 +130,7 @@ The `Enrollments` property is a [navigation property](/ef/core/modeling/relation
 * If a specific `Student` row in the database has two related `Enrollment` rows:
   * That `Student` entity's `Enrollments` navigation property contains those two `Enrollment` entities.
   
-`Enrollment` rows contain a student's PK value in the `StudentID` foreign key (FK) column.
+`Enrollment` rows contain a student's PK value in the `StudentID` foreign key (**FK**) column.
 
 If a navigation property can hold multiple entities:
 
@@ -149,7 +147,7 @@ In the *Models* folder, create the `Enrollment` class with the following code:
 
 [!code-csharp[](intro/samples/cu/Models/Enrollment.cs?name=snippet_Intro)]
 
-The `EnrollmentID` property is the PK. This entity uses the `classnameID` pattern instead of `ID` by itself. The `Student` entity used the `ID` pattern. Some developers prefer to use one pattern is throughout the data model. In this tutorial, the variation illustrates that either pattern can be used. A [later tutorial](inheritance.md) shows how using `ID` without classname makes it easier to implement inheritance in the data model.
+The `EnrollmentID` property is the PK. This entity uses the `classnameID` pattern instead of `ID` by itself. The `Student` entity used the `ID` pattern. Some developers prefer to use one pattern throughout the data model. In this tutorial, the variation illustrates that either pattern can be used. A [later tutorial](inheritance.md) shows how using `ID` without classname makes it easier to implement inheritance in the data model.
 
 The `Grade` property is an `enum`. The `?` after the `Grade` type declaration indicates that the `Grade` property is [nullable](/dotnet/csharp/language-reference/builtin-types/nullable-value-types). A grade that's `null` is different from a zero grade. `null` means a grade isn't known or hasn't been assigned yet.
 
@@ -177,7 +175,7 @@ The main class that coordinates EF functionality for a given data model is the <
 
 In the project folder, create a folder named *Data*.
 
-In the *Data* folder create a new class file named *SchoolContext.cs*, and replace the template code with the following code:
+In the *Data* folder create a `SchoolContext` class with the following code:
 
 [!code-csharp[](intro/samples/cu/Data/SchoolContext.cs?name=snippet_Intro)]
 
@@ -201,7 +199,7 @@ ASP.NET Core includes [dependency injection](../../fundamentals/dependency-injec
 
 To register `SchoolContext` as a service, open *Startup.cs*, and add the highlighted lines to the `ConfigureServices` method.
 
-[!code-csharp[](intro/samples/5cu-snap/Startup.cs?name=snippet&highlight=1=2,22-23)]
+[!code-csharp[](intro/samples/5cu-snap/Startup.cs?name=snippet&highlight=1-2,22-23)]
 
 The name of the connection string is passed in to the context by calling a method on a `DbContextOptionsBuilder` object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the *appsettings.json* file.
 
@@ -229,7 +227,7 @@ The `EnsureCreated` method is used to automatically create the database. In a [l
 
 In the *Data* folder, create a new class named `DbInitializer` with the following code:
 
-[!code-csharp[Program file](intro/samples/5cu-snap/Program.cs?highlight=1-2,14-18,21-38)]
+[!DbInitializer[Program file](intro/samples/5cu-snap/DbInitializer.cs)]
 
 The preceding code checks if the database exists:
 
@@ -237,7 +235,11 @@ The preceding code checks if the database exists:
   * It is created and loaded with test data. It loads test data into arrays rather than `List<T>` collections to optimize performance.
 * If the database if found, it takes no action.
 
-In *Program.cs*, modify the `Main` method to do the following on app startup:
+Update *Program.cs* with the following code:
+
+[!code-csharp[Program file](intro/samples/5cu-snap/Program.cs?highlight=1-2,14-18,21-38)]
+
+*Program.cs* does the following on app startup:
 
 * Get a database context instance from the dependency injection container.
 * Call the `DbInitializer.Initialize` method.
