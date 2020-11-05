@@ -243,9 +243,9 @@ Update *Program.cs* with the following code:
 
 * Get a database context instance from the dependency injection container.
 * Call the `DbInitializer.Initialize` method.
-* Dispose the context when the `Initialize` method completes.
+* Dispose the context when the `Initialize` method completes as shown in the following code:
 
-[!code-csharp[](intro/samples/cu/Program.cs?name=snippet_Seed&highlight=3-20)]
+[!code-csharp[](intro/samples/cu/Program.cs?name=snippet_Seed&highlight=5-18)]
 
 The first time the app is run, the database is created and loaded with test data. Whenever the data model changes:
 
