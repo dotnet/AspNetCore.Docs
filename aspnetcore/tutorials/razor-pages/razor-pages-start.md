@@ -52,11 +52,11 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 
 # [Visual Studio](#tab/visual-studio)
 
-1. From the Visual Studio start window, choose **Create a new project**.  For more information, see [Create a new project in Visual Studio](https://docs.microsoft.com/visualstudio/ide/create-new-project).
+1. From the Visual Studio start window, choose **Create a new project**. For more information, see [Create a new project in Visual Studio](/visualstudio/ide/create-new-project).
 
    ![Create a new project from the start window](razor-pages-start/_static/5/start-window-create-new-project.png)
 
-1. Create a new ASP.NET Core Web Application and select **Next**.
+1. Create a new **ASP.NET Core Web Application** and select **Next**.
 
 	![new ASP.NET Core Web Application](razor-pages-start/_static/5/np.png)
 	
@@ -429,7 +429,7 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 
   Launching the app with <kbd>Ctrl+F5</kbd> (non-debug mode) allows you to make code changes, save the file, refresh the browser, and see the code changes. Many developers prefer to use non-debug mode to quickly launch the app and view changes.
 
-  Visual Studio Code starts [Kestrel](xref:fundamentals/servers/kestrel), launches a browser, and goes to `http://localhost:5001`. The address bar shows `localhost:port#` and not something like `example.com`. That's because `localhost` is the standard hostname for  local computer. Localhost only serves web requests from the local computer.
+  Visual Studio Code starts [Kestrel](xref:fundamentals/servers/kestrel), launches a browser, and goes to `http://localhost:5001`. The address bar shows `localhost:port#` and not something like `example.com`. That's because `localhost` is the standard hostname for the local computer. Localhost only serves web requests from the local computer.
 
 * On the app's home page, select **Accept** to consent to tracking.
 
