@@ -231,7 +231,7 @@ Migrations are not required for SQLite.
 
 ### Publish to Azure
 
-For information on deploying to Azure, see [Tutorial: Build an ASP.NET Core app in Azure with SQL Database](/azure/app-service/app-service-web-tutorial-dotnetcore-sqldb).
+For information on deploying to Azure, see [Tutorial: Build an ASP.NET Core app in Azure with SQL Database](xref:/azure/app-service/app-service-web-tutorial-dotnetcore-sqldb).
 
 Thanks for completing this introduction to Razor Pages. [Get started with Razor Pages and EF Core](xref:data/ef-rp/intro) is an excellent follow up to this tutorial.
 
