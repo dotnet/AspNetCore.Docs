@@ -54,10 +54,9 @@ At the end, you have an app that can manage and display movie data.
 1. In the **Configure your new project** dialog, name the project `MvcMovie`. It's important to use this exact name including capitalization, so the namespaces match when code is copied.
 1. Select **Create**.
 1. In the **Create a new ASP.NET Core web application** dialog, select:
-
-  1. **.NET Core** and **ASP.NET Core 5.0** in the dropdowns.
-  1. **ASP.NET Core Web App (Model-View-Controller)**.
-  1. **Create**
+    1. **.NET Core** and **ASP.NET Core 5.0** in the dropdowns.
+    1. **ASP.NET Core Web App (Model-View-Controller)**.
+    1. **Create**
 
 ![Create a new ASP.NET Core web application ](start-mvc/_static/5/mvc.png)
 
