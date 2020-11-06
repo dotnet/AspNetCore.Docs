@@ -56,11 +56,15 @@ Users can view and update student, course, and instructor information. Here are 
 
 ## Create web app
 
-* Start Visual Studio and select **ASP.NET Core Web Application** > **NEXT**.
-* Name the project `ContosoUniversity`. It's important to use this exact name including capitalization, so the namespaces match when code is copied.
-* Select **Create**.
-* Select **.NET Core** and **ASP.NET Core 5.0** in the dropdowns, and then select **Web Application (Model-View-Controller)** template.
-  ![New ASP.NET Core Project dialog](intro/_static/new-aspnet5.png)
+1. Start Visual Studio and select **Create a new project**.
+1. In the **Create a new project** dialog, select **ASP.NET Core Web Application** > **Next**.
+1. In the **Configure your new project** dialog, enter `ContosoUniversity` for **Project name**. It's important to use this exact name including capitalization, so each `namespace` matches when code is copied.
+1. Select **Create**.
+1. In the **Create a new ASP.NET Core web application** dialog, select:
+    1. **.NET Core** and **ASP.NET Core 5.0** in the dropdowns.
+    1. **ASP.NET Core Web App (Model-View-Controller)**.
+    1. **Create**
+      ![New ASP.NET Core Project dialog](~/data/ef-mvc/intro/_static/new-aspnet5.png)
 
 ## Set up the site style
 
@@ -372,11 +376,13 @@ Advance to the next tutorial to learn how to perform basic CRUD (create, read, u
 
 ::: moniker-end
 
-::: moniker range="< aspnetcore-3.0"
+::: moniker range="<= aspnetcore-3.1"
 
 [!INCLUDE [RP better than MVC](~/includes/RP-EF/rp-over-mvc.md)]
 
 The Contoso University sample web application demonstrates how to create ASP.NET Core 2.2 MVC web applications using Entity Framework (EF) Core 2.2 and Visual Studio 2017 or 2019.
+
+This tutorial has not been updated for ASP.NET Core 3.1. It has been updated for [ASP.NET Core 5.0](xref:data/ef-mvc/intro?view=aspnetcore-5.0).
 
 The sample application is a web site for a fictional Contoso University. It includes functionality such as student admission, course creation, and instructor assignments. This is the first in a series of tutorials that explain how to build the Contoso University sample application from scratch.
 

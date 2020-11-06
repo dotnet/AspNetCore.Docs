@@ -103,12 +103,16 @@ To run the app after downloading the completed project:
 
 # [Visual Studio](#tab/visual-studio)
 
-* Start Visual Studio and select **Create a new project**.
-* Select **ASP.NET Core Web Application** > **NEXT**.
-* Name the project *ContosoUniversity*. It's important to use this exact name including capitalization, so the namespaces match when code is copied and pasted.
-* Select **Create**.
-* Select **.NET Core** and **ASP.NET Core 5.0** in the dropdowns, and then select **Web Application**.
-
+1. Start Visual Studio and select **Create a new project**.
+1. In the **Create a new project** dialog, select **ASP.NET Core Web Application** > **Next**.
+1. In the **Configure your new project** dialog, enter `ContosoUniversity` for **Project name**. It's important to use this exact name including capitalization, so each `namespace` matches when code is copied.
+1. Select **Create**.
+1. In the **Create a new ASP.NET Core web application** dialog, select:
+    1. **.NET Core** and **ASP.NET Core 5.0** in the dropdowns.
+    1. **ASP.NET Core Web App (Model-View-Controller)**.
+    1. **Create**
+      ![New ASP.NET Core Project dialog](~/data/ef-mvc/intro/_static/new-aspnet5.png)
+    
 # [Visual Studio Code](#tab/visual-studio-code)
 
 * In a terminal, navigate to the folder in which the project folder should be created.
