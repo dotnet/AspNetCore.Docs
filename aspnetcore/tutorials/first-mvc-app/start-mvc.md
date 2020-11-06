@@ -50,8 +50,8 @@ At the end, you have an app that can manage and display movie data.
 # [Visual Studio](#tab/visual-studio)
 
 1. Start Visual Studio and select **Create a new project**.
-1. In the **Create a new project** dialog, select **ASP.NET Core Web Application** > **NEXT**.
-1. In the **Configure your new project** dialog, name the project `MvcMovie`. It's important to use this exact name including capitalization, so the namespaces match when code is copied.
+1. In the **Create a new project** dialog, select **ASP.NET Core Web Application** > **Next**.
+1. In the **Configure your new project** dialog, enter `MvcMovie` for **Project name**. It's important to use this exact name including capitalization, so each `namespace` matches when code is copied.
 1. Select **Create**.
 1. In the **Create a new ASP.NET Core web application** dialog, select:
     1. **.NET Core** and **ASP.NET Core 5.0** in the dropdowns.
