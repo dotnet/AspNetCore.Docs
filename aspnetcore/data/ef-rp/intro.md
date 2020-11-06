@@ -111,6 +111,7 @@ To run the app after downloading the completed project:
     1. **.NET Core** and **ASP.NET Core 5.0** in the dropdowns.
     1. **ASP.NET Core Web App (Model-View-Controller)**.
     1. **Create**
+      ![New ASP.NET Core Project dialog](~/data/ef-mvc/intro/_static/new-aspnet5.png)
     
 # [Visual Studio Code](#tab/visual-studio-code)
 
