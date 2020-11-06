@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace RazorPagesMovie.Pages.Movies
 {
+    #region snippet1
     public class IndexModel : PageModel
     {
         private readonly RazorPagesMovie.Data.RazorPagesMovieContext _context;
@@ -15,7 +16,7 @@ namespace RazorPagesMovie.Pages.Movies
         {
             _context = context;
         }
-
+        #endregion
         public IList<Movie> Movie { get;set; }
 
         public async Task OnGetAsync()

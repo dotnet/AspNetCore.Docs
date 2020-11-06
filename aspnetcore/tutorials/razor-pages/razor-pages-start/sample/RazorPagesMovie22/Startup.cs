@@ -52,7 +52,7 @@ namespace RazorPagesMovie
             });
 
             services.AddDbContext<RazorPagesMovieContext>(options =>
-                options.UseSqlite(Configuration.GetConnectionString("MovieContext")));
+                options.UseSqlite(Configuration.GetConnectionString("RazorPagesMovieContext")));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
