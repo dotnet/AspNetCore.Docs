@@ -52,8 +52,12 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 
 # [Visual Studio](#tab/visual-studio)
 
-1. From the Visual Studio **File** menu, select **New** > **Project**.
+1. From the Visual Studio start window, choose **Create a new project**.  For more information, see [Create a new project in Visual Studio](https://docs.microsoft.com/visualstudio/ide/create-new-project).
+
+  ![Create a new project from the start window](razor-pages-start/_static/5/start-window-create-new-project.png)
+
 1. Create a new ASP.NET Core Web Application and select **Next**.
+
 	![new ASP.NET Core Web Application](razor-pages-start/_static/5/np.png)
 	
 1. Name the project *RazorPagesMovie*. It's important to name the project *RazorPagesMovie* so the namespaces will match when you copy and paste code.
