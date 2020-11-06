@@ -52,19 +52,24 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 
 # [Visual Studio](#tab/visual-studio)
 
-1. From the Visual Studio start window, choose **Create a new project**. For more information, see [Create a new project in Visual Studio](/visualstudio/ide/create-new-project).
+1. Start Visual Studio and select **Create a new project**. For more information, see [Create a new project in Visual Studio](/visualstudio/ide/create-new-project).
 
    ![Create a new project from the start window](razor-pages-start/_static/5/start-window-create-new-project.png)
 
-1. Create a new **ASP.NET Core Web Application** and select **Next**.
+1. In the **Create a new project** dialog, select **ASP.NET Core Web Application**, and then select **Next**.
 
 	![new ASP.NET Core Web Application](razor-pages-start/_static/5/np.png)
 	
-1. Name the project *RazorPagesMovie*. It's important to name the project *RazorPagesMovie* so the namespaces will match when you copy and paste code.
+1. In the **Configure your new project** dialog, enter `RazorPagesMovie` for **Project name**. It's important to name the project *RazorPagesMovie*, including matching the capitalization, so the namespaces will match when you copy and paste example code.
+
+1. Select **Create**.
 
 	![new ASP.NET Core Web Application](razor-pages-start/_static/config.png)
 
-1. Select **ASP.NET Core 5.0** in the dropdown, **Web Application**, and then select **Create**.
+1. In the **Create a new ASP.NET Core web application** dialog, select:
+    1. **.NET Core** and **ASP.NET Core 5.0** in the dropdowns.
+    1. **Web Application**.
+    1. **Create**
 
 	![new ASP.NET Core Web Application](razor-pages-start/_static/5/npx.png)
 
