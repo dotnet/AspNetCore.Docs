@@ -9,8 +9,6 @@ uid: tutorials/first-mvc-app/start-mvc
 ---
 # Get started with ASP.NET Core MVC
 
-https://docs.microsoft.com/en-us/visualstudio/ide/create-new-project?view=vs-2019
-
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ::: moniker range=">= aspnetcore-5.0"
@@ -35,15 +33,15 @@ At the end, you have an app that can manage and display movie data.
 
 # [Visual Studio](#tab/visual-studio)
 
-[!INCLUDE[](~/includes/net-core-prereqs-vs-5.1.md)]
+[!INCLUDE[](~/includes/net-core-prereqs-vs-5.0.md)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!INCLUDE[](~/includes/net-core-prereqs-vsc-5.1.md)]
+[!INCLUDE[](~/includes/net-core-prereqs-vsc-5.0.md)]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-[!INCLUDE[](~/includes/net-core-prereqs-mac-5.1.md)]
+[!INCLUDE[](~/includes/net-core-prereqs-mac-5.0.md)]
 
 ---
 
@@ -58,7 +56,7 @@ At the end, you have an app that can manage and display movie data.
 
 ![Create a new ASP.NET Core web application ](start-mvc/_static/5/mvc.png)
 
-For alternative approaches to create the project, see [Create a new project in Visual Studio](https://docs.microsoft.com/en-us/visualstudio/ide/create-new-project)
+For alternative approaches to create the project, see [Create a new project in Visual Studio](/visualstudio/ide/create-new-project)
 
 Visual Studio used the default template for the MVC project you just created. You have a working app right now by entering a project name and selecting a few options. This is a basic starter project.
 
