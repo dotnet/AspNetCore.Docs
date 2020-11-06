@@ -1,11 +1,11 @@
 ﻿//#define COMBINED
 #if COMBINED
+#region snippet1
 using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace RazorPagesMovie.Models
 {
-#region snippet1
     public class Movie
     {
         public int ID { get; set; }
