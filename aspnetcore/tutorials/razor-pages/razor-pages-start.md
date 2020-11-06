@@ -69,9 +69,9 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 1. In the **Create a new ASP.NET Core web application** dialog, select:
     1. **.NET Core** and **ASP.NET Core 5.0** in the dropdowns.
     1. **Web Application**.
-    1. **Create**
+    1. **Create**.
 
-	![new ASP.NET Core Web Application](razor-pages-start/_static/5/npx.png)
+	 ![new ASP.NET Core Web Application](razor-pages-start/_static/5/npx.png)
 
 	The following starter project is created:
 
