@@ -54,7 +54,7 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 
 1. From the Visual Studio start window, choose **Create a new project**.  For more information, see [Create a new project in Visual Studio](https://docs.microsoft.com/visualstudio/ide/create-new-project).
 
-  ![Create a new project from the start window](razor-pages-start/_static/5/start-window-create-new-project.png)
+   ![Create a new project from the start window](razor-pages-start/_static/5/start-window-create-new-project.png)
 
 1. Create a new ASP.NET Core Web Application and select **Next**.
 
