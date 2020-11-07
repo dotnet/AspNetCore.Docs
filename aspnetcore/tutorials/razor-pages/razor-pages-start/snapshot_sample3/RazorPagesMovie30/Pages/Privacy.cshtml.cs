@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 
 namespace RazorPagesMovie.Pages
 {
+    #region snippet1
     public class PrivacyModel : PageModel
     {
         private readonly ILogger<PrivacyModel> _logger;
@@ -21,4 +22,5 @@ namespace RazorPagesMovie.Pages
         {
         }
     }
+    #endregion
 }
