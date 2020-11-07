@@ -169,7 +169,7 @@ Complete the **Add Controller** dialog:
 * **Model class:** *Movie (MvcMovie.Models)*
 * **Data context class:** *MvcMovieContext (MvcMovie.Data)*
 
-![Add Data context](adding-model/_static/5.png)
+![Add Data context](adding-model/_static/dc5.png)
 
 * **Views:** Keep the default of each option checked
 * **Controller name:** Keep the default *MoviesController*
