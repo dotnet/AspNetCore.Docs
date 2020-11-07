@@ -30,8 +30,6 @@ Right-click the *Models* folder > **Add** > **Class**. Name the file *Movie.cs*.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!INCLUDE[](~/includes/add-EF-NuGet-SQLite-CLI-5.md)]
-
 Add a file named *Movie.cs* to the *Models* folder.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
@@ -53,6 +51,45 @@ The <xref:System.ComponentModel.DataAnnotations.DataType> attribute on `ReleaseD
 
 [DataAnnotations](/dotnet/api/system.componentmodel.dataannotations) are covered in a later tutorial.
 
+## Add NuGet packages
+
+# [Visual Studio](#tab/visual-studio)
+
+From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Console** (PMC).
+
+![PMC menu](~/tutorials/first-mvc-app/adding-model/_static/pmc.png)
+
+In the PMC, run the following command:
+
+```powershell
+Install-Package Microsoft.EntityFrameworkCore.SqlServer
+```
+
+The preceding command adds the EF Core SQL Server provider. The provider package installs the EF Core package as a dependency. Additional packages are installed automatically in the scaffolding step later in the tutorial.
+
+# [Visual Studio Code](#tab/visual-studio-code)
+
+[!INCLUDE[](~/includes/add-EF-NuGet-SQLite-CLI.md)]
+
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+From the **Project** menu, select **Manage NuGet Packages**.
+
+In the **Search** field in the upper right, enter `Microsoft.EntityFrameworkCore.SQLite` and press the **Return** key to search. Select the matching NuGet package and press the **Add Package** button.
+
+![Add Entity Framework Core NuGet Package](~/tutorials/first-mvc-app-mac/adding-model/_static/add-nuget-packages.png)
+
+The **Select Projects** dialog will be displayed, with the `MvcMovie` project selected. Press the **Ok** button.
+
+A **License Acceptance** dialog will be displayed. Review the licenses as desired, then click the **Accept** button.
+
+Repeat the above steps to install the following NuGet packages:
+
+* `Microsoft.VisualStudio.Web.CodeGeneration.Design`
+* `Microsoft.EntityFrameworkCore.SqlServer`
+* `Microsoft.EntityFrameworkCore.Design`
+
+---
 
 <a name="dc"></a>
 
@@ -132,7 +169,7 @@ Complete the **Add Controller** dialog:
 * **Model class:** *Movie (MvcMovie.Models)*
 * **Data context class:** *MvcMovieContext (MvcMovie.Data)*
 
-![Add Data context](adding-model/_static/dc3.png)
+![Add Data context](adding-model/_static/5.png)
 
 * **Views:** Keep the default of each option checked
 * **Controller name:** Keep the default *MoviesController*
