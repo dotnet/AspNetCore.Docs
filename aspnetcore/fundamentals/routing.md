@@ -333,7 +333,7 @@ Due to the kinds of extensibility provided by routing, it isn't possible for the
 * Avoids the need to adjust the order of endpoints in common cases.
 * Attempts to match the common-sense expectations of routing behavior.
 
-For example, consider templates `/Products/List` and `/Products/{id}`. It would be reasonable to assume that `/Products/List` is a better match than `/Products/{id}` for the URL path `/Products/List`. The works because the literal segment `/List` is considered to have better precedence than the parameter segment `/{id}`.
+For example, consider templates `/Products/List` and `/Products/{id}`. It would be reasonable to assume that `/Products/List` is a better match than `/Products/{id}` for the URL path `/Products/List`. This works because the literal segment `/List` is considered to have better precedence than the parameter segment `/{id}`.
 
 The details of how precedence works are coupled to how route templates are defined:
 
