@@ -1,12 +1,12 @@
 ﻿//#define MovieDateRating
 #if MovieDateRating
+#region snippet
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MvcMovie.Models
 {
-#region snippet
     public class Movie
     {
         public int Id { get; set; }
@@ -21,6 +21,6 @@ namespace MvcMovie.Models
         public decimal Price { get; set; }
         public string Rating { get; set; }
     }
-#endregion
 }
+#endregion
 #endif
