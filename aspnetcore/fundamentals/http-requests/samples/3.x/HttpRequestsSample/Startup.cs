@@ -1,4 +1,5 @@
 using System;
+using HttpRequestsSample.Handlers;
 using HttpRequestsSample.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -27,6 +28,12 @@ namespace HttpRequestsSample
                 httpClient.BaseAddress = new Uri(UriHelper.BuildAbsolute(httpRequest.Scheme, httpRequest.Host, httpRequest.PathBase));
                 httpClient.Timeout = TimeSpan.FromSeconds(5);
             });
+
+            services.AddScoped<IOperationScoped, OperationScoped>();
+            services.AddTransient<OperationHandler>();
+
+            services.AddHttpClient("Operation")
+                .AddHttpMessageHandler<OperationHandler>();
 
             services.AddControllers();
             services.AddRazorPages();
