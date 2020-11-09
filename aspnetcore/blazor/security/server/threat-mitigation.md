@@ -87,7 +87,7 @@ By default, there's no limit on the number of connections per user for a Blazor 
   * At the server level: Use a proxy/gateway in front of the app. For example, [Azure Front Door](/azure/frontdoor/front-door-overview) enables you to define, manage, and monitor the global routing of web traffic to an app and works when Blazor Server apps are configured to use Long Polling.
   
     > [!NOTE]
-    > Although Long Polling is supported for Blazor Server apps, [WebSockets is recommended](xref:blazor/host-and-deploy/server#azure-signalr-service). [Azure Front Door](/azure/frontdoor/front-door-overview) doesn't support WebSockets at this time, but support for WebSockets is under consideration for a future release of the service.
+    > Although Long Polling is supported for Blazor Server apps, [WebSockets is the recommended transport protocol](xref:blazor/host-and-deploy/server#azure-signalr-service). [Azure Front Door](/azure/frontdoor/front-door-overview) doesn't support WebSockets at this time, but support for WebSockets is under consideration for a future release of the service.
 
 ## Denial of service (DoS) attacks
 
