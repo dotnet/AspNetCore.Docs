@@ -83,6 +83,9 @@ Select the menu links (**MvcMovie**, **Home**, and **Privacy**). Each page shows
 ## Change the title, footer, and menu link in the layout file
 
 Replace the content of the *Views/Shared/_Layout.cshtml* file with the following markup. The changes are highlighted:
+::: moniker-end
+
+::: moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
 
 [!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Views/Shared/_Layout.cshtml?highlight=6,14,40)]
 
