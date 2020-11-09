@@ -31,11 +31,11 @@ We cover these concepts in this tutorial series and show you how to use them to 
 # [Visual Studio](#tab/visual-studio)
 
 * In the **Solution Explorer**, right-click **Controllers > Add > Controller**
-  ![Solution Explorer, right click Controllers > Add > Controller](~/tutorials/first-mvc-app/adding-controller/_static/add_controller.png)
+  ![Solution Explorer, right click Controllers > Add > Controller](~/tutorials/first-mvc-app/adding-controller/_static/add_controllerCopy.png)
 
 * In the **Add Scaffold** dialog box, select **MVC Controller - Empty**
 
-  ![Add MVC controller and name it](~/tutorials/first-mvc-app/adding-controller/_static/ac.png)
+  ![Add MVC controller and name it](~/tutorials/first-mvc-app/adding-controller/_static/acCopy.png)
 
 * In the **Add Empty MVC Controller dialog**, enter **HelloWorldController** and select **ADD**.
 
