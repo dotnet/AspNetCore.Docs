@@ -51,7 +51,7 @@ public class Program
     {
         var builder = WebAssemblyHostBuilder.CreateDefault(args);
         builder.Services.AddSingleton<IMyDependency, MyDependency>();
-        builder.RootComponents.Add<App>("app");
+        builder.RootComponents.Add<App>("#app");
 
         builder.Services.AddScoped(sp => 
             new HttpClient
@@ -73,7 +73,7 @@ public class Program
     {
         var builder = WebAssemblyHostBuilder.CreateDefault(args);
         builder.Services.AddSingleton<WeatherService>();
-        builder.RootComponents.Add<App>("app");
+        builder.RootComponents.Add<App>("#app");
 
         builder.Services.AddScoped(sp => 
             new HttpClient
@@ -100,7 +100,7 @@ public class Program
     {
         var builder = WebAssemblyHostBuilder.CreateDefault(args);
         builder.Services.AddSingleton<WeatherService>();
-        builder.RootComponents.Add<App>("app");
+        builder.RootComponents.Add<App>("#app");
 
         builder.Services.AddScoped(sp => 
             new HttpClient
