@@ -5,7 +5,7 @@ description: Learn how to create and use Razor components, including how to bind
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/19/2020
+ms.date: 11/09/2020
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/components/index
 ---
@@ -611,12 +611,26 @@ Ensure that values used for [`@key`][5] don't clash. If clashing values are dete
 
 ## Overwritten parameters
 
-New parameter values are supplied, typically overwriting existing ones, when the parent component rerenders.
+The Blazor framework generally imposes safe parent-to-child parameter assignment:
 
-Consider the following `Expander` component that:
+* Parameters aren't overwritten unexpectedly.
+* Side-effects are minimized. For example, additional renders are avoided because they may create infinite rendering loops.
+
+A child component receives new parameter values that possibly overwrite existing values when the parent component rerenders. Accidentially overwriting parameter values in a child component often occurs when developing the component with one or more data-bound parameters and the developer writes directly to a parameter in the child:
+
+* The child component is rendered with one or more parameter values from the parent component.
+* The child writes directly to the value of a parameter.
+* The parent component rerenders and overwrites the value of the child's parameter.
+
+The potential for overwriting paramater values extends into the child component's property setters, too.
+
+**Our general guidance is not to create components that directly write to their own parameters.**
+
+Consider the following faulty `Expander` component that:
 
 * Renders child content.
-* Toggles showing child content with a component parameter.
+* Toggles showing child content with a component parameter (`Expanded`).
+* The component writes directly to the `Expanded` parameter, which demonstrates the problem with overwritten parameters and should be avoided.
 
 ```razor
 <div @onclick="@Toggle" class="card bg-light mb-3" style="width:30rem">
@@ -668,7 +682,7 @@ The following revised `Expander` component:
 
 * Accepts the `Expanded` component parameter value from the parent.
 * Assigns the component parameter value to a *private field* (`expanded`) in the [OnInitialized event](xref:blazor/components/lifecycle#component-initialization-methods).
-* Uses the private field to maintain its internal toggle state.
+* Uses the private field to maintain its internal toggle state, which demonstrates how to avoid writing directly to a parameter.
 
 ```razor
 <div @onclick="@Toggle" class="card bg-light mb-3" style="width:30rem">
@@ -702,6 +716,8 @@ The following revised `Expander` component:
     }
 }
 ```
+
+For additional information, see [Blazor Two Way Binding Error (dotnet/aspnetcore #24599)](https://github.com/dotnet/aspnetcore/issues/24599). 
 
 ## Apply an attribute
 
