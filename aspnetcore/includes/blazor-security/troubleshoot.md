@@ -1,5 +1,27 @@
 ## Troubleshoot
 
+::: moniker range=">= aspnetcore-5.0"
+
+### Common errors
+
+* Unauthorized client for AAD
+
+  > info: Microsoft.AspNetCore.Authorization.DefaultAuthorizationService[2]
+  > Authorization failed. These requirements were not met:
+  > DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+
+  Login callback error from AAD:
+
+  * Error: `unauthorized_client`
+  * Description: `AADB2C90058: The provided application is not configured to allow public clients.`
+
+  To resolve the error:
+
+  1. In the Azure portal, access the [app's manifest](/azure/active-directory/develop/reference-app-manifest).
+  1. Set the [`allowPublicClient`](/azure/active-directory/develop/reference-app-manifest#allowpublicclient-attribute) attribute to `null` or `true`.
+
+::: moniker-end
+
 ### Cookies and site data
 
 Cookies and site data can persist across app updates and interfere with testing and troubleshooting. Clear the following when making app code changes, user account changes with the provider, or provider app configuration changes:
