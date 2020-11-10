@@ -30,11 +30,12 @@ Files in the deployment folder are locked when the app is running. Locked files 
 ```powershell
 $pathToApp = '{PATH TO APP}'
 
-New-Item -Path $pathToApp app_offline.htm
+
+New-Item -Path $pathToApp -Name "app_offline.htm" -ItemType "file"
 
 # Provide script commands here to deploy the app
 
-Remove-Item -Path $pathToApp app_offline.htm
+Remove-Item -Path $pathToApp\app_offline.htm
 ```
 
 In the preceding PowerShell script:
