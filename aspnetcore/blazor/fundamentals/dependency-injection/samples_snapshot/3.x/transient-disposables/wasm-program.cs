@@ -4,7 +4,7 @@ public class Program
     {
         var builder = WebAssemblyHostBuilder.CreateDefault(args);
         builder.DetectIncorrectUsageOfTransients();
-        builder.RootComponents.Add<App>("app");
+        builder.RootComponents.Add<App>("#app");
 
         builder.Services.AddTransient<TransientDisposable>();
         builder.Services.AddScoped(sp =>
