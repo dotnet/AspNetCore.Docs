@@ -207,6 +207,8 @@ For more gRPC information, see <xref:grpc/index>.
 
 ## SignalR
 
+### SignalR Hub filters
+
 SignalR Hub filters, called Hub pipelines in ASP.NET SignalR, is a feature that allows code to run before and after Hub methods are called. Running code before and after Hub methods are called is similar to how middleware has the ability to run code before and after an HTTP request. Common uses include logging, error handling, and argument validation.
 
 For more information, see [Use hub filters in ASP.NET Core SignalR](xref:signalr/hub-filters).

@@ -11,7 +11,7 @@ uid: data/ef-mvc/index
 
 ::: moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
 
-This tutorial has **not** been updated to ASP.NET Core 3.0. The [Razor Pages version](xref:data/ef-rp/intro) has been updated.
+This tutorial has **not** been updated to ASP.NET Core 3.0. It has been updated for ASP.NET Core 5.0.
 
 ::: moniker-end
 
