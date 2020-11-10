@@ -97,7 +97,7 @@ Add the [Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore](https://www.nuget
 
 ```powershell
 Install-Package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
-Install-Package Microsoft.EntityFrameworkCore.SqlServer -Version
+Install-Package Microsoft.EntityFrameworkCore.SqlServer
 ```
 
 The `Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore` NuGet package provides ASP.NET Core middleware for EF Core error pages. This middleware helps to detect and diagnose errors with EF Core migrations.
