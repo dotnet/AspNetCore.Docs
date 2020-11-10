@@ -1,7 +1,4 @@
-﻿//#define MovieDateRating
-#if MovieDateRating
-#region snippet
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -22,5 +19,3 @@ namespace MvcMovie.Models
         public string Rating { get; set; }
     }
 }
-#endregion
-#endif

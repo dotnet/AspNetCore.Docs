@@ -26,7 +26,7 @@ When EF Code First is used to automatically create a database, Code First:
 
 Add a `Rating` property to *Models/Movie.cs*:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Models/MovieDateRating.cs?highlight=13&name=snippet)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Models/MovieDateRating.cs?name=snippet)]
 
 Build the app
 
@@ -56,7 +56,17 @@ Update the view templates in order to display, create, and edit the new `Rating`
 
 Edit the */Views/Movies/Index.cshtml* file and add a `Rating` field:
 
+::: moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
+
 [!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/IndexGenreRating.cshtml?highlight=16,38&range=24-64)]
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-5.0"
+
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie5/Views/Movies/Index.cshtml?highlight=28-49&range=12-51)]
+
+::: moniker-end
 
 Update the */Views/Movies/Create.cshtml* with a `Rating` field.
 

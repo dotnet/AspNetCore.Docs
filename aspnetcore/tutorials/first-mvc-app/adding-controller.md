@@ -30,12 +30,12 @@ We cover these concepts in this tutorial series and show you how to use them to 
 
 # [Visual Studio](#tab/visual-studio)
 
-* In **Solution Explorer**, right-click **Controllers > Add > Controller**
-  ![Contextual menu](adding-controller/_static/add_controller.png)
+* In the **Solution Explorer**, right-click **Controllers > Add > Controller**
+  ![Solution Explorer, right click Controllers > Add > Controller](~/tutorials/first-mvc-app/adding-controller/_static/add_controllerCopy.png)
 
-* In the **Add Scaffold** dialog box, select **Controller Class - Empty**
+* In the **Add Scaffold** dialog box, select **MVC Controller - Empty**
 
-  ![Add MVC controller and name it](adding-controller/_static/ac.png)
+  ![Add MVC controller and name it](~/tutorials/first-mvc-app/adding-controller/_static/acCopy.png)
 
 * In the **Add Empty MVC Controller dialog**, enter **HelloWorldController** and select **ADD**.
 
@@ -145,11 +145,11 @@ We cover these concepts in this tutorial series and show you how to use them to 
 # [Visual Studio](#tab/visual-studio)
 
 * In **Solution Explorer**, right-click **Controllers > Add > Controller**
-  ![Contextual menu](adding-controller/_static/add_controller.png)
+  ![Contextual menu](~/tutorials/first-mvc-app/adding-controller/_static/add_controller.png)
 
 * In the **Add Scaffold** dialog box, select **MVC Controller - Empty**
 
-  ![Add MVC controller and name it](adding-controller/_static/ac.png)
+  ![Add MVC controller and name it](~/tutorials/first-mvc-app/adding-controller/_static/ac.png)
 
 * In the **Add Empty MVC Controller dialog**, enter **HelloWorldController** and select **ADD**.
 
