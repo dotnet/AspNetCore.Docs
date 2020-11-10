@@ -135,3 +135,5 @@ public void ConfigureServices(IServiceCollection services)
 As the default authorization policy is overridden, it's possible to use the `[Authorize]` attribute in controllers. The controller then accepts requests with JWT issued by the first or second issuer.
 
 ::: moniker-end
+
+See [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/26002) on using multiple authentication schemes.
