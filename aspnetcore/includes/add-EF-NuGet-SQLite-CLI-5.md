@@ -1,8 +1,8 @@
 Run the following .NET CLI commands:
 
 ```dotnetcli
-dotnet tool install --global dotnet-ef -v 5.0.0-rc.2.20475.6
-dotnet tool install --global dotnet-aspnet-codegenerator -v 5.0.0-rc.2.20516.1
+dotnet tool install --global dotnet-ef --version 5.0.100-rc.2.20479.15
+dotnet tool install --global dotnet-aspnet-codegenerator --version 5.0.100-rc.2.20479.15
 dotnet add package Microsoft.EntityFrameworkCore.SQLite -v 5.0.0-*
 dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore -v 5.0.0-*
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design -v 5.0.0-*
