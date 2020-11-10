@@ -50,14 +50,10 @@ public class Program
     public static async Task Main(string[] args)
     {
         var builder = WebAssemblyHostBuilder.CreateDefault(args);
-        builder.Services.AddSingleton<IMyDependency, MyDependency>();
-        builder.RootComponents.Add<App>("app");
 
-        builder.Services.AddScoped(sp => 
-            new HttpClient
-            {
-                BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
-            });
+        builder.Services.AddSingleton<IMyDependency, MyDependency>();
+
+        ...
 
         await builder.Build().RunAsync();
     }
@@ -72,14 +68,10 @@ public class Program
     public static async Task Main(string[] args)
     {
         var builder = WebAssemblyHostBuilder.CreateDefault(args);
-        builder.Services.AddSingleton<WeatherService>();
-        builder.RootComponents.Add<App>("app");
 
-        builder.Services.AddScoped(sp => 
-            new HttpClient
-            {
-                BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
-            });
+        builder.Services.AddSingleton<WeatherService>();
+
+        ...
 
         var host = builder.Build();
 
@@ -99,14 +91,10 @@ public class Program
     public static async Task Main(string[] args)
     {
         var builder = WebAssemblyHostBuilder.CreateDefault(args);
-        builder.Services.AddSingleton<WeatherService>();
-        builder.RootComponents.Add<App>("app");
 
-        builder.Services.AddScoped(sp => 
-            new HttpClient
-            {
-                BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
-            });
+        builder.Services.AddSingleton<WeatherService>();
+
+        ...
 
         var host = builder.Build();
 

@@ -31,12 +31,27 @@ dotnet new blazorserver --help
 
 The following files and folders make up a Blazor app generated from a Blazor project template:
 
+::: moniker range=">= aspnetcore-5.0"
+
 * `Program.cs`: The app's entry point that sets up the:
 
   * ASP.NET Core [host](xref:fundamentals/host/generic-host) (Blazor Server)
   * WebAssembly host (Blazor WebAssembly): The code in this file is unique to apps created from the Blazor WebAssembly template (`blazorwasm`).
-    * The `App` component is the root component of the app. The `App` component is specified as the `app` DOM element (`<app>...</app>`) to the root component collection (`builder.RootComponents.Add<App>("app")`).
+    * The `App` component is the root component of the app. The `App` component is specified as the `app` DOM element (`<div id="app">Loading...</div>` in `wwwroot/index.html`) to the root component collection (`builder.RootComponents.Add<App>("#app")`).
     * [Services](xref:blazor/fundamentals/dependency-injection) are added and configured (for example, `builder.Services.AddSingleton<IMyDependency, MyDependency>()`).
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+* `Program.cs`: The app's entry point that sets up the:
+
+  * ASP.NET Core [host](xref:fundamentals/host/generic-host) (Blazor Server)
+  * WebAssembly host (Blazor WebAssembly): The code in this file is unique to apps created from the Blazor WebAssembly template (`blazorwasm`).
+    * The `App` component is the root component of the app. The `App` component is specified as the `app` DOM element (`<app>Loading...</app>` in `wwwroot/index.html`) to the root component collection (`builder.RootComponents.Add<App>("app")`).
+    * [Services](xref:blazor/fundamentals/dependency-injection) are added and configured (for example, `builder.Services.AddSingleton<IMyDependency, MyDependency>()`).
+
+::: moniker-end
 
 * `Startup.cs` (Blazor Server): Contains the app's startup logic. The `Startup` class defines two methods:
 
