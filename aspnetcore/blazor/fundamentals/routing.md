@@ -206,7 +206,7 @@ Slashes and segments of the captured path are decoded. For a route template of `
 
 ::: moniker range="< aspnetcore-5.0"
 
-Catch-all route parameters are supported in ASP.NET Core in .NET 5 Release Candidate 1 (RC1) or later.*
+Catch-all route parameters are supported in ASP.NET Core in .NET 5 or later.*
 
 ::: moniker-end
 
