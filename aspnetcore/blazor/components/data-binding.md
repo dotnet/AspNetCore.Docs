@@ -357,7 +357,7 @@ The following components demonstrate the preceding concepts:
         <button @onclick="ChangeValue">Change from Child</button>
     </p>
 
-    <GrandchildComponent @bind-GrandChildMessage="BoundValue" />
+    <GrandchildComponent @bind-GrandchildMessage="BoundValue" />
 </div>
 
 @code {
