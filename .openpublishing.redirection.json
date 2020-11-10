@@ -1084,6 +1084,11 @@
             "source_path": "aspnetcore/blazor/get-started.md",
             "redirect_url": "https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro",
             "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/blazor/components/integrate-components-into-razor-pages-and-mvc-apps.md",
+            "redirect_url": "/aspnet/core/blazor/components/prerendering-and-integration",
+            "redirect_document_id": false
         }
     ]
 }
