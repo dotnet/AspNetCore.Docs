@@ -816,7 +816,7 @@ The preceding code creates a `DbSet` property for the entity set. In Entity Fram
 
 Add a connection string to the *appsettings.json* file as shown in the following highlighted code:
 
-[!code-json[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/appsettings_SQLite.json?highlight=8-9)]
+[!code-json[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22/appsettings_SQLite.json?highlight=8-10)]
 
 ### Add required NuGet packages
 
