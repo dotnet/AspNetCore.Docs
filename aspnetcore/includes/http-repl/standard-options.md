@@ -9,10 +9,6 @@
   * `{header}={value}`
   * `{header}:{value}`
 
-* `--response`
-
-  Specifies a file to which the entire HTTP response (including headers and body) should be written. For example, `--response "C:\response.txt"`. The file is created if it doesn't exist.
-
 * `--response:body`
 
   Specifies a file to which the HTTP response body should be written. For example, `--response:body "C:\response.json"`. The file is created if it doesn't exist.
