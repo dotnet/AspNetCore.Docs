@@ -604,7 +604,7 @@
       uid: web-api/advanced/conventions
     - name: Handle errors
       uid: web-api/handle-errors
-    - name: Test with a REPL
+    - name: Test with HttpRepl
       items:
       - name: Overview
         uid: web-api/http-repl
