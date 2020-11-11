@@ -78,17 +78,17 @@ In the client-side sample app that accompanies this topic, two JavaScript functi
 
 `wwwroot/exampleJsInterop.js`:
 
-[!code-javascript[](./common/samples/3.x/BlazorWebAssemblySample/wwwroot/exampleJsInterop.js?highlight=2-7)]
+[!code-javascript[](./common/samples/5.x/BlazorWebAssemblySample/wwwroot/exampleJsInterop.js?highlight=2-7)]
 
 Place the `<script>` tag that references the JavaScript file in the `wwwroot/index.html` file (Blazor WebAssembly) or `Pages/_Host.cshtml` file (Blazor Server).
 
 `wwwroot/index.html` (Blazor WebAssembly):
 
-[!code-html[](./common/samples/3.x/BlazorWebAssemblySample/wwwroot/index.html?highlight=22)]
+[!code-html[](./common/samples/5.x/BlazorWebAssemblySample/wwwroot/index.html?highlight=22)]
 
 `Pages/_Host.cshtml` (Blazor Server):
 
-[!code-cshtml[](./common/samples/3.x/BlazorServerSample/Pages/_Host.cshtml?highlight=35)]
+[!code-cshtml[](./common/samples/5.x/BlazorServerSample/Pages/_Host.cshtml?highlight=34)]
 
 Don't place a `<script>` tag in a component file because the `<script>` tag can't be updated dynamically.
 

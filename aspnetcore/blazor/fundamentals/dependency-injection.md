@@ -278,7 +278,17 @@ The following examples show how to detect disposable transient services in an ap
 
 The `TransientDisposable` in the following example is detected (`Program.cs`):
 
+::: moniker range=">= aspnetcore-5.0"
+
+[!code-csharp[](dependency-injection/samples_snapshot/5.x/transient-disposables/wasm-program.cs?highlight=6,9,17,22-25)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
 [!code-csharp[](dependency-injection/samples_snapshot/3.x/transient-disposables/wasm-program.cs?highlight=6,9,17,22-25)]
+
+::: moniker-end
 
 ### Blazor Server
 

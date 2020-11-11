@@ -54,7 +54,7 @@ In the preceding example:
 
 * The form validates user input in the `name` field using the validation defined in the `ExampleModel` type. The model is created in the component's `@code` block and held in a private field (`exampleModel`). The field is assigned to the `Model` attribute of the `<EditForm>` element.
 * The <xref:Microsoft.AspNetCore.Components.Forms.InputText> component's `@bind-Value` binds:
-  * The model property (`exampleModel.Name`) to the <xref:Microsoft.AspNetCore.Components.Forms.InputText> component's `Value` property. For more information on property binding, see <xref:blazor/components/data-binding#parent-to-child-binding-with-component-parameters>.
+  * The model property (`exampleModel.Name`) to the <xref:Microsoft.AspNetCore.Components.Forms.InputText> component's `Value` property. For more information on property binding, see <xref:blazor/components/data-binding#binding-with-component-parameters>.
   * A change event delegate to the <xref:Microsoft.AspNetCore.Components.Forms.InputText> component's `ValueChanged` property.
 * The <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> [validator component](#validator-components) attaches validation support using data annotations.
 * The <xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary> component summarizes validation messages.
