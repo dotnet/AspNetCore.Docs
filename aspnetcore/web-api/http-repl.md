@@ -5,7 +5,7 @@ description: Learn how to use the HTTP REPL .NET Core Global Tool to browse and 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc, devx-track-azurecli
-ms.date: 05/20/2020
+ms.date: 11/10/2020
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: web-api/http-repl
 ---
@@ -97,7 +97,6 @@ OPTIONS        options - Issues a OPTIONS request
 Navigation Commands:
 The REPL allows you to navigate your URL space and focus on specific APIs that you are working on.
 
-set base       Set the base URI. e.g. `set base http://locahost:5000`
 ls             Show all endpoints for the current path
 cd             Append the given directory to the currently selected path, or move up a path when using `cd ..`
 
@@ -144,21 +143,41 @@ connect <ROOT URI>
 For example:
 
 ```console
-(Disconnected)~ connect https://localhost:5001
+(Disconnected)> connect https://localhost:5001
 ```
 
-## Manually point to the Swagger document for the web API
+### Manually point to the OpenAPI description for the web API
 
-The connect command above will attempt to find the Swagger document automatically. If for some reason it is unable to do so, you can specify the URI of the Swagger document for the web API by using the `--swagger` option:
+The connect command above will attempt to find the OpenAPI description automatically. If for some reason it's unable to do so, you can specify the URI of the OpenAPI description for the web API by using the `--openapi` option:
 
 ```console
-connect <ROOT URI> --swagger <SWAGGER URI>
+connect <ROOT URI> --openapi <OPENAPI DESCRIPTION ADDRESS>
 ```
 
 For example:
 
 ```console
-(Disconnected)~ connect https://localhost:5001 --swagger /swagger/v1/swagger.json
+(Disconnected)> connect https://localhost:5001 --openapi /swagger/v1/swagger.json
+```
+
+### Enable verbose output for details on OpenAPI description searching, parsing, and validation
+
+Specifying the `--verbose` option with the `connect` command will produce more details when the tool searches for the OpenAPI description, parses, and validates it.
+
+```console
+connect <ROOT URI> --verbose
+```
+
+For example:
+
+```console
+(Disconnected)> connect https://localhost:5001 --verbose
+Checking https://localhost:5001/swagger.json... 404 NotFound
+Checking https://localhost:5001/swagger/v1/swagger.json... 404 NotFound
+Checking https://localhost:5001/openapi.json... Found
+Parsing... Successful (with warnings)
+The field 'info' in 'document' object is REQUIRED [#/info]
+The field 'paths' in 'document' object is REQUIRED [#/paths]
 ```
 
 ## Navigate the web API
@@ -168,7 +187,7 @@ For example:
 To list the different endpoints (controllers) at the current path of the web API address, run the `ls` or `dir` command:
 
 ```console
-https://localhot:5001/~ ls
+https://localhot:5001/> ls
 ```
 
 The following output format is displayed:
@@ -178,7 +197,7 @@ The following output format is displayed:
 Fruits   [get|post]
 People   [get|post]
 
-https://localhost:5001/~
+https://localhost:5001/>
 ```
 
 The preceding output indicates that there are two controllers available: `Fruits` and `People`. Both controllers support parameterless HTTP GET and POST operations.
@@ -186,18 +205,18 @@ The preceding output indicates that there are two controllers available: `Fruits
 Navigating into a specific controller reveals more detail. For example, the following command's output shows the `Fruits` controller also supports HTTP GET, PUT, and DELETE operations. Each of these operations expects an `id` parameter in the route:
 
 ```console
-https://localhost:5001/fruits~ ls
+https://localhost:5001/fruits> ls
 .      [get|post]
 ..     []
 {id}   [get|put|delete]
 
-https://localhost:5001/fruits~
+https://localhost:5001/fruits>
 ```
 
 Alternatively, run the `ui` command to open the web API's Swagger UI page in a browser. For example:
 
 ```console
-https://localhost:5001/~ ui
+https://localhost:5001/> ui
 ```
 
 ### Navigate to an endpoint
@@ -205,7 +224,7 @@ https://localhost:5001/~ ui
 To navigate to a different endpoint on the web API, run the `cd` command:
 
 ```console
-https://localhost:5001/~ cd people
+https://localhost:5001/> cd people
 ```
 
 The path following the `cd` command is case insensitive. The following output format is displayed:
@@ -213,7 +232,7 @@ The path following the `cd` command is case insensitive. The following output fo
 ```console
 /people    [get|post]
 
-https://localhost:5001/people~
+https://localhost:5001/people>
 ```
 
 ## Customize the HTTP REPL
@@ -241,7 +260,7 @@ The *.httpreplprefs* file is loaded on startup and not monitored for changes at 
 To view the available settings, run the `pref get` command. For example:
 
 ```console
-https://localhost:5001/~ pref get
+https://localhost:5001/> pref get
 ```
 
 The preceding command displays the available key-value pairs:
@@ -262,7 +281,7 @@ colors.status=BoldYellow
 Response colorization is currently supported for JSON only. To customize the default HTTP REPL tool coloring, locate the key corresponding to the color to be changed. For instructions on how to find the keys, see the [View the settings](#view-the-settings) section. For example, change the `colors.json` key value from `Green` to `White` as follows:
 
 ```console
-https://localhost:5001/people~ pref set colors.json White
+https://localhost:5001/people> pref set colors.json White
 ```
 
 Only the [allowed colors](https://github.com/dotnet/HttpRepl/blob/01d5c3c3373e98fe566ff5ef8a17c571de880293/src/Microsoft.Repl/ConsoleHandling/AllowedColors.cs) may be used. Subsequent HTTP requests display output with the new coloring.
@@ -356,14 +375,19 @@ To launch the default text editor with specific CLI arguments, set the `editor.c
 pref set editor.command.default.arguments "--disable-extensions --new-window"
 ```
 
-### Set the Swagger search paths
+> [!TIP]
+> If your default editor is Visual Studio Code, you'll usually want to pass the `-w` or `--wait` argument to force Visual Studio Code to wait for you to close the file before returning.
 
-By default, the HTTP REPL has a set of relative paths that it uses to find the Swagger document when executing the `connect` command without the `--swagger` option. These relative paths are combined with the root and base paths specified in the `connect` command. The default relative paths are:
+### Set the OpenAPI Description search paths
+
+By default, the HTTP REPL has a set of relative paths that it uses to find the OpenAPI description when executing the `connect` command without the `--openapi` option. These relative paths are combined with the root and base paths specified in the `connect` command. The default relative paths are:
 
 - *swagger.json*
 - *swagger/v1/swagger.json*
 - */swagger.json*
 - */swagger/v1/swagger.json*
+- *openapi.json*
+- */openapi.json*
 
 To use a different set of search paths in your environment, set the `swagger.searchPaths` preference. The value must be a pipe-delimited list of relative paths. For example:
 
@@ -371,12 +395,26 @@ To use a different set of search paths in your environment, set the `swagger.sea
 pref set swagger.searchPaths "swagger/v2/swagger.json|swagger/v3/swagger.json"
 ```
 
+Instead of replacing the default list altogether, the list can also be modified by adding or removing paths.
+
+To add one or more search paths to the default list, set the `swagger.addToSearchPaths` preference. The value must be a pipe-delimited list of relative paths. For example:
+
+```console
+pref set swagger.addToSearchPaths "openapi/v2/openapi.json|openapi/v3/openapi.json"
+```
+
+To remove one or more search paths from the default list, set the `swagger.addToSearchPaths` preference. The value must be a pipe-delimited list of relative paths. For example:
+
+```console
+pref set swagger.removeFromSearchPaths "swagger.json|/swagger.json"
+```
+
 ## Test HTTP GET requests
 
 ### Synopsis
 
 ```console
-get <PARAMETER> [-F|--no-formatting] [-h|--header] [--response] [--response:body] [--response:headers] [-s|--streaming]
+get <PARAMETER> [-F|--no-formatting] [-h|--header] [--response:body] [--response:headers] [-s|--streaming]
 ```
 
 ### Arguments
@@ -398,7 +436,7 @@ To issue an HTTP GET request:
 1. Run the `get` command on an endpoint that supports it:
 
     ```console
-    https://localhost:5001/people~ get
+    https://localhost:5001/people> get
     ```
 
     The preceding command displays the following output format:
@@ -426,13 +464,13 @@ To issue an HTTP GET request:
     ]
 
 
-    https://localhost:5001/people~
+    https://localhost:5001/people>
     ```
 
 1. Retrieve a specific record by passing a parameter to the `get` command:
 
     ```console
-    https://localhost:5001/people~ get 2
+    https://localhost:5001/people> get 2
     ```
 
     The preceding command displays the following output format:
@@ -452,7 +490,7 @@ To issue an HTTP GET request:
     ]
 
 
-    https://localhost:5001/people~
+    https://localhost:5001/people>
     ```
 
 ## Test HTTP POST requests
@@ -482,7 +520,7 @@ To issue an HTTP POST request:
 1. Run the `post` command on an endpoint that supports it:
 
     ```console
-    https://localhost:5001/people~ post -h Content-Type=application/json
+    https://localhost:5001/people> post -h Content-Type=application/json
     ```
 
     In the preceding command, the `Content-Type` HTTP request header is set to indicate a request body media type of JSON. The default text editor opens a *.tmp* file with a JSON template representing the HTTP request body. For example:
@@ -522,7 +560,7 @@ To issue an HTTP POST request:
     }
 
 
-    https://localhost:5001/people~
+    https://localhost:5001/people>
     ```
 
 ## Test HTTP PUT requests
@@ -552,7 +590,7 @@ To issue an HTTP PUT request:
 1. *Optional*: Run the `get` command to view the data before modifying it:
 
     ```console
-    https://localhost:5001/fruits~ get
+    https://localhost:5001/fruits> get
     HTTP/1.1 200 OK
     Content-Type: application/json; charset=utf-8
     Date: Sat, 22 Jun 2019 00:07:32 GMT
@@ -578,7 +616,7 @@ To issue an HTTP PUT request:
 1. Run the `put` command on an endpoint that supports it:
 
     ```console
-    https://localhost:5001/fruits~ put 2 -h Content-Type=application/json
+    https://localhost:5001/fruits> put 2 -h Content-Type=application/json
     ```
 
     In the preceding command, the `Content-Type` HTTP request header is set to indicate a request body media type of JSON. The default text editor opens a *.tmp* file with a JSON template representing the HTTP request body. For example:
@@ -611,10 +649,10 @@ To issue an HTTP PUT request:
     Server: Kestrel
     ```
 
-1. *Optional*: Issue a `get` command to see the modifications. For example, if you typed "Cherry" in the text editor, a `get` returns the following:
+1. *Optional*: Issue a `get` command to see the modifications. For example, if you typed "Cherry" in the text editor, a `get` returns the following output:
 
     ```console
-    https://localhost:5001/fruits~ get
+    https://localhost:5001/fruits> get
     HTTP/1.1 200 OK
     Content-Type: application/json; charset=utf-8
     Date: Sat, 22 Jun 2019 00:08:20 GMT
@@ -637,7 +675,7 @@ To issue an HTTP PUT request:
     ]
 
 
-    https://localhost:5001/fruits~
+    https://localhost:5001/fruits>
     ```
 
 ## Test HTTP DELETE requests
@@ -665,7 +703,7 @@ To issue an HTTP DELETE request:
 1. *Optional*: Run the `get` command to view the data before modifying it:
 
     ```console
-    https://localhost:5001/fruits~ get
+    https://localhost:5001/fruits> get
     HTTP/1.1 200 OK
     Content-Type: application/json; charset=utf-8
     Date: Sat, 22 Jun 2019 00:07:32 GMT
@@ -691,7 +729,7 @@ To issue an HTTP DELETE request:
 1. Run the `delete` command on an endpoint that supports it:
 
     ```console
-    https://localhost:5001/fruits~ delete 2
+    https://localhost:5001/fruits> delete 2
     ```
 
     The preceding command displays the following output format:
@@ -702,10 +740,10 @@ To issue an HTTP DELETE request:
     Server: Kestrel
     ```
 
-1. *Optional*: Issue a `get` command to see the modifications. In this example, a `get` returns the following:
+1. *Optional*: Issue a `get` command to see the modifications. In this example, a `get` returns the following output:
 
     ```console
-    https://localhost:5001/fruits~ get
+    https://localhost:5001/fruits> get
     HTTP/1.1 200 OK
     Content-Type: application/json; charset=utf-8
     Date: Sat, 22 Jun 2019 00:16:30 GMT
@@ -724,7 +762,7 @@ To issue an HTTP DELETE request:
     ]
 
 
-    https://localhost:5001/fruits~
+    https://localhost:5001/fruits>
     ```
 
 ## Test HTTP PATCH requests
@@ -790,7 +828,7 @@ To set an HTTP request header, use one of the following approaches:
 * Set inline with the HTTP request. For example:
 
     ```console
-    https://localhost:5001/people~ post -h Content-Type=application/json
+    https://localhost:5001/people> post -h Content-Type=application/json
     ```
     
     With the preceding approach, each distinct HTTP request header requires its own `-h` option.
@@ -798,22 +836,25 @@ To set an HTTP request header, use one of the following approaches:
 * Set before sending the HTTP request. For example:
 
     ```console
-    https://localhost:5001/people~ set header Content-Type application/json
+    https://localhost:5001/people> set header Content-Type application/json
     ```
     
     When setting the header before sending a request, the header remains set for the duration of the command shell session. To clear the header, provide an empty value. For example:
     
     ```console
-    https://localhost:5001/people~ set header Content-Type
+    https://localhost:5001/people> set header Content-Type
     ```
 
 ## Test secured endpoints
 
-The HTTP REPL supports the testing of secured endpoints in two ways: via the default credentials of the logged in user or through the use of HTTP request headers. 
+The HTTP REPL supports the testing of secured endpoints in the following ways:
+
+* Via the default credentials of the logged in user.
+* Through the use of HTTP request headers.
 
 ### Default credentials
 
-Consider a scenario in which the web API you're testing is hosted in IIS and is secured with Windows authentication. You want the credentials of the user running the tool to flow across to the HTTP endpoints being tested. To pass the default credentials of the logged in user:
+Consider a web API you're testing that's hosted in IIS and secured with Windows authentication. You want the credentials of the user running the tool to flow across to the HTTP endpoints being tested. To pass the default credentials of the logged in user:
 
 1. Set the `httpClient.useDefaultCredentials` preference to `true`:
 
@@ -822,18 +863,36 @@ Consider a scenario in which the web API you're testing is hosted in IIS and is 
     ```
 
 1. Exit and restart the tool before sending another request to the web API.
+ 
+### Default proxy credentials
+
+Consider a scenario in which the web API you're testing is behind a proxy secured with Windows authentication. You want the credentials of the user running the tool to flow to the proxy. To pass the default credentials of the logged in user:
+
+1. Set the `httpClient.proxy.useDefaultCredentials` preference to `true`:
+
+    ```console
+    pref set httpClient.proxy.useDefaultCredentials true
+    ```
+
+1. Exit and restart the tool before sending another request to the web API.
 
 ### HTTP request headers
 
-Examples of supported authentication and authorization schemes include basic authentication, JWT bearer tokens, and digest authentication. For example, you can send a bearer token to an endpoint with the following command:
+Examples of supported authentication and authorization schemes include:
+
+* basic authentication
+* JWT bearer tokens
+* digest authentication
+
+For example, you can send a bearer token to an endpoint with the following command:
 
 ```console
 set header Authorization "bearer <TOKEN VALUE>"
 ```
 
-To access an Azure-hosted endpoint or to use the [Azure REST API](/rest/api/azure/), you need a bearer token. Use the following steps to obtain a bearer token for your Azure subscription via the [Azure CLI](/cli/azure/). The HTTP REPL sets the bearer token in an HTTP request header and retrieves a list of Azure App Service Web Apps.
+To access an Azure-hosted endpoint or to use the [Azure REST API](/rest/api/azure/), you need a bearer token. Use the following steps to obtain a bearer token for your Azure subscription via the [Azure CLI](/cli/azure/). The HTTP REPL sets the bearer token in an HTTP request header. A list of Azure App Service Web Apps is retrieved.
 
-1. Log in to Azure:
+1. Sign in to Azure:
 
     ```azurecli
     az login
@@ -914,14 +973,14 @@ By default, display of the HTTP request being sent is suppressed. It's possible 
 View the HTTP request being sent by running the `echo on` command. For example:
 
 ```console
-https://localhost:5001/people~ echo on
+https://localhost:5001/people> echo on
 Request echoing is on
 ```
 
 Subsequent HTTP requests in the current session display the request headers. For example:
 
 ```console
-https://localhost:5001/people~ post
+https://localhost:5001/people> post
 
 [main 2019-06-28T18:50:11.930Z] update#setState idle
 Request to https://localhost:5001...
@@ -951,7 +1010,7 @@ Transfer-Encoding: chunked
 }
 
 
-https://localhost:5001/people~
+https://localhost:5001/people>
 ```
 
 ### Disable request display
@@ -959,13 +1018,13 @@ https://localhost:5001/people~
 Suppress display of the HTTP request being sent by running the `echo off` command. For example:
 
 ```console
-https://localhost:5001/people~ echo off
+https://localhost:5001/people> echo off
 Request echoing is off
 ```
 
 ## Run a script
 
-If you frequently execute the same set of HTTP REPL commands, consider storing them in a text file. Commands in the file take the same form as those executed manually on the command line. The commands can be executed in a batched fashion using the `run` command. For example:
+If you frequently execute the same set of HTTP REPL commands, consider storing them in a text file. Commands in the file take the same form as commands executed manually on the command line. The commands can be executed in a batched fashion using the `run` command. For example:
 
 1. Create a text file containing a set of newline-delimited commands. To illustrate, consider a *people-script.txt* file containing the following commands:
 
@@ -980,29 +1039,29 @@ If you frequently execute the same set of HTTP REPL commands, consider storing t
 1. Execute the `run` command, passing in the text file's path. For example:
 
     ```console
-    https://localhost:5001/~ run C:\http-repl-scripts\people-script.txt
+    https://localhost:5001/> run C:\http-repl-scripts\people-script.txt
     ```
 
     The following output appears:
 
     ```console
-    https://localhost:5001/~ set base https://localhost:5001
-    Using swagger metadata from https://localhost:5001/swagger/v1/swagger.json
+    https://localhost:5001/> set base https://localhost:5001
+    Using OpenAPI description at https://localhost:5001/swagger/v1/swagger.json
     
-    https://localhost:5001/~ ls
+    https://localhost:5001/> ls
     .        []
     Fruits   [get|post]
     People   [get|post]
     
-    https://localhost:5001/~ cd People
+    https://localhost:5001/> cd People
     /People    [get|post]
     
-    https://localhost:5001/People~ ls
+    https://localhost:5001/People> ls
     .      [get|post]
     ..     []
     {id}   [get|put|delete]
     
-    https://localhost:5001/People~ get 1
+    https://localhost:5001/People> get 1
     HTTP/1.1 200 OK
     Content-Type: application/json; charset=utf-8
     Date: Fri, 12 Jul 2019 19:20:10 GMT
@@ -1015,7 +1074,7 @@ If you frequently execute the same set of HTTP REPL commands, consider storing t
     }
     
     
-    https://localhost:5001/People~
+    https://localhost:5001/People>
     ```
 
 ## Clear the output
@@ -1024,27 +1083,27 @@ To remove all output written to the command shell by the HTTP REPL tool, run the
 
 ```console
 httprepl https://localhost:5001
-(Disconnected)~ set base "https://localhost:5001"
-Using swagger metadata from https://localhost:5001/swagger/v1/swagger.json
+(Disconnected)> set base "https://localhost:5001"
+Using OpenAPI description at https://localhost:5001/swagger/v1/swagger.json
 
-https://localhost:5001/~ ls
+https://localhost:5001/> ls
 .        []
 Fruits   [get|post]
 People   [get|post]
 
-https://localhost:5001/~
+https://localhost:5001/>
 ```
 
 Run the following command to clear the output:
 
 ```console
-https://localhost:5001/~ clear
+https://localhost:5001/> clear
 ```
 
 After running the preceding command, the command shell contains only the following output:
 
 ```console
-https://localhost:5001/~
+https://localhost:5001/>
 ```
 
 ## Additional resources
