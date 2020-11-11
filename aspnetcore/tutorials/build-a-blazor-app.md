@@ -5,7 +5,7 @@ description: Build a Blazor app step-by-step.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/22/2020
+ms.date: 11/11/2020
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/build-a-blazor-app
 ---
@@ -25,7 +25,17 @@ At the end of this tutorial, you'll have a working todo list app.
 
 ## Prerequisites
 
+::: moniker range=">= aspnetcore-5.0"
+
+[!INCLUDE[](~/includes/5.0-SDK.md)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
 [!INCLUDE[](~/includes/3.1-SDK.md)]
+
+::: moniker-end
 
 ## Create a todo list Blazor app
 
@@ -72,32 +82,32 @@ At the end of this tutorial, you'll have a working todo list app.
    </li>
    ```
 
-1. Build and run the app by executing the `dotnet run` command in the command shell from the `TodoList` folder. Visit the new Todo page to confirm that the link to the `Todo` component works.
+1. Build and run the app by executing the `dotnet run` command in the command shell from the `TodoList` folder. Visit the new Todo page at `https://localhost:5001/todo` to confirm that the link to the `Todo` component works.
 
 1. Add a `TodoItem.cs` file to the root of the project (the `TodoList` folder) to hold a class that represents a todo item. Use the following C# code for the `TodoItem` class:
 
-   [!code-csharp[](build-a-blazor-app/samples_snapshot/3.x/TodoItem.cs)]
+   [!code-csharp[](build-a-blazor-app/samples_snapshot/TodoItem.cs)]
 
 1. Return to the `Todo` component (`Pages/Todo.razor`):
 
    * Add a field for the todo items in an `@code` block. The `Todo` component uses this field to maintain the state of the todo list.
    * Add unordered list markup and a `foreach` loop to render each todo item as a list item (`<li>`).
 
-   [!code-razor[](build-a-blazor-app/samples_snapshot/3.x/ToDo4.razor?highlight=5-10,12-14)]
+   [!code-razor[](build-a-blazor-app/samples_snapshot/ToDo2.razor?highlight=5-10,12-14)]
 
 1. The app requires UI elements for adding todo items to the list. Add a text input (`<input>`) and a button (`<button>`) below the unordered list (`<ul>...</ul>`):
 
-   [!code-razor[](build-a-blazor-app/samples_snapshot/3.x/ToDo5.razor?highlight=12-13)]
+   [!code-razor[](build-a-blazor-app/samples_snapshot/ToDo3.razor?highlight=12-13)]
 
 1. Stop the running app in the command shell. Many command shells accept the keyboard command <kbd>Ctrl</kbd>+<kbd>c</kbd> to stop an app. Rebuild and run the app with the `dotnet run` command. When the **`Add todo`** button is selected, nothing happens because an event handler isn't wired up to the button.
 
 1. Add an `AddTodo` method to the `Todo` component and register it for button selections using the `@onclick` attribute. The `AddTodo` C# method is called when the button is selected:
 
-   [!code-razor[](build-a-blazor-app/samples_snapshot/3.x/ToDo6.razor?highlight=2,7-10)]
+   [!code-razor[](build-a-blazor-app/samples_snapshot/ToDo4.razor?highlight=2,7-10)]
 
 1. To get the title of the new todo item, add a `newTodo` string field at the top of the `@code` block and bind it to the value of the text input using the `bind` attribute in the `<input>` element:
 
-   [!code-razor[](build-a-blazor-app/samples_snapshot/3.x/ToDo7.razor?highlight=2)]
+   [!code-razor[](build-a-blazor-app/samples_snapshot/ToDo5.razor?highlight=2)]
 
    ```razor
    <input placeholder="Something todo" @bind="newTodo" />
@@ -105,13 +115,13 @@ At the end of this tutorial, you'll have a working todo list app.
 
 1. Update the `AddTodo` method to add the `TodoItem` with the specified title to the list. Clear the value of the text input by setting `newTodo` to an empty string:
 
-   [!code-razor[](build-a-blazor-app/samples_snapshot/3.x/ToDo8.razor?highlight=19-26)]
+   [!code-razor[](build-a-blazor-app/samples_snapshot/ToDo6.razor?highlight=19-26)]
 
 1. Stop the running app in the command shell. Rebuild and run the app with the `dotnet run` command. Add some todo items to the todo list to test the new code.
 
 1. The title text for each todo item can be made editable, and a check box can help the user keep track of completed items. Add a check box input for each todo item and bind its value to the `IsDone` property. Change `@todo.Title` to an `<input>` element bound to `@todo.Title`:
 
-   [!code-razor[](build-a-blazor-app/samples_snapshot/3.x/ToDo9.razor?highlight=5-6)]
+   [!code-razor[](build-a-blazor-app/samples_snapshot/ToDo7.razor?highlight=5-6)]
 
 1. To verify that these values are bound, update the `<h3>` header to show a count of the number of todo items that aren't complete (`IsDone` is `false`).
 
@@ -121,7 +131,7 @@ At the end of this tutorial, you'll have a working todo list app.
 
 1. The completed `Todo` component (`Pages/Todo.razor`):
 
-   [!code-razor[](build-a-blazor-app/samples_snapshot/3.x/Todo.razor)]
+   [!code-razor[](build-a-blazor-app/samples_snapshot/Todo1.razor)]
 
 1. Stop the running app in the command shell. Rebuild and run the app with the `dotnet run` command. Add todo items to test the new code.
 

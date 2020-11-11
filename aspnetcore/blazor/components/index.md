@@ -241,7 +241,7 @@ Components can have *component parameters*, which are defined using public prope
 
 `Components/ChildComponent.razor`:
 
-[!code-razor[](../common/samples/3.x/BlazorWebAssemblySample/Components/ChildComponent.razor?highlight=2,11-12)]
+[!code-razor[](../common/samples/5.x/BlazorWebAssemblySample/Components/ChildComponent.razor?highlight=2,11-12)]
 
 In the following example from the sample app, the `ParentComponent` sets the value of the `Title` property of the `ChildComponent`.
 
@@ -260,7 +260,7 @@ In the following example, the `ChildComponent` has a `ChildContent` property tha
 
 `Components/ChildComponent.razor`:
 
-[!code-razor[](../common/samples/3.x/BlazorWebAssemblySample/Components/ChildComponent.razor?highlight=3,14-15)]
+[!code-razor[](../common/samples/5.x/BlazorWebAssemblySample/Components/ChildComponent.razor?highlight=3,14-15)]
 
 > [!NOTE]
 > The property receiving the <xref:Microsoft.AspNetCore.Components.RenderFragment> content must be named `ChildContent` by convention.
