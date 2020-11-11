@@ -26,7 +26,7 @@ A templated component is defined by specifying one or more component parameters 
 
 `TableTemplate` component (`TableTemplate.razor`):
 
-[!code-razor[](../common/samples/3.x/BlazorWebAssemblySample/Components/TableTemplate.razor)]
+[!code-razor[](../common/samples/5.x/BlazorWebAssemblySample/Components/TableTemplate.razor)]
 
 When using a templated component, the template parameters can be specified using child elements that match the names of the parameters (`TableHeader` and `RowTemplate` in the following example):
 
@@ -105,7 +105,7 @@ Alternatively, you can specify the `Context` attribute on the component element.
 
 Templated components are often generically typed. For example, a generic `ListViewTemplate` component (`ListViewTemplate.razor`) can be used to render `IEnumerable<T>` values. To define a generic component, use the [`@typeparam`](xref:mvc/views/razor#typeparam) directive to specify type parameters:
 
-[!code-razor[](../common/samples/3.x/BlazorWebAssemblySample/Components/ListViewTemplate.razor)]
+[!code-razor[](../common/samples/5.x/BlazorWebAssemblySample/Components/ListViewTemplate.razor)]
 
 When using generic-typed components, the type parameter is inferred if possible:
 

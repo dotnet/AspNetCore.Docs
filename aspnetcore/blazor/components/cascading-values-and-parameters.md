@@ -139,7 +139,7 @@ Cascading parameters also enable components to collaborate across the component 
 
 The sample app has an `ITab` interface that tabs implement:
 
-[!code-csharp[](../common/samples/3.x/BlazorWebAssemblySample/UIInterfaces/ITab.cs)]
+[!code-csharp[](../common/samples/5.x/BlazorWebAssemblySample/UIInterfaces/ITab.cs)]
 
 The `CascadingValuesParametersTabSet` component uses the `TabSet` component, which contains several `Tab` components:
 
@@ -177,10 +177,10 @@ The child `Tab` components aren't explicitly passed as parameters to the `TabSet
 
 `TabSet` component:
 
-[!code-razor[](../common/samples/3.x/BlazorWebAssemblySample/Components/TabSet.razor)]
+[!code-razor[](../common/samples/5.x/BlazorWebAssemblySample/Components/TabSet.razor)]
 
 The descendent `Tab` components capture the containing `TabSet` as a cascading parameter, so the `Tab` components add themselves to the `TabSet` and coordinate on which tab is active.
 
 `Tab` component:
 
-[!code-razor[](../common/samples/3.x/BlazorWebAssemblySample/Components/Tab.razor)]
+[!code-razor[](../common/samples/5.x/BlazorWebAssemblySample/Components/Tab.razor)]
