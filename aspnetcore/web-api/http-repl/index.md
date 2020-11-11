@@ -1,15 +1,15 @@
 ---
-title: Test web APIs with the HTTP REPL
+title: Test web APIs with the HttpRepl
 author: scottaddie
-description: Learn how to use the HTTP REPL .NET Core Global Tool to browse and test an ASP.NET Core web API.
+description: Learn how to use the HttpRepl .NET Core Global Tool to browse and test an ASP.NET Core web API.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc, devx-track-azurecli
-ms.date: 11/10/2020
+ms.date: 11/11/2020
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: web-api/http-repl
 ---
-# Test web APIs with the HTTP REPL
+# Test web APIs with the HttpRepl
 
 By [Scott Addie](https://twitter.com/Scott_Addie)
 
@@ -37,7 +37,7 @@ To follow along, [view or download the sample ASP.NET Core web API](https://gith
 
 ## Installation
 
-To install the HTTP REPL, run the following command:
+To install the HttpRepl, run the following command:
 
 ```dotnetcli
 dotnet tool install -g Microsoft.dotnet-httprepl
@@ -47,13 +47,13 @@ A [.NET Core Global Tool](/dotnet/core/tools/global-tools#install-a-global-tool)
 
 ## Usage
 
-After successful installation of the tool, run the following command to start the HTTP REPL:
+After successful installation of the tool, run the following command to start the HttpRepl:
 
 ```console
 httprepl
 ```
 
-To view the available HTTP REPL commands, run one of the following commands:
+To view the available HttpRepl commands, run one of the following commands:
 
 ```console
 httprepl -h
@@ -118,7 +118,7 @@ Use `help <COMMAND>` for more detail on an individual command. e.g. `help get`.
 For detailed tool info, see https://aka.ms/http-repl-doc.
 ```
 
-The HTTP REPL offers command completion. Pressing the <kbd>Tab</kbd> key iterates through the list of commands that complete the characters or API endpoint that you typed. The following sections outline the available CLI commands.
+The HttpRepl offers command completion. Pressing the <kbd>Tab</kbd> key iterates through the list of commands that complete the characters or API endpoint that you typed. The following sections outline the available CLI commands.
 
 ## Connect to the web API
 
@@ -134,7 +134,7 @@ httprepl <ROOT URI>
 httprepl https://localhost:5001
 ```
 
-Alternatively, run the following command at any time while the HTTP REPL is running:
+Alternatively, run the following command at any time while the HttpRepl is running:
 
 ```console
 connect <ROOT URI>
@@ -235,9 +235,9 @@ The path following the `cd` command is case insensitive. The following output fo
 https://localhost:5001/people>
 ```
 
-## Customize the HTTP REPL
+## Customize the HttpRepl
 
-The HTTP REPL's default [colors](#set-color-preferences) can be customized. Additionally, a [default text editor](#set-the-default-text-editor) can be defined. The HTTP REPL preferences are persisted across the current session and are honored in future sessions. Once modified, the preferences are stored in the following file:
+The HttpRepl's default [colors](#set-color-preferences) can be customized. Additionally, a [default text editor](#set-the-default-text-editor) can be defined. The HttpRepl preferences are persisted across the current session and are honored in future sessions. Once modified, the preferences are stored in the following file:
 
 # [Linux](#tab/linux)
 
@@ -278,7 +278,7 @@ colors.status=BoldYellow
 
 ### Set color preferences
 
-Response colorization is currently supported for JSON only. To customize the default HTTP REPL tool coloring, locate the key corresponding to the color to be changed. For instructions on how to find the keys, see the [View the settings](#view-the-settings) section. For example, change the `colors.json` key value from `Green` to `White` as follows:
+Response colorization is currently supported for JSON only. To customize the default HttpRepl tool coloring, locate the key corresponding to the color to be changed. For instructions on how to find the keys, see the [View the settings](#view-the-settings) section. For example, change the `colors.json` key value from `Green` to `White` as follows:
 
 ```console
 https://localhost:5001/people> pref set colors.json White
@@ -341,7 +341,7 @@ Subsequent responses honor the setting of four spaces:
 
 ### Set the default text editor
 
-By default, the HTTP REPL has no text editor configured for use. To test web API methods requiring an HTTP request body, a default text editor must be set. The HTTP REPL tool launches the configured text editor for the sole purpose of composing the request body. Run the following command to set your preferred text editor as the default:
+By default, the HttpRepl has no text editor configured for use. To test web API methods requiring an HTTP request body, a default text editor must be set. The HttpRepl tool launches the configured text editor for the sole purpose of composing the request body. Run the following command to set your preferred text editor as the default:
 
 ```console
 pref set editor.command.default "<EXECUTABLE>"
@@ -369,7 +369,7 @@ pref set editor.command.default "C:\Program Files\Microsoft VS Code\Code.exe"
 
 ---
 
-To launch the default text editor with specific CLI arguments, set the `editor.command.default.arguments` key. For example, assume Visual Studio Code is the default text editor and that you always want the HTTP REPL to open Visual Studio Code in a new session with extensions disabled. Run the following command:
+To launch the default text editor with specific CLI arguments, set the `editor.command.default.arguments` key. For example, assume Visual Studio Code is the default text editor and that you always want the HttpRepl to open Visual Studio Code in a new session with extensions disabled. Run the following command:
 
 ```console
 pref set editor.command.default.arguments "--disable-extensions --new-window"
@@ -380,7 +380,7 @@ pref set editor.command.default.arguments "--disable-extensions --new-window"
 
 ### Set the OpenAPI Description search paths
 
-By default, the HTTP REPL has a set of relative paths that it uses to find the OpenAPI description when executing the `connect` command without the `--openapi` option. These relative paths are combined with the root and base paths specified in the `connect` command. The default relative paths are:
+By default, the HttpRepl has a set of relative paths that it uses to find the OpenAPI description when executing the `connect` command without the `--openapi` option. These relative paths are combined with the root and base paths specified in the `connect` command. The default relative paths are:
 
 - *swagger.json*
 - *swagger/v1/swagger.json*
@@ -847,7 +847,7 @@ To set an HTTP request header, use one of the following approaches:
 
 ## Test secured endpoints
 
-The HTTP REPL supports the testing of secured endpoints in the following ways:
+The HttpRepl supports the testing of secured endpoints in the following ways:
 
 * Via the default credentials of the logged in user.
 * Through the use of HTTP request headers.
@@ -890,7 +890,7 @@ For example, you can send a bearer token to an endpoint with the following comma
 set header Authorization "bearer <TOKEN VALUE>"
 ```
 
-To access an Azure-hosted endpoint or to use the [Azure REST API](/rest/api/azure/), you need a bearer token. Use the following steps to obtain a bearer token for your Azure subscription via the [Azure CLI](/cli/azure/). The HTTP REPL sets the bearer token in an HTTP request header. A list of Azure App Service Web Apps is retrieved.
+To access an Azure-hosted endpoint or to use the [Azure REST API](/rest/api/azure/), you need a bearer token. Use the following steps to obtain a bearer token for your Azure subscription via the [Azure CLI](/cli/azure/). The HttpRepl sets the bearer token in an HTTP request header. A list of Azure App Service Web Apps is retrieved.
 
 1. Sign in to Azure:
 
@@ -916,7 +916,7 @@ To access an Azure-hosted endpoint or to use the [Azure REST API](/rest/api/azur
     az account get-access-token --query accessToken
     ```
 
-1. Connect to the Azure REST API via the HTTP REPL:
+1. Connect to the Azure REST API via the HttpRepl:
 
     ```console
     httprepl https://management.azure.com
@@ -1024,7 +1024,7 @@ Request echoing is off
 
 ## Run a script
 
-If you frequently execute the same set of HTTP REPL commands, consider storing them in a text file. Commands in the file take the same form as commands executed manually on the command line. The commands can be executed in a batched fashion using the `run` command. For example:
+If you frequently execute the same set of HttpRepl commands, consider storing them in a text file. Commands in the file take the same form as commands executed manually on the command line. The commands can be executed in a batched fashion using the `run` command. For example:
 
 1. Create a text file containing a set of newline-delimited commands. To illustrate, consider a *people-script.txt* file containing the following commands:
 
@@ -1079,7 +1079,7 @@ If you frequently execute the same set of HTTP REPL commands, consider storing t
 
 ## Clear the output
 
-To remove all output written to the command shell by the HTTP REPL tool, run the `clear` or `cls` command. To illustrate, imagine the command shell contains the following output:
+To remove all output written to the command shell by the HttpRepl tool, run the `clear` or `cls` command. To illustrate, imagine the command shell contains the following output:
 
 ```console
 httprepl https://localhost:5001
@@ -1109,4 +1109,4 @@ https://localhost:5001/>
 ## Additional resources
 
 * [REST API requests](https://github.com/microsoft/api-guidelines/blob/vNext/Guidelines.md#74-supported-methods)
-* [HTTP REPL GitHub repository](https://github.com/dotnet/HttpRepl)
+* [HttpRepl GitHub repository](https://github.com/dotnet/HttpRepl)
