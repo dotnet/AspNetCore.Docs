@@ -33,7 +33,7 @@ namespace RazorPagesMovie
             services.AddRazorPages();
 
             services.AddDbContext<RazorPagesMovieContext>(options =>
-                options.UseSqlite(Configuration.GetConnectionString("RazorPagesMovieContext")));
+                options.UseSqlite(Configuration.GetConnectionString("MovieContext")));
         }
         #endregion
     */
