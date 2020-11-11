@@ -3,7 +3,7 @@ title: Part 2, add a model
 author: rick-anderson
 description: Part 2 of tutorial series on Razor Pages. In this section, model classes are added.
 ms.author: riande
-ms.date: 11/10/2020
+ms.date: 11/11/2020
 no-loc: [Index, Create, Delete, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/razor-pages/model
 ---
