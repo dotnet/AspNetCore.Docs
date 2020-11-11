@@ -333,42 +333,6 @@
           items:
             - name: Overview
               uid: blazor/components/index
-            - name: Built-in components
-              items:
-                - name: App
-                  href: blazor/templates.md#blazor-project-structure
-                - name: Authentication
-                  href: blazor/security/webassembly/index.md#authentication-component
-                - name: AuthorizeView
-                  href: blazor/security/index.md#authorizeview-component
-                - name: InputCheckbox
-                  href: blazor/forms-validation.md#built-in-forms-components
-                - name: InputDate
-                  href: blazor/forms-validation.md#built-in-forms-components
-                - name: InputFile
-                  uid: blazor/file-uploads
-                - name: InputNumber
-                  href: blazor/forms-validation.md#built-in-forms-components
-                - name: InputRadio
-                  href: blazor/forms-validation.md#built-in-forms-components
-                - name: InputRadioGroup
-                  href: blazor/forms-validation.md#built-in-forms-components
-                - name: InputSelect
-                  href: blazor/forms-validation.md#built-in-forms-components
-                - name: InputText
-                  href: blazor/forms-validation.md#built-in-forms-components
-                - name: InputTextArea
-                  href: blazor/forms-validation.md#built-in-forms-components
-                - name: MainLayout
-                  href: blazor/layouts.md#mainlayout-component
-                - name: NavLink
-                  href: blazor/fundamentals/routing.md#navlink-component
-                - name: NavMenu
-                  href: blazor/fundamentals/routing.md#navlink-component
-                - name: Router
-                  href: blazor/fundamentals/routing.md#route-templates
-                - name: Virtualize
-                  uid: blazor/components/virtualization
             - name: Cascading values and parameters
               uid: blazor/components/cascading-values-and-parameters
             - name: Data binding
@@ -467,6 +431,42 @@
           uid: blazor/blazor-server-ef-core
         - name: Advanced scenarios
           uid: blazor/advanced-scenarios
+        - name: Built-in components
+          items:
+            - name: App
+              href: blazor/templates.md#blazor-project-structure
+            - name: Authentication
+              href: blazor/security/webassembly/index.md#authentication-component
+            - name: AuthorizeView
+              href: blazor/security/index.md#authorizeview-component
+            - name: InputCheckbox
+              href: blazor/forms-validation.md#built-in-forms-components
+            - name: InputDate
+              href: blazor/forms-validation.md#built-in-forms-components
+            - name: InputFile
+              uid: blazor/file-uploads
+            - name: InputNumber
+              href: blazor/forms-validation.md#built-in-forms-components
+            - name: InputRadio
+              href: blazor/forms-validation.md#built-in-forms-components
+            - name: InputRadioGroup
+              href: blazor/forms-validation.md#built-in-forms-components
+            - name: InputSelect
+              href: blazor/forms-validation.md#built-in-forms-components
+            - name: InputText
+              href: blazor/forms-validation.md#built-in-forms-components
+            - name: InputTextArea
+              href: blazor/forms-validation.md#built-in-forms-components
+            - name: MainLayout
+              href: blazor/layouts.md#mainlayout-component
+            - name: NavLink
+              href: blazor/fundamentals/routing.md#navlink-component
+            - name: NavMenu
+              href: blazor/fundamentals/routing.md#navlink-component
+            - name: Router
+              href: blazor/fundamentals/routing.md#route-templates
+            - name: Virtualize
+              uid: blazor/components/virtualization
     - name: Client-side development
       items:
         - name: Single Page Apps
