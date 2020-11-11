@@ -25,7 +25,17 @@ At the end of this tutorial, you'll have a working todo list app.
 
 ## Prerequisites
 
+::: moniker range=">= aspnetcore-5.0"
+
+[!INCLUDE[](~/includes/5.0-SDK.md)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
 [!INCLUDE[](~/includes/3.1-SDK.md)]
+
+::: moniker-end
 
 ## Create a todo list Blazor app
 
@@ -72,7 +82,7 @@ At the end of this tutorial, you'll have a working todo list app.
    </li>
    ```
 
-1. Build and run the app by executing the `dotnet run` command in the command shell from the `TodoList` folder. Visit the new Todo page to confirm that the link to the `Todo` component works.
+1. Build and run the app by executing the `dotnet run` command in the command shell from the `TodoList` folder. Visit the new Todo page at `https://localhost:5001/todo` to confirm that the link to the `Todo` component works.
 
 1. Add a `TodoItem.cs` file to the root of the project (the `TodoList` folder) to hold a class that represents a todo item. Use the following C# code for the `TodoItem` class:
 
