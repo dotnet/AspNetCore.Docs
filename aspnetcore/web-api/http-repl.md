@@ -5,7 +5,7 @@ description: Learn how to use the HTTP REPL .NET Core Global Tool to browse and 
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc, devx-track-azurecli
-ms.date: 05/20/2020
+ms.date: 11/10/2020
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: web-api/http-repl
 ---
@@ -148,7 +148,7 @@ For example:
 
 ### Manually point to the OpenAPI description for the web API
 
-The connect command above will attempt to find the OpenAPI description automatically. If for some reason it is unable to do so, you can specify the URI of the OpenAPI description for the web API by using the `--openapi` option:
+The connect command above will attempt to find the OpenAPI description automatically. If for some reason it's unable to do so, you can specify the URI of the OpenAPI description for the web API by using the `--openapi` option:
 
 ```console
 connect <ROOT URI> --openapi <OPENAPI DESCRIPTION ADDRESS>
@@ -160,9 +160,9 @@ For example:
 (Disconnected)> connect https://localhost:5001 --openapi /swagger/v1/swagger.json
 ```
 
-### Enable verbose output for details on OpenAPI description searching, parsing and validation
+### Enable verbose output for details on OpenAPI description searching, parsing, and validation
 
-Specifying the `--verbose` option with the connect command will produce more details when the tool searches for the OpenAPI description, parses and validates it.
+Specifying the `--verbose` option with the `connect` command will produce more details when the tool searches for the OpenAPI description, parses, and validates it.
 
 ```console
 connect <ROOT URI> --verbose
@@ -649,7 +649,7 @@ To issue an HTTP PUT request:
     Server: Kestrel
     ```
 
-1. *Optional*: Issue a `get` command to see the modifications. For example, if you typed "Cherry" in the text editor, a `get` returns the following:
+1. *Optional*: Issue a `get` command to see the modifications. For example, if you typed "Cherry" in the text editor, a `get` returns the following output:
 
     ```console
     https://localhost:5001/fruits> get
@@ -740,7 +740,7 @@ To issue an HTTP DELETE request:
     Server: Kestrel
     ```
 
-1. *Optional*: Issue a `get` command to see the modifications. In this example, a `get` returns the following:
+1. *Optional*: Issue a `get` command to see the modifications. In this example, a `get` returns the following output:
 
     ```console
     https://localhost:5001/fruits> get
@@ -847,11 +847,14 @@ To set an HTTP request header, use one of the following approaches:
 
 ## Test secured endpoints
 
-The HTTP REPL supports the testing of secured endpoints in two ways: via the default credentials of the logged in user or through the use of HTTP request headers. 
+The HTTP REPL supports the testing of secured endpoints in the following ways:
+
+* Via the default credentials of the logged in user.
+* Through the use of HTTP request headers.
 
 ### Default credentials
 
-Consider a scenario in which the web API you're testing is hosted in IIS and is secured with Windows authentication. You want the credentials of the user running the tool to flow across to the HTTP endpoints being tested. To pass the default credentials of the logged in user:
+Consider a web API you're testing that's hosted in IIS and secured with Windows authentication. You want the credentials of the user running the tool to flow across to the HTTP endpoints being tested. To pass the default credentials of the logged in user:
 
 1. Set the `httpClient.useDefaultCredentials` preference to `true`:
 
@@ -863,7 +866,7 @@ Consider a scenario in which the web API you're testing is hosted in IIS and is 
  
 ### Default proxy credentials
 
-Consider a scenario in which the web API you're testing is behind a proxy that is secured with Windows authentication. You want the credentials of the user running the tool to flow to the proxy. To pass the default credentials of the logged in user:
+Consider a scenario in which the web API you're testing is behind a proxy secured with Windows authentication. You want the credentials of the user running the tool to flow to the proxy. To pass the default credentials of the logged in user:
 
 1. Set the `httpClient.proxy.useDefaultCredentials` preference to `true`:
 
@@ -875,15 +878,21 @@ Consider a scenario in which the web API you're testing is behind a proxy that i
 
 ### HTTP request headers
 
-Examples of supported authentication and authorization schemes include basic authentication, JWT bearer tokens, and digest authentication. For example, you can send a bearer token to an endpoint with the following command:
+Examples of supported authentication and authorization schemes include:
+
+* basic authentication
+* JWT bearer tokens
+* digest authentication
+
+For example, you can send a bearer token to an endpoint with the following command:
 
 ```console
 set header Authorization "bearer <TOKEN VALUE>"
 ```
 
-To access an Azure-hosted endpoint or to use the [Azure REST API](/rest/api/azure/), you need a bearer token. Use the following steps to obtain a bearer token for your Azure subscription via the [Azure CLI](/cli/azure/). The HTTP REPL sets the bearer token in an HTTP request header and retrieves a list of Azure App Service Web Apps.
+To access an Azure-hosted endpoint or to use the [Azure REST API](/rest/api/azure/), you need a bearer token. Use the following steps to obtain a bearer token for your Azure subscription via the [Azure CLI](/cli/azure/). The HTTP REPL sets the bearer token in an HTTP request header. A list of Azure App Service Web Apps is retrieved.
 
-1. Log in to Azure:
+1. Sign in to Azure:
 
     ```azurecli
     az login
@@ -1015,7 +1024,7 @@ Request echoing is off
 
 ## Run a script
 
-If you frequently execute the same set of HTTP REPL commands, consider storing them in a text file. Commands in the file take the same form as those executed manually on the command line. The commands can be executed in a batched fashion using the `run` command. For example:
+If you frequently execute the same set of HTTP REPL commands, consider storing them in a text file. Commands in the file take the same form as commands executed manually on the command line. The commands can be executed in a batched fashion using the `run` command. For example:
 
 1. Create a text file containing a set of newline-delimited commands. To illustrate, consider a *people-script.txt* file containing the following commands:
 
