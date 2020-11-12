@@ -440,6 +440,10 @@ For more information, see the following issues:
 * [Circular references are not supported, take two (dotnet/aspnetcore #20525)](https://github.com/dotnet/aspnetcore/issues/20525)
 * [Proposal: Add mechanism to handle circular references when serializing (dotnet/runtime #30820)](https://github.com/dotnet/runtime/issues/30820)
 
+## JS module support
+
+JS interop supports [ES modules](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules) for JS isolation. Other module formats aren't supported at this time.
+
 ## Additional resources
 
 * <xref:blazor/call-javascript-from-dotnet>
