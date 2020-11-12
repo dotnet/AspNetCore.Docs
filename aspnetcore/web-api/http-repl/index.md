@@ -187,7 +187,7 @@ The field 'paths' in 'document' object is REQUIRED [#/paths]
 To list the different endpoints (controllers) at the current path of the web API address, run the `ls` or `dir` command:
 
 ```console
-https://localhot:5001/> ls
+https://localhost:5001/> ls
 ```
 
 The following output format is displayed:
