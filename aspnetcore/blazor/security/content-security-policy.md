@@ -40,12 +40,9 @@ Minimally, specify the following directives and sources for Blazor apps. Add add
   * Specify the `https://stackpath.bootstrapcdn.com/` host source for Bootstrap scripts.
   * Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
   * In a Blazor WebAssembly app:
-    * Specify the following hashes to permit the required Blazor WebAssembly inline scripts to load:
-      * `sha256-v8ZC9OgMhcnEQ/Me77/R9TlJfzOBqrMTW8e1KuqLaqc=`
-      * `sha256-If//FtbPc03afjLezvWHnC3Nbu4fDM04IIzkPaf3pH0=`
-      * `sha256-v8v3RKRPmN4odZ1CWM5gw80QKPCCWMcpNeOmimNL2AA=`
+    * Specify hashes to permit required scripts to load.
     * Specify `unsafe-eval` to use `eval()` and methods for creating code from strings.
-  * In a Blazor Server app, specify the `sha256-34WLX60Tw3aG6hylk0plKbZZFXCuepeQ6Hu7OqRf8PI=` hash for the inline script that performs fallback detection for stylesheets.
+  * In a Blazor Server app, specify hashes to permit required scripts to load.
 * [style-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/style-src): Indicates valid sources for stylesheets.
   * Specify the `https://stackpath.bootstrapcdn.com/` host source for Bootstrap stylesheets.
   * Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
@@ -76,6 +73,29 @@ The following sections show example policies for Blazor WebAssembly and Blazor S
 
 In the `<head>` content of the `wwwroot/index.html` host page, apply the directives described in the [Policy directives](#policy-directives) section:
 
+::: moniker range=">= aspnetcore-5.0"
+
+```html
+<meta http-equiv="Content-Security-Policy" 
+      content="base-uri 'self';
+               block-all-mixed-content;
+               default-src 'self';
+               img-src data: https:;
+               object-src 'none';
+               script-src https://stackpath.bootstrapcdn.com/ 
+                          'self' 
+                          'sha256-v8v3RKRPmN4odZ1CWM5gw80QKPCCWMcpNeOmimNL2AA=' 
+                          'unsafe-eval';
+               style-src https://stackpath.bootstrapcdn.com/
+                         'self'
+                         'unsafe-inline';
+               upgrade-insecure-requests;">
+```
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
 ```html
 <meta http-equiv="Content-Security-Policy" 
       content="base-uri 'self';
@@ -95,9 +115,38 @@ In the `<head>` content of the `wwwroot/index.html` host page, apply the directi
                upgrade-insecure-requests;">
 ```
 
+::: moniker-end
+
+Add additional `script-src` and `style-src` hashes as required by the app. During development, use an online tool or browser developer tools to have the hashes calculated for you. For example, the following browser tools console error reports that the hash for a script not covered by the policy:
+
+> Refused to execute inline script because it violates the following Content Security Policy directive: "script-src https://stackpath.bootstrapcdn.com/ 'self' 'unsafe-eval'". Either the 'unsafe-inline' keyword, a hash ('sha256-v8v3RKRPmN4odZ1CWM5gw80QKPCCWMcpNeOmimNL2AA='), or a nonce ('nonce-...') is required to enable inline execution.
+
+The particular script associated with the error is displayed in the console next to the error.
+
 ### Blazor Server
 
 In the `<head>` content of the `Pages/_Host.cshtml` host page, apply the directives described in the [Policy directives](#policy-directives) section:
+
+::: moniker range=">= aspnetcore-5.0"
+
+```cshtml
+<meta http-equiv="Content-Security-Policy" 
+      content="base-uri 'self';
+               block-all-mixed-content;
+               default-src 'self';
+               img-src data: https:;
+               object-src 'none';
+               script-src https://stackpath.bootstrapcdn.com/ 
+                          'self';
+               style-src https://stackpath.bootstrapcdn.com/
+                         'self' 
+                         'unsafe-inline';
+               upgrade-insecure-requests;">
+```
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
 
 ```cshtml
 <meta http-equiv="Content-Security-Policy" 
@@ -114,6 +163,14 @@ In the `<head>` content of the `Pages/_Host.cshtml` host page, apply the directi
                          'unsafe-inline';
                upgrade-insecure-requests;">
 ```
+
+::: moniker-end
+
+Add additional `script-src` and `style-src` hashes as required by the app. During development, use an online tool or browser developer tools to have the hashes calculated for you. For example, the following browser tools console error reports that the hash for a script not covered by the policy:
+
+> Refused to execute inline script because it violates the following Content Security Policy directive: "script-src https://stackpath.bootstrapcdn.com/ 'self' 'unsafe-eval'". Either the 'unsafe-inline' keyword, a hash ('sha256-v8v3RKRPmN4odZ1CWM5gw80QKPCCWMcpNeOmimNL2AA='), or a nonce ('nonce-...') is required to enable inline execution.
+
+The particular script associated with the error is displayed in the console next to the error.
 
 ## Meta tag limitations
 
