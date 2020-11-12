@@ -119,7 +119,7 @@ In the `<head>` content of the `wwwroot/index.html` host page, apply the directi
 
 Add additional `script-src` and `style-src` hashes as required by the app. During development, use an online tool or browser developer tools to have the hashes calculated for you. For example, the following browser tools console error reports the hash for a required script not covered by the policy:
 
-> Refused to execute inline script because it violates the following Content Security Policy directive: "script-src https://stackpath.bootstrapcdn.com/ 'self' 'unsafe-eval'". Either the 'unsafe-inline' keyword, a hash ('sha256-v8v3RKRPmN4odZ1CWM5gw80QKPCCWMcpNeOmimNL2AA='), or a nonce ('nonce-...') is required to enable inline execution.
+> Refused to execute inline script because it violates the following Content Security Policy directive: " ... ". Either the 'unsafe-inline' keyword, a hash ('sha256-v8v3RKRPmN4odZ1CWM5gw80QKPCCWMcpNeOmimNL2AA='), or a nonce ('nonce-...') is required to enable inline execution.
 
 The particular script associated with the error is displayed in the console next to the error.
 
@@ -168,7 +168,7 @@ In the `<head>` content of the `Pages/_Host.cshtml` host page, apply the directi
 
 Add additional `script-src` and `style-src` hashes as required by the app. During development, use an online tool or browser developer tools to have the hashes calculated for you. For example, the following browser tools console error reports the hash for a required script not covered by the policy:
 
-> Refused to execute inline script because it violates the following Content Security Policy directive: "script-src https://stackpath.bootstrapcdn.com/ 'self' 'unsafe-eval'". Either the 'unsafe-inline' keyword, a hash ('sha256-v8v3RKRPmN4odZ1CWM5gw80QKPCCWMcpNeOmimNL2AA='), or a nonce ('nonce-...') is required to enable inline execution.
+> Refused to execute inline script because it violates the following Content Security Policy directive: " ... ". Either the 'unsafe-inline' keyword, a hash ('sha256-v8v3RKRPmN4odZ1CWM5gw80QKPCCWMcpNeOmimNL2AA='), or a nonce ('nonce-...') is required to enable inline execution.
 
 The particular script associated with the error is displayed in the console next to the error.
 
