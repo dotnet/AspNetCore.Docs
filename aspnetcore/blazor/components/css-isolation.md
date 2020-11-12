@@ -171,7 +171,7 @@ When a [Razor class library (RCL)](xref:razor-pages/ui-class) provides isolated 
 * `{STATIC WEB ASSET BASE PATH}`: The static web asset base path.
 * `{ASSEMBLY NAME}`: The class library's assembly name.
 
-In the following example, the class library's assembly name is `ClassLib`:
+In the following example, the static web asset base path is `_content/ClassLib` and the class library's assembly name is `ClassLib`:
 
 ```html
 <link href="_content/ClassLib/ClassLib.bundle.scp.css" rel="stylesheet">
