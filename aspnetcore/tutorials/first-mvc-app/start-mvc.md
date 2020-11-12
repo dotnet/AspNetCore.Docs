@@ -125,7 +125,7 @@ Select **Ctrl-F5** to run the app in non-debug mode.
 
   The following image shows the app:
 
-  ![Home or Index page](start-mvc/_static/home2.2.png)
+  ![Home or Index page](start-mvc/_static/5/home50-vs.png)
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -137,7 +137,7 @@ Press Ctrl+F5 to run without the debugger.
 
   Launching the app with Ctrl+F5 (non-debug mode) allows you to make code changes, save the file, refresh the browser, and see the code changes. Many developers prefer to use non-debug mode to refresh the page and view changes.
 
-  ![Home or Index page](start-mvc/_static/home2.2.png)
+  ![Home or Index page](start-mvc/_static/5/home50-port5001.png)
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 

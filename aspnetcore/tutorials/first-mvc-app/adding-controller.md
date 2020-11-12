@@ -31,19 +31,19 @@ We cover these concepts in this tutorial series and show you how to use them to 
 # [Visual Studio](#tab/visual-studio)
 
 * In the **Solution Explorer**, right-click **Controllers > Add > Controller**
-  ![Solution Explorer, right click Controllers > Add > Controller](~/tutorials/first-mvc-app/adding-controller/_static/add_controllerCopy.png)
+  ![Solution Explorer, right click Controllers > Add > Controller](~/tutorials/first-mvc-app/adding-controller/_static/5/add_controllerCopy.png)
 
 * In the **Add Scaffold** dialog box, select **MVC Controller - Empty**
 
-  ![Add MVC controller and name it](~/tutorials/first-mvc-app/adding-controller/_static/acCopy.png)
+  ![Add MVC controller and name it](~/tutorials/first-mvc-app/adding-controller/_static/5/acCopy.png)
 
-* In the **Add Empty MVC Controller dialog**, enter **HelloWorldController** and select **ADD**.
+* In the **Add New Item - MvcMovie dialog**, enter **HelloWorldController.cs** and select **Add**.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
 Select the **EXPLORER** icon and then control-click (right-click) **Controllers > New File** and name the new file *HelloWorldController.cs*.
 
-  ![Contextual menu](~/tutorials/first-mvc-app-xplat/adding-controller/_static/new_file.png)
+  ![Contextual menu](~/tutorials/first-mvc-app-xplat/adding-controller/_static/5/new_file.png)
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -70,7 +70,7 @@ The first comment states this is an [HTTP GET](https://www.w3schools.com/tags/re
 
 Run the app in non-debug mode and append "HelloWorld" to the path in the address bar. The `Index` method returns a string.
 
-![Browser window showing an application response of This is my default action](~/tutorials/first-mvc-app/adding-controller/_static/hell1.png)
+![Browser window showing an application response of This is my default action](~/tutorials/first-mvc-app/adding-controller/_static/hell1VS.png)
 
 MVC invokes controller classes (and the action methods within them) depending on the incoming URL. The default [URL routing logic](xref:mvc/controllers/routing) used by MVC uses a format like this to determine what code to invoke:
 
