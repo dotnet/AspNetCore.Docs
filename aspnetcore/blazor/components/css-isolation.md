@@ -163,3 +163,18 @@ To opt out of how Blazor publishes and loads scoped files at runtime, use the `D
   <DisableScopedCssBundling>true</DisableScopedCssBundling>
 </PropertyGroup>
 ```
+
+## Razor class library (RCL) support
+
+When a [Razor class library (RCL)](xref:razor-pages/ui-class) provides isolated styles, the `<link>` tag's `href` attribute points to `_content/{ASSEMBLY NAME}/{ASSEMBLY NAME}.bundle.scp.css`, where the placeholder `{ASSEMBLY NAME}` is the class library's assembly name.
+
+In the following example, the class library's assembly name is `ClassLib`:
+
+```html
+<link href="_content/ClassLib/ClassLib.bundle.scp.css" rel="stylesheet">
+```
+
+For more information on RCLs and component libraries, see:
+
+* <xref:razor-pages/ui-class>
+* <xref:blazor/components/class-libraries>.
