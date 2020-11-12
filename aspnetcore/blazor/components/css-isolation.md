@@ -17,9 +17,9 @@ CSS isolation simplifies an app's CSS footprint by preventing dependencies on gl
 
 ## Enable CSS isolation 
 
-To define component-specific styles, create a `razor.css` file matching the name of the `.razor` file for the component. This `razor.css` file is a *scoped CSS file*. 
+To define component-specific styles, create a `.razor.css` file matching the name of the `.razor` file for the component. This `.razor.css` file is a *scoped CSS file*. 
 
-For a `MyComponent` component that has a `MyComponent.razor` file, create a file alongside the component called `MyComponent.razor.css`. The `MyComponent` value in the `razor.css` filename is **not** case-sensitive.
+For a `MyComponent` component that has a `MyComponent.razor` file, create a file alongside the component called `MyComponent.razor.css`. The `MyComponent` value in the `.razor.css` filename is **not** case-sensitive.
 
 For example to add CSS isolation to the `Counter` component in the default Blazor project template, add a new file named `Counter.razor.css` alongside the `Counter.razor` file, then add the following CSS:
 
@@ -69,7 +69,7 @@ If other projects are utilized, such as NuGet packages or [Razor class libraries
 
 ## Child component support
 
-By default, CSS isolation only applies to the component you associate with the format `{COMPONENT NAME}.razor.css`, where the placeholder `{COMPONENT NAME}` is usually the component name. To apply changes to a child component, use the `::deep` combinator to any descendant elements in the parent component's `razor.css` file. The `::deep` combinator selects elements that are *descendants* of an element's generated scope identifier. 
+By default, CSS isolation only applies to the component you associate with the format `{COMPONENT NAME}.razor.css`, where the placeholder `{COMPONENT NAME}` is usually the component name. To apply changes to a child component, use the `::deep` combinator to any descendant elements in the parent component's `.razor.css` file. The `::deep` combinator selects elements that are *descendants* of an element's generated scope identifier. 
 
 The following example shows a parent component called `Parent` with a child component called `Child`.
 
