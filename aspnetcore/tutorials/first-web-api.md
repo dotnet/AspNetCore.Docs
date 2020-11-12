@@ -102,7 +102,7 @@ The following diagram shows the design of the app.
 
   ![macOS API template selection](first-web-api-mac/_static/api_template.png)
 
-* In the **Configure the new ASP.NET Core Web API** dialog, select the latest .NET Core 3.x **Target Framework**. Select **Next**.
+* In the **Configure the new ASP.NET Core Web API** dialog, select the latest .NET Core 5.x **Target Framework**. Select **Next**.
 
 * Enter *TodoApi* for the **Project Name** and then select **Create**.
 

@@ -1,30 +1,32 @@
 ---
-title: HTTP REPL telemetry
+title: HttpRepl telemetry
 author: scottaddie
-description: Learn about the telemetry collected by the HTTP REPL.
+description: Learn about the telemetry collected by the HttpRepl.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
-ms.date: 11/10/2020
+ms.date: 11/11/2020
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: web-api/http-repl/telemetry
 ---
-# HTTP REPL telemetry
+# HttpRepl telemetry
 
-The [HTTP Read-Eval-Print Loop (REPL)](xref:web-api/http-repl) includes a telemetry feature that collects usage data. It's important that the HTTP REPL team understands how the tool is used so it can be improved.
+The [HttpRepl](xref:web-api/http-repl) includes a telemetry feature that collects usage data. It's important that the HttpRepl team understands how the tool is used so it can be improved.
 
 ## How to opt out
 
-The HTTP REPL telemetry feature is enabled by default. To opt out of the telemetry feature, set the `DOTNET_HTTPREPL_TELEMETRY_OPTOUT` environment variable to `1` or `true`.
+The HttpRepl telemetry feature is enabled by default. To opt out of the telemetry feature, set the `DOTNET_HTTPREPL_TELEMETRY_OPTOUT` environment variable to `1` or `true`.
 
 ## Disclosure
 
-HttpRepl displays text similar to the following when you first run the tool. Text may vary slightly depending on the version of the tool you're running. This "first run" experience is how Microsoft notifies you about data collection.
+The HttpRepl displays text similar to the following when you first run the tool. Text may vary slightly depending on the version of the tool you're running. This "first run" experience is how Microsoft notifies you about data collection.
 
 ```console
 Telemetry
 ---------
-The .NET Core tools collect usage data in order to help us improve your experience. It is collected by Microsoft and shared with the community. You can opt-out of telemetry by setting the DOTNET_HTTPREPL_TELEMETRY_OPTOUT environment variable to '1' or 'true' using your favorite shell.
+The .NET tools collect usage data in order to help us improve your experience. It is collected by Microsoft and shared with the community. You can opt-out of telemetry by setting the DOTNET_HTTPREPL_TELEMETRY_OPTOUT environment variable to '1' or 'true' using your favorite shell.
 ```
+
+To suppress the "first run" experience text, set the `DOTNET_HTTPREPL_SKIP_FIRST_TIME_EXPERIENCE` environment variable to `1` or `true`.
 
 ## Data points
 
@@ -51,7 +53,7 @@ The telemetry feature collects the following data.
 | >=5.0        | Whether the tool is running in a container. |
 | >=5.0        | Hashed Media Access Control (MAC) address: a cryptographically (SHA256) hashed and unique ID for a machine. |
 | >=5.0        | Kernel version. |
-| >=5.0        | HTTP REPL version. |
+| >=5.0        | HttpRepl version. |
 | >=5.0        | Whether the tool was started with `help`, `run`, or `connect` arguments. Actual argument values aren't collected. |
 | >=5.0        | Command invoked (for example, `get`) and whether it succeeded. |
 | >=5.0        | For the `connect` command, whether the `root`, `base`, or `openapi` arguments were supplied. Actual argument values aren't collected. |
