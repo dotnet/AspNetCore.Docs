@@ -166,7 +166,10 @@ To opt out of how Blazor publishes and loads scoped files at runtime, use the `D
 
 ## Razor class library (RCL) support
 
-When a [Razor class library (RCL)](xref:razor-pages/ui-class) provides isolated styles, the `<link>` tag's `href` attribute points to `_content/{ASSEMBLY NAME}/{ASSEMBLY NAME}.bundle.scp.css`, where the placeholder `{ASSEMBLY NAME}` is the class library's assembly name.
+When a [Razor class library (RCL)](xref:razor-pages/ui-class) provides isolated styles, the `<link>` tag's `href` attribute points to `{STATIC WEB ASSET BASE PATH}/{ASSEMBLY NAME}.bundle.scp.css`, where the placeholders are:
+
+* `{STATIC WEB ASSET BASE PATH}`: The static web asset base path.
+* `{ASSEMBLY NAME}`: The class library's assembly name.
 
 In the following example, the class library's assembly name is `ClassLib`:
 
