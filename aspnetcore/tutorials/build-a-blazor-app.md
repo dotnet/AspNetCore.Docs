@@ -5,7 +5,7 @@ description: Build a Blazor app step-by-step.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/11/2020
+ms.date: 11/12/2020
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/build-a-blazor-app
 ---
@@ -86,7 +86,7 @@ At the end of this tutorial, you'll have a working todo list app.
 
 1. Add a `TodoItem.cs` file to the root of the project (the `TodoList` folder) to hold a class that represents a todo item. Use the following C# code for the `TodoItem` class:
 
-   [!code-csharp[](build-a-blazor-app/samples_snapshot/TodoItem.cs)]
+   [!code-csharp[TodoItem.cs](build-a-blazor-app/samples_snapshot/TodoItem.cs)]
 
 1. Return to the `Todo` component (`Pages/Todo.razor`):
 
