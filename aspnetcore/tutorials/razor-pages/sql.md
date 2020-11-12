@@ -7,7 +7,7 @@ ms.date: 09/26/2020
 no-loc: [Index, Create, Delete, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/razor-pages/sql
 ---
-# Part 4 of tutorial series on Razor Pages.
+# Part 4 of tutorial series on Razor Pages
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Joe Audette](https://twitter.com/joeaudette)
 
