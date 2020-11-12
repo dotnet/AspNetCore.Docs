@@ -44,12 +44,12 @@ An app can only persist *app state*. UIs can't be persisted, such as component i
 
 Common locations exist for persisting state:
 
-* [Server-side storage](#server-side-storage)
-* [URL](#url)
-* [Browser storage](#browser-storage)
-* [In-memory state container service](#in-memory-state-container-service)
+* [Server-side storage](#server-side-storage-wasm)
+* [URL](#url-wasm)
+* [Browser storage](#browser-storage-wasm)
+* [In-memory state container service](#in-memory-state-container-service-wasm)
 
-### Server-side storage
+<h2 id="server-side-storage-wasm">Server-side storage</h2>
 
 For permanent data persistence that spans multiple users and devices, the app can use independent server-side storage accessed via a web API. Options include:
 
@@ -73,7 +73,7 @@ For more information on Azure data storage options, see the following:
 * [Azure Databases](https://azure.microsoft.com/product-categories/databases/)
 * [Azure Storage Documentation](/azure/storage/)
 
-### URL
+<h2 id="url-wasm">URL</h2>
 
 For transient data representing navigation state, model the data as a part of the URL. Examples of user state modeled in the URL include:
 
@@ -84,7 +84,7 @@ The contents of the browser's address bar are retained if the user manually relo
 
 For information on defining URL patterns with the [`@page`](xref:mvc/views/razor#page) directive, see <xref:blazor/fundamentals/routing>.
 
-### Browser storage
+<h2 id="browser-storage-wasm">Browser storage</h2>
 
 For transient data that the user is actively creating, a commonly used storage location is the browser's [`localStorage`](https://developer.mozilla.org/docs/Web/API/Window/localStorage) and [`sessionStorage`](https://developer.mozilla.org/docs/Web/API/Window/sessionStorage) collections:
 
@@ -104,7 +104,7 @@ Generally, `sessionStorage` is safer to use. `sessionStorage` avoids the risk th
 > [!WARNING]
 > Users may view or tamper with the data stored in `localStorage` and `sessionStorage`.
 
-## In-memory state container service
+<h2 id="in-memory-state-container-service-wasm">In-memory state container service</h2>
 
 [!INCLUDE[](~/includes/blazor-state-management/state-container.md)]
 
@@ -153,12 +153,12 @@ An app can only persist *app state*. UIs can't be persisted, such as component i
 
 Common locations exist for persisting state:
 
-* [Server-side storage](#server-side-storage)
-* [URL](#url)
-* [Browser storage](#browser-storage)
-* [In-memory state container service](#in-memory-state-container-service)
+* [Server-side storage](#server-side-storage-server)
+* [URL](#url-server)
+* [Browser storage](#browser-storage-server)
+* [In-memory state container service](#in-memory-state-container-service-server)
 
-### Server-side storage
+<h2 id="server-side-storage-server">Server-side storage</h2>
 
 For permanent data persistence that spans multiple users and devices, the app can use server-side storage. Options include:
 
@@ -174,7 +174,7 @@ For more information on Azure data storage options, see the following:
 * [Azure Databases](https://azure.microsoft.com/product-categories/databases/)
 * [Azure Storage Documentation](/azure/storage/)
 
-### URL
+<h2 id="url-server">URL</h2>
 
 For transient data representing navigation state, model the data as a part of the URL. Examples of user state modeled in the URL include:
 
@@ -188,7 +188,7 @@ The contents of the browser's address bar are retained:
 
 For information on defining URL patterns with the [`@page`](xref:mvc/views/razor#page) directive, see <xref:blazor/fundamentals/routing>.
 
-### Browser storage
+<h2 id="browser-storage-server">Browser storage</h2>
 
 For transient data that the user is actively creating, a commonly used storage location is the browser's [`localStorage`](https://developer.mozilla.org/docs/Web/API/Window/localStorage) and [`sessionStorage`](https://developer.mozilla.org/docs/Web/API/Window/sessionStorage) collections:
 
@@ -683,7 +683,7 @@ To persist many different state objects and consume different subsets of objects
 
 ::: moniker-end
 
-## In-memory state container service
+<h2 id="in-memory-state-container-service-server">In-memory state container service</h2>
 
 [!INCLUDE[](~/includes/blazor-state-management/state-container.md)]
 
