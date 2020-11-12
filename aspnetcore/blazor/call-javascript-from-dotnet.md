@@ -686,6 +686,10 @@ Consider the following guidance when developing code that transfers a large amou
 * After the data is received by the server, the data can be:
   * Temporarily stored in a memory buffer until all of the segments are collected.
   * Consumed immediately. For example, the data can be stored immediately in a database or written to disk as each segment is received.
+  
+## JS modules
+
+For JS isolation, JS interop works with the browser's default support for [EcmaScript modules (ESM)](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules) ([ECMAScript specification](https://tc39.es/ecma262/#sec-modules)).
 
 ## Additional resources
 

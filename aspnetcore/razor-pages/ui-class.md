@@ -387,4 +387,15 @@ Suppose *RazorUIClassLib/Pages/Shared* contains two partial files: *_Header.csht
 
 ## Additional resources
 
+::: moniker range=">= aspnetcore-5.0"
+
 * <xref:blazor/components/class-libraries>
+* <xref:blazor/components/css-isolation#razor-class-library-rcl-support>
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+* <xref:blazor/components/class-libraries>
+
+::: moniker-end
