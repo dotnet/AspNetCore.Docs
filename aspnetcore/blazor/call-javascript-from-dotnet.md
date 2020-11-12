@@ -689,7 +689,7 @@ Consider the following guidance when developing code that transfers a large amou
   
 ## JS module support
 
-JS interop supports [ES modules](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules) for JS isolation. Other module formats aren't supported at this time.
+For JS isolation, JS interop supports [EcmaScript modules (ESM)](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules) ([ECMAScript specification](https://tc39.es/ecma262/#sec-modules)). Other module formats aren't supported at this time.
 
 ## Additional resources
 
