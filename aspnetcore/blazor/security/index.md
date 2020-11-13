@@ -238,7 +238,7 @@ Each of these concepts is the same as in an ASP.NET Core MVC or Razor Pages app.
 
 ## AuthorizeView component
 
-The <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> component selectively displays UI depending on whether the user is authorized to see it. This approach is useful when you only need to *display* data for the user and don't need to use the user's identity in procedural logic.
+The <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> component selectively displays UI content depending on whether the user is authorized. This approach is useful when you only need to *display* data for the user and don't need to use the user's identity in procedural logic.
 
 The component exposes a `context` variable of type <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState>, which you can use to access information about the signed-in user:
 
@@ -249,14 +249,14 @@ The component exposes a `context` variable of type <xref:Microsoft.AspNetCore.Co
 </AuthorizeView>
 ```
 
-You can also supply different content for display if the user isn't authenticated:
+You can also supply different content for display if the user isn't authorized:
 
 ```razor
 <AuthorizeView>
     <Authorized>
         <h1>Hello, @context.User.Identity.Name!</h1>
-        <p>You can only see this content if you're authenticated.</p>
-        <button @onclick="SecureMethod">Click me!</button>
+        <p>You can only see this content if you're authorized.</p>
+        <button @onclick="SecureMethod">Authorized Only Button</button>
     </Authorized>
     <NotAuthorized>
         <h1>Authentication Failure!</h1>
@@ -271,7 +271,7 @@ You can also supply different content for display if the user isn't authenticate
 
 The content of `<Authorized>` and `<NotAuthorized>` tags can include arbitrary items, such as other interactive components.
 
-Default event handlers for nonrendered elements, such as the `SecureMethod` method in the preceding example, can't be invoked by an unauthorized user.
+Default event handlers for nonrendered elements, such as the `SecureMethod` method in the preceding example when the user isn't authorized, can't be invoked by an unauthorized user.
 
 Authorization conditions, such as roles or policies that control UI options or access, are covered in the [Authorization](#authorization) section.
 
