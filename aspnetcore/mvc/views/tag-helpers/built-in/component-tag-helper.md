@@ -14,10 +14,20 @@ By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.
 
 ## Prerequisites
 
+::: moniker range=">= aspnetcore-5.0"
+
 Follow the guidance in the *Configuration* section for either:
 
 * [Blazor WebAssembly](xref:blazor/components/prerendering-and-integration?pivots=webassembly)
 * [Blazor Server](xref:blazor/components/prerendering-and-integration?pivots=server)
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+Follow the guidance in the *Configuration* section of the <xref:blazor/components/prerendering-and-integration?pivots=server> article.
+
+::: moniker-end
 
 ## Component Tag Helper
 
