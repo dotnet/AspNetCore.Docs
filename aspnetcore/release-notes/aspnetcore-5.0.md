@@ -438,8 +438,6 @@ In .NET 5, running [dotnet watch](xref:tutorials/dotnet-watch) on an ASP.NET Cor
 * Run `dotnet watch`.
 * Focus on the code changes while the tooling handles rebuilding, restarting, and reloading the app.
 
-We hope to bring the auto refresh functionality to Visual Studio in the future.
-
 ### Console Logger Formatter
 
 Improvements have been made to the console log provider in the `Microsoft.Extensions.Logging` library. Developers can now implement a custom `ConsoleFormatter` to exercise complete control over formatting and colorization of the console output. The formatter APIs allow for rich formatting by implementing a subset of the VT-100 escape sequences. VT-100 is supported by most modern terminals. The console logger can parse out escape sequences on unsupported terminals allowing developers to author a single formatter for all terminals.
