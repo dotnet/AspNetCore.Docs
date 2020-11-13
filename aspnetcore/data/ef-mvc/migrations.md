@@ -1,5 +1,5 @@
 ---
-title: Tutorial: Part 5, apply migrations to the Contoso University sample
+title: Tutorial Part 5, apply migrations to the Contoso University sample
 description: Part 5, of the Contoso University. Use the EF Core migrations feature for managing data model changes in an ASP.NET Core MVC app.
 author: rick-anderson
 ms.author: riande
@@ -37,7 +37,7 @@ To work with migrations, you can use the **Package Manager Console** (PMC) or th
 
 ## Drop the database
 
- Delete the database. Use **SQL Server Object Explorer** (SSOX) or the `database drop` CLI command:
+Delete the database. Use **SQL Server Object Explorer** (SSOX) or the `database drop` CLI command:
 
  ```dotnetcli
  dotnet ef database drop
@@ -45,7 +45,7 @@ To work with migrations, you can use the **Package Manager Console** (PMC) or th
 
 The following section explains how to run CLI commands.
 
-<!--
+<!-- Delete the following hack
 ## Change the connection string
 
 In the *appsettings.json* file, change the name of the database in the connection string to ContosoUniversity2 or some other name that you haven't used on the computer you're using.
