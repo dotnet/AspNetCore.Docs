@@ -1,16 +1,16 @@
 ---
-title: "Tutorial: Using the migrations feature - ASP.NET MVC with EF Core"
-description: "In this tutorial, you start using the EF Core migrations feature for managing data model changes in an ASP.NET Core MVC application."
+title: Tutorial: Part 5, apply migrations to the Contoso University sample
+description: Part 5, of the Contoso University. Use the EF Core migrations feature for managing data model changes in an ASP.NET Core MVC app.
 author: rick-anderson
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/27/2019
+ms.date: 11/13/2020
 ms.topic: tutorial
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: data/ef-mvc/migrations
 ---
 
-# Tutorial: Using the migrations feature - ASP.NET MVC with EF Core
+# Tutorial: Part 5, apply migrations to the Contoso University sample
 
 In this tutorial, you start using the EF Core migrations feature for managing data model changes. In later tutorials, you'll add more migrations as you change the data model.
 
@@ -18,7 +18,6 @@ In this tutorial, you:
 
 > [!div class="checklist"]
 > * Learn about migrations
-> * Change the connection string
 > * Create an initial migration
 > * Examine Up and Down methods
 > * Learn about the data model snapshot
@@ -36,6 +35,17 @@ This method of keeping the database in sync with the data model works well until
 
 To work with migrations, you can use the **Package Manager Console** (PMC) or the CLI.  These tutorials show how to use CLI commands. Information about the PMC is at [the end of this tutorial](#pmc).
 
+## Drop the database
+
+ Delete the database. Use **SQL Server Object Explorer** (SSOX) or the `database drop` CLI command:
+
+ ```dotnetcli
+ dotnet ef database drop
+ ```
+
+The following section explains how to run CLI commands.
+
+<!--
 ## Change the connection string
 
 In the *appsettings.json* file, change the name of the database in the connection string to ContosoUniversity2 or some other name that you haven't used on the computer you're using.
@@ -43,15 +53,7 @@ In the *appsettings.json* file, change the name of the database in the connectio
 [!code-json[](intro/samples/cu/appsettings2.json?range=1-4)]
 
 This change sets up the project so that the first migration will create a new database. This isn't required to get started with migrations, but you'll see later why it's a good idea.
-
-> [!NOTE]
-> As an alternative to changing the database name, you can delete the database. Use **SQL Server Object Explorer** (SSOX) or the `database drop` CLI command:
->
-> ```dotnetcli
-> dotnet ef database drop
-> ```
->
-> The following section explains how to run CLI commands.
+-->
 
 ## Create an initial migration
 
@@ -78,7 +80,7 @@ In the preceding commands, output similar to the following is displayed:
 
 ```console
 info: Microsoft.EntityFrameworkCore.Infrastructure[10403]
-      Entity Framework Core 2.2.0-rtm-35687 initialized 'SchoolContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+      Entity Framework Core initialized 'SchoolContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
 Done. To undo this action, use 'ef migrations remove'
 ```
 
@@ -116,7 +118,7 @@ The output from the command is similar to the `migrations add` command, except t
 
 ```text
 info: Microsoft.EntityFrameworkCore.Infrastructure[10403]
-      Entity Framework Core 2.2.0-rtm-35687 initialized 'SchoolContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+      Entity Framework Core initialized 'SchoolContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
 info: Microsoft.EntityFrameworkCore.Database.Command[20101]
       Executed DbCommand (274ms) [Parameters=[], CommandType='Text', CommandTimeout='60']
       CREATE DATABASE [ContosoUniversity2];
@@ -139,7 +141,7 @@ info: Microsoft.EntityFrameworkCore.Database.Command[20101]
 info: Microsoft.EntityFrameworkCore.Database.Command[20101]
       Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
       INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
-      VALUES (N'20190327172701_InitialCreate', N'2.2.0-rtm-35687');
+      VALUES (N'20190327172701_InitialCreate', N'5.0-rtm');
 Done.
 ```
 
@@ -165,20 +167,9 @@ For more information about the PMC commands, see [Package Manager Console (Visua
 
 ## Get the code
 
-[Download or view the completed application.](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)
+[Download or view the completed application.](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples)
 
 ## Next step
-
-In this tutorial, you:
-
-> [!div class="checklist"]
-> * Learned about migrations
-> * Learned about NuGet migration packages
-> * Changed the connection string
-> * Created an initial migration
-> * Examined Up and Down methods
-> * Learned about the data model snapshot
-> * Applied the migration
 
 Advance to the next tutorial to begin looking at more advanced topics about expanding the data model. Along the way you'll create and apply additional migrations.
 
