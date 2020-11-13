@@ -83,7 +83,7 @@ To configure an app for the Azure SignalR Service, the app must support *sticky 
        "Azure:SignalR:ServerStickyMode": "Required"
        ```
 
-     * The app service's **Configuration** > **Application settings** in the Azure portal (**Name**: `Azure:SignalR:ServerStickyMode`, **Value**: `Required`). This approach is adopted for the app automatically if you [provision the Azure SignalR Service](#provision-the-azure-signalr-service).
+     * The app service's **Configuration** > **Application settings** in the Azure portal (**Name**: `Azure__SignalR__ServerStickyMode`, **Value**: `Required`). This approach is adopted for the app automatically if you [provision the Azure SignalR Service](#provision-the-azure-signalr-service).
 
 ### Provision the Azure SignalR Service
 
