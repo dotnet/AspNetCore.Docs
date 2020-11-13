@@ -271,7 +271,7 @@ You can also supply different content for display if the user isn't authorized:
 
 The content of `<Authorized>` and `<NotAuthorized>` tags can include arbitrary items, such as other interactive components.
 
-Default event handlers for nonrendered elements, such as the `SecureMethod` method in the preceding example when the user isn't authorized, can't be invoked by an unauthorized user.
+A default event handler for an authorized element, such as the `SecureMethod` method for the `<button>` element in the preceding example, can only be invoked by an authorized user.
 
 Authorization conditions, such as roles or policies that control UI options or access, are covered in the [Authorization](#authorization) section.
 
