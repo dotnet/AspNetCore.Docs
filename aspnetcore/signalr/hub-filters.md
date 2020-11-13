@@ -83,8 +83,8 @@ public class CustomFilter : IHubFilter
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Exception calling '{invocationContext.HubMethodName}'");
-            throw ex;
+            Console.WriteLine($"Exception calling '{invocationContext.HubMethodName}': {ex}");
+            throw;
         }
     }
 
