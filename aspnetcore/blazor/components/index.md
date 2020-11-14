@@ -249,6 +249,14 @@ In the following example from the sample app, the `ParentComponent` sets the val
 
 [!code-razor[](index/samples_snapshot/ParentComponent.razor?highlight=5-6)]
 
+By convention, an attribute value that consists of C# code is assigned to a parameter using [Razor's reserved `@` symbol](xref:mvc/views/razor#razor-syntax):
+
+* Parent field or property: `Title="@ParentProperty`
+* Result of a method: `Title="@ParentMethod"`
+* [Implicit or explicit expression](xref:mvc/views/razor#implicit-razor-expressions): `Title="@(DateTime.Now - TimeSpan.FromDays(7))"`
+  
+For more information, see <xref:mvc/views/razor>.
+
 > [!WARNING]
 > Don't create components that write to their own *component parameters*, use a private field instead. For more information, see the [Overwritten parameters](#overwritten-parameters) section.
 
@@ -633,7 +641,7 @@ Consider the following faulty `Expander` component that:
 * The component writes directly to the `Expanded` parameter, which demonstrates the problem with overwritten parameters and should be avoided.
 
 ```razor
-<div @onclick="@Toggle" class="card bg-light mb-3" style="width:30rem">
+<div @onclick="Toggle" class="card bg-light mb-3" style="width:30rem">
     <div class="card-body">
         <h2 class="card-title">Toggle (<code>Expanded</code> = @Expanded)</h2>
 
@@ -685,7 +693,7 @@ The following revised `Expander` component:
 * Uses the private field to maintain its internal toggle state, which demonstrates how to avoid writing directly to a parameter.
 
 ```razor
-<div @onclick="@Toggle" class="card bg-light mb-3" style="width:30rem">
+<div @onclick="Toggle" class="card bg-light mb-3" style="width:30rem">
     <div class="card-body">
         <h2 class="card-title">Toggle (<code>expanded</code> = @expanded)</h2>
 
