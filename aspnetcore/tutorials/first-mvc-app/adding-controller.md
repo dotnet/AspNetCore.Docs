@@ -70,7 +70,7 @@ The first comment states this is an [HTTP GET](https://www.w3schools.com/tags/re
 
 Run the app in non-debug mode and append "HelloWorld" to the path in the address bar. The `Index` method returns a string.
 
-![Browser window showing an application response of This is my default action](~/tutorials/first-mvc-app/adding-controller/_static/hell1VS.png)
+![Browser window showing an application response of This is my default action](~/tutorials/first-mvc-app/adding-controller/_static/hell1.png)
 
 MVC invokes controller classes (and the action methods within them) depending on the incoming URL. The default [URL routing logic](xref:mvc/controllers/routing) used by MVC uses a format like this to determine what code to invoke:
 
