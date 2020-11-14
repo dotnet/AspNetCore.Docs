@@ -442,6 +442,7 @@ In the Firefox browser, set  `security.enterprise_roots.enabled` = `true`
 1. Select **Accept the Risk and Continue** if you accept the risk.
 1. Select **Show All**
 1. Set `security.enterprise_roots.enabled` = `true`
+1. Exit and restart Firefox
 
 ## Additional information
 
