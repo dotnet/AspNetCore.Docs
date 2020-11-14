@@ -251,9 +251,9 @@ In the following example from the sample app, the `ParentComponent` sets the val
 
 By convention, an attribute value that consists of C# code is assigned to a parameter using [Razor's reserved `@` symbol](xref:mvc/views/razor#razor-syntax):
 
-* Parent field or property: `Title="@ParentProperty`
-* Result of a method: `Title="@ParentMethod"`
-* [Implicit or explicit expression](xref:mvc/views/razor#implicit-razor-expressions): `Title="@(DateTime.Now - TimeSpan.FromDays(7))"`
+* Parent field or property: `Title="@{FIELD OR PROPERTY}`, where the placeholder `{FIELD OR PROPERTY}` is a C# field or property of the parent component.
+* Result of a method: `Title="@{METHOD}"`, where the placeholder `{METHOD}` is a C# method of the parent component.
+* [Implicit or explicit expression](xref:mvc/views/razor#implicit-razor-expressions): `Title="@({EXPRESSION})"`, where the placeholder `{EXPRESSION}` is a C# expression.
   
 For more information, see <xref:mvc/views/razor>.
 
