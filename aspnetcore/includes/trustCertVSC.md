@@ -14,3 +14,4 @@
 
   See [Trust the ASP.NET Core HTTPS development certificate](xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos) for more information.
   
+[!INCLUDE[trust FF](~/includes/trust-ff.md)]

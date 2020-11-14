@@ -434,6 +434,8 @@ See [HTTPS Error using IIS Express (dotnet/AspNetCore #16892)](https://github.co
 
 To fix problems with the IIS Express certificate, select **Repair** from the Visual Studio installer. For more information, see [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/16892).
 
+<a name="trust-ff"></a>
+
 ### Firefox SEC_ERROR_INADEQUATE_KEY_USAGE certificate error
 
 In the Firefox browser, set  `security.enterprise_roots.enabled` = `true`
