@@ -436,7 +436,7 @@ To fix problems with the IIS Express certificate, select **Repair** from the Vis
 
 ### Firefox SEC_ERROR_INADEQUATE_KEY_USAGE certificate error
 
-With the Firefox browser, set  `security.enterprise_roots.enabled` = `true`
+In the Firefox browser, set  `security.enterprise_roots.enabled` = `true`
 
 1. Enter `about:config` in the FireFox browser.
 1. Select **Accept the Risk and Continue** if you accept the risk.
