@@ -95,7 +95,31 @@ Use the <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblie
 
 ## Route parameters
 
-The router uses route parameters to populate the corresponding component parameters with the same name (case insensitive):
+The router uses route parameters to populate the corresponding component parameters with the same name (case insensitive).
+
+::: moniker range=">= aspnetcore-5.0"
+
+Optional parameters are supported. In the following example, the `text` optional parameter assigns the value of the route segment to the component's `Text` property. If the segment isn't present, the value of `Text` is set to `fantastic`:
+
+```razor
+@page "/RouteParameter/{text?}"
+
+<h1>Blazor is @Text!</h1>
+
+@code {
+    [Parameter]
+    public string Text { get; set; }
+
+    protected override void OnInitialized()
+    {
+        Text = Text ?? "fantastic";
+    }
+}
+```
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
 
 ```razor
 @page "/RouteParameter"
@@ -115,6 +139,8 @@ The router uses route parameters to populate the corresponding component paramet
 ```
 
 Optional parameters aren't supported. Two `@page` directives are applied in the previous example. The first permits navigation to the component without a parameter. The second `@page` directive takes the `{text}` route parameter and assigns the value to the `Text` property.
+
+::: moniker-end
 
 ## Route constraints
 
