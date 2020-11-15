@@ -29,7 +29,7 @@ This topic provides information on dependency injection in ASP.NET Core. The pri
 
 ## Overview of dependency injection
 
-A *dependency* is an object that another object depends on. Examine the following `MyDependency` class with a `WriteMessage` method that other classes depend on:
+A *dependency* is a class that another class depends on. Examine the following `MyDependency` class with a `WriteMessage` method that other classes depend on:
 
 ```csharp
 public class MyDependency
