@@ -361,3 +361,4 @@ To create additional file mappings with a <xref:Microsoft.AspNetCore.StaticFiles
 ## Additional resources
 
 * <xref:fundamentals/logging/index>
+* [Blazor Server reconnection events and component lifecycle events](xref:blazor/components/lifecycle#blazor-server-reconnection-events)
