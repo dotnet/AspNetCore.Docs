@@ -1,5 +1,5 @@
 ---
-title: Use ASP.NET Core SignalR with Blazor WebAssembly
+title: Use ASP.NET Core SignalR with a hosted Blazor WebAssembly app
 author: guardrex
 description: Create a chat app that uses ASP.NET Core SignalR with Blazor WebAssembly.
 monikerRange: '>= aspnetcore-3.1'
@@ -9,7 +9,7 @@ ms.date: 11/11/2020
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/signalr-blazor-webassembly
 ---
-# Use ASP.NET Core SignalR with Blazor WebAssembly
+# Use ASP.NET Core SignalR with a hosted Blazor WebAssembly app
 
 By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.com/guardrex)
 
