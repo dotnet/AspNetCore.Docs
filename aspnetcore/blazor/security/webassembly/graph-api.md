@@ -78,9 +78,9 @@ internal static class GraphClientExtensions
 
     private class NoOpGraphAuthenticationProvider : IAuthenticationProvider
     {
-        public NoOpGraphAuthenticationProvider(IAccessTokenProvider provider)
+        public NoOpGraphAuthenticationProvider(IAccessTokenProvider tokenProvider)
         {
-            Provider = provider;
+            TokenProvider = tokenProvider;
         }
 
         public IAccessTokenProvider TokenProvider { get; }
