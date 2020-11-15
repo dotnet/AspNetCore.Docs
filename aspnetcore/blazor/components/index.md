@@ -227,11 +227,25 @@ If a component contains an HTML element with an uppercase first letter that does
 
 Components can receive route parameters from the route template provided in the [`@page`][9] directive. The router uses route parameters to populate the corresponding component parameters.
 
+::: moniker range=">= aspnetcore-5.0"
+
+Optional parameters are supported. In the following example, the `text` optional parameter assigns the value of the route segment to the component's `Text` property. If the segment isn't present, the value of `Text` is set to `fantastic`.
+
 `Pages/RouteParameter.razor`:
 
-[!code-razor[](index/samples_snapshot/RouteParameter.razor?highlight=2,7-8)]
+[!code-razor[](index/samples_snapshot/RouteParameter-5x.razor?highlight=1,6-7)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+`Pages/RouteParameter.razor`:
+
+[!code-razor[](index/samples_snapshot/RouteParameter-3x.razor?highlight=2,7-8)]
 
 Optional parameters aren't supported, so two [`@page`][9] directives are applied in the preceding example. The first permits navigation to the component without a parameter. The second [`@page`][9] directive receives the `{text}` route parameter and assigns the value to the `Text` property.
+
+::: moniker-end
 
 For information on catch-all route parameters (`{*pageRoute}`), which capture paths across multiple folder boundaries, see <xref:blazor/fundamentals/routing#catch-all-route-parameters>.
 
