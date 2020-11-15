@@ -92,7 +92,7 @@ protected override async Task OnInitializedAsync()
 }
 ```
 
-Blazor Server apps that [prerender their content](xref:blazor/fundamentals/additional-scenarios#render-mode) call <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> **_twice_**:
+Blazor Server apps that [prerender their content](xref:blazor/fundamentals/additional-scenarios#render-mode) call <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> _twice_:
 
 * Once when the component is initially rendered statically as part of the page.
 * A second time when the browser establishes a connection back to the server.
