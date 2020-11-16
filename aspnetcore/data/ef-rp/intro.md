@@ -128,6 +128,7 @@ To run the app after downloading the completed project:
 ## Set up the site style
 
 Copy and paste the following code into the *Pages/Shared/_Layout.cshtml* file:
+
 [!code-cshtml[Main](intro/samples/cu50/Pages/Shared/_Layout.cshtml?highlight=6,14,21-35,49)]
 
 The layout file sets the site header, footer, and menu. The preceding code makes the following changes:
