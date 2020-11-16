@@ -59,8 +59,8 @@
         using var stream = person.Picture.OpenReadStream();
 
         var buffer = new byte[4 * 1096];
-        private int bytesRead;
-        private double totalRead = 0;
+        int bytesRead;
+        double totalRead = 0;
 
         displayProgress = true;
 
