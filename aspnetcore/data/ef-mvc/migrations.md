@@ -4,7 +4,6 @@ description: Part 5 of the Contoso University tutorial series. Use the EF Core m
 author: rick-anderson
 ms.author: riande
 ms.custom: contperfq2
-ms.custom: mvc
 ms.date: 11/13/2020
 ms.topic: tutorial
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
