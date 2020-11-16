@@ -58,11 +58,11 @@ Add an `Index` view for the `HelloWorldController`.
 * In the **New File** dialog:
 
   * Select **ASP .NET Core** in the left pane.
-  * Select **MVC View Page** in the center pane.
+  * Select **Razor View** in the center pane.
   * Type *Index* in the **Name** box.
   * Select **New**.
 
-![Add New Item dialog](adding-view/_static/add_view_mac.png)
+![Add New Item dialog](adding-view/_static/add_view_macVSM8.9.png)
 
 ---
 

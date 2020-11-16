@@ -89,6 +89,14 @@ Repeat the above steps to install the following NuGet packages:
 * `Microsoft.EntityFrameworkCore.SqlServer`
 * `Microsoft.EntityFrameworkCore.Design`
 
+Run the following .NET CLI command:
+
+```dotnetcli
+dotnet tool install --global dotnet-aspnet-codegenerator
+```
+
+The preceding command adds the [aspnet-codegenerator scaffolding tool](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
+
 ---
 
 <a name="dc"></a>
