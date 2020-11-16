@@ -26,5 +26,3 @@
 <!-- End of VS tabs -->
 
 ---
-
-[!INCLUDE[trust FF](~/includes/trust-ff.md)]
