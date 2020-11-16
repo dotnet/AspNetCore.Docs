@@ -45,16 +45,6 @@ Delete the database. Use **SQL Server Object Explorer** (SSOX) or the `database 
 
 The following section explains how to run CLI commands.
 
-<!-- Delete the following hack
-## Change the connection string
-
-In the *appsettings.json* file, change the name of the database in the connection string to ContosoUniversity2 or some other name that you haven't used on the computer you're using.
-
-[!code-json[](intro/samples/cu/appsettings2.json?range=1-4)]
-
-This change sets up the project so that the first migration will create a new database. This isn't required to get started with migrations, but you'll see later why it's a good idea.
--->
-
 ## Create an initial migration
 
 Save your changes and build the project. Then open a command window and navigate to the project folder. Here's a quick way to do that:
