@@ -544,7 +544,7 @@ IFilterFactory.IsReusable` is a hint by the factory that the filter instance cre
 * The filter will not be re-requested from the DI container at some later point.
 * Should not be used with a filter that depends on services with a lifetime other than singleton.
 
-[!WARNING] Only configure `IFilterFactory.IsReusable` to return `true` if the source of the filters is unambigious, the filters are stateless, and are safe to use across multiple HTTP requests.
+[!WARNING] Only configure `IFilterFactory.IsReusable` to return `true` if the source of the filters is unambigious, the filters are stateless, and are safe to use across multiple HTTP requests. For instance, do not return filters from DI that are registered as scoped or transient if `IFilterFactory.IsReusable` returns `true`
 
 `IFilterFactory` can be implemented using custom attribute implementations as another approach to creating filters:
 
