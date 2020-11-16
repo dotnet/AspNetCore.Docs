@@ -538,13 +538,17 @@ For example, the following filter always runs and sets an action result (<xref:M
 
 <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterFactory> implements <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterMetadata>. Therefore, an `IFilterFactory` instance can be used as an `IFilterMetadata` instance anywhere in the filter pipeline. When the runtime prepares to invoke the filter, it attempts to cast it to an `IFilterFactory`. If that cast succeeds, the <xref:Microsoft.AspNetCore.Mvc.Filters.IFilterFactory.CreateInstance*> method is called to create the `IFilterMetadata` instance that is invoked. This provides a flexible design, since the precise filter pipeline doesn't need to be set explicitly when the app starts.
 
-IFilterFactory.IsReusable` is a hint by the factory that the filter instance created by the factory may be reused outside of the request scope it was created within. The ASP.NET Core runtime doesn't guarantee:
+IFilterFactory.IsReusable`:
+
+* Is a hint by the factory that the filter instance created by the factory may be reused outside of the request scope it was created within.
+* Should ***not*** be used with a filter that depends on services with a lifetime other than singleton.
+
+The ASP.NET Core runtime doesn't guarantee:
 
 * That a single instance of the filter will be created.
 * The filter will not be re-requested from the DI container at some later point.
-* Should not be used with a filter that depends on services with a lifetime other than singleton.
 
-[!WARNING] Only configure `IFilterFactory.IsReusable` to return `true` if the source of the filters is unambigious, the filters are stateless, and are safe to use across multiple HTTP requests. For instance, do not return filters from DI that are registered as scoped or transient if `IFilterFactory.IsReusable` returns `true`
+[!WARNING] Only configure `IFilterFactory.IsReusable` to return `true` if the source of the filters is unambiguous, the filters are stateless, and are safe to use across multiple HTTP requests. For instance, do not return filters from DI that are registered as scoped or transient if `IFilterFactory.IsReusable` returns `true`
 
 `IFilterFactory` can be implemented using custom attribute implementations as another approach to creating filters:
 
