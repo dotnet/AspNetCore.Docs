@@ -3,7 +3,7 @@ title: Part 2, add a controller to an ASP.NET Core MVC app
 author: rick-anderson
 description: Part 2 of tutorial series on ASP.NET Core MVC.
 ms.author: riande
-ms.date: 08/05/2017
+ms.date: 11/12/2020
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-mvc-app/adding-controller
 ---
@@ -31,19 +31,19 @@ We cover these concepts in this tutorial series and show you how to use them to 
 # [Visual Studio](#tab/visual-studio)
 
 * In the **Solution Explorer**, right-click **Controllers > Add > Controller**
-  ![Solution Explorer, right click Controllers > Add > Controller](~/tutorials/first-mvc-app/adding-controller/_static/add_controllerCopy.png)
+  ![Solution Explorer, right click Controllers > Add > Controller](~/tutorials/first-mvc-app/adding-controller/_static/add_controllercopyVS19v16.9.png)
 
 * In the **Add Scaffold** dialog box, select **MVC Controller - Empty**
 
-  ![Add MVC controller and name it](~/tutorials/first-mvc-app/adding-controller/_static/acCopy.png)
+  ![Add MVC controller and name it](~/tutorials/first-mvc-app/adding-controller/_static/acCopyVS19v16.9.png)
 
-* In the **Add Empty MVC Controller dialog**, enter **HelloWorldController** and select **ADD**.
+* In the **Add New Item - MvcMovie dialog**, enter **HelloWorldController.cs** and select **Add**.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
 Select the **EXPLORER** icon and then control-click (right-click) **Controllers > New File** and name the new file *HelloWorldController.cs*.
 
-  ![Contextual menu](~/tutorials/first-mvc-app-xplat/adding-controller/_static/new_file.png)
+  ![Contextual menu](~/tutorials/first-mvc-app-xplat/adding-controller/_static/new_fileVSC1.51.png)
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
