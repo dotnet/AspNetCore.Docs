@@ -3,7 +3,7 @@ title: Part 3, add a view to an ASP.NET Core MVC app
 author: rick-anderson
 description: Part 3 of tutorial series on ASP.NET Core MVC.
 ms.author: riande
-ms.date: 8/04/2019
+ms.date: 11/16/2019
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-mvc-app/adding-view
 ---
@@ -58,11 +58,11 @@ Add an `Index` view for the `HelloWorldController`.
 * In the **New File** dialog:
 
   * Select **ASP .NET Core** in the left pane.
-  * Select **MVC View Page** in the center pane.
+  * Select **Razor View** in the center pane.
   * Type *Index* in the **Name** box.
   * Select **New**.
 
-![Add New Item dialog](adding-view/_static/add_view_mac.png)
+![Add New Item dialog](adding-view/_static/add_view_macVSM8.9.png)
 
 ---
 
