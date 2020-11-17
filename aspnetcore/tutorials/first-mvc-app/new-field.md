@@ -58,7 +58,7 @@ Edit the */Views/Movies/Index.cshtml* file and add a `Rating` field:
 
 ::: moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
 
-[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie2/Views/Movies/IndexGenreRating.cshtml?highlight=16,38&range=24-63)]
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Views/Movies/IndexGenreRating.cshtml?highlight=16,38&range=24-63)]
 
 ::: moniker-end
 
