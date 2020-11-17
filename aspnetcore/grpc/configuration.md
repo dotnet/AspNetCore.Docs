@@ -48,7 +48,7 @@ gRPC client configuration is set on `GrpcChannelOptions`. The following table de
 | <span style="word-break:normal;word-wrap:normal">MaxReceiveMessageSize</span> | 4 MB | The maximum message size in bytes that can be received by the client. If the client receives a message that exceeds this limit, it throws an exception. Increasing this value allows the client to receive larger messages, but can negatively impact memory consumption. When set to `null`, the message size is unlimited. |
 | Credentials | `null` | A `ChannelCredentials` instance. Credentials are used to add authentication metadata to gRPC calls. |
 | CompressionProviders | gzip | A collection of compression providers used to compress and decompress messages. Custom compression providers can be created and added to the collection. The default configured providers support **gzip** compression. |
-| ThrowOperationCanceledOnCancellation | `false` | If set to `true` clients will throw <xref:System.OperationCanceledException> for a call when its canceled or its deadline is exceeded. |
+| ThrowOperationCanceledOnCancellation | `false` | If set to `true` clients throw <xref:System.OperationCanceledException> when a call is canceled or its deadline is exceeded. |
 
 The following code:
 
