@@ -36,6 +36,9 @@ A component that receives an image file can call the `RequestImageFileAsync` con
 
 The following example demonstrates multiple image file upload in a component. `InputFileChangeEventArgs.GetMultipleFiles` allows reading multiple files. Specify the maximum number of files you expect to read to prevent a malicious user from uploading a larger number of files than the app expects. `InputFileChangeEventArgs.File` allows reading the first and only file if the file upload does not support multiple files.
 
+> [!NOTE]
+> <xref:Microsoft.AspNetCore.Components.Forms.InputFileChangeEventArgs> is in the <xref:Microsoft.AspNetCore.Components.Forms?displayProperty=fullName> namespace, which is typically one of the namespaces in the app's `_Imports.razor` file.
+
 ```razor
 <h3>Upload PNG images</h3>
 
@@ -58,7 +61,7 @@ The following example demonstrates multiple image file upload in a component. `I
 }
 
 @code {
-    IList<string> imageDataUrls = new List<string>();
+    private IList<string> imageDataUrls = new List<string>();
 
     private async Task OnInputFileChange(InputFileChangeEventArgs e)
     {
