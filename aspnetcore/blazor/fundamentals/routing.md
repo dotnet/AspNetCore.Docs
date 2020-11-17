@@ -142,7 +142,14 @@ Optional parameters aren't supported. Two `@page` directives are applied in the 
 
 ::: moniker-end
 
-Use on [`OnParametersSet`](xref:blazor/components/lifecycle#after-parameters-are-set) instead of [`OnInitialized`](xref:blazor/components/lifecycle#component-initialization-methods) to permit app navigation to the same component with a different optional parameter value. For example, use `OnParametersSet` for a `Customer` component with an optional parameter for the customer's ID when the user should be able to navigate from `/customer` to `/customer/5523` or from `/customer/5523` to `/customer`.
+Use on [`OnParametersSet`](xref:blazor/components/lifecycle#after-parameters-are-set) instead of [`OnInitialized`](xref:blazor/components/lifecycle#component-initialization-methods) to permit app navigation to the same component with a different optional parameter value. Based on the preceding example, use `OnParametersSet` when the user should be able to navigate from `/RouteParameter` to `/RouteParameter/awesome` or from `/RouteParameter/awesome` to `/RouteParameter`:
+
+```csharp
+protected override void OnParametersSet()
+{
+    Text = Text ?? "fantastic";
+}
+```
 
 ## Route constraints
 
