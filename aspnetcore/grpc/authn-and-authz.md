@@ -60,7 +60,7 @@ The client can provide an access token for authentication. The server validates 
 
 On the server, bearer token authentication is configured using the [JWT Bearer middleware](/dotnet/api/microsoft.extensions.dependencyinjection.jwtbearerextensions.addjwtbearer).
 
-In the .NET gRPC client, the token can be sent with calls as a header:
+In the .NET gRPC client, the token can be sent with calls by using the `Metadata` collection. Entries in the `Metadata` collection are sent with a gRPC call as HTTP headers:
 
 ```csharp
 public bool DoAuthenticatedCall(
@@ -76,7 +76,9 @@ public bool DoAuthenticatedCall(
 }
 ```
 
-Configuring `ChannelCredentials` on a channel is an alternative way to send the token to the service with gRPC calls. The credential is run each time a gRPC call is made, which avoids the need to write code in multiple places to pass the token yourself.
+Configuring `ChannelCredentials` on a channel is an alternative way to send the token to the service with gRPC calls. A `ChannelCredentials` can include `CallCredentials`, which provide a way to automatically set `Metadata`.
+
+`CallCredentials` is run each time a gRPC call is made, which avoids the need to write code in multiple places to pass the token yourself. Note that `CallCredentials` are only applied if the channel is secured with TLS. `CallCredentials` aren't applied on unsecured non-TLS channels.
 
 The credential in the following example configures the channel to send the token with every gRPC call:
 
