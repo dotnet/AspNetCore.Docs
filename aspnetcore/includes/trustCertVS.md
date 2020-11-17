@@ -9,3 +9,5 @@ The following dialog is displayed:
 ![Security warning dialog](~/getting-started/_static/cert.png)
 
 Select **Yes** if you agree to trust the development certificate.
+
+[!INCLUDE[trust FF](~/includes/trust-ff.md)]
