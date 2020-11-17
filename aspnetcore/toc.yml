@@ -167,7 +167,7 @@
           href: /learn/modules/create-razor-pages-aspnet-core/
         - name: Web API apps >>
           displayName: tutorial
-          href: /learn/modules/build-web-api-net-core/
+          href: /learn/modules/build-web-api-aspnet-core/
         - name: Cloud-native microservices
           items:
             - name: Create and deploy >>
