@@ -5,7 +5,7 @@ description: Learn about ASP.NET Core Blazor app templates and Blazor project st
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/04/2020
+ms.date: 11/17/2020
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/templates
 ---
@@ -74,16 +74,30 @@ The following files and folders make up a Blazor app generated from a Blazor pro
     * When any page of the app is initially requested, this page is rendered and returned in the response.
     * The `_framework/blazor.server.js` JavaScript file is loaded, which sets up the real-time SignalR connection between the browser and the server.
     * The Host page specifies where the root `App` component (`App.razor`) is rendered.
-  * `Counter` (`Pages/Counter.razor`): Implements the Counter page.
-  * `Error` (`Error.razor`, Blazor Server app only): Rendered when an unhandled exception occurs in the app.
-  * `FetchData` (`Pages/FetchData.razor`): Implements the Fetch data page.
-  * `Index` (`Pages/Index.razor`): Implements the Home page.
+  * `Counter` component (`Pages/Counter.razor`): Implements the Counter page.
+  * `Error` component (`Error.razor`, Blazor Server app only): Rendered when an unhandled exception occurs in the app.
+  * `FetchData` component (`Pages/FetchData.razor`): Implements the Fetch data page.
+  * `Index` component (`Pages/Index.razor`): Implements the Home page.
   
 * `Properties/launchSettings.json`: Holds [development environment configuration](xref:fundamentals/environments#development-and-launchsettingsjson).
 
+::: moniker range=">= aspnetcore-5.0"
+
 * `Shared` folder: Contains other UI components (`.razor`) used by the app:
-  * `MainLayout` (`MainLayout.razor`): The app's [layout component](xref:blazor/layouts).
-  * `NavMenu` (`NavMenu.razor`): Implements sidebar navigation. Includes the [`NavLink` component](xref:blazor/fundamentals/routing#navlink-component) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), which renders navigation links to other Razor components. The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component automatically indicates a selected state when its component is loaded, which helps the user understand which component is currently displayed.
+  * `MainLayout` component (`MainLayout.razor`): The app's [layout component](xref:blazor/layouts).
+  * `MainLayout.razor.css`: Stylesheet for the app's main layout.
+  * `NavMenu` component (`NavMenu.razor`): Implements sidebar navigation. Includes the [`NavLink` component](xref:blazor/fundamentals/routing#navlink-component) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), which renders navigation links to other Razor components. The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component automatically indicates a selected state when its component is loaded, which helps the user understand which component is currently displayed.
+  * `NavMenu.razor.css`: Stylesheet for the app's navigation menu.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+* `Shared` folder: Contains other UI components (`.razor`) used by the app:
+  * `MainLayout` component (`MainLayout.razor`): The app's [layout component](xref:blazor/layouts).
+  * `NavMenu` component (`NavMenu.razor`): Implements sidebar navigation. Includes the [`NavLink` component](xref:blazor/fundamentals/routing#navlink-component) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), which renders navigation links to other Razor components. The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component automatically indicates a selected state when its component is loaded, which helps the user understand which component is currently displayed.
+  
+::: moniker-end
 
 * `_Imports.razor`: Includes common Razor directives to include in the app's components (`.razor`), such as [`@using`](xref:mvc/views/razor#using) directives for namespaces.
 
