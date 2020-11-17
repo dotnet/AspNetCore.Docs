@@ -49,7 +49,7 @@ The simplest `fetch` call accepts a single parameter representing the route. A s
 
 1. Add a CSS file named *site.css* to the *wwwroot/css* folder. Replace the contents of *site.css* with the following styles:
 
-    [!code-css[](first-web-api/samples/3.0/TodoApi/wwwroot/css/site.css?name=snippet_SiteCss)]
+    [!code-css[](first-web-api/samples/3.0/TodoApi/wwwroot/css/site.css)]
 
 1. Add a JavaScript file named *site.js* to the *wwwroot/js* folder. Replace the contents of *site.js* with the following code:
 
