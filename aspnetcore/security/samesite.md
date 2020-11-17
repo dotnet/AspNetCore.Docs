@@ -148,7 +148,7 @@ In `Startup.Configure`, add code that calls <xref:Microsoft.AspNetCore.Builder.C
 
 In `Startup.ConfigureServices`, add code similar to the following:
 
-::: moniker range="= aspnetcore-3.1"
+::: moniker range=">= aspnetcore-3.1"
 
 [!code-csharp[](samesite/sample/Startup31.cs?name=snippet)]
 
