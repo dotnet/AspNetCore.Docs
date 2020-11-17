@@ -3,7 +3,7 @@ title: Part 3, add a view to an ASP.NET Core MVC app
 author: rick-anderson
 description: Part 3 of tutorial series on ASP.NET Core MVC.
 ms.author: riande
-ms.date: 8/04/2019
+ms.date: 11/16/2019
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-mvc-app/adding-view
 ---
