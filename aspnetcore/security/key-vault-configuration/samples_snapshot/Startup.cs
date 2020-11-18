@@ -1,4 +1,4 @@
-public class PrefixKeyVaultSecretManager : IKeyVaultSecretManager
+public class PrefixKeyVaultSecretManager : KeyVaultSecretManager
 {
     private readonly string _prefix;
 
@@ -7,14 +7,14 @@ public class PrefixKeyVaultSecretManager : IKeyVaultSecretManager
         _prefix = $"{prefix}-";
     }
 
-    public bool Load(SecretItem secret)
+    public bool Load(SecretProperties secret)
     {
-        return secret.Identifier.Name.StartsWith(_prefix);
+        return secret.Name.StartsWith(_prefix);
     }
 
-    public string GetKey(SecretBundle secret)
+    public string GetKey(KeyVaultSecret secret)
     {
-        return secret.SecretIdentifier.Name
+        return secret.Name
             .Substring(_prefix.Length)
             .Replace("--", ConfigurationPath.KeyDelimiter);
     }

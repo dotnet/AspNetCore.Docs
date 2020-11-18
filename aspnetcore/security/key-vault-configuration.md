@@ -214,6 +214,71 @@ config.AddAzureKeyVault(
 | `Manager`        | <xref:Azure.Extensions.Aspnetcore.Configuration.Secrets.KeyVaultSecretManager> instance used to control secret loading. |
 | `ReloadInterval` | `Timespan` to wait between attempts at polling the key vault for changes. The default value is `null` (configuration isn't reloaded). |
 
+## Use a key name prefix
+
+AddAzureKeyVault provides an overload that accepts an implementation of <xref:Azure.Extensions.Aspnetcore.Configuration.Secrets.KeyVaultSecretManager>, which allows you to control how key vault secrets are converted into configuration keys. For example, you can implement the interface to load secret values based on a prefix value you provide at app startup. This allows you, for example, to load secrets based on the version of the app.
+
+> [!WARNING]
+> Don't use prefixes on key vault secrets to place secrets for multiple apps into the same key vault or to place environmental secrets (for example, *development* versus *production* secrets) into the same vault. We recommend that different apps and development/production environments use separate key vaults to isolate app environments for the highest level of security.
+
+In the following example, a secret is established in the key vault (and using the Secret Manager tool for the Development environment) for `5000-AppSecret` (periods aren't allowed in key vault secret names). This secret represents an app secret for version 5.0.0.0 of the app. For another version of the app, 5.1.0.0, a secret is added to the key vault (and using the Secret Manager tool) for `5100-AppSecret`. Each app version loads its versioned secret value into its configuration as `AppSecret`, stripping off the version as it loads the secret.
+
+AddAzureKeyVault is called with a custom <xref:Azure.Extensions.Aspnetcore.Configuration.Secrets.KeyVaultSecretManager>:
+
+[!code-csharp[](key-vault-configuration/samples_snapshot/Program.cs)]
+
+The <xref:Azure.Extensions.Aspnetcore.Configuration.Secrets.KeyVaultSecretManager> implementation reacts to the version prefixes of secrets to load the proper secret into configuration:
+
+* `Load` loads a secret when its name starts with the prefix. Other secrets aren't loaded.
+* `GetKey`:
+  * Removes the prefix from the secret name.
+  * Replaces two dashes in any name with the `KeyDelimiter`, which is the delimiter used in configuration (usually a colon). Azure Key Vault doesn't allow a colon in secret names.
+
+[!code-csharp[](key-vault-configuration/samples_snapshot/Startup.cs)]
+
+The `Load` method is called by a provider algorithm that iterates through the vault secrets to find the ones that have the version prefix. When a version prefix is found with `Load`, the algorithm uses the `GetKey` method to return the configuration name of the secret name. It strips off the version prefix from the secret's name and returns the rest of the secret name for loading into the app's configuration name-value pairs.
+
+When this approach is implemented:
+
+1. The app's version specified in the app's project file. In the following example, the app's version is set to `5.0.0.0`:
+
+   ```xml
+   <PropertyGroup>
+     <Version>5.0.0.0</Version>
+   </PropertyGroup>
+   ```
+
+1. Confirm that a `<UserSecretsId>` property is present in the app's project file, where `{GUID}` is a user-supplied GUID:
+
+   ```xml
+   <PropertyGroup>
+     <UserSecretsId>{GUID}</UserSecretsId>
+   </PropertyGroup>
+   ```
+
+   Save the following secrets locally with the [Secret Manager tool](xref:security/app-secrets):
+
+   ```dotnetcli
+   dotnet user-secrets set "5000-AppSecret" "5.0.0.0_secret_value_dev"
+   dotnet user-secrets set "5100-AppSecret" "5.1.0.0_secret_value_dev"
+   ```
+
+1. Secrets are saved in Azure Key Vault using the following Azure CLI commands:
+
+   ```azurecli
+   az keyvault secret set --vault-name {KEY VAULT NAME} --name "5000-AppSecret" --value "5.0.0.0_secret_value_prod"
+   az keyvault secret set --vault-name {KEY VAULT NAME} --name "5100-AppSecret" --value "5.1.0.0_secret_value_prod"
+   ```
+
+1. When the app is run, the key vault secrets are loaded. The string secret for `5000-AppSecret` is matched to the app's version specified in the app's project file (`5.0.0.0`).
+
+1. The version, `5000` (with the dash), is stripped from the key name. Throughout the app, reading configuration with the key `AppSecret` loads the secret value.
+
+1. If the app's version is changed in the project file to `5.1.0.0` and the app is run again, the secret value returned is `5.1.0.0_secret_value_dev` in the Development environment and `5.1.0.0_secret_value_prod` in Production.
+
+> [!NOTE]
+> You can also provide your own <xref:Azure.Security.KeyVault.Secrets.SecretClient> implementation to AddAzureKeyVault. A custom client permits sharing a single instance of the client across the app.
+
 ## Bind an array to a class
 
 The provider is capable of reading configuration values into an array for binding to a POCO array.
