@@ -38,7 +38,7 @@ It may be necessary to uninstall the `aspnet-codegenerator` to resolve problems.
 The following commands uninstall the `dotnet-aspnet-codegenerator` tool and installs the latest stable version:
 
 ```dotnetcli
-dotnet tool  uninstall  -g dotnet-aspnet-codegenerator
+dotnet tool uninstall -g dotnet-aspnet-codegenerator
 dotnet tool install -g dotnet-aspnet-codegenerator
 ```
 
