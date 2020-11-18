@@ -351,6 +351,8 @@
               uid: blazor/components/prerendering-and-integration
             - name: Component libraries
               uid: blazor/components/class-libraries
+        - name: Pass HttpContext tokens to Blazor Server
+          uid: blazor-server-pass-httpcontext-tokens
         - name: Globalization and localization
           uid: blazor/globalization-localization
         - name: Layouts
