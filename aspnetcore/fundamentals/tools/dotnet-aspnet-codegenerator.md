@@ -15,8 +15,6 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 `dotnet aspnet-codegenerator` - Runs the ASP.NET Core scaffolding engine. `dotnet aspnet-codegenerator` is only required to scaffold from the command line, it's not needed to use scaffolding with Visual Studio.
 
-This article applies to [.NET Core 2.1 SDK](https://dotnet.microsoft.com/download/dotnet-core/2.1) and later.
-
 ## Install and update aspnet-codegenerator
 
 Install the [.NET SDK](https://dotnet.microsoft.com/download).
