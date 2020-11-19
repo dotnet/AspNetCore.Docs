@@ -104,6 +104,10 @@ At this point, you need to add an API to the Azure API Management service. Leave
 
     ![APIs blade selected from the API Management Service instance](publish-to-azure-api-management-using-vs/_static/portal_api_overview.png)
 
+1. You will see an API already present **Echo API**. Click the 3 dots to the right of the name and then select **Delete** from the pop-up menu to remove it.
+    
+    ![Deleting the echo API from the API Management Service instance](publish-to-azure-api-management-using-vs/_static/portal_delete_echo.png)
+
 1. From the **Add a new API** panel, select the **Blank API** tile:
 
     ![Screen showing the blank API tile highlighted](publish-to-azure-api-management-using-vs/_static/portal_api_create_blank.png)
