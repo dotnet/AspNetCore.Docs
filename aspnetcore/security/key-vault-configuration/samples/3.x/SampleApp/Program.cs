@@ -73,7 +73,7 @@ namespace SampleApp
                     if (context.HostingEnvironment.IsProduction())
                     {
                         var builtConfig = config.Build();
-                        var SecretClient = new SecretClient(new Uri($"https://{builtConfig["KeyVaultName"]}.vault.azure.net/"),
+                        var secretClient = new SecretClient(new Uri($"https://{builtConfig["KeyVaultName"]}.vault.azure.net/"),
                                                                  new DefaultAzureCredential());
                         config.AddAzureKeyVault(SecretClient, new KeyVaultSecretManager());
 
