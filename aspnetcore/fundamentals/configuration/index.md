@@ -177,6 +177,43 @@ For more information, see [Azure Apps: Override app configuration using the Azur
 
 See [Connection string prefixes](#constr) for information on Azure database connection strings.
 
+### Naming of Environment Variables
+
+The environment varilable's names reflect the structure of an appsettings.json file, with each element in the path being seperated by double underscore (preferable) or colon.  Where the structure includes an array, the index of the array should be treated as an additional element name in this path.  To illustrate, below is an example `appsettings.json` file, and its equivelant values represented as environment variables.
+
+**appsettings.json** 
+```json
+{
+    "SmtpServer": "smtp.example.com",
+    "Logging": [
+        {
+            "Name": "ToEmail",
+            "Level": "Critical",
+            "Args": {
+                "FromAddress": "MySystem@example.com",
+                "ToAddress": "SRE@example.com"
+            }
+        },
+        {
+            "Name": "ToConsole",
+            "Level": "Information"
+        }
+    ]
+}
+```
+
+**environment variables**
+```dotnetcli
+setx SmtpServer=smtp.example.com
+setx Logging__0__Name=ToEmail
+setx Logging__0__Level=Critical
+setx Logging__0__Args__FromAddress=MySystem@example.com
+setx Logging__0__Args__ToAddress=SRE@example.com
+setx Logging__1__Name=ToConsole
+setx Logging__0__Level=Information
+```
+
+
 ### Environment variables set in launchSettings.json
 
 Environment variables set in *launchSettings.json* override those set in the system environment.
