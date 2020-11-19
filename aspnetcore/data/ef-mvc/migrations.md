@@ -35,6 +35,14 @@ This method of keeping the database in sync with the data model works well until
 
 To work with migrations, you can use the **Package Manager Console** (PMC) or the CLI.  These tutorials show how to use CLI commands. Information about the PMC is at [the end of this tutorial](#pmc).
 
+## Install EF Core tools
+
+Install EF Core tools as a [global tool](/ef/core/miscellaneous/cli/dotnet).
+
+```dotnetcli
+dotnet tool install --global dotnet-ef
+```
+
 ## Drop the database
 
 Delete the database. Use **SQL Server Object Explorer** (SSOX) or the `database drop` CLI command:
@@ -60,11 +68,8 @@ Save your changes and build the project. Then open a command window and navigate
 Enter the following command in the command window:
 
 ```dotnetcli
-dotnet tool install --global dotnet-ef
 dotnet ef migrations add InitialCreate
 ```
-
-`dotnet tool install --global dotnet-ef` installs `dotnet ef` as a [global tool](/ef/core/miscellaneous/cli/dotnet).
 
 In the preceding commands, output similar to the following is displayed:
 
