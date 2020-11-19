@@ -448,6 +448,8 @@ To use Firefox with IIS Express or Kestrel, set  `security.enterprise_roots.enab
 1. Set `security.enterprise_roots.enabled` = `true`
 1. Exit and restart Firefox
 
+For more information, see [Setting Up Certificate Authorities (CAs) in Firefox](https://support.mozilla.org/kb/setting-certificate-authorities-firefox).
+
 ## Additional information
 
 * <xref:host-and-deploy/proxy-load-balancer>
