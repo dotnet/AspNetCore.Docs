@@ -472,7 +472,7 @@ An uploaded file included in the HTTP request.  Also supported is `IEnumerable<I
 
 ### CancellationToken
 
-Actions can optionally bind a CancellationToken as a parameter. This binds <xref:Microsoft.AspNetCore.Http.HttpContext.RequestAborted> that signals when the connection underlying the HTTP request is aborted. Actions can use this parameter to cancel long running async operations that are executed as part of the controller actions.
+Actions can optionally bind a `CancellationToken` as a parameter. This binds <xref:Microsoft.AspNetCore.Http.HttpContext.RequestAborted> that signals when the connection underlying the HTTP request is aborted. Actions can use this parameter to cancel long running async operations that are executed as part of the controller actions.
 
 ### FormCollection
 
