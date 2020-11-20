@@ -43,8 +43,8 @@
     protected override void OnInitialized()
     {
         cancelation = new CancellationTokenSource();
-        editContext = new EditContext(person);
         person = new Person();
+        editContext = new EditContext(person);
     }
 
     private void OnChange(InputFileChangeEventArgs eventArgs)
