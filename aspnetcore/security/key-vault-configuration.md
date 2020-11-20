@@ -210,7 +210,7 @@ config.AddAzureKeyVault(new SecretClient(new URI("Your Key Vault Endpoint"), new
 
 | Property         | Description |
 | ---------------- | ----------- |
-| `Manager`        |  instance used to control secret loading. |
+| `Manager`        | <xref:Azure.Extensions.AspNetCore.Configuration.Secrets> instance used to control secret loading. |
 | `ReloadInterval` | `Timespan` to wait between attempts at polling the key vault for changes. The default value is `null` (configuration isn't reloaded). |
 
 ## Use a key name prefix
