@@ -307,7 +307,7 @@ Ignore the warning, as it will be addressed in a later step.
 
 The `Add-Migration` command generates code to create the initial database schema. The schema is based on the model specified in `DbContext`. The `InitialCreate` argument is used to name the migrations. Any name can be used, but by convention a name is selected that describes the migration.
 
-The `Update-Database` command runs the `Up` method in migrations that have not been applied. In this case, `update` runs the `Up` method in the *Migrations/\<time-stamp>_InitialCreate.cs* file, which creates the database.
+The `Update-Database` command runs the `Up` method in migrations that have not been applied. In this case, `Update-Database` runs the `Up` method in the *Migrations/\<time-stamp>_InitialCreate.cs* file, which creates the database.
 
 # [Visual Studio](#tab/visual-studio)
 
