@@ -175,8 +175,8 @@ az keyvault set-policy --name {KEY VAULT NAME} --object-id {OBJECT ID} --secret-
 The sample app:
 
 * Creates an instance of the `DefaultAzureCredential` class, the credential attempts to obtain an access token from environment for Azure resources.
-* A new <xref:Azure.Security.KeyVault.Secrets.Secrets> is created with the `DefaultAzureCredential` instance.
-* The <xref:Azure.Security.KeyVault.Secrets.Secrets> instance is used with a default implementation of <xref:Azure.Extensions.Aspnetcore.Configuration.Secrets> that loads all secret values and replaces double-dashes (`--`) with colons (`:`) in key names.
+* A new  is created with the `DefaultAzureCredential` instance.
+* The [Azure.Security.KeyVault.Secrets.Secrets](/dotnet/api/azure.security.keyvault.secrets) instance is used with a default implementation of <xref:Azure.Extensions.AspNetCore.Configuration.Secrets?displayProperty=fullName> that loads all secret values and replaces double-dashes (`--`) with colons (`:`) in key names.
 
 [!code-csharp[](key-vault-configuration/samples/3.x/SampleApp/Program.cs?name=snippet2&highlight=12-14)]
 
@@ -210,23 +210,23 @@ config.AddAzureKeyVault(new SecretClient(new URI("Your Key Vault Endpoint"), new
 
 | Property         | Description |
 | ---------------- | ----------- |
-| `Manager`        | <xref:Azure.Extensions.Aspnetcore.Configuration.Secrets> instance used to control secret loading. |
+| `Manager`        |  instance used to control secret loading. |
 | `ReloadInterval` | `Timespan` to wait between attempts at polling the key vault for changes. The default value is `null` (configuration isn't reloaded). |
 
 ## Use a key name prefix
 
-AddAzureKeyVault provides an overload that accepts an implementation of <xref:Azure.Extensions.Aspnetcore.Configuration.Secrets>, which allows you to control how key vault secrets are converted into configuration keys. For example, you can implement the interface to load secret values based on a prefix value you provide at app startup. This allows you, for example, to load secrets based on the version of the app.
+AddAzureKeyVault provides an overload that accepts an implementation of <<xref:Azure.Extensions.AspNetCore.Configuration.Secrets>, which allows you to control how key vault secrets are converted into configuration keys. For example, you can implement the interface to load secret values based on a prefix value you provide at app startup. This allows you, for example, to load secrets based on the version of the app.
 
 > [!WARNING]
 > Don't use prefixes on key vault secrets to place secrets for multiple apps into the same key vault or to place environmental secrets (for example, *development* versus *production* secrets) into the same vault. We recommend that different apps and development/production environments use separate key vaults to isolate app environments for the highest level of security.
 
 In the following example, a secret is established in the key vault (and using the Secret Manager tool for the Development environment) for `5000-AppSecret` (periods aren't allowed in key vault secret names). This secret represents an app secret for version 5.0.0.0 of the app. For another version of the app, 5.1.0.0, a secret is added to the key vault (and using the Secret Manager tool) for `5100-AppSecret`. Each app version loads its versioned secret value into its configuration as `AppSecret`, stripping off the version as it loads the secret.
 
-AddAzureKeyVault is called with a custom <xref:Azure.Extensions.Aspnetcore.Configuration.Secrets>:
+AddAzureKeyVault is called with a custom <<xref:Azure.Extensions.AspNetCore.Configuration.Secrets>:
 
 [!code-csharp[](key-vault-configuration/samples_snapshot/Program.cs)]
 
-The <xref:Azure.Extensions.Aspnetcore.Configuration.Secrets> implementation reacts to the version prefixes of secrets to load the proper secret into configuration:
+The <<xref:Azure.Extensions.AspNetCore.Configuration.Secrets> implementation reacts to the version prefixes of secrets to load the proper secret into configuration:
 
 * `Load` loads a secret when its name starts with the prefix. Other secrets aren't loaded.
 * `GetKey`:
