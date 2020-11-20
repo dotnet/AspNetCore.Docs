@@ -13,6 +13,9 @@ uid: blazor/security/webassembly/aad-groups-roles
 
 By [Luke Latham](https://github.com/guardrex) and [Javier Calvarro Nelson](https://github.com/javiercn)
 
+> [!NOTE]
+> This article applies to ASP.NET Core Blazor apps version 3.1 with Microsoft Identity v1.0 and is scheduled for update to 5.0 with Identity v2.0. For more information, see [Blazor WASM with AAD/B2C groups and roles (dotnet/AspNetCore.Docs #17683)](https://github.com/dotnet/AspNetCore.Docs/issues/17683).
+
 Azure Active Directory (AAD) provides several authorization approaches that can be combined with ASP.NET Core Identity:
 
 * User-defined groups
