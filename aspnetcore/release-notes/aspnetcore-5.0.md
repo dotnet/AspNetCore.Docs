@@ -131,7 +131,7 @@ Blazor has built-in `InputRadio` and `InputRadioGroup` components that simplify 
 
 ### Component virtualization
 
-Improve the perceived performance of component rendering using the Blazor framework's built-in virtualization support. For more information, see <xref:blazor/forms-validation#radio-buttons>.
+Improve the perceived performance of component rendering using the Blazor framework's built-in virtualization support. For more information, see <xref:blazor/components/virtualization>.
 
 ### `ontoggle` event support
 

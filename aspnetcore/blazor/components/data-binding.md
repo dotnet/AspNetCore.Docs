@@ -129,7 +129,7 @@ Specifying a format for the `date` field type isn't recommended because Blazor h
 
 A common scenario is binding a property in a child component to a property in its parent. This scenario is called a *chained bind* because multiple levels of binding occur simultaneously.
 
-Component parameters permit binding properties and fields of a parent component with `@bind-{PROPERTY OR FIELD}` syntax.
+[Component parameters](xref:blazor/components/index#component-parameters) permit binding properties and fields of a parent component with `@bind-{PROPERTY OR FIELD}` syntax.
 
 Chained binds can't be implemented with [`@bind`](xref:mvc/views/razor#bind) syntax in the child component. An event handler and value must be specified separately to support updating the property in the parent from the child component.
 
