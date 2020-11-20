@@ -22,7 +22,7 @@ Component lifecycle events:
 1. If the component is rendering for the first time on a request:
    * Create the component's instance.
    * Perform property injection. Run [`SetParametersAsync`](#before-parameters-are-set).
-   * Call [`OnInitialized{Async}`](#component-initialization-methods). If a <xref:System.Threading.Tasks.Task> is returned, the <xref:System.Threading.Tasks.Task> is awaited and the component is rendered at the first asychronous call (`await`) in `OnInitializedAsync`. If a <xref:System.Threading.Tasks.Task> isn't returned, the component is rendered.
+   * Call [`OnInitialized{Async}`](#component-initialization-methods). If a <xref:System.Threading.Tasks.Task> is returned, the <xref:System.Threading.Tasks.Task> is awaited and the component is rendered. If a <xref:System.Threading.Tasks.Task> isn't returned, the component is rendered.
 1. Call [`OnParametersSet{Async}`](#after-parameters-are-set) and render the component. If a <xref:System.Threading.Tasks.Task> is returned from `OnParametersSetAsync`, the <xref:System.Threading.Tasks.Task> is awaited and then the component is rerendered.
 
 ![Component lifecycle events of a Razor component in Blazor](lifecycle/_static/lifecycle1.png)
