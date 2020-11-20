@@ -870,6 +870,24 @@ In the server app, create a `Pages` folder if it doesn't exist. Create a `_Host.
 * Add `@page "_Host"` to the top of the file.
 * Replace the `<app>Loading...</app>` tag with the following:
 
+::: moniker range=">= aspnetcore-5.0"
+
+  ```cshtml
+  @if (!HttpContext.Request.Path.StartsWithSegments("/authentication"))
+  {
+      <component type="typeof(Wasm.Authentication.Client.App)" 
+          render-mode="Static" />
+  }
+  else
+  {
+      <text>Loading...</text>
+  }
+  ```
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
   ```cshtml
   <app>
       @if (!HttpContext.Request.Path.StartsWithSegments("/authentication"))
@@ -883,6 +901,8 @@ In the server app, create a `Pages` folder if it doesn't exist. Create a `_Host.
       }
   </app>
   ```
+
+::: moniker-end
   
 ## Options for hosted apps and third-party login providers
 
