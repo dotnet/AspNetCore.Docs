@@ -1,7 +1,7 @@
 ---
 title: Introduction to Razor Pages in ASP.NET Core
 author: Rick-Anderson
-description: Learn how Razor Pages in ASP.NET Core makes coding page-focused scenarios easier and more productive than using MVC.
+description: Explains how Razor Pages in ASP.NET Core makes coding page-focused scenarios easier and more productive than using MVC.
 monikerRange: '>= aspnetcore-2.0'
 ms.author: riande
 ms.date: 02/12/2020
@@ -629,8 +629,6 @@ Add <xref:Microsoft.Extensions.DependencyInjection.MvcRazorPagesMvcCoreBuilderEx
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
-
-## Prerequisites
 
 # [Visual Studio](#tab/visual-studio)
 
