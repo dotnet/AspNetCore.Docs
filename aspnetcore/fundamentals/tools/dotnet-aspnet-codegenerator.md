@@ -4,7 +4,7 @@ author: rick-anderson
 description: The dotnet aspnet-codegenerator command scaffolds ASP.NET Core projects.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
-ms.date: 07/04/2019
+ms.date: 11/16/2020
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/tools/dotnet-aspnet-codegenerator
 ---
@@ -15,9 +15,9 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 `dotnet aspnet-codegenerator` - Runs the ASP.NET Core scaffolding engine. `dotnet aspnet-codegenerator` is only required to scaffold from the command line, it's not needed to use scaffolding with Visual Studio.
 
-This article applies to [.NET Core 2.1 SDK](https://dotnet.microsoft.com/download/dotnet-core/2.1) and later.
+## Install and update aspnet-codegenerator
 
-## Installing aspnet-codegenerator
+Install the [.NET SDK](https://dotnet.microsoft.com/download).
 
 `dotnet-aspnet-codegenerator` is a [global tool](/dotnet/core/tools/global-tools) that must be installed. The following command installs the latest stable version of the `dotnet-aspnet-codegenerator` tool:
 
@@ -29,6 +29,17 @@ The following command updates `dotnet-aspnet-codegenerator` to the latest stable
 
 ```dotnetcli
 dotnet tool update -g dotnet-aspnet-codegenerator
+```
+
+## Uninstall aspnet-codegenerator
+
+It may be necessary to uninstall the `aspnet-codegenerator` to resolve problems. For example, if you installed a preview version of `aspnet-codegenerator`, uninstall it before installing the released version.
+
+The following commands uninstall the `dotnet-aspnet-codegenerator` tool and installs the latest stable version:
+
+```dotnetcli
+dotnet tool uninstall -g dotnet-aspnet-codegenerator
+dotnet tool install -g dotnet-aspnet-codegenerator
 ```
 
 ## Synopsis

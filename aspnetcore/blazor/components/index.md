@@ -251,7 +251,7 @@ For information on catch-all route parameters (`{*pageRoute}`), which capture pa
 
 ### Component parameters
 
-Components can have *component parameters*, which are defined using public properties on the component class with the [`[Parameter]`](xref:Microsoft.AspNetCore.Components.ParameterAttribute) attribute. Use attributes to specify arguments for a component in markup.
+Components can have *component parameters*, which are defined using public simple or complex properties on the component class with the [`[Parameter]`](xref:Microsoft.AspNetCore.Components.ParameterAttribute) attribute. Use attributes to specify arguments for a component in markup.
 
 `Components/ChildComponent.razor`:
 
