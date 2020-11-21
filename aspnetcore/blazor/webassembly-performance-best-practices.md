@@ -280,7 +280,7 @@ In the preceding example, `Data` is different for every cell, but `Options` is c
 
 The `<CascadingValue>` component has an optional parameter called `IsFixed`.
 
- * If the `IsFixed` value is `false` (the default), then every recipient of the cascaded value sets up a subscription to receive change notifications. In this case, each each `[CascadingParameter]` is **substantially more expensive** than a regular `[Parameter]` due to the subscription tracking.
+ * If the `IsFixed` value is `false` (the default), then every recipient of the cascaded value sets up a subscription to receive change notifications. In this case, each `[CascadingParameter]` is **substantially more expensive** than a regular `[Parameter]` due to the subscription tracking.
  * If the `IsFixed` value is `true` (for example, `<CascadingValue Value="@someValue" IsFixed="true">`), then receipients receive the initial value but do *not* set up any subscription to receive updates. In this case, each `[CascadingParameter]` is lightweight and **no more expensive** than a regular `[Parameter]`.
 
 So wherever possible, you should use `IsFixed="true"` on cascaded values. You can do this whenever the value being supplied doesn't change over time. In the common pattern where a component passes `this` as a cascaded value, you should use `IsFixed="true"`:
