@@ -176,7 +176,7 @@ The sample app:
 
 * Creates an instance of the `DefaultAzureCredential` class, the credential attempts to obtain an access token from environment for Azure resources.
 * A new [`Azure.Security.KeyVault.Secrets.Secrets`](/dotnet/api/azure.security.keyvault.secrets) is created with the `DefaultAzureCredential` instance.
-* The `Azure.Security.KeyVault.Secrets.Secrets` instance is used with a default implementation of <xref:Azure.Extensions.Aspnetcore.Configuration.Secrets> that loads all secret values and replaces double-dashes (`--`) with colons (`:`) in key names.
+* The `Azure.Security.KeyVault.Secrets.Secrets` instance is used with a default implementation of `Azure.Extensions.Aspnetcore.Configuration.Secrets` that loads all secret values and replaces double-dashes (`--`) with colons (`:`) in key names.
 
 [!code-csharp[](key-vault-configuration/samples/3.x/SampleApp/Program.cs?name=snippet2&highlight=12-14)]
 
