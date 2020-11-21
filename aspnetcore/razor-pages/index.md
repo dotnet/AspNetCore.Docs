@@ -1024,7 +1024,7 @@ In the layout, the title is read from the ViewData dictionary:
 
 ## TempData
 
-ASP.NET Core exposes the [TempData](/dotnet/api/microsoft.aspnetcore.mvc.controller.tempdata?view=aspnetcore-2.0#Microsoft_AspNetCore_Mvc_Controller_TempData) property on a [controller](/dotnet/api/microsoft.aspnetcore.mvc.controller). This property stores data until it's read. The `Keep` and `Peek` methods can be used to examine the data without deletion. `TempData` is  useful for redirection, when data is needed for more than a single request.
+ASP.NET Core exposes the [TempData](/dotnet/api/microsoft.aspnetcore.mvc.controller.tempdata#Microsoft_AspNetCore_Mvc_Controller_TempData) property on a [controller](/dotnet/api/microsoft.aspnetcore.mvc.controller). This property stores data until it's read. The `Keep` and `Peek` methods can be used to examine the data without deletion. `TempData` is  useful for redirection, when data is needed for more than a single request.
 
 The following code sets the value of `Message` using `TempData`:
 
