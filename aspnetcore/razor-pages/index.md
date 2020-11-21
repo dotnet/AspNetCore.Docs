@@ -41,8 +41,6 @@ This document provides an introduction to Razor Pages. It's not a step by step t
 
 ::: moniker range=">= aspnetcore-5.0"
 
-::: moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
-
 # [Visual Studio](#tab/visual-studio)
 
 [!INCLUDE[](~/includes/net-core-prereqs-vs-5.0.md)]
