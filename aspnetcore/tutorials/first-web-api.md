@@ -132,7 +132,7 @@ Press Ctrl+F5 to run without the debugger.
   Visual Studio launches:
 
 * The IIS Express web server.
-* The default browser and navigates to `https://localhost:<port>/https://localhost:5001/swagger/index.html`, where `<port>` is a randomly chosen port number.
+* The default browser and navigates to `https://localhost:<port>/swagger/index.html`, where `<port>` is a randomly chosen port number.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
