@@ -45,17 +45,47 @@ The following code calls the `CheckChanged` method when the check box is changed
 
 Event handlers can also be asynchronous and return a <xref:System.Threading.Tasks.Task>. There's no need to manually call [StateHasChanged](xref:blazor/components/lifecycle#state-changes). Exceptions are logged when they occur.
 
-In the following example, `UpdateHeading` is called asynchronously when the button is selected:
+In the following example, `UpdateHeading` is called asynchronously when the button is clicked; the `Heading` variable will be changed from "Initial heading" through "Started updating heading" to "Updated heading":
 
 ```razor
+<h1>@Heading</h1>
+
 <button class="btn btn-primary" @onclick="UpdateHeading">
     Update heading
 </button>
 
 @code {
+    private string Heading = "Initial heading";
+    
     private async Task UpdateHeading(MouseEventArgs e)
     {
-        await ...
+        Heading = "Started updating heading ...";
+	await ...
+	Heading = "Updated heading";
+    }
+}
+```
+
+It is possible to add further intermediate UI updates with the help of `StateHasChanged`:
+
+```razor
+<h1>@Heading</h1>
+
+<button class="btn btn-primary" @onclick="UpdateHeading">
+    Update heading
+</button>
+
+@code {
+    private string Heading = "Initial heading";
+    
+    private async Task UpdateHeading(MouseEventArgs e)
+    {
+        Heading = "Started updating heading ...";
+	await ...
+	Heading = "Intermediate heading update ..."
+	StateHasChanged(); // Required only to display the intermediate heading update
+	await ...	
+	Heading = "Updated heading";
     }
 }
 ```
