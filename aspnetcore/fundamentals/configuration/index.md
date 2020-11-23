@@ -5,7 +5,7 @@ description: Learn how to use the Configuration API to configure an ASP.NET Core
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 3/29/2020
+ms.date: 11/23/2020
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/configuration/index
 ---
@@ -135,7 +135,7 @@ The preceding environment settings:
 
 The following [setx](/windows-server/administration/windows-commands/setx) commands can be used to set the environment keys and values on Windows. Unlike `set`, `setx` settings are persisted. `/M` sets the variable in the system environment. If the `/M` switch isn't used, a user environment variable is set.
 
-```cmd
+```console
 setx MyKey "My key from setx Environment" /M
 setx Position__Title Setx_Environment_Editor /M
 setx Position__Name Environment_Rick /M
@@ -177,11 +177,12 @@ For more information, see [Azure Apps: Override app configuration using the Azur
 
 See [Connection string prefixes](#constr) for information on Azure database connection strings.
 
-### Naming of Environment Variables
+### Naming of environment variables
 
-The environment varilable's names reflect the structure of an appsettings.json file, with each element in the path being seperated by double underscore (preferable) or colon.  Where the structure includes an array, the index of the array should be treated as an additional element name in this path.  To illustrate, below is an example `appsettings.json` file, and its equivelant values represented as environment variables.
+Environment variable names reflect the structure of an *appsettings.json* file. Each element in the hierarchy is separated by a double underscore (preferable) or a colon. When the element structure includes an array, the array index should be treated as an additional element name in this path. Consider the following *appsettings.json* file and its equivalent values represented as environment variables.
 
-**appsettings.json** 
+**appsettings.json**
+
 ```json
 {
     "SmtpServer": "smtp.example.com",
@@ -203,16 +204,16 @@ The environment varilable's names reflect the structure of an appsettings.json f
 ```
 
 **environment variables**
-```dotnetcli
+
+```console
 setx SmtpServer=smtp.example.com
 setx Logging__0__Name=ToEmail
 setx Logging__0__Level=Critical
 setx Logging__0__Args__FromAddress=MySystem@example.com
 setx Logging__0__Args__ToAddress=SRE@example.com
 setx Logging__1__Name=ToConsole
-setx Logging__0__Level=Information
+setx Logging__1__Level=Information
 ```
-
 
 ### Environment variables set in launchSettings.json
 
