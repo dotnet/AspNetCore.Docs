@@ -120,7 +120,7 @@ We want to gauge developer interest in gRPC HTTP API. If gRPC HTTP API is intere
 
 The biggest difference between grpc-gateway and gRPC HTTP API is grpc-gateway uses code generation to create a reverse-proxy server. The reverse-proxy translates RESTful calls into gRPC and then sends them on to the gRPC service.
 
-For installation and usage of grpc-gateway, see the [grpc-gateway documentation](https://grpc-ecosystem.github.io/grpc-gateway/docs/usage.html).
+For installation and usage of grpc-gateway, see the [grpc-gateway README](https://github.com/grpc-ecosystem/grpc-gateway/#grpc-gateway).
 
 ## Additional resources
 
