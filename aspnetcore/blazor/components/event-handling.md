@@ -66,30 +66,6 @@ In the following example, `UpdateHeading` is called asynchronously when the butt
 }
 ```
 
-It is possible to add further intermediate UI updates with the help of `StateHasChanged`:
-
-```razor
-<h1>@Heading</h1>
-
-<button class="btn btn-primary" @onclick="UpdateHeading">
-    Update heading
-</button>
-
-@code {
-    private string Heading = "Initial heading";
-    
-    private async Task UpdateHeading(MouseEventArgs e)
-    {
-        Heading = "Started updating heading ...";
-	await ...
-	Heading = "Intermediate heading update ..."
-	StateHasChanged(); // Required only to display the intermediate heading update
-	await ...	
-	Heading = "Updated heading";
-    }
-}
-```
-
 ## Event argument types
 
 For some events, event argument types are permitted. Specifying an event parameter in an event method definition is optional and only necessary if the event type is used in the method. In the following example, the `MouseEventArgs` event argument is used in the `ShowMessage` method to set message text:
