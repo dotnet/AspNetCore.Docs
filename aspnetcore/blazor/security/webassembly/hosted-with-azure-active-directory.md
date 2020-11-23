@@ -18,7 +18,7 @@ This article describes how to create a [hosted Blazor WebAssembly app](xref:blaz
 ::: moniker range=">= aspnetcore-5.0"
 
 > [!NOTE]
-> For Blazor WebAssembly apps created in Visual Studio that are configured to support accounts in an AAD organizational directory, Visual Studio doesn't configure the solution's projects or the Azure portal app registrations correctly on project generation. This will be addressed in a future release of Visual Studio.
+> For Blazor WebAssembly apps created in Visual Studio that are configured to support accounts in an AAD organizational directory, Visual Studio doesn't currently configure the solution's projects or the Azure portal app registrations correctly on project generation. This will be addressed in a future release of Visual Studio.
 >
 > This article shows how to create the solution and Azure app portal registrations with the .NET CLI `dotnet new` command and by manually creating the app registrations in the Azure portal.
 >
