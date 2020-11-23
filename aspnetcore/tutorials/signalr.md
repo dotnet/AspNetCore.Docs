@@ -68,7 +68,8 @@ At the end, you'll have a working chat app:
 
    ```dotnetcli
    dotnet new webapp -o SignalRChat
-   code -r SignalRChat
+   cd SignalRChat
+   code -r .
    ```
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)

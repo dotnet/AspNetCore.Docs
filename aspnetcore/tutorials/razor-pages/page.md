@@ -219,12 +219,6 @@ For more information on Tag Helpers such as `<form method="post">`, see [Tag Hel
 
 ::: moniker range="< aspnetcore-3.0"
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT)
-
-This tutorial examines the Razor Pages created by scaffolding in the [previous tutorial](xref:tutorials/razor-pages/model).
-
-[View or download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie22) sample.
-
 ## The Create, Delete, Details, and Edit pages
 
 Examine the *Pages/Movies/Index.cshtml.cs* Page Model:
