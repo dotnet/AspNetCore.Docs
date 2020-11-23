@@ -19,12 +19,6 @@ namespace CustomFormattersSample.Controllers
                 Add(new Contact { FirstName = "Nancy", LastName = "Davolio" });
         }
 
-        public void Add(Contact contact)
-        {
-            contact.Id = Guid.NewGuid().ToString();
-            _contacts[contact.Id] = contact;
-        }
-
         [HttpGet]
         public IEnumerable<Contact> Get()
         {
@@ -47,7 +41,7 @@ namespace CustomFormattersSample.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest();
+                return BadRequest(ModelState);
             }
 
             Add(contact);
@@ -66,6 +60,12 @@ namespace CustomFormattersSample.Controllers
             _contacts.TryRemove(id, out _);
 
             return NoContent();
+        }
+
+        private void Add(Contact contact)
+        {
+            contact.Id = Guid.NewGuid().ToString();
+            _contacts[contact.Id] = contact;
         }
     }
 }
