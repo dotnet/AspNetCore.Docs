@@ -37,7 +37,7 @@ To work with migrations, you can use the **Package Manager Console** (PMC) or th
 
 ## Drop the database
 
-Install EF Core tools as a [global tool](/ef/core/miscellaneous/cli/dotnet) and elete the database. Use **SQL Server Object Explorer** (SSOX) or the `database drop` CLI command:
+Install EF Core tools as a [global tool](/ef/core/miscellaneous/cli/dotnet) and delete the database. Use **SQL Server Object Explorer** (SSOX) or the `database drop` CLI command:
 
  ```dotnetcli
  dotnet tool install --global dotnet-ef
