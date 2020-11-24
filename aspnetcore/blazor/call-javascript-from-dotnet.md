@@ -526,28 +526,6 @@ public async ValueTask<string> Prompt(string message)
 
 `IJSInProcessObjectReference` represents a reference to a JavaScript object whose functions can be invoked synchronously.
 
-`IJSUnmarshalledObjectReference` represents a reference to an JavaScript object whose functions can be invoked without the overhead of serializing .NET data. This can be used in Blazor WebAssembly when performance is crucial:
-
-```javascript
-window.unmarshalledInstance = {
-  helloWorld: function (personNamePointer) {
-    const personName = Blazor.platform.readStringField(value, 0);
-    return `Hello ${personName}`;
-  }
-};
-```
-
-```csharp
-var unmarshalledRuntime = (IJSUnmarshalledRuntime)js;
-var jsUnmarshalledReference = unmarshalledRuntime
-    .InvokeUnmarshalled<IJSUnmarshalledObjectReference>("unmarshalledInstance");
-
-string helloWorldString = jsUnmarshalledReference.InvokeUnmarshalled<string, string>(
-    "helloWorld");
-```
-
-In the preceding example, the <xref:Microsoft.JSInterop.IJSRuntime> service is injected into the class and assigned to `js` (not shown).
-
 ## Use of JavaScript libraries that render UI (DOM elements)
 
 Sometimes you may wish to use JavaScript libraries that produce visible user interface elements within the browser DOM. At first glance, this might seem difficult because Blazor's diffing system relies on having control over the tree of DOM elements and runs into errors if some external code mutates the DOM tree and invalidates its mechanism for applying diffs. This isn't a Blazor-specific limitation. The same challenge occurs with any diff-based UI framework.
@@ -690,6 +668,92 @@ Consider the following guidance when developing code that transfers a large amou
 ## JS modules
 
 For JS isolation, JS interop works with the browser's default support for [EcmaScript modules (ESM)](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules) ([ECMAScript specification](https://tc39.es/ecma262/#sec-modules)).
+
+## Unmarshalled JS interop
+
+In Blazor WebAssembly apps when the serialization of many or large .NET objects results in poor app performance, <xref:Microsoft.JSInterop.IJSUnmarshalledObjectReference> represents a reference to an JavaScript object whose functions can be invoked without the overhead of serializing .NET data.
+
+In the following example:
+
+* A [struct](/dotnet/csharp/language-reference/builtin-types/struct) containing a string and an integer is passed unserialized to JavaScript.
+* The JavaScript function (`unmarshalledFunction`) confirms the receipt of the data by checking field values and returning `true` when they match expected values.
+
+> [!NOTE]
+> The following example isn't a typical use case for this scenario because the [struct](/dotnet/csharp/language-reference/builtin-types/struct) passed to JavaScript is small and doesn't result in poor component performance. The example uses a small object merely to demonstrate the concepts for passing unserialized .NET data.
+
+```javascript
+window.returnJSObjectReference = () =>
+{
+  return {
+    dispose: function () {
+      DotNet.disposeJSObjectReference(this);
+    },
+    unmarshalledFunction: function (fields) {
+      const name = Blazor.platform.readStringField(fields, 0);
+      const year = Blazor.platform.readInt32Field(fields, 8);
+
+      return name === "Brigadier Alistair Gordon Lethbridge-Stewart" &&
+        year === 1968;
+    }
+  };
+}
+```
+
+```razor
+@page "/unmarshalled-js-interop"
+@using System.Runtime.InteropServices
+@using Microsoft.JSInterop
+@inject IJSRuntime JS
+
+<h1>Unmarshalled JS interop</h1>
+
+@if (result)
+{
+    <p>JS interop was successful!</p>
+}
+
+<p>
+    <button @onclick="CallJSUnmarshalled">Call JS Unmarshalled</button>
+</p>
+
+<p>
+    <a href="https://www.doctorwho.tv">Doctor Who</a> 
+    is a registered trademark of the <a href="https://www.bbc.com/">BBC</a>.
+</p>
+
+@code {
+    private bool result;
+
+    private void CallJSUnmarshalled()
+    {
+        var unmarshalledRuntime = (IJSUnmarshalledRuntime)JS;
+
+        var jsUnmarshalledReference = unmarshalledRuntime
+            .InvokeUnmarshalled<IJSUnmarshalledObjectReference>(
+                "returnJSObjectReference");
+
+        result = jsUnmarshalledReference.InvokeUnmarshalled<InteropStruct, bool>(
+            "unmarshalledFunction",
+            new InteropStruct
+            {
+                Name = "Brigadier Alistair Gordon Lethbridge-Stewart",
+                Year = 1968,
+            });
+    }
+
+    [StructLayout(LayoutKind.Explicit)]
+    public struct InteropStruct
+    {
+        [FieldOffset(0)]
+        public string Name;
+
+        [FieldOffset(8)]
+        public int Year;
+    }
+}
+```
+
+Integer array types (`int[]` in C#) and strings (`string` in C#) don't match between .NET and JavaScript and require additional code to pass back to .NET from unmarshalled JavaScript functions.
 
 ## Additional resources
 
