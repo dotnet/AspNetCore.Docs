@@ -682,6 +682,7 @@ In the following example:
 
 * A [struct](/dotnet/csharp/language-reference/builtin-types/struct) containing a string and an integer is passed unserialized to JavaScript.
 * JavaScript functions process the data and return either a boolean or string to the caller.
+* A JavaScript string isn't directly convertible into a .NET `string` object. The `unmarshalledFunctionReturnString` function calls `BINDING.js_string_to_mono_string` to manage the conversion of a Javascript string.
 
 > [!NOTE]
 > The following examples aren't typical use cases for this scenario because the [struct](/dotnet/csharp/language-reference/builtin-types/struct) passed to JavaScript doesn't result in poor component performance. The example uses a small object merely to demonstrate the concepts for passing unserialized .NET data.
