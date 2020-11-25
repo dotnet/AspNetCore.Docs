@@ -135,9 +135,16 @@ Open a command shell, and execute the following command:
 
 ## Access a secret
 
-The [Configuration API](xref:fundamentals/configuration/index) provides access to Secret Manager secrets.
+To access a secret, complete the following steps:
 
-The user secrets configuration source is automatically added in development mode when the project calls <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder%2A>. `CreateDefaultBuilder` calls <xref:Microsoft.Extensions.Configuration.UserSecretsConfigurationExtensions.AddUserSecrets%2A> when the <xref:Microsoft.Extensions.Hosting.IHostEnvironment.EnvironmentName> is <xref:Microsoft.Extensions.Hosting.EnvironmentName.Development>:
+1. [Register the user secrets configuration source](#register-the-user-secrets-configuration-source)
+1. [Read the secret via the Configuration API](#read-the-secret-via-the-configuration-api)
+
+### Register the user secrets configuration source
+
+The user secrets [configuration provider](/dotnet/core/extensions/configuration-providers) registers the appropriate configuration source with the .NET [Configuration API](xref:fundamentals/configuration/index).
+
+The user secrets configuration source is automatically added in Development mode when the project calls <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder%2A>. `CreateDefaultBuilder` calls <xref:Microsoft.Extensions.Configuration.UserSecretsConfigurationExtensions.AddUserSecrets%2A> when the <xref:Microsoft.Extensions.Hosting.IHostEnvironment.EnvironmentName> is <xref:Microsoft.Extensions.Hosting.EnvironmentName.Development>:
 
 [!code-csharp[](app-secrets/samples/3.x/UserSecrets/Program.cs?name=snippet_CreateHostBuilder&highlight=2)]
 
@@ -145,15 +152,17 @@ When `CreateDefaultBuilder` isn't called, add the user secrets configuration sou
 
 [!code-csharp[](app-secrets/samples/3.x/UserSecrets/Program2.cs?name=snippet_Host&highlight=6-9)]
 
-What follows are examples of accessing a secret via the .NET Configuration API. [Constructor injection](/dotnet/core/extensions/dependency-injection#constructor-injection-behavior) is used to gain access to the .NET Configuration API.
+### Read the secret via the Configuration API
 
-### Access in the Startup class
+If the user secrets configuration source is registered, the .NET Configuration API can read the secrets. [Constructor injection](/dotnet/core/extensions/dependency-injection#constructor-injection-behavior) can be used to gain access to the .NET Configuration API. Consider the following examples:
+
+**Startup class:**
 
 [!code-csharp[](app-secrets/samples/3.x/UserSecrets/Startup.cs?name=snippet_StartupClass&highlight=14)]
 
-### Access in a Razor Pages page model
+**Razor Pages page model:**
 
-[!code-csharp[](app-secrets/samples/3.x/UserSecrets/Pages/Index.cshtml.cs?name=snippet_PageModel)]
+[!code-csharp[](app-secrets/samples/3.x/UserSecrets/Pages/Index.cshtml.cs?name=snippet_PageModel&highlight=12)]
 
 ## Map secrets to a POCO
 
