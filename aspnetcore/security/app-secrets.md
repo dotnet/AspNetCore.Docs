@@ -164,6 +164,8 @@ If the user secrets configuration source is registered, the .NET Configuration A
 
 [!code-csharp[](app-secrets/samples/3.x/UserSecrets/Pages/Index.cshtml.cs?name=snippet_PageModel&highlight=12)]
 
+For more information, see [Access configuration in Startup](xref:fundamentals/configuration/index#access-configuration-in-startup) and [Access configuration in Razor Pages](xref:fundamentals/configuration/index#access-configuration-in-razor-pages).
+
 ## Map secrets to a POCO
 
 Mapping an entire object literal to a POCO (a simple .NET class with properties) is useful for aggregating related properties.

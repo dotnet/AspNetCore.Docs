@@ -22,8 +22,8 @@ namespace UserSecrets
         public void ConfigureServices(IServiceCollection services)
         {
 #region snippet_BindToObjectGraph
-            var moviesConfig = Configuration.GetSection("Movies")
-                                            .Get<MovieSettings>();
+            var moviesConfig = 
+                Configuration.GetSection("Movies").Get<MovieSettings>();
             _moviesApiKey = moviesConfig.ServiceApiKey;
 #endregion
         }
