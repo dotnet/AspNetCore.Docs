@@ -269,7 +269,7 @@ No secrets configured for this application.
 
 ## Additional resources
 
-* See [this issue](https://github.com/dotnet/AspNetCore.Docs/issues/16328) for information on accessing Secret Manager from IIS.
+* See [this issue](https://github.com/dotnet/AspNetCore.Docs/issues/16328) for information on accessing user secrets from IIS.
 * <xref:fundamentals/configuration/index>
 * <xref:security/key-vault-configuration>
 
@@ -395,7 +395,7 @@ Open a command shell, and execute the following command:
 
 ## Access a secret
 
-The [Configuration API](xref:fundamentals/configuration/index) provides access to Secret Manager secrets.
+The [Configuration API](xref:fundamentals/configuration/index) provides access to user secrets.
 
 If your project targets .NET Framework, install the [Microsoft.Extensions.Configuration.UserSecrets](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.UserSecrets) NuGet package.
 
@@ -514,7 +514,7 @@ No secrets configured for this application.
 
 ## Additional resources
 
-* See [this issue](https://github.com/dotnet/AspNetCore.Docs/issues/16328) for information on accessing Secret Manager from IIS.
+* See [this issue](https://github.com/dotnet/AspNetCore.Docs/issues/16328) for information on accessing user secrets from IIS.
 * <xref:fundamentals/configuration/index>
 * <xref:security/key-vault-configuration>
 
