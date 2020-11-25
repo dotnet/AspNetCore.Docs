@@ -5,13 +5,13 @@ description: Learn how to create and use Razor components, including how to bind
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/09/2020
+ms.date: 11/25/2020
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/components/index
 ---
 # Create and use ASP.NET Core Razor components
 
-By [Luke Latham](https://github.com/guardrex), [Daniel Roth](https://github.com/danroth27), and [Tobias Bartsch](https://www.aveo-solutions.com/)
+By [Luke Latham](https://github.com/guardrex), [Daniel Roth](https://github.com/danroth27), [Scott Addie](https://github.com/scottaddie), and [Tobias Bartsch](https://www.aveo-solutions.com/)
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) ([how to download](xref:index#how-to-download-a-sample))
 
@@ -869,6 +869,64 @@ Similarly, SVG images are supported in the CSS rules of a stylesheet file (`.css
 ```
 
 However, inline SVG markup isn't supported in all scenarios. If you place an `<svg>` tag directly into a component file (`.razor`), basic image rendering is supported but many advanced scenarios aren't yet supported. For example, `<use>` tags aren't currently respected, and [`@bind`][10] can't be used with some SVG tags. For more information, see [SVG support in Blazor (dotnet/aspnetcore #18271)](https://github.com/dotnet/aspnetcore/issues/18271).
+
+## Whitespace rendering behavior
+
+::: moniker range=">= aspnetcore-5.0"
+
+Unless the [`@preservewhitespace`](xref:mvc/views/razor#preservewhitespace) directive is used with a value of `true`, extra whitespace is removed by default if:
+
+* Leading or trailing within an element.
+* Leading or trailing within a `RenderFragment` parameter. For example, child content passed to another component.
+* It precedes or follows a C# code block, such as `@if` or `@foreach`.
+
+Whitespace removal might affect the rendered output when using a CSS rule, such as `white-space: pre`. To disable this performance optimization and preserve the whitespace, take one of the following actions:
+
+* Add the `@preservewhitespace true` directive at the top of the `.razor` file to apply the preference to a specific component.
+* Add the `@preservewhitespace true` directive inside an `_Imports.razor` file to apply the preference to an entire subdirectory or the entire project.
+
+In most cases, no action is required, as apps typically continue to behave normally (but faster). If stripping whitespace causes any problem for a particular component, use `@preservewhitespace true` in that component to disable this optimization.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+Whitespace is retained in a component's source code. Whitespace-only text renders in the browser's Document Object Model (DOM) even when there's no visual effect.
+
+Consider the following Razor component code:
+
+```razor
+<ul>
+    @foreach (var item in Items)
+    {
+        <li>
+            @item.Text
+        </li>
+    }
+</ul>
+```
+
+The preceding example renders the following unnecessary whitespace:
+
+* Outside of the `@foreach` code block.
+* Around the `<li>` element.
+* Around the `@item.Text` output.
+
+A list containing 100 items results in 402 areas of whitespace, and none of the extra whitespace visually affects the rendered output.
+
+When rendering static HTML for components, whitespace inside a tag isn't preserved. For example, view the source of the following component in rendered output:
+
+```razor
+<img     alt="My image"   src="img.png"     />
+```
+
+Whitespace isn't preserved from the preceding Razor markup:
+
+```razor
+<img alt="My image" src="img.png" />
+```
+
+::: moniker-end
 
 ## Additional resources
 

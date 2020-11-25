@@ -680,6 +680,20 @@ The `@page` directive on the first line of a *.cshtml* file indicates that the f
 
 ::: moniker-end
 
+::: moniker range=">= aspnetcore-5.0"
+
+### `@preservewhitespace`
+
+*This scenario only applies to Razor components (`.razor`).*
+
+When set to `false` (default), whitespace in the rendered markup from Razor components (`.razor`) is removed if:
+
+* Leading or trailing within an element.
+* Leading or trailing within a `RenderFragment` parameter. For example, child content passed to another component.
+* It precedes or follows a C# code block, such as `@if` or `@foreach`.
+
+::: moniker-end
+
 ### `@section`
 
 *This scenario only applies to MVC views and Razor Pages (.cshtml).*
