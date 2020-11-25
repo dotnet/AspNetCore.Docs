@@ -712,8 +712,7 @@ window.returnJSObjectReference = () => {
 > [!WARNING]
 > The `js_string_to_mono_string` function name, behavior, and existence is subject to change in a future release of .NET. For example:
 >
-> * The `mono` segment of the function name might be removed.
-> * The behavior of the function may change.
+> * The function is likely to be renamed.
 > * The function itself might be removed in favor of automatic conversion of strings by the framework.
 
 `Pages/UnmarshalledJSInterop.razor` (URL: `/unmarshalled-js-interop`):
