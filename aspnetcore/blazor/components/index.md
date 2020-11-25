@@ -874,7 +874,7 @@ However, inline SVG markup isn't supported in all scenarios. If you place an `<s
 
 ::: moniker range=">= aspnetcore-5.0"
 
-Unless the [`@preservewhitespace`](xref:mvc/views/razor#preservewhitespace) directive is used with a value of `true`, whitespace is removed by default if:
+Unless the [`@preservewhitespace`](xref:mvc/views/razor#preservewhitespace) directive is used with a value of `true`, extra whitespace is removed by default if:
 
 * Leading or trailing within an element.
 * Leading or trailing within a `RenderFragment` parameter. For example, child content passed to another component.
@@ -891,7 +891,7 @@ In most cases, no action is required, as apps typically continue to behave norma
 
 ::: moniker range="< aspnetcore-5.0"
 
-Whitespace is honored in a component's source code. Whitespace-only text renders in the browser's Document Object Model (DOM) even when there's no visual effect.
+Whitespace is retained in a component's source code. Whitespace-only text renders in the browser's Document Object Model (DOM) even when there's no visual effect.
 
 Consider the following Razor component code:
 
@@ -906,21 +906,21 @@ Consider the following Razor component code:
 </ul>
 ```
 
-The preceding example renders two areas of whitespace:
+The preceding example renders the following unnecessary whitespace:
 
 * Outside of the `@foreach` code block.
 * Around the `<li>` element.
 * Around the `@item.Text` output.
 
-A list containing 100 items results in 402 areas of whitespace, and none of the whitespace visually affects the rendered output.
+A list containing 100 items results in 402 areas of whitespace, and none of the extra whitespace visually affects the rendered output.
 
-When rendering static HTML for components, whitespace inside a tag isn't preserved. For example, view the source of the following component:
+When rendering static HTML for components, whitespace inside a tag isn't preserved. For example, view the source of the following component in rendered output:
 
 ```razor
 <img     alt="My image"   src="img.png"     />
 ```
 
-Whitespace isn't preserved. The prerendered output is:
+Whitespace isn't preserved from the preceding Razor markup:
 
 ```razor
 <img alt="My image" src="img.png" />
