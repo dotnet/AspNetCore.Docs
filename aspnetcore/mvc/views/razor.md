@@ -692,7 +692,7 @@ When set to `false` (default), whitespace in the rendered markup from Razor comp
 
 * Leading or trailing within an element.
 * Leading or trailing within a `RenderFragment` parameter. For example, child content passed to another component.
-* Precede or follow a C# code block such as `@if` and `@foreach`.
+* It precedes or follows a C# code block, such as `@if` or `@foreach`.
 
 ::: moniker-end
 
