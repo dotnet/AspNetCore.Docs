@@ -125,7 +125,7 @@ By [default](xref:fundamentals/configuration/index#default), ASP.NET Core apps a
 
 The preferred way to read related configuration values is using the [options pattern](xref:fundamentals/configuration/options). For more information, see [Bind hierarchical configuration data using the options pattern](xref:fundamentals/configuration/index#optpat).
 
-For managing confidential configuration data such as passwords, ASP.NET Core provides the [Secret Manager](xref:security/app-secrets#secret-manager). For production secrets, we recommend [Azure Key Vault](xref:security/key-vault-configuration).
+For managing confidential configuration data such as passwords, .NET Core provides the [Secret Manager](xref:security/app-secrets#secret-manager). For production secrets, we recommend [Azure Key Vault](xref:security/key-vault-configuration).
 
 For more information, see <xref:fundamentals/configuration/index>.
 
@@ -362,7 +362,7 @@ ASP.NET Core provides a configuration framework that gets settings as name-value
 
 For example, you could specify that configuration comes from *appsettings.json* and environment variables. Then when the value of *ConnectionString* is requested, the framework looks first in the *appsettings.json* file. If the value is found there but also in an environment variable, the value from the environment variable would take precedence.
 
-For managing confidential configuration data such as passwords, ASP.NET Core provides a [Secret Manager tool](xref:security/app-secrets). For production secrets, we recommend [Azure Key Vault](xref:security/key-vault-configuration).
+For managing confidential configuration data such as passwords, .NET Core provides a [Secret Manager tool](xref:security/app-secrets). For production secrets, we recommend [Azure Key Vault](xref:security/key-vault-configuration).
 
 For more information, see <xref:fundamentals/configuration/index>.
 

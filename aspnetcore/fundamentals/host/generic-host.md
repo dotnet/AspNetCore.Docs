@@ -99,7 +99,7 @@ The <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*> method:
 * Loads app configuration from:
   * *appsettings.json*.
   * *appsettings.{Environment}.json*.
-  * [Secret Manager](xref:security/app-secrets) when the app runs in the `Development` environment.
+  * [User secrets](xref:security/app-secrets) when the app runs in the `Development` environment.
   * Environment variables.
   * Command-line arguments.
 * Adds the following [logging](xref:fundamentals/logging/index) providers:
@@ -602,7 +602,7 @@ The <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder%2A> method:
 * Loads app configuration from:
   * *appsettings.json*.
   * *appsettings.{Environment}.json*.
-  * [Secret Manager](xref:security/app-secrets) when the app runs in the `Development` environment.
+  * [User secrets](xref:security/app-secrets) when the app runs in the `Development` environment.
   * Environment variables.
   * Command-line arguments.
 * Adds the following [logging](xref:fundamentals/logging/index) providers:

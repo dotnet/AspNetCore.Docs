@@ -1112,7 +1112,7 @@ Logging provider configuration is provided by one or more configuration provider
 * Command-line arguments.
 * Environment variables.
 * In-memory .NET objects.
-* The unencrypted [Secret Manager](xref:security/app-secrets) storage.
+* The unencrypted [user secrets](xref:security/app-secrets) storage.
 * An encrypted user store, such as [Azure Key Vault](xref:security/key-vault-configuration).
 * Custom providers (installed or created).
 

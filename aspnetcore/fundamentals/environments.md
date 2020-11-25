@@ -593,7 +593,7 @@ To load configuration by environment, we recommend:
 
 * *appsettings* files (*appsettings.{Environment}.json*). See <xref:fundamentals/configuration/index#json-configuration-provider>.
 * Environment variables (set on each system where the app is hosted). See <xref:fundamentals/host/web-host#environment> and <xref:security/app-secrets#environment-variables>.
-* Secret Manager (in the Development environment only). See <xref:security/app-secrets>.
+* User secrets (in the Development environment only). See <xref:security/app-secrets>.
 
 ## Environment-based Startup class and methods
 
