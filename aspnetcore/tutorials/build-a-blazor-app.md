@@ -5,7 +5,7 @@ description: Build a Blazor app step-by-step.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/12/2020
+ms.date: 11/24/2020
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/build-a-blazor-app
 ---
@@ -68,6 +68,8 @@ At the end of this tutorial, you'll have a working todo list app.
    <h3>Todo</h3>
    ```
 
+   Save the `Pages/Todo.razor` file.
+
 1. Add the `Todo` component to the navigation bar.
 
    The `NavMenu` component (`Shared/NavMenu.razor`) is used in the app's layout. Layouts are components that allow you to avoid duplication of content in the app.
@@ -82,7 +84,9 @@ At the end of this tutorial, you'll have a working todo list app.
    </li>
    ```
 
-1. Build and run the app by executing the `dotnet run` command in the command shell from the `TodoList` folder. Visit the new Todo page at `https://localhost:5001/todo` to confirm that the link to the `Todo` component works.
+   Save the `Shared/NavMenu.razor` file.
+
+1. Build and run the app by executing the [`dotnet watch run`](/aspnet/core/tutorials/dotnet-watch) command in the command shell from the `TodoList` folder. Visit the new Todo page at `https://localhost:5001/todo` to confirm that the sidebar navigation link to the `Todo` component works.
 
 1. Add a `TodoItem.cs` file to the root of the project (the `TodoList` folder) to hold a class that represents a todo item. Use the following C# code for the `TodoItem` class:
 
@@ -99,7 +103,9 @@ At the end of this tutorial, you'll have a working todo list app.
 
    [!code-razor[](build-a-blazor-app/samples_snapshot/ToDo3.razor?highlight=12-13)]
 
-1. Stop the running app in the command shell. Many command shells accept the keyboard command <kbd>Ctrl</kbd>+<kbd>c</kbd> to stop an app. Rebuild and run the app with the `dotnet run` command. When the **`Add todo`** button is selected, nothing happens because an event handler isn't wired up to the button.
+1. Save the `TodoItem.cs` file and the updated `Pages/Todo.razor` file. In the command shell, the app is automatically rebuilt when the files are saved. The browser temporarily loses its connection to the app and then reloads the page when the connection is re-established.
+
+1. When the **`Add todo`** button is selected, nothing happens because an event handler isn't attached to the button.
 
 1. Add an `AddTodo` method to the `Todo` component and register it for button selections using the `@onclick` attribute. The `AddTodo` C# method is called when the button is selected:
 
@@ -117,7 +123,7 @@ At the end of this tutorial, you'll have a working todo list app.
 
    [!code-razor[](build-a-blazor-app/samples_snapshot/ToDo6.razor?highlight=19-26)]
 
-1. Stop the running app in the command shell. Rebuild and run the app with the `dotnet run` command. Add some todo items to the todo list to test the new code.
+1. Save the `Pages/ToDo.razor` file. The app is automatically rebuilt in the command shell. The page reloads in the browser after the browser reconnects to the app.
 
 1. The title text for each todo item can be made editable, and a check box can help the user keep track of completed items. Add a check box input for each todo item and bind its value to the `IsDone` property. Change `@todo.Title` to an `<input>` element bound to `@todo.Title`:
 
@@ -133,7 +139,11 @@ At the end of this tutorial, you'll have a working todo list app.
 
    [!code-razor[](build-a-blazor-app/samples_snapshot/Todo1.razor)]
 
-1. Stop the running app in the command shell. Rebuild and run the app with the `dotnet run` command. Add todo items to test the new code.
+1. Save the `Pages/ToDo.razor` file. The app is automatically rebuilt in the command shell. The page reloads in the browser after the browser reconnects to the app.
+
+1. Add todo items to test the new code.
+
+1. When finished, shut down the app in the command shell. Many command shells accept the keyboard command <kbd>Ctrl</kbd>+<kbd>c</kbd> to stop an app.
 
 ## Next steps
 
