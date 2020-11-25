@@ -157,7 +157,7 @@ The Swagger page `/swagger/index.html` is displayed. Select **GET** > **Try it o
 -->
 Swagger is used to generate useful documentation and help pages for web APIs. This tutorial focuses on creating a web API. For more information on Swagger, see <xref:tutorials/web-api-help-pages-using-swagger>.
 
-Copy and past the **Request URL** in the browser:  `https://localhost:<port>/WeatherForecast`
+Copy and paste the **Request URL** in the browser:  `https://localhost:<port>/WeatherForecast`
 
 JSON similar to the following is returned:
 
