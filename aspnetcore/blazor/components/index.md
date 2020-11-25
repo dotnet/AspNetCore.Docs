@@ -874,10 +874,10 @@ However, inline SVG markup isn't supported in all scenarios. If you place an `<s
 
 ::: moniker range=">= aspnetcore-5.0"
 
-Unless the `@preservewhitespace` directive is used with value `true`, whitespace nodes are removed if they:
+Unless the [`@preservewhitespace`](xref:mvc/views/razor#preservewhitespace) directive is used with a value of `true`, whitespace is removed by default if:
 
-* Are leading or trailing within an element.
-* Are leading or trailing within a `RenderFragment` parameter. For example, child content passed to another component.
+* Leading or trailing within an element.
+* Leading or trailing within a `RenderFragment` parameter. For example, child content passed to another component.
 * Precede or follow a C# code block such as `@if` and `@foreach`.
 
 Whitespace removal might affect the rendered output when using a CSS rule, such as `white-space: pre`. To disable this performance optimization and preserve the whitespace, take one of the following actions:
@@ -891,7 +891,7 @@ In most cases, no action is required, as apps typically continue to behave norma
 
 ::: moniker range="< aspnetcore-5.0"
 
-Whitespace is honored in a component's source code. Whitespace-only text nodes render in the browser's Document Object Model (DOM) even when there's no visual effect.
+Whitespace is honored in a component's source code. Whitespace-only text renders in the browser's Document Object Model (DOM) even when there's no visual effect.
 
 Consider the following Razor component code:
 
@@ -906,13 +906,13 @@ Consider the following Razor component code:
 </ul>
 ```
 
-The preceding example renders two whitespace nodes:
+The preceding example renders two areas of whitespace:
 
 * Outside of the `@foreach` code block.
 * Around the `<li>` element.
 * Around the `@item.Text` output.
 
-A list containing 100 items results in 402 whitespace nodes. That's over half of all nodes rendered, even though none of the whitespace nodes visually affect the rendered output.
+A list containing 100 items results in 402 areas of whitespace, and none of the whitespace visually affects the rendered output.
 
 When rendering static HTML for components, whitespace inside a tag isn't preserved. For example, view the source of the following component:
 
@@ -920,7 +920,7 @@ When rendering static HTML for components, whitespace inside a tag isn't preserv
 <img     alt="My image"   src="img.png"     />
 ```
 
-Whitespace isn't preserved. The pre-rendered output is:
+Whitespace isn't preserved. The prerendered output is:
 
 ```razor
 <img alt="My image" src="img.png" />
