@@ -709,6 +709,13 @@ window.returnJSObjectReference = () => {
 }
 ```
 
+> [!WARNING]
+> The `js_string_to_mono_string` function name, behavior, and existence is subject to change in a future release of .NET. For example:
+>
+> * The `mono` segment of the function name might be removed.
+> * The behavior of the function may change.
+> * The function itself might be removed in favor of automatic conversion of strings by the framework.
+
 `Pages/UnmarshalledJSInterop.razor` (URL: `/unmarshalled-js-interop`):
 
 ```razor
@@ -794,7 +801,7 @@ window.returnJSObjectReference = () => {
 }
 ```
 
-If an `IJSUnmarshalledRuntime` instance isn't disposed in C# code, it can be disposed in JavaScript. The following `dispose` function disposes the object reference when called from JavaScript:
+If an `IJSUnmarshalledObjectReference` instance isn't disposed in C# code, it can be disposed in JavaScript. The following `dispose` function disposes the object reference when called from JavaScript:
 
 ```javascript
 window.exampleJSObjectReferenceNotDisposedInCSharp = () => {
@@ -808,9 +815,12 @@ window.exampleJSObjectReferenceNotDisposedInCSharp = () => {
 }
 ```
 
-Array types can be converted from JavaScript objects into .NET objects using `js_typed_array_to_array`, but the JavaScript array must be a typed array. Arrays from JavaScript can be read in C# code as a .NET object array (`object[]`). For examples, search the [dotnet/aspnetcore reference source](https://github.com/dotnet/aspnetcore/search?q=js_typed_array_to_array).
+Array types can be converted from JavaScript objects into .NET objects using `js_typed_array_to_array`, but the JavaScript array must be a typed array. Arrays from JavaScript can be read in C# code as a .NET object array (`object[]`).
 
-Other data types, such as string arrays, can be converted but require creating a new Mono array object (`mono_obj_array_new`) and setting its value (`mono_obj_array_set`). For examples, search the [dotnet/aspnetcore reference source](https://github.com/dotnet/aspnetcore/search?q=mono_obj_array_set).
+Other data types, such as string arrays, can be converted but require creating a new Mono array object (`mono_obj_array_new`) and setting its value (`mono_obj_array_set`).
+
+> [!WARNING]
+> JavaScript functions provided by the Blazor framework, such as `js_typed_array_to_array`, `mono_obj_array_new`, and `mono_obj_array_set`, are subject to name changes, behavioral changes, or removal in future releases of .NET.
 
 ## Additional resources
 
