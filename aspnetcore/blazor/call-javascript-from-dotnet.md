@@ -5,13 +5,13 @@ description: Learn how to invoke JavaScript functions from .NET methods in Blazo
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc, devx-track-js 
-ms.date: 10/20/2020
+ms.date: 11/25/2020
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/call-javascript-from-dotnet
 ---
 # Call JavaScript functions from .NET methods in ASP.NET Core Blazor
 
-By [Javier Calvarro Nelson](https://github.com/javiercn), [Daniel Roth](https://github.com/danroth27), and [Luke Latham](https://github.com/guardrex)
+By [Javier Calvarro Nelson](https://github.com/javiercn), [Daniel Roth](https://github.com/danroth27), [Pranav Krishnamoorthy](https://github.com/pranavkm), and [Luke Latham](https://github.com/guardrex)
 
 A Blazor app can invoke JavaScript functions from .NET methods and .NET methods from JavaScript functions. These scenarios are called *JavaScript interoperability* (*JS interop*).
 
@@ -671,33 +671,44 @@ For JS isolation, JS interop works with the browser's default support for [EcmaS
 
 ## Unmarshalled JS interop
 
-In Blazor WebAssembly apps when the serialization of many or large .NET objects results in poor app performance, <xref:Microsoft.JSInterop.IJSUnmarshalledObjectReference> represents a reference to an JavaScript object whose functions can be invoked without the overhead of serializing .NET data.
+Blazor WebAssembly components may experience poor performance when .NET objects are serialized for JS interop and either of the following are true:
+
+* A high volume of .NET objects are rapidly serialized. Example: JS interop calls are made on the basis of moving an input device, such as spinning a mouse wheel.
+* Large .NET objects or many .NET objects must be serialized for JS interop. Example: JS interop calls require serializing dozens of files.
+
+<xref:Microsoft.JSInterop.IJSUnmarshalledObjectReference> represents a reference to an JavaScript object whose functions can be invoked without the overhead of serializing .NET data.
 
 In the following example:
 
 * A [struct](/dotnet/csharp/language-reference/builtin-types/struct) containing a string and an integer is passed unserialized to JavaScript.
-* The JavaScript function (`unmarshalledFunction`) confirms the receipt of the data by checking field values and returning `true` when they match expected values.
+* JavaScript functions process the data and return either a boolean or string to the caller.
 
 > [!NOTE]
-> The following example isn't a typical use case for this scenario because the [struct](/dotnet/csharp/language-reference/builtin-types/struct) passed to JavaScript is small and doesn't result in poor component performance. The example uses a small object merely to demonstrate the concepts for passing unserialized .NET data.
+> The following examples aren't typical use cases for this scenario because the [struct](/dotnet/csharp/language-reference/builtin-types/struct) passed to JavaScript doesn't result in poor component performance. The example uses a small object merely to demonstrate the concepts for passing unserialized .NET data.
+
+Content of a `<script>` block in `wwwroot/index.html` or an external Javascript file referenced by `wwwroot/index.html`:
 
 ```javascript
-window.returnJSObjectReference = () =>
-{
-  return {
-    dispose: function () {
-      DotNet.disposeJSObjectReference(this);
-    },
-    unmarshalledFunction: function (fields) {
-      const name = Blazor.platform.readStringField(fields, 0);
-      const year = Blazor.platform.readInt32Field(fields, 8);
+window.returnJSObjectReference = () => {
+    return {
+        unmarshalledFunctionReturnBoolean: function (fields) {
+            const name = Blazor.platform.readStringField(fields, 0);
+            const year = Blazor.platform.readInt32Field(fields, 8);
 
-      return name === "Brigadier Alistair Gordon Lethbridge-Stewart" &&
-        year === 1968;
-    }
-  };
+            return name === "Brigadier Alistair Gordon Lethbridge-Stewart" &&
+                year === 1968;
+        },
+        unmarshalledFunctionReturnString: function (fields) {
+            const name = Blazor.platform.readStringField(fields, 0);
+            const year = Blazor.platform.readInt32Field(fields, 8);
+
+            return BINDING.js_string_to_mono_string(`Hello, ${name} (${year})!`);
+        }
+    };
 }
 ```
+
+`Pages/UnmarshalledJSInterop.razor` (URL: `/unmarshalled-js-interop`):
 
 ```razor
 @page "/unmarshalled-js-interop"
@@ -707,24 +718,35 @@ window.returnJSObjectReference = () =>
 
 <h1>Unmarshalled JS interop</h1>
 
-@if (result)
+@if (callResultForBoolean)
 {
     <p>JS interop was successful!</p>
 }
 
+@if (!string.IsNullOrEmpty(callResultForString))
+{
+    <p>@callResultForString</p>
+}
+
 <p>
-    <button @onclick="CallJSUnmarshalled">Call JS Unmarshalled</button>
+    <button @onclick="CallJSUnmarshalledForBoolean">
+        Call Unmarshalled JS & Return Boolean
+    </button>
+    <button @onclick="CallJSUnmarshalledForString">
+        Call Unmarshalled JS & Return String
+    </button>
 </p>
 
 <p>
-    <a href="https://www.doctorwho.tv">Doctor Who</a> 
+    <a href="https://www.doctorwho.tv">Doctor Who</a>
     is a registered trademark of the <a href="https://www.bbc.com/">BBC</a>.
 </p>
 
 @code {
-    private bool result;
+    private bool callResultForBoolean;
+    private string callResultForString;
 
-    private void CallJSUnmarshalled()
+    private void CallJSUnmarshalledForBoolean()
     {
         var unmarshalledRuntime = (IJSUnmarshalledRuntime)JS;
 
@@ -732,13 +754,31 @@ window.returnJSObjectReference = () =>
             .InvokeUnmarshalled<IJSUnmarshalledObjectReference>(
                 "returnJSObjectReference");
 
-        result = jsUnmarshalledReference.InvokeUnmarshalled<InteropStruct, bool>(
-            "unmarshalledFunction",
-            new InteropStruct
-            {
-                Name = "Brigadier Alistair Gordon Lethbridge-Stewart",
-                Year = 1968,
-            });
+        callResultForBoolean = 
+            jsUnmarshalledReference.InvokeUnmarshalled<InteropStruct, bool>(
+                "unmarshalledFunctionReturnBoolean", GetStruct());
+    }
+
+    private void CallJSUnmarshalledForString()
+    {
+        var unmarshalledRuntime = (IJSUnmarshalledRuntime)JS;
+
+        var jsUnmarshalledReference = unmarshalledRuntime
+            .InvokeUnmarshalled<IJSUnmarshalledObjectReference>(
+                "returnJSObjectReference");
+
+        callResultForString = 
+            jsUnmarshalledReference.InvokeUnmarshalled<InteropStruct, string>(
+                "unmarshalledFunctionReturnString", GetStruct());
+    }
+
+    private InteropStruct GetStruct()
+    {
+        return new InteropStruct
+        {
+            Name = "Brigadier Alistair Gordon Lethbridge-Stewart",
+            Year = 1968,
+        };
     }
 
     [StructLayout(LayoutKind.Explicit)]
@@ -753,7 +793,23 @@ window.returnJSObjectReference = () =>
 }
 ```
 
-Integer array types (`int[]` in C#) and strings (`string` in C#) don't match between .NET and JavaScript and require additional code to pass back to .NET from unmarshalled JavaScript functions.
+If an `IJSUnmarshalledRuntime` instance isn't disposed in C# code, it can be disposed in JavaScript. The following `dispose` function disposes the object reference when called from JavaScript:
+
+```javascript
+window.exampleJSObjectReferenceNotDisposedInCSharp = () => {
+    return {
+        dispose: function () {
+            DotNet.disposeJSObjectReference(this);
+        },
+
+        ...
+    };
+}
+```
+
+Array types can be converted from JavaScript objects into .NET objects using `js_typed_array_to_array`, but the JavaScript array must be a typed array. Arrays from JavaScript can be read in C# code as a .NET object array (`object[]`). For examples, search the [dotnet/aspnetcore reference source](https://github.com/dotnet/aspnetcore/search?q=js_typed_array_to_array).
+
+Other data types, such as string arrays, can be converted but require creating a new Mono array object (`mono_obj_array_new`) and setting its value (`mono_obj_array_set`). For examples, search the [dotnet/aspnetcore reference source](https://github.com/dotnet/aspnetcore/search?q=mono_obj_array_set).
 
 ## Additional resources
 
