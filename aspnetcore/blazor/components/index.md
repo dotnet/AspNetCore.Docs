@@ -878,7 +878,7 @@ Unless the [`@preservewhitespace`](xref:mvc/views/razor#preservewhitespace) dire
 
 * Leading or trailing within an element.
 * Leading or trailing within a `RenderFragment` parameter. For example, child content passed to another component.
-* Precede or follow a C# code block such as `@if` and `@foreach`.
+* It precedes or follows a C# code block, such as `@if` or `@foreach`.
 
 Whitespace removal might affect the rendered output when using a CSS rule, such as `white-space: pre`. To disable this performance optimization and preserve the whitespace, take one of the following actions:
 
