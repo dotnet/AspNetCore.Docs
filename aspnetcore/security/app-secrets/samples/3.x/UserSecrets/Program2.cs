@@ -4,11 +4,11 @@ using Microsoft.Extensions.Hosting;
 
 namespace UserSecrets
 {
+    #region snippet_Program
     public class Program
     {
         public static void Main(string[] args)
         {
-            #region snippet_Host
             var host = new HostBuilder()
                 .ConfigureAppConfiguration((hostContext, builder) =>
                 {
@@ -20,10 +20,10 @@ namespace UserSecrets
                     }
                 })
                 .Build();
-                #endregion
             
             host.Run();
         }
     }
+    #endregion snippet_Program
 }
 #endif

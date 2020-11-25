@@ -26,6 +26,8 @@ namespace UserSecrets
                 Configuration.GetConnectionString("Movies"));
             builder.Password = Configuration["DbPassword"];
             _connection = builder.ConnectionString;
+
+            // code omitted for brevity
         }
 
         public void Configure(IApplicationBuilder app)
