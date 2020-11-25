@@ -57,7 +57,7 @@ The code that calls `CreateDefaultBuilder` is in a method named `CreateWebHostBu
 * Loads app configuration in the following order from:
   * *appsettings.json*.
   * *appsettings.{Environment}.json*.
-  * [Secret Manager](xref:security/app-secrets) when the app runs in the `Development` environment using the entry assembly.
+  * [User secrets](xref:security/app-secrets) when the app runs in the `Development` environment using the entry assembly.
   * Environment variables.
   * Command-line arguments.
 * Configures [logging](xref:fundamentals/logging/index) for console and debug output. Logging includes [log filtering](xref:fundamentals/logging/index#log-filtering) rules specified in a Logging configuration section of an *appsettings.json* or *appsettings.{Environment}.json* file.

@@ -37,7 +37,7 @@ For more information on how to configure a sample app using preprocessor directi
 
 ## Secret storage in the Development environment
 
-Set secrets locally using the [Secret Manager tool](xref:security/app-secrets). When the sample app runs on the local machine in the Development environment, secrets are loaded from the local Secret Manager store.
+Set secrets locally using the [Secret Manager tool](xref:security/app-secrets). When the sample app runs on the local machine in the Development environment, secrets are loaded from the local user secrets store.
 
 The Secret Manager tool requires a `<UserSecretsId>` property in the app's project file. Set the property value (`{GUID}`) to any unique GUID:
 
@@ -381,7 +381,7 @@ For more information on how to configure a sample app using preprocessor directi
 
 ## Secret storage in the Development environment
 
-Set secrets locally using the [Secret Manager tool](xref:security/app-secrets). When the sample app runs on the local machine in the Development environment, secrets are loaded from the local Secret Manager store.
+Set secrets locally using the [Secret Manager tool](xref:security/app-secrets). When the sample app runs on the local machine in the Development environment, secrets are loaded from the local user secrets store.
 
 The Secret Manager tool requires a `<UserSecretsId>` property in the app's project file. Set the property value (`{GUID}`) to any unique GUID:
 
