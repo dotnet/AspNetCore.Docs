@@ -31,7 +31,7 @@ A certificate from a [certificate authority](https://wikipedia.org/wiki/Certific
 
 This document uses [self-signed development certificates](https://en.wikipedia.org/wiki/Self-signed_certificate) for hosting pre-built images over `localhost`. The instructions are similar to using production certificates.
 
-You can use [dotnet dev-certs](https://docs.microsoft.com/en-us/dotnet/core/additional-tools/self-signed-certificates-guide) to create self-signed certificates for development and testing scenarios among other options.
+Use [dotnet dev-certs](https://docs.microsoft.com/en-us/dotnet/core/additional-tools/self-signed-certificates-guide) to create self-signed certificates for development and testing.
 
 For production certs:
 
@@ -71,7 +71,7 @@ When using [PowerShell](/powershell/scripting/overview), replace `%USERPROFILE%`
 The password must match the password used for the certificate.
 
 
-Note: The certificate in this case must be a *.pfx* file.  Utilizing a *.crt* or *.key* file with or without the password isn't supported with the sample container.  For example, when specifying a *.crt* file, the container may return error messages such as 'The server mode SSL must use a certificate with the associated private key.'. When using [WSL](/windows/wsl/about), validate the mount path to ensure that the certificate loads correctly.
+Note: The certificate in this case must be a `.pfx` file.  Utilizing a `.crt` or `.key` file with or without the password isn't supported with the sample container.  For example, when specifying a `.crt` file, the container may return error messages such as 'The server mode SSL must use a certificate with the associated private key.'. When using [WSL](/windows/wsl/about), validate the mount path to ensure that the certificate loads correctly.
 
 ### macOS or Linux
 
