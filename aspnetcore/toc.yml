@@ -182,6 +182,9 @@
             - name: Log and monitor >>
               display: tutorial, kubernetes, aks, acr, docker, serilog
               href: /learn/modules/microservices-logging-aspnet-core/
+            - name: Implement feature flags >>
+              display: tutorial, kubernetes, aks, acr, docker
+              href: /learn/modules/microservices-configuration-aspnet-core/
         - name: Data access >>
           displayName: tutorial, ef, entity framework
           href: /learn/modules/persist-data-ef-core/
