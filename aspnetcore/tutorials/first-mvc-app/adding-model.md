@@ -212,6 +212,12 @@ The automatic creation of these files is known as *scaffolding*.
 
 * Open a command window in the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).
 
+* On Mac, export the scaffold tool path:
+
+  ```console
+  export PATH=$HOME/.dotnet/tools:$PATH
+  ```
+
 * Run the following command:
 
   ```dotnetcli
@@ -534,11 +540,11 @@ Add a connection string to the *appsettings.json* file:
 
 # [Visual Studio](#tab/visual-studio)
 
-[!code-json[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/appsettings.json?highlight=10-12)]
+[!code-json[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/appsettings.json?highlight=10-13)]
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-[!code-json[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/appsettings_SQLite.json?highlight=10-12)]
+[!code-json[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/appsettings_SQLite.json?highlight=10-13)]
 
 ---
 
