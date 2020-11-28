@@ -7,8 +7,8 @@ about: Create an issue to help us improve
 
 If the issue is with an ASP.NET Core document:
 
-1. Do **not** open a new issue using this form.
-1. Open the issue with the **This page** button and form at the bottom of the document's page.
+* Do **not** open a new issue using this form.
+* Open the issue with the **This page** button and form at the bottom of the document's page.
 
 Using the **This page** button and form to open an issue:
 
