@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to use the logging framework provided by the Microsoft.Extensions.Logging NuGet package.
 ms.author: riande
 ms.custom: mvc
-ms.date: 6/29/2020
+ms.date: 11/28/2020
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/logging/index
 ---
@@ -914,65 +914,7 @@ The following example shows how to register filter rules in code:
 
 ## Create a custom logger
 
-To add a custom logger, add an <xref:Microsoft.Extensions.Logging.ILoggerProvider> with <xref:Microsoft.Extensions.Logging.ILoggerFactory>:
-
-```csharp
-public void Configure(
-    IApplicationBuilder app,
-    IWebHostEnvironment env,
-    ILoggerFactory loggerFactory)
-{
-    loggerFactory.AddProvider(new CustomLoggerProvider(new CustomLoggerConfiguration()));
-```
-
-The `ILoggerProvider` creates one or more `ILogger` instances. The `ILogger` instances are used by the framework to log the information.
-
-### Sample custom logger configuration
-
-The sample:
-
-* Is designed to be a very basic sample that sets the color of the log console by event ID and log level. Loggers generally don't change by event ID and are not specific to log level.
-* Creates different color console entries per log level and event ID using the following configuration type:
-
-[!code-csharp[](index/samples/3.x/CustomLogger/ColorConsoleLogger/ColorConsoleLoggerConfiguration.cs?name=snippet)]
-
-The preceding code sets the default level to `Warning` and the color to `Yellow`. If the `EventId` is set to 0, we will log all events.
-
-### Create the custom logger
-
-The `ILogger` implementation category name is typically the logging source. For example, the type where the logger is created:
-
-[!code-csharp[](index/samples/3.x/CustomLogger/ColorConsoleLogger/ColorConsoleLogger.cs?name=snippet)]
-
-The preceding code:
-
-* Creates a logger instance per category name.
-* Checks `logLevel == _config.LogLevel` in `IsEnabled`, so each `logLevel` has a unique logger. Generally, loggers should also be enabled for all higher log levels:
-
-```csharp
-public bool IsEnabled(LogLevel logLevel)
-{
-    return logLevel >= _config.LogLevel;
-}
-```
-
-### Create the custom LoggerProvider
-
-The `LoggerProvider` is the class that creates the logger instances. Maybe it is not needed to create a logger instance per category, but this makes sense for some Loggers, like NLog or log4net. Doing this you are also able to choose different logging output targets per category if needed:
-
-[!code-csharp[](index/samples/3.x/CustomLogger/ColorConsoleLogger/ColorConsoleLoggerProvider.cs?name=snippet)]
-
-In the preceding code, <xref:Microsoft.Build.Logging.LoggerDescription.CreateLogger*> creates a single instance of the `ColorConsoleLogger` per category name and stores it in the [`ConcurrentDictionary<TKey,TValue>`](/dotnet/api/system.collections.concurrent.concurrentdictionary-2);
-
-### Usage and registration of the custom logger
-
-Register the logger in the `Startup.Configure`:
-
-[!code-csharp[](index/samples/3.x/CustomLogger/Startup.cs?name=snippet)]
-
-For the preceding code, provide at least one extension method for the `ILoggerFactory`:
-
-[!code-csharp[](index/samples/3.x/CustomLogger/ColorConsoleLogger/ColorConsoleLoggerExtensions.cs?name=snippet)]
+To create a custom logger, see [Implement a custom logging provider in .NET](/dotnet/core/extensions/custom-logging-provider).
 
 ## Additional resources
 
