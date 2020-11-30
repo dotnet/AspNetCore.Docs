@@ -31,7 +31,7 @@ A certificate from a [certificate authority](https://wikipedia.org/wiki/Certific
 
 This document uses [self-signed development certificates](https://en.wikipedia.org/wiki/Self-signed_certificate) for hosting pre-built images over `localhost`. The instructions are similar to using production certificates.
 
-Use [dotnet dev-certs](https://docs.microsoft.com/en-us/dotnet/core/additional-tools/self-signed-certificates-guide) to create self-signed certificates for development and testing.
+Use [dotnet dev-certs](/dotnet/core/additional-tools/self-signed-certificates-guide) to create self-signed certificates for development and testing.
 
 For production certs:
 
