@@ -4,7 +4,7 @@ author: codemillmatt
 description: Learn how to publish an ASP.NET Core web API to Azure API Management using Visual Studio.
 ms.author: masoucou
 ms.custom: "devx-track-csharp, mvc"
-ms.date: 08/26/2020
+ms.date: 11/22/2020
 uid: tutorials/publish-to-azure-api-management-using-vs
 ---
 # Publish an ASP.NET Core web API to Azure API Management with Visual Studio
@@ -102,11 +102,15 @@ At this point, you need to add an API to the Azure API Management service. Leave
 
 1. Open the API Management Service instance created previously in the Azure portal. Select the **APIs** blade:
 
-    ![APIs blade selected from the API Management Service instance](publish-to-azure-api-management-using-vs/_static/portal_api_overview.png)
+  ![APIs blade selected from the API Management Service instance](publish-to-azure-api-management-using-vs/_static/portal_api_overview.png)
+
+1. Select the 3 dots next to **Echo API** and then select **Delete** from the pop-up menu to remove it.
+
+  ![Deleting the echo API from the API Management Service instance](publish-to-azure-api-management-using-vs/_static/portal_delete_echo.png)
 
 1. From the **Add a new API** panel, select the **Blank API** tile:
 
-    ![Screen showing the blank API tile highlighted](publish-to-azure-api-management-using-vs/_static/portal_api_create_blank.png)
+  ![Screen showing the blank API tile highlighted](publish-to-azure-api-management-using-vs/_static/portal_api_create_blank.png)
 
 1. Enter the following values in the **Create a blank API** dialog that appears:    
 

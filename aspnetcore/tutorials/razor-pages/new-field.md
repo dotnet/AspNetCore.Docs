@@ -377,7 +377,7 @@ The `Update-Database` command tells the framework to apply the schema changes to
 
 <a name="ssox"></a>
 
-If you delete all the records in the DdatabaseB, the initializer will seed the DdatabaseB and include the `Rating` field. You can do this with the delete links in the browser or from [Sql Server Object Explorer](xref:tutorials/razor-pages/sql#ssox) (SSOX).
+If you delete all the records in the database, the initializer will seed the database and include the `Rating` field. You can do this with the delete links in the browser or from [Sql Server Object Explorer](xref:tutorials/razor-pages/sql#ssox) (SSOX).
 
 Another option is to delete the database and use migrations to re-create the database. To delete the database in SSOX:
 
