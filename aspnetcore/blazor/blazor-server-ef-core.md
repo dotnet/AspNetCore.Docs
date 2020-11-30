@@ -48,7 +48,7 @@ The following recommendations are designed to provide a consistent approach to u
 * By default, consider using one context per operation. The context is designed for fast, low overhead instantiation:
 
   ```csharp
-  var using context = new MyContext();
+  using var context = new MyContext();
 
   return await context.MyEntities.ToListAsync();
   ```
@@ -179,7 +179,7 @@ The following recommendations are designed to provide a consistent approach to u
 * By default, consider using one context per operation. The context is designed for fast, low overhead instantiation:
 
   ```csharp
-  var using context = new MyContext();
+  using var context = new MyContext();
 
   return await context.MyEntities.ToListAsync();
   ```
