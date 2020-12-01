@@ -29,11 +29,16 @@ namespace HttpRequestsSample
                 httpClient.Timeout = TimeSpan.FromSeconds(5);
             });
 
+            #region snippet_IOperationScoped
             services.AddScoped<IOperationScoped, OperationScoped>();
+            #endregion
+            
             services.AddTransient<OperationHandler>();
+            services.AddTransient<OperationResponseHandler>();
 
             services.AddHttpClient("Operation")
-                .AddHttpMessageHandler<OperationHandler>();
+                .AddHttpMessageHandler<OperationHandler>()
+                .AddHttpMessageHandler<OperationResponseHandler>();
 
             services.AddControllers();
             services.AddRazorPages();

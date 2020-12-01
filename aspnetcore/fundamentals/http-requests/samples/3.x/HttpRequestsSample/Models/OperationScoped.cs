@@ -2,6 +2,7 @@ using System;
 
 namespace HttpRequestsSample.Models
 {
+    #region snippet_Types
     public interface IOperationScoped 
     {
         string OperationId { get; }
@@ -11,4 +12,5 @@ namespace HttpRequestsSample.Models
     {
         public string OperationId { get; } = Guid.NewGuid().ToString()[^4..];
     }
+    #endregion
 }

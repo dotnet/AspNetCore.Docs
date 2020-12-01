@@ -5,6 +5,7 @@ using HttpRequestsSample.Models;
 
 namespace HttpRequestsSample.Handlers
 {
+    #region snippet_Class
     public class OperationHandler : DelegatingHandler
     {
         private readonly IOperationScoped _operationService;
@@ -14,15 +15,13 @@ namespace HttpRequestsSample.Handlers
             _operationService = operationScoped;
         }
 
-        protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+        protected async override Task<HttpResponseMessage> SendAsync(
+            HttpRequestMessage request, CancellationToken cancellationToken)
         {
             request.Headers.Add("X-OPERATION-ID", _operationService.OperationId);
 
-            // For sample purposes, also return the OperationId as the body.
-            return Task.FromResult(new HttpResponseMessage
-            {
-                Content = new StringContent(_operationService.OperationId)
-            });
+            return await base.SendAsync(request, cancellationToken);
         }
     }
+    #endregion
 }
