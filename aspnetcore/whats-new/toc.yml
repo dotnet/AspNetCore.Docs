@@ -5,6 +5,8 @@
     - name: 2020
       expanded: true
       items:
+      - name: November
+        href: 2020-11.md
       - name: October
         href: 2020-10.md
       - name: September
@@ -15,5 +17,3 @@
         href: 2020-07.md
       - name: June
         href: 2020-06.md
-      - name: May
-        href: 2020-05.md
