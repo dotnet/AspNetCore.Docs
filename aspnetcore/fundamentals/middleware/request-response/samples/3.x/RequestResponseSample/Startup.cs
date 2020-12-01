@@ -174,7 +174,7 @@ namespace RequestResponseSample
                     if (position != null)
                     {
                         var readOnlySequence = buffer.Slice(0, position.Value);
-                        AddStringToList(ref results, in readOnlySequence);
+                        AddStringToList(results, in readOnlySequence);
 
                         // Skip the line + the \n character (basically position)
                         buffer = buffer.Slice(buffer.GetPosition(1, position.Value));
@@ -185,7 +185,7 @@ namespace RequestResponseSample
 
                 if (readResult.IsCompleted && buffer.Length > 0)
                 {
-                    AddStringToList(ref results, in buffer);
+                    AddStringToList(results, in buffer);
                 }
 
                 reader.AdvanceTo(buffer.Start, buffer.End);
@@ -201,7 +201,7 @@ namespace RequestResponseSample
             return results;
         }
 
-        private static void AddStringToList(ref List<string> results, in ReadOnlySequence<byte> readOnlySequence)
+        private static void AddStringToList(List<string> results, in ReadOnlySequence<byte> readOnlySequence)
         {
             // Separate method because Span/ReadOnlySpan cannot be used in async methods
             ReadOnlySpan<byte> span = readOnlySequence.IsSingleSegment ? readOnlySequence.First.Span : readOnlySequence.ToArray().AsSpan();
