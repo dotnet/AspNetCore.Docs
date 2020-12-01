@@ -87,11 +87,8 @@ In the preceding code:
 In some scenarios, middleware will have different ordering. For example, caching and compression ordering is scenario specific, and there's multiple valid orderings. For example:
 
 ```csharp
-app.UseResponseCompression();
 app.UseResponseCaching();
-```
-
-With the preceding code, you might need to store multiple cached representations.
+app.UseResponseCompression();
 
 The following ordering combines static files to allow caching compressed static files:
 
