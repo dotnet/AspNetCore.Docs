@@ -89,6 +89,9 @@ In some scenarios, middleware will have different ordering. For example, caching
 ```csharp
 app.UseResponseCaching();
 app.UseResponseCompression();
+```
+
+With the preceding code, CPU could be saved by caching the compressed response, but you might end up caching multiple representations of a resource using different compression algorithms such as gzip or brotli.
 
 The following ordering combines static files to allow caching compressed static files:
 
