@@ -4,7 +4,7 @@ author: rick-anderson
 description: Part 5 of tutorial series on Razor Pages.
 ms.author: riande
 ms.date: 09/20/2020
-no-loc: [Index,  appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Index, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/razor-pages/da1
 ---
 # Part 5, update the generated pages in an ASP.NET Core app
