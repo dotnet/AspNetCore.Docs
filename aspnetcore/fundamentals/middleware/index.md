@@ -73,7 +73,7 @@ The **Endpoint** middleware in the preceding diagram executes the filter pipelin
 
 The order that middleware components are added in the `Startup.Configure` method defines the order in which the middleware components are invoked on requests and the reverse order for the response. The order is **critical** for security, performance, and functionality.
 
-The following `Startup.Configure` method adds security-related middleware components in the recommended order:
+The following `Startup.Configure` method adds security-related middleware components in the typical recommended order:
 
 [!code-csharp[](index/snapshot/StartupAll3.cs?name=snippet)]
 
@@ -83,6 +83,23 @@ In the preceding code:
 * Not every middleware needs to go in this exact order, but many do. For example:
   * `UseCors`, `UseAuthentication`, and `UseAuthorization` must go in the order shown.
   * `UseCors` currently must go before `UseResponseCaching` due to [this bug](https://github.com/dotnet/aspnetcore/issues/23218).
+
+In some scenarios, middleware will have different ordering. For example, caching and compression ordering is scenario specific, and there's multiple valid orderings. For example:
+
+```csharp
+app.UseResponseCompression();
+app.UseResponseCaching();
+```
+
+With the preceding code, you might need to store multiple cached representations.
+
+The following ordering combines static files to allow caching compressed static files:
+
+```csharp
+app.UseResponseCaching
+app.UseResponseCompression
+app.UseStaticFiles
+```
 
 The following `Startup.Configure` method adds middleware components for common app scenarios:
 
