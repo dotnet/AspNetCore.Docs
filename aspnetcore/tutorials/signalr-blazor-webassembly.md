@@ -225,7 +225,7 @@ In the `BlazorSignalRApp.Server` project, create a `Hubs` (plural) folder and ad
 
 ::: moniker range=">= aspnetcore-5.0"
 
-   [!code-csharp[](signalr-blazor-webassembly/samples/5.x/BlazorSignalRApp/Server/Startup.cs?name=snippet_ConfigureServices&highlight=3,5-9)]
+   [!code-csharp[](signalr-blazor-webassembly/samples/5.x/BlazorSignalRApp/Server/Startup.cs?name=snippet_ConfigureServices&highlight=3,6-10)]
 
 ::: moniker-end
 
@@ -242,7 +242,7 @@ In the `BlazorSignalRApp.Server` project, create a `Hubs` (plural) folder and ad
 
 ::: moniker range=">= aspnetcore-5.0"
 
-   [!code-csharp[](signalr-blazor-webassembly/samples/5.x/BlazorSignalRApp/Server/Startup.cs?name=snippet_Configure&highlight=3,25)]
+   [!code-csharp[](signalr-blazor-webassembly/samples/5.x/BlazorSignalRApp/Server/Startup.cs?name=snippet_Configure&highlight=3,26)]
 
 ::: moniker-end
 
