@@ -12,11 +12,19 @@ namespace BlazorSignalRApp.Server
 {
     public class Startup
     {
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+
+        public IConfiguration Configuration { get; }
+
         #region snippet_ConfigureServices
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSignalR();
             services.AddControllersWithViews();
+            services.AddRazorPages();
             services.AddResponseCompression(opts =>
             {
                 opts.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(
@@ -49,6 +57,7 @@ namespace BlazorSignalRApp.Server
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapRazorPages();
                 endpoints.MapControllers();
                 endpoints.MapHub<ChatHub>("/chathub");
                 endpoints.MapFallbackToFile("index.html");
