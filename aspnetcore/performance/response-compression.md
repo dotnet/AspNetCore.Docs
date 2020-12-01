@@ -109,8 +109,6 @@ Submit a request to the sample app with the `Accept-Encoding: br` header (Brotli
 
 ## Providers
 
-<!-- see "fundamentals\middleware\request-response\static\TestPipes.JPG for testing sample -->
-
 ### Brotli Compression Provider
 
 Use the <xref:Microsoft.AspNetCore.ResponseCompression.BrotliCompressionProvider> to compress responses with the [Brotli compressed data format](https://tools.ietf.org/html/rfc7932).
