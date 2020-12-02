@@ -107,7 +107,7 @@ Features not provided by Route-to-code include:
 * Constructor dependency injection
 * `ProblemDetails` ([https://tools.ietf.org/html/rfc7807](RFC 7807))
 
-Consider using [ASP.NET Core web API](xref:web-api/index) to create an API if it requires some of the features listed above.
+Consider using [ASP.NET Core web API](xref:web-api/index) to create an API if it requires some of the features in the preceding list.
 
 ## Additional resources
 
