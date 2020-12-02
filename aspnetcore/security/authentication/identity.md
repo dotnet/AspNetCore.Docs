@@ -122,7 +122,7 @@ Identity is enabled by calling <xref:Microsoft.AspNetCore.Builder.AuthAppBuilder
 
 ::: moniker range=">= aspnetcore-5.0"
 
-[!code-csharp[](identity/sample/WebApp5x/Startup.cs?name=snippet_configureservices)]
+[!code-csharp[](identity/sample/WebApp5x/Startup.cs?name=snippet_configureservices&highlight=11-99)]
 
 The preceding code configures Identity with default option values. Services are made available to the app through [dependency injection](xref:fundamentals/dependency-injection).
 
