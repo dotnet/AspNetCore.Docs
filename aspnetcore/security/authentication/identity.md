@@ -128,7 +128,7 @@ The preceding code configures Identity with default option values. Services are 
 
 Identity is enabled by calling [UseAuthentication](/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication#Microsoft_AspNetCore_Builder_AuthAppBuilderExtensions_UseAuthentication_Microsoft_AspNetCore_Builder_IApplicationBuilder_). `UseAuthentication` adds authentication [middleware](xref:fundamentals/middleware/index) to the request pipeline.
 
-[!code-csharp[](identity/sample/WebApp5x/Startup.cs?name=snippet_configure&highlight=18)]
+[!code-csharp[](identity/sample/WebApp5x/Startup.cs?name=snippet_configure&highlight=19)]
 
 ::: moniker-end
 
