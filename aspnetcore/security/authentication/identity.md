@@ -333,7 +333,7 @@ Services are added in `ConfigureServices`. The typical pattern is to call all th
 ::: moniker-end
 
 ::: moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
-
+3.x
 [!code-csharp[](identity/sample/WebApp1/Startup.cs?name=snippet_configureservices)]
 
 The preceding code configures Identity with default option values. Services are made available to the app through [dependency injection](xref:fundamentals/dependency-injection).
@@ -345,7 +345,7 @@ Identity is enabled by calling [UseAuthentication](/dotnet/api/microsoft.aspnetc
 ::: moniker-end
 
 ::: moniker range=">= aspnetcore-5.0"
-
+5.x
 [!code-csharp[](identity/sample/WebApp5x/Startup.cs?name=snippet_configureservices)]
 
 The preceding code configures Identity with default option values. Services are made available to the app through [dependency injection](xref:fundamentals/dependency-injection).
