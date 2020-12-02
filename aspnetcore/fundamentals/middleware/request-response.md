@@ -28,6 +28,8 @@ Streams aren't being removed from the framework. Streams continue to be used thr
 
 ## Stream examples
 
+<!-- see "fundamentals\middleware\request-response\static\TestPipes.JPG for testing sample -->
+
 Suppose the goal is to create a middleware that reads the entire request body as a list of strings, splitting on new lines. A simple stream implementation might look like the following example:
 
 > [!WARNING]

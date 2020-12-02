@@ -94,6 +94,21 @@ In the `Startup.Configure` method, the `Map` method and other class's static met
 
 [!code-csharp[](route-to-code/sample/Startup5.cs?name=snippet)]
 
+## Notable missing features compared to Web API
+
+Route-to-code is designed for basic JSON APIs. It doesn't have support for many of the advanced features provided by ASP.NET Core Web API.
+
+Features not provided by Route-to-code include:
+
+* Model binding
+* Model validation
+* OpenAPI/Swagger
+* Content negotiation
+* Constructor dependency injection
+* `ProblemDetails` ([https://tools.ietf.org/html/rfc7807](RFC 7807))
+
+Consider using [ASP.NET Core web API](xref:web-api/index) to create an API if it requires some of the features in the preceding list.
+
 ## Additional resources
 
 * <xref:web-api/index>
