@@ -79,6 +79,44 @@ public class HomeController : Controller
     }
     #endregion
 
+    #region snippet_set
+
+    public IActionResult SetCacheAbsoluteExpiration()
+    {
+        DateTime cacheEntry;
+
+        // Look for cache key.
+        if (!_cache.TryGetValue(CacheKeys.Entry, out cacheEntry))
+        {
+            // Key not in cache, so get data.
+            cacheEntry = DateTime.Now;
+
+            // Save data in cache and set the absolute expiration time to tomorrow
+            _cache.Set(CacheKeys.Entry, cacheEntry, DateTime.Today + TimeSpan.FromDays(1));
+        }
+
+        return View("Cache", cacheEntry);
+    }
+
+    public IActionResult SetCacheRelativeExpiration()
+    {
+        DateTime cacheEntry;
+
+        // Look for cache key.
+        if (!_cache.TryGetValue(CacheKeys.Entry, out cacheEntry))
+        {
+            // Key not in cache, so get data.
+            cacheEntry = DateTime.Now;
+
+            // Save data in cache and set the relative expiration time to one day
+            _cache.Set(CacheKeys.Entry, cacheEntry, TimeSpan.FromDays(1));
+        }
+
+        return View("Cache", cacheEntry);
+    }
+
+    #endregion
+
     public IActionResult CacheRemove()
     {
         _cache.Remove(CacheKeys.Entry);
