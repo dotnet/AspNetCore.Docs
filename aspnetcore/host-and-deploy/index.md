@@ -23,6 +23,17 @@ In general, to deploy an ASP.NET Core app to a hosting environment:
 
 The [dotnet publish](/dotnet/core/tools/dotnet-publish) command compiles app code and copies the files required to run the app into a *publish* folder. When deploying from Visual Studio, the `dotnet publish` step occurs automatically before the files are copied to the deployment destination.
 
+## Publish settings files
+
+`*.json` files are published by default. To publish other settings files, specify them in the `<ItemGroup> <Content Include= ... />` element. The following markup publishes XML files:
+
+```xml
+<ItemGroup>
+  <Content Include="**\*.xml" Exclude="bin\**\*;obj\**\*"
+    CopyToOutputDirectory="PreserveNewest" />
+</ItemGroup>
+```
+
 ### Folder contents
 
 The *publish* folder contains one or more app assembly files, dependencies, and optionally the .NET runtime.
