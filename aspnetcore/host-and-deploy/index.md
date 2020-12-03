@@ -25,7 +25,7 @@ The [dotnet publish](/dotnet/core/tools/dotnet-publish) command compiles app cod
 
 ## Publish settings files
 
-`*.json` files are published by default. To publish other settings files, specify them in the `<ItemGroup> <Content Include= ... />` element. The following markup publishes XML files:
+`*.json` files are published by default. To publish other settings files, specify them in the `<ItemGroup> <Content Include= ... />` element in the project file. The following markup publishes XML files:
 
 ```xml
 <ItemGroup>
