@@ -80,24 +80,6 @@ public class HomeController : Controller
     #endregion
 
     #region snippet_set
-
-    public IActionResult SetCacheAbsoluteExpiration()
-    {
-        DateTime cacheEntry;
-
-        // Look for cache key.
-        if (!_cache.TryGetValue(CacheKeys.Entry, out cacheEntry))
-        {
-            // Key not in cache, so get data.
-            cacheEntry = DateTime.Now;
-
-            // Save data in cache and set the absolute expiration time to tomorrow
-            _cache.Set(CacheKeys.Entry, cacheEntry, DateTime.Today + TimeSpan.FromDays(1));
-        }
-
-        return View("Cache", cacheEntry);
-    }
-
     public IActionResult SetCacheRelativeExpiration()
     {
         DateTime cacheEntry;
@@ -114,7 +96,6 @@ public class HomeController : Controller
 
         return View("Cache", cacheEntry);
     }
-
     #endregion
 
     public IActionResult CacheRemove()
