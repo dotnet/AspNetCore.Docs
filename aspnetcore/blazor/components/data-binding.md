@@ -409,7 +409,7 @@ The following components demonstrate the preceding concepts:
 }
 ```
 
-For an alternative approach suited to sharing data in-memory across components that aren't necessarily nested, see <xref:blazor/state-management#in-memory-state-container-service>.
+For an alternative approach suited to sharing data in-memory across components that aren't necessarily nested, see the *In-memory state container service* section of the <xref:blazor/state-management> article.
 
 ## Additional resources
 
