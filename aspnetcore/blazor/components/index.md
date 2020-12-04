@@ -257,9 +257,9 @@ Components can have *component parameters*, which are defined using public simpl
 
 [!code-razor[](../common/samples/5.x/BlazorWebAssemblySample/Components/ChildComponent.razor?highlight=2,11-12)]
 
-Component parameters are optional and can be assigned a default value:
+Component parameters can be assigned a default value:
 
-```razor
+```csharp
 [Parameter]
 public string Title { get; set; } = "Panel Title from Child";
 ```
