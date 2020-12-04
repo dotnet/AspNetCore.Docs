@@ -916,12 +916,34 @@ To diagnose which of these applies in your case:
  1. Note which file is triggering the error by reading the error message.
  1. Open your browser's developer tools and look in the *Network* tab. If necessary, reload the page to see the list of requests and responses. Find the file that is triggering the error in that list.
  1. Check the HTTP status code in the response. If the server returns anything other than *200 - OK* (or another 2xx status code), then you have a server-side problem to diagnose. For example, status code 403 means there's an authorization problem, whereas status code 500 means the server is failing in an unspecified manner. Consult server-side logs to diagnose and fix the app.
- 1. If the status code is *200 - OK* for the resource, look at the response content in browser's developer tools and check that the content matchs up with the data expected. For example, a common problem is to misconfigure routing so that requests return your `index.html` data even for other files. Make sure that responses to `.wasm` requests are WebAssembly binaries and that responses to `.dll` requests are .NET assembly binaries. If not, you have a server-side routing problem to diagnose.
+ 1. If the status code is *200 - OK* for the resource, look at the response content in browser's developer tools and check that the content matches up with the data expected. For example, a common problem is to misconfigure routing so that requests return your `index.html` data even for other files. Make sure that responses to `.wasm` requests are WebAssembly binaries and that responses to `.dll` requests are .NET assembly binaries. If not, you have a server-side routing problem to diagnose.
+ 1. Seek to validate the app's published output with the [Troubleshoot integrity PowerShell script](#troubleshoot-integrity-powershell-script).
 
 If you confirm that the server is returning plausibly correct data, there must be something else modifying the contents in between build and delivery of the file. To investigate this:
 
  * Examine the build toolchain and deployment mechanism in case they're modifying files after the files are built. An example of this is when Git transforms file line endings, as described earlier.
  * Examine the web server or CDN configuration in case they're set up to modify responses dynamically (for example, trying to minify HTML). It's fine for the web server to implement HTTP compression (for example, returning `content-encoding: br` or `content-encoding: gzip`), since this doesn't affect the result after decompression. However, it's *not* fine for the web server to modify the uncompressed data.
+
+### Troubleshoot integrity PowerShell script
+
+Use the [`integrity.ps1`](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/blazor/host-and-deploy/webassembly/_samples/integrity.ps1?raw=true) PowerShell script to validate a published Blazor app. The script is provided as a starting point when the app has integrity issues that the Blazor framework can't identify. Customization of the script might be required for your apps.
+
+The script checks the files in the `publish` folder and detects issues in the different manifests that contain integrity hashes. The script downloads the files for the published app and checks the downloaded scripts for issues as well. Finally, the script detects inconsistencies between the published output and the deployed app. These checks should detect the three most common problems:
+
+* You modified a file in the published output without realizing it.
+* The app wasn't correctly deployed to the deployment target or something changed within the deployment target's environment.
+* There are differences between the deployed app and the output from publishing the app.
+
+To run the script, invoke it with the following command in a PowerScript command shell:
+
+```powershell
+integrity.ps1 {BASE URL} {PUBLISH OUTPUT FOLDER}
+```
+
+Placeholders:
+
+* `{BASE URL}`: The URL of the published app.
+* `{PUBLISH OUTPUT FOLDER}`: The path to the app's `publish` folder or location where the app is published for deployment.
 
 ### Disable integrity checking for non-PWA apps
 
