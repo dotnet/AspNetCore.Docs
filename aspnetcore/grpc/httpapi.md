@@ -96,11 +96,11 @@ Swagger (OpenAPI) is a language-agnostic specification for describing REST APIs.
 To enable Swagger with gRPC HTTP API:
 
 1. Add a package reference to [Microsoft.AspNetCore.Grpc.Swagger](https://www.nuget.org/packages/Microsoft.AspNetCore.Grpc.Swagger).
-2. Configure Swashbuckle in *Startup.cs*. `AddGrpcSwagger()` configures Swashbuckle to include gRPC HTTP API endpoints.
+2. Configure Swashbuckle in *Startup.cs*. The `AddGrpcSwagger` method configures Swashbuckle to include gRPC HTTP API endpoints.
 
 [!code-csharp[](~/grpc/httpapi/Startup.cs?name=snippet_1&highlight=6-10,15-19)]
 
-To confirm that Swashbuckle is generating Swagger for the RESTful gRPC services, start the app and visit the Swagger UI page:
+To confirm that Swashbuckle is generating Swagger for the RESTful gRPC services, start the app and navigate to the Swagger UI page:
 
 ![Swagger UI](~/grpc/httpapi/static/swaggerui.png)
 
