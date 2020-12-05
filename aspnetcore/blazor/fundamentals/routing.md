@@ -40,7 +40,7 @@ The <xref:Microsoft.AspNetCore.Components.Routing.Router> component enables rout
 </Router>
 ```
 
-When a `.razor` file with an `@page` directive is compiled, the generated class is provided a <xref:Microsoft.AspNetCore.Components.RouteAttribute> specifying the route template.
+When a `.razor` file with an `@page` directive is compiled, the generated class is provided a <xref:Microsoft.AspNetCore.Components.RouteAttribute> specifying the route template. When the application boots, the assembly specified as the `AppAssembly` is scanned to gather information about all the components that have a <xref:Microsoft.AspNetCore.Components.RouteAttribute>.
 
 At runtime, the <xref:Microsoft.AspNetCore.Components.RouteView> component:
 
