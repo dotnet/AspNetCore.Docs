@@ -23,7 +23,7 @@ The primary Blazor hosting model is running client-side in the browser on WebAss
 
 When the Blazor WebAssembly app is created for deployment without a backend ASP.NET Core app to serve its files, the app is called a *standalone* Blazor WebAssembly app. When the app is created for deployment with a backend app to serve its files, the app is called a *hosted* Blazor WebAssembly app. A hosted Blazor WebAssembly app typically interacts with the server over the network using web API calls or [SignalR](xref:signalr/introduction) (<xref:tutorials/signalr-blazor-webassembly>).
 
-To create a Blazor WebAssembly app in [Visual Studio](https://visualstudio.microsoft.com), use the **Blazor App** > **Blazor WebAssembly App** project template. After selecting the template, you have the option of configuring the app to use an ASP.NET Core backend by selecting the **ASP.NET Core hosted** check box.
+To create a Blazor WebAssembly app in [Visual Studio](https://visualstudio.microsoft.com), use the **Blazor App** > **Blazor WebAssembly App** project template. After selecting the template, you have the option of selecting the **ASP.NET Core hosted** check box to serve the Blazor WebAssembly app to clients from an ASP.NET Core app. The project template for a hosted Blazor WebAssembly solution includes a sample web API interaction between the server and client projects of the solution.
 
 To create a Blazor WebAssembly app from a command shell, execute the [`dotnet new` command](/dotnet/core/tools/dotnet-new) with the template name (`dotnet new blazorwasm`). To create a hosted app, add the hosted option (`-ho` or `--hosted`) to the command. To create a folder for the app, add the output option (`-o {FOLDER NAME}` or `--output {FOLDER NAME}`) to the command, where the placeholder `{FOLDER NAME}` is the name of the folder.
 
@@ -39,7 +39,7 @@ The Blazor WebAssembly hosting model offers several benefits:
 * Work is offloaded from the server to the client.
 * An ASP.NET Core web server isn't required to host the app. Serverless deployment scenarios are possible, such as serving the app from a Content Delivery Network (CDN).
 
-There are downsides to using the Blazor WebAssembly hosting model:
+The Blazor WebAssembly hosting model has the following limitations:
 
 * The app is restricted to the capabilities of the browser.
 * Capable client hardware and software (for example, WebAssembly support) is required.
@@ -76,7 +76,7 @@ The Blazor Server hosting model offers several benefits:
 > [!IMPORTANT]
 > A Blazor Server app prerenders in response to the first client request, which creates the UI state on the server. When the client attempts to create a SignalR connection, **the client must reconnect to the same server**. Blazor Server apps that use more than one backend server should implement *sticky sessions* for SignalR connections. For more information, see the [Connection to the server](#connection-to-the-server) section.
 
-There are downsides to Blazor Server hosting:
+Blazor Server hosting model also has some limitations:
 
 * Higher latency usually exists. Every user interaction involves a network hop.
 * There's no offline support. If the client connection fails, the app stops working.
@@ -87,7 +87,7 @@ The Blazor Server app model supports [Docker containers](/dotnet/standard/micros
 
 ### Comparison to server-rendered UI
 
-One way to understand Blazor Server apps is to understand how it differs from traditional models for rendering UI in ASP.NET Core apps using Razor views or Razor Pages. Both models use the [Razor language](xref:mvc/views/razor) to describe HTML content, but they significantly differ in how markup is rendered.
+One way to understand Blazor Server apps is to understand how it differs from traditional models for rendering UI in ASP.NET Core apps using Razor views or Razor Pages. Both models use the [Razor language](xref:mvc/views/razor) to describe HTML content for rendering, but they significantly differ in *how* markup is rendered.
 
 When a Razor Page or view is rendered, every line of Razor code emits HTML in text form. After rendering, the server disposes of the page or view instance, including any state that was produced. When another request for the page occurs, for instance when server validation fails and the validation summary is displayed:
 
@@ -135,7 +135,7 @@ Blazor Server apps should be optimized to minimize UI latency by reducing networ
 
 ### Connection to the server
 
-Blazor Server apps require an active SignalR connection to the server. If the connection is lost, the app attempts to reconnect to the server. As long as the client's state remains in memory, the client session resumes without losing state.
+Blazor Server apps require an active SignalR connection to the server. If the connection is lost, the app attempts to reconnect to the server. As long as the client's state remains in the server's memory, the client session resumes without losing state.
 
 A Blazor Server app prerenders in response to the first client request, which creates the UI state on the server. When the client attempts to create a SignalR connection, the client must reconnect to the same server. Blazor Server apps that use more than one backend server should implement *sticky sessions* for SignalR connections.
 
