@@ -937,7 +937,7 @@ The script checks the files in the `publish` folder and detects issues in the di
 To run the script, invoke it with the following command in a PowerShell command shell:
 
 ```powershell
-integrity.ps1 {BASE URL} {PUBLISH OUTPUT FOLDER}
+.\integrity.ps1 {BASE URL} {PUBLISH OUTPUT FOLDER}
 ```
 
 Placeholders:
