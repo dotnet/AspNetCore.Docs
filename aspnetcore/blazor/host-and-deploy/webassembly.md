@@ -934,7 +934,7 @@ The script checks the files in the `publish` folder and detects issues in the di
 * The app wasn't correctly deployed to the deployment target or something changed within the deployment target's environment.
 * There are differences between the deployed app and the output from publishing the app.
 
-To run the script, invoke it with the following command in a PowerScript command shell:
+To run the script, invoke it with the following command in a PowerShell command shell:
 
 ```powershell
 integrity.ps1 {BASE URL} {PUBLISH OUTPUT FOLDER}
