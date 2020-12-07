@@ -314,8 +314,8 @@
               uid: tutorials/build-a-blazor-app
             - name: SignalR with Blazor WebAssembly
               uid: tutorials/signalr-blazor-webassembly
-        - name: Templates
-          uid: blazor/templates
+        - name: Project structure
+          uid: blazor/project-structure
         - name: Fundamentals
           items:
             - name: Routing
