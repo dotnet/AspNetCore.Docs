@@ -268,7 +268,7 @@ Support has been added for configuring Kestrel’s endpoint-specific options via
 * HTTP protocols used
 * TLS protocols used
 * Certificate selected
-* Cient certificate mode
+* Client certificate mode
 
 Configuration allows specifying which certificate is selected based on the specified server name. The server name is part of the Server Name Indication (SNI) extension to the TLS protocol as indicated by the client. Kestrel's configuration also supports a wildcard prefix in the host name.
 
