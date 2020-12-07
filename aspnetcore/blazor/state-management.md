@@ -27,6 +27,9 @@ Examples of user state held in browser memory include:
 
 When a user closes and re-opens their browser or reloads the page, user state held in the browser's memory is lost.
 
+> [!NOTE]
+> [Protected Browser Storage](xref:blazor/state-management?pivots=server#aspnet-core-protected-browser-storage) (<xref:Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage?displayProperty=fullName> namespace) relies on ASP.NET Core Data Protection and is only supported for Blazor Server apps.
+
 ## Persist state across browser sessions
 
 Generally, maintain state across browser sessions where users are actively creating data, not simply reading data that already exists.
