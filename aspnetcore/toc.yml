@@ -766,6 +766,8 @@
       uid: grpc/interprocess
     - name: Create JSON Web APIs from gRPC
       uid: grpc/httpapi
+    - name: Code-first gRPC services and clients
+      uid: grpc/code-first
     - name: Manage Protobuf references with dotnet-grpc
       uid: grpc/dotnet-grpc
     - name: Test gRPC services with gRPCurl
