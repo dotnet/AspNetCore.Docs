@@ -942,7 +942,7 @@ Invoke the script with the following command in a PowerShell command shell:
 
 Placeholders:
 
-* `{BASE URL}`: The URL of the published app.
+* `{BASE URL}`: The URL of the deployed app.
 * `{PUBLISH OUTPUT FOLDER}`: The path to the app's `publish` folder or location where the app is published for deployment.
 
 ### Disable integrity checking for non-PWA apps
