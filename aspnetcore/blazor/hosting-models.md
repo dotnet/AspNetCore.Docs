@@ -5,7 +5,7 @@ description: Understand Blazor WebAssembly and Blazor Server hosting models.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/04/2020
+ms.date: 12/07/2020
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/hosting-models
 ---
@@ -22,22 +22,6 @@ The primary Blazor hosting model is running client-side in the browser on WebAss
 ![Blazor WebAssembly: The Blazor app runs on a UI thread inside the browser.](hosting-models/_static/blazor-webassembly.png)
 
 When the Blazor WebAssembly app is created for deployment without a backend ASP.NET Core app to serve its files, the app is called a *standalone* Blazor WebAssembly app. When the app is created for deployment with a backend app to serve its files, the app is called a *hosted* Blazor WebAssembly app. A hosted Blazor WebAssembly app typically interacts with the server over the network using web API calls or [SignalR](xref:signalr/introduction) (<xref:tutorials/signalr-blazor-webassembly>).
-
-To create a Blazor WebAssembly app in [Visual Studio](https://visualstudio.microsoft.com), use the **Blazor App** > **Blazor WebAssembly App** project template. After selecting the template, you have the option of selecting the **ASP.NET Core hosted** check box to serve the Blazor WebAssembly app to clients from an ASP.NET Core app. The project template for a hosted Blazor WebAssembly solution includes a sample web API interaction between the server and client projects of the solution.
-
-To create a Blazor WebAssembly app in a command shell, execute the [`dotnet new` command](/dotnet/core/tools/dotnet-new) with the `blazorwasm` template:
-
-```dotnetcli
-dotnet new blazorwasm
-```
-
-To create a hosted app, add the hosted option (`-ho` or `--hosted`) to the command:
-
-```dotnetcli
-dotnet new blazorwasm -ho
-```
-
-To create a folder for the app, add the output option (`-o {FOLDER NAME}` or `--output {FOLDER NAME}`) to the command, where the placeholder `{FOLDER NAME}` is the name of the folder.
 
 The `blazor.webassembly.js` script is provided by the framework and handles:
 
@@ -58,6 +42,8 @@ The Blazor WebAssembly hosting model has the following limitations:
 * Download size is larger, and apps take longer to load.
 * .NET runtime and tooling support is less mature. For example, limitations exist in [.NET Standard](/dotnet/standard/net-standard) support and debugging.
 
+To create a Blazor WebAssembly app, see <xref:blazor/tooling>.
+
 The hosted Blazor app model supports [Docker containers](/dotnet/standard/microservices-architecture/container-docker-introduction/index). For Docker support in Visual Studio, right-click on the `Server` project of a hosted Blazor WebAssembly solution and select **Add** > **Docker Support**.
 
 ## Blazor Server
@@ -65,16 +51,6 @@ The hosted Blazor app model supports [Docker containers](/dotnet/standard/micros
 With the Blazor Server hosting model, the app is executed on the server from within an ASP.NET Core app. UI updates, event handling, and JavaScript calls are handled over a [SignalR](xref:signalr/introduction) connection.
 
 ![The browser interacts with the app (hosted inside of an ASP.NET Core app) on the server over a SignalR connection.](hosting-models/_static/blazor-server.png)
-
-To create a Blazor Server app in [Visual Studio](https://visualstudio.microsoft.com), use the **Blazor App** > **Blazor Server App** template. The ASP.NET Core app hosts the Blazor Server app and creates the SignalR endpoint where clients connect.
-
-To create a Blazor Server app in a command shell, execute the [`dotnet new` command](/dotnet/core/tools/dotnet-new) with the `blazorserver` template:
-
-```dotnetcli
-dotnet new blazorserver
-```
-
-To create a folder for the app, add the output option (`-o {FOLDER NAME}` or `--output {FOLDER NAME}`) to the command, where the placeholder `{FOLDER NAME}` is the name of the folder.
 
 The ASP.NET Core app references the app's `Startup` class to add:
 
@@ -100,6 +76,8 @@ The Blazor Server hosting model has the following limitations:
 * There's no offline support. If the client connection fails, the app stops working.
 * Scalability is challenging for apps with many users. The server must manage multiple client connections and handle client state.
 * An ASP.NET Core server is required to serve the app. Serverless deployment scenarios aren't possible, such as serving the app from a Content Delivery Network (CDN).
+
+To create a Blazor Server app, see <xref:blazor/tooling>.
 
 The Blazor Server app model supports [Docker containers](/dotnet/standard/microservices-architecture/container-docker-introduction/index). For Docker support in Visual Studio, right-click on the project in Visual Studio and select **Add** > **Docker Support**.
 
@@ -163,6 +141,7 @@ When using IIS, sticky sessions are enabled with *Application Request Routing*. 
 
 ## Additional resources
 
+* <xref:blazor/tooling>
 * <xref:signalr/introduction>
 * <xref:blazor/fundamentals/additional-scenarios>
 * <xref:tutorials/signalr-blazor-webassembly>
