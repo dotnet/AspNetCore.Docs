@@ -928,10 +928,10 @@ If you confirm that the server is returning plausibly correct data, there must b
 
 Use the [`integrity.ps1`](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/blazor/host-and-deploy/webassembly/_samples/integrity.ps1?raw=true) PowerShell script to validate a published and deployed Blazor app. The script is provided as a starting point when the app has integrity issues that the Blazor framework can't identify. Customization of the script might be required for your apps.
 
-The script checks the files in the `publish` folder and downloaded from the deployed app to detect issues in the different manifests that contain integrity hashes. These checks should detect the three most common problems:
+The script checks the files in the `publish` folder and downloaded from the deployed app to detect issues in the different manifests that contain integrity hashes. These checks should detect the most common problems:
 
 * You modified a file in the published output without realizing it.
-* The app wasn't correctly deployed to the deployment target or something changed within the deployment target's environment.
+* The app wasn't correctly deployed to the deployment target, or something changed within the deployment target's environment.
 * There are differences between the deployed app and the output from publishing the app.
 
 Invoke the script with the following command in a PowerShell command shell:
