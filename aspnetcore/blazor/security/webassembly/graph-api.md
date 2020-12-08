@@ -334,7 +334,6 @@ In a Razor component:
 @inject IAccessTokenProvider TokenProvider
 @inject IHttpClientFactory ClientFactory
 @inject ILogger<CallUser> Logger
-@inject ICallProcessor CallProcessor
 
 <h3>Call User</h3>
 
@@ -376,7 +375,7 @@ In a Razor component:
 
             if (userInfo != null)
             {
-                CallProcessor.Send(userInfo.MobilePhone, callInfo.Message);
+                // Use userInfo.MobilePhone and callInfo.Message to make a call
 
                 formStatus = "Form successfully processed.";
                 Logger.LogInformation(
@@ -405,9 +404,6 @@ In a Razor component:
     }
 }
 ```
-
-> [!NOTE]
-> In the preceding example, the developer implements the custom `ICallProcessor` (`CallProcessor`) to queue and then place automated calls.
 
 ### Customize user claims with Graph API and a named client
 
