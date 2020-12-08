@@ -212,7 +212,7 @@ The automatic creation of these files is known as *scaffolding*.
 
 * Open a command window in the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).
 
-* On Mac, export the scaffold tool path:
+* Export the scaffold tool path:
 
   ```console
   export PATH=$HOME/.dotnet/tools:$PATH
