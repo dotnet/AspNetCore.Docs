@@ -194,13 +194,11 @@ There are three distinct steps to complete. Completing the steps in the followin
     git commit -a -m "upgraded to V4"
     ```
 
-1. Push the change in the default branch (*master*) to the *origin* remote of your GitHub repository:
+1. Push the change in the default branch (*master*) to the *origin* remote of your GitHub repository. In the following command, replace the placeholder `{BRANCH}` with the default branch (use `master`):
 
     ```console
     git push origin {BRANCH}
     ```
-
-    In the preceding command, the placeholder `{BRANCH}` is the default branch (*master*).
 
     The commit appears in the GitHub repository's default branch (*master*):
 
