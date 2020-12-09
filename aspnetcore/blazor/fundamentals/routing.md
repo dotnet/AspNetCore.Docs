@@ -1,11 +1,11 @@
 ---
 title: ASP.NET Core Blazor routing
 author: guardrex
-description: Learn how to manage request routing in apps and about the NavMenu and NavLink components.
+description: Learn how to manage request routing in apps and how to use the NavLink component in Blazor apps for navigation.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/08/2020
+ms.date: 12/09/2020
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/fundamentals/routing
 ---
@@ -13,11 +13,11 @@ uid: blazor/fundamentals/routing
 
 By [Luke Latham](https://github.com/guardrex)
 
-Learn how to manage request routing and how to use the <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component to create navigation links in Blazor apps with built-in components.
+In this article, learn how to manage request routing and how to use the <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component to create a navigation links in Blazor apps.
 
 ## Route templates
 
-The <xref:Microsoft.AspNetCore.Components.Routing.Router> component enables routing to each component with a specified route. The <xref:Microsoft.AspNetCore.Components.Routing.Router> component is used in the `App` component of Blazor apps.
+The <xref:Microsoft.AspNetCore.Components.Routing.Router> component enables routing to Razor components in a Blazor app. The <xref:Microsoft.AspNetCore.Components.Routing.Router> component is used in the `App` component of Blazor apps.
 
 `App.razor`:
 
@@ -33,7 +33,9 @@ The <xref:Microsoft.AspNetCore.Components.Routing.Router> component enables rout
 
 ::: moniker-end
 
-When a Razor component (`.razor`) with an [`@page` directive](xref:mvc/views/razor#page) is compiled, the generated class is provided a <xref:Microsoft.AspNetCore.Components.RouteAttribute> specifying the route template. When the app boots, the assembly specified as the `AppAssembly` is scanned to gather information about all of the components that have a <xref:Microsoft.AspNetCore.Components.RouteAttribute>.
+When a Razor component (`.razor`) with an [`@page` directive](xref:mvc/views/razor#page) is compiled, the generated component class is provided a <xref:Microsoft.AspNetCore.Components.RouteAttribute> specifying the component's route template.
+
+When the app starts, the assembly specified as the Router's `AppAssembly` is scanned to gather route information for the app's components that have a <xref:Microsoft.AspNetCore.Components.RouteAttribute>.
 
 At runtime, the <xref:Microsoft.AspNetCore.Components.RouteView> component:
 
@@ -65,7 +67,7 @@ Components support multiple route templates using multiple [`@page` directives](
 
 The <xref:Microsoft.AspNetCore.Components.Routing.Router> component allows the app to specify custom content if content isn't found for the requested route.
 
-In the `App` component, set custom content in the <xref:Microsoft.AspNetCore.Components.Routing.Router> component's <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound> template parameter.
+In the `App` component, set custom content in the <xref:Microsoft.AspNetCore.Components.Routing.Router> component's <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound> template.
 
 `App.razor`:
 
@@ -85,7 +87,7 @@ Arbitrary items are supported as content of the `<NotFound>` tags, such as other
 
 ## Route to components from multiple assemblies
 
-Use the <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies> parameter to specify additional assemblies for the <xref:Microsoft.AspNetCore.Components.Routing.Router> component to consider when searching for routable components. Specified assemblies are considered in addition to the `AppAssembly`-specified assembly. In the following example, `Component1` is a routable component defined in a referenced [component class library](xref:blazor/components/class-libraries). The following <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies> example results in routing support for `Component1`.
+Use the <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies> parameter to specify additional assemblies for the <xref:Microsoft.AspNetCore.Components.Routing.Router> component to consider when searching for routable components. Additional assemblies are scanned in addition to the assembly specified to `AppAssembly`. In the following example, `Component1` is a routable component defined in a referenced [component class library](xref:blazor/components/class-libraries). The following <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies> example results in routing support for `Component1`.
 
 `App.razor`:
 
@@ -103,7 +105,21 @@ Use the <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblie
 
 ## Route parameters
 
-The router uses route parameters to populate the corresponding [component parameters](xref:blazor/components/index#component-parameters) with the same name and are case insensitive.
+The router uses route parameters to populate the corresponding [component parameters](xref:blazor/components/index#component-parameters) with the same name. Route parameter names are case insensitive. In the following example, the `text` parameter assigns the value of the route segment to the component's `Text` property. When a request is made for `/RouteParameter/amazing`, the `<h1>` tag content is rendered as `Blazor is amazing!`.
+
+`Pages/RouteParameter.razor`:
+
+::: moniker range=">= aspnetcore-5.0"
+
+[!code-razor[](routing/samples_snapshot/5.x/RouteParameter1.razor?highlight=1)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+[!code-razor[](routing/samples_snapshot/3.x/RouteParameter1.razor?highlight=1)]
+
+::: moniker-end
 
 ::: moniker range=">= aspnetcore-5.0"
 
@@ -111,7 +127,7 @@ Optional parameters are supported. In the following example, the `text` optional
 
 `Pages/RouteParameter.razor`:
 
-[!code-razor[](routing/samples_snapshot/5.x/RouteParameter.razor?highlight=1)]
+[!code-razor[](routing/samples_snapshot/5.x/RouteParameter2.razor?highlight=1)]
 
 ::: moniker-end
 
@@ -121,11 +137,11 @@ Optional parameters aren't supported. In the following example, two [`@page` dir
 
 `Pages/RouteParameter.razor`:
 
-[!code-razor[](routing/samples_snapshot/3.x/RouteParameter.razor?highlight=2)]
+[!code-razor[](routing/samples_snapshot/3.x/RouteParameter2.razor?highlight=2)]
 
 ::: moniker-end
 
-Use on [`OnParametersSet`](xref:blazor/components/lifecycle#after-parameters-are-set) instead of [`OnInitialized`](xref:blazor/components/lifecycle#component-initialization-methods) to permit app navigation to the same component with a different optional parameter value. Based on the preceding example, use `OnParametersSet` when the user should be able to navigate from `/RouteParameter` to `/RouteParameter/awesome` or from `/RouteParameter/awesome` to `/RouteParameter`:
+Use on [`OnParametersSet`](xref:blazor/components/lifecycle#after-parameters-are-set) instead of [`OnInitialized`](xref:blazor/components/lifecycle#component-initialization-methods) to permit app navigation to the same component with a different optional parameter value. Based on the preceding example, use `OnParametersSet` when the user should be able to navigate from `/RouteParameter` to `/RouteParameter/amazing` or from `/RouteParameter/amazing` to `/RouteParameter`:
 
 ```csharp
 protected override void OnParametersSet()
@@ -140,7 +156,7 @@ A route constraint enforces type matching on a route segment to a component.
 
 In the following example, the route to the `User` component only matches if:
 
-* An `Id` route segment is present on the request URL.
+* An `Id` route segment is present in the request URL.
 * The `Id` segment is an integer (`int`) type.
 
 `Pages/User.razor`:
@@ -157,7 +173,7 @@ In the following example, the route to the `User` component only matches if:
 
 ::: moniker-end
 
-The route constraints shown in the following table are available. For the route constraints that match with the invariant culture, see the warning below the table for more information.
+The route constraints shown in the following table are available. For the route constraints that match the invariant culture, see the warning below the table for more information.
 
 | Constraint | Example           | Example Matches                                                                  | Invariant<br>culture<br>matching |
 | ---------- | ----------------- | -------------------------------------------------------------------------------- | :------------------------------: |
@@ -241,7 +257,7 @@ Catch-all route parameters are supported in ASP.NET Core 5.0 or later. For more 
 
 ## URI and navigation state helpers
 
-Use <xref:Microsoft.AspNetCore.Components.NavigationManager> to work with URIs and navigation in C# code. <xref:Microsoft.AspNetCore.Components.NavigationManager> provides the event and methods shown in the following table.
+Use <xref:Microsoft.AspNetCore.Components.NavigationManager> to manage URIs and navigation in C# code. <xref:Microsoft.AspNetCore.Components.NavigationManager> provides the event and methods shown in the following table.
 
 | Member | Description |
 | ------ | ----------- |
@@ -296,7 +312,7 @@ var query = new Uri(Navigation.Uri).Query;
 
 To parse a query string's parameters:
 
-* An app can use API in the [Microsoft.AspNetCore.WebUtilities](https://www.nuget.org/packages/Microsoft.AspNetCore.WebUtilities) package. If the API isn't available to the app, add a package reference in the app's project file for `Microsoft.AspNetCore.WebUtilities`.
+* An app can use the <xref:Microsoft.AspNetCore.WebUtilities> API. If the API isn't available to the app, add a package reference in the app's project file for [Microsoft.AspNetCore.WebUtilities](https://www.nuget.org/packages/Microsoft.AspNetCore.WebUtilities).
 * Obtain the value after parsing the query string with <xref:Microsoft.AspNetCore.WebUtilities.QueryHelpers.ParseQuery%2A?displayProperty=nameWithType>.
 
 The following `ParseQueryString` component example parses a query string parameter key named `ship`. For example, the URL query string key-value pair `?ship=Tardis` captures the value `Tardis` in `queryValue`. For the following example, navigate to the app with the URL `https://localhost:5001/parse-query-string?ship=Tardis`.
@@ -332,6 +348,9 @@ The following `NavMenu` component creates a [`Bootstrap`](https://getbootstrap.c
 [!code-razor[](routing/samples_snapshot/3.x/NavMenu.razor?highlight=4,9)]
 
 ::: moniker-end
+
+> [!NOTE]
+> The `NavMenu` component (`NavMenu.razor`) is provided in the `Shared` folder of an app generated from the Blazor project templates.
 
 There are two <xref:Microsoft.AspNetCore.Components.Routing.NavLinkMatch> options that you can assign to the `Match` attribute of the `<NavLink>` element:
 
@@ -402,6 +421,8 @@ Blazor Server is integrated into [ASP.NET Core Endpoint Routing](xref:fundamenta
 
 ::: moniker-end
 
-The most typical configuration is to route all requests to a Razor page, which acts as the host for the server-side part of the Blazor Server app. By convention, the *host* page is usually named `_Host.cshtml` in the `Pages` folder of the app. The route specified in the host file is called a *fallback route* because it operates with a low priority in route matching. The fallback route is used when other routes don't match. This allows the app to use other controllers and pages without interfering with the Blazor Server app.
+The typical configuration is to route all requests to a Razor page, which acts as the host for the server-side part of the Blazor Server app. By convention, the *host* page is usually named `_Host.cshtml` in the `Pages` folder of the app.
+
+The route specified in the host file is called a *fallback route* because it operates with a low priority in route matching. The fallback route is used when other routes don't match. This allows the app to use other controllers and pages without interfering with component routing in the Blazor Server app.
 
 For information on configuring <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage%2A> for non-root URL server hosting, see <xref:blazor/host-and-deploy/index#app-base-path>.
