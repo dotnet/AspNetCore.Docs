@@ -40,7 +40,7 @@ Right-click the *Models* folder > **Add** > **New Class** > **Empty Class**. Nam
 
 Update the *Movie.cs* file with the following code:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Models/Movie.cs)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Models/Movie.cs?name=snippet)]
 
 The `Movie` class contains an `Id` field, which is required by the database for the primary key.
 
@@ -440,7 +440,7 @@ Right-click the *Models* folder > **Add** > **New Class** > **Empty Class**. Nam
 
 Update the *Movie.cs* file with the following code:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Models/Movie.cs)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Models/Movie.cs?name=snippet)]
 
 The `Movie` class contains an `Id` field, which is required by the database for the primary key.
 

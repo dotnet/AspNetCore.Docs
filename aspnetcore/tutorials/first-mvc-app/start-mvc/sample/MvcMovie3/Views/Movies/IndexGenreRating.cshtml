@@ -1,4 +1,5 @@
-﻿@model MvcMovie.Models.MovieGenreViewModel
+﻿#if COMBINED
+@model MvcMovie.Models.MovieGenreViewModel
 
 @{
     ViewData["Title"] = "Index";
@@ -69,3 +70,4 @@
         }
     </tbody>
 </table>
+#endif

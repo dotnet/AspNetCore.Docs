@@ -1,4 +1,7 @@
-﻿using System;
+﻿//#define Starter 
+#if Starter
+#region snippet
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace MvcMovie.Models
@@ -14,3 +17,5 @@ namespace MvcMovie.Models
         public decimal Price { get; set; }
     }
 }
+#endregion
+#endif
