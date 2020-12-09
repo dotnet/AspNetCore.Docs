@@ -55,7 +55,7 @@ Inject an <xref:Microsoft.Extensions.Configuration.IConfiguration> instance into
 </h1>
 ```
 
-To read other configuration files from the `wwwroot` folder into configuration, use an <xref:System.Net.Http.HttpClient> to obtain the file's content. When using this approach, the existing <xref:System.Net.Http.HttpClient> service registration can use the local client created to read the file in `Program.Main`, as the following example shows:
+To read other configuration files from the `wwwroot` folder into configuration, use an <xref:System.Net.Http.HttpClient> to obtain the file's content. When using this approach, the existing <xref:System.Net.Http.HttpClient> service registration can use the local client, defined in `Program.Main`, to fetch the file, as the following example shows:
 
 `wwwroot/cars.json`:
 
