@@ -568,7 +568,10 @@ Schema notes:
 * The `Url` parameter is required for each endpoint. The format for this parameter is the same as the top-level `Urls` configuration parameter except that it's limited to a single value.
 * These endpoints replace those defined in the top-level `Urls` configuration rather than adding to them. Endpoints defined in code via `Listen` are cumulative with the endpoints defined in the configuration section.
 * The `Certificate` section is optional. If the `Certificate` section isn't specified, the defaults defined in earlier scenarios are used. If no defaults are available, the server throws an exception and fails to start.
-* The `Certificate` section supports **Path**&ndash;**Password**, **Path**&ndash;**KeyPath**&dash;**Password**, and **Subject**&ndash;**Store** certificates.
+* The `Certificate` section supports multiple certificate sources:
+  * **Path**&ndash;**Password**
+  * **Path**&ndash;**KeyPath**&dash;**Password**
+  * **Subject**&ndash;**Store**
 * Any number of endpoints may be defined in this way so long as they don't cause port conflicts.
 
 ##### Certificate sources
@@ -1582,9 +1585,32 @@ Schema notes:
 * The `Url` parameter is required for each endpoint. The format for this parameter is the same as the top-level `Urls` configuration parameter except that it's limited to a single value.
 * These endpoints replace those defined in the top-level `Urls` configuration rather than adding to them. Endpoints defined in code via `Listen` are cumulative with the endpoints defined in the configuration section.
 * The `Certificate` section is optional. If the `Certificate` section isn't specified, the defaults defined in earlier scenarios are used. If no defaults are available, the server throws an exception and fails to start.
-* The `Certificate` section supports both **Path**&ndash;**Password** and **Subject**&ndash;**Store** certificates.
+* The `Certificate` section supports multiple certificate sources:
+  * **Path**&ndash;**Password**
+  * **Subject**&ndash;**Store**
 * Any number of endpoints may be defined in this way so long as they don't cause port conflicts.
-* `options.Configure(context.Configuration.GetSection("{SECTION}"))` returns a `KestrelConfigurationLoader` with an `.Endpoint(string name, listenOptions => { })` method that can be used to supplement a configured endpoint's settings:
+
+##### Certificate sources
+
+Certificate nodes can be configured to load certificates from a number of sources:
+
+* **Path** and **Password** to load *.pfx* files.
+* **Subject** and **Store** to load from the certificate store.
+
+For example, the **Certificates** > **Default** certificate can be specified as:
+
+```json
+"Default": {
+  "Subject": "<subject; required>",
+  "Store": "<cert store; required>",
+  "Location": "<location; defaults to CurrentUser>",
+  "AllowInvalid": "<true or false; defaults to false>"
+}
+```
+
+##### ConfigurationLoader
+
+`options.Configure(context.Configuration.GetSection("{SECTION}"))` returns a `KestrelConfigurationLoader` with an `.Endpoint(string name, listenOptions => { })` method that can be used to supplement a configured endpoint's settings:
 
 ```csharp
 public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
@@ -2446,9 +2472,32 @@ Schema notes:
 * The `Url` parameter is required for each endpoint. The format for this parameter is the same as the top-level `Urls` configuration parameter except that it's limited to a single value.
 * These endpoints replace those defined in the top-level `Urls` configuration rather than adding to them. Endpoints defined in code via `Listen` are cumulative with the endpoints defined in the configuration section.
 * The `Certificate` section is optional. If the `Certificate` section isn't specified, the defaults defined in earlier scenarios are used. If no defaults are available, the server throws an exception and fails to start.
-* The `Certificate` section supports both **Path**&ndash;**Password** and **Subject**&ndash;**Store** certificates.
+* The `Certificate` section supports multiple certificate sources:
+  * **Path**&ndash;**Password**
+  * **Subject**&ndash;**Store**
 * Any number of endpoints may be defined in this way so long as they don't cause port conflicts.
-* `options.Configure(context.Configuration.GetSection("{SECTION}"))` returns a `KestrelConfigurationLoader` with an `.Endpoint(string name, listenOptions => { })` method that can be used to supplement a configured endpoint's settings:
+
+##### Certificate sources
+
+Certificate nodes can be configured to load certificates from a number of sources:
+
+* **Path** and **Password** to load *.pfx* files.
+* **Subject** and **Store** to load from the certificate store.
+
+For example, the **Certificates** > **Default** certificate can be specified as:
+
+```json
+"Default": {
+  "Subject": "<subject; required>",
+  "Store": "<cert store; required>",
+  "Location": "<location; defaults to CurrentUser>",
+  "AllowInvalid": "<true or false; defaults to false>"
+}
+```
+
+##### ConfigurationLoader
+
+`options.Configure(context.Configuration.GetSection("{SECTION}"))` returns a `KestrelConfigurationLoader` with an `.Endpoint(string name, listenOptions => { })` method that can be used to supplement a configured endpoint's settings:
 
 ```csharp
 public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
