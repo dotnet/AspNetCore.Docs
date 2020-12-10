@@ -221,7 +221,8 @@ In this section, you use the ASP.NET Core scaffolding tool to generate:
   * In the **Model class** drop-down, select **Student (ContosoUniversity.Models)**.
   * In the **Data context class** row, select the **+** (plus) sign.
     * Change the data context name to end in `SchoolContext` rather than `ContosoUniversityContext`. The updated context name: `ContosoUniversity.Data.SchoolContext`
-   * Select **Add**.
+    * Select **Add** to finish adding the data context class.
+   * Select **Add** to finish the **Add Razor Pages** dialog.
 
 The following packages are automatically installed:
 

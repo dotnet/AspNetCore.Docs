@@ -893,9 +893,7 @@ When Blazor WebAssembly downloads an app's startup files, it instructs the brows
 
 If your web server returns responses that don't match the expected SHA-256 hashes, you will see an error similar to the following appear in the browser's developer console:
 
-```
-Failed to find a valid digest in the 'integrity' attribute for resource 'https://myapp.example.com/_framework/MyBlazorApp.dll' with computed SHA-256 integrity 'IIa70iwvmEg5WiDV17OpQ5eCztNYqL186J56852RpJY='. The resource has been blocked.
-```
+> Failed to find a valid digest in the 'integrity' attribute for resource 'https://myapp.example.com/\_framework/MyBlazorApp.dll' with computed SHA-256 integrity 'IIa70iwvmEg5WiDV17OpQ5eCztNYqL186J56852RpJY='. The resource has been blocked.
 
 In most cases, this is *not* a problem with integrity checking itself. Instead, it means there is some other problem, and the integrity check is warning you about that other problem.
 
@@ -944,6 +942,13 @@ Placeholders:
 
 * `{BASE URL}`: The URL of the deployed app.
 * `{PUBLISH OUTPUT FOLDER}`: The path to the app's `publish` folder or location where the app is published for deployment.
+
+> [!NOTE]
+> To clone the `dotnet/AspNetCore.Docs` GitHub repository to a system that uses the [Bitdefender](https://www.bitdefender.com) virus scanner, add an exception to Bitdefender for the `integrity.ps1` script. Add the exception to Bitdefender before cloning the repo to avoid having the script quarantined by the virus scanner. The following example is a typical path to the script for the cloned repo on a Windows system. Adjust the path as needed. The placeholder `{USER}` is the user's path segment.
+>
+> ```
+> C:\Users\{USER}\Documents\GitHub\AspNetCore.Docs\aspnetcore\blazor\host-and-deploy\webassembly\_samples\integrity.ps1
+> ```
 
 ### Disable integrity checking for non-PWA apps
 
