@@ -546,7 +546,7 @@ In the following *appsettings.json* example:
       "Https": {
         "Url": "https://*:5004",
         "Certificate": {
-          "Path": "<path to .pem file>",
+          "Path": "<path to .pem or .crt file>",
           "KeyPath": "<path to .key file>",
           "Password": "<certificate password>"
         }
@@ -579,7 +579,7 @@ Schema notes:
 Certificate nodes can be configured to load certificates from a number of sources:
 
 * **Path** and **Password** to load *.pfx* files.
-* **Path**, **KeyPath** and **Password** to load *.pem* and *.key* files.
+* **Path**, **KeyPath** and **Password** to load *.pem*/*.crt* and *.key* files.
 * **Subject** and **Store** to load from the certificate store.
 
 For example, the **Certificates** > **Default** certificate can be specified as:
