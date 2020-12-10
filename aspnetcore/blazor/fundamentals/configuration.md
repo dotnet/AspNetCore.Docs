@@ -5,7 +5,7 @@ description: Learn about configuration of Blazor apps, including app settings, a
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/09/2020
+ms.date: 12/10/2020
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/fundamentals/configuration
 ---
@@ -25,7 +25,7 @@ Other configuration providers registered by the app can also provide configurati
 * [Azure App configuration provider](/azure/azure-app-configuration/quickstart-aspnet-core-app): The provider isn't appropriate for Blazor WebAssembly apps because Blazor WebAssembly apps don't run on a server in Azure.
 
 > [!WARNING]
-> Configuration in a Blazor WebAssembly app is visible to users. **Don't store app secrets, credentials, or any other sensitive data in configuration.**
+> Configuration in a Blazor WebAssembly app is visible to users. **Don't store app secrets, credentials, or any other sensitive data in the configuration of a Blazor WebAssembly app.**
 
 For more information on configuration providers, see <xref:fundamentals/configuration/index>.
 
@@ -55,7 +55,7 @@ Inject an <xref:Microsoft.Extensions.Configuration.IConfiguration> instance into
 </h1>
 ```
 
-To read other configuration files from the `wwwroot` folder into configuration, use an <xref:System.Net.Http.HttpClient> to obtain the file's content. When using this approach, the existing <xref:System.Net.Http.HttpClient> service registration can use the local client, defined in `Program.Main`, to fetch the file, as the following example shows:
+To read other configuration files from the `wwwroot` folder into configuration, use an <xref:System.Net.Http.HttpClient> to obtain the file's content. The following example reads a configuration file (`cars.json`) into the app's configuration.
 
 `wwwroot/cars.json`:
 
@@ -65,11 +65,15 @@ To read other configuration files from the `wwwroot` folder into configuration, 
 }
 ```
 
-`Program.cs`:
+Add the namespace for <xref:Microsoft.Extensions.Configuration?displayProperty=fullName> to `Program.cs`:
 
 ```csharp
-// using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Configuration;
+```
 
+In `Program.Main` of `Program.cs`, modify the existing <xref:System.Net.Http.HttpClient> service registration to use the client to read the file:
+
+```csharp
 var http = new HttpClient()
 {
     BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
@@ -88,11 +92,20 @@ builder.Configuration.AddJsonStream(stream);
 The custom configuration provider with EF Core demonstrated in <xref:fundamentals/configuration/index#custom-configuration-provider> works with Blazor WebAssembly apps.
 
 > [!WARNING]
-> Database connection strings and databases loaded with a Blazor WebAssembly apps aren't secure and shouldn't be used to store sensitive data.
+> Database connection strings and databases loaded with Blazor WebAssembly apps aren't secure and shouldn't be used to store sensitive data.
 
-Add the example's configuration provider and package references to [`Microsoft.EntityFrameworkCore`](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore) and [`Microsoft.EntityFrameworkCore.InMemory`](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.InMemory) with the following code in `Program.Main`.
+Add package references for [`Microsoft.EntityFrameworkCore`](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore) and [`Microsoft.EntityFrameworkCore.InMemory`](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.InMemory) to the app's project file.
 
-`Program.cs`:
+Add the EF Core configuration classes described in <xref:fundamentals/configuration/index#custom-configuration-provider>.
+
+Add namespaces for <xref:Microsoft.EntityFrameworkCore?displayProperty=fullName> and <xref:Microsoft.Extensions.Configuration.Memory?displayProperty=fullName> to `Program.cs`:
+
+```csharp
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration.Memory;
+```
+
+In `Program.Main` of `Program.cs`:
 
 ```csharp
 builder.Configuration.AddEFConfiguration(
@@ -129,11 +142,15 @@ Inject an <xref:Microsoft.Extensions.Configuration.IConfiguration> instance into
 
 The following example uses a <xref:Microsoft.Extensions.Configuration.Memory.MemoryConfigurationSource> in `Program.Main` to supply additional configuration.
 
-`Program.cs`:
+Add the namespace for <xref:Microsoft.Extensions.Configuration.Memory?displayProperty=fullName> to `Program.cs`:
 
 ```csharp
-// using Microsoft.Extensions.Configuration.Memory;
+using Microsoft.Extensions.Configuration.Memory;
+```
 
+In `Program.Main` of `Program.cs`:
+
+```csharp
 var vehicleData = new Dictionary<string, string>()
 {
     { "color", "blue" },
@@ -216,7 +233,7 @@ builder.Services.AddOidcAuthentication(options =>
 
 ## Logging configuration
 
-Add a package reference for [`Microsoft.Extensions.Logging.Configuration`](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Configuration) to the app's project file. In the app settings file, provide the logging configuration. The logging configuration is loaded in `Program.Main`.
+Add a package reference for [`Microsoft.Extensions.Logging.Configuration`](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Configuration) to the app's project file. In the app settings file, provide logging configuration. The logging configuration is loaded in `Program.Main`.
 
 `wwwroot/appsettings.json`:
 
@@ -232,11 +249,15 @@ Add a package reference for [`Microsoft.Extensions.Logging.Configuration`](https
 }
 ```
 
-`Program.cs`:
+Add the namespace for <xref:Microsoft.Extensions.Logging?displayProperty=fullName> to `Program.cs`:
 
 ```csharp
-// using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging;
+```
 
+In `Program.Main` of `Program.cs`:
+
+```csharp
 builder.Logging.AddConfiguration(
     builder.Configuration.GetSection("Logging"));
 ```
@@ -245,7 +266,7 @@ builder.Logging.AddConfiguration(
 
 Read host builder configuration from <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.Configuration?displayProperty=nameWithType> in `Program.Main`.
 
-`Program.cs`:
+In `Program.Main` of `Program.cs`:
 
 ```csharp
 var hostname = builder.Configuration["HostName"];
