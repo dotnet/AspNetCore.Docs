@@ -502,13 +502,13 @@ Supported configurations described next:
 * Replace the default certificate from configuration
 * Change the defaults in code
 
-*No configuration*
+#### No configuration
 
 Kestrel listens on `http://localhost:5000` and `https://localhost:5001` (if a default cert is available).
 
 <a name="configuration"></a>
 
-*Replace the default certificate from configuration*
+#### Replace the default certificate from configuration
 
 `CreateDefaultBuilder` calls `Configure(context.Configuration.GetSection("Kestrel"))` by default to load Kestrel configuration. A default HTTPS app settings configuration schema is available for Kestrel. Configure multiple endpoints, including the URLs and the certificates to use, either from a file on disk or from a certificate store.
 
@@ -599,7 +599,7 @@ webBuilder.UseKestrel((context, serverOptions) =>
 * Multiple configurations may be loaded by calling `options.Configure(context.Configuration.GetSection("{SECTION}"))` again with another section. Only the last configuration is used, unless `Load` is explicitly called on prior instances. The metapackage doesn't call `Load` so that its default configuration section may be replaced.
 * `KestrelConfigurationLoader` mirrors the `Listen` family of APIs from `KestrelServerOptions` as `Endpoint` overloads, so code and config endpoints may be configured in the same place. These overloads don't use names and only consume default settings from configuration.
 
-*Change the defaults in code*
+#### Change the defaults in code
 
 `ConfigureEndpointDefaults` and `ConfigureHttpsDefaults` can be used to change default settings for `ListenOptions` and `HttpsConnectionAdapterOptions`, including overriding the default certificate specified in the prior scenario. `ConfigureEndpointDefaults` and `ConfigureHttpsDefaults` should be called before any endpoints are configured.
 
@@ -618,7 +618,7 @@ webBuilder.ConfigureKestrel(serverOptions =>
 });
 ```
 
-*Kestrel support for SNI*
+#### Kestrel support for SNI
 
 [Server Name Indication (SNI)](https://tools.ietf.org/html/rfc6066#section-3) can be used to host multiple domains on the same IP address and port. For SNI to function, the client sends the host name for the secure session to the server during the TLS handshake so that the server can provide the correct certificate. The client uses the furnished certificate for encrypted communication with the server during the secure session that follows the TLS handshake.
 
@@ -1490,13 +1490,13 @@ Supported configurations described next:
 * Replace the default certificate from configuration
 * Change the defaults in code
 
-*No configuration*
+#### No configuration
 
 Kestrel listens on `http://localhost:5000` and `https://localhost:5001` (if a default cert is available).
 
 <a name="configuration"></a>
 
-*Replace the default certificate from configuration*
+#### Replace the default certificate from configuration
 
 `CreateDefaultBuilder` calls `Configure(context.Configuration.GetSection("Kestrel"))` by default to load Kestrel configuration. A default HTTPS app settings configuration schema is available for Kestrel. Configure multiple endpoints, including the URLs and the certificates to use, either from a file on disk or from a certificate store.
 
@@ -1594,7 +1594,7 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
 * Multiple configurations may be loaded by calling `options.Configure(context.Configuration.GetSection("{SECTION}"))` again with another section. Only the last configuration is used, unless `Load` is explicitly called on prior instances. The metapackage doesn't call `Load` so that its default configuration section may be replaced.
 * `KestrelConfigurationLoader` mirrors the `Listen` family of APIs from `KestrelServerOptions` as `Endpoint` overloads, so code and config endpoints may be configured in the same place. These overloads don't use names and only consume default settings from configuration.
 
-*Change the defaults in code*
+#### Change the defaults in code
 
 `ConfigureEndpointDefaults` and `ConfigureHttpsDefaults` can be used to change default settings for `ListenOptions` and `HttpsConnectionAdapterOptions`, including overriding the default certificate specified in the prior scenario. `ConfigureEndpointDefaults` and `ConfigureHttpsDefaults` should be called before any endpoints are configured.
 
@@ -1616,7 +1616,7 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
         });
 ```
 
-*Kestrel support for SNI*
+#### Kestrel support for SNI
 
 [Server Name Indication (SNI)](https://tools.ietf.org/html/rfc6066#section-3) can be used to host multiple domains on the same IP address and port. For SNI to function, the client sends the host name for the secure session to the server during the TLS handshake so that the server can provide the correct certificate. The client uses the furnished certificate for encrypted communication with the server during the secure session that follows the TLS handshake.
 
@@ -2354,13 +2354,13 @@ Supported configurations described next:
 * Replace the default certificate from configuration
 * Change the defaults in code
 
-*No configuration*
+#### No configuration
 
 Kestrel listens on `http://localhost:5000` and `https://localhost:5001` (if a default cert is available).
 
 <a name="configuration"></a>
 
-*Replace the default certificate from configuration*
+#### Replace the default certificate from configuration
 
 `CreateDefaultBuilder` calls `Configure(context.Configuration.GetSection("Kestrel"))` by default to load Kestrel configuration. A default HTTPS app settings configuration schema is available for Kestrel. Configure multiple endpoints, including the URLs and the certificates to use, either from a file on disk or from a certificate store.
 
@@ -2458,7 +2458,7 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
 * Multiple configurations may be loaded by calling `options.Configure(context.Configuration.GetSection("{SECTION}"))` again with another section. Only the last configuration is used, unless `Load` is explicitly called on prior instances. The metapackage doesn't call `Load` so that its default configuration section may be replaced.
 * `KestrelConfigurationLoader` mirrors the `Listen` family of APIs from `KestrelServerOptions` as `Endpoint` overloads, so code and config endpoints may be configured in the same place. These overloads don't use names and only consume default settings from configuration.
 
-*Change the defaults in code*
+#### Change the defaults in code
 
 `ConfigureEndpointDefaults` and `ConfigureHttpsDefaults` can be used to change default settings for `ListenOptions` and `HttpsConnectionAdapterOptions`, including overriding the default certificate specified in the prior scenario. `ConfigureEndpointDefaults` and `ConfigureHttpsDefaults` should be called before any endpoints are configured.
 
@@ -2480,7 +2480,7 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
         });
 ```
 
-*Kestrel support for SNI*
+#### Kestrel support for SNI
 
 [Server Name Indication (SNI)](https://tools.ietf.org/html/rfc6066#section-3) can be used to host multiple domains on the same IP address and port. For SNI to function, the client sends the host name for the secure session to the server during the TLS handshake so that the server can provide the correct certificate. The client uses the furnished certificate for encrypted communication with the server during the secure session that follows the TLS handshake.
 
