@@ -13,16 +13,14 @@ uid: blazor/fundamentals/dependency-injection
 
 By [Rainer Stropek](https://www.timecockpit.com) and [Mike Rousos](https://github.com/mjrousos)
 
-Blazor supports [dependency injection (DI)](xref:fundamentals/dependency-injection). Use framework-registered services by injecting them into components. Apps also define and register custom services and make them available throughout the app via DI.
+[Dependency injection (DI)](xref:fundamentals/dependency-injection) is a technique for accessing services configured in a central location:
 
-DI is a technique for accessing services configured in a central location. This can be useful in Blazor apps to:
-
-* Share a single instance of a service class across many components, known as a *singleton* service.
-* Decouple components from concrete service classes by using reference abstractions. For example, consider an interface `IDataAccess` for accessing data in the app. The interface is implemented by a concrete `DataAccess` class and registered as a service in the app's service container. When a component uses DI to receive an `IDataAccess` implementation, the component isn't coupled to the concrete type. The implementation can be swapped, perhaps for a mock implementation in unit tests.
+* Framework-registered services can be injected directly into components of Blazor apps.
+* Blazor apps define and register custom services and make them available throughout the app via DI.
 
 ## Default services
 
-The default services shown the following table are commonly used in Blazor apps and automatically added to a Blazor app's service collection.
+The services shown the following table are commonly used in Blazor apps.
 
 | Service | Lifetime | Description |
 | ------- | -------- | ----------- |
@@ -36,76 +34,17 @@ A custom service provider doesn't automatically provide the default services lis
 
 ### Blazor WebAssembly
 
-Configure services for the app's service collection in the `Main` method of `Program.cs`. In the following example, the `MyDependency` implementation is registered for `IMyDependency`:
+Configure services for the app's service collection in the `Program.Main` method of `Program.cs`. In the following example, the `MyDependency` implementation is registered for `IMyDependency`:
 
-```csharp
-using System;
-using System.Net.Http;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using Microsoft.Extensions.DependencyInjection;
+[!code-csharp[](dependency-injection/samples_snapshot/Program1.cs?highlight=7)]
 
-public class Program
-{
-    public static async Task Main(string[] args)
-    {
-        var builder = WebAssemblyHostBuilder.CreateDefault(args);
+After the host is built, services are available from the root DI scope before any components are rendered. This can be useful for running initialization logic before rendering content:
 
-        builder.Services.AddSingleton<IMyDependency, MyDependency>();
-
-        ...
-
-        await builder.Build().RunAsync();
-    }
-}
-```
-
-Once the host is built, services can be accessed from the root DI scope before any components are rendered. This can be useful for running initialization logic before rendering content:
-
-```csharp
-public class Program
-{
-    public static async Task Main(string[] args)
-    {
-        var builder = WebAssemblyHostBuilder.CreateDefault(args);
-
-        builder.Services.AddSingleton<WeatherService>();
-
-        ...
-
-        var host = builder.Build();
-
-        var weatherService = host.Services.GetRequiredService<WeatherService>();
-        await weatherService.InitializeWeatherAsync();
-
-        await host.RunAsync();
-    }
-}
-```
+[!code-csharp[](dependency-injection/samples_snapshot/Program2.cs?highlight=7,12-13)]
 
 The host also provides a central configuration instance for the app. Building on the preceding example, the weather service's URL is passed from a default configuration source (for example, `appsettings.json`) to `InitializeWeatherAsync`:
 
-```csharp
-public class Program
-{
-    public static async Task Main(string[] args)
-    {
-        var builder = WebAssemblyHostBuilder.CreateDefault(args);
-
-        builder.Services.AddSingleton<WeatherService>();
-
-        ...
-
-        var host = builder.Build();
-
-        var weatherService = host.Services.GetRequiredService<WeatherService>();
-        await weatherService.InitializeWeatherAsync(
-            host.Configuration["WeatherServiceUrl"]);
-
-        await host.RunAsync();
-    }
-}
-```
+[!code-csharp[](dependency-injection/samples_snapshot/Program3.cs?highlight=13-14)]
 
 ### Blazor Server
 
@@ -156,7 +95,7 @@ Use multiple [`@inject`](xref:mvc/views/razor#inject) statements to inject diffe
 
 The following example shows how to use [`@inject`](xref:mvc/views/razor#inject). The service implementing `Services.IDataAccess` is injected into the component's property `DataRepository`. Note how the code is only using the `IDataAccess` abstraction:
 
-[!code-razor[](dependency-injection/samples_snapshot/3.x/CustomerList.razor?highlight=2-3,20)]
+[!code-razor[](dependency-injection/samples_snapshot/CustomerList.razor?highlight=2-3,20)]
 
 Internally, the generated property (`DataRepository`) uses the [`[Inject]`](xref:Microsoft.AspNetCore.Components.InjectAttribute) attribute. Typically, this attribute isn't used directly. If a base class is required for components and injected properties are also required for the base class, manually add the [`[Inject]`](xref:Microsoft.AspNetCore.Components.InjectAttribute) attribute:
 
@@ -221,48 +160,11 @@ Two versions of the <xref:Microsoft.AspNetCore.Components.OwningComponentBase> t
 
   DI services injected into the component using [`@inject`](xref:mvc/views/razor#inject) or the [`[Inject]`](xref:Microsoft.AspNetCore.Components.InjectAttribute) attribute aren't created in the component's scope. To use the component's scope, services must be resolved using <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService%2A> or <xref:System.IServiceProvider.GetService%2A>. Any services resolved using the <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> provider have their dependencies provided from that same scope.
 
-  ```razor
-  @page "/preferences"
-  @using Microsoft.Extensions.DependencyInjection
-  @inherits OwningComponentBase
-
-  <h1>User (@UserService.Name)</h1>
-
-  <ul>
-      @foreach (var setting in SettingService.GetSettings())
-      {
-          <li>@setting.SettingName: @setting.SettingValue</li>
-      }
-  </ul>
-
-  @code {
-      private IUserService UserService { get; set; }
-      private ISettingService SettingService { get; set; }
-
-      protected override void OnInitialized()
-      {
-          UserService = ScopedServices.GetRequiredService<IUserService>();
-          SettingService = ScopedServices.GetRequiredService<ISettingService>();
-      }
-  }
-  ```
+  [!code-razor[](dependency-injection/samples_snapshot/Preferences.razor?highlight=3,20-21)]
 
 * <xref:Microsoft.AspNetCore.Components.OwningComponentBase%601> derives from <xref:Microsoft.AspNetCore.Components.OwningComponentBase> and adds a <xref:Microsoft.AspNetCore.Components.OwningComponentBase%601.Service%2A> property that returns an instance of `T` from the scoped DI provider. This type is a convenient way to access scoped services without using an instance of <xref:System.IServiceProvider> when there's one primary service the app requires from the DI container using the component's scope. The <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> property is available, so the app can get services of other types, if necessary.
 
-  ```razor
-  @page "/users"
-  @attribute [Authorize]
-  @inherits OwningComponentBase<AppDbContext>
-
-  <h1>Users (@Service.Users.Count())</h1>
-
-  <ul>
-      @foreach (var user in Service.Users)
-      {
-          <li>@user.UserName</li>
-      }
-  </ul>
-  ```
+  [!code-razor[](dependency-injection/samples_snapshot/Users.razor?highlight=3,5,8)]
 
 ## Use of an Entity Framework Core (EF Core) DbContext from DI
 
@@ -282,13 +184,13 @@ The `TransientDisposable` in the following example is detected (`Program.cs`):
 
 ::: moniker range=">= aspnetcore-5.0"
 
-[!code-csharp[](dependency-injection/samples_snapshot/5.x/transient-disposables/wasm-program.cs?highlight=6,9,17,22-25)]
+[!code-csharp[](dependency-injection/samples_snapshot/5.x/transient-disposables/DetectIncorrectUsagesOfTransientDisposables-wasm-program.cs?highlight=6,9,17,22-25)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-[!code-csharp[](dependency-injection/samples_snapshot/3.x/transient-disposables/wasm-program.cs?highlight=6,9,17,22-25)]
+[!code-csharp[](dependency-injection/samples_snapshot/3.x/transient-disposables/DetectIncorrectUsagesOfTransientDisposables-wasm-program.cs?highlight=6,9,17,22-25)]
 
 ::: moniker-end
 
@@ -306,11 +208,11 @@ using Microsoft.Extensions.DependencyInjection;
 
 In `Program.CreateHostBuilder` of `Program.cs`:
 
-[!code-csharp[](dependency-injection/samples_snapshot/3.x/transient-disposables/server-program.cs?highlight=3)]
+[!code-csharp[](dependency-injection/samples_snapshot/3.x/transient-disposables/DetectIncorrectUsagesOfTransientDisposables-server-program.cs?highlight=3)]
 
 The `TransientDependency` in the following example is detected (`Startup.cs`):
 
-[!code-csharp[](dependency-injection/samples_snapshot/3.x/transient-disposables/server-startup.cs?highlight=6-8,11-32)]
+[!code-csharp[](dependency-injection/samples_snapshot/3.x/transient-disposables/DetectIncorrectUsagesOfTransientDisposables-server-startup.cs?highlight=6-8,11-32)]
 
 ## Additional resources
 

@@ -1,0 +1,23 @@
+@page "/preferences"
+@using Microsoft.Extensions.DependencyInjection
+@inherits OwningComponentBase
+
+<h1>User (@UserService.Name)</h1>
+
+<ul>
+    @foreach (var setting in SettingService.GetSettings())
+    {
+        <li>@setting.SettingName: @setting.SettingValue</li>
+    }
+</ul>
+
+@code {
+    private IUserService UserService { get; set; }
+    private ISettingService SettingService { get; set; }
+
+    protected override void OnInitialized()
+    {
+        UserService = ScopedServices.GetRequiredService<IUserService>();
+        SettingService = ScopedServices.GetRequiredService<ISettingService>();
+    }
+}
