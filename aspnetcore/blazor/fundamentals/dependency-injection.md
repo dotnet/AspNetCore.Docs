@@ -42,13 +42,13 @@ After the host is built, services are available from the root DI scope before an
 
 [!code-csharp[](dependency-injection/samples_snapshot/Program2.cs?highlight=7,12-13)]
 
-The host also provides a central configuration instance for the app. Building on the preceding example, the weather service's URL is passed from a default configuration source (for example, `appsettings.json`) to `InitializeWeatherAsync`:
+The host provides a central configuration instance for the app. Building on the preceding example, the weather service's URL is passed from a default configuration source (for example, `appsettings.json`) to `InitializeWeatherAsync`:
 
 [!code-csharp[](dependency-injection/samples_snapshot/Program3.cs?highlight=13-14)]
 
 ### Blazor Server
 
-After creating a new app, examine the `Startup.ConfigureServices` method:
+After creating a new app, examine the `Startup.ConfigureServices` method in `Startup.cs`:
 
 ```csharp
 using Microsoft.Extensions.DependencyInjection;
