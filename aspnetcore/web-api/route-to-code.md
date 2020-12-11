@@ -58,14 +58,14 @@ The preceding code:
 
 There are two ways to customize JSON serialization:
 
-* Default serialization options can be configured with `JsonOptions` in the `Startup.ConfigureServices` method.
-* `WriteAsJsonAsync` and `ReadFromJsonAsync` have overloads that accept a `JsonSerializerOptions` object. This `JsonSerializerOptions` object overrides the default options.
+* Default serialization options can be configured with <xref:Microsoft.AspNetCore.Http.Json.JsonOptions> in the `Startup.ConfigureServices` method.
+* `WriteAsJsonAsync` and `ReadFromJsonAsync` have overloads that accept a <xref:System.Text.Json.JsonSerializerOptions> object. This options object overrides the default options.
 
 [!code-csharp[](route-to-code/sample/Startup6.cs?name=snippet)]
 
 ## Authentication and authorization
 
-Route-to-code supports authentication and authorization. Attributes, such as `[Authorize]` and `[AllowAnonymous]`, can't be placed on endpoints that map to a request delegate. Instead, authorization metadata is added using the `RequireAuthorization` and `AllowAnonymous` extension methods.
+Route-to-code supports authentication and authorization. Attributes, such as `[Authorize]` and `[AllowAnonymous]`, can't be placed on endpoints that map to a request delegate. Instead, authorization metadata is added using the <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A> and <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.AllowAnonymous%2A> extension methods.
 
 [!code-csharp[](route-to-code/sample/Startup.cs?name=snippet&highlight=30)]
 
@@ -93,6 +93,21 @@ Consider the following static `UserApi` class that defines a `Map` method. The m
 In the `Startup.Configure` method, the `Map` method and other class's static methods are called in `UseEndpoints`:
 
 [!code-csharp[](route-to-code/sample/Startup5.cs?name=snippet)]
+
+## Notable missing features compared to Web API
+
+Route-to-code is designed for basic JSON APIs. It doesn't have support for many of the advanced features provided by ASP.NET Core Web API.
+
+Features not provided by Route-to-code include:
+
+* Model binding
+* Model validation
+* OpenAPI/Swagger
+* Content negotiation
+* Constructor dependency injection
+* `ProblemDetails` ([RFC 7807](https://tools.ietf.org/html/rfc7807))
+
+Consider using [ASP.NET Core web API](xref:web-api/index) to create an API if it requires some of the features in the preceding list.
 
 ## Additional resources
 

@@ -17,10 +17,10 @@ Some app elements, such as menus, copyright messages, and company logos, are usu
 
 Technically, a layout is just another component. A layout is defined in a Razor template or in C# code and can use [data binding](xref:blazor/components/data-binding), [dependency injection](xref:blazor/fundamentals/dependency-injection), and other component scenarios.
 
-To turn a *component* into a *layout*, the component:
+To convert a component into a layout:
 
-* Inherits from <xref:Microsoft.AspNetCore.Components.LayoutComponentBase>, which defines a <xref:Microsoft.AspNetCore.Components.LayoutComponentBase.Body> property for the rendered content inside the layout.
-* Uses the Razor syntax `@Body` to specify the location in the layout markup where the content is rendered.
+* Inherit the component from <xref:Microsoft.AspNetCore.Components.LayoutComponentBase>. The <xref:Microsoft.AspNetCore.Components.LayoutComponentBase> defines a <xref:Microsoft.AspNetCore.Components.LayoutComponentBase.Body> property for the rendered content inside the layout.
+* Use the Razor syntax `@Body` to specify the location in the layout markup where the content is rendered.
 
 The following code sample shows the Razor template of a layout component, `MainLayout.razor`. The layout inherits <xref:Microsoft.AspNetCore.Components.LayoutComponentBase> and sets the `@Body` between the navigation bar and the footer:
 

@@ -89,6 +89,21 @@ info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
 
 This is a basic example. See [HttpRule](https://cloud.google.com/service-infrastructure/docs/service-management/reference/rpc/google.api#google.api.HttpRule) for more customization options.
 
+### Enable Swagger/OpenAPI support
+
+Swagger (OpenAPI) is a language-agnostic specification for describing REST APIs. gRPC HTTP API can integrate with [Swashbuckle](https://github.com/domaindrivendev/Swashbuckle.AspNetCore) to generate a Swagger endpoint for RESTful gRPC services. The Swagger endpoint can then be used with [Swagger UI](https://swagger.io/swagger-ui/) and other tooling.
+
+To enable Swagger with gRPC HTTP API:
+
+1. Add a package reference to [Microsoft.AspNetCore.Grpc.Swagger](https://www.nuget.org/packages/Microsoft.AspNetCore.Grpc.Swagger).
+2. Configure Swashbuckle in *Startup.cs*. The `AddGrpcSwagger` method configures Swashbuckle to include gRPC HTTP API endpoints.
+
+[!code-csharp[](~/grpc/httpapi/Startup.cs?name=snippet_1&highlight=6-10,15-19)]
+
+To confirm that Swashbuckle is generating Swagger for the RESTful gRPC services, start the app and navigate to the Swagger UI page:
+
+![Swagger UI](~/grpc/httpapi/static/swaggerui.png)
+
 ### gRPC HTTP API vs gRPC-Web
 
 Both gRPC HTTP API and gRPC-Web allow gRPC services to be called from a browser. However, the way each does this is different:

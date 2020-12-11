@@ -52,7 +52,7 @@ var movies = from m in _context.Movie
              select m;
 ```
 
-The query is *only* defined at this point, it has **not** been run against the database.
+The query is only ***defined*** at this point, it has ***not*** been run against the database.
 
 If the `SearchString` property is not null or empty, the movies query is modified to filter on the search string:
 

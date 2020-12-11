@@ -195,8 +195,8 @@ To modify the connection events, register callbacks for the following connection
     <script>
       Blazor.start({
         reconnectionHandler: {
-          onConnectionDown: (options, error) => console.error(error);
-          onConnectionUp: () => console.log("Up, up, and away!");
+          onConnectionDown: (options, error) => console.error(error),
+          onConnectionUp: () => console.log("Up, up, and away!")
         }
       });
     </script>

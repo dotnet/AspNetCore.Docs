@@ -73,7 +73,7 @@ The **Endpoint** middleware in the preceding diagram executes the filter pipelin
 
 The order that middleware components are added in the `Startup.Configure` method defines the order in which the middleware components are invoked on requests and the reverse order for the response. The order is **critical** for security, performance, and functionality.
 
-The following `Startup.Configure` method adds security-related middleware components in the recommended order:
+The following `Startup.Configure` method adds security-related middleware components in the typical recommended order:
 
 [!code-csharp[](index/snapshot/StartupAll3.cs?name=snippet)]
 
@@ -83,6 +83,23 @@ In the preceding code:
 * Not every middleware needs to go in this exact order, but many do. For example:
   * `UseCors`, `UseAuthentication`, and `UseAuthorization` must go in the order shown.
   * `UseCors` currently must go before `UseResponseCaching` due to [this bug](https://github.com/dotnet/aspnetcore/issues/23218).
+
+In some scenarios, middleware will have different ordering. For example, caching and compression ordering is scenario specific, and there's multiple valid orderings. For example:
+
+```csharp
+app.UseResponseCaching();
+app.UseResponseCompression();
+```
+
+With the preceding code, CPU could be saved by caching the compressed response, but you might end up caching multiple representations of a resource using different compression algorithms such as gzip or brotli.
+
+The following ordering combines static files to allow caching compressed static files:
+
+```csharp
+app.UseResponseCaching();
+app.UseResponseCompression();
+app.UseStaticFiles();
+```
 
 The following `Startup.Configure` method adds middleware components for common app scenarios:
 
@@ -159,6 +176,8 @@ public void Configure(IApplicationBuilder app)
     // Static files aren't compressed by Static File Middleware.
     app.UseStaticFiles();
 
+    app.UseRouting();
+
     app.UseResponseCompression();
 
     app.UseEndpoints(endpoints =>
@@ -226,7 +245,7 @@ The following table shows the requests and responses from `http://localhost:1234
 
 <xref:Microsoft.AspNetCore.Builder.UseWhenExtensions.UseWhen%2A> also branches the request pipeline based on the result of the given predicate. Unlike with `MapWhen`, this branch is rejoined to the main pipeline if it doesn't short-circuit or contain a terminal middleware:
 
-[!code-csharp[](index/snapshot/Chain/StartupUseWhen.cs?highlight=25-26)]
+[!code-csharp[](index/snapshot/Chain/StartupUseWhen.cs?highlight=18-19)]
 
 In the preceding example, a response of "Hello from main pipeline." is written for all requests. If the request includes a query string variable `branch`, its value is logged before the main pipeline is rejoined.
 
