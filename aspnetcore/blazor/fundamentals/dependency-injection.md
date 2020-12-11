@@ -8,6 +8,7 @@ ms.custom: mvc
 ms.date: 12/11/2020
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/fundamentals/dependency-injection
+zone_pivot_groups: blazor-hosting-models
 ---
 # ASP.NET Core Blazor dependency injection
 
@@ -32,7 +33,7 @@ A custom service provider doesn't automatically provide the default services lis
 
 ## Add services to an app
 
-### Blazor WebAssembly
+::: zone pivot="webassembly"
 
 Configure services for the app's service collection in the `Program.Main` method of `Program.cs`. In the following example, the `MyDependency` implementation is registered for `IMyDependency`:
 
@@ -46,7 +47,9 @@ The host provides a central configuration instance for the app. Building on the 
 
 [!code-csharp[](dependency-injection/samples_snapshot/Program3.cs?highlight=13-14)]
 
-### Blazor Server
+::: zone-end
+
+::: zone pivot="server"
 
 After creating a new app, examine the `Startup.ConfigureServices` method in `Startup.cs`:
 
@@ -69,6 +72,8 @@ public void ConfigureServices(IServiceCollection services)
     services.AddSingleton<IDataAccess, DataAccess>();
 }
 ```
+
+::: zone-end
 
 ### Service lifetime
 
@@ -174,7 +179,7 @@ For more information, see <xref:blazor/blazor-server-ef-core>.
 
 The following examples show how to detect disposable transient services in an app that should use <xref:Microsoft.AspNetCore.Components.OwningComponentBase>. For more information, see the [Utility base component classes to manage a DI scope](#utility-base-component-classes-to-manage-a-di-scope) section.
 
-### Blazor WebAssembly
+::: zone pivot="webassembly"
 
 `DetectIncorrectUsagesOfTransientDisposables.cs`:
 
@@ -194,7 +199,9 @@ The `TransientDisposable` in the following example is detected (`Program.cs`):
 
 ::: moniker-end
 
-### Blazor Server
+::: zone-end
+
+::: zone pivot="server"
 
 `DetectIncorrectUsagesOfTransientDisposables.cs`:
 
@@ -213,6 +220,8 @@ In `Program.CreateHostBuilder` of `Program.cs`:
 The `TransientDependency` in the following example is detected (`Startup.cs`):
 
 [!code-csharp[](dependency-injection/samples_snapshot/3.x/transient-disposables/DetectIncorrectUsagesOfTransientDisposables-server-startup.cs?highlight=6-8,11-32)]
+
+::: zone-end
 
 ## Additional resources
 
