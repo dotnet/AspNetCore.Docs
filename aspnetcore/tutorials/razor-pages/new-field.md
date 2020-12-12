@@ -3,7 +3,7 @@ title: Part 7, add a new field
 author: rick-anderson
 description: Part 7 of tutorial series on Razor Pages.
 ms.author: riande
-ms.custom: mvc
+ms.custom: mvc, contperfq2
 ms.date: 09/28/2020
 no-loc: [Index, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/razor-pages/new-field

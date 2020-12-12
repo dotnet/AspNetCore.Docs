@@ -3,7 +3,7 @@ title: Part 8, add validation
 author: rick-anderson
 description: Part 8 of tutorial series on Razor Pages.
 ms.author: riande
-ms.custom: mvc
+ms.custom: mvc, contperfq2
 ms.date: 09/29/2020
 no-loc: [Index, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/razor-pages/validation

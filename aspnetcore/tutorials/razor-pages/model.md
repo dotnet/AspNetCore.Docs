@@ -4,6 +4,7 @@ author: rick-anderson
 description: Part 2 of tutorial series on Razor Pages. In this section, model classes are added.
 ms.author: riande
 ms.date: 11/11/2020
+ms.custom: contperfq2
 no-loc: [Index, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/razor-pages/model
 ---
