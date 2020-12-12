@@ -4,6 +4,7 @@ author: rick-anderson
 description: Part 3 of tutorial series on Razor Pages.
 ms.author: riande
 ms.date: 09/25/2020
+ms.custom: contperfq2
 no-loc: [Index, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/razor-pages/page
 ---
