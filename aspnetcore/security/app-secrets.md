@@ -3,7 +3,7 @@ title: Safe storage of app secrets in development in ASP.NET Core
 author: rick-anderson
 description: Learn how to store and retrieve sensitive information during the development of an ASP.NET Core app.
 ms.author: scaddie
-ms.custom: mvc, contperfq2
+ms.custom: mvc, contperf-fy21q2
 ms.date: 11/24/2020
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/app-secrets
