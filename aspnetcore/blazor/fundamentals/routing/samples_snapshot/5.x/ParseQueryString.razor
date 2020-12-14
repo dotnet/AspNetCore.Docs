@@ -1,0 +1,21 @@
+@page "/parse-query-string"
+@using Microsoft.AspNetCore.WebUtilities
+@inject NavigationManager NavigationManager
+
+<h1>Query string parse example</h1>
+
+<p>queryValue: @queryValue</p>
+
+@code {
+    private string queryValue = "A query string for 'ship' isn't present.";
+
+    protected override void OnInitialized()
+    {
+        var query = new Uri(NavigationManager.Uri).Query;
+
+        if (QueryHelpers.ParseQuery(query).TryGetValue("ship", out var value))
+        {
+            queryValue = value;
+        }
+    }
+}

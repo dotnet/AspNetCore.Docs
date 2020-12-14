@@ -221,7 +221,8 @@ In this section, you use the ASP.NET Core scaffolding tool to generate:
   * In the **Model class** drop-down, select **Student (ContosoUniversity.Models)**.
   * In the **Data context class** row, select the **+** (plus) sign.
     * Change the data context name to end in `SchoolContext` rather than `ContosoUniversityContext`. The updated context name: `ContosoUniversity.Data.SchoolContext`
-   * Select **Add**.
+    * Select **Add** to finish adding the data context class.
+   * Select **Add** to finish the **Add Razor Pages** dialog.
 
 The following packages are automatically installed:
 
@@ -465,7 +466,7 @@ A web server has a limited number of threads available, and in high load situati
 
 Asynchronous code does introduce a small amount of overhead at run time. For low traffic situations, the performance hit is negligible, while for high traffic situations, the potential performance improvement is substantial.
 
-In the following code, the [async](/dotnet/csharp/language-reference/keywords/async) keyword, `Task<T>` return value, `await` keyword, and `ToListAsync` method make the code execute asynchronously.
+In the following code, the [async](/dotnet/csharp/language-reference/keywords/async) keyword, `Task` return value, `await` keyword, and `ToListAsync` method make the code execute asynchronously.
 
 ```csharp
 public async Task OnGetAsync()
@@ -477,7 +478,7 @@ public async Task OnGetAsync()
 * The `async` keyword tells the compiler to:
   * Generate callbacks for parts of the method body.
   * Create the [Task](/dotnet/csharp/programming-guide/concepts/async/async-return-types#BKMK_TaskReturnType) object that's returned.
-* The `Task<T>` return type represents ongoing work.
+* The `Task` return type represents ongoing work.
 * The `await` keyword causes the compiler to split the method into two parts. The first part ends with the operation that's started asynchronously. The second part is put into a callback method that's called when the operation completes.
 * `ToListAsync` is the asynchronous version of the `ToList` extension method.
 
