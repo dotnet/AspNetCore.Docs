@@ -380,6 +380,8 @@ The Windows Subsystem for Linux (WSL) generates an HTTPS self-signed cert. To co
 
 This section provides help when the ASP.NET Core HTTPS development certificate has been [installed and trusted](#trust), but you still have browser warnings that the certificate is not trusted. The ASP.NET Core HTTPS development certificate is used by [Kestrel](xref:fundamentals/servers/kestrel).
 
+To repair the IIS Express certificate, see [this Stackoverflow](https://stackoverflow.com/a/20048613/502537) issue.
+
 ### All platforms - certificate not trusted
 
 Run the following commands:
