@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
-    using BlazorServerTransientDisposable;
+    using BlazorWebAssemblyTransientDisposable;
     using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 
     public static class WebHostBuilderTransientDisposableExtensions
@@ -29,7 +29,7 @@ namespace Microsoft.Extensions.DependencyInjection
     }
 }
 
-namespace BlazorServerTransientDisposable
+namespace BlazorWebAssemblyTransientDisposable
 {
     public class DetectIncorrectUsageOfTransientDisposablesServiceFactory 
         : IServiceProviderFactory<IServiceCollection>
