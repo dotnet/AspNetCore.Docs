@@ -1,33 +1,17 @@
 ---
-title: ASP.NET Core Blazor templates
+title: ASP.NET Core Blazor project structure
 author: guardrex
-description: Learn about ASP.NET Core Blazor app templates and Blazor project structure.
+description: Learn about ASP.NET Core Blazor app project structure.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/17/2020
+ms.date: 12/07/2020
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
-uid: blazor/templates
+uid: blazor/project-structure
 ---
-# ASP.NET Core Blazor templates
+# ASP.NET Core Blazor project structure
 
 By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.com/guardrex)
-
-The Blazor framework provides templates to develop apps for each of the Blazor hosting models:
-
-* Blazor WebAssembly (`blazorwasm`)
-* Blazor Server (`blazorserver`)
-
-For more information on Blazor's hosting models, see <xref:blazor/hosting-models>.
-
-Template options are available by passing the `--help` option to the [`dotnet new`](/dotnet/core/tools/dotnet-new) CLI command:
-
-```dotnetcli
-dotnet new blazorwasm --help
-dotnet new blazorserver --help
-```
-
-## Blazor project structure
 
 The following files and folders make up a Blazor app generated from a Blazor project template:
 
@@ -79,7 +63,7 @@ The following files and folders make up a Blazor app generated from a Blazor pro
   * The `_framework/blazor.webassembly.js` JavaScript file is loaded, which:
     * Downloads the .NET runtime, the app, and the app's dependencies.
     * Initializes the runtime to run the app.
-    
+
 ::: moniker-end
 
 * `App.razor`: The root component of the app that sets up client-side routing using the <xref:Microsoft.AspNetCore.Components.Routing.Router> component. The <xref:Microsoft.AspNetCore.Components.Routing.Router> component intercepts browser navigation and renders the page that matches the requested address.

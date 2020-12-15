@@ -26,7 +26,9 @@ By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.
 
 1. For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template. For a Blazor Server experience, choose the **Blazor Server App** template. Select **Create**.
 
-   For information on the two Blazor hosting models, *Blazor WebAssembly* and *Blazor Server*, see <xref:blazor/hosting-models>.
+   For a hosted Blazor WebAssembly experience, select the **ASP.NET Core hosted** check box.
+
+   For information on the two Blazor hosting models, *Blazor WebAssembly* (standalone and hosted) and *Blazor Server*, see <xref:blazor/hosting-models>.
 
 1. Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> to run the app.
 
@@ -52,13 +54,19 @@ For more information on trusting the ASP.NET Core HTTPS development certificate,
    dotnet new blazorwasm -o WebApplication1
    ```
 
+   For a hosted Blazor WebAssembly experience, add the hosted option (`-ho` or `--hosted`) option to the command:
+   
+   ```dotnetcli
+   dotnet new blazorwasm -o WebApplication1 -ho
+   ```
+   
    For a Blazor Server experience, execute the following command in a command shell:
 
    ```dotnetcli
    dotnet new blazorserver -o WebApplication1
    ```
 
-   For information on the two Blazor hosting models, *Blazor WebAssembly* and *Blazor Server*, see <xref:blazor/hosting-models>.
+   For information on the two Blazor hosting models, *Blazor WebAssembly* (standalone and hosted) and *Blazor Server*, see <xref:blazor/hosting-models>.
 
 1. Open the `WebApplication1` folder in Visual Studio Code.
 
@@ -88,9 +96,11 @@ For more information, see the guidance provided by your browser manufacturer and
 
    For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template. For a Blazor Server experience, choose the **Blazor Server App** template. Select **Next**.
 
-   For information on the two Blazor hosting models, *Blazor WebAssembly* and *Blazor Server*, see <xref:blazor/hosting-models>.
+   For information on the two Blazor hosting models, *Blazor WebAssembly* (standalone and hosted) and *Blazor Server*, see <xref:blazor/hosting-models>.
 
 1. Confirm that **Authentication** is set to **No Authentication**. Select **Next**.
+
+1. For a hosted Blazor WebAssembly experience, select the **ASP.NET Core hosted** check box.
 
 1. In the **Project Name** field, name the app `WebApplication1`. Select **Create**.
 
@@ -99,3 +109,23 @@ For more information, see the guidance provided by your browser manufacturer and
 If a prompt appears to trust the development certificate, trust the certificate and continue. The user and keychain passwords are required to trust the certificate. For more information on trusting the ASP.NET Core HTTPS development certificate, see <xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos>.
 
 ::: zone-end
+
+## Use Visual Studio Code for cross-platform Blazor development
+
+[Visual Studio Code](https://code.visualstudio.com/) is an open source, cross-platform Integrated Development Environment (IDE) that can be used to develop Blazor apps. Use the .NET CLI to create a new Blazor app for development with Visual Studio Code. For more information, see the [Linux version of this article](/aspnet/core/blazor/tooling?pivots=linux).
+
+## Blazor template options
+
+The Blazor framework provides templates for creating new apps for each of the two Blazor hosting models. The templates are used to create new Blazor projects and solutions regardless of the tooling that you select for Blazor development (Visual Studio, Visual Studio for Mac, Visual Studio Code, or the .NET CLI):
+
+* Blazor WebAssembly project template: `blazorwasm`
+* Blazor Server project template: `blazorserver`
+
+For more information on Blazor's hosting models, see <xref:blazor/hosting-models>.
+
+Template options are available by passing the help option (`-h` or `--help`) to the [`dotnet new`](/dotnet/core/tools/dotnet-new) CLI command in a command shell:
+
+```dotnetcli
+dotnet new blazorwasm --h
+dotnet new blazorserver --h
+```

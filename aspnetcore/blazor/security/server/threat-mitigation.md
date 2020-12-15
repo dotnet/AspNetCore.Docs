@@ -26,7 +26,7 @@ In constrained environments, such as inside corporate networks or intranets, som
 
 ## Blazor and shared state
 
-[!INCLUDE[](~/includes/blazor-security/blazor-shared-state.md)]
+[!INCLUDE[](~/blazor/includes/security/blazor-shared-state.md)]
 
 ## Resource exhaustion
 

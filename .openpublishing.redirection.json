@@ -1089,6 +1089,11 @@
             "source_path": "aspnetcore/blazor/components/integrate-components-into-razor-pages-and-mvc-apps.md",
             "redirect_url": "/aspnet/core/blazor/components/prerendering-and-integration",
             "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/blazor/templates.md",
+            "redirect_url": "/aspnet/core/blazor/tooling",
+            "redirect_document_id": false
         }
     ]
 }
