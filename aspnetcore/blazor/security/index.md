@@ -214,6 +214,8 @@ Set up the `Task<`<xref:Microsoft.AspNetCore.Components.Authorization.Authentica
 </CascadingAuthenticationState>
 ```
 
+[!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
+
 In a Blazor WebAssembly App, add services for options and authorization to `Program.Main`:
 
 ```csharp
@@ -405,6 +407,8 @@ In the default Blazor Server project template, the `App` component (`App.razor`)
 </CascadingAuthenticationState>
 ```
 
+[!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
+
 The content of `<NotFound>`, `<NotAuthorized>`, and `<Authorizing>` tags can include arbitrary items, such as other interactive components.
 
 If the `<NotAuthorized>` tag isn't specified, the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> uses the following fallback message:
@@ -482,6 +486,8 @@ It's likely that the project wasn't created using a Blazor Server template with 
     </Router>
 </CascadingAuthenticationState>
 ```
+
+[!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
 
 The <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationState> supplies the `Task<`<xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState>`>` cascading parameter, which in turn it receives from the underlying <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> DI service.
 
