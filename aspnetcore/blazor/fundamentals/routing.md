@@ -27,6 +27,8 @@ The <xref:Microsoft.AspNetCore.Components.Routing.Router> component enables rout
 
 ::: moniker-end
 
+[!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
+
 ::: moniker range="< aspnetcore-5.0"
 
 [!code-razor[](routing/samples_snapshot/3.x/App1.razor)]
@@ -77,6 +79,8 @@ In the `App` component, set custom content in the <xref:Microsoft.AspNetCore.Com
 
 ::: moniker-end
 
+[!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
+
 ::: moniker range="< aspnetcore-5.0"
 
 [!code-razor[](routing/samples_snapshot/3.x/App2.razor?highlight=5-8)]
@@ -96,6 +100,8 @@ Use the <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblie
 [!code-razor[](routing/samples_snapshot/5.x/App3.razor)]
 
 ::: moniker-end
+
+[!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
 
 ::: moniker range="< aspnetcore-5.0"
 

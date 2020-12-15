@@ -426,7 +426,7 @@ The placeholder `{APP ASSEMBLY}` is the app's app assembly name (for example, `B
 </ul>
 ```
 
-[!INCLUDE[Share interop code in a class library](~/includes/blazor-share-interop-code.md)]
+[!INCLUDE[](~/blazor/includes/share-interop-code.md)]
 
 ## Avoid circular object references
 
