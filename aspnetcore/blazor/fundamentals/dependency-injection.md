@@ -175,6 +175,8 @@ Two versions of the <xref:Microsoft.AspNetCore.Components.OwningComponentBase> t
 
 For more information, see <xref:blazor/blazor-server-ef-core>.
 
+::: moniker range="< aspnetcore-5.0"
+
 ## Detect transient disposables
 
 The following examples show how to detect disposable transient services in an app that should use <xref:Microsoft.AspNetCore.Components.OwningComponentBase>. For more information, see the [Utility base component classes to manage a DI scope](#utility-base-component-classes-to-manage-a-di-scope) section.
@@ -187,17 +189,17 @@ The following examples show how to detect disposable transient services in an ap
 
 The `TransientDisposable` in the following example is detected (`Program.cs`):
 
-::: moniker range=">= aspnetcore-5.0"
+<!-- moniker range=">= aspnetcore-5.0"
 
 [!code-csharp[](dependency-injection/samples_snapshot/5.x/transient-disposables/DetectIncorrectUsagesOfTransientDisposables-wasm-program.cs?highlight=6,9,17,22-25)]
 
-::: moniker-end
+moniker-end 
 
-::: moniker range="< aspnetcore-5.0"
+moniker range="< aspnetcore-5.0" -->
 
 [!code-csharp[](dependency-injection/samples_snapshot/3.x/transient-disposables/DetectIncorrectUsagesOfTransientDisposables-wasm-program.cs?highlight=6,9,17,22-25)]
 
-::: moniker-end
+<!-- moniker-end -->
 
 ::: zone-end
 
@@ -222,6 +224,8 @@ The `TransientDependency` in the following example is detected (`Startup.cs`):
 [!code-csharp[](dependency-injection/samples_snapshot/3.x/transient-disposables/DetectIncorrectUsagesOfTransientDisposables-server-startup.cs?highlight=6-8,11-32)]
 
 ::: zone-end
+
+::: moniker-end
 
 ## Additional resources
 
