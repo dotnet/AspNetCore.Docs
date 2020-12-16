@@ -37,6 +37,7 @@ The sample Dockerfile uses the [Docker multi-stage build feature](https://docs.d
    The sample uses this image for running the app. The image contains the ASP.NET Core runtime and libraries and is optimized for running apps in production. Designed for speed of deployment and app startup, the image is relatively small, so network performance from Docker Registry to Docker host is optimized. Only the binaries and content needed to run an app are copied to the container. The contents are ready to run, enabling the fastest time from `Docker run` to app startup. Dynamic code compilation isn't needed in the Docker model.
 
 ## Prerequisites
+
 ::: moniker range="< aspnetcore-3.0"
 
 * [.NET Core 2.2 SDK](https://dotnet.microsoft.com/download/dotnet-core)
@@ -49,7 +50,7 @@ The sample Dockerfile uses the [Docker multi-stage build feature](https://docs.d
 
 ::: moniker-end
 
-::: moniker range=">= aspnetcore-5.0"
+::: moniker range=">= aspnetcore-5.0"
 
 * [.NET Core SDK 5.0](https://dotnet.microsoft.com/download)
 
