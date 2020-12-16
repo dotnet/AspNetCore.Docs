@@ -40,9 +40,10 @@ The sample Dockerfile uses the [Docker multi-stage build feature](https://docs.d
 ::: moniker range="< aspnetcore-3.0"
 
 * [.NET Core 2.2 SDK](https://dotnet.microsoft.com/download/dotnet-core)
+
 ::: moniker-end
 
-::: moniker range="< aspnetcore-5.0 >= aspnetcore-3.0"
+::: moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
 
 * [.NET Core SDK 3.1](https://dotnet.microsoft.com/download)
 
@@ -213,7 +214,7 @@ ENTRYPOINT ["dotnet", "aspnetapp.dll"]
 
 ::: moniker-end
 
-::: moniker range="< aspnetcore-5.0 >= aspnetcore-3.0"
+::: moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
 
 ```dockerfile
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.0 AS runtime
