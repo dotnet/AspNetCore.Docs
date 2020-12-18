@@ -53,6 +53,10 @@ For getting started with hosting a website on Azure App Services, see our [deplo
 * <xref:test/troubleshoot-azure-iis>
 * <xref:host-and-deploy/azure-iis-errors-reference>
 
+## Overlapped Recycle
+
+In general, we recommend using a pattern like [blue-green deployments](https://www.martinfowler.com/bliki/BlueGreenDeployment.html) for zero-downtime deployments. Features like Overlapped Recycle help, but don't guarantee that you can do a zero-downtime deployment. For more information, see [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/10117).
+
 ## Additional resources
 
 * <xref:test/troubleshoot>
