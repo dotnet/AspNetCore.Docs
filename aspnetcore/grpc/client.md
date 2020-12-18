@@ -184,11 +184,33 @@ For best performance, and to avoid unnecessary errors in the client and service,
 
 During a bi-directional streaming call, the client and service can send messages to each other at any time. The best client logic for interacting with a bi-directional call varies depending upon the service logic.
 
-## Access gRPC trailers
+## Access gRPC headers
 
-gRPC calls may return gRPC trailers. gRPC trailers are used to provide name/value metadata about a call. Trailers provide similar functionality to HTTP headers, but are received at the end of the call.
+gRPC calls return response headers. HTTP response headers pass name/value metadata about a call that isn't related the returned message.
 
-gRPC trailers are accessible using `GetTrailers()`, which returns a collection of metadata. Trailers are returned after the response is complete, therefore, you must await all response messages before accessing the trailers.
+Headers are accessible using `ResponseHeadersAsync`, which returns a collection of metadata. Headers are typically returned with the response message, therefore, you must await them.
+
+```csharp
+var client = new Greet.GreeterClient(channel);
+using var call = client.SayHelloAsync(new HelloRequest { Name = "World" });
+
+var headers = await call.ResponseHeadersAsync;
+var myValue = headers.GetValue("my-trailer-name");
+
+var response = await call.ResponseAsync;
+```
+
+`ResponseHeadersAsync` usage:
+
+* Must await the result of `ResponseHeadersAsync` to get the headers collection.
+* Doesn't have to be accessed before `ResponseAsync` (or the response stream when streaming). If a response has been returned then `ResponseHeadersAsync` returns headers instantly.
+* Will throw an exception if there was a connection or server error and headers weren't returned for the gRPC call.
+
+## Access response trailers
+
+gRPC calls may return response trailers. Trailers are used to provide name/value metadata about a call. Trailers provide similar functionality to HTTP headers, but are received at the end of the call.
+
+Trailers are accessible using `GetTrailers()`, which returns a collection of metadata. Trailers are returned after the response is complete, therefore, you must await all response messages before accessing the trailers.
 
 Unary and client streaming calls must await `ResponseAsync` before calling `GetTrailers()`:
 
@@ -220,7 +242,7 @@ var trailers = call.GetTrailers();
 var myValue = trailers.GetValue("my-trailer-name");
 ```
 
-gRPC trailers are also accessible from `RpcException`. A service may return trailers together with a non-OK gRPC status. In this situation the trailers are retrieved from the exception thrown by the gRPC client:
+Trailers are also accessible from `RpcException`. A service may return trailers together with a non-OK gRPC status. In this situation the trailers are retrieved from the exception thrown by the gRPC client:
 
 ```csharp
 var client = new Greet.GreeterClient(channel);
