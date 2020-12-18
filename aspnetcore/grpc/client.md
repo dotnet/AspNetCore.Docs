@@ -206,7 +206,7 @@ var response = await call.ResponseAsync;
 * Doesn't have to be accessed before `ResponseAsync` (or the response stream when streaming). If a response has been returned then `ResponseHeadersAsync` returns headers instantly.
 * Will throw an exception if there was a connection or server error and headers weren't returned for the gRPC call.
 
-## Access response trailers
+## Access gRPC trailers
 
 gRPC calls may return response trailers. Trailers are used to provide name/value metadata about a call. Trailers provide similar functionality to HTTP headers, but are received at the end of the call.
 
