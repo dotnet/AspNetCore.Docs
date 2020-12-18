@@ -4,7 +4,7 @@ author: jamesnk
 description: Learn how to call gRPC services with the .NET gRPC client.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
-ms.date: 07/27/2020
+ms.date: 12/18/2020
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: grpc/client
 ---
@@ -26,7 +26,7 @@ var channel = GrpcChannel.ForAddress("https://localhost:5001");
 var client = new Greet.GreeterClient(channel);
 ```
 
-A channel represents a long-lived connection to a gRPC service. When a channel is created, it is configured with options related to calling a service. For example, the `HttpClient` used to make calls, the maximum send and receive message size, and logging can be specified on `GrpcChannelOptions` and used with `GrpcChannel.ForAddress`. For a complete list of options, see [client configuration options](xref:grpc/configuration#configure-client-options).
+A channel represents a long-lived connection to a gRPC service. When a channel is created, it's configured with options related to calling a service. For example, the `HttpClient` used to make calls, the maximum send and receive message size, and logging can be specified on `GrpcChannelOptions` and used with `GrpcChannel.ForAddress`. For a complete list of options, see [client configuration options](xref:grpc/configuration#configure-client-options).
 
 ```csharp
 var channel = GrpcChannel.ForAddress("https://localhost:5001");
@@ -188,7 +188,7 @@ During a bi-directional streaming call, the client and service can send messages
 
 gRPC calls return response headers. HTTP response headers pass name/value metadata about a call that isn't related the returned message.
 
-Headers are accessible using `ResponseHeadersAsync`, which returns a collection of metadata. Headers are typically returned with the response message, therefore, you must await them.
+Headers are accessible using `ResponseHeadersAsync`, which returns a collection of metadata. Headers are typically returned with the response message; therefore, you must await them.
 
 ```csharp
 var client = new Greet.GreeterClient(channel);
@@ -203,14 +203,14 @@ var response = await call.ResponseAsync;
 `ResponseHeadersAsync` usage:
 
 * Must await the result of `ResponseHeadersAsync` to get the headers collection.
-* Doesn't have to be accessed before `ResponseAsync` (or the response stream when streaming). If a response has been returned then `ResponseHeadersAsync` returns headers instantly.
+* Doesn't have to be accessed before `ResponseAsync` (or the response stream when streaming). If a response has been returned, then `ResponseHeadersAsync` returns headers instantly.
 * Will throw an exception if there was a connection or server error and headers weren't returned for the gRPC call.
 
 ## Access gRPC trailers
 
 gRPC calls may return response trailers. Trailers are used to provide name/value metadata about a call. Trailers provide similar functionality to HTTP headers, but are received at the end of the call.
 
-Trailers are accessible using `GetTrailers()`, which returns a collection of metadata. Trailers are returned after the response is complete, therefore, you must await all response messages before accessing the trailers.
+Trailers are accessible using `GetTrailers()`, which returns a collection of metadata. Trailers are returned after the response is complete. Therefore, you must await all response messages before accessing the trailers.
 
 Unary and client streaming calls must await `ResponseAsync` before calling `GetTrailers()`:
 
@@ -242,7 +242,7 @@ var trailers = call.GetTrailers();
 var myValue = trailers.GetValue("my-trailer-name");
 ```
 
-Trailers are also accessible from `RpcException`. A service may return trailers together with a non-OK gRPC status. In this situation the trailers are retrieved from the exception thrown by the gRPC client:
+Trailers are also accessible from `RpcException`. A service may return trailers together with a non-OK gRPC status. In this situation, the trailers are retrieved from the exception thrown by the gRPC client:
 
 ```csharp
 var client = new Greet.GreeterClient(channel);
