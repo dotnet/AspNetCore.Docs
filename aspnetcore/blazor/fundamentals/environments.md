@@ -16,7 +16,7 @@ uid: blazor/fundamentals/environments
 
 When running an app locally, the environment defaults to Development. When the app is published, the environment defaults to Production.
 
-The client-side Blazor app (*`Client`*) of a hosted Blazor WebAssembly solution determines the environment from the *`Server`* app of the solution via a middleware that communicates the environment to the browser. The *`Server`* app adds a header named `blazor-environment` with the environment as the value of the header. The *`Client`* app reads the header. The the *`Server`* app of the solution is an ASP.NET Core app, so more information on how to configure the environment is found in <xref:fundamentals/environments>.
+The client-side Blazor app (*`Client`*) of a hosted Blazor WebAssembly solution determines the environment from the *`Server`* app of the solution via a middleware that communicates the environment to the browser. The *`Server`* app adds a header named `blazor-environment` with the environment as the value of the header. The *`Client`* app reads the header. The *`Server`* app of the solution is an ASP.NET Core app, so more information on how to configure the environment is found in <xref:fundamentals/environments>.
 
 For a standalone Blazor WebAssembly app running locally, the development server adds the `blazor-environment` header to specify the Development environment. To specify the environment for other hosting environments, add the `blazor-environment` header.
 
