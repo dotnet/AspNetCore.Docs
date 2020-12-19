@@ -229,7 +229,7 @@ The app can register transient disposables without throwing an exception. Howeve
 
 ```razor
 @page "/transient-disposable"
-@inject TransientDisposable
+@inject TransientDisposable TransientDisposable
 
 <h1>Transient Disposable</h1>
 ```
