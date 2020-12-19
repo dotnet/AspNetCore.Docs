@@ -132,11 +132,11 @@ The db context:
 
 [!code-csharp[](index/3.0sample/RazorPagesContacts/Data/CustomerDbContext.cs)]
 
-The *Pages/Create.cshtml* view file:
+The *Pages/Customers/Create.cshtml* view file:
 
 [!code-cshtml[](index/3.0sample/RazorPagesContacts/Pages/Customers/Create.cshtml)]
 
-The *Pages/Create.cshtml.cs* page model:
+The *Pages/Customers/Create.cshtml.cs* page model:
 
 [!code-csharp[](index/3.0sample/RazorPagesContacts/Pages/Customers/Create.cshtml.cs?name=snippet_ALL)]
 
