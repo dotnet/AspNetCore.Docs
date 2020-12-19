@@ -234,7 +234,7 @@ The app can register transient disposables without throwing an exception. Howeve
 <h1>Transient Disposable Detection</h1>
 ```
 
-Navigate to the `TransientDisposable` component at `/transient-disposable` and the <xref:System.InvalidOperationException> is thrown when the framework attempts to construct an instance of `TransientDisposable`:
+Navigate to the `TransientDisposable` component at `/transient-disposable` and an <xref:System.InvalidOperationException> is thrown when the framework attempts to construct an instance of `TransientDisposable`:
 
 ```
 System.InvalidOperationException: Trying to resolve transient disposable service 
