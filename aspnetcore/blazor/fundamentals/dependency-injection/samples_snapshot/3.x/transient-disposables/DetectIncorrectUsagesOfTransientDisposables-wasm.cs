@@ -24,6 +24,7 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             webAssemblyHost.Services
                 .GetRequiredService<ThrowOnTransientDisposable>().ShouldThrow = true;
+
             return webAssemblyHost;
         }
     }
@@ -41,6 +42,7 @@ namespace BlazorWebAssemblyTransientDisposable
             IServiceCollection containerBuilder)
         {
             var collection = new ServiceCollection();
+
             foreach (var descriptor in containerBuilder)
             {
                 if (descriptor.Lifetime == ServiceLifetime.Transient &&
@@ -115,6 +117,7 @@ namespace BlazorWebAssemblyTransientDisposable
                         original.ImplementationType);
                 },
                 ServiceLifetime.Transient);
+    
             return newDescriptor;
         }
     }
