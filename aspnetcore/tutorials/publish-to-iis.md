@@ -30,8 +30,8 @@ This tutorial covers the following subjects:
 >
 > Important scenarios for IIS hosting not covered by this tutorial include:
 >
-> * [Creation of a registry hive for ASP.NET Core Data Protection](xref:host-and-deploy/iis/index#data-protection)
-> * [Configuration of the app pool's Access Control List (ACL)](xref:host-and-deploy/iis/index#application-pool-identity)
+> * [Creation of a registry hive for ASP.NET Core Data Protection](xref:host-and-deploy/iis/advanced#data-protection)
+> * [Configuration of the app pool's Access Control List (ACL)](xref:host-and-deploy/iis/advanced#application-pool-identity)
 > * To focus on IIS deployment concepts, this tutorial deploys an app without HTTPS security configured in IIS. For more information on hosting an app enabled for HTTPS protocol, see the security topics in the [Additional resources](#additional-resources) section of this article. Further guidance for hosting ASP.NET Core apps is provided in the <xref:host-and-deploy/iis/index> article.
 
 ## Install the .NET Core Hosting Bundle
