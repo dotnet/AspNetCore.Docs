@@ -240,7 +240,7 @@ The *Index.cshtml* file contains markup to create a delete button for each custo
 The rendered HTML:
 
 ```html
-<button type="submit" formaction="/Customers?id=1&amp;handler=delete">delete</button>
+<button type="submit" formaction="/Customers?id=1&amp;handler=Delete">delete</button>
 ```
 
 When the delete button is rendered in HTML, its [formaction](https://developer.mozilla.org/docs/Web/HTML/Element/button#attr-formaction) includes parameters for:
