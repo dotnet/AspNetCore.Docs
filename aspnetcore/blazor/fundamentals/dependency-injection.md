@@ -223,7 +223,7 @@ The `TransientDependency` in the following example is detected (`Startup.cs`):
 
 ::: zone-end
 
-The app can register transient disposables without throwing an exception. However, constructing a transient disposable results in an <xref:System.InvalidOperationException>, as the following example shows.
+The app can register transient disposables without throwing an exception. However, attempting to resolve a transient disposable results in an <xref:System.InvalidOperationException>, as the following example shows.
 
 `Pages/TransientDisposable.razor`:
 
@@ -234,7 +234,13 @@ The app can register transient disposables without throwing an exception. Howeve
 <h1>Transient Disposable</h1>
 ```
 
-> System.InvalidOperationException: Trying to resolve transient disposable service TransientDisposable in the wrong scope. Use an 'OwningComponentBase\<T>' component base class for the service 'T' you are trying to resolve.
+Navigate to the `TransientDisposable` component at `/transient-disposable` and the <xref:System.InvalidOperationException> is thrown when the framework attempts to construct an instance of `TransientDisposable`:
+
+```
+System.InvalidOperationException: Trying to resolve transient disposable service 
+TransientDisposable in the wrong scope. Use an 'OwningComponentBase\<T>' component 
+base class for the service 'T' you are trying to resolve.
+```
 
 ## Additional resources
 
