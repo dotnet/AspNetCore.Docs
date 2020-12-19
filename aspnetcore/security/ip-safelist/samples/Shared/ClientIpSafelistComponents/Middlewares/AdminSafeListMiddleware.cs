@@ -12,14 +12,20 @@ namespace ClientIpSafelistComponents.Middlewares
     {
         private readonly RequestDelegate _next;
         private readonly ILogger<AdminSafeListMiddleware> _logger;
-        private readonly string _safelist;
+        private readonly byte[][] _safelist;
 
         public AdminSafeListMiddleware(
             RequestDelegate next,
             ILogger<AdminSafeListMiddleware> logger,
             string safelist)
         {
-            _safelist = safelist;
+            var ips = safelist.Split(';');
+            _safelist = new byte[ips.Length][];
+            for (var i = 0; i < ips.Length; i++)
+            {
+                _safelist[i] = IPAddress.Parse(ips[i]).GetAddressBytes();
+            }
+
             _next = next;
             _logger = logger;
         }
@@ -31,14 +37,11 @@ namespace ClientIpSafelistComponents.Middlewares
                 var remoteIp = context.Connection.RemoteIpAddress;
                 _logger.LogDebug("Request from Remote IP address: {RemoteIp}", remoteIp);
 
-                string[] ip = _safelist.Split(';');
-
                 var bytes = remoteIp.GetAddressBytes();
                 var badIp = true;
-                foreach (var address in ip)
+                foreach (var address in _safelist)
                 {
-                    var testIp = IPAddress.Parse(address);
-                    if (testIp.GetAddressBytes().SequenceEqual(bytes))
+                    if (address.SequenceEqual(bytes))
                     {
                         badIp = false;
                         break;
