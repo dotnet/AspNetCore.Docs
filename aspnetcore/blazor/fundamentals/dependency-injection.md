@@ -231,7 +231,7 @@ The app can register transient disposables without throwing an exception. Howeve
 @page "/transient-disposable"
 @inject TransientDisposable TransientDisposable
 
-<h1>Transient Disposable</h1>
+<h1>Transient Disposable Detection</h1>
 ```
 
 Navigate to the `TransientDisposable` component at `/transient-disposable` and the <xref:System.InvalidOperationException> is thrown when the framework attempts to construct an instance of `TransientDisposable`:
