@@ -321,7 +321,7 @@ Use the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.ClientErrorMapping%2A>
 
 ::: moniker-end
 
-## Use a Custome Middleware to to handle exceptions
+## Use a Custome Middleware to handle exceptions
 
 While the built-in Exception Handling Middleware of ASP.NET Core is providing a convenient solution to handle exceptions in the chain of .NET Core layers, there will be, some cases in which having a common and customized Exception Handling Middleware will be a more elegant solution. For example, consider a project that is going to consume several fine-grained Web APIs. These APIs are all based on .NET Core and they all need to handle exceptions in more less similar way and log them by relyong on [ILogger](
-https://docs.microsoft.com/en-us/aspnet/core/fundamentals/logging/?view=aspnetcore-5.0). For such a scenario having a Customized Middleware Exception Handling in a shared library among all APIs is would be a good solution to increase code useability and provide a centralized logging and exception handling mechanism. Follwoing you can find a simple excample of Customized Exception Handling Middleware.
+https://docs.microsoft.com/en-us/aspnet/core/fundamentals/logging/?view=aspnetcore-5.0). For such a scenario having a Customized Middleware Exception Handling in a shared library among all APIs would be a good solution to increase code useability and provide a centralized logging and exception handling mechanism. Follwoing you can find a simple excample of Customized Exception Handling Middleware.
