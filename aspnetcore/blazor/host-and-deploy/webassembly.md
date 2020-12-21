@@ -125,7 +125,7 @@ Hosted Blazor solutions can serve multiple Blazor WebAssembly apps.
 
 In the following example:
 
-* One client app is the default client project of a solution created from the Blazor WebAssembly project template. The first client app is accessible in a browser from the URL `/FirstApp` on either port 5001 or with a host of `firstapp.com`.
+* The initial (first) client app is the default client project of a solution created from the Blazor WebAssembly project template. The first client app is accessible in a browser from the URL `/FirstApp` on either port 5001 or with a host of `firstapp.com`.
 * A second client app is added to the solution, `SecondBlazorApp.Client`. The second client app is accessible in a browser from the the URL `/SecondApp` on either port 5002 or with a host of `secondapp.com`.
 
 Use an existing hosted Blazor solution or create a new solution from the Blazor Hosted project template:
