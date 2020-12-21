@@ -118,9 +118,17 @@ For information on deploying to Azure App Service, see <xref:tutorials/publish-t
 
 ### App configuration
 
-To configure a hosted Blazor solution to serve multiple Blazor WebAssembly apps:
+Hosted Blazor solutions can serve multiple Blazor WebAssembly apps.
 
-* Use an existing hosted Blazor solution or create a new solution from the Blazor Hosted project template.
+> [!NOTE]
+> The example in this section references the use of a Visual Studio *solution*, but the use of Visual Studio and a Visual Studio solution isn't required for multiple client apps to work in a hosted Blazor WebAssembly apps scenario. If you aren't using Visual Studio, ignore the `{SOLUTION NAME}.sln` file and any other files created for Visual Studio.
+
+In the following example:
+
+* One client app is the default client project of a solution created from the Blazor WebAssembly project template. The first client app is accessible in a browser from the URL `/FirstApp` on either port 5001 or with a host of `firstapp.com`.
+* A second client app is added to the solution, `SecondBlazorApp.Client`. The second client app is accessible in a browser from the the URL `/SecondApp` on either port 5002 or with a host of `secondapp.com`.
+
+Use an existing hosted Blazor solution or create a new solution from the Blazor Hosted project template:
 
 * In the client app's project file, add a `<StaticWebAssetBasePath>` property to the `<PropertyGroup>` with a value of `FirstApp` to set the base path for the project's static assets:
 
@@ -133,9 +141,19 @@ To configure a hosted Blazor solution to serve multiple Blazor WebAssembly apps:
 
 * Add a second client app to the solution:
 
-  * Add a folder named `SecondClient` to the solution's folder.
+  * Add a folder named `SecondClient` to the solution's folder. The solution folder created from the project template contains the following solution file and folders after the `SecondClient` folder is added:
+  
+    * `Client` (folder)
+    * `SecondClient` (folder)
+    * `Server` (folder)
+    * `Shared` (folder)
+    * `{SOLUTION NAME}.sln` (file)
+    
+    The placeholder `{SOLUTION NAME}` is the solution's name.
+
   * Create a Blazor WebAssembly app named `SecondBlazorApp.Client` in the `SecondClient` folder from the Blazor WebAssembly project template.
-  * In the app's project file:
+
+  * In the `SecondBlazorApp.Client` app's project file:
 
     * Add a `<StaticWebAssetBasePath>` property to the `<PropertyGroup>` with a value of `SecondApp`:
 
@@ -156,14 +174,17 @@ To configure a hosted Blazor solution to serve multiple Blazor WebAssembly apps:
 
       The placeholder `{SOLUTION NAME}` is the solution's name.
 
-* In the server app's project file, create a project reference for the added client app:
+* In the server app's project file, create a project reference for the added `SecondBlazorApp.Client` client app:
 
   ```xml
   <ItemGroup>
-    ...
+    <ProjectReference Include="..\Client\{SOLUTION NAME}.Client.csproj" />
     <ProjectReference Include="..\SecondClient\SecondBlazorApp.Client.csproj" />
+    <ProjectReference Include="..\Shared\{SOLUTION NAME}.Shared.csproj" />
   </ItemGroup>
   ```
+  
+  The placeholder `{SOLUTION NAME}` is the solution's name.
 
 * In the server app's `Properties/launchSettings.json` file, configure the `applicationUrl` of the Kestrel profile (`{SOLUTION NAME}.Server`) to access the client apps at ports 5001 and 5002:
 
