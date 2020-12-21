@@ -1,7 +1,7 @@
 ---
 title: Docker images for ASP.NET Core
 author: rick-anderson
-description: Learn how to use the published .NET Core Docker images from the Docker Registry. Pull images and build your own images.
+description: Learn how to use the published ASP.NET Core Docker images from the Docker Registry. Pull and build your own images.
 ms.author: riande
 ms.custom: mvc
 ms.date: 12/15/2020
@@ -34,7 +34,7 @@ The sample Dockerfile uses the [Docker multi-stage build feature](https://docs.d
 
 * `dotnet/core/aspnet`
 
-   The sample uses this image for running the app. The image contains the ASP.NET Core runtime and libraries and is optimized for running apps in production. Designed for speed of deployment and app startup, the image is relatively small, so network performance from Docker Registry to Docker host is optimized. Only the binaries and content needed to run an app are copied to the container. The contents are ready to run, enabling the fastest time from `Docker run` to app startup. Dynamic code compilation isn't needed in the Docker model.
+   The sample uses this image for running the app. The image contains the ASP.NET Core runtime and libraries and is optimized for running apps in production. Designed for speed of deployment and app startup, the image is relatively small, so network performance from Docker Registry to Docker host is optimized. Only the binaries and content needed to run an app are copied to the container. The contents are ready to run, enabling the fastest time from `docker run` to app startup. Dynamic code compilation isn't needed in the Docker model.
 
 ## Prerequisites
 
@@ -178,12 +178,12 @@ In some scenarios, you might want to deploy an app to a container by copying its
 
 * Browse to `http://localhost:5000` to see the home page.
 
-To use the manually published app within a Docker container, create a new Dockerfile and use the `docker build .` command to build the container.
+To use the manually published app within a Docker container, create a new *Dockerfile* and use the `docker build .` command to build the container.
 
 ::: moniker range=">= aspnetcore-5.0"
 
 ```dockerfile
-FROM mcr.microsoft.com/dotnet/core/aspnet:5.0 AS runtime
+FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS runtime
 WORKDIR /app
 COPY published/aspnetapp.dll ./
 ENTRYPOINT ["dotnet", "aspnetapp.dll"]
@@ -215,7 +215,7 @@ COPY --from=build /app ./
 ENTRYPOINT ["dotnet", "aspnetapp.dll"]
 ```
 
-As noted in the preceding Dockerfile, the `*.csproj` files are copied and restored as distinct *layers*. When the `docker build` command builds an image, it uses a built-in cache. If the `*.csproj` files haven't changed since the `docker build` command last ran, the `dotnet restore` command doesn't need to run again. Instead, the built-in cache for the corresponding `dotnet restore` layer is reused. For more information, see [Best practices for writing Dockerfiles](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#leverage-build-cache).
+In the preceding *Dockerfile*, the `*.csproj` files are copied and restored as distinct *layers*. When the `docker build` command builds an image, it uses a built-in cache. If the `*.csproj` files haven't changed since the `docker build` command last ran, the `dotnet restore` command doesn't need to run again. Instead, the built-in cache for the corresponding `dotnet restore` layer is reused. For more information, see [Best practices for writing Dockerfiles](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#leverage-build-cache).
 
 ::: moniker-end
 
@@ -267,7 +267,7 @@ ENTRYPOINT ["dotnet", "aspnetapp.dll"]
 
 ### The Dockerfile
 
-Here's the *Dockerfile* used by the `docker build` command you ran earlier.  It uses `dotnet publish` the same way you did in this section to build and deploy.  
+Here's the *Dockerfile* used by the `docker build` command you ran earlier. It uses `dotnet publish` the same way you did in this section to build and deploy.  
 
 ```dockerfile
 FROM mcr.microsoft.com/dotnet/core/sdk:2.2 AS build
