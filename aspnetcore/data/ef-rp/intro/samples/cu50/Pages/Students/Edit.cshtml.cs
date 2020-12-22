@@ -1,16 +1,21 @@
-﻿using ContosoUniversity.Data;
-using ContosoUniversity.Models;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using ContosoUniversity.Data;
+using ContosoUniversity.Models;
 
 namespace ContosoUniversity.Pages.Students
 {
     public class EditModel : PageModel
     {
-        private readonly SchoolContext _context;
+        private readonly ContosoUniversity.Data.SchoolContext _context;
 
-        public EditModel(SchoolContext context)
+        public EditModel(ContosoUniversity.Data.SchoolContext context)
         {
             _context = context;
         }
@@ -18,6 +23,7 @@ namespace ContosoUniversity.Pages.Students
         [BindProperty]
         public Student Student { get; set; }
 
+        #region snippet_OnGetPost
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
@@ -53,6 +59,12 @@ namespace ContosoUniversity.Pages.Students
             }
 
             return Page();
+        }
+        #endregion
+
+        private bool StudentExists(int id)
+        {
+            return _context.Students.Any(e => e.ID == id);
         }
     }
 }

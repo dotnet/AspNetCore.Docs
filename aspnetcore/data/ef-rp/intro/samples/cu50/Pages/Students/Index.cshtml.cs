@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace ContosoUniversity.Pages.Students
 {
+    #region snippet_All
     public class IndexModel : PageModel
     {
         private readonly SchoolContext _context;
@@ -43,7 +44,7 @@ namespace ContosoUniversity.Pages.Students
             CurrentFilter = searchString;
 
             IQueryable<Student> studentsIQ = from s in _context.Students
-                                             select s;
+                                            select s;
             if (!String.IsNullOrEmpty(searchString))
             {
                 studentsIQ = studentsIQ.Where(s => s.LastName.Contains(searchString)
@@ -70,4 +71,5 @@ namespace ContosoUniversity.Pages.Students
                 studentsIQ.AsNoTracking(), pageIndex ?? 1, pageSize);
         }
     }
+    #endregion
 }

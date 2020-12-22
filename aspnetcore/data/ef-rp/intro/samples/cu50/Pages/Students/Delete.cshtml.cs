@@ -1,4 +1,5 @@
-﻿using ContosoUniversity.Models;
+﻿#region snippet_All
+using ContosoUniversity.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -6,7 +7,6 @@ using System.Threading.Tasks;
 
 namespace ContosoUniversity.Pages.Students
 {
-    #region snippet_All
     public class DeleteModel : PageModel
     {
         private readonly ContosoUniversity.Data.SchoolContext _context;
@@ -72,5 +72,5 @@ namespace ContosoUniversity.Pages.Students
             }
         }
     }
-    #endregion
 }
+#endregion
