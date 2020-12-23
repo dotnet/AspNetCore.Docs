@@ -1,4 +1,4 @@
-import { ILogger, LogLevel, HubConnectionBuilder } from "@aspnet/signalr";
+import { ILogger, LogLevel, HubConnectionBuilder } from "@microsoft/signalr";
 
 export class MyLogger implements ILogger {
     log(logLevel: LogLevel, message: string) {
