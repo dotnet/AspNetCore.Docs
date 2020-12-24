@@ -34,7 +34,7 @@ Follow the guidance in [Quickstart: Set up a tenant](/azure/active-directory/dev
 
 ### Register a server API app
 
-Follow the guidance in [Quickstart: Register an application with the Microsoft identity platform](/azure/active-directory/develop/quickstart-register-app) and subsequent Azure AAD topics to register an AAD app for the *Server API app* and then do the following:
+Register an AAD app for the *Server API app*:
 
 1. In **Azure Active Directory** > **App registrations**, select **New registration**.
 1. Provide a **Name** for the app (for example, **Blazor Server AAD**).
@@ -68,7 +68,7 @@ Record the following information:
 
 ### Register a client app
 
-Follow the guidance in [Quickstart: Register an application with the Microsoft identity platform](/azure/active-directory/develop/quickstart-register-app) and subsequent Azure AAD topics to register a AAD app for the *`Client`* app and then do the following:
+Register an AAD app for the *Client app*:
 
 ::: moniker range=">= aspnetcore-5.0"
 
@@ -524,3 +524,4 @@ Run the app from the Server project. When using Visual Studio, either:
 * <xref:blazor/security/webassembly/aad-groups-roles>
 * <xref:security/authentication/azure-active-directory/index>
 * [Microsoft identity platform documentation](/azure/active-directory/develop/)
+* [Quickstart: Register an application with the Microsoft identity platform](/azure/active-directory/develop/quickstart-register-app)
