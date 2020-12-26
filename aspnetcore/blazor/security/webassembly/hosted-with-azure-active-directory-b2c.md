@@ -223,7 +223,7 @@ By default, the `User.Identity.Name` isn't populated.
 
 To configure the app to receive the value from the `name` claim type:
 
-* Add a namespace for <xref:Microsoft.AspNetCore.Authentication.JwtBearer?displayProperty=fullName>:
+* Add a namespace for <xref:Microsoft.AspNetCore.Authentication.JwtBearer?displayProperty=fullName> to `Startup.cs`:
 
   ```csharp
   using Microsoft.AspNetCore.Authentication.JwtBearer;
