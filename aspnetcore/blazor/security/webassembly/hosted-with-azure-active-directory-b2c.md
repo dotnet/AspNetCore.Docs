@@ -229,9 +229,9 @@ To configure the app to receive the value from the `name` claim type:
   using Microsoft.AspNetCore.Authentication.JwtBearer;
   ```
 
-* Configure the <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.NameClaimType?displayProperty=nameWithType> of the <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions> in `Startup.ConfigureServices`:
-
 ::: moniker range=">= aspnetcore-5.0"
+
+* Configure the <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.NameClaimType?displayProperty=nameWithType> of the <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions> in `Startup.ConfigureServices`:
 
   ```csharp
   services.Configure<JwtBearerOptions>(
@@ -244,6 +244,8 @@ To configure the app to receive the value from the `name` claim type:
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
+
+* Configure the <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.NameClaimType?displayProperty=nameWithType> of the <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions> in `Startup.ConfigureServices`:
 
   ```csharp
   services.Configure<JwtBearerOptions>(
