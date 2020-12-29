@@ -89,7 +89,7 @@ The DI system is based on the DI system in ASP.NET Core. For more information, s
 
 ## Request a service in a component
 
-After services are added to the service collection, inject the services into the components using the [\@inject](xref:mvc/views/razor#inject) Razor directive. [`@inject`](xref:mvc/views/razor#inject) has two parameters:
+After services are added to the service collection, inject the services into the components using the [`@inject`](xref:mvc/views/razor#inject) Razor directive, which has two parameters:
 
 * Type: The type of the service to inject.
 * Property: The name of the property receiving the injected app service. The property doesn't require manual creation. The compiler creates the property.
@@ -236,11 +236,9 @@ The app can register transient disposables without throwing an exception. Howeve
 
 Navigate to the `TransientDisposable` component at `/transient-disposable` and an <xref:System.InvalidOperationException> is thrown when the framework attempts to construct an instance of `TransientDisposable`:
 
-```
-System.InvalidOperationException: Trying to resolve transient disposable service 
+> System.InvalidOperationException: Trying to resolve transient disposable service 
 TransientDisposable in the wrong scope. Use an 'OwningComponentBase\<T>' component 
 base class for the service 'T' you are trying to resolve.
-```
 
 ## Additional resources
 
