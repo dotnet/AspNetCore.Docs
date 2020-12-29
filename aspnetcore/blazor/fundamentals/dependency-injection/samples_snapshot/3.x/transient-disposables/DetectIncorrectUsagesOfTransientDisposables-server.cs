@@ -47,6 +47,7 @@ namespace BlazorServerTransientDisposable
             IServiceCollection containerBuilder)
         {
             var collection = new ServiceCollection();
+
             foreach (var descriptor in containerBuilder)
             {
                 if (descriptor.Lifetime == ServiceLifetime.Transient &&
@@ -123,6 +124,7 @@ namespace BlazorServerTransientDisposable
                         original.ImplementationType);
                 },
                 ServiceLifetime.Transient);
+    
             return newDescriptor;
         }
     }
