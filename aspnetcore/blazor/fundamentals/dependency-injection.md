@@ -5,7 +5,7 @@ description: Learn how Blazor apps can inject services into components.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/11/2020
+ms.date: 12/19/2020
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/fundamentals/dependency-injection
 zone_pivot_groups: blazor-hosting-models
@@ -89,7 +89,7 @@ The DI system is based on the DI system in ASP.NET Core. For more information, s
 
 ## Request a service in a component
 
-After services are added to the service collection, inject the services into the components using the [\@inject](xref:mvc/views/razor#inject) Razor directive. [`@inject`](xref:mvc/views/razor#inject) has two parameters:
+After services are added to the service collection, inject the services into the components using the [`@inject`](xref:mvc/views/razor#inject) Razor directive, which has two parameters:
 
 * Type: The type of the service to inject.
 * Property: The name of the property receiving the injected app service. The property doesn't require manual creation. The compiler creates the property.
@@ -175,8 +175,6 @@ Two versions of the <xref:Microsoft.AspNetCore.Components.OwningComponentBase> t
 
 For more information, see <xref:blazor/blazor-server-ef-core>.
 
-::: moniker range="< aspnetcore-5.0"
-
 ## Detect transient disposables
 
 The following examples show how to detect disposable transient services in an app that should use <xref:Microsoft.AspNetCore.Components.OwningComponentBase>. For more information, see the [Utility base component classes to manage a DI scope](#utility-base-component-classes-to-manage-a-di-scope) section.
@@ -189,17 +187,17 @@ The following examples show how to detect disposable transient services in an ap
 
 The `TransientDisposable` in the following example is detected (`Program.cs`):
 
-<!-- moniker range=">= aspnetcore-5.0"
+::: moniker range=">= aspnetcore-5.0"
 
 [!code-csharp[](dependency-injection/samples_snapshot/5.x/transient-disposables/DetectIncorrectUsagesOfTransientDisposables-wasm-program.cs?highlight=6,9,17,22-25)]
 
-moniker-end 
+::: moniker-end 
 
-moniker range="< aspnetcore-5.0" -->
+::: moniker range="< aspnetcore-5.0"
 
 [!code-csharp[](dependency-injection/samples_snapshot/3.x/transient-disposables/DetectIncorrectUsagesOfTransientDisposables-wasm-program.cs?highlight=6,9,17,22-25)]
 
-<!-- moniker-end -->
+::: moniker-end
 
 ::: zone-end
 
@@ -225,7 +223,22 @@ The `TransientDependency` in the following example is detected (`Startup.cs`):
 
 ::: zone-end
 
-::: moniker-end
+The app can register transient disposables without throwing an exception. However, attempting to resolve a transient disposable results in an <xref:System.InvalidOperationException>, as the following example shows.
+
+`Pages/TransientDisposable.razor`:
+
+```razor
+@page "/transient-disposable"
+@inject TransientDisposable TransientDisposable
+
+<h1>Transient Disposable Detection</h1>
+```
+
+Navigate to the `TransientDisposable` component at `/transient-disposable` and an <xref:System.InvalidOperationException> is thrown when the framework attempts to construct an instance of `TransientDisposable`:
+
+> System.InvalidOperationException: Trying to resolve transient disposable service 
+TransientDisposable in the wrong scope. Use an 'OwningComponentBase\<T>' component 
+base class for the service 'T' you are trying to resolve.
 
 ## Additional resources
 
