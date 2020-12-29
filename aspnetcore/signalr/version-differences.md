@@ -188,7 +188,7 @@ The dependency on jQuery has been removed, however projects can still use jQuery
 ### Internet Explorer support
 
 ASP.NET Core SignalR doesn't support Microsoft Internet Explorer, whereas ASP.NET SignalR supports Microsoft Internet Explorer 8 or later.
-More info on browser support can be found in <xref:signalr/supported-platforms#javascript-client>.
+For more information, see <xref:signalr/supported-platforms#javascript-client>.
 
 ### JavaScript client method syntax
 
