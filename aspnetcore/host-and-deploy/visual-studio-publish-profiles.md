@@ -206,7 +206,7 @@ Add a publish profile to the project's *Properties/PublishProfiles* folder with 
 When publishing with a profile named *FolderProfile*, use any of the following commands:
 
 ```dotnetcli
-dotnet publish /p:Configuration=Release /p:PublishProfile=FolderProfile`
+dotnet publish /p:Configuration=Release /p:PublishProfile=FolderProfile
 ```
 
 ```dotnetcli
