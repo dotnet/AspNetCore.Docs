@@ -468,12 +468,7 @@ In some cases, an HTTP 500 error is returned with ambiguous routes. Use [logging
 
 ## Token replacement in route templates [controller], [action], [area]
 
-For convenience, attribute routes support token replacement for reserved route parameters by enclosing a token in one of the following:
-
-* Square brackets: `[]`
-* Curly braces: `{}`
-
-The tokens `[action]`, `[area]`, and `[controller]` are replaced with the values of the action name, area name, and controller name from the action where the route is defined:
+For convenience, attribute routes support *token replacement* by enclosing a token in square-brackets (`[`, `]`). The tokens `[action]`, `[area]`, and `[controller]` are replaced with the values of the action name, area name, and controller name from the action where the route is defined:
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet)]
 
