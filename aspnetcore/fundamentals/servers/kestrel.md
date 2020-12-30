@@ -976,7 +976,7 @@ Host Filtering Middleware is disabled by default. To enable the middleware, defi
 
 ## Libuv transport configuration
 
-With the release of ASP.NET Core 5.0, Kestrel's Libuv transport has been obsoleted. It will not receive updates to support new OS platforms such as Windows ARM64 and will be removed entirely in a future release. Upgraded apps should remove any calls to the obsolete <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderLibuvExtensions.UseLibuv*> method and use Kestrel's default Socket transport instead.
+With the release of ASP.NET Core 5.0, Kestrel's Libuv transport has been obsoleted. It will not receive updates to support new OS platforms such as Windows ARM64 and will be removed entirely in a future release. Remove any calls to the obsolete <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderLibuvExtensions.UseLibuv*> method to use Kestrel's default Socket transport instead.
 
 ::: moniker-end
 
