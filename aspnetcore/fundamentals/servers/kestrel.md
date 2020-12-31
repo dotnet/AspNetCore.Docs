@@ -976,7 +976,7 @@ Host Filtering Middleware is disabled by default. To enable the middleware, defi
 
 ## Libuv transport configuration
 
-With the release of ASP.NET Core 5.0, Kestrel's Libuv transport has been obsoleted. It will not receive updates to support new OS platforms such as Windows ARM64 and will be removed entirely in a future release. Remove any calls to the obsolete <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderLibuvExtensions.UseLibuv*> method to use Kestrel's default Socket transport instead.
+With the release of ASP.NET Core 5.0, Kestrel's Libuv transport is obsolete. Libuv transport doesn't receive updates to support new OS platforms, such as Windows ARM64, and will be removed entirely in a future release. Remove any calls to the obsolete <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderLibuvExtensions.UseLibuv%2A> method and use Kestrel's default Socket transport instead.
 
 ::: moniker-end
 
@@ -984,34 +984,34 @@ With the release of ASP.NET Core 5.0, Kestrel's Libuv transport has been obsolet
 
 ## Libuv transport configuration
 
-For projects that require the use of Libuv (<xref:Microsoft.AspNetCore.Hosting.WebHostBuilderLibuvExtensions.UseLibuv*>):
+For projects that require the use of Libuv (<xref:Microsoft.AspNetCore.Hosting.WebHostBuilderLibuvExtensions.UseLibuv%2A>):
 
-* Add a dependency for the [Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv/) package to the app's project file:
+* Add a dependency for the [`Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv`](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv) package to the app's project file:
 
-   ```xml
-   <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv"
-                     Version="{VERSION}" />
-   ```
+  ```xml
+  <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel.Transport.Libuv"
+                    Version="{VERSION}" />
+  ```
 
-* Call <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderLibuvExtensions.UseLibuv*> on the `IWebHostBuilder`:
+* Call <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderLibuvExtensions.UseLibuv%2A> on the `IWebHostBuilder`:
 
-   ```csharp
-   public class Program
-   {
-       public static void Main(string[] args)
-       {
-           CreateHostBuilder(args).Build().Run();
-       }
+  ```csharp
+  public class Program
+  {
+      public static void Main(string[] args)
+      {
+          CreateHostBuilder(args).Build().Run();
+      }
 
-       public static IHostBuilder CreateHostBuilder(string[] args) =>
-           Host.CreateDefaultBuilder(args)
-               .ConfigureWebHostDefaults(webBuilder =>
-               {
-                   webBuilder.UseLibuv();
-                   webBuilder.UseStartup<Startup>();
-               });
-   }
-   ```
+      public static IHostBuilder CreateHostBuilder(string[] args) =>
+          Host.CreateDefaultBuilder(args)
+              .ConfigureWebHostDefaults(webBuilder =>
+              {
+                  webBuilder.UseLibuv();
+                  webBuilder.UseStartup<Startup>();
+              });
+  }
+  ```
 
 ::: moniker-end
 
