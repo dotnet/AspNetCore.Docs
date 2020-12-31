@@ -416,6 +416,30 @@ InvalidDataException: Error binding arguments. Make sure that the types of the p
 
 For more information on this limitation, see GitHub issue [aspnet/SignalR#2937](https://github.com/aspnet/SignalR/issues/2937).
 
+### Passing Class information in Java
+
+When calling the `on()`, `invoke()`, or `stream()` methods of `HubConnection` in the Java client, MessagePack users should pass a `Type` object rather than a `Class<?` object to describe the `Object`(s) they are passing to the method. A `Type` can be acquired using the provided `TypeReference` class. For example, if you have a custom class named `Foo` and another named `Bar`, you can get their `Type`s with the following code:
+
+```java
+Type fooType = new TypeReference<Foo>() { }).getType();
+Type barType = new TypeReference<Bar>() { }).getType();
+```
+
+Furthermore, when calling one of these methods with one or more object types, you should use the generics syntax when invoking the method. For example, if registering an `on` handler for a method named `func`, which takes as arguments a `Foo` object and a `Bar` object, you could use the following code to set an action to print the two objects:
+
+```java
+hubConnection.<Foo, Bar>on("func", (param1, param2) ->{
+    System.out.println(param1);
+    System.out.println(param2);
+}, fooType, barType);
+```
+
+The exception to this rule is primitives such as `int`, for which you should use the built-in `int.class`.
+
+### Chars and Strings in Java
+
+In the java client, `char` objects will be serialized as one-character `String`s. This is in contrast with the C# and JavaScript client, which serialize them as `short`s. The MessagePack spec itself does not define behavior for `char`s, so it is up to the library author to determine how to serialize them. The difference in behavior between our clients is a result of the libraries we used for our implementations.
+
 ## Related resources
 
 * [Get Started](xref:tutorials/signalr)
@@ -615,6 +639,30 @@ InvalidDataException: Error binding arguments. Make sure that the types of the p
 ```
 
 For more information on this limitation, see GitHub issue [aspnet/SignalR#2937](https://github.com/aspnet/SignalR/issues/2937).
+
+### Passing Class information in Java
+
+When calling the `on()`, `invoke()`, or `stream()` methods of `HubConnection` in the Java client, MessagePack users should pass a `Type` object rather than a `Class<?` object to describe the `Object`(s) they are passing to the method. A `Type` can be acquired using the provided `TypeReference` class. For example, if you have a custom class named `Foo` and another named `Bar`, you can get their `Type`s with the following code:
+
+```java
+Type fooType = new TypeReference<Foo>() { }).getType();
+Type barType = new TypeReference<Bar>() { }).getType();
+```
+
+Furthermore, when calling one of these methods with one or more object types, you should use the generics syntax when invoking the method. For example, if registering an `on` handler for a method named `func`, which takes as arguments a `Foo` object and a `Bar` object, you could use the following code to set an action to print the two objects:
+
+```java
+hubConnection.<Foo, Bar>on("func", (param1, param2) ->{
+    System.out.println(param1);
+    System.out.println(param2);
+}, fooType, barType);
+```
+
+The exception to this rule is primitives such as `int`, for which you should use the built-in `int.class`.
+
+### Chars and Strings in Java
+
+In the java client, `char` objects will be serialized as one-character `String`s. This is in contrast with the C# and JavaScript client, which serialize them as `short`s. The MessagePack spec itself does not define behavior for `char`s, so it is up to the library author to determine how to serialize them. The difference in behavior between our clients is a result of the libraries we used for our implementations.
 
 ## Related resources
 
