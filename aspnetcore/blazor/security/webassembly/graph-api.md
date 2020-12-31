@@ -90,7 +90,7 @@ internal static class GraphClientExtensions
             var result = await TokenProvider.RequestAccessToken(
                 new AccessTokenRequestOptions()
                 {
-                    Scopes = {STRING ARRAY OF SCOPES}
+                    Scopes = new[] { "{SCOPE 1}", "{SCOPE 2}", ... "{SCOPE X}" }
                 });
 
             if (result.TryGetToken(out var token))
@@ -133,7 +133,7 @@ internal static class GraphClientExtensions
 }
 ```
 
-The placeholder `{STRING ARRAY OF SCOPES}` in the preceding code is a string array of the permitted scopes. For example, set `Scopes` to the `User.Read` scope for the examples in the following sections of this article:
+The scope placeholders `"{SCOPE 1}", "{SCOPE 2}", ... "{SCOPE X}"` in the preceding code represent one or more permitted scopes. For example, set `Scopes` to a string array of one scope for `User.Read` for the examples in the following sections of this article:
 
 ```csharp
 Scopes = new[] { "https://graph.microsoft.com/User.Read" }
@@ -142,10 +142,10 @@ Scopes = new[] { "https://graph.microsoft.com/User.Read" }
 In `Program.Main` (`Program.cs`), add the Graph client services and configuration with the `AddGraphClient` extension method:
 
 ```csharp
-builder.Services.AddGraphClient({STRING ARRAY OF SCOPES});
+builder.Services.AddGraphClient("{SCOPE 1}", "{SCOPE 2}", ... "{SCOPE X}");
 ```
 
-The placeholder `{STRING ARRAY OF SCOPES}` in the preceding code is a string array of the permitted scopes. For example, pass the `User.Read` scope to `AddGraphClient` for the examples in the following sections of this article:
+The scope placeholders `"{SCOPE 1}", "{SCOPE 2}", ... "{SCOPE X}"` in the preceding code represent one or more permitted scopes. For example, pass the `User.Read` scope to `AddGraphClient` for the examples in the following sections of this article:
 
 ```csharp
 builder.Services.AddGraphClient("https://graph.microsoft.com/User.Read");
