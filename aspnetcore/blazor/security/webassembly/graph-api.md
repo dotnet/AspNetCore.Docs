@@ -90,7 +90,7 @@ internal static class GraphClientExtensions
             var result = await TokenProvider.RequestAccessToken(
                 new AccessTokenRequestOptions()
                 {
-                    Scopes = {STRING ARRAY OF SCOPES}
+                    Scopes = new [] {STRING ARRAY OF SCOPES}
                 });
 
             if (result.TryGetToken(out var token))
