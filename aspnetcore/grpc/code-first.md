@@ -76,7 +76,7 @@ A code-first gRPC client uses the service contract to call gRPC services. To cal
 * Add a [protobuf-net.Grpc](https://www.nuget.org/packages/protobuf-net.Grpc) package reference.
 * Add a reference to the shared code-contract project.
 
-[!code-csharp[](grpc/code-first/Program.cs?highlight=2,4)]
+[!code-csharp[](grpc/code-first/Program.cs?highlight=2,4-5)]
 
 The preceding code:
 
