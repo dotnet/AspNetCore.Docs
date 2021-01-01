@@ -36,7 +36,7 @@ The first step to creating a code-first gRPC service is defining the code contra
 * Add a [protobuf-net.Grpc](https://www.nuget.org/packages/protobuf-net.Grpc) package reference.
 * Create service and data contract types.
 
-[!code-csharp[](grpc/code-first/Contracts.cs)]
+[!code-csharp[](code-first/Contracts.cs)]
 
 The preceding code:
 
@@ -56,11 +56,11 @@ To add gRPC code-first service to an ASP.NET Core app:
 
 Create a new `GreeterService.cs` file and implement the `IGreeterService` service interface:
 
-[!code-csharp[](grpc/code-first/GreeterService.cs?highlight=1)]
+[!code-csharp[](code-first/GreeterService.cs?highlight=1)]
 
 Update the `Startup.cs` file:
 
-[!code-csharp[](grpc/code-first/Startup.cs?highlight=3,17)]
+[!code-csharp[](code-first/Startup.cs?highlight=3,17)]
 
 In the preceding code:
 
@@ -76,7 +76,7 @@ A code-first gRPC client uses the service contract to call gRPC services. To cal
 * Add a [protobuf-net.Grpc](https://www.nuget.org/packages/protobuf-net.Grpc) package reference.
 * Add a reference to the shared code-contract project.
 
-[!code-csharp[](grpc/code-first/Program.cs?highlight=2,4-5)]
+[!code-csharp[](code-first/Program.cs?highlight=2,4-5)]
 
 The preceding code:
 
