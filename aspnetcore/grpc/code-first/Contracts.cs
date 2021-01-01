@@ -16,5 +16,6 @@ public class HelloReply
 public interface IGreeterService
 {
     [OperationContract]
-    Task<HelloReply> SayHelloAsync(HelloRequest request, CallContext context = default);
+    Task<HelloReply> SayHelloAsync(HelloRequest request, 
+                                   CallContext context = default);
 }
