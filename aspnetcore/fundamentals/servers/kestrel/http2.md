@@ -26,7 +26,7 @@ uid: fundamentals/servers/kestrel/http2
 
 If an HTTP/2 connection is established, [HttpRequest.Protocol](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol*) reports `HTTP/2`.
 
-Starting with .NET Core 3.0, HTTP/2 is enabled by default. For more information on configuration, see the [Kestrel HTTP/2 limits](xref:fundementals/servers/kestrel/options#http2-limits) and [ListenOptions.Protocols](xref:fundementals/servers/kestrel/endpoints#listenoptionsprotocols) sections.
+Starting with .NET Core 3.0, HTTP/2 is enabled by default. For more information on configuration, see the [Kestrel HTTP/2 limits](xref:fundamentals/servers/kestrel/options#http2-limits) and [ListenOptions.Protocols](xref:fundamentals/servers/kestrel/endpoints#listenoptionsprotocols) sections.
 
 ## Advanced HTTP/2 features to support gRPC
 

@@ -36,4 +36,4 @@ A reverse proxy:
 * Simplify load balancing and secure communication (HTTPS) configuration. Only the reverse proxy server requires an X.509 certificate, and that server can communicate with the app's servers on the internal network using plain HTTP.
 
 > [!WARNING]
-> Hosting in a reverse proxy configuration requires [host filtering](#host-filtering).
+> Hosting in a reverse proxy configuration requires [host filtering](xref:fundamentals/servers/kestrel/host-filtering).
