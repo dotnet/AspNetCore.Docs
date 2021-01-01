@@ -22,7 +22,12 @@ gRPC messages are sent and received using HTTP/2. We recommend:
 * [Transport Layer Security (TLS)](https://tools.ietf.org/html/rfc5246) be used to secure messages in production gRPC apps.
 * gRPC services should only listen and respond over secured ports.
 
+::: moniker range=">= aspnetcore-5.0"
+TLS is configured in Kestrel. For more information on configuring Kestrel endpoints, see [Kestrel endpoint configuration](xref:fundamentals/servers/kestrel/endpoints).
+::: moniker-end
+::: moniker range="< aspnetcore-5.0"
 TLS is configured in Kestrel. For more information on configuring Kestrel endpoints, see [Kestrel endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration).
+::: moniker-end
 
 ## Exceptions
 
