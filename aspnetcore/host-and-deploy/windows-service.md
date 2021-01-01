@@ -219,7 +219,17 @@ By default, ASP.NET Core binds to `http://localhost:5000`. Configure the URL and
 
 For additional URL and port configuration approaches, see the relevant server article:
 
+::: moniker-end
+
+::: moniker range=">= aspnetcore-5.0"
+* <xref:fundamentals/servers/kestrel/endpoints>
+::: moniker-end
+::: moniker range="< aspnetcore-5.0 >= aspnetcore-3.0"
 * <xref:fundamentals/servers/kestrel#endpoint-configuration>
+::: moniker-end
+
+::: moniker range=">= aspnetcore-3.0"
+
 * <xref:fundamentals/servers/httpsys#configure-windows-server>
 
 The preceding guidance covers support for HTTPS endpoints. For example, configure the app for HTTPS when authentication is used with a Windows Service.
@@ -328,7 +338,16 @@ A dump can be analyzed using several approaches. For more information, see [Anal
 
 ## Additional resources
 
+::: moniker-end
+
+::: moniker range=">= aspnetcore-5.0"
+* [Kestrel endpoint configuration](xref:fundamentals/servers/kestrel/endpoints) (includes HTTPS configuration and SNI support)
+::: moniker-end
+::: moniker range="< aspnetcore-5.0 >= aspnetcore-3.0"
 * [Kestrel endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration) (includes HTTPS configuration and SNI support)
+::: moniker-end
+
+::: moniker range=">= aspnetcore-3.0"
 * <xref:fundamentals/host/generic-host>
 * <xref:test/troubleshoot>
 

@@ -634,7 +634,7 @@ public class BufferedSingleFileUploadPhysicalModel : PageModel
 
 ### Kestrel maximum request body size
 
-For apps hosted by Kestrel, the default maximum request body size is 30,000,000 bytes, which is approximately 28.6 MB. Customize the limit using the [MaxRequestBodySize](xref:fundamentals/servers/kestrel#maximum-request-body-size) Kestrel server option:
+For apps hosted by Kestrel, the default maximum request body size is 30,000,000 bytes, which is approximately 28.6 MB. Customize the limit using the [MaxRequestBodySize](xref:fundamentals/servers/kestrel/options#maximum-request-body-size) Kestrel server option:
 
 ```csharp
 public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -650,7 +650,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
         });
 ```
 
-<xref:Microsoft.AspNetCore.Mvc.RequestSizeLimitAttribute> is used to set the [MaxRequestBodySize](xref:fundamentals/servers/kestrel#maximum-request-body-size) for a single page or action.
+<xref:Microsoft.AspNetCore.Mvc.RequestSizeLimitAttribute> is used to set the [MaxRequestBodySize](xref:fundamentals/servers/kestrel/options#maximum-request-body-size) for a single page or action.
 
 In a Razor Pages app, apply the filter with a [convention](xref:razor-pages/razor-pages-conventions) in `Startup.ConfigureServices`:
 
@@ -689,8 +689,8 @@ The `RequestSizeLimitAttribute` can also be applied using the [`@attribute`](xre
 
 Other Kestrel limits may apply for apps hosted by Kestrel:
 
-* [Maximum client connections](xref:fundamentals/servers/kestrel#maximum-client-connections)
-* [Request and response data rates](xref:fundamentals/servers/kestrel#minimum-request-body-data-rate)
+* [Maximum client connections](xref:fundamentals/servers/kestrel/options#maximum-client-connections)
+* [Request and response data rates](xref:fundamentals/servers/kestrel/options#minimum-request-body-data-rate)
 
 ### IIS
 
@@ -2205,7 +2205,13 @@ The examples in this topic rely upon <xref:System.IO.MemoryStream> to hold the u
 
 ## Additional resources
 
+::: moniker range="< aspnetcore-5.0"
 * [HTTP connection request draining](xref:fundamentals/servers/kestrel#http11-request-draining)
+::: moniker-end
+::: moniker range=">= aspnetcore-5.0"
+* [HTTP connection request draining](xref:fundamentals/servers/kestrel/request-draining)
+::: moniker-end
+
 * [Unrestricted File Upload](https://owasp.org/www-community/vulnerabilities/Unrestricted_File_Upload)
 * [Azure Security: Security Frame: Input Validation | Mitigations](/azure/security/azure-security-threat-modeling-tool-input-validation)
 * [Azure Cloud Design Patterns: Valet Key pattern](/azure/architecture/patterns/valet-key)

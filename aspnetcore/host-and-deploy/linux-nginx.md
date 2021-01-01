@@ -160,7 +160,12 @@ server {
 }
 ```
 
+::: moniker range=">= aspnetcore-5.0"
+With the preceding configuration file and default server, Nginx accepts public traffic on port 80 with host header `example.com` or `*.example.com`. Requests not matching these hosts won't get forwarded to Kestrel. Nginx forwards the matching requests to Kestrel at `http://localhost:5000`. See [How nginx processes a request](https://nginx.org/docs/http/request_processing.html) for more information. To change Kestrel's IP/port, see [Kestrel: Endpoint configuration](xref:fundamentals/servers/kestrel/endpoints).
+::: moniker-end
+::: moniker range="< aspnetcore-5.0"
 With the preceding configuration file and default server, Nginx accepts public traffic on port 80 with host header `example.com` or `*.example.com`. Requests not matching these hosts won't get forwarded to Kestrel. Nginx forwards the matching requests to Kestrel at `http://localhost:5000`. See [How nginx processes a request](https://nginx.org/docs/http/request_processing.html) for more information. To change Kestrel's IP/port, see [Kestrel: Endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration).
+::: moniker-end
 
 > [!WARNING]
 > Failure to specify a proper [server_name directive](https://nginx.org/docs/http/server_names.html) exposes your app to security vulnerabilities. Subdomain wildcard binding (for example, `*.example.com`) doesn't pose this security risk if you control the entire parent domain (as opposed to `*.com`, which is vulnerable). See [rfc7230 section-5.4](https://tools.ietf.org/html/rfc7230#section-5.4) for more information.
@@ -362,8 +367,14 @@ The [dotnet run](/dotnet/core/tools/dotnet-run) command uses the app's `Properti
 
 Configure the app to use a certificate in development for the `dotnet run` command or development environment (<kbd>F5</kbd> or <kbd>Ctrl</kbd>+<kbd>F5</kbd> in Visual Studio Code) using one of the following approaches:
 
+::: moniker range=">= aspnetcore-5.0"
+* [Replace the default certificate from configuration](xref:fundamentals/servers/kestrel/endpoints#configuration) (*Recommended*)
+* [KestrelServerOptions.ConfigureHttpsDefaults](xref:fundamentals/servers/kestrel/endpoints#configurehttpsdefaultsactionhttpsconnectionadapteroptions)
+::: moniker-end
+::: moniker range="< aspnetcore-5.0"
 * [Replace the default certificate from configuration](xref:fundamentals/servers/kestrel#configuration) (*Recommended*)
 * [KestrelServerOptions.ConfigureHttpsDefaults](xref:fundamentals/servers/kestrel#configurehttpsdefaultsactionhttpsconnectionadapteroptions)
+::: moniker-end
 
 **Configure the reverse proxy for secure (HTTPS) client connections**
 

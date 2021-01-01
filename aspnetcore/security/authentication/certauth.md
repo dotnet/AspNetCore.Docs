@@ -626,7 +626,14 @@ The following approach supports optional client certificates:
   * For example, set up bindings on `contoso.com` and `myClient.contoso.com`. The `contoso.com` host doesn't require a client certificate but `myClient.contoso.com` does.
   * For more information, see:
     * [Kestrel](/fundamentals/servers/kestrel):
+
+::: moniker range=">= aspnetcore-5.0"
+      * [ListenOptions.UseHttps](xref:fundamentals/servers/kestrel/endpoints#listenoptionsusehttps)
+::: moniker-end
+::: moniker range="< aspnetcore-5.0"
       * [ListenOptions.UseHttps](xref:fundamentals/servers/kestrel#listenoptionsusehttps)
+::: moniker-end
+
       * <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.ClientCertificateMode>
       * Note Kestrel does not currently support multiple TLS configurations on one binding, you'll need two bindings with unique IPs or ports. See https://github.com/dotnet/runtime/issues/31097
     * IIS
