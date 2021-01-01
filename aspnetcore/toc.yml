@@ -972,9 +972,6 @@
           displayName: deploy, publish
           uid: host-and-deploy/iis/protocols
     - name: Kestrel
-      uid: fundamentals/servers/kestrel
-      displayName: deploy, publish, server
-    - name: Kestrel
       displayName: deploy, publish, server
       items:
         - name: Overview

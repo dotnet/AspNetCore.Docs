@@ -7,7 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 05/04/2020
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
-uid: fundamentals/servers/kestrel/host-filtering
+uid: fundamentals/servers/kestrel/request-draining
 ---
 
 # Request draining with ASP.NET Core Kestrel web server
