@@ -1,4 +1,3 @@
-#region snippet_1
 public class GreeterService : IGreeterService
 {
     public Task<HelloReply> SayHelloAsync(HelloRequest request, CallContext context = default)
@@ -6,4 +5,3 @@ public class GreeterService : IGreeterService
         return Task.FromResult(new HelloReply { Message = "Hello " + request.Name });
     }
 }
-#endregion
