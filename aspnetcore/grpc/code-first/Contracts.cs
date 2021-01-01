@@ -17,5 +17,5 @@ public interface IGreeterService
 {
     [OperationContract]
     Task<HelloReply> SayHelloAsync(HelloRequest request, 
-                                   CallContext context = default);
+        CallContext context = default);
 }
