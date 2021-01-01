@@ -1,4 +1,3 @@
-#region snippet_1
 public void ConfigureServices(IServiceCollection services)
 {
     services.AddCodeFirstGrpc();
@@ -18,4 +17,3 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         endpoints.MapGrpcService<GreeterService>();
     });
 }
-#endregion
