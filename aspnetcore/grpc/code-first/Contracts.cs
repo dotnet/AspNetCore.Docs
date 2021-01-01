@@ -1,4 +1,3 @@
-#region snippet_1
 [DataContract]
 public class HelloRequest
 {
@@ -19,4 +18,3 @@ public interface IGreeterService
     [OperationContract]
     Task<HelloReply> SayHelloAsync(HelloRequest request, CallContext context = default);
 }
-#endregion
