@@ -1,7 +1,7 @@
 ---
 title: Configuring endpoints for the ASP.NET Core Kestrel web server
 author: rick-anderson
-description: Learn about using HTTP/2 with Kestrel, the cross-platform web server for ASP.NET Core.
+description: Learn about configuring endpoints with Kestrel, the cross-platform web server for ASP.NET Core.
 monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
@@ -554,7 +554,7 @@ Only HTTP URL prefixes are valid. Kestrel doesn't support HTTPS when configuring
   Host names, `*`, and `+`, aren't special. Anything not recognized as a valid IP address or `localhost` binds to all IPv4 and IPv6 IPs. To bind different host names to different ASP.NET Core apps on the same port, use [HTTP.sys](xref:fundamentals/servers/httpsys) or a reverse proxy server, such as IIS, Nginx, or Apache.
 
   > [!WARNING]
-  > Hosting in a reverse proxy configuration requires [host filtering](#host-filtering).
+  > Hosting in a reverse proxy configuration requires [host filtering](xref:fundamentals/servers/kestrel/host-filtering).
 
 * Host `localhost` name with port number or loopback IP with port number
 

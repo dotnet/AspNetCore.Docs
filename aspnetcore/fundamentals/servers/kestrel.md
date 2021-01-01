@@ -20,8 +20,8 @@ Kestrel is a cross-platform [web server for ASP.NET Core](xref:fundamentals/serv
 Kestrel supports the following scenarios:
 
 * HTTPS
-* [HTTP/2](xref:fundementals/servers/kestrel/http2) (except on macOS&dagger;)
-* Opaque upgrade used to enable [WebSockets](xref:fundementals/websockets)
+* [HTTP/2](xref:fundamentals/servers/kestrel/http2) (except on macOS&dagger;)
+* Opaque upgrade used to enable [WebSockets](xref:fundamentals/websockets)
 * Unix sockets for high performance behind Nginx
 
 &dagger;HTTP/2 will be supported on macOS in a future release.
@@ -42,15 +42,15 @@ For more information on building the host, see the *Set up a host* and *Default 
 ## Additional resournces
 
 <a name="kestrel-options"></a>
-* <xref:fundementals/servers/kestrel/options>
+* <xref:fundamentals/servers/kestrel/options>
 <a name="endpoint-configuration"></a>
-* <xref:fundementals/servers/kestrel/endpoints>
+* <xref:fundamentals/servers/kestrel/endpoints>
 <a name="http2-support"></a>
-* <xref:fundementals/servers/kestrel/http2>
+* <xref:fundamentals/servers/kestrel/http2>
 <a name="when-to-use-kestrel-with-a-reverse-proxy"></a>
-* <xref:fundementals/servers/kestrel/when-to-use-a-reverse-proxy>
+* <xref:fundamentals/servers/kestrel/when-to-use-a-reverse-proxy>
 <a name="host-filtering"></a>
-* <xref:fundementals/servers/kestrel/host-filtering>
+* <xref:fundamentals/servers/kestrel/host-filtering>
 * <xref:test/troubleshoot>
 * <xref:security/enforcing-ssl>
 * <xref:host-and-deploy/proxy-load-balancer>

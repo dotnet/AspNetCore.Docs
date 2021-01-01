@@ -52,7 +52,7 @@ In examples shown later in this article, Kestrel options are configured in C# co
 ```
 
 > [!NOTE]
-> <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions> and [endpoint configuration](#endpoint-configuration) are configurable from configuration providers. Remaining Kestrel configuration must be configured in C# code.
+> <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions> and [endpoint configuration](xref:fundamentals/servers/kestrel/endpoints) are configurable from configuration providers. Remaining Kestrel configuration must be configured in C# code.
 
 Use **one** of the following approaches:
 
@@ -300,7 +300,7 @@ webBuilder.ConfigureKestrel(serverOptions =>
 
 The following example enables synchronous I/O:
 
-[!code-csharp[](kestrel/samples/3.x/KestrelSample/Program.cs?name=snippet_SyncIO)]
+[!code-csharp[](samples/5.x/KestrelSample/Program.cs?name=snippet_SyncIO)]
 
 For information about other Kestrel options and limits, see:
 

@@ -1,7 +1,7 @@
 ---
 title: Request draining with ASP.NET Core Kestrel web server
 author: rick-anderson
-description: Learn about using host filtering with Kestrel, the cross-platform web server for ASP.NET Core.
+description: Learn about request draining with Kestrel, the cross-platform web server for ASP.NET Core.
 monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
