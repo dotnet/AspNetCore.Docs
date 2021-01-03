@@ -404,7 +404,7 @@ To use the `CounterStateProvider` component, wrap an instance of the component a
 
 ```razor
 <CounterStateProvider>
-    <Router AppAssembly="typeof(Startup).Assembly">
+    <Router AppAssembly="@typeof(Program).Assembly">
         ...
     </Router>
 </CounterStateProvider>
@@ -649,7 +649,7 @@ To use the `CounterStateProvider` component, wrap an instance of the component a
 
 ```razor
 <CounterStateProvider>
-    <Router AppAssembly="typeof(Startup).Assembly">
+    <Router AppAssembly="@typeof(Program).Assembly">
         ...
     </Router>
 </CounterStateProvider>

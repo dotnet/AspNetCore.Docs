@@ -481,7 +481,7 @@ It's likely that the project wasn't created using a Blazor Server template with 
 
 ```razor
 <CascadingAuthenticationState>
-    <Router AppAssembly="typeof(Startup).Assembly">
+    <Router AppAssembly="@typeof(Program).Assembly">
         ...
     </Router>
 </CascadingAuthenticationState>
