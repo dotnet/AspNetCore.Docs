@@ -124,9 +124,9 @@ ASP.NET Core 2.1 includes a new `IHttpClientFactory` service that makes it easie
 
 For more information, see [Initiate HTTP Requests](xref:fundamentals/http-requests).
 
-## Kestrel transport configuration
+## Kestrel libuv transport configuration
 
-With the release of ASP.NET Core 2.1, Kestrel's default transport is no longer based on Libuv but instead based on managed sockets. For more information, see [Kestrel web server implementation: Transport configuration](xref:fundamentals/servers/kestrel#transport-configuration).
+With the release of ASP.NET Core 2.1, Kestrel's default transport is no longer based on Libuv but instead based on managed sockets. For more information, see [Kestrel web server implementation: Libuv transport configuration](xref:fundamentals/servers/kestrel#libuv-transport-configuration).
 
 ## Generic host builder
 

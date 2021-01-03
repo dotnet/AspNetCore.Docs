@@ -77,7 +77,7 @@ This tutorial is advanced. You should be familiar with:
 
 [Download](xref:index#how-to-download-a-sample) the [starter](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authorization/secure-data/samples/) app.
 
-Run the app, tap the **ContactManager** link, and verify you can create, edit, and delete a contact.
+Run the app, tap the **ContactManager** link, and verify you can create, edit, and delete a contact. To create the starter app, see [Create the starter app](#create-the-starter-app).
 
 ## Secure user data
 
