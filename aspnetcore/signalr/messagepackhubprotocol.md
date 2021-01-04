@@ -112,7 +112,7 @@ To enable MessagePack with Java, install the `com.microsoft.signalr.messagepack`
 implementation 'com.microsoft.signalr.messagepack:signalr-messagepack:5.0.0'
 ```
 
-If using Maven, add the following lines inside the `<dependencies>` element of your *pom.xml* file:
+When using Maven, add the following lines inside the `<dependencies>` element of the *pom.xml* file:
 
 [!code-xml[pom.xml dependency element messagePack](java-client/sample/pom.xml?name=snippet_dependencyElement_messagePack)]
 
