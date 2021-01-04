@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to use the published ASP.NET Core Docker images from the Docker Registry. Pull and build your own images.
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/15/2020
+ms.date: 01/04/2021
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: host-and-deploy/docker/building-net-docker-images
 ---
@@ -15,7 +15,7 @@ This tutorial shows how to run an ASP.NET Core app in Docker containers.
 
 In this tutorial, you:
 > [!div class="checklist"]
-> * Learn about Microsoft .NET Core Docker images
+> * Learn about ASP.NET Core Docker images
 > * Download an ASP.NET Core sample app
 > * Run the sample app locally
 > * Run the sample app in Linux containers
@@ -28,11 +28,33 @@ For this tutorial, you download an ASP.NET Core sample app and run it in Docker 
 
 The sample Dockerfile uses the [Docker multi-stage build feature](https://docs.docker.com/engine/userguide/eng-image/multistage-build/) to build and run in different containers. The build and run containers are created from images that are provided in Docker Hub by Microsoft:
 
+::: moniker range=">= aspnetcore-5.0"
+
+* `dotnet/sdk`
+
+  The sample uses this image for building the app. The image contains the .NET SDK, which includes the Command Line Tools (CLI). The image is optimized for local development, debugging, and unit testing. The tools installed for development and compilation make the image relatively large.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
 * `dotnet/core/sdk`
 
   The sample uses this image for building the app. The image contains the .NET Core SDK, which includes the Command Line Tools (CLI). The image is optimized for local development, debugging, and unit testing. The tools installed for development and compilation make the image relatively large.
 
+::: moniker-end
+
+::: moniker range=">= aspnetcore-5.0"
+
+* `dotnet/aspnet`
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
 * `dotnet/core/aspnet`
+
+::: moniker-end
 
    The sample uses this image for running the app. The image contains the ASP.NET Core runtime and libraries and is optimized for running apps in production. Designed for speed of deployment and app startup, the image is relatively small, so network performance from Docker Registry to Docker host is optimized. Only the binaries and content needed to run an app are copied to the container. The contents are ready to run, enabling the fastest time from `docker run` to app startup. Dynamic code compilation isn't needed in the Docker model.
 
@@ -40,7 +62,7 @@ The sample Dockerfile uses the [Docker multi-stage build feature](https://docs.d
 
 ::: moniker range=">= aspnetcore-5.0"
 
-* [.NET Core SDK 5.0](https://dotnet.microsoft.com/download)
+* [.NET SDK 5.0](https://dotnet.microsoft.com/download)
 
 ::: moniker-end
 
