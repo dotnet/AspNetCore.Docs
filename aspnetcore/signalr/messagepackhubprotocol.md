@@ -106,7 +106,7 @@ const connection = new signalR.HubConnectionBuilder()
 
 ### Java client
 
-To enable MessagePack in the Java, first install the `com.microsoft.signalr.messagepack` package. If using Gradle, add the following line to the `dependencies` section of your *build.gradle* file:
+To enable MessagePack with Java, install the `com.microsoft.signalr.messagepack` package. When using Gradle, add the following line to the `dependencies` section of the *build.gradle* file:
 
 ```gradle
 implementation 'com.microsoft.signalr.messagepack:signalr-messagepack:5.0.0'
