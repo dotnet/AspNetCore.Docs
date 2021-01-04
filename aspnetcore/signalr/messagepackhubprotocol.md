@@ -210,7 +210,7 @@ hubConnection.<Foo, Bar>on("func", (param1, param2) ->{
 }, fooType, barType);
 ```
 
-The exception to this rule is primitives such as `int`, for which you should use the built-in `int.class`.
+The exception to this rule is primitives such as `int`. When using `int`, use the built-in `int.class`.
 
 ### Chars and Strings in Java
 
