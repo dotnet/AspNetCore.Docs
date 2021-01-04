@@ -116,7 +116,7 @@ When using Maven, add the following lines inside the `<dependencies>` element of
 
 [!code-xml[pom.xml dependency element messagePack](java-client/sample/pom.xml?name=snippet_dependencyElement_messagePack)]
 
-Then call `withHubProtocol(new MessagePackHubProtocol())` on `HubConnectionBuilder`.
+Call `withHubProtocol(new MessagePackHubProtocol())` on `HubConnectionBuilder`.
 
 ```java
 HubConnection messagePackConnection = HubConnectionBuilder.create("YOUR HUB URL HERE")
