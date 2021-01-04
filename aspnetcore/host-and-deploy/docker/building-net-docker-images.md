@@ -92,7 +92,7 @@ The sample Dockerfile uses the [Docker multi-stage build feature](https://docs.d
 
 ## Download the sample app
 
-* Download the sample by cloning the [.NET Core Docker repository](https://github.com/dotnet/dotnet-docker): 
+* Download the sample by cloning the [.NET Docker repository](https://github.com/dotnet/dotnet-docker): 
 
   ```console
   git clone https://github.com/dotnet/dotnet-docker
