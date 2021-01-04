@@ -194,7 +194,7 @@ For more information on this limitation, see GitHub issue [aspnet/SignalR#2937](
 
 ### Passing Class information in Java
 
-When calling the `on()`, `invoke()`, or `stream()` methods of `HubConnection` in the Java client, MessagePack users should pass a `Type` object rather than a `Class<?` object to describe the `Object`(s) they are passing to the method. A `Type` can be acquired using the provided `TypeReference` class. For example, if you have a custom class named `Foo` and another named `Bar`, you can get their `Type`s with the following code:
+When calling the `on`, `invoke`, or `stream` methods of `HubConnection` in the Java client, MessagePack users should pass a `Type` object rather than a `Class<?` object to describe each `Object` passed to the method. A `Type` can be acquired using the provided `TypeReference` class. For example, using a custom classes named `Foo` and `Bar`, the following code gets each `Type`:
 
 ```java
 Type fooType = new TypeReference<Foo>() { }).getType();
