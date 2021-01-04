@@ -4,7 +4,7 @@ author: jamesnk
 description: Learn the basic concepts when writing code-first gRPC with .NET.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
-ms.date: 12/07/2020
+ms.date: 01/04/2021
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: grpc/code-first
 ---
@@ -19,16 +19,14 @@ Code-first is a good choice when an entire system uses .NET:
 * .NET service and data contract types can be shared between the .NET server and clients.
 * Avoids the need to define contracts in `.proto` files and code generation.
 
-Code-first isn't recommended in polygot systems with multiple languages. .NET service and data contract types can't be used with non-.NET platforms. To call a gRPC service written using code-first, other platforms must create a `.proto` contract that matches the service.
+Code-first isn't recommended in polyglot systems with multiple languages. .NET service and data contract types can't be used with non-.NET platforms. To call a gRPC service written using code-first, other platforms must create a `.proto` contract that matches the service.
 
 ## protobuf-net.Grpc
 
 > [!IMPORTANT]
-> protobuf-net.Grpc is a community project and isn't supported by Microsoft.
->
 > For help with protobuf-net.Grpc, visit the [protobuf-net.Grpc website](https://protobuf-net.github.io/protobuf-net.Grpc/) or create an issue on the [protobuf-net.Grpc GitHub repository](https://github.com/protobuf-net/protobuf-net.Grpc).
 
-[protobuf-net.Grpc](https://protobuf-net.github.io/protobuf-net.Grpc/) is a community project that adds code-first support to `Grpc.AspNetCore` and `Grpc.Net.Client`. It uses .NET types annotated with attributes to define an app's gRPC services and messages.
+[protobuf-net.Grpc](https://protobuf-net.github.io/protobuf-net.Grpc/) is a community project and isn't supported by Microsoft. It adds code-first support to `Grpc.AspNetCore` and `Grpc.Net.Client`. It uses .NET types annotated with attributes to define an app's gRPC services and messages.
 
 The first step to creating a code-first gRPC service is defining the code contract:
 
