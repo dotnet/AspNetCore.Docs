@@ -5,7 +5,7 @@ description: Learn about error handling with ASP.NET Core web APIs.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: prkrishn
 ms.custom: mvc
-ms.date: 07/23/2020
+ms.date: 1/11/2021
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: web-api/handle-errors
 ---
@@ -205,6 +205,8 @@ Exception Handling Middleware can also provide more detailed content-negotiated 
 
     ::: moniker-end
 
+    The preceding code calls [ControllerBase.Problem](xref:Microsoft.AspNetCore.Mvc.ControllerBase.Problem%2A) to create a <xref:Microsoft.AspNetCore.Mvc.ProblemDetails> response.
+
 ## Use exceptions to modify the response
 
 The contents of the response can be modified from outside of the controller. In ASP.NET 4.x Web API, one way to do this was using the <xref:System.Web.Http.HttpResponseException> type. ASP.NET Core doesn't include an equivalent type. Support for `HttpResponseException` can be added with the following steps:
@@ -217,7 +219,7 @@ The contents of the response can be modified from outside of the controller. In 
 
     [!code-csharp[](handle-errors/samples/3.x/Filters/HttpResponseExceptionFilter.cs?name=snippet_HttpResponseExceptionFilter)]
 
-    In the preceding filter, the magic number 10 is subtracted from the maximum integer value. Subtracting this number allows other filters to run at the very end of the pipeline.
+    In the preceding filter, 10 is subtracted from the maximum integer value. Subtracting 10 allows other filters to run at the end of the pipeline.
 
 1. In `Startup.ConfigureServices`, add the action filter to the filters collection:
 
