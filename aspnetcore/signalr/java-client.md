@@ -91,6 +91,32 @@ HubConnection hubConnection = HubConnectionBuilder.create("YOUR HUB URL HERE")
     })).build();
 ```
 
+::: moniker range=">= aspnetcore-5.0"
+
+### Passing Class information in Java
+
+When calling the `on`, `invoke`, or `stream` methods of `HubConnection` in the Java client, users should pass a `Type` object rather than a `Class<?>` object to describe each `Object` passed to the method. A `Type` can be acquired using the provided `TypeReference` class. For example, using a custom classes named `Foo` and `Bar`, the following code gets each `Type`:
+
+```java
+Type fooType = new TypeReference<Foo>() { }).getType();
+Type barType = new TypeReference<Bar>() { }).getType();
+```
+
+When calling one of these methods with one or more object types, use the generics syntax when invoking the method. For example, when registering an `on` handler for a method named `func`, which takes as arguments a `Foo` object and a `Bar` object, use the following code to set an action to print the two objects:
+
+```java
+hubConnection.<Foo, Bar>on("func", (param1, param2) ->{
+    System.out.println(param1);
+    System.out.println(param2);
+}, fooType, barType);
+```
+
+The reason that this convention is necessary is, due to type erasure in Java, we can not retrieve complete information about complex types with the `Object.getClass` method. For example, calling `getClass` on an `ArrayList<String>` would not return `Class<ArrayList<String>>`, but rather `Class<ArrayList>`, which does not give the deserializer enough information to correctly deserialize an incoming message. The same is true for custom objects.
+
+The exception to this rule is primitives such as `int`. When using `int`, use the built-in `int.class`.
+
+::: moniker-end
+
 ## Known limitations
 
 ::: moniker range=">= aspnetcore-5.0"
