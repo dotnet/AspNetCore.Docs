@@ -95,25 +95,24 @@ HubConnection hubConnection = HubConnectionBuilder.create("YOUR HUB URL HERE")
 
 ### Passing Class information in Java
 
-When calling the `on`, `invoke`, or `stream` methods of `HubConnection` in the Java client, users should pass a `Type` object rather than a `Class<?>` object to describe each `Object` passed to the method. A `Type` can be acquired using the provided `TypeReference` class. For example, using a custom classes named `Foo` and `Bar`, the following code gets each `Type`:
+When calling the `on`, `invoke`, or `stream` methods of `HubConnection` in the Java client, users should pass a `Type` object rather than a `Class<?>` object to describe any generic `Object` passed to the method. A `Type` can be acquired using the provided `TypeReference` class. For example, using a custom generic class named `Foo<T>`, the following code gets the `Type`:
 
 ```java
-Type fooType = new TypeReference<Foo>() { }).getType();
-Type barType = new TypeReference<Bar>() { }).getType();
+Type fooType = new TypeReference<Foo<String>>() { }).getType();
 ```
 
-When calling one of these methods with one or more object types, use the generics syntax when invoking the method. For example, when registering an `on` handler for a method named `func`, which takes as arguments a `Foo` object and a `Bar` object, use the following code to set an action to print the two objects:
+For non-generics, such as primitives or other non-parameterized types like `String`, you can simply use the built-in `.class`.
+
+When calling one of these methods with one or more object types, use the generics syntax when invoking the method. For example, when registering an `on` handler for a method named `func`, which takes as arguments a String and a `Foo<String>` object, use the following code to set an action to print the arguments:
 
 ```java
-hubConnection.<Foo, Bar>on("func", (param1, param2) ->{
+hubConnection.<String, Foo<String>>on("func", (param1, param2) ->{
     System.out.println(param1);
     System.out.println(param2);
-}, fooType, barType);
+}, String.class, fooType);
 ```
 
 This convention is necessary because we can not retrieve complete information about complex types with the `Object.getClass` method due to type erasure in Java. For example, calling `getClass` on an `ArrayList<String>` would not return `Class<ArrayList<String>>`, but rather `Class<ArrayList>`, which does not give the deserializer enough information to correctly deserialize an incoming message. The same is true for custom objects.
-
-The exception to this rule is primitives such as `int`. When using `int`, use the built-in `int.class`.
 
 ::: moniker-end
 
