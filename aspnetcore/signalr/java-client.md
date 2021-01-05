@@ -111,7 +111,7 @@ hubConnection.<Foo, Bar>on("func", (param1, param2) ->{
 }, fooType, barType);
 ```
 
-The reason that this convention is necessary is, due to type erasure in Java, we can not retrieve complete information about complex types with the `Object.getClass` method. For example, calling `getClass` on an `ArrayList<String>` would not return `Class<ArrayList<String>>`, but rather `Class<ArrayList>`, which does not give the deserializer enough information to correctly deserialize an incoming message. The same is true for custom objects.
+This convention is necessary because we can not retrieve complete information about complex types with the `Object.getClass` method due to type erasure in Java. For example, calling `getClass` on an `ArrayList<String>` would not return `Class<ArrayList<String>>`, but rather `Class<ArrayList>`, which does not give the deserializer enough information to correctly deserialize an incoming message. The same is true for custom objects.
 
 The exception to this rule is primitives such as `int`. When using `int`, use the built-in `int.class`.
 
