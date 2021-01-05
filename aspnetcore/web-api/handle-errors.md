@@ -323,4 +323,4 @@ Use the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.ClientErrorMapping%2A>
 
 ## Custom Middleware to handle exceptions
 
-The built in exception handling Middleware works well for most apps. For apps that require specialized exception handling, consider writing a custom exception handling Middleware. For example, library authors my prefer to write a custom middleware to handle errors in library APIs.
+The defaults in the exception handling middleware works well for most apps. For apps that require specialized exception handling, consider [customizing the exception handling middleware](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/error-handling?view=aspnetcore-5.0#exception-handler-lambda).
