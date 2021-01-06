@@ -286,7 +286,7 @@ ASP.NET Core doesn't implement impersonation. Apps run with the app's identity f
 
 [!code-csharp[](windowsauth/sample_snapshot/Startup.cs?highlight=10-19)]
 
-`RunImpersonated` doesn't support asynchronous operations and shouldn't be used for complex scenarios. For example, wrapping entire requests or middleware chains isn't supported or recommended.
+<xref:System.Security.Principal.WindowsIdentity.RunImpersonatedAsync%2A> is also available.
 
 ::: moniker range=">= aspnetcore-3.0"
 
