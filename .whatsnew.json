@@ -13,83 +13,83 @@
   },
   "areas": [
     {
-      "name": ".",
+      "names": ["."],
       "heading": "Miscellaneous"
     },
     {
-      "name": "azure",
+      "names": ["azure"],
       "heading": "Azure"
     },
     {
-      "name": "blazor",
+      "names": ["blazor"],
       "heading": "Blazor"
     },
     {
-      "name": "client-side",
+      "names": ["client-side"],
       "heading": "Client-side development"
     },
     {
-      "name": "data",
+      "names": ["data"],
       "heading": "Data access"
     },
     {
-      "name": "fundamentals",
+      "names": ["fundamentals"],
       "heading": "Fundamentals"
     },
     {
-      "name": "getting-started",
+      "names": ["getting-started"],
       "heading": "Getting started"
     },
     {
-      "name": "grpc",
+      "names": ["grpc"],
       "heading": "gRPC"
     },
     {
-      "name": "host-and-deploy",
+      "names": ["host-and-deploy"],
       "heading": "Hosting and deployment"
     },
     {
-      "name": "migration",
+      "names": ["migration"],
       "heading": "Migration"
     },
     {
-      "name": "mobile",
+      "names": ["mobile"],
       "heading": "Mobile development"
     },
     {
-      "name": "mvc",
+      "names": ["mvc"],
       "heading": "MVC"
     },
     {
-      "name": "performance",
+      "names": ["performance"],
       "heading": "Performance"
     },
     {
-      "name": "razor-pages",
+      "names": ["razor-pages"],
       "heading": "Razor Pages"
     },
     {
-      "name": "release-notes",
+      "names": ["release-notes"],
       "heading": "Release notes"
     },
     {
-      "name": "security",
+      "names": ["security"],
       "heading": "Security"
     },
     {
-      "name": "signalr",
+      "names": ["signalr"],
       "heading": "SignalR"
     },
     {
-      "name": "test",
+      "names": ["test"],
       "heading": "Testing"
     },
     {
-      "name": "tutorials",
+      "names": ["tutorials"],
       "heading": "Tutorials"
     },
     {
-      "name": "web-api",
+      "names": ["web-api"],
       "heading": "Web API"
     }
   ]
