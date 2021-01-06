@@ -13,7 +13,7 @@ uid: blazor/components/virtualization
 
 By [Daniel Roth](https://github.com/danroth27)
 
-Improve the perceived performance of component rendering using the Blazor framework's built-in virtualization support. Virtualization is a technique for limiting UI rendering to just the parts that are currently visible. For example, virtualization is helpful when the app must render a long list of items and only a subset of items is required to be visible at any given time. Blazor provides the `Virtualize` component that can be used to add virtualization to an app's components.
+Improve the perceived performance of component rendering using the Blazor framework's built-in virtualization support. Virtualization is a technique for limiting UI rendering to just the parts that are currently visible. For example, virtualization is helpful when the app must render a long list of items and only a subset of items is required to be visible at any given time. Blazor provides the [`Virtualize` component](xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601) that can be used to add virtualization to an app's components.
 
 Without virtualization, a typical list might use a C# [`foreach`](/dotnet/csharp/language-reference/keywords/foreach-in) loop to render each item in the list:
 
@@ -29,7 +29,7 @@ Without virtualization, a typical list might use a C# [`foreach`](/dotnet/csharp
 
 If the list contains thousands of items, then rendering the list may take a long time. The user may experience a noticeable UI lag.
 
-Instead of rendering each item in the list all at one time, replace the [`foreach`](/dotnet/csharp/language-reference/keywords/foreach-in) loop with the `Virtualize` component and specify a fixed item source with `Items`. Only the items that are currently visible are rendered:
+Instead of rendering each item in the list all at one time, replace the [`foreach`](/dotnet/csharp/language-reference/keywords/foreach-in) loop with the `Virtualize` component and specify a fixed item source with <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.Items%2A?displayProperty=nameWithType>. Only the items that are currently visible are rendered:
 
 ```razor
 <Virtualize Context="employee" Items="@employees">
@@ -61,7 +61,7 @@ The item content for the `Virtualize` component can include:
 
 ## Item provider delegate
 
-If you don't want to load all of the items into memory, you can specify an items provider delegate method to the component's `ItemsProvider` parameter that asynchronously retrieves the requested items on demand:
+If you don't want to load all of the items into memory, you can specify an items provider delegate method to the component's <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemsProvider%2A?displayProperty=nameWithType> parameter that asynchronously retrieves the requested items on demand:
 
 ```razor
 <Virtualize Context="employee" ItemsProvider="@LoadEmployees">
@@ -72,7 +72,7 @@ If you don't want to load all of the items into memory, you can specify an items
 </Virtualize>
 ```
 
-The items provider receives an `ItemsProviderRequest`, which specifies the required number of items starting at a specific start index. The items provider then retrieves the requested items from a database or other service and returns them as an `ItemsProviderResult<TItem>` along with a count of the total items. The items provider can choose to retrieve the items with each request or cache them so that they're readily available.
+The items provider receives an <xref:Microsoft.AspNetCore.Components.Web.Virtualization.ItemsProviderRequest>, which specifies the required number of items starting at a specific start index. The items provider then retrieves the requested items from a database or other service and returns them as an <xref:Microsoft.AspNetCore.Components.Web.Virtualization.ItemsProviderResult%601> along with a count of the total items. The items provider can choose to retrieve the items with each request or cache them so that they're readily available.
 
 A `Virtualize` component can only accept **one item source** from its parameters, so don't attempt to simultaneously use an items provider and assign a collection to `Items`. If both are assigned, an <xref:System.InvalidOperationException> is thrown when the component's parameters are set at runtime.
 
@@ -90,9 +90,14 @@ private async ValueTask<ItemsProviderResult<Employee>> LoadEmployees(
 }
 ```
 
+<xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.RefreshDataAsync%2A?displayProperty=nameWithType> instructs the component to rerequest data from its <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemsProvider%2A>. This is useful when external data changes. There's no need to call this when using <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.Items%2A>.
+
 ## Placeholder
 
-Because requesting items from a remote data source might take some time, you have the option to render a placeholder (`<Placeholder>...</Placeholder>`) until the item data is available:
+Because requesting items from a remote data source might take some time, you have the option to render a placeholder  with item content:
+
+* Use a <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.Placeholder%2A> (`<Placeholder>...</Placeholder>`) to display content until the item data is available.
+* Use <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemContent%2A?displayProperty=nameWithType> to set the item template for the list.
 
 ```razor
 <Virtualize Context="employee" ItemsProvider="@LoadEmployees">
@@ -112,7 +117,7 @@ Because requesting items from a remote data source might take some time, you hav
 
 ## Item size
 
-The size of each item in pixels can be set with `ItemSize` (default: 50px):
+The size of each item in pixels can be set with <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemSize%2A?displayProperty=nameWithType> (default: 50px):
 
 ```razor
 <Virtualize Context="employee" Items="@employees" ItemSize="25">
@@ -122,7 +127,7 @@ The size of each item in pixels can be set with `ItemSize` (default: 50px):
 
 ## Overscan count
 
-`OverscanCount` determines how many additional items are rendered before and after the visible region. This setting helps to reduce the frequency of rendering during scrolling. However, higher values result in more elements rendered in the page (default: 3):
+<xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.OverscanCount%2A?displayProperty=nameWithType> determines how many additional items are rendered before and after the visible region. This setting helps to reduce the frequency of rendering during scrolling. However, higher values result in more elements rendered in the page (default: 3):
 
 ```razor
 <Virtualize Context="employee" Items="@employees" OverscanCount="4">
