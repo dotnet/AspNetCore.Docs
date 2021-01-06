@@ -282,11 +282,9 @@ When both Windows Authentication and anonymous access are enabled, use the `[Aut
 
 ## Impersonation
 
-ASP.NET Core doesn't implement impersonation. Apps run with the app's identity for all requests, using app pool or process identity. If the app should perform an action on behalf of a user, use [WindowsIdentity.RunImpersonated](xref:System.Security.Principal.WindowsIdentity.RunImpersonated*) in a [terminal inline middleware](xref:fundamentals/middleware/index#create-a-middleware-pipeline-with-iapplicationbuilder) in `Startup.Configure`. Run a single action in this context and then close the context.
+ASP.NET Core doesn't implement impersonation. Apps run with the app's identity for all requests, using app pool or process identity. If the app should perform an action on behalf of a user, use [WindowsIdentity.RunImpersonated](xref:System.Security.Principal.WindowsIdentity.RunImpersonated*) or <xref:System.Security.Principal.WindowsIdentity.RunImpersonatedAsync%2A> in a [terminal inline middleware](xref:fundamentals/middleware/index#create-a-middleware-pipeline-with-iapplicationbuilder) in `Startup.Configure`. Run a single action in this context and then close the context.
 
 [!code-csharp[](windowsauth/sample_snapshot/Startup.cs?highlight=10-19)]
-
-<xref:System.Security.Principal.WindowsIdentity.RunImpersonatedAsync%2A> is also available.
 
 ::: moniker range=">= aspnetcore-3.0"
 
