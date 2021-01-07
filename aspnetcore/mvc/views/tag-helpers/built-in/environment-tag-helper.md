@@ -22,13 +22,13 @@ For an overview of Tag Helpers, see <xref:mvc/views/tag-helpers/intro>.
 
 `names` accepts a single hosting environment name or a comma-separated list of hosting environment names that trigger the rendering of the enclosed content.
 
-Environment values are compared to the current value returned by [IHostingEnvironment.EnvironmentName](xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment.EnvironmentName*). The comparison ignores case.
+Environment values are compared to the current value returned by [IWebHostEnvironment.EnvironmentName](xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment.EnvironmentName*). The comparison ignores case.
 
 The following example uses an Environment Tag Helper. The content is rendered if the hosting environment is Staging or Production:
 
 ```cshtml
 <environment names="Staging,Production">
-    <strong>HostingEnvironment.EnvironmentName is Staging or Production</strong>
+    <strong>IWebHostEnvironment.EnvironmentName is Staging or Production</strong>
 </environment>
 ```
 
@@ -40,11 +40,11 @@ The following example uses an Environment Tag Helper. The content is rendered if
 
 ### include
 
-The `include` property exhibits similar behavior to the `names` attribute. An environment listed in the `include` attribute value must match the app's hosting environment ([IHostingEnvironment.EnvironmentName](xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment.EnvironmentName*)) to render the content of the `<environment>` tag.
+The `include` property exhibits similar behavior to the `names` attribute. An environment listed in the `include` attribute value must match the app's hosting environment ([IWebHostEnvironment.EnvironmentName](xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment.EnvironmentName*)) to render the content of the `<environment>` tag.
 
 ```cshtml
 <environment include="Staging,Production">
-    <strong>HostingEnvironment.EnvironmentName is Staging or Production</strong>
+    <strong>IWebHostEnvironment.EnvironmentName is Staging or Production</strong>
 </environment>
 ```
 
@@ -54,7 +54,7 @@ In contrast to the `include` attribute, the content of the `<environment>` tag i
 
 ```cshtml
 <environment exclude="Development">
-    <strong>HostingEnvironment.EnvironmentName is not Development</strong>
+    <strong>IWebHostEnvironment.EnvironmentName is not Development</strong>
 </environment>
 ```
 
