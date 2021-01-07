@@ -138,3 +138,42 @@ The size of each item in pixels can be set with <xref:Microsoft.AspNetCore.Compo
 ## State changes
 
 When making changes to items rendered by the `Virtualize` component, call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> to force re-evaluation and rerendering of the component.
+
+
+## Triggering data refreshes
+
+When using `ItemProvider` with the `Virtualize` component, the data may have changed but `Virtualize` component would not re-request data from the `ItemProvider`. A manual refresh trigger can be done by calling `RefreshDataAsync`. This is not required when using `Items` as the framework does it for you automatically. 
+
+> [!NOTE]
+> Check the related [issue](https://github.com/dotnet/aspnetcore/issues/26110) and [PR](https://github.com/dotnet/aspnetcore/pull/26177/files#diff-18b60327e5f9093f24b96ed344268589R101-R107).
+
+```razor
+<button @onclick="AddEmployeeToItemsProvider">Add employee</button>
+<button @onclick="() => asyncVirtualize.RefreshDataAsync()">Refresh</button>
+
+<Virtualize @ref="asyncVirtualize" ItemsProvider="GetEmployeesAsync" Context="employee">
+    <span>@employee.Name</span>
+</Virtualize>
+
+@code {
+    Virtualize<Employee> asyncVirtualize;
+    int numEmployeesInItemsProvider = 3;
+    
+    void AddEmployeeToItemsProvider()
+    {
+        // On its own, this isn't going to make the UI change, because it doesn't know
+        // to re-query the underlying items provider until you call RefreshDataAsync.
+        numEmployeesInItemsProvider++;
+    }
+    
+    async ValueTask<ItemsProviderResult<Employee>> GetEmloyeesAsync(ItemsProviderRequest request)
+    {
+        await Task.Delay(500);
+
+        var lastIndexExcl = Math.Min(request.StartIndex + request.Count, numEmployeesInItemsProvider);
+        return new ItemsProviderResult<Employee>(
+            Enumerable.Range(1 + request.StartIndex, lastIndexExcl - request.StartIndex).Select(GenerateEmployee).ToList(),
+            numEmployeesInItemsProvider);
+    }
+}
+```
