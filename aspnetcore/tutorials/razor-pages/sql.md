@@ -32,7 +32,7 @@ The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system r
 
 # [Visual Studio](#tab/visual-studio)
 
-The generated connection string will be similar to the following example:
+The generated connection string is similar to the following JSON:
 
 [!code-json[](razor-pages-start/sample/RazorPagesMovie50/appsettings.json?highlight=10-12)]
 
