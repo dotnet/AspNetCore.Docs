@@ -3,7 +3,7 @@ title: Part 4, work with a database
 author: rick-anderson
 description: Part 4 of tutorial series on Razor Pages.
 ms.author: riande
-ms.date: 01/06/2021
+ms.date: 01/05/2021
 ms.custom: contperf-fy21q2
 no-loc: [Index, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/razor-pages/sql
