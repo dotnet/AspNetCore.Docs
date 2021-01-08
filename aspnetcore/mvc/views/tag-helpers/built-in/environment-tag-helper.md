@@ -22,7 +22,7 @@ For an overview of Tag Helpers, see <xref:mvc/views/tag-helpers/intro>.
 
 `names` accepts a single hosting environment name or a comma-separated list of hosting environment names that trigger the rendering of the enclosed content.
 
-Environment values are compared to the current value returned by [IWebHostEnvironment.EnvironmentName](xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment.EnvironmentName*). The comparison ignores case.
+Environment values are compared to the current value returned by <xref:Microsoft.AspNetCore.Hosting.EnvironmentName>. The comparison ignores case.
 
 The following example uses an Environment Tag Helper. The content is rendered if the hosting environment is Staging or Production:
 
