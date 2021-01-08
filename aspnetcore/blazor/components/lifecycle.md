@@ -36,7 +36,9 @@ Document Object Model (DOM) event processing:
 
 The `Render` lifecycle:
 
-1. If this isn't the component's first render or [`ShouldRender`](#suppress-ui-refreshing) is evaluated as `false`, don't perform further operations on the component.
+1. Stop further rendering operations on the component:
+   * After the first render.
+   * When [`ShouldRender`](#suppress-ui-refreshing) is `false`.
 1. Build the render tree diff (difference) and render the component.
 1. Await the DOM to update.
 1. Call [`OnAfterRender{Async}`](#after-component-render).
