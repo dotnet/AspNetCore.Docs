@@ -169,76 +169,13 @@ In *Views/Instructors/Index.cshtml*, replace the template code with the followin
 
 ::: moniker range=">= aspnetcore-2.2"
 
-[!code-cshtml[](intro/samples/cu/Views/Instructors/Index1.cshtml?range=1-64&highlight=1,3-7,15-19,24,26-31,41-54,56)]
+[!code-cshtml[](intro/samples/5cu-snap/Views/Instructors/Index.cshtml?range=1-64&highlight=1,3-7,15-19,24,26-31,41-52,56)]
 
 ::: moniker-end
 
 ::: moniker range="<= aspnetcore-2.1"
 
-```cshtml
-@model ContosoUniversity.Models.SchoolViewModels.InstructorIndexData
-
-@{
-    ViewData["Title"] = "Instructors";
-}
-
-<h2>Instructors</h2>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>Last Name</th>
-            <th>First Name</th>
-            <th>Hire Date</th>
-            <th>Office</th>
-            <th>Courses</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.Instructors)
-        {
-            string selectedRow = "";
-            if (item.ID == (int?)ViewData["InstructorID"])
-            {
-                selectedRow = "success";
-            }
-            <tr class="@selectedRow">
-                <td>
-                    @Html.DisplayFor(modelItem => item.LastName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FirstMidName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.HireDate)
-                </td>
-                <td>
-                    @if (item.OfficeAssignment != null)
-                    {
-                        @item.OfficeAssignment.Location
-                    }
-                </td>
-                <td>
-                    @foreach (var course in item.CourseAssignments)
-                    {
-                        @course.Course.CourseID @course.Course.Title <br />
-                    }
-                </td>
-                <td>
-                    <a asp-action="Index" asp-route-id="@item.ID">Select</a> |
-                    <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
-                </td>
-            </tr>
-           }
-    </tbody>
-</table>
-```
+[!code-cshtml[](intro/samples/cu/Views/Instructors/Index1.cshtml?range=1-64&highlight=1,3-7,15-19,24,26-31,41-52,56)]
 
 ::: moniker-end
 
