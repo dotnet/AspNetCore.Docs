@@ -221,7 +221,7 @@ The contents of the response can be modified from outside of the controller. In 
 
     [!code-csharp[](handle-errors/samples/3.x/Filters/HttpResponseExceptionFilter.cs?name=snippet_HttpResponseExceptionFilter)]
 
-    In the preceding filter, 10 is subtracted from the maximum integer value. Subtracting 10 allows other filters to run at the end of the pipeline.
+    The preceding filter specifies an `Order` of the maximum integer value minus 10. This allows other filters to run at the end of the pipeline.
 
 1. In `Startup.ConfigureServices`, add the action filter to the filters collection:
 
