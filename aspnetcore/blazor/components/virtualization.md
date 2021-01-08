@@ -15,16 +15,21 @@ By [Daniel Roth](https://github.com/danroth27)
 
 Improve the perceived performance of component rendering using the Blazor framework's built-in virtualization support. Virtualization is a technique for limiting UI rendering to just the parts that are currently visible. For example, virtualization is helpful when the app must render a long list of items and only a subset of items is required to be visible at any given time. Blazor provides the [`Virtualize` component](xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601) that can be used to add virtualization to an app's components.
 
+The `Virtualize` component can be used when:
+
+* Rendering a set of data items in a loop.
+* Most of the items aren't visible due to scrolling.
+* The rendered items are exactly the same size. When the user scrolls to an arbitrary point, the component can calculate the visible items to show.
+
 Without virtualization, a typical list might use a C# [`foreach`](/dotnet/csharp/language-reference/keywords/foreach-in) loop to render each item in the list:
 
 ```razor
-@foreach (var employee in employees)
-{
-    <p>
-        @employee.FirstName @employee.LastName has the 
-        job title of @employee.JobTitle.
-    </p>
-}
+<div class="all-flights" style="height:500px;overflow-y:scroll">
+    @foreach (var flight in allFlights)
+    {
+        <FlightSummary @key="flight.FlightId" Flight="@flight" />
+    }
+</div>
 ```
 
 If the list contains thousands of items, then rendering the list may take a long time. The user may experience a noticeable UI lag.
@@ -32,26 +37,36 @@ If the list contains thousands of items, then rendering the list may take a long
 Instead of rendering each item in the list all at one time, replace the [`foreach`](/dotnet/csharp/language-reference/keywords/foreach-in) loop with the `Virtualize` component and specify a fixed item source with <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.Items%2A?displayProperty=nameWithType>. Only the items that are currently visible are rendered:
 
 ```razor
-<Virtualize Context="employee" Items="@employees">
-    <p>
-        @employee.FirstName @employee.LastName has the 
-        job title of @employee.JobTitle.
-    </p>
-</Virtualize>
+<div class="all-flights" style="height:500px;overflow-y:scroll">
+    <Virtualize Items="@allFlights" Context="flight">
+        <FlightSummary @key="flight.FlightId" Details="@flight.Summary" />
+    </Virtualize>
+</div>
 ```
 
-If not specifying a context to the component with `Context`, use the `context` value (`@context.{PROPERTY}`) in the item content template:
+If not specifying a context to the component with `Context`, use the `context` value (`context.{PROPERTY}`/`@context.{PROPERTY}`) in the item content template:
 
 ```razor
-<Virtualize Items="@employees">
-    <p>
-        @context.FirstName @context.LastName has the 
-        job title of @context.JobTitle.
-    </p>
-</Virtualize>
+<div class="all-flights" style="height:500px;overflow-y:scroll">
+    <Virtualize Items="@allFlights">
+        <FlightSummary @key="context.FlightId" Details="@context.Summary" />
+    </Virtualize>
+</div>
 ```
 
-The `Virtualize` component calculates how many items to render based on the height of the container and the size of the rendered items.
+> [!NOTE]
+> The mapping process of model objects to elements and components can be controlled with the [`@key`][xref:mvc/views/razor#key] directive attribute. `@key` causes the diffing algorithm to guarantee preservation of elements or components based on the key's value.
+>
+> For more information, see the following articles:
+>
+> <xref:blazor/components/index#use-key-to-control-the-preservation-of-elements-and-components>
+> <xref:mvc/views/razor#key>
+
+The `Virtualize` component:
+
+* Calculates how many items to render based on the height of the container and the size of the rendered items.
+* Recalculates and rerenders items as the user scrolls.
+* Only fetches the slice of records from an external API that correspond to the current visible region, instead of downloading all of the data from the collection.
 
 The item content for the `Virtualize` component can include:
 
