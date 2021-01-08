@@ -324,7 +324,3 @@ Use the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.ClientErrorMapping%2A>
 [!code-csharp[](index/samples/2.x/2.2/Startup.cs?name=snippet_ConfigureApiBehaviorOptions&highlight=9-10)]
 
 ::: moniker-end
-
-## Custom Middleware to handle exceptions
-
-The defaults in the exception handling middleware works well for most apps. For apps that require specialized exception handling, consider [customizing the exception handling middleware](xref:fundamentals/error-handling#exception-handler-lambda).
