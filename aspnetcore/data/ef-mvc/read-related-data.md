@@ -169,13 +169,13 @@ In *Views/Instructors/Index.cshtml*, replace the template code with the followin
 
 ::: moniker range=">= aspnetcore-2.2"
 
-[!code-cshtml[](intro/samples/5cu-snap/Views/Instructors/Index.cshtml?range=1-64&highlight=1,3-7,15-19,24,26-31,41-52,56)]
+[!code-cshtml[](intro/samples/5cu-snap/Views/Instructors/Index.cshtml?range=1-62&highlight=1,3-7,15-19,24,26-31,41-52,54)]
 
 ::: moniker-end
 
 ::: moniker range="<= aspnetcore-2.1"
 
-[!code-cshtml[](intro/samples/cu/Views/Instructors/Index1.cshtml?range=1-64&highlight=1,3-7,15-19,24,26-31,41-52,56)]
+[!code-cshtml[](intro/samples/cu/Views/Instructors/Index1.cshtml?range=1-62&highlight=1,3-7,15-19,24,26-31,41-52,54)]
 
 ::: moniker-end
 
