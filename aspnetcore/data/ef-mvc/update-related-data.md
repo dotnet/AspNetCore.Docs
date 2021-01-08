@@ -75,7 +75,7 @@ To optimize performance of the Course Details and Delete pages, add `AsNoTrackin
 
 In *Views/Courses/Create.cshtml*, add a "Select Department" option to the **Department** drop-down list, change the caption from **DepartmentID** to **Department**, and add a validation message.
 
-[!code-cshtml[](intro/samples/cu/Views/Courses/Create.cshtml?highlight=2-6&range=29-34)]
+[!code-cshtml[](intro/samples/cu/Views/Courses/Create.cshtml?highlight=2-6&range=29-35)]
 
 In *Views/Courses/Edit.cshtml*, make the same change for the Department field that you just did in *Create.cshtml*.
 
