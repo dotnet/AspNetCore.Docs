@@ -167,7 +167,80 @@ Next, if a course was selected, the selected course is retrieved from the list o
 
 In *Views/Instructors/Index.cshtml*, replace the template code with the following code. The changes are highlighted.
 
+::: moniker range=">= aspnetcore-2.2"
+
 [!code-cshtml[](intro/samples/cu/Views/Instructors/Index1.cshtml?range=1-64&highlight=1,3-7,15-19,24,26-31,41-54,56)]
+
+::: moniker-end
+
+::: moniker range="<= aspnetcore-2.1"
+
+```cshtml
+@model ContosoUniversity.Models.SchoolViewModels.InstructorIndexData
+
+@{
+    ViewData["Title"] = "Instructors";
+}
+
+<h2>Instructors</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Last Name</th>
+            <th>First Name</th>
+            <th>Hire Date</th>
+            <th>Office</th>
+            <th>Courses</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Instructors)
+        {
+            string selectedRow = "";
+            if (item.ID == (int?)ViewData["InstructorID"])
+            {
+                selectedRow = "success";
+            }
+            <tr class="@selectedRow">
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstMidName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HireDate)
+                </td>
+                <td>
+                    @if (item.OfficeAssignment != null)
+                    {
+                        @item.OfficeAssignment.Location
+                    }
+                </td>
+                <td>
+                    @foreach (var course in item.CourseAssignments)
+                    {
+                        @course.Course.CourseID @course.Course.Title <br />
+                    }
+                </td>
+                <td>
+                    <a asp-action="Index" asp-route-id="@item.ID">Select</a> |
+                    <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                </td>
+            </tr>
+           }
+    </tbody>
+</table>
+```
+
+::: moniker-end
 
 You've made the following changes to the existing code:
 
@@ -177,7 +250,7 @@ You've made the following changes to the existing code:
 
 * Added an **Office** column that displays `item.OfficeAssignment.Location` only if `item.OfficeAssignment` isn't null. (Because this is a one-to-zero-or-one relationship, there might not be a related OfficeAssignment entity.)
 
-  ```html
+  ```cshtml
   @if (item.OfficeAssignment != null)
   {
       @item.OfficeAssignment.Location
@@ -186,20 +259,11 @@ You've made the following changes to the existing code:
 
 * Added a **Courses** column that displays courses taught by each instructor. For more information, see the [Explicit line transition](xref:mvc/views/razor#explicit-line-transition) section of the Razor syntax article.
 
-* Added code that dynamically adds `class="success"` to the `tr` element of the selected instructor. This sets a background color for the selected row using a Bootstrap class.
-
-  ```html
-  string selectedRow = "";
-  if (item.ID == (int?)ViewData["InstructorID"])
-  {
-      selectedRow = "success";
-  }
-  <tr class="@selectedRow">
-  ```
+* Added code that conditionally adds a Bootstrap CSS class to the `tr` element of the selected instructor. This class sets a background color for the selected row.
 
 * Added a new hyperlink labeled **Select** immediately before the other links in each row, which causes the selected instructor's ID to be sent to the `Index` method.
 
-  ```html
+  ```cshtml
   <a asp-action="Index" asp-route-id="@item.ID">Select</a> |
   ```
 
