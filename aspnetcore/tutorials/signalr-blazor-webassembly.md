@@ -195,6 +195,60 @@ dotnet add Client package Microsoft.AspNetCore.SignalR.Client
 
 ---
 
+::: moniker range="< aspnetcore-5.0"
+
+## Add the System.Text.Encodings.Web package
+
+Due to a package resolution issue when using [`System.Text.Json`](https://www.nuget.org/packages/System.Text.Json) 5.0.0 in an ASP.NET Core 3.1 app, the `BlazorSignalRApp.Server` project requires a package reference for [`System.Text.Encodings.Web`](https://www.nuget.org/packages/System.Text.Encodings.Web). The underlying issue will be resolved in a future patch release of .NET 5. For more information, see [System.Text.Json defines netcoreapp3.0 with no dependencies (dotnet/runtime #45560)](https://github.com/dotnet/runtime/issues/45560).
+
+To add [`System.Text.Encodings.Web`](https://www.nuget.org/packages/System.Text.Encodings.Web) to the `BlazorSignalRApp.Server` project of the ASP.NET Core 3.1 hosted Blazor solution, follow the guidance for your choice of tooling:
+
+# [Visual Studio](#tab/visual-studio/)
+
+1. In **Solution Explorer**, right-click the `BlazorSignalRApp.Server` project and select **Manage NuGet Packages**.
+
+1. In the **Manage NuGet Packages** dialog, confirm that the **Package source** is set to `nuget.org`.
+
+1. With **Browse** selected, type `System.Text.Encodings.Web` in the search box.
+
+1. In the search results, select the [`System.Text.Encodings.Web`](https://www.nuget.org/packages/System.Text.Encodings.Web) package and select **Install**.
+
+1. If the **Preview Changes** dialog appears, select **OK**.
+
+1. If the **License Acceptance** dialog appears, select **I Accept** if you agree with the license terms.
+
+# [Visual Studio Code](#tab/visual-studio-code/)
+
+In the **Integrated Terminal** (**View** > **Terminal** from the toolbar), execute the following commands:
+
+```dotnetcli
+dotnet add Server package System.Text.Encodings.Web
+```
+
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+1. In the **Solution** sidebar, right-click the `BlazorSignalRApp.Server` project and select **Manage NuGet Packages**.
+
+1. In the **Manage NuGet Packages** dialog, confirm that the source drop-down is set to `nuget.org`.
+
+1. With **Browse** selected, type `System.Text.Encodings.Web` in the search box.
+
+1. In the search results, select the check box next to the [`System.Text.Encodings.Web`](https://www.nuget.org/packages/System.Text.Encodings.Web) package and select **Add Package**.
+
+1. If the **License Acceptance** dialog appears, select **Accept** if you agree with the license terms.
+
+# [.NET Core CLI](#tab/netcore-cli/)
+
+In a command shell, execute the following command:
+
+```dotnetcli
+dotnet add Server package System.Text.Encodings.Web
+```
+
+---
+
+::: moniker-end
+
 ## Add a SignalR hub
 
 In the `BlazorSignalRApp.Server` project, create a `Hubs` (plural) folder and add the following `ChatHub` class (`Hubs/ChatHub.cs`):
@@ -221,32 +275,31 @@ In the `BlazorSignalRApp.Server` project, create a `Hubs` (plural) folder and ad
    using BlazorSignalRApp.Server.Hubs;
    ```
 
-1. Add SignalR and Response Compression Middleware services to `Startup.ConfigureServices`:
-
 ::: moniker range=">= aspnetcore-5.0"
 
+1. Add SignalR and Response Compression Middleware services to `Startup.ConfigureServices`:
+
    [!code-csharp[](signalr-blazor-webassembly/samples/5.x/BlazorSignalRApp/Server/Startup.cs?name=snippet_ConfigureServices&highlight=3,6-10)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-   [!code-csharp[](signalr-blazor-webassembly/samples/3.x/BlazorSignalRApp/Server/Startup.cs?name=snippet_ConfigureServices&highlight=3,5-9)]
-
-::: moniker-end
-
+   
 1. In `Startup.Configure`:
 
    * Use Response Compression Middleware at the top of the processing pipeline's configuration.
    * Between the endpoints for controllers and the client-side fallback, add an endpoint for the hub.
-
-::: moniker range=">= aspnetcore-5.0"
 
    [!code-csharp[](signalr-blazor-webassembly/samples/5.x/BlazorSignalRApp/Server/Startup.cs?name=snippet_Configure&highlight=3,26)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
+
+1. Add SignalR and Response Compression Middleware services to `Startup.ConfigureServices`:
+
+   [!code-csharp[](signalr-blazor-webassembly/samples/3.x/BlazorSignalRApp/Server/Startup.cs?name=snippet_ConfigureServices&highlight=3,5-9)]
+   
+1. In `Startup.Configure`:
+
+   * Use Response Compression Middleware at the top of the processing pipeline's configuration.
+   * Between the endpoints for controllers and the client-side fallback, add an endpoint for the hub.
 
    [!code-csharp[](signalr-blazor-webassembly/samples/3.x/BlazorSignalRApp/Server/Startup.cs?name=snippet_Configure&highlight=3,25)]
 
@@ -256,9 +309,9 @@ In the `BlazorSignalRApp.Server` project, create a `Hubs` (plural) folder and ad
 
 1. In the `BlazorSignalRApp.Client` project, open the `Pages/Index.razor` file.
 
-1. Replace the markup with the following code:
-
 ::: moniker range=">= aspnetcore-5.0"
+
+1. Replace the markup with the following code:
 
    [!code-razor[](signalr-blazor-webassembly/samples/5.x/BlazorSignalRApp/Client/Pages/Index.razor)]
 
@@ -266,13 +319,15 @@ In the `BlazorSignalRApp.Server` project, create a `Hubs` (plural) folder and ad
 
 ::: moniker range="< aspnetcore-5.0"
 
+1. Replace the markup with the following code:
+
    [!code-razor[](signalr-blazor-webassembly/samples/3.x/BlazorSignalRApp/Client/Pages/Index.razor)]
 
 ::: moniker-end
 
 ## Run the app
 
-1. Follow the guidance for your tooling:
+Follow the guidance for your tooling:
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -287,24 +342,6 @@ In the `BlazorSignalRApp.Server` project, create a `Hubs` (plural) folder and ad
    Quotes: *Star Trek VI: The Undiscovered Country* &copy;1991 [Paramount](https://www.paramountmovies.com/movies/star-trek-vi-the-undiscovered-country)
 
 # [Visual Studio Code](#tab/visual-studio-code)
-
-1. When VS Code offers to create a launch profile for the Server app (`.vscode/launch.json`), the `program` entry appears similar to the following to point to the app's assembly (`{APPLICATION NAME}.Server.dll`):
-
-::: moniker range=">= aspnetcore-5.0"
-
-   ```json
-   "program": "${workspaceFolder}/Server/bin/Debug/net5.0/{APPLICATION NAME}.Server.dll"
-   ```
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-   ```json
-   "program": "${workspaceFolder}/Server/bin/Debug/netcoreapp3.1/{APPLICATION NAME}.Server.dll"
-   ```
-
-::: moniker-end
 
 1. Press <kbd>F5</kbd> to run the app with debugging or <kbd>Ctrl</kbd>+<kbd>F5</kbd> to run the app without debugging.
 
@@ -368,3 +405,4 @@ To learn more about building Blazor apps, see the Blazor documentation:
 
 * <xref:signalr/introduction>
 * [SignalR cross-origin negotiation for authentication](xref:blazor/fundamentals/additional-scenarios#signalr-cross-origin-negotiation-for-authentication)
+* <xref:blazor/debug>

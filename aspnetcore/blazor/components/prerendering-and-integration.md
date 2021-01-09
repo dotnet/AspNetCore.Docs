@@ -291,6 +291,8 @@ To support routable Razor components in Razor Pages apps:
    </Router>
    ```
 
+   [!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
+
 1. Add a `_Host.cshtml` file to the `Pages` folder with the following content:
 
    ```cshtml
@@ -359,6 +361,8 @@ To support routable Razor components in MVC apps:
        </NotFound>
    </Router>
    ```
+
+   [!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
 
 1. Add a `_Host.cshtml` file to the `Views/Home` folder with the following content:
 

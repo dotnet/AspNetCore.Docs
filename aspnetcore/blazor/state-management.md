@@ -109,7 +109,7 @@ Generally, `sessionStorage` is safer to use. `sessionStorage` avoids the risk th
 
 <h2 id="in-memory-state-container-service-wasm">In-memory state container service</h2>
 
-[!INCLUDE[](~/includes/blazor-state-management/state-container.md)]
+[!INCLUDE[](~/blazor/includes/state-container.md)]
 
 ## Additional resources
 
@@ -404,11 +404,13 @@ To use the `CounterStateProvider` component, wrap an instance of the component a
 
 ```razor
 <CounterStateProvider>
-    <Router AppAssembly="typeof(Startup).Assembly">
+    <Router AppAssembly="@typeof(Program).Assembly">
         ...
     </Router>
 </CounterStateProvider>
 ```
+
+[!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
 
 Wrapped components receive and can modify the persisted counter state. The following `Counter` component implements the pattern:
 
@@ -647,11 +649,13 @@ To use the `CounterStateProvider` component, wrap an instance of the component a
 
 ```razor
 <CounterStateProvider>
-    <Router AppAssembly="typeof(Startup).Assembly">
+    <Router AppAssembly="@typeof(Program).Assembly">
         ...
     </Router>
 </CounterStateProvider>
 ```
+
+[!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
 
 Wrapped components receive and can modify the persisted counter state. The following `Counter` component implements the pattern:
 
@@ -688,6 +692,6 @@ To persist many different state objects and consume different subsets of objects
 
 <h2 id="in-memory-state-container-service-server">In-memory state container service</h2>
 
-[!INCLUDE[](~/includes/blazor-state-management/state-container.md)]
+[!INCLUDE[](~/blazor/includes/state-container.md)]
 
 ::: zone-end

@@ -58,6 +58,8 @@ In the app's `Router` component (`App.razor`):
 }
 ```
 
+[!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
+
 If the `OnNavigateAsync` callback throws an unhandled exception, the [Blazor error UI](xref:blazor/fundamentals/handle-errors#detailed-errors-during-development) is invoked.
 
 ### Assembly load logic in `OnNavigateAsync`
@@ -116,6 +118,8 @@ While loading assemblies, which can take several seconds, the `Router` component
 ...
 ```
 
+[!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
+
 ### Handle cancellations in `OnNavigateAsync`
 
 The `NavigationContext` object passed to the `OnNavigateAsync` callback contains a `CancellationToken` that's set when a new navigation event occurs. The `OnNavigateAsync` callback must throw when this cancellation token is set to avoid continuing to run the `OnNavigateAsync` callback on a outdated navigation.
@@ -152,6 +156,8 @@ If a user navigates to Route A and then immediately to Route B, the app shouldn'
     }
 }
 ```
+
+[!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
 
 > [!NOTE]
 > Not throwing if the cancellation token in `NavigationContext` is canceled can result in unintended behavior, such as rendering a component from a previous navigation.
@@ -213,6 +219,8 @@ The following complete `Router` component demonstrates loading the `GrantImahara
     }
 }
 ```
+
+[!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
 
 ## Troubleshoot
 

@@ -15,7 +15,7 @@ By [Rainer Stropek](https://www.timecockpit.com) and [Luke Latham](https://githu
 
 Some app elements, such as menus, copyright messages, and company logos, are usually part of app's overall layout and used by every component in the app. Copying the code of these elements into all of the components of an app isn't an efficient approach. Every time one of the elements requires an update, every component must be updated. Such duplication is difficult to maintain and can lead to inconsistent content over time. *Layouts* solve this problem.
 
-Technically, a layout is just another component. A layout is defined in a Razor template or in C# code and can use [data binding](xref:blazor/components/data-binding), [dependency injection](xref:blazor/fundamentals/dependency-injection), and other component scenarios.
+Technically, a layout is just another component. A layout is defined in a Razor template or in C# code and can use [data binding](xref:blazor/components/data-binding), [dependency injection](xref:blazor/fundamentals/dependency-injection), and other component scenarios. Layouts only apply to routable Razor components that have [`@page`](xref:mvc/views/razor#page) directives.
 
 To convert a component into a layout:
 
@@ -48,9 +48,13 @@ Specify the default app layout in the <xref:Microsoft.AspNetCore.Components.Rout
 
 [!code-razor[](layouts/sample_snapshot/3.x/App1.razor?highlight=3)]
 
+[!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
+
 To supply a default layout for <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound> content, specify a <xref:Microsoft.AspNetCore.Components.LayoutView> for <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound> content:
 
 [!code-razor[](layouts/sample_snapshot/3.x/App2.razor?highlight=6-9)]
+
+[!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
 
 For more information on the <xref:Microsoft.AspNetCore.Components.Routing.Router> component, see <xref:blazor/fundamentals/routing>.
 
@@ -58,7 +62,7 @@ Specifying the layout as a default layout in the router is a useful practice bec
 
 ## Specify a layout in a component
 
-Use the Razor directive `@layout` to apply a layout to a component. The compiler converts `@layout` into a <xref:Microsoft.AspNetCore.Components.LayoutAttribute>, which is applied to the component class.
+Use the [`@layout`](xref:mvc/views/razor#layout) Razor directive to apply a layout to a routable Razor component that also has an [`@page`](xref:mvc/views/razor#page) directive. The compiler converts `@layout` into a <xref:Microsoft.AspNetCore.Components.LayoutAttribute>, which is applied to the component class.
 
 The content of the following `MasterList` component is inserted into the `MasterLayout` at the position of `@Body`:
 
@@ -84,6 +88,9 @@ Specifying a layout in `_Imports.razor` overrides a layout specified as the rout
 
 > [!WARNING]
 > Do **not** add a Razor `@layout` directive to the root `_Imports.razor` file, which results in an infinite loop of layouts in the app. To control the default app layout, specify the layout in the `Router` component. For more information, see the [Default layout](#default-layout) section.
+
+> [!NOTE]
+> The [`@layout`](xref:mvc/views/razor#layout) Razor directive only applies a layout to routable Razor components with [`@page`](xref:mvc/views/razor#page) directives.
 
 ## Nested layouts
 

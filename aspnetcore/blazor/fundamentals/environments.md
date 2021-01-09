@@ -5,22 +5,22 @@ description: Learn about environments in Blazor, including how to set the enviro
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/10/2020
+ms.date: 12/11/2020
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/fundamentals/environments
 ---
 # ASP.NET Core Blazor environments
 
 > [!NOTE]
-> This topic applies to Blazor WebAssembly. For general guidance on ASP.NET Core app configuration, see <xref:fundamentals/environments>.
+> This topic applies to Blazor WebAssembly. For general guidance on ASP.NET Core app configuration, which describes the approaches to use for Blazor Server apps, see <xref:fundamentals/environments>.
 
 When running an app locally, the environment defaults to Development. When the app is published, the environment defaults to Production.
 
-A hosted Blazor WebAssembly app picks up the environment from the server via a middleware that communicates the environment to the browser by adding the `blazor-environment` header. The value of the header is the environment. The hosted Blazor app and the server app share the same environment. For more information, including how to configure the environment, see <xref:fundamentals/environments>.
+The client-side Blazor app (*`Client`*) of a hosted Blazor WebAssembly solution determines the environment from the *`Server`* app of the solution via a middleware that communicates the environment to the browser. The *`Server`* app adds a header named `blazor-environment` with the environment as the value of the header. The *`Client`* app reads the header. The *`Server`* app of the solution is an ASP.NET Core app, so more information on how to configure the environment is found in <xref:fundamentals/environments>.
 
-For a standalone app running locally, the development server adds the `blazor-environment` header to specify the Development environment. To specify the environment for other hosting environments, add the `blazor-environment` header.
+For a standalone Blazor WebAssembly app running locally, the development server adds the `blazor-environment` header to specify the Development environment. To specify the environment for other hosting environments, add the `blazor-environment` header.
 
-In the following example for IIS, add the custom header to the published `web.config` file. The `web.config` file is located in the `bin/Release/{TARGET FRAMEWORK}/publish` folder:
+In the following example for IIS, the custom header (`blazor-environment`) is added to the published `web.config` file. The `web.config` file is located in the `bin/Release/{TARGET FRAMEWORK}/publish` folder, where the placeholder `{TARGET FRAMEWORK}` is the target framework:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -41,19 +41,15 @@ In the following example for IIS, add the custom header to the published `web.co
 > [!NOTE]
 > To use a custom `web.config` file for IIS that isn't overwritten when the app is published to the `publish` folder, see <xref:blazor/host-and-deploy/webassembly#use-a-custom-webconfig>.
 
-Obtain the app's environment in a component by injecting <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> and reading the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.Environment> property:
+Obtain the app's environment in a component by injecting <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> and reading the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.Environment> property.
 
-```razor
-@page "/"
-@using Microsoft.AspNetCore.Components.WebAssembly.Hosting
-@inject IWebAssemblyHostEnvironment HostEnvironment
+`Pages/ReadEnvironment.razor`:
 
-<h1>Environment example</h1>
+[!code-razor[](environments/samples_snapshot/ReadEnvironment.razor?highlight=3,7)]
 
-<p>Environment: @HostEnvironment.Environment</p>
-```
+During startup, the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder> exposes the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> through the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.HostEnvironment> property, which enables environment-specific logic in host builder code.
 
-During startup, the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder> exposes the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> through the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.HostEnvironment> property, which enables developers to have environment-specific logic in their code:
+In `Program.Main` of `Program.cs`:
 
 ```csharp
 if (builder.HostEnvironment.Environment == "Custom")
@@ -62,12 +58,14 @@ if (builder.HostEnvironment.Environment == "Custom")
 };
 ```
 
-The following convenience extension methods permit checking the current environment for Development, Production, Staging, and custom environment names:
+The following convenience extension methods provided through <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostEnvironmentExtensions> permit checking the current environment for Development, Production, Staging, and custom environment names:
 
-* `IsDevelopment()`
-* `IsProduction()`
-* `IsStaging()`
-* `IsEnvironment("{ENVIRONMENT NAME}")`
+* <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostEnvironmentExtensions.IsDevelopment%2A>
+* <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostEnvironmentExtensions.IsProduction%2A>
+* <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostEnvironmentExtensions.IsStaging%2A>
+* <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostEnvironmentExtensions.IsEnvironment%2A>
+
+In `Program.Main` of `Program.cs`:
 
 ```csharp
 if (builder.HostEnvironment.IsStaging())

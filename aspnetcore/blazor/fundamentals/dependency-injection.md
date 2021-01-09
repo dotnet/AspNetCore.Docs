@@ -5,111 +5,53 @@ description: Learn how Blazor apps can inject services into components.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/19/2020
+ms.date: 12/19/2020
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/fundamentals/dependency-injection
+zone_pivot_groups: blazor-hosting-models
 ---
 # ASP.NET Core Blazor dependency injection
 
 By [Rainer Stropek](https://www.timecockpit.com) and [Mike Rousos](https://github.com/mjrousos)
 
-Blazor supports [dependency injection (DI)](xref:fundamentals/dependency-injection). Apps can use built-in services by injecting them into components. Apps can also define and register custom services and make them available throughout the app via DI.
+[Dependency injection (DI)](xref:fundamentals/dependency-injection) is a technique for accessing services configured in a central location:
 
-DI is a technique for accessing services configured in a central location. This can be useful in Blazor apps to:
-
-* Share a single instance of a service class across many components, known as a *singleton* service.
-* Decouple components from concrete service classes by using reference abstractions. For example, consider an interface `IDataAccess` for accessing data in the app. The interface is implemented by a concrete `DataAccess` class and registered as a service in the app's service container. When a component uses DI to receive an `IDataAccess` implementation, the component isn't coupled to the concrete type. The implementation can be swapped, perhaps for a mock implementation in unit tests.
+* Framework-registered services can be injected directly into components of Blazor apps.
+* Blazor apps define and register custom services and make them available throughout the app via DI.
 
 ## Default services
 
-Default services are automatically added to the app's service collection.
+The services shown the following table are commonly used in Blazor apps.
 
 | Service | Lifetime | Description |
 | ------- | -------- | ----------- |
-| <xref:System.Net.Http.HttpClient> | Scoped | Provides methods for sending HTTP requests and receiving HTTP responses from a resource identified by a URI.<br><br>The instance of <xref:System.Net.Http.HttpClient> in a Blazor WebAssembly app uses the browser for handling the HTTP traffic in the background.<br><br>Blazor Server apps don't include an <xref:System.Net.Http.HttpClient> configured as a service by default. Provide an <xref:System.Net.Http.HttpClient> to a Blazor Server app.<br><br>For more information, see <xref:blazor/call-web-api>.<br><br>An <xref:System.Net.Http.HttpClient> is registered as a scoped service, not singleton. For more information, see the [Service lifetime](#service-lifetime) section. |
-| <xref:Microsoft.JSInterop.IJSRuntime> | Singleton (Blazor WebAssembly)<br>Scoped (Blazor Server) | Represents an instance of a JavaScript runtime where JavaScript calls are dispatched. For more information, see <xref:blazor/call-javascript-from-dotnet>. |
-| <xref:Microsoft.AspNetCore.Components.NavigationManager> | Singleton (Blazor WebAssembly)<br>Scoped (Blazor Server) | Contains helpers for working with URIs and navigation state. For more information, see [URI and navigation state helpers](xref:blazor/fundamentals/routing#uri-and-navigation-state-helpers). |
+| <xref:System.Net.Http.HttpClient> | Scoped | <p>Provides methods for sending HTTP requests and receiving HTTP responses from a resource identified by a URI.</p><p>The instance of <xref:System.Net.Http.HttpClient> in a Blazor WebAssembly app uses the browser for handling the HTTP traffic in the background.</p><p>Blazor Server apps don't include an <xref:System.Net.Http.HttpClient> configured as a service by default. Provide an <xref:System.Net.Http.HttpClient> to a Blazor Server app.</p><p>For more information, see <xref:blazor/call-web-api>.</p><p>An <xref:System.Net.Http.HttpClient> is registered as a scoped service, not singleton. For more information, see the [Service lifetime](#service-lifetime) section.</p> |
+| <xref:Microsoft.JSInterop.IJSRuntime> | <p>**Blazor WebAssembly**: Singleton</p><p>**Blazor Server**: Scoped</p> | Represents an instance of a JavaScript runtime where JavaScript calls are dispatched. For more information, see <xref:blazor/call-javascript-from-dotnet>. |
+| <xref:Microsoft.AspNetCore.Components.NavigationManager> | <p>**Blazor WebAssembly**: Singleton</p><p>**Blazor Server**: Scoped</p> | Contains helpers for working with URIs and navigation state. For more information, see [URI and navigation state helpers](xref:blazor/fundamentals/routing#uri-and-navigation-state-helpers). |
 
 A custom service provider doesn't automatically provide the default services listed in the table. If you use a custom service provider and require any of the services shown in the table, add the required services to the new service provider.
 
 ## Add services to an app
 
-### Blazor WebAssembly
+::: zone pivot="webassembly"
 
-Configure services for the app's service collection in the `Main` method of `Program.cs`. In the following example, the `MyDependency` implementation is registered for `IMyDependency`:
+Configure services for the app's service collection in the `Program.Main` method of `Program.cs`. In the following example, the `MyDependency` implementation is registered for `IMyDependency`:
 
-```csharp
-using System;
-using System.Net.Http;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using Microsoft.Extensions.DependencyInjection;
+[!code-csharp[](dependency-injection/samples_snapshot/Program1.cs?highlight=7)]
 
-public class Program
-{
-    public static async Task Main(string[] args)
-    {
-        var builder = WebAssemblyHostBuilder.CreateDefault(args);
+After the host is built, services are available from the root DI scope before any components are rendered. This can be useful for running initialization logic before rendering content:
 
-        builder.Services.AddSingleton<IMyDependency, MyDependency>();
+[!code-csharp[](dependency-injection/samples_snapshot/Program2.cs?highlight=7,12-13)]
 
-        ...
+The host provides a central configuration instance for the app. Building on the preceding example, the weather service's URL is passed from a default configuration source (for example, `appsettings.json`) to `InitializeWeatherAsync`:
 
-        await builder.Build().RunAsync();
-    }
-}
-```
+[!code-csharp[](dependency-injection/samples_snapshot/Program3.cs?highlight=13-14)]
 
-Once the host is built, services can be accessed from the root DI scope before any components are rendered. This can be useful for running initialization logic before rendering content:
+::: zone-end
 
-```csharp
-public class Program
-{
-    public static async Task Main(string[] args)
-    {
-        var builder = WebAssemblyHostBuilder.CreateDefault(args);
+::: zone pivot="server"
 
-        builder.Services.AddSingleton<WeatherService>();
-
-        ...
-
-        var host = builder.Build();
-
-        var weatherService = host.Services.GetRequiredService<WeatherService>();
-        await weatherService.InitializeWeatherAsync();
-
-        await host.RunAsync();
-    }
-}
-```
-
-The host also provides a central configuration instance for the app. Building on the preceding example, the weather service's URL is passed from a default configuration source (for example, `appsettings.json`) to `InitializeWeatherAsync`:
-
-```csharp
-public class Program
-{
-    public static async Task Main(string[] args)
-    {
-        var builder = WebAssemblyHostBuilder.CreateDefault(args);
-
-        builder.Services.AddSingleton<WeatherService>();
-
-        ...
-
-        var host = builder.Build();
-
-        var weatherService = host.Services.GetRequiredService<WeatherService>();
-        await weatherService.InitializeWeatherAsync(
-            host.Configuration["WeatherServiceUrl"]);
-
-        await host.RunAsync();
-    }
-}
-```
-
-### Blazor Server
-
-After creating a new app, examine the `Startup.ConfigureServices` method:
+After creating a new app, examine the `Startup.ConfigureServices` method in `Startup.cs`:
 
 ```csharp
 using Microsoft.Extensions.DependencyInjection;
@@ -122,7 +64,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-The <xref:Microsoft.Extensions.Hosting.IHostBuilder.ConfigureServices%2A> method is passed an <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection>, which is a list of service descriptor objects (<xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor>). Services are added in the `ConfigureServices` method by providing service descriptors to the service collection. The following example demonstrates the concept with the `IDataAccess` interface and its concrete implementation `DataAccess`:
+The <xref:Microsoft.Extensions.Hosting.IHostBuilder.ConfigureServices%2A> method is passed an <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection>, which is a list of [service descriptor](xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor) objects. Services are added in the `ConfigureServices` method by providing service descriptors to the service collection. The following example demonstrates the concept with the `IDataAccess` interface and its concrete implementation `DataAccess`:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -131,13 +73,15 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
+::: zone-end
+
 ### Service lifetime
 
 Services can be configured with the lifetimes shown in the following table.
 
 | Lifetime | Description |
 | -------- | ----------- |
-| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Scoped%2A> | <p>Blazor WebAssembly apps don't currently have a concept of DI scopes. `Scoped`-registered services behave like `Singleton` services.</p><p>The Blazor Server hosting model supports the `Scoped` lifetime across HTTP requests but not across SingalR connection/circuit messages among components that are loaded on the client. The Razor Pages or MVC portion of the app treats scoped services normally and recreates the services on *each HTTP request* when navigating among pages or views or from a page or view to a component. Scoped services aren't reconstructed when navigating among components on the client, where the communication to the server takes place over the SignalR connection of the user's circuit, not via HTTP requests. In the following component scenarios on the client, scoped services are reconstructed because a new circuit is created for the user:</p><ul><li>The user closes the browser's window. The user opens a new window and navigates back to the app.</li><li>The user closes the last tab of the app in a browser window. The user opens a new tab and navigates back to the app.</li><li>The user selects the browser's reload/refresh button.</li></ul><p>For more information on preserving user state across scoped services in Blazor Server apps, see <xref:blazor/hosting-models?pivots=server>.</p> |
+| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Scoped%2A> | <p>Blazor WebAssembly apps don't currently have a concept of DI scopes. `Scoped`-registered services behave like `Singleton` services.</p><p>The Blazor Server hosting model supports the `Scoped` lifetime across HTTP requests but not across SignalR connection/circuit messages among components that are loaded on the client. The Razor Pages or MVC portion of the app treats scoped services normally and recreates the services on *each HTTP request* when navigating among pages or views or from a page or view to a component. Scoped services aren't reconstructed when navigating among components on the client, where the communication to the server takes place over the SignalR connection of the user's circuit, not via HTTP requests. In the following component scenarios on the client, scoped services are reconstructed because a new circuit is created for the user:</p><ul><li>The user closes the browser's window. The user opens a new window and navigates back to the app.</li><li>The user closes the last tab of the app in a browser window. The user opens a new tab and navigates back to the app.</li><li>The user selects the browser's reload/refresh button.</li></ul><p>For more information on preserving user state across scoped services in Blazor Server apps, see <xref:blazor/hosting-models?pivots=server>.</p> |
 | <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Singleton%2A> | DI creates a *single instance* of the service. All components requiring a `Singleton` service receive an instance of the same service. |
 | <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Transient%2A> | Whenever a component obtains an instance of a `Transient` service from the service container, it receives a *new instance* of the service. |
 
@@ -145,7 +89,7 @@ The DI system is based on the DI system in ASP.NET Core. For more information, s
 
 ## Request a service in a component
 
-After services are added to the service collection, inject the services into the components using the [\@inject](xref:mvc/views/razor#inject) Razor directive. [`@inject`](xref:mvc/views/razor#inject) has two parameters:
+After services are added to the service collection, inject the services into the components using the [`@inject`](xref:mvc/views/razor#inject) Razor directive, which has two parameters:
 
 * Type: The type of the service to inject.
 * Property: The name of the property receiving the injected app service. The property doesn't require manual creation. The compiler creates the property.
@@ -156,7 +100,7 @@ Use multiple [`@inject`](xref:mvc/views/razor#inject) statements to inject diffe
 
 The following example shows how to use [`@inject`](xref:mvc/views/razor#inject). The service implementing `Services.IDataAccess` is injected into the component's property `DataRepository`. Note how the code is only using the `IDataAccess` abstraction:
 
-[!code-razor[](dependency-injection/samples_snapshot/3.x/CustomerList.razor?highlight=2-3,20)]
+[!code-razor[](dependency-injection/samples_snapshot/CustomerList.razor?highlight=2-3,20)]
 
 Internally, the generated property (`DataRepository`) uses the [`[Inject]`](xref:Microsoft.AspNetCore.Components.InjectAttribute) attribute. Typically, this attribute isn't used directly. If a base class is required for components and injected properties are also required for the base class, manually add the [`[Inject]`](xref:Microsoft.AspNetCore.Components.InjectAttribute) attribute:
 
@@ -183,9 +127,11 @@ In components derived from the base class, the [`@inject`](xref:mvc/views/razor#
 
 ## Use DI in services
 
-Complex services might require additional services. In the prior example, `DataAccess` might require the <xref:System.Net.Http.HttpClient> default service. [`@inject`](xref:mvc/views/razor#inject) (or the [`[Inject]`](xref:Microsoft.AspNetCore.Components.InjectAttribute) attribute) isn't available for use in services. *Constructor injection* must be used instead. Required services are added by adding parameters to the service's constructor. When DI creates the service, it recognizes the services it requires in the constructor and provides them accordingly. In the following example, the constructor receives an <xref:System.Net.Http.HttpClient> via DI. <xref:System.Net.Http.HttpClient> is a default service.
+Complex services might require additional services. In the following example, `DataAccess` requires the <xref:System.Net.Http.HttpClient> default service. [`@inject`](xref:mvc/views/razor#inject) (or the [`[Inject]`](xref:Microsoft.AspNetCore.Components.InjectAttribute) attribute) isn't available for use in services. *Constructor injection* must be used instead. Required services are added by adding parameters to the service's constructor. When DI creates the service, it recognizes the services it requires in the constructor and provides them accordingly. In the following example, the constructor receives an <xref:System.Net.Http.HttpClient> via DI. <xref:System.Net.Http.HttpClient> is a default service.
 
 ```csharp
+using System.Net.Http;
+
 public class DataAccess : IDataAccess
 {
     public DataAccess(HttpClient http)
@@ -219,48 +165,11 @@ Two versions of the <xref:Microsoft.AspNetCore.Components.OwningComponentBase> t
 
   DI services injected into the component using [`@inject`](xref:mvc/views/razor#inject) or the [`[Inject]`](xref:Microsoft.AspNetCore.Components.InjectAttribute) attribute aren't created in the component's scope. To use the component's scope, services must be resolved using <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService%2A> or <xref:System.IServiceProvider.GetService%2A>. Any services resolved using the <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> provider have their dependencies provided from that same scope.
 
-  ```razor
-  @page "/preferences"
-  @using Microsoft.Extensions.DependencyInjection
-  @inherits OwningComponentBase
-
-  <h1>User (@UserService.Name)</h1>
-
-  <ul>
-      @foreach (var setting in SettingService.GetSettings())
-      {
-          <li>@setting.SettingName: @setting.SettingValue</li>
-      }
-  </ul>
-
-  @code {
-      private IUserService UserService { get; set; }
-      private ISettingService SettingService { get; set; }
-
-      protected override void OnInitialized()
-      {
-          UserService = ScopedServices.GetRequiredService<IUserService>();
-          SettingService = ScopedServices.GetRequiredService<ISettingService>();
-      }
-  }
-  ```
+  [!code-razor[](dependency-injection/samples_snapshot/Preferences.razor?highlight=3,20-21)]
 
 * <xref:Microsoft.AspNetCore.Components.OwningComponentBase%601> derives from <xref:Microsoft.AspNetCore.Components.OwningComponentBase> and adds a <xref:Microsoft.AspNetCore.Components.OwningComponentBase%601.Service%2A> property that returns an instance of `T` from the scoped DI provider. This type is a convenient way to access scoped services without using an instance of <xref:System.IServiceProvider> when there's one primary service the app requires from the DI container using the component's scope. The <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> property is available, so the app can get services of other types, if necessary.
 
-  ```razor
-  @page "/users"
-  @attribute [Authorize]
-  @inherits OwningComponentBase<AppDbContext>
-
-  <h1>Users (@Service.Users.Count())</h1>
-
-  <ul>
-      @foreach (var user in Service.Users)
-      {
-          <li>@user.UserName</li>
-      }
-  </ul>
-  ```
+  [!code-razor[](dependency-injection/samples_snapshot/Users.razor?highlight=3,5,8)]
 
 ## Use of an Entity Framework Core (EF Core) DbContext from DI
 
@@ -270,7 +179,7 @@ For more information, see <xref:blazor/blazor-server-ef-core>.
 
 The following examples show how to detect disposable transient services in an app that should use <xref:Microsoft.AspNetCore.Components.OwningComponentBase>. For more information, see the [Utility base component classes to manage a DI scope](#utility-base-component-classes-to-manage-a-di-scope) section.
 
-### Blazor WebAssembly
+::: zone pivot="webassembly"
 
 `DetectIncorrectUsagesOfTransientDisposables.cs`:
 
@@ -280,29 +189,56 @@ The `TransientDisposable` in the following example is detected (`Program.cs`):
 
 ::: moniker range=">= aspnetcore-5.0"
 
-[!code-csharp[](dependency-injection/samples_snapshot/5.x/transient-disposables/wasm-program.cs?highlight=6,9,17,22-25)]
+[!code-csharp[](dependency-injection/samples_snapshot/5.x/transient-disposables/DetectIncorrectUsagesOfTransientDisposables-wasm-program.cs?highlight=6,9,17,22-25)]
 
-::: moniker-end
+::: moniker-end 
 
 ::: moniker range="< aspnetcore-5.0"
 
-[!code-csharp[](dependency-injection/samples_snapshot/3.x/transient-disposables/wasm-program.cs?highlight=6,9,17,22-25)]
+[!code-csharp[](dependency-injection/samples_snapshot/3.x/transient-disposables/DetectIncorrectUsagesOfTransientDisposables-wasm-program.cs?highlight=6,9,17,22-25)]
 
 ::: moniker-end
 
-### Blazor Server
+::: zone-end
+
+::: zone pivot="server"
 
 `DetectIncorrectUsagesOfTransientDisposables.cs`:
 
 [!code-csharp[](dependency-injection/samples_snapshot/3.x/transient-disposables/DetectIncorrectUsagesOfTransientDisposables-server.cs)]
 
-`Program`:
+Add the namespace for <xref:Microsoft.Extensions.DependencyInjection?displayProperty=fullName> to `Program.cs`:
 
-[!code-csharp[](dependency-injection/samples_snapshot/3.x/transient-disposables/server-program.cs?highlight=3)]
+```csharp
+using Microsoft.Extensions.DependencyInjection;
+```
+
+In `Program.CreateHostBuilder` of `Program.cs`:
+
+[!code-csharp[](dependency-injection/samples_snapshot/3.x/transient-disposables/DetectIncorrectUsagesOfTransientDisposables-server-program.cs?highlight=3)]
 
 The `TransientDependency` in the following example is detected (`Startup.cs`):
 
-[!code-csharp[](dependency-injection/samples_snapshot/3.x/transient-disposables/server-startup.cs?highlight=6-8,11-32)]
+[!code-csharp[](dependency-injection/samples_snapshot/3.x/transient-disposables/DetectIncorrectUsagesOfTransientDisposables-server-startup.cs?highlight=6-8,11-32)]
+
+::: zone-end
+
+The app can register transient disposables without throwing an exception. However, attempting to resolve a transient disposable results in an <xref:System.InvalidOperationException>, as the following example shows.
+
+`Pages/TransientDisposable.razor`:
+
+```razor
+@page "/transient-disposable"
+@inject TransientDisposable TransientDisposable
+
+<h1>Transient Disposable Detection</h1>
+```
+
+Navigate to the `TransientDisposable` component at `/transient-disposable` and an <xref:System.InvalidOperationException> is thrown when the framework attempts to construct an instance of `TransientDisposable`:
+
+> System.InvalidOperationException: Trying to resolve transient disposable service 
+TransientDisposable in the wrong scope. Use an 'OwningComponentBase\<T>' component 
+base class for the service 'T' you are trying to resolve.
 
 ## Additional resources
 

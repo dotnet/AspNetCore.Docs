@@ -10,32 +10,35 @@ namespace ClientIpSafelistComponents.Filters
     public class ClientIpCheckPageFilter : IPageFilter
     {
         private readonly ILogger _logger;
-        private readonly string _safelist;
+        private readonly IPAddress[] _safelist;
 
         public ClientIpCheckPageFilter(
             string safelist,
             ILogger logger)
         {
-            _safelist = safelist;
+            var ips = safelist.Split(';');
+            _safelist = new IPAddress[ips.Length];
+            for (var i = 0; i < ips.Length; i++)
+            {
+                _safelist[i] = IPAddress.Parse(ips[i]);
+            }
+
             _logger = logger;
         }
 
         public void OnPageHandlerExecuting(PageHandlerExecutingContext context)
         {
             var remoteIp = context.HttpContext.Connection.RemoteIpAddress;
+            if (remoteIp.IsIPv4MappedToIPv6)
+            {
+                remoteIp = remoteIp.MapToIPv4();
+            }
             _logger.LogDebug(
                 "Remote IpAddress: {RemoteIp}", remoteIp);
 
-            string[] ip = _safelist.Split(';');
-
             var badIp = true;
-            foreach (var address in ip)
+            foreach (var testIp in _safelist)
             {
-                if (remoteIp.IsIPv4MappedToIPv6)
-                {
-                    remoteIp = remoteIp.MapToIPv4();
-                }
-                var testIp = IPAddress.Parse(address);
                 if (testIp.Equals(remoteIp))
                 {
                     badIp = false;

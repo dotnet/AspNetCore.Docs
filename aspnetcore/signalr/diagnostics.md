@@ -1,9 +1,9 @@
 ---
 title: Logging and diagnostics in ASP.NET Core SignalR
-author: anurse
+author: bradygaster
 description: Learn how to gather diagnostics from your ASP.NET Core SignalR app.
 monikerRange: '>= aspnetcore-2.1'
-ms.author: anurse
+ms.author: bradyg
 ms.custom: "devx-track-csharp, signalr, devx-track-js"
 ms.date: 06/12/2020
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
@@ -91,7 +91,17 @@ Once you've configured the verbosity, the logs will be written to the Browser Co
 
 If you want to send logs to a custom logging system, you can provide a JavaScript object implementing the `ILogger` interface. The only method that needs to be implemented is `log`, which takes the level of the event and the message associated with the event. For example:
 
-[!code-typescript[](diagnostics/custom-logger.ts?highlight=3-7,13)]
+::: moniker range=">= aspnetcore-3.0"
+
+[!code-typescript[](diagnostics/3.x/custom-logger.ts?highlight=3-7,13)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-3.0"
+
+[!code-typescript[](diagnostics/2.x/custom-logger.ts?highlight=3-7,13)]
+
+::: moniker-end
 
 ## .NET client logging
 
@@ -100,7 +110,7 @@ If you want to send logs to a custom logging system, you can provide a JavaScrip
 
 To get logs from the .NET client, you can use the `ConfigureLogging` method on `HubConnectionBuilder`. This works the same way as the `ConfigureLogging` method on `WebHostBuilder` and `HostBuilder`. You can configure the same logging providers you use in ASP.NET Core. However, you have to manually install and enable the NuGet packages for the individual logging providers.
 
-To add .NET client logging to a Blazor WebAssembly app, see <xref:blazor/fundamentals/logging#blazor-webassembly-signalr-net-client-logging>.
+To add .NET client logging to a Blazor WebAssembly app, see <xref:blazor/fundamentals/logging#signalr-net-client-logging>.
 
 ### Console logging
 

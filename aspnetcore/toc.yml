@@ -314,8 +314,8 @@
               uid: tutorials/build-a-blazor-app
             - name: SignalR with Blazor WebAssembly
               uid: tutorials/signalr-blazor-webassembly
-        - name: Templates
-          uid: blazor/templates
+        - name: Project structure
+          uid: blazor/project-structure
         - name: Fundamentals
           items:
             - name: Routing
@@ -437,7 +437,7 @@
         - name: Built-in components
           items:
             - name: App
-              href: blazor/templates.md#blazor-project-structure
+              uid: blazor/project-structure
             - name: Authentication
               href: blazor/security/webassembly/index.md#authentication-component
             - name: AuthorizeView
@@ -766,6 +766,8 @@
       uid: grpc/interprocess
     - name: Create JSON Web APIs from gRPC
       uid: grpc/httpapi
+    - name: Code-first gRPC services and clients
+      uid: grpc/code-first
     - name: Manage Protobuf references with dotnet-grpc
       uid: grpc/dotnet-grpc
     - name: Test gRPC services with gRPCurl
@@ -884,7 +886,7 @@
           href: /visualstudio/mac/publish-app-svc?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
         - name: Publish with the CLI
           displayName: azure, deploy, publish
-          href: /azure/app-service/app-service-web-tutorial-dotnetcore-sqldb?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
+          href: /azure/app-service/tutorial-dotnetcore-sqldb-app?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
         - name: Publish with Visual Studio and Git
           displayName: azure, deploy, publish
           uid: host-and-deploy/azure-apps/azure-continuous-deployment

@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
-    using BlazorServerTransientDisposable;
+    using BlazorWebAssemblyTransientDisposable;
     using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 
     public static class WebHostBuilderTransientDisposableExtensions
@@ -24,12 +24,13 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             webAssemblyHost.Services
                 .GetRequiredService<ThrowOnTransientDisposable>().ShouldThrow = true;
+
             return webAssemblyHost;
         }
     }
 }
 
-namespace BlazorServerTransientDisposable
+namespace BlazorWebAssemblyTransientDisposable
 {
     public class DetectIncorrectUsageOfTransientDisposablesServiceFactory 
         : IServiceProviderFactory<IServiceCollection>
@@ -41,6 +42,7 @@ namespace BlazorServerTransientDisposable
             IServiceCollection containerBuilder)
         {
             var collection = new ServiceCollection();
+
             foreach (var descriptor in containerBuilder)
             {
                 if (descriptor.Lifetime == ServiceLifetime.Transient &&
@@ -115,6 +117,7 @@ namespace BlazorServerTransientDisposable
                         original.ImplementationType);
                 },
                 ServiceLifetime.Transient);
+    
             return newDescriptor;
         }
     }

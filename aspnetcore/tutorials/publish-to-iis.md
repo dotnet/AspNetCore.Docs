@@ -30,8 +30,8 @@ This tutorial covers the following subjects:
 >
 > Important scenarios for IIS hosting not covered by this tutorial include:
 >
-> * [Creation of a registry hive for ASP.NET Core Data Protection](xref:host-and-deploy/iis/index#data-protection)
-> * [Configuration of the app pool's Access Control List (ACL)](xref:host-and-deploy/iis/index#application-pool-identity)
+> * [Creation of a registry hive for ASP.NET Core Data Protection](xref:host-and-deploy/iis/advanced#data-protection)
+> * [Configuration of the app pool's Access Control List (ACL)](xref:host-and-deploy/iis/advanced#application-pool-identity)
 > * To focus on IIS deployment concepts, this tutorial deploys an app without HTTPS security configured in IIS. For more information on hosting an app enabled for HTTPS protocol, see the security topics in the [Additional resources](#additional-resources) section of this article. Further guidance for hosting ASP.NET Core apps is provided in the <xref:host-and-deploy/iis/index> article.
 
 ## Install the .NET Core Hosting Bundle
@@ -79,6 +79,7 @@ Follow the <xref:getting-started> tutorial to create a Razor Pages app.
 1. Set the **Folder or File Share** path.
    * If you created a folder for the IIS site that's available on the development machine as a network share, provide the path to the share. The current user must have write access to publish to the share.
    * If you're unable to deploy directly to the IIS site folder on the IIS server, publish to a folder on removable media and physically move the published app to the IIS site folder on the server, which is the site's **Physical path** in IIS Manager. Move the contents of the `bin/Release/{TARGET FRAMEWORK}/publish` folder to the IIS site folder on the server, which is the site's **Physical path** in IIS Manager.
+1. Select the **Publish** button.
 
 # [.NET Core CLI](#tab/netcore-cli)
 
@@ -96,6 +97,7 @@ Follow the <xref:getting-started> tutorial to create a Razor Pages app.
 1. Set the **Choose a folder** path.
    * If you created a folder for the IIS site that's available on the development machine as a network share, provide the path to the share. The current user must have write access to publish to the share.
    * If you're unable to deploy directly to the IIS site folder on the IIS server, publish to a folder on removeable media and physically move the published app to the IIS site folder on the server, which is the site's **Physical path** in IIS Manager. Move the contents of the `bin/Release/{TARGET FRAMEWORK}/publish` folder to the IIS site folder on the server, which is the site's **Physical path** in IIS Manager.
+1. Select the **Publish** button.
 
 ---
 

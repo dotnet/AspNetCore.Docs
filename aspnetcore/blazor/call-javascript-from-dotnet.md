@@ -155,7 +155,7 @@ Use <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A?displayProp
 
 ## Detect when a Blazor Server app is prerendering
  
-[!INCLUDE[](~/includes/blazor-prerendering.md)]
+[!INCLUDE[](~/blazor/includes/prerendering.md)]
 
 ## Capture references to elements
 
@@ -475,7 +475,7 @@ JS interop may fail due to networking errors and should be treated as unreliable
 
 For more information on resource exhaustion, see <xref:blazor/security/server/threat-mitigation>.
 
-[!INCLUDE[](~/includes/blazor-share-interop-code.md)]
+[!INCLUDE[](~/blazor/includes/share-interop-code.md)]
 
 ## Avoid circular object references
 

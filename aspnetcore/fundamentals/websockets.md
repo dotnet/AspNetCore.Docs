@@ -50,7 +50,6 @@ Add the WebSockets middleware in the `Configure` method of the `Startup` class:
 The following settings can be configured:
 
 * `KeepAliveInterval` - How frequently to send "ping" frames to the client to ensure proxies keep the connection open. The default is two minutes.
-* `ReceiveBufferSize` - The size of the buffer used to receive data. Advanced users may need to change this for performance tuning based on the size of the data. The default is 4 KB.
 
 ::: moniker-end
 
@@ -59,7 +58,6 @@ The following settings can be configured:
 The following settings can be configured:
 
 * `KeepAliveInterval` - How frequently to send "ping" frames to the client to ensure proxies keep the connection open. The default is two minutes.
-* <xref:Microsoft.AspNetCore.Builder.WebSocketOptions.ReceiveBufferSize> - The size of the buffer used to receive data. Advanced users may need to change this for performance tuning based on the size of the data. The default is 4 KB.
 * `AllowedOrigins` - A list of allowed Origin header values for WebSocket requests. By default, all origins are allowed. See "WebSocket origin restriction" below for details.
 
 ::: moniker-end

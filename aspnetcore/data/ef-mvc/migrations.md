@@ -3,7 +3,7 @@ title: Tutorial Part 5, apply migrations to the Contoso University sample
 description: Part 5 of the Contoso University tutorial series. Use the EF Core migrations feature for managing data model changes in an ASP.NET Core MVC app.
 author: rick-anderson
 ms.author: riande
-ms.custom: contperfq2
+ms.custom: contperf-fy21q2
 ms.date: 11/13/2020
 ms.topic: tutorial
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]

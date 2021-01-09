@@ -26,16 +26,16 @@ The following sections provide recommendations to minimize rendering workload an
 
 At runtime, components exist as a hierarchy. A root component has child components. In turn, the root's children have their own child components, and so on. When an event occurs, such as a user selecting a button, this is how Blazor decides which components to rerender:
 
- 1. The event itself is dispatched to whichever component rendered the event's handler. After executing the event handler, that component is rerendered.
- 1. Whenever any component is rerendered, it supplies a new copy of the parameter values to each of its child components.
- 1. When receiving a new set of parameter values, each component chooses whether to rerender. By default, components rerender if the parameter values may have changed (for example, if they are mutable objects).
+1. The event itself is dispatched to whichever component rendered the event's handler. After executing the event handler, that component is rerendered.
+1. Whenever any component is rerendered, it supplies a new copy of the parameter values to each of its child components.
+1. When receiving a new set of parameter values, each component chooses whether to rerender. By default, components rerender if the parameter values may have changed (for example, if they are mutable objects).
 
 The last two steps of this sequence continue recursively down the component hierarchy. In many cases, the entire subtree is rerendered. This means that events targeting high-level components can cause expensive rerendering processes because everything below that point must be rerendered.
 
 If you want to interrupt this process and prevent rendering recursion into a particular subtree, then you can either:
 
- * Ensure that all parameters to a certain component are of primitive immutable types (for example, `string`, `int`, `bool`, `DateTime`, and others). The built-in logic for detecting changes automatically skips rerendering if none of these parameter values have changed. If you render a child component with `<Customer CustomerId="@item.CustomerId" />`, where `CustomerId` is an `int` value, then it isn't rerendered except when `item.CustomerId` changes.
- * If you need to accept nonprimitive parameter values, such as custom model types, event callbacks, or <xref:Microsoft.AspNetCore.Components.RenderFragment> values, then you can override <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> to control the decision about whether to render, which is described in the [Use of `ShouldRender`](#use-of-shouldrender) section.
+* Ensure that all parameters to a certain component are of primitive immutable types (for example, `string`, `int`, `bool`, `DateTime`, and others). The built-in logic for detecting changes automatically skips rerendering if none of these parameter values have changed. If you render a child component with `<Customer CustomerId="@item.CustomerId" />`, where `CustomerId` is an `int` value, then it isn't rerendered except when `item.CustomerId` changes.
+* If you need to accept nonprimitive parameter values, such as custom model types, event callbacks, or <xref:Microsoft.AspNetCore.Components.RenderFragment> values, then you can override <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> to control the decision about whether to render, which is described in the [Use of `ShouldRender`](#use-of-shouldrender) section.
 
 By skipping rerendering of whole subtrees, you may be able to remove the vast majority of the rendering cost when an event occurs.
 
@@ -92,38 +92,7 @@ For more information, see <xref:blazor/components/lifecycle>.
 
 When rendering large amounts of UI within a loop, for example a list or grid with thousands of entries, the sheer quantity of rendering operations can lead to a lag in UI rendering and thus a poor user experience. Given that the user can only see a small number of elements at once without scrolling, it seems wasteful to spend so much time rendering elements that aren't currently visible.
 
-To address this, Blazor provides a built-in [`<Virtualize>` component](xref:blazor/components/virtualization) that creates the appearance and scroll behaviors of an arbitrarily-large list but actually only renders the list items that are within the current scroll viewport. For example, this means that the app can have a list with 100,000 entries but only pay the rendering cost of 20 items that are visible at any one time. Use of the `<Virtualize>` component can scale up UI performance by orders of magnitude.
-
-`<Virtualize>` can be used when:
-
- * Rendering a set of data items in a loop.
- * Most of the items aren't visible due to scrolling.
- * The rendered items are exactly the same size. When the user scrolls to an arbitrary point, the component can calculate the visible items to show.
-
-The following shows an example of a non-virtualized list:
-
-```razor
-<div class="all-flights" style="height:500px;overflow-y:scroll">
-    @foreach (var flight in allFlights)
-    {
-        <FlightSummary @key="flight.FlightId" Flight="@flight" />
-    }
-</div>
-```
-
-If the `allFlights` collection holds 10,000 items, it instantiates and renders 10,000 `<FlightSummary>` component instances. In comparison, the following shows an example of a virtualized list:
-
-```razor
-<div class="all-flights" style="height:500px;overflow-y:scroll">
-    <Virtualize Items="@allFlights" Context="flight">
-        <FlightSummary @key="flight.FlightId" Flight="@flight" />
-    </Virtualize>
-</div>
-```
-
-Even though the resulting UI looks the same to a user, behind the scenes the component only instantiates and renders as many `<FlightSummary>` instances as are required to fill the scrollable region. The set of `<FlightSummary>` instances displayed is recalculated and rendered as the user scrolls.
-
-`<Virtualize>` has other benefits, too. For example when a component requests data from an external API, `<Virtualize>` permits the component to only fetch the slice of records that correspond to the current visible region, instead of downloading all the data from the collection.
+To address this, Blazor provides the `Virtualize` component that creates the appearance and scroll behaviors of an arbitrarily-large list but only renders the list items that are within the current scroll viewport. For example, this means that the app can have a list with 100,000 entries but only pay the rendering cost of 20 items that are visible at any one time. Use of the `Virtualize` component can scale up UI performance by orders of magnitude.
 
 For more information, see <xref:blazor/components/virtualization>.
 
@@ -135,9 +104,9 @@ Most Blazor components don't require aggressive optimization efforts. This is be
 
 However, there are also common scenarios where you build components that need to be repeated at scale. For example:
 
- * Large nested forms may have hundreds of individual inputs, labels, and other elements.
- * Grids may have thousands of cells.
- * Scatter plots may have millions of data points.
+* Large nested forms may have hundreds of individual inputs, labels, and other elements.
+* Grids may have thousands of cells.
+* Scatter plots may have millions of data points.
 
 If modelling each unit as separate component instances, there will be so many of them that their rendering performance does become critical. This section provides advice on making such components lightweight so that the UI remains fast and responsive.
 
@@ -145,8 +114,8 @@ If modelling each unit as separate component instances, there will be so many of
 
 Each component is a separate island that can render independently of its parents and children. By choosing how to split up the UI into a hierarchy of components, you are taking control over the granularity of UI rendering. This can be either good or bad for performance.
 
- * By splitting the UI into more components, you can have smaller portions of the UI rerender when events occur. For example when a user clicks a button in a table row, you may be able to have only that single row rerender instead of the whole page or table.
- * However, each extra component involves some extra memory and CPU overhead to deal with its independent state and rendering lifecycle.
+* By splitting the UI into more components, you can have smaller portions of the UI rerender when events occur. For example when a user clicks a button in a table row, you may be able to have only that single row rerender instead of the whole page or table.
+* However, each extra component involves some extra memory and CPU overhead to deal with its independent state and rendering lifecycle.
 
 When tuning the performance of Blazor WebAssembly on .NET 5, we measured a rendering overhead of around 0.06 ms per component instance. This is based on a simple component that accepts three parameters running on a typical laptop. Internally, the overhead is largely due to retrieving per-component state from dictionaries and passing and receiving parameters. By multiplication, you can see that adding 2,000 extra component instances would add 0.12 seconds to the rendering time and the UI would begin feeling slow to users.
 
@@ -280,8 +249,8 @@ In the preceding example, `Data` is different for every cell, but `Options` is c
 
 The `<CascadingValue>` component has an optional parameter called `IsFixed`.
 
- * If the `IsFixed` value is `false` (the default), then every recipient of the cascaded value sets up a subscription to receive change notifications. In this case, each `[CascadingParameter]` is **substantially more expensive** than a regular `[Parameter]` due to the subscription tracking.
- * If the `IsFixed` value is `true` (for example, `<CascadingValue Value="@someValue" IsFixed="true">`), then receipients receive the initial value but do *not* set up any subscription to receive updates. In this case, each `[CascadingParameter]` is lightweight and **no more expensive** than a regular `[Parameter]`.
+* If the `IsFixed` value is `false` (the default), then every recipient of the cascaded value sets up a subscription to receive change notifications. In this case, each `[CascadingParameter]` is **substantially more expensive** than a regular `[Parameter]` due to the subscription tracking.
+* If the `IsFixed` value is `true` (for example, `<CascadingValue Value="@someValue" IsFixed="true">`), then receipients receive the initial value but do *not* set up any subscription to receive updates. In this case, each `[CascadingParameter]` is lightweight and **no more expensive** than a regular `[Parameter]`.
 
 So wherever possible, you should use `IsFixed="true"` on cascaded values. You can do this whenever the value being supplied doesn't change over time. In the common pattern where a component passes `this` as a cascaded value, you should use `IsFixed="true"`:
 
@@ -321,9 +290,9 @@ One of the main aspects of the per-component rendering overhead is writing incom
 
 In some extreme cases, you may wish to avoid the reflection and implement your own parameter setting logic manually. This may be applicable when:
 
- * You have a component that renders extremely often (for example, there are hundreds or thousands of copies of it in the UI).
- * It accepts many parameters.
- * You find that the overhead of receiving parameters has an observable impact on UI responsiveness.
+* You have a component that renders extremely often (for example, there are hundreds or thousands of copies of it in the UI).
+* It accepts many parameters.
+* You find that the overhead of receiving parameters has an observable impact on UI responsiveness.
 
 In these cases, you can override the component's virtual <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> method and implement your own component-specific logic. The following example deliberately avoids any dictionary lookups:
 
@@ -435,8 +404,8 @@ This technique can be even more important for Blazor Server, since each event in
 
 Calls between .NET and JavaScript involve some additional overhead because:
 
- * By default, calls are asynchronous.
- * By default, parameters and return values are JSON-serialized. This is to provide an easy-to-understand conversion mechanism between .NET and JavaScript types.
+* By default, calls are asynchronous.
+* By default, parameters and return values are JSON-serialized. This is to provide an easy-to-understand conversion mechanism between .NET and JavaScript types.
 
 Additionally on Blazor Server, these calls are passed across the network.
 
