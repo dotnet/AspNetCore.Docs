@@ -169,10 +169,10 @@ If using the WebSocket support in [socket.io](https://socket.io/) on [Node.js](h
 
 ## Sample app
 
-The [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/websockets/samples) that accompanies this article is an echo app. It has a web page that makes WebSocket connections, and the server resends any messages it receives back to the client. Run the app from a command prompt (it's not set up to run from Visual Studio with IIS Express) and navigate to http://localhost:5000. The web page shows the connection status in the upper left:
+The [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/websockets/samples) that accompanies this article is an echo app. It has a webpage that makes WebSocket connections, and the server resends any messages it receives back to the client. The sample app isn't set up to run from Visual Studio with IIS Express, so run the app in a command shell and navigate to `http://localhost:5000`. The webpage shows the connection status:
 
-![Initial state of web page before WebSockets connection](websockets/_static/start.png)
+![Initial state of webpage before WebSockets connection](websockets/_static/start.png)
 
 Select **Connect** to send a WebSocket request to the URL shown. Enter a test message and select **Send**. When done, select **Close Socket**. The **Communication Log** section reports each open, send, and close action as it happens.
 
-![Final state of web page after WebSockets connection and test messages are sent and received](websockets/_static/end.png)
+![Final state of webpage after WebSockets connection and test messages are sent and received](websockets/_static/end.png)
