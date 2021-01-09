@@ -167,7 +167,17 @@ Next, if a course was selected, the selected course is retrieved from the list o
 
 In *Views/Instructors/Index.cshtml*, replace the template code with the following code. The changes are highlighted.
 
-[!code-cshtml[](intro/samples/cu/Views/Instructors/Index1.cshtml?range=1-64&highlight=1,3-7,15-19,24,26-31,41-54,56)]
+::: moniker range=">= aspnetcore-2.2"
+
+[!code-cshtml[](intro/samples/5cu-snap/Views/Instructors/Index.cshtml?range=1-62&highlight=1,3-7,15-19,24,26-31,41-52,54)]
+
+::: moniker-end
+
+::: moniker range="<= aspnetcore-2.1"
+
+[!code-cshtml[](intro/samples/cu/Views/Instructors/Index1.cshtml?range=1-62&highlight=1,3-7,15-19,24,26-31,41-52,54)]
+
+::: moniker-end
 
 You've made the following changes to the existing code:
 
@@ -177,7 +187,7 @@ You've made the following changes to the existing code:
 
 * Added an **Office** column that displays `item.OfficeAssignment.Location` only if `item.OfficeAssignment` isn't null. (Because this is a one-to-zero-or-one relationship, there might not be a related OfficeAssignment entity.)
 
-  ```html
+  ```cshtml
   @if (item.OfficeAssignment != null)
   {
       @item.OfficeAssignment.Location
@@ -186,20 +196,11 @@ You've made the following changes to the existing code:
 
 * Added a **Courses** column that displays courses taught by each instructor. For more information, see the [Explicit line transition](xref:mvc/views/razor#explicit-line-transition) section of the Razor syntax article.
 
-* Added code that dynamically adds `class="success"` to the `tr` element of the selected instructor. This sets a background color for the selected row using a Bootstrap class.
-
-  ```html
-  string selectedRow = "";
-  if (item.ID == (int?)ViewData["InstructorID"])
-  {
-      selectedRow = "success";
-  }
-  <tr class="@selectedRow">
-  ```
+* Added code that conditionally adds a Bootstrap CSS class to the `tr` element of the selected instructor. This class sets a background color for the selected row.
 
 * Added a new hyperlink labeled **Select** immediately before the other links in each row, which causes the selected instructor's ID to be sent to the `Index` method.
 
-  ```html
+  ```cshtml
   <a asp-action="Index" asp-route-id="@item.ID">Select</a> |
   ```
 

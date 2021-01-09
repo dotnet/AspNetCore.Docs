@@ -50,7 +50,6 @@ Add the WebSockets middleware in the `Configure` method of the `Startup` class:
 The following settings can be configured:
 
 * `KeepAliveInterval` - How frequently to send "ping" frames to the client to ensure proxies keep the connection open. The default is two minutes.
-* `ReceiveBufferSize` - The size of the buffer used to receive data. Advanced users may need to change this for performance tuning based on the size of the data. The default is 4 KB.
 
 ::: moniker-end
 
@@ -59,7 +58,6 @@ The following settings can be configured:
 The following settings can be configured:
 
 * `KeepAliveInterval` - How frequently to send "ping" frames to the client to ensure proxies keep the connection open. The default is two minutes.
-* <xref:Microsoft.AspNetCore.Builder.WebSocketOptions.ReceiveBufferSize> - The size of the buffer used to receive data. Advanced users may need to change this for performance tuning based on the size of the data. The default is 4 KB.
 * `AllowedOrigins` - A list of allowed Origin header values for WebSocket requests. By default, all origins are allowed. See "WebSocket origin restriction" below for details.
 
 ::: moniker-end
@@ -171,11 +169,10 @@ If using the WebSocket support in [socket.io](https://socket.io/) on [Node.js](h
 
 ## Sample app
 
-The [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/websockets/samples) that accompanies this article is an echo app. It has a web page that makes WebSocket connections, and the server resends any messages it receives back to the client. Run the app from a command prompt (it's not set up to run from Visual Studio with IIS Express) and navigate to http://localhost:5000. The web page shows the connection status in the upper left:
+The [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/websockets/samples) that accompanies this article is an echo app. It has a webpage that makes WebSocket connections, and the server resends any messages it receives back to the client. The sample app isn't configured to run from Visual Studio with IIS Express, so run the app in a command shell with [`dotnet run`](/dotnet/core/tools/dotnet-run) and navigate in a browser to `http://localhost:5000`. The webpage shows the connection status:
 
-![Initial state of web page](websockets/_static/start.png)
+![Initial state of webpage before WebSockets connection](websockets/_static/start.png)
 
 Select **Connect** to send a WebSocket request to the URL shown. Enter a test message and select **Send**. When done, select **Close Socket**. The **Communication Log** section reports each open, send, and close action as it happens.
 
-![Initial state of web page](websockets/_static/end.png)
-
+![Final state of webpage after WebSockets connection and test messages are sent and received](websockets/_static/end.png)
