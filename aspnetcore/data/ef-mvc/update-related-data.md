@@ -18,7 +18,7 @@ The following illustrations show some of the pages that you'll work with.
 
 ![Course Edit page](update-related-data/_static/course-edit.png)
 
-![Instructor Edit page](update-related-data/_static/instructor-edit-courses.png)
+![Edit Instructor page](update-related-data/_static/instructor-edit-courses.png)
 
 In this tutorial, you:
 
