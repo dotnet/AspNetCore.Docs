@@ -14,7 +14,7 @@ uid: blazor/security/webassembly/aad-groups-roles
 By [Luke Latham](https://github.com/guardrex) and [Javier Calvarro Nelson](https://github.com/javiercn)
 
 > [!NOTE]
-> This article applies to Blazor ASP.NET Core apps version 3.1 with Microsoft Identity v1.0 and will be updated to 5.0 with Identity v2.0 shortly. For more information, see the following GitHub issue and pull request. The the **Files changed** tab of the pull request contains the draft text and examples for the updates to the article. After review and final updates, the pull request will be merged into the live documentation set.
+> This article applies to Blazor ASP.NET Core apps version 3.1 with Microsoft Identity 1.0 and will be updated to 5.0 with Identity 2.0 shortly. For more information, see the following GitHub issue and pull request. The the **Files changed** tab of the pull request contains the draft text and examples for the updates to the article. After review and final updates, the pull request will be merged into the live documentation set.
 >
 > * Issue: [Blazor WASM with AAD groups and roles (dotnet/AspNetCore.Docs #17683)](https://github.com/dotnet/AspNetCore.Docs/issues/17683)
 > * Pull Request: [Blazor AAD groups and roles topic 5.0 (dotnet/AspNetCore.Docs #20856)](https://github.com/dotnet/AspNetCore.Docs/pull/20856)
