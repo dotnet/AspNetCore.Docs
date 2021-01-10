@@ -30,7 +30,7 @@ This guide:
 ## Prerequisites
 
 * Access to an Ubuntu 16.04 server with a standard user account with sudo privilege.
-* [Install the .NET runtime](/dotnet/core/install/linux) on the server.
+* The [.NET runtime installed](/dotnet/core/install/linux) on the server.
 * An existing ASP.NET Core app.
 
 At any point in the future after upgrading the shared framework, restart the ASP.NET Core apps hosted by the server.
