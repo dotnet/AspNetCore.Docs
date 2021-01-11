@@ -24,10 +24,10 @@ The `Virtualize` component can be used when:
 Without virtualization, a typical list might use a C# [`foreach`](/dotnet/csharp/language-reference/keywords/foreach-in) loop to render each item in the list:
 
 ```razor
-<div class="all-flights" style="height:500px;overflow-y:scroll">
+<div style="height:500px;overflow-y:scroll">
     @foreach (var flight in allFlights)
     {
-        <FlightSummary @key="flight.FlightId" Flight="@flight" />
+        <FlightSummary @key="flight.FlightId" Details="@flight.Summary" />
     }
 </div>
 ```
@@ -37,7 +37,7 @@ If the list contains thousands of items, then rendering the list may take a long
 Instead of rendering each item in the list all at one time, replace the [`foreach`](/dotnet/csharp/language-reference/keywords/foreach-in) loop with the `Virtualize` component and specify a fixed item source with <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.Items%2A?displayProperty=nameWithType>. Only the items that are currently visible are rendered:
 
 ```razor
-<div class="all-flights" style="height:500px;overflow-y:scroll">
+<div style="height:500px;overflow-y:scroll">
     <Virtualize Items="@allFlights" Context="flight">
         <FlightSummary @key="flight.FlightId" Details="@flight.Summary" />
     </Virtualize>
@@ -47,7 +47,7 @@ Instead of rendering each item in the list all at one time, replace the [`foreac
 If not specifying a context to the component with `Context`, use the `context` value (`context.{PROPERTY}`/`@context.{PROPERTY}`) in the item content template:
 
 ```razor
-<div class="all-flights" style="height:500px;overflow-y:scroll">
+<div style="height:500px;overflow-y:scroll">
     <Virtualize Items="@allFlights">
         <FlightSummary @key="context.FlightId" Details="@context.Summary" />
     </Virtualize>
