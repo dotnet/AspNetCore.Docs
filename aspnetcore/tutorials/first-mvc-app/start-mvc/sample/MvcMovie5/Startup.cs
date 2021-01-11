@@ -50,13 +50,14 @@ namespace MvcMovie
             app.UseRouting();
 
             app.UseAuthorization();
-
+            #region snippet_route
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+            #endregion
         }
     }
 }
