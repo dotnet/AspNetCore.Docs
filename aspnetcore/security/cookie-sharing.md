@@ -49,7 +49,7 @@ services.ConfigureApplicationCookie(options => {
 });
 ```
 
-**Note:** The preceding instructions don't work with `ITicketStore` (`CookieAuthenticationOptions.SessionStore`). This approach doesn't work because  the session id claim set by Owin has the type string `Microsoft.Owin.Security.Cookies-SessionId` while ASP.Net Core expects `Microsoft.AspNetCore.Authentication.Cookies-SessionId`. For more information, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/21163).
+**Note:** The preceding instructions don't work with `ITicketStore` (`CookieAuthenticationOptions.SessionStore`).  For more information, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/21163).
 
 ## Share authentication cookies without ASP.NET Core Identity
 
