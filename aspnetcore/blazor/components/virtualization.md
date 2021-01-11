@@ -44,7 +44,7 @@ Instead of rendering each item in the list all at one time, replace the [`foreac
 </div>
 ```
 
-If not specifying a context to the component with `Context`, use the `context` value (`context.{PROPERTY}`/`@context.{PROPERTY}`) in the item content template:
+If not specifying a context to the component with `Context`, use the `context` value in the item content template:
 
 ```razor
 <div style="height:500px;overflow-y:scroll">
@@ -55,12 +55,12 @@ If not specifying a context to the component with `Context`, use the `context` v
 ```
 
 > [!NOTE]
-> The mapping process of model objects to elements and components can be controlled with the [`@key`][xref:mvc/views/razor#key] directive attribute. `@key` causes the diffing algorithm to guarantee preservation of elements or components based on the key's value.
+> The mapping process of model objects to elements and components can be controlled with the [`@key`](xref:mvc/views/razor#key) directive attribute. `@key` causes the diffing algorithm to guarantee preservation of elements or components based on the key's value.
 >
 > For more information, see the following articles:
 >
-> <xref:blazor/components/index#use-key-to-control-the-preservation-of-elements-and-components>
-> <xref:mvc/views/razor#key>
+> * <xref:blazor/components/index#use-key-to-control-the-preservation-of-elements-and-components>
+> * <xref:mvc/views/razor#key>
 
 The `Virtualize` component:
 
@@ -76,7 +76,7 @@ The item content for the `Virtualize` component can include:
 
 ## Item provider delegate
 
-If you don't want to load all of the items into memory, you can specify an items provider delegate method to the component's <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemsProvider%2A?displayProperty=nameWithType> parameter that asynchronously retrieves the requested items on demand:
+If you don't want to load all of the items into memory, you can specify an items provider delegate method to the component's <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemsProvider%2A?displayProperty=nameWithType> parameter that asynchronously retrieves the requested items on demand. In the following example, the `LoadEmployees` method provides the items to the `Virtualize` component:
 
 ```razor
 <Virtualize Context="employee" ItemsProvider="@LoadEmployees">
@@ -91,7 +91,7 @@ The items provider receives an <xref:Microsoft.AspNetCore.Components.Web.Virtual
 
 A `Virtualize` component can only accept **one item source** from its parameters, so don't attempt to simultaneously use an items provider and assign a collection to `Items`. If both are assigned, an <xref:System.InvalidOperationException> is thrown when the component's parameters are set at runtime.
 
-The following example loads employees from an `EmployeeService`:
+The following `LoadEmployees` method example loads employees from an `EmployeeService` (not shown):
 
 ```csharp
 private async ValueTask<ItemsProviderResult<Employee>> LoadEmployees(
@@ -109,7 +109,7 @@ private async ValueTask<ItemsProviderResult<Employee>> LoadEmployees(
 
 ## Placeholder
 
-Because requesting items from a remote data source might take some time, you have the option to render a placeholder  with item content:
+Because requesting items from a remote data source might take some time, you have the option to render a placeholder with item content:
 
 * Use a <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.Placeholder%2A> (`<Placeholder>...</Placeholder>`) to display content until the item data is available.
 * Use <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemContent%2A?displayProperty=nameWithType> to set the item template for the list.
@@ -132,7 +132,7 @@ Because requesting items from a remote data source might take some time, you hav
 
 ## Item size
 
-The size of each item in pixels can be set with <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemSize%2A?displayProperty=nameWithType> (default: 50px):
+The size of each item in pixels can be set with <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemSize%2A?displayProperty=nameWithType> (default: 50):
 
 ```razor
 <Virtualize Context="employee" Items="@employees" ItemSize="25">
