@@ -41,7 +41,7 @@ Navigate to `/Movies/Index`. Append a query string such as `?searchString=Ghost`
 
 If you change the signature of the `Index` method to have a parameter named `id`, the `id` parameter will match the optional `{id}` placeholder for the default routes set in *Startup.cs*.
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Startup.cs?highlight=5&name=snippet_1)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie5/Startup.cs?highlight=5&name=snippet_route)]
 
 Change the parameter to `id` and all occurrences of `searchString` change to `id`.
 
