@@ -75,9 +75,26 @@ In the app's project file:
   </ItemGroup>
   ```
 
+::: moniker range=">= aspnetcore-5.0"
+
 Navigate to the ASP.NET Core GitHub repository at the following URL, which links to 5.0 release reference source and assets. If you aren't converting an app for the 5.0 release, select the release that you're working with from the **Switch branches or tags** drop-down list that applies to your app.
 
 [dotnet/aspnetcore (release 5.0) Blazor WebAssembly project template `wwwroot` folder](https://github.com/dotnet/aspnetcore/tree/release/5.0/src/ProjectTemplates/Web.ProjectTemplates/content/ComponentsWebAssembly-CSharp/Client/wwwroot)
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+Navigate to the ASP.NET Core GitHub repository at the following URL, which links to 3.1 release reference source and assets:
+
+[dotnet/aspnetcore (release 3.1) Blazor WebAssembly project template `wwwroot` folder](https://github.com/dotnet/aspnetcore/tree/release/3.1/src/ProjectTemplates/ComponentsWebAssembly.ProjectTemplates/content/ComponentsWebAssembly-CSharp/Client/wwwroot)
+
+> [!NOTE]
+> The URL for Blazor WebAssembly project template changed after the release of ASP.NET Core 3.1. Reference assets for 5.0 or later are available at the following URL:
+>
+> [dotnet/aspnetcore (release 5.0) Blazor WebAssembly project template `wwwroot` folder](https://github.com/dotnet/aspnetcore/tree/release/5.0/src/ProjectTemplates/Web.ProjectTemplates/content/ComponentsWebAssembly-CSharp/Client/wwwroot)
+
+::: moniker-end
 
 From the reference assets `wwwroot` folder, copy the following files into the app's `wwwroot` folder:
 
