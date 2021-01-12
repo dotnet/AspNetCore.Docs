@@ -96,7 +96,7 @@ The ASP.NET Core templates call <xref:Microsoft.AspNetCore.Builder.StaticFileExt
   
 To serve static files based on authorization:
 
-* Store them outside of `wwwroot` and any directory accessible to the default Static File Middleware.
+* Store them outside of `wwwroot`.
 * Call `UseStaticFiles`, specifying a path, after calling `UseAuthorization`.
 * Set the [fallback authentication policy](xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy).
 
@@ -108,7 +108,7 @@ To serve static files based on authorization:
 
   <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAuthenticatedUser%2A> adds <xref:Microsoft.AspNetCore.Authorization.Infrastructure.DenyAnonymousAuthorizationRequirement.HandleRequirementAsync%2A> to the current instance, which enforces that the current user is authenticated.
 
-  Static assets under `wwwroot` are publicly accessible because the Static File Middleware (`app.UseStaticFiles();`) is called before `UseAuthentication`.
+  Static assets under `wwwroot` are publicly accessible because the default Static File Middleware (`app.UseStaticFiles();`) is called before `UseAuthentication`.
 
 An alternative approach to serve files based on authorization:
 
