@@ -60,7 +60,7 @@ If not specifying a context to the component with `Context`, use the `context` v
 > For more information, see the following articles:
 >
 > * <xref:blazor/components/index#use-key-to-control-the-preservation-of-elements-and-components>
-> * <xref:mvc/views/razor#key>
+> * [Razor syntax reference for ASP.NET Core](xref:mvc/views/razor#key)
 
 The `Virtualize` component:
 
