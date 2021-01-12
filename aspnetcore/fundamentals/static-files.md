@@ -102,6 +102,8 @@ The Static File Middleware doesn't provide authorization checks. Any files serve
 
   The preceding highlighted code sets the [fallback authentication policy](xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy). The fallback authentication policy requires ***all*** requests to be authenticated, including files under `wwwroot`, except for Razor Pages, controllers, or action methods with an authentication attribute. For example, Razor Pages, controllers, or action methods with `[AllowAnonymous]` or `[Authorize(PolicyName="MyPolicy")]` use the applied authentication attribute rather than the fallback authentication policy.
 
+  <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAuthenticatedUser%2A> adds <xref:Microsoft.AspNetCore.Authorization.Infrastructure.DenyAnonymousAuthorizationRequirement.HandleRequirementAsync%2A> to the current instance, which enforces that the current user is authenticated.
+
 An alternative approach to serve files based on authorization:
 
 * Store them outside of `wwwroot` and any directory accessible to the Static File Middleware.
