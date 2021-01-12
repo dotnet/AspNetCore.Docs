@@ -20,8 +20,8 @@ namespace StaticFileAuth
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    //webBuilder.UseStartup<Startup>();
-                    webBuilder.UseStartup<Startup2>();
+                    webBuilder.UseStartup<Startup>();
+                    //webBuilder.UseStartup<Startup2>();
 
                 });
     }

@@ -92,15 +92,16 @@ Static files are publicly cacheable for 600 seconds:
 The Static File Middleware doesn't provide authorization checks. Any files served by it, including those under `wwwroot`, are publicly accessible. To serve files based on authorization:
 
 * Store them outside of `wwwroot` and any directory accessible to the default Static File Middleware.
-* Call `UseStaticFiles` after `UseAuthorization` and specify the path:
+* Call `UseStaticFiles` after `UseAuthorization` and specify the path.
+* Set the [fallback authentication policy](xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy). 
 
   [!code-csharp[](static-files/samples/3.x/StaticFileAuth/Startup.cs?name=snippet2)]
   
-  The preceding approach requires users to be authenticated:
-
   [!code-csharp[](static-files/samples/3.x/StaticFileAuth/Startup.cs?name=snippet1&highlight=20-99)]
 
-  The preceding highlighted code sets the [fallback authentication policy](xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy). The fallback authentication policy requires ***all*** requests to be authenticated, including files under `wwwroot`, except for Razor Pages, controllers, or action methods with an authentication attribute. For example, Razor Pages, controllers, or action methods with `[AllowAnonymous]` or `[Authorize(PolicyName="MyPolicy")]` use the applied authentication attribute rather than the fallback authentication policy.
+  The preceding highlighted code sets the [fallback authentication policy](xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy). The fallback authentication policy requires ***all*** users to be authenticated, except for Razor Pages, controllers, or action methods with an authentication attribute. For example, Razor Pages, controllers, or action methods with `[AllowAnonymous]` or `[Authorize(PolicyName="MyPolicy")]` use the applied authentication attribute rather than the fallback authentication policy.
+
+  Static assets under `wwwroot` are publicly accessible because the static file middleware (`app.UseStaticFiles();`) is called before `UseAuthentication`.
 
   <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAuthenticatedUser%2A> adds <xref:Microsoft.AspNetCore.Authorization.Infrastructure.DenyAnonymousAuthorizationRequirement.HandleRequirementAsync%2A> to the current instance, which enforces that the current user is authenticated.
 
