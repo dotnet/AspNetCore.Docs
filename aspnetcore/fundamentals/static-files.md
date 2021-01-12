@@ -89,16 +89,16 @@ Static files are publicly cacheable for 600 seconds:
 
 ## Static file authorization
 
-The ASP.NET Core templates call <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> before calling <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A>. Most apps follow that pattern. When the Static File Middleware is called before the authorization middleware:
+The ASP.NET Core templates call <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> before calling <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A>. Most apps follow this pattern. When the Static File Middleware is called before the authorization middleware:
 
   * No authorization checks are performed on the static files.
   * Static files served by the Static File Middleware, such as those those under `wwwroot`, are publicly accessible.
   
 To serve static files based on authorization:
 
-* Store them outside of `wwwroot`.
-* Call `UseStaticFiles`, specifying a path, after calling `UseAuthorization`.
-* Set the [fallback authentication policy](xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy).
+  * Store them outside of `wwwroot`.
+  * Call `UseStaticFiles`, specifying a path, after calling `UseAuthorization`.
+  * Set the [fallback authentication policy](xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy).
 
   [!code-csharp[](static-files/samples/3.x/StaticFileAuth/Startup.cs?name=snippet2)]
   
@@ -108,7 +108,7 @@ To serve static files based on authorization:
 
   <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAuthenticatedUser%2A> adds <xref:Microsoft.AspNetCore.Authorization.Infrastructure.DenyAnonymousAuthorizationRequirement.HandleRequirementAsync%2A> to the current instance, which enforces that the current user is authenticated.
 
-  Static assets under `wwwroot` are publicly accessible because the default Static File Middleware (`app.UseStaticFiles();`) is called before `UseAuthentication`.
+  Static assets under `wwwroot` are publicly accessible because the default Static File Middleware (`app.UseStaticFiles();`) is called before `UseAuthentication`. Static assets in the *MyStaticFiles* folder, require authentication. The [sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/static-files/samples) demonstrates this.
 
 An alternative approach to serve files based on authorization:
 
