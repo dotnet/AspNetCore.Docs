@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -13,9 +12,9 @@ using System.IO;
 namespace StaticFileAuth
 {
     #region snippet1
-    public class Startup
+    public class Startup2
     {
-        public Startup(IConfiguration configuration)
+        public Startup2(IConfiguration configuration)
         {
             Configuration = configuration;
         }
@@ -32,12 +31,12 @@ namespace StaticFileAuth
 
             services.AddRazorPages();
 
-            services.AddAuthorization(options =>
-            {
-                options.FallbackPolicy = new AuthorizationPolicyBuilder()
-                    .RequireAuthenticatedUser()
-                    .Build();
-            });
+            //services.AddAuthorization(options =>
+            //{
+            //    options.FallbackPolicy = new AuthorizationPolicyBuilder()
+            //        .RequireAuthenticatedUser()
+            //        .Build();
+            //});
         }
 
         // Remaining code ommitted for brevity.
