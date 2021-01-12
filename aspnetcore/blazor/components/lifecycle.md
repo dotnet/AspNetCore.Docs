@@ -199,6 +199,8 @@ For more information, see <xref:blazor/webassembly-performance-best-practices#av
 
 <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is called automatically for <xref:Microsoft.AspNetCore.Components.EventCallback> methods. For more information, see <xref:blazor/components/event-handling#eventcallback>.
 
+For more information, see <xref:blazor/components/rendering>.
+
 ## Handle incomplete async actions at render
 
 Asynchronous actions performed in lifecycle events might not have completed before the component is rendered. Objects might be `null` or incompletely populated with data while the lifecycle method is executing. Provide rendering logic to confirm that objects are initialized. Render placeholder UI elements (for example, a loading message) while objects are `null`.

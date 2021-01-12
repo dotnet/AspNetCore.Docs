@@ -344,6 +344,8 @@
               uid: blazor/components/event-handling
             - name: Lifecycle
               uid: blazor/components/lifecycle
+            - name: Rendering
+              uid: blazor/components/rendering
             - name: Component virtualization
               uid: blazor/components/virtualization
             - name: Templated components
