@@ -112,7 +112,7 @@ If a prompt appears to trust the development certificate, trust the certificate 
 
 ## Use Visual Studio Code for cross-platform Blazor development
 
-[Visual Studio Code](https://code.visualstudio.com/) is an open source, cross-platform Integrated Development Environment (IDE) that can be used to develop Blazor apps. Use the .NET CLI to create a new Blazor app for development with Visual Studio Code. For more information, see the [Linux version of this article](/aspnet/core/blazor/tooling?pivots=linux).
+[Visual Studio Code](https://code.visualstudio.com/) is an open source, cross-platform Integrated Development Environment (IDE) that can be used to develop Blazor apps. Use the .NET CLI to create a new Blazor app for development with Visual Studio Code. For more information, see the [Linux version of this article](?pivots=linux).
 
 ## Blazor template options
 
