@@ -92,7 +92,7 @@ Configuration is supplied by the `wwwroot/appsettings.json` file:
 }
 ```
 
-Google OAuth 2.0 example:
+Google OAuth 2.0 OIDC example:
 
 ```json
 {
