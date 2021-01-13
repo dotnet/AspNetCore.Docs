@@ -5,7 +5,7 @@ description: Learn about Razor component rendering in ASP.NET Core Blazor apps, 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/12/2021
+ms.date: 01/13/2021
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/components/rendering
 ---
@@ -15,38 +15,38 @@ By [Steve Sanderson](https://github.com/SteveSandersonMS)
 
 Components *must* render when they're first added to the component hierarchy by their parent component. This is the only time that a component strictly must render.
 
-A component *may* choose to render at any other time according to its own logic and conventions.
+Components *may* choose to render at any other time according to their own logic and conventions.
 
 ## Conventions for `ComponentBase`
 
-By default, Razor components (`.razor`) inherit from <xref:Microsoft.AspNetCore.Components.ComponentBase>. This base class contains logic to trigger rerendering at the following times:
+By default, Razor components (`.razor`) inherit from the <xref:Microsoft.AspNetCore.Components.ComponentBase> base class, which contains logic to trigger rerendering at the following times:
 
-* After applying an updated set of parameters from the parent component.
+* After applying an updated set of parameters from a parent component.
 * After applying an updated value for a cascading parameter.
 * After notification of an event and invoking one of its own event handlers.
 * After a call to its own <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> method.
 
 Components inherited from <xref:Microsoft.AspNetCore.Components.ComponentBase> skip rerenders due to parameter updates if any of the following are true:
 
-* All of the parameter values are of known immutable primitive types (for example, `int`, `string`, `DateTime`) and have not changed since the previous set of parameters were set.
-* The component's <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> method returns `false`.
+* All of the parameter values are of known immutable primitive types (for example, `int`, `string`, `DateTime`) and haven't changed since the previous set of parameters were set.
+* The component's <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> method returns `false`. For more information, see <xref:blazor/webassembly-performance-best-practices#use-of-shouldrender>.
 
 ## Control the rendering flow
 
-In most cases, <xref:Microsoft.AspNetCore.Components.ComponentBase> conventions result in the correct subset of component rerenders after an event without developers needing to write any manual logic to tell the framework which components to rerender. The overall effect of the conventions is that the component receiving an event rerenders itself, which recursively triggers rerendering of descendant components whose parameter values may have changed.
+In most cases, <xref:Microsoft.AspNetCore.Components.ComponentBase> conventions result in the correct subset of component rerenders after an event occurs without requiring developers to provide manual logic to tell the framework which components to rerender and when to rerender them. The overall effect of the conventions is that the component receiving an event rerenders itself, which recursively triggers rerendering of descendant components whose parameter values may have changed.
 
-Learn more about the performance implications of this mechanism and how to optimize an app's component hierarchy in [documentation on optimizing rendering speed](xref:blazor/webassembly-performance-best-practices#optimize-rendering-speed).
+Learn more about the performance implications of the built-in conventions and how to optimize an app's component hierarchy in [documentation on optimizing rendering speed](xref:blazor/webassembly-performance-best-practices#optimize-rendering-speed).
 
 ## When to call `StateHasChanged`
 
-The <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> method on <xref:Microsoft.AspNetCore.Components.ComponentBase> allows you to trigger a render at any time. However, be careful not to call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> unnecessarily, which is a common mistake, because it imposes unnecessary rendering costs.
+The <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A?displayProperty=nameWithType> method allows you to trigger a render at any time. However, be careful not to call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> unnecessarily, which is a common mistake, because it imposes unnecessary rendering costs.
 
 You should *not* need to call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> when:
 
 * Routinely handling events, whether synchronously or asynchronously, since <xref:Microsoft.AspNetCore.Components.ComponentBase> triggers a render for most routine event handlers.
 * Implementing typical lifecycle logic, such as [`OnInitialized`](xref:blazor/components/lifecycle#component-initialization-methods) or [`OnParametersSetAsync`](xref:blazor/components/lifecycle#after-parameters-are-set), whether synchonrously or asynchronously, since <xref:Microsoft.AspNetCore.Components.ComponentBase> triggers a render for typical lifecycle events.
 
-However, it can make sense to call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> in the cases described by the following sections:
+However, it might make sense to call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> in the cases described by the following sections:
 
 * [An asynchronous handler involves multiple asynchronous phases](#an-asynchronous-handler-involves-multiple-asynchronous-phases)
 * [Receiving a call from something external to the Blazor rendering and event handling system](#receiving-a-call-from-something-external-to-the-blazor-rendering-and-event-handling-system)
@@ -88,13 +88,13 @@ Consider the following `Counter` component, which updates the count four times o
 }
 ```
 
-The way that tasks are defined in .NET means that a receiver of the <xref:System.Threading.Tasks.Task> can only observe its final completion, not any intermediate asynchronous states. So, <xref:Microsoft.AspNetCore.Components.ComponentBase> can only know about triggering rerendering when you first return the <xref:System.Threading.Tasks.Task> and when that <xref:System.Threading.Tasks.Task> finally completes. It can't know to rerender at other intermediate points. If you do want to rerender at intermediate points, use <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A>.
+The way that tasks are defined in .NET means that a receiver of the <xref:System.Threading.Tasks.Task> can only observe its final completion, not any intermediate asynchronous states. So, <xref:Microsoft.AspNetCore.Components.ComponentBase> can only know about triggering rerendering when you first return the <xref:System.Threading.Tasks.Task> and when that <xref:System.Threading.Tasks.Task> finally completes. It can't know to rerender at other intermediate points. If you want to rerender at intermediate points, use <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A>.
 
 ### Receiving a call from something external to the Blazor rendering and event handling system
 
-<xref:Microsoft.AspNetCore.Components.ComponentBase> only knows about its own lifecycle methods and Blazor-triggered events. <xref:Microsoft.AspNetCore.Components.ComponentBase> doesn't know about anything else that can trigger your code.
+<xref:Microsoft.AspNetCore.Components.ComponentBase> only knows about its own lifecycle methods and Blazor-triggered events. <xref:Microsoft.AspNetCore.Components.ComponentBase> doesn't know about other events that may occur in your code. For example, any C# events raised by a custom data store are unknown to Blazor. In order for such events to trigger rerendering to display updated values in the UI, use <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A>.
 
-If you have a custom data store that raises C# events, those C# events are unknown to Blazor. As another example, consider the following `Counter`` component that uses <xref:System.Timers.Timer?displayProperty=fullName> to update the count at a regular interval.
+In another use case, consider the following `Counter` component that uses <xref:System.Timers.Timer?displayProperty=fullName> to update the count at a regular interval and calls <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> to update the UI.
 
 `Pages/Counter.razor`:
 
@@ -128,7 +128,7 @@ If you have a custom data store that raises C# events, those C# events are unkno
 }
 ```
 
-In the preceding example, `OnTimerCallback` must call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> to trigger a UI update because Blazor isn't aware that anything is happening. `OnTimerCallback` runs outside of any Blazor-managed rendering flow or event notification.
+In the preceding example, `OnTimerCallback` must call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> because Blazor isn't aware of the changes to `currentCount` in the callback. `OnTimerCallback` runs outside of any Blazor-managed rendering flow or event notification.
 
 Similarly, because the callback is invoked outside Blazor's synchronization context, it's necessary to wrap the logic in <xref:Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync%2A?displayProperty=nameWithType> to move it onto the renderer's synchronization context. <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> can only be called from the renderer's synchronization context and throws an exception otherwise. This is equivalent to marshalling to the UI thread in other UI frameworks.
 
@@ -136,8 +136,8 @@ Similarly, because the callback is invoked outside Blazor's synchronization cont
 
 Your UI might involve dispatching an event to one component, changing some state, and needing to rerender a completely different component that isn't a descendant of the one receiving the event.
 
-One way of accomplishing this result is to have some "state management" class, perhaps as a DI service, injected into multiple components. When one component calls a method on the state manager, the state manager can raise a C# event that's then received by an independent component.
+One way to deal with this scenario is to have a *state management* class, perhaps as a DI service, injected into multiple components. When one component calls a method on the state manager, the state manager can raise a C# event that's then received by an independent component.
 
 Since these C# events are outside the Blazor rendering pipeline, call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> on other components you wish to render in response to the state manager's events.
 
-This is similar to the previous case with <xref:System.Timers.Timer?displayProperty=fullName>. Since your execution call stack typically remains on the renderer's synchronization context, <xref:Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync%2A> isn't normally required. <xref:Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync%2A> is only required if the logic does something to escape from the synchronization context, such as calling <xref:System.Threading.Tasks.Task.ContinueWith%2A> on a <xref:System.Threading.Tasks.Task> or awaiting a <xref:System.Threading.Tasks.Task> with [`ConfigureAwait(false)`](xref:System.Threading.Tasks.Task.ConfigureAwait%2A).
+This is similar to the earlier case with <xref:System.Timers.Timer?displayProperty=fullName> in the [previous section](#receiving-a-call-from-something-external-to-the-blazor-rendering-and-event-handling-system) section. Since the execution call stack typically remains on the renderer's synchronization context, <xref:Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync%2A> isn't normally required. <xref:Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync%2A> is only required if the logic escapes the synchronization context, such as calling <xref:System.Threading.Tasks.Task.ContinueWith%2A> on a <xref:System.Threading.Tasks.Task> or awaiting a <xref:System.Threading.Tasks.Task> with [`ConfigureAwait(false)`](xref:System.Threading.Tasks.Task.ConfigureAwait%2A).

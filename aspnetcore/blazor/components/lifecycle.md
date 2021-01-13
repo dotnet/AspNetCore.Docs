@@ -45,7 +45,7 @@ The `Render` lifecycle:
 
 ![Render lifecycle](lifecycle/_static/lifecycle3.png)
 
-Developer calls to [`StateHasChanged`](#state-changes) result in a render.
+Developer calls to [`StateHasChanged`](#state-changes) result in a render. For more information, see <xref:blazor/components/rendering>.
 
 ## Lifecycle methods
 
