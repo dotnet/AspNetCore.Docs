@@ -26,16 +26,18 @@ By default, Razor components (`.razor`) inherit from the <xref:Microsoft.AspNetC
 * After notification of an event and invoking one of its own event handlers.
 * After a call to its own <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> method.
 
-Components inherited from <xref:Microsoft.AspNetCore.Components.ComponentBase> skip rerenders due to parameter updates if any of the following are true:
+Components inherited from <xref:Microsoft.AspNetCore.Components.ComponentBase> skip rerenders due to parameter updates if either of the following are true:
 
 * All of the parameter values are of known immutable primitive types (for example, `int`, `string`, `DateTime`) and haven't changed since the previous set of parameters were set.
-* The component's <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> method returns `false`. For more information, see <xref:blazor/webassembly-performance-best-practices#use-of-shouldrender>.
+* The component's <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> method returns `false`.
+
+For more information on <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A>, see <xref:blazor/webassembly-performance-best-practices#use-of-shouldrender>.
 
 ## Control the rendering flow
 
-In most cases, <xref:Microsoft.AspNetCore.Components.ComponentBase> conventions result in the correct subset of component rerenders after an event occurs without requiring developers to provide manual logic to tell the framework which components to rerender and when to rerender them. The overall effect of the conventions is that the component receiving an event rerenders itself, which recursively triggers rerendering of descendant components whose parameter values may have changed.
+In most cases, <xref:Microsoft.AspNetCore.Components.ComponentBase> conventions result in the correct subset of component rerenders after an event occurs. Developers aren't usually required to provide manual logic to tell the framework which components to rerender and when to rerender them. The overall effect of the framework's conventions is that the component receiving an event rerenders itself, which recursively triggers rerendering of descendant components whose parameter values may have changed.
 
-Learn more about the performance implications of the built-in conventions and how to optimize an app's component hierarchy in [documentation on optimizing rendering speed](xref:blazor/webassembly-performance-best-practices#optimize-rendering-speed).
+For more information on the performance implications of the framework's conventions and how to optimize an app's component hierarchy, see <xref:blazor/webassembly-performance-best-practices#optimize-rendering-speed>.
 
 ## When to call `StateHasChanged`
 
@@ -88,7 +90,7 @@ Consider the following `Counter` component, which updates the count four times o
 }
 ```
 
-The way that tasks are defined in .NET means that a receiver of the <xref:System.Threading.Tasks.Task> can only observe its final completion, not any intermediate asynchronous states. So, <xref:Microsoft.AspNetCore.Components.ComponentBase> can only know about triggering rerendering when you first return the <xref:System.Threading.Tasks.Task> and when that <xref:System.Threading.Tasks.Task> finally completes. It can't know to rerender at other intermediate points. If you want to rerender at intermediate points, use <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A>.
+Due to the way that tasks are defined in .NET, a receiver of a <xref:System.Threading.Tasks.Task> can only observe its final completion, not intermediate asynchronous states. Therefore, <xref:Microsoft.AspNetCore.Components.ComponentBase> can only trigger rerendering when the <xref:System.Threading.Tasks.Task> is first returned and when the <xref:System.Threading.Tasks.Task> finally completes. It can't know to rerender at other intermediate points. If you want to rerender at intermediate points, use <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A>.
 
 ### Receiving a call from something external to the Blazor rendering and event handling system
 
