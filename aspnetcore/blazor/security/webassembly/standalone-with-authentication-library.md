@@ -18,7 +18,7 @@ By [Javier Calvarro Nelson](https://github.com/javiercn) and [Luke Latham](https
 To create a [standalone Blazor WebAssembly app](xref:blazor/hosting-models#blazor-webassembly) that uses [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication) library, follow the guidance for your choice of tooling.
 
 > [!NOTE]
-> The Identity Provider (IP) must use [OpenID Connect (OIDC)](https://openid.net/connect/). For example, Facebook is **not** OIDC compliant, so the guidance in this topic doesn't apply to using the Facebook IP. For more information, see <xref:blazor/security/webassembly/index#authentication-library>.
+> The Identity Provider (IP) must use [OpenID Connect (OIDC)](https://openid.net/connect/). For example, Facebook's IP isn't an OIDC-compliant provider, so the guidance in this topic doesn't work with the Facebook IP. For more information, see <xref:blazor/security/webassembly/index#authentication-library>.
 
 # [Visual Studio](#tab/visual-studio)
 
