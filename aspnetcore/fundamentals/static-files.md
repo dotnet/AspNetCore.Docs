@@ -112,8 +112,8 @@ To serve static files based on authorization:
 
 An alternative approach to serve files based on authorization:
 
-* Store them outside of `wwwroot` and any directory accessible to the Static File Middleware.
-* Serve them via an action method to which authorization is applied and return a <xref:Microsoft.AspNetCore.Mvc.FileResult> object:
+  * Store them outside of `wwwroot` and any directory accessible to the Static File Middleware.
+  * Serve them via an action method to which authorization is applied and return a <xref:Microsoft.AspNetCore.Mvc.FileResult> object:
 
   [!code-csharp[](static-files/samples/3.x/StaticFilesSample/Controllers/HomeController.cs?name=snippet_BannerImage)]
 
