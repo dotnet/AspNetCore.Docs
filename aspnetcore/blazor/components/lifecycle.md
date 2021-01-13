@@ -45,7 +45,7 @@ The `Render` lifecycle:
 
 ![Render lifecycle](lifecycle/_static/lifecycle3.png)
 
-Developer calls to [`StateHasChanged`](#state-changes) result in a render.
+Developer calls to [`StateHasChanged`](#state-changes) result in a render. For more information, see <xref:blazor/components/rendering>.
 
 ## Lifecycle methods
 
@@ -198,6 +198,8 @@ For more information, see <xref:blazor/webassembly-performance-best-practices#av
 <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> notifies the component that its state has changed. When applicable, calling <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> causes the component to be rerendered.
 
 <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is called automatically for <xref:Microsoft.AspNetCore.Components.EventCallback> methods. For more information, see <xref:blazor/components/event-handling#eventcallback>.
+
+For more information, see <xref:blazor/components/rendering>.
 
 ## Handle incomplete async actions at render
 
