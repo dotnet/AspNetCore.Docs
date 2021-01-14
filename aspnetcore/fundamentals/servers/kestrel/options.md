@@ -1,5 +1,5 @@
 ---
-title: Configuring options for the ASP.NET Core Kestrel web server
+title: Configure options for the ASP.NET Core Kestrel web server
 author: rick-anderson
 description: Learn about configuring options for Kestrel, the cross-platform web server for ASP.NET Core.
 monikerRange: '>= aspnetcore-5.0'
@@ -10,7 +10,7 @@ no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Bla
 uid: fundamentals/servers/kestrel/options
 ---
 
-# Configuring options for the ASP.NET Core Kestrel web server
+# Configure options for the ASP.NET Core Kestrel web server
 
 The Kestrel web server has constraint configuration options that are especially useful in Internet-facing deployments.
 

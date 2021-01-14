@@ -28,9 +28,9 @@ If an HTTP/2 connection is established, [HttpRequest.Protocol](xref:Microsoft.As
 
 Starting with .NET Core 3.0, HTTP/2 is enabled by default. For more information on configuration, see the [Kestrel HTTP/2 limits](xref:fundamentals/servers/kestrel/options#http2-limits) and [ListenOptions.Protocols](xref:fundamentals/servers/kestrel/endpoints#listenoptionsprotocols) sections.
 
-## Advanced HTTP/2 features to support gRPC
+## Advanced HTTP/2 features
 
-Additional HTTP/2 features in IIS support gRPC, including support for response trailers and sending reset frames.
+Additional HTTP/2 features in Kestrel support gRPC, including support for response trailers and sending reset frames.
 
 ### Trailers
 
