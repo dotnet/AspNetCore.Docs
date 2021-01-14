@@ -45,10 +45,10 @@ When creating a new **Blazor WebAssembly App** in the **Create a New Project** d
 Use the following command to create a PWA project in a command shell with the `--pwa` switch:
 
 ```dotnetcli
-dotnet new blazorwasm -o BlazorPWA --pwa
+dotnet new blazorwasm -o MyBlazorPwa --pwa
 ```
 
-In the preceding command, the `-o|--output` option creates a new folder for the app named `BlazorPWA`.
+In the preceding command, the `-o|--output` option creates a new folder for the app named `MyBlazorPwa`.
 
 ---
 
@@ -84,15 +84,15 @@ To obtain static assets, use **one** of the following approaches:
 * Create a separate, new PWA project with the [`dotnet new`](/dotnet/core/tools/dotnet-new) command in a command shell:
 
   ```dotnetcli
-  dotnet new blazorwasm -o BlazorPWA --pwa
+  dotnet new blazorwasm -o MyBlazorPwa --pwa
   ```
   
-  In the preceding command, the `-o|--output` option creates a new folder for the app named `BlazorPWA`.
+  In the preceding command, the `-o|--output` option creates a new folder for the app named `MyBlazorPwa`.
   
   If you aren't converting an app for the latest release, pass the `-f|--framework` option. The following example creates the app for ASP.NET Core version 3.1:
   
   ```dotnetcli
-  dotnet new blazorwasm -o MyNewProject --pwa -f netstandard2.1
+  dotnet new blazorwasm -o MyBlazorPwa --pwa -f netstandard2.1
   ```
 
 * Navigate to the ASP.NET Core GitHub repository at the following URL, which links to 5.0 release reference source and assets. If you aren't converting an app for the 5.0 release, select the release that you're working with from the **Switch branches or tags** drop-down list that applies to your app.
@@ -106,10 +106,10 @@ To obtain static assets, use **one** of the following approaches:
 * Create a separate, new PWA project with the [`dotnet new`](/dotnet/core/tools/dotnet-new) command in a command shell. Pass the `-f|--framework` option to select the version. The following example creates the app for ASP.NET Core version 3.1:
   
   ```dotnetcli
-  dotnet new blazorwasm -o BlazorPWA --pwa -f netstandard2.1
+  dotnet new blazorwasm -o MyBlazorPwa --pwa -f netstandard2.1
   ```
   
-  In the preceding command, the `-o|--output` option creates a new folder for the app named `BlazorPWA`.
+  In the preceding command, the `-o|--output` option creates a new folder for the app named `MyBlazorPwa`.
 
 * Navigate to the ASP.NET Core GitHub repository at the following URL, which links to 3.1 release reference source and assets:
 
@@ -122,7 +122,7 @@ To obtain static assets, use **one** of the following approaches:
 
 ::: moniker-end
 
-From the reference assets `wwwroot` folder, copy the following files into the app's `wwwroot` folder:
+From the source `wwwroot` folder either in the app that you created or from the reference assets in the `dotnet/aspnetcore` GitHub repository, copy the following files into the app's `wwwroot` folder:
 
 * `icon-512.png`
 * `manifest.json`
