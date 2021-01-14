@@ -450,7 +450,7 @@ When SignalR logging isn't set to [Debug](xref:Microsoft.Extensions.Logging.LogL
 
 > Error: Connection disconnected with error 'Error: Server returned an error on close: Connection closed with an error.'.
 
-When [SignalR server-side logging](xref:signalr/diagnostics#server-side-logging) is set to [Debug](xref:Microsoft.Extensions.Logging.LogLevel) or [Trace](xref:Microsoft.Extensions.Logging.LogLevel), server-side logging surfaces an <xref:System.IO.InvalidDataException> for a message size error:
+When [SignalR server-side logging](xref:signalr/diagnostics#server-side-logging) is set to [Debug](xref:Microsoft.Extensions.Logging.LogLevel) or [Trace](xref:Microsoft.Extensions.Logging.LogLevel), server-side logging surfaces an <xref:System.IO.InvalidDataException> for a message size error.
 
 `appsettings.Development.json`:
 
