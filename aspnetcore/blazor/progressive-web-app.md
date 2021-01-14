@@ -42,7 +42,7 @@ When creating a new **Blazor WebAssembly App** in the **Create a New Project** d
 
 # [Visual Studio Code / .NET Core CLI](#tab/visual-studio-code+netcore-cli)
 
-Use the following command to create a PWA project from a command shell with the `--pwa` switch:
+Use the following command to create a PWA project in a command shell with the `--pwa` switch:
 
 ```dotnetcli
 dotnet new blazorwasm -o BlazorPWA --pwa
