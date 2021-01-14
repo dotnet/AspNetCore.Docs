@@ -41,10 +41,10 @@ For more information on building the host, see the *Set up a host* and *Default 
 
 ## Additional resournces
 
-<a name="kestrel-options"></a>
-* <xref:fundamentals/servers/kestrel/options>
 <a name="endpoint-configuration"></a>
 * <xref:fundamentals/servers/kestrel/endpoints>
+<a name="kestrel-options"></a>
+* <xref:fundamentals/servers/kestrel/options>
 <a name="http2-support"></a>
 * <xref:fundamentals/servers/kestrel/http2>
 <a name="when-to-use-kestrel-with-a-reverse-proxy"></a>

@@ -977,12 +977,12 @@
         - name: Overview
           displayName: deploy, publish, server
           uid: fundamentals/servers/kestrel
-        - name: Options
-          displayName: deploy, publish, server
-          uid: fundamentals/servers/kestrel/options
         - name: Endpoints
           displayName: deploy, publish, server
           uid: fundamentals/servers/kestrel/endpoints
+        - name: Options
+          displayName: deploy, publish, server
+          uid: fundamentals/servers/kestrel/options
         - name: HTTP/2
           displayName: deploy, publish, server
           uid: fundamentals/servers/kestrel/http2
