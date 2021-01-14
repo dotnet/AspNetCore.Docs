@@ -36,7 +36,7 @@ Document Object Model (DOM) event processing:
 
 The `Render` lifecycle:
 
-1. Stop further rendering operations on the component:
+1. Avoid further rendering operations on the component:
    * After the first render.
    * When [`ShouldRender`](#suppress-ui-refreshing) is `false`.
 1. Build the render tree diff (difference) and render the component.
