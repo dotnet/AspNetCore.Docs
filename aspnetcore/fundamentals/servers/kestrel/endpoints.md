@@ -267,9 +267,9 @@ webBuilder.ConfigureKestrel(serverOptions =>
                 allowInvalid: true);
             var certs = new Dictionary<string, X509Certificate2>(StringComparer.OrdinalIgnoreCase)
             {
-            	{ "localhost", localhostCert },
-            	{ "example.com", exampleCert },
-            	{ "sub.example.com", subExampleCert },
+                { "localhost", localhostCert },
+                { "example.com", exampleCert },
+                { "sub.example.com", subExampleCert },
             };            
 
             httpsOptions.ServerCertificateSelector = (connectionContext, name) =>
