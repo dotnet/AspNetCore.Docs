@@ -13,7 +13,7 @@ By [Ryan Nowak](https://github.com/rynowak), [Kirk Larkin](https://twitter.com/s
 
 ::: moniker range=">= aspnetcore-3.0"
 
-ASP.NET Core controllers use the Routing [middleware](xref:fundamentals/middleware/index) to match the URLs of incoming requests and map them to [actions](#action).  Routes templates:
+ASP.NET Core controllers use the Routing [middleware](xref:fundamentals/middleware/index) to match the URLs of incoming requests and map them to [actions](#action).  Route templates:
 
 * Are defined in startup code or attributes.
 * Describe how URL paths are matched to [actions](#action).
@@ -26,7 +26,7 @@ This document:
 * Explains the interactions between MVC and routing:
   * How typical MVC apps make use of routing features.
   * Covers both:
-    * [Conventionally routing](#cr) typically used with controllers and views.
+    * [Conventional routing](#cr) typically used with controllers and views.
     * *Attribute routing* used with REST APIs. If you're primarily interested in routing for REST APIs, jump to the [Attribute routing for REST APIs](#ar) section.
   * See [Routing](xref:fundamentals/routing) for advanced routing details.
 * Refers to the default routing system added in ASP.NET Core 3.0, called endpoint routing. It's possible to use controllers with the previous version of routing for compatibility purposes. See the [2.2-3.0 migration guide](xref:migration/22-to-30) for instructions. Refer to the [2.2 version of this document](xref:mvc/controllers/routing?view=aspnetcore-2.2) for reference material on the legacy routing system.
