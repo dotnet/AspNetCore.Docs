@@ -24,7 +24,7 @@ Kestrel used in a reverse proxy configuration:
 
 Either configuration, with or without a reverse proxy server, is a supported hosting configuration.
 
-Kestrel used as an edge server without a reverse proxy server doesn't support sharing the same IP and port among multiple processes. When Kestrel is configured to listen on a port, Kestrel handles all of the traffic for that port regardless of requests' `Host` headers. A reverse proxy that can share ports has the ability to forward requests to Kestrel on a unique IP and port.
+When Kestrel is used as an edge server without a reverse proxy server, sharing of the same IP address and port among multiple processes is unsupported. When Kestrel is configured to listen on a port, Kestrel handles all traffic for that port regardless of requests' `Host` headers. A reverse proxy that can share ports can forward requests to Kestrel on a unique IP and port.
 
 Even if a reverse proxy server isn't required, using a reverse proxy server might be a good choice.
 
