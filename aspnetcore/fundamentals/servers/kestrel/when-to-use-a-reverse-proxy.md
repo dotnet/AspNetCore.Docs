@@ -5,7 +5,7 @@ description: Learn about when to use a reverse proxy in front of Kestrel, the cr
 monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/04/2020
+ms.date: 01/14/2021
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/servers/kestrel/when-to-use-a-reverse-proxy
 ---
@@ -37,3 +37,8 @@ A reverse proxy:
 
 > [!WARNING]
 > Hosting in a reverse proxy configuration requires [host filtering](xref:fundamentals/servers/kestrel/host-filtering).
+
+## Additional resources
+
+<xref:host-and-deploy/proxy-load-balancer>
+
