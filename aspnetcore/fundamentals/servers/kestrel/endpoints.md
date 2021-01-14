@@ -1,5 +1,5 @@
 ---
-title: Configuring endpoints for the ASP.NET Core Kestrel web server
+title: Configure endpoints for the ASP.NET Core Kestrel web server
 author: rick-anderson
 description: Learn about configuring endpoints with Kestrel, the cross-platform web server for ASP.NET Core.
 monikerRange: '>= aspnetcore-5.0'
@@ -10,7 +10,7 @@ no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Bla
 uid: fundamentals/servers/kestrel/endpoints
 ---
 
-# Configuring endpoints for the ASP.NET Core Kestrel web server
+# Configure endpoints for the ASP.NET Core Kestrel web server
 
 By default, ASP.NET Core binds to:
 
@@ -30,7 +30,7 @@ For more information on these approaches, see [Server URLs](xref:fundamentals/ho
 
 A development certificate is created:
 
-* When the [.NET Core SDK](/dotnet/core/sdk) is installed.
+* When the [.NET SDK](/dotnet/core/sdk) is installed.
 * The [dev-certs tool](xref:aspnetcore-2.1#https) is used to create a certificate.
 
 Some browsers require granting explicit permission to trust the local development certificate.
@@ -247,6 +247,9 @@ SNI support requires:
 * All websites run on the same Kestrel instance. Kestrel doesn't support sharing an IP address and port across multiple instances without a reverse proxy.
 
 ```csharp
+//using System.Security.Cryptography.X509Certificates;
+//using Microsoft.AspNetCore.Server.Kestrel.Https;
+
 webBuilder.ConfigureKestrel(serverOptions =>
 {
     serverOptions.ListenAnyIP(5005, listenOptions =>
@@ -262,11 +265,12 @@ webBuilder.ConfigureKestrel(serverOptions =>
             var subExampleCert = CertificateLoader.LoadFromStoreCert(
                 "sub.example.com", "My", StoreLocation.CurrentUser,
                 allowInvalid: true);
-            var certs = new Dictionary<string, X509Certificate2>(
-                StringComparer.OrdinalIgnoreCase);
-            certs["localhost"] = localhostCert;
-            certs["example.com"] = exampleCert;
-            certs["sub.example.com"] = subExampleCert;
+            var certs = new Dictionary<string, X509Certificate2>(StringComparer.OrdinalIgnoreCase)
+            {
+            	{ "localhost", localhostCert },
+            	{ "example.com", exampleCert },
+            	{ "sub.example.com", subExampleCert },
+            };            
 
             httpsOptions.ServerCertificateSelector = (connectionContext, name) =>
             {

@@ -62,6 +62,7 @@ If the app uses the [Kestrel](xref:fundamentals/servers/kestrel) server, [Nginx]
 ::: moniker range=">= aspnetcore-5.0"
 Either configuration&mdash;with or without a reverse proxy server&mdash;is a supported hosting configuration. For more information, see [When to use Kestrel with a reverse proxy](xref:fundamentals/servers/kestrel/when-to-use-a-reverse-proxy).
 ::: moniker-end
+
 ::: moniker range=">= aspnetcore-2.2 < aspnetcore-5.0"
 Either configuration&mdash;with or without a reverse proxy server&mdash;is a supported hosting configuration. For more information, see [When to use Kestrel with a reverse proxy](xref:fundamentals/servers/kestrel#when-to-use-kestrel-with-a-reverse-proxy).
 ::: moniker-end
