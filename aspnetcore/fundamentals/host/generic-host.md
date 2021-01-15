@@ -112,8 +112,8 @@ The <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*> method:
 The <xref:Microsoft.Extensions.Hosting.GenericHostBuilderExtensions.ConfigureWebHostDefaults*> method:
 
 * Loads host configuration from environment variables prefixed with `ASPNETCORE_`.
-* Sets [Kestrel](xref:fundamentals/servers/kestrel) server as the web server and configures it using the app's hosting configuration providers. For the Kestrel server's default options, see <xref:fundamentals/servers/kestrel#kestrel-options>.
-* Adds [Host Filtering middleware](xref:fundamentals/servers/kestrel#host-filtering).
+* Sets [Kestrel](xref:fundamentals/servers/kestrel) server as the web server and configures it using the app's hosting configuration providers. For the Kestrel server's default options, see <xref:fundamentals/servers/kestrel/options>.
+* Adds [Host Filtering middleware](xref:fundamentals/servers/kestrel/host-filtering).
 * Adds [Forwarded Headers middleware](xref:host-and-deploy/proxy-load-balancer#forwarded-headers) if `ASPNETCORE_FORWARDEDHEADERS_ENABLED` equals `true`.
 * Enables IIS integration. For the IIS default options, see <xref:host-and-deploy/iis/index#iis-options>.
 
@@ -420,7 +420,7 @@ To set this value, use the environment variable or call `UseUrls`:
 webBuilder.UseUrls("http://*:5000;http://localhost:5001;https://hostname:5002");
 ```
 
-Kestrel has its own endpoint configuration API. For more information, see <xref:fundamentals/servers/kestrel#endpoint-configuration>.
+Kestrel has its own endpoint configuration API. For more information, see <xref:fundamentals/servers/kestrel/endpoints>.
 
 ### WebRoot
 

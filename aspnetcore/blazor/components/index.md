@@ -23,7 +23,7 @@ Components are implemented in [Razor](xref:mvc/views/razor) component files (`.r
 
 ### Razor syntax
 
-Razor components in Blazor apps extensively use Razor syntax. If you aren't familiar with the Razor markup language, we recommend reading <xref:mvc/views/razor> before proceeding.
+Razor components in Blazor apps extensively use Razor syntax. If you aren't familiar with the Razor markup language, we recommend reading [Razor syntax reference for ASP.NET Core](xref:mvc/views/razor) before proceeding.
 
 When accessing the content on Razor syntax, pay special attention to the following sections:
 
@@ -64,7 +64,7 @@ Component members can be used as part of the component's rendering logic using C
 }
 ```
 
-After the component is initially rendered, the component regenerates its render tree in response to events. Blazor then compares the new render tree against the previous one and applies any modifications to the browser's Document Object Model (DOM).
+After the component is initially rendered, the component regenerates its render tree in response to events. Blazor then compares the new render tree against the previous one and applies any modifications to the browser's Document Object Model (DOM). Additional detail is provided in <xref:blazor/components/rendering>.
 
 Components are ordinary C# classes and can be placed anywhere within a project. Components that produce webpages usually reside in the `Pages` folder. Non-page components are frequently placed in the `Shared` folder or a custom folder added to the project.
 
@@ -276,7 +276,7 @@ By convention, an attribute value that consists of C# code is assigned to a para
 * Result of a method: `Title="@{METHOD}"`, where the placeholder `{METHOD}` is a C# method of the parent component.
 * [Implicit or explicit expression](xref:mvc/views/razor#implicit-razor-expressions): `Title="@({EXPRESSION})"`, where the placeholder `{EXPRESSION}` is a C# expression.
   
-For more information, see <xref:mvc/views/razor>.
+For more information, see [Razor syntax reference for ASP.NET Core](xref:mvc/views/razor).
 
 > [!WARNING]
 > Don't create components that write to their own *component parameters*, use a private field instead. For more information, see the [Overwritten parameters](#overwritten-parameters) section.
@@ -562,7 +562,7 @@ Use the `NotifierService` to update a component:
 }
 ```
 
-In the preceding example, `NotifierService` invokes the component's `OnNotify` method outside of Blazor's synchronization context. `InvokeAsync` is used to switch to the correct context and queue a render.
+In the preceding example, `NotifierService` invokes the component's `OnNotify` method outside of Blazor's synchronization context. `InvokeAsync` is used to switch to the correct context and queue a render. For more information, see <xref:blazor/components/rendering>.
 
 ## Use \@key to control the preservation of elements and components
 
@@ -784,7 +784,7 @@ If `IsCompleted` is `false`, the check box is rendered as:
 <input type="checkbox" />
 ```
 
-For more information, see <xref:mvc/views/razor>.
+For more information, see [Razor syntax reference for ASP.NET Core](xref:mvc/views/razor).
 
 > [!WARNING]
 > Some HTML attributes, such as [`aria-pressed`](https://developer.mozilla.org/docs/Web/Accessibility/ARIA/Roles/button_role#Toggle_buttons), don't function properly when the .NET type is a `bool`. In those cases, use a `string` type instead of a `bool`.
@@ -940,13 +940,13 @@ Whitespace isn't preserved from the preceding Razor markup:
 * <xref:blazor/security/server/threat-mitigation>: Includes guidance on building Blazor Server apps that must contend with resource exhaustion.
 
 <!--Reference links in article-->
-[1]: <xref:mvc/views/razor#code>
-[2]: <xref:mvc/views/razor#using>
-[3]: <xref:mvc/views/razor#attributes>
-[4]: <xref:mvc/views/razor#ref>
-[5]: <xref:mvc/views/razor#key>
-[6]: <xref:mvc/views/razor#inherits>
-[7]: <xref:mvc/views/razor#attribute>
-[8]: <xref:mvc/views/razor#namespace>
-[9]: <xref:mvc/views/razor#page>
-[10]: <xref:mvc/views/razor#bind>
+[1]: [Razor syntax reference for ASP.NET Core](xref:mvc/views/razor#code)
+[2]: [Razor syntax reference for ASP.NET Core](xref:mvc/views/razor#using)
+[3]: [Razor syntax reference for ASP.NET Core](xref:mvc/views/razor#attributes)
+[4]: [Razor syntax reference for ASP.NET Core](xref:mvc/views/razor#ref)
+[5]: [Razor syntax reference for ASP.NET Core](xref:mvc/views/razor#key)
+[6]: [Razor syntax reference for ASP.NET Core](xref:mvc/views/razor#inherits)
+[7]: [Razor syntax reference for ASP.NET Core](xref:mvc/views/razor#attribute)
+[8]: [Razor syntax reference for ASP.NET Core](xref:mvc/views/razor#namespace)
+[9]: [Razor syntax reference for ASP.NET Core](xref:mvc/views/razor#page)
+[10]: [Razor syntax reference for ASP.NET Core](xref:mvc/views/razor#bind)

@@ -397,5 +397,10 @@ For general information on CORS with ASP.NET Core apps, see <xref:security/cors>
 * <xref:blazor/security/webassembly/additional-scenarios>: Includes coverage on using <xref:System.Net.Http.HttpClient> to make secure web API requests.
 * <xref:fundamentals/http-requests>
 * <xref:security/enforcing-ssl>
+::: moniker range=">= aspnetcore-5.0"
+* [Kestrel HTTPS endpoint configuration](xref:fundamentals/servers/kestrel/endpoints)
+::: moniker-end
+::: moniker range="< aspnetcore-5.0"
 * [Kestrel HTTPS endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration)
+::: moniker-end
 * [Cross Origin Resource Sharing (CORS) at W3C](https://www.w3.org/TR/cors/)

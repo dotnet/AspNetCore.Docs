@@ -60,7 +60,7 @@ If not specifying a context to the component with `Context`, use the `context` v
 > For more information, see the following articles:
 >
 > * <xref:blazor/components/index#use-key-to-control-the-preservation-of-elements-and-components>
-> * <xref:mvc/views/razor#key>
+> * [Razor syntax reference for ASP.NET Core](xref:mvc/views/razor#key)
 
 The `Virtualize` component:
 
@@ -152,4 +152,4 @@ The size of each item in pixels can be set with <xref:Microsoft.AspNetCore.Compo
 
 ## State changes
 
-When making changes to items rendered by the `Virtualize` component, call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> to force re-evaluation and rerendering of the component.
+When making changes to items rendered by the `Virtualize` component, call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> to force re-evaluation and rerendering of the component. For more information, see <xref:blazor/components/rendering>.

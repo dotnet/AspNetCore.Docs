@@ -336,7 +336,7 @@ The second partial view renders the article's sections:
 
 ::: moniker range=">= aspnetcore-2.1"
 
-* <xref:mvc/views/razor>
+* [Razor syntax reference for ASP.NET Core](xref:mvc/views/razor)
 * <xref:mvc/views/tag-helpers/intro>
 * <xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper>
 * <xref:mvc/views/view-components>
@@ -346,7 +346,7 @@ The second partial view renders the article's sections:
 
 ::: moniker range="< aspnetcore-2.1"
 
-* <xref:mvc/views/razor>
+* [Razor syntax reference for ASP.NET Core](xref:mvc/views/razor)
 * <xref:mvc/views/view-components>
 * <xref:mvc/controllers/areas>
 
