@@ -82,6 +82,27 @@ webBuilder.ConfigureKestrel(serverOptions =>
 
 Creates a configuration loader for setting up Kestrel that takes an <xref:Microsoft.Extensions.Configuration.IConfiguration> as input. The configuration must be scoped to the configuration section for Kestrel.
 
+`CreateDefaultBuilder` calls `Configure(context.Configuration.GetSection("Kestrel"))` by default to load Kestrel configuration.
+
+```json
+{
+  "Kestrel": {
+    "Endpoints": {
+      "Http": {
+        "Url": "http://localhost:5000"
+      },
+      "Https": {
+        "Url": "https://localhost:5001",
+        "Certificate": {
+          "Path": "<path to .pfx file>",
+          "Password": "<certificate password>"
+        }
+      }
+    }
+  }
+}
+```
+
 ## ListenOptions.UseHttps
 
 Configure Kestrel to use HTTPS.
@@ -127,7 +148,7 @@ Kestrel listens on `http://localhost:5000` and `https://localhost:5001` (if a de
 
 ### Replace the default certificate from configuration
 
-`CreateDefaultBuilder` calls `Configure(context.Configuration.GetSection("Kestrel"))` by default to load Kestrel configuration. A default HTTPS app settings configuration schema is available for Kestrel. Configure multiple endpoints, including the URLs and the certificates to use, either from a file on disk or from a certificate store.
+A default HTTPS app settings configuration schema is available for Kestrel. Configure multiple endpoints, including the URLs and the certificates to use, either from a file on disk or from a certificate store.
 
 In the following *appsettings.json* example:
 
