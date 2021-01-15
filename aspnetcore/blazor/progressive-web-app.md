@@ -42,11 +42,13 @@ When creating a new **Blazor WebAssembly App** in the **Create a New Project** d
 
 # [Visual Studio Code / .NET Core CLI](#tab/visual-studio-code+netcore-cli)
 
-Create a PWA project in a command shell with the `--pwa` switch:
+Use the following command to create a PWA project in a command shell with the `--pwa` switch:
 
 ```dotnetcli
-dotnet new blazorwasm -o MyNewProject --pwa
+dotnet new blazorwasm -o MyBlazorPwa --pwa
 ```
+
+In the preceding command, the `-o|--output` option creates a new folder for the app named `MyBlazorPwa`.
 
 ---
 
@@ -75,28 +77,52 @@ In the app's project file:
   </ItemGroup>
   ```
 
+To obtain static assets, use **one** of the following approaches:
+
 ::: moniker range=">= aspnetcore-5.0"
 
-Navigate to the ASP.NET Core GitHub repository at the following URL, which links to 5.0 release reference source and assets. If you aren't converting an app for the 5.0 release, select the release that you're working with from the **Switch branches or tags** drop-down list that applies to your app.
+* Create a separate, new PWA project with the [`dotnet new`](/dotnet/core/tools/dotnet-new) command in a command shell:
 
-[dotnet/aspnetcore (release 5.0) Blazor WebAssembly project template `wwwroot` folder](https://github.com/dotnet/aspnetcore/tree/release/5.0/src/ProjectTemplates/Web.ProjectTemplates/content/ComponentsWebAssembly-CSharp/Client/wwwroot)
+  ```dotnetcli
+  dotnet new blazorwasm -o MyBlazorPwa --pwa
+  ```
+  
+  In the preceding command, the `-o|--output` option creates a new folder for the app named `MyBlazorPwa`.
+  
+  If you aren't converting an app for the latest release, pass the `-f|--framework` option. The following example creates the app for ASP.NET Core version 3.1:
+  
+  ```dotnetcli
+  dotnet new blazorwasm -o MyBlazorPwa --pwa -f netcoreapp3.1
+  ```
+
+* Navigate to the ASP.NET Core GitHub repository at the following URL, which links to 5.0 release reference source and assets. If you aren't converting an app for the 5.0 release, select the release that you're working with from the **Switch branches or tags** drop-down list that applies to your app.
+
+  [dotnet/aspnetcore (release 5.0) Blazor WebAssembly project template `wwwroot` folder](https://github.com/dotnet/aspnetcore/tree/release/5.0/src/ProjectTemplates/Web.ProjectTemplates/content/ComponentsWebAssembly-CSharp/Client/wwwroot)
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-Navigate to the ASP.NET Core GitHub repository at the following URL, which links to 3.1 release reference source and assets:
+* Create a separate, new PWA project with the [`dotnet new`](/dotnet/core/tools/dotnet-new) command in a command shell. Pass the `-f|--framework` option to select the version. The following example creates the app for ASP.NET Core version 3.1:
+  
+  ```dotnetcli
+  dotnet new blazorwasm -o MyBlazorPwa --pwa -f netcoreapp3.1
+  ```
+  
+  In the preceding command, the `-o|--output` option creates a new folder for the app named `MyBlazorPwa`.
 
-[dotnet/aspnetcore (release 3.1) Blazor WebAssembly project template `wwwroot` folder](https://github.com/dotnet/aspnetcore/tree/release/3.1/src/ProjectTemplates/ComponentsWebAssembly.ProjectTemplates/content/ComponentsWebAssembly-CSharp/Client/wwwroot)
+* Navigate to the ASP.NET Core GitHub repository at the following URL, which links to 3.1 release reference source and assets:
 
-> [!NOTE]
-> The URL for Blazor WebAssembly project template changed after the release of ASP.NET Core 3.1. Reference assets for 5.0 or later are available at the following URL:
->
-> [dotnet/aspnetcore (release 5.0) Blazor WebAssembly project template `wwwroot` folder](https://github.com/dotnet/aspnetcore/tree/release/5.0/src/ProjectTemplates/Web.ProjectTemplates/content/ComponentsWebAssembly-CSharp/Client/wwwroot)
+  [dotnet/aspnetcore (release 3.1) Blazor WebAssembly project template `wwwroot` folder](https://github.com/dotnet/aspnetcore/tree/release/3.1/src/ProjectTemplates/ComponentsWebAssembly.ProjectTemplates/content/ComponentsWebAssembly-CSharp/Client/wwwroot)
+
+  > [!NOTE]
+  > The URL for Blazor WebAssembly project template changed after the release of ASP.NET Core 3.1. Reference assets for 5.0 or later are available at the following URL:
+  >
+  > [dotnet/aspnetcore (release 5.0) Blazor WebAssembly project template `wwwroot` folder](https://github.com/dotnet/aspnetcore/tree/release/5.0/src/ProjectTemplates/Web.ProjectTemplates/content/ComponentsWebAssembly-CSharp/Client/wwwroot)
 
 ::: moniker-end
 
-From the reference assets `wwwroot` folder, copy the following files into the app's `wwwroot` folder:
+From the source `wwwroot` folder either in the app that you created or from the reference assets in the `dotnet/aspnetcore` GitHub repository, copy the following files into the app's `wwwroot` folder:
 
 * `icon-512.png`
 * `manifest.json`
