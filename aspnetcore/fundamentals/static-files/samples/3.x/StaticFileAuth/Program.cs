@@ -21,8 +21,6 @@ namespace StaticFileAuth
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                    //webBuilder.UseStartup<Startup2>();
-
                 });
     }
 }
