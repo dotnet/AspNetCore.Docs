@@ -11,7 +11,7 @@ uid: security/authentication/windowsauth
 ---
 # Configure Windows Authentication in ASP.NET Core
 
-By [Scott Addie](https://twitter.com/Scott_Addie)
+By [Scott Addie](https://twitter.com/Scott_Addie) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ::: moniker range=">= aspnetcore-3.0"
 
