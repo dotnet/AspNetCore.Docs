@@ -5,7 +5,7 @@ description: Learn how to configure Windows Authentication in ASP.NET Core for I
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: "mvc, seodec18"
-ms.date: 02/26/2020
+ms.date: 1/15/2021
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/windowsauth
 ---
@@ -164,6 +164,8 @@ services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
     .AddNegotiate();
 ```
 
+<xref:Microsoft.AspNetCore.Authentication.Negotiate.NegotiateDefaults.AuthenticationScheme> requires the NuGet package [Microsoft.AspNetCore.Authentication.Negotiate](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Negotiate).
+
 Add Authentication Middleware by calling <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> in `Startup.Configure`:
 
  ```csharp
@@ -188,24 +190,15 @@ services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
     });
 ```
 
-Some configurations may require specific credentials to query the LDAP domain. The credentials can be specified in the options:
+Some configurations may require specific credentials to query the LDAP domain. The credentials can be specified in the following highlighted options:
 
-```csharp
-services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
-    .AddNegotiate(options =>
-    {
-        if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
-        {
-            options.EnableLdap("contoso.com");
-            options.MachineAccountName = "machineName";
-            options.MachineAccountPassword = "PassW0rd";            
-        }
-    });
-```
+[!code-csharp[](windowsauth/sample_snapshot/StartupNegotiateDefaults.cs"?name=snippet&highlight=15-20)]
 
 By default, the negotiate authentication handler resolves nested domains. In a large or complicated LDAP environment, resolving nested domains may result in a slow lookup or a lot of memory being used for each user. Nested domain resolution can be disabled using the `IgnoreNestedGroups` option.
 
 Anonymous requests are allowed. Use [ASP.NET Core Authorization](xref:security/authorization/introduction) to challenge anonymous requests for authentication.
+
+<xref:Microsoft.AspNetCore.Authentication.Negotiate.NegotiateDefaults.AuthenticationScheme> requires the NuGet package [Microsoft.AspNetCore.Authentication.Negotiate](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Negotiate).
 
 ### Windows environment configuration
 
