@@ -115,7 +115,7 @@ Press **Ctrl-F5** to run the app in non-debug mode.
 * Launching the app with Ctrl+F5 (non-debug mode) allows you to make code changes, save the file, refresh the browser, and see the code changes. Many developers prefer to use non-debug mode to quickly launch the app and view changes.
 * You can launch the app in debug or non-debug mode from the **Debug** menu item:
 
-  ![Debug menu](start-mvc/_static/50.png)
+  ![Debug menu](start-mvc/_static/debug_menu50.png)
 
 * You can debug the app by selecting the **IIS Express** button
 
