@@ -39,7 +39,7 @@ namespace WebAppRP5
                         {
                             settings.Domain = "contoso.com";
                             settings.MachineAccountName = "machineName";
-                            settings.MachineAccountPassword = "PassW0rd";
+                            settings.MachineAccountPassword = Configuration["MachineAccountPassword"]
                         });
                     }
                 });
