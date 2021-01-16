@@ -110,7 +110,7 @@ To serve static files based on authorization:
 
   Static assets under `wwwroot` are publicly accessible because the default Static File Middleware (`app.UseStaticFiles();`) is called before `UseAuthentication`. Static assets in the *MyStaticFiles* folder require authentication. The [sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/static-files/samples) demonstrates this.
 
-An alternative approach to serve files based on authorization:
+An alternative approach to serve files based on authorization is to:
 
   * Store them outside of `wwwroot` and any directory accessible to the Static File Middleware.
   * Serve them via an action method to which authorization is applied and return a <xref:Microsoft.AspNetCore.Mvc.FileResult> object:
