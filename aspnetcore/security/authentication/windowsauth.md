@@ -192,7 +192,7 @@ services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
 
 Some configurations may require specific credentials to query the LDAP domain. The credentials can be specified in the following highlighted options:
 
-[!code-csharp[](windowsauth/sample_snapshot/StartupNegotiateDefaults.cs"?name=snippet&highlight=15-20)]
+[!code-csharp[](windowsauth/sample_snapshot/StartupNegotiateDefaults.cs?name=snippet&highlight=15-20)]
 
 By default, the negotiate authentication handler resolves nested domains. In a large or complicated LDAP environment, resolving nested domains may result in a slow lookup or a lot of memory being used for each user. Nested domain resolution can be disabled using the `IgnoreNestedGroups` option.
 
