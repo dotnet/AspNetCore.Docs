@@ -76,7 +76,7 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
 
   * If a dialog box appears with **Required assets to build and debug are missing from 'MvcMovie'. Add them?**  Select **Yes**
 
-  * `dotnet new mvc -o MvcMovie`: creates a new ASP.NET Core MVC project in the *MvcMovie* folder.
+  * `dotnet new mvc -o MvcMovie`: Creates a new ASP.NET Core MVC project in the *MvcMovie* folder.
   * `code -r MvcMovie`: Loads the *MvcMovie.csproj* project file in Visual Studio Code.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
@@ -105,13 +105,17 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
 
 # [Visual Studio](#tab/visual-studio)
 
-Press **Ctrl-F5** to run the app in non-debug mode.
+Select **Ctrl-F5** to run the app in non-debug mode.
 
 [!INCLUDE[](~/includes/trustCertVS.md)]
 
 * Visual Studio starts [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) and runs the app. Notice that the address bar shows `localhost:port#` and not something like `example.com`. That's because `localhost` is the standard hostname for your local computer. When Visual Studio creates a web project, a random port is used for the web server.
-* Launching the app with Ctrl+F5 (non-debug mode) allows you to make code changes, save the file, refresh the browser, and see the code changes. Many developers prefer to use non-debug mode to quickly launch the app and view changes.
-* You can launch the app in debug or non-debug mode from the **Debug** menu item:
+* Launching the app with Ctrl+F5 (non-debug mode) allows you to:
+
+  * Make code changes.
+  * Save the file.
+  * Refresh the browser and see the code changes.
+  * You can launch the app in debug or non-debug mode from the **Debug** menu item:
 
   ![Debug menu](start-mvc/_static/debug_menu50.png)
 
@@ -125,13 +129,19 @@ Press **Ctrl-F5** to run the app in non-debug mode.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-Press Ctrl+F5 to run without the debugger.
+Select Ctrl+F5 to run without the debugger.
 
 [!INCLUDE[](~/includes/trustCertVSC.md)]
 
-  Visual Studio Code starts [Kestrel](xref:fundamentals/servers/kestrel), launches a browser, and navigates to `https://localhost:5001`. The address bar shows `localhost:port:5001` and not something like `example.com`. That's because `localhost` is the standard hostname for  local computer. Localhost only serves web requests from the local computer.
+Visual Studio Code:
 
-  Launching the app with Ctrl+F5 (non-debug mode) allows you to:
+* Starts [Kestrel](xref:fundamentals/servers/kestrel)
+* Launches a browser.
+* Navigates to `https://localhost:5001`.
+
+The address bar shows `localhost:port:5001` and not something like `example.com`. That's because `localhost` is the standard hostname for  local computer. Localhost only serves web requests from the local computer.
+
+Launching the app with Ctrl+F5 (non-debug mode) allows you to:
 
 * Make code changes.
 * Save the file.
@@ -232,7 +242,7 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
 
   * A dialog box appears with **Required assets to build and debug are missing from 'MvcMovie'. Add them?**  Select **Yes**
 
-  * `dotnet new mvc -o MvcMovie`: creates a new ASP.NET Core MVC project in the *MvcMovie* folder.
+  * `dotnet new mvc -o MvcMovie`: Creates a new ASP.NET Core MVC project in the *MvcMovie* folder.
   * `code -r MvcMovie`: Loads the *MvcMovie.csproj* project file in Visual Studio Code.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
@@ -285,13 +295,19 @@ Select **Ctrl-F5** to run the app in non-debug mode.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-Press Ctrl+F5 to run without the debugger.
+Select Ctrl+F5 to run without the debugger.
 
 [!INCLUDE[](~/includes/trustCertVSC.md)]
 
-  Visual Studio Code starts [Kestrel](xref:fundamentals/servers/kestrel), launches a browser, and navigates to `https://localhost:5001`. The address bar shows `localhost:port:5001` and not something like `example.com`. That's because `localhost` is the standard hostname for  local computer. Localhost only serves web requests from the local computer.
+Visual Studio Code:
 
-  Launching the app with Ctrl+F5 (non-debug mode) allows you to:
+* Starts [Kestrel](xref:fundamentals/servers/kestrel)
+* Launches a browser.
+* Navigates to `https://localhost:5001`.
+
+The address bar shows `localhost:port:5001` and not something like `example.com`. That's because `localhost` is the standard hostname for  local computer. Localhost only serves web requests from the local computer.
+
+Launching the app with Ctrl+F5 (non-debug mode) allows you to:
 
 * Make code changes.
 * Save the file.
@@ -389,7 +405,7 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
 
   * A dialog box appears with **Required assets to build and debug are missing from 'MvcMovie'. Add them?**  Select **Yes**
 
-  * `dotnet new mvc -o MvcMovie`: creates a new ASP.NET Core MVC project in the *MvcMovie* folder.
+  * `dotnet new mvc -o MvcMovie`: Creates a new ASP.NET Core MVC project in the *MvcMovie* folder.
   * `code -r MvcMovie`: Loads the *MvcMovie.csproj* project file in Visual Studio Code.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
@@ -446,7 +462,13 @@ Press Ctrl+F5 to run without the debugger.
 
 [!INCLUDE[](~/includes/trustCertVSC.md)]
 
-  Visual Studio Code starts [Kestrel](xref:fundamentals/servers/kestrel), launches a browser, and goes to `https://localhost:5001`. The address bar shows `localhost:port:5001` and not something like `example.com`. That's because `localhost` is the standard hostname for the local computer. Localhost only serves web requests from the local computer.
+Visual Studio Code:
+
+* Starts [Kestrel](xref:fundamentals/servers/kestrel)
+* Launches a browser.
+* Navigates to `https://localhost:5001`.
+
+The address bar shows `localhost:port:5001` and not something like `example.com`. That's because `localhost` is the standard hostname for  local computer. Localhost only serves web requests from the local computer.
 
 Launching the app with Ctrl+F5 (non-debug mode) allows you to:
 
