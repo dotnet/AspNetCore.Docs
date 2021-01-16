@@ -81,6 +81,27 @@ The `Startup` class has the following additions:
     app.UseIdentityServer();
     ```
 
+### Azure App Service on Linux
+
+For Azure App Service deployments on Linux, specify the issuer explicitly in `Startup.ConfigureServices`:
+
+```csharp
+services.Configure<JwtBearerOptions>(
+    IdentityServerJwtConstants.IdentityServerJwtBearerScheme, 
+    options =>
+    {
+        options.Authority = "{DOMAIN}";
+    });
+```
+
+In the preceding code, the placeholder `{DOMAIN}` is the default or custom domain.
+
+Example:
+
+```csharp
+options.Authority = "https://contoso-service.azurewebsites.net";
+```
+
 ### AddApiAuthorization
 
 This helper method configures IdentityServer to use our supported configuration. IdentityServer is a powerful and extensible framework for handling app security concerns. At the same time, that exposes unnecessary complexity for the most common scenarios. Consequently, a set of conventions and configuration options is provided to you that are considered a good starting point. Once your authentication needs change, the full power of IdentityServer is still available to customize authentication to suit your needs.

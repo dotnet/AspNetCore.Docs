@@ -90,6 +90,10 @@ Apps often require claims for users based on a web API call to a server. For exa
 * [Additional scenarios: Customize the user](xref:blazor/security/webassembly/additional-scenarios#customize-the-user)
 * <xref:blazor/security/webassembly/aad-groups-roles>
 
+## Azure App Service on Linux with Identity Server
+
+Specify the issuer explicitly when deploying to Azure App Service on Linux with Identity Server. For more information, see <xref:security/authentication/identity/spa#azure-app-service-on-linux>.
+
 ## Implementation guidance
 
 Articles under this *Overview* provide information on authenticating users in Blazor WebAssembly apps against specific providers.
