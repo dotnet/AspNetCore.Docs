@@ -14,9 +14,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ::: moniker range=">= aspnetcore-5.0"
 
-This tutorial teaches ASP.NET Core MVC web development with controllers and views. If you're new to ASP.NET Core web development, consider the [Razor Pages](xref:tutorials/razor-pages/razor-pages-start) version of this tutorial, which provides an easier starting point.
-
-This is the first tutorial of a series that teaches the basics of building an ASP.NET Core MVC web app.
+This is the first tutorial of series that teaches ASP.NET Core MVC web development with controllers and views. If you're new to ASP.NET Core web development, consider the [Razor Pages](xref:tutorials/razor-pages/razor-pages-start) tutorial, which provides an easier starting point.
 
 At the end of the series, you'll have an app that manages and displays movie data. You learn how to:
 
@@ -50,7 +48,7 @@ At the end of the series, you'll have an app that manages and displays movie dat
 
 * Start Visual Studio and select **Create a new project**.
 * In the **Create a new project** dialog, select **ASP.NET Core Web Application** > **Next**.
-* In the **Configure your new project** dialog, enter `MvcMovie` for **Project name**. It's important to name the project *MvcMovie*, including matching the capitalization, so the namespaces will match when you copy and paste example code.
+* In the **Configure your new project** dialog, enter `MvcMovie` for **Project name**. It's important to name the project *MvcMovie*. Capitalization needs to match so the namespaces will match when you copy and paste example code.
 * Select **Create**.
 * In the **Create a new ASP.NET Core web application** dialog, select:
   * **.NET Core** and **ASP.NET Core 5.0** in the dropdowns.
@@ -61,14 +59,14 @@ At the end of the series, you'll have an app that manages and displays movie dat
 
 For alternative approaches to create the project, see [Create a new project in Visual Studio](/visualstudio/ide/create-new-project).
 
-Visual Studio used the default template for the MVC project you just created. This basic starter project is a working app.
+Visual Studio used the default template for the MVC project you created. This basic starter project is a working app.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-The tutorial assumes familiarity with VS Code. See [Getting started with VS Code](https://code.visualstudio.com/docs) and [Visual Studio Code help](#visual-studio-code-help) for more information.
+The tutorial assumes familiarity with VS Code. For more information, see [Getting started with VS Code](https://code.visualstudio.com/docs) and [Visual Studio Code help](#visual-studio-code-help).
 
 * Open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
-* Change to the directory (`cd`) which will contain the project.
+* Change to the directory (`cd`) that will contain the project.
 * Run the following command:
 
    ```dotnetcli
@@ -94,7 +92,7 @@ The tutorial assumes familiarity with VS Code. See [Getting started with VS Code
 * In the **Configure your new Web Application** dialog:
 
   * Confirm that **Authentication** is set to **No Authentication**.
-  * If presented an option to select a **Target Framework**, select the latest 5.x version.
+  * If an option to select a **Target Framework** is presented, select the latest 5.x version.
   * Select **Next**.
 
 * Name the project **MvcMovie**, and then select **Create**.
@@ -133,7 +131,13 @@ Press Ctrl+F5 to run without the debugger.
 
   Visual Studio Code starts [Kestrel](xref:fundamentals/servers/kestrel), launches a browser, and navigates to `https://localhost:5001`. The address bar shows `localhost:port:5001` and not something like `example.com`. That's because `localhost` is the standard hostname for  local computer. Localhost only serves web requests from the local computer.
 
-  Launching the app with Ctrl+F5 (non-debug mode) allows you to make code changes, save the file, refresh the browser, and see the code changes. Many developers prefer to use non-debug mode to refresh the page and view changes.
+  Launching the app with Ctrl+F5 (non-debug mode) allows you to:
+
+* Make code changes.
+* Save the file.
+* Refresh the browser and see the code changes.
+
+Many developers prefer to use non-debug mode to quickly view changes.
 
   ![Home or Index page](start-mvc/_static/home50-port5001.png)
 
@@ -197,28 +201,28 @@ At the end of the series, you'll have an app that manages and displays movie dat
 
 # [Visual Studio](#tab/visual-studio)
 
-* From the Visual Studio select **Create a new project**.
+* From the Visual Studio, select **Create a new project**.
 
 * Select **ASP.NET Core Web Application** > **Next**.
 
-![new ASP.NET Core Web Application](start-mvc/_static/np_2.1.png)
+![Create a new ASP.NET Core Web Application project](start-mvc/_static/np_2.1.png)
 
 * Name the project **MvcMovie** and select **Create**. It's important to name the project **MvcMovie** so when you copy code, the namespace will match.
 
-  ![new ASP.NET Core Web Application](start-mvc/_static/config.png)
+  ![Configure your new project](start-mvc/_static/config.png)
 
 * Select **Web Application(Model-View-Controller)**. From the dropdown boxes, select **.NET Core** and **ASP.NET Core 3.1**, then select **Create**.
 
 ![New project dialog, .NET Core in left pane, ASP.NET Core web ](start-mvc/_static/new_project30.png)
 
-Visual Studio used the default template for the MVC project you just created. You have a working app right now by entering a project name and selecting a few options. This is a basic starter project.
+Visual Studio used the default template for the MVC project you created. You have a working app right now by entering a project name and selecting a few options. This is a basic starter project.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-The tutorial assumes familarity with VS Code. See [Getting started with VS Code](https://code.visualstudio.com/docs) and [Visual Studio Code help](#visual-studio-code-help) for more information.
+The tutorial assumes familiarity with VS Code. For more information, see [Getting started with VS Code](https://code.visualstudio.com/docs) and [Visual Studio Code help](#visual-studio-code-help).
 
 * Open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
-* Change directories (`cd`) to a folder which will contain the project.
+* Change directories (`cd`) to a folder that will contain the project.
 * Run the following command:
 
    ```dotnetcli
@@ -244,7 +248,7 @@ The tutorial assumes familarity with VS Code. See [Getting started with VS Code]
 * In the **Configure your new Web Application** dialog:
 
   * Confirm that **Authentication** is set to **No Authentication**.
-  * If presented an option to select a **Target Framework**, select the latest 3.x version.
+  * If an option to select a **Target Framework** is presented, select the latest 3.x version.
 
   Select **Next**.
 
@@ -263,7 +267,10 @@ Select **Ctrl-F5** to run the app in non-debug mode.
 [!INCLUDE[](~/includes/trustCertVS.md)]
 
 * Visual Studio starts [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) and runs the app. Notice that the address bar shows `localhost:port#` and not something like `example.com`. That's because `localhost` is the standard hostname for your local computer. When Visual Studio creates a web project, a random port is used for the web server.
-* Launching the app with Ctrl+F5 (non-debug mode) allows you to make code changes, save the file, refresh the browser, and see the code changes. Many developers prefer to use non-debug mode to quickly launch the app and view changes.
+* Launching the app with Ctrl+F5 (non-debug mode) allows you to:
+  * Make code changes.
+  * Save the file.
+  * Refresh the browser and see the code changes.
 * You can launch the app in debug or non-debug mode from the **Debug** menu item:
 
   ![Debug menu](start-mvc/_static/debug_menu.png)
@@ -284,7 +291,11 @@ Press Ctrl+F5 to run without the debugger.
 
   Visual Studio Code starts [Kestrel](xref:fundamentals/servers/kestrel), launches a browser, and navigates to `https://localhost:5001`. The address bar shows `localhost:port:5001` and not something like `example.com`. That's because `localhost` is the standard hostname for  local computer. Localhost only serves web requests from the local computer.
 
-  Launching the app with Ctrl+F5 (non-debug mode) allows you to make code changes, save the file, refresh the browser, and see the code changes. Many developers prefer to use non-debug mode to refresh the page and view changes.
+  Launching the app with Ctrl+F5 (non-debug mode) allows you to:
+
+* Make code changes.
+* Save the file.
+* Refresh the browser and see the code changes.
 
   ![Home or Index page](start-mvc/_static/home2.2.png)
 
@@ -347,28 +358,28 @@ At the end of the series, you'll have an app that manages and displays movie dat
 
 # [Visual Studio](#tab/visual-studio)
 
-* From the Visual Studio select **Create a new project**.
+* From the Visual Studio, select **Create a new project**.
 
 * Select **ASP.NET Core Web Application** and then select **Next**.
 
-![new ASP.NET Core Web Application](start-mvc/_static/np_2.1.png)
+![Create the new ASP.NET Core Web Application](start-mvc/_static/np_2.1.png)
 
 * Name the project **MvcMovie** and select **Create**. It's important to name the project **MvcMovie** so when you copy code, the namespace will match.
 
-  ![new ASP.NET Core Web Application](start-mvc/_static/config.png)
+  ![Configure the new project](start-mvc/_static/config.png)
 
 * Select **Web Application(Model-View-Controller)**, and then select **Create**.
 
 ![New project dialog, .NET Core in left pane, ASP.NET Core web ](start-mvc/_static/new_project22-21.png)
 
-Visual Studio used the default template for the MVC project you just created. You have a working app right now by entering a project name and selecting a few options. This is a basic starter project, and it's a good place to start.
+Visual Studio used the default template for the MVC project you created. You have a working app right now by entering a project name and selecting a few options. This is a basic starter project, and it's a good place to start.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-The tutorial assumes familarity with VS Code. See [Getting started with VS Code](https://code.visualstudio.com/docs) and [Visual Studio Code help](#visual-studio-code-help) for more information.
+The tutorial assumes familiarity with VS Code. For more information, see [Getting started with VS Code](https://code.visualstudio.com/docs) and [Visual Studio Code help](#visual-studio-code-help).
 
 * Open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
-* Change directories (`cd`) to a folder which will contain the project.
+* Change directories (`cd`) to a folder that will contain the project.
 * Run the following command:
 
    ```dotnetcli
@@ -392,7 +403,7 @@ The tutorial assumes familarity with VS Code. See [Getting started with VS Code]
 * In the **Configure your new Web Application** dialog:
 
   * Confirm that **Authentication** is set to **No Authentication**.
-  * If presented an option to select a **Target Framework**, select the latest 2.x version.
+  * If an option to select a **Target Framework** is presented, select the latest 2.x version.
 
   Select **Next**.
 
@@ -409,7 +420,10 @@ Select **Ctrl-F5** to run the app in non-debug mode.
 [!INCLUDE[](~/includes/trustCertVS.md)]
 
 * Visual Studio starts [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) and runs the app. Notice that the address bar shows `localhost:port#` and not something like `example.com`. That's because `localhost` is the standard hostname for your local computer. When Visual Studio creates a web project, a random port is used for the web server.
-* Launching the app with Ctrl+F5 (non-debug mode) allows you to make code changes, save the file, refresh the browser, and see the code changes. Many developers prefer to use non-debug mode to quickly launch the app and view changes.
+* Launching the app with Ctrl+F5 (non-debug mode) allows you to:
+  * Make code changes.
+  * Save the file.
+  * Refresh the browser and see the code changes.
 * You can launch the app in debug or non-debug mode from the **Debug** menu item:
 
   ![Debug menu](start-mvc/_static/debug_menu.png)
@@ -418,7 +432,7 @@ Select **Ctrl-F5** to run the app in non-debug mode.
 
   ![IIS Express](start-mvc/_static/iis_express.png)
 
-* Select **Accept** to consent to tracking. This app doesn't track personal information. The template generated code includes assets to help meet [General Data Protection Regulation (GDPR)](xref:security/gdpr).
+* Select **Accept** to consent to tracking. This app doesn't track personal information. The template-generated code includes assets to help meet [General Data Protection Regulation (GDPR)](xref:security/gdpr).
 
   ![Home or Index page](start-mvc/_static/privacy.png)
 
@@ -434,9 +448,13 @@ Press Ctrl+F5 to run without the debugger.
 
   Visual Studio Code starts [Kestrel](xref:fundamentals/servers/kestrel), launches a browser, and goes to `https://localhost:5001`. The address bar shows `localhost:port:5001` and not something like `example.com`. That's because `localhost` is the standard hostname for the local computer. Localhost only serves web requests from the local computer.
 
-  Launching the app with Ctrl+F5 (non-debug mode) allows you to make code changes, save the file, refresh the browser, and see the code changes. Many developers prefer to use non-debug mode to refresh the page and view changes.
+Launching the app with Ctrl+F5 (non-debug mode) allows you to:
 
-* Select **Accept** to consent to tracking. This app doesn't track personal information. The template generated code includes assets to help meet [General Data Protection Regulation (GDPR)](xref:security/gdpr).
+* Make code changes.
+* Save the file.
+* Refresh the browser and see the code changes.
+
+* Select **Accept** to consent to tracking. This app doesn't track personal information. The template-generated code includes assets to help meet [General Data Protection Regulation (GDPR)](xref:security/gdpr).
 
   ![Home or Index page](start-mvc/_static/privacy.png)
 
@@ -453,7 +471,7 @@ Select **Run** > **Start Without Debugging** to launch the app. Visual Studio fo
 * The address bar shows `localhost:port#` and not something like `example.com`. That's because `localhost` is the standard hostname for your local computer. When Visual Studio creates a web project, a random port is used for the web server. When you run the app, you'll see a different port number.
 * You can launch the app in debug or non-debug mode from the **Run** menu.
 
-* Select **Accept** to consent to tracking. This app doesn't track personal information. The template generated code includes assets to help meet [General Data Protection Regulation (GDPR)](xref:security/gdpr).
+* Select **Accept** to consent to tracking. This app doesn't track personal information. The template-generated code includes assets to help meet [General Data Protection Regulation (GDPR)](xref:security/gdpr).
 
   ![Home or Index page](./start-mvc/_static/output_privacy_macos.png)
 
