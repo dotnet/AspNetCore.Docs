@@ -1,9 +1,9 @@
 ---
 title: Create a web app with ASP.NET Core MVC
 author: rick-anderson
-description: See the table of contents for an introduction to ASP.NET Core MVC.
+description: This series of tutorials explains the basics of building a web app with ASP.NET Core MVC.
 ms.author: riande
-ms.date: 10/26/2017
+ms.date: 01/26/2017
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-mvc-app/index
 ---
