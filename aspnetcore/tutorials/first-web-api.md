@@ -637,8 +637,8 @@ The following diagram shows the design of the app.
 Open a command terminal in the project folder and run the following commands:
 
    ```dotnetcli
-   dotnet add package Microsoft.EntityFrameworkCore.SqlServer
-   dotnet add package Microsoft.EntityFrameworkCore.InMemory
+   dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 3.1.11
+   dotnet add package Microsoft.EntityFrameworkCore.InMemory --version 3.1.11
    ```
 
 ---
@@ -800,10 +800,9 @@ The preceding code:
 Run the following commands:
 
 ```dotnetcli
-dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
-dotnet add package Microsoft.EntityFrameworkCore.Design
-dotnet tool install --global dotnet-aspnet-codegenerator
-dotnet tool update -g Dotnet-aspnet-codegenerator
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --version 3.1.4
+dotnet add package Microsoft.EntityFrameworkCore.Design --version 3.1.11
+dotnet tool install --global dotnet-aspnet-codegenerator --version 3.1.4
 dotnet aspnet-codegenerator controller -name TodoItemsController -async -api -m TodoItem -dc TodoContext -outDir Controllers
 ```
 
