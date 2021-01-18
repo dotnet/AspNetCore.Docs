@@ -3,7 +3,7 @@ title: Get started with ASP.NET Core MVC
 author: rick-anderson
 description: Learn how to get started with ASP.NET Core MVC.
 ms.author: riande
-ms.date: 01/13/2021
+ms.date: 01/16/2021
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-mvc-app/start-mvc
 ms.custom: contperf-fy21q3
@@ -48,7 +48,7 @@ At the end of the series, you'll have an app that manages and displays movie dat
 
 * Start Visual Studio and select **Create a new project**.
 * In the **Create a new project** dialog, select **ASP.NET Core Web Application** > **Next**.
-* In the **Configure your new project** dialog, enter `MvcMovie` for **Project name**. It's important to name the project *MvcMovie*. Capitalization needs to match so the namespaces will match when you copy and paste example code.
+* In the **Configure your new project** dialog, enter `MvcMovie` for **Project name**. It's important to name the project *MvcMovie*. Capitalization needs to match so the namespaces match when you copy and paste example code.
 * Select **Create**.
 * In the **Create a new ASP.NET Core web application** dialog, select:
   * **.NET Core** and **ASP.NET Core 5.0** in the dropdowns.
@@ -59,7 +59,10 @@ At the end of the series, you'll have an app that manages and displays movie dat
 
 For alternative approaches to create the project, see [Create a new project in Visual Studio](/visualstudio/ide/create-new-project).
 
-Visual Studio used the default template for the MVC project you created. This basic starter project is a working app.
+Visual Studio used the default project template for the created MVC project. The created project:
+
+* Is a working app.
+* Is a basic starter project.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -105,27 +108,34 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
 
 # [Visual Studio](#tab/visual-studio)
 
-Select **Ctrl-F5** to run the app in non-debug mode.
+Select Ctrl+F5 to run the app without the debugger.
 
 [!INCLUDE[](~/includes/trustCertVS.md)]
 
-* Visual Studio starts [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) and runs the app. Notice that the address bar shows `localhost:port#` and not something like `example.com`. That's because `localhost` is the standard hostname for your local computer. When Visual Studio creates a web project, a random port is used for the web server.
-* Launching the app with Ctrl+F5 (non-debug mode) allows you to:
+Visual Studio:
 
-  * Make code changes.
-  * Save the file.
-  * Refresh the browser and see the code changes.
-  * You can launch the app in debug or non-debug mode from the **Debug** menu item:
+* Starts [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview).
+* Runs the app.
 
-  ![Debug menu](start-mvc/_static/debug_menu50.png)
+Notice that the address bar shows `localhost:port#` and not something like `example.com`. The standard hostname for your local computer is `localhost`. When Visual Studio creates a web project, a random port is used for the web server.
 
-* You can debug the app by selecting the **IIS Express** button
+Launching the app without debugging by selecting Ctrl+F5 allows you to:
 
-  ![IIS Express](start-mvc/_static/iis_express50.png)
+* Make code changes.
+* Save the file.
+* Refresh the browser and see the code changes.
 
-  The following image shows the app:
+You can launch the app in debug or non-debug mode from the **Debug** menu item:
 
-  ![Home or Index page](start-mvc/_static/home50-vs.png)
+![Debug menu](start-mvc/_static/debug_menu50.png)
+
+You can debug the app by selecting the **IIS Express** button
+
+![IIS Express](start-mvc/_static/iis_express50.png)
+
+The following image shows the app:
+
+![Home or Index page](start-mvc/_static/home50-vs.png)
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -141,7 +151,7 @@ Visual Studio Code:
 
 The address bar shows `localhost:port:5001` and not something like `example.com`. That's because `localhost` is the standard hostname for  local computer. Localhost only serves web requests from the local computer.
 
-Launching the app with Ctrl+F5 (non-debug mode) allows you to:
+Launching the app without debugging by selecting Ctrl+F5 allows you to:
 
 * Make code changes.
 * Save the file.
@@ -225,7 +235,10 @@ At the end of the series, you'll have an app that manages and displays movie dat
 
 ![New project dialog, .NET Core in left pane, ASP.NET Core web ](start-mvc/_static/new_project30.png)
 
-Visual Studio used the default template for the MVC project you created. You have a working app right now by entering a project name and selecting a few options. This is a basic starter project.
+Visual Studio used the default project template for the created MVC project. The created project:
+
+* Is a working app.
+* Is a basic starter project.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -272,30 +285,38 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
 
 # [Visual Studio](#tab/visual-studio)
 
-Select **Ctrl-F5** to run the app in non-debug mode.
+Select Ctrl+F5 to run the app without debugging.
 
 [!INCLUDE[](~/includes/trustCertVS.md)]
 
-* Visual Studio starts [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) and runs the app. Notice that the address bar shows `localhost:port#` and not something like `example.com`. That's because `localhost` is the standard hostname for your local computer. When Visual Studio creates a web project, a random port is used for the web server.
-* Launching the app with Ctrl+F5 (non-debug mode) allows you to:
-  * Make code changes.
-  * Save the file.
-  * Refresh the browser and see the code changes.
-* You can launch the app in debug or non-debug mode from the **Debug** menu item:
+Visual Studio:
 
-  ![Debug menu](start-mvc/_static/debug_menu.png)
+* Starts [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview).
+* Runs the app.
 
-* You can debug the app by selecting the **IIS Express** button
+Notice that the address bar shows `localhost:port#` and not something like `example.com`. The standard hostname for your local computer is `localhost`. When Visual Studio creates a web project, a random port is used for the web server.
 
-  ![IIS Express](start-mvc/_static/iis_express.png)
+Launching the app without debugging by selecting Ctrl+F5 allows you to:
 
-  The following image shows the app:
+* Make code changes.
+* Save the file.
+* Refresh the browser and see the code changes.
 
-  ![Home or Index page](start-mvc/_static/home2.2.png)
+You can launch the app in debug or non-debug mode from the **Debug** menu item:
+
+![Debug menu](start-mvc/_static/debug_menu.png)
+
+You can debug the app by selecting the **IIS Express** button
+
+![IIS Express](start-mvc/_static/iis_express.png)
+
+The following image shows the app:
+
+![Home or Index page](start-mvc/_static/home2.2.png)
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-Select Ctrl+F5 to run without the debugger.
+Select Ctrl+F5 to run the app without debugging.
 
 [!INCLUDE[](~/includes/trustCertVSC.md)]
 
@@ -307,7 +328,7 @@ Visual Studio Code:
 
 The address bar shows `localhost:port:5001` and not something like `example.com`. That's because `localhost` is the standard hostname for  local computer. Localhost only serves web requests from the local computer.
 
-Launching the app with Ctrl+F5 (non-debug mode) allows you to:
+Launching the app without debugging by selecting Ctrl+F5 allows you to:
 
 * Make code changes.
 * Save the file.
@@ -388,7 +409,10 @@ At the end of the series, you'll have an app that manages and displays movie dat
 
 ![New project dialog, .NET Core in left pane, ASP.NET Core web ](start-mvc/_static/new_project22-21.png)
 
-Visual Studio used the default template for the MVC project you created. You have a working app right now by entering a project name and selecting a few options. This is a basic starter project, and it's a good place to start.
+Visual Studio used the default project template for the created MVC project. The created project:
+
+* Is a working app.
+* Is a basic starter project.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -431,12 +455,12 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
 
 # [Visual Studio](#tab/visual-studio)
 
-Select **Ctrl-F5** to run the app in non-debug mode.
+Select Ctrl+F5 to run the app without debugging.
 
 [!INCLUDE[](~/includes/trustCertVS.md)]
 
 * Visual Studio starts [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) and runs the app. Notice that the address bar shows `localhost:port#` and not something like `example.com`. That's because `localhost` is the standard hostname for your local computer. When Visual Studio creates a web project, a random port is used for the web server.
-* Launching the app with Ctrl+F5 (non-debug mode) allows you to:
+* Launching the app without debugging by selecting Ctrl+F5 allows you to:
   * Make code changes.
   * Save the file.
   * Refresh the browser and see the code changes.
@@ -458,7 +482,7 @@ Select **Ctrl-F5** to run the app in non-debug mode.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-Press Ctrl+F5 to run without the debugger.
+Select Ctrl+F5 to run the app without debugging.
 
 [!INCLUDE[](~/includes/trustCertVSC.md)]
 
@@ -470,7 +494,7 @@ Visual Studio Code:
 
 The address bar shows `localhost:port:5001` and not something like `example.com`. That's because `localhost` is the standard hostname for  local computer. Localhost only serves web requests from the local computer.
 
-Launching the app with Ctrl+F5 (non-debug mode) allows you to:
+Launching the app without debugging by selecting Ctrl+F5 allows you to:
 
 * Make code changes.
 * Save the file.
