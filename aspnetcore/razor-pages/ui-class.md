@@ -79,6 +79,14 @@ Suppose *RazorUIClassLib/Pages/Shared* contains two partial files: *_Header.csht
 </body>
 ```
 
+The **_ViewStart.cshtml** file should be added in the pages folder of the Razor class library if you want to use the **_Layout.cshtml** file from the host Web application.
+
+```cshtml
+@{
+    Layout = "_Layout";
+}
+```
+
 ## Create an RCL with static assets
 
 An RCL may require companion static assets that can be referenced by either the RCL or the consuming app of the RCL. ASP.NET Core allows creating RCLs that include static assets that are available to a consuming app.
