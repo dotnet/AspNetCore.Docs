@@ -79,7 +79,7 @@ Suppose *RazorUIClassLib/Pages/Shared* contains two partial files: *_Header.csht
 </body>
 ```
 
-The **_ViewStart.cshtml** file should be added in the pages folder of the Razor class library if you want to use the **_Layout.cshtml** file from the host Web application.
+The **_ViewStart.cshtml** file should be added in the pages folder of the Razor class library if you want to use the **_Layout.cshtml** file from the host web application.
 
 ```cshtml
 @{
