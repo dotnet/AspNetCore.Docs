@@ -17,6 +17,8 @@ This article describes the files and folders that make up a Blazor app generated
 
 ## Blazor WebAssembly
 
+The following files and folders are produced from the Blazor WebAssembly template (`blazorwasm`):
+
 * `Pages` folder: Contains the routable components/pages (`.razor`) that make up the Blazor app. The route for each page is specified using the [`@page`](xref:mvc/views/razor#page) directive. The template includes the following components:
   * `Counter` component (`Counter.razor`): Implements the Counter page.
   * `FetchData` component (`FetchData.razor`): Implements the Fetch data page.
@@ -83,6 +85,8 @@ This article describes the files and folders that make up a Blazor app generated
 ::: moniker-end
 
 ## Blazor Server
+
+The following files and folders are produced from the Blazor Server template (`blazorserver`):
 
 * `Data` folder: Contains the `WeatherForecast` class and implementation of the `WeatherForecastService` that provide example weather data to the app's `FetchData` component.
 
