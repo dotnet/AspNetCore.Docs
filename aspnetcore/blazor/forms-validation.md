@@ -277,7 +277,7 @@ In the following `InputDate` component example:
 * The component is bound to the `BirthDate` property as a `DateTime` type.
 
 ```razor
-<InputDate @bind-Value="@BirthDate" DisplayName="birthday" />
+<InputDate @bind-Value="BirthDate" DisplayName="birthday" />
 
 @code {
     public DateTime BirthDate { get; set; }
