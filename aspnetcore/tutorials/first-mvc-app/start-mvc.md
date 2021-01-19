@@ -14,7 +14,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ::: moniker range=">= aspnetcore-5.0"
 
-This is the first tutorial of series that teaches ASP.NET Core MVC web development with controllers and views. If you're new to ASP.NET Core web development, consider the [Razor Pages](xref:tutorials/razor-pages/razor-pages-start) tutorial, which provides an easier starting point.
+This is the first tutorial of a series that teaches ASP.NET Core MVC web development with controllers and views.
 
 At the end of the series, you'll have an app that manages and displays movie data. You learn how to:
 
@@ -25,6 +25,8 @@ At the end of the series, you'll have an app that manages and displays movie dat
 > * Add search and validation.
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/first-mvc-app/start-mvc/sample) ([how to download](xref:index#how-to-download-a-sample)).
+
+If you're new to ASP.NET Core web development, consider the [Razor Pages](xref:tutorials/razor-pages/razor-pages-start) tutorial, which provides an easier starting point.
 
 ## Prerequisites
 
@@ -77,7 +79,7 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
    code -r MvcMovie
    ```
 
-  * If a dialog box appears with **Required assets to build and debug are missing from 'MvcMovie'. Add them?**  Select **Yes**
+  * If a dialog box appears with **Required assets to build and debug are missing from 'MvcMovie'. Add them?**, select **Yes**
 
   * `dotnet new mvc -o MvcMovie`: Creates a new ASP.NET Core MVC project in the *MvcMovie* folder.
   * `code -r MvcMovie`: Loads the *MvcMovie.csproj* project file in Visual Studio Code.
@@ -117,7 +119,7 @@ Visual Studio:
 * Starts [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview).
 * Runs the app.
 
-Notice that the address bar shows `localhost:port#` and not something like `example.com`. The standard hostname for your local computer is `localhost`. When Visual Studio creates a web project, a random port is used for the web server.
+The address bar shows `localhost:port#` and not something like `example.com`. The standard hostname for your local computer is `localhost`. When Visual Studio creates a web project, a random port is used for the web server.
 
 Launching the app without debugging by selecting Ctrl+F5 allows you to:
 
@@ -149,7 +151,7 @@ Visual Studio Code:
 * Launches a browser.
 * Navigates to `https://localhost:5001`.
 
-The address bar shows `localhost:port:5001` and not something like `example.com`. That's because `localhost` is the standard hostname for  local computer. Localhost only serves web requests from the local computer.
+The address bar shows `localhost:port:5001` and not something like `example.com`. The standard hostname for your local computer is `localhost`. Localhost only serves web requests from the local computer.
 
 Launching the app without debugging by selecting Ctrl+F5 allows you to:
 
@@ -163,14 +165,21 @@ Many developers prefer to use non-debug mode to quickly view changes.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-Select **Run** > **Start Without Debugging** to launch the app. Visual Studio for Mac starts [Kestrel](xref:fundamentals/servers/index#kestrel) server, launches a browser, and navigates to `http://localhost:port`, where *port* is a randomly chosen port number.
+Select **Run** > **Start Without Debugging** to launch the app.
+
+Visual Studio for Mac:
+
+* Starts [Kestrel](xref:fundamentals/servers/index#kestrel) server.
+* Launches a browser.
+* Navigates to `http://localhost:port`, where *port* is a randomly chosen port number.
 
 [!INCLUDE[](~/includes/trustCertMac.md)]
 
-* The address bar shows `localhost:port#` and not something like `example.com`. That's because `localhost` is the standard hostname for your local computer. When Visual Studio creates a web project, a random port is used for the web server. When you run the app, you'll see a different port number.
-* You can launch the app in debug or non-debug mode from the **Run** menu.
+The address bar shows `localhost:port#` and not something like `example.com`. The standard hostname for your local computer is `localhost`. When Visual Studio creates a web project, a random port is used for the web server.
 
-  The following image shows the app:
+You can launch the app in debug or non-debug mode from the **Run** menu.
+
+The following image shows the app:
 
   ![Home or Index page](./start-mvc/_static/output_macos.png)
 
@@ -187,9 +196,7 @@ In the next part of this tutorial, you learn about MVC and start writing some co
 
 ::: moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
 
-This tutorial teaches ASP.NET Core MVC web development with controllers and views. If you're new to ASP.NET Core web development, consider the [Razor Pages](xref:tutorials/razor-pages/razor-pages-start) version of this tutorial, which provides an easier starting point.
-
-This is the first tutorial of a series that teaches the basics of building an ASP.NET Core MVC web app.
+This is the first tutorial of a series that teaches ASP.NET Core MVC web development with controllers and views.
 
 At the end of the series, you'll have an app that manages and displays movie data. You learn how to:
 
@@ -200,6 +207,8 @@ At the end of the series, you'll have an app that manages and displays movie dat
 > * Add search and validation.
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/first-mvc-app/start-mvc/sample) ([how to download](xref:index#how-to-download-a-sample)).
+
+If you're new to ASP.NET Core web development, consider the [Razor Pages](xref:tutorials/razor-pages/razor-pages-start) tutorial, which provides an easier starting point.
 
 ## Prerequisites
 
@@ -253,7 +262,7 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
    code -r MvcMovie
    ```
 
-  * A dialog box appears with **Required assets to build and debug are missing from 'MvcMovie'. Add them?**  Select **Yes**
+  * A dialog box appears with **Required assets to build and debug are missing from 'MvcMovie'. Add them?**, select **Yes**.
 
   * `dotnet new mvc -o MvcMovie`: Creates a new ASP.NET Core MVC project in the *MvcMovie* folder.
   * `code -r MvcMovie`: Loads the *MvcMovie.csproj* project file in Visual Studio Code.
@@ -294,7 +303,7 @@ Visual Studio:
 * Starts [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview).
 * Runs the app.
 
-Notice that the address bar shows `localhost:port#` and not something like `example.com`. The standard hostname for your local computer is `localhost`. When Visual Studio creates a web project, a random port is used for the web server.
+The address bar shows `localhost:port#` and not something like `example.com`. The standard hostname for your local computer is `localhost`. When Visual Studio creates a web project, a random port is used for the web server.
 
 Launching the app without debugging by selecting Ctrl+F5 allows you to:
 
@@ -326,7 +335,7 @@ Visual Studio Code:
 * Launches a browser.
 * Navigates to `https://localhost:5001`.
 
-The address bar shows `localhost:port:5001` and not something like `example.com`. That's because `localhost` is the standard hostname for  local computer. Localhost only serves web requests from the local computer.
+The address bar shows `localhost:port:5001` and not something like `example.com`. The standard hostname for your local computer is `localhost`. Localhost only serves web requests from the local computer.
 
 Launching the app without debugging by selecting Ctrl+F5 allows you to:
 
@@ -342,10 +351,11 @@ Select **Run** > **Start Without Debugging** to launch the app. Visual Studio fo
 
 [!INCLUDE[](~/includes/trustCertMac.md)]
 
-* The address bar shows `localhost:port#` and not something like `example.com`. That's because `localhost` is the standard hostname for your local computer. When Visual Studio creates a web project, a random port is used for the web server. When you run the app, you'll see a different port number.
-* You can launch the app in debug or non-debug mode from the **Run** menu.
+The address bar shows `localhost:port#` and not something like `example.com`. That's because `localhost` is the standard hostname for your local computer. When Visual Studio creates a web project, a random port is used for the web server. When you run the app, you'll see a different port number.
 
-  The following image shows the app:
+You can launch the app in debug or non-debug mode from the **Run** menu.
+
+The following image shows the app:
 
   ![Home or Index page](./start-mvc/_static/output_macos.png)
 
@@ -427,7 +437,7 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
    code -r MvcMovie
    ```
 
-  * A dialog box appears with **Required assets to build and debug are missing from 'MvcMovie'. Add them?**  Select **Yes**
+  * A dialog box appears with **Required assets to build and debug are missing from 'MvcMovie'. Add them?**. Select **Yes**.
 
   * `dotnet new mvc -o MvcMovie`: Creates a new ASP.NET Core MVC project in the *MvcMovie* folder.
   * `code -r MvcMovie`: Loads the *MvcMovie.csproj* project file in Visual Studio Code.
