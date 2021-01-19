@@ -112,12 +112,12 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
 
 * Select Ctrl+F5 to run the app without the debugger.
 
-[!INCLUDE[](~/includes/trustCertVS.md)]
+  [!INCLUDE[](~/includes/trustCertVS.md)]
 
-Visual Studio:
+  Visual Studio:
 
-* Starts [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview).
-* Runs the app.
+  * Starts [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview).
+  * Runs the app.
 
 The address bar shows `localhost:port#` and not something like `example.com`. The standard hostname for your local computer is `localhost`. When Visual Studio creates a web project, a random port is used for the web server.
 
@@ -125,7 +125,7 @@ Launching the app without debugging by selecting Ctrl+F5 allows you to:
 
 * Make code changes.
 * Save the file.
-* Refresh the browser and see the code changes.
+* Quickly refresh the browser and see the code changes.
 
 You can launch the app in debug or non-debug mode from the **Debug** menu item:
 
@@ -157,9 +157,7 @@ Launching the app without debugging by selecting Ctrl+F5 allows you to:
 
 * Make code changes.
 * Save the file.
-* Refresh the browser and see the code changes.
-
-Many developers prefer to use non-debug mode to quickly view changes.
+* Quickly refresh the browser and see the code changes.
 
   ![Home or Index page](start-mvc/_static/home50-port5001.png)
 
@@ -281,8 +279,7 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
 
   * Confirm that **Authentication** is set to **No Authentication**.
   * If an option to select a **Target Framework** is presented, select the latest 3.x version.
-
-  Select **Next**.
+  * Select **Next**.
 
 * Name the project **MvcMovie**, and then select **Create**.
 
@@ -294,9 +291,9 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
 
 # [Visual Studio](#tab/visual-studio)
 
-Select Ctrl+F5 to run the app without debugging.
+* Select Ctrl+F5 to run the app without debugging.
 
-[!INCLUDE[](~/includes/trustCertVS.md)]
+  [!INCLUDE[](~/includes/trustCertVS.md)]
 
 Visual Studio:
 
@@ -309,7 +306,7 @@ Launching the app without debugging by selecting Ctrl+F5 allows you to:
 
 * Make code changes.
 * Save the file.
-* Refresh the browser and see the code changes.
+* Quickly refresh the browser and see the code changes.
 
 You can launch the app in debug or non-debug mode from the **Debug** menu item:
 
@@ -341,7 +338,7 @@ Launching the app without debugging by selecting Ctrl+F5 allows you to:
 
 * Make code changes.
 * Save the file.
-* Refresh the browser and see the code changes.
+* Quickly refresh the browser and see the code changes.
 
   ![Home or Index page](start-mvc/_static/home2.2.png)
 
@@ -456,8 +453,7 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
 
   * Confirm that **Authentication** is set to **No Authentication**.
   * If an option to select a **Target Framework** is presented, select the latest 2.x version.
-
-  Select **Next**.
+  * Select **Next**.
 
 * Name the project **MvcMovie**, and then select **Create**.
 
@@ -510,7 +506,7 @@ Launching the app without debugging by selecting Ctrl+F5 allows you to:
 
 * Make code changes.
 * Save the file.
-* Refresh the browser and see the code changes.
+* Quickly refresh the browser and see the code changes.
 
 * Select **Accept** to consent to tracking. This app doesn't track personal information. The template-generated code includes assets to help meet [General Data Protection Regulation (GDPR)](xref:security/gdpr).
 
