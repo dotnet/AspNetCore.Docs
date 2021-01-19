@@ -94,7 +94,7 @@ services.Configure<JwtBearerOptions>(
     });
 ```
 
-In the preceding code, the placeholder `{DOMAIN}` is the default or custom domain.
+In the preceding code, the `{DOMAIN}` placeholder is the default or custom domain.
 
 Example:
 
