@@ -62,6 +62,15 @@ The following files and folders are produced from the Blazor WebAssembly templat
 
 ::: moniker-end
 
+> [!NOTE]
+> Custom script files added to the `index.html` file should be added after the `<script>` element for `blazor.webassembly.js` if the order of loading JavaScript code is important to Blazor. All script elements should appear before the closing `</body>` tag. The following example adds a JS interop script from the `wwwroot` folder named `interop.js`:
+>
+> ```html
+>     <script src="_framework/blazor.webassembly.js"></script>
+>     <script src="interop.js"></script>
+> </body>
+> ```
+
 * `_Imports.razor`: Includes common Razor directives to include in the app's components (`.razor`), such as [`@using`](xref:mvc/views/razor#using) directives for namespaces.
 
 * `App.razor`: The root component of the app that sets up client-side routing using the <xref:Microsoft.AspNetCore.Components.Routing.Router> component. The <xref:Microsoft.AspNetCore.Components.Routing.Router> component intercepts browser navigation and renders the page that matches the requested address.
@@ -98,7 +107,16 @@ The following files and folders are produced from the Blazor Server template (`b
   * `Error` component (`Error.razor`): Rendered when an unhandled exception occurs in the app.
   * `FetchData` component (`FetchData.razor`): Implements the Fetch data page.
   * `Index` component (`Index.razor`): Implements the Home page.
-  
+
+> [!NOTE]
+> Custom script files added to the `_Host.cshtml_` file should be added after the `<script>` element for `blazor.server.js` if the order of loading JavaScript code is important to Blazor. All script elements should appear before the closing `</body>` tag. The following example adds a JS interop script from the `wwwroot` folder named `interop.js`:
+>
+> ```html
+>     <script src="_framework/blazor.server.js"></script>
+>     <script src="interop.js"></script>
+> </body>
+> ```
+
 * `Properties/launchSettings.json`: Holds [development environment configuration](xref:fundamentals/environments#development-and-launchsettingsjson).
 
 ::: moniker range=">= aspnetcore-5.0"
