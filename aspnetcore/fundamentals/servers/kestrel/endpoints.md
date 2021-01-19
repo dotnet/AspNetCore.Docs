@@ -181,10 +181,10 @@ In the following *appsettings.json* example:
       "HttpsDefaultCert": {
         "Url": "https://localhost:5003"
       },
-      "Https": {
-        "Url": "https://*:5004",
+      "HttpsInlineCertAndKey": {
+        "Url": "https://localhost:5004",
         "Certificate": {
-          "Path": "<path to .pfx file>",
+          "Path": "<path to .pem/.crt file>",
           "KeyPath": "<path to .key file>",
           "Password": "<certificate password>"
         }
@@ -205,7 +205,7 @@ Schema notes:
 * Endpoints names are case-insensitive. For example, `HTTPS` and `Https` are valid.
 * The `Url` parameter is required for each endpoint. The format for this parameter is the same as the top-level `Urls` configuration parameter except that it's limited to a single value.
 * These endpoints replace those defined in the top-level `Urls` configuration rather than adding to them. Endpoints defined in code via `Listen` are cumulative with the endpoints defined in the configuration section.
-* The `Certificate` section is optional. If the `Certificate` section isn't specified, the defaults defined in earlier scenarios are used. If no defaults are available, the server throws an exception and fails to start.
+* The `Certificate` section is optional. If the `Certificate` section isn't specified, the defaults defined in **Certificates** > **Default** are used. If no defaults are available, the server throws an exception and fails to start.
 * The `Certificate` section supports multiple certificate sources:
   * **Path**&ndash;**Password**
   * **Path**&ndash;**KeyPath**&dash;**Password**
