@@ -206,10 +206,7 @@ Schema notes:
 * The `Url` parameter is required for each endpoint. The format for this parameter is the same as the top-level `Urls` configuration parameter except that it's limited to a single value.
 * These endpoints replace those defined in the top-level `Urls` configuration rather than adding to them. Endpoints defined in code via `Listen` are cumulative with the endpoints defined in the configuration section.
 * The `Certificate` section is optional. If the `Certificate` section isn't specified, the defaults defined in **Certificates** > **Default** are used. If no defaults are available then the development certificate is used. If there are no defaults and the development certificate isn't present then the server throws an exception and fails to start.
-* The `Certificate` section supports multiple certificate sources:
-  * **Path**&ndash;**Password**
-  * **Path**&ndash;**KeyPath**&dash;**Password**
-  * **Subject**&ndash;**Store**
+* The `Certificate` section supports multiple [certificate sources](xref:fundamentals/servers/kestrel/endpoints#certificate-sources).
 * Any number of endpoints may be defined in this way so long as they don't cause port conflicts.
 
 #### Certificate sources
