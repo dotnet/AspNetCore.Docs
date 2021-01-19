@@ -28,7 +28,7 @@ The following files and folders are produced from the Blazor WebAssembly templat
 
 ::: moniker range=">= aspnetcore-5.0"
 
-* `Shared` folder: Contains shared components (`.razor`) used by the app:
+* `Shared` folder: Contains the following shared components and stylesheets:
   * `MainLayout` component (`MainLayout.razor`): The app's [layout component](xref:blazor/layouts).
   * `MainLayout.razor.css`: Stylesheet for the app's main layout.
   * `NavMenu` component (`NavMenu.razor`): Implements sidebar navigation. Includes the [`NavLink` component](xref:blazor/fundamentals/routing#navlink-component) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), which renders navigation links to other Razor components. The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component automatically indicates a selected state when its component is loaded, which helps the user understand which component is currently displayed.
@@ -39,7 +39,7 @@ The following files and folders are produced from the Blazor WebAssembly templat
 
 ::: moniker range="< aspnetcore-5.0"
 
-* `Shared` folder: Contains shared components (`.razor`) used by the app:
+* `Shared` folder: Contains the following shared components:
   * `MainLayout` component (`MainLayout.razor`): The app's [layout component](xref:blazor/layouts).
   * `NavMenu` component (`NavMenu.razor`): Implements sidebar navigation. Includes the [`NavLink` component](xref:blazor/fundamentals/routing#navlink-component) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), which renders navigation links to other Razor components. The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component automatically indicates a selected state when its component is loaded, which helps the user understand which component is currently displayed.
   * `SurveyPrompt` component (`SurveyPrompt.razor`): Blazor survey component.
@@ -103,7 +103,7 @@ The following files and folders are produced from the Blazor Server template (`b
 
 ::: moniker range=">= aspnetcore-5.0"
 
-* `Shared` folder: Contains shared components (`.razor`) used by the app:
+* `Shared` folder: Contains the following shared components and stylesheets:
   * `MainLayout` component (`MainLayout.razor`): The app's [layout component](xref:blazor/layouts).
   * `MainLayout.razor.css`: Stylesheet for the app's main layout.
   * `NavMenu` component (`NavMenu.razor`): Implements sidebar navigation. Includes the [`NavLink` component](xref:blazor/fundamentals/routing#navlink-component) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), which renders navigation links to other Razor components. The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component automatically indicates a selected state when its component is loaded, which helps the user understand which component is currently displayed.
@@ -114,7 +114,7 @@ The following files and folders are produced from the Blazor Server template (`b
 
 ::: moniker range="< aspnetcore-5.0"
 
-* `Shared` folder: Contains shared components (`.razor`) used by the app:
+* `Shared` folder: Contains the following shared components:
   * `MainLayout` component (`MainLayout.razor`): The app's [layout component](xref:blazor/layouts).
   * `NavMenu` component (`NavMenu.razor`): Implements sidebar navigation. Includes the [`NavLink` component](xref:blazor/fundamentals/routing#navlink-component) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), which renders navigation links to other Razor components. The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component automatically indicates a selected state when its component is loaded, which helps the user understand which component is currently displayed.
   * `SurveyPrompt` component (`SurveyPrompt.razor`): Blazor survey component.
