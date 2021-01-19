@@ -110,7 +110,7 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
 
 # [Visual Studio](#tab/visual-studio)
 
-Select Ctrl+F5 to run the app without the debugger.
+* Select Ctrl+F5 to run the app without the debugger.
 
 [!INCLUDE[](~/includes/trustCertVS.md)]
 
@@ -141,7 +141,7 @@ The following image shows the app:
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-Select Ctrl+F5 to run without the debugger.
+* Select Ctrl+F5 to run without the debugger.
 
 [!INCLUDE[](~/includes/trustCertVSC.md)]
 
@@ -165,13 +165,13 @@ Many developers prefer to use non-debug mode to quickly view changes.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-Select **Run** > **Start Without Debugging** to launch the app.
+* Select **Run** > **Start Without Debugging** to launch the app.
 
-Visual Studio for Mac:
+  Visual Studio for Mac:
 
-* Starts [Kestrel](xref:fundamentals/servers/index#kestrel) server.
-* Launches a browser.
-* Navigates to `http://localhost:port`, where *port* is a randomly chosen port number.
+  * Starts [Kestrel](xref:fundamentals/servers/index#kestrel) server.
+  * Launches a browser.
+  * Navigates to `http://localhost:port`, where *port* is a randomly chosen port number.
 
 [!INCLUDE[](~/includes/trustCertMac.md)]
 
@@ -181,7 +181,7 @@ You can launch the app in debug or non-debug mode from the **Run** menu.
 
 The following image shows the app:
 
-  ![Home or Index page](./start-mvc/_static/output_macos.png)
+![Home or Index page](./start-mvc/_static/output_macos.png)
 
 ---
 
@@ -234,7 +234,7 @@ If you're new to ASP.NET Core web development, consider the [Razor Pages](xref:t
 
 * Select **ASP.NET Core Web Application** > **Next**.
 
-![Create a new ASP.NET Core Web Application project](start-mvc/_static/np_2.1.png)
+  ![Create a new ASP.NET Core Web Application project](start-mvc/_static/np_2.1.png)
 
 * Name the project **MvcMovie** and select **Create**. It's important to name the project **MvcMovie** so when you copy code, the namespace will match.
 
@@ -242,7 +242,7 @@ If you're new to ASP.NET Core web development, consider the [Razor Pages](xref:t
 
 * Select **Web Application(Model-View-Controller)**. From the dropdown boxes, select **.NET Core** and **ASP.NET Core 3.1**, then select **Create**.
 
-![New project dialog, .NET Core in left pane, ASP.NET Core web ](start-mvc/_static/new_project30.png)
+  ![New project dialog, .NET Core in left pane, ASP.NET Core web ](start-mvc/_static/new_project30.png)
 
 Visual Studio used the default project template for the created MVC project. The created project:
 
@@ -325,9 +325,9 @@ The following image shows the app:
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-Select Ctrl+F5 to run the app without debugging.
+* Select Ctrl+F5 to run the app without debugging.
 
-[!INCLUDE[](~/includes/trustCertVSC.md)]
+  [!INCLUDE[](~/includes/trustCertVSC.md)]
 
 Visual Studio Code:
 
@@ -347,7 +347,9 @@ Launching the app without debugging by selecting Ctrl+F5 allows you to:
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-Select **Run** > **Start Without Debugging** to launch the app. Visual Studio for Mac starts [Kestrel](xref:fundamentals/servers/index#kestrel) server, launches a browser, and navigates to `http://localhost:port`, where *port* is a randomly chosen port number.
+* Select **Run** > **Start Without Debugging** to launch the app.
+
+  Visual Studio for Mac: starts [Kestrel](xref:fundamentals/servers/index#kestrel) server, launches a browser, and navigates to `http://localhost:port`, where *port* is a randomly chosen port number.
 
 [!INCLUDE[](~/includes/trustCertMac.md)]
 
@@ -357,7 +359,7 @@ You can launch the app in debug or non-debug mode from the **Run** menu.
 
 The following image shows the app:
 
-  ![Home or Index page](./start-mvc/_static/output_macos.png)
+![Home or Index page](./start-mvc/_static/output_macos.png)
 
 ---
 
