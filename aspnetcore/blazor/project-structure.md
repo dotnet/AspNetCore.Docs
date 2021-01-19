@@ -111,7 +111,7 @@ The following files and folders are produced from the Blazor Server template (`b
 > [!NOTE]
 > Custom script files added to the `_Host.cshtml_` file should be added after the `<script>` element for `blazor.server.js` if the order of loading JavaScript code is important to Blazor. All script elements should appear before the closing `</body>` tag. The following example adds a JS interop script from the `wwwroot` folder named `interop.js`:
 >
-> ```html
+> ```cshtml
 >     <script src="_framework/blazor.server.js"></script>
 >     <script src="interop.js"></script>
 > </body>
