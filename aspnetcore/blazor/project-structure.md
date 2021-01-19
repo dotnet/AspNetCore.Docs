@@ -91,7 +91,7 @@ This article describes the files and folders that make up a Blazor app generated
     * When any page of the app is initially requested, this page is rendered and returned in the response.
     * The Host page specifies where the root `App` component (`App.razor`) is rendered.
   * `Counter` component (`Counter.razor`): Implements the Counter page.
-  * `Error` component (`Error.razor`, Blazor Server app only): Rendered when an unhandled exception occurs in the app.
+  * `Error` component (`Error.razor`): Rendered when an unhandled exception occurs in the app.
   * `FetchData` component (`FetchData.razor`): Implements the Fetch data page.
   * `Index` component (`Index.razor`): Implements the Home page.
   
@@ -127,9 +127,9 @@ This article describes the files and folders that make up a Blazor app generated
 
 * `Program.cs`: The app's entry point that sets up the ASP.NET Core [host](xref:fundamentals/host/generic-host).
 
-* `Startup.cs` (Blazor Server): Contains the app's startup logic. The `Startup` class defines two methods:
+* `Startup.cs`: Contains the app's startup logic. The `Startup` class defines two methods:
 
-  * `ConfigureServices`: Configures the app's [dependency injection (DI)](xref:fundamentals/dependency-injection) services. In Blazor Server apps, services are added by calling <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor%2A>, and the `WeatherForecastService` is added to the service container for use by the example `FetchData` component.
+  * `ConfigureServices`: Configures the app's [dependency injection (DI)](xref:fundamentals/dependency-injection) services. Services are added by calling <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor%2A>, and the `WeatherForecastService` is added to the service container for use by the example `FetchData` component.
   * `Configure`: Configures the app's request handling pipeline:
     * <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> is called to set up an endpoint for the real-time connection with the browser. The connection is created with [SignalR](xref:signalr/introduction), which is a framework for adding real-time web functionality to apps.
     * [`MapFallbackToPage("/_Host")`](xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage*) is called to set up the root page of the app (`Pages/_Host.cshtml`) and enable navigation.
