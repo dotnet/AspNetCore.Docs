@@ -279,9 +279,9 @@ For more information on the <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentT
 
 [!INCLUDE[](~/blazor/includes/prerendering.md)]
 
-## Component disposal with IDisposable
+## Component disposal with `IDisposable`
 
-If a component implements <xref:System.IDisposable>, the [`Dispose` method](/dotnet/standard/garbage-collection/implementing-dispose) is called when the component is removed from the UI. Disposal can occur at any time, including during [component initialization](#component-initialization-methods). The following component uses `@implements IDisposable` and the `Dispose` method:
+If a component implements <xref:System.IDisposable>, the framework calls the [disposal method](/dotnet/standard/garbage-collection/implementing-dispose) when the component is removed from the UI. Disposal can occur at any time, including during [component initialization](#component-initialization-methods). The following component implements <xref:System.IDisposable> with the [`@implements`](xref:mvc/views/razor#implements) Razor directive:
 
 ```razor
 @using System
@@ -294,6 +294,15 @@ If a component implements <xref:System.IDisposable>, the [`Dispose` method](/dot
     {
         ...
     }
+}
+```
+
+For asynchronous disposal tasks, use:
+
+```razor
+public async ValueTask DisposeAsync()
+{
+    ...
 }
 ```
 
