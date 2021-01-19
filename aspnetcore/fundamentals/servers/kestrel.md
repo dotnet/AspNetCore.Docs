@@ -39,7 +39,7 @@ ASP.NET Core project templates use Kestrel by default. In *Program.cs*, the
 
 For more information on building the host, see the *Set up a host* and *Default builder settings* sections of <xref:fundamentals/host/generic-host#set-up-a-host>.
 
-## Additional resournces
+## Additional resources
 
 <a name="endpoint-configuration"></a>
 * <xref:fundamentals/servers/kestrel/endpoints>
