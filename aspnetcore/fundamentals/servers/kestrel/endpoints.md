@@ -169,8 +169,16 @@ In the following *appsettings.json* example:
           "Password": "<certificate password>"
         }
       },
-      "HttpsInlineCertStore": {
+      "HttpsInlineCertAndKeyFile": {
         "Url": "https://localhost:5002",
+        "Certificate": {
+          "Path": "<path to .pem/.crt file>",
+          "KeyPath": "<path to .key file>",
+          "Password": "<certificate password>"
+        }
+      },
+      "HttpsInlineCertStore": {
+        "Url": "https://localhost:5003",
         "Certificate": {
           "Subject": "<subject; required>",
           "Store": "<certificate store; required>",
@@ -179,15 +187,7 @@ In the following *appsettings.json* example:
         }
       },
       "HttpsDefaultCert": {
-        "Url": "https://localhost:5003"
-      },
-      "HttpsInlineCertAndKey": {
-        "Url": "https://localhost:5004",
-        "Certificate": {
-          "Path": "<path to .pem/.crt file>",
-          "KeyPath": "<path to .key file>",
-          "Password": "<certificate password>"
-        }
+        "Url": "https://localhost:5004"
       }
     },
     "Certificates": {
