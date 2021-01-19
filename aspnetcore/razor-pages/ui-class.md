@@ -3,7 +3,7 @@ title: Reusable Razor UI in class libraries with ASP.NET Core
 author: Rick-Anderson
 description: Explains how to create reusable Razor UI using partial views in a class library in ASP.NET Core.
 ms.author: riande
-ms.date: 01/25/2020
+ms.date: 01/19/2021
 ms.custom: "mvc, seodec18"
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: razor-pages/ui-class
@@ -79,7 +79,7 @@ Suppose *RazorUIClassLib/Pages/Shared* contains two partial files: *_Header.csht
 </body>
 ```
 
-The **_ViewStart.cshtml** file should be added in the pages folder of the Razor class library if you want to use the **_Layout.cshtml** file from the host web application.
+Add the *_ViewStart.cshtml* file to the RCL project's *Pages* folder to use the *_Layout.cshtml* file from the host web app:
 
 ```cshtml
 @{
