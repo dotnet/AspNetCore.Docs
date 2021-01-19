@@ -63,11 +63,11 @@ The following files and folders are produced from the Blazor WebAssembly templat
 ::: moniker-end
 
 > [!NOTE]
-> Custom script files added to the `index.html` file should be added after the `<script>` element for `blazor.webassembly.js` if the order of loading JavaScript code is important to Blazor. All script elements should appear before the closing `</body>` tag. The following example adds a JS interop script from the `wwwroot` folder named `interop.js`:
+> Custom script files added to the `index.html` file should be added after the `<script>` element for `blazor.webassembly.js` if the order of loading JavaScript code is important to Blazor. All script elements should appear before the closing `</body>` tag. The following example adds a JS interop script from a `wwwroot/js` folder named `interop.js`:
 >
 > ```html
 >     <script src="_framework/blazor.webassembly.js"></script>
->     <script src="interop.js"></script>
+>     <script src="js/interop.js"></script>
 > </body>
 > ```
 
@@ -109,11 +109,11 @@ The following files and folders are produced from the Blazor Server template (`b
   * `Index` component (`Index.razor`): Implements the Home page.
 
 > [!NOTE]
-> Custom script files added to the `_Host.cshtml_` file should be added after the `<script>` element for `blazor.server.js` if the order of loading JavaScript code is important to Blazor. All script elements should appear before the closing `</body>` tag. The following example adds a JS interop script from the `wwwroot` folder named `interop.js`:
+> Custom script files added to the `_Host.cshtml_` file should be added after the `<script>` element for `blazor.server.js` if the order of loading JavaScript code is important to Blazor. All script elements should appear before the closing `</body>` tag. The following example adds a JS interop script from a `wwwroot/js` folder named `interop.js`:
 >
 > ```cshtml
 >     <script src="_framework/blazor.server.js"></script>
->     <script src="interop.js"></script>
+>     <script src="js/interop.js"></script>
 > </body>
 > ```
 
