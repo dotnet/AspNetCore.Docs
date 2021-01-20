@@ -20,7 +20,7 @@ This article covers invoking .NET methods from JavaScript. For information on ho
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) ([how to download](xref:index#how-to-download-a-sample))
 
 > [!NOTE]
-> The order that custom JavaScript code is loaded from JavaScript files in the `wwwroot/index.html` file (Blazor WebAssembly) or `Pages/_Host.cshtml` file (Blazor Server) is important in some scenarios, such as JS interop. Add custom JS interop scripts after the `<script>` element for `blazor.{MODEL}.js`, where the placeholder `{MODEL}` is either `webassembly` (Blazor WebAssembly) or `server` (Blazor Server). Add scripts before the closing `</body>` tag. For more information, see <xref:blazor/project-structure>.
+> The order that custom JavaScript code is loaded from JavaScript files in the `wwwroot/index.html` file (Blazor WebAssembly) or `Pages/_Host.cshtml` file (Blazor Server) is important in some scenarios, such as JS interop. Add custom JS interop scripts after the `<script>` element for Blazor's script (`blazor.webassembly.js`/`blazor.server.js`). Add scripts before the closing `</body>` tag. For more information, see <xref:blazor/project-structure>.
 
 ## Static .NET method call
 
