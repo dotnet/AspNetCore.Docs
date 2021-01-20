@@ -451,9 +451,12 @@ In the *`Client`* app, component authorization approaches are functional at this
 
 [!INCLUDE[](~/blazor/includes/security/usermanager-signinmanager.md)]
 
-## Host in Azure App Service with a custom domain
+## Host in Azure App Service with a custom domain and HTTPS certificate
 
-The following guidance explains how to deploy a hosted Blazor WebAssembly app with Identity Server to [Azure App Service](https://azure.microsoft.com/services/app-service/) with a custom domain.
+The following guidance explains:
+
+* How to deploy a hosted Blazor WebAssembly app with Identity Server to [Azure App Service](https://azure.microsoft.com/services/app-service/) with a custom domain.
+* How to create and use a TLS certificate for HTTPS protocol communication with browsers. Although the guidance focuses on using the certificate with a custom domain, the guidance is equally applicable to using a default Azure Apps domain, for example `https://contoso.azurewebsites.net`.
 
 For this hosting scenario, do **not** use the same certificate for [Identity Server's token signing key](https://docs.identityserver.io/en/latest/topics/crypto.html#token-signing-and-validation) and the site's HTTPS secure communication with browsers:
 
