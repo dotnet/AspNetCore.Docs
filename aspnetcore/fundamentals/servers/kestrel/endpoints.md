@@ -153,7 +153,7 @@ A default HTTPS app settings configuration schema is available for Kestrel. Conf
 In the following *appsettings.json* example:
 
 * Set `AllowInvalid` to `true` to permit the use of invalid certificates (for example, self-signed certificates).
-* Any HTTPS endpoint that doesn't specify a certificate (`HttpsDefaultCert` in the example that follows) falls back to the cert defined under `Certificates` > `Default` or the development certificate.
+* Any HTTPS endpoint that doesn't specify a certificate (`HttpsDefaultCert` in the example that follows) falls back to the cert defined under `Certificates:Default` or the development certificate.
 
 ```json
 {
@@ -169,8 +169,16 @@ In the following *appsettings.json* example:
           "Password": "<certificate password>"
         }
       },
-      "HttpsInlineCertStore": {
+      "HttpsInlineCertAndKeyFile": {
         "Url": "https://localhost:5002",
+        "Certificate": {
+          "Path": "<path to .pem/.crt file>",
+          "KeyPath": "<path to .key file>",
+          "Password": "<certificate password>"
+        }
+      },
+      "HttpsInlineCertStore": {
+        "Url": "https://localhost:5003",
         "Certificate": {
           "Subject": "<subject; required>",
           "Store": "<certificate store; required>",
@@ -179,14 +187,7 @@ In the following *appsettings.json* example:
         }
       },
       "HttpsDefaultCert": {
-        "Url": "https://localhost:5003"
-      },
-      "Https": {
-        "Url": "https://*:5004",
-        "Certificate": {
-          "Path": "<path to .pfx file>",
-          "Password": "<certificate password>"
-        }
+        "Url": "https://localhost:5004"
       }
     },
     "Certificates": {
@@ -199,7 +200,24 @@ In the following *appsettings.json* example:
 }
 ```
 
-An alternative to using `Path` and `Password` for any certificate node is to specify the certificate using certificate store fields. For example, the `Certificates` > `Default` certificate can be specified as:
+Schema notes:
+
+* Endpoints names are [case-insensitive](xref:fundamentals/configuration/index#configuration-keys-and-values). For example, `HTTPS` and `Https` are equivalent.
+* The `Url` parameter is required for each endpoint. The format for this parameter is the same as the top-level `Urls` configuration parameter except that it's limited to a single value.
+* These endpoints replace those defined in the top-level `Urls` configuration rather than adding to them. Endpoints defined in code via `Listen` are cumulative with the endpoints defined in the configuration section.
+* The `Certificate` section is optional. If the `Certificate` section isn't specified, the defaults defined in `Certificates:Default` are used. If no defaults are available, the development certificate is used. If there are no defaults and the development certificate isn't present, the server throws an exception and fails to start.
+* The `Certificate` section supports multiple [certificate sources](#certificate-sources).
+* Any number of endpoints may be defined in [Configuration](xref:fundamentals/configuration/index) as long as they don't cause port conflicts.
+
+#### Certificate sources
+
+Certificate nodes can be configured to load certificates from a number of sources:
+
+* `Path` and `Password` to load *.pfx* files.
+* `Path`, `KeyPath` and `Password` to load *.pem*/*.crt* and *.key* files.
+* `Subject` and `Store` to load from the certificate store.
+
+For example, the `Certificates:Default` certificate can be specified as:
 
 ```json
 "Default": {
@@ -210,15 +228,9 @@ An alternative to using `Path` and `Password` for any certificate node is to spe
 }
 ```
 
-Schema notes:
+#### ConfigurationLoader
 
-* Endpoints names are case-insensitive. For example, `HTTPS` and `Https` are valid.
-* The `Url` parameter is required for each endpoint. The format for this parameter is the same as the top-level `Urls` configuration parameter except that it's limited to a single value.
-* These endpoints replace those defined in the top-level `Urls` configuration rather than adding to them. Endpoints defined in code via `Listen` are cumulative with the endpoints defined in the configuration section.
-* The `Certificate` section is optional. If the `Certificate` section isn't specified, the defaults defined in earlier scenarios are used. If no defaults are available, the server throws an exception and fails to start.
-* The `Certificate` section supports both `Path`&ndash;`Password` and `Subject`&ndash;`Store` certificates.
-* Any number of endpoints may be defined in this way so long as they don't cause port conflicts.
-* `options.Configure(context.Configuration.GetSection("{SECTION}"))` returns a `KestrelConfigurationLoader` with an `.Endpoint(string name, listenOptions => { })` method that can be used to supplement a configured endpoint's settings:
+`options.Configure(context.Configuration.GetSection("{SECTION}"))` returns a <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelConfigurationLoader> with an `.Endpoint(string name, listenOptions => { })` method that can be used to supplement a configured endpoint's settings:
 
 ```csharp
 webBuilder.UseKestrel((context, serverOptions) =>
