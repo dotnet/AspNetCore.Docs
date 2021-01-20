@@ -225,6 +225,8 @@ const shouldServeIndexHtml = event.request.mode === 'navigate' &&
                              !event.request.url.includes('/signin-google');
 ```
 
+No action is required for the Development environment. In the Development environment, content is always fetched from the network and offline support is disabled.
+
 ### Background updates
 
 As a mental model, you can think of an offline-first PWA as behaving like a mobile app that can be installed. The app starts up immediately regardless of network connectivity, but the installed app logic comes from a point-in-time snapshot that might not be the latest version.
