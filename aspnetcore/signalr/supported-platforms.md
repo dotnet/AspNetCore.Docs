@@ -28,7 +28,7 @@ The [JavaScript client](xref:signalr/javascript-client) runs on NodeJS 8 and lat
 
 &dagger;*Current* refers to the latest version of the browser.
 
-The JavaScript client doesn't support Internet Explorer.
+The JavaScript client doesn't support Internet Explorer and other older browsers. The client might have unexpected behavior and errors on unsupported browsers.
 
 ## .NET client
 
