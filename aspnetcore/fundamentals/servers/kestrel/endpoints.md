@@ -153,7 +153,7 @@ A default HTTPS app settings configuration schema is available for Kestrel. Conf
 In the following *appsettings.json* example:
 
 * Set `AllowInvalid` to `true` to permit the use of invalid certificates (for example, self-signed certificates).
-* Any HTTPS endpoint that doesn't specify a certificate (`HttpsDefaultCert` in the example that follows) falls back to the cert defined under `Certificates` > `Default` or the development certificate.
+* Any HTTPS endpoint that doesn't specify a certificate (`HttpsDefaultCert` in the example that follows) falls back to the cert defined under `Certificates:Default` or the development certificate.
 
 ```json
 {
