@@ -50,7 +50,7 @@ If you're new to ASP.NET Core web development, consider the [Razor Pages](xref:t
 
 * Start Visual Studio and select **Create a new project**.
 * In the **Create a new project** dialog, select **ASP.NET Core Web Application** > **Next**.
-* In the **Configure your new project** dialog, enter `MvcMovie` for **Project name**. It's important to name the project *MvcMovie*. Capitalization needs to match so the namespaces match when you copy and paste example code.
+* In the **Configure your new project** dialog, enter `MvcMovie` for **Project name**. It's important to name the project *MvcMovie*. Capitalization needs to match each `namespace` matches when code is copied.
 * Select **Create**.
 * In the **Create a new ASP.NET Core web application** dialog, select:
   * **.NET Core** and **ASP.NET Core 5.0** in the dropdowns.
