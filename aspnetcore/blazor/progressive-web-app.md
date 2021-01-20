@@ -216,17 +216,6 @@ The cache-first strategy is valuable because:
 
 * **It ensures correctness.** When building a cache of offline resources, the service worker uses content hashing to guarantee it has fetched a complete and self-consistent snapshot of resources at a single instant in time. This cache is then used as an atomic unit. There's no point asking the network for newer resources, since the only versions required are the ones already cached. Anything else risks inconsistency and incompatibility (for example, trying to use versions of .NET assemblies that weren't compiled together).
 
-To always render a URL from the server and not from cached content, edit the `service-worker.published.js` file and add the URL to the URL exclusion check. In the following example, `/signin-google` for Google authentication is added to the check:
-
-```javascript
-const shouldServeIndexHtml = event.request.mode === 'navigate' && 
-                             !event.request.url.includes('/connect/') && 
-                             !event.request.url.includes('/Identity/') && 
-                             !event.request.url.includes('/signin-google');
-```
-
-No action is required for the Development environment, where content is always fetched from the network.
-
 ### Background updates
 
 As a mental model, you can think of an offline-first PWA as behaving like a mobile app that can be installed. The app starts up immediately regardless of network connectivity, but the installed app logic comes from a point-in-time snapshot that might not be the latest version.
@@ -266,10 +255,20 @@ Change the code to the following:
 
 ```javascript
 const shouldServeIndexHtml = event.request.mode === 'navigate'
-    && !event.request.url.includes('/Identity/');
+  && !event.request.url.includes('/Identity/');
 ```
 
 If you don't do this, then regardless of network connectivity, the service worker intercepts requests for such URLs and resolves them using `/index.html`.
+
+Add additional endpoints for external authentication providers to the check. In the following example, `/signin-google` for Google authentication is added to the check:
+
+```javascript
+const shouldServeIndexHtml = event.request.mode === 'navigate'
+  && !event.request.url.includes('/Identity/')
+  && !event.request.url.includes('/signin-google');
+```
+
+No action is required for the Development environment, where content is always fetched from the network.
 
 ### Control asset caching
 
