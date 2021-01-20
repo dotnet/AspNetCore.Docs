@@ -225,10 +225,7 @@ const shouldServeIndexHtml = event.request.mode === 'navigate' &&
                              !event.request.url.includes('/signin-google');
 ```
 
-No action is required for the Development environment. In the Development environment:
-
-* Content is always fetched from the network.
-* Offline support is disabled.
+No action is required for the Development environment. In the Development environment content is always fetched from the network.
 
 ### Background updates
 
