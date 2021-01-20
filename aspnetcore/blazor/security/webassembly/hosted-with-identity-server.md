@@ -451,7 +451,7 @@ In the *`Client`* app, component authorization approaches are functional at this
 
 [!INCLUDE[](~/blazor/includes/security/usermanager-signinmanager.md)]
 
-## Host in Azure App Service with a custom domain and HTTPS certificate
+## Host in Azure App Service with a custom domain and certificate
 
 The following guidance explains:
 
