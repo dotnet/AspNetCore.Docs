@@ -28,6 +28,8 @@ The [JavaScript client](xref:signalr/javascript-client) runs on NodeJS 8 and lat
 
 &dagger;*Current* refers to the latest version of the browser.
 
+The JavaScript client doesn't support Internet Explorer.
+
 ## .NET client
 
 The [.NET client](xref:signalr/dotnet-client) runs on any platform supported by ASP.NET Core. For example, [Xamarin developers can use SignalR](https://github.com/aspnet/Announcements/issues/305) for building Android apps using Xamarin.Android 8.4.0.1 and later and iOS apps using Xamarin.iOS 11.14.0.4 and later.
