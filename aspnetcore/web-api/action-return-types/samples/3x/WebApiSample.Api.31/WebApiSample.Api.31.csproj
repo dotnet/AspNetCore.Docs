@@ -1,18 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
-    <RootNamespace>WebApiSample.Api._30</RootNamespace>
-    <ProjectUISubcaption>ASP.NET Core 3.0</ProjectUISubcaption>
-    <LangVersion>8.0</LangVersion>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>WebApiSample.Api._31</RootNamespace>
+    <ProjectUISubcaption>ASP.NET Core 3.1</ProjectUISubcaption>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <NoWarn>$(NoWarn);1591</NoWarn>
     <IncludeOpenAPIAnalyzers>true</IncludeOpenAPIAnalyzers>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="3.0.0" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0-rc2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="3.1.11" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
   </ItemGroup>
 
   <ItemGroup>

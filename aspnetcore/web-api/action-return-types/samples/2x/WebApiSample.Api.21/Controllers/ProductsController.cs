@@ -5,7 +5,8 @@
 // ActionResult - Uses ActionResult<T> as an action return type
 // IActionResult - Uses IActionResult as an action return type
 
-#define ActionResult // or IActionResult
+#define ActionResult
+//#define IActionResult
 
 using System.Collections.Generic;
 using System.Net.Mime;
@@ -50,26 +51,7 @@ namespace WebApiSample.Controllers
             return Ok(product);
         }
         #endregion
-#endif
 
-#if ActionResult
-        #region snippet_GetByIdActionResult
-        [HttpGet("{id}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public ActionResult<Product> GetById(int id)
-        {
-            if (!_repository.TryGetProduct(id, out var product))
-            {
-                return NotFound();
-            }
-
-            return product;
-        }
-        #endregion
-#endif
-
-#if IActionResult
         #region snippet_CreateAsyncIActionResult
         [HttpPost]
         [Consumes(MediaTypeNames.Application.Json)]
@@ -90,6 +72,21 @@ namespace WebApiSample.Controllers
 #endif
 
 #if ActionResult
+        #region snippet_GetByIdActionResult
+        [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public ActionResult<Product> GetById(int id)
+        {
+            if (!_repository.TryGetProduct(id, out var product))
+            {
+                return NotFound();
+            }
+
+            return product;
+        }
+        #endregion
+
         #region snippet_CreateAsyncActionResult
         [HttpPost]
         [Consumes(MediaTypeNames.Application.Json)]
@@ -107,6 +104,6 @@ namespace WebApiSample.Controllers
             return CreatedAtAction(nameof(GetById), new { id = product.Id }, product);
         }
         #endregion
-    }
 #endif
+    }
 }

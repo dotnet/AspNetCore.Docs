@@ -13,7 +13,7 @@ using WebApiSample.DataAccess;
 using WebApiSample.DataAccess.Repositories;
 
 [assembly: ApiConventionType(typeof(DefaultApiConventions))]
-namespace WebApiSample.Api._30
+namespace WebApiSample.Api._31
 {
     public class Startup
     {
