@@ -90,11 +90,11 @@ services.Configure<JwtBearerOptions>(
     IdentityServerJwtConstants.IdentityServerJwtBearerScheme, 
     options =>
     {
-        options.Authority = "{DOMAIN}";
+        options.Authority = "{AUTHORITY}";
     });
 ```
 
-In the preceding code, the `{DOMAIN}` placeholder is the default or custom domain.
+In the preceding code, the `{AUTHORITY}` placeholder the Authority to use when making OpenID Connect calls.
 
 Example:
 
