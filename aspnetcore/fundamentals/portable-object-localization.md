@@ -64,7 +64,7 @@ This example is based on an ASP.NET Core MVC application generated from a Visual
 
 ### Referencing the package
 
-Add a reference to the `OrchardCore.Localization.Core` NuGet package. It's available on [MyGet](https://www.myget.org/) at the following package source: https://www.myget.org/F/orchardcore-preview/api/v3/index.json
+Add a reference to the `OrchardCore.Localization.Core` NuGet package.
 
 The *.csproj* file now contains a line similar to the following (version number may vary):
 
@@ -280,7 +280,7 @@ This example is based on an ASP.NET Core MVC application generated from a Visual
 
 ### Referencing the package
 
-Add a reference to the `OrchardCore.Localization.Core` NuGet package. It's available on [MyGet](https://www.myget.org/) at the following package source: https://www.myget.org/F/orchardcore-preview/api/v3/index.json
+Add a reference to the `OrchardCore.Localization.Core` NuGet package.
 
 The *.csproj* file now contains a line similar to the following (version number may vary):
 
