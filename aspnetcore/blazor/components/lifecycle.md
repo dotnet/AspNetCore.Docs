@@ -281,7 +281,7 @@ For more information on the <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentT
 
 ## Component disposal with `IDisposable`
 
-If a component implements <xref:System.IDisposable>, the framework calls the [disposal method](/dotnet/standard/garbage-collection/implementing-dispose) when the component is removed from the UI. Disposal can occur at any time, including during [component initialization](#component-initialization-methods). The following component implements <xref:System.IDisposable> with the [`@implements`](xref:mvc/views/razor#implements) Razor directive:
+If a component implements <xref:System.IDisposable>, the framework calls the [disposal method](/dotnet/standard/garbage-collection/implementing-dispose) when the component is removed from the UI, where unmanaged resources can be released. Disposal can occur at any time, including during [component initialization](#component-initialization-methods). The following component implements <xref:System.IDisposable> with the [`@implements`](xref:mvc/views/razor#implements) Razor directive:
 
 ```razor
 @using System
@@ -297,9 +297,9 @@ If a component implements <xref:System.IDisposable>, the framework calls the [di
 }
 ```
 
-For asynchronous disposal tasks, use:
+For asynchronous disposal tasks, use `DisposeAsync` instead of `Dispose` in the preceding example:
 
-```razor
+```csharp
 public async ValueTask DisposeAsync()
 {
     ...
@@ -318,6 +318,8 @@ Unsubscribe event handlers from .NET events. The following [Blazor form](xref:bl
 * Private method approach
 
   [!code-razor[](lifecycle/samples_snapshot/event-handler-disposal-2.razor?highlight=16,26)]
+  
+For more information, see [Cleaning up unmanaged resources](/dotnet/standard/garbage-collection/unmanaged) and the topics that follow it on implementing the `Dispose` and `DisposeAsync` methods.
 
 ## Cancelable background work
 
