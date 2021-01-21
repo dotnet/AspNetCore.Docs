@@ -255,10 +255,20 @@ Change the code to the following:
 
 ```javascript
 const shouldServeIndexHtml = event.request.mode === 'navigate'
-    && !event.request.url.includes('/Identity/');
+  && !event.request.url.includes('/Identity/');
 ```
 
 If you don't do this, then regardless of network connectivity, the service worker intercepts requests for such URLs and resolves them using `/index.html`.
+
+Add additional endpoints for external authentication providers to the check. In the following example, `/signin-google` for Google authentication is added to the check:
+
+```javascript
+const shouldServeIndexHtml = event.request.mode === 'navigate'
+  && !event.request.url.includes('/Identity/')
+  && !event.request.url.includes('/signin-google');
+```
+
+No action is required for the Development environment, where content is always fetched from the network.
 
 ### Control asset caching
 

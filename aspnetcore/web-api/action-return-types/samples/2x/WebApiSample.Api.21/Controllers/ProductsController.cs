@@ -38,7 +38,7 @@ namespace WebApiSample.Controllers
 #if IActionResult
         #region snippet_GetByIdIActionResult
         [HttpGet("{id}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Product))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public IActionResult GetById(int id)
         {

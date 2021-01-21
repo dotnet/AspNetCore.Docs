@@ -113,6 +113,10 @@ The `Startup` class has the following additions.
     app.UseAuthorization();
     ```
 
+### Azure App Service on Linux
+
+Specify the issuer explicitly when deploying to Azure App Service on Linux. For more information, see <xref:security/authentication/identity/spa#azure-app-service-on-linux>.
+
 ### AddApiAuthorization
 
 The <xref:Microsoft.Extensions.DependencyInjection.IdentityServerBuilderConfigurationExtensions.AddApiAuthorization%2A> helper method configures [IdentityServer](https://identityserver.io/) for ASP.NET Core scenarios. IdentityServer is a powerful and extensible framework for handling app security concerns. IdentityServer exposes unnecessary complexity for the most common scenarios. Consequently, a set of conventions and configuration options is provided that we consider a good starting point. Once your authentication needs change, the full power of IdentityServer is available to customize authentication to suit an app's requirements.
@@ -451,9 +455,12 @@ In the *`Client`* app, component authorization approaches are functional at this
 
 [!INCLUDE[](~/blazor/includes/security/usermanager-signinmanager.md)]
 
-## Host in Azure App Service with a custom domain
+## Host in Azure App Service with a custom domain and certificate
 
-The following guidance explains how to deploy a hosted Blazor WebAssembly app with Identity Server to [Azure App Service](https://azure.microsoft.com/services/app-service/) with a custom domain.
+The following guidance explains:
+
+* How to deploy a hosted Blazor WebAssembly app with Identity Server to [Azure App Service](https://azure.microsoft.com/services/app-service/) with a custom domain.
+* How to create and use a TLS certificate for HTTPS protocol communication with browsers. Although the guidance focuses on using the certificate with a custom domain, the guidance is equally applicable to using a default Azure Apps domain, for example `contoso.azurewebsites.net`.
 
 For this hosting scenario, do **not** use the same certificate for [Identity Server's token signing key](https://docs.identityserver.io/en/latest/topics/crypto.html#token-signing-and-validation) and the site's HTTPS secure communication with browsers:
 
