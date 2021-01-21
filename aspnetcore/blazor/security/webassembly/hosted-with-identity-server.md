@@ -113,6 +113,10 @@ The `Startup` class has the following additions.
     app.UseAuthorization();
     ```
 
+### Azure App Service on Linux
+
+Specify the issuer explicitly when deploying to Azure App Service on Linux. For more information, see <xref:security/authentication/identity/spa#azure-app-service-on-linux>.
+
 ### AddApiAuthorization
 
 The <xref:Microsoft.Extensions.DependencyInjection.IdentityServerBuilderConfigurationExtensions.AddApiAuthorization%2A> helper method configures [IdentityServer](https://identityserver.io/) for ASP.NET Core scenarios. IdentityServer is a powerful and extensible framework for handling app security concerns. IdentityServer exposes unnecessary complexity for the most common scenarios. Consequently, a set of conventions and configuration options is provided that we consider a good starting point. Once your authentication needs change, the full power of IdentityServer is available to customize authentication to suit an app's requirements.
