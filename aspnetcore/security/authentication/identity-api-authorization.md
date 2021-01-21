@@ -94,7 +94,7 @@ services.Configure<JwtBearerOptions>(
     });
 ```
 
-In the preceding code, the `{AUTHORITY}` placeholder the Authority to use when making OpenID Connect calls.
+In the preceding code, the `{AUTHORITY}` placeholder is the Authority to use when making OpenID Connect calls.
 
 Example:
 
