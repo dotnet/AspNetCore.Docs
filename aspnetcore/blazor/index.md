@@ -154,7 +154,7 @@ APIs that aren't applicable inside of a web browser (for example, accessing the 
 
 * [WebAssembly](https://webassembly.org)
 * <xref:blazor/hosting-models>
-* <xref:tutorials/signalr-blazor-webassembly>
+* <xref:tutorials/signalr-blazor>
 * <xref:blazor/call-javascript-from-dotnet>
 * <xref:blazor/call-dotnet-from-javascript>
 * [C# Guide](/dotnet/csharp/)
