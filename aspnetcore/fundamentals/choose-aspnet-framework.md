@@ -39,7 +39,7 @@ See [ASP.NET Core targeting .NET Framework](xref:index#target-framework) for inf
 
 ## ASP.NET Core scenarios
 
-* [Websites](xref:tutorials/first-mvc-app/index)
+* [Websites](xref:tutorials/first-mvc-app/start-mvc)
 * [APIs](xref:tutorials/first-web-api)
 * [Real-time](xref:signalr/introduction)
 * [Deploy an ASP.NET Core app to Azure](/azure/app-service/app-service-web-get-started-dotnet)
