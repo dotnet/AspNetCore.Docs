@@ -206,7 +206,9 @@ To add an earlier version of the package, supply the `--version {VERSION}` optio
 
 ## Add the System.Text.Encodings.Web package
 
-Due to a package resolution issue when using [`System.Text.Json`](https://www.nuget.org/packages/System.Text.Json) 5.0.0 in an ASP.NET Core 3.1 app, the `BlazorWebAssemblySignalRApp.Server` project requires a package reference for [`System.Text.Encodings.Web`](https://www.nuget.org/packages/System.Text.Encodings.Web). The underlying issue will be resolved in a future patch release of .NET 5. For more information, see [System.Text.Json defines netcoreapp3.0 with no dependencies (dotnet/runtime #45560)](https://github.com/dotnet/runtime/issues/45560).
+*This section only applies to apps for ASP.NET Core version 3.1.*
+
+Due to a package resolution issue when using [`System.Text.Json`](https://www.nuget.org/packages/System.Text.Json) 5.x in an ASP.NET Core 3.x app, the `BlazorWebAssemblySignalRApp.Server` project requires a package reference for [`System.Text.Encodings.Web`](https://www.nuget.org/packages/System.Text.Encodings.Web). The underlying issue will be resolved in a future patch release of .NET 5. For more information, see [System.Text.Json defines netcoreapp3.0 with no dependencies (dotnet/runtime #45560)](https://github.com/dotnet/runtime/issues/45560).
 
 To add [`System.Text.Encodings.Web`](https://www.nuget.org/packages/System.Text.Encodings.Web) to the `BlazorWebAssemblySignalRApp.Server` project of the ASP.NET Core 3.1 hosted Blazor solution, follow the guidance for your choice of tooling:
 
@@ -524,7 +526,9 @@ To add an earlier version of the package, supply the `--version {VERSION}` optio
 
 ## Add the System.Text.Encodings.Web package
 
-Due to a package resolution issue when using [`System.Text.Json`](https://www.nuget.org/packages/System.Text.Json) 5.0.0 in an ASP.NET Core 3.1 app, the project requires a package reference for [`System.Text.Encodings.Web`](https://www.nuget.org/packages/System.Text.Encodings.Web). The underlying issue will be resolved in a future patch release of .NET 5. For more information, see [System.Text.Json defines netcoreapp3.0 with no dependencies (dotnet/runtime #45560)](https://github.com/dotnet/runtime/issues/45560).
+*This section only applies to apps for ASP.NET Core version 3.x.*
+
+Due to a package resolution issue when using [`System.Text.Json`](https://www.nuget.org/packages/System.Text.Json) 5.x in an ASP.NET Core 3.x app, the project requires a package reference for [`System.Text.Encodings.Web`](https://www.nuget.org/packages/System.Text.Encodings.Web). The underlying issue will be resolved in a future patch release of .NET 5. For more information, see [System.Text.Json defines netcoreapp3.0 with no dependencies (dotnet/runtime #45560)](https://github.com/dotnet/runtime/issues/45560).
 
 To add [`System.Text.Encodings.Web`](https://www.nuget.org/packages/System.Text.Encodings.Web) to the project, follow the guidance for your choice of tooling:
 
@@ -598,11 +602,11 @@ Create a `Hubs` (plural) folder and add the following `ChatHub` class (`Hubs/Cha
 
 1. Open the `Startup.cs` file.
 
-1. Add the namespace for the `ChatHub` class and <xref:Microsoft.AspNetCore.ResponseCompression?displayProperty=fullName> to the top of the file:
+1. Add the namespaces for <xref:Microsoft.AspNetCore.ResponseCompression?displayProperty=fullName> and the `ChatHub` class to the top of the file:
 
    ```csharp
-   using BlazorServerSignalRApp.Server.Hubs;
    using Microsoft.AspNetCore.ResponseCompression;
+   using BlazorServerSignalRApp.Server.Hubs;
    ```
 
 ::: moniker range=">= aspnetcore-5.0"
@@ -616,7 +620,7 @@ Create a `Hubs` (plural) folder and add the following `ChatHub` class (`Hubs/Cha
    * Use Response Compression Middleware at the top of the processing pipeline's configuration.
    * Between the endpoints for mapping the Blazor hub and the client-side fallback, add an endpoint for the hub.
 
-   [!code-csharp[](signalr-blazor/samples/5.x/BlazorServerSignalRApp/Startup.cs?name=snippet_Configure&highlight=3,24)]
+   [!code-csharp[](signalr-blazor/samples/5.x/BlazorServerSignalRApp/Startup.cs?name=snippet_Configure&highlight=3,23)]
 
 ::: moniker-end
 
@@ -631,7 +635,7 @@ Create a `Hubs` (plural) folder and add the following `ChatHub` class (`Hubs/Cha
    * Use Response Compression Middleware at the top of the processing pipeline's configuration.
    * Between the endpoints for mapping the Blazor hub and the client-side fallback, add an endpoint for the hub.
 
-   [!code-csharp[](signalr-blazor/samples/3.x/BlazorServerSignalRApp/Startup.cs?name=snippet_Configure&highlight=3,24)]
+   [!code-csharp[](signalr-blazor/samples/3.x/BlazorServerSignalRApp/Startup.cs?name=snippet_Configure&highlight=3,23)]
 
 ::: moniker-end
 
