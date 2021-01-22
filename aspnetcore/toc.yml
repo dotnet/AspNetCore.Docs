@@ -752,6 +752,8 @@
           uid: grpc/deadlines-cancellation
     - name: gRPC services with ASP.NET Core
       uid: grpc/aspnetcore
+    - name: Supported platforms
+      uid: grpc/supported-platforms
     - name: Use gRPC in browser apps
       uid: grpc/browser
     - name: Configuration
