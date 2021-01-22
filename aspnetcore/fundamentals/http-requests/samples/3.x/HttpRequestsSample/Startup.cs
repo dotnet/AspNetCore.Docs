@@ -23,7 +23,6 @@ namespace HttpRequestsSample
 
             services.AddHttpClient<TodoClient>((sp, httpClient) =>
             {
-                // For sample purposes, assume TodoClient is used in the context of an incoming request.
                 var httpRequest = sp.GetRequiredService<IHttpContextAccessor>().HttpContext.Request;
 
                 // For sample purposes, assume TodoClient is used in the context of an incoming request.
