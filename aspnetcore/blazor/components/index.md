@@ -940,13 +940,13 @@ Whitespace isn't preserved from the preceding Razor markup:
 * <xref:blazor/security/server/threat-mitigation>: Includes guidance on building Blazor Server apps that must contend with resource exhaustion.
 
 <!--Reference links in article-->
-[1]: [Razor syntax reference for ASP.NET Core](xref:mvc/views/razor#code)
-[2]: [Razor syntax reference for ASP.NET Core](xref:mvc/views/razor#using)
-[3]: [Razor syntax reference for ASP.NET Core](xref:mvc/views/razor#attributes)
-[4]: [Razor syntax reference for ASP.NET Core](xref:mvc/views/razor#ref)
-[5]: [Razor syntax reference for ASP.NET Core](xref:mvc/views/razor#key)
-[6]: [Razor syntax reference for ASP.NET Core](xref:mvc/views/razor#inherits)
-[7]: [Razor syntax reference for ASP.NET Core](xref:mvc/views/razor#attribute)
-[8]: [Razor syntax reference for ASP.NET Core](xref:mvc/views/razor#namespace)
-[9]: [Razor syntax reference for ASP.NET Core](xref:mvc/views/razor#page)
-[10]: [Razor syntax reference for ASP.NET Core](xref:mvc/views/razor#bind)
+[1]: <xref:mvc/views/razor#code> "Razor syntax reference for ASP.NET Core"
+[2]: <xref:mvc/views/razor#using> "Razor syntax reference for ASP.NET Core"
+[3]: <xref:mvc/views/razor#attributes> "Razor syntax reference for ASP.NET Core"
+[4]: <xref:mvc/views/razor#ref> "Razor syntax reference for ASP.NET Core"
+[5]: <xref:mvc/views/razor#key> "Razor syntax reference for ASP.NET Core"
+[6]: <xref:mvc/views/razor#inherits> "Razor syntax reference for ASP.NET Core"
+[7]: <xref:mvc/views/razor#attribute> "Razor syntax reference for ASP.NET Core"
+[8]: <xref:mvc/views/razor#namespace> "Razor syntax reference for ASP.NET Core"
+[9]: <xref:mvc/views/razor#page> "Razor syntax reference for ASP.NET Core"
+[10]: <xref:mvc/views/razor#bind> "Razor syntax reference for ASP.NET Core"
