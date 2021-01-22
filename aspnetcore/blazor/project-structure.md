@@ -63,14 +63,7 @@ The following files and folders are produced from the Blazor WebAssembly templat
 ::: moniker-end
 
 > [!NOTE]
-> Custom script files added to the `index.html` file should be added after the `<script>` element for `blazor.webassembly.js` if the order of loading JavaScript code is important to Blazor. All script elements should appear before the closing `</body>` tag. The following example adds a JS interop script (`wwwroot/js/interop.js`):
->
-> ```html
->     ...
->     <script src="_framework/blazor.webassembly.js"></script>
->     <script src="js/interop.js"></script>
-> </body>
-> ```
+> Custom script files added to the `wwwroot/index.cshtml` file should appear before the closing `</body>` tag. The order of loading JavaScript files is important in some scenarios, such as JS interop.
 
 * `_Imports.razor`: Includes common Razor directives to include in the app's components (`.razor`), such as [`@using`](xref:mvc/views/razor#using) directives for namespaces.
 
@@ -110,14 +103,7 @@ The following files and folders are produced from the Blazor Server template (`b
   * `Index` component (`Index.razor`): Implements the Home page.
 
 > [!NOTE]
-> Custom script files added to the `_Host.cshtml` file should be added after the `<script>` element for `blazor.server.js` if the order of loading JavaScript code is important to Blazor. All script elements should appear before the closing `</body>` tag. The following example adds a JS interop script (`wwwroot/js/interop.js`):
->
-> ```cshtml
->     ...
->     <script src="_framework/blazor.server.js"></script>
->     <script src="js/interop.js"></script>
-> </body>
-> ```
+> Custom script files added to the `Pages/_Host.cshtml` file should appear before the closing `</body>` tag. The order of loading JavaScript files is important in some scenarios, such as JS interop.
 
 * `Properties/launchSettings.json`: Holds [development environment configuration](xref:fundamentals/environments#development-and-launchsettingsjson).
 
