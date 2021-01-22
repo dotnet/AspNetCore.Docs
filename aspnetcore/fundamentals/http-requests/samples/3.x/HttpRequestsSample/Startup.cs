@@ -26,8 +26,8 @@ namespace HttpRequestsSample
                 // For sample purposes, assume TodoClient is used in the context of an incoming request.
                 var httpRequest = sp.GetRequiredService<IHttpContextAccessor>().HttpContext.Request;
 
-                httpClient.BaseAddress = new Uri(UriHelper.BuildAbsolute(httpRequest.Scheme, httpRequest.Host,
-                                                 httpRequest.PathBase));
+                httpClient.BaseAddress = new Uri(UriHelper.BuildAbsolute(httpRequest.Scheme,
+                                                 httpRequest.Host, httpRequest.PathBase));
                 httpClient.Timeout = TimeSpan.FromSeconds(5);
             });
 
