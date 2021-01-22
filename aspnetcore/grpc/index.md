@@ -1,5 +1,5 @@
 ---
-title: Introduction to gRPC on .NET Core
+title: Introduction to gRPC for .NET
 author: juntaoluo
 description: Learn about gRPC services with Kestrel server and the ASP.NET Core stack.
 monikerRange: '>= aspnetcore-3.0'
@@ -8,7 +8,7 @@ ms.date: 09/20/2019
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: grpc/index
 ---
-# Introduction to gRPC on .NET Core
+# Introduction to gRPC for .NET
 
 By [John Luo](https://github.com/juntaoluo) and [James Newton-King](https://twitter.com/jamesnk)
 

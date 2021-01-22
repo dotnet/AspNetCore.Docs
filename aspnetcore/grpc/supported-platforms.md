@@ -14,9 +14,9 @@ By [James Newton-King](https://twitter.com/jamesnk)
 
 This article discusses the requirements and supported platforms for using gRPC with .NET.
 
-gRPC is designed to use HTTP/2 for some of its more advanced features, and HTTP/2 isn't yet supported everywhere. Because of this there are two similar wire-formats for sending gRPC calls between clients and servers:
+gRPC is designed to use HTTP/2 for some of its more advanced features. HTTP/2 isn't supported everywhere which can prevent using gRPC. Because of this there is second wire-format that is compatible with HTTP/1.1 for sending gRPC calls between clients and servers:
 
-* [`application/grpc`](https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-HTTP2.md) - gRPC over HTTP/2 or later is how gRPC is typically used.
+* [`application/grpc`](https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-HTTP2.md) - gRPC over HTTP/2 is how gRPC is typically used.
 * [`application/grpc-web`](https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-WEB.md) - gRPC-Web modifies the gRPC protocol to be compatible with HTTP/1.1. gRPC-Web can be used in more places, notably it is callable by browser apps. Two advanced gRPC features are no longer supported: client streaming and bidirectional streaming.
 
 gRPC for .NET supports both wire-formats. For information on setting up gRPC-Web, see <xref:grpc/browser>.
@@ -67,7 +67,9 @@ gRPC for .NET doesn't support running on .NET Framework and Xamarin. [gRPC C# co
 > * [Azure Kubernetes Service (AKS)](https://azure.microsoft.com/services/kubernetes-service/)
 > * [Azure App Service](https://azure.microsoft.com/services/app-service/)&dagger;
 
-&dagger;Azure App Service doesn't support hosting gRPC over HTTP/2. gRPC-Web is the recommended alternative.
+&dagger;Azure App Service doesn't support hosting gRPC over HTTP/2. gRPC-Web is a compatible alternative.
+
+Work is in-progress to improve support for gRPC with HTTP/2 in Azure App Service. For more information, see [this GitHub issue](https://github.com/dotnet/AspNetCore/issues/9020).
 
 ## Additional resources
 
