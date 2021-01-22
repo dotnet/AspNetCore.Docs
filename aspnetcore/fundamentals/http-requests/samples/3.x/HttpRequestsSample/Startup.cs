@@ -13,6 +13,7 @@ namespace HttpRequestsSample
 {
     public class Startup
     {
+        #region snippet_IOperationScoped
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<TodoContext>(options =>
@@ -25,24 +26,25 @@ namespace HttpRequestsSample
                 // For sample purposes, assume TodoClient is used in the context of an incoming request.
                 var httpRequest = sp.GetRequiredService<IHttpContextAccessor>().HttpContext.Request;
 
-                httpClient.BaseAddress = new Uri(UriHelper.BuildAbsolute(httpRequest.Scheme, httpRequest.Host, httpRequest.PathBase));
+                httpClient.BaseAddress = new Uri(UriHelper.BuildAbsolute(httpRequest.Scheme, httpRequest.Host,
+                                                 httpRequest.PathBase));
                 httpClient.Timeout = TimeSpan.FromSeconds(5);
             });
 
-            #region snippet_IOperationScoped
             services.AddScoped<IOperationScoped, OperationScoped>();
-            #endregion
             
             services.AddTransient<OperationHandler>();
             services.AddTransient<OperationResponseHandler>();
 
             services.AddHttpClient("Operation")
                 .AddHttpMessageHandler<OperationHandler>()
-                .AddHttpMessageHandler<OperationResponseHandler>();
+                .AddHttpMessageHandler<OperationResponseHandler>()
+                .SetHandlerLifetime(TimeSpan.FromSeconds(10));
 
             services.AddControllers();
             services.AddRazorPages();
         }
+        #endregion
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {

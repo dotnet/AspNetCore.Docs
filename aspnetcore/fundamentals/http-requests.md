@@ -260,14 +260,14 @@ For example, consider the following interface and its implementation, which repr
 
 As its name suggests, `IOperationScoped` is registered with DI using a *scoped* lifetime:
 
-[!code-csharp[](http-requests/samples/3.x/HttpRequestsSample/Startup.cs?name=snippet_IOperationScoped)]
+[!code-csharp[](http-requests/samples/3.x/HttpRequestsSample/Startup.cs?name=snippet_IOperationScoped&highlight=18,26)]
 
 The following delegating handler consumes and uses `IOperationScoped` to set the `X-OPERATION-ID` header for the outgoing request:
 
 [!code-csharp[](http-requests/samples/3.x/HttpRequestsSample/Handlers/OperationHandler.cs?name=snippet_Class&highlight=13)]
 
-<!-- TODO: Bring it all home -->
-In the [`HttpRequestsSample` download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/http-requests/samples/3.x/HttpRequestsSample)], navigate to `/Operation`. The request scope value changes for each request, but the handler scope value only change every two minutes due to the default handler lifetime.
+<!-- TODO: Bring it all home --> zz
+In the [`HttpRequestsSample` download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/http-requests/samples/3.x/HttpRequestsSample)], navigate to `/Operation` and refresh the page. The request scope value changes for each request, but the handler scope value only change every 10 seconds.
 
 Handlers can depend upon services of any scope. Services that handlers depend upon are disposed when the handler is disposed.
 
