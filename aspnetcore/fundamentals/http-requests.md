@@ -41,7 +41,7 @@ The best approach depends upon the app's requirements.
 
 `IHttpClientFactory` can be registered by calling `AddHttpClient`:
 
-[!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup.cs?name=snippet1)]
+[!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup.cs?name=snippet1&highlight=13)]
 
 An `IHttpClientFactory` can be requested using [dependency injection (DI)](xref:fundamentals/dependency-injection). The following code uses `IHttpClientFactory` to create an `HttpClient` instance:
 
@@ -221,16 +221,15 @@ To learn more about using different HTTP verbs with `HttpClient`, see <xref:Syst
 
 `HttpClient` has the concept of delegating handlers that can be linked together for outgoing HTTP requests. `IHttpClientFactory`:
 
-* Simplifies defining the handlers to apply for each named client.
-* Supports registration and chaining of multiple handlers to build an outgoing request middleware pipeline. Each of these handlers is able to perform work before and after the outgoing request. This pattern:
-
-  * Is similar to the inbound middleware pipeline in ASP.NET Core.
-  * Provides a mechanism to manage cross-cutting concerns around HTTP requests, such as:
-
-    * caching
-    * error handling
-    * serialization
-    * logging
+  * Simplifies defining the handlers to apply for each named client.
+  * Supports registration and chaining of multiple handlers to build an outgoing request   middleware pipeline. Each of these handlers is able to perform work before and after the   outgoing request. This pattern:
+  
+    * Is similar to the inbound middleware pipeline in ASP.NET Core.
+    * Provides a mechanism to manage cross-cutting concerns around HTTP requests, such as:
+      * caching
+      * error handling
+      * serialization
+      * logging
 
 To create a delegating handler:
 
