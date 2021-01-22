@@ -279,9 +279,9 @@ For more information on the <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentT
 
 [!INCLUDE[](~/blazor/includes/prerendering.md)]
 
-## Component disposal with IDisposable
+## Component disposal with `IDisposable`
 
-If a component implements <xref:System.IDisposable>, the [`Dispose` method](/dotnet/standard/garbage-collection/implementing-dispose) is called when the component is removed from the UI. Disposal can occur at any time, including during [component initialization](#component-initialization-methods). The following component uses `@implements IDisposable` and the `Dispose` method:
+If a component implements <xref:System.IDisposable>, the framework calls the [disposal method](/dotnet/standard/garbage-collection/implementing-dispose) when the component is removed from the UI, where unmanaged resources can be released. Disposal can occur at any time, including during [component initialization](#component-initialization-methods). The following component implements <xref:System.IDisposable> with the [`@implements`](xref:mvc/views/razor#implements) Razor directive:
 
 ```razor
 @using System
@@ -297,6 +297,15 @@ If a component implements <xref:System.IDisposable>, the [`Dispose` method](/dot
 }
 ```
 
+For asynchronous disposal tasks, use `DisposeAsync` instead of `Dispose` in the preceding example:
+
+```csharp
+public async ValueTask DisposeAsync()
+{
+    ...
+}
+```
+
 > [!NOTE]
 > Calling <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> in `Dispose` isn't supported. <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> might be invoked as part of tearing down the renderer, so requesting UI updates at that point isn't supported.
 
@@ -309,6 +318,8 @@ Unsubscribe event handlers from .NET events. The following [Blazor form](xref:bl
 * Private method approach
 
   [!code-razor[](lifecycle/samples_snapshot/event-handler-disposal-2.razor?highlight=16,26)]
+  
+For more information, see [Cleaning up unmanaged resources](/dotnet/standard/garbage-collection/unmanaged) and the topics that follow it on implementing the `Dispose` and `DisposeAsync` methods.
 
 ## Cancelable background work
 
