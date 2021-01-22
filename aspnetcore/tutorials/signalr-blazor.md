@@ -116,8 +116,12 @@ Follow the guidance for your choice of tooling:
 1. In a command shell, execute the following command:
 
    ```dotnetcli
-   dotnet new blazorwasm --hosted --output BlazorWebAssemblySignalRApp
+   dotnet new blazorwasm -ho -o BlazorWebAssemblySignalRApp
    ```
+
+   The `-ho|--hosted` option creates a hosted Blazor WebAssembly solution.
+
+   The `-o|--output` option creates a folder for the solution. If you've created a folder for the solution and the command shell is open in that folder, omit the `-o|--output` option and value to create the solution.
 
 1. In Visual Studio Code, open the app's project folder.
 
@@ -146,8 +150,12 @@ Follow the guidance for your choice of tooling:
 In a command shell, execute the following command:
 
 ```dotnetcli
-dotnet new blazorwasm --hosted --output BlazorWebAssemblySignalRApp
+dotnet new blazorwasm -ho -o BlazorWebAssemblySignalRApp
 ```
+
+The `-ho|--hosted` option creates a hosted Blazor WebAssembly solution.
+
+The `-o|--output` option creates a folder for the solution. If you've created a folder for the solution and the command shell is open in that folder, omit the `-o|--output` option and value to create the solution.
 
 ---
 
@@ -169,7 +177,7 @@ dotnet new blazorwasm --hosted --output BlazorWebAssemblySignalRApp
 
 # [Visual Studio Code](#tab/visual-studio-code/)
 
-In the **Integrated Terminal** (**View** > **Terminal** from the toolbar), execute the following commands:
+In the **Integrated Terminal** (**View** > **Terminal** from the toolbar), execute the following command:
 
 ```dotnetcli
 dotnet add Client package Microsoft.AspNetCore.SignalR.Client
@@ -191,10 +199,9 @@ To add an earlier version of the package, supply the `--version {VERSION}` optio
 
 # [.NET Core CLI](#tab/netcore-cli/)
 
-In a command shell, execute the following commands:
+In a command shell from the solution's folder, execute the following command:
 
 ```dotnetcli
-cd BlazorWebAssemblySignalRApp
 dotnet add Client package Microsoft.AspNetCore.SignalR.Client
 ```
 
@@ -206,7 +213,7 @@ To add an earlier version of the package, supply the `--version {VERSION}` optio
 
 ## Add the System.Text.Encodings.Web package
 
-*This section only applies to apps for ASP.NET Core version 3.1.*
+*This section only applies to apps for ASP.NET Core version 3.x.*
 
 Due to a package resolution issue when using [`System.Text.Json`](https://www.nuget.org/packages/System.Text.Json) 5.x in an ASP.NET Core 3.x app, the `BlazorWebAssemblySignalRApp.Server` project requires a package reference for [`System.Text.Encodings.Web`](https://www.nuget.org/packages/System.Text.Encodings.Web). The underlying issue will be resolved in a future patch release of .NET 5. For more information, see [System.Text.Json defines netcoreapp3.0 with no dependencies (dotnet/runtime #45560)](https://github.com/dotnet/runtime/issues/45560).
 
@@ -250,7 +257,7 @@ To add an earlier version of the package, supply the `--version {VERSION}` optio
 
 # [.NET Core CLI](#tab/netcore-cli/)
 
-In a command shell, execute the following command:
+In a command shell from the solution's folder, execute the following command:
 
 ```dotnetcli
 dotnet add Server package System.Text.Encodings.Web
@@ -380,7 +387,7 @@ Follow the guidance for your tooling:
 
 # [.NET Core CLI](#tab/netcore-cli/)
 
-1. In a command shell, execute the following commands:
+1. In a command shell from the solution's folder, execute the following commands:
 
    ```dotnetcli
    cd Server
@@ -436,8 +443,10 @@ Follow the guidance for your choice of tooling:
 1. In a command shell, execute the following command:
 
    ```dotnetcli
-   dotnet new blazorserver --output BlazorServerSignalRApp
+   dotnet new blazorserver -o BlazorServerSignalRApp
    ```
+
+   The `-o|--output` option creates a folder for the project. If you've created a folder for the project and the command shell is open in that folder, omit the `-o|--output` option and value to create the project.
 
 1. In Visual Studio Code, open the app's project folder.
 
@@ -466,8 +475,10 @@ Follow the guidance for your choice of tooling:
 In a command shell, execute the following command:
 
 ```dotnetcli
-dotnet new blazorserver --output BlazorServerSignalRApp
+dotnet new blazorserver -o BlazorServerSignalRApp
 ```
+
+The `-o|--output` option creates a folder for the project. If you've created a folder for the project and the command shell is open in that folder, omit the `-o|--output` option and value to create the project.
 
 ---
 
@@ -489,7 +500,7 @@ dotnet new blazorserver --output BlazorServerSignalRApp
 
 # [Visual Studio Code](#tab/visual-studio-code/)
 
-In the **Integrated Terminal** (**View** > **Terminal** from the toolbar), execute the following commands:
+In the **Integrated Terminal** (**View** > **Terminal** from the toolbar), execute the following command:
 
 ```dotnetcli
 dotnet add package Microsoft.AspNetCore.SignalR.Client
@@ -511,10 +522,9 @@ To add an earlier version of the package, supply the `--version {VERSION}` optio
 
 # [.NET Core CLI](#tab/netcore-cli/)
 
-In a command shell, execute the following commands:
+In a command shell from the project's folder, execute the following command:
 
 ```dotnetcli
-cd BlazorServerSignalRApp
 dotnet add package Microsoft.AspNetCore.SignalR.Client
 ```
 
@@ -570,7 +580,7 @@ To add an earlier version of the package, supply the `--version {VERSION}` optio
 
 # [.NET Core CLI](#tab/netcore-cli/)
 
-In a command shell, execute the following command:
+In a command shell from the project's folder, execute the following command:
 
 ```dotnetcli
 dotnet add package System.Text.Encodings.Web
@@ -701,10 +711,9 @@ Follow the guidance for your tooling:
 
 # [.NET Core CLI](#tab/netcore-cli/)
 
-1. In a command shell, execute the following commands:
+1. In a command shell from the project's folder, execute the following commands:
 
    ```dotnetcli
-   cd Server
    dotnet run
    ```
 
