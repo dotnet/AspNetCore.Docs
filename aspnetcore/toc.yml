@@ -260,8 +260,6 @@
           uid: mvc/overview
         - name: Tutorial
           items:
-            - name: Overview
-              uid: tutorials/first-mvc-app/index
             - name: Get started
               uid: tutorials/first-mvc-app/start-mvc
             - name: Add a controller

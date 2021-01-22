@@ -21,13 +21,18 @@
             "redirect_document_id": false
         },
         {
+            "source_path": "aspnetcore/tutorials/first-mvc-app/index.md",
+            "redirect_url": "/aspnet/core/tutorials/first-mvc-app/start-mvc",
+            "redirect_document_id": false
+        },
+        {
             "source_path": "aspnetcore/tutorials/first-mvc-app-xplat/index.md",
-            "redirect_url": "/aspnet/core/tutorials/first-mvc-app",
+            "redirect_url": "/aspnet/core/tutorials/first-mvc-app/start-mvc",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/tutorials/first-mvc-app-xplat/start-mvc.md",
-            "redirect_url": "/aspnet/core/tutorials/first-mvc-app",
+            "redirect_url": "/aspnet/core/tutorials/first-mvc-app/start-mvc",
             "redirect_document_id": false
         },
         {
@@ -72,12 +77,12 @@
         },
         {
             "source_path": "aspnetcore/tutorials/first-mvc-app-mac/start-mvc.md",
-            "redirect_url": "/aspnet/core/tutorials/first-mvc-app/",
+            "redirect_url": "/aspnet/core/tutorials/first-mvc-app/start-mvc",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/tutorials/first-mvc-app-mac/index.md",
-            "redirect_url": "/aspnet/core/tutorials/first-mvc-app/",
+            "redirect_url": "/aspnet/core/tutorials/first-mvc-app/start-mvc",
             "redirect_document_id": false
         },
         {
@@ -572,7 +577,7 @@
         },
         {
             "source_path": "aspnetcore/tutorials/your-first-aspnet-application.md",
-            "redirect_url": "/aspnet/core/tutorials/first-mvc-app/",
+            "redirect_url": "/aspnet/core/tutorials/first-mvc-app/start-mvc",
             "redirect_document_id": false
         },
         {
