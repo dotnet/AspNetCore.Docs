@@ -39,7 +39,7 @@ namespace HttpRequestsSample
             services.AddHttpClient("Operation")
                 .AddHttpMessageHandler<OperationHandler>()
                 .AddHttpMessageHandler<OperationResponseHandler>()
-                .SetHandlerLifetime(TimeSpan.FromSeconds(10));
+                .SetHandlerLifetime(TimeSpan.FromSeconds(5));
 
             services.AddControllers();
             services.AddRazorPages();
