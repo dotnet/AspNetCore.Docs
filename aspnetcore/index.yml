@@ -124,7 +124,7 @@ conceptualContent:
         - url: mvc/overview.md
           itemType: overview
           text: "Overview"
-        - url: tutorials/first-mvc-app/index.md
+        - url: tutorials/first-mvc-app/start-mvc.md
           itemType: get-started
           text: "Create your first ASP.NET Core MVC app"
         - url: mvc/views/overview.md

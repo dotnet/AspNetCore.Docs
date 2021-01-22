@@ -75,11 +75,11 @@ Consider declaring the action signature's return type as `IAsyncEnumerable<T>` t
 
 Consider the following action, which returns sale-priced product records as `IEnumerable<Product>`:
 
-[!code-csharp[](../web-api/action-return-types/samples/3x/WebApiSample.Api.30/Controllers/ProductsController.cs?name=snippet_GetOnSaleProducts)]
+[!code-csharp[](../web-api/action-return-types/samples/3x/WebApiSample.Api.31/Controllers/ProductsController.cs?name=snippet_GetOnSaleProducts)]
 
 The `IAsyncEnumerable<Product>` equivalent of the preceding action is:
 
-[!code-csharp[](../web-api/action-return-types/samples/3x/WebApiSample.Api.30/Controllers/ProductsController.cs?name=snippet_GetOnSaleProductsAsync)]
+[!code-csharp[](../web-api/action-return-types/samples/3x/WebApiSample.Api.31/Controllers/ProductsController.cs?name=snippet_GetOnSaleProductsAsync)]
 
 Both of the preceding actions are non-blocking as of ASP.NET Core 3.0.
 

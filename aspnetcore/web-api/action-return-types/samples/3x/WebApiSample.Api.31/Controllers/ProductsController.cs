@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using WebApiSample.DataAccess.Models;
 using WebApiSample.DataAccess.Repositories;
 
-namespace WebApiSample.Api._30.Controllers
+namespace WebApiSample.Api._31.Controllers
 {
     [ApiController]
     [Produces(MediaTypeNames.Application.Json)]
