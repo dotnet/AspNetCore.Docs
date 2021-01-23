@@ -134,7 +134,7 @@ public class AppSettingsRequestCultureProvider : RequestCultureProvider
 
 ASP.NET Core localization provides <xref:Microsoft.Extensions.Localization.ResourceManagerStringLocalizer>. <xref:Microsoft.Extensions.Localization.ResourceManagerStringLocalizer> is an implementation of <xref:Microsoft.Extensions.Localization.IStringLocalizer> that is uses `resx` to store localization resources.
 
-You aren't limited to using `resx` files. By implementing `IStringLocalized`, any data source can be used.
+You aren't limited to using `resx` files. By implementing `IStringLocalizer`, any data source can be used.
 
 The following example projects implement <xref:Microsoft.Extensions.Localization.IStringLocalizer>: 
 
