@@ -210,7 +210,7 @@ public class CustomAccountFactory
 
 The preceding code doesn't include transitive memberships. If the app requires direct and transitive group membership claims, replace the `MemberOf` property (`IUserMemberOfCollectionWithReferencesRequestBuilder`) with `TransitiveMemberOf` (`IUserTransitiveMemberOfCollectionWithReferencesRequestBuilder`).
 
-The preceding code ignores group membership claims (`groups`) that are AAD Administrator Roles (`#microsoft.graph.directoryRole` type) because the GUID values returned by the Microsoft Identity Platform 2.0 are AAD Administrator Role **entity IDs** and not [**Role Template IDs**](/azure/active-directory/roles/permissions-reference#role-template-ids). Entity IDs aren't stable across tenants in Microsoft Identity Platform 2.0 and shouldn't be used to create authorization policies for users in apps. Always use **Role Template IDs** for AAD Administrator Roles **provided by the `wids` claims**.
+The preceding code ignores group membership claims (`groups`) that are AAD Administrator Roles (`#microsoft.graph.directoryRole` type) because the GUID values returned by the Microsoft Identity Platform 2.0 are AAD Administrator Role **entity IDs** and not [**Role Template IDs**](/azure/active-directory/roles/permissions-reference#role-template-ids). Entity IDs aren't stable across tenants in Microsoft Identity Platform 2.0 and shouldn't be used to create authorization policies for users in apps. Always use **Role Template IDs** for AAD Administrator Roles **provided by `wids` claims**.
 
 In `Program.Main` of the **CLIENT** app, configure the MSAL authentication to use the custom user account factory.
 
@@ -237,7 +237,7 @@ builder.Services.AddGraphClient();
 
 ## Authorization configuration
 
-In the **CLIENT** app, create a [policy](xref:security/authorization/policies) for each [App Role](app-roles), AAD Administrator Role, or security group in `Program.Main`. The following example creates a policy for the AAD *Billing Administrator* role:
+In the **CLIENT** app, create a [policy](xref:security/authorization/policies) for each [App Role](#app-roles), AAD Administrator Role, or security group in `Program.Main`. The following example creates a policy for the AAD *Billing Administrator* role:
 
 ```csharp
 builder.Services.AddAuthorizationCore(options =>
