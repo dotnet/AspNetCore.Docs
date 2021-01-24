@@ -5,11 +5,11 @@ description: Learn how to configure Blazor WebAssembly to use Azure Active Direc
 monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.custom: "devx-track-csharp, mvc"
-ms.date: 12/03/2020
+ms.date: 01/24/2021
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/security/webassembly/aad-groups-roles
 ---
-# Azure Active Directory (AAD) groups, Administrator Roles, and user-defined roles
+# Azure Active Directory (AAD) groups, Administrator Roles, and App Roles
 
 By [Luke Latham](https://github.com/guardrex) and [Javier Calvarro Nelson](https://github.com/javiercn)
 
@@ -21,13 +21,13 @@ By [Luke Latham](https://github.com/guardrex) and [Javier Calvarro Nelson](https
 
 Azure Active Directory (AAD) provides several authorization approaches that can be combined with ASP.NET Core Identity:
 
-* User-defined groups
+* Groups
   * Security
   * Microsoft 365
   * Distribution
 * Roles
   * AAD Administrator Roles
-  * User-defined roles
+  * App Roles
 
 The guidance in this article applies to the Blazor WebAssembly AAD deployment scenarios described in the following topics:
 
@@ -76,7 +76,7 @@ The examples in this article:
 
 In the **CLIENT** app, extend <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount> to include properties for:
 
-* `Roles`: User-defined AAD roles array (covered in the [User-defined roles](#user-defined-roles) section)
+* `Roles`: AAD App Roles array (covered in the [App Roles](#app-roles) section)
 * `Wids`: AAD Administrator Roles in [well-known IDs claims (`wids`)](/azure/active-directory/develop/access-tokens#payload-claims)
 * `Oid`: Immutable [object identifier claim (`oid`)](/azure/active-directory/develop/id-tokens#payload-claims) (uniquely identifies a user within and across tenants)
 
@@ -116,10 +116,10 @@ var result = await TokenProvider.RequestAccessToken(
 
 Add the following custom user account factory to the **CLIENT** app. The custom user factory is used to establish:
 
-* User-defined role claims (`userDefinedRole`) (covered in the [User-defined roles](#user-defined-roles) section)
+* App Role claims (`appRole`) (covered in the [App Roles](#app-roles) section)
 * AAD Administrator Role claims (`directoryRole`)
 * An example user profile data claim for the user's mobile phone number (`mobilePhone`)
-* User-defined AAD group claims (`directoryGroup`)
+* AAD Group claims (`directoryGroup`)
 
 `CustomAccountFactory.cs`:
 
@@ -159,7 +159,7 @@ public class CustomAccountFactory
 
             foreach (var role in account.Roles)
             {
-                userIdentity.AddClaim(new Claim("userDefinedRole", role));
+                userIdentity.AddClaim(new Claim("appRole", role));
             }
 
             foreach (var wid in account.Wids)
@@ -237,7 +237,7 @@ builder.Services.AddGraphClient();
 
 ## Authorization configuration
 
-In the **CLIENT** app, create a [policy](xref:security/authorization/policies) for each [user-defined role](#user-defined-roles), AAD Administrator Role, or security group in `Program.Main`. The following example creates a policy for the AAD *Billing Administrator* role:
+In the **CLIENT** app, create a [policy](xref:security/authorization/policies) for each [App Role](app-roles), AAD Administrator Role, or security group in `Program.Main`. The following example creates a policy for the AAD *Billing Administrator* role:
 
 ```csharp
 builder.Services.AddAuthorizationCore(options =>
@@ -323,7 +323,7 @@ A policy check can also be [performed in code with procedural logic](xref:blazor
 
 ## Authorize server API/web API access
 
-A **SERVER** API app can authorize users to access secure API endpoints with [authorization policies](xref:security/authorization/policies) for security groups, AAD Administrator Roles, and user-defined roles when an access token contains `groups`, `wids`, and `http://schemas.microsoft.com/ws/2008/06/identity/claims/role` claims. The following example creates a policy for the AAD *Billing Administrator* role in `Startup.ConfigureServices` using the `wids` (well-known IDs/Role Template IDs) claims:
+A **SERVER** API app can authorize users to access secure API endpoints with [authorization policies](xref:security/authorization/policies) for security groups, AAD Administrator Roles, and App Roles when an access token contains `groups`, `wids`, and `http://schemas.microsoft.com/ws/2008/06/identity/claims/role` claims. The following example creates a policy for the AAD *Billing Administrator* role in `Startup.ConfigureServices` using the `wids` (well-known IDs/Role Template IDs) claims:
 
 ```csharp
 services.AddAuthorization(options =>
@@ -354,9 +354,9 @@ public class BillingDataController : ControllerBase
 
 For more information, see <xref:security/authorization/policies>.
 
-## User-defined roles
+## App Roles
 
-To configure the app in the Azure portal to provide user-defined roles membership claims, see [How to: Add app roles in your application and receive them in the token](/azure/active-directory/develop/howto-add-app-roles-in-azure-ad-apps) in the Azure documentation.
+To configure the app in the Azure portal to provide App Roles membership claims, see [How to: Add app roles in your application and receive them in the token](/azure/active-directory/develop/howto-add-app-roles-in-azure-ad-apps) in the Azure documentation.
 
 The following example assumes that the **CLIENT** and **SERVER** apps are configured with two roles, and the roles are assigned to a test user:
 
@@ -373,14 +373,14 @@ The following example assumes that the **CLIENT** and **SERVER** apps are config
 
 The `CustomAccountFactory` shown in the [Custom user account](#custom-user-account) section is set up to act on a `roles` claim with a JSON array value. Add and register the `CustomAccountFactory` in the **CLIENT** app as shown in the [Custom user account](#custom-user-account) section. There's no need to provide code to remove the original `roles` claim because it's automatically removed by the framework.
 
-In `Program.Main` of a **CLIENT** app, specify the claim named "`userDefinedRole`" as the role claim for <xref:System.Security.Claims.ClaimsPrincipal.IsInRole%2A?displayProperty=nameWithType> checks:
+In `Program.Main` of a **CLIENT** app, specify the claim named "`appRole`" as the role claim for <xref:System.Security.Claims.ClaimsPrincipal.IsInRole%2A?displayProperty=nameWithType> checks:
 
 ```csharp
 builder.Services.AddMsalAuthentication(options =>
 {
     ...
 
-    options.UserOptions.RoleClaim = "userDefinedRole";
+    options.UserOptions.RoleClaim = "appRole";
 });
 ```
 
