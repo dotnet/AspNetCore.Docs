@@ -72,16 +72,13 @@ In the following example, <xref:Microsoft.AspNetCore.Components.ParameterView.Tr
 
     public override async Task SetParametersAsync(ParameterView parameters)
     {
-        if (parameters.TryGetValue<string>(nameof(Param), out var value))
+        if (!parameters.TryGetValue<string>(nameof(Param), out var value))
         {
-            if (value is null)
-            {
-                message = $"The value of 'Param' is null.";
-            }
-            else
-            {
-                message = $"The value of 'Param' is {value}.";
-            }
+            message = "The value of 'Param' is null.";
+        }
+        else 
+        {
+            message = $"The value of 'Param' is {value}.";
         }
 
         await base.SetParametersAsync(parameters);
