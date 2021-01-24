@@ -19,9 +19,12 @@ CSS isolation simplifies an app's CSS footprint by preventing dependencies on gl
 
 To define component-specific styles, create a `.razor.css` file matching the name of the `.razor` file for the component. This `.razor.css` file is a *scoped CSS file*. 
 
-For a `MyComponent` component that has a `MyComponent.razor` file, create a file alongside the component called `MyComponent.razor.css`. The `MyComponent` value in the `.razor.css` filename is **not** case-sensitive.
+For a `MyComponent` component that has a `MyComponent.razor` file, create a file alongside the component called `MyComponent.razor.css`. This scoped CSS file (`MyComponent.razor.css`) must reside in the same directory as the component (`MyComponent.razor`). 
 
-For example to add CSS isolation to the `Counter` component in the default Blazor project template, add a new file named `Counter.razor.css` alongside the `Counter.razor` file, then add the following CSS:
+
+The `MyComponent` value in the `.razor.css` filename is **not** case-sensitive.
+
+For example to add CSS isolation to the `Counter` component in the default Blazor project template, add a new file named `Counter.razor.css` in the same directory as the `Counter.razor` file, then add the following CSS:
 
 ```css
 h1 { 
