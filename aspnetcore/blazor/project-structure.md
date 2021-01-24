@@ -62,6 +62,9 @@ The Blazor WebAssembly template (`blazorwasm`) creates the initial files and dir
 
 ::: moniker-end
 
+> [!NOTE]
+> JavaScript (JS) files added to the `wwwroot/index.html` file should appear before the closing `</body>` tag. The order that custom JS code is loaded from JS files is important in some scenarios. For example, ensure that JS files with interop methods are included before Blazor framework JS files.
+
 * `_Imports.razor`: Includes common Razor directives to include in the app's components (`.razor`), such as [`@using`](xref:mvc/views/razor#using) directives for namespaces.
 
 * `App.razor`: The root component of the app that sets up client-side routing using the <xref:Microsoft.AspNetCore.Components.Routing.Router> component. The <xref:Microsoft.AspNetCore.Components.Routing.Router> component intercepts browser navigation and renders the page that matches the requested address.
@@ -98,7 +101,10 @@ The Blazor Server template (`blazorserver`) creates the initial files and direct
   * `Error` component (`Error.razor`): Rendered when an unhandled exception occurs in the app.
   * `FetchData` component (`FetchData.razor`): Implements the Fetch data page.
   * `Index` component (`Index.razor`): Implements the Home page.
-  
+
+> [!NOTE]
+> JavaScript (JS) files added to the `Pages/_Host.cshtml` file should appear before the closing `</body>` tag. The order that custom JS code is loaded from JS files is important in some scenarios. For example, ensure that JS files with interop methods are included before Blazor framework JS files.
+
 * `Properties/launchSettings.json`: Holds [development environment configuration](xref:fundamentals/environments#development-and-launchsettingsjson).
 
 ::: moniker range=">= aspnetcore-5.0"
