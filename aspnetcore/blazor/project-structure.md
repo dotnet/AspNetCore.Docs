@@ -63,7 +63,7 @@ The following files and folders are produced from the Blazor WebAssembly templat
 ::: moniker-end
 
 > [!NOTE]
-> JavaScript (JS) files added to the `wwwroot/index.html` file should appear before the closing `</body>` tag. The order that custom JS code is loaded from JS files is important in some scenarios. For example, ensure that JS files with interop methods are included before Blazor framework JavaScript files.
+> JavaScript (JS) files added to the `wwwroot/index.html` file should appear before the closing `</body>` tag. The order that custom JS code is loaded from JS files is important in some scenarios. For example, ensure that JS files with interop methods are included before Blazor framework JS files.
 
 * `_Imports.razor`: Includes common Razor directives to include in the app's components (`.razor`), such as [`@using`](xref:mvc/views/razor#using) directives for namespaces.
 
@@ -103,7 +103,7 @@ The following files and folders are produced from the Blazor Server template (`b
   * `Index` component (`Index.razor`): Implements the Home page.
 
 > [!NOTE]
-> JavaScript (JS) files added to the `Pages/_Host.cshtml` file should appear before the closing `</body>` tag. The order that custom JS code is loaded from JS files is important in some scenarios. For example, ensure that JS files with interop methods are included before Blazor framework JavaScript files.
+> JavaScript (JS) files added to the `Pages/_Host.cshtml` file should appear before the closing `</body>` tag. The order that custom JS code is loaded from JS files is important in some scenarios. For example, ensure that JS files with interop methods are included before Blazor framework JS files.
 
 * `Properties/launchSettings.json`: Holds [development environment configuration](xref:fundamentals/environments#development-and-launchsettingsjson).
 
