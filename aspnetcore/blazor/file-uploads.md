@@ -11,7 +11,7 @@ uid: blazor/file-uploads
 ---
 # ASP.NET Core Blazor file uploads
 
-By [Daniel Roth](https://github.com/danroth27) and [Pranav Krishnamoorthy](https://github.com/pranavkm)
+By [Daniel Roth](https://github.com/danroth27), [Pranav Krishnamoorthy](https://github.com/pranavkm), and [Ed Charbeneau](https://edcharbeneau.com)
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/file-uploads/samples/) ([how to download](xref:index#how-to-download-a-sample))
 
@@ -39,29 +39,32 @@ The following example demonstrates multiple image file upload in a component. `I
 > [!NOTE]
 > <xref:Microsoft.AspNetCore.Components.Forms.InputFileChangeEventArgs> is in the <xref:Microsoft.AspNetCore.Components.Forms?displayProperty=fullName> namespace, which is typically one of the namespaces in the app's `_Imports.razor` file.
 
+`Pages/UploadImages.razor`:
+
 ```razor
-<h3>Upload PNG images</h3>
+@pages "/upload-images"
+
+<h1>Upload PNG images</h1>
 
 <p>
+    Upload one or more PNG image files: 
     <InputFile OnChange="@OnInputFileChange" multiple />
 </p>
 
-@if (imageDataUrls.Count > 0)
+@if (images.Count > 0)
 {
-    <h4>Images</h4>
-
     <div class="card" style="width:30rem;">
         <div class="card-body">
-            @foreach (var imageDataUrl in imageDataUrls)
+            @foreach (var imageData in images)
             {
-                <img class="rounded m-1" src="@imageDataUrl" />
+                <img class="rounded m-1" src="@imageData" />
             }
         </div>
     </div>
 }
 
 @code {
-    private IList<string> imageDataUrls = new List<string>();
+    private IList<string> images = new List<string>();
 
     private async Task OnInputFileChange(InputFileChangeEventArgs e)
     {
@@ -74,9 +77,9 @@ The following example demonstrates multiple image file upload in a component. `I
                 100, 100);
             var buffer = new byte[resizedImageFile.Size];
             await resizedImageFile.OpenReadStream().ReadAsync(buffer);
-            var imageDataUrl = 
+            var imageData = 
                 $"data:{format};base64,{Convert.ToBase64String(buffer)}";
-            imageDataUrls.Add(imageDataUrl);
+            images.Add(imageData);
         }
     }
 }
@@ -84,11 +87,283 @@ The following example demonstrates multiple image file upload in a component. `I
 
 `IBrowserFile` returns metadata [exposed by the browser](https://developer.mozilla.org/docs/Web/API/File#Instance_properties) as properties. This metadata can be useful to preliminary validation. For example, see the [`FileUpload.razor` and `FilePreview.razor` sample components](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/file-uploads/samples/).
 
+## Upload files to a server
+
+**Content is TBD based on firming up the example code.**
+
+**Include STRONG security warning with cross-link to security guidance in https://docs.microsoft.com/aspnet/core/mvc/models/file-uploads.**
+
+`UploadResult.cs` in the **`Shared`** project of a hosted Blazor WebAssembly solution:
+
+```csharp
+public class UploadResult
+{
+    public bool Uploaded { get; set; }
+
+    public string FileName { get; set; }
+
+    public string StoredFileName { get; set; }
+
+    public int ErrorCode { get; set; }
+}
+```
+
+`Pages/UploadFiles.razor` in the **`Client`** project of a hosted Blazor solution:
+
+```razor
+@page "/upload-files"
+@using System.IO
+@using System.Linq
+@using System.Net
+@using Microsoft.Extensions.Logging
+@using FileUploadTesting.Shared
+@inject HttpClient Http
+@inject ILogger<UploadFiles> logger
+
+<h1>Upload files</h1>
+
+<p>
+    Upload one or more PNG image files:
+    <InputFile OnChange="@OnInputFileChange" multiple />
+</p>
+
+@if (images.Count > 0)
+{
+    <div class="card">
+        <div class="card-body">
+            @foreach (var image in images)
+            {
+                <figure>
+                    <img class="rounded m-1" src="@image.Thumbnail" />
+                    <figcaption>
+                        @WebUtility.HtmlEncode(image.Name)
+                        <br>
+                        @if (FileUpload(uploadResults, image.Name, logger,
+                           out var result))
+                        {
+                            @result.StoredFileName
+                        }
+                        else
+                        {
+                            <p>
+                                There was an error uploading the file
+                                (Error: @result.ErrorCode).
+                            </p>
+                        }
+                    </figcaption>
+                </figure>
+            }
+        </div>
+    </div>
+}
+
+@code {
+    private IList<Image> images = new List<Image>();
+    private IList<UploadResult> uploadResults =
+        new List<UploadResult>();
+
+    private async Task OnInputFileChange(InputFileChangeEventArgs e)
+    {
+        var format = "image/png";
+        var maxAllowedFiles = 3;
+        var maxWidth = 640;
+        var maxHeight = 480;
+        var thumbnailSize = 100;
+        long maxFileSize = 1024 * 1024 * 15;
+        var upload = false;
+
+        using var content = new MultipartFormDataContent();
+
+        foreach (var imageFile in e.GetMultipleFiles(maxAllowedFiles))
+        {
+            if (uploadResults.SingleOrDefault(
+                f => f.FileName == imageFile.Name) is null)
+            {
+                var image = new Image() { Name = imageFile.Name };
+
+                var resizedImageFile = await imageFile.RequestImageFileAsync(
+                    format, thumbnailSize, thumbnailSize);
+                var buffer = new byte[resizedImageFile.Size];
+                await resizedImageFile.OpenReadStream().ReadAsync(buffer);
+                image.Thumbnail =
+                    $"data:{format};base64,{Convert.ToBase64String(buffer)}";
+
+                var uploadFile = await imageFile.RequestImageFileAsync(
+                    format, maxWith: maxWidth, maxHeight: maxHeight);
+                using Stream s = uploadFile.OpenReadStream(maxFileSize);
+                using MemoryStream ms = new();
+                await s.CopyToAsync(ms);
+                var fileBytes = ms.ToArray();
+
+                content.Add(
+                    content: new ByteArrayContent(fileBytes),
+                    name: "\"files\"",
+                    fileName: uploadFile.Name);
+
+                images.Add(image);
+                upload = true;
+            }
+        }
+
+        if (upload)
+        {
+            var response = await Http.PostAsync("/Filesave", content);
+
+            var newUploadResults = await response.Content
+                .ReadFromJsonAsync<IList<UploadResult>>();
+
+            uploadResults = uploadResults.Concat(newUploadResults).ToList();
+        }
+    }
+
+    private static bool FileUpload(IList<UploadResult> uploadResults,
+        string fileName, ILogger<UploadFiles> logger, out UploadResult result)
+    {
+        result = uploadResults.SingleOrDefault(f => f.FileName == fileName);
+
+        if (result is null)
+        {
+            logger.LogInformation("{FileName} not uploaded", fileName);
+            result = new UploadResult();
+            result.ErrorCode = 5;
+        }
+
+        return result.Uploaded;
+    }
+
+    private class Image
+    {
+        public string Name { get; set; }
+        public string Thumbnail { get; set; }
+    }
+}
+```
+
+**Further explanation of the preceding code is TBD based on firming up the example code.**
+
+**Lead-in remarks for the server code is TBD based on firming up the example code.**
+
+`Controllers/FilesaveController.cs` in the **`Server`** project of a hosted Blazor solution:
+
+```csharp
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Net;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using FileUploadTesting.Shared;
+
+namespace FileUploadTesting.Server.Controllers
+{
+    [ApiController]
+    [Route("[controller]")]
+    public class FilesaveController : ControllerBase
+    {
+        private readonly IWebHostEnvironment env;
+        private readonly ILogger<FilesaveController> logger;
+
+        public FilesaveController(IWebHostEnvironment env, 
+            ILogger<FilesaveController> logger)
+        {
+            this.env = env;
+            this.logger = logger;
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<IList<UploadResult>>> PostFile(
+            [FromForm] IEnumerable<IFormFile> files)
+        {
+            var maxAllowedFiles = 3;
+            long maxFileSize = 1024 * 1024 * 15;
+            var filesProcessed = 0;
+            Uri resourcePath = new Uri($"{Request.Scheme}://{Request.Host}/");
+            IList<UploadResult> uploadResults = new List<UploadResult>();
+
+            foreach (var file in files)
+            {
+                var uploadResult = new UploadResult();
+                string trustedFileNameForFileStorage;
+                var untrustedFileName = file.FileName;
+                uploadResult.FileName = untrustedFileName;
+                var trustedFileNameForDisplay = 
+                    WebUtility.HtmlEncode(untrustedFileName);
+
+                if (filesProcessed < maxAllowedFiles)
+                {
+                    if (file.Length == 0)
+                    {
+                        logger.LogInformation("{FileName} length is 0", 
+                            trustedFileNameForDisplay);
+                        uploadResult.ErrorCode = 1;
+                    }
+                    else if (file.Length > maxFileSize)
+                    {
+                        logger.LogInformation("{FileName} of {Length} bytes is " +
+                            "larger than the limit of {Limit} bytes", 
+                            trustedFileNameForDisplay, file.Length, maxFileSize);
+                        uploadResult.ErrorCode = 2;
+                    }
+                    else
+                    {
+                        try
+                        {
+                            // ** WARNING! **
+                            // In this example, the file is saved without scanning 
+                            // the file's contents. In most production scenarios, 
+                            // an anti-virus/anti-malware scanner API is used on 
+                            // the file before making the file available for 
+                            // download or for use by other systems.
+                            //
+                            // For more information, see the security guidance at:
+                            // https://docs.microsoft.com/aspnet/core/mvc/models/file-uploads
+
+                            trustedFileNameForFileStorage = Path.GetRandomFileName();
+                            var path = Path.Combine(env.ContentRootPath, 
+                                env.EnvironmentName, "unsafe_uploads", trustedFileNameForFileStorage);
+                            using MemoryStream ms = new();
+                            await file.CopyToAsync(ms);
+                            await System.IO.File.WriteAllBytesAsync(path, ms.ToArray());
+                            logger.LogInformation("{FileName} saved at {Path}", 
+                                trustedFileNameForDisplay, path);
+                            uploadResult.Uploaded = true;
+                            uploadResult.StoredFileName = trustedFileNameForFileStorage;
+                        }
+                        catch (IOException ex)
+                        {
+                            logger.LogError("{FileName} error on upload: {Message}", 
+                                trustedFileNameForDisplay, ex.Message);
+                            uploadResult.ErrorCode = 3;
+                        }
+                    }
+
+                    filesProcessed++;
+                }
+                else
+                {
+                    logger.LogInformation("{FileName} not uploaded because the " +
+                        "request exceeded the allowed {Count} of files", 
+                        trustedFileNameForDisplay, maxAllowedFiles);
+                    uploadResult.ErrorCode = 4;
+                }
+
+                uploadResults.Add(uploadResult);
+            }
+
+            return new CreatedResult(resourcePath, uploadResults);
+        }
+    }
+}
+```
+
 ## File streams
 
-In a Blazor WebAssembly app, the data is streamed directly into the .NET code within the browser.
+In Blazor WebAssembly, file data is streamed directly into the .NET code within the browser.
 
-In a Blazor Server app, the file data is streamed over the SignalR connection into .NET code on the server as the file is read from the stream. [`Forms.RemoteBrowserFileStreamOptions`](https://github.com/dotnet/aspnetcore/blob/master/src/Components/Web/src/Forms/InputFile/RemoteBrowserFileStreamOptions.cs) allows configuring file upload characteristics for Blazor Server.
+In Blazor Server, file data is streamed over the SignalR connection into .NET code on the server as the file is read from the stream. [`Forms.RemoteBrowserFileStreamOptions`](https://github.com/dotnet/aspnetcore/blob/master/src/Components/Web/src/Forms/InputFile/RemoteBrowserFileStreamOptions.cs) allows configuring file upload characteristics for Blazor Server.
 
 ## Additional resources
 
