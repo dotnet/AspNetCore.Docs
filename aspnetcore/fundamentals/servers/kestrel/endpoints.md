@@ -333,7 +333,7 @@ webBuilder.ConfigureKestrel(serverOptions =>
 });
 ```
 
-By default, Kestrel will use the Operating System defaults to choose the best protocol to use. Unless you have a specific reason to select a protocol, you use this default.
+By default, Kestrel uses the operating system defaults to choose the best protocol. Unless you have a specific reason to select a protocol, use the default.
 
 ## Connection logging
 
