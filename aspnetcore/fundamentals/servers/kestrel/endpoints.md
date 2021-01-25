@@ -60,24 +60,6 @@ webBuilder.ConfigureKestrel(serverOptions =>
 > [!NOTE]
 > Endpoints created by calling <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen%2A> **before** calling <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ConfigureEndpointDefaults%2A> won't have the defaults applied.
 
-## ConfigureHttpsDefaults(Action\<HttpsConnectionAdapterOptions>)
-
-Specifies a configuration `Action` to run for each HTTPS endpoint. Calling `ConfigureHttpsDefaults` multiple times replaces prior `Action`s with the last `Action` specified.
-
-```csharp
-webBuilder.ConfigureKestrel(serverOptions =>
-{
-    serverOptions.ConfigureHttpsDefaults(listenOptions =>
-    {
-        // certificate is an X509Certificate2
-        listenOptions.ServerCertificate = certificate;
-    });
-});
-```
-
-> [!NOTE]
-> Endpoints created by calling <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen%2A> **before** calling <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ConfigureHttpsDefaults%2A> won't have the defaults applied.
-
 ## Configure(IConfiguration)
 
 Creates a configuration loader for setting up Kestrel that takes an <xref:Microsoft.Extensions.Configuration.IConfiguration> as input. The configuration must be scoped to the configuration section for Kestrel.
@@ -102,6 +84,24 @@ Creates a configuration loader for setting up Kestrel that takes an <xref:Micros
   }
 }
 ```
+
+## ConfigureHttpsDefaults(Action\<HttpsConnectionAdapterOptions>)
+
+Specifies a configuration `Action` to run for each HTTPS endpoint. Calling `ConfigureHttpsDefaults` multiple times replaces prior `Action`s with the last `Action` specified.
+
+```csharp
+webBuilder.ConfigureKestrel(serverOptions =>
+{
+    serverOptions.ConfigureHttpsDefaults(listenOptions =>
+    {
+        // certificate is an X509Certificate2
+        listenOptions.ServerCertificate = certificate;
+    });
+});
+```
+
+> [!NOTE]
+> Endpoints created by calling <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen%2A> **before** calling <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ConfigureHttpsDefaults%2A> won't have the defaults applied.
 
 ## ListenOptions.UseHttps
 
@@ -319,6 +319,21 @@ SNI support requires:
 * Running on target framework `netcoreapp2.1` or later. On `net461` or later, the callback is invoked but the `name` is always `null`. The `name` is also `null` if the client doesn't provide the host name parameter in the TLS handshake.
 * All websites run on the same Kestrel instance. Kestrel doesn't support sharing an IP address and port across multiple instances without a reverse proxy.
 
+## SSL/TLS Protocols
+
+SSL Protocols are protocols used for encrypting and decrypting traffic between two peers, traditionally a client and a server.
+
+```csharp
+webBuilder.ConfigureKestrel(serverOptions =>
+{
+    serverOptions.ConfigureHttpsDefaults(listenOptions =>
+    {
+        listenOptions.SslProtocols = SslProtocols.Tls13;
+    });
+});
+```
+
+The default value, `SslProtocols.None`, causes Kestrel to use the operating system defaults to choose the best protocol. Unless you have a specific reason to select a protocol, use the default.
 ## Connection logging
 
 Call <xref:Microsoft.AspNetCore.Hosting.ListenOptionsConnectionLoggingExtensions.UseConnectionLogging%2A> to emit Debug level logs for byte-level communication on a connection. Connection logging is helpful for troubleshooting problems in low-level communication, such as during TLS encryption and behind proxies. If `UseConnectionLogging` is placed before `UseHttps`, encrypted traffic is logged. If `UseConnectionLogging` is placed after `UseHttps`, decrypted traffic is logged. This is built-in [Connection Middleware](#connection-middleware).
