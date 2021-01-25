@@ -333,8 +333,7 @@ webBuilder.ConfigureKestrel(serverOptions =>
 });
 ```
 
-By default, Kestrel uses the operating system defaults to choose the best protocol. Unless you have a specific reason to select a protocol, use the default.
-
+The default value, `SslProtocols.None`, causes Kestrel to use the operating system defaults to choose the best protocol. Unless you have a specific reason to select a protocol, use the default.
 ## Connection logging
 
 Call <xref:Microsoft.AspNetCore.Hosting.ListenOptionsConnectionLoggingExtensions.UseConnectionLogging%2A> to emit Debug level logs for byte-level communication on a connection. Connection logging is helpful for troubleshooting problems in low-level communication, such as during TLS encryption and behind proxies. If `UseConnectionLogging` is placed before `UseHttps`, encrypted traffic is logged. If `UseConnectionLogging` is placed after `UseHttps`, decrypted traffic is logged. This is built-in [Connection Middleware](#connection-middleware).
