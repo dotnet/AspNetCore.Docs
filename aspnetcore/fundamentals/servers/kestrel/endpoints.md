@@ -323,7 +323,7 @@ SNI support requires:
 
 SSL Protocols are protocols used for encrypting and decrypting traffic between two peers, traditionally a client and a server.
 
-```c#
+```csharp
 webBuilder.ConfigureKestrel(serverOptions =>
 {
     serverOptions.ConfigureHttpsDefaults(listenOptions =>
