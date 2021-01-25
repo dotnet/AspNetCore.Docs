@@ -273,7 +273,7 @@ If you have an active IIS Rewrite Module with server-level rules configured that
 
 #### Unsupported features
 
-The middleware released with ASP.NET Core 2.x doesn't support the following IIS URL Rewrite Module features:
+The middleware doesn't support the following IIS URL Rewrite Module features:
 
 * Outbound Rules
 * Custom Server Variables
