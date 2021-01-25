@@ -45,13 +45,13 @@ The Authentication middleware is added in `Startup.Configure` by calling the <xr
 
 ## Authentication Concepts
 
-Authentication is responsible for providing the <xref:System.Security.Claims.ClaimsPrincipal> for authorization to make permission decisions against. There are multiple authentication scheme approaches to select which authentication handler is is responsible for generating the correct set of claims:
+Authentication is responsible for providing the <xref:System.Security.Claims.ClaimsPrincipal> for authorization to make permission decisions against. There are multiple authentication scheme approaches to select which authentication handler is responsible for generating the correct set of claims:
 
   * [Authentication scheme](xref:security/authorization/limitingidentitybyscheme), also discussed in the next section.
   * The default authentication scheme, discussed in the next section.
   * Directly set [HttpContext.User](xref:Microsoft.AspNetCore.Http.HttpContext.User).
 
-There is no automatic probing of schemes. If the default scheme is not specified, the scheme must be specified it in the authorize attribute, otherwise, the following error is thrown:
+There is no automatic probing of schemes. If the default scheme is not specified, the scheme must be specified in the authorize attribute, otherwise, the following error is thrown:
 
   InvalidOperationException: No authenticationScheme was specified, and there was no DefaultAuthenticateScheme found. The default schemes can be set using either AddAuthentication(string defaultScheme) or AddAuthentication(Action&lt;AuthenticationOptions&gt; configureOptions).
 
