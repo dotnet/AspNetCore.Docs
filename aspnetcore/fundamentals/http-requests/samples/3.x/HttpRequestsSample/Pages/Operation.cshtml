@@ -1,0 +1,9 @@
+@page
+@model OperationModel
+
+@{
+    ViewData["Title"] = "Operation";
+}
+
+<div>Request Scope: @Model.OperationIdFromRequestScope</div>
+<div>Handler Scope: @Model.OperationIdFromHandlerScope</div>
