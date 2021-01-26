@@ -139,16 +139,16 @@ public class UploadResult
                         @WebUtility.HtmlEncode(image.Name)
                         <br>
                         @if (FileUpload(uploadResults, image.Name, logger,
-                           out var result))
+                            out var result))
                         {
                             @result.StoredFileName
                         }
                         else
                         {
-                            <p>
+                            <span>
                                 There was an error uploading the file
                                 (Error: @result.ErrorCode).
-                            </p>
+                            </span>
                         }
                     </figcaption>
                 </figure>
