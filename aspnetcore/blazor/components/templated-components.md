@@ -144,3 +144,7 @@ Otherwise, the type parameter must be explicitly specified using an attribute th
     ...
 }
 ```
+
+## Additional resources
+
+* <xref:blazor/webassembly-performance-best-practices#define-reusable-renderfragments-in-code>
