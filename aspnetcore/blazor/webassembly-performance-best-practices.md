@@ -221,7 +221,7 @@ This could now be invoked from an unrelated component. This technique is useful 
 
 This approach provides the benefit of reusing rendering logic without per-component overhead. However, it doesn't have the benefit of being able to refresh its subtree of the UI independently, nor does it have the ability to skip rendering that subtree of the UI when its parent renders, since there's no component boundary.
 
-For a non-static field, method, or property that can't be referenced by a field initializer, use a property instead:
+For a non-static field, method, or property that can't be referenced by a field initializer, such as `TitleTemplate` in the following example, use a property instead of a field for the <xref:Microsoft.AspNetCore.Components.RenderFragment>:
 
 ```csharp
 protected RenderFragment DisplayTitle => __builder =>
