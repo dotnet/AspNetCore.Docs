@@ -174,7 +174,7 @@ You may be factoring out child components purely as a way of reusing rendering l
 @RenderWelcomeInfo
 
 @code {
-    protected RenderFragment RenderWelcomeInfo = __builder =>
+    private RenderFragment RenderWelcomeInfo = __builder =>
     {
         <div>
             <p>Welcome to your new app!</p>
