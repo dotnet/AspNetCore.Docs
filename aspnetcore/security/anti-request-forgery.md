@@ -475,7 +475,7 @@ public void ConfigureServices(IServiceCollection services)
 
 ## Windows authentication and antiforgery cookies
 
-When using Windows Authentication, application endpoints need to be protected against CSRF attacks in the same as done for cookies.  The browser implicitly sends the authentication context to the server, therefore endpoints need to be protected against CSRF attacks.
+When using Windows Authentication, application endpoints need to be protected against CSRF attacks in the same way as done for cookies.  The browser implicitly sends the authentication context to the server, therefore endpoints need to be protected against CSRF attacks.
 
 ## Extend antiforgery
 
