@@ -243,6 +243,8 @@ public class UploadResult
 
 **Lead-in remarks for the server code is TBD based on firming up the example code.**
 
+To use the following code, create a `Development/unsafe_uploads` folder at the root of the **`Server`** project.
+
 `Controllers/FilesaveController.cs` in the **`Server`** project of a hosted Blazor solution:
 
 ```csharp
