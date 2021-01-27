@@ -117,9 +117,9 @@ The preceding code serializes results using `XmlSerializer`.
 
 When using the preceding code, controller methods return the appropriate format based on the request's `Accept` header.
 
-### ProblemDetails and PascalCase
+### Configure System.Text.Json-based formatters
 
-The following highlighted code sets PascalCase, the default is camelCase:
+Features for the `System.Text.Json` based formatters can be configured using <xref:Microsoft.AspNetCore.Mvc.JsonOptions.JsonSerializerOptions?displayProperty=fullName>. The following highlighted code sets PascalCase, the default is camelCase:
 
 [!code-csharp[](./formatting/5.0samples/WebAPI5PascalCase/Startup.cs?name=snippet&highlight=4-5)]
 
@@ -130,11 +130,9 @@ The following action method calls [ControllerBase.Problem](xref:Microsoft.AspNet
 With the preceding code:
 
   * `https://localhost:5001/WeatherForecast/temperature` returns PascalCase.
-  * `https://localhost:5001/WeatherForecast/error` returns camelCase. The error response is always camelCase, even when the app sets the format to PascalCase. `ProblemDetails` follows [RFC 7807 spec](https://tools.ietf.org/html/rfc7807#appendix-A), which specifies lower case.
+  * `https://localhost:5001/WeatherForecast/error` returns camelCase. The error response is always camelCase, even when the app sets the format to PascalCase. `ProblemDetails` follows [RFC 7807 spec](https://tools.ietf.org/html/rfc7807#appendix-A), which specifies lower case
 
-### Configure System.Text.Json-based formatters
-
-Features for the `System.Text.Json`-based formatters can be configured using `Microsoft.AspNetCore.Mvc.JsonOptions.SerializerOptions`.
+The following code sets PascalCase and adds a custom converter:
 
 ```csharp
 services.AddControllers().AddJsonOptions(options =>
