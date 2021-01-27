@@ -9,7 +9,7 @@ ms.date: 01/27/2021
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/fundamentals/static-files
 ---
-# ASP.NET Core Blazor SignalR static files
+# ASP.NET Core Blazor static files
 
 *This article applies to Blazor Server.*
 
