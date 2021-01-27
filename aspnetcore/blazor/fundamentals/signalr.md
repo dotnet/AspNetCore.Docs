@@ -63,7 +63,6 @@ services.AddServerSideBlazor()
         options.MaximumParallelInvocationsPerClient = 1;
         options.MaximumReceiveMessageSize = 32 * 1024;
         options.StreamBufferCapacity = 10;
-        options.SupportedProtocols = new List<string>() { ... };
     });
 ```
 
