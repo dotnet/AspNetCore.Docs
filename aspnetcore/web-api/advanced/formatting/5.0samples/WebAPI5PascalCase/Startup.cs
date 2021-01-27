@@ -22,7 +22,8 @@ namespace WebAPI5PascalCase
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers()
-                    .AddJsonOptions(options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
+                    .AddJsonOptions(options => 
+                       options.JsonSerializerOptions.PropertyNamingPolicy = null);
         }
         #endregion
 

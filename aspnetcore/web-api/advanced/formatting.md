@@ -117,11 +117,11 @@ The preceding code serializes results using `XmlSerializer`.
 
 When using the preceding code, controller methods return the appropriate format based on the request's `Accept` header.
 
-### PascalCase
+### ProblemDetails and PascalCase
 
 The following highlighted code sets PascalCase, the default is camelCase:
 
-[!code-csharp[](./formatting/5.0samples/WebAPI5PascalCase/Startup.cs?name=snippet&highlight=4)]
+[!code-csharp[](./formatting/5.0samples/WebAPI5PascalCase/Startup.cs?name=snippet&highlight=4-5)]
 
 The following action method calls [ControllerBase.Problem](xref:Microsoft.AspNetCore.Mvc.ControllerBase.Problem%2A) to create a <xref:Microsoft.AspNetCore.Mvc.ProblemDetails> response:
 
