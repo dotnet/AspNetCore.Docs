@@ -3,9 +3,10 @@ title: Part 2, add a controller to an ASP.NET Core MVC app
 author: rick-anderson
 description: Part 2 of tutorial series on ASP.NET Core MVC.
 ms.author: riande
-ms.date: 11/12/2020
+ms.date: 01/21/2021
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-mvc-app/adding-controller
+ms.custom: contperf-fy21q3
 ---
 
 # Part 2, add a controller to an ASP.NET Core MVC app
@@ -16,15 +17,33 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 The Model-View-Controller (MVC) architectural pattern separates an app into three main components: **M**odel, **V**iew, and **C**ontroller. The MVC pattern helps you create apps that are more testable and easier to update than traditional monolithic apps. MVC-based apps contain:
 
-* **M**odels: Classes that represent the data of the app. The model classes use validation logic to enforce business rules for that data. Typically, model objects retrieve and store model state in a database. In this tutorial, a `Movie` model retrieves movie data from a database, provides it to the view or updates it. Updated data is written to a database.
+* **M**odels: Classes that represent the data of the app. The model classes use validation logic to enforce business rules for that data. Typically, model objects retrieve and store model state in a database. In this tutorial:
+  * A `Movie` model retrieves movie data from a database, provides it to the view or updates it.
+  * Updated data is written to a database.
 
 * **V**iews: Views are the components that display the app's user interface (UI). Generally, this UI displays the model data.
 
-* **C**ontrollers: Classes that handle browser requests. They retrieve model data and call view templates that return a response. In an MVC app, the view only displays information; the controller handles and responds to user input and interaction. For example, the controller handles route data and query-string values, and passes these values to the model. The model might use these values to query the database. For example, `https://localhost:5001/Home/Privacy` has route data of `Home` (the controller) and `Privacy` (the action method to call on the home controller). `https://localhost:5001/Movies/Edit/5` is a request to edit the movie with ID=5 using the movie controller. Route data is explained later in the tutorial.
+* **C**ontrollers: Classes that handle browser requests. Controllers:
+  * Retrieve model data.
+  * Call view templates that return a response. 
 
-The MVC pattern helps you create apps that separate the different aspects of the app (input logic, business logic, and UI logic), while providing a loose coupling between these elements. The pattern specifies where each kind of logic should be located in the app. The UI logic belongs in the view. Input logic belongs in the controller. Business logic belongs in the model. This separation helps you manage complexity when you build an app, because it enables you to work on one aspect of the implementation at a time without impacting the code of another. For example, you can work on the view code without depending on the business logic code.
+In an MVC app, the view only displays information; the controller handles and responds to user input and interaction. For example, the controller handles route data and query-string values, and passes these values to the model. The model might use these values to query the database. For example, `https://localhost:5001/Home/Privacy` has route data of `Home`, the controller, and `Privacy`, the action method to call on the home controller. `https://localhost:5001/Movies/Edit/5` is a request to edit the movie with ID=5 using the movie controller. Route data is explained later in the tutorial.
 
-We cover these concepts in this tutorial series and show you how to use them to build a movie app. The MVC project contains folders for the *Controllers* and *Views*.
+The MVC pattern helps you create apps that separate these three aspects of the app while providing a loose coupling:
+
+* Input logic.
+* Business logic.
+* UI logic.
+
+The MVC pattern specifies where each kind of logic should be located in the app:
+
+* The UI logic belongs in the view.
+* Input logic belongs in the controller.
+* Business logic belongs in the model.
+
+This separation helps you manage complexity when you build an app, because it enables you to work on one aspect of the implementation at a time without impacting the code of another. For example, you can work on the view code without depending on the business logic code.
+
+These concepts are introduced in this tutorial series and show you how to use them to build a movie app. The MVC project contains folders for the *Controllers* and *Views*.
 
 ## Add a controller
 
@@ -64,13 +83,13 @@ Replace the contents of *Controllers/HelloWorldController.cs* with the following
 
 Every `public` method in a controller is callable as an HTTP endpoint. In the sample above, both methods return a string. Note the comments preceding each method.
 
-An HTTP endpoint is a targetable URL in the web application, such as `https://localhost:5001/HelloWorld`, and combines the protocol used: `HTTPS`, the network location of the web server (including the TCP port): `localhost:5001` and the target URI `HelloWorld`.
+An HTTP endpoint is a targetable URL in the web app, such as `https://localhost:5001/HelloWorld`, and combines the protocol used: `HTTPS`, the network location of the web server (including the TCP port): `localhost:5001` and the target URI `HelloWorld`.
 
 The first comment states this is an [HTTP GET](https://www.w3schools.com/tags/ref_httpmethods.asp) method that's invoked by appending `/HelloWorld/` to the base URL. The second comment specifies an [HTTP GET](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html) method that's invoked by appending `/HelloWorld/Welcome/` to the URL. Later on in the tutorial the scaffolding engine is used to generate `HTTP POST` methods which update data.
 
 Run the app in non-debug mode and append "HelloWorld" to the path in the address bar. The `Index` method returns a string.
 
-![Browser window showing an application response of This is my default action](~/tutorials/first-mvc-app/adding-controller/_static/hell1.png)
+![Browser window showing an app response of This is my default action](~/tutorials/first-mvc-app/adding-controller/_static/hell1.png)
 
 MVC invokes controller classes (and the action methods within them) depending on the incoming URL. The default [URL routing logic](xref:mvc/controllers/routing) used by MVC uses a format like this to determine what code to invoke:
 
