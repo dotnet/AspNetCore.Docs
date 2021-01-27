@@ -130,7 +130,7 @@ The following action method calls [ControllerBase.Problem](xref:Microsoft.AspNet
 With the preceding code:
 
   * `https://localhost:5001/WeatherForecast/temperature` returns PascalCase.
-  * `https://localhost:5001/WeatherForecast/error` returns camelCase. The error response is always camelCase, even when the app sets the format to PascalCase. `ProblemDetails` follows [RFC 7807 spec](https://tools.ietf.org/html/rfc7807#appendix-A), which specifies lower case
+  * `https://localhost:5001/WeatherForecast/error` returns camelCase. The error response is always camelCase, even when the app sets the format to PascalCase. `ProblemDetails` follows [RFC 7807](https://tools.ietf.org/html/rfc7807#appendix-A), which specifies lower case
 
 The following code sets PascalCase and adds a custom converter:
 
