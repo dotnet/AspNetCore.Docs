@@ -326,6 +326,8 @@
               uid: blazor/fundamentals/logging
             - name: Handle errors
               uid: blazor/fundamentals/handle-errors
+            - name: Blazor Server SignalR
+              uid: blazor/fundamentals/blazor-server-signalr
             - name: Additional scenarios
               uid: blazor/fundamentals/additional-scenarios
         - name: Components
