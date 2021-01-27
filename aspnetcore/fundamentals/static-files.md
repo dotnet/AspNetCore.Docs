@@ -454,7 +454,7 @@ The <xref:Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider> cla
 
 See [MIME content types](https://www.iana.org/assignments/media-types/media-types.xhtml).
 
-For information on using a custom <xref:Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider> or to configure other <xref:Microsoft.AspNetCore.Builder.StaticFileOptions> in Blazor Server apps, see <xref:blazor/fundamentals/additional-scenarios#static-files>.
+For information on using a custom <xref:Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider> or to configure other <xref:Microsoft.AspNetCore.Builder.StaticFileOptions> in Blazor Server apps, see <xref:blazor/fundamentals/static-files>.
 
 ## Non-standard content types
 

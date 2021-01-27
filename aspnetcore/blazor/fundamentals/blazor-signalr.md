@@ -7,7 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 01/27/2021
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
-uid: blazor/fundamentals/blazor-signalr
+uid: blazor/fundamentals/signalr
 ---
 # ASP.NET Core Blazor SignalR guidance
 

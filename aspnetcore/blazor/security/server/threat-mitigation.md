@@ -101,7 +101,7 @@ Denial of service (DoS) attacks involve a client causing the server to exhaust o
 
 For more information and configuration coding examples, see the following articles:
 
-* <xref:blazor/fundamentals/blazor-server-signalr>
+* <xref:blazor/fundamentals/signalr>
 * <xref:signalr/configuration>
 
 ## Interactions with the browser (client)

@@ -327,7 +327,7 @@
             - name: Handle errors
               uid: blazor/fundamentals/handle-errors
             - name: SignalR
-              uid: blazor/fundamentals/blazor-signalr
+              uid: blazor/fundamentals/signalr
             - name: Static files
               uid: blazor/fundamentals/static-files
         - name: Components
