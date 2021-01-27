@@ -98,6 +98,8 @@ To configure SignalR's underlying client to send credentials, such as cookies or
       }).Build();
   ```
 
+For more information, see <xref:signalr/configuration#configure-additional-options>.
+
 ## Reflect the connection state in the UI
 
 *This section applies to Blazor Server.*
