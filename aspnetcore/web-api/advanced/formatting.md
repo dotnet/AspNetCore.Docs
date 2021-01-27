@@ -117,7 +117,7 @@ The preceding code serializes results using `XmlSerializer`.
 
 When using the preceding code, controller methods return the appropriate format based on the request's `Accept` header.
 
-### Configure System.Text.Json-based formatters
+### Configure System.Text.Json based formatters
 
 Features for the `System.Text.Json` based formatters can be configured using <xref:Microsoft.AspNetCore.Mvc.JsonOptions.JsonSerializerOptions?displayProperty=fullName>. The default formatting is camelCase. The following highlighted code sets PascalCase formatting:
 
