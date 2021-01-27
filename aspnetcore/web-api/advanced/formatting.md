@@ -1,10 +1,10 @@
 ---
 title: Format response data in ASP.NET Core Web API
-author: ardalis
+author: rick-anderson
 description: Learn how to format response data in ASP.NET Core Web API.
 ms.author: riande
 ms.custom: H1Hack27Feb2017
-ms.date: 04/17/2020
+ms.date: 1/28/2021
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: web-api/advanced/formatting
 ---
@@ -117,9 +117,22 @@ The preceding code serializes results using `XmlSerializer`.
 
 When using the preceding code, controller methods return the appropriate format based on the request's `Accept` header.
 
-### Configure System.Text.Json-based formatters
+### Configure System.Text.Json based formatters
 
-Features for the `System.Text.Json`-based formatters can be configured using `Microsoft.AspNetCore.Mvc.JsonOptions.SerializerOptions`.
+Features for the `System.Text.Json` based formatters can be configured using <xref:Microsoft.AspNetCore.Mvc.JsonOptions.JsonSerializerOptions?displayProperty=fullName>. The default formatting is camelCase. The following highlighted code sets PascalCase formatting:
+
+[!code-csharp[](./formatting/5.0samples/WebAPI5PascalCase/Startup.cs?name=snippet&highlight=4-5)]
+
+The following action method calls [ControllerBase.Problem](xref:Microsoft.AspNetCore.Mvc.ControllerBase.Problem%2A) to create a <xref:Microsoft.AspNetCore.Mvc.ProblemDetails> response:
+
+[!code-csharp[](formatting/5.0samples/WebAPI5PascalCase/Controllers/WeatherForecastController.cs?name=snippet&highlight=4)]
+
+With the preceding code:
+
+  * `https://localhost:5001/WeatherForecast/temperature` returns PascalCase.
+  * `https://localhost:5001/WeatherForecast/error` returns camelCase. The error response is always camelCase, even when the app sets the format to PascalCase. `ProblemDetails` follows [RFC 7807](https://tools.ietf.org/html/rfc7807#appendix-A), which specifies lower case
+
+The following code sets PascalCase and adds a custom converter:
 
 ```csharp
 services.AddControllers().AddJsonOptions(options =>
