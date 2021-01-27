@@ -1,6 +1,6 @@
 ---
 title: Format response data in ASP.NET Core Web API
-author: riande
+author: rick-anderson
 description: Learn how to format response data in ASP.NET Core Web API.
 ms.author: riande
 ms.custom: H1Hack27Feb2017
