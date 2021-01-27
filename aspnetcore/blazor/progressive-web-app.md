@@ -389,4 +389,4 @@ The [`CarChecker`](https://github.com/SteveSandersonMS/CarChecker) sample app de
 ## Additional resources
 
 * [Troubleshoot integrity PowerShell script](xref:blazor/host-and-deploy/webassembly#troubleshoot-integrity-powershell-script)
-* [SignalR cross-origin negotiation for authentication](xref:blazor/fundamentals/additional-scenarios#signalr-cross-origin-negotiation-for-authentication)
+* [SignalR cross-origin negotiation for authentication](xref:blazor/fundamentals/blazor-signalr#signalr-cross-origin-negotiation-for-authentication)
