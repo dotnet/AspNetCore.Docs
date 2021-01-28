@@ -238,7 +238,9 @@ On Linux, the value of URL environment variables must be escaped so `systemd` ca
 
 The following code displays the environment variables and values on application startup, which can be helpful when debugging environment settings:
 
-[!code-json[](~/fundamentals/configuration/index/samples_snippets/5.x/Program.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/configuration/index/samples_snippets/5.x/Program.cs?name=snippet)]
+
+[!code-csharp[](~/fundamentals/configuration/index/samples_snippets/5.x/Program.cs)]
 
 <a name="clcp"></a>
 
@@ -812,7 +814,7 @@ Before the app is configured and started, a *host* is configured and launched. T
 
 ## Default host configuration
 
-For details on the default configuration when using the [Web Host](xref:fundamentals/host/web-host), see the [ASP.NET Core 2.2 version of this topic](?view=aspnetcore-2.2).
+For details on the default configuration when using the [Web Host](xref:fundamentals/host/web-host), see the [ASP.NET Core 2.2 version of this topic](?view=aspnetcore-2.2&preserve-view=true).
 
 * Host configuration is provided from:
   * Environment variables prefixed with `DOTNET_` (for example, `DOTNET_ENVIRONMENT`) using the [Environment Variables configuration provider](#environment-variables). The prefix (`DOTNET_`) is stripped when the configuration key-value pairs are loaded.
