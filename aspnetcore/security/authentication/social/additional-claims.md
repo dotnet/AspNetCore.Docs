@@ -91,6 +91,9 @@ The sample app saves the access token in `OnPostConfirmationAsync` (new user reg
 
 [!code-csharp[](additional-claims/samples/3.x/ClaimsSample/Areas/Identity/Pages/Account/ExternalLogin.cshtml.cs?name=snippet_OnPostConfirmationAsync&highlight=54-56)]
 
+> [!NOTE]
+> For information on passing tokens to the Razor components of a Blazor Server app, see <xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-blazor-server-app>.
+
 ## How to add additional custom tokens
 
 To demonstrate how to add a custom token, which is stored as part of `SaveTokens`, the sample app adds an <xref:Microsoft.AspNetCore.Authentication.AuthenticationToken> with the current <xref:System.DateTime> for an [AuthenticationToken.Name](xref:Microsoft.AspNetCore.Authentication.AuthenticationToken.Name*) of `TicketCreated`:
@@ -104,6 +107,19 @@ The framework provides common actions and extension methods for creating and add
 Users can define custom actions by deriving from <xref:Microsoft.AspNetCore.Authentication.OAuth.Claims.ClaimAction> and implementing the abstract <xref:Microsoft.AspNetCore.Authentication.OAuth.Claims.ClaimAction.Run*> method.
 
 For more information, see <xref:Microsoft.AspNetCore.Authentication.OAuth.Claims>.
+
+## Add claims to users
+
+Claims are added to the user on first registration, not on sign in. If additional claims are enabled in an app after a user registers to use the app, call [SignInManager.RefreshSignInAsync](xref:Microsoft.AspNetCore.Identity.SignInManager%2A) on a user to force the generation of a new authentication cookie.
+
+In the Development environment working with test user accounts, you can simply delete and recreate the user account.
+
+## Update user claims
+
+Claims that change after a user signs in aren't automatically updated. If claims change while a user is signed in, call:
+
+* [UserManager.ReplaceClaimAsync](xref:Microsoft.AspNetCore.Identity.UserManager%2A) on the user for claims stored in the identity database.
+* [SignInManager.RefreshSignInAsync](xref:Microsoft.AspNetCore.Identity.SignInManager%2A) on the user to force the generation of a new authentication cookie.
 
 ## Removal of claim actions and claims
 

@@ -110,6 +110,10 @@ Scaffold Identity into a Blazor Server project:
 * [Without existing authorization](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-blazor-server-project-without-existing-authorization).
 * [With authorization](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-blazor-server-project-with-authorization).
 
+## Additional claims and tokens from external providers
+
+To store additional claims from external providers, see <xref:security/authentication/social/additional-claims>.
+
 ## Azure App Service on Linux with Identity Server
 
 Specify the issuer explicitly when deploying to Azure App Service on Linux with Identity Server. For more information, see <xref:security/authentication/identity/spa#azure-app-service-on-linux>.
