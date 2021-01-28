@@ -581,7 +581,7 @@ When the preceding highlighted markup is used in an ASP.NET Core web app ***and*
 
 `dotnet run --urls="https://localhost:7777"`
 
-The endpoint configuration from the *appsettings.json* file (`https://localhost:9999`) is used because it's Kestrel specific.
+Kestrel will bind to the endpoint(s) configured specifically for Kestrel in the *appsettings.json* file (`https://localhost:9999`) and not `https://localhost:7777`.
 
 When the Kestrel-specific endpoint is configured as an environment variable, for example:
 
