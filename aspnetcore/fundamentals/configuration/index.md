@@ -575,7 +575,7 @@ Kestrel specific endpoint configuration overrides all [cross-server](xref:fundam
 
 Consider the following *appsettings.json* file used in an ASP.NET Core web app:
 
-[!code-json[](~/fundamentals/configuration/index/samples_snippets/5.x/appsettings.json)]
+[!code-json[](~/fundamentals/configuration/index/samples_snippets/5.x/appsettings.json?highlight=2-8")]
 
 [!code-json[](index/samples_snippets/5.x/appsettings.json?highlight=2-8")]
 <!-- Follow works 
