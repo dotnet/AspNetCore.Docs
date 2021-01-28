@@ -215,15 +215,15 @@ setx Logging__1__Name=ToConsole
 setx Logging__1__Level=Information
 ```
 
-### Environment variables set in launchSettings.json
+### Environment variables set in generated launchSettings.json
 
-Environment variables set in *launchSettings.json* override those set in the system environment. For example, the ASP.NET Core web templates generate a *launchSettings.json* file that sets the [Kestrel endpoint configuration](#kestrel) to:
+Environment variables set in *launchSettings.json* override those set in the system environment. For example, the ASP.NET Core web templates generate a *launchSettings.json* file that sets the endpoint configuration to:
 
 ```json
 "applicationUrl": "https://localhost:5001;http://localhost:5000"
 ```
 
-The preceding setting overrides values set in the environment.
+Configuring the `applicationUrl` sets the `ASPNETCORE_URLS` environment variable and overrides values set in the environment.
 
 ### Escape environment variables on Linux
 
