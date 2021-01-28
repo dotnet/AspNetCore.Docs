@@ -236,9 +236,9 @@ On Linux, the value of URL environment variables must be escaped so `systemd` ca
 
 ### Display environment variables
 
-The following code displays the environment variables and values on application startup:
+The following code displays the environment variables and values on application startup, which can be helpful when debugging environment settings:
 
-[!code-json[](~/fundamentals/configuration/index/samples_snippets/5.x/Program.cs)]
+[!code-json[](~/fundamentals/configuration/index/samples_snippets/5.x/Program.cs?name=snippet)]
 
 <a name="clcp"></a>
 
@@ -575,13 +575,16 @@ Kestrel specific endpoint configuration overrides all [cross-server](xref:fundam
 
 Consider the following *appsettings.json* file used in an ASP.NET Core web app:
 
-[!code-json[](~/fundamentals/configuration/index/samples_snippets/5.x/appsettings.json?highlight=2-8")]
+[!code-json[Kestrel specific endpoint configuration](~/fundamentals/configuration/index/samples_snippets/5.x/appsettings.json?highlight=2-8")]
+
+[!code-json[Kestrel specific endpoint configuration](index/samples_snippets/5.x/appsettings.json?highlight=2-8")]
+zz
 
 When the preceding highlighted markup is used in an ASP.NET Core web app ***and*** the app is launch on the command line with the following cross-server endpoint configuration:
 
 `dotnet run --urls="https://localhost:7777"`
 
-The Kestrel-specific endpoint configuration from the *appsettings.json* file is used because it's Kestrel specific.
+The Kestrel specific endpoint configuration from the *appsettings.json* file is used because it's Kestrel specific.
 
 When the Kestrel-specific endpoint is configured as an environment variable, for example:
 
