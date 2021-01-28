@@ -29,12 +29,6 @@ MVC-based apps contain:
   * Retrieve model data.
   * Call view templates that return a response.
 
-* **V**iews: Views are the components that display the app's user interface (UI). Generally, this UI displays the model data.
-
-* **C**ontrollers: Classes that handle browser requests. Controllers:
-  * Retrieve model data.
-  * Call view templates that return a response. 
-
 In an MVC app, the view only displays information. The controller handles and responds to user input and interaction. For example, the controller handles route data and query-string values, and passes these values to the model. The model might use these values to query the database. For example:
 
 * `Https://localhost:5001/Home/Privacy`: has route data of `Home`, the controller.
@@ -43,7 +37,7 @@ In an MVC app, the view only displays information. The controller handles and re
 
 Route data is explained later in the tutorial.
 
-The MVC pattern helps you create apps that separate these three aspects of the app while providing a loose coupling:
+The MVC pattern helps you create apps that separate these three aspects of the app, while providing a loose coupling:
 
 * Input logic.
 * Business logic.
@@ -57,42 +51,43 @@ The MVC pattern specifies where each kind of logic should be located in the app:
 
 This separation helps you manage complexity when you build an app, because it enables you to work on one aspect of the implementation at a time without impacting the code of another. For example, you can work on the view code without depending on the business logic code.
 
-These concepts are introduced in this tutorial series and show you how to use them to build a movie app. The MVC project contains folders for the *Controllers* and *Views*.
+These concepts are introduced and demonstrated in this tutorial series while building a movie app. The MVC project contains folders for the *Controllers* and *Views*.
 
 ## Add a controller
 
 # [Visual Studio](#tab/visual-studio)
 
-* In the **Solution Explorer**, right-click **Controllers > Add > Controller**.
+In the **Solution Explorer**, right-click **Controllers > Add > Controller**.
 
-  ![Solution Explorer, right click Controllers > Add > Controller](~/tutorials/first-mvc-app/adding-controller/_static/add_controllercopyVS19v16.9.png)
+![Solution Explorer, right click Controllers > Add > Controller](~/tutorials/first-mvc-app/adding-controller/_static/add_controllercopyVS19v16.9.png)
 
-* In the **Add Scaffold** dialog box, select **MVC Controller - Empty**.
+In the **Add Scaffold** dialog box, select **MVC Controller - Empty**.
 
-  ![Add MVC controller and name it](~/tutorials/first-mvc-app/adding-controller/_static/acCopyVS19v16.9.png)
+![Add MVC controller and name it](~/tutorials/first-mvc-app/adding-controller/_static/acCopyVS19v16.9.png)
 
-* In the **Add New Item - MvcMovie dialog**, enter **HelloWorldController.cs** and select **Add**.
+In the **Add New Item - MvcMovie dialog**, enter **HelloWorldController.cs** and select **Add**.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* Select the **EXPLORER** icon and then control-click (right-click) **Controllers > New File** and name the new file *HelloWorldController.cs*.
+Select the **EXPLORER** icon and then control-click (right-click) **Controllers > New File** and name the new file *HelloWorldController.cs*.
 
-  ![Contextual menu](~/tutorials/first-mvc-app-xplat/adding-controller/_static/new_fileVSC1.51.png)
+![Contextual menu](~/tutorials/first-mvc-app-xplat/adding-controller/_static/new_fileVSC1.51.png)
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-* In **Solution Explorer**, right-click **Controllers > Add > New File**.
+In **Solution Explorer**, right-click **Controllers > Add > New File**.
 
-  ![Contextual menu](~/tutorials/first-mvc-app-mac/adding-controller/_static/add_controller.png)
+![Contextual menu](~/tutorials/first-mvc-app-mac/adding-controller/_static/add_controller.png)
 
-* Select **ASP.NET Core** and **Controller Class**.
-* Name the controller **HelloWorldController**.
+Select **ASP.NET Core** and **Controller Class**.
+
+Name the controller **HelloWorldController**.
 
   ![Add MVC controller and name it](~/tutorials/first-mvc-app-mac/adding-controller/_static/ac.png)
 
 ---
 
-* Replace the contents of *Controllers/HelloWorldController.cs* with the following:
+Replace the contents of *Controllers/HelloWorldController.cs* with the following:
 
   [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Controllers/HelloWorldController.cs?name=snippet_1)]
 
@@ -105,14 +100,15 @@ An HTTP endpoint:
 
   * The protocol used: `HTTPS`.
   * The network location of the web server (including the TCP port): `localhost:5001`.
-  * The target URI `HelloWorld`.
+  * The target URI: `HelloWorld`.
 
 The first comment states this is an [HTTP GET](https://www.w3schools.com/tags/ref_httpmethods.asp) method that's invoked by appending `/HelloWorld/` to the base URL.
 
 The second comment specifies an [HTTP GET](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html) method that's invoked by appending `/HelloWorld/Welcome/` to the URL. Later on in the tutorial the scaffolding engine is used to generate `HTTP POST` methods which update data.
 
-* Run the app without the debugger.
-* Append "HelloWorld" to the path in the address bar. The `Index` method returns a string.
+Run the app without the debugger.
+
+Append "HelloWorld" to the path in the address bar. The `Index` method returns a string.
 
 ![Browser window showing an app response of This is my default action](~/tutorials/first-mvc-app/adding-controller/_static/hell1.png)
 
@@ -130,12 +126,13 @@ When you browse to the app and don't supply any URL segments, it defaults to the
 * The second part of the URL segment determines the action method on the class. So `localhost:{PORT}/HelloWorld/Index` would cause the `Index` method of the `HelloWorldController` class to run. Notice that you only had to browse to `localhost:{PORT}/HelloWorld` and the `Index` method was called by default. `Index` is the default method that will be called on a controller if a method name isn't explicitly specified.
 * The third part of the URL segment ( `id`) is for route data. Route data is explained later in the tutorial.
 
-* Browse to `https://localhost:{PORT}/HelloWorld/Welcome`. The `Welcome` method runs and returns the string `This is the Welcome action method...`. For this URL, the controller is `HelloWorld` and `Welcome` is the action method. You haven't used the `[Parameters]` part of the URL yet.
+Browse to `https://localhost:{PORT}/HelloWorld/Welcome`. The `Welcome` method runs and returns the string `This is the Welcome action method...`. For this URL, the controller is `HelloWorld` and `Welcome` is the action method. You haven't used the `[Parameters]` part of the URL yet.
 
   ![Browser window showing an application response of This is the Welcome action method](~/tutorials/first-mvc-app/adding-controller/_static/welcome.png)
 
-* Modify the code to pass some parameter information from the URL to the controller. For example, `/HelloWorld/Welcome?name=Rick&numtimes=4`.
-* Change the `Welcome` method to include two parameters as shown in the following code.
+Modify the code to pass some parameter information from the URL to the controller. For example, `/HelloWorld/Welcome?name=Rick&numtimes=4`.
+
+Change the `Welcome` method to include two parameters as shown in the following code.
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Controllers/HelloWorldController.cs?name=snippet_2)]
 
@@ -145,12 +142,13 @@ The preceding code:
 * Uses `HtmlEncoder.Default.Encode` to protect the app from malicious input, such as through JavaScript.
 * Uses [Interpolated Strings](/dotnet/articles/csharp/language-reference/keywords/interpolated-strings) in `$"Hello {name}, NumTimes is: {numTimes}"`.
 
-* Run the app and browse to:
+Run the app and browse to:
 
   `https://localhost:{PORT}/HelloWorld/Welcome?name=Rick&numtimes=4`
 
-* Replace `{PORT}` with your port number.
-* Try different values for `name` and `numtimes` in the URL. The MVC [model binding](xref:mvc/models/model-binding) system automatically maps the named parameters from the query string in the address bar to parameters in the method. See [Model Binding](xref:mvc/models/model-binding) for more information.
+Replace `{PORT}` with your port number.
+
+Try different values for `name` and `numtimes` in the URL. The MVC [model binding](xref:mvc/models/model-binding) system automatically maps the named parameters from the query string in the address bar to parameters in the method. See [Model Binding](xref:mvc/models/model-binding) for more information.
 
 ![Browser window showing an application response of Hello Rick, NumTimes is\: 4](~/tutorials/first-mvc-app/adding-controller/_static/rick4.png)
 
@@ -161,17 +159,17 @@ In the previous image:
 * The `?` (question mark) in the above URL is a separator, and the query string follows.
 * The `&` character separates field-value pairs.
 
-* Replace the `Welcome` method with the following code:
+Replace the `Welcome` method with the following code:
 
   [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Controllers/HelloWorldController.cs?name=snippet_3)]
 
-* Run the app and enter the following URL: `https://localhost:{PORT}/HelloWorld/Welcome/3?name=Rick`
+Run the app and enter the following URL: `https://localhost:{PORT}/HelloWorld/Welcome/3?name=Rick`
 
-  In the preceding URL:
+In the preceding URL:
 
-  * The third URL segment matched the route parameter `id`. 
-  * The `Welcome` method contains a parameter `id` that matched the URL template in the `MapControllerRoute` method. 
-  * The trailing `?` (in `id?`) indicates the `id` parameter is optional.
+* The third URL segment matched the route parameter `id`. 
+* The `Welcome` method contains a parameter `id` that matched the URL template in the `MapControllerRoute` method. 
+* The trailing `?` (in `id?`) indicates the `id` parameter is optional.
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Startup.cs?name=snippet_1&highlight=5)]
 
