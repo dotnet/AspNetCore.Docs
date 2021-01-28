@@ -104,13 +104,13 @@ An HTTP endpoint:
 
 The first comment states this is an [HTTP GET](https://www.w3schools.com/tags/ref_httpmethods.asp) method that's invoked by appending `/HelloWorld/` to the base URL.
 
-The second comment specifies an [HTTP GET](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html) method that's invoked by appending `/HelloWorld/Welcome/` to the URL. Later on in the tutorial the scaffolding engine is used to generate `HTTP POST` methods which update data.
+The second comment specifies an [HTTP GET](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html) method that's invoked by appending `/HelloWorld/Welcome/` to the URL. Later on in the tutorial, the scaffolding engine is used to generate `HTTP POST` methods which update data.
 
 Run the app without the debugger.
 
 Append "HelloWorld" to the path in the address bar. The `Index` method returns a string.
 
-![Browser window showing an app response of This is my default action](~/tutorials/first-mvc-app/adding-controller/_static/hell1.png)
+![Browser window showing an app response of This is my default action](~/tutorials/first-mvc-app/adding-controller/_static/hell1VS.png)
 
 MVC invokes controller classes, and the action methods within them, depending on the incoming URL. The default [URL routing logic](xref:mvc/controllers/routing) used by MVC, uses a format like this to determine what code to invoke:
 
@@ -150,7 +150,7 @@ Replace `{PORT}` with your port number.
 
 Try different values for `name` and `numtimes` in the URL. The MVC [model binding](xref:mvc/models/model-binding) system automatically maps the named parameters from the query string in the address bar to parameters in the method. See [Model Binding](xref:mvc/models/model-binding) for more information.
 
-![Browser window showing an application response of Hello Rick, NumTimes is\: 4](~/tutorials/first-mvc-app/adding-controller/_static/rick4.png)
+![Browser window showing an application response of Hello Rick, NumTimes is\: 4](~/tutorials/first-mvc-app/adding-controller/_static/rick4VS.png)
 
 In the previous image:
 
