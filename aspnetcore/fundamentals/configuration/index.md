@@ -217,7 +217,28 @@ setx Logging__1__Level=Information
 
 ### Environment variables set in launchSettings.json
 
-Environment variables set in *launchSettings.json* override those set in the system environment.
+Environment variables set in *launchSettings.json* override those set in the system environment. For example, the ASP.NET Core web templates generate a *launchSettings.json* file that sets the [Kestrel endpoint configuration](#kestrel) to:
+
+```json
+"applicationUrl": "https://localhost:5001;http://localhost:5000"
+```
+
+The preceding setting overrides values set in the environment.
+
+### Escape environment variables on Linux
+
+On Linux, the value of URL environment variables must be escaped so `systemd` can parse it. Use the linux tool `systemd-escape` which yields `http:--localhost:5001`
+ 
+ ```cmd
+ groot@terminus:~$ systemd-escape http://localhost:5001
+ http:--localhost:5001
+ ```
+
+### Display environment variables
+
+The following code displays the environment variables and values on application startup:
+
+[!code-json[](~/fundamentals/configuration/index/samples_snippets/5.x/Program.cs)]
 
 <a name="clcp"></a>
 
@@ -538,6 +559,38 @@ The following code from the [sample download](https://github.com/dotnet/AspNetCo
 In the preceding code, `config.AddInMemoryCollection(Dict)` is added after the [default configuration providers](#default). For an example of ordering the configuration providers, see [JSON configuration provider](#jcp).
 
 See [Bind an array](#boa) for another example using `MemoryConfigurationProvider`.
+
+::: moniker-end
+::: moniker range=">= aspnetcore-5.0"
+
+<a name="kestrel"></a>
+
+## Kestrel endpoint configuration
+
+Kestrel specific endpoint configuration overrides all [cross-server](xref:fundamentals/servers/index) endpoint configurations. Cross-server endpoint configurations include:
+
+  * [UseUrls](xref:fundamentals/host/web-host#server-urls)
+  * `--urls` on the [command line](xref:fundamentals/configuration/index#command-line)
+  * The [environment variable](xref:fundamentals/configuration/index#environment-variables) `ASPNETCORE_URLS`
+
+Consider the following *appsettings.json* file used in an ASP.NET Core web app:
+
+[!code-json[](~/fundamentals/configuration/index/samples_snippets/5.x/appsettings.json?highlight=2-8")]
+
+When the preceding highlighted markup is used in an ASP.NET Core web app ***and*** the app is launch on the command line with the following cross-server endpoint configuration:
+
+`dotnet run --urls="https://localhost:7777"`
+
+The Kestrel-specific endpoint configuration from the *appsettings.json* file is used because it's Kestrel specific.
+
+When the Kestrel-specific endpoint is configured as an environment variable, for example:
+
+`set Kestrel__Endpoints__Https__Url=https://localhost:8888`
+
+The environment setting overrides the *appsettings.json* setting and all other configurations.
+
+::: moniker-end
+::: moniker range=">= aspnetcore-3.0"
 
 ## GetValue
 
