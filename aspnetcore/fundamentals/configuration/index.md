@@ -577,12 +577,6 @@ Consider the following *appsettings.json* file used in an ASP.NET Core web app:
 
 [!code-json[](~/fundamentals/configuration/index/samples_snippets/5.x/appsettings.json?highlight=2-8)]
 
-[!code-json[](index/samples_snippets/5.x/appsettings.json?highlight=2-8)]
-<!-- Follow works 
-[!code-json[](index/samples/3.x/ConfigSample/MySubsection.json)]
--->
-zz
-
 When the preceding highlighted markup is used in an ASP.NET Core web app ***and*** the app is launch on the command line with the following cross-server endpoint configuration:
 
 `dotnet run --urls="https://localhost:7777"`
