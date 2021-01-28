@@ -103,7 +103,7 @@ Conventional routing is used with controllers and views. The `default` route:
 
 [!code-csharp[](routing/samples/3.x/main/StartupDefaultMVC.cs?name=snippet2)]
 
-is an example of a *conventional routing*. It's called *conventional routing* because it establishes a *convention* for URL paths:
+is an example of a *conventional route*. It's called *conventional routing* because it establishes a *convention* for URL paths:
 
 * The first path segment, `{controller=Home}`, maps to the controller name.
 * The second segment, `{action=Index}`, maps to the [action](#action) name.
