@@ -72,7 +72,7 @@ Content *negotiation* takes place when an `Accept` header appears in the request
 
 If no formatter is found that can satisfy the client's request, ASP.NET Core:
 
-* Returns `406 Not Acceptable` if `ReturnHttpNotAcceptable` is set to true on <xref:Microsoft.AspNetCore.Mvc.MvcOptions>, or -
+* Returns `406 Not Acceptable` if <xref:Microsoft.AspNetCore.Mvc.MvcOptions.ReturnHttpNotAcceptable?displayProperty=nameWithType> is set to `true`, or -
 * Tries to find the first formatter that can produce a response.
 
 If no formatter is configured for the requested format, the first formatter that can format the object is used. If no `Accept` header appears in the request:
