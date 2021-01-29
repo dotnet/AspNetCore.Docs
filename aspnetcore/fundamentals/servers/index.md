@@ -57,8 +57,6 @@ ASP.NET Core ships with [Kestrel server](xref:fundamentals/servers/kestrel), whi
 
 ## Kestrel
 
-Kestrel is the default web server specified by the ASP.NET Core project templates.
-
 Use Kestrel:
 
 * By itself as an edge server processing requests directly from a network, including the Internet.
@@ -123,7 +121,7 @@ For information on how to use Apache on Linux as a reverse proxy server for Kest
 
 ## HTTP.sys
 
-If ASP.NET Core apps are run on Windows, HTTP.sys is an alternative to Kestrel. Kestrel is generally recommended for best performance. HTTP.sys can be used in scenarios where the app is exposed to the Internet and required capabilities are supported by HTTP.sys but not Kestrel. For more information, see <xref:fundamentals/servers/httpsys>.
+If ASP.NET Core apps are run on Windows, HTTP.sys is an alternative to Kestrel. Kestrel is recommended over HTTP.sys unless the app requires features not available in Kestrel. For more information, see <xref:fundamentals/servers/httpsys>.
 
 ![HTTP.sys communicates directly with the Internet](httpsys/_static/httpsys-to-internet.png)
 
