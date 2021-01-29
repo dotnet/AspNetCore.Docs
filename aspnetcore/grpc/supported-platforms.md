@@ -14,7 +14,7 @@ By [James Newton-King](https://twitter.com/jamesnk)
 
 This article discusses the requirements and supported platforms for using gRPC with .NET.
 
-gRPC is designed to use HTTP/2 for some of its more advanced features. HTTP/2 isn't supported everywhere which can prevent apps using gRPC. To work around this requirement there is second wire-format that is compatible with HTTP/1.1 for sending gRPC calls between clients and servers:
+gRPC takes advantage of advanced features available in  HTTP/2. HTTP/2 isn't supported everywhere, but a second wire-format using HTTP/1.1 is available for gRPC:
 
 * [`application/grpc`](https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-HTTP2.md) - gRPC over HTTP/2 is how gRPC is typically used.
 * [`application/grpc-web`](https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-WEB.md) - gRPC-Web modifies the gRPC protocol to be compatible with HTTP/1.1. gRPC-Web can be used in more places, notably it is callable by browser apps. Two advanced gRPC features are no longer supported: client streaming and bidirectional streaming.
