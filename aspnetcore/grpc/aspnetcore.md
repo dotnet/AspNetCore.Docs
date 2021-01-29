@@ -8,7 +8,7 @@ ms.date: 01/14/2021
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: grpc/aspnetcore
 ---
-# gRPC services with ASP.NET Core
+# Host gRPC services with ASP.NET Core
 
 This document shows how to get started with gRPC services using ASP.NET Core.
 
@@ -60,22 +60,35 @@ In *Startup.cs*:
 
 ASP.NET Core middleware and features share the routing pipeline, therefore an app can be configured to serve additional request handlers. The additional request handlers, such as MVC controllers, work in parallel with the configured gRPC services.
 
+## Server options
+
+gRPC services can be hosted by all built-in ASP.NET Core servers.
+
+> [!div class="checklist"]
+>
+> * Kestrel
+> * TestServer
+> * IIS&dagger;
+> * HTTP.sys&dagger;
+
+&dagger;IIS and HTTP.sys require .NET 5 and Windows 10 Build 20241 or later.
+
 ::: moniker range=">= aspnetcore-5.0"
 
-### Configure Kestrel
+## Kestrel
 
 Kestrel gRPC endpoints:
 
 * Require HTTP/2.
 * Should be secured with [Transport Layer Security (TLS)](https://tools.ietf.org/html/rfc5246).
 
-#### HTTP/2
+### HTTP/2
 
 gRPC requires HTTP/2. gRPC for ASP.NET Core validates [HttpRequest.Protocol](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol%2A) is `HTTP/2`.
 
 Kestrel [supports HTTP/2](xref:fundamentals/servers/kestrel/http2) on most modern operating systems. Kestrel endpoints are configured to support HTTP/1.1 and HTTP/2 connections by default.
 
-#### TLS
+### TLS
 
 Kestrel endpoints used for gRPC should be secured with TLS. In development, an endpoint secured with TLS is automatically created at `https://localhost:5001` when the ASP.NET Core development certificate is present. No configuration is required. An `https` prefix verifies the Kestrel endpoint is using TLS.
 
@@ -87,7 +100,7 @@ Alternatively, Kestrel endpoints can be configured in *Program.cs*:
 
 [!code-csharp[](~/grpc/aspnetcore/sample/Program.cs?highlight=7&name=snippet)]
 
-#### Protocol negotiation
+### Protocol negotiation
 
 TLS is used for more than securing communication. The TLS [Application-Layer Protocol Negotiation (ALPN)](https://tools.ietf.org/html/rfc7301#section-3) handshake is used to negotiate the connection protocol between the client and the server when an endpoint supports multiple protocols. This negotiation determines whether the connection uses HTTP/1.1 or HTTP/2.
 
@@ -98,24 +111,36 @@ For more information on enabling HTTP/2 and TLS with Kestrel, see [Kestrel endpo
 > [!NOTE]
 > macOS doesn't support ASP.NET Core gRPC with TLS. Additional configuration is required to successfully run gRPC services on macOS. For more information, see [Unable to start ASP.NET Core gRPC app on macOS](xref:grpc/troubleshoot#unable-to-start-aspnet-core-grpc-app-on-macos).
 
+## IIS
+
+[Internet Information Services (IIS)](xref:host-and-deploy/iis/index) is a flexible, secure and manageable Web Server for hosting web apps, including ASP.NET Core. IIS can host gRPC when used with .NET 5 and Windows 10 Build 20241 or later.
+
+IIS must be configured to use TLS and HTTP/2. For more information, see <xref:host-and-deploy/iis/protocols>.
+
+## HTTP.sys
+
+[HTTP.sys](xref:fundamentals/servers/httpsys) is a web server for ASP.NET Core that only runs on Windows. HTTP.sys can host gRPC when used with .NET 5 and Windows 10 Build 20241 or later.
+
+HTTP.sys must be configured to use TLS and HTTP/2. For more information, see  [HTTP.sys web server HTTP/2 support](xref:fundamentals/servers/httpsys#http2-support).
+
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-### Configure Kestrel
+## Kestrel
 
 Kestrel gRPC endpoints:
 
 * Require HTTP/2.
 * Should be secured with [Transport Layer Security (TLS)](https://tools.ietf.org/html/rfc5246).
 
-#### HTTP/2
+### HTTP/2
 
 gRPC requires HTTP/2. gRPC for ASP.NET Core validates [HttpRequest.Protocol](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol%2A) is `HTTP/2`.
 
 Kestrel [supports HTTP/2](xref:fundamentals/servers/kestrel#http2-support) on most modern operating systems. Kestrel endpoints are configured to support HTTP/1.1 and HTTP/2 connections by default.
 
-#### TLS
+### TLS
 
 Kestrel endpoints used for gRPC should be secured with TLS. In development, an endpoint secured with TLS is automatically created at `https://localhost:5001` when the ASP.NET Core development certificate is present. No configuration is required. An `https` prefix verifies the Kestrel endpoint is using TLS.
 
@@ -127,7 +152,7 @@ Alternatively, Kestrel endpoints can be configured in *Program.cs*:
 
 [!code-csharp[](~/grpc/aspnetcore/sample/Program.cs?highlight=7&name=snippet)]
 
-#### Protocol negotiation
+### Protocol negotiation
 
 TLS is used for more than securing communication. The TLS [Application-Layer Protocol Negotiation (ALPN)](https://tools.ietf.org/html/rfc7301#section-3) handshake is used to negotiate the connection protocol between the client and the server when an endpoint supports multiple protocols. This negotiation determines whether the connection uses HTTP/1.1 or HTTP/2.
 
