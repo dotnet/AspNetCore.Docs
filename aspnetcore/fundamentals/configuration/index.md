@@ -583,11 +583,12 @@ When the preceding highlighted markup is used in an ASP.NET Core web app ***and*
 
 Kestrel will bind to the endpoint(s) configured specifically for Kestrel in the *appsettings.json* file (`https://localhost:9999`) and not `https://localhost:7777`.
 
-When the Kestrel-specific endpoint is configured as an environment variable, for example:
+Consider the Kestrel specific endpoint configured as an environment variable:
 
 `set Kestrel__Endpoints__Https__Url=https://localhost:8888`
 
-The environment setting overrides the *appsettings.json* setting and all other configurations.
+In the preceding environment variable, `Https` is the name of the Kestrel specific endpoint. The preceding *appsettings.json* file also defines a Kestrel specific endpoint named `Https`. By [default](#default-configuration), environment variables using the [Environment Variables configuration provider](#evcp) are read after *appsettings.*`Environment`*.json*, therefore, the preceding environment variable is use for the
+`Https` endpoint.
 
 ::: moniker-end
 ::: moniker range=">= aspnetcore-3.0"
