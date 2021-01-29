@@ -79,7 +79,7 @@ For more information about choosing the right server for an ASP.NET Core app, se
 
 ## Kestrel
 
-[Kestrel](xref:fundamentals/servers/kestrel) is a cross-platform web server for ASP.NET Core.
+[Kestrel](xref:fundamentals/servers/kestrel) is a cross-platform web server for ASP.NET Core. Kestrel provides the best performance and memory utilization, but it doesn't have some of the advanced features in HTTP.sys such as port sharing.
 
 Kestrel gRPC endpoints:
 
@@ -133,7 +133,7 @@ HTTP.sys must be configured to use TLS and HTTP/2. For more information, see  [H
 
 ## Kestrel
 
-[Kestrel](xref:fundamentals/servers/kestrel) is a cross-platform web server for ASP.NET Core.
+[Kestrel](xref:fundamentals/servers/kestrel) is a cross-platform web server for ASP.NET Core. Kestrel provides the best performance and memory utilization, but it doesn't have some of the advanced features in HTTP.sys such as port sharing.
 
 Kestrel gRPC endpoints:
 
