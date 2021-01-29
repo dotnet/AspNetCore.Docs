@@ -261,7 +261,7 @@ For apps hosted by HTTP.sys that interact with requests from the Internet or a c
 
 Additional HTTP/2 features in HTTP.sys support gRPC, including support for response trailers and sending reset frames.
 
-Requirements to run gRPC with HTTP.SYS:
+Requirements to run gRPC with HTTP.sys:
 
 * Windows 10, OS Build 19041.508 or later
 * TLS 1.2 or later connection
