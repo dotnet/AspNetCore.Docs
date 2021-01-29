@@ -746,7 +746,7 @@
           uid: grpc/clientfactory
         - name: Deadlines and cancellation
           uid: grpc/deadlines-cancellation
-    - name: Host gRPC services with ASP.NET Core
+    - name: gRPC services with ASP.NET Core
       uid: grpc/aspnetcore
     - name: Supported platforms
       uid: grpc/supported-platforms

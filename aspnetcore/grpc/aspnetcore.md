@@ -1,5 +1,5 @@
 ---
-title: Host gRPC services with ASP.NET Core
+title: gRPC services with ASP.NET Core
 author: juntaoluo
 description: Learn the basic concepts when writing gRPC services with ASP.NET Core.
 monikerRange: '>= aspnetcore-3.0'
@@ -8,7 +8,7 @@ ms.date: 01/29/2021
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: grpc/aspnetcore
 ---
-# Host gRPC services with ASP.NET Core
+# gRPC services with ASP.NET Core
 
 This document shows how to get started with gRPC services using ASP.NET Core.
 
