@@ -77,6 +77,8 @@ gRPC services can be hosted by all built-in ASP.NET Core servers.
 
 ## Kestrel
 
+[Kestrel](xref:fundamentals/servers/kestrel) is a cross-platform web server for ASP.NET Core.
+
 Kestrel gRPC endpoints:
 
 * Require HTTP/2.
@@ -128,6 +130,8 @@ HTTP.sys must be configured to use TLS and HTTP/2. For more information, see  [H
 ::: moniker range="< aspnetcore-5.0"
 
 ## Kestrel
+
+[Kestrel](xref:fundamentals/servers/kestrel) is a cross-platform web server for ASP.NET Core.
 
 Kestrel gRPC endpoints:
 
