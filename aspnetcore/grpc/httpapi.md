@@ -43,29 +43,7 @@ gRPC can still be used to call services.
 1. Add [google/api/http.proto](https://github.com/aspnet/AspLabs/blob/c1e59cacf7b9606650d6ec38e54fa3a82377f360/src/GrpcHttpApi/sample/Proto/google/api/http.proto) and [google/api/annotations.proto](https://github.com/aspnet/AspLabs/blob/c1e59cacf7b9606650d6ec38e54fa3a82377f360/src/GrpcHttpApi/sample/Proto/google/api/annotations.proto) files to your project.
 1. Annotate gRPC methods in your *.proto* files with HTTP bindings and routes:
 
-```protobuf
-syntax = "proto3";
-
-import "google/api/annotations.proto";
-
-package greet;
-
-service Greeter {
-  rpc SayHello (HelloRequest) returns (HelloReply) {
-    option (google.api.http) = {
-      get: "/v1/greeter/{name}"
-    };
-  }
-}
-
-message HelloRequest {
-  string name = 1;
-}
-
-message HelloReply {
-  string message = 1;
-}
-```
+[!code-protobuf[](~/grpc/httpapi/greet.proto?highlight=3,9-11)]
 
 The `SayHello` gRPC method can now be invoked as gRPC+Protobuf and as an HTTP API:
 
