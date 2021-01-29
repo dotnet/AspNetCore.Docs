@@ -1,5 +1,5 @@
 ---
-title: gRPC for .NET supported platforms
+title: gRPC on .NET supported platforms
 author: jamesnk
 description: Learn about the supported platforms for gRPC on .NET.
 monikerRange: '>= aspnetcore-3.0'
@@ -8,22 +8,22 @@ ms.date: 01/22/2021
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: grpc/supported-platforms
 ---
-# gRPC for .NET supported platforms
+# gRPC on .NET supported platforms
 
 By [James Newton-King](https://twitter.com/jamesnk)
 
 This article discusses the requirements and supported platforms for using gRPC with .NET.
 
-gRPC is designed to use HTTP/2 for some of its more advanced features. HTTP/2 isn't supported everywhere which can prevent using gRPC. Because of this there is second wire-format that is compatible with HTTP/1.1 for sending gRPC calls between clients and servers:
+gRPC takes advantage of advanced features available in  HTTP/2. HTTP/2 isn't supported everywhere, but a second wire-format using HTTP/1.1 is available for gRPC:
 
 * [`application/grpc`](https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-HTTP2.md) - gRPC over HTTP/2 is how gRPC is typically used.
 * [`application/grpc-web`](https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-WEB.md) - gRPC-Web modifies the gRPC protocol to be compatible with HTTP/1.1. gRPC-Web can be used in more places, notably it is callable by browser apps. Two advanced gRPC features are no longer supported: client streaming and bidirectional streaming.
 
-gRPC for .NET supports both wire-formats. For information on setting up gRPC-Web, see <xref:grpc/browser>.
+gRPC on .NET supports both wire-formats. gRPC over HTTP/2 is used by default. For information on setting up gRPC-Web, see <xref:grpc/browser>.
 
 ## Device requirements
 
-gRPC for .NET supports any device that .NET Core supports.
+gRPC on .NET supports any device that .NET Core supports.
 
 > [!div class="checklist"]
 >
@@ -32,7 +32,7 @@ gRPC for .NET supports any device that .NET Core supports.
 > * macOS&dagger;
 > * Browsers&Dagger;
 
-&dagger;ASP.NET Core apps hosted on macOS don't support HTTPS. gRPC clients on macOS can still use HTTPS when calling remote services.
+&dagger;[macOS doesn't support hosting ASP.NET Core apps with HTTPS](xref:grpc/troubleshoot#unable-to-start-aspnet-core-grpc-app-on-macos). gRPC clients on macOS can call remote services that use HTTPS.
 
 &Dagger;Blazor WebAssembly apps can call gRPC services with gRPC-Web.
 
@@ -53,14 +53,14 @@ For more information, see <xref:grpc/aspnetcore>.
 
 ## .NET version requirements
 
-gRPC for .NET supports .NET Core 3 and .NET 5 or later.
+gRPC on .NET supports .NET Core 3 and .NET 5 or later.
 
 > [!div class="checklist"]
 >
 > * .NET 5 or later
 > * .NET Core 3
 
-gRPC for .NET doesn't support running on .NET Framework and Xamarin. [gRPC C# core-library](https://grpc.io/docs/languages/csharp/quickstart/) is a third party library that supports .NET Framework and Xamarin. gRPC C-core is not supported by Microsoft.
+gRPC on .NET doesn't support running on .NET Framework and Xamarin. [gRPC C# core-library](https://grpc.io/docs/languages/csharp/quickstart/) is a third party library that supports .NET Framework and Xamarin. gRPC C-core is not supported by Microsoft.
 
 ## Azure services
 
