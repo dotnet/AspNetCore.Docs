@@ -1,5 +1,5 @@
 ---
-title: gRPC services with ASP.NET Core
+title: Host gRPC services with ASP.NET Core
 author: juntaoluo
 description: Learn the basic concepts when writing gRPC services with ASP.NET Core.
 monikerRange: '>= aspnetcore-3.0'
