@@ -147,7 +147,9 @@ Examine the *Views/_ViewStart.cshtml* file:
 
 The *Views/_ViewStart.cshtml* file brings in the *Views/Shared/_Layout.cshtml* file to each view. The `Layout` property can be used to set a different layout view, or set it to `null` so no layout file will be used.
 
-Change the title and `<h2>` element of the *Views/HelloWorld/Index.cshtml* view file:
+Open the *Views/HelloWorld/Index.cshtml* view file.
+
+Change the title and `<h2>` element as highlighted in the following:
 
 [!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/HelloWorld/Index2.cshtml?highlight=2,5)]
 
@@ -171,9 +173,9 @@ If there are no changes in the browser, it could be cached content that is being
 
 The content in the *Index.cshtml* view template is merged with the *Views/Shared/_Layout.cshtml* view template. A single HTML response is sent to the browser. Layout templates make it easy to make changes that apply across all of the pages in an app. To learn more, see [Layout](xref:mvc/views/layout).
 
-![Movie List view](~/tutorials/first-mvc-app/adding-view/_static/hell3.png)
+![Movie List view](~/tutorials/first-mvc-app/adding-view/_static/hell50.png)
 
-Our little bit of "data", the "Hello from our View Template!" message, is hard-coded however. The MVC application has a "V" (view) and you've got a "C" (controller), but no "M" (model) yet.
+Our little bit of "data", the "Hello from our View Template!" message, is hard-coded however. The MVC application has a "V" (view), a "C" (controller), but no "M" (model) yet.
 
 ## Passing Data from the Controller to the View
 
@@ -185,7 +187,7 @@ Currently, the `Welcome` method in the `HelloWorldController` class takes a `nam
 
 In *HelloWorldController.cs*, change the `Welcome` method to add a `Message` and `NumTimes` value to the `ViewData` dictionary. The `ViewData` dictionary is a dynamic object, which means any type can be used; the `ViewData` object has no defined properties until you put something inside it. The [MVC model binding system](xref:mvc/models/model-binding) automatically maps the named parameters (`name` and `numTimes`) from the query string in the address bar to parameters in your method. The complete *HelloWorldController.cs* file looks like this:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Controllers/HelloWorldController.cs?name=snippet_5)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Controllers/HelloWorldController.cs?name=snippet_5&highlight=13-19)]
 
 The `ViewData` dictionary object contains data that will be passed to the view.
 
@@ -201,7 +203,7 @@ Save your changes and browse to the following URL:
 
 Data is taken from the URL and passed to the controller using the [MVC model binder](xref:mvc/models/model-binding). The controller packages the data into a `ViewData` dictionary and passes that object to the view. The view then renders the data as HTML to the browser.
 
-![Privacy view showing a Welcome label and the phrase Hello Rick shown four times](~/tutorials/first-mvc-app/adding-view/_static/rick2.png)
+![Privacy view showing a Welcome label and the phrase Hello Rick shown four times](~/tutorials/first-mvc-app/adding-view/_static/rick2_50.png)
 
 In the sample above, the `ViewData` dictionary was used to pass data from the controller to a view. Later in the tutorial, a view model is used to pass data from a controller to a view. The view model approach to passing data is preferred over the `ViewData` dictionary approach. For more information, see [When to use ViewBag, ViewData, or TempData](https://www.rachelappel.com/when-to-use-viewbag-viewdata-or-tempdata-in-asp-net-mvc-3-applications/).
 
