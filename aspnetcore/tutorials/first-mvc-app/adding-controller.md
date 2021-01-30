@@ -49,7 +49,7 @@ The MVC pattern specifies where each kind of logic should be located in the app:
 * Input logic belongs in the controller.
 * Business logic belongs in the model.
 
-This separation helps you manage complexity when you build an app, because it enables you to work on one aspect of the implementation at a time without impacting the code of another. For example, you can work on the view code without depending on the business logic code.
+This separation helps you manage complexity when you build an app. It enables you to work on one aspect of the implementation at a time, without impacting the code of another. For example, you can work on the view code without depending on the business logic code.
 
 These concepts are introduced and demonstrated in this tutorial series while building a movie app. The MVC project contains folders for the *Controllers* and *Views*.
 
@@ -104,13 +104,13 @@ An HTTP endpoint:
 
 The first comment states this is an [HTTP GET](https://www.w3schools.com/tags/ref_httpmethods.asp) method that's invoked by appending `/HelloWorld/` to the base URL.
 
-The second comment specifies an [HTTP GET](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html) method that's invoked by appending `/HelloWorld/Welcome/` to the URL. Later on in the tutorial, the scaffolding engine is used to generate `HTTP POST` methods which update data.
+The second comment specifies an [HTTP GET](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html) method that's invoked by appending `/HelloWorld/Welcome/` to the URL. Later on in the tutorial, the scaffolding engine is used to generate `HTTP POST` methods, which update data.
 
 Run the app without the debugger.
 
 Append "HelloWorld" to the path in the address bar. The `Index` method returns a string.
 
-![Browser window showing an app response of This is my default action](~/tutorials/first-mvc-app/adding-controller/_static/hell1VS.png)
+![Browser window showing an app response of This is my default action](~/tutorials/first-mvc-app/adding-controller/_static/hell1.png)
 
 MVC invokes controller classes, and the action methods within them, depending on the incoming URL. The default [URL routing logic](xref:mvc/controllers/routing) used by MVC, uses a format like this to determine what code to invoke:
 
@@ -148,9 +148,9 @@ Run the app and browse to:
 
 Replace `{PORT}` with your port number.
 
-Try different values for `name` and `numtimes` in the URL. The MVC [model binding](xref:mvc/models/model-binding) system automatically maps the named parameters from the query string in the address bar to parameters in the method. See [Model Binding](xref:mvc/models/model-binding) for more information.
+Try different values for `name` and `numtimes` in the URL. The MVC [model binding](xref:mvc/models/model-binding) system automatically maps the named parameters from the query string in the address bar, to parameters in the method. See [Model Binding](xref:mvc/models/model-binding) for more information.
 
-![Browser window showing an application response of Hello Rick, NumTimes is\: 4](~/tutorials/first-mvc-app/adding-controller/_static/rick4VS.png)
+![Browser window showing an application response of Hello Rick, NumTimes is\: 4](~/tutorials/first-mvc-app/adding-controller/_static/rick4.png)
 
 In the previous image:
 
