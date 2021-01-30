@@ -21,7 +21,7 @@ An ASP.NET Core app runs with an in-process HTTP server implementation. The serv
 
 ASP.NET Core ships with the following:
 
-* [Kestrel server](xref:fundamentals/servers/kestrel) is the default, cross-platform HTTP server implementation. Kestrel provides the best performance and memory utilization, but it doesn't have some of the advanced features in HTTP.sys such as port sharing.
+* [Kestrel server](xref:fundamentals/servers/kestrel) is the default, cross-platform HTTP server implementation. Kestrel provides the best performance and memory utilization, but it doesn't have some of the advanced features in HTTP.sys. For more information, see [Kestrel or HTTP.sys](#korh) in this document.
 * IIS HTTP Server is an [in-process server](#hosting-models) for IIS.
 * [HTTP.sys server](xref:fundamentals/servers/httpsys) is a Windows-only HTTP server based on the [HTTP.sys kernel driver and HTTP Server API](/windows/desktop/Http/http-api-start-page).
 
@@ -31,6 +31,26 @@ When using [IIS](/iis/get-started/introduction-to-iis/introduction-to-iis-archit
 * In a process separate from the IIS worker process (the [out-of-process hosting model](#hosting-models)) with the [Kestrel server](#kestrel).
 
 The [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) is a native IIS module that handles native IIS requests between IIS and the in-process IIS HTTP Server or Kestrel. For more information, see <xref:host-and-deploy/aspnet-core-module>.
+
+<a name="korh"></a>
+
+## Kestrel vs. HTTP.sys
+
+Kestrel has the following advantages over HTTP.sys
+
+  * Better performance and memory utilization.
+  * Cross platform
+  * Agility, it's developed and patched independent of the OS.
+  * Programmatic port and TLS configuration
+  * Extensibility that allows for protocols like [PPv2](https://github.com/aspnet/AspLabs/blob/master/src/ProxyProtocol/ProxyProtocol.Sample/ProxyProtocol.cs) and alternate transports.
+
+Http.Sys operates as a shared kernel mode component with the following features that kestrel does not have:
+
+  * Port sharing
+  * Kernel mode windows authentication. [Kestrel supports only user-mode authentication](xref:security/authentication/windowsauth#kestrel)
+  * Caching
+  * Fast proxying via queue transfers
+  * Potentially faster file transfers.
 
 ## Hosting models
 
