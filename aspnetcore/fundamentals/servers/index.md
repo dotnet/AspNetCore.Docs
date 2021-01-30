@@ -48,9 +48,12 @@ Http.Sys operates as a shared kernel mode component with the following features 
 
   * Port sharing
   * Kernel mode windows authentication. [Kestrel supports only user-mode authentication](xref:security/authentication/windowsauth#kestrel).
-  * Caching
   * Fast proxying via queue transfers
-  <!-- * Potentially faster file transfers. -->
+  * HTTPS with SNI
+  * HTTP/2 over TLS (Windows 10 or later)
+  * Direct file transmission
+  * Response caching
+  * WebSockets (Windows 8 or later)
 
 ## Hosting models
 
