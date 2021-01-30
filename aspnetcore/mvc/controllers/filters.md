@@ -548,7 +548,8 @@ The ASP.NET Core runtime doesn't guarantee:
 * That a single instance of the filter will be created.
 * The filter will not be re-requested from the DI container at some later point.
 
-[!WARNING] Only configure `IFilterFactory.IsReusable` to return `true` if the source of the filters is unambiguous, the filters are stateless, and are safe to use across multiple HTTP requests. For instance, do not return filters from DI that are registered as scoped or transient if `IFilterFactory.IsReusable` returns `true`
+> [!WARNING] 
+> Only configure `IFilterFactory.IsReusable` to return `true` if the source of the filters is unambiguous, the filters are stateless, and are safe to use across multiple HTTP requests. For instance, do not return filters from DI that are registered as scoped or transient if `IFilterFactory.IsReusable` returns `true`
 
 `IFilterFactory` can be implemented using custom attribute implementations as another approach to creating filters:
 
