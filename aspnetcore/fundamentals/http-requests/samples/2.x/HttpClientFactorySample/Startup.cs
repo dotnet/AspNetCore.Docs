@@ -135,7 +135,7 @@ namespace HttpClientFactorySample
             services.AddHttpClient("configured-disable-automatic-cookies")
                 .ConfigurePrimaryHttpMessageHandler(() =>
                 {
-                    return new SocketsHttpHandler()
+                    return new HttpClientHandler()
                     {
                         UseCookies = false,
                     };

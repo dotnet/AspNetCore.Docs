@@ -109,7 +109,6 @@ The `Startup` class has the following additions.
   * Authorization Middleware enables authorization capabilities:
 
     ```csharp
-    app.UseAuthentication();
     app.UseAuthorization();
     ```
 

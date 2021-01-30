@@ -634,7 +634,7 @@ The following approach supports optional client certificates:
     * IIS
       * [Hosting IIS](xref:host-and-deploy/iis/index#create-the-iis-site)
       * [Configure security on IIS](/iis/manage/configuring-security/how-to-set-up-ssl-on-iis#configure-ssl-settings-2)
-    * Http.Sys: [Configure Windows Server](xref:fundamentals/servers/httpsys#configure-windows-server)
+    * HTTP.sys: [Configure Windows Server](xref:fundamentals/servers/httpsys#configure-windows-server)
 
 ::: moniker-end
 
@@ -650,7 +650,7 @@ The following approach supports optional client certificates:
     * IIS
       * [Hosting IIS](xref:host-and-deploy/iis/index#create-the-iis-site)
       * [Configure security on IIS](/iis/manage/configuring-security/how-to-set-up-ssl-on-iis#configure-ssl-settings-2)
-    * Http.Sys: [Configure Windows Server](xref:fundamentals/servers/httpsys#configure-windows-server)
+    * HTTP.sys: [Configure Windows Server](xref:fundamentals/servers/httpsys#configure-windows-server)
 
 ::: moniker-end
 
