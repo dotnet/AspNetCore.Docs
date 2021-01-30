@@ -21,7 +21,7 @@ An ASP.NET Core app runs with an in-process HTTP server implementation. The serv
 
 ASP.NET Core ships with the following:
 
-* [Kestrel server](xref:fundamentals/servers/kestrel) is the default, cross-platform HTTP server implementation. Kestrel provides the best performance and memory utilization, but it doesn't have some of the advanced features in HTTP.sys. For more information, see [Kestrel or HTTP.sys](#korh) in this document.
+* [Kestrel server](xref:fundamentals/servers/kestrel) is the default, cross-platform HTTP server implementation. Kestrel provides the best performance and memory utilization, but it doesn't have some of the advanced features in HTTP.sys. For more information, see [Kestrel vs. HTTP.sys](#korh) in this document.
 * IIS HTTP Server is an [in-process server](#hosting-models) for IIS.
 * [HTTP.sys server](xref:fundamentals/servers/httpsys) is a Windows-only HTTP server based on the [HTTP.sys kernel driver and HTTP Server API](/windows/desktop/Http/http-api-start-page).
 
@@ -36,7 +36,7 @@ The [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) is a native I
 
 ## Kestrel vs. HTTP.sys
 
-Kestrel has the following advantages over HTTP.sys
+Kestrel has the following advantages over HTTP.sys:
 
   * Better performance and memory utilization.
   * Cross platform
@@ -47,10 +47,10 @@ Kestrel has the following advantages over HTTP.sys
 Http.Sys operates as a shared kernel mode component with the following features that kestrel does not have:
 
   * Port sharing
-  * Kernel mode windows authentication. [Kestrel supports only user-mode authentication](xref:security/authentication/windowsauth#kestrel)
+  * Kernel mode windows authentication. [Kestrel supports only user-mode authentication](xref:security/authentication/windowsauth#kestrel).
   * Caching
   * Fast proxying via queue transfers
-  * Potentially faster file transfers.
+  <!-- * Potentially faster file transfers. -->
 
 ## Hosting models
 
