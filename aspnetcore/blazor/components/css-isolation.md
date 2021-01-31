@@ -147,6 +147,23 @@ By default, scope identifiers use the format `b-<10-character-string>`. To custo
 
 In the preceding example, the CSS generated for `MyComponent.Razor.css` changes its scope identifier from `b-<10-character-string>` to `my-custom-scope-identifier`.
 
+You can also use scope identifiers to achieve inheritance with scoped CSS files. In the following example, a `BaseComponent.razor.css` file contains common styles across components. A `DerivedComponent.razor.css` file inherits these styles. 
+
+```xml
+<ItemGroup>
+    <None Update="Pages/BaseComponent.razor.css" CssScope="my-custom-scope-identifier" />
+    <None Update="Pages/DerivedComponent.razor.css" CssScope="my-custom-scope-identifier" />
+</ItemGroup>
+```
+
+You can also use the wildcard (`*`) operator to share scope identifiers across multiple files.
+
+```xml
+<ItemGroup>
+    <None Update="Pages/*.razor.css" CssScope="my-custom-scope-identifier" />
+</ItemGroup>
+```
+
 ### Change base path for static web assets
 
 The `scoped.styles.css` file is generated at the root of the app. In the project file, use the `StaticWebAssetBasePath` property to change the default path. The following example places the `scoped.styles.css` file, and the rest of the app's assets, at the `_content` path:
