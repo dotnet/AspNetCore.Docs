@@ -141,7 +141,7 @@ By default, scope identifiers use the format `b-<10-character-string>`. To custo
 
 ```xml
 <ItemGroup>
-    <None Update="MyComponent.razor.css" CssScope="my-custom-scope-identifier" />
+    <None Update="Pages/MyComponent.razor.css" CssScope="my-custom-scope-identifier" />
 </ItemGroup>
 ```
 
