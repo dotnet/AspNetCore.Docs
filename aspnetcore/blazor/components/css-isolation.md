@@ -111,7 +111,7 @@ Update the `h1` declaration in `Parent.razor.css` with the `::deep` combinator t
 
 The `h1` style now applies to the `Parent` and `Child` components without the need to create a separate scoped CSS file for the child component.
 
-The `::deep` combinator only works with descendant elements. The following HTML structure applies the `h1` styles to components as expected.
+The `::deep` combinator only works with descendant elements. The following markup applies the `h1` styles to components as expected. The parent component's scope identifier is applied to the `div` element, so the browser knows to inherit styles from the parent component.
 
 `Pages/Parent.razor`:
 
@@ -123,9 +123,7 @@ The `::deep` combinator only works with descendant elements. The following HTML 
 </div>
 ```
 
-In this scenario, ASP.NET Core applies the parent component's scope identifier to the `div` element, so the browser knows to inherit styles from the parent component.
-
-However, excluding the `div` element removes the descendant relationship, and the style is **not** applied to the child component.
+However, excluding the `div` element removes the descendant relationship. In the following example, the style is **not** applied to the child component.
 
 `Pages/Parent.razor`:
 
