@@ -168,10 +168,20 @@ Run the app and enter the following URL: `https://localhost:{PORT}/HelloWorld/We
 In the preceding URL:
 
 * The third URL segment matched the route parameter `id`. 
-* The `Welcome` method contains a parameter `id` that matched the URL template in the `MapControllerRoute` method. 
+* The `Welcome` method contains a parameter `id` that matched the URL template in the `MapControllerRoute` method.
 * The trailing `?` (in `id?`) indicates the `id` parameter is optional.
 
+::: moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
+
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Startup.cs?name=snippet_1&highlight=5)]
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-5.0"
+
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie5/Startup.cs?name=snippet_route&highlight=5)]
+
+::: moniker-end
 
 In the preceding example:
 

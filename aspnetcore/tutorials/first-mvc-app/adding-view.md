@@ -62,9 +62,9 @@ Add an `Index` view for the `HelloWorldController`:
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-Right-click on the *Views* folder, and then **Add > New Folder** and name the folder *HelloWorld*.
+Control-click on the *Views* folder, and then **Add > New Folder** and name the folder *HelloWorld*.
 
-Right-click on the *Views/HelloWorld* folder, and then **Add > New File**.
+Control-click on the *Views/HelloWorld* folder, and then **Add > New File**.
 
 In the **New File** dialog:
 
@@ -116,6 +116,7 @@ Replace the content of the *Views/Shared/_Layout.cshtml* file with the following
 ::: moniker range=">= aspnetcore-5.0"
 
 [!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie5/Views/Shared/_Layout.cshtml?highlight=6,14,40)]
+
 ::: moniker-end
 
 ::: moniker range=">= aspnetcore-3.0"
@@ -125,7 +126,7 @@ The preceding markup made the following changes:
 * Three occurrences of `MvcMovie` to `Movie App`.
 * The anchor element `<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MvcMovie</a>` to `<a class="navbar-brand" asp-controller="Movies" asp-action="Index">Movie App</a>`.
 
-In the preceding markup, the `asp-area=""` [anchor Tag Helper attribute](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) and attribute value was omitted because this app is not using [Areas](xref:mvc/controllers/areas).
+In the preceding markup, the `asp-area=""` [anchor Tag Helper attribute](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) and attribute value was omitted because this app isn't using [Areas](xref:mvc/controllers/areas).
 
 **Note**: The `Movies` controller hasn't been implemented. At this point, the `Movie App` link isn't functional.
 
@@ -175,17 +176,35 @@ The content in the *Index.cshtml* view template is merged with the *Views/Shared
 
 ![Movie List view](~/tutorials/first-mvc-app/adding-view/_static/hell50.png)
 
-Our little bit of "data", the "Hello from our View Template!" message, is hard-coded however. The MVC application has a "V" (view), a "C" (controller), but no "M" (model) yet.
+The small bit of "data", the "Hello from our View Template!" message, is hard-coded however. The MVC application has a "V" (view), a "C" (controller), but no "M" (model) yet.
 
 ## Passing Data from the Controller to the View
 
 Controller actions are invoked in response to an incoming URL request. A controller class is where the code is written that handles the incoming browser requests. The controller retrieves data from a data source and decides what type of response to send back to the browser. View templates can be used from a controller to generate and format an HTML response to the browser.
 
-Controllers are responsible for providing the data required in order for a view template to render a response. A best practice: View templates should **not** perform business logic or interact with a database directly. Rather, a view template should work only with the data that's provided to it by the controller. Maintaining this "separation of concerns" helps keep the code clean, testable, and maintainable.
+Controllers are responsible for providing the data required in order for a view template to render a response.
 
-Currently, the `Welcome` method in the `HelloWorldController` class takes a `name` and a `ID` parameter and then outputs the values directly to the browser. Rather than have the controller render this response as a string, change the controller to use a view template instead. The view template generates a dynamic response, which means that appropriate bits of data must be passed from the controller to the view in order to generate the response. Do this by having the controller put the dynamic data (parameters) that the view template needs, in a `ViewData` dictionary. The view template can then access the dynamic data.
+View templates should **not**:
 
-In *HelloWorldController.cs*, change the `Welcome` method to add a `Message` and `NumTimes` value to the `ViewData` dictionary. The `ViewData` dictionary is a dynamic object, which means any type can be used; the `ViewData` object has no defined properties until you put something inside it. The [MVC model binding system](xref:mvc/models/model-binding) automatically maps the named parameters (`name` and `numTimes`) from the query string in the address bar to parameters in your method. The complete *HelloWorldController.cs* file looks like this:
+* Do business logic
+* Interact with a database directly.
+
+A view template should work only with the data that's provided to it by the controller. Maintaining this "separation of concerns" helps keep the code:
+
+* Clean.
+* Testable.
+* Maintainable.
+
+Currently, the `Welcome` method in the `HelloWorldController` class:
+
+* Takes a `name` and a `ID` parameter.
+* Outputs the values directly to the browser.
+
+Rather than have the controller render this response as a string, change the controller to use a view template instead. The view template generates a dynamic response, which means that appropriate bits of data must be passed from the controller to the view to generate the response. Do this by having the controller put the dynamic data (parameters) that the view template needs, in a `ViewData` dictionary. The view template can then access the dynamic data.
+
+In *HelloWorldController.cs*, change the `Welcome` method to add a `Message` and `NumTimes` value to the `ViewData` dictionary.
+
+The `ViewData` dictionary is a dynamic object, which means any type can be used; the `ViewData` object has no defined properties until you put something inside it. The [MVC model binding system](xref:mvc/models/model-binding) automatically maps the named parameters (`name` and `numTimes`) from the query string in the address bar to parameters in your method. The complete *HelloWorldController.cs* file looks like this:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Controllers/HelloWorldController.cs?name=snippet_5&highlight=13-19)]
 
@@ -210,8 +229,8 @@ In the sample above, the `ViewData` dictionary was used to pass data from the co
 In the next tutorial, a database of movies is created.
 
 > [!div class="step-by-step"]
-> [Previous](adding-controller.md)
-> [Next](adding-model.md)
+> [Previous: Add a Controller](adding-controller.md)
+> [Next: Add a Model](adding-model.md)
 
 ::: moniker-end
 
@@ -232,9 +251,9 @@ The preceding code:
 
 # [Visual Studio](#tab/visual-studio)
 
-* Right click on the *Views* folder, and then **Add > New Folder** and name the folder *HelloWorld*.
+* Right-click on the *Views* folder, and then **Add > New Folder** and name the folder *HelloWorld*.
 
-* Right click on the *Views/HelloWorld* folder, and then **Add > New Item**.
+* Right-click on the *Views/HelloWorld* folder, and then **Add > New Item**.
 
 * In the **Add New Item - MvcMovie** dialog
 
@@ -371,7 +390,7 @@ In the sample above, the `ViewData` dictionary was used to pass data from the co
 In the next tutorial, a database of movies is created.
 
 > [!div class="step-by-step"]
-> [Previous](adding-controller.md)
-> [Next](adding-model.md)
+> [Previous: Add a Controller](adding-controller.md)
+> [Next: Add a Model](adding-model.md)
 
 ::: moniker-end
