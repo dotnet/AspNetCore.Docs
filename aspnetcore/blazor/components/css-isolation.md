@@ -38,7 +38,7 @@ h1 {
 }
 ```
 
-The styles defined in `Example.razor.css` are only applied to the rendered output of the `Example` component. Any `h1` CSS declarations defined elsewhere in the app don't conflict with the `Example` component's styles.
+**The styles defined in `Example.razor.css` are only applied to the rendered output of the `Example` component.** CSS isolation is applied to HTML elements in the matching Razor file. Any `h1` CSS declarations defined elsewhere in the app don't conflict with the `Example` component's styles.
 
 > [!NOTE]
 > In order to guarantee style isolation when bundling occurs, importing CSS in Razor code blocks is not supported.
