@@ -136,7 +136,7 @@ Save the changes and select the **Privacy** link. Notice how the title on the br
 
 Select the **Home** link.
 
-Notice that the title and anchor text also display **Movie App**. The changes were made once in the layout template and all pages on the site reflect the new link text and new title.
+Notice that the title and anchor text display **Movie App**. The changes were made once in the layout template and all pages on the site reflect the new link text and new title.
 
 Examine the *Views/_ViewStart.cshtml* file:
 
