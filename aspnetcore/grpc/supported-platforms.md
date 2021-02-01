@@ -44,10 +44,12 @@ gRPC services can be hosted on all built-in ASP.NET Core servers.
 >
 > * Kestrel
 > * TestServer
-> * IIS&dagger;
+> * IIS&Dagger;
 > * HTTP.sys&dagger;
 
-&dagger;IIS and HTTP.sys require .NET 5 and Windows 10 Build 20241 or later.
+&Dagger;IIS requires .NET 5 and Windows 10 Build 20241 or later.
+
+&dagger;HTTP.sys requires .NET 5 and Windows 10 Build 19529 or later.
 
 For more information, see <xref:grpc/aspnetcore>.
 
