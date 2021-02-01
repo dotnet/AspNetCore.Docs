@@ -17,14 +17,19 @@ CSS isolation simplifies an app's CSS footprint by preventing dependencies on gl
 
 ## Enable CSS isolation 
 
-To define component-specific styles, create a `.razor.css` file matching the name of the `.razor` file for the component. This `.razor.css` file is a *scoped CSS file*. 
+To define component-specific styles, create a `.razor.css` file matching the name of the `.razor` file for the component in the same folder. The `.razor.css` file is a *scoped CSS file*. 
 
-For a `MyComponent` component that has a `MyComponent.razor` file, create a file alongside the component called `MyComponent.razor.css`. This scoped CSS file (`MyComponent.razor.css`) must reside in the same directory as the component (`MyComponent.razor`). 
+For an `Example` component in an `Example.razor` file, create a file alongside the component named `Example.razor.css`. The `Example.razor.css` file must reside in the same folder as the `Example` component (`Example.razor`). The "`Example`" base name of the file is **not** case-sensitive.
 
+`Pages/Example.razor`:
 
-The `MyComponent` value in the `.razor.css` filename is **not** case-sensitive.
+```razor
+@page "/example"
 
-For example to add CSS isolation to the `Counter` component in the default Blazor project template, add a new file named `Counter.razor.css` in the same directory as the `Counter.razor` file, then add the following CSS:
+<h1>Scoped CSS Example</h1>
+```
+
+`Pages/Example.razor.css`:
 
 ```css
 h1 { 
@@ -33,7 +38,7 @@ h1 {
 }
 ```
 
-The styles defined in `Counter.razor.css` are only applied to the rendered output of the `Counter` component. Any `h1` CSS declarations defined elsewhere in the app don't conflict with `Counter` styles.
+The styles defined in `Example.razor.css` are only applied to the rendered output of the `Example` component. Any `h1` CSS declarations defined elsewhere in the app don't conflict with `Example` styles.
 
 > [!NOTE]
 > In order to guarantee style isolation when bundling occurs, `@import` Razor blocks aren't supported with scoped CSS files.
@@ -45,7 +50,7 @@ CSS isolation occurs at build time. During this process, Blazor rewrites CSS sel
 These static files are referenced from the root path of the app by default. In the app, reference the bundled file by inspecting the reference inside the `<head>` tag of the generated HTML:
 
 ```html
-<link href="MyProjectName.styles.css" rel="stylesheet">
+<link href="ProjectName.styles.css" rel="stylesheet">
 ```
 
 Within the bundled file, each component is associated with a scope identifier. For each styled component, an HTML attribute is appended with the format `b-<10-character-string>`. The identifier is unique and different for each app. In the rendered `Counter` component, Blazor appends a scope identifier to the `h1` element:
@@ -54,7 +59,7 @@ Within the bundled file, each component is associated with a scope identifier. F
 <h1 b-3xxtam6d07>
 ```
 
-The `MyProjectName.styles.css` file uses the scope identifier to group a style declaration with its component. The following example provides the style for the preceding `<h1>` element:
+The `ProjectName.styles.css` file uses the scope identifier to group a style declaration with its component. The following example provides the style for the preceding `<h1>` element:
 
 ```css
 /* /Pages/Counter.razor.rz.scp.css */
@@ -63,7 +68,7 @@ h1[b-3xxtam6d07] {
 }
 ```
 
-At build time, a project bundle is created with the convention `{STATIC WEB ASSETS BASE PATH}/MyProject.lib.scp.css`, where the placeholder `{STATIC WEB ASSETS BASE PATH}` is the static web assets base path.
+At build time, a project bundle is created with the convention `{STATIC WEB ASSETS BASE PATH}/Project.lib.scp.css`, where the placeholder `{STATIC WEB ASSETS BASE PATH}` is the static web assets base path.
 
 If other projects are utilized, such as NuGet packages or [Razor class libraries](xref:blazor/components/class-libraries), the bundled file:
 
@@ -76,7 +81,7 @@ By default, CSS isolation only applies to the component you associate with the f
 
 The following example shows a parent component called `Parent` with a child component called `Child`.
 
-`Parent.razor`:
+`Pages/Parent.razor`:
 
 ```razor
 @page "/parent"
@@ -88,13 +93,15 @@ The following example shows a parent component called `Parent` with a child comp
 </div>
 ```
 
-`Child.razor`:
+`Shared/Child.razor`:
 
 ```razor
 <h1>Child Component</h1>
 ```
 
-Update the `h1` declaration in `Parent.razor.css` with the `::deep` combinator to signify the `h1` style declaration must apply to the parent component and its children:
+Update the `h1` declaration in `Parent.razor.css` with the `::deep` combinator to signify the `h1` style declaration must apply to the parent component and its children.
+
+`Pages/Parent.razor.css`:
 
 ```css
 ::deep h1 { 
@@ -104,26 +111,29 @@ Update the `h1` declaration in `Parent.razor.css` with the `::deep` combinator t
 
 The `h1` style now applies to the `Parent` and `Child` components without the need to create a separate scoped CSS file for the child component.
 
-> [!NOTE]
-> The `::deep` combinator only works with descendant elements. The following HTML structure applies the `h1` styles to components as expected:
-> 
-> ```razor
-> <div>
->     <h1>Parent</h1>
->
->     <Child />
-> </div>
-> ```
->
-> In this scenario, ASP.NET Core applies the parent component's scope identifier to the `div` element, so the browser knows to inherit styles from the parent component.
->
-> However, excluding the `div` element removes the descendant relationship, and the style is **not** applied to the child component:
->
-> ```razor
-> <h1>Parent</h1>
->
-> <Child />
-> ```
+The `::deep` combinator only works with descendant elements. The following HTML structure applies the `h1` styles to components as expected.
+
+`Pages/Parent.razor`:
+
+```razor
+<div>
+    <h1>Parent</h1>
+
+    <Child />
+</div>
+```
+
+In this scenario, ASP.NET Core applies the parent component's scope identifier to the `div` element, so the browser knows to inherit styles from the parent component.
+
+However, excluding the `div` element removes the descendant relationship, and the style is **not** applied to the child component.
+
+`Pages/Parent.razor`:
+
+```razor
+<h1>Parent</h1>
+
+<Child />
+```
 
 ## CSS preprocessor support
 
@@ -141,26 +151,26 @@ By default, scope identifiers use the format `b-<10-character-string>`. To custo
 
 ```xml
 <ItemGroup>
-    <None Update="Pages/MyComponent.razor.css" CssScope="my-custom-scope-identifier" />
+  <None Update="Pages/Example.razor.css" CssScope="my-custom-scope-identifier" />
 </ItemGroup>
 ```
 
-In the preceding example, the CSS generated for `MyComponent.Razor.css` changes its scope identifier from `b-<10-character-string>` to `my-custom-scope-identifier`.
+In the preceding example, the CSS generated for `Example.Razor.css` changes its scope identifier from `b-<10-character-string>` to `my-custom-scope-identifier`.
 
-You can also use scope identifiers to achieve inheritance with scoped CSS files. In the following example, a `BaseComponent.razor.css` file contains common styles across components. A `DerivedComponent.razor.css` file inherits these styles. 
+Use scope identifiers to achieve inheritance with scoped CSS files. In the following project file example, a `BaseComponent.razor.css` file contains common styles across components. A `DerivedComponent.razor.css` file inherits these styles.
 
 ```xml
 <ItemGroup>
-    <None Update="Pages/BaseComponent.razor.css" CssScope="my-custom-scope-identifier" />
-    <None Update="Pages/DerivedComponent.razor.css" CssScope="my-custom-scope-identifier" />
+  <None Update="Pages/BaseComponent.razor.css" CssScope="my-custom-scope-identifier" />
+  <None Update="Pages/DerivedComponent.razor.css" CssScope="my-custom-scope-identifier" />
 </ItemGroup>
 ```
 
-You can also use the wildcard (`*`) operator to share scope identifiers across multiple files.
+Use the wildcard (`*`) operator to share scope identifiers across multiple files:
 
 ```xml
 <ItemGroup>
-    <None Update="Pages/*.razor.css" CssScope="my-custom-scope-identifier" />
+  <None Update="Pages/*.razor.css" CssScope="my-custom-scope-identifier" />
 </ItemGroup>
 ```
 
@@ -195,6 +205,8 @@ In the following example:
 
 * The static web asset base path is `_content/ClassLib`.
 * The class library's assembly name is `ClassLib`.
+
+`wwwroot/index.html` (Blazor WebAssembly) or `Pages_Host.cshtml` (Blazor Server):
 
 ```html
 <link href="_content/ClassLib/ClassLib.bundle.scp.css" rel="stylesheet">
