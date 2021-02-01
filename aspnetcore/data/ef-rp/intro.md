@@ -370,7 +370,7 @@ Add the [Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore](https://www.nuget
 In the PMC, enter the following to add the NuGet package:
 
 ```powershell
-Install-Package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore -Version 5.0.0-rc.2.20475.17
+Install-Package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
 ```
 
 # [Visual Studio Code](#tab/visual-studio-code)
