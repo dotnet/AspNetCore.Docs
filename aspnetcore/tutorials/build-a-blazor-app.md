@@ -91,6 +91,12 @@ At the end of this tutorial, you'll have a working todo list app.
    `TodoItem.cs`:
 
    [!code-csharp[](build-a-blazor-app/samples_snapshot/TodoItem.cs)]
+   
+   > [!NOTE]
+   > If using Visual Studio to create the `ToDoItem.cs` file and `ToDoItem` class, use either of the following approaches:
+   >
+   > * Remove the namespace that Visual Studio generates for the class.
+   > * Use the **Copy** button in the preceding code block and replace the entire contents of the file that Visual Studio generates.
 
 1. Return to the `Todo` component and perform the following tasks:
 

@@ -374,9 +374,9 @@ If neither <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Roles> no
 
 The <xref:Microsoft.AspNetCore.Components.Routing.Router> component, in conjunction with the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> component, allows the app to specify custom content if:
 
-* Content isn't found.
-* The user fails an [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) condition applied to the component. The [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute is covered in the [`[Authorize]` attribute](#authorize-attribute) section.
-* Asynchronous authentication is in progress.
+* The user fails an [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) condition applied to the component. The markup of the [`<NotAuthorized>`](xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView.NotAuthorized?displayProperty=nameWithType) element is displayed. The [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute is covered in the [`[Authorize]` attribute](#authorize-attribute) section.
+* Asynchronous authorization is in progress, which usually means that the process of authenticating the user is in progress. The markup of the [`<Authorizing>`](xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView.Authorizing?displayProperty=nameWithType) element is displayed.
+* Content isn't found. The markup of the [`<NotFound>`](xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound?displayProperty=nameWithType) element is displayed.
 
 In the default Blazor Server project template, the `App` component (`App.razor`) demonstrates how to set custom content:
 
@@ -392,8 +392,8 @@ In the default Blazor Server project template, the `App` component (`App.razor`)
                     <p>You may need to log in as a different user.</p>
                 </NotAuthorized>
                 <Authorizing>
-                    <h1>Authentication in progress</h1>
-                    <p>Only visible while authentication is in progress.</p>
+                    <h1>Authorization in progress</h1>
+                    <p>Only visible while authorization is in progress.</p>
                 </Authorizing>
             </AuthorizeRouteView>
         </Found>
