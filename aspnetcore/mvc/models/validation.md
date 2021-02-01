@@ -76,9 +76,29 @@ When applied to a `Name` property, the error message created by the preceding co
 
 To find out which parameters are passed to `String.Format` for a particular attribute's error message, see the [DataAnnotations source code](https://github.com/dotnet/runtime/tree/master/src/libraries/System.ComponentModel.Annotations/src/System/ComponentModel/DataAnnotations).
 
-## [Required] attribute
+::: moniker range=">= aspnetcore-3.0"
 
-The validation system in .NET Core 3.0 and later treats non-nullable parameters or bound properties as if they had a `[Required]` attribute. [Value types](/dotnet/csharp/language-reference/keywords/value-types) such as `decimal` and `int` are non-nullable. This behavior can be disabled by configuring <xref:Microsoft.AspNetCore.Mvc.MvcOptions.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes> in `Startup.ConfigureServices`:
+## Non-nullable reference types and [Required] attribute
+
+The validation system treats non-nullable parameters or bound properties as if they had a `[Required]` attribute. By enabling `Nullable` contexts in your application (see https://docs.microsoft.com/en-us/dotnet/csharp/nullable-references#nullable-contexts), MVC will implicitly start validating non-nullable properties or parameters as if they had been attributed with the Required attribute. Consider,
+
+```csharp
+public class Person
+{
+    public string Name { get; set; }
+}
+```
+
+If the application was built with `<Nullable>enable</Nullable>`, a missing value for `Name` in a JSON or form post would result in a validation error. Use a nullable reference type to allow null or missing values to be specified for the `Name` property:
+
+```csharp
+public class Person
+{
+    public string? Name { get; set; }
+}
+```
+
+. This behavior can be disabled by configuring <xref:Microsoft.AspNetCore.Mvc.MvcOptions.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes> in `Startup.ConfigureServices`:
 
 ```csharp
 services.AddControllers(options => options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true);
