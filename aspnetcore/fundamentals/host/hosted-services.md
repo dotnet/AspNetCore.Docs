@@ -134,38 +134,6 @@ The services are registered in `IHostBuilder.ConfigureServices` (*Program.cs*). 
 
 [!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Program.cs?name=snippet2)]
 
-## Queued background tasks
-
-A background task queue is based on the .NET 4.x <xref:System.Web.Hosting.HostingEnvironment.QueueBackgroundWorkItem*>:
-
-[!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Services/BackgroundTaskQueue.cs?name=snippet1)]
-
-In the following `QueueHostedService` example:
-
-* The `BackgroundProcessing` method returns a `Task`, which is awaited in `ExecuteAsync`.
-* Background tasks in the queue are dequeued and executed in `BackgroundProcessing`.
-* Work items are awaited before the service stops in `StopAsync`.
-
-[!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Services/QueuedHostedService.cs?name=snippet1&highlight=28-29,33)]
-
-A `MonitorLoop` service handles enqueuing tasks for the hosted service whenever the `w` key is selected on an input device:
-
-* The `IBackgroundTaskQueue` is injected into the `MonitorLoop` service.
-* `IBackgroundTaskQueue.QueueBackgroundWorkItem` is called to enqueue a work item.
-* The work item simulates a long-running background task:
-  * Three 5-second delays are executed (`Task.Delay`).
-  * A `try-catch` statement traps <xref:System.OperationCanceledException> if the task is cancelled.
-
-[!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Services/MonitorLoop.cs?name=snippet_Monitor&highlight=7,33)]
-
-The services are registered in `IHostBuilder.ConfigureServices` (*Program.cs*). The hosted service is registered with the `AddHostedService` extension method:
-
-[!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Program.cs?name=snippet3)]
-
-`MonitorLoop` is started in `Program.Main`:
-
-[!code-csharp[](hosted-services/samples/3.x/BackgroundTasksSample/Program.cs?name=snippet4)]
-
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
@@ -174,7 +142,6 @@ In ASP.NET Core, background tasks can be implemented as *hosted services*. A hos
 
 * Background task that runs on a timer.
 * Hosted service that activates a [scoped service](xref:fundamentals/dependency-injection#service-lifetimes). The scoped service can use [dependency injection (DI)](xref:fundamentals/dependency-injection)
-* Queued background tasks that run sequentially.
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/host/hosted-services/samples/) ([how to download](xref:index#how-to-download-a-sample))
 
@@ -233,31 +200,6 @@ The hosted service creates a scope to resolve the scoped background task service
 The services are registered in `Startup.ConfigureServices`. The `IHostedService` implementation is registered with the `AddHostedService` extension method:
 
 [!code-csharp[](hosted-services/samples/2.x/BackgroundTasksSample/Startup.cs?name=snippet2)]
-
-## Queued background tasks
-
-A background task queue is based on the .NET Framework 4.x <xref:System.Web.Hosting.HostingEnvironment.QueueBackgroundWorkItem*> ([tentatively scheduled to be built-in for ASP.NET Core](https://github.com/aspnet/Hosting/issues/1280)):
-
-[!code-csharp[](hosted-services/samples/2.x/BackgroundTasksSample/Services/BackgroundTaskQueue.cs?name=snippet1)]
-
-In `QueueHostedService`, background tasks in the queue are dequeued and executed as a [BackgroundService](#backgroundservice-base-class), which is a base class for implementing a long running `IHostedService`:
-
-[!code-csharp[](hosted-services/samples/2.x/BackgroundTasksSample/Services/QueuedHostedService.cs?name=snippet1&highlight=21,25)]
-
-The services are registered in `Startup.ConfigureServices`. The `IHostedService` implementation is registered with the `AddHostedService` extension method:
-
-[!code-csharp[](hosted-services/samples/2.x/BackgroundTasksSample/Startup.cs?name=snippet3)]
-
-In the Index page model class:
-
-* The `IBackgroundTaskQueue` is injected into the constructor and assigned to `Queue`.
-* An <xref:Microsoft.Extensions.DependencyInjection.IServiceScopeFactory> is injected and assigned to `_serviceScopeFactory`. The factory is used to create instances of <xref:Microsoft.Extensions.DependencyInjection.IServiceScope>, which is used to create services within a scope. A scope is created in order to use the app's `AppDbContext` (a [scoped service](xref:fundamentals/dependency-injection#service-lifetimes)) to write database records in the `IBackgroundTaskQueue` (a singleton service).
-
-[!code-csharp[](hosted-services/samples/2.x/BackgroundTasksSample/Pages/Index.cshtml.cs?name=snippet1)]
-
-When the **Add Task** button is selected on the Index page, the `OnPostAddTask` method is executed. `QueueBackgroundWorkItem` is called to enqueue a work item:
-
-[!code-csharp[](hosted-services/samples/2.x/BackgroundTasksSample/Pages/Index.cshtml.cs?name=snippet2)]
 
 ::: moniker-end
 
