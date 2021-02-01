@@ -46,7 +46,6 @@ namespace WebApiSample.Api._31.Controllers
         public IEnumerable<Product> GetOnSaleProducts()
         {
             var products = _repository.GetProducts();
-            var test = "hello world";
 
             foreach (var product in products)
             {
