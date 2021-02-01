@@ -51,7 +51,7 @@ gRPC services can be hosted on all built-in ASP.NET Core servers.
 
 &Dagger;HTTP.sys requires .NET 5 and Windows 10 Build 19529 or later.
 
-For more information about gRPC server options, see <xref:grpc/aspnetcore>.
+For more information about gRPC server options, see <xref:grpc/aspnetcore#server-options>.
 
 ## .NET version requirements
 
