@@ -80,7 +80,7 @@ To find out which parameters are passed to `String.Format` for a particular attr
 
 ## Non-nullable reference types and [Required] attribute
 
-The validation system treats non-nullable parameters or bound properties as if they had a `[Required]` attribute. By enabling `Nullable` contexts in your application (see https://docs.microsoft.com/en-us/dotnet/csharp/nullable-references#nullable-contexts), MVC will implicitly start validating non-nullable properties or parameters as if they had been attributed with the Required attribute. Consider,
+The validation system treats non-nullable parameters or bound properties as if they had a `[Required]` attribute. By [enabling `Nullable` contexts](/dotnet/csharp/nullable-references#nullable-contexts), MVC implicitly starts validating non-nullable properties or parameters as if they had been attributed with the `[Required]` attribute. Consider the following code:
 
 ```csharp
 public class Person
@@ -89,7 +89,7 @@ public class Person
 }
 ```
 
-If the application was built with `<Nullable>enable</Nullable>`, a missing value for `Name` in a JSON or form post would result in a validation error. Use a nullable reference type to allow null or missing values to be specified for the `Name` property:
+If the app was built with `<Nullable>enable</Nullable>`, a missing value for `Name` in a JSON or form post results in a validation error. Use a nullable reference type to allow null or missing values to be specified for the `Name` property:
 
 ```csharp
 public class Person
