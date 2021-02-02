@@ -11,7 +11,7 @@ uid: blazor/components/lifecycle
 ---
 # ASP.NET Core Blazor lifecycle
 
-By [Luke Latham](https://github.com/guardrex) and [Daniel Roth](https://github.com/danroth27)
+By [Luke Latham](https://github.com/guardrex), [Daniel Roth](https://github.com/danroth27), and [Javier Calvarro Nelson](https://github.com/javiercn)
 
 The Blazor framework includes synchronous and asynchronous lifecycle methods. Override lifecycle methods to perform additional operations on components during component initialization and rendering.
 
@@ -321,7 +321,45 @@ If a component implements <xref:System.IDisposable>, the framework calls the [di
 }
 ```
 
-For asynchronous disposal tasks, use `DisposeAsync` instead of `Dispose` in the preceding example:
+If an object requires disposal, a lambda can be used to dispose of the object when <xref:System.IDisposable.Dispose%2A?displayProperty=nameWithType> is called:
+
+`Pages/CounterWithTimerDisposal.razor`:
+
+```razor
+@page "/counter-with-timer-disposal"
+@using System.Timers
+@implements IDisposable
+
+<h1>Counter with <code>Timer</code> disposal</h1>
+
+<p>Current count: @currentCount</p>
+
+@code {
+    private int currentCount = 0;
+    private Timer timer = new Timer(1000);
+
+    protected override void OnInitialized()
+    {
+        timer.Elapsed += (sender, eventArgs) => OnTimerCallback();
+        timer.Start();
+    }
+
+    private void OnTimerCallback()
+    {
+        _ = InvokeAsync(() =>
+        {
+            currentCount++;
+            StateHasChanged();
+        });
+    }
+
+    public void IDisposable.Dispose() => timer.Dispose();
+}
+```
+
+The preceding example appears in <xref:blazor/components/rendering#receiving-a-call-from-something-external-to-the-blazor-rendering-and-event-handling-system>.
+
+For asynchronous disposal tasks, use `DisposeAsync` instead of <xref:System.IDisposable.Dispose>:
 
 ```csharp
 public async ValueTask DisposeAsync()
@@ -333,7 +371,7 @@ public async ValueTask DisposeAsync()
 > [!NOTE]
 > Calling <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> in `Dispose` isn't supported. <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> might be invoked as part of tearing down the renderer, so requesting UI updates at that point isn't supported.
 
-Unsubscribe event handlers from .NET events. The following [Blazor form](xref:blazor/forms-validation) examples show how to unhook an event handler in the `Dispose` method:
+Unsubscribe event handlers from .NET events. The following [Blazor form](xref:blazor/forms-validation) examples show how to unsubscribe an event handler in the `Dispose` method:
 
 * Private field and lambda approach
 
@@ -342,7 +380,47 @@ Unsubscribe event handlers from .NET events. The following [Blazor form](xref:bl
 * Private method approach
 
   [!code-razor[](lifecycle/samples_snapshot/event-handler-disposal-2.razor?highlight=16,26)]
-  
+
+When [anonymous functions](/dotnet/csharp/programming-guide/statements-expressions-operators/anonymous-functions), methods or expressions, are used, it isn't necessary to implement <xref:System.IDisposable> and unsubscribe delegates. However, failing to unsubscribe a delegate is a problem **when the object exposing the event outlives the lifetime of the component registering the delegate**. When this occurs, a memory leak results because the registered delegate keeps the original object alive. Therefore, only use the following approaches when you know that the event delegate disposes quickly. When in doubt about the lifetime of objects that require disposal, subscribe a delegate method and properly dispose the delegate as the preceding examples show.
+
+* Anonymous lambda method approach (explicit disposal not required)
+
+  ```csharp
+  private void HandleFieldChanged(object sender, FieldChangedEventArgs e)
+  {
+      formInvalid = !editContext.Validate();
+      StateHasChanged();
+  }
+
+  protected override void OnInitialized()
+  {
+      editContext = new EditContext(starship);
+      editContext.OnFieldChanged += (s, e) => HandleFieldChanged((editContext)s, e);
+  }
+  ```
+
+* Anonymous lambda expression approach (explicit disposal not required)
+
+  ```csharp
+  private ValidationMessageStore messageStore;
+
+  [CascadingParameter]
+  private EditContext CurrentEditContext { get; set; }
+
+  protected override void OnInitialized()
+  {
+      ...
+
+      messageStore = new ValidationMessageStore(CurrentEditContext);
+
+      CurrentEditContext.OnValidationRequested += (s, e) => messageStore.Clear();
+      CurrentEditContext.OnFieldChanged += (s, e) => 
+          messageStore.Clear(e.FieldIdentifier);
+  }
+  ```
+
+  The full example of the preceding code with anonymous lambda expressions appears in <xref:blazor/forms-validation#validator-components>.
+
 For more information, see [Cleaning up unmanaged resources](/dotnet/standard/garbage-collection/unmanaged) and the topics that follow it on implementing the `Dispose` and `DisposeAsync` methods.
 
 ## Cancelable background work
