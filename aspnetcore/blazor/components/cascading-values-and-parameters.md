@@ -5,7 +5,7 @@ description: Learn how to flow data from an ancestor component to descendent com
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/01/2021
+ms.date: 02/02/2021
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/components/cascading-values-and-parameters
 ---
@@ -13,7 +13,7 @@ uid: blazor/components/cascading-values-and-parameters
 
 By [Luke Latham](https://github.com/guardrex) and [Daniel Roth](https://github.com/danroth27)
 
-[Component parameters](xref:blazor/components/index#component-parameters) are able to flow data down multiple component levels, but they aren't convenient to use for that purpose because they require an attribute assignment for each passed property at each component level of the hierarchy. *Cascading values and parameters* permit an ancestor component to provide a value to all of its descendent components that doesn't require a property-assignment attribute for each child. Cascading values and parameters also allow components to coordinate with each other across a component hierarchy.
+*Cascading values and parameters* provide a convienent way to flow data down a component hierarchy from an ancestor component to any number of decendent components. Unlike [Component parameters](xref:blazor/components/index#component-parameters), cascading values and parameters don't require an attribute assignment for each descendent component where the data is consumed. Cascading values and parameters also allow components to coordinate with each other across a component hierarchy.
 
 ## `CascadingValue` component
 
@@ -38,7 +38,7 @@ namespace BlazorSample.UIThemeClasses
 }
 ```
 
-The following [layout component](xref:blazor/layouts) specifies theme information (`ThemeInfo`) as a cascading value for all components that make up the layout body of the <xref:Microsoft.AspNetCore.Components.LayoutComponentBase.Body> property. `ButtonClass` is assigned a value of `btn-success`. Any descendent component in the component hierarchy can use the `ButtonClass` property through the `ThemeInfo` cascading value.
+The following [layout component](xref:blazor/layouts) specifies theme information (`ThemeInfo`) as a cascading value for all components that make up the layout body of the <xref:Microsoft.AspNetCore.Components.LayoutComponentBase.Body> property. `ButtonClass` is assigned a value of [`btn-success`](https://getbootstrap.com/docs/5.0/components/buttons/), which is a Bootstrap button style. Any descendent component in the component hierarchy can use the `ButtonClass` property through the `ThemeInfo` cascading value.
 
 `Shared/MainLayout.razor`:
 
@@ -48,7 +48,7 @@ The following [layout component](xref:blazor/layouts) specifies theme informatio
 
 To make use of cascading values, descendent components declare cascading parameters using the [`[CascadingParameter]` attribute](xref:Microsoft.AspNetCore.Components.CascadingParameterAttribute). Cascading values are bound to cascading parameters **by type**. Cascading multiple values of the same type is covered in the [Cascade multiple values](#cascade-multiple-values) section later in this article.
 
-The following component binds the `ThemeInfo` cascading value to a cascading parameter, optionally using the same name. The parameter is used to set the CSS class for the **`Increment Counter (Themed)`** button.
+The following component binds the `ThemeInfo` cascading value to a cascading parameter, optionally using the same name of `ThemeInfo`. The parameter is used to set the CSS class for the **`Increment Counter (Themed)`** button.
 
 `Pages/ThemedCounter.razor`:
 
@@ -98,7 +98,7 @@ Cascading parameters also enable components to collaborate across a component hi
 > [!NOTE]
 > For the examples in this section, the app's namespace is `BlazorSample`. When experimenting with the code in your own sample app, change the namespace to your sample app's namespace.
 
-First, an `ITab` interface is created in a folder named `UIInterfaces` that tabs implement.
+Create an `ITab` interface that tabs implement in a folder named `UIInterfaces`.
 
 `UIInterfaces/ITab.cs`:
 
@@ -114,9 +114,9 @@ namespace BlazorSample.UIInterfaces
 }
 ```
 
-The following `TabSet` component maintains a set of tabs. The tab set's `Tab` components, which are created later in this section, supply the list items (`<li>...</li>`) for the list (`<ul>...</ul>`) in the `TabSet` component.
+The following `TabSet` component maintains a set of tabs. The tab set's `Tab` components, which are created later in this section, supply the list items (`<li>...</li>`) for the list (`<ul>...</ul>`).
 
-Child `Tab` components aren't explicitly passed as parameters to the `TabSet`. Instead, the child `Tab` components are part of the child content of the `TabSet`. However, the `TabSet` still needs to know about each `Tab` component so that it can render the headers and the active tab. To enable this coordination without requiring additional code, the `TabSet` component *can provide itself as a cascading value* that is then picked up by the descendent `Tab` components.
+Child `Tab` components aren't explicitly passed as parameters to the `TabSet`. Instead, the child `Tab` components are part of the child content of the `TabSet`. However, the `TabSet` still needs a reference each `Tab` component so that it can render the headers and the active tab. To enable this coordination without requiring additional code, the `TabSet` component *can provide itself as a cascading value* that is then picked up by the descendent `Tab` components.
 
 `Shared/TabSet.razor`:
 
@@ -162,7 +162,7 @@ Child `Tab` components aren't explicitly passed as parameters to the `TabSet`. I
 }
 ```
 
-Descendent `Tab` components capture the containing `TabSet` as a cascading parameter, so the `Tab` components add themselves to the `TabSet` and coordinate to set the active tab.
+Descendent `Tab` components capture the containing `TabSet` as a cascading parameter. The `Tab` components add themselves to the `TabSet` and coordinate to set the active tab.
 
 `Shared/Tab.razor`:
 
