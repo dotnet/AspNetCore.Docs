@@ -441,7 +441,7 @@
             - name: AuthorizeView
               href: blazor/security/index.md#authorizeview-component
             - name: CascadingValue
-              href: blazor/components/cascading-values-and-parameters#cascadingvalue-component
+              href: blazor/components/cascading-values-and-parameters.md#cascadingvalue-component
             - name: InputCheckbox
               href: blazor/forms-validation.md#built-in-forms-components
             - name: InputDate

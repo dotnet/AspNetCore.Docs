@@ -42,7 +42,17 @@ The following [layout component](xref:blazor/layouts) specifies theme informatio
 
 `Shared/MainLayout.razor`:
 
-[!code-razor[](cascading-values-and-parameters/samples_snapshot/MainLayout.razor?highlight=2,10-14,19)]
+::: moniker range=">= aspnetcore-5.0"
+
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample/Shared/MainLayout.razor?highlight=2,10-14,19)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample/Shared/MainLayout.razor?highlight=2,9-13,17)]
+
+::: moniker-end
 
 ## `[CascadingParameter]` attribute
 
@@ -52,7 +62,17 @@ The following component binds the `ThemeInfo` cascading value to a cascading par
 
 `Pages/ThemedCounter.razor`:
 
-[!code-razor[](cascading-values-and-parameters/samples_snapshot/ThemedCounter.razor?highlight=2,15-17,23-24)]
+::: moniker range=">= aspnetcore-5.0"
+
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample/Pages/ThemedCounter.razor?highlight=2,15-17,23-24)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample/Pages/ThemedCounter.razor?highlight=2,15-17,23-24)]
+
+::: moniker-end
 
 ## Cascade multiple values
 
