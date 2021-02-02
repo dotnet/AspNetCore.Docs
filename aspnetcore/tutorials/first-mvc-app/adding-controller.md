@@ -3,7 +3,7 @@ title: Part 2, add a controller to an ASP.NET Core MVC app
 author: rick-anderson
 description: Part 2 of tutorial series on ASP.NET Core MVC.
 ms.author: riande
-ms.date: 01/21/2021
+ms.date: 01/23/2021
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-mvc-app/adding-controller
 ms.custom: contperf-fy21q3
