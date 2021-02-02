@@ -76,8 +76,6 @@ When applied to a `Name` property, the error message created by the preceding co
 
 To find out which parameters are passed to `String.Format` for a particular attribute's error message, see the [DataAnnotations source code](https://github.com/dotnet/runtime/tree/master/src/libraries/System.ComponentModel.Annotations/src/System/ComponentModel/DataAnnotations).
 
-::: moniker range=">= aspnetcore-3.0"
-
 ## Non-nullable reference types and [Required] attribute
 
 The validation system treats non-nullable parameters or bound properties as if they had a `[Required]` attribute. By [enabling `Nullable` contexts](/dotnet/csharp/nullable-references#nullable-contexts), MVC implicitly starts validating non-nullable properties or parameters as if they had been attributed with the `[Required]` attribute. Consider the following code:
