@@ -83,7 +83,7 @@ Select **ASP.NET Core** and **Controller Class**.
 
 Name the controller **HelloWorldController**.
 
-  ![Add MVC controller and name it](~/tutorials/first-mvc-app-mac/adding-controller/_static/ac.png)
+![Add MVC controller and name it](~/tutorials/first-mvc-app-mac/adding-controller/_static/ac.png)
 
 ---
 
@@ -128,7 +128,7 @@ When you browse to the app and don't supply any URL segments, it defaults to the
 
 Browse to `https://localhost:{PORT}/HelloWorld/Welcome`. The `Welcome` method runs and returns the string `This is the Welcome action method...`. For this URL, the controller is `HelloWorld` and `Welcome` is the action method. You haven't used the `[Parameters]` part of the URL yet.
 
-  ![Browser window showing an application response of This is the Welcome action method](~/tutorials/first-mvc-app/adding-controller/_static/welcome.png)
+![Browser window showing an application response of This is the Welcome action method](~/tutorials/first-mvc-app/adding-controller/_static/welcome.png)
 
 Modify the code to pass some parameter information from the URL to the controller. For example, `/HelloWorld/Welcome?name=Rick&numtimes=4`.
 
@@ -204,6 +204,7 @@ We cover these concepts in this tutorial series and show you how to use them to 
 # [Visual Studio](#tab/visual-studio)
 
 * In **Solution Explorer**, right-click **Controllers > Add > Controller**
+
   ![Contextual menu](~/tutorials/first-mvc-app/adding-controller/_static/add_controller.png)
 
 * In the **Add Scaffold** dialog box, select **MVC Controller - Empty**
@@ -221,6 +222,7 @@ Select the **EXPLORER** icon and then control-click (right-click) **Controllers 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 In **Solution Explorer**, right-click **Controllers > Add > New File**.
+
 ![Contextual menu](~/tutorials/first-mvc-app-mac/adding-controller/_static/add_controller.png)
 
 Select **ASP.NET Core** and **MVC Controller Class**.

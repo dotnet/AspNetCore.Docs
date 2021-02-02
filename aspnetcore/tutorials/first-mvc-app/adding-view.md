@@ -132,7 +132,7 @@ In the preceding markup, the `asp-area=""` [anchor Tag Helper attribute](xref:mv
 
 Save the changes and select the **Privacy** link. Notice how the title on the browser tab displays **Privacy Policy - Movie App** instead of **Privacy Policy - Mvc Movie**:
 
-  ![Privacy tab](~/tutorials/first-mvc-app/adding-view/_static/privacy50.png)
+![Privacy tab](~/tutorials/first-mvc-app/adding-view/_static/privacy50.png)
 
 Select the **Home** link.
 
@@ -170,7 +170,7 @@ Notice that the following have changed:
 * Primary heading.
 * Secondary headings.
 
-If there are no changes in the browser, it could be cached content that is being viewed. Press Ctrl+F5 in your browser to force the response from the server to be loaded. The browser title is created with `ViewData["Title"]` we set in the *Index.cshtml* view template and the additional "- Movie App" added in the layout file.
+If there are no changes in the browser, it could be cached content that is being viewed. Press Ctrl+F5 in the browser to force the response from the server to be loaded. The browser title is created with `ViewData["Title"]` we set in the *Index.cshtml* view template and the additional "- Movie App" added in the layout file.
 
 The content in the *Index.cshtml* view template is merged with the *Views/Shared/_Layout.cshtml* view template. A single HTML response is sent to the browser. Layout templates make it easy to make changes that apply across all of the pages in an app. To learn more, see [Layout](xref:mvc/views/layout).
 
