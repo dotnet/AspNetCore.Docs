@@ -8,7 +8,6 @@ ms.date: 12/15/2019
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/models/validation
 ---
-
 # Model validation in ASP.NET Core MVC and Razor Pages
 
 ::: moniker range=">= aspnetcore-3.0"
@@ -75,8 +74,6 @@ Internally, the attributes call `String.Format` with a placeholder for the field
 When applied to a `Name` property, the error message created by the preceding code would be "Name length must be between 6 and 8.".
 
 To find out which parameters are passed to `String.Format` for a particular attribute's error message, see the [DataAnnotations source code](https://github.com/dotnet/runtime/tree/master/src/libraries/System.ComponentModel.Annotations/src/System/ComponentModel/DataAnnotations).
-
-::: moniker range=">= aspnetcore-3.0"
 
 ## Non-nullable reference types and [Required] attribute
 
@@ -361,7 +358,7 @@ As noted earlier, [Tag Helpers](xref:mvc/views/tag-helpers/intro) and [HTML help
 
 This method of rendering `data-` attributes in HTML is used by the `ClassicMovie` attribute in the sample app. To add client validation by using this method:
 
-1. Create an attribute adapter class for the custom validation attribute. Derive the class from [AttributeAdapterBase\<T>](/dotnet/api/microsoft.aspnetcore.mvc.dataannotations.attributeadapterbase-1?view=aspnetcore-2.2). Create an `AddValidation` method that adds `data-` attributes to the rendered output, as shown in this example:
+1. Create an attribute adapter class for the custom validation attribute. Derive the class from <xref:Microsoft.AspNetCore.Mvc.DataAnnotations.AttributeAdapterBase%601>. Create an `AddValidation` method that adds `data-` attributes to the rendered output, as shown in this example:
 
    [!code-csharp[](validation/samples/3.x/ValidationSample/Validation/ClassicMovieAttributeAdapter.cs?name=snippet_Class)]
 
@@ -732,7 +729,7 @@ As noted earlier, [Tag Helpers](xref:mvc/views/tag-helpers/intro) and [HTML help
 
 This method of rendering `data-` attributes in HTML is used by the `ClassicMovie` attribute in the sample app. To add client validation by using this method:
 
-1. Create an attribute adapter class for the custom validation attribute. Derive the class from [AttributeAdapterBase\<T>](/dotnet/api/microsoft.aspnetcore.mvc.dataannotations.attributeadapterbase-1?view=aspnetcore-2.2). Create an `AddValidation` method that adds `data-` attributes to the rendered output, as shown in this example:
+1. Create an attribute adapter class for the custom validation attribute. Derive the class from <xref:Microsoft.AspNetCore.Mvc.DataAnnotations.AttributeAdapterBase%601>. Create an `AddValidation` method that adds `data-` attributes to the rendered output, as shown in this example:
 
    [!code-csharp[](validation/samples/2.x/ValidationSample/Attributes/ClassicMovieAttributeAdapter.cs?name=snippet_ClassicMovieAttributeAdapter)]
 
