@@ -132,7 +132,7 @@ Because requesting items from a remote data source might take some time, you hav
 
 ## Item size
 
-The size of each item in pixels can be set with <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemSize%2A?displayProperty=nameWithType> (default: 50):
+The height of each item in pixels can be set with <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemSize%2A?displayProperty=nameWithType> (default: 50):
 
 ```razor
 <Virtualize Context="employee" Items="@employees" ItemSize="25">
