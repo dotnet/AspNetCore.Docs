@@ -323,6 +323,11 @@ Due to the way that Blazor renders child content, rendering components inside a 
 > }
 > ```
 
+For information on how a <xref:Microsoft.AspNetCore.Components.RenderFragment> can be used as a template for Razor component UI, see the following articles:
+
+* <xref:blazor/components/templated-components>
+* <xref:blazor/webassembly-performance-best-practices#define-reusable-renderfragments-in-code>
+
 ## Attribute splatting and arbitrary parameters
 
 Components can capture and render additional attributes in addition to the component's declared parameters. Additional attributes can be captured in a dictionary and then *splatted* onto an element when the component is rendered using the [`@attributes`][3] Razor directive. This scenario is useful when defining a component that produces a markup element that supports a variety of customizations. For example, it can be tedious to define attributes separately for an `<input>` that supports many parameters.

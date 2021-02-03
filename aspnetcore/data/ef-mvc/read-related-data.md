@@ -210,7 +210,7 @@ Run the app and select the **Instructors** tab. The page displays the Location p
 
 In the *Views/Instructors/Index.cshtml* file, after the closing table element (at the end of the file), add the following code. This code displays a list of courses related to an instructor when an instructor is selected.
 
-[!code-cshtml[](intro/samples/cu/Views/Instructors/Index1.cshtml?range=66-101)]
+[!code-cshtml[](intro/samples/cu/Views/Instructors/Index1.cshtml?range=63-98)]
 
 This code reads the `Courses` property of the view model to display a list of courses. It also provides a **Select** hyperlink that sends the ID of the selected course to the `Index` action method.
 

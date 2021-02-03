@@ -174,7 +174,7 @@ You may be factoring out child components purely as a way of reusing rendering l
 @RenderWelcomeInfo
 
 @code {
-    RenderFragment RenderWelcomeInfo = __builder =>
+    private RenderFragment RenderWelcomeInfo = __builder =>
     {
         <div>
             <p>Welcome to your new app!</p>
@@ -204,12 +204,12 @@ This could now be invoked from an unrelated component. This technique is useful 
 <div class="chat">
     @foreach (var message in messages)
     {
-        @DisplayChatMessage(message)
+        @ChatMessageDisplay(message)
     }
 </div>
 
 @code {
-    RenderFragment<ChatMessage> DisplayChatMessage = message => __builder =>
+    private RenderFragment<ChatMessage> ChatMessageDisplay = message => __builder =>
     {
         <div class="chat-message">
             <span class="author">@message.Author</span>
@@ -220,6 +220,17 @@ This could now be invoked from an unrelated component. This technique is useful 
 ```
 
 This approach provides the benefit of reusing rendering logic without per-component overhead. However, it doesn't have the benefit of being able to refresh its subtree of the UI independently, nor does it have the ability to skip rendering that subtree of the UI when its parent renders, since there's no component boundary.
+
+For a non-static field, method, or property that can't be referenced by a field initializer, such as `TitleTemplate` in the following example, use a property instead of a field for the <xref:Microsoft.AspNetCore.Components.RenderFragment>:
+
+```csharp
+protected RenderFragment DisplayTitle => __builder =>
+{
+    <div>
+        @TitleTemplate
+    </div>   
+};
+```
 
 #### Don't receive too many parameters
 

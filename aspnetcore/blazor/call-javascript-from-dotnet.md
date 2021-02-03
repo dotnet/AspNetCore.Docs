@@ -506,14 +506,14 @@ export function showPrompt(message) {
 }
 ```
 
-Add the preceding JavaScript module to a .NET library as a static web asset (`wwwroot/exampleJsInterop.js`) and then import the module into the .NET code using the <xref:Microsoft.JSInterop.IJSRuntime> service. The service is injected as `js` (not shown) for the following example:
+Add the preceding JavaScript module to a .NET library as a static web asset (`wwwroot/exampleJsInterop.js`) and then import the module into the .NET code by calling <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A> on the <xref:Microsoft.JSInterop.IJSRuntime> service. The service is injected as `js` (not shown) for the following example:
 
 ```csharp
 var module = await js.InvokeAsync<IJSObjectReference>(
     "import", "./_content/MyComponents/exampleJsInterop.js");
 ```
 
-The `import` identifier in the preceding example is a special identifier used specifically for importing a JavaScript module. Specify the module using its stable static web asset path: `./_content/{LIBRARY NAME}/{PATH UNDER WWWROOT}`. The path segment for the current directory (`./`) is required in order to create the correct static asset path to the JavaScript file. The placeholder `{LIBRARY NAME}` is the library name. The placeholder `{PATH UNDER WWWROOT}` is the path to the script under `wwwroot`.
+The `import` identifier in the preceding example is a special identifier used specifically for importing a JavaScript module. Specify the module using its stable static web asset path: `./_content/{LIBRARY NAME}/{PATH UNDER WWWROOT}`. The path segment for the current directory (`./`) is required in order to create the correct static asset path to the JavaScript file. Dynamically importing a module requires a network request, so it can only be achieved asynchronously by calling <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A>. The `{LIBRARY NAME}` placeholder is the library name. The `{PATH UNDER WWWROOT}` placeholder is the path to the script under `wwwroot`.
 
 <xref:Microsoft.JSInterop.IJSRuntime> imports the module as a `IJSObjectReference`, which represents a reference to a JavaScript object from .NET code. Use the `IJSObjectReference` to invoke exported JavaScript functions from the module:
 
