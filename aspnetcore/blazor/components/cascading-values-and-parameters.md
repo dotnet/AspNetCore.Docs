@@ -97,7 +97,7 @@ In the following example, two [`CascadingValue`](xref:Microsoft.AspNetCore.Compo
 }
 ```
 
-In a descendant component, the parameters receive their cascaded values from the ancestor component by <xref:Microsoft.AspNetCore.Components.CascadingValue%601.Name%2A>:
+In a descendant component, the cascaded parameters receive their cascaded values from the ancestor component by <xref:Microsoft.AspNetCore.Components.CascadingValue%601.Name%2A>:
 
 ```razor
 ...
@@ -111,9 +111,9 @@ In a descendant component, the parameters receive their cascaded values from the
 }
 ```
 
-## Collaborate across a component hierarchy
+## Pass data across a component hierarchy
 
-Cascading parameters also enable components to collaborate across a component hierarchy. Consider the following UI tab set example, where a tab set component maintains a series of individual tabs.
+Cascading parameters also enable components to pass data across a component hierarchy. Consider the following UI tab set example, where a tab set component maintains a series of individual tabs.
 
 > [!NOTE]
 > For the examples in this section, the app's namespace is `BlazorSample`. When experimenting with the code in your own sample app, change the namespace to your sample app's namespace.
