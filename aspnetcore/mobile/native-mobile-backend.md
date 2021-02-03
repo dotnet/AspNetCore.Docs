@@ -151,5 +151,5 @@ Once you've identified a common policy for your APIs, you can usually encapsulat
 
 - [Xamarin.Forms: Web Service Authentication](/xamarin/xamarin-forms/data-cloud/authentication/)
 - [Xamarin.Forms: Consume a RESTful Web Service](/xamarin/xamarin-forms/data-cloud/web-services/rest)
-- [Microsoft Learn: Consume REST web services in Xamarin Apps](https://docs.microsoft.com/learn/modules/consume-rest-services/)
-- [Microsoft Learn: Create a web API with ASP.NET Core](https://docs.microsoft.com/learn/modules/build-web-api-aspnet-core/)
+- [Microsoft Learn: Consume REST web services in Xamarin Apps](/learn/modules/consume-rest-services/)
+- [Microsoft Learn: Create a web API with ASP.NET Core](/learn/modules/build-web-api-aspnet-core/)
