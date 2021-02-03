@@ -31,7 +31,7 @@ MVC-based apps contain:
 
 In an MVC app, the view only displays information. The controller handles and responds to user input and interaction. For example, the controller handles route data and query-string values, and passes these values to the model. The model might use these values to query the database. For example:
 
-* `Https://localhost:5001/Home/Privacy`: has route data of `Home`, the controller.
+* `Https://localhost:5001/Home/Privacy`:  specifies the `Home`  controller  and the `Privacy` action.
 * `Privacy`: is the action method to call on the home controller.
 * `Https://localhost:5001/Movies/Edit/5`: is a request to edit the movie with ID=5 using the movie controller.
 
@@ -99,7 +99,7 @@ An HTTP endpoint:
 * Combines:
 
   * The protocol used: `HTTPS`.
-  * The network location of the web server (including the TCP port): `localhost:5001`.
+  * The network location of the web server, including the TCP port: `localhost:5001`.
   * The target URI: `HelloWorld`.
 
 The first comment states this is an [HTTP GET](https://www.w3schools.com/tags/ref_httpmethods.asp) method that's invoked by appending `/HelloWorld/` to the base URL.
@@ -122,7 +122,7 @@ The routing format is set in the `Configure` method in *Startup.cs* file.
 
 When you browse to the app and don't supply any URL segments, it defaults to the "Home" controller and the "Index" method specified in the template line highlighted above.  In the preceding URL segments:
 
-* The first URL segment determines the controller class to run. So `localhost:{PORT}/HelloWorld` maps to the **HelloWorld**Controller class.
+* The first URL segment determines the controller class to run. So `localhost:5001/HelloWorld` maps to the **HelloWorld**Controller class.
 * The second part of the URL segment determines the action method on the class. So `localhost:{PORT}/HelloWorld/Index` would cause the `Index` method of the `HelloWorldController` class to run. Notice that you only had to browse to `localhost:{PORT}/HelloWorld` and the `Index` method was called by default. `Index` is the default method that will be called on a controller if a method name isn't explicitly specified.
 * The third part of the URL segment ( `id`) is for route data. Route data is explained later in the tutorial.
 
@@ -148,13 +148,13 @@ Run the app and browse to:
 
 Replace `{PORT}` with your port number.
 
-Try different values for `name` and `numtimes` in the URL. The MVC [model binding](xref:mvc/models/model-binding) system automatically maps the named parameters from the query string in the address bar, to parameters in the method. See [Model Binding](xref:mvc/models/model-binding) for more information.
+Try different values for `name` and `numtimes` in the URL. The MVC [model binding](xref:mvc/models/model-binding) system automatically maps the named parameters from the query string to parameters in the method. See [Model Binding](xref:mvc/models/model-binding) for more information.
 
 ![Browser window showing an application response of Hello Rick, NumTimes is\: 4](~/tutorials/first-mvc-app/adding-controller/_static/rick4.png)
 
 In the previous image:
 
-* The URL segment (`Parameters`) isn't used.
+* The URL segment `Parameters` isn't used.
 * The `name` and `numTimes` parameters are passed in the [query string](https://wikipedia.org/wiki/Query_string).
 * The `?` (question mark) in the above URL is a separator, and the query string follows.
 * The `&` character separates field-value pairs.

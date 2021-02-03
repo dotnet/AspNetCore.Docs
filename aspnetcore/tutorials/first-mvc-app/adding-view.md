@@ -33,8 +33,8 @@ The preceding code:
 
 Controller methods:
 
-* Are also known as *action methods*, such as the `Index` method in the preceding code.
-* Generally return an <xref:Microsoft.AspNetCore.Mvc.IActionResult> (or a class derived from <xref:Microsoft.AspNetCore.Mvc.ActionResult>), not a type like `string`.
+* Are referred to as  *action methods*.  For example, the `Index` action method in the preceding code.
+* Generally return an <xref:Microsoft.AspNetCore.Mvc.IActionResult> or a class derived from <xref:Microsoft.AspNetCore.Mvc.ActionResult>, not a type like `string`.
 
 ## Add a view
 
@@ -84,21 +84,21 @@ Replace the contents of the *Views/HelloWorld/Index.cshtml* Razor view file with
 Navigate to `https://localhost:{PORT}/HelloWorld`:
 
 * The `Index` method in the `HelloWorldController` ran the statement `return View();`, which specified that the method should use a view template file to render a response to the browser.
-* A view template file name wasn't specified, MVC defaulted to using the default view file. The default view file has the same name as the method (`Index`), so the view template in */Views/HelloWorld/Index.cshtml* is used.
+* A view template file name wasn't specified, so MVC defaulted to using the default view file. When the view file name isn't specified, the default view is returned. The default view has the same name as the action method, `Index` in this example. The view template */Views/HelloWorld/Index.cshtml* is used.
 * The following image shows the string "Hello from our View Template!" hard-coded in the view:
 
   ![Browser window](~/tutorials/first-mvc-app/adding-view/_static/hell_template.png)
 
 ## Change views and layout pages
 
-Select the menu links: **MvcMovie**, **Home**, and **Privacy**. Each page shows the same menu layout. The menu layout is implemented in the *Views/Shared/_Layout.cshtml* file.
+Select the menu links **MvcMovie**, **Home**, and **Privacy**. Each page shows the same menu layout. The menu layout is implemented in the *Views/Shared/_Layout.cshtml* file.
 
 Open the *Views/Shared/_Layout.cshtml* file.
 
-[Layout](xref:mvc/views/layout) templates allow you to:
+[Layout](xref:mvc/views/layout) templates allows:
 
-* Specify the HTML container layout of a site in one place.
-* Apply the HTML container layout across multiple pages in the site.
+* Specifying the HTML container layout of a site in one place.
+* Applying the HTML container layout across multiple pages in the site.
 
 Find the `@RenderBody()` line. `RenderBody` is a placeholder where all the view-specific pages you create show up, *wrapped* in the layout page. For example, if you select the **Privacy** link, the **Views/Home/Privacy.cshtml** view is rendered inside the `RenderBody` method.
 
@@ -154,7 +154,7 @@ Change the title and `<h2>` element as highlighted in the following:
 
 [!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/HelloWorld/Index2.cshtml?highlight=2,5)]
 
-The title and `<h2>` element are slightly different so it's clear which bit of code changes the display.
+The title and `<h2>` element are slightly different so it's clear which part of the code changes the display.
 
 `ViewData["Title"] = "Movie List";` in the code above sets the `Title` property of the `ViewData` dictionary to "Movie List". The `Title` property is used in the `<title>` HTML element in the layout page:
 
@@ -200,11 +200,11 @@ Currently, the `Welcome` method in the `HelloWorldController` class:
 * Takes a `name` and a `ID` parameter.
 * Outputs the values directly to the browser.
 
-Rather than have the controller render this response as a string, change the controller to use a view template instead. The view template generates a dynamic response, which means that appropriate bits of data must be passed from the controller to the view to generate the response. Do this by having the controller put the dynamic data (parameters) that the view template needs, in a `ViewData` dictionary. The view template can then access the dynamic data.
+Rather than have the controller render this response as a string, change the controller to use a view template instead. The view template generates a dynamic response, which means that appropriate data must be passed from the controller to the view to generate the response. Do this by having the controller put the dynamic data (parameters) that the view template needs in a `ViewData` dictionary. The view template can then access the dynamic data.
 
 In *HelloWorldController.cs*, change the `Welcome` method to add a `Message` and `NumTimes` value to the `ViewData` dictionary.
 
-The `ViewData` dictionary is a dynamic object, which means any type can be used; the `ViewData` object has no defined properties until you put something inside it. The [MVC model binding system](xref:mvc/models/model-binding) automatically maps the named parameters (`name` and `numTimes`) from the query string in the address bar to parameters in your method. The complete *HelloWorldController.cs* file looks like this:
+The `ViewData` dictionary is a dynamic object, which means any type can be used. The `ViewData` object has no defined properties until something is added. The [MVC model binding system](xref:mvc/models/model-binding) automatically maps the named parameters `name` and `numTimes` from the query string to parameters in the method. The complete `HelloWorldController`:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Controllers/HelloWorldController.cs?name=snippet_5&highlight=13-19)]
 
@@ -224,7 +224,7 @@ Data is taken from the URL and passed to the controller using the [MVC model bin
 
 ![Privacy view showing a Welcome label and the phrase Hello Rick shown four times](~/tutorials/first-mvc-app/adding-view/_static/rick2_50.png)
 
-In the sample above, the `ViewData` dictionary was used to pass data from the controller to a view. Later in the tutorial, a view model is used to pass data from a controller to a view. The view model approach to passing data is preferred over the `ViewData` dictionary approach. For more information, see [When to use ViewBag, ViewData, or TempData](https://www.rachelappel.com/when-to-use-viewbag-viewdata-or-tempdata-in-asp-net-mvc-3-applications/).
+In the preceding sample, the `ViewData` dictionary was used to pass data from the controller to a view. Later in the tutorial, a view model is used to pass data from a controller to a view. The view model approach to passing data is preferred over the `ViewData` dictionary approach.
 
 In the next tutorial, a database of movies is created.
 
