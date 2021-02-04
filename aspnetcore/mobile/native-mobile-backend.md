@@ -35,14 +35,49 @@ Tapping an item on the main list screen opens up an edit dialog where the item's
 
 ![Edit item dialog](native-mobile-backend/_static/todo-android-edit-item.png)
 
-This sample is configured by default to use backend services hosted at developer.xamarin.com, which allow read-only operations. To test it out yourself against the ASP.NET Core app created in the next section running on your computer, you'll need to update the app's `RestUrl` constant. Navigate to the `ToDoREST` project and open the *Constants.cs* file. Replace the `RestUrl` with a URL that includes your machine's IP address (not localhost or 127.0.0.1, since this address is used from the device emulator, not from your machine). Include the port number as well (5000). In order to test that your services work with a device, ensure you don't have an active firewall blocking access to this port.
+This sample is configured by default to use backend services hosted at developer.xamarin.com, which allow read-only operations. To test it out yourself against the ASP.NET Core app created in the next section running on your computer, you'll need to update the app's `RestUrl` constant. 
+
+Android emulators do not run on the local machine and use a loopback IP (10.0.2.2) to communicate with the local machine. Leverage [Xamarin.Essentials DeviceInfo](/xamarin/essentials/device-information/) to detect what operating the system is running to use the correct URL. Navigate to the `ToDoREST` project and open the *Constants.cs* file. 
 
 ```csharp
 // URL of REST service (Xamarin ReadOnly Service)
 //public static string RestUrl = "http://developer.xamarin.com:8081/api/todoitems{0}";
 
-// use your machine's IP address
-public static string RestUrl = "http://192.168.1.207:5000/api/todoitems/{0}";
+public static string RestUrl = DeviceInfo.Platform == DevicePlatform.Android ? "http://10.0.2.2:5000/api/todoitems/{0}" : "http://localhost:5000/api/todoitems/{0}";
+```
+
+In this scenario you must enable clear-text http traffic for the iOS simualtor and Android emulator. 
+
+To enable clear-text local traffic on iOS [opt-out of ATS](/xamarin/ios/app-fundamentals/ats#optout) by adding the following into your `info.plist`:
+
+```xml
+<key>NSAppTransportSecurity</key>    
+<dict>
+    <key>NSAllowsLocalNetworking</key>
+    <true/>
+</dict>
+```
+
+To enable clear-text local traffic on Android configure network security options by creating a new xml file under `Resources/xml` folder named **network_security_config.xml**. Inside of this xml file add the follow configuration:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+  <domain-config cleartextTrafficPermitted="true">
+    <domain includeSubdomains="true">10.0.2.2</domain>
+  </domain-config>
+</network-security-config>
+```
+
+Finally, configure the **networkSecurityConfig** property on the **application** node in the Android Manifest:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<manifest>
+    <application android:networkSecurityConfig="@xml/network_security_config">
+        ...
+    </application>
+</manifest>
 ```
 
 ## Creating the ASP.NET Core Project
