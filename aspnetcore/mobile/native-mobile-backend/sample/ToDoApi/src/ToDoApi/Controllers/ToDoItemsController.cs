@@ -6,8 +6,9 @@ using ToDoApi.Models;
 
 namespace ToDoApi.Controllers
 {
+    [ApiController]
     [Route("api/[controller]")]
-    public class ToDoItemsController : Controller
+    public class ToDoItemsController : ControllerBase
     {
         private readonly IToDoRepository _toDoRepository;
 

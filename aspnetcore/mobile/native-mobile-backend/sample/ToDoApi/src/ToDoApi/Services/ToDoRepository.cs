@@ -51,23 +51,23 @@ namespace ToDoApi.Services
         {
             _toDoList = new List<ToDoItem>();
 
-            var todoItem1 = new ToDoItem
+            var todoItem1 = new TodoItem
             {
                 ID = "6bb8a868-dba1-4f1a-93b7-24ebce87e243",
                 Name = "Learn app development",
-                Notes = "Attend Xamarin University",
+                Notes = "Take Microsoft Learn Courses",
                 Done = true
             };
 
-            var todoItem2 = new ToDoItem
+            var todoItem2 = new TodoItem
             {
                 ID = "b94afb54-a1cb-4313-8af3-b7511551b33b",
                 Name = "Develop apps",
-                Notes = "Use Xamarin Studio/Visual Studio",
+                Notes = "Use Visual Studio and Visual Studio for Mac",
                 Done = false
             };
 
-            var todoItem3 = new ToDoItem
+            var todoItem3 = new TodoItem
             {
                 ID = "ecfa6f80-3671-4911-aabe-63cc442c1ecf",
                 Name = "Publish apps",

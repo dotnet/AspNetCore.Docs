@@ -13,17 +13,17 @@ By [Steve Smith](https://ardalis.com/)
 
 Mobile apps can communicate with ASP.NET Core backend services. For instructions on connecting local web services from iOS simulators and Android emulators, see [Connect to Local Web Services from iOS Simulators and Android Emulators](/xamarin/cross-platform/deploy-test/connect-to-local-web-services).
 
-[View or download sample backend services code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mobile/native-mobile-backend/sample)
+[View or download sample backend services code](https://github.com/xamarin/xamarin-forms-samples/tree/master/WebServices/TodoREST)
 
 ## The Sample Native Mobile App
 
-This tutorial demonstrates how to create backend services using ASP.NET Core MVC to support native mobile apps. It uses the [Xamarin Forms ToDoRest app](/xamarin/xamarin-forms/data-cloud/consuming/rest) as its native client, which includes separate native clients for Android, iOS, Windows Universal, and Window Phone devices. You can follow the linked tutorial to create the native app (and install the necessary free Xamarin tools), as well as download the Xamarin sample solution. The Xamarin sample includes an ASP.NET Web API 2 services project, which this article's ASP.NET Core app replaces (with no changes required by the client).
+This tutorial demonstrates how to create backend services using ASP.NET Core to support native mobile apps. It uses the [Xamarin.Forms TodoRest app](/xamarin/xamarin-forms/data-cloud/consuming/rest) as its native client, which includes separate native clients for Android, iOS, and Windows. You can follow the linked tutorial to create the native app (and install the necessary free Xamarin tools), as well as download the Xamarin sample solution. The Xamarin sample includes an ASP.NET Core Web API services project, which this article's ASP.NET Core app replaces (with no changes required by the client).
 
 ![To Do Rest application running on an Android smartphone](native-mobile-backend/_static/todo-android.png)
 
 ### Features
 
-The ToDoRest app supports listing, adding, deleting, and updating To-Do items. Each item has an ID, a Name, Notes, and a property indicating whether it's been Done yet.
+The TodoRest app supports listing, adding, deleting, and updating To-Do items. Each item has an ID, a Name, Notes, and a property indicating whether it's been Done yet.
 
 The main view of the items, as shown above, lists each item's name and indicates if it's done with a checkmark.
 
@@ -35,49 +35,17 @@ Tapping an item on the main list screen opens up an edit dialog where the item's
 
 ![Edit item dialog](native-mobile-backend/_static/todo-android-edit-item.png)
 
-This sample is configured by default to use backend services hosted at developer.xamarin.com, which allow read-only operations. To test it out yourself against the ASP.NET Core app created in the next section running on your computer, you'll need to update the app's `RestUrl` constant. 
+To test it out yourself against the ASP.NET Core app created in the next section running on your computer, you'll need to update the app's `RestUrl` constant. 
 
-Android emulators do not run on the local machine and use a loopback IP (10.0.2.2) to communicate with the local machine. Leverage [Xamarin.Essentials DeviceInfo](/xamarin/essentials/device-information/) to detect what operating the system is running to use the correct URL. Navigate to the `ToDoREST` project and open the *Constants.cs* file. 
+Android emulators do not run on the local machine and use a loopback IP (10.0.2.2) to communicate with the local machine. Leverage [Xamarin.Essentials DeviceInfo](/xamarin/essentials/device-information/) to detect what operating the system is running to use the correct URL. 
+
+Navigate to the `TodoREST` project and open the *Constants.cs* file and you will see this configuration or you can optionally deploy the web service to a cloud service such as Azure and update the URL.
 
 ```csharp
 // URL of REST service (Xamarin ReadOnly Service)
-//public static string RestUrl = "http://developer.xamarin.com:8081/api/todoitems{0}";
+//public static string RestUrl = "https://YOURPROJECT.azurewebsites.net:8081/api/todoitems/{0}";
 
 public static string RestUrl = DeviceInfo.Platform == DevicePlatform.Android ? "http://10.0.2.2:5000/api/todoitems/{0}" : "http://localhost:5000/api/todoitems/{0}";
-```
-
-In this scenario you must enable clear-text http traffic for the iOS simualtor and Android emulator. 
-
-To enable clear-text local traffic on iOS [opt-out of ATS](/xamarin/ios/app-fundamentals/ats#optout) by adding the following into your `info.plist`:
-
-```xml
-<key>NSAppTransportSecurity</key>    
-<dict>
-    <key>NSAllowsLocalNetworking</key>
-    <true/>
-</dict>
-```
-
-To enable clear-text local traffic on Android configure network security options by creating a new xml file under `Resources/xml` folder named **network_security_config.xml**. Inside of this xml file add the follow configuration:
-
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<network-security-config>
-  <domain-config cleartextTrafficPermitted="true">
-    <domain includeSubdomains="true">10.0.2.2</domain>
-  </domain-config>
-</network-security-config>
-```
-
-Finally, configure the **networkSecurityConfig** property on the **application** node in the Android Manifest:
-
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<manifest>
-    <application android:networkSecurityConfig="@xml/network_security_config">
-        ...
-    </application>
-</manifest>
 ```
 
 ## Creating the ASP.NET Core Project
@@ -86,9 +54,9 @@ Create a new ASP.NET Core Web Application in Visual Studio. Choose the Web API t
 
 ![New ASP.NET Web Application dialog with Web API project template selected](native-mobile-backend/_static/web-api-template.png)
 
-The application should respond to all requests made to port 5000. Update *Program.cs* to include `.UseUrls("http://*:5000")` to achieve this:
+The application should respond to all requests made to port 5000 including clear-text http traffic for our mobile client. Update *Startup.cs* to conditionally compile in `app.UseHttpsRedirection();` when not in debug to achieve this:
 
-[!code-csharp[](native-mobile-backend/sample/ToDoApi/src/ToDoApi/Program.cs?range=10-16&highlight=3)]
+[!code-csharp[](native-mobile-backend/sample/ToDoApi/src/ToDoApi/Program.cs?range=32-52&highlight=9,10,11)]
 
 > [!NOTE]
 > Make sure you run the application directly, rather than behind IIS Express, which ignores non-local requests by default. Run [dotnet run](/dotnet/core/tools/dotnet-run) from a command prompt, or choose the application name profile from the Debug Target dropdown in the Visual Studio toolbar.
@@ -107,7 +75,7 @@ For this sample, the implementation just uses a private collection of items:
 
 Configure the implementation in *Startup.cs*:
 
-[!code-csharp[](native-mobile-backend/sample/ToDoApi/src/ToDoApi/Startup.cs?highlight=6&range=29-35)]
+[!code-csharp[](native-mobile-backend/sample/ToDoApi/src/ToDoApi/Startup.cs?highlight=3&range=25-29)]
 
 At this point, you're ready to create the *ToDoItemsController*.
 
@@ -120,7 +88,7 @@ Add a new controller to the project, *ToDoItemsController*. It should inherit fr
 
 The controller requires an `IToDoRepository` to function; request an instance of this type through the controller's constructor. At runtime, this instance will be provided using the framework's support for [dependency injection](../fundamentals/dependency-injection.md).
 
-[!code-csharp[](native-mobile-backend/sample/ToDoApi/src/ToDoApi/Controllers/ToDoItemsController.cs?range=1-17&highlight=9,14)]
+[!code-csharp[](native-mobile-backend/sample/ToDoApi/src/ToDoApi/Controllers/ToDoItemsController.cs?range=1-18&highlight=10,15)]
 
 This API supports four different HTTP verbs to perform CRUD (Create, Read, Update, Delete) operations on the data source. The simplest of these is the Read operation, which corresponds to an HTTP GET request.
 
@@ -128,7 +96,7 @@ This API supports four different HTTP verbs to perform CRUD (Create, Read, Updat
 
 Requesting a list of items is done with a GET request to the `List` method. The `[HttpGet]` attribute on the `List` method indicates that this action should only handle GET requests. The route for this action is the route specified on the controller. You don't necessarily need to use the action name as part of the route. You just need to ensure each action has a unique and unambiguous route. Routing attributes can be applied at both the controller and method levels to build up specific routes.
 
-[!code-csharp[](native-mobile-backend/sample/ToDoApi/src/ToDoApi/Controllers/ToDoItemsController.cs?range=19-23)]
+[!code-csharp[](native-mobile-backend/sample/ToDoApi/src/ToDoApi/Controllers/ToDoItemsController.cs?range=20-24)]
 
 The `List` method returns a 200 OK response code and all of the ToDo items, serialized as JSON.
 
@@ -142,11 +110,11 @@ By convention, creating new data items is mapped to the HTTP POST verb. The `Cre
 
 Inside the method, the item is checked for validity and prior existence in the data store, and if no issues occur, it's added using the repository. Checking `ModelState.IsValid` performs [model validation](../mvc/models/validation.md), and should be done in every API method that accepts user input.
 
-[!code-csharp[](native-mobile-backend/sample/ToDoApi/src/ToDoApi/Controllers/ToDoItemsController.cs?range=25-46)]
+[!code-csharp[](native-mobile-backend/sample/ToDoApi/src/ToDoApi/Controllers/ToDoItemsController.cs?range=26-47)]
 
 The sample uses an enum containing error codes that are passed to the mobile client:
 
-[!code-csharp[](native-mobile-backend/sample/ToDoApi/src/ToDoApi/Controllers/ToDoItemsController.cs?range=91-99)]
+[!code-csharp[](native-mobile-backend/sample/ToDoApi/src/ToDoApi/Controllers/ToDoItemsController.cs?range=92-100)]
 
 Test adding new items using Postman by choosing the POST verb providing the new object in JSON format in the Body of the request. You should also add a request header specifying a `Content-Type` of `application/json`.
 
@@ -158,7 +126,7 @@ The method returns the newly created item in the response.
 
 Modifying records is done using HTTP PUT requests. Other than this change, the `Edit` method is almost identical to `Create`. Note that if the record isn't found, the `Edit` action will return a `NotFound` (404) response.
 
-[!code-csharp[](native-mobile-backend/sample/ToDoApi/src/ToDoApi/Controllers/ToDoItemsController.cs?range=48-69)]
+[!code-csharp[](native-mobile-backend/sample/ToDoApi/src/ToDoApi/Controllers/ToDoItemsController.cs?range=49-70)]
 
 To test with Postman, change the verb to PUT. Specify the updated object data in the Body of the request.
 
@@ -170,7 +138,7 @@ This method returns a `NoContent` (204) response when successful, for consistenc
 
 Deleting records is accomplished by making DELETE requests to the service, and passing the ID of the item to be deleted. As with updates, requests for items that don't exist will receive `NotFound` responses. Otherwise, a successful request will get a `NoContent` (204) response.
 
-[!code-csharp[](native-mobile-backend/sample/ToDoApi/src/ToDoApi/Controllers/ToDoItemsController.cs?range=71-88)]
+[!code-csharp[](native-mobile-backend/sample/ToDoApi/src/ToDoApi/Controllers/ToDoItemsController.cs?range=72-89)]
 
 Note that when testing the delete functionality, nothing is required in the Body of the request.
 
