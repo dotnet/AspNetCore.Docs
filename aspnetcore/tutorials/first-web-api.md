@@ -80,7 +80,6 @@ The following diagram shows the design of the app.
    ```dotnetcli
    dotnet new webapi -o TodoApi
    cd TodoApi
-   dotnet add package Microsoft.EntityFrameworkCore.SqlServer
    dotnet add package Microsoft.EntityFrameworkCore.InMemory
    code -r ../TodoApi
    ```
@@ -113,7 +112,6 @@ The following diagram shows the design of the app.
 Open a command terminal in the project folder and run the following commands:
 
    ```dotnetcli
-   dotnet add package Microsoft.EntityFrameworkCore.SqlServer
    dotnet add package Microsoft.EntityFrameworkCore.InMemory
    ```
 
@@ -253,13 +251,10 @@ The *database context* is the main class that coordinates Entity Framework funct
 ### Add NuGet packages
 
 * From the **Tools** menu, select **NuGet Package Manager > Manage NuGet Packages for Solution**.
-* Select the **Browse** tab, and then enter **Microsoft.EntityFrameworkCore.SqlServer** in the search box.
-<!-- https://github.com/dotnet/AspNetCore.Docs/issues/19782 Delete this line at RTM -->
+* Select the **Browse** tab, and then enter **Microsoft.EntityFrameworkCore.InMemory** in the search box.
 * Select **Microsoft.EntityFrameworkCore.SqlServer** in the left pane.
 * Select the **Project** check box in the right pane and then select **Install**.
-* Use the preceding instructions to add the **Microsoft.EntityFrameworkCore.InMemory** NuGet package.
 
-<!-- https://github.com/dotnet/AspNetCore.Docs/issues/19782 Update this image at RTM -->
 ![NuGet Package Manager](first-web-api/_static/5/vsNuGet.png)
 
 ## Add the TodoContext database context
