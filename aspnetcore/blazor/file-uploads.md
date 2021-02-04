@@ -121,27 +121,26 @@ public class UploadResult
 <h1>Upload files</h1>
 
 <p>
-    Upload up to @maxAllowedFiles PNG image files:
+    Upload up to @maxAllowedFiles files:
     <InputFile OnChange="@OnInputFileChange" multiple />
 </p>
 
-@if (images.Count > 0)
+@if (files.Count > 0)
 {
     <div class="card">
         <div class="card-body">
-            @foreach (var image in images)
-            {
-                <figure>
-                    <img class="rounded m-1 img-thumbnail" 
-                         style="max-height:100px;max-width:100px" 
-                         src="@image.Thumbnail" />
-                    <figcaption>
-                        @image.Name
+            <ul>
+                @foreach (var file in files)
+                {
+                    <li>
+                        File: @file.Name
                         <br>
-                        @if (FileUpload(uploadResults, image.Name, logger,
-                           out var result))
+                        @if (FileUpload(uploadResults, file.Name, logger,
+                            out var result))
                         {
-                            @result.StoredFileName
+                            <span>
+                                Stored File Name: @result.StoredFileName
+                            </span>
                         }
                         else
                         {
@@ -153,60 +152,56 @@ public class UploadResult
                                 </span>
                             }
                         }
-                    </figcaption>
-                </figure>
-            }
+                    </li>
+                }
+            </ul>
         </div>
     </div>
 }
 
 @code {
-    private IList<Image> images = new List<Image>();
+    private IList<File> files = new List<File>();
     private IList<UploadResult> uploadResults =
         new List<UploadResult>();
     private int maxAllowedFiles = 3;
 
     private async Task OnInputFileChange(InputFileChangeEventArgs e)
     {
-        var format = "image/png";
         long maxFileSize = 1024 * 1024 * 15;
         var upload = false;
 
         using var content = new MultipartFormDataContent();
 
-        foreach (var image in e.GetMultipleFiles(maxAllowedFiles))
+        foreach (var file in e.GetMultipleFiles(maxAllowedFiles))
         {
             if (uploadResults.SingleOrDefault(
-                f => f.FileName == image.Name) is null)
+                f => f.FileName == file.Name) is null)
             {
-                var imageFileContent = new StreamContent(image.OpenReadStream());
-                var imageBytesBase64 = Convert.ToBase64String(
-                    await imageFileContent.ReadAsByteArrayAsync());
+                var fileContent = new StreamContent(file.OpenReadStream());
 
-                images.Add(
-                    new Image()
+                files.Add(
+                    new File()
                     {
-                        Name = image.Name,
-                        Thumbnail = $"data:{format};base64,{imageBytesBase64}"
+                        Name = file.Name,
                     });
 
-                if (image.Size < maxFileSize)
+                if (file.Size < maxFileSize)
                 {
                     content.Add(
-                        content: imageFileContent,
+                        content: fileContent,
                         name: "\"files\"",
-                        fileName: image.Name);
+                        fileName: file.Name);
 
                     upload = true;
                 }
                 else
                 {
-                    logger.LogInformation("{FileName} not uploaded", image.Name);
+                    logger.LogInformation("{FileName} not uploaded", file.Name);
 
                     uploadResults.Add(
                         new UploadResult()
                         {
-                            FileName = image.Name,
+                            FileName = file.Name,
                             ErrorCode = 6,
                             Uploaded = false,
                         });
@@ -240,10 +235,9 @@ public class UploadResult
         return result.Uploaded;
     }
 
-    private class Image
+    private class File
     {
         public string Name { get; set; }
-        public string Thumbnail { get; set; }
     }
 }
 ```
