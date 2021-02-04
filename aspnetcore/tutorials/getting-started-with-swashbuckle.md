@@ -10,8 +10,6 @@ uid: tutorials/get-started-with-swashbuckle
 ---
 # Get started with Swashbuckle and ASP.NET Core
 
-By [Shayne Boyer](https://twitter.com/spboyer) and [Scott Addie](https://twitter.com/Scott_Addie)
-
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/web-api-help-pages-using-swagger/samples/) ([how to download](xref:index#how-to-download-a-sample))
 
 There are three main components to Swashbuckle:
