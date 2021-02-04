@@ -112,9 +112,7 @@ public class UploadResult
 
 ```razor
 @page "/upload-files"
-@using System.IO
 @using System.Linq
-@using System.Net
 @using Microsoft.Extensions.Logging
 @using FileUploadTesting.Shared
 @inject HttpClient Http
@@ -123,7 +121,7 @@ public class UploadResult
 <h1>Upload files</h1>
 
 <p>
-    Upload one or more PNG image files:
+    Upload up to @maxAllowedFiles PNG image files:
     <InputFile OnChange="@OnInputFileChange" multiple />
 </p>
 
@@ -134,21 +132,26 @@ public class UploadResult
             @foreach (var image in images)
             {
                 <figure>
-                    <img class="rounded m-1" src="@image.Thumbnail" />
+                    <img class="rounded m-1 img-thumbnail" 
+                         style="max-height:100px;max-width:100px" 
+                         src="@image.Thumbnail" />
                     <figcaption>
-                        @WebUtility.HtmlEncode(image.Name)
+                        @image.Name
                         <br>
                         @if (FileUpload(uploadResults, image.Name, logger,
-                            out var result))
+                           out var result))
                         {
                             @result.StoredFileName
                         }
                         else
                         {
-                            <span>
-                                There was an error uploading the file
-                                (Error: @result.ErrorCode).
-                            </span>
+                            @if (result.ErrorCode > 0)
+                            {
+                                <span>
+                                    There was an error uploading the file
+                                    (Error: @result.ErrorCode).
+                                </span>
+                            }
                         }
                     </figcaption>
                 </figure>
@@ -161,47 +164,53 @@ public class UploadResult
     private IList<Image> images = new List<Image>();
     private IList<UploadResult> uploadResults =
         new List<UploadResult>();
+    private int maxAllowedFiles = 3;
 
     private async Task OnInputFileChange(InputFileChangeEventArgs e)
     {
         var format = "image/png";
-        var maxAllowedFiles = 3;
-        var maxWidth = 640;
-        var maxHeight = 480;
-        var thumbnailSize = 100;
         long maxFileSize = 1024 * 1024 * 15;
         var upload = false;
 
         using var content = new MultipartFormDataContent();
 
-        foreach (var imageFile in e.GetMultipleFiles(maxAllowedFiles))
+        foreach (var image in e.GetMultipleFiles(maxAllowedFiles))
         {
             if (uploadResults.SingleOrDefault(
-                f => f.FileName == imageFile.Name) is null)
+                f => f.FileName == image.Name) is null)
             {
-                var image = new Image() { Name = imageFile.Name };
+                var imageFileContent = new StreamContent(image.OpenReadStream());
+                var imageBytesBase64 = Convert.ToBase64String(
+                    await imageFileContent.ReadAsByteArrayAsync());
 
-                var resizedImageFile = await imageFile.RequestImageFileAsync(
-                    format, thumbnailSize, thumbnailSize);
-                var buffer = new byte[resizedImageFile.Size];
-                await resizedImageFile.OpenReadStream().ReadAsync(buffer);
-                image.Thumbnail =
-                    $"data:{format};base64,{Convert.ToBase64String(buffer)}";
+                images.Add(
+                    new Image()
+                    {
+                        Name = image.Name,
+                        Thumbnail = $"data:{format};base64,{imageBytesBase64}"
+                    });
 
-                var uploadFile = await imageFile.RequestImageFileAsync(
-                    format, maxWith: maxWidth, maxHeight: maxHeight);
-                using Stream s = uploadFile.OpenReadStream(maxFileSize);
-                using MemoryStream ms = new();
-                await s.CopyToAsync(ms);
-                var fileBytes = ms.ToArray();
+                if (image.Size < maxFileSize)
+                {
+                    content.Add(
+                        content: imageFileContent,
+                        name: "\"files\"",
+                        fileName: image.Name);
 
-                content.Add(
-                    content: new ByteArrayContent(fileBytes),
-                    name: "\"files\"",
-                    fileName: uploadFile.Name);
+                    upload = true;
+                }
+                else
+                {
+                    logger.LogInformation("{FileName} not uploaded", image.Name);
 
-                images.Add(image);
-                upload = true;
+                    uploadResults.Add(
+                        new UploadResult()
+                        {
+                            FileName = image.Name,
+                            ErrorCode = 6,
+                            Uploaded = false,
+                        });
+                }
             }
         }
 
@@ -240,6 +249,8 @@ public class UploadResult
 ```
 
 **Further explanation of the preceding code is TBD based on firming up the example code.**
+
+**Note to self: Remind readers that Razor automatically HTML-encodes strings.**
 
 **Lead-in remarks for the server code is TBD based on firming up the example code.**
 
