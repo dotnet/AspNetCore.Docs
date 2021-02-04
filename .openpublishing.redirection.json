@@ -1099,6 +1099,11 @@
             "source_path": "aspnetcore/blazor/templates.md",
             "redirect_url": "/aspnet/core/blazor/tooling",
             "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/tutorials/signalr-blazor-webassembly.md",
+            "redirect_url": "/aspnet/core/tutorials/signalr-blazor",
+            "redirect_document_id": false
         }
     ]
 }
