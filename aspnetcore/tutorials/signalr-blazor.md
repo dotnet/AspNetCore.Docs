@@ -751,3 +751,4 @@ To learn more about building Blazor apps, see the Blazor documentation:
 * <xref:signalr/introduction>
 * [SignalR cross-origin negotiation for authentication](xref:blazor/fundamentals/additional-scenarios#signalr-cross-origin-negotiation-for-authentication)
 * <xref:blazor/debug>
+* <xref:blazor/security/server/threat-mitigation>
