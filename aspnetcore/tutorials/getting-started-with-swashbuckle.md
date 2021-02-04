@@ -488,3 +488,7 @@ app.UseSwaggerUI(c =>
      c.InjectStylesheet("/swagger-ui/custom.css");
 }
 ```
+
+## Additional resources
+
+* [Microsoft Learn: Improve the developer experience of an API with Swagger documentation](/learn/modules/improve-api-developer-experience-with-swagger/)
