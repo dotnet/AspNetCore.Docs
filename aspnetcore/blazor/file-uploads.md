@@ -160,8 +160,10 @@ public class UploadResult
 <h1>Upload Files</h1>
 
 <p>
-    Upload up to @maxAllowedFiles files:
-    <InputFile OnChange="@OnInputFileChange" multiple />
+    <label>
+        Upload up to @maxAllowedFiles files:
+        <InputFile OnChange="@OnInputFileChange" multiple />
+    </label>
 </p>
 
 @if (files.Count > 0)
@@ -183,13 +185,10 @@ public class UploadResult
                         }
                         else
                         {
-                            @if (result.ErrorCode > 0)
-                            {
-                                <span>
-                                    There was an error uploading the file
-                                    (Error: @result.ErrorCode).
-                                </span>
-                            }
+                            <span>
+                                There was an error uploading the file
+                                (Error: @result.ErrorCode).
+                            </span>
                         }
                     </li>
                 }
@@ -203,9 +202,13 @@ public class UploadResult
     private IList<UploadResult> uploadResults =
         new List<UploadResult>();
     private int maxAllowedFiles = 3;
+    private bool shouldRender;
+
+    protected override bool ShouldRender() => shouldRender;
 
     private async Task OnInputFileChange(InputFileChangeEventArgs e)
     {
+        shouldRender = false;
         long maxFileSize = 1024 * 1024 * 15;
         var upload = false;
 
@@ -257,6 +260,8 @@ public class UploadResult
 
             uploadResults = uploadResults.Concat(newUploadResults).ToList();
         }
+
+        shouldRender = true;
     }
 
     private static bool FileUpload(IList<UploadResult> uploadResults,
@@ -279,6 +284,7 @@ public class UploadResult
         public string Name { get; set; }
     }
 }
+
 ```
 
 **Further explanation of the preceding code is TBD based on firming up the example code.**
