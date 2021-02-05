@@ -11,8 +11,6 @@ uid: blazor/components/lifecycle
 ---
 # ASP.NET Core Blazor lifecycle
 
-By [Luke Latham](https://github.com/guardrex), [Daniel Roth](https://github.com/danroth27), and [Javier Calvarro Nelson](https://github.com/javiercn)
-
 The Blazor framework includes synchronous and asynchronous lifecycle methods. Override lifecycle methods to perform additional operations on components during component initialization and rendering.
 
 The following diagrams illustrate the Blazor lifecycle. Lifecycle methods are defined with examples in the following sections of this article.
