@@ -30,62 +30,101 @@ To read data from a user-selected file:
 
 * Call `Microsoft.AspNetCore.Components.Forms.IBrowserFile.OpenReadStream` on the file and read from the returned stream. For more information, see the [File streams](#file-streams) section.
 * The <xref:System.IO.Stream> returned by `OpenReadStream` enforces a maximum size in bytes of the `Stream` being read. By default, files no larger than 512,000 bytes (500 KB) in size are allowed to be read before any further reads would result in an exception. This limit is present to prevent developers from accidentally reading large files in to memory. The `maxAllowedSize` parameter on `Microsoft.AspNetCore.Components.Forms.IBrowserFile.OpenReadStream` can be used to specify a larger size if required.
-* Avoid reading the incoming file stream directly into memory. For example, don't copy file bytes into a <xref:System.IO.MemoryStream> or read as a byte array. These approaches can result in performance and security problems, especially in Blazor Server. Instead, consider copying file bytes to an external store, such as a a blob or a file on disk.
+* Avoid reading the incoming file stream directly into memory. For example, don't copy file bytes into a <xref:System.IO.MemoryStream> or read as a byte array. These approaches can result in performance and security problems, especially in Blazor Server. Instead, consider copying file bytes to an external store, such as a blob or a file on disk.
 
 A component that receives an image file can call the `RequestImageFileAsync` convenience method on the file to resize the image data within the browser's JavaScript runtime before the image is streamed into the app.
 
-The following example demonstrates multiple image file upload in a component. `InputFileChangeEventArgs.GetMultipleFiles` allows reading multiple files. Specify the maximum number of files you expect to read to prevent a malicious user from uploading a larger number of files than the app expects. `InputFileChangeEventArgs.File` allows reading the first and only file if the file upload does not support multiple files.
+The following example demonstrates multiple file upload in a component. `InputFileChangeEventArgs.GetMultipleFiles` allows reading multiple files. Specify the maximum number of files you expect to read to prevent a malicious user from uploading a larger number of files than the app expects. `InputFileChangeEventArgs.File` allows reading the first and only file if the file upload doesn't support multiple files.
 
 > [!NOTE]
 > <xref:Microsoft.AspNetCore.Components.Forms.InputFileChangeEventArgs> is in the <xref:Microsoft.AspNetCore.Components.Forms?displayProperty=fullName> namespace, which is typically one of the namespaces in the app's `_Imports.razor` file.
 
-`Pages/UploadImages.razor`:
+`Pages/UploadFiles1.razor`:
 
 ```razor
-@pages "/upload-images"
+@page "/upload-files-1"
+@using System.IO
 
-<h1>Upload PNG images</h1>
+<h3>Upload Files</h3>
 
 <p>
-    Upload one or more PNG image files: 
-    <InputFile OnChange="@OnInputFileChange" multiple />
+    <label>
+        Max file size:
+        <input type="number" @bind-value="@maxFileSize" />
+    </label>
 </p>
 
-@if (images.Count > 0)
+<p>
+    <label>
+        Max allowed files:
+        <input type="number" @bind-value="@maxAllowedFiles" />
+    </label>
+</p>
+
+<p>
+    <label>
+        Upload up to @maxAllowedFiles of up to @maxFileSize bytes:
+        <InputFile OnChange="LoadFiles" multiple />
+    </label>
+</p>
+
+<p>@exceptionMessage</p>
+
+@if (isLoading)
 {
-    <div class="card" style="width:30rem;">
-        <div class="card-body">
-            @foreach (var imageData in images)
-            {
-                <img class="rounded m-1" src="@imageData" />
-            }
-        </div>
-    </div>
+    <p>Loading...</p>
 }
 
-@code {
-    private IList<string> images = new List<string>();
-
-    private async Task OnInputFileChange(InputFileChangeEventArgs e)
+<ul>
+    @foreach (var (file, content) in loadedFiles)
     {
-        var maxAllowedFiles = 3;
-        var format = "image/png";
+        <li>
+            <ul>
+                <li>Name: @file.Name</li>
+                <li>Last modified: @file.LastModified.ToString()</li>
+                <li>Size (bytes): @file.Size</li>
+                <li>Content type: @file.ContentType</li>
+                <li>Content: @content</li>
+            </ul>
+        </li>
+    }
+</ul>
 
-        foreach (var imageFile in e.GetMultipleFiles(maxAllowedFiles))
+@code {
+    private Dictionary<IBrowserFile, string> loadedFiles =
+        new Dictionary<IBrowserFile, string>();
+    private long maxFileSize = 1024 * 15;
+    private int maxAllowedFiles = 3;
+    private bool isLoading;
+    string exceptionMessage;
+
+    async Task LoadFiles(InputFileChangeEventArgs e)
+    {
+        isLoading = true;
+        loadedFiles.Clear();
+        exceptionMessage = string.Empty;
+
+        try
         {
-            var resizedImageFile = await imageFile.RequestImageFileAsync(format, 
-                100, 100);
-            var buffer = new byte[resizedImageFile.Size];
-            await resizedImageFile.OpenReadStream().ReadAsync(buffer);
-            var imageData = 
-                $"data:{format};base64,{Convert.ToBase64String(buffer)}";
-            images.Add(imageData);
+            foreach (var file in e.GetMultipleFiles(maxAllowedFiles))
+            {
+                using var reader = 
+                    new StreamReader(file.OpenReadStream(maxFileSize));
+
+                loadedFiles.Add(file, await reader.ReadToEndAsync());
+            }
         }
+        catch (Exception ex)
+        {
+            exceptionMessage = ex.Message;
+        }
+
+        isLoading = false;
     }
 }
 ```
 
-`IBrowserFile` returns metadata [exposed by the browser](https://developer.mozilla.org/docs/Web/API/File#Instance_properties) as properties. This metadata can be useful to preliminary validation. For example, see the [`FileUpload.razor` and `FilePreview.razor` sample components](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/file-uploads/samples/).
+`IBrowserFile` returns metadata [exposed by the browser](https://developer.mozilla.org/docs/Web/API/File#Instance_properties) as properties. This metadata can be useful for preliminary validation.
 
 ## Upload files to a server
 
@@ -108,17 +147,17 @@ public class UploadResult
 }
 ```
 
-`Pages/UploadFiles.razor` in the **`Client`** project of a hosted Blazor solution:
+`Pages/UploadFiles2.razor` in the **`Client`** project of a hosted Blazor solution:
 
 ```razor
-@page "/upload-files"
+@page "/upload-files-2"
 @using System.Linq
 @using Microsoft.Extensions.Logging
 @using FileUploadTesting.Shared
 @inject HttpClient Http
 @inject ILogger<UploadFiles> logger
 
-<h1>Upload files</h1>
+<h1>Upload Files</h1>
 
 <p>
     Upload up to @maxAllowedFiles files:
