@@ -74,7 +74,7 @@ If the component only requires rerendering when its parameter values mutate in p
         prevInboundFlightId = InboundFlight.FlightId;
     }
 
-    protected override void ShouldRender() => shouldRender;
+    protected override bool ShouldRender() => shouldRender;
 
     // Note that 
 }
