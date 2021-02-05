@@ -11,14 +11,12 @@ uid: blazor/file-uploads
 ---
 # ASP.NET Core Blazor file uploads
 
-By [Daniel Roth](https://github.com/danroth27), [Pranav Krishnamoorthy](https://github.com/pranavkm), and [Ed Charbeneau](https://edcharbeneau.com)
-
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/file-uploads/samples/) ([how to download](xref:index#how-to-download-a-sample))
-
 Use the `InputFile` component to read browser file data into .NET code, including for file uploads.
 
 > [!WARNING]
 > Always follow file upload security best practices. For more information, see <xref:mvc/models/file-uploads#security-considerations>.
+
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/file-uploads/samples/) ([how to download](xref:index#how-to-download-a-sample))
 
 ## `InputFile` component
 
