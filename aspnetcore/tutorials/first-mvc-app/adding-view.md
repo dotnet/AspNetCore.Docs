@@ -6,6 +6,7 @@ ms.author: riande
 ms.date: 01/28/2021
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-mvc-app/adding-view
+ms.custom: contperf-fy21q3
 ---
 
 # Part 3, add a view to an ASP.NET Core MVC app
@@ -17,12 +18,11 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 In this section, you:
 
 * Modify the `HelloWorldController` class to use [Razor](xref:mvc/views/razor) view files. This cleanly encapsulates the process of generating HTML responses to a client.
-* Create a view template file using Razor. Razor-based view templates:
-
+*View templates are created using Razor. Razor-based view templates:
   * Have a *.cshtml* file extension.
   * Provide an elegant way to create HTML output with C#.
 
-Currently the `Index` method returns a string with a message that's hard-coded in the controller class. In the `HelloWorldController` class, replace the `Index` method with the following code:
+Currently the `Index` method returns a string with a message in the controller class. In the `HelloWorldController` class, replace the `Index` method with the following code:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Controllers/HelloWorldController.cs?name=snippet_4)]
 
@@ -33,7 +33,7 @@ The preceding code:
 
 Controller methods:
 
-* Are referred to as  *action methods*.  For example, the `Index` action method in the preceding code.
+* Are referred to as *action methods*.  For example, the `Index` action method in the preceding code.
 * Generally return an <xref:Microsoft.AspNetCore.Mvc.IActionResult> or a class derived from <xref:Microsoft.AspNetCore.Mvc.ActionResult>, not a type like `string`.
 
 ## Add a view
@@ -195,10 +195,7 @@ A view template should work only with the data that's provided to it by the cont
 * Testable.
 * Maintainable.
 
-Currently, the `Welcome` method in the `HelloWorldController` class:
-
-* Takes a `name` and a `ID` parameter.
-* Outputs the values directly to the browser.
+Currently, the `Welcome` method in the `HelloWorldController` class takes a `name` and a `ID` parameter and then outputs the values directly to the browser.
 
 Rather than have the controller render this response as a string, change the controller to use a view template instead. The view template generates a dynamic response, which means that appropriate data must be passed from the controller to the view to generate the response. Do this by having the controller put the dynamic data (parameters) that the view template needs in a `ViewData` dictionary. The view template can then access the dynamic data.
 
@@ -244,8 +241,7 @@ Currently the `Index` method returns a string with a message that's hard-coded i
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Controllers/HelloWorldController.cs?name=snippet_4)]
 
-The preceding code:
-* Calls the controller's <xref:Microsoft.AspNetCore.Mvc.Controller.View*> method. It uses a view template to generate an HTML response. Controller methods (also known as *action methods*), such as the `Index` method above, generally return an <xref:Microsoft.AspNetCore.Mvc.IActionResult> (or a class derived from <xref:Microsoft.AspNetCore.Mvc.ActionResult>), not a type like `string`.
+The preceding code calls the controller's <xref:Microsoft.AspNetCore.Mvc.Controller.View*> method. It uses a view template to generate an HTML response. Controller methods (also known as *action methods*), such as the `Index` method above, generally return an <xref:Microsoft.AspNetCore.Mvc.IActionResult> (or a class derived from <xref:Microsoft.AspNetCore.Mvc.ActionResult>), not a type like `string`.
 
 ## Add a view
 
@@ -390,7 +386,7 @@ In the sample above, the `ViewData` dictionary was used to pass data from the co
 In the next tutorial, a database of movies is created.
 
 > [!div class="step-by-step"]
-> [Previous: Add a Controller](adding-controller.md)
-> [Next: Add a Model](adding-model.md)
+> [Previous](adding-controller.md)
+> [Next](adding-model.md)
 
 ::: moniker-end
