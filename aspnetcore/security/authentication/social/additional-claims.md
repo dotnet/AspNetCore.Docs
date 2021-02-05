@@ -110,7 +110,7 @@ For more information, see <xref:Microsoft.AspNetCore.Authentication.OAuth.Claims
 
 ## Add claims to users
 
-Claims are added to the user on first registration, not on sign in. If additional claims are enabled in an app after a user registers to use the app, call [SignInManager.RefreshSignInAsync](xref:Microsoft.AspNetCore.Identity.SignInManager%601) on a user to force the generation of a new authentication cookie.
+Claims are copied from external providers to the user database on first registration, not on sign in. If additional claims are enabled in an app after a user registers to use the app, call [SignInManager.RefreshSignInAsync](xref:Microsoft.AspNetCore.Identity.SignInManager%601) on a user to force the generation of a new authentication cookie.
 
 In the Development environment working with test user accounts, you can simply delete and recreate the user account.
 
