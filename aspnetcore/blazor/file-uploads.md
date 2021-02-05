@@ -63,7 +63,7 @@ The following example demonstrates multiple file upload in a component. `InputFi
 
 <p>
     <label>
-        Upload up to @maxAllowedFiles files of up to @maxFileSize bytes:
+        Upload up to @maxAllowedFiles files of up to @maxFileSize bytes each:
         <InputFile OnChange="LoadFiles" multiple />
     </label>
 </p>
