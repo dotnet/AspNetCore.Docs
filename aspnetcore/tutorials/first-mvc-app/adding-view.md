@@ -15,12 +15,12 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ::: moniker range=">= aspnetcore-3.0"
 
-In this section, you:
+In this section, you modify the `HelloWorldController` class to use [Razor](xref:mvc/views/razor) view files. This cleanly encapsulates the process of generating HTML responses to a client.
 
-* Modify the `HelloWorldController` class to use [Razor](xref:mvc/views/razor) view files. This cleanly encapsulates the process of generating HTML responses to a client.
-*View templates are created using Razor. Razor-based view templates:
-  * Have a *.cshtml* file extension.
-  * Provide an elegant way to create HTML output with C#.
+View templates are created using Razor. Razor-based view templates:
+
+* Have a *.cshtml* file extension.
+* Provide an elegant way to create HTML output with C#.
 
 Currently the `Index` method returns a string with a message in the controller class. In the `HelloWorldController` class, replace the `Index` method with the following code:
 
