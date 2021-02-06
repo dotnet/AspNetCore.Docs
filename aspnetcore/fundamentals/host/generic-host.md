@@ -15,7 +15,7 @@ uid: fundamentals/host/generic-host
 
 The ASP.NET Core templates create a .NET Core Generic Host (<xref:Microsoft.Extensions.Hosting.HostBuilder>).
 
-This topic provides information on using .NET Generic Host in ASP.NET Core. For information on using .NET Generic Host in console apps, see [.NET Generic Host](/dotnet/core/extensions/generic-host).
+This topic provides information on using .NET Generic Host in ASP.NET Core. For information on using .NET Generic Host in console apps, see [.NET Generic Host](https://github.com/dotnet/docs/blob/master/docs/core/extensions/generic-host.md).
 
 ## Host definition
 
