@@ -81,7 +81,6 @@ An HTTP endpoint:
 
 * Is a targetable URL in the web application, such as `https://localhost:5001/HelloWorld`.
 * Combines:
-
   * The protocol used: `HTTPS`.
   * The network location of the web server, including the TCP port: `localhost:5001`.
   * The target URI: `HelloWorld`.
