@@ -131,8 +131,9 @@ The size of the published app, its *payload size*, is a critical performance fac
 
 Blazor decouples component rendering logic from how UI updates are applied. *Blazor Server* provides support for hosting Razor components on the server in an ASP.NET Core app. UI updates are handled over a [SignalR](xref:signalr/introduction) connection.
 
-The runtime handles:
+The runtime stays on the server and handles:
 
+* Executing the app's C# code.
 * Sending UI events from the browser to the server.
 * Applying UI updates to the rendered component that are sent back by the server.
 
