@@ -125,7 +125,7 @@ IIS must be configured to use TLS and HTTP/2. For more information, see <xref:ho
 
 ## HTTP.sys
 
-[HTTP.sys](xref:fundamentals/servers/httpsys) is a web server for ASP.NET Core that only runs on Windows. .NET 5 and Windows 10 Build 20241 or later are required to host gRPC services with HTTP.sys.
+[HTTP.sys](xref:fundamentals/servers/httpsys) is a web server for ASP.NET Core that only runs on Windows. .NET 5 and Windows 10 Build 19529 or later are required to host gRPC services with HTTP.sys.
 
 HTTP.sys must be configured to use TLS and HTTP/2. For more information, see  [HTTP.sys web server HTTP/2 support](xref:fundamentals/servers/httpsys#http2-support).
 
