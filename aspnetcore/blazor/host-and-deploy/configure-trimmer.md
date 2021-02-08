@@ -5,28 +5,25 @@ description: Learn how to control the Intermediate Language (IL) Linker (Trimmer
 monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/14/2020
+ms.date: 02/08/2021
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/host-and-deploy/configure-trimmer
 ---
 # Configure the Trimmer for ASP.NET Core Blazor
 
-By [Pranav Krishnamoorthy](https://github.com/pranavkm)
+Blazor WebAssembly performs [Intermediate Language (IL)](/dotnet/standard/managed-code#intermediate-language--execution) trimming to reduce the size of the published output. By default, trimming occurs when publishing an app.
 
-Blazor WebAssembly performs [Intermediate Language (IL)](/dotnet/standard/managed-code#intermediate-language--execution) trimming to reduce the size of the published output.
+Trimming may have detrimental effects. In apps that use reflection, the Trimmer often can't determine the required types for reflection at runtime. To trim apps that use reflection, the Trimmer must be informed about required types for reflection in both the app's code and in the packages or frameworks that the app depends on. The Trimmer is also unable to react to an app's dynamic behavior at runtime. To ensure the trimmed app works correctly once deployed, test published output frequently while developing.
 
-Trimming an app optimizes for size but may have detrimental effects. Apps that use reflection or related dynamic features may break when trimmed because the trimmer doesn't know about dynamic behavior and can't determine in general which types are required for reflection at runtime. To trim such apps, the trimmer must be informed about any types required by reflection in the code and in packages or frameworks that the app depends on.
+To configure the Trimmer, see the [Trimming options](/dotnet/core/deploying/trimming-options) article in the .NET Fundamentals documentation, which includes guidance on the following subjects:
 
-To ensure the trimmed app works correctly once deployed, it's important to test published output frequently while developing.
-
-Trimming for .NET apps can be disabled by setting the `PublishTrimmed` MSBuild property to `false` in the app's project file:
-
-```xml
-<PropertyGroup>
-  <PublishTrimmed>false</PublishTrimmed>
-</PropertyGroup>
-```
-Additional options to configure the trimmer can be found at [Trimming options](/dotnet/core/deploying/trimming-options).
+* Disable trimming for the entire app with the `<PublishTrimmed>` property in the project file.
+* Control how aggressively unused IL is discarded by the Trimmer.
+* Stop the Trimmer from trimming specific assemblies.
+* "Root" assemblies for trimming.
+* Surface warnings for reflected types by setting the `<SuppressTrimAnalysisWarnings>` property to `false` in the project file.
+* Control symbol trimming and degugger support.
+* Set Trimmer features for trimming framework library features.
 
 ## Additional resources
 
