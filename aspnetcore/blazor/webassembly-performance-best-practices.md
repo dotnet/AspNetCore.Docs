@@ -524,8 +524,6 @@ function jsInteropCall() {
 
 ## Minimize app download size
 
-::: moniker range=">= aspnetcore-5.0"
-
 ### Intermediate Language (IL) trimming
 
 Trimming unused assemblies from a Blazor WebAssembly app reduces the app's size by removing unused code in the app's binaries. For more information, see <xref:blazor/host-and-deploy/configure-trimmer>.
