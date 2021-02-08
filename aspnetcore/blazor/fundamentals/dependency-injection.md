@@ -21,7 +21,7 @@ By [Rainer Stropek](https://www.timecockpit.com) and [Mike Rousos](https://githu
 
 ## Default services
 
-The services shown the following table are commonly used in Blazor apps.
+The services shown in the following table are commonly used in Blazor apps.
 
 | Service | Lifetime | Description |
 | ------- | -------- | ----------- |
