@@ -15,7 +15,7 @@ By [Steve Smith](https://ardalis.com/) and [Rick Anderson](https://twitter.com/R
 ASP.NET Core:
 
 * Supports the Open Web Interface for .NET (OWIN).
-* Is an evolution of the `Microsoft.Owin.*` libraries know as [Katana](/aspnet/aspnet/overview/owin-and-katana/)
+* Has .NET Core compatible replacements for the `Microsoft.Owin.*` ([Katana](/aspnet/aspnet/overview/owin-and-katana/)) libraries.
 
 OWIN allows web apps to be decoupled from web servers. It defines a standard way for middleware to be used in a pipeline to handle requests and associated responses. ASP.NET Core applications and middleware can interoperate with OWIN-based applications, servers, and middleware.
 
