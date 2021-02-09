@@ -64,5 +64,17 @@
   "need_generate_intellisense": false,
   "docs_build_engine": {
     "name": "docfx_v3"
+  },
+  {
+    "path_to_root": "samples-durable-functions",
+    "url": "https://github.com/Azure/azure-functions-durable-extension",
+    "branch": "master",
+    "branch_mapping": {}
+  },
+  {
+    "path_to_root": "xamarin-forms-samples",
+    "url": "https://github.com/xamarin/xamarin-forms-samples",
+    "branch": "master",
+    "branch_mapping": {}
   }
 }
