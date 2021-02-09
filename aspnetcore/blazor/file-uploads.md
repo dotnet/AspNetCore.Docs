@@ -48,14 +48,14 @@ The following example demonstrates multiple file upload in a component. `InputFi
 <p>
     <label>
         Max file size:
-        <input type="number" @bind-value="@maxFileSize" />
+        <input type="number" @bind="maxFileSize" />
     </label>
 </p>
 
 <p>
     <label>
         Max allowed files:
-        <input type="number" @bind-value="@maxAllowedFiles" />
+        <input type="number" @bind="maxAllowedFiles" />
     </label>
 </p>
 
