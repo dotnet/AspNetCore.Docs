@@ -45,7 +45,7 @@ HTTP.sys is useful for deployments where:
 
   ![HTTP.sys communicates directly with the Internet](httpsys/_static/httpsys-to-internet.png)
 
-* An internal deployment requires a feature not available in Kestrel, such as [Windows Authentication](xref:security/authentication/windowsauth).
+* An internal deployment requires a feature not available in Kestrel. For more information, see [Kestrel vs. HTTP.sys](xref:fundamentals/servers/index).
 
   ![HTTP.sys communicates directly with the internal network](httpsys/_static/httpsys-to-internal.png)
 
