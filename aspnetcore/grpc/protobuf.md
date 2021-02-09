@@ -32,6 +32,8 @@ message Person {
 
 The preceding message definition specifies three fields as name-value pairs. Like properties on .NET types, each field has a name and a type. The field type can be a [Protobuf scalar value type](#scalar-value-types), e.g. `int32`, or another message.
 
+The [Protobuf style guide](https://developers.google.com/protocol-buffers/docs/style) recommends using `underscore_separated_names` for field names. New protobuf messages created for .NET apps should follow the Protobuf style guidelines. .NET tooling will automatically generate .NET types that use .NET naming standards. For example, a `first_name` Protobuf field will generate a `FirstName` .NET property.
+
 In addition to a name, each field in the message definition has a unique number. Field numbers are used to identify fields when the message is serialized to Protobuf. Serializing a small number is faster than serializing the entire field name. Because field numbers identify a field it is important to take care when changing them. For more information about changing Protobuf messages see <xref:grpc/versioning>.
 
 When an app is built the Protobuf tooling generates .NET types from `.proto` files. The `Person` message generates a .NET class:
