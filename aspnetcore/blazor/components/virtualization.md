@@ -140,7 +140,7 @@ The height of each item in pixels can be set with <xref:Microsoft.AspNetCore.Com
 </Virtualize>
 ```
 
-By default, the `Virtualize` component measures the actual rendering size *after* the initial render occurs. Use `ItemSize` to provide an exact item size in advance to assist with accurate initial render performance and to ensure the correct scroll position for page reloads. For example, if the default `ItemSize` causes some items to render outside of the currently visible view, a second re-render will be triggered. To correctly maintain the browser's scroll position in a virtualized list, the initial render must be correct. If not, users might view the wrong items. 
+By default, the `Virtualize` component measures the actual rendering size *after* the initial render occurs. Use <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemSize%2A> to provide an exact item size in advance to assist with accurate initial render performance and to ensure the correct scroll position for page reloads. If the default <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemSize%2A> causes some items to render outside of the currently visible view, a second re-render is triggered. To correctly maintain the browser's scroll position in a virtualized list, the initial render must be correct. If not, users might view the wrong items. 
 
 ## Overscan count
 
