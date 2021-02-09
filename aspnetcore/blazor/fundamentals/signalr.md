@@ -1,21 +1,72 @@
 ---
-title: ASP.NET Core Blazor hosting model configuration
+title: ASP.NET Core Blazor SignalR guidance
 author: guardrex
-description: Learn about additional scenarios for ASP.NET Core Blazor hosting model configuration.
+description: Learn how to configure and manage Blazor SignalR connections.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/27/2020
+ms.date: 01/27/2021
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
-uid: blazor/fundamentals/additional-scenarios
+uid: blazor/fundamentals/signalr
 ---
-# ASP.NET Core Blazor hosting model configuration
+# ASP.NET Core Blazor SignalR guidance
 
 By [Daniel Roth](https://github.com/danroth27), [Mackinnon Buck](https://github.com/MackinnonBuck), and [Luke Latham](https://github.com/guardrex)
 
-This article covers hosting model configuration.
+For general guidance on ASP.NET Core SignalR configuration, see the topics in the <xref:signalr/introduction> area of the documentation. To configure SignalR [added to a hosted Blazor WebAssembly solution](xref:tutorials/signalr-blazor), see <xref:signalr/configuration#configure-server-options>.
 
-### SignalR cross-origin negotiation for authentication
+## Circuit handler options
+
+*This section applies to Blazor Server.*
+
+Configure the Blazor Server circuit with the <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions> shown in the following table.
+
+| Option | Default | Description |
+| --- | --- | --- |
+| <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DetailedErrors> | `false` | Send detailed exception messages to JavaScript when an unhandled exception happens on the circuit or when a .NET method invocation through JS interop results in an exception. |
+| <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DisconnectedCircuitMaxRetained> | 100 | Maximum number of disconnected circuits that a given server holds in memory at a time. |
+| <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DisconnectedCircuitRetentionPeriod> | 3 minutes | Maximum amount of time a disconnected circuit is held in memory before being torn down. |
+| <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.JSInteropDefaultCallTimeout> | 1 minute | Maximum amount of time the server waits before timing out an asynchronous JavaScript function invocation. |
+| <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.MaxBufferedUnacknowledgedRenderBatches> | 10 | Maximum number of unacknowledged render batches the server keeps in memory per circuit at a given time to support robust reconnection. After reaching the limit, the server stops producing new render batches until one or more batches have been acknowledged by the client. |
+
+Configure the options in `Startup.ConfigureServices` with an options delegate to <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor%2A>. The following example assigns the default option values shown in the preceding table:
+
+```csharp
+using System;
+
+...
+
+services.AddServerSideBlazor(options =>
+{
+    options.DetailedErrors = false;
+    options.DisconnectedCircuitMaxRetained = 100;
+    options.DisconnectedCircuitRetentionPeriod = TimeSpan.FromMinutes(3);
+    options.JSInteropDefaultCallTimeout = TimeSpan.FromMinutes(1);
+    options.MaxBufferedUnacknowledgedRenderBatches = 10;
+});
+```
+
+To configure the <xref:Microsoft.AspNetCore.SignalR.HubConnectionContext>, use <xref:Microsoft.AspNetCore.SignalR.HubConnectionContextOptions> with <xref:Microsoft.Extensions.DependencyInjection.ServerSideBlazorBuilderExtensions.AddHubOptions%2A>. For option descriptions, see <xref:signalr/configuration#configure-server-options>. The following example assigns the default option values:
+
+```csharp
+using System;
+
+...
+
+services.AddServerSideBlazor()
+    .AddHubOptions(options =>
+    {
+        options.ClientTimeoutInterval = TimeSpan.FromSeconds(30);
+        options.EnableDetailedErrors = false;
+        options.HandshakeTimeout = TimeSpan.FromSeconds(15);
+        options.KeepAliveInterval = TimeSpan.FromSeconds(15);
+        options.MaximumParallelInvocationsPerClient = 1;
+        options.MaximumReceiveMessageSize = 32 * 1024;
+        options.StreamBufferCapacity = 10;
+    });
+```
+
+## SignalR cross-origin negotiation for authentication
 
 *This section applies to Blazor WebAssembly.*
 
@@ -275,6 +326,8 @@ window.addEventListener('pagehide', () => {
 
 <!-- HOLD for reactivation at 5x
 
+THIS WILL BE MOVED TO ANOTHER TOPIC WHEN RE-ACTIVATED.
+
 ## Influence HTML `<head>` tag elements
 
 *This section applies to the upcoming ASP.NET Core 5.0 release of Blazor WebAssembly and Blazor Server.*
@@ -310,55 +363,9 @@ When one of the framework components is used in a child component, the rendered 
 
 ::: moniker-end
 
-## Static files
-
-*This section applies to Blazor Server.*
-
-To create additional file mappings with a <xref:Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider> or configure other <xref:Microsoft.AspNetCore.Builder.StaticFileOptions>, use **one** of the following approaches. In the following examples, the `{EXTENSION}` placeholder is the file extension, and the `{CONTENT TYPE}` placeholder is the content type.
-
-* Configure options through [dependency injection (DI)](xref:blazor/fundamentals/dependency-injection) in `Startup.ConfigureServices` (`Startup.cs`) using <xref:Microsoft.AspNetCore.Builder.StaticFileOptions>:
-
-  ```csharp
-  using Microsoft.AspNetCore.StaticFiles;
-
-  ...
-
-  var provider = new FileExtensionContentTypeProvider();
-  provider.Mappings["{EXTENSION}"] = "{CONTENT TYPE}";
-
-  services.Configure<StaticFileOptions>(options =>
-  {
-      options.ContentTypeProvider = provider;
-  });
-  ```
-
-  Because this approach configures the same file provider used to serve `blazor.server.js`, make sure that your custom configuration doesn't interfere with serving `blazor.server.js`. For example, don't remove the mapping for JavaScript files by configuring the provider with `provider.Mappings.Remove(".js")`.
-
-* Use two calls to <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> in `Startup.Configure` (`Startup.cs`):
-  * Configure the custom file provider in the first call with <xref:Microsoft.AspNetCore.Builder.StaticFileOptions>.
-  * The second middleware serves `blazor.server.js`, which uses the default static files configuration provided by the Blazor framework.
-
-  ```csharp
-  using Microsoft.AspNetCore.StaticFiles;
-
-  ...
-
-  var provider = new FileExtensionContentTypeProvider();
-  provider.Mappings["{EXTENSION}"] = "{CONTENT TYPE}";
-
-  app.UseStaticFiles(new StaticFileOptions { ContentTypeProvider = provider });
-  app.UseStaticFiles();
-  ```
-
-* You can avoid interfering with serving `_framework/blazor.server.js` by using <xref:Microsoft.AspNetCore.Builder.MapWhenExtensions.MapWhen%2A> to execute a custom Static File Middleware:
-
-  ```csharp
-  app.MapWhen(ctx => !ctx.Request.Path
-      .StartsWithSegments("_framework/blazor.server.js", 
-          subApp => subApp.UseStaticFiles(new StaticFileOptions(){ ... })));
-  ```
-
 ## Additional resources
 
-* <xref:fundamentals/logging/index>
+* <xref:signalr/introduction>
+* <xref:signalr/configuration>
+* <xref:blazor/security/server/threat-mitigation>
 * [Blazor Server reconnection events and component lifecycle events](xref:blazor/components/lifecycle#blazor-server-reconnection-events)
