@@ -62,19 +62,19 @@ The application should respond to all requests made to port 5000 including clear
 
 zzz3
 
-:::code language="csharp" source="~/../xamarin-forms-samples/WebServices/TodoREST/TodoAPI/TodoAPI/Startup.cs" highlight="2,5":::
+:::code language="csharp" source="~/../xamarin-forms-samples/WebServices/TodoREST/TodoAPI/TodoAPI/Startup.cs" highlight="1-2":::
 
-:::code language="csharp" source="~/xamarin-forms-samples/WebServices/TodoREST/TodoAPI/TodoAPI/Startup.cs" highlight="2,5":::
+:::code language="csharp" source="~/xamarin-forms-samples/WebServices/TodoREST/TodoAPI/TodoAPI/Startup.cs" highlight="2-5":::
 
-:::code language="csharp" source="~/../xamarin-forms-samples/xamarin-forms-samples/WebServices/TodoREST/TodoAPI/TodoAPI/Startup.cs" highlight="2,5":::
+:::code language="csharp" source="~/../xamarin-forms-samples/xamarin-forms-samples/WebServices/TodoREST/TodoAPI/TodoAPI/Startup.cs" highlight="2-5":::
 
-:::code language="csharp" source="~/xamarin-forms-samples/xamarin-forms-samples/WebServices/TodoREST/TodoAPI/TodoAPI/Startup.cs" highlight="2,5":::
+:::code language="csharp" source="~/xamarin-forms-samples/xamarin-forms-samples/WebServices/TodoREST/TodoAPI/TodoAPI/Startup.cs" :::
 
 azure sample
 
 :::code language="csharp" source="~/../samples-durable-functions/samples/csx/shared/Location.csx" highlight="2,5":::
 
-:::code language="csharp" source="~/samples-durable-functions/samples/csx/shared/Location.csx" highlight="2,5":::
+:::code language="csharp" source="~/samples-durable-functions/samples/csx/shared/Location.csx" highlight="2-5":::
 
 > [!NOTE]
 > Make sure you run the application directly, rather than behind IIS Express, which ignores non-local requests by default. Run [dotnet run](/dotnet/core/tools/dotnet-run) from a command prompt, or choose the application name profile from the Debug Target dropdown in the Visual Studio toolbar.
