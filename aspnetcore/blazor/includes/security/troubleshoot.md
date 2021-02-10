@@ -1,6 +1,3 @@
----
-no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
----
 ## Troubleshoot
 
 ::: moniker range=">= aspnetcore-5.0"
