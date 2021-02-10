@@ -117,7 +117,7 @@ To install and configure NCache on your local machine, see [Getting Started Guid
 To configure NCache:
 
 1. Install [NCache open source NuGet](https://www.nuget.org/packages/Alachisoft.NCache.OpenSource.SDK/).
-1. Configure the cache cluster in [client.ncconf](https://www.alachisoft.com/resources/docs/ncache-oss/admin-guide/client-config.html).
+1. Configure the cache cluster in [client.ncconf](https://www.alachisoft.com/resources/docs/ncache/admin-guide/client-config.html).
 1. Add the following code to `Startup.ConfigureServices`:
 
    ```csharp
@@ -287,7 +287,7 @@ To install and configure NCache on your local machine, see [Getting Started Guid
 To configure NCache:
 
 1. Install [NCache open source NuGet](https://www.nuget.org/packages/Alachisoft.NCache.OpenSource.SDK/).
-1. Configure the cache cluster in [client.ncconf](https://www.alachisoft.com/resources/docs/ncache-oss/admin-guide/client-config.html).
+1. Configure the cache cluster in [client.ncconf](https://www.alachisoft.com/resources/docs/ncache/admin-guide/client-config.html).
 1. Add the following code to `Startup.ConfigureServices`:
 
    ```csharp
@@ -463,7 +463,7 @@ To install and configure NCache on your local machine, see [Getting Started Guid
 To configure NCache:
 
 1. Install [NCache open source NuGet](https://www.nuget.org/packages/Alachisoft.NCache.OpenSource.SDK/).
-1. Configure the cache cluster in [client.ncconf](https://www.alachisoft.com/resources/docs/ncache-oss/admin-guide/client-config.html).
+1. Configure the cache cluster in [client.ncconf](https://www.alachisoft.com/resources/docs/ncache/admin-guide/client-config.html).
 1. Add the following code to `Startup.ConfigureServices`:
 
    ```csharp
