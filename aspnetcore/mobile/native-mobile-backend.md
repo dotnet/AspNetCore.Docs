@@ -54,11 +54,13 @@ Create a new ASP.NET Core Web Application in Visual Studio. Choose the Web API t
 
 ![New ASP.NET Web Application dialog with Web API project template selected](native-mobile-backend/_static/web-api-template.png)
 
-The application should respond to all requests made to port 5000 including clear-text http traffic for our mobile client. Update *Startup.cs* to conditionally compile in `app.UseHttpsRedirection();` when not in debug to achieve this:
+The application should respond to all requests made to port 5000 including clear-text http traffic for our mobile client. Update *Startup.cs* so <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A> doesn't run  in development:
 
 [!code-csharp[](native-mobile-backend/sample/TodoAPI/src/TodoAPI/Startup.cs)]
 
-zz
+[!code-csharp[](native-mobile-backend/sample/TodoAPI/src/TodoAPI/Startup.cs?name=snippet&highlight=8-11)]
+
+zzz
 
 :::code language="csharp" source="~/../xamarin-forms-samples/WebServices/TodoREST/TodoAPI/TodoAPI/Startup.cs" highlight="2,5":::
 
