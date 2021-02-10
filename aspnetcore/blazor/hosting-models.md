@@ -143,5 +143,5 @@ When using IIS, sticky sessions are enabled with *Application Request Routing*. 
 
 * <xref:blazor/tooling>
 * <xref:signalr/introduction>
-* <xref:blazor/fundamentals/additional-scenarios>
+* <xref:blazor/fundamentals/signalr>
 * <xref:tutorials/signalr-blazor>

@@ -18,7 +18,7 @@
   To resolve the error:
 
   1. In the Azure portal, access the [app's manifest](/azure/active-directory/develop/reference-app-manifest).
-  1. Set the [`allowPublicClient`](/azure/active-directory/develop/reference-app-manifest#allowpublicclient-attribute) attribute to `null` or `true`.
+  1. Set the [`allowPublicClient` attribute](/azure/active-directory/develop/reference-app-manifest#allowpublicclient-attribute) to `null` or `true`.
 
 ::: moniker-end
 
