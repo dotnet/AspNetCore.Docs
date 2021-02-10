@@ -11,8 +11,6 @@ uid: blazor/components/virtualization
 ---
 # ASP.NET Core Blazor component virtualization
 
-By [Daniel Roth](https://github.com/danroth27)
-
 Improve the perceived performance of component rendering using the Blazor framework's built-in virtualization support. Virtualization is a technique for limiting UI rendering to just the parts that are currently visible. For example, virtualization is helpful when the app must render a long list of items and only a subset of items is required to be visible at any given time. Blazor provides the [`Virtualize` component](xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601) that can be used to add virtualization to an app's components.
 
 The `Virtualize` component can be used when:

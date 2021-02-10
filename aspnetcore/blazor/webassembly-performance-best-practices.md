@@ -11,8 +11,6 @@ uid: blazor/webassembly-performance-best-practices
 ---
 # ASP.NET Core Blazor WebAssembly performance best practices
 
-By [Pranav Krishnamoorthy](https://github.com/pranavkm) and [Steve Sanderson](https://github.com/SteveSandersonMS)
-
 Blazor WebAssembly is carefully designed and optimized to enable high performance in most realistic application UI scenarios. However, producing the best results depends on developers using the right patterns and features. Consider the following aspects:
 
 * **Runtime throughput**: The .NET code runs on an interpreter within the WebAssembly runtime, so CPU throughput is limited. In demanding scenarios, the app benefits from [optimizing rendering speed](#optimize-rendering-speed).

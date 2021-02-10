@@ -11,8 +11,6 @@ uid: tutorials/build-a-blazor-app
 ---
 # Build a Blazor todo list app
 
-By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.com/guardrex)
-
 This tutorial shows you how to build and modify a Blazor app. You learn how to:
 
 > [!div class="checklist"]

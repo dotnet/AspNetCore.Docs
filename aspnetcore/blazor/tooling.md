@@ -12,8 +12,6 @@ zone_pivot_groups: operating-systems
 ---
 # Tooling for ASP.NET Core Blazor
 
-By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.com/guardrex)
-
 ::: zone pivot="windows"
 
 1. Install the latest version of [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/) with the **ASP.NET and web development** workload.

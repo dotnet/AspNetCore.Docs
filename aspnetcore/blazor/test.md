@@ -11,7 +11,7 @@ uid: blazor/test
 ---
 # Test components in ASP.NET Core Blazor
 
-[Egil Hansen](https://egilhansen.com/)
+By: [Egil Hansen](https://egilhansen.com/)
 
 Testing is an important aspect of building stable and maintainable software.
 

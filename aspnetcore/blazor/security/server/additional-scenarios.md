@@ -11,8 +11,6 @@ uid: blazor/security/server/additional-scenarios
 ---
 # ASP.NET Core Blazor Server additional security scenarios
 
-By [Javier Calvarro Nelson](https://github.com/javiercn)
-
 ::: moniker range=">= aspnetcore-5.0"
 
 <h2 id="pass-tokens-to-a-blazor-server-app">Pass tokens to a Blazor Server app</h2>
