@@ -11,8 +11,6 @@ uid: blazor/debug
 ---
 # Debug ASP.NET Core Blazor WebAssembly
 
-[Daniel Roth](https://github.com/danroth27)
-
 Blazor WebAssembly apps can be debugged using the browser dev tools in Chromium-based browsers (Edge/Chrome). You can also debug your app using the following integrated development environments (IDEs):
 
 * Visual Studio

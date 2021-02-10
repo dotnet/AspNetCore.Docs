@@ -11,8 +11,6 @@ uid: blazor/fundamentals/handle-errors
 ---
 # Handle errors in ASP.NET Core Blazor apps
 
-By [Steve Sanderson](https://github.com/SteveSandersonMS)
-
 This article describes how Blazor manages unhandled exceptions and how to develop apps that detect and handle errors.
 
 ## Detailed errors during development

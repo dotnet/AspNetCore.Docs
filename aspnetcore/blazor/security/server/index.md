@@ -11,8 +11,6 @@ uid: blazor/security/server/index
 ---
 # Secure ASP.NET Core Blazor Server apps
 
-By [Luke Latham](https://github.com/guardrex)
-
 Blazor Server apps are configured for security in the same manner as ASP.NET Core apps. For more information, see the articles under <xref:security/index>. Topics under this overview apply specifically to Blazor Server.
 
 ## Blazor Server project template

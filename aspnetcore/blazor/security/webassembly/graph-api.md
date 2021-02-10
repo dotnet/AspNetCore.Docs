@@ -11,8 +11,6 @@ uid: blazor/security/webassembly/graph-api
 ---
 # Use Graph API with ASP.NET Core Blazor WebAssembly
 
-By [Javier Calvarro Nelson](https://github.com/javiercn) and [Luke Latham](https://github.com/guardrex)
-
 ::: moniker range=">= aspnetcore-5.0"
 
 [Microsoft Graph API](/graph/use-the-api) is a RESTful web API that enables Blazor and other .NET Framework apps to access Microsoft Cloud service resources.

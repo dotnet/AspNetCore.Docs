@@ -11,8 +11,6 @@ uid: blazor/components/rendering
 ---
 # ASP.NET Core Blazor component rendering
 
-By [Steve Sanderson](https://github.com/SteveSandersonMS)
-
 Components *must* render when they're first added to the component hierarchy by their parent component. This is the only time that a component strictly must render.
 
 Components *may* choose to render at any other time according to their own logic and conventions.

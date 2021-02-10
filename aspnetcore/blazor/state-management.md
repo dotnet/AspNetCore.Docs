@@ -12,8 +12,6 @@ zone_pivot_groups: blazor-hosting-models
 ---
 # ASP.NET Core Blazor state management
 
-By [Steve Sanderson](https://github.com/SteveSandersonMS) and [Luke Latham](https://github.com/guardrex)
-
 ::: zone pivot="webassembly"
 
 User state created in a Blazor WebAssembly app is held in the browser's memory.
