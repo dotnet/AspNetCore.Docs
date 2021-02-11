@@ -117,7 +117,7 @@ Follow the guidance for your choice of tooling:
    dotnet new blazorwasm -ho -o BlazorWebAssemblySignalRApp
    ```
 
-   The `-ho|--hosted` option creates a hosted Blazor WebAssembly solution.
+   The `-ho|--hosted` option creates a hosted Blazor WebAssembly solution. For information on configuring VS Code assets in the `.vscode` folder, see <xref:blazor/tooling>.
 
    The `-o|--output` option creates a folder for the solution. If you've created a folder for the solution and the command shell is open in that folder, omit the `-o|--output` option and value to create the solution.
 
@@ -361,6 +361,8 @@ Follow the guidance for your tooling:
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
+For information on configuring VS Code assets in the `.vscode` folder to run and debug the app, see <xref:blazor/tooling>.
+
 1. Press <kbd>F5</kbd> to run the app with debugging or <kbd>Ctrl</kbd>+<kbd>F5</kbd> to run the app without debugging.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
@@ -448,7 +450,7 @@ Follow the guidance for your choice of tooling:
 
 1. In Visual Studio Code, open the app's project folder.
 
-1. When the dialog appears to add assets to build and debug the app, select **Yes**. Visual Studio Code automatically adds the `.vscode` folder with generated `launch.json` and `tasks.json` files.
+1. When the dialog appears to add assets to build and debug the app, select **Yes**. Visual Studio Code automatically adds the `.vscode` folder with generated `launch.json` and `tasks.json` files. For information on configuring VS Code assets in the `.vscode` folder, see <xref:blazor/tooling>.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
