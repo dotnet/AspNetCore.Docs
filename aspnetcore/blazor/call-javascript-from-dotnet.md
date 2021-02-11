@@ -85,7 +85,7 @@ Place the `<script>` tag that references the JavaScript file in the `wwwroot/ind
 
 `wwwroot/index.html` (Blazor WebAssembly):
 
-[!code-html[](./common/samples/5.x/BlazorWebAssemblySample/wwwroot/index.html?highlight=22)]
+[!code-html[](./common/samples/5.x/BlazorWebAssemblySample/wwwroot/index.html?highlight=23)]
 
 `Pages/_Host.cshtml` (Blazor Server):
 
