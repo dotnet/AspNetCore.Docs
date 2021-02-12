@@ -217,13 +217,13 @@ At the end of this tutorial, you'll have a working todo list app.
 
 ::: moniker range=">= aspnetcore-5.0"
 
-   [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo7.razor?highlight=4-7)]
+   [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo7.razor?name=snippet&highlight=4-7)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-   [!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo7.razor?highlight=4-7)]
+   [!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo7.razor?name=snippet&highlight=4-7)]
 
 ::: moniker-end
 
