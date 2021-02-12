@@ -145,7 +145,7 @@ For information on using a custom app base path for Blazor WebAssembly apps, see
 
 <h2 id="vscode">Debug standalone Blazor WebAssembly</h2>
 
-For information on configuring VS Code assets in the `.vscode` folder to run and debug the app, see <xref:blazor/tooling>.
+For information on configuring VS Code assets in the `.vscode` folder, see the **Linux** operating system tab in <xref:blazor/tooling>.
 
 1. Open the standalone Blazor WebAssembly app in VS Code.
 
@@ -182,6 +182,8 @@ For information on configuring VS Code assets in the `.vscode` folder to run and
 1. If there's no launch configuration set for the project, the following notification appears. Select **Yes**.
 
    > Required assets to build and debug are missing from '{APPLICATION NAME}'. Add them?
+
+   For information on configuring VS Code assets in the `.vscode` folder, see the **Linux** operating system tab in <xref:blazor/tooling>.
 
 1. In the command palette at the top of the window, select the *Server* project within the hosted solution.
 

@@ -101,16 +101,16 @@ When executing a hosted Blazor WebAssembly app, run the app from the solution's 
 
    ```json
    ...
-   "${workspaceFolder}/{SERVER APP FOLDER}/{SERVER APP NAMESPACE}.csproj",
+   "${workspaceFolder}/{SERVER APP FOLDER}/{PROJECT NAME}.csproj",
    ...
    ```
 
    In the preceding argument:
 
    * The `{SERVER APP FOLDER}` placeholder is the **`Server`** project's folder, typically "`Server`".
-   * The `{APP NAMESPACE}` placeholder is the app's namespace, typically based on the app's name followed by "`.Server`" in an app generated from the Blazor project template.
+   * The `{PROJECT NAME}` placeholder is the app's name, typically based on the solution's name followed by "`.Server`" in an app generated from the Blazor project template.
 
-   The following example from the [tutorial for using SignalR with a Blazor WebAssembly app](xref:tutorials/signalr-blazor) uses a project folder name of `Server` and an app namespace of `BlazorWebAssemblySignalRApp.Server`:
+   The following example from the [tutorial for using SignalR with a Blazor WebAssembly app](xref:tutorials/signalr-blazor) uses a project folder name of `Server` and a project name of `BlazorWebAssemblySignalRApp.Server`:
 
    ```json
    ...
