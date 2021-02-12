@@ -11,8 +11,6 @@ uid: blazor/security/webassembly/hosted-with-identity-server
 ---
 # Secure an ASP.NET Core Blazor WebAssembly hosted app with Identity Server
 
-By [Javier Calvarro Nelson](https://github.com/javiercn) and [Luke Latham](https://github.com/guardrex)
-
 This article explains how to create a [hosted Blazor WebAssembly app](xref:blazor/hosting-models#blazor-webassembly) that uses [IdentityServer](https://identityserver.io/) to authenticate users and API calls.
 
 > [!NOTE]

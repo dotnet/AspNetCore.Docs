@@ -11,8 +11,6 @@ uid: blazor/hosting-models
 ---
 # ASP.NET Core Blazor hosting models
 
-By [Daniel Roth](https://github.com/danroth27)
-
 Blazor is a web framework designed to run client-side in the browser on a [WebAssembly](https://webassembly.org/)-based .NET runtime (*Blazor WebAssembly*) or server-side in ASP.NET Core (*Blazor Server*). Regardless of the hosting model, the app and component models *are the same*.
 
 ## Blazor WebAssembly

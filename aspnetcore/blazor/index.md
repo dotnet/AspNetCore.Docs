@@ -11,8 +11,6 @@ uid: blazor/index
 ---
 # Introduction to ASP.NET Core Blazor
 
-By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.com/guardrex)
-
 *Welcome to Blazor!*
 
 Blazor is a framework for building interactive client-side web UI with [.NET](/dotnet/standard/tour):

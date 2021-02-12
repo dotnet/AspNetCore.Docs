@@ -12,8 +12,6 @@ zone_pivot_groups: blazor-hosting-models
 ---
 # Use ASP.NET Core SignalR with Blazor
 
-By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.com/guardrex)
-
 This tutorial teaches the basics of building a real-time app using SignalR with Blazor. You learn how to:
 
 > [!div class="checklist"]

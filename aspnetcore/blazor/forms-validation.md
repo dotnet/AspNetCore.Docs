@@ -11,8 +11,6 @@ uid: blazor/forms-validation
 ---
 # ASP.NET Core Blazor forms and validation
 
-By [Daniel Roth](https://github.com/danroth27), [Rémi Bourgarel](https://remibou.github.io/), and [Luke Latham](https://github.com/guardrex)
-
 Forms and validation are supported in Blazor using [data annotations](xref:mvc/models/validation).
 
 The following `ExampleModel` type defines validation logic using data annotations:

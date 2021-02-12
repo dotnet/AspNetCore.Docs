@@ -12,8 +12,6 @@ zone_pivot_groups: blazor-hosting-models
 ---
 # Prerender and integrate ASP.NET Core Razor components
 
-By [Luke Latham](https://github.com/guardrex) and [Daniel Roth](https://github.com/danroth27)
-
 ::: zone pivot="webassembly"
 
 ::: moniker range=">= aspnetcore-5.0"

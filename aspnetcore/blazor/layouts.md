@@ -11,8 +11,6 @@ uid: blazor/layouts
 ---
 # ASP.NET Core Blazor layouts
 
-By [Rainer Stropek](https://www.timecockpit.com) and [Luke Latham](https://github.com/guardrex)
-
 Some app elements, such as menus, copyright messages, and company logos, are usually part of app's overall layout and used by every component in the app. Copying the code of these elements into all of the components of an app isn't an efficient approach. Every time one of the elements requires an update, every component must be updated. Such duplication is difficult to maintain and can lead to inconsistent content over time. *Layouts* solve this problem.
 
 Technically, a layout is just another component. A layout is defined in a Razor template or in C# code and can use [data binding](xref:blazor/components/data-binding), [dependency injection](xref:blazor/fundamentals/dependency-injection), and other component scenarios. Layouts only apply to routable Razor components that have [`@page`](xref:mvc/views/razor#page) directives.

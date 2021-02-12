@@ -11,8 +11,6 @@ uid: blazor/advanced-scenarios
 ---
 # ASP.NET Core Blazor advanced scenarios
 
-By [Luke Latham](https://github.com/guardrex) and [Daniel Roth](https://github.com/danroth27)
-
 ## Blazor Server circuit handler
 
 Blazor Server allows code to define a *circuit handler*, which allows running code on changes to the state of a user's circuit. A circuit handler is implemented by deriving from `CircuitHandler` and registering the class in the app's service container. The following example of a circuit handler tracks open SignalR connections:

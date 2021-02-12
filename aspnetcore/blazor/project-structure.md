@@ -11,8 +11,6 @@ uid: blazor/project-structure
 ---
 # ASP.NET Core Blazor project structure
 
-By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.com/guardrex)
-
 This article describes the files and folders that make up a Blazor app generated from the Blazor project templates.
 
 ## Blazor WebAssembly

@@ -11,8 +11,6 @@ uid: blazor/call-web-api
 ---
 # Call a web API from ASP.NET Core Blazor
 
-By [Luke Latham](https://github.com/guardrex), [Daniel Roth](https://github.com/danroth27), and [Juan De la Cruz](https://github.com/juandelacruz23)
-
 > [!NOTE]
 > This topic applies to Blazor WebAssembly. [Blazor Server](xref:blazor/hosting-models#blazor-server) apps call web APIs using <xref:System.Net.Http.HttpClient> instances, typically created using <xref:System.Net.Http.IHttpClientFactory>. For guidance that applies to Blazor Server, see <xref:fundamentals/http-requests>.
 
