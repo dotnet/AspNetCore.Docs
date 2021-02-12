@@ -13,7 +13,7 @@ By [James Montemagno](https://twitter.com/JamesMontemagno)
 
 Mobile apps can communicate with ASP.NET Core backend services. For instructions on connecting local web services from iOS simulators and Android emulators, see [Connect to Local Web Services from iOS Simulators and Android Emulators](/xamarin/cross-platform/deploy-test/connect-to-local-web-services).
 
-[View or download sample backend services code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mobile/native-mobile-backend/sample)
+[View or download sample backend services code](https://github.com/xamarin/xamarin-forms-samples/tree/master/WebServices/TodoREST)
 
 ## The Sample Native Mobile App
 
@@ -39,7 +39,7 @@ To test it out yourself against the ASP.NET Core app created in the next section
 
 Android emulators do not run on the local machine and use a loopback IP (10.0.2.2) to communicate with the local machine. Leverage [Xamarin.Essentials DeviceInfo](/xamarin/essentials/device-information/) to detect what operating the system is running to use the correct URL. 
 
-Navigate to the `TodoREST` project and open the *Constants.cs* file and you will see this configuration or you can optionally deploy the web service to a cloud service such as Azure and update the URL.
+Navigate to the [`TodoREST`](https://github.com/xamarin/xamarin-forms-samples/tree/master/WebServices/TodoREST/TodoREST) project and open the [`Constants.cs`](https://github.com/xamarin/xamarin-forms-samples/blob/master/WebServices/TodoREST/TodoREST/Constants.cs) file. The *Constants.cs* file contains the following configuration.
 
 ```csharp
 // URL of REST service (Xamarin ReadOnly Service)
@@ -48,9 +48,11 @@ Navigate to the `TodoREST` project and open the *Constants.cs* file and you will
 public static string RestUrl = DeviceInfo.Platform == DevicePlatform.Android ? "http://10.0.2.2:5000/api/todoitems/{0}" : "http://localhost:5000/api/todoitems/{0}";
 ```
 
+You can optionally deploy the web service to a cloud service such as Azure and update the URL.
+
 ## Creating the ASP.NET Core Project
 
-Create a new ASP.NET Core Web Application in Visual Studio. Choose the Web API template and No Authentication. Name the project *TodoAPI*.
+Create a new ASP.NET Core Web Application in Visual Studio. Choose the Web API template. Name the project *TodoAPI*.
 
 ![New ASP.NET Web Application dialog with Web API project template selected](native-mobile-backend/_static/web-api-template.png)
 
