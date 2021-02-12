@@ -56,35 +56,37 @@ Create a new ASP.NET Core Web Application in Visual Studio. Choose the Web API t
 
 The application should respond to all requests made to port 5000 including clear-text http traffic for our mobile client. Update *Startup.cs* so <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A> doesn't run  in development:
 
-[!code-csharp[](native-mobile-backend/sample/TodoAPI/src/TodoAPI/Startup.cs?name=snippet&highlight=8-11)]
-
-:::code language="csharp" source="~/../xamarin-forms-samples/WebServices/TodoREST/TodoAPI/TodoAPI/Startup.cs" id="snippet" highlight="8-11":::
-
-:::code language="csharp" source="~/../xamarin-forms-samples/WebServices/TodoREST/TodoAPI/TodoAPI/Startup.cs" highlight="8-11":::
+:::code language="csharp" source="~/../xamarin-forms-samples/WebServices/TodoREST/TodoAPI/TodoAPI/Startup.cs" id="snippet" highlight="7-11":::
 
 > [!NOTE]
-> Make sure you run the application directly, rather than behind IIS Express, which ignores non-local requests by default. Run [dotnet run](/dotnet/core/tools/dotnet-run) from a command prompt, or choose the application name profile from the Debug Target dropdown in the Visual Studio toolbar.
+> Run the app directly, rather than behind IIS Express. IIS Express ignores non-local requests by default. Run [dotnet run](/dotnet/core/tools/dotnet-run) from a command prompt, or choose the app name profile from the Debug Target dropdown in the Visual Studio toolbar.
 
 Add a model class to represent To-Do items. Mark required fields with the `[Required]` attribute:
 
 [!code-csharp[](native-mobile-backend/sample/TodoAPI/src/TodoAPI/Models/TodoItem.cs)]
 
+:::code language="csharp" source="~/../xamarin-forms-samples/WebServices/TodoREST/TodoAPI/TodoAPI/Models/TodoItem.cs":::
+
 The API methods require some way to work with data. Use the same `ITodoRepository` interface the original Xamarin sample uses:
 
 [!code-csharp[](native-mobile-backend/sample/TodoAPI/src/TodoAPI/Interfaces/ITodoRepository.cs)]
+
+:::code language="csharp" source="~/../xamarin-forms-samples/WebServices/TodoREST/TodoAPI/TodoAPI/Interfaces/ITodoRepository.cs)":::
 
 For this sample, the implementation just uses a private collection of items:
 
 [!code-csharp[](native-mobile-backend/sample/TodoAPI/src/TodoAPI/Services/TodoRepository.cs)]
 
+:::code language="csharp" source="~/../xamarin-forms-samples/WebServices/TodoREST/TodoAPI/TodoAPI/Services/TodoRepository.cs":::
+
 Configure the implementation in *Startup.cs*:
 
 [!code-csharp[](native-mobile-backend/sample/TodoAPI/src/TodoAPI/Startup.cs?highlight=3&range=25-29)]
 
-At this point, you're ready to create the *TodoItemsController*.
+:::code language="csharp" source="~/../xamarin-forms-samples/WebServices/TodoREST/TodoAPI/TodoAPI/Startup.cs" id="snippet2" highlight="3":::
 
-> [!TIP]
-> Learn more about creating web APIs in [Build your first Web API with ASP.NET Core MVC and Visual Studio](../tutorials/first-web-api.md).
+:::code language="csharp" source="~/../xamarin-forms-samples/WebServices/TodoREST/TodoAPI/TodoAPI/Startup.cs" id="snippet" highlight="3":::
+
 
 ## Creating the Controller
 
@@ -94,6 +96,8 @@ The controller requires an `ITodoRepository` to function; request an instance of
 
 [!code-csharp[](native-mobile-backend/sample/TodoAPI/src/TodoAPI/Controllers/TodoItemsController.cs?range=1-18&highlight=10,15)]
 
+:::code language="csharp" source="~/../xamarin-forms-samples/WebServices/TodoREST/TodoAPI/TodoAPI/Controllers/TodoItemsController.cs?" range="1-18" highlight="3":::
+
 This API supports four different HTTP verbs to perform CRUD (Create, Read, Update, Delete) operations on the data source. The simplest of these is the Read operation, which corresponds to an HTTP GET request.
 
 ### Reading Items
@@ -101,6 +105,10 @@ This API supports four different HTTP verbs to perform CRUD (Create, Read, Updat
 Requesting a list of items is done with a GET request to the `List` method. The `[HttpGet]` attribute on the `List` method indicates that this action should only handle GET requests. The route for this action is the route specified on the controller. You don't necessarily need to use the action name as part of the route. You just need to ensure each action has a unique and unambiguous route. Routing attributes can be applied at both the controller and method levels to build up specific routes.
 
 [!code-csharp[](native-mobile-backend/sample/TodoAPI/src/TodoAPI/Controllers/TodoItemsController.cs?range=20-24)]
+
+:::code language="csharp" source="~/../xamarin-forms-samples/WebServices/TodoREST/TodoAPI/TodoAPI/Controllers/TodoItemsController.cs" id="snippet":::
+
+:::code language="csharp" source="~/../xamarin-forms-samples/WebServices/TodoREST/TodoAPI/TodoAPI/Controllers/TodoItemsController.cs":::
 
 The `List` method returns a 200 OK response code and all of the Todo items, serialized as JSON.
 
@@ -116,9 +124,13 @@ Inside the method, the item is checked for validity and prior existence in the d
 
 [!code-csharp[](native-mobile-backend/sample/TodoAPI/src/TodoAPI/Controllers/TodoItemsController.cs?range=26-47)]
 
+:::code language="csharp" source="~/../xamarin-forms-samples/WebServices/TodoREST/TodoAPI/TodoAPI/Controllers/TodoItemsController.cs" id="snippetCreate":::
+
 The sample uses an enum containing error codes that are passed to the mobile client:
 
 [!code-csharp[](native-mobile-backend/sample/TodoAPI/src/TodoAPI/Controllers/TodoItemsController.cs?range=92-100)]
+
+:::code language="csharp" source="~/../xamarin-forms-samples/WebServices/TodoREST/TodoAPI/TodoAPI/Controllers/TodoItemsController.cs" id="snippetErrorCode":::
 
 Test adding new items using Postman by choosing the POST verb providing the new object in JSON format in the Body of the request. You should also add a request header specifying a `Content-Type` of `application/json`.
 
@@ -129,6 +141,8 @@ The method returns the newly created item in the response.
 ### Updating Items
 
 Modifying records is done using HTTP PUT requests. Other than this change, the `Edit` method is almost identical to `Create`. Note that if the record isn't found, the `Edit` action will return a `NotFound` (404) response.
+
+:::code language="csharp" source="~/../xamarin-forms-samples/WebServices/TodoREST/TodoAPI/TodoAPI/Controllers/TodoItemsController.cs" id="snippetEdit":::
 
 [!code-csharp[](native-mobile-backend/sample/TodoAPI/src/TodoAPI/Controllers/TodoItemsController.cs?range=49-70)]
 
@@ -143,6 +157,8 @@ This method returns a `NoContent` (204) response when successful, for consistenc
 Deleting records is accomplished by making DELETE requests to the service, and passing the ID of the item to be deleted. As with updates, requests for items that don't exist will receive `NotFound` responses. Otherwise, a successful request will get a `NoContent` (204) response.
 
 [!code-csharp[](native-mobile-backend/sample/TodoAPI/src/TodoAPI/Controllers/TodoItemsController.cs?range=72-89)]
+
+:::code language="csharp" source="~/../xamarin-forms-samples/WebServices/TodoREST/TodoAPI/TodoAPI/Controllers/TodoItemsController.cs" id="snippetDelete":::
 
 Note that when testing the delete functionality, nothing is required in the Body of the request.
 
