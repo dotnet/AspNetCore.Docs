@@ -41,14 +41,7 @@ Android emulators do not run on the local machine and use a loopback IP (10.0.2.
 
 Navigate to the [`TodoREST`](https://github.com/xamarin/xamarin-forms-samples/tree/master/WebServices/TodoREST/TodoREST) project and open the [`Constants.cs`](https://github.com/xamarin/xamarin-forms-samples/blob/master/WebServices/TodoREST/TodoREST/Constants.cs) file. The *Constants.cs* file contains the following configuration.
 
-```csharp
-// URL of REST service (Xamarin ReadOnly Service)
-//public static string RestUrl = "https://YOURPROJECT.azurewebsites.net:8081/api/todoitems/{0}";
-
-public static string RestUrl = DeviceInfo.Platform == DevicePlatform.Android ? "http://10.0.2.2:5000/api/todoitems/{0}" : "http://localhost:5000/api/todoitems/{0}";
-```
-
-:::code language="csharp" source="~/../xamarin-forms-samples/WebServices/TodoREST/TodoREST/Constants.cs":::
+:::code language="csharp" source="~/../xamarin-forms-samples/WebServices/TodoREST/TodoREST/Constants.cs" highlight="13":::
 
 You can optionally deploy the web service to a cloud service such as Azure and update the `RestUrl`.
 
@@ -85,13 +78,9 @@ Configure the implementation in *Startup.cs*:
 
 ## Creating the Controller
 
-Add a new controller to the project, *TodoItemsController*. It should inherit from Microsoft.AspNetCore.Mvc.Controller. Add a `Route` attribute to indicate that the controller will handle requests made to paths starting with `api/todoitems`. The `[controller]` token in the route is replaced by the name of the controller (omitting the `Controller` suffix), and is especially helpful for global routes. Learn more about [routing](../fundamentals/routing.md).
+Add a new controller to the project, *TodoItemsController*. It should inherit from <xref:Microsoft.AspNetCore.Mvc.ControllerBase>. Add a `Route` attribute to indicate that the controller will handle requests made to paths starting with `api/todoitems`. The `[controller]` token in the route is replaced by the name of the controller (omitting the `Controller` suffix), and is especially helpful for global routes. Learn more about [routing](../fundamentals/routing.md).
 
 The controller requires an `ITodoRepository` to function; request an instance of this type through the controller's constructor. At runtime, this instance will be provided using the framework's support for [dependency injection](../fundamentals/dependency-injection.md).
-
-<!-->
-[!code-csharp[](native-mobile-backend/sample/TodoAPI/src/TodoAPI/Controllers/TodoItemsController.cs?range=1-18&highlight=10,15)]
--->
 
 :::code language="csharp" source="~/../xamarin-forms-samples/WebServices/TodoREST/TodoAPI/TodoAPI/Controllers/TodoItemsController.cs" id="snippetDI":::
 
@@ -100,10 +89,6 @@ This API supports four different HTTP verbs to perform CRUD (Create, Read, Updat
 ### Reading Items
 
 Requesting a list of items is done with a GET request to the `List` method. The `[HttpGet]` attribute on the `List` method indicates that this action should only handle GET requests. The route for this action is the route specified on the controller. You don't necessarily need to use the action name as part of the route. You just need to ensure each action has a unique and unambiguous route. Routing attributes can be applied at both the controller and method levels to build up specific routes.
-
-<!-->
-[!code-csharp[](native-mobile-backend/sample/TodoAPI/src/TodoAPI/Controllers/TodoItemsController.cs?range=20-24)]
--->
 
 :::code language="csharp" source="~/../xamarin-forms-samples/WebServices/TodoREST/TodoAPI/TodoAPI/Controllers/TodoItemsController.cs" id="snippet":::
 
