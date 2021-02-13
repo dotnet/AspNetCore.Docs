@@ -71,6 +71,10 @@ The API methods require some way to work with data. Use the same `ITodoRepositor
 
 [!code-csharp[](native-mobile-backend/sample/TodoAPI/src/TodoAPI/Interfaces/ITodoRepository.cs)]
 
+<!-- copy/paste path
+xamarin-forms-samples/WebServices/TodoREST/TodoAPI/TodoAPI/Interfaces/ITodoRepository.cs
+-->
+
 :::code language="csharp" source="~/../xamarin-forms-samples/WebServices/TodoREST/TodoAPI/TodoAPI/Interfaces/ITodoRepository.cs)":::
 
 For this sample, the implementation just uses a private collection of items:
@@ -159,6 +163,19 @@ Deleting records is accomplished by making DELETE requests to the service, and p
 Note that when testing the delete functionality, nothing is required in the Body of the request.
 
 ![Postman console showing a DELETE and response](native-mobile-backend/_static/postman-delete.png)
+
+## Prevent over-posting
+
+Currently the sample app exposes the entire `TodoItem` object. Production apps typically limit the data that's input and returned using a subset of the model. There are multiple reasons behind this and security is a major one. The subset of a model is usually referred to as a Data Transfer Object (DTO), input model, or view model. **DTO** is used in this article.
+
+A DTO may be used to:
+
+* Prevent over-posting.
+* Hide properties that clients are not supposed to view.
+* Omit some properties in order to reduce payload size.
+* Flatten object graphs that contain nested objects. Flattened object graphs can be more convenient for clients.
+
+To demonstrate the DTO approach, see [Prevent over-posting](xref:https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-web-api#prevent-over-posting)
 
 ## Common Web API Conventions
 
