@@ -64,9 +64,7 @@ Add a model class to represent To-Do items. Mark required fields with the `[Requ
 
 The API methods require some way to work with data. Use the same `ITodoRepository` interface the original Xamarin sample uses:
 
-[!code-csharp[](native-mobile-backend/sample/TodoAPI/src/TodoAPI/Interfaces/ITodoRepository.cs)]
-
-:::code language="csharp" source="~/../xamarin-forms-samples/WebServices/TodoREST/TodoAPI/TodoAPI/Interfaces/ITodoRepository.cs)":::
+:::code language="csharp" source="~/../xamarin-forms-samples/WebServices/TodoREST/TodoAPI/TodoAPI/Interfaces/ITodoRepository.cs":::
 
 For this sample, the implementation just uses a private collection of items:
 
