@@ -385,6 +385,24 @@ For more information, see [Razor syntax reference for ASP.NET Core](xref:mvc/vie
 > [!WARNING]
 > Don't create components that write to their own *component parameters*, use a private field instead. For more information, see the [Overwritten parameters](#overwritten-parameters) section.
 
+#### Component parameters should be auto-properties
+
+Component parameters should be declared as *auto-properties*, meaning that they shouldn't contain custom logic in their getters or setters. For example, the following `StartData` property is an auto-property:
+
+```csharp
+[Parameter]
+public DateTime StartData { get; set; }
+```
+
+Don't place custom logic in the `get` or `set` accessor because component parameters are purely intended for use as a channel for a parent component to flow information to a child component. If a setter of a child component property contains logic that causes rerendering of the parent component, an *infinite rendering loop results*.
+
+If you need to transform a received parameter value:
+
+* Leave the parameter property as a pure auto-property to represent the initial raw data.
+* Create some other property or method that supplies the transformed data based on the parameter property.
+
+You can override `OnParametersSetAsync` if you want to transform a received parameter each time new data is received.
+
 ## Child content
 
 Components can set the content of another component. The assigning component provides the content between the tags that specify the receiving component.
