@@ -268,11 +268,117 @@ In the following example from the sample app, the `ParentComponent` sets the val
 
 [!code-razor[](index/samples_snapshot/ParentComponent.razor?highlight=5-6)]
 
-By convention, an attribute value that consists of C# code is assigned to a parameter using [Razor's reserved `@` symbol](xref:mvc/views/razor#razor-syntax):
+Assign C# fields, properties, and methods to component parameters as HTML attribute values using [Razor's reserved `@` symbol](xref:mvc/views/razor#razor-syntax):
 
-* Parent field or property: `Title="@{FIELD OR PROPERTY}`, where the placeholder `{FIELD OR PROPERTY}` is a C# field or property of the parent component.
-* Result of a method: `Title="@{METHOD}"`, where the placeholder `{METHOD}` is a C# method of the parent component.
-* [Implicit or explicit expression](xref:mvc/views/razor#implicit-razor-expressions): `Title="@({EXPRESSION})"`, where the placeholder `{EXPRESSION}` is a C# expression.
+* To assign a parent component's field or property value to a child component's parameter, prefix the field or property name with the `@` symbol. To assign a C# field named `title` to the `Title` parameter, use the syntax `Title="@title"`, as seen in the following parent component:
+
+  ```razor
+  <ChildComponent Title="@title">
+      Title from field.
+  </ChildComponent>
+  
+  @code {
+      private string title = "Panel Title from Parent";
+  }
+  ```
+
+* To assign the result of a parent component's method to a child component's parameter, prefix the method name with the `@` symbol. To assign the result of a C# method named `GetTitle` to the `Title` parameter, use the syntax `Title="@GetTitle"`, as seen in the following parent component:
+
+  ```razor
+  <ChildComponent Title="@GetTitle()">
+      Title from method.
+  </ChildComponent>
+  
+  @code {
+      private string GetTitle()
+      {
+          return "Panel Title from Parent";
+      }
+  }
+  ```
+  
+* To assign the result of an [implicit C# expression](xref:mvc/views/razor#implicit-razor-expressions) in the parent component to a child component's parameter, prefix the implicit expression with an `@` symbol. To assign the current local date in long format with <xref:System.DateTime.ToLongDateString%2A> in the parent component, assign `@DateTime.Now.ToLongDateString()` to the child's parameter. To assign a `person` object's `Name` property, assign `@person.Name`. The following example demonstrates these concepts:
+
+  ```razor
+  <ChildComponent Title="@DateTime.Now.ToLongDateString()">
+      Title from implicit Razor expression.
+  </ChildComponent>
+  
+  <ChildComponent Title="@person.Name">
+      Title from implicit Razor expression.
+  </ChildComponent>
+  ```
+  
+  Unlike in Razor pages (`.cshtml`), Blazor can't perform asynchronous work in a Razor expression while rendering a component. Instead, asynchronous work is performed during one of the [asynchronous component lifecycle events](xref:blazor/components/lifecycle). The following Razor syntax is **not** supported:
+  
+  ```razor
+  <ChildComponent Title="@await ...">
+      ...
+  </ChildComponent>
+  ```
+  
+  The code in the preceding example generates an IntelliSense error in Visual Studio and a *compiler error* if the app is built:
+  
+  > The 'await' operator can only be used within an async method. Consider marking this method with the 'async' modifier and changing its return type to 'Task'.
+
+  To obtain a value for the `Title` parameter in the preceding example asychronously, the component can use the [`OnInitializedAsync` lifecycle event](xref:blazor/components/lifecycle#component-initialization-methods), as the following example demonstrates:
+  
+  ```razor
+  <ChildComponent Title="@title">
+      Title from implicit Razor expression.
+  </ChildComponent>
+  
+  @code {
+      private string title;
+      
+      protected override async Task OnInitializedAsync()
+      {
+          title = await Task.FromResult<string>("Panel Title from Parent");
+      }
+  }
+  ```
+  
+* To assign the result of an [explicit C# expression](xref:mvc/views/razor#explicit-razor-expressions) in the parent component to a child component's parameter, surround the expression in parentheses with an `@` symbol prefix. To calculate a date that's one week in the past for assignment to a child's parameter, use the syntax `Title="@((DateTime.Now - TimeSpan.FromDays(7)).ToString())"`, as seen in the following parent component:
+
+  ```razor
+  <ChildComponent Title="@((DateTime.Now - TimeSpan.FromDays(7)).ToString())">
+      Title from explicit Razor expression.
+  </ChildComponent>
+  ```
+
+  Use of an explicit expression to concatenate text with an expression result for assignment to a parameter is **not** supported. The following example seeks to concatenate the text "SKU-" with a product stock number (`SKU` property, "Stock Keeping Unit") provided by a parent component's `product` object. Although this syntax is supported in a Razor page (`.cshtml`), it isn't valid for assignment to the child's `Title` parameter.
+  
+  ```razor
+  <ChildComponent Title="SKU-@(product.SKU)">
+      Title from composed Razor expression. This doesn't compile.
+  </ChildComponent>
+  ```
+  
+  The code in the preceding example generates an IntelliSense error in Visual Studio and a *compiler error* if the app is built:
+  
+  > Component attributes do not support complex content (mixed C# and markup).
+  
+  To support the assignment of a composed value, use a method, field, or property. The following example performs the concatination of "SKU-" and a product's stock number in the C# method `GetTitle`:
+  
+  ```razor
+  <ChildComponent Title="@GetTitle()">
+      Composed title from method.
+  </ChildComponent>
+  
+  @code {
+      private Product product = new Product();
+
+      private string GetTitle()
+      {
+          return $"SKU-{product.SKU}";
+      }
+      
+      private class Product
+      {
+          public string SKU { get; set; } = "12345";
+      }
+  }
+  ```
   
 For more information, see [Razor syntax reference for ASP.NET Core](xref:mvc/views/razor).
 
