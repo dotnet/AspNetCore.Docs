@@ -270,15 +270,17 @@ In the following example from the sample app, the `ParentComponent` sets the val
 
 Assign C# fields, properties, and methods to component parameters as HTML attribute values using [Razor's reserved `@` symbol](xref:mvc/views/razor#razor-syntax):
 
-* To assign a parent component's field, property, or method to a child component's parameter, prefix the field, property, or method name with the `@` symbol. To assign the result of an [implicit C# expression](xref:mvc/views/razor#implicit-razor-expressions) in the parent component to a child component's parameter, prefix the implicit expression with an `@` symbol.
+* To assign a parent component's field, property, or method to a child component's parameter, prefix the field, property, or method name with the `@` symbol. To assign the result of an [implicit C# expression](xref:mvc/views/razor#implicit-razor-expressions) to a parameter, prefix the implicit expression with an `@` symbol.
 
-  The following parent component example uses the preceding `ChildComponent` component example and sets its `Title` parameter value to:
+  The following parent component displays four instances of the preceding `ChildComponent` component and sets their `Title` parameter values to:
 
-  * The value of the `title` field in the first child component.
-  * The result of the `GetTitle` C# method in the second child component.
-  * The current local date in long format with <xref:System.DateTime.ToLongDateString%2A> in the third child component.
-  * The `person` object's `Name` property in the fourth child component.
+  * The value of the `title` field.
+  * The result of the `GetTitle` C# method.
+  * The current local date in long format with <xref:System.DateTime.ToLongDateString%2A>.
+  * The `person` object's `Name` property.
 
+  `Pages/ParentComponent.razor`:
+  
   ```razor
   <ChildComponent Title="@title">
       Title from field.
