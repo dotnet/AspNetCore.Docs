@@ -309,7 +309,7 @@ Assign C# fields, properties, and methods to component parameters as HTML attrib
   </ChildComponent>
   ```
   
-  Unlike in Razor pages (`.cshtml`), Blazor can't perform asynchronous work in a Razor expression while rendering a component. Instead, asynchronous work is performed during one of the [asynchronous component lifecycle events](xref:blazor/components/lifecycle). The following Razor syntax is **not** supported:
+  Unlike in Razor pages (`.cshtml`), Blazor can't perform asynchronous work in a Razor expression while rendering a component. This is because Blazor is designed for rendering interactive UIs. In an interactive UI, the screen must always display something, so it doesn't make sense to block the rendering flow. Instead, asynchronous work is performed during one of the [asynchronous lifecycle events](xref:blazor/components/lifecycle). After the component is rendered, the UI may be updated. The following Razor syntax is **not** supported:
   
   ```razor
   <ChildComponent Title="@await ...">
@@ -333,7 +333,7 @@ Assign C# fields, properties, and methods to component parameters as HTML attrib
       
       protected override async Task OnInitializedAsync()
       {
-          title = await Task.FromResult<string>("Panel Title from Parent");
+          title = await ...;
       }
   }
   ```
@@ -341,7 +341,7 @@ Assign C# fields, properties, and methods to component parameters as HTML attrib
 * To assign the result of an [explicit C# expression](xref:mvc/views/razor#explicit-razor-expressions) in the parent component to a child component's parameter, surround the expression in parentheses with an `@` symbol prefix. To calculate a date that's one week in the past for assignment to a child's parameter, use the syntax `Title="@((DateTime.Now - TimeSpan.FromDays(7)).ToString())"`, as seen in the following parent component:
 
   ```razor
-  <ChildComponent Title="@((DateTime.Now - TimeSpan.FromDays(7)).ToString())">
+  <ChildComponent ShowItemsSinceDate="@(DateTime.Now - TimeSpan.FromDays(7))">
       Title from explicit Razor expression.
   </ChildComponent>
   ```
@@ -368,10 +368,7 @@ Assign C# fields, properties, and methods to component parameters as HTML attrib
   @code {
       private Product product = new Product();
 
-      private string GetTitle()
-      {
-          return $"SKU-{product.SKU}";
-      }
+      private string GetTitle() => $"SKU-{product.SKU}";
       
       private class Product
       {
@@ -394,11 +391,11 @@ Component parameters should be declared as *auto-properties*, meaning that they 
 public DateTime StartData { get; set; }
 ```
 
-Don't place custom logic in the `get` or `set` accessor because component parameters are purely intended for use as a channel for a parent component to flow information to a child component. If a setter of a child component property contains logic that causes rerendering of the parent component, an *infinite rendering loop results*.
+Don't place custom logic in the `get` or `set` accessor because component parameters are purely intended for use as a channel for a parent component to flow information to a child component. If a setter of a child component property contains logic that causes rerendering of the parent component, an infinite rendering loop results.
 
 If you need to transform a received parameter value:
 
-* Leave the parameter property as a pure auto-property to represent the initial raw data.
+* Leave the parameter property as a pure auto-property to represent the supplied raw data.
 * Create some other property or method that supplies the transformed data based on the parameter property.
 
 You can override `OnParametersSetAsync` if you want to transform a received parameter each time new data is received.
