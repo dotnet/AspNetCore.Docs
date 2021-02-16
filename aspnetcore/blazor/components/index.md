@@ -270,36 +270,24 @@ In the following example from the sample app, the `ParentComponent` sets the val
 
 Assign C# fields, properties, and methods to component parameters as HTML attribute values using [Razor's reserved `@` symbol](xref:mvc/views/razor#razor-syntax):
 
-* To assign a parent component's field or property value to a child component's parameter, prefix the field or property name with the `@` symbol. To assign a C# field named `title` to the `Title` parameter, use the syntax `Title="@title"`, as seen in the following parent component:
+* To assign a parent component's field, property, or method to a child component's parameter, prefix the field, property, or method name with the `@` symbol. To assign the result of an [implicit C# expression](xref:mvc/views/razor#implicit-razor-expressions) in the parent component to a child component's parameter, prefix the implicit expression with an `@` symbol.
+
+  The following parent component example uses the preceding `ChildComponent` component example and sets its `Title` parameter value to:
+
+  * The value of the `title` field in the first child component.
+  * The result of the `GetTitle` C# method in the second child component.
+  * The current local date in long format with <xref:System.DateTime.ToLongDateString%2A> in the third child component.
+  * The `person` object's `Name` property in the fourth child component.
 
   ```razor
   <ChildComponent Title="@title">
       Title from field.
   </ChildComponent>
   
-  @code {
-      private string title = "Panel Title from Parent";
-  }
-  ```
-
-* To assign the result of a parent component's method to a child component's parameter, prefix the method name with the `@` symbol. To assign the result of a C# method named `GetTitle` to the `Title` parameter, use the syntax `Title="@GetTitle"`, as seen in the following parent component:
-
-  ```razor
   <ChildComponent Title="@GetTitle()">
       Title from method.
   </ChildComponent>
   
-  @code {
-      private string GetTitle()
-      {
-          return "Panel Title from Parent";
-      }
-  }
-  ```
-  
-* To assign the result of an [implicit C# expression](xref:mvc/views/razor#implicit-razor-expressions) in the parent component to a child component's parameter, prefix the implicit expression with an `@` symbol. To assign the current local date in long format with <xref:System.DateTime.ToLongDateString%2A> in the parent component, assign `@DateTime.Now.ToLongDateString()` to the child's parameter. To assign a `person` object's `Name` property, assign `@person.Name`. The following example demonstrates these concepts:
-
-  ```razor
   <ChildComponent Title="@DateTime.Now.ToLongDateString()">
       Title from implicit Razor expression.
   </ChildComponent>
@@ -307,6 +295,21 @@ Assign C# fields, properties, and methods to component parameters as HTML attrib
   <ChildComponent Title="@person.Name">
       Title from implicit Razor expression.
   </ChildComponent>
+  
+  @code {
+      private string title = "Panel Title from Parent";
+      private Person person = new Person();
+      
+      private string GetTitle()
+      {
+          return "Panel Title from Parent";
+      }
+      
+      private class Person
+      {
+          public string Name { get; set; } = "Dr. Who";
+      }
+  }
   ```
   
   Unlike in Razor pages (`.cshtml`), Blazor can't perform asynchronous work in a Razor expression while rendering a component. This is because Blazor is designed for rendering interactive UIs. In an interactive UI, the screen must always display something, so it doesn't make sense to block the rendering flow. Instead, asynchronous work is performed during one of the [asynchronous lifecycle events](xref:blazor/components/lifecycle). After the component is rendered, the UI may be updated. The following Razor syntax is **not** supported:
@@ -338,7 +341,29 @@ Assign C# fields, properties, and methods to component parameters as HTML attrib
   }
   ```
   
-* To assign the result of an [explicit C# expression](xref:mvc/views/razor#explicit-razor-expressions) in the parent component to a child component's parameter, surround the expression in parentheses with an `@` symbol prefix. To calculate a date that's one week in the past for assignment to a child's parameter, use the syntax `Title="@((DateTime.Now - TimeSpan.FromDays(7)).ToString())"`, as seen in the following parent component:
+* To assign the result of an [explicit C# expression](xref:mvc/views/razor#explicit-razor-expressions) in the parent component to a child component's parameter, surround the expression in parentheses with an `@` symbol prefix. To calculate a date that's one week in the past for assignment to a child's parameter, use the syntax `Title="@((DateTime.Now - TimeSpan.FromDays(7)).ToString())"`, as seen in the following child and parent component:
+
+  `Shared/ChildComponent.razor`:
+  
+  ```razor
+  <div class="panel panel-default">
+      <div class="panel-heading">Explicit DateTime Expression Example</div>
+      <div class="panel-body">
+          <p>@ChildContent</p>
+          <p>One week ago date: @ShowItemsSinceDate</p>
+      </div>
+  </div>
+
+  @code {
+      [Parameter]
+      public DateTime ShowItemsSinceDate { get; set; }
+
+      [Parameter]
+      public RenderFragment ChildContent { get; set; }
+  }
+  ```
+  
+  `Pages/ParentComponent.razor`:
 
   ```razor
   <ChildComponent ShowItemsSinceDate="@(DateTime.Now - TimeSpan.FromDays(7))">
