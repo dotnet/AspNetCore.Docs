@@ -343,7 +343,7 @@ Assign C# fields, properties, and methods to component parameters as HTML attrib
   }
   ```
   
-* To assign the result of an [explicit C# expression](xref:mvc/views/razor#explicit-razor-expressions) in the parent component to a child component's parameter, surround the expression in parentheses with an `@` symbol prefix. To calculate a date that's one week in the past for assignment to a child's parameter, use the syntax `Title="@((DateTime.Now - TimeSpan.FromDays(7)).ToString())"`, as seen in the following child and parent component:
+* To assign the result of an [explicit C# expression](xref:mvc/views/razor#explicit-razor-expressions) in the parent component to a child component's parameter, surround the expression in parentheses with an `@` symbol prefix. To calculate a date that's one week in the past for assignment to a child's parameter, use the syntax `{PARAMETER}="@((DateTime.Now - TimeSpan.FromDays(7)).ToString())"`, where the `{PARAMETER}` placeholder is the child component's parameter name. In the following example, the child component has a `DateTime` component parameter. The parent component assigns a date value calculated from the current local date with an explicit C# expression.
 
   `Shared/ChildComponent.razor`:
   
