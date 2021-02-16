@@ -61,9 +61,13 @@ In the PMC, run the following command:
 
 ```powershell
 Install-Package Microsoft.EntityFrameworkCore.SqlServer
+Install-Package Microsoft.VisualStudio.Web.CodeGeneration.Utils
 ```
 
-The preceding command adds the EF Core SQL Server provider. The provider package installs the EF Core package as a dependency. More packages are installed automatically in the scaffolding step later in the tutorial.
+The preceding commands add:
+
+* The EF Core SQL Server provider. The provider package installs the EF Core package as a dependency. More packages are installed automatically in the scaffolding step, later in the tutorial.
+* The utilities used by the packages installed automatically in the scaffolding step, later in the tutorial.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -170,16 +174,17 @@ In the **Add Scaffold** dialog, select **MVC Controller with views, using Entity
 
 ![Add Scaffold dialog](adding-model/_static/add_scaffold5.png)
 
-Complete the **Add Controller** dialog:
+Complete the **Add MVC Controller with views, using Entity Framework** dialog:
 
-* **Model class:** *Movie (MvcMovie.Models)*
-* **Data context class:** *MvcMovieContext (MvcMovie.Data)*
+* In the **Model class** drop down, select **Movie (MvcMovie.Models)**.
+* In the **Data context class** row, select the **+** (plus) sign.
+  * In the **Add Data Context** dialog, the class name *MvcMovie.Data.MvcMovieContext* is generated, select **Add**.
 
 ![Add Data context](adding-model/_static/dc5.png)
 
-* **Views:** Keep the default of each option checked
-* **Controller name:** Keep the default *MoviesController*
-* Select **Add**
+* **Views:** Keep the default of each option checked.
+* **Controller name:** Keep the default *MoviesController*.
+* Select **Add**.
 
 Visual Studio creates:
 
