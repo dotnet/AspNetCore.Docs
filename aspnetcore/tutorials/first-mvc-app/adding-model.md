@@ -36,7 +36,7 @@ Control-click the *Models* folder > **Add** > **New Class** > **Empty Class**. N
 
 ---
 
-Update the *Movie.cs* file with the following code:
+Update the *Models/Movie.cs* file with the following code:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Models/Movie.cs)]
 
@@ -55,7 +55,7 @@ The <xref:System.ComponentModel.DataAnnotations.DataType> attribute on `ReleaseD
 
 From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Console** (PMC).
 
-![PMC menu](~/tutorials/first-mvc-app/adding-model/_static/pmc.png)
+![PMC menu](~/tutorials/first-mvc-app/adding-model/_static/pmc5.png)
 
 In the PMC, run the following command:
 
@@ -164,11 +164,11 @@ Use the scaffolding tool to produce Create, Read, Update, and Delete (CRUD) page
 
 In **Solution Explorer**, right-click the *Controllers* folder **> Add > New Scaffolded Item**.
 
-![view of above step](adding-model/_static/add_controller21.png)
+![view of above step](adding-model/_static/add_controller5.png)
 
 In the **Add Scaffold** dialog, select **MVC Controller with views, using Entity Framework > Add**.
 
-![Add Scaffold dialog](adding-model/_static/add_scaffold21.png)
+![Add Scaffold dialog](adding-model/_static/add_scaffold5.png)
 
 Complete the **Add Controller** dialog:
 
@@ -321,13 +321,19 @@ Open the *Controllers/MoviesController.cs* file and examine the constructor:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Controllers/MC1.cs?name=snippet_1)]
 
-The constructor uses [Dependency Injection](xref:fundamentals/dependency-injection) to inject the database context, `MvcMovieContext`, into the controller. The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.
+In the preceding code:
+
+* The constructor uses [Dependency Injection](xref:fundamentals/dependency-injection) to inject the database context, `MvcMovieContext`, into the controller.
+* The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Controllers/MC1.cs?name=snippet_1)]
 
-The constructor uses [Dependency Injection](xref:fundamentals/dependency-injection) to inject the database context, `MvcMovieContext`, into the controller. The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.
+In the preceding code:
+
+* The constructor uses [Dependency Injection](xref:fundamentals/dependency-injection) to inject the database context, `MvcMovieContext`, into the controller.
+* The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.
 
 ### Use SQLite for development, SQL Server for production
 
