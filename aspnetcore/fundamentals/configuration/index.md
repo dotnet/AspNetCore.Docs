@@ -5,7 +5,7 @@ description: Learn how to use the Configuration API to configure an ASP.NET Core
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/24/2020
+ms.date: 1/29/2021
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/configuration/index
 ---
@@ -215,9 +215,30 @@ setx Logging__1__Name=ToConsole
 setx Logging__1__Level=Information
 ```
 
-### Environment variables set in launchSettings.json
+### Environment variables set in generated launchSettings.json
 
-Environment variables set in *launchSettings.json* override those set in the system environment.
+Environment variables set in *launchSettings.json* override those set in the system environment. For example, the ASP.NET Core web templates generate a *launchSettings.json* file that sets the endpoint configuration to:
+
+```json
+"applicationUrl": "https://localhost:5001;http://localhost:5000"
+```
+
+Configuring the `applicationUrl` sets the `ASPNETCORE_URLS` environment variable and overrides values set in the environment.
+
+### Escape environment variables on Linux
+
+On Linux, the value of URL environment variables must be escaped so `systemd` can parse it. Use the linux tool `systemd-escape` which yields `http:--localhost:5001`
+ 
+ ```cmd
+ groot@terminus:~$ systemd-escape http://localhost:5001
+ http:--localhost:5001
+ ```
+
+### Display environment variables
+
+The following code displays the environment variables and values on application startup, which can be helpful when debugging environment settings:
+
+[!code-csharp[](~/fundamentals/configuration/index/samples_snippets/5.x/Program.cs?name=snippet)]
 
 <a name="clcp"></a>
 
@@ -539,6 +560,38 @@ In the preceding code, `config.AddInMemoryCollection(Dict)` is added after the [
 
 See [Bind an array](#boa) for another example using `MemoryConfigurationProvider`.
 
+::: moniker-end
+::: moniker range=">= aspnetcore-5.0"
+
+<a name="kestrel"></a>
+
+## Kestrel endpoint configuration
+
+Kestrel specific endpoint configuration overrides all [cross-server](xref:fundamentals/servers/index) endpoint configurations. Cross-server endpoint configurations include:
+
+  * [UseUrls](xref:fundamentals/host/web-host#server-urls)
+  * `--urls` on the [command line](xref:fundamentals/configuration/index#command-line)
+  * The [environment variable](xref:fundamentals/configuration/index#environment-variables) `ASPNETCORE_URLS`
+
+Consider the following *appsettings.json* file used in an ASP.NET Core web app:
+
+[!code-json[](~/fundamentals/configuration/index/samples_snippets/5.x/appsettings.json?highlight=2-8)]
+
+When the preceding highlighted markup is used in an ASP.NET Core web app ***and*** the app is launched on the command line with the following cross-server endpoint configuration:
+
+`dotnet run --urls="https://localhost:7777"`
+
+Kestrel binds to the endpoint configured specifically for Kestrel in the *appsettings.json* file (`https://localhost:9999`) and not `https://localhost:7777`.
+
+Consider the Kestrel specific endpoint configured as an environment variable:
+
+`set Kestrel__Endpoints__Https__Url=https://localhost:8888`
+
+In the preceding environment variable, `Https` is the name of the Kestrel specific endpoint. The preceding *appsettings.json* file also defines a Kestrel specific endpoint named `Https`. By [default](#default-configuration), environment variables using the [Environment Variables configuration provider](#evcp) are read after *appsettings.*`Environment`*.json*, therefore, the preceding environment variable is used for the `Https` endpoint.
+
+::: moniker-end
+::: moniker range=">= aspnetcore-3.0"
+
 ## GetValue
 
 [`ConfigurationBinder.GetValue<T>`](xref:Microsoft.Extensions.Configuration.ConfigurationBinder.GetValue*) extracts a single value from configuration with a specified key and converts it to the specified type:
@@ -756,7 +809,7 @@ Before the app is configured and started, a *host* is configured and launched. T
 
 ## Default host configuration
 
-For details on the default configuration when using the [Web Host](xref:fundamentals/host/web-host), see the [ASP.NET Core 2.2 version of this topic](?view=aspnetcore-2.2).
+For details on the default configuration when using the [Web Host](xref:fundamentals/host/web-host), see the [ASP.NET Core 2.2 version of this topic](?view=aspnetcore-2.2&preserve-view=true).
 
 * Host configuration is provided from:
   * Environment variables prefixed with `DOTNET_` (for example, `DOTNET_ENVIRONMENT`) using the [Environment Variables configuration provider](#environment-variables). The prefix (`DOTNET_`) is stripped when the configuration key-value pairs are loaded.
