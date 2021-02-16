@@ -314,7 +314,7 @@ Assign C# fields, properties, and methods to component parameters as HTML attrib
   }
   ```
   
-  Unlike in Razor pages (`.cshtml`), Blazor can't perform asynchronous work in a Razor expression while rendering a component. This is because Blazor is designed for rendering interactive UIs. In an interactive UI, the screen must always display something, so it doesn't make sense to block the rendering flow. Instead, asynchronous work is performed during one of the [asynchronous lifecycle events](xref:blazor/components/lifecycle). After the component is rendered, the UI may be updated. The following Razor syntax is **not** supported:
+  Unlike in Razor pages (`.cshtml`), Blazor can't perform asynchronous work in a Razor expression while rendering a component. This is because Blazor is designed for rendering interactive UIs. In an interactive UI, the screen must always display something, so it doesn't make sense to block the rendering flow. Instead, asynchronous work is performed during one of the [asynchronous lifecycle events](xref:blazor/components/lifecycle). After each asynchronous lifecycle event, the component may render again. The following Razor syntax is **not** supported:
   
   ```razor
   <ChildComponent Title="@await ...">
@@ -322,7 +322,7 @@ Assign C# fields, properties, and methods to component parameters as HTML attrib
   </ChildComponent>
   ```
   
-  The code in the preceding example generates an IntelliSense error in Visual Studio and a *compiler error* if the app is built:
+  The code in the preceding example generates a *compiler error* if the app is built:
   
   > The 'await' operator can only be used within an async method. Consider marking this method with the 'async' modifier and changing its return type to 'Task'.
 
@@ -385,7 +385,7 @@ Assign C# fields, properties, and methods to component parameters as HTML attrib
   </ChildComponent>
   ```
   
-  The code in the preceding example generates an IntelliSense error in Visual Studio and a *compiler error* if the app is built:
+  The code in the preceding example generates a *compiler error* if the app is built:
   
   > Component attributes do not support complex content (mixed C# and markup).
   
