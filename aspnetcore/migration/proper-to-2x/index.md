@@ -154,7 +154,7 @@ For example, an image asset in the *wwwroot/images* folder is accessible to the 
 
 [Multi-value cookies](xref:System.Web.HttpCookie.Values) aren't supported in ASP.NET Core. Create one cookie per value.
 
-## Cookies are not compressed in ASP.NET Core
+## Authentication cookies are not compressed in ASP.NET Core
 
 [!INCLUDE[](~/includes/cookies-not-compressed.md)]
 
