@@ -245,14 +245,20 @@ Use the EF Core [Migrations](xref:data/ef-mvc/migrations) feature to create the 
 
 From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Console** (PMC).
 
-In the PMC, enter the following commands:
+In the PMC, enter the following command:
 
 ```powershell
 Add-Migration InitialCreate
-Update-Database
 ```
 
 * `Add-Migration InitialCreate`: Generates a *Migrations/{timestamp}_InitialCreate.cs* migration file. The `InitialCreate` argument is the migration name. Any name can be used, but by convention, a name is selected that describes the migration. Because this is the first migration, the generated class contains code to create the database schema. The database schema is based on the model specified in the `MvcMovieContext` class.
+
+In the PMC, enter the following command:
+
+```powershell
+Update-Database
+```
+
 * `Update-Database`: Updates the database to the latest migration, which the previous command created. This command runs the `Up` method in the *Migrations/{time-stamp}_InitialCreate.cs* file, which creates the database.
 
 The `Update-Database` command generates the following warning:
@@ -283,9 +289,12 @@ dotnet ef database update
 
 Examine the *Migrations/{timestamp}_InitialCreate.cs* migration file:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie5/Migrations/20201107014924_InitialCreate.cs?name=snippet)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Migrations/20190805165915_InitialCreate.cs?name=snippet)]
 
-The `Up` method creates the Movie table and configures `Id` as the primary key. The `Down` method reverts the schema changes made by the `Up` migration.
+In the preceding code:
+
+* `InitialCreate.Up` creates the Movie table and configures `Id` as the primary key.
+* `InitialCreate.Down` reverts the schema changes made by the `Up` migration.
 
 <a name="test"></a>
 

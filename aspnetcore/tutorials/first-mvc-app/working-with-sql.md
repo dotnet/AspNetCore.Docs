@@ -3,7 +3,7 @@ title: Part 5, work with a database in an ASP.NET Core MVC app
 author: rick-anderson
 description: Part 5 of tutorial series on ASP.NET Core MVC.
 ms.author: riande
-ms.date: 11/10/2020
+ms.date: 02/16/2020
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-mvc-app/working-with-sql
 ---
@@ -47,12 +47,12 @@ LocalDB:
 
 * Is a lightweight version of the SQL Server Express Database Engine.
 * Targeted for program development.
-* Starts on demand and runs in user mode, so there's no complex configuration. 
+* Starts on demand and runs in user mode, so there's no complex configuration.
 * By default creates *.mdf* assets in the *C:/Users/{user}* directory.
 
 From the **View** menu, open **SQL Server Object Explorer** (SSOX).
 
-![View menu](working-with-sql/_static/ssox.png)
+![View menu](working-with-sql/_static/ssox5.png)
 
 Right-click on the `Movie` table **> View Designer**
 
