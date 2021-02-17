@@ -100,7 +100,7 @@ At the end of this tutorial, you'll have a working todo list app.
 
    Save the `Shared/NavMenu.razor` file.
 
-1. Build and run the app by executing the [`dotnet watch run`](./dotnet-watch.md) command in the command shell from the `TodoList` folder. After the app is running, visit the new Todo page by selecting the **`Todo`** link in the app's navigation bar, which loads the page at `/todo`.
+1. Build and run the app by executing the [`dotnet watch run`](xref:tutorials/dotnet-watch) command in the command shell from the `TodoList` folder. After the app is running, visit the new Todo page by selecting the **`Todo`** link in the app's navigation bar, which loads the page at `/todo`.
 
    Leave the app running the command shell. Each time a file is saved, the app is automatically rebuilt. The browser temporarily loses its connection to the app while compiling and restarting. The page in the browser is automatically reloaded when the connection is re-established.
 
