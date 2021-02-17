@@ -23,7 +23,7 @@ In this section [Entity Framework](/ef/core/get-started/aspnetcore/new-db) Code 
 
 When using EF Code First to automatically create a database, Code First:
 
-* Adds an [`__EFMigrationsHistory`](https://docs.microsoft.com/ef/core/managing-schemas/migrations/history-table) table to the database to track whether the schema of the database is in sync with the model classes it was generated from.
+* Adds an [`__EFMigrationsHistory`](/ef/core/managing-schemas/migrations/history-table) table to the database to track whether the schema of the database is in sync with the model classes it was generated from.
 * If the model classes aren't in sync with the database, EF throws an exception.
 
 Automatic verification that the schema and model are in sync makes it easier to find inconsistent database code issues.
@@ -164,7 +164,7 @@ In this section [Entity Framework](/ef/core/get-started/aspnetcore/new-db) Code 
 
 When using EF Code First to automatically create a database, Code First:
 
-* Adds an [`__EFMigrationsHistory`](https://docs.microsoft.com/ef/core/managing-schemas/migrations/history-table) table to the database to track whether the schema of the database is in sync with the model classes it was generated from.
+* Adds an [`__EFMigrationsHistory`](/ef/core/managing-schemas/migrations/history-table) table to the database to track whether the schema of the database is in sync with the model classes it was generated from.
 * If the model classes aren't in sync with the database, EF throws an exception.
 
 Automatic verification that the schema and model are in sync makes it easier to find inconsistent database code issues.
@@ -305,7 +305,7 @@ In this section [Entity Framework](/ef/core/get-started/aspnetcore/new-db) Code 
 
 When using EF Code First to automatically create a database, Code First:
 
-* Adds an [`__EFMigrationsHistory`](https://docs.microsoft.com/ef/core/managing-schemas/migrations/history-table) table to the database to track whether the schema of the database is in sync with the model classes it was generated from.
+* Adds an [`__EFMigrationsHistory`](/ef/core/managing-schemas/migrations/history-table) table to the database to track whether the schema of the database is in sync with the model classes it was generated from.
 * If the model classes aren't in sync with the database, EF throws an exception.
 
 Automatic verification that the schema and model are in sync makes it easier to find inconsistent database code issues.
