@@ -305,6 +305,8 @@ Disable stdout logging when troubleshooting is complete by setting `stdoutLogEna
 
 For more information, see <xref:host-and-deploy/aspnet-core-module#log-creation-and-redirection>.
 
+<a name="enhanced-diagnostic-logs"></a>
+
 ### ASP.NET Core Module debug log (Azure App Service)
 
 The ASP.NET Core Module debug log provides additional, deeper logging from the ASP.NET Core Module. To enable and view stdout logs:
