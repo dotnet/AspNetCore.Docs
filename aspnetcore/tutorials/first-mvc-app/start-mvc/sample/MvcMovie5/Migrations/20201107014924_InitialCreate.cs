@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MvcMovie.Migrations
 {
+    #region snippet
     public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -30,4 +31,5 @@ namespace MvcMovie.Migrations
                 name: "Movie");
         }
     }
+    #endregion
 }

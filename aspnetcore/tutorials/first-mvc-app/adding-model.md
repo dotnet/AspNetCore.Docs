@@ -283,7 +283,7 @@ dotnet ef database update
 
 Examine the *Migrations/{timestamp}_InitialCreate.cs* migration file:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Migrations/20190805165915_InitialCreate.cs?name=snippet)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie5/Migrations/20201107014924_InitialCreate.cs?name=snippet)]
 
 The `Up` method creates the Movie table and configures `Id` as the primary key. The `Down` method reverts the schema changes made by the `Up` migration.
 
