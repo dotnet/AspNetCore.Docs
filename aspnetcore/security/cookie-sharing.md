@@ -51,6 +51,8 @@ services.ConfigureApplicationCookie(options => {
 
 **Note:** The preceding instructions don't work with `ITicketStore` (`CookieAuthenticationOptions.SessionStore`).  For more information, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/21163).
 
+[!INCLUDE[](~/includes/cookies-not-compressed.md)]
+
 ## Share authentication cookies without ASP.NET Core Identity
 
 When using cookies directly without ASP.NET Core Identity, configure data protection and authentication in `Startup.ConfigureServices`. In the following example, the authentication type is set to `Identity.Application`:
@@ -66,6 +68,8 @@ services.AddAuthentication("Identity.Application")
         options.Cookie.Name = ".AspNet.SharedCookie";
     });
 ```
+
+[!INCLUDE[](~/includes/cookies-not-compressed.md)]
 
 ## Share cookies across different base paths
 
