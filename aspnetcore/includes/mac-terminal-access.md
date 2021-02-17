@@ -1,9 +1,8 @@
-
-### Accessing a Command Terminal on Mac
-
 ---
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 ---
+
+### Accessing a Command Terminal on Mac
 
 Accessing a command terminal on Mac for the first time requires the following setting configurations:
 
