@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
-ms.date: 10/27/2020
+ms.date: 02/18/2021
 uid: blazor/file-uploads
 ---
 # ASP.NET Core Blazor file uploads
@@ -37,10 +37,10 @@ The following example demonstrates multiple file upload in a component. `InputFi
 > [!NOTE]
 > <xref:Microsoft.AspNetCore.Components.Forms.InputFileChangeEventArgs> is in the <xref:Microsoft.AspNetCore.Components.Forms?displayProperty=fullName> namespace, which is typically one of the namespaces in the app's `_Imports.razor` file.
 
-`Pages/UploadFiles1.razor`:
+`Pages/UploadFiles.razor`:
 
 ```razor
-@page "/upload-files-1"
+@page "/upload-files"
 @using System.IO
 
 <h3>Upload Files</h3>
@@ -126,11 +126,14 @@ The following example demonstrates multiple file upload in a component. `InputFi
 
 ## Upload files to a server
 
-**Content is TBD based on firming up the example code.**
+The following example demonstrates uploading files to a server using a hosted Blazor WebAssembly solution.
 
-**Include STRONG security warning with cross-link to security guidance in https://docs.microsoft.com/aspnet/core/mvc/models/file-uploads.**
+> [!WARNING]
+> Use caution when providing users with the ability to upload files to a server. For more information, see <xref:mvc/models/file-uploads#security-considerations>.
 
-`UploadResult.cs` in the **`Shared`** project of a hosted Blazor WebAssembly solution:
+The following `UploadResult` class in the **`Shared`** project maintains the result of an uploaded file. When a file fails to upload on the server, an error code is returned in `ErrorCode` for display to the user. A safe stored file name is generated on the server for each file and returned to the client in `StoredFileName` for display. Files are keyed between the client and server using the unsafe/untrusted file name in `FileName`.
+
+`UploadResult.cs`:
 
 ```csharp
 public class UploadResult
@@ -145,13 +148,17 @@ public class UploadResult
 }
 ```
 
-`Pages/UploadFiles2.razor` in the **`Client`** project of a hosted Blazor solution:
+The following `UploadFiles` component in the **`Client`** project:
+
+* Permits users to upload files from the client.
+* Displays the untrusted/unsafe file name provided by the client in the UI because Razor automatically HTML-encodes strings. **Don't trust file names supplied by clients in other scenarios.**
+
+`Pages/UploadFiles.razor`:
 
 ```razor
-@page "/upload-files-2"
+@page "/upload-files"
 @using System.Linq
 @using Microsoft.Extensions.Logging
-@using FileUploadTesting.Shared
 @inject HttpClient Http
 @inject ILogger<UploadFiles> logger
 
@@ -197,8 +204,7 @@ public class UploadResult
 
 @code {
     private IList<File> files = new List<File>();
-    private IList<UploadResult> uploadResults =
-        new List<UploadResult>();
+    private IList<UploadResult> uploadResults = new List<UploadResult>();
     private int maxAllowedFiles = 3;
     private bool shouldRender;
 
@@ -282,18 +288,16 @@ public class UploadResult
         public string Name { get; set; }
     }
 }
-
 ```
-
-**Further explanation of the preceding code is TBD based on firming up the example code.**
-
-**Note to self: Remind readers that Razor automatically HTML-encodes strings.**
-
-**Lead-in remarks for the server code is TBD based on firming up the example code.**
 
 To use the following code, create a `Development/unsafe_uploads` folder at the root of the **`Server`** project.
 
-`Controllers/FilesaveController.cs` in the **`Server`** project of a hosted Blazor solution:
+The following `FilesaveController` controller in the **`Server`** project saves uploaded files from the client.
+
+> [!WARNING]
+> The example saves files without scanning their contents. In most production scenarios, an anti-virus/anti-malware scanner API is used on files before making them available for download or for use by other systems. For more information on security considerations when uploading files to a server, see <xref:mvc/models/file-uploads#security-considerations>.
+
+`Controllers/FilesaveController.cs`:
 
 ```csharp
 using System;
@@ -305,106 +309,93 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using FileUploadTesting.Shared;
 
-namespace FileUploadTesting.Server.Controllers
+[ApiController]
+[Route("[controller]")]
+public class FilesaveController : ControllerBase
 {
-    [ApiController]
-    [Route("[controller]")]
-    public class FilesaveController : ControllerBase
+    private readonly IWebHostEnvironment env;
+    private readonly ILogger<FilesaveController> logger;
+
+    public FilesaveController(IWebHostEnvironment env, 
+        ILogger<FilesaveController> logger)
     {
-        private readonly IWebHostEnvironment env;
-        private readonly ILogger<FilesaveController> logger;
+        this.env = env;
+        this.logger = logger;
+    }
 
-        public FilesaveController(IWebHostEnvironment env, 
-            ILogger<FilesaveController> logger)
+    [HttpPost]
+    public async Task<ActionResult<IList<UploadResult>>> PostFile(
+        [FromForm] IEnumerable<IFormFile> files)
+    {
+        var maxAllowedFiles = 3;
+        long maxFileSize = 1024 * 1024 * 15;
+        var filesProcessed = 0;
+        var resourcePath = new Uri($"{Request.Scheme}://{Request.Host}/");
+        IList<UploadResult> uploadResults = new List<UploadResult>();
+
+        foreach (var file in files)
         {
-            this.env = env;
-            this.logger = logger;
-        }
+            var uploadResult = new UploadResult();
+            string trustedFileNameForFileStorage;
+            var untrustedFileName = file.FileName;
+            uploadResult.FileName = untrustedFileName;
+            var trustedFileNameForDisplay = 
+                WebUtility.HtmlEncode(untrustedFileName);
 
-        [HttpPost]
-        public async Task<ActionResult<IList<UploadResult>>> PostFile(
-            [FromForm] IEnumerable<IFormFile> files)
-        {
-            var maxAllowedFiles = 3;
-            long maxFileSize = 1024 * 1024 * 15;
-            var filesProcessed = 0;
-            Uri resourcePath = new Uri($"{Request.Scheme}://{Request.Host}/");
-            IList<UploadResult> uploadResults = new List<UploadResult>();
-
-            foreach (var file in files)
+            if (filesProcessed < maxAllowedFiles)
             {
-                var uploadResult = new UploadResult();
-                string trustedFileNameForFileStorage;
-                var untrustedFileName = file.FileName;
-                uploadResult.FileName = untrustedFileName;
-                var trustedFileNameForDisplay = 
-                    WebUtility.HtmlEncode(untrustedFileName);
-
-                if (filesProcessed < maxAllowedFiles)
+                if (file.Length == 0)
                 {
-                    if (file.Length == 0)
-                    {
-                        logger.LogInformation("{FileName} length is 0", 
-                            trustedFileNameForDisplay);
-                        uploadResult.ErrorCode = 1;
-                    }
-                    else if (file.Length > maxFileSize)
-                    {
-                        logger.LogInformation("{FileName} of {Length} bytes is " +
-                            "larger than the limit of {Limit} bytes", 
-                            trustedFileNameForDisplay, file.Length, maxFileSize);
-                        uploadResult.ErrorCode = 2;
-                    }
-                    else
-                    {
-                        try
-                        {
-                            // ** WARNING! **
-                            // In this example, the file is saved without scanning 
-                            // the file's contents. In most production scenarios, 
-                            // an anti-virus/anti-malware scanner API is used on 
-                            // the file before making the file available for 
-                            // download or for use by other systems.
-                            //
-                            // For more information, see the security guidance at:
-                            // https://docs.microsoft.com/aspnet/core/mvc/models/file-uploads
-
-                            trustedFileNameForFileStorage = Path.GetRandomFileName();
-                            var path = Path.Combine(env.ContentRootPath, 
-                                env.EnvironmentName, "unsafe_uploads", trustedFileNameForFileStorage);
-                            using MemoryStream ms = new();
-                            await file.CopyToAsync(ms);
-                            await System.IO.File.WriteAllBytesAsync(path, ms.ToArray());
-                            logger.LogInformation("{FileName} saved at {Path}", 
-                                trustedFileNameForDisplay, path);
-                            uploadResult.Uploaded = true;
-                            uploadResult.StoredFileName = trustedFileNameForFileStorage;
-                        }
-                        catch (IOException ex)
-                        {
-                            logger.LogError("{FileName} error on upload: {Message}", 
-                                trustedFileNameForDisplay, ex.Message);
-                            uploadResult.ErrorCode = 3;
-                        }
-                    }
-
-                    filesProcessed++;
+                    logger.LogInformation("{FileName} length is 0", 
+                        trustedFileNameForDisplay);
+                    uploadResult.ErrorCode = 1;
+                }
+                else if (file.Length > maxFileSize)
+                {
+                    logger.LogInformation("{FileName} of {Length} bytes is " +
+                        "larger than the limit of {Limit} bytes", 
+                        trustedFileNameForDisplay, file.Length, maxFileSize);
+                    uploadResult.ErrorCode = 2;
                 }
                 else
                 {
-                    logger.LogInformation("{FileName} not uploaded because the " +
-                        "request exceeded the allowed {Count} of files", 
-                        trustedFileNameForDisplay, maxAllowedFiles);
-                    uploadResult.ErrorCode = 4;
+                    try
+                    {
+                        trustedFileNameForFileStorage = Path.GetRandomFileName();
+                        var path = Path.Combine(env.ContentRootPath, 
+                            env.EnvironmentName, "unsafe_uploads", 
+                            trustedFileNameForFileStorage);
+                        using MemoryStream ms = new();
+                        await file.CopyToAsync(ms);
+                        await System.IO.File.WriteAllBytesAsync(path, ms.ToArray());
+                        logger.LogInformation("{FileName} saved at {Path}", 
+                            trustedFileNameForDisplay, path);
+                        uploadResult.Uploaded = true;
+                        uploadResult.StoredFileName = trustedFileNameForFileStorage;
+                    }
+                    catch (IOException ex)
+                    {
+                        logger.LogError("{FileName} error on upload: {Message}", 
+                            trustedFileNameForDisplay, ex.Message);
+                        uploadResult.ErrorCode = 3;
+                    }
                 }
 
-                uploadResults.Add(uploadResult);
+                filesProcessed++;
+            }
+            else
+            {
+                logger.LogInformation("{FileName} not uploaded because the " +
+                    "request exceeded the allowed {Count} of files", 
+                    trustedFileNameForDisplay, maxAllowedFiles);
+                uploadResult.ErrorCode = 4;
             }
 
-            return new CreatedResult(resourcePath, uploadResults);
+            uploadResults.Add(uploadResult);
         }
+
+        return new CreatedResult(resourcePath, uploadResults);
     }
 }
 ```
