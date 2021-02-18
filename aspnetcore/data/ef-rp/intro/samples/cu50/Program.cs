@@ -1,4 +1,4 @@
-#define SQLite
+// #define SQLite
 
 using ContosoUniversity.Data;
 using Microsoft.Extensions.DependencyInjection;
@@ -44,9 +44,9 @@ namespace ContosoUniversity
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
 #if SQLite
-                    webBuilder.UseStartup<Startup>();
-#else
                     webBuilder.UseStartup<StartupSQLite>();
+#else
+                    webBuilder.UseStartup<Startup>();
 #endif
                 });
     }
