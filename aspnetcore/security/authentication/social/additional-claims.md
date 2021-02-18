@@ -135,12 +135,13 @@ public async Task<IActionResult> OnGetCallbackAsync(
     if (remoteError != null)
     {
         ErrorMessage = $"Error from external provider: {remoteError}";
+
         return RedirectToPage("./Login", new {ReturnUrl = returnUrl });
     }
 
-    var externalLogin = await _signInManager.GetExternalLoginInfoAsync();
+    var info = await _signInManager.GetExternalLoginInfoAsync();
 
-    if (externalLogin == null)
+    if (info == null)
     {
         ErrorMessage = "Error loading external login information.";
         return RedirectToPage("./Login", new { ReturnUrl = returnUrl });
@@ -148,17 +149,18 @@ public async Task<IActionResult> OnGetCallbackAsync(
 
     // Sign in the user with this external login provider if the user already has a 
     // login.
-    var result = await _signInManager.ExternalLoginSignInAsync(externalLogin.LoginProvider, 
-        externalLogin.ProviderKey, isPersistent: false, bypassTwoFactor : true);
+    var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, 
+        info.ProviderKey, isPersistent: false, bypassTwoFactor : true);
+
     if (result.Succeeded)
     {
         _logger.LogInformation("{Name} logged in with {LoginProvider} provider.", 
-            externalLogin.Principal.Identity.Name, externalLogin.LoginProvider);
+            info.Principal.Identity.Name, info.LoginProvider);
 
         if (_claimsToSync.Count > 0)
         {
-            var user = await _userManager.FindByLoginAsync(externalLogin.LoginProvider, 
-                externalLogin.ProviderKey);
+            var user = await _userManager.FindByLoginAsync(info.LoginProvider, 
+                info.ProviderKey);
             var userClaims = await _userManager.GetClaimsAsync(user);
             bool refreshSignIn = false;
 
@@ -167,9 +169,9 @@ public async Task<IActionResult> OnGetCallbackAsync(
                 var userClaim = userClaims
                     .FirstOrDefault(c => c.Type == addedClaim.Key);
 
-                if (externalLogin.Principal.HasClaim(c => c.Type == addedClaim.Key))
+                if (info.Principal.HasClaim(c => c.Type == addedClaim.Key))
                 {
-                    var externalClaim = externalLogin.Principal.FindFirst(addedClaim.Key);
+                    var externalClaim = info.Principal.FindFirst(addedClaim.Key);
 
                     if (userClaim == null)
                     {
@@ -198,9 +200,10 @@ public async Task<IActionResult> OnGetCallbackAsync(
                 await _signInManager.RefreshSignInAsync(user);
             }
         }
-                
+
         return LocalRedirect(returnUrl);
     }
+
     if (result.IsLockedOut)
     {
         return RedirectToPage("./Lockout");
@@ -210,13 +213,13 @@ public async Task<IActionResult> OnGetCallbackAsync(
         // If the user does not have an account, then ask the user to create an 
         // account.
         ReturnUrl = returnUrl;
-        ProviderDisplayName = externalLogin.ProviderDisplayName;
+        ProviderDisplayName = info.ProviderDisplayName;
 
-        if (externalLogin.Principal.HasClaim(c => c.Type == ClaimTypes.Email))
+        if (info.Principal.HasClaim(c => c.Type == ClaimTypes.Email))
         {
             Input = new InputModel
             {
-                Email = externalLogin.Principal.FindFirstValue(ClaimTypes.Email)
+                Email = info.Principal.FindFirstValue(ClaimTypes.Email)
             };
         }
 
