@@ -289,7 +289,15 @@ dotnet ef database update
 
 Examine the *Migrations/{timestamp}_InitialCreate.cs* migration file:
 
+# [Visual Studio](#tab/visual-studio)
+
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Migrations/20190805165915_InitialCreate.cs?name=snippet)]
+
+# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie5/Migrations/20201107014924_InitialCreate.cs?name=snippet)]
+
+---
 
 In the preceding code:
 
