@@ -8,9 +8,9 @@ using Microsoft.Extensions.Hosting;
 
 namespace ContosoUniversity
 {
-    public class Startup
+    public class StartupSQLite
     {
-        public Startup(IConfiguration configuration)
+        public StartupSQLite(IConfiguration configuration)
         {
             Configuration = configuration;
         }
@@ -23,7 +23,7 @@ namespace ContosoUniversity
             services.AddRazorPages();
 
             services.AddDbContext<SchoolContext>(options =>
-               options.UseSqlServer(Configuration.GetConnectionString("SchoolContext")));
+               options.UseSqlite(Configuration.GetConnectionString("SchoolContext")));
 
             services.AddDatabaseDeveloperPageExceptionFilter();
         }
