@@ -1,5 +1,3 @@
-// #define SQLite
-
 using ContosoUniversity.Data;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Hosting;
@@ -43,7 +41,7 @@ namespace ContosoUniversity
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-#if SQLite
+                    #if SQLiteVersion
                     webBuilder.UseStartup<StartupSQLite>();
 #else
                     webBuilder.UseStartup<Startup>();

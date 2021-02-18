@@ -11,7 +11,7 @@ uid: data/ef-rp/intro
 
 # Razor Pages with Entity Framework Core in ASP.NET Core - Tutorial 1 of 8
 
-By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
+By [Tom Dykstra](https://github.com/tdykstra) and [Jeremy Likness](https://twitter.com/jeremylikness)
 
 ::: moniker range=">= aspnetcore-5.0"
 
@@ -27,25 +27,27 @@ This is the first in a series of tutorials that show how to use Entity Framework
 
 [!INCLUDE[VS prereqs](~/includes/net-core-prereqs-vs-5.0.md)]
 
+### Database engines
+
+The Visual Studio instructions use [SQL Server LocalDB](/sql/database-engine/configure-windows/sql-server-2016-express-localdb), a version of SQL Server Express that runs only on Windows.
+
 # [Visual Studio Code](#tab/visual-studio-code)
 
 [!INCLUDE[VS Code prereqs](~/includes/net-core-prereqs-vsc-5.0.md)]
 
+Consider downloading and installing a third-party tool for managing and viewing a SQLite database, such as [DB Browser for SQLite](https://sqlitebrowser.org/).
+
+### Database engines
+
+The Visual Studio Code tab use [SQLite](https://www.sqlite.org/), a cross-platform database engine.
+
 ---
 
-## Database engines
-
-The Visual Studio instructions use [SQL Server LocalDB](/sql/database-engine/configure-windows/sql-server-2016-express-localdb), a version of SQL Server Express that runs only on Windows.
-
-The Visual Studio Code instructions use [SQLite](https://www.sqlite.org/), a cross-platform database engine.
-
-If you choose to use SQLite, download and install a third-party tool for managing and viewing a SQLite database, such as [DB Browser for SQLite](https://sqlitebrowser.org/).
-
-## Troubleshooting
+### Troubleshooting
 
 If you run into a problem you can't resolve, compare your code to the [completed project](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples). A good way to get help is by posting a question to StackOverflow.com, using the [ASP.NET Core tag](https://stackoverflow.com/questions/tagged/asp.net-core) or the [EF Core tag](https://stackoverflow.com/questions/tagged/entity-framework-core).
 
-## The sample app
+### The sample app
 
 The app built in these tutorials is a basic university web site. Users can view and update student, course, and instructor information. Here are a few of the screens created in the tutorial.
 
@@ -56,7 +58,7 @@ The app built in these tutorials is a basic university web site. Users can view 
 The UI style of this site is based on the built-in project templates. The tutorial's focus is on how to use EF Core with ASP.NET Core, not how to customize the UI.
 
 <!-- 
-Follow the link at the top of the page to get the source code for the completed project. The *cu50* folder has the code for the ASP.NET Core 5.0 version of the tutorial. Files that reflect the state of the code for tutorials 1-7 can be found in the *cu50snapshots* folder.
+Follow the link at the top of the page to get the source code for the completed project. The *cu50* folder has the code for the ASP.NET Core 5.0 version of the tutorial.
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -75,15 +77,24 @@ To run the app after downloading the completed project:
 
 To run the app after downloading the completed project:
 
-* In *Program.cs*, remove the comments from `// webBuilder.UseStartup<StartupSQLite>();`  so `StartupSQLite` is used.
-* Copy the contents of *appSettingsSQLite.json* into *appSettings.json*.
-* Delete the *Migrations* folder, and rename *MigrationsSQL* to *Migrations*.
-* Do a global search for `#if SQLiteVersion` and remove `#if SQLiteVersion` and the associated `#endif` statement.
+* Define `SQLiteVersion`
+  * In Visual Studio;
+     * Right click on the project and select **Properties**.
+     * Add `SQLiteVersion` to the **Conditional compliation symbols** edit box.
+  * In the project file, add the following markup:
+  ```json
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>TRACE;SQLiteVersion</DefineConstants>
+  </PropertyGroup>
+  ```
+* Remove the comments from  *appSettingsSQLite.json* so `ConnectionStrings` is defined for a SQLite DB. For Mac or Linux, change this to `/tmp/blogging.db` or any other absolute path.
+* Delete the *Migrations* folder, and rename *MigrationsSQLite* to *Migrations*.
+
 * Build the project.
 * At a command prompt in the project folder, run the following commands:
 
   ```dotnetcli
-  dotnet tool install --global dotnet-ef -v 5.0.0-*
+  dotnet tool install --global dotnet-ef
   dotnet ef database update
   ```
 
@@ -396,7 +407,7 @@ The [EnsureCreated](/dotnet/api/microsoft.entityframeworkcore.infrastructure.dat
 * Run the app.
 * `EnsureCreated` creates a database with the new schema.
 
-This workflow works well early in development when the schema is rapidly evolving, as long as you don't need to preserve data. The situation is different when data that has been entered into the database needs to be preserved. When that is the case, use migrations.
+This workflow works early in development when the schema is rapidly evolving, as long as you don't need to preserve data. The situation is different when data that has been entered into the database needs to be preserved. When that is the case, use migrations.
 
 Later in the tutorial series, you delete the database that was created by `EnsureCreated` and use migrations instead. A database that is created by `EnsureCreated` can't be updated by using migrations.
 
