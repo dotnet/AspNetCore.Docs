@@ -117,7 +117,7 @@ In the Development environment working with test user accounts, you can simply d
 Add a dictionary of added claims. Use the dictionary keys to hold the claim types, and use the values to hold a default value. Add the following line to the top of the class. The following example assumes that one claim is added for the user's Google picture with a generic headshot image as the default value:
 
 ```csharp
-private readonly IDictionary<string, string> _claimsToSync = 
+private readonly IReadOnlyDictionary<string, string> _claimsToSync = 
     new Dictionary<string, string>()
     {
         { "urn:google:picture", "https://localhost:5001/headshot.png" },
@@ -131,13 +131,16 @@ public async Task<IActionResult> OnGetCallbackAsync(
     string returnUrl = null, string remoteError = null)
 {
     returnUrl = returnUrl ?? Url.Content("~/");
+
     if (remoteError != null)
     {
         ErrorMessage = $"Error from external provider: {remoteError}";
         return RedirectToPage("./Login", new {ReturnUrl = returnUrl });
     }
+
     var externalLogin = await _signInManager.GetExternalLoginInfoAsync();
-    if (info == null)
+
+    if (externalLogin == null)
     {
         ErrorMessage = "Error loading external login information.";
         return RedirectToPage("./Login", new { ReturnUrl = returnUrl });
@@ -145,39 +148,39 @@ public async Task<IActionResult> OnGetCallbackAsync(
 
     // Sign in the user with this external login provider if the user already has a 
     // login.
-    var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, 
-        info.ProviderKey, isPersistent: false, bypassTwoFactor : true);
+    var result = await _signInManager.ExternalLoginSignInAsync(externalLogin.LoginProvider, 
+        externalLogin.ProviderKey, isPersistent: false, bypassTwoFactor : true);
     if (result.Succeeded)
     {
         _logger.LogInformation("{Name} logged in with {LoginProvider} provider.", 
-            info.Principal.Identity.Name, info.LoginProvider);
+            externalLogin.Principal.Identity.Name, externalLogin.LoginProvider);
 
-        if (_addedClaims.Count > 0)
+        if (_claimsToSync.Count > 0)
         {
-            var user = await _userManager.FindByLoginAsync(info.LoginProvider, 
-                info.ProviderKey);
+            var user = await _userManager.FindByLoginAsync(externalLogin.LoginProvider, 
+                externalLogin.ProviderKey);
             var userClaims = await _userManager.GetClaimsAsync(user);
             bool refreshSignIn = false;
 
-            foreach (var addedClaim in _addedClaims)
+            foreach (var addedClaim in _claimsToSync)
             {
                 var userClaim = userClaims
                     .FirstOrDefault(c => c.Type == addedClaim.Key);
 
-                if (info.Principal.HasClaim(c => c.Type == addedClaim.Key))
+                if (externalLogin.Principal.HasClaim(c => c.Type == addedClaim.Key))
                 {
-                    var externalClaim = info.Principal.FindFirst(addedClaim.Key);
+                    var externalClaim = externalLogin.Principal.FindFirst(addedClaim.Key);
 
                     if (userClaim == null)
                     {
                         await _userManager.AddClaimAsync(user, 
-                            new Claim(addedClaim.Key, principalClaim.Value));
+                            new Claim(addedClaim.Key, externalClaim.Value));
                         refreshSignIn = true;
                     }
-                    else if (userClaim.Value != principalClaim.Value)
+                    else if (userClaim.Value != externalClaim.Value)
                     {
                         await _userManager
-                            .ReplaceClaimAsync(user, userClaim, principalClaim);
+                            .ReplaceClaimAsync(user, userClaim, externalClaim);
                         refreshSignIn = true;
                     }
                 }
@@ -207,14 +210,16 @@ public async Task<IActionResult> OnGetCallbackAsync(
         // If the user does not have an account, then ask the user to create an 
         // account.
         ReturnUrl = returnUrl;
-        ProviderDisplayName = info.ProviderDisplayName;
-        if (info.Principal.HasClaim(c => c.Type == ClaimTypes.Email))
+        ProviderDisplayName = externalLogin.ProviderDisplayName;
+
+        if (externalLogin.Principal.HasClaim(c => c.Type == ClaimTypes.Email))
         {
             Input = new InputModel
             {
-                Email = info.Principal.FindFirstValue(ClaimTypes.Email)
+                Email = externalLogin.Principal.FindFirstValue(ClaimTypes.Email)
             };
         }
+
         return Page();
     }
 }
