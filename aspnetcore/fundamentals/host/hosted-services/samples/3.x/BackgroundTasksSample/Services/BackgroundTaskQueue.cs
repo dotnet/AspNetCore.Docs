@@ -1,6 +1,6 @@
 using System;
-using System.Collections.Concurrent;
 using System.Threading;
+using System.Threading.Channels;
 using System.Threading.Tasks;
 
 namespace BackgroundTasksSample.Services
@@ -8,35 +8,37 @@ namespace BackgroundTasksSample.Services
     #region snippet1
     public interface IBackgroundTaskQueue
     {
-        void QueueBackgroundWorkItem(Func<CancellationToken, Task> workItem);
+        ValueTask QueueBackgroundWorkItemAsync(Func<CancellationToken, ValueTask> workItem);
 
-        Task<Func<CancellationToken, Task>> DequeueAsync(
+        Task<Func<CancellationToken, ValueTask>> DequeueAsync(
             CancellationToken cancellationToken);
     }
 
     public class BackgroundTaskQueue : IBackgroundTaskQueue
     {
-        private ConcurrentQueue<Func<CancellationToken, Task>> _workItems = 
-            new ConcurrentQueue<Func<CancellationToken, Task>>();
-        private SemaphoreSlim _signal = new SemaphoreSlim(0);
+        private readonly Channel<Func<CancellationToken, ValueTask>> _queue = Channel.CreateUnbounded<Func<CancellationToken, ValueTask>>();
 
-        public void QueueBackgroundWorkItem(
-            Func<CancellationToken, Task> workItem)
+        private readonly SemaphoreSlim _signal = new SemaphoreSlim(0);
+
+        public async ValueTask QueueBackgroundWorkItemAsync(
+            Func<CancellationToken, ValueTask> workItem)
         {
             if (workItem == null)
             {
                 throw new ArgumentNullException(nameof(workItem));
             }
 
-            _workItems.Enqueue(workItem);
+            await _queue.Writer.WriteAsync(workItem);
+            
             _signal.Release();
         }
 
-        public async Task<Func<CancellationToken, Task>> DequeueAsync(
+        public async Task<Func<CancellationToken, ValueTask>> DequeueAsync(
             CancellationToken cancellationToken)
         {
             await _signal.WaitAsync(cancellationToken);
-            _workItems.TryDequeue(out var workItem);
+
+            _queue.Reader.TryRead(out var workItem);
 
             return workItem;
         }
