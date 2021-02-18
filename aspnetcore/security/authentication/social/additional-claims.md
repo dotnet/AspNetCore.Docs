@@ -112,7 +112,112 @@ For more information, see <xref:Microsoft.AspNetCore.Authentication.OAuth.Claims
 
 Claims are copied from external providers to the user database on first registration, not on sign in. If additional claims are enabled in an app after a user registers to use the app, call [SignInManager.RefreshSignInAsync](xref:Microsoft.AspNetCore.Identity.SignInManager%601) on a user to force the generation of a new authentication cookie.
 
-In the Development environment working with test user accounts, you can simply delete and recreate the user account.
+In the Development environment working with test user accounts, you can simply delete and recreate the user account. For production systems, new claims added to the app can be backfilled into user accounts. After [scaffolding the `ExternalLogin` page](xref:security/authentication/scaffold-identity) into the app at `Areas/Pages/Identity/Account/Manage`, add the following code to the `ExternalLoginModel` in the `ExternalLogin.cshtml.cs` file.
+
+Add a dictionary of added claims. Use the dictionary keys to hold the claim types, and use the values to hold a default value. Add the following line to the top of the class. The following example assumes that one claim is added for the user's Google picture with a generic headshot image as the default value:
+
+```csharp
+private readonly IDictionary<string, string> _addedClaims = 
+    new Dictionary<string, string>()
+    {
+        { "urn:google:picture", "https://localhost:5001/headshot.png" },
+    };
+```
+
+Replace the default code of the `OnGetCallbackAsync` method with the following code. The code loops through the claims dictionary. Claims are added (backfilled) or updated for each user. When claims are added or updated, the user sign-in is refreshed using the <xref:Microsoft.AspNetCore.Identity.SignInManager%2A>, preserving the existing authentication properties (`AuthenticationProperties`).
+
+```csharp
+public async Task<IActionResult> OnGetCallbackAsync(
+    string returnUrl = null, string remoteError = null)
+{
+    returnUrl = returnUrl ?? Url.Content("~/");
+    if (remoteError != null)
+    {
+        ErrorMessage = $"Error from external provider: {remoteError}";
+        return RedirectToPage("./Login", new {ReturnUrl = returnUrl });
+    }
+    var info = await _signInManager.GetExternalLoginInfoAsync();
+    if (info == null)
+    {
+        ErrorMessage = "Error loading external login information.";
+        return RedirectToPage("./Login", new { ReturnUrl = returnUrl });
+    }
+
+    // Sign in the user with this external login provider if the user already has a 
+    // login.
+    var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, 
+        info.ProviderKey, isPersistent: false, bypassTwoFactor : true);
+    if (result.Succeeded)
+    {
+        _logger.LogInformation("{Name} logged in with {LoginProvider} provider.", 
+            info.Principal.Identity.Name, info.LoginProvider);
+
+        if (_addedClaims.Count > 0)
+        {
+            var user = await _userManager.FindByLoginAsync(info.LoginProvider, 
+                info.ProviderKey);
+            var userClaims = await _userManager.GetClaimsAsync(user);
+            bool refreshSignIn = false;
+
+            foreach (var addedClaim in _addedClaims)
+            {
+                var userClaim = userClaims
+                    .FirstOrDefault(c => c.Type == addedClaim.Key);
+
+                if (info.Principal.HasClaim(c => c.Type == addedClaim.Key))
+                {
+                    var principalClaim = info.Principal.FindFirst(addedClaim.Key);
+
+                    if (userClaim == null)
+                    {
+                        await _userManager.AddClaimAsync(user, 
+                            new Claim(addedClaim.Key, principalClaim.Value));
+                        refreshSignIn = true;
+                    }
+                    else if (userClaim.Value != principalClaim.Value)
+                    {
+                        await _userManager
+                            .ReplaceClaimAsync(user, userClaim, principalClaim);
+                        refreshSignIn = true;
+                    }
+                }
+                else if (userClaim == null)
+                {
+                    await _userManager.AddClaimAsync(user, new Claim(addedClaim.Key, 
+                        addedClaim.Value));
+                    refreshSignIn = true;
+                }
+            }
+
+            if (refreshSignIn)
+            {
+                await _signInManager.RefreshSignInAsync(user);
+            }
+        }
+                
+        return LocalRedirect(returnUrl);
+    }
+    if (result.IsLockedOut)
+    {
+        return RedirectToPage("./Lockout");
+    }
+    else
+    {
+        // If the user does not have an account, then ask the user to create an 
+        // account.
+        ReturnUrl = returnUrl;
+        ProviderDisplayName = info.ProviderDisplayName;
+        if (info.Principal.HasClaim(c => c.Type == ClaimTypes.Email))
+        {
+            Input = new InputModel
+            {
+                Email = info.Principal.FindFirstValue(ClaimTypes.Email)
+            };
+        }
+        return Page();
+    }
+}
+```
 
 ## Update user claims
 
