@@ -108,7 +108,7 @@ Users can define custom actions by deriving from <xref:Microsoft.AspNetCore.Auth
 
 For more information, see <xref:Microsoft.AspNetCore.Authentication.OAuth.Claims>.
 
-## Add claims to users
+## Add and update user claims
 
 Claims are copied from external providers to the user database on first registration, not on sign in. If additional claims are enabled in an app after a user registers to use the app, call [SignInManager.RefreshSignInAsync](xref:Microsoft.AspNetCore.Identity.SignInManager%601) on a user to force the generation of a new authentication cookie.
 
@@ -124,7 +124,7 @@ private readonly IDictionary<string, string> _addedClaims =
     };
 ```
 
-Replace the default code of the `OnGetCallbackAsync` method with the following code. The code loops through the claims dictionary. Claims are added (backfilled) or updated for each user. When claims are added or updated, the user sign-in is refreshed using the <xref:Microsoft.AspNetCore.Identity.SignInManager%2A>, preserving the existing authentication properties (`AuthenticationProperties`).
+Replace the default code of the `OnGetCallbackAsync` method with the following code. The code loops through the claims dictionary. Claims are added (backfilled) or updated for each user. When claims are added or updated, the user sign-in is refreshed using the <xref:Microsoft.AspNetCore.Identity.SignInManager%601>, preserving the existing authentication properties (`AuthenticationProperties`).
 
 ```csharp
 public async Task<IActionResult> OnGetCallbackAsync(
@@ -219,9 +219,7 @@ public async Task<IActionResult> OnGetCallbackAsync(
 }
 ```
 
-## Update user claims
-
-Claims that change after a user signs in aren't automatically updated. If claims change while a user is signed in, call:
+A similar approach is taken when claims change while a user is signed in but a backfill step isn't required. To update a user's claims, call the following on the user:
 
 * [UserManager.ReplaceClaimAsync](xref:Microsoft.AspNetCore.Identity.UserManager%601) on the user for claims stored in the identity database.
 * [SignInManager.RefreshSignInAsync](xref:Microsoft.AspNetCore.Identity.SignInManager%601) on the user to force the generation of a new authentication cookie.
