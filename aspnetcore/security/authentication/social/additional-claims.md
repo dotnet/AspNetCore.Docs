@@ -117,7 +117,7 @@ In the Development environment working with test user accounts, you can simply d
 Add a dictionary of added claims. Use the dictionary keys to hold the claim types, and use the values to hold a default value. Add the following line to the top of the class. The following example assumes that one claim is added for the user's Google picture with a generic headshot image as the default value:
 
 ```csharp
-private readonly IDictionary<string, string> _addedClaims = 
+private readonly IDictionary<string, string> _claimsToSync = 
     new Dictionary<string, string>()
     {
         { "urn:google:picture", "https://localhost:5001/headshot.png" },
@@ -136,7 +136,7 @@ public async Task<IActionResult> OnGetCallbackAsync(
         ErrorMessage = $"Error from external provider: {remoteError}";
         return RedirectToPage("./Login", new {ReturnUrl = returnUrl });
     }
-    var info = await _signInManager.GetExternalLoginInfoAsync();
+    var externalLogin = await _signInManager.GetExternalLoginInfoAsync();
     if (info == null)
     {
         ErrorMessage = "Error loading external login information.";
@@ -166,7 +166,7 @@ public async Task<IActionResult> OnGetCallbackAsync(
 
                 if (info.Principal.HasClaim(c => c.Type == addedClaim.Key))
                 {
-                    var principalClaim = info.Principal.FindFirst(addedClaim.Key);
+                    var externalClaim = info.Principal.FindFirst(addedClaim.Key);
 
                     if (userClaim == null)
                     {
@@ -183,6 +183,7 @@ public async Task<IActionResult> OnGetCallbackAsync(
                 }
                 else if (userClaim == null)
                 {
+                    // Fill with a default value
                     await _userManager.AddClaimAsync(user, new Claim(addedClaim.Key, 
                         addedClaim.Value));
                     refreshSignIn = true;
