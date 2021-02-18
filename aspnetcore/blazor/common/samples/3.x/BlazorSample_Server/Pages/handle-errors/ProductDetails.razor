@@ -1,3 +1,17 @@
+@code {
+    private class ProductDetail
+    {
+        public string ProductName { get; set; }
+        public string Description { get; set; }
+    }
+
+    private interface IProductRepository
+    {
+        public Task<ProductDetail> GetProductByIdAsync(int id);
+    }
+}
+
+<!-- <snippet> -->
 @page "/product-details/{ProductId:int}"
 @using Microsoft.Extensions.Logging
 @inject IProductRepository ProductRepository
@@ -18,7 +32,7 @@ else
 }
 
 @code {
-    private ProductDetails details;
+    private ProductDetail details;
     private bool loadFailed;
 
     [Parameter]
@@ -38,3 +52,4 @@ else
         }
     }
 }
+<!-- </snippet> -->
