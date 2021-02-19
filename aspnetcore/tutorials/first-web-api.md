@@ -1484,3 +1484,4 @@ For more information, see the following resources:
 * <xref:host-and-deploy/azure-apps/index>
 * <xref:host-and-deploy/index>
 * [YouTube version of this tutorial](https://www.youtube.com/watch?v=TTkhEyGBfAk)
+* [Microsoft Learn: Create a web API with ASP.NET Core](/learn/modules/build-web-api-aspnet-core/)
