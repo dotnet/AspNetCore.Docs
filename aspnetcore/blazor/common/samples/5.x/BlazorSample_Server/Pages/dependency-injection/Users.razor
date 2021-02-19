@@ -1,0 +1,20 @@
+@code {
+    private class AppDbContext
+    {
+    }
+}
+
+<!-- <snippet> -->
+@page "/users"
+@attribute [Authorize]
+@inherits OwningComponentBase<AppDbContext>
+
+<h1>Users (@Service.Users.Count())</h1>
+
+<ul>
+    @foreach (var user in Service.Users)
+    {
+        <li>@user.UserName</li>
+    }
+</ul>
+<!-- </snippet> -->

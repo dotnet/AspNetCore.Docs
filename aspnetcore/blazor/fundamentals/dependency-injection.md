@@ -37,15 +37,65 @@ A custom service provider doesn't automatically provide the default services lis
 
 Configure services for the app's service collection in the `Program.Main` method of `Program.cs`. In the following example, the `MyDependency` implementation is registered for `IMyDependency`:
 
-[!code-csharp[](dependency-injection/samples_snapshot/Program1.cs?highlight=7)]
+```csharp
+public class Program
+{
+    public static async Task Main(string[] args)
+    {
+        var builder = WebAssemblyHostBuilder.CreateDefault(args);
+        ...
+        builder.Services.AddSingleton<IMyDependency, MyDependency>();
+        ...
+
+        await builder.Build().RunAsync();
+    }
+}
+```
 
 After the host is built, services are available from the root DI scope before any components are rendered. This can be useful for running initialization logic before rendering content:
 
-[!code-csharp[](dependency-injection/samples_snapshot/Program2.cs?highlight=7,12-13)]
+```csharp
+public class Program
+{
+    public static async Task Main(string[] args)
+    {
+        var builder = WebAssemblyHostBuilder.CreateDefault(args);
+        ...
+        builder.Services.AddSingleton<WeatherService>();
+        ...
+
+        var host = builder.Build();
+
+        var weatherService = host.Services.GetRequiredService<WeatherService>();
+        await weatherService.InitializeWeatherAsync();
+
+        await host.RunAsync();
+    }
+}
+```
 
 The host provides a central configuration instance for the app. Building on the preceding example, the weather service's URL is passed from a default configuration source (for example, `appsettings.json`) to `InitializeWeatherAsync`:
 
-[!code-csharp[](dependency-injection/samples_snapshot/Program3.cs?highlight=13-14)]
+```csharp
+public class Program
+{
+    public static async Task Main(string[] args)
+    {
+        var builder = WebAssemblyHostBuilder.CreateDefault(args);
+        ...
+        builder.Services.AddSingleton<WeatherService>();
+        ...
+
+        var host = builder.Build();
+
+        var weatherService = host.Services.GetRequiredService<WeatherService>();
+        await weatherService.InitializeWeatherAsync(
+            host.Configuration["WeatherServiceUrl"]);
+
+        await host.RunAsync();
+    }
+}
+```
 
 ::: zone-end
 
@@ -100,7 +150,17 @@ Use multiple [`@inject`](xref:mvc/views/razor#inject) statements to inject diffe
 
 The following example shows how to use [`@inject`](xref:mvc/views/razor#inject). The service implementing `Services.IDataAccess` is injected into the component's property `DataRepository`. Note how the code is only using the `IDataAccess` abstraction:
 
-[!code-razor[](dependency-injection/samples_snapshot/CustomerList.razor?highlight=2-3,20)]
+::: moniker range=">= aspnetcore-5.0"
+
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_Server/Pages/dependency-injection/CustomerList.razor?name=snippet&highlight=2,19)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_Server/Pages/dependency-injection/CustomerList.razor?name=snippet&highlight=2,19)]
+
+::: moniker-end
 
 Internally, the generated property (`DataRepository`) uses the [`[Inject]` attribute](xref:Microsoft.AspNetCore.Components.InjectAttribute). Typically, this attribute isn't used directly. If a base class is required for components and injected properties are also required for the base class, manually add the [`[Inject]` attribute](xref:Microsoft.AspNetCore.Components.InjectAttribute):
 
@@ -165,11 +225,31 @@ Two versions of the <xref:Microsoft.AspNetCore.Components.OwningComponentBase> t
 
   DI services injected into the component using [`@inject`](xref:mvc/views/razor#inject) or the [`[Inject]` attribute](xref:Microsoft.AspNetCore.Components.InjectAttribute) aren't created in the component's scope. To use the component's scope, services must be resolved using <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService%2A> or <xref:System.IServiceProvider.GetService%2A>. Any services resolved using the <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> provider have their dependencies provided from that same scope.
 
-  [!code-razor[](dependency-injection/samples_snapshot/Preferences.razor?highlight=3,20-21)]
+  ::: moniker range=">= aspnetcore-5.0"
+
+  [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/dependency-injection/Preferences.razor?name=snippet&highlight=3,20-21)]
+
+  ::: moniker-end
+
+  ::: moniker range="< aspnetcore-5.0"
+
+  [!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/dependency-injection/Preferences.razor?name=snippet&highlight=3,20-21)]
+
+  ::: moniker-end
 
 * <xref:Microsoft.AspNetCore.Components.OwningComponentBase%601> derives from <xref:Microsoft.AspNetCore.Components.OwningComponentBase> and adds a <xref:Microsoft.AspNetCore.Components.OwningComponentBase%601.Service%2A> property that returns an instance of `T` from the scoped DI provider. This type is a convenient way to access scoped services without using an instance of <xref:System.IServiceProvider> when there's one primary service the app requires from the DI container using the component's scope. The <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> property is available, so the app can get services of other types, if necessary.
 
-  [!code-razor[](dependency-injection/samples_snapshot/Users.razor?highlight=3,5,8)]
+  ::: moniker range=">= aspnetcore-5.0"
+
+  [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_Server/Pages/dependency-injection/Users.razor?name=snippet&highlight=3,5,8)]
+
+  ::: moniker-end
+
+  ::: moniker range="< aspnetcore-5.0"
+
+  [!code-razor[](~/blazor/common/samples/3.x/BlazorSample_Server/Pages/dependency-injection/Users.razor?name=snippet&highlight=3,5,8)]
+
+  ::: moniker-end
 
 ## Use of an Entity Framework Core (EF Core) DbContext from DI
 
@@ -183,19 +263,81 @@ The following examples show how to detect disposable transient services in an ap
 
 `DetectIncorrectUsagesOfTransientDisposables.cs`:
 
-[!code-csharp[](dependency-injection/samples_snapshot/3.x/transient-disposables/DetectIncorrectUsagesOfTransientDisposables-wasm.cs)]
+::: moniker range=">= aspnetcore-5.0"
+
+[!code-csharp[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/dependency-injection/DetectIncorrectUsagesOfTransientDisposables.cs)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+[!code-csharp[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/dependency-injection/DetectIncorrectUsagesOfTransientDisposables.cs)]
+
+::: moniker-end
 
 The `TransientDisposable` in the following example is detected (`Program.cs`):
 
 ::: moniker range=">= aspnetcore-5.0"
 
-[!code-csharp[](dependency-injection/samples_snapshot/5.x/transient-disposables/DetectIncorrectUsagesOfTransientDisposables-wasm-program.cs?highlight=6,9,17,22-25)]
+```csharp
+public class Program
+{
+    public static async Task Main(string[] args)
+    {
+        var builder = WebAssemblyHostBuilder.CreateDefault(args);
+        builder.DetectIncorrectUsageOfTransients();
+        builder.RootComponents.Add<App>("#app");
 
-::: moniker-end 
+        builder.Services.AddTransient<TransientDisposable>();
+        builder.Services.AddScoped(sp =>
+            new HttpClient
+            {
+                BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
+            });
+
+        var host = builder.Build();
+        host.EnableTransientDisposableDetection();
+        await host.RunAsync();
+    }
+}
+
+public class TransientDisposable : IDisposable
+{
+    public void Dispose() => throw new NotImplementedException();
+}
+```
+
+::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-[!code-csharp[](dependency-injection/samples_snapshot/3.x/transient-disposables/DetectIncorrectUsagesOfTransientDisposables-wasm-program.cs?highlight=6,9,17,22-25)]
+```csharp
+public class Program
+{
+    public static async Task Main(string[] args)
+    {
+        var builder = WebAssemblyHostBuilder.CreateDefault(args);
+        builder.DetectIncorrectUsageOfTransients();
+        builder.RootComponents.Add<App>("app");
+
+        builder.Services.AddTransient<TransientDisposable>();
+        builder.Services.AddScoped(sp =>
+            new HttpClient
+            {
+                BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
+            });
+
+        var host = builder.Build();
+        host.EnableTransientDisposableDetection();
+        await host.RunAsync();
+    }
+}
+
+public class TransientDisposable : IDisposable
+{
+    public void Dispose() => throw new NotImplementedException();
+}
+```
 
 ::: moniker-end
 
@@ -205,7 +347,17 @@ The `TransientDisposable` in the following example is detected (`Program.cs`):
 
 `DetectIncorrectUsagesOfTransientDisposables.cs`:
 
-[!code-csharp[](dependency-injection/samples_snapshot/3.x/transient-disposables/DetectIncorrectUsagesOfTransientDisposables-server.cs)]
+::: moniker range=">= aspnetcore-5.0"
+
+[!code-csharp[](~/blazor/common/samples/5.x/BlazorSample_Server/dependency-injection/DetectIncorrectUsagesOfTransientDisposables.cs)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+[!code-csharp[](~/blazor/common/samples/3.x/BlazorSample_Server/dependency-injection/DetectIncorrectUsagesOfTransientDisposables.cs)]
+
+::: moniker-end
 
 Add the namespace for <xref:Microsoft.Extensions.DependencyInjection?displayProperty=fullName> to `Program.cs`:
 
@@ -215,11 +367,52 @@ using Microsoft.Extensions.DependencyInjection;
 
 In `Program.CreateHostBuilder` of `Program.cs`:
 
-[!code-csharp[](dependency-injection/samples_snapshot/3.x/transient-disposables/DetectIncorrectUsagesOfTransientDisposables-server-program.cs?highlight=3)]
+```csharp
+public static IHostBuilder CreateHostBuilder(string[] args) =>
+    Host.CreateDefaultBuilder(args)
+        .DetectIncorrectUsageOfTransients()
+        .ConfigureWebHostDefaults(webBuilder =>
+        {
+            webBuilder.UseStartup<Startup>();
+        });
+```
 
 The `TransientDependency` in the following example is detected (`Startup.cs`):
 
-[!code-csharp[](dependency-injection/samples_snapshot/3.x/transient-disposables/DetectIncorrectUsagesOfTransientDisposables-server-startup.cs?highlight=6-8,11-32)]
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddRazorPages();
+    services.AddServerSideBlazor();
+    services.AddSingleton<WeatherForecastService>();
+    services.AddTransient<TransientDependency>();
+    services.AddTransient<ITransitiveTransientDisposableDependency, 
+        TransitiveTransientDisposableDependency>();
+}
+
+public class TransitiveTransientDisposableDependency 
+    : ITransitiveTransientDisposableDependency, IDisposable
+{
+    public void Dispose() { }
+}
+
+public interface ITransitiveTransientDisposableDependency
+{
+}
+
+public class TransientDependency
+{
+    private readonly ITransitiveTransientDisposableDependency 
+        _transitiveTransientDisposableDependency;
+
+    public TransientDependency(ITransitiveTransientDisposableDependency 
+        transitiveTransientDisposableDependency)
+    {
+        _transitiveTransientDisposableDependency = 
+            transitiveTransientDisposableDependency;
+    }
+}
+```
 
 ::: zone-end
 
@@ -236,9 +429,7 @@ The app can register transient disposables without throwing an exception. Howeve
 
 Navigate to the `TransientDisposable` component at `/transient-disposable` and an <xref:System.InvalidOperationException> is thrown when the framework attempts to construct an instance of `TransientDisposable`:
 
-> System.InvalidOperationException: Trying to resolve transient disposable service 
-TransientDisposable in the wrong scope. Use an 'OwningComponentBase\<T>' component 
-base class for the service 'T' you are trying to resolve.
+> System.InvalidOperationException: Trying to resolve transient disposable service TransientDisposable in the wrong scope. Use an 'OwningComponentBase\<T>' component base class for the service 'T' you are trying to resolve.
 
 ## Additional resources
 

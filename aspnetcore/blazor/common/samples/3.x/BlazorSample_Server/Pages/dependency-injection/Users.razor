@@ -1,3 +1,10 @@
+@code {
+    private class AppDbContext
+    {
+    }
+}
+
+<!-- <snippet> -->
 @page "/users"
 @attribute [Authorize]
 @inherits OwningComponentBase<AppDbContext>
@@ -10,3 +17,4 @@
         <li>@user.UserName</li>
     }
 </ul>
+<!-- </snippet> -->
