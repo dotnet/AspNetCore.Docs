@@ -162,7 +162,7 @@ Build the project as a check for compiler errors.
 
 ## Scaffold movie pages
 
-Use the scaffolding tool to produce Create, Read, Update, and Delete (CRUD) pages for the movie model.
+Use the scaffolding tool to produce `Create`, `Read`, `Update`, and `Delete` (CRUD) pages for the movie model.
 
 # [Visual Studio](#tab/visual-studio)
 
