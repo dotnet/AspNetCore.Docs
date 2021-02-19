@@ -1,3 +1,10 @@
+@code {
+    private EditContext editContext;
+    private string formInvalid;
+    private object model;
+}
+
+<!-- <snippet> -->
 @implements IDisposable
 
 <EditForm EditContext="@editContext">
@@ -8,16 +15,17 @@
 </EditForm>
 
 @code {
-    ...
+    // ...
+
     private EventHandler<FieldChangedEventArgs> fieldChanged;
 
     protected override void OnInitialized()
     {
-        editContext = new EditContext(...);
+        editContext = new EditContext(model);
 
         fieldChanged = (_, __) =>
         {
-            ...
+            // ...
         };
 
         editContext.OnFieldChanged += fieldChanged;
@@ -28,3 +36,4 @@
         editContext.OnFieldChanged -= fieldChanged;
     }
 }
+<!-- </snippet> -->
