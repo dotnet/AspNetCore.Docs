@@ -14,9 +14,9 @@ In this section, classes are added for managing movies in a database. These clas
 
 These model classes are used with [Entity Framework Core](/ef/core) (EF Core) to work with a database. EF Core is an object-relational mapping (ORM) framework that simplifies the data access code that you have to write.
 
-The model classes you create are known as POCO classes (from **P**lain **O**ld **C**LR **O**bjects). POCO classes don't have any dependency on EF Core. They only define the properties of the data to be stored in the database.
+The model classes created are known as POCO classes (from **P**lain **O**ld **C**LR **O**bjects). POCO classes don't have any dependency on EF Core. They only define the properties of the data to be stored in the database.
 
-In this tutorial, you write the model classes first, and EF Core creates the database.
+In this tutorial,  model classes are created first, and EF Core creates the database.
 
 ::: moniker range=">= aspnetcore-5.0"
 
@@ -182,8 +182,7 @@ Complete the **Add MVC Controller with views, using Entity Framework** dialog:
 
 ![Add Data context](adding-model/_static/dc5.png)
 
-* **Views:** Keep the default of each option checked.
-* **Controller name:** Keep the default *MoviesController*.
+**Views** and **Controller name** : Keep the default.
 * Select **Add**.
 
 Visual Studio creates:
@@ -245,7 +244,7 @@ Use the EF Core [Migrations](xref:data/ef-mvc/migrations) feature to create the 
 
 From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Console** (PMC).
 
-In the PMC, enter the following command:
+In the Package Manager Console (PMC), enter the following command:
 
 ```powershell
 Add-Migration InitialCreate
@@ -265,7 +264,7 @@ The `Update-Database` command generates the following warning:
 
 > No type was specified for the decimal column 'Price' on entity type 'Movie'. This causes values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
 
-Ignore the preceding warning, it is fixed in a later tutorial.
+Ignore the preceding warning, it's fixed in a later tutorial.
 
 [!INCLUDE [more information on the PMC tools for EF Core](~/includes/ef-pmc.md)]
 
@@ -346,7 +345,7 @@ In the preceding code:
 
 In the preceding code:
 
-* The constructor uses [Dependency Injection](xref:fundamentals/dependency-injection) to inject the database context, `MvcMovieContext`, into the controller.
+* The constructor uses [Dependency Injection](xref:fundamentals/dependency-injection) to inject the database context `MvcMovieContext` into the controller.
 * The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.
 
 ### Use SQLite for development, SQL Server for production
@@ -365,13 +364,13 @@ When SQLite is selected, the template generated code is ready for development. T
 
 Earlier in this tutorial, you saw how a controller can pass data or objects to a view using the `ViewData` dictionary. The `ViewData` dictionary is a dynamic object that provides a convenient late-bound way to pass information to a view.
 
-MVC provides the ability to pass strongly typed model objects to a view. This strongly typed approach enables compile time code checking. The scaffolding mechanism used this approach. It passed a strongly typed model, with the `MoviesController` class and views.
+MVC provides the ability to pass strongly typed model objects to a view. This strongly typed approach enables compile time code checking. The scaffolding mechanism passed a strongly typed model in the `MoviesController` class and views.
 
 Examine the generated `Details` method in the *Controllers/MoviesController.cs* file:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Controllers/MC1.cs?name=snippet_details)]
 
-The `id` parameter is generally passed as route data. For example `https://localhost:5001/movies/details/1` sets:
+The `id` parameter is generally passed as route data. For example, `https://localhost:5001/movies/details/1` sets:
 
 * The controller to the `movies` controller, the first URL segment.
 * The action to `details`, the second URL segment.
@@ -381,9 +380,9 @@ The `id` can be passed in with a query string, as in the following example:
 
 `https://localhost:5001/movies/details?id=1`
 
-The `id` parameter is defined as a [nullable type](/dotnet/csharp/programming-guide/nullable-types/index),`int?`. In case an id value isn't provided.
+The `id` parameter is defined as a [nullable type](/dotnet/csharp/programming-guide/nullable-types/index),`int?` in cases when the `id` value isn't provided.
 
-A [lambda expression](/dotnet/articles/csharp/programming-guide/statements-expressions-operators/lambda-expressions) is passed in to `FirstOrDefaultAsync` to select movie entities that match the route data or query string value.
+A [lambda expression](/dotnet/articles/csharp/programming-guide/statements-expressions-operators/lambda-expressions) is passed in to <xref:System.Data.Entity.QueryableExtensions.FirstOrDefaultAsync%2A>to select movie entities that match the route data or query string value.
 
 ```csharp
 var movie = await _context.Movie
@@ -422,7 +421,7 @@ The `@model` directive allows access to the list of movies that the controller p
 
 [!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/IndexOriginal.cshtml?highlight=1,31,34,37,40,43,46-48)]
 
-Because the `Model` object is strongly typed, as an `IEnumerable<Movie>` object, each item in the loop is typed as `Movie`. Among other benefits, this means that you get compile time checking of the code.
+Because the `Model` object is strongly typed as an `IEnumerable<Movie>` object, each item in the loop is typed as `Movie`. Among other benefits, the code gets compile time checking.
 
 ## Additional resources
 

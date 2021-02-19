@@ -17,7 +17,7 @@ The `MvcMovieContext` object handles the tasks of:
 * Connecting to the database.
 * Mapping `Movie` objects to database records.
 
-The database context is registered with the [Dependency Injection](xref:fundamentals/dependency-injection) container in the `ConfigureServices` method in the *Startup.cs* file:
+The database context is registered with the [Dependency Injection](xref:fundamentals/dependency-injection) container in the `ConfigureServices` method of the *Startup.cs* file:
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -48,7 +48,7 @@ LocalDB:
 * Is a lightweight version of the SQL Server Express Database Engine.
 * Targeted for program development.
 * Starts on demand and runs in user mode, so there's no complex configuration.
-* By default creates *.mdf* assets in the *C:/Users/{user}* directory.
+* By default creates *.mdf* files in the *C:/Users/{user}* directory.
 
 From the **View** menu, open **SQL Server Object Explorer** (SSOX).
 
@@ -103,9 +103,11 @@ Test the app.
 
 # [Visual Studio](#tab/visual-studio)
 
-Delete all the records in the database by deleting links in the browser, or from SSOX.
+Delete all the records in the database. The data can be deleted by one of the following approaches:
+  * Selecting all the `Delete` links in the browser.
+  * Selecting the database in SQL Server Object Explorer and ...
 
-Force the app to initialize, calling the methods in the `Startup` class, so the seed method runs. To force initialization, IIS Express must be stopped and restarted. Stop and restart IIS Express with any of the following approaches:
+Force the app to initialize so that `Program.Main` is called. `Main` calls `SeedData.Initialize`, which initializes the database with data. To force initialization, IIS Express must be stopped and restarted. Stop and restart IIS Express with any of the following approaches:
 
 * Right-click the IIS Express system tray icon in the notification area and tap **Exit** or **Stop Site**
 
@@ -118,7 +120,7 @@ Force the app to initialize, calling the methods in the `Startup` class, so the 
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-Delete all the records in the database, so the seed method is able to run. Stop and start the app to seed the database.
+Delete all the records in the database. Stop and start the app  so the `SeedData.Initialize` method runs and seeds the database.
 
 ---
 
