@@ -239,17 +239,20 @@ Two versions of the <xref:Microsoft.AspNetCore.Components.OwningComponentBase> t
 
 * <xref:Microsoft.AspNetCore.Components.OwningComponentBase%601> derives from <xref:Microsoft.AspNetCore.Components.OwningComponentBase> and adds a <xref:Microsoft.AspNetCore.Components.OwningComponentBase%601.Service%2A> property that returns an instance of `T` from the scoped DI provider. This type is a convenient way to access scoped services without using an instance of <xref:System.IServiceProvider> when there's one primary service the app requires from the DI container using the component's scope. The <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> property is available, so the app can get services of other types, if necessary.
 
-  ::: moniker range=">= aspnetcore-5.0"
+  ```razor
+  @page "/users"
+  @attribute [Authorize]
+  @inherits OwningComponentBase<AppDbContext>
 
-  [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_Server/Pages/dependency-injection/Users.razor?name=snippet&highlight=3,5,8)]
+  <h1>Users (@Service.Users.Count())</h1>
 
-  ::: moniker-end
-
-  ::: moniker range="< aspnetcore-5.0"
-
-  [!code-razor[](~/blazor/common/samples/3.x/BlazorSample_Server/Pages/dependency-injection/Users.razor?name=snippet&highlight=3,5,8)]
-
-  ::: moniker-end
+  <ul>
+      @foreach (var user in Service.Users)
+      {
+          <li>@user.UserName</li>
+      }
+  </ul>
+  ```
 
 ## Use of an Entity Framework Core (EF Core) DbContext from DI
 
