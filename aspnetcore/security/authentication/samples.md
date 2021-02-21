@@ -17,7 +17,7 @@ The [ASP.NET Core repository](https://github.com/dotnet/AspNetCore) contains the
 
 * [Claims transformation](https://github.com/dotnet/AspNetCore/tree/release/3.1/src/Security/samples/ClaimsTransformation)
 * [Cookie authentication](https://github.com/dotnet/AspNetCore/tree/release/3.1/src/Security/samples/Cookies)
-* [Custom policy provider - IAuthorizationPolicyProvider](https://github.com/dotnet/aspnetcore/tree/main/src/Security/samples/CustomPolicyProvider)
+* [Custom policy provider - IAuthorizationPolicyProvider](https://github.com/dotnet/aspnetcore/tree/release/3.1/src/Security/samples/CustomPolicyProvider)
 * [Dynamic authentication schemes and options](https://github.com/dotnet/AspNetCore/tree/release/3.1/src/Security/samples/DynamicSchemes)
 * [External claims](https://github.com/dotnet/AspNetCore/tree/release/3.1/src/Security/samples/Identity.ExternalClaims)
 * [Selecting between cookie and another authentication scheme based on the request](https://github.com/dotnet/AspNetCore/tree/release/3.1/src/Security/samples/PathSchemeSelection)
