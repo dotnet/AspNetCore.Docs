@@ -13,15 +13,11 @@ uid: fundamentals/logging/index
 
 ::: moniker range=">= aspnetcore-3.0"
 
-By [Kirk Larkin](https://twitter.com/serpent5), [Juergen Gutsch](https://github.com/JuergenGutsch) and [Rick Anderson](https://twitter.com/RickAndMSFT)
+By [Kirk Larkin](https://twitter.com/serpent5), [Juergen Gutsch](https://github.com/JuergenGutsch), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-.NET Core supports a logging API that works with a variety of built-in and third-party logging providers. This article shows how to use the logging API with built-in providers.
+This topic describes logging in .NET as it applies to ASP.NET Core apps. For detailed information on logging in .NET, see [Logging in .NET](/dotnet/core/extensions/logging). For more information on logging in Blazor apps, see <xref:blazor/fundamentals/logging>.
 
-Most of the code examples shown in this article are from ASP.NET Core apps. The logging-specific parts of these code snippets apply to any .NET Core app that uses the [Generic Host](xref:fundamentals/host/generic-host). The ASP.NET Core web app templates use the Generic Host.
-
-This topic provides information on logging in ASP.NET Core. For information on logging in console apps, see [.NET Logging](/dotnet/core/extensions/logging).
-
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/logging/index/samples/3.x) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/logging/index/samples/3.x) ([how to download](xref:index#how-to-download-a-sample)).
 
 <a name="lp"></a>
 
@@ -423,16 +419,6 @@ The following providers support scopes:
 Use a scope by wrapping logger calls in a `using` block:
 
 [!code-csharp[](index/samples/3.x/TodoApiDTO/Controllers/TestController.cs?name=snippet_Scopes)]
-
-The following JSON enables scopes for the console provider:
-
-[!code-json[](index/samples/3.x/TodoApiDTO/appsettings.Scopes.json)]
-
-The following code enables scopes for the console provider:
-
-[!code-csharp[](index/samples/3.x/MyMain/Program.cs?name=snippet_Scopes)]
-
-Generally, logging should be specified in configuration and not code.
 
 <a name="bilp"></a>
 
