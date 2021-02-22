@@ -15,7 +15,7 @@ ASP.NET Core apps configure and launch a *host*. The host is responsible for app
 
 ::: moniker range=">= aspnetcore-3.0"
 
-This article covers the Web Host, which remains available only for backward compatibility. The [Generic Host](xref:fundamentals/host/generic-host) is recommended for all app types.
+This article covers the Web Host, which remains available only for backward compatibility.The ASP.NET Core templates create a .NET Core Generic Host (<xref:Microsoft.Extensions.Hosting.HostBuilder>). Most apps should use the [Generic Host](xref:fundamentals/host/generic-host). `Generic Host` is recommended for all app types.
 
 ::: moniker-end
 
