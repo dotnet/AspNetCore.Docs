@@ -370,16 +370,18 @@ Add the Register, Login, and LogOut files.
 
 If you created the project with name **WebApp1**, run the following commands. Otherwise, use the correct namespace for the `ApplicationDbContext`:
 
-```dotnetcli
-dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
-dotnet aspnet-codegenerator identity -dc WebApp1.Data.ApplicationDbContext --files "Account.Register;Account.Login;Account.Logout"
-```
-
-When creating WebApp1, if you chose to use SQLite, please run the following
+When using SQLite, `--useSqLite` must be specified:
 
 ```dotnetcli
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
 dotnet aspnet-codegenerator identity -dc WebApp1.Data.ApplicationDbContext --files "Account.Register;Account.Login;Account.Logout" --useSqLite
+```
+
+With the default SQL Express use the following commands:
+
+```dotnetcli
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
+dotnet aspnet-codegenerator identity -dc WebApp1.Data.ApplicationDbContext --files "Account.Register;Account.Login;Account.Logout"
 ```
 
 PowerShell uses semicolon as a command separator. When using PowerShell, escape the semicolons in the file list or put the file list in double quotes, as the preceding example shows.
