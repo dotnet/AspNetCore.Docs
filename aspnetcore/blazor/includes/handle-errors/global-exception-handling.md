@@ -40,16 +40,12 @@ In the app's `App` component, wrap the `Router` component with the `Error` compo
 
 To process errors in a component, designate the `Error` component as a [`CascadingParameter`](xref:blazor/components/cascading-values-and-parameters#cascadingparameter-attribute) and call its `ProcessError` method in any `catch` block. The following example adds a button to trigger a mock error for processing. Any `try-catch` block in any of the app's components can similarly process any trapped error where the `Error` component cascading parameter is present.
 
-`Pages/Counter.razor`:
+`Pages/Example.razor`:
 
 ```razor
-@page "/counter"
+@page "/example"
 
-<h1>Counter</h1>
-
-<p>Current count: @currentCount</p>
-
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+<h1>Example</h1>
 
 <button class="btn btn-primary" @onclick="ProcessExampleError">
     Process an example error
@@ -59,13 +55,6 @@ To process errors in a component, designate the `Error` component as a [`Cascadi
     [CascadingParameter]
     public Error Error { get; set; }
 
-    private int currentCount = 0;
-
-    private void IncrementCount()
-    {
-        currentCount++;
-    }
-
     private void ProcessExampleError()
     {
         try
@@ -74,7 +63,7 @@ To process errors in a component, designate the `Error` component as a [`Cascadi
         }
         catch (NullReferenceException ex)
         {
-            Error.ProcessError($"{nameof(Counter)} component error = {ex.Message}");
+            Error.ProcessError($"{nameof(Example)} component error = {ex.Message}");
         }
     }
 }
@@ -83,7 +72,7 @@ To process errors in a component, designate the `Error` component as a [`Cascadi
 The browser's developer tools console shows the logged error when the **Process an example error** button is selected:
 
 > fail: BlazorSample.Shared.Error[0]
-> Error:ProcessError - Counter component error = Object reference not set to an instance of an object.
+> Error:ProcessError - Example component error = Object reference not set to an instance of an object.
 
 To show the Blazor error UI, add a JavaScript function that triggers display of the error UI and use JS interop to call the function.
 
