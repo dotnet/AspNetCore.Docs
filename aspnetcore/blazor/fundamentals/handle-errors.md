@@ -5,7 +5,7 @@ description: Discover how ASP.NET Core Blazor how Blazor manages unhandled excep
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/24/2021
+ms.date: 02/25/2021
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/fundamentals/handle-errors
 zone_pivot_groups: blazor-hosting-models
@@ -35,28 +35,7 @@ In a Blazor WebAssembly app, customize the experience in the `wwwroot/index.html
 </div>
 ```
 
-The `blazor-error-ui` element is hidden by the styles included in the Blazor project template (`wwwroot/css/app.css`) and then shown when an error occurs:
-
-```css
-#blazor-error-ui {
-    background: lightyellow;
-    bottom: 0;
-    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
-    display: none;
-    left: 0;
-    padding: 0.6rem 1.25rem 0.7rem 1.25rem;
-    position: fixed;
-    width: 100%;
-    z-index: 1000;
-}
-
-#blazor-error-ui .dismiss {
-    cursor: pointer;
-    position: absolute;
-    right: 0.75rem;
-    top: 0.5rem;
-}
-```
+The `blazor-error-ui` element is normally hidden due the presence of the `display: none` style of the `blazor-error-ui` CSS class in the app's stylesheet (`wwwroot/css/app.css`). When an error occurs, the framework applies `display: block` to the element.
 
 ## Manage unhandled exceptions in developer code
 
@@ -66,6 +45,10 @@ In production, don't render framework exception messages or stack traces in the 
 
 * Disclose sensitive information to end users.
 * Help a malicious user discover weaknesses in an app that can compromise the security of the app, server, or network.
+
+## Global exception handling
+
+[!INCLUDE[](~/blazor/includes/handle-errors/global-exception-handling.md)]
 
 ## Log errors with a persistent provider
 
@@ -273,28 +256,9 @@ In a Blazor Server app, customize the experience in the `Pages/_Host.cshtml` fil
 </div>
 ```
 
+The `blazor-error-ui` element is normally hidden due the presence of the `display: none` style of the `blazor-error-ui` CSS class in the site's stylesheet (`wwwroot/css/site.css`). When an error occurs, the framework applies `display: block` to the element.
+
 The `blazor-error-ui` element is hidden by the styles included in the Blazor project template (`wwwroot/css/site.css`) and then shown when an error occurs:
-
-```css
-#blazor-error-ui {
-    background: lightyellow;
-    bottom: 0;
-    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
-    display: none;
-    left: 0;
-    padding: 0.6rem 1.25rem 0.7rem 1.25rem;
-    position: fixed;
-    width: 100%;
-    z-index: 1000;
-}
-
-#blazor-error-ui .dismiss {
-    cursor: pointer;
-    position: absolute;
-    right: 0.75rem;
-    top: 0.5rem;
-}
-```
 
 ## Blazor Server detailed circuit errors
 
@@ -350,6 +314,12 @@ In production, don't render framework exception messages or stack traces in the 
 
 * Disclose sensitive information to end users.
 * Help a malicious user discover weaknesses in an app that can compromise the security of the app, server, or network.
+
+## Global exception handling
+
+[!INCLUDE[](~/blazor/includes/handle-errors/global-exception-handling.md)]
+
+Because the approaches in this section handle errors with a [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statement, the SignalR connection between the client and server isn't broken when an error occurs and the circuit remains alive. Any unhandled exception is fatal to a circuit. For more information, see the preceding section on [how a Blazor Server app reacts to unhandled exceptions](#how-a-blazor-server-app-reacts-to-unhandled-exceptions).
 
 ## Log errors with a persistent provider
 
