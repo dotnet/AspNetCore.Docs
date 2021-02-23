@@ -188,6 +188,8 @@ dotnet-aspnet-codegenerator razorpage -h
 
 For more information, see [dotnet-aspnet-codegenerator](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
 
+<a name="sqlite-dev"></a>
+
 ### Use SQLite for development, SQL Server for production
 
 When SQLite is selected, the template generated code is ready for development. The following code shows how to inject <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment> into `Startup`. `IWebHostEnvironment` is injected so the app can use SQLite in development and SQL Server in production.
@@ -363,6 +365,8 @@ Examine the `Up` method.
 The next tutorial explains the files created by scaffolding.
 
 ## Additional resources
+
+[Use SQLite for development, SQL Server for production](?tabs=visual-studio-code#sqlite-dev)
 
 > [!div class="step-by-step"]
 > [Previous: Get Started](xref:tutorials/razor-pages/razor-pages-start)
