@@ -5,17 +5,109 @@ description: Learn how to configure and manage Blazor SignalR connections.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/27/2021
+ms.date: 02/24/2021
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/fundamentals/signalr
+zone_pivot_groups: blazor-hosting-models
 ---
 # ASP.NET Core Blazor SignalR guidance
+
+::: zone pivot="webassembly"
+
+For general guidance on ASP.NET Core SignalR configuration, see the topics in the <xref:signalr/introduction> area of the documentation. To configure SignalR [added to a hosted Blazor WebAssembly solution](xref:tutorials/signalr-blazor), see <xref:signalr/configuration#configure-server-options>.
+
+## SignalR cross-origin negotiation for authentication
+
+To configure SignalR's underlying client to send credentials, such as cookies or HTTP authentication headers:
+
+* Use <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestCredentials%2A> to set <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.BrowserRequestCredentials.Include> on cross-origin [`fetch`](https://developer.mozilla.org/docs/Web/API/Fetch_API/Using_Fetch) requests:
+
+  ```csharp
+  public class IncludeRequestCredentialsMessageHandler : DelegatingHandler
+  {
+      protected override Task<HttpResponseMessage> SendAsync(
+          HttpRequestMessage request, CancellationToken cancellationToken)
+      {
+          request.SetBrowserRequestCredentials(BrowserRequestCredentials.Include);
+          return base.SendAsync(request, cancellationToken);
+      }
+  }
+  ```
+
+* Assign the <xref:System.Net.Http.HttpMessageHandler> to the <xref:Microsoft.AspNetCore.Http.Connections.Client.HttpConnectionOptions.HttpMessageHandlerFactory> option:
+
+  ```csharp
+  var connection = new HubConnectionBuilder()
+      .WithUrl(new Uri("http://signalr.example.com"), options =>
+      {
+          options.HttpMessageHandlerFactory = innerHandler => 
+              new IncludeRequestCredentialsMessageHandler { InnerHandler = innerHandler };
+      }).Build();
+  ```
+
+For more information, see <xref:signalr/configuration#configure-additional-options>.
+
+::: moniker range=">= aspnetcore-5.0"
+
+## Render mode
+
+Blazor apps are set up by default to prerender the UI on the server. For more information, see <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
+
+::: moniker-end
+
+## Hide or replace the reconnection display
+
+To hide the reconnection display, set the reconnection handler's `_reconnectionDisplay` to an empty object (`{}` or `new Object()`):
+
+```cshtml
+<body>
+
+    ...
+
+    <script autostart="false" src="_framework/blazor.server.js"></script>
+    <script>
+      window.addEventListener('beforeunload', function () {
+        Blazor.defaultReconnectionHandler._reconnectionDisplay = {};
+      });
+
+      Blazor.start();
+    </script>
+</body>
+```
+
+To replace the reconnection display, set `_reconnectionDisplay` in the preceding example to the element for display:
+
+```javascript
+Blazor.defaultReconnectionHandler._reconnectionDisplay = 
+  document.getElementById("{ELEMENT ID}");
+```
+
+The placeholder `{ELEMENT ID}` is the ID of the HTML element to display.
+
+::: moniker range=">= aspnetcore-5.0"
+
+Customize the delay before the reconnection display appears by setting the `transition-delay` property in the app's CSS (`wwwroot/css/site.css`) for the modal element. The following example sets the transition delay from 500 ms (default) to 1,000 ms (1 second):
+
+```css
+#components-reconnect-modal {
+    transition: visibility 0s linear 1000ms;
+}
+```
+
+::: moniker-end
+
+## Additional resources
+
+* <xref:signalr/introduction>
+* <xref:signalr/configuration>
+
+::: zone-end
+
+::: zone pivot="server"
 
 For general guidance on ASP.NET Core SignalR configuration, see the topics in the <xref:signalr/introduction> area of the documentation. To configure SignalR [added to a hosted Blazor WebAssembly solution](xref:tutorials/signalr-blazor), see <xref:signalr/configuration#configure-server-options>.
 
 ## Circuit handler options
-
-*This section applies to Blazor Server.*
 
 Configure the Blazor Server circuit with the <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions> shown in the following table.
 
@@ -64,42 +156,7 @@ services.AddServerSideBlazor()
     });
 ```
 
-## SignalR cross-origin negotiation for authentication
-
-*This section applies to Blazor WebAssembly.*
-
-To configure SignalR's underlying client to send credentials, such as cookies or HTTP authentication headers:
-
-* Use <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestCredentials%2A> to set <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.BrowserRequestCredentials.Include> on cross-origin [`fetch`](https://developer.mozilla.org/docs/Web/API/Fetch_API/Using_Fetch) requests:
-
-  ```csharp
-  public class IncludeRequestCredentialsMessageHandler : DelegatingHandler
-  {
-      protected override Task<HttpResponseMessage> SendAsync(
-          HttpRequestMessage request, CancellationToken cancellationToken)
-      {
-          request.SetBrowserRequestCredentials(BrowserRequestCredentials.Include);
-          return base.SendAsync(request, cancellationToken);
-      }
-  }
-  ```
-
-* Assign the <xref:System.Net.Http.HttpMessageHandler> to the <xref:Microsoft.AspNetCore.Http.Connections.Client.HttpConnectionOptions.HttpMessageHandlerFactory> option:
-
-  ```csharp
-  var connection = new HubConnectionBuilder()
-      .WithUrl(new Uri("http://signalr.example.com"), options =>
-      {
-          options.HttpMessageHandlerFactory = innerHandler => 
-              new IncludeRequestCredentialsMessageHandler { InnerHandler = innerHandler };
-      }).Build();
-  ```
-
-For more information, see <xref:signalr/configuration#configure-additional-options>.
-
 ## Reflect the connection state in the UI
-
-*This section applies to Blazor Server.*
 
 When the client detects that the connection has been lost, a default UI is displayed to the user while the client attempts to reconnect. If reconnection fails, the user is provided the option to retry.
 
@@ -136,23 +193,17 @@ The following table describes the CSS classes applied to the `components-reconne
 
 ::: moniker range=">= aspnetcore-5.0"
 
-*This section applies to hosted Blazor WebAssembly and Blazor Server.*
-
 Blazor apps are set up by default to prerender the UI on the server. For more information, see <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-*This section applies to Blazor Server.*
-
 Blazor Server apps are set up by default to prerender the UI on the server before the client connection to the server is established. For more information, see <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
 
 ::: moniker-end
 
 ## Initialize the Blazor circuit
-
-*This section applies to Blazor Server.*
 
 Configure the manual start of a Blazor Server app's [SignalR circuit](xref:blazor/hosting-models#circuits) in the `Pages/_Host.cshtml` file:
 
@@ -322,43 +373,6 @@ window.addEventListener('pagehide', () => {
 });
 ```
 
-<!-- HOLD for reactivation at 5x
-
-THIS WILL BE MOVED TO ANOTHER TOPIC WHEN RE-ACTIVATED.
-
-## Influence HTML `<head>` tag elements
-
-*This section applies to the upcoming ASP.NET Core 5.0 release of Blazor WebAssembly and Blazor Server.*
-
-When rendered, the `Title`, `Link`, and `Meta` components add or update data in the HTML `<head>` tag elements:
-
-```razor
-@using Microsoft.AspNetCore.Components.Web.Extensions.Head
-
-<Title Value="{TITLE}" />
-<Link href="{URL}" rel="stylesheet" />
-<Meta content="{DESCRIPTION}" name="description" />
-```
-
-In the preceding example, placeholders for `{TITLE}`, `{URL}`, and `{DESCRIPTION}` are string values, Razor variables, or Razor expressions.
-
-The following characteristics apply:
-
-* Server-side prerendering is supported.
-* The `Value` parameter is the only valid parameter for the `Title` component.
-* HTML attributes provided to the `Meta` and `Link` components are captured in [additional attributes](xref:blazor/components/index#attribute-splatting-and-arbitrary-parameters) and passed through to the rendered HTML tag.
-* For multiple `Title` components, the title of the page reflects the `Value` of the last `Title` component rendered.
-* If multiple `Meta` or `Link` components are included with identical attributes, there's exactly one HTML tag rendered per `Meta` or `Link` component. Two `Meta` or `Link` components can't refer to the same rendered HTML tag.
-* Changes to the parameters of existing `Meta` or `Link` components are reflected in their rendered HTML tags.
-* When the `Link` or `Meta` components are no longer rendered and thus disposed by the framework, their rendered HTML tags are removed.
-
-When one of the framework components is used in a child component, the rendered HTML tag influences any other child component of the parent component as long as the child component containing the framework component is rendered. The distinction between using the one of these framework components in a child component and placing a an HTML tag in `wwwroot/index.html` or `Pages/_Host.cshtml` is that a framework component's rendered HTML tag:
-
-* Can be modified by application state. A hard-coded HTML tag can't be modified by application state.
-* Is removed from the HTML `<head>` when the parent component is no longer rendered.
-
--->
-
 ::: moniker-end
 
 ## Additional resources
@@ -367,3 +381,5 @@ When one of the framework components is used in a child component, the rendered 
 * <xref:signalr/configuration>
 * <xref:blazor/security/server/threat-mitigation>
 * [Blazor Server reconnection events and component lifecycle events](xref:blazor/components/lifecycle#blazor-server-reconnection-events)
+
+::: zone-end
