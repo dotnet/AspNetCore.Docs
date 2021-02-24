@@ -122,7 +122,7 @@ For calls from .NET methods to JavaScript:
 
 Take the following precautions to guard against the preceding scenarios:
 
-* Wrap JS interop calls within [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statements to account for errors that might occur during the invocations. For more information, see <xref:blazor/fundamentals/handle-errors#javascript-interop>.
+* Wrap JS interop calls within [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statements to account for errors that might occur during the invocations. For more information, see <xref:blazor/fundamentals/handle-errors?pivots=server#javascript-interop-server>.
 * Validate data returned from JS interop invocations, including error messages, before taking any action.
 
 ### .NET methods invoked from the browser

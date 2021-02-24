@@ -18,10 +18,10 @@ This article describes how Blazor manages unhandled exceptions and how to develo
 
 ## Detailed errors during development
 
-When a Blazor app isn't functioning properly during development, receiving detailed error information from the app assists in troubleshooting and fixing the issue. When an error occurs, Blazor apps display a gold bar at the bottom of the screen:
+When a Blazor app isn't functioning properly during development, receiving detailed error information from the app assists in troubleshooting and fixing the issue. When an error occurs, Blazor apps display a light yellow bar at the bottom of the screen:
 
-* During development, the gold bar directs you to the browser console, where you can see the exception.
-* In production, the gold bar notifies the user that an error has occurred and recommends refreshing the browser.
+* During development, the bar directs you to the browser console, where you can see the exception.
+* In production, the bar notifies the user that an error has occurred and recommends refreshing the browser.
 
 The UI for this error handling experience is part of the Blazor project templates.
 
@@ -54,7 +54,7 @@ In production, don't render framework exception messages or stack traces in the 
 
 If an unhandled exception occurs, the exception is logged to <xref:Microsoft.Extensions.Logging.ILogger> instances configured in the service container. By default, Blazor apps log to console output with the Console Logging Provider. Consider logging to a more permanent location on the server by sending error information to a backend web API that uses a logging provider with log size management and log rotation. Alternatively, the backend web API app can use an Application Performance Management (APM) service, such as [Azure Application Insights (Azure Monitor)&dagger;](/azure/azure-monitor/app/app-insights-overview), to record error information that it receives from clients.
 
-You must decide which incidents to log and the level of severity of logged incidents. Hostile users might be able to trigger errors deliberately. For example, don't log an incident from an error where an unknown `ProductId` is supplied in the URL of a component that displays product details. Not all errors should be treated as high-severity incidents for logging.
+You must decide which incidents to log and the level of severity of logged incidents. Hostile users might be able to trigger errors deliberately. For example, don't log an incident from an error where an unknown `ProductId` is supplied in the URL of a component that displays product details. Not all errors should be treated as incidents for logging.
 
 For more information, see the following articles:
 
@@ -63,7 +63,8 @@ For more information, see the following articles:
 * <xref:web-api/index>
 
 &dagger;Native [Application Insights](/azure/azure-monitor/app/app-insights-overview) features to support Blazor WebAssembly apps and native Blazor framework support for [Google Analytics](https://analytics.google.com/analytics/web/) might become available in future releases of these technologies. For more information, see [Support App Insights in Blazor WASM Client Side (microsoft/ApplicationInsights-dotnet #2143)](https://github.com/microsoft/ApplicationInsights-dotnet/issues/2143) and [Web analytics and diagnostics (includes links to community implementations) (dotnet/aspnetcore #5461)](https://github.com/dotnet/aspnetcore/issues/5461). In the meantime, a client-side Blazor WebAssembly app can use the [Application Insights JavaScript SDK](/azure/azure-monitor/app/javascript) with [JS interop](xref:blazor/call-javascript-from-dotnet) to log errors directly to Application Insights from a client-side app.
-&Dagger;Applies to server-side ASP.NET Core apps that are web API backend apps for client-side Blazor WebAssembly apps. Client-side apps trap and send error information to a web API, which logs the error information to a persistent logging provider.
+
+&Dagger;Applies to server-side ASP.NET Core apps that are web API backend apps for Blazor apps. Client-side apps trap and send error information to a web API, which logs the error information to a persistent logging provider.
 
 ## Places where errors may occur
 
@@ -206,7 +207,7 @@ To avoid infinite recursion patterns, ensure that recursive rendering code conta
 
 ### Custom render tree logic
 
-Most Blazor components are implemented as Razor component files (`.razor`) and are compiled to produce logic that operates on a <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> to render their output. A developer may manually implement <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> logic using procedural C# code. For more information, see <xref:blazor/advanced-scenarios#manual-rendertreebuilder-logic>.
+Most Blazor components are implemented as Razor component files (`.razor`) and are compiled by the framework to produce logic that operates on a <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> to render their output. However, a developer may manually implement <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> logic using procedural C# code. For more information, see <xref:blazor/advanced-scenarios#manual-rendertreebuilder-logic>.
 
 > [!WARNING]
 > Use of manual render tree builder logic is considered an advanced and unsafe scenario, not recommended for general component development.
@@ -234,10 +235,10 @@ Consider manual render tree builder logic on the same level of complexity and wi
 
 ## Detailed errors during development
 
-When a Blazor app isn't functioning properly during development, receiving detailed error information from the app assists in troubleshooting and fixing the issue. When an error occurs, Blazor apps display a gold bar at the bottom of the screen:
+When a Blazor app isn't functioning properly during development, receiving detailed error information from the app assists in troubleshooting and fixing the issue. When an error occurs, Blazor apps display a light yellow bar at the bottom of the screen:
 
-* During development, the gold bar directs you to the browser console, where you can see the exception.
-* In production, the gold bar notifies the user that an error has occurred and recommends refreshing the browser.
+* During development, the bar directs you to the browser console, where you can see the exception.
+* In production, the bar notifies the user that an error has occurred and recommends refreshing the browser.
 
 The UI for this error handling experience is part of the Blazor project templates.
 
@@ -258,15 +259,13 @@ In a Blazor Server app, customize the experience in the `Pages/_Host.cshtml` fil
 
 The `blazor-error-ui` element is normally hidden due the presence of the `display: none` style of the `blazor-error-ui` CSS class in the site's stylesheet (`wwwroot/css/site.css`). When an error occurs, the framework applies `display: block` to the element.
 
-The `blazor-error-ui` element is hidden by the styles included in the Blazor project template (`wwwroot/css/site.css`) and then shown when an error occurs:
-
 ## Blazor Server detailed circuit errors
 
 Client-side errors don't include the call stack and don't provide detail on the cause of the error, but server logs do contain such information. For development purposes, sensitive circuit error information can be made available to the client by enabling detailed errors.
 
 Set <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DetailedErrors?displayProperty=nameWithType> to `true`. For more information and an example, see <xref:blazor/fundamentals/signalr#circuit-handler-options>.
 
-An alternative to setting <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DetailedErrors> is to set the `DetailedErrors` configuration key to `true` in the app's Development environment settings file (`appsettings.Development.json`).  Additionally, set [SignalR server-side logging](xref:signalr/diagnostics#server-side-logging) (`Microsoft.AspNetCore.SignalR`) to [Debug](xref:Microsoft.Extensions.Logging.LogLevel) or [Trace](xref:Microsoft.Extensions.Logging.LogLevel) for detailed SignalR logging.
+An alternative to setting <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DetailedErrors?displayProperty=nameWithType> is to set the `DetailedErrors` configuration key to `true` in the app's Development environment settings file (`appsettings.Development.json`).  Additionally, set [SignalR server-side logging](xref:signalr/diagnostics#server-side-logging) (`Microsoft.AspNetCore.SignalR`) to [Debug](xref:Microsoft.Extensions.Logging.LogLevel) or [Trace](xref:Microsoft.Extensions.Logging.LogLevel) for detailed SignalR logging.
 
 `appsettings.Development.json`:
 
@@ -287,7 +286,7 @@ An alternative to setting <xref:Microsoft.AspNetCore.Components.Server.CircuitOp
 The <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DetailedErrors> configuration key can also be set to `true` using the `ASPNETCORE_DETAILEDERRORS` environment variable with a value of `true` on Development/Staging environment servers or on your local system.
 
 > [!WARNING]
-> **Always avoid exposing error information to clients on the Internet, which is a security risk.**
+> Always avoid exposing error information to clients on the Internet, which is a security risk.
 
 ## How a Blazor Server app reacts to unhandled exceptions
 
@@ -296,7 +295,7 @@ Blazor Server is a stateful framework. While users interact with an app, they ma
 * The most recent rendered output of components.
 * The current set of event-handling delegates that could be triggered by client-side events.
 
-If a user opens the app in multiple browser tabs, they have multiple independent circuits.
+If a user opens the app in multiple browser tabs, the user creates multiple independent circuits.
 
 Blazor treats most unhandled exceptions as fatal to the circuit where they occur. If a circuit is terminated due to an unhandled exception, the user can only continue to interact with the app by reloading the page to create a new circuit. Circuits outside of the one that's terminated, which are circuits for other users or other browser tabs, aren't affected. This scenario is similar to a desktop app that crashes. The crashed app must be restarted, but other apps aren't affected.
 
@@ -304,7 +303,7 @@ The framework terminates a circuit when an unhandled exception occurs for the fo
 
 * An unhandled exception often leaves the circuit in an undefined state.
 * The app's normal operation can't be guaranteed after an unhandled exception.
-* Security vulnerabilities may appear in the app if the circuit continues.
+* Security vulnerabilities may appear in the app if the circuit continues in an undefined state.
 
 ## Manage unhandled exceptions in developer code
 
@@ -327,12 +326,14 @@ If an unhandled exception occurs, the exception is logged to <xref:Microsoft.Ext
 
 During development, a Blazor Server app usually sends the full details of exceptions to the browser's console to aid in debugging. In production, detailed errors aren't sent to clients, but an exception's full details are logged on the server.
 
-You must decide which incidents to log and the level of severity of logged incidents. Hostile users might be able to trigger errors deliberately. For example, don't log an incident from an error where an unknown `ProductId` is supplied in the URL of a component that displays product details. Not all errors should be treated as high-severity incidents for logging.
+You must decide which incidents to log and the level of severity of logged incidents. Hostile users might be able to trigger errors deliberately. For example, don't log an incident from an error where an unknown `ProductId` is supplied in the URL of a component that displays product details. Not all errors should be treated as incidents for logging.
 
 For more information, see the following articles:
 
 * <xref:blazor/fundamentals/logging>
-* <xref:fundamentals/error-handling>
+* <xref:fundamentals/error-handling>&dagger;
+
+&dagger;Applies to server-side ASP.NET Core apps that are web API backend apps for Blazor apps.
 
 ## Places where errors may occur
 
@@ -496,7 +497,7 @@ To avoid infinite recursion patterns, ensure that recursive rendering code conta
 
 ### Custom render tree logic
 
-Most Blazor components are implemented as Razor component files (`.razor`) and are compiled to produce logic that operates on a <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> to render their output. A developer may manually implement <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> logic using procedural C# code. For more information, see <xref:blazor/advanced-scenarios#manual-rendertreebuilder-logic>.
+Most Blazor components are implemented as Razor component files (`.razor`) and are compiled by the framework to produce logic that operates on a <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> to render their output. However, a developer may manually implement <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> logic using procedural C# code. For more information, see <xref:blazor/advanced-scenarios#manual-rendertreebuilder-logic>.
 
 > [!WARNING]
 > Use of manual render tree builder logic is considered an advanced and unsafe scenario, not recommended for general component development.
@@ -513,6 +514,8 @@ Consider manual render tree builder logic on the same level of complexity and wi
 ## Additional resources
 
 * <xref:blazor/fundamentals/logging>
-* <xref:fundamentals/error-handling>
+* <xref:fundamentals/error-handling>&dagger;
+
+&dagger;Applies to server-side ASP.NET Core apps that are web API backend apps for Blazor apps.
 
 ::: zone-end

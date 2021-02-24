@@ -1,9 +1,9 @@
 ---
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 ---
-Blazor is a single-page application (SPA) client-side framework. The browser serves as the app's host and thus acts as the processing pipeline for individual Razor components based on URI requests for navigation and static assets. Unlike ASP.NET Core apps that run on the server with a middleware processing pipeline, there is no middleware pipeline processing requests for Razor components that can be leveraged for global error handling. However, an app can use an error processing component as a cascading value to the components of an app to process errors in a centralized way.
+Blazor is a single-page application (SPA) client-side framework. The browser serves as the app's host and thus acts as the processing pipeline for individual Razor components based on URI requests for navigation and static assets. Unlike ASP.NET Core apps that run on the server with a middleware processing pipeline, there is no middleware pipeline that processes requests for Razor components that can be leveraged for global error handling. However, an app can use an error processing component as a cascading value to process errors in a centralized way.
 
-The following `Error` component passes itself as a [`CascadingValue`](xref:blazor/components/cascading-values-and-parameters#cascadingvalue-component) to child components. The component processes a string of error information by merely logging the string. However, any degree of error processing desired can occur in the `ProcessError` method. An advantage of using a component over using an [injected service](xref:blazor/fundamentals/dependency-injection) throughout the app is that the component can render content and apply CSS styles when an error occurs.
+The following `Error` component passes itself as a [`CascadingValue`](xref:blazor/components/cascading-values-and-parameters#cascadingvalue-component) to child components. The following example merely logs the error, but methods of the component can process errors in any way required by the app, including through the use of multiple error processing methods. An advantage of using a component over using an [injected service](xref:blazor/fundamentals/dependency-injection) or a custom logger implementation is that a cascaded component can render content and apply CSS styles when an error occurs.
 
 `Shared/Error.razor`:
 
@@ -27,7 +27,7 @@ The following `Error` component passes itself as a [`CascadingValue`](xref:blazo
 }
 ```
 
-In the app's `App` component, wrap the `Router` component with the `Error` component. This permits the `Error` component to cascade down to any component of the app where the `Error` component is received as a [`CascadingParameter`](xref:blazor/components/cascading-values-and-parameters#cascadingparameter-attribute).
+In the `App` component, wrap the `Router` component with the `Error` component. This permits the `Error` component to cascade down to any component of the app where the `Error` component is received as a [`CascadingParameter`](xref:blazor/components/cascading-values-and-parameters#cascadingparameter-attribute).
 
 `App.razor`:
 
@@ -39,7 +39,7 @@ In the app's `App` component, wrap the `Router` component with the `Error` compo
 </Error>
 ```
 
-To process errors in any app component:
+To process errors in a component:
 
 * Designate the `Error` component as a [`CascadingParameter`](xref:blazor/components/cascading-values-and-parameters#cascadingparameter-attribute) in the [`@code`](xref:mvc/views/razor#code) block:
 
@@ -48,7 +48,7 @@ To process errors in any app component:
   public Error Error { get; set; }
   ```
 
-* Call the `ProcessError` method in any `catch` block with an appropriate exception type:
+* Call an error processing method in any `catch` block with an appropriate exception type. The example `Error` component only offers a single `ProcessError` method, but the error processing component can provide any number of error processing methods to address alternative error processing requirements throughout the app.
 
   ```csharp
   try
@@ -61,7 +61,7 @@ To process errors in any app component:
   }
   ```
 
-The browser's developer tools console shows a trapped error:
+Using the preceding example `Error` component and `ProcessError` method, the browser's developer tools console indicates the trapped, logged error:
 
 > fail: BlazorSample.Shared.Error[0]
 > Error:ProcessError - Type: System.NullReferenceException Message: Object reference not set to an instance of an object.
