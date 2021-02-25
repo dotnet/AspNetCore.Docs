@@ -96,7 +96,7 @@ The following table describes options for configuring gRPC retry policies:
 
 ## Hedging
 
-Hedging is an alternative retry strategy. Hedging enables aggressively sending multiple copies of a single gRPC call without waiting for a response. Because hedged gRPC calls may be executed multiple times on the server, it is important that hedging is only enabled for methods that are safe to execute multiple times without adverse affect.
+Hedging is an alternative retry strategy. Hedging enables aggressively sending multiple copies of a single gRPC call without waiting for a response. Hedged gRPC calls may be executed multiple times on the server. It's important that hedging is only enabled for methods that are safe to execute multiple times without adverse affect.
 
 Hedging has pros and cons when compared to retries: 
 
