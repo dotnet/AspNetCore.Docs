@@ -70,7 +70,7 @@ namespace ContosoUniversity.Pages.Students
             }
             catch (DbUpdateException ex)
             {
-                _logger.LogError(1234, "Message:{msg} + Stack:{stack}", ex.Message, ex.StackTrace);
+                _logger.LogError(ex, ErrorMessage);
 
                 return RedirectToAction("./Delete",
                                      new { id, saveChangesError = true });
