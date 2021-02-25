@@ -68,9 +68,9 @@ var channel = GrpcChannel.ForAddress("https://localhost:5001", new GrpcChannelOp
 
 The preceding code:
 
-1. Creates a `MethodConfig`. Retry policies can be configured per-method and methods are matched using the `Names` property. This method is configured with `MethodName.Default` so it is applied to all gRPC methods called by this channel.
-2. Configures a retry policy. This policy instructs clients to automatically retry gRPC calls that fail with the status code `Unavailable`.
-3. Configures the created channel to use the retry policy by setting `GrpcChannelOptions.ServiceConfig`.
+* Creates a `MethodConfig`. Retry policies can be configured per-method and methods are matched using the `Names` property. This method is configured with `MethodName.Default`, so it's applied to all gRPC methods called by this channel.
+* Configures a retry policy. This policy instructs clients to automatically retry gRPC calls that fail with the status code `Unavailable`.
+* Configures the created channel to use the retry policy by setting `GrpcChannelOptions.ServiceConfig`.
 
 gRPC clients created with the channel will automatically retry failed calls:
 
@@ -88,17 +88,20 @@ The following table describes options for configuring gRPC retry policies:
 
 | Option | Description |
 | ------ | ----------- |
-| MaxAttempts | The maximum number of call attempts, including the original attempt. This value is limited by `GrpcChannelOptions.MaxRetryAttempts` which defaults to 5. A value is required and must be greater than 1. |
-| InitialBackoff | The initial backoff delay between retry attempts. A randomized delay between 0 and the current backoff will determine when the next retry attempt is made. After each attempt the current backoff is multiplied by `BackoffMultiplier`. A value is required and must be greater than zero. |
-| MaxBackoff | The maximum backoff places an upper limit on exponential backoff growth. Value is required and must be greater than zero. |
-| BackoffMultiplier | The backoff will be multiplied by this value after each retry attempt and will increase exponentially when the multiplier is greater than 1. A value is required and must be greater than 0. |
-| RetryableStatusCodes | A collection of status codes. A gRPC call that fails with a matching status will be automatically retried. For more information about status codes, see [Status codes and their use in gRPC](https://grpc.github.io/grpc/core/md_doc_statuscodes.html). At least one status code is required. |
+| `MaxAttempts` | The maximum number of call attempts, including the original attempt. This value is limited by `GrpcChannelOptions.MaxRetryAttempts` which defaults to 5. A value is required and must be greater than 1. |
+| `InitialBackoff` | The initial backoff delay between retry attempts. A randomized delay between 0 and the current backoff determines when the next retry attempt is made. After each attempt, the current backoff is multiplied by `BackoffMultiplier`. A value is required and must be greater than zero. |
+| `MaxBackoff` | The maximum backoff places an upper limit on exponential backoff growth. A value is required and must be greater than zero. |
+| `BackoffMultiplier` | The backoff will be multiplied by this value after each retry attempt and will increase exponentially when the multiplier is greater than 1. A value is required and must be greater than 0. |
+| `RetryableStatusCodes` | A collection of status codes. A gRPC call that fails with a matching status will be automatically retried. For more information about status codes, see [Status codes and their use in gRPC](https://grpc.github.io/grpc/core/md_doc_statuscodes.html). At least one status code is required. |
 
 ## Hedging
 
 Hedging is an alternative retry strategy. Hedging enables aggressively sending multiple copies of a single gRPC call without waiting for a response. Because hedged gRPC calls may be executed multiple times on the server, it is important that hedging is only enabled for methods that are safe to execute multiple times without adverse affect.
 
-Hedging has pros and cons when compared to retries. An advantage to hedging is it might return a successful result faster. It allows for multiple simultaneously gRPC calls and will complete when the first successful result is available. A disadvantage to hedging is it can be wasteful. Multiple calls could be made and all succeed. Only the first result is used and the rest are discarded.
+Hedging has pros and cons when compared to retries: 
+
+* An advantage to hedging is it might return a successful result faster. It allows for multiple simultaneously gRPC calls and will complete when the first successful result is available. 
+* A disadvantage to hedging is it can be wasteful. Multiple calls could be made and all succeed. Only the first result is used and the rest are discarded.
 
 ## Configure a gRPC hedging policy
 
@@ -127,9 +130,9 @@ The following table describes options for configuring gRPC hedging policies:
 
 | Option | Description |
 | ------ | ----------- |
-| MaxAttempts | The hedging policy will send up to this number of calls. Max attempts represents the total number of all attempts, including the original attempt. This value is limited by `GrpcChannelOptions.MaxRetryAttempts` which defaults to 5. Value is required and must be greater than 1. |
-| HedgingDelay | The first call will be sent immediately, but the subsequent hedging calls will be delayed by this value. When the delay is set to zero all hedged calls are sent immediately. |
-| NonFatalStatusCodes | A collection of status codes which indicate other hedge calls may still succeed. If a non-fatal status code is returned by the server, hedged calls will continue. Otherwise, outstanding requests will be canceled and the error returned to the app. For more information about status codes, see [Status codes and their use in gRPC](https://grpc.github.io/grpc/core/md_doc_statuscodes.html). |
+| `MaxAttempts` | The hedging policy will send up to this number of calls. `MaxAttempts` represents the total number of all attempts, including the original attempt. This value is limited by `GrpcChannelOptions.MaxRetryAttempts` which defaults to 5. A value is required and must be greater than 1. |
+| `HedgingDelay` | The first call will be sent immediately, but the subsequent hedging calls will be delayed by this value. When the delay is set to zero all hedged calls are sent immediately. |
+| `NonFatalStatusCodes` | A collection of status codes which indicate other hedge calls may still succeed. If a non-fatal status code is returned by the server, hedged calls will continue. Otherwise, outstanding requests will be canceled and the error returned to the app. For more information about status codes, see [Status codes and their use in gRPC](https://grpc.github.io/grpc/core/md_doc_statuscodes.html). |
 
 ## Additional resources
 
