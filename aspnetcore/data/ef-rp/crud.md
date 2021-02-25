@@ -158,7 +158,7 @@ In this section, a custom error message is implemented when the call to `SaveCha
 
 Replace the code in *Pages/Students/Delete.cshtml.cs* with the following code:
 
-[!code-csharp[Main](intro/samples/cu50/Pages/Students/Delete.cshtml.cs?name=snippet_All)]
+[!code-csharp[Main](intro/samples/cu50/Pages/Students/Delete.cshtml.cs)]
 
 The preceding code:
 
@@ -174,7 +174,7 @@ The `OnPostAsync` method retrieves the selected entity, then calls the [Remove](
 
 Add an error message to *Pages/Students/Delete.cshtml*:
 
-[!code-cshtml[Main](intro/samples/cu30/Pages/Students/Delete.cshtml?highlight=10)]
+[!code-cshtml[Main](intro/samples/cu50/Pages/Students/Delete.cshtml?highlight=10)]
 
 Run the app and delete a student to test the Delete page.
 

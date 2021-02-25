@@ -1,8 +1,9 @@
-﻿#region snippet_All
-using ContosoUniversity.Models;
+﻿using ContosoUniversity.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using System;
 using System.Threading.Tasks;
 
 namespace ContosoUniversity.Pages.Students
@@ -10,10 +11,13 @@ namespace ContosoUniversity.Pages.Students
     public class DeleteModel : PageModel
     {
         private readonly ContosoUniversity.Data.SchoolContext _context;
+        private readonly ILogger<DeleteModel> _logger;
 
-        public DeleteModel(ContosoUniversity.Data.SchoolContext context)
+        public DeleteModel(ContosoUniversity.Data.SchoolContext context,
+                           ILogger<DeleteModel> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         [BindProperty]
@@ -38,7 +42,7 @@ namespace ContosoUniversity.Pages.Students
 
             if (saveChangesError.GetValueOrDefault())
             {
-                ErrorMessage = "Delete failed. Try again";
+                ErrorMessage = String.Format("Delete {ID} failed. Try again", id);
             }
 
             return Page();
@@ -64,13 +68,13 @@ namespace ContosoUniversity.Pages.Students
                 await _context.SaveChangesAsync();
                 return RedirectToPage("./Index");
             }
-            catch (DbUpdateException /* ex */)
+            catch (DbUpdateException ex)
             {
-                //Log the error (uncomment ex variable name and write a log.)
+                _logger.LogError(1234, "Message:{msg} + Stack:{stack}", ex.Message, ex.StackTrace);
+
                 return RedirectToAction("./Delete",
                                      new { id, saveChangesError = true });
             }
         }
     }
 }
-#endregion
