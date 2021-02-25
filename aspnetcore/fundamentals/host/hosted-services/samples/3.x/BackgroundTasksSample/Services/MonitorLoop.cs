@@ -27,7 +27,7 @@ namespace BackgroundTasksSample.Services
             _logger.LogInformation("MonitorAsync Loop is starting.");
 
             // Run a console user input loop in a background thread
-            Task.Run(async () => await MonitorAsync());
+            MonitorAsync();
         }
 
         private async ValueTask MonitorAsync()
