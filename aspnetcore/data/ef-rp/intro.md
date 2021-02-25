@@ -4,7 +4,7 @@ author: rick-anderson
 description: Shows how to create a Razor Pages app using Entity Framework Core
 ms.author: riande
 ms.custom: "mvc, seodec18"
-ms.date: 2/26/2021
+ms.date: 3/3/2021
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: data/ef-rp/intro
 ---
@@ -303,7 +303,7 @@ The scaffolding tool generates a connection string in the *appsettings.json* fil
 
 The connection string specifies [SQL Server LocalDB](/sql/database-engine/configure-windows/sql-server-2016-express-localdb):
 
-[!code-json[Main](intro/samples/cu50/appsettings.json?highlight=11)]
+[!code-json[Main](intro/samples/cu50/appsettings1.json?highlight=11)]
 
 LocalDB is a lightweight version of the SQL Server Express Database Engine and is intended for app development, not production use. By default, LocalDB creates *.mdf* files in the `C:/Users/<user>` directory.
 

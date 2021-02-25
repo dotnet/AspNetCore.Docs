@@ -1,22 +1,24 @@
-﻿using ContosoUniversity.Data;
+﻿#region snippet_All
+using ContosoUniversity.Data;
 using ContosoUniversity.Models;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace ContosoUniversity.Pages.Students
 {
-    #region snippet_All
     public class IndexModel : PageModel
     {
         private readonly SchoolContext _context;
+        private readonly IConfiguration Configuration;
 
-        public IndexModel(SchoolContext context)
+        public IndexModel(SchoolContext context, IConfiguration configuration)
         {
             _context = context;
+            Configuration = configuration;
         }
 
         public string NameSort { get; set; }
@@ -44,7 +46,7 @@ namespace ContosoUniversity.Pages.Students
             CurrentFilter = searchString;
 
             IQueryable<Student> studentsIQ = from s in _context.Students
-                                            select s;
+                                             select s;
             if (!String.IsNullOrEmpty(searchString))
             {
                 studentsIQ = studentsIQ.Where(s => s.LastName.Contains(searchString)
@@ -66,10 +68,10 @@ namespace ContosoUniversity.Pages.Students
                     break;
             }
 
-            int pageSize = 3;
+            int pageSize = Convert.ToInt32(Configuration["PageSize"] ?? "4");
             Students = await PaginatedList<Student>.CreateAsync(
                 studentsIQ.AsNoTracking(), pageIndex ?? 1, pageSize);
         }
     }
-    #endregion
 }
+#endregion

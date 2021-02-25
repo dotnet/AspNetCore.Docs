@@ -21,6 +21,7 @@ namespace ContosoUniversity.Pages.Students
 
         public IActionResult OnGet()
         {
+            Student = new Student { EnrollmentDate = DateTime.Now, FirstMidName = "Joe", LastName = "Smith" };
             return Page();
         }
 

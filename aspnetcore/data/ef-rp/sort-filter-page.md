@@ -4,7 +4,7 @@ author: rick-anderson
 description: Part 3 of Razor Pages and Entity Framework tutorial series.
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/22/2019
+ms.date: 3/3/2021
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: data/ef-rp/sort-filter-page
 ---
@@ -157,17 +157,23 @@ In this section, a `PaginatedList` class is created to support paging. The `Pagi
 
 In the project folder, create `PaginatedList.cs` with the following code:
 
-[!code-csharp[Main](intro/samples/cu30/PaginatedList.cs)]
+[!code-csharp[Main](intro/samples/cu50/PaginatedList.cs)]
 
 The `CreateAsync` method in the preceding code takes page size and page number and applies the appropriate `Skip` and `Take` statements to the `IQueryable`. When `ToListAsync` is called on the `IQueryable`, it returns a List containing only the requested page. The properties `HasPreviousPage` and `HasNextPage` are used to enable or disable **Previous** and **Next** paging buttons.
 
 The `CreateAsync` method is used to create the `PaginatedList<T>`. A constructor can't create the `PaginatedList<T>` object; constructors can't run asynchronous code.
 
-### Add paging to the PageModel class
+### Add page size to configuration
+
+Add `PageSize` to the *appsettings.json* [Configuration](xref:fundamentals/configuration/index) file:
+
+[!code-json[Main](intro/samples/cu50/appsettings.json?highlight=2)]
+
+### Add paging to IndexModel
 
 Replace the code in *Students/Index.cshtml.cs* to add paging.
 
-[!code-csharp[Main](intro/samples/cu30/Pages/Students/Index.cshtml.cs?name=snippet_All&highlight=15-20,23-30,57-59)]
+[!code-csharp[Main](intro/samples/cu50/Pages/Students/Index.cshtml.cs?name=snippet_All&highlight=5,15-20,28-43,70-72)]
 
 The preceding code:
 
@@ -176,7 +182,7 @@ The preceding code:
 * Saves the sort order in the `CurrentSort` property.
 * Resets page index to 1 when there's a new search string.
 * Uses the `PaginatedList` class to get Student entities.
-* Sets `pageSize` to 3. A real app would use [Configuration](xref:fundamentals/configuration/index) to set the page size value.
+* Sets `pageSize` to 3 from [Configuration](xref:fundamentals/configuration/index), 4 if configuration fails.
 
 All the parameters that `OnGetAsync` receives are null when:
 
@@ -201,19 +207,19 @@ If the search string is changed while paging, the page is reset to 1. The page h
 
   The two question marks after `pageIndex` in the `PaginatedList.CreateAsync` call represent the [null-coalescing operator](/dotnet/csharp/language-reference/operators/null-conditional-operator). The null-coalescing operator defines a default value for a nullable type. The expression `pageIndex ?? 1` returns the value of `pageIndex` if it has a value, otherwise, it returns 1.
 
-### Add paging links to the Razor Page
+### Add paging links
 
 Replace the code in *Students/Index.cshtml* with the following code. The changes are highlighted:
 
-[!code-cshtml[Main](intro/samples/cu30/Pages/Students/Index.cshtml?highlight=29-32,38-41,69-87)]
+[!code-cshtml[Main](intro/samples/cu50/Pages/Students/Index.cshtml?highlight=29-32,38-41,69-87)]
 
 The column header links use the query string to pass the current search string to the `OnGetAsync` method:
 
-[!code-cshtml[Main](intro/samples/cu30/Pages/Students/Index.cshtml?range=29-32)]
+[!code-cshtml[Main](intro/samples/cu50/Pages/Students/Index.cshtml?range=29-32)]
 
 The paging buttons are displayed by tag helpers:
 
-[!code-cshtml[Main](intro/samples/cu30/Pages/Students/Index.cshtml?range=73-87)]
+[!code-cshtml[Main](intro/samples/cu50/Pages/Students/Index.cshtml?range=73-87)]
 
 Run the app and navigate to the students page.
 
@@ -222,12 +228,12 @@ Run the app and navigate to the students page.
 
 ![students index page with paging links](sort-filter-page/_static/paging30.png)
 
-## Add grouping
+## Grouping
 
-This section creates an About page that displays how many students have enrolled for each enrollment date. The update uses grouping and includes the following steps:
+This section creates an `About` page that displays how many students have enrolled for each enrollment date. The update uses grouping and includes the following steps:
 
-* Create a view model for the data used by the **About** page.
-* Update the About page to use the view model.
+* Create a view model for the data used by the `About` page.
+* Update the `About` page to use the view model.
 
 ### Create the view model
 
@@ -235,19 +241,19 @@ Create a *Models/SchoolViewModels* folder.
 
 Create *SchoolViewModels/EnrollmentDateGroup.cs* with the following code:
 
-[!code-csharp[Main](intro/samples/cu30/Models/SchoolViewModels/EnrollmentDateGroup.cs)]
+[!code-csharp[Main](intro/samples/cu50/Models/SchoolViewModels/EnrollmentDateGroup.cs)]
 
 ### Create the Razor Page
 
 Create a *Pages/About.cshtml* file with the following code:
 
-[!code-cshtml[Main](intro/samples/cu30/Pages/About.cshtml)]
+[!code-cshtml[Main](intro/samples/cu50/Pages/About.cshtml)]
 
 ### Create the page model
 
 Update the *Pages/About.cshtml.cs* file with the following code:
 
-[!code-csharp[Main](intro/samples/cu30/Pages/About.cshtml.cs)]
+[!code-csharp[Main](intro/samples/cu50/Pages/About.cshtml.cs)]
 
 The LINQ statement groups the student entities by enrollment date, calculates the number of entities in each group, and stores the results in a collection of `EnrollmentDateGroup` view model objects.
 
