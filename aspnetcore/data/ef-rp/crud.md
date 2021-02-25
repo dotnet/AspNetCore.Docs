@@ -19,15 +19,15 @@ In this tutorial, the scaffolded CRUD (create, read, update, delete) code is rev
 
 ## No repository
 
-Some developers use a service layer or repository pattern to create an abstraction layer between the UI (Razor Pages) and the data access layer. This tutorial doesn't do that. To minimize complexity and keep the tutorial focused on EF Core, EF Core code is added directly to the page model classes. 
+Some developers use a service layer or repository pattern to create an abstraction layer between the UI (Razor Pages) and the data access layer. This tutorial doesn't do that. To minimize complexity and keep the tutorial focused on EF Core, EF Core code is added directly to the page model classes.
 
 ## Update the Details page
 
-The scaffolded code for the Students pages doesn't include enrollment data. In this section, you add enrollments to the Details page.
+The scaffolded code for the Students pages doesn't include enrollment data. In this section, enrollments are added to the `Details` page.
 
 ### Read enrollments
 
-To display a student's enrollment data on the page, you need to read it. The scaffolded code in *Pages/Students/Details.cshtml.cs* reads only the Student data, without the Enrollment data:
+To display a student's enrollment data on the page, the enrollment data must be read. The scaffolded code in *Pages/Students/Details.cshtml.cs* reads only the `Student` data, without the `Enrollment` data:
 
 [!code-csharp[Main](intro/samples/cu30snapshots/2-crud/Pages/Students/Details1.cshtml.cs?name=snippet_OnGetAsync&highlight=8)]
 
@@ -45,7 +45,7 @@ Replace the code in *Pages/Students/Details.cshtml* with the following code to d
 
 [!code-cshtml[Main](intro/samples/cu30/Pages/Students/Details.cshtml?highlight=32-53)]
 
-The preceding code loops through the entities in the `Enrollments` navigation property. For each enrollment, it displays the course title and the grade. The course title is retrieved from the Course entity that's stored in the `Course` navigation property of the Enrollments entity.
+The preceding code loops through the entities in the `Enrollments` navigation property. For each enrollment, it displays the course title and the grade. The course title is retrieved from the `Course` entity that's stored in the `Course` navigation property of the Enrollments entity.
 
 Run the app, select the **Students** tab, and click the **Details** link for a student. The list of courses and grades for the selected student is displayed.
 
@@ -156,11 +156,16 @@ In a web app, the `DbContext` that reads an entity and displays the data is disp
 
 In this section, a custom error message is implemented when the call to `SaveChanges` fails.
 
-Replace the code in *Pages/Students/Delete.cshtml.cs* with the following code. The changes are highlighted:
+Replace the code in *Pages/Students/Delete.cshtml.cs* with the following code:
 
-[!code-csharp[Main](intro/samples/cu50/Pages/Students/Delete.cshtml.cs?name=snippet_All&highlight=12-14,22,30-33,45-99)]
+[!code-csharp[Main](intro/samples/cu50/Pages/Students/Delete.cshtml.cs?name=snippet_All)]
 
-The preceding code adds the optional parameter `saveChangesError` to the `OnGetAsync` method signature. `saveChangesError` indicates whether the method was called after a failure to delete the student object. The delete operation might fail because of transient network problems. Transient network errors are more likely when the database is in the cloud. The `saveChangesError` parameter is `false` when the Delete page `OnGetAsync` is called from the UI. When `OnGetAsync` is called by `OnPostAsync` because the delete operation failed, the `saveChangesError` parameter is `true`.
+The preceding code:
+
+* Adds [Logging](xref:fundamentals/logging/index).
+* Adds adds the optional parameter `saveChangesError` to the `OnGetAsync` method signature. `saveChangesError` indicates whether the method was called after a failure to delete the student object.
+
+The delete operation might fail because of transient network problems. Transient network errors are more likely when the database is in the cloud. The `saveChangesError` parameter is `false` when the Delete page `OnGetAsync` is called from the UI. When `OnGetAsync` is called by `OnPostAsync` because the delete operation failed, the `saveChangesError` parameter is `true`.
 
 The `OnPostAsync` method retrieves the selected entity, then calls the [Remove](/dotnet/api/microsoft.entityframeworkcore.dbcontext.remove#Microsoft_EntityFrameworkCore_DbContext_Remove_System_Object_) method to set the entity's status to `Deleted`. When `SaveChanges` is called, a SQL `DELETE` command is generated. If `Remove` fails:
 
