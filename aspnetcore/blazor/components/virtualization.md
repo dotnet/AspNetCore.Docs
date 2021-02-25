@@ -5,19 +5,19 @@ description: Learn how to use component virtualization in ASP.NET Core Blazor ap
 monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/02/2020
+ms.date: 02/26/2021
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/components/virtualization
 ---
 # ASP.NET Core Blazor component virtualization
 
-Improve the perceived performance of component rendering using the Blazor framework's built-in virtualization support. Virtualization is a technique for limiting UI rendering to just the parts that are currently visible. For example, virtualization is helpful when the app must render a long list of items and only a subset of items is required to be visible at any given time. Blazor provides the [`Virtualize` component](xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601) that can be used to add virtualization to an app's components.
+Improve the perceived performance of component rendering using the Blazor framework's built-in virtualization support. Virtualization is a technique for limiting UI rendering to just the parts that are currently visible. For example, virtualization is helpful when the app must render a long list of items and only a subset of items is required to be visible at any given time. Blazor provides the [`Virtualize` component](xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601) to add virtualization to components.
 
-The `Virtualize` component can be used when:
+Use the `Virtualize` component when:
 
 * Rendering a set of data items in a loop.
 * Most of the items aren't visible due to scrolling.
-* The rendered items are exactly the same size. When the user scrolls to an arbitrary point, the component can calculate the visible items to show.
+* The rendered items are exactly the same size. When the user scrolls to an arbitrary point, the component calculates the visible items to show.
 
 Without virtualization, a typical list might use a C# [`foreach`](/dotnet/csharp/language-reference/keywords/foreach-in) loop to render each item in the list:
 
@@ -32,7 +32,7 @@ Without virtualization, a typical list might use a C# [`foreach`](/dotnet/csharp
 
 If the list contains thousands of items, then rendering the list may take a long time. The user may experience a noticeable UI lag.
 
-Instead of rendering each item in the list all at one time, replace the [`foreach`](/dotnet/csharp/language-reference/keywords/foreach-in) loop with the `Virtualize` component and specify a fixed item source with <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.Items%2A?displayProperty=nameWithType>. Only the items that are currently visible are rendered:
+Instead of rendering the entire list at once, replace the [`foreach`](/dotnet/csharp/language-reference/keywords/foreach-in) loop with the `Virtualize` component and specify a fixed item source with <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.Items%2A?displayProperty=nameWithType>. Only the items that are currently visible are rendered:
 
 ```razor
 <div style="height:500px;overflow-y:scroll">
@@ -53,7 +53,7 @@ If not specifying a context to the component with `Context`, use the `context` v
 ```
 
 > [!NOTE]
-> The mapping process of model objects to elements and components can be controlled with the [`@key`](xref:mvc/views/razor#key) directive attribute. `@key` causes the diffing algorithm to guarantee preservation of elements or components based on the key's value.
+> The mapping process of model objects to elements and components can be controlled with the [`@key`](xref:mvc/views/razor#key) directive attribute. `@key` causes the diffing algorithm to guarantee the preservation of elements or components based on the key's value.
 >
 > For more information, see the following articles:
 >
@@ -62,8 +62,8 @@ If not specifying a context to the component with `Context`, use the `context` v
 
 The `Virtualize` component:
 
-* Calculates how many items to render based on the height of the container and the size of the rendered items.
-* Recalculates and rerenders items as the user scrolls.
+* Calculates the number of items to render based on the height of the container and the size of the rendered items.
+* Recalculates and rerenders the items as the user scrolls.
 * Only fetches the slice of records from an external API that correspond to the current visible region, instead of downloading all of the data from the collection.
 
 The item content for the `Virtualize` component can include:
@@ -103,7 +103,7 @@ private async ValueTask<ItemsProviderResult<Employee>> LoadEmployees(
 }
 ```
 
-<xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.RefreshDataAsync%2A?displayProperty=nameWithType> instructs the component to rerequest data from its <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemsProvider%2A>. This is useful when external data changes. There's no need to call this when using <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.Items%2A>.
+<xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.RefreshDataAsync%2A?displayProperty=nameWithType> instructs the component to rerequest data from its <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemsProvider%2A>. This is useful when external data changes. There's no need to call <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.RefreshDataAsync%2A> when using <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.Items%2A>.
 
 ## Placeholder
 
@@ -130,7 +130,7 @@ Because requesting items from a remote data source might take some time, you hav
 
 ## Item size
 
-The height of each item in pixels can be set with <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemSize%2A?displayProperty=nameWithType> (default: 50):
+The height of each item in pixels can be set with <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemSize%2A?displayProperty=nameWithType> (default: 50). The following example changes the height of each item from the default of 50 pixels to 25 pixels:
 
 ```razor
 <Virtualize Context="employee" Items="@employees" ItemSize="25">
@@ -138,11 +138,11 @@ The height of each item in pixels can be set with <xref:Microsoft.AspNetCore.Com
 </Virtualize>
 ```
 
-By default, the `Virtualize` component measures the actual rendering size *after* the initial render occurs. Use <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemSize%2A> to provide an exact item size in advance to assist with accurate initial render performance and to ensure the correct scroll position for page reloads. If the default <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemSize%2A> causes some items to render outside of the currently visible view, a second re-render is triggered. To correctly maintain the browser's scroll position in a virtualized list, the initial render must be correct. If not, users might view the wrong items. 
+By default, the `Virtualize` component measures the actual rendering size *after* the initial render occurs. Use <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemSize%2A> to provide an exact item size in advance to assist with accurate initial render performance and to ensure the correct scroll position for page reloads. If the default <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemSize%2A> causes some items to render outside of the currently visible view, a second re-render is triggered. To correctly maintain the browser's scroll position in a virtualized list, the initial render must be correct. If not, users might view the wrong items.
 
 ## Overscan count
 
-<xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.OverscanCount%2A?displayProperty=nameWithType> determines how many additional items are rendered before and after the visible region. This setting helps to reduce the frequency of rendering during scrolling. However, higher values result in more elements rendered in the page (default: 3):
+<xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.OverscanCount%2A?displayProperty=nameWithType> determines how many additional items are rendered before and after the visible region. This setting helps to reduce the frequency of rendering during scrolling. However, higher values result in more elements rendered in the page (default: 3). The following example changes the overscan count from the default of three items to four items:
 
 ```razor
 <Virtualize Context="employee" Items="@employees" OverscanCount="4">
