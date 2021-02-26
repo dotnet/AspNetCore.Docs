@@ -114,3 +114,7 @@ docker run --rm -it -p 8000:80 -p 8001:443 -e ASPNETCORE_URLS="https://+;http://
 ```
 
 The password must match the password used for the certificate. When using [PowerShell](/powershell/scripting/overview), replace `%USERPROFILE%` with `$env:USERPROFILE`.
+
+## Developing ASP.NET Core Applications with Docker over HTTPS
+
+See [Developing ASP.NET Core Applications with Docker over HTTPS](https://github.com/dotnet/dotnet-docker/blob/master/samples/run-aspnetcore-https-development.md) for information and samples on how to develop ASP.NET Core applications with HTTPS in Docker containers.
