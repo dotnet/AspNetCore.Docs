@@ -994,7 +994,7 @@ To ensure that a validation result is correctly associated with a field when usi
 using System;
 using System.ComponentModel.DataAnnotations;
 
-private class CustomValidator : ValidationAttribute
+public class CustomValidator : ValidationAttribute
 {
     protected override ValidationResult IsValid(object value, 
         ValidationContext validationContext)
@@ -1017,7 +1017,10 @@ private class CustomValidator : ValidationAttribute
 Custom validation class names are useful when integrating with CSS frameworks, such as [Bootstrap](https://getbootstrap.com/). To specify custom validation class names, create a class derived from `FieldCssClassProvider` and set the class on the <xref:Microsoft.AspNetCore.Components.Forms.EditContext> instance in the component's initializer:
 
 ```csharp
-private class MyFieldClassProvider : FieldCssClassProvider
+using System.Linq;
+using Microsoft.AspNetCore.Components.Forms;
+
+public class MyFieldClassProvider : FieldCssClassProvider
 {
     public override string GetFieldCssClass(EditContext editContext, 
         in FieldIdentifier fieldIdentifier)
