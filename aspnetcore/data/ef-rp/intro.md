@@ -57,12 +57,13 @@ The app built in these tutorials is a basic university web site. Users can view 
 
 The UI style of this site is based on the built-in project templates. The tutorial's focus is on how to use EF Core with ASP.NET Core, not how to customize the UI.
 
-<!-- 
 Follow the link at the top of the page to get the source code for the completed project. The *cu50* folder has the code for the ASP.NET Core 5.0 version of the tutorial.
+
+To run the app after downloading the completed project:
 
 # [Visual Studio](#tab/visual-studio)
 
-To run the app after downloading the completed project:
+Select *ContosoUniversity.csproj* to open the project.
 
 * Build the project.
 * In Package Manager Console (PMC) run the following command:
@@ -71,44 +72,32 @@ To run the app after downloading the completed project:
   Update-Database
   ```
 
-* Run the project to seed the database.
-
 # [Visual Studio Code](#tab/visual-studio-code)
 
-To run the app after downloading the completed project:
-
-* Define `SQLiteVersion`
-  * In Visual Studio;
-     * Right click on the project and select **Properties**.
-     * Add `SQLiteVersion` to the **Conditional compliation symbols** edit box.
-  * In the project file, add the following markup:
-  ```json
-    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DefineConstants>TRACE;SQLiteVersion</DefineConstants>
-  </PropertyGroup>
-  ```
-* Remove the comments from  *appSettingsSQLite.json* so `ConnectionStrings` is defined for a SQLite DB. For Mac or Linux, change this to `/tmp/blogging.db` or any other absolute path.
-* Delete the *Migrations* folder, and rename *MigrationsSQLite* to *Migrations*.
-
-* Build the project.
-* At a command prompt in the project folder, run the following commands:
+* Remove the comments from the *appsettings.Development.json* file so the SQLite connections string is used:
+  [!code-json[Main](intro/samples/cu50/appsettings.Development.json?highlight=10-13)]
+* Remove the comments from the *ContosoUniversity.csproj* file so `SQLiteVersion` is defined.
+* Delete the *Migrations* folder.
+* Rename *MigrationsSQLite* to *Migrations*.
+* Update the database.
 
   ```dotnetcli
+  dotnet tool uninstall --global dotnet-ef
   dotnet tool install --global dotnet-ef
   dotnet ef database update
   ```
 
+<!-- 
 * In a SQLite tool, run the following SQL statement:
 
   ```sql
   UPDATE Department SET RowVersion = randomblob(8)
   ```
-
-* Run the project to seed the database.
+-->
 
 ---
 
--->
+Run the project to seed the database.
 
 ## Create the web app project
 
@@ -422,27 +411,27 @@ Later in the tutorial series, the database is deleted that was created by `Ensur
 The `EnsureCreated` method creates an empty database. This section adds code that populates the database with test data.
 
 Create *Data/DbInitializer.cs* with the following code:
-<!-- next update, keep this file in the project and surround with #if -->
-  [!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Data/DbInitializer.cs)]
 
-  The code checks if there are any students in the database. If there are no students, it adds test data to the database. It creates the test data in arrays rather than `List<T>` collections to optimize performance.
+[!code-csharp[Main](intro/samples/cu50/Data/DbInitializer1.cs?name=snippet)]
 
-In *Program.cs*, replace the `EnsureCreated` call with a `DbInitializer.Initialize` call:
+The code checks if there are any students in the database. If there are no students, it adds test data to the database. It creates the test data in arrays rather than `List<T>` collections to optimize performance.
 
-  ```csharp
-  // context.Database.EnsureCreated();
+* In *Program.cs*, remove `//` from the `DbInitializer.Initialize` line:
+
+```csharp
+  context.Database.EnsureCreated();
   DbInitializer.Initialize(context);
-  ```
+```
 
 # [Visual Studio](#tab/visual-studio)
 
-Stop the app if it's running, and run the following command in the **Package Manager Console** (PMC):
+* Stop the app if it's running, and run the following command in the **Package Manager Console** (PMC):
 
-```powershell
-Drop-Database -Confirm
-```
+  ```powershell
+  Drop-Database -Confirm
+  ```
 
-Respond with `Y` to delete the database.
+* Respond with `Y` to delete the database.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 

@@ -22,11 +22,11 @@ namespace ContosoUniversity
         #region snippet_ConfigureServices
         public void ConfigureServices(IServiceCollection services)
         {
-            int MyMaxModelBindingCollectionSize = Convert.ToInt32(
-                        Configuration["MyMaxModelBindingCollectionSize"] ?? "100");
+            var myMaxModelBindingCollectionSize = 
+                Configuration.GetValue("MyMaxModelBindingCollectionSize", 100);
 
             services.Configure<MvcOptions>(options =>
-                   options.MaxModelBindingCollectionSize = MyMaxModelBindingCollectionSize);
+                   options.MaxModelBindingCollectionSize = myMaxModelBindingCollectionSize);
 
             services.AddRazorPages();
 

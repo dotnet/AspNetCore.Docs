@@ -68,7 +68,7 @@ namespace ContosoUniversity.Pages.Students
                     break;
             }
 
-            int pageSize = Convert.ToInt32(Configuration["PageSize"] ?? "4");
+            var pageSize = Configuration.GetValue("PageSize", 4);
             Students = await PaginatedList<Student>.CreateAsync(
                 studentsIQ.AsNoTracking(), pageIndex ?? 1, pageSize);
         }

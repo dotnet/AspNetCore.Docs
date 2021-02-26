@@ -1,9 +1,7 @@
-﻿using System;
-using System.Linq;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using ContosoUniversity.Models;
+﻿using ContosoUniversity.Models;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ContosoUniversity.Data
 {
@@ -11,8 +9,6 @@ namespace ContosoUniversity.Data
     {
         public static void Initialize(SchoolContext context)
         {
-            //context.Database.EnsureCreated();
-
             // Look for any students.
             if (context.Students.Any())
             {
