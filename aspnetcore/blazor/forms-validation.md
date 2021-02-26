@@ -1018,7 +1018,7 @@ Custom validation class names are useful when integrating with CSS frameworks, s
 
 To specify custom validation class names:
 
-* Provide CSS styles for custom validation. In the following example, valid and invalid styles set a background color:
+* Provide CSS styles for custom validation. In the following example, valid and invalid styles are specified:
 
 ```css
 .validField {
@@ -1030,7 +1030,7 @@ To specify custom validation class names:
 }
 ```
 
-* Create a class derived from `FieldCssClassProvider`:
+* Create a class derived from `FieldCssClassProvider` that checks for field validation messages and applies the appropriate valid or invalid style:
 
 ```csharp
 using System.Linq;
@@ -1048,7 +1048,7 @@ public class MyFieldClassProvider : FieldCssClassProvider
 }
 ```
 
-* Set the class on the <xref:Microsoft.AspNetCore.Components.Forms.EditContext> instance:
+* Set the class on the form's <xref:Microsoft.AspNetCore.Components.Forms.EditContext> instance:
 
 ```razor
 ...
