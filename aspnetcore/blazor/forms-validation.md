@@ -1033,13 +1033,21 @@ public class MyFieldClassProvider : FieldCssClassProvider
 ```
 
 ```razor
+...
+
+<EditForm EditContext="@editContext" OnValidSubmit="@HandleValidSubmit">
+    ...
+</EditForm>
+
+...
+
 @code {
     private EditContext editContext;
     private Model model = new Model();
 
     protected override void OnInitialized()
     {
-        var editContext = new EditContext(model);
+        editContext = new EditContext(model);
         editContext.SetFieldCssClassProvider(new MyFieldClassProvider());
     }
 
