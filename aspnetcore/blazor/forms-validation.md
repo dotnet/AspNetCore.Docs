@@ -1022,7 +1022,7 @@ To specify custom validation class names:
 
 ```css
 .validField {
-    background-color: palegreen;
+    border-color: lawngreen;
 }
 
 .invalidField {
