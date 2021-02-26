@@ -75,7 +75,7 @@ The default <xref:Microsoft.Extensions.Configuration.Json.JsonConfigurationProvi
 * In development, *appsettings*.***Development***.*json* configuration overwrites values found in *appsettings.json*.
 * In production, *appsettings*.***Production***.*json* configuration overwrites values found in *appsettings.json*. For example, when deploying the app to Azure.
 
-If a configuration value must be guaranteed, see [GetValue](#getvalue).
+If a configuration value must be guaranteed, see [GetValue](#getvalue). The preceding example only reads strings and doesn’t support a default value
 
 <a name="optpat"></a>
 
