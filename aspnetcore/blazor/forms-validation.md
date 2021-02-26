@@ -1014,7 +1014,23 @@ public class CustomValidator : ValidationAttribute
 
 ## Custom validation class attributes
 
-Custom validation class names are useful when integrating with CSS frameworks, such as [Bootstrap](https://getbootstrap.com/). To specify custom validation class names, create a class derived from `FieldCssClassProvider` and set the class on the <xref:Microsoft.AspNetCore.Components.Forms.EditContext> instance in the component's initializer:
+Custom validation class names are useful when integrating with CSS frameworks, such as [Bootstrap](https://getbootstrap.com/).
+
+To specify custom validation class names:
+
+* Provide CSS styles for custom validation. In the following example, valid and invalid styles set a background color:
+
+```css
+.validField {
+    background-color: palegreen;
+}
+
+.invalidField {
+    background-color: tomato;
+}
+```
+
+* Create a class derived from `FieldCssClassProvider`:
 
 ```csharp
 using System.Linq;
@@ -1027,10 +1043,12 @@ public class MyFieldClassProvider : FieldCssClassProvider
     {
         var isValid = !editContext.GetValidationMessages(fieldIdentifier).Any();
 
-        return isValid ? "good field" : "bad field";
+        return isValid ? "validField" : "invalidField";
     }
 }
 ```
+
+* Set the class on the <xref:Microsoft.AspNetCore.Components.Forms.EditContext> instance:
 
 ```razor
 ...
