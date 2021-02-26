@@ -1076,6 +1076,26 @@ public class MyFieldClassProvider : FieldCssClassProvider
 }
 ```
 
+The preceding example checks the validity of all form fields and applies a style to each field. If the form should only apply custom styles to a subset of the fields, make `MyFieldClassProvider` apply styles conditionally. The following example only applies a style to the `Identifier` field:
+
+```csharp
+public class MyFieldClassProvider : FieldCssClassProvider
+{
+    public override string GetFieldCssClass(EditContext editContext,
+        in FieldIdentifier fieldIdentifier)
+    {
+        if (fieldIdentifier.FieldName == "Identifier")
+        {
+            var isValid = !editContext.GetValidationMessages(fieldIdentifier).Any();
+
+            return isValid ? "validField" : "invalidField";
+        }
+
+        return string.Empty;
+    }
+}
+```
+
 ::: moniker-end
 
 ### Blazor data annotations validation package
