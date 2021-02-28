@@ -20,6 +20,14 @@ no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Bla
   * Analyze application logs.
   * Examine the network traffic between the client app and the IP or server app with the browser's developer tools. Often, an exact error message or a message with a clue to what's causing the problem is returned to the client by the IP or server app after making a request.
   * Decode the contents of a JSON Web Token (JWT) used for authenticating a client or accessing a server web API, depending on where the problem is occurring. For more information, see [Inspect the content of a JSON Web Token (JWT)](#inspect-the-content-of-a-json-web-token-jwt).
+  
+  The documenation team responds to document feedback and bugs in articles (open an issue from the **This page** feedback section) but is unable to provide product support. Several public support forums are available to assist with troubleshooting an app. We recommend the following:
+  
+  * [Stack Overflow (tag: `blazor`)](https://stackoverflow.com/questions/tagged/blazor)
+  * [ASP.NET Core Slack Team](http://tattoocoder.com/aspnet-slack-sign-up/)
+  * [Blazor Gitter](https://gitter.im/aspnet/Blazor)
+  
+  For non-security, non-sensitive, and non-confidential reproducable framework bug reports, [open an issue with the ASP.NET Core product unit](https://github.com/dotnet/aspnetcore/issues). If a report is sensitive or confidential in nature or describes a potential security flaw in the product that attackers may exploit, see [Reporting security issues and bugs (dotnet/aspnetcore GitHub repository)](https://github.com/dotnet/aspnetcore/blob/main/CONTRIBUTING.md#reporting-security-issues-and-bugs).
 
 ::: moniker range=">= aspnetcore-5.0"
 
