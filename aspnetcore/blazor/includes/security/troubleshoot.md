@@ -3,9 +3,25 @@ no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Bla
 ---
 ## Troubleshoot
 
-::: moniker range=">= aspnetcore-5.0"
-
 ### Common errors
+
+* Misconfiguration of the app or Identity Provider (IP) service
+
+  The most common errors are caused by incorrect configuration. The following are a few examples:
+  
+  * Depending on the requirements of the scenario, a missing or incorrect Authority, Instance, Tenant ID, Tenant domain, Client ID, or Redirect URI prevents an app from authenticating clients.
+  * An incorrect access token scope prevents clients from accessing server web API endpoints.
+  * Incorrect or missing server API permissions prevent clients from accessing server web API endpoints.
+  
+  Configuration sections of this article's guidance show examples of the correct configuration. Carefully check each section of the article looking for app and IP misconfiguration.
+  
+  If the configuration appears correct:
+  
+  * Analyze application logs.
+  * Examine the network traffic between the client app and the IP or server app with the browser's developer tools. Often, an exact error message or a message with a clue to what's causing the problem is returned to the client by the IP or server app after making a request.
+  * Decode the contents of a JSON Web Token (JWT) used for authenticating a client or accessing a server web API, depending on where the problem is occurring. For more information, see [Inspect the content of a JSON Web Token (JWT)](#inspect-the-content-of-a-json-web-token-jwt).
+
+::: moniker range=">= aspnetcore-5.0"
 
 * Unauthorized client for AAD
 
@@ -65,3 +81,29 @@ When testing and troubleshooting a hosted Blazor app, make sure that you're runn
 ### Inspect the content of a JSON Web Token (JWT)
 
 To decode a JSON Web Token (JWT), use Microsoft's [jwt.ms](https://jwt.ms/) tool. Values in the UI never leave your browser.
+
+Example encoded JWT (shortened for display):
+
+> eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6Ilg1ZVhrNHh5b2pORnVtMWtsMll0djhkbE5QNC1j ... bQdHBHGcQQRbW7Wmo6SWYG4V_bU55Ug_PW4pLPr20tTS8Ct7_uwy9DWrzCMzpD-EiwT5IjXwlGX3IXVjHIlX50IVIydBoPQtadvT7saKo1G5Jmutgq41o-dmz6-yBMKV2_nXA25Q
+
+Example JWT decoded by the tool for an app that authenticates against Azure AAD B2C:
+
+```json
+{
+  "typ": "JWT",
+  "alg": "RS256",
+  "kid": "X5eXk4xyojNFum1kl2Ytv8dlNP4-c57dO6QGTVBwaNk"
+}.{
+  "exp": 1610059429,
+  "nbf": 1610055829,
+  "ver": "1.0",
+  "iss": "https://mysiteb2c.b2clogin.com/5cc15ea8-a296-4aa3-97e4-226dcc9ad298/v2.0/",
+  "sub": "5ee963fb-24d6-4d72-a1b6-889c6e2c7438",
+  "aud": "70bde375-fce3-4b82-984a-b247d823a03f",
+  "nonce": "b2641f54-8dc4-42ca-97ea-7f12ff4af871",
+  "iat": 1610055829,
+  "auth_time": 1610055822,
+  "idp": "idp.com",
+  "tfp": "B2C_1_signupsignin"
+}.[Signature]
+```
