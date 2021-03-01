@@ -5,73 +5,61 @@ description: Learn how to create reusable layout components for Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/26/2021
+ms.date: 03/01/2021
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/layouts
 ---
 # ASP.NET Core Blazor layouts
 
-Some app elements, such as menus, copyright messages, and company logos, are usually part of app's overall layout and used by every component in the app. Copying the code of these elements into all of the components of an app isn't an efficient approach. Every time one of the elements requires an update, every component must be updated. Such duplication is difficult to maintain and can lead to inconsistent content over time. *Layouts* solve this problem.
+Some app elements, such as menus, copyright messages, and company logos, are usually part of app's overall presentation and used by every component in the app. Copying the code of these elements into all of the components of an app isn't an efficient approach. Every time that an element requires an update, every component that uses the element must be updated. Such duplication is difficult to maintain and can lead to inconsistent content over time. *Layouts* solve this problem.
 
-A layout is a routable Razor component that can use [data binding](xref:blazor/components/data-binding), [dependency injection](xref:blazor/fundamentals/dependency-injection), and other features of components.
+A layout is a Razor component that shares markup with components that reference it. Layouts can use [data binding](xref:blazor/components/data-binding), [dependency injection](xref:blazor/fundamentals/dependency-injection), and other features of components.
 
 To create a layout component:
 
-<!-- 
-Clarify C# component scenario created from ComponentBase. [`@page`](xref:mvc/views/razor#page) directive for Razor template-based components.
--->
-
-* Create a routable Razor component defined by a Razor template or C# code.
+* Create a Razor component defined by a Razor template or C# code.
 * Inherit the component from <xref:Microsoft.AspNetCore.Components.LayoutComponentBase>. The <xref:Microsoft.AspNetCore.Components.LayoutComponentBase> defines a <xref:Microsoft.AspNetCore.Components.LayoutComponentBase.Body> property for the rendered content inside the layout.
 * Use the Razor syntax `@Body` to specify the location in the layout markup where the content is rendered.
 
 Because layout components are shared across an app's components, they're usually placed in the app's `Shared` folder. However, layouts can be placed in any location accessible to the components that use it.
 
-The following `EpisodeLayout` example shows the Razor template of a layout component. The layout inherits <xref:Microsoft.AspNetCore.Components.LayoutComponentBase> and sets the `@Body` between the navigation bar and the footer.
+The following `DoctorWhoLayout` example shows the Razor template of a layout component. The layout inherits <xref:Microsoft.AspNetCore.Components.LayoutComponentBase> and sets the `@Body` between the navigation bar (`<nav>...</nav>`) and the footer (`<footer>...</footer>`).
 
-`Shared/EpisodeLayout.razor`:
-
-```razor
-@inherits LayoutComponentBase
-
-<header>
-    <h1>Doctor Who&trade; Episode Database</h1>
-</header>
-
-<nav>
-    <a href="masterlist">Master Episode List</a>
-    <a href="search">Search</a>
-    <a href="new">Add Episode</a>
-</nav>
-
-@Body
-
-<footer>
-    @TrademarkMessage
-</footer>
-
-@code {
-    public string TrademarkMessage { get; set; } = 
-        "Doctor Who is a registered trademark of the BBC. " +
-        "https://www.doctorwho.tv/";
-}
-```
-
-## `MainLayout` component
-
-In an app based on one of the Blazor project templates, the `MainLayout` component is in the app's `Shared` folder.
-
-`Shared/MainLayout.razor`:
+`Shared/DoctorWhoLayout.razor`:
 
 ::: moniker range=">= aspnetcore-5.0"
 
-[!code-razor[](./common/samples/5.x/BlazorWebAssemblySample/Shared/MainLayout.razor)]
+[!code-razor[](./common/samples/5.x/BlazorSample_WebAssembly/Shared/layouts/DoctorWhoLayout.razor?highlight=1,13)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-[!code-razor[](./common/samples/3.x/BlazorWebAssemblySample/Shared/MainLayout.razor)]
+[!code-razor[](./common/samples/3.x/BlazorSample_WebAssembly/Shared/layouts/DoctorWhoLayout.razor?highlight=1,13)]
+
+::: moniker-end
+
+## `MainLayout` component
+
+In an app created from a Blazor project template, the `MainLayout` component is in the app's `Shared` folder and is used by the template's components.
+
+`Shared/MainLayout.razor`:
+
+::: moniker range=">= aspnetcore-5.0"
+
+[!code-razor[](./common/samples/5.x/BlazorSample_WebAssembly/Shared/layouts/MainLayout.razor)]
+
+CSS styles isolated to the `MainLayout` component are made possible by [Blazor's CSS isolation features](xref:blazor/components/css-isolation). The styles are provided by the accompanying stylesheet.
+
+`Shared/MainLayout.razor.css`:
+
+[!code-css[](./common/samples/5.x/BlazorSample_WebAssembly/Shared/layouts/MainLayout.razor.css)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+[!code-razor[](./common/samples/3.x/BlazorSample_WebAssembly/Shared/layouts/MainLayout.razor)]
 
 ::: moniker-end
 
@@ -81,59 +69,97 @@ Specify the default app layout in the <xref:Microsoft.AspNetCore.Components.Rout
 
 `App.razor`:
 
-```razor
-<Router AppAssembly="@typeof(Program).Assembly">
-    <Found Context="routeData">
-        <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
-    </Found>
-    <NotFound>
-        <p>Sorry, there's nothing at this address.</p>
-    </NotFound>
-</Router>
-```
+::: moniker range=">= aspnetcore-5.0"
+
+[!code-razor[](./common/samples/5.x/BlazorSample_WebAssembly/layouts/App1.razor?highlight=3)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+[!code-razor[](./common/samples/3.x/BlazorSample_WebAssembly/layouts/App1.razor?highlight=3)]
+
+::: moniker-end
 
 [!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
 
-To supply a default layout for <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound> content, specify a <xref:Microsoft.AspNetCore.Components.LayoutView> for <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound> content (`<NotFound>...</NotFound>`).
+To supply a default layout for <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound> content, specify a <xref:Microsoft.AspNetCore.Components.LayoutView> in the <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound> template (`<NotFound>...</NotFound>`).
 
 `App.razor`:
 
-```razor
-<Router AppAssembly="@typeof(Program).Assembly">
-    <Found Context="routeData">
-        <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
-    </Found>
-    <NotFound>
-        <LayoutView Layout="@typeof(MainLayout)">
-            <h1>Page not found</h1>
-            <p>Sorry, there's nothing at this address.</p>
-        </LayoutView>
-    </NotFound>
-</Router>
-```
+::: moniker range=">= aspnetcore-5.0"
+
+[!code-razor[](./common/samples/5.x/BlazorSample_WebAssembly/layouts/App2.razor?highlight=6,9)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+[!code-razor[](./common/samples/3.x/BlazorSample_WebAssembly/layouts/App2.razor?highlight=6,9)]
+
+::: moniker-end
 
 [!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
 
 For more information on the <xref:Microsoft.AspNetCore.Components.Routing.Router> component, see <xref:blazor/fundamentals/routing>.
 
-Specifying the layout as a default layout in the router is a useful practice because it can be overridden on a per-component or per-folder basis. Prefer using the router to set the app's default layout because it's the most general and flexible approach for using layouts.
+Specifying the layout as a default layout in the router is a useful practice because it can be overridden on a per-component or per-folder basis. We recommend using the `Router` component to set the app's default layout because it's the most general and flexible approach for using layouts.
 
-## Specify a layout in a component
+## Specify a layout for a component
 
-Use the [`@layout`](xref:mvc/views/razor#layout) Razor directive to apply a layout to a routable Razor component that also has an [`@page`](xref:mvc/views/razor#page) directive. The compiler converts `@layout` into a <xref:Microsoft.AspNetCore.Components.LayoutAttribute>, which is applied to the component class.
-
-The content of the following `MasterList` component is inserted into the `MasterLayout` at the position of `@Body`.
-
-`Pages/MasterList.razor`:
-
-```razor
-@page "/masterlist"
-@layout MasterLayout
-
-<h1>Master Episode List</h1>
-```
+Use the [`@layout`](xref:mvc/views/razor#layout) Razor directive to apply a layout to a routable Razor component that has an [`@page`](xref:mvc/views/razor#page) directive. The compiler converts `@layout` into a <xref:Microsoft.AspNetCore.Components.LayoutAttribute>, which is applied to the component class.
 
 Specifying the layout directly in a component overrides a *default layout* set in the router or an `@layout` directive imported from an `_Imports` component (`_Imports.razor`).
+
+The content of the following `Episodes` component is inserted into the `DoctorWhoLayout` at the position of `@Body`.
+
+`Pages/Episodes.razor`:
+
+::: moniker range=">= aspnetcore-5.0"
+
+[!code-razor[](./common/samples/5.x/BlazorSample_WebAssembly/Pages/layouts/Episodes.razor?highlight=2)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+[!code-razor[](./common/samples/3.x/BlazorSample_WebAssembly/Pages/layouts/Episodes.razor?highlight=2)]
+
+::: moniker-end
+
+The following rendered HTML markup is produced by the preceding `DoctorWhoLayout` and `Episodes` component. Extraneous markup doesn't appear in order to focus on the content provided by the two components involved:
+
+* The **Doctor Who&trade; Episode Database** heading (`<h1>...</h1>`) in the header (`<header>...</header>`), navigation bar (`<nav>...</nav>`), and trademark information element (`<div>...</div>`) in the footer (`<footer>...</footer>`) come from the `DoctorWhoLayout` component.
+* The **Episodes** heading (`<h2>...</h2>`) and episode list (`<ul>...</ul>`) come from the `Episodes` component.
+
+```html
+<body>
+    <div id="app">
+        <header>
+            <h1>Doctor Who™ Episode Database</h1>
+        </header>
+
+        <nav>
+            <a href="masterlist">Master Episode List</a>
+            <a href="search">Search</a>
+            <a href="new">Add Episode</a>
+        </nav>
+
+        <h2>Episodes</h2>
+
+        <ul>
+            <li>...</li>
+            <li>...</li>
+            <li>...</li>
+        </ul>
+
+        <footer>
+            Doctor Who is a registered trademark of the BBC. 
+            https://www.doctorwho.tv/
+        </footer>
+    </div>
+</body>
+```
 
 ## Centralized layout selection
 
@@ -165,49 +191,87 @@ Specifying a layout in `_Imports.razor` overrides a layout specified as the rout
 
 ## Nested layouts
 
-Nested layouts are supported. A component can reference a layout that in turn references another layout. For example, nesting layouts are used to create a multi-level menu structure.
+A component can reference a layout that in turn references another layout. For example, nested layouts are used to create a multi-level menu structures.
 
-The following example shows how to use nested layouts. The `EpisodesComponent.razor` file is the component to display. The component references the `MasterListLayout`.
+The following example shows how to use nested layouts. The `Episodes` component shown in the [Specify a layout for a component](#specify-a-layout-for-a-component) section is the component to display. The component references the `DoctorWhoLayout` component.
 
-`Pages/EpisodesComponent.razor`:
+The following `DoctorWhoLayout` component is a modified version of the example shown at the top of this article, where the header and footer elements are removed. The following revised `DoctorWhoLayout` component references another layout, `ProductionsLayout`, where it's rendered. The `Episodes` component is rendered where `@Body` appears.
 
-```razor
-@page "/masterlist/episodes"
-@layout MasterListLayout
+`Shared/DoctorWhoLayout.razor`:
 
-<h1>Episodes</h1>
-```
+::: moniker range=">= aspnetcore-5.0"
 
-The `MasterListLayout` component references another layout, `MasterLayout`, where it's rendered. `EpisodesComponent` is rendered where `@Body` appears.
+[!code-razor[](./common/samples/5.x/BlazorSample_WebAssembly/Shared/layouts/DoctorWhoLayout2.razor?highlight=2,12)]
 
-`Shared/MasterListLayout.razor`:
+::: moniker-end
 
-```razor
-@layout MasterLayout
-@inherits LayoutComponentBase
+::: moniker range="< aspnetcore-5.0"
 
-<nav>
-    <!-- Menu structure of master list -->
-    ...
-</nav>
+[!code-razor[](./common/samples/3.x/BlazorSample_WebAssembly/Shared/layouts/DoctorWhoLayout2.razor?highlight=2,12)]
 
-@Body
-```
+::: moniker-end
 
-Finally, `MasterLayout` contains the top-level layout elements, such as the header, main menu, and footer. `MasterListLayout` with its `EpisodesComponent` is rendered where `@Body` appears.
+The `ProductionsLayout` component contains the top-level layout elements, where the header (`<header>...</header>`) and footer (`<footer>...</footer>`) elements now reside. The `DoctorWhoLayout` with the `Episodes` component is rendered where `@Body` appears.
 
-`Shared/MasterLayout.razor`:
+`Shared/ProductionsLayout.razor`:
 
-```razor
-@layout MasterLayout
-@inherits LayoutComponentBase
+::: moniker range=">= aspnetcore-5.0"
 
-<nav>
-    <!-- Menu structure of master list -->
-    ...
-</nav>
+[!code-razor[](./common/samples/5.x/BlazorSample_WebAssembly/Shared/layouts/ProductionsLayout.razor?highlight=13)]
 
-@Body
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+[!code-razor[](./common/samples/3.x/BlazorSample_WebAssembly/Shared/layouts/ProductionsLayout.razor?highlight=13)]
+
+::: moniker-end
+
+The following rendered HTML markup is produced by the preceding nested layout. Extraneous markup doesn't appear in order to focus on the nested content provided by the three components involved:
+
+* The header (`<header>...</header>`), production navigation bar (`<nav>...</nav>`), and footer (`<footer>...</footer>`) elements and their content come from the `ProductionsLayout` component.
+* The **Doctor Who&trade; Episode Database** heading (`<h1>...</h1>`), episode navigation bar (`<nav>...</nav>`), and trademark information element (`<div>...</div>`) come from the `DoctorWhoLayout` component.
+* The **Episodes** heading (`<h2>...</h2>`) and episode list (`<ul>...</ul>`) come from the `Episodes` component.
+
+```html
+<body>
+    <div id="app">
+        <header>
+            <h1>Productions</h1>
+        </header>
+
+        <nav>
+            <a href="master-production-list">Master Production List</a>
+            <a href="production-search">Search</a>
+            <a href="new-production">Add Production</a>
+        </nav>
+
+        <h1>Doctor Who™ Episode Database</h1>
+
+        <nav>
+            <a href="episode-masterlist">Master Episode List</a>
+            <a href="episode-search">Search</a>
+            <a href="new-episode">Add Episode</a>
+        </nav>
+
+        <h2>Episodes</h2>
+
+        <ul>
+            <li>...</li>
+            <li>...</li>
+            <li>...</li>
+        </ul>
+
+        <div>
+            Doctor Who is a registered trademark of the BBC. 
+            https://www.doctorwho.tv/
+        </div>
+
+        <footer>
+            Footer of Productions Layout
+        </footer>
+    </div>
+</body>
 ```
 
 ## Share a Razor Pages layout with integrated components
