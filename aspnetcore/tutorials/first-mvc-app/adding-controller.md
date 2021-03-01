@@ -28,8 +28,8 @@ MVC-based apps contain:
 
 In an MVC app, the view only displays information. The controller handles and responds to user input and interaction. For example, the controller handles URL segments and query-string values, and passes these values to the model. The model might use these values to query the database. For example:
 
-* `Https://localhost:5001/Home/Privacy`: specifies the `Home`  controller  and the `Privacy` action.
-* `Https://localhost:5001/Movies/Edit/5`: is a request to edit the movie with ID=5 using the `Movies` controller and the `Edit` action, which are detailed later in the tutorial.
+* `https://localhost:5001/Home/Privacy`: specifies the `Home` controller and the `Privacy` action.
+* `https://localhost:5001/Movies/Edit/5`: is a request to edit the movie with ID=5 using the `Movies` controller and the `Edit` action, which are detailed later in the tutorial.
 
 Route data is explained later in the tutorial.
 
