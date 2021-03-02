@@ -166,7 +166,7 @@ The following rendered HTML markup is produced by the preceding `DoctorWhoLayout
 <body>
     <div id="app">
         <header>
-            <h1>Doctor Who™ Episode Database</h1>
+            <h1>Doctor Who&trade; Episode Database</h1>
         </header>
 
         <nav>
@@ -248,7 +248,7 @@ The following rendered HTML markup is produced by the preceding nested layout. E
             <a href="new-production">Add Production</a>
         </nav>
 
-        <h1>Doctor Who™ Episode Database</h1>
+        <h1>Doctor Who&trade; Episode Database</h1>
 
         <nav>
             <a href="episode-masterlist">Master Episode List</a>
