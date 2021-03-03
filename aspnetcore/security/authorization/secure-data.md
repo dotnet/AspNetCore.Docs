@@ -373,7 +373,7 @@ Call `SeedData.Initialize` from `Main`:
 
 [!code-csharp[](secure-data/samples/starter3/Program.cs)]
 
-Test that the app seeded the database. If there are any rows in the contact DB, the seed method doesn't run.
+Test that the app seeded the database. If there are not any rows in the contact DB, the seed method doesn't run.
 
 ::: moniker-end
 
@@ -694,7 +694,7 @@ Call `SeedData.Initialize` from `Main`:
 
 [!code-csharp[](secure-data/samples/starter2.1/Program.cs?name=snippet)]
 
-Test that the app seeded the database. If there are any rows in the contact DB, the seed method doesn't run.
+Test that the app seeded the database. If there are not any rows in the contact DB, the seed method doesn't run.
 
 ::: moniker-end
 
