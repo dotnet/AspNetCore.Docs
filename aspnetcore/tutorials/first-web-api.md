@@ -151,6 +151,8 @@ The Swagger page `/swagger/index.html` is displayed. Select **GET** > **Try it o
 * The response code, body, and headers.
 * A drop down list box with media types and the example value and schema.
 
+If the Swagger page doesn't appear, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/21647).
+
 <!-- Review: Do we care the IE generates several errors. It shows the data, but with  Unrecognized response type; displaying content as text.
 -->
 Swagger is used to generate useful documentation and help pages for web APIs. This tutorial focuses on creating a web API. For more information on Swagger, see <xref:tutorials/web-api-help-pages-using-swagger>.
