@@ -56,7 +56,7 @@ namespace CustomFormattersSample.Formatters
                 FormatVcard(buffer, (Contact)context.Object, logger);
             }
 
-            await httpContext.Response.WriteAsync(buffer.ToString());
+            await httpContext.Response.WriteAsync(buffer.ToString(), selectedEncoding);
         }
 
         private static void FormatVcard(
