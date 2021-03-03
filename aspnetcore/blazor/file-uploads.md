@@ -16,8 +16,6 @@ Use the `InputFile` component to read browser file data into .NET code, includin
 > [!WARNING]
 > Always follow file upload security best practices. For more information, see <xref:mvc/models/file-uploads#security-considerations>.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/file-uploads/samples/) ([how to download](xref:index#how-to-download-a-sample))
-
 ## `InputFile` component
 
 The `InputFile` component renders as an HTML input of type `file`.
