@@ -1,8 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
+#region snippet1
+using System.ComponentModel.DataAnnotations;
 
 namespace ContactManager.Models
 {
-    #region snippet1
     public class Contact
     {
         public int ContactId { get; set; }
@@ -14,5 +14,5 @@ namespace ContactManager.Models
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
     }
-    #endregion
 }
+#endregion
