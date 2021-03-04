@@ -994,7 +994,7 @@ To ensure that a validation result is correctly associated with a field when usi
 using System;
 using System.ComponentModel.DataAnnotations;
 
-private class CustomValidator : ValidationAttribute
+public class CustomValidator : ValidationAttribute
 {
     protected override ValidationResult IsValid(object value, 
         ValidationContext validationContext)
@@ -1014,22 +1014,84 @@ private class CustomValidator : ValidationAttribute
 
 ## Custom validation class attributes
 
-Custom validation class names are useful when integrating with CSS frameworks, such as [Bootstrap](https://getbootstrap.com/). To specify custom validation class names, create a class derived from `FieldCssClassProvider` and set the class on the <xref:Microsoft.AspNetCore.Components.Forms.EditContext> instance:
+Custom validation class names are useful when integrating with CSS frameworks, such as [Bootstrap](https://getbootstrap.com/).
+
+To specify custom validation class names:
+
+* Provide CSS styles for custom validation. In the following example, valid and invalid styles are specified:
+
+```css
+.validField {
+    border-color: lawngreen;
+}
+
+.invalidField {
+    background-color: tomato;
+}
+```
+
+* Create a class derived from `FieldCssClassProvider` that checks for field validation messages and applies the appropriate valid or invalid style:
 
 ```csharp
-var editContext = new EditContext(model);
-editContext.SetFieldCssClassProvider(new MyFieldClassProvider());
+using System.Linq;
+using Microsoft.AspNetCore.Components.Forms;
 
-...
-
-private class MyFieldClassProvider : FieldCssClassProvider
+public class MyFieldClassProvider : FieldCssClassProvider
 {
     public override string GetFieldCssClass(EditContext editContext, 
         in FieldIdentifier fieldIdentifier)
     {
         var isValid = !editContext.GetValidationMessages(fieldIdentifier).Any();
 
-        return isValid ? "good field" : "bad field";
+        return isValid ? "validField" : "invalidField";
+    }
+}
+```
+
+* Set the class on the form's <xref:Microsoft.AspNetCore.Components.Forms.EditContext> instance:
+
+```razor
+...
+
+<EditForm EditContext="@editContext" OnValidSubmit="@HandleValidSubmit">
+    ...
+</EditForm>
+
+...
+
+@code {
+    private EditContext editContext;
+    private Model model = new Model();
+
+    protected override void OnInitialized()
+    {
+        editContext = new EditContext(model);
+        editContext.SetFieldCssClassProvider(new MyFieldClassProvider());
+    }
+
+    private void HandleValidSubmit()
+    {
+        ...
+    }
+}
+```
+
+The preceding example checks the validity of all form fields and applies a style to each field. If the form should only apply custom styles to a subset of the fields, make `MyFieldClassProvider` apply styles conditionally. The following example only applies a style to the `Identifier` field:
+
+```csharp
+public class MyFieldClassProvider : FieldCssClassProvider
+{
+    public override string GetFieldCssClass(EditContext editContext,
+        in FieldIdentifier fieldIdentifier)
+    {
+        if (fieldIdentifier.FieldName == "Identifier")
+        {
+            var isValid = !editContext.GetValidationMessages(fieldIdentifier).Any();
+
+            return isValid ? "validField" : "invalidField";
+        }
+
+        return string.Empty;
     }
 }
 ```
