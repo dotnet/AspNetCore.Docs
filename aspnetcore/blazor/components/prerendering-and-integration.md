@@ -59,7 +59,7 @@ To set up prerendering for a Blazor WebAssembly app:
 
    * Call `UseDeveloperExceptionPage` on the app builder in the Development environment.
    * Call `UseBlazorFrameworkFiles` on the app builder.
-   * Change the fallback from the `index.html` page (`endpoints.MapFallbackToFile("index.html");`) to the `_Host.cshtml` page.
+   * Change the fallback from the `index.html` file (`endpoints.MapFallbackToFile("index.html");`) to the `_Host.cshtml` page: `endpoints.MapFallbackToPage("/_Host");`.
 
    ```csharp
    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
