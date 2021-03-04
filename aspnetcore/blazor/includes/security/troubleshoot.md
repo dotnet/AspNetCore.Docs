@@ -93,7 +93,7 @@ A functioning app may fail immediately after upgrading either the .NET Core SDK 
 1. Delete all of the files in the deployment folder on the server prior to redeploying the app.
 
 > [!NOTE]
-> Use of package versions that are incompatible with the app's targeted framework isn't supported. For more information on a package, use the [NuGet Gallery](https://www.nuget.org) and [FuGet Package Explorer](https://www.fuget.org).
+> Use of package versions incompatible with the app's target framework isn't supported. For information on a package, use the [NuGet Gallery](https://www.nuget.org) or [FuGet Package Explorer](https://www.fuget.org).
 
 ### Run the Server app
 
