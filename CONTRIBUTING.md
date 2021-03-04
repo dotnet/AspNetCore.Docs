@@ -1,6 +1,6 @@
 # Contribute to the ASP.NET Core documentation
 
-This document covers the process for contributing to the articles and code samples that are hosted at [ASP.NET documentation GitHub repository](https://docs.microsoft.com/aspnet/). Typo corrections and new articles are welcome contributions.
+This document covers the process for contributing to the articles and code samples that are hosted at [ASP.NET documentation GitHub repository](https://docs.microsoft.com/aspnet/). Typo corrections, code and documents fixes, and new articles are welcome contributions.
 
 ## How to make a simple correction or suggestion
 
