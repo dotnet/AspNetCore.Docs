@@ -5,7 +5,7 @@ description: Learn about data binding features for components and DOM elements i
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/22/2020
+ms.date: 03/04/2021
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/components/data-binding
 ---
@@ -13,9 +13,13 @@ uid: blazor/components/data-binding
 
 Razor components provide data binding features via an HTML element attribute named [`@bind`](xref:mvc/views/razor#bind) with a field, property, or Razor expression value.
 
-The following example binds an `<input>` element to the `currentValue` field and an `<input>` element to the `CurrentValue` property:
+The following example binds an `<input>` element to the `currentValue` field and an `<input>` element to the `CurrentValue` property.
+
+`Pages/BindNaming.razor`:
 
 ```razor
+@page "/bind-naming"
+
 <p>
     <input @bind="currentValue" /> Current value: @currentValue
 </p>
@@ -25,9 +29,9 @@ The following example binds an `<input>` element to the `currentValue` field and
 </p>
 
 @code {
-    private string currentValue;
+    private string currentValue = "currentValue field value";
 
-    private string CurrentValue { get; set; }
+    private string CurrentValue { get; set; } = "CurrentValue property value";
 }
 ```
 
@@ -35,15 +39,22 @@ When one of the elements loses focus, its bound field or property is updated.
 
 The text box is updated in the UI only when the component is rendered, not in response to changing the field's or property's value. Since components render themselves after event handler code executes, field and property updates are *usually* reflected in the UI immediately after an event handler is triggered.
 
-Using [`@bind`](xref:mvc/views/razor#bind) with the `CurrentValue` property (`<input @bind="CurrentValue" />`) is essentially equivalent to the following:
+Just as a demonstration of how simple data binding composes as HTML, [`@bind`](xref:mvc/views/razor#bind) to a `CurrentValue` property (`<input @bind="CurrentValue" />`) can be composed for an `<input>` element's `value` and `onchange` attributes, as the following example shows.
+
+`Pages/BindTheory.razor`:
+
+<!-- I think the following should have onchange without the @ symbol. -->
 
 ```razor
+@page "/bind-theory"
+
+<input @bind="CurrentValue" />
+
 <input value="@CurrentValue"
-    @onchange="@((ChangeEventArgs __e) => CurrentValue = 
-        __e.Value.ToString())" />
+    @onchange="@((ChangeEventArgs __e) => CurrentValue = __e.Value.ToString())" />
 
 @code {
-    private string CurrentValue { get; set; }
+    private string CurrentValue { get; set; } = "Initial value";
 }
 ```
 
@@ -51,7 +62,11 @@ When the component is rendered, the `value` of the input element comes from the 
 
 Bind a property or field on other events by also including an `@bind:event` attribute with an `event` parameter. The following example binds the `CurrentValue` property on the `oninput` event:
 
+`Page/BindEvent.razor`:
+
 ```razor
+@page "/bind-event"
+
 <input @bind="CurrentValue" @bind:event="oninput" />
 
 @code {
@@ -74,9 +89,13 @@ When a user provides an unparsable value to a databound element, the unparsable 
 
 Consider the following scenario:
 
-* An `<input>` element is bound to an `int` type with an initial value of `123`:
+* An `<input>` element is bound to an `int` type with an initial value of `123`.
+
+  `Pages/UnparsableValues.razor`:
 
   ```razor
+  @pages "/unparseable-values"
+
   <input @bind="inputValue" />
 
   @code {
@@ -100,7 +119,11 @@ By default, binding applies to the element's `onchange` event (`@bind="{PROPERTY
 
 Data binding works with <xref:System.DateTime> format strings using `@bind:format`. Other format expressions, such as currency or number formats, aren't available at this time.
 
+`Pages/DateBinding.razor`:
+
 ```razor
+@page "/date-binding"
+
 <input @bind="startDate" @bind:format="yyyy-MM-dd" />
 
 @code {
@@ -133,7 +156,9 @@ Chained binds can't be implemented with [`@bind`](xref:mvc/views/razor#bind) syn
 
 The parent component still leverages the [`@bind`](xref:mvc/views/razor#bind) syntax to set up the data-binding with the child component.
 
-The following `Child` component (`Shared/Child.razor`) has a `Year` component parameter and `YearChanged` callback:
+The following `Child` component has a `Year` component parameter and `YearChanged` callback.
+
+`Shared/Child.razor`:
 
 ```razor
 <div class="card bg-light mt-3" style="width:18rem ">
@@ -163,7 +188,9 @@ The following `Child` component (`Shared/Child.razor`) has a `Year` component pa
 
 The callback (<xref:Microsoft.AspNetCore.Components.EventCallback%601>) must be named as the component parameter name followed by the "`Changed`" suffix (`{PARAMETER NAME}Changed`). In the preceding example, the callback is named `YearChanged`. <xref:Microsoft.AspNetCore.Components.EventCallback.InvokeAsync%2A?displayProperty=nameWithType> invokes the delegate associated with the binding with the provided argument and dispatches an event notification for the changed property.
 
-In the following `Parent` component (`Parent.razor`), the `year` field is bound to the `Year` parameter of the child component:
+In the following `Parent` component, the `year` field is bound to the `Year` parameter of the child component.
+
+`Pages/Parent.razor`:
 
 ```razor
 @page "/Parent"
@@ -195,25 +222,27 @@ By convention, a property can be bound to a corresponding event handler by inclu
 <Child @bind-Year="year" @bind-Year:event="YearChanged" />
 ```
 
-In a more sophisticated and real-world example, the following `PasswordField` component (`PasswordField.razor`):
+In a more sophisticated and real-world example, the following `Password` component:
 
 * Sets an `<input>` element's value to a `password` field.
 * Exposes changes of a `Password` property to a parent component with an [`EventCallback`](xref:blazor/components/event-handling#eventcallback) that passes in the current value of the child's `password` field as its argument.
 * Uses the `onclick` event to trigger the `ToggleShowPassword` method. For more information, see <xref:blazor/components/event-handling>.
 
+`Shared/Password.razor`:
+
 ```razor
-<h1>Provide your password</h1>
+<div class="border rounded m-1 p-1">
+    <label>
+        Password: <input @oninput="OnPasswordChanged" 
+                         required 
+                         type="@(showPassword ? "text" : "password")" 
+                         value="@password" />
+    </label>
 
-Password:
-
-<input @oninput="OnPasswordChanged" 
-       required 
-       type="@(showPassword ? "text" : "password")" 
-       value="@password" />
-
-<button class="btn btn-primary" @onclick="ToggleShowPassword">
-    Show password
-</button>
+    <button class="btn btn-primary" @onclick="ToggleShowPassword">
+        Show password
+    </button>
+</div>
 
 @code {
     private bool showPassword;
@@ -239,37 +268,45 @@ Password:
 }
 ```
 
-The `PasswordField` component is used in another component:
+The `Password` component is used in another component, such as the following `PasswordBinding` component example.
+
+`Pages/PasswordBinding.razor`:
 
 ```razor
-@page "/Parent"
+@page "/password-binding"
 
-<h1>Parent Component</h1>
+<h1>Password Binding</h1>
 
-<PasswordField @bind-Password="password" />
+<Password @bind-Password="password" />
+
+<p>
+    <code>password</code>: @password
+</p>
 
 @code {
-    private string password;
+    private string password = "Not set";
 }
 ```
 
-Perform checks or trap errors in the method that invokes the binding's delegate. The following example provides immediate feedback to the user if a space is used in the password's value:
+Perform checks or trap errors in the method that invokes the binding's delegate. The following example provides immediate feedback to the user if a space is used in the password's value.
+
+`Shared/Password.razor`:
 
 ```razor
-<h1>Child Component</h1>
+<div class="border rounded m-1 p-1">
+    <label>
+        Password: <input @oninput="OnPasswordChanged" 
+                         required 
+                         type="@(showPassword ? "text" : "password")" 
+                         value="@password" />
+    </label>
 
-Password: 
+    <button class="btn btn-primary" @onclick="ToggleShowPassword">
+        Show password
+    </button>
 
-<input @oninput="OnPasswordChanged" 
-       required 
-       type="@(showPassword ? "text" : "password")" 
-       value="@password" />
-
-<button class="btn btn-primary" @onclick="ToggleShowPassword">
-    Show password
-</button>
-
-<span class="text-danger">@validationMessage</span>
+    <span class="text-danger">@validationMessage</span>
+</div>
 
 @code {
     private bool showPassword;
@@ -320,9 +357,11 @@ A common and recommended approach is to only store the underlying data in the pa
 
 The following components demonstrate the preceding concepts:
 
-`ParentComponent.razor`:
+`Pages/Parent.razor`:
 
 ```razor
+@page "/parent"
+
 <h1>Parent Component</h1>
 
 <p>Parent Message: <b>@parentMessage</b></p>
@@ -331,7 +370,7 @@ The following components demonstrate the preceding concepts:
     <button @onclick="ChangeValue">Change from Parent</button>
 </p>
 
-<ChildComponent @bind-ChildMessage="parentMessage" />
+<Child @bind-ChildMessage="parentMessage" />
 
 @code {
     private string parentMessage = "Initial value set in Parent";
@@ -343,7 +382,7 @@ The following components demonstrate the preceding concepts:
 }
 ```
 
-`ChildComponent.razor`:
+`Shared/Child.razor`:
 
 ```razor
 <div class="border rounded m-1 p-1">
@@ -355,7 +394,7 @@ The following components demonstrate the preceding concepts:
         <button @onclick="ChangeValue">Change from Child</button>
     </p>
 
-    <GrandchildComponent @bind-GrandchildMessage="BoundValue" />
+    <Grandchild @bind-GrandchildMessage="BoundValue" />
 </div>
 
 @code {
@@ -379,7 +418,7 @@ The following components demonstrate the preceding concepts:
 }
 ```
 
-`GrandchildComponent.razor`:
+`Shared/Grandchild.razor`:
 
 ```razor
 <div class="border rounded m-1 p-1">
