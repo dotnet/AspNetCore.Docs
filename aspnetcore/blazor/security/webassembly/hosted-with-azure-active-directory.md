@@ -169,15 +169,15 @@ The output location specified with the `-o|--output` option creates a project fo
 
 ::: moniker range=">= aspnetcore-5.0"
 
-The support for authenticating and authorizing calls to ASP.NET Core Web APIs with the Microsoft Identity Platform is provided by the following package:
-
-* [`Microsoft.Identity.Web`](https://www.nuget.org/packages/Microsoft.Identity.Web)
+The support for authenticating and authorizing calls to ASP.NET Core web APIs with the Microsoft Identity Platform is provided by the [`Microsoft.Identity.Web`](https://www.nuget.org/packages/Microsoft.Identity.Web) package:
 
 ```xml
 <PackageReference Include="Microsoft.Identity.Web" Version="{VERSION}" />
 ```
 
-For the placeholder `{VERSION}`, the latest stable version of the package that matches the app's shared framework version can be found in the package's **Version History** at NuGet.org.
+The `{VERSION}` placeholder represents the latest stable version of the package that matches the app's shared framework version and can be found in the package's **Version History** at the [NuGet Gallery](https://www.nuget.org).
+
+The **`Server`** app of a hosted Blazor solution created from the Blazor WebAssembly template includes the [`Microsoft.Identity.Web.UI`](https://www.nuget.org/packages/Microsoft.Identity.Web) package by default, which isn't used by Blazor's authentication and authorization infrastructure.
 
 ::: moniker-end
 
