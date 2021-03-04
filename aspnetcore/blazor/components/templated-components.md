@@ -5,7 +5,7 @@ description: Learn how templated components can accept one or more UI templates 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/03/2021
+ms.date: 03/04/2021
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/components/templated-components
 ---
@@ -18,7 +18,7 @@ Templated components are components that accept one or more UI templates as para
 
 A templated component is defined by specifying one or more component parameters of type <xref:Microsoft.AspNetCore.Components.RenderFragment> or <xref:Microsoft.AspNetCore.Components.RenderFragment%601>. A render fragment represents a segment of UI to render. <xref:Microsoft.AspNetCore.Components.RenderFragment%601> takes a type parameter that can be specified when the render fragment is invoked.
 
-Often, templated components are generically typed, as the following `TableTemplate` component demonstrates. The generic type `<T>` in this example is used to render `IReadOnlyList<T>` values, which in this case is a series of pet rows.
+Often, templated components are generically typed, as the following `TableTemplate` component demonstrates. The generic type `<T>` in this example is used to render `IReadOnlyList<T>` values, which in this case is a series of pet rows in a component that displays a table of pets.
 
 `Shared/TableTemplate.razor`:
 
@@ -34,9 +34,9 @@ Often, templated components are generically typed, as the following `TableTempla
 
 ::: moniker-end
 
-When using a templated component, the template parameters can be specified using child elements that match the names of the parameters (`TableHeader` and `RowTemplate` in the following example).
+When using a templated component, the template parameters can be specified using child elements that match the names of the parameters. In the following example, `<TableHeader>...</TableHeader>` and `<RowTemplate>...<RowTemplate>` supply <xref:Microsoft.AspNetCore.Components.RenderFragment%601> templates for `TableHeader` and `RowTemplate` of the `TableTemplate` component.
 
-Specify the `Context` attribute on the component element when you want to specify the content parameter name for implicit child content (without any wrapping child element). In the following example, the `Context` attribute appears on the `TableTemplate` element and applies to all <xref:Microsoft.AspNetCore.Components.RenderFragment%601> template parameters:
+Specify the `Context` attribute on the component element when you want to specify the content parameter name for implicit child content (without any wrapping child element). In the following example, the `Context` attribute appears on the `TableTemplate` element and applies to all <xref:Microsoft.AspNetCore.Components.RenderFragment%601> template parameters.
 
 `Pages/Pets.razor`:
 
@@ -52,7 +52,7 @@ Specify the `Context` attribute on the component element when you want to specif
 
 ::: moniker-end
 
-Alternatively, you can change the parameter name using the `Context` attribute on the <xref:Microsoft.AspNetCore.Components.RenderFragment%601> child element. In the following example, the `RowTemplate` element's `Context` attribute specifies the `pet` parameter:
+Alternatively, you can change the parameter name using the `Context` attribute on the <xref:Microsoft.AspNetCore.Components.RenderFragment%601> child element. In the following example, the `Context` is set on `RowTemplate` rather than `TableTemplate`:
 
 ::: moniker range=">= aspnetcore-5.0"
 
@@ -66,7 +66,7 @@ Alternatively, you can change the parameter name using the `Context` attribute o
 
 ::: moniker-end
 
-Component arguments of type <xref:Microsoft.AspNetCore.Components.RenderFragment%601> have an implicit parameter named `context`, which can also be used:
+Component arguments of type <xref:Microsoft.AspNetCore.Components.RenderFragment%601> have an implicit parameter named `context`, which can be used. In the following example, `Context` isn't set. `@context.{PROPERTY}` supplies pet values to the template, where `{PROPERTY}` is a `Pet` property:
 
 ::: moniker range=">= aspnetcore-5.0"
 
@@ -80,7 +80,7 @@ Component arguments of type <xref:Microsoft.AspNetCore.Components.RenderFragment
 
 ::: moniker-end
 
-When using generic-typed components, the type parameter is inferred if possible, as is the case in the preceding example. However, you can explicitly specify the type with an attribute that has a name matching the type parameter, which is `TItem` in the preceding example:
+When using generic-typed components, the type parameter is inferred if possible. However, you can explicitly specify the type with an attribute that has a name matching the type parameter, which is `TItem` in the preceding example:
 
 ::: moniker range=">= aspnetcore-5.0"
 
@@ -93,6 +93,8 @@ When using generic-typed components, the type parameter is inferred if possible,
 [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/templated-components/Pets4.razor?name=snippet&highlight=1)]
 
 ::: moniker-end
+
+## Generic type constraints
 
 > [!NOTE]
 > Generic type constraints will be supported in a future release. For more information, see [Allow generic type constraints (dotnet/aspnetcore #8433)](https://github.com/dotnet/aspnetcore/issues/8433).
