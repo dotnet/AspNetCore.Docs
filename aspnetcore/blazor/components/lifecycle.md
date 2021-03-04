@@ -250,7 +250,7 @@ In the `FetchData` component of the Blazor templates, <xref:Microsoft.AspNetCore
 
 ## Handle errors
 
-For information on handling errors during lifecycle method execution, see <xref:blazor/fundamentals/handle-errors#lifecycle-methods>.
+For information on handling errors during lifecycle method execution, see <xref:blazor/fundamentals/handle-errors>.
 
 ## Stateful reconnection after prerendering
 
