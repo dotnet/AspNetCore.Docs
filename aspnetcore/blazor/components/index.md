@@ -873,13 +873,13 @@ The Blazor framework generally imposes safe parent-to-child parameter assignment
 * Parameters aren't overwritten unexpectedly.
 * Side-effects are minimized. For example, additional renders are avoided because they may create infinite rendering loops.
 
-A child component receives new parameter values that possibly overwrite existing values when the parent component rerenders. Accidentially overwriting parameter values in a child component often occurs when developing the component with one or more data-bound parameters and the developer writes directly to a parameter in the child:
+A child component receives new parameter values that possibly overwrite existing values when the parent component rerenders. Accidentally overwriting parameter values in a child component often occurs when developing the component with one or more data-bound parameters and the developer writes directly to a parameter in the child:
 
 * The child component is rendered with one or more parameter values from the parent component.
 * The child writes directly to the value of a parameter.
 * The parent component rerenders and overwrites the value of the child's parameter.
 
-The potential for overwriting paramater values extends into the child component's property setters, too.
+The potential for overwriting parameter values extends into the child component's property setters, too.
 
 **Our general guidance is not to create components that directly write to their own parameters.**
 
