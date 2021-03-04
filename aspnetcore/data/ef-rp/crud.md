@@ -359,7 +359,7 @@ The scaffolded code uses the following pattern for Create, Edit, and Delete page
 
 The Index and Details pages get and display the requested data with the HTTP GET method `OnGetAsync`
 
-## SingleOrDefaultAsync vs. FirstOrDefaultAsync
+## `SingleOrDefaultAsync` vs. `FirstOrDefaultAsync`
 
 The generated code uses [FirstOrDefaultAsync](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.firstordefaultasync#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_FirstOrDefaultAsync__1_System_Linq_IQueryable___0__System_Threading_CancellationToken_), which is generally preferred over [SingleOrDefaultAsync](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.singleordefaultasync#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_SingleOrDefaultAsync__1_System_Linq_IQueryable___0__System_Linq_Expressions_Expression_System_Func___0_System_Boolean___System_Threading_CancellationToken_).
 
