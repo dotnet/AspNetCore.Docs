@@ -213,9 +213,19 @@ The following markup in `Pages/Index.razor` renders a `HeadingComponent` instanc
 <HeadingComponent />
 ```
 
-`Components/HeadingComponent.razor`:
+`Shared/HeadingComponent.razor`:
 
-[!code-razor[](index/samples_snapshot/HeadingComponent.razor)]
+::: moniker range=">= aspnetcore-5.0"
+
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/components-index/HeadingComponent.razor)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/components-index/HeadingComponent.razor)]
+
+::: moniker-end
 
 If a component contains an HTML element with an uppercase first letter that doesn't match a component name, a warning is emitted indicating that the element has an unexpected name. Adding an [`@using`][2] directive for the component's namespace makes the component available, which resolves the warning.
 
@@ -231,7 +241,7 @@ Optional parameters are supported. In the following example, the `text` optional
 
 `Pages/RouteParameter.razor`:
 
-[!code-razor[](index/samples_snapshot/RouteParameter-5x.razor?highlight=1,6-7)]
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/components-index/RouteParameter.razor?highlight=1,6-7)]
 
 ::: moniker-end
 
@@ -239,7 +249,7 @@ Optional parameters are supported. In the following example, the `text` optional
 
 `Pages/RouteParameter.razor`:
 
-[!code-razor[](index/samples_snapshot/RouteParameter-3x.razor?highlight=2,7-8)]
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/components-index/RouteParameter.razor?highlight=2,7-8)]
 
 Optional parameters aren't supported, so two [`@page`][9] directives are applied in the preceding example. The first permits navigation to the component without a parameter. The second [`@page`][9] directive receives the `{text}` route parameter and assigns the value to the `Text` property.
 
@@ -251,9 +261,29 @@ For information on catch-all route parameters (`{*pageRoute}`), which capture pa
 
 Components can have *component parameters*, which are defined using public simple or complex properties on the component class with the [`[Parameter]` attribute](xref:Microsoft.AspNetCore.Components.ParameterAttribute). Use attributes to specify arguments for a component in markup.
 
-`Components/ChildComponent.razor`:
+`Shared/ChildComponent.razor`:
 
-[!code-razor[](../common/samples/5.x/BlazorWebAssemblySample/Components/ChildComponent.razor?highlight=2,11-12)]
+```razor
+<div class="panel panel-default">
+    <div class="panel-heading">@Title</div>
+    <div class="panel-body">@ChildContent</div>
+
+    <button class="btn btn-primary" @onclick="OnClickCallback">
+        Trigger a Parent component method
+    </button>
+</div>
+
+@code {
+    [Parameter]
+    public string Title { get; set; }
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    public EventCallback<MouseEventArgs> OnClickCallback { get; set; }
+}
+```
 
 Component parameters can be assigned a default value:
 
@@ -266,7 +296,17 @@ In the following example from the sample app, the `ParentComponent` sets the val
 
 `Pages/ParentComponent.razor`:
 
-[!code-razor[](index/samples_snapshot/ParentComponent.razor?highlight=5-6)]
+```razor
+@page "/ParentComponent"
+
+<h1>Parent-child example</h1>
+
+<ChildComponent Title="Panel Title from Parent"
+                OnClickCallback="@ShowMessage">
+    Content of the child component is supplied
+    by the parent component.
+</ChildComponent>
+```
 
 Assign C# fields, properties, and methods to component parameters as HTML attribute values using [Razor's reserved `@` symbol](xref:mvc/views/razor#razor-syntax):
 
@@ -437,9 +477,29 @@ Components can set the content of another component. The assigning component pro
 
 In the following example, the `ChildComponent` has a `ChildContent` property that represents a <xref:Microsoft.AspNetCore.Components.RenderFragment>, which represents a segment of UI to render. The value of `ChildContent` is positioned in the component's markup where the content should be rendered. The value of `ChildContent` is received from the parent component and rendered inside the Bootstrap panel's `panel-body`.
 
-`Components/ChildComponent.razor`:
+`Shared/ChildComponent.razor`:
 
-[!code-razor[](../common/samples/5.x/BlazorWebAssemblySample/Components/ChildComponent.razor?highlight=3,14-15)]
+```razor
+<div class="panel panel-default">
+    <div class="panel-heading">@Title</div>
+    <div class="panel-body">@ChildContent</div>
+
+    <button class="btn btn-primary" @onclick="OnClickCallback">
+        Trigger a Parent component method
+    </button>
+</div>
+
+@code {
+    [Parameter]
+    public string Title { get; set; }
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    public EventCallback<MouseEventArgs> OnClickCallback { get; set; }
+}
+```
 
 > [!NOTE]
 > The property receiving the <xref:Microsoft.AspNetCore.Components.RenderFragment> content must be named `ChildContent` by convention.
@@ -448,7 +508,17 @@ The `ParentComponent` in the sample app can provide content for rendering the `C
 
 `Pages/ParentComponent.razor`:
 
-[!code-razor[](index/samples_snapshot/ParentComponent.razor?highlight=7-8)]
+```razor
+@page "/ParentComponent"
+
+<h1>Parent-child example</h1>
+
+<ChildComponent Title="Panel Title from Parent"
+                OnClickCallback="@ShowMessage">
+    Content of the child component is supplied
+    by the parent component.
+</ChildComponent>
+```
 
 Due to the way that Blazor renders child content, rendering components inside a `for` loop requires a local index variable if the incrementing loop variable is used in the child component's content:
 >
