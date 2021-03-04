@@ -1,5 +1,18 @@
+@code {
+    private class Customer
+    {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+    }
+
+    private interface IDataAccess
+    {
+        public Task<IReadOnlyList<Customer>> GetAllCustomersAsync();
+    }
+}
+
+<!-- <snippet> -->
 @page "/customer-list"
-@using Services
 @inject IDataAccess DataRepository
 
 @if (customers != null)
@@ -20,3 +33,4 @@
         customers = await DataRepository.GetAllCustomersAsync();
     }
 }
+<!-- </snippet> -->
