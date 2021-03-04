@@ -251,8 +251,8 @@ The *database context* is the main class that coordinates Entity Framework funct
 ### Add NuGet packages
 
 * From the **Tools** menu, select **NuGet Package Manager > Manage NuGet Packages for Solution**.
-* Select the **Browse** tab, and then enter **Microsoft.EntityFrameworkCore.InMemory** in the search box.
-* Select **Microsoft.EntityFrameworkCore.InMemory** in the left pane.
+* Select the **Browse** tab, and then enter `Microsoft.EntityFrameworkCore.InMemory` in the search box.
+* Select `Microsoft.EntityFrameworkCore.InMemory` in the left pane.
 * Select the **Project** check box in the right pane and then select **Install**.
 
 ![NuGet Package Manager](first-web-api/_static/5/vsNuGet.png)
@@ -306,8 +306,8 @@ Run the following commands:
 ```dotnetcli
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
 dotnet add package Microsoft.EntityFrameworkCore.Design
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer
 dotnet tool install -g dotnet-aspnet-codegenerator
-dotnet tool update -g dotnet-aspnet-codegenerator
 dotnet aspnet-codegenerator controller -name TodoItemsController -async -api -m TodoItem -dc TodoContext -outDir Controllers
 ```
 
@@ -1484,3 +1484,4 @@ For more information, see the following resources:
 * <xref:host-and-deploy/azure-apps/index>
 * <xref:host-and-deploy/index>
 * [YouTube version of this tutorial](https://www.youtube.com/watch?v=TTkhEyGBfAk)
+* [Microsoft Learn: Create a web API with ASP.NET Core](/learn/modules/build-web-api-aspnet-core/)

@@ -236,11 +236,21 @@ In the `FetchData` component of the Blazor templates, <xref:Microsoft.AspNetCore
 
 `Pages/FetchData.razor` in the Blazor Server template:
 
-[!code-razor[](lifecycle/samples_snapshot/FetchData.razor?highlight=9,21,25)]
+::: moniker range=">= aspnetcore-5.0"
+
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_Server/Pages/components-lifecycle/FetchData.razor?name=snippet&highlight=9,21,25)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_Server/Pages/components-lifecycle/FetchData.razor?name=snippet&highlight=9,21,25)]
+
+::: moniker-end
 
 ## Handle errors
 
-For information on handling errors during lifecycle method execution, see <xref:blazor/fundamentals/handle-errors#lifecycle-methods>.
+For information on handling errors during lifecycle method execution, see <xref:blazor/fundamentals/handle-errors>.
 
 ## Stateful reconnection after prerendering
 
@@ -378,11 +388,31 @@ Unsubscribe event handlers from .NET events. The following [Blazor form](xref:bl
 
 * Private field and lambda approach
 
-  [!code-razor[](lifecycle/samples_snapshot/event-handler-disposal-1.razor?highlight=23,28)]
+  ::: moniker range=">= aspnetcore-5.0"
+
+  [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/components-lifecycle/EventHandlerDisposal1.razor?name=snippet&highlight=24,29)]
+
+  ::: moniker-end
+
+  ::: moniker range="< aspnetcore-5.0"
+
+  [!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/components-lifecycle/EventHandlerDisposal1.razor?name=snippet&highlight=24,29)]
+
+  ::: moniker-end
 
 * Private method approach
 
-  [!code-razor[](lifecycle/samples_snapshot/event-handler-disposal-2.razor?highlight=16,26)]
+  ::: moniker range=">= aspnetcore-5.0"
+
+  [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/components-lifecycle/EventHandlerDisposal2.razor?name=snippet&highlight=16,26)]
+
+  ::: moniker-end
+
+  ::: moniker range="< aspnetcore-5.0"
+
+  [!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/components-lifecycle/EventHandlerDisposal2.razor?name=snippet&highlight=16,26)]
+
+  ::: moniker-end
 
 When [anonymous functions](/dotnet/csharp/programming-guide/statements-expressions-operators/anonymous-functions), methods or expressions, are used, it isn't necessary to implement <xref:System.IDisposable> and unsubscribe delegates. However, failing to unsubscribe a delegate is a problem **when the object exposing the event outlives the lifetime of the component registering the delegate**. When this occurs, a memory leak results because the registered delegate keeps the original object alive. Therefore, only use the following approaches when you know that the event delegate disposes quickly. When in doubt about the lifetime of objects that require disposal, subscribe a delegate method and properly dispose the delegate as the preceding examples show.
 

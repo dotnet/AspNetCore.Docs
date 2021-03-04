@@ -426,7 +426,7 @@ status.Data = Value.Parser.ParseJson(@"{
 
 // Convert dynamic values to JSON.
 // JSON can be read with a library like System.Text.Json or Newtonsoft.Json
-var json = JsonFormatter.Default.Format(status.Metadata);
+var json = JsonFormatter.Default.Format(status.Data);
 var document = JsonDocument.Parse(json);
 ```
 

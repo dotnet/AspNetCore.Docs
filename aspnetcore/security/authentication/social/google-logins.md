@@ -4,7 +4,7 @@ author: rick-anderson
 description: This tutorial demonstrates the integration of Google account user authentication into an existing ASP.NET Core app.
 ms.author: riande
 ms.custom: "mvc, seodec18"
-ms.date: 03/19/2020
+ms.date: 02/18/2021
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/google-logins
 ---
@@ -16,12 +16,16 @@ This tutorial shows you how to enable users to sign in with their Google account
 
 ## Create a Google API Console project and client ID
 
-* Install [Microsoft.AspNetCore.Authentication.Google](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Google).
-* Navigate to [Integrating Google Sign-In into your web app](https://developers.google.com/identity/sign-in/web/sign-in) and select **Configure a project**.
-* In the **Configure your OAuth client** dialog, select **Web server**.
-* In the **Authorized redirect URIs** text entry box, set the redirect URI. For example, `https://localhost:44312/signin-google`
-* Save the **Client ID** and **Client Secret**.
-* When deploying the site, register the new public url from the **Google Console**.
+* Add the [Microsoft.AspNetCore.Authentication.Google](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Google) NuGet package to the app.
+* Follow the guidance in [Integrating Google Sign-In into your web app](https://developers.google.com/identity/sign-in/web/sign-in) (Google documentation).
+* In the **Credentials** page of the [Google console](https://console.developers.google.com/apis/credentials), select **CREATE CREDENTIALS** > **OAuth client ID**.
+* In the **Application type** dialog, select **Web application**. Provide a **Name** for the app.
+* In the **Authorized redirect URIs** section, select **ADD URI** to set the redirect URI. Example redirect URI: `https://localhost:{PORT}/signin-google`, where the `{PORT}` placeholder is the app's port.
+* Select the **CREATE** button.
+* Save the **Client ID** and **Client Secret** for use in the app's configuration.
+* When deploying the site, either:
+  * Update the app's redirect URI in the **Google Console** to the app's deployed redirect URI.
+  * Create a new Google API registration in the **Google Console** for the production app with its production redirect URI.
 
 ## Store the Google client ID and secret
 
@@ -61,7 +65,7 @@ See the <xref:Microsoft.AspNetCore.Authentication.Google.GoogleOptions> API refe
 
 ## Change the default callback URI
 
-The URI segment `/signin-google` is set as the default callback of the Google authentication provider. You can change the default callback URI while configuring the Google authentication middleware via the inherited [RemoteAuthenticationOptions.CallbackPath](/dotnet/api/microsoft.aspnetcore.authentication.remoteauthenticationoptions.callbackpath) property of the [GoogleOptions](/dotnet/api/microsoft.aspnetcore.authentication.google.googleoptions) class.
+The URI segment `/signin-google` is set as the default callback of the Google authentication provider. You can change the default callback URI while configuring the Google authentication middleware via the inherited <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.CallbackPath?displayProperty=nameWithType>) property of the <xref:Microsoft.AspNetCore.Authentication.Google.GoogleOptions> class.
 
 ## Troubleshooting
 

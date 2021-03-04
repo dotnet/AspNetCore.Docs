@@ -40,6 +40,8 @@ The middleware updates:
 * [HttpContext.Request.Scheme](xref:Microsoft.AspNetCore.Http.HttpRequest.Scheme): Set using the `X-Forwarded-Proto` header value.
 * [HttpContext.Request.Host](xref:Microsoft.AspNetCore.Http.HttpRequest.Host): Set using the `X-Forwarded-Host` header value.
 
+For more information on the preceding, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/21615).
+
 Forwarded Headers Middleware [default settings](#forwarded-headers-middleware-options) can be configured. The default settings are:
 
 * There is only *one proxy* between the app and the source of the requests.
