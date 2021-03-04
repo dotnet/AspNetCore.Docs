@@ -88,7 +88,7 @@ There are two options to effectively load balance gRPC:
 
 ### Client-side load balancing
 
-With client-side load balancing, the client knows about endpoints. For each gRPC call it selects a different endpoint to send the call to. Client-side load balancing is a good choice when latency is important. There is no proxy between the client and the service, so the call is sent to the service directly. The downside to client-side load balancing is that each client must keep track of available endpoints it should use.
+With client-side load balancing, the client knows about endpoints. For each gRPC call, it selects a different endpoint to send the call to. Client-side load balancing is a good choice when latency is important. There's no proxy between the client and the service, so the call is sent to the service directly. The downside to client-side load balancing is that each client must keep track of the available endpoints that it should use.
 
 Lookaside client load balancing is a technique where load balancing state is stored in a central location. Clients periodically query the central location for information to use when making load balancing decisions.
 
