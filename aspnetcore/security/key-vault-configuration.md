@@ -11,8 +11,6 @@ uid: security/key-vault-configuration
 ---
 # Azure Key Vault Configuration Provider in ASP.NET Core
 
-By [Andrew Stanton-Nurse](https://github.com/anurse)
-
 ::: moniker range=">= aspnetcore-3.0"
 
 This document explains how to use the [Azure Key Vault](https://azure.microsoft.com/services/key-vault/) Configuration Provider to load app configuration values from Azure Key Vault secrets. Azure Key Vault is a cloud-based service that helps safeguard cryptographic keys and secrets used by apps and services. Common scenarios for using Azure Key Vault with ASP.NET Core apps include:
@@ -236,7 +234,7 @@ The `Azure.Extensions.AspNetCore.Configuration.Secrets` implementation reacts to
   * Removes the prefix from the secret name.
   * Replaces two dashes in any name with the `KeyDelimiter`, which is the delimiter used in configuration (usually a colon). Azure Key Vault doesn't allow a colon in secret names.
 
-[!code-csharp[](key-vault-configuration/samples_snapshot/Startup.cs)]
+[!code-csharp[](key-vault-configuration/samples_snapshot/PrefixKeyVaultSecretManager.cs)]
 
 The `Load` method is called by a provider algorithm that iterates through the vault secrets to find the ones that have the version prefix. When a version prefix is found with `Load`, the algorithm uses the `GetKey` method to return the configuration name of the secret name. It strips off the version prefix from the secret's name and returns the rest of the secret name for loading into the app's configuration name-value pairs.
 
@@ -325,7 +323,7 @@ The configuration shown in the preceding JSON file is stored in Azure Key Vault 
 
 ## Reload secrets
 
-Secrets are cached until `IConfigurationRoot.Reload()` is called. Expired, disabled, and updated secrets in the key vault are not respected by the app until `Reload` is executed.
+Secrets are cached until `IConfigurationRoot.Reload()` is called. Expired, disabled, and updated secrets in the key vault aren't respected by the app until `Reload` is executed.
 
 ```csharp
 Configuration.Reload();
@@ -562,7 +560,7 @@ The <xref:Microsoft.Extensions.Configuration.AzureKeyVault.IKeyVaultSecretManage
   * Removes the prefix from the secret name.
   * Replaces two dashes in any name with the `KeyDelimiter`, which is the delimiter used in configuration (usually a colon). Azure Key Vault doesn't allow a colon in secret names.
 
-[!code-csharp[](key-vault-configuration/samples_snapshot/Startup.cs)]
+[!code-csharp[](key-vault-configuration/samples_snapshot/PrefixKeyVaultSecretManager.cs)]
 
 The `Load` method is called by a provider algorithm that iterates through the vault secrets to find the ones that have the version prefix. When a version prefix is found with `Load`, the algorithm uses the `GetKey` method to return the configuration name of the secret name. It strips off the version prefix from the secret's name and returns the rest of the secret name for loading into the app's configuration name-value pairs.
 
@@ -651,7 +649,7 @@ The configuration shown in the preceding JSON file is stored in Azure Key Vault 
 
 ## Reload secrets
 
-Secrets are cached until `IConfigurationRoot.Reload()` is called. Expired, disabled, and updated secrets in the key vault are not respected by the app until `Reload` is executed.
+Secrets are cached until `IConfigurationRoot.Reload()` is called. Expired, disabled, and updated secrets in the key vault aren't respected by the app until `Reload` is executed.
 
 ```csharp
 Configuration.Reload();
