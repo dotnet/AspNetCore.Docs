@@ -5,7 +5,7 @@ description: Learn about data binding features for components and DOM elements i
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/04/2021
+ms.date: 03/05/2021
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/components/data-binding
 ---
@@ -13,7 +13,12 @@ uid: blazor/components/data-binding
 
 Razor components provide data binding features via an HTML element attribute named [`@bind`](xref:mvc/views/razor#bind) with a field, property, or Razor expression value.
 
-The following example binds an `<input>` element to the `currentValue` field and an `<input>` element to the `CurrentValue` property.
+The following example binds:
+
+* An `<input>` element value to the `inputValue` field.
+* A second `<input>` element value to the `InputValue` property.
+
+When one of the elements loses focus, its bound field or property is updated.
 
 `Pages/BindNaming.razor`:
 
@@ -21,93 +26,109 @@ The following example binds an `<input>` element to the `currentValue` field and
 @page "/bind-naming"
 
 <p>
-    <input @bind="currentValue" /> Current value: @currentValue
+    <input @bind="inputValue" /> <code>inputValue</code>: @inputValue
 </p>
 
 <p>
-    <input @bind="CurrentValue" /> Current value: @CurrentValue
+    <input @bind="InputValue" /> <code>InputValue</code>: @InputValue
 </p>
 
 @code {
-    private string currentValue = "currentValue field value";
+    private string inputValue;
 
-    private string CurrentValue { get; set; } = "CurrentValue property value";
+    private string InputValue { get; set; }
 }
 ```
 
-When one of the elements loses focus, its bound field or property is updated.
+The text box is updated in the UI only when the component is rendered, not in response to changing the field's or property's value. Since components render themselves after event handler code executes, field and property updates are usually reflected in the UI immediately after an event handler is triggered.
 
-The text box is updated in the UI only when the component is rendered, not in response to changing the field's or property's value. Since components render themselves after event handler code executes, field and property updates are *usually* reflected in the UI immediately after an event handler is triggered.
-
-Just as a demonstration of how simple data binding composes as HTML, [`@bind`](xref:mvc/views/razor#bind) to a `CurrentValue` property (`<input @bind="CurrentValue" />`) can be composed for an `<input>` element's `value` and `onchange` attributes, as the following example shows.
+Just as a demonstration of how simple data binding composes as HTML, [`@bind`](xref:mvc/views/razor#bind) to a `InputValue` property (`<input @bind="InputValue" />`) can be composed for an `<input>` element's `value` and `onchange` attributes, as the following example shows.
 
 `Pages/BindTheory.razor`:
-
-<!-- I think the following should have onchange without the @ symbol. -->
 
 ```razor
 @page "/bind-theory"
 
-<input @bind="CurrentValue" />
+<p>
+    <label>
+        Normal Blazor binding <code>&lt;input&gt;</code>:
+        <input @bind="InputValue" />
+    </label>
+</p>
 
-<input value="@CurrentValue"
-    @onchange="@((ChangeEventArgs __e) => CurrentValue = __e.Value.ToString())" />
+<p>
+    <label>
+        Demonstration of equivalent HTML binding <code>&lt;input&gt;</code>:
+        <input value="@InputValue"
+            @onchange="@((ChangeEventArgs __e) => InputValue = __e.Value.ToString())" />
+    </label>
+</p>
+
+<p>
+    <code>InputValue</code>: @InputValue
+</p>
 
 @code {
-    private string CurrentValue { get; set; } = "Initial value";
+    private string InputValue { get; set; }
 }
 ```
 
-When the component is rendered, the `value` of the input element comes from the `CurrentValue` property. When the user types in the text box and changes element focus, the `onchange` event is fired and the `CurrentValue` property is set to the changed value. In reality, the code generation is more complex than that because [`@bind`](xref:mvc/views/razor#bind) handles cases where type conversions are performed. In principle, [`@bind`](xref:mvc/views/razor#bind) associates the current value of an expression with a `value` attribute and handles changes using the registered handler.
+When the component is rendered, the `value` of the HTML demonstration `<input>` element comes from the `InputValue` property. When the user types in the text box and changes element focus, the `onchange` event is fired and the `InputValue` property is set to the changed value. In reality, the code generation is more complex than that because [`@bind`](xref:mvc/views/razor#bind) handles cases where type conversions are performed. In principle, [`@bind`](xref:mvc/views/razor#bind) associates the current value of an expression with a `value` attribute and handles changes using the registered handler.
 
-Bind a property or field on other events by also including an `@bind:event` attribute with an `event` parameter. The following example binds the `CurrentValue` property on the `oninput` event:
+Bind a property or field on other events by including an `@bind:event="{EVENT}"` attribute with an event parameter for the `{EVENT}` placeholder. The following example binds the `InputValue` property to the `<input>` element's value when the element's `oninput` event is triggered. Unlike `onchange`, which fires when the element loses focus, `oninput` fires when the value of the text box changes.
 
 `Page/BindEvent.razor`:
 
 ```razor
 @page "/bind-event"
 
-<input @bind="CurrentValue" @bind:event="oninput" />
+<p>
+    <input @bind="InputValue" @bind:event="oninput" />
+</p>
+
+<p>
+    <code>InputValue</code>: @InputValue
+</p>
 
 @code {
-    private string CurrentValue { get; set; }
+    private string InputValue { get; set; }
 }
 ```
-
-Unlike `onchange`, which fires when the element loses focus, `oninput` fires when the value of the text box changes.
 
 <!-- Hold location for resolution of https://github.com/dotnet/AspNetCore.Docs/issues/19721 -->
 
 Attribute binding is case sensitive:
 
-* `@bind` is valid.
-* `@Bind` and `@BIND` are invalid.
+* `@bind` and `@bind:event="{EVENT}"` are valid.
+* `@Bind`, `@Bind:event="{EVENT}"`, `@BIND`, and `@BIND:event="{EVENT}"` **are invalid**.
 
 ## Unparsable values
 
 When a user provides an unparsable value to a databound element, the unparsable value is automatically reverted to its previous value when the bind event is triggered.
 
-Consider the following scenario:
+Consider the following component, where an `<input>` element is bound to an `int` type with an initial value of `123`.
 
-* An `<input>` element is bound to an `int` type with an initial value of `123`.
+`Pages/UnparsableValues.razor`:
 
-  `Pages/UnparsableValues.razor`:
+```razor
+@page "/unparseable-values"
 
-  ```razor
-  @pages "/unparseable-values"
+<p>
+    <input @bind="inputValue" />
+</p>
 
-  <input @bind="inputValue" />
+<p>
+    <code>inputValue</code>: @inputValue
+</p>
 
-  @code {
-      private int inputValue = 123;
-  }
-  ```
+@code {
+    private int inputValue = 123;
+}
+```
 
-* The user updates the value of the element to `123.45` in the page and changes the element focus.
+If the user updates the value of the text box's entry to `123.45` and changes the focus, the element's value is reverted to `123`. When the value `123.45` is rejected in favor of the original value of `123`, the user understands that their value wasn't accepted.
 
-In the preceding scenario, the element's value is reverted to `123`. When the value `123.45` is rejected in favor of the original value of `123`, the user understands that their value wasn't accepted.
-
-By default, binding applies to the element's `onchange` event (`@bind="{PROPERTY OR FIELD}"`). Use `@bind="{PROPERTY OR FIELD}" @bind:event={EVENT}` to trigger binding on a different event. For the `oninput` event (`@bind:event="oninput"`), the reversion occurs after any keystroke that introduces an unparsable value. When targeting the `oninput` event with an `int`-bound type, a user is prevented from typing a `.` character. A `.` character is immediately removed, so the user receives immediate feedback that only whole numbers are permitted. There are scenarios where reverting the value on the `oninput` event isn't ideal, such as when the user should be allowed to clear an unparsable `<input>` value. Alternatives include:
+By default, binding applies to the element's `onchange` event (`@bind="{PROPERTY OR FIELD}"`), where the `{PROPERTY OR FIELD}` placeholder is the property or field to bind. Use `@bind="{PROPERTY OR FIELD}" @bind:event="{EVENT}"` to trigger binding on a different event. For the `oninput` event (`@bind:event="oninput"`), the reversion occurs after any keystroke that introduces an unparsable value. When targeting the `oninput` event with an `int`-bound type, a user is prevented from typing a `.` character. A `.` character is immediately removed, so the user receives immediate feedback that only whole numbers are permitted. There are scenarios where reverting the value on the `oninput` event isn't ideal, such as when the user should be allowed to clear an unparsable `<input>` value. Alternatives include:
 
 * Don't use the `oninput` event. Use the default `onchange` event (only specify `@bind="{PROPERTY OR FIELD}"`), where an invalid value isn't reverted until the element loses focus.
 * Bind to a nullable type, such as `int?` or `string` and provide custom logic to handle invalid entries.
@@ -117,21 +138,30 @@ By default, binding applies to the element's `onchange` event (`@bind="{PROPERTY
 
 ## Format strings
 
-Data binding works with <xref:System.DateTime> format strings using `@bind:format`. Other format expressions, such as currency or number formats, aren't available at this time.
+Data binding works with <xref:System.DateTime> format strings using `@bind:format="{FORMAT STRING}"`, where the `{FORMAT STRING}` placeholder is the format string. Other format expressions, such as currency or number formats, aren't available at this time but might be added in a future release.
 
 `Pages/DateBinding.razor`:
 
 ```razor
 @page "/date-binding"
 
-<input @bind="startDate" @bind:format="yyyy-MM-dd" />
+<p>
+    <label>
+        <code>yyyy-MM-dd</code> format:
+        <input @bind="startDate" @bind:format="yyyy-MM-dd" />
+    </label>
+</p>
+
+<p>
+    <code>startDate</code>: @startDate
+</p>
 
 @code {
     private DateTime startDate = new DateTime(2020, 1, 1);
 }
 ```
 
-In the preceding code, the `<input>` element's field type (`type`) defaults to `text`. `@bind:format` is supported for binding the following .NET types:
+In the preceding code, the `<input>` element's field type (`type` attribute) defaults to `text`. `@bind:format` is supported for binding the following .NET types:
 
 * <xref:System.DateTime?displayProperty=fullName>
 * <xref:System.DateTime?displayProperty=fullName>?
@@ -150,11 +180,11 @@ Specifying a format for the `date` field type isn't recommended because Blazor h
 
 A common scenario is binding a property in a child component to a property in its parent. This scenario is called a *chained bind* because multiple levels of binding occur simultaneously.
 
-[Component parameters](xref:blazor/components/index#component-parameters) permit binding properties of a parent component with `@bind-{PROPERTY}` syntax.
+[Component parameters](xref:blazor/components/index#component-parameters) permit binding properties of a parent component with `@bind-{PROPERTY}` syntax, where the `{PROPERTY}` placeholder is the property to bind.
 
 Chained binds can't be implemented with [`@bind`](xref:mvc/views/razor#bind) syntax in the child component. An event handler and value must be specified separately to support updating the property in the parent from the child component.
 
-The parent component still leverages the [`@bind`](xref:mvc/views/razor#bind) syntax to set up the data-binding with the child component.
+The parent component still leverages the [`@bind`](xref:mvc/views/razor#bind) syntax to set up the databinding with the child component.
 
 The following `Child` component has a `Year` component parameter and `YearChanged` callback.
 
@@ -164,11 +194,12 @@ The following `Child` component has a `Year` component parameter and `YearChange
 <div class="card bg-light mt-3" style="width:18rem ">
     <div class="card-body">
         <h3 class="card-title">Child Component</h3>
-        <p class="card-text">Child <code>Year</code>: @Year</p>
+        <p class="card-text">
+            Child <code>Year</code>: @Year
+        </p>
+        <button @onclick="UpdateYearFromChild">Update Year from Child</button>
     </div>
 </div>
-
-<button @onclick="UpdateYearFromChild">Update Year from Child</button>
 
 @code {
     private Random r = new Random();
@@ -186,9 +217,11 @@ The following `Child` component has a `Year` component parameter and `YearChange
 }
 ```
 
-The callback (<xref:Microsoft.AspNetCore.Components.EventCallback%601>) must be named as the component parameter name followed by the "`Changed`" suffix (`{PARAMETER NAME}Changed`). In the preceding example, the callback is named `YearChanged`. <xref:Microsoft.AspNetCore.Components.EventCallback.InvokeAsync%2A?displayProperty=nameWithType> invokes the delegate associated with the binding with the provided argument and dispatches an event notification for the changed property.
+The <xref:Microsoft.AspNetCore.Components.EventCallback%601> must be named as the component parameter name with the "`Changed`" suffix. The naming syntax is `{PARAMETER NAME}Changed`, where the `{PARAMETER NAME}` placeholder is the parameter name. In the preceding example, the callback is named `YearChanged`. <xref:Microsoft.AspNetCore.Components.EventCallback.InvokeAsync%2A?displayProperty=nameWithType> invokes the delegate associated with the binding with the provided argument and dispatches an event notification for the changed property.
 
-In the following `Parent` component, the `year` field is bound to the `Year` parameter of the child component.
+For more information on events and <xref:Microsoft.AspNetCore.Components.EventCallback%601>, see the *Eventcallback* section of the <xref:blazor/components/event-handling#eventcallback> article.
+
+In the following `Parent` component, the `year` field is bound to the `Year` parameter of the child component. The `Year` parameter is bindable because it has a companion `YearChanged` event that matches the type of the `Year` parameter.
 
 `Pages/Parent.razor`:
 
@@ -214,9 +247,7 @@ In the following `Parent` component, the `year` field is bound to the `Year` par
 }
 ```
 
-The `Year` parameter is bindable because it has a companion `YearChanged` event that matches the type of the `Year` parameter.
-
-By convention, a property can be bound to a corresponding event handler by including an `@bind-{PROPERTY}:event` attribute assigned to the handler. `<Child @bind-Year="year" />` is equivalent to writing:
+By convention, a property can be bound to a corresponding event handler by including an `@bind-{PROPERTY}:event` attribute assigned to the handler, where the `{PROPERTY}` placeholder is the property. `<Child @bind-Year="year" />` is equivalent to writing:
 
 ```razor
 <Child @bind-Year="year" @bind-Year:event="YearChanged" />
@@ -231,17 +262,22 @@ In a more sophisticated and real-world example, the following `Password` compone
 `Shared/Password.razor`:
 
 ```razor
-<div class="border rounded m-1 p-1">
-    <label>
-        Password: <input @oninput="OnPasswordChanged" 
-                         required 
-                         type="@(showPassword ? "text" : "password")" 
-                         value="@password" />
-    </label>
-
-    <button class="btn btn-primary" @onclick="ToggleShowPassword">
-        Show password
-    </button>
+<div class="card bg-light mt-3" style="width:22rem ">
+    <div class="card-body">
+        <h3 class="card-title">Password Component</h3>
+        <p class="card-text">
+            <label>
+                Password:
+                <input @oninput="OnPasswordChanged"
+                       required
+                       type="@(showPassword ? "text" : "password")"
+                       value="@password" />
+            </label>
+        </p>
+        <button class="btn btn-primary" @onclick="ToggleShowPassword">
+            Show password
+        </button>
+    </div>
 </div>
 
 @code {
@@ -293,19 +329,23 @@ Perform checks or trap errors in the method that invokes the binding's delegate.
 `Shared/Password.razor`:
 
 ```razor
-<div class="border rounded m-1 p-1">
-    <label>
-        Password: <input @oninput="OnPasswordChanged" 
-                         required 
-                         type="@(showPassword ? "text" : "password")" 
-                         value="@password" />
-    </label>
-
-    <button class="btn btn-primary" @onclick="ToggleShowPassword">
-        Show password
-    </button>
-
-    <span class="text-danger">@validationMessage</span>
+<div class="card bg-light mt-3" style="width:22rem ">
+    <div class="card-body">
+        <h3 class="card-title">Password Component</h3>
+        <p class="card-text">
+            <label>
+                Password:
+                <input @oninput="OnPasswordChanged"
+                       required
+                       type="@(showPassword ? "text" : "password")"
+                       value="@password" />
+            </label>
+            <span class="text-danger">@validationMessage</span>
+        </p>
+        <button class="btn btn-primary" @onclick="ToggleShowPassword">
+            Show password
+        </button>
+    </div>
 </div>
 
 @code {
@@ -343,8 +383,6 @@ Perform checks or trap errors in the method that invokes the binding's delegate.
     }
 }
 ```
-
-For more information on <xref:Microsoft.AspNetCore.Components.EventCallback%601>, see <xref:blazor/components/event-handling#eventcallback>.
 
 ## Bind across more than two components
 
@@ -446,9 +484,10 @@ The following components demonstrate the preceding concepts:
 }
 ```
 
-For an alternative approach suited to sharing data in-memory across components that aren't necessarily nested, see the *In-memory state container service* section of the <xref:blazor/state-management> article.
+For an alternative approach suited to sharing data in memory and across components that aren't necessarily nested, see <xref:blazor/state-management>.
 
 ## Additional resources
 
 * [Binding to radio buttons in a form](xref:blazor/forms-validation#radio-buttons)
 * [Binding `<select>` element options to C# object `null` values in a form](xref:blazor/forms-validation#binding-select-element-options-to-c-object-null-values)
+* [ASP.NET Core Blazor event handling: `EventCallback` section](xref:blazor/components/event-handling#eventcallback)
