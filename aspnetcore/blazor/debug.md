@@ -31,7 +31,7 @@ For now, you *can't*:
 * Break on unhandled exceptions.
 * Hit breakpoints during app startup before the debug proxy is running. This includes breakpoints in `Program.Main` (`Program.cs`) and breakpoints in the [`OnInitialized{Async}` methods](xref:blazor/components/lifecycle#component-initialization-methods) of components that are loaded by the first page requested from the app.
 * Debug in non-local scenarios (for example, [Windows Subsystem for Linux (WSL)](/windows/wsl/) or [Visual Studio Codespaces](/visualstudio/codespaces/overview/what-is-vsonline)).
-* Automatically rebuild the backend `*Server*` app of a hosted Blazor solution during debugging, for example by running the app with [`dotnet watch run`](xref:tutorials/dotnet-watch).
+* Automatically rebuild the backend `*Server*` app of a hosted Blazor WebAssembly solution during debugging, for example by running the app with [`dotnet watch run`](xref:tutorials/dotnet-watch).
 
 ## Prerequisites
 
@@ -80,7 +80,7 @@ The placeholder values for the WebSockets protocol (`wsProtocol`), host (`url.ho
 
 To debug a Blazor WebAssembly app in Visual Studio:
 
-1. Create a new ASP.NET Core hosted Blazor WebAssembly app.
+1. Create a new hosted Blazor WebAssembly solution.
 1. Press <kbd>F5</kbd> to run the app in the debugger.
 
    > [!NOTE]
@@ -185,7 +185,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 
 ## Debug hosted Blazor WebAssembly
 
-1. Open the hosted Blazor WebAssembly app's solution folder in VS Code.
+1. Open the **`Client`** project folder of the hosted Blazor solution folder in VS Code.
 
 1. If there's no launch configuration set for the project, the following notification appears. Select **Yes**.
 

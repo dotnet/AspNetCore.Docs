@@ -282,7 +282,7 @@ If authorization conditions aren't specified, <xref:Microsoft.AspNetCore.Compone
 
 The <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> component can be used in the `NavMenu` component (`Shared/NavMenu.razor`) to display a list item (`<li>...</li>`) for a [`NavLink` component](xref:blazor/fundamentals/routing#navlink-and-navmenu-components) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), but note that this approach only removes the list item from the rendered output. It doesn't prevent the user from navigating to the component.
 
-Apps created from a Blazor project template that include authentication use a `LoginDisplay` component that depends on an `AuthorizeView` component. The `AuthorizeView` component selectively displays content to users for Identity-related work. The following example is from the Blazor WebAssembly project template.
+Apps created from a [Blazor project template](xref:blazor/project-structure) that include authentication use a `LoginDisplay` component that depends on an `AuthorizeView` component. The `AuthorizeView` component selectively displays content to users for Identity-related work. The following example is from the [Blazor WebAssembly project template](xref:blazor/project-structure).
 
 `Shared/LoginDisplay.razor`:
 
@@ -312,7 +312,7 @@ Apps created from a Blazor project template that include authentication use a `L
 }
 ```
 
-The following example is from the Blazor Server project template and uses ASP.NET Core Identity endpoints in the `Identity` area of the app to process Identity-related work.
+The following example is from the [Blazor Server project template](xref:blazor/project-structure) and uses ASP.NET Core Identity endpoints in the `Identity` area of the app to process Identity-related work.
 
 `Shared/LoginDisplay.razor`:
 
@@ -425,7 +425,7 @@ The <xref:Microsoft.AspNetCore.Components.Routing.Router> component, in conjunct
 * Asynchronous authorization is in progress, which usually means that the process of authenticating the user is in progress. The markup of the [`<Authorizing>`](xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView.Authorizing?displayProperty=nameWithType) element is displayed.
 * Content isn't found. The markup of the [`<NotFound>`](xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound?displayProperty=nameWithType) element is displayed.
 
-In the default Blazor Server project template, the `App` component (`App.razor`) demonstrates how to set custom content:
+In the default [Blazor Server project template](xref:blazor/project-structure), the `App` component (`App.razor`) demonstrates how to set custom content:
 
 ```razor
 <CascadingAuthenticationState>

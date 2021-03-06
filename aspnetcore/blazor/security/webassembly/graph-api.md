@@ -19,7 +19,7 @@ uid: blazor/security/webassembly/graph-api
 
 [Microsoft Graph SDKs](/graph/sdks/sdks-overview) are designed to simplify building high-quality, efficient, and resilient applications that access Microsoft Graph.
 
-The examples in this section require package references for the following packages in the project file of the standalone or *`Client`* app's project file:
+The examples in this section require package references for the following packages in the project file of the standalone or **`Client`** app's project file:
 
 * [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http)
 * [`Microsoft.Graph`](https://www.nuget.org/packages/Microsoft.Graph)
@@ -31,7 +31,7 @@ The following utility classes and configuration are used in each of the followin
 
 After adding the Microsoft Graph API scopes in the AAD area of the Azure portal:
 
-* Add the following `GraphClientExtensions.cs` class to the standalone app or *`Client`* app of a hosted Blazor solution.
+* Add the following `GraphClientExtensions.cs` class to the standalone app or **`Client`** app of a hosted Blazor solution.
 * Provide the required scopes to the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccessTokenRequestOptions.Scopes> property of the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccessTokenRequestOptions> in the `AuthenticateRequestAsync` method. In the following example, the `User.Read` scope is specified to match the examples in later sections of this article.
 
 ```csharp
@@ -274,7 +274,7 @@ builder.Services.AddMsalAuthentication<RemoteAuthenticationState,
 
 The examples in this section use a named <xref:System.Net.Http.HttpClient> for Graph API to obtain a user's mobile phone number to process a call.
 
-The examples in this section require a package reference for [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http) in the project file of the standalone or *`Client`* app's project file.
+The examples in this section require a package reference for [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http) in the project file of the standalone or **`Client`** app's project file.
 
 Create the following class and project configuration for working with Graph API. The following class and configuration are used in each of the following subsections of this article:
 
