@@ -11,11 +11,13 @@ uid: blazor/project-structure
 ---
 # ASP.NET Core Blazor project structure
 
-This article describes the files and folders that make up a Blazor app generated from the Blazor project templates.
+This article describes the files and folders that make up a Blazor app generated from one of the Blazor framework's project templates. For information on how to use tooling to create a Blazor app from a Blazor project template, see <xref:blazor/tooling>. For information on Blazor's hosting models, Blazor WebAssembly and Blazor Server, see <xref:blazor/hosting-models>.
 
 ## Blazor WebAssembly
 
-The Blazor WebAssembly template (`blazorwasm`) creates the initial files and directory structure for a Blazor WebAssembly app. The app is populated with demonstration code for a `FetchData` component that loads data from a static asset, `weather.json`, and user interaction with a `Counter` component.
+Blazor WebAssembly project template: `blazorwasm`
+
+The Blazor WebAssembly template creates the initial files and directory structure for a Blazor WebAssembly app. The app is populated with demonstration code for a `FetchData` component that loads data from a static asset, `weather.json`, and user interaction with a `Counter` component.
 
 * `Pages` folder: Contains the routable components/pages (`.razor`) that make up the Blazor app. The route for each page is specified using the [`@page`](xref:mvc/views/razor#page) directive. The template includes the following components:
   * `Counter` component (`Counter.razor`): Implements the Counter page.
@@ -87,7 +89,9 @@ The Blazor WebAssembly template (`blazorwasm`) creates the initial files and dir
 
 ## Blazor Server
 
-The Blazor Server template (`blazorserver`) creates the initial files and directory structure for a Blazor Server app. The app is populated with demonstration code for a `FetchData` component that loads data from a registered service, `WeatherForecastService`, and user interaction with a `Counter` component.
+Blazor Server project template: `blazorserver`
+
+The Blazor Server template creates the initial files and directory structure for a Blazor Server app. The app is populated with demonstration code for a `FetchData` component that loads data from a registered service, `WeatherForecastService`, and user interaction with a `Counter` component.
 
 * `Data` folder: Contains the `WeatherForecast` class and implementation of the `WeatherForecastService` that provides example weather data to the app's `FetchData` component.
 
@@ -141,3 +145,8 @@ The Blazor Server template (`blazorserver`) creates the initial files and direct
   * `Configure`: Configures the app's request handling pipeline:
     * <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> is called to set up an endpoint for the real-time connection with the browser. The connection is created with [SignalR](xref:signalr/introduction), which is a framework for adding real-time web functionality to apps.
     * [`MapFallbackToPage("/_Host")`](xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage*) is called to set up the root page of the app (`Pages/_Host.cshtml`) and enable navigation.
+
+## Additional resources
+
+* <xref:blazor/tooling>
+* <xref:blazor/hosting-models>

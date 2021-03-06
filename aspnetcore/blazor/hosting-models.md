@@ -19,7 +19,7 @@ The primary Blazor hosting model is running client-side in the browser on WebAss
 
 ![Blazor WebAssembly: The Blazor app runs on a UI thread inside the browser.](hosting-models/_static/blazor-webassembly.png)
 
-When the Blazor WebAssembly app is created for deployment without a backend ASP.NET Core app to serve its files, the app is called a *standalone* Blazor WebAssembly app. When the app is created for deployment with a backend app to serve its files, the app is called a *hosted* Blazor WebAssembly app. A hosted Blazor WebAssembly app typically interacts with the server over the network using web API calls or [SignalR](xref:signalr/introduction) (<xref:tutorials/signalr-blazor>).
+When the Blazor WebAssembly app is created for deployment without a backend ASP.NET Core app to serve its files, the app is called a *standalone* Blazor WebAssembly app. When the app is created for deployment with a backend app to serve its files, the app is called a *hosted* Blazor WebAssembly app. A hosted Blazor WebAssembly **`Client`** app typically interacts with the backend **`Server`** app over the network using web API calls or [SignalR](xref:signalr/introduction) (<xref:tutorials/signalr-blazor>).
 
 The `blazor.webassembly.js` script is provided by the framework and handles:
 
@@ -42,7 +42,7 @@ The Blazor WebAssembly hosting model has the following limitations:
 
 To create a Blazor WebAssembly app, see <xref:blazor/tooling>.
 
-The hosted Blazor app model supports [Docker containers](/dotnet/standard/microservices-architecture/container-docker-introduction/index). For Docker support in Visual Studio, right-click on the `Server` project of a hosted Blazor WebAssembly solution and select **Add** > **Docker Support**.
+The hosted Blazor app model supports [Docker containers](/dotnet/standard/microservices-architecture/container-docker-introduction/index). For Docker support in Visual Studio, right-click on the **`Server`** project of a hosted Blazor WebAssembly solution and select **Add** > **Docker Support**.
 
 ## Blazor Server
 
@@ -140,6 +140,7 @@ When using IIS, sticky sessions are enabled with *Application Request Routing*. 
 ## Additional resources
 
 * <xref:blazor/tooling>
+* <xref:blazor/project-structure>
 * <xref:signalr/introduction>
 * <xref:blazor/fundamentals/signalr>
 * <xref:tutorials/signalr-blazor>
