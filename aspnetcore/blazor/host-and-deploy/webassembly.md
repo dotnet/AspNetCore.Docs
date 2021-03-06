@@ -37,11 +37,11 @@ Blazor relies on the host to the serve the appropriate compressed files. When us
   
     > [!NOTE]
     > A regression is present in the minified version of the `decode.js` script (`decode.min.js`) in the [google/brotli GitHub repository](https://github.com/google/brotli). Until the issue [TypeError in decode.min.js (google/brotli #881)](https://github.com/google/brotli/issues/881) is resolved, take one of the following approaches:
-    > 
+    >
     > * Temporarily use the unminified version of the script.
     > * Automatically minify the script at build-time with a third-party minification tool compatible with ASP.NET Core.
     > * Use the [npm package](https://www.npmjs.com/package/brotli).
-    > 
+    >
     > The example code in this section uses the **unminified** version of the script (`decode.js`).
 
   * Update the app to use the decoder. Change the markup inside the closing `<body>` tag in `wwwroot/index.html` to the following:
@@ -114,9 +114,11 @@ A *hosted deployment* serves the Blazor WebAssembly app to browsers from an [ASP
 
 The client Blazor WebAssembly app is published into the `/bin/Release/{TARGET FRAMEWORK}/publish/wwwroot` folder of the server app, along with any other static web assets of the server app. The two apps are deployed together. A web server that is capable of hosting an ASP.NET Core app is required. For a hosted deployment, Visual Studio includes the **Blazor WebAssembly App** project template (`blazorwasm` template when using the [`dotnet new`](/dotnet/core/tools/dotnet-new) command) with the **`Hosted`** option selected (`-ho|--hosted` when using the `dotnet new` command).
 
-For more information on ASP.NET Core app hosting and deployment, see <xref:host-and-deploy/index>.
+For more information, see the following articles:
 
-For information on deploying to Azure App Service, see <xref:tutorials/publish-to-azure-webapp-using-vs>.
+* ASP.NET Core app hosting and deployment: <xref:host-and-deploy/index>
+* Deployment to Azure App Service: <xref:tutorials/publish-to-azure-webapp-using-vs>
+* Blazor project templates: <xref:blazor/project-structure>
 
 ## Hosted deployment with multiple Blazor WebAssembly apps
 
@@ -152,7 +154,7 @@ Use an existing hosted Blazor solution or create a new solution from the Blazor 
     * `Server` (folder)
     * `Shared` (folder)
     * `{SOLUTION NAME}.sln` (file)
-    
+
     The placeholder `{SOLUTION NAME}` is the solution's name.
 
   * Create a Blazor WebAssembly app named `SecondBlazorApp.Client` in the `SecondClient` folder from the Blazor WebAssembly project template.

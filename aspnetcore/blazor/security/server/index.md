@@ -15,7 +15,7 @@ Blazor Server apps are configured for security in the same manner as ASP.NET Cor
 
 ## Blazor Server project template
 
-The Blazor Server project template can be configured for authentication when the project is created.
+The [Blazor Server project template](xref:blazor/project-structure) can be configured for authentication when the project is created.
 
 # [Visual Studio](#tab/visual-studio)
 

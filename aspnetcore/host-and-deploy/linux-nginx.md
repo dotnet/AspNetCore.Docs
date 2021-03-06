@@ -29,13 +29,9 @@ This guide:
 
 ## Prerequisites
 
-1. Access to an Ubuntu 16.04 server with a standard user account with sudo privilege.
-1. Install the .NET Core runtime on the server.
-   1. Visit the [Download .NET Core page](https://dotnet.microsoft.com/download/dotnet-core).
-   1. Select the latest non-preview .NET Core version.
-   1. Download the latest non-preview runtime in the table under **Run apps - Runtime**.
-   1. Select the Linux **Package manager instructions** link and follow the Ubuntu instructions for your version of Ubuntu.
-1. An existing ASP.NET Core app.
+* Access to an Ubuntu 16.04 server with a standard user account with sudo privilege.
+* The latest non-preview [.NET runtime installed](/dotnet/core/install/linux) on the server.
+* An existing ASP.NET Core app.
 
 At any point in the future after upgrading the shared framework, restart the ASP.NET Core apps hosted by the server.
 
