@@ -121,7 +121,7 @@ At the end of this tutorial, you'll have a working todo list app.
    ::: moniker-end
 
    > [!NOTE]
-   > If using Visual Studio to create the `ToDoItem.cs` file and `ToDoItem` class, use either of the following approaches:
+   > If using Visual Studio to create the `TodoItem.cs` file and `TodoItem` class, use either of the following approaches:
    >
    > * Remove the namespace that Visual Studio generates for the class.
    > * Use the **Copy** button in the preceding code block and replace the entire contents of the file that Visual Studio generates.
