@@ -46,7 +46,7 @@ Add the WebSockets middleware in the `Configure` method of the `Startup` class:
 [!code-csharp[](websockets/samples/2.x/WebSocketsSample/Startup.cs?name=UseWebSockets)]
 
 > [!NOTE]
-> If you would like to accept WebSocket requests in a controller, the call to `app.UseWebSockets()` must occur before `app.UseEndpoints()`.
+> If you would like to accept WebSocket requests in a controller, the call to `app.UseWebSockets` must occur before `app.UseEndpoints`.
 
 ::: moniker range="< aspnetcore-2.2"
 
