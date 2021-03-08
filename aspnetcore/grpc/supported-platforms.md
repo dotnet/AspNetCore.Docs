@@ -75,7 +75,7 @@ Work is in-progress to improve support for gRPC with HTTP/2 in Azure App Service
 
 ## .NET gRPC client requirements
 
-The [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client/) package supports making gRPC calls over HTTP/2 on .NET Core 3 and .NET 5 or later.
+The [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client/) package supports gRPC calls over HTTP/2 on .NET Core 3 and .NET 5 or later.
 
 Limited support is available for gRPC over HTTP/2 on .NET Framework. Other .NET versions such as UWP, Xamarin and Unity don't have required HTTP/2 support, and must use gRPC-Web instead.
 
@@ -85,6 +85,7 @@ The following table lists .NET implementations and their gRPC client support:
 |----------------------------------------------|--------------------|------------|
 | .NET 5 or later                              | ✔️                | ✔️         |
 | .NET Core 3                                  | ✔️                | ✔️         |
+| .NET Core 2.1                                | ❌                | ✔️         |
 | .NET Framework 4.6.1                         | ⚠️&dagger;        | ✔️         |
 | Blazor WebAssembly                           | ❌                | ✔️         |
 | Mono 5.4                                     | ❌                | ✔️         |
