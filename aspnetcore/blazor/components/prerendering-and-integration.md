@@ -191,7 +191,7 @@ If the app should also style components with the styles in the Blazor WebAssembl
 
 ## Additional resources
 
-* <xref:blazor/security/webassembly/additional-scenarios#support-prerendering-with-authentication>
+* [Support prerendering with authentication](xref:blazor/security/webassembly/additional-scenarios#support-prerendering-with-authentication)
 
 ::: moniker-end
 
