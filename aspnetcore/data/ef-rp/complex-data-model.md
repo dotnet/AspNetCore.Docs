@@ -4,14 +4,16 @@ author: rick-anderson
 description: Part 5 of Razor Pages and Entity Framework tutorial series.
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/22/2019
+ms.date: 3/3/2021
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: data/ef-rp/complex-data-model
 ---
 
+<!-- Removed from V 5.0, CourseAssignment -->
+
 # Part 5, Razor Pages with EF Core in ASP.NET Core - Data Model
 
-By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
+By [Tom Dykstra](https://github.com/tdykstra), [Jeremy Likness](https://twitter.com/jeremylikness), and [Jon P Smith](https://twitter.com/thereformedprog)
 
 [!INCLUDE [about the series](~/includes/RP-EF/intro.md)]
 
@@ -25,7 +27,7 @@ The previous tutorials worked with a basic data model that was composed of three
 The completed data model is shown in the following illustration:
 
 ![Entity diagram](complex-data-model/_static/diagram.png)
-
+<!-- C:\Dropbox\wrk\Code\EF6-CU to build new schema -->
 ## The Student entity
 
 ![Student entity](complex-data-model/_static/student-entity.png)
@@ -36,12 +38,12 @@ Replace the code in *Models/Student.cs* with the following code:
 
 The preceding code adds a `FullName` property and adds the following attributes to existing properties:
 
-* `[DataType]`
-* `[DisplayFormat]`
-* `[StringLength]`
-* `[Column]`
-* `[Required]`
-* `[Display]`
+* [`[DataType]`(xref:System.ComponentModel.DataAnnotations.DataTypeAttribute)
+* [`[DisplayFormat]`(xref:System.ComponentModel.DataAnnotations.DisplayFormatAttribute)
+* [`[StringLength]`](xref:System.ComponentModel.DataAnnotations.StringLengthAttribute)
+* [`[Column]`](xref:System.ComponentModel.DataAnnotations.Schema.ColumnAttribute)
+* [`[Required]`](xref:System.ComponentModel.DataAnnotations.RequiredAttribute)
+* [`[Display]`](xref:System.ComponentModel.DataAnnotations.DisplayAttribute)
 
 ### The FullName calculated property
 
@@ -105,7 +107,7 @@ The preceding image shows the schema for the `Student` table. The name fields ha
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-In your SQLite tool, examine the column definitions for the `Student` table. The name fields have type `Text`. Notice that the first name field is called `FirstMidName`. In the next section, you change the name of that column to `FirstName`.
+Using a SQLite tool, examine the column definitions for the `Student` table. The name fields have type `Text`. Notice that the first name field is called `FirstMidName`. In the next section, `FirstMidName` is changed to `FirstName`.
 
 ---
 
@@ -215,7 +217,7 @@ For this tutorial, the way to get past this error is to delete and re-create the
   dotnet ef database update
   ```
 
-* Examine the Student table in your SQLite tool. The column that was FirstMidName is now FirstName.
+* Examine the Student table with a SQLite tool. The column that was `FirstMidName` is now `FirstName`.
 
 ---
 
@@ -228,11 +230,12 @@ For this tutorial, the way to get past this error is to delete and re-create the
 
 ## The Instructor Entity
 
-![Instructor entity](complex-data-model/_static/instructor-entity.png)
+<!-- no longer using PJT
+![Instructor entity](complex-data-model/_static/instructor-entity.png) -->
 
 Create *Models/Instructor.cs* with the following code:
 
-[!code-csharp[](intro/samples/cu30/Models/Instructor.cs)]
+[!code-csharp[](intro/samples/cu50/Models/Instructor.cs?name=snippet_BeforeInheritance)]
 
 Multiple attributes can be on one line. The `HireDate` attributes could be written as follows:
 
@@ -242,12 +245,12 @@ Multiple attributes can be on one line. The `HireDate` attributes could be writt
 
 ### Navigation properties
 
-The `CourseAssignments` and `OfficeAssignment` properties are navigation properties.
+The `Courses` and `OfficeAssignment` properties are navigation properties.
 
-An instructor can teach any number of courses, so `CourseAssignments` is defined as a collection.
+An instructor can teach any number of courses, so `Courses` is defined as a collection.
 
 ```csharp
-public ICollection<CourseAssignment> CourseAssignments { get; set; }
+public ICollection<Course> Courses { get; set; }
 ```
 
 An instructor can have at most one office, so the `OfficeAssignment` property holds a single `OfficeAssignment` entity. `OfficeAssignment` is null if no office is assigned.
@@ -266,9 +269,9 @@ Create *Models/OfficeAssignment.cs* with the following code:
 
 ### The Key attribute
 
-The `[Key]` attribute is used to identify a property as the primary key (PK) when the property name is something other than classnameID or ID.
+The [`[Key]`](xref:System.ComponentModel.DataAnnotations.KeyAttribute) attribute is used to identify a property as the primary key (PK) when the property name is something other than `classnameID` or `ID`.
 
-There's a one-to-zero-or-one relationship between the `Instructor` and `OfficeAssignment` entities. An office assignment only exists in relation to the instructor it's assigned to. The `OfficeAssignment` PK is also its foreign key (FK) to the `Instructor` entity.
+There's a one-to-zero-or-one relationship between the `Instructor` and `OfficeAssignment` entities. An office assignment only exists in relation to the instructor it's assigned to. The `OfficeAssignment` PK is also its foreign key (FK) to the `Instructor` entity. A one-to-zero-or-one relationship occurs when a PK in one table is both a PK and a FK in another table.
 
 EF Core can't automatically recognize `InstructorID` as the PK of `OfficeAssignment` because `InstructorID` doesn't follow the ID or classnameID naming convention. Therefore, the `Key` attribute is used to identify `InstructorID` as the PK:
 
@@ -277,7 +280,7 @@ EF Core can't automatically recognize `InstructorID` as the PK of `OfficeAssignm
 public int InstructorID { get; set; }
 ```
 
-By default, EF Core treats the key as non-database-generated because the column is for an identifying relationship.
+By default, EF Core treats the key as non-database-generated because the column is for an identifying relationship. For more information, see [EF Keys](/ef/core/modeling/keys).
 
 ### The Instructor navigation property
 
@@ -329,7 +332,7 @@ public int DepartmentID { get; set; }
 public Department Department { get; set; }
 ```
 
-A course can have any number of students enrolled in it, so the `Enrollments` navigation property is a collection:
+A course can have any number of students enrolled in it, so the `Instructors` navigation property is a collection:
 
 ```csharp
 public ICollection<Enrollment> Enrollments { get; set; }
@@ -338,10 +341,8 @@ public ICollection<Enrollment> Enrollments { get; set; }
 A course may be taught by multiple instructors, so the `CourseAssignments` navigation property is a collection:
 
 ```csharp
-public ICollection<CourseAssignment> CourseAssignments { get; set; }
+        public ICollection<Instructor> Instructors { get; set; }
 ```
-
-`CourseAssignment` is explained [later](#many-to-many-relationships).
 
 ## The Department entity
 
@@ -349,7 +350,7 @@ public ICollection<CourseAssignment> CourseAssignments { get; set; }
 
 Create *Models/Department.cs* with the following code:
 
-[!code-csharp[](intro/samples/cu30snapshots/5-complex/Models/Department1.cs)]
+[!code-csharp[](intro/samples/cu50/Models/Department.cs?name=snippet1)]
 
 ### The Column attribute
 
@@ -376,7 +377,7 @@ public int? InstructorID { get; set; }
 public Instructor Administrator { get; set; }
 ```
 
-The question mark (?) in the preceding code specifies the property is nullable.
+The `?` in the preceding code specifies the property is nullable.
 
 A department may have many courses, so there's a Courses navigation property:
 
@@ -395,6 +396,7 @@ For example, if the `Department.InstructorID` property was defined as non-nullab
      .OnDelete(DeleteBehavior.Restrict)
   ```
 
+<!-- todo review: Why update, just go with this from the start 
 ## The Enrollment entity
 
 An enrollment record is for one course taken by one student.
@@ -405,7 +407,17 @@ Update *Models/Enrollment.cs* with the following code:
 
 [!code-csharp[](intro/samples/cu30/Models/Enrollment.cs?highlight=1-2,16)]
 
-### Foreign key and navigation properties
+-->
+
+### The Enrollment Foreign key and navigation properties
+
+An enrollment record is for one course taken by one student.
+
+![Enrollment entity](complex-data-model/_static/enrollment-entity.png)
+
+Update *Models/Enrollment.cs* with the following code:
+
+[!code-csharp[](intro/samples/cu50/Models/Enrollment.cs)]
 
 The FK properties and navigation properties reflect the following relationships:
 
@@ -425,7 +437,7 @@ public Student Student { get; set; }
 
 ## Many-to-Many Relationships
 
-There's a many-to-many relationship between the `Student` and `Course` entities. The `Enrollment` entity functions as a many-to-many join table *with payload* in the database. "With payload" means that the `Enrollment` table contains additional data besides FKs for the joined tables (in this case, the PK and `Grade`).
+There's a many-to-many relationship between the `Student` and `Course` entities. The `Enrollment` entity functions as a many-to-many join table ***with payload*** in the database. ***With payload*** means that the `Enrollment` table contains additional data besides FKs for the joined tables. In the `Enrollment` entity, the additional data besides FKs are the PK and `Grade`.
 
 The following illustration shows what these relationships look like in an entity diagram. (This diagram was generated using [EF Power Tools](https://marketplace.visualstudio.com/items?itemName=ErikEJ.EntityFramework6PowerToolsCommunityEdition) for EF 6.x. Creating the diagram isn't part of the tutorial.)
 
@@ -433,13 +445,11 @@ The following illustration shows what these relationships look like in an entity
 
 Each relationship line has a 1 at one end and an asterisk (*) at the other, indicating a one-to-many relationship.
 
-If the `Enrollment` table didn't include grade information, it would only need to contain the two FKs (`CourseID` and `StudentID`). A many-to-many join table without payload is sometimes called a pure join table (PJT).
+If the `Enrollment` table didn't include grade information, it would only need to contain the two FKs, `CourseID` and `StudentID`. A many-to-many join table without payload is sometimes called a pure join table (PJT).
 
-The `Instructor` and `Course` entities have a many-to-many relationship using a pure join table.
+The `Instructor` and `Course` entities have a many-to-many relationship using a PJT.
 
-Note: EF 6.x supports implicit join tables for many-to-many relationships, but EF Core doesn't. For more information, see [Many-to-many relationships in EF Core 2.0](https://blog.oneunicorn.com/2017/09/25/many-to-many-relationships-in-ef-core-2-0-part-1-the-basics/).
-
-## The CourseAssignment entity
+## The CourseAssignment entity zzz
 
 ![CourseAssignment entity](complex-data-model/_static/courseassignment-entity.png)
 
@@ -555,35 +565,35 @@ The ALTER TABLE statement conflicted with the FOREIGN KEY constraint "FK_dbo.Cou
 database "ContosoUniversity", table "dbo.Department", column 'DepartmentID'.
 ```
 
-In the next section, you see what to do about this error.
+The next section fixes this error.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-If you add a migration and run the `database update` command, the following error would be produced:
+If migration is added and the `database update` command is run, the following error is returned:
 
 ```text
 SQLite does not support this migration operation ('DropForeignKeyOperation').
 For more information, see http://go.microsoft.com/fwlink/?LinkId=723262.
 ```
 
-In the next section, you see how to avoid this error.
+The next section fixes this error.
 
 ---
 
 ## Apply the migration or drop and re-create
 
-Now that you have an existing database, you need to think about how to apply changes to it. This tutorial shows two alternatives:
+With the existing database, there are two approaches to changing the database:
 
-* [Drop and re-create the database](#drop). Choose this section if you're using SQLite.
-* [Apply the migration to the existing database](#applyexisting). The instructions in this section work for SQL Server only, **not for SQLite**. 
+* [Drop and re-create the database](#drop). Choose this section if when using SQLite.
+* [Apply the migration to the existing database](#applyexisting). The instructions in this section work for SQL Server only, ***not for SQLite***.
 
-Either choice works for SQL Server. While the apply-migration method is more complex and time-consuming, it's the preferred approach for real-world, production environments. 
+Either choice works for SQL Server. While the apply-migration method is more complex and time-consuming, it's the preferred approach for real-world, production environments.
 
 <a name="drop"></a>
 
 ## Drop and re-create the database
 
-[Skip this section](#apply-the-migration) if you're using SQL Server and want to do the apply-migration approach in the following section.
+[Skip this section](#apply-the-migration) when using SQL Server and the apply-migration approach in the following section.
 
 To force EF Core to create a new database, drop and update the database:
 
@@ -641,7 +651,7 @@ Open the database in SSOX:
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-Use your SQLite tool to examine the database:
+Use a SQLite tool to examine the database:
 
 * New tables and columns.
 * Seeded data in tables, for example the **CourseAssignment** table.

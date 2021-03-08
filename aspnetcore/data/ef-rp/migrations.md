@@ -100,7 +100,7 @@ The migration name parameter (`InitialCreate` in the example) is used for the fi
 
 Migrations creates a *snapshot* of the current data model in *Migrations/SchoolContextModelSnapshot.cs*. When add a migration is added, EF determines what changed by comparing the current data model to the snapshot file.
 
-Because the snapshot file tracks the state of the data model, a migration cannot be deleted by deleting the `<timestamp>_<migrationname>.cs` file. To back out the most recent migration, use the [`migrations remove`](/ef/core/managing-schemas/migrations/managing#remove-a-migration) command. That command deletes the migration and ensures the snapshot is correctly reset. For more information, see [dotnet ef migrations remove](/ef/core/miscellaneous/cli/dotnet#dotnet-ef-migrations-remove).
+Because the snapshot file tracks the state of the data model, a migration cannot be deleted by deleting the `<timestamp>_<migrationname>.cs` file. To back out the most recent migration, use the [`migrations remove`](/ef/core/managing-schemas/migrations/managing#remove-a-migration) command. `migrations remove` deletes the migration and ensures the snapshot is correctly reset. For more information, see [dotnet ef migrations remove](/ef/core/miscellaneous/cli/dotnet#dotnet-ef-migrations-remove).
 
 See [Resetting all migrations
 ](/ef/core/miscellaneous/cli/dotnet#resetting-all-migrations) to remove all migrations
@@ -143,6 +143,7 @@ The solution may be to run `dotnet ef database update` at a command prompt.
 ### Additional resources
 
 * [EF Core CLI](/ef/core/miscellaneous/cli/dotnet).
+* [dotnet ef migrations CLI commands](/ef/core/miscellaneous/cli/dotnet)
 * [Package Manager Console (Visual Studio)](/ef/core/miscellaneous/cli/powershell)
 
 ## Next steps
@@ -224,7 +225,7 @@ The EF Core `migrations add` command  generated code to create the DB. This migr
 
 [!code-csharp[](intro/samples/cu21/Migrations/20180626224812_InitialCreate.cs?range=7-24,77-88)]
 
-Migrations calls the `Up` method to implement the data model changes for a migration. When you enter a command to roll back the update, migrations calls the `Down` method.
+Migrations calls the `Up` method to implement the data model changes for a migration. When a command is entered to roll back the update, migrations calls the `Down` method.
 
 The preceding code is for the initial migration. That code was created when the `migrations add InitialCreate` command was run. The migration name parameter ("InitialCreate" in the example) is used for the file name. The migration name can be any valid file name. It's best to choose a word or phrase that summarizes what is being done in the migration. For example, a migration that added a department table might be called "AddDepartmentTable."
 
@@ -321,4 +322,3 @@ Solution: Run `dotnet ef database update`
 > [Next](xref:data/ef-rp/complex-data-model)
 
 ::: moniker-end
-

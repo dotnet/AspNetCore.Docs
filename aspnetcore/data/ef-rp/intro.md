@@ -11,7 +11,7 @@ uid: data/ef-rp/intro
 
 # Razor Pages with Entity Framework Core in ASP.NET Core - Tutorial 1 of 8
 
-By [Tom Dykstra](https://github.com/tdykstra) and [Jeremy Likness](https://twitter.com/jeremylikness)
+By [Tom Dykstra](https://github.com/tdykstra), [Jeremy Likness](https://twitter.com/jeremylikness), and [Jon P Smith](https://twitter.com/thereformedprog)
 
 ::: moniker range=">= aspnetcore-5.0"
 
@@ -177,7 +177,7 @@ The `Enrollments` property is defined as `ICollection<Enrollment>` because there
 
 Create *Models/Enrollment.cs* with the following code:
 
-[!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Models/Enrollment.cs)]
+[!code-csharp[](intro/samples/cu50/Models/Enrollment.cs)]
 
 The `EnrollmentID` property is the primary key; this entity uses the `classnameID` pattern instead of `ID` by itself. For a production data model, many developers choose one pattern and use it consistently. This tutorial uses both just to illustrate that both work. Using `ID` without `classname` makes it easier to implement some kinds of data model changes.
 

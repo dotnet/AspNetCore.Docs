@@ -9,6 +9,8 @@ no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Bla
 uid: data/ef-rp/read-related-data
 ---
 
+<!-- See https://github.com/dotnet/AspNetCore.Docs/issues/21720
+-->
 # Part 6, Razor Pages with EF Core in ASP.NET Core - Read Related Data
 
 By [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com/thereformedprog), and [Rick Anderson](https://twitter.com/RickAndMSFT)
