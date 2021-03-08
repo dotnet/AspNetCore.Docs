@@ -1,0 +1,39 @@
+@code {
+    private class Child : IComponent
+    {
+        [Parameter]
+        public int Year { get; set; }
+
+        [Parameter]
+        public EventCallback<int> YearChanged { get; set; }
+
+        public async Task SetParametersAsync(ParameterView parameters)
+        {
+            await Task.CompletedTask;
+        }
+
+        public void Attach(RenderHandle r) { }
+    }
+}
+
+<!-- <snippet> -->
+@page "/Parent"
+
+<h1>Parent Component</h1>
+
+<p>Parent <code>year</code>: @year</p>
+
+<button @onclick="UpdateYear">Update Parent <code>year</code></button>
+
+<Child @bind-Year="year" />
+
+@code {
+    private Random r = new Random();
+    private int year = 1979;
+
+    private void UpdateYear()
+    {
+        year = r.Next(1950, 2021);
+    }
+}
+<!-- </snippet> -->

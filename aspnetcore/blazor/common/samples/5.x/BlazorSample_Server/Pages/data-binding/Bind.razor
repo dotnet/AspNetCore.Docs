@@ -1,0 +1,15 @@
+@page "/bind"
+
+<p>
+    <input @bind="inputValue" /> <code>inputValue</code>: @inputValue
+</p>
+
+<p>
+    <input @bind="InputValue" /> <code>InputValue</code>: @InputValue
+</p>
+
+@code {
+    private string inputValue;
+
+    private string InputValue { get; set; }
+}
