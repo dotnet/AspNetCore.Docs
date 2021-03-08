@@ -84,7 +84,7 @@ var channel = GrpcChannel.ForAddress("http://localhost:5000");
 var client = new Greet.GreeterClient(channel);
 ```
 
-`System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport` doesn't do anything in .NET 5 and is not required.
+The `System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport` switch is only required for .NET Core 3.x. It doesn't do anything in .NET 5 and isn't required.
 
 ## Unable to start ASP.NET Core gRPC app on macOS
 
