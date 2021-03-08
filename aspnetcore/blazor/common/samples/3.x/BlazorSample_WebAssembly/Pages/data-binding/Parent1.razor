@@ -1,22 +1,3 @@
-@code {
-    private class Child : IComponent
-    {
-        [Parameter]
-        public int Year { get; set; }
-
-        [Parameter]
-        public EventCallback<int> YearChanged { get; set; }
-
-        public async Task SetParametersAsync(ParameterView parameters)
-        {
-            await Task.CompletedTask;
-        }
-
-        public void Attach(RenderHandle r) { }
-    }
-}
-
-<!-- <snippet> -->
 @page "/Parent"
 
 <h1>Parent Component</h1>
@@ -36,4 +17,3 @@
         year = r.Next(1950, 2021);
     }
 }
-<!-- </snippet> -->

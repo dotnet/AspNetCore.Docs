@@ -154,13 +154,13 @@ The following `Child` component has a `Year` component parameter and an <xref:Mi
 
 ::: moniker range=">= aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Shared/data-binding/Child1.razor?highlight=14-15,17-18)]
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Shared/data-binding/Child.razor?highlight=14-15,17-18)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Shared/data-binding/Child1.razor?highlight=14-15,17-18)]
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Shared/data-binding/Child.razor?highlight=14-15,17-18)]
 
 ::: moniker-end
 
