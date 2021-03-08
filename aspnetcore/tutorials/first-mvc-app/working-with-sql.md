@@ -27,6 +27,8 @@ The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system r
 
 [!code-json[](start-mvc/sample/MvcMovie/appsettings.json?highlight=2&range=8-10)]
 
+In the preceding connection string example, *Server=(localdb)* prompts the necessary SQL Server Express LocalDB infrastructure to be created and started automatically.  SQL Server Express LocalDB is installed with Visual Studio by default.
+
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Startup.cs?name=snippet_UseSqlite&highlight=5-6)]
@@ -45,9 +47,9 @@ When the app is deployed to a test or production server, an environment variable
 
 LocalDB:
 
-* Is a lightweight version of the SQL Server Express Database Engine.
+* Is a lightweight version of the SQL Server Express Database Engine, installed by default with Visual Studio.
 * Targeted for program development.
-* Starts on demand and runs in user mode, so there's no complex configuration.
+* Starts on demand by using a connection string, and runs in user mode, so there's no complex configuration.
 * By default creates *.mdf* files in the *C:/Users/{user}* directory.
 
 From the **View** menu, open **SQL Server Object Explorer** (SSOX).
