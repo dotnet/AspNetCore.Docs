@@ -181,7 +181,7 @@ For a reference guide to migrating ASP.NET apps to ASP.NET Core, see <xref:migra
 
 Many of the articles and tutorials include links to sample code.
 
-1. [Download the ASP.NET repository zip file](https://codeload.github.com/dotnet/AspNetCore.Docs/zip/master).
+1. [Download the ASP.NET repository zip file](https://codeload.github.com/dotnet/AspNetCore.Docs/zip/main).
 1. Unzip the *Docs-master.zip* file.
 1. Use the URL in the sample link to help you navigate to the sample directory.
 
