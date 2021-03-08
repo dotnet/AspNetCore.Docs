@@ -27,7 +27,7 @@ The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system r
 
 [!code-json[](start-mvc/sample/MvcMovie/appsettings.json?highlight=2&range=8-10)]
 
-In the preceding connection string example, *Server=(localdb)* prompts the necessary SQL Server Express LocalDB infrastructure to be created and started automatically.  SQL Server Express LocalDB is installed with Visual Studio by default.
+In the preceding connection string example, `Server=(localdb)` prompts the necessary SQL Server Express LocalDB infrastructure to be created and started automatically.  SQL Server Express LocalDB is installed with Visual Studio by default.
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
@@ -106,8 +106,9 @@ Test the app.
 # [Visual Studio](#tab/visual-studio)
 
 Delete all the records in the database. The data can be deleted by one of the following approaches:
-  * Selecting all the `Delete` links in the browser.
-  * Selecting the database in SQL Server Object Explorer and ...
+
+* Selecting all the `Delete` links in the browser.
+* Selecting the database in SQL Server Object Explorer and ...
 
 Force the app to initialize so that `Program.Main` is called. `Main` calls `SeedData.Initialize`, which initializes the database with data. To force initialization, IIS Express must be stopped and restarted. Stop and restart IIS Express with any of the following approaches:
 
