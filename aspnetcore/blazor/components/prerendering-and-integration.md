@@ -189,6 +189,10 @@ If the app should also style components with the styles in the Blazor WebAssembl
 </head>
 ```
 
+## Additional resources
+
+* <xref:blazor/security/webassembly/additional-scenarios#support-prerendering-with-authentication>
+
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
