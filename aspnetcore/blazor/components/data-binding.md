@@ -172,13 +172,13 @@ In the following `Parent` component, the `year` field is bound to the `Year` par
 
 ::: moniker range=">= aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/data-binding/Parent1.razor?name=snippet&highlight=9)]
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/data-binding/Parent1.razor?highlight=9)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/data-binding/Parent1.razor?name=snippet&highlight=9)]
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/data-binding/Parent1.razor?highlight=9)]
 
 ::: moniker-end
 
@@ -198,13 +198,13 @@ In a more sophisticated and real-world example, the following `Password` compone
 
 ::: moniker range=">= aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Shared/data-binding/PasswordEntry1.razor?highlight=7-10,23-24,26-27,13,36-39)]
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Shared/data-binding/PasswordEntry.razor?highlight=7-10,23-24,26-27,13,36-39)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Shared/data-binding/PasswordEntry1.razor?highlight=7-10,23-24,26-27,13,36-39)]
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Shared/data-binding/PasswordEntry.razor?highlight=7-10,23-24,26-27,13,36-39)]
 
 ::: moniker-end
 
@@ -214,13 +214,13 @@ The `PasswordEntry` component is used in another component, such as the followin
 
 ::: moniker range=">= aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/data-binding/PasswordBinding.razor?name=snippet&highlight=5)]
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/data-binding/PasswordBinding.razor?highlight=5)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/data-binding/PasswordBinding.razor?name=snippet&highlight=5)]
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/data-binding/PasswordBinding.razor?highlight=5)]
 
 ::: moniker-end
 
@@ -253,92 +253,45 @@ The following components demonstrate the recommended approach:
 
 `Pages/Parent.razor`:
 
-```razor
-@page "/parent"
+::: moniker range=">= aspnetcore-5.0"
 
-<h1>Parent Component</h1>
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/data-binding/Parent2.razor)]
 
-<p>Parent Message: <b>@parentMessage</b></p>
+::: moniker-end
 
-<p>
-    <button @onclick="ChangeValue">Change from Parent</button>
-</p>
+::: moniker range="< aspnetcore-5.0"
 
-<Child @bind-ChildMessage="parentMessage" />
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/data-binding/Parent2.razor)]
 
-@code {
-    private string parentMessage = "Initial value set in Parent";
+::: moniker-end
 
-    private void ChangeValue()
-    {
-        parentMessage = $"Set in Parent {DateTime.Now}";
-    }
-}
-```
+`Shared/NestedChild.razor`:
 
-`Shared/Child.razor`:
+::: moniker range=">= aspnetcore-5.0"
 
-```razor
-<div class="border rounded m-1 p-1">
-    <h2>Child Component</h2>
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Shared/data-binding/NestedChild.razor)]
 
-    <p>Child Message: <b>@ChildMessage</b></p>
+::: moniker-end
 
-    <p>
-        <button @onclick="ChangeValue">Change from Child</button>
-    </p>
+::: moniker range="< aspnetcore-5.0"
 
-    <Grandchild @bind-GrandchildMessage="BoundValue" />
-</div>
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Shared/data-binding/NestedChild.razor)]
 
-@code {
-    [Parameter]
-    public string ChildMessage { get; set; }
+::: moniker-end
 
-    [Parameter]
-    public EventCallback<string> ChildMessageChanged { get; set; }
+`Shared/NestedGrandchild.razor`:
 
-    private string BoundValue
-    {
-        get => ChildMessage;
-        set => ChildMessageChanged.InvokeAsync(value);
-    }
+::: moniker range=">= aspnetcore-5.0"
 
-    private async Task ChangeValue()
-    {
-        await ChildMessageChanged.InvokeAsync(
-            $"Set in Child {DateTime.Now}");
-    }
-}
-```
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Shared/data-binding/NestedGrandchild.razor)]
 
-`Shared/Grandchild.razor`:
+::: moniker-end
 
-```razor
-<div class="border rounded m-1 p-1">
-    <h3>Grandchild Component</h3>
+::: moniker range="< aspnetcore-5.0"
 
-    <p>Grandchild Message: <b>@GrandchildMessage</b></p>
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Shared/data-binding/NestedGrandchild.razor)]
 
-    <p>
-        <button @onclick="ChangeValue">Change from Grandchild</button>
-    </p>
-</div>
-
-@code {
-    [Parameter]
-    public string GrandchildMessage { get; set; }
-
-    [Parameter]
-    public EventCallback<string> GrandchildMessageChanged { get; set; }
-
-    private async Task ChangeValue()
-    {
-        await GrandchildMessageChanged.InvokeAsync(
-            $"Set in Grandchild {DateTime.Now}");
-    }
-}
-```
+::: moniker-end
 
 For an alternative approach suited to sharing data in memory and across components that aren't necessarily nested, see <xref:blazor/state-management>.
 

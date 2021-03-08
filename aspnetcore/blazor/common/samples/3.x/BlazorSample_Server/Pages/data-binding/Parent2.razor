@@ -1,0 +1,20 @@
+@page "/parent"
+
+<h1>Parent Component</h1>
+
+<p>Parent Message: <b>@parentMessage</b></p>
+
+<p>
+    <button @onclick="ChangeValue">Change from Parent</button>
+</p>
+
+<NestedChild @bind-ChildMessage="parentMessage" />
+
+@code {
+    private string parentMessage = "Initial value set in Parent";
+
+    private void ChangeValue()
+    {
+        parentMessage = $"Set in Parent {DateTime.Now}";
+    }
+}
