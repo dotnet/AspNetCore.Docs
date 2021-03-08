@@ -85,7 +85,7 @@ The following table lists .NET implementations and their gRPC client support:
 |----------------------------------------------|--------------------|------------|
 | .NET 5 or later                              | ✔️                | ✔️         |
 | .NET Core 3                                  | ✔️                | ✔️         |
-| .NET Core 2.1                                | ⚠️&dagger;        | ✔️         |
+| .NET Core 2.1                                | ❌                | ✔️         |
 | .NET Framework 4.6.1                         | ⚠️&dagger;        | ✔️         |
 | Blazor WebAssembly                           | ❌                | ✔️         |
 | Mono 5.4                                     | ❌                | ✔️         |
@@ -94,7 +94,7 @@ The following table lists .NET implementations and their gRPC client support:
 | Universal Windows Platform 10.0.16299        | ❌                | ✔️         |
 | Unity 2018.1                                 | ❌                | ✔️         |
 
-&dagger;Requires <xref:System.Net.Http.WinHttpHandler> to be configured and Windows 10 Build 19622 or later.
+&dagger;.NET Framework requires <xref:System.Net.Http.WinHttpHandler> to be configured and Windows 10 Build 19622 or later.
 
 Using `Grpc.Net.Client` on .NET Framework or with gRPC-Web requires additional configuration. For more information, see <xref:grpc/netstandard>.
 
