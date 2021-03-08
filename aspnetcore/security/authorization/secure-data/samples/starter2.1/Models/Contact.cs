@@ -11,6 +11,7 @@ namespace ContactManager.Models
         public string City { get; set; }
         public string State { get; set; }
         public string Zip { get; set; }
+        // using System.ComponentModel.DataAnnotations;
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
     }
