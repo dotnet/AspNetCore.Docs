@@ -278,8 +278,6 @@ Kestrel can be configured to send HTTP/2 pings to connected clients. HTTP/2 ping
 
 There are two configuration options related to [HTTP/2](xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.Http2) keep alive pings:
 
-::: moniker range=">= aspnetcore-5.0"
-
 * <xref:Microsoft.AspNetCore.Server.Kestrel.Core.Http2Limits.KeepAlivePingDelay?displayProperty=nameWithType> is a <xref:System.TimeSpan> that configures the ping interval. The server sends a keep alive ping to the client if it doesn't receive any frames for this period of time. Keep alive pings are disabled when this option is set to <xref:System.TimeSpan.MaxValue?displayProperty=nameWithType>. The default value is <xref:System.TimeSpan.MaxValue?displayProperty=nameWithType>.
 * <xref:Microsoft.AspNetCore.Server.Kestrel.Core.Http2Limits.KeepAlivePingTimeout?displayProperty=nameWithType> is a <xref:System.TimeSpan> that configures the ping timeout. If the server doesn't receive any frames, such as a response ping, during this timeout then the connection is closed. Keep alive timeout is disabled when this option is set to <xref:System.TimeSpan.MaxValue?displayProperty=nameWithType>. The default value is 20 seconds.
 
@@ -290,23 +288,6 @@ webBuilder.ConfigureKestrel(serverOptions =>
     serverOptions.Limits.Http2.KeepAlivePingTimeout = TimeSpan.FromSeconds(60);
 });
 ```
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-* `Http2.KeepAlivePingInterval` is a <xref:System.TimeSpan> that configures the ping interval. The server sends a keep alive ping to the client if it doesn't receive any frames for this period of time. Keep alive pings are disabled when this option is set to <xref:System.TimeSpan.MaxValue?displayProperty=nameWithType>. The default value is <xref:System.TimeSpan.MaxValue?displayProperty=nameWithType>.
-* <xref:Microsoft.AspNetCore.Server.Kestrel.Core.Http2Limits.KeepAlivePingTimeout?displayProperty=nameWithType> is a <xref:System.TimeSpan> that configures the ping timeout. If the server doesn't receive any frames, such as a response ping, during this timeout then the connection is closed. Keep alive timeout is disabled when this option is set to <xref:System.TimeSpan.MaxValue?displayProperty=nameWithType>. The default value is 20 seconds.
-
-```csharp
-webBuilder.ConfigureKestrel(serverOptions =>
-{
-    serverOptions.Limits.Http2.KeepAlivePingInterval = TimeSpan.FromSeconds(30);
-    serverOptions.Limits.Http2.KeepAlivePingTimeout = TimeSpan.FromSeconds(60);
-});
-```
-
-::: moniker-end
 
 ## Other options
 
