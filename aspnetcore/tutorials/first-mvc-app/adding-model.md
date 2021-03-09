@@ -14,7 +14,7 @@ In this section, classes are added for managing movies in a database. These clas
 
 These model classes are used with [Entity Framework Core](/ef/core) (EF Core) to work with a database. EF Core is an object-relational mapping (ORM) framework that simplifies the data access code that you have to write.
 
-The model classes created are known as POCO classes (from **P**lain **O**ld **C**LR **O**bjects). POCO classes don't have any dependency on EF Core. They only define the properties of the data to be stored in the database.
+The model classes created are known as ***POCO*** classes, from **P**lain **O**ld **C**LR **O**bjects. POCO classes don't have any dependency on EF Core. They only define the properties of the data to be stored in the database.
 
 In this tutorial,  model classes are created first, and EF Core creates the database.
 
@@ -129,7 +129,7 @@ The preceding code creates a [DbSet\<Movie>](/dotnet/api/microsoft.entityframewo
 
 ## Register the database context
 
-ASP.NET Core is built with [dependency injection (DI)](xref:fundamentals/dependency-injection). Services must be registered with DI during app startup. For example, the EF Core DB context. Components that require these services, are provided these services via constructor parameters. For example, Razor Pages. The constructor code that gets a DB context instance is shown later in the tutorial. In this section, the database context is registered with the DI container.
+ASP.NET Core is built with [dependency injection (DI)](xref:fundamentals/dependency-injection). Services, such as the EF Core DB context, must be registered with DI in `Startup`. Components that require these services are provided these services via constructor parameters. For example, Razor Pages frequently requires services from the DI container. The constructor code that gets a DB context instance is shown later in the tutorial. In this section, the database context is registered with the DI container.
 
 Add the following `using` statements at the top of *Startup.cs*:
 
@@ -194,7 +194,7 @@ The automatic creation of these files is known as *scaffolding*.
 
 ### [Visual Studio Code](#tab/visual-studio-code) 
 
-Open a command window in the project directory. The project directory is he directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files.
+Open a command window in the project directory. The project directory is the directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files.
 
 On Linux, export the scaffold tool path:
 
@@ -374,7 +374,7 @@ The `id` parameter is generally passed as route data. For example, `https://loca
 
 * The controller to the `movies` controller, the first URL segment.
 * The action to `details`, the second URL segment.
-* The id to 1, the last URL segment.
+* The `id` to 1, the last URL segment.
 
 The `id` can be passed in with a query string, as in the following example:
 
@@ -421,7 +421,7 @@ The `@model` directive allows access to the list of movies that the controller p
 
 [!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/IndexOriginal.cshtml?highlight=1,31,34,37,40,43,46-48)]
 
-Because the `Model` object is strongly typed as an `IEnumerable<Movie>` object, each item in the loop is typed as `Movie`. Among other benefits, the code gets compile time checking.
+Because the `Model` object is strongly typed as an `IEnumerable<Movie>` object, each item in the loop is typed as `Movie`. Among other benefits, the compiler validates the types used in the code.
 
 ## Additional resources
 
