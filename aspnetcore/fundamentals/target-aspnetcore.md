@@ -37,7 +37,7 @@ Referencing ASP.NET Core in this manner is only supported for projects targeting
 
 ## Include Blazor extensibility
 
-Blazor supports WebAssembly (WASM) and server [hosting models](xref:blazor/hosting-models). Unless there's a specific reason not to support both hosting models, a [Razor components](xref:blazor/components/index) library should support both hosting models. A Razor components library must use the [Microsoft.NET.Sdk.Razor SDK](xref:razor-pages/sdk).
+Blazor supports WebAssembly (WASM) and server-based [hosting models](xref:blazor/hosting-models). Unless there's a specific reason not to support both hosting models, a [Razor components](xref:blazor/components/index) library should support both hosting models. A Razor components library must use the [Microsoft.NET.Sdk.Razor SDK](xref:razor-pages/sdk).
 
 ### Support both hosting models
 
