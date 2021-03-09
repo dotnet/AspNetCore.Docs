@@ -108,7 +108,7 @@ When executing a hosted Blazor WebAssembly app, run the app from the solution's 
    In the preceding argument:
 
    * The `{SERVER APP FOLDER}` placeholder is the **`Server`** project's folder, typically "`Server`".
-   * The `{PROJECT NAME}` placeholder is the app's name, typically based on the solution's name followed by "`.Server`" in an app generated from the Blazor project template.
+   * The `{PROJECT NAME}` placeholder is the app's name, typically based on the solution's name followed by "`.Server`" in an app generated from the [Blazor project template](xref:blazor/project-structure).
 
    The following example from the [tutorial for using SignalR with a Blazor WebAssembly app](xref:tutorials/signalr-blazor) uses a project folder name of `Server` and a project name of `BlazorWebAssemblySignalRApp.Server`:
 
@@ -174,7 +174,7 @@ The Blazor framework provides templates for creating new apps for each of the tw
 * Blazor WebAssembly project template: `blazorwasm`
 * Blazor Server project template: `blazorserver`
 
-For more information on Blazor's hosting models, see <xref:blazor/hosting-models>.
+For more information on Blazor's hosting models, see <xref:blazor/hosting-models>. For more information on Blazor project templates, see <xref:blazor/project-structure>.
 
 Template options are available by passing the help option (`-h` or `--help`) to the [`dotnet new`](/dotnet/core/tools/dotnet-new) CLI command in a command shell:
 
@@ -182,3 +182,8 @@ Template options are available by passing the help option (`-h` or `--help`) to 
 dotnet new blazorwasm -h
 dotnet new blazorserver -h
 ```
+
+## Additional resources
+
+* <xref:blazor/hosting-models>
+* <xref:blazor/project-structure>

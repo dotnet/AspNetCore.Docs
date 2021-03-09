@@ -23,7 +23,7 @@ When a Blazor app isn't functioning properly during development, receiving detai
 * During development, the bar directs you to the browser console, where you can see the exception.
 * In production, the bar notifies the user that an error has occurred and recommends refreshing the browser.
 
-The UI for this error handling experience is part of the Blazor project templates.
+The UI for this error handling experience is part of the [Blazor project templates](xref:blazor/project-structure).
 
 In a Blazor WebAssembly app, customize the experience in the `wwwroot/index.html` file:
 
@@ -240,7 +240,7 @@ When a Blazor app isn't functioning properly during development, receiving detai
 * During development, the bar directs you to the browser console, where you can see the exception.
 * In production, the bar notifies the user that an error has occurred and recommends refreshing the browser.
 
-The UI for this error handling experience is part of the Blazor project templates.
+The UI for this error handling experience is part of the [Blazor project templates](xref:blazor/project-structure).
 
 In a Blazor Server app, customize the experience in the `Pages/_Host.cshtml` file:
 

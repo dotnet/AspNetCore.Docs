@@ -12,6 +12,7 @@ no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Bla
   * Depending on the requirements of the scenario, a missing or incorrect Authority, Instance, Tenant ID, Tenant domain, Client ID, or Redirect URI prevents an app from authenticating clients.
   * An incorrect access token scope prevents clients from accessing server web API endpoints.
   * Incorrect or missing server API permissions prevent clients from accessing server web API endpoints.
+  * Running the app at a different port than is configured in the Redirect URI of the Identity Provider's app registration.
   
   Configuration sections of this article's guidance show examples of the correct configuration. Carefully check each section of the article looking for app and IP misconfiguration.
   
@@ -83,9 +84,21 @@ One approach to prevent lingering cookies and site data from interfering with te
   * To avoid having to select the browser profile for each iteration of testing with an app, set the profile as the default with the **Set as Default** button.
   * Make sure that the browser is closed by the IDE for any change to the app, test user, or provider configuration.
 
+### App upgrades
+
+A functioning app may fail immediately after upgrading either the .NET Core SDK on the development machine or changing package versions within the app. In some cases, incoherent packages may break an app when performing major upgrades. Most of these issues can be fixed by following these instructions:
+
+1. Clear the local system's NuGet package caches by executing [`dotnet nuget locals all --clear`](/dotnet/core/tools/dotnet-nuget-locals) from a command shell.
+1. Delete the project's `bin` and `obj` folders.
+1. Restore and rebuild the project.
+1. Delete all of the files in the deployment folder on the server prior to redeploying the app.
+
+> [!NOTE]
+> Use of package versions incompatible with the app's target framework isn't supported. For information on a package, use the [NuGet Gallery](https://www.nuget.org) or [FuGet Package Explorer](https://www.fuget.org).
+
 ### Run the Server app
 
-When testing and troubleshooting a hosted Blazor app, make sure that you're running the app from the **`Server`** project. For example in Visual Studio, confirm that the Server project is highlighted in **Solution Explorer** before you start the app with any of the following approaches:
+When testing and troubleshooting a hosted Blazor solution, make sure that you're running the app from the **`Server`** project. For example in Visual Studio, confirm that the Server project is highlighted in **Solution Explorer** before you start the app with any of the following approaches:
 
 * Select the **Run** button.
 * Use **Debug** > **Start Debugging** from the menu.

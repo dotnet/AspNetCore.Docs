@@ -11,7 +11,7 @@ uid: blazor/security/webassembly/hosted-with-azure-active-directory
 ---
 # Secure an ASP.NET Core Blazor WebAssembly hosted app with Azure Active Directory
 
-This article describes how to create a [hosted Blazor WebAssembly app](xref:blazor/hosting-models#blazor-webassembly) that uses [Azure Active Directory (AAD)](https://azure.microsoft.com/services/active-directory/) for authentication.
+This article describes how to create a [hosted Blazor WebAssembly solution](xref:blazor/hosting-models#blazor-webassembly) that uses [Azure Active Directory (AAD)](https://azure.microsoft.com/services/active-directory/) for authentication.
 
 ::: moniker range=">= aspnetcore-5.0"
 
@@ -34,11 +34,11 @@ Follow the guidance in [Quickstart: Set up a tenant](/azure/active-directory/dev
 
 Register an AAD app for the *Server API app*:
 
-1. In **Azure Active Directory** > **App registrations**, select **New registration**.
+1. Navigate to **Azure Active Directory** in the Azure portal. Select **App registrations** in the sidebar. Select the **New registration** button.
 1. Provide a **Name** for the app (for example, **Blazor Server AAD**).
 1. Choose a **Supported account types**. You may select **Accounts in this organizational directory only** (single tenant) for this experience.
 1. The *Server API app* doesn't require a **Redirect URI** in this scenario, so leave the drop down set to **Web** and don't enter a redirect URI.
-1. Clear the **Permissions** > **Grant admin consent to openid and offline_access permissions** check box.
+1. If you're using an [unverified publisher domain](/azure/active-directory/develop/howto-configure-publisher-domain), clear the **Permissions** > **Grant admin consent to openid and offline_access permissions** check box. If the publisher domain is verified, this check box isn't present.
 1. Select **Register**.
 
 Record the following information:
@@ -70,14 +70,14 @@ Register an AAD app for the *Client app*:
 
 ::: moniker range=">= aspnetcore-5.0"
 
-1. In **Azure Active Directory** > **App registrations**, select **New registration**.
+1. Navigate to **Azure Active Directory** in the Azure portal. Select **App registrations** in the sidebar. Select the **New registration** button.
 1. Provide a **Name** for the app (for example, **Blazor Client AAD**).
 1. Choose a **Supported account types**. You may select **Accounts in this organizational directory only** (single tenant) for this experience.
-1. Set the **Redirect URI** drop down to **Single-page application (SPA)** and provide the following redirect URI: `https://localhost:{PORT}/authentication/login-callback`. The default port for an app running on Kestrel is 5001. If the app is run on a different Kestrel port, use the app's port. For IIS Express, the randomly generated port for the app can be found in the *`Server`* app's properties in the **Debug** panel. Since the app doesn't exist at this point and the IIS Express port isn't known, return to this step after the app is created and update the redirect URI. A remark appears in the [Create the app](#create-the-app) section to remind IIS Express users to update the redirect URI.
-1. Clear the **Permissions** > **Grant admin consent to openid and offline_access permissions** check box.
+1. Set the **Redirect URI** drop down to **Single-page application (SPA)** and provide the following redirect URI: `https://localhost:{PORT}/authentication/login-callback`. The default port for an app running on Kestrel is 5001. If the app is run on a different Kestrel port, use the app's port. For IIS Express, the randomly generated port for the app can be found in the **`Server`** app's properties in the **Debug** panel. Since the app doesn't exist at this point and the IIS Express port isn't known, return to this step after the app is created and update the redirect URI. A remark appears in the [Create the app](#create-the-app) section to remind IIS Express users to update the redirect URI.
+1. If you're using an [unverified publisher domain](/azure/active-directory/develop/howto-configure-publisher-domain), clear the **Permissions** > **Grant admin consent to openid and offline_access permissions** check box. If the publisher domain is verified, this check box isn't present.
 1. Select **Register**.
 
-Record the *`Client`* app Application (client) ID (for example, `4369008b-21fa-427c-abaa-9b53bf58e538`).
+Record the **`Client`** app Application (client) ID (for example, `4369008b-21fa-427c-abaa-9b53bf58e538`).
 
 In **Authentication** > **Platform configurations** > **Single-page application (SPA)**:
 
@@ -90,14 +90,14 @@ In **Authentication** > **Platform configurations** > **Single-page application 
 
 ::: moniker range="< aspnetcore-5.0"
 
-1. In **Azure Active Directory** > **App registrations**, select **New registration**.
+1. Navigate to **Azure Active Directory** in the Azure portal. Select **App registrations** in the sidebar. Select the **New registration** button.
 1. Provide a **Name** for the app (for example, **Blazor Client AAD**).
 1. Choose a **Supported account types**. You may select **Accounts in this organizational directory only** (single tenant) for this experience.
-1. Leave the **Redirect URI** drop down set to **Web** and provide the following redirect URI: `https://localhost:{PORT}/authentication/login-callback`. The default port for an app running on Kestrel is 5001. If the app is run on a different Kestrel port, use the app's port. For IIS Express, the randomly generated port for the app can be found in the *`Server`* app's properties in the **Debug** panel. Since the app doesn't exist at this point and the IIS Express port isn't known, return to this step after the app is created and update the redirect URI. A remark appears in the [Create the app](#create-the-app) section to remind IIS Express users to update the redirect URI.
-1. Clear the **Permissions** > **Grant admin consent to openid and offline_access permissions** check box.
+1. Leave the **Redirect URI** drop down set to **Web** and provide the following redirect URI: `https://localhost:{PORT}/authentication/login-callback`. The default port for an app running on Kestrel is 5001. If the app is run on a different Kestrel port, use the app's port. For IIS Express, the randomly generated port for the app can be found in the **`Server`** app's properties in the **Debug** panel. Since the app doesn't exist at this point and the IIS Express port isn't known, return to this step after the app is created and update the redirect URI. A remark appears in the [Create the app](#create-the-app) section to remind IIS Express users to update the redirect URI.
+1. If you're using an [unverified publisher domain](/azure/active-directory/develop/howto-configure-publisher-domain), clear the **Permissions** > **Grant admin consent to openid and offline_access permissions** check box. If the publisher domain is verified, this check box isn't present.
 1. Select **Register**.
 
-Record the *`Client`* app Application (client) ID (for example, `4369008b-21fa-427c-abaa-9b53bf58e538`).
+Record the **`Client`** app Application (client) ID (for example, `4369008b-21fa-427c-abaa-9b53bf58e538`).
 
 In **Authentication** > **Platform configurations** > **Web**:
 
@@ -129,39 +129,39 @@ dotnet new blazorwasm -au SingleOrg --api-client-id "{SERVER API APP CLIENT ID}"
 | Placeholder                  | Azure portal name                                     | Example                                        |
 | ---------------------------- | ----------------------------------------------------- | ---------------------------------------------- |
 | `{APP NAME}`                 | &mdash;                                               | `BlazorSample`                                 |
-| `{CLIENT APP CLIENT ID}`     | Application (client) ID for the *`Client`* app        | `4369008b-21fa-427c-abaa-9b53bf58e538`         |
+| `{CLIENT APP CLIENT ID}`     | Application (client) ID for the **`Client`** app      | `4369008b-21fa-427c-abaa-9b53bf58e538`         |
 | `{DEFAULT SCOPE}`            | Scope name                                            | `API.Access`                                   |
 | `{SERVER API APP CLIENT ID}` | Application (client) ID for the *Server API app*      | `41451fa7-82d9-4673-8fa5-69eff5a761fd`         |
 | `{SERVER API APP ID URI}`    | Application ID URI&dagger;                            | `41451fa7-82d9-4673-8fa5-69eff5a761fd`&dagger; |
 | `{TENANT DOMAIN}`            | Primary/Publisher/Tenant domain                       | `contoso.onmicrosoft.com`                      |
 | `{TENANT ID}`                | Directory (tenant) ID                                 | `e86c78e2-8bb4-4c41-aefd-918e0565a45e`         |
 
-&dagger;The Blazor WebAssembly template automatically adds a scheme of `api://` to the App ID URI argument passed in the `dotnet new` command. When providing the App ID URI for the `{SERVER API APP ID URI}` placeholder and if the scheme is `api://`, remove the scheme (`api://`) from the argument, as the example value in the preceding table shows. If the App ID URI is a custom value or has some other scheme (for example, `https://` for an untrusted publisher domain similar to `https://contoso.onmicrosoft.com/41451fa7-82d9-4673-8fa5-69eff5a761fd`), you must manually update the default scope URI and remove the `api://` scheme after the *`Client`* app is created by the template. For more information, see the note in the [Access token scopes](#access-token-scopes) section. The Blazor WebAssembly template might be changed in a future release of ASP.NET Core to address these scenarios. For more information, see [Double scheme for App ID URI with Blazor WASM template (hosted, single org) (dotnet/aspnetcore #27417)](https://github.com/dotnet/aspnetcore/issues/27417).
+&dagger;The Blazor WebAssembly template automatically adds a scheme of `api://` to the App ID URI argument passed in the `dotnet new` command. When providing the App ID URI for the `{SERVER API APP ID URI}` placeholder and if the scheme is `api://`, remove the scheme (`api://`) from the argument, as the example value in the preceding table shows. If the App ID URI is a custom value or has some other scheme (for example, `https://` for an [unverified publisher domain](/azure/active-directory/develop/howto-configure-publisher-domain) similar to `https://contoso.onmicrosoft.com/41451fa7-82d9-4673-8fa5-69eff5a761fd`), you must manually update the default scope URI and remove the `api://` scheme after the **`Client`** app is created by the template. For more information, see the note in the [Access token scopes](#access-token-scopes) section. The Blazor WebAssembly template might be changed in a future release of ASP.NET Core to address these scenarios. For more information, see [Double scheme for App ID URI with Blazor WASM template (hosted, single org) (dotnet/aspnetcore #27417)](https://github.com/dotnet/aspnetcore/issues/27417).
 
 The output location specified with the `-o|--output` option creates a project folder if it doesn't exist and becomes part of the app's name.
 
 ::: moniker range=">= aspnetcore-5.0"
 
 > [!NOTE]
-> A configuration change might be required when using an Azure tenant with an unverified publisher domain, which is described in the [App settings](#app-settings) section.
+> A configuration change might be required when using an Azure tenant with an [unverified publisher domain](/azure/active-directory/develop/howto-configure-publisher-domain), which is described in the [App settings](#app-settings) section.
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
 > [!NOTE]
-> A configuration change might be required when using an Azure tenant with an unverified publisher domain, which is described in the [Access token scopes](#access-token-scopes) section.
+> A configuration change might be required when using an Azure tenant with an [unverified publisher domain](/azure/active-directory/develop/howto-configure-publisher-domain), which is described in the [Access token scopes](#access-token-scopes) section.
 
 ::: moniker-end
 
 > [!NOTE]
-> In the Azure portal, the *`Client`* app's platform configuration **Redirect URI** is configured for port 5001 for apps that run on the Kestrel server with default settings.
+> In the Azure portal, the **`Client`** app's platform configuration **Redirect URI** is configured for port 5001 for apps that run on the Kestrel server with default settings.
 >
-> If the *`Client`* app is run on a random IIS Express port, the port for the app can be found in the *Server API app's* properties in the **Debug** panel.
+> If the **`Client`** app is run on a random IIS Express port, the port for the app can be found in the *Server API app's* properties in the **Debug** panel.
 >
-> If the port wasn't configured earlier with the *`Client`* app's known port, return to the *`Client`* app's registration in the Azure portal and update the redirect URI with the correct port.
+> If the port wasn't configured earlier with the **`Client`** app's known port, return to the **`Client`** app's registration in the Azure portal and update the redirect URI with the correct port.
 
-## *`Server`* app configuration
+## **`Server`** app configuration
 
 *This section pertains to the solution's **`Server`** app.*
 
@@ -169,17 +169,15 @@ The output location specified with the `-o|--output` option creates a project fo
 
 ::: moniker range=">= aspnetcore-5.0"
 
-The support for authenticating and authorizing calls to ASP.NET Core Web APIs with the Microsoft Identity Platform is provided by the following packages:
-
-* [`Microsoft.Identity.Web`](https://www.nuget.org/packages/Microsoft.Identity.Web)
-* [`Microsoft.Identity.Web.UI`](https://www.nuget.org/packages/Microsoft.Identity.Web.UI)
+The support for authenticating and authorizing calls to ASP.NET Core web APIs with the Microsoft Identity Platform is provided by the [`Microsoft.Identity.Web`](https://www.nuget.org/packages/Microsoft.Identity.Web) package:
 
 ```xml
 <PackageReference Include="Microsoft.Identity.Web" Version="{VERSION}" />
-<PackageReference Include="Microsoft.Identity.Web.UI" Version="{VERSION}" />
 ```
 
-For the placeholder `{VERSION}`, the latest stable version of the package that matches the app's shared framework version can be found in the package's **Version History** at NuGet.org.
+The `{VERSION}` placeholder represents the latest stable version of the package that matches the app's shared framework version and can be found in the package's **Version History** at the [NuGet Gallery](https://www.nuget.org).
+
+The **`Server`** app of a hosted Blazor solution created from the Blazor WebAssembly template includes the [`Microsoft.Identity.Web.UI`](https://www.nuget.org/packages/Microsoft.Identity.Web) package by default. The package adds UI for user authentication in web apps and isn't used by the Blazor framework. If the **`Server`** app will never be used to authenticate users directly, it's safe to remove the package reference from the **`Server`** app's project file.
 
 ::: moniker-end
 
@@ -232,7 +230,7 @@ app.UseAuthorization();
 
 ### User.Identity.Name
 
-By default, the *`Server`* app API populates `User.Identity.Name` with the value from the `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name` claim type (for example, `2d64b3da-d9d5-42c6-9352-53d8df33d770@contoso.onmicrosoft.com`).
+By default, the **`Server`** app API populates `User.Identity.Name` with the value from the `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name` claim type (for example, `2d64b3da-d9d5-42c6-9352-53d8df33d770@contoso.onmicrosoft.com`).
 
 To configure the app to receive the value from the `name` claim type:
 
@@ -357,7 +355,7 @@ public class WeatherForecastController : ControllerBase
 }
 ```
 
-## *`Client`* app configuration
+## **`Client`** app configuration
 
 *This section pertains to the solution's **`Client`** app.*
 
@@ -449,7 +447,7 @@ builder.Services.AddMsalAuthentication(options =>
 ```
 
 > [!NOTE]
-> The Blazor WebAssembly template automatically adds a scheme of `api://` to the App ID URI argument passed in the `dotnet new` command. When generating an app from the Blazor project template, confirm that the value of the default access token scope uses either the correct custom App ID URI value that you provided in the Azure portal or a value with **one** of the following formats:
+> The Blazor WebAssembly template automatically adds a scheme of `api://` to the App ID URI argument passed in the `dotnet new` command. When generating an app from the [Blazor project template](xref:blazor/project-structure), confirm that the value of the default access token scope uses either the correct custom App ID URI value that you provided in the Azure portal or a value with **one** of the following formats:
 >
 > * When the publisher domain of the directory is **trusted**, the default access token scope is typically a value similar to the following example, where `API.Access` is the default scope name:
 >
