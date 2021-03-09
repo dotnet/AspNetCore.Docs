@@ -1,12 +1,17 @@
 @page "/bind"
 
 <p>
-    <input @bind="inputValue" /> <code>inputValue</code>: @inputValue
+    <input @bind="inputValue" />
 </p>
 
 <p>
-    <input @bind="InputValue" /> <code>InputValue</code>: @InputValue
+    <input @bind="InputValue" />
 </p>
+
+<ul>
+    <li><code>inputValue</code>: @inputValue</li>
+    <li><code>InputValue</code>: @InputValue</li>
+</ul>
 
 @code {
     private string inputValue;

@@ -15,10 +15,10 @@ Razor components provide data binding features with the [`@bind`](xref:mvc/views
 
 The following example binds:
 
-* An `<input>` element value to the `inputValue` field.
-* A second `<input>` element value to the `InputValue` property.
+* An `<input>` element value to the C# `inputValue` field.
+* A second `<input>` element value to the C# `InputValue` property.
 
-When one of the elements loses focus, its bound field or property is updated.
+When an `<input>` element loses focus, its bound field or property is updated.
 
 `Pages/Bind.razor`:
 
@@ -36,7 +36,7 @@ When one of the elements loses focus, its bound field or property is updated.
 
 The text box is updated in the UI only when the component is rendered, not in response to changing the field's or property's value. Since components render themselves after event handler code executes, field and property updates are usually reflected in the UI immediately after an event handler is triggered.
 
-As a demonstration of how data binding can compose in HTML, the following example binds the `InputValue` property to the second `<input>` element's `value` and [`onchange`](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers/onchange) attributes. The following is merely an example to demonstrate the concept and isn't meant to suggest how you should bind data in a production app.
+As a demonstration of how data binding composes in HTML, the following example binds the `InputValue` property to the second `<input>` element's `value` and [`onchange`](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers/onchange) attributes. *The second `<input>` element in the following example is a concept demonstration and isn't meant to suggest how you should bind data in Razor components.*
 
 `Pages/BindTheory.razor`:
 
@@ -54,7 +54,7 @@ As a demonstration of how data binding can compose in HTML, the following exampl
 
 When the `BindTheory` component is rendered, the `value` of the HTML demonstration `<input>` element comes from the `InputValue` property. When the user enters a value in the text box and changes element focus, the `onchange` event is fired and the `InputValue` property is set to the changed value. In reality, code execution is more complex because [`@bind`](xref:mvc/views/razor#bind) handles cases where type conversions are performed. In general, [`@bind`](xref:mvc/views/razor#bind) associates the current value of an expression with a `value` attribute and handles changes using the registered handler.
 
-Bind a property or field on other [Document Object Model (DOM)](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction) events by including an `@bind:event="{EVENT}"` attribute with a DOM event for the `{EVENT}` placeholder. The following example binds the `InputValue` property to the `<input>` element's value when the element's [`oninput` event](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers/oninput) is triggered. Unlike the [`onchange` event](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers/onchange), which fires when the element loses focus, `oninput` fires when the value of the text box changes.
+Bind a property or field on other [Document Object Model (DOM)](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction) events by including an `@bind:event="{EVENT}"` attribute with a DOM event for the `{EVENT}` placeholder. The following example binds the `InputValue` property to the `<input>` element's value when the element's [`oninput` event](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers/oninput) is triggered. Unlike the [`onchange` event](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers/onchange), which fires when the element loses focus, [`oninput`](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers/oninput) fires when the value of the text box changes.
 
 `Page/BindEvent.razor`:
 
@@ -97,10 +97,10 @@ Consider the following component, where an `<input>` element is bound to an `int
 
 By default, binding applies to the element's `onchange` event. If the user updates the value of the text box's entry to `123.45` and changes the focus, the element's value is reverted to `123` when `onchange` fires. When the value `123.45` is rejected in favor of the original value of `123`, the user understands that their value wasn't accepted.
 
-For the `oninput` event (`@bind:event="oninput"`), a value reversion occurs after any keystroke that introduces an unparsable value. When targeting the `oninput` event with an `int`-bound type, a user is prevented from typing a `.` character. A `.` character is immediately removed, so the user receives immediate feedback that only whole numbers are permitted. There are scenarios where reverting the value on the `oninput` event isn't ideal, such as when the user should be allowed to clear an unparsable `<input>` value. Alternatives include:
+For the `oninput` event (`@bind:event="oninput"`), a value reversion occurs after any keystroke that introduces an unparsable value. When targeting the `oninput` event with an `int`-bound type, a user is prevented from typing a dot (`.`) character. A dot (`.`) character is immediately removed, so the user receives immediate feedback that only whole numbers are permitted. There are scenarios where reverting the value on the `oninput` event isn't ideal, such as when the user should be allowed to clear an unparsable `<input>` value. Alternatives include:
 
 * Don't use the `oninput` event. Use the default `onchange` event, where an invalid value isn't reverted until the element loses focus.
-* Bind to a nullable type, such as `int?` or `string` and provide custom getter and setter logic to handle invalid entries.
+* Bind to a nullable type, such as `int?` or `string` and provide [custom `get` and `set` accessor logic](#custom-binding-formats) to handle invalid entries.
 * Use a [form validation component](xref:blazor/forms-validation), such as <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> or <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601>. Form validation components provide built-in support to manage invalid inputs. Form validation components:
   * Permit the user to provide invalid input and receive validation errors on the associated <xref:Microsoft.AspNetCore.Components.Forms.EditContext>.
   * Display validation errors in the UI without interfering with the user entering additional webform data.
@@ -160,7 +160,7 @@ A common scenario is binding a property of a child component to a property in it
 
 [Component parameters](xref:blazor/components/index#component-parameters) permit binding properties of a parent component with `@bind-{PROPERTY}` syntax, where the `{PROPERTY}` placeholder is the property to bind.
 
-Chained binds can't be implemented with [`@bind`](xref:mvc/views/razor#bind) syntax in the child component. An event handler and value must be specified separately to support updating the property in the parent from the child component.
+You can't implement chained binds with [`@bind`](xref:mvc/views/razor#bind) syntax in the child component. An event handler and value must be specified separately to support updating the property in the parent from the child component.
 
 The parent component still leverages the [`@bind`](xref:mvc/views/razor#bind) syntax to set up the databinding with the child component.
 
@@ -172,13 +172,13 @@ The following `Child` component has a `Year` component parameter and an <xref:Mi
 
 ::: moniker range=">= aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Shared/data-binding/Child.razor?highlight=14-15,17-18)]
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Shared/data-binding/Child.razor?highlight=14-15,17-18,22)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Shared/data-binding/Child.razor?highlight=14-15,17-18)]
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Shared/data-binding/Child.razor?highlight=14-15,17-18,22)]
 
 ::: moniker-end
 
@@ -242,7 +242,7 @@ The `PasswordEntry` component is used in another component, such as the followin
 
 ::: moniker-end
 
-Perform checks or trap errors in the method that invokes the binding's delegate. The following example provides immediate feedback to the user if a space is used in the password's value.
+Perform checks or trap errors in the method that invokes the binding's delegate. The following revised `PasswordEntry` component provides immediate feedback to the user if a space is used in the password's value.
 
 `Shared/PasswordEntry.razor`:
 
@@ -265,9 +265,7 @@ You can bind parameters through any number of nested components, but you must re
 * Change notifications *flow up the hierarchy*.
 * New parameter values *flow down the hierarchy*.
 
-A common and recommended approach is to only store the underlying data in the parent component to avoid any confusion about what state must be updated.
-
-The following components demonstrate the recommended approach:
+A common and recommended approach is to only store the underlying data in the parent component to avoid any confusion about what state must be updated, as shown in the following example.
 
 `Pages/Parent.razor`:
 
