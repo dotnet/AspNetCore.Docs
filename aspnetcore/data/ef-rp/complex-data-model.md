@@ -449,7 +449,8 @@ If the `Enrollment` table didn't include grade information, it would only need t
 
 The `Instructor` and `Course` entities have a many-to-many relationship using a PJT.
 
-## The CourseAssignment entity zzz
+<!--
+## The CourseAssignment entity
 
 ![CourseAssignment entity](complex-data-model/_static/courseassignment-entity.png)
 
@@ -464,6 +465,7 @@ The Instructor-to-Courses many-to-many relationship requires a join table, and t
 It's common to name a join entity `EntityName1EntityName2`. For example, the Instructor-to-Courses join table using this pattern would be `CourseInstructor`. However, we recommend using a name that describes the relationship.
 
 Data models start out simple and grow. Join tables without payload (PJTs) frequently evolve to include payload. By starting with a descriptive entity name, the name doesn't need to change when the join table changes. Ideally, the join entity would have its own natural (possibly single word) name in the business domain. For example, Books and Customers could be linked with a join entity called Ratings. For the Instructor-to-Courses many-to-many relationship, `CourseAssignment` is preferred over `CourseInstructor`.
+
 
 ### Composite key
 
@@ -480,13 +482,19 @@ The `Enrollment` join entity defines its own PK, so duplicates of this sort are 
 * Add a unique index on the FK fields, or
 * Configure `Enrollment` with a primary composite key similar to `CourseAssignment`. For more information, see [Indexes](/ef/core/modeling/indexes).
 
+-->
+
 ## Update the database context
 
 Update *Data/SchoolContext.cs* with the following code:
 
-[!code-csharp[](intro/samples/cu30/Data/SchoolContext.cs?highlight=15-18,25-31)]
+[!code-csharp[](intro/samples/cu50/Data/SchoolContext.cs?highlight=15-17,21-28)]
 
-The preceding code adds the new entities and configures the `CourseAssignment` entity's composite PK.
+<!-- TODO review -->
+The preceding code adds the new entities and:
+
+* Configures the many-to-many relationship between the `Instructor` and `Course` entities.
+* Configures a concurrency token for the `Department` entity. Concurrency is discussed later in the tutorial.
 
 ## Fluent API alternative to attributes
 
@@ -505,7 +513,7 @@ In this tutorial, the fluent API is used only for database mapping that can't be
 
 Some attributes such as `MinimumLength` can't be applied with the fluent API. `MinimumLength` doesn't change the schema, it only applies a minimum length validation rule.
 
-Some developers prefer to use the fluent API exclusively so that they can keep their entity classes "clean." Attributes and the fluent API can be mixed. There are some configurations that can only be done with the fluent API (specifying a composite PK). There are some configurations that can only be done with attributes (`MinimumLength`). The recommended practice for using fluent API or attributes:
+Some developers prefer to use the fluent API exclusively so that they can keep their entity classes *clean*. Attributes and the fluent API can be mixed. There are some configurations that can only be done with the fluent API, for example, , specifying a composite PK. There are some configurations that can only be done with attributes (`MinimumLength`). The recommended practice for using fluent API or attributes:
 
 * Choose one of these two approaches.
 * Use the chosen approach consistently as much as possible.
@@ -530,7 +538,7 @@ The preceding diagram shows:
 * The one-to-zero-or-one relationship line (1 to 0..1) between the `Instructor` and `OfficeAssignment` entities.
 * The zero-or-one-to-many relationship line (0..1 to *) between the `Instructor` and `Department` entities.
 
-## Seed the database
+## Seed the database  zz pick up here
 
 Update the code in *Data/DbInitializer.cs*:
 
