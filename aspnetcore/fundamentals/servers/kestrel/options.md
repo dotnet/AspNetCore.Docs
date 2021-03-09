@@ -9,12 +9,11 @@ ms.date: 05/04/2020
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/servers/kestrel/options
 ---
-
 # Configure options for the ASP.NET Core Kestrel web server
 
 The Kestrel web server has constraint configuration options that are especially useful in Internet-facing deployments.
 
-To provide additional configuration after calling `ConfigureWebHostDefaults`, use `ConfigureKestrel`:
+To provide additional configuration after calling <xref:Microsoft.Extensions.Hosting.GenericHostBuilderExtensions.ConfigureWebHostDefaults%2A>, use <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.ConfigureKestrel%2A>:
 
 ```csharp
 public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -37,7 +36,7 @@ The following examples use the <xref:Microsoft.AspNetCore.Server.Kestrel.Core> n
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 ```
 
-In examples shown later in this article, Kestrel options are configured in C# code. Kestrel options can also be set using a [configuration provider](xref:fundamentals/configuration/index). For example, the [File Configuration Provider](xref:fundamentals/configuration/index#file-configuration-provider) can load Kestrel configuration from an *appsettings.json* or *appsettings.{Environment}.json* file:
+In examples shown later in this article, Kestrel options are configured in C# code. Kestrel options can also be set using a [configuration provider](xref:fundamentals/configuration/index). For example, the [File Configuration Provider](xref:fundamentals/configuration/index#file-configuration-provider) can load Kestrel configuration from an `appsettings.json` or `appsettings.{Environment}.json` file:
 
 ```json
 {
@@ -88,7 +87,7 @@ Use **one** of the following approaches:
 
 * Configure Kestrel when building the host:
 
-  In *Program.cs*, load the `Kestrel` section of configuration into Kestrel's configuration:
+  In `Program.cs`, load the `Kestrel` section of configuration into Kestrel's configuration:
 
   ```csharp
   // using Microsoft.Extensions.DependencyInjection;
@@ -120,7 +119,7 @@ Gets or sets the [keep-alive timeout](https://tools.ietf.org/html/rfc7230#sectio
 
 ### Maximum client connections
 
-<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.MaxConcurrentConnections>
+<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.MaxConcurrentConnections>  
 <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.MaxConcurrentUpgradedConnections>
 
 The maximum number of concurrent open TCP connections can be set for the entire app with the following code:
@@ -146,7 +145,7 @@ The recommended approach to override the limit in an ASP.NET Core MVC app is to 
 public IActionResult MyActionMethod()
 ```
 
-Here's an example that shows how to configure the constraint for the app on every request:
+The following example shows how to configure the constraint for the app on every request:
 
 [!code-csharp[](samples/3.x/KestrelSample/Program.cs?name=snippet_Limits&highlight=5)]
 
@@ -160,7 +159,7 @@ When an app runs [out-of-process](xref:host-and-deploy/iis/index#out-of-process-
 
 ### Minimum request body data rate
 
-<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.MinRequestBodyDataRate>
+<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.MinRequestBodyDataRate>  
 <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.MinResponseDataRate>
 
 Kestrel checks every second if data is arriving at the specified rate in bytes/second. If the rate drops below the minimum, the connection is timed out. The grace period is the amount of time Kestrel allows the client to increase its send rate up to the minimum. The rate isn't checked during that time. The grace period helps avoid dropping connections that are initially sending data at a slow rate because of TCP slow-start.
@@ -169,7 +168,7 @@ The default minimum rate is 240 bytes/second with a 5-second grace period.
 
 A minimum rate also applies to the response. The code to set the request limit and the response limit is the same except for having `RequestBody` or `Response` in the property and interface names.
 
-Here's an example that shows how to configure the minimum data rates in *Program.cs*:
+Here's an example that shows how to configure the minimum data rates in `Program.cs`:
 
 [!code-csharp[](samples/3.x/KestrelSample/Program.cs?name=snippet_Limits&highlight=6-11)]
 
@@ -177,9 +176,9 @@ Override the minimum rate limits per request in middleware:
 
 [!code-csharp[](samples/3.x/KestrelSample/Startup.cs?name=snippet_Limits&highlight=6-21)]
 
-The <xref:Microsoft.AspNetCore.Server.Kestrel.Core.Features.IHttpMinResponseDataRateFeature> referenced in the prior sample isn't present in `HttpContext.Features` for HTTP/2 requests. Modifying rate limits on a per-request basis is generally not supported for HTTP/2 because of the protocol's support for request multiplexing. However, the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.Features.IHttpMinRequestBodyDataRateFeature> is still present `HttpContext.Features` for HTTP/2 requests, because the read rate limit can still be *disabled entirely* on a per-request basis by setting `IHttpMinRequestBodyDataRateFeature.MinDataRate` to `null` even for an HTTP/2 request. Attempting to read `IHttpMinRequestBodyDataRateFeature.MinDataRate` or attempting to set it to a value other than `null` will result in a `NotSupportedException` being thrown given an HTTP/2 request.
+The <xref:Microsoft.AspNetCore.Server.Kestrel.Core.Features.IHttpMinResponseDataRateFeature> referenced in the prior sample isn't present in <xref:Microsoft.AspNetCore.Http.HttpContext.Features?displayProperty=nameWithType> for HTTP/2 requests. Modifying rate limits on a per-request basis isn't generally supported for HTTP/2 because of the protocol's support for request multiplexing. However, the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.Features.IHttpMinRequestBodyDataRateFeature> is still present `HttpContext.Features` for HTTP/2 requests, because the read rate limit can still be *disabled entirely* on a per-request basis by setting <xref:Microsoft.AspNetCore.Server.Kestrel.Core.Features.IHttpMinResponseDataRateFeature.MinDataRate?displayProperty=nameWithType> to `null` even for an HTTP/2 request. Attempting to read `IHttpMinRequestBodyDataRateFeature.MinDataRate` or attempting to set it to a value other than `null` will result in a <xref:System.NotSupportedException> being thrown given an HTTP/2 request.
 
-Server-wide rate limits configured via `KestrelServerOptions.Limits` still apply to both HTTP/1.x and HTTP/2 connections.
+Server-wide rate limits configured via <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions.Limits?displayProperty=nameWithType> still apply to both HTTP/1.x and HTTP/2 connections.
 
 ### Request headers timeout
 
@@ -193,7 +192,9 @@ Gets or sets the maximum amount of time the server spends receiving request head
 
 ### Maximum streams per connection
 
-`Http2.MaxStreamsPerConnection` limits the number of concurrent request streams per HTTP/2 connection. Excess streams are refused.
+<xref:Microsoft.AspNetCore.Server.Kestrel.Core.Http2Limits.MaxStreamsPerConnection>
+
+Limits the number of concurrent request streams per HTTP/2 connection. Excess streams are refused.
 
 ```csharp
 webBuilder.ConfigureKestrel(serverOptions =>
@@ -206,7 +207,9 @@ The default value is 100.
 
 ### Header table size
 
-The HPACK decoder decompresses HTTP headers for HTTP/2 connections. `Http2.HeaderTableSize` limits the size of the header compression table that the HPACK decoder uses. The value is provided in octets and must be greater than zero (0).
+<xref:Microsoft.AspNetCore.Server.Kestrel.Core.Http2Limits.HeaderTableSize>
+
+The HPACK decoder decompresses HTTP headers for HTTP/2 connections. `HeaderTableSize` limits the size of the header compression table that the HPACK decoder uses. The value is provided in octets and must be greater than zero (0).
 
 ```csharp
 webBuilder.ConfigureKestrel(serverOptions =>
@@ -219,7 +222,9 @@ The default value is 4096.
 
 ### Maximum frame size
 
-`Http2.MaxFrameSize` indicates the maximum allowed size of an HTTP/2 connection frame payload received or sent by the server. The value is provided in octets and must be between 2^14 (16,384) and 2^24-1 (16,777,215).
+<xref:Microsoft.AspNetCore.Server.Kestrel.Core.Http2Limits.MaxFrameSize>
+
+Indicates the maximum allowed size of an HTTP/2 connection frame payload received or sent by the server. The value is provided in octets and must be between 2^14 (16,384) and 2^24-1 (16,777,215).
 
 ```csharp
 webBuilder.ConfigureKestrel(serverOptions =>
@@ -232,7 +237,9 @@ The default value is 2^14 (16,384).
 
 ### Maximum request header size
 
-`Http2.MaxRequestHeaderFieldSize` indicates the maximum allowed size in octets of request header values. This limit applies to both name and value in their compressed and uncompressed representations. The value must be greater than zero (0).
+<xref:Microsoft.AspNetCore.Server.Kestrel.Core.Http2Limits.MaxRequestHeaderFieldSize>
+
+Indicates the maximum allowed size in octets of request header values. This limit applies to both name and value in their compressed and uncompressed representations. The value must be greater than zero (0).
 
 ```csharp
 webBuilder.ConfigureKestrel(serverOptions =>
@@ -245,7 +252,9 @@ The default value is 8,192.
 
 ### Initial connection window size
 
-`Http2.InitialConnectionWindowSize` indicates the maximum request body data in bytes the server buffers at one time aggregated across all requests (streams) per connection. Requests are also limited by `Http2.InitialStreamWindowSize`. The value must be greater than or equal to 65,535 and less than 2^31 (2,147,483,648).
+<xref:Microsoft.AspNetCore.Server.Kestrel.Core.Http2Limits.InitialConnectionWindowSize>
+
+Indicates the maximum request body data in bytes the server buffers at one time aggregated across all requests (streams) per connection. Requests are also limited by `Http2.InitialStreamWindowSize`. The value must be greater than or equal to 65,535 and less than 2^31 (2,147,483,648).
 
 ```csharp
 webBuilder.ConfigureKestrel(serverOptions =>
@@ -258,7 +267,9 @@ The default value is 128 KB (131,072).
 
 ### Initial stream window size
 
-`Http2.InitialStreamWindowSize` indicates the maximum request body data in bytes the server buffers at one time per request (stream). Requests are also limited by `Http2.InitialConnectionWindowSize`. The value must be greater than or equal to 65,535 and less than 2^31 (2,147,483,648).
+<xref:Microsoft.AspNetCore.Server.Kestrel.Core.Http2Limits.InitialStreamWindowSize>
+
+Indicates the maximum request body data in bytes the server buffers at one time per request (stream). Requests are also limited by [`InitialConnectionWindowSize`](#initial-connection-window-size). The value must be greater than or equal to 65,535 and less than 2^31 (2,147,483,648).
 
 ```csharp
 webBuilder.ConfigureKestrel(serverOptions =>
@@ -278,8 +289,8 @@ Kestrel can be configured to send HTTP/2 pings to connected clients. HTTP/2 ping
 
 There are two configuration options related to [HTTP/2](xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.Http2) keep alive pings:
 
-* <xref:Microsoft.AspNetCore.Server.Kestrel.Core.Http2Limits.KeepAlivePingDelay?displayProperty=nameWithType> is a <xref:System.TimeSpan> that configures the ping interval. The server sends a keep alive ping to the client if it doesn't receive any frames for this period of time. Keep alive pings are disabled when this option is set to <xref:System.TimeSpan.MaxValue?displayProperty=nameWithType>. The default value is <xref:System.TimeSpan.MaxValue?displayProperty=nameWithType>.
-* <xref:Microsoft.AspNetCore.Server.Kestrel.Core.Http2Limits.KeepAlivePingTimeout?displayProperty=nameWithType> is a <xref:System.TimeSpan> that configures the ping timeout. If the server doesn't receive any frames, such as a response ping, during this timeout then the connection is closed. Keep alive timeout is disabled when this option is set to <xref:System.TimeSpan.MaxValue?displayProperty=nameWithType>. The default value is 20 seconds.
+* <xref:Microsoft.AspNetCore.Server.Kestrel.Core.Http2Limits.KeepAlivePingDelay> is a <xref:System.TimeSpan> that configures the ping interval. The server sends a keep alive ping to the client if it doesn't receive any frames for this period of time. Keep alive pings are disabled when this option is set to <xref:System.TimeSpan.MaxValue?displayProperty=nameWithType>. The default value is <xref:System.TimeSpan.MaxValue?displayProperty=nameWithType>.
+* <xref:Microsoft.AspNetCore.Server.Kestrel.Core.Http2Limits.KeepAlivePingTimeout> is a <xref:System.TimeSpan> that configures the ping timeout. If the server doesn't receive any frames, such as a response ping, during this timeout then the connection is closed. Keep alive timeout is disabled when this option is set to <xref:System.TimeSpan.MaxValue?displayProperty=nameWithType>. The default value is 20 seconds.
 
 ```csharp
 webBuilder.ConfigureKestrel(serverOptions =>
