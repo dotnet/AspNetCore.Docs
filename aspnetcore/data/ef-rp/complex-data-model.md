@@ -38,8 +38,8 @@ Replace the code in *Models/Student.cs* with the following code:
 
 The preceding code adds a `FullName` property and adds the following attributes to existing properties:
 
-* [`[DataType]`(xref:System.ComponentModel.DataAnnotations.DataTypeAttribute)
-* [`[DisplayFormat]`(xref:System.ComponentModel.DataAnnotations.DisplayFormatAttribute)
+* [`[DataType]]`(xref:System.ComponentModel.DataAnnotations.DataTypeAttribute)
+* [`[DisplayFormat]]`(xref:System.ComponentModel.DataAnnotations.DisplayFormatAttribute)
 * [`[StringLength]`](xref:System.ComponentModel.DataAnnotations.StringLengthAttribute)
 * [`[Column]`](xref:System.ComponentModel.DataAnnotations.Schema.ColumnAttribute)
 * [`[Required]`](xref:System.ComponentModel.DataAnnotations.RequiredAttribute)
