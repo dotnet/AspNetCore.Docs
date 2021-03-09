@@ -1,14 +1,14 @@
 ---
-title: Resilient gRPC calls with retries
+title: Transient fault handling with gRPC retries
 author: jamesnk
-description: Learn how to make resilient gRPC calls with retries in .NET.
+description: Learn how to make resilient, fault tolerant gRPC calls with retries in .NET.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.date: 02/25/2021
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: grpc/retries
 ---
-# Resilient gRPC calls with retries
+# Transient fault handling with gRPC retries
 
 By [James Newton-King](https://twitter.com/jamesnk)
 
