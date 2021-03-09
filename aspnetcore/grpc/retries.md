@@ -93,7 +93,7 @@ The following table describes options for configuring gRPC retry policies:
 | `MaxAttempts` | The maximum number of call attempts, including the original attempt. This value is limited by `GrpcChannelOptions.MaxRetryAttempts` which defaults to 5. A value is required and must be greater than 1. |
 | `InitialBackoff` | The initial backoff delay between retry attempts. A randomized delay between 0 and the current backoff determines when the next retry attempt is made. After each attempt, the current backoff is multiplied by `BackoffMultiplier`. A value is required and must be greater than zero. |
 | `MaxBackoff` | The maximum backoff places an upper limit on exponential backoff growth. A value is required and must be greater than zero. |
-| `BackoffMultiplier` | The backoff will be multiplied by this value after each retry attempt and will increase exponentially when the multiplier is greater than 1. A value is required and must be greater than 0. |
+| `BackoffMultiplier` | The backoff will be multiplied by this value after each retry attempt and will increase exponentially when the multiplier is greater than 1. A value is required and must be greater than zero. |
 | `RetryableStatusCodes` | A collection of status codes. A gRPC call that fails with a matching status will be automatically retried. For more information about status codes, see [Status codes and their use in gRPC](https://grpc.github.io/grpc/core/md_doc_statuscodes.html). At least one retryable status code is required. |
 
 ## Hedging
