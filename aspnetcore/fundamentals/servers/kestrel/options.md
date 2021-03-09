@@ -190,6 +190,8 @@ Gets or sets the maximum amount of time the server spends receiving request head
 
 ## HTTP/2 limits
 
+The limits in this section are set on <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.Http2?displayProperty=nameWithType>.
+
 ### Maximum streams per connection
 
 <xref:Microsoft.AspNetCore.Server.Kestrel.Core.Http2Limits.MaxStreamsPerConnection>
@@ -287,7 +289,7 @@ Kestrel can be configured to send HTTP/2 pings to connected clients. HTTP/2 ping
 * Keep idle connections alive. Some clients and proxy servers close connections that are idle. HTTP/2 pings are considered as activity on a connection and prevent the connection from being closed as idle.
 * Close unhealthy connections. Connections where the client doesn't respond to the keep alive ping in the configured time are closed by the server.
 
-There are two configuration options related to [HTTP/2](xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.Http2) keep alive pings:
+There are two configuration options related to HTTP/2 keep alive pings:
 
 * <xref:Microsoft.AspNetCore.Server.Kestrel.Core.Http2Limits.KeepAlivePingDelay> is a <xref:System.TimeSpan> that configures the ping interval. The server sends a keep alive ping to the client if it doesn't receive any frames for this period of time. Keep alive pings are disabled when this option is set to <xref:System.TimeSpan.MaxValue?displayProperty=nameWithType>. The default value is <xref:System.TimeSpan.MaxValue?displayProperty=nameWithType>.
 * <xref:Microsoft.AspNetCore.Server.Kestrel.Core.Http2Limits.KeepAlivePingTimeout> is a <xref:System.TimeSpan> that configures the ping timeout. If the server doesn't receive any frames, such as a response ping, during this timeout then the connection is closed. Keep alive timeout is disabled when this option is set to <xref:System.TimeSpan.MaxValue?displayProperty=nameWithType>. The default value is 20 seconds.
