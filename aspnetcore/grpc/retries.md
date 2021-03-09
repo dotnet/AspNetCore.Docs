@@ -24,7 +24,7 @@ gRPC calls can be interrupted by transient faults. Transient faults include:
 * Temporary unavailability of a service.
 * Timeouts due to server load.
 
-When a gRPC call is interrupted the client will throw an `RpcException` with details about the error. The client app must catch the exception and choose how to handle the error.
+When a gRPC call is interrupted the client throws an `RpcException` with details about the error. The client app must catch the exception and choose how to handle the error.
 
 ```csharp
 var client = new Greeter.GreeterClient(channel);
