@@ -188,7 +188,7 @@ Complete the **Add MVC Controller with views, using Entity Framework** dialog:
 Visual Studio creates:
 
 * A movies controller: *Controllers/MoviesController.cs*
-* Razor view files for Create, Delete, Details, Edit, and Index pages: *Views/Movies/\*.cshtml*
+* Razor view files for Create, Delete, Details, Edit, and Index pages: `Views/Movies/\*.cshtml`
 
 The automatic creation of these files is known as *scaffolding*.
 
@@ -262,7 +262,7 @@ Update-Database
 
 The `Update-Database` command generates the following warning:
 
-> No type was specified for the decimal column 'Price' on entity type 'Movie'. This causes values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+> No type was specified for the decimal column 'Price' on entity type 'Movie'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
 
 Ignore the preceding warning, it's fixed in a later tutorial.
 
@@ -301,7 +301,7 @@ In the preceding code:
 
 Run the app and select the **Movie App** link.
 
-If you get an exception similar to one of the following, you may have missed the [migrations step](#migration):
+If you get an exception similar to the following, you may have missed the [migrations step](#migration):
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -320,26 +320,15 @@ SqliteException: SQLite Error 1: 'no such table: Movie'.
 Test the **Create** page. Enter and submit data.
 
 > [!NOTE]
-> Decimal commas may not be allowed in the `Price` field. To support [jQuery validation](https://jqueryvalidation.org/) for non-English locales that use a comma (",") for a decimal point and for non US-English date formats, the app must be globalized. For globalization instructions, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/4076#issuecomment-326590420).
+> You may not be able to enter decimal commas in the `Price` field. To support [jQuery validation](https://jqueryvalidation.org/) for non-English locales that use a comma (",") for a decimal point and for non US-English date formats, the app must be globalized. For globalization instructions, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/4076#issuecomment-326590420).
 
 Test the **Edit**, **Details**, and **Delete** pages.
 
 ## Dependency injection in the controller
 
-# [Visual Studio](#tab/visual-studio)
-
 Open the *Controllers/MoviesController.cs* file and examine the constructor:
 
 <!-- l.. Make copy of Movies controller (or use the old one as I did in the 3.0 upgrade) because we comment out the initial index method and update it later  -->
-
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Controllers/MC1.cs?name=snippet_1)]
-
-In the preceding code:
-
-* The constructor uses [Dependency Injection](xref:fundamentals/dependency-injection) to inject the database context, `MvcMovieContext`, into the controller.
-* The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.
-
-# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Controllers/MC1.cs?name=snippet_1)]
 
@@ -354,7 +343,6 @@ When SQLite is selected, the template generated code is ready for development. T
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/StartupDevProd.cs?name=snippet_StartupClass&highlight=3,5,10,16-28)]
 
----
 <!-- end of tabs --->
 
 <a name="strongly-typed-models-keyword-label"></a>
@@ -380,7 +368,7 @@ The `id` can be passed in with a query string, as in the following example:
 
 `https://localhost:5001/movies/details?id=1`
 
-The `id` parameter is defined as a [nullable type](/dotnet/csharp/programming-guide/nullable-types/index),`int?` in cases when the `id` value isn't provided.
+The `id` parameter is defined as a [nullable type](/dotnet/csharp/programming-guide/nullable-types/index) (int?) in cases when the `id` value isn't provided.
 
 A [lambda expression](/dotnet/articles/csharp/programming-guide/statements-expressions-operators/lambda-expressions) is passed in to <xref:System.Data.Entity.QueryableExtensions.FirstOrDefaultAsync%2A>to select movie entities that match the route data or query string value.
 
