@@ -132,7 +132,7 @@ The Razor view engine has been updated to work with the new Roslyn compiler. Tha
 <LangVersion>latest</LangVersion>
 ```
 
-For information about the status of C# 7.1 features, see [the Roslyn GitHub repository](https://github.com/dotnet/roslyn/blob/master/docs/Language%20Feature%20Status.md).
+For information about the status of C# 7.1 features, see [the Roslyn GitHub repository](https://github.com/dotnet/roslyn/blob/main/docs/Language%20Feature%20Status.md).
 
 ## Other documentation updates for 2.0
 

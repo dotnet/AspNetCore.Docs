@@ -28,7 +28,7 @@ namespace HttpClientFactorySample.Pages
         public async Task OnGet()
         {
             var request = new HttpRequestMessage(HttpMethod.Get,
-                "repos/aspnet/AspNetCore.Docs/pulls");
+                "repos/dotnet/AspNetCore.Docs/pulls");
 
             var client = _clientFactory.CreateClient("github");
 
