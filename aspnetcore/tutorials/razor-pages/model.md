@@ -188,13 +188,7 @@ dotnet-aspnet-codegenerator razorpage -h
 
 For more information, see [dotnet-aspnet-codegenerator](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
 
-<a name="sqlite-dev"></a>
-
-### Use SQLite for development, SQL Server for production
-
-When SQLite is selected, the template generated code is ready for development. The following code shows how to inject <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment> into `Startup`. `IWebHostEnvironment` is injected so the app can use SQLite in development and SQL Server in production.
-
-[!code-csharp[](~/includes/RP/code/StartupDevProd.cs?name=snippet&highlight=5,10,14)]
+[!INCLUDE[](~/includes/sqlitedev.md)]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -218,11 +212,7 @@ When SQLite is selected, the template generated code is ready for development. T
 
 The *appsettings.json* file is updated with the connection string used to connect to a local database.
 
-### Use SQLite for development, SQL Server for production
-
-When SQLite is selected, the template generated code is ready for development. The following code shows how to inject <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment> into `Startup`. `IWebHostEnvironment` is injected so the app can use SQLite in development and SQL Server in production.
-
-[!code-csharp[](~/includes/RP/code/StartupDevProd.cs?name=snippet&highlight=5,10,14)]
+[!INCLUDE[](~/includes/sqlitedev.md)]
 
 ---
 
