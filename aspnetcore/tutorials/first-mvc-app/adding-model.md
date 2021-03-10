@@ -105,60 +105,7 @@ The preceding command adds the [aspnet-codegenerator scaffolding tool](xref:fund
 
 ---
 
-# [Visual Studio](#tab/visual-studio)
-
 Build the project as a check for compiler errors.
-
-# [Visual Studio Code](#tab/visual-studio-code)
-
-<a name="dc"></a>
-
-## Create a database context class
-
-A database context class is needed to coordinate EF Core functionality (Create, Read, Update, Delete) for the `Movie` model. The database context is derived from [Microsoft.EntityFrameworkCore.DbContext](xref:Microsoft.EntityFrameworkCore.DbContext) and specifies the entities to include in the data model.
-
-Create a *Data* folder.
-
-Add a *Data/MvcMovieContext.cs* file with the following code:
-
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/zDocOnly/MvcMovieContext.cs?name=snippet)]
-
-The preceding code creates a [DbSet\<Movie>](/dotnet/api/microsoft.entityframeworkcore.dbset-1) property for the entity set. In Entity Framework terminology, an entity set typically corresponds to a database table. An entity corresponds to a row in the table.
-
-<a name="reg"></a>
-
-## Register the database context
-
-ASP.NET Core is built with [dependency injection (DI)](xref:fundamentals/dependency-injection). Services, such as the EF Core DB context, must be registered with DI in `Startup`. Components that require these services are provided these services via constructor parameters. For example, Razor Pages frequently requires services from the DI container. The constructor code that gets a DB context instance is shown later in the tutorial. In this section, the database context is registered with the DI container.
-
-Add the following `using` statements at the top of *Startup.cs*:
-
-```csharp
-using MvcMovie.Data;
-using Microsoft.EntityFrameworkCore;
-```
-
-Add the following highlighted code in `Startup.ConfigureServices`:
-
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Startup.cs?name=snippet_UseSqlite&highlight=5-6)]
-
-The name of the connection string is passed to the context by calling a method on a [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions) object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the `ConnectionString` key from the *appsettings.json* file.
-
-<a name="cs"></a>
-
-## Add a database connection string
-
-Add a connection string to the *appsettings.json* file:
-
-[!code-json[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/appsettings_SQLite.json?highlight=10-12)]
-
-Build the project as a check for compiler errors.
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-Build the project as a check for compiler errors.
-
----
 
 ## Scaffold movie pages
 
@@ -182,7 +129,7 @@ Complete the **Add MVC Controller with views, using Entity Framework** dialog:
 
 ![Add Data context](adding-model/_static/dc5.png)
 
-**Views** and **Controller name** : Keep the default.
+* **Views** and **Controller name** : Keep the default.
 * Select **Add**.
 
 Visual Studio creates:
