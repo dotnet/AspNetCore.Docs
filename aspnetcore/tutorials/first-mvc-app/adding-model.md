@@ -6,6 +6,7 @@ ms.author: riande
 ms.date: 02/01/2021
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-mvc-app/adding-model
+ms.custom: contperf-fy21q3
 ---
 
 # Part 4, add a model to an ASP.NET Core MVC app

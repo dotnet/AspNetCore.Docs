@@ -6,6 +6,7 @@ ms.author: riande
 ms.date: 02/16/2020
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-mvc-app/working-with-sql
+ms.custom: contperf-fy21q3
 ---
 
 # Part 5, work with a database in an ASP.NET Core MVC app
