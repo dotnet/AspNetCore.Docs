@@ -538,14 +538,15 @@ The preceding diagram shows:
 * The one-to-zero-or-one relationship line (1 to 0..1) between the `Instructor` and `OfficeAssignment` entities.
 * The zero-or-one-to-many relationship line (0..1 to *) between the `Instructor` and `Department` entities.
 
-## Seed the database  zz pick up here
+## Seed the database
 
 Update the code in *Data/DbInitializer.cs*:
 
-[!code-csharp[](intro/samples/cu30/Data/DbInitializer.cs)]
+[!code-csharp[](intro/samples/cu50/Data/DbInitializer.cs)]
 
-The preceding code provides seed data for the new entities. Most of this code creates new entity objects and loads sample data. The sample data is used for testing. See `Enrollments` and `CourseAssignments` for examples of how many-to-many join tables can be seeded.
+The preceding code provides seed data for the new entities. Most of this code creates new entity objects and loads sample data. The sample data is used for testing.
 
+<!-- This is beyond the scope of this tutorial too expensive to maintain, so removing
 ## Add a migration
 
 Build the project.
@@ -588,6 +589,8 @@ The next section fixes this error.
 
 ---
 
+-->
+
 ## Apply the migration or drop and re-create
 
 With the existing database, there are two approaches to changing the database:
@@ -601,21 +604,15 @@ Either choice works for SQL Server. While the apply-migration method is more com
 
 ## Drop and re-create the database
 
-[Skip this section](#apply-the-migration) when using SQL Server and the apply-migration approach in the following section.
-
 To force EF Core to create a new database, drop and update the database:
 
 # [Visual Studio](#tab/visual-studio)
 
-* In the **Package Manager Console** (PMC), run the following command:
+* Delete the *Migrations* folder.
+* In the **Package Manager Console** (PMC), run the following commands:
 
   ```powershell
   Drop-Database
-  ```
-
-* Delete the *Migrations* folder, then run the following command:
-
-  ```powershell
   Add-Migration InitialCreate
   Update-Database
   ```
@@ -623,21 +620,16 @@ To force EF Core to create a new database, drop and update the database:
 # [Visual Studio Code](#tab/visual-studio-code)
 
 * Open a command window and navigate to the project folder. The project folder contains the *ContosoUniversity.csproj* file.
-
-* Run the following command:
+* Delete the *Migrations* folder.
+* Run the following commands:
 
   ```dotnetcli
   dotnet ef database drop --force
-  ```
-
-* Delete the *Migrations* folder, then run the following command:
-
-  ```dotnetcli
   dotnet ef migrations add InitialCreate
   dotnet ef database update
   ```
 
----
+ ---
 
 Run the app. Running the app runs the `DbInitializer.Initialize` method. The `DbInitializer.Initialize` populates the new database.
 
@@ -666,6 +658,7 @@ Use a SQLite tool to examine the database:
 
 ---
 
+<!-- Dropped, see previous comment 
 <a name="applyexisting"></a>
 
 ## Apply the migration
@@ -726,6 +719,7 @@ Because the `DbInitializer.Initialize` method is designed to work only with an e
 ---
 
 Run the app. Running the app runs the `DbInitializer.Initialize` method. The `DbInitializer.Initialize` populates the new database.
+-->
 
 ## Next steps
 
