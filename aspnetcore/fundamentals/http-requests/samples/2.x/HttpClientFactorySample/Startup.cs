@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using Polly;
 using System;
 using System.Net.Http;
@@ -132,7 +133,7 @@ namespace HttpClientFactorySample
             #endregion
 
             #region snippet13
-            services.AddHttpClient("configured-disable-automatic-cookies")
+            services.AddHttpClient(Options.DefaultName)
                 .ConfigurePrimaryHttpMessageHandler(() =>
                 {
                     return new HttpClientHandler()
