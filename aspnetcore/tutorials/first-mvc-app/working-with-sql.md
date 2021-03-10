@@ -39,7 +39,7 @@ The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system r
 
 ---
 
-When the app is deployed to a test or production server, an environment variable can be used to set the connection string to a production SQL Server. For more information, see [Configuration](xref:fundamentals/configuration/index) for more information.
+When the app is deployed to a test or production server, an environment variable can be used to set the connection string to a production SQL Server. For more information, see [Configuration](xref:fundamentals/configuration/index).
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -49,7 +49,8 @@ LocalDB:
 
 * Is a lightweight version of the SQL Server Express Database Engine, installed by default with Visual Studio.
 * Targeted for program development.
-* Starts on demand by using a connection string, and runs in user mode, so there's no complex configuration.
+* Starts on demand by using a connection string.
+* Runs in user mode, so there's no complex configuration.
 * By default creates *.mdf* files in the *C:/Users/{user}* directory.
 
 From the **View** menu, open **SQL Server Object Explorer** (SSOX).
