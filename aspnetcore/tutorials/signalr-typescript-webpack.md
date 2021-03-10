@@ -23,7 +23,7 @@ In this tutorial, you learn how to:
 > * Configure the SignalR server
 > * Enable communication between client and server
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/signalr-typescript-webpack/sample) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/signalr-typescript-webpack/sample) ([how to download](xref:index#how-to-download-a-sample))
 
 ::: moniker range=">= aspnetcore-3.0"
 

@@ -836,7 +836,7 @@ Public methods on a controller, except those with the [NonAction](xref:Microsoft
 ## Sample code
 
 * [!INCLUDE[](~/includes/MyDisplayRouteInfo.md)]
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/routing/samples/3.x) ([how to download](xref:index#how-to-download-a-sample))
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/routing/samples/3.x) ([how to download](xref:index#how-to-download-a-sample))
 
 [!INCLUDE[](~/includes/dbg-route.md)]
 

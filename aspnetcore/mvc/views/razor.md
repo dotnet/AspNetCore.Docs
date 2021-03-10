@@ -772,7 +772,7 @@ Component references (`@ref`) provide a way to reference a component instance so
 
 *This scenario only applies to Razor components (.razor).*
 
-The `@typeparam` directive declares a generic type parameter for the generated component class. For more information, see <xref:blazor/components/templated-components#generic-typed-components>.
+The `@typeparam` directive declares a generic type parameter for the generated component class. For more information, see <xref:blazor/components/templated-components>.
 
 ::: moniker-end
 

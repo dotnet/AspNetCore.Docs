@@ -16,7 +16,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT), [Kirk Larkin](https://twitt
 
 HTTP is a stateless protocol. By default, HTTP requests are independent messages that don't retain user values. This article describes several approaches to preserve user data between requests.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/app-state/samples) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/app-state/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 ## State management
 
@@ -286,7 +286,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT), [Steve Smith](https://ardal
 
 HTTP is a stateless protocol. Without taking additional steps, HTTP requests are independent messages that don't retain user values or app state. This article describes several approaches to preserve user data and app state between requests.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/app-state/samples) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/app-state/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 ## State management
 

@@ -155,7 +155,7 @@ For more information about the PMC commands, see [Package Manager Console (Visua
 
 ## Get the code
 
-[Download or view the completed application.](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples)
+[Download or view the completed application.](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-mvc/intro/samples)
 
 ## Next step
 
