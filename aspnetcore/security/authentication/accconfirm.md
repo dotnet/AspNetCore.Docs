@@ -123,7 +123,7 @@ Add the following code to the `ConfigureServices` method in the *Startup.cs* fil
 Follow the instructions for [Scaffold Identity](xref:security/authentication/scaffold-identity) and scaffold `RegisterConfirmation`.
 
 <!-- .NET 5 fixes this, see
-https://github.com/dotnet/aspnetcore/blob/master/src/Identity/UI/src/Areas/Identity/Pages/V4/Account/RegisterConfirmation.cshtml.cs#L74-L77
+https://github.com/dotnet/aspnetcore/blob/main/src/Identity/UI/src/Areas/Identity/Pages/V4/Account/RegisterConfirmation.cshtml.cs#L74-L77
 -->
 
 [!INCLUDE[](~/includes/disableVer.md)]

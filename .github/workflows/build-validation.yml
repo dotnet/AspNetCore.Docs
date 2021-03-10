@@ -2,7 +2,7 @@
 name: Snippets 5000
 
 # Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the master branch
+# events but only for the main branch
 on:
   pull_request:
     paths:
@@ -19,7 +19,7 @@ on:
       - "**.sln"
       - "**global.json"
       - "**snippets.5000.json"
-    branches: [ master ]
+    branches: [ main ]
 
 env:
   DOTNET_INSTALLER_CHANNEL: 'release/5.0.1xx'

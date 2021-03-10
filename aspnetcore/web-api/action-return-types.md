@@ -12,7 +12,7 @@ uid: web-api/action-return-types
 
 By [Scott Addie](https://github.com/scottaddie)
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/action-return-types/samples) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/action-return-types/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 ASP.NET Core offers the following options for web API controller action return types:
 

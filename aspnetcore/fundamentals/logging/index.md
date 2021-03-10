@@ -17,7 +17,7 @@ By [Kirk Larkin](https://twitter.com/serpent5), [Juergen Gutsch](https://github.
 
 This topic describes logging in .NET as it applies to ASP.NET Core apps. For detailed information on logging in .NET, see [Logging in .NET](/dotnet/core/extensions/logging). For more information on logging in Blazor apps, see <xref:blazor/fundamentals/logging>.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/logging/index/samples/3.x) ([how to download](xref:index#how-to-download-a-sample)).
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/logging/index/samples/3.x) ([how to download](xref:index#how-to-download-a-sample)).
 
 <a name="lp"></a>
 
@@ -736,7 +736,7 @@ For more information, see each provider's documentation. Third-party logging pro
 
 ## Non-host console app
 
-For an example of how to use the Generic Host in a non-web console app, see the *Program.cs* file of the [Background Tasks sample app](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/host/hosted-services/samples) (<xref:fundamentals/host/hosted-services>).
+For an example of how to use the Generic Host in a non-web console app, see the *Program.cs* file of the [Background Tasks sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/host/hosted-services/samples) (<xref:fundamentals/host/hosted-services>).
 
 Logging code for apps without Generic Host differs in the way [providers are added](#add-providers) and [loggers are created](#create-logs). 
 
@@ -916,7 +916,7 @@ By [Tom Dykstra](https://github.com/tdykstra) and [Steve Smith](https://ardalis.
 
 .NET Core supports a logging API that works with a variety of built-in and third-party logging providers. This article shows how to use the logging API with built-in providers.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/logging/index/samples) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/logging/index/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Add providers
 

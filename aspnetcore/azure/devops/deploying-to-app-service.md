@@ -124,10 +124,10 @@ To deploy the app, you'll need to create an App Service [Web App](/azure/app-ser
     git remote add azure-prod GIT_DEPLOYMENT_URL
     ```
 
-    b. Push the local default branch (*master*) to the *azure-prod* remote's default branch (*master*).
+    b. Push the local default branch (*main*) to the *azure-prod* remote's default branch (*main*).
 
     ```console
-    git push azure-prod master
+    git push azure-prod main
     ```
 
     You'll be prompted for the deployment credentials you created earlier. Observe the output in the command shell. Azure builds the ASP.NET Core app remotely.
@@ -197,10 +197,10 @@ Deployment slots support the staging of changes without impacting the app runnin
     git remote add azure-staging <Git_staging_deployment_URL>
     ```
 
-    b. Push the local default branch (*master*) to the *azure-staging* remote's default branch (*master*).
+    b. Push the local default branch (*main*) to the *azure-staging* remote's default branch (*main*).
 
     ```console
-    git push azure-staging master
+    git push azure-staging main
     ```
 
     Wait while Azure builds and deploys the app.

@@ -25,7 +25,7 @@ App localization involves the following:
 1. Provide localized resources for the languages and cultures you support
 1. Implement a strategy to select the language/culture for each request
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/localization/sample/3.x/Localization) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/localization/sample/3.x/Localization) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Make the app's content localizable
 
@@ -379,7 +379,7 @@ App localization involves the following:
 1. Provide localized resources for the languages and cultures you support
 1. Implement a strategy to select the language/culture for each request
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/localization/sample/Localization) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/localization/sample/Localization) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Make the app's content localizable
 
@@ -734,7 +734,7 @@ App localization involves the following:
 1. Provide localized resources for the languages and cultures you support
 1. Implement a strategy to select the language/culture for each request
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/localization/sample/2.x/) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/localization/sample/2.x/) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Make the app's content localizable
 

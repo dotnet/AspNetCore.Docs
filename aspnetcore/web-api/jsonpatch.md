@@ -235,7 +235,7 @@ The following sample patch document has no effect if the initial value of `Custo
 
 ## Get the code
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/jsonpatch/samples). ([How to download](xref:index#how-to-download-a-sample)).
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/jsonpatch/samples). ([How to download](xref:index#how-to-download-a-sample)).
 
 To test the sample, run the app and send HTTP requests with the following settings:
 
@@ -250,7 +250,7 @@ To test the sample, run the app and send HTTP requests with the following settin
 * [IETF RFC 6902 JSON Patch specification](https://tools.ietf.org/html/rfc6902)
 * [IETF RFC 6901 JSON Patch path format spec](https://tools.ietf.org/html/rfc6901)
 * [JSON Patch documentation](https://jsonpatch.com/). Includes links to resources for creating JSON Patch documents.
-* [ASP.NET Core JSON Patch source code](https://github.com/dotnet/AspNetCore/tree/master/src/Features/JsonPatch/src)
+* [ASP.NET Core JSON Patch source code](https://github.com/dotnet/AspNetCore/tree/main/src/Features/JsonPatch/src)
 
 ::: moniker-end
 
@@ -447,7 +447,7 @@ The following sample patch document has no effect if the initial value of `Custo
 
 ## Get the code
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/jsonpatch/samples/2.2). ([How to download](xref:index#how-to-download-a-sample)).
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/jsonpatch/samples/2.2). ([How to download](xref:index#how-to-download-a-sample)).
 
 To test the sample, run the app and send HTTP requests with the following settings:
 
@@ -462,6 +462,6 @@ To test the sample, run the app and send HTTP requests with the following settin
 * [IETF RFC 6902 JSON Patch specification](https://tools.ietf.org/html/rfc6902)
 * [IETF RFC 6901 JSON Patch path format spec](https://tools.ietf.org/html/rfc6901)
 * [JSON Patch documentation](https://jsonpatch.com/). Includes links to resources for creating JSON Patch documents.
-* [ASP.NET Core JSON Patch source code](https://github.com/dotnet/AspNetCore/tree/master/src/Features/JsonPatch/src)
+* [ASP.NET Core JSON Patch source code](https://github.com/dotnet/AspNetCore/tree/main/src/Features/JsonPatch/src)
 
 ::: moniker-end

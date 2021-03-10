@@ -31,7 +31,7 @@ Here are some features of SignalR for ASP.NET Core:
 * Sends messages to specific clients or groups of clients.
 * Scales to handle increasing traffic.
 
-The source is hosted in a [SignalR repository on GitHub](https://github.com/dotnet/AspNetCore/tree/master/src/SignalR).
+The source is hosted in a [SignalR repository on GitHub](https://github.com/dotnet/AspNetCore/tree/main/src/SignalR).
 
 ## Transports
 

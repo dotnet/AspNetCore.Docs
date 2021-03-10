@@ -14,7 +14,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Steve Smith](https://ar
 
 ASP.NET Core MVC has support for formatting response data. Response data can be formatted using specific formats or in response to client requested format.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/advanced/formatting) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/advanced/formatting) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Format-specific Action Results
 

@@ -17,7 +17,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Kirk Larkin](https://tw
 
 ASP.NET Core configures app behavior based on the runtime environment using an environment variable.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/environments/3.1sample) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/environments/3.1sample) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Environments
 
@@ -45,13 +45,13 @@ The [Environment Tag Helper](xref:mvc/views/tag-helpers/builtin-th/environment-t
 
 [!code-cshtml[](environments/sample-snapshot/EnvironmentsSample/Pages/About.cshtml)]
 
-The [About page](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/environments/3.1sample/EnvironmentsSample/Pages/About.cshtml) from the [sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/environments/3.1sample) includes the preceding markup and displays the value of `IWebHostEnvironment.EnvironmentName`.
+The [About page](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/environments/3.1sample/EnvironmentsSample/Pages/About.cshtml) from the [sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/environments/3.1sample) includes the preceding markup and displays the value of `IWebHostEnvironment.EnvironmentName`.
 
 On Windows and macOS, environment variables and values aren't case-sensitive. Linux environment variables and values are **case-sensitive** by default.
 
 ### Create EnvironmentsSample
 
-The [sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/environments/3.1sample) used in this document is based on a Razor Pages project named *EnvironmentsSample*.
+The [sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/environments/3.1sample) used in this document is based on a Razor Pages project named *EnvironmentsSample*.
 
 The following code creates and runs a web app named *EnvironmentsSample*:
 
@@ -148,7 +148,7 @@ It's often useful to set a specific environment for testing with an environment 
 
 When the host is built, the last environment setting read by the app determines the app's environment. The app's environment can't be changed while the app is running.
 
-The [About page](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/environments/3.1sample/EnvironmentsSample/Pages/About.cshtml) from the [sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/environments/3.1sample) displays the value of `IWebHostEnvironment.EnvironmentName`.
+The [About page](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/environments/3.1sample/EnvironmentsSample/Pages/About.cshtml) from the [sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/environments/3.1sample) displays the value of `IWebHostEnvironment.EnvironmentName`.
 
 ### Azure App Service
 
@@ -314,7 +314,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ASP.NET Core configures app behavior based on the runtime environment using an environment variable.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/environments/sample) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/environments/sample) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Environments
 
