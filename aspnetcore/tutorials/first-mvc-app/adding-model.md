@@ -189,7 +189,7 @@ Use the EF Core [Migrations](xref:data/ef-mvc/migrations) feature to create the 
 
 # [Visual Studio](#tab/visual-studio)
 
-From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Console** (PMC).
+From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Console** .
 
 In the Package Manager Console (PMC), enter the following command:
 
