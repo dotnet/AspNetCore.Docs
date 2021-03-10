@@ -155,7 +155,7 @@ In this section, create a local Git repository using Visual Studio and push from
 
 1. Enter the following command in the command window:
 
-   `git push -u Azure-SampleApp master`
+   `git push -u Azure-SampleApp main`
 
 1. Enter the Azure **deployment credentials** password created earlier in Azure.
 
@@ -166,8 +166,8 @@ In this section, create a local Git repository using Visual Studio and push from
    remote: Running post deployment command(s)...
    remote: Deployment successful.
    To https://username@samplewebappdemo01.scm.azurewebsites.net:443/SampleWebAppDemo01.git
-   * [new branch]      master -> master
-   Branch master set up to track remote branch master from Azure-SampleApp.
+   * [new branch]      main -> main
+   Branch main set up to track remote branch main from Azure-SampleApp.
    ```
 
    > [!NOTE]
@@ -215,7 +215,7 @@ After making changes to the local code, republish:
 > [!NOTE]
 > As an alternative, push the changes from the **Command Window** by opening the **Command Window**, changing to the project directory, and entering a git command. Example:
 > 
-> `git push -u Azure-SampleApp master`
+> `git push -u Azure-SampleApp main`
 
 ## View the updated web app in Azure
 

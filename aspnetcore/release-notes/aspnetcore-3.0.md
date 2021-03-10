@@ -390,7 +390,7 @@ For more information, see <xref:security/authentication/windowsauth>.
 The web UI templates (Razor Pages, MVC with controller and views) have the following removed:
 
 * The cookie consent UI is no longer included. To enable the cookie consent feature in an ASP.NET Core 3.0 template-generated app, see <xref:security/gdpr>.
-* Scripts and related static assets are now referenced as local files instead of using CDNs. For more information, see [Scripts and related static assets are now referenced as local files instead of using CDNs based on the current environment (aspnet/AspNetCore.Docs #14350)](https://github.com/dotnet/AspNetCore.Docs/issues/14350).
+* Scripts and related static assets are now referenced as local files instead of using CDNs. For more information, see [Scripts and related static assets are now referenced as local files instead of using CDNs based on the current environment (dotnet/AspNetCore.Docs #14350)](https://github.com/dotnet/AspNetCore.Docs/issues/14350).
 
 The Angular template updated to use Angular 8.
 
