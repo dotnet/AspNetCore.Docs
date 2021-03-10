@@ -188,7 +188,7 @@ dotnet-aspnet-codegenerator razorpage -h
 
 For more information, see [dotnet-aspnet-codegenerator](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
 
-[!INCLUDE[](~/includes/sqlitedev.md)]
+[!INCLUDE[](~/includes/RP/sqlitedev.md)]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -212,7 +212,7 @@ For more information, see [dotnet-aspnet-codegenerator](xref:fundamentals/tools/
 
 The *appsettings.json* file is updated with the connection string used to connect to a local database.
 
-[!INCLUDE[](~/includes/sqlitedev.md)]
+[!INCLUDE[](~/includes/RP/sqlitedev.md)]
 
 ---
 
