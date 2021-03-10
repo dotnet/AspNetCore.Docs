@@ -12,10 +12,7 @@ uid: tutorials/first-mvc-app/working-with-sql
 
 ::: moniker range=">= aspnetcore-3.0"
 
-The `MvcMovieContext` object handles the tasks of:
-
-* Connecting to the database.
-* Mapping `Movie` objects to database records.
+The `MvcMovieContext` object handles the task of connecting to the database and mapping `Movie` objects to database records. The database context is registered with the [Dependency Injection](xref:fundamentals/dependency-injection) container in the `ConfigureServices` method in the *Startup.cs* file:
 
 The database context is registered with the [Dependency Injection](xref:fundamentals/dependency-injection) container in the `ConfigureServices` method of the *Startup.cs* file:
 
@@ -26,8 +23,6 @@ The database context is registered with the [Dependency Injection](xref:fundamen
 The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system reads the `ConnectionString` key. For local development, it gets the connection string from the *appsettings.json* file:
 
 [!code-json[](start-mvc/sample/MvcMovie/appsettings.json?highlight=2&range=8-10)]
-
-In the preceding connection string example, `Server=(localdb)` prompts the necessary SQL Server Express LocalDB infrastructure to be created and started automatically.  SQL Server Express LocalDB is installed with Visual Studio by default.
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
@@ -90,7 +85,7 @@ If there are any movies in the database, the seed initializer returns and no mov
 ```csharp
 if (context.Movie.Any())
 {
-    return;
+    return;  // DB has been seeded.
 }
 ```
 
@@ -106,14 +101,11 @@ Test the app.
 
 # [Visual Studio](#tab/visual-studio)
 
-Delete all the records in the database. The data can be deleted by one of the following approaches:
+Delete all the records in the database. You can do this with the delete links in the browser or from SSOX.
 
-* Selecting all the `Delete` links in the browser.
-* Selecting the database in SQL Server Object Explorer and ...
+Force the app to initialize, calling the methods in the `Startup` class, so the seed method runs. To force initialization, IIS Express must be stopped and restarted. You can do this with any of the following approaches:
 
-Force the app to initialize so that `Program.Main` is called. `Main` calls `SeedData.Initialize`, which initializes the database with data. To force initialization, IIS Express must be stopped and restarted. Stop and restart IIS Express with any of the following approaches:
-
-* Right-click the IIS Express system tray icon in the notification area and tap **Exit** or **Stop Site**
+* Right-click the IIS Express system tray icon in the notification area and tap **Exit** or **Stop Site**:
 
   ![IIS Express system tray icon](working-with-sql/_static/iisExIcon.png)
 
