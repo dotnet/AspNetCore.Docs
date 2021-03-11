@@ -38,8 +38,8 @@ Replace the code in *Models/Student.cs* with the following code:
 
 The preceding code adds a `FullName` property and adds the following attributes to existing properties:
 
-* [`[DataType]]`(xref:System.ComponentModel.DataAnnotations.DataTypeAttribute)
-* [`[DisplayFormat]]`(xref:System.ComponentModel.DataAnnotations.DisplayFormatAttribute)
+* [`[DataType]`](xref:System.ComponentModel.DataAnnotations.DataTypeAttribute)
+* [`[DisplayFormat]`](xref:System.ComponentModel.DataAnnotations.DisplayFormatAttribute)
 * [`[StringLength]`](xref:System.ComponentModel.DataAnnotations.StringLengthAttribute)
 * [`[Column]`](xref:System.ComponentModel.DataAnnotations.Schema.ColumnAttribute)
 * [`[Required]`](xref:System.ComponentModel.DataAnnotations.RequiredAttribute)
@@ -296,13 +296,13 @@ When an `Instructor` entity has a related `OfficeAssignment` entity, each entity
 
 Update *Models/Course.cs* with the following code:
 
-[!code-csharp[](intro/samples/cu30/Models/Course.cs?highlight=2,10,13,16,19,21,23)]
+[!code-csharp[](intro/samples/cu50/Models/Course.cs?highlight=2,10,13,16,19,21,23)]
 
 The `Course` entity has a foreign key (FK) property `DepartmentID`. `DepartmentID` points to the related `Department` entity. The `Course` entity has a `Department` navigation property.
 
-EF Core doesn't require a foreign key property for a data model when the model has a navigation property for a related entity. EF Core automatically creates FKs in the database wherever they're needed. EF Core creates [shadow properties](/ef/core/modeling/shadow-properties) for automatically created FKs. However, explicitly including the FK in the data model can make updates simpler and more efficient. For example, consider a model where the FK property `DepartmentID` is *not* included. When a course entity is fetched to edit:
+EF Core doesn't require a foreign key property for a data model when the model has a navigation property for a related entity. EF Core automatically creates FKs in the database wherever they're needed. EF Core creates [shadow properties](/ef/core/modeling/shadow-properties) for automatically created FKs. However, explicitly including the FK in the data model can make updates simpler and more efficient. For example, consider a model where the FK property `DepartmentID` is ***not*** included. When a course entity is fetched to edit:
 
-* The `Department` property is null if it's not explicitly loaded.
+* The `Department` property is `null` if it's not explicitly loaded.
 * To update the course entity, the `Department` entity must first be fetched.
 
 When the FK property `DepartmentID` is included in the data model, there's no need to fetch the `Department` entity before an update.
@@ -332,13 +332,13 @@ public int DepartmentID { get; set; }
 public Department Department { get; set; }
 ```
 
-A course can have any number of students enrolled in it, so the `Instructors` navigation property is a collection:
+A course can have any number of students enrolled in it, so the `Enrollments` navigation property is a collection:
 
 ```csharp
 public ICollection<Enrollment> Enrollments { get; set; }
 ```
 
-A course may be taught by multiple instructors, so the `CourseAssignments` navigation property is a collection:
+A course may be taught by multiple instructors, so the `Instructors` navigation property is a collection:
 
 ```csharp
         public ICollection<Instructor> Instructors { get; set; }
@@ -409,7 +409,7 @@ Update *Models/Enrollment.cs* with the following code:
 
 -->
 
-### The Enrollment Foreign key and navigation properties
+### The Enrollment foreign key and navigation properties
 
 An enrollment record is for one course taken by one student.
 
@@ -417,7 +417,7 @@ An enrollment record is for one course taken by one student.
 
 Update *Models/Enrollment.cs* with the following code:
 
-[!code-csharp[](intro/samples/cu50/Models/Enrollment.cs)]
+[!code-csharp[](intro/samples/cu50/Models/Enrollment.cs?highlight=1,15)]
 
 The FK properties and navigation properties reflect the following relationships:
 
@@ -608,8 +608,8 @@ To force EF Core to create a new database, drop and update the database:
 
 # [Visual Studio](#tab/visual-studio)
 
-* Delete the *Migrations* folder.
-* In the **Package Manager Console** (PMC), run the following commands:
+  * Delete the *Migrations* folder.
+  * In the **Package Manager Console** (PMC), run the following commands:
 
   ```powershell
   Drop-Database
@@ -619,9 +619,9 @@ To force EF Core to create a new database, drop and update the database:
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* Open a command window and navigate to the project folder. The project folder contains the *ContosoUniversity.csproj* file.
-* Delete the *Migrations* folder.
-* Run the following commands:
+  * Open a command window and navigate to the project folder. The project folder contains the *ContosoUniversity.csproj* file.
+  * Delete the *Migrations* folder.
+  * Run the following commands:
 
   ```dotnetcli
   dotnet ef database drop --force
