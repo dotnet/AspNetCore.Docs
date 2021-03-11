@@ -5,67 +5,127 @@ description: Learn about Blazor's event handling features, including event argum
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/20/2020
+ms.date: 03/11/2021
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/components/event-handling
 ---
 # ASP.NET Core Blazor event handling
 
-Razor components provide event handling features. For an HTML element attribute named [`@on{EVENT}`](xref:mvc/views/razor#onevent) (for example, `@onclick`) with a delegate-typed value, a Razor component treats the attribute's value as an event handler.
+Specify delegate event handlers in Razor component markup with [`@on{EVENT}={DELEGATE}`](xref:mvc/views/razor#onevent) with the following placeholder values:
 
-The following code calls the `UpdateHeading` method when the button is selected in the UI:
+* `{EVENT}` is a [Document Object Model (DOM)](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction) event (for example, `@onclick`).
+* `{DELEGATE}` is the delegate-typed value.
+
+The following code:
+
+* Calls the `UpdateHeading` method when the button is selected in the UI.
+* Calls the `CheckChanged` method when the check box is changed in the UI.
+
+`Pages/EventHandlerExample1.razor`:
 
 ```razor
-<button class="btn btn-primary" @onclick="UpdateHeading">
-    Update heading
-</button>
+@page "/event-handler-example-1"
+
+<h1>@currentHeading</h1>
+
+<p>
+    <label>
+        New title
+        <input @bind="newHeading" />
+    </label>
+    <button @onclick="UpdateHeading">
+        Update heading
+    </button>
+</p>
+
+<p>
+    <label>
+        <input type="checkbox" @onchange="CheckChanged" />
+        @checkedMessage
+    </label>
+</p>
 
 @code {
-    private void UpdateHeading(MouseEventArgs e)
+    private string currentHeading = "Initial heading";
+    private string newHeading;
+    private string checkedMessage = "Not changed yet";
+
+    private void UpdateHeading()
     {
-        ...
+        currentHeading = $"{newHeading}!!!";
     }
-}
-```
 
-The following code calls the `CheckChanged` method when the check box is changed in the UI:
-
-```razor
-<input type="checkbox" class="form-check-input" @onchange="CheckChanged" />
-
-@code {
     private void CheckChanged()
     {
-        ...
+        checkedMessage = $"Last changed at {DateTime.Now}";
     }
 }
 ```
 
 Event handlers can also be asynchronous and return a <xref:System.Threading.Tasks.Task>. There's no need to manually call [StateHasChanged](xref:blazor/components/lifecycle#state-changes). Exceptions are logged when they occur.
 
-In the following example, `UpdateHeading` is called asynchronously when the button is selected:
+In the following example, `UpdateHeading`:
+
+* Is called asynchronously when the button is selected.
+* Waits two seconds before updating the heading.
+
+`Pages/EventHandlerExample2.razor`:
 
 ```razor
-<button class="btn btn-primary" @onclick="UpdateHeading">
-    Update heading
-</button>
+@page "/event-handler-example-2"
+
+<h1>@currentHeading</h1>
+
+<p>
+    <label>
+        New title
+        <input @bind="newHeading" />
+    </label>
+    <button @onclick="UpdateHeading">
+        Update heading
+    </button>
+</p>
 
 @code {
-    private async Task UpdateHeading(MouseEventArgs e)
+    private string currentHeading = "Initial heading";
+    private string newHeading;
+
+    private async Task UpdateHeading()
     {
-        await ...
+        await Task.Delay(2000);
+
+        currentHeading = $"{newHeading}!!!";
     }
 }
 ```
 
 ## Event argument types
 
-For some events, event argument types are permitted. Specifying an event parameter in an event method definition is optional and only necessary if the event type is used in the method. In the following example, the `MouseEventArgs` event argument is used in the `ShowMessage` method to set message text:
+For some events, event argument types are permitted. Specifying an event parameter in an event method definition is only necessary if the event type is used in the method. In the following example, the `MouseEventArgs` event argument is used in the `ReportPointerLocation` method to set message text.
 
-```csharp
-private void ShowMessage(MouseEventArgs e)
+`Pages/EventHandlerExample3.razor`:
+
+```razor
+@page "/event-handler-example-3"
+
+@for (var i = 0; i < 4; i++)
 {
-    messageText = $"The mouse is at coordinates: {e.ScreenX}:{e.ScreenY}";
+    <p>
+        <button @onclick="ReportPointerLocation">
+            Where's my mouse pointer for this button?
+        </button>
+    </p>
+}
+
+<p>@mousePointerMessage</p>
+
+@code {
+    private string mousePointerMessage;
+
+    private void ReportPointerLocation(MouseEventArgs e)
+    {
+        mousePointerMessage = $"Mouse coordinates: {e.ScreenX}:{e.ScreenY}";
+    }
 }
 ```
 
@@ -73,8 +133,8 @@ Supported <xref:System.EventArgs> are shown in the following table.
 
 ::: moniker range=">= aspnetcore-5.0"
 
-| Event            | Class  | DOM events and notes |
-| ---------------- | ------ | -------------------- |
+| Event            | Class  | [Document Object Model (DOM)](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction) events and notes |
+| ---------------- | ------ | --- |
 | Clipboard        | <xref:Microsoft.AspNetCore.Components.Web.ClipboardEventArgs> | `oncut`, `oncopy`, `onpaste` |
 | Drag             | <xref:Microsoft.AspNetCore.Components.Web.DragEventArgs> | `ondrag`, `ondragstart`, `ondragenter`, `ondragleave`, `ondragover`, `ondrop`, `ondragend`<br><br><xref:Microsoft.AspNetCore.Components.Web.DataTransfer> and <xref:Microsoft.AspNetCore.Components.Web.DataTransferItem> hold dragged item data.<br><br>Implement drag and drop in Blazor apps using [JS interop](xref:blazor/call-javascript-from-dotnet) with [HTML Drag and Drop API](https://developer.mozilla.org/docs/Web/API/HTML_Drag_and_Drop_API). |
 | Error            | <xref:Microsoft.AspNetCore.Components.Web.ErrorEventArgs> | `onerror` |
@@ -92,8 +152,8 @@ Supported <xref:System.EventArgs> are shown in the following table.
 
 ::: moniker range="< aspnetcore-5.0"
 
-| Event            | Class | DOM events and notes |
-| ---------------- | ----- | -------------------- |
+| Event            | Class | [Document Object Model (DOM)](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction) events and notes |
+| ---------------- | ----- | --- |
 | Clipboard        | <xref:Microsoft.AspNetCore.Components.Web.ClipboardEventArgs> | `oncut`, `oncopy`, `onpaste` |
 | Drag             | <xref:Microsoft.AspNetCore.Components.Web.DragEventArgs> | `ondrag`, `ondragstart`, `ondragenter`, `ondragleave`, `ondragover`, `ondrop`, `ondragend`<br><br><xref:Microsoft.AspNetCore.Components.Web.DataTransfer> and <xref:Microsoft.AspNetCore.Components.Web.DataTransferItem> hold dragged item data.<br><br>Implement drag and drop in Blazor apps using [JS interop](xref:blazor/call-javascript-from-dotnet) with [HTML Drag and Drop API](https://developer.mozilla.org/docs/Web/API/HTML_Drag_and_Drop_API). |
 | Error            | <xref:Microsoft.AspNetCore.Components.Web.ErrorEventArgs> | `onerror` |
@@ -119,80 +179,118 @@ For more information, see the following resources:
 
 ## Lambda expressions
 
-[Lambda expressions](/dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions) can also be used:
+[Lambda expressions](/dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions) can also be used as the delegate event handler.
+
+`Pages/EventHandlerExample4.razor`:
 
 ```razor
-<button @onclick="@(e => Console.WriteLine("Hello, world!"))">Say hello</button>
+@page "/event-handler-example-4"
+
+<h1>@heading</h1>
+
+<p>
+    <button @onclick="@(e => heading = "New heading!!!")">
+        Update heading
+    </button>
+</p>
+
+@code {
+    private string heading = "Initial heading";
+}
 ```
 
-It's often convenient to close over additional values, such as when iterating over a set of elements. The following example creates three buttons, each of which calls `UpdateHeading` passing an event argument (<xref:Microsoft.AspNetCore.Components.Web.MouseEventArgs>) and its button number (`buttonNumber`) when selected in the UI:
+It's often convenient to close over additional values using C# method parameters, such as when iterating over a set of elements. The following example creates three buttons, each of which calls `UpdateHeading` passing an event argument (<xref:Microsoft.AspNetCore.Components.Web.MouseEventArgs>) in `e` and its button number in `buttonNumber` when selected in the UI.
+
+`Pages/EventHandlerExample5.razor`:
 
 ```razor
-<h2>@message</h2>
+@page "/event-handler-example-5"
+
+<h1>@heading</h1>
 
 @for (var i = 1; i < 4; i++)
 {
     var buttonNumber = i;
 
-    <button class="btn btn-primary"
-            @onclick="@(e => UpdateHeading(e, buttonNumber))">
-        Button #@i
-    </button>
+    <p>
+        <button @onclick="@(e => UpdateHeading(e, buttonNumber))">
+            Button #@i
+        </button>
+    </p>
 }
 
 @code {
-    private string message = "Select a button to learn its position.";
+    private string heading = "Select a button to learn its position";
 
     private void UpdateHeading(MouseEventArgs e, int buttonNumber)
     {
-        message = $"You selected Button #{buttonNumber} at " +
-            $"mouse position: {e.ClientX} X {e.ClientY}.";
+        heading = $"Selected #{buttonNumber} at {e.ClientX}:{e.ClientY}";
     }
 }
 ```
 
 > [!NOTE]
-> Do **not** use a loop variable directly in a lambda expression, such as `i` in the preceding `for` loop example. Otherwise, the same variable is used by all lambda expressions, which results in use of the same value in all lambdas. Always capture the variable's value in a local variable and then use it. In the preceding example, the loop variable `i` is assigned to `buttonNumber`.
+> Do **not** use a loop variable directly in a lambda expression, such as `i` in the preceding `for` loop example. Otherwise, the same variable is used by all lambda expressions, which results in use of the same value in all lambdas. Always capture the variable's value in a local variable and then use it. In the preceding example:
+>
+> * The loop variable `i` is assigned to `buttonNumber`.
+> * `buttonNumber` is used in the lambda expression.
 
 ## EventCallback
 
-A common scenario with nested components is the desire to run a parent component's method when a child component event occurs. An `onclick` event occurring in the child component is a common use case. To expose events across components, use an <xref:Microsoft.AspNetCore.Components.EventCallback>. A parent component can assign a callback method to a child component's <xref:Microsoft.AspNetCore.Components.EventCallback>.
+A common scenario with nested components executes a parent component's method when a child component event occurs. An `onclick` event occurring in the child component is a common use case. To expose events across components, use an <xref:Microsoft.AspNetCore.Components.EventCallback>. A parent component can assign a callback method to a child component's <xref:Microsoft.AspNetCore.Components.EventCallback>.
 
-The `ChildComponent` in the sample app (`Components/ChildComponent.razor`) demonstrates how a button's `onclick` handler is set up to receive an <xref:Microsoft.AspNetCore.Components.EventCallback> delegate from the sample's `ParentComponent`. The <xref:Microsoft.AspNetCore.Components.EventCallback> is typed with `MouseEventArgs`, which is appropriate for an `onclick` event from a peripheral device:
+The following `Child` component demonstrates how a button's `onclick` handler is set up to receive an <xref:Microsoft.AspNetCore.Components.EventCallback> delegate from the sample's `ParentComponent`. The <xref:Microsoft.AspNetCore.Components.EventCallback> is typed with `MouseEventArgs`, which is appropriate for an `onclick` event from a peripheral device.
 
-[!code-razor[](~/blazor/common/samples/5.x/BlazorWebAssemblySample/Components/ChildComponent.razor?highlight=5-7,17-18)]
-
-The `ParentComponent` sets the child's <xref:Microsoft.AspNetCore.Components.EventCallback%601> (`OnClickCallback`) to its `ShowMessage` method.
-
-`Pages/ParentComponent.razor`:
+`Shared/Child.razor`:
 
 ```razor
-@page "/ParentComponent"
+<p>
+    <button @onclick="OnClickCallback">
+        Trigger a Parent component method
+    </button>
+</p>
+
+@code {
+    [Parameter]
+    public string Title { get; set; }
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    public EventCallback<MouseEventArgs> OnClickCallback { get; set; }
+}
+```
+
+The `Parent` component sets the child's <xref:Microsoft.AspNetCore.Components.EventCallback%601> (`OnClickCallback`) to its `ShowMessage` method.
+
+`Pages/Parent.razor`:
+
+```razor
+@page "/parent"
 
 <h1>Parent-child example</h1>
 
-<ChildComponent Title="Panel Title from Parent"
-                OnClickCallback="@ShowMessage">
-    Content of the child component is supplied
-    by the parent component.
-</ChildComponent>
+<Child Title="Panel Title from Parent" OnClickCallback="@ShowMessage">
+    Content of the child component is supplied by the parent component.
+</Child>
 
-<p><b>@messageText</b></p>
+<p>@message</p>
 
 @code {
-    private string messageText;
+    private string message;
 
     private void ShowMessage(MouseEventArgs e)
     {
-        messageText = $"Blaze a new trail with Blazor! ({e.ScreenX}, {e.ScreenY})";
+        message = $"Blaze a new trail with Blazor! ({e.ScreenX}:{e.ScreenY})";
     }
 }
 ```
 
 When the button is selected in the `ChildComponent`:
 
-* The `ParentComponent`'s `ShowMessage` method is called. `messageText` is updated and displayed in the `ParentComponent`.
-* A call to [`StateHasChanged`](xref:blazor/components/lifecycle#state-changes) isn't required in the callback's method (`ShowMessage`). <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is called automatically to rerender the `ParentComponent`, just as child events trigger component rerendering in event handlers that execute within the child. For more information, see <xref:blazor/components/rendering>.
+* The `Parent` component's `ShowMessage` method is called. `message` is updated and displayed in the `Parent` component.
+* A call to [`StateHasChanged`](xref:blazor/components/lifecycle#state-changes) isn't required in the callback's method (`ShowMessage`). <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is called automatically to rerender the `Parent` component, just as child events trigger component rerendering in event handlers that execute within the child. For more information, see <xref:blazor/components/rendering>.
 
 <xref:Microsoft.AspNetCore.Components.EventCallback> and <xref:Microsoft.AspNetCore.Components.EventCallback%601> permit asynchronous delegates. <xref:Microsoft.AspNetCore.Components.EventCallback> is weakly typed and allows passing any type argument in `InvokeAsync(Object)`. <xref:Microsoft.AspNetCore.Components.EventCallback%601> is strongly typed and requires passing a `T` argument in `InvokeAsync(T)` that's assignable to `TValue`.
 
@@ -209,16 +307,22 @@ await OnClickCallback.InvokeAsync(arg);
 
 Use <xref:Microsoft.AspNetCore.Components.EventCallback> and <xref:Microsoft.AspNetCore.Components.EventCallback%601> for event handling and binding component parameters.
 
-Prefer the strongly typed <xref:Microsoft.AspNetCore.Components.EventCallback%601> over <xref:Microsoft.AspNetCore.Components.EventCallback>. <xref:Microsoft.AspNetCore.Components.EventCallback%601> provides better error feedback to users of the component. Similar to other UI event handlers, specifying the event parameter is optional. Use <xref:Microsoft.AspNetCore.Components.EventCallback> when there's no value passed to the callback.
+Prefer the strongly typed <xref:Microsoft.AspNetCore.Components.EventCallback%601> over <xref:Microsoft.AspNetCore.Components.EventCallback>. <xref:Microsoft.AspNetCore.Components.EventCallback%601> provides enhanced error feedback to users of the component. Similar to other UI event handlers, specifying the event parameter is optional. Use <xref:Microsoft.AspNetCore.Components.EventCallback> when there's no value passed to the callback.
 
 ## Prevent default actions
 
-Use the [`@on{EVENT}:preventDefault`](xref:mvc/views/razor#oneventpreventdefault) directive attribute to prevent the default action for an event.
+Use the [`@on{EVENT}:preventDefault`](xref:mvc/views/razor#oneventpreventdefault) directive attribute to prevent the default action for an event, where the `{EVENT}` placeholder is a [Document Object Model (DOM)](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction) event.
 
-When a key is selected on an input device and the element focus is on a text box, a browser normally displays the key's character in the text box. In the following example, the default behavior is prevented by specifying the `@onkeypress:preventDefault` directive attribute. The counter increments, and the **+** key isn't captured into the `<input>` element's value:
+When a key is selected on an input device and the element focus is on a text box, a browser normally displays the key's character in the text box. In the following example, the default behavior is prevented by specifying the `@onkeydown:preventDefault` directive attribute ([`keydown`](https://developer.mozilla.org/docs/Web/API/Document/keydown_event)). When the focus is on the `<input>` element, the counter increments with the key sequence <kbd>Shift</kbd>+<kbd>+</kbd>. The `+` character isn't assigned to the `<input>` element's value.
+
+`Pages/EventHandlerExample6.razor`:
 
 ```razor
-<input value="@count" @onkeypress="KeyHandler" @onkeypress:preventDefault />
+@page "/event-handler-example-6"
+
+<p>
+    <input value="@count" @onkeydown="KeyHandler" @onkeydown:preventDefault />
+</p>
 
 @code {
     private int count = 0;
@@ -238,40 +342,57 @@ Specifying the `@on{EVENT}:preventDefault` attribute without a value is equivale
 The value of the attribute can also be an expression. In the following example, `shouldPreventDefault` is a `bool` field set to either `true` or `false`:
 
 ```razor
-<input @onkeypress:preventDefault="shouldPreventDefault" />
+<input @onkeydown:preventDefault="shouldPreventDefault" />
+
+...
+
+@code {
+    private bool shouldPreventDefault = true;
+}
 ```
 
 ## Stop event propagation
 
-Use the [`@on{EVENT}:stopPropagation`](xref:mvc/views/razor#oneventstoppropagation) directive attribute to stop event propagation.
+Use the [`@on{EVENT}:stopPropagation`](xref:mvc/views/razor#oneventstoppropagation) directive attribute to stop event propagation, where the `{EVENT}` placeholder is a [Document Object Model (DOM)](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction) event.
 
-In the following example, selecting the check box prevents click events from the second child `<div>` from propagating to the parent `<div>`:
+In the following example, selecting the check box prevents click events from the second child `<div>` from propagating to the parent `<div>`. Since propagated click events normally fire the `OnSelectParentDiv` method, selecting the second child `<div>` results in the parent div message appearing unless the check box is selected.
+
+`Pages/EventHandlerExample7.razor`:
 
 ```razor
+@page "/event-handler-example-7"
+
 <label>
     <input @bind="stopPropagation" type="checkbox" />
     Stop Propagation
 </label>
 
-<div @onclick="OnSelectParentDiv">
+<div class="m-1 p-1 border border-primary" @onclick="OnSelectParentDiv">
     <h3>Parent div</h3>
 
-    <div @onclick="OnSelectChildDiv">
+    <div class="m-1 p-1 border" @onclick="OnSelectChildDiv">
         Child div that doesn't stop propagation when selected.
     </div>
 
-    <div @onclick="OnSelectChildDiv" @onclick:stopPropagation="stopPropagation">
+    <div class="m-1 p-1 border" @onclick="OnSelectChildDiv" 
+            @onclick:stopPropagation="stopPropagation">
         Child div that stops propagation when selected.
     </div>
 </div>
 
+<p>
+    @message
+</p>
+
 @code {
     private bool stopPropagation = false;
+    private string message; 
 
-    private void OnSelectParentDiv() => 
-        Console.WriteLine($"The parent div was selected. {DateTime.Now}");
-    private void OnSelectChildDiv() => 
-        Console.WriteLine($"A child div was selected. {DateTime.Now}");
+    private void OnSelectParentDiv() =>
+        message = $"The parent div was selected. {DateTime.Now}";
+
+    private void OnSelectChildDiv() =>
+        message = $"A child div was selected. {DateTime.Now}";
 }
 ```
 
@@ -279,16 +400,24 @@ In the following example, selecting the check box prevents click events from the
 
 ## Focus an element
 
-Call `FocusAsync` on an [element reference](xref:blazor/call-javascript-from-dotnet#capture-references-to-elements) to focus an element in code:
+Call <xref:Microsoft.AspNetCore.Components.ElementReferenceExtensions.FocusAsync%2A> on an [element reference](xref:blazor/call-javascript-from-dotnet#capture-references-to-elements) to focus an element in code. In the following example, select the button to focus the `<input>` element.
+
+`Pages/EventHandlerExample8.razor`:
 
 ```razor
-<input @ref="exampleInput" />
+@page "/event-handler-example-8"
 
-<button @onclick="ChangeFocus">Focus the Input Element</button>
+<p>
+    <input @ref="exampleInput" />
+</p>
+
+<button @onclick="ChangeFocus">
+    Focus the Input Element
+</button>
 
 @code {
     private ElementReference exampleInput;
-	
+
     private async Task ChangeFocus()
     {
         await exampleInput.FocusAsync();
