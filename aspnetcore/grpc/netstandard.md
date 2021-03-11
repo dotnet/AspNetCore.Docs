@@ -4,7 +4,7 @@ author: jamesnk
 description: Learn how to use the .NET gRPC client in apps and libraries that support .NET Standard 2.0.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
-ms.date: 12/18/2020
+ms.date: 3/11/2021
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: grpc/netstandard
 ---
@@ -28,7 +28,7 @@ The following .NET implementations (or later) support [Grpc.Net.Client](https://
 
 The .NET gRPC client can call services from these .NET implementations with some additional configuration.
 
-## Required configuration
+## HttpHandler configuration
 
 An HTTP provider must be configured using `GrpcChannelOptions.HttpHandler`. If a handler isn't configured, an error is thrown:
 
@@ -50,7 +50,7 @@ For more information, see [Configure gRPC-Web with the .NET gRPC client](xref:gr
 
 ## .NET Framework
 
-.NET Framework has limited support for gRPC over HTTP/2. To enable gRPC over HTTP/2 on .NET Framework, configure the channel to use <xref:System.Net.Http.WinHttpHandler>. The `WinHttpHandler` handler uses WinHTTP in Windows to send HTTP/2 requests.
+.NET Framework has limited support for gRPC over HTTP/2. To enable gRPC over HTTP/2 on .NET Framework, configure the channel to use <xref:System.Net.Http.WinHttpHandler>.
 
 Requirements and restrictions to using `WinHttpHandler`:
 
