@@ -93,7 +93,7 @@ HEALTHCHECK CMD curl --fail http://localhost:5000/health || exit
 
 Health checks are created by implementing the <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck> interface. The <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck.CheckHealthAsync*> method returns a <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckResult> that indicates the health as `Healthy`, `Degraded`, or `Unhealthy`. The result is written as a plaintext response with a configurable status code (configuration is described in the [Health check options](#health-check-options) section). <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckResult> can also return optional key-value pairs.
 
-The following `ExampleHealthCheck` class demonstrates the layout of a health check. The health checks logic is placed in the `CheckHealthAsync` method. The following example sets a dummy variable, `healthCheckResultHealthy`, to `true`. If the value of `healthCheckResultHealthy` is set to `false`, the [HealthCheckResult.Unhealthy](xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckResult.Unhealthy*) status is returned.
+The following `ExampleHealthCheck` class demonstrates the layout of a health check. The health checks logic is placed in the `CheckHealthAsync` method. The following example sets a dummy variable, `healthCheckResultHealthy`, to `true`. If the value of `healthCheckResultHealthy` is set to `false`, the <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckRegistration.FailureStatus> status is returned.
 
 ```csharp
 public class ExampleHealthCheck : IHealthCheck
@@ -111,7 +111,7 @@ public class ExampleHealthCheck : IHealthCheck
         }
 
         return Task.FromResult(
-            HealthCheckResult.Unhealthy("An unhealthy result."));
+            new HealthCheckResult(context.Registration.FailureStatus, "An unhealthy result."));
     }
 }
 ```
@@ -859,7 +859,7 @@ Health checks are created by implementing the <xref:Microsoft.Extensions.Diagnos
 
 ### Example health check
 
-The following `ExampleHealthCheck` class demonstrates the layout of a health check. The health checks logic is placed in the `CheckHealthAsync` method. The following example sets a dummy variable, `healthCheckResultHealthy`, to `true`. If the value of `healthCheckResultHealthy` is set to `false`, the [HealthCheckResult.Unhealthy](xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckResult.Unhealthy*) status is returned.
+The following `ExampleHealthCheck` class demonstrates the layout of a health check. The health checks logic is placed in the `CheckHealthAsync` method. The following example sets a dummy variable, `healthCheckResultHealthy`, to `true`. If the value of `healthCheckResultHealthy` is set to `false`, the <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckRegistration.FailureStatus> status is returned.
 
 ```csharp
 public class ExampleHealthCheck : IHealthCheck
@@ -877,10 +877,13 @@ public class ExampleHealthCheck : IHealthCheck
         }
 
         return Task.FromResult(
-            HealthCheckResult.Unhealthy("The check indicates an unhealthy result."));
+            new HealthCheckResult(context.Registration.FailureStatus, "The check indicates an unhealthy result."));
     }
 }
 ```
+
+If <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck.CheckHealthAsync*> throws an exception during the check, a new <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthReportEntry> is returned with its [HealthReportEntry.Status](xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthReportEntry.Status) set to the <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckRegistration.FailureStatus> (previously defined in <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddCheck*>), as well as the [inner exception](xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthReportEntry.Exception) that initially caused the check failure.
+The <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthReportEntry.Description> is set to the exception's message.
 
 ### Register health check services
 
