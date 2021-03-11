@@ -384,9 +384,12 @@ Configure the app to use a certificate in development for the `dotnet run` comma
 
 **Configure the reverse proxy for secure (HTTPS) client connections**
 
+> [!WARNING]
+> The security configuration in this section is a general configuration to be used as a starting point for further customization. It's impossible for us to provide an exact robust security specification that applies to all scenarios. The exact security configuration for Nginx servers is the responsibility of the developer and their organization. We're unable to provide support for third-party tooling, servers, and operating systems. *Use the configuration in this section at your own risk.*
+
 * Configure the server to listen to HTTPS traffic on port 443 by specifying a valid certificate issued by a trusted Certificate Authority (CA).
 
-* Harden the security by employing some of the practices depicted in the following */etc/nginx/nginx.conf* file. Examples include choosing a stronger cipher and redirecting all traffic over HTTP to HTTPS.
+* Harden the security by employing some of the practices depicted in the following */etc/nginx/nginx.conf* file. The example includes redirecting all traffic over HTTP to HTTPS.
 
   > [!NOTE]
   > For development environments, we recommend using temporary redirects (302) rather than permanent redirects (301). Link caching can cause unstable behavior in development environments.
@@ -406,10 +409,15 @@ Add the */etc/nginx/proxy.conf* configuration file:
 
 **Replace** the contents of the */etc/nginx/nginx.conf* configuration file with the following file. The example contains both `http` and `server` sections in one configuration file.
 
-[!code-nginx[](linux-nginx/nginx.conf?highlight=2)]
+[!code-nginx[](linux-nginx/nginx.conf)]
 
 > [!NOTE]
 > Blazor WebAssembly apps require a larger `burst` parameter value to accommodate the larger number of requests made by an app. For more information, see <xref:blazor/host-and-deploy/webassembly#nginx>.
+
+Additional resources:
+
+* [Configuring HTTPS servers](http://nginx.org/docs/http/configuring_https_servers.html) (Nginx documentation)
+* [mozilla.org SSL Configuration Generator](https://ssl-config.mozilla.org/#server=nginx)
 
 #### Secure Nginx from clickjacking
 

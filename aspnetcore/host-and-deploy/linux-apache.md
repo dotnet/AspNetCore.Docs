@@ -360,6 +360,9 @@ Configure the app to use a certificate in development for the `dotnet run` comma
 
 **Configure the reverse proxy for secure (HTTPS) client connections**
 
+> [!WARNING]
+> The security configuration in this section is a general configuration to be used as a starting point for further customization. It's impossible for us to provide an exact robust security specification that applies to all scenarios. The exact security configuration for Apache servers is the responsibility of the developer and their organization. We're unable to provide support for third-party tooling, servers, and operating systems. *Use the configuration in this section at your own risk.*
+
 To configure Apache for HTTPS, the *mod_ssl* module is used. When the *httpd* module was installed, the *mod_ssl* module was also installed. If it wasn't installed, use `yum` to add it to the configuration.
 
 ```bash
@@ -381,26 +384,34 @@ Modify the *helloapp.conf* file to enable URL rewriting and secure communication
 
 <VirtualHost *:80>
     RewriteEngine On
-    RewriteCond %{HTTPS} !=on
-    RewriteRule ^/?(.*) https://%{SERVER_NAME}/$1 [R,L]
+    RewriteCond   %{HTTPS} !=on
+    RewriteRule   ^(.*)$ https://%{HTTP_HOST}$1 [R=301,L]
 </VirtualHost>
 
 <VirtualHost *:443>
-    ProxyPreserveHost On
-    ProxyPass / http://127.0.0.1:5000/
-    ProxyPassReverse / http://127.0.0.1:5000/
-    ErrorLog /var/log/httpd/helloapp-error.log
-    CustomLog /var/log/httpd/helloapp-access.log common
-    SSLEngine on
-    SSLProtocol all -SSLv2
-    SSLCipherSuite ALL:!ADH:!EXPORT:!SSLv2:!RC4+RSA:+HIGH:+MEDIUM:!LOW:!RC4
-    SSLCertificateFile /etc/pki/tls/certs/localhost.crt
+    Protocols             h2 http/1.1
+    ProxyPreserveHost     On
+    ProxyPass             / http://127.0.0.1:5000/
+    ProxyPassReverse      / http://127.0.0.1:5000/
+    ErrorLog              /var/log/httpd/helloapp-error.log
+    CustomLog             /var/log/httpd/helloapp-access.log common
+    Header                always set Strict-Transport-Security "max-age=63072000;includeSubdomains;preload"
+    SSLEngine             on
+    SSLProtocol           all -SSLv3 -TLSv1 -TLSv1.1 -TLSv1.2
+    SSLHonorCipherOrder   off
+    SSLCompression        off
+    SSLSessionTickets     off
+    SSLUseStapling        On
+    SSLStaplingCache      "shmcb:logs/ssl_stapling(32768)"
+    SSLCertificateFile    /etc/pki/tls/certs/localhost.crt
     SSLCertificateKeyFile /etc/pki/tls/private/localhost.key
 </VirtualHost>
 ```
 
 > [!NOTE]
 > This example is using a locally-generated certificate. **SSLCertificateFile** should be the primary certificate file for the domain name. **SSLCertificateKeyFile** should be the key file generated when CSR is created. **SSLCertificateChainFile** should be the intermediate certificate file (if any) that was supplied by the certificate authority.
+>
+> Apache HTTP Server version 2.4.43 or newer is required in order to operate a TLS 1.3 web server with OpenSSL 1.1.1.
 
 Save the file and test the configuration:
 
@@ -413,6 +424,11 @@ Restart Apache:
 ```bash
 sudo systemctl restart httpd
 ```
+
+Additional resources:
+
+* [Apache SSL/TLS Encryption](https://httpd.apache.org/docs/trunk/ssl/) (Apache documentation)
+* [mozilla.org SSL Configuration Generator](https://ssl-config.mozilla.org/#server=apache)
 
 ## Additional Apache suggestions
 
