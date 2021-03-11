@@ -241,7 +241,7 @@ The following table shows the requests and responses from `http://localhost:1234
 | Request                       | Response                     |
 | ----------------------------- | ---------------------------- |
 | localhost:1234                | Hello from non-Map delegate. |
-| localhost:1234/?branch=master | Branch used = master         |
+| localhost:1234/?branch=main | Branch used = main         |
 
 <xref:Microsoft.AspNetCore.Builder.UseWhenExtensions.UseWhen%2A> also branches the request pipeline based on the result of the given predicate. Unlike with `MapWhen`, this branch is rejoined to the main pipeline if it doesn't short-circuit or contain a terminal middleware:
 
@@ -438,7 +438,7 @@ The following table shows the requests and responses from `http://localhost:1234
 | Request                       | Response                     |
 | ----------------------------- | ---------------------------- |
 | localhost:1234                | Hello from non-Map delegate. |
-| localhost:1234/?branch=master | Branch used = master         |
+| localhost:1234/?branch=main | Branch used = main         |
 
 `Map` supports nesting, for example:
 

@@ -723,9 +723,9 @@
       displayName: signalr, specs
       items:
         - name: Hub protocol
-          href: https://github.com/aspnet/AspNetCore/blob/master/src/SignalR/docs/specs/HubProtocol.md
+          href: https://github.com/aspnet/AspNetCore/blob/main/src/SignalR/docs/specs/HubProtocol.md
         - name: Transport protocols
-          href: https://github.com/aspnet/AspNetCore/blob/master/src/SignalR/docs/specs/TransportProtocols.md
+          href: https://github.com/aspnet/AspNetCore/blob/main/src/SignalR/docs/specs/TransportProtocols.md
 - name: Remote Procedure Call apps
   items:
     - name: Introduction to gRPC services
@@ -752,6 +752,8 @@
           uid: grpc/clientfactory
         - name: Deadlines and cancellation
           uid: grpc/deadlines-cancellation
+        - name: Transient fault handling
+          uid: grpc/retries
         - name: .NET Standard 2.0 support
           uid: grpc/netstandard
     - name: gRPC services with ASP.NET Core
@@ -1030,7 +1032,7 @@
           href: /visualstudio/containers/vs-azure-tools-docker-hosting-web-apps-in-docker
         - name: Sample Docker images
           displayName: deploy, publish, docker
-          href: https://github.com/dotnet/dotnet-docker/blob/master/samples/aspnetapp/README.md
+          href: https://github.com/dotnet/dotnet-docker/blob/main/samples/aspnetapp/README.md
     - name: Proxy and load balancer configuration
       displayName: deploy, publish
       uid: host-and-deploy/proxy-load-balancer
@@ -1420,4 +1422,4 @@
 - name: API reference
   href: /dotnet/api/?view=aspnetcore-2.2
 - name: Contribute
-  href: https://github.com/dotnet/AspNetCore.Docs/blob/master/CONTRIBUTING.md
+  href: https://github.com/dotnet/AspNetCore.Docs/blob/main/CONTRIBUTING.md

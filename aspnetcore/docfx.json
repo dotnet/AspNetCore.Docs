@@ -49,7 +49,7 @@
       "breadcrumb_path": "/aspnet/core/breadcrumb/toc.json",
       "extendBreadcrumb": true,
       "feedback_github_repo": "dotnet/AspNetCore.Docs",
-      "feedback_product_url": "https://github.com/dotnet/aspnetcore/blob/master/CONTRIBUTING.md",
+      "feedback_product_url": "https://github.com/dotnet/aspnetcore/blob/main/CONTRIBUTING.md",
       "feedback_system": "GitHub",
       "ms.prod": "aspnet-core",
       "ms.topic": "conceptual",
