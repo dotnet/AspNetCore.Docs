@@ -637,24 +637,15 @@ Run the app. Running the app runs the `DbInitializer.Initialize` method. The `Db
 
 Open the database in SSOX:
 
-* If SSOX was opened previously, click the **Refresh** button.
-* Expand the **Tables** node. The created tables are displayed.
-
-  ![Tables in SSOX](complex-data-model/_static/ssox-tables.png)
-
-* Examine the **CourseAssignment** table:
-
-  * Right-click the **CourseAssignment** table and select **View Data**.
-  * Verify the **CourseAssignment** table contains data.
-
-  ![CourseAssignment data in SSOX](complex-data-model/_static/ssox-ci-data.png)
+  * If SSOX was opened previously, click the **Refresh** button.
+  * Expand the **Tables** node. The created tables are displayed.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
 Use a SQLite tool to examine the database:
 
 * New tables and columns.
-* Seeded data in tables, for example the **CourseAssignment** table.
+* Seeded data in tables.
 
 ---
 
