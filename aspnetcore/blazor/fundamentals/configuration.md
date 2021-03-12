@@ -182,7 +182,15 @@ builder.Services.AddOidcAuthentication(options =>
 
 ## Logging configuration
 
-Add a package reference for [`Microsoft.Extensions.Logging.Configuration`](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Configuration) to the app's project file. In the app settings file, provide logging configuration. The logging configuration is loaded in `Program.Main`.
+Add a package reference for [`Microsoft.Extensions.Logging.Configuration`](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Configuration) to the app's project file:
+
+```xml
+<PackageReference Include="Microsoft.Extensions.Logging.Configuration" Version="{VERION}" />
+```
+
+In the preceding example, the `{VERSION}` placeholder is the package's version. Package versions are found at [NuGet.org](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Configuration).
+
+In the app settings file, provide logging configuration. The logging configuration is loaded in `Program.Main`.
 
 `wwwroot/appsettings.json`:
 
