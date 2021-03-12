@@ -493,10 +493,6 @@ Attribute routes can also be combined with inheritance. This is powerful combine
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet5)]
 
-Token replacement also applies to route names defined by attribute routes.
-`[Route("[controller]/[action]", Name="[controller]_[action]")]`
-generates a unique route name for each action.
-
 To match the literal token replacement delimiter `[` or  `]`, escape it by repeating the character (`[[` or `]]`).
 
 <a name="routing-token-replacement-transformers-ref-label"></a>
