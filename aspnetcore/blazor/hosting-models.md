@@ -112,7 +112,7 @@ Each browser screen (browser tab or iframe) that is connected to a Blazor Server
 
 Blazor considers closing a browser tab or navigating to an external URL a *graceful* termination. In the event of a graceful termination, the circuit and associated resources are immediately released. A client may also disconnect non-gracefully, for instance due to a network interruption. Blazor Server stores disconnected circuits for a configurable interval to allow the client to reconnect.
 
-Blazor Server allows code to define a *circuit handler*, which allows running code on changes to the state of a user's circuit. For more information, see <xref:blazor/advanced-scenarios#blazor-server-circuit-handler>.
+Blazor Server allows code to define a *circuit handler*, which allows running code on changes to the state of a user's circuit. For more information, see <xref:blazor/fundamentals/signalr?pivots=server#blazor-server-circuit-handler>.
 
 ### UI Latency
 
