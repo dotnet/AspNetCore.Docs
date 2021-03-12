@@ -131,19 +131,15 @@ The `OnGetAsync` method loads related data with the `Include` method. The `Selec
 
 The following code loads related data with the `Select` method:
 
-[!code-csharp[](intro/samples/cu30snapshots/6-related/Pages/Courses/IndexSelect.cshtml.cs?name=snippet_RevisedIndexMethod&highlight=6)]
+[!code-csharp[](intro/samples/cu50/Pages/Courses/IndexSelectModel.cshtml.cs?name=snippet_RevisedIndexMethod&highlight=4)]
 
 The preceding code doesn't return any entity types, therefore no tracking is done. For more information about the EF tracking, see [Tracking vs. No-Tracking Queries](/ef/core/querying/tracking).
-
-The following code loads related data with the `Select` method:
-
-[!code-csharp[](intro/samples/cu/Pages/Courses/IndexSelect.cshtml.cs?name=snippet_RevisedIndexMethod&highlight=4)]
 
 The `CourseViewModel`:
 
 [!code-csharp[](intro/samples/cu50/Models/SchoolViewModels/CourseViewModel.cs)]
 
-See [IndexSelect](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu50/Pages/Courses) for the complete Razor Pages.
+See [IndexSelectModel](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-rp/intro/samples/cu50/Pages/Courses) for the complete Razor Pages.
 
 ## Create Instructor pages
 

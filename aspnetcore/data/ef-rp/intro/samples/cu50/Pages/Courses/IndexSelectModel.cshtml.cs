@@ -17,9 +17,7 @@ namespace ContosoUniversity.Pages.Courses
         }
 
         #region snippet_RevisedIndexMethod
-        public IList<CourseViewModel>
-    CourseVM
-        { get; set; }
+        public IList<CourseViewModel> CourseVM { get; set; }
 
         public async Task OnGetAsync()
         {
