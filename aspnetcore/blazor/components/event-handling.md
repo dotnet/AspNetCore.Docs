@@ -99,7 +99,13 @@ In the following example, `UpdateHeading`:
 }
 ```
 
-## Event argument types
+## Event arguments
+
+::: moniker range=">= aspnetcore-6.0"
+
+### Built-in event arguments
+
+::: moniker-end
 
 For some events, event argument types are permitted. Specifying an event parameter in an event method definition is only necessary if the event type is used in the method. In the following example, the `MouseEventArgs` event argument is used in the `ReportPointerLocation` method to set message text.
 
@@ -176,6 +182,152 @@ For more information, see the following resources:
   [!INCLUDE[](~/blazor/includes/aspnetcore-repo-ref-source-links.md)]
 
 * [MDN web docs: GlobalEventHandlers](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers): Includes information on which HTML elements support each DOM event.
+
+::: moniker range=">= aspnetcore-6.0"
+
+### Custom event arguments
+
+Blazor supports custom event arguments, which enable you to pass arbitrary data to .NET event handlers with custom events.
+
+#### General configuration
+
+Custom events with custom event arguments are generally enabled with the following steps.
+
+1. In JavaScript, define a function for building the custom event argument object from the source event:
+
+   ```javascript
+   function eventArgsCreator(event) { 
+     return {
+       customProperty1: 'any value for property 1',
+       customProperty2: event.srcElement.value
+     };
+   }
+   ```
+
+1. Register the custom event with the above created handler:
+
+   ```javascript
+   Blazor.registerCustomEventType('customevent', {
+     createEventArgs: eventArgsCreator;
+   ```
+
+   > [!NOTE]
+   > The call to `registerCustomEventType` is performed in a JavaScript only once per event.
+
+1. Define a class for the event args:
+
+   ```csharp
+   public class CustomEventArgs : EventArgs{
+       public string CustomProperty1 {get; set;}
+       public string CustomProperty2 {get; set;}
+   }
+   ```
+
+1. Wire up the custom event with the event args by adding an <xref:Microsoft.AspNetCore.Components.EventHandlerAttribute> attribute annotation for the custom event. The class doesn't require any members:
+
+   ```csharp
+   [EventHandler("oncustomevent", typeof(CustomEventArgs), enableStopPropagation: true, enablePreventDefault: true)]
+   static class EventHandlers
+   {
+   }
+   ```
+
+1. Register the event handler on one or more HTML elements. Access the data that was passed in from Javascript in the `HandleCustomEvent` method:
+
+   ```razor
+   <button @oncustomevent="HandleCustomEvent">Handle</button>
+
+   @code
+   {
+       void HandleCustomEvent(CustomEventArgs eventArgs)
+       {
+           // eventArgs.CustomProperty1;
+           // eventArgs.CustomProperty2;
+       }
+   }
+   ```
+
+Whenever the custom event is fired on the DOM, the event handler is called with the data passed from the Javascript.
+
+If you're attempting to fire a custom event, [`bubbles`](https://developer.mozilla.org/docs/Web/API/Event/bubbles) must be enabled by setting its value to `true`. Otherwise, the event doesn't reach the Blazor handler for processing into the C# custom <xref:Microsoft.AspNetCore.Components.EventHandlerAttribute> method. For more information, see [MDN Web Docs: Event bubbling](https://developer.mozilla.org/docs/Web/Guide/Events/Creating_and_triggering_events#event_bubbling).
+
+#### Custom clipboard paste event example
+
+The following example receives a custom clipboard paste event that includes the time of the paste and the user's pasted text.
+
+Declare a custom name (`oncustompaste`) for the event, and a .NET class (`CustomPasteEventArgs`) to hold the event arguments for this event:
+
+`CustomEvents.cs`:
+
+```csharp
+[EventHandler("oncustompaste", typeof(CustomPasteEventArgs), enableStopPropagation: true, enablePreventDefault: true)]
+public static class EventHandlers
+{
+}
+
+public class CustomPasteEventArgs : EventArgs
+{
+    public DateTime EventTimestamp { get; set; }
+    public string PastedData { get; set; }
+}
+```
+
+Add JavaScript code to supply data for the <xref:System.EventArgs> subclass. In the `wwwroot/index.html` or `Pages/_Host.cshtml` file, add the following `<script>` tag and content immediately after the Blazor script (`blazor.webassembly.js` for Blazor WebAssembly or `blazor.server.js` for Blazor Server). The following example only deals with pasting text, but you could use arbitrary JavaScript APIs to deal with users pasting other types of data, such as images.
+
+`wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server) immediately after the Blazor script:
+
+```html
+<script>
+    Blazor.registerCustomEventType('custompaste', {
+        browserEventName: 'paste',
+        createEventArgs: event => {
+            return {
+                eventTimestamp: new Date(),
+                pastedData: event.clipboardData.getData('text')
+            };
+        }
+    });
+</script>
+```
+
+The preceding code tells the browser that when a native paste event occurs:
+
+* Raise a `custompaste` event.
+* Supply the event arguments data using your custom logic.
+
+Event name conventions differ between .NET and JavaScript:
+
+* In .NET, event names are prefixed with "`on`".
+* In JavaScript, event names don't have a prefix.
+
+In a Razor component, attach the custom handler to an element.
+
+`Pages/CustomPasteArguments.razor`:
+
+```razor
+@page "/custom-paste-arguments"
+
+<label>
+    Try pasting into the following text box:
+    <input @oncustompaste="HandleCustomPaste" />
+</label>
+
+<p>
+    @message
+</p>
+
+@code {
+    private string message;
+
+    private void HandleCustomPaste(CustomPasteEventArgs eventArgs)
+    {
+        message = $"At {eventArgs.EventTimestamp.ToShortTimeString()}, " +
+            $"you pasted: {eventArgs.PastedData}";
+    }
+}
+```
+
+::: moniker-end
 
 ## Lambda expressions
 
