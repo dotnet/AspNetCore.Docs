@@ -4,7 +4,7 @@ author: scottaddie
 description: Learn how to optimize static resources in an ASP.NET Core web application by applying bundling and minification techniques.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 09/02/2020
+ms.date: 03/12/2021
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: client-side/bundling-and-minification
 ---
@@ -58,12 +58,11 @@ Browsers are fairly verbose with regard to HTTP request headers. The total bytes
 
 ## Choose a bundling and minification strategy
 
-The MVC and Razor Pages project templates provide a solution for bundling and minification consisting of a JSON configuration file. Third-party tools, such as the [Grunt](xref:client-side/using-grunt) task runner, accomplish the same tasks with a bit more complexity. A third-party tool is a great fit when your development workflow requires processing beyond bundling and minification&mdash;such as linting and image optimization. By using design-time bundling and minification, the minified files are created prior to the app's deployment. Bundling and minifying before deployment provides the advantage of reduced server load. However, it's important to recognize that design-time bundling and minification increases build complexity and only works with static files.
+ASP.NET Core is compatible with [WebOptimizer](https://github.com/ligershark/WebOptimizer), an open-source bundling and minification solutions.  ASP.NET Core does not provide a native bundling and minification solution. For sample projects and instruction see [WebOptimizer](https://github.com/ligershark/WebOptimizer)
+
+The MVC and Razor Pages project templates provide a configuration solution for bundling and minification workflow consisting of a JSON configuration file. Third-party tools, such as the [Grunt](xref:client-side/using-grunt) task runner, accomplish the same tasks with a bit more complexity. A third-party tool is a great fit when your development workflow requires processing beyond bundling and minification&mdash;such as linting and image optimization. By using design-time bundling and minification, the minified files are created prior to the app's deployment. Bundling and minifying before deployment provides the advantage of reduced server load. However, it's important to recognize that design-time bundling and minification increases build complexity and only works with static files.
 
 ## Configure bundling and minification
-
-> [!NOTE]
-> The [BuildBundlerMinifier](https://www.nuget.org/packages/BuildBundlerMinifier) NuGet package needs to be added to your project for this to work.
 
 ::: moniker range="<= aspnetcore-2.0"
 
