@@ -2,6 +2,9 @@ using ContosoUniversity.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace ContosoUniversity.Pages.Instructors
 {
@@ -32,14 +35,6 @@ namespace ContosoUniversity.Pages.Instructors
         public async Task<IActionResult> OnPostAsync(string[] selectedCourses)
         {
             var newInstructor = new Instructor();
-            if (selectedCourses != null)
-            {
-                newInstructor.Courses = new List<Course>();
-                foreach (var course in selectedCourses)
-                {
-                    newInstructor.Courses.Add(new Course { CourseID = int.Parse(course) });
-                }
-            }
 
             if (await TryUpdateModelAsync<Instructor>(
                 newInstructor,
@@ -47,12 +42,31 @@ namespace ContosoUniversity.Pages.Instructors
                 i => i.FirstMidName, i => i.LastName,
                 i => i.HireDate, i => i.OfficeAssignment))
             {
-                _context.Instructors.Add(newInstructor);                
+                _context.Instructors.Add(newInstructor);
                 await _context.SaveChangesAsync();
+                await AddInstructorToCoursesAsync(selectedCourses, newInstructor.ID);
                 return RedirectToPage("./Index");
             }
             PopulateAssignedCourseData(_context, newInstructor);
             return Page();
+        }
+
+        public async Task AddInstructorToCoursesAsync(string[] selectedCourses, int id)
+        {
+            Instructor instructor = await _context.Instructors
+                                        .FirstOrDefaultAsync(m => m.ID == id);
+            if (selectedCourses != null)
+            {
+                foreach (var course in selectedCourses)
+                {
+                    Course Course = await _context.Courses
+                          .Include( c => c.Instructors)
+                          .FirstOrDefaultAsync(m => m.CourseID == int.Parse(course));
+
+                    Course.Instructors.Add(instructor);
+                    await _context.SaveChangesAsync();
+                }
+            }
         }
     }
 }
