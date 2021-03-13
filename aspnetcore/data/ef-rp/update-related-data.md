@@ -146,19 +146,19 @@ Create the *Pages/Instructors/InstructorCoursesPageModel.cs* base class:
 
 The `InstructorCoursesPageModel` is the base class for the Edit and Create page models. `PopulateAssignedCourseData` reads all `Course` entities to populate `AssignedCourseDataList`. For each course, the code sets the `CourseID`, title, and whether or not the instructor is assigned to the course. A [HashSet](/dotnet/api/system.collections.generic.hashset-1) is used for efficient lookups.
 
-Since the Razor page doesn't have a collection of Course entities, the model binder can't automatically update the `CourseAssignments` navigation property. Instead of using the model binder to update the `CourseAssignments` navigation property, you do that in the new `UpdateInstructorCourses` method. Therefore you need to exclude the `CourseAssignments` property from model binding. This doesn't require any change to the code that calls `TryUpdateModel` because you're using the overload with declared properties and `CourseAssignments` isn't in the include list.
+Since the Razor page doesn't have a collection of Course entities, the model binder can't automatically update the `Courses` navigation property. Instead of using the model binder to update the `Courses` navigation property, that's done in the new `UpdateInstructorCourses` method. Therefore you need to exclude the `Courses` property from model binding. This doesn't require any change to the code that calls `TryUpdateModel` because you're using the overload with declared properties and `Courses` isn't in the include list.
 
-If no check boxes were selected, the code in `UpdateInstructorCourses` initializes the `CourseAssignments` navigation property with an empty collection and returns:
+If no check boxes were selected, the code in `UpdateInstructorCourses` initializes the `instructorToUpdate.Courses` with an empty collection and returns:
 
 [!code-csharp[](intro/samples/cu50/Pages/Instructors/InstructorCoursesPageModel.cs?name=snippet_IfNull)]
 
 The code then loops through all courses in the database and checks each course against the ones currently assigned to the instructor versus the ones that were selected in the page. To facilitate efficient lookups, the latter two collections are stored in `HashSet` objects.
 
-If the check box for a course was selected but the course isn't in the `Instructor.CourseAssignments` navigation property, the course is added to the collection in the navigation property.
+If the check box for a course is selected but the course is ***not*** in the `Instructor.Courses` navigation property, the course is added to the collection in the navigation property.
 
 [!code-csharp[](intro/samples/cu50/Pages/Instructors/InstructorCoursesPageModel.cs?name=snippet_UpdateCourses)]
 
-If the check box for a course wasn't selected, but the course is in the `Instructor.CourseAssignments` navigation property, the course is removed from the navigation property.
+If the check box for a course is ***not*** selected, but the course is in the `Instructor.Courses` navigation property, the course is removed from the navigation property.
 
 [!code-csharp[](intro/samples/cu50/Pages/Instructors/InstructorCoursesPageModel.cs?name=snippet_UpdateCoursesElse)]
 
@@ -217,7 +217,7 @@ Update *Pages/Instructors/Delete.cshtml.cs* with the following code:
 
 The preceding code makes the following changes:
 
-* Uses eager loading for the `CourseAssignments` navigation property. `CourseAssignments` must be included or they aren't deleted when the instructor is deleted. To avoid needing to read them, configure cascade delete in the database.
+* Uses eager loading for the `Courses` navigation property. `Courses` must be included or they aren't deleted when the instructor is deleted. To avoid needing to read them, configure cascade delete in the database.
 
 * If the instructor to be deleted is assigned as administrator of any departments, removes the instructor assignment from those departments.
 
