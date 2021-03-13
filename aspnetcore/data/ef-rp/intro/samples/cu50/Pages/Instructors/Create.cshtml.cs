@@ -44,7 +44,10 @@ namespace ContosoUniversity.Pages.Instructors
             {
                 _context.Instructors.Add(newInstructor);
                 await _context.SaveChangesAsync();
-                await AddInstructorToCoursesAsync(selectedCourses, newInstructor.ID);
+                if (selectedCourses != null)
+                {
+                    await AddInstructorToCoursesAsync(selectedCourses, newInstructor.ID);
+                }
                 return RedirectToPage("./Index");
             }
             PopulateAssignedCourseData(_context, newInstructor);
@@ -55,18 +58,17 @@ namespace ContosoUniversity.Pages.Instructors
         {
             Instructor newInstructor = await _context.Instructors
                                         .FirstOrDefaultAsync(m => m.ID == id);
-            if (selectedCourses != null)
-            {
-                foreach (var course in selectedCourses)
-                {
-                    Course Course = await _context.Courses
-                          .Include( c => c.Instructors)
-                          .FirstOrDefaultAsync(m => m.CourseID == int.Parse(course));
 
-                    Course.Instructors.Add(newInstructor);
-                    await _context.SaveChangesAsync();
-                }
+            foreach (var course in selectedCourses)
+            {
+                Course Course = await _context.Courses
+                      .Include(c => c.Instructors)
+                      .FirstOrDefaultAsync(m => m.CourseID == int.Parse(course));
+
+                Course.Instructors.Add(newInstructor);
+                await _context.SaveChangesAsync();
             }
+
         }
     }
 }
