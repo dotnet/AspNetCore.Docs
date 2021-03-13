@@ -53,7 +53,7 @@ namespace ContosoUniversity.Pages.Instructors
 
         public async Task AddInstructorToCoursesAsync(string[] selectedCourses, int id)
         {
-            Instructor instructor = await _context.Instructors
+            Instructor newInstructor = await _context.Instructors
                                         .FirstOrDefaultAsync(m => m.ID == id);
             if (selectedCourses != null)
             {
@@ -63,7 +63,7 @@ namespace ContosoUniversity.Pages.Instructors
                           .Include( c => c.Instructors)
                           .FirstOrDefaultAsync(m => m.CourseID == int.Parse(course));
 
-                    Course.Instructors.Add(instructor);
+                    Course.Instructors.Add(newInstructor);
                     await _context.SaveChangesAsync();
                 }
             }
