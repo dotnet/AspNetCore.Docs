@@ -131,7 +131,7 @@ The `OnGetAsync` method loads related data with the `Include` method. The `Selec
 
 The following code loads related data with the `Select` method:
 
-[!code-csharp[](intro/samples/cu50/Pages/Courses/IndexSelectModel.cshtml.cs?name=snippet_RevisedIndexMethod&highlight=4)]
+[!code-csharp[](intro/samples/cu50/Pages/Courses/IndexSelectModel.cshtml.cs?name=snippet_RevisedIndexMethod&highlight=6)]
 
 The preceding code doesn't return any entity types, therefore no tracking is done. For more information about the EF tracking, see [Tracking vs. No-Tracking Queries](/ef/core/querying/tracking).
 
@@ -237,38 +237,37 @@ The preceding code makes the following changes:
 
   * Updates the `page` directive to `@page "{id:int?}"`. `"{id:int?}"` is a route template. The [route template](xref:fundamentals/routing#route-template-reference) changes integer query strings in the URL to route data. For example, clicking on the **Select** link for an instructor with only the `@page` directive produces a URL like the following:
 
-  `https://localhost:5001/Instructors?id=2`
+    `https://localhost:5001/Instructors?id=2`
 
-  When the page directive is `@page "{id:int?}"`, the URL is:
-
-  `https://localhost:5001/Instructors/2`
+    When the page directive is `@page "{id:int?}"`, the URL is:
+    `https://localhost:5001/Instructors/2`
 
   * Adds an **Office** column that displays `item.OfficeAssignment.Location` only if `item.OfficeAssignment` isn't null. Because this is a one-to-zero-or-one relationship, there might not be a related OfficeAssignment entity.
 
-  ```html
-  @if (item.OfficeAssignment != null)
-  {
-      @item.OfficeAssignment.Location
-  }
-  ```
+    ```html
+    @if (item.OfficeAssignment != null)
+    {
+        @item.OfficeAssignment.Location
+    }
+    ```
 
   * Adds a **Courses** column that displays courses taught by each instructor. See [Explicit line transition](xref:mvc/views/razor#explicit-line-transition) for more about this razor syntax.
   * Adds code that dynamically adds `class="success"` to the `tr` element of the selected instructor and course. This sets a background color for the selected row using a Bootstrap class.
 
-  ```html
-  string selectedRow = "";
-  if (item.CourseID == Model.CourseID)
-  {
-      selectedRow = "success";
-  }
-  <tr class="@selectedRow">
-  ```
+    ```html
+    string selectedRow = "";
+    if (item.CourseID == Model.CourseID)
+    {
+        selectedRow = "success";
+    }
+    <tr class="@selectedRow">
+    ```
 
   * Adds a new hyperlink labeled **Select**. This link sends the selected instructor's ID to the `Index` method and sets a background color.
 
-  ```html
-  <a asp-action="Index" asp-route-id="@item.ID">Select</a> |
-  ```
+    ```html
+    <a asp-action="Index" asp-route-id="@item.ID">Select</a> |
+    ```
 
   * Adds a table of courses for the selected Instructor.
   * Adds a table of student enrollments for the selected course.
