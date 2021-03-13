@@ -20,6 +20,13 @@ namespace ContosoUniversity.Pages.Instructors
         public IActionResult OnGet()
         {
             var instructor = new Instructor();
+            Instructor = new Instructor   // For fast testing, remove after accepted.
+            {
+                FirstMidName = "Jon P",
+                LastName = "Smith",
+                HireDate = DateTime.Now
+            };
+
             instructor.Courses = new List<Course>();
 
             // Provides an empty collection for the foreach loop
@@ -66,9 +73,8 @@ namespace ContosoUniversity.Pages.Instructors
                       .FirstOrDefaultAsync(m => m.CourseID == int.Parse(course));
 
                 Course.Instructors.Add(newInstructor);
-                await _context.SaveChangesAsync();
             }
-
+            await _context.SaveChangesAsync();
         }
     }
 }
