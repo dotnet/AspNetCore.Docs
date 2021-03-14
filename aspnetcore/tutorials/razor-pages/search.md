@@ -111,7 +111,7 @@ The `SelectList` of genres is created by projecting the distinct genres.
 
 ### Add search by genre to the Razor Page
 
-1. Update the *Index.cshtml* [`<form>` element] (https://developer.mozilla.org/docs/Web/HTML/Element/form) as highlighted in the following markup:
+1. Update the *Index.cshtml* [`<form>` element](https://developer.mozilla.org/docs/Web/HTML/Element/form) as highlighted in the following markup:
 
    [!code-cshtml[](razor-pages-start/sample/RazorPagesMovie30/SnapShots/IndexFormGenreNoRating.cshtml?highlight=16-18&range=1-26)]
 
