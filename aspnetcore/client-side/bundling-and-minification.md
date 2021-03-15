@@ -71,9 +71,9 @@ Browsers are fairly verbose regarding HTTP request headers. The total bytes sent
 
 ## Choose a bundling and minification strategy
 
-ASP.NET Core is compatible with WebOptimizer, an open-source bundling and minification solution. For instruction and sample projects using WebOptimizer, see [WebOptimizer](https://github.com/ligershark/WebOptimizer). ASP.NET Core doesn't provide a native bundling and minification solution.
+ASP.NET Core is compatible with WebOptimizer, an open-source bundling and minification solution. For set up instructions and sample projects, see [WebOptimizer](https://github.com/ligershark/WebOptimizer). ASP.NET Core doesn't provide a native bundling and minification solution.
 
-Third-party tools, such as the [Grunt](https://gruntjs.com) task runner, provide a workflow solution for bundling and minification, as well as linting and image optimization. By using design-time bundling and minification, the minified files are created prior to the app's deployment. Bundling and minifying before deployment provides the advantage of reduced server load. However, it's important to recognize that design-time bundling and minification increases build complexity and only works with static files.
+Third-party tools, such as [Gulp](https://gulpjs.com) and [Webpack](https://webpack.js.org), provide workflow automation for bundling and minification, as well as linting and image optimization. By using design-time bundling and minification, the minified files are created prior to the app's deployment. Bundling and minifying before deployment provides the advantage of reduced server load. However, it's important to recognize that design-time bundling and minification increases build complexity and only works with static files.
 
 ## Environment-based bundling and minification
 
@@ -102,7 +102,7 @@ The following `environment` tag renders the unprocessed CSS files when running i
           asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
           asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
     <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
-</environment>```
+</environment>
 ```
 
 ::: moniker-end
