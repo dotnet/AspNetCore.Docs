@@ -58,7 +58,7 @@ Browsers are fairly verbose regarding HTTP request headers. The total bytes sent
 
 ## Choose a bundling and minification strategy
 
-ASP.NET Core is compatible with WebOptimizer, an open-source bundling and minification solution. For instruction and sample projects using WebOptimizer, see [WebOptimizer](https://github.com/ligershark/WebOptimizer). ASP.NET Core does not provide a native bundling and minification solution.
+ASP.NET Core is compatible with WebOptimizer, an open-source bundling and minification solution. For instruction and sample projects using WebOptimizer, see [WebOptimizer](https://github.com/ligershark/WebOptimizer). ASP.NET Core doesn't provide a native bundling and minification solution.
 
 Third-party tools, such as the [Grunt](https://gruntjs.com) task runner, provide a workflow solution for bundling and minification, as well as linting and image optimization. By using design-time bundling and minification, the minified files are created prior to the app's deployment. Bundling and minifying before deployment provides the advantage of reduced server load. However, it's important to recognize that design-time bundling and minification increases build complexity and only works with static files.
 
