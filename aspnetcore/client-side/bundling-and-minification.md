@@ -60,7 +60,7 @@ Browsers are fairly verbose regarding HTTP request headers. The total bytes sent
 
 ASP.NET Core is compatible with WebOptimizer, an open-source bundling and minification solution. For instruction and sample projects using WebOptimizer, see [WebOptimizer](https://github.com/ligershark/WebOptimizer). ASP.NET Core does not provide a native bundling and minification solution.
 
-The MVC and Razor Pages project templates provide a configuration solution for bundling and minification workflow consisting of a JSON configuration file. Third-party tools, such as the [Grunt](xref:client-side/using-grunt) task runner, accomplish the same tasks with a bit more complexity. A third-party tool is a great fit when your development workflow requires processing beyond bundling and minification&mdash;such as linting and image optimization. By using design-time bundling and minification, the minified files are created prior to the app's deployment. Bundling and minifying before deployment provides the advantage of reduced server load. However, it's important to recognize that design-time bundling and minification increases build complexity and only works with static files.
+Third-party tools, such as the [Grunt](https://gruntjs.com) task runner, provide a workflow solution for bundling and minification, as well as linting and image optimization. By using design-time bundling and minification, the minified files are created prior to the app's deployment. Bundling and minifying before deployment provides the advantage of reduced server load. However, it's important to recognize that design-time bundling and minification increases build complexity and only works with static files.
 
 ## Environment-based bundling and minification
 
