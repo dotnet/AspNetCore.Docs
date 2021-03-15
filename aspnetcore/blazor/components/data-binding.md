@@ -5,7 +5,7 @@ description: Learn about data binding features for components and Document Objec
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/08/2021
+ms.date: 03/15/2021
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/components/data-binding
 ---
@@ -123,12 +123,14 @@ Data binding works with a single <xref:System.DateTime> format string using `@bi
 
 ::: moniker-end
 
-In the preceding code, the `<input>` element's field type (`type` attribute) defaults to `text`. `@bind:format` is supported for binding the following .NET types:
+In the preceding code, the `<input>` element's field type (`type` attribute) defaults to `text`.
 
-* <xref:System.DateTime?displayProperty=fullName>
-* <xref:System.DateTime?displayProperty=fullName>?
-* <xref:System.DateTimeOffset?displayProperty=fullName>
-* <xref:System.DateTimeOffset?displayProperty=fullName>?
+Nullable <xref:System.DateTime?displayProperty=fullName> and <xref:System.DateTimeOffset?displayProperty=fullName> are supported:
+
+```csharp
+private DateTime? date;
+private DateTimeOffset? dateOffset;
+```
 
 Specifying a format for the `date` field type isn't recommended because Blazor has built-in support to format dates. In spite of the recommendation, only use the `yyyy-MM-dd` date format for binding to function correctly if a format is supplied with the `date` field type:
 
