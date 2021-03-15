@@ -137,6 +137,5 @@ The following `environment` tag renders the bundled and minified CSS files when 
 
 ## Additional resources
 
-* [Use Grunt](xref:client-side/using-grunt)
 * [Use multiple environments](xref:fundamentals/environments)
 * [Tag Helpers](xref:mvc/views/tag-helpers/intro)
