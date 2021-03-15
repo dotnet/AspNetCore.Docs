@@ -22,7 +22,7 @@ Razor components can be integrated into Razor Pages and MVC apps in a hosted Bla
 
 To set up prerendering for a Blazor WebAssembly app:
 
-1. Host the Blazor WebAssembly app in an ASP.NET Core app. A standalone Blazor WebAssembly app can be added to an ASP.NET Core solution, or you can use a hosted Blazor WebAssembly app created from the Blazor Hosted project template.
+1. Host the Blazor WebAssembly app in an ASP.NET Core app. A standalone Blazor WebAssembly app can be added to an ASP.NET Core solution, or you can use a hosted Blazor WebAssembly app created from the [Blazor WebAssembly project template](xref:blazor/project-structure).
 
 1. Remove the default static `wwwroot/index.html` file from the Blazor WebAssembly client project.
 
@@ -188,6 +188,10 @@ If the app should also style components with the styles in the Blazor WebAssembl
     <link href="BlazorHosted.Client.styles.css" rel="stylesheet" />
 </head>
 ```
+
+## Additional resources
+
+* [Support prerendering with authentication](xref:blazor/security/webassembly/additional-scenarios#support-prerendering-with-authentication)
 
 ::: moniker-end
 

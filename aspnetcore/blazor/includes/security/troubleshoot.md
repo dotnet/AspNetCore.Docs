@@ -12,6 +12,7 @@ no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Bla
   * Depending on the requirements of the scenario, a missing or incorrect Authority, Instance, Tenant ID, Tenant domain, Client ID, or Redirect URI prevents an app from authenticating clients.
   * An incorrect access token scope prevents clients from accessing server web API endpoints.
   * Incorrect or missing server API permissions prevent clients from accessing server web API endpoints.
+  * Running the app at a different port than is configured in the Redirect URI of the Identity Provider's app registration.
   
   Configuration sections of this article's guidance show examples of the correct configuration. Carefully check each section of the article looking for app and IP misconfiguration.
   
@@ -97,7 +98,7 @@ A functioning app may fail immediately after upgrading either the .NET Core SDK 
 
 ### Run the Server app
 
-When testing and troubleshooting a hosted Blazor app, make sure that you're running the app from the **`Server`** project. For example in Visual Studio, confirm that the Server project is highlighted in **Solution Explorer** before you start the app with any of the following approaches:
+When testing and troubleshooting a hosted Blazor solution, make sure that you're running the app from the **`Server`** project. For example in Visual Studio, confirm that the Server project is highlighted in **Solution Explorer** before you start the app with any of the following approaches:
 
 * Select the **Run** button.
 * Use **Debug** > **Start Debugging** from the menu.

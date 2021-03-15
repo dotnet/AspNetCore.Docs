@@ -48,15 +48,17 @@ The sample Dockerfile uses the [Docker multi-stage build feature](https://docs.d
 
 * `dotnet/aspnet`
 
+   The sample uses this image for running the app. The image contains the ASP.NET Core runtime and libraries and is optimized for running apps in production. Designed for speed of deployment and app startup, the image is relatively small, so network performance from Docker Registry to Docker host is optimized. Only the binaries and content needed to run an app are copied to the container. The contents are ready to run, enabling the fastest time from `docker run` to app startup. Dynamic code compilation isn't needed in the Docker model.
+   
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
 * `dotnet/core/aspnet`
 
-::: moniker-end
-
    The sample uses this image for running the app. The image contains the ASP.NET Core runtime and libraries and is optimized for running apps in production. Designed for speed of deployment and app startup, the image is relatively small, so network performance from Docker Registry to Docker host is optimized. Only the binaries and content needed to run an app are copied to the container. The contents are ready to run, enabling the fastest time from `docker run` to app startup. Dynamic code compilation isn't needed in the Docker model.
+   
+::: moniker-end
 
 ## Prerequisites
 
@@ -200,7 +202,7 @@ In some scenarios, you might want to deploy an app to a container by copying its
 
 * Browse to `http://localhost:5000` to see the home page.
 
-To use the manually published app within a Docker container, create a new *Dockerfile* and use the `docker build .` command to build the container.
+To use the manually published app within a Docker container, create a new *Dockerfile* and use the `docker build .` command to build an image.
 
 ::: moniker range=">= aspnetcore-5.0"
 
@@ -210,6 +212,8 @@ WORKDIR /app
 COPY published/aspnetapp.dll ./
 ENTRYPOINT ["dotnet", "aspnetapp.dll"]
 ```
+
+To see the new image use the `docker images` command.
 
 ### The Dockerfile
 
@@ -325,7 +329,7 @@ ENTRYPOINT ["dotnet", "aspnetapp.dll"]
 
 ## Next steps
 
-The Git repository that contains the sample app also includes documentation. For an overview of the resources available in the repository, see [the README file](https://github.com/dotnet/dotnet-docker/blob/master/samples/aspnetapp/README.md). In particular, learn how to implement HTTPS:
+The Git repository that contains the sample app also includes documentation. For an overview of the resources available in the repository, see [the README file](https://github.com/dotnet/dotnet-docker/blob/main/samples/aspnetapp/README.md). In particular, learn how to implement HTTPS:
 
 > [!div class="nextstepaction"]
-> [Developing ASP.NET Core Applications with Docker over HTTPS](https://github.com/dotnet/dotnet-docker/blob/master/samples/run-aspnetcore-https-development.md)
+> [Developing ASP.NET Core Applications with Docker over HTTPS](https://github.com/dotnet/dotnet-docker/blob/main/samples/run-aspnetcore-https-development.md)

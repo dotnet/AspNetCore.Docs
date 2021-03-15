@@ -493,10 +493,6 @@ Attribute routes can also be combined with inheritance. This is powerful combine
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet5)]
 
-Token replacement also applies to route names defined by attribute routes.
-`[Route("[controller]/[action]", Name="[controller]_[action]")]`
-generates a unique route name for each action.
-
 To match the literal token replacement delimiter `[` or  `]`, escape it by repeating the character (`[[` or `]]`).
 
 <a name="routing-token-replacement-transformers-ref-label"></a>
@@ -836,7 +832,7 @@ Public methods on a controller, except those with the [NonAction](xref:Microsoft
 ## Sample code
 
 * [!INCLUDE[](~/includes/MyDisplayRouteInfo.md)]
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/routing/samples/3.x) ([how to download](xref:index#how-to-download-a-sample))
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/routing/samples/3.x) ([how to download](xref:index#how-to-download-a-sample))
 
 [!INCLUDE[](~/includes/dbg-route.md)]
 

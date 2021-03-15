@@ -29,8 +29,8 @@ The guidance in this article applies to the Blazor WebAssembly AAD deployment sc
 
 The article's guidance provides instructions for client and server apps:
 
-* **CLIENT**: Standalone Blazor WebAssembly apps or the *`Client`* app of a hosted Blazor solution.
-* **SERVER**: Standalone ASP.NET Core server API/web API apps or the *`Server`* app of a hosted Blazor solution.
+* **CLIENT**: Standalone Blazor WebAssembly apps or the **`Client`** app of a hosted Blazor solution.
+* **SERVER**: Standalone ASP.NET Core server API/web API apps or the **`Server`** app of a hosted Blazor solution.
 
 ## Scopes
 

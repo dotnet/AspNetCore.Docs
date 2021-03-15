@@ -30,7 +30,7 @@ namespace HttpClientFactorySample.GitHub
         public async Task<IEnumerable<GitHubIssue>> GetAspNetDocsIssues()
         {
             var response = await Client.GetAsync(
-                "/repos/aspnet/AspNetCore.Docs/issues?state=open&sort=created&direction=desc");
+                "/repos/dotnet/AspNetCore.Docs/issues?state=open&sort=created&direction=desc");
 
             response.EnsureSuccessStatusCode();
 
