@@ -1,10 +1,11 @@
+using ContosoUniversity.Data;
 using ContosoUniversity.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
-using System;
 
 namespace ContosoUniversity.Pages.Instructors
 {
@@ -12,9 +13,12 @@ namespace ContosoUniversity.Pages.Instructors
     {
         private readonly ContosoUniversity.Data.SchoolContext _context;
 
-        public CreateModel(ContosoUniversity.Data.SchoolContext context)
+        private readonly ILogger<InstructorCoursesPageModel> _logger;
+
+        public CreateModel(SchoolContext context, ILogger<InstructorCoursesPageModel> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         public IActionResult OnGet()
@@ -41,40 +45,39 @@ namespace ContosoUniversity.Pages.Instructors
 
         public async Task<IActionResult> OnPostAsync(string[] selectedCourses)
         {
-            var newInstructor = new Instructor();
+            Instructor.Courses = new List<Course>();
 
-            if (await TryUpdateModelAsync<Instructor>(
-                newInstructor,
-                "Instructor",
-                i => i.FirstMidName, i => i.LastName,
-                i => i.HireDate, i => i.OfficeAssignment))
-            {
-                _context.Instructors.Add(newInstructor);
-                await _context.SaveChangesAsync();
-                if (selectedCourses != null)
-                {
-                    await AddInstructorToCoursesAsync(selectedCourses, newInstructor.ID);
-                }
-                return RedirectToPage("./Index");
-            }
-            PopulateAssignedCourseData(_context, newInstructor);
-            return Page();
-        }
-
-        public async Task AddInstructorToCoursesAsync(string[] selectedCourses, int id)
-        {
-            Instructor newInstructor = await _context.Instructors
-                                        .FirstOrDefaultAsync(m => m.ID == id);
-
+            // add selected Courses courses to the new instructor
             foreach (var course in selectedCourses)
             {
-                Course Course = await _context.Courses
-                      .Include(c => c.Instructors)
-                      .FirstOrDefaultAsync(m => m.CourseID == int.Parse(course));
-
-                Course.Instructors.Add(newInstructor);
+                var foundCourse = await _context.Courses.FirstOrDefaultAsync(
+                                                 c => c.CourseID == int.Parse(course));
+                if (foundCourse != null)
+                {
+                    Instructor.Courses.Add(foundCourse);
+                }
+                else
+                {
+                    _logger.LogWarning("Course {course} not found", foundCourse);
+                }
             }
-            await _context.SaveChangesAsync();
+
+            try
+            {
+                // Creates a new instructor, with a list of existing courses
+                _context.Instructors.Add(Instructor); //New to EF Core 5 direct many-to-many 
+
+                await _context.SaveChangesAsync();
+
+                return RedirectToPage("./Index");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+            }
+
+            PopulateAssignedCourseData(_context, Instructor);
+            return Page();
         }
     }
 }
