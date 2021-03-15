@@ -5,7 +5,7 @@ description: Learn about advanced scenarios in Blazor, including how to incorpor
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/12/2021
+ms.date: 03/15/2021
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/advanced-scenarios
 ---
@@ -16,9 +16,9 @@ uid: blazor/advanced-scenarios
 <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> provides methods for manipulating components and elements, including building components manually in C# code.
 
 > [!WARNING]
-> Use of <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> to create components is an *advanced scenario*. A malformed component (for example, an unclosed markup tag) can result in undefined behavior. Undefined behavior includes broken content rendering, loss of user features, and compromised security.
+> Use of <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> to create components is an *advanced scenario*. A malformed component (for example, an unclosed markup tag) can result in undefined behavior. Undefined behavior includes broken content rendering, loss of user features, and **_compromised security_**.
 
-Consider the following `PetDetails` component, which can be manually built into another component.
+Consider the following `PetDetails` component, which can be manually rendered in another component.
 
 `Shared/PetDetails.razor`:
 
@@ -34,7 +34,9 @@ Consider the following `PetDetails` component, which can be manually built into 
 
 ::: moniker-end
 
-In the following example, the loop in the `CreateComponent` method generates three `PetDetails` components. In <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> methods with a sequence number, sequence numbers are source code line numbers. The Blazor difference algorithm relies on the sequence numbers corresponding to distinct lines of code, not distinct call invocations. When creating a component with <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> methods, hardcode the arguments for sequence numbers. **Using a calculation or counter to generate the sequence number can lead to poor performance.** For more information, see the [Sequence numbers relate to code line numbers and not execution order](#sequence-numbers-relate-to-code-line-numbers-and-not-execution-order) section.
+In the following `BuiltContent` component, the loop in the `CreateComponent` method generates three `PetDetails` components.
+
+In <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> methods with a sequence number, sequence numbers are source code line numbers. The Blazor difference algorithm relies on the sequence numbers corresponding to distinct lines of code, not distinct call invocations. When creating a component with <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> methods, hardcode the arguments for sequence numbers. **Using a calculation or counter to generate the sequence number can lead to poor performance.** For more information, see the [Sequence numbers relate to code line numbers and not execution order](#sequence-numbers-relate-to-code-line-numbers-and-not-execution-order) section.
 
 `Pages/BuiltContent.razor`:
 
@@ -55,7 +57,7 @@ In the following example, the loop in the `CreateComponent` method generates thr
 
 ### Sequence numbers relate to code line numbers and not execution order
 
-Razor component files (`.razor`) are always compiled. Compilation is a potential advantage over interpreting code because the compile step can be used to inject information that improves app performance at runtime.
+Razor component files (`.razor`) are always compiled. Executing compiled code has a potential advantage over interpreting code because the compile step that yields the compiled code can be used to inject information that improves app performance at runtime.
 
 A key example of these improvements involves *sequence numbers*. Sequence numbers indicate to the runtime which outputs came from which distinct and ordered lines of code. The runtime uses this information to generate efficient tree diffs in linear time, which is far faster than is normally possible for a general tree diff algorithm.
 
