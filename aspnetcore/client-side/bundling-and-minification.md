@@ -62,58 +62,6 @@ ASP.NET Core is compatible with WebOptimizer, an open-source bundling and minifi
 
 The MVC and Razor Pages project templates provide a configuration solution for bundling and minification workflow consisting of a JSON configuration file. Third-party tools, such as the [Grunt](xref:client-side/using-grunt) task runner, accomplish the same tasks with a bit more complexity. A third-party tool is a great fit when your development workflow requires processing beyond bundling and minification&mdash;such as linting and image optimization. By using design-time bundling and minification, the minified files are created prior to the app's deployment. Bundling and minifying before deployment provides the advantage of reduced server load. However, it's important to recognize that design-time bundling and minification increases build complexity and only works with static files.
 
-## Configure bundling and minification
-
-::: moniker range="<= aspnetcore-2.0"
-
-In ASP.NET Core 2.0 or earlier, the MVC and Razor Pages project templates provide a *bundleconfig.json* configuration file that defines the options for each bundle:
-
-::: moniker-end
-
-::: moniker range=">= aspnetcore-2.1"
-
-In ASP.NET Core 2.1 or later, add a new JSON file, named *bundleconfig.json*, to the MVC or Razor Pages project root. Include the following JSON in that file as a starting point:
-
-::: moniker-end
-
-[!code-json[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/bundleconfig.json)]
-
-The *bundleconfig.json* file defines the options for each bundle. In the preceding example, a single bundle configuration is defined for the custom JavaScript (*wwwroot/js/site.js*) and stylesheet (*wwwroot/css/site.css*) files.
-
-Configuration options include:
-
-* `outputFileName`: The name of the bundle file to output. Can contain a relative path from the *bundleconfig.json* file. **required**
-* `inputFiles`: An array of files to bundle together. These are relative paths to the configuration file. **optional**, *an empty value results in an empty output file. [globbing](https://www.tldp.org/LDP/abs/html/globbingref.html) patterns are supported.
-* `minify`: The minification options for the output type. **optional**, *default - `minify: { enabled: true }`*
-  * Configuration options are available per output file type.
-    * [CSS Minifier](https://github.com/madskristensen/BundlerMinifier/wiki/cssminifier)
-    * [JavaScript Minifier](https://github.com/madskristensen/BundlerMinifier/wiki/JavaScript-Minifier-settings)
-    * [HTML Minifier](https://github.com/madskristensen/BundlerMinifier/wiki)
-* `includeInProject`: Flag indicating whether to add generated files to project file. **optional**, *default - false*
-* `sourceMap`: Flag indicating whether to generate a source map for the bundled file. **optional**, *default - false*
-* `sourceMapRootPath`: The root path for storing the generated source map file.
-
-## Add files to workflow
-
-Consider an example in which an extra *custom.css* file is added resembling the following:
-
-[!code-css[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/wwwroot/css/custom.css)]
-
-To minify *custom.css* and bundle it with *site.css* into a *site.min.css* file, add the relative path to *bundleconfig.json*:
-
-[!code-json[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/bundleconfig2.json?highlight=6)]
-
-> [!NOTE]
-> Alternatively, the following globbing pattern could be used:
->
-> ```json
-> "inputFiles": ["wwwroot/**/!(*.min).css" ]
-> ```
->
-> This globbing pattern matches all CSS files and excludes the minified file pattern.
-
-Build the application. Open *site.min.css* and notice the content of *custom.css* is appended to the end of the file.
-
 ## Environment-based bundling and minification
 
 As a best practice, the bundled and minified files of your app should be used in a production environment. During development, the original files make for easier debugging of the app.
