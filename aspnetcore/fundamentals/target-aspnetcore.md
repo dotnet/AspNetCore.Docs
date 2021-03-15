@@ -96,17 +96,15 @@ In the preceding example:
 
 ### Only support the Blazor Server hosting model
 
-Class libraries rarely only support [Blazor Server](xref:blazor/hosting-models#blazor-server) apps. To only support Razor component consumption from Blazor Server projects, target .NET 5.
+Class libraries rarely only support [Blazor Server](xref:blazor/hosting-models#blazor-server) apps. If the class library requires [Blazor Server](xref:blazor/hosting-models#blazor-server)-specific features, such as access to <xref:Microsoft.AspNetCore.Components.Server.Circuits.CircuitHandler>s or <xref:Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage>, or uses ASP.NET Core-specific features, such as middleware, controllers, or Razor Pages in addition to Razor components:
 
-If the class library requires [Blazor Server](xref:blazor/hosting-models#blazor-server)-specific features, such as access to <xref:Microsoft.AspNetCore.Components.Server.Circuits.CircuitHandler>s or <xref:Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage>, or uses ASP.NET Core-specific features, such as middleware, controllers, or Razor Pages in addition to Razor components:
-
-* Specify the library supports pages and views when the project is created with the **Support pages and views** check box (Visual Studio) or `--support-pages-and-views` option with the `dotnet new` command:
+* Specify that the library supports pages and views when the project is created with the **Support pages and views** check box (Visual Studio) or `--support-pages-and-views` option with the `dotnet new` command:
 
   ```dotnetcli
   dotnet new razorclasslib --support-pages-and-views true
   ```
 
-* Add a framework reference to ASP.NET Core, as the following example shows:
+* Only provide a framework reference to ASP.NET Core, as the following example shows:
 
   ```xml
   <Project Sdk="Microsoft.NET.Sdk.Razor">
