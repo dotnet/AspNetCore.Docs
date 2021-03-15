@@ -98,7 +98,7 @@ The following `environment` tag renders the bundled and minified CSS files when 
 
 ## Consume bundleconfig.json from Gulp
 
-There are cases in which an app's bundling and minification workflow requires additional processing. Examples include image optimization, cache busting, and CDN asset processing. To satisfy these requirements, you can convert the bundling and minification workflow to use Gulp.
+There are cases in which an app's bundling and minification workflow requires additional processing. Examples include image optimization, cache busting, and CDN asset processing. To satisfy these requirements, convert the bundling and minification workflow to use Gulp.
 
 ### Manually convert the bundling and minification workflow to use Gulp
 
