@@ -30,11 +30,24 @@ Minification removes unnecessary characters from code without altering functiona
 
 Consider the following JavaScript function:
 
-[!code-javascript[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/wwwroot/js/site.js)]
+```javascript
+AddAltToImg = function (imageTagAndImageID, imageContext) {
+    ///<signature>
+    ///<summary> Adds an alt tab to the image
+    // </summary>
+    //<param name="imgElement" type="String">The image selector.</param>
+    //<param name="ContextForImage" type="String">The image context.</param>
+    ///</signature>
+    var imageElement = $(imageTagAndImageID, imageContext);
+    imageElement.attr('alt', imageElement.attr('id').replace(/ID/, ''));
+}
+```
 
 Minification reduces the function to the following:
 
-[!code-javascript[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/wwwroot/js/site.min.js)]
+```javascript
+AddAltToImg=function(t,a){var r=$(t,a);r.attr("alt",r.attr("id").replace(/ID/,""))};
+```
 
 In addition to removing the comments and unnecessary whitespace, the following parameter and variable names were renamed as follows:
 
@@ -72,13 +85,25 @@ The following `environment` tag renders the unprocessed CSS files when running i
 
 ::: moniker range=">= aspnetcore-2.0"
 
-[!code-cshtml[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/Pages/_Layout.cshtml?highlight=3&range=21-24)]
+```cshtml
+<environment include="Development">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</environment>
+```
 
 ::: moniker-end
 
 ::: moniker range="<= aspnetcore-1.1"
 
-[!code-cshtml[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/Pages/_Layout.cshtml?highlight=3&range=9-12)]
+```cshtml
+<environment names="Staging,Production">
+    <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
+          asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+          asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+    <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+</environment>```
+```
 
 ::: moniker-end
 
@@ -86,67 +111,29 @@ The following `environment` tag renders the bundled and minified CSS files when 
 
 ::: moniker range=">= aspnetcore-2.0"
 
-[!code-cshtml[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/Pages/_Layout.cshtml?highlight=5&range=25-30)]
+```cshtml
+<environment exclude="Development">
+    <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
+          asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+          asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+    <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+</environment>
+```
 
 ::: moniker-end
 
 ::: moniker range="<= aspnetcore-1.1"
 
-[!code-cshtml[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/Pages/_Layout.cshtml?highlight=3&range=13-18)]
+```cshtml
+<environment names="Staging,Production">
+    <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
+          asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+          asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+    <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+</environment>
+```
 
 ::: moniker-end
-
-## Consume bundleconfig.json from Gulp
-
-There are cases in which an app's bundling and minification workflow requires additional processing. Examples include image optimization, cache busting, and CDN asset processing. To satisfy these requirements, convert the bundling and minification workflow to use Gulp.
-
-### Manually convert the bundling and minification workflow to use Gulp
-
-Add a *package.json* file, with the following `devDependencies`, to the project root:
-
-> [!WARNING]
-> The `gulp-uglify` module doesn't support ECMAScript (ES) 2015 / ES6 and later. Install [gulp-terser](https://www.npmjs.com/package/gulp-terser) instead of `gulp-uglify` to use ES2015 / ES6 or later.
-
-[!code-json[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/package.json?range=5-13)]
-
-Install the dependencies by running the following command at the same level as *package.json*:
-
-```bash
-npm i
-```
-
-Install the Gulp CLI as a global dependency:
-
-```bash
-npm i -g gulp-cli
-```
-
-Copy the *gulpfile.js* file below to the project root:
-
-[!code-javascript[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/gulpfile.js?range=1-11,14-)]
-
-### Run Gulp tasks
-
-To trigger the Gulp minification task before the project builds in Visual Studio:
-
-1. Install the [BuildBundlerMinifier](https://www.nuget.org/packages/BuildBundlerMinifier) NuGet package.
-1. Add the following [MSBuild Target](/visualstudio/msbuild/msbuild-targets) to the project file:
-
-    [!code-xml[](../client-side/bundling-and-minification/samples/BuildBundlerMinifierApp/BuildBundlerMinifierApp.csproj?range=14-16)]
-
-In this example, any tasks defined within the `MyPreCompileTarget` target run before the predefined `Build` target. Output similar to the following appears in Visual Studio's Output window:
-
-```console
-1>------ Build started: Project: BuildBundlerMinifierApp, Configuration: Debug Any CPU ------
-1>BuildBundlerMinifierApp -> C:\BuildBundlerMinifierApp\bin\Debug\netcoreapp2.0\BuildBundlerMinifierApp.dll
-1>[14:17:49] Using gulpfile C:\BuildBundlerMinifierApp\gulpfile.js
-1>[14:17:49] Starting 'min:js'...
-1>[14:17:49] Starting 'min:css'...
-1>[14:17:49] Starting 'min:html'...
-1>[14:17:49] Finished 'min:js' after 83 ms
-1>[14:17:49] Finished 'min:css' after 88 ms
-========== Build: 1 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========
-```
 
 ## Additional resources
 
