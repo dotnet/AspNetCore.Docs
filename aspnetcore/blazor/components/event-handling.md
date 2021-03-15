@@ -5,16 +5,22 @@ description: Learn about Blazor's event handling features, including event argum
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/11/2021
+ms.date: 03/15/2021
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/components/event-handling
 ---
 # ASP.NET Core Blazor event handling
 
-Specify delegate event handlers in Razor component markup with [`@on{EVENT}={DELEGATE}`](xref:mvc/views/razor#onevent) with the following placeholder values:
+Specify delegate event handlers in Razor component markup with [`@on{DOM EVENT}="{DELEGATE}"`](xref:mvc/views/razor#onevent) Razor syntax:
 
-* `{EVENT}` is a [Document Object Model (DOM)](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction) event (for example, `@onclick`).
-* `{DELEGATE}` is the delegate-typed value.
+* The `{DOM EVENT}` placeholder is a [Document Object Model (DOM) event](https://developer.mozilla.org/docs/Web/Events) (for example, `onclick`).
+* The `{DELEGATE}` placeholder is the C# delegate handler.
+
+Event handling characteristics include the following:
+
+* Asynchronous delegate event handlers that return a <xref:System.Threading.Tasks.Task> are supported.
+* Delegate event handlers automatically trigger a UI render, so there's no need to manually call [StateHasChanged](xref:blazor/components/lifecycle#state-changes).
+* Exceptions are logged.
 
 The following code:
 
@@ -62,8 +68,6 @@ The following code:
 }
 ```
 
-Event handlers can also be asynchronous and return a <xref:System.Threading.Tasks.Task>. There's no need to manually call [StateHasChanged](xref:blazor/components/lifecycle#state-changes). Exceptions are logged when they occur.
-
 In the following example, `UpdateHeading`:
 
 * Is called asynchronously when the button is selected.
@@ -107,7 +111,7 @@ In the following example, `UpdateHeading`:
 
 ::: moniker-end
 
-For some events, event argument types are permitted. Specifying an event parameter in an event method definition is only necessary if the event type is used in the method. In the following example, the `MouseEventArgs` event argument is used in the `ReportPointerLocation` method to set message text.
+For events that support an event argument type, specifying an event parameter in the event method definition is only necessary if the event type is used in the method. In the following example, <xref:Microsoft.AspNetCore.Components.Web.MouseEventArgs> is used in the `ReportPointerLocation` method to set message text that reports the mouse coordinates when the user selects a button in the UI.
 
 `Pages/EventHandlerExample3.razor`:
 
@@ -204,26 +208,30 @@ Custom events with custom event arguments are generally enabled with the followi
    }
    ```
 
-1. Register the custom event with the above created handler:
+1. Register the custom event with the preceding handler in `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server) immediately after the Blazor script:
 
-   ```javascript
-   Blazor.registerCustomEventType('customevent', {
-     createEventArgs: eventArgsCreator;
+   ```html
+   <script>
+       Blazor.registerCustomEventType('customevent', {
+           createEventArgs: eventArgsCreator;
+       });
+   </script>
    ```
 
    > [!NOTE]
-   > The call to `registerCustomEventType` is performed in a JavaScript only once per event.
+   > The call to `registerCustomEventType` is performed in a script only once per event.
 
-1. Define a class for the event args:
+1. Define a class for the event arguments:
 
    ```csharp
-   public class CustomEventArgs : EventArgs{
+   public class CustomEventArgs : EventArgs
+   {
        public string CustomProperty1 {get; set;}
        public string CustomProperty2 {get; set;}
    }
    ```
 
-1. Wire up the custom event with the event args by adding an <xref:Microsoft.AspNetCore.Components.EventHandlerAttribute> attribute annotation for the custom event. The class doesn't require any members:
+1. Wire up the custom event with the event arguments by adding an <xref:Microsoft.AspNetCore.Components.EventHandlerAttribute> attribute annotation for the custom event. The class doesn't require members:
 
    ```csharp
    [EventHandler("oncustomevent", typeof(CustomEventArgs), enableStopPropagation: true, enablePreventDefault: true)]
@@ -232,7 +240,7 @@ Custom events with custom event arguments are generally enabled with the followi
    }
    ```
 
-1. Register the event handler on one or more HTML elements. Access the data that was passed in from Javascript in the `HandleCustomEvent` method:
+1. Register the event handler on one or more HTML elements. Access the data that was passed in from Javascript in the delegate handler method:
 
    ```razor
    <button @oncustomevent="HandleCustomEvent">Handle</button>
@@ -241,8 +249,8 @@ Custom events with custom event arguments are generally enabled with the followi
    {
        void HandleCustomEvent(CustomEventArgs eventArgs)
        {
-           // eventArgs.CustomProperty1;
-           // eventArgs.CustomProperty2;
+           // eventArgs.CustomProperty1
+           // eventArgs.CustomProperty2
        }
    }
    ```
@@ -255,12 +263,13 @@ If you're attempting to fire a custom event, [`bubbles`](https://developer.mozil
 
 The following example receives a custom clipboard paste event that includes the time of the paste and the user's pasted text.
 
-Declare a custom name (`oncustompaste`) for the event, and a .NET class (`CustomPasteEventArgs`) to hold the event arguments for this event:
+Declare a custom name (`oncustompaste`) for the event and a .NET class (`CustomPasteEventArgs`) to hold the event arguments for this event:
 
 `CustomEvents.cs`:
 
 ```csharp
-[EventHandler("oncustompaste", typeof(CustomPasteEventArgs), enableStopPropagation: true, enablePreventDefault: true)]
+[EventHandler("oncustompaste", typeof(CustomPasteEventArgs), 
+    enableStopPropagation: true, enablePreventDefault: true)]
 public static class EventHandlers
 {
 }
@@ -272,7 +281,7 @@ public class CustomPasteEventArgs : EventArgs
 }
 ```
 
-Add JavaScript code to supply data for the <xref:System.EventArgs> subclass. In the `wwwroot/index.html` or `Pages/_Host.cshtml` file, add the following `<script>` tag and content immediately after the Blazor script (`blazor.webassembly.js` for Blazor WebAssembly or `blazor.server.js` for Blazor Server). The following example only deals with pasting text, but you could use arbitrary JavaScript APIs to deal with users pasting other types of data, such as images.
+Add JavaScript code to supply data for the <xref:System.EventArgs> subclass. In the `wwwroot/index.html` or `Pages/_Host.cshtml` file, add the following `<script>` tag and content immediately after the Blazor script. The following example only handles pasting text, but you could use arbitrary JavaScript APIs to deal with users pasting other types of data, such as images.
 
 `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server) immediately after the Blazor script:
 
@@ -290,7 +299,7 @@ Add JavaScript code to supply data for the <xref:System.EventArgs> subclass. In 
 </script>
 ```
 
-The preceding code tells the browser that when a native paste event occurs:
+The preceding code tells the browser that when a native [`paste`](https://developer.mozilla.org/docs/Web/API/Element/paste_event) event occurs:
 
 * Raise a `custompaste` event.
 * Supply the event arguments data using your custom logic.
@@ -463,7 +472,7 @@ Prefer the strongly typed <xref:Microsoft.AspNetCore.Components.EventCallback%60
 
 ## Prevent default actions
 
-Use the [`@on{EVENT}:preventDefault`](xref:mvc/views/razor#oneventpreventdefault) directive attribute to prevent the default action for an event, where the `{EVENT}` placeholder is a [Document Object Model (DOM)](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction) event.
+Use the [`@on{DOM EVENT}:preventDefault`](xref:mvc/views/razor#oneventpreventdefault) directive attribute to prevent the default action for an event, where the `{DOM EVENT}` placeholder is a [Document Object Model (DOM) event](https://developer.mozilla.org/docs/Web/Events).
 
 When a key is selected on an input device and the element focus is on a text box, a browser normally displays the key's character in the text box. In the following example, the default behavior is prevented by specifying the `@onkeydown:preventDefault` directive attribute ([`keydown`](https://developer.mozilla.org/docs/Web/API/Document/keydown_event)). When the focus is on the `<input>` element, the counter increments with the key sequence <kbd>Shift</kbd>+<kbd>+</kbd>. The `+` character isn't assigned to the `<input>` element's value.
 
@@ -489,9 +498,9 @@ When a key is selected on an input device and the element focus is on a text box
 }
 ```
 
-Specifying the `@on{EVENT}:preventDefault` attribute without a value is equivalent to `@on{EVENT}:preventDefault="true"`.
+Specifying the `@on{DOM EVENT}:preventDefault` attribute without a value is equivalent to `@on{DOM EVENT}:preventDefault="true"`.
 
-The value of the attribute can also be an expression. In the following example, `shouldPreventDefault` is a `bool` field set to either `true` or `false`:
+An expression is also a permitted value of the attribute. In the following example, `shouldPreventDefault` is a `bool` field set to either `true` or `false`:
 
 ```razor
 <input @onkeydown:preventDefault="shouldPreventDefault" />
@@ -505,7 +514,7 @@ The value of the attribute can also be an expression. In the following example, 
 
 ## Stop event propagation
 
-Use the [`@on{EVENT}:stopPropagation`](xref:mvc/views/razor#oneventstoppropagation) directive attribute to stop event propagation, where the `{EVENT}` placeholder is a [Document Object Model (DOM)](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction) event.
+Use the [`@on{DOM EVENT}:stopPropagation`](xref:mvc/views/razor#oneventstoppropagation) directive attribute to stop event propagation, where the `{DOM EVENT}` placeholder is a [Document Object Model (DOM) event](https://developer.mozilla.org/docs/Web/Events).
 
 In the following example, selecting the check box prevents click events from the second child `<div>` from propagating to the parent `<div>`. Since propagated click events normally fire the `OnSelectParentDiv` method, selecting the second child `<div>` results in the parent div message appearing unless the check box is selected.
 
