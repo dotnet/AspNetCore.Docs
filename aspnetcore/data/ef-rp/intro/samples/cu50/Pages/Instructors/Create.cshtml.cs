@@ -52,7 +52,7 @@ namespace ContosoUniversity.Pages.Instructors
                 }
                 else
                 {
-                    _logger.LogWarning("Course {course} not found", foundCourse);
+                    _logger.LogWarning("Course {course} not found", course);
                 }
             }
 
