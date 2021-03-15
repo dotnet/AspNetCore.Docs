@@ -45,16 +45,17 @@ namespace ContosoUniversity.Pages.Instructors
 
         public async Task<IActionResult> OnPostAsync(string[] selectedCourses)
         {
-            Instructor.Courses = new List<Course>();
+            var newInstructor = new Instructor();
+            newInstructor.Courses = new List<Course>();
 
-            // add selected Courses courses to the new instructor
+            // Add selected Courses courses to the new instructor.
             foreach (var course in selectedCourses)
             {
                 var foundCourse = await _context.Courses.FirstOrDefaultAsync(
                                                  c => c.CourseID == int.Parse(course));
                 if (foundCourse != null)
                 {
-                    Instructor.Courses.Add(foundCourse);
+                    newInstructor.Courses.Add(foundCourse);
                 }
                 else
                 {
@@ -64,11 +65,16 @@ namespace ContosoUniversity.Pages.Instructors
 
             try
             {
-                // Creates a new instructor, with a list of existing courses
-                _context.Instructors.Add(Instructor); //New to EF Core 5 direct many-to-many 
-
-                await _context.SaveChangesAsync();
-
+                if (await TryUpdateModelAsync<Instructor>(
+                                newInstructor,
+                                "Instructor",
+                                i => i.FirstMidName, i => i.LastName,
+                                i => i.HireDate, i => i.OfficeAssignment))
+                {
+                    _context.Instructors.Add(newInstructor);
+                    await _context.SaveChangesAsync();
+                    return RedirectToPage("./Index");
+                }
                 return RedirectToPage("./Index");
             }
             catch (Exception ex)
