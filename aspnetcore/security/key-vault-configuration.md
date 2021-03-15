@@ -18,7 +18,7 @@ This document explains how to use the [Azure Key Vault](https://azure.microsoft.
 * Controlling access to sensitive configuration data.
 * Meeting the requirement for FIPS 140-2 Level 2 validated Hardware Security Modules (HSMs) when storing configuration data.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/key-vault-configuration/samples) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/key-vault-configuration/samples) ([how to download](xref:index%23how-to-download-a-sample))
 
 ## Packages
 
@@ -34,7 +34,7 @@ The sample app runs in either of two modes determined by the `#define` preproces
 * `Certificate`: Demonstrates using an Azure Key Vault Client ID and X.509 certificate to access secrets stored in Azure Key Vault. This version of the sample can be run from any location, deployed to Azure App Service or any host capable of serving an ASP.NET Core app.
 * `Managed`: Demonstrates how to use [Managed identities for Azure resources](/azure/active-directory/managed-identities-azure-resources/overview) to authenticate the app to Azure Key Vault with Azure Active Directory (AD) authentication without credentials stored in the app's code or configuration. When using managed identities to authenticate, an Azure AD Application ID and Password (Client Secret) aren't required. The `Managed` version of the sample must be deployed to Azure. Follow the guidance in the [Use the Managed identities for Azure resources](%23use-managed-identities-for-azure-resources) section.
 
-For more information on how to configure a sample app using preprocessor directives (`#define`), see <xref:index#preprocessor-directives-in-sample-code>.
+For more information on how to configure a sample app using preprocessor directives (`#define`), see <xref:index%23preprocessor-directives-in-sample-code>.
 
 ## Secret storage in the Development environment
 
@@ -50,13 +50,13 @@ Secret Manager requires a `<UserSecretsId>` property in the app's project file. 
 
 Secrets are created as name-value pairs. Hierarchical values (configuration sections) use a `:` (colon) as a separator in [ASP.NET Core configuration](xref:fundamentals/configuration/index) key names.
 
-Secret Manager is used from a command shell opened to the project's [content root](xref:fundamentals/index#content-root), where `{SECRET NAME}` is the name and `{SECRET VALUE}` is the value:
+Secret Manager is used from a command shell opened to the project's [content root](xref:fundamentals/index%23content-root), where `{SECRET NAME}` is the name and `{SECRET VALUE}` is the value:
 
 ```dotnetcli
 dotnet user-secrets set "{SECRET NAME}" "{SECRET VALUE}"
 ```
 
-Execute the following commands in a command shell from the project's [content root](xref:fundamentals/index#content-root) to set the secrets for the sample app:
+Execute the following commands in a command shell from the project's [content root](xref:fundamentals/index%23content-root) to set the secrets for the sample app:
 
 ```dotnetcli
 dotnet user-secrets set "SecretName" "secret_value_1_dev"
@@ -283,7 +283,7 @@ When this approach is implemented:
 
 The provider can read configuration values into an array for binding to a POCO array.
 
-When reading from a configuration source that allows keys to contain colon (`:`) separators, a numeric key segment is used to distinguish the keys that make up an array (`:0:`, `:1:`, &hellip; `:{n}:`). For more information, see [Configuration: Bind an array to a class](xref:fundamentals/configuration/index#bind-an-array-to-a-class).
+When reading from a configuration source that allows keys to contain colon (`:`) separators, a numeric key segment is used to distinguish the keys that make up an array (`:0:`, `:1:`, &hellip; `:{n}:`). For more information, see [Configuration: Bind an array to a class](xref:fundamentals/configuration/index%23bind-an-array-to-a-class).
 
 Azure Key Vault keys can't use a colon as a separator. The approach described in this document uses double dashes (`--`) as a separator for hierarchical values (sections). Array keys are stored in Azure Key Vault with double dashes and numeric key segments (`--0--`, `--1--`, &hellip; `--{n}--`).
 
@@ -364,7 +364,7 @@ This document explains how to use the [Microsoft Azure Key Vault](https://azure.
 * Controlling access to sensitive configuration data.
 * Meeting the requirement for FIPS 140-2 Level 2 validated Hardware Security Modules (HSMs) when storing configuration data.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/key-vault-configuration/samples) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/key-vault-configuration/samples) ([how to download](xref:index%23how-to-download-a-sample))
 
 ## Packages
 
@@ -377,7 +377,7 @@ The sample app runs in either of two modes determined by the `#define` preproces
 * `Certificate`: Demonstrates using an Azure Key Vault Client ID and X.509 certificate to access secrets stored in Azure Key Vault. This version of the sample can be run from any location, deployed to Azure App Service or any host capable of serving an ASP.NET Core app.
 * `Managed`: Demonstrates using [Managed identities for Azure resources](/azure/active-directory/managed-identities-azure-resources/overview) to authenticate the app to Azure Key Vault with Azure Active Directory (AD) authentication without credentials stored in the app's code or configuration. When using managed identities to authenticate, an Azure AD Application ID and Password (Client Secret) aren't required. The `Managed` version of the sample must be deployed to Azure. Follow the guidance in the [Use the Managed identities for Azure resources](#use-managed-identities-for-azure-resources) section.
 
-For more information on how to configure a sample app using preprocessor directives (`#define`), see <xref:index#preprocessor-directives-in-sample-code>.
+For more information on how to configure a sample app using preprocessor directives (`#define`), see <xref:index%23preprocessor-directives-in-sample-code>.
 
 ## Secret storage in the Development environment
 
@@ -393,13 +393,13 @@ Secret Manager requires a `<UserSecretsId>` property in the app's project file. 
 
 Secrets are created as name-value pairs. Hierarchical values (configuration sections) use a `:` (colon) as a separator in [ASP.NET Core configuration](xref:fundamentals/configuration/index) key names.
 
-Secret Manager is used from a command shell opened to the project's [content root](xref:fundamentals/index#content-root), where `{SECRET NAME}` is the name and `{SECRET VALUE}` is the value:
+Secret Manager is used from a command shell opened to the project's [content root](xref:fundamentals/index%23content-root), where `{SECRET NAME}` is the name and `{SECRET VALUE}` is the value:
 
 ```dotnetcli
 dotnet user-secrets set "{SECRET NAME}" "{SECRET VALUE}"
 ```
 
-Execute the following commands in a command shell from the project's [content root](xref:fundamentals/index#content-root) to set the secrets for the sample app:
+Execute the following commands in a command shell from the project's [content root](xref:fundamentals/index%23content-root) to set the secrets for the sample app:
 
 ```dotnetcli
 dotnet user-secrets set "SecretName" "secret_value_1_dev"
@@ -609,7 +609,7 @@ When this approach is implemented:
 
 The provider can read configuration values into an array for binding to a POCO array.
 
-When reading from a configuration source that allows keys to contain colon (`:`) separators, a numeric key segment is used to distinguish the keys that make up an array (`:0:`, `:1:`, &hellip; `:{n}:`). For more information, see [Configuration: Bind an array to a class](xref:fundamentals/configuration/index#bind-an-array-to-a-class).
+When reading from a configuration source that allows keys to contain colon (`:`) separators, a numeric key segment is used to distinguish the keys that make up an array (`:0:`, `:1:`, &hellip; `:{n}:`). For more information, see [Configuration: Bind an array to a class](xref:fundamentals/configuration/index%23bind-an-array-to-a-class).
 
 Azure Key Vault keys can't use a colon as a separator. The approach described in this document uses double dashes (`--`) as a separator for hierarchical values (sections). Array keys are stored in Azure Key Vault with double dashes and numeric key segments (`--0--`, `--1--`, &hellip; `--{n}--`).
 
