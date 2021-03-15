@@ -24,13 +24,6 @@ namespace ContosoUniversity.Pages.Instructors
         public IActionResult OnGet()
         {
             var instructor = new Instructor();
-            Instructor = new Instructor   // For fast testing, remove after accepted.
-            {
-                FirstMidName = "Jon P",
-                LastName = "Smith",
-                HireDate = DateTime.Now
-            };
-
             instructor.Courses = new List<Course>();
 
             // Provides an empty collection for the foreach loop
