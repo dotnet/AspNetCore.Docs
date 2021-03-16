@@ -94,10 +94,101 @@ When using generic-typed components, the type parameter is inferred if possible.
 
 ::: moniker-end
 
-## Generic type constraints
+## Infer generic types based on ancestor components
+
+::: moniker range=">= aspnetcore-5.0"
+
+Ancestor components must opt in to this behavior. An ancestor component can cascade a type parameter by name to descendants using the `CascadingTypeParameter` attribute. This attribute allows a generic type inference to use the specified type parameter automatically with descendants that have a type parameter with the same name.
+
+For example, define `Grid` and `Column` components.
+
+`Shared/Grid.razor`:
+
+```razor
+@typeparam TItem
+@attribute [CascadingTypeParameter(nameof(TItem))]
+
+<table class="table">
+    <thead>
+        <tr>
+            @ChildContent
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Items)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Quantity</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    [Parameter]
+    public IEnumerable<TItem> Items { get; set; }
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+}
+```
+
+`Shared/Column.razor`:
+
+```razor
+@typeparam TItem
+
+<th>@Title</th>
+
+@code {
+    [Parameter]
+    public string Title { get; set; }
+}
+```
+
+Use the `Grid` and `Column` components.
+
+`Pages/GenericCascadedType.razor`:
+
+```razor
+@page "/generic-cascaded-type"
+
+<Grid Items="@GetSaleRecords()">
+    <Column Title="Product name" />
+    <Column Title="Number of sales" />
+</Grid>
+
+@code {
+    private IEnumerable<SaleRecord> GetSaleRecords()
+    {
+        return new List<SaleRecord>()
+            {
+                new SaleRecord() { Name = "Product 1", Quantity = 100 },
+                new SaleRecord() { Name = "Product 2", Quantity = 200 },
+                new SaleRecord() { Name = "Product 3", Quantity = 50 },
+            };
+    }
+
+    private class SaleRecord
+    {
+        public string Name { get; set; }
+        public int Quantity { get; set; }
+    }
+}
+```
 
 > [!NOTE]
-> Generic type constraints will be supported in a future release. For more information, see [Allow generic type constraints (dotnet/aspnetcore #8433)](https://github.com/dotnet/aspnetcore/issues/8433).
+> The Razor support in Visual Studio Code has not yet been updated to support this feature, so you may get incorrect errors even though the project correctly builds. This will be addressed in an upcoming tooling release.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+> [!NOTE]
+> Generic type constraints are supported in ASP.NET Core 6.0. For more information, see [the 6.0 version of this article](?view=aspnetcore-6.0).
+
+::: moniker-end
 
 ## Additional resources
 
