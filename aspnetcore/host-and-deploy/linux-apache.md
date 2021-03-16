@@ -361,7 +361,10 @@ Configure the app to use a certificate in development for the `dotnet run` comma
 **Configure the reverse proxy for secure (HTTPS) client connections**
 
 > [!WARNING]
-> The security configuration in this section is a general configuration to be used as a starting point for further customization. It's impossible for us to provide an exact robust security specification that applies to all scenarios. The exact security configuration for Apache servers is the responsibility of the developer and their organization. We're unable to provide support for third-party tooling, servers, and operating systems. *Use the configuration in this section at your own risk.*
+> The security configuration in this section is a general configuration to be used as a starting point for further customization. We're unable to provide support for third-party tooling, servers, and operating systems. *Use the configuration in this section at your own risk.* For more information, access the following resources:
+>
+* [Apache SSL/TLS Encryption](https://httpd.apache.org/docs/trunk/ssl/) (Apache documentation)
+* [mozilla.org SSL Configuration Generator](https://ssl-config.mozilla.org/#server=apache)
 
 To configure Apache for HTTPS, the *mod_ssl* module is used. When the *httpd* module was installed, the *mod_ssl* module was also installed. If it wasn't installed, use `yum` to add it to the configuration.
 
@@ -375,17 +378,18 @@ To enforce HTTPS, install the `mod_rewrite` module to enable URL rewriting:
 sudo yum install mod_rewrite
 ```
 
-Modify the *helloapp.conf* file to enable URL rewriting and secure communication on port 443:
+Modify the *helloapp.conf* file to enable secure communication on port 443.
+
+The following example doesn't configure the server to redirect insecure requests. We recommend using HTTPS Redirection Middleware. For more information, see <xref:security/enforcing-ssl>.
+
+> [!NOTE]
+> For development environments where the server configuration handles secure redirection instead of HTTPS Redirection Middleware, we recommend using temporary redirects (302) rather than permanent redirects (301). Link caching can cause unstable behavior in development environments.
+
+Adding a `Strict-Transport-Security` (HSTS) header ensures all subsequent requests made by the client are over HTTPS. For guidance on setting the `Strict-Transport-Security` header, see <xref:security/enforcing-ssl#http-strict-transport-security-protocol-hsts>.
 
 ```
 <VirtualHost *:*>
     RequestHeader set "X-Forwarded-Proto" expr=%{REQUEST_SCHEME}
-</VirtualHost>
-
-<VirtualHost *:80>
-    RewriteEngine On
-    RewriteCond   %{HTTPS} !=on
-    RewriteRule   ^(.*)$ https://%{HTTP_HOST}$1 [R=301,L]
 </VirtualHost>
 
 <VirtualHost *:443>
@@ -395,16 +399,15 @@ Modify the *helloapp.conf* file to enable URL rewriting and secure communication
     ProxyPassReverse      / http://127.0.0.1:5000/
     ErrorLog              /var/log/httpd/helloapp-error.log
     CustomLog             /var/log/httpd/helloapp-access.log common
-    Header                always set Strict-Transport-Security "max-age=63072000;includeSubdomains;preload"
     SSLEngine             on
-    SSLProtocol           all -SSLv3 -TLSv1 -TLSv1.1 -TLSv1.2
+    SSLProtocol           all -SSLv3 -TLSv1 -TLSv1.1
     SSLHonorCipherOrder   off
     SSLCompression        off
-    SSLSessionTickets     off
-    SSLUseStapling        On
-    SSLStaplingCache      "shmcb:logs/ssl_stapling(32768)"
+    SSLSessionTickets     on
+    SSLUseStapling        off
     SSLCertificateFile    /etc/pki/tls/certs/localhost.crt
     SSLCertificateKeyFile /etc/pki/tls/private/localhost.key
+    SSLCipherSuite        ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384
 </VirtualHost>
 ```
 
@@ -412,6 +415,9 @@ Modify the *helloapp.conf* file to enable URL rewriting and secure communication
 > This example is using a locally-generated certificate. **SSLCertificateFile** should be the primary certificate file for the domain name. **SSLCertificateKeyFile** should be the key file generated when CSR is created. **SSLCertificateChainFile** should be the intermediate certificate file (if any) that was supplied by the certificate authority.
 >
 > Apache HTTP Server version 2.4.43 or newer is required in order to operate a TLS 1.3 web server with OpenSSL 1.1.1.
+
+> [NOTE]
+> The preceding example disables Online Certificate Status Protocol (OCSP) Stapling. For more information and guidance on enabling OCSP, see [OCSP Stapling (Apache documentation)](https://httpd.apache.org/docs/trunk/ssl/ssl_howto.html#ocspstapling).
 
 Save the file and test the configuration:
 
@@ -424,11 +430,6 @@ Restart Apache:
 ```bash
 sudo systemctl restart httpd
 ```
-
-Additional resources:
-
-* [Apache SSL/TLS Encryption](https://httpd.apache.org/docs/trunk/ssl/) (Apache documentation)
-* [mozilla.org SSL Configuration Generator](https://ssl-config.mozilla.org/#server=apache)
 
 ## Additional Apache suggestions
 
