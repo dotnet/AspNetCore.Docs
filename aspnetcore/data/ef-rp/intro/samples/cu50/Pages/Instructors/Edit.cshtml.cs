@@ -3,6 +3,8 @@ using ContosoUniversity.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ContosoUniversity.Pages.Instructors
@@ -68,13 +70,52 @@ namespace ContosoUniversity.Pages.Instructors
                 {
                     instructorToUpdate.OfficeAssignment = null;
                 }
-                UpdateInstructorCourses(_context, selectedCourses, instructorToUpdate);
+                UpdateInstructorCourses(selectedCourses, instructorToUpdate);
                 await _context.SaveChangesAsync();
                 return RedirectToPage("./Index");
             }
-            UpdateInstructorCourses(_context, selectedCourses, instructorToUpdate);
+            UpdateInstructorCourses(selectedCourses, instructorToUpdate);
             PopulateAssignedCourseData(_context, instructorToUpdate);
             return Page();
+        }
+
+        public void UpdateInstructorCourses(string[] selectedCourses,
+                                            Instructor instructorToUpdate)
+        {
+            #region snippet_IfNull
+            if (selectedCourses == null)
+            {
+                instructorToUpdate.Courses = new List<Course>();
+                return;
+            }
+            #endregion
+
+            var selectedCoursesHS = new HashSet<string>(selectedCourses);
+            var instructorCourses = new HashSet<int>
+                (instructorToUpdate.Courses.Select(c => c.CourseID));
+            foreach (var course in _context.Courses)
+            {
+                #region snippet_UpdateCourses
+                if (selectedCoursesHS.Contains(course.CourseID.ToString()))
+                {
+                    if (!instructorCourses.Contains(course.CourseID))
+                    {
+                        instructorToUpdate.Courses.Add(course);
+                    }
+                }
+                #endregion
+                #region snippet_UpdateCoursesElse
+                else
+                {
+                    if (instructorCourses.Contains(course.CourseID))
+                    {
+                        var courseToRemove = instructorToUpdate.Courses.Single(
+                                                        c => c.CourseID == course.CourseID);
+                        instructorToUpdate.Courses.Remove(courseToRemove);
+                    }
+                }
+                #endregion
+            }
         }
     }
 }

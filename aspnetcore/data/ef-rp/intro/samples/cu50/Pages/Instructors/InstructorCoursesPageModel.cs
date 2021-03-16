@@ -10,10 +10,9 @@ namespace ContosoUniversity.Pages.Instructors
 {
     public class InstructorCoursesPageModel : PageModel
     {
-
         public List<AssignedCourseData> AssignedCourseDataList;
 
-        public void PopulateAssignedCourseData(SchoolContext context, 
+        public void PopulateAssignedCourseData(SchoolContext context,
                                                Instructor instructor)
         {
             var allCourses = context.Courses;
@@ -28,44 +27,6 @@ namespace ContosoUniversity.Pages.Instructors
                     Title = course.Title,
                     Assigned = instructorCourses.Contains(course.CourseID)
                 });
-            }
-        }
-
-        public void UpdateInstructorCourses(SchoolContext context, 
-            string[] selectedCourses, Instructor instructorToUpdate)
-        {
-            #region snippet_IfNull
-            if (selectedCourses == null)
-            {
-                instructorToUpdate.Courses = new List<Course>();
-                return;
-            }
-            #endregion
-
-            var selectedCoursesHS = new HashSet<string>(selectedCourses);
-            var instructorCourses = new HashSet<int>
-                (instructorToUpdate.Courses.Select(c => c.CourseID));
-            foreach (var course in context.Courses)
-            {
-                #region snippet_UpdateCourses
-                if (selectedCoursesHS.Contains(course.CourseID.ToString()))
-                {
-                    if (!instructorCourses.Contains(course.CourseID))
-                    {
-                        instructorToUpdate.Courses.Add(course);
-                    }
-                }
-                #endregion
-                #region snippet_UpdateCoursesElse
-                else
-                {
-                    if (instructorCourses.Contains(course.CourseID))
-                    {
-                        var courseToRemove = instructorToUpdate.Courses.Single(c => c.CourseID == course.CourseID);
-                        instructorToUpdate.Courses.Remove(courseToRemove);
-                    }
-                }
-                #endregion
             }
         }
     }

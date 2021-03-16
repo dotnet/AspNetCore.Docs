@@ -10,7 +10,7 @@ uid: data/ef-rp/update-related-data
 
 # Part 7, Razor Pages with EF Core in ASP.NET Core - Update Related Data
 
-By [Tom Dykstra](https://github.com/tdykstra), and [Rick Anderson](https://twitter.com/RickAndMSFT)
+By [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com/thereformedprog), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 [!INCLUDE [about the series](../../includes/RP-EF/intro.md)]
 
@@ -100,13 +100,7 @@ The page contains a hidden field (`<input type="hidden">`) for the course number
 
 ### Update the Course page models
 
-Update *Pages/Courses/Delete.cshtml.cs* with the following code to add `AsNoTracking`:
-
-[!code-csharp[](intro/samples/cu50/Pages/Courses/Delete.cshtml.cs?highlight=29)]
-
-Make the same change in the *Pages/Courses/Details.cshtml.cs* file:
-
-[!code-csharp[](intro/samples/cu50/Pages/Courses/Details.cshtml.cs?highlight=28)]
+Update *Pages/Courses/Delete.cshtml.cs* and *Pages/Courses/Details.cshtml.cs* by adding `AsNoTracking`.
 
 ### Update the Course Razor pages
 
@@ -148,20 +142,6 @@ The `InstructorCoursesPageModel` is the base class for the Edit and Create page 
 
 Since the Razor page doesn't have a collection of Course entities, the model binder can't automatically update the `Courses` navigation property. Instead of using the model binder to update the `Courses` navigation property, that's done in the new `UpdateInstructorCourses` method. Therefore you need to exclude the `Courses` property from model binding. This doesn't require any change to the code that calls `TryUpdateModel` because you're using the overload with declared properties and `Courses` isn't in the include list.
 
-If no check boxes were selected, the code in `UpdateInstructorCourses` initializes the `instructorToUpdate.Courses` with an empty collection and returns:
-
-[!code-csharp[](intro/samples/cu50/Pages/Instructors/InstructorCoursesPageModel.cs?name=snippet_IfNull)]
-
-The code then loops through all courses in the database and checks each course against the ones currently assigned to the instructor versus the ones that were selected in the page. To facilitate efficient lookups, the latter two collections are stored in `HashSet` objects.
-
-If the check box for a course is selected but the course is ***not*** in the `Instructor.Courses` navigation property, the course is added to the collection in the navigation property.
-
-[!code-csharp[](intro/samples/cu50/Pages/Instructors/InstructorCoursesPageModel.cs?name=snippet_UpdateCourses)]
-
-If the check box for a course is ***not*** selected, but the course is in the `Instructor.Courses` navigation property, the course is removed from the navigation property.
-
-[!code-csharp[](intro/samples/cu50/Pages/Instructors/InstructorCoursesPageModel.cs?name=snippet_UpdateCoursesElse)]
-
 ### Handle office location
 
 Another relationship the edit page has to handle is the one-to-zero-or-one relationship that the Instructor entity has with the `OfficeAssignment` entity. The instructor edit code must handle the following scenarios: 
@@ -170,7 +150,7 @@ Another relationship the edit page has to handle is the one-to-zero-or-one relat
 * If the user enters an office assignment and it was empty, create a new `OfficeAssignment` entity.
 * If the user changes the office assignment, update the `OfficeAssignment` entity.
 
-### Update the Instructor Edit page model
+## Update the Instructor Edit page model
 
 Update *Pages/Instructors/Edit.cshtml.cs* with the following code:
 
@@ -184,6 +164,20 @@ The preceding code:
 * Calls `PopulateAssignedCourseData` in `OnGetAsync` to provide information for the checkboxes using the `AssignedCourseData` view model class.
 * Calls `UpdateInstructorCourses` in `OnPostAsync` to apply information from the checkboxes to the Instructor entity being edited.
 * Calls `PopulateAssignedCourseData` and `UpdateInstructorCourses` in `OnPostAsync` if `TryUpdateModel` fails. These method calls restore the assigned course data entered on the page when it is redisplayed with an error message.
+
+If no check boxes were selected, the code in `UpdateInstructorCourses` initializes the `instructorToUpdate.Courses` with an empty collection and returns:
+
+[!code-csharp[](intro/samples/cu50/Pages/Instructors/Edit.cs?name=snippet_IfNull)]
+
+The code then loops through all courses in the database and checks each course against the ones currently assigned to the instructor versus the ones that were selected in the page. To facilitate efficient lookups, the latter two collections are stored in `HashSet` objects.
+
+If the check box for a course is selected but the course is ***not*** in the `Instructor.Courses` navigation property, the course is added to the collection in the navigation property.
+
+[!code-csharp[](intro/samples/cu50/Pages/Instructors/Edit.cs?name=snippet_UpdateCourses)]
+
+If the check box for a course is ***not*** selected, but the course is in the `Instructor.Courses` navigation property, the course is removed from the navigation property.
+
+[!code-csharp[](intro/samples/cu50/Pages/Instructors/Edit.cs?name=snippet_UpdateCoursesElse)]
 
 ### Update the Instructor Edit Razor page
 
