@@ -1,5 +1,5 @@
 ---
-title: razor syntax reference for ASP.NET Core
+title: Razor syntax reference for ASP.NET Core
 author: rick-anderson
 description: Learn about Razor markup syntax for embedding server-based code into webpages.
 ms.author: riande
