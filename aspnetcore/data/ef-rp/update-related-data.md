@@ -177,7 +177,7 @@ If the check box for a course is selected but the course is ***not*** in the `In
 
 If the check box for a course is ***not*** selected, but the course is in the `Instructor.Courses` navigation property, the course is removed from the navigation property.
 
-[!code-csharp[](intro/samples/cu50/Pages/Instructors/InstructorCoursesPageModel.cs?name=snippet_UpdateCoursesElse)]
+[!code-csharp[](intro/samples/cu50/Pages/Instructors/Edit.cshtml.cs?name=snippet_UpdateCoursesElse)]
 
 ### Update the Instructor Edit Razor page
 
