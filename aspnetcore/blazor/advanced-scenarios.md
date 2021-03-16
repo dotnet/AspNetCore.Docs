@@ -5,7 +5,7 @@ description: Learn about advanced scenarios in Blazor, including how to incorpor
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/15/2021
+ms.date: 03/16/2021
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/advanced-scenarios
 ---
@@ -16,7 +16,7 @@ uid: blazor/advanced-scenarios
 <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> provides methods for manipulating components and elements, including building components manually in C# code.
 
 > [!WARNING]
-> Use of <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> to create components is an *advanced scenario*. A malformed component (for example, an unclosed markup tag) can result in undefined behavior. Undefined behavior includes broken content rendering, loss of user features, and **_compromised security_**.
+> Use of <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> to create components is an *advanced scenario*. A malformed component (for example, an unclosed markup tag) can result in undefined behavior. Undefined behavior includes broken content rendering, loss of app features, and **_compromised security_**.
 
 Consider the following `PetDetails` component, which can be manually rendered in another component.
 
@@ -96,7 +96,7 @@ Imagine that `someFlag` becomes `false` and the markup is rendered again. This t
 | :------: | ---------- | :----: |
 | 1        | Text node  | Second |
 
-When the runtime performs a diff, it sees that the item at sequence `0` was removed, so it generates the following trivial *edit script*:
+When the runtime performs a diff, it sees that the item at sequence `0` was removed, so it generates the following trivial *edit script* with a single step:
 
 * Remove the first text node.
 
