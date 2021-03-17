@@ -1,5 +1,9 @@
+using ContosoUniversity.Data;
 using ContosoUniversity.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -8,10 +12,13 @@ namespace ContosoUniversity.Pages.Instructors
     public class CreateModel : InstructorCoursesPageModel
     {
         private readonly ContosoUniversity.Data.SchoolContext _context;
+        private readonly ILogger<InstructorCoursesPageModel> _logger;
 
-        public CreateModel(ContosoUniversity.Data.SchoolContext context)
+        public CreateModel(SchoolContext context,
+                          ILogger<InstructorCoursesPageModel> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         public IActionResult OnGet()
@@ -32,26 +39,48 @@ namespace ContosoUniversity.Pages.Instructors
         public async Task<IActionResult> OnPostAsync(string[] selectedCourses)
         {
             var newInstructor = new Instructor();
-            if (selectedCourses != null)
+
+            if (selectedCourses.Length > 0)
             {
                 newInstructor.Courses = new List<Course>();
-                foreach (var course in selectedCourses)
+                // Load collection with one DB call.
+                _context.Courses.Load();
+            }
+
+            // Add selected Courses courses to the new instructor.
+            foreach (var course in selectedCourses)
+            {
+                var foundCourse = await _context.Courses.FindAsync(int.Parse(course));
+                if (foundCourse != null)
                 {
-                    newInstructor.Courses.Add(new Course { CourseID = int.Parse(course) });
+                    newInstructor.Courses.Add(foundCourse);
+                }
+                else
+                {
+                    _logger.LogWarning("Course {course} not found", course);
                 }
             }
 
-            if (await TryUpdateModelAsync<Instructor>(
-                newInstructor,
-                "Instructor",
-                i => i.FirstMidName, i => i.LastName,
-                i => i.HireDate, i => i.OfficeAssignment))
+            try
             {
-                _context.Instructors.Add(newInstructor);                
-                await _context.SaveChangesAsync();
+                if (await TryUpdateModelAsync<Instructor>(
+                                newInstructor,
+                                "Instructor",
+                                i => i.FirstMidName, i => i.LastName,
+                                i => i.HireDate, i => i.OfficeAssignment))
+                {
+                    _context.Instructors.Add(newInstructor);
+                    await _context.SaveChangesAsync();
+                    return RedirectToPage("./Index");
+                }
                 return RedirectToPage("./Index");
             }
-            PopulateAssignedCourseData(_context, newInstructor);
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+            }
+
+            PopulateAssignedCourseData(_context, Instructor);
             return Page();
         }
     }
