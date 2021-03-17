@@ -67,7 +67,7 @@ The library generated from the project template:
 
 * Targets the current .NET framework based on the installed SDK.
 * Enables browser compatibilty checks for platform dependencies by including `browser` as a supported platform with the `SupportedPlatform` MSBuild item.
-* Adds a NuGet package reference for the [Microsoft.AspNetCore.Components.Web](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Web) package.
+* Adds a NuGet package reference for [Microsoft.AspNetCore.Components.Web](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Web).
 
 Example:
 
@@ -140,7 +140,7 @@ If the library must support features added to Blazor in the current release whil
 
 In the preceding example:
 
-* The `{TARGET FRAMEWORKS}` placeholder represents the semicolon-separated [Target Framework Monikers (TFMs)](/dotnet/standard/frameworks) list, for example: `netcoreapp3.1;net5.0`.
+* The `{TARGET FRAMEWORKS}` placeholder represents the semicolon-separated TFMs list. For example, `netcoreapp3.1;net5.0`.
 * The `{VERSION}` placeholder is the version of the [`Microsoft.AspNetCore.Components.Web`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Web) package.
 
 ::: moniker-end
