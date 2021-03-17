@@ -94,7 +94,7 @@ The preceding code guarantees the data will not be cached longer than the absolu
 
 <xref:Microsoft.Extensions.Caching.Memory.CacheExtensions.GetOrCreate*>, <xref:Microsoft.Extensions.Caching.Memory.CacheExtensions.GetOrCreateAsync*>, and <xref:Microsoft.Extensions.Caching.Memory.CacheExtensions.Get*> are extension methods in the <xref:Microsoft.Extensions.Caching.Memory.CacheExtensions> class. These methods extend the capability of <xref:Microsoft.Extensions.Caching.Memory.IMemoryCache>.
 
-## MemoryCacheEntryOptions
+## `MemoryCacheEntryOptions`
 
 The following sample:
 
