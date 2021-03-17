@@ -50,7 +50,7 @@ Update *Pages/Courses/Create.cshtml.cs* with the following code:
 The preceding code:
 
 * Derives from `DepartmentNamePageModel`.
-* Uses `TryUpdateModelAsync` to prevent [overposting](xref:data/ef-rp/crud#overposting).
+* Uses <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync%2A> to prevent [overposting](xref:data/ef-rp/crud#overposting).
 * Removes `ViewData["DepartmentID"]`. The `DepartmentNameSL` `SelectList` is a strongly typed model and will be used by the Razor page. Strongly typed models are preferred over weakly typed. For more information, see [Weakly typed data (ViewData and ViewBag)](xref:mvc/views/overview#VD_VB).
 
 ### Update the Course Create Razor page
@@ -152,18 +152,18 @@ Another relationship the edit page has to handle is the one-to-zero-or-one relat
 
 Update *Pages/Instructors/Edit.cshtml.cs* with the following code:
 
-[!code-csharp[](intro/samples/cu50/Pages/Instructors/Edit.cshtml.cs?name=snippet_All&highlight=9,28-32,38,42-77)]
+[!code-csharp[](intro/samples/cu50/Pages/Instructors/Edit.cshtml.cs?name=snippet_All)]
 
 The preceding code:
 
 * Gets the current `Instructor` entity from the database using eager loading for the `OfficeAssignment`, `CourseAssignment`, and `CourseAssignment.Course` navigation properties.
-* Updates the retrieved `Instructor` entity with values from the model binder. `TryUpdateModel` prevents [overposting](xref:data/ef-rp/crud#overposting).
+* Updates the retrieved `Instructor` entity with values from the model binder. <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync%2A> prevents [overposting](xref:data/ef-rp/crud#overposting).
 * If the office location is blank, sets `Instructor.OfficeAssignment` to null. When `Instructor.OfficeAssignment` is null, the related row in the `OfficeAssignment` table is deleted.
 * Calls `PopulateAssignedCourseData` in `OnGetAsync` to provide information for the checkboxes using the `AssignedCourseData` view model class.
 * Calls `UpdateInstructorCourses` in `OnPostAsync` to apply information from the checkboxes to the Instructor entity being edited.
-* Calls `PopulateAssignedCourseData` and `UpdateInstructorCourses` in `OnPostAsync` if `TryUpdateModel` fails. These method calls restore the assigned course data entered on the page when it is redisplayed with an error message.
+* Calls `PopulateAssignedCourseData` and `UpdateInstructorCourses` in `OnPostAsync` if <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync%2A> fails. These method calls restore the assigned course data entered on the page when it is redisplayed with an error message.
 
-Since the Razor page doesn't have a collection of Course entities, the model binder can't automatically update the `Courses` navigation property. Instead of using the model binder to update the `Courses` navigation property, that's done in the new `UpdateInstructorCourses` method. Therefore you need to exclude the `Courses` property from model binding. This doesn't require any change to the code that calls `TryUpdateModel` because you're using the overload with declared properties and `Courses` isn't in the include list.
+Since the Razor page doesn't have a collection of Course entities, the model binder can't automatically update the `Courses` navigation property. Instead of using the model binder to update the `Courses` navigation property, that's done in the new `UpdateInstructorCourses` method. Therefore you need to exclude the `Courses` property from model binding. This doesn't require any change to the code that calls <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync%2A> because you're using the overload with declared properties and `Courses` isn't in the include list.
 
 If no check boxes were selected, the code in `UpdateInstructorCourses` initializes the `instructorToUpdate.Courses` with an empty collection and returns:
 
@@ -195,13 +195,23 @@ Run the app and test the updated Instructors Edit page. Change some course assig
 
 ### Update the Instructor Create page
 
-Update the Instructor Create page model and Razor page with code similar to the Edit page:
+Update the Instructor Create page model and with code similar to the Edit page:
 
-[!code-csharp[](intro/samples/cu50/Pages/Instructors/Create.cshtml.cs)]
+[!code-csharp[](intro/samples/cu50/Pages/Instructors/Create.cshtml.cs?name=snippet_all)]
+
+The preceding code:
+
+  * Adds [logging](xref:fundamentals/logging/index) for warning and error messages.
+  * Calls <xref:Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.Load%2A>, which fetches all the Courses in one database call. For small collections this is an optimization when using <xref:Microsoft.EntityFrameworkCore.DbContext.FindAsync%2A>. `FindAsync` returns the tracked entity without a request to the database.
+
+  [!code-csharp[](intro/samples/cu50/Pages/Instructors/Create.cshtml.cs?name=snippet_find&highlight=9,15)]
+
+  * `_context.Instructors.Add(Instructor)` creates a new `Instructor` using [many-to-many](/ef/core/modeling/relationships#many-to-many) relationships without explicitly mapping the join table. Many-to-many was added in EF 5.0.
+Test the instructor Create page.
+
+Update the Instructor Create Razor page with code similar to the Edit page:
 
 [!code-cshtml[](intro/samples/cu50/Pages/Instructors/Create.cshtml)]
-
-Test the instructor Create page.
 
 ## Update the Instructor Delete page
 
