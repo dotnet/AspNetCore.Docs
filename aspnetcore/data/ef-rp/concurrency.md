@@ -955,11 +955,11 @@ Change a different field in the second browser tab.
 
 Click **Save**. You see error messages for all fields that don't match the DB values:
 
-![Department Edit page error message](concurrency/_static/edit-error.png)
+![Department Edit page error message 1](concurrency/_static/edit-error.png)
 
 This browser window didn't intend to change the Name field. Copy and paste the current value (Languages) into the Name field. Tab out. Client-side validation removes the error message.
 
-![Department Edit page error message](concurrency/_static/cv.png)
+![Department Edit page error message 2](concurrency/_static/cv.png)
 
 Click **Save** again. The value you entered in the second browser tab is saved. You see the saved values in the Index page.
 
