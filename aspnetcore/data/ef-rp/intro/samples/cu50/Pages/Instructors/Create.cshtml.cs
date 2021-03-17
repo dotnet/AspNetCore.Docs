@@ -39,13 +39,18 @@ namespace ContosoUniversity.Pages.Instructors
         public async Task<IActionResult> OnPostAsync(string[] selectedCourses)
         {
             var newInstructor = new Instructor();
-            newInstructor.Courses = new List<Course>();
+
+            if (selectedCourses.Length > 0)
+            {
+                newInstructor.Courses = new List<Course>();
+                // Load collection with one DB call.
+                _context.Courses.Load();
+            }
 
             // Add selected Courses courses to the new instructor.
             foreach (var course in selectedCourses)
             {
-                var foundCourse = await _context.Courses.FirstOrDefaultAsync(
-                                                 c => c.CourseID == int.Parse(course));
+                var foundCourse = await _context.Courses.FindAsync(int.Parse(course));
                 if (foundCourse != null)
                 {
                     newInstructor.Courses.Add(foundCourse);
