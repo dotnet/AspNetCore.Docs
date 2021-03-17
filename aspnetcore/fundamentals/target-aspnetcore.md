@@ -96,15 +96,15 @@ In the preceding example:
 
 ### Only support the Blazor Server hosting model
 
-Class libraries rarely only support [Blazor Server](xref:blazor/hosting-models#blazor-server) apps. If the class library requires [Blazor Server](xref:blazor/hosting-models#blazor-server)-specific features, such as access to <xref:Microsoft.AspNetCore.Components.Server.Circuits.CircuitHandler>s or <xref:Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage>, or uses ASP.NET Core-specific features, such as middleware, controllers, or Razor Pages in addition to Razor components:
+Class libraries rarely only support [Blazor Server](xref:blazor/hosting-models#blazor-server) apps. If the class library requires [Blazor Server](xref:blazor/hosting-models#blazor-server)-specific features, such as access to <xref:Microsoft.AspNetCore.Components.Server.Circuits.CircuitHandler>s or <xref:Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage>, or uses ASP.NET Core-specific features, such as middleware, MVC controllers, or Razor Pages, use **one** of the following approaches:
 
-* Specify that the library supports pages and views when the project is created with the **Support pages and views** check box (Visual Studio) or `--support-pages-and-views` option with the `dotnet new` command:
+* Specify that the library supports pages and views when the project is created with the **Support pages and views** check box (Visual Studio) or the `-s|--support-pages-and-views` option with the `dotnet new` command:
 
   ```dotnetcli
-  dotnet new razorclasslib --support-pages-and-views true
+  dotnet new razorclasslib -s true
   ```
 
-* Only provide a framework reference to ASP.NET Core, as the following example shows:
+* Only provide a framework reference to ASP.NET Core in the library's project file:
 
   ```xml
   <Project Sdk="Microsoft.NET.Sdk.Razor">
@@ -118,7 +118,7 @@ Class libraries rarely only support [Blazor Server](xref:blazor/hosting-models#b
 
 ### Support multiple framework versions
 
-If the library must support apps targeting a single release of .NET Core, a single target framework is appropriate. If the library must use features that were added to Blazor in a later release while also supporting one or more earlier releases, multi-target the library. Provide a semicolon-separated list of [Target Framework Monikers (TFMs)](/dotnet/standard/frameworks) in the `TargetFrameworks` MSBuild property:
+If the library must support features added to Blazor in the current release while also supporting one or more earlier releases, multi-target the library. Provide a semicolon-separated list of [Target Framework Monikers (TFMs)](/dotnet/standard/frameworks) in the `TargetFrameworks` MSBuild property:
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk.Razor">
@@ -147,7 +147,7 @@ In the preceding example:
 
 ::: moniker range="< aspnetcore-5.0"
 
-The project generated from the template does the following things:
+The project generated from the template:
 
 * Targets .NET Standard 2.0.
 * Sets the `RazorLangVersion` property to `3.0`. `3.0` is the default value for .NET Core 3.x.
