@@ -41,7 +41,7 @@ Blazor supports WebAssembly (WASM) and server-based [hosting models](xref:blazor
 
 ### Support both hosting models
 
-To support Razor component consumption from both [Blazor Server](xref:blazor/hosting-models#blazor-server) and [Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly) projects, use the following instructions for your editor.
+To support Razor component consumption by [Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly) and [Blazor Server](xref:blazor/hosting-models#blazor-server) projects, use the following instructions for your editor.
 
 # [Visual Studio](#tab/visual-studio)
 
