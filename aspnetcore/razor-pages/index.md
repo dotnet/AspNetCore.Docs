@@ -617,7 +617,7 @@ Add <xref:Microsoft.Extensions.DependencyInjection.MvcRazorPagesMvcCoreBuilderEx
 * [Authorize attribute and Razor Pages](xref:security/authorization/simple#aarp)
 * [Download or view sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/index/3.0sample)
 * <xref:index>
-* [Razor syntax reference for ASP.NET Core](xref:mvc/views/razor)
+* <xref:mvc/views/razor>
 * <xref:mvc/controllers/areas>
 * <xref:tutorials/razor-pages/razor-pages-start>
 * <xref:security/authorization/razor-pages-authorization>
@@ -1129,7 +1129,7 @@ services.AddMvc()
 
 * [Authorize attribute and Razor Pages](xref:security/authorization/simple#aarp)
 * <xref:index>
-* [Razor syntax reference for ASP.NET Core](xref:mvc/views/razor)
+* <xref:mvc/views/razor>
 * <xref:mvc/controllers/areas>
 * <xref:tutorials/razor-pages/razor-pages-start>
 * <xref:security/authorization/razor-pages-authorization>

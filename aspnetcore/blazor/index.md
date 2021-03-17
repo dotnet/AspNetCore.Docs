@@ -157,6 +157,6 @@ APIs that aren't applicable inside of a web browser (for example, accessing the 
 * <xref:blazor/call-javascript-from-dotnet>
 * <xref:blazor/call-dotnet-from-javascript>
 * [C# Guide](/dotnet/csharp/)
-* [Razor syntax reference for ASP.NET Core](xref:mvc/views/razor)
+* <xref:mvc/views/razor>
 * [HTML](https://www.w3.org/html/)
 * [Awesome Blazor](https://github.com/AdrienTorris/awesome-blazor) community links
