@@ -34,7 +34,7 @@ builder.Services.AddSingleton<StateContainer>();
 In `Startup.ConfigureServices` (Blazor Server):
 
 ```csharp
-services.AddSingleton<StateContainer>();
+services.AddScoped<StateContainer>();
 ```
 
 `Pages/Component1.razor`:
