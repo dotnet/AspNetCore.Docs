@@ -4,7 +4,7 @@ author: jamesnk
 description: Learn how to make resilient, fault tolerant gRPC calls with retries in .NET.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
-ms.date: 02/25/2021
+ms.date: 03/18/2021
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: grpc/retries
 ---
