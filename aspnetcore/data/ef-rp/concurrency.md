@@ -71,18 +71,19 @@ John clicks **Save** on an Edit page that still shows a budget of $350,000.00. W
 
 EF Core throws a <xref:Microsoft.EntityFrameworkCore.DbUpdateConcurrencyException> when a conflict is detected. The data model has to be configured to enable conflict detection. Options for enabling conflict detection include the following:
 
-* Configure EF Core to include the original values of columns configured as [concurrency tokens](/ef/core/modeling/concurrency) in the `Where` clause of `Update` and `Delete` commands.
+* In the model, include a tracking column that can be used to determine when a row has been changed:
 
-  When `SaveChanges` is called, the `Where` clause looks for the original values of any properties annotated with the <xref:System.ComponentModel.DataAnnotations.ConcurrencyCheckAttribute> attribute. The update statement won't find a row to update if any of the concurrency token properties changed since the row was first read. EF Core interprets that as a concurrency conflict. For database tables that have many columns, this approach can result in very large Where clauses, and can require large amounts of state. Therefore this approach is generally not recommended, and it isn't the method used in this tutorial.
+  * When using SQL Server database, the recommended data type of the tracking column is [`rowversion`](/sql/t-sql/data-types/rowversion-transact-sql). The `rowversion` value is a sequential number that's automatically incremented each time the row is updated. In an `Update` or `Delete` command, the `Where` clause includes the [original value](xref:Microsoft.EntityFrameworkCore.ChangeTracking.PropertyEntry.OriginalValue) of the `rowversion`. If the row being updated has been changed by another user, the value in the `rowversion` column is different than the original value. In that case, the `Update` or `Delete` statement can't find the row to update because of the `Where` clause. EF Core throws a <xref:Microsoft.EntityFrameworkCore.DbUpdateConcurrencyException> when no rows are affected by an `Update` or `Delete` command. This approach is used in the SQL Sever version of this this tutorial.
 
-* In the database table, include a tracking column that can be used to determine when a row has been changed.
+  * When using other database providers, such as SQLlite, add a unique type to the model as a concurrency token. Set the concurrency token to the <xref:Microsoft.EntityFrameworkCore.ChangeTracking.PropertyEntry.OriginalValue> on updates. This approach is used in the SQLite version of this tutorial.
 
-  In a SQL Server database, the data type of the tracking column is `rowversion`. The `rowversion` value is a sequential number that's incremented each time the row is updated. In an Update or Delete command, the Where clause includes the original value of the tracking column (the original row version number). If the row being updated has been changed by another user, the value in the `rowversion` column is different than the original value. In that case, the Update or Delete statement can't find the row to update because of the Where clause. EF Core throws a concurrency exception when no rows are affected by an Update or Delete command.
+* Configure EF Core to include the original values of columns configured as [concurrency tokens](/ef/core/modeling/concurrency). This approach is generally not recommended.
 
 ## Add a tracking property
 
-In *Models/Department.cs*, add a tracking property named RowVersion:
-zz
+In *Models/Department.cs*, add a tracking property named ConcurrencyToken:
+
+# [Visual Studio](#tab/visual-studio)
 
 [!code-csharp[](intro/samples/cu50/Models/Department.cs?name=snippet3&highlight=26,27)]
 
@@ -90,15 +91,13 @@ The <xref:System.ComponentModel.DataAnnotations.TimestampAttribute> attribute is
 
 ```csharp
 modelBuilder.Entity<Department>()
-  .Property<byte[]>("RowVersion")
+  .Property<byte[]>("ConcurrencyToken")
   .IsRowVersion();
 ```
 
-# [Visual Studio](#tab/visual-studio)
+For a SQL Server database, the [`[Timestamp]`](xref:System.ComponentModel.DataAnnotations.TimestampAttribute>) attribute on an entity property defined as byte array:
 
-For a SQL Server database, the `[Timestamp]` attribute on an entity property defined as byte array:
-
-* Causes the column to be included in DELETE and UPDATE WHERE clauses.
+* Causes the column to be included in `DELETE` and `UPDATE WHERE` clauses.
 * Sets the column type in the database to [rowversion](/sql/t-sql/data-types/rowversion-transact-sql).
 
 The database generates a sequential row version number that's incremented each time the row is updated. In an `Update` or `Delete` command, the `Where` clause includes the fetched row version value. If the row being updated has changed since it was fetched:
@@ -107,11 +106,12 @@ The database generates a sequential row version number that's incremented each t
 * The `Update` or `Delete` commands don't find a row because the `Where` clause looks for the fetched row version value.
 * A `DbUpdateConcurrencyException` is thrown.
 
+<!-- zz TODO update this -->
 The following code shows a portion of the T-SQL generated by EF Core when the Department name is updated:
 
 [!code-sql[](intro/samples/cu30snapshots/8-concurrency/sql.txt?highlight=2-3)]
 
-The preceding highlighted code shows the `WHERE` clause containing `RowVersion`. If the database `RowVersion` doesn't equal the `RowVersion` parameter (`@p2`), no rows are updated.
+The preceding highlighted code shows the `WHERE` clause containing `ConcurrencyToken`. If the database `ConcurrencyToken` doesn't equal the `ConcurrencyToken` parameter (`@p2`), no rows are updated.
 
 The following highlighted code shows the T-SQL that verifies exactly one row was updated:
 
@@ -119,76 +119,61 @@ The following highlighted code shows the T-SQL that verifies exactly one row was
 
 [@@ROWCOUNT](/sql/t-sql/functions/rowcount-transact-sql) returns the number of rows affected by the last statement. If no rows are updated, EF Core throws a `DbUpdateConcurrencyException`.
 
-# [Visual Studio Code](#tab/visual-studio-code)
+Adding the `ConcurrencyToken` property changes the data model, which requires a migration.
 
-For a SQLite database, the `[Timestamp]` attribute on an entity property defined as byte array:
+Build the project.
 
-* Causes the column to be included in DELETE and UPDATE WHERE clauses.
-* Maps to a BLOB column type.
-
-Database triggers update the RowVersion column with a new random byte array whenever a row is updated. In an `Update` or `Delete` command, the `Where` clause includes the fetched value of the RowVersion column. If the row being updated has changed since it was fetched:
-
-* The current row version value doesn't match the fetched value.
-* The `Update` or `Delete` command doesn't find a row because the `Where` clause looks for the original row version value.
-* A `DbUpdateConcurrencyException` is thrown.
-
----
-
-### Update the database
-
-Adding the `RowVersion` property changes the data model, which requires a migration.
-
-Build the project. 
-
-# [Visual Studio](#tab/visual-studio)
-
-* Run the following command in the PMC:
+Run the following commands in the PMC:
 
   ```powershell
   Add-Migration RowVersion
+  Update-Database
   ```
+
+The preceding commands:
+
+* Creates the *Migrations/{time stamp}_RowVersion.cs* migration file.
+* Updates the *Migrations/SchoolContextModelSnapshot.cs* file. The update adds the following code to the `BuildModel` method:
+
+```csharp
+ b.Property<byte[]>("ConcurrencyToken")
+     .IsConcurrencyToken()
+     .ValueGeneratedOnAddOrUpdate()
+     .HasColumnType("rowversion");
+```
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* Run the following command in a terminal:
+[!code-csharp[](intro/samples/cu50/Models/Department.cs?name=snippet2&highlight=26,27)]
+
+Update *Data/SchoolContext.cs* with the following code:
+
+[!code-csharp[](intro/samples/cu50/Data/SchoolContext.cs?name=snippet_SQLite&highlight=26-28)]
+
+For SQLite, code will be added to set the concurrency token to the <xref:Microsoft.EntityFrameworkCore.ChangeTracking.PropertyEntry.OriginalValue> on updates.
+
+Adding the `ConcurrencyToken` property changes the data model, which requires a migration.
+
+Build the project.
+
+Run the following commands in a terminal:
 
   ```dotnetcli
   dotnet ef migrations add RowVersion
+  dotnet ef database update
   ```
 
----
-
-This command:
+The preceding commands:
 
 * Creates the *Migrations/{time stamp}_RowVersion.cs* migration file.
 * Updates the *Migrations/SchoolContextModelSnapshot.cs* file. The update adds the following highlighted code to the `BuildModel` method:
 
-  [!code-csharp[](intro/samples/cu30/Migrations/SchoolContextModelSnapshot.cs?name=snippet_Department&highlight=15-17)]
-
-# [Visual Studio](#tab/visual-studio)
-
-* Run the following command in the PMC:
-
-  ```powershell
-  Update-Database
-  ```
-
-# [Visual Studio Code](#tab/visual-studio-code)
-
-* Open the `Migrations/<timestamp>_RowVersion.cs` file and add the highlighted code:
-
-  [!code-csharp[](intro/samples/cu30/MigrationsSQLite/20190722151951_RowVersion.cs?highlight=16-42)]
-
-  The preceding code:
-
-  * Updates existing rows with random blob values.
-  * Adds database triggers that set the RowVersion column to a random blob value whenever a row is updated.
-
-* Run the following command in a terminal:
-
-  ```dotnetcli
-  dotnet ef database update
-  ```
+```csharp
+ b.Property<byte[]>("ConcurrencyToken")
+     .IsConcurrencyToken()
+     .ValueGeneratedOnAddOrUpdate()
+     .HasColumnType("rowversion");
+```
 
 ---
 

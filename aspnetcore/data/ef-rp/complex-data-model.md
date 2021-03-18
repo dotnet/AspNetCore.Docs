@@ -488,7 +488,7 @@ The `Enrollment` join entity defines its own PK, so duplicates of this sort are 
 
 Update *Data/SchoolContext.cs* with the following code:
 
-[!code-csharp[](intro/samples/cu50/Data/SchoolContext.cs?highlight=15-17,21-28)]
+[!code-csharp[](intro/samples/cu50/Data/SchoolContext.cs?name=snippet_SS&highlight=15-17,21-28)]
 
 <!-- TODO review -->
 The preceding code adds the new entities and:
