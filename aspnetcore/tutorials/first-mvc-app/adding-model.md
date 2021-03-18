@@ -413,7 +413,6 @@ Because the `Model` object is strongly typed (as an `IEnumerable<Movie>` object)
 
 ## Additional resources
 
-* [Use SQLite for development, SQL Server for production](#sqlite-dev?tabs=visual-studio-code)
 * [Tag Helpers](xref:mvc/views/tag-helpers/intro)
 * [Globalization and localization](xref:fundamentals/localization)
 
