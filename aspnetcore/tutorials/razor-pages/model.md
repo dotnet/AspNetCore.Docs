@@ -356,7 +356,6 @@ The next tutorial explains the files created by scaffolding.
 
 ## Additional resources
 
-[Use SQLite for development, SQL Server for production](#sqlite-dev?tabs=visual-studio-code)
 
 > [!div class="step-by-step"]
 > [Previous: Get Started](xref:tutorials/razor-pages/razor-pages-start)
