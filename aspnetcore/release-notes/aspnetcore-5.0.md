@@ -135,7 +135,7 @@ Improve the perceived performance of component rendering using the Blazor framew
 
 ### `ontoggle` event support
 
-Blazor events now support the `ontoggle` DOM event. For more information, see <xref:blazor/components/event-handling#event-argument-types>.
+Blazor events now support the `ontoggle` DOM event. For more information, see <xref:blazor/components/event-handling#event-arguments>.
 
 ### Set UI focus in Blazor apps
 

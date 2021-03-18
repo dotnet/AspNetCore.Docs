@@ -1,0 +1,18 @@
+@page "/event-handler-example-8"
+
+<p>
+    <input @ref="exampleInput" />
+</p>
+
+<button @onclick="ChangeFocus">
+    Focus the Input Element
+</button>
+
+@code {
+    private ElementReference exampleInput;
+
+    private async Task ChangeFocus()
+    {
+        await exampleInput.FocusAsync();
+    }
+}
