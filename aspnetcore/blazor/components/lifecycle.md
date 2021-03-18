@@ -1,17 +1,17 @@
 ---
 title: ASP.NET Core Blazor lifecycle
 author: guardrex
-description: Learn how to use Razor component lifecycle methods in ASP.NET Core Blazor apps.
+description: Learn about the ASP.NET Core Blazor framework's Razor component lifecycle and how to use lifecycle events.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/06/2020
+ms.date: 03/18/2020
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/components/lifecycle
 ---
 # ASP.NET Core Blazor lifecycle
 
-The Blazor framework includes synchronous and asynchronous lifecycle methods. Override lifecycle methods to perform additional operations on components during component initialization and rendering.
+The Blazor framework processes Razor component lifecycle events in a set of synchronous and asynchronous lifecycle methods. The lifecycle methods can be overridden to perform additional operations in components during component initialization and rendering.
 
 The following diagrams illustrate the Blazor lifecycle. Lifecycle methods are defined with examples in the following sections of this article.
 
@@ -51,16 +51,22 @@ Developer calls to [`StateHasChanged`](#state-changes) result in a render. For m
 
 <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> sets parameters supplied by the component's parent in the render tree or from route parameters. By overriding the method, developer code can interact directly with the <xref:Microsoft.AspNetCore.Components.ParameterView>'s parameters.
 
+The method's <xref:Microsoft.AspNetCore.Components.ParameterView> parameter contains the set of [component parameter](xref:blazor/components/index#parameters) values for the component each time <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> is called.
+
+The default implementation of <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> sets the value of each property with the [`[Parameter]`](xref:Microsoft.AspNetCore.Components.ParameterAttribute) or [`[CascadingParameter]` attribute](xref:Microsoft.AspNetCore.Components.CascadingParameterAttribute) that has a corresponding value in the <xref:Microsoft.AspNetCore.Components.ParameterView>. Parameters that don't have a corresponding value in <xref:Microsoft.AspNetCore.Components.ParameterView> are left unchanged.
+
+If [`base.SetParametersAsync`](xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A) isn't invoked, the custom code can interpret the incoming parameters value in any way required. For example, there's no requirement to assign the incoming parameters to the properties on the class.
+
+If any event handlers are set up, unhook them on disposal. For more information, see the [Component disposal with `IDisposable`](#component-disposal-with-idisposable) section.
+
 In the following example, <xref:Microsoft.AspNetCore.Components.ParameterView.TryGetValue%2A?displayProperty=nameWithType> assigns the `Param` parameter's value to `value` if parsing a route parameter for `Param` is successful. When `value` isn't `null`, the value is displayed by the component.
 
 Although [route parameter matching is case insensitive](xref:blazor/fundamentals/routing#route-parameters), <xref:Microsoft.AspNetCore.Components.ParameterView.TryGetValue%2A> only matches case sensitive parameter names in the route template. The following example is required to use `/{Param?}`, not `/{param?}`, in order to get the value. If `/{param?}` is used in this scenario, <xref:Microsoft.AspNetCore.Components.ParameterView.TryGetValue%2A> returns `false` and `message` isn't set to either string.
 
-`Pages/SetParametersAsyncExample.razor`:
+`Pages/SetParametersAsync.razor`:
 
 ```razor
-@page "/setparametersasync-example/{Param?}"
-
-<h1>SetParametersAsync Example</h1>
+@page "/set-parameters-async/{Param?}"
 
 <p>@message</p>
 
@@ -89,26 +95,28 @@ Although [route parameter matching is case insensitive](xref:blazor/fundamentals
 }
 ```
 
-<xref:Microsoft.AspNetCore.Components.ParameterView> contains the set of parameter values for the component each time <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> is called.
-
-The default implementation of <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> sets the value of each property with the [`[Parameter]`](xref:Microsoft.AspNetCore.Components.ParameterAttribute) or [`[CascadingParameter]` attribute](xref:Microsoft.AspNetCore.Components.CascadingParameterAttribute) that has a corresponding value in the <xref:Microsoft.AspNetCore.Components.ParameterView>. Parameters that don't have a corresponding value in <xref:Microsoft.AspNetCore.Components.ParameterView> are left unchanged.
-
-If [`base.SetParametersAsync`](xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A) isn't invoked, the custom code can interpret the incoming parameters value in any way required. For example, there's no requirement to assign the incoming parameters to the properties on the class.
-
-If any event handlers are set up, unhook them on disposal. For more information, see the [Component disposal with `IDisposable`](#component-disposal-with-idisposable) section.
-
 ### Component initialization methods
 
-<xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized%2A> are invoked when the component is initialized after having received its initial parameters from its parent component in <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A>. 
+<xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized%2A> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> are invoked when the component is initialized after having received its initial parameters from its parent component in <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A>.
 
 Use <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> when the component performs an asynchronous operation and should refresh when the operation is completed.
 
 For a synchronous operation, override <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized%2A>:
 
-```csharp
-protected override void OnInitialized()
-{
-    ...
+`Pages/OnInitialized.razor`:
+
+```razor
+@page "/on-initialized"
+
+<p>@message</p>
+
+@code {
+    private string message;
+
+    protected override void OnInitialized()
+    {
+        message = $"Initialized at {DateTime.Now}";
+    }
 }
 ```
 
@@ -134,12 +142,43 @@ If any event handlers are set up, unhook them on disposal. For more information,
 
 ### After parameters are set
 
-<xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A> or <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSet%2A> are called:
+<xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSet%2A> or <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A> are called:
 
 * After the component is initialized in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized%2A> or <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>.
-* When the parent component re-renders and supplies:
+* When the parent component rerenders and supplies:
   * Only known primitive immutable types of which at least one parameter has changed.
-  * Any complex-typed parameters. The framework can't know whether the values of a complex-typed parameter have mutated internally, so it treats the parameter set as changed.
+  * Any complex-typed parameters. The framework can't know whether the values of a complex-typed parameter have mutated internally, so it always treats the parameter set as changed when one or more complex-typed parameters are present.
+
+`Pages/OnParametersSet.razor`:
+
+```razor
+@page "/on-parameters-set/{StartDate?:datetime}"
+
+<p>@message</p>
+
+@code {
+    private string message;
+
+    [Parameter]
+    public DateTime StartDate { get; set; }
+
+    protected override void OnParametersSet()
+    {
+        if (StartDate == default)
+        {
+            StartDate = DateTime.Now;
+
+            message = $"No start date in URL. Default value applied (StartDate: {StartDate}).";
+        }
+        else
+        {
+            message = $"The start date in the URL was used (StartDate: {StartDate}).";
+        }
+    }
+}
+```
+
+Asynchronous work when applying parameters and property values must occur during the <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A> lifecycle event:
 
 ```csharp
 protected override async Task OnParametersSetAsync()
@@ -148,26 +187,44 @@ protected override async Task OnParametersSetAsync()
 }
 ```
 
-> [!NOTE]
-> Asynchronous work when applying parameters and property values must occur during the <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A> lifecycle event.
-
-```csharp
-protected override void OnParametersSet()
-{
-    ...
-}
-```
-
 If any event handlers are set up, unhook them on disposal. For more information, see the [Component disposal with `IDisposable`](#component-disposal-with-idisposable) section.
 
 ### After component render
 
-<xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> are called after a component has finished rendering. Element and component references are populated at this point. Use this stage to perform additional initialization steps using the rendered content, such as activating third-party JavaScript libraries that operate on the rendered DOM elements.
+<xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> are called after a component has finished rendering. Element and component references are populated at this point. Use this stage to perform additional initialization steps using the rendered content, such as activating third-party JavaScript libraries that operate on the rendered DOM elements.
 
-The `firstRender` parameter for <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A>:
+The `firstRender` parameter for <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A>:
 
 * Is set to `true` the first time that the component instance is rendered.
 * Can be used to ensure that initialization work is only performed once.
+
+`Pages/OnAfterRender.razor`:
+
+```razor
+@page "/on-after-render"
+
+<p>@message</p>
+
+<button>Do nothing but trigger a rerender</button>
+
+@code {
+    private string message;
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            message = "OnAfterRender executed for the FIRST render.";
+        }
+        else
+        {
+            message = "OnAfterRender executed for a render after the first render.";
+        }
+    }
+}
+```
+
+Asynchronous work immediately after rendering must occur during the <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> lifecycle event.
 
 ```csharp
 protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -179,54 +236,62 @@ protected override async Task OnAfterRenderAsync(bool firstRender)
 }
 ```
 
-> [!NOTE]
-> Asynchronous work immediately after rendering must occur during the <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> lifecycle event.
->
-> Even if you return a <xref:System.Threading.Tasks.Task> from <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A>, the framework doesn't schedule a further render cycle for your component once that task completes. This is to avoid an infinite render loop. It's different from the other lifecycle methods, which schedule a further render cycle once the returned task completes.
-
-```csharp
-protected override void OnAfterRender(bool firstRender)
-{
-    if (firstRender)
-    {
-        ...
-    }
-}
-```
+Even if you return a <xref:System.Threading.Tasks.Task> from <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A>, the framework doesn't schedule a further render cycle for your component once that task completes. This is to avoid an infinite render loop. It's different from the other lifecycle methods, which schedule a further render cycle once the returned task completes.
 
 <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> *aren't called during the prerendering process on the server*. The methods are called when the component is rendered interactively after prerendering is finished. When the app prerenders:
 
 1. The component executes on the server to produce some static HTML markup in the HTTP response. During this phase, <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> aren't called.
-1. When `blazor.server.js` or `blazor.webassembly.js` start up in the browser, the component is restarted in an interactive rendering mode. After a component is restarted, <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> **are** called because the app isn't inside the prerendering phase any longer.
+1. When the Blazor script (`blazor.webassembly.js` or `blazor.server.js`) start in the browser, the component is restarted in an interactive rendering mode. After a component is restarted, <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> **are** called because the app isn't in the prerendering phase any longer.
 
 If any event handlers are set up, unhook them on disposal. For more information, see the [Component disposal with `IDisposable`](#component-disposal-with-idisposable) section.
 
 ### Suppress UI refreshing
 
-Override <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> to suppress UI refreshing. If the implementation returns `true`, the UI is refreshed:
-
-```csharp
-protected override bool ShouldRender()
-{
-    var renderUI = true;
-
-    return renderUI;
-}
-```
-
-<xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> is called each time the component is rendered.
+<xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> is called each time a component is rendered. Override <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> to manage UI refreshing. If the implementation returns `true`, the UI is refreshed.
 
 Even if <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> is overridden, the component is always initially rendered.
 
-For more information, see <xref:blazor/webassembly-performance-best-practices#avoid-unnecessary-rendering-of-component-subtrees>.
+`Pages/ControlRender.razor`:
+
+```razor
+@page "/control-render"
+
+<label>
+    <input type="checkbox" @bind="shouldRender" />
+    Should Render?
+</label>
+
+<p>Current count: @currentCount</p>
+
+<p>
+    <button @onclick="IncrementCount">Click me</button>
+</p>
+
+@code {
+    private int currentCount = 0;
+    private bool shouldRender = true;
+
+    protected override bool ShouldRender()
+    {
+        return shouldRender;
+    }
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+}
+```
+
+For more information on performance best practices pertaining to <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A>, see <xref:blazor/webassembly-performance-best-practices#avoid-unnecessary-rendering-of-component-subtrees>.
 
 ## State changes
 
 <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> notifies the component that its state has changed. When applicable, calling <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> causes the component to be rerendered.
 
-<xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is called automatically for <xref:Microsoft.AspNetCore.Components.EventCallback> methods. For more information, see <xref:blazor/components/event-handling#eventcallback>.
+<xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is called automatically for <xref:Microsoft.AspNetCore.Components.EventCallback> methods. For more information on event callbacks, see <xref:blazor/components/event-handling#eventcallback>.
 
-For more information, see <xref:blazor/components/rendering>.
+For more information on component rendering and when to call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A>, see <xref:blazor/components/rendering>.
 
 ## Handle incomplete async actions at render
 
@@ -238,13 +303,13 @@ In the `FetchData` component of the Blazor templates, <xref:Microsoft.AspNetCore
 
 ::: moniker range=">= aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_Server/Pages/components-lifecycle/FetchData.razor?name=snippet&highlight=9,21,25)]
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_Server/Pages/lifecycle/FetchData.razor?name=snippet&highlight=9,21,25)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_Server/Pages/components-lifecycle/FetchData.razor?name=snippet&highlight=9,21,25)]
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_Server/Pages/lifecycle/FetchData.razor?name=snippet&highlight=9,21,25)]
 
 ::: moniker-end
 
@@ -269,6 +334,8 @@ To avoid the double-rendering scenario in a Blazor Server app:
 
 The following code demonstrates an updated `WeatherForecastService` in a template-based Blazor Server app that avoids the double rendering:
 
+`WeatherForecastService.cs`:
+
 ```csharp
 public class WeatherForecastService
 {
@@ -277,12 +344,12 @@ public class WeatherForecastService
         "Freezing", "Bracing", "Chilly", "Cool", "Mild",
         "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
     };
-    
+
     public WeatherForecastService(IMemoryCache memoryCache)
     {
         MemoryCache = memoryCache;
     }
-    
+
     public IMemoryCache MemoryCache { get; }
 
     public Task<WeatherForecast[]> GetForecastAsync(DateTime startDate)
@@ -309,6 +376,8 @@ public class WeatherForecastService
     }
 }
 ```
+
+In the preceding example, the awaited <xref:System.Threading.Tasks.Task.Delay%2A> (`await Task.Delay(...)`) simulates a short delay before returning data from the `GetForecastAsync` method.
 
 For more information on the <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper.RenderMode>, see <xref:blazor/fundamentals/signalr#render-mode>.
 
@@ -377,7 +446,7 @@ For asynchronous disposal tasks, use `DisposeAsync` instead of <xref:System.IDis
 ```csharp
 public async ValueTask DisposeAsync()
 {
-    ...
+    await ...
 }
 ```
 
@@ -390,13 +459,13 @@ Unsubscribe event handlers from .NET events. The following [Blazor form](xref:bl
 
   ::: moniker range=">= aspnetcore-5.0"
 
-  [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/components-lifecycle/EventHandlerDisposal1.razor?name=snippet&highlight=24,29)]
+  [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/lifecycle/EventHandlerDisposal1.razor?name=snippet&highlight=24,29)]
 
   ::: moniker-end
 
   ::: moniker range="< aspnetcore-5.0"
 
-  [!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/components-lifecycle/EventHandlerDisposal1.razor?name=snippet&highlight=24,29)]
+  [!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/lifecycle/EventHandlerDisposal1.razor?name=snippet&highlight=24,29)]
 
   ::: moniker-end
 
@@ -404,19 +473,19 @@ Unsubscribe event handlers from .NET events. The following [Blazor form](xref:bl
 
   ::: moniker range=">= aspnetcore-5.0"
 
-  [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/components-lifecycle/EventHandlerDisposal2.razor?name=snippet&highlight=16,26)]
+  [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/lifecycle/EventHandlerDisposal2.razor?name=snippet&highlight=16,26)]
 
   ::: moniker-end
 
   ::: moniker range="< aspnetcore-5.0"
 
-  [!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/components-lifecycle/EventHandlerDisposal2.razor?name=snippet&highlight=16,26)]
+  [!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/lifecycle/EventHandlerDisposal2.razor?name=snippet&highlight=16,26)]
 
   ::: moniker-end
 
 When [anonymous functions](/dotnet/csharp/programming-guide/statements-expressions-operators/anonymous-functions), methods or expressions, are used, it isn't necessary to implement <xref:System.IDisposable> and unsubscribe delegates. However, failing to unsubscribe a delegate is a problem **when the object exposing the event outlives the lifetime of the component registering the delegate**. When this occurs, a memory leak results because the registered delegate keeps the original object alive. Therefore, only use the following approaches when you know that the event delegate disposes quickly. When in doubt about the lifetime of objects that require disposal, subscribe a delegate method and properly dispose the delegate as the preceding examples show.
 
-* Anonymous lambda method approach (explicit disposal not required)
+* Anonymous lambda method approach (explicit disposal not required):
 
   ```csharp
   private void HandleFieldChanged(object sender, FieldChangedEventArgs e)
@@ -432,7 +501,7 @@ When [anonymous functions](/dotnet/csharp/programming-guide/statements-expressio
   }
   ```
 
-* Anonymous lambda expression approach (explicit disposal not required)
+* Anonymous lambda expression approach (explicit disposal not required):
 
   ```csharp
   private ValidationMessageStore messageStore;
@@ -479,11 +548,17 @@ In the following example:
 * `await Task.Delay(5000, cts.Token);` represents long-running asynchronous background work.
 * `BackgroundResourceMethod` represents a long-running background method that shouldn't start if the `Resource` is disposed before the method is called.
 
+`Pages/BackgroundWork.razor`:
+
 ```razor
+@page "/background-work"
 @implements IDisposable
 @using System.Threading
+@using Microsoft.Extensions.Logging
+@inject ILogger<BackgroundWork> Logger
 
 <button @onclick="LongRunningWork">Trigger long running work</button>
+<button @onclick="Dispose">Trigger Disposal</button>
 
 @code {
     private Resource resource = new Resource();
@@ -491,14 +566,17 @@ In the following example:
 
     protected async Task LongRunningWork()
     {
+        Logger.LogInformation("Long running work started");
+
         await Task.Delay(5000, cts.Token);
 
         cts.Token.ThrowIfCancellationRequested();
-        resource.BackgroundResourceMethod();
+        resource.BackgroundResourceMethod(Logger);
     }
 
     public void Dispose()
     {
+        Logger.LogInformation("Executing Dispose");
         cts.Cancel();
         cts.Dispose();
         resource.Dispose();
@@ -508,16 +586,21 @@ In the following example:
     {
         private bool disposed;
 
-        public void BackgroundResourceMethod()
+        public void BackgroundResourceMethod(ILogger<BackgroundWork> logger)
         {
+            logger.LogInformation("BackgroundResourceMethod: Start method execution");
+
             if (disposed)
             {
+                logger.LogInformation("BackgroundResourceMethod: The Resource has was disposed");
                 throw new ObjectDisposedException(nameof(Resource));
             }
-            
-            ...
+
+            // Take action on the Resource
+
+            logger.LogInformation("BackgroundResourceMethod: Action was taken on the Resource");
         }
-        
+
         public void Dispose()
         {
             disposed = true;
