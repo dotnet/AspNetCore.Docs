@@ -177,17 +177,15 @@ Scaffolding creates:
 
 * A movies controller: *Controllers/MoviesController.cs*.
 * Razor view files for Create, Delete, Details, Edit, and Index pages: `Views/Movies/\*.cshtml`.
-* A database context class.
+* A database context class: *Data/MvcMovieContext.cs*.
 
 The automatic creation of these files is known as *scaffolding*.
 
 The scaffolded pages can't be used yet because the database doesn't exist. Running the app and selecting the **Movie App** link results in a *Cannot open database* or *no such table: Movie* error message.
 
-<!-- Start of scaffolding rework                 -->
-
 <a name="dc"></a>
 
-## Examine the generated database context class
+### Examine the generated database context class
 
 A database context class is needed to coordinate EF Core functionality (Create, Read, Update, Delete) for the `Movie` model. The database context is derived from [Microsoft.EntityFrameworkCore.DbContext](xref:Microsoft.EntityFrameworkCore.DbContext) and specifies the entities to include in the data model.
 
@@ -197,7 +195,7 @@ The preceding code creates a [DbSet\<Movie>](/dotnet/api/microsoft.entityframewo
 
 <a name="reg"></a>
 
-## Examine the generated database context registration
+### Examine the generated database context registration
 
 ASP.NET Core is built with [dependency injection (DI)](xref:fundamentals/dependency-injection). Services, such as the EF Core DB context, must be registered with DI in `Startup`. Components that require these services are provided these services via constructor parameters. For example, Razor Pages frequently requires services from the DI container. The constructor code that gets a DB context instance is shown later in the tutorial. In this section, the database context is registered with the DI container.
 
@@ -216,7 +214,7 @@ The name of the connection string is passed to the context by calling a method o
 
 <a name="cs"></a>
 
-## Examine the generated database connection string
+### Examine the generated database connection string
 
 Scaffolding added a connection string to the *appsettings.json* file:
 
