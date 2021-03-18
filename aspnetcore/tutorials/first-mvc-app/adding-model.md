@@ -108,6 +108,54 @@ The preceding command adds the [aspnet-codegenerator scaffolding tool](xref:fund
 
 Build the project as a check for compiler errors.
 
+<!-- Start of scaffolding rework                 -->
+
+<a name="dc"></a>
+
+## Examine the generated database context class
+
+A database context class is needed to coordinate EF Core functionality (Create, Read, Update, Delete) for the `Movie` model. The database context is derived from [Microsoft.EntityFrameworkCore.DbContext](xref:Microsoft.EntityFrameworkCore.DbContext) and specifies the entities to include in the data model.
+
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/zDocOnly/MvcMovieContext.cs?name=snippet)]
+
+The preceding code creates a [DbSet\<Movie>](/dotnet/api/microsoft.entityframeworkcore.dbset-1) property for the entity set. In Entity Framework terminology, an entity set typically corresponds to a database table. An entity corresponds to a row in the table.
+
+<a name="reg"></a>
+
+## Examine the generated registered database context
+
+ASP.NET Core is built with [dependency injection (DI)](xref:fundamentals/dependency-injection). Services, such as the EF Core DB context, must be registered with DI in `Startup`. Components that require these services are provided these services via constructor parameters. For example, Razor Pages frequently requires services from the DI container. The constructor code that gets a DB context instance is shown later in the tutorial. In this section, the database context is registered with the DI container.
+
+Scaffolding added the following `using` statements were added at the top of *Startup.cs*:
+
+```csharp
+using MvcMovie.Data;
+using Microsoft.EntityFrameworkCore;
+```
+
+Scaffolding generated the following highlighted code in `Startup.ConfigureServices`:
+
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Startup.cs?name=snippet_UseSqlite&highlight=5-6)]
+
+The name of the connection string is passed to the context by calling a method on a [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions) object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the `ConnectionString` key from the *appsettings.json* file.
+
+<a name="cs"></a>
+
+## Examine the generated database connection string
+
+Scaffolding added a connection string to the *appsettings.json* file:
+
+[!code-json[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/appsettings_SQLite.json?highlight=10-12)]
+
+Build the project as a check for compiler errors.
+
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+Build the project as a check for compiler errors.
+
+---
+<!-- End of scaffolding rework                 -->
+
 ## Scaffold movie pages
 
 Use the scaffolding tool to produce `Create`, `Read`, `Update`, and `Delete` (CRUD) pages for the movie model.
@@ -133,14 +181,7 @@ Complete the **Add MVC Controller with views, using Entity Framework** dialog:
 * **Views** and **Controller name** : Keep the default.
 * Select **Add**.
 
-Visual Studio creates:
-
-* A movies controller: *Controllers/MoviesController.cs*
-* Razor view files for Create, Delete, Details, Edit, and Index pages: `Views/Movies/\*.cshtml`
-
-The automatic creation of these files is known as *scaffolding*.
-
-### [Visual Studio Code](#tab/visual-studio-code) 
+### [Visual Studio Code](#tab/visual-studio-code)
 
 Open a command window in the project directory. The project directory is the directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files.
 
@@ -179,6 +220,13 @@ dotnet-aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMo
 ---
 
 <!-- End of tabs                  -->
+
+Scaffolding creates:
+
+* A movies controller: *Controllers/MoviesController.cs*
+* Razor view files for Create, Delete, Details, Edit, and Index pages: `Views/Movies/\*.cshtml`
+
+The automatic creation of these files is known as *scaffolding*.
 
 The scaffolded pages can't be used yet because the database doesn't exist. Running the app and selecting the **Movie App** link results in a *Cannot open database* or *no such table: Movie* error message.
 
