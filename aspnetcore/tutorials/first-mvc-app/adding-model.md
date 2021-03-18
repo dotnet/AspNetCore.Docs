@@ -107,7 +107,6 @@ The preceding command adds the [aspnet-codegenerator scaffolding tool](xref:fund
 ---
 
 Build the project as a check for compiler errors.
-
 <!-- Start of scaffolding rework                 -->
 
 <a name="dc"></a>
@@ -126,7 +125,7 @@ The preceding code creates a [DbSet\<Movie>](/dotnet/api/microsoft.entityframewo
 
 ASP.NET Core is built with [dependency injection (DI)](xref:fundamentals/dependency-injection). Services, such as the EF Core DB context, must be registered with DI in `Startup`. Components that require these services are provided these services via constructor parameters. For example, Razor Pages frequently requires services from the DI container. The constructor code that gets a DB context instance is shown later in the tutorial. In this section, the database context is registered with the DI container.
 
-Scaffolding added the following `using` statements were added at the top of *Startup.cs*:
+Scaffolding added the following `using` statements at the top of *Startup.cs*:
 
 ```csharp
 using MvcMovie.Data;
@@ -148,13 +147,6 @@ Scaffolding added a connection string to the *appsettings.json* file:
 [!code-json[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/appsettings_SQLite.json?highlight=10-12)]
 
 Build the project as a check for compiler errors.
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-Build the project as a check for compiler errors.
-
----
-<!-- End of scaffolding rework                 -->
 
 ## Scaffold movie pages
 
