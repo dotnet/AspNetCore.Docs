@@ -82,8 +82,9 @@ EF Core throws a <xref:Microsoft.EntityFrameworkCore.DbUpdateConcurrencyExceptio
 ## Add a tracking property
 
 In *Models/Department.cs*, add a tracking property named RowVersion:
+zz
 
-[!code-csharp[](intro/samples/cu30/Models/Department.cs?highlight=26,27)]
+[!code-csharp[](intro/samples/cu50/Models/Department.cs?name=snippet3&highlight=26,27)]
 
 The <xref:System.ComponentModel.DataAnnotations.TimestampAttribute> attribute is what identifies the column as a concurrency tracking column. The fluent API is an alternative way to specify the tracking property:
 
