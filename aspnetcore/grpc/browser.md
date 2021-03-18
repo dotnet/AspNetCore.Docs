@@ -118,7 +118,7 @@ The preceding code:
 
 ### Use gRPC client factory with gRPC-Web
 
-A gRPC-Web compatible .NET client can be created using gRPC's integration with [HttpClientFactory](xref:System.Net.Http.IHttpClientFactory).
+A gRPC-Web compatible .NET client can be created using the [gRPC client factory](xref:grpc/clientfactory).
 
 To use gRPC-Web with client factory:
 
@@ -130,7 +130,7 @@ To use gRPC-Web with client factory:
 
 ```csharp
 builder.Services
-    .AddGrpcClient<Greet.GreeterClient>((services, options) =>
+    .AddGrpcClient<Greet.GreeterClient>(options =>
     {
         options.Address = new Uri("https://localhost:5001");
     })
