@@ -46,6 +46,18 @@ var client = new Greeter.GreeterClient(channel);
 var response = await client.SayHelloAsync(new HelloRequest { Name = ".NET" });
 ```
 
+Clients can also be created using the [gRPC client factory](xref:grpc/clientfactory). An HTTP provider is configured using the <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler%2A> extension method.
+
+```csharp
+builder.Services
+    .AddGrpcClient<Greet.GreeterClient>(options =>
+    {
+        options.Address = new Uri("https://localhost:5001");
+    })
+    .ConfigurePrimaryHttpMessageHandler(
+        () => new GrpcWebHandler(new HttpClientHandler()));
+```
+
 For more information, see [Configure gRPC-Web with the .NET gRPC client](xref:grpc/browser#configure-grpc-web-with-the-net-grpc-client).
 
 ## .NET Framework

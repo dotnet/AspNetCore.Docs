@@ -327,7 +327,7 @@ Because `EnsureCreated` is called in the initializer method that runs on app sta
 * Delete the database.
 * Stop, then start the app. The database is automatically re-created to match the change.
 
-For example, if an `EmailAddress` property is added to the `Student` class, a new `EmailAddress` column in the re-created table. The view classed won't display the new `EmailAddress` property.
+For example, if an `EmailAddress` property is added to the `Student` class, a new `EmailAddress` column in the re-created table. The view won't display the new `EmailAddress` property.
 
 ## Conventions
 
@@ -367,7 +367,7 @@ For more information about asynchronous programming in .NET, see [Async Overview
 
 ## Limit entities fetched
 
-See [Performance considerations](xref:data/ef-rp/intro) for information on limiting the number or entities returned from a query.
+See [Performance considerations](xref:data/ef-rp/intro#performance-considerations) for information on limiting the number or entities returned from a query.
 
 Advance to the next tutorial to learn how to perform basic CRUD (create, read, update, delete) operations.
 

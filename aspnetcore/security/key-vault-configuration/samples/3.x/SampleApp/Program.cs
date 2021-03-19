@@ -5,13 +5,19 @@
 
 using Azure.Extensions.AspNetCore.Configuration.Secrets;
 using Azure.Identity;
-using Azure.Security.KeyVault.Secrets;
 using System;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
+
+#if Managed
+using Azure.Security.KeyVault.Secrets;
+#endif
+
+#if Certificate
+using System.Linq;
+using System.Security.Cryptography.X509Certificates;
+#endif
 
 namespace SampleApp
 {
@@ -23,7 +29,7 @@ namespace SampleApp
         }
 
 #if Certificate
-        #region snippet1
+#region snippet1
         // using System.Linq;
         // using System.Security.Cryptography.X509Certificates;
         // using Azure.Extensions.AspNetCore.Configuration.Secrets;
@@ -37,31 +43,25 @@ namespace SampleApp
                     {
                         var builtConfig = config.Build();
 
-                        using (var store = new X509Store(StoreLocation.CurrentUser))
-                        {
-                            store.Open(OpenFlags.ReadOnly);
-                            var certs = store.Certificates
-                                .Find(X509FindType.FindByThumbprint,
-                                    builtConfig["AzureADCertThumbprint"], false);
+                        using var store = new X509Store(StoreLocation.CurrentUser);
+                        store.Open(OpenFlags.ReadOnly);
+                        var certs = store.Certificates.Find(
+                            X509FindType.FindByThumbprint,
+                            builtConfig["AzureADCertThumbprint"], false);
 
-                            config.AddAzureKeyVault(new Uri($"https://{builtConfig["KeyVaultName"]}.vault.azure.net/"),
-                                                    new ClientCertificateCredential(builtConfig["AzureADDirectoryId"], builtConfig["AzureADApplicationId"], certs.OfType<X509Certificate2>().Single()),
-                                                    new KeyVaultSecretManager());
+                        config.AddAzureKeyVault(new Uri($"https://{builtConfig["KeyVaultName"]}.vault.azure.net/"),
+                                                new ClientCertificateCredential(builtConfig["AzureADDirectoryId"], builtConfig["AzureADApplicationId"], certs.OfType<X509Certificate2>().Single()),
+                                                new KeyVaultSecretManager());
 
-
-                            store.Close();
-                        }
+                        store.Close();
                     }
                 })
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
-        #endregion
+                .ConfigureWebHostDefaults(webBuilder => webBuilder.UseStartup<Startup>());
+#endregion
 #endif
 
 #if Managed
-        #region snippet2
+#region snippet2
         // using Azure.Security.KeyVault.Secrets;
         // using Azure.Identity;
         // using Azure.Extensions.AspNetCore.Configuration.Secrets;
@@ -73,18 +73,14 @@ namespace SampleApp
                     if (context.HostingEnvironment.IsProduction())
                     {
                         var builtConfig = config.Build();
-                        var secretClient = new SecretClient(new Uri($"https://{builtConfig["KeyVaultName"]}.vault.azure.net/"),
-                                                                 new DefaultAzureCredential());
+                        var secretClient = new SecretClient(
+                            new Uri($"https://{builtConfig["KeyVaultName"]}.vault.azure.net/"),
+                            new DefaultAzureCredential());
                         config.AddAzureKeyVault(secretClient, new KeyVaultSecretManager());
-
-
                     }
                 })
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
-        #endregion
+                .ConfigureWebHostDefaults(webBuilder => webBuilder.UseStartup<Startup>());
+#endregion
 #endif
     }
 }
