@@ -156,11 +156,7 @@ dotnet-aspnet-codegenerator razorpage -h
 
 For more information, see [dotnet-aspnet-codegenerator](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
 
-### Use SQLite for development, SQL Server for production
-
-When SQLite is selected, the template generated code is ready for development. The following code shows how to inject <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment> into `Startup`. `IWebHostEnvironment` is injected so the app can use SQLite in development and SQL Server in production.
-
-[!code-csharp[](~/includes/RP/code/StartupDevProd.cs?name=snippet&highlight=5,10,14)]
+[!INCLUDE[](~/includes/RP/sqlitedev.md)]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -184,11 +180,7 @@ When SQLite is selected, the template generated code is ready for development. T
 
 The *appsettings.json* file is updated with the connection string used to connect to a local database.
 
-### Use SQLite for development, SQL Server for production
-
-When SQLite is selected, the template generated code is ready for development. The following code shows how to inject <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment> into `Startup`. `IWebHostEnvironment` is injected so the app can use SQLite in development and SQL Server in production.
-
-[!code-csharp[](~/includes/RP/code/StartupDevProd.cs?name=snippet&highlight=5,10,14)]
+[!INCLUDE[](~/includes/RP/sqlitedev.md)]
 
 ---
 
@@ -331,6 +323,7 @@ Examine the `Up` method.
 The next tutorial explains the files created by scaffolding.
 
 ## Additional resources
+
 
 > [!div class="step-by-step"]
 > [Previous: Get Started](xref:tutorials/razor-pages/razor-pages-start)

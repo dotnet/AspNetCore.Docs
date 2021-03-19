@@ -37,15 +37,15 @@ Referencing ASP.NET Core in this manner is only supported for projects targeting
 
 ## Include Blazor extensibility
 
-Blazor supports WebAssembly (WASM) and Server [hosting models](xref:blazor/hosting-models). Unless there's a specific reason not to, a [Razor components](xref:blazor/components/index) library should support both hosting models. A Razor components library must use the [Microsoft.NET.Sdk.Razor SDK](xref:razor-pages/sdk).
+Blazor supports WebAssembly (WASM) and server-based [hosting models](xref:blazor/hosting-models). Unless there's a specific reason not to support both hosting models, a [Razor components](xref:blazor/components/index) library should support both hosting models. A Razor components library must use the [Microsoft.NET.Sdk.Razor SDK](xref:razor-pages/sdk).
 
 ### Support both hosting models
 
-To support Razor component consumption from both [Blazor Server](xref:blazor/hosting-models#blazor-server) and [Blazor WASM](xref:blazor/hosting-models#blazor-webassembly) projects, use the following instructions for your editor.
+To support Razor component consumption by [Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly) and [Blazor Server](xref:blazor/hosting-models#blazor-server) projects, use the following instructions for your editor.
 
 # [Visual Studio](#tab/visual-studio)
 
-Use the **Razor Class Library** project template. The template's **Support pages and views** checkbox should be deselected.
+Use the **Razor Class Library** project template.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -61,7 +61,93 @@ Use the **Razor Class Library** project template.
 
 ---
 
-The project generated from the template does the following things:
+::: moniker range=">= aspnetcore-5.0"
+
+The library generated from the project template:
+
+* Targets the current .NET framework based on the installed SDK.
+* Enables browser compatibilty checks for platform dependencies by including `browser` as a supported platform with the `SupportedPlatform` MSBuild item.
+* Adds a NuGet package reference for [Microsoft.AspNetCore.Components.Web](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Web).
+
+Example:
+
+```xml
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>{TARGET FRAMEWORK}</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <SupportedPlatform Include="browser" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="{VERSION}" />
+  </ItemGroup>
+
+</Project>
+```
+
+In the preceding example:
+
+* The `{TARGET FRAMEWORK}` placeholder is the [Target Framework Moniker (TFM)](/dotnet/standard/frameworks).
+* The `{VERSION}` placeholder is the version of the [`Microsoft.AspNetCore.Components.Web`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Web) package.
+
+### Only support the Blazor Server hosting model
+
+Class libraries rarely only support [Blazor Server](xref:blazor/hosting-models#blazor-server) apps. If the class library requires [Blazor Server](xref:blazor/hosting-models#blazor-server)-specific features, such as access to <xref:Microsoft.AspNetCore.Components.Server.Circuits.CircuitHandler>s or <xref:Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage>, or uses ASP.NET Core-specific features, such as middleware, MVC controllers, or Razor Pages, use **one** of the following approaches:
+
+* Specify that the library supports pages and views when the project is created with the **Support pages and views** check box (Visual Studio) or the `-s|--support-pages-and-views` option with the `dotnet new` command:
+
+  ```dotnetcli
+  dotnet new razorclasslib -s true
+  ```
+
+* Only provide a framework reference to ASP.NET Core in the library's project file:
+
+  ```xml
+  <Project Sdk="Microsoft.NET.Sdk.Razor">
+
+    <ItemGroup>
+      <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    </ItemGroup>
+
+  </Project>
+  ```
+
+### Support multiple framework versions
+
+If the library must support features added to Blazor in the current release while also supporting one or more earlier releases, multi-target the library. Provide a semicolon-separated list of [Target Framework Monikers (TFMs)](/dotnet/standard/frameworks) in the `TargetFrameworks` MSBuild property:
+
+```xml
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFrameworks>{TARGET FRAMEWORKS}</TargetFrameworks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <SupportedPlatform Include="browser" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="{VERSION}" />
+  </ItemGroup>
+
+</Project>
+```
+
+In the preceding example:
+
+* The `{TARGET FRAMEWORKS}` placeholder represents the semicolon-separated TFMs list. For example, `netcoreapp3.1;net5.0`.
+* The `{VERSION}` placeholder is the version of the [`Microsoft.AspNetCore.Components.Web`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Web) package.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+The project generated from the template:
 
 * Targets .NET Standard 2.0.
 * Sets the `RazorLangVersion` property to `3.0`. `3.0` is the default value for .NET Core 3.x.
@@ -84,7 +170,9 @@ For example:
 
 [!code-xml[](target-aspnetcore/samples/single-tfm/netcoreapp3.0-razor-components-library.csproj)]
 
-For more information on libraries containing Razor components, see [ASP.NET Core Razor components class libraries](xref:blazor/components/class-libraries).
+::: moniker-end
+
+For more information on libraries containing Razor components, see <xref:blazor/components/class-libraries>.
 
 ## Include MVC extensibility
 

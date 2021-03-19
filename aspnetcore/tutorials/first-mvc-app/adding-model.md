@@ -334,6 +334,8 @@ The constructor uses [Dependency Injection](xref:fundamentals/dependency-injecti
 
 The constructor uses [Dependency Injection](xref:fundamentals/dependency-injection) to inject the database context (`MvcMovieContext`) into the controller. The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.
 
+<a name="sqlite-dev"></a>
+
 ### Use SQLite for development, SQL Server for production
 
 When SQLite is selected, the template generated code is ready for development. The following code shows how to inject <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment> into Startup. `IWebHostEnvironment` is injected so `ConfigureServices` can use SQLite in development and SQL Server in production.

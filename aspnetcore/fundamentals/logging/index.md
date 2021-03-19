@@ -468,11 +468,10 @@ Use the dotnet trace tooling to collect a trace from an app:
 
 1. Run the app with the `dotnet run` command.
 1. Determine the process identifier (PID) of the .NET Core app:
-   * On Windows, use one of the following approaches:
-     * Task Manager (Ctrl+Alt+Del)
-     * [tasklist command](/windows-server/administration/windows-commands/tasklist)
-     * [Get-Process Powershell command](/powershell/module/microsoft.powershell.management/get-process)
-   * On Linux, use the [pidof command](https://refspecs.linuxfoundation.org/LSB_5.0.0/LSB-Core-generic/LSB-Core-generic/pidof.html).
+
+    ```dotnetcli
+    dotnet trace ps
+    ```
 
    Find the PID for the process that has the same name as the app's assembly.
 
