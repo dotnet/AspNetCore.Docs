@@ -261,7 +261,7 @@ additionalContent:
       # Card
       - title: API reference for ASP.NET Core
         links:
-          - url: /dotnet/api/?view=aspnetcore-3.1
+          - url: /dotnet/api/?view=aspnetcore-5.0
             text: ".NET API browser"
       # Card
       - title: Host and deploy
