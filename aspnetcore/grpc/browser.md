@@ -135,7 +135,7 @@ builder.Services
         options.Address = new Uri("https://localhost:5001");
     })
     .ConfigurePrimaryHttpMessageHandler(
-        () => new GrpcWebHandler(GrpcWebMode.GrpcWebText, new HttpClientHandler()));
+        () => new GrpcWebHandler(new HttpClientHandler()));
 ```
 
 For more information, see <xref:grpc/clientfactory>.
