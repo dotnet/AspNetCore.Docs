@@ -93,7 +93,7 @@ Complete the following steps to create an Azure Key Vault and store the sample a
 
 1. Create secrets in the key vault as name-value pairs.
 
-   Azure Key Vault secret names are limited to alphanumeric characters and dashes. Hierarchical values (configuration sections) use `--` (two dashes) as a delimiter, as colons aren't allowed in key vault secret names. Colons delimit a section from a subkey in [ASP.NET Core configuration](xref:fundamentals/configuration/index). Therefore, the two-dash sequence is replaced with a colon when the secrets are loaded into the app's configuration.
+   Azure Key Vault secret names are limited to alphanumeric characters and dashes. Hierarchical values (configuration sections) use `--` (two dashes) as a delimiter, as colons aren't allowed in key vault secret names. Colons delimit a section from a subkey in [ASP.NET Core configuration](xref:fundamentals/configuration/index). The two-dash sequence is replaced with a colon when the secrets are loaded into the app's configuration.
 
    The following secrets are for use with the sample app. The values include a `_prod` suffix to distinguish them from the `_dev` suffix values loaded in the Development environment from Secret Manager. Replace `{KEY VAULT NAME}` with the name of the key vault you created in the prior step:
 
@@ -221,7 +221,7 @@ The `AzureKeyVaultConfigurationOptions` object contains the following properties
 
 ## Use a key name prefix
 
-`AddAzureKeyVault` provides an overload that accepts an implementation of <xref:Microsoft.Extensions.Configuration.AzureKeyVault.IKeyVaultSecretManager>, which allows you to control how key vault secrets are converted into configuration keys. For example, you can implement the interface to load secret values based on a prefix value you provide at app startup. This allows you, for example, to load secrets based on the version of the app.
+`AddAzureKeyVault` provides an overload that accepts an implementation of <xref:Microsoft.Extensions.Configuration.AzureKeyVault.IKeyVaultSecretManager>, which allows you to control how key vault secrets are converted into configuration keys. For example, you can implement the interface to load secret values based on a prefix value you provide at app startup. This technique allows you, for example, to load secrets based on the version of the app.
 
 > [!WARNING]
 > Don't use prefixes on key vault secrets to:
@@ -246,7 +246,7 @@ The implementation reacts to the version prefixes of secrets to load the proper 
 
 [!code-csharp[](key-vault-configuration/samples_snapshot/PrefixKeyVaultSecretManager.cs)]
 
-The `Load` method is called by a provider algorithm that iterates through the vault secrets to find the ones that have the version prefix. When a version prefix is found with `Load`, the algorithm uses the `GetKey` method to return the configuration name of the secret name. It removes the version prefix from the secret's name and returns the rest of the secret name for loading into the app's configuration name-value pairs.
+The `Load` method is called by a provider algorithm that iterates through the vault secrets to find the version-prefixed secrets. When a version prefix is found with `Load`, the algorithm uses the `GetKey` method to return the configuration name of the secret name. It removes the version prefix from the secret's name. The rest of the secret name is returned for loading into the app's configuration name-value pairs.
 
 When this approach is implemented:
 
@@ -446,7 +446,7 @@ The instructions provided by [Quickstart: Set and retrieve a secret from Azure K
 
 1. Create secrets in the key vault as name-value pairs.
 
-   Azure Key Vault secret names are limited to alphanumeric characters and dashes. Hierarchical values (configuration sections) use `--` (two dashes) as a delimiter, as colons aren't allowed in key vault secret names. Colons delimit a section from a subkey in [ASP.NET Core configuration](xref:fundamentals/configuration/index). Therefore, the two-dash sequence is replaced with a colon when the secrets are loaded into the app's configuration.
+   Azure Key Vault secret names are limited to alphanumeric characters and dashes. Hierarchical values (configuration sections) use `--` (two dashes) as a delimiter, as colons aren't allowed in key vault secret names. Colons delimit a section from a subkey in [ASP.NET Core configuration](xref:fundamentals/configuration/index). The two-dash sequence is replaced with a colon when the secrets are loaded into the app's configuration.
 
    The following secrets are for use with the sample app. The values include a `_prod` suffix to distinguish them from the `_dev` suffix values loaded in the Development environment from Secret Manager. Replace `{KEY VAULT NAME}` with the name of the key vault you created in the prior step:
 
@@ -508,7 +508,7 @@ When you run the app, a webpage shows the loaded secret values. In the Developme
 
 ## Use managed identities for Azure resources
 
-**An app deployed to Azure** can take advantage of [Managed identities for Azure resources](/azure/active-directory/managed-identities-azure-resources/overview), which allows the app to authenticate with Azure Key Vault using Azure AD authentication without credentials (Application ID and Password/Client Secret) stored in the app.
+**An app deployed to Azure** can take advantage of [Managed identities for Azure resources](/azure/active-directory/managed-identities-azure-resources/overview). A managed identity allows the app to authenticate with Azure Key Vault using Azure AD authentication without credentials (Application ID and Password/Client Secret) stored in the app.
 
 The sample app uses managed identities for Azure resources when the `#define` statement at the top of the *Program.cs* file is set to `Managed`.
 
@@ -552,7 +552,7 @@ For information on using the provider with a managed identity and Azure Pipeline
 
 ## Use a key name prefix
 
-<xref:Microsoft.Extensions.Configuration.AzureKeyVaultConfigurationExtensions.AddAzureKeyVault%2A> provides an overload that accepts an implementation of <xref:Microsoft.Extensions.Configuration.AzureKeyVault.IKeyVaultSecretManager>, which allows you to control how key vault secrets are converted into configuration keys. For example, you can implement the interface to load secret values based on a prefix value you provide at app startup. This allows you, for example, to load secrets based on the version of the app.
+<xref:Microsoft.Extensions.Configuration.AzureKeyVaultConfigurationExtensions.AddAzureKeyVault%2A> provides an overload that accepts an implementation of <xref:Microsoft.Extensions.Configuration.AzureKeyVault.IKeyVaultSecretManager>. This overload allows you to control how key vault secrets are converted into configuration keys. For example, you can implement the interface to load secret values based on a prefix value you provide at app startup. This technique allows you, for example, to load secrets based on the version of the app.
 
 > [!WARNING]
 > Don't use prefixes on key vault secrets to place secrets for multiple apps into the same key vault or to place environmental secrets (for example, *development* versus *production* secrets) into the same vault. We recommend that different apps and development/production environments use separate key vaults to isolate app environments for the highest level of security.
@@ -572,7 +572,7 @@ The <xref:Microsoft.Extensions.Configuration.AzureKeyVault.IKeyVaultSecretManage
 
 [!code-csharp[](key-vault-configuration/samples_snapshot/PrefixKeyVaultSecretManager.cs)]
 
-The `Load` method is called by a provider algorithm that iterates through the vault secrets to find the ones that have the version prefix. When a version prefix is found with `Load`, the algorithm uses the `GetKey` method to return the configuration name of the secret name. It removes the version prefix from the secret's name and returns the rest of the secret name for loading into the app's configuration name-value pairs.
+The `Load` method is called by a provider algorithm that iterates through the vault secrets to find the ones that have the version prefix. When a version prefix is found with `Load`, the algorithm uses the `GetKey` method to return the configuration name of the secret name. It removes the version prefix from the secret's name. The rest of the secret name is returned for loading into the app's configuration name-value pairs.
 
 When this approach is implemented:
 
