@@ -327,7 +327,7 @@ Because `EnsureCreated` is called in the initializer method that runs on app sta
 * Delete the database.
 * Stop, then start the app. The database is automatically re-created to match the change.
 
-For example, if an `EmailAddress` property is added to the `Student` class, a new `EmailAddress` column in the re-created table. The view partials won't display the new `EmailAddress` property.
+For example, if an `EmailAddress` property is added to the `Student` class, a new `EmailAddress` column in the re-created table. The view won't display the new `EmailAddress` property.
 
 ## Conventions
 
