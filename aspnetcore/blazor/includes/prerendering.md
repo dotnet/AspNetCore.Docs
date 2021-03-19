@@ -5,87 +5,56 @@ While a Blazor Server app is prerendering, certain actions, such as calling into
 
 To delay JavaScript interop calls until after the connection with the browser is established, you can override the [`OnAfterRenderAsync` lifecycle event](xref:blazor/components/lifecycle#after-component-render). This event is only called after the app is fully rendered and the client connection is established.
 
-`Pages/PrerenderingWithJavaScript.razor`:
+`Pages/PrerenderedInterop1.razor`:
 
-```razor
-@page "/prerendering-with-javascript"
-@using Microsoft.JSInterop
-@inject IJSRuntime JSRuntime
+::: moniker range=">= aspnetcore-5.0"
 
-<div @ref="divElement">Text during render</div>
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/prerendering/PrerenderedInterop1.razor)]
 
-@code {
-    private ElementReference divElement;
+::: moniker-end
 
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            await JSRuntime.InvokeVoidAsync(
-                "setElementText", divElement, "Text after render");
-        }
-    }
-}
-```
+::: moniker range="< aspnetcore-5.0"
 
-For the preceding example code, provide a `setElementText` JavaScript function inside the `<head>` element of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server). The function is called with <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A?displayProperty=nameWithType> and doesn't return a value:
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/prerendering/PrerenderedInterop1.razor)]
+
+::: moniker-end
+
+For the preceding example code, provide a `setElementText1` JavaScript function inside the `<head>` element of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server). The function is called with <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A?displayProperty=nameWithType> and doesn't return a value:
 
 ```html
 <script>
-  window.setElementText = (element, text) => element.innerText = text;
+  window.setElementText1 = (element, text) => element.innerText = text;
 </script>
 ```
 
 > [!WARNING]
-> **The preceding example modifies the Document Object Model (DOM) directly for demonstration purposes only**. Directly modifying the DOM with JavaScript isn't recommended in most scenarios because JavaScript can interfere with Blazor's change tracking.
+> **The preceding example modifies the Document Object Model (DOM) directly for demonstration purposes only.** Directly modifying the DOM with JavaScript isn't recommended in most scenarios because JavaScript can interfere with Blazor's change tracking.
 
-The following component demonstrates how to use JavaScript interop as part of a component's initialization logic in a way that's compatible with prerendering. The component shows that it's possible to trigger a rendering update from inside <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A>. The developer must avoid creating an infinite loop in this scenario.
+The following component demonstrates how to use JavaScript interop as part of a component's initialization logic in a way that's compatible with prerendering. The component shows that it's possible to trigger a rendering update from inside <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A>. The developer must be careful to avoid creating an infinite loop in this scenario.
 
 Where <xref:Microsoft.JSInterop.JSRuntime.InvokeAsync%2A?displayProperty=nameWithType> is called, `ElementRef` is only used in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> and not in any earlier lifecycle method because there's no JavaScript element until after the component is rendered.
 
 [`StateHasChanged`](xref:blazor/components/lifecycle#state-changes) is called to rerender the component with the new state obtained from the JavaScript interop call (for more information, see <xref:blazor/components/rendering>). The code doesn't create an infinite loop because `StateHasChanged` is only called when `infoFromJs` is `null`.
 
-`Pages/PrerenderedInterop.razor`:
+`Pages/PrerenderedInterop2.razor`:
 
-```razor
-@page "/prerendered-interop"
-@using Microsoft.AspNetCore.Components
-@using Microsoft.JSInterop
-@inject IJSRuntime JSRuntime
+::: moniker range=">= aspnetcore-5.0"
 
-<p>
-    Get value via JS interop call:
-    <strong id="val-get-by-interop">@(infoFromJs ?? "No value yet")</strong>
-</p>
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/prerendering/PrerenderedInterop2.razor)]
 
-<p>
-    Set value via JS interop call:
-</p>
+::: moniker-end
 
-<div id="val-set-by-interop" @ref="divElement"></div>
+::: moniker range="< aspnetcore-5.0"
 
-@code {
-    private string infoFromJs;
-    private ElementReference divElement;
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/prerendering/PrerenderedInterop2.razor)]
 
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender && infoFromJs == null)
-        {
-            infoFromJs = await JSRuntime.InvokeAsync<string>(
-                "setElementText", divElement, "Hello from interop call!");
+::: moniker-end
 
-            StateHasChanged();
-        }
-    }
-}
-```
-
-For the preceding example code, provide a `setElementText` JavaScript function inside the `<head>` element of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server). The function is called with<xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType> and returns a value:
+For the preceding example code, provide a `setElementText2` JavaScript function inside the `<head>` element of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server). The function is called with<xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType> and returns a value:
 
 ```html
 <script>
-  window.setElementText = (element, text) => {
+  window.setElementText2 = (element, text) => {
     element.innerText = text;
     return text;
   };

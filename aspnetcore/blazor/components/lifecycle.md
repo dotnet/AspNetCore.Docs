@@ -5,7 +5,7 @@ description: Learn about the ASP.NET Core Blazor framework's Razor component lif
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/18/2020
+ms.date: 03/19/2020
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/components/lifecycle
 ---
@@ -63,37 +63,17 @@ In the following example, <xref:Microsoft.AspNetCore.Components.ParameterView.Tr
 
 Although [route parameter matching is case insensitive](xref:blazor/fundamentals/routing#route-parameters), <xref:Microsoft.AspNetCore.Components.ParameterView.TryGetValue%2A> only matches case sensitive parameter names in the route template. The following example is required to use `/{Param?}`, not `/{param?}`, in order to get the value. If `/{param?}` is used in this scenario, <xref:Microsoft.AspNetCore.Components.ParameterView.TryGetValue%2A> returns `false` and `message` isn't set to either string.
 
-`Pages/SetParametersAsync.razor`:
+`Pages/SetParamsAsync.razor`:
 
-```razor
-@page "/set-parameters-async/{Param?}"
+::: moniker range=">= aspnetcore-5.0"
 
-<p>@message</p>
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/lifecycle/SetParamsAsync.razor)]
 
-@code {
-    private string message;
+::: moniker-end
 
-    [Parameter]
-    public string Param { get; set; }
+::: moniker range="< aspnetcore-5.0"
 
-    public override async Task SetParametersAsync(ParameterView parameters)
-    {
-        if (parameters.TryGetValue<string>(nameof(Param), out var value))
-        {
-            if (value is null)
-            {
-                message = "The value of 'Param' is null.";
-            }
-            else
-            {
-                message = $"The value of 'Param' is {value}.";
-            }
-        }
-
-        await base.SetParametersAsync(parameters);
-    }
-}
-```
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/lifecycle/SetParamsAsync.razor)]
 
 ### Component initialization methods
 
@@ -103,22 +83,19 @@ Use <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> w
 
 For a synchronous operation, override <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized%2A>:
 
-`Pages/OnInitialized.razor`:
+`Pages/OnInit.razor`:
 
-```razor
-@page "/on-initialized"
+::: moniker range=">= aspnetcore-5.0"
 
-<p>@message</p>
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/lifecycle/OnInit.razor)]
 
-@code {
-    private string message;
+::: moniker-end
 
-    protected override void OnInitialized()
-    {
-        message = $"Initialized at {DateTime.Now}";
-    }
-}
-```
+::: moniker range="< aspnetcore-5.0"
+
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/lifecycle/OnInit.razor)]
+
+::: moniker-end
 
 To perform an asynchronous operation, override <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> and use the [`await`](/dotnet/csharp/language-reference/operators/await) operator on the operation:
 
@@ -149,34 +126,27 @@ If any event handlers are set up, unhook them on disposal. For more information,
   * Only known primitive immutable types of which at least one parameter has changed.
   * Any complex-typed parameters. The framework can't know whether the values of a complex-typed parameter have mutated internally, so it always treats the parameter set as changed when one or more complex-typed parameters are present.
 
-`Pages/OnParametersSet.razor`:
+For the following example component, navigate to the component's page at a URL:
 
-```razor
-@page "/on-parameters-set/{StartDate?:datetime}"
+* With a start date that's received by `StartDate`: `/on-parameters-set/2021-03-19`
+* Without a start date, where `StartDate` is assigned a value of the current local time: `/on-parameters-set`
 
-<p>@message</p>
+`Pages/OnParamsSet.razor`:
 
-@code {
-    private string message;
+::: moniker range=">= aspnetcore-5.0"
 
-    [Parameter]
-    public DateTime StartDate { get; set; }
+> [!NOTE]
+> In a component route, it isn't possible to both constrain a <xref:System.DateTime> parameter with the [route constraint `datetime`](xref:blazor/fundamentals/routing#route-constraints) and [make the parameter optional](xref:blazor/fundamentals/routing#route-parameters). Therefore, the following `OnParamsSet` component uses two [`@page`](xref:mvc/views/razor#page) directives to handle routing with and without a supplied date segment in the URL.
 
-    protected override void OnParametersSet()
-    {
-        if (StartDate == default)
-        {
-            StartDate = DateTime.Now;
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/lifecycle/OnParamsSet.razor)]
 
-            message = $"No start date in URL. Default value applied (StartDate: {StartDate}).";
-        }
-        else
-        {
-            message = $"The start date in the URL was used (StartDate: {StartDate}).";
-        }
-    }
-}
-```
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/lifecycle/OnParamsSet.razor)]
+
+::: moniker-end
 
 Asynchronous work when applying parameters and property values must occur during the <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A> lifecycle event:
 
@@ -189,6 +159,8 @@ protected override async Task OnParametersSetAsync()
 
 If any event handlers are set up, unhook them on disposal. For more information, see the [Component disposal with `IDisposable`](#component-disposal-with-idisposable) section.
 
+For more information on route parameters and constraints, see <xref:blazor/fundamentals/routing>.
+
 ### After component render
 
 <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> are called after a component has finished rendering. Element and component references are populated at this point. Use this stage to perform additional initialization steps using the rendered content, such as activating third-party JavaScript libraries that operate on the rendered DOM elements.
@@ -198,31 +170,19 @@ The `firstRender` parameter for <xref:Microsoft.AspNetCore.Components.ComponentB
 * Is set to `true` the first time that the component instance is rendered.
 * Can be used to ensure that initialization work is only performed once.
 
-`Pages/OnAfterRender.razor`:
+`Pages/AfterRender.razor`:
 
-```razor
-@page "/on-after-render"
+::: moniker range=">= aspnetcore-5.0"
 
-<p>@message</p>
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/lifecycle/AfterRender.razor)]
 
-<button>Do nothing but trigger a rerender</button>
+::: moniker-end
 
-@code {
-    private string message;
+::: moniker range="< aspnetcore-5.0"
 
-    protected override void OnAfterRender(bool firstRender)
-    {
-        if (firstRender)
-        {
-            message = "OnAfterRender executed for the FIRST render.";
-        }
-        else
-        {
-            message = "OnAfterRender executed for a render after the first render.";
-        }
-    }
-}
-```
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/lifecycle/AfterRender.razor)]
+
+::: moniker-end
 
 Asynchronous work immediately after rendering must occur during the <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> lifecycle event.
 
@@ -253,35 +213,17 @@ Even if <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> is 
 
 `Pages/ControlRender.razor`:
 
-```razor
-@page "/control-render"
+::: moniker range=">= aspnetcore-5.0"
 
-<label>
-    <input type="checkbox" @bind="shouldRender" />
-    Should Render?
-</label>
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/lifecycle/ControlRender.razor)]
 
-<p>Current count: @currentCount</p>
+::: moniker-end
 
-<p>
-    <button @onclick="IncrementCount">Click me</button>
-</p>
+::: moniker range="< aspnetcore-5.0"
 
-@code {
-    private int currentCount = 0;
-    private bool shouldRender = true;
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/lifecycle/ControlRender.razor)]
 
-    protected override bool ShouldRender()
-    {
-        return shouldRender;
-    }
-
-    private void IncrementCount()
-    {
-        currentCount++;
-    }
-}
-```
+::: moniker-end
 
 For more information on performance best practices pertaining to <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A>, see <xref:blazor/webassembly-performance-best-practices#avoid-unnecessary-rendering-of-component-subtrees>.
 
@@ -332,50 +274,21 @@ To avoid the double-rendering scenario in a Blazor Server app:
 * Use the identifier during prerendering to save component state.
 * Use the identifier after prerendering to retrieve the cached state.
 
-The following code demonstrates an updated `WeatherForecastService` in a template-based Blazor Server app that avoids the double rendering:
+The following code demonstrates an updated `WeatherForecastService` in a template-based Blazor Server app that avoids the double rendering.
 
 `WeatherForecastService.cs`:
 
-```csharp
-public class WeatherForecastService
-{
-    private static readonly string[] summaries = new[]
-    {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild",
-        "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
+::: moniker range=">= aspnetcore-5.0"
 
-    public WeatherForecastService(IMemoryCache memoryCache)
-    {
-        MemoryCache = memoryCache;
-    }
+[!code-csharp[](~/blazor/common/samples/5.x/BlazorSample_Server/lifecycle/WeatherForecastService.cs)]
 
-    public IMemoryCache MemoryCache { get; }
+::: moniker-end
 
-    public Task<WeatherForecast[]> GetForecastAsync(DateTime startDate)
-    {
-        return MemoryCache.GetOrCreateAsync(startDate, async e =>
-        {
-            e.SetOptions(new MemoryCacheEntryOptions
-            {
-                AbsoluteExpirationRelativeToNow = 
-                    TimeSpan.FromSeconds(30)
-            });
+::: moniker range="< aspnetcore-5.0"
 
-            var rng = new Random();
+[!code-csharp[](~/blazor/common/samples/3.x/BlazorSample_Server/lifecycle/WeatherForecastService.cs)]
 
-            await Task.Delay(TimeSpan.FromSeconds(10));
-
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = startDate.AddDays(index),
-                TemperatureC = rng.Next(-20, 55),
-                Summary = summaries[rng.Next(summaries.Length)]
-            }).ToArray();
-        });
-    }
-}
-```
+::: moniker-end
 
 In the preceding example, the awaited <xref:System.Threading.Tasks.Task.Delay%2A> (`await Task.Delay(...)`) simulates a short delay before returning data from the `GetForecastAsync` method.
 
@@ -407,37 +320,17 @@ If an object requires disposal, a lambda can be used to dispose of the object wh
 
 `Pages/CounterWithTimerDisposal.razor`:
 
-```razor
-@page "/counter-with-timer-disposal"
-@using System.Timers
-@implements IDisposable
+::: moniker range=">= aspnetcore-5.0"
 
-<h1>Counter with <code>Timer</code> disposal</h1>
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/lifecycle/CounterWithTimerDisposal.razor)]
 
-<p>Current count: @currentCount</p>
+::: moniker-end
 
-@code {
-    private int currentCount = 0;
-    private Timer timer = new Timer(1000);
+::: moniker range="< aspnetcore-5.0"
 
-    protected override void OnInitialized()
-    {
-        timer.Elapsed += (sender, eventArgs) => OnTimerCallback();
-        timer.Start();
-    }
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/lifecycle/CounterWithTimerDisposal.razor)]
 
-    private void OnTimerCallback()
-    {
-        _ = InvokeAsync(() =>
-        {
-            currentCount++;
-            StateHasChanged();
-        });
-    }
-
-    public void IDisposable.Dispose() => timer.Dispose();
-}
-```
+::: moniker-end
 
 The preceding example appears in <xref:blazor/components/rendering#receiving-a-call-from-something-external-to-the-blazor-rendering-and-event-handling-system>.
 
@@ -550,64 +443,17 @@ In the following example:
 
 `Pages/BackgroundWork.razor`:
 
-```razor
-@page "/background-work"
-@implements IDisposable
-@using System.Threading
-@using Microsoft.Extensions.Logging
-@inject ILogger<BackgroundWork> Logger
+::: moniker range=">= aspnetcore-5.0"
 
-<button @onclick="LongRunningWork">Trigger long running work</button>
-<button @onclick="Dispose">Trigger Disposal</button>
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/lifecycle/BackgroundWork.razor)]
 
-@code {
-    private Resource resource = new Resource();
-    private CancellationTokenSource cts = new CancellationTokenSource();
+::: moniker-end
 
-    protected async Task LongRunningWork()
-    {
-        Logger.LogInformation("Long running work started");
+::: moniker range="< aspnetcore-5.0"
 
-        await Task.Delay(5000, cts.Token);
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/lifecycle/BackgroundWork.razor)]
 
-        cts.Token.ThrowIfCancellationRequested();
-        resource.BackgroundResourceMethod(Logger);
-    }
-
-    public void Dispose()
-    {
-        Logger.LogInformation("Executing Dispose");
-        cts.Cancel();
-        cts.Dispose();
-        resource.Dispose();
-    }
-
-    private class Resource : IDisposable
-    {
-        private bool disposed;
-
-        public void BackgroundResourceMethod(ILogger<BackgroundWork> logger)
-        {
-            logger.LogInformation("BackgroundResourceMethod: Start method execution");
-
-            if (disposed)
-            {
-                logger.LogInformation("BackgroundResourceMethod: The Resource has was disposed");
-                throw new ObjectDisposedException(nameof(Resource));
-            }
-
-            // Take action on the Resource
-
-            logger.LogInformation("BackgroundResourceMethod: Action was taken on the Resource");
-        }
-
-        public void Dispose()
-        {
-            disposed = true;
-        }
-    }
-}
-```
+::: moniker-end
 
 ## Blazor Server reconnection events
 
