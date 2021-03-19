@@ -75,6 +75,8 @@ Although [route parameter matching is case insensitive](xref:blazor/fundamentals
 
 [!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/lifecycle/SetParamsAsync.razor)]
 
+::: moniker-end
+
 ### Component initialization methods
 
 <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized%2A> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> are invoked when the component is initialized after having received its initial parameters from its parent component in <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A>.
@@ -348,33 +350,29 @@ public async ValueTask DisposeAsync()
 
 Unsubscribe event handlers from .NET events. The following [Blazor form](xref:blazor/forms-validation) examples show how to unsubscribe an event handler in the `Dispose` method:
 
-* Private field and lambda approach
+::: moniker range=">= aspnetcore-5.0"
 
-  ::: moniker range=">= aspnetcore-5.0"
+* Private field and lambda approach
 
   [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/lifecycle/EventHandlerDisposal1.razor?name=snippet&highlight=24,29)]
 
-  ::: moniker-end
-
-  ::: moniker range="< aspnetcore-5.0"
-
-  [!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/lifecycle/EventHandlerDisposal1.razor?name=snippet&highlight=24,29)]
-
-  ::: moniker-end
-
 * Private method approach
-
-  ::: moniker range=">= aspnetcore-5.0"
 
   [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/lifecycle/EventHandlerDisposal2.razor?name=snippet&highlight=16,26)]
 
-  ::: moniker-end
+::: moniker-end
 
-  ::: moniker range="< aspnetcore-5.0"
+::: moniker range="< aspnetcore-5.0"
+
+* Private field and lambda approach
+
+  [!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/lifecycle/EventHandlerDisposal1.razor?name=snippet&highlight=24,29)]
+
+* Private method approach
 
   [!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/lifecycle/EventHandlerDisposal2.razor?name=snippet&highlight=16,26)]
 
-  ::: moniker-end
+::: moniker-end
 
 When [anonymous functions](/dotnet/csharp/programming-guide/statements-expressions-operators/anonymous-functions), methods or expressions, are used, it isn't necessary to implement <xref:System.IDisposable> and unsubscribe delegates. However, failing to unsubscribe a delegate is a problem **when the object exposing the event outlives the lifetime of the component registering the delegate**. When this occurs, a memory leak results because the registered delegate keeps the original object alive. Therefore, only use the following approaches when you know that the event delegate disposes quickly. When in doubt about the lifetime of objects that require disposal, subscribe a delegate method and properly dispose the delegate as the preceding examples show.
 
