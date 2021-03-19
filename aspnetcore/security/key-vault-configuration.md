@@ -352,7 +352,7 @@ When the app fails to load configuration using the provider, an error message is
 * The app isn't authorized to access the key vault.
 * The access policy doesn't include `Get` and `List` permissions.
 * In the key vault, the configuration data (name-value pair) is incorrectly named, missing, disabled, or expired.
-* The app has the wrong key vault name (`KeyVaultName`), Azure AD Application Id (`AzureADApplicationId`), or Azure AD certificate thumbprint (`AzureADCertThumbprint`), or Azure AD DirectoryId (`AzureADDirectoryId`).
+* The app has the wrong key vault name (`KeyVaultName`), Azure AD Application ID (`AzureADApplicationId`), or Azure AD certificate thumbprint (`AzureADCertThumbprint`), or Azure AD Directory ID (`AzureADDirectoryId`).
 * The configuration key (name) is incorrect in the app for the value you're trying to load.
 * When adding the key vault access policy for the app, the policy was created, but the **Save** button wasn't selected in the **Access policies** UI.
 
@@ -678,7 +678,7 @@ When the app fails to load configuration using the provider, an error message is
 * The app isn't authorized to access the key vault.
 * The access policy doesn't include `Get` and `List` permissions.
 * In the key vault, the configuration data (name-value pair) is incorrectly named, missing, disabled, or expired.
-* The app has the wrong key vault name (`KeyVaultName`), Azure AD Application Id (`AzureADApplicationId`), or Azure AD certificate thumbprint (`AzureADCertThumbprint`).
+* The app has the wrong key vault name (`KeyVaultName`), Azure AD Application ID (`AzureADApplicationId`), or Azure AD certificate thumbprint (`AzureADCertThumbprint`).
 * The configuration key (name) is incorrect in the app for the value you're trying to load.
 * When adding the access policy for the app to the key vault, the policy was created, but the **Save** button wasn't selected in the **Access policies** UI.
 
