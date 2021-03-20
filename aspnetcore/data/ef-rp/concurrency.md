@@ -99,10 +99,18 @@ modelBuilder.Entity<Department>()
 
 For a SQL Server database, the [`[Timestamp]`](xref:System.ComponentModel.DataAnnotations.TimestampAttribute>) attribute on an entity property defined as byte array:
 
-* Causes the column to be included in `DELETE` and `UPDATE WHERE` clauses.
+* Generates the <xref:Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder.IsConcurrencyToken%2A> call in the `BuildModel` method.  When a property is configured as a concurrency token the value in the database is checked when an instance of this entity type is updated or deleted during `SaveChanges` to ensure it has not changed since the instance was retrieved from the database. If it has changed, an exception is thrown and the changes will not be applied to the database. This concurrency  detection is not automatic, the developer needs to call <xref:Microsoft.EntityFrameworkCore.ChangeTracking.PropertyEntry.OriginalValue> to set the value assigned to the property when it was retrieved from the database.
 * Sets the column type in the database to [rowversion](/sql/t-sql/data-types/rowversion-transact-sql).
+* Generates the following code in the `BuildModel` method:
 
-The database generates a sequential row version number that's incremented each time the row is updated. In an `Update` or `Delete` command, the `Where` clause includes the fetched row version value. If the row being updated has changed since it was fetched:
+```csharp
+ b.Property<byte[]>("ConcurrencyToken")
+     .IsConcurrencyToken()
+     .ValueGeneratedOnAddOrUpdate()
+     .HasColumnType("rowversion");
+```
+
+SQL Server generates a sequential row version number that's incremented each time the row is updated. In an `Update` or `Delete` command, the `Where` clause includes the fetched row version value. If the row being updated has changed since it was fetched:
 
 * The current row version value doesn't match the fetched value.
 * The `Update` or `Delete` commands don't find a row because the `Where` clause looks for the fetched row version value.
@@ -274,7 +282,7 @@ The `ModelState.Remove` statement is required because `ModelState` has the old `
 The following shows the differences between the SQL Server and SQLite versions:
 
 ```diff
-+ using System;
++ using System;    // For GUID on SQLite
 
 + departmentToUpdate.ConcurrencyToken = Guid.NewGuid();
 

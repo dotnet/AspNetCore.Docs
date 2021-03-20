@@ -45,7 +45,7 @@ namespace ContosoUniversity.Pages.Departments
             return Page();
         }
 
-        #region snippet_RowVersion
+        #region snippet_RowVersion_sl
         public async Task<IActionResult> OnPostAsync(int id)
         {
             if (!ModelState.IsValid)
@@ -206,6 +206,7 @@ namespace ContosoUniversity.Pages.Departments
             return Page();
         }
 
+#region snippet_RowVersion
         public async Task<IActionResult> OnPostAsync(int id)
         {
             if (!ModelState.IsValid)
@@ -224,6 +225,7 @@ namespace ContosoUniversity.Pages.Departments
 
             _context.Entry(departmentToUpdate)
                 .Property(d => d.ConcurrencyToken).OriginalValue = Department.ConcurrencyToken;
+#endregion
 
             if (await TryUpdateModelAsync<Department>(
                 departmentToUpdate,
