@@ -228,7 +228,7 @@ The following code shows the updated page:
 
 [!code-cshtml[](intro/samples/cu50snapshots/Department/Index.cshtml?highlight=5,8,29,48,51)]
 
-# [Visual Studio for Mac](#tab/visual-studio-mac)
+# [Visual Studio Code](#tab/visual-studio-code)
 
 [!code-cshtml[](intro/samples/cu50snapshots/Department/IndexSQLite.cshtml?highlight=5,8,29,48,51)]
 
