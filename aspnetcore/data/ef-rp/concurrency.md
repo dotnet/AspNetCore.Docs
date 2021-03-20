@@ -137,6 +137,8 @@ The preceding commands:
 * Creates the *Migrations/{time stamp}_RowVersion.cs* migration file.
 * Updates the *Migrations/SchoolContextModelSnapshot.cs* file. The update adds the following code to the `BuildModel` method:
 
+# [Visual Studio](#tab/visual-studio)
+
 ```csharp
  b.Property<byte[]>("ConcurrencyToken")
      .IsConcurrencyToken()
@@ -145,6 +147,14 @@ The preceding commands:
 ```
 
 # [Visual Studio Code](#tab/visual-studio-code)
+
+```csharp
+b.Property<Guid>("ConcurrencyToken")
+    .IsConcurrencyToken()
+    .HasColumnType("TEXT");
+```
+
+---
 
 [!code-csharp[](intro/samples/cu50/Models/Department.cs?name=snippet2&highlight=26,27)]
 
