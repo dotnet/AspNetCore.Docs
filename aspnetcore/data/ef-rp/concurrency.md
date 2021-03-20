@@ -69,13 +69,15 @@ John clicks **Save** on an Edit page that still shows a budget of $350,000.00. W
 
 ## Conflict detection in EF Core
 
-EF Core throws a <xref:Microsoft.EntityFrameworkCore.DbUpdateConcurrencyException> when a conflict is detected. The data model has to be configured to enable conflict detection. Options for enabling conflict detection include the following:
+EF Core throws a <xref:Microsoft.EntityFrameworkCore.DbUpdateConcurrencyException> when a conflict is detected. The data model must be configured to enable conflict detection. Options for enabling conflict detection include the following:
 
 * In the model, include a tracking column that can be used to determine when a row has been changed:
 
   * When using SQL Server database, the recommended data type of the tracking column is [`rowversion`](/sql/t-sql/data-types/rowversion-transact-sql). The `rowversion` value is a sequential number that's automatically incremented each time the row is updated. In an `Update` or `Delete` command, the `Where` clause includes the [original value](xref:Microsoft.EntityFrameworkCore.ChangeTracking.PropertyEntry.OriginalValue) of the `rowversion`. If the row being updated has been changed by another user, the value in the `rowversion` column is different than the original value. In that case, the `Update` or `Delete` statement can't find the row to update because of the `Where` clause. EF Core throws a <xref:Microsoft.EntityFrameworkCore.DbUpdateConcurrencyException> when no rows are affected by an `Update` or `Delete` command. This approach is used in the SQL Sever version of this this tutorial.
 
-  * When using other database providers, such as SQLlite, add a unique type to the model as a concurrency token. Set the concurrency token to the <xref:Microsoft.EntityFrameworkCore.ChangeTracking.PropertyEntry.OriginalValue> on updates. This approach is used in the SQLite version of this tutorial.
+  * When using Non-SQL Server database providers, such as SQLite, add a unique property to the entity type to serve as the concurrency token:
+    * Set the concurrency token to the <xref:Microsoft.EntityFrameworkCore.ChangeTracking.PropertyEntry.OriginalValue> on updates. This approach is used in the SQLite version of this tutorial.
+    * Create a trigger to update the value whenever an entity is updated. This approach is similar to the `rowversion` approached used for SQL Server. For more information, see [SQLite and EF Core Concurrency Tokens](https://www.bricelam.net/2020/08/07/sqlite-and-efcore-concurrency-tokens.html).
 
 * Configure EF Core to include the original values of columns configured as [concurrency tokens](/ef/core/modeling/concurrency). This approach is generally not recommended.
 
@@ -183,10 +185,9 @@ The preceding commands:
 
 # [Visual Studio](#tab/visual-studio)
 
-* Follow the instructions in [Scaffold Student pages](xref:data/ef-rp/intro#scaffold-student-pages) with the following exceptions:
-
-* Create a *Pages/Departments* folder.  
-* Use `Department` for the model class.
+Follow the instructions in [Scaffold Student pages](xref:data/ef-rp/intro#scaffold-student-pages) with the following exceptions:
+  * Create a *Pages/Departments* folder.  
+  * Use `Department` for the model class.
   * Use the existing context class instead of creating a new one.
 
 # [Visual Studio Code](#tab/visual-studio-code)
@@ -213,23 +214,39 @@ Build the project.
 
 ## Update the Index page
 
-The scaffolding tool created a `RowVersion` column for the Index page, but that field wouldn't be displayed in a production app. In this tutorial, the last byte of the `RowVersion` is displayed to help show how concurrency handling works. The last byte isn't guaranteed to be unique by itself.
+The scaffolding tool created a `ConcurrencyToken` column for the Index page, but that field wouldn't be displayed in a production app. In this tutorial, the last byte of the `ConcurrencyToken` is displayed to help show how concurrency handling works. The last byte isn't guaranteed to be unique by itself.
 
 Update *Pages\Departments\Index.cshtml* page:
 
 * Replace Index with Departments.
-* Change the code containing `RowVersion` to show just the last byte of the byte array.
-* Replace FirstMidName with FullName.
+* Change the code containing `ConcurrencyToken` to show just the last few characters.
+* Replace `FirstMidName` with `FullName`.
 
 The following code shows the updated page:
 
-[!code-cshtml[](intro/samples/cu30/Pages/Departments/Index.cshtml?highlight=5,8,29,48,51)]
+# [Visual Studio](#tab/visual-studio)
+
+[!code-cshtml[](intro/samples/cu50snapshots/Department/Index.cshtml?highlight=5,8,29,48,51)]
+
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+[!code-cshtml[](intro/samples/cu50snapshots/Department/IndexSQLite.cshtml?highlight=5,8,29,48,51)]
+
+---
 
 ## Update the Edit page model
 
 Update *Pages\Departments\Edit.cshtml.cs* with the following code:
 
+# [Visual Studio](#tab/visual-studio)
+
+[!code-csharp[](intro/samples/cu50/Pages/Departments/Edit.cshtml.cs?name=snippet_All_ss)]
+
+# [Visual Studio Code](#tab/visual-studio-code)
+
 [!code-csharp[](intro/samples/cu30/Pages/Departments/Edit.cshtml.cs?name=snippet_All)]
+
+---
 
 The <xref:Microsoft.EntityFrameworkCore.ChangeTracking.PropertyEntry.OriginalValue> is updated with the `rowVersion` value from the entity when it was fetched in the `OnGet` method. EF Core generates a SQL UPDATE command with a WHERE clause containing the original `RowVersion` value. If no rows are affected by the UPDATE command (no rows have the original `RowVersion` value), a `DbUpdateConcurrencyException` exception is thrown.
 
@@ -254,6 +271,22 @@ The following highlighted code sets the `RowVersion` value to the new value retr
 [!code-csharp[](intro/samples/cu30/Pages/Departments/Edit.cshtml.cs?name=snippet_TryUpdateModel&highlight=28)]
 
 The `ModelState.Remove` statement is required because `ModelState` has the old `RowVersion` value. In the Razor Page, the `ModelState` value for a field takes precedence over the model property values when both are present.
+
+### SQL Server vs SQLite code differences
+
+The following shows the differences between the SQL Server and SQLite versions:
+
+```diff
++ using System;
+
++ departmentToUpdate.ConcurrencyToken = Guid.NewGuid();
+
+ _context.Entry(departmentToUpdate)
+    .Property(d => d.ConcurrencyToken).OriginalValue = Department.ConcurrencyToken;
+
+- Department.ConcurrencyToken = (byte[])dbValues.ConcurrencyToken;
++ Department.ConcurrencyToken = dbValues.ConcurrencyToken;
+```
 
 ### Update the Edit page
 

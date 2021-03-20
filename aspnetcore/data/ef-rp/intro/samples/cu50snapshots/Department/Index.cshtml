@@ -1,4 +1,4 @@
-@page
+﻿@page
 @model ContosoUniversity.Pages.Departments.IndexModel
 
 @{
@@ -48,17 +48,7 @@
                     @Html.DisplayFor(modelItem => item.Administrator.FullName)
                 </td>
                 <td>
-                    @{
-                        string str3;
-#if SQLiteVersion
-                        str3 = item.ConcurrencyToken.ToString().Substring(
-                                   item.ConcurrencyToken.ToString().Length - 3);
-
-#else
-                                str3 = item.ConcurrencyToken[7].ToString();
-#endif
-                    }
-                    @str3
+                  @item.ConcurrencyToken[7]
                 </td>
                 <td>
                     <a asp-page="./Edit" asp-route-id="@item.DepartmentID">Edit</a> |
@@ -69,3 +59,4 @@
         }
     </tbody>
 </table>
+S
