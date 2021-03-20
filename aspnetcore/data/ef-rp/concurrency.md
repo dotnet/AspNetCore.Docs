@@ -84,7 +84,7 @@ EF Core throws a <xref:Microsoft.EntityFrameworkCore.DbUpdateConcurrencyExceptio
 ## Add a tracking property
 
 In *Models/Department.cs*, add a tracking property named ConcurrencyToken:
-
+zz-top
 # [Visual Studio](#tab/visual-studio)
 
 [!code-csharp[](intro/samples/cu50/Models/Department.cs?name=snippet3&highlight=26,27)]
@@ -137,8 +137,6 @@ The preceding commands:
 * Creates the *Migrations/{time stamp}_RowVersion.cs* migration file.
 * Updates the *Migrations/SchoolContextModelSnapshot.cs* file. The update adds the following code to the `BuildModel` method:
 
-# [Visual Studio](#tab/visual-studio)
-
 ```csharp
  b.Property<byte[]>("ConcurrencyToken")
      .IsConcurrencyToken()
@@ -148,21 +146,11 @@ The preceding commands:
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-```csharp
-b.Property<Guid>("ConcurrencyToken")
-    .IsConcurrencyToken()
-    .HasColumnType("TEXT");
-```
-
----
-
 [!code-csharp[](intro/samples/cu50/Models/Department.cs?name=snippet2&highlight=26,27)]
 
 Update *Data/SchoolContext.cs* with the following code:
 
 [!code-csharp[](intro/samples/cu50/Data/SchoolContext.cs?name=snippet_SQLite&highlight=26-28)]
-
-For SQLite, code will be added to set the concurrency token to the <xref:Microsoft.EntityFrameworkCore.ChangeTracking.PropertyEntry.OriginalValue> on updates.
 
 Adding the `ConcurrencyToken` property changes the data model, which requires a migration.
 
@@ -181,10 +169,9 @@ The preceding commands:
 * Updates the *Migrations/SchoolContextModelSnapshot.cs* file. The update adds the following highlighted code to the `BuildModel` method:
 
 ```csharp
- b.Property<byte[]>("ConcurrencyToken")
-     .IsConcurrencyToken()
-     .ValueGeneratedOnAddOrUpdate()
-     .HasColumnType("rowversion");
+b.Property<Guid>("ConcurrencyToken")
+    .IsConcurrencyToken()
+    .HasColumnType("TEXT");
 ```
 
 ---
