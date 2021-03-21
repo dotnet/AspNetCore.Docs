@@ -97,7 +97,7 @@ Committed calls won't retry, regardless of the status code or the previous numbe
 
 ### Streaming calls
 
-Streaming calls can be used with gRPC retries but there are important considerations when they are used together:
+Streaming calls can be used with gRPC retries, but there are important considerations when they are used together:
 
 * **Server streaming**, **bidirectional streaming** - Streaming RPCs that return multiple messages from the server won't retry after the first message has been received.
 * **Client streaming**, **bidirectional streaming** - Streaming RPCs that send multiple messages to the server won't retry if the outgoing messages have exceeded the client's maximum buffer size.
