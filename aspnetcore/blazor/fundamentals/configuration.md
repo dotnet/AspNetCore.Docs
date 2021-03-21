@@ -185,7 +185,7 @@ builder.Services.AddOidcAuthentication(options =>
 Add a package reference for [`Microsoft.Extensions.Logging.Configuration`](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Configuration) to the app's project file:
 
 ```xml
-<PackageReference Include="Microsoft.Extensions.Logging.Configuration" Version="{VERION}" />
+<PackageReference Include="Microsoft.Extensions.Logging.Configuration" Version="{VERSION}" />
 ```
 
 In the preceding example, the `{VERSION}` placeholder is the package's version. Package versions are found at [NuGet.org](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Configuration).
