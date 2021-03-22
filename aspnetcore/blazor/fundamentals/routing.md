@@ -314,12 +314,22 @@ The query string of a request is obtained from the <xref:Microsoft.AspNetCore.Co
 var query = new Uri(NavigationManager.Uri).Query;
 ```
 
-To parse a query string's parameters:
+To parse a query string's parameters, one approach is to use [`URLSearchParams`](https://developer.mozilla.org/docs/Web/API/URLSearchParams) with [JavaScript (JS) interop](xref:blazor/call-javascript-from-dotnet).
 
-* An app can use the <xref:Microsoft.AspNetCore.WebUtilities> API. If the API isn't available to the app, add a package reference in the app's project file for [Microsoft.AspNetCore.WebUtilities](https://www.nuget.org/packages/Microsoft.AspNetCore.WebUtilities).
-* Obtain the value after parsing the query string with <xref:Microsoft.AspNetCore.WebUtilities.QueryHelpers.ParseQuery%2A?displayProperty=nameWithType>.
+In the `<head>` element of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server), provide a JavaScript function that uses [`URLSearchParams`](https://developer.mozilla.org/docs/Web/API/URLSearchParams) to return a query parameter value, if present:
 
-The following `ParseQueryString` component example parses a query string parameter key named `ship`. For example, the URL query string key-value pair `?ship=Tardis` captures the value `Tardis` in `queryValue`. For the following example, navigate to the app with the URL `https://localhost:5001/parse-query-string?ship=Tardis`.
+```html
+<script>
+  window.getQueryParamValue = (param) => {
+    const searchParams = new URLSearchParams(location.search);
+    return searchParams.get(param);
+  };
+</script>
+```
+
+The preceding JavaScript code can also be placed in a JavaScript file (`.js`). For more information, see <xref:blazor/call-javascript-from-dotnet>.
+
+The following `ParseQueryString` component calls the `getQueryParamValue` function seeking a value for the `ship` query parameter. For example, the URL query string `?ship=Tardis` captures the value `Tardis` in `shipQueryValue` for display.
 
 `Pages/ParseQueryString.razor`:
 

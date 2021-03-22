@@ -1,21 +1,21 @@
 @page "/parse-query-string"
-@using Microsoft.AspNetCore.WebUtilities
-@inject NavigationManager NavigationManager
+@inject IJSRuntime JS;
 
-<h1>Query string parse example</h1>
-
-<p>queryValue: @queryValue</p>
+<p>
+    @message
+</p>
 
 @code {
-    private string queryValue = "A query string for 'ship' isn't present.";
+    private string message = "A query string value for 'ship' isn't present.";
 
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
-        var query = new Uri(NavigationManager.Uri).Query;
+        var shipQueryValue = 
+            await JS.InvokeAsync<string>("getQueryParamValue", "ship");
 
-        if (QueryHelpers.ParseQuery(query).TryGetValue("ship", out var value))
+        if (!string.IsNullOrEmpty(shipQueryValue))
         {
-            queryValue = value;
+            message = $"The query string value for 'ship' is '{shipQueryValue}'.";
         }
     }
 }
