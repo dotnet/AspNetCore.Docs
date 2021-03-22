@@ -314,36 +314,13 @@ The query string of a request is obtained from the <xref:Microsoft.AspNetCore.Co
 var query = new Uri(NavigationManager.Uri).Query;
 ```
 
-To parse a query string's parameters, one approach is to use [`URLSearchParams`](https://developer.mozilla.org/docs/Web/API/URLSearchParams) with [JavaScript (JS) interop](xref:blazor/call-javascript-from-dotnet).
+To parse a query string's parameters, one approach is to use [`URLSearchParams`](https://developer.mozilla.org/docs/Web/API/URLSearchParams) with [JavaScript (JS) interop](xref:blazor/call-javascript-from-dotnet):
 
-In the `<head>` element of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server), provide a JavaScript function that uses [`URLSearchParams`](https://developer.mozilla.org/docs/Web/API/URLSearchParams) to return a query parameter value, if present:
-
-```html
-<script>
-  window.getQueryParamValue = (param) => {
-    const searchParams = new URLSearchParams(location.search);
-    return searchParams.get(param);
-  };
-</script>
+```javascript
+export createQueryString = (string queryString) => new URLSearchParams(queryString);
 ```
 
-The preceding JavaScript code can also be placed in a JavaScript file (`.js`). For more information, see <xref:blazor/call-javascript-from-dotnet>.
-
-The following `ParseQueryString` component calls the `getQueryParamValue` function seeking a value for the `ship` query parameter. For example, the URL query string `?ship=Tardis` captures the value `Tardis` in `shipQueryValue` for display.
-
-`Pages/ParseQueryString.razor`:
-
-::: moniker range=">= aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/routing/ParseQueryString.razor)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/routing/ParseQueryString.razor)]
-
-::: moniker-end
+For more information, see [Blazor JavaScript isolation and object references](xref:blazor/call-javascript-from-dotnet#blazor-javascript-isolation-and-object-references).
 
 ## `NavLink` and `NavMenu` components
 
