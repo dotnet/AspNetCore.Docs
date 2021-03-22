@@ -430,7 +430,7 @@ xhttp.onreadystatechange = function() {
 xhttp.open('POST', '/api/password/changepassword', true);
 xhttp.setRequestHeader("Content-type", "application/json");
 xhttp.setRequestHeader("X-CSRF-TOKEN", csrfToken);
-xhttp.send(JSON.stringify({ "newPassword": "ReallySecurePassword999$$$" }));
+xhttp.send(JSON.stringify({ "newPassword": $CREDENTIAL_PLACEHOLDER$ }));
 ```
 
 ### AngularJS
