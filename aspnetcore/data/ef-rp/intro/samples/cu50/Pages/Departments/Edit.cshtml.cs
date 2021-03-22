@@ -64,8 +64,8 @@ namespace ContosoUniversity.Pages.Departments
 
             departmentToUpdate.ConcurrencyToken = Guid.NewGuid();
 
-            _context.Entry(departmentToUpdate)
-                .Property(d => d.ConcurrencyToken).OriginalValue = Department.ConcurrencyToken;
+            _context.Entry(departmentToUpdate).Property(
+                       d => d.ConcurrencyToken).OriginalValue = Department.ConcurrencyToken;
             #endregion
 
             #region snippet_TryUpdateModel
@@ -224,8 +224,8 @@ namespace ContosoUniversity.Pages.Departments
                 return HandleDeletedDepartment();
             }
 
-            _context.Entry(departmentToUpdate)
-                .Property(d => d.ConcurrencyToken).OriginalValue = Department.ConcurrencyToken;
+            _context.Entry(departmentToUpdate).Property(
+                   d => d.ConcurrencyToken).OriginalValue = Department.ConcurrencyToken;
 #endregion
 #endregion
 
