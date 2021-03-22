@@ -96,7 +96,7 @@ When using generic-typed components, the type parameter is inferred if possible.
 
 ## Infer generic types based on ancestor components
 
-::: moniker range=">= aspnetcore-5.0"
+::: moniker range=">= aspnetcore-6.0"
 
 An ancestor component can cascade a type parameter by name to descendants using the `CascadingTypeParameter` attribute. This attribute allows a generic type inference to use the specified type parameter automatically with descendants that have a type parameter with the same name.
 
@@ -167,7 +167,7 @@ Matching is only performed by name. Therefore, we recommend avoiding a cascaded 
 
 ::: moniker-end
 
-::: moniker range="< aspnetcore-5.0"
+::: moniker range="< aspnetcore-6.0"
 
 > [!NOTE]
 > Generic type constraints are supported in ASP.NET Core 6.0. For more information, see [the 6.0 version of this article](?view=aspnetcore-6.0).
