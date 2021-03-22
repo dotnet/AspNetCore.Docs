@@ -100,26 +100,15 @@ When using generic-typed components, the type parameter is inferred if possible.
 
 Ancestor components must opt in to this behavior. An ancestor component can cascade a type parameter by name to descendants using the `CascadingTypeParameter` attribute. This attribute allows a generic type inference to use the specified type parameter automatically with descendants that have a type parameter with the same name. The following example cascades a generic type parameter named `TItem`.
 
-For example, define `Grid` and `Column` components.
-
-`Shared/Grid.razor`:
+For example, the following 
 
 ```razor
-
-```
-
-`Shared/Column.razor`:
-
-```razor
-
-```
-
-Use the `Grid` and `Column` components.
-
-`Pages/GenericCascadedType.razor`:
-
-```razor
-
+<Chart Data="stockPriceHistory.GroupBy(x => x.Date)">
+    <Line Title="Open" Value="day => day.Values.First()" />
+    <Line Title="High" Value="day => day.Values.Max()" />
+    <Line Title="Low" Value="day => day.Values.Min()" />
+    <Line Title="Close" Value="day => day.Values.Last()" />
+</Chart>
 ```
 
 > [!NOTE]
