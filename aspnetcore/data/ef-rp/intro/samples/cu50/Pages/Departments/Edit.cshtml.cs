@@ -69,7 +69,6 @@ namespace ContosoUniversity.Pages.Departments
             #endregion
 
             #region snippet_TryUpdateModel
-
             if (await TryUpdateModelAsync<Department>(
                 departmentToUpdate,
                 "Department",
