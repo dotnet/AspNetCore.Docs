@@ -100,7 +100,7 @@ When using generic-typed components, the type parameter is inferred if possible.
 
 An ancestor component can cascade a type parameter by name to descendants using the `CascadingTypeParameter` attribute. This attribute allows a generic type inference to use the specified type parameter automatically with descendants that have a type parameter with the same name.
 
-For example, the following `Chart` component receives stock price data and cascades a generic type parameter named `TLineData` to its descendent components:
+For example, the following `Chart` component receives stock price data and cascades a generic type parameter named `TLineData` to its descendent components.
 
 `Shared/Chart.razor`:
 
@@ -143,7 +143,7 @@ When the `Chart` component is used, `TLineData` isn't specified for each `Line` 
 `Pages/StockPriceHistory.razor`:
 
 ```razor
-...
+@page "/stock-price-history"
 
 <Chart Data="stockPriceHistory.GroupBy(x => x.Date)">
     <Line Title="Open" Value="day => day.Values.First()" />
@@ -151,8 +151,6 @@ When the `Chart` component is used, `TLineData` isn't specified for each `Line` 
     <Line Title="Low" Value="day => day.Values.Min()" />
     <Line Title="Close" Value="day => day.Values.Last()" />
 </Chart>
-
-...
 ```
 
 > [!NOTE]
@@ -164,7 +162,7 @@ By adding `@attribute [CascadingTypeParameter(...)]` to a component, the specifi
 * Also declare a [`@typeparam`](xref:mvc/views/razor#typeparam) with the exact same name.
 * Don't have another value supplied or inferred for the type parameter. If another value is supplied or inferred, it takes precedence over the cascaded generic type.
 
-When receiving a cascaded type parameter, components obtain it from the closest ancestor that has a `CascadingTypeParameter` with a matching name. The cascaded generic types parameters are overridden within a particular subtree.
+When receiving a cascaded type parameter, components obtain the parameter value from the closest ancestor that has a `CascadingTypeParameter` with a matching name. Cascaded generic type parameters are overridden within a particular subtree.
 
 Matching is only performed by name. Therefore, we recommend avoiding a cascaded generic type parameter with a generic name, for example `T` or `TItem`. If a developer opts into cascading a type parameter, they're implicitly promising that its name is unique enough not to clash with other cascaded type parameters from unrelated components.
 
