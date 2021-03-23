@@ -3,7 +3,7 @@ title: Health checks in ASP.NET Core
 author: rick-anderson
 description: Learn how to set up health checks for ASP.NET Core infrastructure, such as apps and databases.
 monikerRange: '>= aspnetcore-2.2'
-ms.author: riande*
+ms.author: riande
 ms.custom: mvc
 ms.date: 03/23/2021
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
