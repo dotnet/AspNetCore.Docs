@@ -14,7 +14,7 @@ uid: azure/devops/index
 
 By [Cam Soper](https://twitter.com/camsoper) and [Scott Addie](https://twitter.com/scottaddie)
 
-This guide is available as a [downloadable PDF e-book](https://aka.ms/devopsbook).
+This guide is available as a [downloadable PDF e-book](https://github.com/dotnet-architecture/eBooks/blob/master/current/devops-aspnet-core/DevOps-with-ASP.NET-Core-and-Azure.pdf).
 
 ## Welcome 
 
