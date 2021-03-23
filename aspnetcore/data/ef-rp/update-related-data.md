@@ -204,9 +204,10 @@ The preceding code:
   * Adds [logging](xref:fundamentals/logging/index) for warning and error messages.
   * Calls <xref:Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.Load%2A>, which fetches all the Courses in one database call. For small collections this is an optimization when using <xref:Microsoft.EntityFrameworkCore.DbContext.FindAsync%2A>. `FindAsync` returns the tracked entity without a request to the database.
 
-  [!code-csharp[](intro/samples/cu50/Pages/Instructors/Create.cshtml.cs?name=snippet_find&highlight=9,15)]
+    [!code-csharp[](intro/samples/cu50/Pages/Instructors/Create.cshtml.cs?name=snippet_find&highlight=9,15,34)]
 
-  * `_context.Instructors.Add(Instructor)` creates a new `Instructor` using [many-to-many](/ef/core/modeling/relationships#many-to-many) relationships without explicitly mapping the join table. Many-to-many was added in EF 5.0.
+  * `_context.Instructors.Add(newInstructor)` creates a new `Instructor` using [many-to-many](/ef/core/modeling/relationships#many-to-many) relationships without explicitly mapping the join table. [Many-to-many was added in EF 5.0](/ef/core/what-is-new/ef-core-5.0/whatsnew).
+  
 Test the instructor Create page.
 
 Update the Instructor Create Razor page with code similar to the Edit page:

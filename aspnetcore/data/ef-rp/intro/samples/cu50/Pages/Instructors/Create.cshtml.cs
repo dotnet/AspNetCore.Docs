@@ -62,7 +62,6 @@ namespace ContosoUniversity.Pages.Instructors
                     _logger.LogWarning("Course {course} not found", course);
                 }
             }
-            #endregion
 
             try
             {
@@ -86,6 +85,7 @@ namespace ContosoUniversity.Pages.Instructors
             PopulateAssignedCourseData(_context, Instructor);
             return Page();
         }
+        #endregion
     }
 }
 #endregion
