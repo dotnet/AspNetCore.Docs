@@ -132,6 +132,7 @@ By default, `dotnet-watch` tracks all files matching the following glob patterns
 * `**/*.cs`
 * `*.csproj`
 * `**/*.resx`
+* Content files: `wwwroot/**`, `**/*.config`, `**/*.json`
 
 More items can be added to the watch list by editing the *.csproj* file. Items can be specified individually or by using glob patterns.
 
@@ -158,8 +159,6 @@ More items can be added to the watch list by editing the *.csproj* file. Items c
     <ProjectReference Include="..\ClassLibrary1\ClassLibrary1.csproj" Watch="false" />
 </ItemGroup>
 ```
-
-By default, items in the `Compile` and `Content` item group are watched. To prevent these items from being watched, configure the `ItemGroup` to prevent watching:
 
 ```xml
 <ItemGroup>
