@@ -159,6 +159,15 @@ More items can be added to the watch list by editing the *.csproj* file. Items c
 </ItemGroup>
 ```
 
+By default, items in the `Compile` and `Content` item group are watched. To prevent these items from being watched, configure the `ItemGroup` to prevent watching:
+
+```xml
+<ItemGroup>
+     <!-- exclude all Content items from being watched -->
+    <Content Update="@(Content)" Watch="false" />
+</ItemGroup>
+```
+
 ## Custom watch projects
 
 `dotnet-watch` isn't restricted to C# projects. Custom watch projects can be created to handle different scenarios. Consider the following project layout:
