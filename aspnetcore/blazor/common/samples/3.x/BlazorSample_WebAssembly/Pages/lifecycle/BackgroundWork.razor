@@ -35,17 +35,17 @@
 
         public void BackgroundResourceMethod(ILogger<BackgroundWork> logger)
         {
-            logger.LogInformation("BackgroundResourceMethod: Start method execution");
+            logger.LogInformation("BackgroundResourceMethod: Start method");
 
             if (disposed)
             {
-                logger.LogInformation("BackgroundResourceMethod: The Resource has was disposed");
+                logger.LogInformation("BackgroundResourceMethod: Disposed");
                 throw new ObjectDisposedException(nameof(Resource));
             }
 
             // Take action on the Resource
 
-            logger.LogInformation("BackgroundResourceMethod: Action was taken on the Resource");
+            logger.LogInformation("BackgroundResourceMethod: Action on Resource");
         }
 
         public void Dispose()

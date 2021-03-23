@@ -36,7 +36,7 @@ To set up prerendering for a Blazor WebAssembly app:
 
    * Set the namespace to the server app's `Pages` folder (for example, `@namespace BlazorHosted.Server.Pages`).
    * Set an [`@using`](xref:mvc/views/razor#using) directive for the client project (for example, `@using BlazorHosted.Client`).
-   * Update the stylesheet links to point to the WebAssembly app's stylesheet. In the following example, the client app's namespace is `BlazorHosted.Client`:
+   * Update **both** of the stylesheet links to point to the WebAssembly app's stylesheets. In the following example, the client app's namespace is `BlazorHosted.Client`:
 
      ```cshtml
      <link href="css/app.css" rel="stylesheet" />

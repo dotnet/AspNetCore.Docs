@@ -5,7 +5,7 @@ description: Learn about the ASP.NET Core Blazor framework's Razor component lif
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/19/2020
+ms.date: 03/23/2020
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/components/lifecycle
 ---
@@ -13,15 +13,17 @@ uid: blazor/components/lifecycle
 
 The Blazor framework processes Razor component lifecycle events in a set of synchronous and asynchronous lifecycle methods. The lifecycle methods can be overridden to perform additional operations in components during component initialization and rendering.
 
-The following diagrams illustrate the Blazor lifecycle. Lifecycle methods are defined with examples in the following sections of this article.
+## Lifecycle events
+
+The following diagrams illustrate Razor component lifecycle events. The C# methods associated with the lifecycle events are defined with examples in the following sections of this article.
 
 Component lifecycle events:
 
 1. If the component is rendering for the first time on a request:
    * Create the component's instance.
-   * Perform property injection. Run [`SetParametersAsync`](#before-parameters-are-set).
-   * Call [`OnInitialized{Async}`](#component-initialization-methods). If a <xref:System.Threading.Tasks.Task> is returned, the <xref:System.Threading.Tasks.Task> is awaited and the component is rendered. If a <xref:System.Threading.Tasks.Task> isn't returned, the component is rendered.
-1. Call [`OnParametersSet{Async}`](#after-parameters-are-set) and render the component. If a <xref:System.Threading.Tasks.Task> is returned from `OnParametersSetAsync`, the <xref:System.Threading.Tasks.Task> is awaited and then the component is rerendered.
+   * Perform property injection. Run [`SetParametersAsync`](#before-parameters-are-set-setparametersasync).
+   * Call [`OnInitialized{Async}`](#component-initialization-methods-oninitializedoninitializedasync). If a <xref:System.Threading.Tasks.Task> is returned, the <xref:System.Threading.Tasks.Task> is awaited and the component is rendered. If a <xref:System.Threading.Tasks.Task> isn't returned, the component is rendered.
+1. Call [`OnParametersSet{Async}`](#after-parameters-are-set-onparameterssetonparameterssetasync) and render the component. If a <xref:System.Threading.Tasks.Task> is returned from `OnParametersSetAsync`, the <xref:System.Threading.Tasks.Task> is awaited and then the component is rerendered.
 
 ![Component lifecycle events of a Razor component in Blazor](lifecycle/_static/lifecycle1.png)
 
@@ -36,22 +38,20 @@ The `Render` lifecycle:
 
 1. Avoid further rendering operations on the component:
    * After the first render.
-   * When [`ShouldRender`](#suppress-ui-refreshing) is `false`.
+   * When [`ShouldRender`](#suppress-ui-refreshing-shouldrender) is `false`.
 1. Build the render tree diff (difference) and render the component.
 1. Await the DOM to update.
-1. Call [`OnAfterRender{Async}`](#after-component-render).
+1. Call [`OnAfterRender{Async}`](#after-component-render-onafterrenderonafterrenderasync).
 
 ![Render lifecycle](lifecycle/_static/lifecycle3.png)
 
-Developer calls to [`StateHasChanged`](#state-changes) result in a render. For more information, see <xref:blazor/components/rendering>.
+Developer calls to [`StateHasChanged`](#state-changes-statehaschanged) result in a render. For more information, see <xref:blazor/components/rendering>.
 
-## Lifecycle methods
+## Before parameters are set (`SetParametersAsync`)
 
-### Before parameters are set
+<xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> sets parameters supplied by the component's parent in the render tree or from route parameters.
 
-<xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> sets parameters supplied by the component's parent in the render tree or from route parameters. By overriding the method, developer code can interact directly with the <xref:Microsoft.AspNetCore.Components.ParameterView>'s parameters.
-
-The method's <xref:Microsoft.AspNetCore.Components.ParameterView> parameter contains the set of [component parameter](xref:blazor/components/index#parameters) values for the component each time <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> is called.
+The method's <xref:Microsoft.AspNetCore.Components.ParameterView> parameter contains the set of [component parameter](xref:blazor/components/index#parameters) values for the component each time <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> is called. By overriding the <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> method, developer code can interact directly with the <xref:Microsoft.AspNetCore.Components.ParameterView>'s parameters.
 
 The default implementation of <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> sets the value of each property with the [`[Parameter]`](xref:Microsoft.AspNetCore.Components.ParameterAttribute) or [`[CascadingParameter]` attribute](xref:Microsoft.AspNetCore.Components.CascadingParameterAttribute) that has a corresponding value in the <xref:Microsoft.AspNetCore.Components.ParameterView>. Parameters that don't have a corresponding value in <xref:Microsoft.AspNetCore.Components.ParameterView> are left unchanged.
 
@@ -61,7 +61,7 @@ If any event handlers are set up, unhook them on disposal. For more information,
 
 In the following example, <xref:Microsoft.AspNetCore.Components.ParameterView.TryGetValue%2A?displayProperty=nameWithType> assigns the `Param` parameter's value to `value` if parsing a route parameter for `Param` is successful. When `value` isn't `null`, the value is displayed by the component.
 
-Although [route parameter matching is case insensitive](xref:blazor/fundamentals/routing#route-parameters), <xref:Microsoft.AspNetCore.Components.ParameterView.TryGetValue%2A> only matches case sensitive parameter names in the route template. The following example is required to use `/{Param?}`, not `/{param?}`, in order to get the value. If `/{param?}` is used in this scenario, <xref:Microsoft.AspNetCore.Components.ParameterView.TryGetValue%2A> returns `false` and `message` isn't set to either string.
+Although [route parameter matching is case insensitive](xref:blazor/fundamentals/routing#route-parameters), <xref:Microsoft.AspNetCore.Components.ParameterView.TryGetValue%2A> only matches case sensitive parameter names in the route template. The following example requires the use of `/{Param?}` in the route template in order to get the value with <xref:Microsoft.AspNetCore.Components.ParameterView.TryGetValue%2A>, not `/{param?}`. If `/{param?}` is used in this scenario, <xref:Microsoft.AspNetCore.Components.ParameterView.TryGetValue%2A> returns `false` and `message` isn't set to either `message` string.
 
 `Pages/SetParamsAsync.razor`:
 
@@ -77,11 +77,11 @@ Although [route parameter matching is case insensitive](xref:blazor/fundamentals
 
 ::: moniker-end
 
-### Component initialization methods
+## Component initialization methods (`OnInitialized`/`OnInitializedAsync`)
 
 <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized%2A> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> are invoked when the component is initialized after having received its initial parameters from its parent component in <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A>.
 
-Use <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> when the component performs an asynchronous operation and should refresh when the operation is completed.
+Use <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> when the component performs an asynchronous operation and should refresh when the operation is complete.
 
 For a synchronous operation, override <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized%2A>:
 
@@ -119,7 +119,7 @@ While a Blazor Server app is prerendering, certain actions, such as calling into
 
 If any event handlers are set up, unhook them on disposal. For more information, see the [Component disposal with `IDisposable`](#component-disposal-with-idisposable) section.
 
-### After parameters are set
+## After parameters are set (`OnParametersSet`/`OnParametersSetAsync`)
 
 <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSet%2A> or <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A> are called:
 
@@ -163,7 +163,7 @@ If any event handlers are set up, unhook them on disposal. For more information,
 
 For more information on route parameters and constraints, see <xref:blazor/fundamentals/routing>.
 
-### After component render
+## After component render (`OnAfterRender`/`OnAfterRenderAsync`)
 
 <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> are called after a component has finished rendering. Element and component references are populated at this point. Use this stage to perform additional initialization steps using the rendered content, such as activating third-party JavaScript libraries that operate on the rendered DOM elements.
 
@@ -186,7 +186,7 @@ The `firstRender` parameter for <xref:Microsoft.AspNetCore.Components.ComponentB
 
 ::: moniker-end
 
-Asynchronous work immediately after rendering must occur during the <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> lifecycle event.
+Asynchronous work immediately after rendering must occur during the <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> lifecycle event:
 
 ```csharp
 protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -207,7 +207,7 @@ Even if you return a <xref:System.Threading.Tasks.Task> from <xref:Microsoft.Asp
 
 If any event handlers are set up, unhook them on disposal. For more information, see the [Component disposal with `IDisposable`](#component-disposal-with-idisposable) section.
 
-### Suppress UI refreshing
+## Suppress UI refreshing (`ShouldRender`)
 
 <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> is called each time a component is rendered. Override <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> to manage UI refreshing. If the implementation returns `true`, the UI is refreshed.
 
@@ -229,7 +229,7 @@ Even if <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> is 
 
 For more information on performance best practices pertaining to <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A>, see <xref:blazor/webassembly-performance-best-practices#avoid-unnecessary-rendering-of-component-subtrees>.
 
-## State changes
+## State changes (`StateHasChanged`)
 
 <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> notifies the component that its state has changed. When applicable, calling <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> causes the component to be rerendered.
 
@@ -263,20 +263,14 @@ For information on handling errors during lifecycle method execution, see <xref:
 
 ## Stateful reconnection after prerendering
 
-In a Blazor Server app when <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper.RenderMode> is <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered>, the component is initially rendered statically as part of the page. Once the browser establishes a connection back to the server, the component is rendered *again*, and the component is now interactive. If the [`OnInitialized{Async}`](#component-initialization-methods) lifecycle method for initializing the component is present, the method is executed *twice*:
+In a Blazor Server app when <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper.RenderMode> is <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered>, the component is initially rendered statically as part of the page. Once the browser establishes a connection back to the server, the component is rendered *again*, and the component is now interactive. If the [`OnInitialized{Async}`](#component-initialization-methods-oninitializedoninitializedasync) lifecycle method for initializing the component is present, the method is executed *twice*:
 
 * When the component is prerendered statically.
 * After the server connection has been established.
 
-This can result in a noticeable change in the data displayed in the UI when the component is finally rendered.
+This can result in a noticeable change in the data displayed in the UI when the component is finally rendered. To avoid this double-rendering behavior in a Blazor Server app, pass in an identifier to cache the state during prerendering and to retrieve the state after prerendering.
 
-To avoid the double-rendering scenario in a Blazor Server app:
-
-* Pass in an identifier that can be used to cache the state during prerendering and to retrieve the state after the app restarts.
-* Use the identifier during prerendering to save component state.
-* Use the identifier after prerendering to retrieve the cached state.
-
-The following code demonstrates an updated `WeatherForecastService` in a template-based Blazor Server app that avoids the double rendering.
+The following code demonstrates an updated `WeatherForecastService` in a template-based Blazor Server app that avoids the double rendering. In the following example, the awaited <xref:System.Threading.Tasks.Task.Delay%2A> (`await Task.Delay(...)`) simulates a short delay before returning data from the `GetForecastAsync` method.
 
 `WeatherForecastService.cs`:
 
@@ -292,8 +286,6 @@ The following code demonstrates an updated `WeatherForecastService` in a templat
 
 ::: moniker-end
 
-In the preceding example, the awaited <xref:System.Threading.Tasks.Task.Delay%2A> (`await Task.Delay(...)`) simulates a short delay before returning data from the `GetForecastAsync` method.
-
 For more information on the <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper.RenderMode>, see <xref:blazor/fundamentals/signalr#render-mode>.
 
 ## Detect when the app is prerendering
@@ -302,7 +294,7 @@ For more information on the <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentT
 
 ## Component disposal with `IDisposable`
 
-If a component implements <xref:System.IDisposable>, the framework calls the [disposal method](/dotnet/standard/garbage-collection/implementing-dispose) when the component is removed from the UI, where unmanaged resources can be released. Disposal can occur at any time, including during [component initialization](#component-initialization-methods). The following component implements <xref:System.IDisposable> with the [`@implements`](xref:mvc/views/razor#implements) Razor directive:
+If a component implements <xref:System.IDisposable>, the framework calls the [disposal method](/dotnet/standard/garbage-collection/implementing-dispose) when the component is removed from the UI, where unmanaged resources can be released. Disposal can occur at any time, including during [component initialization](#component-initialization-methods-oninitializedoninitializedasync). The following component implements <xref:System.IDisposable> with the [`@implements`](xref:mvc/views/razor#implements) Razor directive:
 
 ```razor
 @using System
@@ -318,7 +310,7 @@ If a component implements <xref:System.IDisposable>, the framework calls the [di
 }
 ```
 
-If an object requires disposal, a lambda can be used to dispose of the object when <xref:System.IDisposable.Dispose%2A?displayProperty=nameWithType> is called:
+If an object requires disposal, a lambda can be used to dispose of the object when <xref:System.IDisposable.Dispose%2A?displayProperty=nameWithType> is called. The following example appears in the <xref:blazor/components/rendering#receiving-a-call-from-something-external-to-the-blazor-rendering-and-event-handling-system> article and demonstrates the use of a lambda expression for disposal of a <xref:System.Timers.Timer>.
 
 `Pages/CounterWithTimerDisposal.razor`:
 
@@ -333,8 +325,6 @@ If an object requires disposal, a lambda can be used to dispose of the object wh
 [!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/lifecycle/CounterWithTimerDisposal.razor)]
 
 ::: moniker-end
-
-The preceding example appears in <xref:blazor/components/rendering#receiving-a-call-from-something-external-to-the-blazor-rendering-and-event-handling-system>.
 
 For asynchronous disposal tasks, use `DisposeAsync` instead of <xref:System.IDisposable.Dispose>:
 
@@ -374,7 +364,7 @@ Unsubscribe event handlers from .NET events. The following [Blazor form](xref:bl
 
 ::: moniker-end
 
-When [anonymous functions](/dotnet/csharp/programming-guide/statements-expressions-operators/anonymous-functions), methods or expressions, are used, it isn't necessary to implement <xref:System.IDisposable> and unsubscribe delegates. However, failing to unsubscribe a delegate is a problem **when the object exposing the event outlives the lifetime of the component registering the delegate**. When this occurs, a memory leak results because the registered delegate keeps the original object alive. Therefore, only use the following approaches when you know that the event delegate disposes quickly. When in doubt about the lifetime of objects that require disposal, subscribe a delegate method and properly dispose the delegate as the preceding examples show.
+When [anonymous functions](/dotnet/csharp/programming-guide/statements-expressions-operators/anonymous-functions), methods or expressions, are used, it isn't necessary to implement <xref:System.IDisposable> and unsubscribe delegates. However, failing to unsubscribe a delegate is a problem **when the object exposing the event outlives the lifetime of the component registering the delegate**. When this occurs, a memory leak results because the registered delegate keeps the original object alive. Therefore, only use the following approaches when you know that the event delegate disposes quickly. When in doubt about the lifetime of objects that require disposal, subscribe a delegate method and properly dispose the delegate as the earlier examples show.
 
 * Anonymous lambda method approach (explicit disposal not required):
 
@@ -412,7 +402,7 @@ When [anonymous functions](/dotnet/csharp/programming-guide/statements-expressio
   }
   ```
 
-  The full example of the preceding code with anonymous lambda expressions appears in <xref:blazor/forms-validation#validator-components>.
+  The full example of the preceding code with anonymous lambda expressions appears in the <xref:blazor/forms-validation#validator-components> article.
 
 For more information, see [Cleaning up unmanaged resources](/dotnet/standard/garbage-collection/unmanaged) and the topics that follow it on implementing the `Dispose` and `DisposeAsync` methods.
 

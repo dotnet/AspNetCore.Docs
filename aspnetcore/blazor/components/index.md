@@ -340,7 +340,7 @@ Assign C# fields, properties, and methods to component parameters as HTML attrib
   
   > The 'await' operator can only be used within an async method. Consider marking this method with the 'async' modifier and changing its return type to 'Task'.
 
-  To obtain a value for the `Title` parameter in the preceding example asychronously, the component can use the [`OnInitializedAsync` lifecycle event](xref:blazor/components/lifecycle#component-initialization-methods), as the following example demonstrates:
+  To obtain a value for the `Title` parameter in the preceding example asychronously, the component can use the [`OnInitializedAsync` lifecycle event](xref:blazor/components/lifecycle#component-initialization-methods-oninitializedoninitializedasync), as the following example demonstrates:
   
   ```razor
   <ChildComponent Title="@title">
@@ -443,7 +443,7 @@ If you need to transform a received parameter value:
 * Leave the parameter property as a pure auto-property to represent the supplied raw data.
 * Create some other property or method that supplies the transformed data based on the parameter property.
 
-You can override [`OnParametersSetAsync`](xref:blazor/components/lifecycle#after-parameters-are-set) if you want to transform a received parameter each time new data is received.
+You can override [`OnParametersSetAsync`](xref:blazor/components/lifecycle#after-parameters-are-set-onparameterssetonparameterssetasync) if you want to transform a received parameter each time new data is received.
 
 ### Route parameters
 
@@ -681,9 +681,9 @@ When the component is rendered, the `loginDialog` field is populated with the `C
 > [!IMPORTANT]
 > The `loginDialog` variable is only populated after the component is rendered and its output includes the `MyLoginDialog` element. Until the component is rendered, there's nothing to reference.
 >
-> To manipulate components references after the component has finished rendering, use the [`OnAfterRenderAsync` or `OnAfterRender` methods](xref:blazor/components/lifecycle#after-component-render).
+> To manipulate components references after the component has finished rendering, use the [`OnAfterRender` or `OnAfterRenderAsync` methods](xref:blazor/components/lifecycle#after-component-render-onafterrenderonafterrenderasync).
 >
-> To use a reference variable with an event handler, use a lambda expression or assign the event handler delegate in the [`OnAfterRenderAsync` or `OnAfterRender` methods](xref:blazor/components/lifecycle#after-component-render). This ensures that the reference variable is assigned before the event handler is assigned.
+> To use a reference variable with an event handler, use a lambda expression or assign the event handler delegate in the [`OnAfterRender` or `OnAfterRenderAsync` methods](xref:blazor/components/lifecycle#after-component-render-onafterrenderonafterrenderasync). This ensures that the reference variable is assigned before the event handler is assigned.
 >
 > ```razor
 > <button type="button" 
@@ -938,7 +938,7 @@ To maintain state in the preceding scenario, use a *private field* in the `Expan
 The following revised `Expander` component:
 
 * Accepts the `Expanded` component parameter value from the parent.
-* Assigns the component parameter value to a *private field* (`expanded`) in the [OnInitialized event](xref:blazor/components/lifecycle#component-initialization-methods).
+* Assigns the component parameter value to a *private field* (`expanded`) in the [OnInitialized event](xref:blazor/components/lifecycle#component-initialization-methods-oninitializedoninitializedasync).
 * Uses the private field to maintain its internal toggle state, which demonstrates how to avoid writing directly to a parameter.
 
 ```razor
