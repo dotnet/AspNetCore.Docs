@@ -163,7 +163,7 @@ By default, items in the `Compile` and `Content` item group are watched. To prev
 
 ```xml
 <ItemGroup>
-     <!-- exclude all Content items from being watched -->
+     <!-- Exclude all Content items from being watched. -->
     <Content Update="@(Content)" Watch="false" />
 </ItemGroup>
 ```
