@@ -382,7 +382,7 @@ When the app requests a token, there are two possible outcomes:
 
 When a token request fails, you need to decide whether you want to save any current state before you perform a redirection. Several approaches exist with increasing levels of complexity:
 
-* Store the current page state in session storage. During the [`OnInitializedAsync` lifecycle event](xref:blazor/components/lifecycle#component-initialization-methods-oninitializedoninitializedasync) (<xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>), check if state can be restored before continuing.
+* Store the current page state in session storage. During the [`OnInitializedAsync` lifecycle event](xref:blazor/components/lifecycle#component-initialization-methods-oninitializedasync) (<xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>), check if state can be restored before continuing.
 * Add a query string parameter and use that as a way to signal the app that it needs to re-hydrate the previously saved state.
 * Add a query string parameter with a unique identifier to store data in session storage without risking collisions with other items.
 

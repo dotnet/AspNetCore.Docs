@@ -1,9 +1,9 @@
 ---
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 ---
-While a Blazor Server app is prerendering, certain actions, such as calling into JavaScript, aren't possible because a connection with the browser hasn't been established. Components may need to render differently when prerendered.
+While an app is prerendering, certain actions, such as calling into JavaScript, aren't possible. Components may need to render differently when prerendered.
 
-To delay JavaScript interop calls until after the connection with the browser is established, you can override the [`OnAfterRenderAsync` lifecycle event](xref:blazor/components/lifecycle#after-component-render-onafterrenderonafterrenderasync). This event is only called after the app is fully rendered and the client connection is established.
+To delay JavaScript interop calls until a point where such calls are guaranteed to work, override the [`OnAfterRender{Async}` lifecycle event](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync). This event is only called after the app is fully rendered.
 
 `Pages/PrerenderedInterop1.razor`:
 
@@ -29,6 +29,13 @@ For the preceding example code, provide a `setElementText1` JavaScript function 
 
 > [!WARNING]
 > **The preceding example modifies the Document Object Model (DOM) directly for demonstration purposes only.** Directly modifying the DOM with JavaScript isn't recommended in most scenarios because JavaScript can interfere with Blazor's change tracking.
+
+> [!NOTE]
+> The preceding example pollutes the client with global methods. For a better approach in production apps, see [Blazor JavaScript isolation and object references](xref:blazor/call-javascript-from-dotnet#blazor-javascript-isolation-and-object-references):
+>
+> ```javascript
+> export setElementText1 = (element, text) => element.innerText = text;
+> ```
 
 The following component demonstrates how to use JavaScript interop as part of a component's initialization logic in a way that's compatible with prerendering. The component shows that it's possible to trigger a rendering update from inside <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A>. The developer must be careful to avoid creating an infinite loop in this scenario.
 
@@ -63,3 +70,13 @@ For the preceding example code, provide a `setElementText2` JavaScript function 
 
 > [!WARNING]
 > **The preceding example modifies the Document Object Model (DOM) directly for demonstration purposes only.** Directly modifying the DOM with JavaScript isn't recommended in most scenarios because JavaScript can interfere with Blazor's change tracking.
+
+> [!NOTE]
+> The preceding example pollutes the client with global methods. For a better approach in production apps, see [Blazor JavaScript isolation and object references](xref:blazor/call-javascript-from-dotnet#blazor-javascript-isolation-and-object-references):
+>
+> ```javascript
+> export setElementText2 = (element, text) => {
+>   element.innerText = text;
+>   return text;
+> };
+> ```
