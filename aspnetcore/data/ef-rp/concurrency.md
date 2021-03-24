@@ -67,9 +67,11 @@ John clicks **Save** on an Edit page that still shows a budget of $350,000.00. W
 
   This is called a *Store Wins* scenario. The data-store values take precedence over the values submitted by the client. The Store Wins scenario is used in this tutorial. This method ensures that no changes are overwritten without a user being alerted.
 
+<a name="concurrency"></a>
+
 ## Conflict detection in EF Core
 
-Properties configured as concurrency tokens are used to implement optimistic concurrency control. When an update or delete operation is triggered by  `SaveChanges`, the value of the concurrency token in the database is compared against the original value read by EF Core:
+Properties configured as concurrency tokens are used to implement optimistic concurrency control. When an update or delete operation is triggered by  <xref:Microsoft.EntityFrameworkCore.DbContext.SaveChanges%2A> or <xref:Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync%2A>, the value of the concurrency token in the database is compared against the original value read by EF Core:
 
 * If the values match, the operation can complete.
 * If the values do not match, EF Core assumes that another user has performed a conflicting operation, aborts the current transaction, and throws a  <xref:Microsoft.EntityFrameworkCore.DbUpdateConcurrencyException>.
@@ -142,7 +144,7 @@ The following highlighted code shows the T-SQL that verifies exactly one row was
   `IsConcurrencyToken` configures the property as a concurrency token. On updates, the concurrency token value in the database is compared to the original value when to ensure it has not changed since the instance was retrieved from the database. If it has changed, a <xref:Microsoft.EntityFrameworkCore.DbUpdateConcurrencyException> is thrown and changes are not applied.
 
   * In the code that updates the entity:
-    * Update the value of the concurrency token.
+    * Update the value of the concurrency token. An alternative to updating the concurrency toke in the update method is to set up a trigger so it's automatically updated by the database. For more information, see [SQLite and EF Core Concurrency Tokens](https://www.bricelam.net/2020/08/07/sqlite-and-efcore-concurrency-tokens.html).
     * Call <xref:Microsoft.EntityFrameworkCore.ChangeTracking.PropertyEntry.OriginalValue> to set the `rowVersion` value to the value from the entity when it was read. That code is shown later in the tutorial.
 
 ---
@@ -834,7 +836,7 @@ Optimistic concurrency includes the following options:
 
   This is called a *Store Wins* scenario. (The data-store values take precedence over the values submitted by the client.) You implement the Store Wins scenario in this tutorial. This method ensures that no changes are overwritten without a user being alerted.
 
-## Handling concurrency 
+## Handling concurrency
 
 When a property is configured as a [concurrency token](/ef/core/modeling/concurrency):
 
