@@ -49,7 +49,7 @@ namespace ContosoUniversity.Pages.Departments
                 if (await _context.Departments.AnyAsync(
                     m => m.DepartmentID == id))
                 {
-                    // Department.rowVersion value is from when the entity
+                    // Department.ConcurrencyToken value is from when the entity
                     // was fetched. If it doesn't match the DB, a
                     // DbUpdateConcurrencyException exception is thrown.
                     _context.Departments.Remove(Department);

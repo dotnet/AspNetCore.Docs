@@ -96,7 +96,7 @@ namespace ContosoUniversity.Pages.Departments
                     var dbValues = (Department)databaseEntry.ToObject();
                     await setDbErrorMessage(dbValues, clientValues, _context);
 
-                    // Save the current RowVersion so next postback
+                    // Save the current ConcurrencyToken so next postback
                     // matches unless an new concurrency issue happens.
                     Department.ConcurrencyToken = dbValues.ConcurrencyToken;
                     // Clear the model error for the next postback.
@@ -255,7 +255,7 @@ namespace ContosoUniversity.Pages.Departments
                     var dbValues = (Department)databaseEntry.ToObject();
                     await setDbErrorMessage(dbValues, clientValues, _context);
 
-                    // Save the current RowVersion so next postback
+                    // Save the current ConcurrencyToken so next postback
                     // matches unless an new concurrency issue happens.
                     Department.ConcurrencyToken = (byte[])dbValues.ConcurrencyToken;
                     // Clear the model error for the next postback.

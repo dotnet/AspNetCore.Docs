@@ -34,7 +34,7 @@ namespace ContosoUniversity.Models
 #endregion
 #else
 #if SQLiteVersion
-#region snippet2
+#region snippetSL
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
