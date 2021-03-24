@@ -83,12 +83,13 @@ The data model must be configured to enable conflict detection by include a trac
   * Applying [`[ConcurrencyCheck]`](xref:System.ComponentModel.DataAnnotations.ConcurrencyCheckAttribute) or <xref:Microsoft.EntityFrameworkCore.Metadata.IProperty.IsConcurrencyToken> to a property on the model. This approach is not recommended.
   * Applying <xref:System.ComponentModel.DataAnnotations.TimestampAttribute> or <xref:Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder.IsRowVersion%2A> to a concurrency token in the model. This is the approach used in this tutorial.
 
-The  SQL Server approach and SQLite implementation details are slightly different. A difference file is shown later in the tutorial listing the differences. The Visual Studio tab shows the SQL Server approach, the Visual Studio tab shows the approach for non-SQL Server databases, such as SQLite:
+The  SQL Server approach and SQLite implementation details are slightly different. A difference file is shown later in the tutorial listing the differences. The Visual Studio tab shows the SQL Server approach, the Visual Studio Code tab shows the approach for non-SQL Server databases, such as SQLite.
 
 # [Visual Studio](#tab/visual-studio)
 
 * In the model, include a tracking column that is used to determine when a row has been changed.
 * Apply the <xref:System.ComponentModel.DataAnnotations.TimestampAttribute> to the concurrency property.
+* In the code that updates the entity, call <xref:Microsoft.EntityFrameworkCore.ChangeTracking.PropertyEntry.OriginalValue> to set the `rowVersion` value to the value from the entity when it was read. That code is shown later in the tutorial.
 
 [!code-csharp[](intro/samples/cu50/Models/Department.cs?name=snippet3&highlight=27,28)]
 
@@ -111,8 +112,8 @@ The [`[Timestamp]`](xref:System.ComponentModel.DataAnnotations.TimestampAttribut
 
 In the preceding code:
 
-* The property type is byte array, which is the required type for SQL Server.
-* Calls <xref:Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder.IsConcurrencyToken%2A>. `IsConcurrencyToken` configures the property as a concurrency token. The concurrency token value in the database is compared to the original value when an instance of this entity type is updated or deleted to ensure it has not changed since the instance was retrieved from the database. If it has changed, a <xref:Microsoft.EntityFrameworkCore.DbUpdateConcurrencyException> is thrown and changes are not applied.
+* The property type `ConcurrencyToken` is byte array, which is the required type for SQL Server.
+* Calls <xref:Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder.IsConcurrencyToken%2A>.  `IsConcurrencyToken` configures the property as a concurrency token. On updates, the concurrency token value in the database is compared to the original value when to ensure it has not changed since the instance was retrieved from the database. If it has changed, a <xref:Microsoft.EntityFrameworkCore.DbUpdateConcurrencyException> is thrown and changes are not applied.
 * Calls <xref:Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder.ValueGeneratedOnAddOrUpdate%2A>, which configures the `ConcurrencyToken` property to have a value automatically generated when adding or updating an entity.
 * `HasColumnType("rowversion")` sets the column type in the SQL Server database to [rowversion](/sql/t-sql/data-types/rowversion-transact-sql).
 
@@ -130,69 +131,29 @@ The following highlighted code shows the T-SQL that verifies exactly one row was
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* In the model, include a tracking column that can be used to determine when a row has been changed:
+* In the model, include a tracking column that can be used to determine when a row has been changed. In this sample, a `GUID` is used:
+
+  [!code-csharp[](intro/samples/cu50/Models/Department.cs?name=snippet3&highlight=27)]
+
+* In the*Data/SchoolContext.cs* file, call <xref:Microsoft.EntityFrameworkCore.Metadata.IProperty.IsConcurrencyToken> on the `Department.ConcurrencyToken` property:
+
+  [!code-csharp[](intro/samples/cu50/Data/SchoolContext.cs?name=snippet_SQLite&highlight=26-28)]
+
+  `IsConcurrencyToken` configures the property as a concurrency token. On updates, the concurrency token value in the database is compared to the original value when to ensure it has not changed since the instance was retrieved from the database. If it has changed, a <xref:Microsoft.EntityFrameworkCore.DbUpdateConcurrencyException> is thrown and changes are not applied.
+
+  * In the code that updates the entity:
+    * Update the value of the concurrency token.
+    * Call <xref:Microsoft.EntityFrameworkCore.ChangeTracking.PropertyEntry.OriginalValue> to set the `rowVersion` value to the value from the entity when it was read. That code is shown later in the tutorial.
 
 ---
 
-* In the model, include a tracking column that can be used to determine when a row has been changed:
-* Apply the <xref:System.ComponentModel.DataAnnotations.TimestampAttribute> to the concurrency property. The `[Timestamp]` attribute:
-   * Is the recommended data type of the tracking column for SQL Server.
-   * Creates a [`rowversion`](/sql/t-sql/data-types/rowversion-transact-sql) the database server, which is used as a concurrency token. The `rowversion` value s a sequential number that's automatically incremented each time the row is updated.
-   * Generates a call to <xref:Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder.ValueGeneratedOnAddOrUpdate%2A> in the `BuildModel` method. `ValueGeneratedOnAddOrUpdate` configures the database to generate a new value when adding or updating an entity.
-  * Call <xref:Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder.IsConcurrencyToken%2A> in the `BuildModel` method. `IsConcurrencyToken` configures the specified property as a concurrency token. When a property is configured as a concurrency token:
-    * The value in the database is checked when an instance of this entity type is updated or deleted during `SaveChanges` to ensure it has not changed since the instance was retrieved from the database.
-    * If the value has changed, a `DbUpdateConcurrencyException` is thrown and the changes aren't applied to the database. This concurrency detection is not automatic, the developer needs to call <xref:Microsoft.EntityFrameworkCore.ChangeTracking.PropertyEntry.OriginalValue> to set the value assigned to the property when it was retrieved from the database.
-  * On updates, set the <xref:Microsoft.EntityFrameworkCore.ChangeTracking.PropertyEntry.OriginalValue> of the concurrency token to the value of the concurrency token when the row was read.
-
-
-
-  * When using Non-SQL Server database providers, such as SQLite, add a unique property to the entity type to serve as the concurrency token. Update the concurrency token each each time the row is updated. Set the concurrency token to the <xref:Microsoft.EntityFrameworkCore.ChangeTracking.PropertyEntry.OriginalValue> on updates. This approach is used in the SQLite version of this tutorial.
-    * An alternative approach to updating the `ConcurrencyToken` is to create a trigger to update the value whenever an entity is updated. This approach is similar to the `rowversion` approached used for SQL Server. For more information, see [SQLite and EF Core Concurrency Tokens](https://www.bricelam.net/2020/08/07/sqlite-and-efcore-concurrency-tokens.html).
-
-* Configure EF Core to include the original values of columns configured as [concurrency tokens](/ef/core/modeling/concurrency). This approach is generally not recommended.
-
-## Add a tracking property
+## Add a concurrency token and migration
 
 In *Models/Department.cs*, add a tracking property named ConcurrencyToken:
 
 # [Visual Studio](#tab/visual-studio)
 
 [!code-csharp[](intro/samples/cu50/Models/Department.cs?name=snippet3&highlight=27,28)]
-
-The <xref:System.ComponentModel.DataAnnotations.TimestampAttribute> is what identifies the column as a concurrency tracking column. The fluent API is an alternative way to specify the tracking property:
-
-```csharp
-modelBuilder.Entity<Department>()
-  .Property<byte[]>("ConcurrencyToken")
-  .IsRowVersion();
-```
-
-For a SQL Server database, the [`[Timestamp]`](xref:System.ComponentModel.DataAnnotations.TimestampAttribute>) attribute on an entity property defined as byte array:
-
-* Generates the <xref:Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder.IsConcurrencyToken%2A> call in the `BuildModel` method.
-* Sets the column type in the database to [rowversion](/sql/t-sql/data-types/rowversion-transact-sql).
-* Generates the following code in the `BuildModel` method:
-
-```csharp
- b.Property<byte[]>("ConcurrencyToken")
-     .IsConcurrencyToken()
-     .ValueGeneratedOnAddOrUpdate()
-     .HasColumnType("rowversion");
-```
-
-<xref:Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder.ValueGeneratedOnAddOrUpdate%2A> configures the `ConcurrencyToken` property to have a value generated when adding or updating an entity.
-
-The following code shows a portion of the T-SQL generated by EF Core when the Department name is updated:
-
-[!code-sql[](intro/samples/cu50snapshots/sql.txt?highlight=2-3)]
-
-The preceding highlighted code shows the `WHERE` clause containing `ConcurrencyToken`. If the database `ConcurrencyToken` doesn't equal the `ConcurrencyToken` parameter (`@p2`), no rows are updated.
-
-The following highlighted code shows the T-SQL that verifies exactly one row was updated:
-
-[!code-sql[](intro/samples/cu50snapshots/sql.txt?highlight=4-6)]
-
-[@@ROWCOUNT](/sql/t-sql/functions/rowcount-transact-sql) returns the number of rows affected by the last statement. If no rows are updated, EF Core throws a `DbUpdateConcurrencyException`.
 
 Adding the `ConcurrencyToken` property changes the data model, which requires a migration.
 
@@ -247,11 +208,7 @@ b.Property<Guid>("ConcurrencyToken")
     .HasColumnType("TEXT");
 ```
 
-The updated code generates a new `GUID` each time the row is updated.
-
 ---
-
-The <xref:Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder.IsConcurrencyToken%2A> call in the `BuildModel` method configures the `ConcurrencyToken` property as a concurrency token.
 
 <a name="scaffold"></a>
 
