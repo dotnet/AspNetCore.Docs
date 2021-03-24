@@ -314,26 +314,13 @@ The query string of a request is obtained from the <xref:Microsoft.AspNetCore.Co
 var query = new Uri(NavigationManager.Uri).Query;
 ```
 
-To parse a query string's parameters:
+To parse a query string's parameters, one approach is to use [`URLSearchParams`](https://developer.mozilla.org/docs/Web/API/URLSearchParams) with [JavaScript (JS) interop](xref:blazor/call-javascript-from-dotnet):
 
-* An app can use the <xref:Microsoft.AspNetCore.WebUtilities> API. If the API isn't available to the app, add a package reference in the app's project file for [Microsoft.AspNetCore.WebUtilities](https://www.nuget.org/packages/Microsoft.AspNetCore.WebUtilities).
-* Obtain the value after parsing the query string with <xref:Microsoft.AspNetCore.WebUtilities.QueryHelpers.ParseQuery%2A?displayProperty=nameWithType>.
+```javascript
+export createQueryString = (string queryString) => new URLSearchParams(queryString);
+```
 
-The following `ParseQueryString` component example parses a query string parameter key named `ship`. For example, the URL query string key-value pair `?ship=Tardis` captures the value `Tardis` in `queryValue`. For the following example, navigate to the app with the URL `https://localhost:5001/parse-query-string?ship=Tardis`.
-
-`Pages/ParseQueryString.razor`:
-
-::: moniker range=">= aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/routing/ParseQueryString.razor)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/routing/ParseQueryString.razor)]
-
-::: moniker-end
+For more information, see [Blazor JavaScript isolation and object references](xref:blazor/call-javascript-from-dotnet#blazor-javascript-isolation-and-object-references).
 
 ## `NavLink` and `NavMenu` components
 
