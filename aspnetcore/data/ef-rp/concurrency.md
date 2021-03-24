@@ -352,7 +352,7 @@ Change the name in the first browser tab and click **Save**.
 
 ![Department Edit page 1 after change](concurrency/_static/edit-after-change-130.png)
 
-The browser shows the Index page with the changed value and updated rowVersion indicator. Note the updated rowVersion indicator, it's displayed on the second postback in the other tab.
+The browser shows the Index page with the changed value and updated `ConcurrencyToken`indicator. Note the updated `ConcurrencyToken`indicator, it's displayed on the second postback in the other tab.
 
 Change a different field in the second browser tab.
 
@@ -406,7 +406,7 @@ The two browser tabs display the same information.
 
 Change the budget in the first browser tab and click **Save**.
 
-The browser shows the Index page with the changed value and updated rowVersion indicator. Note the updated rowVersion indicator, it's displayed on the second postback in the other tab.
+The browser shows the Index page with the changed value and updated `ConcurrencyToken`indicator. Note the updated `ConcurrencyToken`indicator, it's displayed on the second postback in the other tab.
 
 Delete the test department from the second tab. A concurrency error is display with the current values from the database. Clicking **Delete** deletes the entity, unless `RowVersion` has been updated.
 
