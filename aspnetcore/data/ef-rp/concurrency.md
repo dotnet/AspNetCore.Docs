@@ -91,7 +91,7 @@ The  SQL Server approach and SQLite implementation details are slightly differen
 
 * In the model, include a tracking column that is used to determine when a row has been changed.
 * Apply the <xref:System.ComponentModel.DataAnnotations.TimestampAttribute> to the concurrency property.
-* In the code that updates the entity, call <xref:Microsoft.EntityFrameworkCore.ChangeTracking.PropertyEntry.OriginalValue> to set the `rowVersion` value to the value from the entity when it was read. That code is shown later in the tutorial.
+* In the code that updates the entity, call <xref:Microsoft.EntityFrameworkCore.ChangeTracking.PropertyEntry.OriginalValue> to set the `rowVersion` value to the value from the entity when it was read. The `OriginalValue` update  code is shown in [the concurrency updates](#c-up) section of this document.
 
 [!code-csharp[](intro/samples/cu50/Models/Department.cs?name=snippet3&highlight=27,28)]
 
@@ -144,22 +144,24 @@ The following highlighted code shows the T-SQL that verifies exactly one row was
   `IsConcurrencyToken` configures the property as a concurrency token. On updates, the concurrency token value in the database is compared to the original value when to ensure it has not changed since the instance was retrieved from the database. If it has changed, a <xref:Microsoft.EntityFrameworkCore.DbUpdateConcurrencyException> is thrown and changes are not applied.
 
   * In the code that updates the entity:
-    * Update the value of the concurrency token. An alternative to updating the concurrency toke in the update method is to set up a trigger so it's automatically updated by the database. For more information, see [SQLite and EF Core Concurrency Tokens](https://www.bricelam.net/2020/08/07/sqlite-and-efcore-concurrency-tokens.html).
-    * Call <xref:Microsoft.EntityFrameworkCore.ChangeTracking.PropertyEntry.OriginalValue> to set the `rowVersion` value to the value from the entity when it was read. That code is shown later in the tutorial.
+    * Update the value of the concurrency token. In this sample, the method that updates the entity uses the following code:
+    
+    ```csharp
+    departmentToUpdate.ConcurrencyToken = Guid.NewGuid();
+    ```
+
+     An alternative to updating the concurrency token in the update method is to set up a trigger so it's automatically updated by the database. For more information, see [SQLite and EF Core Concurrency Tokens](https://www.bricelam.net/2020/08/07/sqlite-and-efcore-concurrency-tokens.html).
+    * Call <xref:Microsoft.EntityFrameworkCore.ChangeTracking.PropertyEntry.OriginalValue> to set the `rowVersion` value to the value from the entity when it was read. The `OriginalValue` update  code is shown in [the concurrency updates](#c-up) section of this document.
 
 ---
 
-## Add a concurrency token and migration
-
-In *Models/Department.cs*, add a tracking property named ConcurrencyToken:
-
-# [Visual Studio](#tab/visual-studio)
-
-[!code-csharp[](intro/samples/cu50/Models/Department.cs?name=snippet3&highlight=27,28)]
+## Add a migration
 
 Adding the `ConcurrencyToken` property changes the data model, which requires a migration.
 
 Build the project.
+
+# [Visual Studio](#tab/visual-studio)
 
 Run the following commands in the PMC:
 
@@ -181,16 +183,6 @@ The preceding commands:
 ```
 
 # [Visual Studio Code](#tab/visual-studio-code)
-
-[!code-csharp[](intro/samples/cu50/Models/Department.cs?name=snippet2&highlight=27)]
-
-Update *Data/SchoolContext.cs* with the following code:
-
-[!code-csharp[](intro/samples/cu50/Data/SchoolContext.cs?name=snippet_SQLite&highlight=26-28)]
-
-Adding the `ConcurrencyToken` property changes the data model, which requires a migration.
-
-Build the project.
 
 Run the following commands in a terminal:
 
@@ -281,9 +273,22 @@ Update *Pages\Departments\Edit.cshtml.cs* with the following code:
 
 ---
 
+<a name="c-up"></a>
+
+### The concurrency updates
+
 The <xref:Microsoft.EntityFrameworkCore.ChangeTracking.PropertyEntry.OriginalValue> is updated with the `rowVersion` value from the entity when it was fetched in the `OnGetAsync` method. EF Core generates a SQL UPDATE command with a WHERE clause containing the original `RowVersion` value. If no rows are affected by the UPDATE command (no rows have the original `RowVersion` value), a `DbUpdateConcurrencyException` exception is thrown.
 
+# [Visual Studio](#tab/visual-studio)
+
 [!code-csharp[](intro/samples/cu50/Pages/Departments/Edit.cshtml.cs?name=snippet_RowVersion&highlight=17-18)]
+
+# [Visual Studio Code](#tab/visual-studio-code)
+
+[!code-csharp[](intro/samples/cu50/Pages/Departments/Edit.cshtml.cs?name=snippet_RowVersion_ss&highlight=17-18)]
+
+---
+
 
 In the preceding highlighted code:
 
@@ -293,7 +298,15 @@ In the preceding highlighted code:
 
 The following code shows the `Department` model, which is initialized in the `OnGetAsync` method by the EF query and initialized in the `OnPostAsync` method by the hidden field in the Razor page using [model binding](mvc/models/model-binding):
 
+# [Visual Studio](#tab/visual-studio)
+
 [!code-csharp[](intro/samples/cu50/Pages/Departments/Edit.cshtml.cs?name=snippet_mb&highlight=10-11,17-20,51)]
+
+# [Visual Studio Code](#tab/visual-studio-code)
+
+[!code-csharp[](intro/samples/cu50/Pages/Departments/Edit.cshtml.cs?name=snippet_mb_ss&highlight=10-11,17-20,51)]
+
+---
 
 The preceding code shows the `ConcurrencyToken` value  of the `Department` entity from the `HTTP POST` request is set to the `ConcurrencyToken` value from the `HTTP GET` request.
 

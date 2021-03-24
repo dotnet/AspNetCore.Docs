@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace ContosoUniversity.Pages.Departments
 {
+    #region snippet_mb_ss
     public class EditModel : PageModel
     {
         private readonly ContosoUniversity.Data.SchoolContext _context;
@@ -66,6 +67,7 @@ namespace ContosoUniversity.Pages.Departments
 
             _context.Entry(departmentToUpdate).Property(
                        d => d.ConcurrencyToken).OriginalValue = Department.ConcurrencyToken;
+            #endregion
             #endregion
 
             #region snippet_TryUpdateModel
