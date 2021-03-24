@@ -427,7 +427,7 @@ xhttp.onreadystatechange = function() {
         }
     }
 };
-xhttp.open('POST', '/api/password/changepassword', true);
+xhttp.open('POST', '/api/token/changeCode', true);
 xhttp.setRequestHeader("Content-type", "application/json");
 xhttp.setRequestHeader("X-CSRF-TOKEN", csrfToken);
 xhttp.send(JSON.stringify({ "newPassword": $CREDENTIAL_PLACEHOLDER$ }));
