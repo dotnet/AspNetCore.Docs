@@ -1,11 +1,11 @@
-@page "{id:int}"
+@page
 @model ContosoUniversity.Pages.Departments.DeleteModel
 
 @{
     ViewData["Title"] = "Delete";
 }
 
-<h2>Delete</h2>
+<h1>Delete</h1>
 
 <p class="text-danger">@Model.ConcurrencyErrorMessage</p>
 
@@ -13,39 +13,43 @@
 <div>
     <h4>Department</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
+    <dl class="row">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Department.Name)
         </dt>
-        <dd>
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Department.Name)
         </dd>
-        <dt>
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Department.Budget)
         </dt>
-        <dd>
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Department.Budget)
         </dd>
-        <dt>
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Department.StartDate)
         </dt>
-        <dd>
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Department.StartDate)
         </dd>
-        <dt>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Department.ConcurrencyToken)
+        </dt>
+        <dd class="col-sm-10">
+            @Utility.GetLastChars(Model.Department.ConcurrencyToken)
+        </dd>
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Department.Administrator)
         </dt>
-        <dd>
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Department.Administrator.FullName)
         </dd>
     </dl>
-    
+
     <form method="post">
         <input type="hidden" asp-for="Department.DepartmentID" />
-        <input type="hidden" asp-for="Department.ConcurrencyToken"/>
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-danger" /> |
-            <a asp-page="./Index">Back to List</a>
-        </div>
-</form>
+        <input type="hidden" asp-for="Department.ConcurrencyToken" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
 </div>

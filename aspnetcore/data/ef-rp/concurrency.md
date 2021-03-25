@@ -90,9 +90,9 @@ The  SQL Server approach and SQLite implementation details are slightly differen
 
 # [Visual Studio](#tab/visual-studio)
 
-* In the model, include a tracking column that is used to determine when a row has been changed.
-* Apply the <xref:System.ComponentModel.DataAnnotations.TimestampAttribute> to the concurrency property.
-* In the code that updates the entity, call <xref:Microsoft.EntityFrameworkCore.ChangeTracking.PropertyEntry.OriginalValue> to set the `rowVersion` value to the value from the entity when it was read. The `OriginalValue` update  code is shown in [the concurrency updates](#c-up) section of this document.
+  * In the model, include a tracking column that is used to determine when a row has been changed.
+  * Apply the <xref:System.ComponentModel.DataAnnotations.TimestampAttribute> to the concurrency property. <!--
+  * In the code that updates the entity, call <xref:Microsoft.EntityFrameworkCore.ChangeTracking.PropertyEntry.OriginalValue> to set the `rowVersion` value to the value from the entity when it was read. The `OriginalValue` update  code is shown in [the concurrency updates](#c-up) section of this document. -->
 
   Update the *Models/Department.cs* file with the following highlighted code:
 
@@ -136,26 +136,24 @@ The following highlighted code shows the T-SQL that verifies exactly one row was
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* In the model, include a tracking column that can be used to determine when a row has been changed. In this sample, a `GUID` is used. Update the *Models/Department.cs* file with the following highlighted code:
+  * In the model, include a tracking column that can be used to determine when a row has been changed. In this sample, a `GUID` is used. Update the *Models/Department.cs* file with the following highlighted code:
 
   [!code-csharp[](intro/samples/cu50/Models/Department.cs?name=snippetSL&highlight=27)]
 
-* Update the *Data/SchoolContext.cs* file by calling <xref:Microsoft.EntityFrameworkCore.Metadata.IProperty.IsConcurrencyToken> on the `Department.ConcurrencyToken` property:
+  * Update the *Data/SchoolContext.cs* file by calling <xref:Microsoft.EntityFrameworkCore.Metadata.IProperty.IsConcurrencyToken> on the `Department.ConcurrencyToken` property:
 
   [!code-csharp[](intro/samples/cu50/Data/SchoolContext.cs?name=snippet_SQLite&highlight=26-28)]
 
   `IsConcurrencyToken` configures the property as a concurrency token. On updates, the concurrency token value in the database is compared to the original value when to ensure it has not changed since the instance was retrieved from the database. If it has changed, a <xref:Microsoft.EntityFrameworkCore.DbUpdateConcurrencyException> is thrown and changes are not applied.
 
-* In the code that updates the entity:
-  * Update the value of the concurrency token. In this sample, the method that updates the entity uses the following code. This step will be done later in the tutorial.
+  * In the code that updates the entity, update the value of the concurrency token. In this sample, the method that updates the entity uses the following code. This step will be done later in the tutorial.
 
-    ```csharp
-    departmentToUpdate.ConcurrencyToken = Guid.NewGuid();
-    ```
+  ```csharp
+  departmentToUpdate.ConcurrencyToken = Guid.NewGuid();
+  ```
 
-     An alternative to updating the concurrency token in the update method is to set up a trigger so it's automatically updated by the database. For more information, see [SQLite and EF Core Concurrency Tokens](https://www.bricelam.net/2020/08/07/sqlite-and-efcore-concurrency-tokens.html).
-
-  * Call <xref:Microsoft.EntityFrameworkCore.ChangeTracking.PropertyEntry.OriginalValue> to set the `rowVersion` value to the value from the entity when it was read. The `OriginalValue` update  code is shown in [the concurrency updates](#c-up) section of this document. This step will be done later in the tutorial.
+  An alternative to updating the concurrency token in the update method is to set up a trigger so it's automatically updated by the database. For more information, see [SQLite and EF Core Concurrency Tokens](https://www.bricelam.net/2020/08/07/sqlite-and-efcore-concurrency-tokens.html).
+  <!--* Call <xref:Microsoft.EntityFrameworkCore.ChangeTracking.PropertyEntry.OriginalValue> to set the `rowVersion` value to the value from the entity when it was read. The `OriginalValue` update  code is shown in [the concurrency updates](#c-up) section of this document. This step will be done later in the tutorial. -->
 
 ---
 

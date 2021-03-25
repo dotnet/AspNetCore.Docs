@@ -54,6 +54,8 @@ namespace ContosoUniversity.Pages.Departments
                 return Page();
             }
 
+            // Fetch current department from DB.
+            // ConcurrencyToken may have changed.
             var departmentToUpdate = await _context.Departments
                 .Include(i => i.Administrator)
                 .FirstOrDefaultAsync(m => m.DepartmentID == id);
@@ -65,6 +67,7 @@ namespace ContosoUniversity.Pages.Departments
 
             departmentToUpdate.ConcurrencyToken = Guid.NewGuid();
 
+            // Set ConcurrencyToken to value read in OnGetAsync
             _context.Entry(departmentToUpdate).Property(
                        d => d.ConcurrencyToken).OriginalValue = Department.ConcurrencyToken;
             #endregion
@@ -216,6 +219,8 @@ namespace ContosoUniversity.Pages.Departments
                 return Page();
             }
 
+            // Fetch current department from DB.
+            // ConcurrencyToken may have changed.
             var departmentToUpdate = await _context.Departments
                 .Include(i => i.Administrator)
                 .FirstOrDefaultAsync(m => m.DepartmentID == id);
@@ -225,6 +230,7 @@ namespace ContosoUniversity.Pages.Departments
                 return HandleDeletedDepartment();
             }
 
+            // Set ConcurrencyToken to value read in OnGetAsync
             _context.Entry(departmentToUpdate).Property(
                    d => d.ConcurrencyToken).OriginalValue = Department.ConcurrencyToken;
 #endregion
