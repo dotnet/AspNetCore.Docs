@@ -57,11 +57,9 @@ The app built in these tutorials is a basic university web site. Users can view 
 
 The UI style of this site is based on the built-in project templates. The tutorial's focus is on how to use EF Core with ASP.NET Core, not how to customize the UI.
 
-Follow the link at the top of the page to get the source code for the completed project. The *cu50* folder has the code for the ASP.NET Core 5.0 version of the tutorial.
-
-To run the app after downloading the completed project:
-
 ### Build the sample download
+
+This step is optional.
 
 * [Download the completed app.](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu50) [Download instructions](xref:index#how-to-download-a-sample).
 
