@@ -70,19 +70,24 @@ var client = new Greet.GreeterClient(channel);
 
 ## Call insecure gRPC services with .NET Core client
 
-When an app is using .NET Core 3.x, additional configuration is required to call insecure gRPC services with the .NET Core client. The gRPC client must set the `System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport` switch to `true` and use `http` in the server address:
+The .NET gRPC client can call insecure gRPC services by specifing `http` in the server address. For example, `GrpcChannel.ForAddress("http://localhost:5000")`.
 
-```csharp
-// This switch must be set before creating the GrpcChannel/HttpClient.
-AppContext.SetSwitch(
-    "System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
+There are some additional requirements to call insecure gRPC services depending on the .NET version an app is using:
 
-// The port number(5000) must match the port of the gRPC server.
-var channel = GrpcChannel.ForAddress("http://localhost:5000");
-var client = new Greet.GreeterClient(channel);
-```
+* .NET 5 or later requires [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client) version 2.32.0 or later.
+* .NET Core 3.x requires additional configuration. The app must set the `System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport` switch to `true`:
+    
+    ```csharp
+    // This switch must be set before creating the GrpcChannel/HttpClient.
+    AppContext.SetSwitch(
+        "System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
+    
+    // The port number(5000) must match the port of the gRPC server.
+    var channel = GrpcChannel.ForAddress("http://localhost:5000");
+    var client = new Greet.GreeterClient(channel);
+    ```
 
-.NET 5 apps don't need additional configuration, but to call insecure gRPC services they must use `Grpc.Net.Client` version 2.32.0 or later.
+The `System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport` switch is only required for .NET Core 3.x. It does nothing in .NET 5 and isn't required.
 
 ## Unable to start ASP.NET Core gRPC app on macOS
 
@@ -109,7 +114,13 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
         });
 ```
 
+::: moniker range=">= aspnetcore-5.0"
+When an HTTP/2 endpoint is configured without TLS, the endpoint's [ListenOptions.Protocols](xref:fundamentals/servers/kestrel/endpoints#listenoptionsprotocols) must be set to `HttpProtocols.Http2`. `HttpProtocols.Http1AndHttp2` can't be used because TLS is required to negotiate HTTP/2. Without TLS, all connections to the endpoint default to HTTP/1.1, and gRPC calls fail.
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
 When an HTTP/2 endpoint is configured without TLS, the endpoint's [ListenOptions.Protocols](xref:fundamentals/servers/kestrel#listenoptionsprotocols) must be set to `HttpProtocols.Http2`. `HttpProtocols.Http1AndHttp2` can't be used because TLS is required to negotiate HTTP/2. Without TLS, all connections to the endpoint default to HTTP/1.1, and gRPC calls fail.
+::: moniker-end
 
 The gRPC client must also be configured to not use TLS. For more information, see [Call insecure gRPC services with .NET Core client](#call-insecure-grpc-services-with-net-core-client).
 

@@ -5,7 +5,7 @@ description: Learn how to use the Configuration API to configure an ASP.NET Core
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/24/2020
+ms.date: 1/29/2021
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/configuration/index
 ---
@@ -28,7 +28,7 @@ Configuration in ASP.NET Core is performed using one or more [configuration prov
 
 This topic provides information on configuration in ASP.NET Core. For information on using configuration in console apps, see [.NET Configuration](/dotnet/core/extensions/configuration).
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 <a name="default"></a>
 
@@ -61,7 +61,7 @@ Consider the following *appsettings.json* file:
 
 [!code-json[](index/samples/3.x/ConfigSample/appsettings.json)]
 
-The following code from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) displays several of the preceding configurations settings:
+The following code from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) displays several of the preceding configurations settings:
 
 [!code-csharp[](index/samples/3.x/ConfigSample/Pages/Test.cshtml.cs?name=snippet)]
 
@@ -74,6 +74,8 @@ The default <xref:Microsoft.Extensions.Configuration.Json.JsonConfigurationProvi
 
 * In development, *appsettings*.***Development***.*json* configuration overwrites values found in *appsettings.json*.
 * In production, *appsettings*.***Production***.*json* configuration overwrites values found in *appsettings.json*. For example, when deploying the app to Azure.
+
+If a configuration value must be guaranteed, see [GetValue](#getvalue). The preceding example only reads strings and doesn’t support a default value
 
 <a name="optpat"></a>
 
@@ -119,7 +121,7 @@ Using the [default](#default) configuration, the <xref:Microsoft.Extensions.Conf
 The following `set` commands:
 
 * Set the environment keys and values of the [preceding example](#appsettingsjson) on Windows.
-* Test the settings when using the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample). The `dotnet run` command must be run in the project directory.
+* Test the settings when using the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample). The `dotnet run` command must be run in the project directory.
 
 ```dotnetcli
 set MyKey="My key from Environment"
@@ -215,9 +217,30 @@ setx Logging__1__Name=ToConsole
 setx Logging__1__Level=Information
 ```
 
-### Environment variables set in launchSettings.json
+### Environment variables set in generated launchSettings.json
 
-Environment variables set in *launchSettings.json* override those set in the system environment.
+Environment variables set in *launchSettings.json* override those set in the system environment. For example, the ASP.NET Core web templates generate a *launchSettings.json* file that sets the endpoint configuration to:
+
+```json
+"applicationUrl": "https://localhost:5001;http://localhost:5000"
+```
+
+Configuring the `applicationUrl` sets the `ASPNETCORE_URLS` environment variable and overrides values set in the environment.
+
+### Escape environment variables on Linux
+
+On Linux, the value of URL environment variables must be escaped so `systemd` can parse it. Use the linux tool `systemd-escape` which yields `http:--localhost:5001`
+ 
+ ```cmd
+ groot@terminus:~$ systemd-escape http://localhost:5001
+ http:--localhost:5001
+ ```
+
+### Display environment variables
+
+The following code displays the environment variables and values on application startup, which can be helpful when debugging environment settings:
+
+[!code-csharp[](~/fundamentals/configuration/index/samples_snippets/5.x/Program.cs?name=snippet)]
 
 <a name="clcp"></a>
 
@@ -289,11 +312,11 @@ For apps that use switch mappings, the call to `CreateDefaultBuilder` shouldn't 
 
 The Configuration API reads hierarchical configuration data by flattening the hierarchical data with the use of a delimiter in the configuration keys.
 
-The [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) contains the following  *appsettings.json* file:
+The [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) contains the following  *appsettings.json* file:
 
 [!code-json[](index/samples/3.x/ConfigSample/appsettings.json)]
 
-The following code from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) displays several of the configurations settings:
+The following code from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) displays several of the configurations settings:
 
 [!code-csharp[](index/samples/3.x/ConfigSample/Pages/Test.cshtml.cs?name=snippet)]
 
@@ -402,11 +425,11 @@ In the preceding code, settings in the *MyIniConfig.ini* and  *MyIniConfig*.`Env
 * [Environment variables configuration provider](#evcp)
 * [Command-line configuration provider](#clcp).
 
-The [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) contains the following *MyIniConfig.ini* file:
+The [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) contains the following *MyIniConfig.ini* file:
 
 [!code-ini[](index/samples/3.x/ConfigSample/MyIniConfig.ini)]
 
-The following code from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) displays several of the preceding configurations settings:
+The following code from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) displays several of the preceding configurations settings:
 
 [!code-csharp[](index/samples/3.x/ConfigSample/Pages/Test.cshtml.cs?name=snippet)]
 
@@ -443,11 +466,11 @@ In the preceding code, settings in the *MyConfig.json* and  *MyConfig*.`Environm
 * Override settings in the *appsettings.json* and *appsettings*.`Environment`.*json* files.
 * Are overridden by settings in the [Environment variables configuration provider](#evcp) and the [Command-line configuration provider](#clcp).
 
-The [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) contains the following  *MyConfig.json* file:
+The [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) contains the following  *MyConfig.json* file:
 
 [!code-json[](index/samples/3.x/ConfigSample/MyConfig.json)]
 
-The following code from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) displays several of the preceding configurations settings:
+The following code from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) displays several of the preceding configurations settings:
 
 [!code-csharp[](index/samples/3.x/ConfigSample/Pages/Test.cshtml.cs?name=snippet)]
 
@@ -464,11 +487,11 @@ In the preceding code, settings in the *MyXMLFile.xml* and  *MyXMLFile*.`Environ
 * [Environment variables configuration provider](#evcp)
 * [Command-line configuration provider](#clcp).
 
-The [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) contains the following *MyXMLFile.xml* file:
+The [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) contains the following *MyXMLFile.xml* file:
 
 [!code-xml[](index/samples/3.x/ConfigSample/MyXMLFile.xml)]
 
-The following code from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) displays several of the preceding configurations settings:
+The following code from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) displays several of the preceding configurations settings:
 
 [!code-csharp[](index/samples/3.x/ConfigSample/Pages/Test.cshtml.cs?name=snippet)]
 
@@ -531,13 +554,45 @@ The following code adds a memory collection to the configuration system:
 
 [!code-csharp[](index/samples/3.x/ConfigSample/ProgramArray.cs?name=snippet6)]
 
-The following code from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) displays the preceding configurations settings:
+The following code from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) displays the preceding configurations settings:
 
 [!code-csharp[](index/samples/3.x/ConfigSample/Pages/Test.cshtml.cs?name=snippet)]
 
 In the preceding code, `config.AddInMemoryCollection(Dict)` is added after the [default configuration providers](#default). For an example of ordering the configuration providers, see [JSON configuration provider](#jcp).
 
 See [Bind an array](#boa) for another example using `MemoryConfigurationProvider`.
+
+::: moniker-end
+::: moniker range=">= aspnetcore-5.0"
+
+<a name="kestrel"></a>
+
+## Kestrel endpoint configuration
+
+Kestrel specific endpoint configuration overrides all [cross-server](xref:fundamentals/servers/index) endpoint configurations. Cross-server endpoint configurations include:
+
+  * [UseUrls](xref:fundamentals/host/web-host#server-urls)
+  * `--urls` on the [command line](xref:fundamentals/configuration/index#command-line)
+  * The [environment variable](xref:fundamentals/configuration/index#environment-variables) `ASPNETCORE_URLS`
+
+Consider the following *appsettings.json* file used in an ASP.NET Core web app:
+
+[!code-json[](~/fundamentals/configuration/index/samples_snippets/5.x/appsettings.json?highlight=2-8)]
+
+When the preceding highlighted markup is used in an ASP.NET Core web app ***and*** the app is launched on the command line with the following cross-server endpoint configuration:
+
+`dotnet run --urls="https://localhost:7777"`
+
+Kestrel binds to the endpoint configured specifically for Kestrel in the *appsettings.json* file (`https://localhost:9999`) and not `https://localhost:7777`.
+
+Consider the Kestrel specific endpoint configured as an environment variable:
+
+`set Kestrel__Endpoints__Https__Url=https://localhost:8888`
+
+In the preceding environment variable, `Https` is the name of the Kestrel specific endpoint. The preceding *appsettings.json* file also defines a Kestrel specific endpoint named `Https`. By [default](#default-configuration), environment variables using the [Environment Variables configuration provider](#evcp) are read after *appsettings.*`Environment`*.json*, therefore, the preceding environment variable is used for the `Https` endpoint.
+
+::: moniker-end
+::: moniker range=">= aspnetcore-3.0"
 
 ## GetValue
 
@@ -587,7 +642,7 @@ The preceding code calls [ConfigurationExtensions.Exists](xref:Microsoft.Extensi
 
 The [ConfigurationBinder.Bind](xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind*) supports binding arrays to objects using array indices in configuration keys. Any array format that exposes a numeric key segment is capable of array binding to a [POCO](https://wikipedia.org/wiki/Plain_Old_CLR_Object) class array.
 
-Consider *MyArray.json* from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample):
+Consider *MyArray.json* from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample):
 
 [!code-json[](index/samples/3.x/ConfigSample/MyArray.json)]
 
@@ -756,7 +811,7 @@ Before the app is configured and started, a *host* is configured and launched. T
 
 ## Default host configuration
 
-For details on the default configuration when using the [Web Host](xref:fundamentals/host/web-host), see the [ASP.NET Core 2.2 version of this topic](?view=aspnetcore-2.2).
+For details on the default configuration when using the [Web Host](xref:fundamentals/host/web-host), see the [ASP.NET Core 2.2 version of this topic](?view=aspnetcore-2.2&preserve-view=true).
 
 * Host configuration is provided from:
   * Environment variables prefixed with `DOTNET_` (for example, `DOTNET_ENVIRONMENT`) using the [Environment Variables configuration provider](#environment-variables). The prefix (`DOTNET_`) is stripped when the configuration key-value pairs are loaded.
@@ -788,7 +843,7 @@ An <xref:Microsoft.AspNetCore.Hosting.IHostingStartup> implementation allows add
 
 ## Additional resources
 
-* [Configuration source code](https://github.com/dotnet/extensions/tree/master/src/Configuration)
+* [Configuration source code](https://github.com/dotnet/runtime/tree/main/src/libraries/Microsoft.Extensions.Configuration)
 * <xref:fundamentals/configuration/options>
 * <xref:blazor/fundamentals/configuration>
 
@@ -817,7 +872,7 @@ using Microsoft.Extensions.Configuration;
 
 The *options pattern* is an extension of the configuration concepts described in this topic. Options use classes to represent groups of related settings. For more information, see <xref:fundamentals/configuration/options>.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Host versus app configuration
 

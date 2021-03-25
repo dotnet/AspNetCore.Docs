@@ -104,6 +104,26 @@ const connection = new signalR.HubConnectionBuilder()
 > [!NOTE]
 > At this time, there are no configuration options for the MessagePack protocol on the JavaScript client.
 
+### Java client
+
+To enable MessagePack with Java, install the `com.microsoft.signalr.messagepack` package. When using Gradle, add the following line to the `dependencies` section of the *build.gradle* file:
+
+```gradle
+implementation 'com.microsoft.signalr.messagepack:signalr-messagepack:5.0.0'
+```
+
+When using Maven, add the following lines inside the `<dependencies>` element of the *pom.xml* file:
+
+[!code-xml[pom.xml dependency element messagePack](java-client/sample/pom.xml?name=snippet_dependencyElement_messagePack)]
+
+Call `withHubProtocol(new MessagePackHubProtocol())` on `HubConnectionBuilder`.
+
+```java
+HubConnection messagePackConnection = HubConnectionBuilder.create("YOUR HUB URL HERE")
+    .withHubProtocol(new MessagePackHubProtocol())
+    .build();
+```
+
 ## MessagePack quirks
 
 There are a few issues to be aware of when using the MessagePack Hub Protocol.
@@ -171,6 +191,10 @@ InvalidDataException: Error binding arguments. Make sure that the types of the p
 ```
 
 For more information on this limitation, see GitHub issue [aspnet/SignalR#2937](https://github.com/aspnet/SignalR/issues/2937).
+
+### Chars and Strings in Java
+
+In the java client, `char` objects will be serialized as one-character `String` objects. This is in contrast with the C# and JavaScript client, which serialize them as `short` objects. The MessagePack spec itself does not define behavior for `char` objects, so it is up to the library author to determine how to serialize them. The difference in behavior between our clients is a result of the libraries we used for our implementations.
 
 ## Related resources
 

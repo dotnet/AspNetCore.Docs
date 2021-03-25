@@ -15,7 +15,7 @@ This tutorial shows how to create a .NET Core [gRPC](https://grpc.io/docs/guides
 
 At the end, you'll have a gRPC client that communicates with the gRPC Greeter service.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/grpc/grpc-start/sample) ([how to download](xref:index#how-to-download-a-sample)).
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/grpc/grpc-start/sample) ([how to download](xref:index#how-to-download-a-sample)).
 
 In this tutorial, you:
 

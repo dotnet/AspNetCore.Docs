@@ -28,6 +28,13 @@
             <version>1.0.0</version>
         </dependency>
         <!-- </snippet_dependencyElement> -->
+        <!-- <snippet_dependencyElement_messagePack> -->
+        <dependency>
+            <groupId>com.microsoft.signalr.messagepack</groupId>
+            <artifactId>signalr</artifactId>
+            <version>5.0.0</version>
+        </dependency>
+        <!-- </snippet_dependencyElement_messagePack> -->
     </dependencies>
 
 </project>

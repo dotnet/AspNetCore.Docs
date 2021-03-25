@@ -9,7 +9,6 @@ using Microsoft.Extensions.Logging;
 
 namespace StaticFileAuth.Pages
 {
-    [AllowAnonymous]
     public class PrivacyModel : PageModel
     {
         private readonly ILogger<PrivacyModel> _logger;

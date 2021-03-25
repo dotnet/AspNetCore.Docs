@@ -11,13 +11,14 @@ uid: blazor/call-javascript-from-dotnet
 ---
 # Call JavaScript functions from .NET methods in ASP.NET Core Blazor
 
-By [Javier Calvarro Nelson](https://github.com/javiercn), [Daniel Roth](https://github.com/danroth27), [Pranav Krishnamoorthy](https://github.com/pranavkm), and [Luke Latham](https://github.com/guardrex)
-
 A Blazor app can invoke JavaScript functions from .NET methods and .NET methods from JavaScript functions. These scenarios are called *JavaScript interoperability* (*JS interop*).
 
 This article covers invoking JavaScript functions from .NET. For information on how to call .NET methods from JavaScript, see <xref:blazor/call-dotnet-from-javascript>.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/blazor/common/samples/) ([how to download](xref:index#how-to-download-a-sample))
+
+> [!NOTE]
+> Add JS files (`<script>` tags) before the closing `</body>` tag in the `wwwroot/index.html` file (Blazor WebAssembly) or `Pages/_Host.cshtml` file (Blazor Server). Ensure that JS files with JS interop methods are included before Blazor framework JS files.
 
 To call into JavaScript from .NET, use the <xref:Microsoft.JSInterop.IJSRuntime> abstraction. To issue JS interop calls, inject the <xref:Microsoft.JSInterop.IJSRuntime> abstraction in your component. <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A> takes an identifier for the JavaScript function that you wish to invoke along with any number of JSON-serializable arguments. The function identifier is relative to the global scope (`window`). If you wish to call `window.someScope.someFunction`, the identifier is `someScope.someFunction`. There's no need to register the function before it's called. The return type `T` must also be JSON serializable. `T` should match the .NET type that best maps to the JSON type returned.
 
@@ -78,17 +79,17 @@ In the client-side sample app that accompanies this topic, two JavaScript functi
 
 `wwwroot/exampleJsInterop.js`:
 
-[!code-javascript[](./common/samples/5.x/BlazorWebAssemblySample/wwwroot/exampleJsInterop.js?highlight=2-7)]
+[!code-javascript[](~/blazor/common/samples/5.x/BlazorWebAssemblySample/wwwroot/exampleJsInterop.js?highlight=2-7)]
 
 Place the `<script>` tag that references the JavaScript file in the `wwwroot/index.html` file (Blazor WebAssembly) or `Pages/_Host.cshtml` file (Blazor Server).
 
 `wwwroot/index.html` (Blazor WebAssembly):
 
-[!code-html[](./common/samples/5.x/BlazorWebAssemblySample/wwwroot/index.html?highlight=22)]
+[!code-html[](~/blazor/common/samples/5.x/BlazorWebAssemblySample/wwwroot/index.html?highlight=22)]
 
 `Pages/_Host.cshtml` (Blazor Server):
 
-[!code-cshtml[](./common/samples/5.x/BlazorServerSample/Pages/_Host.cshtml?highlight=34)]
+[!code-cshtml[](~/blazor/common/samples/5.x/BlazorServerSample/Pages/_Host.cshtml?highlight=33)]
 
 Don't place a `<script>` tag in a component file because the `<script>` tag can't be updated dynamically.
 
@@ -503,14 +504,14 @@ export function showPrompt(message) {
 }
 ```
 
-Add the preceding JavaScript module to a .NET library as a static web asset (`wwwroot/exampleJsInterop.js`) and then import the module into the .NET code using the <xref:Microsoft.JSInterop.IJSRuntime> service. The service is injected as `js` (not shown) for the following example:
+Add the preceding JavaScript module to a .NET library as a static web asset (`wwwroot/exampleJsInterop.js`) and then import the module into the .NET code by calling <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A> on the <xref:Microsoft.JSInterop.IJSRuntime> service. The service is injected as `js` (not shown) for the following example:
 
 ```csharp
 var module = await js.InvokeAsync<IJSObjectReference>(
     "import", "./_content/MyComponents/exampleJsInterop.js");
 ```
 
-The `import` identifier in the preceding example is a special identifier used specifically for importing a JavaScript module. Specify the module using its stable static web asset path: `_content/{LIBRARY NAME}/{PATH UNDER WWWROOT}`. The placeholder `{LIBRARY NAME}` is the library name. The placeholder `{PATH UNDER WWWROOT}` is the path to the script under `wwwroot`.
+The `import` identifier in the preceding example is a special identifier used specifically for importing a JavaScript module. Specify the module using its stable static web asset path: `./_content/{LIBRARY NAME}/{PATH UNDER WWWROOT}`. The path segment for the current directory (`./`) is required in order to create the correct static asset path to the JavaScript file. Dynamically importing a module requires a network request, so it can only be achieved asynchronously by calling <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A>. The `{LIBRARY NAME}` placeholder is the library name. The `{PATH UNDER WWWROOT}` placeholder is the path to the script under `wwwroot`.
 
 <xref:Microsoft.JSInterop.IJSRuntime> imports the module as a `IJSObjectReference`, which represents a reference to a JavaScript object from .NET code. Use the `IJSObjectReference` to invoke exported JavaScript functions from the module:
 
@@ -638,29 +639,9 @@ Additionally, the preceding example shows how it's possible to encapsulate JavaS
 
 ## Size limits on JS interop calls
 
-In Blazor WebAssembly, the framework doesn't impose limits on the size of inputs and outputs of JS interop calls.
+In Blazor WebAssembly, the framework doesn't impose a limit on the size of JS interop inputs and outputs.
 
-In Blazor Server, the result of a JS interop call is limited by the maximum payload size enforced by SignalR (<xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize>), which defaults to 32 KB. Applications that attempt to respond to a JS interop call with a payload larger than <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize> throw an error. A larger limit can be configured by modifying <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize>. The following example sets the maximum receive message size to 64 KB (64 * 1024 * 1024):
-
-```csharp
-services.AddServerSideBlazor()
-   .AddHubOptions(options => options.MaximumReceiveMessageSize = 64 * 1024 * 1024);
-```
-
-Increasing the SignalR limit comes at the cost of requiring the use of more server resources, and it exposes the server to increased risks from a malicious user. Additionally, reading a large amount of content in to memory as strings or byte arrays can also result in allocations that work poorly with the garbage collector, resulting in additional performance penalties. One option for reading large payloads is to consider sending the content in smaller chunks and processing the payload as a <xref:System.IO.Stream>. This can be used when reading large JSON payloads or if data is available in JavaScript as raw bytes. For an example that demonstrates sending large binary payloads in Blazor Server that uses techniques similar to the `InputFile` component, see the [Binary Submit sample app](https://github.com/aspnet/samples/tree/master/samples/aspnetcore/blazor/BinarySubmit).
-
-Consider the following guidance when developing code that transfers a large amount of data between JavaScript and Blazor:
-
-* Slice the data into smaller pieces, and send the data segments sequentially until all of the data is received by the server.
-* Don't allocate large objects in JavaScript and C# code.
-* Don't block the main UI thread for long periods when sending or receiving data.
-* Free any memory consumed when the process is completed or cancelled.
-* Enforce the following additional requirements for security purposes:
-  * Declare the maximum file or data size that can be passed.
-  * Declare the minimum upload rate from the client to the server.
-* After the data is received by the server, the data can be:
-  * Temporarily stored in a memory buffer until all of the segments are collected.
-  * Consumed immediately. For example, the data can be stored immediately in a database or written to disk as each segment is received.
+In Blazor Server, JS interop calls are limited in size by the maximum incoming SignalR message size permitted for hub methods, which is enforced by <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize?displayProperty=nameWithType> (default: 32 KB). JS to .NET SignalR messages larger than <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize> throw an error. The framework doesn't impose a limit on the size of a SignalR message from the hub to a client. For more information, see <xref:blazor/call-dotnet-from-javascript#size-limits-on-js-interop-calls>.
   
 ## JS modules
 
@@ -821,4 +802,4 @@ Other data types, such as string arrays, can be converted but require creating a
 ## Additional resources
 
 * <xref:blazor/call-dotnet-from-javascript>
-* [InteropComponent.razor example (dotnet/AspNetCore GitHub repository, 3.1 release branch)](https://github.com/dotnet/AspNetCore/blob/release/3.1/src/Components/test/testassets/BasicTestApp/InteropComponent.razor)
+* [`InteropComponent.razor` example (dotnet/AspNetCore GitHub repository `main` branch)](https://github.com/dotnet/AspNetCore/blob/main/src/Components/test/testassets/BasicTestApp/InteropComponent.razor): The `main` branch represents the product unit's current development for the next release of ASP.NET Core. To select the branch for a different release (for example, `release/5.0`), use the **Switch branches or tags** drop-down list to select the branch.

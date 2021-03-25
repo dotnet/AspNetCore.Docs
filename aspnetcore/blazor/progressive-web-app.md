@@ -5,13 +5,11 @@ description: Learn how to build a Blazor-based Progressive Web Application (PWA)
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/10/2020
+ms.date: 01/11/2021
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/progressive-web-app
 ---
 # Build Progressive Web Applications with ASP.NET Core Blazor WebAssembly
-
-By [Steve Sanderson](https://github.com/SteveSandersonMS)
 
 A Progressive Web Application (PWA) is usually a Single Page Application (SPA) that uses modern browser APIs and capabilities to behave like a desktop app. Blazor WebAssembly is a standards-based client-side web app platform, so it can use any browser API, including PWA APIs required for the following capabilities:
 
@@ -42,15 +40,113 @@ When creating a new **Blazor WebAssembly App** in the **Create a New Project** d
 
 # [Visual Studio Code / .NET Core CLI](#tab/visual-studio-code+netcore-cli)
 
-Create a PWA project in a command shell with the `--pwa` switch:
+Use the following command to create a PWA project in a command shell with the `--pwa` switch:
 
 ```dotnetcli
-dotnet new blazorwasm -o MyNewProject --pwa
+dotnet new blazorwasm -o MyBlazorPwa --pwa
 ```
+
+In the preceding command, the `-o|--output` option creates a new folder for the app named `MyBlazorPwa`.
 
 ---
 
 Optionally, PWA can be configured for an app created from the ASP.NET Core Hosted template. The PWA scenario is independent of the hosting model.
+
+## Convert an existing Blazor WebAssembly app into a PWA
+
+Convert an existing Blazor WebAssembly app into a PWA following the guidance in this section.
+
+In the app's project file:
+
+* Add the following `ServiceWorkerAssetsManifest` property to a `PropertyGroup`:
+
+  ```xml
+    ...
+    <ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>
+  </PropertyGroup>
+   ```
+
+* Add the following `ServiceWorker` item to an `ItemGroup`:
+
+  ```xml
+  <ItemGroup>
+    <ServiceWorker Include="wwwroot\service-worker.js" 
+      PublishedContent="wwwroot\service-worker.published.js" />
+  </ItemGroup>
+  ```
+
+To obtain static assets, use **one** of the following approaches:
+
+::: moniker range=">= aspnetcore-5.0"
+
+* Create a separate, new PWA project with the [`dotnet new`](/dotnet/core/tools/dotnet-new) command in a command shell:
+
+  ```dotnetcli
+  dotnet new blazorwasm -o MyBlazorPwa --pwa
+  ```
+  
+  In the preceding command, the `-o|--output` option creates a new folder for the app named `MyBlazorPwa`.
+  
+  **If you aren't converting an app for the latest release**, pass the `-f|--framework` option. The following example creates the app for ASP.NET Core version 3.1:
+  
+  ```dotnetcli
+  dotnet new blazorwasm -o MyBlazorPwa --pwa -f netcoreapp3.1
+  ```
+
+* Navigate to the ASP.NET Core GitHub repository at the following URL, which links to `main` branch reference source and assets. Select the release that you're working with from the **Switch branches or tags** drop-down list that applies to your app.
+
+  [Blazor WebAssembly project template `wwwroot` folder (dotnet/aspnetcore GitHub repository `main` branch)](https://github.com/dotnet/aspnetcore/tree/main/src/ProjectTemplates/Web.ProjectTemplates/content/ComponentsWebAssembly-CSharp/Client/wwwroot)
+
+  [!INCLUDE[](~/blazor/includes/aspnetcore-repo-ref-source-links.md)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+* Create a separate, new PWA project with the [`dotnet new`](/dotnet/core/tools/dotnet-new) command in a command shell. Pass the `-f|--framework` option to select the version. The following example creates the app for ASP.NET Core version 3.1:
+  
+  ```dotnetcli
+  dotnet new blazorwasm -o MyBlazorPwa --pwa -f netcoreapp3.1
+  ```
+  
+  In the preceding command, the `-o|--output` option creates a new folder for the app named `MyBlazorPwa`.
+
+* Navigate to the ASP.NET Core GitHub repository at the following URL, which links to 3.1 release reference source and assets:
+
+  [Blazor WebAssembly project template `wwwroot` folder (dotnet/aspnetcore GitHub repository `release 3.1` branch)](https://github.com/dotnet/aspnetcore/tree/release/3.1/src/ProjectTemplates/ComponentsWebAssembly.ProjectTemplates/content/ComponentsWebAssembly-CSharp/Client/wwwroot)
+
+  > [!NOTE]
+  > The URL for Blazor WebAssembly project template changed after the release of ASP.NET Core 3.1. Reference assets for any release are available from the ASP.NET Core reference source. Select the release that you're working with from the **Switch branches or tags** drop-down list that applies to your app.
+  >
+  > [Blazor WebAssembly project template `wwwroot` folder (dotnet/aspnetcore GitHub repository `main` branch)](https://github.com/dotnet/aspnetcore/tree/main/src/ProjectTemplates/Web.ProjectTemplates/content/ComponentsWebAssembly-CSharp/Client/wwwroot)
+  >
+  > [!INCLUDE[](~/blazor/includes/aspnetcore-repo-ref-source-links.md)]
+
+::: moniker-end
+
+From the source `wwwroot` folder either in the app that you created or from the reference assets in the `dotnet/aspnetcore` GitHub repository, copy the following files into the app's `wwwroot` folder:
+
+* `icon-512.png`
+* `manifest.json`
+* `service-worker.js`
+* `service-worker.published.js`
+
+In the app's `wwwroot/index.html` file:
+
+* Add `<link>` elements for the manifest and app icon:
+
+  ```html
+  <link href="manifest.json" rel="manifest" />
+  <link rel="apple-touch-icon" sizes="512x512" href="icon-512.png" />
+  ```
+
+* Add the following `<script>` tag inside the closing `</body>` tag immediately after the `blazor.webassembly.js` script tag:
+
+  ```html
+      ...
+      <script>navigator.serviceWorker.register('service-worker.js');</script>
+  </body>
+  ```
 
 ## Installation and app manifest
 
@@ -161,10 +257,20 @@ Change the code to the following:
 
 ```javascript
 const shouldServeIndexHtml = event.request.mode === 'navigate'
-    && !event.request.url.includes('/Identity/');
+  && !event.request.url.includes('/Identity/');
 ```
 
 If you don't do this, then regardless of network connectivity, the service worker intercepts requests for such URLs and resolves them using `/index.html`.
+
+Add additional endpoints for external authentication providers to the check. In the following example, `/signin-google` for Google authentication is added to the check:
+
+```javascript
+const shouldServeIndexHtml = event.request.mode === 'navigate'
+  && !event.request.url.includes('/Identity/')
+  && !event.request.url.includes('/signin-google');
+```
+
+No action is required for the Development environment, where content is always fetched from the network.
 
 ### Control asset caching
 
@@ -285,4 +391,4 @@ The [`CarChecker`](https://github.com/SteveSandersonMS/CarChecker) sample app de
 ## Additional resources
 
 * [Troubleshoot integrity PowerShell script](xref:blazor/host-and-deploy/webassembly#troubleshoot-integrity-powershell-script)
-* [SignalR cross-origin negotiation for authentication](xref:blazor/fundamentals/additional-scenarios#signalr-cross-origin-negotiation-for-authentication)
+* [SignalR cross-origin negotiation for authentication](xref:blazor/fundamentals/signalr#signalr-cross-origin-negotiation-for-authentication)

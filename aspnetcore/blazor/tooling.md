@@ -5,14 +5,12 @@ description: Learn about the tooling available to build Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/28/2020
+ms.date: 02/11/2021
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/tooling
 zone_pivot_groups: operating-systems
 ---
 # Tooling for ASP.NET Core Blazor
-
-By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.com/guardrex)
 
 ::: zone pivot="windows"
 
@@ -33,6 +31,8 @@ By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.
 1. Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> to run the app.
 
 For more information on trusting the ASP.NET Core HTTPS development certificate, see <xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos>.
+
+When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
 
 ::: zone-end
 
@@ -55,11 +55,11 @@ For more information on trusting the ASP.NET Core HTTPS development certificate,
    ```
 
    For a hosted Blazor WebAssembly experience, add the hosted option (`-ho` or `--hosted`) option to the command:
-   
+
    ```dotnetcli
    dotnet new blazorwasm -o WebApplication1 -ho
    ```
-   
+
    For a Blazor Server experience, execute the following command in a command shell:
 
    ```dotnetcli
@@ -71,6 +71,57 @@ For more information on trusting the ASP.NET Core HTTPS development certificate,
 1. Open the `WebApplication1` folder in Visual Studio Code.
 
 1. The IDE requests that you add assets to build and debug the project. Select **Yes**.
+
+   **Hosted Blazor WebAssembly launch and task configuration**
+
+   For hosted Blazor WebAssembly solutions, add (or move) the `.vscode` folder with `launch.json` and `tasks.json` files to the solution's parent folder, which is the folder that contains the typical project folder names of `Client`, `Server`, and `Shared`. Update or confirm that the configuration in the `launch.json` and `tasks.json` files execute a hosted Blazor WebAssembly app from the **`Server`** project.
+
+   **`.vscode/launch.json`** (`launch` configuration):
+
+   ```json
+   ...
+   "cwd": "${workspaceFolder}/{SERVER APP FOLDER}",
+   ...
+   ```
+
+   In the preceding configuration for the current working directory (`cwd`), the `{SERVER APP FOLDER}` placeholder is the **`Server`** project's folder, typically "`Server`".
+
+   If Microsoft Edge is used and Google Chrome isn't installed on the system, add an additional property of `"browser": "edge"` to the configuration.
+
+   Example for a project folder of `Server` and that spawns Microsoft Edge as the browser for debug runs instead of the default browser Google Chrome:
+
+   ```json
+   ...
+   "cwd": "${workspaceFolder}/Server",
+   "browser": "edge"
+   ...
+   ```
+
+   **`.vscode/tasks.json`** ([`dotnet` command](/dotnet/core/tools/dotnet) arguments):
+
+   ```json
+   ...
+   "${workspaceFolder}/{SERVER APP FOLDER}/{PROJECT NAME}.csproj",
+   ...
+   ```
+
+   In the preceding argument:
+
+   * The `{SERVER APP FOLDER}` placeholder is the **`Server`** project's folder, typically "`Server`".
+   * The `{PROJECT NAME}` placeholder is the app's name, typically based on the solution's name followed by "`.Server`" in an app generated from the [Blazor project template](xref:blazor/project-structure).
+
+   The following example from the [tutorial for using SignalR with a Blazor WebAssembly app](xref:tutorials/signalr-blazor) uses a project folder name of `Server` and a project name of `BlazorWebAssemblySignalRApp.Server`:
+
+   ```json
+   ...
+   "args": [
+     "build",
+       "${workspaceFolder}/Server/BlazorWebAssemblySignalRApp.Server.csproj",
+       "/property:GenerateFullPaths=true",
+       "/consoleloggerparameters:NoSummary"
+   ],
+   ...
+   ```
 
 1. Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> to run the app.
 
@@ -108,11 +159,13 @@ For more information, see the guidance provided by your browser manufacturer and
 
 If a prompt appears to trust the development certificate, trust the certificate and continue. The user and keychain passwords are required to trust the certificate. For more information on trusting the ASP.NET Core HTTPS development certificate, see <xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos>.
 
+When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
+
 ::: zone-end
 
 ## Use Visual Studio Code for cross-platform Blazor development
 
-[Visual Studio Code](https://code.visualstudio.com/) is an open source, cross-platform Integrated Development Environment (IDE) that can be used to develop Blazor apps. Use the .NET CLI to create a new Blazor app for development with Visual Studio Code. For more information, see the [Linux version of this article](/aspnet/core/blazor/tooling?pivots=linux).
+[Visual Studio Code](https://code.visualstudio.com/) is an open source, cross-platform Integrated Development Environment (IDE) that can be used to develop Blazor apps. Use the .NET CLI to create a new Blazor app for development with Visual Studio Code. For more information, see the [Linux version of this article](?pivots=linux).
 
 ## Blazor template options
 
@@ -121,11 +174,16 @@ The Blazor framework provides templates for creating new apps for each of the tw
 * Blazor WebAssembly project template: `blazorwasm`
 * Blazor Server project template: `blazorserver`
 
-For more information on Blazor's hosting models, see <xref:blazor/hosting-models>.
+For more information on Blazor's hosting models, see <xref:blazor/hosting-models>. For more information on Blazor project templates, see <xref:blazor/project-structure>.
 
 Template options are available by passing the help option (`-h` or `--help`) to the [`dotnet new`](/dotnet/core/tools/dotnet-new) CLI command in a command shell:
 
 ```dotnetcli
-dotnet new blazorwasm --h
-dotnet new blazorserver --h
+dotnet new blazorwasm -h
+dotnet new blazorserver -h
 ```
+
+## Additional resources
+
+* <xref:blazor/hosting-models>
+* <xref:blazor/project-structure>

@@ -5,17 +5,18 @@ description: Learn how to secure an ASP.NET Core Blazor WebAssembly standalone a
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/27/2020
+ms.date: 02/10/2021
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/security/webassembly/standalone-with-authentication-library
 ---
 # Secure an ASP.NET Core Blazor WebAssembly standalone app with the Authentication library
 
-By [Javier Calvarro Nelson](https://github.com/javiercn) and [Luke Latham](https://github.com/guardrex)
-
 *For Azure Active Directory (AAD) and Azure Active Directory B2C (AAD B2C), don't follow the guidance in this topic. See the AAD and AAD B2C topics in this table of contents node.*
 
-To create a [standalone Blazor WebAssembly app](xref:blazor/hosting-models#blazor-webassembly) that uses [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication) library, follow the guidance for your choice of tooling.
+To create a [standalone Blazor WebAssembly app](xref:blazor/hosting-models#blazor-webassembly) that uses [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication) library, follow the guidance for your choice of tooling. If adding support for authentication, see the following sections of this article for guidance on setting up and configuring the app.
+
+> [!NOTE]
+> The Identity Provider (IP) must use [OpenID Connect (OIDC)](https://openid.net/connect/). For example, Facebook's IP isn't an OIDC-compliant provider, so the guidance in this topic doesn't work with the Facebook IP. For more information, see <xref:blazor/security/webassembly/index#authentication-library>.
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -23,11 +24,11 @@ To create a new Blazor WebAssembly project with an authentication mechanism:
 
 1. After choosing the **Blazor WebAssembly App** template in the **Create a new ASP.NET Core Web Application** dialog, select **Change** under **Authentication**.
 
-1. Select **Individual User Accounts** with the **Store user accounts in-app** option to store users within the app using ASP.NET Core's [Identity](xref:security/authentication/identity) system.
+1. Select **Individual User Accounts** with the **Store user accounts in-app** option to use ASP.NET Core's [Identity](xref:security/authentication/identity) system. This selection adds authentication support and doesn't result in storing users in a database. The following sections of this article provide further details.
 
 # [Visual Studio Code / .NET Core CLI](#tab/visual-studio-code+netcore-cli)
 
-Create a new Blazor WebAssembly project with an authentication mechanism in an empty folder. Specify the `Individual` authentication mechanism with the `-au|--auth` option to store users within the app using ASP.NET Core's [Identity](xref:security/authentication/identity) system:
+Create a new Blazor WebAssembly project with an authentication mechanism in an empty folder. Specify the `Individual` authentication mechanism with the `-au|--auth` option to use ASP.NET Core's [Identity](xref:security/authentication/identity) system. This selection adds authentication support and doesn't result in storing users in a database. The following sections of this article provide further details.
 
 ```dotnetcli
 dotnet new blazorwasm -au Individual -o {APP NAME}
@@ -47,7 +48,7 @@ To create a new Blazor WebAssembly project with an authentication mechanism:
 
 1. On the **Configure your new Blazor WebAssembly App** step, select **Individual Authentication (in-app)** from the **Authentication** drop down.
 
-1. The app is created for individual users stored in the app with ASP.NET Core [Identity](xref:security/authentication/identity).
+1. The app is created to use ASP.NET Core [Identity](xref:security/authentication/identity) and doesn't result in storing users in a database. The following sections of this article provide further details.
 
 ---
 
@@ -69,6 +70,8 @@ For the placeholder `{VERSION}`, the latest stable version of the package that m
 
 Support for authenticating users is registered in the service container with the <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyAuthenticationServiceCollectionExtensions.AddOidcAuthentication%2A> extension method provided by the [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication) package. This method sets up the services required for the app to interact with the Identity Provider (IP).
 
+For a new app, provide values for the `{AUTHORITY}` and `{CLIENT ID}` placeholders in the following configuration. Provide other configuration values that are required for use with the app's IP. The example is for Google, which requires `PostLogoutRedirectUri`, `RedirectUri`, and `ResponseType`. If adding authentication to an app, manually add the following code and configuration to the app with values for the placeholders and other configuration values.
+
 `Program.cs`:
 
 ```csharp
@@ -82,12 +85,28 @@ Configuration is supplied by the `wwwroot/appsettings.json` file:
 
 ```json
 {
-    "Local": {
-        "Authority": "{AUTHORITY}",
-        "ClientId": "{CLIENT ID}"
-    }
+  "Local": {
+    "Authority": "{AUTHORITY}",
+    "ClientId": "{CLIENT ID}"
+  }
 }
 ```
+
+Google OAuth 2.0 OIDC example:
+
+```json
+{
+  "Local": {
+    "Authority": "https://accounts.google.com/",
+    "ClientId": "2.......7-e.....................q.apps.googleusercontent.com",
+    "PostLogoutRedirectUri": "https://localhost:5001/authentication/logout-callback",
+    "RedirectUri": "https://localhost:5001/authentication/login-callback",
+    "ResponseType": "id_token"
+  }
+}
+```
+
+The redirect URI (`https://localhost:5001/authentication/login-callback`) is registered in the [Google APIs console](https://console.developers.google.com/apis/dashboard) in **Credentials** > **`{NAME}`** > **Authorized redirect URIs**, where `{NAME}` is the app's client name in the **OAuth 2.0 Client IDs** app list of the Google APIs console.
 
 Authentication support for standalone apps is offered using OpenID Connect (OIDC). The <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyAuthenticationServiceCollectionExtensions.AddOidcAuthentication%2A> method accepts a callback to configure the parameters required to authenticate an app using OIDC. The values required for configuring the app can be obtained from the OIDC-compliant IP. Obtain the values when you register the app, which typically occurs in their online portal.
 
@@ -95,7 +114,9 @@ Authentication support for standalone apps is offered using OpenID Connect (OIDC
 
 The Blazor WebAssembly template automatically configures default scopes for `openid` and `profile`.
 
-The Blazor WebAssembly template doesn't automatically configure the app to request an access token for a secure API. To provision an access token as part of the sign-in flow, add the scope to the default token scopes of the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.OidcProviderOptions>:
+The Blazor WebAssembly template doesn't automatically configure the app to request an access token for a secure API. To provision an access token as part of the sign-in flow, add the scope to the default token scopes of the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.OidcProviderOptions>. If adding authentication to an app, manually add the following code and configure the scope URI.
+
+`Program.cs`:
 
 ```csharp
 builder.Services.AddOidcAuthentication(options =>
@@ -172,3 +193,6 @@ The `LoginDisplay` component (`Shared/LoginDisplay.razor`) is rendered in the `M
 
 * <xref:blazor/security/webassembly/additional-scenarios>
 * [Unauthenticated or unauthorized web API requests in an app with a secure default client](xref:blazor/security/webassembly/additional-scenarios#unauthenticated-or-unauthorized-web-api-requests-in-an-app-with-a-secure-default-client)
+* <xref:host-and-deploy/proxy-load-balancer>: Includes guidance on:
+  * Using Forwarded Headers Middleware to preserve HTTPS scheme information across proxy servers and internal networks.
+  * Additional scenarios and use cases, including manual scheme configuration, request path changes for correct request routing, and forwarding the request scheme for Linux and non-IIS reverse proxies.

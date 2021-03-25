@@ -12,8 +12,6 @@ zone_pivot_groups: blazor-hosting-models
 ---
 # ASP.NET Core Blazor state management
 
-By [Steve Sanderson](https://github.com/SteveSandersonMS) and [Luke Latham](https://github.com/guardrex)
-
 ::: zone pivot="webassembly"
 
 User state created in a Blazor WebAssembly app is held in the browser's memory.
@@ -239,7 +237,7 @@ The choice depends on which browser storage location you wish to use. In the fol
 
 The `@using` directive can be placed in the app's `_Imports.razor` file instead of in the component. Use of the `_Imports.razor` file makes the namespace available to larger segments of the app or the whole app.
 
-To persist the `currentCount` value in the `Counter` component of an app based on the Blazor Server project template, modify the `IncrementCount` method to use `ProtectedSessionStore.SetAsync`:
+To persist the `currentCount` value in the `Counter` component of an app based on the [Blazor Server project template](xref:blazor/project-structure), modify the `IncrementCount` method to use `ProtectedSessionStore.SetAsync`:
 
 ```csharp
 private async Task IncrementCount()
@@ -404,7 +402,7 @@ To use the `CounterStateProvider` component, wrap an instance of the component a
 
 ```razor
 <CounterStateProvider>
-    <Router AppAssembly="typeof(Startup).Assembly">
+    <Router AppAssembly="@typeof(Program).Assembly">
         ...
     </Router>
 </CounterStateProvider>
@@ -487,7 +485,7 @@ The choice depends on which browser storage location you wish to use. In the fol
 
 The `@using` statement can be placed into an `_Imports.razor` file instead of in the component. Use of the `_Imports.razor` file makes the namespace available to larger segments of the app or the whole app.
 
-To persist the `currentCount` value in the `Counter` component of an app based on the Blazor Server project template, modify the `IncrementCount` method to use `ProtectedSessionStore.SetAsync`:
+To persist the `currentCount` value in the `Counter` component of an app based on the [Blazor Server project template](xref:blazor/project-structure), modify the `IncrementCount` method to use `ProtectedSessionStore.SetAsync`:
 
 ```csharp
 private async Task IncrementCount()
@@ -649,7 +647,7 @@ To use the `CounterStateProvider` component, wrap an instance of the component a
 
 ```razor
 <CounterStateProvider>
-    <Router AppAssembly="typeof(Startup).Assembly">
+    <Router AppAssembly="@typeof(Program).Assembly">
         ...
     </Router>
 </CounterStateProvider>

@@ -16,7 +16,7 @@ uid: blazor/fundamentals/environments
 
 When running an app locally, the environment defaults to Development. When the app is published, the environment defaults to Production.
 
-The client-side Blazor app (*`Client`*) of a hosted Blazor WebAssembly solution determines the environment from the *`Server`* app of the solution via a middleware that communicates the environment to the browser. The *`Server`* app adds a header named `blazor-environment` with the environment as the value of the header. The *`Client`* app reads the header. The the *`Server`* app of the solution is an ASP.NET Core app, so more information on how to configure the environment is found in <xref:fundamentals/environments>.
+The client-side Blazor app (**`Client`**) of a hosted Blazor WebAssembly solution determines the environment from the **`Server`** app of the solution via a middleware that communicates the environment to the browser. The **`Server`** app adds a header named `blazor-environment` with the environment as the value of the header. The **`Client`** app reads the header. The **`Server`** app of the solution is an ASP.NET Core app, so more information on how to configure the environment is found in <xref:fundamentals/environments>.
 
 For a standalone Blazor WebAssembly app running locally, the development server adds the `blazor-environment` header to specify the Development environment. To specify the environment for other hosting environments, add the `blazor-environment` header.
 
@@ -45,7 +45,17 @@ Obtain the app's environment in a component by injecting <xref:Microsoft.AspNetC
 
 `Pages/ReadEnvironment.razor`:
 
-[!code-razor[](environments/samples_snapshot/ReadEnvironment.razor?highlight=3,7)]
+::: moniker range=">= aspnetcore-5.0"
+
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/environments/ReadEnvironment.razor?highlight=3,7)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/environments/ReadEnvironment.razor?highlight=3,7)]
+
+::: moniker-end
 
 During startup, the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder> exposes the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> through the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.HostEnvironment> property, which enables environment-specific logic in host builder code.
 

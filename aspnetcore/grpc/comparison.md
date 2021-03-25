@@ -44,7 +44,7 @@ HTTP/2 is not exclusive to gRPC. Many request types, including HTTP APIs with JS
 
 ### Code generation
 
-All gRPC frameworks provide first-class support for code generation. A core file to gRPC development is the [.proto file](https://developers.google.com/protocol-buffers/docs/proto3), which defines the contract of gRPC services and messages. From this file gRPC frameworks will code generate a service base class, messages, and a complete client.
+All gRPC frameworks provide first-class support for code generation. A core file to gRPC development is the [`.proto` file](https://developers.google.com/protocol-buffers/docs/proto3), which defines the contract of gRPC services and messages. From this file, gRPC frameworks generate a service base class, messages, and a complete client.
 
 By sharing the *.proto* file between the server and client, messages and client code can be generated from end to end. Code generation of the client eliminates duplication of messages on the client and server, and creates a strongly-typed client for you. Not having to write a client saves significant development time in applications with many services.
 

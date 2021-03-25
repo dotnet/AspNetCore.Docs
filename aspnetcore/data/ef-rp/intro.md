@@ -45,7 +45,7 @@ The Visual Studio Code tab use [SQLite](https://www.sqlite.org/), a cross-platfo
 
 ### Troubleshooting
 
-If you run into a problem you can't resolve, compare your code to the [completed project](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples). A good way to get help is by posting a question to StackOverflow.com, using the [ASP.NET Core tag](https://stackoverflow.com/questions/tagged/asp.net-core) or the [EF Core tag](https://stackoverflow.com/questions/tagged/entity-framework-core).
+If you run into a problem you can't resolve, compare your code to the [completed project](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-rp/intro/samples). A good way to get help is by posting a question to StackOverflow.com, using the [ASP.NET Core tag](https://stackoverflow.com/questions/tagged/asp.net-core) or the [EF Core tag](https://stackoverflow.com/questions/tagged/entity-framework-core).
 
 ### The sample app
 
@@ -107,7 +107,7 @@ Run the project to seed the database.
     1. **.NET Core** and **ASP.NET Core 5.0** in the dropdowns.
     1. **ASP.NET Core Web App**.
     1. **Create**
-      ![New ASP.NET Core Project dialog](~/data/ef-mvc/intro/_static/new-aspnet5.png)
+      ![New ASP.NET Core Project dialog](~/data/ef-rp/intro/_static/new-aspnet5.png)
     
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -366,7 +366,7 @@ Add the [Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore](https://www.nuget
 In the Package Manager Console, enter the following to add the NuGet package:
 
 ```powershell
-Install-Package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore -Version 5.0.0-rc.2.20475.17
+Install-Package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
 ```
 
 # [Visual Studio Code](#tab/visual-studio-code)
@@ -518,7 +518,7 @@ For more information, see [Performance considerations (EF)](/dotnet/framework/da
 
 This is the first in a series of tutorials that show how to use Entity Framework (EF) Core in an [ASP.NET Core Razor Pages](xref:razor-pages/index) app. The tutorials build a web site for a fictional Contoso University. The site includes functionality such as student admission, course creation, and instructor assignments. The tutorial uses the code first approach. For information on following this tutorial using the database first approach, see [this Github issue](https://github.com/dotnet/AspNetCore.Docs/issues/16897).
 
-[Download or view the completed app.](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples) [Download instructions](xref:index#how-to-download-a-sample).
+[Download or view the completed app.](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-rp/intro/samples) [Download instructions](xref:index#how-to-download-a-sample).
 
 ## Prerequisites
 
@@ -544,7 +544,7 @@ If you choose to use SQLite, download and install a third-party tool for managin
 
 ## Troubleshooting
 
-If you run into a problem you can't resolve, compare your code to the [completed project](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples). A good way to get help is by posting a question to StackOverflow.com, using the [ASP.NET Core tag](https://stackoverflow.com/questions/tagged/asp.net-core) or the [EF Core tag](https://stackoverflow.com/questions/tagged/entity-framework-core).
+If you run into a problem you can't resolve, compare your code to the [completed project](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-rp/intro/samples). A good way to get help is by posting a question to StackOverflow.com, using the [ASP.NET Core tag](https://stackoverflow.com/questions/tagged/asp.net-core) or the [EF Core tag](https://stackoverflow.com/questions/tagged/entity-framework-core).
 
 ## The sample app
 
@@ -955,7 +955,7 @@ The Contoso University sample web app demonstrates how to create an ASP.NET Core
 
 The sample app is a web site for a fictional Contoso University. It includes functionality such as student admission, course creation, and instructor assignments. This page is the first in a series of tutorials that explain how to build the Contoso University sample app.
 
-[Download or view the completed app.](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples) [Download instructions](xref:index#how-to-download-a-sample).
+[Download or view the completed app.](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-rp/intro/samples) [Download instructions](xref:index#how-to-download-a-sample).
 
 ## Prerequisites
 
@@ -973,7 +973,7 @@ Familiarity with [Razor Pages](xref:razor-pages/index). New programmers should c
 
 ## Troubleshooting
 
-If you run into a problem you can't resolve, you can generally find the solution by comparing your code to the [completed project](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples). A good way to get help is by posting a question to [StackOverflow.com](https://stackoverflow.com/questions/tagged/asp.net-core) for [ASP.NET Core](https://stackoverflow.com/questions/tagged/asp.net-core) or [EF Core](https://stackoverflow.com/questions/tagged/entity-framework-core).
+If you run into a problem you can't resolve, you can generally find the solution by comparing your code to the [completed project](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-rp/intro/samples). A good way to get help is by posting a question to [StackOverflow.com](https://stackoverflow.com/questions/tagged/asp.net-core) for [ASP.NET Core](https://stackoverflow.com/questions/tagged/asp.net-core) or [EF Core](https://stackoverflow.com/questions/tagged/entity-framework-core).
 
 ## The Contoso University web app
 

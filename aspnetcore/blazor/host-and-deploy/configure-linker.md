@@ -11,8 +11,6 @@ uid: blazor/host-and-deploy/configure-linker
 ---
 # Configure the Linker for ASP.NET Core Blazor
 
-By [Luke Latham](https://github.com/guardrex)
-
 Blazor WebAssembly performs [Intermediate Language (IL)](/dotnet/standard/managed-code#intermediate-language--execution) linking during a build to trim unnecessary IL from the app's output assemblies. The linker is disabled when building in Debug configuration. Apps must build in Release configuration to enable the linker. We recommend building in Release when deploying your Blazor WebAssembly apps. 
 
 Linking an app optimizes for size but may have detrimental effects. Apps that use reflection or related dynamic features may break when trimmed because the linker doesn't know about this dynamic behavior and can't determine in general which types are required for reflection at runtime. To trim such apps, the linker must be informed about any types required by reflection in the code and in packages or frameworks that the app depends on.
@@ -76,7 +74,7 @@ Control linking on a per-assembly basis by providing an XML configuration file a
 </linker>
 ```
 
-For more information and examples, see [Data Formats (mono/linker GitHub repository)](https://github.com/mono/linker/blob/master/docs/data-formats.md).
+For more information and examples, see [Data Formats (mono/linker GitHub repository)](https://github.com/mono/linker/blob/main/docs/data-formats.md).
 
 ## Add an XML linker configuration file to a library
 

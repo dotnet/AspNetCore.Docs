@@ -1,4 +1,4 @@
-#define EventLog // Default // Azure // Default // Scopes // FilterFunction // MinLevel // FilterCode // FilterFunction
+#define EventLog // Default // Azure // Default // FilterFunction // MinLevel // FilterCode // FilterFunction
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -83,30 +83,6 @@ public class Program
     public static IHostBuilder CreateHostBuilder(string[] args) =>
         Host.CreateDefaultBuilder(args)
             .ConfigureLogging(logging => logging.SetMinimumLevel(LogLevel.Warning))
-            .ConfigureWebHostDefaults(webBuilder =>
-            {
-                webBuilder.UseStartup<Startup>();
-            });
-}
-#endregion
-
-#elif Scopes
-#region snippet_Scopes
-public class Scopes
-{
-    public static void Main(string[] args)
-    {
-        CreateHostBuilder(args).Build().Run();
-    }
-
-    public static IHostBuilder CreateHostBuilder(string[] args) =>
-        Host.CreateDefaultBuilder(args)
-            .ConfigureLogging((hostingContext, logging) =>
-            {
-                logging.ClearProviders();
-                logging.AddConsole(options => options.IncludeScopes = true);
-                logging.AddDebug();
-            })
             .ConfigureWebHostDefaults(webBuilder =>
             {
                 webBuilder.UseStartup<Startup>();

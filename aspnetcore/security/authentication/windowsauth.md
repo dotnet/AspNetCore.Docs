@@ -5,13 +5,13 @@ description: Learn how to configure Windows Authentication in ASP.NET Core for I
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: "mvc, seodec18"
-ms.date: 02/26/2020
+ms.date: 1/15/2021
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/windowsauth
 ---
 # Configure Windows Authentication in ASP.NET Core
 
-By [Scott Addie](https://twitter.com/Scott_Addie)
+By [Scott Addie](https://twitter.com/Scott_Addie) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -188,24 +188,15 @@ services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
     });
 ```
 
-Some configurations may require specific credentials to query the LDAP domain. The credentials can be specified in the options:
+Some configurations may require specific credentials to query the LDAP domain. The credentials can be specified in the following highlighted options:
 
-```csharp
-services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
-    .AddNegotiate(options =>
-    {
-        if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
-        {
-            options.EnableLdap("contoso.com");
-            options.MachineAccountName = "machineName";
-            options.MachineAccountPassword = "PassW0rd";            
-        }
-    });
-```
+[!code-csharp[](windowsauth/sample_snapshot/StartupNegotiateDefaults.cs?name=snippet&highlight=15-20)]
 
 By default, the negotiate authentication handler resolves nested domains. In a large or complicated LDAP environment, resolving nested domains may result in a slow lookup or a lot of memory being used for each user. Nested domain resolution can be disabled using the `IgnoreNestedGroups` option.
 
 Anonymous requests are allowed. Use [ASP.NET Core Authorization](xref:security/authorization/introduction) to challenge anonymous requests for authentication.
+
+<xref:Microsoft.AspNetCore.Authentication.Negotiate.NegotiateDefaults.AuthenticationScheme> requires the NuGet package [Microsoft.AspNetCore.Authentication.Negotiate](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Negotiate).
 
 ### Windows environment configuration
 
@@ -282,11 +273,9 @@ When both Windows Authentication and anonymous access are enabled, use the `[Aut
 
 ## Impersonation
 
-ASP.NET Core doesn't implement impersonation. Apps run with the app's identity for all requests, using app pool or process identity. If the app should perform an action on behalf of a user, use [WindowsIdentity.RunImpersonated](xref:System.Security.Principal.WindowsIdentity.RunImpersonated*) in a [terminal inline middleware](xref:fundamentals/middleware/index#create-a-middleware-pipeline-with-iapplicationbuilder) in `Startup.Configure`. Run a single action in this context and then close the context.
+ASP.NET Core doesn't implement impersonation. Apps run with the app's identity for all requests, using app pool or process identity. If the app should perform an action on behalf of a user, use [WindowsIdentity.RunImpersonated](xref:System.Security.Principal.WindowsIdentity.RunImpersonated*) or <xref:System.Security.Principal.WindowsIdentity.RunImpersonatedAsync%2A> in a [terminal inline middleware](xref:fundamentals/middleware/index#create-a-middleware-pipeline-with-iapplicationbuilder) in `Startup.Configure`. Run a single action in this context and then close the context.
 
 [!code-csharp[](windowsauth/sample_snapshot/Startup.cs?highlight=10-19)]
-
-`RunImpersonated` doesn't support asynchronous operations and shouldn't be used for complex scenarios. For example, wrapping entire requests or middleware chains isn't supported or recommended.
 
 ::: moniker range=">= aspnetcore-3.0"
 

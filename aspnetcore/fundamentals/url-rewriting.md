@@ -30,7 +30,7 @@ URL rewriting is the act of modifying request URLs based on one or more predefin
 > [!NOTE]
 > URL rewriting can reduce the performance of an app. Where feasible, limit the number and complexity of rules.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/url-rewriting/samples/) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/url-rewriting/samples/) ([how to download](xref:index#how-to-download-a-sample))
 
 ## URL redirect and URL rewrite
 
@@ -60,7 +60,7 @@ Although the client might be able to retrieve the resource at the rewritten URL,
 
 ## URL rewriting sample app
 
-You can explore the features of the URL Rewriting Middleware with the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/url-rewriting/samples/). The app applies redirect and rewrite rules and shows the redirected or rewritten URL for several scenarios.
+You can explore the features of the URL Rewriting Middleware with the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/url-rewriting/samples/). The app applies redirect and rewrite rules and shows the redirected or rewritten URL for several scenarios.
 
 ## When to use URL Rewriting Middleware
 
@@ -273,7 +273,7 @@ If you have an active IIS Rewrite Module with server-level rules configured that
 
 #### Unsupported features
 
-The middleware released with ASP.NET Core 2.x doesn't support the following IIS URL Rewrite Module features:
+The middleware doesn't support the following IIS URL Rewrite Module features:
 
 * Outbound Rules
 * Custom Server Variables
@@ -382,7 +382,7 @@ URL rewriting is the act of modifying request URLs based on one or more predefin
 > [!NOTE]
 > URL rewriting can reduce the performance of an app. Where feasible, limit the number and complexity of rules.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/url-rewriting/samples/) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/url-rewriting/samples/) ([how to download](xref:index#how-to-download-a-sample))
 
 ## URL redirect and URL rewrite
 
@@ -412,7 +412,7 @@ Although the client might be able to retrieve the resource at the rewritten URL,
 
 ## URL rewriting sample app
 
-You can explore the features of the URL Rewriting Middleware with the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/url-rewriting/samples/). The app applies redirect and rewrite rules and shows the redirected or rewritten URL for several scenarios.
+You can explore the features of the URL Rewriting Middleware with the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/url-rewriting/samples/). The app applies redirect and rewrite rules and shows the redirected or rewritten URL for several scenarios.
 
 ## When to use URL Rewriting Middleware
 

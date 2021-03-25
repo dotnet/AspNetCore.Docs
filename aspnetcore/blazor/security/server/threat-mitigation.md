@@ -11,8 +11,6 @@ uid: blazor/security/server/threat-mitigation
 ---
 # Threat mitigation guidance for ASP.NET Core Blazor Server
 
-By [Javier Calvarro Nelson](https://github.com/javiercn)
-
 Blazor Server apps adopt a *stateful* data processing model, where the server and client maintain a long-lived relationship. The persistent state is maintained by a [circuit](xref:blazor/state-management), which can span connections that are also potentially long-lived.
 
 When a user visits a Blazor Server site, the server creates a circuit in the server's memory. The circuit indicates to the browser what content to render and responds to events, such as when the user selects a button in the UI. To perform these actions, a circuit invokes JavaScript functions in the user's browser and .NET methods on the server. This two-way JavaScript-based interaction is referred to as [JavaScript interop (JS interop)](xref:blazor/call-javascript-from-dotnet).
@@ -91,20 +89,18 @@ By default, there's no limit on the number of connections per user for a Blazor 
 
 ## Denial of service (DoS) attacks
 
-Denial of service (DoS) attacks involve a client causing the server to exhaust one or more of its resources making the app unavailable. Blazor Server apps include some default limits and rely on other ASP.NET Core and SignalR limits to protect against DoS attacks that are set on <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions>.
+Denial of service (DoS) attacks involve a client causing the server to exhaust one or more of its resources making the app unavailable. Blazor Server apps include default limits and rely on other ASP.NET Core and SignalR limits to protect against DoS attacks that are set on <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions>:
 
-| Blazor Server app limit | Description | Default |
-| --- | --- | --- |
-| <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DisconnectedCircuitMaxRetained> | Maximum number of disconnected circuits that a given server holds in memory at a time. | 100 |
-| <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DisconnectedCircuitRetentionPeriod> | Maximum amount of time a disconnected circuit is held in memory before being torn down. | 3 minutes |
-| <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.JSInteropDefaultCallTimeout> | Maximum amount of time the server waits before timing out an asynchronous JavaScript function invocation. | 1 minute |
-| <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.MaxBufferedUnacknowledgedRenderBatches> | Maximum number of unacknowledged render batches the server keeps in memory per circuit at a given time to support robust reconnection. After reaching the limit, the server stops producing new render batches until one or more batches have been acknowledged by the client. | 10 |
+* <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DisconnectedCircuitMaxRetained?displayProperty=nameWithType>
+* <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DisconnectedCircuitRetentionPeriod?displayProperty=nameWithType>
+* <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.JSInteropDefaultCallTimeout?displayProperty=nameWithType>
+* <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.MaxBufferedUnacknowledgedRenderBatches?displayProperty=nameWithType>
+* <xref:Microsoft.AspNetCore.SignalR.HubConnectionContextOptions.MaximumReceiveMessageSize?displayProperty=nameWithType>
 
-Set the maximum message size of a single incoming hub message with <xref:Microsoft.AspNetCore.SignalR.HubConnectionContextOptions>.
+For more information and configuration coding examples, see the following articles:
 
-| SignalR and ASP.NET Core limit | Description | Default |
-| --- | --- | --- |
-| <xref:Microsoft.AspNetCore.SignalR.HubConnectionContextOptions.MaximumReceiveMessageSize?displayProperty=nameWithType> | Message size for an individual message. | 32 KB |
+* <xref:blazor/fundamentals/signalr>
+* <xref:signalr/configuration>
 
 ## Interactions with the browser (client)
 
@@ -126,7 +122,7 @@ For calls from .NET methods to JavaScript:
 
 Take the following precautions to guard against the preceding scenarios:
 
-* Wrap JS interop calls within [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statements to account for errors that might occur during the invocations. For more information, see <xref:blazor/fundamentals/handle-errors#javascript-interop>.
+* Wrap JS interop calls within [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statements to account for errors that might occur during the invocations. For more information, see <xref:blazor/fundamentals/handle-errors?pivots=server#javascript-interop-server>.
 * Validate data returned from JS interop invocations, including error messages, before taking any action.
 
 ### .NET methods invoked from the browser
@@ -289,12 +285,7 @@ JS interop interactions between the client and server are recorded in the server
 
 When an error occurs on the server, the framework notifies the client and tears down the session. By default, the client receives a generic error message that can be seen in the browser's developer tools.
 
-The client-side error doesn't include the callstack and doesn't provide detail on the cause of the error, but server logs do contain such information. For development purposes, sensitive error information can be made available to the client by enabling detailed errors.
-
-Enable detailed errors in JavaScript with:
-
-* <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DetailedErrors?displayProperty=nameWithType>.
-* The `DetailedErrors` configuration key set to `true`, which can be set in the app settings file (`appsettings.json`). The key can also be set using the `ASPNETCORE_DETAILEDERRORS` environment variable with a value of `true`.
+The client-side error doesn't include the call stack and doesn't provide detail on the cause of the error, but server logs do contain such information. For development purposes, sensitive error information can be made available to the client by [enabling detailed errors](xref:blazor/fundamentals/handle-errors#blazor-server-detailed-circuit-errors).
 
 > [!WARNING]
 > Exposing error information to clients on the Internet is a security risk that should always be avoided.

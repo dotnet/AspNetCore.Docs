@@ -15,7 +15,7 @@ ASP.NET Core apps configure and launch a *host*. The host is responsible for app
 
 ::: moniker range=">= aspnetcore-3.0"
 
-This article covers the Web Host, which remains available only for backward compatibility. The [Generic Host](xref:fundamentals/host/generic-host) is recommended for all app types.
+This article covers the Web Host, which remains available only for backward compatibility. The ASP.NET Core templates create a [.NET Generic Host](<xref:fundamentals/host/generic-host>), which is recommended for all app types.
 
 ::: moniker-end
 
@@ -49,7 +49,12 @@ The code that calls `CreateDefaultBuilder` is in a method named `CreateWebHostBu
 
 `CreateDefaultBuilder` performs the following tasks:
 
+::: moniker range=">= aspnetcore-5.0"
+* Configures [Kestrel](xref:fundamentals/servers/kestrel) server as the web server using the app's hosting configuration providers. For the Kestrel server's default options, see <xref:fundamentals/servers/kestrel/options>.
+::: moniker-end
+::: moniker range="< aspnetcore-5.0"
 * Configures [Kestrel](xref:fundamentals/servers/kestrel) server as the web server using the app's hosting configuration providers. For the Kestrel server's default options, see <xref:fundamentals/servers/kestrel#kestrel-options>.
+::: moniker-end
 * Sets the [content root](xref:fundamentals/index#content-root) to the path returned by [Directory.GetCurrentDirectory](/dotnet/api/system.io.directory.getcurrentdirectory).
 * Loads [host configuration](#host-configuration-values) from:
   * Environment variables prefixed with `ASPNETCORE_` (for example, `ASPNETCORE_ENVIRONMENT`).
@@ -329,7 +334,12 @@ WebHost.CreateDefaultBuilder(args)
     .UseUrls("http://*:5000;http://localhost:5001;https://hostname:5002")
 ```
 
+::: moniker range=">= aspnetcore-5.0"
+Kestrel has its own endpoint configuration API. For more information, see <xref:fundamentals/servers/kestrel/endpoints>.
+::: moniker-end
+::: moniker range="< aspnetcore-5.0"
 Kestrel has its own endpoint configuration API. For more information, see <xref:fundamentals/servers/kestrel#endpoint-configuration>.
+::: moniker-end
 
 ### Shutdown Timeout
 

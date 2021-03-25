@@ -4,7 +4,7 @@ author: mjrousos
 description: Learn about authentication in ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/03/2020
+ms.date: 1/24/2021
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/index
 ---
@@ -45,7 +45,19 @@ The Authentication middleware is added in `Startup.Configure` by calling the <xr
 
 ## Authentication Concepts
 
+Authentication is responsible for providing the <xref:System.Security.Claims.ClaimsPrincipal> for authorization to make permission decisions against. There are multiple authentication scheme approaches to select which authentication handler is responsible for generating the correct set of claims:
+
+  * [Authentication scheme](xref:security/authorization/limitingidentitybyscheme), also discussed in the next section.
+  * The default authentication scheme, discussed in the next section.
+  * Directly set [HttpContext.User](xref:Microsoft.AspNetCore.Http.HttpContext.User).
+
+There is no automatic probing of schemes. If the default scheme is not specified, the scheme must be specified in the authorize attribute, otherwise, the following error is thrown:
+
+  InvalidOperationException: No authenticationScheme was specified, and there was no DefaultAuthenticateScheme found. The default schemes can be set using either AddAuthentication(string defaultScheme) or AddAuthentication(Action&lt;AuthenticationOptions&gt; configureOptions).
+
 ### Authentication scheme
+
+The [authentication scheme](xref:security/authorization/limitingidentitybyscheme) can select which authentication handler is responsible for generating the correct set of claims. For more information, see [Authorize with a specific scheme](xref:security/authorization/limitingidentitybyscheme).
 
 An authentication scheme is a name which corresponds to:
 

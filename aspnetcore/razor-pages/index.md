@@ -118,7 +118,7 @@ Notes:
 
 Razor Pages is designed to make common patterns used with web browsers easy to implement when building an app. [Model binding](xref:mvc/models/model-binding), [Tag Helpers](xref:mvc/views/tag-helpers/intro), and HTML helpers all *just work* with the properties defined in a Razor Page class. Consider a page that implements a basic "contact us" form for the `Contact` model:
 
-For the samples in this document, the `DbContext` is initialized in the [Startup.cs](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/razor-pages/index/3.0sample/RazorPagesContacts/Startup.cs#L23-L24) file.
+For the samples in this document, the `DbContext` is initialized in the [Startup.cs](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/razor-pages/index/3.0sample/RazorPagesContacts/Startup.cs#L23-L24) file.
 
 The in memory database requires the `Microsoft.EntityFrameworkCore.InMemory` NuGet package.
 
@@ -615,7 +615,7 @@ Add <xref:Microsoft.Extensions.DependencyInjection.MvcRazorPagesMvcCoreBuilderEx
 
 * See [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start), which builds on this introduction.
 * [Authorize attribute and Razor Pages](xref:security/authorization/simple#aarp)
-* [Download or view sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/index/3.0sample)
+* [Download or view sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/index/3.0sample)
 * <xref:index>
 * <xref:mvc/views/razor>
 * <xref:mvc/controllers/areas>
@@ -705,7 +705,7 @@ Notes:
 
 Razor Pages is designed to make common patterns used with web browsers easy to implement when building an app. [Model binding](xref:mvc/models/model-binding), [Tag Helpers](xref:mvc/views/tag-helpers/intro), and HTML helpers all *just work* with the properties defined in a Razor Page class. Consider a page that implements a basic "contact us" form for the `Contact` model:
 
-For the samples in this document, the `DbContext` is initialized in the [Startup.cs](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/razor-pages/index/sample/RazorPagesContacts/Startup.cs#L15-L16) file.
+For the samples in this document, the `DbContext` is initialized in the [Startup.cs](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/razor-pages/index/sample/RazorPagesContacts/Startup.cs#L15-L16) file.
 
 [!code-csharp[](index/sample/RazorPagesContacts/Startup.cs?highlight=15-16)]
 
@@ -1095,7 +1095,7 @@ Currently you can use the `RazorPagesOptions` to set the root directory for page
 
 To precompile views, see [Razor view compilation](xref:mvc/views/view-compilation) .
 
-[Download or view sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/index/sample).
+[Download or view sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/index/sample).
 
 See [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start), which builds on this introduction.
 

@@ -10,9 +10,7 @@ uid: tutorials/get-started-with-swashbuckle
 ---
 # Get started with Swashbuckle and ASP.NET Core
 
-By [Shayne Boyer](https://twitter.com/spboyer) and [Scott Addie](https://twitter.com/Scott_Addie)
-
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/web-api-help-pages-using-swagger/samples/) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/web-api-help-pages-using-swagger/samples/) ([how to download](xref:index#how-to-download-a-sample))
 
 There are three main components to Swashbuckle:
 
@@ -34,7 +32,7 @@ Swashbuckle can be added with the following approaches:
   * Execute the following command:
 
     ```powershell
-    Install-Package Swashbuckle.AspNetCore -Version 5.5.0
+    Install-Package Swashbuckle.AspNetCore -Version 5.6.3
     ```
 
 * From the **Manage NuGet Packages** dialog:
@@ -57,7 +55,7 @@ Swashbuckle can be added with the following approaches:
 Run the following command from the **Integrated Terminal**:
 
 ```dotnetcli
-dotnet add TodoApi.csproj package Swashbuckle.AspNetCore -v 5.5.0
+dotnet add TodoApi.csproj package Swashbuckle.AspNetCore -v 5.6.3
 ```
 
 ### [.NET Core CLI](#tab/netcore-cli)
@@ -65,7 +63,7 @@ dotnet add TodoApi.csproj package Swashbuckle.AspNetCore -v 5.5.0
 Run the following command:
 
 ```dotnetcli
-dotnet add TodoApi.csproj package Swashbuckle.AspNetCore -v 5.5.0
+dotnet add TodoApi.csproj package Swashbuckle.AspNetCore -v 5.6.3
 ```
 
 ---
@@ -488,3 +486,7 @@ app.UseSwaggerUI(c =>
      c.InjectStylesheet("/swagger-ui/custom.css");
 }
 ```
+
+## Additional resources
+
+* [Microsoft Learn: Improve the developer experience of an API with Swagger documentation](/learn/modules/improve-api-developer-experience-with-swagger/)

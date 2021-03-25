@@ -471,7 +471,11 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/anti-request-forgery/sample/AngularSample) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/anti-request-forgery/sample/AngularSample) ([how to download](xref:index#how-to-download-a-sample))
+
+## Windows authentication and antiforgery cookies
+
+When using Windows Authentication, application endpoints must be protected against CSRF attacks in the same way as done for cookies.  The browser implicitly sends the authentication context to the server, therefore endpoints need to be protected against CSRF attacks.
 
 ## Extend antiforgery
 

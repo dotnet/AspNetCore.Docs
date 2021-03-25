@@ -1,3 +1,6 @@
+---
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+---
 > [!IMPORTANT]
 > **ASP.NET Core preview releases with Azure App Service**
 >

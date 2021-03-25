@@ -35,7 +35,7 @@ Supported Windows versions:
 * Windows 7 or later
 * Windows Server 2008 R2 or later
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/servers/httpsys/samples) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/servers/httpsys/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 ## When to use HTTP.sys
 
@@ -45,7 +45,7 @@ HTTP.sys is useful for deployments where:
 
   ![HTTP.sys communicates directly with the Internet](httpsys/_static/httpsys-to-internet.png)
 
-* An internal deployment requires a feature not available in Kestrel, such as [Windows Authentication](xref:security/authentication/windowsauth).
+* An internal deployment requires a feature not available in Kestrel. For more information, see [Kestrel vs. HTTP.sys](xref:fundamentals/servers/index#kestrel-vs-httpsys)
 
   ![HTTP.sys communicates directly with the internal network](httpsys/_static/httpsys-to-internal.png)
 
@@ -129,7 +129,7 @@ In Visual Studio, the default launch profile is for IIS Express. To run the proj
 
 1. Obtain and install X.509 certificates, if required.
 
-   On Windows, create self-signed certificates using the [New-SelfSignedCertificate PowerShell cmdlet](/powershell/module/pkiclient/new-selfsignedcertificate). For an unsupported example, see [UpdateIISExpressSSLForChrome.ps1](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/includes/make-x509-cert/UpdateIISExpressSSLForChrome.ps1).
+   On Windows, create self-signed certificates using the [New-SelfSignedCertificate PowerShell cmdlet](/powershell/module/pkiclient/new-selfsignedcertificate). For an unsupported example, see [UpdateIISExpressSSLForChrome.ps1](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/includes/make-x509-cert/UpdateIISExpressSSLForChrome.ps1).
 
    Install either self-signed or CA-signed certificates in the server's **Local Machine** > **Personal** store.
 
@@ -261,7 +261,7 @@ For apps hosted by HTTP.sys that interact with requests from the Internet or a c
 
 Additional HTTP/2 features in HTTP.sys support gRPC, including support for response trailers and sending reset frames.
 
-Requirements to run gRPC with HTTP.SYS:
+Requirements to run gRPC with HTTP.sys:
 
 * Windows 10, OS Build 19041.508 or later
 * TLS 1.2 or later connection
@@ -306,7 +306,7 @@ Supported Windows versions:
 * Windows 7 or later
 * Windows Server 2008 R2 or later
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/servers/httpsys/samples) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/servers/httpsys/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 ## When to use HTTP.sys
 
@@ -397,7 +397,7 @@ In Visual Studio, the default launch profile is for IIS Express. To run the proj
 
 1. Obtain and install X.509 certificates, if required.
 
-   On Windows, create self-signed certificates using the [New-SelfSignedCertificate PowerShell cmdlet](/powershell/module/pkiclient/new-selfsignedcertificate). For an unsupported example, see [UpdateIISExpressSSLForChrome.ps1](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/includes/make-x509-cert/UpdateIISExpressSSLForChrome.ps1).
+   On Windows, create self-signed certificates using the [New-SelfSignedCertificate PowerShell cmdlet](/powershell/module/pkiclient/new-selfsignedcertificate). For an unsupported example, see [UpdateIISExpressSSLForChrome.ps1](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/includes/make-x509-cert/UpdateIISExpressSSLForChrome.ps1).
 
    Install either self-signed or CA-signed certificates in the server's **Local Machine** > **Personal** store.
 
@@ -557,7 +557,7 @@ Supported Windows versions:
 * Windows 7 or later
 * Windows Server 2008 R2 or later
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/servers/httpsys/samples) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/servers/httpsys/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 ## When to use HTTP.sys
 
@@ -650,7 +650,7 @@ In Visual Studio, the default launch profile is for IIS Express. To run the proj
 
 1. Obtain and install X.509 certificates, if required.
 
-   On Windows, create self-signed certificates using the [New-SelfSignedCertificate PowerShell cmdlet](/powershell/module/pkiclient/new-selfsignedcertificate). For an unsupported example, see [UpdateIISExpressSSLForChrome.ps1](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/includes/make-x509-cert/UpdateIISExpressSSLForChrome.ps1).
+   On Windows, create self-signed certificates using the [New-SelfSignedCertificate PowerShell cmdlet](/powershell/module/pkiclient/new-selfsignedcertificate). For an unsupported example, see [UpdateIISExpressSSLForChrome.ps1](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/includes/make-x509-cert/UpdateIISExpressSSLForChrome.ps1).
 
    Install either self-signed or CA-signed certificates in the server's **Local Machine** > **Personal** store.
 
@@ -810,7 +810,7 @@ Supported Windows versions:
 * Windows 7 or later
 * Windows Server 2008 R2 or later
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/servers/httpsys/samples) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/servers/httpsys/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 ## When to use HTTP.sys
 
@@ -903,7 +903,7 @@ In Visual Studio, the default launch profile is for IIS Express. To run the proj
 
 1. Obtain and install X.509 certificates, if required.
 
-   On Windows, create self-signed certificates using the [New-SelfSignedCertificate PowerShell cmdlet](/powershell/module/pkiclient/new-selfsignedcertificate). For an unsupported example, see [UpdateIISExpressSSLForChrome.ps1](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/includes/make-x509-cert/UpdateIISExpressSSLForChrome.ps1).
+   On Windows, create self-signed certificates using the [New-SelfSignedCertificate PowerShell cmdlet](/powershell/module/pkiclient/new-selfsignedcertificate). For an unsupported example, see [UpdateIISExpressSSLForChrome.ps1](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/includes/make-x509-cert/UpdateIISExpressSSLForChrome.ps1).
 
    Install either self-signed or CA-signed certificates in the server's **Local Machine** > **Personal** store.
 

@@ -11,8 +11,6 @@ uid: blazor/host-and-deploy/server
 ---
 # Host and deploy Blazor Server
 
-By [Luke Latham](https://github.com/guardrex), [Rainer Stropek](https://www.timecockpit.com), and [Daniel Roth](https://github.com/danroth27)
-
 ## Host configuration values
 
 [Blazor Server apps](xref:blazor/hosting-models#blazor-server) can accept [Generic Host configuration values](xref:fundamentals/host/generic-host#host-configuration).
@@ -21,7 +19,7 @@ By [Luke Latham](https://github.com/guardrex), [Rainer Stropek](https://www.time
 
 Using the [Blazor Server hosting model](xref:blazor/hosting-models#blazor-server), Blazor is executed on the server from within an ASP.NET Core app. UI updates, event handling, and JavaScript calls are handled over a [SignalR](xref:signalr/introduction) connection.
 
-A web server capable of hosting an ASP.NET Core app is required. Visual Studio includes the **Blazor Server App** project template (`blazorserverside` template when using the [`dotnet new`](/dotnet/core/tools/dotnet-new) command).
+A web server capable of hosting an ASP.NET Core app is required. Visual Studio includes the **Blazor Server App** project template (`blazorserverside` template when using the [`dotnet new`](/dotnet/core/tools/dotnet-new) command). For more information on Blazor project templates, see <xref:blazor/project-structure>.
 
 ## Scalability
 

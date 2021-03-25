@@ -1,3 +1,6 @@
+---
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+---
 Nested components typically bind data using *chained bind* as described in <xref:blazor/components/data-binding>. Nested and un-nested components can share access to data using a registered in-memory state container. A custom state container class can use an assignable <xref:System.Action> to notify components in different parts of the app of state changes. In the following example:
 
 * A pair of components uses a state container to track a property.
@@ -31,7 +34,7 @@ builder.Services.AddSingleton<StateContainer>();
 In `Startup.ConfigureServices` (Blazor Server):
 
 ```csharp
-services.AddSingleton<StateContainer>();
+services.AddScoped<StateContainer>();
 ```
 
 `Pages/Component1.razor`:
@@ -59,7 +62,7 @@ services.AddSingleton<StateContainer>();
 
     private void ChangePropertyValue()
     {
-        StateContainer.SetProperty($"New value set in Component 1 {DateTime.Now}");
+        StateContainer.SetProperty($"New value set in Component 1: {DateTime.Now}");
     }
 
     public void Dispose()
@@ -91,7 +94,7 @@ services.AddSingleton<StateContainer>();
 
     private void ChangePropertyValue()
     {
-        StateContainer.SetProperty($"New value set in Component 2 {DateTime.Now}");
+        StateContainer.SetProperty($"New value set in Component 2: {DateTime.Now}");
     }
 
     public void Dispose()
@@ -100,3 +103,5 @@ services.AddSingleton<StateContainer>();
     }
 }
 ```
+
+The preceding components implement <xref:System.IDisposable>, and the `OnChange` delegates are unsubscribed in the `Dispose` methods, which are called by the framework when the components are disposed. For more information, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable>.

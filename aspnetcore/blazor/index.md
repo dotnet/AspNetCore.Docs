@@ -11,8 +11,6 @@ uid: blazor/index
 ---
 # Introduction to ASP.NET Core Blazor
 
-By [Daniel Roth](https://github.com/danroth27) and [Luke Latham](https://github.com/guardrex)
-
 *Welcome to Blazor!*
 
 Blazor is a framework for building interactive client-side web UI with [.NET](/dotnet/standard/tour):
@@ -131,8 +129,9 @@ The size of the published app, its *payload size*, is a critical performance fac
 
 Blazor decouples component rendering logic from how UI updates are applied. *Blazor Server* provides support for hosting Razor components on the server in an ASP.NET Core app. UI updates are handled over a [SignalR](xref:signalr/introduction) connection.
 
-The runtime handles:
+The runtime stays on the server and handles:
 
+* Executing the app's C# code.
 * Sending UI events from the browser to the server.
 * Applying UI updates to the rendered component that are sent back by the server.
 
@@ -154,7 +153,7 @@ APIs that aren't applicable inside of a web browser (for example, accessing the 
 
 * [WebAssembly](https://webassembly.org)
 * <xref:blazor/hosting-models>
-* <xref:tutorials/signalr-blazor-webassembly>
+* <xref:tutorials/signalr-blazor>
 * <xref:blazor/call-javascript-from-dotnet>
 * <xref:blazor/call-dotnet-from-javascript>
 * [C# Guide](/dotnet/csharp/)

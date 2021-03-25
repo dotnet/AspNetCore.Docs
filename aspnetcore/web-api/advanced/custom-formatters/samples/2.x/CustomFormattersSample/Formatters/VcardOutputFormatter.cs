@@ -28,7 +28,7 @@ namespace CustomFormatterDemo.Formatters
         #region canwritetype
         protected override bool CanWriteType(Type type)
         {
-            if (typeof(Contact).IsAssignableFrom(type) 
+            if (typeof(Contact).IsAssignableFrom(type)
                 || typeof(IEnumerable<Contact>).IsAssignableFrom(type))
             {
                 return base.CanWriteType(type);
@@ -58,7 +58,7 @@ namespace CustomFormatterDemo.Formatters
                 var contact = context.Object as Contact;
                 FormatVcard(buffer, contact, logger);
             }
-            await response.WriteAsync(buffer.ToString());
+            await response.WriteAsync(buffer.ToString(), selectedEncoding);
         }
 
         private static void FormatVcard(StringBuilder buffer, Contact contact, ILogger logger)

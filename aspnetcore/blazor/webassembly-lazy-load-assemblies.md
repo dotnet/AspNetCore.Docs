@@ -11,8 +11,6 @@ uid: blazor/webassembly-lazy-load-assemblies
 ---
 # Lazy load assemblies in ASP.NET Core Blazor WebAssembly
 
-By [Safia Abdalla](https://safia.rocks) and [Luke Latham](https://github.com/guardrex)
-
 Blazor WebAssembly app startup performance can be improved by deferring the loading of some application assemblies until they are required, which is called *lazy loading*. For example, assemblies that are only used to render a single component can be set up to load only if the user navigates to that component. After loading, the assemblies are cached client-side and are available for all future navigations.
 
 Blazor's lazy loading feature allows you to mark app assemblies for lazy loading, which loads the assemblies during runtime when the user navigates to a particular route. The feature consists of changes to the project file and changes to the application's router.
