@@ -1,10 +1,10 @@
 ﻿#if SQLiteVersion
-#region snippet_SQLite
 using ContosoUniversity.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace ContosoUniversity.Data
 {
+    #region snippet_SQLite
     public class SchoolContext : DbContext
     {
         public SchoolContext(DbContextOptions<SchoolContext> options) : base(options)
@@ -30,8 +30,8 @@ namespace ContosoUniversity.Data
                 .IsConcurrencyToken();
         }
     }
+    #endregion
 }
-#endregion
 #else
 #region snippet_SS
 using ContosoUniversity.Models;

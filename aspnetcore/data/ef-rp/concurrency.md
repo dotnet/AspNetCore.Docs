@@ -91,8 +91,7 @@ The  SQL Server approach and SQLite implementation details are slightly differen
 # [Visual Studio](#tab/visual-studio)
 
   * In the model, include a tracking column that is used to determine when a row has been changed.
-  * Apply the <xref:System.ComponentModel.DataAnnotations.TimestampAttribute> to the concurrency property. <!--
-  * In the code that updates the entity, call <xref:Microsoft.EntityFrameworkCore.ChangeTracking.PropertyEntry.OriginalValue> to set the `rowVersion` value to the value from the entity when it was read. The `OriginalValue` update  code is shown in [the concurrency updates](#c-up) section of this document. -->
+  * Apply the <xref:System.ComponentModel.DataAnnotations.TimestampAttribute> to the concurrency property.
 
   Update the *Models/Department.cs* file with the following highlighted code:
 
@@ -138,19 +137,19 @@ The following highlighted code shows the T-SQL that verifies exactly one row was
 
   * In the model, include a tracking column that can be used to determine when a row has been changed. In this sample, a `GUID` is used. Update the *Models/Department.cs* file with the following highlighted code:
 
-  [!code-csharp[](intro/samples/cu50/Models/Department.cs?name=snippetSL&highlight=27)]
+    [!code-csharp[](intro/samples/cu50/Models/Department.cs?name=snippetSL&highlight=27)]
 
   * Update the *Data/SchoolContext.cs* file by calling <xref:Microsoft.EntityFrameworkCore.Metadata.IProperty.IsConcurrencyToken> on the `Department.ConcurrencyToken` property:
 
-  [!code-csharp[](intro/samples/cu50/Data/SchoolContext.cs?name=snippet_SQLite&highlight=26-28)]
+    [!code-csharp[](intro/samples/cu50/Data/SchoolContext.cs?name=snippet_SQLite&highlight=21-23)]
 
-  `IsConcurrencyToken` configures the property as a concurrency token. On updates, the concurrency token value in the database is compared to the original value when to ensure it has not changed since the instance was retrieved from the database. If it has changed, a <xref:Microsoft.EntityFrameworkCore.DbUpdateConcurrencyException> is thrown and changes are not applied.
+    `IsConcurrencyToken` configures the property as a concurrency token. On updates, the concurrency token value in the database is compared to the original value when to ensure it has not changed since the instance was retrieved from the database. If it has changed, a <xref:Microsoft.EntityFrameworkCore.DbUpdateConcurrencyException> is thrown and changes are not applied.
 
   * In the code that updates the entity, update the value of the concurrency token. In this sample, the method that updates the entity uses the following code. This step will be done later in the tutorial.
 
-  ```csharp
-  departmentToUpdate.ConcurrencyToken = Guid.NewGuid();
-  ```
+    ```csharp
+    departmentToUpdate.ConcurrencyToken = Guid.NewGuid();
+    ```
 
   An alternative to updating the concurrency token in the update method is to set up a trigger so it's automatically updated by the database. For more information, see [SQLite and EF Core Concurrency Tokens](https://www.bricelam.net/2020/08/07/sqlite-and-efcore-concurrency-tokens.html).
   <!--* Call <xref:Microsoft.EntityFrameworkCore.ChangeTracking.PropertyEntry.OriginalValue> to set the `rowVersion` value to the value from the entity when it was read. The `OriginalValue` update  code is shown in [the concurrency updates](#c-up) section of this document. This step will be done later in the tutorial. -->
@@ -243,17 +242,17 @@ Add a class named `Utility` with the following code:
 
 # [Visual Studio](#tab/visual-studio)
 
-[!code-csharp[](intro/samples/cu50/Utility.cs?name=snippet_full)]
+[!code-csharp[](intro/samples/cu50/Utility.cs?name=snippet)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!code-csharp[](intro/samples/cu50/Utility.cs?name=snippet)]
+[!code-csharp[](intro/samples/cu50/Utility.cs?name=snippet_sl)]
 
 ---
 
 The `Utility` class provides the `GetLastChars` method used to display the last few characters of the concurrency token. The following code shows the complete source:
 
-[!code-csharp[](intro/samples/cu50/Utility.cs?name=snippet_sl)]
+[!code-csharp[](intro/samples/cu50/Utility.cs?name=snippet_full)]
 
 The `#if SQLiteVersion` isolates the differences in the SQLite and SQL Server versions and helps:
 
@@ -274,9 +273,7 @@ Update *Pages\Departments\Index.cshtml* page:
 
 The following code shows the updated page:
 
-[!code-cshtml[](intro/samples/cu50/Pages/Departments/Index.cshtml?highlight=5,8,29,48,50-58)]
-
-In the preceding highlighted code, SQL Server and SQLite specific code are embedded in [Razor Comments](xref:mvc/views/razor#comments).
+[!code-cshtml[](intro/samples/cu50/Pages/Departments/Index.cshtml?highlight=5,8,29,48,50]
 
 ## Update the Edit page model
 
@@ -300,19 +297,21 @@ The <xref:Microsoft.EntityFrameworkCore.ChangeTracking.PropertyEntry.OriginalVal
 
 # [Visual Studio](#tab/visual-studio)
 
-[!code-csharp[](intro/samples/cu50/Pages/Departments/Edit.cshtml.cs?name=snippet_RowVersion&highlight=17-18)]
+[!code-csharp[](intro/samples/cu50/Pages/Departments/Edit.cshtml.cs?name=snippet_RowVersion&highlight=19-99)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!code-csharp[](intro/samples/cu50/Pages/Departments/Edit.cshtml.cs?name=snippet_RowVersion_sl&highlight=17-18)]
+[!code-csharp[](intro/samples/cu50/Pages/Departments/Edit.cshtml.cs?name=snippet_RowVersion_sl&highlight=21-99)]
 
 ---
 
 In the preceding highlighted code:
 
 * The value in `Department.ConcurrencyToken` is the value when the entity was fetched in the `Get` request for the `Edit` page. The value is provided to the `OnPost` method by a hidden field in the Razor page that displays the entity to be edited. The hidden field value is copied to `Department.ConcurrencyToken` by the model binder.
-* `OriginalValue` is what EF Core uses in the `Where` clause. Before the highlighted line of code executes, `OriginalValue` has the value that was in the database when `FirstOrDefaultAsync` was called in this method, which might be different from what was displayed on the Edit page.
-* The highlighted code makes sure that EF Core uses the original `RowVersion` value from the displayed `Department` entity in the SQL UPDATE statement's Where clause.
+* `OriginalValue` is what EF Core uses in the `WHERE` clause. Before the highlighted line of code executes:
+  * `OriginalValue` has the value that was in the database when `FirstOrDefaultAsync` was called in this method.
+  * This value  might be different from what was displayed on the Edit page.
+* The highlighted code makes sure that EF Core uses the original `ConcurrencyToken`  value from the displayed `Department` entity in the SQL UPDATE statement's Where clause.
 
 The following code shows the `Department` model, which is initialized in the `OnGetAsync` method by the EF query and initialized in the `OnPostAsync` method by the hidden field in the Razor page using [model binding](mvc/models/model-binding):
 
@@ -336,11 +335,11 @@ The following code adds a custom error message for each column that has database
 
 [!code-csharp[](intro/samples/cu50/Pages/Departments/Edit.cshtml.cs?name=snippet_Error)]
 
-The following highlighted code sets the `RowVersion` value to the new value retrieved from the database. The next time the user clicks **Save**, only concurrency errors that happen since the last display of the Edit page will be caught.
+The following highlighted code sets the `ConcurrencyToken` value to the new value retrieved from the database. The next time the user clicks **Save**, only concurrency errors that happen since the last display of the Edit page will be caught.
 
 [!code-csharp[](intro/samples/cu50/Pages/Departments/Edit.cshtml.cs?name=snippet_TryUpdateModel&highlight=28)]
 
-The [`ModelState.Remove`](xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.Remove%2A) statement is required because `ModelState` has the previous `RowVersion` value. In the Razor Page, the `ModelState` value for a field takes precedence over the model property values when both are present.
+The [`ModelState.Remove`](xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.Remove%2A) statement is required because `ModelState` has the previous `ConcurrencyToken` value. In the Razor Page, the `ModelState` value for a field takes precedence over the model property values when both are present.
 
 ### SQL Server vs SQLite code differences
 
@@ -405,9 +404,9 @@ Update *Pages/Departments/Delete.cshtml.cs* with the following code:
 
 [!code-csharp[](intro/samples/cu50/Pages/Departments/Delete.cshtml.cs)]
 
-The Delete page detects concurrency conflicts when the entity has changed after it was fetched. `Department.ConcurrencyToken` is the row version when the entity was fetched. When EF Core creates the SQL DELETE command, it includes a WHERE clause with `ConcurrencyToken`. If the SQL DELETE command results in zero rows affected:
+The Delete page detects concurrency conflicts when the entity has changed after it was fetched. `Department.ConcurrencyToken` is the row version when the entity was fetched. When EF Core creates the `SQL DELETE` command, it includes a WHERE clause with `ConcurrencyToken`. If the `SQL DELETE` command results in zero rows affected:
 
-* The `ConcurrencyToken` in the SQL DELETE command doesn't match `RowVersion` in the database.
+* The `ConcurrencyToken` in the `SQL DELETE` command doesn't match `ConcurrencyToken` in the database.
 * A `DbUpdateConcurrencyException` exception is thrown.
 * `OnGetAsync` is called with the `concurrencyError`.
 

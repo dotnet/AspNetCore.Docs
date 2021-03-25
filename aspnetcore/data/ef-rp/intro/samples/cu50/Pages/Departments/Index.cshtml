@@ -49,12 +49,6 @@
                 </td>
                 <td>
                     @Utility.GetLastChars(item.ConcurrencyToken)
-                    @*
-                        @item.ConcurrencyToken[7]  // SQL Server
-                        // SQLite approach
-                        @item.ConcurrencyToken.ToString().Substring(
-                                  item.ConcurrencyToken.ToString().Length - 3)
-                    *@
                 </td>
                 <td>
                     <a asp-page="./Edit" asp-route-id="@item.DepartmentID">Edit</a> |
