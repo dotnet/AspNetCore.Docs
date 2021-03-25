@@ -1,6 +1,8 @@
 ---
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 ---
+*This section applies to Blazor Server and hosted Blazor WebAssembly apps that prerender Razor components.*
+
 While an app is prerendering, certain actions, such as calling into JavaScript, aren't possible. Components may need to render differently when prerendered.
 
 To delay JavaScript interop calls until a point where such calls are guaranteed to work, override the [`OnAfterRender{Async}` lifecycle event](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync). This event is only called after the app is fully rendered.
@@ -31,7 +33,9 @@ For the preceding example code, provide a `setElementText1` JavaScript function 
 > **The preceding example modifies the Document Object Model (DOM) directly for demonstration purposes only.** Directly modifying the DOM with JavaScript isn't recommended in most scenarios because JavaScript can interfere with Blazor's change tracking.
 
 > [!NOTE]
-> The preceding example pollutes the client with global methods. For a better approach in production apps, see [Blazor JavaScript isolation and object references](xref:blazor/call-javascript-from-dotnet#blazor-javascript-isolation-and-object-references):
+> The preceding example pollutes the client with global methods. For a better approach in production apps, see [Blazor JavaScript isolation and object references](xref:blazor/call-javascript-from-dotnet#blazor-javascript-isolation-and-object-references).
+>
+> Example:
 >
 > ```javascript
 > export setElementText1 = (element, text) => element.innerText = text;
@@ -72,7 +76,9 @@ For the preceding example code, provide a `setElementText2` JavaScript function 
 > **The preceding example modifies the Document Object Model (DOM) directly for demonstration purposes only.** Directly modifying the DOM with JavaScript isn't recommended in most scenarios because JavaScript can interfere with Blazor's change tracking.
 
 > [!NOTE]
-> The preceding example pollutes the client with global methods. For a better approach in production apps, see [Blazor JavaScript isolation and object references](xref:blazor/call-javascript-from-dotnet#blazor-javascript-isolation-and-object-references):
+> The preceding example pollutes the client with global methods. For a better approach in production apps, see [Blazor JavaScript isolation and object references](xref:blazor/call-javascript-from-dotnet#blazor-javascript-isolation-and-object-references).
+>
+> Example:
 >
 > ```javascript
 > export setElementText2 = (element, text) => {

@@ -1,17 +1,17 @@
 ---
-title: ASP.NET Core Blazor lifecycle
+title: ASP.NET Core Razor component lifecycle
 author: guardrex
 description: Learn about the ASP.NET Core Razor component lifecycle and how to use lifecycle events.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/24/2020
+ms.date: 03/25/2020
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/components/lifecycle
 ---
-# ASP.NET Core Blazor lifecycle
+# ASP.NET Core Razor component lifecycle
 
-The Blazor framework processes Razor component lifecycle events in a set of synchronous and asynchronous lifecycle methods. The lifecycle methods can be overridden to perform additional operations in components during component initialization and rendering.
+The Razor component processes Razor component lifecycle events in a set of synchronous and asynchronous lifecycle methods. The lifecycle methods can be overridden to perform additional operations in components during component initialization and rendering.
 
 ## Lifecycle events
 
@@ -23,7 +23,7 @@ Component lifecycle events:
    * Create the component's instance.
    * Perform property injection. Run [`SetParametersAsync`](#before-parameters-are-set-setparametersasync).
    * Call [`OnInitialized{Async}`](#component-initialization-methods-oninitializedasync). If an incomplete <xref:System.Threading.Tasks.Task> is returned, the <xref:System.Threading.Tasks.Task> is awaited and then the component is rerendered.
-1. Call [`OnParametersSet{Async}`](#after-parameters-are-set-onparameterssetasync). If an incomplete <xref:System.Threading.Tasks.Task> is returned, the <xref:System.Threading.Tasks.Task> is awaited and then component is rerendered.
+1. Call [`OnParametersSet{Async}`](#after-parameters-are-set-onparameterssetasync). If an incomplete <xref:System.Threading.Tasks.Task> is returned, the <xref:System.Threading.Tasks.Task> is awaited and then the component is rerendered.
 1. Render for all synchronous work and complete <xref:System.Threading.Tasks.Task>s.
 
 ![Component lifecycle events of a Razor component in Blazor](lifecycle/_static/lifecycle1.png)
@@ -57,9 +57,9 @@ The method's <xref:Microsoft.AspNetCore.Components.ParameterView> parameter cont
 
 The default implementation of <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> sets the value of each property with the [`[Parameter]`](xref:Microsoft.AspNetCore.Components.ParameterAttribute) or [`[CascadingParameter]` attribute](xref:Microsoft.AspNetCore.Components.CascadingParameterAttribute) that has a corresponding value in the <xref:Microsoft.AspNetCore.Components.ParameterView>. Parameters that don't have a corresponding value in <xref:Microsoft.AspNetCore.Components.ParameterView> are left unchanged.
 
-If [`base.SetParametersAsync`](xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A) isn't invoked, developer code can interpret the incoming parameters' values in any way required. For example, there's no requirement to assign the incoming parameters to the properties on the class.
+If [`base.SetParametersAsync`](xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A) isn't invoked, developer code can interpret the incoming parameters' values in any way required. For example, there's no requirement to assign the incoming parameters to the properties of the class.
 
-If event handlers are set up, unhook them on disposal. For more information, see the [Component disposal with `IDisposable`](#component-disposal-with-idisposable) section.
+If event handlers are provided in developer code, unhook them on disposal. For more information, see the [Component disposal with `IDisposable`](#component-disposal-with-idisposable) section.
 
 In the following example, <xref:Microsoft.AspNetCore.Components.ParameterView.TryGetValue%2A?displayProperty=nameWithType> assigns the `Param` parameter's value to `value` if parsing a route parameter for `Param` is successful. When `value` isn't `null`, the value is displayed by the component.
 
@@ -99,7 +99,7 @@ For a synchronous operation, override <xref:Microsoft.AspNetCore.Components.Comp
 
 ::: moniker-end
 
-To perform an asynchronous operation, override <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> and use the [`await`](/dotnet/csharp/language-reference/operators/await) operator on the operation:
+To perform an asynchronous operation, override <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> and use the [`await`](/dotnet/csharp/language-reference/operators/await) operator:
 
 ```csharp
 protected override async Task OnInitializedAsync()
@@ -113,11 +113,11 @@ Blazor apps that [prerender their content](xref:blazor/fundamentals/signalr#rend
 * Once when the component is initially rendered statically as part of the page.
 * A second time when the browser renders the component.
 
-To prevent developer code in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> from running twice when prerendering in Blazor Server apps, see the [Stateful reconnection after prerendering](#stateful-reconnection-after-prerendering) section. Although the content in the section focuses on Blazor Server and stateful *reconnection* after the SignalR connection is established, the corallary scenario for prerendered hosted Blazor WebAssembly involves a similar conditions and approaches to prevent executing developer code twice. A *new state preservation feature* is planned for the ASP.NET Core 6.0 release that will improve the management of prerendering and initialization code execution.
+To prevent developer code in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> from running twice when prerendering in Blazor Server apps, see the [Stateful reconnection after prerendering](#stateful-reconnection-after-prerendering) section. Although the content in the section focuses on Blazor Server and stateful SignalR *reconnection*, the scenario for prerendering in hosted Blazor WebAssembly apps (<xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssemblyPrerendered>) involves similar conditions and approaches to prevent executing developer code twice. A *new state preservation feature* is planned for the ASP.NET Core 6.0 release that will improve the management of initialization code execution during prerendering.
 
-While a Blazor app is prerendering, certain actions, such as calling into JavaScript, aren't possible. Components may need to render differently when prerendered. For more information, see the [Detect when the app is prerendering](#detect-when-the-app-is-prerendering) section.
+While a Blazor app is prerendering, certain actions, such as calling into JavaScript (JS interop), aren't possible. Components may need to render differently when prerendered. For more information, see the [Detect when the app is prerendering](#detect-when-the-app-is-prerendering) section.
 
-If event handlers are set up, unhook them on disposal. For more information, see the [Component disposal with `IDisposable`](#component-disposal-with-idisposable) section.
+If event handlers are provided in developer code, unhook them on disposal. For more information, see the [Component disposal with `IDisposable`](#component-disposal-with-idisposable) section.
 
 ## After parameters are set (`OnParametersSet{Async}`)
 
@@ -125,7 +125,7 @@ If event handlers are set up, unhook them on disposal. For more information, see
 
 * After the component is initialized in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized%2A> or <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>.
 * When the parent component rerenders and supplies:
-  * Only known primitive immutable types of which at least one parameter has changed.
+  * Known primitive immutable types when at least one parameter has changed.
   * Complex-typed parameters. The framework can't know whether the values of a complex-typed parameter have mutated internally, so the framework always treats the parameter set as changed when one or more complex-typed parameters are present.
 
 For the following example component, navigate to the component's page at a URL:
@@ -159,13 +159,13 @@ protected override async Task OnParametersSetAsync()
 }
 ```
 
-If event handlers are set up, unhook them on disposal. For more information, see the [Component disposal with `IDisposable`](#component-disposal-with-idisposable) section.
+If event handlers are provided in developer code, unhook them on disposal. For more information, see the [Component disposal with `IDisposable`](#component-disposal-with-idisposable) section.
 
 For more information on route parameters and constraints, see <xref:blazor/fundamentals/routing>.
 
 ## After component render (`OnAfterRender{Async}`)
 
-<xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> are called after a component has finished rendering. Element and component references are populated at this point. Use this stage to perform additional initialization steps using the rendered content, such as activating third-party JavaScript libraries that operate on the rendered DOM elements.
+<xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> are called after a component has finished rendering. Element and component references are populated at this point. Use this stage to perform additional initialization steps with the rendered content, such as JS interop calls that interact with the rendered DOM elements.
 
 The `firstRender` parameter for <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A>:
 
@@ -198,14 +198,14 @@ protected override async Task OnAfterRenderAsync(bool firstRender)
 }
 ```
 
-Even if you return a <xref:System.Threading.Tasks.Task> from <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A>, the framework doesn't schedule a further render cycle for your component once that task completes. This is to avoid an infinite render loop. It's different from the other lifecycle methods, which schedule a further render cycle once the returned task completes.
+Even if you return a <xref:System.Threading.Tasks.Task> from <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A>, the framework doesn't schedule a further render cycle for your component once that task completes. This is to avoid an infinite render loop. This is different from the other lifecycle methods, which schedule a further render cycle once a returned <xref:System.Threading.Tasks.Task> completes.
 
-<xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> *aren't called during the prerendering process on the server*. The methods are called when the component is rendered interactively after prerendering is finished. When the app prerenders:
+<xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> *aren't called during the prerendering process on the server*. The methods are called when the component is rendered interactively after prerendering. When the app prerenders:
 
 1. The component executes on the server to produce some static HTML markup in the HTTP response. During this phase, <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> aren't called.
 1. When the Blazor script (`blazor.webassembly.js` or `blazor.server.js`) start in the browser, the component is restarted in an interactive rendering mode. After a component is restarted, <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> **are** called because the app isn't in the prerendering phase any longer.
 
-If event handlers are set up, unhook them on disposal. For more information, see the [Component disposal with `IDisposable`](#component-disposal-with-idisposable) section.
+If event handlers are provided in developer code, unhook them on disposal. For more information, see the [Component disposal with `IDisposable`](#component-disposal-with-idisposable) section.
 
 ## Suppress UI refreshing (`ShouldRender`)
 
@@ -288,6 +288,8 @@ The following code demonstrates an updated `WeatherForecastService` in a templat
 
 For more information on the <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper.RenderMode>, see <xref:blazor/fundamentals/signalr#render-mode>.
 
+Although the content in this section focuses on Blazor Server and stateful SignalR *reconnection*, the scenario for prerendering in hosted Blazor WebAssembly apps (<xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssemblyPrerendered>) involves similar conditions and approaches to prevent executing developer code twice. A *new state preservation feature* is planned for the ASP.NET Core 6.0 release that will improve the management of initialization code execution during prerendering.
+
 ## Detect when the app is prerendering
 
 [!INCLUDE[](~/blazor/includes/prerendering.md)]
@@ -310,7 +312,7 @@ If a component implements <xref:System.IDisposable>, the framework calls the [di
 }
 ```
 
-If an object requires disposal, a lambda can be used to dispose of the object when <xref:System.IDisposable.Dispose%2A?displayProperty=nameWithType> is called. The following example appears in the <xref:blazor/components/rendering#receiving-a-call-from-something-external-to-the-blazor-rendering-and-event-handling-system> article and demonstrates the use of a lambda expression for disposal of a <xref:System.Timers.Timer>.
+If an object requires disposal, a lambda can be used to dispose of the object when <xref:System.IDisposable.Dispose%2A?displayProperty=nameWithType> is called. The following example appears in the <xref:blazor/components/rendering#receiving-a-call-from-something-external-to-the-blazor-rendering-and-event-handling-system> article and demonstrates the use of a lambda expression for the disposal of a <xref:System.Timers.Timer>.
 
 `Pages/CounterWithTimerDisposal.razor`:
 
@@ -364,7 +366,7 @@ Unsubscribe event handlers from .NET events. The following [Blazor form](xref:bl
 
 ::: moniker-end
 
-When [anonymous functions](/dotnet/csharp/programming-guide/statements-expressions-operators/anonymous-functions), methods or expressions, are used, it isn't necessary to implement <xref:System.IDisposable> and unsubscribe delegates. However, failing to unsubscribe a delegate is a problem **when the object exposing the event outlives the lifetime of the component registering the delegate**. When this occurs, a memory leak results because the registered delegate keeps the original object alive. Therefore, only use the following approaches when you know that the event delegate disposes quickly. When in doubt about the lifetime of objects that require disposal, subscribe a delegate method and properly dispose the delegate as the earlier examples show.
+When [anonymous functions](/dotnet/csharp/programming-guide/statements-expressions-operators/anonymous-functions), methods, or expressions, are used, it isn't necessary to implement <xref:System.IDisposable> and unsubscribe delegates. However, failing to unsubscribe a delegate is a problem **when the object exposing the event outlives the lifetime of the component registering the delegate**. When this occurs, a memory leak results because the registered delegate keeps the original object alive. Therefore, only use the following approaches when you know that the event delegate disposes quickly. When in doubt about the lifetime of objects that require disposal, subscribe a delegate method and properly dispose the delegate as the earlier examples show.
 
 * Anonymous lambda method approach (explicit disposal not required):
 
@@ -415,7 +417,7 @@ Other reasons why background work items might require cancellation include:
 * An executing background task was started with faulty input data or processing parameters.
 * The current set of executing background work items must be replaced with a new set of work items.
 * The priority of currently executing tasks must be changed.
-* The app has to be shut down in order to redeploy it to the server.
+* The app must be shut down for server redeployment.
 * Server resources become limited, necessitating the rescheduling of background work items.
 
 To implement a cancelable background work pattern in a component:
