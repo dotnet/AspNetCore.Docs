@@ -276,15 +276,9 @@ Update *Pages\Departments\Index.cshtml* page:
 
 The following code shows the updated page:
 
-# [Visual Studio](#tab/visual-studio)
+[!code-cshtml[](intro/samples/cu50/Pages/Departments/Index.cshtml?highlight=5,8,29,48,50-58)]
 
-[!code-cshtml[](intro/samples/cu50snapshots/Department/Index.cshtml?highlight=5,8,29,48,51)]
-
-# [Visual Studio Code](#tab/visual-studio-code)
-
-[!code-cshtml[](intro/samples/cu50snapshots/Department/IndexSQLite.cshtml?highlight=5,8,29,48,51-52)]
-
----
+In the preceding highlighted code, SQL Server and SQLite specific code are embedded in [Razor Comments](xref:mvc/views/razor#comments).
 
 ## Update the Edit page model
 
@@ -326,7 +320,7 @@ The following code shows the `Department` model, which is initialized in the `On
 
 # [Visual Studio](#tab/visual-studio)
 
-[!code-csharp[](intro/samples/cu50/Pages/Departments/Edit.cshtml.cs?name=snippet_mb&highlight=10-11,17-20,51)]
+[!code-csharp[](intro/samples/cu50/Pages/Departments/Edit.cshtml.cs?name=snippet_mb&highlight=10-11,17-20,50-99)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -419,7 +413,7 @@ The Delete page detects concurrency conflicts when the entity has changed after 
 * A `DbUpdateConcurrencyException` exception is thrown.
 * `OnGetAsync` is called with the `concurrencyError`.
 
-### Update the Delete page zz
+### Update the Delete Razor page
 
 Update *Pages/Departments/Delete.cshtml* with the following code:
 
@@ -430,8 +424,8 @@ The preceding code makes the following changes:
 * Updates the `page` directive from `@page` to `@page "{id:int}"`.
 * Adds an error message.
 * Replaces FirstMidName with FullName in the **Administrator** field.
-* Changes `RowVersion` to display the last byte.
-* Adds a hidden row version. `RowVersion` must be added so postback binds the value.
+* Changes `ConcurrencyToken` to display the last byte.
+* Adds a hidden row version. `ConcurrencyToken` must be added so postback binds the value.
 
 ### Test concurrency conflicts
 
@@ -449,7 +443,7 @@ Change the budget in the first browser tab and click **Save**.
 
 The browser shows the Index page with the changed value and updated `ConcurrencyToken`indicator. Note the updated `ConcurrencyToken`indicator, it's displayed on the second postback in the other tab.
 
-Delete the test department from the second tab. A concurrency error is display with the current values from the database. Clicking **Delete** deletes the entity, unless `RowVersion` has been updated.
+Delete the test department from the second tab. A concurrency error is display with the current values from the database. Clicking **Delete** deletes the entity, unless `ConcurrencyToken` has been updated.
 
 ## Additional resources
 

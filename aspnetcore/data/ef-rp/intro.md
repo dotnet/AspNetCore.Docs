@@ -57,11 +57,11 @@ The app built in these tutorials is a basic university web site. Users can view 
 
 The UI style of this site is based on the built-in project templates. The tutorial's focus is on how to use EF Core with ASP.NET Core, not how to customize the UI.
 
-### Build the sample download
+<a name="build"></a>
 
-This step is optional.
+### Optional: Build the sample download
 
-* [Download the completed app.](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu50) [Download instructions](xref:index#how-to-download-a-sample).
+This step is optional. Building the completed app is recommended when you have problems you can't solve. If you run into a problem you can't resolve, compare your code to the [completed project](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-rp/intro/samples/cu50). [Download instructions](xref:index#how-to-download-a-sample).
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -84,11 +84,13 @@ Select *ContosoUniversity.csproj* to open the project.
 * Update the database.
 
   ```dotnetcli
-  dotnet tool uninstall --global dotnet-ef
   dotnet tool install --global dotnet-ef
   dotnet ef database update
   ```
 
+<!-- prerelease versions require
+  dotnet tool uninstall --global dotnet-ef
+-->
 ---
 
 Run the project to seed the database.
