@@ -11,8 +11,6 @@ uid: blazor/forms-validation
 ---
 # ASP.NET Core Blazor forms and validation
 
-By [Daniel Roth](https://github.com/danroth27), [Rémi Bourgarel](https://remibou.github.io/), and [Luke Latham](https://github.com/guardrex)
-
 Forms and validation are supported in Blazor using [data annotations](xref:mvc/models/validation).
 
 The following `ExampleModel` type defines validation logic using data annotations:
@@ -277,7 +275,7 @@ In the following `InputDate` component example:
 * The component is bound to the `BirthDate` property as a `DateTime` type.
 
 ```razor
-<InputDate @bind-Value="@BirthDate" DisplayName="birthday" />
+<InputDate @bind-Value="BirthDate" DisplayName="birthday" />
 
 @code {
     public DateTime BirthDate { get; set; }
@@ -364,6 +362,9 @@ public class CustomValidator : ComponentBase
 }
 ```
 
+> [!NOTE]
+> Anonymous lambda expressions are registered event handlers for <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnValidationRequested> and <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnFieldChanged> in the preceding example. It isn't necessary to implement <xref:System.IDisposable> and unsubscribe the event delegates in this scenario. For more information, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable>.
+
 ## Business logic validation
 
 Business logic validation can be accomplished with a [validator component](#validator-components) that receives form errors in a dictionary.
@@ -436,7 +437,7 @@ Server validation can be accomplished with a server [validator component](#valid
 
 The following example is based on:
 
-* A hosted Blazor solution created by the [Blazor Hosted project template](xref:blazor/hosting-models#blazor-webassembly). The example can be used with any of the secure hosted Blazor solutions described in the [Security and Identity documentation](xref:blazor/security/webassembly/index#implementation-guidance).
+* A hosted Blazor WebAssembly solution created from the [Blazor WebAssembly project template](xref:blazor/project-structure). The example can be used with any of the secure hosted Blazor solutions described in the [Security and Identity documentation](xref:blazor/security/webassembly/index#implementation-guidance).
 * The *Starfleet Starship Database* form example in the preceding [Built-in forms components](#built-in-forms-components) section.
 * The Blazor framework's <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component.
 * The `CustomValidator` component shown in the [Validator components](#validator-components) section.
@@ -948,7 +949,9 @@ The Blazor framework doesn't automatically handle `null` to empty string convers
 
 ## Validation support
 
-The <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component attaches validation support using data annotations to the cascaded <xref:Microsoft.AspNetCore.Components.Forms.EditContext>. Enabling support for validation using data annotations requires this explicit gesture. To use a different validation system than data annotations, replace the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> with a custom implementation. The ASP.NET Core implementation is available for inspection in the reference source: [`DataAnnotationsValidator`](https://github.com/dotnet/AspNetCore/blob/master/src/Components/Forms/src/DataAnnotationsValidator.cs)/[`AddDataAnnotationsValidation`](https://github.com/dotnet/AspNetCore/blob/master/src/Components/Forms/src/EditContextDataAnnotationsExtensions.cs). The preceding links to reference source provide code from the repository's `master` branch, which represents the product unit's current development for the next release of ASP.NET Core. To select the branch for a different release, use the GitHub branch selector (for example `release/3.1`).
+The <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component attaches validation support using data annotations to the cascaded <xref:Microsoft.AspNetCore.Components.Forms.EditContext>. Enabling support for validation using data annotations requires this explicit gesture. To use a different validation system than data annotations, replace the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> with a custom implementation. The ASP.NET Core implementations are available for inspection in the reference source: [`DataAnnotationsValidator`](https://github.com/dotnet/AspNetCore/blob/main/src/Components/Forms/src/DataAnnotationsValidator.cs)/[`AddDataAnnotationsValidation`](https://github.com/dotnet/AspNetCore/blob/main/src/Components/Forms/src/EditContextDataAnnotationsExtensions.cs).
+
+[!INCLUDE[](~/blazor/includes/aspnetcore-repo-ref-source-links.md)]
 
 Blazor performs two types of validation:
 
@@ -993,7 +996,7 @@ To ensure that a validation result is correctly associated with a field when usi
 using System;
 using System.ComponentModel.DataAnnotations;
 
-private class CustomValidator : ValidationAttribute
+public class CustomValidator : ValidationAttribute
 {
     protected override ValidationResult IsValid(object value, 
         ValidationContext validationContext)
@@ -1013,22 +1016,84 @@ private class CustomValidator : ValidationAttribute
 
 ## Custom validation class attributes
 
-Custom validation class names are useful when integrating with CSS frameworks, such as [Bootstrap](https://getbootstrap.com/). To specify custom validation class names, create a class derived from `FieldCssClassProvider` and set the class on the <xref:Microsoft.AspNetCore.Components.Forms.EditContext> instance:
+Custom validation class names are useful when integrating with CSS frameworks, such as [Bootstrap](https://getbootstrap.com/).
+
+To specify custom validation class names:
+
+* Provide CSS styles for custom validation. In the following example, valid and invalid styles are specified:
+
+```css
+.validField {
+    border-color: lawngreen;
+}
+
+.invalidField {
+    background-color: tomato;
+}
+```
+
+* Create a class derived from `FieldCssClassProvider` that checks for field validation messages and applies the appropriate valid or invalid style:
 
 ```csharp
-var editContext = new EditContext(model);
-editContext.SetFieldCssClassProvider(new MyFieldClassProvider());
+using System.Linq;
+using Microsoft.AspNetCore.Components.Forms;
 
-...
-
-private class MyFieldClassProvider : FieldCssClassProvider
+public class MyFieldClassProvider : FieldCssClassProvider
 {
     public override string GetFieldCssClass(EditContext editContext, 
         in FieldIdentifier fieldIdentifier)
     {
         var isValid = !editContext.GetValidationMessages(fieldIdentifier).Any();
 
-        return isValid ? "good field" : "bad field";
+        return isValid ? "validField" : "invalidField";
+    }
+}
+```
+
+* Set the class on the form's <xref:Microsoft.AspNetCore.Components.Forms.EditContext> instance:
+
+```razor
+...
+
+<EditForm EditContext="@editContext" OnValidSubmit="@HandleValidSubmit">
+    ...
+</EditForm>
+
+...
+
+@code {
+    private EditContext editContext;
+    private Model model = new Model();
+
+    protected override void OnInitialized()
+    {
+        editContext = new EditContext(model);
+        editContext.SetFieldCssClassProvider(new MyFieldClassProvider());
+    }
+
+    private void HandleValidSubmit()
+    {
+        ...
+    }
+}
+```
+
+The preceding example checks the validity of all form fields and applies a style to each field. If the form should only apply custom styles to a subset of the fields, make `MyFieldClassProvider` apply styles conditionally. The following example only applies a style to the `Identifier` field:
+
+```csharp
+public class MyFieldClassProvider : FieldCssClassProvider
+{
+    public override string GetFieldCssClass(EditContext editContext,
+        in FieldIdentifier fieldIdentifier)
+    {
+        if (fieldIdentifier.FieldName == "Identifier")
+        {
+            var isValid = !editContext.GetValidationMessages(fieldIdentifier).Any();
+
+            return isValid ? "validField" : "invalidField";
+        }
+
+        return string.Empty;
     }
 }
 ```
@@ -1046,7 +1111,7 @@ The [`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.n
 
 ### `[CompareProperty]` attribute
 
-The <xref:System.ComponentModel.DataAnnotations.CompareAttribute> doesn't work well with the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component because it doesn't associate the validation result with a specific member. This can result in inconsistent behavior between field-level validation and when the entire model is validated on a submit. The [`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) *experimental* package introduces an additional validation attribute, `ComparePropertyAttribute`, that works around these limitations. In a Blazor app, `[CompareProperty]` is a direct replacement for the [`[Compare]`](xref:System.ComponentModel.DataAnnotations.CompareAttribute) attribute.
+The <xref:System.ComponentModel.DataAnnotations.CompareAttribute> doesn't work well with the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component because it doesn't associate the validation result with a specific member. This can result in inconsistent behavior between field-level validation and when the entire model is validated on a submit. The [`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) *experimental* package introduces an additional validation attribute, `ComparePropertyAttribute`, that works around these limitations. In a Blazor app, `[CompareProperty]` is a direct replacement for the [`[Compare]` attribute](xref:System.ComponentModel.DataAnnotations.CompareAttribute).
 
 ::: moniker-end
 
@@ -1107,7 +1172,7 @@ To enable and disable the submit button based on form validation:
 
 * Use the form's <xref:Microsoft.AspNetCore.Components.Forms.EditContext> to assign the model when the component is initialized.
 * Validate the form in the context's <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnFieldChanged> callback to enable and disable the submit button.
-* Unhook the event handler in the `Dispose` method. For more information, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable>.
+* Implement <xref:System.IDisposable> and unsubscribe the event handler in the `Dispose` method. For more information, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable>.
 
 > [!NOTE]
 > When using an <xref:Microsoft.AspNetCore.Components.Forms.EditContext>, don't also assign a <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model> to the <xref:Microsoft.AspNetCore.Components.Forms.EditForm>.

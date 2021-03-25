@@ -15,7 +15,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Victor Hurdugaci](https
 
 This tutorial uses an existing web API with two endpoints: one that returns a sum and one that returns a product. The product method has a bug, which is fixed in this tutorial.
 
-Download the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/dotnet-watch/sample). It consists of two projects: *WebApp* (an ASP.NET Core web API) and *WebAppTests* (unit tests for the web API).
+Download the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/dotnet-watch/sample). It consists of two projects: *WebApp* (an ASP.NET Core web API) and *WebAppTests* (unit tests for the web API).
 
 In a command shell, navigate to the *WebApp* folder. Run the following command:
 
@@ -132,6 +132,7 @@ By default, `dotnet-watch` tracks all files matching the following glob patterns
 * `**/*.cs`
 * `*.csproj`
 * `**/*.resx`
+* Content files: `wwwroot/**`, `**/*.config`, `**/*.json`
 
 More items can be added to the watch list by editing the *.csproj* file. Items can be specified individually or by using glob patterns.
 
@@ -156,6 +157,13 @@ More items can be added to the watch list by editing the *.csproj* file. Items c
 
     <!-- exclude changes in this referenced project -->
     <ProjectReference Include="..\ClassLibrary1\ClassLibrary1.csproj" Watch="false" />
+</ItemGroup>
+```
+
+```xml
+<ItemGroup>
+     <!-- Exclude all Content items from being watched. -->
+    <Content Update="@(Content)" Watch="false" />
 </ItemGroup>
 ```
 
@@ -202,7 +210,3 @@ Some configuration options can be passed to `dotnet watch` through environment v
 | `DOTNET_WATCH_SUPPRESS_MSBUILD_INCREMENTALISM`   | By default, `dotnet watch` optimizes the build by avoiding certain operations such as running restore or re-evaluating the set of watched files on every file change. If set to "1" or "true",  these optimizations are disabled. |
 | `DOTNET_WATCH_SUPPRESS_LAUNCH_BROWSER`   | `dotnet watch run` attempts to launch browsers for web apps with `launchBrowser` configured in *launchSettings.json*. If set to "1" or "true", this behavior is suppressed. |
 | `DOTNET_WATCH_SUPPRESS_BROWSER_REFRESH`   | `dotnet watch run` attempts to refresh browsers when it detects file changes. If set to "1" or "true", this behavior is suppressed. This behavior is also suppressed if `DOTNET_WATCH_SUPPRESS_LAUNCH_BROWSER` is set. |
-
-## `dotnet-watch` in GitHub
-
-`dotnet-watch` is part of the GitHub [dotnet/AspNetCore repository](https://github.com/dotnet/AspNetCore/tree/master/src/Tools/dotnet-watch).

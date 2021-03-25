@@ -247,7 +247,7 @@ Check the connection string. If you have manually deleted the database file, cha
 
 ## Get the code
 
-[Download or view the completed application.](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)
+[Download or view the completed application.](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-mvc/intro/samples/cu-final)
 
 ## Additional resources
 
@@ -272,7 +272,7 @@ In this tutorial, you:
 > * Learned about EF Core source code and development plans
 > * Learned how to use dynamic LINQ to simplify code
 
-This completes this series of tutorials on using the Entity Framework Core in an ASP.NET Core MVC application. This series worked with a new database; an alternative is to  reverse engineer a model from an existing database.
+This completes this series of tutorials on using the Entity Framework Core in an ASP.NET Core MVC application. This series worked with a new database; an alternative is to  [reverse engineer a model from an existing database](/ef/core/managing-schemas/scaffolding).
 
 > [!div class="nextstepaction"]
 > [Tutorial: EF Core with MVC, existing database](/ef/core/get-started/aspnetcore/existing-db?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json)

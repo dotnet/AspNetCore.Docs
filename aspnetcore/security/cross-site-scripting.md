@@ -148,7 +148,7 @@ The preceding code generates the following output:
 > Do ***NOT*** concatenate untrusted input in JavaScript to create DOM elements or use `document.write()` on dynamically generated content.
 >
 > Use one of the following approaches to prevent code from being exposed to DOM-based XSS:
-> * `createElement()` and assign property values with appropriate methods or properties such as `node.textContent=` or node.InnerText=`.
+> * `createElement()` and assign property values with appropriate methods or properties such as `node.textContent=` or `node.InnerText=`.
 > * `document.CreateTextNode()` and append it in the appropriate DOM location.
 > * `element.SetAttribute()`
 > * `element[attribute]=`

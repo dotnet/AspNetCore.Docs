@@ -8,7 +8,6 @@ ms.date: 12/15/2019
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/models/validation
 ---
-
 # Model validation in ASP.NET Core MVC and Razor Pages
 
 ::: moniker range=">= aspnetcore-3.0"
@@ -17,7 +16,7 @@ By [Kirk Larkin](https://github.com/serpent5)
 
 This article explains how to validate user input in an ASP.NET Core MVC or Razor Pages app.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/validation/samples) ([how to download](xref:index#how-to-download-a-sample)).
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/validation/samples) ([how to download](xref:index#how-to-download-a-sample)).
 
 ## Model state
 
@@ -74,11 +73,29 @@ Internally, the attributes call `String.Format` with a placeholder for the field
 
 When applied to a `Name` property, the error message created by the preceding code would be "Name length must be between 6 and 8.".
 
-To find out which parameters are passed to `String.Format` for a particular attribute's error message, see the [DataAnnotations source code](https://github.com/dotnet/runtime/tree/master/src/libraries/System.ComponentModel.Annotations/src/System/ComponentModel/DataAnnotations).
+To find out which parameters are passed to `String.Format` for a particular attribute's error message, see the [DataAnnotations source code](https://github.com/dotnet/runtime/tree/main/src/libraries/System.ComponentModel.Annotations/src/System/ComponentModel/DataAnnotations).
 
-## [Required] attribute
+## Non-nullable reference types and [Required] attribute
 
-The validation system in .NET Core 3.0 and later treats non-nullable parameters or bound properties as if they had a `[Required]` attribute. [Value types](/dotnet/csharp/language-reference/keywords/value-types) such as `decimal` and `int` are non-nullable. This behavior can be disabled by configuring <xref:Microsoft.AspNetCore.Mvc.MvcOptions.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes> in `Startup.ConfigureServices`:
+The validation system treats non-nullable parameters or bound properties as if they had a `[Required]` attribute. By [enabling `Nullable` contexts](/dotnet/csharp/nullable-references#nullable-contexts), MVC implicitly starts validating non-nullable properties or parameters as if they had been attributed with the `[Required]` attribute. Consider the following code:
+
+```csharp
+public class Person
+{
+    public string Name { get; set; }
+}
+```
+
+If the app was built with `<Nullable>enable</Nullable>`, a missing value for `Name` in a JSON or form post results in a validation error. Use a nullable reference type to allow null or missing values to be specified for the `Name` property:
+
+```csharp
+public class Person
+{
+    public string? Name { get; set; }
+}
+```
+
+. This behavior can be disabled by configuring <xref:Microsoft.AspNetCore.Mvc.MvcOptions.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes> in `Startup.ConfigureServices`:
 
 ```csharp
 services.AddControllers(options => options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true);
@@ -341,7 +358,7 @@ As noted earlier, [Tag Helpers](xref:mvc/views/tag-helpers/intro) and [HTML help
 
 This method of rendering `data-` attributes in HTML is used by the `ClassicMovie` attribute in the sample app. To add client validation by using this method:
 
-1. Create an attribute adapter class for the custom validation attribute. Derive the class from [AttributeAdapterBase\<T>](/dotnet/api/microsoft.aspnetcore.mvc.dataannotations.attributeadapterbase-1?view=aspnetcore-2.2). Create an `AddValidation` method that adds `data-` attributes to the rendered output, as shown in this example:
+1. Create an attribute adapter class for the custom validation attribute. Derive the class from <xref:Microsoft.AspNetCore.Mvc.DataAnnotations.AttributeAdapterBase%601>. Create an `AddValidation` method that adds `data-` attributes to the rendered output, as shown in this example:
 
    [!code-csharp[](validation/samples/3.x/ValidationSample/Validation/ClassicMovieAttributeAdapter.cs?name=snippet_Class)]
 
@@ -385,7 +402,7 @@ The preceding approach won't prevent client side validation of ASP.NET Core Iden
 
 This article explains how to validate user input in an ASP.NET Core MVC or Razor Pages app.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/validation/sample) ([how to download](xref:index#how-to-download-a-sample)).
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/validation/sample) ([how to download](xref:index#how-to-download-a-sample)).
 
 ## Model state
 
@@ -405,7 +422,7 @@ Validation is automatic, but you might want to repeat it manually. For example, 
 
 ## Validation attributes
 
-Validation attributes let you specify validation rules for model properties. The following example from [the sample app](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/models/validation/sample) shows a model class that is annotated with validation attributes. The `[ClassicMovie]` attribute is a custom validation attribute and the others are built-in. Not shown is `[ClassicMovie2]`, which shows an alternative way to implement a custom attribute.
+Validation attributes let you specify validation rules for model properties. The following example from [the sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/validation/sample) shows a model class that is annotated with validation attributes. The `[ClassicMovie]` attribute is a custom validation attribute and the others are built-in. Not shown is `[ClassicMovie2]`, which shows an alternative way to implement a custom attribute.
 
 [!code-csharp[](validation/samples/2.x/ValidationSample/Models/Movie.cs?name=snippet_ModelClass)]
 
@@ -712,7 +729,7 @@ As noted earlier, [Tag Helpers](xref:mvc/views/tag-helpers/intro) and [HTML help
 
 This method of rendering `data-` attributes in HTML is used by the `ClassicMovie` attribute in the sample app. To add client validation by using this method:
 
-1. Create an attribute adapter class for the custom validation attribute. Derive the class from [AttributeAdapterBase\<T>](/dotnet/api/microsoft.aspnetcore.mvc.dataannotations.attributeadapterbase-1?view=aspnetcore-2.2). Create an `AddValidation` method that adds `data-` attributes to the rendered output, as shown in this example:
+1. Create an attribute adapter class for the custom validation attribute. Derive the class from <xref:Microsoft.AspNetCore.Mvc.DataAnnotations.AttributeAdapterBase%601>. Create an `AddValidation` method that adds `data-` attributes to the rendered output, as shown in this example:
 
    [!code-csharp[](validation/samples/2.x/ValidationSample/Attributes/ClassicMovieAttributeAdapter.cs?name=snippet_ClassicMovieAttributeAdapter)]
 

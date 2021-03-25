@@ -4,7 +4,7 @@ author: scottaddie
 description: Learn how to use the HttpRepl .NET Core Global Tool to browse and test an ASP.NET Core web API.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
-ms.custom: mvc, devx-track-azurecli
+ms.custom: mvc
 ms.date: 11/12/2020
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: web-api/http-repl
@@ -29,7 +29,7 @@ The following [HTTP verbs](https://github.com/microsoft/api-guidelines/blob/vNex
 * [POST](#test-http-post-requests)
 * [PUT](#test-http-put-requests)
 
-To follow along, [view or download the sample ASP.NET Core web API](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/web-api/http-repl/samples) ([how to download](xref:index#how-to-download-a-sample)).
+To follow along, [view or download the sample ASP.NET Core web API](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/http-repl/samples) ([how to download](xref:index#how-to-download-a-sample)).
 
 ## Prerequisites
 

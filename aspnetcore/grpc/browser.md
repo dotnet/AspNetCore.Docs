@@ -49,9 +49,9 @@ Alternatively, the gRPC-Web middleware can be configured so all services support
 [!code-csharp[](~/grpc/browser/sample/AllServicesSupportExample_Startup.cs?name=snippet_1&highlight=12)]
 
 > [!NOTE]
-> There is a known issue that causes gRPC-Web to fail when [hosted by Http.sys](xref:fundamentals/servers/httpsys) in .NET Core 3.x.
+> There is a known issue that causes gRPC-Web to fail when [hosted by HTTP.sys](xref:fundamentals/servers/httpsys) in .NET Core 3.x.
 >
-> A workaround to get gRPC-Web working on Http.sys is available [here](https://github.com/grpc/grpc-dotnet/issues/853#issuecomment-610078202).
+> A workaround to get gRPC-Web working on HTTP.sys is available [here](https://github.com/grpc/grpc-dotnet/issues/853#issuecomment-610078202).
 
 ### gRPC-Web and CORS
 
@@ -118,7 +118,7 @@ The preceding code:
 
 ### Use gRPC client factory with gRPC-Web
 
-A gRPC-Web compatible .NET client can be created using gRPC's integration with [HttpClientFactory](xref:System.Net.Http.IHttpClientFactory).
+A gRPC-Web compatible .NET client can be created using the [gRPC client factory](xref:grpc/clientfactory).
 
 To use gRPC-Web with client factory:
 
@@ -130,12 +130,12 @@ To use gRPC-Web with client factory:
 
 ```csharp
 builder.Services
-    .AddGrpcClient<Greet.GreeterClient>((services, options) =>
+    .AddGrpcClient<Greet.GreeterClient>(options =>
     {
         options.Address = new Uri("https://localhost:5001");
     })
     .ConfigurePrimaryHttpMessageHandler(
-        () => new GrpcWebHandler(GrpcWebMode.GrpcWebText, new HttpClientHandler()));
+        () => new GrpcWebHandler(new HttpClientHandler()));
 ```
 
 For more information, see <xref:grpc/clientfactory>.

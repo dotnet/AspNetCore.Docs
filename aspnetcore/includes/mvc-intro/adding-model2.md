@@ -1,3 +1,6 @@
+---
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+---
 ## Add initial migration and update the database
 
 * Open a command prompt and navigate to the project directory. (The directory containing the *Startup.cs* file).

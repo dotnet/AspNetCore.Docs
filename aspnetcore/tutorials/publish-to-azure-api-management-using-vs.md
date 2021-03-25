@@ -169,9 +169,9 @@ Notice the name of the API is different than what you named it. The published AP
     ```csharp
     services.AddSwaggerGen(config =>
     {
-        config.SwaggerDoc("WeatherForecasts", new Microsoft.OpenApi.Models.OpenApiInfo
+        config.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
         {
-            Title = "Weather Forecasts",
+            Title = "WeatherForecasts",
             Version = "v1"
         });
     });

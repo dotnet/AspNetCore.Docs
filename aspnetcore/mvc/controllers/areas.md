@@ -27,7 +27,7 @@ Consider using Areas in a project when:
 * The app is made of multiple high-level functional components that can be logically separated.
 * You want to partition the app so that each functional area can be worked on independently.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/areas/31samples) ([how to download](xref:index#how-to-download-a-sample)). The download sample provides a basic app for testing areas.
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/areas/31samples) ([how to download](xref:index#how-to-download-a-sample)). The download sample provides a basic app for testing areas.
 
 If you're using Razor Pages, see [Areas with Razor Pages](#areas-with-razor-pages) in this document.
 
@@ -105,7 +105,7 @@ For more information, see [Area routing](xref:mvc/controllers/routing#areas).
 
 ### Link generation with MVC areas
 
-The following code from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/areas/31samples) shows link generation with the area specified:
+The following code from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/areas/31samples) shows link generation with the area specified:
 
 [!code-cshtml[](areas/31samples/MVCareas/Views/Shared/_testLinksPartial.cshtml?name=snippet)]
 
@@ -151,7 +151,7 @@ The following code changes the default area folder from `"Areas"` to `"MyAreas"`
 
 ## Areas with Razor Pages
 
-Areas with Razor Pages require an `Areas/<area name>/Pages` folder in the root of the app. The following folder structure is used with the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/areas/31samples):
+Areas with Razor Pages require an `Areas/<area name>/Pages` folder in the root of the app. The following folder structure is used with the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/areas/31samples):
 
 * Project name
   * Areas
@@ -168,7 +168,7 @@ Areas with Razor Pages require an `Areas/<area name>/Pages` folder in the root o
 
 ### Link generation with Razor Pages and areas
 
-The following code from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/areas/samples/RPareas) shows link generation with the area specified (for example, `asp-area="Products"`):
+The following code from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/areas/samples/RPareas) shows link generation with the area specified (for example, `asp-area="Products"`):
 
 [!code-cshtml[](areas/31samples/RPareas/Pages/Shared/_testLinksPartial.cshtml?name=snippet)]
 
@@ -182,7 +182,7 @@ For the preceding code:
 
 * The link generated from `<a asp-page="/Manage/About">` is correct only when the last request was for a page in `Services` area. For example, `/Services/Manage/`, `/Services/Manage/Index`, or `/Services/Manage/About`.
 * The link generated from `<a asp-page="/About">` is correct only when the last request was for a page in `/Home`.
-* The code is from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/areas/31samples/RPareas).
+* The code is from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/areas/31samples/RPareas).
 
 ### Import namespace and Tag Helpers with _ViewImports file
 
@@ -194,7 +194,7 @@ Consider the *Services* area of the sample code, which doesn't contain a *_ViewI
 
 In the preceding markup:
 
-* The fully qualified domain name must be used to specify the model (`@model RPareas.Areas.Services.Pages.Manage.AboutModel`).
+* The fully qualified class name must be used to specify the model (`@model RPareas.Areas.Services.Pages.Manage.AboutModel`).
 * [Tag Helpers](xref:mvc/views/tag-helpers/intro) are enabled by `@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers`
 
 In the sample download, the Products area contains the following *_ViewImports.cshtml* file:
@@ -229,7 +229,7 @@ Consider using Areas in a project when:
 * The app is made of multiple high-level functional components that can be logically separated.
 * You want to partition the app so that each functional area can be worked on independently.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/areas/samples) ([how to download](xref:index#how-to-download-a-sample)). The download sample provides a basic app for testing areas.
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/areas/samples) ([how to download](xref:index#how-to-download-a-sample)). The download sample provides a basic app for testing areas.
 
 If you're using Razor Pages, see [Areas with Razor Pages](#areas-with-razor-pages) in this document.
 
@@ -306,7 +306,7 @@ For more information, see [Area routing](xref:mvc/controllers/routing#areas).
 
 ### Link generation with MVC areas
 
-The following code from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/areas/samples) shows link generation with the area specified:
+The following code from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/areas/samples) shows link generation with the area specified:
 
 [!code-cshtml[](areas/samples/MVCareas/Views/Shared/_testLinksPartial.cshtml?name=snippet)]
 
@@ -338,7 +338,7 @@ The following code changes the default area folder from `"Areas"` to `"MyAreas"`
 
 ## Areas with Razor Pages
 
-Areas with Razor Pages require an `Areas/<area name>/Pages` folder in the root of the app. The following folder structure is used with the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/areas/samples):
+Areas with Razor Pages require an `Areas/<area name>/Pages` folder in the root of the app. The following folder structure is used with the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/areas/samples):
 
 * Project name
   * Areas
@@ -355,7 +355,7 @@ Areas with Razor Pages require an `Areas/<area name>/Pages` folder in the root o
 
 ### Link generation with Razor Pages and areas
 
-The following code from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/areas/samples/RPareas) shows link generation with the area specified (for example, `asp-area="Products"`):
+The following code from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/areas/samples/RPareas) shows link generation with the area specified (for example, `asp-area="Products"`):
 
 [!code-cshtml[](areas/samples/RPareas/Pages/Shared/_testLinksPartial.cshtml?name=snippet)]
 
@@ -371,7 +371,7 @@ For the preceding code:
 
 * The link generated from `<a asp-page="/Manage/About">` is correct only when the last request was for a page in `Services` area. For example, `/Services/Manage/`, `/Services/Manage/Index`, or `/Services/Manage/About`.
 * The link generated from `<a asp-page="/About">` is correct only when the last request was for a page in `/Home`.
-* The code is from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/areas/samples/RPareas).
+* The code is from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/areas/samples/RPareas).
 
 ### Import namespace and Tag Helpers with _ViewImports file
 

@@ -124,7 +124,7 @@ conceptualContent:
         - url: mvc/overview.md
           itemType: overview
           text: "Overview"
-        - url: tutorials/first-mvc-app/index.md
+        - url: tutorials/first-mvc-app/start-mvc.md
           itemType: get-started
           text: "Create your first ASP.NET Core MVC app"
         - url: mvc/views/overview.md
@@ -152,7 +152,7 @@ conceptualContent:
         - url: signalr/introduction.md
           itemType: get-started
           text: "Create your first SignalR app"
-        - url: tutorials/signalr-blazor-webassembly.md
+        - url: tutorials/signalr-blazor.md
           itemType: tutorial
           text: "SignalR with Blazor WebAssembly"
         - url: tutorials/signalr-typescript-webpack.md
@@ -261,7 +261,7 @@ additionalContent:
       # Card
       - title: API reference for ASP.NET Core
         links:
-          - url: /dotnet/api/?view=aspnetcore-3.1
+          - url: /dotnet/api/?view=aspnetcore-5.0
             text: ".NET API browser"
       # Card
       - title: Host and deploy
@@ -407,4 +407,4 @@ additionalContent:
           - url: /dotnet/architecture/modern-web-apps-azure/development-process-for-azure
             text: Development process for Azure
   # footer (optional)
-  footer: "Contribute to ASP.NET Core docs. Read our [contributor guide](https://github.com/aspnet/AspNetCore.Docs/blob/master/CONTRIBUTING.md)."
+  footer: "Contribute to ASP.NET Core docs. Read our [contributor guide](https://github.com/dotnet/AspNetCore.Docs/blob/main/CONTRIBUTING.md)."

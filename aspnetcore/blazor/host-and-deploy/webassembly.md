@@ -5,13 +5,11 @@ description: Learn how to host and deploy a Blazor app using ASP.NET Core, Conte
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/09/2020
+ms.date: 01/12/2021
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/host-and-deploy/webassembly
 ---
 # Host and deploy ASP.NET Core Blazor WebAssembly
-
-By [Luke Latham](https://github.com/guardrex), [Rainer Stropek](https://www.timecockpit.com), [Daniel Roth](https://github.com/danroth27), [Ben Adams](https://twitter.com/ben_a_adams), and [Safia Abdalla](https://safia.rocks)
 
 With the [Blazor WebAssembly hosting model](xref:blazor/hosting-models#blazor-webassembly):
 
@@ -35,10 +33,16 @@ Blazor relies on the host to the serve the appropriate compressed files. When us
 * For IIS `web.config` compression configuration, see the [IIS: Brotli and Gzip compression](#brotli-and-gzip-compression) section. 
 * When hosting on static hosting solutions that don't support statically-compressed file content negotiation, such as GitHub Pages, consider configuring the app to fetch and decode Brotli compressed files:
 
-  * Obtain the JavaScript Brotli decoder from the [google/brotli GitHub repository](https://github.com/google/brotli). As of September 2020, the decoder file is named `decode.js` and found in the repository's [`js` folder](https://github.com/google/brotli/tree/master/js).
+  * Obtain the JavaScript Brotli decoder from the [google/brotli GitHub repository](https://github.com/google/brotli). The decoder file is named `decode.js` and found in the repository's [`js` folder](https://github.com/google/brotli/tree/master/js).
   
     > [!NOTE]
-    > A regression is present in the minified version of the `decode.js` script (`decode.min.js`) in the [google/brotli GitHub repository](https://github.com/google/brotli). Either minify the script on your own or use the [npm package](https://www.npmjs.com/package/brotli) until the issue [Window.BrotliDecode is not set in decode.min.js (google/brotli #844)](https://github.com/google/brotli/issues/844) is resolved. The example code in this section uses the **unminified** version of the script.
+    > A regression is present in the minified version of the `decode.js` script (`decode.min.js`) in the [google/brotli GitHub repository](https://github.com/google/brotli). Until the issue [TypeError in decode.min.js (google/brotli #881)](https://github.com/google/brotli/issues/881) is resolved, take one of the following approaches:
+    >
+    > * Temporarily use the unminified version of the script.
+    > * Automatically minify the script at build-time with a third-party minification tool compatible with ASP.NET Core.
+    > * Use the [npm package](https://www.npmjs.com/package/brotli).
+    >
+    > The example code in this section uses the **unminified** version of the script (`decode.js`).
 
   * Update the app to use the decoder. Change the markup inside the closing `<body>` tag in `wwwroot/index.html` to the following:
   
@@ -110,17 +114,27 @@ A *hosted deployment* serves the Blazor WebAssembly app to browsers from an [ASP
 
 The client Blazor WebAssembly app is published into the `/bin/Release/{TARGET FRAMEWORK}/publish/wwwroot` folder of the server app, along with any other static web assets of the server app. The two apps are deployed together. A web server that is capable of hosting an ASP.NET Core app is required. For a hosted deployment, Visual Studio includes the **Blazor WebAssembly App** project template (`blazorwasm` template when using the [`dotnet new`](/dotnet/core/tools/dotnet-new) command) with the **`Hosted`** option selected (`-ho|--hosted` when using the `dotnet new` command).
 
-For more information on ASP.NET Core app hosting and deployment, see <xref:host-and-deploy/index>.
+For more information, see the following articles:
 
-For information on deploying to Azure App Service, see <xref:tutorials/publish-to-azure-webapp-using-vs>.
+* ASP.NET Core app hosting and deployment: <xref:host-and-deploy/index>
+* Deployment to Azure App Service: <xref:tutorials/publish-to-azure-webapp-using-vs>
+* Blazor project templates: <xref:blazor/project-structure>
 
 ## Hosted deployment with multiple Blazor WebAssembly apps
 
 ### App configuration
 
-To configure a hosted Blazor solution to serve multiple Blazor WebAssembly apps:
+Hosted Blazor solutions can serve multiple Blazor WebAssembly apps.
 
-* Use an existing hosted Blazor solution or create a new solution from the Blazor Hosted project template.
+> [!NOTE]
+> The example in this section references the use of a Visual Studio *solution*, but the use of Visual Studio and a Visual Studio solution isn't required for multiple client apps to work in a hosted Blazor WebAssembly apps scenario. If you aren't using Visual Studio, ignore the `{SOLUTION NAME}.sln` file and any other files created for Visual Studio.
+
+In the following example:
+
+* The initial (first) client app is the default client project of a solution created from the Blazor WebAssembly project template. The first client app is accessible in a browser from the URL `/FirstApp` on either port 5001 or with a host of `firstapp.com`.
+* A second client app is added to the solution, `SecondBlazorApp.Client`. The second client app is accessible in a browser from the the URL `/SecondApp` on either port 5002 or with a host of `secondapp.com`.
+
+Use an existing hosted Blazor solution or create a new solution from the Blazor Hosted project template:
 
 * In the client app's project file, add a `<StaticWebAssetBasePath>` property to the `<PropertyGroup>` with a value of `FirstApp` to set the base path for the project's static assets:
 
@@ -133,9 +147,19 @@ To configure a hosted Blazor solution to serve multiple Blazor WebAssembly apps:
 
 * Add a second client app to the solution:
 
-  * Add a folder named `SecondClient` to the solution's folder.
+  * Add a folder named `SecondClient` to the solution's folder. The solution folder created from the project template contains the following solution file and folders after the `SecondClient` folder is added:
+  
+    * `Client` (folder)
+    * `SecondClient` (folder)
+    * `Server` (folder)
+    * `Shared` (folder)
+    * `{SOLUTION NAME}.sln` (file)
+
+    The placeholder `{SOLUTION NAME}` is the solution's name.
+
   * Create a Blazor WebAssembly app named `SecondBlazorApp.Client` in the `SecondClient` folder from the Blazor WebAssembly project template.
-  * In the app's project file:
+
+  * In the `SecondBlazorApp.Client` app's project file:
 
     * Add a `<StaticWebAssetBasePath>` property to the `<PropertyGroup>` with a value of `SecondApp`:
 
@@ -156,14 +180,17 @@ To configure a hosted Blazor solution to serve multiple Blazor WebAssembly apps:
 
       The placeholder `{SOLUTION NAME}` is the solution's name.
 
-* In the server app's project file, create a project reference for the added client app:
+* In the server app's project file, create a project reference for the added `SecondBlazorApp.Client` client app:
 
   ```xml
   <ItemGroup>
-    ...
+    <ProjectReference Include="..\Client\{SOLUTION NAME}.Client.csproj" />
     <ProjectReference Include="..\SecondClient\SecondBlazorApp.Client.csproj" />
+    <ProjectReference Include="..\Shared\{SOLUTION NAME}.Shared.csproj" />
   </ItemGroup>
   ```
+  
+  The placeholder `{SOLUTION NAME}` is the solution's name.
 
 * In the server app's `Properties/launchSettings.json` file, configure the `applicationUrl` of the Kestrel profile (`{SOLUTION NAME}.Server`) to access the client apps at ports 5001 and 5002:
 
@@ -280,7 +307,7 @@ Use the following approaches for static assets:
 Components provided to a client app by a class library are referenced normally. If any components require stylesheets or JavaScript files, use either of the following approaches to obtain the static assets:
 
 * The client app's `wwwroot/index.html` file can link (`<link>`) to the static assets.
-* The component can use the framework's [`Link` component](xref:blazor/fundamentals/additional-scenarios#influence-html-head-tag-elements) to obtain the static assets.
+* The component can use the framework's [`Link` component](xref:blazor/fundamentals/signalr#influence-html-head-tag-elements) to obtain the static assets.
 
 The preceding approaches are demonstrated in the following examples.
 
@@ -334,7 +361,7 @@ Add the following `Jeep` component to one of the client apps. The `Jeep` compone
 
 ::: moniker range=">= aspnetcore-5.0"
 
-The library's `jeep-yj.png` image can also be added to the library's `Component1` component (`Component1.razor`). To provide the `my-component` CSS class to the client app's page, link to the library's stylesheet using the framework's [`Link` component](xref:blazor/fundamentals/additional-scenarios#influence-html-head-tag-elements):
+The library's `jeep-yj.png` image can also be added to the library's `Component1` component (`Component1.razor`). To provide the `my-component` CSS class to the client app's page, link to the library's stylesheet using the framework's [`Link` component](xref:blazor/fundamentals/signalr#influence-html-head-tag-elements):
 
 ```razor
 <div class="my-component">
@@ -352,7 +379,7 @@ The library's `jeep-yj.png` image can also be added to the library's `Component1
 </div>
 ```
 
-An alternative to using the [`Link` component](xref:blazor/fundamentals/additional-scenarios#influence-html-head-tag-elements) is to load the stylesheet from the client app's `wwwroot/index.html` file. This approach makes the stylesheet available to all of the components in the client app:
+An alternative to using the [`Link` component](xref:blazor/fundamentals/signalr#influence-html-head-tag-elements) is to load the stylesheet from the client app's `wwwroot/index.html` file. This approach makes the stylesheet available to all of the components in the client app:
 
 ```html
 <head>
@@ -508,7 +535,7 @@ Removing the handler or disabling inheritance is performed in addition to [confi
 
 *This section only applies to standalone Blazor WebAssembly apps. Hosted Blazor apps use a default ASP.NET Core app `web.config` file, not the file linked in this section.*
 
-IIS can be configured via `web.config` to serve Brotli or Gzip compressed Blazor assets for standalone Blazor WebAssembly apps. For an example configuration file, see [`web.config`](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/blazor/host-and-deploy/webassembly/_samples/web.config?raw=true).
+IIS can be configured via `web.config` to serve Brotli or Gzip compressed Blazor assets for standalone Blazor WebAssembly apps. For an example configuration file, see [`web.config`](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/blazor/host-and-deploy/webassembly/_samples/web.config?raw=true).
 
 Additional configuration of the example `web.config` file might be required in the following scenarios:
 
@@ -581,18 +608,6 @@ http {
 Increase the value if browser developer tools or a network traffic tool indicates that requests are receiving a *503 - Service Unavailable* status code.
 
 For more information on production Nginx web server configuration, see [Creating NGINX Plus and NGINX Configuration Files](https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/).
-
-### Nginx in Docker
-
-To host Blazor in Docker using Nginx, setup the Dockerfile to use the Alpine-based Nginx image. Update the Dockerfile to copy the `nginx.config` file into the container.
-
-Add one line to the Dockerfile, as shown in the following example:
-
-```dockerfile
-FROM nginx:alpine
-COPY ./bin/Release/netstandard2.0/publish /usr/share/nginx/html/
-COPY nginx.conf /etc/nginx/nginx.conf
-```
 
 ### Apache
 
@@ -836,7 +851,7 @@ If service worker assets are also in use, add the following command:
 On Linux or macOS:
 
 ```console
-for f in _framework/_bin/*; do mv "$f" "`echo $f | sed -e 's/\.dll\b/.bin/g'`"; done
+for f in _framework/_bin/*; do mv "$f" "`echo $f | sed -e 's/\.dll/.bin/g'`"; done
 sed -i 's/\.dll"/.bin"/g' _framework/blazor.boot.json
 ```
 
@@ -924,7 +939,7 @@ If you confirm that the server is returning plausibly correct data, there must b
 
 ### Troubleshoot integrity PowerShell script
 
-Use the [`integrity.ps1`](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/blazor/host-and-deploy/webassembly/_samples/integrity.ps1?raw=true) PowerShell script to validate a published and deployed Blazor app. The script is provided as a starting point when the app has integrity issues that the Blazor framework can't identify. Customization of the script might be required for your apps.
+Use the [`integrity.ps1`](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/blazor/host-and-deploy/webassembly/_samples/integrity.ps1?raw=true) PowerShell script to validate a published and deployed Blazor app. The script is provided as a starting point when the app has integrity issues that the Blazor framework can't identify. Customization of the script might be required for your apps.
 
 The script checks the files in the `publish` folder and downloaded from the deployed app to detect issues in the different manifests that contain integrity hashes. These checks should detect the most common problems:
 

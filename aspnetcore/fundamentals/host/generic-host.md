@@ -112,8 +112,8 @@ The <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*> method:
 The <xref:Microsoft.Extensions.Hosting.GenericHostBuilderExtensions.ConfigureWebHostDefaults*> method:
 
 * Loads host configuration from environment variables prefixed with `ASPNETCORE_`.
-* Sets [Kestrel](xref:fundamentals/servers/kestrel) server as the web server and configures it using the app's hosting configuration providers. For the Kestrel server's default options, see <xref:fundamentals/servers/kestrel#kestrel-options>.
-* Adds [Host Filtering middleware](xref:fundamentals/servers/kestrel#host-filtering).
+* Sets [Kestrel](xref:fundamentals/servers/kestrel) server as the web server and configures it using the app's hosting configuration providers. For the Kestrel server's default options, see <xref:fundamentals/servers/kestrel/options>.
+* Adds [Host Filtering middleware](xref:fundamentals/servers/kestrel/host-filtering).
 * Adds [Forwarded Headers middleware](xref:host-and-deploy/proxy-load-balancer#forwarded-headers) if `ASPNETCORE_FORWARDEDHEADERS_ENABLED` equals `true`.
 * Enables IIS integration. For the IIS default options, see <xref:host-and-deploy/iis/index#iis-options>.
 
@@ -420,7 +420,7 @@ To set this value, use the environment variable or call `UseUrls`:
 webBuilder.UseUrls("http://*:5000;http://localhost:5001;https://hostname:5002");
 ```
 
-Kestrel has its own endpoint configuration API. For more information, see <xref:fundamentals/servers/kestrel#endpoint-configuration>.
+Kestrel has its own endpoint configuration API. For more information, see <xref:fundamentals/servers/kestrel/endpoints>.
 
 ### WebRoot
 
@@ -1012,7 +1012,7 @@ The purpose of Generic Host is to decouple the HTTP pipeline from the Web Host A
 
 Generic Host is new in ASP.NET Core 2.1 and isn't suitable for web hosting scenarios. For web hosting scenarios, use the [Web Host](xref:fundamentals/host/web-host). Generic Host will replace Web Host in a future release and act as the primary host API in both HTTP and non-HTTP scenarios.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/host/generic-host/samples/) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/host/generic-host/samples/) ([how to download](xref:index#how-to-download-a-sample))
 
 When running the sample app in [Visual Studio Code](https://code.visualstudio.com/), use an *external or integrated terminal*. Don't run the sample in an `internalConsole`.
 
@@ -1188,7 +1188,7 @@ To move settings files to the output directory, specify the settings files as [M
 
 A hosted service is a class with background task logic that implements the <xref:Microsoft.Extensions.Hosting.IHostedService> interface. For more information, see <xref:fundamentals/host/hosted-services>.
 
-The [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/host/generic-host/samples/) uses the `AddHostedService` extension method to add a service for lifetime events, `LifetimeEventsHostedService`, and a timed background task, `TimedHostedService`, to the app:
+The [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/host/generic-host/samples/) uses the `AddHostedService` extension method to add a service for lifetime events, `LifetimeEventsHostedService`, and a timed background task, `TimedHostedService`, to the app:
 
 [!code-csharp[](generic-host/samples-snapshot/2.x/GenericHostSample/Program.cs?name=snippet_ConfigureServices)]
 
@@ -1464,7 +1464,7 @@ For more information, see <xref:fundamentals/environments>.
 | <xref:Microsoft.Extensions.Hosting.IApplicationLifetime.ApplicationStopped*> | The host is completing a graceful shutdown. All requests should be processed. Shutdown blocks until this event completes. |
 | <xref:Microsoft.Extensions.Hosting.IApplicationLifetime.ApplicationStopping*> | The host is performing a graceful shutdown. Requests may still be processing. Shutdown blocks until this event completes. |
 
-Constructor-inject the <xref:Microsoft.Extensions.Hosting.IApplicationLifetime> service into any class. The [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/host/generic-host/samples/) uses constructor injection into a `LifetimeEventsHostedService` class (an <xref:Microsoft.Extensions.Hosting.IHostedService> implementation) to register the events.
+Constructor-inject the <xref:Microsoft.Extensions.Hosting.IApplicationLifetime> service into any class. The [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/host/generic-host/samples/) uses constructor injection into a `LifetimeEventsHostedService` class (an <xref:Microsoft.Extensions.Hosting.IHostedService> implementation) to register the events.
 
 *LifetimeEventsHostedService.cs*:
 

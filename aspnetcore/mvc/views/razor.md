@@ -1,5 +1,5 @@
 ---
-title: razor syntax reference for ASP.NET Core
+title: Razor syntax reference for ASP.NET Core
 author: rick-anderson
 description: Learn about Razor markup syntax for embedding server-based code into webpages.
 ms.author: riande
@@ -596,7 +596,7 @@ The `@inject` directive enables the Razor Page to inject a service from the [ser
 
 *This scenario only applies to Razor components (.razor).*
 
-The `@layout` directive specifies a layout for a Razor component. Layout components are used to avoid code duplication and inconsistency. For more information, see <xref:blazor/layouts>.
+The `@layout` directive specifies a layout for routable Razor components that have an [`@page`](#page) directive. Layout components are used to avoid code duplication and inconsistency. For more information, see <xref:blazor/layouts>.
 
 ::: moniker-end
 
@@ -774,7 +774,7 @@ Component references (`@ref`) provide a way to reference a component instance so
 
 *This scenario only applies to Razor components (.razor).*
 
-The `@typeparam` directive declares a generic type parameter for the generated component class. For more information, see <xref:blazor/components/templated-components#generic-typed-components>.
+The `@typeparam` directive declares a generic type parameter for the generated component class. For more information, see <xref:blazor/components/templated-components>.
 
 ::: moniker-end
 

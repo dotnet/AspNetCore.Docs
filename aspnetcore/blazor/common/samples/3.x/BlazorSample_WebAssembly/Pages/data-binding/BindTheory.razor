@@ -1,0 +1,24 @@
+@page "/bind-theory"
+
+<p>
+    <label>
+        Normal Blazor binding: 
+        <input @bind="InputValue" />
+    </label>
+</p>
+
+<p>
+    <label>
+        Demonstration of equivalent HTML binding: 
+        <input value="@InputValue"
+            @onchange="@((ChangeEventArgs __e) => InputValue = __e.Value.ToString())" />
+    </label>
+</p>
+
+<p>
+    <code>InputValue</code>: @InputValue
+</p>
+
+@code {
+    private string InputValue { get; set; }
+}

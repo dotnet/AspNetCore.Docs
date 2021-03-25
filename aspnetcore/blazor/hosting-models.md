@@ -11,8 +11,6 @@ uid: blazor/hosting-models
 ---
 # ASP.NET Core Blazor hosting models
 
-By [Daniel Roth](https://github.com/danroth27)
-
 Blazor is a web framework designed to run client-side in the browser on a [WebAssembly](https://webassembly.org/)-based .NET runtime (*Blazor WebAssembly*) or server-side in ASP.NET Core (*Blazor Server*). Regardless of the hosting model, the app and component models *are the same*.
 
 ## Blazor WebAssembly
@@ -21,7 +19,7 @@ The primary Blazor hosting model is running client-side in the browser on WebAss
 
 ![Blazor WebAssembly: The Blazor app runs on a UI thread inside the browser.](hosting-models/_static/blazor-webassembly.png)
 
-When the Blazor WebAssembly app is created for deployment without a backend ASP.NET Core app to serve its files, the app is called a *standalone* Blazor WebAssembly app. When the app is created for deployment with a backend app to serve its files, the app is called a *hosted* Blazor WebAssembly app. A hosted Blazor WebAssembly app typically interacts with the server over the network using web API calls or [SignalR](xref:signalr/introduction) (<xref:tutorials/signalr-blazor-webassembly>).
+When the Blazor WebAssembly app is created for deployment without a backend ASP.NET Core app to serve its files, the app is called a *standalone* Blazor WebAssembly app. When the app is created for deployment with a backend app to serve its files, the app is called a *hosted* Blazor WebAssembly app. A hosted Blazor WebAssembly **`Client`** app typically interacts with the backend **`Server`** app over the network using web API calls or [SignalR](xref:signalr/introduction) (<xref:tutorials/signalr-blazor>).
 
 The `blazor.webassembly.js` script is provided by the framework and handles:
 
@@ -44,7 +42,7 @@ The Blazor WebAssembly hosting model has the following limitations:
 
 To create a Blazor WebAssembly app, see <xref:blazor/tooling>.
 
-The hosted Blazor app model supports [Docker containers](/dotnet/standard/microservices-architecture/container-docker-introduction/index). For Docker support in Visual Studio, right-click on the `Server` project of a hosted Blazor WebAssembly solution and select **Add** > **Docker Support**.
+The hosted Blazor app model supports [Docker containers](/dotnet/standard/microservices-architecture/container-docker-introduction/index). For Docker support in Visual Studio, right-click on the **`Server`** project of a hosted Blazor WebAssembly solution and select **Add** > **Docker Support**.
 
 ## Blazor Server
 
@@ -114,7 +112,7 @@ Each browser screen (browser tab or iframe) that is connected to a Blazor Server
 
 Blazor considers closing a browser tab or navigating to an external URL a *graceful* termination. In the event of a graceful termination, the circuit and associated resources are immediately released. A client may also disconnect non-gracefully, for instance due to a network interruption. Blazor Server stores disconnected circuits for a configurable interval to allow the client to reconnect.
 
-Blazor Server allows code to define a *circuit handler*, which allows running code on changes to the state of a user's circuit. For more information, see <xref:blazor/advanced-scenarios#blazor-server-circuit-handler>.
+Blazor Server allows code to define a *circuit handler*, which allows running code on changes to the state of a user's circuit. For more information, see <xref:blazor/fundamentals/signalr?pivots=server#blazor-server-circuit-handler>.
 
 ### UI Latency
 
@@ -142,6 +140,7 @@ When using IIS, sticky sessions are enabled with *Application Request Routing*. 
 ## Additional resources
 
 * <xref:blazor/tooling>
+* <xref:blazor/project-structure>
 * <xref:signalr/introduction>
-* <xref:blazor/fundamentals/additional-scenarios>
-* <xref:tutorials/signalr-blazor-webassembly>
+* <xref:blazor/fundamentals/signalr>
+* <xref:tutorials/signalr-blazor>

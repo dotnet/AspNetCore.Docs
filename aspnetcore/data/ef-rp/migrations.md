@@ -161,7 +161,7 @@ The next tutorial builds out the data model, adding entity properties and new en
 In this tutorial, the EF Core migrations feature for managing data model changes is used.
 
 If you run into problems you can't solve, download the [completed app](
-https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples).
+https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-rp/intro/samples).
 
 When a new app is developed, the data model changes frequently. Each time the model changes, the model gets out of sync with the database. This tutorial started by configuring the Entity Framework to create the database if it doesn't exist. Each time the data model changes:
 
@@ -297,7 +297,7 @@ EF Core uses the `__MigrationsHistory` table to see if any migrations need to ru
 ## Troubleshooting
 
 Download the [completed app](
-https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu21snapshots/cu-part4-migrations).
+https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-rp/intro/samples/cu21snapshots/cu-part4-migrations).
 
 The app generates the following exception:
 

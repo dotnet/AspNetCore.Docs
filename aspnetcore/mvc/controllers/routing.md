@@ -13,7 +13,7 @@ By [Ryan Nowak](https://github.com/rynowak), [Kirk Larkin](https://twitter.com/s
 
 ::: moniker range=">= aspnetcore-3.0"
 
-ASP.NET Core controllers use the Routing [middleware](xref:fundamentals/middleware/index) to match the URLs of incoming requests and map them to [actions](#action).  Routes templates:
+ASP.NET Core controllers use the Routing [middleware](xref:fundamentals/middleware/index) to match the URLs of incoming requests and map them to [actions](#action).  Route templates:
 
 * Are defined in startup code or attributes.
 * Describe how URL paths are matched to [actions](#action).
@@ -26,7 +26,7 @@ This document:
 * Explains the interactions between MVC and routing:
   * How typical MVC apps make use of routing features.
   * Covers both:
-    * [Conventionally routing](#cr) typically used with controllers and views.
+    * [Conventional routing](#cr) typically used with controllers and views.
     * *Attribute routing* used with REST APIs. If you're primarily interested in routing for REST APIs, jump to the [Attribute routing for REST APIs](#ar) section.
   * See [Routing](xref:fundamentals/routing) for advanced routing details.
 * Refers to the default routing system added in ASP.NET Core 3.0, called endpoint routing. It's possible to use controllers with the previous version of routing for compatibility purposes. See the [2.2-3.0 migration guide](xref:migration/22-to-30) for instructions. Refer to the [2.2 version of this document](xref:mvc/controllers/routing?view=aspnetcore-2.2) for reference material on the legacy routing system.
@@ -103,7 +103,7 @@ Conventional routing is used with controllers and views. The `default` route:
 
 [!code-csharp[](routing/samples/3.x/main/StartupDefaultMVC.cs?name=snippet2)]
 
-is an example of a *conventional routing*. It's called *conventional routing* because it establishes a *convention* for URL paths:
+The preceding is an example of a *conventional route*. It's called *conventional routing* because it establishes a *convention* for URL paths:
 
 * The first path segment, `{controller=Home}`, maps to the controller name.
 * The second segment, `{action=Index}`, maps to the [action](#action) name.
@@ -468,12 +468,7 @@ In some cases, an HTTP 500 error is returned with ambiguous routes. Use [logging
 
 ## Token replacement in route templates [controller], [action], [area]
 
-For convenience, attribute routes support token replacement for reserved route parameters by enclosing a token in one of the following:
-
-* Square brackets: `[]`
-* Curly braces: `{}`
-
-The tokens `[action]`, `[area]`, and `[controller]` are replaced with the values of the action name, area name, and controller name from the action where the route is defined:
+For convenience, attribute routes support *token replacement* by enclosing a token in square-brackets (`[`, `]`). The tokens `[action]`, `[area]`, and `[controller]` are replaced with the values of the action name, area name, and controller name from the action where the route is defined:
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet)]
 
@@ -497,10 +492,6 @@ Attribute routes can also be combined with inheritance. This is powerful combine
 `[Route("[controller]/[action]", Name="[controller]_[action]")]`generates a unique route name for each action:
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet5)]
-
-Token replacement also applies to route names defined by attribute routes.
-`[Route("[controller]/[action]", Name="[controller]_[action]")]`
-generates a unique route name for each action.
 
 To match the literal token replacement delimiter `[` or  `]`, escape it by repeating the character (`[[` or `]]`).
 
@@ -558,7 +549,7 @@ Attribute routes support the same inline syntax as conventional routes to specif
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet8&highlight=3)]
 
-In the preceding code, `[HttpPost("product/{id:int}")]` applies a route constraint. The `ProductsController.ShowProduct` action is matched only by URL paths like `/product/3`. The route template portion `{id:int}` constrains that segment to only integers.
+In the preceding code, `[HttpPost("product14/{id:int}")]` applies a route constraint. The `Products14Controller.ShowProduct` action is matched only by URL paths like `/product14/3`. The route template portion `{id:int}` constrains that segment to only integers.
 
 See [Route Template Reference](xref:fundamentals/routing#route-template-reference) for a detailed description of route template syntax.
 
@@ -814,7 +805,7 @@ The [[Area]](xref:Microsoft.AspNetCore.Mvc.AreaAttribute) attribute is what deno
 
 [!code-csharp[](routing/samples/3.x/AreasRouting/Controllers/UsersController.cs)]
 
-The namespace of each controller is shown here for completeness. If the preceding controllers uses the same namespace, a compiler error would be generated. Class namespaces have no effect on MVC's routing.
+The namespace of each controller is shown here for completeness. If the preceding controllers used the same namespace, a compiler error would be generated. Class namespaces have no effect on MVC's routing.
 
 The first two controllers are members of areas, and only match when their respective area name is provided by the `area` route value. The third controller isn't a member of any area, and can only match when no value for `area` is provided by routing.
 
@@ -841,7 +832,7 @@ Public methods on a controller, except those with the [NonAction](xref:Microsoft
 ## Sample code
 
 * [!INCLUDE[](~/includes/MyDisplayRouteInfo.md)]
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/routing/samples/3.x) ([how to download](xref:index#how-to-download-a-sample))
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/routing/samples/3.x) ([how to download](xref:index#how-to-download-a-sample))
 
 [!INCLUDE[](~/includes/dbg-route.md)]
 

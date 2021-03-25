@@ -53,7 +53,7 @@ Copy the ASP.NET Core app to the server using a tool that integrates into the or
 
 A reverse proxy is a common setup for serving dynamic web apps. The reverse proxy terminates the HTTP request and forwards it to the ASP.NET app.
 
-A proxy server is one which forwards client requests to another server instead of fulfilling requests itself. A reverse proxy forwards to a fixed destination, typically on behalf of arbitrary clients. In this guide, Apache is configured as the reverse proxy running on the same server that Kestrel is serving the ASP.NET Core app.
+A proxy server forwards client requests to another server instead of fulfilling requests itself. A reverse proxy forwards to a fixed destination, typically on behalf of arbitrary clients. In this guide, Apache is configured as the reverse proxy running on the same server that Kestrel is serving the ASP.NET Core app.
 
 Because requests are forwarded by reverse proxy, use the [Forwarded Headers Middleware](xref:host-and-deploy/proxy-load-balancer) from the [Microsoft.AspNetCore.HttpOverrides](https://www.nuget.org/packages/Microsoft.AspNetCore.HttpOverrides/) package. The middleware updates the `Request.Scheme`, using the `X-Forwarded-Proto` header, so that redirect URIs and other security policies work correctly.
 
@@ -61,7 +61,7 @@ Any component that depends on the scheme, such as authentication, link generatio
 
 [!INCLUDE[](~/includes/ForwardedHeaders.md)]
 
-Invoke the <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*> method at the top of `Startup.Configure` before calling other middleware. Configure the middleware to forward the `X-Forwarded-For` and `X-Forwarded-Proto` headers:
+Invoke the <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders%2A> method at the top of `Startup.Configure` before calling other middleware. Configure the middleware to forward the `X-Forwarded-For` and `X-Forwarded-Proto` headers:
 
 ```csharp
 // using Microsoft.AspNetCore.HttpOverrides;
@@ -76,7 +76,7 @@ app.UseAuthentication();
 
 If no <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions> are specified to the middleware, the default headers to forward are `None`.
 
-Proxies running on loopback addresses (127.0.0.0/8, [::1]), including the standard localhost address (127.0.0.1), are trusted by default. If other trusted proxies or networks within the organization handle requests between the Internet and the web server, add them to the list of <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownProxies*> or <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownNetworks*> with <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions>. The following example adds a trusted proxy server at IP address 10.0.0.100 to the Forwarded Headers Middleware `KnownProxies` in `Startup.ConfigureServices`:
+Proxies running on loopback addresses (`127.0.0.0/8, [::1]`), including the standard localhost address (127.0.0.1), are trusted by default. If other trusted proxies or networks within the organization handle requests between the Internet and the web server, add them to the list of <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownProxies%2A> or <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownNetworks%2A> with <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions>. The following example adds a trusted proxy server at IP address 10.0.0.100 to the Forwarded Headers Middleware `KnownProxies` in `Startup.ConfigureServices`:
 
 ```csharp
 // using System.Net;
@@ -146,10 +146,20 @@ Create a configuration file, named *helloapp.conf*, for the app:
 </VirtualHost>
 ```
 
-The `VirtualHost` block can appear multiple times, in one or more files on a server. In the preceding configuration file, Apache accepts public traffic on port 80. The domain `www.example.com` is being served, and the `*.example.com` alias resolves to the same website. See [Name-based virtual host support](https://httpd.apache.org/docs/current/vhosts/name-based.html) for more information. Requests are proxied at the root to port 5000 of the server at 127.0.0.1. For bi-directional communication, `ProxyPass` and `ProxyPassReverse` are required. To change Kestrel's IP/port, see [Kestrel: Endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration).
+::: moniker range=">= aspnetcore-5.0"
+
+The `VirtualHost` block can appear multiple times, in one or more files on a server. In the preceding configuration file, Apache accepts public traffic on port 80. The domain `www.example.com` is being served, and the `*.example.com` alias resolves to the same website. For more information, see [Name-based virtual host support](https://httpd.apache.org/docs/current/vhosts/name-based.html). Requests are proxied at the root to port 5000 of the server at 127.0.0.1. For bi-directional communication, `ProxyPass` and `ProxyPassReverse` are required. To change Kestrel's IP/port, see [Kestrel: Endpoint configuration](xref:fundamentals/servers/kestrel/endpoints).
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+The `VirtualHost` block can appear multiple times, in one or more files on a server. In the preceding configuration file, Apache accepts public traffic on port 80. The domain `www.example.com` is being served, and the `*.example.com` alias resolves to the same website. For more information, see [Name-based virtual host support](https://httpd.apache.org/docs/current/vhosts/name-based.html). Requests are proxied at the root to port 5000 of the server at 127.0.0.1. For bi-directional communication, `ProxyPass` and `ProxyPassReverse` are required. To change Kestrel's IP/port, see [Kestrel: Endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration).
+
+::: moniker-end
 
 > [!WARNING]
-> Failure to specify a proper [ServerName directive](https://httpd.apache.org/docs/current/mod/core.html#servername) in the **VirtualHost** block exposes your app to security vulnerabilities. Subdomain wildcard binding (for example, `*.example.com`) doesn't pose this security risk if you control the entire parent domain (as opposed to `*.com`, which is vulnerable). See [rfc7230 section-5.4](https://tools.ietf.org/html/rfc7230#section-5.4) for more information.
+> Failure to specify a proper [ServerName directive](https://httpd.apache.org/docs/current/mod/core.html#servername) in the **VirtualHost** block exposes your app to security vulnerabilities. Subdomain wildcard binding (for example, `*.example.com`) doesn't pose this security risk if you control the entire parent domain (as opposed to `*.com`, which is vulnerable). For more information, see [rfc7230 section-5.4](https://tools.ietf.org/html/rfc7230#section-5.4).
 
 Logging can be configured per `VirtualHost` using `ErrorLog` and `CustomLog` directives. `ErrorLog` is the location where the server logs errors, and `CustomLog` sets the filename and format of log file. In this case, this is where request information is logged. There's one line for each request.
 
@@ -168,7 +178,7 @@ sudo systemctl enable httpd
 
 ## Monitor the app
 
-Apache is now setup to forward requests made to `http://localhost:80` to the ASP.NET Core app running on Kestrel at `http://127.0.0.1:5000`. However, Apache isn't set up to manage the Kestrel process. Use *systemd* and create a service file to start and monitor the underlying web app. *systemd* is an init system that provides many powerful features for starting, stopping, and managing processes.
+Apache is now set up to forward requests made to `http://localhost:80` to the ASP.NET Core app running on Kestrel at `http://127.0.0.1:5000`. However, Apache isn't set up to manage the Kestrel process. Use *systemd* and create a service file to start and monitor the underlying web app. *systemd* is an init system that provides many powerful features for starting, stopping, and managing processes.
 
 ### Create the service file
 
@@ -219,6 +229,7 @@ systemd-escape "<value-to-escape>"
 Colon (`:`) separators aren't supported in environment variable names. Use a double underscore (`__`) in place of a colon. The [Environment Variables configuration provider](xref:fundamentals/configuration/index#environment-variables-configuration-provider) converts double-underscores into colons when environment variables are read into configuration. In the following example, the connection string key `ConnectionStrings:DefaultConnection` is set into the service definition file as `ConnectionStrings__DefaultConnection`:
 
 ::: moniker-end
+
 ::: moniker range="< aspnetcore-3.0"
 
 Colon (`:`) separators aren't supported in environment variable names. Use a double underscore (`__`) in place of a colon. The [Environment Variables configuration provider](xref:fundamentals/configuration/index#environment-variables) converts double-underscores into colons when environment variables are read into configuration. In the following example, the connection string key `ConnectionStrings:DefaultConnection` is set into the service definition file as `ConnectionStrings__DefaultConnection`:
@@ -299,7 +310,7 @@ To configure data protection to persist and encrypt the key ring, see:
 sudo yum install firewalld -y
 ```
 
-Use `firewalld` to open only the ports needed for the app. In this case, port 80 and 443 are used. The following commands permanently set ports 80 and 443 to open:
+Use `firewalld` to open only the ports needed for the app. In this case, ports 80 and 443 are used. The following commands permanently set ports 80 and 443 to open:
 
 ```bash
 sudo firewall-cmd --add-port=80/tcp --permanent
@@ -333,10 +344,27 @@ The [dotnet run](/dotnet/core/tools/dotnet-run) command uses the app's *Properti
 
 Configure the app to use a certificate in development for the `dotnet run` command or development environment (F5 or Ctrl+F5 in Visual Studio Code) using one of the following approaches:
 
+::: moniker range=">= aspnetcore-5.0"
+
+* [Replace the default certificate from configuration](xref:fundamentals/servers/kestrel/endpoints#configuration) (*Recommended*)
+* [KestrelServerOptions.ConfigureHttpsDefaults](xref:fundamentals/servers/kestrel/endpoints#configurehttpsdefaultsactionhttpsconnectionadapteroptions)
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
 * [Replace the default certificate from configuration](xref:fundamentals/servers/kestrel#configuration) (*Recommended*)
 * [KestrelServerOptions.ConfigureHttpsDefaults](xref:fundamentals/servers/kestrel#configurehttpsdefaultsactionhttpsconnectionadapteroptions)
 
+::: moniker-end
+
 **Configure the reverse proxy for secure (HTTPS) client connections**
+
+> [!WARNING]
+> The security configuration in this section is a general configuration to be used as a starting point for further customization. We're unable to provide support for third-party tooling, servers, and operating systems. *Use the configuration in this section at your own risk.* For more information, access the following resources:
+>
+* [Apache SSL/TLS Encryption](https://httpd.apache.org/docs/trunk/ssl/) (Apache documentation)
+* [mozilla.org SSL Configuration Generator](https://ssl-config.mozilla.org/#server=apache)
 
 To configure Apache for HTTPS, the *mod_ssl* module is used. When the *httpd* module was installed, the *mod_ssl* module was also installed. If it wasn't installed, use `yum` to add it to the configuration.
 
@@ -350,35 +378,46 @@ To enforce HTTPS, install the `mod_rewrite` module to enable URL rewriting:
 sudo yum install mod_rewrite
 ```
 
-Modify the *helloapp.conf* file to enable URL rewriting and secure communication on port 443:
+Modify the *helloapp.conf* file to enable secure communication on port 443.
+
+The following example doesn't configure the server to redirect insecure requests. We recommend using HTTPS Redirection Middleware. For more information, see <xref:security/enforcing-ssl>.
+
+> [!NOTE]
+> For development environments where the server configuration handles secure redirection instead of HTTPS Redirection Middleware, we recommend using temporary redirects (302) rather than permanent redirects (301). Link caching can cause unstable behavior in development environments.
+
+Adding a `Strict-Transport-Security` (HSTS) header ensures all subsequent requests made by the client are over HTTPS. For guidance on setting the `Strict-Transport-Security` header, see <xref:security/enforcing-ssl#http-strict-transport-security-protocol-hsts>.
 
 ```
 <VirtualHost *:*>
     RequestHeader set "X-Forwarded-Proto" expr=%{REQUEST_SCHEME}
 </VirtualHost>
 
-<VirtualHost *:80>
-    RewriteEngine On
-    RewriteCond %{HTTPS} !=on
-    RewriteRule ^/?(.*) https://%{SERVER_NAME}/$1 [R,L]
-</VirtualHost>
-
 <VirtualHost *:443>
-    ProxyPreserveHost On
-    ProxyPass / http://127.0.0.1:5000/
-    ProxyPassReverse / http://127.0.0.1:5000/
-    ErrorLog /var/log/httpd/helloapp-error.log
-    CustomLog /var/log/httpd/helloapp-access.log common
-    SSLEngine on
-    SSLProtocol all -SSLv2
-    SSLCipherSuite ALL:!ADH:!EXPORT:!SSLv2:!RC4+RSA:+HIGH:+MEDIUM:!LOW:!RC4
-    SSLCertificateFile /etc/pki/tls/certs/localhost.crt
+    Protocols             h2 http/1.1
+    ProxyPreserveHost     On
+    ProxyPass             / http://127.0.0.1:5000/
+    ProxyPassReverse      / http://127.0.0.1:5000/
+    ErrorLog              /var/log/httpd/helloapp-error.log
+    CustomLog             /var/log/httpd/helloapp-access.log common
+    SSLEngine             on
+    SSLProtocol           all -SSLv3 -TLSv1 -TLSv1.1
+    SSLHonorCipherOrder   off
+    SSLCompression        off
+    SSLSessionTickets     on
+    SSLUseStapling        off
+    SSLCertificateFile    /etc/pki/tls/certs/localhost.crt
     SSLCertificateKeyFile /etc/pki/tls/private/localhost.key
+    SSLCipherSuite        ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384
 </VirtualHost>
 ```
 
 > [!NOTE]
 > This example is using a locally-generated certificate. **SSLCertificateFile** should be the primary certificate file for the domain name. **SSLCertificateKeyFile** should be the key file generated when CSR is created. **SSLCertificateChainFile** should be the intermediate certificate file (if any) that was supplied by the certificate authority.
+>
+> Apache HTTP Server version 2.4.43 or newer is required in order to operate a TLS 1.3 web server with OpenSSL 1.1.1.
+
+> [NOTE]
+> The preceding example disables Online Certificate Status Protocol (OCSP) Stapling. For more information and guidance on enabling OCSP, see [OCSP Stapling (Apache documentation)](https://httpd.apache.org/docs/trunk/ssl/ssl_howto.html#ocspstapling).
 
 Save the file and test the configuration:
 
@@ -400,7 +439,7 @@ After upgrading the shared framework on the server, restart the ASP.NET Core app
 
 ### Additional headers
 
-In order to secure against malicious attacks, there are a few headers that should either be modified or added. Ensure that the `mod_headers` module is installed:
+To secure against malicious attacks, there are a few headers that should either be modified or added. Ensure that the `mod_headers` module is installed:
 
 ```bash
 sudo yum install mod_headers
@@ -436,7 +475,7 @@ Add the line `Header set X-Content-Type-Options "nosniff"`. Save the file. Resta
 
 ### Load Balancing
 
-This example shows how to setup and configure Apache on CentOS 7 and Kestrel on the same instance machine. In order to not have a single point of failure; using *mod_proxy_balancer* and modifying the **VirtualHost** would allow for managing multiple instances of the web apps behind the Apache proxy server.
+This example shows how to setup and configure Apache on CentOS 7 and Kestrel on the same instance machine. To not have a single point of failure; using *mod_proxy_balancer* and modifying the **VirtualHost** would allow for managing multiple instances of the web apps behind the Apache proxy server.
 
 ```bash
 sudo yum install mod_proxy_balancer

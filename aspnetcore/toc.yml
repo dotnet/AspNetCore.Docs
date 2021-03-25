@@ -57,8 +57,6 @@
         - name: MVC
           displayName: tutorial
           items:
-            - name: Overview
-              uid: tutorials/first-mvc-app/index
             - name: Get started
               uid: tutorials/first-mvc-app/start-mvc
             - name: Add a controller
@@ -107,9 +105,9 @@
         - name: SignalR with TypeScript
           displayName: tutorial
           uid: tutorials/signalr-typescript-webpack
-        - name: SignalR with Blazor WebAssembly
+        - name: SignalR with Blazor
           displayName: tutorial
-          uid: tutorials/signalr-blazor-webassembly
+          uid: tutorials/signalr-blazor
     - name: Remote Procedure Call apps
       items:
         - name: Get started with a gRPC service
@@ -262,8 +260,6 @@
           uid: mvc/overview
         - name: Tutorial
           items:
-            - name: Overview
-              uid: tutorials/first-mvc-app/index
             - name: Get started
               uid: tutorials/first-mvc-app/start-mvc
             - name: Add a controller
@@ -312,8 +308,8 @@
           items:
             - name: Build a Blazor todo list app
               uid: tutorials/build-a-blazor-app
-            - name: SignalR with Blazor WebAssembly
-              uid: tutorials/signalr-blazor-webassembly
+            - name: SignalR with Blazor
+              uid: tutorials/signalr-blazor
         - name: Project structure
           uid: blazor/project-structure
         - name: Fundamentals
@@ -330,8 +326,10 @@
               uid: blazor/fundamentals/logging
             - name: Handle errors
               uid: blazor/fundamentals/handle-errors
-            - name: Additional scenarios
-              uid: blazor/fundamentals/additional-scenarios
+            - name: SignalR
+              uid: blazor/fundamentals/signalr
+            - name: Static files
+              uid: blazor/fundamentals/static-files
         - name: Components
           items:
             - name: Overview
@@ -344,6 +342,8 @@
               uid: blazor/components/event-handling
             - name: Lifecycle
               uid: blazor/components/lifecycle
+            - name: Rendering
+              uid: blazor/components/rendering
             - name: Component virtualization
               uid: blazor/components/virtualization
             - name: Templated components
@@ -442,6 +442,8 @@
               href: blazor/security/webassembly/index.md#authentication-component
             - name: AuthorizeView
               href: blazor/security/index.md#authorizeview-component
+            - name: CascadingValue
+              href: blazor/components/cascading-values-and-parameters.md#cascadingvalue-component
             - name: InputCheckbox
               href: blazor/forms-validation.md#built-in-forms-components
             - name: InputDate
@@ -460,12 +462,14 @@
               href: blazor/forms-validation.md#built-in-forms-components
             - name: InputTextArea
               href: blazor/forms-validation.md#built-in-forms-components
+            - name: LayoutView
+              href: blazor/layouts.md#apply-a-layout-to-arbitrary-content-layoutview-component
             - name: MainLayout
               href: blazor/layouts.md#mainlayout-component
             - name: NavLink
-              href: blazor/fundamentals/routing.md#navlink-component
+              href: blazor/fundamentals/routing.md#navlink-and-navmenu-components
             - name: NavMenu
-              href: blazor/fundamentals/routing.md#navlink-component
+              href: blazor/fundamentals/routing.md#navlink-and-navmenu-components
             - name: Router
               href: blazor/fundamentals/routing.md#route-templates
             - name: Virtualize
@@ -627,8 +631,8 @@
           uid: tutorials/signalr
         - name: SignalR with TypeScript
           uid: tutorials/signalr-typescript-webpack
-        - name: SignalR with Blazor WebAssembly
-          uid: tutorials/signalr-blazor-webassembly
+        - name: SignalR with Blazor
+          uid: tutorials/signalr-blazor
     - name: Samples
       href: https://github.com/aspnet/SignalR-samples
       displayName: signalr
@@ -719,9 +723,9 @@
       displayName: signalr, specs
       items:
         - name: Hub protocol
-          href: https://github.com/aspnet/AspNetCore/blob/master/src/SignalR/docs/specs/HubProtocol.md
+          href: https://github.com/aspnet/AspNetCore/blob/main/src/SignalR/docs/specs/HubProtocol.md
         - name: Transport protocols
-          href: https://github.com/aspnet/AspNetCore/blob/master/src/SignalR/docs/specs/TransportProtocols.md
+          href: https://github.com/aspnet/AspNetCore/blob/main/src/SignalR/docs/specs/TransportProtocols.md
 - name: Remote Procedure Call apps
   items:
     - name: Introduction to gRPC services
@@ -748,8 +752,14 @@
           uid: grpc/clientfactory
         - name: Deadlines and cancellation
           uid: grpc/deadlines-cancellation
+        - name: Transient fault handling
+          uid: grpc/retries
+        - name: .NET Standard 2.0 support
+          uid: grpc/netstandard
     - name: gRPC services with ASP.NET Core
       uid: grpc/aspnetcore
+    - name: Supported platforms
+      uid: grpc/supported-platforms
     - name: Use gRPC in browser apps
       uid: grpc/browser
     - name: Configuration
@@ -766,6 +776,8 @@
       uid: grpc/interprocess
     - name: Create JSON Web APIs from gRPC
       uid: grpc/httpapi
+    - name: Code-first gRPC services and clients
+      uid: grpc/code-first
     - name: Manage Protobuf references with dotnet-grpc
       uid: grpc/dotnet-grpc
     - name: Test gRPC services with gRPCurl
@@ -968,8 +980,29 @@
           displayName: deploy, publish
           uid: host-and-deploy/iis/protocols
     - name: Kestrel
-      uid: fundamentals/servers/kestrel
       displayName: deploy, publish, server
+      items:
+        - name: Overview
+          displayName: deploy, publish, server
+          uid: fundamentals/servers/kestrel
+        - name: Endpoints
+          displayName: deploy, publish, server
+          uid: fundamentals/servers/kestrel/endpoints
+        - name: Options
+          displayName: deploy, publish, server
+          uid: fundamentals/servers/kestrel/options
+        - name: HTTP/2
+          displayName: deploy, publish, server
+          uid: fundamentals/servers/kestrel/http2
+        - name: When to use a reverse proxy
+          displayName: deploy, publish, server
+          uid: fundamentals/servers/kestrel/when-to-use-a-reverse-proxy
+        - name: Host filtering
+          displayName: deploy, publish, server
+          uid: fundamentals/servers/kestrel/host-filtering
+        - name: Request draining
+          displayName: deploy, publish, server
+          uid: fundamentals/servers/kestrel/request-draining
     - name: HTTP.sys
       displayName: deploy, publish, server
       uid: fundamentals/servers/httpsys
@@ -999,7 +1032,7 @@
           href: /visualstudio/containers/vs-azure-tools-docker-hosting-web-apps-in-docker
         - name: Sample Docker images
           displayName: deploy, publish, docker
-          href: https://github.com/dotnet/dotnet-docker/blob/master/samples/aspnetapp/README.md
+          href: https://github.com/dotnet/dotnet-docker/blob/main/samples/aspnetapp/README.md
     - name: Proxy and load balancer configuration
       displayName: deploy, publish
       uid: host-and-deploy/proxy-load-balancer
@@ -1339,6 +1372,9 @@
       uid: fundamentals/middleware/extensibility-third-party-container
 - name: Migration
   items:
+    - name: 5.0 to 6.0
+      displayName: migrate, migration
+      uid: migration/50-to-60
     - name: 3.1 to 5.0
       displayName: migrate, migration
       uid: migration/31-to-50
@@ -1386,4 +1422,4 @@
 - name: API reference
   href: /dotnet/api/?view=aspnetcore-2.2
 - name: Contribute
-  href: https://github.com/dotnet/AspNetCore.Docs/blob/master/CONTRIBUTING.md
+  href: https://github.com/dotnet/AspNetCore.Docs/blob/main/CONTRIBUTING.md

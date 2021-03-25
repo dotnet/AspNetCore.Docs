@@ -1,3 +1,6 @@
+---
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+---
 ::: moniker range="= aspnetcore-2.0"
 
 The ASP.NET Core 2.0 version of this tutorial can be found in [this PDF file](https://webpifeed.blob.core.windows.net/webpifeed/Partners/PDF-6-18-18.pdf).

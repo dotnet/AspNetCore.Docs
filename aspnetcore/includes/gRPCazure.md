@@ -1,2 +1,5 @@
+---
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+---
 > [!WARNING]
-> [ASP.NET Core gRPC](xref:grpc/index) is not currently supported on Azure App Service or IIS. The HTTP/2 implementation of Http.Sys does not support HTTP response trailing headers which gRPC relies on. For more information, see [this GitHub issue](https://github.com/dotnet/AspNetCore/issues/9020).
+> [ASP.NET Core gRPC](xref:grpc/index) has extra requirements for being used with Azure App Service or IIS. For more information on where gRPC can be used, see <xref:grpc/supported-platforms>.

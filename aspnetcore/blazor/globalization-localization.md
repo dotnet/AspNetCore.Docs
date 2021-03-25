@@ -11,8 +11,6 @@ uid: blazor/globalization-localization
 ---
 # ASP.NET Core Blazor globalization and localization
 
-By [Luke Latham](https://github.com/guardrex) and [Daniel Roth](https://github.com/danroth27)
-
 Razor components can be made accessible to users in multiple cultures and languages. The following .NET globalization and localization scenarios are available:
 
 * .NET's resources system

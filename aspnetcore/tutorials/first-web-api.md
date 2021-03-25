@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to build a web API with ASP.NET Core.
 ms.author: riande
 ms.custom: mvc, devx-track-js
-ms.date: 08/13/2020
+ms.date: 02/04/2021
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR, Models]
 uid: tutorials/first-web-api
 ---
@@ -65,7 +65,7 @@ The following diagram shows the design of the app.
 # [Visual Studio](#tab/visual-studio)
 
 * From the **File** menu, select **New** > **Project**.
-* Select the **ASP.NET Core Web Application** template and click **Next**.
+* Select the **ASP.NET Core Web API** template and click **Next**.
 * Name the project *TodoApi* and click **Create**.
 * In the **Create a new ASP.NET Core Web Application** dialog, confirm that **.NET Core** and **ASP.NET Core 5.0** are selected. Select the **API** template and click **Create**.
 
@@ -80,7 +80,6 @@ The following diagram shows the design of the app.
    ```dotnetcli
    dotnet new webapi -o TodoApi
    cd TodoApi
-   dotnet add package Microsoft.EntityFrameworkCore.SqlServer
    dotnet add package Microsoft.EntityFrameworkCore.InMemory
    code -r ../TodoApi
    ```
@@ -110,10 +109,9 @@ The following diagram shows the design of the app.
 
 [!INCLUDE[](~/includes/mac-terminal-access.md)]
 
-Open a command terminal in the project folder and run the following commands:
+Open a command terminal in the project folder and run the following command:
 
    ```dotnetcli
-   dotnet add package Microsoft.EntityFrameworkCore.SqlServer
    dotnet add package Microsoft.EntityFrameworkCore.InMemory
    ```
 
@@ -152,6 +150,8 @@ The Swagger page `/swagger/index.html` is displayed. Select **GET** > **Try it o
 * The URL to test the WeatherForecast API.
 * The response code, body, and headers.
 * A drop down list box with media types and the example value and schema.
+
+If the Swagger page doesn't appear, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/21647).
 
 <!-- Review: Do we care the IE generates several errors. It shows the data, but with  Unrecognized response type; displaying content as text.
 -->
@@ -253,13 +253,10 @@ The *database context* is the main class that coordinates Entity Framework funct
 ### Add NuGet packages
 
 * From the **Tools** menu, select **NuGet Package Manager > Manage NuGet Packages for Solution**.
-* Select the **Browse** tab, and then enter **Microsoft.EntityFrameworkCore.SqlServer** in the search box.
-<!-- https://github.com/dotnet/AspNetCore.Docs/issues/19782 Delete this line at RTM -->
-* Select **Microsoft.EntityFrameworkCore.SqlServer** in the left pane.
+* Select the **Browse** tab, and then enter `Microsoft.EntityFrameworkCore.InMemory` in the search box.
+* Select `Microsoft.EntityFrameworkCore.InMemory` in the left pane.
 * Select the **Project** check box in the right pane and then select **Install**.
-* Use the preceding instructions to add the **Microsoft.EntityFrameworkCore.InMemory** NuGet package.
 
-<!-- https://github.com/dotnet/AspNetCore.Docs/issues/19782 Update this image at RTM -->
 ![NuGet Package Manager](first-web-api/_static/5/vsNuGet.png)
 
 ## Add the TodoContext database context
@@ -311,8 +308,8 @@ Run the following commands:
 ```dotnetcli
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
 dotnet add package Microsoft.EntityFrameworkCore.Design
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer
 dotnet tool install -g dotnet-aspnet-codegenerator
-dotnet tool update -g dotnet-aspnet-codegenerator
 dotnet aspnet-codegenerator controller -name TodoItemsController -async -api -m TodoItem -dc TodoContext -outDir Controllers
 ```
 
@@ -338,7 +335,7 @@ When the `[action]` token isn't in the route template, the [action](xref:mvc/con
 
 ## Update the PostTodoItem create method
 
-Replace the return statement in the `PostTodoItem` to use the [nameof](/dotnet/csharp/language-reference/operators/nameof) operator:
+Update the return statement in the `PostTodoItem` to use the [nameof](/dotnet/csharp/language-reference/operators/nameof) operator:
 
 [!code-csharp[](first-web-api/samples/5.x/TodoApi/Controllers/TodoItemsController.cs?name=snippet_Create)]
 
@@ -604,7 +601,6 @@ The following diagram shows the design of the app.
    ```dotnetcli
    dotnet new webapi -o TodoApi
    cd TodoApi
-   dotnet add package Microsoft.EntityFrameworkCore.SqlServer
    dotnet add package Microsoft.EntityFrameworkCore.InMemory
    code -r ../TodoApi
    ```
@@ -634,10 +630,9 @@ The following diagram shows the design of the app.
 
 [!INCLUDE[](~/includes/mac-terminal-access.md)]
 
-Open a command terminal in the project folder and run the following commands:
+Open a command terminal in the project folder and run the following command:
 
    ```dotnetcli
-   dotnet add package Microsoft.EntityFrameworkCore.SqlServer
    dotnet add package Microsoft.EntityFrameworkCore.InMemory
    ```
 
@@ -747,10 +742,9 @@ The *database context* is the main class that coordinates Entity Framework funct
 ### Add NuGet packages
 
 * From the **Tools** menu, select **NuGet Package Manager > Manage NuGet Packages for Solution**.
-* Select the **Browse** tab, and then enter **Microsoft.EntityFrameworkCore.SqlServer** in the search box.
-* Select **Microsoft.EntityFrameworkCore.SqlServer** in the left pane.
+* Select the **Browse** tab, and then enter **Microsoft.EntityFrameworkCore.InMemory** in the search box.
+* Select **Microsoft.EntityFrameworkCore.InMemory** in the left pane.
 * Select the **Project** check box in the right pane and then select **Install**.
-* Use the preceding instructions to add the **Microsoft.EntityFrameworkCore.InMemory** NuGet package.
 
 ![NuGet Package Manager](first-web-api/_static/vs3NuGet.png)
 
@@ -1480,7 +1474,7 @@ Deleting a to-do item is accomplished by setting the `type` on the AJAX call to 
 
 ## Additional resources 2.1
 
-[View or download sample code for this tutorial](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/tutorials/first-web-api/samples). See [how to download](xref:index#how-to-download-a-sample).
+[View or download sample code for this tutorial](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/first-web-api/samples). See [how to download](xref:index#how-to-download-a-sample).
 
 For more information, see the following resources:
 
@@ -1492,3 +1486,4 @@ For more information, see the following resources:
 * <xref:host-and-deploy/azure-apps/index>
 * <xref:host-and-deploy/index>
 * [YouTube version of this tutorial](https://www.youtube.com/watch?v=TTkhEyGBfAk)
+* [Microsoft Learn: Create a web API with ASP.NET Core](/learn/modules/build-web-api-aspnet-core/)

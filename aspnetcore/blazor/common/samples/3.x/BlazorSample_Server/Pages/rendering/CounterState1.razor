@@ -1,0 +1,31 @@
+@page "/counter-state-1"
+
+<p>
+    Current count: @currentCount
+</p>
+
+<p>
+    <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+</p>
+
+@code {
+    private int currentCount = 0;
+
+    private async Task IncrementCount()
+    {
+        currentCount++;
+        // Renders here automatically
+
+        await Task.Delay(1000);
+        currentCount++;
+        StateHasChanged();
+
+        await Task.Delay(1000);
+        currentCount++;
+        StateHasChanged();
+
+        await Task.Delay(1000);
+        currentCount++;
+        // Renders here automatically
+    }
+}

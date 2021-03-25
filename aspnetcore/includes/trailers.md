@@ -1,4 +1,7 @@
-HTTP Trailers are similar to HTTP Headers, except they are sent after the response body is sent. For IIS and HTTP.SYS, only HTTP/2 response trailers are supported.
+---
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+---
+HTTP Trailers are similar to HTTP Headers, except they are sent after the response body is sent. For IIS and HTTP.sys, only HTTP/2 response trailers are supported.
 
 ```csharp
 if (httpContext.Response.SupportsTrailers())

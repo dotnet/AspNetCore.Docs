@@ -1,5 +1,3 @@
-#define First
-
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -61,7 +59,7 @@ namespace StaticFileAuth
 
             app.UseHttpsRedirection();
 
-            // wwwroot css, JavaScrip, and images don't require authentication.
+            // wwwroot css, JavaScript, and images don't require authentication.
             app.UseStaticFiles();   
 
             app.UseRouting();

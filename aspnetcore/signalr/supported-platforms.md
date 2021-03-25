@@ -5,7 +5,7 @@ description: Learn about the supported platforms for ASP.NET Core SignalR.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc, devx-track-js
-ms.date: 01/16/2020
+ms.date: 01/21/2021
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: signalr/supported-platforms
 ---
@@ -27,6 +27,8 @@ The [JavaScript client](xref:signalr/javascript-client) runs on NodeJS 8 and lat
 | Mozilla Firefox                  | Current&dagger; |
 
 &dagger;*Current* refers to the latest version of the browser.
+
+The JavaScript client doesn't support Internet Explorer and other older browsers. The client might have unexpected behavior and errors on unsupported browsers.
 
 ## .NET client
 

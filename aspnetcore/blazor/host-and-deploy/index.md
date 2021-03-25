@@ -11,8 +11,6 @@ uid: blazor/host-and-deploy/index
 ---
 # Host and deploy ASP.NET Core Blazor
 
-By [Luke Latham](https://github.com/guardrex), [Rainer Stropek](https://www.timecockpit.com), and [Daniel Roth](https://github.com/danroth27)
-
 ## Publish the app
 
 Apps are published for deployment in Release configuration.

@@ -11,8 +11,6 @@ uid: blazor/security/webassembly/index
 ---
 # Secure ASP.NET Core Blazor WebAssembly
 
-By [Javier Calvarro Nelson](https://github.com/javiercn)
-
 Blazor WebAssembly apps are secured in the same manner as Single Page Applications (SPAs). There are several approaches for authenticating users to SPAs, but the most common and comprehensive approach is to use an implementation based on the [OAuth 2.0 protocol](https://oauth.net/), such as [OpenID Connect (OIDC)](https://openid.net/connect/).
 
 ## Authentication library
@@ -35,7 +33,7 @@ Other options for authenticating SPAs exist, such as the use of SameSite cookies
 
 The [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication) library offers several primitives to implement authentication and authorization using OIDC. In broad terms, authentication works as follows:
 
-* When an anonymous user selects the login button or requests a page with the [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute applied, the user is redirected to the app's login page (`/authentication/login`).
+* When an anonymous user selects the login button or requests a page with the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) applied, the user is redirected to the app's login page (`/authentication/login`).
 * In the login page, the authentication library prepares for a redirect to the authorization endpoint. The authorization endpoint is outside of the Blazor WebAssembly app and can be hosted at a separate origin. The endpoint is responsible for determining whether the user is authenticated and for issuing one or more tokens in response. The authentication library provides a login callback to receive the authentication response.
   * If the user isn't authenticated, the user is redirected to the underlying authentication system, which is usually ASP.NET Core Identity.
   * If the user was already authenticated, the authorization endpoint generates the appropriate tokens and redirects the browser back to the login callback endpoint (`/authentication/login-callback`).
@@ -81,7 +79,7 @@ Apply the [`[Authorize]` attribute](xref:blazor/security/index#authorize-attribu
 
 Refresh tokens can't be secured client-side in Blazor WebAssembly apps. Therefore, refresh tokens shouldn't be sent to the app for direct use.
 
-Refresh tokens can be maintained and used by the server-side app in a Hosted Blazor WebAssembly solution to access third-party APIs. For more information, see <xref:blazor/security/webassembly/additional-scenarios#authenticate-users-with-a-third-party-provider-and-call-protected-apis-on-the-host-server-and-the-third-party>.
+Refresh tokens can be maintained and used by the server-side app in a hosted Blazor WebAssembly solution to access third-party APIs. For more information, see <xref:blazor/security/webassembly/additional-scenarios#authenticate-users-with-a-third-party-provider-and-call-protected-apis-on-the-host-server-and-the-third-party>.
 
 ## Establish claims for users
 
@@ -89,6 +87,18 @@ Apps often require claims for users based on a web API call to a server. For exa
 
 * [Additional scenarios: Customize the user](xref:blazor/security/webassembly/additional-scenarios#customize-the-user)
 * <xref:blazor/security/webassembly/aad-groups-roles>
+
+## Azure App Service on Linux with Identity Server
+
+Specify the issuer explicitly when deploying to Azure App Service on Linux with Identity Server. For more information, see <xref:security/authentication/identity/spa#azure-app-service-on-linux>.
+
+## Windows Authentication
+
+We don't recommend using Windows Authentication with Blazor Webassembly or with any other SPA framework. We recommend using token-based protocols instead of Windows Authentication, such as OIDC with Active Directory Federation Services (ADFS).
+
+If Windows Authentication is used with Blazor Webassembly or with any other SPA framework, additional measures are required to protect the app from cross-site request forgery (CSRF) tokens. The same concerns that apply to cookies apply to Windows Authentication with the addition that Windows Authentication doesn't offer any mechanism to prevent sharing of the authentication context across origins. Apps using Windows Authentication without additional protection from CSRF should at least be restricted to an organization's intranet and not be used on the Internet.
+
+For for information, see <xref:security/anti-request-forgery>.
 
 ## Implementation guidance
 
@@ -121,3 +131,9 @@ Further configuration guidance is found in the following articles:
 For further configuration guidance, see <xref:blazor/security/webassembly/additional-scenarios>.
 
 ::: moniker-end
+
+## Additional resources
+
+* <xref:host-and-deploy/proxy-load-balancer>: Includes guidance on:
+  * Using Forwarded Headers Middleware to preserve HTTPS scheme information across proxy servers and internal networks.
+  * Additional scenarios and use cases, including manual scheme configuration, request path changes for correct request routing, and forwarding the request scheme for Linux and non-IIS reverse proxies.

@@ -1,14 +1,16 @@
 ---
-title: gRPC client factory integration in .NET Core
+title: gRPC client factory integration in .NET
 author: jamesnk
 description: Learn how to create gRPC clients using the client factory.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
-ms.date: 05/26/2020
+ms.date: 03/19/2021
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: grpc/clientfactory
 ---
-# gRPC client factory integration in .NET Core
+# gRPC client factory integration in .NET
+
+By [James Newton-King](https://twitter.com/jamesnk)
 
 gRPC integration with `HttpClientFactory` offers a centralized way to create gRPC clients. It can be used as an alternative to [configuring stand-alone gRPC client instances](xref:grpc/client). Factory integration is available in the [Grpc.Net.ClientFactory](https://www.nuget.org/packages/Grpc.Net.ClientFactory) NuGet package.
 
@@ -56,9 +58,9 @@ public class AggregatorService : Aggregator.AggregatorBase
 }
 ```
 
-## Configure HttpClient
+## Configure HttpHandler
 
-`HttpClientFactory` creates the `HttpClient` used by the gRPC client. Standard `HttpClientFactory` methods can be used to add outgoing request middleware or to configure the underlying `HttpClientHandler` of the `HttpClient`:
+`HttpClientFactory` creates the `HttpMessageHandler` used by the gRPC client. Standard `HttpClientFactory` methods can be used to add outgoing request middleware or to configure the underlying `HttpClientHandler` of the `HttpClient`:
 
 ```csharp
 services
@@ -122,9 +124,10 @@ services
     .EnableCallContextPropagation(o => o.SuppressContextNotFoundErrors = true);
 ```
 
-For more information about deadlines and RPC cancellation, see [RPC life cycle](https://www.grpc.io/docs/guides/concepts/#rpc-life-cycle).
+For more information about deadlines and RPC cancellation, see <xref:grpc/deadlines-cancellation>.
 
 ## Additional resources
 
 * <xref:grpc/client>
+* <xref:grpc/deadlines-cancellation>
 * <xref:fundamentals/http-requests>

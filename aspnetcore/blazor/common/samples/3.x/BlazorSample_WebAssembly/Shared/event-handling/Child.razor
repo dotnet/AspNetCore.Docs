@@ -1,0 +1,16 @@
+<p>
+    <button @onclick="OnClickCallback">
+        Trigger a Parent component method
+    </button>
+</p>
+
+@code {
+    [Parameter]
+    public string Title { get; set; }
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    public EventCallback<MouseEventArgs> OnClickCallback { get; set; }
+}

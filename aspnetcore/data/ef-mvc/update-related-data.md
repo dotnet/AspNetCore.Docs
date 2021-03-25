@@ -18,7 +18,7 @@ The following illustrations show some of the pages that you'll work with.
 
 ![Course Edit page](update-related-data/_static/course-edit.png)
 
-![Instructor Edit page](update-related-data/_static/instructor-edit-courses.png)
+![Edit Instructor page](update-related-data/_static/instructor-edit-courses.png)
 
 In this tutorial, you:
 
@@ -75,7 +75,7 @@ To optimize performance of the Course Details and Delete pages, add `AsNoTrackin
 
 In *Views/Courses/Create.cshtml*, add a "Select Department" option to the **Department** drop-down list, change the caption from **DepartmentID** to **Department**, and add a validation message.
 
-[!code-cshtml[](intro/samples/cu/Views/Courses/Create.cshtml?highlight=2-6&range=29-34)]
+[!code-cshtml[](intro/samples/cu/Views/Courses/Create.cshtml?highlight=2-6&range=29-35)]
 
 In *Views/Courses/Edit.cshtml*, make the same change for the Department field that you just did in *Create.cshtml*.
 
@@ -297,7 +297,7 @@ As explained in the [CRUD tutorial](crud.md), the Entity Framework implicitly im
 
 ## Get the code
 
-[Download or view the completed application.](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)
+[Download or view the completed application.](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-mvc/intro/samples/cu-final)
 
 ## Next steps
 

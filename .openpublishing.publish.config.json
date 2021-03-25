@@ -26,7 +26,7 @@
   ],
   "notification_subscribers": [],
   "branches_to_filter": [],
-  "git_repository_branch_open_to_public_contributors": "master",
+  "git_repository_branch_open_to_public_contributors": "main",
   "skip_source_output_uploading": false,
   "need_preview_pull_request": true,
   "need_pr_comments": false,
@@ -42,6 +42,12 @@
       "url": "https://github.com/Microsoft/templates.docs.msft.pdf",
       "branch": "master",
       "branch_mapping": {}
+    },
+    {
+      "path_to_root": "xamarin-forms-samples",
+      "url": "https://github.com/xamarin/xamarin-forms-samples",
+      "branch": "master",
+      "branch_mapping": {}
     }
   ],
   "branch_target_mapping": {
@@ -49,7 +55,7 @@
       "Publish",
       "Pdf"
     ],
-    "master": [
+    "main": [
       "Publish",
       "Pdf"
     ]

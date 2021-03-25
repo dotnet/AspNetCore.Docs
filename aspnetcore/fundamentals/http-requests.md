@@ -5,7 +5,7 @@ description: Learn about using the IHttpClientFactory interface to manage logica
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 02/09/2020
+ms.date: 1/21/2021
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/http-requests
 ---
@@ -13,7 +13,7 @@ uid: fundamentals/http-requests
 
 ::: moniker range=">= aspnetcore-3.0"
 
-By [Glenn Condron](https://github.com/glennc), [Ryan Nowak](https://github.com/rynowak),  [Steve Gordon](https://github.com/stevejgordon), [Rick Anderson](https://twitter.com/RickAndMSFT), and [Kirk Larkin](https://github.com/serpent5)
+By [Kirk Larkin](https://github.com/serpent5), [Steve Gordon](https://github.com/stevejgordon), [Glenn Condron](https://github.com/glennc), and [Ryan Nowak](https://github.com/rynowak).
 
 An <xref:System.Net.Http.IHttpClientFactory> can be registered and used to configure and create <xref:System.Net.Http.HttpClient> instances in an app. `IHttpClientFactory` offers the following benefits:
 
@@ -22,7 +22,7 @@ An <xref:System.Net.Http.IHttpClientFactory> can be registered and used to confi
 * Manages the pooling and lifetime of underlying `HttpClientMessageHandler` instances. Automatic management avoids common DNS (Domain Name System) problems that occur when manually managing `HttpClient` lifetimes.
 * Adds a configurable logging experience (via `ILogger`) for all requests sent through clients created by the factory.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/http-requests/samples) ([how to download](xref:index#how-to-download-a-sample)).
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/http-requests/samples) ([how to download](xref:index#how-to-download-a-sample)).
 
 The sample code in this topic version uses <xref:System.Text.Json> to deserialize JSON content returned in HTTP responses. For samples that use `Json.NET` and `ReadAsAsync<T>`, use the version selector to select a 2.x version of this topic.
 
@@ -41,7 +41,7 @@ The best approach depends upon the app's requirements.
 
 `IHttpClientFactory` can be registered by calling `AddHttpClient`:
 
-[!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup.cs?name=snippet1)]
+[!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup.cs?name=snippet1&highlight=13)]
 
 An `IHttpClientFactory` can be requested using [dependency injection (DI)](xref:fundamentals/dependency-injection). The following code uses `IHttpClientFactory` to create an `HttpClient` instance:
 
@@ -221,16 +221,15 @@ To learn more about using different HTTP verbs with `HttpClient`, see <xref:Syst
 
 `HttpClient` has the concept of delegating handlers that can be linked together for outgoing HTTP requests. `IHttpClientFactory`:
 
-* Simplifies defining the handlers to apply for each named client.
-* Supports registration and chaining of multiple handlers to build an outgoing request middleware pipeline. Each of these handlers is able to perform work before and after the outgoing request. This pattern:
-
-  * Is similar to the inbound middleware pipeline in ASP.NET Core.
-  * Provides a mechanism to manage cross-cutting concerns around HTTP requests, such as:
-
-    * caching
-    * error handling
-    * serialization
-    * logging
+  * Simplifies defining the handlers to apply for each named client.
+  * Supports registration and chaining of multiple handlers to build an outgoing request   middleware pipeline. Each of these handlers is able to perform work before and after the   outgoing request. This pattern:
+  
+    * Is similar to the inbound middleware pipeline in ASP.NET Core.
+    * Provides a mechanism to manage cross-cutting concerns around HTTP requests, such as:
+      * caching
+      * error handling
+      * serialization
+      * logging
 
 To create a delegating handler:
 
@@ -245,13 +244,31 @@ More than one handler can be added to the configuration for an `HttpClient` with
 
 [!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup2.cs?name=snippet1)]
 
-In the preceding code, the `ValidateHeaderHandler` is registered with DI. The `IHttpClientFactory` creates a separate DI scope for each handler. Handlers can depend upon services of any scope. Services that handlers depend upon are disposed when the handler is disposed.
-
-Once registered, <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler*> can be called, passing in the type for the handler.
+In the preceding code, the `ValidateHeaderHandler` is registered with DI. Once registered, <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler*> can be called, passing in the type for the handler.
 
 Multiple handlers can be registered in the order that they should execute. Each handler wraps the next handler until the final `HttpClientHandler` executes the request:
 
 [!code-csharp[](http-requests/samples/3.x/HttpClientFactorySample/Startup.cs?name=snippet6)]
+
+### Use DI in outgoing request middleware
+
+When `IHttpClientFactory` creates a new delegating handler, it uses DI to fulfill the handler's constructor parameters. `IHttpClientFactory` creates a **separate** DI scope for each handler, which can lead to surprising behavior when a handler consumes a *scoped* service.
+
+For example, consider the following interface and its implementation, which represents a task as an operation with an identifier, `OperationId`:
+
+[!code-csharp[](http-requests/samples/3.x/HttpRequestsSample/Models/OperationScoped.cs?name=snippet_Types)]
+
+As its name suggests, `IOperationScoped` is registered with DI using a *scoped* lifetime:
+
+[!code-csharp[](http-requests/samples/3.x/HttpRequestsSample/Startup.cs?name=snippet_IOperationScoped&highlight=18,26)]
+
+The following delegating handler consumes and uses `IOperationScoped` to set the `X-OPERATION-ID` header for the outgoing request:
+
+[!code-csharp[](http-requests/samples/3.x/HttpRequestsSample/Handlers/OperationHandler.cs?name=snippet_Class&highlight=13)]
+
+In the [`HttpRequestsSample` download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/http-requests/samples/3.x/HttpRequestsSample)], navigate to `/Operation` and refresh the page. The request scope value changes for each request, but the handler scope value only changes every 5 seconds.
+
+Handlers can depend upon services of any scope. Services that handlers depend upon are disposed when the handler is disposed.
 
 Use one of the following approaches to share per-request state with message handlers:
 
@@ -428,7 +445,7 @@ An <xref:System.Net.Http.IHttpClientFactory> can be registered and used to confi
 * Manages the pooling and lifetime of underlying `HttpClientMessageHandler` instances to avoid common DNS problems that occur when manually managing `HttpClient` lifetimes.
 * Adds a configurable logging experience (via `ILogger`) for all requests sent through clients created by the factory.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/http-requests/samples) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/http-requests/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Consumption patterns
 
@@ -729,7 +746,7 @@ An <xref:System.Net.Http.IHttpClientFactory> can be registered and used to confi
 * Manages the pooling and lifetime of underlying `HttpClientMessageHandler` instances to avoid common DNS problems that occur when manually managing `HttpClient` lifetimes.
 * Adds a configurable logging experience (via `ILogger`) for all requests sent through clients created by the factory.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/http-requests/samples) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/http-requests/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Prerequisites
 

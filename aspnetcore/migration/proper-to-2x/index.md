@@ -11,7 +11,7 @@ uid: migration/proper-to-2x/index
 
 By [Isaac Levin](https://isaaclevin.com)
 
-This article serves as a reference guide for migrating ASP.NET apps to ASP.NET Core.
+This article serves as a reference guide for migrating ASP.NET apps to ASP.NET Core. See the ebook [Porting existing ASP.NET apps to .NET Core](https://aka.ms/aspnet-porting-ebook) for a comprehensive porting guide.
 
 ## Prerequisites
 
@@ -153,6 +153,10 @@ For example, an image asset in the *wwwroot/images* folder is accessible to the 
 ## Multi-value cookies
 
 [Multi-value cookies](xref:System.Web.HttpCookie.Values) aren't supported in ASP.NET Core. Create one cookie per value.
+
+## Authentication cookies are not compressed in ASP.NET Core
+
+[!INCLUDE[](~/includes/cookies-not-compressed.md)]
 
 ## Partial app migration
 

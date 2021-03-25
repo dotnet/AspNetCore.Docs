@@ -11,18 +11,17 @@ uid: blazor/security/webassembly/standalone-with-microsoft-accounts
 ---
 # Secure an ASP.NET Core Blazor WebAssembly standalone app with Microsoft Accounts
 
-By [Javier Calvarro Nelson](https://github.com/javiercn) and [Luke Latham](https://github.com/guardrex)
-
 This article covers how to create a [standalone Blazor WebAssembly app](xref:blazor/hosting-models#blazor-webassembly) that uses [Microsoft Accounts with Azure Active Directory (AAD)](/azure/active-directory/develop/quickstart-register-app#register-a-new-application-using-the-azure-portal) for authentication.
 
-Register an AAD app in the **Azure Active Directory** > **App registrations** area of the Azure portal:
+Register an AAD app:
 
 ::: moniker range=">= aspnetcore-5.0"
 
+1. Navigate to **Azure Active Directory** in the Azure portal. Select **App registrations** in the sidebar. Select the **New registration** button.
 1. Provide a **Name** for the app (for example, **Blazor Standalone AAD Microsoft Accounts**).
 1. In **Supported account types**, select **Accounts in any organizational directory**.
 1. Set the **Redirect URI** drop down to **Single-page application (SPA)** and provide the following redirect URI: `https://localhost:{PORT}/authentication/login-callback`. The default port for an app running on Kestrel is 5001. If the app is run on a different Kestrel port, use the app's port. For IIS Express, the randomly generated port for the app can be found in the app's properties in the **Debug** panel. Since the app doesn't exist at this point and the IIS Express port isn't known, return to this step after the app is created and update the redirect URI. A remark appears later in this topic to remind IIS Express users to update the redirect URI.
-1. Clear the **Permissions** > **Grant admin consent to openid and offline_access permissions** check box.
+1. If you're using an [unverified publisher domain](/azure/active-directory/develop/howto-configure-publisher-domain), clear the **Permissions** > **Grant admin consent to openid and offline_access permissions** check box. If the publisher domain is verified, this check box isn't present.
 1. Select **Register**.
 
 Record the Application (client) ID (for example, `41451fa7-82d9-4673-8fa5-69eff5a761fd`).
@@ -38,10 +37,11 @@ In **Authentication** > **Platform configurations** > **Single-page application 
 
 ::: moniker range="< aspnetcore-5.0"
 
+1. Navigate to **Azure Active Directory** in the Azure portal. Select **App registrations** in the sidebar. Select the **New registration** button.
 1. Provide a **Name** for the app (for example, **Blazor Standalone AAD Microsoft Accounts**).
 1. In **Supported account types**, select **Accounts in any organizational directory**.
 1. Leave the **Redirect URI** drop down set to **Web** and provide the following redirect URI: `https://localhost:{PORT}/authentication/login-callback`. The default port for an app running on Kestrel is 5001. If the app is run on a different Kestrel port, use the app's port. For IIS Express, the randomly generated port for the app can be found in the app's properties in the **Debug** panel. Since the app doesn't exist at this point and the IIS Express port isn't known, return to this step after the app is created and update the redirect URI. A remark appears later in this topic to remind IIS Express users to update the redirect URI.
-1. Clear the **Permissions** > **Grant admin consent to openid and offline_access permissions** check box.
+1. If you're using an [unverified publisher domain](/azure/active-directory/develop/howto-configure-publisher-domain), clear the **Permissions** > **Grant admin consent to openid and offline_access permissions** check box. If the publisher domain is verified, this check box isn't present.
 1. Select **Register**.
 
 Record the Application (client) ID (for example, `41451fa7-82d9-4673-8fa5-69eff5a761fd`).
@@ -208,6 +208,7 @@ For more information, see the following sections of the *Additional scenarios* a
 ## Additional resources
 
 * <xref:blazor/security/webassembly/additional-scenarios>
+* [Build a custom version of the Authentication.MSAL JavaScript library](xref:blazor/security/webassembly/additional-scenarios#build-a-custom-version-of-the-authenticationmsal-javascript-library)
 * [Unauthenticated or unauthorized web API requests in an app with a secure default client](xref:blazor/security/webassembly/additional-scenarios#unauthenticated-or-unauthorized-web-api-requests-in-an-app-with-a-secure-default-client)
 * <xref:blazor/security/webassembly/aad-groups-roles>
 * [Quickstart: Register an application with the Microsoft identity platform](/azure/active-directory/develop/quickstart-register-app#register-a-new-application-using-the-azure-portal)

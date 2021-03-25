@@ -1,3 +1,6 @@
+---
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+---
 The `RedirectToLogin` component (`Shared/RedirectToLogin.razor`):
 
 * Manages redirecting unauthorized users to the login page.

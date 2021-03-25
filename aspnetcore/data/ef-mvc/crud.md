@@ -289,7 +289,7 @@ For more information, see [Tracking vs. No-Tracking](/ef/core/querying/tracking)
 
 ## Get the code
 
-[Download or view the completed application.](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-mvc/intro/samples/cu-final)
+[Download or view the completed application.](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-mvc/intro/samples/cu-final)
 
 ## Next steps
 

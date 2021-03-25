@@ -48,7 +48,7 @@ In this section, you'll complete the following tasks:
 1. Publish your local Git repository to the newly created GitHub repository. Execute the following command:
 
     ```console
-    git push -u origin master
+    git push -u origin main
     ```
 
 1. Open a browser window, and navigate to `https://github.com/<GitHub_username>/simple-feed-reader/`. Validate that your code appears in the GitHub repository.
@@ -101,7 +101,7 @@ There are three distinct steps to complete. Completing the steps in the followin
 1. If two-factor authentication is enabled on your GitHub account, a personal access token is required. In that case, click the **Authorize with a GitHub personal access token** link. See the [official GitHub personal access token creation instructions](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/) for help. Only the *repo* scope of permissions is needed. Otherwise, click the **Authorize using OAuth** button.
 1. When prompted, sign in to your GitHub account. Then select Authorize to grant access to your Azure DevOps organization. If successful, a new service endpoint is created.
 1. Click the ellipsis button next to the **Repository** button. Select the *<GitHub_username>/simple-feed-reader* repository from the list. Click the **Select** button.
-1. Select the default branch (*master*) from the **Default branch for manual and scheduled builds** drop-down. Click the **Continue** button. The template selection page appears.
+1. Select the default branch (*main*) from the **Default branch for manual and scheduled builds** drop-down. Click the **Continue** button. The template selection page appears.
 
 ### Create the build definition
 
@@ -111,11 +111,11 @@ There are three distinct steps to complete. Completing the steps in the followin
 
 1. The template search results appear. Hover over the **ASP.NET Core** template, and click the **Apply** button.
 1. The **Tasks** tab of the build definition appears. Click the **Triggers** tab.
-1. Check the **Enable continuous integration** box. Under the **Branch filters** section, confirm that the **Type** drop-down is set to *Include*. Set the **Branch specification** drop-down to *master*.
+1. Check the **Enable continuous integration** box. Under the **Branch filters** section, confirm that the **Type** drop-down is set to *Include*. Set the **Branch specification** drop-down to *main*.
 
     ![Enable continuous integration settings](media/cicd/vsts-enable-ci.png)
 
-    These settings cause a build to trigger when any change is pushed to the default branch (*master*) of the GitHub repository. Continuous integration is tested in the [Commit changes to GitHub and automatically deploy to Azure](#commit-changes-to-github-and-automatically-deploy-to-azure) section.
+    These settings cause a build to trigger when any change is pushed to the default branch (*main*) of the GitHub repository. Continuous integration is tested in the [Commit changes to GitHub and automatically deploy to Azure](#commit-changes-to-github-and-automatically-deploy-to-azure) section.
 
 1. Click the **Save & queue** button, and select the **Save** option:
 
@@ -159,7 +159,7 @@ There are three distinct steps to complete. Completing the steps in the followin
 
     With this option enabled, a deployment occurs each time a new build is available.
 1. A **Continuous deployment trigger** panel appears to the right. Click the toggle button to enable the feature. It isn't necessary to enable the **Pull request trigger**.
-1. Click the **Add** drop-down in the **Build branch filters** section. Choose the **Build Definition's default branch** option. This filter causes the release to trigger only for a build from the GitHub repository's default branch (*master*).
+1. Click the **Add** drop-down in the **Build branch filters** section. Choose the **Build Definition's default branch** option. This filter causes the release to trigger only for a build from the GitHub repository's default branch (*main*).
 1. Click the **Save** button. Click the **OK** button in the resulting **Save** modal dialog.
 1. Click the **Environment 1** box. An **Environment** panel appears to the right. Change the *Environment 1* text in the **Environment name** textbox to *Production*.
 
@@ -194,15 +194,15 @@ There are three distinct steps to complete. Completing the steps in the followin
     git commit -a -m "upgraded to V4"
     ```
 
-1. Push the change in the default branch (*master*) to the *origin* remote of your GitHub repository. In the following command, replace the placeholder `{BRANCH}` with the default branch (use `master`):
+1. Push the change in the default branch (*main*) to the *origin* remote of your GitHub repository. In the following command, replace the placeholder `{BRANCH}` with the default branch (use `main`):
 
     ```console
     git push origin {BRANCH}
     ```
 
-    The commit appears in the GitHub repository's default branch (*master*):
+    The commit appears in the GitHub repository's default branch (*main*):
 
-    ![GitHub commit in default branch (master)](media/cicd/github-commit.png)
+    ![GitHub commit in default branch (main)](media/cicd/github-commit.png)
 
     The build is triggered, since continuous integration is enabled in the build definition's **Triggers** tab:
 
