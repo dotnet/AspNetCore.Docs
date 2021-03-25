@@ -88,7 +88,7 @@ An error in an executed constructor or a setter for any `[Inject]` property resu
 
 <h3 id="lifecycle-methods-webassembly">Lifecycle methods</h3>
 
-During the lifetime of a component, Blazor invokes [lifecycle methods](xref:blazor/components/lifecycle#lifecycle-methods). For components to deal with errors in lifecycle methods, add error handling logic.
+During the lifetime of a component, Blazor invokes [lifecycle methods](xref:blazor/components/lifecycle). For components to deal with errors in lifecycle methods, add error handling logic.
 
 In the following example where <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A> calls a method to obtain a product:
 
@@ -358,7 +358,7 @@ A Blazor Server circuit fails when any executed constructor or a setter for any 
 
 <h3 id="lifecycle-methods-server">Lifecycle methods</h3>
 
-During the lifetime of a component, Blazor invokes [lifecycle methods](xref:blazor/components/lifecycle#lifecycle-methods). If any lifecycle method throws an exception, synchronously or asynchronously, the exception is fatal to a Blazor Server circuit. For components to deal with errors in lifecycle methods, add error handling logic.
+During the lifetime of a component, Blazor invokes [lifecycle methods](xref:blazor/components/lifecycle). If any lifecycle method throws an exception, synchronously or asynchronously, the exception is fatal to a Blazor Server circuit. For components to deal with errors in lifecycle methods, add error handling logic.
 
 In the following example where <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A> calls a method to obtain a product:
 

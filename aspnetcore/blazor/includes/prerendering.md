@@ -1,83 +1,71 @@
 ---
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 ---
-While a Blazor Server app is prerendering, certain actions, such as calling into JavaScript, aren't possible because a connection with the browser hasn't been established. Components may need to render differently when prerendered.
+*This section applies to Blazor Server and hosted Blazor WebAssembly apps that prerender Razor components.*
 
-To delay JavaScript interop calls until after the connection with the browser is established, you can use the [OnAfterRenderAsync component lifecycle event](xref:blazor/components/lifecycle#after-component-render). This event is only called after the app is fully rendered and the client connection is established.
+While an app is prerendering, certain actions, such as calling into JavaScript, aren't possible. Components may need to render differently when prerendered.
 
-```cshtml
-@using Microsoft.JSInterop
-@inject IJSRuntime JSRuntime
+To delay JavaScript interop calls until a point where such calls are guaranteed to work, override the [`OnAfterRender{Async}` lifecycle event](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync). This event is only called after the app is fully rendered.
 
-<div @ref="divElement">Text during render</div>
+`Pages/PrerenderedInterop1.razor`:
 
-@code {
-    private ElementReference divElement;
+::: moniker range=">= aspnetcore-5.0"
 
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            await JSRuntime.InvokeVoidAsync(
-                "setElementText", divElement, "Text after render");
-        }
-    }
-}
-```
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/prerendering/PrerenderedInterop1.razor)]
 
-For the preceding example code, provide a `setElementText` JavaScript function inside the `<head>` element of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server). The function is called with <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A?displayProperty=nameWithType> and doesn't return a value:
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/prerendering/PrerenderedInterop1.razor)]
+
+::: moniker-end
+
+For the preceding example code, provide a `setElementText1` JavaScript function inside the `<head>` element of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server). The function is called with <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A?displayProperty=nameWithType> and doesn't return a value:
 
 ```html
 <script>
-  window.setElementText = (element, text) => element.innerText = text;
+  window.setElementText1 = (element, text) => element.innerText = text;
 </script>
 ```
 
 > [!WARNING]
-> The preceding example modifies the Document Object Model (DOM) directly for demonstration purposes only. Directly modifying the DOM with JavaScript isn't recommended in most scenarios because JavaScript can interfere with Blazor's change tracking.
+> **The preceding example modifies the Document Object Model (DOM) directly for demonstration purposes only.** Directly modifying the DOM with JavaScript isn't recommended in most scenarios because JavaScript can interfere with Blazor's change tracking.
 
-The following component demonstrates how to use JavaScript interop as part of a component's initialization logic in a way that's compatible with prerendering. The component shows that it's possible to trigger a rendering update from inside <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A>. The developer must avoid creating an infinite loop in this scenario.
+> [!NOTE]
+> The preceding example pollutes the client with global methods. For a better approach in production apps, see [Blazor JavaScript isolation and object references](xref:blazor/call-javascript-from-dotnet#blazor-javascript-isolation-and-object-references).
+>
+> Example:
+>
+> ```javascript
+> export setElementText1 = (element, text) => element.innerText = text;
+> ```
+
+The following component demonstrates how to use JavaScript interop as part of a component's initialization logic in a way that's compatible with prerendering. The component shows that it's possible to trigger a rendering update from inside <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A>. The developer must be careful to avoid creating an infinite loop in this scenario.
 
 Where <xref:Microsoft.JSInterop.JSRuntime.InvokeAsync%2A?displayProperty=nameWithType> is called, `ElementRef` is only used in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> and not in any earlier lifecycle method because there's no JavaScript element until after the component is rendered.
 
-[StateHasChanged](xref:blazor/components/lifecycle#state-changes) is called to rerender the component with the new state obtained from the JavaScript interop call (for more information, see <xref:blazor/components/rendering>). The code doesn't create an infinite loop because `StateHasChanged` is only called when `infoFromJs` is `null`.
+[`StateHasChanged`](xref:blazor/components/lifecycle#state-changes-statehaschanged) is called to rerender the component with the new state obtained from the JavaScript interop call (for more information, see <xref:blazor/components/rendering>). The code doesn't create an infinite loop because `StateHasChanged` is only called when `infoFromJs` is `null`.
 
-```cshtml
-@page "/prerendered-interop"
-@using Microsoft.AspNetCore.Components
-@using Microsoft.JSInterop
-@inject IJSRuntime JSRuntime
+`Pages/PrerenderedInterop2.razor`:
 
-<p>
-    Get value via JS interop call:
-    <strong id="val-get-by-interop">@(infoFromJs ?? "No value yet")</strong>
-</p>
+::: moniker range=">= aspnetcore-5.0"
 
-Set value via JS interop call:
-<div id="val-set-by-interop" @ref="divElement"></div>
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/prerendering/PrerenderedInterop2.razor)]
 
-@code {
-    private string infoFromJs;
-    private ElementReference divElement;
+::: moniker-end
 
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender && infoFromJs == null)
-        {
-            infoFromJs = await JSRuntime.InvokeAsync<string>(
-                "setElementText", divElement, "Hello from interop call!");
+::: moniker range="< aspnetcore-5.0"
 
-            StateHasChanged();
-        }
-    }
-}
-```
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/prerendering/PrerenderedInterop2.razor)]
 
-For the preceding example code, provide a `setElementText` JavaScript function inside the `<head>` element of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server). The function is called with<xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType> and returns a value:
+::: moniker-end
+
+For the preceding example code, provide a `setElementText2` JavaScript function inside the `<head>` element of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server). The function is called with<xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType> and returns a value:
 
 ```html
 <script>
-  window.setElementText = (element, text) => {
+  window.setElementText2 = (element, text) => {
     element.innerText = text;
     return text;
   };
@@ -85,4 +73,16 @@ For the preceding example code, provide a `setElementText` JavaScript function i
 ```
 
 > [!WARNING]
-> The preceding example modifies the Document Object Model (DOM) directly for demonstration purposes only. Directly modifying the DOM with JavaScript isn't recommended in most scenarios because JavaScript can interfere with Blazor's change tracking.
+> **The preceding example modifies the Document Object Model (DOM) directly for demonstration purposes only.** Directly modifying the DOM with JavaScript isn't recommended in most scenarios because JavaScript can interfere with Blazor's change tracking.
+
+> [!NOTE]
+> The preceding example pollutes the client with global methods. For a better approach in production apps, see [Blazor JavaScript isolation and object references](xref:blazor/call-javascript-from-dotnet#blazor-javascript-isolation-and-object-references).
+>
+> Example:
+>
+> ```javascript
+> export setElementText2 = (element, text) => {
+>   element.innerText = text;
+>   return text;
+> };
+> ```

@@ -66,4 +66,4 @@ Using the preceding example `Error` component and `ProcessError` method, the bro
 > fail: BlazorSample.Shared.Error[0]
 > Error:ProcessError - Type: System.NullReferenceException Message: Object reference not set to an instance of an object.
 
-If the `ProcessError` method directly participates in rendering, such as showing a custom error message bar or changing the CSS styles of the rendered elements, call [`StateHasChanged`](xref:blazor/components/lifecycle#state-changes) at the end of the `ProcessErrors` method to rerender the UI.
+If the `ProcessError` method directly participates in rendering, such as showing a custom error message bar or changing the CSS styles of the rendered elements, call [`StateHasChanged`](xref:blazor/components/lifecycle#state-changes-statehaschanged) at the end of the `ProcessErrors` method to rerender the UI.
