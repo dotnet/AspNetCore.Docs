@@ -19,7 +19,7 @@ Specify delegate event handlers in Razor component markup with [`@on{DOM EVENT}=
 For event handling:
 
 * Asynchronous delegate event handlers that return a <xref:System.Threading.Tasks.Task> are supported.
-* Delegate event handlers automatically trigger a UI render, so there's no need to manually call [StateHasChanged](xref:blazor/components/lifecycle#state-changes).
+* Delegate event handlers automatically trigger a UI render, so there's no need to manually call [StateHasChanged](xref:blazor/components/lifecycle#state-changes-statehaschanged).
 * Exceptions are logged.
 
 The following code:
@@ -367,7 +367,7 @@ The `Parent` component sets the child's <xref:Microsoft.AspNetCore.Components.Ev
 When the button is selected in the `ChildComponent`:
 
 * The `Parent` component's `ShowMessage` method is called. `message` is updated and displayed in the `Parent` component.
-* A call to [`StateHasChanged`](xref:blazor/components/lifecycle#state-changes) isn't required in the callback's method (`ShowMessage`). <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is called automatically to rerender the `Parent` component, just as child events trigger component rerendering in event handlers that execute within the child. For more information, see <xref:blazor/components/rendering>.
+* A call to [`StateHasChanged`](xref:blazor/components/lifecycle#state-changes-statehaschanged) isn't required in the callback's method (`ShowMessage`). <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is called automatically to rerender the `Parent` component, just as child events trigger component rerendering in event handlers that execute within the child. For more information, see <xref:blazor/components/rendering>.
 
 <xref:Microsoft.AspNetCore.Components.EventCallback> and <xref:Microsoft.AspNetCore.Components.EventCallback%601> permit asynchronous delegates. <xref:Microsoft.AspNetCore.Components.EventCallback> is weakly typed and allows passing any type argument in `InvokeAsync(Object)`. <xref:Microsoft.AspNetCore.Components.EventCallback%601> is strongly typed and requires passing a `T` argument in `InvokeAsync(T)` that's assignable to `TValue`.
 

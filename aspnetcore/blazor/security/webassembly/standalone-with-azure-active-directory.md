@@ -102,7 +102,9 @@ After creating the app, you should be able to:
 * Log into the app using an AAD user account.
 * Request access tokens for Microsoft APIs. For more information, see:
   * [Access token scopes](#access-token-scopes)
-  * [Quickstart: Configure an application to expose web APIs](/azure/active-directory/develop/quickstart-configure-app-expose-web-apis).
+  * [Quickstart: Configure an application to expose web APIs](/azure/active-directory/develop/quickstart-configure-app-expose-web-apis)
+  * [Hosted with AAD: Access token scopes (includes guidance on AAD `App ID URI` scope formats)](xref:blazor/security/webassembly/hosted-with-azure-active-directory#access-token-scopes)
+  * [Access token scopes for Microsoft Graph API](xref:blazor/security/webassembly/graph-api)
 
 ## Authentication package
 
