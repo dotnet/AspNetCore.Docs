@@ -105,7 +105,7 @@ modelBuilder.Entity<Department>()
   .IsRowVersion();
 ```
 
-The [`[Timestamp]`](xref:System.ComponentModel.DataAnnotations.TimestampAttribute>) attribute on an entity property generates the following code in the <xref:Microsoft.EntityFrameworkCore.ModelBuilder> method:
+The [`[Timestamp]`](xref:System.ComponentModel.DataAnnotations.TimestampAttribute) attribute on an entity property generates the following code in the <xref:Microsoft.EntityFrameworkCore.ModelBuilder> method:
 
 ```csharp
  b.Property<byte[]>("ConcurrencyToken")
@@ -313,7 +313,7 @@ In the preceding highlighted code:
   * This value  might be different from what was displayed on the Edit page.
 * The highlighted code makes sure that EF Core uses the original `ConcurrencyToken`  value from the displayed `Department` entity in the SQL UPDATE statement's Where clause.
 
-The following code shows the `Department` model, which is initialized in the `OnGetAsync` method by the EF query and initialized in the `OnPostAsync` method by the hidden field in the Razor page using [model binding](mvc/models/model-binding):
+The following code shows the `Department` model, which is initialized in the `OnGetAsync` method by the EF query and initialized in the `OnPostAsync` method by the hidden field in the Razor page using [model binding](mvc/models/model-binding/index):
 
 # [Visual Studio](#tab/visual-studio)
 
