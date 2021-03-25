@@ -293,7 +293,7 @@ Update *Pages\Departments\Edit.cshtml.cs* with the following code:
 
 ### The concurrency updates
 
-The <xref:Microsoft.EntityFrameworkCore.ChangeTracking.PropertyEntry.OriginalValue> is updated with the `ConcurrencyToken` value from the entity when it was fetched in the `OnGetAsync` method. EF Core generates a `SQL UPDATE` command with a `WHERE` clause containing the original `ConcurrencyToken` value. If no rows are affected by the `UPDATE` command, a `DbUpdateConcurrencyException` exception is thrown. No rows are affected by the `UPDATE` command when no rows have the original `ConcurrencyToken` value.
+<xref:Microsoft.EntityFrameworkCore.ChangeTracking.PropertyEntry.OriginalValue> is updated with the `ConcurrencyToken` value from the entity when it was fetched in the `OnGetAsync` method. EF Core generates a `SQL UPDATE` command with a `WHERE` clause containing the original `ConcurrencyToken` value. If no rows are affected by the `UPDATE` command, a `DbUpdateConcurrencyException` exception is thrown. No rows are affected by the `UPDATE` command when no rows have the original `ConcurrencyToken` value.
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -311,9 +311,12 @@ In the preceding highlighted code:
 * `OriginalValue` is what EF Core uses in the `WHERE` clause. Before the highlighted line of code executes:
   * `OriginalValue` has the value that was in the database when `FirstOrDefaultAsync` was called in this method.
   * This value  might be different from what was displayed on the Edit page.
-* The highlighted code makes sure that EF Core uses the original `ConcurrencyToken`  value from the displayed `Department` entity in the SQL UPDATE statement's Where clause.
+* The highlighted code makes sure that EF Core uses the original `ConcurrencyToken`  value from the displayed `Department` entity in the SQL `UPDATE` statement's `WHERE` clause.
 
-The following code shows the `Department` model, which is initialized in the `OnGetAsync` method by the EF query and initialized in the `OnPostAsync` method by the hidden field in the Razor page using [model binding](xref:mvc/models/model-binding):
+The following code shows the `Department` model. `Department` is initialized in the:
+
+  * `OnGetAsync` method by the EF query.
+  * `OnPostAsync` method by the hidden field in the Razor page using [model binding](xref:mvc/models/model-binding):
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -321,7 +324,7 @@ The following code shows the `Department` model, which is initialized in the `On
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!code-csharp[](intro/samples/cu50/Pages/Departments/Edit.cshtml.cs?name=snippet_mb_ss&highlight=10-11,17-20,51)]
+[!code-csharp[](intro/samples/cu50/Pages/Departments/Edit.cshtml.cs?name=snippet_mb_ss&highlight=10-11,17-20,55-99)]
 
 ---
 
@@ -357,7 +360,7 @@ The following shows the differences between the SQL Server and SQLite versions:
 + Department.ConcurrencyToken = dbValues.ConcurrencyToken;
 ```
 
-### Update the Edit page
+### Update the Edit Razor page
 
 Update *Pages/Departments/Edit.cshtml* with the following code:
 

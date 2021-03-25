@@ -68,8 +68,8 @@ namespace ContosoUniversity.Pages.Departments
             departmentToUpdate.ConcurrencyToken = Guid.NewGuid();
 
             // Set ConcurrencyToken to value read in OnGetAsync
-            _context.Entry(departmentToUpdate).Property(
-                       d => d.ConcurrencyToken).OriginalValue = Department.ConcurrencyToken;
+            _context.Entry(departmentToUpdate).Property(d => d.ConcurrencyToken)
+                                   .OriginalValue = Department.ConcurrencyToken;
             #endregion
             #endregion
 
@@ -232,7 +232,7 @@ namespace ContosoUniversity.Pages.Departments
 
             // Set ConcurrencyToken to value read in OnGetAsync
             _context.Entry(departmentToUpdate).Property(
-                   d => d.ConcurrencyToken).OriginalValue = Department.ConcurrencyToken;
+                 d => d.ConcurrencyToken).OriginalValue = Department.ConcurrencyToken;
 #endregion
 #endregion
 

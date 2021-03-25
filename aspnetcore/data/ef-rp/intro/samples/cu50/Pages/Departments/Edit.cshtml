@@ -14,7 +14,7 @@
             <input type="hidden" asp-for="Department.ConcurrencyToken" />
             <div class="form-group">
                 <label>Version</label>
-                @Model.Department.ConcurrencyToken
+                @Utility.GetLastChars(Model.Department.ConcurrencyToken)
             </div>
             <div class="form-group">
                 <label asp-for="Department.Name" class="control-label"></label>
