@@ -313,7 +313,7 @@ In the preceding highlighted code:
   * This value  might be different from what was displayed on the Edit page.
 * The highlighted code makes sure that EF Core uses the original `ConcurrencyToken`  value from the displayed `Department` entity in the SQL UPDATE statement's Where clause.
 
-The following code shows the `Department` model, which is initialized in the `OnGetAsync` method by the EF query and initialized in the `OnPostAsync` method by the hidden field in the Razor page using [model binding](mvc/models/model-binding/index):
+The following code shows the `Department` model, which is initialized in the `OnGetAsync` method by the EF query and initialized in the `OnPostAsync` method by the hidden field in the Razor page using [model binding](xref:mvc/models/model-binding):
 
 # [Visual Studio](#tab/visual-studio)
 
