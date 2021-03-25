@@ -105,7 +105,7 @@ public void ConfigureServices(IServiceCollection services)
 {
     services.AddDataProtection()
         .PersistKeysToFileSystem(new DirectoryInfo(@"\\server\share\directory\"))
-        .ProtectKeysWithCertificate("thumbprint");
+        .ProtectKeysWithCertificate(Configuration["Thumbprint"]);
 }
 ```
 
@@ -119,7 +119,7 @@ public void ConfigureServices(IServiceCollection services)
     services.AddDataProtection()
         .PersistKeysToFileSystem(new DirectoryInfo(@"\\server\share\directory\"))
         .ProtectKeysWithCertificate(
-            new X509Certificate2("certificate.pfx", "password"));
+            new X509Certificate2("certificate.pfx", Configuration["Thumbprint"]));
 }
 ```
 
@@ -139,10 +139,10 @@ public void ConfigureServices(IServiceCollection services)
     services.AddDataProtection()
         .PersistKeysToFileSystem(new DirectoryInfo(@"\\server\share\directory\"))
         .ProtectKeysWithCertificate(
-            new X509Certificate2("certificate.pfx", "password"));
+            new X509Certificate2("certificate.pfx", Configuration["MyPasswordKey"));
         .UnprotectKeysWithAnyCertificate(
-            new X509Certificate2("certificate_old_1.pfx", "password_1"),
-            new X509Certificate2("certificate_old_2.pfx", "password_2"));
+            new X509Certificate2("certificate_old_1.pfx", Configuration["MyPasswordKey_1"),
+            new X509Certificate2("certificate_old_2.pfx", Configuration["MyPasswordKey_2"));
 }
 ```
 

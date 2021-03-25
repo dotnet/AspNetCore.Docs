@@ -157,11 +157,11 @@ The most common approach to defending against CSRF attacks is to use the *Synchr
 The token is unique and unpredictable. The token can also be used to ensure proper sequencing of a series of requests (for example, ensuring the request sequence of: page 1 > page 2 > page 3). All of the forms in ASP.NET Core MVC and Razor Pages templates generate antiforgery tokens. The following pair of view examples generate antiforgery tokens:
 
 ```cshtml
-<form asp-controller="Manage" asp-action="ChangePassword" method="post">
+<form asp-controller="Manage" asp-action="ChangeCode" method="post">
     ...
 </form>
 
-@using (Html.BeginForm("ChangePassword", "Manage"))
+@using (Html.BeginForm("ChangeCode", "Manage"))
 {
     ...
 }
@@ -427,10 +427,10 @@ xhttp.onreadystatechange = function() {
         }
     }
 };
-xhttp.open('POST', '/api/password/changepassword', true);
+xhttp.open('POST', '/api/token/changeCode', true);
 xhttp.setRequestHeader("Content-type", "application/json");
 xhttp.setRequestHeader("X-CSRF-TOKEN", csrfToken);
-xhttp.send(JSON.stringify({ "newPassword": "ReallySecurePassword999$$$" }));
+xhttp.send(JSON.stringify({ "newCode": $CREDENTIAL_PLACEHOLDER$ }));
 ```
 
 ### AngularJS
