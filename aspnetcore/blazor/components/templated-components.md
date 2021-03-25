@@ -171,7 +171,7 @@ Matching is only performed by name. Therefore, we recommend avoiding a cascaded 
 ::: moniker range="< aspnetcore-6.0"
 
 > [!NOTE]
-> Generic type constraints are supported in ASP.NET Core 6.0. For more information, see [the 6.0 version of this article](?preserve-view=true&view=aspnetcore-6.0).
+> Inferred generic types are supported in ASP.NET Core 6.0 or later. For more information, see a version of this article later than ASP.NET Core 5.0.
 
 ::: moniker-end
 
