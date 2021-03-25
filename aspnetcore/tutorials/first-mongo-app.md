@@ -617,7 +617,7 @@ The database is ready. You can start creating the ASP.NET Core web API.
 
 The `BookService` class uses the following `MongoDB.Driver` members to perform CRUD operations against the database:
 
-* [MongoClient](https://api.mongodb.com/csharp/current/html/T_MongoDB_Driver_MongoClient.htm): Reads the server instance for performing database operations. The constructor of this class is provided the MongoDB connection string:
+* [MongoClient](https://api.mongodb.com/csharp/current/html/T_MongoDB_Driver_MongoClient.htm): Reads the server instance for performing database operations. The constructor of this class is provided with the MongoDB connection string:
 
   [!code-csharp[](first-mongo-app/samples/2.x/SampleApp/Services/BookService.cs?name=snippet_BookServiceConstructor&highlight=3)]
 
