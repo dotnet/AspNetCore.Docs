@@ -239,6 +239,29 @@ Follow the instructions in [Scaffold Student pages](xref:data/ef-rp/intro#scaffo
 
 ---
 
+### Add a utility class
+
+Add a class named `Utility` with the following code:
+
+# [Visual Studio](#tab/visual-studio)
+
+[!code-csharp[](intro/samples/cu50/Utility.cs?name=snippet_full)]
+
+# [Visual Studio Code](#tab/visual-studio-code)
+
+[!code-csharp[](intro/samples/cu50/Utility.cs?name=snippet)]
+
+---
+
+The `Utility` class provides the `GetLastChars` method used to display the last few characters of the concurrency token. The following code shows the complete source:
+
+[!code-csharp[](intro/samples/cu50/Utility.cs?name=snippet_sl)]
+
+The `#if SQLiteVersion` isolates the differences in the SQLite and SQL Server versions and helps:
+
+* The author maintain one code base for both versions.
+* SQLite developers deploy the app to Azure and use SQL Azure.
+
 Build the project.
 
 ## Update the Index page
@@ -396,7 +419,7 @@ The Delete page detects concurrency conflicts when the entity has changed after 
 * A `DbUpdateConcurrencyException` exception is thrown.
 * `OnGetAsync` is called with the `concurrencyError`.
 
-### Update the Delete page
+### Update the Delete page zz
 
 Update *Pages/Departments/Delete.cshtml* with the following code:
 

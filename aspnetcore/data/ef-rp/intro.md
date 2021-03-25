@@ -17,7 +17,7 @@ By [Tom Dykstra](https://github.com/tdykstra), [Jeremy Likness](https://twitter.
 
 This is the first in a series of tutorials that show how to use Entity Framework (EF) Core in an [ASP.NET Core Razor Pages](xref:razor-pages/index) app. The tutorials build a web site for a fictional Contoso University. The site includes functionality such as student admission, course creation, and instructor assignments. The tutorial uses the code first approach. For information on following this tutorial using the database first approach, see [this Github issue](https://github.com/dotnet/AspNetCore.Docs/issues/16897).
 
-[Download or view the completed app.](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples) [Download instructions](xref:index#how-to-download-a-sample).
+[Download or view the completed app.](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu50) [Download instructions](xref:index#how-to-download-a-sample).
 
 ## Prerequisites
 
@@ -61,6 +61,10 @@ Follow the link at the top of the page to get the source code for the completed 
 
 To run the app after downloading the completed project:
 
+### Build the sample download
+
+* [Download the completed app.](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu50) [Download instructions](xref:index#how-to-download-a-sample).
+
 # [Visual Studio](#tab/visual-studio)
 
 Select *ContosoUniversity.csproj* to open the project.
@@ -86,14 +90,6 @@ Select *ContosoUniversity.csproj* to open the project.
   dotnet tool install --global dotnet-ef
   dotnet ef database update
   ```
-
-<!-- 
-* In a SQLite tool, run the following SQL statement:
-
-  ```sql
-  UPDATE Department SET RowVersion = randomblob(8)
-  ```
--->
 
 ---
 

@@ -48,17 +48,13 @@
                     @Html.DisplayFor(modelItem => item.Administrator.FullName)
                 </td>
                 <td>
-                    @{
-                        string str3;
-#if SQLiteVersion
-                        str3 = item.ConcurrencyToken.ToString().Substring(
-                                   item.ConcurrencyToken.ToString().Length - 3);
-
-#else
-                                str3 = item.ConcurrencyToken[7].ToString();
-#endif
-                    }
-                    @str3
+                    @Utility.GetLastChars(item.ConcurrencyToken)
+                    @*
+                        @item.ConcurrencyToken[7]  // SQL Server
+                        // SQLite approach
+                        @item.ConcurrencyToken.ToString().Substring(
+                                  item.ConcurrencyToken.ToString().Length - 3)
+                    *@
                 </td>
                 <td>
                     <a asp-page="./Edit" asp-route-id="@item.DepartmentID">Edit</a> |
