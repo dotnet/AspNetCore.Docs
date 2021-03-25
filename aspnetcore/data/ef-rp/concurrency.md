@@ -254,7 +254,7 @@ The `Utility` class provides the `GetLastChars` method used to display the last 
 
 [!code-csharp[](intro/samples/cu50/Utility.cs?name=snippet_full)]
 
-The `#if SQLiteVersion` isolates the differences in the SQLite and SQL Server versions and helps:
+The `#if SQLiteVersion` [preprocessor directive](/dotnet/csharp/language-reference/preprocessor-directives/) isolates the differences in the SQLite and SQL Server versions and helps:
 
 * The author maintain one code base for both versions.
 * SQLite developers deploy the app to Azure and use SQL Azure.
@@ -263,7 +263,7 @@ Build the project.
 
 ## Update the Index page
 
-The scaffolding tool created a `ConcurrencyToken` column for the Index page, but that field wouldn't be displayed in a production app. In this tutorial, the last portion of the `ConcurrencyToken` is displayed to help show how concurrency handling works. The last byte isn't guaranteed to be unique by itself.
+The scaffolding tool created a `ConcurrencyToken` column for the Index page, but that field wouldn't be displayed in a production app. In this tutorial, the last portion of the `ConcurrencyToken` is displayed to help show how concurrency handling works. The last portion isn't guaranteed to be unique by itself.
 
 Update *Pages\Departments\Index.cshtml* page:
 
@@ -273,7 +273,7 @@ Update *Pages\Departments\Index.cshtml* page:
 
 The following code shows the updated page:
 
-[!code-cshtml[](intro/samples/cu50/Pages/Departments/Index.cshtml?highlight=5,8,29,48,50]
+[!code-cshtml[](intro/samples/cu50/Pages/Departments/Index.cshtml?highlight=5,8,29,48,50)
 
 ## Update the Edit page model
 
