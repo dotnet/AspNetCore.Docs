@@ -135,7 +135,7 @@ Since the view always requires the `OfficeAssignment` entity, it's more efficien
 
 The code repeats `CourseAssignments` and `Course` because you need two properties from `Course`. The first string of `ThenInclude` calls gets `CourseAssignment.Course`, `Course.Enrollments`, and `Enrollment.Student`.
 
-You can read more about including multiple levels of related data [here.](ef/core/querying/related-data/eager#including-multiple-levels)
+You can read more about including multiple levels of related data [here.](/ef/core/querying/related-data/eager#including-multiple-levels)
 
 [!code-csharp[](intro/samples/cu/Controllers/InstructorsController.cs?name=snippet_ThenInclude&highlight=3-6)]
 
