@@ -81,17 +81,19 @@ Select *ContosoUniversity.csproj* to open the project.
 * Remove the comments from the *ContosoUniversity.csproj* file so `SQLiteVersion`   is defined:
 
   ```xml
- <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DefineConstants>TRACE;SQLiteVersion</DefineConstants>
-</PropertyGroup>
+  </PropertyGroup>
   ```
-
+  
+* Delete the *Migrations* folder.
+* Rename *MigrationsSQLite* to *Migrations*.
 * Update the database.
 
   ```dotnetcli
   dotnet tool install --global dotnet-ef
   dotnet ef database update
-   
+    
   ```
 
 <!-- prerelease versions require
