@@ -14,7 +14,7 @@ uid: data/ef-mvc/concurrency
 
 In earlier tutorials, you learned how to update data. This tutorial shows how to handle conflicts when multiple users update the same entity at the same time.
 
-You'll create web pages that work with the Department entity and handle concurrency errors. The following illustrations show the Edit and Delete pages, including some messages that are displayed if a concurrency conflict occurs.
+You'll create web pages that work with the `Department` entity and handle concurrency errors. The following illustrations show the Edit and Delete pages, including some messages that are displayed if a concurrency conflict occurs.
 
 ![Department Edit page](concurrency/_static/edit-error.png)
 
@@ -132,13 +132,13 @@ In the *DepartmentsController.cs* file, change all four occurrences of "FirstMid
 
 ## Update Index view
 
-The scaffolding engine created a RowVersion column in the Index view, but that field shouldn't be displayed.
+The scaffolding engine created a `RowVersion` column in the Index view, but that field shouldn't be displayed.
 
 Replace the code in *Views/Departments/Index.cshtml* with the following code.
 
 [!code-cshtml[](intro/samples/cu/Views/Departments/Index.cshtml?highlight=4,7,44)]
 
-This changes the heading to "Departments", deletes the RowVersion column, and shows full name instead of first name for the administrator.
+This changes the heading to "Departments", deletes the `RowVersion` column, and shows full name instead of first name for the administrator.
 
 ## Update Edit methods
 
@@ -150,7 +150,7 @@ Replace the existing code for the HttpPost `Edit` method with the following code
 
 [!code-csharp[](intro/samples/cu/Controllers/DepartmentsController.cs?name=snippet_EditPost)]
 
-The code begins by trying to read the department to be updated. If the `FirstOrDefaultAsync` method returns null, the department was deleted by another user. In that case the code uses the posted form values to create a department entity so that the Edit page can be redisplayed with an error message. As an alternative, you wouldn't have to re-create the department entity if you display only an error message without redisplaying the department fields.
+The code begins by trying to read the department to be updated. If the `FirstOrDefaultAsync` method returns null, the department was deleted by another user. In that case the code uses the posted form values to create a `Department` entity so that the Edit page can be redisplayed with an error message. As an alternative, you wouldn't have to re-create the `Department` entity if you display only an error message without redisplaying the department fields.
 
 The view stores the original `RowVersion` value in a hidden field, and this method receives that value in the `rowVersion` parameter. Before you call `SaveChanges`, you have to put that original `RowVersion` property value in the `OriginalValues` collection for the entity.
 
@@ -218,7 +218,7 @@ In *DepartmentsController.cs*, replace the HttpGet `Delete` method with the foll
 
 [!code-csharp[](intro/samples/cu/Controllers/DepartmentsController.cs?name=snippet_DeleteGet&highlight=1,10,14-17,21-29)]
 
-The method accepts an optional parameter that indicates whether the page is being redisplayed after a concurrency error. If this flag is true and the department specified no longer exists, it was deleted by another user. In that case, the code redirects to the Index page.  If this flag is true and the Department does exist, it was changed by another user. In that case, the code sends an error message to the view using `ViewData`.
+The method accepts an optional parameter that indicates whether the page is being redisplayed after a concurrency error. If this flag is true and the department specified no longer exists, it was deleted by another user. In that case, the code redirects to the Index page.  If this flag is true and the department does exist, it was changed by another user. In that case, the code sends an error message to the view using `ViewData`.
 
 Replace the code in the HttpPost `Delete` method (named `DeleteConfirmed`) with the following code:
 
@@ -230,7 +230,7 @@ In the scaffolded code that you just replaced, this method accepted only a recor
 public async Task<IActionResult> DeleteConfirmed(int id)
 ```
 
-You've changed this parameter to a Department entity instance created by the model binder. This gives EF access to the RowVersion property value in addition to the record key.
+You've changed this parameter to a `Department` entity instance created by the model binder. This gives EF access to the RowVers`ion property value in addition to the record key.
 
 ```csharp
 public async Task<IActionResult> Delete(Department department)
