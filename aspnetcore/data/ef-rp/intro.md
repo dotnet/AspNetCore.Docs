@@ -85,9 +85,7 @@ Select *ContosoUniversity.csproj* to open the project.
     <DefineConstants>TRACE;SQLiteVersion</DefineConstants>
 </PropertyGroup>
   ```
-  
-* Delete the *Migrations* folder.
-* Rename *MigrationsSQLite* to *Migrations*.
+
 * Update the database.
 
   ```dotnetcli
