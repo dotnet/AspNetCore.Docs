@@ -100,7 +100,7 @@
     "groups": {
       "group1": {
         "dest": "group1-dest",
-        "moniker_range": ">= aspnetcore-1.0"
+        "moniker_range": ">= aspnetcore-2.1"
       }
     }
   }
