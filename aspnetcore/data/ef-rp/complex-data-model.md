@@ -215,6 +215,7 @@ For this tutorial, the way to get past this error is to delete and re-create the
   dotnet ef database drop --force
   dotnet ef migrations add InitialCreate
   dotnet ef database update
+   
   ```
 
 * Examine the Student table with a SQLite tool. The column that was `FirstMidName` is now `FirstName`.

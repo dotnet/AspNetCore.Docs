@@ -76,14 +76,16 @@ Select *ContosoUniversity.csproj* to open the project.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-  * Remove the comments from the *appsettings.Development.json* file so the SQLite   connections string is used:
-    [!code-json[Main](intro/samples/cu50/appsettings.Development.json?highlight=10-13)  ]
+  * Remove the comments from the *appsettings.Development.json* file so the SQLite connections string is used:
+    [!code-json[Main](intro/samples/cu50/appsettings.Development.json?highlight=10-13)]
   * Remove the comments from the *ContosoUniversity.csproj* file so `SQLiteVersion`   is defined:
+
     ```xml
    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
       <DefineConstants>TRACE;SQLiteVersion</DefineConstants>
   </PropertyGroup>
     ```
+
   * Delete the *Migrations* folder.
   * Rename *MigrationsSQLite* to *Migrations*.
   * Update the database.
