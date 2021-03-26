@@ -67,8 +67,8 @@ This step is optional. Building the completed app is recommended when you have p
 
 Select *ContosoUniversity.csproj* to open the project.
 
-* Build the project.
-* In Package Manager Console (PMC) run the following command:
+  * Build the project.
+  * In Package Manager Console (PMC) run the following command:
 
   ```powershell
   Update-Database
@@ -76,17 +76,22 @@ Select *ContosoUniversity.csproj* to open the project.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* Remove the comments from the *appsettings.Development.json* file so the SQLite connections string is used:
-  [!code-json[Main](intro/samples/cu50/appsettings.Development.json?highlight=10-13)]
-* Remove the comments from the *ContosoUniversity.csproj* file so `SQLiteVersion` is defined.
-* Delete the *Migrations* folder.
-* Rename *MigrationsSQLite* to *Migrations*.
-* Update the database.
-
-  ```dotnetcli
-  dotnet tool install --global dotnet-ef
-  dotnet ef database update
-  ```
+  * Remove the comments from the *appsettings.Development.json* file so the SQLite   connections string is used:
+    [!code-json[Main](intro/samples/cu50/appsettings.Development.json?highlight=10-13)  ]
+  * Remove the comments from the *ContosoUniversity.csproj* file so `SQLiteVersion`   is defined:
+    ```xml
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+      <DefineConstants>TRACE;SQLiteVersion</DefineConstants>
+  </PropertyGroup>
+    ```
+  * Delete the *Migrations* folder.
+  * Rename *MigrationsSQLite* to *Migrations*.
+  * Update the database.
+  
+    ```dotnetcli
+    dotnet tool install --global dotnet-ef
+    dotnet ef database update
+    ```
 
 <!-- prerelease versions require
   dotnet tool uninstall --global dotnet-ef
