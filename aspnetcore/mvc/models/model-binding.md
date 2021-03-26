@@ -411,7 +411,7 @@ Model binding requires that complex types have a parameterless constructor. Both
 C# 9 introduces record types, which are a great way to succinctly represent data over the network. ASP.NET Core adds support for model binding and validating record types with a single constructor:
 
 ```csharp
-public record Person([Required] string Name, [Range(0, 150)] int Age);
+public record Person([Required] string Name, [Range(0, 150)] int Age, [BindNever] int Id);
 
 public class PersonController
 {
@@ -435,7 +435,7 @@ Name: <input asp-for="Name" />
 Age: <input asp-for="Age" />
 ```
 
-When validating record types, the runtime searches for validation metadata specifically on parameters rather than on properties.
+When validating record types, the runtime searches for binding and validation metadata specifically on parameters rather than on properties.
 
 ::: moniker-end
 
