@@ -542,7 +542,7 @@ The preceding diagram shows:
 
 Update the code in *Data/DbInitializer.cs*:
 
-[!code-csharp[](intro/samples/cu50/Data/DbInitializer.cs)]
+[!code-csharp[](intro/samples/cu50/Data/DbInitializer2.cs?name=snippet)]
 
 The preceding code provides seed data for the new entities. Most of this code creates new entity objects and loads sample data. The sample data is used for testing.
 

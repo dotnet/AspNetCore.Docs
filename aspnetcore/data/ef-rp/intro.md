@@ -91,6 +91,7 @@ Select *ContosoUniversity.csproj* to open the project.
     ```dotnetcli
     dotnet tool install --global dotnet-ef
     dotnet ef database update
+     
     ```
 
 <!-- prerelease versions require
