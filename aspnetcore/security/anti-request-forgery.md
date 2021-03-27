@@ -157,11 +157,11 @@ The most common approach to defending against CSRF attacks is to use the *Synchr
 The token is unique and unpredictable. The token can also be used to ensure proper sequencing of a series of requests (for example, ensuring the request sequence of: page 1 > page 2 > page 3). All of the forms in ASP.NET Core MVC and Razor Pages templates generate antiforgery tokens. The following pair of view examples generate antiforgery tokens:
 
 ```cshtml
-<form asp-controller="Manage" asp-action="ChangeCode" method="post">
+<form asp-controller="Todo" asp-action="Create" method="post">
     ...
 </form>
 
-@using (Html.BeginForm("ChangeCode", "Manage"))
+@using (Html.BeginForm("Create", "Todo"))
 {
     ...
 }
@@ -403,12 +403,12 @@ function getCookie(cname) {
     var name = cname + "=";
     var decodedCookie = decodeURIComponent(document.cookie);
     var ca = decodedCookie.split(';');
-    for(var i = 0; i <ca.length; i++) {
+    for (var i = 0; i < ca.length; i++) {
         var c = ca[i];
-        while (c.charAt(0) == ' ') {
+        while (c.charAt(0) === ' ') {
             c = c.substring(1);
         }
-        if (c.indexOf(name) == 0) {
+        if (c.indexOf(name) === 0) {
             return c.substring(name.length, c.length);
         }
     }
@@ -418,19 +418,19 @@ function getCookie(cname) {
 var csrfToken = getCookie("CSRF-TOKEN");
 
 var xhttp = new XMLHttpRequest();
-xhttp.onreadystatechange = function() {
-    if (xhttp.readyState == XMLHttpRequest.DONE) {
-        if (xhttp.status == 200) {
-            alert(xhttp.responseText);
+xhttp.onreadystatechange = function () {
+    if (xhttp.readyState === XMLHttpRequest.DONE) {
+        if (xhttp.status === 204) {
+            alert('Todo item is created successfully.');
         } else {
             alert('There was an error processing the AJAX request.');
         }
     }
 };
-xhttp.open('POST', '/api/token/changeCode', true);
+xhttp.open('POST', '/api/items', true);
 xhttp.setRequestHeader("Content-type", "application/json");
 xhttp.setRequestHeader("X-CSRF-TOKEN", csrfToken);
-xhttp.send(JSON.stringify({ "newCode": $CREDENTIAL_PLACEHOLDER$ }));
+xhttp.send(JSON.stringify({ "name": "Learn C#" }));
 ```
 
 ### AngularJS
