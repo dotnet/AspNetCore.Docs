@@ -86,7 +86,11 @@ Console.WriteLine("From server: " + response.Message);
 
 ### When retries are valid
 
-Calls are retried if the failing status code matches a configured status code and the previous number of attempts is less than the maximum attempts. In certain cases it is not valid to retry a gRPC call. These cases occur when the call has been committed.
+Calls are retried when:
+
+* The previous number of attempts is less than `MaxAttempts`.
+* The failing status code matches a value in `RetryableStatusCodes`.
+* The call hasn't been commited.
 
 A gRPC call becomes committed in two scenarios:
 
