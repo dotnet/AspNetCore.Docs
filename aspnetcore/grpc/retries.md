@@ -99,8 +99,8 @@ Committed calls won't retry, regardless of the status code or the previous numbe
 
 Streaming calls can be used with gRPC retries, but there are important considerations when they are used together:
 
-* **Server streaming**, **bidirectional streaming**: Streaming RPCs that return multiple messages from the server won't retry after the first message has been received.
-* **Client streaming**, **bidirectional streaming**: Streaming RPCs that send multiple messages to the server won't retry if the outgoing messages have exceeded the client's maximum buffer size.
+* **Server streaming**, **bidirectional streaming**: Streaming RPCs that return multiple messages from the server won't retry after the first message has been received. Additional code is required to manually re-establish server and bidirectional streaming calls.
+* **Client streaming**, **bidirectional streaming**: Streaming RPCs that send multiple messages to the server won't retry if the outgoing messages have exceeded the client's maximum buffer size. The maximum buffer size can be increased with configuration.
 
 For more information, see [When retries are valid](#when-retries-are-valid).
 
