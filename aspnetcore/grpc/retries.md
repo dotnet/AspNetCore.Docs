@@ -86,7 +86,11 @@ Console.WriteLine("From server: " + response.Message);
 
 ### When retries are valid
 
-Calls are retried if the failing status code matches a configured status code and the previous number of attempts is less than the maximum attempts. In certain cases it is not valid to retry a gRPC call. These cases occur when the call has been committed.
+Calls are retried when:
+
+* The failing status code matches a value in `RetryableStatusCodes`.
+* The previous number of attempts is less than `MaxAttempts`.
+* The call hasn't been commited.
 
 A gRPC call becomes committed in two scenarios:
 
@@ -99,8 +103,8 @@ Committed calls won't retry, regardless of the status code or the previous numbe
 
 Streaming calls can be used with gRPC retries, but there are important considerations when they are used together:
 
-* **Server streaming**, **bidirectional streaming**: Streaming RPCs that return multiple messages from the server won't retry after the first message has been received.
-* **Client streaming**, **bidirectional streaming**: Streaming RPCs that send multiple messages to the server won't retry if the outgoing messages have exceeded the client's maximum buffer size.
+* **Server streaming**, **bidirectional streaming**: Streaming RPCs that return multiple messages from the server won't retry after the first message has been received. Apps must add additional logic to manually re-establish server and bidirectional streaming calls.
+* **Client streaming**, **bidirectional streaming**: Streaming RPCs that send multiple messages to the server won't retry if the outgoing messages have exceeded the client's maximum buffer size. The maximum buffer size can be increased with configuration.
 
 For more information, see [When retries are valid](#when-retries-are-valid).
 
