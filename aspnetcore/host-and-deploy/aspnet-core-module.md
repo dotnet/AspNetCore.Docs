@@ -27,6 +27,8 @@ There are trade-offs between each of the hosting models. By default, the in-proc
 
 The ASP.NET Core Module is installed with the .NET Core Runtime from the [.NET Core Hosting Bundle](xref:host-and-deploy/iis/hosting-bundle). The ASP.NET Core Module is forward and backward compatible with LTS releases of .NET.
 
+Breaking changes or security advisories that apply to the ASP.NET Core Module or .NET Core Hosting Bundle are reported on the [Announcements repo](https://github.com/aspnet/Announcements/issues). Announcements can be filtered with `label:{VERSION}`, where the `{VERSION}` placeholder is a .NET release version (for example `label:6.0.0`).
+
 Download the installer using the following link:
 
 [Current .NET Core Hosting Bundle installer (direct download)](https://dotnet.microsoft.com/permalink/dotnetcore-current-windows-runtime-bundle-installer)
@@ -140,6 +142,8 @@ The ASP.NET Core Module can also:
 ## How to install and use the ASP.NET Core Module
 
 For instructions on how to install the ASP.NET Core Module, see [Install the .NET Core Hosting Bundle](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle). The ASP.NET Core Module is forward and backward compatible with LTS releases of .NET.
+
+Breaking changes or security advisories that apply to the ASP.NET Core Module or .NET Core Hosting Bundle are reported on the [Announcements repo](https://github.com/aspnet/Announcements/issues). Announcements can be filtered with `label:{VERSION}`, where the `{VERSION}` placeholder is a .NET release version (for example `label:6.0.0`).
 
 ## Configuration with web.config
 
@@ -555,6 +559,8 @@ The ASP.NET Core Module can also:
 ## How to install and use the ASP.NET Core Module
 
 For instructions on how to install the ASP.NET Core Module, see [Install the .NET Core Hosting Bundle](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle). The ASP.NET Core Module is forward and backward compatible with LTS releases of .NET.
+
+Breaking changes or security advisories that apply to the ASP.NET Core Module or .NET Core Hosting Bundle are reported on the [Announcements repo](https://github.com/aspnet/Announcements/issues). Announcements can be filtered with `label:{VERSION}`, where the `{VERSION}` placeholder is a .NET release version (for example `label:6.0.0`).
 
 ## Configuration with web.config
 
