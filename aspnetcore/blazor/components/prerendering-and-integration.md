@@ -212,7 +212,7 @@ Additional work might be required depending on the static resources that compone
 * [State management: Handle prerendering](xref:blazor/state-management?pivot=webassembly#handle-prerendering)
 * [Prerendering support with assembly lazy loading](xref:blazor/webassembly-lazy-load-assemblies#assembly-load-logic-in-onnavigateasync)
 * Razor component lifecycle subjects that pertain to prerendering:
-  * [Component initialization methods (`OnInitialized{Async}`)](xref:blazor/components/lifecycle#component-initialization-methods-oninitializedasync)
+  * [Component initialization (`OnInitialized{Async}`)](xref:blazor/components/lifecycle#component-initialization-oninitializedasync)
   * [After component render (`OnAfterRender{Async}`)](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync)
   * [Stateful reconnection after prerendering](xref:blazor/components/lifecycle#stateful-reconnection-after-prerendering): Although the content in the section focuses on Blazor Server and stateful SignalR *reconnection*, the scenario for prerendering in hosted Blazor WebAssembly apps (<xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssemblyPrerendered>) involves similar conditions and approaches to prevent executing developer code twice. A *new state preservation feature* is planned for the ASP.NET Core 6.0 release that will improve the management of initialization code execution during prerendering.
   * [Detect when the app is prerendering](xref:blazor/components/lifecycle#detect-when-the-app-is-prerendering)
@@ -593,7 +593,7 @@ For more information, see <xref:blazor/components/index#namespaces>.
 
 * [State management: Handle prerendering](xref:blazor/state-management?pivot=server#handle-prerendering)
 * Razor component lifecycle subjects that pertain to prerendering:
-  * [Component initialization methods (`OnInitialized{Async}`)](xref:blazor/components/lifecycle#component-initialization-methods-oninitializedasync)
+  * [Component initialization (`OnInitialized{Async}`)](xref:blazor/components/lifecycle#component-initialization-oninitializedasync)
   * [After component render (`OnAfterRender{Async}`)](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync)
   * [Stateful reconnection after prerendering](xref:blazor/components/lifecycle#stateful-reconnection-after-prerendering)
   * [Detect when the app is prerendering](xref:blazor/components/lifecycle#detect-when-the-app-is-prerendering)
