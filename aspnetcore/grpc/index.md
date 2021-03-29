@@ -65,6 +65,12 @@ For more information on gRPC tooling support, see <xref:grpc/basics>.
 
 gRPC services can be hosted on ASP.NET Core. Services have full integration with popular ASP.NET Core features such as logging, dependency injection (DI), authentication and authorization.
 
+### Add gRPC services to an ASP.NET Core app
+
+gRPC requires the [Grpc.AspNetCore](https://www.nuget.org/packages/Grpc.AspNetCore) package. For information on configuring gRPC in a .NET app, see [Configure gRPC](xref:grpc/aspnetcore#configure-grpc).
+
+### The gRPC service project template
+
 The gRPC service project template provides a starter service:
 
 ```csharp
@@ -99,10 +105,6 @@ app.UseEndpoints(endpoints =>
 ```
 
 To learn more about gRPC services on ASP.NET Core, see <xref:grpc/aspnetcore>.
-
-## Add gRPC services to an ASP.NET Core app
-
-gRPC requires the [Grpc.AspNetCore](https://www.nuget.org/packages/Grpc.AspNetCore) package. For information on configuring gRPC in a .NET app, see [Configure gRPC](xref:grpc/aspnetcore#configure-grpc).
 
 ## Call gRPC services with a .NET client
 
