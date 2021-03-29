@@ -219,7 +219,7 @@ Additional work might be required depending on the static resources that compone
 * Authentication and authorization subjects that pertain to prerendering
   * [General aspects](xref:blazor/security/index#aspnet-core-blazor-authentication-and-authorization)
   * [Support prerendering with authentication](xref:blazor/security/webassembly/additional-scenarios#support-prerendering-with-authentication)
-* [Host and Deploy: Blazor WebAssembly](xref:blazor/host-and-deploy/webassembly)
+* [Host and deploy: Blazor WebAssembly](xref:blazor/host-and-deploy/webassembly)
 
 ::: moniker-end
 
@@ -600,7 +600,7 @@ For more information, see <xref:blazor/components/index#namespaces>.
   * [Detect when the app is prerendering](xref:blazor/components/lifecycle#detect-when-the-app-is-prerendering)
 * [Authentication and authorization: General aspects](xref:blazor/security/index#aspnet-core-blazor-authentication-and-authorization)
 * [Blazor Server rerendering](xref:blazor/fundamentals/handle-errors?pivot=server#blazor-server-prerendering-server)
-* [Host and Deploy: Blazor Server](xref:blazor/host-and-deploy/server)
+* [Host and deploy: Blazor Server](xref:blazor/host-and-deploy/server)
 * [Threat mitigation: Cross-site scripting (XSS)](xref:blazor/security/server/threat-mitigation#cross-site-scripting-xss)
 
 ::: zone-end
