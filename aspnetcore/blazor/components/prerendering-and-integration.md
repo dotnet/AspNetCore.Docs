@@ -5,7 +5,7 @@ description: Learn about Razor component integration scenarios for Blazor apps, 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/26/2021
+ms.date: 03/29/2021
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/components/prerendering-and-integration
 zone_pivot_groups: blazor-hosting-models
@@ -114,7 +114,7 @@ To set up prerendering for a Blazor WebAssembly app:
 
 1. Update the app's layout file, which is located in the `Pages/Shared` folder in a Razor Pages app or `Views/Shared` folder in an MVC app:
 
-   * Confirm or add a [render section](xref:mvc/views/layout#sections) (<xref:Microsoft.AspNetCore.Mvc.Razor.RazorPage.RenderSection%2A>) for the script inside the closing `</body>` tag if it isn't already present in the file:
+   * Confirm or add a [render section](xref:mvc/views/layout#sections) (<xref:Microsoft.AspNetCore.Mvc.Razor.RazorPage.RenderSection%2A>) for the script inside the closing `</body>` tag if it isn't already present in the file.
 
      `Pages/Shared/_Layout.cshtml` (Razor Pages) or `Views/Shared/_Layout.cshtml` (MVC):
 
@@ -125,7 +125,7 @@ To set up prerendering for a Blazor WebAssembly app:
      </body>
      ```
 
-   * If the app should style components with the styles in the Blazor WebAssembly app, include the app's styles in the `_Layout.cshtml` file. In the following example, the client app's namespace is `BlazorHosted.Client` because this example is based on a hosted Blazor WebAssembly solution, where the **`Server`** app is a Razor Pages app and display's the **`Client`** app's `Counter` component in a Razor page:
+   * If the app should style components with the styles in the Blazor WebAssembly app, include the app's styles in the `_Layout.cshtml` file. In the following example, the client app's namespace is `BlazorHosted.Client` because this example is based on a hosted Blazor WebAssembly solution, where the **`Server`** app is a Razor Pages app and display's the **`Client`** app's `Counter` component in a Razor page.
 
      `Pages/Shared/_Layout.cshtml` (Razor Pages) or `Views/Shared/_Layout.cshtml` (MVC):
 
@@ -171,7 +171,7 @@ Additional work might be required depending on the static resources that compone
 
 ## Render components in a page or view with a CSS selector
 
-Add root components to the **`Client`** project of a hosted Blazor WebAssembly solution in `Program.Main`. In the following example, the `Counter` component is declared as a root component with a CSS selector that selects the element with the `id` that matches `counter-component`. In the following example, the client app's namespace is `BlazorHosted.Client`:
+Add root components to the **`Client`** project of a hosted Blazor WebAssembly solution in `Program.Main`. In the following example, the `Counter` component is declared as a root component with a CSS selector that selects the element with the `id` that matches `counter-component`. In the following example, the client app's namespace is `BlazorHosted.Client`.
 
 `Program.cs`:
 
@@ -211,14 +211,15 @@ Additional work might be required depending on the static resources that compone
 
 * [State management: Handle prerendering](xref:blazor/state-management?pivot=webassembly#handle-prerendering)
 * [Prerendering support with assembly lazy loading](xref:blazor/webassembly-lazy-load-assemblies#assembly-load-logic-in-onnavigateasync)
-* Razor component lifecycle subjects that pertain to prerendering:
+* Razor component lifecycle subjects that pertain to prerendering
   * [Component initialization (`OnInitialized{Async}`)](xref:blazor/components/lifecycle#component-initialization-oninitializedasync)
   * [After component render (`OnAfterRender{Async}`)](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync)
   * [Stateful reconnection after prerendering](xref:blazor/components/lifecycle#stateful-reconnection-after-prerendering): Although the content in the section focuses on Blazor Server and stateful SignalR *reconnection*, the scenario for prerendering in hosted Blazor WebAssembly apps (<xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssemblyPrerendered>) involves similar conditions and approaches to prevent executing developer code twice. A *new state preservation feature* is planned for the ASP.NET Core 6.0 release that will improve the management of initialization code execution during prerendering.
   * [Detect when the app is prerendering](xref:blazor/components/lifecycle#detect-when-the-app-is-prerendering)
-* Authentication and authorization subjects that pertain to prerendering:
+* Authentication and authorization subjects that pertain to prerendering
   * [General aspects](xref:blazor/security/index#aspnet-core-blazor-authentication-and-authorization)
   * [Support prerendering with authentication](xref:blazor/security/webassembly/additional-scenarios#support-prerendering-with-authentication)
+* [Host and Deploy: Blazor WebAssembly](xref:blazor/host-and-deploy/webassembly)
 
 ::: moniker-end
 
@@ -373,7 +374,7 @@ To support routable Razor components in Razor Pages apps:
 
    For more information on the Component Tag Helper, including passing parameters and <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode> configuration, see <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
 
-1. Add a low-priority route for the `_Host` page to endpoint configuration in `Startup.Configure`:
+1. Add a low-priority route for the `_Host` page to endpoint configuration in `Startup.Configure`.
 
    `Startup.cs`:
 
@@ -477,7 +478,7 @@ To support routable Razor components in MVC apps:
    }
    ```
 
-1. Add a low-priority route for the controller action that returns the `_Host` view to the endpoint configuration in `Startup.Configure`:
+1. Add a low-priority route for the controller action that returns the `_Host` view to the endpoint configuration in `Startup.Configure`.
 
    `Startup.cs`:
 
@@ -592,14 +593,14 @@ For more information, see <xref:blazor/components/index#namespaces>.
 ## Additional resources
 
 * [State management: Handle prerendering](xref:blazor/state-management?pivot=server#handle-prerendering)
-* Razor component lifecycle subjects that pertain to prerendering:
+* Razor component lifecycle subjects that pertain to prerendering
   * [Component initialization (`OnInitialized{Async}`)](xref:blazor/components/lifecycle#component-initialization-oninitializedasync)
   * [After component render (`OnAfterRender{Async}`)](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync)
   * [Stateful reconnection after prerendering](xref:blazor/components/lifecycle#stateful-reconnection-after-prerendering)
   * [Detect when the app is prerendering](xref:blazor/components/lifecycle#detect-when-the-app-is-prerendering)
 * [Authentication and authorization: General aspects](xref:blazor/security/index#aspnet-core-blazor-authentication-and-authorization)
 * [Blazor Server rerendering](xref:blazor/fundamentals/handle-errors?pivot=server#blazor-server-prerendering-server)
-* [SignalR Configuration: Support *sticky sessions*](xref:blazor/fundamentals/signalr?pivot=server#configuration)
+* [Host and Deploy: Blazor Server](xref:blazor/host-and-deploy/server)
 * [Threat mitigation: Cross-site scripting (XSS)](xref:blazor/security/server/threat-mitigation#cross-site-scripting-xss)
 
 ::: zone-end
