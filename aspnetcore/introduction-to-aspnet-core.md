@@ -229,6 +229,10 @@ You may safely ignore (or remove) the `#region` and `#endregion` directives that
 
 For more information, see [Contribute to the ASP.NET documentation: Code snippets](https://github.com/dotnet/AspNetCore.Docs/blob/main/CONTRIBUTING.md#code-snippets).
 
+## Breaking changes and security advisories
+
+[!INCLUDE[](~/includes/announcements.md)]
+
 ## Next steps
 
 For more information, see the following resources:
