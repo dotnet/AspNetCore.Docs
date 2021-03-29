@@ -25,11 +25,15 @@ There are trade-offs between each of the hosting models. By default, the in-proc
 
 ## Install ASP.NET Core Module
 
+The ASP.NET Core Module is installed with the .NET Core Runtime from the [.NET Core Hosting Bundle](xref:host-and-deploy/iis/hosting-bundle). The ASP.NET Core Module is forward and backward compatible with LTS releases of .NET.
+
+[!INCLUDE[](~/includes/announcements.md)]
+
 Download the installer using the following link:
 
 [Current .NET Core Hosting Bundle installer (direct download)](https://dotnet.microsoft.com/permalink/dotnetcore-current-windows-runtime-bundle-installer)
 
-For more details instructions on how to install the ASP.NET Core Module, or installing different versions of the module, see [Install the .NET Core Hosting Bundle](xref:host-and-deploy/iis/hosting-bundle).
+For more information, including installing an earlier version of the module, see <xref:host-and-deploy/iis/hosting-bundle>.
 
 For a tutorial experience on publishing an ASP.NET Core app to an IIS server, see <xref:tutorials/publish-to-iis>.
 
@@ -137,7 +141,9 @@ The ASP.NET Core Module can also:
 
 ## How to install and use the ASP.NET Core Module
 
-For instructions on how to install the ASP.NET Core Module, see [Install the .NET Core Hosting Bundle](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle).
+For instructions on how to install the ASP.NET Core Module, see [Install the .NET Core Hosting Bundle](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle). The ASP.NET Core Module is forward and backward compatible with LTS releases of .NET.
+
+[!INCLUDE[](~/includes/announcements.md)]
 
 ## Configuration with web.config
 
@@ -552,7 +558,9 @@ The ASP.NET Core Module can also:
 
 ## How to install and use the ASP.NET Core Module
 
-For instructions on how to install the ASP.NET Core Module, see [Install the .NET Core Hosting Bundle](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle).
+For instructions on how to install the ASP.NET Core Module, see [Install the .NET Core Hosting Bundle](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle). The ASP.NET Core Module is forward and backward compatible with LTS releases of .NET.
+
+[!INCLUDE[](~/includes/announcements.md)]
 
 ## Configuration with web.config
 

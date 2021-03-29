@@ -20,6 +20,8 @@ The .NET Core Hosting bundle is an installer for the .NET Core Runtime and the [
 >
 > If the Hosting Bundle is installed after installing the 64-bit (x64) version of .NET Core, SDKs might appear to be missing ([No .NET Core SDKs were detected](xref:test/troubleshoot#no-net-core-sdks-were-detected)). To resolve the problem, see <xref:test/troubleshoot#missing-sdk-after-installing-the-net-core-hosting-bundle>.
 
+[!INCLUDE[](~/includes/announcements.md)]
+
 ## Direct download (current version)
 
 Download the installer using the following link:
