@@ -43,7 +43,7 @@ To set up prerendering for a Blazor WebAssembly app:
      ```diff
      - <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
      - <link href="css/site.css" rel="stylesheet" />
-     - <link href="_content/BlazorServer50/_framework/scoped.styles.css" rel="stylesheet" />
+     - <link href="_content/BlazorServer/_framework/scoped.styles.css" rel="stylesheet" />
      + <link href="css/app.css" rel="stylesheet" />
      + <link href="BlazorHosted.Client.styles.css" rel="stylesheet" />
      ```
@@ -62,44 +62,16 @@ To set up prerendering for a Blazor WebAssembly app:
      + <script src="_framework/blazor.webassembly.js"></script>
      ```
 
-1. In `Startup.Configure` of the **`Server`** project:
+1. In `Startup.Configure` of the **`Server`** project, change the fallback from the `index.html` file (`endpoints.MapFallbackToFile("index.html");`) to the `_Host.cshtml` page: `endpoints.MapFallbackToPage("/_Host");`.
 
-   * Call <xref:Microsoft.AspNetCore.Builder.DeveloperExceptionPageExtensions.UseDeveloperExceptionPage%2A> on the app builder in the Development environment.
-   * Call <xref:Microsoft.AspNetCore.Builder.ComponentsWebAssemblyApplicationBuilderExtensions.UseBlazorFrameworkFiles%2A> on the app builder in the Development environment.
-   * Change the fallback from the `index.html` file (`endpoints.MapFallbackToFile("index.html");`) to the `_Host.cshtml` page: `endpoints.MapFallbackToPage("/_Host");`.
+   `Startup.cs`:
 
-   `Startup.Configure` in `Startup.cs`:
-
-   ```csharp
-   public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-   {
-       if (env.IsDevelopment())
-       {
-           app.UseDeveloperExceptionPage();
-           app.UseWebAssemblyDebugging();
-       }
-       else
-       {
-           app.UseExceptionHandler("/Error");
-           app.UseHsts();
-       }
-
-       app.UseHttpsRedirection();
-       app.UseBlazorFrameworkFiles();
-       app.UseStaticFiles();
-
-       app.UseRouting();
-
-       app.UseEndpoints(endpoints =>
-       {
-           endpoints.MapRazorPages();
-           endpoints.MapControllers();
-           endpoints.MapFallbackToPage("/_Host");
-       });
-   }
+   ```diff
+   - endpoints.MapFallbackToFile("index.html");
+   + endpoints.MapFallbackToPage("/_Host");
    ```
 
-1. Prerendered Razor components embedded in a page or view can use the the **`Server`** app's stylesheets and default layout file. The **`Server`** app must have the following files and folders.
+1. Prerendered Razor components embedded in a page or view can use the the **`Server`** app's default layout file. The **`Server`** app must have the following files and folders.
 
    Razor Pages:
 
@@ -113,7 +85,7 @@ To set up prerendering for a Blazor WebAssembly app:
    * `Views/_ViewImports.cshtml`
    * `Views/_ViewStart.cshtml`
 
-   If the **`Server`** app requires these files, obtain them from an app created from the Razor Pages or MVC project template. For more information, see <xref:tutorials/razor-pages/razor-pages-start> or <xref:tutorials/first-mvc-app/start-mvc>.
+   If the **`Server`** app requires the preceding files, obtain them from an app created from the Razor Pages or MVC project template. For more information, see <xref:tutorials/razor-pages/razor-pages-start> or <xref:tutorials/first-mvc-app/start-mvc>.
 
    When importing files from another app, check each file and confirm or update the namespaces to match those in use by the project receiving the files.
 
@@ -130,28 +102,25 @@ To set up prerendering for a Blazor WebAssembly app:
      </body>
      ```
 
-   * If the app should style components with the styles in the Blazor WebAssembly app, include the app's styles in the `_Layout.cshtml` file. In the following example, the client app's namespace is `BlazorHosted.Client` because this example is based on a hosted Blazor WebAssembly solution, where the **`Server`** app is a Razor Pages app and display's the **`Client`** app's `Counter` component in a Razor page.
-
-     `Pages/Shared/_Layout.cshtml` (Razor Pages) or `Views/Shared/_Layout.cshtml` (MVC):
-
-     ```cshtml
-     <head>
-         ...
-         <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
-         <link href="css/app.css" rel="stylesheet" />
-         <link href="BlazorHosted.Client.styles.css" rel="stylesheet" />
-     </head>
-     ```
-
-   * Remove the Razor Pages or MVC static assets that aren't used by the Razor components.
+   * To style components [embedded into Razor pages or views](#render-components-in-a-page-or-view-with-the-component-tag-helper) with the styles in the Blazor WebAssembly app, include the app's styles in the `_Layout.cshtml` file. In the following example, the client app's namespace is `BlazorHosted.Client`.
 
      `Pages/Shared/_Layout.cshtml` (Razor Pages) or `Views/Shared/_Layout.cshtml` (MVC):
 
      ```diff
-     - <script src="~/lib/jquery/dist/jquery.min.js"></script>
-     - <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-     - <script src="~/js/site.js" asp-append-version="true"></script>
+     <head>
+         ...
+         + <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
+         + <link href="css/app.css" rel="stylesheet" />
+         + <link href="BlazorHosted.Client.styles.css" rel="stylesheet" />
+     </head>
      ```
+
+   * Razor Pages or MVC static assets can also be imported to the **`Server`** app from the donor app's `wwwroot` folder:
+
+     * `wwwroot/css` folder and contents
+     * `wwwroot/js` folder and contents
+     * `wwwroot/lib` folder and contents
+     * `favicon.ico` icon file
 
 ## Render components in a page or view with the Component Tag Helper
 
