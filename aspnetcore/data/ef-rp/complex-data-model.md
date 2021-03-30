@@ -41,6 +41,8 @@ To create a database diagram with Dataedo:
 * Follow the instructions [Generate documentation for Azure SQL Database in 5 minutes
 ](https://dataedo.com/tutorials/generate-documentation-for-azure-sql-database)
 
+In the preceding Dataedo diagram, the `CourseInstructor` is a join table created by Entity Framework. For more information, see [Many-to-many](/ef/core/modeling/relationships#many-to-many)
+
 ## The Student entity
 
 Replace the code in *Models/Student.cs* with the following code:
