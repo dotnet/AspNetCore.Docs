@@ -1,9 +1,10 @@
-﻿using ContosoUniversity.Data;
+﻿#region snippet_All
+using ContosoUniversity.Data;
 using ContosoUniversity.Models;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -12,10 +13,12 @@ namespace ContosoUniversity.Pages.Students
     public class IndexModel : PageModel
     {
         private readonly SchoolContext _context;
+        private readonly IConfiguration Configuration;
 
-        public IndexModel(SchoolContext context)
+        public IndexModel(SchoolContext context, IConfiguration configuration)
         {
             _context = context;
+            Configuration = configuration;
         }
 
         public string NameSort { get; set; }
@@ -65,9 +68,10 @@ namespace ContosoUniversity.Pages.Students
                     break;
             }
 
-            int pageSize = 3;
+            var pageSize = Configuration.GetValue("PageSize", 4);
             Students = await PaginatedList<Student>.CreateAsync(
                 studentsIQ.AsNoTracking(), pageIndex ?? 1, pageSize);
         }
     }
 }
+#endregion

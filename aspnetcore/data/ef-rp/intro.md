@@ -4,20 +4,20 @@ author: rick-anderson
 description: Shows how to create a Razor Pages app using Entity Framework Core
 ms.author: riande
 ms.custom: "mvc, seodec18"
-ms.date: 9/26/2020
+ms.date: 3/3/2021
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: data/ef-rp/intro
 ---
 
 # Razor Pages with Entity Framework Core in ASP.NET Core - Tutorial 1 of 8
 
-By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitter.com/RickAndMSFT)
+By [Tom Dykstra](https://github.com/tdykstra), [Jeremy Likness](https://twitter.com/jeremylikness), and [Jon P Smith](https://twitter.com/thereformedprog)
 
 ::: moniker range=">= aspnetcore-5.0"
 
 This is the first in a series of tutorials that show how to use Entity Framework (EF) Core in an [ASP.NET Core Razor Pages](xref:razor-pages/index) app. The tutorials build a web site for a fictional Contoso University. The site includes functionality such as student admission, course creation, and instructor assignments. The tutorial uses the code first approach. For information on following this tutorial using the database first approach, see [this Github issue](https://github.com/dotnet/AspNetCore.Docs/issues/16897).
 
-[Download or view the completed app.](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-rp/intro/samples) [Download instructions](xref:index#how-to-download-a-sample).
+[Download or view the completed app.](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu50) [Download instructions](xref:index#how-to-download-a-sample).
 
 ## Prerequisites
 
@@ -27,25 +27,27 @@ This is the first in a series of tutorials that show how to use Entity Framework
 
 [!INCLUDE[VS prereqs](~/includes/net-core-prereqs-vs-5.0.md)]
 
+### Database engines
+
+The Visual Studio instructions use [SQL Server LocalDB](/sql/database-engine/configure-windows/sql-server-2016-express-localdb), a version of SQL Server Express that runs only on Windows.
+
 # [Visual Studio Code](#tab/visual-studio-code)
 
 [!INCLUDE[VS Code prereqs](~/includes/net-core-prereqs-vsc-5.0.md)]
 
+Consider downloading and installing a third-party tool for managing and viewing a SQLite database, such as [DB Browser for SQLite](https://sqlitebrowser.org/).
+
+### Database engines
+
+The Visual Studio Code tab use [SQLite](https://www.sqlite.org/), a cross-platform database engine.
+
 ---
 
-## Database engines
-
-The Visual Studio instructions use [SQL Server LocalDB](/sql/database-engine/configure-windows/sql-server-2016-express-localdb), a version of SQL Server Express that runs only on Windows.
-
-The Visual Studio Code instructions use [SQLite](https://www.sqlite.org/), a cross-platform database engine.
-
-If you choose to use SQLite, download and install a third-party tool for managing and viewing a SQLite database, such as [DB Browser for SQLite](https://sqlitebrowser.org/).
-
-## Troubleshooting
+### Troubleshooting
 
 If you run into a problem you can't resolve, compare your code to the [completed project](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-rp/intro/samples). A good way to get help is by posting a question to StackOverflow.com, using the [ASP.NET Core tag](https://stackoverflow.com/questions/tagged/asp.net-core) or the [EF Core tag](https://stackoverflow.com/questions/tagged/entity-framework-core).
 
-## The sample app
+### The sample app
 
 The app built in these tutorials is a basic university web site. Users can view and update student, course, and instructor information. Here are a few of the screens created in the tutorial.
 
@@ -55,49 +57,50 @@ The app built in these tutorials is a basic university web site. Users can view 
 
 The UI style of this site is based on the built-in project templates. The tutorial's focus is on how to use EF Core with ASP.NET Core, not how to customize the UI.
 
-<!-- 
-Follow the link at the top of the page to get the source code for the completed project. The *cu50* folder has the code for the ASP.NET Core 5.0 version of the tutorial. Files that reflect the state of the code for tutorials 1-7 can be found in the *cu50snapshots* folder.
+<a name="build"></a>
+
+### Optional: Build the sample download
+
+This step is optional. Building the completed app is recommended when you have problems you can't solve. If you run into a problem you can't resolve, compare your code to the [completed project](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-rp/intro/samples/cu50). [Download instructions](xref:index#how-to-download-a-sample).
 
 # [Visual Studio](#tab/visual-studio)
 
-To run the app after downloading the completed project:
+Select *ContosoUniversity.csproj* to open the project.
 
-* Build the project.
-* In Package Manager Console (PMC) run the following command:
+  * Build the project.
+  * In Package Manager Console (PMC) run the following command:
 
   ```powershell
   Update-Database
+   
   ```
-
-* Run the project to seed the database.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-To run the app after downloading the completed project:
+* Remove the comments from the *appsettings.Development.json* file so the SQLite connections string is used:
+  [!code-json[Main](intro/samples/cu50/appsettings.Development.json?highlight=10-13)]
+* Remove the comments from the *ContosoUniversity.csproj* file so `SQLiteVersion`   is defined:
 
-* In *Program.cs*, remove the comments from `// webBuilder.UseStartup<StartupSQLite>();`  so `StartupSQLite` is used.
-* Copy the contents of *appSettingsSQLite.json* into *appSettings.json*.
-* Delete the *Migrations* folder, and rename *MigrationsSQL* to *Migrations*.
-* Do a global search for `#if SQLiteVersion` and remove `#if SQLiteVersion` and the associated `#endif` statement.
-* Build the project.
-* At a command prompt in the project folder, run the following commands:
+  ```xml
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>TRACE;SQLiteVersion</DefineConstants>
+  </PropertyGroup>
+  ```
+
+* In a command window, update the database:
 
   ```dotnetcli
-  dotnet tool install --global dotnet-ef -v 5.0.0-*
+  dotnet tool install --global dotnet-ef
   dotnet ef database update
+    
   ```
 
-* In your SQLite tool, run the following SQL statement:
-
-  ```sql
-  UPDATE Department SET RowVersion = randomblob(8)
-  ```
-
-* Run the project to seed the database.
-
+<!-- prerelease versions require
+  dotnet tool uninstall --global dotnet-ef
+-->
 ---
 
--->
+Run the project to seed the database.
 
 ## Create the web app project
 
@@ -167,9 +170,9 @@ The `ID` property becomes the primary key column of the database table that corr
 
 The `Enrollments` property is a [navigation property](/ef/core/modeling/relationships). Navigation properties hold other entities that are related to this entity. In this case, the `Enrollments` property of a `Student` entity holds all of the `Enrollment` entities that are related to that Student. For example, if a Student row in the database has two related Enrollment rows, the `Enrollments` navigation property contains those two Enrollment entities. 
 
-In the database, an Enrollment row is related to a Student row if its StudentID column contains the student's ID value. For example, suppose a Student row has ID=1. Related Enrollment rows will have StudentID = 1. StudentID is a *foreign key* in the Enrollment table. 
+In the database, an Enrollment row is related to a Student row if its `StudentID` column contains the student's ID value. For example, suppose a Student row has ID=1. Related Enrollment rows will have `StudentID` = 1. `StudentID` is a *foreign key* in the Enrollment table. 
 
-The `Enrollments` property is defined as `ICollection<Enrollment>` because there may be multiple related Enrollment entities. You can use other collection types, such as `List<Enrollment>` or `HashSet<Enrollment>`. When `ICollection<Enrollment>` is used, EF Core creates a `HashSet<Enrollment>` collection by default.
+The `Enrollments` property is defined as `ICollection<Enrollment>` because there may be multiple related Enrollment entities. Other collection types can be used, such as `List<Enrollment>` or `HashSet<Enrollment>`. When `ICollection<Enrollment>` is used, EF Core creates a `HashSet<Enrollment>` collection by default.
 
 ## The Enrollment entity
 
@@ -177,9 +180,9 @@ The `Enrollments` property is defined as `ICollection<Enrollment>` because there
 
 Create *Models/Enrollment.cs* with the following code:
 
-[!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Models/Enrollment.cs)]
+[!code-csharp[](intro/samples/cu50/Models/Enrollment.cs)]
 
-The `EnrollmentID` property is the primary key; this entity uses the `classnameID` pattern instead of `ID` by itself. For a production data model, choose one pattern and use it consistently. This tutorial uses both just to illustrate that both work. Using `ID` without `classname` makes it easier to implement some kinds of data model changes.
+The `EnrollmentID` property is the primary key; this entity uses the `classnameID` pattern instead of `ID` by itself. For a production data model, many developers choose one pattern and use it consistently. This tutorial uses both just to illustrate that both work. Using `ID` without `classname` makes it easier to implement some kinds of data model changes.
 
 The `Grade` property is an `enum`. The question mark after the `Grade` type declaration indicates that the `Grade` property is [nullable](/dotnet/csharp/programming-guide/nullable-types/). A grade that's null is different from a zero grade&mdash;null means a grade isn't known or hasn't been assigned yet.
 
@@ -205,7 +208,7 @@ Build the project to validate that there are no compiler errors.
 
 ## Scaffold Student pages
 
-In this section, you use the ASP.NET Core scaffolding tool to generate:
+In this section, the ASP.NET Core scaffolding tool is used to generate:
 
 * An EF Core `DbContext` class. The context is the main class that coordinates Entity Framework functionality for a given data model. It derives from the <xref:Microsoft.EntityFrameworkCore.DbContext?displayProperty=fullName> class.
 * Razor pages that handle Create, Read, Update, and Delete (CRUD) operations for the `Student` entity.
@@ -223,6 +226,8 @@ In this section, you use the ASP.NET Core scaffolding tool to generate:
     * Change the data context name to end in `SchoolContext` rather than `ContosoUniversityContext`. The updated context name: `ContosoUniversity.Data.SchoolContext`
     * Select **Add** to finish adding the data context class.
    * Select **Add** to finish the **Add Razor Pages** dialog.
+
+If scaffolding fails with the error `'Install the package Microsoft.VisualStudio.Web.CodeGeneration.Design and try again.'`, run the scaffold tool again or see [this GitHub issue](https://github.com/dotnet/Scaffolding/issues/1540).
 
 The following packages are automatically installed:
 
@@ -243,15 +248,15 @@ The following packages are automatically installed:
   dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore -v 5.0.0-*  
   ```
 
-   The Microsoft.VisualStudio.Web.CodeGeneration.Design package is required for scaffolding. Although the app won't use SQL Server, the scaffolding tool needs the SQL Server package.
+   The `Microsoft.VisualStudio.Web.CodeGeneration.Design` package is required for scaffolding. Although the app won't use SQL Server, the scaffolding tool needs the SQL Server package.
 
 * Create a *Pages/Students* folder.
 
 * Run the following command to install the [aspnet-codegenerator scaffolding tool](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
 
   ```dotnetcli
-  dotnet tool uninstall --global dotnet-aspnet-codegenerator
-  dotnet tool install --global dotnet-aspnet-codegenerator --version 5.0.0-*  
+   dotnet tool install --global dotnet-aspnet-codegenerator
+  
   ```
 
 * Run the following command to scaffold Student pages.
@@ -292,7 +297,7 @@ The scaffolding tool generates a connection string in the *appsettings.json* fil
 
 The connection string specifies [SQL Server LocalDB](/sql/database-engine/configure-windows/sql-server-2016-express-localdb):
 
-[!code-json[Main](intro/samples/cu50/appsettings.json?highlight=11)]
+[!code-json[Main](intro/samples/cu50/appsettings1.json?highlight=11)]
 
 LocalDB is a lightweight version of the SQL Server Express Database Engine and is intended for app development, not production use. By default, LocalDB creates *.mdf* files in the `C:/Users/<user>` directory.
 
@@ -351,7 +356,7 @@ Verify the code added by the scaffolder calls `UseSqlite`.
 
 [!code-csharp[Main](intro/samples/cu30/StartupSQLite.cs?name=snippet_ConfigureServices&highlight=5-6)]
 
-See [Use SQLite for development, SQL Server for production](xref:tutorials/razor-pages/model#use-sqlite-for-development-sql-server-for-production) for information on using a production database.
+See [Use SQLite for development, SQL Server for production](xref:tutorials/razor-pages/model?tabs=visual-studio-code#use-sqlite-for-development-sql-server-for-production) for information on using a production database.
 
 ---
 
@@ -367,7 +372,7 @@ Add <xref:Microsoft.Extensions.DependencyInjection.DatabaseDeveloperPageExceptio
 
 Add the [Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore) NuGet package.
 
-In the PMC, enter the following to add the NuGet package:
+In the Package Manager Console, enter the following to add the NuGet package:
 
 ```powershell
 Install-Package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
@@ -396,9 +401,9 @@ The [EnsureCreated](/dotnet/api/microsoft.entityframeworkcore.infrastructure.dat
 * Run the app.
 * `EnsureCreated` creates a database with the new schema.
 
-This workflow works well early in development when the schema is rapidly evolving, as long as you don't need to preserve data. The situation is different when data that has been entered into the database needs to be preserved. When that is the case, use migrations.
+This workflow works early in development when the schema is rapidly evolving, as long as data doesn't need to be preserved. The situation is different when data that has been entered into the database needs to be preserved. When that is the case, use migrations.
 
-Later in the tutorial series, you delete the database that was created by `EnsureCreated` and use migrations instead. A database that is created by `EnsureCreated` can't be updated by using migrations.
+Later in the tutorial series, the database is deleted that was created by `EnsureCreated` and migrations is used. A database that is created by `EnsureCreated` can't be updated by using migrations.
 
 ### Test the app
 
@@ -411,27 +416,28 @@ Later in the tutorial series, you delete the database that was created by `Ensur
 The `EnsureCreated` method creates an empty database. This section adds code that populates the database with test data.
 
 Create *Data/DbInitializer.cs* with the following code:
-<!-- next update, keep this file in the project and surround with #if -->
-  [!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Data/DbInitializer.cs)]
 
-  The code checks if there are any students in the database. If there are no students, it adds test data to the database. It creates the test data in arrays rather than `List<T>` collections to optimize performance.
+[!code-csharp[Main](intro/samples/cu50/Data/DbInitializer1.cs?name=snippet)]
 
-In *Program.cs*, replace the `EnsureCreated` call with a `DbInitializer.Initialize` call:
+The code checks if there are any students in the database. If there are no students, it adds test data to the database. It creates the test data in arrays rather than `List<T>` collections to optimize performance.
+
+* In *Program.cs*, remove `//` from the `DbInitializer.Initialize` line:
 
   ```csharp
-  // context.Database.EnsureCreated();
-  DbInitializer.Initialize(context);
+    context.Database.EnsureCreated();
+    DbInitializer.Initialize(context);
   ```
 
 # [Visual Studio](#tab/visual-studio)
 
-Stop the app if it's running, and run the following command in the **Package Manager Console** (PMC):
+* Stop the app if it's running, and run the following command in the **Package Manager Console** (PMC):
 
-```powershell
-Drop-Database -Confirm
-```
+  ```powershell
+  Drop-Database -Confirm
+   
+  ```
 
-Respond with `Y` to delete the database.
+* Respond with `Y` to delete the database.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -447,14 +453,14 @@ Respond with `Y` to delete the database.
 # [Visual Studio](#tab/visual-studio)
 
 * Open **SQL Server Object Explorer** (SSOX) from the **View** menu in Visual Studio.
-* In SSOX, select **(localdb)\MSSQLLocalDB > Databases > SchoolContext-{GUID}**. The database name is generated from the context name you provided earlier plus a dash and a GUID.
+* In SSOX, select **(localdb)\MSSQLLocalDB > Databases > SchoolContext-{GUID}**. The database name is generated from the context name provided earlier plus a dash and a GUID.
 * Expand the **Tables** node.
 * Right-click the **Student** table and click **View Data** to see the columns created and the rows inserted into the table.
 * Right-click the **Student** table and click **View Code** to see how the `Student` model maps to the `Student` table schema.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-Use your SQLite tool to view the database schema and seeded data. The database file is named *CU.db* and is located in the project folder.
+Use a SQLite tool to view the database schema and seeded data. The database file is named *CU.db* and is located in the project folder.
 
 ---
 
@@ -503,9 +509,15 @@ Enumerating a large table in a view could return a partially constructed HTTP 20
 
 [!code-csharp[Main](intro/samples/cu50/StartupMaxMBsize.cs?name=snippet_ConfigureServices)]
 
+See [Configuration](xref:fundamentals/configuration/index) for information on configuration settings like `MyMaxModelBindingCollectionSize`.
+
 Paging is covered later in the tutorial.
 
+For more information, see [Performance considerations (EF)](/dotnet/framework/data/adonet/ef/performance-considerations).
+
 ## Next steps
+
+[Use SQLite for development, SQL Server for production](xref:tutorials/razor-pages/model?tabs=visual-studio-code#use-sqlite-for-development-sql-server-for-production)
 
 > [!div class="step-by-step"]
 > [Next tutorial](xref:data/ef-rp/crud)
