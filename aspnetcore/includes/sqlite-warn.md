@@ -5,9 +5,9 @@ no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Bla
 > 
 > **SQLite limitations**
 >
-> This tutorial uses the Entity Framework Core *migrations* feature where possible. Migrations updates the database schema to match changes in the data model. However, migrations only does the kinds of changes that the database engine supports, and SQLite's schema change capabilities are limited. For example, adding a column is supported, but removing a column is not supported. If a migration is created to remove a column, the `ef migrations add` command succeeds but the `ef database update` command fails. 
+> This tutorial uses the Entity Framework Core [migrations](/ef/core/managing-schemas/migrations/?tabs=dotnet-core-cli) feature where possible. Migrations updates the database schema to match changes in the data model. However, migrations only does the kinds of changes that the database engine supports, and SQLite's schema change capabilities are limited. For example, adding a column is supported, but removing a column is not supported. If a migration is created to remove a column, the `ef migrations add` command succeeds but the `ef database update` command fails. 
 >
-> The workaround for the SQLite limitations is to manually write migrations code to perform a table rebuild when something in the table changes. The code would go in the `Up` and `Down` methods for a migration and would involve:
+> The workaround for the SQLite limitations is to manually write migrations code to perform a table rebuild when something in the table changes. The code goes in the `Up` and `Down` methods for a migration and involves:
 >
 > * Creating a new table.
 > * Copying data from the old table to the new table.

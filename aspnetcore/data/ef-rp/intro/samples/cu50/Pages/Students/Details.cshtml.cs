@@ -21,6 +21,7 @@ namespace ContosoUniversity.Pages.Students
 
         public Student Student { get; set; }
 
+        #region snippet_OnGetAsync
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
@@ -40,5 +41,6 @@ namespace ContosoUniversity.Pages.Students
             }
             return Page();
         }
+        #endregion
     }
 }
