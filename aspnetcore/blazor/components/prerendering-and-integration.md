@@ -329,7 +329,7 @@ An existing Razor Pages or MVC app can integrate Razor components into pages and
 
 1. Integrate components into any page or view. For example, add a `Counter` component to the app's `Shared` folder:
 
-   `Pages/Shared/Counter.razor`:
+   `Pages/Shared/Counter.razor` (Razor Pages) or `Views/Shared/Counter.razor` (MVC):
 
    ```razor
    <h1>Counter</h1>
@@ -348,7 +348,11 @@ An existing Razor Pages or MVC app can integrate Razor components into pages and
    }
    ```
 
-   In the app's `Index` page, add the `Counter` component's namespace and embed the component into the page:
+   **Razor Pages**:
+
+   In the app's `Index` page of a Razor Pages app, add the `Counter` component's namespace and embed the component into the page. When the `Index` page loads, the `Counter` component is prerendered in the page. In the following example, replace the `{APP NAMESPACE}` placeholder with the app's namespace.
+
+   `Pages/Index.cshtml`:
 
    ```cshtml
    @page
@@ -365,9 +369,24 @@ An existing Razor Pages or MVC app can integrate Razor components into pages and
 
    In the preceding example, replace the `{APP NAMESPACE}` placeholder with the app's namespace.
 
-   When the `Index` page loads, the `Counter` component is prerendered in the page.
+   **MVC**:
 
-   For more information, see the [Render components from a page or view](#render-components-from-a-page-or-view) section.
+   In the app's `Index` view of an MVC app, add the `Counter` component's namespace and embed the component into the view. When the `Index` view loads, the `Counter` component is prerendered in the page. In the following example, replace the `{APP NAMESPACE}` placeholder with the app's namespace.
+
+   `Views/Home/Index.cshtml`:
+
+   ```cshtml
+   @using {APP NAMESPACE}.Views.Shared
+   @{
+       ViewData["Title"] = "Home Page";
+   }
+
+   <div>
+       <component type="typeof(Counter)" render-mode="ServerPrerendered" />
+   </div>
+   ```
+
+For more information, see the [Render components from a page or view](#render-components-from-a-page-or-view) section.
 
 ## Use routable components in a Razor Pages app
 
@@ -523,7 +542,7 @@ To support routable Razor components in MVC apps:
 
 1. In the `Startup.Configure` endpoints of `Startup.cs`, add a low-priority route for the controller action that returns the `_Host` view:
 
-   ```csharp
+   ```diff
    app.UseEndpoints(endpoints =>
    {
        endpoints.MapControllerRoute(
@@ -620,11 +639,11 @@ For more information, see <xref:mvc/views/tag-helpers/builtin-th/component-tag-h
 
 When using a custom folder to hold the app's components, add the namespace representing the folder to either the page/view or to the `_ViewImports.cshtml` file. In the following example:
 
-* Change `MyAppNamespace` to the app's namespace.
-* If a folder named `Components` isn't used to hold the components, change `Components` to the folder where the components reside.
+* Components are stored in the `Components` folder of the app.
+* The `{APP NAMESPACE}` placeholder is the app's namespace. `Components` represents the name of the folder.
 
 ```cshtml
-@using MyAppNamespace.Components
+@using {APP NAMESPACE}.Components
 ```
 
 The `_ViewImports.cshtml` file is located in the `Pages` folder of a Razor Pages app or the `Views` folder of an MVC app.
