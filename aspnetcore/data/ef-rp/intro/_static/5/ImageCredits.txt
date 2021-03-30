@@ -1,1 +1,2 @@
-database diagram made with DataEdo
+Database diagram made with Dataedo, database documentation, and data catalog tool.
+For more information, please visit dataedo.com, or email us at dataedo@dataedo.com.
