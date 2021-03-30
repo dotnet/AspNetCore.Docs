@@ -311,13 +311,17 @@ An existing Razor Pages or MVC app can integrate Razor components into pages and
    @using {APP NAMESPACE}
    ```
 
-1. Register the Blazor Server service. In `Startup.ConfigureServices` in `Startup.cs`:
+1. Register the Blazor Server service in `Startup.ConfigureServices`.
+
+   `Startup.cs`:
 
    ```diff
    + services.AddServerSideBlazor();
    ```
 
-1. Add the Blazor Hub endpoint. In `app.UseEndpoints` of `Startup.Configure` in `Startup.cs`:
+1. Add the Blazor Hub endpoint to the endpoints (`app.UseEndpoints`) of `Startup.Configure`.
+
+   `Startup.cs`:
 
    ```diff
    + endpoints.MapBlazorHub();
@@ -420,7 +424,12 @@ To support routable Razor components in Razor Pages apps:
 1. In the `Startup.Configure` endpoints of `Startup.cs`, add a low-priority route for the `_Host` page as the last endpoint:
 
    ```diff
-   + endpoints.MapFallbackToPage("/_Host");
+   app.UseEndpoints(endpoints =>
+   {
+       endpoints.MapRazorPages();
+       endpoints.MapBlazorHub();
+   +     endpoints.MapFallbackToPage("/_Host");
+   });
    ```
 
 1. Add routable components to the app.
@@ -445,6 +454,8 @@ To support routable Razor components in Razor Pages apps:
        }
    }
    ```
+
+1. Run the app and navigate to the routable `RoutableCounter` component at `/routable-counter`.
 
 For more information on namespaces, see the [Component namespaces](#component-namespaces) section.
 
@@ -513,7 +524,14 @@ To support routable Razor components in MVC apps:
 1. In the `Startup.Configure` endpoints of `Startup.cs`, add a low-priority route for the controller action that returns the `_Host` view:
 
    ```csharp
-   + endpoints.MapFallbackToController("Blazor", "Home");
+   app.UseEndpoints(endpoints =>
+   {
+       endpoints.MapControllerRoute(
+           name: "default",
+           pattern: "{controller=Home}/{action=Index}/{id?}");
+       endpoints.MapBlazorHub();
+   +     endpoints.MapFallbackToController("Blazor", "Home");
+   });
    ```
 
 1. Add routable components to the app.
@@ -538,6 +556,8 @@ To support routable Razor components in MVC apps:
        }
    }
    ```
+
+1. Run the app and navigate to the routable `RoutableCounter` component at `/routable-counter`.
 
 For more information on namespaces, see the [Component namespaces](#component-namespaces) section.
 
