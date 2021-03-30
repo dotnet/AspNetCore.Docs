@@ -28,6 +28,10 @@ The completed data model is shown in the following illustration:
 
 ![Entity diagram](complex-data-model/_static/EF.png)
 
+The following database diagram was made with [Dataedo](https://dataedo.com/):
+
+![Dataedo diagram](intro/_static/Azure SQL DB ERD made in Dataedo.jpg)
+
 ## The Student entity
 
 Replace the code in *Models/Student.cs* with the following code:
