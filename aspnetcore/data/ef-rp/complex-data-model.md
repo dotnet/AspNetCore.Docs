@@ -26,11 +26,9 @@ The previous tutorials worked with a basic data model that was composed of three
 
 The completed data model is shown in the following illustration:
 
-![Entity diagram](complex-data-model/_static/diagram.png)
-<!-- C:\Dropbox\wrk\Code\EF6-CU to build new schema -->
-## The Student entity
+![Entity diagram](complex-data-model/_static/EF.png)
 
-![Student entity](complex-data-model/_static/student-entity.png)
+## The Student entity
 
 Replace the code in *Models/Student.cs* with the following code:
 
@@ -161,6 +159,10 @@ The error message is similar to the following example:
 
 ```
 SqlException: Invalid column name 'FirstName'.
+There are pending model changes
+Pending model changes are detected in the following:
+
+SchoolContext
 ```
 
 * In the PMC, enter the following commands to create a new migration and update the database:
@@ -168,6 +170,7 @@ SqlException: Invalid column name 'FirstName'.
   ```powershell
   Add-Migration ColumnFirstName
   Update-Database
+   
   ```
 
   The first of these commands generates the following warning message:
@@ -293,8 +296,6 @@ When an `Instructor` entity has a related `OfficeAssignment` entity, each entity
 
 ## The Course Entity
 
-![Course entity](complex-data-model/_static/course-entity.png)
-
 Update *Models/Course.cs* with the following code:
 
 [!code-csharp[](intro/samples/cu50/Models/Course.cs?highlight=2,10,13,16,19,21,23)]
@@ -346,8 +347,6 @@ A course may be taught by multiple instructors, so the `Instructors` navigation 
 ```
 
 ## The Department entity
-
-![Department entity](complex-data-model/_static/department-entity.png)
 
 Create *Models/Department.cs* with the following code:
 
@@ -414,7 +413,7 @@ Update *Models/Enrollment.cs* with the following code:
 
 An enrollment record is for one course taken by one student.
 
-![Enrollment entity](complex-data-model/_static/enrollment-entity.png)
+![Enrollment entity](complex-data-model/_static/enrollment-entity.png) 
 
 Update *Models/Enrollment.cs* with the following code:
 
@@ -527,6 +526,7 @@ Some of the attributes used in this tutorial are used for:
 
 For more information about attributes vs. fluent API, see [Methods of configuration](/ef/core/modeling/).
 
+<!-- 
 ## Entity diagram
 
 The following illustration shows the diagram that EF Power Tools create for the completed School model.
@@ -538,6 +538,7 @@ The preceding diagram shows:
 * Several one-to-many relationship lines (1 to \*).
 * The one-to-zero-or-one relationship line (1 to 0..1) between the `Instructor` and `OfficeAssignment` entities.
 * The zero-or-one-to-many relationship line (0..1 to *) between the `Instructor` and `Department` entities.
+-->
 
 ## Seed the database
 

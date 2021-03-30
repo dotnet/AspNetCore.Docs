@@ -127,7 +127,7 @@ Run the app and select the **Courses** tab to see the list with department names
 
 ### Loading related data with Select
 
-The `OnGetAsync` method loads related data with the `Include` method. The `Select` method is an alternative that loads only the related data needed. For single items, like the `Department.Name` it uses a SQL INNER JOIN. For collections, it uses another database access, but so does the `Include` operator on collections.
+The `OnGetAsync` method loads related data with the `Include` method. The `Select` method is an alternative that loads only the related data needed. For single items, like the `Department.Name` it uses a `SQL INNER JOIN`. For collections, it uses another database access, but so does the `Include` operator on collections.
 
 The following code loads related data with the `Select` method:
 
@@ -217,9 +217,6 @@ The following code executes when an instructor is selected, that is, `id != null
 The selected instructor is retrieved from the list of instructors in the view model. The view model's `Courses` property is loaded with the `Course` entities from the selected instructor's `Courses` navigation property.
 
 The `Where` method returns a collection. In this case, the filter select a single entity, so the `Single` method is called to convert the collection into a single `Instructor` entity. The `Instructor` entity provides access to the `Course` navigation property.
-
-<!-- TODO update this and get rid of CourseAssignment -->
-![Instructor-to-Courses m:M](complex-data-model/_static/courseassignment.png)
 
 The <xref:System.Linq.Enumerable.Single%2A> method is used on a collection when the collection has only one item. The `Single` method throws an exception if the collection is empty or if there's more than one item. An alternative is <xref:System.Linq.Enumerable.SingleOrDefault%2A>, which returns a default value if the collection is empty. For this query, `null` in the default returned.
 

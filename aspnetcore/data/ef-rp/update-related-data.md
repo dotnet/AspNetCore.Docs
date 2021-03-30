@@ -94,13 +94,13 @@ The preceding code makes the following changes:
 
 The page contains a hidden field (`<input type="hidden">`) for the course number. Adding a `<label>` tag helper with `asp-for="Course.CourseID"` doesn't eliminate the need for the hidden field. `<input type="hidden">` is required for the course number to be included in the posted data when the user selects **Save**.
 
-## Update the Course Details and Delete pages
+## Update the Course page models
 
 [AsNoTracking](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.asnotracking#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_AsNoTracking__1_System_Linq_IQueryable___0__) can improve performance when tracking isn't required.
 
-### Update the Course page models
+Update *Pages/Courses/Delete.cshtml.cs* and *Pages/Courses/Details.cshtml.cs* by adding `AsNoTracking` to the `OnGetAsync` methods:
 
-Update *Pages/Courses/Delete.cshtml.cs* and *Pages/Courses/Details.cshtml.cs* by adding `AsNoTracking`.
+[!code-csharp[](intro/samples/cu50/Pages/Courses/Delete.cshtml.cs?highlight=8-11&name=snippet)]
 
 ### Update the Course Razor pages
 
@@ -207,7 +207,7 @@ The preceding code:
     [!code-csharp[](intro/samples/cu50/Pages/Instructors/Create.cshtml.cs?name=snippet_find&highlight=9,15,34)]
 
   * `_context.Instructors.Add(newInstructor)` creates a new `Instructor` using [many-to-many](/ef/core/modeling/relationships#many-to-many) relationships without explicitly mapping the join table. [Many-to-many was added in EF 5.0](/ef/core/what-is-new/ef-core-5.0/whatsnew).
-  
+
 Test the instructor Create page.
 
 Update the Instructor Create Razor page with code similar to the Edit page:

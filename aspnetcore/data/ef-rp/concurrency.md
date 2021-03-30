@@ -169,6 +169,7 @@ Run the following commands in the PMC:
   ```powershell
   Add-Migration RowVersion
   Update-Database
+    
   ```
 
 The preceding commands:
@@ -250,7 +251,7 @@ Add a class named `Utility` with the following code:
 
 ---
 
-The `Utility` class provides the `GetLastChars` method used to display the last few characters of the concurrency token. The following code shows the complete source:
+The `Utility` class provides the `GetLastChars` method used to display the last few characters of the concurrency token. The following code shows the code that works with both SQLite ad SQL Server:
 
 [!code-csharp[](intro/samples/cu50/Utility.cs?name=snippet_full)]
 
@@ -273,7 +274,7 @@ Update *Pages\Departments\Index.cshtml* page:
 
 The following code shows the updated page:
 
-[!code-cshtml[](intro/samples/cu50/Pages/Departments/Index.cshtml?highlight=5,8,29,48,50)
+[!code-cshtml[](intro/samples/cu50/Pages/Departments/Index.cshtml?highlight=5,8,29,48,50)]
 
 ## Update the Edit page model
 

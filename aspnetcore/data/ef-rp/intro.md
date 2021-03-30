@@ -72,6 +72,7 @@ Select *ContosoUniversity.csproj* to open the project.
 
   ```powershell
   Update-Database
+   
   ```
 
 # [Visual Studio Code](#tab/visual-studio-code)
@@ -224,6 +225,8 @@ In this section, the ASP.NET Core scaffolding tool is used to generate:
     * Select **Add** to finish adding the data context class.
    * Select **Add** to finish the **Add Razor Pages** dialog.
 
+If scaffolding fails with the error `'Install the package Microsoft.VisualStudio.Web.CodeGeneration.Design and try again.'`, run the scaffold tool again or see [this GitHub issue](https://github.com/dotnet/Scaffolding/issues/1540).
+
 The following packages are automatically installed:
 
 * `Microsoft.EntityFrameworkCore.SqlServer`
@@ -243,14 +246,14 @@ The following packages are automatically installed:
   dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore -v 5.0.0-*  
   ```
 
-   The Microsoft.VisualStudio.Web.CodeGeneration.Design package is required for scaffolding. Although the app won't use SQL Server, the scaffolding tool needs the SQL Server package.
+   The `Microsoft.VisualStudio.Web.CodeGeneration.Design` package is required for scaffolding. Although the app won't use SQL Server, the scaffolding tool needs the SQL Server package.
 
 * Create a *Pages/Students* folder.
 
 * Run the following command to install the [aspnet-codegenerator scaffolding tool](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
 
   ```dotnetcli
-  
+   dotnet tool install --global dotnet-aspnet-codegenerator
   
   ```
 
@@ -429,6 +432,7 @@ The code checks if there are any students in the database. If there are no stude
 
   ```powershell
   Drop-Database -Confirm
+   
   ```
 
 * Respond with `Y` to delete the database.

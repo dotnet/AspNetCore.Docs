@@ -63,6 +63,7 @@ Run the following commands in the PMC:
 ```powershell
 Add-Migration InitialCreate
 Update-Database
+ 
 ```
 
 # [Visual Studio Code](#tab/visual-studio-code)
@@ -72,9 +73,24 @@ Make sure the command prompt is in the project folder, and run the following com
 ```dotnetcli
 dotnet ef migrations add InitialCreate
 dotnet ef database update
+ 
 ```
 
 ---
+
+### Remove EnsureCreated
+
+This tutorial series started by using [EnsureCreated](/dotnet/api/microsoft.entityframeworkcore.infrastructure.databasefacade.ensurecreated#Microsoft_EntityFrameworkCore_Infrastructure_DatabaseFacade_EnsureCreated) . `EnsureCreated` doesn't create a migrations history table and so can't be used with migrations. It's designed for testing or rapid prototyping where the database is dropped and re-created frequently.
+
+From this point forward, the tutorials will use migrations.
+
+In *Program.cs*, delete the following line:
+
+```csharp
+context.Database.EnsureCreated();
+```
+
+Run the app and verify that the database is seeded.
 
 ## Up and Down methods
 
@@ -104,20 +120,6 @@ Because the snapshot file tracks the state of the data model, a migration cannot
 
 See [Resetting all migrations
 ](/ef/core/miscellaneous/cli/dotnet#resetting-all-migrations) to remove all migrations
-
-## Remove EnsureCreated
-
-This tutorial series started by using [EnsureCreated](/dotnet/api/microsoft.entityframeworkcore.infrastructure.databasefacade.ensurecreated#Microsoft_EntityFrameworkCore_Infrastructure_DatabaseFacade_EnsureCreated) . `EnsureCreated` doesn't create a migrations history table and so can't be used with migrations. It's designed for testing or rapid prototyping where the database is dropped and re-created frequently.
-
-From this point forward, the tutorials will use migrations.
-
-In *Program.cs*, delete the following line:
-
-```csharp
-context.Database.EnsureCreated();
-```
-
-Run the app and verify that the database is seeded.
 
 ## Applying migrations in production
 
