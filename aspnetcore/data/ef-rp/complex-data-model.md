@@ -30,7 +30,7 @@ The completed data model is shown in the following illustration:
 
 The following database diagram was made with [Dataedo](https://dataedo.com/):
 
-![Dataedo diagram](intro/_static/Azure SQL DB ERD made in Dataedo.jpg)
+![Dataedo diagram](intro/_static/AzureSQL_DB_ERD_madeIn_Dataedo.jpg)
 
 ## The Student entity
 
