@@ -28,6 +28,21 @@ The completed data model is shown in the following illustration:
 
 ![Entity diagram](complex-data-model/_static/EF.png)
 
+The following database diagram was made with [Dataedo](https://dataedo.com/):
+
+<!--Image added in https://github.com/dotnet/AspNetCore.Docs/pull/21922  -->
+
+![Dataedo diagram](intro/_static/5/AzureSQL_DB_ERD_madeIn_Dataedo.png)
+
+To create a database diagram with Dataedo:
+
+* [Deploy the app to Azure](/azure/app-service/tutorial-dotnetcore-sqldb-app)
+* Download and install [Dataedo](https://dataedo.com/) on your computer.
+* Follow the instructions [Generate documentation for Azure SQL Database in 5 minutes
+](https://dataedo.com/tutorials/generate-documentation-for-azure-sql-database)
+
+In the preceding Dataedo diagram, the `CourseInstructor` is a join table created by Entity Framework. For more information, see [Many-to-many](/ef/core/modeling/relationships#many-to-many)
+
 ## The Student entity
 
 Replace the code in *Models/Student.cs* with the following code:
