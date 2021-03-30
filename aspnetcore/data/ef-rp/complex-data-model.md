@@ -34,6 +34,7 @@ The following database diagram was made with [Dataedo](https://dataedo.com/):
 
 ![Dataedo diagram](intro/_static/5/AzureSQL_DB_ERD_madeIn_Dataedo.png)
 
+![Dataedo diagram2 ](intro/_static/5/![Dataedo diagram](intro/_static/5/AzureSQL_DB_ERD_madeIn_Dataedo.png))
 
 ## The Student entity
 
