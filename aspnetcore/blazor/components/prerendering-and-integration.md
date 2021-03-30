@@ -274,15 +274,10 @@ An existing Razor Pages or MVC app can integrate Razor components into pages and
 
 1. In the app's layout file:
 
-   * Add the following `<base>` tag to the `<head>` element.
+   * Add the following `<base>` tag to the `<head>` element in `Pages/Shared/_Layout.cshtml` (Razor Pages) or `Views/Shared/_Layout.cshtml` (MVC):
 
-     `Pages/Shared/_Layout.cshtml` (Razor Pages) or `Views/Shared/_Layout.cshtml` (MVC):
-
-     ```cshtml
-     <head>
-         ...
-         <base href="~/" />
-     </head>
+     ```diff
+     + <base href="~/" />
      ```
 
      The `href` value (the *app base path*) in the preceding example assumes that the app resides at the root URL path (`/`). If the app is a sub-application, follow the guidance in the *App base path* section of the <xref:blazor/host-and-deploy/index#app-base-path> article.
@@ -291,10 +286,9 @@ An existing Razor Pages or MVC app can integrate Razor components into pages and
 
      `Pages/Shared/_Layout.cshtml` (Razor Pages) or `Views/Shared/_Layout.cshtml` (MVC):
 
-     ```cshtml
-     <body>
+     ```diff
          ...
-         <script src="_framework/blazor.server.js"></script>
+     +     <script src="_framework/blazor.server.js"></script>
 
          @await RenderSectionAsync("Scripts", required: false)
      </body>
@@ -302,7 +296,7 @@ An existing Razor Pages or MVC app can integrate Razor components into pages and
 
      The framework adds the `blazor.server.js` script to the app. There's no need to manually add a `blazor.server.js` script file to the app.
 
-1. Add an imports file to the root folder of the project with the following content (change the last namespace, `MyAppNamespace`, to the namespace of the app).
+1. Add an imports file to the root folder of the project with the following content. Change the `{APP NAMESPACE}` placeholder to the namespace of the app.
 
    `_Imports.razor`:
 
@@ -314,39 +308,62 @@ An existing Razor Pages or MVC app can integrate Razor components into pages and
    @using Microsoft.AspNetCore.Components.Routing
    @using Microsoft.AspNetCore.Components.Web
    @using Microsoft.JSInterop
-   @using MyAppNamespace
+   @using {APP NAMESPACE}
    ```
 
-1. In `Startup.ConfigureServices`, register the Blazor Server service.
+1. Register the Blazor Server service. In `Startup.ConfigureServices` in `Startup.cs`:
 
-   `Startup.cs`:
-
-   ```csharp
-   public void ConfigureServices(IServiceCollection services)
-   {
-       ...
-       services.AddServerSideBlazor();
-   }
+   ```diff
+   + services.AddServerSideBlazor();
    ```
 
-1. In `Startup.Configure`, add the Blazor Hub endpoint to `app.UseEndpoints`.
+1. Add the Blazor Hub endpoint. In `app.UseEndpoints` of `Startup.Configure` in `Startup.cs`:
 
-   `Startup.cs`:
+   ```diff
+   + endpoints.MapBlazorHub();
+   ```
 
-   ```csharp
-   public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-   {
-       ...
+1. Integrate components into any page or view. For example, add a `Counter` component to the app's `Shared` folder:
 
-       app.UseEndpoints(endpoints =>
+   `Pages/Shared/Counter.razor`:
+
+   ```razor
+   <h1>Counter</h1>
+
+   <p>Current count: @currentCount</p>
+
+   <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+   @code {
+       private int currentCount = 0;
+
+       private void IncrementCount()
        {
-           ...
-           endpoints.MapBlazorHub();
-       });
+           currentCount++;
+       }
    }
    ```
 
-1. Integrate components into any page or view. For more information, see the [Render components from a page or view](#render-components-from-a-page-or-view) section.
+   In the app's `Index` page, add the `Counter` component's namespace and embed the component into the page:
+
+   ```cshtml
+   @page
+   @using {APP NAMESPACE}.Pages.Shared
+   @model IndexModel
+   @{
+       ViewData["Title"] = "Home page";
+   }
+
+   <div>
+       <component type="typeof(Counter)" render-mode="ServerPrerendered" />
+   </div>
+   ```
+
+   In the preceding example, replace the `{APP NAMESPACE}` placeholder with the app's namespace.
+
+   When the `Index` page loads, the `Counter` component is prerendered in the page.
+
+   For more information, see the [Render components from a page or view](#render-components-from-a-page-or-view) section.
 
 ## Use routable components in a Razor Pages app
 
@@ -400,21 +417,10 @@ To support routable Razor components in Razor Pages apps:
 
    For more information on the Component Tag Helper, including passing parameters and <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode> configuration, see <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
 
-1. Add a low-priority route for the `_Host` page to endpoint configuration in `Startup.Configure`.
+1. In the `Startup.Configure` endpoints of `Startup.cs`, add a low-priority route for the `_Host` page as the last endpoint:
 
-   `Startup.cs`:
-
-   ```csharp
-   public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-   {
-       ...
-
-       app.UseEndpoints(endpoints =>
-       {
-           ...
-           endpoints.MapFallbackToPage("/_Host");
-       });
-   }
+   ```diff
+   + endpoints.MapFallbackToPage("/_Host");
    ```
 
 1. Add routable components to the app.
@@ -424,7 +430,7 @@ To support routable Razor components in Razor Pages apps:
    ```razor
    @page "/routable-counter"
 
-   <h1>Counter</h1>
+   <h1>Routable Counter</h1>
 
    <p>Current count: @currentCount</p>
 
@@ -504,21 +510,10 @@ To support routable Razor components in MVC apps:
    }
    ```
 
-1. Add a low-priority route for the controller action that returns the `_Host` view to the endpoint configuration in `Startup.Configure`.
-
-   `Startup.cs`:
+1. In the `Startup.Configure` endpoints of `Startup.cs`, add a low-priority route for the controller action that returns the `_Host` view:
 
    ```csharp
-   public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-   {
-       ...
-
-       app.UseEndpoints(endpoints =>
-       {
-           ...
-           endpoints.MapFallbackToController("Blazor", "Home");
-       });
-   }
+   + endpoints.MapFallbackToController("Blazor", "Home");
    ```
 
 1. Add routable components to the app.
@@ -528,7 +523,7 @@ To support routable Razor components in MVC apps:
    ```razor
    @page "/routable-counter"
 
-   <h1>Counter</h1>
+   <h1>Routable Counter</h1>
 
    <p>Current count: @currentCount</p>
 
