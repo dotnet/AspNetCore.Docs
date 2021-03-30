@@ -87,6 +87,8 @@ Select *ContosoUniversity.csproj* to open the project.
   </PropertyGroup>
   ```
 
+* In a command window, update the database:
+
   ```dotnetcli
   dotnet tool install --global dotnet-ef
   dotnet ef database update
@@ -421,10 +423,10 @@ The code checks if there are any students in the database. If there are no stude
 
 * In *Program.cs*, remove `//` from the `DbInitializer.Initialize` line:
 
-```csharp
-  context.Database.EnsureCreated();
-  DbInitializer.Initialize(context);
-```
+  ```csharp
+    context.Database.EnsureCreated();
+    DbInitializer.Initialize(context);
+  ```
 
 # [Visual Studio](#tab/visual-studio)
 

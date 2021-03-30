@@ -274,7 +274,7 @@ Update *Pages\Departments\Index.cshtml* page:
 
 The following code shows the updated page:
 
-[!code-cshtml[](intro/samples/cu50/Pages/Departments/Index.cshtml?highlight=5,8,29,48,50)]
+[!code-cshtml[](intro/samples/cu50/Pages/Departments/Index.cshtml?highlight=5,8,29,48,51)]
 
 ## Update the Edit page model
 
