@@ -5,7 +5,7 @@ description: Learn about Razor component integration scenarios for Blazor apps, 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/29/2021
+ms.date: 03/30/2021
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/components/prerendering-and-integration
 zone_pivot_groups: blazor-hosting-models
@@ -18,14 +18,16 @@ zone_pivot_groups: blazor-hosting-models
 
 Razor components can be integrated into Razor Pages and MVC apps in a hosted Blazor WebAssembly solution. When the page or view is rendered, components can be prerendered at the same time.
 
-## Configuration
+## Solution configuration
 
-To set up prerendering for a Blazor WebAssembly app:
+To set up prerendering for a hosted Blazor WebAssembly app:
 
 1. Host the Blazor WebAssembly app in an ASP.NET Core app. A standalone Blazor WebAssembly app can be added to an ASP.NET Core solution, or you can use a hosted Blazor WebAssembly app created from the [Blazor WebAssembly project template](xref:blazor/project-structure) with the hosted option:
 
-   * Visual Studio: New project > **Advanced** > **ASP.NET Core hosted**. In this article's examples, the solution is named `BlazorHosted`, which is set as the solution's folder name and used in the solution's project namespaces.
+   * Visual Studio: Select the **Advanced** > **ASP.NET Core hosted** check box when creating the Blazor WebAssembly app. In this article's examples, the solution is named `BlazorHosted`.
    * Visual Studio Code/.NET CLI command shell: `dotnet new blazorwasm -ho` (use the `-ho|--hosted` option). Use the `-o|--output {LOCATION}` option to create a folder for the solution and set the solution's project namespaces. In this article's examples, the solution is named `BlazorHosted` (`dotnet new blazorwasm -ho -o BlazorHosted`).
+
+   The client app's namespace is `BlazorHosted.Client`, and the server app's namespace is `BlazorHosted.Server`.
 
 1. Delete the `wwwroot/index.html` file from the Blazor WebAssembly **`Client`** project.
 
@@ -35,18 +37,20 @@ To set up prerendering for a Blazor WebAssembly app:
    - builder.RootComponents.Add<App>("#app");
    ```
 
-1. Add a `Pages/_Host.cshtml` file to the server project. You can obtain a `_Host.cshtml` file from an app created from the Blazor Server template with the `dotnet new blazorserver -o BlazorServer` command in a command shell (the `-o BlazorServer` option creates a folder for the app). After placing the `Pages/_Host.cshtml` file into the **`Server`** app of the hosted Blazor WebAssembly solution, make the following changes to the file:
+1. Add a `Pages/_Host.cshtml` file to the **`Server`** project's `Pages` folder. You can obtain a `_Host.cshtml` file from an app created from the Blazor Server template with the `dotnet new blazorserver -o BlazorServer` command in a command shell (the `-o BlazorServer` option creates a folder for the app). After placing the `Pages/_Host.cshtml` file into the **`Server`** app of the hosted Blazor WebAssembly solution, make the following changes to the file:
 
    * Provide an [`@using`](xref:mvc/views/razor#using) directive for the **`Client`** project (for example, `@using BlazorHosted.Client`).
    * Update the stylesheet links to point to the WebAssembly app's stylesheets. In the following example, the client app's namespace is `BlazorHosted.Client`:
 
      ```diff
-     - <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
      - <link href="css/site.css" rel="stylesheet" />
      - <link href="_content/BlazorServer/_framework/scoped.styles.css" rel="stylesheet" />
      + <link href="css/app.css" rel="stylesheet" />
      + <link href="BlazorHosted.Client.styles.css" rel="stylesheet" />
      ```
+
+     > [!NOTE]
+     > Leave the `<link>` element that requests the Bootstrap stylesheet (`css/bootstrap/bootstrap.min.css`) in place.
 
    * Update the `render-mode` of the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) to prerender the root `App` component with <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssemblyPrerendered>:
 
@@ -71,67 +75,100 @@ To set up prerendering for a Blazor WebAssembly app:
    + endpoints.MapFallbackToPage("/_Host");
    ```
 
-1. Prerendered Razor components embedded in a page or view can use the the **`Server`** app's default layout file. The **`Server`** app must have the following files and folders.
+1. Run the **`Server`** app. The hosted Blazor WebAssembly app is prerendered by the **`Server`** app for clients.
 
-   Razor Pages:
+The following sections and examples in this article for embedding Razor components from the Blazor WebAssembly app into pages and views require additional configuration.
 
-   * `Pages/Shared/_Layout.cshtml`
-   * `Pages/_ViewImports.cshtml`
-   * `Pages/_ViewStart.cshtml`
+Use a default Razor Pages or MVC layout file in the **`Server`** app. The **`Server`** app must have the following files and folders.
 
-   MVC:
+Razor Pages:
 
-   * `Views/Shared/_Layout.cshtml`
-   * `Views/_ViewImports.cshtml`
-   * `Views/_ViewStart.cshtml`
+* `Pages/Shared/_Layout.cshtml`
+* `Pages/_ViewImports.cshtml`
+* `Pages/_ViewStart.cshtml`
 
-   If the **`Server`** app requires the preceding files, obtain them from an app created from the Razor Pages or MVC project template. For more information, see <xref:tutorials/razor-pages/razor-pages-start> or <xref:tutorials/first-mvc-app/start-mvc>.
+MVC:
 
-   When importing files from another app, check each file and confirm or update the namespaces to match those in use by the project receiving the files.
+* `Views/Shared/_Layout.cshtml`
+* `Views/_ViewImports.cshtml`
+* `Views/_ViewStart.cshtml`
 
-   Update the app's layout file, which is located in the `Pages/Shared` folder in a Razor Pages app or `Views/Shared` folder in an MVC app:
+Obtain the preceding files from an app created from the Razor Pages or MVC project template. For more information, see <xref:tutorials/razor-pages/razor-pages-start> or <xref:tutorials/first-mvc-app/start-mvc>.
 
-   * Confirm or add a [render section](xref:mvc/views/layout#sections) (<xref:Microsoft.AspNetCore.Mvc.Razor.RazorPage.RenderSection%2A>) for the script inside the closing `</body>` tag if it isn't already present in the file.
+Update the namespaces in the imported `_ViewImports.cshtml` file to match those in use by the **`Server`** project receiving the files. In the following example, the file is imported from a Razor Pages project with the namespace `RazorPagesProject`:
 
-     `Pages/Shared/_Layout.cshtml` (Razor Pages) or `Views/Shared/_Layout.cshtml` (MVC):
+```diff
+- @using RazorPagesProject
+- @namespace RazorPagesProject.Pages
++ @using BlazorHosted.Server
++ @namespace BlazorHosted.Server.Pages
+```
 
-     ```cshtml
-     <body>
-         ...
-         @RenderSectionAsync("Scripts", required: false)
-     </body>
-     ```
+Update the imported layout file:
 
-   * To style components [embedded into Razor pages or views](#render-components-in-a-page-or-view-with-the-component-tag-helper) with the styles in the Blazor WebAssembly app, include the app's styles in the `_Layout.cshtml` file. In the following example, the client app's namespace is `BlazorHosted.Client`.
+* Include the **`Client`** app's styles. In the following example, the client app's namespace is `BlazorHosted.Client`.
 
-     `Pages/Shared/_Layout.cshtml` (Razor Pages) or `Views/Shared/_Layout.cshtml` (MVC):
+  `Pages/Shared/_Layout.cshtml` (Razor Pages) or `Views/Shared/_Layout.cshtml` (MVC):
 
-     ```diff
-     <head>
-         ...
-         + <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
-         + <link href="css/app.css" rel="stylesheet" />
-         + <link href="BlazorHosted.Client.styles.css" rel="stylesheet" />
-     </head>
-     ```
+  ```diff
+  <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>@ViewData["Title"] - rp50</title>
+      <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+      <link rel="stylesheet" href="~/css/site.css" />
+      <!-- <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" /> -->
+      + <link href="css/app.css" rel="stylesheet" />
+      + <link href="BlazorHosted.Client.styles.css" rel="stylesheet" />
+  </head>
+  ```
 
-   * Razor Pages or MVC static assets can also be imported to the **`Server`** app from the donor app's `wwwroot` folder:
+  > [!NOTE]
+  > The imported layout contains `Home` and `Privacy` navigation links.
+  >
+  > To make the `Home` link point to the hosted Blazor WebAssembly app, change the hyperlink:
+  >
+  > ```diff
+  > - <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+  > + <a class="nav-link text-dark" href="/">Home</a>
+  > ```
+  >
+  > To make the `Privacy` link lead to a privacy page, add a privacy page to the **`Server`** app.
+  >
+  > `Pages/Privacy.cshtml` in the **`Server`** app:
+  >
+  > ```cshtml
+  > @page
+  > @model BlazorHosted.Server.Pages.PrivacyModel
+  > @{
+  > }
+  >
+  > <h1>Privacy Policy</h1>
+  > ```
 
-     * `wwwroot/css` folder and contents
-     * `wwwroot/js` folder and contents
-     * `wwwroot/lib` folder and contents
-     * `favicon.ico` icon file
+* Import static assets to the **`Server`** app from the donor app's `wwwroot` folder:
+
+  * `wwwroot/css` folder and contents
+  * `wwwroot/js` folder and contents
+  * `wwwroot/lib` folder and contents
+
+  If the donor app is created from an ASP.NET Core project template and the files aren't modified, you can copy the entire `wwwroot` folder from the donor app into the **`Server`** app and remove the `favicon.ico` icon file.
+
+  > [!NOTE]
+  > If the **`Client`** and **`Server`** apps contain the same static asset in their `wwwroot` folders (for example, `favicon.ico`), an exception is thrown because the static asset in each folder shares the same web root path:
+  >
+  > > The static web asset '...\favicon.ico' has a conflicting web root path '/wwwroot/favicon.ico' with the project file 'wwwroot\favicon.ico'.
 
 ## Render components in a page or view with the Component Tag Helper
 
-The [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) supports two render modes for rendering a component from a Blazor WebAssembly app in a page or view:
+After [configuring the app](#solution-configuration), the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) supports two render modes for rendering a component from a Blazor WebAssembly app in a page or view:
 
 * <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssembly>
 * <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssemblyPrerendered>
 
 In the following Razor Pages example, the `Counter` component is rendered in a page. To make the component interactive, the Blazor WebAssembly script is included in the page's [render section](xref:mvc/views/layout#sections). To avoid using the full namespace for the `Counter` component with the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) (`{APP ASSEMBLY}.Pages.Counter`), add an [`@using`](xref:mvc/views/razor#using) directive for the client app's `Pages` namespace. In the following example, the client app's namespace is `BlazorHosted.Client`.
 
-In the Razor Pages project, `Pages/RazorPagesCounter1.cshtml` (URL: `/razorpagescounter1`):
+In the Razor Pages project, `Pages/RazorPagesCounter1.cshtml`:
 
 ```cshtml
 @page
@@ -144,6 +181,8 @@ In the Razor Pages project, `Pages/RazorPagesCounter1.cshtml` (URL: `/razorpages
 }
 ```
 
+Run the **`Server`** app. Navigate to the Razor page at `/razorpagescounter1`. The prerendered `Counter` component is embedded into the page.
+
 <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode> configures whether the component:
 
 * Is prerendered into the page.
@@ -155,32 +194,26 @@ Additional work might be required depending on the static resources that compone
 
 ## Render components in a page or view with a CSS selector
 
-Add root components to the **`Client`** project of a hosted Blazor WebAssembly solution in `Program.Main`. In the following example, the `Counter` component is declared as a root component with a CSS selector that selects the element with the `id` that matches `counter-component`. In the following example, the client app's namespace is `BlazorHosted.Client`.
+After [configuring the app](#solution-configuration), add root components to the **`Client`** project of a hosted Blazor WebAssembly solution in `Program.Main`. In the following example, the `Counter` component is declared as a root component with a CSS selector that selects the element with the `id` that matches `counter-component`. In the following example, the client app's namespace is `BlazorHosted.Client`.
 
-`Program.cs`:
+In `Program.cs` of the **`Client`** project, add the namespace for the app's Razor components to the top of the file:
 
-```csharp
-...
-using BlazorHosted.Client.Pages;
+```diff
++ using BlazorHosted.Client.Pages;
+```
 
-public class Program
-{
-    public static async Task Main(string[] args)
-    {
-        ...
-        builder.RootComponents.Add<Counter>("#counter-component");
-        ...
-    }
-}
+After the `builder` is established in `Program.Main`, add the `Counter` component as a root component:
+
+```diff
++ builder.RootComponents.Add<Counter>("#counter-component");
 ```
 
 In the following Razor Pages example, the `Counter` component is rendered in a page. To make the component interactive, the Blazor WebAssembly script is included in the page's [render section](xref:mvc/views/layout#sections).
 
-In the Razor Pages project, `Pages/RazorPagesCounter2.cshtml` (URL: `/razorpagescounter2`):
+In the Razor Pages project, `Pages/RazorPagesCounter2.cshtml`:
 
 ```cshtml
 @page
-@using BlazorHosted.Client.Pages
 
 <div id="counter-component">Loading...</div>
 
@@ -188,6 +221,8 @@ In the Razor Pages project, `Pages/RazorPagesCounter2.cshtml` (URL: `/razorpages
     <script src="_framework/blazor.webassembly.js"></script>
 }
 ```
+
+Run the **`Server`** app. Navigate to the Razor page at `/razorpagescounter2`. The prerendered `Counter` component is embedded into the page.
 
 Additional work might be required depending on the static resources that components use and how layout pages are organized in an app. Typically, scripts are added to a page or view's `Scripts` render section and stylesheets are added to the layout's `<head>` element content.
 
@@ -198,7 +233,7 @@ Additional work might be required depending on the static resources that compone
 >
 > This is normal behavior because prerendering and integrating a Blazor WebAssembly app with routable Razor components is incompatible with the use of CSS selectors.
 
-## Additional resources
+## Additional Blazor WebAssembly resources
 
 * [State management: Handle prerendering](xref:blazor/state-management?pivot=webassembly#handle-prerendering)
 * [Prerendering support with assembly lazy loading](xref:blazor/webassembly-lazy-load-assemblies#assembly-load-logic-in-onnavigateasync)
@@ -581,7 +616,7 @@ The `_ViewImports.cshtml` file is located in the `Pages` folder of a Razor Pages
 
 For more information, see <xref:blazor/components/index#namespaces>.
 
-## Additional resources
+## Additional Blazor Server resources
 
 * [State management: Handle prerendering](xref:blazor/state-management?pivot=server#handle-prerendering)
 * Razor component lifecycle subjects that pertain to prerendering
