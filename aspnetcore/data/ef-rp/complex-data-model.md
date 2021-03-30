@@ -32,7 +32,8 @@ The following database diagram was made with [Dataedo](https://dataedo.com/):
 
 <!--Image added in https://github.com/dotnet/AspNetCore.Docs/pull/21922  -->
 
-![Dataedo diagram](intro/_static/AzureSQL_DB_ERD_madeIn_Dataedo.png)
+![Dataedo diagram](intro/_static/5/AzureSQL_DB_ERD_madeIn_Dataedo.png)
+
 
 ## The Student entity
 
