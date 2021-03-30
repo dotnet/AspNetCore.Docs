@@ -133,7 +133,7 @@ Complete the **Add MVC Controller with views, using Entity Framework** dialog:
 * **Views** and **Controller name** : Keep the default.
 * Select **Add**.
 
-### [Visual Studio Code](#tab/visual-studio-code)
+# [Visual Studio Code](#tab/visual-studio-code)
 
 Open a command window in the project directory. The project directory is the directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files.
 
@@ -151,7 +151,7 @@ dotnet-aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMo
 
 [!INCLUDE [explains scaffold generated params](~/includes/mvc-intro/model4.md)]
 
-### [Visual Studio for Mac](#tab/visual-studio-mac)
+# [Visual Studio for Mac](#tab/visual-studio-mac)
 
 Open a command window in the project directory. The project directory is the directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files.
 
