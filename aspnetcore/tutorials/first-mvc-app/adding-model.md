@@ -201,7 +201,19 @@ In the *Controllers/MoviesController.cs* file, the constructor uses [Dependency 
 
 Scaffolding generated the following highlighted code in `Startup.ConfigureServices`:
 
+# [Visual Studio](#tab/visual-studio)
+
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Startup.cs?name=snippet_ConfigureServices&highlight=5-6)]
+
+# [Visual Studio Code](#tab/visual-studio-code)
+
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Startup.cs?name=snippet_UseSqlite&highlight=5-6)]
+
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Startup.cs?name=snippet_UseSqlite&highlight=5-6)]
+
+---
 
 The name of the connection string is passed to the context by calling a method on a [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions) object. The [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the "MvcMovieContext" database connection string.
 
@@ -211,7 +223,19 @@ The name of the connection string is passed to the context by calling a method o
 
 Scaffolding added a connection string to the *appsettings.json* file:
 
+# [Visual Studio](#tab/visual-studio)
+
+[!code-json[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/appsettings.json?highlight=10-12)]
+
+# [Visual Studio Code](#tab/visual-studio-code
+
 [!code-json[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/appsettings_SQLite.json?highlight=10-12)]
+
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+[!code-json[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/appsettings_SQLite.json?highlight=10-12)]
+
+---
 
 For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the `ConnectionString` key from the *appsettings.json* file.
 
