@@ -173,7 +173,7 @@ dotnet-aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMo
 
 <!-- End of tabs                  -->
 
-Scaffolding creates:
+Scaffolding creates or updates:
 
 * A movies controller: *Controllers/MoviesController.cs*.
 * Razor view files for Create, Delete, Details, Edit, and Index pages: `Views/Movies/\*.cshtml`.
@@ -185,33 +185,25 @@ The scaffolded pages can't be used yet because the database doesn't exist. Runni
 
 <a name="dc"></a>
 
-### Examine the generated database context class
+### Examine the generated database context class and registration
 
 A database context class is needed to coordinate EF Core functionality (Create, Read, Update, Delete) for the `Movie` model. The database context is derived from [Microsoft.EntityFrameworkCore.DbContext](xref:Microsoft.EntityFrameworkCore.DbContext) and specifies the entities to include in the data model.
 
-Scaffolding created the following database context class: Data/MvcMovieContext.cs:
+Scaffolding creates the *Data/MvcMovieContext.cs* database context class:
+
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/zDocOnly/MvcMovieContext.cs?name=snippet)]
 
-The preceding code creates a [DbSet\<Movie>](/dotnet/api/microsoft.entityframeworkcore.dbset-1) property for the entity set. In Entity Framework terminology, an entity set typically corresponds to a database table. An entity corresponds to a row in the table.
+The preceding code creates a [DbSet\<Movie>](/dotnet/api/microsoft.entityframeworkcore.dbset-1) property that represent collections of the specified entities in the database context.
 
-<a name="reg"></a>
+ASP.NET Core is built with [dependency injection (DI)](xref:fundamentals/dependency-injection). Services, such as the EF Core DB context, must be registered with DI in `Startup`. Components that require these services are provided these services via constructor parameters.
 
-### Examine the generated database context registration
-
-ASP.NET Core is built with [dependency injection (DI)](xref:fundamentals/dependency-injection). Services, such as the EF Core DB context, must be registered with DI in `Startup`. Components that require these services are provided these services via constructor parameters. For example, Razor Pages frequently requires services from the DI container. The constructor code that gets a DB context instance is shown later in the tutorial. In this section, the database context is registered with the DI container.
-
-Scaffolding added the following `using` statements at the top of *Startup.cs*:
-
-```csharp
-using MvcMovie.Data;
-using Microsoft.EntityFrameworkCore;
-```
+In the *Controllers/MoviesController.cs* file, the constructor uses [Dependency Injection](xref:fundamentals/dependency-injection) to inject the `MvcMovieContext` database context into the controller. The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.
 
 Scaffolding generated the following highlighted code in `Startup.ConfigureServices`:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Startup.cs?name=snippet_UseSqlite&highlight=5-6)]
 
-The name of the connection string is passed to the context by calling a method on a [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions) object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the `ConnectionString` key from the *appsettings.json* file.
+The name of the connection string is passed to the context by calling a method on a [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions) object. The [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the "MvcMovieContext" database connection string.
 
 <a name="cs"></a>
 
@@ -220,6 +212,8 @@ The name of the connection string is passed to the context by calling a method o
 Scaffolding added a connection string to the *appsettings.json* file:
 
 [!code-json[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/appsettings_SQLite.json?highlight=10-12)]
+
+For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the `ConnectionString` key from the *appsettings.json* file.
 
 <a name="migration"></a>
 
@@ -231,19 +225,14 @@ Use the EF Core [Migrations](xref:data/ef-mvc/migrations) feature to create the 
 
 From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Console** .
 
-In the Package Manager Console (PMC), enter the following command:
+In the Package Manager Console (PMC), enter the following commands one at a time:
 
 ```powershell
 Add-Migration InitialCreate
+Update-Database
 ```
 
 * `Add-Migration InitialCreate`: Generates a *Migrations/{timestamp}_InitialCreate.cs* migration file. The `InitialCreate` argument is the migration name. Any name can be used, but by convention, a name is selected that describes the migration. Because this is the first migration, the generated class contains code to create the database schema. The database schema is based on the model specified in the `MvcMovieContext` class.
-
-In the PMC, enter the following command:
-
-```powershell
-Update-Database
-```
 
 * `Update-Database`: Updates the database to the latest migration, which the previous command created. This command runs the `Up` method in the *Migrations/{time-stamp}_InitialCreate.cs* file, which creates the database.
 
@@ -310,16 +299,6 @@ Test the **Create** page. Enter and submit data.
 > You may not be able to enter decimal commas in the `Price` field. To support [jQuery validation](https://jqueryvalidation.org/) for non-English locales that use a comma (",") for a decimal point and for non US-English date formats, the app must be globalized. For globalization instructions, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/4076#issuecomment-326590420).
 
 Test the **Edit**, **Details**, and **Delete** pages.
-
-## Dependency injection in the controller
-
-Open the *Controllers/MoviesController.cs* file and examine the constructor:
-
-<!-- l.. Make copy of Movies controller (or use the old one as I did in the 3.0 upgrade) because we comment out the initial index method and update it later  -->
-
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Controllers/MC1.cs?name=snippet_1)]
-
-The constructor uses [Dependency Injection](xref:fundamentals/dependency-injection) to inject the `MvcMovieContext` database context into the controller. The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.
 
 ### Use SQLite for development, SQL Server for production
 
