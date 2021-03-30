@@ -34,7 +34,12 @@ The following database diagram was made with [Dataedo](https://dataedo.com/):
 
 ![Dataedo diagram](intro/_static/5/AzureSQL_DB_ERD_madeIn_Dataedo.png)
 
-![Dataedo diagram](intro/_static/5/Azure SQL DB ERD made in Dataedo.jpg)
+To create a database diagram with Dataedo:
+
+* [Deploy the app to Azure](/azure/app-service/tutorial-dotnetcore-sqldb-app)
+* Download and install [Dataedo](https://dataedo.com/) on your computer.
+* Follow the instructions [Generate documentation for Azure SQL Database in 5 minutes
+](https://dataedo.com/tutorials/generate-documentation-for-azure-sql-database)
 
 ## The Student entity
 
