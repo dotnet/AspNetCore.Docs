@@ -49,7 +49,7 @@ Add the namespace for <xref:Microsoft.Extensions.Logging?displayProperty=fullNam
 @inject ILoggerProvider LoggerProvider
 ```
 
-In the component's [`OnInitializedAsync` method](xref:blazor/components/lifecycle#component-initialization-methods-oninitializedasync), use <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilderExtensions.ConfigureLogging%2A?displayProperty=nameWithType>:
+In the component's [`OnInitializedAsync` method](xref:blazor/components/lifecycle#component-initialization-oninitializedasync), use <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilderExtensions.ConfigureLogging%2A?displayProperty=nameWithType>:
 
 ```csharp
 var connection = new HubConnectionBuilder()

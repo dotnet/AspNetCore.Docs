@@ -340,7 +340,7 @@ Assign C# fields, properties, and methods to component parameters as HTML attrib
   
   > The 'await' operator can only be used within an async method. Consider marking this method with the 'async' modifier and changing its return type to 'Task'.
 
-  To obtain a value for the `Title` parameter in the preceding example asychronously, the component can use the [`OnInitializedAsync` lifecycle event](xref:blazor/components/lifecycle#component-initialization-methods-oninitializedasync), as the following example demonstrates:
+  To obtain a value for the `Title` parameter in the preceding example asychronously, the component can use the [`OnInitializedAsync` lifecycle event](xref:blazor/components/lifecycle#component-initialization-oninitializedasync), as the following example demonstrates:
   
   ```razor
   <ChildComponent Title="@title">
@@ -938,7 +938,7 @@ To maintain state in the preceding scenario, use a *private field* in the `Expan
 The following revised `Expander` component:
 
 * Accepts the `Expanded` component parameter value from the parent.
-* Assigns the component parameter value to a *private field* (`expanded`) in the [OnInitialized event](xref:blazor/components/lifecycle#component-initialization-methods-oninitializedasync).
+* Assigns the component parameter value to a *private field* (`expanded`) in the [`OnInitialized` event](xref:blazor/components/lifecycle#component-initialization-oninitializedasync).
 * Uses the private field to maintain its internal toggle state, which demonstrates how to avoid writing directly to a parameter.
 
 ```razor
