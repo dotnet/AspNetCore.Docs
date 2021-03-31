@@ -63,7 +63,7 @@ For more information on gRPC tooling support, see <xref:grpc/basics>.
 
 ## gRPC services on ASP.NET Core
 
-gRPC services can be hosted on ASP.NET Core. Services have full integration with popular ASP.NET Core features such as logging, dependency injection (DI), authentication, and authorization.
+gRPC services can be hosted on ASP.NET Core. Services have full integration with ASP.NET Core features such as logging, dependency injection (DI), authentication, and authorization.
 
 ### Add gRPC services to an ASP.NET Core app
 
