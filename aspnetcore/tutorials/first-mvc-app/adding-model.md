@@ -571,7 +571,7 @@ Visual Studio creates:
 
 The automatic creation of these files is known as *scaffolding*.
 
-### [Visual Studio Code](#tab/visual-studio-code) 
+# [Visual Studio Code](#tab/visual-studio-code) 
 
 * Open a command window in the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).
 
@@ -589,7 +589,7 @@ The automatic creation of these files is known as *scaffolding*.
 
   [!INCLUDE [explains scaffold generated params](~/includes/mvc-intro/model4.md)]
 
-### [Visual Studio for Mac](#tab/visual-studio-mac)
+# [Visual Studio for Mac](#tab/visual-studio-mac)
 
 * Open a command window in the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).
 
