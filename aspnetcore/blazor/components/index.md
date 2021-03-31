@@ -294,7 +294,46 @@ Assign C# fields, properties, and methods to component parameters as HTML attrib
   * The `person` object's `Name` property.
 
   `Pages/ParentComponent.razor`:
+
+  ::: moniker range=">= aspnetcore-5.0"
+
+  ```razor
+  <ChildComponent Title="@title">
+      Title from field.
+  </ChildComponent>
   
+  <ChildComponent Title="@GetTitle()">
+      Title from method.
+  </ChildComponent>
+  
+  <ChildComponent Title="@DateTime.Now.ToLongDateString()">
+      Title from implicit Razor expression.
+  </ChildComponent>
+  
+  <ChildComponent Title="@person.Name">
+      Title from implicit Razor expression.
+  </ChildComponent>
+  
+  @code {
+      private string title = "Panel Title from Parent";
+      private Person person = new();
+      
+      private string GetTitle()
+      {
+          return "Panel Title from Parent";
+      }
+      
+      private class Person
+      {
+          public string Name { get; set; } = "Dr. Who";
+      }
+  }
+  ```
+
+  ::: moniker-end
+
+  ::: moniker range="< aspnetcore-5.0"
+
   ```razor
   <ChildComponent Title="@title">
       Title from field.
@@ -327,6 +366,8 @@ Assign C# fields, properties, and methods to component parameters as HTML attrib
       }
   }
   ```
+
+  ::: moniker-end
   
   Unlike in Razor pages (`.cshtml`), Blazor can't perform asynchronous work in a Razor expression while rendering a component. This is because Blazor is designed for rendering interactive UIs. In an interactive UI, the screen must always display something, so it doesn't make sense to block the rendering flow. Instead, asynchronous work is performed during one of the [asynchronous lifecycle events](xref:blazor/components/lifecycle). After each asynchronous lifecycle event, the component may render again. The following Razor syntax is **not** supported:
   
@@ -404,12 +445,35 @@ Assign C# fields, properties, and methods to component parameters as HTML attrib
   > Component attributes do not support complex content (mixed C# and markup).
   
   To support the assignment of a composed value, use a method, field, or property. The following example performs the concatination of "SKU-" and a product's stock number in the C# method `GetTitle`:
-  
+
+  ::: moniker range=">= aspnetcore-5.0"
+
   ```razor
   <ChildComponent Title="@GetTitle()">
       Composed title from method.
   </ChildComponent>
-  
+
+  @code {
+      private Product product = new();
+
+      private string GetTitle() => $"SKU-{product.SKU}";
+      
+      private class Product
+      {
+          public string SKU { get; set; } = "12345";
+      }
+  }
+  ```
+
+  ::: moniker-end
+
+  ::: moniker range="< aspnetcore-5.0"
+
+  ```razor
+  <ChildComponent Title="@GetTitle()">
+      Composed title from method.
+  </ChildComponent>
+
   @code {
       private Product product = new Product();
 
@@ -421,7 +485,9 @@ Assign C# fields, properties, and methods to component parameters as HTML attrib
       }
   }
   ```
-  
+
+  ::: moniker-end
+
 For more information, see <xref:mvc/views/razor>.
 
 > [!WARNING]

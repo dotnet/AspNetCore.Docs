@@ -370,6 +370,26 @@ When [anonymous functions](/dotnet/csharp/programming-guide/statements-expressio
 
 * Anonymous lambda method approach (explicit disposal not required):
 
+  ::: moniker range=">= aspnetcore-5.0"
+
+  ```csharp
+  private void HandleFieldChanged(object sender, FieldChangedEventArgs e)
+  {
+      formInvalid = !editContext.Validate();
+      StateHasChanged();
+  }
+
+  protected override void OnInitialized()
+  {
+      editContext = new(starship);
+      editContext.OnFieldChanged += (s, e) => HandleFieldChanged((editContext)s, e);
+  }
+  ```
+
+  ::: moniker-end
+
+  ::: moniker range="< aspnetcore-5.0"
+
   ```csharp
   private void HandleFieldChanged(object sender, FieldChangedEventArgs e)
   {
@@ -384,7 +404,33 @@ When [anonymous functions](/dotnet/csharp/programming-guide/statements-expressio
   }
   ```
 
+  ::: moniker-end
+
 * Anonymous lambda expression approach (explicit disposal not required):
+
+  ::: moniker range=">= aspnetcore-5.0"
+
+  ```csharp
+  private ValidationMessageStore messageStore;
+
+  [CascadingParameter]
+  private EditContext CurrentEditContext { get; set; }
+
+  protected override void OnInitialized()
+  {
+      ...
+
+      messageStore = new(CurrentEditContext);
+
+      CurrentEditContext.OnValidationRequested += (s, e) => messageStore.Clear();
+      CurrentEditContext.OnFieldChanged += (s, e) => 
+          messageStore.Clear(e.FieldIdentifier);
+  }
+  ```
+
+  ::: moniker-end
+
+  ::: moniker range="< aspnetcore-5.0"
 
   ```csharp
   private ValidationMessageStore messageStore;
@@ -403,6 +449,8 @@ When [anonymous functions](/dotnet/csharp/programming-guide/statements-expressio
           messageStore.Clear(e.FieldIdentifier);
   }
   ```
+
+  ::: moniker-end
 
   The full example of the preceding code with anonymous lambda expressions appears in the <xref:blazor/forms-validation#validator-components> article.
 

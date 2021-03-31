@@ -70,7 +70,7 @@
     private string uri = "https://localhost:10000/api/TodoItems";
     private string method = "POST";
     private string requestBody = @"{""name"":""A New Todo Item"",""isComplete"":false}";
-    private List<RequestHeader> requestHeaders = new List<RequestHeader>()
+    private List<RequestHeader> requestHeaders = new()
     {
         new RequestHeader() { Name = "Content-Type", Value = "application/json" },
         new RequestHeader() { Name = "Authorization", Value = "Bearer MHrHDcEfxjoYZgeFONFh7HgQ" }
@@ -87,8 +87,8 @@
         {
             var requestMessage = new HttpRequestMessage()
             {
-                Method = new HttpMethod(method),
-                RequestUri = new Uri(uri),
+                Method = new(method),
+                RequestUri = new(uri),
                 Content = string.IsNullOrEmpty(requestBody) ? null : new StringContent(requestBody)
             };
 

@@ -23,7 +23,7 @@ namespace BlazorServerDbContextExample.Grid
         /// Expressions for sorting.
         /// </summary>
         private readonly Dictionary<ContactFilterColumns, Expression<Func<Contact, string>>> _expressions
-            = new Dictionary<ContactFilterColumns, Expression<Func<Contact, string>>>
+            = new()
             {
                 { ContactFilterColumns.City, c => c.City },
                 { ContactFilterColumns.Phone, c => c.Phone },
@@ -47,7 +47,7 @@ namespace BlazorServerDbContextExample.Grid
             _controls = controls;
 
             // set up queries
-            _filterQueries = new Dictionary<ContactFilterColumns, Func<IQueryable<Contact>, IQueryable<Contact>>>
+            _filterQueries = new()
             {
                 { ContactFilterColumns.City, cs => cs.Where(c => c.City.Contains(_controls.FilterText)) },
                 { ContactFilterColumns.Phone, cs => cs.Where(c => c.Phone.Contains(_controls.FilterText)) },
