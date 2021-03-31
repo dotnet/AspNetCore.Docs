@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Components.Server.Circuits;
 
 public class TrackingCircuitHandler : CircuitHandler
 {
-    private HashSet<Circuit> circuits = new HashSet<Circuit>();
+    private HashSet<Circuit> circuits = new();
 
     public override Task OnConnectionUpAsync(Circuit circuit, 
         CancellationToken cancellationToken)

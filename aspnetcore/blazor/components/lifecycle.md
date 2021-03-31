@@ -21,8 +21,8 @@ Component lifecycle events:
 
 1. If the component is rendering for the first time on a request:
    * Create the component's instance.
-   * Perform property injection. Run [`SetParametersAsync`](#before-parameters-are-set-setparametersasync).
-   * Call [`OnInitialized{Async}`](#component-initialization-methods-oninitializedasync). If an incomplete <xref:System.Threading.Tasks.Task> is returned, the <xref:System.Threading.Tasks.Task> is awaited and then the component is rerendered.
+   * Perform property injection. Run [`SetParametersAsync`](#when-parameters-are-set-setparametersasync).
+   * Call [`OnInitialized{Async}`](#component-initialization-oninitializedasync). If an incomplete <xref:System.Threading.Tasks.Task> is returned, the <xref:System.Threading.Tasks.Task> is awaited and then the component is rerendered.
 1. Call [`OnParametersSet{Async}`](#after-parameters-are-set-onparameterssetasync). If an incomplete <xref:System.Threading.Tasks.Task> is returned, the <xref:System.Threading.Tasks.Task> is awaited and then the component is rerendered.
 1. Render for all synchronous work and complete <xref:System.Threading.Tasks.Task>s.
 
@@ -49,7 +49,7 @@ The `Render` lifecycle:
 
 Developer calls to [`StateHasChanged`](#state-changes-statehaschanged) result in a render. For more information, see <xref:blazor/components/rendering>.
 
-## Before parameters are set (`SetParametersAsync`)
+## When parameters are set (`SetParametersAsync`)
 
 <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> sets parameters supplied by the component's parent in the render tree or from route parameters.
 
@@ -79,7 +79,7 @@ Although [route parameter matching is case insensitive](xref:blazor/fundamentals
 
 ::: moniker-end
 
-## Component initialization methods (`OnInitialized{Async}`)
+## Component initialization (`OnInitialized{Async}`)
 
 <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized%2A> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> are invoked when the component is initialized after having received its initial parameters in <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A>.
 
@@ -263,7 +263,7 @@ For information on handling errors during lifecycle method execution, see <xref:
 
 ## Stateful reconnection after prerendering
 
-In a Blazor Server app when <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper.RenderMode> is <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered>, the component is initially rendered statically as part of the page. Once the browser establishes a SignalR connection back to the server, the component is rendered *again* and interactive. If the [`OnInitialized{Async}`](#component-initialization-methods-oninitializedasync) lifecycle method for initializing the component is present, the method is executed *twice*:
+In a Blazor Server app when <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper.RenderMode> is <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered>, the component is initially rendered statically as part of the page. Once the browser establishes a SignalR connection back to the server, the component is rendered *again* and interactive. If the [`OnInitialized{Async}`](#component-initialization-oninitializedasync) lifecycle method for initializing the component is present, the method is executed *twice*:
 
 * When the component is prerendered statically.
 * After the server connection has been established.
@@ -296,7 +296,7 @@ Although the content in this section focuses on Blazor Server and stateful Signa
 
 ## Component disposal with `IDisposable`
 
-If a component implements <xref:System.IDisposable>, the framework calls the [disposal method](/dotnet/standard/garbage-collection/implementing-dispose) when the component is removed from the UI, where unmanaged resources can be released. Disposal can occur at any time, including during [component initialization](#component-initialization-methods-oninitializedasync). The following component implements <xref:System.IDisposable> with the [`@implements`](xref:mvc/views/razor#implements) Razor directive:
+If a component implements <xref:System.IDisposable>, the framework calls the [disposal method](/dotnet/standard/garbage-collection/implementing-dispose) when the component is removed from the UI, where unmanaged resources can be released. Disposal can occur at any time, including during [component initialization](#component-initialization-oninitializedasync). The following component implements <xref:System.IDisposable> with the [`@implements`](xref:mvc/views/razor#implements) Razor directive:
 
 ```razor
 @using System
@@ -370,6 +370,26 @@ When [anonymous functions](/dotnet/csharp/programming-guide/statements-expressio
 
 * Anonymous lambda method approach (explicit disposal not required):
 
+  ::: moniker range=">= aspnetcore-5.0"
+
+  ```csharp
+  private void HandleFieldChanged(object sender, FieldChangedEventArgs e)
+  {
+      formInvalid = !editContext.Validate();
+      StateHasChanged();
+  }
+
+  protected override void OnInitialized()
+  {
+      editContext = new(starship);
+      editContext.OnFieldChanged += (s, e) => HandleFieldChanged((editContext)s, e);
+  }
+  ```
+
+  ::: moniker-end
+
+  ::: moniker range="< aspnetcore-5.0"
+
   ```csharp
   private void HandleFieldChanged(object sender, FieldChangedEventArgs e)
   {
@@ -384,7 +404,33 @@ When [anonymous functions](/dotnet/csharp/programming-guide/statements-expressio
   }
   ```
 
+  ::: moniker-end
+
 * Anonymous lambda expression approach (explicit disposal not required):
+
+  ::: moniker range=">= aspnetcore-5.0"
+
+  ```csharp
+  private ValidationMessageStore messageStore;
+
+  [CascadingParameter]
+  private EditContext CurrentEditContext { get; set; }
+
+  protected override void OnInitialized()
+  {
+      ...
+
+      messageStore = new(CurrentEditContext);
+
+      CurrentEditContext.OnValidationRequested += (s, e) => messageStore.Clear();
+      CurrentEditContext.OnFieldChanged += (s, e) => 
+          messageStore.Clear(e.FieldIdentifier);
+  }
+  ```
+
+  ::: moniker-end
+
+  ::: moniker range="< aspnetcore-5.0"
 
   ```csharp
   private ValidationMessageStore messageStore;
@@ -403,6 +449,8 @@ When [anonymous functions](/dotnet/csharp/programming-guide/statements-expressio
           messageStore.Clear(e.FieldIdentifier);
   }
   ```
+
+  ::: moniker-end
 
   The full example of the preceding code with anonymous lambda expressions appears in the <xref:blazor/forms-validation#validator-components> article.
 

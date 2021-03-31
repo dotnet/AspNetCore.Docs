@@ -294,7 +294,46 @@ Assign C# fields, properties, and methods to component parameters as HTML attrib
   * The `person` object's `Name` property.
 
   `Pages/ParentComponent.razor`:
+
+  ::: moniker range=">= aspnetcore-5.0"
+
+  ```razor
+  <ChildComponent Title="@title">
+      Title from field.
+  </ChildComponent>
   
+  <ChildComponent Title="@GetTitle()">
+      Title from method.
+  </ChildComponent>
+  
+  <ChildComponent Title="@DateTime.Now.ToLongDateString()">
+      Title from implicit Razor expression.
+  </ChildComponent>
+  
+  <ChildComponent Title="@person.Name">
+      Title from implicit Razor expression.
+  </ChildComponent>
+  
+  @code {
+      private string title = "Panel Title from Parent";
+      private Person person = new();
+      
+      private string GetTitle()
+      {
+          return "Panel Title from Parent";
+      }
+      
+      private class Person
+      {
+          public string Name { get; set; } = "Dr. Who";
+      }
+  }
+  ```
+
+  ::: moniker-end
+
+  ::: moniker range="< aspnetcore-5.0"
+
   ```razor
   <ChildComponent Title="@title">
       Title from field.
@@ -327,6 +366,8 @@ Assign C# fields, properties, and methods to component parameters as HTML attrib
       }
   }
   ```
+
+  ::: moniker-end
   
   Unlike in Razor pages (`.cshtml`), Blazor can't perform asynchronous work in a Razor expression while rendering a component. This is because Blazor is designed for rendering interactive UIs. In an interactive UI, the screen must always display something, so it doesn't make sense to block the rendering flow. Instead, asynchronous work is performed during one of the [asynchronous lifecycle events](xref:blazor/components/lifecycle). After each asynchronous lifecycle event, the component may render again. The following Razor syntax is **not** supported:
   
@@ -340,7 +381,7 @@ Assign C# fields, properties, and methods to component parameters as HTML attrib
   
   > The 'await' operator can only be used within an async method. Consider marking this method with the 'async' modifier and changing its return type to 'Task'.
 
-  To obtain a value for the `Title` parameter in the preceding example asychronously, the component can use the [`OnInitializedAsync` lifecycle event](xref:blazor/components/lifecycle#component-initialization-methods-oninitializedasync), as the following example demonstrates:
+  To obtain a value for the `Title` parameter in the preceding example asychronously, the component can use the [`OnInitializedAsync` lifecycle event](xref:blazor/components/lifecycle#component-initialization-oninitializedasync), as the following example demonstrates:
   
   ```razor
   <ChildComponent Title="@title">
@@ -404,12 +445,35 @@ Assign C# fields, properties, and methods to component parameters as HTML attrib
   > Component attributes do not support complex content (mixed C# and markup).
   
   To support the assignment of a composed value, use a method, field, or property. The following example performs the concatination of "SKU-" and a product's stock number in the C# method `GetTitle`:
-  
+
+  ::: moniker range=">= aspnetcore-5.0"
+
   ```razor
   <ChildComponent Title="@GetTitle()">
       Composed title from method.
   </ChildComponent>
-  
+
+  @code {
+      private Product product = new();
+
+      private string GetTitle() => $"SKU-{product.SKU}";
+      
+      private class Product
+      {
+          public string SKU { get; set; } = "12345";
+      }
+  }
+  ```
+
+  ::: moniker-end
+
+  ::: moniker range="< aspnetcore-5.0"
+
+  ```razor
+  <ChildComponent Title="@GetTitle()">
+      Composed title from method.
+  </ChildComponent>
+
   @code {
       private Product product = new Product();
 
@@ -421,7 +485,9 @@ Assign C# fields, properties, and methods to component parameters as HTML attrib
       }
   }
   ```
-  
+
+  ::: moniker-end
+
 For more information, see <xref:mvc/views/razor>.
 
 > [!WARNING]
@@ -938,7 +1004,7 @@ To maintain state in the preceding scenario, use a *private field* in the `Expan
 The following revised `Expander` component:
 
 * Accepts the `Expanded` component parameter value from the parent.
-* Assigns the component parameter value to a *private field* (`expanded`) in the [OnInitialized event](xref:blazor/components/lifecycle#component-initialization-methods-oninitializedasync).
+* Assigns the component parameter value to a *private field* (`expanded`) in the [`OnInitialized` event](xref:blazor/components/lifecycle#component-initialization-oninitializedasync).
 * Uses the private field to maintain its internal toggle state, which demonstrates how to avoid writing directly to a parameter.
 
 ```razor

@@ -55,7 +55,7 @@
     /// <returns>A <see cref="Task"/>.</returns>
     protected override Task OnInitializedAsync()
     {
-        Contact = new Contact();
+        Contact = new();
         return base.OnInitializedAsync();
     }
 
@@ -91,7 +91,7 @@
             Success = true;
             Error = false;
             // ready for the next
-            Contact = new Contact();
+            Contact = new();
             Busy = false;
         }
         catch (Exception ex)

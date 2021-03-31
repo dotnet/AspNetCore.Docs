@@ -2,7 +2,7 @@
 <button @onclick="AddTodo">Add todo</button>
 
 @code {
-    private IList<TodoItem> todos = new List<TodoItem>();
+    private List<TodoItem> todos = new();
 
     private void AddTodo()
     {
