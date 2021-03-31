@@ -131,6 +131,20 @@ To prevent a <xref:System.NullReferenceException> in rendering logic, check for 
 
 The preceding code assumes that `person` isn't `null`. Often, the structure of the code guarantees that an object exists at the time the component is rendered. In those cases, it isn't necessary to check for `null` in rendering logic. In the prior example, `person` might be guaranteed to exist because `person` is created when the component is instantiated, as the following example shows:
 
+::: moniker range=">= aspnetcore-5.0"
+
+```razor
+@code {
+    private Person person = new();
+
+    ...
+}
+```
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
 ```razor
 @code {
     private Person person = new Person();
@@ -138,6 +152,8 @@ The preceding code assumes that `person` isn't `null`. Often, the structure of t
     ...
 }
 ```
+
+::: moniker-end
 
 <h3 id="event-handlers-webassembly">Event handlers</h3>
 
@@ -401,6 +417,20 @@ To prevent a <xref:System.NullReferenceException> in rendering logic, check for 
 
 The preceding code assumes that `person` isn't `null`. Often, the structure of the code guarantees that an object exists at the time the component is rendered. In those cases, it isn't necessary to check for `null` in rendering logic. In the prior example, `person` might be guaranteed to exist because `person` is created when the component is instantiated, as the following example shows:
 
+::: moniker range=">= aspnetcore-5.0"
+
+```razor
+@code {
+    private Person person = new();
+
+    ...
+}
+```
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
 ```razor
 @code {
     private Person person = new Person();
@@ -408,6 +438,8 @@ The preceding code assumes that `person` isn't `null`. Often, the structure of t
     ...
 }
 ```
+
+::: moniker-end
 
 <h3 id="event-handlers-server">Event handlers</h3>
 

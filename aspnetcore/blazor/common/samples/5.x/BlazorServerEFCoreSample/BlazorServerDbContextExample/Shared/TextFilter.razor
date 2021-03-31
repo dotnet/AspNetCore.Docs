@@ -94,7 +94,7 @@ Filter on: <select @bind="SelectedColumn">
                 {
                     timer.Dispose();
                 }
-                timer = new Timer(DebounceMs);
+                timer = new(DebounceMs);
                 timer.Elapsed += NotifyTimerElapsed;
                 timer.Enabled = true;
             }

@@ -21,7 +21,7 @@
 
     protected override void OnInitialized()
     {
-        editContext = new EditContext(model);
+        editContext = new(model);
 
         fieldChanged = (_, __) =>
         {

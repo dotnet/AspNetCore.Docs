@@ -19,7 +19,7 @@
 
     protected override void OnInitialized()
     {
-        editContext = new EditContext(model);
+        editContext = new(model);
         editContext.OnFieldChanged += HandleFieldChanged;
     }
 

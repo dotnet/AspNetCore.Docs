@@ -8,8 +8,8 @@
 <button @onclick="Dispose">Trigger Disposal</button>
 
 @code {
-    private Resource resource = new Resource();
-    private CancellationTokenSource cts = new CancellationTokenSource();
+    private Resource resource = new();
+    private CancellationTokenSource cts = new();
 
     protected async Task LongRunningWork()
     {

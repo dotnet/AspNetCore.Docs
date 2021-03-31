@@ -171,7 +171,7 @@ namespace BlazorServerDbContextExample.Data
         /// <summary>
         /// Get some randominzation in play.
         /// </summary>
-        private readonly Random _random = new Random();
+        private readonly Random _random = new();
 
         /// <summary>
         /// Picks a random item from a list.
