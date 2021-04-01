@@ -132,7 +132,7 @@ server {
     listen        80;
     server_name   example.com *.example.com;
     location / {
-        proxy_pass         http://localhost:5000;
+        proxy_pass         http://127.0.0.1:5000;
         proxy_http_version 1.1;
         proxy_set_header   Upgrade $http_upgrade;
         proxy_set_header   Connection keep-alive;
@@ -158,13 +158,13 @@ server {
 
 ::: moniker range=">= aspnetcore-5.0"
 
-With the preceding configuration file and default server, Nginx accepts public traffic on port 80 with host header `example.com` or `*.example.com`. Requests not matching these hosts won't get forwarded to Kestrel. Nginx forwards the matching requests to Kestrel at `http://localhost:5000`. For more information, see [How nginx processes a request](https://nginx.org/docs/http/request_processing.html). To change Kestrel's IP/port, see [Kestrel: Endpoint configuration](xref:fundamentals/servers/kestrel/endpoints).
+With the preceding configuration file and default server, Nginx accepts public traffic on port 80 with host header `example.com` or `*.example.com`. Requests not matching these hosts won't get forwarded to Kestrel. Nginx forwards the matching requests to Kestrel at `http://127.0.0.1:5000`. For more information, see [How nginx processes a request](https://nginx.org/docs/http/request_processing.html). To change Kestrel's IP/port, see [Kestrel: Endpoint configuration](xref:fundamentals/servers/kestrel/endpoints).
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-With the preceding configuration file and default server, Nginx accepts public traffic on port 80 with host header `example.com` or `*.example.com`. Requests not matching these hosts won't get forwarded to Kestrel. Nginx forwards the matching requests to Kestrel at `http://localhost:5000`. For more information, see [How nginx processes a request](https://nginx.org/docs/http/request_processing.html). To change Kestrel's IP/port, see [Kestrel: Endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration).
+With the preceding configuration file and default server, Nginx accepts public traffic on port 80 with host header `example.com` or `*.example.com`. Requests not matching these hosts won't get forwarded to Kestrel. Nginx forwards the matching requests to Kestrel at `http://127.0.0.1:5000`. For more information, see [How nginx processes a request](https://nginx.org/docs/http/request_processing.html). To change Kestrel's IP/port, see [Kestrel: Endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration).
 
 ::: moniker-end
 
