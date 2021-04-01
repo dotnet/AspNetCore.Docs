@@ -260,7 +260,7 @@ An alternative to using the [`Link` component](xref:blazor/fundamentals/signalr#
 
 ::: moniker-end
 
-::: moniker range="< aspnetcore-5.0"
+::: moniker range="< aspnetcore-6.0"
 
 -->
 
