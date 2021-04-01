@@ -48,12 +48,12 @@
         await hubConnection.StartAsync();
     }
 
-    Task Send() =>
-        hubConnection.SendAsync("SendMessage", userInput, messageInput);
+    async Task Send() =>
+        await hubConnection.SendAsync("SendMessageAsync", userInput, messageInput);
 
     public bool IsConnected =>
         hubConnection.State == HubConnectionState.Connected;
-        
+
     public void Dispose()
     {
         _ = hubConnection.DisposeAsync();
