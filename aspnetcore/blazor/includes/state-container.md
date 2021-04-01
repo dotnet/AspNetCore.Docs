@@ -4,7 +4,7 @@ no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Bla
 Nested components typically bind data using *chained bind* as described in <xref:blazor/components/data-binding>. Nested and un-nested components can share access to data using a registered in-memory state container. A custom state container class can use an assignable <xref:System.Action> to notify components in different parts of the app of state changes. In the following example:
 
 * A pair of components uses a state container to track a property.
-* One of the component in the following example is nested in the other component, but nesting isn't required for this approach to work.
+* One component in the following example is nested in the other component, but nesting isn't required for this approach to work.
 
 `StateContainer.cs`:
 
