@@ -104,6 +104,31 @@ private static GrpcChannel CreateAuthenticatedChannel(string address)
 }
 ```
 
+#### Bearer token with gRPC client factory
+
+gRPC client factory can create clients that send a bearer token using `ChannelCredentials`. When configuring a client, assign the `CallCredentials` the client should use with the `ConfigureChannel` method.
+
+```csharp
+services
+    .AddGrpcClient<Greeter.GreeterClient>(o =>
+    {
+        o.Address = new Uri("https://localhost:5001");
+    })
+    .ConfigureChannel(o =>
+    {
+        var credentials = CallCredentials.FromInterceptor((context, metadata) =>
+        {
+            if (!string.IsNullOrEmpty(_token))
+            {
+                metadata.Add("Authorization", $"Bearer {_token}");
+            }
+            return Task.CompletedTask;
+        });
+
+        o.Credentials = ChannelCredentials.Create(new SslCredentials(), credentials);
+    });
+```
+
 ### Client certificate authentication
 
 A client could alternatively provide a client certificate for authentication. [Certificate authentication](https://tools.ietf.org/html/rfc5246#section-7.4.4) happens at the TLS level, long before it ever gets to ASP.NET Core. When the request enters ASP.NET Core, the [client certificate authentication package](xref:security/authentication/certauth) allows you to resolve the certificate to a `ClaimsPrincipal`.
