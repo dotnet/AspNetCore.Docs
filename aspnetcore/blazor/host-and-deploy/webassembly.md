@@ -452,6 +452,10 @@ Blazor WebAssembly apps can be deployed to Azure App Services on Windows, which 
 
 Deploying a standalone Blazor WebAssembly app to Azure App Service for Linux isn't currently supported. A Linux server image to host the app isn't available at this time. Work is in progress to enable this scenario.
 
+### Azure static web app
+
+For more information, see [Tutorial: Building a static web app with Blazor in Azure Static Web Apps](/azure/static-web-apps/deploy-blazor).
+
 ### IIS
 
 IIS is a capable static file server for Blazor apps. To configure IIS to host Blazor, see [Build a Static Website on IIS](/iis/manage/creating-websites/scenario-build-a-static-website-on-iis).
