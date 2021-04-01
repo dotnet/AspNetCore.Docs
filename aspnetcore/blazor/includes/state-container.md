@@ -95,7 +95,7 @@ services.AddScoped<StateContainer>();
     </button>
 </p>
 
-<NestedComponent />
+<Nested />
 
 @code {
     protected override void OnInitialized()
