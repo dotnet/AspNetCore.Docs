@@ -91,7 +91,7 @@ services.AddScoped<StateContainer>();
 
 <p>
     <button @onclick="ChangePropertyValue">
-        Change Property from the State Container component
+        Change the Property from the State Container component
     </button>
 </p>
 
