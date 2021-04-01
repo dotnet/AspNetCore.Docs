@@ -5,7 +5,7 @@ description: Discover how components can be included in Blazor apps from an exte
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/12/2021
+ms.date: 04/01/2021
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/components/class-libraries
 ---
@@ -69,18 +69,21 @@ Just as components are regular .NET types, components provided by an RCL are nor
 
 ---
 
-## Consume a library component
+## Consume a component from a library
 
 In order to consume components defined in a library in another project, use either of the following approaches:
 
-* Use the full type name with the namespace.
+* Use the full type name with the RCL's namespace.
 * Use Razor's [`@using`](xref:mvc/views/razor#using) directive. Individual components can be added by name.
 
-In the following examples, `ComponentLibrary` is a component library containing the `Component1` component (`Component1.razor`). The `Component1` component is an example component automatically added by the RCL project template when the library is created.
+In the following examples, `ComponentLibrary` is a component library containing the `Component1` component (`Component1.razor`). The `Component1` component is an example component automatically added to an RCL created by the RCL project template.
 
-Reference the `Component1` component using its namespace:
+Reference the `Component1` component using its namespace.
+
+`Pages/ComponentTest1.razor`:
 
 ```razor
+@page "/component-test-1"
 <h1>Hello, world!</h1>
 
 Welcome to your new app.
@@ -88,9 +91,12 @@ Welcome to your new app.
 <ComponentLibrary.Component1 />
 ```
 
-Alternatively, bring the library into scope with an [`@using`](xref:mvc/views/razor#using) directive and use the component without its namespace:
+Alternatively, add a [`@using`](xref:mvc/views/razor#using) directive and use the component without its namespace.
+
+`Pages/ComponentTest2.razor`:
 
 ```razor
+@page "/component-test-2"
 @using ComponentLibrary
 
 <h1>Hello, world!</h1>
@@ -104,15 +110,15 @@ Optionally, include the `@using ComponentLibrary` directive in the top-level `_I
 
 ::: moniker range=">= aspnetcore-5.0"
 
-For library components that use [CSS isolation](xref:blazor/components/css-isolation), there's no need to explicitly link the library's individual component stylesheets in the app that consumes the library. The component styles are automatically made available to the consuming app.
+For library components that use [CSS isolation](xref:blazor/components/css-isolation), the component styles are automatically made available to the consuming app. There's no need to link the library's individual component stylesheets in the app that consumes the library.
 
 <!-- REACTIVATE WHEN HEAD COMPONENTS COME BACK AT 6.0
 
 To provide additional library component styles from stylesheets in the library's `wwwroot` folder, link the stylesheets using the framework's [`Link` component](xref:blazor/fundamentals/signalr#influence-html-head-tag-elements) in `Component1.razor`:
 
 ```razor
-<div class="my-component">
-    <Link href="_content/ComponentLibrary/styles.css" rel="stylesheet" />
+<div class="extra-style">
+    <Link href="_content/ComponentLibrary/additionalStyles.css" rel="stylesheet" />
 
     <p>
         This Blazor component is defined in the <strong>ComponentLibrary</strong> package.
@@ -124,18 +130,17 @@ NEXT PARAGRAPH: RECAST TO 'CAN ALSO ADOPT ...'
 
 -->
 
-To provide additional library component styles from stylesheets in the library's `wwwroot` folder, link the stylesheets in the consuming app's `wwwroot/index.html` file (Blazor WebAssembly) or `Pages/_Host.cshtml` file (Blazor Server):
+To provide additional component styles from stylesheets in the library's `wwwroot` folder, link the stylesheets in the consuming app's `<head>` element markup.
 
-```html
-<head>
-    ...
-    <link href="_content/ComponentLibrary/additionalStyles.css" rel="stylesheet" />
-</head>
+`wwwroot/index.html` file (Blazor WebAssembly) or `Pages/_Host.cshtml` file (Blazor Server):
+
+```diff
++ <link href="_content/ComponentLibrary/additionalStyles.css" rel="stylesheet" />
 ```
 
 <!-- REACTIVATE WHEN HEAD COMPONENTS COME BACK AT 6.0
 
-When the `Link` component is used in a child component, the linked asset is also available to any other child component of the parent component as long as the child with the `Link` component is rendered. The distinction between using the `Link` component in a child component and placing a `<link>` HTML tag in `wwwroot/index.html` or `Pages/_Host.cshtml` is that a framework component's rendered HTML tag:
+When the `Link` component is used in a child component, the linked asset is also available to any other child component of the parent component if the child with the `Link` component is rendered. The distinction between using the `Link` component in a child component and placing a `<link>` HTML tag in `wwwroot/index.html` or `Pages/_Host.cshtml` is that a framework component's rendered HTML tag:
 
 * Can be modified by application state. A hard-coded `<link>` HTML tag can't be modified by application state.
 * Is removed from the HTML `<head>` when the parent component is no longer rendered.
@@ -146,24 +151,168 @@ When the `Link` component is used in a child component, the linked asset is also
 
 ::: moniker range="< aspnetcore-5.0"
 
-To provide `Component1`'s `my-component` CSS class, link to the library's stylesheet in the app's `wwwroot/index.html` file (Blazor WebAssembly) or `Pages/_Host.cshtml` file (Blazor Server):
+To provide `Component1`'s `my-component` CSS class, link to the library's stylesheet in the `<head>` element's markup.
 
-```html
-<head>
-    ...
-    <link href="_content/ComponentLibrary/styles.css" rel="stylesheet" />
-</head>
+`wwwroot/index.html` file (Blazor WebAssembly) or `Pages/_Host.cshtml` file (Blazor Server):
+
+```diff
++ <link href="_content/ComponentLibrary/styles.css" rel="stylesheet" />
 ```
 
 ::: moniker-end
 
 ## Create a Razor components class library with static assets
 
-An RCL can include static assets. The static assets are available to any app that consumes the library. For more information, see <xref:razor-pages/ui-class#create-an-rcl-with-static-assets>.
+The static assets are available to any app that consumes the library.
+
+Place the static asset in the `wwwroot` folder of the RCL and reference the static asset with the following path: `_content/{LIBRARY NAME}/{ASSET FILE NAME}`. The `{LIBRARY NAME}` placeholder is the library name. The `{ASSET FILE NAME}` placeholder is the asset's file name.
+
+<!-- HOLD for reactivation at 6.x
+
+::: moniker range=">= aspnetcore-6.0"
+
+Components provided to a client app of a hosted Blazor WebAssembly solution by an RCL are referenced normally. If any components require stylesheets or JavaScript files, use either of the following approaches to obtain the static assets:
+
+* The client app's `wwwroot/index.html` file can link (`<link>`) to the static assets.
+* The component can use the framework's [`Link` component](xref:blazor/fundamentals/signalr#influence-html-head-tag-elements) to obtain the static assets.
+
+The preceding approaches are demonstrated in the following examples.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-6.0"
+
+-->
+
+Components provided to a client app of a hosted Blazor WebAssembly solution by an RCL are referenced normally. If any components require additional stylesheets or JavaScript files, the client app's `wwwroot/index.html` file must include the correct static asset links. These approaches are demonstrated in the following examples.
+
+<!-- HOLD for reactivation at 6.0
+
+::: moniker-end
+
+-->
+
+Add the following `Jeep` component to the app. The `Jeep` component uses:
+
+* An image (`jeep-cj.png`) from the client app's `wwwroot` folder in a hosted Blazor WebAssembly app.
+* An image (`jeep-yj.png`) from an RCL's (`JeepImage`) `wwwroot` folder.
+* The example component (`Component1`) is created automatically by the RCL project template when the `JeepImage` library is added to the solution.
+
+`Pages/Jeep.razor`:
+
+```razor
+@page "/Jeep"
+
+<h1>1979 Jeep CJ-5&trade;</h1>
+
+<p>
+    <img alt="1979 Jeep CJ-5&trade;" src="/jeep-cj.png" />
+</p>
+
+<h1>1991 Jeep YJ&trade;</h1>
+
+<p>
+    <img alt="1991 Jeep YJ&trade;" src="_content/JeepImage/jeep-yj.png" />
+</p>
+
+<p>
+    <em>Jeep CJ-5</em> and <em>Jeep YJ</em> are a trademarks of 
+    <a href="https://www.fcagroup.com">Fiat Chrysler Automobiles</a>.
+</p>
+
+<JeepImage.Component1 />
+```
+
+> [!WARNING]
+> Do **not** publish images of vehicles publicly unless you own the images. Otherwise, you risk copyright infringement.
+
+<!-- HOLD for reactivation at 6.0
+
+::: moniker range=">= aspnetcore-6.0"
+
+The library's `jeep-yj.png` image can also be added to the library's `Component1` component. To provide the `my-component` CSS class to the client app's page, link to the library's stylesheet using the framework's [`Link` component](xref:blazor/fundamentals/signalr#influence-html-head-tag-elements).
+
+`Component1.razor`:
+
+```razor
+<div class="my-component">
+    <Link href="_content/JeepImage/styles.css" rel="stylesheet" />
+
+    <h1>JeepImage.Component1</h1>
+
+    <p>
+        This Blazor component is defined in the <strong>JeepImage</strong> package.
+    </p>
+
+    <p>
+        <img alt="1991 Jeep YJ&trade;" src="_content/JeepImage/jeep-yj.png" />
+    </p>
+</div>
+```
+
+An alternative to using the [`Link` component](xref:blazor/fundamentals/signalr#influence-html-head-tag-elements) is to load the stylesheet from a `<link>` element of the `<head>` element. This approach makes the stylesheet available to all of the components in the client app:
+
+`wwwroot/index.html` (Blazor WebAssembly):
+
+```diff
++ <link href="_content/JeepImage/styles.css" rel="stylesheet" />
+```
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+-->
+
+The library's `jeep-yj.png` image can also be added to the library's `Component1` component.
+
+`Component1.razor`:
+
+```razor
+<div class="my-component">
+    <h1>JeepImage.Component1</h1>
+
+    <p>
+        This Blazor component is defined in the <strong>JeepImage</strong> package.
+    </p>
+
+    <p>
+        <img alt="1991 Jeep YJ&trade;" src="_content/JeepImage/jeep-yj.png" />
+    </p>
+</div>
+```
+
+The following `<link>` tag is added to the `<head>` element's markup.
+
+`wwwroot/index.html` (Blazor WebAssembly):
+
+```diff
++ <link href="_content/JeepImage/styles.css" rel="stylesheet" />
+```
+
+<!-- HOLD for reactivation at 6.0
+
+::: moniker-end
+
+-->
+
+Add navigation to the `Jeep` component in the client app's `NavMenu` component.
+
+`Shared/NavMenu.razor`:
+
+```razor
+<li class="nav-item px-3">
+    <NavLink class="nav-link" href="Jeep">
+        <span class="oi oi-list-rich" aria-hidden="true"></span> Jeep
+    </NavLink>
+</li>
+```
+
+For more information, see <xref:razor-pages/ui-class#create-an-rcl-with-static-assets>.
 
 ## Supply components and static assets to multiple hosted Blazor apps
 
-For more information, see <xref:blazor/host-and-deploy/webassembly#static-assets-and-class-libraries>.
+For more information, see <xref:blazor/host-and-deploy/webassembly#static-assets-and-class-libraries-for-multiple-blazor-webassembly-apps>.
 
 ::: moniker range=">= aspnetcore-5.0"
 

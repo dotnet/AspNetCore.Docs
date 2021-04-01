@@ -210,7 +210,7 @@ In the following example:
 <link href="_content/ClassLib/ClassLib.bundle.scp.css" rel="stylesheet">
 ```
 
-For more information on RCLs and component libraries, see:
+For more information on RCLs and component libraries, see the following articles:
 
+* <xref:blazor/components/class-libraries>
 * <xref:razor-pages/ui-class>
-* <xref:blazor/components/class-libraries>.
