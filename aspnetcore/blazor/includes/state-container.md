@@ -4,22 +4,28 @@ no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Bla
 Nested components typically bind data using *chained bind* as described in <xref:blazor/components/data-binding>. Nested and un-nested components can share access to data using a registered in-memory state container. A custom state container class can use an assignable <xref:System.Action> to notify components in different parts of the app of state changes. In the following example:
 
 * A pair of components uses a state container to track a property.
-* The components of the example are nested, but nesting isn't required for this approach to work.
+* One of the component in the following example is nested in the other component, but nesting isn't required for this approach to work.
 
 `StateContainer.cs`:
 
 ```csharp
+using System;
+
 public class StateContainer
 {
-    public string Property { get; set; } = "Initial value from StateContainer";
+    private string savedString;
+
+    public string Property
+    {
+        get => savedString;
+        set
+        {
+            savedString = value;
+            NotifyStateChanged();
+        }
+    }
 
     public event Action OnChange;
-
-    public void SetProperty(string value)
-    {
-        Property = value;
-        NotifyStateChanged();
-    }
 
     private void NotifyStateChanged() => OnChange?.Invoke();
 }
@@ -37,22 +43,21 @@ In `Startup.ConfigureServices` (Blazor Server):
 services.AddScoped<StateContainer>();
 ```
 
-`Pages/Component1.razor`:
+`Shared/NestedComponent.razor`:
 
 ```razor
-@page "/Component1"
 @inject StateContainer StateContainer
 @implements IDisposable
 
-<h1>Component 1</h1>
+<h2>Nested Component</h2>
 
-<p>Component 1 Property: <b>@StateContainer.Property</b></p>
+<p>Nested Component Property: <b>@StateContainer.Property</b></p>
 
 <p>
-    <button @onclick="ChangePropertyValue">Change Property from Component 1</button>
+    <button @onclick="ChangePropertyValue">
+        Change Property from NestedComponent
+    </button>
 </p>
-
-<Component2 />
 
 @code {
     protected override void OnInitialized()
@@ -62,7 +67,8 @@ services.AddScoped<StateContainer>();
 
     private void ChangePropertyValue()
     {
-        StateContainer.SetProperty($"New value set in Component 1: {DateTime.Now}");
+        StateContainer.Property = 
+            $"New value set in NestedComponent: {DateTime.Now}";
     }
 
     public void Dispose()
@@ -72,19 +78,24 @@ services.AddScoped<StateContainer>();
 }
 ```
 
-`Shared/Component2.razor`:
+`Pages/StateContainerExample.razor`:
 
 ```razor
+@page "/state-container-example"
 @inject StateContainer StateContainer
 @implements IDisposable
 
-<h2>Component 2</h2>
+<h1>State Container Example</h1>
 
-<p>Component 2 Property: <b>@StateContainer.Property</b></p>
+<p>State Container Example Property: <b>@StateContainer.Property</b></p>
 
 <p>
-    <button @onclick="ChangePropertyValue">Change Property from Component 2</button>
+    <button @onclick="ChangePropertyValue">
+        Change Property from State Container Example
+    </button>
 </p>
+
+<NestedComponent />
 
 @code {
     protected override void OnInitialized()
@@ -94,7 +105,8 @@ services.AddScoped<StateContainer>();
 
     private void ChangePropertyValue()
     {
-        StateContainer.SetProperty($"New value set in Component 2: {DateTime.Now}");
+        StateContainer.Property = 
+            $"New value set in State Container Example: {DateTime.Now}";
     }
 
     public void Dispose()
