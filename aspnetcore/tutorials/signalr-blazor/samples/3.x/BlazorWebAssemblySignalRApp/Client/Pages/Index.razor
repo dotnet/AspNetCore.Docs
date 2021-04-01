@@ -49,7 +49,7 @@
     }
 
     async Task Send() =>
-        await hubConnection.SendAsync("SendMessageAsync", userInput, messageInput);
+        await hubConnection.SendAsync("SendMessage", userInput, messageInput);
 
     public bool IsConnected =>
         hubConnection.State == HubConnectionState.Connected;
