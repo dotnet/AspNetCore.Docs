@@ -43,19 +43,19 @@ In `Startup.ConfigureServices` (Blazor Server):
 services.AddScoped<StateContainer>();
 ```
 
-`Shared/NestedComponent.razor`:
+`Shared/Nested.razor`:
 
 ```razor
 @inject StateContainer StateContainer
 @implements IDisposable
 
-<h2>Nested Component</h2>
+<h2>Nested component</h2>
 
-<p>Nested Component Property: <b>@StateContainer.Property</b></p>
+<p>Nested component Property: <b>@StateContainer.Property</b></p>
 
 <p>
     <button @onclick="ChangePropertyValue">
-        Change Property from NestedComponent
+        Change the Property from the Nested component
     </button>
 </p>
 
@@ -68,7 +68,7 @@ services.AddScoped<StateContainer>();
     private void ChangePropertyValue()
     {
         StateContainer.Property = 
-            $"New value set in NestedComponent: {DateTime.Now}";
+            $"New value set in the Nested component: {DateTime.Now}";
     }
 
     public void Dispose()
@@ -78,20 +78,20 @@ services.AddScoped<StateContainer>();
 }
 ```
 
-`Pages/StateContainerExample.razor`:
+`Pages/StateContainer.razor`:
 
 ```razor
-@page "/state-container-example"
+@page "/state-container"
 @inject StateContainer StateContainer
 @implements IDisposable
 
-<h1>State Container Example</h1>
+<h1>State Container component</h1>
 
-<p>State Container Example Property: <b>@StateContainer.Property</b></p>
+<p>State Container component Property: <b>@StateContainer.Property</b></p>
 
 <p>
     <button @onclick="ChangePropertyValue">
-        Change Property from State Container Example
+        Change Property from the State Container component
     </button>
 </p>
 
@@ -106,7 +106,7 @@ services.AddScoped<StateContainer>();
     private void ChangePropertyValue()
     {
         StateContainer.Property = 
-            $"New value set in State Container Example: {DateTime.Now}";
+            $"New value set in the State Container component: {DateTime.Now}";
     }
 
     public void Dispose()
