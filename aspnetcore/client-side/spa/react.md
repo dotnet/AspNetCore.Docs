@@ -19,7 +19,7 @@ The React project template isn't meant for server-side rendering (SSR). For SSR 
 
 ## Create a new app
 
-If you have ASP.NET Core 2.1 installed, there's no need to install the React project template.
+If you have ASP.NET Core 2.1 or a higher version installed, there's no need to install the React project template.
 
 Create a new project from a command prompt using the command `dotnet new react` in an empty directory. For example, the following commands create the app in a *my-new-app* directory and switch to that directory:
 
