@@ -272,6 +272,13 @@ webBuilder.ConfigureKestrel(serverOptions =>
 
 [Server Name Indication (SNI)](https://tools.ietf.org/html/rfc6066#section-3) can be used to host multiple domains on the same IP address and port. For SNI to function, the client sends the host name for the secure session to the server during the TLS handshake so that the server can provide the correct certificate. The client uses the furnished certificate for encrypted communication with the server during the secure session that follows the TLS handshake.
 
+SNI can be configured in two ways:
+
+* Create an endpoint in code and select a certificate using the host name with the <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.ServerCertificateSelector%2A> callback.
+* Configure a mapping between host names and HTTPS options in [Configuration](xref:fundamentals/configuration/index). For example, JSON in  the `appsettings.json` file.
+
+### SNI with `ServerCertificateSelector`
+
 Kestrel supports SNI via the `ServerCertificateSelector` callback. The callback is invoked once per connection to allow the app to inspect the host name and select the appropriate certificate. The following callback code can be used in the `ConfigureWebHostDefaults` method call of a project's *Program.cs* file:
 
 ```csharp
@@ -314,7 +321,69 @@ webBuilder.ConfigureKestrel(serverOptions =>
 });
 ```
 
-SNI support requires:
+### SNI in configuration
+
+Kestrel supports SNI defined in configuration. An endpoint can be configured with an `Sni` object that contains a mapping between host names and HTTPS options. The connection host name is matched to the options and they are used for that connection.
+
+The following configuration adds an endpoint named `MySniEndpoint` that uses SNI to select HTTPS options based on the host name:
+
+```json
+{
+  "Kestrel": {
+    "Endpoints": {
+      "MySniEndpoint": {
+        "Url": "https://*",
+        "SslProtocols": ["Tls11", "Tls12"],
+        "Sni": {
+          "a.example.org": {
+            "Protocols": "Http1AndHttp2",
+            "SslProtocols": ["Tls11", "Tls12", "Tls13"],
+            "Certificate": {
+              "Subject": "<subject; required>",
+              "Store": "<certificate store; required>",
+            },
+            "ClientCertificateMode" : "NoCertificate"
+          },
+          "*.example.org": {
+            "Certificate": {
+              "Path": "<path to .pfx file>",
+              "Password": "<certificate password>"
+            }
+          },
+          "*": {
+            // At least one subproperty needs to exist per SNI section or it
+            // cannot be discovered via IConfiguration
+            "Protocols": "Http1",
+          }
+        }
+      }
+    },
+    "Certificates": {
+      "Default": {
+        "Path": "<path to .pfx file>",
+        "Password": "<certificate password>"
+      }
+    }
+  }
+}
+```
+
+HTTPS options that can be overridden by SNI:
+
+* `Certificate` configures the [certificate source](#certificate-sources).
+* `Protocols` configures the allowed [HTTP protocols](xref:Microsoft.AspNetCore.Server.Kestrel.Core.HttpProtocols).
+* `SslProtocols` configures the allowed [SSL protocols](xref:System.Security.Authentication.SslProtocols).
+* `ClientCertificateMode` configures the [client certificate requirements](xref:Microsoft.AspNetCore.Server.Kestrel.Https.ClientCertificateMode).
+
+The host name supports wildcard matching:
+
+* Exact match. For example, `a.example.org` matches `a.example.org`.
+* Wildcard prefix. If there are multiple wildcard matches then the longest pattern is chosen. For example, `*.example.org` matches `b.example.org` and `c.example.org`.
+* Full wildcard. `*` matches everything else, including clients that aren't using SNI and don't send a host name.
+
+The matched SNI configuration is applied to the endpoint for the connection, overriding values on the endpoint. If a connection doesn't match a configured SNI host name then the connection is refused.
+
+### SNI requirements
 
 * Running on target framework `netcoreapp2.1` or later. On `net461` or later, the callback is invoked but the `name` is always `null`. The `name` is also `null` if the client doesn't provide the host name parameter in the TLS handshake.
 * All websites run on the same Kestrel instance. Kestrel doesn't support sharing an IP address and port across multiple instances without a reverse proxy.
@@ -334,6 +403,7 @@ webBuilder.ConfigureKestrel(serverOptions =>
 ```
 
 The default value, `SslProtocols.None`, causes Kestrel to use the operating system defaults to choose the best protocol. Unless you have a specific reason to select a protocol, use the default.
+
 ## Connection logging
 
 Call <xref:Microsoft.AspNetCore.Hosting.ListenOptionsConnectionLoggingExtensions.UseConnectionLogging%2A> to emit Debug level logs for byte-level communication on a connection. Connection logging is helpful for troubleshooting problems in low-level communication, such as during TLS encryption and behind proxies. If `UseConnectionLogging` is placed before `UseHttps`, encrypted traffic is logged. If `UseConnectionLogging` is placed after `UseHttps`, decrypted traffic is logged. This is built-in [Connection Middleware](#connection-middleware).
