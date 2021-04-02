@@ -1031,7 +1031,7 @@ In the following example:
 
 * <xref:System.Net.Http.IHttpClientFactory> is registered in the [Generic Host's](xref:fundamentals/host/generic-host) service container.
 * `MyService` creates a client factory instance from the service, which is used to create an `HttpClient`. `HttpClient` is used to retrieve a webpage.
-* `Main` creates a scope to execute the service's `GetPage` method and write the first 500 characters of the webpage content to the console.
+* `Main` creates a scope to execute the service's `GetPage` method and write the first 500 characters of the webpage content to the console. For more information on calling services from `Program.Main`, see <xref:fundamentals/dependency-injection#call-services-from-main>.
 
 [!code-csharp[](http-requests/samples/2.x/HttpClientFactoryConsoleSample/Program.cs?highlight=14-15,20,26-27,59-62)]
 
