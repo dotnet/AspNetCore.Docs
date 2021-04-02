@@ -809,6 +809,8 @@ public class Program
 }
 ```
 
+It isn't necessary to create a scope for transient services, including for the `ILogger` in the preceding example (see: <xref:fundamentals/logging#create-logs-in-main>). Transients don't resolve inadvertantly as singletons when resolved from the root. Transients are created when requested. If a transient service happens to be disposable, then it's rooted by the container until disposal.
+
 ## Scope validation
 
 When the app is running in the Development environment, the default service provider performs checks to verify that:
