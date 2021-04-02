@@ -1,5 +1,5 @@
 ---
-title: ASP.NET Core Razor components class libraries
+title: Consume ASP.NET Core Razor components from Razor class libraries
 author: guardrex
 description: Discover how components can be included in Blazor apps from an external component library.
 monikerRange: '>= aspnetcore-3.1'
@@ -9,9 +9,9 @@ ms.date: 04/01/2021
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/components/class-libraries
 ---
-# ASP.NET Core Razor components class libraries
+# Consume ASP.NET Core Razor components from Razor class libraries
 
-Components can be shared in a [Razor class library (RCL)](xref:razor-pages/ui-class) across projects. A *Razor components class library* can be included from:
+Components can be shared in a [Razor class library (RCL)](xref:razor-pages/ui-class) across projects. An RCL can be included from:
 
 * Another project in the solution.
 * A NuGet package.
@@ -19,7 +19,7 @@ Components can be shared in a [Razor class library (RCL)](xref:razor-pages/ui-cl
 
 Just as components are regular .NET types, components provided by an RCL are normal .NET assemblies.
 
-## Create an RCL
+## Create a Razor class library (RCL)
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -69,9 +69,9 @@ Just as components are regular .NET types, components provided by an RCL are nor
 
 ---
 
-## Consume a component from a library
+## Consume a Razor component from a Razor class library
 
-In order to consume components defined in a library in another project, use either of the following approaches:
+In order to consume components defined in a Razor class library (RCL) in another project, use either of the following approaches:
 
 * Use the full type name with the RCL's namespace.
 * Use Razor's [`@using`](xref:mvc/views/razor#using) directive. Individual components can be added by name.
@@ -110,8 +110,6 @@ Optionally, include the `@using ComponentLibrary` directive in the top-level `_I
 For library components that use [CSS isolation](xref:blazor/components/css-isolation), the component styles are automatically made available to the consuming app. There's no need to link the library's individual component stylesheets in the app that consumes the library.
 
 ::: moniker-end
-
-<!-- Cross-link Link component and API docs -->
 
 ::: moniker range=">= aspnetcore-6.0"
 
@@ -154,9 +152,9 @@ To provide additional component styles from stylesheets in the library's `wwwroo
 + <link href="_content/ComponentLibrary/additionalStyles.css" rel="stylesheet" />
 ```
 
-## Create a Razor components class library with static assets
+## Create a Razor class library with Razor components and static assets
 
-The static assets are available to any app that consumes the library.
+The static assets are available to any app that consumes the Razor class  (RCL).
 
 Place the static asset in the `wwwroot` folder of the RCL and reference the static asset with the following path: `_content/{LIBRARY NAME}/{ASSET FILE NAME}`. The `{LIBRARY NAME}` placeholder is the library name. The `{ASSET FILE NAME}` placeholder is the asset's file name.
 
