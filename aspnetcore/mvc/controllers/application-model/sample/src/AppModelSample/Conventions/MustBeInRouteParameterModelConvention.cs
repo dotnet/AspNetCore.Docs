@@ -8,10 +8,7 @@ namespace AppModelSample.Conventions
     {
         public void Apply(ParameterModel model)
         {
-            if (model.BindingInfo == null)
-            {
-                model.BindingInfo = new BindingInfo();
-            }
+            model.BindingInfo ??= new BindingInfo();
             model.BindingInfo.BindingSource = BindingSource.Path;
         }
     }
