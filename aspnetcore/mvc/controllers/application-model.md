@@ -13,7 +13,7 @@ By [Steve Smith](https://ardalis.com/)
 
 ASP.NET Core MVC defines an *application model* representing the components of an MVC app. Read and manipulate this model to modify how MVC elements behave. By default, MVC follows certain conventions to determine which classes are considered to be controllers, which methods on those classes are actions, and how parameters and routing behave. Customize this behavior to suit an app's needs by creating custom conventions and applying them globally or as attributes.
 
-## Models and Providers
+## Models and Providers (`IApplicationModelProvider`)
 
 The ASP.NET Core MVC application model includes both abstract interfaces and concrete implementation classes that describe an MVC application. This model is the result of MVC discovering the app's controllers, actions, action parameters, routes, and filters according to default conventions. By working with the application model, modify an app to follow different conventions from the default MVC behavior. The parameters, names, routes, and filters are all used as configuration data for actions and controllers.
 
@@ -28,8 +28,6 @@ Each level of the model has access to a common `Properties` collection, and lowe
 
 > [!NOTE]
 > The `ActionDescriptor.Properties` collection isn't thread safe (for writes) once app startup has finished. Conventions are the best way to safely add data to this collection.
-
-### `IApplicationModelProvider`
 
 ASP.NET Core MVC loads the application model using a provider pattern, defined by the <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.IApplicationModelProvider> interface. This section covers some of the internal implementation details of how this provider functions. This is an advanced topic - most apps that leverage the application model should do so by working with conventions.
 
@@ -77,7 +75,7 @@ The following conventions are available:
 
 Conventions are applied by adding them to MVC options or by implementing `Attribute`s and applying them to controllers, actions, or action parameters (similar to [filters](xref:mvc/controllers/filters)).Unlike filters, conventions are only executed when the app is starting, not as part of each request.
 
-### Sample: Modify the `ApplicationModel`
+## Modify the `ApplicationModel`
 
 The following convention is used to add a property to the application model:
 
@@ -91,7 +89,7 @@ Properties are accessible from the `ActionDescriptor` properties collection with
 
 [!code-csharp[](./application-model/sample/src/AppModelSample/Controllers/AppModelController.cs?name=AppModelController)]
 
-### Sample: Modify the `ControllerModel` Description
+## Modify the `ControllerModel` description
 
 As in the previous example, the controller model can also be modified to include custom properties. These override existing properties with the same name specified in the application model. The following convention attribute adds a description at the controller level:
 
@@ -103,7 +101,7 @@ This convention is applied as an attribute on a controller:
 
 The "description" property is accessed in the same manner as in previous examples.
 
-### Sample: Modify the `ActionModel` Description
+## Modify the `ActionModel` description
 
 A separate attribute convention can be applied to individual actions, overriding behavior already applied at the application or controller level:
 
@@ -113,7 +111,7 @@ Applying this to an action within the previous example's controller demonstrates
 
 [!code-csharp[](./application-model/sample/src/AppModelSample/Controllers/DescriptionAttributesController.cs?name=DescriptionAttributesController&highlight=9)]
 
-### Sample: Modify the `ParameterModel`
+## Modify the `ParameterModel`
 
 The following convention can be applied to action parameters to modify their `BindingInfo`. The following convention requires that the parameter be a route parameter. Other potential binding sources, such as query string values, are ignored:
 
@@ -129,7 +127,7 @@ To apply the convention to all action parameters, add the `MustBeInRouteParamete
 options.Conventions.Add(new MustBeInRouteParameterModelConvention());
 ```
 
-### Sample: Modify the `ActionModel` Name
+## Modify the `ActionModel` name
 
 The following convention modifies the <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.ActionModel> to update the *name* of the action to which it's applied. The new name is provided as a parameter to the attribute. This new name is used by routing, so it affects the route used to reach this action method:
 
@@ -144,7 +142,7 @@ Even though the method name is `SomeName`, the attribute overrides the MVC conve
 > [!NOTE]
 > This example in this section is essentially the same as using the built-in <xref:Microsoft.AspNetCore.Mvc.ActionNameAttribute>.
 
-### Sample: Custom Routing Convention
+## Custom routing convention
 
 Use an <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.IApplicationModelConvention> to customize how routing works. For example, the following convention incorporates controllers' namespaces into their routes, replacing `.` in the namespace with `/` in the route:
 
@@ -165,7 +163,7 @@ The following example applies a convention to routes that aren't using attribute
 
 [!code-csharp[](./application-model/sample/src/AppModelSample/Controllers/NamespaceRoutingController.cs?highlight=7-8)]
 
-## Application Model Usage in `WebApiCompatShim`
+## Application model usage in `WebApiCompatShim`
 
 ASP.NET Core MVC uses a different set of conventions from ASP.NET Web API 2. Using custom conventions, you can modify an ASP.NET Core MVC app's behavior to be consistent with that of a web API app. Microsoft ships the [`WebApiCompatShim` NuGet package](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.WebApiCompatShim) specifically for this purpose.
 
@@ -188,7 +186,7 @@ The conventions provided by the shim are only applied to parts of the app that h
 * <xref:Microsoft.AspNetCore.Mvc.WebApiCompatShim.UseWebApiParameterConventionsAttribute>
 * <xref:Microsoft.AspNetCore.Mvc.WebApiCompatShim.UseWebApiRoutesAttribute>
 
-### Action Conventions
+### Action conventions
 
 <xref:Microsoft.AspNetCore.Mvc.WebApiCompatShim.UseWebApiActionConventionsAttribute> is used to map the HTTP method to actions based on their name (for instance, `Get` would map to `HttpGet`). It only applies to actions that don't use attribute routing.
 
@@ -196,7 +194,7 @@ The conventions provided by the shim are only applied to parts of the app that h
 
 <xref:Microsoft.AspNetCore.Mvc.WebApiCompatShim.UseWebApiOverloadingAttribute> is used to apply the <xref:Microsoft.AspNetCore.Mvc.WebApiCompatShim.WebApiOverloadingApplicationModelConvention> convention. This convention adds an <xref:Microsoft.AspNetCore.Mvc.WebApiCompatShim.OverloadActionConstraint> to the action selection process, which limits candidate actions to those for which the request satisfies all non-optional parameters.
 
-### Parameter Conventions
+### Parameter conventions
 
 <xref:Microsoft.AspNetCore.Mvc.WebApiCompatShim.UseWebApiParameterConventionsAttribute> is used to apply the <xref:Microsoft.AspNetCore.Mvc.WebApiCompatShim.WebApiParameterConventionsApplicationModelConvention> action convention. This convention specifies that simple types used as action parameters are bound from the URI by default, while complex types are bound from the request body.
 
@@ -206,7 +204,7 @@ The conventions provided by the shim are only applied to parts of the app that h
 
 In addition to a set of conventions, the compatibility package includes a <xref:System.Web.Http.ApiController?displayProperty=fullName> base class that replaces the one provided by web API. This allows your web API controllers written for web API and inheriting from its `ApiController` to work as they were designed, while running on ASP.NET Core MVC. All of the [`UseWebApi*`](xref:Microsoft.AspNetCore.Mvc.WebApiCompatShim) attributes listed earlier are applied to the base controller class. The `ApiController` exposes properties, methods, and result types that are compatible with those found in web API.
 
-## Using ApiExplorer to Document an app
+## Use `ApiExplorer` to document an app
 
 The application model exposes an <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.ApiExplorerModel> property at each level that can be used to traverse the app's structure. This can be used to [generate help pages for web APIs using tools like Swagger](xref:tutorials/web-api-help-pages-using-swagger). The `ApiExplorer` property exposes an <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.ApiExplorerModel.IsVisible> property that can be set to specify which parts of the app's model should be exposed. Configure this setting using a convention:
 
