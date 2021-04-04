@@ -29,7 +29,6 @@ namespace AppModelSample
             {
                 options.Conventions.Add(new ApplicationDescription("My Application Description"));
                 options.Conventions.Add(new NamespaceRoutingConvention());
-                options.Conventions.Add(new MustBeInRouteParameterModelConvention());
             });
         }
         #endregion

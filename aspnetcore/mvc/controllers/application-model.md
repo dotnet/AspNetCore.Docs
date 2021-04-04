@@ -1,6 +1,6 @@
 ---
 title: Work with the application model in ASP.NET Core
-author: ardalis
+author: rick-anderson
 description: Learn how to read and manipulate the application model to modify how MVC elements behave in ASP.NET Core.
 ms.author: riande
 ms.date: 12/05/2019
@@ -58,7 +58,7 @@ The `DefaultApplicationModelProvider` establishes many of the default behaviors 
 * Adding action method parameters to the context
 * Applying route and other attributes
 
-Some built-in behaviors are implemented by the `DefaultApplicationModelProvider`. This provider is responsible for constructing the [`ControllerModel`](/dotnet/api/microsoft.aspnetcore.mvc.applicationmodels.controllermodel), which in turn references [`ActionModel`](/dotnet/api/microsoft.aspnetcore.mvc.applicationmodels.actionmodel), [`PropertyModel`](/dotnet/api/microsoft.aspnetcore.mvc.applicationmodels.propertymodel), and [`ParameterModel`](/dotnet/api/microsoft.aspnetcore.mvc.applicationmodels.parametermodel) instances. The `DefaultApplicationModelProvider` class is an internal framework implementation detail that can and will change in the future. 
+Some built-in behaviors are implemented by the `DefaultApplicationModelProvider`. This provider is responsible for constructing the [`ControllerModel`](/dotnet/api/microsoft.aspnetcore.mvc.applicationmodels.controllermodel), which in turn references [`ActionModel`](/dotnet/api/microsoft.aspnetcore.mvc.applicationmodels.actionmodel), [`PropertyModel`](/dotnet/api/microsoft.aspnetcore.mvc.applicationmodels.propertymodel), and [`ParameterModel`](/dotnet/api/microsoft.aspnetcore.mvc.applicationmodels.parametermodel) instances. The `DefaultApplicationModelProvider` class is an internal framework implementation detail that may change in the future.
 
 The `AuthorizationApplicationModelProvider` is responsible for applying the behavior associated with the `AuthorizeFilter` and `AllowAnonymousFilter` attributes. [Learn more about these attributes](xref:security/authorization/simple).
 
@@ -66,7 +66,7 @@ The `CorsApplicationModelProvider` implements behavior associated with the `IEna
 
 ## Conventions
 
-The application model defines convention abstractions that provide a simpler way to customize the behavior of the models than overriding the entire model or provider. These abstractions are the recommended way to modify your app's behavior. Conventions provide a way for you to write code that will dynamically apply customizations. While [filters](xref:mvc/controllers/filters) provide a means of modifying the framework's behavior, customizations let you control how the whole app works together.
+The application model defines convention abstractions that provide a simpler way to customize the behavior of the models than overriding the entire model or provider. These abstractions are the recommended way to modify your app's behavior. Conventions provide a way for you to write code that dynamically applies customizations. While [filters](xref:mvc/controllers/filters) provide a means of modifying the framework's behavior, customizations let you control how the whole app works together.
 
 The following conventions are available:
 
@@ -75,11 +75,11 @@ The following conventions are available:
 * [`IActionModelConvention`](/dotnet/api/microsoft.aspnetcore.mvc.applicationmodels.iactionmodelconvention)
 * [`IParameterModelConvention`](/dotnet/api/microsoft.aspnetcore.mvc.applicationmodels.iparametermodelconvention)
 
-Conventions are applied by adding them to MVC options or by implementing `Attribute`s and applying them to controllers, actions, or action parameters (similar to [`Filters`](xref:mvc/controllers/filters)). Unlike filters, conventions are only executed when the app is starting, not as part of each request.
+Conventions are applied by adding them to MVC options or by implementing `Attribute`s and applying them to controllers, actions, or action parameters (similar to [`Filters`](xref:mvc/controllers/filters)).Unlike filters, conventions are only executed when the app is starting, not as part of each request.
 
 ### Sample: Modifying the ApplicationModel
 
-The following convention is used to add a property to the application model. 
+The following convention is used to add a property to the application model.
 
 [!code-csharp[](./application-model/sample/src/AppModelSample/Conventions/ApplicationDescription.cs)]
 
@@ -93,7 +93,7 @@ Properties are accessible from the `ActionDescriptor` properties collection with
 
 ### Sample: Modifying the ControllerModel Description
 
-As in the previous example, the controller model can also be modified to include custom properties. These will override existing properties with the same name specified in the application model. The following convention attribute adds a description at the controller level:
+As in the previous example, the controller model can also be modified to include custom properties. These override existing properties with the same name specified in the application model. The following convention attribute adds a description at the controller level:
 
 [!code-csharp[](./application-model/sample/src/AppModelSample/Conventions/ControllerDescriptionAttribute.cs)]
 
@@ -123,9 +123,15 @@ The attribute may be applied to any action parameter:
 
 [!code-csharp[](./application-model/sample/src/AppModelSample/Controllers/ParameterModelController.cs?name=ParameterModelController&highlight=5)]
 
+To apply the convention to all action parameters, add the `MustBeInRouteParameterModelConvention` to <xref:Microsoft.AspNetCore.Mvc.MvcOptions> in `Startup.ConfigureServices`:
+
+```csharp
+options.Conventions.Add(new MustBeInRouteParameterModelConvention());
+```
+
 ### Sample: Modifying the ActionModel Name
 
-The following convention modifies the `ActionModel` to update the *name* of the action to which it's applied. The new name is provided as a parameter to the attribute. This new name is used by routing, so it will affect the route used to reach this action method.
+The following convention modifies the `ActionModel` to update the *name* of the action to which it's applied. The new name is provided as a parameter to the attribute. This new name is used by routing, so it affects the route used to reach this action method.
 
 [!code-csharp[](./application-model/sample/src/AppModelSample/Conventions/CustomActionNameAttribute.cs)]
 
@@ -140,7 +146,7 @@ Even though the method name is `SomeName`, the attribute overrides the MVC conve
 
 ### Sample: Custom Routing Convention
 
-You can use an `IApplicationModelConvention` to customize how routing works. For example, the following convention will incorporate Controllers' namespaces into their routes, replacing `.` in the namespace with `/` in the route:
+You can use an `IApplicationModelConvention` to customize how routing works. For example, the following convention incorporates controllers' namespaces into their routes, replacing `.` in the namespace with `/` in the route:
 
 [!code-csharp[](./application-model/sample/src/AppModelSample/Conventions/NamespaceRoutingConvention.cs)]
 
@@ -199,4 +205,4 @@ The application model exposes an [`ApiExplorer`](/dotnet/api/microsoft.aspnetcor
 
 [!code-csharp[](./application-model/sample/src/AppModelSample/Conventions/EnableApiExplorerApplicationConvention.cs)]
 
-Using this approach (and additional conventions if required), you can enable or disable API visibility at any level within your app. 
+Using this approach (and additional conventions if required), you can enable or disable API visibility at any level within your app.
