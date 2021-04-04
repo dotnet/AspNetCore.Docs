@@ -172,7 +172,7 @@ The WPF application can use the gRPC generated types from the new class library 
 
 The path component of a gRPC channel's address is ignored when making gRPC calls. For example, `GrpcChannel.ForAddress("https://localhost:5001/ignored_path")` won't use `ignored_path` when routing gRPC calls for the service.
 
-The address path is ignored because gRPC has a standardized, perspective address structure. A gRPC address combines the package, service and method names, and is not nested under any other path: `https://localhost:5001/PackageName.ServiceName/MethodName`.
+The address path is ignored because gRPC has a standardized, prescriptive address structure. A gRPC address combines the package, service and method names: `https://localhost:5001/PackageName.ServiceName/MethodName`.
 
 There are some scenarios when an app needs to include a path with gRPC calls. For example, an ASP.NET Core gRPC app is hosted in an IIS directory and the directory needs to be included in the request. When a path is required it can be added to the gRPC call using the custom `SubdirectoryHandler` specified below:
 
@@ -205,7 +205,7 @@ public class SubdirectoryHandler : DelegatingHandler
 `SubdirectoryHandler` is used when the gRPC channel is created.
 
 ```csharp
-var handler = new SubdirectoryHandler(new HttpClientHandler(), "/TestSubdirectory");
+var handler = new SubdirectoryHandler(new HttpClientHandler(), "/MyApp");
 
 var channel = GrpcChannel.ForAddress("https://localhost:5001", new GrpcChannelOptions { HttpHandler = handler });
 var client = new Greet.GreeterClient(channel);
@@ -215,8 +215,8 @@ var reply = await client.SayHelloAsync(new HelloRequest { Name = ".NET" });
 
 In the preceding sample:
 
-* `SubdirectoryHandler` is created with the path `/TestSubdirectory`.
+* `SubdirectoryHandler` is created with the path `/MyApp`.
 * Channel is configured to use `SubdirectoryHandler`.
-* The client's gRPC call is sent to `https://localhost:5001/TestSubdirectory/greet.Greeter/SayHello`.
+* The client's gRPC call is sent to `https://localhost:5001/MyApp/greet.Greeter/SayHello`.
 
 [!INCLUDE[](~/includes/gRPCazure.md)]
