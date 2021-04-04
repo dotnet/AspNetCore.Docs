@@ -217,6 +217,6 @@ The preceding code:
 
 * Creates a `SubdirectoryHandler` with the path `/MyApp`.
 * Configures a channel to use `SubdirectoryHandler`.
-* Calls the gRPC services. The gRPC call is sent to `https://localhost:5001/MyApp/greet.Greeter/SayHello`.
+* Calls the gRPC service with `SayHelloAsync`. The gRPC call is sent to `https://localhost:5001/MyApp/greet.Greeter/SayHello`.
 
 [!INCLUDE[](~/includes/gRPCazure.md)]
