@@ -213,10 +213,10 @@ var client = new Greet.GreeterClient(channel);
 var reply = await client.SayHelloAsync(new HelloRequest { Name = ".NET" });
 ```
 
-In the preceding sample:
+The preceding code:
 
-* `SubdirectoryHandler` is created with the path `/MyApp`.
-* Channel is configured to use `SubdirectoryHandler`.
-* The client's gRPC call is sent to `https://localhost:5001/MyApp/greet.Greeter/SayHello`.
+* Creates a `SubdirectoryHandler` with the path `/MyApp`.
+* Configures a channel to use `SubdirectoryHandler`.
+* Calls the gRPC services. The gRPC call is sent to `https://localhost:5001/MyApp/greet.Greeter/SayHello`.
 
 [!INCLUDE[](~/includes/gRPCazure.md)]
