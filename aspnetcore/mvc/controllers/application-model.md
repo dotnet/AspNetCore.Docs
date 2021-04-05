@@ -62,7 +62,7 @@ The `AuthorizationApplicationModelProvider` is responsible for applying the beha
 
 The `CorsApplicationModelProvider` implements behavior associated with <xref:Microsoft.AspNetCore.Cors.Infrastructure.IEnableCorsAttribute> and <xref:Microsoft.AspNetCore.Cors.Infrastructure.IDisableCorsAttribute>. For more information, see <xref:security/cors>.
 
-The providers described in this section aren't available via the [.NET API browser](https://docs.microsoft.com/en-us/dotnet/api/). However, they may be inspected in the [ASP.NET Core reference source (dotnet/aspnetcore GitHub repository)](https://github.com/dotnet/aspnetcore). Use GitHub search to find the providers by name and select the version of the source with the **Switch branches/tags** dropdown list.
+The providers described in this section aren't available via the [.NET API browser](https://docs.microsoft.com/dotnet/api/). However, they may be inspected in the [ASP.NET Core reference source (dotnet/aspnetcore GitHub repository)](https://github.com/dotnet/aspnetcore). Use GitHub search to find the providers by name and select the version of the source with the **Switch branches/tags** dropdown list.
 
 ## Conventions
 
