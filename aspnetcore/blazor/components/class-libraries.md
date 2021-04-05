@@ -1,11 +1,11 @@
 ---
 title: Consume ASP.NET Core Razor components from Razor class libraries
 author: guardrex
-description: Discover how components can be included in Blazor apps from an external component library.
+description: Discover how components can be included in Blazor apps from an external Razor class libraries.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/01/2021
+ms.date: 04/05/2021
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/components/class-libraries
 ---
@@ -76,7 +76,7 @@ In order to consume components defined in a Razor class library (RCL) in another
 * Use the full type name with the RCL's namespace.
 * Use Razor's [`@using`](xref:mvc/views/razor#using) directive. Individual components can be added by name.
 
-In the following examples, `ComponentLibrary` is a component library containing the `Component1` component (`Component1.razor`). The `Component1` component is an example component automatically added to an RCL created from the RCL project template.
+In the following examples, `ComponentLibrary` is an RCL containing the `Component1` component (`Component1.razor`). The `Component1` component is an example component automatically added to an RCL created from the RCL project template.
 
 You can reference the `Component1` component using its namespace, as the following example shows.
 
@@ -152,136 +152,60 @@ To provide additional component styles from stylesheets in the library's `wwwroo
 + <link href="_content/ComponentLibrary/additionalStyles.css" rel="stylesheet" />
 ```
 
-## Create a Razor class library with Razor components and static assets
+## Create a Razor class library with static assets
 
-The static assets are available to any app that consumes the Razor class  (RCL).
+An RCL's static assets are available to any app that consumes the library.
 
-Place the static asset in the `wwwroot` folder of the RCL and reference the static asset with the following path: `_content/{LIBRARY NAME}/{ASSET FILE NAME}`. The `{LIBRARY NAME}` placeholder is the library name. The `{ASSET FILE NAME}` placeholder is the asset's file name.
+Place static assets in the `wwwroot` folder of the RCL and reference the static assets with the following path: `_content/{LIBRARY NAME}/{ASSET FILE NAME}`. The `{LIBRARY NAME}` placeholder is the library name. The `{ASSET FILE NAME}` placeholder is the file name.
 
-::: moniker range=">= aspnetcore-6.0"
+The following example demonstrates the use of RCL static assets with an RCL named `JeepImage` and a Blazor app that consumes the RCL. The app has a project reference for the `JeepImage` RCL.
 
-Components provided to a client app of a hosted Blazor WebAssembly solution by an RCL are referenced normally. If any components require stylesheets or JavaScript files, use either of the following approaches to obtain the static assets:
+The following Jeep image is used in this section's example. If you implement the example shown in this section, right-click the image and save it locally.
 
-* The client app's `wwwroot/index.html` file can link (`<link>`) to the static assets.
-* The component can use the framework's `Link` component to obtain the static assets.
+`wwwroot/jeep-yj.png` in the `JeepImage` RCL:
 
-The preceding approaches are demonstrated in the following examples.
+![Jeep YJ&reg;](class-libraries/_static/jeep-yj.png)
 
-::: moniker-end
+Add the following `JeepYJ` component to the `JeepImage` RCL.
 
-::: moniker range="< aspnetcore-6.0"
+`JeepYJ.razor`:
 
-Components provided to a client app of a hosted Blazor WebAssembly solution by an RCL are referenced normally. If any components require additional stylesheets or JavaScript files, the client app's `wwwroot/index.html` file must include the correct static asset links. These approaches are demonstrated in the following examples.
-
-::: moniker-end
+```razor
+<h1>JeepImage.JeepYJ</h1>
+<p>
+    <img alt="Jeep YJ&reg;" src="_content/JeepImage/jeep-yj.png" />
+</p>
+```
 
 Add the following `Jeep` component to the app. The `Jeep` component uses:
 
-* An image (`jeep-cj.png`) from the client app's `wwwroot` folder in a hosted Blazor WebAssembly app.
-* An image (`jeep-yj.png`) from an RCL's (`JeepImage`) `wwwroot` folder.
-* The example component (`Component1`) is created automatically by the RCL project template when the `JeepImage` library is added to the solution.
+* The Jeep YJ&reg; image from the `JeepImage` RCL's `wwwroot` folder.
+* The `JeepYJ` component from the RCL.
 
 `Pages/Jeep.razor`:
 
 ```razor
 @page "/jeep"
+@using JeepImage
 
-<h1>1979 Jeep CJ-5&trade;</h1>
-
-<p>
-    <img alt="1979 Jeep CJ-5&trade;" src="/jeep-cj.png" />
-</p>
-
-<h1>1991 Jeep YJ&trade;</h1>
-
-<p>
-    <img alt="1991 Jeep YJ&trade;" src="_content/JeepImage/jeep-yj.png" />
-</p>
-
-<p>
-    <em>Jeep CJ-5</em> and <em>Jeep YJ</em> are a trademarks of 
-    <a href="https://www.fcagroup.com">Fiat Chrysler Automobiles</a>.
-</p>
-
-<JeepImage.Component1 />
-```
-
-> [!WARNING]
-> Do **not** publish images of vehicles publicly unless you own the images. Otherwise, you risk copyright infringement.
-
-::: moniker range=">= aspnetcore-6.0"
-
-The library's `jeep-yj.png` image can also be added to the library's `Component1` component. To provide the `my-component` CSS class to the client app's page, link to the library's stylesheet using the framework's `Link` component.
-
-`Component1.razor`:
-
-```razor
-<div class="my-component">
-    <Link href="_content/JeepImage/styles.css" rel="stylesheet" />
-
-    <h1>JeepImage.Component1</h1>
-
+<div style="float:left;margin-right:10px">
+    <h1>Direct use</h1>
     <p>
-        This Blazor component is defined in the <strong>JeepImage</strong> package.
-    </p>
-
-    <p>
-        <img alt="1991 Jeep YJ&trade;" src="_content/JeepImage/jeep-yj.png" />
+        <img alt="Jeep YJ&reg;" src="_content/JeepImage/jeep-yj.png" />
     </p>
 </div>
+
+<JeepYJ />
+
+<p>
+    <em>Jeep</em> and <em>Jeep YJ</em> are registered trademarks of 
+    <a href="https://www.stellantis.com">FCA US LLC (Stellantis NV)</a>.
+</p>
 ```
 
-An alternative to using the `Link` component is to load the stylesheet from a `<link>` element of the `<head>` element. This approach makes the stylesheet available to all of the components in the client app:
+Rendered `Jeep` component:
 
-`wwwroot/index.html` (Blazor WebAssembly):
-
-```diff
-+ <link href="_content/JeepImage/styles.css" rel="stylesheet" />
-```
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-6.0"
-
-The library's `jeep-yj.png` image can also be added to the library's `Component1` component.
-
-`Component1.razor`:
-
-```razor
-<div class="my-component">
-    <h1>JeepImage.Component1</h1>
-
-    <p>
-        This Blazor component is defined in the <strong>JeepImage</strong> package.
-    </p>
-
-    <p>
-        <img alt="1991 Jeep YJ&trade;" src="_content/JeepImage/jeep-yj.png" />
-    </p>
-</div>
-```
-
-The following `<link>` tag is added to the `<head>` element's markup.
-
-`wwwroot/index.html` (Blazor WebAssembly):
-
-```diff
-+ <link href="_content/JeepImage/styles.css" rel="stylesheet" />
-```
-
-::: moniker-end
-
-Add navigation to the `Jeep` component in the client app's `NavMenu` component.
-
-`Shared/NavMenu.razor`:
-
-```razor
-<li class="nav-item px-3">
-    <NavLink class="nav-link" href="Jeep">
-        <span class="oi oi-list-rich" aria-hidden="true"></span> Jeep
-    </NavLink>
-</li>
-```
+![Jeep component](class-libraries/_static/jeep-component.png)
 
 For more information, see <xref:razor-pages/ui-class#create-an-rcl-with-static-assets>.
 
@@ -295,7 +219,7 @@ For more information, see <xref:blazor/host-and-deploy/webassembly#static-assets
 
 Blazor WebAssembly apps target the full .NET API surface area, but not all .NET APIs are supported on WebAssembly due to browser sandbox constraints. Unsupported APIs throw <xref:System.PlatformNotSupportedException> when running on WebAssembly. A platform compatibility analyzer warns the developer when the app uses APIs that aren't supported by the app's target platforms. For Blazor WebAssembly apps, this means checking that APIs are supported in browsers. Annotating .NET framework APIs for the compatibility analyzer is an on-going process, so not all .NET framework API is currently annotated.
 
-Blazor WebAssembly and Razor class library projects *automatically* enable browser compatibilty checks by adding `browser` as a supported platform with the `SupportedPlatform` MSBuild item. Library developers can manually add the `SupportedPlatform` item to a library's project file to enable the feature:
+Blazor WebAssembly and Razor class library projects *automatically* enable browser compatibility checks by adding `browser` as a supported platform with the `SupportedPlatform` MSBuild item. Library developers can manually add the `SupportedPlatform` item to a library's project file to enable the feature:
 
 ```xml
 <ItemGroup>
@@ -335,6 +259,10 @@ dotnet pack
 ```
 
 Upload the package to NuGet using the [`dotnet nuget push`](/dotnet/core/tools/dotnet-nuget-push) command in a command shell.
+
+## Trademarks
+
+*Jeep* and *Jeep YJ* are registered trademarks of [FCA US LLC (Stellantis NV)](https://www.stellantis.com).
 
 ## Additional resources
 
