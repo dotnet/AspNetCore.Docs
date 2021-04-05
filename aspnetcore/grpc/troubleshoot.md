@@ -178,7 +178,7 @@ There are some scenarios when an app needs to include a path with gRPC calls. Fo
 
 ```csharp
 /// <summary>
-/// A delegating handler that will add a subdirectory to the URI of gRPC requests.
+/// A delegating handler that adds a subdirectory to the URI of gRPC requests.
 /// </summary>
 public class SubdirectoryHandler : DelegatingHandler
 {
