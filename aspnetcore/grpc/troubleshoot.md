@@ -174,7 +174,7 @@ The path component of a gRPC channel's address is ignored when making gRPC calls
 
 The address path is ignored because gRPC has a standardized, prescriptive address structure. A gRPC address combines the package, service and method names: `https://localhost:5001/PackageName.ServiceName/MethodName`.
 
-There are some scenarios when an app needs to include a path with gRPC calls. For example, an ASP.NET Core gRPC app is hosted in an IIS directory and the directory needs to be included in the request. When a path is required it can be added to the gRPC call using the custom `SubdirectoryHandler` specified below:
+There are some scenarios when an app needs to include a path with gRPC calls. For example, when an ASP.NET Core gRPC app is hosted in an IIS directory and the directory needs to be included in the request. When a path is required, it can be added to the gRPC call using the custom `SubdirectoryHandler` specified below:
 
 ```csharp
 /// <summary>
