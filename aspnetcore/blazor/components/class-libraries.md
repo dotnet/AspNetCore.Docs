@@ -11,11 +11,11 @@ uid: blazor/components/class-libraries
 ---
 # Consume ASP.NET Core Razor components from Razor class libraries
 
-Components can be shared in a [Razor class library (RCL)](xref:razor-pages/ui-class) across projects. An RCL can be included from:
+Components can be shared in a [Razor class library (RCL)](xref:razor-pages/ui-class) across projects. Include components and static assets in an app from:
 
 * Another project in the solution.
-* A NuGet package.
 * A referenced .NET library.
+* A NuGet package.
 
 Just as components are regular .NET types, components provided by an RCL are normal .NET assemblies.
 
@@ -24,11 +24,12 @@ Just as components are regular .NET types, components provided by an RCL are nor
 # [Visual Studio](#tab/visual-studio)
 
 1. Create a new project.
-1. Select **Razor Class Library**. Select **Next**.
+1. In the **Create a new project** dialog, select **Razor Class Library** from the list of ASP.NET Core project templates. Select **Next**.
+1. In the **Configure your new project** dialog, provide a project name in the **Project name** field or accept the default project name. Examples in this topic use the project name `ComponentLibrary`. Select **Create**.
 1. In the **Create a new Razor class library** dialog, select **Create**.
-1. Provide a project name in the **Project name** field or accept the default project name. Examples in this topic use the project name `ComponentLibrary`. Select **Create**.
 1. Add the RCL to a solution:
-   1. Right-click the solution. Select **Add** > **Existing Project**.
+   1. Open the solution.
+   1. Right-click the solution in **Solution Explorer**. Select **Add** > **Existing Project**.
    1. Navigate to the RCL's project file.
    1. Select the RCL's project file (`.csproj`).
 1. Add a reference to the RCL from the app:
@@ -51,7 +52,8 @@ Just as components are regular .NET types, components provided by an RCL are nor
 1. Select the target framework for the library with the **Target Framework** dropdown list. Select **Next**.
 1. In the **Configure your new Class Library** dialog, provide a project name in the **Project Name** field. Examples in this topic use the project name `ComponentLibrary`. Select **Create**.
 1. Add the RCL to a solution:
-   1. Right-click the solution. Select **Add** > **Existing Project**.
+   1. Open the solution.
+   1. Right-click the solution in **Solution Explorer**. Select **Add** > **Existing Project**.
    1. Navigate to the RCL's project file.
    1. Select the RCL's project file (`.csproj`).
 1. Add a reference to the RCL from the app:
@@ -84,7 +86,7 @@ Just as components are regular .NET types, components provided by an RCL are nor
    >
    > Manually add the file the root of the generated RCL project.
 
-1. To add the library to an existing project, use the [`dotnet add reference`](/dotnet/core/tools/dotnet-add-reference) command in a command shell. In the following example, the RCL is added to the app. Execute the following command from the app's project folder. The `{PATH TO LIBRARY}` placeholder is the path to the library's project folder:
+1. To add the library to an existing project, use the [`dotnet add reference`](/dotnet/core/tools/dotnet-add-reference) command in a command shell. In the following command, the `{PATH TO LIBRARY}` placeholder is the path to the library's project folder:
 
    ```dotnetcli
    dotnet add reference {PATH TO LIBRARY}
@@ -96,12 +98,14 @@ Just as components are regular .NET types, components provided by an RCL are nor
 
 To consume components from an RCL in another project, use either of the following approaches:
 
-* Use the full type name with the RCL's namespace.
-* Use Razor's [`@using`](xref:mvc/views/razor#using) directive. Individual components can be added by name.
+* Use the full component type name, which includes the RCL's namespace.
+* Individual components can be added by name if Razor's [`@using`](xref:mvc/views/razor#using) directive declares the RCL's namespace.
+  * Add the `@using` directive to individual components.
+  * include the `@using` directive in the top-level `_Import.razor` file to make the library's components available to an entire project. Add the directive to an `_Import.razor` file at any level to apply the namespace to a single component or set of components within a folder. When this approach is adopted, individual components don't require an `@using` directive for the RCL's namespace.
 
-In the following examples, `ComponentLibrary` is an RCL containing the `Component1` component (`Component1.razor`). The `Component1` component is an example component automatically added to an RCL created from the RCL project template.
+In the following examples, `ComponentLibrary` is an RCL containing the `Component1` component. The `Component1` component is an example component automatically added to an RCL created from the RCL project template.
 
-`Component1.razor` in `ComponentLibrary`:
+`Component1.razor` in `ComponentLibrary` RCL:
 
 ```razor
 <div class="my-component">
@@ -109,7 +113,7 @@ In the following examples, `ComponentLibrary` is an RCL containing the `Componen
 </div>
 ```
 
-You can reference the `Component1` component using its namespace, as the following example shows.
+In the app that consumes the RCL, reference the `Component1` component using its namespace, as the following example shows.
 
 `Pages/ConsumeComponent1.razor`:
 
@@ -121,7 +125,7 @@ You can reference the `Component1` component using its namespace, as the followi
 <ComponentLibrary.Component1 />
 ```
 
-Alternatively, add a [`@using`](xref:mvc/views/razor#using) directive and use the component without its namespace.
+Alternatively, add a [`@using`](xref:mvc/views/razor#using) directive and use the component without its namespace. The following `@using` directive could also appear in any `_Imports.razor` file within or above the current folder.
 
 `Pages/ConsumeComponent2.razor`:
 
@@ -129,18 +133,16 @@ Alternatively, add a [`@using`](xref:mvc/views/razor#using) directive and use th
 @page "/consume-component-2"
 @using ComponentLibrary
 
-<h1>Consume component (<code>@using</code> example)</h1>
+<h1>Consume component (<code>@@using</code> example)</h1>
 
 <Component1 />
 ```
-
-Optionally, include the `@using ComponentLibrary` directive in the top-level `_Import.razor` file to make the library's components available to an entire project. Add the directive to an `_Import.razor` file at any level to apply the namespace to a single component or set of components within a folder. When this approach is adopted, individual components don't require an `@using` directive for the RCL's namespace.
 
 ::: moniker range=">= aspnetcore-5.0"
 
 For library components that use [CSS isolation](xref:blazor/components/css-isolation), the component styles are automatically made available to the consuming app. There's no need to link the library's individual component stylesheets in the app that consumes the library. For the preceding examples, `Component1`'s stylesheet is included automatically.
 
-`Component1.razor.css` in `ComponentLibrary`:
+`Component1.razor.css` in `ComponentLibrary` RCL:
 
 ```css
 .my-component {
@@ -151,7 +153,9 @@ For library components that use [CSS isolation](xref:blazor/components/css-isola
 }
 ```
 
-`background.png` is also included from the RCL project template and resides in the `wwwroot` folder of the `ComponentLibrary`:
+The background image is also included from the RCL project template and resides in the `wwwroot` folder of the `ComponentLibrary`. There's no need to take action for an RCL's component to use the background image in this scenario.
+
+`wwwroot/background.png` in `ComponentLibrary` RCL:
 
 ![Diagonally-striped background image from the RCL project template](class-libraries/_static/background.png)
 
@@ -163,11 +167,13 @@ To provide additional library component styles from stylesheets in the library's
 
 The following background image is used in this section's example. If you implement the example shown in this section, right-click the image and save it locally.
 
-`wwwroot/extra-background.png` in `ComponentLibrary`:
+`wwwroot/extra-background.png` in `ComponentLibrary` RCL:
 
 ![Diagonally-striped background image added to the library by the developer](class-libraries/_static/extra-background.png)
 
-`wwwroot/additionalStyles.css` in `ComponentLibrary`:
+Add a new stylesheet to the RCL.
+
+`wwwroot/additionalStyles.css` in `ComponentLibrary` RCL:
 
 ```css
 .extra-style {
@@ -178,7 +184,9 @@ The following background image is used in this section's example. If you impleme
 }
 ```
 
-`ExtraStyles.razor` in `ComponentLibrary`:
+Add a component to the RCL.
+
+`ExtraStyles.razor` in `ComponentLibrary` RCL:
 
 ```razor
 <Link href="_content/ComponentLibrary/additionalStyles.css" rel="stylesheet" />
@@ -189,6 +197,8 @@ The following background image is used in this section's example. If you impleme
     </p>
 </div>
 ```
+
+Add a page to the app.
 
 `Pages/ConsumeComponent3.razor`:
 
@@ -201,7 +211,17 @@ The following background image is used in this section's example. If you impleme
 <ExtraStyles />
 ```
 
-When the `Link` component is used in a child component, the linked asset is also available to any other child component of the parent component if the child with the `Link` component is rendered. The distinction between using the `Link` component in a child component and placing a `<link>` HTML tag in `wwwroot/index.html` or `Pages/_Host.cshtml` is that a framework component's rendered HTML tag:
+When the `Link` component is used in a child component, the linked asset is also available to any other child component of the parent component if the child with the `Link` component is rendered.
+
+An alternative to using the `Link` component is to link to the library's stylesheet in the app's `<head>` markup.
+
+`wwwroot/index.html` file (Blazor WebAssembly) or `Pages/_Host.cshtml` file (Blazor Server):
+
+```diff
++ <link href="_content/ComponentLibrary/additionalStyles.css" rel="stylesheet" />
+```
+
+The distinction between using the `Link` component in a child component and placing a `<link>` HTML tag in `wwwroot/index.html` or `Pages/_Host.cshtml` is that a framework component's rendered HTML tag:
 
 * Can be modified by application state. A hard-coded `<link>` HTML tag can't be modified by application state.
 * Is removed from the HTML `<head>` when the parent component is no longer rendered.
@@ -212,11 +232,11 @@ When the `Link` component is used in a child component, the linked asset is also
 
 The following background image and stylesheet are used by the RCL's `Component1` example component. There's no need to add these static assets to a new RCL created from the RCL project template.
 
-`wwwroot/background.png` in `ComponentLibrary`:
+`wwwroot/background.png` in `ComponentLibrary` RCL:
 
 ![Diagonally-striped background image added to the library by the RCL project template](class-libraries/_static/background.png)
 
-`wwwroot/styles.css` in `ComponentLibrary`:
+`wwwroot/styles.css` in `ComponentLibrary` RCL:
 
 ```css
 .my-component {
@@ -253,16 +273,17 @@ The following Jeep image is used in this section's example. If you implement the
 
 Add the following `JeepYJ` component to the `JeepImage` RCL.
 
-`JeepYJ.razor`:
+`JeepYJ.razor` in `JeepImage` RCL:
 
 ```razor
 <h1>JeepImage.JeepYJ</h1>
+
 <p>
     <img alt="Jeep YJ&reg;" src="_content/JeepImage/jeep-yj.png" />
 </p>
 ```
 
-Add the following `Jeep` component to the app. The `Jeep` component uses:
+Add the following `Jeep` component to the app that consumes the `JeepImage` RCL. The `Jeep` component uses:
 
 * The Jeep YJ&reg; image from the `JeepImage` RCL's `wwwroot` folder.
 * The `JeepYJ` component from the RCL.
@@ -275,6 +296,7 @@ Add the following `Jeep` component to the app. The `Jeep` component uses:
 
 <div style="float:left;margin-right:10px">
     <h1>Direct use</h1>
+
     <p>
         <img alt="Jeep YJ&reg;" src="_content/JeepImage/jeep-yj.png" />
     </p>
@@ -337,7 +359,7 @@ For more information, see <xref:blazor/call-javascript-from-dotnet#blazor-javasc
 
 ## Build, pack, and ship to NuGet
 
-Because component libraries are standard .NET libraries, packaging and shipping them to NuGet is no different from packaging and shipping any library to NuGet. Packaging is performed using the [`dotnet pack`](/dotnet/core/tools/dotnet-pack) command in a command shell:
+Because Razor class libraries that contain Razor components are standard .NET libraries, packing and shipping them to NuGet is no different from packing and shipping any library to NuGet. Packing is performed using the [`dotnet pack`](/dotnet/core/tools/dotnet-pack) command in a command shell:
 
 ```dotnetcli
 dotnet pack
