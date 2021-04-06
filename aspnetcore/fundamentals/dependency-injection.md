@@ -809,7 +809,7 @@ public class Program
 }
 ```
 
-It isn't necessary to create a scope for transient services, including for the `ILogger` in the preceding example (see: <xref:fundamentals/logging#create-logs-in-main>). Transients don't resolve inadvertantly as singletons when resolved from the root, as scoped services would. Transients are created when requested. If a transient service happens to be disposable, then it's rooted by the container until disposal. For example, see <xref:fundamentals/http-requests#use-ihttpclientfactory-in-a-console-app>.
+It isn't necessary to create a scope for transient services, including for the `ILogger` in the preceding example (see: <xref:fundamentals/logging/index#create-logs-in-main>). Transients don't resolve inadvertantly as singletons when resolved from the root, as scoped services would. Transients are created when requested. If a transient service happens to be disposable, then it's rooted by the container until disposal. For example, see <xref:fundamentals/http-requests#use-ihttpclientfactory-in-a-console-app>.
 
 ## Scope validation
 
