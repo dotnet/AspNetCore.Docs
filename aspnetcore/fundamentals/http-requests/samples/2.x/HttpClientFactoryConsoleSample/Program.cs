@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,23 +17,18 @@ class Program
 
         var host = builder.Build();
 
-        using (var serviceScope = host.Services.CreateScope())
+        try
         {
-            var services = serviceScope.ServiceProvider;
+            var myService = host.Services.GetRequiredService<IMyService>();
+            var pageContent = await myService.GetPage();
 
-            try
-            {
-                var myService = services.GetRequiredService<IMyService>();
-                var pageContent = await myService.GetPage();
+            Console.WriteLine(pageContent.Substring(0, 500));
+        }
+        catch (Exception ex)
+        {
+            var logger = host.Services.GetRequiredService<ILogger<Program>>();
 
-                Console.WriteLine(pageContent.Substring(0, 500));
-            }
-            catch (Exception ex)
-            {
-                var logger = services.GetRequiredService<ILogger<Program>>();
-
-                logger.LogError(ex, "An error occurred.");
-            }
+            logger.LogError(ex, "An error occurred.");
         }
 
         return 0;
