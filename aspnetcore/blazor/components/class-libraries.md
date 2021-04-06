@@ -19,14 +19,37 @@ Components can be shared in a [Razor class library (RCL)](xref:razor-pages/ui-cl
 
 Just as components are regular .NET types, components provided by an RCL are normal .NET assemblies.
 
-## Create a Razor class library (RCL)
+## Create an RCL
 
 # [Visual Studio](#tab/visual-studio)
 
 1. Create a new project.
 1. Select **Razor Class Library**. Select **Next**.
 1. In the **Create a new Razor class library** dialog, select **Create**.
-1. Provide a project name in the **Project name** field or accept the default project name. The examples in this topic use the project name `ComponentLibrary`. Select **Create**.
+1. Provide a project name in the **Project name** field or accept the default project name. Examples in this topic use the project name `ComponentLibrary`. Select **Create**.
+1. Add the RCL to a solution:
+   1. Right-click the solution. Select **Add** > **Existing Project**.
+   1. Navigate to the RCL's project file.
+   1. Select the RCL's project file (`.csproj`).
+1. Add a reference to the RCL from the app:
+   1. Right-click the app project. Select **Add** > **Project Reference**.
+   1. Select the RCL project. Select **OK**.
+
+> [!NOTE]
+> If the **Support pages and views** check box is selected when generating the RCL from the template, add an `_Imports.razor` file to root of the generated RCL project with the following contents to enable Razor component authoring:
+>
+> ```razor
+> @using Microsoft.AspNetCore.Components.Web
+> ```
+>
+> Manually add the file the root of the generated RCL project.
+
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+1. Create a new project.
+1. In the sidebar under **Web and Console**, select **App**. Under **ASP.NET Core**, select **Razor Class Library** from the project templates shown. Select **Next**.
+1. Select the target framework for the library with the **Target Framework** dropdown list. Select **Next**.
+1. In the **Configure your new Class Library** dialog, provide a project name in the **Project Name** field. Examples in this topic use the project name `ComponentLibrary`. Select **Create**.
 1. Add the RCL to a solution:
    1. Right-click the solution. Select **Add** > **Existing Project**.
    1. Navigate to the RCL's project file.
@@ -36,15 +59,15 @@ Just as components are regular .NET types, components provided by an RCL are nor
    1. Select the RCL project. Select **OK**.
 
 > [!NOTE]
-> If the **Support pages and views** check box is selected when generating the RCL from the template, then also add an `_Imports.razor` file to root of the generated project with the following contents to enable Razor component authoring:
+> If the **Support pages and views** check box is selected when generating the RCL from the template, add an `_Imports.razor` file to root of the generated RCL project with the following contents to enable Razor component authoring:
 >
 > ```razor
 > @using Microsoft.AspNetCore.Components.Web
 > ```
 >
-> Manually add the file the root of the generated project.
+> Manually add the file the root of the generated RCL project.
 
-# [.NET Core CLI](#tab/netcore-cli)
+# [Visual Studio Code / .NET Core CLI](#tab/visual-studio-code+netcore-cli)
 
 1. Use the **Razor Class Library** project template (`razorclasslib`) with the [`dotnet new`](/dotnet/core/tools/dotnet-new) command in a command shell. In the following example, an RCL is created and named `ComponentLibrary` using the `-o|--output` option. The folder that holds `ComponentLibrary` is created automatically when the command is executed:
 
@@ -53,7 +76,7 @@ Just as components are regular .NET types, components provided by an RCL are nor
    ```
 
    > [!NOTE]
-   > If the `-s|--support-pages-and-views` option is used when generating the RCL from the template, then also add an `_Imports.razor` file to root of the generated project with the following contents to enable Razor component authoring:
+   > If the `-s|--support-pages-and-views` option is used when generating the RCL from the template, then also add an `_Imports.razor` file to root of the generated RCL project with the following contents to enable Razor component authoring:
    >
    > ```razor
    > @using Microsoft.AspNetCore.Components.Web
@@ -61,7 +84,7 @@ Just as components are regular .NET types, components provided by an RCL are nor
    >
    > Manually add the file the root of the generated RCL project.
 
-1. To add the library to an existing project, use the [`dotnet add reference`](/dotnet/core/tools/dotnet-add-reference) command in a command shell. In the following example, the RCL is added to the app. Execute the following command from the app's project folder. The `{PATH TO LIBRARY}` placeholder is the path to the library:
+1. To add the library to an existing project, use the [`dotnet add reference`](/dotnet/core/tools/dotnet-add-reference) command in a command shell. In the following example, the RCL is added to the app. Execute the following command from the app's project folder. The `{PATH TO LIBRARY}` placeholder is the path to the library's project folder:
 
    ```dotnetcli
    dotnet add reference {PATH TO LIBRARY}
@@ -69,14 +92,22 @@ Just as components are regular .NET types, components provided by an RCL are nor
 
 ---
 
-## Consume a Razor component from a Razor class library
+## Consume a Razor component from an RCL
 
-In order to consume components defined in a Razor class library (RCL) in another project, use either of the following approaches:
+To consume components from an RCL in another project, use either of the following approaches:
 
 * Use the full type name with the RCL's namespace.
 * Use Razor's [`@using`](xref:mvc/views/razor#using) directive. Individual components can be added by name.
 
 In the following examples, `ComponentLibrary` is an RCL containing the `Component1` component (`Component1.razor`). The `Component1` component is an example component automatically added to an RCL created from the RCL project template.
+
+`Component1.razor` in `ComponentLibrary`:
+
+```razor
+<div class="my-component">
+    This Razor component is defined in the <strong>ComponentLibrary</strong> package.
+</div>
+```
 
 You can reference the `Component1` component using its namespace, as the following example shows.
 
@@ -107,22 +138,67 @@ Optionally, include the `@using ComponentLibrary` directive in the top-level `_I
 
 ::: moniker range=">= aspnetcore-5.0"
 
-For library components that use [CSS isolation](xref:blazor/components/css-isolation), the component styles are automatically made available to the consuming app. There's no need to link the library's individual component stylesheets in the app that consumes the library.
+For library components that use [CSS isolation](xref:blazor/components/css-isolation), the component styles are automatically made available to the consuming app. There's no need to link the library's individual component stylesheets in the app that consumes the library. For the preceding examples, `Component1`'s stylesheet is included automatically.
+
+`Component1.razor.css` in `ComponentLibrary`:
+
+```css
+.my-component {
+    border: 2px dashed red;
+    padding: 1em;
+    margin: 1em 0;
+    background-image: url('background.png');
+}
+```
+
+`background.png` is also included from the RCL project template and resides in the `wwwroot` folder of the `ComponentLibrary`:
+
+![Diagonally-striped background image from the RCL project template](class-libraries/_static/background.png)
 
 ::: moniker-end
 
 ::: moniker range=">= aspnetcore-6.0"
 
-To provide additional library component styles from stylesheets in the library's `wwwroot` folder, link the stylesheets using the framework's `Link` component in `Component1.razor`:
+To provide additional library component styles from stylesheets in the library's `wwwroot` folder, link the stylesheets using the framework's `Link` component.
+
+The following background image is used in this section's example. If you implement the example shown in this section, right-click the image and save it locally.
+
+`wwwroot/extra-background.png` in `ComponentLibrary`:
+
+![Diagonally-striped background image added to the library by the developer](class-libraries/_static/extra-background.png)
+
+`wwwroot/additionalStyles.css` in `ComponentLibrary`:
+
+```css
+.extra-style {
+    border: 2px dashed blue;
+    padding: 1em;
+    margin: 1em 0;
+    background-image: url('extra-background.png');
+}
+```
+
+`ExtraStyles.razor` in `ComponentLibrary`:
 
 ```razor
-<div class="extra-style">
-    <Link href="_content/ComponentLibrary/additionalStyles.css" rel="stylesheet" />
+<Link href="_content/ComponentLibrary/additionalStyles.css" rel="stylesheet" />
 
+<div class="extra-style">
     <p>
-        This Blazor component is defined in the <strong>ComponentLibrary</strong> package.
+        This Razor component is defined in the <strong>ComponentLibrary</strong> package.
     </p>
 </div>
+```
+
+`Pages/ConsumeComponent3.razor`:
+
+```razor
+@page "/consume-component-3"
+@using ComponentLibrary
+
+<h1>Consume component (<code>additionalStyles.css</code> example)</h1>
+
+<ExtraStyles />
 ```
 
 When the `Link` component is used in a child component, the linked asset is also available to any other child component of the parent component if the child with the `Link` component is rendered. The distinction between using the `Link` component in a child component and placing a `<link>` HTML tag in `wwwroot/index.html` or `Pages/_Host.cshtml` is that a framework component's rendered HTML tag:
@@ -132,9 +208,26 @@ When the `Link` component is used in a child component, the linked asset is also
 
 ::: moniker-end
 
-::: moniker range="< aspnetcore-6.0"
+::: moniker range="< aspnetcore-5.0"
 
-To provide `Component1`'s `my-component` CSS class, link to the library's stylesheet in the `<head>` element's markup.
+The following background image and stylesheet are used by the RCL's `Component1` example component. There's no need to add these static assets to a new RCL created from the RCL project template.
+
+`wwwroot/background.png` in `ComponentLibrary`:
+
+![Diagonally-striped background image added to the library by the RCL project template](class-libraries/_static/background.png)
+
+`wwwroot/styles.css` in `ComponentLibrary`:
+
+```css
+.my-component {
+    border: 2px dashed red;
+    padding: 1em;
+    margin: 1em 0;
+    background-image: url('background.png');
+}
+```
+
+To provide `Component1`'s `my-component` CSS class, link to the library's stylesheet in the app's `<head>` markup.
 
 `wwwroot/index.html` file (Blazor WebAssembly) or `Pages/_Host.cshtml` file (Blazor Server):
 
@@ -144,15 +237,7 @@ To provide `Component1`'s `my-component` CSS class, link to the library's styles
 
 ::: moniker-end
 
-To provide additional component styles from stylesheets in the library's `wwwroot` folder, link the stylesheets in the consuming app's `<head>` element markup.
-
-`wwwroot/index.html` file (Blazor WebAssembly) or `Pages/_Host.cshtml` file (Blazor Server):
-
-```diff
-+ <link href="_content/ComponentLibrary/additionalStyles.css" rel="stylesheet" />
-```
-
-## Create a Razor class library with static assets
+## Create an RCL with static assets
 
 An RCL's static assets are available to any app that consumes the library.
 
@@ -219,7 +304,7 @@ For more information, see <xref:blazor/host-and-deploy/webassembly#static-assets
 
 Blazor WebAssembly apps target the full .NET API surface area, but not all .NET APIs are supported on WebAssembly due to browser sandbox constraints. Unsupported APIs throw <xref:System.PlatformNotSupportedException> when running on WebAssembly. A platform compatibility analyzer warns the developer when the app uses APIs that aren't supported by the app's target platforms. For Blazor WebAssembly apps, this means checking that APIs are supported in browsers. Annotating .NET framework APIs for the compatibility analyzer is an on-going process, so not all .NET framework API is currently annotated.
 
-Blazor WebAssembly and Razor class library projects *automatically* enable browser compatibility checks by adding `browser` as a supported platform with the `SupportedPlatform` MSBuild item. Library developers can manually add the `SupportedPlatform` item to a library's project file to enable the feature:
+Blazor WebAssembly and RCL projects *automatically* enable browser compatibility checks by adding `browser` as a supported platform with the `SupportedPlatform` MSBuild item. Library developers can manually add the `SupportedPlatform` item to a library's project file to enable the feature:
 
 ```xml
 <ItemGroup>
