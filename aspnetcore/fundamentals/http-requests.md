@@ -1033,7 +1033,7 @@ In the following example:
 * `MyService` creates a client factory instance from the service, which is used to create an `HttpClient`. `HttpClient` is used to retrieve a webpage.
 * The service's `GetPage` method is executed to write the first 500 characters of the webpage content to the console. For more information on calling services from `Program.Main`, see <xref:fundamentals/dependency-injection#call-services-from-main>.
 
-[!code-csharp[](http-requests/samples/2.x/HttpClientFactoryConsoleSample/Program.cs)]
+[!code-csharp[](http-requests/samples/2.x/HttpClientFactoryConsoleSample/Program.cs?highlight=14-15,22)]
 
 ## Header propagation middleware
 
