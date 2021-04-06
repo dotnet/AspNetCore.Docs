@@ -5,7 +5,7 @@ description: Discover how components can be included in Blazor apps from an exte
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/05/2021
+ms.date: 04/06/2021
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/components/class-libraries
 ---
@@ -109,7 +109,7 @@ In the following examples, `ComponentLibrary` is an RCL containing the `Componen
 
 ```razor
 <div class="my-component">
-    This Razor component is defined in the <strong>ComponentLibrary</strong> package.
+    This component is defined in the <strong>ComponentLibrary</strong> package.
 </div>
 ```
 
@@ -193,7 +193,7 @@ Add a component to the RCL.
 
 <div class="extra-style">
     <p>
-        This Razor component is defined in the <strong>ComponentLibrary</strong> package.
+        This component is defined in the <strong>ComponentLibrary</strong> package.
     </p>
 </div>
 ```
