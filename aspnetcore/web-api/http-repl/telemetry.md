@@ -1,6 +1,6 @@
 ---
 title: HttpRepl telemetry
-author: scottaddie
+author: rick-anderson
 description: Learn about the telemetry collected by the HttpRepl.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie

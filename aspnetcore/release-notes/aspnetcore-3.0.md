@@ -27,7 +27,7 @@ Blazor framework supported scenarios:
 * Component layouts
 * Support for dependency injection
 * Forms and validation
-* Build component libraries with Razor class libraries
+* Supply Razor components in Razor class libraries
 * JavaScript interop
 
 For more information, see <xref:blazor/index>.

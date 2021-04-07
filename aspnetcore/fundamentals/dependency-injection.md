@@ -768,7 +768,7 @@ Observe which of the `OperationId` values vary within a request and between requ
 
 ## Call services from main
 
-Create an <xref:Microsoft.Extensions.DependencyInjection.IServiceScope> with [IServiceScopeFactory.CreateScope](xref:Microsoft.Extensions.DependencyInjection.IServiceScopeFactory.CreateScope*) to resolve a scoped service within the app's scope. This approach is useful to access a scoped service at startup to run initialization tasks. The following example shows how to obtain a context for the `MyScopedService` in `Program.Main`:
+Create an <xref:Microsoft.Extensions.DependencyInjection.IServiceScope> with <xref:Microsoft.Extensions.DependencyInjection.IServiceScopeFactory.CreateScope%2A?displayProperty=nameWithType> to resolve a scoped service within the app's scope. This approach is useful to access a scoped service at startup with the correct service lifetime to run initialization tasks. The following example shows how to obtain a context for the `MyScopedService` in `Program.Main`:
 
 ```csharp
 using System;
@@ -808,6 +808,8 @@ public class Program
             .UseStartup<Startup>();
 }
 ```
+
+It isn't necessary to create a scope for transient services, including for the `ILogger` in the preceding example (see: <xref:fundamentals/logging/index#create-logs-in-main>). Transients don't resolve inadvertantly as singletons when resolved from the root, as scoped services would. Transients are created when requested. If a transient service happens to be disposable, then it's rooted by the container until disposal. For example, see <xref:fundamentals/http-requests#use-ihttpclientfactory-in-a-console-app>.
 
 ## Scope validation
 

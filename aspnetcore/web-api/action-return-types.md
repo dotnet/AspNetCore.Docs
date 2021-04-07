@@ -1,6 +1,6 @@
 ---
 title: Controller action return types in ASP.NET Core web API
-author: scottaddie
+author: rick-anderson
 description: Learn about using the various controller action method return types in an ASP.NET Core web API.
 ms.author: scaddie
 ms.custom: mvc
