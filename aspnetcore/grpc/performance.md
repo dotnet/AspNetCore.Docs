@@ -189,7 +189,7 @@ Be aware of the additional complexity and limitations of using streaming calls i
 2. `RequestStream.WriteAsync` is not safe for multi-threading. Only one message can be written to a stream at a time. Sending messages from multiple threads over a single stream requires a producer/consumer queue like <xref:System.Threading.Channels.Channel%601> to marshall messages.
 3. A gRPC streaming method is limited to receiving one type of message and sending one type of message. For example, `rpc StreamingCall(stream RequestMessage) returns (stream ResponseMessage)` receives `RequestMessage` and sends `ResponseMessage`. Protobuf's support for unknown or conditional messages using `Any` and `oneof` can work around this limitation.
 
-## Send binary payloads
+## Binary payloads
 
 Binary payloads are supported in Protobuf with the `bytes` scalar value type. A generated property in C# uses `ByteString` as the property type.
 
@@ -201,7 +201,13 @@ message PayloadResponse {
 }  
 ```
 
-`ByteString` instances are created using `ByteString.CopyFrom(byte[] data)`. This method allocates a new `ByteString` and a new `byte[]`. Data is copied into the new byte array.
+Protobuf is a binary format that efficiently serializes large binary payloads with minimal overhead.  Text based formats like JSON require [encoding bytes to base64](https://en.wikipedia.org/wiki/Base64) and add 33% to the message size.
+
+When working with large `ByteString` payloads there are some best practices to avoid unnecessary copies and allocations that are discussed below.
+
+### Send binary payloads
+
+`ByteString` instances are normally created using `ByteString.CopyFrom(byte[] data)`. This method allocates a new `ByteString` and a new `byte[]`. Data is copied into the new byte array.
 
 Additional allocations and copies can be avoided by using `UnsafeByteOperations.UnsafeWrap(ReadOnlyMemory<byte> bytes)` to create `ByteString` instances.
 
@@ -215,3 +221,46 @@ payload.Data = UnsafeByteOperations.UnsafeWrap(data);
 Bytes are not copied with `UnsafeByteOperations.UnsafeWrap` so they must not be modified while the `ByteString` is in use.
 
 `UnsafeByteOperations.UnsafeWrap` requires [Google.Protobuf](https://www.nuget.org/packages/Google.Protobuf/) version 3.15.0 or later.
+
+### Read binary payloads
+
+Data can be efficiently read from `ByteString` instances by using `ByteString.Memory` and `ByteString.Span` properties.
+
+```csharp
+var byteString = UnsafeByteOperations.UnsafeWrap(new byte[] { 0, 1, 2 });
+var data = byteString.Span;
+
+for (var i = 0; i < data.Length; i++)
+{
+    Console.WriteLine(data[i]);
+}
+```
+
+These properties allow code to read data directly from a `ByteString` without allocations or copies.
+
+Most .NET APIs have `ReadOnlyMemory<byte>` and `byte[]` overloads, so `ByteString.Memory` is the recommended way to use the underlying data. However, there are circumstances where an app might need to get the data as a byte array. If a byte array is required then the <xref:System.Runtime.InteropServices.MemoryMarshal.TryGetArray%2A?displayProperty=nameWithType> method can be used to get an array from a `ByteString` without allocating a new copy of the data.
+
+```csharp
+var byteString = GetByteString();
+
+ByteArrayContent content;
+if (MemoryMarshal.TryGetArray(byteString.Memory, out var segment))
+{
+    // Success. Use the ByteString's underlying array.
+    content = new ByteArrayContent(segment.Array, segment.Offset, segment.Count);
+}
+else
+{
+    // TryGetArray didn't succeed. Fall back to creating a copy of the data with ToByteArray.
+    content = new ByteArrayContent(byteString.ToByteArray());
+}
+
+var httpRequest = new HttpRequestMessage();
+httpRequest.Content = content;
+```
+
+The preceding code:
+
+* Attempts to get an array from `ByteString.Memory` with <xref:System.Runtime.InteropServices.MemoryMarshal.TryGetArray%2A?displayProperty=nameWithType>.
+* Uses the `ArraySegment<byte>` if it was successfully retrieved. The segment has a reference to the array, offset and count.
+* Otherwise, falls back to allocating a new array with `ByteString.ToByteArray()`.
