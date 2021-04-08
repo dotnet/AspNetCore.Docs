@@ -96,6 +96,25 @@ public void ConfigureServices(IServiceCollection services)
 > [!WARNING]
 > If you change the key persistence location, the system no longer automatically encrypts keys at rest, since it doesn't know whether DPAPI is an appropriate encryption mechanism.
 
+## PersistKeysToDbContext
+
+To store keys in a database using EntityFramework, configure the system with the [Microsoft.AspNetCore.DataProtection.EntityFrameworkCore](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.EntityFrameworkCore/) package:
+
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddDataProtection()
+        .PersistKeysToDbContext<DbContext>()
+}
+
+This will store the keys used in the configured database. The database context being used must adhere to `IDataProtectionKeyContext` which exposes the property `DataProtectionKeys` 
+
+```csharp
+public DbSet<DataProtectionKey> DataProtectionKeys { get; set; }
+```
+
+This property represents the table in which the keys will be stored. The definition of this type [can be found here](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.dataprotection.entityframeworkcore.dataprotectionkey?view=aspnetcore-5.0). This table will need to be created either manually or via your DbContext Migrations.
+
 ## ProtectKeysWith\*
 
 You can configure the system to protect keys at rest by calling any of the [ProtectKeysWith\*](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionbuilderextensions) configuration APIs. Consider the example below, which stores keys on a UNC share and encrypts those keys at rest with a specific X.509 certificate:
