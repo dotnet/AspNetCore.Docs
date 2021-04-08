@@ -319,17 +319,7 @@ The *_ViewStart.cshtml* file is required to use the layout of the Razor Pages pr
   dotnet build RazorUIClassLib
   ```
 
-::: moniker range=">= aspnetcore-6.0"
-
-The build output contains `RazorUIClassLib.dll`.
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-6.0"
-
-The build output contains `RazorUIClassLib.dll` and `RazorUIClassLib.Views.dll`. `RazorUIClassLib.Views.dll` contains the compiled Razor content.
-
-::: moniker-end
+In ASP.NET Core version 6.0 or later, the build output contains `RazorUIClassLib.dll`. In versions of ASP.NET Core earlier than 6.0, the build output contains `RazorUIClassLib.dll` and `RazorUIClassLib.Views.dll`. `RazorUIClassLib.Views.dll` contains the compiled Razor content.
 
 ### Use the Razor UI library from a Razor Pages project
 
