@@ -15,7 +15,11 @@ namespace BackgroundTasksSample
                     #region snippet3
                     services.AddSingleton<MonitorLoop>();
                     services.AddHostedService<QueuedHostedService>();
-                    services.AddSingleton<IBackgroundTaskQueue, BackgroundTaskQueue>();
+                    services.AddSingleton<IBackgroundTaskQueue>(ctx => {
+                        if (!int.TryParse(hostContext.Configuration["QueueCapacity"], out var queueCapacity))
+                            queueCapacity = 100;
+                        return new BackgroundTaskQueue(queueCapacity);
+                    });
                     #endregion
 
                     #region snippet1
