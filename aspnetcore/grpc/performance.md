@@ -246,6 +246,7 @@ var byteString = GetByteString();
 ByteArrayContent content;
 if (MemoryMarshal.TryGetArray(byteString.Memory, out var segment))
 {
+    // Success. Use the ByteString's underlying array.
     content = new ByteArrayContent(segment.Array, segment.Offset, segment.Count);
 }
 else
