@@ -106,6 +106,7 @@ public void ConfigureServices(IServiceCollection services)
     services.AddDataProtection()
         .PersistKeysToDbContext<DbContext>()
 }
+```
 
 This will store the keys used in the configured database. The database context being used must adhere to `IDataProtectionKeyContext` which exposes the property `DataProtectionKeys` 
 
