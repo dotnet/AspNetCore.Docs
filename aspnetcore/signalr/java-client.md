@@ -3,7 +3,7 @@ title: ASP.NET Core SignalR Java client
 author: mikaelm12
 description: Learn how to use the ASP.NET Core SignalR Java client.
 monikerRange: '>= aspnetcore-2.2'
-ms.author: mimengis
+ms.author: bradyg
 ms.custom: mvc
 ms.date: 11/12/2019
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
