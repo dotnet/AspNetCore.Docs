@@ -67,7 +67,7 @@ For more information, see [Configure gRPC-Web with the .NET gRPC client](xref:gr
 Requirements and restrictions to using `WinHttpHandler`:
 
 * Windows 10 Build 19622 or later.
-* A reference to the [System.Net.Http.WinHttpHandler](https://www.nuget.org/packages/System.Net.Http.WinHttpHandler/) NuGet package.
+* A reference to the [System.Net.Http.WinHttpHandler](https://www.nuget.org/packages/System.Net.Http.WinHttpHandler/) version 6.0.0-preview.3.21201.4 or later.
 * Only unary and server streaming gRPC calls are supported.
 * Only gRPC calls over TLS are supported.
 
@@ -84,7 +84,7 @@ var response = await client.SayHelloAsync(new HelloRequest { Name = ".NET" });
 > [!NOTE]
 > .NET Framework support is in its early stages and requires using pre-release software.
 > * Windows 10 Build 19622 or later is available as a [Windows Insiders](https://insider.windows.com/) build.
-> * The required version of `System.Net.Http.WinHttpHandler` is not currently available on NuGet.org. The latest pre-release version is available on [this NuGet feed](https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet6/nuget/v3/index.json) should be used.
+> * [System.Net.Http.WinHttpHandler](https://www.nuget.org/packages/System.Net.Http.WinHttpHandler/) version 6.0.0-preview.3.21201.4 or later.
 
 ## gRPC C# core-library
 
