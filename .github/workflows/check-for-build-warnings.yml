@@ -1,0 +1,14 @@
+name: 'Status checker'
+
+on: 
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  status_checker_job:
+    name: Look for build warnings
+    runs-on: ubuntu-latest
+    steps:
+    - uses: dotnet/samples/.github/actions/status-checker@main
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
