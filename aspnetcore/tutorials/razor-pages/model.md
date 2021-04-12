@@ -120,21 +120,10 @@ The *appsettings.json* file is updated with the connection string used to connec
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-<!--  Until https://github.com/aspnet/Scaffolding/issues/582 is fixed windows needs backslash or the namespace is namespace RazorPagesMovie.Pages_Movies rather than namespace RazorPagesMovie.Pages.Movies
--->
-
-* Open a command shell to the project directory, which contains the *Program.cs*, *Startup.cs*, and *.csproj* files.
-
-* **For Windows**: Run the following command:
+* Open a command shell to the project directory, which contains the *Program.cs*, *Startup.cs*, and *.csproj* files. Run the following command:
 
   ```dotnetcli
-  dotnet aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages\Movies --referenceScriptLibraries
-  ```
-
-* **For macOS and Linux**: Run the following command:
-
-  ```dotnetcli
-  dotnet aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages/Movies --referenceScriptLibraries
+  dotnet aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages/Movies --referenceScriptLibraries -sqlite
   ```
 
 <a name="codegenerator"></a>
