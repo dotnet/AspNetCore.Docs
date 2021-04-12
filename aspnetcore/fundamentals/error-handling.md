@@ -21,13 +21,13 @@ This article covers common approaches to handling errors in ASP.NET Core web app
 
 ## Developer Exception Page
 
-The *Developer Exception Page* displays detailed information about request exceptions. The ASP.NET Core templates generate the following code:
+The *Developer Exception Page* displays detailed information about unhandled request exceptions. The ASP.NET Core templates generate the following code:
 
 [!code-csharp[](error-handling/samples/5.x/ErrorHandlingSample/Startup.cs?name=snippet&highlight=3-6)]
 
 The preceding highlighted code enables the developer exception page when the app is running in the [Development environment](xref:fundamentals/environments).
 
-The templates place <xref:Microsoft.AspNetCore.Builder.DeveloperExceptionPageExtensions.UseDeveloperExceptionPage%2A> early in the middleware pipeline so that it can catch exceptions thrown in middleware that follows.
+The templates place <xref:Microsoft.AspNetCore.Builder.DeveloperExceptionPageExtensions.UseDeveloperExceptionPage%2A> early in the middleware pipeline so that it can catch unhandled exceptions thrown in middleware that follows.
 
 The preceding code enables the Developer Exception Page ***only*** when the app runs in the Development environment. Detailed exception information should not be displayed publicly when the app runs in the Production environment. For more information on configuring environments, see <xref:fundamentals/environments>.
 
@@ -42,7 +42,7 @@ The Developer Exception Page includes the following information about the except
 
 To configure a custom error handling page for the [Production environment](xref:fundamentals/environments), call <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A>. This exception handling middleware:
 
-* Catches and logs exceptions.
+* Catches and logs unhandled exceptions.
 * Re-executes the request in an alternate pipeline using the path indicated. The request isn't re-executed if the response has started. The template generated code re-executes the request using the `/Error` path.
 
 In the following example, <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A> adds the exception handling middleware in non-Development environments:
