@@ -73,13 +73,26 @@ This would allow only authenticated users to the `AccountController`, except for
 
 <a name="aarp"></a>
 
-## Authorize attribute and Razor Pages
+## Razor Pages authorization
 
-The <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> can ***not*** be applied to Razor Page handlers. For example, `[Authorize]` can't be applied to `OnGet`, `OnPost`, or any other page handler. Consider using an ASP.NET Core MVC controller for pages with different authorization requirements for different handlers.
+You can require authentication on a Razor Page using the `<xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute>` attribute:
 
-The following two approaches can be used to apply authorization to Razor Page handler methods:
+```csharp
+[Authorize]
+public class AdminModel : PageModel
+{
+    public void OnGet()
+    {
+    }
+}
+```
+
+### Razor Pages handler method authorization
+
+The <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> must be applied on the page instead of individual Razor Page handlers. For example, `[Authorize]` can't be applied to `OnGet`, `OnPost`, or any other page handler. The following approaches can be used if needed:
 
 * Use separate pages for page handlers requiring different authorization. Move shared content into one or more [partial views](xref:mvc/views/partial). When possible, this is the recommended approach.
+* Consider using an ASP.NET Core MVC controller for pages with different authorization requirements for different handlers.
 * For content that must share a common page, write a filter that performs authorization as part of [IAsyncPageFilter.OnPageHandlerSelectionAsync](xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncPageFilter.OnPageHandlerSelectionAsync%2A). The [PageHandlerAuth](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authorization/simple/samples/3.1/PageHandlerAuth) GitHub project demonstrates this approach:
   * The [AuthorizeIndexPageHandlerFilter](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/security/authorization/simple/samples/3.1/PageHandlerAuth/AuthorizeIndexPageHandlerFilter.cs) implements the authorization filter:
   [!code-csharp[](~/security/authorization/simple/samples/3.1/PageHandlerAuth/Pages/Index.cshtml.cs?name=snippet)]
