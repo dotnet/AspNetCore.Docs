@@ -151,31 +151,32 @@ The following `Counter` component splits Razor markup and C# code using a code-b
 
 `Pages/CounterPartialClass.razor`:
 
-::: moniker range=">= aspnetcore-5.0"
+```razor
+@page "/counter-partial-class"
 
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/index/CounterPartialClass.razor)]
+<h1>Counter</h1>
 
-::: moniker-end
+<p>Current count: @currentCount</p>
 
-::: moniker range="< aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/index/CounterPartialClass.razor)]
-
-::: moniker-end
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+```
 
 `Pages/CounterPartialClass.razor.cs`:
 
-::: moniker range=">= aspnetcore-5.0"
+```csharp
+namespace BlazorSample.Pages
+{
+    public partial class CounterPartialClass
+    {
+        private int currentCount = 0;
 
-[!code-csharp[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/index/CounterPartialClass.razor.cs)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-[!code-csharp[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/index/CounterPartialClass.razor.cs)]
-
-::: moniker-end
+        void IncrementCount()
+        {
+            currentCount++;
+        }
+    }
+}
+```
 
 [`@using`][2] directives in the `_Imports.razor` file are only applied to Razor files (`.razor`), not C# files (`.cs`). Add any required namespaces to a partial class file as needed. Typical namespaces used by Razor components are shown in the following set of [`@using`][2] directives:
 
