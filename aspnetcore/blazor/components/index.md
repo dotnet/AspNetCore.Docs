@@ -801,17 +801,17 @@ Register the `Notifier` service:
 
 Use the `Notifier` service to update a component.
 
-`Pages/NofifierExample.razor`:
+`Pages/NotifierExample.razor`:
 
 ::: moniker range=">= aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/index/NofifierExample.razor)]
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/index/NotifierExample.razor)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/index/NofifierExample.razor)]
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/index/NotifierExample.razor)]
 
 ::: moniker-end
 
