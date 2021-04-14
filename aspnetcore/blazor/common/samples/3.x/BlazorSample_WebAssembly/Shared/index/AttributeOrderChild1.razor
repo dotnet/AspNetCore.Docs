@@ -1,0 +1,6 @@
+﻿<div @attributes="AdditionalAttributes" extra="5" />
+
+@code {
+    [Parameter(CaptureUnmatchedValues = true)]
+    public IDictionary<string, object> AdditionalAttributes { get; set; }
+}
