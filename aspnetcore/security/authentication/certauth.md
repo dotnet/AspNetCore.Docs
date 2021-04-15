@@ -14,6 +14,8 @@ uid: security/authentication/certauth
 
 [Configure your server](#configure-your-server-to-require-certificates) for certificate authentication, be it IIS, Kestrel, Azure Web Apps, or whatever else you're using.
 
+This document only covers IIS, Kestrel, and Azure Web Apps. NGINX, however [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/22054) contains some hints.
+
 ## Proxy and load balancer scenarios
 
 Certificate authentication is a stateful scenario primarily used where a proxy or load balancer doesn't handle traffic between clients and servers. If a proxy or load balancer is used, certificate authentication only works if the proxy or load balancer:
