@@ -14,7 +14,7 @@ uid: security/authentication/certauth
 
 [Configure your server](#configure-your-server-to-require-certificates) for certificate authentication, be it IIS, Kestrel, Azure Web Apps, or whatever else you're using.
 
-This document only covers IIS, Kestrel, and Azure Web Apps. NGINX, however [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/22054) contains some hints.
+This document only covers IIS, Kestrel, and Azure Web Apps. NGINX, however [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/22054) contains some hints on NGINX configuration.
 
 ## Proxy and load balancer scenarios
 
