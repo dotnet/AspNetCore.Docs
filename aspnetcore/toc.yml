@@ -81,7 +81,7 @@
           displayName: tutorial
           items:
             - name: Build your first Blazor app
-              href: /learn/aspnet/blazor-tutorial/intro
+              href: https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro
             - name: Build a Blazor todo list app
               uid: tutorials/build-a-blazor-app
             - name: SignalR with Blazor
@@ -313,7 +313,7 @@
         - name: Tutorials
           items:
             - name: Build your first Blazor app
-              href: /learn/aspnet/blazor-tutorial/intro
+              href: https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro
             - name: Build a Blazor todo list app
               uid: tutorials/build-a-blazor-app
             - name: SignalR with Blazor
