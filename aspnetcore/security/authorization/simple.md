@@ -75,7 +75,7 @@ The following code limits access to the `LoginModel` Razor Page to authenticated
 [Authorize]
 public class LoginModel : PageModel
 {
-   public async Task OnGetAsync()
+    public async Task OnGetAsync()
     {
 
     }
