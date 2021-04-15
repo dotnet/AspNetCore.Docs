@@ -9,11 +9,11 @@ using WebCacheSample.Models;
 #region snippet_ctor
 public class HomeController : Controller
 {
-    private IMemoryCache _cache;
+    private IMemoryCache cache;
 
     public HomeController(IMemoryCache memoryCache)
     {
-        _cache = memoryCache;
+        this.cache = memoryCache;
     }
     #endregion
 
@@ -28,7 +28,7 @@ public class HomeController : Controller
         DateTime cacheEntry;
 
         // Look for cache key.
-        if (!_cache.TryGetValue(CacheKeys.Entry, out cacheEntry))
+        if (!cache.TryGetValue(CacheKeys.Entry, out cacheEntry))
         {
             // Key not in cache, so get data.
             cacheEntry = DateTime.Now;
@@ -39,7 +39,7 @@ public class HomeController : Controller
                 .SetSlidingExpiration(TimeSpan.FromSeconds(3));
 
             // Save data in cache.
-            _cache.Set(CacheKeys.Entry, cacheEntry, cacheEntryOptions);
+            cache.Set(CacheKeys.Entry, cacheEntry, cacheEntryOptions);
         }
 
         return View("Cache", cacheEntry);
@@ -49,7 +49,7 @@ public class HomeController : Controller
     #region snippet_gct
     public IActionResult CacheGet()
     {
-        var cacheEntry = _cache.Get<DateTime?>(CacheKeys.Entry);
+        var cacheEntry = cache.Get<DateTime?>(CacheKeys.Entry);
         return View("Cache", cacheEntry);
     }
     #endregion
@@ -57,7 +57,7 @@ public class HomeController : Controller
     #region snippet2
     public IActionResult CacheGetOrCreate()
     {
-        var cacheEntry = _cache.GetOrCreate(CacheKeys.Entry, entry =>
+        var cacheEntry = cache.GetOrCreate(CacheKeys.Entry, entry =>
         {
             entry.SlidingExpiration = TimeSpan.FromSeconds(3);
             return DateTime.Now;
@@ -69,7 +69,7 @@ public class HomeController : Controller
     public async Task<IActionResult> CacheGetOrCreateAsynchronous()
     {
         var cacheEntry = await
-            _cache.GetOrCreateAsync(CacheKeys.Entry, entry =>
+            cache.GetOrCreateAsync(CacheKeys.Entry, entry =>
             {
                 entry.SlidingExpiration = TimeSpan.FromSeconds(3);
                 return Task.FromResult(DateTime.Now);
@@ -85,13 +85,13 @@ public class HomeController : Controller
         DateTime cacheEntry;
 
         // Look for cache key.
-        if (!_cache.TryGetValue(CacheKeys.Entry, out cacheEntry))
+        if (!cache.TryGetValue(CacheKeys.Entry, out cacheEntry))
         {
             // Key not in cache, so get data.
             cacheEntry = DateTime.Now;
 
             // Save data in cache and set the relative expiration time to one day
-            _cache.Set(CacheKeys.Entry, cacheEntry, TimeSpan.FromDays(1));
+            cache.Set(CacheKeys.Entry, cacheEntry, TimeSpan.FromDays(1));
         }
 
         return View("Cache", cacheEntry);
@@ -100,7 +100,7 @@ public class HomeController : Controller
 
     public IActionResult CacheRemove()
     {
-        _cache.Remove(CacheKeys.Entry);
+        cache.Remove(CacheKeys.Entry);
         return RedirectToAction("CacheGet");
     }
 
@@ -113,7 +113,7 @@ public class HomeController : Controller
             // Add eviction callback
             .RegisterPostEvictionCallback(callback: EvictionCallback, state: this);
 
-        _cache.Set(CacheKeys.CallbackEntry, DateTime.Now, cacheEntryOptions);
+        cache.Set(CacheKeys.CallbackEntry, DateTime.Now, cacheEntryOptions);
 
         return RedirectToAction("GetCallbackEntry");
     }
@@ -122,14 +122,14 @@ public class HomeController : Controller
     {
         return View("Callback", new CallbackViewModel
         {
-            CachedTime = _cache.Get<DateTime?>(CacheKeys.CallbackEntry),
-            Message = _cache.Get<string>(CacheKeys.CallbackMessage)
+            CachedTime = cache.Get<DateTime?>(CacheKeys.CallbackEntry),
+            Message = cache.Get<string>(CacheKeys.CallbackMessage)
         });
     }
 
     public IActionResult RemoveCallbackEntry()
     {
-        _cache.Remove(CacheKeys.CallbackEntry);
+        cache.Remove(CacheKeys.CallbackEntry);
         return RedirectToAction("GetCallbackEntry");
     }
 
@@ -137,7 +137,7 @@ public class HomeController : Controller
         EvictionReason reason, object state)
     {
         var message = $"Entry was evicted. Reason: {reason}.";
-        ((HomeController)state)._cache.Set(CacheKeys.CallbackMessage, message);
+        ((HomeController)state).cache.Set(CacheKeys.CallbackMessage, message);
     }
     #endregion
 
@@ -145,15 +145,15 @@ public class HomeController : Controller
     public IActionResult CreateDependentEntries()
     {
         var cts = new CancellationTokenSource();
-        _cache.Set(CacheKeys.DependentCTS, cts);
+        cache.Set(CacheKeys.DependentCTS, cts);
 
-        using (var entry = _cache.CreateEntry(CacheKeys.Parent))
+        using (var entry = cache.CreateEntry(CacheKeys.Parent))
         {
             // expire this entry if the dependant entry expires.
             entry.Value = DateTime.Now;
             entry.RegisterPostEvictionCallback(DependentEvictionCallback, this);
 
-            _cache.Set(CacheKeys.Child,
+            cache.Set(CacheKeys.Child,
                 DateTime.Now,
                 new CancellationChangeToken(cts.Token));
         }
@@ -165,15 +165,15 @@ public class HomeController : Controller
     {
         return View("Dependent", new DependentViewModel
         {
-            ParentCachedTime = _cache.Get<DateTime?>(CacheKeys.Parent),
-            ChildCachedTime = _cache.Get<DateTime?>(CacheKeys.Child),
-            Message = _cache.Get<string>(CacheKeys.DependentMessage)
+            ParentCachedTime = cache.Get<DateTime?>(CacheKeys.Parent),
+            ChildCachedTime = cache.Get<DateTime?>(CacheKeys.Child),
+            Message = cache.Get<string>(CacheKeys.DependentMessage)
         });
     }
 
     public IActionResult RemoveChildEntry()
     {
-        _cache.Get<CancellationTokenSource>(CacheKeys.DependentCTS).Cancel();
+        cache.Get<CancellationTokenSource>(CacheKeys.DependentCTS).Cancel();
         return RedirectToAction("GetDependentEntries");
     }
 
@@ -190,19 +190,19 @@ public class HomeController : Controller
     {
         var cachedVal = DateTime.Now.Second.ToString();
         CancellationTokenSource cts = new CancellationTokenSource();
-        _cache.Set<CancellationTokenSource>(CacheKeys.CancelTokenSource, cts);
+        cache.Set<CancellationTokenSource>(CacheKeys.CancelTokenSource, cts);
 
         // Don't use previous message.
-        _cache.Remove(CacheKeys.CancelMsg);
+        cache.Remove(CacheKeys.CancelMsg);
 
-        _cache.Set(CacheKeys.Ticks, cachedVal,
+        cache.Set(CacheKeys.Ticks, cachedVal,
             new MemoryCacheEntryOptions()
             .AddExpirationToken(new CancellationChangeToken(cts.Token))
             .RegisterPostEvictionCallback(
                 (key, value, reason, substate) =>
                 {
                     var cm = $"'{key}':'{value}' was evicted because: {reason}";
-                    _cache.Set<string>(CacheKeys.CancelMsg, cm);
+                    cache.Set<string>(CacheKeys.CancelMsg, cm);
                 }
             ));
 
@@ -214,13 +214,13 @@ public class HomeController : Controller
         if (id > 0)
         {
             CancellationTokenSource cts =
-               _cache.Get<CancellationTokenSource>(CacheKeys.CancelTokenSource);
+               cache.Get<CancellationTokenSource>(CacheKeys.CancelTokenSource);
             cts.CancelAfter(100);
             // Cancel immediately with cts.Cancel();
         }
 
-        ViewData["CachedTime"] = _cache.Get<string>(CacheKeys.Ticks);
-        ViewData["Message"] = _cache.Get<string>(CacheKeys.CancelMsg); ;
+        ViewData["CachedTime"] = cache.Get<string>(CacheKeys.Ticks);
+        ViewData["Message"] = cache.Get<string>(CacheKeys.CancelMsg); ;
 
         return View();
     }
@@ -229,7 +229,7 @@ public class HomeController : Controller
     #region snippet99
     public IActionResult CacheGetOrCreateAbs()
     {
-        var cacheEntry = _cache.GetOrCreate(CacheKeys.Entry, entry =>
+        var cacheEntry = cache.GetOrCreate(CacheKeys.Entry, entry =>
         {
             entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(10);
             return DateTime.Now;
@@ -242,7 +242,7 @@ public class HomeController : Controller
     #region snippet9
     public IActionResult CacheGetOrCreateAbsSliding()
     {
-        var cacheEntry = _cache.GetOrCreate(CacheKeys.Entry, entry =>
+        var cacheEntry = cache.GetOrCreate(CacheKeys.Entry, entry =>
         {
             entry.SetSlidingExpiration(TimeSpan.FromSeconds(3));
             entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(20);
@@ -258,7 +258,7 @@ public class HomeController : Controller
     {
         DateTime cacheEntry;
 
-        if (!_cache.TryGetValue(CacheKeys.Entry, out cacheEntry))
+        if (!cache.TryGetValue(CacheKeys.Entry, out cacheEntry))
         {
             cacheEntry = DateTime.Now;
 
@@ -267,7 +267,7 @@ public class HomeController : Controller
             var cacheEntryOptions = new MemoryCacheEntryOptions()
                 .AddExpirationToken(new CancellationChangeToken(cts.Token));
 
-            _cache.Set(CacheKeys.Entry, cacheEntry, cacheEntryOptions);
+            cache.Set(CacheKeys.Entry, cacheEntry, cacheEntryOptions);
         }
 
         return View("Cache", cacheEntry);
