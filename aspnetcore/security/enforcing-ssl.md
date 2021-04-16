@@ -93,7 +93,7 @@ Specify the HTTPS port using any of the following approaches:
 
 ::: moniker range=">= aspnetcore-3.0"
 
-* Set the `https_port` [host setting](../fundamentals/host/generic-host.md?view=aspnetcore-3.0#https_port):
+* Set the `https_port` [host setting](xref:fundamentals/host/generic-host#https_port):
 
   * In host configuration.
   * By setting the `ASPNETCORE_HTTPS_PORT` environment variable.
@@ -101,7 +101,7 @@ Specify the HTTPS port using any of the following approaches:
 
     [!code-json[](enforcing-ssl/sample-snapshot/3.x/appsettings.json?highlight=2)]
 
-* Indicate a port with the secure scheme using the [ASPNETCORE_URLS environment variable](../fundamentals/host/generic-host.md?view=aspnetcore-3.0#urls). The environment variable configures the server. The middleware indirectly discovers the HTTPS port via <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature>. This approach doesn't work in reverse proxy deployments.
+* Indicate a port with the secure scheme using the [ASPNETCORE_URLS environment variable](xref:fundamentals/host/generic-host#urls). The environment variable configures the server. The middleware indirectly discovers the HTTPS port via <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature>. This approach doesn't work in reverse proxy deployments.
 
 ::: moniker-end
 
@@ -148,7 +148,6 @@ When deploying to Azure App Service, follow the guidance in [Tutorial: Bind an e
 ### Options
 
 The following highlighted code calls [AddHttpsRedirection](/dotnet/api/microsoft.aspnetcore.builder.httpsredirectionservicesextensions.addhttpsredirection) to configure middleware options:
-
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -258,7 +257,6 @@ For production environments that are implementing HTTPS for the first time, set 
 
 The following code:
 
-
 ::: moniker range=">= aspnetcore-3.0"
 
 [!code-csharp[](enforcing-ssl/sample-snapshot/3.x/Startup.cs?name=snippet2&highlight=5-12)]
@@ -320,7 +318,7 @@ dotnet new webapp --no-https
 
 ## Trust the ASP.NET Core HTTPS development certificate on Windows and macOS
 
-To trust the Firefox browser, see the next section.
+For the Firefox browser, see the next section.
 
 The .NET Core SDK includes an HTTPS development certificate. The certificate is installed as part of the first-run experience. For example, `dotnet --info` produces a variation of the following output:
 
@@ -351,7 +349,7 @@ dotnet dev-certs https --help
 
 Create a policy file at:
 
-* On windows: `%PROGRAMFILES%\`Mozilla Firefox\distribution\policies.json`
+* On windows: `%PROGRAMFILES%\Mozilla Firefox\distribution\policies.json`
 * On MacOS: `Firefox.app/Contents/Resources/distribution`
 
 Add the following JSON to the Firefox policy file:
@@ -398,22 +396,22 @@ For instructions on Linux, refer to the distribution documentation.
 
 ## Trust HTTPS certificate from Windows Subsystem for Linux
 
-The Windows Subsystem for Linux (WSL) generates an HTTPS self-signed cert. To configure the Windows certificate store to trust the WSL certificate:
+The [Windows Subsystem for Linux (WSL)](/windows/wsl/about) generates an HTTPS self-signed cert. To configure the Windows certificate store to trust the WSL certificate:
 
-* Run the following command to export the WSL-generated certificate:
-
-  ```
-  dotnet dev-certs https -ep %USERPROFILE%\.aspnet\https\aspnetapp.pfx -p <cryptic-password>
-  ```
-* In a WSL window, run the following command:
+* Export the developer certificate to a file on ***Windows***
 
   ```
-    ASPNETCORE_Kestrel__Certificates__Default__Password="<cryptic-password>" 
-    ASPNETCORE_Kestrel__Certificates__Default__Path=/mnt/c/Users/user-name/.aspnet/https/aspnetapp.pfx
-    dotnet watch run
+dotnet dev-certs https --ep C:\<<path-to-folder>>\aspnetcore.pfx -p $CREDENTIAL_PLACEHOLDER$
+  ```
+  Where `$CREDENTIAL_PLACEHOLDER$` is a password.
+
+* In a WSL window, import the exported certificate on the WSL instance:
+
+  ```
+  dotnet dev-certs https --clean --import /mnt/c/<<path-to-folder>>/aspnetcore.pfx -p <<password>>
   ```
 
-  The preceding command sets the environment variables so Linux uses the Windows trusted certificate.
+  The preceding approach is a one time operation per certificate and per WSL distribution. It's easier than exporting the certificate over and over. If you update or regenerate the certificate on windows, you might need to run the preceding commands again.
 
 ## Troubleshoot certificate problems
 
