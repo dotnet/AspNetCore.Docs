@@ -5,13 +5,13 @@ description: Learn how to create and use Razor components in Blazor apps, includ
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/15/2021
+ms.date: 04/16/2021
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/components/index
 ---
 # ASP.NET Core Razor components
 
-Blazor apps are built using *Razor components*, often abbreviated as *components*. A component is a self-contained portion of user interface (UI) with processing logic to enable dynamic behavior. Components can be nested, reused, and shared among projects.
+Blazor apps are built using *Razor components*. A component is a self-contained portion of user interface (UI) with processing logic that enables dynamic behavior. Components can be nested, reused, and shared among projects.
 
 ## Component classes
 
@@ -19,10 +19,12 @@ Components are implemented using a combination of C# and HTML markup in [Razor](
 
 ### Razor syntax
 
-Components use Razor syntax, which is covered in the article <xref:mvc/views/razor>. Two Razor features are extensively used by components:
+Components use [Razor syntax](xref:mvc/views/razor). Two Razor features are extensively used by components:
 
 * [Directives](xref:mvc/views/razor#directives): `@`-prefixed reserved keywords that typically change the way component markup is parsed or functions. For example, the [`@page`][9] directive specifies a routable component with a route template.
 * [Directive attributes](xref:mvc/views/razor#directive-attributes): `@`-prefixed reserved keywords that typically change the way a component element is parsed or functions. For example, the [`@bind`][10] directive attribute for an `<input>` element binds data to the element's value.
+
+For more information, see <xref:mvc/views/razor>.
 
 ### Names
 
@@ -31,18 +33,18 @@ A component's name must start with an uppercase character:
 * `ProductDetail.razor` is valid.
 * `productDetail.razor` is invalid.
 
-Conventions used throughout the Blazor documentation include:
+Common Blazor naming conventions used throughout the Blazor documentation include:
 
-* Component file paths and names use Pascal case&dagger; and appear before component code examples. Paths indicate typical folder locations. For example, `Pages/ProductDetail.razor` indicates that the `ProductDetail` component has a file name of `ProductDetail.razor` and resides in the `Pages` folder of the app.
+* Component file paths and names use Pascal case&dagger; and appear before component code examples are shown. Paths indicate typical folder locations. For example, `Pages/ProductDetail.razor` indicates that the `ProductDetail` component has a file name of `ProductDetail.razor` and resides in the `Pages` folder of the app.
 * Component file paths for routable components match their URLs with hyphens appearing for spaces between words in a component's route template. For example, a `ProductDetail` component with a route template of `/product-detail` is requested in a browser at the relative URL `/product-detail`.
 
-&dagger;Pascal case (upper camel case): Naming convention without spaces and punctuation where the first letter of each word is capitalized, including the first word (for example: `DateRangePicker` for a component that creates a date range picker).
+&dagger;Pascal case (upper camel case) is a naming convention without spaces and punctuation and with the first letter of each word is capitalized, including the first word. For example, a date range picker component named `DateRangePicker` uses Pascal case.
 
 ### Routing
 
 Routing in Blazor is achieved by providing a route template to each accessible component in the app with an [`@page`][9] directive. When a Razor file with an [`@page`][9] directive is compiled, the generated class is given a <xref:Microsoft.AspNetCore.Mvc.RouteAttribute> specifying the route template. At runtime, the router searches for component classes with a <xref:Microsoft.AspNetCore.Mvc.RouteAttribute> and renders whichever component has a route template that matches the requested URL.
 
-The following *Hello World!* (`HelloWorld`) component uses a route template of `/hello-world`. The rendered webpage for the component is reached at the relative URL `/hello-world`. When running a Blazor app locally with the default protocol, host, and port, the `HelloWorld` component is requested in the browser at `https://localhost:5001/hello-world`. Components that produce webpages usually reside in the `Pages` folder, but you can use any folder to hold components, including within nested folders.
+The following `HelloWorld` component uses a route template of `/hello-world`. The rendered webpage for the component is reached at the relative URL `/hello-world`. When running a Blazor app locally with the default protocol, host, and port, the `HelloWorld` component is requested in the browser at `https://localhost:5001/hello-world`. Components that produce webpages usually reside in the `Pages` folder, but you can use any folder to hold components, including within nested folders.
 
 `Pages/HelloWorld.razor`:
 
@@ -70,23 +72,23 @@ The preceding component loads in the browser at `/hello-world` regardless of whe
 </li>
 ```
 
-For more information, see <xref:blazor/fundamentals/routing>.
+For more information, including descriptions of the `NavLink` and `NavMenu` components, see <xref:blazor/fundamentals/routing>.
 
 ### Markup
 
 A component's UI is defined using [Razor syntax](xref:mvc/views/razor), which consists of Razor markup, C#, and HTML. When an app is compiled, the HTML markup and C# rendering logic are converted into a component class. The name of the generated class matches the name of the file.
 
-Members of the component class are defined in one or more [`@code`][1] blocks. In the [`@code`][1] block, component state held in C# properties and fields is specified with:
+Members of the component class are defined in one or more [`@code`][1] blocks. In [`@code`][1] blocks, component state held in C# properties and fields is specified with:
 
 * Property and field initializers.
-* Parameters from arguments passed by parent components and route parameters.
+* Parameter values from arguments passed by parent components and route parameters.
 * Methods for event handling.
 * Methods for defining component logic.
 
 Component members can be used as part of the component's rendering logic using C# expressions that start with the `@` symbol. For example, a C# field is rendered by prefixing `@` to the field name. The following `Markup` component evaluates and renders:
 
-* `headingFontStyle` for the CSS property value `font-style`.
-* `headingText` for the content of the `<h1>` element.
+* `headingFontStyle` for the CSS property value `font-style` of the heading element.
+* `headingText` for the content of the heading element.
 
 `Pages/Markup.razor`:
 
@@ -102,7 +104,7 @@ Component members can be used as part of the component's rendering logic using C
 
 ::: moniker-end
 
-The Blazor framework processes a component internally as a [*render tree*](https://developer.mozilla.org/docs/Web/Performance/How_browsers_work#render), which is the combination of a component's [Document Object Model (DOM)](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction) and [Cascading Style Sheet Object Model (CSSOM)](https://developer.mozilla.org/docs/Web/API/CSS_Object_Model). After the component is initially rendered, the component's render tree is regenerated in response to events. Blazor compares the new render tree against the previous render tree and applies any modifications to the browser's DOM for final display. For more information, see <xref:blazor/components/rendering>.
+The Blazor framework processes a component internally as a [*render tree*](https://developer.mozilla.org/docs/Web/Performance/How_browsers_work#render), which is the combination of a component's [Document Object Model (DOM)](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction) and [Cascading Style Sheet Object Model (CSSOM)](https://developer.mozilla.org/docs/Web/API/CSS_Object_Model). After the component is initially rendered, the component's render tree is regenerated in response to events. Blazor compares the new render tree against the previous render tree and applies any modifications to the browser's DOM for display. For more information, see <xref:blazor/components/rendering>.
 
 Components are ordinary [C# classes](/dotnet/csharp/programming-guide/classes-and-structs/classes) and can be placed anywhere within a project. Components that produce webpages usually reside in the `Pages` folder. Non-page components are frequently placed in the `Shared` folder or a custom folder added to the project.
 
@@ -182,10 +184,17 @@ The following are **not** supported:
 
 ### Partial class support
 
-Components are generated as partial classes and are authored using either of the following approaches:
+Components are generated as [C# partial classes](/dotnet/csharp/programming-guide/classes-and-structs/partial-classes-and-methods) and are authored using either of the following approaches:
 
-* C# code is defined in an [`@code`][1] block with HTML markup and Razor code in a single file. Blazor project templates define their components using this approach.
-* C# code is placed in a code-behind file defined as a partial class.
+* A single file contains C# code defined in one or more [`@code`][1] blocks, HTML markup, and Razor code. Blazor project templates define their components using this single-file approach.
+* HTML markup and Razor code is placed in a Razor file (`.razor`). C# code is placed in a code-behind file defined as a partial class.
+
+::: moniker range=">= aspnetcore-5.0"
+
+> [!NOTE]
+> A component stylesheet for Blazor's [CSS isolation feature](xref:blazor/components/css-isolation) that defines component-specific styles is a separate file.
+
+::: moniker-end
 
 The following example shows the default `Counter` component with an [`@code`][1] block in an app generated from a Blazor project template. HTML markup, Razor code, and C# code are in the same file. This is the most common approach taken in component authoring.
 
@@ -203,7 +212,7 @@ The following example shows the default `Counter` component with an [`@code`][1]
 
 ::: moniker-end
 
-The following `Counter` component splits Razor markup and C# code using a code-behind file with a partial class:
+The following `Counter` component splits HTML and Razor markup from  C# code using a code-behind file with a partial class:
 
 `Pages/CounterPartialClass.razor`:
 
@@ -234,17 +243,42 @@ namespace BlazorSample.Pages
 }
 ```
 
-[`@using`][2] directives in the `_Imports.razor` file are only applied to Razor files (`.razor`), not C# files (`.cs`). Add any required namespaces to a partial class file as needed. Typical namespaces used by components are shown in the following set of [`@using`][2] directives:
+[`@using`][2] directives in the `_Imports.razor` file are only applied to Razor files (`.razor`), not C# files (`.cs`). Add namespaces to a partial class file as needed.
+
+Typical namespaces used by components:
+
+::: moniker range=">= aspnetcore-5.0"
 
 ```csharp
-@using System.Net.Http
-@using Microsoft.AspNetCore.Authorization
-@using Microsoft.AspNetCore.Components.Authorization
-@using Microsoft.AspNetCore.Components.Forms
-@using Microsoft.AspNetCore.Components.Routing
-@using Microsoft.AspNetCore.Components.Web
-@using Microsoft.AspNetCore.Components.Web.Virtualization
-@using Microsoft.JSInterop
+using System.Net.Http;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.AspNetCore.Components.Forms;
+using Microsoft.AspNetCore.Components.Routing;
+using Microsoft.AspNetCore.Components.Web;
+using Microsoft.AspNetCore.Components.Web.Virtualization;
+using Microsoft.JSInterop;
+```
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+```csharp
+using System.Net.Http;
+using Microsoft.AspNetCore.Components.Forms;
+using Microsoft.AspNetCore.Components.Routing;
+using Microsoft.AspNetCore.Components.Web;
+using Microsoft.JSInterop;
+```
+
+::: moniker-end
+
+Typical namespaces also include the namespace of the app and the namespace corresponding to the app's `Shared` folder:
+
+```csharp
+using BlazorSample;
+using BlazorSample.Shared;
 ```
 
 ### Specify a base class
@@ -312,7 +346,7 @@ The [`@inherits`][6] directive is used to specify a base class for a component. 
 ::: moniker-end
 
 > [!WARNING]
-> Providing initial values for component parameters is supported, but don't create a component that writes to its own parameters after the component is rendered for the first time. Instead, use a private field. For more information, see the [Overwritten parameters](#overwritten-parameters) section later in this article.
+> Providing initial values for component parameters is supported, but don't create a component that writes to its own parameters after the component is rendered for the first time. For more information, see the [Overwritten parameters](#overwritten-parameters) section later in this article.
 
 The `Title` and `Body` component parameters of the `ParameterChild` component are set by arguments in the HTML tag that renders the instance of the component. The following `ParameterParent` component renders two `ParameterChild` components:
 
@@ -381,7 +415,7 @@ Unlike in Razor pages (`.cshtml`), Blazor can't perform asynchronous work in a R
 <ParameterChild Title="@await ..." />
 ```
 
-The code in the preceding example generates a *compiler error* if the app is built:
+The code in the preceding example generates a *compiler error* when the app is built:
 
 > The 'await' operator can only be used within an async method. Consider marking this method with the 'async' modifier and changing its return type to 'Task'.
 
@@ -402,13 +436,13 @@ To obtain a value for the `Title` parameter in the preceding example asychronous
 
 For more information, see <xref:blazor/components/lifecycle>.
 
-Use of an explicit Razor expression to concatenate text with an expression result for assignment to a parameter is **not** supported. The following example seeks to concatenate the text "`Set by `" with an object's property value. Although this syntax is supported in a Razor page (`.cshtml`), it isn't valid for assignment to the child's `Title` parameter.
+Use of an explicit Razor expression to concatenate text with an expression result for assignment to a parameter is **not** supported. The following example seeks to concatenate the text "`Set by `" with an object's property value. Although this syntax is supported in a Razor page (`.cshtml`), it isn't valid for assignment to the child's `Title` parameter in a component.
 
 ```razor
 <ParameterChild Title="Set by @(panelData.Title)" />
 ```
 
-The code in the preceding example generates a *compiler error* if the app is built:
+The code in the preceding example generates a *compiler error* when the app is built:
 
 > Component attributes do not support complex content (mixed C# and markup).
 
@@ -431,7 +465,7 @@ To support the assignment of a composed value, use a method, field, or property.
 For more information, see <xref:mvc/views/razor>.
 
 > [!WARNING]
-> Providing initial values for component parameters is supported, but don't create a component that writes to its own parameters after the component is rendered for the first time. Instead, use a private field. For more information, see the [Overwritten parameters](#overwritten-parameters) section later in this article.
+> Providing initial values for component parameters is supported, but don't create a component that writes to its own parameters after the component is rendered for the first time. For more information, see the [Overwritten parameters](#overwritten-parameters) section later in this article.
 
 Component parameters should be declared as *auto-properties*, meaning that they shouldn't contain custom logic in their `get` or `set` accessors. For example, the following `StartData` property is an auto-property:
 
@@ -447,14 +481,16 @@ To transform a received parameter value:
 * Leave the parameter property as an auto-property to represent the supplied raw data.
 * Create a different property or method to supply the transformed data based on the parameter property.
 
-You can override [`OnParametersSetAsync`](xref:blazor/components/lifecycle#after-parameters-are-set-onparameterssetasync) to transform a received parameter each time new data is received.
+Override [`OnParametersSetAsync`](xref:blazor/components/lifecycle#after-parameters-are-set-onparameterssetasync) to transform a received parameter each time new data is received.
 
-Writing an initial value to a component parameter is supported because initial value assignments don't interfere with the Blazor framework's diffing algorithm. The following assignment of the current local <xref:System.DateTime> with <xref:System.DateTime.Now?displayProperty=nameWithType> to `StartData` **is valid**:
+Writing an initial value to a component parameter is supported because initial value assignments don't interfere with the Blazor framework's rendering engine. The following assignment of the current local <xref:System.DateTime> with <xref:System.DateTime.Now?displayProperty=nameWithType> to `StartData` **is valid**:
 
 ```csharp
 [Parameter]
 public DateTime StartData { get; set; } = DateTime.Now;
 ```
+
+After the initial assignment of <xref:System.DateTime.Now?displayProperty=nameWithType>, do **not** assign a value to `StartData` in developer code. For more information, see the [Overwritten parameters](#overwritten-parameters) section later in this article.
 
 ## Route parameters
 
@@ -476,17 +512,100 @@ Optional route parameters are supported. In the following example, the `text` op
 
 [!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/index/RouteParameter.razor?highlight=2,7-8)]
 
-Optional route parameters aren't supported, so two [`@page`][9] directives are applied in the preceding example. The first [`@page`][9] directive permits navigation to the component without a parameter. The second [`@page`][9] directive receives the `{text}` route parameter and assigns the value to the `Text` property.
+Optional route parameters aren't supported, so two [`@page`][9] directives are applied in the preceding example. The first [`@page`][9] directive permits navigation to the component without a route parameter. The second [`@page`][9] directive receives the `{text}` route parameter and assigns the value to the `Text` property.
 
 ::: moniker-end
 
 For information on catch-all route parameters (`{*pageRoute}`), which capture paths across multiple folder boundaries, see <xref:blazor/fundamentals/routing#catch-all-route-parameters>.
 
+## Overwritten parameters
+
+The Blazor framework generally imposes safe parent-to-child parameter assignment:
+
+* Parameters aren't overwritten unexpectedly.
+* Side-effects are minimized. For example, additional renders are avoided because they may create infinite rendering loops.
+
+A child component receives new parameter values that possibly overwrite existing values when the parent component rerenders. Accidentally overwriting parameter values in a child component often occurs when developing the component with one or more data-bound parameters and the developer writes directly to a parameter in the child:
+
+* The child component is rendered with one or more parameter values from the parent component.
+* The child writes directly to the value of a parameter.
+* The parent component rerenders and overwrites the value of the child's parameter.
+
+The potential for overwriting parameter values extends into the child component's property setters, too.
+
+> [!IMPORTANT]
+> Our general guidance is not to create components that directly write to their own parameters after the component is rendered for the first time.
+
+Consider the following faulty `Expander` component that:
+
+* Renders child content.
+* Toggles showing child content with a component parameter (`Expanded`).
+* The component writes directly to the `Expanded` parameter, which demonstrates the problem with overwritten parameters and should be avoided.
+
+`Shared/Expander.razor`:
+
+::: moniker range=">= aspnetcore-5.0"
+
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Shared/index/BadExpander.razor)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Shared/index/BadExpander.razor)]
+
+::: moniker-end
+
+The `Expander` component is added to a parent component that may call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A>.
+
+`Pages/ExpanderExample.razor`:
+
+::: moniker range=">= aspnetcore-5.0"
+
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/index/ExpanderExample.razor)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/index/ExpanderExample.razor)]
+
+::: moniker-end
+
+Initially, the `Expander` components behave independently when their `Expanded` properties are toggled. The child components maintain their states as expected. When <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is called in the parent, the `Expanded` parameter of the first child component is reset back to its initial value (`true`). The second `Expander` component's `Expanded` value isn't reset because no child content is rendered in the second component.
+
+To maintain state in the preceding scenario, use a *private field* in the `Expander` component to maintain its toggled state.
+
+The following revised `Expander` component:
+
+* Accepts the `Expanded` component parameter value from the parent.
+* Assigns the component parameter value to a *private field* (`expanded`) in the [`OnInitialized` event](xref:blazor/components/lifecycle#component-initialization-oninitializedasync).
+* Uses the private field to maintain its internal toggle state, which demonstrates how to avoid writing directly to a parameter.
+
+> [!NOTE]
+> The advice in this section extends to similar logic in component parameter `set` accessors, which can result in similar undesirable side-effects.
+
+`Shared/Expander.razor`:
+
+::: moniker range=">= aspnetcore-5.0"
+
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Shared/index/Expander.razor)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Shared/index/Expander.razor)]
+
+::: moniker-end
+
+For additional information, see [Blazor Two Way Binding Error (dotnet/aspnetcore #24599)](https://github.com/dotnet/aspnetcore/issues/24599).
+
 ## Child content
 
 Components can set the content of another component. The assigning component provides the content between the opening and closing tags that specify the receiving component.
 
-In the following example, the `RenderFragmentChild` component has a `ChildContent` property that represents a segment of the UI to render as a <xref:Microsoft.AspNetCore.Components.RenderFragment>. The value of `ChildContent` is positioned in the component's markup where the content should be rendered. The value of `ChildContent` is received from the parent component and rendered.
+In the following example, the `RenderFragmentChild` component has a `ChildContent` property that represents a segment of the UI to render as a <xref:Microsoft.AspNetCore.Components.RenderFragment>. The position of `ChildContent` in the component's Razor markup is where the content is rendered in the final HTML output.
 
 `Shared/RenderFragmentChild.razor`:
 
@@ -505,7 +624,7 @@ In the following example, the `RenderFragmentChild` component has a `ChildConten
 > [!IMPORTANT]
 > The property receiving the <xref:Microsoft.AspNetCore.Components.RenderFragment> content must be named `ChildContent` by convention.
 
-The following `RenderFragmentParent` component can provide content for rendering the `RenderFragmentChild` by placing the content inside the child component's opening and closing tags.
+The following `RenderFragmentParent` component provides content for rendering the `RenderFragmentChild` by placing the content inside the child component's opening and closing tags.
 
 `Pages/RenderFragmentParent.razor`:
 
@@ -680,7 +799,7 @@ The `<div>` in the parent component's rendered webpage contains `extra="10"` whe
 
 ## Capture references to components
 
-Component references provide a way to reference a component instance so that you can issue commands to that instance. To capture a component reference:
+Component references provide a way to reference a component instance for issuing commands. To capture a component reference:
 
 * Add an [`@ref`][4] attribute to the child component.
 * Define a field with the same type as the child component.
@@ -769,11 +888,11 @@ While capturing component references use a similar syntax to [capturing element 
 
 Blazor uses a synchronization context (<xref:System.Threading.SynchronizationContext>) to enforce a single logical thread of execution. A component's [lifecycle methods](xref:blazor/components/lifecycle) and event callbacks raised by Blazor are executed on the synchronization context.
 
-Blazor Server's synchronization context attempts to emulate a single-threaded environment so that it closely matches the WebAssembly model in the browser, which is single threaded. At any given point in time, work is performed on exactly one thread, which yields the impression of a single logical thread. However, no two operations execute concurrently.
+Blazor Server's synchronization context attempts to emulate a single-threaded environment so that it closely matches the WebAssembly model in the browser, which is single threaded. At any given point in time, work is performed on exactly one thread, which yields the impression of a single logical thread. No two operations execute concurrently.
 
 ### Avoid thread-blocking calls
 
-Generally, don't call the following methods. The following methods block the thread and thus block the app from resuming work until the underlying <xref:System.Threading.Tasks.Task> is complete:
+Generally, don't call the following methods. The following methods block the execution thread and thus block the app from resuming work until the underlying <xref:System.Threading.Tasks.Task> is complete:
 
 * <xref:System.Threading.Tasks.Task%601.Result%2A>
 * <xref:System.Threading.Tasks.Task.Wait%2A>
@@ -783,11 +902,11 @@ Generally, don't call the following methods. The following methods block the thr
 * <xref:System.Runtime.CompilerServices.TaskAwaiter.GetResult%2A>
 
 > [!NOTE]
-> Blazor documentation examples that use any of the thread-blocking methods mentioned in this section are only using them for demonstration purposes, not as recommended coding guidance. For example, component code demonstrations simulate a long-running process by calling <xref:System.Threading.Thread.Sleep%2A>.
+> Blazor documentation examples that use the thread-blocking methods mentioned in this section are only using the methods for demonstration purposes, not as recommended coding guidance. For example, component code demonstrations simulate a long-running process by calling <xref:System.Threading.Thread.Sleep%2A?displayProperty=nameWithType>.
 
 ### Invoke component methods externally to update state
 
-In the event a component must be updated based on an external event, such as a timer or other notifications, use the `InvokeAsync` method, which dispatches to Blazor's synchronization context. For example, consider the following *notifier service* that can notify any listening component of the updated state. The `Update` method can be called from anywhere in the app.
+In the event a component must be updated based on an external event, such as a timer or other notifications, use the `InvokeAsync` method, which dispatches code execution to Blazor's synchronization context. For example, consider the following *notifier service* that can notify any listening component about updated state. The `Update` method can be called from anywhere in the app.
 
 `Notifier.cs`:
 
@@ -840,7 +959,7 @@ In the preceding example:
 
 ## Use \@key to control the preservation of elements and components
 
-When rendering a list of elements or components and the elements or components subsequently change, Blazor's diffing algorithm must decide which of the previous elements or components can be retained and how model objects should map to them. Normally, this process is automatic and can be ignored, but there are cases where you may want to control the process.
+When rendering a list of elements or components and the elements or components subsequently change, Blazor's rendering engine must decide which of the previous elements or components can be retained and how model objects should map to them. Normally, this process is automatic and can be ignored, but there are cases where you may want to control the process.
 
 Consider the following `Details` and `People` components:
 
@@ -851,8 +970,6 @@ This demonstration allows you to:
 
 * Select an `<input>` from among several rendered `Details` components.
 * Study the behavior of the page's focus as the people collection automatically grows.
-
-Each iteration of adding a person in `OnTimerCallback` results in Blazor rebuilding the entire collection. The page's focus remains on the *same index* position of `<input>` elements, so the focus shifts each time a person is added. This isn't desirable behavior. After demonstrating the poor behavior with the following components, the [`@key`][5] directive attribute is used to improve the user's experience.
 
 `Shared/Details.razor`:
 
@@ -867,6 +984,8 @@ Each iteration of adding a person in `OnTimerCallback` results in Blazor rebuild
 [!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Shared/index/Details.razor)]
 
 ::: moniker-end
+
+In the following `People` component, each iteration of adding a person in `OnTimerCallback` results in Blazor rebuilding the entire collection. The page's focus remains on the *same index* position of `<input>` elements, so the focus shifts each time a person is added. *Shifting the focus away from what the user selected isn't desirable behavior.* After demonstrating the poor behavior with the following component, the [`@key`][5] directive attribute is used to improve the user's experience.
 
 `Pages/People.razor`:
 
@@ -884,7 +1003,7 @@ Each iteration of adding a person in `OnTimerCallback` results in Blazor rebuild
 
 The contents of the `people` collection changes with inserted, deleted, or re-ordered entries. Rerendering can lead to visible behavior differences. Each time a person is inserted into the `people` collection of the preceding example, the *preceding element* of the currently focused element receives the focus. The user's focus is lost, and the browser sets the focus after rerendering *by index*.
 
-The mapping process of elements or components to a collection can be controlled with the [`@key`][5] directive attribute. [`@key`][5] causes the diffing algorithm to guarantee preservation of elements or components based on the key's value. If the `Details` component in the preceding example is keyed by the Blazor diffing algorithm on the `person` item, Blazor ignores rerendering `Details` components that haven't changed.
+The mapping process of elements or components to a collection can be controlled with the [`@key`][5] directive attribute. Use of [`@key`][5] guarantees the preservation of elements or components based on the key's value. If the `Details` component in the preceding example is keyed on the `person` item, Blazor ignores rerendering `Details` components that haven't changed.
 
 To modify the preceding example to use the [`@key`][5] directive attribute with the `people` collection, update the `<Details>` element in the `People` component to the following:
 
@@ -892,12 +1011,12 @@ To modify the preceding example to use the [`@key`][5] directive attribute with 
 <Details @key="person" Data="@person.Data" />
 ```
 
-When the `people` collection changes, the diffing algorithm retains the association between `Details` instances and `person` instances. When a `Person` is inserted at the beginning of the collection, one new `Details` instance is inserted at that corresponding position. Other instances are left unchanged. Therefore, the user's focus isn't lost as people are added to the collection.
+When the `people` collection changes, the association between `Details` instances and `person` instances is retained. When a `Person` is inserted at the beginning of the collection, one new `Details` instance is inserted at that corresponding position. Other instances are left unchanged. Therefore, the user's focus isn't lost as people are added to the collection.
 
-Other collection updates would exhibit the same behavior when the [`@key`][5] directive attribute is used:
+Other collection updates exhibit the same behavior when the [`@key`][5] directive attribute is used:
 
-* If a `Person` is deleted from the `people` collection, only the corresponding `Details` instance is removed from the UI. Other instances are left unchanged.
-* If `Person` entries are re-ordered in the `people` collection, the corresponding `Details` instances are preserved and re-ordered in the UI.
+* If an instance is deleted from the collection, only the corresponding component instance is removed from the UI. Other instances are left unchanged.
+* If collection entries are re-ordered, the corresponding component instances are preserved and re-ordered in the UI.
 
 > [!IMPORTANT]
 > Keys are local to each container element or component. Keys aren't compared globally across the document.
@@ -924,13 +1043,18 @@ Example 2:
 </div>
 ```
 
-If `person` changes, the [`@key`][5] attribute directive forces Blazor to discard the entire `<li>` or `<div>` and its descendants and rebuild the subtree within the UI with new elements and components. This can be useful if you need to guarantee that no UI state is preserved when `person` changes within a subtree.
+If `person` changes, the [`@key`][5] attribute directive forces Blazor to:
+
+* Discard the entire `<li>` or `<div>` and their descendants.
+* Rebuild the subtree within the UI with new elements and components.
+
+This is useful to guarantee that no UI state is preserved when the collection changes within a subtree.
 
 ### When not to use \@key
 
-There's a performance cost when diffing with [`@key`][5]. The performance cost isn't large, but only specify [`@key`][5] if controlling the element or component preservation rules benefit the app.
+There's a performance cost when rendering with [`@key`][5]. The performance cost isn't large, but only specify [`@key`][5] if controlling the element or component preservation rules benefit the app.
 
-Even if [`@key`][5] isn't used, Blazor preserves child element and component instances as much as possible. The only advantage to using [`@key`][5] is control over *how* model instances are mapped to the preserved component instances, instead of the diffing algorithm selecting the mapping.
+Even if [`@key`][5] isn't used, Blazor preserves child element and component instances as much as possible. The only advantage to using [`@key`][5] is control over *how* model instances are mapped to the preserved component instances, instead of Blazor selecting the mapping.
 
 ### Values to use for \@key
 
@@ -940,88 +1064,6 @@ Generally, it makes sense to supply one of the following values for [`@key`][5]:
 * Unique identifiers. For example, unique identifiers can be based on primary key values of type `int`, `string`, or `Guid`.
 
 Ensure that values used for [`@key`][5] don't clash. If clashing values are detected within the same parent element, Blazor throws an exception because it can't deterministically map old elements or components to new elements or components. Only use distinct values, such as object instances or primary key values.
-
-## Overwritten parameters
-
-The Blazor framework generally imposes safe parent-to-child parameter assignment:
-
-* Parameters aren't overwritten unexpectedly.
-* Side-effects are minimized. For example, additional renders are avoided because they may create infinite rendering loops.
-
-A child component receives new parameter values that possibly overwrite existing values when the parent component rerenders. Accidentally overwriting parameter values in a child component often occurs when developing the component with one or more data-bound parameters and the developer writes directly to a parameter in the child:
-
-* The child component is rendered with one or more parameter values from the parent component.
-* The child writes directly to the value of a parameter.
-* The parent component rerenders and overwrites the value of the child's parameter.
-
-The potential for overwriting parameter values extends into the child component's property setters, too.
-
-**Our general guidance is not to create components that directly write to their own parameters after the component is rendered for the first time.**
-
-Consider the following faulty `Expander` component that:
-
-* Renders child content.
-* Toggles showing child content with a component parameter (`Expanded`).
-* The component writes directly to the `Expanded` parameter, which demonstrates the problem with overwritten parameters and should be avoided.
-
-`Shared/Expander.razor`:
-
-::: moniker range=">= aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Shared/index/BadExpander.razor)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Shared/index/BadExpander.razor)]
-
-::: moniker-end
-
-The `Expander` component is added to a parent component that may call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A>.
-
-`Pages/ExpanderExample.razor`:
-
-::: moniker range=">= aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/index/ExpanderExample.razor)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/index/ExpanderExample.razor)]
-
-::: moniker-end
-
-Initially, the `Expander` components behave independently when their `Expanded` properties are toggled. The child components maintain their states as expected. When <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is called in the parent, the `Expanded` parameter of the first child component is reset back to its initial value (`true`). The second `Expander` component's `Expanded` value isn't reset because no child content is rendered in the second component.
-
-To maintain state in the preceding scenario, use a *private field* in the `Expander` component to maintain its toggled state.
-
-The following revised `Expander` component:
-
-* Accepts the `Expanded` component parameter value from the parent.
-* Assigns the component parameter value to a *private field* (`expanded`) in the [`OnInitialized` event](xref:blazor/components/lifecycle#component-initialization-oninitializedasync).
-* Uses the private field to maintain its internal toggle state, which demonstrates how to avoid writing directly to a parameter.
-
-> [!NOTE]
-> The advice in this section extends to similar logic in component parameter `set` accessors, which can result in similar undesirable side-effects.
-
-`Shared/Expander.razor`:
-
-::: moniker range=">= aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Shared/index/Expander.razor)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Shared/index/Expander.razor)]
-
-::: moniker-end
-
-For additional information, see [Blazor Two Way Binding Error (dotnet/aspnetcore #24599)](https://github.com/dotnet/aspnetcore/issues/24599).
 
 ## Apply an attribute
 
@@ -1062,7 +1104,7 @@ For more information, see <xref:mvc/views/razor>.
 Strings are normally rendered using DOM text nodes, which means that any markup they may contain is ignored and treated as literal text. To render raw HTML, wrap the HTML content in a <xref:Microsoft.AspNetCore.Components.MarkupString> value. The value is parsed as HTML or SVG and inserted into the DOM.
 
 > [!WARNING]
-> Rendering raw HTML constructed from any untrusted source is a **security risk** and should be avoided.
+> Rendering raw HTML constructed from any untrusted source is a **security risk** and should **always** be avoided.
 
 The following example shows using the <xref:Microsoft.AspNetCore.Components.MarkupString> type to add a block of static HTML content to the rendered output of a component.
 
@@ -1118,9 +1160,9 @@ Rendered output of the preceding code:
 
 ## Static assets
 
-Blazor follows the convention of ASP.NET Core apps placing static assets under the project's [`web root (wwwroot)` folder](xref:fundamentals/index#web-root).
+Blazor follows the convention of ASP.NET Core apps placing static assets in the project's [`web root (wwwroot)` folder](xref:fundamentals/index#web-root) or folders under the `wwwroot` folder.
 
-Use a base-relative path (`/`) to refer to the web root for a static asset. In the following example, `logo.png` is physically located in the `{PROJECT ROOT}/wwwroot/images` folder:
+Use a base-relative path (`/`) to refer to the web root for a static asset. In the following example, `logo.png` is physically located in the `{PROJECT ROOT}/wwwroot/images` folder. `{PROJECT ROOT}` is the app's project root.
 
 ```razor
 <img alt="Company logo" src="/images/logo.png" />
@@ -1139,14 +1181,14 @@ For information on setting an app's base path, see <xref:blazor/host-and-deploy/
 Since Blazor renders HTML, browser-supported images, including Scalable Vector Graphics (SVG) images (`.svg`), are supported via the `<img>` tag:
 
 ```html
-<img alt="Example image" src="some-image.svg" />
+<img alt="Example image" src="image.svg" />
 ```
 
 Similarly, SVG images are supported in the CSS rules of a stylesheet file (`.css`):
 
 ```css
-.my-element {
-    background-image: url("some-image.svg");
+.element-class {
+    background-image: url("image.svg");
 }
 ```
 
@@ -1209,10 +1251,6 @@ Whitespace isn't preserved from the preceding Razor markup:
 ```
 
 ::: moniker-end
-
-## Additional resources
-
-* <xref:blazor/security/server/threat-mitigation>: Includes guidance on building Blazor Server apps that must contend with resource exhaustion.
 
 <!--Reference links in article-->
 [1]: <xref:mvc/views/razor#code>
