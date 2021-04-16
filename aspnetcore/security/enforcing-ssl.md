@@ -386,11 +386,59 @@ See [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/6199).
 
 <a name="ssl-linux"></a>
 
-## ~Trust HTTPS certificate on Linux~
+## Trust HTTPS certificate on Linux
 
-<!-- Instructions to be updated by engineering team after 5.0 RTM. -->
+Establishing trust is browser specific.
 
-~For instructions on Linux, refer to the distribution documentation.~
+### Trust HTTPS certificate on Linux with Chromium browsers Edge and Chrome
+
+* Install the `libnss3-tools` for your distribution.
+* Create or verify the `$HOME/.pki/nssdb` folder exists on the machine.
+* Export the certificate with the following command:
+
+  ```cli
+  dotnet dev-certs https -ep /usr/local/share/ca-certificates/aspnet/https.crt --format PEM
+  ```
+
+* Run the following commands:
+
+  ```cli
+  certutil -d sql:$HOME/.pki/nssdb -A -t "P,," -n localhost -i /usr/local/share/ca-certificates/aspnet/https.crt
+  certutil -d sql:$HOME/.pki/nssdb -A -t "C,," -n localhost -i /usr/local/share/ca-certificates/aspnet/https.crt
+  ```
+
+* Exit and restart the browser.
+
+### Trust the certificate in Firefox
+
+* Export the certificate with the following command:
+
+  ```vstscli
+  dotnet dev-certs https -ep /usr/local/share/ca-certificates/aspnet/https.crt --format PEM
+  ```
+
+* Create a JSON file at `/usr/lib/firefox/distribution/policies.json` with the following contents:
+
+  ```json
+  {
+      "policies": {
+          "Certificates": {
+              "Install": [
+                  "/usr/local/share/ca-certificates/aspnet/https.crt"
+              ]
+          }
+      }
+  }
+  ```
+
+## Ubuntu to make dotnet trust the certificate (for service-to-service communication)
+
+* **Requires openssl 1.1.1h and higher**. For instructions on how to update openssl find a guide for your OS.
+* Run the following two commands:
+  ```
+  sudo dotnet dev-certs https -ep /usr/local/share/ca-certificates/aspnet/https.crt --format PEM
+  sudo update-ca-certificates
+  ```
 
 <a name="wsl"></a>
 
@@ -398,7 +446,7 @@ See [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/6199).
 
 The [Windows Subsystem for Linux (WSL)](/windows/wsl/about) generates an HTTPS self-signed cert. To configure the Windows certificate store to trust the WSL certificate:
 
-* Export the developer certificate to a file on ***Windows***
+* Export the developer certificate to a file on ***Windows***:
 
   ```
   dotnet dev-certs https --ep C:\<<path-to-folder>>\aspnetcore.pfx -p $CREDENTIAL_PLACEHOLDER$
@@ -411,7 +459,7 @@ The [Windows Subsystem for Linux (WSL)](/windows/wsl/about) generates an HTTPS s
   dotnet dev-certs https --clean --import /mnt/c/<<path-to-folder>>/aspnetcore.pfx -p <<password>>
   ```
 
-  The preceding approach is a one time operation per certificate and per WSL distribution. It's easier than exporting the certificate over and over. If you update or regenerate the certificate on windows, you might need to run the preceding commands again.
+The preceding approach is a one time operation per certificate and per WSL distribution. It's easier than exporting the certificate over and over. If you update or regenerate the certificate on windows, you might need to run the preceding commands again.
 
 ## Troubleshoot certificate problems
 
