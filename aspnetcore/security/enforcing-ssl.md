@@ -431,11 +431,13 @@ Establishing trust is browser specific.
   }
   ```
 
-## Ubuntu to make dotnet trust the certificate (for service-to-service communication)
+## Ubuntu trust the certificate for service-to-service communication
 
-* **Requires openssl 1.1.1h and higher**. For instructions on how to update openssl find a guide for your OS.
-* Run the following two commands:
-  ```
+Install [OpenSSL ](https://www.openssl.org/) 1.1.1h or later. See your distribution for instructions on how to update OpenSSL.
+
+* Run the following commands:
+
+  ```cli
   sudo dotnet dev-certs https -ep /usr/local/share/ca-certificates/aspnet/https.crt --format PEM
   sudo update-ca-certificates
   ```
