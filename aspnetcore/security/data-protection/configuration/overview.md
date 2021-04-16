@@ -114,7 +114,7 @@ The preceding code stores the keys in the configured database. The database cont
 public DbSet<DataProtectionKey> DataProtectionKeys { get; set; }
 ```
 
-This property represents the table in which the keys will be stored. The definition of this type [can be found here](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.dataprotection.entityframeworkcore.dataprotectionkey?view=aspnetcore-5.0). This table will need to be created either manually or via your DbContext Migrations.
+This property represents the table in which the keys are stored. Create the table manually or with `DbContext` Migrations. See <xref:Microsoft.AspNetCore.DataProtection.EntityFrameworkCore.DataProtectionKey> for more information.
 
 ## ProtectKeysWith\*
 
