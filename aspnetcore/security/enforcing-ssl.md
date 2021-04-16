@@ -320,6 +320,8 @@ dotnet new webapp --no-https
 
 ## Trust the ASP.NET Core HTTPS development certificate on Windows and macOS
 
+To trust the Firefox browser, see the next section.
+
 The .NET Core SDK includes an HTTPS development certificate. The certificate is installed as part of the first-run experience. For example, `dotnet --info` produces a variation of the following output:
 
 ```
@@ -342,6 +344,43 @@ The following command provides help on the `dev-certs` tool:
 ```dotnetcli
 dotnet dev-certs https --help
 ```
+
+<a name="trust-ff"></a>
+
+### Trust the HTTPS certificate on Firefox
+
+Create a policy file at:
+
+* On windows: `%PROGRAMFILES%\`Mozilla Firefox\distribution\policies.json`
+* On MacOS: `Firefox.app/Contents/Resources/distribution`
+
+Add the following JSON to the Firefox policy file:
+
+```json
+{
+  "policies": {
+    "Certificates": {
+      "ImportEnterpriseRoots": true
+    }
+  }
+}
+```
+
+The preceding policy file makes Firefox trust certificates from the trusted certificates in the Windows certificate store. The next section provides an alternative approach to for the Firefox browser.
+
+### Firefox SEC_ERROR_INADEQUATE_KEY_USAGE certificate error
+
+The Firefox browser uses it's own certificate store, and therefore doesn't trust the [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) or [Kestrel](xref:fundamentals/servers/kestrel) developer certificates.
+
+To use Firefox with IIS Express or Kestrel, set  `security.enterprise_roots.enabled` = `true`
+
+1. Enter `about:config` in the FireFox browser.
+1. Select **Accept the Risk and Continue** if you accept the risk.
+1. Select **Show All**
+1. Set `security.enterprise_roots.enabled` = `true`
+1. Exit and restart Firefox
+
+For more information, see [Setting Up Certificate Authorities (CAs) in Firefox](https://support.mozilla.org/kb/setting-certificate-authorities-firefox) and the [`mozilla/policy-templates/README file](https://github.com/mozilla/policy-templates/blob/master/README.md).
 
 ## How to set up a developer certificate for Docker
 
@@ -435,22 +474,6 @@ See [HTTPS Error using IIS Express (dotnet/AspNetCore #16892)](https://github.co
 ### IIS Express SSL certificate used with Visual Studio
 
 To fix problems with the IIS Express certificate, select **Repair** from the Visual Studio installer. For more information, see [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/16892).
-
-<a name="trust-ff"></a>
-
-### Firefox SEC_ERROR_INADEQUATE_KEY_USAGE certificate error
-
-The Firefox browser uses it's own certificate store, and therefore doesn't trust the [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) or [Kestrel](xref:fundamentals/servers/kestrel) developer certificates.
-
-To use Firefox with IIS Express or Kestrel, set  `security.enterprise_roots.enabled` = `true`
-
-1. Enter `about:config` in the FireFox browser.
-1. Select **Accept the Risk and Continue** if you accept the risk.
-1. Select **Show All**
-1. Set `security.enterprise_roots.enabled` = `true`
-1. Exit and restart Firefox
-
-For more information, see [Setting Up Certificate Authorities (CAs) in Firefox](https://support.mozilla.org/kb/setting-certificate-authorities-firefox).
 
 ## Additional information
 
