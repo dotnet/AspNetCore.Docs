@@ -108,7 +108,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-This will store the keys used in the configured database. The database context being used must adhere to `IDataProtectionKeyContext` which exposes the property `DataProtectionKeys` 
+The preceding code stores the keys in the configured database. The database context being used must implement `IDataProtectionKeyContext`.  `IDataProtectionKeyContext` exposes the property `DataProtectionKeys` 
 
 ```csharp
 public DbSet<DataProtectionKey> DataProtectionKeys { get; set; }
