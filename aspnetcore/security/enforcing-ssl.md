@@ -322,7 +322,7 @@ For the Firefox browser, see the next section.
 
 The .NET Core SDK includes an HTTPS development certificate. The certificate is installed as part of the first-run experience. For example, `dotnet --info` produces a variation of the following output:
 
-```
+```cli
 ASP.NET Core
 ------------
 Successfully installed the ASP.NET Core HTTPS Development Certificate.
@@ -364,7 +364,7 @@ Add the following JSON to the Firefox policy file:
 }
 ```
 
-The preceding policy file makes Firefox trust certificates from the trusted certificates in the Windows certificate store. The next section provides an alternative approach to for the Firefox browser.
+The preceding policy file makes Firefox trust certificates from the trusted certificates in the Windows certificate store. The next section provides an alternative approach for the Firefox browser.
 
 ### Firefox SEC_ERROR_INADEQUATE_KEY_USAGE certificate error
 
@@ -388,28 +388,28 @@ See [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/6199).
 
 ## Trust HTTPS certificate on Linux
 
-Establishing trust is browser specific.
+Establishing trust is browser specific. The following sections provide instructions for the Chromium browsers Edge and Chrome and for Firefox.
 
-### Trust HTTPS certificate on Linux with Chromium browsers Edge and Chrome
+### Trust HTTPS certificate on Linux using Edge or Chrome
 
-* Install the `libnss3-tools` for your distribution.
-* Create or verify the `$HOME/.pki/nssdb` folder exists on the machine.
-* Export the certificate with the following command:
+  * Install the `libnss3-tools` for your distribution.
+  * Create or verify the `$HOME/.pki/nssdb` folder exists on the machine.
+  * Export the certificate with the following command:
+  
+    ```cli
+    dotnet dev-certs https -ep /usr/local/share/ca-certificates/aspnet/https.crt --format PEM
+    ```
+  
+  * Run the following commands:
+  
+    ```cli
+    certutil -d sql:$HOME/.pki/nssdb -A -t "P,," -n localhost -i /usr/local/share/ca-certificates/  aspnet/https.crt
+    certutil -d sql:$HOME/.pki/nssdb -A -t "C,," -n localhost -i /usr/local/share/ca-certificates/  aspnet/https.crt
+    ```
+  
+  * Exit and restart the browser.
 
-  ```cli
-  dotnet dev-certs https -ep /usr/local/share/ca-certificates/aspnet/https.crt --format PEM
-  ```
-
-* Run the following commands:
-
-  ```cli
-  certutil -d sql:$HOME/.pki/nssdb -A -t "P,," -n localhost -i /usr/local/share/ca-certificates/aspnet/https.crt
-  certutil -d sql:$HOME/.pki/nssdb -A -t "C,," -n localhost -i /usr/local/share/ca-certificates/aspnet/https.crt
-  ```
-
-* Exit and restart the browser.
-
-### Trust the certificate in Firefox
+### Trust the certificate with Firefox
 
 * Export the certificate with the following command:
 
@@ -433,9 +433,8 @@ Establishing trust is browser specific.
 
 ## Ubuntu trust the certificate for service-to-service communication
 
-Install [OpenSSL ](https://www.openssl.org/) 1.1.1h or later. See your distribution for instructions on how to update OpenSSL.
-
-* Run the following commands:
+1. Install [OpenSSL](https://www.openssl.org/) 1.1.1h or later. See your distribution for instructions on how to update OpenSSL.
+1. Run the following commands:
 
   ```cli
   sudo dotnet dev-certs https -ep /usr/local/share/ca-certificates/aspnet/https.crt --format PEM
@@ -458,7 +457,7 @@ The [Windows Subsystem for Linux (WSL)](/windows/wsl/about) generates an HTTPS s
 * In a WSL window, import the exported certificate on the WSL instance:
 
   ```
-  dotnet dev-certs https --clean --import /mnt/c/<<path-to-folder>>/aspnetcore.pfx -p <<password>>
+  dotnet dev-certs https --clean --import /mnt/c/<<path-to-folder>>/aspnetcore.pfx -p $CREDENTIAL_PLACEHOLDER$
   ```
 
 The preceding approach is a one time operation per certificate and per WSL distribution. It's easier than exporting the certificate over and over. If you update or regenerate the certificate on windows, you might need to run the preceding commands again.
