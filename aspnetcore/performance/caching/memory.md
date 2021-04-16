@@ -53,7 +53,7 @@ Use `System.Runtime.Caching`/`MemoryCache` as a compatibility bridge when portin
 > When using `SetSize`, `Size`, or `SizeLimit` to limit cache, create a cache singleton for caching. For more information and an example, see [Use SetSize, Size, and SizeLimit to limit cache size](#use-setsize-size-and-sizelimit-to-limit-cache-size).
 > A shared cache is one shared by other frameworks or libraries. For example, EF Core uses the shared cache and does not specify a size. 
 
-In-memory caching is a *service* that's referenced from an app using [Dependency Injection](xref:fundamentals/dependency-injection). Request the `IMemoryCache` instance in the constructor:
+In-memory caching is a *service* that's referenced from an app using [Dependency Injection](xref:fundamentals/dependency-injection) by calling `services.AddMemoryCache()`. Request the `IMemoryCache` instance in the constructor:
 
 [!code-csharp[](memory/3.0sample/WebCacheSample/Controllers/HomeController.cs?name=snippet_ctor)]
 
