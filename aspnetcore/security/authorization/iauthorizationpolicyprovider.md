@@ -100,17 +100,17 @@ internal class MinimumAgePolicyProvider : IAuthorizationPolicyProvider
     // to be embedded in the policy names. This is abstracted away from developers
     // by the more strongly-typed attributes derived from AuthorizeAttribute
     // (like [MinimumAgeAuthorize()] in this sample)
-    public Task<AuthorizationPolicy> GetPolicyAsync(string policyName)
+    public async Task<AuthorizationPolicy> GetPolicyAsync(string policyName)
     {
         if (policyName.StartsWith(POLICY_PREFIX, StringComparison.OrdinalIgnoreCase) &&
             int.TryParse(policyName.Substring(POLICY_PREFIX.Length), out var age))
         {
             var policy = new AuthorizationPolicyBuilder(CookieAuthenticationDefaults.AuthenticationScheme);
             policy.AddRequirements(new MinimumAgeRequirement(age));
-            return Task.FromResult(policy.Build());
+            return policy.Build();
         }
 
-        return Task.FromResult<AuthorizationPolicy>(null);
+        return null;
     }
 }
 ```
@@ -141,7 +141,7 @@ Then, the `GetPolicyAsync` method can be updated to use the `BackupPolicyProvide
 
 ```csharp
 ...
-return BackupPolicyProvider.GetPolicyAsync(policyName);
+return await BackupPolicyProvider.GetPolicyAsync(policyName);
 ```
 
 ## Default policy
