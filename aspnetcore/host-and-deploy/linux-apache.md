@@ -416,7 +416,7 @@ Adding a `Strict-Transport-Security` (HSTS) header ensures all subsequent reques
 >
 > Apache HTTP Server version 2.4.43 or newer is required in order to operate a TLS 1.3 web server with OpenSSL 1.1.1.
 
-> [NOTE]
+> [!NOTE]
 > The preceding example disables Online Certificate Status Protocol (OCSP) Stapling. For more information and guidance on enabling OCSP, see [OCSP Stapling (Apache documentation)](https://httpd.apache.org/docs/trunk/ssl/ssl_howto.html#ocspstapling).
 
 Save the file and test the configuration:
