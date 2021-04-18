@@ -93,7 +93,7 @@ namespace SampleApp.Utilities
                 modelState.AddModelError(formFile.Name, 
                     $"{fieldDisplayName}({trustedFileNameForDisplay}) is empty.");
 
-                return new byte[0];
+                return Array.Empty<byte>();
             }
             
             if (formFile.Length > sizeLimit)
@@ -103,7 +103,7 @@ namespace SampleApp.Utilities
                     $"{fieldDisplayName}({trustedFileNameForDisplay}) exceeds " +
                     $"{megabyteSizeLimit:N1} MB.");
 
-                return new byte[0];
+                return Array.Empty<byte>();
             }
 
             try
@@ -143,7 +143,7 @@ namespace SampleApp.Utilities
                 // Log the exception
             }
 
-            return new byte[0];
+            return Array.Empty<byte>();
         }
 
         public static async Task<byte[]> ProcessStreamedFile(
@@ -189,7 +189,7 @@ namespace SampleApp.Utilities
                 // Log the exception
             }
 
-            return new byte[0];
+            return Array.Empty<byte>();
         }
 
         private static bool IsValidFileExtensionAndSignature(string fileName, Stream data, string[] permittedExtensions)

@@ -74,7 +74,7 @@ namespace SampleApp.Controllers
             var formAccumulator = new KeyValueAccumulator();
             var trustedFileNameForDisplay = string.Empty;
             var untrustedFileNameForStorage = string.Empty;
-            var streamedFileContent = new byte[0];
+            var streamedFileContent = Array.Empty<byte>();
 
             var boundary = MultipartRequestHelper.GetBoundary(
                 MediaTypeHeaderValue.Parse(Request.ContentType),
