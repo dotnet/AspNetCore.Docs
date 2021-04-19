@@ -409,6 +409,76 @@ The corresponding JavaScript code, which can be placed in the `index.html` page 
 
 This technique can be even more important for Blazor Server, since each event invocation involves delivering a message over the network. It's valuable for Blazor WebAssembly because it can greatly reduce the amount of rendering work.
 
+### Avoiding re-rendering after handling events with no state changes
+
+By default, components inherit from the `ComponentBase` class which automatically invokes `StateHasChanged` after event handlers on the component have been invoked. In some cases, it might be unnecessary or undesirable to trigger a re-render after an event handler has been invoked on the component. For example, an event handler might not modify any state in a a component.
+
+In these scenarios, we can leverage Blazor's `IHandleEvent` interface to control the behavior of event handling in Blazor.
+
+On a component containing the event handler we want to prevent renders after, implement the `IHandleEvent` interface and provide a `HandleEventAsync` task that invokes the event handler without calling `StateHasChanged`.
+
+```razor
+@implements IHandleEvent
+
+<button onclick="@HandleClick">Click me</button>
+
+@code {
+    private void HandleClick()
+    {
+        System.Console.WriteLine("This event handler will not trigger a re-render.");
+    }
+
+    Task IHandleEvent.HandleEventAsync(EventCallbackWorkItem callback, object arg)
+    	=> callback.InvokeAsync(arg);
+}
+```
+
+In addition to preventing re-renders after all event handlers in a component, it is possible to prevent re-renders after a single event handler by employing the following utility method.
+
+Add the following `EventUntil` class to your Blazor application project.
+
+```csharp
+public static class EventUtil
+{
+    // Event handlers support a widge combination of arguments and return types
+    // so we provide handlers for each one.
+    public static Action AsNonRenderingEventHandler(Action callback)
+        => new SyncReceiver(callback).Invoke;
+    public static Action<TValue> AsNonRenderingEventHandler<TValue>(Action<TValue> callback)
+        => new SyncReceiver<TValue>(callback).Invoke;
+    public static Func<Task> AsNonRenderingEventHandler(Func<Task> callback)
+        => new AsyncReceiver(callback).Invoke;
+    public static Func<TValue, Task> AsNonRenderingEventHandler<TValue>(Func<TValue, Task> callback)
+        => new AsyncReceiver<TValue>(callback).Invoke;
+
+    record SyncReceiver(Action callback) : ReceiverBase { public void Invoke() => callback(); }
+    record SyncReceiver<T>(Action<T> callback) : ReceiverBase { public void Invoke(T arg) => callback(arg); }
+    record AsyncReceiver(Func<Task> callback) : ReceiverBase { public Task Invoke() => callback(); }
+    record AsyncReceiver<T>(Func<T, Task> callback) : ReceiverBase { public Task Invoke(T arg) => callback(arg); }
+
+    // This `ReceiverBase` implementation invokes the 
+    record ReceiverBase : IHandleEvent
+    {
+        public Task HandleEventAsync(EventCallbackWorkItem item, object arg) => item.InvokeAsync(arg);
+    }
+}
+```
+
+Then, use `EventUtil.AsNonRenderingEventHandler` to produce an event handler that does not trigger a render when invoked.
+
+```razor
+<button onclick="@EventUtil.AsNonRenderingEventHandler(HandleClick)">Click me</button>
+
+@code {
+    private void HandleClick()
+    {
+        System.Console.WriteLine("This event handler will not trigger a re-render.");
+    }
+}
+```
+
+In addition to implementing the `IHandleEvent` interface, leveraging the best practices mentioned above, such as providing `ShouldRender` overrides for child components of the target component can also help reduce unwanted renders after events are handled.
+
 ## Optimize JavaScript interop speed
 
 Calls between .NET and JavaScript involve some additional overhead because:
