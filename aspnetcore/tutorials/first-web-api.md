@@ -303,7 +303,7 @@ The preceding code:
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-Run the following commands:
+Run the following commands from the `TodoApi/TodoApi` folder:
 
 ```dotnetcli
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
