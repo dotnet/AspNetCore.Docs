@@ -702,7 +702,7 @@ Test that the app seeded the database. If there are any rows in the contact DB, 
 
 ### Additional resources
 
-* [Build a .NET Core and SQL Database web app in Azure App Service](/azure/app-service/app-service-web-tutorial-dotnetcore-sqldb)
+* [Tutorial: Build an ASP.NET Core and Azure SQL Database app in Azure App Service](/azure/app-service/tutorial-dotnetcore-sqldb-app)
 * [ASP.NET Core Authorization Lab](https://github.com/blowdart/AspNetAuthorizationWorkshop). This lab goes into more detail on the security features introduced in this tutorial.
 * <xref:security/authorization/introduction>
 * [Custom policy-based authorization](xref:security/authorization/policies)
