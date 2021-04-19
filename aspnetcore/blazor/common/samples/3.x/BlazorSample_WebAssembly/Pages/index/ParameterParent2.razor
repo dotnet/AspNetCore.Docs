@@ -1,0 +1,24 @@
+﻿@page "/parameter-parent-2"
+
+<ParameterChild Title="@title" />
+
+<ParameterChild Title="@GetTitle()" />
+
+<ParameterChild Title="@DateTime.Now.ToLongDateString()" />
+
+<ParameterChild Title="@panelData.Title" />
+
+@code {
+    private string title = "From Parent field";
+    private PanelData panelData = new PanelData();
+
+    private string GetTitle()
+    {
+        return "From Parent method";
+    }
+
+    private class PanelData
+    {
+        public string Title { get; set; } = "From Parent object";
+    }
+}
