@@ -10,17 +10,17 @@
        @attributes="InputAttributes" />
 
 @code {
-    public string maxlength = "10";
-    public string placeholder = "Input placeholder text";
-    public string required = "required";
-    public string size = "50";
+    private string maxlength = "10";
+    private string placeholder = "Input placeholder text";
+    private string required = "required";
+    private string size = "50";
 
-    public Dictionary<string, object> InputAttributes { get; set; } =
-        new Dictionary<string, object>()
+    private Dictionary<string, object> InputAttributes { get; set; } =
+        new()
         {
             { "maxlength", "10" },
             { "placeholder", "Input placeholder text" },
             { "required", "required" },
             { "size", "50" }
-            };
+        };
 }
