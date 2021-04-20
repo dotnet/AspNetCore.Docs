@@ -146,14 +146,15 @@ Add the `Register`, `Login`, `LogOut`, and `RegisterConfirmation` files. Follow 
 
 # [.NET Core CLI](#tab/netcore-cli)
 
-If you created the project with name **WebApp1**, run the following commands. Otherwise, use the correct namespace for the `ApplicationDbContext`:
+If you created the project with name **WebApp1**, and you're not using SQLite, run the following commands. Otherwise, use the correct namespace for the `ApplicationDbContext`:
 
 ```dotnetcli
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
 dotnet aspnet-codegenerator identity -dc WebApp1.Data.ApplicationDbContext --files "Account.Register;Account.Login;Account.Logout;Account.RegisterConfirmation"
 ```
 
-If you are using SQLite, then you'll have to append a flag i.e. `--useSqlite` or `-sqlite`. This is to specify that the `ApplicationDbContext` should use SQLite instead of SQL Server 
+When using SQLite, append `--useSqlite` or `-sqlite`:
+
 ```dotnetcli
 dotnet aspnet-codegenerator identity -dc WebAppAuth.Data.ApplicationDbContext --files "Account.Register;Account.Login;Account.Logout;Account.RegisterConfirmation" --useSqlite
 ```
