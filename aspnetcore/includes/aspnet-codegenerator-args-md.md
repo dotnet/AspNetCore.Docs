@@ -11,4 +11,4 @@ no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Bla
 | --layout or -l | Custom Layout page to use. |
 | --useDefaultLayout or -udl | Use the default layout for the views. |
 | --force or -f | Overwrite existing files. |
-| --dataContext or -dc  | The `DbContext` class to use or the name of the class to generate. |
+| --useSqlite or -sqlite | Flag to specify if `DbContext` should use SQLite instead of SQL Server. |
