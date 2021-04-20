@@ -411,7 +411,7 @@ This technique can be even more important for Blazor Server, since each event in
 
 ### Avoiding re-rendering after handling events with no state changes
 
-By default, components inherit from the `ComponentBase` class which automatically invokes `StateHasChanged` after event handlers on the component have been invoked. In some cases, it might be unnecessary or undesirable to trigger a re-render after an event handler has been invoked on the component. For example, an event handler might not modify any state in a a component.
+By default, components inherit from the `ComponentBase` class which automatically invokes `StateHasChanged` after event handlers on the component have been invoked. In some cases, it might be unnecessary or undesirable to trigger a re-render after an event handler has been invoked on the component. For example, an event handler might not modify any state in a component.
 
 In these scenarios, we can leverage Blazor's `IHandleEvent` interface to control the behavior of event handling in Blazor.
 
@@ -440,7 +440,7 @@ Add the following `EventUntil` class to your Blazor application project.
 ```csharp
 public static class EventUtil
 {
-    // Event handlers support a widge combination of arguments and return types
+    // Event handlers support a wide combination of arguments and return types
     // so we provide handlers for each one.
     public static Action AsNonRenderingEventHandler(Action callback)
         => new SyncReceiver(callback).Invoke;
