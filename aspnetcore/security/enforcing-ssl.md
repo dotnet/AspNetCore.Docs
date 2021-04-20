@@ -345,12 +345,18 @@ dotnet dev-certs https --help
 
 <a name="trust-ff"></a>
 
-### Trust the HTTPS certificate on Firefox
+### Trust the HTTPS certificate with Firefox to prevent SEC_ERROR_INADEQUATE_KEY_USAGE error
+
+The Firefox browser uses it's own certificate store, and therefore doesn't trust the [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) or [Kestrel](xref:fundamentals/servers/kestrel) developer certificates.
+
+There are two approaches to trusting the HTTPS certificate with Firefox, create a policy file or configure with the FireFox browser. Configuring with the browser creates the policy file.
+
+#### Create a policy file to trust HTTPS certificate with Firefox
 
 Create a policy file at:
 
-* On windows: `%PROGRAMFILES%\Mozilla Firefox\distribution\policies.json`
-* On MacOS: `Firefox.app/Contents/Resources/distribution`
+* Windows: `%PROGRAMFILES%\Mozilla Firefox\distribution\policies.json`
+* MacOS: `Firefox.app/Contents/Resources/distribution`
 
 Add the following JSON to the Firefox policy file:
 
@@ -366,9 +372,7 @@ Add the following JSON to the Firefox policy file:
 
 The preceding policy file makes Firefox trust certificates from the trusted certificates in the Windows certificate store. The next section provides an alternative approach for the Firefox browser.
 
-### Firefox SEC_ERROR_INADEQUATE_KEY_USAGE certificate error
-
-The Firefox browser uses it's own certificate store, and therefore doesn't trust the [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) or [Kestrel](xref:fundamentals/servers/kestrel) developer certificates.
+### Configure trust of HTTPS certificate using Firefox browser
 
 To use Firefox with IIS Express or Kestrel, set  `security.enterprise_roots.enabled` = `true`
 
@@ -390,6 +394,18 @@ See [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/6199).
 
 Establishing trust is browser specific. The following sections provide instructions for the Chromium browsers Edge and Chrome and for Firefox.
 
+## Ubuntu trust the certificate for service-to-service communication
+
+1. Install [OpenSSL](https://www.openssl.org/) 1.1.1h or later. See your distribution for instructions on how to update OpenSSL.
+1. Run the following commands:
+
+  ```cli
+  sudo dotnet dev-certs https -ep /usr/local/share/ca-certificates/aspnet/https.crt --format PEM
+  sudo update-ca-certificates
+  ```
+
+The path in the preceding command is specific for Ubuntu. For other distributions, select an appropriate path or use the path for the Certificate Authorities (CAs).
+
 ### Trust HTTPS certificate on Linux using Edge or Chrome
 
   * Install the `libnss3-tools` for your distribution.
@@ -399,7 +415,9 @@ Establishing trust is browser specific. The following sections provide instructi
     ```cli
     dotnet dev-certs https -ep /usr/local/share/ca-certificates/aspnet/https.crt --format PEM
     ```
-  
+
+    Note, the path in the preceding command is specific for Ubuntu. For other distributions, select an appropriate path or use the path for the Certificate Authorities (CAs).
+
   * Run the following commands:
   
     ```cli
@@ -431,21 +449,11 @@ Establishing trust is browser specific. The following sections provide instructi
   }
   ```
 
-## Ubuntu trust the certificate for service-to-service communication
-
-1. Install [OpenSSL](https://www.openssl.org/) 1.1.1h or later. See your distribution for instructions on how to update OpenSSL.
-1. Run the following commands:
-
-  ```cli
-  sudo dotnet dev-certs https -ep /usr/local/share/ca-certificates/aspnet/https.crt --format PEM
-  sudo update-ca-certificates
-  ```
-
 <a name="wsl"></a>
 
 ## Trust HTTPS certificate from Windows Subsystem for Linux
 
-The [Windows Subsystem for Linux (WSL)](/windows/wsl/about) generates an HTTPS self-signed cert. To configure the Windows certificate store to trust the WSL certificate:
+The [Windows Subsystem for Linux (WSL)](/windows/wsl/about) generates an HTTPS self-signed development certificate. To configure the Windows certificate store to trust the WSL certificate:
 
 * Export the developer certificate to a file on ***Windows***:
 
