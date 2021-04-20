@@ -422,6 +422,8 @@ In the following example, no event handler added to the component triggers a rer
 ```razor
 @page "/handle-click-1"
 @implements IHandleEvent
+@using Microsoft.Extensions.Logging
+@inject ILogger<HandleClick1> Logger
 
 <p>
     Last render DateTime: @dt
@@ -438,7 +440,7 @@ In the following example, no event handler added to the component triggers a rer
     {
         dt = DateTime.Now;
 
-        System.Console.WriteLine("This event handler doesn't trigger a rerender.");
+        Logger.LogInformation("This event handler doesn't trigger a rerender.");
     }
 
     Task IHandleEvent.HandleEventAsync(
@@ -498,6 +500,8 @@ In the following example:
 
 ```razor
 @page "/handle-click-2"
+@using Microsoft.Extensions.Logging
+@inject ILogger<HandleClick2> Logger
 
 <p>
     Last render DateTime: @dt
@@ -518,14 +522,14 @@ In the following example:
     {
         dt = DateTime.Now;
 
-        System.Console.WriteLine("This event handler triggers a rerender.");
+        Logger.LogInformation("This event handler triggers a rerender.");
     }
 
     private void HandleClickWithoutRerender()
     {
         dt = DateTime.Now;
 
-        System.Console.WriteLine("This event handler doesn't trigger a rerender.");
+        Logger.LogInformatione("This event handler doesn't trigger a rerender.");
     }
 }
 ```
