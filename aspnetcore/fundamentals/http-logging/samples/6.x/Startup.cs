@@ -18,66 +18,11 @@ namespace HttpLoggingSample
             services.AppHttpLogging(logging =>
             {
                 // Customize HTTP logging here.
-            });
-        }
-        #endregion
-
-        #region loggingfields
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AppHttpLogging(logging =>
-            {
                 logging.LoggingFields = HttpLoggingFields.All;
-            });
-        }
-        #endregion
-
-        #region requestheaders
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AppHttpLogging(logging =>
-            {
                 logging.RequestHeaders.Add("My-Request-Header");
-            });
-        }
-        #endregion
-
-        #region responseheaders
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AppHttpLogging(logging =>
-            {
                 logging.ResponseHeaders.Add("My-Response-Header");
-            });
-        }
-        #endregion
-
-        #region mediatypeoptions
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AppHttpLogging(logging =>
-            {
-                logging.MediaTypeOptions.Add("application/javascript");
-            });
-        }
-        #endregion
-
-        #region requestbodyloglimit
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AppHttpLogging(logging =>
-            {
+                logging.MediaTypeOptions.AddText("application/javascript");
                 logging.RequestBodyLogLimit = 4096;
-            });
-        }
-        #endregion
-
-        
-        #region responsebodyloglimit
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AppHttpLogging(logging =>
-            {
                 logging.ResponseBodyLogLimit = 4096;
             });
         }

@@ -2,6 +2,7 @@
 title: HTTP Logging in .NET Core and ASP.NET Core
 author: jkotalik
 description: Learn how to log HTTP Requests and Response.
+monikerRange: '>= aspnetcore-6.0'
 ms.author: jukotali
 ms.custom: mvc
 ms.date: 04/20/2021
@@ -31,7 +32,7 @@ HTTP Logging is enabled by calling `UseHttpLogging()`, adding a middleware.
 
 By default, HTTP Logging will log common properties (path, query, status-code) and headers for requests and responses. These logs will be logged as a single message at `LogLevel.Information`.
 
-// TODO add sample output here.
+![Sample request output](_static/requestlog.png)
 
 ## HTTP Logging Options
 
@@ -43,7 +44,7 @@ To configure the HTTP logging middleware, call `AddHttpLogging()` as part of the
 
 `HttpLoggingOptions.LoggingFields` is an enum flag which configures which part of the request and response to log. LoggingFields defaults to `RequestPropertiesAndHeaders | ResponsePropertiesAndHeaders`.
 
-[!code-csharp[](samples/6.x/Startup.cs?name=loggingfields)]
+[!code-csharp[](samples/6.x/Startup.cs?name=configureservices&highlight=6)]
 
 | Flag | Description | Value |
 | ---- | ----------- | :---: |
@@ -71,29 +72,28 @@ To configure the HTTP logging middleware, call `AddHttpLogging()` as part of the
 
 RequestHeaders are a set of HTTP Request Headers that are allowed to be logged. Header values will only be logged for header names that are in this collection.
 
-[!code-csharp[](samples/6.x/Startup.cs?name=requestheaders)]
-
+[!code-csharp[](samples/6.x/Startup.cs?name=configureservices&highlight=7)]
 
 ### ResponseHeaders
 
 ResponseHeaders are a set of HTTP Request Headers that are allowed to be logged. Header values will only be logged for header names that are in this collection.
 
-[!code-csharp[](samples/6.x/Startup.cs?name=responseheaders)]
+[!code-csharp[](samples/6.x/Startup.cs?name=configureservices&highlight=8)]
 
 ### MediaTypeOptions
 
-MediaTypeOptions provides configuration for selecting which encoding to use for a specific media type.
+MediaTypeOptions provides configuration for selecting which encoding to use for a specific media type. 
 
-[!code-csharp[](samples/6.x/Startup.cs?name=mediatypeoptions)]
+[!code-csharp[](samples/6.x/Startup.cs?name=configureservices&highlight=9)]
 
 ### RequestBodyLogLimit
 
 Maximum request body size to log (in bytes). Defaults to 32 KB.
 
-[!code-csharp[](samples/6.x/Startup.cs?name=requestbodyloglimit)]
+[!code-csharp[](samples/6.x/Startup.cs?name=configureservices&highlight=10)]
 
 ### ResponseBodyLogLimit
 
 Maximum response body size to log (in bytes). Defaults to 32 KB.
 
-[!code-csharp[](samples/6.x/Startup.cs?name=responsebodyloglimit)]
+[!code-csharp[](samples/6.x/Startup.cs?name=configureservices&highlight=11)]
