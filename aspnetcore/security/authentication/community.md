@@ -21,4 +21,4 @@ The list below is sorted alphabetically.
 | [IdentityServer](https://identityserver.io/) | IdentityServer is an OpenID Connect and OAuth 2.0 framework for ASP.NET Core, officially certified by the OpenID Foundation and under governance of the .NET Foundation. For more information, see [Welcome to IdentityServer4 (Documentation)](https://identityserver4.readthedocs.io/en/latest/). |
 | [OpenIddict](https://github.com/openiddict/openiddict-core) | Versatile OpenID Connect stack for ASP.NET Core 2.1/3.1/5.0 and Microsoft.Owin 4.1 (compatible with ASP.NET 4.6.1). |
 
-To add a provider, [edit this page](https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2Faspnet%2FDocs%2Fedit%2Fmaster%2Faspnetcore%2Fsecurity%2Fauthentication%2Fcommunity.md).
+To add a provider, [edit this page](https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2Fdotnet%2FAspNetCore.Docs%2Fedit%2Fmain%2Faspnetcore%2Fsecurity%2Fauthentication%2Fcommunity.md).
