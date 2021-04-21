@@ -357,6 +357,7 @@ Create a policy file at:
 
 * Windows: `%PROGRAMFILES%\Mozilla Firefox\distribution\policies.json`
 * MacOS: `Firefox.app/Contents/Resources/distribution`
+* Linux: See [Trust the certificate with Firefox on Linux](#trust-ff-linux) in this document.
 
 Add the following JSON to the Firefox policy file:
 
@@ -429,7 +430,9 @@ Establishing trust is browser specific. The following sections provide instructi
   
   * Exit and restart the browser.
 
-### Trust the certificate with Firefox
+<a name="trust-ff-linux"></a>
+
+### Trust the certificate with Firefox on Linux
 
 * Export the certificate with the following command:
 
