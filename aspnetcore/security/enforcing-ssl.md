@@ -349,7 +349,7 @@ dotnet dev-certs https --help
 
 The Firefox browser uses it's own certificate store, and therefore doesn't trust the [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview) or [Kestrel](xref:fundamentals/servers/kestrel) developer certificates.
 
-There are two approaches to trusting the HTTPS certificate with Firefox, create a policy file or configure with the FireFox browser. Configuring with the browser creates the policy file.
+There are two approaches to trusting the HTTPS certificate with Firefox, create a policy file or configure with the FireFox browser. Configuring with the browser creates the policy file, so the two approaches are equivalent.
 
 #### Create a policy file to trust HTTPS certificate with Firefox
 
@@ -370,11 +370,13 @@ Add the following JSON to the Firefox policy file:
 }
 ```
 
-The preceding policy file makes Firefox trust certificates from the trusted certificates in the Windows certificate store. The next section provides an alternative approach for the Firefox browser.
+The preceding policy file makes Firefox trust certificates from the trusted certificates in the Windows certificate store. The next section provides an alternative approach to create the preceding policy file buy using the Firefox browser.
+
+<a name="trust-ff-ba"></a>
 
 ### Configure trust of HTTPS certificate using Firefox browser
 
-To use Firefox with IIS Express or Kestrel, set  `security.enterprise_roots.enabled` = `true`
+Set  `security.enterprise_roots.enabled` = `true` using the following instructions:
 
 1. Enter `about:config` in the FireFox browser.
 1. Select **Accept the Risk and Continue** if you accept the risk.
@@ -382,29 +384,29 @@ To use Firefox with IIS Express or Kestrel, set  `security.enterprise_roots.enab
 1. Set `security.enterprise_roots.enabled` = `true`
 1. Exit and restart Firefox
 
-For more information, see [Setting Up Certificate Authorities (CAs) in Firefox](https://support.mozilla.org/kb/setting-certificate-authorities-firefox) and the [`mozilla/policy-templates/README file](https://github.com/mozilla/policy-templates/blob/master/README.md).
+For more information, see [Setting Up Certificate Authorities (CAs) in Firefox](https://support.mozilla.org/kb/setting-certificate-authorities-firefox) and the [mozilla/policy-templates/README file](https://github.com/mozilla/policy-templates/blob/master/README.md).
 
 ## How to set up a developer certificate for Docker
 
 See [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/6199).
-
-<a name="ssl-linux"></a>
-
-## Trust HTTPS certificate on Linux
-
-Establishing trust is browser specific. The following sections provide instructions for the Chromium browsers Edge and Chrome and for Firefox.
 
 ## Ubuntu trust the certificate for service-to-service communication
 
 1. Install [OpenSSL](https://www.openssl.org/) 1.1.1h or later. See your distribution for instructions on how to update OpenSSL.
 1. Run the following commands:
 
-  ```cli
-  sudo dotnet dev-certs https -ep /usr/local/share/ca-certificates/aspnet/https.crt --format PEM
-  sudo update-ca-certificates
-  ```
+    ```cli
+    sudo dotnet dev-certs https -ep /usr/local/share/ca-certificates/aspnet/https.crt --format PEM
+    sudo update-ca-certificates
+    ```
 
 The path in the preceding command is specific for Ubuntu. For other distributions, select an appropriate path or use the path for the Certificate Authorities (CAs).
+
+<a name="ssl-linux"></a>
+
+## Trust HTTPS certificate on Linux
+
+Establishing trust is browser specific. The following sections provide instructions for the Chromium browsers Edge and Chrome and for Firefox.
 
 ### Trust HTTPS certificate on Linux using Edge or Chrome
 
@@ -416,7 +418,7 @@ The path in the preceding command is specific for Ubuntu. For other distribution
     dotnet dev-certs https -ep /usr/local/share/ca-certificates/aspnet/https.crt --format PEM
     ```
 
-    Note, the path in the preceding command is specific for Ubuntu. For other distributions, select an appropriate path or use the path for the Certificate Authorities (CAs).
+    The path in the preceding command is specific for Ubuntu. For other distributions, select an appropriate path or use the path for the Certificate Authorities (CAs).
 
   * Run the following commands:
   
@@ -435,6 +437,8 @@ The path in the preceding command is specific for Ubuntu. For other distribution
   dotnet dev-certs https -ep /usr/local/share/ca-certificates/aspnet/https.crt --format PEM
   ```
 
+  The path in the preceding command is specific for Ubuntu. For other distributions, select an appropriate path or use the path for the Certificate Authorities (CAs).
+
 * Create a JSON file at `/usr/lib/firefox/distribution/policies.json` with the following contents:
 
   ```json
@@ -448,6 +452,8 @@ The path in the preceding command is specific for Ubuntu. For other distribution
       }
   }
   ```
+  
+See [Configure trust of HTTPS certificate using Firefox browser](#trust-ff-ba) in this document for an alternative way to configure the policy file using the browser.
 
 <a name="wsl"></a>
 
