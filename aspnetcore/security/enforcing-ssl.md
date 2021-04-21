@@ -411,6 +411,8 @@ Establishing trust is browser specific. The following sections provide instructi
 
 ### Trust HTTPS certificate on Linux using Edge or Chrome
 
+For chromium browsers on Linux:
+
   * Install the `libnss3-tools` for your distribution.
   * Create or verify the `$HOME/.pki/nssdb` folder exists on the machine.
   * Export the certificate with the following command:
