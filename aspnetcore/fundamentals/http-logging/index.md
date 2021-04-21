@@ -12,21 +12,20 @@ uid: fundamentals/http-logging/index
 
 # HTTP Logging in ASP.NET Core
 
-HTTP Logging is a middleware that logs information about HTTP requests and HTTP responses. HTTP logging includes HTTP request information, including common properties, headers, and body as well as HTTP response information. HTTP Logging is valuable in several scenarios to:
+HTTP Logging is a middleware that logs information about HTTP requests and HTTP responses. HTTP logging logs HTTP request information, common properties, headers, body, and HTTP response information. HTTP Logging is valuable in several scenarios to:
 
 * Record information about incoming requests and responses.
 * Filter which parts of the request and response are logged.
 * Filtering which headers to log.
 
-> [!NOTE]
-> HTTP Logging can reduce the performance of an app, especially when logging the request and response bodies. Be mindful of which fields are being logged.
+HTTP Logging ***can reduce the performance of an app***, especially when logging the request and response bodies. Consider performance when choosing the fields to log.
 
-> [!NOTE]
-> HTTP Logging can potentially log personally identifiable information (PII). Be mindful about what fields contain sensitive information.
+> [!WARNING]
+> HTTP Logging can potentially log personally identifiable information (PII). Consider this risk to avoid logging sensitive information.
 
 ## Enabling HTTP Logging
 
-HTTP Logging is enabled by calling `UseHttpLogging()`, adding a middleware.
+HTTP Logging is enabled with `UseHttpLogging`, which add HTTP logging middleware.
 
 [!code-csharp[](samples/6.x/Startup.cs?name=snippet)]
 
