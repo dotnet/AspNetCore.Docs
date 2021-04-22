@@ -320,9 +320,7 @@ Test the **Create** page. Enter and submit data.
 
 Test the **Edit**, **Details**, and **Delete** pages.
 
-### Use SQLite for development, SQL Server for production
-
-When SQLite is selected, the template generated code is ready for development.
+[!INCLUDE[](~/includes/first-mvc-app/sqlitedev.md)]
 
 <!-- end of tabs --->
 
