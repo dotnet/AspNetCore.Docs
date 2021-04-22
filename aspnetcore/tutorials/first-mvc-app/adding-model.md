@@ -3,7 +3,7 @@ title: Part 4, add a model to an ASP.NET Core MVC app
 author: rick-anderson
 description: Part 4 of tutorial series on ASP.NET Core MVC.
 ms.author: riande
-ms.date: 04/21/2021
+ms.date: 02/01/2021
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-mvc-app/adding-model
 ms.custom: contperf-fy21q3
@@ -320,6 +320,12 @@ Test the **Create** page. Enter and submit data.
 
 Test the **Edit**, **Details**, and **Delete** pages.
 
+### Use SQLite for development, SQL Server for production
+
+When SQLite is selected, the template generated code is ready for development. The following code shows how to inject <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment> into Startup. `IWebHostEnvironment` is injected so `ConfigureServices` can use SQLite in development and SQL Server in production.
+
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/StartupDevProd.cs?name=snippet_StartupClass&highlight=3,5,10,16-28)]
+
 <!-- end of tabs --->
 
 <a name="strongly-typed-models-keyword-label"></a>
@@ -472,13 +478,13 @@ Repeat the above steps to install the following NuGet packages:
 
 <a name="dc"></a>
 
-## Examine the generated database context class
+## Create a database context class
 
 A database context class is needed to coordinate EF Core functionality (Create, Read, Update, Delete) for the `Movie` model. The database context is derived from [Microsoft.EntityFrameworkCore.DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext) and specifies the entities to include in the data model.
 
 Create a *Data* folder.
 
-Add a *Data/MvcMovieContext.cs* file with the following code:
+Add a *Data/MvcMovieContext.cs* file with the following code: 
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/zDocOnly/MvcMovieContext.cs?name=snippet)]
 
@@ -579,8 +585,6 @@ The automatic creation of these files is known as *scaffolding*.
 
   [!INCLUDE [explains scaffold generated params](~/includes/mvc-intro/model4.md)]
 
- <!-- testing merge issue by removing [!INCLUDE[](~/includes/first-mvc-app/sqlitedev.md)] -->
-
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 * Open a command window in the project directory (The directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files).
@@ -592,8 +596,6 @@ The automatic creation of these files is known as *scaffolding*.
   ```
 
   [!INCLUDE [explains scaffold generated params](~/includes/mvc-intro/model4.md)]
-
- <!-- testing merge issue by removing [!INCLUDE[](~/includes/first-mvc-app/sqlitedev.md)] -->
 
 ---
 
