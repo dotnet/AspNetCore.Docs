@@ -320,7 +320,7 @@ Test the **Create** page. Enter and submit data.
 
 Test the **Edit**, **Details**, and **Delete** pages.
 
-[!INCLUDE[](~/includes/RP/sqlitedev.md)]
+<!--[!INCLUDE[](~/includes/first-mvc-app/sqlitedev.md)] --->
 
 <!-- end of tabs --->
 
