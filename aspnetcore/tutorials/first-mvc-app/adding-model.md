@@ -320,8 +320,6 @@ Test the **Create** page. Enter and submit data.
 
 Test the **Edit**, **Details**, and **Delete** pages.
 
-[!INCLUDE[](~/includes/first-mvc-app/sqlitedev.md)]
-
 <!-- build testing here. the build fails when change or remove lines 323 to 326 --->
 <!-- end of tabs --->
 
@@ -480,7 +478,7 @@ A database context class is needed to coordinate EF Core functionality (Create, 
 
 Create a *Data* folder.
 
-Add a *Data/MvcMovieContext.cs* file with the following code: 
+Add a *Data/MvcMovieContext.cs* file with the following code:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/zDocOnly/MvcMovieContext.cs?name=snippet)]
 
