@@ -320,10 +320,11 @@ Test the **Create** page. Enter and submit data.
 
 Test the **Edit**, **Details**, and **Delete** pages.
 
-<!-- build testing here. the build fails when change or remove lines 323 to 326, removing offending lines for a moment --->
+[!INCLUDE[](~/includes/first-mvc-app/sqlitedev.md)]
+
+<!-- build testing here. the build fails when change or remove lines 323 to 326 --->
 <!-- end of tabs --->
 
-<a name="strongly-typed-models-keyword-label"></a>
 <a name="strongly-typed-models-and-the--keyword"></a>
 
 ## Strongly typed models and the @model keyword
