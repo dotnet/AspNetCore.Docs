@@ -74,7 +74,7 @@ gRPC services can be hosted by all built-in ASP.NET Core servers.
 &dagger;IIS requires .NET 5 and Windows 10 Build 20300.1000 or later.  
 &Dagger;HTTP.sys requires .NET 5 and Windows 10 Build 19529 or later.
 
-The preceding Windows 10 Build versions may require the use of a [Windows Insider](https://insider.windows.com) build.
+The preceding Windows 10 Build versions may require the use of a [Windows Insider build](https://insider.windows.com).
 
 For more information about choosing the right server for an ASP.NET Core app, see <xref:fundamentals/servers/index>.
 
@@ -120,13 +120,13 @@ For more information on enabling HTTP/2 and TLS with Kestrel, see [Kestrel endpo
 
 ## IIS
 
-[Internet Information Services (IIS)](xref:host-and-deploy/iis/index) is a flexible, secure and manageable Web Server for hosting web apps, including ASP.NET Core. .NET 5 and Windows 10 Build 20300.1000 or later are required to host gRPC services with IIS, which may require the use of a [Windows Insider](https://insider.windows.com) build.
+[Internet Information Services (IIS)](xref:host-and-deploy/iis/index) is a flexible, secure and manageable Web Server for hosting web apps, including ASP.NET Core. .NET 5 and Windows 10 Build 20300.1000 or later are required to host gRPC services with IIS, which may require the use of a [Windows Insider build](https://insider.windows.com).
 
 IIS must be configured to use TLS and HTTP/2. For more information, see <xref:host-and-deploy/iis/protocols>.
 
 ## HTTP.sys
 
-[HTTP.sys](xref:fundamentals/servers/httpsys) is a web server for ASP.NET Core that only runs on Windows. .NET 5 and Windows 10 Build 19529 or later are required to host gRPC services with HTTP.sys, which may require the use of a [Windows Insider](https://insider.windows.com) build.
+[HTTP.sys](xref:fundamentals/servers/httpsys) is a web server for ASP.NET Core that only runs on Windows. .NET 5 and Windows 10 Build 19529 or later are required to host gRPC services with HTTP.sys, which may require the use of a [Windows Insider build](https://insider.windows.com).
 
 HTTP.sys must be configured to use TLS and HTTP/2. For more information, see  [HTTP.sys web server HTTP/2 support](xref:fundamentals/servers/httpsys#http2-support).
 
