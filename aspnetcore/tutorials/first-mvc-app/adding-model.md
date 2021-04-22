@@ -579,7 +579,7 @@ The automatic creation of these files is known as *scaffolding*.
 
   [!INCLUDE [explains scaffold generated params](~/includes/mvc-intro/model4.md)]
 
- [!INCLUDE[](~/includes/first-mvc-app/sqlitedev.md)]
+ <!-- testing merge issue by removing [!INCLUDE[](~/includes/first-mvc-app/sqlitedev.md)] -->
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -593,7 +593,7 @@ The automatic creation of these files is known as *scaffolding*.
 
   [!INCLUDE [explains scaffold generated params](~/includes/mvc-intro/model4.md)]
 
- [!INCLUDE[](~/includes/first-mvc-app/sqlitedev.md)]
+ <!-- testing merge issue by removing [!INCLUDE[](~/includes/first-mvc-app/sqlitedev.md)] -->
 
 ---
 
