@@ -320,10 +320,6 @@ Test the **Create** page. Enter and submit data.
 
 Test the **Edit**, **Details**, and **Delete** pages.
 
-### Use SQLite for development, SQL Server for production
-
-When SQLite is
-
 <!-- build testing here. the build fails when change or remove lines 323 to 326, removing offending lines for a moment --->
 <!-- end of tabs --->
 
