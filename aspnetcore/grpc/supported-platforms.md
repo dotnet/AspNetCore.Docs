@@ -56,9 +56,10 @@ All built-in ASP.NET Core servers are supported.
 > * IIS&dagger;
 > * HTTP.sys&Dagger;
 
-&dagger;IIS requires .NET 5 and Windows 10 Build 20241 or later.
-
+&dagger;IIS requires .NET 5 and Windows 10 Build 20300.1000 or later.  
 &Dagger;HTTP.sys requires .NET 5 and Windows 10 Build 19529 or later.
+
+The preceding Windows 10 Build versions may require the use of a [Windows Insider](https://insider.windows.com) build.
 
 For information about configuring ASP.NET Core servers to run gRPC, see <xref:grpc/aspnetcore#server-options>.
 
@@ -94,7 +95,7 @@ The following table lists .NET implementations and their gRPC client support:
 | Universal Windows Platform 10.0.16299        | ❌                | ✔️         |
 | Unity 2018.1                                 | ❌                | ✔️         |
 
-&dagger;.NET Framework requires <xref:System.Net.Http.WinHttpHandler> to be configured and Windows 10 Build 19622 or later.
+&dagger;.NET Framework requires <xref:System.Net.Http.WinHttpHandler> to be configured and Windows 10 Build 19622 or later, which may require the use of a [Windows Insider](https://insider.windows.com) build.
 
 Using `Grpc.Net.Client` on .NET Framework or with gRPC-Web requires additional configuration. For more information, see <xref:grpc/netstandard>.
 
