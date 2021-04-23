@@ -49,7 +49,7 @@ Authentication is responsible for providing the <xref:System.Security.Claims.Cla
 
   * [Authentication scheme](#authentication-scheme)
   * The default authentication scheme, discussed in the next section.
-  * Directly set [HttpContext.User](xref:Microsoft.AspNetCore.Http.HttpContext.User).
+  * Directly set <xref:Microsoft.AspNetCore.Http.HttpContext.User?displayProperty=nameWithType>.
 
 There is no automatic probing of schemes. If the default scheme is not specified, the scheme must be specified in the authorize attribute, otherwise, the following error is thrown:
 
