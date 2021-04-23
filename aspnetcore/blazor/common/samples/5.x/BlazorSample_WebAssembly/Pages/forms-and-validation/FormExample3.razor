@@ -23,7 +23,15 @@
 </EditForm>
 
 @code {
-    private Starship starship = new() { ProductionDate = DateTime.UtcNow };
+    private Starship starship = 
+        new()
+        {
+            Identifier = "NCC-1701",
+            Classification = "Exploration",
+            MaximumAccommodation = 150,
+            IsValidatedDesign = true,
+            ProductionDate = new DateTime(2245, 4, 11)
+        };
     private EditContext editContext;
 
     protected override void OnInitialized()
