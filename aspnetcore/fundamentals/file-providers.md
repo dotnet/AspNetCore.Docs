@@ -77,7 +77,7 @@ Types in the preceding example:
 
 The File Provider can be used to iterate through the directory specified by `applicationRoot` or call `GetFileInfo` to obtain a file's information. Glob patterns can't be passed to the `GetFileInfo` method. The File Provider has no access outside of the `applicationRoot` directory.
 
-The `FileProviderSample` sample app creates the provider in the `Startup.ConfigureServices` method using <xref:Microsoft.Extensions.Hosting.IWebHostEnvironment .ContentRootFileProvider?displayProperty=nameWithType>:
+The `FileProviderSample` sample app creates the provider in the `Startup.ConfigureServices` method using <xref:Microsoft.Extensions.Hosting.IHostEnvironment.ContentRootFileProvider?displayProperty=nameWithType>:
 
 ```csharp
 var physicalProvider = _env.ContentRootFileProvider;
