@@ -40,9 +40,9 @@ The primary interface is <xref:Microsoft.Extensions.FileProviders.IFileProvider>
 * <xref:Microsoft.Extensions.FileProviders.IFileInfo.Length> (in bytes)
 * <xref:Microsoft.Extensions.FileProviders.IFileInfo.LastModified> date
 
-You can read from the file using the <xref:Microsoft.Extensions.FileProviders.IFileInfo.CreateReadStream*?displayProperty=nameWithType> method.
+You can read from the file using the <xref:Microsoft.Extensions.FileProviders.IFileInfo.CreateReadStream%2A?displayProperty=nameWithType> method.
 
-The *FileProviderSample* sample app demonstrates how to configure a File Provider in `Startup.ConfigureServices` for use throughout the app via [dependency injection](xref:fundamentals/dependency-injection).
+The `FileProviderSample` sample app demonstrates how to configure a File Provider in `Startup.ConfigureServices` for use throughout the app via [dependency injection](xref:fundamentals/dependency-injection).
 
 ## File Provider implementations
 
@@ -50,11 +50,11 @@ The following table lists implementations of `IFileProvider`.
 
 | Implementation | Description |
 | -------------- | ----------- |
-| [CompositeFileProvider](#compositefileprovider) | Used to provide combined access to files and directories from one or more other providers. |
-| [ManifestEmbeddedFileProvider](#manifestembeddedfileprovider) | Used to access files embedded in assemblies. |
-| [PhysicalFileProvider](#physicalfileprovider) | Used to access the system's physical files. |
+| [Composite File Provider](#composite-file-provider) | Used to provide combined access to files and directories from one or more other providers. |
+| [Manifest Embedded File Provider](#manifest-embedded-file-provider) | Used to access files embedded in assemblies. |
+| [Physical File Provider](#physical-file-provider) | Used to access the system's physical files. |
 
-### PhysicalFileProvider
+### Physical File Provider
 
 The <xref:Microsoft.Extensions.FileProviders.PhysicalFileProvider> provides access to the physical file system. `PhysicalFileProvider` uses the <xref:System.IO.File?displayProperty=fullName> type (for the physical provider) and scopes all paths to a directory and its children. This scoping prevents access to the file system outside of the specified directory and its children. The most common scenario for creating and using a `PhysicalFileProvider` is to request an `IFileProvider` in a constructor through [dependency injection](xref:fundamentals/dependency-injection).
 
@@ -77,28 +77,28 @@ Types in the preceding example:
 
 The File Provider can be used to iterate through the directory specified by `applicationRoot` or call `GetFileInfo` to obtain a file's information. Glob patterns can't be passed to the `GetFileInfo` method. The File Provider has no access outside of the `applicationRoot` directory.
 
-The *FileProviderSample* sample app creates the provider in the `Startup.ConfigureServices` method using <xref:Microsoft.Extensions.Hosting.IHostingEnvironment.ContentRootFileProvider?displayProperty=nameWithType>:
+The `FileProviderSample` sample app creates the provider in the `Startup.ConfigureServices` method using <xref:Microsoft.Extensions.Hosting.IHostEnvironment.ContentRootFileProvider?displayProperty=nameWithType>:
 
 ```csharp
 var physicalProvider = _env.ContentRootFileProvider;
 ```
 
-### ManifestEmbeddedFileProvider
+### Manifest Embedded File Provider
 
 The <xref:Microsoft.Extensions.FileProviders.ManifestEmbeddedFileProvider> is used to access files embedded within assemblies. The `ManifestEmbeddedFileProvider` uses a manifest compiled into the assembly to reconstruct the original paths of the embedded files.
 
 To generate a manifest of the embedded files:
 
-1. Add the [Microsoft.Extensions.FileProviders.Embedded](https://www.nuget.org/packages/Microsoft.Extensions.FileProviders.Embedded) NuGet package to your project.
-1. Set the `<GenerateEmbeddedFilesManifest>` property to `true`. Specify the files to embed with [\<EmbeddedResource>](/dotnet/core/tools/csproj#default-compilation-includes-in-net-core-projects):
+1. Add the [`Microsoft.Extensions.FileProviders.Embedded`](https://www.nuget.org/packages/Microsoft.Extensions.FileProviders.Embedded) NuGet package to your project.
+1. Set the `<GenerateEmbeddedFilesManifest>` property to `true`. Specify the files to embed with [`<EmbeddedResource>`](/dotnet/core/tools/csproj#default-compilation-includes-in-net-core-projects):
 
     [!code-xml[](file-providers/samples/3.x/FileProviderSample/FileProviderSample.csproj?highlight=5,13)]
 
 Use [glob patterns](#glob-patterns) to specify one or more files to embed into the assembly.
 
-The *FileProviderSample* sample app creates an `ManifestEmbeddedFileProvider` and passes the currently executing assembly to its constructor.
+The `FileProviderSample` sample app creates an `ManifestEmbeddedFileProvider` and passes the currently executing assembly to its constructor.
 
-*Startup.cs*:
+`Startup.cs`:
 
 ```csharp
 var manifestEmbeddedProvider = 
@@ -113,21 +113,21 @@ Additional overloads allow you to:
 
 | Overload | Description |
 | -------- | ----------- |
-| `ManifestEmbeddedFileProvider(Assembly, String)` | Accepts an optional `root` relative path parameter. Specify the `root` to scope calls to <xref:Microsoft.Extensions.FileProviders.IFileProvider.GetDirectoryContents*> to those resources under the provided path. |
+| `ManifestEmbeddedFileProvider(Assembly, String)` | Accepts an optional `root` relative path parameter. Specify the `root` to scope calls to <xref:Microsoft.Extensions.FileProviders.IFileProvider.GetDirectoryContents%2A> to those resources under the provided path. |
 | `ManifestEmbeddedFileProvider(Assembly, String, DateTimeOffset)` | Accepts an optional `root` relative path parameter and a `lastModified` date (<xref:System.DateTimeOffset>) parameter. The `lastModified` date scopes the last modification date for the <xref:Microsoft.Extensions.FileProviders.IFileInfo> instances returned by the <xref:Microsoft.Extensions.FileProviders.IFileProvider>. |
 | `ManifestEmbeddedFileProvider(Assembly, String, String, DateTimeOffset)` | Accepts an optional `root` relative path, `lastModified` date, and `manifestName` parameters. The `manifestName` represents the name of the embedded resource containing the manifest. |
 
-### CompositeFileProvider
+### Composite File Provider
 
 The <xref:Microsoft.Extensions.FileProviders.CompositeFileProvider> combines `IFileProvider` instances, exposing a single interface for working with files from multiple providers. When creating the `CompositeFileProvider`, pass one or more `IFileProvider` instances to its constructor.
 
-In the *FileProviderSample* sample app, a `PhysicalFileProvider` and a `ManifestEmbeddedFileProvider` provide files to a `CompositeFileProvider` registered in the app's service container. The following code is found in the project's `Startup.ConfigureServices` method:
+In the `FileProviderSample` sample app, a `PhysicalFileProvider` and a `ManifestEmbeddedFileProvider` provide files to a `CompositeFileProvider` registered in the app's service container. The following code is found in the project's `Startup.ConfigureServices` method:
 
 [!code-csharp[](file-providers/samples/3.x/FileProviderSample/Startup.cs?name=snippet1)]
 
 ## Watch for changes
 
-The <xref:Microsoft.Extensions.FileProviders.IFileProvider.Watch*?displayProperty=nameWithType> method provides a scenario to watch one or more files or directories for changes. The `Watch` method:
+The <xref:Microsoft.Extensions.FileProviders.IFileProvider.Watch%2A?displayProperty=nameWithType> method provides a scenario to watch one or more files or directories for changes. The `Watch` method:
 
 * Accepts a file path string, which can use [glob patterns](#glob-patterns) to specify multiple files.
 * Returns an <xref:Microsoft.Extensions.Primitives.IChangeToken>.
@@ -135,9 +135,9 @@ The <xref:Microsoft.Extensions.FileProviders.IFileProvider.Watch*?displayPropert
 The resulting change token exposes:
 
 * <xref:Microsoft.Extensions.Primitives.IChangeToken.HasChanged>: A property that can be inspected to determine if a change has occurred.
-* <xref:Microsoft.Extensions.Primitives.IChangeToken.RegisterChangeCallback*>: Called when changes are detected to the specified path string. Each change token only calls its associated callback in response to a single change. To enable constant monitoring, use a <xref:System.Threading.Tasks.TaskCompletionSource`1> (shown below) or recreate `IChangeToken` instances in response to changes.
+* <xref:Microsoft.Extensions.Primitives.IChangeToken.RegisterChangeCallback%2A>: Called when changes are detected to the specified path string. Each change token only calls its associated callback in response to a single change. To enable constant monitoring, use a <xref:System.Threading.Tasks.TaskCompletionSource`1> (shown below) or recreate `IChangeToken` instances in response to changes.
 
-The *WatchConsole* sample app writes a message whenever a *.txt* file in the *TextFiles* directory is modified:
+The `WatchConsole` sample app writes a message whenever a `.txt` file in the `TextFiles` directory is modified:
 
 [!code-csharp[](file-providers/samples/3.x/WatchConsole/Program.cs?name=snippet1)]
 
@@ -155,12 +155,12 @@ Matches anything across multiple directory levels. Can be used to recursively ma
 
 The following table provides common examples of glob patterns.
 
-|Pattern  |Description  |
-|---------|---------|
-|`directory/file.txt`|Matches a specific file in a specific directory.|
-|`directory/*.txt`|Matches all files with *.txt* extension in a specific directory.|
-|`directory/*/appsettings.json`|Matches all *appsettings.json* files in directories exactly one level below the *directory* folder.|
-|`directory/**/*.txt`|Matches all files with a *.txt* extension found anywhere under the *directory* folder.|
+| Pattern                        | Description |
+| ------------------------------ | ----------- |
+| `directory/file.txt`           | Matches a specific file in a specific directory.|
+| `directory/*.txt`              | Matches all files with `.txt` extension in a specific directory.|
+| `directory/*/appsettings.json` | Matches all `appsettings.json` files in directories exactly one level below the `directory` folder.|
+| `directory/**/*.txt`           | Matches all files with a `.txt` extension found anywhere under the `directory` folder.|
 
 ::: moniker-end
 
