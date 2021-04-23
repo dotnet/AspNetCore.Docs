@@ -185,7 +185,7 @@ public void ConfigureServices(IServiceCollection services)
     {
         services.AddHttpsRedirection(options =>
         {
-            options.RedirectStatusCode = StatusCodes.Status308PermanentRedirect;
+            options.RedirectStatusCode = (int) HttpStatusCode.PermanentRedirect;
             options.HttpsPort = 443;
         });
     }
@@ -206,7 +206,7 @@ public void ConfigureServices(IServiceCollection services)
     {
         services.AddHttpsRedirection(options =>
         {
-            options.RedirectStatusCode = StatusCodes.Status308PermanentRedirect;
+            options.RedirectStatusCode = (int) HttpStatusCode.MovedPermanently;
             options.HttpsPort = 443;
         });
     }
