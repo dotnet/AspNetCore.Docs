@@ -1,4 +1,5 @@
 using System;
+using System.Net;
 using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Rewrite;
@@ -23,7 +24,7 @@ namespace RewriteRules
             if (request.Path.Value.EndsWith(".xml", StringComparison.OrdinalIgnoreCase))
             {
                 var response = context.HttpContext.Response;
-                response.StatusCode = StatusCodes.Status301MovedPermanently;
+                response.StatusCode = (int) HttpStatusCode.MovedPermanently;
                 context.Result = RuleResult.EndResponse;
                 response.Headers[HeaderNames.Location] = 
                     "/xmlfiles" + request.Path + request.QueryString;
@@ -86,7 +87,7 @@ namespace RewriteRules
             if (request.Path.Value.EndsWith(_extension, StringComparison.OrdinalIgnoreCase))
             {
                 var response = context.HttpContext.Response;
-                response.StatusCode = StatusCodes.Status301MovedPermanently;
+                response.StatusCode = (int) HttpStatusCode.MovedPermanently;
                 context.Result = RuleResult.EndResponse;
                 response.Headers[HeaderNames.Location] = 
                     _newPath + request.Path + request.QueryString;
