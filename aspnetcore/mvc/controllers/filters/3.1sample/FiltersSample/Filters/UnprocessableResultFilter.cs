@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System;
+using System.Net;
 
 namespace FiltersSample.Filters
 {
@@ -10,11 +11,11 @@ namespace FiltersSample.Filters
         public void OnResultExecuting(ResultExecutingContext context)
         {
             if (context.Result is StatusCodeResult statusCodeResult &&
-                statusCodeResult.StatusCode == 415)
+                statusCodeResult.StatusCode == (int) HttpStatusCode.UnsupportedMediaType)
             {
                 context.Result = new ObjectResult("Can't process this!")
                 {
-                    StatusCode = 422,
+                    StatusCode = (int) HttpStatusCode.UnsupportedMediaType,
                 };
             }
         }

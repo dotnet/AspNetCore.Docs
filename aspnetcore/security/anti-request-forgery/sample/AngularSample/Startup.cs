@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Net;
 using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -61,7 +62,7 @@ public void Configure(IApplicationBuilder app,
                         repository.Add(item);
                     }
 
-                    context.Response.StatusCode = 204;
+                    context.Response.StatusCode = (int) HttpStatusCode.NoContent;
                 }
             }));
         }
