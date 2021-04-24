@@ -141,8 +141,8 @@ public void ConfigureServices(IServiceCollection services)
         .ProtectKeysWithCertificate(
             new X509Certificate2("certificate.pfx", Configuration["MyPasswordKey"));
         .UnprotectKeysWithAnyCertificate(
-            new X509Certificate2("certificate_old_1.pfx", Configuration["MyPasswordKey_1"),
-            new X509Certificate2("certificate_old_2.pfx", Configuration["MyPasswordKey_2"));
+            new X509Certificate2("certificate_old_1.pfx", Configuration["MyPasswordKey_1"]),
+            new X509Certificate2("certificate_old_2.pfx", Configuration["MyPasswordKey_2"]));
 }
 ```
 
