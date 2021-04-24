@@ -11,7 +11,7 @@ uid: blazor/components/index
 ---
 # ASP.NET Core Razor components
 
-Blazor apps are built using *Razor components*. A component is a self-contained portion of user interface (UI) with processing logic to enable dynamic behavior. Components can be nested, reused, and shared among projects.
+Blazor apps are built using *Razor components*. A component is a self-contained portion of user interface (UI) with processing logic to enable dynamic behavior. Components can be nested, reused, shared among projects, and [used in MVC and Razor Pages apps](xref:blazor/components/prerendering-and-integration).
 
 ## Component classes
 
