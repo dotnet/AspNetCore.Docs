@@ -817,9 +817,8 @@ public class Program
         var builder = WebAssemblyHostBuilder.CreateDefault(args);
         builder.RootComponents.Add...;
 
+        // Services that only the client app uses
         builder.Services.AddScoped( ... );
-
-        services.Add...;
 
         ConfigureCommonServices(builder.Services);
 
@@ -828,7 +827,8 @@ public class Program
 
     public static void ConfigureCommonServices(IServiceCollection services)
     {
-        // Common service registrations
+        // Common service registrations that both apps use
+        services.Add...;
     }
 }
 ```
