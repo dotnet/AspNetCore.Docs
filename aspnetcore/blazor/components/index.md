@@ -184,7 +184,7 @@ The namespace of a component authored with Razor is based on the following (in p
 
 The following are **not** supported:
 
-* The `global::` qualification.
+* The [`global::`](dotnet/csharp/language-reference/operators/namespace-alias-qualifier) qualification.
 * Importing components with aliased [`using`](/dotnet/csharp/language-reference/keywords/using-statement) statements. For example, `@using Foo = Bar` isn't supported.
 * Partially-qualified names. For example, you can't add `@using BlazorSample` to a component and then reference the `NavMenu` component in the app's `Shared` folder (`Shared/NavMenu.razor`) with `<Shared.NavMenu></Shared.NavMenu>`.
 
@@ -467,7 +467,7 @@ The code in the preceding example generates a *compiler error* when the app is b
 
 > Component attributes do not support complex content (mixed C# and markup).
 
-To support the assignment of a composed value, use a method, field, or property. The following example performs the concatination of "`Set by `" and an object's property value in the C# method `GetTitle`:
+To support the assignment of a composed value, use a method, field, or property. The following example performs the concatenation of "`Set by `" and an object's property value in the C# method `GetTitle`:
 
 `Pages/ParameterParent3.razor`:
 
