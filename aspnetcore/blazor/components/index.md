@@ -184,7 +184,7 @@ The namespace of a component authored with Razor is based on the following (in p
 
 The following are **not** supported:
 
-* The [`global::`](dotnet/csharp/language-reference/operators/namespace-alias-qualifier) qualification.
+* The [`global::`](/dotnet/csharp/language-reference/operators/namespace-alias-qualifier) qualification.
 * Importing components with aliased [`using`](/dotnet/csharp/language-reference/keywords/using-statement) statements. For example, `@using Foo = Bar` isn't supported.
 * Partially-qualified names. For example, you can't add `@using BlazorSample` to a component and then reference the `NavMenu` component in the app's `Shared` folder (`Shared/NavMenu.razor`) with `<Shared.NavMenu></Shared.NavMenu>`.
 
