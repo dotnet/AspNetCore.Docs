@@ -807,7 +807,7 @@ After following the guidance in one of the Blazor WebAssembly security app topic
 * Prerenders paths for which authorization isn't required.
 * Doesn't prerender paths for which authorization is required.
 
-In the **`Client`** app's `Program` class (`Program.cs`), factor common service registrations into a separate method (for example, `ConfigureCommonServices`):
+In the client (**`Client`**) app's `Program` class (`Program.cs`), factor common service registrations into a separate method (for example, `ConfigureCommonServices`). Common services are those that the developer registers for use by both the client and server (**`Server`**) apps.
 
 ```csharp
 public class Program
@@ -833,7 +833,7 @@ public class Program
 }
 ```
 
-In the server app's `Startup.ConfigureServices`, register the following additional services:
+In the server app's `Startup.ConfigureServices`, register the following additional services and call `ConfigureCommonServices`:
 
 ```csharp
 using Microsoft.AspNetCore.Components.Authorization;
@@ -863,7 +863,7 @@ app.UseEndpoints(endpoints =>
 });
 ```
 
-In the server app, create a `Pages` folder if it doesn't exist. Create a `_Host.cshtml` page inside the server app's `Pages` folder. Paste the contents from the **`Client`** app's `wwwroot/index.html` file into the `Pages/_Host.cshtml` file. Update the file's contents:
+In the server app, create a `Pages` folder if it doesn't exist. Create a `_Host.cshtml` page inside the server app's `Pages` folder. Paste the contents from the client app's `wwwroot/index.html` file into the `Pages/_Host.cshtml` file. Update the file's contents:
 
 ::: moniker range=">= aspnetcore-5.0"
 
