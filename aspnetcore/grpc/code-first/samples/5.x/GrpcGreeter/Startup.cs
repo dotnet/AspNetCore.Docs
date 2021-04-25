@@ -8,6 +8,7 @@ namespace GrpcGreeter
 {
     public class Startup
     {
+        #region snippet
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCodeFirstGrpc();
@@ -27,5 +28,6 @@ namespace GrpcGreeter
                 endpoints.MapGrpcService<GreeterService>();
             });
         }
+        #endregion
     }
 }

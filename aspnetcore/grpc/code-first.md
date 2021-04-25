@@ -34,7 +34,7 @@ The first step to creating a code-first gRPC service is defining the code contra
 * Add a [protobuf-net.Grpc](https://www.nuget.org/packages/protobuf-net.Grpc) package reference.
 * Create service and data contract types.
 
-[!code-csharp[](code-first/snapshot_sample/Contracts.cs)]
+[!code-csharp[](code-first/samples/5.x/Shared/Contracts.cs?name=snippet)]
 
 The preceding code:
 
@@ -54,11 +54,11 @@ To add gRPC code-first service to an ASP.NET Core app:
 
 Create a new `GreeterService.cs` file and implement the `IGreeterService` service interface:
 
-[!code-csharp[](code-first/snapshot_sample/GreeterService.cs?highlight=1)]
+[!code-csharp[](code-first/samples/5.x/GrpcGreeter/Services/GreeterService.cs?name=snippet&highlight=1)]
 
 Update the `Startup.cs` file:
 
-[!code-csharp[](code-first/snapshot_sample/Startup.cs?highlight=3,17)]
+[!code-csharp[](code-first/samples/5.x/GrpcGreeter/Startup.cs?name=snippet&highlight=3,17)]
 
 In the preceding code:
 
@@ -75,7 +75,7 @@ A code-first gRPC client uses the service contract to call gRPC services. To cal
 * Add a reference to the shared code-contract project.
 * Add a [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client) package reference.
 
-[!code-csharp[](code-first/snapshot_sample/Program.cs?highlight=2,4-5)]
+[!code-csharp[](code-first/samples/5.x/GrpcGreeterClient/Program.cs?name=snippet&highlight=2,4-5)]
 
 The preceding code:
 
@@ -85,7 +85,7 @@ The preceding code:
 
 A code-first gRPC client is created from a channel. Just like a regular client, a code-first client uses its [channel configuration](xref:grpc/configuration#configure-client-options).
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/grpc/code-first/sample) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/grpc/code-first/samples/5.x) ([how to download](xref:index#how-to-download-a-sample))
 
 ## Additional resources
 

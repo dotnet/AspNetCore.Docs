@@ -10,6 +10,7 @@ namespace GrpcGreeterClient
     {
         private static async Task Main(string[] args)
         {
+            #region snippet
             using var channel = GrpcChannel.ForAddress("https://localhost:5001");
             var client = channel.CreateGrpcService<IGreeterService>();
 
@@ -17,6 +18,7 @@ namespace GrpcGreeterClient
                 new HelloRequest { Name = "GreeterClient" });
 
             Console.WriteLine($"Greeting: {reply.Message}");
+            #endregion
         }
     }
 }
