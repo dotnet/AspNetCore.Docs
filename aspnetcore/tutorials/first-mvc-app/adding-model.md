@@ -177,18 +177,21 @@ dotnet-aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMo
 
 [!INCLUDE [explains scaffold generated params](~/includes/mvc-intro/model4.md)]
 
-<a name="sqlite-dev"></a>
+<a name="sqlite-dev-vs-mac"></a>
 
 ### Use SQLite for development, SQL Server for production
 
 When SQLite is selected, the template generated code is ready for development. The following code shows how to inject <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment> into `Startup`. `IWebHostEnvironment` is injected so `ConfigureServices` can use SQLite in development and SQL Server in production.
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/StartupDevProd.cs?name=snippet_StartupClass&highlight=3,5,10,16-28)]
+
 ---
 
 <!-- End of tabs                  -->
 
-Scaffolding creates or updates:
+<a name="scaffolding-created"></a>
+
+### What Scaffolding created or updated
 
 * A movies controller: *Controllers/MoviesController.cs*.
 * Razor view files for Create, Delete, Details, Edit, and Index pages: `Views/Movies/\*.cshtml`.
