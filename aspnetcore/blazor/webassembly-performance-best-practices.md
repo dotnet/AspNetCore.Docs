@@ -409,6 +409,133 @@ The corresponding JavaScript code, which can be placed in the `index.html` page 
 
 This technique can be even more important for Blazor Server, since each event invocation involves delivering a message over the network. It's valuable for Blazor WebAssembly because it can greatly reduce the amount of rendering work.
 
+### Avoid rerendering after handling events without state changes
+
+By default, components inherit from <xref:Microsoft.AspNetCore.Components.ComponentBase>, which automatically invokes <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> after the component's event handlers are invoked. In some cases, it might be unnecessary or undesirable to trigger a rerender after an event handler is invoked. For example, an event handler might not modify component state. In these scenarios, the app can leverage the <xref:Microsoft.AspNetCore.Components.IHandleEvent> interface to control the behavior of Blazor's event handling.
+
+To prevent rerenders for all of a component's event handlers, implement <xref:Microsoft.AspNetCore.Components.IHandleEvent> and provide a <xref:Microsoft.AspNetCore.Components.IHandleEvent.HandleEventAsync%2A?displayProperty=nameWithType> task that invokes the event handler without calling <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A>.
+
+In the following example, no event handler added to the component triggers a rerender, so `HandleClick` doesn't result in a rerender when invoked.
+
+`Pages/HandleClick1.razor`:
+
+```razor
+@page "/handle-click-1"
+@implements IHandleEvent
+@using Microsoft.Extensions.Logging
+@inject ILogger<HandleClick1> Logger
+
+<p>
+    Last render DateTime: @dt
+</p>
+
+<button @onclick="HandleClick">
+    Click me (Avoids Rerender)
+</button>
+
+@code {
+    private DateTime dt = DateTime.Now;
+
+    private void HandleClick()
+    {
+        dt = DateTime.Now;
+
+        Logger.LogInformation("This event handler doesn't trigger a rerender.");
+    }
+
+    Task IHandleEvent.HandleEventAsync(
+        EventCallbackWorkItem callback, object arg) => callback.InvokeAsync(arg);
+}
+```
+
+In addition to preventing rerenders after all event handlers in a component, it's possible to prevent rerenders after a single event handler by employing the following utility method.
+
+Add the following `EventUntil` class to a Blazor app. The static actions and functions at the top of the `EventUtil` class provide handlers that cover several combinations of arguments and return types that Blazor uses when handling events.
+
+`EventUtil.cs`:
+
+```csharp
+using System;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components;
+
+public static class EventUtil
+{
+    public static Action AsNonRenderingEventHandler(Action callback)
+        => new SyncReceiver(callback).Invoke;
+    public static Action<TValue> AsNonRenderingEventHandler<TValue>(
+            Action<TValue> callback)
+        => new SyncReceiver<TValue>(callback).Invoke;
+    public static Func<Task> AsNonRenderingEventHandler(Func<Task> callback)
+        => new AsyncReceiver(callback).Invoke;
+    public static Func<TValue, Task> AsNonRenderingEventHandler<TValue>(
+            Func<TValue, Task> callback)
+        => new AsyncReceiver<TValue>(callback).Invoke;
+
+    private record SyncReceiver(Action callback) 
+        : ReceiverBase { public void Invoke() => callback(); }
+    private record SyncReceiver<T>(Action<T> callback) 
+        : ReceiverBase { public void Invoke(T arg) => callback(arg); }
+    private record AsyncReceiver(Func<Task> callback) 
+        : ReceiverBase { public Task Invoke() => callback(); }
+    private record AsyncReceiver<T>(Func<T, Task> callback) 
+        : ReceiverBase { public Task Invoke(T arg) => callback(arg); }
+
+    private record ReceiverBase : IHandleEvent
+    {
+        public Task HandleEventAsync(EventCallbackWorkItem item, object arg) => 
+            item.InvokeAsync(arg);
+    }
+}
+```
+
+Call `EventUtil.AsNonRenderingEventHandler` to call an event handler that doesn't trigger a render when invoked.
+
+In the following example:
+
+* Selecting the first button, which calls `HandleClickRerender`, triggers a rerender.
+* Selecting the second button, which calls `HandleClickWithoutRerender`, doesn't trigger a rerender.
+
+`Pages/HandleClick2.razor`:
+
+```razor
+@page "/handle-click-2"
+@using Microsoft.Extensions.Logging
+@inject ILogger<HandleClick2> Logger
+
+<p>
+    Last render DateTime: @dt
+</p>
+
+<button @onclick="HandleClickRerender">
+    Click me (Rerenders)
+</button>
+
+<button @onclick="EventUtil.AsNonRenderingEventHandler(HandleClickWithoutRerender)">
+    Click me (Avoids Rerender)
+</button>
+
+@code {
+    private DateTime dt = DateTime.Now;
+
+    private void HandleClickRerender()
+    {
+        dt = DateTime.Now;
+
+        Logger.LogInformation("This event handler triggers a rerender.");
+    }
+
+    private void HandleClickWithoutRerender()
+    {
+        dt = DateTime.Now;
+
+        Logger.LogInformatione("This event handler doesn't trigger a rerender.");
+    }
+}
+```
+
+In addition to implementing the <xref:Microsoft.AspNetCore.Components.IHandleEvent> interface, leveraging the other best practices described in this article can also help reduce unwanted renders after events are handled. For example, overriding <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> in child components of the target component can be used to control rerendering.
+
 ## Optimize JavaScript interop speed
 
 Calls between .NET and JavaScript involve some additional overhead because:

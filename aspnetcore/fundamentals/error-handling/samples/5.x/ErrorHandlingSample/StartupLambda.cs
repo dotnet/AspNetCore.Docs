@@ -41,7 +41,7 @@ namespace ErrorHandlingSample
                 {
                     errorApp.Run(async context =>
                     {
-                        context.Response.StatusCode = 500;
+                        context.Response.StatusCode = (int) HttpStatusCode.InternalServerError;;
                         context.Response.ContentType = "text/html";
 
                         await context.Response.WriteAsync("<html lang=\"en\"><body>\r\n");

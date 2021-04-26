@@ -2,7 +2,7 @@ public async Task Invoke(HttpContext httpContext)
 {
     if (httpContext.Request.Path.StartsWithSegments(_path, StringComparison.Ordinal))
     {
-        httpContext.Response.StatusCode = 200;
+        httpContext.Response.StatusCode = (int) HttpStatusCode.OK;
         httpContext.Response.ContentType = "application/json";
         httpContext.Response.ContentLength = _bufferSize;
 

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.DependencyInjection;
 using System.Collections.Generic;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace SignalR_CORS
@@ -73,7 +74,7 @@ namespace SignalR_CORS
                     if (!string.IsNullOrEmpty(origin) && !_allowedOrigins.Contains(origin))
                     {
                         // The origin is not allowed, reject the request
-                        context.Response.StatusCode = StatusCodes.Status403Forbidden;
+                        context.Response.StatusCode = (int) HttpStatusCode.Forbidden;
                         return Task.CompletedTask;
                     }
                 }

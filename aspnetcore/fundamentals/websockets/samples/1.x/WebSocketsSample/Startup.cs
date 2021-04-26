@@ -60,7 +60,7 @@ namespace EchoApp
                     }
                     else
                     {
-                        context.Response.StatusCode = 400;
+                        context.Response.StatusCode = (int) HttpStatusCode.BadRequest;
                     }
                 }
                 else

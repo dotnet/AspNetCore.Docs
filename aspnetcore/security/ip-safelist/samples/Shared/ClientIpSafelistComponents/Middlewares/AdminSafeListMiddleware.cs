@@ -52,7 +52,7 @@ namespace ClientIpSafelistComponents.Middlewares
                 {
                     _logger.LogWarning(
                         "Forbidden Request from Remote IP address: {RemoteIp}", remoteIp);
-                    context.Response.StatusCode = StatusCodes.Status403Forbidden;
+                    context.Response.StatusCode = (int) HttpStatusCode.Forbidden;
                     return;
                 }
             }

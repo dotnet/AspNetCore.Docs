@@ -6,6 +6,7 @@ using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace WebR2C
@@ -41,14 +42,14 @@ namespace WebR2C
                 {
                     if (!context.Request.HasJsonContentType())
                     {
-                        context.Response.StatusCode = StatusCodes.Status415UnsupportedMediaType;
+                        context.Response.StatusCode = (int) HttpStatusCode.UnsupportedMediaType;
                         return;
                     }
 
                     var weather = await context.Request.ReadFromJsonAsync<WeatherForecast>();
                     await UpdateDatabaseAsync(weather);
 
-                    context.Response.StatusCode = StatusCodes.Status202Accepted;
+                    context.Response.StatusCode = (int) HttpStatusCode.Accepted;
                 });
             });
             #endregion

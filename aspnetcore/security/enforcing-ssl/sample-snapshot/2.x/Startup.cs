@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Net;
 
 namespace WebHTTPS
 {
@@ -32,7 +33,7 @@ namespace WebHTTPS
 
             services.AddHttpsRedirection(options =>
             {
-                options.RedirectStatusCode = StatusCodes.Status307TemporaryRedirect;
+                options.RedirectStatusCode = (int) HttpStatusCode.TemporaryRedirect;
                 options.HttpsPort = 5001;
             });
         }

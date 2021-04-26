@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text.Json;
 using System.Threading.Tasks;
 
@@ -63,7 +64,7 @@ namespace Javascript
                     var item = JsonSerializer.Deserialize<TodoItem>(json);
                     repository.Add(item);
 
-                    context.Response.StatusCode = 204;
+                    context.Response.StatusCode = (int) HttpStatusCode.NoContent;
                 });
             });
         }
