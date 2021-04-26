@@ -5,15 +5,15 @@ description: Learn how to use forms and field validation scenarios in Blazor.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/23/2021
+ms.date: 04/26/2021
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/forms-validation
 ---
 # ASP.NET Core Blazor forms and validation
 
-The Blazor framework supports webforms with validation using the <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component and [data annotations](xref:mvc/models/validation).
+The Blazor framework supports webforms with validation using the <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component bound to a model that uses [data annotations](xref:mvc/models/validation).
 
-The following `ExampleModel` type defines validation logic using <xref:System.ComponentModel.DataAnnotations?displayProperty=nameWithType>. The `Name` property is marked required with the <xref:System.ComponentModel.DataAnnotations.RequiredAttribute> and specifies a <xref:System.ComponentModel.DataAnnotations.StringLengthAttribute> maximum string length limit and error message.
+To demonstrate how an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component works with [data annotations](xref:mvc/models/validation) validation, consider the following `ExampleModel` type. The `Name` property is marked required with the <xref:System.ComponentModel.DataAnnotations.RequiredAttribute> and specifies a <xref:System.ComponentModel.DataAnnotations.StringLengthAttribute> maximum string length limit and error message.
 
 `ExampleModel.cs`:
 
@@ -29,7 +29,7 @@ The following `ExampleModel` type defines validation logic using <xref:System.Co
 
 ::: moniker-end
 
-A form is defined using the Blazor framework's <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component. The following Razor component demonstrates typical elements, components, and Razor code to render a webform.
+A form is defined using the Blazor framework's <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component. The following Razor component demonstrates typical elements, components, and Razor code to render a webform using an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component, which is bound to the preceding `ExampleModel` type.
 
 `Pages/FormExample1.razor`:
 
@@ -47,16 +47,16 @@ A form is defined using the Blazor framework's <xref:Microsoft.AspNetCore.Compon
 
 In the preceding `FormExample1` component:
 
-* The form validates user input in the `name` field using the validation defined in the `ExampleModel` type. The model is created in the component's `@code` block and held in a private field (`exampleModel`). The field is assigned to the `Model` attribute of the `<EditForm>` element. More information on binding a form is provided in the [Bind a form](#bind-a-form) section of this article.
-* The <xref:Microsoft.AspNetCore.Components.Forms.InputText> component's `@bind-Value` binds the `exampleModel.Name` model property to the <xref:Microsoft.AspNetCore.Components.Forms.InputText> component's `Value` property. For more information on property binding, see <xref:blazor/components/data-binding#binding-with-component-parameters>.
-* An event handler (`HandleValidSubmit`) is assigned to <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit>. The handler is called if the form passes validation.
+* The model is created in the component's `@code` block and held in a private field (`exampleModel`). The field is assigned to the `Model` attribute of the `<EditForm>` element. More information on binding a form is provided in the [Bind a form](#bind-a-form) section of this article.
+* The <xref:Microsoft.AspNetCore.Components.Forms.InputText> component (`id="name"`) is an input component for editing string values. The `@bind-Value` directive attribute binds the `exampleModel.Name` model property to the <xref:Microsoft.AspNetCore.Components.Forms.InputText> component's `Value` property. For more information on property binding, see <xref:blazor/components/data-binding#binding-with-component-parameters>.
+* An event handler (`HandleValidSubmit`) is assigned to <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit> of the <xref:Microsoft.AspNetCore.Components.Forms.EditForm>. The handler is called if the form passes validation. More information on form submission events is in the [Handle form submission](#handle-form-submission) section.
 * The data annotations validator (<xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component&dagger;) attaches validation support using data annotations:
-  * If the `<input>` form field is left blank when the **`Submit`** button is selected, an error appears in the validation summary (<xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary> component&Dagger;) (`The Name field is required.`) and `HandleValidSubmit` is **not** called.
-  * If the `<input>` form field contains more than ten characters when the **`Submit`** button is selected, an error appears in the validation summary (`Name is too long.`) and `HandleValidSubmit` is **not** called.
+  * If the `<input>` form field is left blank when the **`Submit`** button is selected, an error appears in the validation summary (<xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary> component&Dagger;) ("`The Name field is required.`") and `HandleValidSubmit` is **not** called.
+  * If the `<input>` form field contains more than ten characters when the **`Submit`** button is selected, an error appears in the validation summary ("`Name is too long.`") and `HandleValidSubmit` is **not** called.
   * If the `<input>` form field contains a valid value when the **`Submit`** button is selected, `HandleValidSubmit` is called.
 
-&dagger;The <xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary> component is covered in the [Validation Summary and Validation Message components](#validation-summary-and-validation-message-components) section.  
-&Dagger;The <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component is covered in the [Validator component](#validator-components) section.
+&dagger;The <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component is covered in the [Validator component](#validator-components) section.  
+&Dagger;The <xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary> component is covered in the [Validation Summary and Validation Message components](#validation-summary-and-validation-message-components) section.
 
 ## Handle form submission
 
@@ -68,7 +68,7 @@ The <xref:Microsoft.AspNetCore.Components.Forms.EditForm> provides convenient ev
 
 ## Built-in form components
 
-A set of built-in components are available to receive and validate user input. Inputs are validated when they're changed and when a form is submitted. Available input components are shown in the following table.
+The Blazor framework provides built-in form components to receive and validate user input. Inputs are validated when they're changed and when a form is submitted. Available input components are shown in the following table.
 
 ::: moniker range=">= aspnetcore-5.0"
 
@@ -106,7 +106,7 @@ For more information on the <xref:Microsoft.AspNetCore.Components.Forms.InputFil
 
 All of the input components, including <xref:Microsoft.AspNetCore.Components.Forms.EditForm>, support arbitrary attributes. Any attribute that doesn't match a component parameter is added to the rendered HTML element.
 
-Input components provide default behavior for validating when a field is changed, including updating the field CSS class to reflect the field state. Some components include useful parsing logic. For example, <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601> and <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> handle unparseable values gracefully by registering unparseable values as validation errors. Types that can accept null values also support nullability of the target field (for example, `int?` for a nullable integer).
+Input components provide default behavior for validating when a field is changed, including updating the field CSS class to reflect the field's state as valid or invalid. Some components include useful parsing logic. For example, <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601> and <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> handle unparseable values gracefully by registering unparseable values as validation errors. Types that can accept null values also support nullability of the target field (for example, `int?` for a nullable integer).
 
 ## Bind a form
 
@@ -136,7 +136,7 @@ The following `Starship` type, which is used in several of this article's exampl
 The following form accepts and validates user input using:
 
 * The properties and validation defined in the preceding `Starship` model.
-* Blazor framework [built-in form components](#built-in-form-components).
+* Several of Blazor's [built-in form components](#built-in-form-components).
 
 `Pages/FormExample2.razor`:
 
@@ -152,17 +152,17 @@ The following form accepts and validates user input using:
 
 ::: moniker-end
 
-The <xref:Microsoft.AspNetCore.Components.Forms.EditForm> creates an <xref:Microsoft.AspNetCore.Components.Forms.EditContext> as a [cascading value](xref:blazor/components/cascading-values-and-parameters) for other components in the form that tracks metadata about the edit process, including which fields have been modified and the current validation messages.
+The <xref:Microsoft.AspNetCore.Components.Forms.EditForm> creates an <xref:Microsoft.AspNetCore.Components.Forms.EditContext> based on the assigned `Starship` instance (`Model="@starship"`) as a [cascading value](xref:blazor/components/cascading-values-and-parameters) for other components in the form. The <xref:Microsoft.AspNetCore.Components.Forms.EditContext> tracks metadata about the edit process, including which fields have been modified and the current validation messages. You can also assign an <xref:Microsoft.AspNetCore.Components.Forms.EditContext> directly to an <xref:Microsoft.AspNetCore.Components.Forms.EditForm>, as shown in an upcoming example.
 
-Assign **either** an <xref:Microsoft.AspNetCore.Components.Forms.EditContext> **or** an <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?displayProperty=nameWithType> to an <xref:Microsoft.AspNetCore.Components.Forms.EditForm>. Assignment of both isn't supported and generates a runtime error:
+Assign **either** an <xref:Microsoft.AspNetCore.Components.Forms.EditContext> **or** an <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model> to an <xref:Microsoft.AspNetCore.Components.Forms.EditForm>. Assignment of both isn't supported and generates a runtime error:
 
 > Unhandled exception rendering component: EditForm requires a Model parameter, or an EditContext parameter, but not both.
 
-The preceding `Starfleet Starship Database` form (`FormExample2` component) demonstrated assigning an instance of `Starship` to the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?displayProperty=nameWithType> property of the form. The next example (`FormExample3` component) demonstrates how to assign an <xref:Microsoft.AspNetCore.Components.Forms.EditContext> to a form.
+The preceding `Starfleet Starship Database` form (`FormExample2` component) demonstrated assigning an instance of `Starship` to the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model> parameter of the form. The next example (`FormExample3` component) demonstrates how to assign an <xref:Microsoft.AspNetCore.Components.Forms.EditContext> to a form.
 
 In the following example:
 
-* A shortened version of the preceding `Starfleet Starship Database` form (`FormExample2` component) is used that only accepts a value for the starship's identifier. `ExampleModel` properties receive valid default values when an instance of the `Starship` type is created.
+* A shortened version of the preceding `Starfleet Starship Database` form (`FormExample2` component) is used that only accepts a value for the starship's identifier. The other `Starship` properties receive valid default values when an instance of the `Starship` type is created.
 * The `HandleSubmit` method executes when the **`Submit`** button is selected.
 * The form is validated by calling <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Validate%2A?displayProperty=nameWithType> in the `HandleSubmit` method.
 * Logging is executed depending on the validation result.
@@ -176,13 +176,13 @@ In the following example:
 
 ::: moniker range=">= aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample3.razor)]
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample3.razor?highlight=5)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample3.razor)]
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample3.razor?highlight=5)]
 
 ::: moniker-end
 
@@ -224,7 +224,7 @@ The <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601.DisplayName%2A> pr
 </label>
 ```
 
-The validation summary displays the friendly name:
+The validation summary displays the friendly name when the field's value is invalid:
 
 > The Production Date field must be a date.
 
@@ -310,11 +310,22 @@ Assign a custom template to <xref:Microsoft.AspNetCore.Components.Forms.InputDat
 
 ::: moniker-end
 
+## Data Annotations Validator component and custom validation systems
+
+The <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component attaches validation support using data annotations to the cascaded <xref:Microsoft.AspNetCore.Components.Forms.EditContext>. Enabling support for validation using data annotations requires the use of the component. To use a different validation system than data annotations, replace the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> with a custom implementation. The ASP.NET Core implementations are available for inspection in the reference source: [`DataAnnotationsValidator`](https://github.com/dotnet/AspNetCore/blob/main/src/Components/Forms/src/DataAnnotationsValidator.cs)/[`AddDataAnnotationsValidation`](https://github.com/dotnet/AspNetCore/blob/main/src/Components/Forms/src/EditContextDataAnnotationsExtensions.cs).
+
+[!INCLUDE[](~/blazor/includes/aspnetcore-repo-ref-source-links.md)]
+
+Blazor performs two types of validation:
+
+* *Field validation* is performed when the user tabs out of a field. During field validation, the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component associates all reported validation results with the field.
+* *Model validation* is performed when the user submits the form. During model validation, the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component attempts to determine the field based on the member name that the validation result reports. Validation results that aren't associated with an individual member are associated with the model rather than a field.
+
 ## Validator components
 
 Validator components support form validation by managing a <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore> for a form's <xref:Microsoft.AspNetCore.Components.Forms.EditContext>.
 
-The Blazor framework provides the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component to attach validation support to forms based on [validation attributes (data annotations)](xref:mvc/models/validation#validation-attributes). Create custom validator components to process validation messages for different forms on the same page or the same form at different steps of form processing, for example client-side validation followed by server-side validation. The validator component example shown in this section, `CustomValidation`, is used in the following sections of this article:
+The Blazor framework provides the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component to attach validation support to forms based on [validation attributes (data annotations)](xref:mvc/models/validation#validation-attributes). You can create custom validator components to process validation messages for different forms on the same page or the same form at different steps of form processing (for example, client-side validation followed by server-side validation). The validator component example shown in this section, `CustomValidation`, is used in the following sections of this article:
 
 * [Business logic validation](#business-logic-validation)
 * [Server validation](#server-validation)
@@ -332,7 +343,7 @@ Create a validator component from <xref:Microsoft.AspNetCore.Components.Componen
   * A field changes in the form when the <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnFieldChanged> event is raised. Only the errors for the field are cleared.
   * The `ClearErrors` method is called by developer code. All of the errors are cleared.
 
-`CustomValidation.cs`:
+`CustomValidation.cs` (if used in a test app, change the namespace, `BlazorSample`, to match the app's namespace):
 
 ::: moniker range=">= aspnetcore-5.0"
 
@@ -411,7 +422,9 @@ Place the `Starship` model (`Starship.cs`) into the solution's **`Shared`** proj
 
 To determine the latest non-preview version of the package for the `{VERSION}` placeholder, see the package **Version History** at [NuGet.org for `System.ComponentModel.Annotations`](https://www.nuget.org/packages/System.ComponentModel.Annotations).
 
-In the **`Server`** project, add a controller to process starship validation requests and return failed validation messages. Update the namespaces in the last `using` statement and for the class to match the app. In addition to data annotations validation (client-side and server-side), the controller validates that a value is provided for the ship's description (`Description`) if the user selects the `Defense` ship classification (`Classification`). The validation for the `Defense` ship classification only occurs server-side in the controller because the upcoming form doesn't perform the same validation client-side when the form is submitted to the server.
+In the **`Server`** project, add a controller to process starship validation requests and return failed validation messages. Update the namespaces in the last `using` statement for the **`Shared`** project and the `namespace` for the controller class. In addition to data annotations validation (client-side and server-side), the controller validates that a value is provided for the ship's description (`Description`) if the user selects the `Defense` ship classification (`Classification`).
+
+The validation for the `Defense` ship classification only occurs server-side in the controller because the upcoming form doesn't perform the same validation client-side when the form is submitted to the server. Server-side validation without client-side validation is common in apps that require private business logic validation of user input on the server. For example, private information from data stored for a user might be required to validate user input. Private data obviously can't be sent to the client for client-side validation.
 
 > [!NOTE]
 > The `StarshipValidation` controller in this section uses Microsoft Identity 2.0. The Web API only accepts tokens for users that have the "`API.Access`" scope for this API. Additional customization is required if the API's scope name is different from `API.Access`. For a version of the controller that works with Microsoft Identity 1.0 and ASP.NET Core prior to version 5.0, see an earlier version of this article.
@@ -491,7 +504,7 @@ namespace BlazorSample.Server.Controllers
 ::: moniker range="< aspnetcore-5.0"
 
 > [!NOTE]
-> The `StarshipValidation` controller in this section is appropriate for use with Microsoft Identity 1.0. Additional configuration is required for use with Microsoft Identity 2.0 and ASP.NET Core 5.0 or later. To see a version of the controller for updated versions, see a later version of this article.
+> The `StarshipValidation` controller in this section is appropriate for use with Microsoft Identity 1.0. Additional configuration is required for use with Microsoft Identity 2.0 and ASP.NET Core 5.0 or later. To see a version of the controller for updated versions of these technologies, see a later version of this article.
 >
 > For more information on security, see:
 >
@@ -574,6 +587,9 @@ When a model binding validation error occurs on the server, an [`ApiController`]
 }
 ```
 
+> [!NOTE]
+> To demonstrate the preceding JSON response, you must either disable the form's client-side validation to permit empty field form submission or use a tool to send a request directly to the server API, such as [Fiddler](https://www.telerik.com/fiddler), [Firefox Browser Developer](https://www.mozilla.org/firefox/developer/), or [Postman](https://www.postman.com).
+
 If the server API returns the preceding default JSON response, it's possible for the client to parse the response in developer code to obtain the children of the `errors` node for forms validation error processing. It's inconvenient to write developer code to parse the file. Parsing the JSON manually requires producing a [`Dictionary<string, List<string>>`](xref:System.Collections.Generic.Dictionary`2) of errors after calling <xref:System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsync%2A>. Ideally, the server API should only return the validation errors:
 
 ```json
@@ -587,9 +603,7 @@ If the server API returns the preceding default JSON response, it's possible for
 
 To modify the server API's response to make it only return the validation errors, change the delegate that's invoked on actions that are annotated with <xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute> in `Startup.ConfigureServices`. For the API endpoint (`/StarshipValidation`), return a <xref:Microsoft.AspNetCore.Mvc.BadRequestObjectResult> with the <xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary>. For any other API endpoints, preserve the default behavior by returning the object result with a new <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails>.
 
-Add the <xref:Microsoft.AspNetCore.Mvc?displayProperty=fullName> namespace to the `Startup.cs` file of the **`Server`** app.
-
-At the top of `Startup.cs` of the **`Server`** app, add the following `using` statement:
+Add the <xref:Microsoft.AspNetCore.Mvc?displayProperty=fullName> namespace to the top of the `Startup.cs` file in the **`Server`** app:
 
 ```csharp
 using Microsoft.AspNetCore.Mvc;
@@ -622,7 +636,7 @@ In the **`Client`** project, add the `CustomValidation` component shown in the [
 
 In the **`Client`** project, the `Starfleet Starship Database` form is updated to show server validation errors with help of the `CustomValidation` component. When the server API returns validation messages, they're added to the `CustomValidation` component's <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore>. The errors are available in the form's <xref:Microsoft.AspNetCore.Components.Forms.EditContext> for display by the form's validation summary.
 
-In the following `FormExample5` component, update the namespace of the **`Shared`** project (`@using BlazorSample.Shared`) to the shared project's namespace.
+In the following `FormExample5` component, update the namespace of the **`Shared`** project (`@using BlazorSample.Shared`) to the shared project's namespace. Note that the form requires authorization, so the user must be signed into the app to navigate to the form.
 
 `Pages/FormExample5.razor`:
 
@@ -770,7 +784,7 @@ In the following `FormExample5` component, update the namespace of the **`Shared
 
 Use the <xref:Microsoft.AspNetCore.Components.Forms.InputText> component to create a custom component that uses the `input` event instead of the `change` event. This results in a validation of a field on each keystroke.
 
-The following example uses the same `ExampleModel` class as the first example at the top of this article.
+The following example uses the `ExampleModel` class.
 
 `ExampleModel.cs`:
 
@@ -808,13 +822,13 @@ The `CustomInputText` component can be used anywhere <xref:Microsoft.AspNetCore.
 
 ::: moniker range=">= aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample6.razor?highlight=10)]
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample6.razor?highlight=9)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample6.razor?highlight=10)]
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample6.razor?highlight=9)]
 
 ::: moniker-end
 
@@ -822,13 +836,23 @@ The `CustomInputText` component can be used anywhere <xref:Microsoft.AspNetCore.
 
 ::: moniker range=">= aspnetcore-5.0"
 
-Add the following `enums` to the app. Create a new file to hold the `enums` or add the `enums` to the `Starship.cs` file. Make the `enums` accessible to the `Starship` model (for example, `using static ComponentEnums;`) and the `Starfleet Starship Database` form (for example, `@using static ComponentEnums`):
+The example in this section is based on the `Starfleet Starship Database` form of the [Bind a form](#bind-a-form) section of this article.
+
+Add the following [`enum` types](/dotnet/csharp/language-reference/language-specification/enums) to the app. Create a new file to hold them or add them to the `Starship.cs` file.
 
 ```csharp
-public enum Manufacturer { SpaceX, NASA, ULA, VirginGalactic, Unknown }
-public enum Color { ImperialRed, SpacecruiserGreen, StarshipBlue, VoyagerOrange }
-public enum Engine { Ion, Plasma, Fusion, Warp }
+public class ComponentEnums
+{
+    public enum Manufacturer { SpaceX, NASA, ULA, VirginGalactic, Unknown }
+    public enum Color { ImperialRed, SpacecruiserGreen, StarshipBlue, VoyagerOrange }
+    public enum Engine { Ion, Plasma, Fusion, Warp }
+}
 ```
+
+Make the `enums` accessible to the:
+
+* `Starship` model in `Starship.cs` (for example, `using static ComponentEnums;` if the `enums` class is named `ComponentEnums`).
+* `Starfleet Starship Database` form (for example, `@using static ComponentEnums` if the enums class is named `ComponentEnums`).
 
 Use <xref:Microsoft.AspNetCore.Components.Forms.InputRadio%601> components with the <xref:Microsoft.AspNetCore.Components.Forms.InputRadioGroup%601> component to create a radio button group. In the following example, properties are added to the `Starship` model described in the [Bind a form](#bind-a-form) section:
 
@@ -848,7 +872,10 @@ public Engine? Engine { get; set; } = null;
 Update the `Starfleet Starship Database` form (`FormExample2` component) from the [Bind a form](#bind-a-form) section. Add the components to produce:
 
 * A radio button group for the ship manufacturer.
-* A nested radio button group for ship color and engine.
+* A nested radio button group for engine and ship color.
+
+> [!NOTE]
+> Nested radio button groups aren't often used in forms because they can result in a disorganized layout of form controls that confuses users. However, there are cases when they make sense in UI design, such as in the following example that pairs recommendations for two user inputs, ship engine and ship color. One engine and one color are required by the form's validation, the form's layout in nested <xref:Microsoft.AspNetCore.Components.Forms.InputRadioGroup%601>s indicates paired recommendations to the user, but the user can combine any engine with any color to pass validation and submit the form.
 
 ```razor
 <p>
@@ -863,25 +890,25 @@ Update the `Starfleet Starship Database` form (`FormExample2` component) from th
         }
     </InputRadioGroup>
 </p>
-
 <p>
-    Select one engine and one color:<br>
+    Select one engine and one color. Recommendations are paired but any 
+    combination of engine and color is allowed:<br>
     <InputRadioGroup Name="engine" @bind-Value="starship.Engine">
         <InputRadioGroup Name="color" @bind-Value="starship.Color">
             <InputRadio Name="engine" Value="Engine.Ion" />
             Engine: Ion<br>
+            <InputRadio Name="color" Value="Color.ImperialRed" />
+            Color: Imperial Red<br><br>
             <InputRadio Name="engine" Value="Engine.Plasma" />
             Engine: Plasma<br>
+            <InputRadio Name="color" Value="Color.SpacecruiserGreen" />
+            Color: Spacecruiser Green<br><br>
             <InputRadio Name="engine" Value="Engine.Fusion" />
             Engine: Fusion<br>
-            <InputRadio Name="engine" Value="Engine.Warp" /> 
-            Engine: Warp<br>
-            <InputRadio Name="color" Value="Color.ImperialRed" />
-            Color: Imperial Red<br>
-            <InputRadio Name="color" Value="Color.SpacecruiserGreen" />
-            Color: Spacecruiser Green<br>
             <InputRadio Name="color" Value="Color.StarshipBlue" />
-            Color: Starship Blue<br>
+            Color: Starship Blue<br><br>
+            <InputRadio Name="engine" Value="Engine.Warp" />
+            Engine: Warp<br>
             <InputRadio Name="color" Value="Color.VoyagerOrange" />
             Color: Voyager Orange
         </InputRadioGroup>
@@ -948,12 +975,12 @@ The following `RadioButtonExample` component uses the preceding `InputRadio` com
 `Pages/RadioButtonExample.razor`:
 
 ```razor
-@page "/form-example-7"
+@page "/radio-button-example"
 @using System.ComponentModel.DataAnnotations
 @using Microsoft.Extensions.Logging
 @inject ILogger<RadioButtonExample> Logger
 
-<h1>Radio Button Group Test</h1>
+<h1>Radio Button Example</h1>
 
 <EditForm Model="@model" OnValidSubmit="@HandleValidSubmit">
     <DataAnnotationsValidator />
@@ -1016,18 +1043,7 @@ The Blazor framework doesn't automatically handle `null` to empty string convers
 
 ::: moniker-end
 
-## Validation support
-
-The <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component attaches validation support using data annotations to the cascaded <xref:Microsoft.AspNetCore.Components.Forms.EditContext>. Enabling support for validation using data annotations requires this explicit gesture. To use a different validation system than data annotations, replace the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> with a custom implementation. The ASP.NET Core implementations are available for inspection in the reference source: [`DataAnnotationsValidator`](https://github.com/dotnet/AspNetCore/blob/main/src/Components/Forms/src/DataAnnotationsValidator.cs)/[`AddDataAnnotationsValidation`](https://github.com/dotnet/AspNetCore/blob/main/src/Components/Forms/src/EditContextDataAnnotationsExtensions.cs).
-
-[!INCLUDE[](~/blazor/includes/aspnetcore-repo-ref-source-links.md)]
-
-Blazor performs two types of validation:
-
-* *Field validation* is performed when the user tabs out of a field. During field validation, the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component associates all reported validation results with the field.
-* *Model validation* is performed when the user submits the form. During model validation, the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component attempts to determine the field based on the member name that the validation result reports. Validation results that aren't associated with an individual member are associated with the model rather than a field.
-
-### Validation Summary and Validation Message components
+## Validation Summary and Validation Message components
 
 The <xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary> component summarizes all validation messages, which is similar to the [Validation Summary Tag Helper](xref:mvc/views/working-with-forms#the-validation-summary-tag-helper):
 
@@ -1057,7 +1073,7 @@ Control the style of validation messages in the app's stylesheet (`wwwroot/css/a
 }
 ```
 
-### Custom validation attributes
+## Custom validation attributes
 
 To ensure that a validation result is correctly associated with a field when using a [custom validation attribute](xref:mvc/models/validation#custom-attributes), pass the validation context's <xref:System.ComponentModel.DataAnnotations.ValidationContext.MemberName> when creating the <xref:System.ComponentModel.DataAnnotations.ValidationResult>.
 
@@ -1085,17 +1101,17 @@ public class CustomValidator : ValidationAttribute
 
 ::: moniker range=">= aspnetcore-5.0"
 
-## Custom validation class attributes
+## Custom validation CSS class attributes
 
-Custom validation class names are useful when integrating with CSS frameworks, such as [Bootstrap](https://getbootstrap.com/).
+Custom validation CSS class attributes are useful when integrating with CSS frameworks, such as [Bootstrap](https://getbootstrap.com/).
 
-The following example uses the same `ExampleModel` class as the first example at the top of this article.
+The following example uses the `ExampleModel` class.
 
 `ExampleModel.cs`:
 
 [!code-csharp[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/ExampleModel.cs)]
 
-To specify custom validation class names, start by providing CSS styles for custom validation. In the following example, valid (`validField`) and invalid (`invalidField`) styles are specified.
+To specify custom validation CSS class attributes, start by providing CSS styles for custom validation. In the following example, valid (`validField`) and invalid (`invalidField`) styles are specified.
 
 `wwwroot/css/app.css` (Blazor WebAssembly) or `wwwroot/css/site.css` (Blazor Server):
 
@@ -1109,88 +1125,77 @@ To specify custom validation class names, start by providing CSS styles for cust
 }
 ```
 
-Create a class derived from `FieldCssClassProvider` that checks for field validation messages and applies the appropriate valid or invalid style.
+Create a class derived from <xref:Microsoft.AspNetCore.Components.Forms.FieldCssClassProvider> that checks for field validation messages and applies the appropriate valid or invalid style.
 
 `CustomFieldClassProvider.cs`:
 
-```csharp
-using System.Linq;
-using Microsoft.AspNetCore.Components.Forms;
-
-public class CustomFieldClassProvider : FieldCssClassProvider
-{
-    public override string GetFieldCssClass(EditContext editContext, 
-        in FieldIdentifier fieldIdentifier)
-    {
-        var isValid = !editContext.GetValidationMessages(fieldIdentifier).Any();
-
-        return isValid ? "validField" : "invalidField";
-    }
-}
-```
+[!code-csharp[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/CustomFieldClassProvider.cs?highlight=11)]
 
 Set the class on the form's <xref:Microsoft.AspNetCore.Components.Forms.EditContext> instance.
 
 `Pages/FormExample7.razor`:
 
-```razor
-@page "/form-example-7"
-@using Microsoft.Extensions.Logging
-@inject ILogger<FormExample7> Logger
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample7.razor?highlight=21)]
 
-<EditForm Model="@exampleModel" OnValidSubmit="@HandleValidSubmit">
-    <DataAnnotationsValidator />
-    <ValidationSummary />
+The preceding example checks the validity of all form fields and applies a style to each field. If the form should only apply custom styles to a subset of the fields, make `CustomFieldClassProvider` apply styles conditionally. The following `CustomFieldClassProvider2` example only applies a style to the `Name` field. If other fields were present with field names not matching `Name`, `string.Empty` is returned, and no style is applied.
 
-    <InputText id="name" @bind-Value="exampleModel.Name" />
+`CustomFieldClassProvider2.cs`:
 
-    <button type="submit">Submit</button>
-</EditForm>
+[!code-csharp[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/CustomFieldClassProvider2.cs?highlight=9,16)]
 
-@code {
-    private EditContext editContext;
-    private ExampleModel exampleModel = new();
-
-    protected override void OnInitialized()
-    {
-        editContext = new(exampleModel);
-        editContext.SetFieldCssClassProvider(new CustomFieldClassProvider());
-    }
-
-    private void HandleValidSubmit()
-    {
-        Logger.LogInformation("HandleValidSubmit called");
-
-        // Process the valid form
-    }
-}
-```
-
-The preceding example checks the validity of all form fields and applies a style to each field. If the form should only apply custom styles to a subset of the fields, make `CustomFieldClassProvider` apply styles conditionally. The following example only applies a style to the `Identifier` field.
-
-`CustomFieldClassProvider.cs`:
+Add an additional property to `ExampleModel`, for example:
 
 ```csharp
-public class CustomFieldClassProvider : FieldCssClassProvider
-{
-    public override string GetFieldCssClass(EditContext editContext,
-        in FieldIdentifier fieldIdentifier)
-    {
-        if (fieldIdentifier.FieldName == "Identifier")
-        {
-            var isValid = !editContext.GetValidationMessages(fieldIdentifier).Any();
-
-            return isValid ? "validField" : "invalidField";
-        }
-
-        return string.Empty;
-    }
-}
+[StringLength(10, ErrorMessage = "Description is too long.")]
+public string Description { get; set; } 
 ```
+
+Add the `Description` to the `ExampleForm7` component's form:
+
+```razor
+<InputText id="description" @bind-Value="exampleModel.Description" />
+```
+
+Update the `EditContext` instance in the component's `OnInitialized` method to use the alternative field CSS class provider:
+
+```csharp
+editContext.SetFieldCssClassProvider(new CustomFieldClassProvider2());
+```
+
+Because a CSS validation class isn't applied to the `Description` field (`id="description"`), it isn't styled. However, field validation runs normally. If more than 10 characters are provided, the validation summary indicates the error:
+
+> Description is too long.
+
+In the following example:
+
+* The custom CSS style is applied to the `Name` field.
+* Any other fields apply logic similar to Blazor's default logic and using Blazor's default field CSS validation styles, `modified` with `valid` or `invalid`. Note that for the default styles, you don't need to add them to the app's stylesheet if the app is based on a Blazor project template. For apps not based on a Blazor project template, the default styles can be added to the app's stylesheet:
+
+  ```css
+  .valid.modified:not([type=checkbox]) {
+      outline: 1px solid #26b050;
+  }
+
+  .invalid {
+      outline: 1px solid red;
+  }
+  ```
+
+`CustomFieldClassProvider3.cs`:
+
+[!code-csharp[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/CustomFieldClassProvider3.cs?highlight=17-24)]
+
+Update the `EditContext` instance in the component's `OnInitialized` method to use the preceding field CSS class provider:
+
+```csharp
+editContext.SetFieldCssClassProvider(new CustomFieldClassProvider3());
+```
+
+The `Name` field uses the app's custom validation CSS styles. The `Description` field uses logic similar to Blazor's logic and Blazor's default field CSS validation styles.
 
 ::: moniker-end
 
-### Blazor data annotations validation package
+## Blazor data annotations validation package
 
 The [`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) is a package that fills validation experience gaps using the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. The package is currently *experimental*.
 
@@ -1199,13 +1204,13 @@ The [`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.n
 
 ::: moniker range="< aspnetcore-5.0"
 
-### `[CompareProperty]` attribute
+## `[CompareProperty]` attribute
 
 The <xref:System.ComponentModel.DataAnnotations.CompareAttribute> doesn't work well with the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component because it doesn't associate the validation result with a specific member. This can result in inconsistent behavior between field-level validation and when the entire model is validated on a submit. The [`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) *experimental* package introduces an additional validation attribute, `ComparePropertyAttribute`, that works around these limitations. In a Blazor app, `[CompareProperty]` is a direct replacement for the [`[Compare]` attribute](xref:System.ComponentModel.DataAnnotations.CompareAttribute).
 
 ::: moniker-end
 
-### Nested models, collection types, and complex types
+## Nested models, collection types, and complex types
 
 Blazor provides support for validating form input using data annotations with the built-in <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator>. However, the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> only validates top-level properties of the model bound to the form that aren't collection- or complex-type properties.
 
@@ -1279,101 +1284,33 @@ public class ShipDescription
 }
 ```
 
-### Enable the submit button based on form validation
+## Enable the submit button based on form validation
 
-To enable and disable the submit button based on form validation:
+To enable and disable the submit button based on form validation, the following example:
 
-* Use the form's <xref:Microsoft.AspNetCore.Components.Forms.EditContext> to assign the model when the component is initialized.
-* Validate the form in the context's <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnFieldChanged> callback to enable and disable the submit button.
-* Implement <xref:System.IDisposable> and unsubscribe the event handler in the `Dispose` method. For more information, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable>.
+* Uses a shortened version of the preceding `Starfleet Starship Database` form (`FormExample2` component) that only accepts a value for the ship's identifier. The other `Starship` properties receive valid default values when an instance of the `Starship` type is created.
+* Uses the form's <xref:Microsoft.AspNetCore.Components.Forms.EditContext> to assign the model when the component is initialized.
+* Validates the form in the context's <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnFieldChanged> callback to enable and disable the submit button.
+* Implements <xref:System.IDisposable> and unsubscribes the event handler in the `Dispose` method. For more information, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable>.
 
 > [!NOTE]
 > When using an <xref:Microsoft.AspNetCore.Components.Forms.EditContext>, don't also assign a <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model> to the <xref:Microsoft.AspNetCore.Components.Forms.EditForm>.
 
+`Pages/FormExample8.razor`:
+
 ::: moniker range=">= aspnetcore-5.0"
 
-```razor
-@implements IDisposable
-
-<EditForm EditContext="@editContext">
-    <DataAnnotationsValidator />
-    <ValidationSummary />
-
-    ...
-
-    <button type="submit" disabled="@formInvalid">Submit</button>
-</EditForm>
-
-@code {
-    private Starship starship = new() { ProductionDate = DateTime.UtcNow };
-    private bool formInvalid = true;
-    private EditContext editContext;
-
-    protected override void OnInitialized()
-    {
-        editContext = new(starship);
-        editContext.OnFieldChanged += HandleFieldChanged;
-    }
-
-    private void HandleFieldChanged(object sender, FieldChangedEventArgs e)
-    {
-        formInvalid = !editContext.Validate();
-        StateHasChanged();
-    }
-
-    public void Dispose()
-    {
-        editContext.OnFieldChanged -= HandleFieldChanged;
-    }
-}
-```
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample8.razor)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-```razor
-@implements IDisposable
-
-<EditForm EditContext="@editContext">
-    <DataAnnotationsValidator />
-    <ValidationSummary />
-
-    ...
-
-    <button type="submit" disabled="@formInvalid">Submit</button>
-</EditForm>
-
-@code {
-    private Starship starship = new Starship() { ProductionDate = DateTime.UtcNow };
-    private bool formInvalid = true;
-    private EditContext editContext;
-
-    protected override void OnInitialized()
-    {
-        editContext = new Starship(starship);
-        editContext.OnFieldChanged += HandleFieldChanged;
-    }
-
-    private void HandleFieldChanged(object sender, FieldChangedEventArgs e)
-    {
-        formInvalid = !editContext.Validate();
-        StateHasChanged();
-    }
-
-    public void Dispose()
-    {
-        editContext.OnFieldChanged -= HandleFieldChanged;
-    }
-}
-```
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample8.razor)]
 
 ::: moniker-end
 
-In the preceding example, set `formInvalid` to `false` if:
-
-* The form is preloaded with valid default values.
-* You want the submit button enabled when the form loads.
+If a form isn't preloaded with valid values and you wish to disable the **`Submit`** button on form load, set `formInvalid` to `true`.
 
 A side effect of the preceding approach is that a validation summary (<xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary> component) is populated with invalid fields after the user interacts with any one field. This scenario can be addressed in either of the following ways:
 

@@ -141,9 +141,9 @@ Blazor events now support the `ontoggle` DOM event. For more information, see <x
 
 Use the `FocusAsync` convenience method on element references to set the UI focus to that element. For more information, see <xref:blazor/components/event-handling#focus-an-element>.
 
-### Custom validation class attributes
+### Custom validation CSS class attributes
 
-Custom validation class names are useful when integrating with CSS frameworks, such as Bootstrap. For more information, see <xref:blazor/forms-validation#custom-validation-class-attributes>.
+Custom validation CSS class attributes are useful when integrating with CSS frameworks, such as Bootstrap. For more information, see <xref:blazor/forms-validation#custom-validation-css-class-attributes>.
 
 ### IAsyncDisposable support
 

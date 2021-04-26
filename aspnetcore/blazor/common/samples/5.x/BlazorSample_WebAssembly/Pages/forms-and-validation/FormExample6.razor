@@ -1,5 +1,4 @@
 @page "/form-example-6"
-@using System.ComponentModel.DataAnnotations;
 @using Microsoft.Extensions.Logging
 @inject ILogger<FormExample6> Logger
 
@@ -24,12 +23,5 @@
         Logger.LogInformation("HandleValidSubmit called");
 
         // Process the valid form
-    }
-
-    public class ExampleModel
-    {
-        [Required]
-        [StringLength(10, ErrorMessage = "Name is too long.")]
-        public string Name { get; set; }
     }
 }
