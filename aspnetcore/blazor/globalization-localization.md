@@ -238,4 +238,5 @@ The following component shows an example of how to perform the initial redirecti
 
 ## Additional resources
 
+* [Set the app base path](xref:blazor/host-and-deploy/index#app-base-path)
 * <xref:fundamentals/localization>
