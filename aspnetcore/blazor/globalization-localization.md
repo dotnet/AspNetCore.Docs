@@ -231,7 +231,7 @@ The following component shows an example of how to perform the initial redirecti
         var query = $"?culture={Uri.EscapeDataString(culture)}&" +
             $"redirectUri={Uri.EscapeDataString(uri)}";
 
-        NavigationManager.NavigateTo("/Culture/SetCulture" + query, forceLoad: true);
+        NavigationManager.NavigateTo("Culture/SetCulture" + query, forceLoad: true);
     }
 }
 ```
