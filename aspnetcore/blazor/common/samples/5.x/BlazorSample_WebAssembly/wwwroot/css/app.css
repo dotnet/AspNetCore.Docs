@@ -30,6 +30,14 @@ a, .btn-link {
     color: red;
 }
 
+.validField {
+    border-color: lawngreen;
+}
+
+.invalidField {
+    background-color: tomato;
+}
+
 #blazor-error-ui {
     background: lightyellow;
     bottom: 0;

@@ -6,7 +6,7 @@ using TodoApi.Models;
 
 namespace TodoApi
 {
-    public class Startup2
+    public class Startup3
     {
         #region snippet_ConfigureServices
         public void ConfigureServices(IServiceCollection services)

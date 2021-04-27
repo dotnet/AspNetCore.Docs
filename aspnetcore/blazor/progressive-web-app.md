@@ -93,7 +93,7 @@ To obtain static assets, use **one** of the following approaches:
   dotnet new blazorwasm -o MyBlazorPwa --pwa -f netcoreapp3.1
   ```
 
-* Navigate to the ASP.NET Core GitHub repository at the following URL, which links to `main` branch reference source and assets. Select the release that you're working with from the **Switch branches or tags** drop-down list that applies to your app.
+* Navigate to the ASP.NET Core GitHub repository at the following URL, which links to `main` branch reference source and assets. Select the release that you're working with from the **Switch branches or tags** dropdown list that applies to your app.
 
   [Blazor WebAssembly project template `wwwroot` folder (dotnet/aspnetcore GitHub repository `main` branch)](https://github.com/dotnet/aspnetcore/tree/main/src/ProjectTemplates/Web.ProjectTemplates/content/ComponentsWebAssembly-CSharp/Client/wwwroot)
 
@@ -116,7 +116,7 @@ To obtain static assets, use **one** of the following approaches:
   [Blazor WebAssembly project template `wwwroot` folder (dotnet/aspnetcore GitHub repository `release 3.1` branch)](https://github.com/dotnet/aspnetcore/tree/release/3.1/src/ProjectTemplates/ComponentsWebAssembly.ProjectTemplates/content/ComponentsWebAssembly-CSharp/Client/wwwroot)
 
   > [!NOTE]
-  > The URL for Blazor WebAssembly project template changed after the release of ASP.NET Core 3.1. Reference assets for any release are available from the ASP.NET Core reference source. Select the release that you're working with from the **Switch branches or tags** drop-down list that applies to your app.
+  > The URL for Blazor WebAssembly project template changed after the release of ASP.NET Core 3.1. Reference assets for any release are available from the ASP.NET Core reference source. Select the release that you're working with from the **Switch branches or tags** dropdown list that applies to your app.
   >
   > [Blazor WebAssembly project template `wwwroot` folder (dotnet/aspnetcore GitHub repository `main` branch)](https://github.com/dotnet/aspnetcore/tree/main/src/ProjectTemplates/Web.ProjectTemplates/content/ComponentsWebAssembly-CSharp/Client/wwwroot)
   >

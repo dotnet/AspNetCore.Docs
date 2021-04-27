@@ -540,6 +540,7 @@ The <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationS
 
 ## Additional resources
 
+* [Microsoft identity platform documentation](/azure/active-directory/develop/)
 * <xref:security/index>
 * <xref:security/authentication/windowsauth>
 * [Build a custom version of the Authentication.MSAL JavaScript library](xref:blazor/security/webassembly/additional-scenarios#build-a-custom-version-of-the-authenticationmsal-javascript-library)
