@@ -453,23 +453,23 @@
             - name: CascadingValue
               href: blazor/components/cascading-values-and-parameters.md#cascadingvalue-component
             - name: InputCheckbox
-              href: blazor/forms-validation.md#built-in-forms-components
+              href: blazor/forms-validation.md#built-in-form-components
             - name: InputDate
-              href: blazor/forms-validation.md#built-in-forms-components
+              href: blazor/forms-validation.md#built-in-form-components
             - name: InputFile
               uid: blazor/file-uploads
             - name: InputNumber
-              href: blazor/forms-validation.md#built-in-forms-components
+              href: blazor/forms-validation.md#built-in-form-components
             - name: InputRadio
-              href: blazor/forms-validation.md#built-in-forms-components
+              href: blazor/forms-validation.md#built-in-form-components
             - name: InputRadioGroup
-              href: blazor/forms-validation.md#built-in-forms-components
+              href: blazor/forms-validation.md#built-in-form-components
             - name: InputSelect
-              href: blazor/forms-validation.md#built-in-forms-components
+              href: blazor/forms-validation.md#built-in-form-components
             - name: InputText
-              href: blazor/forms-validation.md#built-in-forms-components
+              href: blazor/forms-validation.md#built-in-form-components
             - name: InputTextArea
-              href: blazor/forms-validation.md#built-in-forms-components
+              href: blazor/forms-validation.md#built-in-form-components
             - name: LayoutView
               href: blazor/layouts.md#apply-a-layout-to-arbitrary-content-layoutview-component
             - name: MainLayout
