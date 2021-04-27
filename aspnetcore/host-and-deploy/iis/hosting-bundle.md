@@ -64,7 +64,7 @@ To obtain an earlier version of the installer:
 
 After the Hosting Bundle is installed, a manual IIS restart may be required. For example, the `dotnet` CLI tooling (command) might not exist on the PATH for running IIS worker processes.
 
-To manually stop and start IIS, execute the following commands in an elevated command shell:
+To manually restart IIS, stop the Windows Process Activation Service (WAS) and then restart the World Wide Web Publishing Service (W3SVC). Execute the following commands in an elevated command shell:
 
 ```console
 net stop was /y
