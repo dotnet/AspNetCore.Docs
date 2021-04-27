@@ -231,11 +231,12 @@ The following component shows an example of how to perform the initial redirecti
         var query = $"?culture={Uri.EscapeDataString(culture)}&" +
             $"redirectUri={Uri.EscapeDataString(uri)}";
 
-        NavigationManager.NavigateTo("Culture/SetCulture" + query, forceLoad: true);
+        NavigationManager.NavigateTo("/Culture/SetCulture" + query, forceLoad: true);
     }
 }
 ```
 
 ## Additional resources
 
+* [Set the app base path](xref:blazor/host-and-deploy/index#app-base-path)
 * <xref:fundamentals/localization>
