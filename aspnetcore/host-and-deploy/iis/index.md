@@ -334,15 +334,14 @@ To obtain an earlier version of the installer:
    * `OPT_NO_SHAREDFX=1`: Skip installing the ASP.NET Shared Framework (ASP.NET runtime). Used when the server only hosts [self-contained deployments (SCD)](/dotnet/core/deploying/#self-contained-deployments-scd).
    * `OPT_NO_X86=1`: Skip installing x86 runtimes. Use this parameter when you know that you won't be hosting 32-bit apps. If there's any chance that you will host both 32-bit and 64-bit apps in the future, don't use this parameter and install both runtimes.
    * `OPT_NO_SHARED_CONFIG_CHECK=1`: Disable the check for using an IIS Shared Configuration when the shared configuration (`applicationHost.config`) is on the same machine as the IIS installation. *Only available for ASP.NET Core 2.2 or later Hosting Bundler installers.* For more information, see <xref:host-and-deploy/aspnet-core-module#aspnet-core-module-with-an-iis-shared-configuration>.
-1. Restart the system or execute the following commands in a command shell:
+1. Restarting IIS picks up a change to the system PATH, which is an environment variable, made by the installer. To restart the web server, stop the Windows Process Activation Service (WAS) and then restart the World Wide Web Publishing Service (W3SVC). Restart the system **or** execute the following commands in an elevated command shell:
 
    ```console
    net stop was /y
    net start w3svc
    ```
-   Restarting IIS picks up a change to the system PATH, which is an environment variable, made by the installer.
 
-ASP.NET Core doesn't adopt roll-forward behavior for patch releases of shared framework packages. After upgrading the shared framework by installing a new hosting bundle, restart the system or execute the following commands in a command shell:
+ASP.NET Core doesn't adopt roll-forward behavior for patch releases of shared framework packages. After upgrading the shared framework by installing a new hosting bundle, restart the system **or** execute the following commands in an elevated command shell:
 
 ```console
 net stop was /y
