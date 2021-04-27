@@ -60,7 +60,7 @@ In the preceding `FormExample1` component:
 
 ## Binding a form
 
-An <xref:Microsoft.AspNetCore.Components.Forms.EditForm> creates an <xref:Microsoft.AspNetCore.Components.Forms.EditContext> based on the assigned model instance as a [cascading value](xref:blazor/components/cascading-values-and-parameters) for other components in the form. The <xref:Microsoft.AspNetCore.Components.Forms.EditContext> tracks metadata about the edit process, including which fields have been modified and the current validation messages. Either an <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?displayProperty=nameWithType> or an <xref:Microsoft.AspNetCore.Components.Forms.EditContext?displayProperty=nameWithType> can bind a form to underlying data.
+An <xref:Microsoft.AspNetCore.Components.Forms.EditForm> creates an <xref:Microsoft.AspNetCore.Components.Forms.EditContext> based on the assigned model instance as a [cascading value](xref:blazor/components/cascading-values-and-parameters) for other components in the form. The <xref:Microsoft.AspNetCore.Components.Forms.EditContext> tracks metadata about the edit process, including which fields have been modified and the current validation messages. Either an <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?displayProperty=nameWithType> or an <xref:Microsoft.AspNetCore.Components.Forms.EditForm.EditContext?displayProperty=nameWithType> can bind a form to underlying data.
 
 ::: moniker range=">= aspnetcore-5.0"
 
@@ -74,7 +74,7 @@ Assignment to <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?display
 }
 ```
 
-Assignment to <xref:Microsoft.AspNetCore.Components.Forms.EditContext?displayProperty=nameWithType>:
+Assignment to <xref:Microsoft.AspNetCore.Components.Forms.EditForm.EditContext?displayProperty=nameWithType>:
 
 ```razor
 <EditForm EditContext="@editContext" ...>
@@ -104,7 +104,7 @@ Assignment to <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?display
 }
 ```
 
-Assignment to <xref:Microsoft.AspNetCore.Components.Forms.EditContext?displayProperty=nameWithType>:
+Assignment to <xref:Microsoft.AspNetCore.Components.Forms.EditForm.EditContext?displayProperty=nameWithType>:
 
 ```razor
 <EditForm EditContext="@editContext" ...>
@@ -122,7 +122,7 @@ Assignment to <xref:Microsoft.AspNetCore.Components.Forms.EditContext?displayPro
 
 ::: moniker-end
 
-Assign **either** an <xref:Microsoft.AspNetCore.Components.Forms.EditContext> **or** a <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model> to an <xref:Microsoft.AspNetCore.Components.Forms.EditForm>. Assignment of both isn't supported and generates a runtime error:
+Assign **either** an <xref:Microsoft.AspNetCore.Components.Forms.EditForm.EditContext> **or** a <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model> to an <xref:Microsoft.AspNetCore.Components.Forms.EditForm>. Assignment of both isn't supported and generates a runtime error:
 
 > Unhandled exception rendering component: EditForm requires a Model parameter, or an EditContext parameter, but not both.
 
@@ -1362,7 +1362,7 @@ To enable and disable the submit button based on form validation, the following 
 * Implements <xref:System.IDisposable> and unsubscribes the event handler in the `Dispose` method. For more information, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable>.
 
 > [!NOTE]
-> When using an <xref:Microsoft.AspNetCore.Components.Forms.EditContext>, don't also assign a <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model> to the <xref:Microsoft.AspNetCore.Components.Forms.EditForm>.
+> When assigning to the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.EditContext?displayProperty=nameWithType>, don't also assign a <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?displayProperty=nameWithType> to the <xref:Microsoft.AspNetCore.Components.Forms.EditForm>.
 
 `Pages/FormExample8.razor`:
 
@@ -1411,9 +1411,9 @@ A side effect of the preceding approach is that a validation summary (<xref:Micr
 
 > InvalidOperationException: EditForm requires a Model parameter, or an EditContext parameter, but not both.
 
-Confirm that the <xref:Microsoft.AspNetCore.Components.Forms.EditForm> has a <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model> **or** <xref:Microsoft.AspNetCore.Components.Forms.EditContext>. Don't use both for the same form.
+Confirm that the <xref:Microsoft.AspNetCore.Components.Forms.EditForm> assigns a <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model> **or** an <xref:Microsoft.AspNetCore.Components.Forms.EditForm.EditContext>. Don't use both for the same form.
 
-When assigning a <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model> to the form, confirm that the model type is instantiated, as the following example shows:
+When assigning to <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model>, confirm that the model type is instantiated, as the following example shows:
 
 ::: moniker range=">= aspnetcore-5.0"
 
