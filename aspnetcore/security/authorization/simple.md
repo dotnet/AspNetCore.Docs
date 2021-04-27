@@ -73,7 +73,7 @@ The following code limits access to the `LoginModel` Razor Page to authenticated
 
 ```csharp
 [Authorize]
-public class LoginModel : PageModel
+public class LogoutModel : PageModel
 {
     public async Task OnGetAsync()
     {
