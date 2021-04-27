@@ -21,45 +21,45 @@ HTTP Logging is a middleware that logs information about HTTP requests and HTTP 
 HTTP Logging ***can reduce the performance of an app***, especially when logging the request and response bodies. Consider performance when choosing the fields to log.
 
 > [!WARNING]
-> HTTP Logging can potentially log personally identifiable information (PII). Consider this risk to avoid logging sensitive information.
+> HTTP Logging can potentially log personally identifiable information (PII). Consider the risk and avoid logging sensitive information.
 
-## Enabling HTTP Logging
+## Enabling HTTP logging
 
-HTTP Logging is enabled with `UseHttpLogging`, which add HTTP logging middleware.
+HTTP Logging is enabled with `UseHttpLogging`, which adds HTTP logging middleware.
 
-[!code-csharp[](samples/6.x/Startup.cs?name=snippet)]
+[!code-csharp[](samples/6.x/Startup.cs?name=snippet&highlight=3)]
 
-By default, HTTP Logging will log common properties (path, query, status-code) and headers for requests and responses. These logs will be logged as a single message at `LogLevel.Information`.
+By default, HTTP Logging logs common properties such as path, query, status-code, and headers for requests and responses. The output is logged as a single message at `LogLevel.Information`.
 
 ![Sample request output](_static/requestlog.png)
 
-## HTTP Logging Options
+## HTTP Logging options
 
-To configure the HTTP logging middleware, call `AddHttpLogging()` as part of the `ConfigureServices`.
+To configure the HTTP logging middleware, call `AddHttpLogging` in `ConfigureServices`.
 
 [!code-csharp[](samples/6.x/Startup.cs?name=configureservices)]
 
-### LoggingFields
+### `LoggingFields`
 
-`HttpLoggingOptions.LoggingFields` is an enum flag which configures which part of the request and response to log. LoggingFields defaults to `RequestPropertiesAndHeaders | ResponsePropertiesAndHeaders`.
+`HttpLoggingOptions.LoggingFields` is an enum flag that configures specific parts of the request and response to log. `LoggingFields` defaults to `RequestPropertiesAndHeaders | ResponsePropertiesAndHeaders`.
 
 [!code-csharp[](samples/6.x/Startup.cs?name=configureservices&highlight=6)]
 
-| Flag | Description | Value |
+| Flag | Flag for logging the HTTP | Value |
 | ---- | ----------- | :---: |
 | None | No logging. | 0x0 |
-| RequestPath | Flag for logging the HTTP Request Path, which includes both the <see cref="HttpRequest.Path"/> and <see cref="HttpRequest.PathBase"/>. | 0x1 |
-| RequestQuery | Flag for logging the HTTP Request <see cref="HttpRequest.QueryString"/>. | 0x2 |
-| RequestProtocol | Flag for logging the HTTP Request <see cref="HttpRequest.Protocol"/>. | 0x4 |
-| RequestMethod | Flag for logging the HTTP Request <see cref="HttpRequest.Method"/>. | 0x8 |
-| RequestScheme | Flag for logging the HTTP Request <see cref="HttpRequest.Scheme"/>. | 0x10 |
-| ResponseStatusCode | Flag for logging the HTTP Response <see cref="HttpResponse.StatusCode"/>. | 0x20 |
-| RequestHeaders | Flag for logging the HTTP Request <see cref="HttpRequest.Headers"/>. Request Headers are logged as soon as the middleware is invoked. Headers are redacted by default with the character '[Redacted]' unless specified in the <see cref="HttpLoggingOptions.RequestHeaders"/>. | 0x40 |
-| ResponseHeaders | Flag for logging the HTTP Response <see cref="HttpResponse.Headers"/>. Response Headers are logged when the <see cref="HttpResponse.Body"/> is written to or when <see cref="IHttpResponseBodyFeature.StartAsync(System.Threading.CancellationToken)"/> is called. Headers are redacted by default with the character '[Redacted]' unless specified in the <see cref="HttpLoggingOptions.ResponseHeaders"/>. | 0x80 |
-| RequestTrailers | Flag for logging the HTTP Request <see cref="IHttpRequestTrailersFeature.Trailers"/>. Request Trailers are currently not logged. | 0x100 |
-| ResponseTrailers | Flag for logging the HTTP Response <see cref="IHttpResponseTrailersFeature.Trailers"/>. Response Trailers are currently not logged. | 0x200 |
-| RequestBody | Flag for logging the HTTP Request <see cref="HttpRequest.Body"/>.Logging the request body has performance implications, as it requires buffering the entire request body up to <see cref="HttpLoggingOptions.RequestBodyLogLimit"/>. | 0x400 |
-| ResponseBody | Flag for logging the HTTP Response <see cref="HttpResponse.Body"/>. Logging the response body has performance implications, as it requires buffering the entire response body up to <see cref="HttpLoggingOptions.ResponseBodyLogLimit"/>. | 0x800 |
+| RequestPath | Request Path, which includes both the <xref:Microsoft.AspNetCore.Http.HttpRequest.Path"/> and <xref:Microsoft.AspNetCore.Http.HttpRequest.PathBase"/>. | 0x1 |
+| RequestQuery |  Request <xref:Microsoft.AspNetCore.Http.HttpRequest.QueryString> | 0x2 |
+| RequestProtocol |  Request <xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol"/>. | 0x4 |
+| RequestMethod |  Request <xref:Microsoft.AspNetCore.Http.HttpRequest.Method"/>. | 0x8 |
+| RequestScheme |  Request <xref:Microsoft.AspNetCore.Http.HttpRequest.Scheme"/>. | 0x10 |
+| ResponseStatusCode |  Response <xref:Microsoft.AspNetCore.Http.HttpResponse.StatusCode"/>. | 0x20 |
+| RequestHeaders |  Request <xref:Microsoft.AspNetCore.Http.HttpRequest.Headers"/>. Request Headers are logged as soon as the middleware is invoked. Headers are redacted by default with the character '[Redacted]' unless specified in the <xref:Microsoft.AspNetCore.Http.HttpLoggingOptions.RequestHeaders"/>. | 0x40 |
+| ResponseHeaders |  Response <xref:Microsoft.AspNetCore.Http.HttpResponse.Headers"/>. Response Headers are logged when the <xref:Microsoft.AspNetCore.Http.HttpResponse..Body"/> is written to or when <xref:Microsoft.AspNetCore.Http.Features.IHttpResponseBodyFeature.StartAsync%2A> is called. Headers are redacted by default with the character '[Redacted]' unless specified in the <see cref="HttpLoggingOptions.ResponseHeaders"/>. | 0x80 |
+| RequestTrailers |  Request <see cref="IHttpRequestTrailersFeature.Trailers"/>. Request Trailers are currently not logged. | 0x100 |
+| ResponseTrailers |  Response <see cref="IHttpResponseTrailersFeature.Trailers"/>. Response Trailers are currently not logged. | 0x200 |
+| RequestBody |  Request <xref:Microsoft.AspNetCore.Http.HttpRequest.Body"/>.Logging the request body has performance implications, as it requires buffering the entire request body up to <see cref="HttpLoggingOptions.RequestBodyLogLimit"/>. | 0x400 |
+| ResponseBody |  Response <xref:Microsoft.AspNetCore.Http.HttpResponse..Body"/>. Logging the response body has performance implications, as it requires buffering the entire response body up to <see cref="HttpLoggingOptions.ResponseBodyLogLimit"/>. | 0x800 |
 | RequestProperties | Flag for logging a collection of HTTP Request properties,including <see cref="RequestPath"/>, <see cref="RequestQuery"/>, <see cref="RequestProtocol"/>, <see cref="RequestMethod"/>, and <see cref="RequestScheme"/>. | `RequestPath | RequestQuery | RequestProtocol | RequestMethod | RequestScheme` |
 | RequestPropertiesAndHeaders | Flag for logging HTTP Request properties and headers. Includes <see cref="RequestProperties"/> and <see cref="RequestHeaders"/>. | `RequestProperties | RequestHeaders` |
 | ResponsePropertiesAndHeaders | Flag for logging HTTP Response properties and headers. Includes <see cref="ResponseStatusCode"/> and <see cref="ResponseHeaders"/>. | `ResponseStatusCode | ResponseHeaders` |
