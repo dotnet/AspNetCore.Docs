@@ -1,0 +1,78 @@
+@page "/file-upload-1"
+
+<h3>Upload Files</h3>
+
+<p>
+    <label>
+        Max file size:
+        <input type="number" @bind="maxFileSize" />
+    </label>
+</p>
+
+<p>
+    <label>
+        Max allowed files:
+        <input type="number" @bind="maxAllowedFiles" />
+    </label>
+</p>
+
+<p>
+    <label>
+        Upload up to @maxAllowedFiles of up to @maxFileSize bytes:
+        <InputFile OnChange="@LoadFiles" multiple />
+    </label>
+</p>
+
+<p>@exceptionMessage</p>
+
+@if (isLoading)
+{
+    <p>Loading...</p>
+}
+
+<ul>
+    @foreach (var (file, content) in loadedFiles)
+    {
+        <li>
+            <ul>
+                <li>Name: @file.Name</li>
+                <li>Last modified: @file.LastModified.ToString()</li>
+                <li>Size (bytes): @file.Size</li>
+                <li>Content type: @file.ContentType</li>
+                <li>Content: @content</li>
+            </ul>
+        </li>
+    }
+</ul>
+
+@code {
+    private Dictionary<IBrowserFile, string> loadedFiles = new();
+    private long maxFileSize = 1024 * 15;
+    private int maxAllowedFiles = 3;
+    private bool isLoading;
+    string exceptionMessage;
+
+    private async Task LoadFiles(InputFileChangeEventArgs e)
+    {
+        isLoading = true;
+        loadedFiles.Clear();
+        exceptionMessage = string.Empty;
+
+        try
+        {
+            foreach (var file in e.GetMultipleFiles(maxAllowedFiles))
+            {
+                using var fileContent = 
+                    new StreamContent(file.OpenReadStream(maxFileSize));
+
+                loadedFiles.Add(file, await fileContent.ReadAsStringAsync());
+            }
+        }
+        catch (Exception ex)
+        {
+            exceptionMessage = ex.Message;
+        }
+
+        isLoading = false;
+    }
+}
