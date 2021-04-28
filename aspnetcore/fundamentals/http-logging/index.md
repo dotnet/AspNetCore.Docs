@@ -18,7 +18,7 @@ HTTP Logging is a middleware that logs information about HTTP requests and HTTP 
 * Common properties
 * Headers
 * Body
-* HTTP response information.
+* HTTP response information
 
 HTTP Logging is valuable in several scenarios to:
 
@@ -83,13 +83,13 @@ To configure the HTTP logging middleware, call `AddHttpLogging` in `ConfigureSer
 
 ### `ResponseHeaders`
 
-`ResponseHeaders` are a set of HTTP Request Headers that are allowed to be logged. Header values are only logged for header names that are in this collection.
+`ResponseHeaders` are a set of HTTP Response Headers that are allowed to be logged. Header values are only logged for header names that are in this collection.
 
 [!code-csharp[](samples/6.x/Startup.cs?name=configureservices&highlight=8)]
 
 ### `MediaTypeOptions`
 
-MediaTypeOptions provides configuration for selecting which encoding to use for a specific media type. 
+`MediaTypeOptions` provides configuration for selecting which encoding to use for a specific media type. 
 
 [!code-csharp[](samples/6.x/Startup.cs?name=configureservices&highlight=9)]
 
