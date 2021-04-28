@@ -63,6 +63,7 @@ In the PMC, run the following command:
 ```powershell
 Install-Package Microsoft.EntityFrameworkCore.SqlServer
 Install-Package Microsoft.VisualStudio.Web.CodeGeneration.Utils
+ 
 ```
 
 The preceding commands add:
@@ -151,7 +152,7 @@ dotnet-aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMo
 
 [!INCLUDE [explains scaffold generated params](~/includes/mvc-intro/model4.md)]
 
-<a name="sqlite-dev"></a>
+<a name="sqlite-dev-vsc"></a>
 
 ### Use SQLite for development, SQL Server for production
 
@@ -263,11 +264,12 @@ Use the EF Core [Migrations](xref:data/ef-mvc/migrations) feature to create the 
 
 From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Console** .
 
-In the Package Manager Console (PMC), enter the following commands one at a time:
+In the Package Manager Console (PMC), enter the following commands:
 
 ```powershell
 Add-Migration InitialCreate
 Update-Database
+ 
 ```
 
 * `Add-Migration InitialCreate`: Generates a *Migrations/{timestamp}_InitialCreate.cs* migration file. The `InitialCreate` argument is the migration name. Any name can be used, but by convention, a name is selected that describes the migration. Because this is the first migration, the generated class contains code to create the database schema. The database schema is based on the model specified in the `MvcMovieContext` class.
