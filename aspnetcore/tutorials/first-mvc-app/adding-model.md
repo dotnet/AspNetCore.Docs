@@ -192,7 +192,7 @@ When SQLite is selected, the template generated code is ready for development. T
 
 <a name="scaffolding-created"></a>
 
-### What Scaffolding created or updated
+Scaffolding creates:
 
 * A movies controller: *Controllers/MoviesController.cs*.
 * Razor view files for Create, Delete, Details, Edit, and Index pages: `Views/Movies/\*.cshtml`.
