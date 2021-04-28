@@ -67,32 +67,32 @@ To configure the HTTP logging middleware, call `AddHttpLogging` in `ConfigureSer
 | Response | Flag for logging the entire HTTP Response. Includes `ResponsePropertiesAndHeaders` and `ResponseBody`. Logging the response body has performance implications, as it requires buffering the entire response body up to `HttpLoggingOptions.ResponseBodyLogLimit`. | `ResponseStatusCode | ResponseHeaders | ResponseBody` |
 | All | Flag for logging both the HTTP Request and Response. Includes `Request` and `Response`. Logging the request and response body has performance implications, as it requires buffering the entire request and response body up to the `HttpLoggingOptions.RequestBodyLogLimit` and `HttpLoggingOptions.ResponseBodyLogLimit`. | `Request | Response` |
 
-### RequestHeaders
+### `RequestHeaders`
 
-RequestHeaders are a set of HTTP Request Headers that are allowed to be logged. Header values will only be logged for header names that are in this collection.
+`RequestHeaders` are a set of HTTP Request Headers that are allowed to be logged. Header values are only logged for header names that are in this collection.
 
 [!code-csharp[](samples/6.x/Startup.cs?name=configureservices&highlight=7)]
 
-### ResponseHeaders
+### `ResponseHeaders`
 
-ResponseHeaders are a set of HTTP Request Headers that are allowed to be logged. Header values will only be logged for header names that are in this collection.
+`ResponseHeaders` are a set of HTTP Request Headers that are allowed to be logged. Header values are only logged for header names that are in this collection.
 
 [!code-csharp[](samples/6.x/Startup.cs?name=configureservices&highlight=8)]
 
-### MediaTypeOptions
+### `MediaTypeOptions`
 
 MediaTypeOptions provides configuration for selecting which encoding to use for a specific media type. 
 
 [!code-csharp[](samples/6.x/Startup.cs?name=configureservices&highlight=9)]
 
-### RequestBodyLogLimit
+### `RequestBodyLogLimit`
 
-Maximum request body size to log (in bytes). Defaults to 32 KB.
+Maximum request body size to log, in bytes. Defaults to 32 KB.
 
 [!code-csharp[](samples/6.x/Startup.cs?name=configureservices&highlight=10)]
 
-### ResponseBodyLogLimit
+### `ResponseBodyLogLimit`
 
-Maximum response body size to log (in bytes). Defaults to 32 KB.
+Maximum response body size to log, in bytes. Defaults to 32 KB.
 
 [!code-csharp[](samples/6.x/Startup.cs?name=configureservices&highlight=11)]
