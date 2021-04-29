@@ -99,7 +99,7 @@ The following example further demonstrates multiple file upload in a component. 
 * <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.ContentType>
 
 > [!WARNING]
-> Never trust the values of the preceding properties, especially the <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.Name> property for display in the UI. Treat all user-supplied data as a significant security risk to the app and network. For more information, see <xref:mvc/models/file-uploads#security-considerations>.
+> Never trust the values of the preceding properties, especially the <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.Name> property for display in the UI. Treat all user-supplied data as a significant security risk to the app, server, and network. For more information, see <xref:mvc/models/file-uploads#security-considerations>.
 
 ## Upload files to a server
 
@@ -131,6 +131,9 @@ The following `UploadResult` class in the **`Shared`** project maintains the res
 The following `UploadResult` class is placed in the client project and in the web API project to maintain the result of an uploaded file. When a file fails to upload on the server, an error code is returned in `ErrorCode` for display to the user. A safe stored file name is generated on the server for each file and returned to the client in `StoredFileName` for display. Files are keyed between the client and server using the unsafe/untrusted file name in `FileName`.
 
 ::: zone-end
+
+> [!NOTE]
+> A security best practice for production apps is to avoid sending error messages to clients that might reveal sensitive information about an app, server, or network to users. Providing detailed error messages can aid a malicious user in devising attacks on an app, server, or network. The example code in this section only sends back an error code number (`int`) for display by the component in the client-side app if a server-side error occurs. If an ordinary user requires assistance, they provide the error code to support personnel for support ticket resolution without ever knowing the exact cause of the error.
 
 `UploadResult.cs`:
 
