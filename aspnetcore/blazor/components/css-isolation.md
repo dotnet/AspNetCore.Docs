@@ -45,7 +45,7 @@ h1 {
 
 ## CSS isolation bundling
 
-CSS isolation occurs at build time. During this process, Blazor rewrites CSS selectors to match markup rendered by the component. These rewritten CSS styles are bundled and produced as a static asset at `{ASSEMBLY NAME}.styles.css`, where the placeholder `{ASSEMBLY NAME}` is the referenced name of the package or product's assembly.
+CSS isolation occurs at build time. During this process, Blazor rewrites CSS selectors to match markup rendered by the component. These rewritten CSS styles are bundled and produced as a static asset at `{ASSEMBLY NAME}.styles.css`, where the placeholder `{ASSEMBLY NAME}` is the referenced name of the package or project's assembly.
 
 These static files are referenced from the root path of the app by default. In the app, reference the bundled file by inspecting the reference inside the `<head>` tag of the generated HTML:
 
