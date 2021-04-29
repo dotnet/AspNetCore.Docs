@@ -31,7 +31,7 @@
 }
 
 <ul>
-    @foreach (var (file, content) in loadedFiles)
+    @foreach (var file in loadedFiles)
     {
         <li>
             <ul>
@@ -39,20 +39,19 @@
                 <li>Last modified: @file.LastModified.ToString()</li>
                 <li>Size (bytes): @file.Size</li>
                 <li>Content type: @file.ContentType</li>
-                <li>Content: @content</li>
             </ul>
         </li>
     }
 </ul>
 
 @code {
-    private Dictionary<IBrowserFile, string> loadedFiles = new();
+    private List<IBrowserFile> loadedFiles = new();
     private long maxFileSize = 1024 * 15;
     private int maxAllowedFiles = 3;
     private bool isLoading;
     string exceptionMessage;
 
-    private async Task LoadFiles(InputFileChangeEventArgs e)
+    private void LoadFiles(InputFileChangeEventArgs e)
     {
         isLoading = true;
         loadedFiles.Clear();
@@ -62,10 +61,7 @@
         {
             foreach (var file in e.GetMultipleFiles(maxAllowedFiles))
             {
-                using var fileContent = 
-                    new StreamContent(file.OpenReadStream(maxFileSize));
-
-                loadedFiles.Add(file, await fileContent.ReadAsStringAsync());
+                loadedFiles.Add(file);
             }
         }
         catch (Exception ex)
