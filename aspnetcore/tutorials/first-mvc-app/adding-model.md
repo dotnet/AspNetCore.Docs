@@ -3,8 +3,8 @@ title: Part 4, add a model to an ASP.NET Core MVC app
 author: rick-anderson
 description: Part 4 of tutorial series on ASP.NET Core MVC.
 ms.author: riande
-ms.date: 02/01/2021
-no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+ms.date: 04/29/2021
+no-loc: [appsettings.json, "Create", "Read", "Update", "Delete", "Edit", "Details", "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-mvc-app/adding-model
 ms.custom: contperf-fy21q3
 ---
@@ -58,11 +58,12 @@ From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Co
 
 ![PMC menu](~/tutorials/first-mvc-app/adding-model/_static/pmc5.png)
 
+<!-- When https://dev.azure.com/devdiv/DevDiv/_workitems/edit/1320544 is fixed, we can remove the following install package instruction for Microsoft.EntityFrameworkCore.Design  -->
+
 In the PMC, run the following command:
 
 ```powershell
-Install-Package Microsoft.EntityFrameworkCore.SqlServer
-Install-Package Microsoft.VisualStudio.Web.CodeGeneration.Utils
+Install-Package Microsoft.EntityFrameworkCore.Design
  
 ```
 
@@ -195,7 +196,7 @@ When SQLite is selected, the template generated code is ready for development. T
 Scaffolding creates:
 
 * A movies controller: *Controllers/MoviesController.cs*.
-* Razor view files for Create, Delete, Details, Edit, and Index pages: `Views/Movies/\*.cshtml`.
+* Razor view files for Create, Delete, Details, Edit, and Index pages: `Views/Movies/*.cshtml`.
 * A database context class: *Data/MvcMovieContext.cs*.
 
 The automatic creation of these files is known as *scaffolding*.
@@ -206,7 +207,7 @@ The scaffolded pages can't be used yet because the database doesn't exist. Runni
 
 ### Examine the generated database context class and registration
 
-A database context class is needed to coordinate EF Core functionality (Create, Read, Update, Delete) for the `Movie` model. The database context is derived from [Microsoft.EntityFrameworkCore.DbContext](xref:Microsoft.EntityFrameworkCore.DbContext) and specifies the entities to include in the data model.
+A database context class is needed to coordinate EF Core functionality (Create, Read, Update and Delete) for the `Movie` model. The database context is derived from [Microsoft.EntityFrameworkCore.DbContext](xref:Microsoft.EntityFrameworkCore.DbContext) and specifies the entities to include in the data model.
 
 Scaffolding creates the *Data/MvcMovieContext.cs* database context class:
 
@@ -333,22 +334,22 @@ SqliteException: SQLite Error 1: 'no such table: Movie'.
 
 ---
 
+## Dependency injection in the controller
+
+Open the *Controllers/MoviesController.cs* file and examine the constructor:
+
+<!-- l.. Make copy of Movies controller (or use the old one as I did in the 3.0 upgrade) because we comment out the initial index method and update it later  -->
+
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Controllers/MC1.cs?name=snippet_1)]
+
+The constructor uses [Dependency Injection](xref:fundamentals/dependency-injection) to inject the database context (`MvcMovieContext`) into the controller. The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.
+
 Test the **Create** page. Enter and submit data.
 
 > [!NOTE]
 > You may not be able to enter decimal commas in the `Price` field. To support [jQuery validation](https://jqueryvalidation.org/) for non-English locales that use a comma (",") for a decimal point and for non US-English date formats, the app must be globalized. For globalization instructions, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/4076#issuecomment-326590420).
 
 Test the **Edit**, **Details**, and **Delete** pages.
-
-<a name="sqlite-dev"></a>
-
-### Use SQLite for development, SQL Server for production
-
-When SQLite is selected, the template generated code is ready for development. The following code shows how to inject <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment> into `Startup`. `IWebHostEnvironment` is injected so `ConfigureServices` can use SQLite in development and SQL Server in production.
-
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/StartupDevProd.cs?name=snippet_StartupClass&highlight=3,5,10,16-28)]
-
-<!-- end of tabs --->
 
 <a name="strongly-typed-models-and-the--keyword"></a>
 
@@ -540,7 +541,7 @@ The name of the connection string is passed in to the context by calling a metho
 
 <a name="cs"></a>
 
-## Add a database connection string
+## Examine the database connection string
 
 Add a connection string to the *appsettings.json* file:
 
