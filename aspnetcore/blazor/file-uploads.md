@@ -173,12 +173,13 @@ The following `FileUpload2` component in the **`Client`** project:
 * Permits users to upload files from the client.
 * Displays the untrusted/unsafe file name provided by the client in the UI. The untrusted/unsafe file name is automatically HTML-encoded by Razor for safe display in the UI.
 
-  **Don't trust file names supplied by clients for other uses**, such as:
-
-  * Saving the file to a file system or service.
-  * Display in UIs that don't encode file names automatically or via developer code.
-
-  For more information on security considerations when uploading files to a server, see <xref:mvc/models/file-uploads#security-considerations>.
+> [!WARNING]
+> **Don't trust file names supplied by clients** for:
+>
+> * Saving the file to a file system or service.
+> * Display in UIs that don't encode file names automatically or via developer code.
+>
+> For more information on security considerations when uploading files to a server, see <xref:mvc/models/file-uploads#security-considerations>.
 
 `Pages/FileUpload2.razor`:
 
@@ -190,27 +191,28 @@ To use the following code, create a `Development/unsafe_uploads` folder at the r
 
 ::: zone pivot="server"
 
-The following `FileUpload2` component:
+The following `FileUpload2` component in the Blazor Server app:
 
 * Permits users to upload files from the client.
 * Displays the untrusted/unsafe file name provided by the client in the UI. The untrusted/unsafe file name is automatically HTML-encoded by Razor for safe display in the UI.
 
-  **Don't trust file names supplied by clients for other uses**, such as:
-
-  * Saving the file to a file system or service.
-  * Display in UIs that don't encode file names automatically or via developer code.
-
-  For more information on security considerations when uploading files to a server, see <xref:mvc/models/file-uploads#security-considerations>.
+> [!WARNING]
+> **Don't trust file names supplied by clients** for:
+>
+> * Saving the file to a file system or service.
+> * Display in UIs that don't encode file names automatically or via developer code.
+>
+> For more information on security considerations when uploading files to a server, see <xref:mvc/models/file-uploads#security-considerations>.
 
 `Pages/FileUpload2.razor`:
 
 [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_Server/Pages/file-uploads/FileUpload2.razor)]
 
-To use the following code, create a `Development/unsafe_uploads` folder at the root of the web API project for the app running in the `Development` environment. Because the example uses the app's [environment](xref:blazor/fundamentals/environments) as part of the path where files are saved, additional folders are required if other environments are used in testing and production. For example, create a `Staging/unsafe_uploads` folder for the `Staging` environment. Create a `Production/unsafe_uploads` folder for the `Production` environment.
-
 ::: zone-end
 
 ### Upload controller
+
+To use the following code, create a `Development/unsafe_uploads` folder at the root of the web API project for the app running in the `Development` environment. Because the example uses the app's [environment](xref:blazor/fundamentals/environments) as part of the path where files are saved, additional folders are required if other environments are used in testing and production. For example, create a `Staging/unsafe_uploads` folder for the `Staging` environment. Create a `Production/unsafe_uploads` folder for the `Production` environment.
 
 ::: zone pivot="webassembly"
 
