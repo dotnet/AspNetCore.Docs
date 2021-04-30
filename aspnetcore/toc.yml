@@ -221,6 +221,8 @@
       uid: fundamentals/environments
     - name: Logging
       uid: fundamentals/logging/index
+    - name: HTTP Logging
+      uid: fundamentals/http-logging/index
     - name: Routing
       uid: fundamentals/routing
     - name: Handle errors
