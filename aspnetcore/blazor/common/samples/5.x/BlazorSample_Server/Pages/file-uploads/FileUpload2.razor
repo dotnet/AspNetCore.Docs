@@ -109,11 +109,16 @@
 
             if (response.IsSuccessStatusCode)
             {
-                using var responseStream = 
+                var options = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true,
+                };
+
+                using var responseStream =
                     await response.Content.ReadAsStreamAsync();
 
                 var newUploadResults = await JsonSerializer
-                    .DeserializeAsync<List<UploadResult>>(responseStream);
+                    .DeserializeAsync<IList<UploadResult>>(responseStream, options);
 
                 uploadResults = uploadResults.Concat(newUploadResults).ToList();
             }
