@@ -141,6 +141,15 @@ For testing, the preceding URLs are configured in the projects' `Properties/laun
 
 The following `UploadResult` class in the **`Shared`** project maintains the result of an uploaded file. When a file fails to upload on the server, an error code is returned in `ErrorCode` for display to the user. A safe stored file name is generated on the server for each file and returned to the client in `StoredFileName` for display. Files are keyed between the client and server using the unsafe/untrusted file name in `FileName`.
 
+Provide a namespace for the class matching the **`Shared`** project's assembly name. For example:
+
+```csharp
+namespace BlazorSample.Shared
+{
+    ...
+}
+```
+
 ::: zone-end
 
 ::: zone pivot="server"
@@ -166,9 +175,7 @@ public class UploadResult
 
 ### Upload component
 
-::: zone pivot="webassembly"
-
-The following `FileUpload2` component in the **`Client`** project:
+The following `FileUpload2` component in the client app:
 
 * Permits users to upload files from the client.
 * Displays the untrusted/unsafe file name provided by the client in the UI. The untrusted/unsafe file name is automatically HTML-encoded by Razor for safe display in the UI.
@@ -181,30 +188,17 @@ The following `FileUpload2` component in the **`Client`** project:
 >
 > For more information on security considerations when uploading files to a server, see <xref:mvc/models/file-uploads#security-considerations>.
 
-`Pages/FileUpload2.razor`:
+::: zone pivot="webassembly"
+
+`Pages/FileUpload2.razor` in the **`Client`** project:
 
 [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/file-uploads/FileUpload2.razor)]
-
-To use the following code, create a `Development/unsafe_uploads` folder at the root of the **`Server`** project for the app running in the `Development` environment. Because the example uses the app's [environment](xref:blazor/fundamentals/environments) as part of the path where files are saved, additional folders are required if other environments are used in testing and production. For example, create a `Staging/unsafe_uploads` folder for the `Staging` environment. Create a `Production/unsafe_uploads` folder for the `Production` environment.
 
 ::: zone-end
 
 ::: zone pivot="server"
 
-The following `FileUpload2` component in the Blazor Server app:
-
-* Permits users to upload files from the client.
-* Displays the untrusted/unsafe file name provided by the client in the UI. The untrusted/unsafe file name is automatically HTML-encoded by Razor for safe display in the UI.
-
-> [!WARNING]
-> **Don't trust file names supplied by clients** for:
->
-> * Saving the file to a file system or service.
-> * Display in UIs that don't encode file names automatically or via developer code.
->
-> For more information on security considerations when uploading files to a server, see <xref:mvc/models/file-uploads#security-considerations>.
-
-`Pages/FileUpload2.razor`:
+`Pages/FileUpload2.razor` in the Blazor Server app:
 
 [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_Server/Pages/file-uploads/FileUpload2.razor)]
 
@@ -212,17 +206,19 @@ The following `FileUpload2` component in the Blazor Server app:
 
 ### Upload controller
 
-To use the following code, create a `Development/unsafe_uploads` folder at the root of the web API project for the app running in the `Development` environment. Because the example uses the app's [environment](xref:blazor/fundamentals/environments) as part of the path where files are saved, additional folders are required if other environments are used in testing and production. For example, create a `Staging/unsafe_uploads` folder for the `Staging` environment. Create a `Production/unsafe_uploads` folder for the `Production` environment.
-
 ::: zone pivot="webassembly"
 
 The following controller in the **`Server`** project saves uploaded files from the client.
+
+To use the following code, create a `Development/unsafe_uploads` folder at the root of the **`Server`** project for the app running in the `Development` environment. Because the example uses the app's [environment](xref:blazor/fundamentals/environments) as part of the path where files are saved, additional folders are required if other environments are used in testing and production. For example, create a `Staging/unsafe_uploads` folder for the `Staging` environment. Create a `Production/unsafe_uploads` folder for the `Production` environment.
 
 ::: zone-end
 
 ::: zone pivot="server"
 
 The following controller in the web API project saves uploaded files from the client.
+
+To use the following code, create a `Development/unsafe_uploads` folder at the root of the web API project for the app running in the `Development` environment. Because the example uses the app's [environment](xref:blazor/fundamentals/environments) as part of the path where files are saved, additional folders are required if other environments are used in testing and production. For example, create a `Staging/unsafe_uploads` folder for the `Staging` environment. Create a `Production/unsafe_uploads` folder for the `Production` environment.
 
 ::: zone-end
 
