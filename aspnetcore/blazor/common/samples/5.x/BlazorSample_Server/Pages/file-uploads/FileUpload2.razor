@@ -103,7 +103,9 @@
         {
             var client = ClientFactory.CreateClient();
 
-            var response = await client.PostAsync("/Filesave", content);
+            var response = 
+                await client.PostAsync("https://localhost:5001/Filesave", 
+                content);
 
             if (response.IsSuccessStatusCode)
             {

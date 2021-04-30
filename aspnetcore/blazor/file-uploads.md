@@ -113,6 +113,23 @@ The following example demonstrates uploading files to a web API controller in a 
 
 The following example demonstrates uploading files to a server using a Blazor Server app and a backend web API controller.
 
+In the Blazor Server app, add <xref:System.Net.Http.IHttpClientFactory> and related services that allow the app to create <xref:System.Net.Http.HttpClient> instances.
+
+In `Startup.ConfigureServices` of `Startup.cs`:
+
+```csharp
+services.AddHttpClient();
+```
+
+For more information, see <xref:fundamentals/http-requests>.
+
+For the examples in this section:
+
+* The web API runs at the URL: `https://localhost:5001`
+* The Blazor Server app runs at the URL: `https://localhost:5003`
+
+For testing, the preceding URLs are configured in the projects' `Properties/launchSettings.json` file.
+
 ::: zone-end
 
 > [!WARNING]
