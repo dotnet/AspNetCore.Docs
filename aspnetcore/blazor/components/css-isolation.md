@@ -43,15 +43,17 @@ h1 {
 > [!NOTE]
 > In order to guarantee style isolation when bundling occurs, importing CSS in Razor code blocks isn't supported.
 
-## CSS isolation bundling
-
-CSS isolation occurs at build time. During this process, Blazor rewrites CSS selectors to match markup rendered by the component. These rewritten CSS styles are bundled and produced as a static asset at `{ASSEMBLY NAME}.styles.css`, where the placeholder `{ASSEMBLY NAME}` is the referenced name of the package or project's assembly.
-
-These static files are referenced from the root path of the app by default. In the app, reference the bundled file by inspecting the reference inside the `<head>` tag of the generated HTML:
+These styles are made available at build time in a static CSS file which should be referenced from the root static page of the app. In the app, reference the bundled file by adding this reference inside the `<head>` tag of the HTML in your root static page (usually index.html): 
 
 ```html
 <link href="AssemblyName.styles.css" rel="stylesheet">
 ```
+
+## CSS isolation bundling
+
+CSS isolation occurs at build time. During this process, Blazor rewrites CSS selectors to match markup rendered by the component. These rewritten CSS styles are bundled and produced as a static asset at `{ASSEMBLY NAME}.styles.css`, where the placeholder `{ASSEMBLY NAME}` is the referenced name of the package or project's assembly.
+
+These static files should be referenced from the root path of the app by default, as noted above, in "Enable CSS Isolation".
 
 Within the bundled file, each component is associated with a scope identifier. For each styled component, an HTML attribute is appended with the format `b-<10-character-string>`. The identifier is unique and different for each app. In the rendered `Counter` component, Blazor appends a scope identifier to the `h1` element:
 
