@@ -5,7 +5,7 @@ description: Learn how to cache data in memory in ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
 ms.date: 4/27/2021
-no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: performance/caching/memory
 ---
 # Cache in-memory in ASP.NET Core
