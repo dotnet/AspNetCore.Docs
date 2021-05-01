@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 04/27/2021
-no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/forms-validation
 ---
 # ASP.NET Core Blazor forms and validation
@@ -48,9 +48,9 @@ A form is defined using the Blazor framework's <xref:Microsoft.AspNetCore.Compon
 In the preceding `FormExample1` component:
 
 * The <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component is rendered where the `<EditForm>` element appears.
-* The model is created in the component's `@code` block and held in a private field (`exampleModel`). The field is assigned to the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model> attribute of the `<EditForm>` element.
+* The model is created in the component's `@code` block and held in a private field (`exampleModel`). The field is assigned to  <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?displayProperty=nameWithType>'s attribute (`Model`) of the `<EditForm>` element.
 * The <xref:Microsoft.AspNetCore.Components.Forms.InputText> component (`id="name"`) is an input component for editing string values. The `@bind-Value` directive attribute binds the `exampleModel.Name` model property to the <xref:Microsoft.AspNetCore.Components.Forms.InputText> component's <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601.Value%2A> property.
-* An event handler (`HandleValidSubmit`) is assigned to <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit> attribute of the `<EditForm>` element. The handler is called if the form passes validation.
+* The `HandleValidSubmit` method is assigned to <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit>. The handler is called if the form passes validation.
 * The data annotations validator (<xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component&dagger;) attaches validation support using data annotations:
   * If the `<input>` form field is left blank when the **`Submit`** button is selected, an error appears in the validation summary (<xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary> component&Dagger;) ("`The Name field is required.`") and `HandleValidSubmit` is **not** called.
   * If the `<input>` form field contains more than ten characters when the **`Submit`** button is selected, an error appears in the validation summary ("`Name is too long.`") and `HandleValidSubmit` is **not** called.
@@ -60,7 +60,7 @@ In the preceding `FormExample1` component:
 
 ## Binding a form
 
-An <xref:Microsoft.AspNetCore.Components.Forms.EditForm> creates an <xref:Microsoft.AspNetCore.Components.Forms.EditContext> based on the assigned model instance as a [cascading value](xref:blazor/components/cascading-values-and-parameters) for other components in the form. The <xref:Microsoft.AspNetCore.Components.Forms.EditContext> tracks metadata about the edit process, including which fields have been modified and the current validation messages. Either an <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?displayProperty=nameWithType> or an <xref:Microsoft.AspNetCore.Components.Forms.EditContext?displayProperty=nameWithType> can bind a form to underlying data.
+An <xref:Microsoft.AspNetCore.Components.Forms.EditForm> creates an <xref:Microsoft.AspNetCore.Components.Forms.EditContext> based on the assigned model instance as a [cascading value](xref:blazor/components/cascading-values-and-parameters) for other components in the form. The <xref:Microsoft.AspNetCore.Components.Forms.EditContext> tracks metadata about the edit process, including which fields have been modified and the current validation messages. Assigning to either an <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?displayProperty=nameWithType> or an <xref:Microsoft.AspNetCore.Components.Forms.EditForm.EditContext?displayProperty=nameWithType> can bind a form to data.
 
 ::: moniker range=">= aspnetcore-5.0"
 
@@ -74,7 +74,7 @@ Assignment to <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?display
 }
 ```
 
-Assignment to <xref:Microsoft.AspNetCore.Components.Forms.EditContext?displayProperty=nameWithType>:
+Assignment to <xref:Microsoft.AspNetCore.Components.Forms.EditForm.EditContext?displayProperty=nameWithType>:
 
 ```razor
 <EditForm EditContext="@editContext" ...>
@@ -104,7 +104,7 @@ Assignment to <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?display
 }
 ```
 
-Assignment to <xref:Microsoft.AspNetCore.Components.Forms.EditContext?displayProperty=nameWithType>:
+Assignment to <xref:Microsoft.AspNetCore.Components.Forms.EditForm.EditContext?displayProperty=nameWithType>:
 
 ```razor
 <EditForm EditContext="@editContext" ...>
@@ -122,17 +122,17 @@ Assignment to <xref:Microsoft.AspNetCore.Components.Forms.EditContext?displayPro
 
 ::: moniker-end
 
-Assign **either** an <xref:Microsoft.AspNetCore.Components.Forms.EditContext> **or** a <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model> to an <xref:Microsoft.AspNetCore.Components.Forms.EditForm>. Assignment of both isn't supported and generates a runtime error:
+Assign **either** an <xref:Microsoft.AspNetCore.Components.Forms.EditForm.EditContext> **or** a <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model> to an <xref:Microsoft.AspNetCore.Components.Forms.EditForm>. Assignment of both isn't supported and generates a runtime error:
 
 > Unhandled exception rendering component: EditForm requires a Model parameter, or an EditContext parameter, but not both.
 
 ## Handle form submission
 
-The <xref:Microsoft.AspNetCore.Components.Forms.EditForm> provides the following events for handling form submission:
+The <xref:Microsoft.AspNetCore.Components.Forms.EditForm> provides the following callbacks for handling form submission:
 
 * Use <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit> to assign an event handler to run when a form with valid fields is submitted.
 * Use <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnInvalidSubmit> to assign an event handler to run when a form with invalid fields is submitted.
-* Use <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnSubmit> to assign an event handler to run regardless of the form fields' validation status. The form is validated by calling <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Validate%2A?displayProperty=nameWithType> in the event handler method. If `true` is returned, the form is valid.
+* Use <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnSubmit> to assign an event handler to run regardless of the form fields' validation status. The form is validated by calling <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Validate%2A?displayProperty=nameWithType> in the event handler method. If <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Validate%2A> returns `true`, the form is valid.
 
 ## Built-in form components
 
@@ -1362,7 +1362,7 @@ To enable and disable the submit button based on form validation, the following 
 * Implements <xref:System.IDisposable> and unsubscribes the event handler in the `Dispose` method. For more information, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable>.
 
 > [!NOTE]
-> When using an <xref:Microsoft.AspNetCore.Components.Forms.EditContext>, don't also assign a <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model> to the <xref:Microsoft.AspNetCore.Components.Forms.EditForm>.
+> When assigning to the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.EditContext?displayProperty=nameWithType>, don't also assign an <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?displayProperty=nameWithType> to the <xref:Microsoft.AspNetCore.Components.Forms.EditForm>.
 
 `Pages/FormExample8.razor`:
 
@@ -1411,9 +1411,9 @@ A side effect of the preceding approach is that a validation summary (<xref:Micr
 
 > InvalidOperationException: EditForm requires a Model parameter, or an EditContext parameter, but not both.
 
-Confirm that the <xref:Microsoft.AspNetCore.Components.Forms.EditForm> has a <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model> **or** <xref:Microsoft.AspNetCore.Components.Forms.EditContext>. Don't use both for the same form.
+Confirm that the <xref:Microsoft.AspNetCore.Components.Forms.EditForm> assigns a <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model> **or** an <xref:Microsoft.AspNetCore.Components.Forms.EditForm.EditContext>. Don't use both for the same form.
 
-When assigning a <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model> to the form, confirm that the model type is instantiated, as the following example shows:
+When assigning to <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model>, confirm that the model type is instantiated, as the following example shows:
 
 ::: moniker range=">= aspnetcore-5.0"
 
