@@ -43,7 +43,7 @@ h1 {
 > [!NOTE]
 > In order to guarantee style isolation when bundling occurs, importing CSS in Razor code blocks isn't supported.
 
-These styles at build time are made available in a bundled static CSS file which must be referenced from the root page of the app. Reference the bundled file by adding this reference inside the `<head>` tag of the HTML in your root page (usually index.html): 
+These styles are made available at build time in a bundled static CSS file. Add this reference inside the `<head>` tag of the HTML in your root page (usually index.html): 
 
 ```html
 <link href="AssemblyName.styles.css" rel="stylesheet">
