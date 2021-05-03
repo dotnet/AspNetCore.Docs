@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: "mvc, seodec18"
 ms.date: 03/26/2020
-no-loc: [Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: razor-pages/sdk
 ---
 # ASP.NET Core Razor SDK
@@ -156,6 +156,8 @@ The properties and items in the following table are used to configure inputs and
 
 For more information on properties, see [MSBuild properties](/visualstudio/msbuild/msbuild-properties).
 
+::: moniker range="< aspnetcore-6.0"
+
 ### Targets
 
 The Razor SDK defines two primary targets:
@@ -169,6 +171,16 @@ The Razor SDK defines two primary targets:
 * By default, the Razor SDK doesn't publish reference assemblies that are required to perform runtime compilation. This results in compilation failures when the application model relies on runtime compilation&mdash;for example, the app uses embedded views or changes views after the app is published. Set `CopyRefAssembliesToPublishDirectory` to `true` to continue publishing reference assemblies.
 
 * For a web app, ensure your app is targeting the `Microsoft.NET.Sdk.Web` SDK.
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-6.0"
+
+### Runtime compilation of Razor views
+
+The Razor compiler leverages the [source generators feature](https://devblogs.microsoft.com/dotnet/introducing-c-source-generators/) to generated compiled C# files from the Razor views and pages in a document. Both code generation and compilation are supported by a single call to the compiler. A single assembly is produced that contains the app types and the generated views.
+
+::: moniker-end
 
 ## Razor language version
 
