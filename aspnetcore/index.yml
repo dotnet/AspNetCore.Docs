@@ -270,8 +270,8 @@ additionalContent:
             text: "Overview"
           - url: host-and-deploy/azure-apps/index.md
             text: "Deploy to Azure App Service"
-          - url: azure/devops/index.md
-            text: "DevOps with ASP.NET Core and Azure"
+          - url: /dotnet/architecture/devops-for-aspnet-developers
+            text: "DevOps for ASP.NET Core Developers"
           - url: host-and-deploy/linux-apache.md
             text: "Linux with Apache"
           - url: host-and-deploy/linux-nginx.md
