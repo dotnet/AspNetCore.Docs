@@ -59,7 +59,7 @@ Within the bundled file, each component is associated with a scope identifier. F
 <h1 b-3xxtam6d07>
 ```
 
-The `ProjectName.styles.css` file uses the scope identifier to group a style declaration with its component. The following example provides the style for the preceding `<h1>` element:
+The `AssemblyName.styles.css` file uses the scope identifier to group a style declaration with its component. The following example provides the style for the preceding `<h1>` element:
 
 ```css
 /* /Pages/Counter.razor.rz.scp.css */
