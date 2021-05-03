@@ -44,10 +44,10 @@ A profiler, such as [PerfView](https://github.com/Microsoft/perfview), can be us
 
 ## Return large collections
 
-A web page shouldn't load an arbitrary number of rows. When returning a collection of objects, consider whether it could lead to performance issues. Determine if the design could produce the following symptoms:
+A webpage shouldn't load an arbitrary number of rows. When returning a collection of objects, consider whether it could lead to performance issues. Determine if the design could produce the following poor outcomes:
 
 * <xref:System.OutOfMemoryException> or high memory consumption
-* Thread pool starvation (<xref:System.Collections.Generic.IAsyncEnumerable%601>)
+* Thread pool starvation (see the following remarks on <xref:System.Collections.Generic.IAsyncEnumerable%601>)
 * Slow response times
 * Frequent garbage collection
 
