@@ -4,7 +4,7 @@ author: rick-anderson
 description: Part 5 of tutorial series on ASP.NET Core MVC.
 ms.author: riande
 ms.date: 04/30/2021
-no-loc: [Create, Read, Update, Delete, Edit, Details, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR, Create, Read, Update, Delete, Edit, Details]
 uid: tutorials/first-mvc-app/working-with-sql
 ms.custom: contperf-fy21q3
 ---
