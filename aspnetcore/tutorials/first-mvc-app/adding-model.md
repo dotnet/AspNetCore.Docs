@@ -3,8 +3,8 @@ title: Part 4, add a model to an ASP.NET Core MVC app
 author: rick-anderson
 description: Part 4 of tutorial series on ASP.NET Core MVC.
 ms.author: riande
-ms.date: 04/29/2021
-no-loc: [appsettings.json, "Create", "Read", "Update", "Delete", "Edit", "Details", "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+ms.date: 11/16/2020
+no-loc: [Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-mvc-app/adding-model
 ms.custom: contperf-fy21q3
 ---
