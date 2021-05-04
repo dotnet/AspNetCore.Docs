@@ -178,7 +178,7 @@ The Razor SDK defines two primary targets:
 
 ### Runtime compilation of Razor views
 
-The Razor compiler leverages the [source generators feature](https://devblogs.microsoft.com/dotnet/introducing-c-source-generators/) to generated compiled C# files from the Razor views and pages in a document. Both code generation and compilation are supported by a single call to the compiler. A single assembly is produced that contains the app types and the generated views.
+The Razor compiler leverages the [source generators feature](https://devblogs.microsoft.com/dotnet/introducing-c-source-generators/) to generate compiled C# files from the Razor views and pages in a document. Both code generation and compilation are supported by a single call to the compiler. A single assembly is produced that contains the app types and the generated views.
 
 ::: moniker-end
 
