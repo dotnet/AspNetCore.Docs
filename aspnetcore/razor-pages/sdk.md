@@ -5,7 +5,7 @@ description: Learn how Razor Pages in ASP.NET Core makes coding page-focused sce
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: "mvc, seodec18"
-ms.date: 03/26/2020
+ms.date: 5/5/2020
 no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: razor-pages/sdk
 ---
@@ -17,17 +17,16 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ::: moniker range=">= aspnetcore-6.0"
 
-
-The [!INCLUDE[](~/includes/2.1-SDK.md)] includes the `Microsoft.NET.Sdk.Razor` MSBuild SDK (Razor SDK). The Razor SDK:
+The [!INCLUDE[](~/includes/6.0-SDK.md)] includes the `Microsoft.NET.Sdk.Razor` MSBuild SDK (Razor SDK). The Razor SDK:
 
 * Is required to build, package, and publish projects containing [Razor](xref:mvc/views/razor) files for ASP.NET Core MVC-based or [Blazor](xref:blazor/index) projects.
-* Includes a set of predefined targets, properties, and items that allow customizing the compilation of Razor (*.cshtml* or *.razor*) files.
+* Includes a set of predefined properties, and items that allow customizing the compilation of Razor (*.cshtml* or *.razor*) files.
 
 The Razor SDK includes `Content` items with `Include` attributes set to the `**\*.cshtml` and `**\*.razor` globbing patterns. Matching files are published.
 
 ## Prerequisites
 
-[!INCLUDE[](~/includes/2.1-SDK.md)]
+[!INCLUDE[](~/includes/6.0-SDK.md)]
 
 ## Use the Razor SDK
 
@@ -43,9 +42,6 @@ The following properties control the Razor's SDK behavior as part of a project b
 * `RazorCompileOnPublish`: When `true`, compiles and emits the Razor assembly as part of publishing the project. Defaults to `true`.
 
 The properties and items in the following table are used to configure inputs and output to the Razor SDK.
-
-> [!WARNING]
-> Starting with ASP.NET Core 3.0, MVC Views or Razor Pages aren't served by default if the `RazorCompileOnBuild` or `RazorCompileOnPublish` MSBuild properties in the project file are disabled. Applications must add an explicit reference to the [Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation) package if the app relies on runtime compilation to process *.cshtml* files.
 
 | Items | Description |
 | ----- | ----------- |
@@ -77,19 +73,9 @@ The properties and items in the following table are used to configure inputs and
 
 For more information on properties, see [MSBuild properties](/visualstudio/msbuild/msbuild-properties).
 
-### Targets
-
-The Razor SDK defines two primary targets:
-
-* `RazorGenerate`: Code generates *.cs* files from `RazorGenerate` item elements. Use the `RazorGenerateDependsOn` property to specify additional targets that can run before or after this target.
-* `RazorCompile`: Compiles generated *.cs* files in to a Razor assembly. Use the `RazorCompileDependsOn` to specify additional targets that can run before or after this target.
-* `RazorComponentGenerate`: Code generates *.cs* files for `RazorComponent` item elements. Use the `RazorComponentGenerateDependsOn` property to specify additional targets that can run before or after this target.
-
 ### Runtime compilation of Razor views
 
-* By default, the Razor SDK doesn't publish reference assemblies that are required to perform runtime compilation. This results in compilation failures when the application model relies on runtime compilation&mdash;for example, the app uses embedded views or changes views after the app is published. Set `CopyRefAssembliesToPublishDirectory` to `true` to continue publishing reference assemblies.
-
-* For a web app, ensure your app is targeting the `Microsoft.NET.Sdk.Web` SDK.
+The Razor compiler leverages the [source generators feature](https://devblogs.microsoft.com/dotnet/introducing-c-source-generators/) to generate compiled C# files from the Razor views and pages in a document. Both code generation and compilation are supported by a single call to the compiler. A single assembly is produced that contains the app types and the generated views.
 
 ## Razor language version
 
