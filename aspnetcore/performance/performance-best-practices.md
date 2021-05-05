@@ -53,6 +53,10 @@ A webpage shouldn't load an arbitrary number of rows. When returning a collectio
 
 **Do** add pagination to mitigate the preceding scenarios. Using page size and page index parameters, developers should favor the design of returning a partial result. When an exhaustive result is required, pagination should be used to asynchronously populate batches of results to avoid locking server resources.
 
+For more information on paging and limiting the number of returned records, see:
+
+  * [Performance considerations](xref:data/ef-rp/intro#performance-considerations) 
+  * [Add paging to an ASP.NET Core app](xref:data/ef-rp/sort-filter-page#add-paging)
 ### Return `IEnumerable<T>` or `IAsyncEnumerable<T>`
 
 Returning `IEnumerable<T>` from an action results in synchronous collection iteration by the serializer. The result is the blocking of calls and a potential for thread pool starvation. To avoid synchronous enumeration, use `ToListAsync` before returning the enumerable.
