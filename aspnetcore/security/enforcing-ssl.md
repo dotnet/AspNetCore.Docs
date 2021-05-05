@@ -469,7 +469,7 @@ The [Windows Subsystem for Linux (WSL)](/windows/wsl/about) generates an HTTPS s
 * Export the developer certificate to a file on ***Windows***:
 
   ```
-  dotnet dev-certs https --ep C:\<<path-to-folder>>\aspnetcore.pfx -p $CREDENTIAL_PLACEHOLDER$
+  dotnet dev-certs https -ep C:\<<path-to-folder>>\aspnetcore.pfx -p $CREDENTIAL_PLACEHOLDER$
   ```
   Where `$CREDENTIAL_PLACEHOLDER$` is a password.
 
