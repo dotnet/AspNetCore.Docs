@@ -42,9 +42,9 @@ A common performance problem in ASP.NET Core apps is blocking calls that could b
 
 A profiler, such as [PerfView](https://github.com/Microsoft/perfview), can be used to find threads frequently added to the [Thread Pool](/windows/desktop/procthread/thread-pools). The `Microsoft-Windows-DotNETRuntime/ThreadPoolWorkerThread/Start` event indicates a thread added to the thread pool. <!--  For more information, see [async guidance docs](TBD-Link_To_Davifowl_Doc)  -->
 
-## Return large collections
+## Return large collections across multiple smaller pages
 
-A webpage shouldn't load an arbitrary number of rows. When returning a collection of objects, consider whether it could lead to performance issues. Determine if the design could produce the following poor outcomes:
+A webpage shouldn't load large amounts of data all at once. When returning a collection of objects, consider whether it could lead to performance issues. Determine if the design could produce the following poor outcomes:
 
 * <xref:System.OutOfMemoryException> or high memory consumption
 * Thread pool starvation (see the following remarks on <xref:System.Collections.Generic.IAsyncEnumerable%601>)
