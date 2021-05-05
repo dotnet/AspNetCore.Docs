@@ -342,15 +342,37 @@ Update *Pages/Shared/_LoginPartial.cshtml* and replace `IdentityUser` with `Appl
 @inject UserManager<ApplicationUser> UserManager
 ```
 
-Update *Areas/Identity/IdentityHostingStartup.cs*  or `Startup.ConfigureServices` and replace `IdentityUser` with `ApplicationUser`.
+Update *Areas/Identity/IdentityHostingStartup.cs* or `Startup.ConfigureServices` and replace `IdentityUser` with `ApplicationUser`.
+
+::: moniker range=">= aspnetcore-2.1 <= aspnetcore-5.0"
 
 ```csharp
-services.AddIdentity<ApplicationUser>()
-        .AddEntityFrameworkStores<ApplicationDbContext>()
-        .AddDefaultUI();
+services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+        .AddEntityFrameworkStores<ApplicationDbContext>();                                    
 ```
 
-In ASP.NET Core 2.1 or later, Identity is provided as a Razor Class Library. For more information, see <xref:security/authentication/scaffold-identity>. Consequently, the preceding code requires a call to <xref:Microsoft.AspNetCore.Identity.IdentityBuilderUIExtensions.AddDefaultUI*>. If the Identity scaffolder was used to add Identity files to the project, remove the call to `AddDefaultUI`. For more information, see:
+`AddDefaultIdentity<TUser>` is equivalent to the following,
+
+```csharp
+services.AddAuthentication(o =>
+{
+    o.DefaultScheme = IdentityConstants.ApplicationScheme;
+    o.DefaultSignInScheme = IdentityConstants.ExternalScheme;
+})
+.AddIdentityCookies(o => { });
+
+services.AddIdentityCore<TUser>(o =>
+{
+    o.Stores.MaxLengthForKeys = 128;
+    o.SignIn.RequireConfirmedAccount = true;
+})
+.AddDefaultUI()
+.AddDefaultTokenProviders();
+```                
+
+::: moniker-end
+
+In ASP.NET Core 2.1 or later, Identity is provided as a Razor Class Library. For more information, see <xref:security/authentication/scaffold-identity>. Consequently, the preceding code requires a call to <xref:Microsoft.AspNetCore.Identity.IdentityBuilderUIExtensions.AddDefaultUI\*>. If the Identity scaffolder was used to add Identity files to the project, remove the call to `AddDefaultUI`. For more information, see:
 
 * [Scaffold Identity](xref:security/authentication/scaffold-identity)
 * [Add, download, and delete custom user data to Identity](xref:security/authentication/add-user-data)
@@ -365,171 +387,89 @@ Follow these steps to change the PK type:
 2. After confirming deletion of the database, remove the initial migration with `Remove-Migration` (PMC) or `dotnet ef migrations remove` (.NET Core CLI).
 3. Update the `ApplicationDbContext` class to derive from <xref:Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext%603>. Specify the new key type for `TKey`. For example, to use a `Guid` key type:
 
-    ```csharp
-    public class ApplicationDbContext
-        : IdentityDbContext<IdentityUser<Guid>, IdentityRole<Guid>, Guid>
-    {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-            : base(options)
-        {
-        }
-    }
-    ```
+   ```csharp
+   public class ApplicationDbContext
+       : IdentityDbContext<IdentityUser<Guid>, IdentityRole<Guid>, Guid>
+   {
+       public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+           : base(options)
+       {
+       }
+   }
+   ```
 
-    ::: moniker range=">= aspnetcore-2.0"
+   ::: moniker range=">= aspnetcore-2.0 <= aspnetcore-5.0"
 
-    In the preceding code, the generic classes <xref:Microsoft.AspNetCore.Identity.IdentityUser%601> and <xref:Microsoft.AspNetCore.Identity.IdentityRole%601> must be specified to use the new key type.
+   In the preceding code, the generic classes <xref:Microsoft.AspNetCore.Identity.IdentityUser%601> and <xref:Microsoft.AspNetCore.Identity.IdentityRole%601> must be specified to use the new key type.
 
-    ::: moniker-end
+   ::: moniker-end
 
-    ::: moniker range="<= aspnetcore-1.1"
+   `Startup.ConfigureServices` must be updated to use the generic user:
 
-    In the preceding code, the generic classes <xref:Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUser%601> and <xref:Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole%601> must be specified to use the new key type.
+   ::: moniker range=">= aspnetcore-2.1 <= aspnetcore-5.0"
 
-    ::: moniker-end
+   ```csharp
+   services.AddDefaultIdentity<IdentityUser<Guid>>(options => options.SignIn.RequireConfirmedAccount = true)
+           .AddEntityFrameworkStores<ApplicationDbContext>();
+   ```
 
-    `Startup.ConfigureServices` must be updated to use the generic user:
-
-    ::: moniker range=">= aspnetcore-2.1"
-
-    ```csharp
-    services.AddDefaultIdentity<IdentityUser<Guid>>()
-            .AddEntityFrameworkStores<ApplicationDbContext>();
-    ```
-
-    ::: moniker-end
-
-    ::: moniker range="= aspnetcore-2.0"
-
-    ```csharp
-    services.AddIdentity<IdentityUser<Guid>, IdentityRole>()
-            .AddEntityFrameworkStores<ApplicationDbContext>()
-            .AddDefaultTokenProviders();
-    ```
-
-    ::: moniker-end
-
-    ::: moniker range="<= aspnetcore-1.1"
-
-    ```csharp
-    services.AddIdentity<IdentityUser<Guid>, IdentityRole>()
-            .AddEntityFrameworkStores<ApplicationDbContext, Guid>()
-            .AddDefaultTokenProviders();
-    ```
-
-    ::: moniker-end
+   ::: moniker-end
 
 4. If a custom `ApplicationUser` class is being used, update the class to inherit from `IdentityUser`. For example:
 
-    ::: moniker range="<= aspnetcore-1.1"
+   ::: moniker range=">= aspnetcore-2.1 <= aspnetcore-5.0"
 
-    [!code-csharp[](customize-identity-model/samples/1.1/MvcSampleApp/Models/ApplicationUser.cs?name=snippet_ApplicationUser&highlight=4)]
+   [!code-csharp[](customize-identity-model/samples/2.1/RazorPagesSampleApp/Data/ApplicationUser.cs?name=snippet_ApplicationUser&highlight=4)]
 
-    ::: moniker-end
+   ::: moniker-end
 
-    ::: moniker range=">= aspnetcore-2.0"
+   Update `ApplicationDbContext` to reference the custom `ApplicationUser` class:
 
-    [!code-csharp[](customize-identity-model/samples/2.1/RazorPagesSampleApp/Data/ApplicationUser.cs?name=snippet_ApplicationUser&highlight=4)]
+   ```csharp
+   public class ApplicationDbContext
+       : IdentityDbContext<ApplicationUser, IdentityRole<Guid>, Guid>
+   {
+       public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+           : base(options)
+       {
+       }
+   }
+   ```
 
-    ::: moniker-end
+   Register the custom database context class when adding the Identity service in `Startup.ConfigureServices`:
 
-    Update `ApplicationDbContext` to reference the custom `ApplicationUser` class:
+   ::: moniker range=">= aspnetcore-2.1 <= aspnetcore-5.0"
 
-    ```csharp
-    public class ApplicationDbContext
-        : IdentityDbContext<ApplicationUser, IdentityRole<Guid>, Guid>
-    {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-            : base(options)
-        {
-        }
-    }
-    ```
+   ```csharp
+   services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+           .AddEntityFrameworkStores<ApplicationDbContext>();
+   ```
 
-    Register the custom database context class when adding the Identity service in `Startup.ConfigureServices`:
+   The primary key's data type is inferred by analyzing the [DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext) object.
 
-    ::: moniker range=">= aspnetcore-2.1"
+   In ASP.NET Core 2.1 or later, Identity is provided as a Razor Class Library. For more information, see <xref:security/authentication/scaffold-identity>. Consequently, the preceding code requires a call to <xref:Microsoft.AspNetCore.Identity.IdentityBuilderUIExtensions.AddDefaultUI\*>. If the Identity scaffolder was used to add Identity files to the project, remove the call to `AddDefaultUI`.
 
-    ```csharp
-    services.AddIdentity<ApplicationUser>()
-            .AddEntityFrameworkStores<ApplicationDbContext>()
-            .AddDefaultUI()
-            .AddDefaultTokenProviders();
-    ```
-
-    The primary key's data type is inferred by analyzing the [DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext) object.
-
-    In ASP.NET Core 2.1 or later, Identity is provided as a Razor Class Library. For more information, see <xref:security/authentication/scaffold-identity>. Consequently, the preceding code requires a call to <xref:Microsoft.AspNetCore.Identity.IdentityBuilderUIExtensions.AddDefaultUI*>. If the Identity scaffolder was used to add Identity files to the project, remove the call to `AddDefaultUI`.
-
-    ::: moniker-end
-
-    ::: moniker range="= aspnetcore-2.0"
-
-    ```csharp
-    services.AddIdentity<ApplicationUser, IdentityRole>()
-            .AddEntityFrameworkStores<ApplicationDbContext>()
-            .AddDefaultTokenProviders();
-    ```
-
-    The primary key's data type is inferred by analyzing the [DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext) object.
-
-    ::: moniker-end
-
-    ::: moniker range="<= aspnetcore-1.1"
-
-    ```csharp
-    services.AddIdentity<ApplicationUser, IdentityRole>()
-            .AddEntityFrameworkStores<ApplicationDbContext, Guid>()
-            .AddDefaultTokenProviders();
-    ```
-
-    The <xref:Microsoft.Extensions.DependencyInjection.IdentityEntityFrameworkBuilderExtensions.AddEntityFrameworkStores*> method accepts a `TKey` type indicating the primary key's data type.
-
-    ::: moniker-end
+   ::: moniker-end
 
 5. If a custom `ApplicationRole` class is being used, update the class to inherit from `IdentityRole<TKey>`. For example:
 
-    [!code-csharp[](customize-identity-model/samples/2.1/RazorPagesSampleApp/Data/ApplicationRole.cs?name=snippet_ApplicationRole&highlight=4)]
+   [!code-csharp[](customize-identity-model/samples/2.1/RazorPagesSampleApp/Data/ApplicationRole.cs?name=snippet_ApplicationRole&highlight=4)]
 
-    Update `ApplicationDbContext` to reference the custom `ApplicationRole` class. For example, the following class references a custom `ApplicationUser` and a custom `ApplicationRole`:
+   Update `ApplicationDbContext` to reference the custom `ApplicationRole` class. For example, the following class references a custom `ApplicationUser` and a custom `ApplicationRole`:
 
-    ::: moniker range=">= aspnetcore-2.1"
+   ::: moniker range=">= aspnetcore-2.1 <= aspnetcore-5.0"
 
-    [!code-csharp[](customize-identity-model/samples/2.1/RazorPagesSampleApp/Data/ApplicationDbContext.cs?name=snippet_ApplicationDbContext&highlight=5-6)]
+   [!code-csharp[](customize-identity-model/samples/2.1/RazorPagesSampleApp/Data/ApplicationDbContext.cs?name=snippet_ApplicationDbContext&highlight=5-6)]
 
-    Register the custom database context class when adding the Identity service in `Startup.ConfigureServices`:
+   Register the custom database context class when adding the Identity service in `Startup.ConfigureServices`:
 
-    [!code-csharp[](customize-identity-model/samples/2.1/RazorPagesSampleApp/Startup.cs?name=snippet_ConfigureServices&highlight=13-16)]
+   [!code-csharp[](customize-identity-model/samples/2.1/RazorPagesSampleApp/Startup.cs?name=snippet_ConfigureServices&highlight=13-16)]
 
-    The primary key's data type is inferred by analyzing the [DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext) object.
+   The primary key's data type is inferred by analyzing the [DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext) object.
 
-    In ASP.NET Core 2.1 or later, Identity is provided as a Razor Class Library. For more information, see <xref:security/authentication/scaffold-identity>. Consequently, the preceding code requires a call to <xref:Microsoft.AspNetCore.Identity.IdentityBuilderUIExtensions.AddDefaultUI*>. If the Identity scaffolder was used to add Identity files to the project, remove the call to `AddDefaultUI`.
+   In ASP.NET Core 2.1 or later, Identity is provided as a Razor Class Library. For more information, see <xref:security/authentication/scaffold-identity>. Consequently, the preceding code requires a call to <xref:Microsoft.AspNetCore.Identity.IdentityBuilderUIExtensions.AddDefaultUI\*>. If the Identity scaffolder was used to add Identity files to the project, remove the call to `AddDefaultUI`.
 
-    ::: moniker-end
-
-    ::: moniker range="= aspnetcore-2.0"
-
-    [!code-csharp[](customize-identity-model/samples/2.0/RazorPagesSampleApp/Data/ApplicationDbContext.cs?name=snippet_ApplicationDbContext&highlight=5-6)]
-
-    Register the custom database context class when adding the Identity service in `Startup.ConfigureServices`:
-
-    [!code-csharp[](customize-identity-model/samples/2.0/RazorPagesSampleApp/Startup.cs?name=snippet_ConfigureServices&highlight=7-9)]
-
-    The primary key's data type is inferred by analyzing the [DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext) object.
-
-    ::: moniker-end
-
-    ::: moniker range="<= aspnetcore-1.1"
-
-    [!code-csharp[](customize-identity-model/samples/1.1/MvcSampleApp/Data/ApplicationDbContext.cs?name=snippet_ApplicationDbContext&highlight=5-6)]
-
-    Register the custom database context class when adding the Identity service in `Startup.ConfigureServices`:
-
-    [!code-csharp[](customize-identity-model/samples/1.1/MvcSampleApp/Startup.cs?name=snippet_ConfigureServices&highlight=7-9)]
-
-    The <xref:Microsoft.Extensions.DependencyInjection.IdentityEntityFrameworkBuilderExtensions.AddEntityFrameworkStores*> method accepts a `TKey` type indicating the primary key's data type.
-
-    ::: moniker-end
+   ::: moniker-end
 
 ### Add navigation properties
 
