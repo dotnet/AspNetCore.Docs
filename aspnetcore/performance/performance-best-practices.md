@@ -42,7 +42,22 @@ A common performance problem in ASP.NET Core apps is blocking calls that could b
 
 A profiler, such as [PerfView](https://github.com/Microsoft/perfview), can be used to find threads frequently added to the [Thread Pool](/windows/desktop/procthread/thread-pools). The `Microsoft-Windows-DotNETRuntime/ThreadPoolWorkerThread/Start` event indicates a thread added to the thread pool. <!--  For more information, see [async guidance docs](TBD-Link_To_Davifowl_Doc)  -->
 
-## Return IEnumerable\<T> or IAsyncEnumerable\<T>
+## Return large collections across multiple smaller pages
+
+A webpage shouldn't load large amounts of data all at once. When returning a collection of objects, consider whether it could lead to performance issues. Determine if the design could produce the following poor outcomes:
+
+* <xref:System.OutOfMemoryException> or high memory consumption
+* Thread pool starvation (see the following remarks on <xref:System.Collections.Generic.IAsyncEnumerable%601>)
+* Slow response times
+* Frequent garbage collection
+
+**Do** add pagination to mitigate the preceding scenarios. Using page size and page index parameters, developers should favor the design of returning a partial result. When an exhaustive result is required, pagination should be used to asynchronously populate batches of results to avoid locking server resources.
+
+For more information on paging and limiting the number of returned records, see:
+
+  * [Performance considerations](xref:data/ef-rp/intro#performance-considerations) 
+  * [Add paging to an ASP.NET Core app](xref:data/ef-rp/sort-filter-page#add-paging)
+### Return `IEnumerable<T>` or `IAsyncEnumerable<T>`
 
 Returning `IEnumerable<T>` from an action results in synchronous collection iteration by the serializer. The result is the blocking of calls and a potential for thread pool starvation. To avoid synchronous enumeration, use `ToListAsync` before returning the enumerable.
 
