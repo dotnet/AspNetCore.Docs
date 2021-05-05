@@ -48,7 +48,6 @@ The properties and items in the following table are used to configure inputs and
 | `RazorGenerate` | Item elements (*.cshtml* files) that are inputs to code generation. |
 | `RazorComponent` | Item elements (*.razor* files) that are inputs to Razor component code generation. |
 | `RazorCompile` | Item elements (*.cs* files) that are inputs to Razor compilation targets. Use this `ItemGroup` to specify additional files to be compiled into the Razor assembly. |
-| `RazorTargetAssemblyAttribute` | Item elements used to code generate attributes for the Razor assembly. For example:  <br>`RazorAssemblyAttribute`<br>`Include="System.Reflection.AssemblyMetadataAttribute"`<br>`_Parameter1="BuildSource" _Parameter2="https://docs.microsoft.com/">` |
 | `RazorEmbeddedResource` | Item elements added as embedded resources to the generated Razor assembly. |
 
 | Property | Description |
@@ -63,12 +62,12 @@ The properties and items in the following table are used to configure inputs and
 | `PreserveCompilationReferences` | When `true`, copy reference assembly items to the publish directory. Typically, reference assemblies aren't required for a published app if Razor compilation occurs at build-time or publish-time. Set to `true` if your published app requires runtime compilation. For example, set the value to `true` if the app modifies *.cshtml* files at runtime or uses embedded views. Defaults to `false`. |
 | `IncludeRazorContentInPack` | When `true`, all Razor content items (*.cshtml* files) are marked for inclusion in the generated NuGet package. Defaults to `false`. |
 | `EmbedRazorGenerateSources` | When `true`, adds RazorGenerate (*.cshtml*) items as embedded files to the generated Razor assembly. Defaults to `false`. |
-| `UseRazorBuildServer` | When `true`, uses a persistent build server process to offload code generation work. Defaults to the value of `UseSharedCompilation`. |
 | `GenerateMvcApplicationPartsAssemblyAttributes` | Not used in .NET 6 and later. |
 | `DefaultWebContentItemExcludes` | A globbing pattern for item elements that are to be excluded from the `Content` item group in projects targeting the Web or Razor SDK |
 | `ExcludeConfigFilesFromBuildOutput` | When `true`, *.config* and *.json* files do not get copied to the build output directory. |
 | `AddRazorSupportForMvc` | When `true`, configures the Razor SDK to add support for the MVC configuration that is required when building applications containing MVC views or Razor Pages. This property is implicitly set for .NET Core 3.0 or later projects targeting the Web SDK |
 | `RazorLangVersion` | The version of the Razor Language to target. |
+| `EmitCompilerGeneratedFiles` | When set to `true`, the generated source files are written to disk. Setting to `true` is useful when debugging the compiler. The default is `false`. |
 
 For more information on properties, see [MSBuild properties](/visualstudio/msbuild/msbuild-properties).
 
