@@ -349,7 +349,7 @@ services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireCo
         .AddEntityFrameworkStores<ApplicationDbContext>();                                    
 ```
 
-Calling <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionUIExtensions.AddDefaultIdentity%2A> is equivalent to the following,
+Calling <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionUIExtensions.AddDefaultIdentity%2A> is equivalent to the following code:
 
 ```csharp
 services.AddAuthentication(o =>
