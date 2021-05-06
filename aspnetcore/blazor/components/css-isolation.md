@@ -45,12 +45,16 @@ h1 {
 
 ## CSS isolation bundling
 
-CSS isolation occurs at build time. During this process, Blazor rewrites CSS selectors to match markup rendered by the component. These rewritten CSS styles are bundled and produced as a static asset at `{ASSEMBLY NAME}.styles.css`, where the placeholder `{ASSEMBLY NAME}` is the referenced name of the package or project's assembly.
-
-These static files are referenced from the root path of the app by default. In the app, reference the bundled file by inspecting the reference inside the `<head>` tag of the generated HTML:
+CSS isolation occurs at build time. Blazor rewrites CSS selectors to match markup rendered by the component. The rewritten CSS styles are bundled and produced as a static asset. The stylesheet is referenced inside the `<head>` tag of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server). The following `<link>` element is added by default to an app created from the Blazor project templates, where the placeholder `{ASSEMBLY NAME}` is the project's assembly name:
 
 ```html
-<link href="AssemblyName.styles.css" rel="stylesheet">
+<link href="{ASSEMBLY NAME}.styles.css" rel="stylesheet">
+```
+
+The following example is from a hosted Blazor WebAssembly **`Client`** app. The app's assembly name is `BlazorSample.Client`, and the `<link>` is added by the Blazor WebAssembly project template when the project is created with the Hosted option (`-ho|--hosted` option using the .NET CLI or **ASP.NET Core hosted** checkbox using Visual Studio):
+
+```html
+<link href="BlazorSample.Client.styles.css" rel="stylesheet">
 ```
 
 Within the bundled file, each component is associated with a scope identifier. For each styled component, an HTML attribute is appended with the format `b-<10-character-string>`. The identifier is unique and different for each app. In the rendered `Counter` component, Blazor appends a scope identifier to the `h1` element:
@@ -59,7 +63,7 @@ Within the bundled file, each component is associated with a scope identifier. F
 <h1 b-3xxtam6d07>
 ```
 
-The `ProjectName.styles.css` file uses the scope identifier to group a style declaration with its component. The following example provides the style for the preceding `<h1>` element:
+The `{ASSEMBLY NAME}.styles.css` file uses the scope identifier to group a style declaration with its component. The following example provides the style for the preceding `<h1>` element:
 
 ```css
 /* /Pages/Counter.razor.rz.scp.css */
@@ -153,7 +157,7 @@ By default, scope identifiers use the format `b-<10-character-string>`. To custo
 </ItemGroup>
 ```
 
-In the preceding example, the CSS generated for `Example.Razor.css` changes its scope identifier from `b-<10-character-string>` to `my-custom-scope-identifier`.
+In the preceding example, the CSS generated for `Example.razor.css` changes its scope identifier from `b-<10-character-string>` to `my-custom-scope-identifier`.
 
 Use scope identifiers to achieve inheritance with scoped CSS files. In the following project file example, a `BaseComponent.razor.css` file contains common styles across components. A `DerivedComponent.razor.css` file inherits these styles.
 
