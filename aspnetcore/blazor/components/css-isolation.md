@@ -63,7 +63,7 @@ Within the bundled file, each component is associated with a scope identifier. F
 <h1 b-3xxtam6d07>
 ```
 
-The `AssemblyName.styles.css` file uses the scope identifier to group a style declaration with its component. The following example provides the style for the preceding `<h1>` element:
+The `{ASSEMBLY NAME}.styles.css` file uses the scope identifier to group a style declaration with its component. The following example provides the style for the preceding `<h1>` element:
 
 ```css
 /* /Pages/Counter.razor.rz.scp.css */
@@ -157,7 +157,7 @@ By default, scope identifiers use the format `b-<10-character-string>`. To custo
 </ItemGroup>
 ```
 
-In the preceding example, the CSS generated for `Example.Razor.css` changes its scope identifier from `b-<10-character-string>` to `my-custom-scope-identifier`.
+In the preceding example, the CSS generated for `Example.razor.css` changes its scope identifier from `b-<10-character-string>` to `my-custom-scope-identifier`.
 
 Use scope identifiers to achieve inheritance with scoped CSS files. In the following project file example, a `BaseComponent.razor.css` file contains common styles across components. A `DerivedComponent.razor.css` file inherits these styles.
 
