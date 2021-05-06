@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
 no-loc: [Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
-ms.date: 04/29/2021
+ms.date: 05/06/2021
 uid: blazor/file-uploads
 zone_pivot_groups: blazor-hosting-models
 ---
@@ -58,7 +58,7 @@ To read data from a user-selected file:
       await new StreamReader(browserFile.OpenReadStream()).ReadToEndAsync();
   ```
 
-  ❌ The following approach is **NOT recommended** because the file's <xref:System.IO.Stream> content is copied into a <xref:System.IO.MemoryStream> in memory (`memoryStream`):
+  ❌ The following approach is **NOT recommended** for [Microsoft Azure Blob Storage](/azure/storage/blobs/storage-blobs-overview) because the file's <xref:System.IO.Stream> content is copied into a <xref:System.IO.MemoryStream> in memory (`memoryStream`) before calling <xref:Azure.Storage.Blobs.BlobContainerClient.UploadBlobAsync%2A>:
 
   ```csharp
   var memoryStream = new MemoryStream();
@@ -67,7 +67,14 @@ To read data from a user-selected file:
       browserFile.Name, memoryStream));
   ```
 
-  ✔️ The following approach is **recommended** because the file's <xref:System.IO.Stream> is provided directly to the consumer, a [Microsoft Azure Blob Storage](/azure/storage/blobs/storage-blobs-overview) method:
+  ✔️ The following approach is **recommended** because the file's <xref:System.IO.Stream> is provided directly to the consumer, a <xref:System.IO.FileStream>:
+
+  ```csharp
+  await using FileStream fs = new(path, FileMode.Create);
+  await browserFile.OpenReadStream().CopyToAsync(fs);
+  ```
+
+  ✔️ The following approach is **recommended** for [Microsoft Azure Blob Storage](/azure/storage/blobs/storage-blobs-overview) because the file's <xref:System.IO.Stream> is provided directly to <xref:Azure.Storage.Blobs.BlobContainerClient.UploadBlobAsync%2A>:
 
   ```csharp
   await blobContainerClient.UploadBlobAsync(
@@ -89,7 +96,17 @@ The following example further demonstrates multiple file upload in a component. 
 
 `Pages/FileUpload1.razor`:
 
+::: zone pivot="webassembly"
+
 [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/file-uploads/FileUpload1.razor)]
+
+::: zone-end
+
+::: zone pivot="server"
+
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_Server/Pages/file-uploads/FileUpload1.razor)]
+
+::: zone-end
 
 `IBrowserFile` returns metadata [exposed by the browser](https://developer.mozilla.org/docs/Web/API/File#Instance_properties) as properties. This metadata can be useful for preliminary validation. For example, the component can react to the following <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile> properties:
 

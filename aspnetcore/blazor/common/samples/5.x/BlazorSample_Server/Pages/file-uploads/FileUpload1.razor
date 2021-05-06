@@ -1,4 +1,10 @@
 @page "/file-upload-1"
+@using System 
+@using System.IO
+@using Microsoft.AspNetCore.Hosting
+@using Microsoft.Extensions.Logging
+@inject IWebHostEnvironment Environment
+@inject ILogger<FileUpload1> Logger
 
 <h3>Upload Files</h3>
 
@@ -23,50 +29,57 @@
     </label>
 </p>
 
-<p>@exceptionMessage</p>
-
 @if (isLoading)
 {
-    <p>Loading...</p>
+    <p>Uploading...</p>
 }
-
-<ul>
-    @foreach (var file in loadedFiles)
-    {
-        <li>
-            <ul>
-                <li>Name: @file.Name</li>
-                <li>Last modified: @file.LastModified.ToString()</li>
-                <li>Size (bytes): @file.Size</li>
-                <li>Content type: @file.ContentType</li>
-            </ul>
-        </li>
-    }
-</ul>
+else
+{
+    <ul>
+        @foreach (var file in loadedFiles)
+        {
+            <li>
+                <ul>
+                    <li>Name: @file.Name</li>
+                    <li>Last modified: @file.LastModified.ToString()</li>
+                    <li>Size (bytes): @file.Size</li>
+                    <li>Content type: @file.ContentType</li>
+                </ul>
+            </li>
+        }
+    </ul>
+}
 
 @code {
     private List<IBrowserFile> loadedFiles = new();
     private long maxFileSize = 1024 * 15;
     private int maxAllowedFiles = 3;
     private bool isLoading;
-    string exceptionMessage;
 
-    private void LoadFiles(InputFileChangeEventArgs e)
+    private async Task LoadFiles(InputFileChangeEventArgs e)
     {
         isLoading = true;
         loadedFiles.Clear();
-        exceptionMessage = string.Empty;
 
-        try
+        foreach (var file in e.GetMultipleFiles(maxAllowedFiles))
         {
-            foreach (var file in e.GetMultipleFiles(maxAllowedFiles))
+            try
             {
                 loadedFiles.Add(file);
+
+                var trustedFileNameForFileStorage = Path.GetRandomFileName();
+                var path = Path.Combine(Environment.ContentRootPath,
+                        Environment.EnvironmentName, "unsafe_uploads",
+                        trustedFileNameForFileStorage);
+
+                await using FileStream fs = new(path, FileMode.Create);
+                await file.OpenReadStream(maxFileSize).CopyToAsync(fs);
             }
-        }
-        catch (Exception ex)
-        {
-            exceptionMessage = ex.Message;
+            catch (Exception ex)
+            {
+                Logger.LogError("File: {Filename} Error: {Error}", 
+                    file.Name, ex.Message);
+            }
         }
 
         isLoading = false;
