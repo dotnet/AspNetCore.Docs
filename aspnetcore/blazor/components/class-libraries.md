@@ -333,7 +333,7 @@ To provide `Component1`'s `my-component` CSS class, link to the library's styles
 
 An RCL's static assets are available to any app that consumes the library.
 
-Place static assets in the `wwwroot` folder of the RCL and reference the static assets with the following path in the app: `_content/{LIBRARY NAME}/{ASSET FILE NAME}`. The `{LIBRARY NAME}` placeholder is the library name. The `{ASSET FILE NAME}` placeholder is the file name.
+Place static assets in the `wwwroot` folder of the RCL and reference the static assets with the following path in the app: `_content/{LIBRARY NAME}/{PATH AND FILE NAME}`. The `{LIBRARY NAME}` placeholder is the library name. The `{PATH AND FILE NAME}` placeholder is path and file name under `wwwroot`.
 
 The following example demonstrates the use of RCL static assets with an RCL named `ComponentLibrary` and a Blazor app that consumes the RCL. The app has a project reference for the `ComponentLibrary` RCL.
 
@@ -418,14 +418,14 @@ private static string GetLoggingDirectory()
 
 For more information, see [Annotating APIs as unsupported on specific platforms (dotnet/designs GitHub repository](https://github.com/dotnet/designs/blob/main/accepted/2020/platform-exclusion/platform-exclusion.md#build-configuration-for-platforms).
 
-## Blazor JavaScript isolation and object references
+## JavaScript isolation in JavaScript modules
 
 Blazor enables JavaScript isolation in standard [JavaScript modules](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules). JavaScript isolation provides the following benefits:
 
 * Imported JavaScript no longer pollutes the global namespace.
 * Consumers of the library and components aren't required to manually import the related JavaScript.
 
-For more information, see <xref:blazor/call-javascript-from-dotnet#blazor-javascript-isolation-and-object-references>.
+For more information, see <xref:blazor/call-javascript-from-dotnet#javascript-isolation-in-javascript-modules>.
 
 ::: moniker-end
 

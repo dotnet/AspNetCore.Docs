@@ -1,6 +1,6 @@
 @page "/JSInterop"
 @using BlazorSample.JsInteropClasses
-@inject IJSRuntime JSRuntime
+@inject IJSRuntime JS
 
 <h1>JavaScript Interop</h1>
 
@@ -16,11 +16,11 @@
     public async Task TriggerJsPrompt()
     {
         // showPrompt is implemented in wwwroot/exampleJsInterop.js
-        var name = await JSRuntime.InvokeAsync<string>(
+        var name = await JS.InvokeAsync<string>(
                 "exampleJsFunctions.showPrompt",
                 "What's your name?");
         // displayWelcome is implemented in wwwroot/exampleJsInterop.js
-        await JSRuntime.InvokeVoidAsync(
+        await JS.InvokeVoidAsync(
                 "exampleJsFunctions.displayWelcome",
                 $"Hello {name}! Welcome to Blazor!");
     }
@@ -64,7 +64,7 @@
 @code {
     public async Task TriggerNetInstanceMethod()
     {
-        var exampleJsInterop = new ExampleJsInterop(JSRuntime);
+        var exampleJsInterop = new ExampleJsInterop(JS);
         await exampleJsInterop.CallHelloHelperSayHello("Blazor");
     }
 }

@@ -114,7 +114,7 @@ A client interacts with the server through JS interop event dispatching and rend
 For calls from .NET methods to JavaScript:
 
 * All invocations have a configurable timeout after which they fail, returning a <xref:System.OperationCanceledException> to the caller.
-  * There's a default timeout for the calls (<xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.JSInteropDefaultCallTimeout?displayProperty=nameWithType>) of one minute. To configure this limit, see <xref:blazor/call-javascript-from-dotnet#harden-js-interop-calls>.
+  * There's a default timeout for the calls (<xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.JSInteropDefaultCallTimeout?displayProperty=nameWithType>) of one minute. To configure this limit, see <xref:blazor/call-javascript-from-dotnet#harden-javascript-interop-calls>.
   * A cancellation token can be provided to control the cancellation on a per-call basis. Rely on the default call timeout where possible and time-bound any call to the client if a cancellation token is provided.
 * The result of a JavaScript call can't be trusted. The Blazor app client running in the browser searches for the JavaScript function to invoke. The function is invoked, and either the result or an error is produced. A malicious client can attempt to:
   * Cause an issue in the app by returning an error from the JavaScript function.

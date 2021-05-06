@@ -316,11 +316,29 @@ var query = new Uri(NavigationManager.Uri).Query;
 
 To parse a query string's parameters, one approach is to use [`URLSearchParams`](https://developer.mozilla.org/docs/Web/API/URLSearchParams) with [JavaScript (JS) interop](xref:blazor/call-javascript-from-dotnet):
 
+::: moniker range=">= aspnetcore-5.0"
+
 ```javascript
 export createQueryString = (string queryString) => new URLSearchParams(queryString);
 ```
 
-For more information, see [Blazor JavaScript isolation and object references](xref:blazor/call-javascript-from-dotnet#blazor-javascript-isolation-and-object-references).
+For more information on JavaScript isolation with JavaScript modules, see <xref:blazor/call-javascript-from-dotnet#javascript-isolation-in-javascript-modules>.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+```html
+<script>
+  window.createQueryString = (queryString) => {
+    return new URLSearchParams(queryString);
+  };
+</script>
+```
+
+For more information, see <xref:blazor/call-javascript-from-dotnet>.
+
+::: moniker-end
 
 ## `NavLink` and `NavMenu` components
 

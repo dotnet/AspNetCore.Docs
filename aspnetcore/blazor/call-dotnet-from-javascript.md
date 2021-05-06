@@ -427,6 +427,8 @@ The placeholder `{APP ASSEMBLY}` is the app's app assembly name (for example, `B
 </ul>
 ```
 
+## Share interop code in a class library
+
 [!INCLUDE[](~/blazor/includes/share-interop-code.md)]
 
 ## Avoid circular object references
@@ -441,7 +443,7 @@ For more information, see the following issues:
 * [Circular references are not supported, take two (dotnet/aspnetcore #20525)](https://github.com/dotnet/aspnetcore/issues/20525)
 * [Proposal: Add mechanism to handle circular references when serializing (dotnet/runtime #30820)](https://github.com/dotnet/runtime/issues/30820)
 
-## Size limits on JS interop calls
+## Size limits on JavaScript interop calls
 
 In Blazor WebAssembly, the framework doesn't impose a limit on the size of JS interop inputs and outputs.
 
@@ -495,7 +497,7 @@ Consider the following guidance when developing code that transfers a large amou
   * Temporarily stored in a memory buffer until all of the segments are collected.
   * Consumed immediately. For example, the data can be stored immediately in a database or written to disk as each segment is received.
 
-## JS modules
+## JavaScript modules
 
 For JS isolation, JS interop works with the browser's default support for [EcmaScript modules (ESM)](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules) ([ECMAScript specification](https://tc39.es/ecma262/#sec-modules)).
 

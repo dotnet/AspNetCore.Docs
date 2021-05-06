@@ -32,14 +32,18 @@ For the preceding example code, provide a `setElementText1` JavaScript function 
 > [!WARNING]
 > **The preceding example modifies the Document Object Model (DOM) directly for demonstration purposes only.** Directly modifying the DOM with JavaScript isn't recommended in most scenarios because JavaScript can interfere with Blazor's change tracking.
 
+::: moniker range=">= aspnetcore-5.0"
+
 > [!NOTE]
-> The preceding example pollutes the client with global methods. For a better approach in production apps, see [Blazor JavaScript isolation and object references](xref:blazor/call-javascript-from-dotnet#blazor-javascript-isolation-and-object-references).
+> The preceding example pollutes the client with global methods. For a better approach in production apps, see [JavaScript isolation in JavaScript modules](xref:blazor/call-javascript-from-dotnet#javascript-isolation-in-javascript-modules).
 >
 > Example:
 >
 > ```javascript
 > export setElementText1 = (element, text) => element.innerText = text;
 > ```
+
+::: moniker-end
 
 The following component demonstrates how to use JavaScript interop as part of a component's initialization logic in a way that's compatible with prerendering. The component shows that it's possible to trigger a rendering update from inside <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A>. The developer must be careful to avoid creating an infinite loop in this scenario.
 
@@ -75,8 +79,10 @@ For the preceding example code, provide a `setElementText2` JavaScript function 
 > [!WARNING]
 > **The preceding example modifies the Document Object Model (DOM) directly for demonstration purposes only.** Directly modifying the DOM with JavaScript isn't recommended in most scenarios because JavaScript can interfere with Blazor's change tracking.
 
+::: moniker range=">= aspnetcore-5.0"
+
 > [!NOTE]
-> The preceding example pollutes the client with global methods. For a better approach in production apps, see [Blazor JavaScript isolation and object references](xref:blazor/call-javascript-from-dotnet#blazor-javascript-isolation-and-object-references).
+> The preceding example pollutes the client with global methods. For a better approach in production apps, see [JavaScript isolation in JavaScript modules](xref:blazor/call-javascript-from-dotnet#javascript-isolation-in-javascript-modules).
 >
 > Example:
 >
@@ -86,3 +92,5 @@ For the preceding example code, provide a `setElementText2` JavaScript function 
 >   return text;
 > };
 > ```
+
+::: moniker-end
