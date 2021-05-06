@@ -289,17 +289,17 @@ To opt-out of HTTPS/HSTS:
 
 # [Visual Studio](#tab/visual-studio) 
 
-Uncheck the **Configure for HTTPS** check box.
+Uncheck the **Configure for HTTPS** checkbox.
 
 ::: moniker range=">= aspnetcore-3.0"
 
-![New ASP.NET Core Web Application dialog showing the Configure for HTTPS check box unselected.](enforcing-ssl/_static/out-vs2019.png)
+![New ASP.NET Core Web Application dialog showing the Configure for HTTPS checkbox unselected.](enforcing-ssl/_static/out-vs2019.png)
 
 ::: moniker-end
 
 ::: moniker range="<= aspnetcore-2.2"
 
-![New ASP.NET Core Web Application dialog showing the Configure for HTTPS check box unselected.](enforcing-ssl/_static/out.png)
+![New ASP.NET Core Web Application dialog showing the Configure for HTTPS checkbox unselected.](enforcing-ssl/_static/out.png)
 
 ::: moniker-end
 

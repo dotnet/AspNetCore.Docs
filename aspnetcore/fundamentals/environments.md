@@ -158,7 +158,7 @@ To set the environment in [Azure App Service](https://azure.microsoft.com/servic
 1. In the **Settings** group, select the **Configuration** blade.
 1. In the **Application settings** tab, select **New application setting**.
 1. In the **Add/Edit application setting** window, provide `ASPNETCORE_ENVIRONMENT` for the **Name**. For **Value**, provide the environment (for example, `Staging`).
-1. Select the **Deployment slot setting** check box if you wish the environment setting to remain with the current slot when deployment slots are swapped. For more information, see [Set up staging environments in Azure App Service](/azure/app-service/web-sites-staged-publishing) in the Azure documentation.
+1. Select the **Deployment slot setting** checkbox if you wish the environment setting to remain with the current slot when deployment slots are swapped. For more information, see [Set up staging environments in Azure App Service](/azure/app-service/web-sites-staged-publishing) in the Azure documentation.
 1. Select **OK** to close the **Add/Edit application setting** window.
 1. Select **Save** at the top of the **Configuration** blade.
 
@@ -483,7 +483,7 @@ To set the environment in [Azure App Service](https://azure.microsoft.com/servic
 1. In the **Settings** group, select the **Configuration** blade.
 1. In the **Application settings** tab, select **New application setting**.
 1. In the **Add/Edit application setting** window, provide `ASPNETCORE_ENVIRONMENT` for the **Name**. For **Value**, provide the environment (for example, `Staging`).
-1. Select the **Deployment slot setting** check box if you wish the environment setting to remain with the current slot when deployment slots are swapped. For more information, see [Set up staging environments in Azure App Service](/azure/app-service/web-sites-staged-publishing) in the Azure documentation.
+1. Select the **Deployment slot setting** checkbox if you wish the environment setting to remain with the current slot when deployment slots are swapped. For more information, see [Set up staging environments in Azure App Service](/azure/app-service/web-sites-staged-publishing) in the Azure documentation.
 1. Select **OK** to close the **Add/Edit application setting** window.
 1. Select **Save** at the top of the **Configuration** blade.
 

@@ -92,7 +92,7 @@ The following Component Tag Helper renders the `Counter` component in a page or 
 
 The preceding example assumes that the `Counter` component is in the app's *Pages* folder. The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `@using BlazorSample.Pages` or `@using BlazorSample.Client.Pages` in a hosted Blazor solution).
 
-The Component Tag Helper can also pass parameters to components. Consider the following `ColorfulCheckbox` component that sets the check box label's color and size:
+The Component Tag Helper can also pass parameters to components. Consider the following `ColorfulCheckbox` component that sets the checkbox label's color and size:
 
 ```razor
 <label style="font-size:@(Size)px;color:@Color">

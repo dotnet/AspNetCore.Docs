@@ -27,7 +27,7 @@ This article describes [Visual Studio](https://visualstudio.microsoft.com) suppo
 ## Enable IIS
 
 1. In Windows, navigate to **Control Panel** > **Programs** > **Programs and Features** > **Turn Windows features on or off** (left side of the screen).
-1. Select the **Internet Information Services** check box. Select **OK**.
+1. Select the **Internet Information Services** checkbox. Select **OK**.
 
 The IIS installation may require a system restart.
 
@@ -53,7 +53,7 @@ IIS must have a website configured with the following:
 
 ### HTTPS redirection
 
-For a new project that requires HTTPS, select the check box to **Configure for HTTPS** in the **Create a new ASP.NET Core Web Application** window. Selecting the check box adds [HTTPS Redirection and HSTS Middleware](xref:security/enforcing-ssl) to the app when it's created.
+For a new project that requires HTTPS, select the checkbox to **Configure for HTTPS** in the **Create a new ASP.NET Core Web Application** window. Selecting the checkbox adds [HTTPS Redirection and HSTS Middleware](xref:security/enforcing-ssl) to the app when it's created.
 
 For an existing project that requires HTTPS, use HTTPS Redirection and HSTS Middleware in `Startup.Configure`. For more information, see <xref:security/enforcing-ssl>.
 
@@ -66,7 +66,7 @@ Create a new launch profile to add development-time IIS support:
 1. Right-click the project in **Solution Explorer**. Select **Properties**. Open the **Debug** tab.
 1. For **Profile**, select the **New** button. Name the profile "IIS" in the popup window. Select **OK** to create the profile.
 1. For the **Launch** setting, select **IIS** from the list.
-1. Select the check box for **Launch browser** and provide the endpoint URL.
+1. Select the checkbox for **Launch browser** and provide the endpoint URL.
 
    When the app requires HTTPS, use an HTTPS endpoint (`https://`). For HTTP, use an HTTP (`http://`) endpoint.
 
@@ -142,7 +142,7 @@ This article describes [Visual Studio](https://visualstudio.microsoft.com) suppo
 ## Enable IIS
 
 1. In Windows, navigate to **Control Panel** > **Programs** > **Programs and Features** > **Turn Windows features on or off** (left side of the screen).
-1. Select the **Internet Information Services** check box. Select **OK**.
+1. Select the **Internet Information Services** checkbox. Select **OK**.
 
 The IIS installation may require a system restart.
 
@@ -168,7 +168,7 @@ IIS must have a website configured with the following:
 
 ### HTTPS redirection
 
-For a new project that requires HTTPS, select the check box to **Configure for HTTPS** in the **Create a new ASP.NET Core Web Application** window. Selecting the check box adds [HTTPS Redirection and HSTS Middleware](xref:security/enforcing-ssl) to the app when it's created.
+For a new project that requires HTTPS, select the checkbox to **Configure for HTTPS** in the **Create a new ASP.NET Core Web Application** window. Selecting the checkbox adds [HTTPS Redirection and HSTS Middleware](xref:security/enforcing-ssl) to the app when it's created.
 
 For an existing project that requires HTTPS, use HTTPS Redirection and HSTS Middleware in `Startup.Configure`. For more information, see <xref:security/enforcing-ssl>.
 
@@ -181,7 +181,7 @@ Create a new launch profile to add development-time IIS support:
 1. Right-click the project in **Solution Explorer**. Select **Properties**. Open the **Debug** tab.
 1. For **Profile**, select the **New** button. Name the profile "IIS" in the popup window. Select **OK** to create the profile.
 1. For the **Launch** setting, select **IIS** from the list.
-1. Select the check box for **Launch browser** and provide the endpoint URL.
+1. Select the checkbox for **Launch browser** and provide the endpoint URL.
 
    When the app requires HTTPS, use an HTTPS endpoint (`https://`). For HTTP, use an HTTP (`http://`) endpoint.
 
