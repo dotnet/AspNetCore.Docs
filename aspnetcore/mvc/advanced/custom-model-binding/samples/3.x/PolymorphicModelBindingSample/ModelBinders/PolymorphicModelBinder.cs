@@ -87,7 +87,7 @@ namespace PolymorphicModelBindingSample.ModelBinders
             if (newBindingContext.Result.IsModelSet)
             {
                 // Setting the ValidationState ensures properties on derived types are correctly 
-                bindingContext.ValidationState[newBindingContext.Result] = new ValidationStateEntry
+                bindingContext.ValidationState[newBindingContext.Result.Model] = new ValidationStateEntry
                 {
                     Metadata = modelMetadata,
                 };
