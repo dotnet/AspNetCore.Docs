@@ -38,7 +38,7 @@ Just as components are regular .NET types, components provided by an RCL are nor
 
 ::: moniker range=">= aspnetcore-5.0"
 
-If the **Support pages and views** check box is selected to support pages and views when generating the RCL from the template:
+If the **Support pages and views** checkbox is selected to support pages and views when generating the RCL from the template:
 
 * Add an `_Imports.razor` file to root of the generated RCL project with the following contents to enable Razor component authoring:
 
@@ -60,7 +60,7 @@ If the **Support pages and views** check box is selected to support pages and vi
 
 ::: moniker range="< aspnetcore-5.0"
 
-If the **Support pages and views** check box is selected to support pages and views when generating the RCL from the template, add an `_Imports.razor` file to root of the generated RCL project with the following contents to enable Razor component authoring:
+If the **Support pages and views** checkbox is selected to support pages and views when generating the RCL from the template, add an `_Imports.razor` file to root of the generated RCL project with the following contents to enable Razor component authoring:
 
 ```razor
 @using Microsoft.AspNetCore.Components.Web
@@ -85,7 +85,7 @@ If the **Support pages and views** check box is selected to support pages and vi
 
 ::: moniker range=">= aspnetcore-5.0"
 
-If the **Support pages and views** check box is selected to support pages and views when generating the RCL from the template:
+If the **Support pages and views** checkbox is selected to support pages and views when generating the RCL from the template:
 
 * Add an `_Imports.razor` file to root of the generated RCL project with the following contents to enable Razor component authoring:
 
@@ -107,7 +107,7 @@ If the **Support pages and views** check box is selected to support pages and vi
 
 ::: moniker range="< aspnetcore-5.0"
 
-If the **Support pages and views** check box is selected to support pages and views when generating the RCL from the template, add an `_Imports.razor` file to root of the generated RCL project with the following contents to enable Razor component authoring:
+If the **Support pages and views** checkbox is selected to support pages and views when generating the RCL from the template, add an `_Imports.razor` file to root of the generated RCL project with the following contents to enable Razor component authoring:
 
 ```razor
 @using Microsoft.AspNetCore.Components.Web

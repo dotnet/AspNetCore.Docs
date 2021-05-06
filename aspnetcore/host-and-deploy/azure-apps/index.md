@@ -266,7 +266,7 @@ For a 64-bit deployment:
       * Confirm that the **Release** configuration is selected.
       * In the **Deployment Mode** drop-down list, select  **Framework-Dependent**.
       * In the **Target Runtime** drop-down list, select the desired runtime. The default is `win-x86`.
-    * To remove additional files upon deployment, open **File Publish Options** and select the check box to remove additional files at the destination.
+    * To remove additional files upon deployment, open **File Publish Options** and select the checkbox to remove additional files at the destination.
    * Select **Save**.
    * Select **Publish**.
 
@@ -301,7 +301,7 @@ Use Visual Studio or the .NET Core CLI for a [self-contained deployment (SCD)](/
       * Confirm that the **Release** configuration is selected.
       * In the **Deployment Mode** drop-down list, select **Self-Contained**.
       * In the **Target Runtime** drop-down list, select the desired runtime. The default is `win-x86`.
-    * To remove additional files upon deployment, open **File Publish Options** and select the check box to remove additional files at the destination.
+    * To remove additional files upon deployment, open **File Publish Options** and select the checkbox to remove additional files at the destination.
    * Select **Save**.
    * Select **Publish**.
 

@@ -73,8 +73,8 @@ The project's properties enable Windows Authentication and disable Anonymous Aut
 
 1. Right-click the project in **Solution Explorer** and select **Properties**.
 1. Select the **Debug** tab.
-1. Clear the check box for **Enable Anonymous Authentication**.
-1. Select the check box for **Enable Windows Authentication**.
+1. Clear the checkbox for **Enable Anonymous Authentication**.
+1. Select the checkbox for **Enable Windows Authentication**.
 1. Save and close the property page.
 
 Alternatively, the properties can be configured in the `iisSettings` node of the *launchSettings.json* file:

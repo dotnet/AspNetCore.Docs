@@ -105,7 +105,7 @@ Follow the guidance for your choice of tooling:
 
 1. Choose the **Blazor WebAssembly App** template.
 
-1. Under **Advanced**, select the **ASP.NET Core hosted** check box.
+1. Under **Advanced**, select the **ASP.NET Core hosted** checkbox.
 
 1. Select **Create**.
 
@@ -135,7 +135,7 @@ Follow the guidance for your choice of tooling:
 
 1. Choose the **Blazor WebAssembly App** template. Select **Next**.
 
-1. Confirm that **Authentication** is set to **No Authentication**. Select the **ASP.NET Core Hosted** check box. Select **Next**.
+1. Confirm that **Authentication** is set to **No Authentication**. Select the **ASP.NET Core Hosted** checkbox. Select **Next**.
 
 1. In the **Project Name** field, name the app `BlazorWebAssemblySignalRApp`. Select **Create**.
 
@@ -191,7 +191,7 @@ To add an earlier version of the package, supply the `--version {VERSION}` optio
 
 1. With **Browse** selected, type `Microsoft.AspNetCore.SignalR.Client` in the search box.
 
-1. In the search results, select the check box next to the [`Microsoft.AspNetCore.SignalR.Client`](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client) package. Set the version to match the shared framework of the app. Select **Add Package**.
+1. In the search results, select the checkbox next to the [`Microsoft.AspNetCore.SignalR.Client`](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client) package. Set the version to match the shared framework of the app. Select **Add Package**.
 
 1. If the **License Acceptance** dialog appears, select **Accept** if you agree with the license terms.
 
@@ -456,7 +456,7 @@ To add an earlier version of the package, supply the `--version {VERSION}` optio
 
 1. With **Browse** selected, type `Microsoft.AspNetCore.SignalR.Client` in the search box.
 
-1. In the search results, select the check box next to the [`Microsoft.AspNetCore.SignalR.Client`](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client) package. Set the version to match the shared framework of the app. Select **Add Package**.
+1. In the search results, select the checkbox next to the [`Microsoft.AspNetCore.SignalR.Client`](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client) package. Set the version to match the shared framework of the app. Select **Add Package**.
 
 1. If the **License Acceptance** dialog appears, select **Accept** if you agree with the license terms.
 
@@ -514,7 +514,7 @@ To add an earlier version of the package, supply the `--version {VERSION}` optio
 
 1. With **Browse** selected, type `System.Text.Encodings.Web` in the search box.
 
-1. In the search results, select the check box next to the [`System.Text.Encodings.Web`](https://www.nuget.org/packages/System.Text.Encodings.Web) package, select the correct version of the package that matches the shared framework in use, and select **Add Package**.
+1. In the search results, select the checkbox next to the [`System.Text.Encodings.Web`](https://www.nuget.org/packages/System.Text.Encodings.Web) package, select the correct version of the package that matches the shared framework in use, and select **Add Package**.
 
 1. If the **License Acceptance** dialog appears, select **Accept** if you agree with the license terms.
 

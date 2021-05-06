@@ -255,7 +255,7 @@ The *database context* is the main class that coordinates Entity Framework funct
 * From the **Tools** menu, select **NuGet Package Manager > Manage NuGet Packages for Solution**.
 * Select the **Browse** tab, and then enter `Microsoft.EntityFrameworkCore.InMemory` in the search box.
 * Select `Microsoft.EntityFrameworkCore.InMemory` in the left pane.
-* Select the **Project** check box in the right pane and then select **Install**.
+* Select the **Project** checkbox in the right pane and then select **Install**.
 
 ![NuGet Package Manager](first-web-api/_static/5/vsNuGet.png)
 
@@ -744,7 +744,7 @@ The *database context* is the main class that coordinates Entity Framework funct
 * From the **Tools** menu, select **NuGet Package Manager > Manage NuGet Packages for Solution**.
 * Select the **Browse** tab, and then enter **Microsoft.EntityFrameworkCore.InMemory** in the search box.
 * Select **Microsoft.EntityFrameworkCore.InMemory** in the left pane.
-* Select the **Project** check box in the right pane and then select **Install**.
+* Select the **Project** checkbox in the right pane and then select **Install**.
 
 ![NuGet Package Manager](first-web-api/_static/vs3NuGet.png)
 

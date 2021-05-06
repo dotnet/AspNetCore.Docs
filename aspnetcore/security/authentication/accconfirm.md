@@ -367,7 +367,7 @@ Run the web app, and test the account confirmation and password recovery flow.
 Select your user name in the browser:
 ![browser window with user name](accconfirm/_static/un.png)
 
-The manage page is displayed with the **Profile** tab selected. The **Email** shows a check box indicating the email has been confirmed.
+The manage page is displayed with the **Profile** tab selected. The **Email** shows a checkbox indicating the email has been confirmed.
 
 ### Test password reset
 

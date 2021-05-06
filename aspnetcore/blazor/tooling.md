@@ -24,7 +24,7 @@ zone_pivot_groups: operating-systems
 
 1. For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template. For a Blazor Server experience, choose the **Blazor Server App** template. Select **Create**.
 
-   For a hosted Blazor WebAssembly experience, select the **ASP.NET Core hosted** check box.
+   For a hosted Blazor WebAssembly experience, select the **ASP.NET Core hosted** checkbox.
 
    For information on the two Blazor hosting models, *Blazor WebAssembly* (standalone and hosted) and *Blazor Server*, see <xref:blazor/hosting-models>.
 
@@ -151,7 +151,7 @@ For more information, see the guidance provided by your browser manufacturer and
 
 1. Confirm that **Authentication** is set to **No Authentication**. Select **Next**.
 
-1. For a hosted Blazor WebAssembly experience, select the **ASP.NET Core hosted** check box.
+1. For a hosted Blazor WebAssembly experience, select the **ASP.NET Core hosted** checkbox.
 
 1. In the **Project Name** field, name the app `WebApplication1`. Select **Create**.
 

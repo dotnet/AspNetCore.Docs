@@ -29,7 +29,7 @@ The Razor Pages and MVC project templates include an option to enable runtime co
 In the **Create a new ASP.NET Core web application** dialog:
 
 1. Select either the **Web Application** or the **Web Application (Model-View-Controller)** project template.
-1. Select the **Enable Razor runtime compilation** check box.
+1. Select the **Enable Razor runtime compilation** checkbox.
 
 # [.NET Core CLI](#tab/netcore-cli)
 
