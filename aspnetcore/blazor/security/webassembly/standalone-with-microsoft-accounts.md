@@ -21,7 +21,7 @@ Register an AAD app:
 1. Provide a **Name** for the app (for example, **Blazor Standalone AAD Microsoft Accounts**).
 1. In **Supported account types**, select **Accounts in any organizational directory**.
 1. Set the **Redirect URI** drop down to **Single-page application (SPA)** and provide the following redirect URI: `https://localhost:{PORT}/authentication/login-callback`. The default port for an app running on Kestrel is 5001. If the app is run on a different Kestrel port, use the app's port. For IIS Express, the randomly generated port for the app can be found in the app's properties in the **Debug** panel. Since the app doesn't exist at this point and the IIS Express port isn't known, return to this step after the app is created and update the redirect URI. A remark appears later in this topic to remind IIS Express users to update the redirect URI.
-1. If you're using an [unverified publisher domain](/azure/active-directory/develop/howto-configure-publisher-domain), clear the **Permissions** > **Grant admin consent to openid and offline_access permissions** check box. If the publisher domain is verified, this check box isn't present.
+1. If you're using an [unverified publisher domain](/azure/active-directory/develop/howto-configure-publisher-domain), clear the **Permissions** > **Grant admin consent to openid and offline_access permissions** checkbox. If the publisher domain is verified, this checkbox isn't present.
 1. Select **Register**.
 
 Record the Application (client) ID (for example, `41451fa7-82d9-4673-8fa5-69eff5a761fd`).
@@ -29,7 +29,7 @@ Record the Application (client) ID (for example, `41451fa7-82d9-4673-8fa5-69eff5
 In **Authentication** > **Platform configurations** > **Single-page application (SPA)**:
 
 1. Confirm the **Redirect URI** of `https://localhost:{PORT}/authentication/login-callback` is present.
-1. For **Implicit grant**, ensure that the check boxes for **Access tokens** and **ID tokens** are **not** selected.
+1. For **Implicit grant**, ensure that the checkboxes for **Access tokens** and **ID tokens** are **not** selected.
 1. The remaining defaults for the app are acceptable for this experience.
 1. Select the **Save** button.
 
@@ -41,7 +41,7 @@ In **Authentication** > **Platform configurations** > **Single-page application 
 1. Provide a **Name** for the app (for example, **Blazor Standalone AAD Microsoft Accounts**).
 1. In **Supported account types**, select **Accounts in any organizational directory**.
 1. Leave the **Redirect URI** drop down set to **Web** and provide the following redirect URI: `https://localhost:{PORT}/authentication/login-callback`. The default port for an app running on Kestrel is 5001. If the app is run on a different Kestrel port, use the app's port. For IIS Express, the randomly generated port for the app can be found in the app's properties in the **Debug** panel. Since the app doesn't exist at this point and the IIS Express port isn't known, return to this step after the app is created and update the redirect URI. A remark appears later in this topic to remind IIS Express users to update the redirect URI.
-1. If you're using an [unverified publisher domain](/azure/active-directory/develop/howto-configure-publisher-domain), clear the **Permissions** > **Grant admin consent to openid and offline_access permissions** check box. If the publisher domain is verified, this check box isn't present.
+1. If you're using an [unverified publisher domain](/azure/active-directory/develop/howto-configure-publisher-domain), clear the **Permissions** > **Grant admin consent to openid and offline_access permissions** checkbox. If the publisher domain is verified, this checkbox isn't present.
 1. Select **Register**.
 
 Record the Application (client) ID (for example, `41451fa7-82d9-4673-8fa5-69eff5a761fd`).
@@ -49,7 +49,7 @@ Record the Application (client) ID (for example, `41451fa7-82d9-4673-8fa5-69eff5
 In **Authentication** > **Platform configurations** > **Web**:
 
 1. Confirm the **Redirect URI** of `https://localhost:{PORT}/authentication/login-callback` is present.
-1. For **Implicit grant**, select the check boxes for **Access tokens** and **ID tokens**.
+1. For **Implicit grant**, select the checkboxes for **Access tokens** and **ID tokens**.
 1. The remaining defaults for the app are acceptable for this experience.
 1. Select the **Save** button.
 
