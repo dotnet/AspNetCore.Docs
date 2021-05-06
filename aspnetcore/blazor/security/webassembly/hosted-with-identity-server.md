@@ -186,6 +186,8 @@ builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>()
 
 > [!NOTE]
 > If you're configuring a Blazor WebAssembly app to use an existing Identity Server instance that isn't part of a hosted Blazor solution, change the <xref:System.Net.Http.HttpClient> base address registration from <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> (`builder.HostEnvironment.BaseAddress`) to the server app's API authorization endpoint URL.
+> 
+> Additionally, refer to the **Unauthenticated or unauthorized web API requests in an app with a _secure default client_** topic in the [Additional Resources](#additional-resources) section below for this usage scenario.
 
 ### API authorization support
 
