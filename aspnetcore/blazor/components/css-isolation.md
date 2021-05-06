@@ -45,12 +45,16 @@ h1 {
 
 ## CSS isolation bundling
 
-CSS isolation occurs at build time. During this process, Blazor rewrites CSS selectors to match markup rendered by the component. These rewritten CSS styles are bundled and produced as a static asset at `{ASSEMBLY NAME}.styles.css`, where the placeholder `{ASSEMBLY NAME}` is the referenced name of the package or project's assembly. Note that `{ASSEMBLY NAME}` may include ".Client" and not just the solution's name.
-
-These static files are referenced from the root path of the app by default. In the app, reference the bundled file by including the reference inside the `<head>` tag of the root page HTML (usually index.html; this is done for you when using the default Visual Studio templates for a Blazor project):
+CSS isolation occurs at build time. Blazor rewrites CSS selectors to match markup rendered by the component. The rewritten CSS styles are bundled and produced as a static asset. The stylesheet is referenced inside the `<head>` tag of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server). The following `<link>` element is added by default to an app created from the Blazor project templates, where the placeholder `{ASSEMBLY NAME}` is the project's assembly name:
 
 ```html
-<link href="AssemblyName.styles.css" rel="stylesheet">
+<link href="{ASSEMBLY NAME}.styles.css" rel="stylesheet">
+```
+
+The following example is from a hosted Blazor WebAssembly **`Client`** app. The app's assembly name is `BlazorSample.Client`, and the `<link>` is added by the Blazor hosted WebAssembly project template when the project is created:
+
+```html
+<link href="BlazorSample.Client.styles.css" rel="stylesheet">
 ```
 
 Within the bundled file, each component is associated with a scope identifier. For each styled component, an HTML attribute is appended with the format `b-<10-character-string>`. The identifier is unique and different for each app. In the rendered `Counter` component, Blazor appends a scope identifier to the `h1` element:
