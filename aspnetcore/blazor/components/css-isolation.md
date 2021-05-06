@@ -51,7 +51,7 @@ CSS isolation occurs at build time. Blazor rewrites CSS selectors to match marku
 <link href="{ASSEMBLY NAME}.styles.css" rel="stylesheet">
 ```
 
-The following example is from a hosted Blazor WebAssembly **`Client`** app. The app's assembly name is `BlazorSample.Client`, and the `<link>` is added by the Blazor WebAssembly project template when the project is created with the Hosted option (`-ho|--hosted` option using the .NET CLI or **ASP.NET Core hosted** check box using Visual Studio):
+The following example is from a hosted Blazor WebAssembly **`Client`** app. The app's assembly name is `BlazorSample.Client`, and the `<link>` is added by the Blazor WebAssembly project template when the project is created with the Hosted option (`-ho|--hosted` option using the .NET CLI or **ASP.NET Core hosted** checkbox using Visual Studio):
 
 ```html
 <link href="BlazorSample.Client.styles.css" rel="stylesheet">
