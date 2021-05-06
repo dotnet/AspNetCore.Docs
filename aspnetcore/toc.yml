@@ -221,6 +221,8 @@
       uid: fundamentals/environments
     - name: Logging
       uid: fundamentals/logging/index
+    - name: HTTP Logging
+      uid: fundamentals/http-logging/index
     - name: Routing
       uid: fundamentals/routing
     - name: Handle errors
@@ -924,22 +926,22 @@
       items:
         - name: Overview
           displayName: azure, deploy, publish
-          uid: azure/devops/index
+          href: /dotnet/architecture/devops-for-aspnet-developers
         - name: Tools and downloads
           displayName: azure, deploy, publish
-          uid: azure/devops/tools-and-downloads
+          href: /dotnet/architecture/devops-for-aspnet-developers/tool-and-downloads
         - name: Deploy to App Service
           displayName: azure, deploy, publish
-          uid: azure/devops/deploy-to-app-service
+          href: /dotnet/architecture/devops-for-aspnet-developers/deploying-to-app-service
         - name: Continuous integration and deployment
           displayName: azure, deploy, publish
-          uid: azure/devops/cicd
+          href: /dotnet/architecture/devops-for-aspnet-developers/cicd
         - name: Monitor and troubleshoot
           displayName: azure, deploy, publish
-          uid: azure/devops/monitor
+          href: /dotnet/architecture/devops-for-aspnet-developers/monitoring
         - name: Next steps
           displayName: azure, deploy, publish
-          uid: azure/devops/next-steps
+          href: /dotnet/architecture/devops-for-aspnet-developers/next-steps
     - name: IIS
       displayName: deploy, publish
       items:

@@ -5,7 +5,7 @@ description: Learn how to configure Data Protection in ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/02/2020
-no-loc: [appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/data-protection/configuration/overview
 ---
 # Configure ASP.NET Core Data Protection
@@ -95,6 +95,26 @@ public void ConfigureServices(IServiceCollection services)
 
 > [!WARNING]
 > If you change the key persistence location, the system no longer automatically encrypts keys at rest, since it doesn't know whether DPAPI is an appropriate encryption mechanism.
+
+## PersistKeysToDbContext
+
+To store keys in a database using EntityFramework, configure the system with the [Microsoft.AspNetCore.DataProtection.EntityFrameworkCore](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.EntityFrameworkCore/) package:
+
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddDataProtection()
+        .PersistKeysToDbContext<DbContext>()
+}
+```
+
+The preceding code stores the keys in the configured database. The database context being used must implement `IDataProtectionKeyContext`.  `IDataProtectionKeyContext` exposes the property `DataProtectionKeys` 
+
+```csharp
+public DbSet<DataProtectionKey> DataProtectionKeys { get; set; }
+```
+
+This property represents the table in which the keys are stored. Create the table manually or with `DbContext` Migrations. See <xref:Microsoft.AspNetCore.DataProtection.EntityFrameworkCore.DataProtectionKey> for more information.
 
 ## ProtectKeysWith\*
 
