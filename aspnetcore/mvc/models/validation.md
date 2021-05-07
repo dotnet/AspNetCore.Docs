@@ -44,6 +44,7 @@ Validation attributes let you specify validation rules for model properties. The
 
 Here are some of the built-in validation attributes:
 
+* `[ValidateNever]`: The <xref:Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidateNeverAttribute> indicates that a property or parameter should be excluded from validation.
 * `[CreditCard]`: Validates that the property has a credit card format. Requires [jQuery Validation Additional Methods](https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/additional-methods.min.js).
 * `[Compare]`: Validates that two properties in a model match.
 * `[EmailAddress]`: Validates that the property has an email format.
