@@ -208,15 +208,15 @@ The scaffolded pages can't be used yet because the database doesn't exist. Runni
 
 ### Examine the generated database context class and registration
 
-A database context class is needed to coordinate EF Core functionality (Create, Read, Update and Delete) for the `Movie` model. The database context is derived from [Microsoft.EntityFrameworkCore.DbContext](xref:Microsoft.EntityFrameworkCore.DbContext) and specifies the entities to include in the data model.
+With EF Core, data access is performed using a model. A model is made up of entity classes and a context object that represents a session with the database. The context object allows querying and saving data. The database context is derived from [Microsoft.EntityFrameworkCore.DbContext](xref:Microsoft.EntityFrameworkCore.DbContext) and specifies the entities to include in the data model.
 
 Scaffolding creates the *Data/MvcMovieContext.cs* database context class:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/zDocOnly/MvcMovieContext.cs?name=snippet)]
 
-The preceding code creates a [DbSet\<Movie>](/dotnet/api/microsoft.entityframeworkcore.dbset-1) property that represent collections of the specified entities in the database context.
+The preceding code creates a [DbSet\<Movie>](/dotnet/api/microsoft.entityframeworkcore.dbset-1) property that represents the movies in the database.
 
-ASP.NET Core is built with [dependency injection (DI)](xref:fundamentals/dependency-injection). Services, such as the EF Core DB context, must be registered with DI in `Startup`. Components that require these services are provided these services via constructor parameters.
+ASP.NET Core is built with [dependency injection (DI)](xref:fundamentals/dependency-injection). Services, such as the database context, must be registered with DI in `Startup`. Components that require these services are provided these services via constructor parameters.
 
 In the *Controllers/MoviesController.cs* file, the constructor uses [Dependency Injection](xref:fundamentals/dependency-injection) to inject the `MvcMovieContext` database context into the controller. The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.
 
@@ -236,7 +236,7 @@ Scaffolding generated the following highlighted code in `Startup.ConfigureServic
 
 ---
 
-The name of the connection string is passed to the context by calling a method on a [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions) object. The [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the "MvcMovieContext" database connection string.
+The [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the "MvcMovieContext" database connection string.
 
 <a name="cs"></a>
 

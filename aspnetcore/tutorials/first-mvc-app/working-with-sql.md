@@ -42,10 +42,11 @@ When the app is deployed to a test or production server, an environment variable
 LocalDB:
 
 * Is a lightweight version of the SQL Server Express Database Engine, installed by default with Visual Studio.
-* Targeted for program development.
 * Starts on demand by using a connection string.
-* Runs in user mode, so there's no complex configuration.
+* Is targeted for program development. It runs in user mode, so there's no complex configuration.
 * By default creates *.mdf* files in the *C:/Users/{user}* directory.
+
+### Examine the database
 
 From the **View** menu, open **SQL Server Object Explorer** (SSOX).
 
