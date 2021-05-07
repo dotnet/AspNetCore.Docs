@@ -956,7 +956,7 @@ Only HTTP URL prefixes are valid. Kestrel doesn't support HTTPS when configuring
   Host names, `*`, and `+`, aren't special. Anything not recognized as a valid IP address or `localhost` binds to all IPv4 and IPv6 IPs. To bind different host names to different ASP.NET Core apps on the same port, use [HTTP.sys](xref:fundamentals/servers/httpsys) or a reverse proxy server, such as IIS, Nginx, or Apache.
 
   > [!WARNING]
-  > Hosting in a reverse proxy configuration requires [host filtering](#host-filtering).
+  > > Hosting in a reverse proxy configuration requires [Forwarded Headers Middleware configuration](xref:host-and-deploy/proxy-load-balancer).
 
 * Host `localhost` name with port number or loopback IP with port number
 
@@ -1123,7 +1123,7 @@ A reverse proxy:
 * Simplify load balancing and secure communication (HTTPS) configuration. Only the reverse proxy server requires an X.509 certificate, and that server can communicate with the app's servers on the internal network using plain HTTP.
 
 > [!WARNING]
-> Hosting in a reverse proxy configuration requires [host filtering](#host-filtering).
+> > Hosting in a reverse proxy configuration requires [Forwarded Headers Middleware configuration](xref:host-and-deploy/proxy-load-balancer).
 
 ## How to use Kestrel in ASP.NET Core apps
 
@@ -1976,7 +1976,7 @@ Only HTTP URL prefixes are valid. Kestrel doesn't support HTTPS when configuring
   Host names, `*`, and `+`, aren't special. Anything not recognized as a valid IP address or `localhost` binds to all IPv4 and IPv6 IPs. To bind different host names to different ASP.NET Core apps on the same port, use [HTTP.sys](xref:fundamentals/servers/httpsys) or a reverse proxy server, such as IIS, Nginx, or Apache.
 
   > [!WARNING]
-  > Hosting in a reverse proxy configuration requires [host filtering](#host-filtering).
+  > > Hosting in a reverse proxy configuration requires [Forwarded Headers Middleware configuration](xref:host-and-deploy/proxy-load-balancer).
 
 * Host `localhost` name with port number or loopback IP with port number
 
@@ -2091,7 +2091,7 @@ A reverse proxy:
 * Simplify load balancing and secure communication (HTTPS) configuration. Only the reverse proxy server requires an X.509 certificate, and that server can communicate with the app's servers on the internal network using plain HTTP.
 
 > [!WARNING]
-> Hosting in a reverse proxy configuration requires [host filtering](#host-filtering).
+> > Hosting in a reverse proxy configuration requires [Forwarded Headers Middleware configuration](xref:host-and-deploy/proxy-load-balancer).
 
 ## How to use Kestrel in ASP.NET Core apps
 
@@ -2804,7 +2804,7 @@ Only HTTP URL prefixes are valid. Kestrel doesn't support HTTPS when configuring
   Host names, `*`, and `+`, aren't special. Anything not recognized as a valid IP address or `localhost` binds to all IPv4 and IPv6 IPs. To bind different host names to different ASP.NET Core apps on the same port, use [HTTP.sys](xref:fundamentals/servers/httpsys) or a reverse proxy server, such as IIS, Nginx, or Apache.
 
   > [!WARNING]
-  > Hosting in a reverse proxy configuration requires [host filtering](#host-filtering).
+  > > Hosting in a reverse proxy configuration requires [Forwarded Headers Middleware configuration](xref:host-and-deploy/proxy-load-balancer).
 
 * Host `localhost` name with port number or loopback IP with port number
 
