@@ -5,7 +5,7 @@ description: Get an introduction to ASP.NET Core, a cross-platform, high-perform
 ms.author: riande
 ms.custom: mvc
 ms.date: 04/17/2020
-no-loc: [Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Home, Privacy,Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: index
 ---
 # Introduction to ASP.NET Core

@@ -5,7 +5,7 @@ description: Learn how to create and use authorization policy handlers for enfor
 ms.author: riande
 ms.custom: mvc
 ms.date: 04/15/2020
-no-loc: [Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Home, Privacy,Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authorization/policies
 ---
 # Policy-based authorization in ASP.NET Core
