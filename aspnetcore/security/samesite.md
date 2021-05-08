@@ -59,7 +59,7 @@ The following sample can be downloaded and tested:
 
 [!code-csharp[](samesite/snippets/Privacy.cshtml.cs?name=snippet)]
 
-.NET Core 3.0 and later support the updated SameSite values and adds an extra enum value, `SameSiteMode.Unspecified` to the `SameSiteMode` enum.
+.NET Core 3.1 and later support the updated SameSite values and adds an extra enum value, `SameSiteMode.Unspecified` to the `SameSiteMode` enum.
 This new value indicates no sameSite should be sent with the cookie.
 
 ::: moniker-end
