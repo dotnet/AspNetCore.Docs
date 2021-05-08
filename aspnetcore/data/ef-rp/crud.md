@@ -4,7 +4,7 @@ author: rick-anderson
 description: Part 2 of Razor Pages and Entity Framework tutorial series.
 ms.author: riande
 ms.date: 3/3/2021
-no-loc: [Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: data/ef-rp/crud
 ---
 # Part 2, Razor Pages with EF Core in ASP.NET Core - CRUD

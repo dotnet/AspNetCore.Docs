@@ -5,7 +5,7 @@ description: Learn how to use Visual Studio tooling and Docker for Windows to co
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 09/12/2018
-no-loc: [Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: host-and-deploy/docker/visual-studio-tools-for-docker
 ---
 # Visual Studio Container Tools with ASP.NET Core
@@ -38,9 +38,9 @@ When adding Docker support to a project, choose either a Windows or a Linux cont
 
 ### New app
 
-When creating a new app with the **ASP.NET Core Web Application** project templates, select the **Enable Docker Support** check box:
+When creating a new app with the **ASP.NET Core Web Application** project templates, select the **Enable Docker Support** checkbox:
 
-![Enable Docker Support check box](visual-studio-tools-for-docker/_static/enable-docker-support-check-box.png)
+![Enable Docker Support checkbox](visual-studio-tools-for-docker/_static/enable-docker-support-check-box.png)
 
 If the target framework is .NET Core, the **OS** drop-down allows for the selection of a container type.
 
@@ -63,7 +63,7 @@ A *Dockerfile*, the recipe for creating a final Docker image, is added to the pr
 
 The preceding *Dockerfile* is based on the [microsoft/dotnet](https://hub.docker.com/r/microsoft/dotnet/) image. This base image includes the ASP.NET Core runtime and NuGet packages. The packages are just-in-time (JIT) compiled to improve startup performance.
 
-When the new project dialog's **Configure for HTTPS** check box is checked, the *Dockerfile* exposes two ports. One port is used for HTTP traffic; the other port is used for HTTPS. If the check box isn't checked, a single port (80) is exposed for HTTP traffic.
+When the new project dialog's **Configure for HTTPS** checkbox is checked, the *Dockerfile* exposes two ports. One port is used for HTTP traffic; the other port is used for HTTPS. If the checkbox isn't checked, a single port (80) is exposed for HTTP traffic.
 
 ::: moniker-end
 

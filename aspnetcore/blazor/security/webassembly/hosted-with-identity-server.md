@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 10/27/2020
-no-loc: [Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/security/webassembly/hosted-with-identity-server
 ---
 # Secure an ASP.NET Core Blazor WebAssembly hosted app with Identity Server
@@ -24,7 +24,7 @@ To create a new Blazor WebAssembly project with an authentication mechanism:
 
 1. Select **Individual User Accounts** with the **Store user accounts in-app** option to store users within the app using ASP.NET Core's [Identity](xref:security/authentication/identity) system.
 
-1. Select the **ASP.NET Core hosted** check box in the **Advanced** section.
+1. Select the **ASP.NET Core hosted** checkbox in the **Advanced** section.
 
 # [Visual Studio Code / .NET Core CLI](#tab/visual-studio-code+netcore-cli)
 
@@ -50,7 +50,7 @@ To create a new Blazor WebAssembly project with an authentication mechanism:
 
 1. The app is created for individual users stored in the app with ASP.NET Core [Identity](xref:security/authentication/identity).
 
-1. Select the **ASP.NET Core hosted** check box.
+1. Select the **ASP.NET Core hosted** checkbox.
 
 ---
 

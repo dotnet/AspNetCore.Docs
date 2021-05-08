@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 03/16/2021
-no-loc: [Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/components/event-handling
 ---
 # ASP.NET Core Blazor event handling
@@ -25,7 +25,7 @@ For event handling:
 The following code:
 
 * Calls the `UpdateHeading` method when the button is selected in the UI.
-* Calls the `CheckChanged` method when the check box is changed in the UI.
+* Calls the `CheckChanged` method when the checkbox is changed in the UI.
 
 `Pages/EventHandlerExample1.razor`:
 
@@ -424,7 +424,7 @@ An expression is also a permitted value of the attribute. In the following examp
 
 Use the [`@on{DOM EVENT}:stopPropagation`](xref:mvc/views/razor#oneventstoppropagation) directive attribute to stop event propagation, where the `{DOM EVENT}` placeholder is a [Document Object Model (DOM) event](https://developer.mozilla.org/docs/Web/Events).
 
-In the following example, selecting the check box prevents click events from the second child `<div>` from propagating to the parent `<div>`. Since propagated click events normally fire the `OnSelectParentDiv` method, selecting the second child `<div>` results in the parent div message appearing unless the check box is selected.
+In the following example, selecting the checkbox prevents click events from the second child `<div>` from propagating to the parent `<div>`. Since propagated click events normally fire the `OnSelectParentDiv` method, selecting the second child `<div>` results in the parent div message appearing unless the checkbox is selected.
 
 `Pages/EventHandlerExample7.razor`:
 
