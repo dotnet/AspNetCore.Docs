@@ -38,10 +38,9 @@ namespace ValidationSample.Pages.Movies
         public async Task<IActionResult> OnPostTryValidateAsync()
         {
             var modifiedReleaseDate = DateTime.Now.Date;
-
-            ModelState.Clear();
             Movie.ReleaseDate = modifiedReleaseDate;
 
+            ModelState.Clear();
             if (!TryValidateModel(Movie, nameof(Movie)))
             {
                 return Page();
