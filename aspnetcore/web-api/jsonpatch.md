@@ -5,7 +5,7 @@ description: Learn how to handle JSON Patch requests in an ASP.NET Core web API.
 ms.author: riande
 ms.custom: mvc
 ms.date: 04/02/2020
-no-loc: [Home, Privacy,Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: web-api/jsonpatch
 ---
 

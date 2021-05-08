@@ -5,7 +5,7 @@ description: This is the first tutorial of a series that teaches the basics of b
 ms.author: riande
 ms.date: 09/15/2020
 ms.custom: contperf-fy21q2
-no-loc: [Home, Privacy,Index, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Home, Privacy, Index, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/razor-pages/razor-pages-start
 ---
 

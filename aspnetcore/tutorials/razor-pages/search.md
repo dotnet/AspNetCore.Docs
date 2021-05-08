@@ -5,7 +5,7 @@ description: Part 6 of tutorial series on Razor Pages.
 ms.author: riande
 ms.date: 12/05/2019
 ms.custom: contperf-fy21q2
-no-loc: [Home, Privacy,Index, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Home, Privacy, Index, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/razor-pages/search
 ---
 # Part 6, add search to ASP.NET Core Razor Pages
