@@ -5,7 +5,7 @@ description: Learn how to store and retrieve sensitive information during the de
 ms.author: scaddie
 ms.custom: mvc, contperf-fy21q2
 ms.date: 11/24/2020
-no-loc: [Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/app-secrets
 ---
 # Safe storage of app secrets in development in ASP.NET Core
