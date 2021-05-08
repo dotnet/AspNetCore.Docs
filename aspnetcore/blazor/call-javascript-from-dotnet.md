@@ -5,7 +5,7 @@ description: Learn how to invoke JavaScript functions from .NET methods in Blazo
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc, devx-track-js
-ms.date: 05/07/2021
+ms.date: 05/08/2021
 no-loc: [Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/call-javascript-from-dotnet
 ---
@@ -23,7 +23,7 @@ For Blazor Server apps with prerendering enabled, calling into JS isn't possible
 
 The following example is based on [`TextDecoder`](https://developer.mozilla.org/docs/Web/API/TextDecoder), a JS-based decoder. The example demonstrates how to invoke a JS function from a C# method that offloads a requirement from developer code to an existing JS API. The JS function accepts a byte array from a C# method, decodes the array, and returns the text to the component for display.
 
-Add the following JS code to the `<head>` element of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server):
+Add the following JS code inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server):
 
 ```html
 <script>
@@ -104,7 +104,7 @@ JavaScript (JS) code can be loaded:
   </body>
   ```
 
-  The `{webassembly|server}` placeholder in the preceding markup is either `webassembly` for a Blazor WebAssembly app or `server` for a Blazor Server app.
+  The `{webassembly|server}` placeholder in the preceding markup is either `webassembly` for a Blazor WebAssembly app or `server` for a Blazor Server app. The `{SCRIPT FILE (.js)}` placeholder is the path and script file name.
 
 * Inside the `<head>` element of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server).
 
@@ -126,20 +126,26 @@ JavaScript (JS) code can be loaded:
   > * Prevents JS interop from functioning if the script depends on Blazor and you're unable to explicitly start Blazor and then invoke the script in the callback. Placing scripts inside the closing `</body>` tag, not in the `<head>`, is the best general approach for including scripts with JS interop functions. For more information, see the preceding bullet item on including JS from an external file.
   > * May slow down page parsing and thus may delay the page becoming interactive for the user.
 
-* Via an injected script in `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server) when the app is initialized. The following example injects a `<script>` tag into the `<head>` elements that references a custom JS file (`custom.js`).
+* Via an injected script in `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server) when the app is initialized.
+
+  Add `autostart="false"` to the `<script>` tag that loads the Blazor script:
 
   ```html
-      ...
-      <script autostart="false" 
-          src="_framework/blazor.{webassembly|server}.js"></script>
-      <script>
-        Blazor.start().then(function () {
-          var customScript = document.createElement('script');
-          customScript.setAttribute('src','custom.js');
-          document.head.appendChild(customScript);
-        });
-      </script>
-  </body>
+  <script autostart="false" src="_framework/blazor.{webassembly|server}.js"></script>
+  ```
+
+  The `{webassembly|server}` placeholder in the preceding markup is either `webassembly` for a Blazor WebAssembly app or `server` for a Blazor Server app.
+
+  The following example injects a `<script>` tag into the `<head>` elements that references a custom JS file (`custom.js`). The following `<script>` tag is placed inside the closing `</body>` tag after the `<script>` tag that loads the Blazor script:
+
+  ```html
+  <script>
+    Blazor.start().then(function () {
+      var customScript = document.createElement('script');
+      customScript.setAttribute('src', 'custom.js');
+      document.head.appendChild(customScript);
+    });
+  </script>
   ```
 
   > [!NOTE]
@@ -165,9 +171,9 @@ Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or
 
 ```html
 <script>
-    window.displayTickerAlert1 = (symbol, price) => {
-        alert(symbol + ': $' + price + '!');
-    };
+  window.displayTickerAlert1 = (symbol, price) => {
+    alert(`${symbol}: $${price}!`);
+  };
 </script>
 ```
 
@@ -209,24 +215,26 @@ Component (`.razor`) example
 
 Class (`.cs`) example
 
-The JS function is called with <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A> and doesn't return a value:
+The JS function is called with <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A> and doesn't return a value/
+
+`JsInteropClasses1.cs`:
 
 ```csharp
 using System.Threading.Tasks;
 using Microsoft.JSInterop;
 
-public class JsInteropClasses
+public class JsInteropClasses1
 {
     private readonly IJSRuntime js;
 
-    public JsInteropClasses(IJSRuntime js)
+    public JsInteropClasses1(IJSRuntime js)
     {
         this.js = js;
     }
 
-    public ValueTask TickerChanged(string symbol, decimal price)
+    public async ValueTask TickerChanged(string symbol, decimal price)
     {
-        js.InvokeVoidAsync("displayTickerAlert1", symbol, price);
+        await js.InvokeVoidAsync("displayTickerAlert1", symbol, price);
     }
 }
 ```
@@ -236,6 +244,7 @@ public class JsInteropClasses
 ```razor
 @page "/call-js-example-3"
 @implements IDisposable
+@inject IJSRuntime JS
 
 <h1>Call JS Example 3</h1>
 
@@ -252,8 +261,7 @@ public class JsInteropClasses
     private Random r = new();
     private string stockSymbol;
     private decimal price;
-    private JsInteropClasses jsClass;
-    private string result;
+    private JsInteropClasses1 jsClass;
 
     protected override void OnInitialized()
     {
@@ -280,14 +288,14 @@ Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or
 
 ```html
 <script>
-    window.displayTickerAlert2 = (symbol, price) => {
-        if (price < 20) {
-            alert(symbol + ': $' + price + '!');
-            return "Alert!";
-        } else {
-            return "No Alert";
-        }
-    };
+  window.displayTickerAlert2 = (symbol, price) => {
+    if (price < 20) {
+      alert(`${symbol}: $${price}!`);
+      return "Alert!";
+    } else {
+      return "No Alert";
+    }
+  };
 </script>
 ```
 
@@ -295,7 +303,7 @@ Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or
 
 Component (`.razor`) example
 
-`Pages/CallJsExample2.razor`:
+`Pages/CallJsExample4.razor`:
 
 ```razor
 @page "/call-js-example-4"
@@ -329,7 +337,7 @@ Component (`.razor`) example
             $"{(char)('A' + r.Next(0, 26))}{(char)('A' + r.Next(0, 26))}";
         price = r.Next(1, 101);
         var interopResult = 
-            JS.InvokeAsync<string>("displayTickerAlert2", symbol, price);
+            await JS.InvokeAsync<string>("displayTickerAlert2", stockSymbol, price);
         result = $"Result of TickerChanged call for {stockSymbol} at " +
             $"{price.ToString("c")}: {interopResult}";
     }
@@ -338,37 +346,44 @@ Component (`.razor`) example
 
 Class (`.cs`) example
 
-The JS function is called with <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeAsync%2A> and returns a value:
+The JS function is called with <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeAsync%2A> and returns a value.
+
+`JsInteropClasses2.cs`:
 
 ```csharp
 using System.Threading.Tasks;
 using Microsoft.JSInterop;
 
-public class JsInteropClasses
+public class JsInteropClasses2
 {
     private readonly IJSRuntime js;
 
-    public JsInteropClasses(IJSRuntime js)
+    public JsInteropClasses2(IJSRuntime js)
     {
         this.js = js;
     }
 
-    public ValueTask<string> TickerChanged(string symbol, decimal price)
+    public async ValueTask<string> TickerChanged(string symbol, decimal price)
     {
-        return js.InvokeAsync<string>("displayTickerAlert2", symbol, price);
+        return await js.InvokeAsync<string>("displayTickerAlert2", symbol, price);
+    }
+
+    public void Dispose()
+    {
     }
 }
 ```
 
 `TickerChanged` calls the `handleTickerChanged2` method and displays the returned string in the following `CallJsExample3` component.
 
-`Pages/CallJsExample3.razor`:
+`Pages/CallJsExample5.razor`:
 
 ```razor
-@page "/call-js-example-3"
+@page "/call-js-example-5"
 @implements IDisposable
+@inject IJSRuntime JS
 
-<h1>Call JS Example 3</h1>
+<h1>Call JS Example 5</h1>
 
 <p>
     <button @onclick="SetStock">Set Stock</button>
@@ -388,7 +403,7 @@ public class JsInteropClasses
     private Random r = new();
     private string stockSymbol;
     private decimal price;
-    private JsInteropClasses jsClass;
+    private JsInteropClasses2 jsClass;
     private string result;
 
     protected override void OnInitialized()
@@ -444,24 +459,18 @@ export function showPrompt(message) {
 }
 ```
 
-> [!NOTE]
-> The preceding JS function can also take the lambda format in code:
->
-> ```javascript
-> export showPrompt = (string message) => prompt(message, 'Type anything here');
-> ```
-
 Add the preceding JS module to an app or class library as a static web asset in the `wwwroot` folder and then import the module into the .NET code by calling <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A> on the <xref:Microsoft.JSInterop.IJSRuntime> instance.
 
 <xref:Microsoft.JSInterop.IJSRuntime> imports the module as a `IJSObjectReference`, which represents a reference to a JS object from .NET code. Use the `IJSObjectReference` to invoke exported JS functions from the module:
 
-`Pages/CallJsExample4.razor`:
+`Pages/CallJsExample6.razor`:
 
 ```razor
-@page "/call-js-example-4"
+@page "/call-js-example-6"
+@implements IAsyncDisposable
 @inject IJSRuntime JS
 
-<h1>JavaScript isolation example</h1>
+<h1>Call JS Example 6</h1>
 
 <p>
     <button @onclick="TriggerPrompt">Trigger browser window prompt</button>
@@ -493,8 +502,8 @@ Add the preceding JS module to an app or class library as a static web asset in 
     {
         return await module.InvokeAsync<string>("showPrompt", message);
     }
-    
-    private async ValueTask IAsyncDisposable.DisposeAsync()
+
+    async ValueTask IAsyncDisposable.DisposeAsync()
     {
         await module.DisposeAsync();
     }
@@ -565,8 +574,6 @@ The following example shows capturing a reference to the `username` `<input>` el
 
 An <xref:Microsoft.AspNetCore.Components.ElementReference> is passed through to JS code via JS interop. The JS code receives an `HTMLElement` instance, which it can use with normal DOM APIs. For example, the following code defines a .NET extension method that enables sending a mouse click to an element:
 
-`exampleJsInterop.js`:
-
 ```javascript
 window.interopFunctions = {
   clickElement : function (element) {
@@ -592,7 +599,7 @@ To call a JS function that doesn't return a value, use <xref:Microsoft.JSInterop
 <button @ref="exampleButton">Example Button</button>
 
 <button @onclick="TriggerClick">
-    Trigger button click on exampleButton
+    Trigger click event on <code>Example Button</code>
 </button>
 
 @code {
@@ -622,10 +629,10 @@ The `clickElement` method is called directly on the object. The following exampl
 @inject IJSRuntime JS
 @using JsInteropClasses
 
-<button @ref="exampleButton" />
+<button @ref="exampleButton">Example Button</button>
 
 <button @onclick="TriggerClick">
-    Trigger button click on exampleButton
+    Trigger click event on <code>Example Button</code>
 </button>
 
 @code {
@@ -688,9 +695,7 @@ For a parent component to make an element reference available to other component
 * Allow child components to register callbacks.
 * Invoke the registered callbacks during the <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> event with the passed element reference. Indirectly, this approach allows child components to interact with the parent's element reference.
 
-The following Blazor WebAssembly example illustrates the approach.
-
-In the `<head>` of `wwwroot/index.html`:
+Add the following style to the `<head>` of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server):
 
 ```html
 <style>
@@ -698,32 +703,34 @@ In the `<head>` of `wwwroot/index.html`:
 </style>
 ```
 
-Inside the closing `</body>` tag of `wwwroot/index.html`:
+Add the following script inside closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server):
 
 ```html
 <script>
-    function setElementClass(element, className) {
-        var myElement = element;
-        myElement.classList.add(className);
-    }
+  function setElementClass(element, className) {
+    var myElement = element;
+    myElement.classList.add(className);
+  }
 </script>
 ```
 
 [!INCLUDE[](~/blazor/includes/use-js-modules.md)]
 
-`Pages/Index.razor` (parent component):
+`Pages/CallJsExample7.razor` (parent component):
 
 ```razor
-@page "/"
+@page "/call-js-example-7"
 
-<h1 @ref="title">Hello, world!</h1>
+<h1>Call JS Example 7</h1>
+
+<h2 @ref="title">Hello, world!</h2>
 
 Welcome to your new app.
 
-<SurveyPrompt Parent="this" Title="How is Blazor working for you?" />
+<SurveyPrompt Parent="@this" Title="How is Blazor working for you?" />
 ```
 
-`Pages/Index.razor.cs`:
+`Pages/CallJsExample7.razor.cs`:
 
 ```csharp
 using System;
@@ -732,7 +739,7 @@ using Microsoft.AspNetCore.Components;
 
 namespace {APP ASSEMBLY}.Pages
 {
-    public partial class Index : 
+    public partial class CallJsExample7 : 
         ComponentBase, IObservable<ElementReference>, IDisposable
     {
         private bool disposing;
@@ -789,14 +796,15 @@ namespace {APP ASSEMBLY}.Pages
 
         private class Subscription : IDisposable
         {
-            public Subscription(IObserver<ElementReference> observer, Index self)
+            public Subscription(IObserver<ElementReference> observer, 
+                CallJsExample7 self)
             {
                 Observer = observer;
                 Self = self;
             }
 
             public IObserver<ElementReference> Observer { get; }
-            public Index Self { get; }
+            public CallJsExample7 Self { get; }
 
             public void Dispose()
             {
@@ -993,12 +1001,14 @@ In `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Ser
     rel="stylesheet" />
 ```
 
-`Pages/CallJsExample5.razor`:
+`Pages/CallJsExample8.razor`:
 
 ```razor
-@page "/call-js-example-5"
+@page "/call-js-example-8"
 @inject IJSRuntime JS
 @implements IAsyncDisposable
+
+<h1>Call JS Example 8</h1>
 
 <div @ref="mapElement" style='width:400px;height:300px'></div>
 
@@ -1022,11 +1032,11 @@ In `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Ser
         }
     }
 
-    private Task ShowAsync(double latitude, double longitude)
-        => mapModule.InvokeVoidAsync("setMapCenter", mapInstance, latitude, 
+    private async Task ShowAsync(double latitude, double longitude)
+        => await mapModule.InvokeVoidAsync("setMapCenter", mapInstance, latitude, 
             longitude).AsTask();
 
-    private async ValueTask IAsyncDisposable.DisposeAsync()
+    async ValueTask IAsyncDisposable.DisposeAsync()
     {
         await mapInstance.DisposeAsync();
         await mapModule.DisposeAsync();
@@ -1077,23 +1087,23 @@ Place the following `<script>` block in `wwwroot/index.html` (Blazor WebAssembly
 
 ```javascript
 <script>
-    window.returnJSObjectReference = () => {
-        return {
-            unmarshalledFunctionReturnBoolean: function (fields) {
-                const name = Blazor.platform.readStringField(fields, 0);
-                const year = Blazor.platform.readInt32Field(fields, 8);
+  window.returnJSObjectReference = () => {
+    return {
+      unmarshalledFunctionReturnBoolean: function (fields) {
+        const name = Blazor.platform.readStringField(fields, 0);
+        const year = Blazor.platform.readInt32Field(fields, 8);
     
-                return name === "Brigadier Alistair Gordon Lethbridge-Stewart" &&
-                    year === 1968;
-            },
-            unmarshalledFunctionReturnString: function (fields) {
-                const name = Blazor.platform.readStringField(fields, 0);
-                const year = Blazor.platform.readInt32Field(fields, 8);
-    
-                return BINDING.js_string_to_mono_string(`Hello, ${name} (${year})!`);
-            }
-        };
-    }
+        return name === "Brigadier Alistair Gordon Lethbridge-Stewart" &&
+            year === 1968;
+      },
+      unmarshalledFunctionReturnString: function (fields) {
+        const name = Blazor.platform.readStringField(fields, 0);
+        const year = Blazor.platform.readInt32Field(fields, 8);
+
+        return BINDING.js_string_to_mono_string(`Hello, ${name} (${year})!`);
+      }
+    };
+  }
 </script>
 ```
 
@@ -1194,13 +1204,13 @@ If an `IJSUnmarshalledObjectReference` instance isn't disposed in C# code, it ca
 
 ```javascript
 window.exampleJSObjectReferenceNotDisposedInCSharp = () => {
-    return {
-        dispose: function () {
-            DotNet.disposeJSObjectReference(this);
-        },
+  return {
+    dispose: function () {
+      DotNet.disposeJSObjectReference(this);
+    },
 
-        ...
-    };
+    ...
+  };
 }
 ```
 
