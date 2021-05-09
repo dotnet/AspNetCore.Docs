@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 7/21/2020
-no-loc: [Kestrel, appsettings.json, "ASP.NET Core Identity", Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/dependency-injection
 ---
 # Dependency injection in ASP.NET Core

@@ -5,7 +5,7 @@ description: Learn about model validation in ASP.NET Core MVC and Razor Pages.
 ms.author: riande
 ms.custom: mvc
 ms.date: 12/15/2019
-no-loc: [Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/models/validation
 ---
 # Model validation in ASP.NET Core MVC and Razor Pages
@@ -44,6 +44,7 @@ Validation attributes let you specify validation rules for model properties. The
 
 Here are some of the built-in validation attributes:
 
+* `[ValidateNever]`: The <xref:Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidateNeverAttribute> indicates that a property or parameter should be excluded from validation.
 * `[CreditCard]`: Validates that the property has a credit card format. Requires [jQuery Validation Additional Methods](https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/additional-methods.min.js).
 * `[Compare]`: Validates that two properties in a model match.
 * `[EmailAddress]`: Validates that the property has an email format.

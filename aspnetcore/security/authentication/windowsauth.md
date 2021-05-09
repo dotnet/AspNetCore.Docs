@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: "mvc, seodec18"
 ms.date: 1/15/2021
-no-loc: [Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/windowsauth
 ---
 # Configure Windows Authentication in ASP.NET Core
@@ -73,8 +73,8 @@ The project's properties enable Windows Authentication and disable Anonymous Aut
 
 1. Right-click the project in **Solution Explorer** and select **Properties**.
 1. Select the **Debug** tab.
-1. Clear the check box for **Enable Anonymous Authentication**.
-1. Select the check box for **Enable Windows Authentication**.
+1. Clear the checkbox for **Enable Anonymous Authentication**.
+1. Select the checkbox for **Enable Windows Authentication**.
 1. Save and close the property page.
 
 Alternatively, the properties can be configured in the `iisSettings` node of the *launchSettings.json* file:

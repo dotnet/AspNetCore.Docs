@@ -4,7 +4,7 @@ author: rick-anderson
 description: Part 9 of tutorial series on ASP.NET Core MVC.
 ms.author: riande
 ms.date: 04/13/2017
-no-loc: [Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-mvc-app/validation
 ---
 
@@ -53,7 +53,7 @@ You can set a break point in the `[HttpPost] Create` method and verify the metho
 
 The following image shows how to disable JavaScript in the Firefox browser.
 
-![Firefox: On the Content tab of Options, uncheck the Enable Javascript check box.](~/tutorials/first-mvc-app/validation/_static/ff.png)
+![Firefox: On the Content tab of Options, uncheck the Enable Javascript checkbox.](~/tutorials/first-mvc-app/validation/_static/ff.png)
 
 The following image shows how to disable JavaScript in the Chrome browser.
 

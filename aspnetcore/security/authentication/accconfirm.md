@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to build an ASP.NET Core app with email confirmation and password reset.
 ms.author: riande
 ms.date: 03/11/2019
-no-loc: [Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/accconfirm
 ---
 
@@ -367,7 +367,7 @@ Run the web app, and test the account confirmation and password recovery flow.
 Select your user name in the browser:
 ![browser window with user name](accconfirm/_static/un.png)
 
-The manage page is displayed with the **Profile** tab selected. The **Email** shows a check box indicating the email has been confirmed.
+The manage page is displayed with the **Profile** tab selected. The **Email** shows a checkbox indicating the email has been confirmed.
 
 ### Test password reset
 

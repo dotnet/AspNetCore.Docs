@@ -5,7 +5,7 @@ description: Learn about the new features in ASP.NET Core 3.1.
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/12/2020
-no-loc: [Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: aspnetcore-3.1
 ---
 # What's new in ASP.NET Core 3.1
@@ -59,7 +59,7 @@ For more information, see [Prevent default actions](xref:blazor/components/event
 
 ## Stop event propagation in Blazor apps
 
-Use the `@on{EVENT}:stopPropagation` directive attribute to stop event propagation. In the following example, selecting the check box prevents click events from the child `<div>` from propagating to the parent `<div>`:
+Use the `@on{EVENT}:stopPropagation` directive attribute to stop event propagation. In the following example, selecting the checkbox prevents click events from the child `<div>` from propagating to the parent `<div>`:
 
 ```razor
 <input @bind="_stopPropagation" type="checkbox" />

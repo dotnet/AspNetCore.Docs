@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 01/11/2021
-no-loc: [Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/progressive-web-app
 ---
 # Build Progressive Web Applications with ASP.NET Core Blazor WebAssembly
@@ -28,9 +28,9 @@ The word *progressive* is used to describe such apps because:
 
 # [Visual Studio](#tab/visual-studio)
 
-When creating a new **Blazor WebAssembly App** in the **Create a New Project** dialog, select the **Progressive Web Application** check box:
+When creating a new **Blazor WebAssembly App** in the **Create a New Project** dialog, select the **Progressive Web Application** checkbox:
 
-![The 'Progressive Web Application' check box is selected in the Visual Studio new project dialog.](progressive-web-app/_static/image1.png)
+![The 'Progressive Web Application' checkbox is selected in the Visual Studio new project dialog.](progressive-web-app/_static/image1.png)
 
 <!--
 

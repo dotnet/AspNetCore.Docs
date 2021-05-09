@@ -5,7 +5,7 @@ description: Learn how to require HTTPS/TLS in a ASP.NET Core web app.
 ms.author: riande
 ms.custom: mvc
 ms.date: 12/06/2019
-no-loc: [Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/enforcing-ssl
 ---
 # Enforce HTTPS in ASP.NET Core
@@ -289,17 +289,17 @@ To opt-out of HTTPS/HSTS:
 
 # [Visual Studio](#tab/visual-studio) 
 
-Uncheck the **Configure for HTTPS** check box.
+Uncheck the **Configure for HTTPS** checkbox.
 
 ::: moniker range=">= aspnetcore-3.0"
 
-![New ASP.NET Core Web Application dialog showing the Configure for HTTPS check box unselected.](enforcing-ssl/_static/out-vs2019.png)
+![New ASP.NET Core Web Application dialog showing the Configure for HTTPS checkbox unselected.](enforcing-ssl/_static/out-vs2019.png)
 
 ::: moniker-end
 
 ::: moniker range="<= aspnetcore-2.2"
 
-![New ASP.NET Core Web Application dialog showing the Configure for HTTPS check box unselected.](enforcing-ssl/_static/out.png)
+![New ASP.NET Core Web Application dialog showing the Configure for HTTPS checkbox unselected.](enforcing-ssl/_static/out.png)
 
 ::: moniker-end
 
@@ -469,7 +469,7 @@ The [Windows Subsystem for Linux (WSL)](/windows/wsl/about) generates an HTTPS s
 * Export the developer certificate to a file on ***Windows***:
 
   ```
-  dotnet dev-certs https --ep C:\<<path-to-folder>>\aspnetcore.pfx -p $CREDENTIAL_PLACEHOLDER$
+  dotnet dev-certs https -ep C:\<<path-to-folder>>\aspnetcore.pfx -p $CREDENTIAL_PLACEHOLDER$
   ```
   Where `$CREDENTIAL_PLACEHOLDER$` is a password.
 
