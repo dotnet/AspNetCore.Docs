@@ -5,7 +5,7 @@ description: Learn how to invoke JavaScript functions from .NET methods in Blazo
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc, devx-track-js
-ms.date: 05/08/2021
+ms.date: 05/09/2021
 no-loc: [Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/call-javascript-from-dotnet
 ---
@@ -44,44 +44,17 @@ The following `CallJsExample` component:
 
 `Pages/CallJsExample1.razor`:
 
-```razor
-@page "/call-js-example-1"
-@inject IJSRuntime JS
+::: moniker range=">= aspnetcore-5.0"
 
-<h1>Call JS <code>convertArray</code> Function</h1>
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample1.razor?highlight=1)]
 
-<p>
-    <button type="button" @onclick="ConvertArray">Convert Array</button>
-</p>
+::: moniker-end
 
-<p>
-    @text
-</p>
+::: moniker range="< aspnetcore-5.0"
 
-<p>
-    Quote &copy;2005 <a href="https://www.uphe.com">Universal Pictures</a>: 
-    <a href="https://www.uphe.com/movies/serenity">Serenity</a><br>
-    <a href="https://www.imdb.com/name/nm0472710/">David Krumholtz on IMDB</a>
-</p>
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample1.razor?highlight=1)]
 
-@code {
-    private MarkupString text;
-
-    private uint[] quoteArray = 
-        new uint[]
-        {
-            60, 101, 109, 62, 67, 97, 110, 39, 116, 32, 115, 116, 111, 112, 32,
-            116, 104, 101, 32, 115, 105, 103, 110, 97, 108, 44, 32, 77, 97,
-            108, 46, 60, 47, 101, 109, 62, 32, 45, 32, 77, 114, 46, 32, 85, 110,
-            105, 118, 101, 114, 115, 101, 10, 10,
-        };
-
-    private async Task ConvertArray()
-    {
-        text = new(await JS.InvokeAsync<string>("convertArray", quoteArray));
-    }
-}
-```
+::: moniker-end
 
 ## Location of JavaScipt
 
@@ -179,106 +152,53 @@ Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or
 
 [!INCLUDE[](~/blazor/includes/use-js-modules.md)]
 
-Component (`.razor`) example
+#### Component (`.razor`) example (`InvokeVoidAsync`)
 
 `Pages/CallJsExample2.razor`:
 
-```razor
-@page "/call-js-example-2"
-@inject IJSRuntime JS
+::: moniker range=">= aspnetcore-5.0"
 
-<h1>Call JS Example 2</h1>
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample2.razor?highlight=1)]
 
-<p>
-    <button @onclick="SetStock">Set Stock</button>
-</p>
+::: moniker-end
 
-@if (stockSymbol is not null)
-{
-    <p>@stockSymbol price: @price.ToString("c")</p>
-}
+::: moniker range="< aspnetcore-5.0"
 
-@code {
-    private Random r = new();
-    private string stockSymbol;
-    private decimal price;
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample2.razor?highlight=1)]
 
-    private async Task SetStock()
-    {
-        stockSymbol = 
-            $"{(char)('A' + r.Next(0, 26))}{(char)('A' + r.Next(0, 26))}";
-        price = r.Next(1, 101);
-        await JS.InvokeVoidAsync("displayTickerAlert1", stockSymbol, price);
-    }
-}
-```
+::: moniker-end
 
-Class (`.cs`) example
+#### Class (`.cs`) example (`InvokeVoidAsync`)
 
 The JS function is called with <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A> and doesn't return a value/
 
 `JsInteropClasses1.cs`:
 
-```csharp
-using System.Threading.Tasks;
-using Microsoft.JSInterop;
+::: moniker range=">= aspnetcore-5.0"
 
-public class JsInteropClasses1
-{
-    private readonly IJSRuntime js;
+[!code-csharp[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/JsInteropClasses1.cs?highlight=1)]
 
-    public JsInteropClasses1(IJSRuntime js)
-    {
-        this.js = js;
-    }
+::: moniker-end
 
-    public async ValueTask TickerChanged(string symbol, decimal price)
-    {
-        await js.InvokeVoidAsync("displayTickerAlert1", symbol, price);
-    }
-}
-```
+::: moniker range="< aspnetcore-5.0"
+
+[!code-csharp[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/JsInteropClasses1.cs?highlight=1)]
+
+::: moniker-end
 
 `Pages/CallJsExample3.razor`:
 
-```razor
-@page "/call-js-example-3"
-@implements IDisposable
-@inject IJSRuntime JS
+::: moniker range=">= aspnetcore-5.0"
 
-<h1>Call JS Example 3</h1>
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample3.razor?highlight=1)]
 
-<p>
-    <button @onclick="SetStock">Set Stock</button>
-</p>
+::: moniker-end
 
-@if (stockSymbol is not null)
-{
-    <p>@stockSymbol price: @price.ToString("c")</p>
-}
+::: moniker range="< aspnetcore-5.0"
 
-@code {
-    private Random r = new();
-    private string stockSymbol;
-    private decimal price;
-    private JsInteropClasses1 jsClass;
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample3.razor?highlight=1)]
 
-    protected override void OnInitialized()
-    {
-        jsClass = new(JS);
-    }
-
-    private async Task SetStock()
-    {
-        stockSymbol = 
-            $"{(char)('A' + r.Next(0, 26))}{(char)('A' + r.Next(0, 26))}";
-        price = r.Next(1, 101);
-        await jsClass.TickerChanged(stockSymbol, price);
-    }
-
-    public void Dispose() => jsClass.Dispose();
-}
-```
+::: moniker-end
 
 ### Invoke JavaScript functions and read a returned value (`InvokeAsync`)
 
@@ -301,129 +221,55 @@ Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or
 
 [!INCLUDE[](~/blazor/includes/use-js-modules.md)]
 
-Component (`.razor`) example
+#### Component (`.razor`) example (`InvokeAsync`)
 
 `Pages/CallJsExample4.razor`:
 
-```razor
-@page "/call-js-example-4"
-@inject IJSRuntime JS
+::: moniker range=">= aspnetcore-5.0"
 
-<h1>Call JS Example 4</h1>
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample4.razor?highlight=1)]
 
-<p>
-    <button @onclick="SetStock">Set Stock</button>
-</p>
+::: moniker-end
 
-@if (stockSymbol is not null)
-{
-    <p>@stockSymbol price: @price.ToString("c")</p>
-}
+::: moniker range="< aspnetcore-5.0"
 
-@if (result is not null)
-{
-    <p>@result</p>
-}
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample4.razor?highlight=1)]
 
-@code {
-    private Random r = new();
-    private string stockSymbol;
-    private decimal price;
-    private string result;
+::: moniker-end
 
-    private async Task SetStock()
-    {
-        stockSymbol = 
-            $"{(char)('A' + r.Next(0, 26))}{(char)('A' + r.Next(0, 26))}";
-        price = r.Next(1, 101);
-        var interopResult = 
-            await JS.InvokeAsync<string>("displayTickerAlert2", stockSymbol, price);
-        result = $"Result of TickerChanged call for {stockSymbol} at " +
-            $"{price.ToString("c")}: {interopResult}";
-    }
-}
-```
-
-Class (`.cs`) example
+#### Class (`.cs`) example (`InvokeAsync`)
 
 The JS function is called with <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeAsync%2A> and returns a value.
 
 `JsInteropClasses2.cs`:
 
-```csharp
-using System.Threading.Tasks;
-using Microsoft.JSInterop;
+::: moniker range=">= aspnetcore-5.0"
 
-public class JsInteropClasses2
-{
-    private readonly IJSRuntime js;
+[!code-csharp[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/JsInteropClasses2.cs?highlight=1)]
 
-    public JsInteropClasses2(IJSRuntime js)
-    {
-        this.js = js;
-    }
+::: moniker-end
 
-    public async ValueTask<string> TickerChanged(string symbol, decimal price)
-    {
-        return await js.InvokeAsync<string>("displayTickerAlert2", symbol, price);
-    }
+::: moniker range="< aspnetcore-5.0"
 
-    public void Dispose()
-    {
-    }
-}
-```
+[!code-csharp[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/JsInteropClasses2.cs?highlight=1)]
+
+::: moniker-end
 
 `TickerChanged` calls the `handleTickerChanged2` method and displays the returned string in the following `CallJsExample3` component.
 
 `Pages/CallJsExample5.razor`:
 
-```razor
-@page "/call-js-example-5"
-@implements IDisposable
-@inject IJSRuntime JS
+::: moniker range=">= aspnetcore-5.0"
 
-<h1>Call JS Example 5</h1>
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample5.razor?highlight=1)]
 
-<p>
-    <button @onclick="SetStock">Set Stock</button>
-</p>
+::: moniker-end
 
-@if (stockSymbol is not null)
-{
-    <p>@stockSymbol price: @price.ToString("c")</p>
-}
+::: moniker range="< aspnetcore-5.0"
 
-@if (result is not null)
-{
-    <p>@result</p>
-}
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample5.razor?highlight=1)]
 
-@code {
-    private Random r = new();
-    private string stockSymbol;
-    private decimal price;
-    private JsInteropClasses2 jsClass;
-    private string result;
-
-    protected override void OnInitialized()
-    {
-        jsClass = new(JS);
-    }
-
-    private async Task SetStock()
-    {
-        stockSymbol = 
-            $"{(char)('A' + r.Next(0, 26))}{(char)('A' + r.Next(0, 26))}";
-        price = r.Next(1, 101);
-        var interopResult = await jsClass.TickerChanged(stockSymbol, price);
-        result = $"Result of TickerChanged call for {stockSymbol} at " +
-            $"{price.ToString("c")}: {interopResult}";
-    }
-
-    public void Dispose() => jsClass.Dispose();
-}
-```
+::: moniker-end
 
 ### Dynamic content generation scenarios
 
@@ -465,50 +311,7 @@ Add the preceding JS module to an app or class library as a static web asset in 
 
 `Pages/CallJsExample6.razor`:
 
-```razor
-@page "/call-js-example-6"
-@implements IAsyncDisposable
-@inject IJSRuntime JS
-
-<h1>Call JS Example 6</h1>
-
-<p>
-    <button @onclick="TriggerPrompt">Trigger browser window prompt</button>
-</p>
-
-<p>
-    @result
-</p>
-
-@code {
-    private IJSObjectReference module;
-    private string result;
-
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            module = await JS.InvokeAsync<IJSObjectReference>("import", 
-                "./scripts.js");
-        }
-    }
-
-    private async Task TriggerPrompt()
-    {
-        result = await Prompt("Provide some text");
-    }
-
-    public async ValueTask<string> Prompt(string message)
-    {
-        return await module.InvokeAsync<string>("showPrompt", message);
-    }
-
-    async ValueTask IAsyncDisposable.DisposeAsync()
-    {
-        await module.DisposeAsync();
-    }
-}
-```
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample6.razor?highlight=1)]
 
 In the preceding example:
 
@@ -718,181 +521,63 @@ Add the following script inside closing `</body>` tag of `wwwroot/index.html` (B
 
 `Pages/CallJsExample7.razor` (parent component):
 
-```razor
-@page "/call-js-example-7"
+::: moniker range=">= aspnetcore-5.0"
 
-<h1>Call JS Example 7</h1>
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample7.razor?highlight=1)]
 
-<h2 @ref="title">Hello, world!</h2>
+::: moniker-end
 
-Welcome to your new app.
+::: moniker range="< aspnetcore-5.0"
 
-<SurveyPrompt Parent="@this" Title="How is Blazor working for you?" />
-```
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample7.razor?highlight=1)]
+
+::: moniker-end
 
 `Pages/CallJsExample7.razor.cs`:
 
-```csharp
-using System;
-using System.Collections.Generic;
-using Microsoft.AspNetCore.Components;
+::: moniker range=">= aspnetcore-5.0"
 
-namespace {APP ASSEMBLY}.Pages
-{
-    public partial class CallJsExample7 : 
-        ComponentBase, IObservable<ElementReference>, IDisposable
-    {
-        private bool disposing;
-        private IList<IObserver<ElementReference>> subscriptions = 
-            new List<IObserver<ElementReference>>();
-        private ElementReference title;
+[!code-csharp[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample7.razor.cs?highlight=1)]
 
-        protected override void OnAfterRender(bool firstRender)
-        {
-            base.OnAfterRender(firstRender);
+::: moniker-end
 
-            foreach (var subscription in subscriptions)
-            {
-                try
-                {
-                    subscription.OnNext(title);
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
-            }
-        }
+::: moniker range="< aspnetcore-5.0"
 
-        public void Dispose()
-        {
-            disposing = true;
+[!code-csharp[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample7.razor.cs?highlight=1)]
 
-            foreach (var subscription in subscriptions)
-            {
-                try
-                {
-                    subscription.OnCompleted();
-                }
-                catch (Exception)
-                {
-                }
-            }
+::: moniker-end
 
-            subscriptions.Clear();
-        }
-
-        public IDisposable Subscribe(IObserver<ElementReference> observer)
-        {
-            if (disposing)
-            {
-                throw new InvalidOperationException("Parent being disposed");
-            }
-
-            subscriptions.Add(observer);
-
-            return new Subscription(observer, this);
-        }
-
-        private class Subscription : IDisposable
-        {
-            public Subscription(IObserver<ElementReference> observer, 
-                CallJsExample7 self)
-            {
-                Observer = observer;
-                Self = self;
-            }
-
-            public IObserver<ElementReference> Observer { get; }
-            public CallJsExample7 Self { get; }
-
-            public void Dispose()
-            {
-                Self.subscriptions.Remove(Observer);
-            }
-        }
-    }
-}
-```
-
-The placeholder `{APP ASSEMBLY}` is the app's app assembly name (for example, `namespace BlazorSample.Pages`).
+In the preceding example, the namespace of the app is `BlazorSample` with components in the `Pages` folder. If testing the code locally, update the namespace to the local app's namespace.
 
 `Shared/SurveyPrompt.razor` (child component):
 
-```razor
-@inject IJSRuntime JS
+::: moniker range=">= aspnetcore-5.0"
 
-<div class="alert alert-secondary mt-4" role="alert">
-    <span class="oi oi-pencil mr-2" aria-hidden="true"></span>
-    <strong>@Title</strong>
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Shared/SurveyPrompt.razor?highlight=1)]
 
-    <span class="text-nowrap">
-        Please take our
-        <a target="_blank" class="font-weight-bold" 
-            href="https://go.microsoft.com/fwlink/?linkid=2109206">brief survey</a>
-    </span>
-    and tell us what you think.
-</div>
+::: moniker-end
 
-@code {
-    [Parameter]
-    public string Title { get; set; }
-}
-```
+::: moniker range="< aspnetcore-5.0"
+
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Shared/SurveyPrompt.razor?highlight=1)]
+
+::: moniker-end
 
 `Shared/SurveyPrompt.razor.cs`:
 
-```csharp
-using System;
-using Microsoft.AspNetCore.Components;
+::: moniker range=">= aspnetcore-5.0"
 
-namespace {APP ASSEMBLY}.Shared
-{
-    public partial class SurveyPrompt : 
-        ComponentBase, IObserver<ElementReference>, IDisposable
-    {
-        private IDisposable subscription = null;
+[!code-csharp[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Shared/SurveyPrompt.razor.cs?highlight=1)]
 
-        [Parameter]
-        public IObservable<ElementReference> Parent { get; set; }
+::: moniker-end
 
-        protected override void OnParametersSet()
-        {
-            base.OnParametersSet();
+::: moniker range="< aspnetcore-5.0"
 
-            if (subscription != null)
-            {
-                subscription.Dispose();
-            }
+[!code-csharp[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Shared/SurveyPrompt.razor.cs?highlight=1)]
 
-            subscription = Parent.Subscribe(this);
-        }
+::: moniker-end
 
-        public void OnCompleted()
-        {
-            subscription = null;
-        }
-
-        public void OnError(Exception error)
-        {
-            subscription = null;
-        }
-
-        public void OnNext(ElementReference value)
-        {
-            JS.InvokeAsync<object>(
-                "setElementClass", new object[] { value, "red" });
-        }
-
-        public void Dispose()
-        {
-            subscription?.Dispose();
-        }
-    }
-}
-```
-
-The placeholder `{APP ASSEMBLY}` is the app's app assembly name (for example, `namespace BlazorSample.Pages`).
+In the preceding example, the namespace of the app is `BlazorSample` with shared components in the `Shared` folder. If testing the code locally, update the namespace to the local app's namespace.
 
 ## Harden JavaScript interop calls
 
@@ -1003,46 +688,7 @@ In `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Ser
 
 `Pages/CallJsExample8.razor`:
 
-```razor
-@page "/call-js-example-8"
-@inject IJSRuntime JS
-@implements IAsyncDisposable
-
-<h1>Call JS Example 8</h1>
-
-<div @ref="mapElement" style='width:400px;height:300px'></div>
-
-<button @onclick="() => ShowAsync(51.454514, -2.587910)">Show Bristol, UK</button>
-<button @onclick="() => ShowAsync(35.6762, 139.6503)">Show Tokyo, Japan</button>
-
-@code
-{
-    private ElementReference mapElement;
-    private IJSObjectReference mapModule;
-    private IJSObjectReference mapInstance;
-
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            mapModule = await JS.InvokeAsync<IJSObjectReference>(
-                "import", "./mapComponent.js");
-            mapInstance = await mapModule.InvokeAsync<IJSObjectReference>(
-                "addMapToElement", mapElement);
-        }
-    }
-
-    private async Task ShowAsync(double latitude, double longitude)
-        => await mapModule.InvokeVoidAsync("setMapCenter", mapInstance, latitude, 
-            longitude).AsTask();
-
-    async ValueTask IAsyncDisposable.DisposeAsync()
-    {
-        await mapInstance.DisposeAsync();
-        await mapModule.DisposeAsync();
-    }
-}
-```
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample8.razor?highlight=1)]
 
 The preceding example produces an interactive map UI. The user:
 
@@ -1115,90 +761,19 @@ Place the following `<script>` block in `wwwroot/index.html` (Blazor WebAssembly
 
 [!INCLUDE[](~/blazor/includes/use-js-modules.md)]
 
-`Pages/CallJsExample6.razor`:
+`Pages/CallJsExample9.razor`:
 
-```razor
-@page "/call-js-example-6"
-@using System.Runtime.InteropServices
-@using Microsoft.JSInterop
-@inject IJSRuntime JS
+::: moniker range=">= aspnetcore-5.0"
 
-<h1>Unmarshalled JS interop</h1>
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample9.razor?highlight=1)]
 
-@if (callResultForBoolean)
-{
-    <p>JS interop was successful!</p>
-}
+::: moniker-end
 
-@if (!string.IsNullOrEmpty(callResultForString))
-{
-    <p>@callResultForString</p>
-}
+::: moniker range="< aspnetcore-5.0"
 
-<p>
-    <button @onclick="CallJSUnmarshalledForBoolean">
-        Call Unmarshalled JS & Return Boolean
-    </button>
-    <button @onclick="CallJSUnmarshalledForString">
-        Call Unmarshalled JS & Return String
-    </button>
-</p>
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample9.razor?highlight=1)]
 
-<p>
-    <a href="https://www.doctorwho.tv">Doctor Who</a>
-    is a registered trademark of the <a href="https://www.bbc.com/">BBC</a>.
-</p>
-
-@code {
-    private bool callResultForBoolean;
-    private string callResultForString;
-
-    private void CallJSUnmarshalledForBoolean()
-    {
-        var unmarshalledRuntime = (IJSUnmarshalledRuntime)JS;
-
-        var jsUnmarshalledReference = unmarshalledRuntime
-            .InvokeUnmarshalled<IJSUnmarshalledObjectReference>(
-                "returnJSObjectReference");
-
-        callResultForBoolean = 
-            jsUnmarshalledReference.InvokeUnmarshalled<InteropStruct, bool>(
-                "unmarshalledFunctionReturnBoolean", GetStruct());
-    }
-
-    private void CallJSUnmarshalledForString()
-    {
-        var unmarshalledRuntime = (IJSUnmarshalledRuntime)JS;
-
-        var jsUnmarshalledReference = unmarshalledRuntime
-            .InvokeUnmarshalled<IJSUnmarshalledObjectReference>(
-                "returnJSObjectReference");
-
-        callResultForString = 
-            jsUnmarshalledReference.InvokeUnmarshalled<InteropStruct, string>(
-                "unmarshalledFunctionReturnString", GetStruct());
-    }
-
-    private InteropStruct GetStruct()
-    {
-        return new InteropStruct
-        {
-            Name = "Brigadier Alistair Gordon Lethbridge-Stewart",
-            Year = 1968,
-        };
-    }
-
-    [StructLayout(LayoutKind.Explicit)]
-    public struct InteropStruct
-    {
-        [FieldOffset(0)]
-        public string Name;
-
-        [FieldOffset(8)]
-        public int Year;
-    }
-}
-```
+::: moniker-end
 
 If an `IJSUnmarshalledObjectReference` instance isn't disposed in C# code, it can be disposed in JS. The following `dispose` function disposes the object reference when called from JS:
 

@@ -32,5 +32,54 @@
     </div>
 
     <script src="_framework/blazor.server.js"></script>
+        <script>
+        window.convertArray = (win1251Array) => {
+            var win1251decoder = new TextDecoder('windows-1251');
+            var bytes = new Uint8Array(win1251Array);
+            var decodedArray = win1251decoder.decode(bytes);
+            console.log(decodedArray);
+            return decodedArray;
+        };
+    </script>
+    <script>
+        window.returnJSObjectReference = () => {
+            return {
+                unmarshalledFunctionReturnBoolean: function (fields) {
+                    const name = Blazor.platform.readStringField(fields, 0);
+                    const year = Blazor.platform.readInt32Field(fields, 8);
+
+                    return name === "Brigadier Alistair Gordon Lethbridge-Stewart" &&
+                        year === 1968;
+                },
+                unmarshalledFunctionReturnString: function (fields) {
+                    const name = Blazor.platform.readStringField(fields, 0);
+                    const year = Blazor.platform.readInt32Field(fields, 8);
+
+                    return BINDING.js_string_to_mono_string(`Hello, ${name} (${year})!`);
+                }
+            };
+        }
+    </script>
+    <script>
+        window.displayTickerAlert1 = (symbol, price) => {
+            alert(`${symbol}: $${price}!`);
+        };
+    </script>
+    <script>
+        window.displayTickerAlert2 = (symbol, price) => {
+            if (price < 20) {
+                alert(`${symbol}: $${price}!`);
+                return "Alert!";
+            } else {
+                return "No Alert";
+            }
+        };
+    </script>
+    <script>
+        function setElementClass(element, className) {
+            var myElement = element;
+            myElement.classList.add(className);
+        }
+    </script>
 </body>
 </html>
