@@ -42,25 +42,6 @@
         };
     </script>
     <script>
-        window.returnJSObjectReference = () => {
-            return {
-                unmarshalledFunctionReturnBoolean: function (fields) {
-                    const name = Blazor.platform.readStringField(fields, 0);
-                    const year = Blazor.platform.readInt32Field(fields, 8);
-
-                    return name === "Brigadier Alistair Gordon Lethbridge-Stewart" &&
-                        year === 1968;
-                },
-                unmarshalledFunctionReturnString: function (fields) {
-                    const name = Blazor.platform.readStringField(fields, 0);
-                    const year = Blazor.platform.readInt32Field(fields, 8);
-
-                    return BINDING.js_string_to_mono_string(`Hello, ${name} (${year})!`);
-                }
-            };
-        }
-    </script>
-    <script>
         window.displayTickerAlert1 = (symbol, price) => {
             alert(`${symbol}: $${price}!`);
         };

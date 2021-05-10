@@ -5,7 +5,7 @@ description: Learn how to invoke JavaScript functions from .NET methods in Blazo
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc, devx-track-js
-ms.date: 05/09/2021
+ms.date: 05/10/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/call-javascript-from-dotnet
 ---
@@ -523,13 +523,13 @@ Add the following script inside closing `</body>` tag of `wwwroot/index.html` (B
 
 ::: moniker range=">= aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample7.razor?highlight=1)]
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/CallJsExample7.razor?highlight=1)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample7.razor?highlight=1)]
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/CallJsExample7.razor?highlight=1)]
 
 ::: moniker-end
 
@@ -537,13 +537,13 @@ Add the following script inside closing `</body>` tag of `wwwroot/index.html` (B
 
 ::: moniker range=">= aspnetcore-5.0"
 
-[!code-csharp[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample7.razor.cs?highlight=1)]
+[!code-csharp[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/CallJsExample7.razor.cs?highlight=1)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-[!code-csharp[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample7.razor.cs?highlight=1)]
+[!code-csharp[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/CallJsExample7.razor.cs?highlight=1)]
 
 ::: moniker-end
 
@@ -711,6 +711,8 @@ In Blazor WebAssembly, the framework doesn't impose a limit on the size of JavaS
 
 In Blazor Server, JS interop calls are limited in size by the maximum incoming SignalR message size permitted for hub methods, which is enforced by <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize?displayProperty=nameWithType> (default: 32 KB). JS to .NET SignalR messages larger than <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize> throw an error. The framework doesn't impose a limit on the size of a SignalR message from the hub to a client. For more information, see <xref:blazor/call-dotnet-from-javascript#size-limits-on-javascript-interop-calls>.
 
+::: moniker range=">= aspnetcore-5.0"
+
 ## Unmarshalled JavaScript interop
 
 Blazor WebAssembly components may experience poor performance when .NET objects are serialized for JavaScript (JS) interop and either of the following are true:
@@ -763,19 +765,9 @@ Place the following `<script>` block in `wwwroot/index.html` (Blazor WebAssembly
 
 `Pages/CallJsExample9.razor`:
 
-::: moniker range=">= aspnetcore-5.0"
-
 [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample9.razor?highlight=1)]
 
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample9.razor?highlight=1)]
-
-::: moniker-end
-
-If an `IJSUnmarshalledObjectReference` instance isn't disposed in C# code, it can be disposed in JS. The following `dispose` function disposes the object reference when called from JS:
+If an <xref:Microsoft.JSInterop.IJSUnmarshalledObjectReference> instance isn't disposed in C# code, it can be disposed in JS. The following `dispose` function disposes the object reference when called from JS:
 
 ```javascript
 window.exampleJSObjectReferenceNotDisposedInCSharp = () => {
@@ -795,6 +787,8 @@ Other data types, such as string arrays, can be converted but require creating a
 
 > [!WARNING]
 > JS functions provided by the Blazor framework, such as `js_typed_array_to_array`, `mono_obj_array_new`, and `mono_obj_array_set`, are subject to name changes, behavioral changes, or removal in future releases of .NET.
+
+::: moniker-end
 
 ## Additional resources
 
