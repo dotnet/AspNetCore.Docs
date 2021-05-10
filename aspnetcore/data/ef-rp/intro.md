@@ -333,7 +333,7 @@ The highlighted code:
   * An entity corresponds to a row in the table.
 * Calls <xref:Microsoft.EntityFrameworkCore.DbContext.OnModelCreating%2A>. `OnModelCreating`:
   * Is called when `SchoolContext` has been initialized, but before the model has been locked down and used to initialize the context.
-  * Is required because later in the tutorial The `Student` entity will have references to the other entities.
+  * Is required because later in the tutorial the `Student` entity will have references to the other entities.
   <!-- Review, OnModelCreating needs review -->
 
 Build the project to verify there are no compiler errors.
