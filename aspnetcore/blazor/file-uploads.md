@@ -149,14 +149,20 @@ For testing, the preceding URLs are configured in the projects' `Properties/laun
 
 ::: zone pivot="webassembly"
 
-The following `UploadResult` class in the **`Shared`** project maintains the result of an uploaded file. When a file fails to upload on the server, an error code is returned in `ErrorCode` for display to the user. A safe file name is generated on the server for each file and returned to the client in `StoredFileName` for display. Files are keyed between the client and server using the unsafe/untrusted file name in `FileName`.
+The following `UploadResult` class in the **`Shared`** project maintains the result of an uploaded file. When a file fails to upload on the server, an error code is returned in `ErrorCode` for display to the user. A safe file name is generated on the server for each file and returned to the client in `StoredFileName` for display. Files are keyed between the client and server using the unsafe/untrusted file name in `FileName`. Provide a namespace for the class matching the **`Shared`** project's assembly name. In the following example, the project's namespace is `BlazorSample.Shared`.
 
-Provide a namespace for the class matching the **`Shared`** project's assembly name. For example:
+`UploadResult.cs` in the **`Shared`** project of the hosted Blazor WebAssembly solution:
 
 ```csharp
 namespace BlazorSample.Shared
 {
-    ...
+    public class UploadResult
+    {
+        public bool Uploaded { get; set; }
+        public string FileName { get; set; }
+        public string StoredFileName { get; set; }
+        public int ErrorCode { get; set; }
+    }
 }
 ```
 
@@ -165,11 +171,6 @@ namespace BlazorSample.Shared
 ::: zone pivot="server"
 
 The following `UploadResult` class is placed in the client project and in the web API project to maintain the result of an uploaded file. When a file fails to upload on the server, an error code is returned in `ErrorCode` for display to the user. A safe file name is generated on the server for each file and returned to the client in `StoredFileName` for display. Files are keyed between the client and server using the unsafe/untrusted file name in `FileName`.
-
-::: zone-end
-
-> [!NOTE]
-> A security best practice for production apps is to avoid sending error messages to clients that might reveal sensitive information about an app, server, or network. Providing detailed error messages can aid a malicious user in devising attacks on an app, server, or network. The example code in this section only sends back an error code number (`int`) for display by the component client-side if a server-side error occurs. If an user requires assistance with a file upload, they provide the error code to support personnel for support ticket resolution without ever knowing the exact cause of the error.
 
 `UploadResult.cs`:
 
@@ -182,6 +183,11 @@ public class UploadResult
     public int ErrorCode { get; set; }
 }
 ```
+
+::: zone-end
+
+> [!NOTE]
+> A security best practice for production apps is to avoid sending error messages to clients that might reveal sensitive information about an app, server, or network. Providing detailed error messages can aid a malicious user in devising attacks on an app, server, or network. The example code in this section only sends back an error code number (`int`) for display by the component client-side if a server-side error occurs. If an user requires assistance with a file upload, they provide the error code to support personnel for support ticket resolution without ever knowing the exact cause of the error.
 
 ### Upload component
 
