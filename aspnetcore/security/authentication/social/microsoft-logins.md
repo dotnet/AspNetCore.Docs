@@ -44,7 +44,7 @@ The URI segment `/signin-microsoft` is set as the default callback of the Micros
 
 ## Store the Microsoft client ID and secret
 
-Store sensitive settings such as the Microsoft client ID and secret values with [Secret Manager](xref:security/app-secrets). For this sample, use the following steps:
+Store sensitive settings such as the Microsoft **Application (client) ID** found on the **Overview** page of the App Registration and **Client Secret** you created on the **Certificates & secrets page** with [Secret Manager](xref:security/app-secrets). For this sample, use the following steps:
 
 1. Initialize the project for secret storage per the instructions at [Enable secret storage](xref:security/app-secrets#enable-secret-storage).
 1. Store the sensitive settings in the local secret store with the secret keys `Authentication:Microsoft:ClientId` and `Authentication:Microsoft:ClientSecret`:
