@@ -1,0 +1,138 @@
+---
+title: Blazor JavaScript interoperability (JS interop)
+author: guardrex
+description: Learn how to interact with JavaScript in Blazor apps.
+monikerRange: '>= aspnetcore-3.1'
+ms.author: riande
+ms.custom: mvc, devx-track-js 
+ms.date: 05/10/2020
+no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+uid: blazor/js-interop/index
+---
+# Blazor JavaScript interoperability (JS interop)
+
+A Blazor app can invoke JavaScript (JS) functions from .NET methods and .NET methods from JS functions. These scenarios are called *JavaScript interoperability* (*JS interop*).
+
+## Location of JavaScipt
+
+Load JavaScript (JS) code using any of the following approaches:
+
+* [Use an external JS file (`.js`)](#use-an-external-js-file-js)
+* [Use a `<script>` tag in `<head>` markup](#use-a-script-tag-in-head-markup)
+* [Inject a script after Blazor starts](#inject-a-script-after-blazor-starts)
+
+> [!WARNING]
+> Don't place a `<script>` tag in a component file (`.razor`) because the `<script>` tag can't be updated dynamically.
+
+::: moniker range=">= aspnetcore-5.0"
+
+> [!NOTE]
+> For convenance, documentation examples often place scripts in a `<script>` tag or load global scripts from external files. These approaches pollute the client with global functions. For production apps, we recommend placing JavaScript into separate [JavaScript modules](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules) that can be imported when needed. For more information, see the [JavaScript isolation in JavaScript modules](#javascript-isolation-in-javascript-modules) section.
+
+::: moniker-end
+
+### Use an external JS file (`.js`)
+
+Place a `<script>` tag before the closing `</body>` tag after the Blazor script reference. The Blazor script in a Blazor WebAssembly app is `blazor.webassembly.js`. The Blazor script in a Blazor Server app is `blazor.server.js`.
+
+Placing external scripts inside the closing `</body>` tag is the best approach for including external scripts, especially for scripts that participate in JS interop.
+
+In `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server):
+
+```html
+<body>
+    ...
+
+    <script src="_framework/blazor.{webassembly|server}.js"></script>
+    <script src="{SCRIPT FILE (.js)}"></script>
+</body>
+```
+
+The `{webassembly|server}` placeholder in the preceding markup is either `webassembly` for a Blazor WebAssembly app or `server` for a Blazor Server app. The `{SCRIPT FILE (.js)}` placeholder is the path and script file name.
+
+When the external JS file is supplied by a [Razor class library](xref:blazor/components/class-libraries), specify the JS file using its stable static web asset path: `./_content/{LIBRARY NAME}/{PATH AND FILENAME}`:
+
+* The path segment for the current directory (`./`) is required in order to create the correct static asset path to the JS file.
+* The `{LIBRARY NAME}` placeholder is the library name. In the following example, the library name is `ComponentLibrary`.
+* The `{PATH AND FILENAME}` placeholder is the path and file name under `wwwroot`. In the following example, the external JS file (`script.js`) is placed in the class library's `wwwroot` folder.
+
+```html
+<body>
+    ...
+
+    <script src="_framework/blazor.{webassembly|server}.js"></script>
+    <script src="./_content/{LIBRARY NAME}/{PATH AND FILENAME}"></script>
+</body>
+```
+
+Example `<script>` tag for a Razor class library with an assembly name of `RazorClassLibrary` and a JS scripts file name of `scripts.js`:
+
+```html
+<script src="./_content/RazorClassLibrary/scripts.js"></script>
+```
+
+For more information, see <xref:blazor/components/class-libraries>.
+
+### Use a `<script>` tag in `<head>` markup
+
+Inside the `<head>` element of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server).
+
+```html
+<head>
+    ...
+
+    <script>
+      window.jsMethod = (methodParameter) => {
+        ...
+      };
+    </script>
+</head>
+```
+
+> [!WARNING]
+> Loading JS from the `<head>` isn't the best approach for the following reasons:
+>
+> * JS interop might fail if the script depends on Blazor and you're unable to [inject a script after Blazor starts](#inject-a-script-after-blazor-starts). Placing scripts inside the closing `</body>` tag, not in the `<head>`, is the best general approach for including scripts for JS interop. For more information, see the preceding section, [Use an external JS file (`.js`)](#use-an-external-js-file-js), on including JS from an external file or the following section on [injecting scripts after Blazor starts](#inject-a-script-after-blazor-starts).
+> * The page may become interactive slower due to the time it takes to parse the JS.
+
+### Inject a script after Blazor starts
+
+Load JS from an injected script in `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server) when the app is initialized.
+
+Add `autostart="false"` to the `<script>` tag that loads the Blazor script:
+
+```html
+<script autostart="false" src="_framework/blazor.{webassembly|server}.js"></script>
+```
+
+The `{webassembly|server}` placeholder in the preceding markup is either `webassembly` for a Blazor WebAssembly app or `server` for a Blazor Server app.
+
+The following example injects a `<script>` tag into the `<head>` elements that references a custom JS file (`custom.js`). The following `<script>` tag is placed inside the closing `</body>` tag after the `<script>` tag that loads the Blazor script:
+
+```html
+<script>
+  Blazor.start().then(function () {
+    var customScript = document.createElement('script');
+    customScript.setAttribute('src', 'custom.js');
+    document.head.appendChild(customScript);
+  });
+</script>
+```
+
+> [!NOTE]
+> Because the preceding script is loaded after page load and Blazor initialization, parsing the script shouldn't reduce page responsiveness on load for users.
+
+::: moniker range=">= aspnetcore-5.0"
+
+## JavaScript isolation in JavaScript modules
+
+Blazor enables JavaScript (JS) isolation in standard [JavaScript modules](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules) ([ECMAScript specification](https://tc39.es/ecma262/#sec-modules)).
+
+JS isolation provides the following benefits:
+
+* Imported JS no longer pollutes the global namespace.
+* Consumers of a library and components aren't required to import the related JS.
+
+For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet#javascript-isolation-in-javascript-modules>.
+
+::: moniker-end

@@ -842,7 +842,7 @@
         },
         {
             "source_path": "aspnetcore/razor-components/javascript-interop.md",
-            "redirect_url": "/aspnet/core/blazor/javascript-interop",
+            "redirect_url": "/aspnet/core/blazor/js-interop/index",
             "redirect_document_id": false
         },
         {
@@ -922,7 +922,7 @@
         },
         {
             "source_path": "aspnetcore/blazor/javascript-interop.md",
-            "redirect_url": "/aspnet/core/blazor/call-javascript-from-dotnet",
+            "redirect_url": "/aspnet/core/blazor/js-interop/index",
             "redirect_document_id": false
         },
         {
@@ -1133,6 +1133,16 @@
         {
             "source_path": "aspnetcore/azure/devops/next-steps.md",
             "redirect_url": "/dotnet/architecture/devops-for-aspnet-developers/next-steps"
+        },
+        {
+            "source_path": "aspnetcore/blazor/call-javascript-from-dotnet.md",
+            "redirect_url": "/aspnet/core/blazor/js-interop/call-javascript-from-dotnet",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/blazor/call-dotnet-from-javascript.md",
+            "redirect_url": "/aspnet/core/blazor/js-interop/call-dotnet-from-javascript",
+            "redirect_document_id": false
         }
     ]
 }

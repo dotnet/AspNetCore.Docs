@@ -190,7 +190,7 @@ For more information, see the [Apache documentation](https://httpd.apache.org/do
 
 ### Measure network latency
 
-[JS interop](xref:blazor/call-javascript-from-dotnet) can be used to measure network latency, as the following example demonstrates:
+[JS interop](xref:blazor/js-interop/call-javascript-from-dotnet) can be used to measure network latency, as the following example demonstrates:
 
 ```razor
 @inject IJSRuntime JS

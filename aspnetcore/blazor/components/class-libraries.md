@@ -425,7 +425,7 @@ Blazor enables JavaScript isolation in standard [JavaScript modules](https://dev
 * Imported JavaScript no longer pollutes the global namespace.
 * Consumers of the library and components aren't required to manually import the related JavaScript.
 
-For more information, see <xref:blazor/call-javascript-from-dotnet#javascript-isolation-in-javascript-modules>.
+For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet#javascript-isolation-in-javascript-modules>.
 
 ::: moniker-end
 

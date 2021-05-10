@@ -372,10 +372,14 @@
           uid: blazor/forms-validation
         - name: File uploads
           uid: blazor/file-uploads
-        - name: Call JavaScript from .NET
-          uid: blazor/call-javascript-from-dotnet
-        - name: Call .NET from JavaScript
-          uid: blazor/call-dotnet-from-javascript
+        - name: JavaScript interop
+          items:
+            - name: Overview
+              uid: blazor/js-interop/index
+            - name: Call JavaScript from .NET
+              uid: blazor/js-interop/call-javascript-from-dotnet
+            - name: Call .NET from JavaScript
+              uid: blazor/js-interop/call-dotnet-from-javascript
         - name: Call a web API from WebAssembly
           uid: blazor/call-web-api
         - name: Security and Identity

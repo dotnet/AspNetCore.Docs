@@ -7,13 +7,11 @@ ms.author: riande
 ms.custom: mvc, devx-track-js
 ms.date: 05/10/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
-uid: blazor/call-javascript-from-dotnet
+uid: blazor/js-interop/call-javascript-from-dotnet
 ---
 # Call JavaScript functions from .NET methods in ASP.NET Core Blazor
 
-A Blazor app can invoke JavaScript (JS) functions from .NET methods and .NET methods from JavaScript functions. These scenarios are called *JavaScript interoperability* (*JS interop*).
-
-This article covers invoking JS functions from .NET. For information on how to call .NET methods from JavaScript, see <xref:blazor/call-dotnet-from-javascript>.
+This article covers invoking JavaScript (JS) functions from .NET. For information on how to call .NET methods from JS, see <xref:blazor/js-interop/call-dotnet-from-javascript>.
 
 To call into JS from .NET, inject the <xref:Microsoft.JSInterop.IJSRuntime> abstraction. To issue JS interop calls, inject the <xref:Microsoft.JSInterop.IJSRuntime> abstraction in your component. <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A> takes an identifier for the JS function that you wish to invoke along with any number of JSON-serializable arguments. The function identifier is relative to the global scope (`window`). If you wish to call `window.someScope.someFunction`, the identifier is `someScope.someFunction`. There's no need to register the function before it's called. The return type `T` must also be JSON serializable. `T` should match the .NET type that best maps to the JSON type returned.
 
@@ -46,88 +44,26 @@ The following `CallJsExample` component:
 
 ::: moniker range=">= aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample1.razor?highlight=1)]
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample1.razor?highlight=2,34)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample1.razor?highlight=1)]
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample1.razor?highlight=2,34)]
 
 ::: moniker-end
 
 ## Location of JavaScipt
 
-<!-- From JNC: If the script depends on Blazor and you can't change the app to explicitly start Blazor and then invoke the script in the callback, then putting it afterwards is the best option. Normally people run into this because they are using JS interop. -->
+Load JavaScript (JS) code using any of approaches described by the [JavaScript (JS) interoperability (interop) article](xref:blazor/js-interop/index#location-of-javascipt):
 
-JavaScript (JS) code can be loaded:
-
-* From an external JS file (`.js`). Place a `<script>` tag before the closing `</body>` tag after the Blazor script reference. The Blazor script in a Blazor WebAssembly app is `blazor.webassembly.js`. The Blazor script in a Blazor Server app is `blazor.server.js`.
-
-  Placing external scripts inside the closing `</body>` tag is the best approach for including external scripts, especially for scripts that participate in JS interop.
-
-  In `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server):
-
-  ```html
-  <body>
-      ...
-
-      <script src="_framework/blazor.{webassembly|server}.js"></script>
-      <script src="{SCRIPT FILE (.js)}"></script>
-  </body>
-  ```
-
-  The `{webassembly|server}` placeholder in the preceding markup is either `webassembly` for a Blazor WebAssembly app or `server` for a Blazor Server app. The `{SCRIPT FILE (.js)}` placeholder is the path and script file name.
-
-* Inside the `<head>` element of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server).
-
-  ```html
-  <head>
-      ...
-
-      <script>
-        window.jsMethod = (methodParameter) => {
-          ...
-        };
-      </script>
-  </head>
-  ```
-
-  > [!WARNING]
-  > Loading JS from the `<head>`:
-  >
-  > * Prevents JS interop from functioning if the script depends on Blazor and you're unable to explicitly start Blazor and then invoke the script in the callback. Placing scripts inside the closing `</body>` tag, not in the `<head>`, is the best general approach for including scripts with JS interop functions. For more information, see the preceding bullet item on including JS from an external file.
-  > * May slow down page parsing and thus may delay the page becoming interactive for the user.
-
-* Via an injected script in `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server) when the app is initialized.
-
-  Add `autostart="false"` to the `<script>` tag that loads the Blazor script:
-
-  ```html
-  <script autostart="false" src="_framework/blazor.{webassembly|server}.js"></script>
-  ```
-
-  The `{webassembly|server}` placeholder in the preceding markup is either `webassembly` for a Blazor WebAssembly app or `server` for a Blazor Server app.
-
-  The following example injects a `<script>` tag into the `<head>` elements that references a custom JS file (`custom.js`). The following `<script>` tag is placed inside the closing `</body>` tag after the `<script>` tag that loads the Blazor script:
-
-  ```html
-  <script>
-    Blazor.start().then(function () {
-      var customScript = document.createElement('script');
-      customScript.setAttribute('src', 'custom.js');
-      document.head.appendChild(customScript);
-    });
-  </script>
-  ```
-
-  > [!NOTE]
-  > Because the preceding script is loaded after page load and Blazor initialization, parsing the script shouldn't reduce page responsiveness on load for users.
+* [Use an external JS file (`.js`)](xref:blazor/js-interop/index#use-an-external-js-file-js)
+* [Use a `<script>` tag in `<head>` markup](xref:blazor/js-interop/index#use-a-script-tag-in-head-markup)
+* [Inject a script after Blazor starts](xref:blazor/js-interop/index#inject-a-script-after-blazor-starts)
 
 > [!WARNING]
 > Don't place a `<script>` tag in a component file (`.razor`) because the `<script>` tag can't be updated dynamically.
-
-[!INCLUDE[](~/blazor/includes/use-js-modules.md)]
 
 ## Dispatch calls to JavaScript with `IJSRuntime`
 
@@ -150,21 +86,19 @@ Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or
 </script>
 ```
 
-[!INCLUDE[](~/blazor/includes/use-js-modules.md)]
-
 #### Component (`.razor`) example (`InvokeVoidAsync`)
 
 `Pages/CallJsExample2.razor`:
 
 ::: moniker range=">= aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample2.razor?highlight=1)]
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample2.razor?highlight=2,25)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample2.razor?highlight=1)]
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample2.razor?highlight=2,25)]
 
 ::: moniker-end
 
@@ -176,13 +110,13 @@ The JS function is called with <xref:Microsoft.JSInterop.JSRuntimeExtensions.Inv
 
 ::: moniker range=">= aspnetcore-5.0"
 
-[!code-csharp[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/JsInteropClasses1.cs?highlight=1)]
+[!code-csharp[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/JsInteropClasses1.cs?highlight=2,6,10,15)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-[!code-csharp[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/JsInteropClasses1.cs?highlight=1)]
+[!code-csharp[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/JsInteropClasses1.cs?highlight=2,6,10,15)]
 
 ::: moniker-end
 
@@ -190,13 +124,13 @@ The JS function is called with <xref:Microsoft.JSInterop.JSRuntimeExtensions.Inv
 
 ::: moniker range=">= aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample3.razor?highlight=1)]
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample3.razor?highlight=2-3,20,24,32,35)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample3.razor?highlight=1)]
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample3.razor?highlight=2-3,20,24,32,35)]
 
 ::: moniker-end
 
@@ -219,21 +153,19 @@ Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or
 </script>
 ```
 
-[!INCLUDE[](~/blazor/includes/use-js-modules.md)]
-
 #### Component (`.razor`) example (`InvokeAsync`)
 
 `Pages/CallJsExample4.razor`:
 
 ::: moniker range=">= aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample4.razor?highlight=1)]
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample4.razor?highlight=2,31-32)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample4.razor?highlight=1)]
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample4.razor?highlight=2,31-32)]
 
 ::: moniker-end
 
@@ -245,13 +177,13 @@ The JS function is called with <xref:Microsoft.JSInterop.JSRuntimeExtensions.Inv
 
 ::: moniker range=">= aspnetcore-5.0"
 
-[!code-csharp[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/JsInteropClasses2.cs?highlight=1)]
+[!code-csharp[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/JsInteropClasses2.cs?highlight=2,6,10,15)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-[!code-csharp[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/JsInteropClasses2.cs?highlight=1)]
+[!code-csharp[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/JsInteropClasses2.cs?highlight=2,6,10,15)]
 
 ::: moniker-end
 
@@ -261,13 +193,13 @@ The JS function is called with <xref:Microsoft.JSInterop.JSRuntimeExtensions.Inv
 
 ::: moniker range=">= aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample5.razor?highlight=1)]
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample5.razor?highlight=2-3,25,30,38,43)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample5.razor?highlight=1)]
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample5.razor?highlight=2-3,25,30,38,43)]
 
 ::: moniker-end
 
@@ -311,7 +243,7 @@ Add the preceding JS module to an app or class library as a static web asset in 
 
 `Pages/CallJsExample6.razor`:
 
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample6.razor?highlight=1)]
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample6.razor?highlight=2-3,16,23-24,35,38-41)]
 
 In the preceding example:
 
@@ -384,8 +316,6 @@ window.interopFunctions = {
   }
 }
 ```
-
-[!INCLUDE[](~/blazor/includes/use-js-modules.md)]
 
 ::: moniker range=">= aspnetcore-5.0"
 
@@ -517,19 +447,17 @@ Add the following script inside closing `</body>` tag of `wwwroot/index.html` (B
 </script>
 ```
 
-[!INCLUDE[](~/blazor/includes/use-js-modules.md)]
-
 `Pages/CallJsExample7.razor` (parent component):
 
 ::: moniker range=">= aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/CallJsExample7.razor?highlight=1)]
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/CallJsExample7.razor?highlight=5,9)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/CallJsExample7.razor?highlight=1)]
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/CallJsExample7.razor?highlight=5,9)]
 
 ::: moniker-end
 
@@ -537,13 +465,13 @@ Add the following script inside closing `</body>` tag of `wwwroot/index.html` (B
 
 ::: moniker range=">= aspnetcore-5.0"
 
-[!code-csharp[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/CallJsExample7.razor.cs?highlight=1)]
+[!code-csharp[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/CallJsExample7.razor.cs)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-[!code-csharp[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/CallJsExample7.razor.cs?highlight=1)]
+[!code-csharp[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/CallJsExample7.razor.cs)]
 
 ::: moniker-end
 
@@ -567,13 +495,13 @@ In the preceding example, the namespace of the app is `BlazorSample` with compon
 
 ::: moniker range=">= aspnetcore-5.0"
 
-[!code-csharp[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Shared/SurveyPrompt.razor.cs?highlight=1)]
+[!code-csharp[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Shared/SurveyPrompt.razor.cs)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-[!code-csharp[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Shared/SurveyPrompt.razor.cs?highlight=1)]
+[!code-csharp[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Shared/SurveyPrompt.razor.cs)]
 
 ::: moniker-end
 
@@ -607,10 +535,6 @@ In the preceding example:
 > Although a common cause of JS interop failures are network failures in Blazor Server apps, per-invocation timeouts can be set for JS interop calls in Blazor WebAssembly apps. Although no SignalR circuit exists in a Blazor WebAssembly app, JS interop calls might fail for other reasons that apply in Blazor WebAssembly apps.
 
 For more information on resource exhaustion, see <xref:blazor/security/server/threat-mitigation>.
-
-## Share interop code in a class library
-
-[!INCLUDE[](~/blazor/includes/share-interop-code.md)]
 
 ## Avoid circular object references
 
@@ -688,7 +612,7 @@ In `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Ser
 
 `Pages/CallJsExample8.razor`:
 
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample8.razor?highlight=1)]
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample8.razor)]
 
 The preceding example produces an interactive map UI. The user:
 
@@ -709,7 +633,7 @@ In the preceding example:
 
 In Blazor WebAssembly, the framework doesn't impose a limit on the size of JavaScript (JS) interop inputs and outputs.
 
-In Blazor Server, JS interop calls are limited in size by the maximum incoming SignalR message size permitted for hub methods, which is enforced by <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize?displayProperty=nameWithType> (default: 32 KB). JS to .NET SignalR messages larger than <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize> throw an error. The framework doesn't impose a limit on the size of a SignalR message from the hub to a client. For more information, see <xref:blazor/call-dotnet-from-javascript#size-limits-on-javascript-interop-calls>.
+In Blazor Server, JS interop calls are limited in size by the maximum incoming SignalR message size permitted for hub methods, which is enforced by <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize?displayProperty=nameWithType> (default: 32 KB). JS to .NET SignalR messages larger than <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize> throw an error. The framework doesn't impose a limit on the size of a SignalR message from the hub to a client. For more information, see <xref:blazor/js-interop/call-dotnet-from-javascript#size-limits-on-javascript-interop-calls>.
 
 ::: moniker range=">= aspnetcore-5.0"
 
@@ -761,11 +685,9 @@ Place the following `<script>` block in `wwwroot/index.html` (Blazor WebAssembly
 > * The function is likely to be renamed.
 > * The function itself might be removed in favor of automatic conversion of strings by the framework.
 
-[!INCLUDE[](~/blazor/includes/use-js-modules.md)]
-
 `Pages/CallJsExample9.razor`:
 
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample9.razor?highlight=1)]
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample9.razor)]
 
 If an <xref:Microsoft.JSInterop.IJSUnmarshalledObjectReference> instance isn't disposed in C# code, it can be disposed in JS. The following `dispose` function disposes the object reference when called from JS:
 
@@ -792,5 +714,5 @@ Other data types, such as string arrays, can be converted but require creating a
 
 ## Additional resources
 
-* <xref:blazor/call-dotnet-from-javascript>
+* <xref:blazor/js-interop/call-dotnet-from-javascript>
 * [`InteropComponent.razor` example (dotnet/AspNetCore GitHub repository `main` branch)](https://github.com/dotnet/AspNetCore/blob/main/src/Components/test/testassets/BasicTestApp/InteropComponent.razor): The `main` branch represents the product unit's current development for the next release of ASP.NET Core. To select the branch for a different release (for example, `release/5.0`), use the **Switch branches or tags** dropdown list to select the branch.

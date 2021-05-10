@@ -13,7 +13,7 @@ uid: blazor/security/server/threat-mitigation
 
 Blazor Server apps adopt a *stateful* data processing model, where the server and client maintain a long-lived relationship. The persistent state is maintained by a [circuit](xref:blazor/state-management), which can span connections that are also potentially long-lived.
 
-When a user visits a Blazor Server site, the server creates a circuit in the server's memory. The circuit indicates to the browser what content to render and responds to events, such as when the user selects a button in the UI. To perform these actions, a circuit invokes JavaScript functions in the user's browser and .NET methods on the server. This two-way JavaScript-based interaction is referred to as [JavaScript interop (JS interop)](xref:blazor/call-javascript-from-dotnet).
+When a user visits a Blazor Server site, the server creates a circuit in the server's memory. The circuit indicates to the browser what content to render and responds to events, such as when the user selects a button in the UI. To perform these actions, a circuit invokes JavaScript functions in the user's browser and .NET methods on the server. This two-way JavaScript-based interaction is referred to as [JavaScript interop (JS interop)](xref:blazor/js-interop/call-javascript-from-dotnet).
 
 Because JS interop occurs over the Internet and the client uses a remote browser, Blazor Server apps share most web app security concerns. This topic describes common threats to Blazor Server apps and provides threat mitigation guidance focused on Internet-facing apps.
 
@@ -114,7 +114,7 @@ A client interacts with the server through JS interop event dispatching and rend
 For calls from .NET methods to JavaScript:
 
 * All invocations have a configurable timeout after which they fail, returning a <xref:System.OperationCanceledException> to the caller.
-  * There's a default timeout for the calls (<xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.JSInteropDefaultCallTimeout?displayProperty=nameWithType>) of one minute. To configure this limit, see <xref:blazor/call-javascript-from-dotnet#harden-javascript-interop-calls>.
+  * There's a default timeout for the calls (<xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.JSInteropDefaultCallTimeout?displayProperty=nameWithType>) of one minute. To configure this limit, see <xref:blazor/js-interop/call-javascript-from-dotnet#harden-javascript-interop-calls>.
   * A cancellation token can be provided to control the cancellation on a per-call basis. Rely on the default call timeout where possible and time-bound any call to the client if a cancellation token is provided.
 * The result of a JavaScript call can't be trusted. The Blazor app client running in the browser searches for the JavaScript function to invoke. The function is invoked, and either the result or an error is produced. A malicious client can attempt to:
   * Cause an issue in the app by returning an error from the JavaScript function.

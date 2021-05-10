@@ -7,18 +7,24 @@ ms.author: riande
 ms.custom: mvc, devx-track-js 
 ms.date: 08/12/2020
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
-uid: blazor/call-dotnet-from-javascript
+uid: blazor/js-interop/call-dotnet-from-javascript
 ---
 # Call .NET methods from JavaScript functions in ASP.NET Core Blazor
 
-A Blazor app can invoke JavaScript functions from .NET methods and .NET methods from JavaScript functions. These scenarios are called *JavaScript interoperability* (*JS interop*).
-
-This article covers invoking .NET methods from JavaScript. For information on how to call JavaScript functions from .NET, see <xref:blazor/call-javascript-from-dotnet>.
+This article covers invoking .NET methods from JavaScript (JS). For information on how to call JS functions from .NET, see <xref:blazor/js-interop/call-javascript-from-dotnet>.
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/blazor/common/samples/) ([how to download](xref:index#how-to-download-a-sample))
 
-> [!NOTE]
-> Add JS files (`<script>` tags) before the closing `</body>` tag in the `wwwroot/index.html` file (Blazor WebAssembly) or `Pages/_Host.cshtml` file (Blazor Server). Ensure that JS files with JS interop methods are included before Blazor framework JS files.
+## Location of JavaScipt
+
+Load JavaScript (JS) code using any of approaches described by the [JavaScript (JS) interoperability (interop) article](xref:blazor/js-interop/index#location-of-javascipt):
+
+* [Use an external JS file (`.js`)](xref:blazor/js-interop/index#use-an-external-js-file-js)
+* [Use a `<script>` tag in `<head>` markup](xref:blazor/js-interop/index#use-a-script-tag-in-head-markup)
+* [Inject a script after Blazor starts](xref:blazor/js-interop/index#inject-a-script-after-blazor-starts)
+
+> [!WARNING]
+> Don't place a `<script>` tag in a component file (`.razor`) because the `<script>` tag can't be updated dynamically.
 
 ## Static .NET method call
 
@@ -427,10 +433,6 @@ The placeholder `{APP ASSEMBLY}` is the app's app assembly name (for example, `B
 </ul>
 ```
 
-## Share interop code in a class library
-
-[!INCLUDE[](~/blazor/includes/share-interop-code.md)]
-
 ## Avoid circular object references
 
 Objects that contain circular references can't be serialized on the client for either:
@@ -503,5 +505,5 @@ For JS isolation, JS interop works with the browser's default support for [EcmaS
 
 ## Additional resources
 
-* <xref:blazor/call-javascript-from-dotnet>
+* <xref:blazor/js-interop/call-javascript-from-dotnet>
 * [`InteropComponent.razor` example (dotnet/AspNetCore GitHub repository `main` branch)](https://github.com/dotnet/AspNetCore/blob/main/src/Components/test/testassets/BasicTestApp/InteropComponent.razor): The `main` branch represents the product unit's current development for the next release of ASP.NET Core. To select the branch for a different release (for example, `release/5.0`), use the **Switch branches or tags** dropdown list to select the branch.

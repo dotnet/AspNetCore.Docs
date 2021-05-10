@@ -314,7 +314,7 @@ The query string of a request is obtained from the <xref:Microsoft.AspNetCore.Co
 var query = new Uri(NavigationManager.Uri).Query;
 ```
 
-To parse a query string's parameters, one approach is to use [`URLSearchParams`](https://developer.mozilla.org/docs/Web/API/URLSearchParams) with [JavaScript (JS) interop](xref:blazor/call-javascript-from-dotnet):
+To parse a query string's parameters, one approach is to use [`URLSearchParams`](https://developer.mozilla.org/docs/Web/API/URLSearchParams) with [JavaScript (JS) interop](xref:blazor/js-interop/call-javascript-from-dotnet):
 
 ::: moniker range=">= aspnetcore-5.0"
 
@@ -322,7 +322,7 @@ To parse a query string's parameters, one approach is to use [`URLSearchParams`]
 export createQueryString = (string queryString) => new URLSearchParams(queryString);
 ```
 
-For more information on JavaScript isolation with JavaScript modules, see <xref:blazor/call-javascript-from-dotnet#javascript-isolation-in-javascript-modules>.
+For more information on JavaScript isolation with JavaScript modules, see <xref:blazor/js-interop/call-javascript-from-dotnet#javascript-isolation-in-javascript-modules>.
 
 ::: moniker-end
 
@@ -336,7 +336,7 @@ For more information on JavaScript isolation with JavaScript modules, see <xref:
 </script>
 ```
 
-For more information, see <xref:blazor/call-javascript-from-dotnet>.
+For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet>.
 
 ::: moniker-end
 
