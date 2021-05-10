@@ -5,7 +5,7 @@ ms.author: riande
 description: Learn how to use the ASP.NET Core Component Tag Helper to render Razor components in pages and views.
 ms.custom: mvc
 ms.date: 10/29/2020
-no-loc: [Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/views/tag-helpers/builtin-th/component-tag-helper
 ---
 # Component Tag Helper in ASP.NET Core
@@ -92,7 +92,7 @@ The following Component Tag Helper renders the `Counter` component in a page or 
 
 The preceding example assumes that the `Counter` component is in the app's *Pages* folder. The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `@using BlazorSample.Pages` or `@using BlazorSample.Client.Pages` in a hosted Blazor solution).
 
-The Component Tag Helper can also pass parameters to components. Consider the following `ColorfulCheckbox` component that sets the check box label's color and size:
+The Component Tag Helper can also pass parameters to components. Consider the following `ColorfulCheckbox` component that sets the checkbox label's color and size:
 
 ```razor
 <label style="font-size:@(Size)px;color:@Color">

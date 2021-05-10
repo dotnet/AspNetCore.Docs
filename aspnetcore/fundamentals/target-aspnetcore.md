@@ -5,7 +5,7 @@ description: Learn how to use ASP.NET Core APIs in a class library.
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 12/16/2019
-no-loc: [Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/target-aspnetcore
 ---
 # Use ASP.NET Core APIs in a class library
@@ -34,6 +34,8 @@ To reference ASP.NET Core, add the following `<FrameworkReference>` element to y
 [!code-xml[](target-aspnetcore/samples/single-tfm/netcoreapp3.0-basic-library.csproj?highlight=8)]
 
 Referencing ASP.NET Core in this manner is only supported for projects targeting .NET Core 3.x.
+
+For information on using ASP.NET Core 5.0 and later APIs in a class library, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/22048).
 
 ## Include Blazor extensibility
 
@@ -98,7 +100,7 @@ In the preceding example:
 
 Class libraries rarely only support [Blazor Server](xref:blazor/hosting-models#blazor-server) apps. If the class library requires [Blazor Server](xref:blazor/hosting-models#blazor-server)-specific features, such as access to <xref:Microsoft.AspNetCore.Components.Server.Circuits.CircuitHandler>s or <xref:Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage>, or uses ASP.NET Core-specific features, such as middleware, MVC controllers, or Razor Pages, use **one** of the following approaches:
 
-* Specify that the library supports pages and views when the project is created with the **Support pages and views** check box (Visual Studio) or the `-s|--support-pages-and-views` option with the `dotnet new` command:
+* Specify that the library supports pages and views when the project is created with the **Support pages and views** checkbox (Visual Studio) or the `-s|--support-pages-and-views` option with the `dotnet new` command:
 
   ```dotnetcli
   dotnet new razorclasslib -s true

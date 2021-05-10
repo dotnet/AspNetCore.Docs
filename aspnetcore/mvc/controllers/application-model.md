@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to read and manipulate the application model to modify how MVC elements behave in ASP.NET Core.
 ms.author: riande
 ms.date: 04/05/2021
-no-loc: [Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/controllers/application-model
 ---
 # Work with the application model in ASP.NET Core
@@ -62,7 +62,7 @@ The `AuthorizationApplicationModelProvider` is responsible for applying the beha
 
 The `CorsApplicationModelProvider` implements behavior associated with <xref:Microsoft.AspNetCore.Cors.Infrastructure.IEnableCorsAttribute> and <xref:Microsoft.AspNetCore.Cors.Infrastructure.IDisableCorsAttribute>. For more information, see <xref:security/cors>.
 
-Information on the framework's internal providers described in this section aren't available via the [.NET API browser](https://docs.microsoft.com/dotnet/api/). However, the providers may be inspected in the [ASP.NET Core reference source (dotnet/aspnetcore GitHub repository)](https://github.com/dotnet/aspnetcore). Use GitHub search to find the providers by name and select the version of the source with the **Switch branches/tags** dropdown list.
+Information on the framework's internal providers described in this section aren't available via the [.NET API browser](/dotnet/api/). However, the providers may be inspected in the [ASP.NET Core reference source (dotnet/aspnetcore GitHub repository)](https://github.com/dotnet/aspnetcore). Use GitHub search to find the providers by name and select the version of the source with the **Switch branches/tags** dropdown list.
 
 ## Conventions
 

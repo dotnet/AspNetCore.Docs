@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 5/7/2020
-no-loc: [Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: host-and-deploy/iis/index
 ---
 # Host ASP.NET Core on Windows with IIS
@@ -620,13 +620,13 @@ On Windows 7 or later desktop systems when using IIS locally:
 
 1. Navigate to **Control Panel** > **Programs** > **Programs and Features** > **Turn Windows features on or off** (left side of the screen).
 1. Open **Internet Information Services** > **World Wide Web Services** > **Application Development Features**.
-1. Select the check box for **Application Initialization**.
+1. Select the checkbox for **Application Initialization**.
 
 On Windows Server 2008 R2 or later:
 
 1. Open the **Add Roles and Features Wizard**.
 1. In the **Select role services** panel, open the **Application Development** node.
-1. Select the check box for **Application Initialization**.
+1. Select the checkbox for **Application Initialization**.
 
 Use either of the following approaches to enable the Application Initialization Module for the site:
 
@@ -1220,13 +1220,13 @@ On Windows 7 or later desktop systems when using IIS locally:
 
 1. Navigate to **Control Panel** > **Programs** > **Programs and Features** > **Turn Windows features on or off** (left side of the screen).
 1. Open **Internet Information Services** > **World Wide Web Services** > **Application Development Features**.
-1. Select the check box for **Application Initialization**.
+1. Select the checkbox for **Application Initialization**.
 
 On Windows Server 2008 R2 or later:
 
 1. Open the **Add Roles and Features Wizard**.
 1. In the **Select role services** panel, open the **Application Development** node.
-1. Select the check box for **Application Initialization**.
+1. Select the checkbox for **Application Initialization**.
 
 Use either of the following approaches to enable the Application Initialization Module for the site:
 
