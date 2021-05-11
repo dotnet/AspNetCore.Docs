@@ -15,8 +15,8 @@ This article covers invoking JavaScript (JS) functions from .NET. For informatio
 
 To call into JS from .NET, inject the <xref:Microsoft.JSInterop.IJSRuntime> abstraction and call <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType>:
 
-* [`InvokeAsync<TValue>(String, Object[])`](xref:xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A)
-* [`InvokeAsync<TValue>(String, CancellationToken, Object[])`](xref:xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A)
+* [`InvokeAsync<TValue>(String, Object[])`](xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A)
+* [`InvokeAsync<TValue>(String, CancellationToken, Object[])`](xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A)
 
 For <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A>:
 
