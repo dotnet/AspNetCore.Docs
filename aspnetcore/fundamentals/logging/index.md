@@ -935,8 +935,7 @@ To create a custom logger, see [Implement a custom logging provider in .NET](/do
 * <xref:fundamentals/logging/loggermessage>
 * Logging bugs should be created in the [github.com/dotnet/runtime/](https://github.com/dotnet/runtime/issues) repo.
 * <xref:blazor/fundamentals/logging>
-
-
+::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
 
