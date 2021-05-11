@@ -25,7 +25,7 @@ As an example, to configure the serializer to not change the casing of property 
 ```csharp
 services.AddSignalR()
     .AddJsonProtocol(options => {
-        options.PayloadSerializerOptions.PropertyNamingPolicy = null
+        options.PayloadSerializerOptions.PropertyNamingPolicy = null;
     });
 ```
 
