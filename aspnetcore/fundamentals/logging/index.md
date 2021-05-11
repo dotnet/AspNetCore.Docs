@@ -901,7 +901,7 @@ The following example shows how to register filter rules in code:
 
 ::: moniker range=">= aspnetcore-5.0"
 
-## Automatic log scope with SpanId, TraceId, and ParentId
+## Automatically log scope with SpanId, TraceId, and ParentId
 
 The logging libraries implicitly create a scope object with `SpanId`, `TraceId`, and `ParentId`. This behavior is configured via <xref:Microsoft.Extensions.Logging.LoggerFactoryOptions.ActivityTrackingOptions>.
 
