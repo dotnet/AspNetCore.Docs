@@ -68,6 +68,7 @@ Requirements and restrictions to using `WinHttpHandler`:
 
 * Windows 10 Build 19622 or later. May require the use of a [Windows Insider](https://insider.windows.com) build.
 * A reference to [`System.Net.Http.WinHttpHandler`](https://www.nuget.org/packages/System.Net.Http.WinHttpHandler/) version 6.0.0-preview.3.21201.4 or later.
+* .NET Framework 4.6.1 or later.
 * Only unary and server streaming gRPC calls are supported.
 * Only gRPC calls over TLS are supported.
 
