@@ -166,6 +166,7 @@ Consider the following *appsetting.json* file:
       }
     }
 }
+```
 
 The following command sets the preceeding configuration in the environment:
 
