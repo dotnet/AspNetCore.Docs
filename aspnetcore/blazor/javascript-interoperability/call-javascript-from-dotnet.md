@@ -5,19 +5,28 @@ description: Learn how to invoke JavaScript functions from .NET methods in Blazo
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc, devx-track-js
-ms.date: 05/10/2021
-no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+ms.date: 05/11/2021
+no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR, JS, Promise]
 uid: blazor/js-interop/call-javascript-from-dotnet
 ---
 # Call JavaScript functions from .NET methods in ASP.NET Core Blazor
 
 This article covers invoking JavaScript (JS) functions from .NET. For information on how to call .NET methods from JS, see <xref:blazor/js-interop/call-dotnet-from-javascript>.
 
-To call into JS from .NET, inject the <xref:Microsoft.JSInterop.IJSRuntime> abstraction. To issue JS interop calls, inject the <xref:Microsoft.JSInterop.IJSRuntime> abstraction in your component. <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A> takes an identifier for the JS function that you wish to invoke along with any number of JSON-serializable arguments. The function identifier is relative to the global scope (`window`). If you wish to call `window.someScope.someFunction`, the identifier is `someScope.someFunction`. There's no need to register the function before it's called. The return type `T` must also be JSON serializable. `T` should match the .NET type that best maps to the JSON type returned.
+To call into JS from .NET, inject the <xref:Microsoft.JSInterop.IJSRuntime> abstraction and call <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType>:
 
-JS functions that return a [Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) are called with <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A>. `InvokeAsync` unwraps the Promise and returns the value awaited by the Promise.
+* [`InvokeAsync<TValue>(String, Object[])`](xref:xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A)
+* [`InvokeAsync<TValue>(String, CancellationToken, Object[])`](xref:xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A)
 
-For Blazor Server apps with prerendering enabled, calling into JS isn't possible during the initial prerendering. JS interop calls must be deferred until after the connection with the browser is established. For more information, see the [Detect when a Blazor Server app is prerendering](#detect-when-a-blazor-server-app-is-prerendering) section.
+For <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A>:
+
+* The function identifier (`String`) is relative to the global scope (`window`). To call `window.someScope.someFunction`, the identifier is `someScope.someFunction`.
+* There's no need to register the function before it's called.
+* Pass any number of JSON-serializable arguments (`Object[]`).
+* The return type `TValue` must also be JSON serializable. `TValue` should match the .NET type that best maps to the JSON type returned.
+* A [JS Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) is returned. <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A> unwraps the [Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) and returns the value awaited by the [Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise).
+
+For Blazor Server apps with prerendering enabled, calling into JS isn't possible during initial prerendering. JS interop calls must be deferred until after the connection with the browser is established. For more information, see the [Detect when a Blazor Server app is prerendering](#detect-when-a-blazor-server-app-is-prerendering) section.
 
 The following example is based on [`TextDecoder`](https://developer.mozilla.org/docs/Web/API/TextDecoder), a JS-based decoder. The example demonstrates how to invoke a JS function from a C# method that offloads a requirement from developer code to an existing JS API. The JS function accepts a byte array from a C# method, decodes the array, and returns the text to the component for display.
 
@@ -35,10 +44,10 @@ Add the following JS code inside the closing `</body>` tag of `wwwroot/index.htm
 </script>
 ```
 
-The following `CallJsExample` component:
+The following `CallJsExample1` component:
 
-* Invokes the `convertArray` JS function using `JS` when a component button (**`Convert Array`**) is selected by calling <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeAsync%2A>.
-* After the JS function is called, the passed array is converted into a string. The string is returned to the component for display.
+* Invokes the `convertArray` JS function with <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeAsync%2A> when selecting a button (**`Convert Array`**).
+* After the JS function is called, the passed array is converted into a string. The string is returned to the component for display (`text`).
 
 `Pages/CallJsExample1.razor`:
 
@@ -56,7 +65,7 @@ The following `CallJsExample` component:
 
 ## Location of JavaScipt
 
-Load JavaScript (JS) code using any of approaches described by the [JavaScript (JS) interoperability (interop) article](xref:blazor/js-interop/index#location-of-javascipt):
+Load JavaScript (JS) code using any of approaches described by the [JavaScript (JS) interoperability (interop) overview article](xref:blazor/js-interop/index#location-of-javascipt):
 
 * [Use an external JS file (`.js`)](xref:blazor/js-interop/index#use-an-external-js-file-js)
 * [Use a `<script>` tag in `<head>` markup](xref:blazor/js-interop/index#use-a-script-tag-in-head-markup)
@@ -88,6 +97,8 @@ Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or
 
 #### Component (`.razor`) example (`InvokeVoidAsync`)
 
+`TickerChanged` calls the `handleTickerChanged1` method in the following `CallJsExample2` component.
+
 `Pages/CallJsExample2.razor`:
 
 ::: moniker range=">= aspnetcore-5.0"
@@ -104,8 +115,6 @@ Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or
 
 #### Class (`.cs`) example (`InvokeVoidAsync`)
 
-The JS function is called with <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A> and doesn't return a value/
-
 `JsInteropClasses1.cs`:
 
 ::: moniker range=">= aspnetcore-5.0"
@@ -119,6 +128,8 @@ The JS function is called with <xref:Microsoft.JSInterop.JSRuntimeExtensions.Inv
 [!code-csharp[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/JsInteropClasses1.cs?highlight=2,6,10,15)]
 
 ::: moniker-end
+
+`TickerChanged` calls the `handleTickerChanged1` method in the following `CallJsExample3` component.
 
 `Pages/CallJsExample3.razor`:
 
@@ -138,16 +149,16 @@ The JS function is called with <xref:Microsoft.JSInterop.JSRuntimeExtensions.Inv
 
 Use <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeAsync%2A> when .NET should read the result of a JS call.
 
-Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server), provide a `displayTickerAlert2` JS function. The following example returns a string for use by the caller:
+Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server), provide a `displayTickerAlert2` JS function. The following example returns a string for display by the caller:
 
 ```html
 <script>
   window.displayTickerAlert2 = (symbol, price) => {
     if (price < 20) {
       alert(`${symbol}: $${price}!`);
-      return "Alert!";
+      return "User alerted in the browser.";
     } else {
-      return "No Alert";
+      return "User NOT alerted.";
     }
   };
 </script>
@@ -155,23 +166,23 @@ Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or
 
 #### Component (`.razor`) example (`InvokeAsync`)
 
+`TickerChanged` calls the `handleTickerChanged2` method and displays the returned string in the following `CallJsExample4` component.
+
 `Pages/CallJsExample4.razor`:
 
 ::: moniker range=">= aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample4.razor?highlight=2,31-32)]
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample4.razor?highlight=2,31-34)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample4.razor?highlight=2,31-32)]
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample4.razor?highlight=2,31-34)]
 
 ::: moniker-end
 
 #### Class (`.cs`) example (`InvokeAsync`)
-
-The JS function is called with <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeAsync%2A> and returns a value.
 
 `JsInteropClasses2.cs`:
 
@@ -187,19 +198,19 @@ The JS function is called with <xref:Microsoft.JSInterop.JSRuntimeExtensions.Inv
 
 ::: moniker-end
 
-`TickerChanged` calls the `handleTickerChanged2` method and displays the returned string in the following `CallJsExample3` component.
+`TickerChanged` calls the `handleTickerChanged2` method and displays the returned string in the following `CallJsExample5` component.
 
 `Pages/CallJsExample5.razor`:
 
 ::: moniker range=">= aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample5.razor?highlight=2-3,25,30,38,43)]
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample5.razor?highlight=2-3,25,30,38-40,43)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample5.razor?highlight=2-3,25,30,38,43)]
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample5.razor?highlight=2-3,25,30,38-40,43)]
 
 ::: moniker-end
 
@@ -239,7 +250,7 @@ export function showPrompt(message) {
 
 Add the preceding JS module to an app or class library as a static web asset in the `wwwroot` folder and then import the module into the .NET code by calling <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A> on the <xref:Microsoft.JSInterop.IJSRuntime> instance.
 
-<xref:Microsoft.JSInterop.IJSRuntime> imports the module as a `IJSObjectReference`, which represents a reference to a JS object from .NET code. Use the `IJSObjectReference` to invoke exported JS functions from the module:
+<xref:Microsoft.JSInterop.IJSRuntime> imports the module as a `IJSObjectReference`, which represents a reference to a JS object from .NET code. Use the `IJSObjectReference` to invoke exported JS functions from the module.
 
 `Pages/CallJsExample6.razor`:
 
@@ -248,20 +259,20 @@ Add the preceding JS module to an app or class library as a static web asset in 
 In the preceding example:
 
 * By convention, the `import` identifier is a special identifier used specifically for importing a JS module.
-* Specify the module's external JS file using its stable static web asset path: `./{PATH AND FILENAME}`, where:
+* Specify the module's external JS file using its stable static web asset path: `./{SCRIPT PATH AND FILENAME (.js)}`, where:
   * The path segment for the current directory (`./`) is required in order to create the correct static asset path to the JS file.
-  * The `{PATH AND FILENAME}` placeholder is the path and file name under `wwwroot`.
+  * The `{SCRIPT PATH AND FILENAME (.js)}` placeholder is the path and file name under `wwwroot`.
 
 Dynamically importing a module requires a network request, so it can only be achieved asynchronously by calling <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A>.
 
 `IJSInProcessObjectReference` represents a reference to a JS object whose functions can be invoked synchronously.
 
 > [!NOTE]
-> When the external JS file is supplied by a [Razor class library](xref:blazor/components/class-libraries), specify the module's JS file using its stable static web asset path: `./_content/{LIBRARY NAME}/{PATH AND FILENAME}`:
+> When the external JS file is supplied by a [Razor class library](xref:blazor/components/class-libraries), specify the module's JS file using its stable static web asset path: `./_content/{LIBRARY NAME}/{SCRIPT PATH AND FILENAME (.js)}`:
 >
 > * The path segment for the current directory (`./`) is required in order to create the correct static asset path to the JS file.
 > * The `{LIBRARY NAME}` placeholder is the library name. In the following example, the library name is `ComponentLibrary`.
-> * The `{PATH AND FILENAME}` placeholder is the path and file name under `wwwroot`. In the following example, the external JS file (`script.js`) is placed in the class library's `wwwroot` folder.
+> * The `{SCRIPT PATH AND FILENAME (.js)}` placeholder is the path and file name under `wwwroot`. In the following example, the external JS file (`script.js`) is placed in the class library's `wwwroot` folder.
 >
 > ```csharp
 > var module = await js.InvokeAsync<IJSObjectReference>(
@@ -274,7 +285,7 @@ Dynamically importing a module requires a network request, so it can only be ach
 
 ## Capture references to elements
 
-Some JavaScript (JS) interop scenarios require references to HTML elements. For example, a UI library may require an element reference for initialization, or you might need to call command-like APIs on an element, such as `focus` or `play`.
+Some JavaScript (JS) interop scenarios require references to HTML elements. For example, a UI library may require an element reference for initialization, or you might need to call command-like APIs on an element, such as `click` or `play`.
 
 Capture references to HTML elements in a component using the following approach:
 
@@ -287,17 +298,17 @@ The following example shows capturing a reference to the `username` `<input>` el
 <input @ref="username" ... />
 
 @code {
-    ElementReference username;
+    private ElementReference username;
 }
 ```
 
 > [!WARNING]
 > Only use an element reference to mutate the contents of an empty element that doesn't interact with Blazor. This scenario is useful when a third-party API supplies content to the element. Because Blazor doesn't interact with the element, there's no possibility of a conflict between Blazor's representation of the element and the Document Object Model (DOM).
 >
-> In the following example, it's *dangerous* to mutate the contents of the unordered list (`ul`) because Blazor interacts with the DOM to populate this element's list items (`<li>`):
+> In the following example, it's *dangerous* to mutate the contents of the unordered list (`ul`) because Blazor interacts with the DOM to populate this element's list items (`<li>`) from the `Todos` object:
 >
 > ```razor
-> <ul ref="MyList">
+> <ul @ref="MyList">
 >     @foreach (var item in Todos)
 >     {
 >         <li>@item.Text</li>
@@ -307,7 +318,9 @@ The following example shows capturing a reference to the `username` `<input>` el
 >
 > If JS interop mutates the contents of element `MyList` and Blazor attempts to apply diffs to the element, the diffs won't match the DOM.
 
-An <xref:Microsoft.AspNetCore.Components.ElementReference> is passed through to JS code via JS interop. The JS code receives an `HTMLElement` instance, which it can use with normal DOM APIs. For example, the following code defines a .NET extension method that enables sending a mouse click to an element:
+An <xref:Microsoft.AspNetCore.Components.ElementReference> is passed through to JS code via JS interop. The JS code receives an `HTMLElement` instance, which it can use with normal DOM APIs. For example, the following code defines a .NET extension method (`TriggerClickEvent`) that enables sending a mouse click to an element.
+
+The JS function `clickElement` creates a [`click`](https://developer.mozilla.org/docs/Web/API/Element/click_event) event on the passed HTML element (`element`):
 
 ```javascript
 window.interopFunctions = {
@@ -317,14 +330,7 @@ window.interopFunctions = {
 }
 ```
 
-::: moniker range=">= aspnetcore-5.0"
-
-> [!NOTE]
-> Use [`FocusAsync`](xref:blazor/components/event-handling#focus-an-element) in C# code to focus an element, which is built-into the Blazor framework and works with element references.
-
-::: moniker-end
-
-To call a JS function that doesn't return a value, use <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A?displayProperty=nameWithType>. The following code triggers a client-side `Click` event by calling the preceding JS function with the captured <xref:Microsoft.AspNetCore.Components.ElementReference>:
+To call a JS function that doesn't return a value, use <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A?displayProperty=nameWithType>. The following code triggers a client-side [`click`](https://developer.mozilla.org/docs/Web/API/Element/click_event) event by calling the preceding JS function with the captured <xref:Microsoft.AspNetCore.Components.ElementReference>:
 
 ```razor
 @inject IJSRuntime JS
@@ -379,7 +385,7 @@ The `clickElement` method is called directly on the object. The following exampl
 ```
 
 > [!IMPORTANT]
-> The `exampleButton` variable is only populated after the component is rendered. If an unpopulated <xref:Microsoft.AspNetCore.Components.ElementReference> is passed to JS code, the JS code receives a value of `null`. To manipulate element references after the component has finished rendering use the [`OnAfterRenderAsync` or `OnAfterRender` component lifecycle methods](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync).
+> The `exampleButton` variable is only populated after the component is rendered. If an unpopulated <xref:Microsoft.AspNetCore.Components.ElementReference> is passed to JS code, the JS code receives a value of `null`. To manipulate element references after the component has finished rendering, use the [`OnAfterRenderAsync` or `OnAfterRender` component lifecycle methods](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync).
 
 When working with generic types and returning a value, use <xref:System.Threading.Tasks.ValueTask%601>:
 
@@ -475,7 +481,7 @@ Add the following script inside closing `</body>` tag of `wwwroot/index.html` (B
 
 ::: moniker-end
 
-In the preceding example, the namespace of the app is `BlazorSample` with components in the `Pages` folder. If testing the code locally, update the namespace to the local app's namespace.
+In the preceding example, the namespace of the app is `BlazorSample` with components in the `Pages` folder. If testing the code locally, update the namespace.
 
 `Shared/SurveyPrompt.razor` (child component):
 
@@ -505,9 +511,11 @@ In the preceding example, the namespace of the app is `BlazorSample` with compon
 
 ::: moniker-end
 
-In the preceding example, the namespace of the app is `BlazorSample` with shared components in the `Shared` folder. If testing the code locally, update the namespace to the local app's namespace.
+In the preceding example, the namespace of the app is `BlazorSample` with shared components in the `Shared` folder. If testing the code locally, update the namespace.
 
 ## Harden JavaScript interop calls
+
+*This section primarily applies to Blazor Server apps, but Blazor WebAssembly apps may also set JS interop timeouts if conditions warrant it.*
 
 In Blazor Server apps, JavaScript (JS) interop may fail due to networking errors and should be treated as unreliable. By default, Blazor Server apps use a one minute timeout for JS interop calls. If an app can tolerate a more aggressive timeout, set the timeout using one of the following approaches.
 
@@ -518,7 +526,7 @@ services.AddServerSideBlazor(
     options => options.JSInteropDefaultCallTimeout = {TIMEOUT});
 ```
 
-In the preceding example, the `{TIMEOUT}` placeholder is a <xref:System.TimeSpan> (for example, `TimeSpan.FromSeconds(80)`).
+The `{TIMEOUT}` placeholder is a <xref:System.TimeSpan> (for example, `TimeSpan.FromSeconds(80)`).
 
 Set a per-invocation timeout in component code. The specified timeout overrides the global timeout set by <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.JSInteropDefaultCallTimeout>:
 
@@ -531,8 +539,7 @@ In the preceding example:
 * The `{TIMEOUT}` placeholder is a <xref:System.TimeSpan> (for example, `TimeSpan.FromSeconds(80)`).
 * The `{ID}` placeholder is the identifier for the function to invoke. For example, the value `someScope.someFunction` invokes the function `window.someScope.someFunction`.
 
-> [!NOTE]
-> Although a common cause of JS interop failures are network failures in Blazor Server apps, per-invocation timeouts can be set for JS interop calls in Blazor WebAssembly apps. Although no SignalR circuit exists in a Blazor WebAssembly app, JS interop calls might fail for other reasons that apply in Blazor WebAssembly apps.
+Although a common cause of JS interop failures are network failures in Blazor Server apps, per-invocation timeouts can be set for JS interop calls in Blazor WebAssembly apps. Although no SignalR circuit exists in a Blazor WebAssembly app, JS interop calls might fail for other reasons that apply in Blazor WebAssembly apps.
 
 For more information on resource exhaustion, see <xref:blazor/security/server/threat-mitigation>.
 
@@ -553,7 +560,7 @@ Sometimes you may wish to use JavaScript (JS) libraries that produce visible use
 
 Fortunately, it's straightforward to embed externally-generated UI within a Razor component UI reliably. The recommended technique is to have the component's code (`.razor` file) produce an empty element. As far as Blazor's diffing system is concerned, the element is always empty, so the renderer does not recurse into the element and instead leaves its contents alone. This makes it safe to populate the element with arbitrary externally-managed content.
 
-The following example demonstrates the concept. Within the `if` statement when `firstRender` is `true`, do something with `unmanagedElement`. For example, call an external JS library to populate the element. Blazor leaves the element's contents alone until this component is removed. When the component is removed, the component's entire DOM subtree is also removed.
+The following example demonstrates the concept. Within the `if` statement when `firstRender` is `true`, interact with `unmanagedElement` outside of Blazor using JS interop. For example, call an external JS library to populate the element. Blazor leaves the element's contents alone until this component is removed. When the component is removed, the component's entire DOM subtree is also removed.
 
 ```razor
 <h1>Hello! This is a Blazor component rendered at @DateTime.Now</h1>
@@ -603,7 +610,7 @@ export function setMapCenter(map, latitude, longitude) {
 
 To produce correct styling, add the following stylesheet tag to the host HTML page.
 
-In `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server), add the following `<link>` element to the `<head>` tags:
+In `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server), add the following `<link>` element to the `<head>` element markup:
 
 ```html
 <link href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css" 
@@ -623,7 +630,7 @@ The preceding example produces an interactive map UI. The user:
 
 In the preceding example:
 
-* The `<div>` with `@ref="mapElement"` is left empty as far as Blazor is concerned. It's therefore safe for `mapbox-gl.js` to populate it and modify its contents over time. You can use this technique with any JS library that renders UI. You could even embed components from a third-party JS SPA framework inside Blazor components, as long as they don't try to reach out and modify other parts of the page. It is *not* safe for external JS code to modify elements that Blazor does not regard as empty.
+* The `<div>` with `@ref="mapElement"` is left empty as far as Blazor is concerned. The `mapbox-gl.js` script can safely populate the element and modify its contents. Use this technique with any JS library that renders UI. You can embed components from a third-party JS SPA framework inside Blazor components, as long as they don't try to reach out and modify other parts of the page. It is **not** safe for external JS code to modify elements that Blazor does not regard as empty.
 * When using this approach, bear in mind the rules about how Blazor retains or destroys DOM elements. The component safely handles button click events and updates the existing map instance because DOM elements are retained where possible by default. If you were rendering a list of map elements from inside a `@foreach` loop, you want to use `@key` to ensure the preservation of component instances. Otherwise, changes in the list data could cause component instances to retain the state of previous instances in an undesirable manner. For more information, see [using @key to preserve elements and components](xref:blazor/components/index#use-key-to-control-the-preservation-of-elements-and-components).
 * The example encapsulates JS logic and dependencies within an ES6 module and loads the module dynamically using the `import` identifier. For more information, see [JavaScript isolation in JavaScript modules](#javascript-isolation-in-javascript-modules).
 
@@ -633,7 +640,7 @@ In the preceding example:
 
 In Blazor WebAssembly, the framework doesn't impose a limit on the size of JavaScript (JS) interop inputs and outputs.
 
-In Blazor Server, JS interop calls are limited in size by the maximum incoming SignalR message size permitted for hub methods, which is enforced by <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize?displayProperty=nameWithType> (default: 32 KB). JS to .NET SignalR messages larger than <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize> throw an error. The framework doesn't impose a limit on the size of a SignalR message from the hub to a client. For more information, see <xref:blazor/js-interop/call-dotnet-from-javascript#size-limits-on-javascript-interop-calls>.
+In Blazor Server, JS interop calls are limited in size by the maximum incoming SignalR message size permitted for hub methods, which is enforced by <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize?displayProperty=nameWithType> (32 KB by default). JS to .NET SignalR messages larger than <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize> throw an error. The framework doesn't impose a limit on the size of a SignalR message from the hub to a client. For more information, see <xref:blazor/js-interop/call-dotnet-from-javascript#size-limits-on-javascript-interop-calls>.
 
 ::: moniker range=">= aspnetcore-5.0"
 
@@ -641,8 +648,8 @@ In Blazor Server, JS interop calls are limited in size by the maximum incoming S
 
 Blazor WebAssembly components may experience poor performance when .NET objects are serialized for JavaScript (JS) interop and either of the following are true:
 
-* A high volume of .NET objects are rapidly serialized. Example: JS interop calls are made on the basis of moving an input device, such as spinning a mouse wheel.
-* Large .NET objects or many .NET objects must be serialized for JS interop. Example: JS interop calls require serializing dozens of files.
+* A high volume of .NET objects are rapidly serialized. For example, poor performance may result when JS interop calls are made on the basis of moving an input device, such as spinning a mouse wheel.
+* Large .NET objects or many .NET objects must be serialized for JS interop. For example, poor performance may result when JS interop calls require serializing dozens of files.
 
 <xref:Microsoft.JSInterop.IJSUnmarshalledObjectReference> represents a reference to an JS object whose functions can be invoked without the overhead of serializing .NET data.
 
@@ -655,7 +662,7 @@ In the following example:
 > [!NOTE]
 > The following examples aren't typical use cases for this scenario because the [struct](/dotnet/csharp/language-reference/builtin-types/struct) passed to JS doesn't result in poor component performance. The example uses a small object merely to demonstrate the concepts for passing unserialized .NET data.
 
-Place the following `<script>` block in `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server). Alternatively, you can place the JS in an external JS file referenced inside the closing `</body>` tag with `<script src="{SCRIPT FILE NAME (.js)}></script>`, where the `{SCRIPT FILE NAME (.js)}` placeholder is the path to the script.
+Place the following `<script>` block in `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server). Alternatively, you can place the JS in an external JS file referenced inside the closing `</body>` tag with `<script src="{SCRIPT PATH AND FILE NAME (.js)}></script>`, where the `{SCRIPT PATH AND FILE NAME (.js)}` placeholder is the path and file name of the script.
 
 ```javascript
 <script>
