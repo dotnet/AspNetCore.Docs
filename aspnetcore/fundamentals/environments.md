@@ -216,7 +216,7 @@ When the `ASPNETCORE_ENVIRONMENT` environment variable is set globally, it takes
 
 **web.config**
 
-To set the `ASPNETCORE_ENVIRONMENT` environment variable with *web.config*, see the *Setting environment variables* section of <xref:host-and-deploy/aspnet-core-module#setting-environment-variables>.
+To set the `ASPNETCORE_ENVIRONMENT` environment variable with `web.config`, see the *Set environment variables* section of <xref:host-and-deploy/iis/web-config#set-environment-variables>.
 
 **Project file or publish profile**
 
