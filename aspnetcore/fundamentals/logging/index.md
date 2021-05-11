@@ -156,6 +156,24 @@ The following [setx](/windows-server/administration/windows-commands/setx) comma
 setx Logging__LogLevel__Microsoft=Information /M
 ```
 
+Consider the following *appsetting.json* file:
+
+```json
+"Logging": {
+    "Console": {
+      "LogLevel": {
+        "Microsoft.Hosting.Lifetime": "Trace"
+      }
+    }
+}
+```
+
+The following command sets the preceeding configuration in the environment:
+
+```cmd
+setx Logging__LogLevel__Microsoft.Hosting.Lifetime=Trace /M
+```
+
 On [Azure App Service](https://azure.microsoft.com/services/app-service/), select **New application setting** on the **Settings > Configuration** page. Azure App Service application settings are:
 
 * Encrypted at rest and transmitted over an encrypted channel.
