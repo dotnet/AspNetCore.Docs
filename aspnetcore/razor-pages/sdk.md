@@ -73,7 +73,9 @@ For more information on properties, see [MSBuild properties](/visualstudio/msbui
 
 ### Runtime compilation of Razor views
 
-The Razor compiler leverages the [source generators feature](https://devblogs.microsoft.com/dotnet/introducing-c-source-generators/) to generate compiled C# files from the Razor views and pages in a document. Both code generation and compilation are supported by a single call to the compiler. A single assembly is produced that contains the app types and the generated views.
+* By default, the Razor SDK doesn't publish reference assemblies that are required to perform runtime compilation. This results in compilation failures when the application model relies on runtime compilation&mdash;for example, the app uses embedded views or changes views after the app is published. Set `CopyRefAssembliesToPublishDirectory` to `true` to continue publishing reference assemblies. Both code generation and compilation are supported by a single call to the compiler. A single assembly is produced that contains the app types and the generated views.
+
+* For a web app, ensure your app is targeting the `Microsoft.NET.Sdk.Web` SDK.
 
 ## Razor language version
 
