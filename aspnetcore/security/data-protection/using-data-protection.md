@@ -21,7 +21,8 @@ Most frameworks and app models, such as ASP.NET Core or SignalR, already configu
 
 * Configuring a service container for dependency injection and registering the data protection stack.
 * Receiving the data protection provider via DI.
-* Creating a protector and protecting then unprotecting data.
+* Creating a protector.
+* Protecting then unprotecting data.
 
 [!code-csharp[](../../security/data-protection/using-data-protection/samples/protectunprotect.cs?highlight=26,34,35,36,37,38,39,40)]
 
