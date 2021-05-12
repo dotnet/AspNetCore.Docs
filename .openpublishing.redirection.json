@@ -1,6 +1,11 @@
 {
     "redirections": [
         {
+            "source_path": "aspnet/core/host-and-deploy/azure-apps/azure-continuous-deployment.md",
+            "redirect_url": "/azure/app-service/deploy-continuous-deployment",
+            "redirect_document_id": false
+        },
+        {
             "source_path": "aspnet/core/client-side/bower.md",
             "redirect_url": "/aspnet/core/client-side/libman/",
             "redirect_document_id": false
