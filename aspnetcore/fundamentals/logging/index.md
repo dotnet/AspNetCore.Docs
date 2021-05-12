@@ -915,6 +915,62 @@ The following example shows how to register filter rules in code:
 * Log level `Information` and higher.
 * All categories starting with `"Microsoft"`.
 
+::: moniker-end
+
+::: moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+
+## Automatically log scope with SpanId, TraceId, and ParentId
+
+The logging libraries implicitly create a scope object with `SpanId`, `TraceId`, and `ParentId`. This behavior is configured via <xref:Microsoft.Extensions.Logging.LoggerFactoryOptions.ActivityTrackingOptions>.
+
+```csharp
+  var loggerFactory = LoggerFactory.Create(logging =>
+  {
+      logging.Configure(options =>
+      {
+          options.ActivityTrackingOptions = ActivityTrackingOptions.SpanId
+                                              | ActivityTrackingOptions.TraceId
+                                              | ActivityTrackingOptions.ParentId;
+      }).AddSimpleConsole(options =>
+      {
+          options.IncludeScopes = true;
+      });
+  });
+```
+
+If the `traceparent` http request header is set, the `ParentId` in the log scope shows the W3C `parent-id` from in-bound `traceparent` header and the `SpanId` in the log scope shows the updated `parent-id` for the next out-bound step/span. For more information, see [Mutating the traceparent Field](https://www.w3.org/TR/trace-context/#mutating-the-traceparent-field).
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-6.0"
+
+## Automatically log scope with SpanId, TraceId, ParentId, Baggage, and Tags.
+
+The logging libraries implicitly create a scope object with `SpanId`, `TraceId`, `ParentId`,`Baggage`, and `Tags`. This behavior is configured via <xref:Microsoft.Extensions.Logging.LoggerFactoryOptions.ActivityTrackingOptions>.
+
+```csharp
+  var loggerFactory = LoggerFactory.Create(logging =>
+  {
+      logging.Configure(options =>
+      {
+          options.ActivityTrackingOptions = ActivityTrackingOptions.SpanId
+                                              | ActivityTrackingOptions.TraceId
+                                              | ActivityTrackingOptions.ParentId
+                                              | ActivityTrackingOptions.Baggage
+                                              | ActivityTrackingOptions.Tags;
+      }).AddSimpleConsole(options =>
+      {
+          options.IncludeScopes = true;
+      });
+  });
+```
+
+If the `traceparent` http request header is set, the `ParentId` in the log scope shows the W3C `parent-id` from in-bound `traceparent` header and the `SpanId` in the log scope shows the updated `parent-id` for the next out-bound step/span. For more information, see [Mutating the traceparent Field](https://www.w3.org/TR/trace-context/#mutating-the-traceparent-field).
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-3.0"
+
 ## Create a custom logger
 
 To create a custom logger, see [Implement a custom logging provider in .NET](/dotnet/core/extensions/custom-logging-provider).
@@ -924,7 +980,6 @@ To create a custom logger, see [Implement a custom logging provider in .NET](/do
 * <xref:fundamentals/logging/loggermessage>
 * Logging bugs should be created in the [github.com/dotnet/runtime/](https://github.com/dotnet/runtime/issues) repo.
 * <xref:blazor/fundamentals/logging>
-
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
