@@ -911,9 +911,6 @@
         - name: Publish with the CLI
           displayName: azure, deploy, publish
           href: /azure/app-service/tutorial-dotnetcore-sqldb-app?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
-        - name: Publish with Visual Studio and Git
-          displayName: azure, deploy, publish
-          uid: host-and-deploy/azure-apps/azure-continuous-deployment
         - name: Continuous deployment with Azure Pipelines
           displayName: azure, deploy, publish
           href: /azure/devops/pipelines/get-started-yaml
