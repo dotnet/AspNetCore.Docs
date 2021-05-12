@@ -148,8 +148,8 @@ The following example injects the `wwwroot/scripts.js` file after Blazor starts:
 <body>
     ...
 
-    <script autostart="false" 
-        src="_framework/blazor.{webassembly|server}.js"></script>
+    <script src="_framework/blazor.{webassembly|server}.js" 
+        autostart="false"></script>
     <script>
       Blazor.start().then(function () {
         var customScript = document.createElement('script');

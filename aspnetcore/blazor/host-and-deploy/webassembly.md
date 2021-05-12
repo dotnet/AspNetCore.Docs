@@ -71,7 +71,9 @@ Blazor relies on the host to the serve the appropriate compressed files. When us
       });
     </script>
     ```
- 
+
+    For more information on loading boot resources, see <xref:blazor/fundamentals/startup#load-boot-resources>.
+
 To disable compression, add the `BlazorEnableCompression` MSBuild property to the app's project file and set the value to `false`:
 
 ```xml

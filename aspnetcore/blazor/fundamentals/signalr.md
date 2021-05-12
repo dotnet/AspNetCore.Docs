@@ -172,52 +172,18 @@ The following table describes the CSS classes applied to the `components-reconne
 
 By default, Blazor Server apps prerender the UI on the server before the client connection to the server is established. For more information, see <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
 
-## Initialize the Blazor circuit
+## Blazor startup
 
 Configure the manual start of a Blazor Server app's [SignalR circuit](xref:blazor/hosting-models#circuits) in the `Pages/_Host.cshtml` file:
 
 * Add an `autostart="false"` attribute to the `<script>` tag for the `blazor.server.js` script.
-* Place a script that calls `Blazor.start` after the `blazor.server.js` script's tag and inside the closing `</body>` tag.
+* Place a script that calls `Blazor.start` after the `blazor.server.js` script's `<script>` tag and inside the closing `</body>` tag.
 
 When `autostart` is disabled, any aspect of the app that doesn't depend on the circuit works normally. For example, client-side routing is operational. However, any aspect that depends on the circuit isn't operational until `Blazor.start` is called. App behavior is unpredictable without an established circuit. For example, component methods fail to execute while the circuit is disconnected.
 
-### Initialize Blazor when the document is ready
+For more information, including how to initialize Blazor when the document is ready and how to chain to a [JS Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise), see <xref:blazor/fundamentals/startup>.
 
-`Pages/_Host.cshtml`:
-
-```cshtml
-<body>
-    ...
-
-    <script autostart="false" src="_framework/blazor.server.js"></script>
-    <script>
-      document.addEventListener("DOMContentLoaded", function() {
-        Blazor.start();
-      });
-    </script>
-</body>
-```
-
-### Chain to the `Promise` that results from a manual start
-
-To perform additional tasks, such as JS interop initialization, use [`then`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise/then) to chain to the [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) that results from a manual Blazor app start.
-
-`Pages/_Host.cshtml`:
-
-```cshtml
-<body>
-    ...
-
-    <script autostart="false" src="_framework/blazor.server.js"></script>
-    <script>
-      Blazor.start().then(function () {
-        ...
-      });
-    </script>
-</body>
-```
-
-### Configure SignalR client logging
+## Configure SignalR client logging
 
 On the client builder, pass in the `configureSignalR` configuration object that calls `configureLogging` with the log level.
 
@@ -227,7 +193,7 @@ On the client builder, pass in the `configureSignalR` configuration object that 
 <body>
     ...
 
-    <script autostart="false" src="_framework/blazor.server.js"></script>
+    <script src="_framework/blazor.server.js" autostart="false"></script>
     <script>
       Blazor.start({
         configureSignalR: function (builder) {
@@ -240,7 +206,7 @@ On the client builder, pass in the `configureSignalR` configuration object that 
 
 In the preceding example, `information` is equivalent to a log level of <xref:Microsoft.Extensions.Logging.LogLevel.Information?displayProperty=nameWithType>.
 
-### Modify the reconnection handler
+## Modify the reconnection handler
 
 The reconnection handler's circuit connection events can be modified for custom behaviors, such as:
 
@@ -260,7 +226,7 @@ To modify the connection events, register callbacks for the following connection
 <body>
     ...
 
-    <script autostart="false" src="_framework/blazor.server.js"></script>
+    <script src="_framework/blazor.server.js" autostart="false"></script>
     <script>
       Blazor.start({
         reconnectionHandler: {
@@ -272,7 +238,7 @@ To modify the connection events, register callbacks for the following connection
 </body>
 ```
 
-### Adjust the reconnection retry count and interval
+## Adjust the reconnection retry count and interval
 
 To adjust the reconnection retry count and interval, set the number of retries (`maxRetries`) and period in milliseconds permitted for each retry attempt (`retryIntervalMilliseconds`).
 
@@ -282,7 +248,7 @@ To adjust the reconnection retry count and interval, set the number of retries (
 <body>
     ...
 
-    <script autostart="false" src="_framework/blazor.server.js"></script>
+    <script src="_framework/blazor.server.js" autostart="false"></script>
     <script>
       Blazor.start({
         reconnectionOptions: {
@@ -304,7 +270,7 @@ To hide the reconnection display, set the reconnection handler's `_reconnectionD
 <body>
     ...
 
-    <script autostart="false" src="_framework/blazor.server.js"></script>
+    <script src="_framework/blazor.server.js" autostart="false"></script>
     <script>
       window.addEventListener('beforeunload', function () {
         Blazor.defaultReconnectionHandler._reconnectionDisplay = {};
