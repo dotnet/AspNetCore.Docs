@@ -14,6 +14,9 @@ By [John Luo](https://github.com/juntaoluo)
 
 Due to the implementation of the underlying stack, not all features work in the same way between [C-core-based gRPC](https://grpc.io/blog/grpc-stacks) apps and ASP.NET Core-based apps. This document highlights the key differences for migrating between the two stacks.
 
+> [!IMPORTANT]
+> gRPC C-core is in maintaince mode and [will be deprecated in favour of gRPC for .NET](https://grpc.io/blog/grpc-csharp-future/). gRPC C-core is not recommended for new apps.
+
 ## gRPC service implementation lifetime
 
 In the ASP.NET Core stack, gRPC services, by default, are created with a [scoped lifetime](xref:fundamentals/dependency-injection#service-lifetimes). In contrast, gRPC C-core by default binds to a service with a [singleton lifetime](xref:fundamentals/dependency-injection#service-lifetimes).
