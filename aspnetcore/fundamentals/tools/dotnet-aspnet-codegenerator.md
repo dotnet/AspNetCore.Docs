@@ -128,7 +128,7 @@ The preceding command generates the following folders:
 
 ### Controller options
 
-The following table lists options for  `aspnet-codegenerator` `controller` and `razorpage`:
+The following table lists options for  `aspnet-codegenerator` `razorpage`, `controller` and `view`:
 
 [!INCLUDE [aspnet-codegenerator-args-md.md](~/includes/aspnet-codegenerator-args-md.md)]
 
@@ -177,7 +177,7 @@ Typically, the template and generated file name is not specified, and the follow
 * `Details`
 * `List`
 
-The following table lists options for  `aspnet-codegenerator` `razorpage` and `controller`:
+The following table lists options for  `aspnet-codegenerator` `razorpage`, `controller` and `view`:
 
 [!INCLUDE [aspnet-codegenerator-args-md.md](~/includes/aspnet-codegenerator-args-md.md)]
 
@@ -196,6 +196,42 @@ dotnet aspnet-codegenerator razorpage -h
 ```
 
 See [Scaffold the movie model](xref:tutorials/razor-pages/model) for an example of `dotnet aspnet-codegenerator razorpage`.
+
+### View
+
+<a name="view"></a>
+
+Views can be individually scaffolded by specifying the name of the view and the template to use. The supported templates are:
+
+* `Empty`
+* `Create`
+* `Edit`
+* `Delete`
+* `Details`
+* `List`
+
+For example, the following command uses the Edit template to generate *MyEdit.cshtml*:
+
+```dotnetcli
+dotnet aspnet-codegenerator view MyEdit Edit -m Movie -dc MovieContext -outDir Views/Movies
+```
+
+The following table lists options for  `aspnet-codegenerator` `razorpage`, `controller` and `view`:
+
+[!INCLUDE [aspnet-codegenerator-args-md.md](~/includes/aspnet-codegenerator-args-md.md)]
+
+The following table lists options unique to  `aspnet-codegenerator view`:
+
+| Option                        | Description                                                                           |
+| ----------------------------- | ------------------------------------------------------------------------------------- |
+| --controllerNamespace or -namespace | Specify the name of the namespace to use for the generated controller |
+| --partialView or -partial | Generate a partial view, other layout options (-l and -udl) are ignored if this is specified |
+
+Use the `-h` switch for help on the `aspnet-codegenerator view` command:
+
+```dotnetcli
+dotnet aspnet-codegenerator view -h
+```
 
 ### Identity
 

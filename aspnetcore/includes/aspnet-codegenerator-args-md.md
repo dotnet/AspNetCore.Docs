@@ -11,4 +11,5 @@ no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cook
 | --layout or -l | Custom Layout page to use. |
 | --useDefaultLayout or -udl | Use the default layout for the views. |
 | --force or -f | Overwrite existing files. |
+| --relativeFolderPath or -outDir | Specify the relative output folder path from project where the file needs to be generated, if not specified, file will be generated in the project folder |
 | --useSqlite or -sqlite | Flag to specify if `DbContext` should use SQLite instead of SQL Server. |
