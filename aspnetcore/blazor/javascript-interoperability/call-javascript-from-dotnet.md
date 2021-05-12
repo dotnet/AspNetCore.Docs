@@ -5,7 +5,7 @@ description: Learn how to invoke JavaScript functions from .NET methods in Blazo
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc, devx-track-js
-ms.date: 05/11/2021
+ms.date: 05/12/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR, JS, Promise]
 uid: blazor/js-interop/call-javascript-from-dotnet
 ---
@@ -13,18 +13,20 @@ uid: blazor/js-interop/call-javascript-from-dotnet
 
 This article covers invoking JavaScript (JS) functions from .NET. For information on how to call .NET methods from JS, see <xref:blazor/js-interop/call-dotnet-from-javascript>.
 
-To call into JS from .NET, inject the <xref:Microsoft.JSInterop.IJSRuntime> abstraction and call <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType>:
+To call into JS from .NET, inject the <xref:Microsoft.JSInterop.IJSRuntime> abstraction and call one of the following methods:
 
-* [`InvokeAsync<TValue>(String, Object[])`](xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A)
-* [`InvokeAsync<TValue>(String, CancellationToken, Object[])`](xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A)
+* <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType>
+* <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeAsync%2A?displayProperty=nameWithType>
+* <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A?displayProperty=nameWithType>
 
-For <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A>:
+For the preceding .NET methods that invoke JS functions:
 
-* The function identifier (`String`) is relative to the global scope (`window`). To call `window.someScope.someFunction`, the identifier is `someScope.someFunction`.
-* There's no need to register the function before it's called.
-* Pass any number of JSON-serializable arguments (`Object[]`).
-* The return type `TValue` must also be JSON serializable. `TValue` should match the .NET type that best maps to the JSON type returned.
-* A [JS Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) is returned. <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A> unwraps the [Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) and returns the value awaited by the [Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise).
+* The function identifier (`String`) is relative to the global scope (`window`). To call `window.someScope.someFunction`, the identifier is `someScope.someFunction`. There's no need to register the function before it's called.
+* Pass any number of JSON-serializable arguments in `Object[]` to a JS function.
+* The cancellation token (`CancellationToken`) propagates a notification that operations should be canceled.
+* `TimeSpan` represents a time limit for a JS operation.
+* The `TValue` return type must also be JSON serializable. `TValue` should match the .NET type that best maps to the JSON type returned.
+* A [JS Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) is returned for `InvokeAsync` methods. `InvokeAsync` unwraps the [Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) and returns the value awaited by the [Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise).
 
 For Blazor Server apps with prerendering enabled, calling into JS isn't possible during initial prerendering. JS interop calls must be deferred until after the connection with the browser is established. For more information, see the [Detect when a Blazor Server app is prerendering](#detect-when-a-blazor-server-app-is-prerendering) section.
 
@@ -67,8 +69,9 @@ The following `CallJsExample1` component:
 
 Load JavaScript (JS) code using any of approaches described by the [JavaScript (JS) interoperability (interop) overview article](xref:blazor/js-interop/index#location-of-javascipt):
 
-* [Use an external JS file (`.js`)](xref:blazor/js-interop/index#use-an-external-js-file-js)
-* [Use a `<script>` tag in `<head>` markup](xref:blazor/js-interop/index#use-a-script-tag-in-head-markup)
+* [Load a script in `<head>` markup](xref:blazor/js-interop/index#load-a-script-in-head-markup) (*Not generally recommended*)
+* [Load a script in `<body>` markup](xref:blazor/js-interop/index#load-a-script-in-body-markup)
+* [Load a script from an external JS file (`.js`)](xref:blazor/js-interop/index#load-a-script-from-an-external-js-file-js)
 * [Inject a script after Blazor starts](xref:blazor/js-interop/index#inject-a-script-after-blazor-starts)
 
 > [!WARNING]

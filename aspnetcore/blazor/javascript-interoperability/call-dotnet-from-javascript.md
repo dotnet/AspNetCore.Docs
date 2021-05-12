@@ -17,10 +17,11 @@ This article covers invoking .NET methods from JavaScript (JS). For information 
 
 ## Location of JavaScipt
 
-Load JavaScript (JS) code using any of approaches described by the [JavaScript (JS) interoperability (interop) article](xref:blazor/js-interop/index#location-of-javascipt):
+Load JavaScript (JS) code using any of approaches described by the [JavaScript (JS) interoperability (interop) overview article](xref:blazor/js-interop/index#location-of-javascipt):
 
-* [Use an external JS file (`.js`)](xref:blazor/js-interop/index#use-an-external-js-file-js)
-* [Use a `<script>` tag in `<head>` markup](xref:blazor/js-interop/index#use-a-script-tag-in-head-markup)
+* [Load a script in `<head>` markup](xref:blazor/js-interop/index#load-a-script-in-head-markup) (*Not generally recommended*)
+* [Load a script in `<body>` markup](xref:blazor/js-interop/index#load-a-script-in-body-markup)
+* [Load a script from an external JS file (`.js`)](xref:blazor/js-interop/index#load-a-script-from-an-external-js-file-js)
 * [Inject a script after Blazor starts](xref:blazor/js-interop/index#inject-a-script-after-blazor-starts)
 
 > [!WARNING]
