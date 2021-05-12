@@ -195,10 +195,6 @@ When you have finished testing the app, go to the [Azure portal](https://portal.
 
 * Enter the name of the resource group and select **Delete**. Your app and all other resources created in this tutorial are now deleted from Azure.
 
-### Next steps
-
-* <xref:host-and-deploy/azure-apps/azure-continuous-deployment>
-
 ## Additional resources
 
 * For Visual Studio Code, see [Publish profiles](xref:host-and-deploy/visual-studio-publish-profiles#publish-profiles).

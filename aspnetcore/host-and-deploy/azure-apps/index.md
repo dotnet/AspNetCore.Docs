@@ -32,9 +32,6 @@ The following articles are available in ASP.NET Core documentation:
 <xref:tutorials/publish-to-azure-webapp-using-vs>  
 Learn how to publish an ASP.NET Core app to Azure App Service using Visual Studio.
 
-<xref:host-and-deploy/azure-apps/azure-continuous-deployment>  
-Learn how to create an ASP.NET Core web app using Visual Studio and deploy it to Azure App Service using Git for continuous deployment.
-
 [Create your first pipeline](/azure/devops/pipelines/get-started-yaml)  
 Set up a CI build for an ASP.NET Core app, then create a continuous deployment release to Azure App Service.
 
