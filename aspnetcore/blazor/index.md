@@ -141,7 +141,7 @@ The connection used by Blazor Server to communicate with the browser is also use
 
 ## JavaScript interop
 
-For apps that require third-party JavaScript libraries and access to browser APIs, components interoperate with JavaScript. Components are capable of using any library or API that JavaScript is able to use. C# code can [call into JavaScript code](xref:blazor/call-javascript-from-dotnet), and JavaScript code can [call into C# code](xref:blazor/call-dotnet-from-javascript).
+For apps that require third-party JavaScript libraries and access to browser APIs, components interoperate with JavaScript. Components are capable of using any library or API that JavaScript is able to use. C# code can [call into JavaScript code](xref:blazor/js-interop/call-javascript-from-dotnet), and JavaScript code can [call into C# code](xref:blazor/js-interop/call-dotnet-from-javascript).
 
 ## Code sharing and .NET Standard
 
@@ -154,8 +154,8 @@ APIs that aren't applicable inside of a web browser (for example, accessing the 
 * [WebAssembly](https://webassembly.org)
 * <xref:blazor/hosting-models>
 * <xref:tutorials/signalr-blazor>
-* <xref:blazor/call-javascript-from-dotnet>
-* <xref:blazor/call-dotnet-from-javascript>
+* <xref:blazor/js-interop/call-javascript-from-dotnet>
+* <xref:blazor/js-interop/call-dotnet-from-javascript>
 * [C# Guide](/dotnet/csharp/)
 * <xref:mvc/views/razor>
 * [HTML](https://www.w3.org/html/)

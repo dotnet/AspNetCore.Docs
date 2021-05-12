@@ -291,18 +291,18 @@ Use the following approaches to reference static assets:
 * When the asset is in the client app's `wwwroot` folder, provide the path normally:
 
   ```razor
-  <img alt="..." src="/{ASSET FILE NAME}" />
+  <img alt="..." src="/{PATH AND FILE NAME}" />
   ```
 
-  The `{ASSET FILE NAME}` placeholder is the asset's file name.
+  The `{PATH AND FILE NAME}` placeholder is the path and file name under `wwwroot`.
 
 * When the asset is in the `wwwroot` folder of a [Razor Class Library (RCL)](xref:blazor/components/class-libraries), reference the static asset in the client app per the guidance in <xref:razor-pages/ui-class#consume-content-from-a-referenced-rcl>:
 
   ```razor
-  <img alt="..." src="_content/{LIBRARY NAME}/{ASSET FILE NAME}" />
+  <img alt="..." src="_content/{LIBRARY NAME}/{PATH AND FILE NAME}" />
   ```
 
-  The `{LIBRARY NAME}` placeholder is the library name. The `{ASSET FILE NAME}` placeholder is the asset's file name.
+  The `{LIBRARY NAME}` placeholder is the library name. The `{PATH AND FILE NAME}` placeholder is path and file name under `wwwroot`.
 
 For more information on RCLs, see:
 
