@@ -92,13 +92,16 @@ Typed clients:
 A typed client accepts an `HttpClient` parameter in its constructor:
 
 [!code-csharp[](http-requests/samples/5.x/HttpClientFactorySample/GitHub/GitHubService.cs?name=snippet1&highlight=5)]
-[!INCLUDE[about the series](~/includes/code-comments-loc.md)]
 
 In the preceding code:
 
 * The configuration is moved into the typed client.
 * The `HttpClient` object is exposed as a public property.
 
+<!-- 
+The preceding code can be written as: 
+[!code-csharp[](http-requests/samples/5.x/HttpClientFactorySample/GitHub/GitHubService.cs?name=snippet2)]
+-->
 API-specific methods can be created that expose `HttpClient` functionality. For example, the `GetAspNetDocsIssues` method encapsulates code to retrieve open issues.
 
 The following code calls <xref:Microsoft.Extensions.DependencyInjection.HttpClientFactoryServiceCollectionExtensions.AddHttpClient*> in `Startup.ConfigureServices` to register a typed client class:
