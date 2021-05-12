@@ -90,7 +90,6 @@ var response = await client.SayHelloAsync(new HelloRequest { Name = ".NET" });
 
 ## gRPC C# core-library
 
-```suggestion
 An alternative option for .NET Framework and Xamarin has been to use [gRPC C# core-library](https://grpc.io/docs/languages/csharp/quickstart/) to make gRPC calls. gRPC C# core-library is:
 
 * A third party library that supports making gRPC calls over HTTP/2 on .NET Framework and Xamarin. 
