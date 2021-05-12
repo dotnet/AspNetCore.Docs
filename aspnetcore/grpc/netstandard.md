@@ -94,7 +94,8 @@ An alternative option for .NET Framework and Xamarin has been to use [gRPC C# co
 
 * A third party library that supports making gRPC calls over HTTP/2 on .NET Framework and Xamarin. 
 * Not supported by Microsoft.
-* In maintenance mode and will be [deprecated in favour of gRPC for .NET](https://grpc.io/blog/grpc-csharp-future/). gRPC C-core is not recommended for new apps.
+* In maintenance mode and will be [deprecated in favour of gRPC for .NET](https://grpc.io/blog/grpc-csharp-future/).
+* Not recommended for new apps.
 
 ## Additional resources
 
