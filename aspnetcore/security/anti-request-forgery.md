@@ -483,5 +483,4 @@ The [IAntiForgeryAdditionalDataProvider](/dotnet/api/microsoft.aspnetcore.antifo
 
 ## Additional resources
 
-* <xref:security/anti-request-forgery>
 * <xref:host-and-deploy/web-farm>
