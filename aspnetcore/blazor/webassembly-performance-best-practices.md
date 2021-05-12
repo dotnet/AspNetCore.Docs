@@ -616,7 +616,7 @@ Synchronous calls work if:
 * The app is running on Blazor WebAssembly, not Blazor Server.
 * The called function returns a value synchronously (it isn't an `async` method and doesn't return a .NET <xref:System.Threading.Tasks.Task> or JavaScript `Promise`).
 
-For more information, see <xref:blazor/call-javascript-from-dotnet>.
+For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet>.
 
 ::: moniker range=">= aspnetcore-5.0"
  

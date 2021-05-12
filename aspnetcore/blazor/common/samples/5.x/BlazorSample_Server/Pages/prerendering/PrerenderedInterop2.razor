@@ -1,7 +1,7 @@
 @page "/prerendered-interop-2"
 @using Microsoft.AspNetCore.Components
 @using Microsoft.JSInterop
-@inject IJSRuntime JSRuntime
+@inject IJSRuntime JS
 
 <p>
     Get value via JS interop call:
@@ -22,7 +22,7 @@
     {
         if (firstRender && infoFromJs == null)
         {
-            infoFromJs = await JSRuntime.InvokeAsync<string>(
+            infoFromJs = await JS.InvokeAsync<string>(
                 "setElementText2", divElement, "Hello from interop call!");
 
             StateHasChanged();

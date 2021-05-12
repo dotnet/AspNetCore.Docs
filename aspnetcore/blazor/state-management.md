@@ -21,7 +21,7 @@ Examples of user state held in browser memory include:
 * The hierarchy of component instances and their most recent render output in the rendered UI.
 * The values of fields and properties in component instances.
 * Data held in [dependency injection (DI)](xref:fundamentals/dependency-injection) service instances.
-* Values set through [JavaScript interop](xref:blazor/call-javascript-from-dotnet) calls.
+* Values set through [JavaScript interop](xref:blazor/js-interop/call-javascript-from-dotnet) calls.
 
 When a user closes and re-opens their browser or reloads the page, user state held in the browser's memory is lost.
 
@@ -127,7 +127,7 @@ Examples of user state held in a circuit include:
 * The values of fields and properties in component instances.
 * Data held in [dependency injection (DI)](xref:fundamentals/dependency-injection) service instances that are scoped to the circuit.
 
-User state might also be found in JavaScript variables in the browser's memory set via [JavaScript interop](xref:blazor/call-javascript-from-dotnet) calls.
+User state might also be found in JavaScript variables in the browser's memory set via [JavaScript interop](xref:blazor/js-interop/call-javascript-from-dotnet) calls.
 
 If a user experiences a temporary network connection loss, Blazor attempts to reconnect the user to their original circuit with their original state. However, reconnecting a user to their original circuit in the server's memory isn't always possible:
 

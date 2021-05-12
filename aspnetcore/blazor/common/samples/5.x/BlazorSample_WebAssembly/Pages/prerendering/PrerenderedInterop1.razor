@@ -1,6 +1,6 @@
 @page "/prerendered-interop-1"
 @using Microsoft.JSInterop
-@inject IJSRuntime JSRuntime
+@inject IJSRuntime JS
 
 <div @ref="divElement">Text during render</div>
 
@@ -11,7 +11,7 @@
     {
         if (firstRender)
         {
-            await JSRuntime.InvokeVoidAsync(
+            await JS.InvokeVoidAsync(
                 "setElementText1", divElement, "Text after render");
         }
     }

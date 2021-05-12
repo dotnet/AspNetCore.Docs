@@ -32,5 +32,35 @@
     </div>
 
     <script src="_framework/blazor.server.js"></script>
+        <script>
+        window.convertArray = (win1251Array) => {
+            var win1251decoder = new TextDecoder('windows-1251');
+            var bytes = new Uint8Array(win1251Array);
+            var decodedArray = win1251decoder.decode(bytes);
+            console.log(decodedArray);
+            return decodedArray;
+        };
+    </script>
+    <script>
+        window.displayTickerAlert1 = (symbol, price) => {
+            alert(`${symbol}: $${price}!`);
+        };
+    </script>
+    <script>
+        window.displayTickerAlert2 = (symbol, price) => {
+            if (price < 20) {
+                alert(`${symbol}: $${price}!`);
+                return "Alert!";
+            } else {
+                return "No Alert";
+            }
+        };
+    </script>
+    <script>
+        function setElementClass(element, className) {
+            var myElement = element;
+            myElement.classList.add(className);
+        }
+    </script>
 </body>
 </html>
