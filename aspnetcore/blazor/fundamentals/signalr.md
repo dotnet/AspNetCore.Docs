@@ -206,6 +206,8 @@ On the client builder, pass in the `configureSignalR` configuration object that 
 
 In the preceding example, `information` is equivalent to a log level of <xref:Microsoft.Extensions.Logging.LogLevel.Information?displayProperty=nameWithType>.
 
+For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
+
 ## Modify the reconnection handler
 
 The reconnection handler's circuit connection events can be modified for custom behaviors, such as:
@@ -238,6 +240,8 @@ To modify the connection events, register callbacks for the following connection
 </body>
 ```
 
+For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
+
 ## Adjust the reconnection retry count and interval
 
 To adjust the reconnection retry count and interval, set the number of retries (`maxRetries`) and period in milliseconds permitted for each retry attempt (`retryIntervalMilliseconds`).
@@ -259,6 +263,8 @@ To adjust the reconnection retry count and interval, set the number of retries (
     </script>
 </body>
 ```
+
+For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
 
 ## Hide or replace the reconnection display
 
@@ -290,6 +296,8 @@ Blazor.defaultReconnectionHandler._reconnectionDisplay =
 
 The placeholder `{ELEMENT ID}` is the ID of the HTML element to display.
 
+For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
+
 ::: moniker range=">= aspnetcore-5.0"
 
 Customize the delay before the reconnection display appears by setting the `transition-delay` property in the site's CSS for the modal element. The following example sets the transition delay from 500 ms (default) to 1,000 ms (1 second).
@@ -311,6 +319,8 @@ window.addEventListener('pagehide', () => {
   Blazor.disconnect();
 });
 ```
+
+For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
 
 ::: moniker-end
 
