@@ -48,7 +48,7 @@ The following example starts Blazor in the Staging environment:
 </body>
 ```
 
-Setting the environment using this approach overrides setting the environment with the [`blazor-environment` header](#set-environment-via-header).
+Setting the environment using this approach overrides setting the environment with the [`blazor-environment` header](#set-the-environment-via-header).
 
 For more information, see <xref:blazor/fundamentals/startup>.
 
