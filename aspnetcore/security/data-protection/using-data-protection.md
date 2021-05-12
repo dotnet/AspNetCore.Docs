@@ -42,7 +42,7 @@ public void ConfigureServices(IServiceCollection services)
 
     var sp = services.BuildServiceProvider();
     services.AddDataProtection()
-            .AddKeyManagementOptions(o => o.XmlRepository = sp.GetService<IXmlRepository>());
+      .AddKeyManagementOptions(o => o.XmlRepository = sp.GetService<IXmlRepository>());
 }
 ```
 
