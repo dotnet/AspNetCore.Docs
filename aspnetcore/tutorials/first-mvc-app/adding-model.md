@@ -69,7 +69,7 @@ Install-Package Microsoft.EntityFrameworkCore.Design
 
 The preceding commands add:
 
-* The EF Core SQL Server provider. The provider package installs the EF Core package as a dependency. More packages are installed automatically in the scaffolding step, later in the tutorial.
+* The EF Core SQL Server provider. The provider package installs the EF Core package as a dependency.
 * The utilities used by the packages installed automatically in the scaffolding step, later in the tutorial.
 
 # [Visual Studio Code](#tab/visual-studio-code)
@@ -196,9 +196,9 @@ When SQLite is selected, the template generated code is ready for development. T
 
 Scaffolding creates:
 
-* A movies controller: *Controllers/MoviesController.cs*.
-* Razor view files for Create, Delete, Details, Edit, and Index pages: `Views/Movies/*.cshtml`.
-* A database context class: *Data/MvcMovieContext.cs*.
+* A movies controller: *Controllers/MoviesController.cs*
+* Razor view files for Create, Delete, Details, Edit, and Index pages: `Views/Movies/*.cshtml`
+* A database context class: *Data/MvcMovieContext.cs*
 
 The automatic creation of these files is known as *scaffolding*.
 
