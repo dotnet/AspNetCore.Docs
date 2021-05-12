@@ -199,8 +199,6 @@ See [Scaffold the movie model](xref:tutorials/razor-pages/model) for an example 
 
 ### View
 
-<a name="view"></a>
-
 Views can be individually scaffolded by specifying the name of the view and the template to use. The supported templates are:
 
 * `Empty`
