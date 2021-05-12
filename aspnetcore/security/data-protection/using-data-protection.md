@@ -47,7 +47,7 @@ public void ConfigureServices(IServiceCollection services)
 
 The preceding code logs the following warning:
 
-  Calling 'BuildServiceProvider' from application code results in an additional copy of singleton services being created. Consider alternatives such as dependency injecting services as parameters to 'Configure'.
+  *Calling 'BuildServiceProvider' from application code results in an additional copy of singleton services being created. Consider alternatives such as dependency injecting services as parameters to 'Configure'.*
 
 The following code provides the `IXmlRepository` implementation without having to build the service provider and therefor making additional copies of singleton services:
 
