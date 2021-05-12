@@ -307,6 +307,8 @@ Shorten the SQLite connection string to *CU.db*:
 
 [!code-json[Main](intro/samples/cu50/appsettingsSQLite.json?highlight=11)]
 
+Don't change the directory without making sure it's valid.
+
 ---
 
 ## Update the database context class
