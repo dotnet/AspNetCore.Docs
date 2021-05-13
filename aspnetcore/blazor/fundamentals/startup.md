@@ -66,14 +66,12 @@ When a Blazor WebAssembly app loads in the browser, the app downloads boot resou
 
 Customize how these boot resources are loaded using the `loadBootResource` API. The `loadBootResource` function overrides the built-in boot resource loading mechanism. Use `loadBootResource` for the following scenarios:
 
-* Allow users to load static resources, such as timezone data or `dotnet.wasm` from a CDN.
+* Load static resources, such as timezone data or `dotnet.wasm`, from a CDN.
 * Load compressed assemblies using an HTTP request and decompress them on the client for hosts that don't support fetching compressed contents from the server.
 * Alias resources to a different name by redirecting each `fetch` request to a new name.
 
-For example, you might want to load resources from an external Content Delivery Network (CDN). Although Microsoft doesn't currently host Blazor framework files on a public CDN, you're free to add framework files to your own CDN and load them into Blazor apps.
-
 > [!NOTE]
-> External sources must return the required CORS headers for browsers to allow the cross-origin resource loading. CDNs usually provide the required headers by default.
+> External sources must return the required [Cross-Origin Resource Sharing (CORS)](https://www.w3.org/TR/cors/) headers for browsers to allow cross-origin resource loading. CDNs usually provide the required headers by default.
 
 `loadBootResource` parameters appear in the following table.
 
@@ -84,7 +82,7 @@ For example, you might want to load resources from an external Content Delivery 
 | `defaultUri` | The relative or absolute URI of the resource. |
 | `integrity`  | The integrity string representing the expected content in the response. |
 
-The `loadBootResource` function can return a URI string to override the loading process. In the following example, the following files from `bin/Release/net5.0/wwwroot/_framework` are served from a CDN at `https://cdn.example.com/`:
+The `loadBootResource` function can return a URI string to override the loading process. In the following example, the following files from `bin/Release/net5.0/wwwroot/_framework` are served from a CDN at `https://cdn.example.com/blazorwebassembly/5.0.0/`:
 
 * `dotnet.*.js`
 * `dotnet.wasm`
@@ -133,6 +131,8 @@ The `loadBootResource` function can return `null`/`undefined`, which results in 
 Return a [`Response` promise](https://developer.mozilla.org/docs/Web/API/Response) for content created in JavaScript:
 
 ```javascript
+var responseContent = ...;
+
 return new Response(responseContent, { 
   headers: { 
     'Custom-Header-1': 'Custom Value 1',
