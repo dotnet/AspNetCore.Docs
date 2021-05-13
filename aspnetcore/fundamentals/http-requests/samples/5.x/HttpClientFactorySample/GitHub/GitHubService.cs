@@ -33,7 +33,7 @@ namespace HttpClientFactorySample.GitHub
         public async Task<IEnumerable<GitHubIssue>> GetAspNetDocsIssues()
         {
             return await Client.GetFromJsonAsync<IEnumerable<GitHubIssue>>(
-                "/repos/aspnet/AspNetCore.Docs/issues?state=open&sort=created&direction=desc");
+              "/repos/aspnet/AspNetCore.Docs/issues?state=open&sort=created&direction=desc");
         }
     }
     #endregion
@@ -58,7 +58,7 @@ namespace HttpClientFactorySample.GitHub
         public async Task<IEnumerable<GitHubIssue>> GetAspNetDocsIssues()
         {
             return await Client.GetFromJsonAsync<IEnumerable<GitHubIssue>>(
-                "/repos/aspnet/AspNetCore.Docs/issues?state=open&sort=created&direction=desc");
+              "/repos/aspnet/AspNetCore.Docs/issues?state=open&sort=created&direction=desc");
         }
     #endregion
     }
