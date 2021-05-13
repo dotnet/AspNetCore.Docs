@@ -4,7 +4,7 @@ author: rick-anderson
 description: Part 4 of tutorial series on ASP.NET Core MVC.
 ms.author: riande
 ms.date: 11/16/2020
-no-loc: [Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-mvc-app/adding-model
 ms.custom: contperf-fy21q3
 ---
@@ -69,7 +69,7 @@ Install-Package Microsoft.EntityFrameworkCore.Design
 
 The preceding commands add:
 
-* The EF Core SQL Server provider. The provider package installs the EF Core package as a dependency. More packages are installed automatically in the scaffolding step, later in the tutorial.
+* The EF Core SQL Server provider. The provider package installs the EF Core package as a dependency.
 * The utilities used by the packages installed automatically in the scaffolding step, later in the tutorial.
 
 # [Visual Studio Code](#tab/visual-studio-code)
@@ -196,9 +196,9 @@ When SQLite is selected, the template generated code is ready for development. T
 
 Scaffolding creates:
 
-* A movies controller: *Controllers/MoviesController.cs*.
-* Razor view files for Create, Delete, Details, Edit, and Index pages: `Views/Movies/*.cshtml`.
-* A database context class: *Data/MvcMovieContext.cs*.
+* A movies controller: *Controllers/MoviesController.cs*
+* Razor view files for Create, Delete, Details, Edit, and Index pages: `Views/Movies/*.cshtml`
+* A database context class: *Data/MvcMovieContext.cs*
 
 The automatic creation of these files is known as *scaffolding*.
 
