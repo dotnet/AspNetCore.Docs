@@ -64,7 +64,31 @@ When a Blazor WebAssembly app loads in the browser, the app downloads boot resou
 * .NET runtime and assemblies
 * Locale specific data
 
-Customize how these boot resources are loaded using the `loadBootResource` API. For example, you might want to load resources from an external Content Delivery Network (CDN). Although Microsoft doesn't currently host Blazor framework files on a public CDN, you're free to add framework files to your own CDN and load them into Blazor apps. If the `bin/Release/net5.0/wwwroot/_framework` files are published to a CDN within the base URL `https://mycdn.example.com/blazorwebassembly/5.0.0/`, the resources can be loaded with the following code from the CDN.
+Customize how these boot resources are loaded using the `loadBootResource` API. The `loadBootResource` function overrides the built-in boot resource loading mechanism. Use `loadBootResource` for the following scenarios:
+
+* Allow users to load static resources, such as timezone data or `dotnet.wasm` from a CDN.
+* Load compressed assemblies using an HTTP request and decompress them on the client for hosts that don't support fetching compressed contents from the server.
+* Alias resources to a different name by redirecting each `fetch` request to a new name.
+
+For example, you might want to load resources from an external Content Delivery Network (CDN). Although Microsoft doesn't currently host Blazor framework files on a public CDN, you're free to add framework files to your own CDN and load them into Blazor apps.
+
+> [!NOTE]
+> External sources must return the required CORS headers for browsers to allow the cross-origin resource loading. CDNs usually provide the required headers by default.
+
+`loadBootResource` parameters appear in the following table.
+
+| Parameter    | Description |
+| ------------ | ----------- |
+| `type`       | The type of the resource. Permissable types include: `assembly`, `pdb`, `dotnetjs`, `dotnetwasm`, and `timezonedata`. You only need to specify types for custom behaviors. Types not specified to `loadBootResource` are loaded by the framework per their default loading behaviors. |
+| `name`       | The name of the resource. |
+| `defaultUri` | The relative or absolute URI of the resource. |
+| `integrity`  | The integrity string representing the expected content in the response. |
+
+The `loadBootResource` function can return a URI string to override the loading process. In the following example, the following files from `bin/Release/net5.0/wwwroot/_framework` are served from a CDN at `https://cdn.example.com/`:
+
+* `dotnet.*.js`
+* `dotnet.wasm`
+* Timezone data
 
 Inside the closing `</body>` tag of `wwwroot/index.html`:
 
@@ -73,30 +97,19 @@ Inside the closing `</body>` tag of `wwwroot/index.html`:
 <script>
   Blazor.start({
     loadBootResource: function (type, name, defaultUri, integrity) {
-      console.log(`Loading '${type}' with name '${name}' from URI ` +
-          `'${defaultUri}' and integrity '${integrity}'`);
-
+      console.log(`Loading: '${type}', '${name}', '${defaultUri}', '${integrity}'`);
       switch (type) {
         case 'dotnetjs':
-        case 'timezonedata':
         case 'dotnetwasm':
-          return `https://mycdn.example.com/blazorwebassembly/5.0.0/${name}`;
+        case 'timezonedata':
+          return `https://cdn.example.com/blazorwebassembly/5.0.0/${name}`;
       }
     }
   });
 </script>
 ```
 
-Types other than `dotnetjs`, `dotnetwasm`, and `timezonedata` are `assembly` and `pdb`, but you probably wouldn't want to fetch `assembly` and `pdb` types from a CDN. `assembly` and `pdb` resources are custom-linked for your app. By returning `undefined`, the framework is allowed to use its normal resource loading strategy.
-
-Parameters of `loadBootResource`:
-
-* `type`: The type of the resource to load.
-* `name`: The name of the resource to load.
-* `defaultUri`: The URI from which the framework fetches the resource by default. Relative or absolute URIs are supported.
-* `integrity`: The integrity string representing the expected content in the response.
-
-If you want to customize more than just the URLs that are being used, then your `loadBootResource` function can call fetch directly and return the result. The following example adds a custom HTTP header to the outbound requests. To retain the default integrity checking behavior, it's necessary to pass through the `integrity` parameter.
+To customize more than just the URLs for boot resources, the `loadBootResource` function can call `fetch` directly and return the result. The following example adds a custom HTTP header to the outbound requests. To retain the default integrity checking behavior, pass through the `integrity` parameter.
 
 Inside the closing `</body>` tag of `wwwroot/index.html`:
 
@@ -115,7 +128,9 @@ Inside the closing `</body>` tag of `wwwroot/index.html`:
 </script>
 ```
 
-You can also call `return` with a URI string or a [`Response` promise](https://developer.mozilla.org/docs/Web/API/Response). In the following example, the `loadBootResource` function returns a [`Response` promise](https://developer.mozilla.org/docs/Web/API/Response) with a pair of custom headers:
+The `loadBootResource` function can return `null`/`undefined`, which results in the default loading behavior.
+
+Return a [`Response` promise](https://developer.mozilla.org/docs/Web/API/Response) for content created in JavaScript:
 
 ```javascript
 return new Response(responseContent, { 
