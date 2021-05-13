@@ -5,7 +5,7 @@ description: Learn how to configure Blazor startup.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/12/2021
+ms.date: 05/13/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/fundamentals/startup
 ---
@@ -56,39 +56,77 @@ The `{webassembly|server}` placeholder in the preceding markup is either `webass
 
 ## Load boot resources
 
-Override the built-in boot resource loading mechanism so that boot resources can be fetched from a custom source, such as an external Content Delivery Network (CDN).
+*This section only applies to Blazor WebAssembly apps.*
+
+When a Blazor WebAssembly app loads in the browser, the app downloads boot resources from the server:
+
+* JavaScript code to bootstrap the app
+* .NET runtime and assemblies
+* Locale specific data
+
+Customize how these boot resources are loaded using the `loadBootResource` API. For example, you might want to load resources from an external Content Delivery Network (CDN). Although Microsoft doesn't currently host Blazor framework files on a public CDN, you're free to add framework files to your own CDN and load them into Blazor apps. If the `bin/Release/net5.0/wwwroot/_framework` files are published to a CDN within the base URL `https://mycdn.example.com/blazorwebassembly/5.0.0/`, the resources can be loaded with the following code from the CDN.
+
+Inside the closing `</body>` tag of `wwwroot/index.html`:
+
+```html
+<script src="_framework/blazor.webassembly.js" autostart="false"></script>
+<script>
+  Blazor.start({
+    loadBootResource: function (type, name, defaultUri, integrity) {
+      console.log(`Loading '${type}' with name '${name}' from URI ` +
+          `'${defaultUri}' and integrity '${integrity}'`);
+
+      switch (type) {
+        case 'dotnetjs':
+        case 'timezonedata':
+        case 'dotnetwasm':
+          return `https://mycdn.example.com/blazorwebassembly/5.0.0/${name}`;
+      }
+    }
+  });
+</script>
+```
+
+Types other than `dotnetjs`, `dotnetwasm`, and `timezonedata` are `assembly` and `pdb`, but you probably wouldn't want to fetch `assembly` and `pdb` types from a CDN. `assembly` and `pdb` resources are custom-linked for your app. By returning `undefined`, the framework is allowed to use its normal resource loading strategy.
+
+Parameters of `loadBootResource`:
 
 * `type`: The type of the resource to load.
 * `name`: The name of the resource to load.
 * `defaultUri`: The URI from which the framework fetches the resource by default. Relative or absolute URIs are supported.
 * `integrity`: The integrity string representing the expected content in the response.
-* `return`: A URI string or a [`Response` promise](https://developer.mozilla.org/docs/Web/API/Response) to override the loading process, or null/undefined to allow the default loading behavior.
+
+If you want to customize more than just the URLs that are being used, then your `loadBootResource` function can call fetch directly and return the result. The following example adds a custom HTTP header to the outbound requests. To retain the default integrity checking behavior, it's necessary to pass through the `integrity` parameter.
+
+Inside the closing `</body>` tag of `wwwroot/index.html`:
 
 ```html
-<script src="_framework/blazor.{webassembly|server}.js" autostart="false"></script>
+<script src="_framework/blazor.webassembly.js" autostart="false"></script>
 <script>
   Blazor.start({
     loadBootResource: function (type, name, defaultUri, integrity) {
-      ...
-
-      var responseContent = ...;
-      var header_value_1 = ...;
-      var header_value_2 = ...;
-
-      return new Response(responseContent, { 
-          headers: { 
-            'example-header-1': header_value_1,
-            'example-header-2': header_value_2
-          }
+      return fetch(defaultUri, { 
+        cache: 'no-cache',
+        integrity: integrity,
+        headers: { 'Custom-Header': 'Custom Value' }
       });
     }
   });
 </script>
 ```
 
-The `{webassembly|server}` placeholder in the preceding markup is either `webassembly` for a Blazor WebAssembly app (`blazor.webassembly.js`) or `server` for a Blazor Server app (`blazor.server.js`).
+You can also call `return` with a URI string or a [`Response` promise](https://developer.mozilla.org/docs/Web/API/Response). In the following example, the `loadBootResource` function returns a [`Response` promise](https://developer.mozilla.org/docs/Web/API/Response) with a pair of custom headers:
 
-For an example, see the Brotli compression markup in the <xref:blazor/host-and-deploy/webassembly#compression> article.
+```javascript
+return new Response(responseContent, { 
+  headers: { 
+    'Custom-Header-1': 'Custom Value 1',
+    'Custom-Header-2': 'Custom Value 2'
+  }
+});
+```
+
+For an additional example of loading boot resources, see the Brotli compression example in the <xref:blazor/host-and-deploy/webassembly#compression> article.
 
 ## Additional resources
 
