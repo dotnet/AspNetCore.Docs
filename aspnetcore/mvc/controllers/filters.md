@@ -608,6 +608,10 @@ Use the <xref:Microsoft.AspNetCore.Mvc.MiddlewareFilterAttribute> to run the mid
 
 Middleware filters run at the same stage of the filter pipeline as Resource filters, before model binding and after the rest of the pipeline.
 
+## Thread safety
+
+When calling `Add` on a singleton with a new instance of the filter, instead if a type, the filter is not thread-safe.
+
 ## Next actions
 
 * See [Filter methods for Razor Pages](xref:razor-pages/filter).
