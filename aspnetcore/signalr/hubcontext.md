@@ -30,7 +30,7 @@ You can inject an instance of `IHubContext` into a controller by adding it to yo
 
 [!code-csharp[IHubContext](hubcontext/sample/Controllers/HomeController.cs?range=12-19,57)]
 
-With access to an instance of `IHubContext`, you can call client methods as if you were in the hub itself.
+With access to an instance of `IHubContext`, call client methods as if you were in the hub itself:
 
 [!code-csharp[IHubContext](hubcontext/sample/Controllers/HomeController.cs?range=21-25)]
 
