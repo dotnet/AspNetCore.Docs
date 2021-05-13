@@ -4,8 +4,9 @@ author: rick-anderson
 description: Part 4 of tutorial series on ASP.NET Core MVC.
 ms.author: riande
 ms.date: 11/16/2020
-no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+no-loc: [Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-mvc-app/adding-model
+ms.custom: contperf-fy21q3
 ---
 
 # Part 4, add a model to an ASP.NET Core MVC app
@@ -68,7 +69,7 @@ Install-Package Microsoft.EntityFrameworkCore.Design
 
 The preceding commands add:
 
-* The EF Core SQL Server provider. The provider package installs the EF Core package as a dependency.
+* The EF Core SQL Server provider. The provider package installs the EF Core package as a dependency. More packages are installed automatically in the scaffolding step, later in the tutorial.
 * The utilities used by the packages installed automatically in the scaffolding step, later in the tutorial.
 
 # [Visual Studio Code](#tab/visual-studio-code)
