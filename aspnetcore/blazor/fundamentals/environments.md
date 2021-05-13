@@ -42,13 +42,13 @@ The following example starts Blazor in the Staging environment:
     <script src="_framework/blazor.{webassembly|server}.js" autostart="false"></script>
     <script>
       Blazor.start({
-        environment: Staging
+        environment: "Staging"
       });
     </script>
 </body>
 ```
 
-Setting the environment using this approach overrides setting the environment with the [`blazor-environment` header](#set-the-environment-via-header).
+Using the `environment` property overrides the environment set by the [`blazor-environment` header](#set-the-environment-via-header).
 
 For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
 
