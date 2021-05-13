@@ -55,7 +55,7 @@ The options for solving this problem are the [Azure SignalR Service](#azure-sign
 
 ## Azure SignalR Service
 
-The Azure SignalR Service functions as a proxy for your real-time traffic, and doubles as a backplane when your app is scaled out across multiple servers. Each time a client initiates a connection to the server, the client is redirected to connect to the service. That process is illustrated in the following diagram:
+The Azure SignalR Service functions as a proxy for real-time traffic and doubles as a backplane when the app is scaled out across multiple servers. Each time a client initiates a connection to the server, the client is redirected to connect to the service. The process is illustrated by the following diagram:
 
 ![Establishing a connection to the Azure SignalR Service](scale/_static/azure-signalr-service-one-connection.png)
 
