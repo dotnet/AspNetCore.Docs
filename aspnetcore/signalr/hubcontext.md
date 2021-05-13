@@ -30,7 +30,7 @@ You can inject an instance of `IHubContext` into a controller by adding it to yo
 
 [!code-csharp[IHubContext](hubcontext/sample/Controllers/HomeController.cs?range=12-19,57)]
 
-Now, with access to an instance of `IHubContext`, you can call hub methods as if you were in the hub itself.
+With access to an instance of `IHubContext`, call client methods as if you were in the hub itself:
 
 [!code-csharp[IHubContext](hubcontext/sample/Controllers/HomeController.cs?range=21-25)]
 
@@ -53,7 +53,7 @@ app.Use(async (context, next) =>
 ```
 
 > [!NOTE]
-> When hub methods are called from outside of the `Hub` class, there's no caller associated with the invocation. Therefore, there's no access to the `ConnectionId`, `Caller`, and `Others` properties.
+> When client methods are called from outside of the `Hub` class, there's no caller associated with the invocation. Therefore, there's no access to the `ConnectionId`, `Caller`, and `Others` properties.
 
 ### Get an instance of IHubContext from IHost
 
