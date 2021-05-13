@@ -196,9 +196,9 @@ When SQLite is selected, the template generated code is ready for development. T
 
 Scaffolding creates:
 
-* A movies controller: *Controllers/MoviesController.cs*
-* Razor view files for Create, Delete, Details, Edit, and Index pages: `Views/Movies/*.cshtml`
-* A database context class: *Data/MvcMovieContext.cs*
+* A movies controller: *Controllers/MoviesController.cs*.
+* Razor view files for Create, Delete, Details, Edit, and Index pages: `Views/Movies/*.cshtml`.
+* A database context class: *Data/MvcMovieContext.cs*.
 
 The automatic creation of these files is known as *scaffolding*.
 
