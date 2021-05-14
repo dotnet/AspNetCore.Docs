@@ -104,14 +104,14 @@ The sample app implements <xref:Microsoft.Extensions.Caching.SqlServer.SqlServer
 
 An app configures the cache implementation using a <xref:Microsoft.Extensions.Caching.StackExchangeRedis.RedisCache> instance (<xref:Microsoft.Extensions.DependencyInjection.StackExchangeRedisCacheServiceCollectionExtensions.AddStackExchangeRedisCache*>).
 
-1. Create an Azure Cache for Redis.
-1. Copy the Primary connection string (StackExchange.Redis) to [Configuration](xref:fundamentals/configuration/index).
-  * Local development: Save the connection string with [Secret Manager](xref:security/app-secrets#secret-manager).
-  * Azure: Save the connection string in the App Service Configuration or another secure store.
+  1. Create an Azure Cache for Redis.
+  1. Copy the Primary connection string (StackExchange.Redis) to [Configuration]  (xref:fundamentals/configuration/index).
+     * Local development: Save the connection string with [Secret Manager](xref:security/    app-secrets#secret-manager).
+     * Azure: Save the connection string in the App Service Configuration or another secure store.
 
 The following code enables the Azure Cache for Redis:
 
-[!code-csharp[](distributed/samples/5.x/DistCacheSample/StartupRedis.cs?name=snippet_AddStackExchangeRedisCache&highlight=11-15)]
+[!code-csharp[](distributed/samples/5.x/DistCacheSample/StartupRedis.cs?name=snippet_AddStackExchangeRedisCache&highlight=10-14)]
 
 For more information, see [Azure Cache for Redis](/azure/azure-cache-for-redis/cache-overview).
 
