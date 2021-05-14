@@ -5,7 +5,7 @@ description: Learn how to configure Blazor startup.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/13/2021
+ms.date: 05/14/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/fundamentals/startup
 ---
@@ -126,20 +126,10 @@ Inside the closing `</body>` tag of `wwwroot/index.html`:
 </script>
 ```
 
-The `loadBootResource` function can return `null`/`undefined`, which results in the default loading behavior.
+The `loadBootResource` function can also return:
 
-Return a [`Response` promise](https://developer.mozilla.org/docs/Web/API/Response) for content created in JavaScript:
-
-```javascript
-var responseContent = ...;
-
-return new Response(responseContent, { 
-  headers: { 
-    'Custom-Header-1': 'Custom Value 1',
-    'Custom-Header-2': 'Custom Value 2'
-  }
-});
-```
+* `null`/`undefined`, which results in the default loading behavior.
+* A [`Response` promise](https://developer.mozilla.org/docs/Web/API/Response).
 
 For an additional example of loading boot resources, see the Brotli compression example in the <xref:blazor/host-and-deploy/webassembly#compression> article.
 
