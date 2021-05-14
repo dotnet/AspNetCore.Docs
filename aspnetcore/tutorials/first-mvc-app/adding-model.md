@@ -204,6 +204,74 @@ The automatic creation of these files is known as *scaffolding*.
 
 The scaffolded pages can't be used yet because the database doesn't exist. Running the app and selecting the **Movie App** link results in a *Cannot open database* or *no such table: Movie* error message.
 
+<a name="migration"></a>
+
+## Initial migration
+
+Use the EF Core [Migrations](xref:data/ef-mvc/migrations) feature to create the database. Migrations are a set of tools that create and update a database to match the data model.
+
+# [Visual Studio](#tab/visual-studio)
+
+From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Console** .
+
+In the Package Manager Console (PMC), enter the following commands:
+
+```powershell
+Add-Migration InitialCreate
+Update-Database
+ 
+```
+
+* `Add-Migration InitialCreate`: Generates a *Migrations/{timestamp}_InitialCreate.cs* migration file. The `InitialCreate` argument is the migration name. Any name can be used, but by convention, a name is selected that describes the migration. Because this is the first migration, the generated class contains code to create the database schema. The database schema is based on the model specified in the `MvcMovieContext` class.
+
+* `Update-Database`: Updates the database to the latest migration, which the previous command created. This command runs the `Up` method in the *Migrations/{time-stamp}_InitialCreate.cs* file, which creates the database.
+
+The `Update-Database` command generates the following warning:
+
+> No type was specified for the decimal column 'Price' on entity type 'Movie'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+
+Ignore the preceding warning, it's fixed in a later tutorial.
+
+[!INCLUDE [more information on the PMC tools for EF Core](~/includes/ef-pmc.md)]
+
+# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+
+[!INCLUDE [more information on the CLI for EF Core](~/includes/ef-cli.md)]
+
+Run the following .NET CLI commands:
+
+```dotnetcli
+dotnet ef migrations add InitialCreate
+dotnet ef database update
+```
+
+* `ef migrations add InitialCreate`: Generates an *Migrations/{timestamp}_InitialCreate.cs* migration file. The `InitialCreate` argument is the migration name. Any name can be used, but by convention, a name is selected that describes the migration. This is the first migration, so the generated class contains code to create the database schema. The database schema is based on the model specified in the `MvcMovieContext` class, in the *Data/MvcMovieContext.cs* file.
+* `ef database update`: Updates the database to the latest migration, which the previous command created. This command runs the `Up` method in the *Migrations/{time-stamp}_InitialCreate.cs* file, which creates the database.
+
+---
+
+<a name="test"></a>
+
+## Test the app
+
+Run the app and select the **Movie App** link.
+
+If you get an exception similar to the following, you may have missed the [migrations step](#migration):
+
+# [Visual Studio](#tab/visual-studio)
+
+```console
+SqlException: Cannot open database "MvcMovieContext-1" requested by the login. The login failed.
+```
+
+# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+
+```console
+SqliteException: SQLite Error 1: 'no such table: Movie'.
+```
+
+---
+
 <a name="dc"></a>
 
 ### Examine the generated database context class and registration
@@ -256,52 +324,6 @@ Scaffolding added a connection string to the *appsettings.json* file:
 
 For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the `ConnectionString` key from the *appsettings.json* file.
 
-<a name="migration"></a>
-
-## Initial migration
-
-Use the EF Core [Migrations](xref:data/ef-mvc/migrations) feature to create the database. Migrations are a set of tools that create and update a database to match the data model.
-
-# [Visual Studio](#tab/visual-studio)
-
-From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Console** .
-
-In the Package Manager Console (PMC), enter the following commands:
-
-```powershell
-Add-Migration InitialCreate
-Update-Database
- 
-```
-
-* `Add-Migration InitialCreate`: Generates a *Migrations/{timestamp}_InitialCreate.cs* migration file. The `InitialCreate` argument is the migration name. Any name can be used, but by convention, a name is selected that describes the migration. Because this is the first migration, the generated class contains code to create the database schema. The database schema is based on the model specified in the `MvcMovieContext` class.
-
-* `Update-Database`: Updates the database to the latest migration, which the previous command created. This command runs the `Up` method in the *Migrations/{time-stamp}_InitialCreate.cs* file, which creates the database.
-
-The `Update-Database` command generates the following warning:
-
-> No type was specified for the decimal column 'Price' on entity type 'Movie'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
-
-Ignore the preceding warning, it's fixed in a later tutorial.
-
-[!INCLUDE [more information on the PMC tools for EF Core](~/includes/ef-pmc.md)]
-
-# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
-
-[!INCLUDE [more information on the CLI for EF Core](~/includes/ef-cli.md)]
-
-Run the following .NET CLI commands:
-
-```dotnetcli
-dotnet ef migrations add InitialCreate
-dotnet ef database update
-```
-
-* `ef migrations add InitialCreate`: Generates an *Migrations/{timestamp}_InitialCreate.cs* migration file. The `InitialCreate` argument is the migration name. Any name can be used, but by convention, a name is selected that describes the migration. This is the first migration, so the generated class contains code to create the database schema. The database schema is based on the model specified in the `MvcMovieContext` class, in the *Data/MvcMovieContext.cs* file.
-* `ef database update`: Updates the database to the latest migration, which the previous command created. This command runs the `Up` method in the *Migrations/{time-stamp}_InitialCreate.cs* file, which creates the database.
-
----
-
 ### The InitialCreate class
 
 Examine the *Migrations/{timestamp}_InitialCreate.cs* migration file:
@@ -312,28 +334,6 @@ In the preceding code:
 
 * `InitialCreate.Up` creates the Movie table and configures `Id` as the primary key.
 * `InitialCreate.Down` reverts the schema changes made by the `Up` migration.
-
-<a name="test"></a>
-
-## Test the app
-
-Run the app and select the **Movie App** link.
-
-If you get an exception similar to the following, you may have missed the [migrations step](#migration):
-
-# [Visual Studio](#tab/visual-studio)
-
-```console
-SqlException: Cannot open database "MvcMovieContext-1" requested by the login. The login failed.
-```
-
-# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
-
-```console
-SqliteException: SQLite Error 1: 'no such table: Movie'.
-```
-
----
 
 ## Dependency injection in the controller
 
