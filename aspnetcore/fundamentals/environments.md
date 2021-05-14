@@ -152,6 +152,8 @@ The [About page](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/
 
 ### Azure App Service
 
+<xref:Microsoft.Extensions.Hosting.Environments.Production> is the default value if `DOTNET_ENVIRONMENT` and `ASPNETCORE_ENVIRONMENT` have not been set. Apps deployed to azure are `Production` by default.
+
 To set the environment in [Azure App Service](https://azure.microsoft.com/services/app-service/), perform the following steps:
 
 1. Select the app from the **App Services** blade.
