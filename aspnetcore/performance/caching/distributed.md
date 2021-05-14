@@ -107,7 +107,7 @@ An app configures the cache implementation using a <xref:Microsoft.Extensions.Ca
 1. Create a Azure Cache for Redis.
 1. Copy the Primary connection string (StackExchange.Redis) to [Configuration](xref:fundamentals/configuration/index).
   * Local development: Save the connection string with [Secret Manager](xref:security/app-secrets#secret-manager).
-  * Azure: Save the connection string the App Service Configuration or another secure store.
+  * Azure: Save the connection string in the App Service Configuration or another secure store.
 
 The following code enables the Azure Cache for Redis:
 
