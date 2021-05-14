@@ -36,13 +36,13 @@ Azure Application Insights provides multiple ways to give insights on monitored 
 
 - [Azure Application Insights Profiler](/azure/azure-monitor/app/profiler) allows regular and on-demand profiling of .NET apps.  Azure portal shows captured performance traces with call stacks and hot paths. The trace files can also be downloaded for deeper analysis using PerfView.
 
-Application Insights can be used in a variety environments:
+Application Insights can be used in a variety of environments:
 
 - Optimized to work in Azure.
 - Works in production, development, and staging.
 - Works locally from [Visual Studio](/azure/application-insights/app-insights-visual-studio) or in other hosting environments.
 
-For more information, see [Application Insights for ASP.NET Core](/azure/application-insights/app-insights-asp-net-core).
+For more information on code-based monitoring, see [Application Insights for ASP.NET Core](/azure/application-insights/app-insights-asp-net-core). For more information on codeless monitoring, see [Monitor Azure App Service performance](/azure/azure-monitor/app/azure-web-apps?tabs=netcore).
 
 ## PerfView
 
