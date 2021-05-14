@@ -129,9 +129,7 @@ Inside the closing `</body>` tag of `wwwroot/index.html`:
 The `loadBootResource` function can also return:
 
 * `null`/`undefined`, which results in the default loading behavior.
-* A [`Response` promise](https://developer.mozilla.org/docs/Web/API/Response).
-
-For an additional example of loading boot resources, see the Brotli compression example in the <xref:blazor/host-and-deploy/webassembly#compression> article.
+* A [`Response` promise](https://developer.mozilla.org/docs/Web/API/Response). For an example, see <xref:blazor/host-and-deploy/webassembly#compression>.
 
 ## Additional resources
 
