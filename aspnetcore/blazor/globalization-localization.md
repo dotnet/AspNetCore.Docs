@@ -77,6 +77,8 @@ Blazor WebAssembly can also be configured to launch using a specific application
 </script>
 ```
 
+For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
+
 The value for `applicationCulture` should conform to the [BCP-47 language tag format](https://tools.ietf.org/html/bcp47).
 
 If the app doesn't require localization, you may configure the app to support the invariant culture, which is based on the `en-US` culture:

@@ -125,7 +125,7 @@ Revocation checks are only performed when the certificate is chained to a root c
 
 ### Can I configure my app to require a certificate only on certain paths?
 
-This isn't possible. Remember the certificate exchange is done that the start of the HTTPS conversation, it's done by the server before the first request is received on that connection so it's not possible to scope based on any request fields.
+This isn't possible. Remember the certificate exchange is done at the start of the HTTPS conversation, it's done by the server before the first request is received on that connection so it's not possible to scope based on any request fields.
 
 ## Handler events
 

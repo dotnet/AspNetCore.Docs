@@ -21,6 +21,10 @@ The following deployment strategies are supported:
 * The Blazor app is served by an ASP.NET Core app. This strategy is covered in the [Hosted deployment with ASP.NET Core](#hosted-deployment-with-aspnet-core) section.
 * The Blazor app is placed on a static hosting web server or service, where .NET isn't used to serve the Blazor app. This strategy is covered in the [Standalone deployment](#standalone-deployment) section, which includes information on hosting a Blazor WebAssembly app as an IIS sub-app.
 
+## Customize how boot resources are loaded
+
+Customize how boot resources are loaded using the `loadBootResource` API. For more information, see <xref:blazor/fundamentals/startup#load-boot-resources>.
+
 ## Compression
 
 When a Blazor WebAssembly app is published, the output is statically compressed during publish to reduce the app's size and remove the overhead for runtime compression. The following compression algorithms are used:
@@ -71,7 +75,9 @@ Blazor relies on the host to the serve the appropriate compressed files. When us
       });
     </script>
     ```
- 
+
+    For more information on loading boot resources, see <xref:blazor/fundamentals/startup#load-boot-resources>.
+
 To disable compression, add the `BlazorEnableCompression` MSBuild property to the app's project file and set the value to `false`:
 
 ```xml
@@ -630,75 +636,6 @@ Blazor performs Intermediate Language (IL) trimming on each Release build to rem
 Blazor performs Intermediate Language (IL) linking on each Release build to remove unnecessary IL from the output assemblies. For more information, see <xref:blazor/host-and-deploy/configure-linker>.
 
 ::: moniker-end
-
-## Custom boot resource loading
-
-A Blazor WebAssembly app can be initialized with the `loadBootResource` function to override the built-in boot resource loading mechanism. Use `loadBootResource` for the following scenarios:
-
-* Allow users to load static resources, such as timezone data or `dotnet.wasm` from a CDN.
-* Load compressed assemblies using an HTTP request and decompress them on the client for hosts that don't support fetching compressed contents from the server.
-* Alias resources to a different name by redirecting each `fetch` request to a new name.
-
-`loadBootResource` parameters appear in the following table.
-
-| Parameter    | Description |
-| ------------ | ----------- |
-| `type`       | The type of the resource. Permissable types: `assembly`, `pdb`, `dotnetjs`, `dotnetwasm`, `timezonedata` |
-| `name`       | The name of the resource. |
-| `defaultUri` | The relative or absolute URI of the resource. |
-| `integrity`  | The integrity string representing the expected content in the response. |
-
-`loadBootResource` returns any of the following to override the loading process:
-
-* URI string. In the following example (`wwwroot/index.html`), the following files are served from a CDN at `https://my-awesome-cdn.com/`:
-
-  * `dotnet.*.js`
-  * `dotnet.wasm`
-  * Timezone data
-
-  ```html
-  ...
-
-  <script src="_framework/blazor.webassembly.js" autostart="false"></script>
-  <script>
-    Blazor.start({
-      loadBootResource: function (type, name, defaultUri, integrity) {
-        console.log(`Loading: '${type}', '${name}', '${defaultUri}', '${integrity}'`);
-        switch (type) {
-          case 'dotnetjs':
-          case 'dotnetwasm':
-          case 'timezonedata':
-            return `https://my-awesome-cdn.com/blazorwebassembly/3.2.0/${name}`;
-        }
-      }
-    });
-  </script>
-  ```
-
-* `Promise<Response>`. Pass the `integrity` parameter in a header to retain the default integrity-checking behavior.
-
-  The following example (`wwwroot/index.html`) adds a custom HTTP header to the outbound requests and passes the `integrity` parameter through to the `fetch` call:
-  
-  ```html
-  <script src="_framework/blazor.webassembly.js" autostart="false"></script>
-  <script>
-    Blazor.start({
-      loadBootResource: function (type, name, defaultUri, integrity) {
-        return fetch(defaultUri, { 
-          cache: 'no-cache',
-          integrity: integrity,
-          headers: { 'MyCustomHeader': 'My custom value' }
-        });
-      }
-    });
-  </script>
-  ```
-
-* `null`/`undefined`, which results in the default loading behavior.
-
-External sources must return the required CORS headers for browsers to allow the cross-origin resource loading. CDNs usually provide the required headers by default.
-
-You only need to specify types for custom behaviors. Types not specified to `loadBootResource` are loaded by the framework per their default loading behaviors.
 
 ## Change the filename extension of DLL files
 

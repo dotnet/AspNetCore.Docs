@@ -1,0 +1,56 @@
+﻿@page
+@model IndexModel
+
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <form asp-page-handler="Create" method="POST">
+            <div class="input-group input-group-sm">
+                <input name="name" placeholder="Something I need to do" class="form-control form-control-sm">
+                <div class="input-group-append">
+                    <button class="btn btn-primary">Add to List</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@if (Model.IncompleteTodoItems.Any())
+{
+    <hr>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <ul class="list-group mb-2">
+                @foreach (var todoItem in Model.IncompleteTodoItems)
+                {
+                    <a asp-page="/Item" asp-route-id="@todoItem.Id" class="list-group-item list-group-item-action">@todoItem.Name</a>
+                }
+            </ul>
+        </div>
+    </div>
+}
+
+@if (Model.CompleteTodoItems.Any())
+{
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <p class="text-center">
+                <small>@Model.CompleteTodoItems.Count completed</small>
+            </p>
+            <ul class="list-group">
+                @foreach (var todoItem in Model.CompleteTodoItems)
+                {
+                    <a asp-page="/Item" asp-route-id="@todoItem.Id" class="list-group-item list-group-item-action text-muted">@todoItem.Name</a>
+                }
+            </ul>
+        </div>
+    </div>
+}
+
+@section Styles {
+    <style>.list-group-item.text-muted{text-decoration:line-through}</style>
+}
