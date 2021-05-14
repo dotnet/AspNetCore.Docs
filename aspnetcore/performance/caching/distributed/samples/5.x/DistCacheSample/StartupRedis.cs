@@ -35,7 +35,6 @@ namespace SampleApp
             }
             else
             {
-
                 services.AddStackExchangeRedisCache(options =>
                 {
                     options.Configuration = _config["MyRedisConStr"];

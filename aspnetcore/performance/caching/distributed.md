@@ -111,7 +111,7 @@ An app configures the cache implementation using a <xref:Microsoft.Extensions.Ca
 
 The following code enables the Azure Cache for Redis:
 
-[!code-csharp[](distributed/samples/5.x/DistCacheSample/StartupRedis.cs?name=snippet_AddStackExchangeRedisCache)]
+[!code-csharp[](distributed/samples/5.x/DistCacheSample/StartupRedis.cs?name=snippet_AddStackExchangeRedisCache&highlight=11-15)]
 
 For more information, see [Azure Cache for Redis](/azure/azure-cache-for-redis/cache-overview).
 
