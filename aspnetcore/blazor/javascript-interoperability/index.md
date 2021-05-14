@@ -148,8 +148,8 @@ The following example injects the `wwwroot/scripts.js` file after Blazor starts:
 <body>
     ...
 
-    <script autostart="false" 
-        src="_framework/blazor.{webassembly|server}.js"></script>
+    <script src="_framework/blazor.{webassembly|server}.js" 
+        autostart="false"></script>
     <script>
       Blazor.start().then(function () {
         var customScript = document.createElement('script');
@@ -161,6 +161,8 @@ The following example injects the `wwwroot/scripts.js` file after Blazor starts:
 ```
 
 The `{webassembly|server}` placeholder in the preceding markup is either `webassembly` for a Blazor WebAssembly app (`blazor.webassembly.js`) or `server` for a Blazor Server app (`blazor.server.js`).
+
+For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
 
 ::: moniker range=">= aspnetcore-5.0"
 

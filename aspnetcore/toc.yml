@@ -330,6 +330,8 @@
               uid: blazor/fundamentals/configuration
             - name: Dependency injection
               uid: blazor/fundamentals/dependency-injection
+            - name: Startup
+              uid: blazor/fundamentals/startup
             - name: Environments
               uid: blazor/fundamentals/environments
             - name: Logging
