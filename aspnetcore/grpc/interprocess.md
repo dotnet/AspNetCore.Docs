@@ -32,7 +32,10 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
                 {
                     File.Delete(SocketPath);
                 }
-                options.ListenUnixSocket(SocketPath);
+                options.ListenUnixSocket(SocketPath, listenOptions =>
+                {
+                    listenOptions.Protocols = HttpProtocols.Http2;
+                });
             });
         });
 ```
