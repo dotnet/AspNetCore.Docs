@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace WebApp1
+namespace SampleApp
 {
     public class Program
     {
@@ -14,7 +14,8 @@ namespace WebApp1
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    webBuilder.UseStartup<StartupRedis>();
+                    //webBuilder.UseStartup<Startup>();
                 });
     }
 }
