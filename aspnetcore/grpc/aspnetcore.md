@@ -107,7 +107,7 @@ Alternatively, Kestrel endpoints can be configured in *Program.cs*:
 
 [!code-csharp[](~/grpc/aspnetcore/sample/Program.cs?highlight=7&name=snippet)]
 
-For more information about TLS options in Kestrel, see [configure Kestrel endpoints with HTTPS](xref:fundamentals/servers/kestrel/endpoints#listenoptionsusehttps).
+For more information on enabling TLS with Kestrel, see [Kestrel HTTPS endpoint configuration](xref:fundamentals/servers/kestrel/endpoints#listenoptionsusehttps).
 
 ### Protocol negotiation
 
@@ -162,6 +162,8 @@ In production, TLS must be explicitly configured. In the following *appsettings.
 Alternatively, Kestrel endpoints can be configured in *Program.cs*:
 
 [!code-csharp[](~/grpc/aspnetcore/sample/Program.cs?highlight=7&name=snippet)]
+
+For more information on enabling TLS with Kestrel, see [Kestrel HTTPS endpoint configuration](xref:fundamentals/servers/kestrel#listenoptionsusehttps).
 
 ### Protocol negotiation
 
