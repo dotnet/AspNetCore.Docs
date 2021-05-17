@@ -46,7 +46,7 @@ The preceding example:
 
 * Configures Kestrel's endpoints in `ConfigureKestrel`.
 * Calls <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenUnixSocket*> to listen to a [Unix domain socket (UDS)](https://wikipedia.org/wiki/Unix_domain_socket) with the specified path.
-* Creates a UDS endpoint that is not configured to use HTTPS. For information about enabling HTTP, see [Kestrel HTTPS endpoint configuration](xref:fundamentals/servers/kestrel/endpoints#listenoptionsusehttps).
+* Creates a UDS endpoint that is not configured to use HTTPS. For information about enabling HTTPS, see [Kestrel HTTPS endpoint configuration](xref:fundamentals/servers/kestrel/endpoints#listenoptionsusehttps).
 
 ::: moniker-end
 
@@ -54,7 +54,7 @@ The preceding example:
 
 * Configures Kestrel's endpoints in `ConfigureKestrel`.
 * Calls <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenUnixSocket*> to listen to a [Unix domain socket (UDS)](https://wikipedia.org/wiki/Unix_domain_socket) with the specified path.
-* Creates a UDS endpoint that is not configured to use HTTPS. For information about enabling HTTP, see [Kestrel HTTPS endpoint configuration](xref:fundamentals/servers/kestrel#listenoptionsusehttps).
+* Creates a UDS endpoint that is not configured to use HTTPS. For information about enabling HTTPS, see [Kestrel HTTPS endpoint configuration](xref:fundamentals/servers/kestrel#listenoptionsusehttps).
 
 ::: moniker-end
 
