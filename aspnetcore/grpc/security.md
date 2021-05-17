@@ -30,6 +30,8 @@ TLS is configured in Kestrel. For more information on configuring Kestrel endpoi
 TLS is configured in Kestrel. For more information on configuring Kestrel endpoints, see [Kestrel endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration).
 ::: moniker-end
 
+A [TLS termination proxy](https://wikipedia.org/wiki/TLS_termination_proxy) can be combined with TLS. The benefits of using TLS termination should be considered against the security risks of sending unsecured HTTP requests between apps in the private network.
+
 ## Exceptions
 
 Exception messages are generally considered sensitive data that shouldn't be revealed to a client. By default, gRPC doesn't send the details of an exception thrown by a gRPC service to the client. Instead, the client receives a generic message indicating an error occurred. Exception message delivery to the client can be overridden (for example, in development or test) with [EnableDetailedErrors](xref:grpc/configuration#configure-services-options). Exception messages shouldn't be exposed to the client in production apps.
