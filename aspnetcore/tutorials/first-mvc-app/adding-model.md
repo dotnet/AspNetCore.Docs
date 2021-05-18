@@ -135,6 +135,14 @@ Complete the **Add MVC Controller with views, using Entity Framework** dialog:
 * **Views** and **Controller name** : Keep the default.
 * Select **Add**.
 
+<a name="scaffolding-created"></a>
+
+Scaffolding updates the following:
+
+* Inserts required package references in the *MvcMovie.csproj* project file.
+* Registers the database context in `Startup.ConfigureServices` of the *Startup.cs* file.
+* Adds a database connection string to the *appsettings.json* file.
+
 # [Visual Studio Code](#tab/visual-studio-code)
 
 Open a command window in the project directory. The project directory is the directory that contains the *Program.cs*, *Startup.cs*, and *.csproj* files.
@@ -160,6 +168,13 @@ dotnet-aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMo
 When SQLite is selected, the template generated code is ready for development. The following code shows how to inject <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment> into `Startup`. `IWebHostEnvironment` is injected so `ConfigureServices` can use SQLite in development and SQL Server in production.
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/StartupDevProd.cs?name=snippet_StartupClass&highlight=3,5,10,16-28)]
+
+<a name="scaffolding-created"></a>
+
+Scaffolding updates the following:
+
+* Registers the database context in `Startup.ConfigureServices` of the *Startup.cs* file.
+* Adds a database connection string to the *appsettings.json* file.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -188,19 +203,24 @@ When SQLite is selected, the template generated code is ready for development. T
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/StartupDevProd.cs?name=snippet_StartupClass&highlight=3,5,10,16-28)]
 
+<a name="scaffolding-created"></a>
+
+Scaffolding updates the following:
+
+* Registers the database context in `Startup.ConfigureServices` of the *Startup.cs* file.
+* Adds a database connection string to the *appsettings.json* file.
+
 ---
 
 <!-- End of tabs                  -->
 
-<a name="scaffolding-created"></a>
-
-Scaffolding creates:
+Scaffolding creates the following:
 
 * A movies controller: *Controllers/MoviesController.cs*
 * Razor view files for Create, Delete, Details, Edit, and Index pages: `Views/Movies/*.cshtml`
 * A database context class: *Data/MvcMovieContext.cs*
 
-The automatic creation of these files is known as *scaffolding*.
+The automatic creation of these files and file updates are known as *scaffolding*.
 
 The scaffolded pages can't be used yet because the database doesn't exist. Running the app and selecting the **Movie App** link results in a *Cannot open database* or *no such table: Movie* error message.
 
