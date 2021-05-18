@@ -189,6 +189,9 @@
             - name: Implement feature flags >>
               display: tutorial, kubernetes, aks, acr, docker
               href: /learn/modules/microservices-configuration-aspnet-core/
+            - name: Use managed data stores >>
+              display: tutorial, kubernetes, aks, acr, docker
+              href: /learn/modules/microservices-data-aspnet-core/
         - name: Data access >>
           displayName: tutorial, ef, entity framework
           href: /learn/modules/persist-data-ef-core/
