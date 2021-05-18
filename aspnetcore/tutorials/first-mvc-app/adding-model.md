@@ -136,7 +136,7 @@ Complete the **Add MVC Controller with views, using Entity Framework** dialog:
 
 * In the **Add Data Context** dialog, the class name *MvcMovie.Data.MvcMovieContext* is generated, select **Add**.
 
-![Add Data context select add](adding-model/_static/dc5_add.png)
+![Add Data context select add](adding-model/_static/dc5_add_dc.png)
 
 * **Views** and **Controller name** : Keep the default.
 * Select **Add**.
