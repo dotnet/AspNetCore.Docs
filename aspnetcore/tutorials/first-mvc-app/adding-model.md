@@ -132,16 +132,16 @@ Complete the **Add MVC Controller with views, using Entity Framework** dialog:
 
 * In the **Data context class** row, select the **+** (plus) sign.
 
-![Add Data context](adding-model/_static/dc5_plus.png)
+![Add Data context select plus](adding-model/_static/dc5_plus.png)
 
 * In the **Add Data Context** dialog, the class name *MvcMovie.Data.MvcMovieContext* is generated, select **Add**.
 
-![Add Data context](adding-model/_static/dc5_add.png)
+![Add Data context select add](adding-model/_static/dc5_add.png)
 
 * **Views** and **Controller name** : Keep the default.
 * Select **Add**.
 
-![Add Data context](adding-model/_static/dc5_last_step.png)
+![Add Data context keep defaults](adding-model/_static/dc5_last_step.png)
 
 <a name="scaffolding-created"></a>
 
