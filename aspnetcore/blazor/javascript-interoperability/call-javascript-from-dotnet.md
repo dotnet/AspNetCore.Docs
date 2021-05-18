@@ -65,29 +65,7 @@ The following `CallJsExample1` component:
 
 ::: moniker-end
 
-## Location of JavaScipt
-
-Load JavaScript (JS) code using any of approaches described by the [JavaScript (JS) interoperability (interop) overview article](xref:blazor/js-interop/index#location-of-javascipt):
-
-* [Load a script in `<head>` markup](xref:blazor/js-interop/index#load-a-script-in-head-markup) (*Not generally recommended*)
-* [Load a script in `<body>` markup](xref:blazor/js-interop/index#load-a-script-in-body-markup)
-* [Load a script from an external JS file (`.js`)](xref:blazor/js-interop/index#load-a-script-from-an-external-js-file-js)
-* [Inject a script after Blazor starts](xref:blazor/js-interop/index#inject-a-script-after-blazor-starts)
-
-::: moniker range=">= aspnetcore-5.0"
-
-For information on isolating scripts in [JS modules](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules), see the [JavaScript isolation in JavaScript modules](#javascript-isolation-in-javascript-modules) section.
-
-::: moniker-end
-
-> [!WARNING]
-> Don't place a `<script>` tag in a component file (`.razor`) because the `<script>` tag can't be updated dynamically.
-
-## Dispatch calls to JavaScript with `IJSRuntime`
-
-<xref:Microsoft.JSInterop.IJSRuntime> represents an instance of a JavaScript (JS) runtime for performing JS interop operations with <xref:Microsoft.JSInterop.JSRuntimeExtensions> methods.
-
-### Invoke JavaScript functions without reading a returned value (`InvokeVoidAsync`)
+## Invoke JavaScript functions without reading a returned value (`InvokeVoidAsync`)
 
 Use <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A> when:
 
@@ -104,7 +82,7 @@ Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or
 </script>
 ```
 
-#### Component (`.razor`) example (`InvokeVoidAsync`)
+### Component (`.razor`) example (`InvokeVoidAsync`)
 
 `TickerChanged` calls the `handleTickerChanged1` method in the following `CallJsExample2` component.
 
@@ -122,7 +100,7 @@ Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or
 
 ::: moniker-end
 
-#### Class (`.cs`) example (`InvokeVoidAsync`)
+### Class (`.cs`) example (`InvokeVoidAsync`)
 
 `JsInteropClasses1.cs`:
 
@@ -154,7 +132,7 @@ Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or
 
 ::: moniker-end
 
-### Invoke JavaScript functions and read a returned value (`InvokeAsync`)
+## Invoke JavaScript functions and read a returned value (`InvokeAsync`)
 
 Use <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeAsync%2A> when .NET should read the result of a JS call.
 
@@ -173,7 +151,7 @@ Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or
 </script>
 ```
 
-#### Component (`.razor`) example (`InvokeAsync`)
+### Component (`.razor`) example (`InvokeAsync`)
 
 `TickerChanged` calls the `handleTickerChanged2` method and displays the returned string in the following `CallJsExample4` component.
 
@@ -191,7 +169,7 @@ Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or
 
 ::: moniker-end
 
-#### Class (`.cs`) example (`InvokeAsync`)
+### Class (`.cs`) example (`InvokeAsync`)
 
 `JsInteropClasses2.cs`:
 
@@ -223,7 +201,7 @@ Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or
 
 ::: moniker-end
 
-### Dynamic content generation scenarios
+## Dynamic content generation scenarios
 
 For dynamic content generation with [BuildRenderTree](xref:blazor/advanced-scenarios#manual-rendertreebuilder-logic), use the `[Inject]` attribute:
 
@@ -235,6 +213,24 @@ IJSRuntime JS { get; set; }
 ## Detect when a Blazor Server app is prerendering
 
 [!INCLUDE[](~/blazor/includes/prerendering.md)]
+
+## Location of JavaScipt
+
+Load JavaScript (JS) code using any of approaches described by the [JavaScript (JS) interoperability (interop) overview article](xref:blazor/js-interop/index#location-of-javascipt):
+
+* [Load a script in `<head>` markup](xref:blazor/js-interop/index#load-a-script-in-head-markup) (*Not generally recommended*)
+* [Load a script in `<body>` markup](xref:blazor/js-interop/index#load-a-script-in-body-markup)
+* [Load a script from an external JS file (`.js`)](xref:blazor/js-interop/index#load-a-script-from-an-external-js-file-js)
+* [Inject a script after Blazor starts](xref:blazor/js-interop/index#inject-a-script-after-blazor-starts)
+
+::: moniker range=">= aspnetcore-5.0"
+
+For information on isolating scripts in [JS modules](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules), see the [JavaScript isolation in JavaScript modules](#javascript-isolation-in-javascript-modules) section.
+
+::: moniker-end
+
+> [!WARNING]
+> Don't place a `<script>` tag in a component file (`.razor`) because the `<script>` tag can't be updated dynamically.
 
 ::: moniker range=">= aspnetcore-5.0"
 
@@ -259,7 +255,7 @@ export function showPrompt(message) {
 
 Add the preceding JS module to an app or class library as a static web asset in the `wwwroot` folder and then import the module into the .NET code by calling <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A> on the <xref:Microsoft.JSInterop.IJSRuntime> instance.
 
-<xref:Microsoft.JSInterop.IJSRuntime> imports the module as a `IJSObjectReference`, which represents a reference to a JS object from .NET code. Use the `IJSObjectReference` to invoke exported JS functions from the module.
+<xref:Microsoft.JSInterop.IJSRuntime> imports the module as an <xref:Microsoft.JSInterop.IJSObjectReference>, which represents a reference to a JS object from .NET code. Use the <xref:Microsoft.JSInterop.IJSObjectReference> to invoke exported JS functions from the module.
 
 `Pages/CallJsExample6.razor`:
 
@@ -557,9 +553,7 @@ For more information on resource exhaustion, see <xref:blazor/security/server/th
 Objects that contain circular references can't be serialized on the client for either:
 
 * .NET method calls.
-* JavaScript (JS) method calls from C# when the return type has circular references.
-
-For more information, see [Circular references are not supported, take two (dotnet/aspnetcore #20525)](https://github.com/dotnet/aspnetcore/issues/20525).
+* JavaScript method calls from C# when the return type has circular references.
 
 ::: moniker range=">= aspnetcore-5.0"
 
@@ -647,9 +641,7 @@ In the preceding example:
 
 ## Size limits on JavaScript interop calls
 
-In Blazor WebAssembly, the framework doesn't impose a limit on the size of JavaScript (JS) interop inputs and outputs.
-
-In Blazor Server, JS interop calls are limited in size by the maximum incoming SignalR message size permitted for hub methods, which is enforced by <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize?displayProperty=nameWithType> (32 KB by default). JS to .NET SignalR messages larger than <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize> throw an error. The framework doesn't impose a limit on the size of a SignalR message from the hub to a client. For more information, see <xref:blazor/js-interop/call-dotnet-from-javascript#size-limits-on-javascript-interop-calls>.
+[!INCLUDE[](~/blazor/includes/js-interop-size-limits.md)]
 
 ::: moniker range=">= aspnetcore-5.0"
 

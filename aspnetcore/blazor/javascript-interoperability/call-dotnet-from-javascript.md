@@ -5,7 +5,7 @@ description: Learn how to invoke .NET methods from JavaScript functions in Blazo
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc, devx-track-js 
-ms.date: 05/17/2021
+ms.date: 05/18/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR, JS, Promise]
 uid: blazor/js-interop/call-dotnet-from-javascript
 ---
@@ -13,51 +13,35 @@ uid: blazor/js-interop/call-dotnet-from-javascript
 
 This article covers invoking .NET methods from JavaScript (JS). For information on how to call JS functions from .NET, see <xref:blazor/js-interop/call-javascript-from-dotnet>.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/blazor/common/samples/) ([how to download](xref:index#how-to-download-a-sample))
+## Invoke a static .NET method
 
-## Location of JavaScipt
+To invoke a static .NET method from JavaScript (JS), use `DotNet.invokeMethod` or `DotNet.invokeMethodAsync`. Pass in the identifier of the static method you wish to call, the name of the assembly containing the function, and any arguments. In the following example, the `{ASSEMBLY NAME}` placeholder is the app's assembly name and the `{.NET METHOD}` placeholder is the .NET method identifier:
 
-Load JavaScript (JS) code using any of approaches described by the [JS interop overview article](xref:blazor/js-interop/index#location-of-javascipt):
+```javascript
+DotNet.invokeMethodAsync('{ASSEMBLY NAME}', '{.NET METHOD}');
+```
 
-* [Load a script in `<head>` markup](xref:blazor/js-interop/index#load-a-script-in-head-markup) (*Not generally recommended*)
-* [Load a script in `<body>` markup](xref:blazor/js-interop/index#load-a-script-in-body-markup)
-* [Load a script from an external JS file (`.js`)](xref:blazor/js-interop/index#load-a-script-from-an-external-js-file-js)
-* [Inject a script after Blazor starts](xref:blazor/js-interop/index#inject-a-script-after-blazor-starts)
+The asynchronous version is preferred to support Blazor Server scenarios. The .NET method must be public, static, and have the [`[JSInvokable]` attribute](xref:Microsoft.JSInterop.JSInvokableAttribute). Calling open generic methods isn't currently supported.
 
-::: moniker range=">= aspnetcore-5.0"
-
-For information on isolating scripts in [JS modules](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules), see <xref:blazor/js-interop/index#javascript-isolation-in-javascript-modules>.
-
-::: moniker-end
-
-> [!WARNING]
-> Don't place a `<script>` tag in a component file (`.razor`) because the `<script>` tag can't be updated dynamically.
-
-## Static .NET method call
-
-To invoke a static .NET method from JavaScript (JS), use the `DotNet.invokeMethod` or `DotNet.invokeMethodAsync` functions. Pass in the identifier of the static method you wish to call, the name of the assembly containing the function, and any arguments. The asynchronous version is preferred to support Blazor Server scenarios. The .NET method must be public, static, and have the [`[JSInvokable]` attribute](xref:Microsoft.JSInterop.JSInvokableAttribute). Calling open generic methods isn't currently supported.
-
-The `ReturnArrayAsync` C# method in the following `CallDotNetExample1` component returns an `int` array. The [`[JSInvokable]` attribute](xref:Microsoft.JSInterop.JSInvokableAttribute) is applied to the method, which makes the method invokable by JS.
+In the following `CallDotNetExample1` component, the `ReturnArrayAsync` C# method returns an `int` array. The [`[JSInvokable]` attribute](xref:Microsoft.JSInterop.JSInvokableAttribute) is applied to the method, which makes the method invokable by JS.
 
 `Pages/CallDotNetExample1.razor`:
 
 ::: moniker range=">= aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample1.razor?highlight=1)]
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample1.razor?highlight=12-16)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample1.razor?highlight=1)]
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample1.razor?highlight=12-16)]
 
 ::: moniker-end
 
-JS served to the client invokes the C# .NET method.
+The `<button>` element's `onclick` HTML attribute is JavaScript's [`onclick`](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers/onclick) event handler assignment for processing [`click`](https://developer.mozilla.org/docs/Web/API/Element/click_event) events, not Blazor's `@onclick` directive attribute. The `returnArrayAsyncJs` JS function is assigned as the handler.
 
-In the preceding example, the `<button>` element's `onclick` HTML attribute is JS's [`onclick`](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers/onclick) JS event handler assignment for processing JS [`click`](https://developer.mozilla.org/docs/Web/API/Element/click_event) events, not Blazor's `@onclick` directive attribute. The `returnArrayAsyncJs` JS method is assigned as the handler.
-
-The following JS method `returnArrayAsyncJs`, calls the `ReturnArrayAsync` .NET method and logs the result to the browser's web developer tools console. `BlazorSample` in the call to `invokeMethodAsync` is the app's assembly name.
+The following `returnArrayAsyncJs` JS function, calls the `ReturnArrayAsync` .NET method of the preceding `CallDotNetExample1` component and logs the result to the browser's web developer tools console. `BlazorSample` is the app's assembly name.
 
 Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server):
 
@@ -88,7 +72,7 @@ public static Task<int[]> ReturnArrayAsync()
 }
 ```
 
-In the call to `invokeMethodAsync`, call `DifferentMethodName` to execute the `ReturnArrayAsync` .NET method:
+In the call to `DotNet.invokeMethodAsync`, call `DifferentMethodName` to execute the `ReturnArrayAsync` .NET method:
 
 ```javascript
 window.returnArrayAsyncJs = () => {
@@ -99,14 +83,13 @@ window.returnArrayAsyncJs = () => {
 };
 ```
 
-## Instance .NET method call
+## Invoke an instance .NET method
 
-To invoke a .NET instance method from JavaScript (JS):
+To invoke an instance .NET method from JavaScript (JS):
 
-* Pass the .NET instance by reference to JS:
-  * Make a static call to <xref:Microsoft.JSInterop.DotNetObjectReference.Create%2A?displayProperty=nameWithType>.
-  * Wrap the instance in a <xref:Microsoft.JSInterop.DotNetObjectReference> instance and call <xref:Microsoft.JSInterop.DotNetObjectReference.Create%2A> on the <xref:Microsoft.JSInterop.DotNetObjectReference> instance. Dispose of <xref:Microsoft.JSInterop.DotNetObjectReference> objects. (An example of .NET object reference disposal appears later in this section.)
-* Invoke .NET instance methods on the instance using the `invokeMethod` or `invokeMethodAsync` JS functions. The .NET instance can also be passed as an argument when invoking other .NET methods from JS.
+* Pass the .NET instance by reference to JS by wrapping the instance in a <xref:Microsoft.JSInterop.DotNetObjectReference> and calling <xref:Microsoft.JSInterop.DotNetObjectReference.Create%2A> on it.
+* Invoke .NET instance methods from JS using `DotNet.invokeMethod` or `DotNet.invokeMethodAsync`. The .NET instance can also be passed as an argument when invoking other .NET methods from JS.
+* Dispose of the <xref:Microsoft.JSInterop.DotNetObjectReference>.
 
 When the **`Trigger .NET instance method`** button is selected in the following `CallDotNetExample2` component, `JsInteropClasses3.CallHelloHelperSayHello` is called with the value of `name`.
 
@@ -114,29 +97,29 @@ When the **`Trigger .NET instance method`** button is selected in the following 
 
 ::: moniker range=">= aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample2.razor?highlight=1)]
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample2.razor?highlight=26-30)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample2.razor?highlight=1)]
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample2.razor?highlight=26-30)]
 
 ::: moniker-end
 
-The following `HelloHelper` class has a JS invokable .NET method named `GetHelloMessage`. When `HelloHelper` is created, the name (`name`) is used to return a message from `GetHelloMessage`.
+The following `HelloHelper` class has a JS-invokable .NET method named `GetHelloMessage`. When `HelloHelper` is created, the name (`name`) is used to return a message from `GetHelloMessage`.
 
 `HelloHelper.cs`:
 
 ::: moniker range=">= aspnetcore-5.0"
 
-[!code-csharp[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/HelloHelper.cs?highlight=1)]
+[!code-csharp[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/HelloHelper.cs?highlight=5,12-13)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-[!code-csharp[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/HelloHelper.cs?highlight=1)]
+[!code-csharp[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/HelloHelper.cs?highlight=5,12-13)]
 
 ::: moniker-end
 
@@ -146,13 +129,13 @@ The `CallHelloHelperSayHello` method in the following `JsInteropClasses3` class 
 
 ::: moniker range=">= aspnetcore-5.0"
 
-[!code-csharp[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/JsInteropClasses3.cs?highlight=1)]
+[!code-csharp[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/JsInteropClasses3.cs?highlight=15-20)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-[!code-csharp[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/JsInteropClasses3.cs?highlight=1)]
+[!code-csharp[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/JsInteropClasses3.cs?highlight=15-20)]
 
 ::: moniker-end
 
@@ -174,19 +157,19 @@ The following image shows the rendered component with the name `Amy Pond` in the
 
 ![Component example 1](call-dotnet-from-javascript/_static/component-example-1.png)
 
-The preceding pattern shown in the `JsInteropClasses3` class can also be implemented in a component.
+The preceding pattern shown in the `JsInteropClasses3` class can also be implemented entirely in a component.
 
 `Pages/CallDotNetExample3.razor`:
 
 ::: moniker range=">= aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample3.razor?highlight=1)]
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample3.razor)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample3.razor?highlight=1)]
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample3.razor)]
 
 ::: moniker-end
 
@@ -196,18 +179,20 @@ In the preceding `CallDotNetExample3` component, the .NET object reference is di
 
 ```javascript
 window.jsFunction = (dotnetHelper) => {
-  dotnetHelper.invokeMethodAsync('BlazorSample', 'DotNetMethod');
+  dotnetHelper.invokeMethodAsync('{ASSEMBLY NAME}', '{.NET METHOD}');
   dotnetHelper.dispose();
 }
 ```
 
-## Component instance .NET method call
+In the preceding example, the `{ASSEMBLY NAME}` placeholder is the app's assembly name and the `{.NET METHOD}` placeholder is the .NET method identifier.
+
+## Invoke a component instance .NET method
 
 *This section only applies to Blazor WebAssembly apps.*
 
 To invoke a component's .NET methods:
 
-* Use the `invokeMethod` or `invokeMethodAsync` function to make a static method call to the component.
+* Use `DotNet.invokeMethod` or `DotNet.invokeMethodAsync` from JS to make a static method call to the component.
 * The component's static method wraps the call to its instance method as an invoked <xref:System.Action>.
 
 > [!IMPORTANT]
@@ -229,23 +214,23 @@ In the preceding example, `BlazorSample` is the app's assembly name.
 
 ::: moniker range=">= aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample4.razor?highlight=1)]
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample4.razor?highlight=6,16,21,24-28,30-34)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample4.razor?highlight=1)]
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample4.razor?highlight=6,16,21,24-28,30-34)]
 
 ::: moniker-end
 
-In the preceding example, the `<button>` element's `onclick` HTML attribute is JS's [`onclick`](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers/onclick) JS event handler assignment for processing JS [`click`](https://developer.mozilla.org/docs/Web/API/Element/click_event) events, not Blazor's `@onclick` directive attribute. The `updateMessageCallerJs1` JS method is assigned as the handler.
+In the preceding example, the `<button>` element's `onclick` HTML attribute is JavaScript's [`onclick`](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers/onclick) event handler assignment for processing [`click`](https://developer.mozilla.org/docs/Web/API/Element/click_event) events, not Blazor's `@onclick` directive attribute. The `updateMessageCallerJs1` JS function is assigned as the handler.
 
 [`StateHasChanged`](xref:blazor/components/lifecycle#state-changes-statehaschanged) is called to update the UI when `message` is set in `UpdateMessage`. If `StateHasChanged` isn't called, Blazor has no way of knowing that the UI should be updated when the <xref:System.Action> is invoked.
 
-To pass arguments to the instance method:
+To pass arguments to an instance method:
 
-1. Add parameters to the JS method invocation. In the following example, a name is passed to the method. Additional parameters can be added to the list as needed.
+1. Add parameters to the .NET method invocation. In the following example, a name is passed to the method. Additional parameters can be added to the list as needed.
 
    ```html
    <script>
@@ -263,13 +248,13 @@ To pass arguments to the instance method:
 
    ::: moniker range=">= aspnetcore-5.0"
 
-   [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample5.razor?highlight=1)]
+   [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample5.razor?highlight=6,16,24,31)]
 
    ::: moniker-end
 
    ::: moniker range="< aspnetcore-5.0"
 
-   [!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample5.razor?highlight=1)]
+   [!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample5.razor?highlight=6,16,24,31)]
 
    ::: moniker-end
 
@@ -283,10 +268,10 @@ To pass arguments to the instance method:
 
 *This section applies to both Blazor WebAssembly and Blazor Server apps but is especially important for JS interop in Blazor Server apps.*
 
-A helper class can invoke a .NET instance method as an <xref:System.Action>. Helper classes are useful when:
+A helper class can invoke a .NET instance method as an <xref:System.Action>. Helper classes are useful in the following scenarios:
 
-* Several components of the same type are rendered on the same page.
-* A Blazor Server app is used, where multiple users might be using a component concurrently.
+* When several components of the same type are rendered on the same page.
+* In a Blazor Server app, when multiple users concurrently use a component.
 
 In the following example:
 
@@ -294,21 +279,23 @@ In the following example:
 * Each `ListItem` component is composed of a message and a button.
 * When a `ListItem` component button is selected, that `ListItem`'s `UpdateMessage` method changes the list item text and hides the button.
 
+The following `MessageUpdateInvokeHelper` class maintains a JS-invokable .NET method, `UpdateMessageCaller3`, to invoke the <xref:System.Action> specified when the class is instantiated. `BlazorSample` is the app's assembly name.
+
 `MessageUpdateInvokeHelper.cs`:
 
 ::: moniker range=">= aspnetcore-5.0"
 
-[!code-csharp[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/MessageUpdateInvokeHelper.cs?highlight=1)]
+[!code-csharp[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/MessageUpdateInvokeHelper.cs?highlight=8,13-17)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-[!code-csharp[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/MessageUpdateInvokeHelper.cs?highlight=1)]
+[!code-csharp[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/MessageUpdateInvokeHelper.cs?highlight=8,13-17)]
 
 ::: moniker-end
 
-In the preceding example, `BlazorSample` is the app's assembly name.
+The following `updateMessageCallerJs3` JS function invokes the `UpdateMessageCaller3` .NET method. `BlazorSample` is the app's assembly name.
 
 Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server):
 
@@ -321,41 +308,64 @@ Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or
 </script>
 ```
 
-In the preceding example, `BlazorSample` is the app's assembly name.
+The `ListItem` component is a shared component that can be used any number of times in a parent component. Any `ListItem` component created establishes an instance of `MessageUpdateInvokeHelper` with an <xref:System.Action> set to its `UpdateMessage` method. When its **`InteropCall`** button is selected, `updateMessageCallerJs3` is invoked with a created <xref:Microsoft.JSInterop.DotNetObjectReference> for the `MessageUpdateInvokeHelper` instance.
 
 `Shared/ListItem.razor`:
 
 ::: moniker range=">= aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Shared/call-dotnet-from-js/ListItem.razor?highlight=1)]
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Shared/call-dotnet-from-js/ListItem.razor?highlight=1,5,11,15,18-22,24)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Shared/call-dotnet-from-js/ListItem.razor?highlight=1)]
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Shared/call-dotnet-from-js/ListItem.razor?highlight=1,5,11,15,18-22,24)]
 
 ::: moniker-end
 
 [`StateHasChanged`](xref:blazor/components/lifecycle#state-changes-statehaschanged) is called to update the UI when `message` is set in `UpdateMessage`. If `StateHasChanged` isn't called, Blazor has no way of knowing that the UI should be updated when the <xref:System.Action> is invoked.
 
+The following `CallDotNetExample6` parent component includes four list items, each an instance of the `ListItem` component.
+
 `Pages/CallDotNetExample6.razor`:
 
 ::: moniker range=">= aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample6.razor?highlight=1)]
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample6.razor?highlight=6-9)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample6.razor?highlight=1)]
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample6.razor?highlight=6-9)]
 
 ::: moniker-end
 
-The following image shows the rendered component where the second `ListItem` component has displayed the `UpdateMessage Called!` message following its **`InteropCall`** button selection:
+The following image shows the rendered `CallDotNetExample6` parent component after the second **`InteropCall`** button is selected:
+
+* The second `ListItem` component has displayed the `UpdateMessage Called!` message.
+* The **`InteropCall`** button for the second `ListItem` component isn't visible because the button's CSS `display` property is set to `none`.
 
 ![Component example 2](call-dotnet-from-javascript/_static/component-example-2.png)
+
+## Location of JavaScipt
+
+Load JavaScript (JS) code using any of approaches described by the [JS interop overview article](xref:blazor/js-interop/index#location-of-javascipt):
+
+* [Load a script in `<head>` markup](xref:blazor/js-interop/index#load-a-script-in-head-markup) (*Not generally recommended*)
+* [Load a script in `<body>` markup](xref:blazor/js-interop/index#load-a-script-in-body-markup)
+* [Load a script from an external JS file (`.js`)](xref:blazor/js-interop/index#load-a-script-from-an-external-js-file-js)
+* [Inject a script after Blazor starts](xref:blazor/js-interop/index#inject-a-script-after-blazor-starts)
+
+::: moniker range=">= aspnetcore-5.0"
+
+For information on isolating scripts in [JS modules](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules), see the [JavaScript isolation in JavaScript modules](#javascript-isolation-in-javascript-modules) section.
+
+::: moniker-end
+
+> [!WARNING]
+> Don't place a `<script>` tag in a component file (`.razor`) because the `<script>` tag can't be updated dynamically.
 
 ## Avoid circular object references
 
@@ -364,68 +374,24 @@ Objects that contain circular references can't be serialized on the client for e
 * .NET method calls.
 * JavaScript method calls from C# when the return type has circular references.
 
-For more information, see the following issues:
-
-* [Circular references are not supported, take two (dotnet/aspnetcore #20525)](https://github.com/dotnet/aspnetcore/issues/20525)
-* [Proposal: Add mechanism to handle circular references when serializing (dotnet/runtime #30820)](https://github.com/dotnet/runtime/issues/30820)
-
 ## Size limits on JavaScript interop calls
 
-*This section only applies to Blazor Server apps. In Blazor WebAssembly, the framework doesn't impose a limit on the size of JavaScript (JS) interop inputs and outputs.*
+[!INCLUDE[](~/blazor/includes/js-interop-size-limits.md)]
 
-In Blazor Server, JS interop calls are limited in size by the maximum incoming SignalR message size permitted for hub methods, which is enforced by <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize?displayProperty=nameWithType> (default: 32 KB). JS to .NET SignalR messages larger than <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize> throw an error. The framework doesn't impose a limit on the size of a SignalR message from the hub to a client.
+::: moniker range=">= aspnetcore-5.0"
 
-When SignalR logging isn't set to [Debug](xref:Microsoft.Extensions.Logging.LogLevel) or [Trace](xref:Microsoft.Extensions.Logging.LogLevel), a message size error only appears in the browser's developer tools console:
+## JavaScript isolation in JavaScript modules
 
-> Error: Connection disconnected with error 'Error: Server returned an error on close: Connection closed with an error.'.
+Blazor enables JavaScript (JS) isolation in standard [JavaScript modules](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules) ([ECMAScript specification](https://tc39.es/ecma262/#sec-modules)).
 
-When [SignalR server-side logging](xref:signalr/diagnostics#server-side-logging) is set to [Debug](xref:Microsoft.Extensions.Logging.LogLevel) or [Trace](xref:Microsoft.Extensions.Logging.LogLevel), server-side logging surfaces an <xref:System.IO.InvalidDataException> for a message size error.
+JS isolation provides the following benefits:
 
-`appsettings.Development.json`:
+* Imported JS no longer pollutes the global namespace.
+* Consumers of a library and components aren't required to import the related JS.
 
-```json
-{
-  "DetailedErrors": true,
-  "Logging": {
-    "LogLevel": {
-      "Default": "Information",
-      "Microsoft": "Warning",
-      "Microsoft.Hosting.Lifetime": "Information",
-      "Microsoft.AspNetCore.SignalR": "Debug"
-    }
-  }
-}
-```
+For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet#javascript-isolation-in-javascript-modules>.
 
-> System.IO.InvalidDataException: The maximum message size of 32768B was exceeded. The message size can be configured in AddHubOptions.
-
-Increase the limit by setting <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize> in `Startup.ConfigureServices`. The following example sets the maximum receive message size to 64 KB (64 * 1024):
-
-```csharp
-services.AddServerSideBlazor()
-   .AddHubOptions(options => options.MaximumReceiveMessageSize = 64 * 1024);
-```
-
-Increasing the SignalR incoming message size limit comes at the cost of requiring more server resources, and it exposes the server to increased risks from a malicious user. Additionally, reading a large amount of content in to memory as strings or byte arrays can also result in allocations that work poorly with the garbage collector, resulting in additional performance penalties.
-
-One option for reading large payloads is to send the content in smaller chunks and process the payload as a <xref:System.IO.Stream>. This can be used when reading large JSON payloads or if data is available in JS as raw bytes. For an example that demonstrates sending large binary payloads in Blazor Server that uses techniques similar to the `InputFile` component, see the [Binary Submit sample app](https://github.com/aspnet/samples/tree/master/samples/aspnetcore/blazor/BinarySubmit).
-
-Consider the following guidance when developing code that transfers a large amount of data between JS and Blazor:
-
-* Slice the data into smaller pieces, and send the data segments sequentially until all of the data is received by the server.
-* Don't allocate large objects in JS and C# code.
-* Don't block the main UI thread for long periods when sending or receiving data.
-* Free any memory consumed when the process is completed or cancelled.
-* Enforce the following additional requirements for security purposes:
-  * Declare the maximum file or data size that can be passed.
-  * Declare the minimum upload rate from the client to the server.
-* After the data is received by the server, the data can be:
-  * Temporarily stored in a memory buffer until all of the segments are collected.
-  * Consumed immediately. For example, the data can be stored immediately in a database or written to disk as each segment is received.
-
-## JavaScript modules
-
-For JS isolation, JS interop works with the browser's default support for [EcmaScript modules (ESM)](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules) ([ECMAScript specification](https://tc39.es/ecma262/#sec-modules)).
+::: moniker-end
 
 ## Additional resources
 
