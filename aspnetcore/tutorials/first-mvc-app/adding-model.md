@@ -300,6 +300,9 @@ SqliteException: SQLite Error 1: 'no such table: Movie'.
 
 ---
 
+> [!NOTE]
+> You may not be able to enter decimal commas in the `Price` field. To support [jQuery validation](https://jqueryvalidation.org/) for non-English locales that use a comma (",") for a decimal point and for non US-English date formats, the app must be globalized. For globalization instructions, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/4076#issuecomment-326590420).
+
 <a name="dc"></a>
 
 ### Examine the generated database context class and registration
@@ -374,9 +377,6 @@ Open the *Controllers/MoviesController.cs* file and examine the constructor:
 The constructor uses [Dependency Injection](xref:fundamentals/dependency-injection) to inject the database context (`MvcMovieContext`) into the controller. The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.
 
 Test the **Create** page. Enter and submit data.
-
-> [!NOTE]
-> You may not be able to enter decimal commas in the `Price` field. To support [jQuery validation](https://jqueryvalidation.org/) for non-English locales that use a comma (",") for a decimal point and for non US-English date formats, the app must be globalized. For globalization instructions, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/4076#issuecomment-326590420).
 
 Test the **Edit**, **Details**, and **Delete** pages.
 
