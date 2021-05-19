@@ -16,7 +16,7 @@ public class JsInteropClasses3 : IDisposable
     {
         objRef = DotNetObjectReference.Create(new HelloHelper(name));
 
-        return js.InvokeAsync<string>("sayHelloJs", objRef);
+        return js.InvokeAsync<string>("sayHello", objRef);
     }
 
     public void Dispose()

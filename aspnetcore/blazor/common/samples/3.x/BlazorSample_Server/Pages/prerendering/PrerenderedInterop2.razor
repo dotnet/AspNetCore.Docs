@@ -5,7 +5,7 @@
 
 <p>
     Get value via JS interop call:
-    <strong id="val-get-by-interop">@(infoFromJs ?? "No value yet")</strong>
+    <strong id="val-get-by-interop">@(data ?? "No value yet")</strong>
 </p>
 
 <p>
@@ -15,14 +15,14 @@
 <div id="val-set-by-interop" @ref="divElement"></div>
 
 @code {
-    private string infoFromJs;
+    private string data;
     private ElementReference divElement;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (firstRender && infoFromJs == null)
+        if (firstRender && data == null)
         {
-            infoFromJs = await JS.InvokeAsync<string>(
+            data = await JS.InvokeAsync<string>(
                 "setElementText2", divElement, "Hello from interop call!");
 
             StateHasChanged();

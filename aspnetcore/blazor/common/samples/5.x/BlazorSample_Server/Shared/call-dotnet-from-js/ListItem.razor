@@ -17,7 +17,7 @@
 
     protected async Task InteropCall()
     {
-        await JS.InvokeVoidAsync("updateMessageCallerJs3",
+        await JS.InvokeVoidAsync("updateMessageCaller3",
             DotNetObjectReference.Create(messageUpdateInvokeHelper));
     }
 

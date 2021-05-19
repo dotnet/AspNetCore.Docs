@@ -398,9 +398,11 @@ When working with generic types and returning a value, use <xref:System.Threadin
 public static ValueTask<T> GenericMethod<T>(this ElementReference elementRef, 
     IJSRuntime js)
 {
-    return js.InvokeAsync<T>("exampleJsFunctions.doSomethingGeneric", elementRef);
+    return js.InvokeAsync<T>("{JAVASCRIPT FUNCTION}", elementRef);
 }
 ```
+
+The `{JAVASCRIPT FUNCTION}` placeholder is the JS function identifier.
 
 `GenericMethod` is called directly on the object with a type. The following example assumes that the `GenericMethod` is available from the `JsInteropClasses` namespace:
 
@@ -667,7 +669,7 @@ Place the following `<script>` block in `wwwroot/index.html` (Blazor WebAssembly
 
 ```javascript
 <script>
-  window.returnJSObjectReference = () => {
+  window.returnObjectReference = () => {
     return {
       unmarshalledFunctionReturnBoolean: function (fields) {
         const name = Blazor.platform.readStringField(fields, 0);
