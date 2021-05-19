@@ -25,7 +25,7 @@ namespace MvcMovie
             services.AddControllersWithViews();
 
             services.AddDbContext<MvcMovieContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("MvcMovieContext")));
+            options.UseSqlServer(Configuration.GetConnectionString("MvcMovieContext")));
         }
         #endregion
 #else
@@ -35,7 +35,7 @@ namespace MvcMovie
             services.AddControllersWithViews();
             
             services.AddDbContext<MvcMovieContext>(options =>
-                    options.UseSqlite(Configuration.GetConnectionString("MvcMovieContext")));
+            options.UseSqlite(Configuration.GetConnectionString("MvcMovieContext")));
         }
         #endregion
 #endif
