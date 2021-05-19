@@ -6,11 +6,12 @@ var connection = new signalR.HubConnectionBuilder().withUrl("/chatHub").build();
 document.getElementById("sendButton").disabled = true;
 
 connection.on("ReceiveMessage", function (user, message) {
-    var msg = message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-    var encodedMsg = user + " says " + msg;
     var li = document.createElement("li");
-    li.textContent = encodedMsg;
     document.getElementById("messagesList").appendChild(li);
+    // We can assign user-supplied strings to an element's textContent because this won't
+    // be interpreted as markup.
+    // If assigning in any other way, you should be aware of possible script injection concerns.
+    li.textContent = user + " says " + message;
 });
 
 connection.start().then(function () {
