@@ -32,7 +32,10 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
                 {
                     File.Delete(SocketPath);
                 }
-                options.ListenUnixSocket(SocketPath);
+                options.ListenUnixSocket(SocketPath, listenOptions =>
+                {
+                    listenOptions.Protocols = HttpProtocols.Http2;
+                });
             });
         });
 ```
@@ -41,6 +44,7 @@ The preceding example:
 
 * Configures Kestrel's endpoints in `ConfigureKestrel`.
 * Calls <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenUnixSocket*> to listen to a [Unix domain socket (UDS)](https://wikipedia.org/wiki/Unix_domain_socket) with the specified path.
+* Creates a UDS endpoint that isn't configured to use HTTPS. For information about enabling HTTPS, see [Kestrel HTTPS endpoint configuration](xref:fundamentals/servers/kestrel/endpoints#listenoptionsusehttps).
 
 Kestrel has built-in support for UDS endpoints. UDS are supported on Linux, macOS and [modern versions of Windows](https://devblogs.microsoft.com/commandline/af_unix-comes-to-windows/).
 

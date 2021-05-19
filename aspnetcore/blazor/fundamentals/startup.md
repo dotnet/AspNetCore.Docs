@@ -143,8 +143,8 @@ The `loadBootResource` function can also return:
   * [Adjust the reconnection retry count and interval](xref:blazor/fundamentals/signalr#adjust-the-reconnection-retry-count-and-interval)
   * [Hide or replace the reconnection display](xref:blazor/fundamentals/signalr#hide-or-replace-the-reconnection-display)
   * [Disconnect the Blazor circuit from the client](xref:blazor/fundamentals/signalr#disconnect-the-blazor-circuit-from-the-client)
-* [Globalization and localization: Set the culture in a Blazor WebAssembly app](xref:blazor/globalization-localization#blazor-webAssembly)
-* [JS interop: Inject a script after Blazor starts](xref:blazor/js-interop/index#[inject-a-script-after-blazor-starts)
+* [Globalization and localization: Set the culture in a Blazor WebAssembly app](xref:blazor/globalization-localization#blazor-webassembly)
+* [JS interop: Inject a script after Blazor starts](xref:blazor/js-interop/index#inject-a-script-after-blazor-starts)
 * [Host and deploy: Blazor WebAssembly: Compression](xref:blazor/host-and-deploy/webassembly#compression)
 
 ::: moniker-end
@@ -157,7 +157,7 @@ The `loadBootResource` function can also return:
   * [Modify the reconnection handler](xref:blazor/fundamentals/signalr#modify-the-reconnection-handler)
   * [Adjust the reconnection retry count and interval](xref:blazor/fundamentals/signalr#adjust-the-reconnection-retry-count-and-interval)
   * [Hide or replace the reconnection display](xref:blazor/fundamentals/signalr#hide-or-replace-the-reconnection-display)
-* [JS interop: Inject a script after Blazor starts](xref:blazor/js-interop/index#[inject-a-script-after-blazor-starts)
+* [JS interop: Inject a script after Blazor starts](xref:blazor/js-interop/index#inject-a-script-after-blazor-starts)
 * [Host and deploy: Blazor WebAssembly: Compression](xref:blazor/host-and-deploy/webassembly#compression)
 
 ::: moniker-end

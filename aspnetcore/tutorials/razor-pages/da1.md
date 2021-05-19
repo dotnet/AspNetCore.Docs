@@ -27,7 +27,7 @@ Open the *Models/Movie.cs* file and add the highlighted lines shown in the follo
 In the previous code:
 
 * The `[Column(TypeName = "decimal(18, 2)")]` data annotation enables Entity Framework Core to correctly map `Price` to currency in the database. For more information, see [Data Types](/ef/core/modeling/relational/data-types).
-* The [[Display]](xref:Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.DisplayMetadata) attribute specifies the display name of a field. In the preceding code, "Release Date" instead of "ReleaseDate".
+* The [[Display]](xref:System.ComponentModel.DataAnnotations.DisplayAttribute) attribute specifies the display name of a field. In the preceding code, "Release Date" instead of "ReleaseDate".
 * The [[DataType]](xref:System.ComponentModel.DataAnnotations.DataTypeAttribute) attribute specifies the type of the data (`Date`). The time information stored in the field isn't displayed.
 
 [DataAnnotations](/aspnet/mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-6) is covered in the next tutorial.

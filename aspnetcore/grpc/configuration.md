@@ -13,7 +13,9 @@ uid: grpc/configuration
 
 ## Configure services options
 
-gRPC services are configured with `AddGrpc` in *Startup.cs*. The following table describes options for configuring gRPC services:
+gRPC services are configured with `AddGrpc` in *Startup.cs*. Configuration options are in the [Grpc.AspNetCore.Server](https://www.nuget.org/packages/Grpc.AspNetCore.Server) package.
+
+The following table describes options for configuring gRPC services:
 
 | Option | Default Value | Description |
 | ------ | ------------- | ----------- |
@@ -36,7 +38,9 @@ Options for a single service override the global options provided in `AddGrpc` a
 
 ## Configure client options
 
-gRPC client configuration is set on `GrpcChannelOptions`. The following table describes options for configuring gRPC channels:
+gRPC client configuration is set on `GrpcChannelOptions`. Configuration options are in the [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client) package.
+
+The following table describes options for configuring gRPC channels:
 
 | Option | Default Value | Description |
 | ------ | ------------- | ----------- |

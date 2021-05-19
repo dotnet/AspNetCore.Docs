@@ -107,6 +107,8 @@ Alternatively, Kestrel endpoints can be configured in *Program.cs*:
 
 [!code-csharp[](~/grpc/aspnetcore/sample/Program.cs?highlight=7&name=snippet)]
 
+For more information on enabling TLS with Kestrel, see [Kestrel HTTPS endpoint configuration](xref:fundamentals/servers/kestrel/endpoints#listenoptionsusehttps).
+
 ### Protocol negotiation
 
 TLS is used for more than securing communication. The TLS [Application-Layer Protocol Negotiation (ALPN)](https://tools.ietf.org/html/rfc7301#section-3) handshake is used to negotiate the connection protocol between the client and the server when an endpoint supports multiple protocols. This negotiation determines whether the connection uses HTTP/1.1 or HTTP/2.
@@ -160,6 +162,8 @@ In production, TLS must be explicitly configured. In the following *appsettings.
 Alternatively, Kestrel endpoints can be configured in *Program.cs*:
 
 [!code-csharp[](~/grpc/aspnetcore/sample/Program.cs?highlight=7&name=snippet)]
+
+For more information on enabling TLS with Kestrel, see [Kestrel HTTPS endpoint configuration](xref:fundamentals/servers/kestrel#listenoptionsusehttps).
 
 ### Protocol negotiation
 
