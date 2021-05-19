@@ -111,8 +111,8 @@ Force the app to initialize, calling the methods in the `Startup` class, so the 
 
   ![Contextual menu](working-with-sql/_static/stopIIS.png)
 
-* If running VS in non-debug mode, press F5 to run in debug mode.
-* If running VS in debug mode, stop the debugger and press F5.
+    * If you were running VS in non-debug mode, press F5 to run in debug mode
+    * If you were running VS in debug mode, stop the debugger and press F5
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
