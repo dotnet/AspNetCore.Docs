@@ -132,6 +132,8 @@ All options are named instances. <xref:Microsoft.Extensions.Options.IConfigureOp
 
 `OptionsBuilder` is used in the [Options validation](#val) section.
 
+See [Use AddOptions to configure custom repository](xref:security/data-protection/using-data-protection#add-opt) for information adding a custom repository.
+
 ## Use DI services to configure options
 
 Services can be accessed from dependency injection while configuring options in two ways:

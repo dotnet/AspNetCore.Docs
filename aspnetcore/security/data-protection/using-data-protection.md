@@ -33,6 +33,10 @@ When you create a protector you must provide one or more [Purpose Strings](xref:
 >
 >A call to `Unprotect` will throw CryptographicException if the protected payload cannot be verified or deciphered. Some components may wish to ignore errors during unprotect operations; a component which reads authentication cookies might handle this error and treat the request as if it had no cookie at all rather than fail the request outright. Components which want this behavior should specifically catch CryptographicException instead of swallowing all exceptions.
 
+<a name="add-opt"></a>
+
+## Use AddOptions to configure custom repository
+
 Consider the following code which uses a service provider because the implementation of `IXmlRepository` has a dependency on a singleton service:
 
 ```csharp
