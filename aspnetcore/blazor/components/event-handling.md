@@ -19,7 +19,7 @@ Specify delegate event handlers in Razor component markup with [`@on{DOM EVENT}=
 For event handling:
 
 * Asynchronous delegate event handlers that return a <xref:System.Threading.Tasks.Task> are supported.
-* Delegate event handlers automatically trigger a UI render, so there's no need to manually call [StateHasChanged](xref:blazor/components/lifecycle#state-changes-statehaschanged).
+* Delegate event handlers automatically trigger a UI render, so there's no need to manually call [`StateHasChanged`](xref:blazor/components/lifecycle#state-changes-statehaschanged).
 * Exceptions are logged.
 
 The following code:

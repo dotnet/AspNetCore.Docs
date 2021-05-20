@@ -39,7 +39,7 @@
 
         var jsUnmarshalledReference = unmarshalledRuntime
             .InvokeUnmarshalled<IJSUnmarshalledObjectReference>(
-                "returnJSObjectReference");
+                "returnObjectReference");
 
         callResultForBoolean = 
             jsUnmarshalledReference.InvokeUnmarshalled<InteropStruct, bool>(
@@ -52,7 +52,7 @@
 
         var jsUnmarshalledReference = unmarshalledRuntime
             .InvokeUnmarshalled<IJSUnmarshalledObjectReference>(
-                "returnJSObjectReference");
+                "returnObjectReference");
 
         callResultForString = 
             jsUnmarshalledReference.InvokeUnmarshalled<InteropStruct, string>(
