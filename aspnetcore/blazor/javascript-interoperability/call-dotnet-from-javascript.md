@@ -5,7 +5,7 @@ description: Learn how to invoke .NET methods from JavaScript functions in Blazo
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc, devx-track-js 
-ms.date: 05/19/2021
+ms.date: 05/20/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR, JS, Promise]
 uid: blazor/js-interop/call-dotnet-from-javascript
 ---
@@ -15,27 +15,40 @@ This article covers invoking .NET methods from JavaScript (JS). For information 
 
 ## Invoke a static .NET method
 
-To invoke a static .NET method from JavaScript (JS), use the JS functions `DotNet.invokeMethod` or `DotNet.invokeMethodAsync`. Pass in the name of the assembly containing the method, the identifier of the static .NET method, and any arguments. In the following example, the `{ASSEMBLY NAME}` placeholder is the app's assembly name and the `{.NET METHOD ID}` placeholder is the .NET method identifier:
+To invoke a static .NET method from JavaScript (JS), use the JS functions `DotNet.invokeMethod` or `DotNet.invokeMethodAsync`. Pass in the name of the assembly containing the method, the identifier of the static .NET method, and any arguments.
+
+In the following example:
+
+* The `{ASSEMBLY NAME}` placeholder is the app's assembly name.
+* The `{.NET METHOD ID}` placeholder is the .NET method identifier.
+* The `{ARGUMENTS}` placeholder are optional, comma-separated arguments to pass to the method, each of which must be JSON-serializable.
 
 ```javascript
-DotNet.invokeMethodAsync('{ASSEMBLY NAME}', '{.NET METHOD ID}');
+DotNet.invokeMethodAsync('{ASSEMBLY NAME}', '{.NET METHOD ID}', {ARGUMENTS});
 ```
 
-The asynchronous function (`invokeMethodAsync`) is preferred to support Blazor Server scenarios.
+`DotNet.invokeMethod` returns the result of the operation. `DotNet.invokeMethodAsync` returns a [JS Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) representing the result of the operation.
 
-The .NET method must be public, static, and have the [`[JSInvokable]` attribute](xref:Microsoft.JSInterop.JSInvokableAttribute). In the following example, the `{TYPE}` placeholder indicates the return type and the `{.NET METHOD ID}` placeholder is the method identifier:
+The asynchronous function (`invokeMethodAsync`) is preferred over `invokeMethod` to support Blazor Server scenarios.
+
+The .NET method must be public, static, and have the [`[JSInvokable]` attribute](xref:Microsoft.JSInterop.JSInvokableAttribute).
+
+In the following example:
+
+* The `{<T>}` placeholder indicates the return type, which is only required for methods that return a value.
+* The `{.NET METHOD ID}` placeholder is the method identifier.
 
 ```razor
 @code {
     [JSInvokable]
-    public static Task<{TYPE}> {.NET METHOD ID}()
+    public static Task{<T>} {.NET METHOD ID}()
     {
         ...
     }
 }
 ```
 
-Calling open generic methods isn't currently supported.
+Calling open generic methods isn't supported with static .NET methods but is supported with [instance methods](#invoke-an-instance-net-method), which are described later in this article.
 
 In the following `CallDotNetExample1` component, the `ReturnArrayAsync` C# method returns an `int` array. The [`[JSInvokable]` attribute](xref:Microsoft.JSInterop.JSInvokableAttribute) is applied to the method, which makes the method invokable by JS.
 
@@ -82,18 +95,37 @@ By default, the .NET method identifier for the JS call is the .NET method name, 
 [JSInvokable("DifferentMethodName")]
 ```
 
-In the call to `DotNet.invokeMethodAsync`, call `DifferentMethodName` to execute the `ReturnArrayAsync` .NET method:
+In the call to `DotNet.invokeMethod` or `DotNet.invokeMethodAsync`, call `DifferentMethodName` to execute the `ReturnArrayAsync` .NET method:
+
+```javascript
+DotNet.invokeMethod('BlazorSample', 'DifferentMethodName');
+```
 
 ```javascript
 DotNet.invokeMethodAsync('BlazorSample', 'DifferentMethodName');
 ```
+
+> [!NOTE]
+> The `ReturnArrayAsync` method example in this section returns the result of a <xref:System.Threading.Tasks.Task> without the use of explicit C# [`async`](/dotnet/csharp/language-reference/keywords/async) and [`await`](/dotnet/csharp/language-reference/operators/await) keywords. Coding methods with [`async`](/dotnet/csharp/language-reference/keywords/async) and [`await`](/dotnet/csharp/language-reference/operators/await) is typical of methods that use the [`await`](/dotnet/csharp/language-reference/operators/await) keyword to return the value of asynchronous operations.
+>
+> `ReturnArrayAsync` method composed with [`async`](/dotnet/csharp/language-reference/keywords/async) and [`await`](/dotnet/csharp/language-reference/operators/await) keywords:
+>
+> ```csharp
+> [JSInvokable]
+> public static async Task<int[]> ReturnArrayAsync()
+> {
+>     return await Task.FromResult(new int[] { 1, 2, 3 });
+> }
+> ```
+>
+> For more information, see [Asynchronous programming with async and await](/dotnet/csharp/programming-guide/concepts/async/) in the C# guide.
 
 ## Invoke an instance .NET method
 
 To invoke an instance .NET method from JavaScript (JS):
 
 * Pass the .NET instance by reference to JS by wrapping the instance in a <xref:Microsoft.JSInterop.DotNetObjectReference> and calling <xref:Microsoft.JSInterop.DotNetObjectReference.Create%2A> on it.
-* Invoke a .NET instance method from JS using `DotNet.invokeMethod` or `DotNet.invokeMethodAsync`. The .NET instance can also be passed as an argument when invoking other .NET methods from JS.
+* Invoke a .NET instance method from JS using `invokeMethod` or `invokeMethodAsync` from the passed <xref:Microsoft.JSInterop.DotNetObjectReference>. The .NET instance can also be passed as an argument when invoking other .NET methods from JS.
 * Dispose of the <xref:Microsoft.JSInterop.DotNetObjectReference>.
 
 When the **`Trigger .NET instance method`** button is selected in the following `CallDotNetExample2` component, `JsInteropClasses3.CallHelloHelperSayHello` is called with the value of `name`.
@@ -182,7 +214,7 @@ To avoid a memory leak and allow garbage collection, the .NET object reference c
 
 The output displayed by the `CallDotNetExample3` component is `Hello, Amy Pond!` when the name `Amy Pond` is provided in the `Name` field.
 
-In the preceding `CallDotNetExample3` component, the .NET object reference is disposed. If a class or component doesn't dispose the <xref:Microsoft.JSInterop.DotNetObjectReference>, dispose it from the client by calling `dispose`:
+In the preceding `CallDotNetExample3` component, the .NET object reference is disposed. If a class or component doesn't dispose the <xref:Microsoft.JSInterop.DotNetObjectReference>, dispose it from the client by calling `dispose` on the passed <xref:Microsoft.JSInterop.DotNetObjectReference>:
 
 ```javascript
 window.jsFunction = (dotnetHelper) => {
@@ -191,7 +223,10 @@ window.jsFunction = (dotnetHelper) => {
 }
 ```
 
-In the preceding example, the `{ASSEMBLY NAME}` placeholder is the app's assembly name and the `{.NET METHOD ID}` placeholder is the .NET method identifier.
+In the preceding example:
+
+* The `{ASSEMBLY NAME}` placeholder is the app's assembly name.
+* The `{.NET METHOD ID}` placeholder is the .NET method identifier.
 
 ## Invoke a component instance .NET method
 
@@ -319,7 +354,9 @@ Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or
 </script>
 ```
 
-The `ListItem` component is a shared component that can be used any number of times in a parent component. Each `ListItem` component instance establishes an instance of `MessageUpdateInvokeHelper` with an <xref:System.Action> set to its `UpdateMessage` method. When its **`InteropCall`** button is selected, `updateMessageCaller3` is invoked with a created <xref:Microsoft.JSInterop.DotNetObjectReference> for the `MessageUpdateInvokeHelper` instance.
+The following `ListItem` component is a shared component that can be used any number of times in a parent component and creates list items (`<li>...</li>`) for an HTML list (`<ul>...</ul>` or `<ol>...</ol>`). Each `ListItem` component instance establishes an instance of `MessageUpdateInvokeHelper` with an <xref:System.Action> set to its `UpdateMessage` method.
+
+When a `ListItem` component's **`InteropCall`** button is selected, `updateMessageCaller3` is invoked with a created <xref:Microsoft.JSInterop.DotNetObjectReference> for the `MessageUpdateInvokeHelper` instance. This permits the framework to call `UpdateMessageCaller3` on that `ListItem`'s `MessageUpdateInvokeHelper` instance. The passed <xref:Microsoft.JSInterop.DotNetObjectReference> is disposed in JS (`dotnetHelper.dispose()`).
 
 `Shared/ListItem.razor`:
 

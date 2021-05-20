@@ -28,7 +28,7 @@
     public async Task TriggerDotNetInstanceMethod()
     {
         objRef = DotNetObjectReference.Create(new HelloHelper(name));
-        result = await JS.InvokeAsync<string>("sayHelloJs", objRef);
+        result = await JS.InvokeAsync<string>("sayHello", objRef);
     }
 
     public void Dispose()
