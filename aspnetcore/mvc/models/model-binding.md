@@ -406,7 +406,7 @@ For `Dictionary` targets, model binding looks for matches to *parameter_name* or
 
 ## Constructor binding and record types
 
-Model binding requires that complex types have a parameterless constructor. Both `System.Text.Json` and `Newtonsoft.Json` based input formatters support deserialization of classes that don't have a parameterless constructor. 
+Model binding requires that complex types have a parameterless constructor. Both `System.Text.Json` and `Newtonsoft.Json` based input formatters support deserialization of classes that don't have a parameterless constructor.
 
 C# 9 introduces record types, which are a great way to succinctly represent data over the network. ASP.NET Core adds support for model binding and validating record types with a single constructor:
 
@@ -436,6 +436,86 @@ Age: <input asp-for="Age" />
 ```
 
 When validating record types, the runtime searches for binding and validation metadata specifically on parameters rather than on properties.
+
+The framework allows binding to and validating record types:
+
+```csharp
+public record Person([Required] string Name, [Range(0, 100)] int Age);
+```
+
+For the preceding to work, the type must:
+
+* Be a record type.
+* Have exactly one public constructor.
+* Contain parameters that have a property with the same name and type. The names must not differ by case.
+
+### POCOs without parameterless constructors
+
+POCOs that do not have parameterless constructors can't be bound.
+
+The following code results in an exception saying that the type must have a parameterless constructor:
+
+```csharp
+public class Person(string Name)
+
+public record Person([Required] string Name, [Range(0, 100)] int Age)
+{
+   public Person(string Name) : this (Name, 0);
+}
+```
+
+### Record types with manually authored constructors
+
+Record types with manually authored constructors that look like primary constructors work
+
+```csharp
+public record Person
+{
+   public Person([Required] string Name, [Range(0, 100)] int Age) => (this.Name, this.Age) = (Name, Age);
+
+   public string Name { get; set; }
+   public int Age { get; set; }
+}
+```
+
+### Record types, validation and binding metadata
+
+For record types, validation and binding metadata on parameters is used. Any metadata on properties is ignored
+
+```csharp
+public record Person (string Name, int Age)
+{
+   [BindProperty(Name = "SomeName")] // This does not get used
+   [Required] // This does not get used
+   public string Name { get; init; }
+}
+```
+
+### Validation and metadata
+
+Validation uses metadata on the parameter but uses the property to read the value. In the ordinary case with primary constructors, the two would be identical. However, there are ways to defeat it:
+
+```csharp
+public record Person([Required] string Name)
+{
+   private readonly string _name;
+   public Name { get; init => _name = value ?? string.Empty; } // Now this property is never null. However this object could have been constructed as `new Person(null);`
+}
+```
+
+### TryUpdateModel does not update parameters on a record type
+
+```csharp
+public record Person(string Name)
+{
+   public int Age { get; set; }
+}
+
+var person = new Person("initial-name");
+TryUpdateModel(person, ...);
+```
+
+In this case, MVC will not attempt to bind `Name` again. However, `Age` is allowed to be updated
 
 ::: moniker-end
 

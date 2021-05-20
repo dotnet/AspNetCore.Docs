@@ -49,6 +49,35 @@
             myElement.classList.add(className);
         }
     </script>
+    <script>
+        window.returnArrayAsync = () => {
+            DotNet.invokeMethodAsync('BlazorSample', 'ReturnArrayAsync')
+                .then(data => {
+                    console.log(data);
+                });
+        };
+    </script>
+    <script>
+        window.sayHello = (dotNetHelper) => {
+            return dotNetHelper.invokeMethodAsync('GetHelloMessage');
+        };
+    </script>
+    <script>
+        window.updateMessageCaller1 = () => {
+            DotNet.invokeMethodAsync('BlazorSample', 'UpdateMessageCaller1');
+        };
+    </script>
+    <script>
+        window.updateMessageCaller2 = (name) => {
+            DotNet.invokeMethodAsync('BlazorSample', 'UpdateMessageCaller2', name);
+        };
+    </script>
+    <script>
+        window.updateMessageCaller3 = (dotnetHelper) => {
+            dotnetHelper.invokeMethodAsync('BlazorSample', 'UpdateMessageCaller3');
+            dotnetHelper.dispose();
+        }
+    </script>
 </body>
 
 </html>

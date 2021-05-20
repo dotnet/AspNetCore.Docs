@@ -1,0 +1,35 @@
+@page "/call-dotnet-example-5"
+
+<h1>Call .NET Example 5</h1>
+
+<p>
+    <button onclick="updateMessageCaller2('Sarah Jane')">
+        Call component instance .NET method
+    </button>
+</p>
+
+<p>
+    @message
+</p>
+
+@code {
+    private static Action<string> action;
+    private string message = "Select the button.";
+
+    protected override void OnInitialized()
+    {
+        action = UpdateMessage;
+    }
+
+    private void UpdateMessage(string name)
+    {
+        message = $"{name}, UpdateMessage Called!";
+        StateHasChanged();
+    }
+
+    [JSInvokable]
+    public static void UpdateMessageCaller2(string name)
+    {
+        action.Invoke(name);
+    }
+}

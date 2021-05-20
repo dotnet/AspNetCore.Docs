@@ -1,0 +1,31 @@
+@page "/call-dotnet-example-2"
+@inject IJSRuntime JS
+
+<h1>Call .NET Example 2</h1>
+
+<p>
+    <label>
+        Name: <input @bind="name" />
+    </label>
+</p>
+
+<p>
+    <button type="button" @onclick="TriggerDotNetInstanceMethod">
+        Trigger .NET instance method
+    </button>
+</p>
+
+<p>
+    @result
+</p>
+
+@code {
+    public string name;
+    public string result;
+
+    public async Task TriggerDotNetInstanceMethod()
+    {
+        var jsInteropClasses = new JsInteropClasses3(JS);
+        result = await jsInteropClasses.CallHelloHelperSayHello(name);
+    }
+}
