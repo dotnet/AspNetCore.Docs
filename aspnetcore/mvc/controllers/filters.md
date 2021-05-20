@@ -610,7 +610,7 @@ Middleware filters run at the same stage of the filter pipeline as Resource filt
 
 ## Thread safety
 
-When calling `Add` on a singleton with a new instance of the filter, instead if a type, the filter is not thread-safe.
+When passing an *instance* of a filter into `Add`, instead of its `Type`, the filter is a singleton and is **not** thread-safe.
 
 ## Next actions
 
@@ -1137,7 +1137,7 @@ Middleware filters run at the same stage of the filter pipeline as Resource filt
 
 ## Thread safety
 
-When calling `Add` on a singleton with a new instance of the filter, instead if a type, the filter is not thread-safe.
+When passing an *instance* of a filter into `Add`, instead of its `Type`, the filter is a singleton and is **not** thread-safe.
 
 ## Next actions
 
