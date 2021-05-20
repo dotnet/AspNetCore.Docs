@@ -769,11 +769,28 @@ Placeholders:
 * `{PUBLISH OUTPUT FOLDER}`: The path to the app's `publish` folder or location where the app is published for deployment.
 
 > [!NOTE]
-> To clone the `dotnet/AspNetCore.Docs` GitHub repository to a system that uses the [Bitdefender](https://www.bitdefender.com) virus scanner, add an exception to Bitdefender for the `integrity.ps1` script. Add the exception to Bitdefender before cloning the repo to avoid having the script quarantined by the virus scanner. The following example is a typical path to the script for the cloned repo on a Windows system. Adjust the path as needed. The placeholder `{USER}` is the user's path segment.
+> When cloning the `dotnet/AspNetCore.Docs` GitHub repository, the `integrity.ps1` script might be quarantined by [Bitdefender](https://www.bitdefender.com) or another virus scanner present on the system. Usually, the file is trapped by a virus scanner's *heuristic scanning* technology, which merely looks for patterns in files that might indicate the presence of malware. To prevent the virus scanner from quarantining the file, add an exception to the virus scanner prior to cloning the repo. The following example is a typical path to the script on a Windows system. Adjust the path as needed for other systems. The placeholder `{USER}` is the user's path segment.
 >
 > ```
 > C:\Users\{USER}\Documents\GitHub\AspNetCore.Docs\aspnetcore\blazor\host-and-deploy\webassembly\_samples\integrity.ps1
 > ```
+>
+> **Warning**: *Creating virus scanner exeptions is dangerous and should only be performed when you're certain that the file is safe.*
+>
+> Comparing the checksum of a file to a valid checksum value doesn't guaratee file safety, but modifying a file in a way that maintains a checksum value isn't trivial for malicious users. Therefore, checksums are useful as a general security approach. Compare the checksum of the local `integrity.ps1` file to one of the following values:
+>
+> * SHA256: `6b0dc7aba5d8489136bb2969036432597615b11b4e432535e173ca077a0449c4`
+> * MD5: `f0c800a4c72604bd47f3c19f5f0bb4f4`
+>
+> Obtain the file's checksum on Windows OS with the following command. Provide the path and file name for the `{PATH AND FILE NAME}` placeholder and indicate the type of checksum to produce for the `{SHA512|MD5}` placeholder, either `SHA256` or `MD5`:
+>
+> ```console
+> CertUtil -hashfile {PATH AND FILE NAME} {SHA256|MD5}
+> ```
+> 
+> If you have any cause for concern that checksum validation isn't secure enough in your environment, consult your organization's security leadership for guidance.
+>
+> For more information, see [Understanding malware & other threats](/windows/security/threat-protection/intelligence/understanding-malware).
 
 ### Disable integrity checking for non-PWA apps
 
