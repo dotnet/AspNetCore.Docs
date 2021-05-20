@@ -56,6 +56,10 @@ The following code provides the `IXmlRepository` implementation without having t
 
 The preceding code removes the call to `GetService` and hides `IConfigureOptions<T>`.
 
+The following code shows the custom XML repository:
+
 [!code-csharp[](~/security/data-protection/using-data-protection/samples/CustomXMLrepo/CustomXMLrepo/CustomXmlRepository.cs)]
+
+The following code shows the XmlKey class:
 
 [!code-csharp[](~/security/data-protection/using-data-protection/samples/CustomXMLrepo/CustomXMLrepo/XmlKey.cs?name=snippet)]
