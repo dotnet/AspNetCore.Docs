@@ -25,7 +25,8 @@ namespace CustomXMLrepo.Pages
         public async Task<Microsoft.AspNetCore.Mvc.ContentResult> OnGetAsync()
         {
             XmlKey = await _context.XmlKeys.ToListAsync();
-            return Content("Key Count = " + XmlKey.Count().ToString());
+            var count = XmlKey.Count();
+            return Content($"Key Count = {count}");
         }
     }
 }
