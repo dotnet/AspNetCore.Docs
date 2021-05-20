@@ -52,12 +52,10 @@ The preceding code logs the following warning:
 
 The following code provides the `IXmlRepository` implementation without having to build the service provider and therefore making additional copies of singleton services:
 
-```csharp
-services.AddOptions<KeyManagementOptions>()
-        .Configure<IMyDataStore>((options, store) => 
-        {
-            options.XmlRepository = new MyXmlRepository(store);
-        });
-```
+[!code-csharp[](~/security/data-protection/using-data-protection/samples/CustomXMLrepo/CustomXMLrepo/Startup.cs?name=snippet)]
 
 The preceding code removes the call to `GetService` and hides `IConfigureOptions<T>`.
+
+[!code-csharp[](~/security/data-protection/using-data-protection/samples/CustomXMLrepo/CustomXMLrepo/CustomXmlRepository.cs)]
+
+[!code-csharp[](~/security/data-protection/using-data-protection/samples/CustomXMLrepo/CustomXMLrepo/XmlKey.cs?name=snippet)]
