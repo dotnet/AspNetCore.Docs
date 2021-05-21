@@ -1,22 +1,3 @@
-@code {
-    private class Setting
-    {
-        public string SettingName { get; set; }
-        public string SettingValue { get; set; }
-    }
-
-    private interface IUserService
-    {
-        public string Name { get; set; }
-    }
-
-    private interface ISettingService
-    {
-        public IList<Setting> GetSettings();
-    }
-}
-
-<!-- <snippet> -->
 @page "/preferences"
 @using Microsoft.Extensions.DependencyInjection
 @inherits OwningComponentBase
@@ -39,5 +20,20 @@
         UserService = ScopedServices.GetRequiredService<IUserService>();
         SettingService = ScopedServices.GetRequiredService<ISettingService>();
     }
+
+    private class Setting
+    {
+        public string SettingName { get; set; }
+        public string SettingValue { get; set; }
+    }
+
+    private interface IUserService
+    {
+        public string Name { get; set; }
+    }
+
+    private interface ISettingService
+    {
+        public IList<Setting> GetSettings();
+    }
 }
-<!-- </snippet> -->

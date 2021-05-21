@@ -1019,9 +1019,9 @@ A component in the client app can make gRPC calls using the gRPC client (`Pages/
 
 ```razor
 @page "/grpc"
-@attribute [Authorize]
 @using Microsoft.AspNetCore.Authorization
 @using {APP ASSEMBLY}.Shared
+@attribute [Authorize]
 @inject Greeter.GreeterClient GreeterClient
 
 <h1>Invoke gRPC service</h1>

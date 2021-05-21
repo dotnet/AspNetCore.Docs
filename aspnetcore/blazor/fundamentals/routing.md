@@ -93,19 +93,15 @@ Use the <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblie
 
 `App.razor`:
 
-::: moniker range=">= aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/routing/App3.razor?name=snippet)]
-
-::: moniker-end
+```razor
+<Router
+    AppAssembly="@typeof(Program).Assembly"
+    AdditionalAssemblies="new[] { typeof(Component1).Assembly }">
+    @* ... Router component elements ... *@
+</Router>
+```
 
 [!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
-
-::: moniker range="< aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/routing/App3.razor?name=snippet)]
-
-::: moniker-end
 
 ## Route parameters
 
@@ -348,13 +344,13 @@ The following `NavMenu` component creates a [`Bootstrap`](https://getbootstrap.c
 
 ::: moniker range=">= aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Shared/routing/NavMenu.razor?name=snippet&highlight=4,9)]
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Shared/routing/NavMenu.razor?highlight=4,9)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Shared/routing/NavMenu.razor?name=snippet&highlight=4,9)]
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Shared/routing/NavMenu.razor?highlight=4,9)]
 
 ::: moniker-end
 
@@ -420,13 +416,13 @@ Blazor Server is integrated into [ASP.NET Core Endpoint Routing](xref:fundamenta
 
 ::: moniker range=">= aspnetcore-5.0"
 
-[!code-csharp[](~/blazor/common/samples/5.x/BlazorSample_Server/routing/Startup.cs?name=snippet&highlight=5)]
+[!code-csharp[](~/blazor/common/samples/5.x/BlazorSample_Server/routing/Startup.cs?highlight=11)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-[!code-csharp[](~/blazor/common/samples/3.x/BlazorSample_Server/routing/Startup.cs?name=snippet&highlight=5)]
+[!code-csharp[](~/blazor/common/samples/3.x/BlazorSample_Server/routing/Startup.cs?highlight=11)]
 
 ::: moniker-end
 

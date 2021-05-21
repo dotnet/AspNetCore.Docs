@@ -247,13 +247,13 @@ In the `FetchData` component of the Blazor templates, <xref:Microsoft.AspNetCore
 
 ::: moniker range=">= aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_Server/Pages/lifecycle/FetchData.razor?name=snippet&highlight=9,21,25)]
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_Server/Pages/lifecycle/FetchData.razor?highlight=9,21,25)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_Server/Pages/lifecycle/FetchData.razor?name=snippet&highlight=9,21,25)]
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_Server/Pages/lifecycle/FetchData.razor?highlight=9,21,25)]
 
 ::: moniker-end
 
@@ -346,11 +346,67 @@ Unsubscribe event handlers from .NET events. The following [Blazor form](xref:bl
 
 * Private field and lambda approach
 
-  [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/lifecycle/EventHandlerDisposal1.razor?name=snippet&highlight=24,29)]
+  ```razor
+  @implements IDisposable
+
+  <EditForm EditContext="@editContext">
+      ...
+      <button type="submit" disabled="@formInvalid">Submit</button>
+  </EditForm>
+
+  @code {
+      // ...
+      private EventHandler<FieldChangedEventArgs> fieldChanged;
+
+      protected override void OnInitialized()
+      {
+          editContext = new(model);
+
+          fieldChanged = (_, __) =>
+          {
+              // ...
+          };
+
+          editContext.OnFieldChanged += fieldChanged;
+      }
+
+      public void Dispose()
+      {
+          editContext.OnFieldChanged -= fieldChanged;
+      }
+  }
+  ```
 
 * Private method approach
 
-  [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/lifecycle/EventHandlerDisposal2.razor?name=snippet&highlight=16,26)]
+  ```razor
+  @implements IDisposable
+
+  <EditForm EditContext="@editContext">
+      ...
+      <button type="submit" disabled="@formInvalid">Submit</button>
+  </EditForm>
+
+  @code {
+      // ...
+
+      protected override void OnInitialized()
+      {
+          editContext = new(model);
+          editContext.OnFieldChanged += HandleFieldChanged;
+      }
+
+      private void HandleFieldChanged(object sender, FieldChangedEventArgs e)
+      {
+          // ...
+      }
+
+      public void Dispose()
+      {
+          editContext.OnFieldChanged -= HandleFieldChanged;
+      }
+  }
+  ```
 
 ::: moniker-end
 
@@ -358,11 +414,67 @@ Unsubscribe event handlers from .NET events. The following [Blazor form](xref:bl
 
 * Private field and lambda approach
 
-  [!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/lifecycle/EventHandlerDisposal1.razor?name=snippet&highlight=24,29)]
+  ```razor
+  @implements IDisposable
+
+  <EditForm EditContext="@editContext">
+      ...
+      <button type="submit" disabled="@formInvalid">Submit</button>
+  </EditForm>
+
+  @code {
+      // ...
+      private EventHandler<FieldChangedEventArgs> fieldChanged;
+
+      protected override void OnInitialized()
+      {
+          editContext = new EditContext(model);
+
+          fieldChanged = (_, __) =>
+          {
+              // ...
+          };
+
+          editContext.OnFieldChanged += fieldChanged;
+      }
+
+      public void Dispose()
+      {
+          editContext.OnFieldChanged -= fieldChanged;
+      }
+  }
+  ```
 
 * Private method approach
 
-  [!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/lifecycle/EventHandlerDisposal2.razor?name=snippet&highlight=16,26)]
+  ```razor
+  @implements IDisposable
+
+  <EditForm EditContext="@editContext">
+      ...
+      <button type="submit" disabled="@formInvalid">Submit</button>
+  </EditForm>
+
+  @code {
+      // ...
+
+      protected override void OnInitialized()
+      {
+          editContext = new EditContext(model);
+          editContext.OnFieldChanged += HandleFieldChanged;
+      }
+
+      private void HandleFieldChanged(object sender, FieldChangedEventArgs e)
+      {
+          // ...
+      }
+
+      public void Dispose()
+      {
+          editContext.OnFieldChanged -= HandleFieldChanged;
+      }
+  }
+  ```
 
 ::: moniker-end
 

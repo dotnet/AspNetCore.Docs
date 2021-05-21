@@ -421,8 +421,8 @@ In the following example, no event handler added to the component triggers a rer
 
 ```razor
 @page "/handle-click-1"
-@implements IHandleEvent
 @using Microsoft.Extensions.Logging
+@implements IHandleEvent
 @inject ILogger<HandleClick1> Logger
 
 <p>
