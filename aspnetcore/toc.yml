@@ -349,6 +349,8 @@
           items:
             - name: Overview
               uid: blazor/components/index
+            - name: Layouts
+              uid: blazor/components/layouts
             - name: Cascading values and parameters
               uid: blazor/components/cascading-values-and-parameters
             - name: Data binding
@@ -371,8 +373,6 @@
               uid: blazor/components/class-libraries
         - name: Globalization and localization
           uid: blazor/globalization-localization
-        - name: Layouts
-          uid: blazor/layouts
         - name: Forms and validation
           uid: blazor/forms-validation
         - name: File uploads
@@ -482,9 +482,9 @@
             - name: InputTextArea
               href: blazor/forms-validation.md#built-in-form-components
             - name: LayoutView
-              href: blazor/layouts.md#apply-a-layout-to-arbitrary-content-layoutview-component
+              href: blazor/components/layouts.md#apply-a-layout-to-arbitrary-content-layoutview-component
             - name: MainLayout
-              href: blazor/layouts.md#mainlayout-component
+              href: blazor/components/layouts.md#mainlayout-component
             - name: NavLink
               href: blazor/fundamentals/routing.md#navlink-and-navmenu-components
             - name: NavMenu

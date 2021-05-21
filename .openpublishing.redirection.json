@@ -832,7 +832,7 @@
         },
         {
             "source_path": "aspnetcore/razor-components/layouts.md",
-            "redirect_url": "/aspnet/core/blazor/layouts",
+            "redirect_url": "/aspnet/core/blazor/components/layouts",
             "redirect_document_id": false
         },
         {
@@ -1147,6 +1147,11 @@
         {
             "source_path": "aspnetcore/blazor/call-dotnet-from-javascript.md",
             "redirect_url": "/aspnet/core/blazor/javascript-interoperability/call-dotnet-from-javascript",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/blazor/layouts.md",
+            "redirect_url": "/aspnet/core/blazor/components/layouts",
             "redirect_document_id": false
         }
     ]
