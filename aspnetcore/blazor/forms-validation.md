@@ -707,13 +707,13 @@ In the following `FormExample5` component, update the namespace of the **`Shared
 
 ```razor
 @page "/form-example-5"
-@attribute [Authorize]
 @using System.Net
 @using System.Net.Http.Json
 @using Microsoft.AspNetCore.Authorization
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 @using Microsoft.Extensions.Logging
 @using BlazorSample.Shared
+@attribute [Authorize]
 @inject HttpClient Http
 @inject ILogger<FormExample5> Logger
 
@@ -997,8 +997,8 @@ When working with radio buttons in a form, data binding is handled differently t
 
 ```razor
 @using System.Globalization
-@typeparam TValue
 @inherits InputBase<TValue>
+@typeparam TValue
 
 <input @attributes="AdditionalAttributes" type="radio" value="@SelectedValue" 
        checked="@(SelectedValue.Equals(Value))" @onchange="OnChange" />

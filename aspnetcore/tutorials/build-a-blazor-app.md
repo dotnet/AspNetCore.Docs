@@ -227,10 +227,10 @@ At the end of this tutorial, you'll have a working todo list app.
 
    ::: moniker-end
 
-1. Update the `<h3>` header to show a count of the number of todo items that aren't complete (`IsDone` is `false`).
+1. Update the `<h1>` header to show a count of the number of todo items that aren't complete (`IsDone` is `false`).
 
    ```razor
-   <h3>Todo (@todos.Count(todo => !todo.IsDone))</h3>
+   <h1>Todo (@todos.Count(todo => !todo.IsDone))</h1>
    ```
 
 1. The completed `Todo` component (`Pages/Todo.razor`):

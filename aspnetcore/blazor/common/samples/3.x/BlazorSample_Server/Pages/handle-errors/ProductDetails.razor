@@ -14,8 +14,8 @@
 <!-- <snippet> -->
 @page "/product-details/{ProductId:int}"
 @using Microsoft.Extensions.Logging
-@inject IProductRepository ProductRepository
 @inject ILogger<ProductDetails> Logger
+@inject IProductRepository ProductRepository
 
 @if (details != null)
 {

@@ -105,8 +105,8 @@ For example, the following `Chart` component receives stock price data and casca
 `Shared/Chart.razor`:
 
 ```razor
-@typeparam TLineData
 @attribute [CascadingTypeParameter(nameof(TLineData))]
+@typeparam TLineData
 
 ...
 
