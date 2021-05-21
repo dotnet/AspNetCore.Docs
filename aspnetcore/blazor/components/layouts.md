@@ -7,7 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 03/02/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
-uid: blazor/layouts
+uid: blazor/components/layouts
 ---
 # ASP.NET Core Blazor layouts
 

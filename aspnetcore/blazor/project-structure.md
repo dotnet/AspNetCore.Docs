@@ -29,7 +29,7 @@ The Blazor WebAssembly template creates the initial files and directory structur
 ::: moniker range=">= aspnetcore-5.0"
 
 * `Shared` folder: Contains the following shared components and stylesheets:
-  * `MainLayout` component (`MainLayout.razor`): The app's [layout component](xref:blazor/layouts).
+  * `MainLayout` component (`MainLayout.razor`): The app's [layout component](xref:blazor/components/layouts).
   * `MainLayout.razor.css`: Stylesheet for the app's main layout.
   * `NavMenu` component (`NavMenu.razor`): Implements sidebar navigation. Includes the [`NavLink` component](xref:blazor/fundamentals/routing#navlink-and-navmenu-components) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), which renders navigation links to other Razor components. The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component automatically indicates a selected state when its component is loaded, which helps the user understand which component is currently displayed.
   * `NavMenu.razor.css`: Stylesheet for the app's navigation menu.
@@ -40,7 +40,7 @@ The Blazor WebAssembly template creates the initial files and directory structur
 ::: moniker range="< aspnetcore-5.0"
 
 * `Shared` folder: Contains the following shared components:
-  * `MainLayout` component (`MainLayout.razor`): The app's [layout component](xref:blazor/layouts).
+  * `MainLayout` component (`MainLayout.razor`): The app's [layout component](xref:blazor/components/layouts).
   * `NavMenu` component (`NavMenu.razor`): Implements sidebar navigation. Includes the [`NavLink` component](xref:blazor/fundamentals/routing#navlink-and-navmenu-components) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), which renders navigation links to other Razor components. The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component automatically indicates a selected state when its component is loaded, which helps the user understand which component is currently displayed.
   * `SurveyPrompt` component (`SurveyPrompt.razor`): Blazor survey component.
   
@@ -112,7 +112,7 @@ The Blazor Server template creates the initial files and directory structure for
 ::: moniker range=">= aspnetcore-5.0"
 
 * `Shared` folder: Contains the following shared components and stylesheets:
-  * `MainLayout` component (`MainLayout.razor`): The app's [layout component](xref:blazor/layouts).
+  * `MainLayout` component (`MainLayout.razor`): The app's [layout component](xref:blazor/components/layouts).
   * `MainLayout.razor.css`: Stylesheet for the app's main layout.
   * `NavMenu` component (`NavMenu.razor`): Implements sidebar navigation. Includes the [`NavLink` component](xref:blazor/fundamentals/routing#navlink-and-navmenu-components) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), which renders navigation links to other Razor components. The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component automatically indicates a selected state when its component is loaded, which helps the user understand which component is currently displayed.
   * `NavMenu.razor.css`: Stylesheet for the app's navigation menu.
@@ -123,7 +123,7 @@ The Blazor Server template creates the initial files and directory structure for
 ::: moniker range="< aspnetcore-5.0"
 
 * `Shared` folder: Contains the following shared components:
-  * `MainLayout` component (`MainLayout.razor`): The app's [layout component](xref:blazor/layouts).
+  * `MainLayout` component (`MainLayout.razor`): The app's [layout component](xref:blazor/components/layouts).
   * `NavMenu` component (`NavMenu.razor`): Implements sidebar navigation. Includes the [`NavLink` component](xref:blazor/fundamentals/routing#navlink-and-navmenu-components) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), which renders navigation links to other Razor components. The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component automatically indicates a selected state when its component is loaded, which helps the user understand which component is currently displayed.
   * `SurveyPrompt` component (`SurveyPrompt.razor`): Blazor survey component.
   
