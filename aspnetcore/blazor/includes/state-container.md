@@ -46,8 +46,8 @@ services.AddScoped<StateContainer>();
 `Shared/Nested.razor`:
 
 ```razor
-@inject StateContainer StateContainer
 @implements IDisposable
+@inject StateContainer StateContainer
 
 <h2>Nested component</h2>
 
@@ -82,8 +82,8 @@ services.AddScoped<StateContainer>();
 
 ```razor
 @page "/state-container"
-@inject StateContainer StateContainer
 @implements IDisposable
+@inject StateContainer StateContainer
 
 <h1>State Container component</h1>
 
