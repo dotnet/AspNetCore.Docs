@@ -218,24 +218,6 @@ SqliteException: SQLite Error 1: 'no such column: s.FirstName'.
   dotnet ef database update
   ```
 
-  The database update command displays an error like the following example:
-
-  ```text
-  SQLite does not support this migration operation ('AlterColumnOperation'). For more information, see http://go.microsoft.com/fwlink/?LinkId=723262.
-  ```
-
-For this tutorial, the way to get past this error is to delete and re-create the initial migration. For more information, see the SQLite warning note at the top of the [migrations tutorial](xref:data/ef-rp/migrations).
-
-* Delete the *Migrations* folder.
-* Run the following commands to drop the database, create a new initial migration, and apply the migration:
-
-  ```dotnetcli
-  dotnet ef database drop --force
-  dotnet ef migrations add InitialCreate
-  dotnet ef database update
-   
-  ```
-
 * Examine the Student table with a SQLite tool. The column that was `FirstMidName` is now `FirstName`.
 
 ---
