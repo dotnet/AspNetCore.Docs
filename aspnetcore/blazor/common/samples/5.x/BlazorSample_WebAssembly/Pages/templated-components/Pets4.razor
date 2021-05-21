@@ -2,7 +2,6 @@
 
 <h1>Pets</h1>
 
-<!-- <snippet> -->
 <TableTemplate Items="pets" TItem="Pet">
     <TableHeader>
         <th>ID</th>
@@ -13,7 +12,6 @@
         <td>@context.Name</td>
     </RowTemplate>
 </TableTemplate>
-<!-- </snippet> -->
 
 @code {
     private List<Pet> pets = new()

@@ -215,17 +215,17 @@ At the end of this tutorial, you'll have a working todo list app.
 
 1. The title text for each todo item can be made editable, and a checkbox can help the user keep track of completed items. Add a checkbox input for each todo item and bind its value to the `IsDone` property. Change `@todo.Title` to an `<input>` element bound to `todo.Title` with `@bind`:
 
-   ::: moniker range=">= aspnetcore-5.0"
-
-   [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo7.razor?name=snippet&highlight=4-7)]
-
-   ::: moniker-end
-
-   ::: moniker range="< aspnetcore-5.0"
-
-   [!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo7.razor?name=snippet&highlight=4-7)]
-
-   ::: moniker-end
+   ```razor
+   <ul>
+       @foreach (var todo in todos)
+       {
+           <li>
+               <input type="checkbox" @bind="todo.IsDone" />
+               <input @bind="todo.Title" />
+           </li>
+       }
+   </ul>
+   ```
 
 1. Update the `<h1>` header to show a count of the number of todo items that aren't complete (`IsDone` is `false`).
 
