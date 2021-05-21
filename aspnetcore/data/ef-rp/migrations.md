@@ -118,8 +118,7 @@ Migrations creates a *snapshot* of the current data model in *Migrations/SchoolC
 
 Because the snapshot file tracks the state of the data model, a migration cannot be deleted by deleting the `<timestamp>_<migrationname>.cs` file. To back out the most recent migration, use the [`migrations remove`](/ef/core/managing-schemas/migrations/managing#remove-a-migration) command. `migrations remove` deletes the migration and ensures the snapshot is correctly reset. For more information, see [dotnet ef migrations remove](/ef/core/miscellaneous/cli/dotnet#dotnet-ef-migrations-remove).
 
-See [Resetting all migrations
-](/ef/core/miscellaneous/cli/dotnet#resetting-all-migrations) to remove all migrations
+See [Resetting all migrations](/ef/core/managing-schemas/migrations/managing?tabs=dotnet-core-cli#resetting-all-migrations) to remove all migrations.
 
 ## Applying migrations in production
 
