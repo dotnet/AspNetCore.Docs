@@ -39,6 +39,10 @@ ASP.NET Core project templates use Kestrel by default. In *Program.cs*, the
 
 For more information on building the host, see the *Set up a host* and *Default builder settings* sections of <xref:fundamentals/host/generic-host#set-up-a-host>.
 
+## Optional client certificates
+
+See [Optional client certificates](xref:security/authentication/certauth#optional-client-certificates) on nformation for apps that must protect a subset of the app with a certificate. 
+
 ## Additional resources
 
 <a name="endpoint-configuration"></a>
