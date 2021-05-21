@@ -1,17 +1,3 @@
-@code {
-    private class ProductDetail
-    {
-        public string ProductName { get; set; }
-        public string Description { get; set; }
-    }
-
-    private interface IProductRepository
-    {
-        public Task<ProductDetail> GetProductByIdAsync(int id);
-    }
-}
-
-<!-- <snippet> -->
 @page "/product-details/{ProductId:int}"
 @using Microsoft.Extensions.Logging
 @inject ILogger<ProductDetails> Logger
@@ -51,5 +37,15 @@ else
             Logger.LogWarning(ex, "Failed to load product {ProductId}", ProductId);
         }
     }
+
+    private class ProductDetail
+    {
+        public string ProductName { get; set; }
+        public string Description { get; set; }
+    }
+
+    private interface IProductRepository
+    {
+        public Task<ProductDetail> GetProductByIdAsync(int id);
+    }
 }
-<!-- </snippet> -->

@@ -1,9 +1,3 @@
-@code {
-    private string formInvalid;
-    private object model;
-}
-
-<!-- <snippet> -->
 @page "/fetchdata"
 @using BlazorSample.Data
 @inject WeatherForecastService ForecastService
@@ -31,4 +25,3 @@ else
         forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
     }
 }
-<!-- </snippet> -->

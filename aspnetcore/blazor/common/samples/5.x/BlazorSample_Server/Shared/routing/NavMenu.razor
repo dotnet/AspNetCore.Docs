@@ -1,9 +1,3 @@
-@code {
-    private string NavMenuCssClass;
-    private void ToggleNavMenu() {}
-}
-
-<!-- <snippet> -->
 <div class="@NavMenuCssClass" @onclick="@ToggleNavMenu">
     <ul class="nav flex-column">
         <li class="nav-item px-3">
@@ -18,4 +12,8 @@
         </li>
     </ul>
 </div>
-<!-- </snippet> -->
+
+@code {
+    private string NavMenuCssClass;
+    private void ToggleNavMenu() {}
+}
