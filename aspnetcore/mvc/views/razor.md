@@ -596,7 +596,7 @@ The `@inject` directive enables the Razor Page to inject a service from the [ser
 
 *This scenario only applies to Razor components (.razor).*
 
-The `@layout` directive specifies a layout for routable Razor components that have an [`@page`](#page) directive. Layout components are used to avoid code duplication and inconsistency. For more information, see <xref:blazor/layouts>.
+The `@layout` directive specifies a layout for routable Razor components that have an [`@page`](#page) directive. Layout components are used to avoid code duplication and inconsistency. For more information, see <xref:blazor/components/layouts>.
 
 ::: moniker-end
 

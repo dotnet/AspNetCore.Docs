@@ -482,9 +482,9 @@
             - name: InputTextArea
               href: blazor/forms-validation.md#built-in-form-components
             - name: LayoutView
-              href: blazor/layouts.md#apply-a-layout-to-arbitrary-content-layoutview-component
+              href: blazor/components/layouts.md#apply-a-layout-to-arbitrary-content-layoutview-component
             - name: MainLayout
-              href: blazor/layouts.md#mainlayout-component
+              href: blazor/components/layouts.md#mainlayout-component
             - name: NavLink
               href: blazor/fundamentals/routing.md#navlink-and-navmenu-components
             - name: NavMenu
