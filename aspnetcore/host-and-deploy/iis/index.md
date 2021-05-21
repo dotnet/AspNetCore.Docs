@@ -57,6 +57,10 @@ For getting started with hosting a website on Azure App Services, see our [deplo
 
 In general, we recommend using a pattern like [blue-green deployments](https://www.martinfowler.com/bliki/BlueGreenDeployment.html) for zero-downtime deployments. Features like Overlapped Recycle help, but don't guarantee that you can do a zero-downtime deployment. For more information, see [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/10117).
 
+## Optional client certificates
+
+See [Optional client certificates](xref:security/authentication/certauth#optional-client-certificates) on nformation for apps that must protect a subset of the app with a certificate. 
+
 ## Additional resources
 
 * <xref:test/troubleshoot>
