@@ -102,6 +102,8 @@ public void ConfigureServices(IServiceCollection services)
 
 Use <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService> or `[Authorize(Policy = "Something")]` for authorization.
 
+<a name="apply-policies-to-mvc-controllers">
+
 ## Apply policies to MVC controllers
 
 If you're using Razor Pages, see [Apply policies to Razor Pages](#apply-policies-to-razor-pages) in this document.
@@ -119,6 +121,8 @@ Policies are applied to Razor Pages by using the `[Authorize]` attribute with th
 Policies can ***not*** be applied at the Razor Page handler level, they must be applied to the Page.
 
 Policies can be applied to Razor Pages by using an [authorization convention](xref:security/authorization/razor-pages-authorization).
+
+<a name="requirements">
 
 ## Requirements
 
@@ -202,6 +206,8 @@ In cases where you want evaluation to be on an **OR** basis, implement multiple 
 
 Ensure that both handlers are [registered](xref:security/authorization/policies#security-authorization-policies-based-handler-registration). If either handler succeeds when a policy evaluates the `BuildingEntryRequirement`, the policy evaluation succeeds.
 
+<a name="use-a-func-to-fulfill-a-policy">
+
 ## Use a func to fulfill a policy
 
 There may be situations in which fulfilling a policy is simple to express in code. It's possible to supply a `Func<AuthorizationHandlerContext, bool>` when configuring your policy with the `RequireAssertion` policy builder.
@@ -209,6 +215,8 @@ There may be situations in which fulfilling a policy is simple to express in cod
 For example, the previous `BadgeEntryHandler` could be rewritten as follows:
 
 [!code-csharp[](policies/samples/3.0PoliciesAuthApp1/Startup.cs?range=42-43,47-53)]
+
+<a name="access-mvc-request-context-in-handlers">
 
 ## Access MVC request context in handlers
 
@@ -336,6 +344,8 @@ public void ConfigureServices(IServiceCollection services)
 
 Use <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService> or `[Authorize(Policy = "Something")]` for authorization.
 
+<a name="apply-policies-to-mvc-controllers">
+
 ## Apply policies to MVC controllers
 
 If you're using Razor Pages, see [Apply policies to Razor Pages](#apply-policies-to-razor-pages) in this document.
@@ -353,6 +363,8 @@ Policies are applied to Razor Pages by using the `[Authorize]` attribute with th
 Policies can ***not*** be applied at the Razor Page handler level, they must be applied to the Page.
 
 Policies can be applied to Razor Pages by using an [authorization convention](xref:security/authorization/razor-pages-authorization).
+
+<a name="requirements">
 
 ## Requirements
 
@@ -436,6 +448,8 @@ In cases where you want evaluation to be on an **OR** basis, implement multiple 
 
 Ensure that both handlers are [registered](xref:security/authorization/policies#security-authorization-policies-based-handler-registration). If either handler succeeds when a policy evaluates the `BuildingEntryRequirement`, the policy evaluation succeeds.
 
+<a name="use-a-func-to-fulfill-a-policy">
+
 ## Use a func to fulfill a policy
 
 There may be situations in which fulfilling a policy is simple to express in code. It's possible to supply a `Func<AuthorizationHandlerContext, bool>` when configuring your policy with the `RequireAssertion` policy builder.
@@ -443,6 +457,8 @@ There may be situations in which fulfilling a policy is simple to express in cod
 For example, the previous `BadgeEntryHandler` could be rewritten as follows:
 
 [!code-csharp[](policies/samples/3.0PoliciesAuthApp1/Startup.cs?range=42-43,47-53)]
+
+<a name="access-mvc-request-context-in-handlers">
 
 ## Access MVC request context in handlers
 
@@ -572,6 +588,8 @@ public void ConfigureServices(IServiceCollection services)
 
 Use <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService> or `[Authorize(Policy = "Something")]` for authorization.
 
+<a name="apply-policies-to-mvc-controllers">
+
 ## Apply policies to MVC controllers
 
 If you're using Razor Pages, see [Apply policies to Razor Pages](#apply-policies-to-razor-pages) in this document.
@@ -587,6 +605,8 @@ Policies are applied to Razor Pages by using the `[Authorize]` attribute with th
 [!code-csharp[](policies/samples/PoliciesAuthApp2/Pages/AlcoholPurchase.cshtml.cs?name=snippet_AlcoholPurchaseModelClass&highlight=4)]
 
 Policies can also be applied to Razor Pages by using an [authorization convention](xref:security/authorization/razor-pages-authorization).
+
+<a name="requirements">
 
 ## Requirements
 
@@ -670,6 +690,8 @@ In cases where you want evaluation to be on an **OR** basis, implement multiple 
 
 Ensure that both handlers are [registered](xref:security/authorization/policies#security-authorization-policies-based-handler-registration). If either handler succeeds when a policy evaluates the `BuildingEntryRequirement`, the policy evaluation succeeds.
 
+<a name="use-a-func-to-fulfill-a-policy">
+
 ## Use a func to fulfill a policy
 
 There may be situations in which fulfilling a policy is simple to express in code. It's possible to supply a `Func<AuthorizationHandlerContext, bool>` when configuring your policy with the `RequireAssertion` policy builder.
@@ -677,6 +699,8 @@ There may be situations in which fulfilling a policy is simple to express in cod
 For example, the previous `BadgeEntryHandler` could be rewritten as follows:
 
 [!code-csharp[](policies/samples/PoliciesAuthApp1/Startup.cs?range=50-51,55-61)]
+
+<a name="access-mvc-request-context-in-handlers">
 
 ## Access MVC request context in handlers
 
