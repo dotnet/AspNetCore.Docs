@@ -47,7 +47,7 @@ Right-click on the *Views/HelloWorld* folder, and then **Add > New Item**.
 In the **Add New Item - MvcMovie** dialog:
 
 * In the search box in the upper-right, enter *view*
-* Select **Razor View**
+* Select **Razor View - Empty**
 * Keep the **Name** box value, *Index.cshtml*.
 * Select **Add**
 
