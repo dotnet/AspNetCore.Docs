@@ -505,6 +505,8 @@ dotnet dev-certs https --trust
 
 Close any browser instances open. Open a new browser window to app. Certificate trust is cached by browsers.
 
+### dotnet dev-certs https --clean Fails
+
 The preceding commands solve most browser trust issues. If the browser is still not trusting the certificate, follow the platform-specific suggestions that follow.
 
 ### Docker - certificate not trusted
