@@ -214,17 +214,16 @@ For example, the previous `BadgeEntryHandler` could be rewritten as follows:
 
 The `HandleRequirementAsync` method you implement in an authorization handler has two parameters: an `AuthorizationHandlerContext` and the `TRequirement` you are handling. Frameworks such as MVC or SignalR are free to add any object to the `Resource` property on the `AuthorizationHandlerContext` to pass extra information.
 
-When using endpoint routing, authorization is typically handled by the Authorization Middleware. In this case, the `Resource` property is an instance of <xref:Microsoft.AspNetCore.Http.Endpoint>. The endpoint can be used to probe the underlying resource to which you're routing. For example:
+When using endpoint routing, authorization is typically handled by the Authorization Middleware. In this case, the `Resource` property is an instance of <xref:Microsoft.AspNetCore.Http.HttpContext>. The context can be used to access the current endpoint, which can be used to probe the underlying resource to which you're routing. For example:
 
 ```csharp
-if (context.Resource is Endpoint endpoint)
+if (context.Resource is HttpContext httpContext)
 {
-   var actionDescriptor = endpoint.Metadata.GetMetadata<ControllerActionDescriptor>();
-   ...
+    var endpoint = httpContext.GetEndpoint();
+    var actionDescriptor = endpoint.Metadata.GetMetadata<ControllerActionDescriptor>();
+    ...
 }
 ```
-
-The endpoint doesn't provide access to the current `HttpContext`. When using endpoint routing, use `IHttpContextAcessor` to access `HttpContext` inside of an authorization handler. For more information, see [Use HttpContext from custom components](xref:fundamentals/httpcontext#use-httpcontext-from-custom-components).
 
 With traditional routing, or when authorization happens as part of MVC's authorization filter, the value of `Resource` is an <xref:Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext> instance. This property provides access to `HttpContext`, `RouteData`, and everything else provided by MVC and Razor Pages.
 
