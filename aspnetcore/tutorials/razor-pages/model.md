@@ -102,11 +102,11 @@ In this section, the movie model is scaffolded. That is, the scaffolding tool pr
 
 1. Right-click on the *Pages/Movies* folder > **Add** > **New Scaffolded Item**.
 
-   ![Image from the previous instructions.](model/_static/5/sca.png)
+   ![New Scaffolded Item](model/_static/5/sca.png)
 
 1. In the **Add Scaffold** dialog, select **Razor Pages using Entity Framework (CRUD)** > **Add**.
 
-   ![Image from the previous instructions.](model/_static/add_scaffold.png)
+   ![Add Scaffold](model/_static/add_scaffold.png)
 
 1. Complete the **Add Razor Pages using Entity Framework (CRUD)** dialog:
    1. In the **Model class** drop down, select **Movie (RazorPagesMovie.Models)**.
@@ -114,7 +114,7 @@ In this section, the movie model is scaffolded. That is, the scaffolding tool pr
       1. In the **Add Data Context** dialog, the class name `RazorPagesMovie.Data.RazorPagesMovieContext` is generated.
    1. Select **Add**.
 
-   ![Image from the previous instructions.](model/_static/3/arp.png)
+   ![Add Razor Pages](model/_static/3/arp.png)
 
 The *appsettings.json* file is updated with the connection string used to connect to a local database.
 
@@ -123,7 +123,7 @@ The *appsettings.json* file is updated with the connection string used to connec
 * Open a command shell to the project directory, which contains the *Program.cs*, *Startup.cs*, and *.csproj* files. Run the following command:
 
   ```dotnetcli
-  dotnet aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages/Movies --referenceScriptLibraries -sqlite
+  dotnet-aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages/Movies --referenceScriptLibraries -sqlite
   ```
 
 <a name="codegenerator"></a>
@@ -137,10 +137,10 @@ The following table details the ASP.NET Core code generator options.
 | `-outDir` | The relative output folder path to create the views. |
 | `--referenceScriptLibraries` | Adds `_ValidationScriptsPartial` to Edit and Create pages |
 
-Use the `-h` option to get help on the `aspnet-codegenerator razorpage` command:
+Use the `-h` option to get help on the `dotnet-aspnet-codegenerator razorpage` command:
 
 ```dotnetcli
-dotnet aspnet-codegenerator razorpage -h
+dotnet-aspnet-codegenerator razorpage -h
 ```
 
 For more information, see [dotnet-aspnet-codegenerator](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
@@ -155,17 +155,17 @@ For more information, see [dotnet-aspnet-codegenerator](xref:fundamentals/tools/
 
 1. Control-click on the *Pages/Movies* folder > **Add** > **New Scaffolding...**.
 
-   ![Image from the previous instructions.](model/_static/scaMac.png)
+   ![New Scaffolding on Mac](model/_static/scaMac.png)
 
 1. In the **New Scaffolding** dialog, select **Razor Pages using Entity Framework (CRUD)** > **Next**.
 
-   ![Image from the previous instructions.](model/_static/add_scaffoldMac.png)
+   ![Add Scaffolding on Mac](model/_static/add_scaffoldMac.png)
 
 1. Complete the **Add Razor Pages using Entity Framework (CRUD)** dialog:
    1. In the **DbContext Class to use:** row, name the class `RazorPagesMovie.Data.RazorPagesMovieContext`.
    1. Select **Finish**.
 
-   ![Image from the previous instructions.](model/_static/5/arpMac.png)
+   ![Add Razor Pages on Mac](model/_static/5/arpMac.png)
 
 The *appsettings.json* file is updated with the connection string used to connect to a local database.
 
@@ -452,11 +452,11 @@ Create a *Pages/Movies* folder:
 
 Right-click on the *Pages/Movies* folder > **Add** > **New Scaffolded Item**.
 
-![Image from the previous instructions.](model/_static/sca.png)
+![New Scaffolded Item on VScode](model/_static/sca.png)
 
 In the **Add Scaffold** dialog, select **Razor Pages using Entity Framework (CRUD)** > **Add**.
 
-![Image from the previous instructions.](model/_static/add_scaffold.png)
+![Add Scaffold on VScode](model/_static/add_scaffold.png)
 
 Complete the **Add Razor Pages using Entity Framework (CRUD)** dialog:
 
@@ -464,7 +464,7 @@ Complete the **Add Razor Pages using Entity Framework (CRUD)** dialog:
 * In the **Data context class** row, select the **+** (plus) sign and change the generated name from RazorPagesMovie.**Models**.RazorPagesMovieContext to RazorPagesMovie.**Data**.RazorPagesMovieContext. [This change](https://developercommunity.visualstudio.com/content/problem/652166/aspnet-core-ef-scaffolder-uses-incorrect-namespace.html) is not required. It creates the database context class with the correct namespace.
 * Select **Add**.
 
-![Image from the previous instructions.](model/_static/3/arp.png)
+![Add Razor Pages on VScode](model/_static/3/arp.png)
 
 The *appsettings.json* file is updated with the connection string used to connect to a local database.
 
@@ -498,7 +498,7 @@ The following table details the ASP.NET Core code generator options:
 | `-outDir` | The relative output folder path to create the views. |
 | `--referenceScriptLibraries` | Adds `_ValidationScriptsPartial` to Edit and Create pages |
 
-Use the `-h` option to get help on the `aspnet-codegenerator razorpage` command:
+Use the `-h` option to get help on the `dotnet-aspnet-codegenerator razorpage` command:
 
 ```dotnetcli
 dotnet-aspnet-codegenerator razorpage -h
@@ -521,11 +521,11 @@ Create a *Pages/Movies* folder:
 
 Right-click on the *Pages/Movies* folder > **Add** > **New Scaffolding...**.
 
-![Image from the previous instructions.](model/_static/scaMac.png)
+![New Scaffolding on Visual Studio for Mac](model/_static/scaMac.png)
 
 In the **New Scaffolding** dialog, select **Razor Pages using Entity Framework (CRUD)** > **Next**.
 
-![Image from the previous instructions.](model/_static/add_scaffoldMac.png)
+![Add Scaffolding on Visual Studio for Mac](model/_static/add_scaffoldMac.png)
 
 Complete the **Add Razor Pages using Entity Framework (CRUD)** dialog:
 
@@ -533,7 +533,7 @@ Complete the **Add Razor Pages using Entity Framework (CRUD)** dialog:
 * In the **Data context class** row, type the name for the new class, RazorPagesMovie.**Data**.RazorPagesMovieContext. [This change](https://developercommunity.visualstudio.com/content/problem/652166/aspnet-core-ef-scaffolder-uses-incorrect-namespace.html) is not required. It creates the database context class with the correct namespace.
 * Select **Add**.
 
-![Image from the previous instructions.](model/_static/arpMac.png)
+![Add Razor Page on Visual Studio for Mac](model/_static/arpMac.png)
 
 The *appsettings.json* file is updated with the connection string used to connect to a local database.
 
@@ -839,11 +839,11 @@ Create a *Pages/Movies* folder:
 
 Right-click on the *Pages/Movies* folder > **Add** > **New Scaffolded Item**.
 
-![Image from the previous instructions.](model/_static/sca.png)
+![New Scaffolded Item on Visual Studio](model/_static/sca.png)
 
 In the **Add Scaffold** dialog, select **Razor Pages using Entity Framework (CRUD)** > **Add**.
 
-![Image from the previous instructions.](model/_static/add_scaffold.png)
+![Add Scaffolded Item on Visual Studio](model/_static/add_scaffold.png)
 
 Complete the **Add Razor Pages using Entity Framework (CRUD)** dialog:
 <!-- In the next section, change 
@@ -855,7 +855,7 @@ to use Data, it should not use models. That will make the namespace the same for
 * In the **Data context class** row, select the **+** (plus) sign and accept the generated name **RazorPagesMovie.Models.RazorPagesMovieContext**.
 * Select **Add**.
 
-![Image from the previous instructions.](model/_static/arp.png)
+![Add Razor Page on Visual Studio](model/_static/arp.png)
 
 The *appsettings.json* file is updated with the connection string used to connect to a local database.
 
@@ -889,7 +889,7 @@ The following table details the ASP.NET Core code generator options:
 | `-outDir` | The relative output folder path to create the views. |
 | `--referenceScriptLibraries` | Adds `_ValidationScriptsPartial` to Edit and Create pages |
 
-Use the `-h` option to get help on the `aspnet-codegenerator razorpage` command:
+Use the `-h` option to get help on the `dotnet-aspnet-codegenerator razorpage` command:
 
 ```dotnetcli
 dotnet-aspnet-codegenerator razorpage -h
@@ -906,11 +906,11 @@ Create a *Pages/Movies* folder:
 
 Control-click on the *Pages/Movies* folder > **Add** > **New Scaffolded Item**.
 
-![Image from the previous instructions.](model/_static/scaMac.png)
+![New Scaffolded on Visual Studio for Mac](model/_static/scaMac.png)
 
 In the **Add New Scaffolding** dialog, select **Razor Pages using Entity Framework (CRUD)** > **Add**.
 
-![Image from the previous instructions.](model/_static/add_scaffoldMac.png)
+![Add New Scaffolding on Visual Studio for Mac](model/_static/add_scaffoldMac.png)
 
 Complete the **Add Razor Pages using Entity Framework (CRUD)** dialog:
 
@@ -918,7 +918,7 @@ Complete the **Add Razor Pages using Entity Framework (CRUD)** dialog:
 * In the **Data context class** row, type select the **RazorPagesMovieContext** this will create a new database context class with the correct namespace. In this case it will be  **RazorPagesMovie.Models.RazorPagesMovieContext**.
 * Select **Add**.
 
-![Image from the previous instructions.](model/_static/arpMac.png)
+![Add Razor Page on Visual Studio for Mac.](model/_static/arpMac.png)
 
 The *appsettings.json* file is updated with the connection string used to connect to a local database.
 
