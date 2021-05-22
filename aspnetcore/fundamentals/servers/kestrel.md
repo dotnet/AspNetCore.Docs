@@ -41,7 +41,7 @@ For more information on building the host, see the *Set up a host* and *Default 
 
 ## Optional client certificates
 
-See [Optional client certificates](xref:security/authentication/certauth#optional-client-certificates) on nformation for apps that must protect a subset of the app with a certificate. 
+For information on apps that must protect a subset of the app with a certificate, see [Optional client certificates](xref:security/authentication/certauth#optional-client-certificates).
 
 ## Additional resources
 
