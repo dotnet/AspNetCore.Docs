@@ -53,7 +53,7 @@ Generates the following HTML:
 <label for="Movie_Title">Title</label>
 ```
 
-The `asp-for` attribute is made available by the `For` property in the [LabelTagHelper](/dotnet/api/microsoft.aspnetcore.mvc.taghelpers.labeltaghelper?view=aspnetcore-2.0). See [Author Tag Helpers](xref:mvc/views/tag-helpers/authoring) for more information.
+The `asp-for` attribute is made available by the `For` property in the <xref:Microsoft.AspNetCore.Mvc.TagHelpers.LabelTagHelper>. See [Author Tag Helpers](xref:mvc/views/tag-helpers/authoring) for more information.
 
 ## Managing Tag Helper scope
 
@@ -124,7 +124,7 @@ The `@tagHelperPrefix` directive allows you to specify a tag prefix string to en
 
 In the code image below, the Tag Helper prefix is set to `th:`, so only those elements using the prefix `th:` support Tag Helpers (Tag Helper-enabled elements have a distinctive font). The `<label>` and `<input>` elements have the Tag Helper prefix and are Tag Helper-enabled, while the `<span>` element doesn't.
 
-![image](intro/_static/thp.png)
+![Razor markup with Tag Helper prefix set to "th:" for a label and an input element name](intro/_static/thp.png)
 
 The same hierarchy rules that apply to `@addTagHelper` also apply to `@tagHelperPrefix`.
 
@@ -132,7 +132,7 @@ The same hierarchy rules that apply to `@addTagHelper` also apply to `@tagHelper
 
 Many Tag Helpers can't be used as self-closing tags. Some Tag Helpers are designed to be self-closing tags. Using a Tag Helper that was not designed to be self-closing suppresses the rendered output. Self-closing a Tag Helper results in a self-closing tag in the rendered output. For more information, see [this note](xref:mvc/views/tag-helpers/authoring#self-closing) in [Authoring Tag Helpers](xref:mvc/views/tag-helpers/authoring).
 
-## C# in Tag Helpers attribute/declaration 
+## C# in Tag Helpers attribute/declaration
 
 Tag Helpers do not allow C# in the element's attribute or tag declaration area. For example, the following code is not valid:
 
@@ -154,39 +154,39 @@ When you create a new ASP.NET Core web app in Visual Studio, it adds the NuGet p
 
 Consider writing an HTML `<label>` element. As soon as you enter `<l` in the Visual Studio editor, IntelliSense displays matching elements:
 
-![image](intro/_static/label.png)
+![After typing "l" on the keyboard, IntelliSense suggests a list of possible tag names with "label" selected.](intro/_static/label.png)
 
 Not only do you get HTML help, but the icon (the "@" symbol with "<>" under it).
 
-![image](intro/_static/tagSym.png)
+![The the "@" symbol with "<>" under it.](intro/_static/tagSym.png)
 
-identifies the element as targeted by Tag Helpers. Pure HTML elements (such as the `fieldset`) display the "<>" icon.
+The icon identifies the element as targeted by Tag Helpers. Pure HTML elements (such as the `fieldset`) display the "<>" icon.
 
 A pure HTML `<label>` tag displays the HTML tag (with the default Visual Studio color theme) in a brown font, the attributes in red, and the attribute values in blue.
 
-![image](intro/_static/LableHtmlTag.png)
+![Example "label" HTMl tag](intro/_static/LableHtmlTag.png)
 
 After you enter `<label`, IntelliSense lists the available HTML/CSS attributes and the Tag Helper-targeted attributes:
 
-![image](intro/_static/labelattr.png)
+![The user has typed an opening bracket and the HTML element name "label". IntelliSense presents a list of possible attributes (none are preselected).](intro/_static/labelattr.png)
 
 IntelliSense statement completion allows you to enter the tab key to complete the statement with the selected value:
 
-![image](intro/_static/stmtcomplete.png)
+![The user has typed an opening bracket, the HTML element name "label", and begins to type an attribute name ("as"). IntelliSense presents a dialog of suggestions with "asp-for" selected.](intro/_static/stmtcomplete.png)
 
 As soon as a Tag Helper attribute is entered, the tag and attribute fonts change. Using the default Visual Studio "Blue" or "Light" color theme, the font is bold purple. If you're using the "Dark" theme the font is bold teal. The images in this document were taken using the default theme.
 
-![image](intro/_static/labelaspfor2.png)
+![The user selected "asp-for", which is now in bold purple because the user isn't using the Dark theme.](intro/_static/labelaspfor2.png)
 
 You can enter the Visual Studio *CompleteWord* shortcut (Ctrl +spacebar is the [default](/visualstudio/ide/default-keyboard-shortcuts-in-visual-studio) inside the double quotes (""), and you are now in C#, just like you would be in a C# class. IntelliSense displays all the methods and properties on the page model. The methods and properties are available because the property type is `ModelExpression`. In the image below, I'm editing the `Register` view, so the `RegisterViewModel` is available.
 
-![image](intro/_static/intellemail.png)
+![The user types "e" in the value for the "asp-for" attribute. IntelliSense suggests possible completion with "Email" selected.](intro/_static/intellemail.png)
 
 IntelliSense lists the properties and methods available to the model on the page. The rich IntelliSense environment helps you select the CSS class:
 
-![image](intro/_static/iclass.png)
+![The user types "cl" to add an attribute to an "input" element. IntelliSense presents a list of completion suggestions with "class" selected.](intro/_static/iclass.png)
 
-![image](intro/_static/intel3.png)
+![The user types "co" as the value for the "class" attribute of an "input" element. IntelliSense provides a list of completion suggestions with "col" selected.](intro/_static/intel3.png)
 
 ## Tag Helpers compared to HTML Helpers
 
@@ -212,13 +212,13 @@ Using the `LabelTagHelper`, the same markup can be written as:
 
 With the Tag Helper version, as soon as you enter `<l` in the Visual Studio editor, IntelliSense displays matching elements:
 
-![image](intro/_static/label.png)
+![The user types "l" on the keyboard. IntelliSense suggests HTML element completion with "label" selected.](intro/_static/label.png)
 
 IntelliSense helps you write the entire line.
 
 The following code image shows the Form portion of the *Views/Account/Register.cshtml* Razor view generated from the ASP.NET 4.5.x MVC template included with Visual Studio.
 
-![image](intro/_static/regCS.png)
+![Razor markup for the form portion of the Register Razor view for ASP.NET 4.5 MVC project template](intro/_static/regCS.png)
 
 The Visual Studio editor displays C# code with a grey background. For example, the `AntiForgeryToken` HTML Helper:
 
@@ -228,7 +228,7 @@ The Visual Studio editor displays C# code with a grey background. For example, t
 
 is displayed with a grey background. Most of the markup in the Register view is C#. Compare that to the equivalent approach using Tag Helpers:
 
-![image](intro/_static/regTH.png)
+![Razor markup with Tag Helpers for the form portion of the Register Razor view for an ASP.NET Core project template](intro/_static/regTH.png)
 
 The markup is much cleaner and easier to read, edit, and maintain than the HTML Helpers approach. The C# code is reduced to the minimum that the server needs to know about. The Visual Studio editor displays markup targeted by a Tag Helper in a distinctive font.
 
@@ -262,7 +262,7 @@ The Visual Studio editor helps you write **all** of the markup in the Tag Helper
 
 You can customize the font and colorization from **Tools** > **Options** > **Environment** > **Fonts and Colors**:
 
-![image](intro/_static/fontoptions2.png)
+![Options dialog in Visual Studio](intro/_static/fontoptions2.png)
 
 [!INCLUDE[](~/includes/built-in-TH.md)]
 

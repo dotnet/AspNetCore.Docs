@@ -82,7 +82,7 @@ In addition to modules, you can add handlers for the life cycle events to your *
 
 * See [Create a middleware pipeline with IApplicationBuilder](xref:fundamentals/middleware/index#create-a-middleware-pipeline-with-iapplicationbuilder)
 
-![Middleware](http-modules/_static/middleware.png)
+![Authorization Middleware short-circuits a request for a user who isn't authorized. A request for the Index page is permitted and processed by MVC Middleware. A request for a sales report is permitted and processed by a custom report Middleware.](http-modules/_static/middleware.png)
 
 Note how in the image above, the authentication middleware short-circuited the request.
 
