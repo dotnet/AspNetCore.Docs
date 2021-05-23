@@ -207,7 +207,7 @@ Examine the query in the *Pages/Instructors/Index.cshtml.cs* file:
 The code specifies eager loading for the following navigation properties:
 
 * `Instructor.OfficeAssignment`
-* `Instructor.Course`
+* `Instructor.Courses`
     * `Course.Department`
 
 The following code executes when an instructor is selected, that is, `id != null`.
