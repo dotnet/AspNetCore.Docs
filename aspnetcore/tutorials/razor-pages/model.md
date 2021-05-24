@@ -315,7 +315,6 @@ The next tutorial explains the files created by scaffolding.
 
 ## Additional resources
 
-
 > [!div class="step-by-step"]
 > [Previous: Get Started](xref:tutorials/razor-pages/razor-pages-start)
 > [Next: Scaffolded Razor Pages](xref:tutorials/razor-pages/page)
