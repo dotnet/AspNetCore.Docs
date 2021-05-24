@@ -80,7 +80,7 @@ Another user or process performing an operation that conflicts with the current 
 
 On relational databases EF Core checks for the value of the concurrency token in the `WHERE` clause of `UPDATE` and `DELETE` statements to detect a concurrency conflict.
 
-The data model must be configured to enable conflict detection by include a tracking column that can be used to determine when a row has been changed. EF provides two approaches for [concurrency tokens](/ef/core/modeling/concurrency):
+The data model must be configured to enable conflict detection by including a tracking column that can be used to determine when a row has been changed. EF provides two approaches for [concurrency tokens](/ef/core/modeling/concurrency):
 
   * Applying [`[ConcurrencyCheck]`](xref:System.ComponentModel.DataAnnotations.ConcurrencyCheckAttribute) or <xref:Microsoft.EntityFrameworkCore.Metadata.IProperty.IsConcurrencyToken> to a property on the model. This approach is not recommended. For more information, see [Concurrency Tokens in EF Core](/ef/core/modeling/concurrency).
 
