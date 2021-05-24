@@ -309,10 +309,11 @@ Examine the `Up` method.
 
 1. Test the **Edit**, **Details**, and **Delete** links.
 
+[!INCLUDE[s](~/includes/sql-log.md)]
+
 The next tutorial explains the files created by scaffolding.
 
 ## Additional resources
-
 
 > [!div class="step-by-step"]
 > [Previous: Get Started](xref:tutorials/razor-pages/razor-pages-start)
