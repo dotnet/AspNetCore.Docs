@@ -75,7 +75,9 @@ The default <xref:Microsoft.Extensions.Configuration.Json.JsonConfigurationProvi
 * In development, *appsettings*.***Development***.*json* configuration overwrites values found in *appsettings.json*.
 * In production, *appsettings*.***Production***.*json* configuration overwrites values found in *appsettings.json*. For example, when deploying the app to Azure.
 
-If a configuration value must be guaranteed, see [GetValue](#getvalue). The preceding example only reads strings and doesn’t support a default value
+If a configuration value must be guaranteed, see [GetValue](#getvalue). The preceding example only reads strings and doesn’t support a default value.
+
+Using the [default](#default) configuration, the *appsettings.json* and *appsettings.*`Environment`*.json* files are enabled with [reloadOnChange: true](https://github.com/dotnet/extensions/blob/release/3.1/src/Hosting/Hosting/src/Host.cs#L74-L75). Changes made to the *appsettings.json* and *appsettings.*`Environment`*.json* file ***after*** the app starts are read by the [JSON configuration provider](#jcp).
 
 <a name="optpat"></a>
 
