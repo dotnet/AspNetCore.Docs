@@ -258,7 +258,7 @@ When the **`Trigger .NET instance method`** button is selected in the following 
 
 The following image shows the rendered component with the name `Amy Pond` in the `Name` field. After the button is selected, `Hello, Amy Pond!` is displayed in the UI:
 
-![Component example 1](call-dotnet-from-javascript/_static/component-example-2.png)
+![Rendered 'CallDotNetExample4' component example](call-dotnet-from-javascript/_static/component-example-4.png)
 
 The preceding pattern shown in the `JsInteropClasses3` class can also be implemented entirely in a component.
 
@@ -377,7 +377,7 @@ The following image shows the rendered `CallDotNetExample6` parent component aft
 * The second `ListItem` component has displayed the `UpdateMessage Called!` message.
 * The **`InteropCall`** button for the second `ListItem` component isn't visible because the button's CSS `display` property is set to `none`.
 
-![Component example 2](call-dotnet-from-javascript/_static/component-example-6.png)
+![Rendered 'CallDotNetExample6' component example](call-dotnet-from-javascript/_static/component-example-6.png)
 
 ## Location of JavaScipt
 
