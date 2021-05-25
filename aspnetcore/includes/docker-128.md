@@ -12,4 +12,4 @@ Disabling `reloadOnChange` can significantly reduce the number of opened files:
 
 The preceding code can help prevent the user limit (128) when the app doesn't depend on reloading the *appsettings.json* file.
 
-When adding multiple docker containers using the same host, consider specifying a randomized user ID in each Dockerfile. For more information, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/19814).
+For alternative approaches or to leave feedback on this problem, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/19814).
