@@ -217,7 +217,7 @@ SqliteException: SQLite Error 1: 'no such column: s.FirstName'.
   dotnet ef migrations add ColumnFirstName
   dotnet ef database update
   ```
-
+<!--
   The database update command displays an error like the following example:
 
   ```text
@@ -235,7 +235,7 @@ For this tutorial, the way to get past this error is to delete and re-create the
   dotnet ef database update
    
   ```
-
+-->
 * Examine the Student table with a SQLite tool. The column that was `FirstMidName` is now `FirstName`.
 
 ---
@@ -528,7 +528,7 @@ In this tutorial, the fluent API is used only for database mapping that can't be
 
 Some attributes such as `MinimumLength` can't be applied with the fluent API. `MinimumLength` doesn't change the schema, it only applies a minimum length validation rule.
 
-Some developers prefer to use the fluent API exclusively so that they can keep their entity classes *clean*. Attributes and the fluent API can be mixed. There are some configurations that can only be done with the fluent API, for example, , specifying a composite PK. There are some configurations that can only be done with attributes (`MinimumLength`). The recommended practice for using fluent API or attributes:
+Some developers prefer to use the fluent API exclusively so that they can keep their entity classes *clean*. Attributes and the fluent API can be mixed. There are some configurations that can only be done with the fluent API, for example, specifying a composite PK. There are some configurations that can only be done with attributes (`MinimumLength`). The recommended practice for using fluent API or attributes:
 
 * Choose one of these two approaches.
 * Use the chosen approach consistently as much as possible.

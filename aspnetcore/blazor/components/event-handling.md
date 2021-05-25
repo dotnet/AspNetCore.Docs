@@ -328,6 +328,9 @@ It's often convenient to close over additional values using C# method parameters
 > * The loop variable `i` is assigned to `buttonNumber`.
 > * `buttonNumber` is used in the lambda expression.
 
+> [!NOTE]
+> Use of the approach in this section can lead to poor performance with many rendered components. For more information, see [Blazor Binary message size send from server to client increases (dotnet/aspnetcore #17886)](https://github.com/dotnet/aspnetcore/issues/17886).
+
 ## EventCallback
 
 A common scenario with nested components executes a parent component's method when a child component event occurs. An `onclick` event occurring in the child component is a common use case. To expose events across components, use an <xref:Microsoft.AspNetCore.Components.EventCallback>. A parent component can assign a callback method to a child component's <xref:Microsoft.AspNetCore.Components.EventCallback>.

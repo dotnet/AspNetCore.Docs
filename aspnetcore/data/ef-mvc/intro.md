@@ -369,6 +369,8 @@ For more information about asynchronous programming in .NET, see [Async Overview
 
 See [Performance considerations](xref:data/ef-rp/intro#performance-considerations) for information on limiting the number or entities returned from a query.
 
+[!INCLUDE[s](~/includes/sql-log.md)]
+
 Advance to the next tutorial to learn how to perform basic CRUD (create, read, update, delete) operations.
 
 > [!div class="nextstepaction"]

@@ -486,7 +486,9 @@ The [Windows Subsystem for Linux (WSL)](/windows/wsl/about) generates an HTTPS s
 
 The preceding approach is a one time operation per certificate and per WSL distribution. It's easier than exporting the certificate over and over. If you update or regenerate the certificate on windows, you might need to run the preceding commands again.
 
-## Troubleshoot certificate problems
+<a name="tcp"></a>
+
+## Troubleshoot certificate problems such as certificate not trusted
 
 This section provides help when the ASP.NET Core HTTPS development certificate has been [installed and trusted](#trust), but you still have browser warnings that the certificate is not trusted. The ASP.NET Core HTTPS development certificate is used by [Kestrel](xref:fundamentals/servers/kestrel).
 
@@ -502,6 +504,8 @@ dotnet dev-certs https --trust
 ```
 
 Close any browser instances open. Open a new browser window to app. Certificate trust is cached by browsers.
+
+### dotnet dev-certs https --clean Fails
 
 The preceding commands solve most browser trust issues. If the browser is still not trusting the certificate, follow the platform-specific suggestions that follow.
 

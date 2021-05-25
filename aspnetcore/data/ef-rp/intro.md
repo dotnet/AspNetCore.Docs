@@ -517,6 +517,8 @@ Paging is covered later in the tutorial.
 
 For more information, see [Performance considerations (EF)](/dotnet/framework/data/adonet/ef/performance-considerations).
 
+[!INCLUDE[s](~/includes/sql-log.md)]
+
 ## Next steps
 
 [Use SQLite for development, SQL Server for production](xref:tutorials/razor-pages/model?tabs=visual-studio-code#use-sqlite-for-development-sql-server-for-production)

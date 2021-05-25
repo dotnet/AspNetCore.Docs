@@ -50,13 +50,15 @@ The properties and items in the following table are used to configure inputs and
 | `RazorCompile` | Item elements (*.cs* files) that are inputs to Razor compilation targets. Use this `ItemGroup` to specify additional files to be compiled into the Razor assembly. |
 | `RazorEmbeddedResource` | Item elements added as embedded resources to the generated Razor assembly. |
 
+<!-- In the following table, should the entry for 'GenerateRazorTargetAssemblyInfo' be deleted? -->
+
 | Property | Description |
 | -------- | ----------- |
 | `RazorOutputPath` | The Razor output directory. |
 | `RazorCompileToolset` | Used to determine the toolset used to build the Razor assembly. Valid values are `Implicit`, `RazorSDK`, and `PrecompilationTool`. |
 | [EnableDefaultContentItems](https://github.com/aspnet/websdk/blob/rel-2.0.0/src/ProjectSystem/Microsoft.NET.Sdk.Web.ProjectSystem.Targets/netstandard1.0/Microsoft.NET.Sdk.Web.ProjectSystem.targets#L21) | Default is `true`. When `true`, includes *web.config*, *.json*, and *.cshtml* files as content in the project. When referenced via `Microsoft.NET.Sdk.Web`, files under *wwwroot* and config files are also included. |
 | `EnableDefaultRazorGenerateItems` | When `true`, includes *.cshtml* files from `Content` items in `RazorGenerate` items. |
-| `GenerateRazorTargetAssemblyInfo` | Not used in .NET 6 and later. | <!-- should I delete?-->
+| `GenerateRazorTargetAssemblyInfo` | Not used in .NET 6 and later. |
 | `EnableDefaultRazorTargetAssemblyInfoAttributes` | Not used in .NET 6 and later. |
 | `CopyRazorGenerateFilesToPublishDirectory` | When `true`, copies `RazorGenerate` items (*.cshtml*) files to the publish directory. Typically, Razor files aren't required for a published app if they participate in compilation at build-time or publish-time. Defaults to `false`. |
 | `PreserveCompilationReferences` | When `true`, copy reference assembly items to the publish directory. Typically, reference assemblies aren't required for a published app if Razor compilation occurs at build-time or publish-time. Set to `true` if your published app requires runtime compilation. For example, set the value to `true` if the app modifies *.cshtml* files at runtime or uses embedded views. Defaults to `false`. |

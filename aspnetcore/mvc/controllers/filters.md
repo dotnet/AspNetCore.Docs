@@ -4,7 +4,7 @@ author: Rick-Anderson
 description: Learn how filters work and how to use them in ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/04/2020
+ms.date: 5/13/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/controllers/filters
 ---
@@ -18,15 +18,15 @@ By [Kirk Larkin](https://github.com/serpent5), [Rick Anderson](https://twitter.c
 
 Built-in filters handle tasks such as:
 
-* Authorization (preventing access to resources a user isn't authorized for).
-* Response caching (short-circuiting the request pipeline to return a cached response).
+* Authorization, preventing access to resources a user isn't authorized for.
+* Response caching, short-circuiting the request pipeline to return a cached response.
 
 Custom filters can be created to handle cross-cutting concerns. Examples of cross-cutting concerns include error handling, caching, configuration, authorization, and logging.  Filters avoid duplicating code. For example, an error handling exception filter could consolidate error handling.
 
 This document applies to Razor Pages, API controllers, and controllers with views. Filters don't work directly with [Razor components](xref:blazor/components/index). A filter can only indirectly affect a component when:
 
 * The component is embedded in a page or view.
-* The page or controller/view uses the filter.
+* The page or controller and view uses the filter.
 
 [View or download sample](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/filters/3.1sample) ([how to download](xref:index#how-to-download-a-sample)).
 
@@ -608,6 +608,10 @@ Use the <xref:Microsoft.AspNetCore.Mvc.MiddlewareFilterAttribute> to run the mid
 
 Middleware filters run at the same stage of the filter pipeline as Resource filters, before model binding and after the rest of the pipeline.
 
+## Thread safety
+
+When passing an *instance* of a filter into `Add`, instead of its `Type`, the filter is a singleton and is **not** thread-safe.
+
 ## Next actions
 
 * See [Filter methods for Razor Pages](xref:razor-pages/filter).
@@ -1130,6 +1134,10 @@ Use the <xref:Microsoft.AspNetCore.Mvc.MiddlewareFilterAttribute> to run the mid
 [!code-csharp[](./filters/sample/FiltersSample/Controllers/HomeController.cs?name=snippet_MiddlewareFilter&highlight=2)]
 
 Middleware filters run at the same stage of the filter pipeline as Resource filters, before model binding and after the rest of the pipeline.
+
+## Thread safety
+
+When passing an *instance* of a filter into `Add`, instead of its `Type`, the filter is a singleton and is **not** thread-safe.
 
 ## Next actions
 

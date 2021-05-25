@@ -11,7 +11,7 @@ uid: security/authorization/dependencyinjection
 
 <a name="security-authorization-di"></a>
 
-[Authorization handlers must be registered](xref:security/authorization/policies#handler-registration) in the service collection during configuration using [dependency injection](xref:fundamentals/dependency-injection).
+[Authorization handlers must be registered](xref:security/authorization/policies#security-authorization-policies-based-handler-registration) in the service collection during configuration using [dependency injection](xref:fundamentals/dependency-injection).
 
 Suppose you had a repository of rules you wanted to evaluate inside an authorization handler and that repository was registered in the service collection. Authorization resolves and injects that into the constructor.
 
