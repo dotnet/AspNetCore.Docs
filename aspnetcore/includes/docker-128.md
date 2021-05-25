@@ -15,4 +15,6 @@ The preceding code:
 * Can help prevent the user limit (128) when the app doesn't depend on reloading the *appsettings.json* file.
 * Reads *appsettings.json* as the last configuration provider, therefore settings in *appsettings.json* override those set in the environment and the command line. For more information, see [Configuration](xref:fundamentals/configuration/index).
 
+To disable reloading configuration files from the environment, set `DOTNET_HOSTBUILDER__RELOADCONFIGONCHANGE=false`
+
 For alternative approaches or to leave feedback on this problem, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/19814).
