@@ -8,7 +8,7 @@ no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cook
 
 Disabling `reloadOnChange` can significantly reduce the number of opened files:
 
-[!code-csharp[](~/includes/docker-128/Program.cs?hightlight=14&name=snippet)]
+[!code-csharp[](~/includes/docker-128/Program.cs?highlight=14&name=snippet)]
 
 The preceding code can help prevent the user limit (128) when the app doesn't depend on reloading the *appsettings.json* file.
 
