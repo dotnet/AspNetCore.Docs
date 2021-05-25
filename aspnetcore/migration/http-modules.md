@@ -2,7 +2,6 @@
 title: Migrate HTTP handlers and modules to ASP.NET Core middleware
 description: Migrate HTTP handlers and modules to ASP.NET Core middleware
 author: rick-anderson
-description: 
 ms.author: riande
 ms.date: 12/07/2016
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
