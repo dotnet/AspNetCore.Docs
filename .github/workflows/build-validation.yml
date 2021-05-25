@@ -22,7 +22,7 @@ on:
     branches: [ main ]
 
 env:
-  DOTNET_INSTALLER_CHANNEL: 'release/5.0.1xx'
+  DOTNET_INSTALLER_CHANNEL: 'release/6.0.1xx'
   DOTNET_DO_INSTALL: 'false'
   EnableNuGetPackageRestore: 'True'
 
