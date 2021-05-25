@@ -310,6 +310,16 @@ dotnet run -k1 value1 -k2 value2 --alt3=value2 /alt4=value3 --alt5 value5 /alt6 
 
 For apps that use switch mappings, the call to `CreateDefaultBuilder` shouldn't pass arguments. The `CreateDefaultBuilder` method's `AddCommandLine` call doesn't include mapped switches, and there's no way to pass the switch-mapping dictionary to `CreateDefaultBuilder`. The solution isn't to pass the arguments to `CreateDefaultBuilder` but instead to allow the `ConfigurationBuilder` method's `AddCommandLine` method to process both the arguments and the switch-mapping dictionary.
 
+## Set environment and command-line arguments with Visual Studio
+
+The following image shows setting environment and command-line arguments with Visual Studio:
+
+![Debug tab of VS](index/_static/vs-cmd-env.png)
+
+In Visual Studio 2019 version 16.10 preview 4 and later, setting environment and command-line arguments is done from the launch profiles UI:
+
+![launch profiles UI](index/_static/dbg-launch-profiles-ui.png)
+
 ## Hierarchical configuration data
 
 The Configuration API reads hierarchical configuration data by flattening the hierarchical data with the use of a delimiter in the configuration keys.
