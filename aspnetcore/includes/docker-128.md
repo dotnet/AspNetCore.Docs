@@ -10,6 +10,9 @@ Disabling `reloadOnChange` can significantly reduce the number of opened files:
 
 [!code-csharp[](~/includes/docker-128/Program.cs?highlight=14&name=snippet)]
 
-The preceding code can help prevent the user limit (128) when the app doesn't depend on reloading the *appsettings.json* file.
+The preceding code:
+
+* Can help prevent the user limit (128) when the app doesn't depend on reloading the *appsettings.json* file.
+* Reads *appsettings.json* as the last configuration provider, therefore settings in *appsettings.json* override those set in the environment and the command line. For more information, see [Configuration](xref:fundamentals/configuration/index).
 
 For alternative approaches or to leave feedback on this problem, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/19814).
