@@ -19,7 +19,7 @@ on:
       - "**.sln"
       - "**global.json"
       - "**snippets.5000.json"
-    branches: [ main ]
+    branches: [ none ]
 
 env:
   DOTNET_INSTALLER_CHANNEL: 'release/5.0.1xx'
