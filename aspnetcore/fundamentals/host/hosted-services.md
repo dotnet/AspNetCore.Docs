@@ -103,7 +103,6 @@ The hosted service is activated once at app startup and gracefully shut down at 
 
 The cancellation token is triggered when [IHostedService.StopAsync](xref:Microsoft.Extensions.Hosting.IHostedService.StopAsync*) is called. Your implementation of `ExecuteAsync` should finish promptly when the cancellation token is fired in order to gracefully shut down the service. Otherwise, the service ungracefully shuts down at the shutdown timeout. For more information, see the [IHostedService interface](#ihostedservice-interface) section.
 
-Looks like the rationale stated in was lost in the docs.
 
 `StartAsync` should be limited to short running task so that callers `await service.StartAsync` can proceed with executing. Long running tasks should be placed in `ExecuteAsync`. For more information, see the source to [BackgroundService](https://github.com/dotnet/runtime/blob/main/src/libraries/Microsoft.Extensions.Hosting.Abstractions/src/BackgroundService.cs).
 
