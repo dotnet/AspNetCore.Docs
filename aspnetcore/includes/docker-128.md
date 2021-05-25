@@ -4,7 +4,7 @@ no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cook
 
 <a name="d128"></a>
 
-## System.IO.IOException: The configured user limit (128) on the number of inotify instances has been reached.
+## System.IO.IOException: The configured user limit (128) on the number of inotify instances has been reached
 
 Disabling `reloadOnChange` can significantly reduce the number of opened files:
 
