@@ -15,7 +15,7 @@ namespace HttpLoggingSample
         #region configureservices
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AppHttpLogging(logging =>
+            services.AddHttpLogging(logging =>
             {
                 // Customize HTTP logging here.
                 logging.LoggingFields = HttpLoggingFields.All;
