@@ -173,43 +173,18 @@ The *appsettings.json* file is updated with the connection string used to connec
 
 ---
 
-### Files created
-
-# [Visual Studio](#tab/visual-studio)
-
-The scaffold process creates and updates the following files:
-
-* *Pages/Movies*: Create, Delete, Details, Edit, and Index.
-* *Data/RazorPagesMovieContext.cs*
-
-### Updated
-
-* *Startup.cs*
-
-The created and updated files are explained in the next section.
-
-# [Visual Studio Code](#tab/visual-studio-code)
+### Files created and updated
 
 The scaffold process creates the following files:
 
 * *Pages/Movies*: Create, Delete, Details, Edit, and Index.
-
-The created files are explained in the next section.
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-The scaffold process creates and updates the following files:
-
-* *Pages/Movies*: Create, Delete, Details, Edit, and Index.
 * *Data/RazorPagesMovieContext.cs*
 
-### Updated
+#### Updated files
 
 * *Startup.cs*
 
 The created and updated files are explained in the next section.
-
----
 
 <a name="pmc"></a>
 
