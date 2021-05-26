@@ -128,11 +128,11 @@ services
 
 For more information about deadlines and RPC cancellation, see <xref:grpc/deadlines-cancellation>.
 
-## Configure and resolve clients by name
+## Named clients
 
-Typically a gRPC client type is registered once and then injected directly into a type's constructor by DI. However, there are scenarios where it is useful to use the same client with different configurations. For example, a client that makes some gRPC calls without authentication and some gRPC calls with authentication.
+Typically a gRPC client type is registered once and then injected directly into a type's constructor by DI. However, there are scenarios where it is useful to use the same client with different configurations. For example, a client that makes gRPC calls with and without authentication.
 
-The solution to this problem is giving configured clients a name. The generic `AddGrpcClient` extension method has an overload with a name:
+The solution to this problem is to give clients a name. Each named client can have its own configuration. The generic `AddGrpcClient` extension method has an overload that includes a name parameter:
 
 ```csharp
 services
@@ -154,9 +154,9 @@ services
 
 The preceeding code:
 * Registers `GreeterClient` twice, specifing a unique name for each.
-* `GreeterClient` registrations have different configuration. `GreeterAuthenticated` configures the channel with credentials so that gRPC calls made with it are authenticated.
+* Configures different settings for each named client. The `GreeterAuthenticated` registration adds credentials to the channel so that gRPC calls made with it are authenticated.
 
-The gRPC client is then created in app code using `GrpcClientFactory`. The type and name of the desired client is specified using the generic `GrpcClientFactory.CreateClient` method.
+A named gRPC client is created in app code using `GrpcClientFactory`. The type and name of the desired client is specified using the generic `GrpcClientFactory.CreateClient` method:
 
 ```csharp
 public class AggregatorService : Aggregator.AggregatorBase
