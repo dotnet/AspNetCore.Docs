@@ -180,7 +180,7 @@ The scaffold process creates the following files:
 * *Pages/Movies*: Create, Delete, Details, Edit, and Index.
 * *Data/RazorPagesMovieContext.cs*
 
-#### Updated
+#### Updated files
 
 * *Startup.cs*
 
