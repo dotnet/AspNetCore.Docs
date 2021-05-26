@@ -156,7 +156,7 @@ The preceeding code:
 * Registers `GreeterClient` twice, specifing a unique name for each.
 * `GreeterClient` registrations have different configuration. `GreeterAuthenticated` configures the channel with credentials so that gRPC calls made with it are authenticated.
 
-The gRPC client is then created in app code using `GrpcClientFactory`. The name of the desired client is specified using `GrpcClientFactory.CreateClient`.
+The gRPC client is then created in app code using `GrpcClientFactory`. The type and name of the desired client is specified using the generic `GrpcClientFactory.CreateClient` method.
 
 ```csharp
 public class AggregatorService : Aggregator.AggregatorBase
