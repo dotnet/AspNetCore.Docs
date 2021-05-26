@@ -175,7 +175,7 @@ The *appsettings.json* file is updated with the connection string used to connec
 
 ### Files created and updated
 
-The scaffold process creates and updates the following files:
+The scaffold process creates the following files:
 
 * *Pages/Movies*: Create, Delete, Details, Edit, and Index.
 * *Data/RazorPagesMovieContext.cs*
