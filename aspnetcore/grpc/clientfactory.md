@@ -130,7 +130,7 @@ For more information about deadlines and RPC cancellation, see <xref:grpc/deadli
 
 ## Named clients
 
-Typically a gRPC client type is registered once and then injected directly into a type's constructor by DI. However, there are scenarios where it is useful to use the same client with different configurations. For example, a client that makes gRPC calls with and without authentication.
+Typically a gRPC client type is registered once and then injected directly into a type's constructor by DI. However, there are scenarios where it is useful to have multiple configurations for one client. For example, a client that makes gRPC calls with and without authentication.
 
 The solution to this problem is to give clients a name. Each named client can have its own configuration. The generic `AddGrpcClient` extension method has an overload that includes a name parameter:
 
