@@ -6,20 +6,20 @@ name: Snippets 5000
 on:
   pull_request:
     paths:
-      - "**.cs"
-      - "**.vb"
-      - "**.fs"
-      - "**.xaml"
-      - "**.razor"
-      - "**.cshtml"
-      - "**.vbhtml"
-      - "**.csproj"
-      - "**.vbproj"
-      - "**.fsproj"
-      - "**.sln"
-      - "**global.json"
-      - "**snippets.5000.json"
-    branches: [ none ]
+#      - "**.cs"
+#      - "**.vb"
+#      - "**.fs"
+#      - "**.xaml"
+#      - "**.razor"
+#      - "**.cshtml"
+#      - "**.vbhtml"
+#      - "**.csproj"
+#      - "**.vbproj"
+#      - "**.fsproj"
+#      - "**.sln"
+#      - "**global.json"
+#      - "**snippets.5000.json"
+    branches: [ main ]
 
 env:
   DOTNET_INSTALLER_CHANNEL: 'release/6.0.1xx-preview4'
