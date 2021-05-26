@@ -173,7 +173,7 @@ The *appsettings.json* file is updated with the connection string used to connec
 
 ---
 
-### Files created
+### Files created and updated
 
 The scaffold process creates and updates the following files:
 
