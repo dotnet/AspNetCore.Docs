@@ -128,6 +128,48 @@ services
 
 For more information about deadlines and RPC cancellation, see <xref:grpc/deadlines-cancellation>.
 
+## Configure and resolve clients by name
+
+Typically a gRPC client type is registered once and then injected directly into a type's constructor by DI. However, there are scenarios where it is useful to use the same client with different configurations. For example, a client that makes some gRPC calls without authentication and some gRPC calls with authentication.
+
+The solution to this problem is giving configured clients a name. The generic `AddGrpcClient` extension method has an overload with a name:
+
+```csharp
+services
+    .AddGrpcClient<Greeter.GreeterClient>("Greeter", o =>
+    {
+        o.Address = new Uri("https://localhost:5001");
+    });
+    
+services
+    .AddGrpcClient<Greeter.GreeterClient>("GreeterAuthenticated", o =>
+    {
+        o.Address = new Uri("https://localhost:5001");
+    })
+    .ConfigureChannel(o =>
+    {
+        o.Credentials = new CustomCredentials();
+    });
+```
+
+The preceeding code:
+* Registers `GreeterClient` twice, specifing a unique name for each.
+* `GreeterClient` registrations have different configuration. `GreeterAuthenticated` configures the channel with credentials so that gRPC calls made with it are authenticated.
+
+The gRPC client is then created in app code using `GrpcClientFactory`. The name of the desired client is specified using `GrpcClientFactory.CreateClient`.
+
+```csharp
+public class AggregatorService : Aggregator.AggregatorBase
+{
+    private readonly Greeter.GreeterClient _client;
+
+    public AggregatorService(GrpcClientFactory grpcClientFactory)
+    {
+        _client = grpcClientFactory.Create<Greeter.GreeterClient>("GreeterAuthenticated");
+    }
+}
+```
+
 ## Additional resources
 
 * <xref:grpc/client>
