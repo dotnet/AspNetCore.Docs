@@ -22,8 +22,8 @@ on:
     branches: [ main ]
 
 env:
-  DOTNET_INSTALLER_CHANNEL: 'release/5.0.1xx'
-  DOTNET_DO_INSTALL: 'false'
+  DOTNET_INSTALLER_CHANNEL: 'release/6.0.1xx-preview4'
+  DOTNET_DO_INSTALL: 'true'
   EnableNuGetPackageRestore: 'True'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
