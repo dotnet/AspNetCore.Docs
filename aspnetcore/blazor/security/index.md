@@ -23,7 +23,10 @@ Blazor WebAssembly apps run on the client. Authorization is *only* used to deter
 [Razor Pages authorization conventions](xref:security/authorization/razor-pages-authorization) don't apply to routable Razor components. If a non-routable Razor component is [embedded in a page](xref:blazor/components/prerendering-and-integration), the page's authorization conventions indirectly affect the Razor component along with the rest of the page's content.
 
 > [!NOTE]
-> <xref:Microsoft.AspNetCore.Identity.SignInManager%601> and <xref:Microsoft.AspNetCore.Identity.UserManager%601> aren't supported in Razor components.
+> <xref:Microsoft.AspNetCore.Identity.SignInManager%601> and <xref:Microsoft.AspNetCore.Identity.UserManager%601> aren't supported in Razor components. Blazor Server apps use ASP.NET Core Identity. For more information, see the following guidance:
+> 
+> * <xref:blazor/security/server/index>
+> * [Scaffold ASP.NET Core Identity into a Blazor Server app without existing authorization](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-blazor-server-project-without-existing-authorization)
 
 ## Authentication
 
