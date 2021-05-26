@@ -6,19 +6,19 @@ name: Snippets 5000
 on:
   pull_request:
     paths:
-      - "**.cs"
-      - "**.vb"
-      - "**.fs"
-      - "**.xaml"
-      - "**.razor"
-      - "**.cshtml"
-      - "**.vbhtml"
-      - "**.csproj"
-      - "**.vbproj"
-      - "**.fsproj"
-      - "**.sln"
-      - "**global.json"
-      - "**snippets.5000.json"
+#      - "**.cs"
+#      - "**.vb"
+#      - "**.fs"
+#      - "**.xaml"
+#      - "**.razor"
+#      - "**.cshtml"
+#      - "**.vbhtml"
+#      - "**.csproj"
+#      - "**.vbproj"
+#      - "**.fsproj"
+#      - "**.sln"
+#      - "**global.json"
+#      - "**snippets.5000.json"
     branches: [ none ]
 
 env:
