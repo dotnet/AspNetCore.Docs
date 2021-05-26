@@ -1,27 +1,31 @@
 ---
-title: Call a web API from ASP.NET Core Blazor WebAssembly
+title: Call a web API in an ASP.NET Core Blazor app
 author: guardrex
-description: Learn how to call a web API from a Blazor WebAssembly app using JSON helpers, including making cross-origin resource sharing (CORS) requests.
+description: Learn how to call a web API in Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/24/2020
+ms.date: 05/26/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/call-web-api
+zone_pivot_groups: blazor-hosting-models
 ---
 # Call a web API from ASP.NET Core Blazor
 
-> [!NOTE]
-> This topic applies to Blazor WebAssembly. [Blazor Server](xref:blazor/hosting-models#blazor-server) apps call web APIs using <xref:System.Net.Http.HttpClient> instances, typically created using <xref:System.Net.Http.IHttpClientFactory>. For guidance that applies to Blazor Server, see <xref:fundamentals/http-requests>.
+::: zone pivot="webassembly"
 
-[Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly) apps call web APIs using a preconfigured <xref:System.Net.Http.HttpClient> service. Compose requests, which can include JavaScript [Fetch API](https://developer.mozilla.org/docs/Web/API/Fetch_API) options, using Blazor JSON helpers or with <xref:System.Net.Http.HttpRequestMessage>. The <xref:System.Net.Http.HttpClient> service in Blazor WebAssembly apps is focused on making requests back to the server of origin. The guidance in this topic only pertains to Blazor WebAssembly apps.
+[Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly) apps call web APIs using a preconfigured <xref:System.Net.Http.HttpClient> service. Compose requests, which can include JavaScript [Fetch API](https://developer.mozilla.org/docs/Web/API/Fetch_API) options, using Blazor JSON helpers or with <xref:System.Net.Http.HttpRequestMessage>. The <xref:System.Net.Http.HttpClient> service in Blazor WebAssembly apps is focused on making requests back to the server of origin.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/blazor/common/samples/) ([how to download](xref:index#how-to-download-a-sample)): Select the `BlazorWebAssemblySample` app.
+<!--
+
+XXXXXXXXXX Not going to cross-link the examples, but consider a section for these and placing them into the snippets sample app XXXXXXXXXX
 
 See the following components in the `BlazorWebAssemblySample` sample app:
 
 * Call Web API (`Pages/CallWebAPI.razor`)
 * HTTP Request Tester (`Components/HTTPRequestTester.razor`)
+
+-->
 
 ## Packages
 
@@ -41,9 +45,7 @@ builder.Services.AddScoped(sp =>
 
 ## HttpClient and JSON helpers
 
-In a Blazor WebAssembly app, [`HttpClient`](xref:fundamentals/http-requests) is available as a preconfigured service for making requests back to the origin server.
-
-A Blazor Server app doesn't include an <xref:System.Net.Http.HttpClient> service by default. Provide an <xref:System.Net.Http.HttpClient> to the app using the [`HttpClient` factory infrastructure](xref:fundamentals/http-requests).
+[`HttpClient`](xref:fundamentals/http-requests) is available as a preconfigured service for making requests back to the origin server.
 
 <xref:System.Net.Http.HttpClient> and JSON helpers are also used to call third-party web API endpoints. <xref:System.Net.Http.HttpClient> is implemented using the browser [Fetch API](https://developer.mozilla.org/docs/Web/API/Fetch_API) and is subject to its limitations, including enforcement of the same origin policy.
 
@@ -265,10 +267,12 @@ Components inject the typed <xref:System.Net.Http.HttpClient> to call the web AP
 
 ## `HttpClient` and `HttpRequestMessage` with Fetch API request options
 
-When running on WebAssembly in a Blazor WebAssembly app, [`HttpClient`](xref:fundamentals/http-requests) ([API documentation](xref:System.Net.Http.HttpClient)) and <xref:System.Net.Http.HttpRequestMessage> can be used to customize requests. For example, you can specify the HTTP method and request headers. The following component makes a `POST` request to a To Do List API endpoint on the server and shows the response body:
+[`HttpClient`](xref:fundamentals/http-requests) ([API documentation](xref:System.Net.Http.HttpClient)) and <xref:System.Net.Http.HttpRequestMessage> can be used to customize requests. For example, you can specify the HTTP method and request headers. The following component makes a `POST` request to a To Do List API endpoint on the server and shows the response body:
+
+`Pages/TodoRequest.razor`:
 
 ```razor
-@page "/todorequest"
+@page "/todo-request"
 @using System.Net.Http
 @using System.Net.Http.Headers
 @using System.Net.Http.Json
@@ -339,8 +343,8 @@ HTTP fetch request options can be configured with <xref:System.Net.Http.HttpRequ
 | <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestIntegrity%2A> | [`integrity`](https://developer.mozilla.org/docs/Web/API/Request/integrity) |
 
 You can set additional options using the more generic <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestOption%2A> extension method.
- 
-The HTTP response is typically buffered in a Blazor WebAssembly app to enable support for sync reads on the response content. To enable support for response streaming, use the <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserResponseStreamingEnabled%2A> extension method on the request.
+
+The HTTP response is typically buffered to enable support for sync reads on the response content. To enable support for response streaming, use the <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserResponseStreamingEnabled%2A> extension method on the request.
 
 To include credentials in a cross-origin request, use the <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestCredentials%2A> extension method:
 
@@ -349,6 +353,82 @@ requestMessage.SetBrowserRequestCredentials(BrowserRequestCredentials.Include);
 ```
 
 For more information on Fetch API options, see [MDN web docs: WindowOrWorkerGlobalScope.fetch():Parameters](https://developer.mozilla.org/docs/Web/API/WindowOrWorkerGlobalScope/fetch#Parameters).
+
+## Call web API example
+
+The following example calls a Web API. The example requires a running web API based on the sample app described by the <xref:tutorials/first-web-api> article. This example makes requests to the web API at `https://localhost:10000/api/TodoItems`. If a different web API address is used, update the `ServiceEndpoint` constant value in the component's `@code` block.
+
+The following example makes a [cross-origin resource sharing (CORS)](xref:security/cors) request from `http://localhost:5000` or `https://localhost:5001` to the web API service app. Add the following CORS middleware configuration to the web API's service's `Startup.Configure` method:
+
+```csharp
+app.UseCors(policy => 
+    policy.WithOrigins("http://localhost:5000", "https://localhost:5001")
+    .AllowAnyMethod()
+    .WithHeaders(HeaderNames.ContentType));
+```
+
+Adjust the domains and ports of `WithOrigins` as needed for the Blazor app. For more information, see <xref:security/cors>.
+
+::: moniker range=">= aspnetcore-5.0"
+
+By default, ASP.NET Core apps use ports 5000 (HTTP) and 5001 (HTTPS). To run both apps on the same machine at the same time for testing, use a different port for the web API app (for example, port 10000). For more information on setting the port, see <xref:fundamentals/servers/kestrel/endpoints>.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+By default, ASP.NET Core apps use ports 5000 (HTTP) and 5001 (HTTPS). To run both apps on the same machine at the same time for testing, use a different port for the web API app (for example, port 10000). For more information on setting the port, see <xref:fundamentals/servers/kestrel#endpoint-configuration>.
+
+::: moniker-end
+
+`Pages/CallWebAPI.razor`:
+
+::: moniker range=">= aspnetcore-5.0"
+
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/call-web-api/CallWebAPI.razor)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/call-web-api/CallWebAPI.razor)]
+
+::: moniker-end
+
+## HTTP request testing
+
+The default values of the following form POST (add a Todo item) to the web API created in the <xref:tutorials/first-web-api> article with:
+
+* An endpoint URI of `https://localhost:10000/api/TodoItems`.
+* The `Content-Type` header set to `application/json`, which describes the payload of a POST/PUT request to the service.
+
+Add the following CORS middleware configuration to the web API's `Startup.Configure` method before it calls `UseMvc`:
+
+```csharp
+app.UseCors(policy =>
+    policy.WithOrigins("http://localhost:5000", "https://localhost:5001")
+    .AllowAnyMethod()
+    .WithHeaders(HeaderNames.ContentType, HeaderNames.Authorization)
+    .AllowCredentials());
+```
+
+Adjust the domains and ports of `WithOrigins` as needed for the Blazor app.
+
+The web API is configured for CORS to permit authorization cookies/headers and requests from client code, but the web API as created by the tutorial doesn't actually authorize requests. For implementation guidance, see <xref:security/index>.
+
+`Pages/HttpRequestTester.razor`:
+
+::: moniker range=">= aspnetcore-5.0"
+
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/call-web-api/HttpRequestTester.razor)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/call-web-api/HttpRequestTester.razor)]
+
+::: moniker-end
 
 ## Handle errors
 
@@ -365,8 +445,7 @@ protected override async Task OnInitializedAsync()
 {
     try
     {
-        forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>(
-            "WeatherForcast");
+        forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("WeatherForcast");
     }
     catch (NotSupportedException exception)
     {
@@ -380,25 +459,102 @@ protected override async Task OnInitializedAsync()
 
 For more information, see <xref:blazor/fundamentals/handle-errors>.
 
+::: zone-end
+
+::: zone pivot="server"
+
+[Blazor Server](xref:blazor/hosting-models#blazor-server) apps call web APIs using <xref:System.Net.Http.HttpClient> instances, typically created using <xref:System.Net.Http.IHttpClientFactory>. For guidance that applies to Blazor Server, see <xref:fundamentals/http-requests>.
+
+XXXXXXXXXXXXXXXXXXXXXXXXX
+
+In the following example ....... or cross-link to File Uploads example.
+
+
+
+
+
+
+A Blazor Server app doesn't include an <xref:System.Net.Http.HttpClient> service by default. Provide an <xref:System.Net.Http.HttpClient> to the app using the [`HttpClient` factory infrastructure](xref:fundamentals/http-requests).
+
+
+
+
+
+
+::: zone-end
+
 ## Cross-origin resource sharing (CORS)
+
+::: zone pivot="webassembly"
 
 Browser security prevents a webpage from making requests to a different domain than the one that served the webpage. This restriction is called the *same-origin policy*. The same-origin policy prevents a malicious site from reading sensitive data from another site. To make requests from the browser to an endpoint with a different origin, the *endpoint* must enable [cross-origin resource sharing (CORS)](https://www.w3.org/TR/cors/).
 
+<!--
+
+XXXXXXXXXX Include guidance here or refer/cross-link the snippets sample app for this scenario XXXXXXXXXXX
+
 The [Blazor WebAssembly sample app (BlazorWebAssemblySample)](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/blazor/common/samples/) demonstrates the use of CORS in the Call Web API component (`Pages/CallWebAPI.razor`).
 
-For more information on CORS with secure requests in Blazor apps, see <xref:blazor/security/webassembly/additional-scenarios#cross-origin-resource-sharing-cors>.
+-->
 
-For general information on CORS with ASP.NET Core apps, see <xref:security/cors>.
+For more information on secure CORS requests in Blazor WebAssembly apps, see <xref:blazor/security/webassembly/additional-scenarios#cross-origin-resource-sharing-cors>.
+
+For general information on CORS, see <xref:security/cors>.
+
+::: zone-end
+
+::: zone pivot="server"
+
+Browser security prevents a webpage from making requests to a different domain than the one that served the webpage. This restriction is called the *same-origin policy*. The same-origin policy prevents a malicious site from reading sensitive data from another site. To make requests from the browser to an endpoint with a different origin, the *endpoint* must enable [cross-origin resource sharing (CORS)](https://www.w3.org/TR/cors/).
+
+For more information, see <xref:security/cors>.
+
+::: zone-end
 
 ## Additional resources
 
+::: zone pivot="webassembly"
+
+::: moniker range=">= aspnetcore-5.0"
+
 * <xref:blazor/security/webassembly/additional-scenarios>: Includes coverage on using <xref:System.Net.Http.HttpClient> to make secure web API requests.
+* <xref:security/cors>: Although the content applies to ASP.NET Core apps, not Blazor WebAssembly apps, the article covers general CORS concepts.
+* [Cross Origin Resource Sharing (CORS) at W3C](https://www.w3.org/TR/cors/)
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+* <xref:blazor/security/webassembly/additional-scenarios>: Includes coverage on using <xref:System.Net.Http.HttpClient> to make secure web API requests.
+* <xref:security/cors>: Although the content applies to ASP.NET Core apps, not Blazor WebAssembly apps, the article covers general CORS concepts.
+* [Cross Origin Resource Sharing (CORS) at W3C](https://www.w3.org/TR/cors/)
+
+::: moniker-end
+
+::: zone-end
+
+::: zone pivot="server"
+
+::: moniker range=">= aspnetcore-5.0"
+
+* <xref:blazor/security/server/additional-scenarios>: Includes coverage on using <xref:System.Net.Http.HttpClient> to make secure web API requests.
 * <xref:fundamentals/http-requests>
 * <xref:security/enforcing-ssl>
-::: moniker range=">= aspnetcore-5.0"
+* <xref:security/cors>
 * [Kestrel HTTPS endpoint configuration](xref:fundamentals/servers/kestrel/endpoints)
-::: moniker-end
-::: moniker range="< aspnetcore-5.0"
-* [Kestrel HTTPS endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration)
-::: moniker-end
 * [Cross Origin Resource Sharing (CORS) at W3C](https://www.w3.org/TR/cors/)
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+* <xref:blazor/security/server/additional-scenarios>: Includes coverage on using <xref:System.Net.Http.HttpClient> to make secure web API requests.
+* <xref:fundamentals/http-requests>
+* <xref:security/enforcing-ssl>
+* <xref:security/cors>
+* [Kestrel HTTPS endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration)
+* [Cross Origin Resource Sharing (CORS) at W3C](https://www.w3.org/TR/cors/)
+
+::: moniker-end
+
+::: zone-end
