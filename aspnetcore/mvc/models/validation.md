@@ -30,7 +30,7 @@ Web API controllers don't have to check `ModelState.IsValid` if they have the `[
 
 ## Rerun validation
 
-Validation is automatic, but you might want to repeat it manually. For example, you might compute a value for a property and want to rerun validation after setting the property to the computed value. To rerun validation, call [`ModelState.Clear`](xref:System.Web.WebPages.Html.ModelStateDictionary.Clear%2A) and `TryValidateModel`:
+Validation is automatic, but you might want to repeat it manually. For example, you might compute a value for a property and want to rerun validation after setting the property to the computed value. To rerun validation, call [`ModelState.ClearValidationState`](Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.ClearValidationState) to clear validation specific to the model being validated followed by `TryValidateModel`:
 
 [!code-csharp[](validation/samples/3.x/ValidationSample/Pages/Movies/Create.cshtml.cs?name=snippet_TryValidate&highlight=6-10)]
 

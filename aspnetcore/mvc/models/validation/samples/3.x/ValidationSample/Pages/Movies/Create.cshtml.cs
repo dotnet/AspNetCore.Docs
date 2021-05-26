@@ -40,7 +40,7 @@ namespace ValidationSample.Pages.Movies
             var modifiedReleaseDate = DateTime.Now.Date;
             Movie.ReleaseDate = modifiedReleaseDate;
 
-            ModelState.Clear();
+            ModelState.ClearValidationState(nameof(Movie)));
             if (!TryValidateModel(Movie, nameof(Movie)))
             {
                 return Page();
