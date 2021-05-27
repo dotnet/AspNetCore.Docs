@@ -132,7 +132,7 @@ For more information about deadlines and RPC cancellation, see <xref:grpc/deadli
 
 Typically, a gRPC client type is registered once and then injected directly into a type's constructor by DI. However, there are scenarios where it is useful to have multiple configurations for one client. For example, a client that makes gRPC calls with and without authentication.
 
-Multiple clients can be registered by giving each client a name. Each named client can have its own configuration. The generic `AddGrpcClient` extension method has an overload that includes a name parameter:
+Multiple clients with the same type can be registered by giving each client a name. Each named client can have its own configuration. The generic `AddGrpcClient` extension method has an overload that includes a name parameter:
 
 ```csharp
 services
@@ -153,7 +153,7 @@ services
 ```
 
 The preceding code:
-* Registers `GreeterClient` twice, specifying a unique name for each.
+* Registers the `GreeterClient` type twice, specifying a unique name for each.
 * Configures different settings for each named client. The `GreeterAuthenticated` registration adds credentials to the channel so that gRPC calls made with it are authenticated.
 
 A named gRPC client is created in app code using `GrpcClientFactory`. The type and name of the desired client is specified using the generic `GrpcClientFactory.CreateClient` method:
