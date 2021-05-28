@@ -239,7 +239,7 @@ To use the following code, create a `Development/unsafe_uploads` folder at the r
 ::: zone-end
 
 > [!WARNING]
-> The example saves files without scanning their contents. In production scenarios, an anti-virus/anti-malware scanner API is used on files before making them available for download or for use by other systems. For more information on security considerations when uploading files to a server, see <xref:mvc/models/file-uploads#security-considerations>.
+> The example saves files without scanning their contents. In production scenarios, use an anti-virus/anti-malware scanner API on uploaded files before making them available for download or for use by other systems. For more information on security considerations when uploading files to a server, see <xref:mvc/models/file-uploads#security-considerations>.
 
 `Controllers/FilesaveController.cs`:
 
