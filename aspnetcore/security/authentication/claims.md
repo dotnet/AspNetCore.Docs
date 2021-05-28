@@ -118,4 +118,4 @@ public void Configure(IApplicationBuilder app)
 
 Please refer to this doc:
 
-[Persist additional claims and tokens from external providers in ASP.NET Core](xref:security/authentication/identity-enable-qrcodes)
+[Persist additional claims and tokens from external providers in ASP.NET Core](xref:security/authentication/social/additional-claims)
