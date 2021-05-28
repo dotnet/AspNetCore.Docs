@@ -12,11 +12,11 @@ public class JsInteropClasses3 : IDisposable
         this.js = js;
     }
 
-    public ValueTask<string> CallHelloHelperSayHello(string name)
+    public ValueTask<string> CallHelloHelperGetHelloMessage(string name)
     {
         objRef = DotNetObjectReference.Create(new HelloHelper(name));
 
-        return js.InvokeAsync<string>("sayHello", objRef);
+        return js.InvokeAsync<string>("sayHello1", objRef);
     }
 
     public void Dispose()
