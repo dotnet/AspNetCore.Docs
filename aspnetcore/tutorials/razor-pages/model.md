@@ -594,6 +594,8 @@ Update-Database
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
+[!INCLUDE [more information on the CLI for EF Core](~/includes/ef-cli.md)]
+
 Run the following .NET Core CLI commands:
 
 ```dotnetcli
