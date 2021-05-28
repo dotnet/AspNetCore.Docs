@@ -33,3 +33,7 @@ The following list contains third-party web performance tools with various featu
 * [Netling](https://github.com/hallatore/Netling)
 * [Vegeta](https://github.com/tsenart/vegeta)
 * [NBomber](https://github.com/PragmaticFlow/NBomber)
+
+## Load and stress test with release builds
+
+Load and stress tests should be done in release and [production](xref:fundamentals/environments) mode and not in debug or development mode. [Release configurations](/visualstudio/debugger/how-to-set-debug-and-release-configurations) are fully optimized with minimal logging. Debug configuration is not optimized and has logging that can impact performance.
