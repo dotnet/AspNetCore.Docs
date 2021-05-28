@@ -48,7 +48,7 @@ public void ConfigureServices(IServiceCollection services)
    });
 ```
 
-A second way to get the user claims is to use the OpenID Connect User Info API. The ASP.NET Core client application uses the **GetClaimsFromUserInfoEndpoint** property to configure this. One important difference from the first settings, is that you MUST specify the claims you require using the **MapUniqueJsonKey** method, otherwise only the name, given_name and email standard claims will be available in the client application. The claims included in the id_token are mapped per default. This is the major difference to the first option. You must explicit define some of the standard claims you require.
+A second way to get the user claims is to use the OpenID Connect User Info API. The ASP.NET Core client application uses the **GetClaimsFromUserInfoEndpoint** property to configure this. One important difference from the first settings, is that you MUST specify the claims you require using the **MapUniqueJsonKey** method, otherwise only the **name**, **given_name** and **email** standard claims will be available in the client application. The claims included in the id_token are mapped per default. This is the major difference to the first option. You must explicit define some of the standard claims you require.
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -73,11 +73,14 @@ public void ConfigureServices(IServiceCollection services)
        options.GetClaimsFromUserInfoEndpoint = true;
        options.ClaimActions.MapUniqueJsonKey("preferred_username", "preferred_username");
        options.ClaimActions.MapUniqueJsonKey("gender", "gender");
-   });
-   
+   }); 
 ```
 
 ## Name claim and role claim mapping
+
+The **Name** claim and the **Role** claim are mapped to default properties in the ASP.NET Core HTTP context. Sometimes it is required to use different claims for the default properties, or the name claim and the role claim do not match the default values. The claims can be mapped using the **TokenValidationParameters** property and set to any claim as required. The values from the claims can be used directly in the HttpContext **User.Identity.Name** property and the roles.
+
+If the **User.Identity.Name** has no value or the roles are missing, please check the values in the returned claims and set the **NameClaimType** and the **RoleClaimType** values. The returned claims from the client authentication can be viewed in the HTTP context.
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -97,7 +100,6 @@ public void ConfigureServices(IServiceCollection services)
          // RoleClaimType = "role"
        };
    });
-
 ```
 
 ## Claims namespaces, default namespaces
