@@ -23,9 +23,87 @@ This article covers the following areas:
 
 ## Mapping claims using Open ID Connect authentication
 
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddAuthentication(options =>
+    {
+        options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+        options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
+    })
+   .AddCookie()
+   .AddOpenIdConnect(options =>
+   {
+       options.SignInScheme = "Cookies";
+       options.Authority = "-your-identity-provider-";
+       options.RequireHttpsMetadata = true;
+       options.ClientId = "-your-clientid-";
+       options.ClientSecret = "-your-client-secret-from-user-secrets-or-keyvault";
+       options.ResponseType = "code";
+       options.UsePkce = true;
+       options.Scope.Add("profile");
+       options.SaveTokens = true;
+   });
+```
+
+   
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddAuthentication(options =>
+    {
+        options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+        options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
+    })
+   .AddCookie()
+   .AddOpenIdConnect(options =>
+   {
+       options.SignInScheme = "Cookies";
+       options.Authority = "-your-identity-provider-";
+       options.RequireHttpsMetadata = true;
+       options.ClientId = "-your-clientid-";
+       options.ClientSecret = "-your-client-secret-from-user-secrets-or-keyvault";
+       options.ResponseType = "code";
+       options.UsePkce = true;
+       options.Scope.Add("profile");
+       options.SaveTokens = true;
+       options.GetClaimsFromUserInfoEndpoint = true;
+       options.ClaimActions.MapUniqueJsonKey("preferred_username", "preferred_username");
+       options.ClaimActions.MapUniqueJsonKey("gender", "gender");
+   });
+   
+```
+
 ## Name claim and role claim mapping
 
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddAuthentication(options =>
+    {
+        options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+        options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
+    })
+   .AddCookie()
+   .AddOpenIdConnect(options =>
+   {
+		// other options...
+		options.TokenValidationParameters = new TokenValidationParameters
+		{
+		  NameClaimType = "email", 
+		  // RoleClaimType = "role"
+		};
+   });
+
+```
+
 ## Claims namespaces, default namespaces
+
+```csharp
+public void Configure(IApplicationBuilder app)
+{
+	JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
+```
 
 ## Extending or adding custom claims in ASP.NET Core Identity
 
