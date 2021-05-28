@@ -215,8 +215,6 @@ In this section, the **Package Manager Console** (PMC) window is used to:
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-[!INCLUDE [more information on the CLI for EF Core](~/includes/ef-cli.md)]
-
 * Run the following .NET CLI commands:
 
   ```dotnetcli
@@ -224,9 +222,12 @@ In this section, the **Package Manager Console** (PMC) window is used to:
   dotnet ef database update
   ```
 
+> [!NOTE]
+> For SQLite, column type for the `Price` field is set to `TEXT`. This is resolved in a later step.
+
 ---
 
-The preceding commands generate the following warning: "No type was specified for the decimal column 'Price' on entity type 'Movie'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'."
+For SQL Server, the preceding commands generate the following warning: "No type was specified for the decimal column 'Price' on entity type 'Movie'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'."
 
 Ignore the warning, as it will be addressed in a later step.
 
