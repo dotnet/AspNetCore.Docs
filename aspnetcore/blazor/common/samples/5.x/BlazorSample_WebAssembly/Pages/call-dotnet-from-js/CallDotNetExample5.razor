@@ -1,35 +1,38 @@
 @page "/call-dotnet-example-5"
+@implements IDisposable
+@inject IJSRuntime JS
 
 <h1>Call .NET Example 5</h1>
 
 <p>
-    <button onclick="updateMessageCaller2('Sarah Jane')">
-        Call component instance .NET method
+    <label>
+        Name: <input @bind="name" />
+    </label>
+</p>
+
+<p>
+    <button @onclick="TriggerDotNetInstanceMethod">
+        Trigger .NET instance method
     </button>
 </p>
 
 <p>
-    @message
+    @result
 </p>
 
 @code {
-    private static Action<string> action;
-    private string message = "Select the button.";
+    private string name;
+    private string result;
+    private DotNetObjectReference<HelloHelper> objRef;
 
-    protected override void OnInitialized()
+    public async Task TriggerDotNetInstanceMethod()
     {
-        action = UpdateMessage;
+        objRef = DotNetObjectReference.Create(new HelloHelper(name));
+        result = await JS.InvokeAsync<string>("sayHello1", objRef);
     }
 
-    private void UpdateMessage(string name)
+    public void Dispose()
     {
-        message = $"{name}, UpdateMessage Called!";
-        StateHasChanged();
-    }
-
-    [JSInvokable]
-    public static void UpdateMessageCaller2(string name)
-    {
-        action.Invoke(name);
+        objRef?.Dispose();
     }
 }

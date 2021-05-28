@@ -79,23 +79,18 @@
         };
     </script>
     <script>
-        window.sayHello = (dotNetHelper) => {
+        window.sayHello1 = (dotNetHelper) => {
             return dotNetHelper.invokeMethodAsync('GetHelloMessage');
         };
     </script>
     <script>
-        window.updateMessageCaller1 = () => {
-            DotNet.invokeMethodAsync('BlazorSample', 'UpdateMessageCaller1');
+        window.sayHello2 = (dotNetHelper, name) => {
+            return dotNetHelper.invokeMethodAsync('GetHelloMessage', name);
         };
     </script>
     <script>
-        window.updateMessageCaller2 = (name) => {
-            DotNet.invokeMethodAsync('BlazorSample', 'UpdateMessageCaller2', name);
-        };
-    </script>
-    <script>
-        window.updateMessageCaller3 = (dotnetHelper) => {
-            dotnetHelper.invokeMethodAsync('BlazorSample', 'UpdateMessageCaller3');
+        window.updateMessageCaller = (dotnetHelper) => {
+            dotnetHelper.invokeMethodAsync('BlazorSample', 'UpdateMessageCaller');
             dotnetHelper.dispose();
         }
     </script>
