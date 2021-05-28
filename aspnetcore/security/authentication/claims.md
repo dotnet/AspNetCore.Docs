@@ -1,5 +1,5 @@
 ---
-title: Multi-factor authentication in ASP.NET Core
+title: Mapping claims, customizing claims and transforming claims in ASP.NET Core
 author: damienbod
 description: Learn how to map claims, do claims transformations, customize claims.
 monikerRange: '>= aspnetcore-3.1'
@@ -7,7 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 05/28/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
-uid: security/authentication/mfa
+uid: security/authentication/claims
 ---
 # Mapping claims, customizing claims and transforming claims in ASP.NET Core
 
