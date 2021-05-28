@@ -104,6 +104,8 @@ public void ConfigureServices(IServiceCollection services)
 
 ## Claims namespaces, default namespaces
 
+ASP.NET Core adds default namespaces to some known claims which might not be required in your application. You can disable this namespace adding, if you would like to use the claims exactly like the Open ID Connect server created. 
+
 ```csharp
 public void Configure(IApplicationBuilder app)
 {
@@ -114,4 +116,6 @@ public void Configure(IApplicationBuilder app)
 
 ## Map claims from external identity providers
 
-https://docs.microsoft.com/en-us/aspnet/core/security/authentication/social/additional-claims
+Please refer to this doc:
+
+[Persist additional claims and tokens from external providers in ASP.NET Core](xref:security/authentication/identity-enable-qrcodes)
