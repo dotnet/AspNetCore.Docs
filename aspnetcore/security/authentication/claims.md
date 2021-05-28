@@ -23,6 +23,8 @@ This article covers the following areas:
 
 ## Mapping claims using Open ID Connect authentication
 
+The profile claims can be returned in the **id_token** which is returned after a successful authentication. The ASP.NET Core client application just needs to request the profile scope. When using the id_token for claims, no extra claims mapping is required.
+
 ```csharp
 public void ConfigureServices(IServiceCollection services)
 {
@@ -46,7 +48,8 @@ public void ConfigureServices(IServiceCollection services)
    });
 ```
 
-   
+A second way to get the user claims is to use the OpenID Connect User Info API. The ASP.NET Core client application uses the **GetClaimsFromUserInfoEndpoint** property to configure this. One important difference from the first settings, is that you MUST specify the claims you require using the **MapUniqueJsonKey** method, otherwise only the name, given_name and email standard claims will be available in the client application. The claims included in the id_token are mapped per default. This is the major difference to the first option. You must explicit define some of the standard claims you require.
+
 ```csharp
 public void ConfigureServices(IServiceCollection services)
 {
