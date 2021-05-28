@@ -5,7 +5,7 @@ description: Learn how to call a web API in Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/27/2021
+ms.date: 05/28/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/call-web-api
 zone_pivot_groups: blazor-hosting-models
@@ -15,6 +15,25 @@ zone_pivot_groups: blazor-hosting-models
 ::: zone pivot="webassembly"
 
 [Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly) apps call web APIs using a preconfigured <xref:System.Net.Http.HttpClient> service. Compose requests, which can include [Fetch API](https://developer.mozilla.org/docs/Web/API/Fetch_API) options, using Blazor JSON helpers or with <xref:System.Net.Http.HttpRequestMessage>. The <xref:System.Net.Http.HttpClient> service in Blazor WebAssembly apps is focused on making requests back to the server of origin.
+
+## Examples in this article
+
+In this article's examples, a Todo web API processes create, read, update, and delete (CRUD) operations. The examples are based on a `TodoItem` class that stores the:
+
+* ID (`Id`, `long`): Unique ID of the item.
+* Name (`Name`, `string`): Name of the item.
+* Status (`IsComplete`, `bool`): Indication if the Todo item is finished.
+
+Use the following `TodoItem` class with the examples if you build them into a test app:
+
+```csharp
+private class TodoItem
+{
+    public long Id { get; set; }
+    public string Name { get; set; }
+    public bool IsComplete { get; set; }
+}
+```
 
 ## Packages
 
@@ -45,23 +64,6 @@ The client's base address is set to the originating server's address. Inject an 
 @inject HttpClient Http
 ```
 
-In the following examples, a Todo web API processes create, read, update, and delete (CRUD) operations. The examples are based on a `TodoItem` class that stores the:
-
-* ID (`Id`, `long`): Unique ID of the item.
-* Name (`Name`, `string`): Name of the item.
-* Status (`IsComplete`, `bool`): Indication if the Todo item is finished.
-
-```csharp
-private class TodoItem
-{
-    public long Id { get; set; }
-    public string Name { get; set; }
-    public bool IsComplete { get; set; }
-}
-```
-
-JSON helper methods send requests to a URI (a web API in the following examples) and process the response:
-
 ### GET from JSON (`GetFromJsonAsync`)
 
 <xref:System.Net.Http.Json.HttpClientJsonExtensions.GetFromJsonAsync%2A>: Sends an HTTP GET request and parses the JSON response body to create an object.
@@ -70,7 +72,23 @@ In the following component code, the `todoItems` are displayed by the component.
 
 ```razor
 @using System.Net.Http
+@using System.Net.Http.Json
+@using System.Threading.Tasks
 @inject HttpClient Http
+
+@if (todoItems == null)
+{
+    <p>No Todo Items found.</p>
+}
+else
+{
+    <ul>
+        @foreach (var item in todoItems)
+        {
+            <li>@item.Name</li>
+        }
+    </ul>
+}
 
 @code {
     private TodoItem[] todoItems;
@@ -88,6 +106,8 @@ In the following component code, `newItemName` is provided by a bound element of
 
 ```razor
 @using System.Net.Http
+@using System.Net.Http.Json
+@using System.Threading.Tasks
 @inject HttpClient Http
 
 <input @bind="newItemName" placeholder="New Todo Item" />
@@ -118,6 +138,8 @@ In the following component code, `editItem` values for `Name` and `IsCompleted` 
 
 ```razor
 @using System.Net.Http
+@using System.Net.Http.Json
+@using System.Threading.Tasks
 @inject HttpClient Http
 
 <input type="checkbox" @bind="editItem.IsComplete" />
@@ -151,6 +173,7 @@ In the following component code, the Delete `<button>` element calls the `Delete
 
 ```razor
 @using System.Net.Http
+@using System.Threading.Tasks
 @inject HttpClient Http
 
 <input @bind="id" />
@@ -168,28 +191,63 @@ In the following component code, the Delete `<button>` element calls the `Delete
 
 <xref:System.Net.Http.IHttpClientFactory> services and the configuration of a named <xref:System.Net.Http.HttpClient> are supported.
 
-Reference the [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http) NuGet package in the project file.
+Reference the [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http) NuGet package in the project file:
+
+```xml
+<PackageReference Include="Microsoft.Extensions.Http" Version="{VERSION}" />
+```
+
+In the preceding example, the `{VERSION}` placeholder is the version of the package.
 
 `Program.Main` (`Program.cs`):
 
 ```csharp
-builder.Services.AddHttpClient("ServerAPI", client => 
+builder.Services.AddHttpClient("WebAPI", client => 
     client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress));
 ```
 
-In the following component code, XXXXXXXXXXXXXXXXX
+In the following component code:
+
+* An instance of <xref:System.Net.Http.IHttpClientFactory> creates a named <xref:System.Net.Http.HttpClient>.
+* The named <xref:System.Net.Http.HttpClient> is used to issue a GET request for JSON weather forecast data from the web API.
+
+`Pages/FetchDataViaFactory.razor`:
 
 ```razor
+@page "/fetch-data-via-factory"
+@using System.Net.Http
+@using System.Net.Http.Json
+@using System.Threading.Tasks
 @inject IHttpClientFactory ClientFactory
 
-...
+<h1>Fetch data via <code>IHttpClientFactory</code></h1>
+
+@if (forecasts == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <h2>Temperatures by Date</h2>
+
+    <ul>
+        @foreach (var forecast in forecasts)
+        {
+            <li>
+                @forecast.Date.ToShortDateString():
+                @forecast.TemperatureC &#8451;
+                @forecast.TemperatureF &#8457;
+            </li>
+        }
+    </ul>
+}
 
 @code {
     private WeatherForecast[] forecasts;
 
     protected override async Task OnInitializedAsync()
     {
-        var client = ClientFactory.CreateClient("ServerAPI");
+        var client = ClientFactory.CreateClient("WebAPI");
 
         forecasts = await client.GetFromJsonAsync<WeatherForecast[]>(
             "WeatherForecast");
@@ -245,12 +303,39 @@ builder.Services.AddHttpClient<WeatherForecastHttpClient>(client =>
 
 Components inject the typed <xref:System.Net.Http.HttpClient> to call the web API.
 
-In the following component code, XXXXXXXXXXXXXXXX
+In the following component code:
+
+* An instance of the preceding `WeatherForecastHttpClient` is injected, which creates a typed <xref:System.Net.Http.HttpClient>.
+* The typed <xref:System.Net.Http.HttpClient> is used to issue a GET request for JSON weather forecast data from the web API.
+
+`Pages/FetchDataViaTypedHttpClient.razor`:
 
 ```razor
+@page "/fetch-data-via-typed-httpclient"
+@using System.Threading.Tasks
 @inject WeatherForecastHttpClient Http
 
-...
+<h1>Fetch data via typed <code>HttpClient</code></h1>
+
+@if (forecasts == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <h2>Temperatures by Date</h2>
+
+    <ul>
+        @foreach (var forecast in forecasts)
+        {
+            <li>
+                @forecast.Date.ToShortDateString():
+                @forecast.TemperatureC &#8451;
+                @forecast.TemperatureF &#8457;
+            </li>
+        }
+    </ul>
+}
 
 @code {
     private WeatherForecast[] forecasts;
@@ -286,10 +371,10 @@ Fetch API request options can be configured with <xref:System.Net.Http.HttpReque
 
 | Extension method | Fetch API request property |
 | --- | --- |
-| <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestCredentials%2A> | [`credentials`](https://developer.mozilla.org/docs/Web/API/Request/credentials) |
 | <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestCache%2A> | [`cache`](https://developer.mozilla.org/docs/Web/API/Request/cache) |
-| <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestMode%2A> | [`mode`](https://developer.mozilla.org/docs/Web/API/Request/mode) |
+| <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestCredentials%2A> | [`credentials`](https://developer.mozilla.org/docs/Web/API/Request/credentials) |
 | <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestIntegrity%2A> | [`integrity`](https://developer.mozilla.org/docs/Web/API/Request/integrity) |
+| <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestMode%2A> | [`mode`](https://developer.mozilla.org/docs/Web/API/Request/mode) |
 
 You can set additional options using the more generic <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestOption%2A> extension method.
 
@@ -354,23 +439,58 @@ The <xref:System.Net.Http.Json.HttpClientJsonExtensions.GetFromJsonAsync%2A> cal
 
 In <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> on the client, <xref:System.NotSupportedException> is thrown when the response content is validated as non-JSON. The exception is caught in the `catch` block, where custom logic could log the error or present a friendly error message to the user:
 
+`Pages/FetchDataReturnsHTMLOnException.razor`:
+
 ```razor
+@page "/fetch-data-returns-html-on-exception"
+@using System.Net.Http
+@using System.Net.Http.Json
+@using System.Threading.Tasks
+@inject HttpClient Http
+
+<h1>Fetch data but receive HTML on unhandled exception</h1>
+
+@if (forecasts == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <h2>Temperatures by Date</h2>
+
+    <ul>
+        @foreach (var forecast in forecasts)
+        {
+            <li>
+                @forecast.Date.ToShortDateString():
+                @forecast.TemperatureC &#8451;
+                @forecast.TemperatureF &#8457;
+            </li>
+        }
+    </ul>
+}
+
+<p>
+    @exceptionMessage
+</p>
+
 @code {
-    ...
+    private WeatherForecast[] forecasts;
+    private string exceptionMessage;
 
     protected override async Task OnInitializedAsync()
     {
         try
         {
+            // The URI endpoint "WeatherForecast" is misspelled on purpose on the 
+            // next line. See the preceding text for more information.
             forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("WeatherForcast");
         }
         catch (NotSupportedException exception)
         {
-            ...
+            exceptionMessage = exception.Message;
         }
     }
-
-    ...
 }
 ```
 
