@@ -97,13 +97,13 @@ To configure the HTTP logging middleware, call `AddHttpLogging` in `ConfigureSer
 
 <!-- When API is published, replace the following with API links -->
 
-* `public void AddText(string contentType, Encoding encoding)`
+* `public void AddText(string contentType)`
   * Adds a contentType to be used for logging as text using UTF-8 encoding.
 * `public void AddText(string contentType, Encoding encoding)`
   * Adds a contentType to be used for logging as text using the specified encoding.
 * `public void AddBinary(MediaTypeHeaderValue mediaType)`
   * Adds a `MediaTypeHeaderValue` to be used for logging as binary.
-* `public void AddBinary(string contentType`
+* `public void AddBinary(string contentType)`
   * Adds a content to be used for logging as text using the specified content type.
 * `public void Clear()`
   * Clears all MediaTypes.
