@@ -222,9 +222,12 @@ In this section, the **Package Manager Console** (PMC) window is used to:
   dotnet ef database update
   ```
 
+> [!NOTE]
+> For SQLite, column type for the `Price` field is set to `TEXT`. This is resolved in a later step.
+
 ---
 
-The preceding commands generate the following warning: "No type was specified for the decimal column 'Price' on entity type 'Movie'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'."
+For, SQL Server The preceding commands generate the following warning: "No type was specified for the decimal column 'Price' on entity type 'Movie'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'."
 
 Ignore the warning, as it will be addressed in a later step.
 
@@ -589,10 +592,6 @@ Add-Migration InitialCreate
 Update-Database
 ```
 
-The preceding commands generate the following warning: "No type was specified for the decimal column 'Price' on entity type 'Movie'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'."
-
-Ignore the warning, as it will be addressed in a later step.
-
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
 Run the following .NET Core CLI commands:
@@ -603,6 +602,10 @@ dotnet ef database update
 ```
 
 ---
+
+The preceding commands generate the following warning: "No type was specified for the decimal column 'Price' on entity type 'Movie'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'."
+
+Ignore the warning, as it will be addressed in a later step.
 
 The migrations command generates code to create the initial database schema. The schema is based on the model specified in `DbContext`. The `InitialCreate` argument is used to name the migrations. Any name can be used, but by convention a name is selected that describes the migration.
 
