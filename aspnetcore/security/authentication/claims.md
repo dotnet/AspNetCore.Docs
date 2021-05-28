@@ -13,7 +13,7 @@ uid: security/authentication/claims
 
 By [Damien Bowden](https://github.com/damienbod)
 
-Claims can be used to store data from identity data which can be issued using a trusted identity provider or ASP.NET Core identity. A claim is a name value pair that represents what the subject is, not what the subject can do.
+Claims can be created from user data, identity data which can be issued using a trusted identity provider or ASP.NET Core identity. A claim is a name value pair that represents what the subject is, not what the subject can do.
 This article covers the following areas:
 
 * How to configure map claims using an OpenID Connect client
@@ -21,11 +21,11 @@ This article covers the following areas:
 * Reset the claims namespaces
 * Customize, extend the claims with ASP.NET Core Identity
 
-## Claims mapping using Open ID Connect authentication
+## Mapping claims using Open ID Connect authentication
 
 ## Name claim and role claim mapping
 
-## Claims namespaces
+## Claims namespaces, default namespaces
 
 ## Extending or adding custom claims in ASP.NET Core Identity
 
