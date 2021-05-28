@@ -87,12 +87,12 @@ public void ConfigureServices(IServiceCollection services)
    .AddCookie()
    .AddOpenIdConnect(options =>
    {
-		// other options...
-		options.TokenValidationParameters = new TokenValidationParameters
-		{
-		  NameClaimType = "email", 
-		  // RoleClaimType = "role"
-		};
+       // other options...
+       options.TokenValidationParameters = new TokenValidationParameters
+       {
+         NameClaimType = "email", 
+         // RoleClaimType = "role"
+       };
    });
 
 ```
