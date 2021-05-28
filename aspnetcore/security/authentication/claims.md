@@ -5,7 +5,7 @@ description: Learn how to map claims, do claims transformations, customize claim
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/17/2020
+ms.date: 05/28/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/mfa
 ---
@@ -21,12 +21,12 @@ This article covers the following areas:
 * Reset the claims namespaces
 * Customize, extend the claims with ASP.NET Core Identity
 
-## Claims mapping from authentication
+## Claims mapping using Open ID Connect authentication
 
-## Name claim and Role claim mapping
+## Name claim and role claim mapping
 
 ## Claims namespaces
 
-## Extending or adding custom claims in Identity
+## Extending or adding custom claims in ASP.NET Core Identity
 
-## Map Claims from external identity providers
+## Map claims from external identity providers
