@@ -19,7 +19,7 @@ This article covers the following areas:
 * How to configure map claims using an OpenID Connect client
 * Set the name claim and the role claim
 * Reset the claims namespaces
-* Customize, extend the claims with ASP.NET Core using IClaimsTransformation
+* Customize, extend the claims using IClaimsTransformation
 
 ## Mapping claims using Open ID Connect authentication
 
@@ -112,7 +112,7 @@ public void Configure(IApplicationBuilder app)
     JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
 ```
 
-## Extending or adding custom claims in ASP.NET Core using IClaimsTransformation
+## Extending or adding custom claims using IClaimsTransformation
 
 The **IClaimsTransformation** interface can be used to add extra claims to the **ClaimsPrincipal** class. The interface requires a single method **TransformAsync**. This method might get called multiple times. Only add a new claim if it does not already exist in the **ClaimsPrincipal**. A **ClaimsIdentity** is created to add the new claims and this can be added to the **ClaimsPrincipal**.
 
