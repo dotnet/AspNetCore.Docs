@@ -23,9 +23,9 @@ Razor views, pages, controllers, page models, [Razor components](xref:blazor/com
 # [Visual Studio](#tab/visual-studio)
 
 * From Visual Studio select **Create a new project**.
-* Select **Razor Class Library** > Press button **Next**.
-* Name the library (for example, "MyRazorClassLib"). Note: To avoid a file name collision with the generated view library, ensure the library name doesn't end in `.Views`. Then press button **Next**. Then choose option in drop-down list "Target Framework", you will see options like *.NET Core 3.1 (Long-term support)*, *.NET 5.0 (Current)* (default option), or *.NET 6.0 (Preview)*.
-Select option *☑ Support pages and views* if you need to support views (for user interface). By default, only Razor Pages are supported, press button **Create**.
+* Select **Razor Class Library** > **Next**.
+* Name the library (for example, "RazorClassLib"), > **Create** > **Next**. To avoid a file name collision with the generated view library, ensure the library name doesn't end in `.Views`.
+* Select the **Target Framework**. Check **☑ Support pages and views** to support views. By default, only Razor Pages are supported. Select **Create**.
 
 The Razor class library (RCL) template defaults to Razor component development by default. The **Support pages and views** option supports pages and views.
 
@@ -34,10 +34,10 @@ The Razor class library (RCL) template defaults to Razor component development b
 From the command line, run `dotnet new razorclasslib`. For example:
 
 ```dotnetcli
-dotnet new razorclasslib -o MyRazorClassLib
+dotnet new razorclasslib -o RazorUIClassLib
 ```
 
-The Razor class library (RCL) template defaults to Razor component development by default. Pass the `--support-pages-and-views` option (`dotnet new razorclasslib --support-pages-and-views -o MyRazorClassLib`) to provide support for pages and views.
+The Razor class library (RCL) template defaults to Razor component development by default. Pass the `--support-pages-and-views` option (`dotnet new razorclasslib --support-pages-and-views`) to provide support for pages and views.
 
 For more information, see [dotnet new](/dotnet/core/tools/dotnet-new). To avoid a file name collision with the generated view library, ensure the library name doesn't end in `.Views`.
 
