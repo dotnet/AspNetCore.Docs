@@ -34,10 +34,10 @@ The Razor class library (RCL) template defaults to Razor component development b
 From the command line, run `dotnet new razorclasslib`. For example:
 
 ```dotnetcli
-dotnet new razorclasslib -o RazorUIClassLib
+dotnet new razorclasslib -o RazorClassLib
 ```
 
-The Razor class library (RCL) template defaults to Razor component development by default. Pass the `--support-pages-and-views` option (`dotnet new razorclasslib --support-pages-and-views`) to provide support for pages and views.
+The Razor class library (RCL) template defaults to Razor component development by default. Pass the `--support-pages-and-views` option (`dotnet new razorclasslib --support-pages-and-views -o RazorClassLib`) to provide support for pages and views.
 
 For more information, see [dotnet new](/dotnet/core/tools/dotnet-new). To avoid a file name collision with the generated view library, ensure the library name doesn't end in `.Views`.
 
