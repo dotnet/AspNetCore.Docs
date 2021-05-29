@@ -114,6 +114,31 @@ public void Configure(IApplicationBuilder app)
 
 ## Extending or adding custom claims in ASP.NET Core Identity
 
+```csharp
+ public class MyClaimsTransformation : IClaimsTransformation
+{
+	public Task<ClaimsPrincipal> TransformAsync(ClaimsPrincipal principal)
+	{
+		ClaimsIdentity claimsIdentity = new ClaimsIdentity();
+		var claimType = "myNewClaim";
+		if (!principal.HasClaim(claim => claim.Type == claimType))
+		{
+		   
+			claimsIdentity.AddClaim(new Claim(claimType, "myClaimValue"));
+		}
+
+		principal.AddIdentity(claimsIdentity);
+		return Task.FromResult(principal);
+	}
+}
+```
+
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+	services.AddTransient<IClaimsTransformation, MyClaimsTransformation>();
+```
+
 ## Map claims from external identity providers
 
 Please refer to this doc:
