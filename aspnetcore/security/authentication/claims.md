@@ -112,7 +112,7 @@ public void Configure(IApplicationBuilder app)
 	JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
 ```
 
-## Extending or adding custom claims in ASP.NET Core Identity
+## Extending or adding custom claims in ASP.NET Core using IClaimsTransformation
 
 The **IClaimsTransformation** interface can be used to add extra claims to **ClaimsPrincipal** class. The interface has a single method **TransformAsync**. Claims should only be added once to the principal. Only add a new claim if it does not already exist in the **ClaimsPrincipal**. A **ClaimsIdentity** is created to add the new claims and this can be added to the **ClaimsPrincipal**.
 
@@ -142,6 +142,8 @@ public void ConfigureServices(IServiceCollection services)
 {
 	services.AddTransient<IClaimsTransformation, MyClaimsTransformation>();
 ```
+
+## Extending or adding custom claims in ASP.NET Core Identity
 
 ## Map claims from external identity providers
 
