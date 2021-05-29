@@ -145,6 +145,8 @@ public void ConfigureServices(IServiceCollection services)
 
 ## Extending or adding custom claims in ASP.NET Core Identity
 
+Please refer to this doc:
+
 [Add claims to Identity using IUserClaimsPrincipalFactory](xref:security/authentication/add-user-data#add-claims-to-identity-using-iuserclaimsprincipalfactory)
 
 ## Map claims from external identity providers
