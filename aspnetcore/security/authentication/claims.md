@@ -114,6 +114,8 @@ public void Configure(IApplicationBuilder app)
 
 ## Extending or adding custom claims in ASP.NET Core Identity
 
+The **IClaimsTransformation** interface can be used to add extra claims to **ClaimsPrincipal** class. The interface has a single method **TransformAsync**. Claims should only be added once to the principal. Only add a new claim if it does not already exist in the **ClaimsPrincipal**. A **ClaimsIdentity** is created to add the new claims and this can be added to the **ClaimsPrincipal**.
+
 ```csharp
  public class MyClaimsTransformation : IClaimsTransformation
 {
@@ -132,6 +134,8 @@ public void Configure(IApplicationBuilder app)
 	}
 }
 ```
+
+The **IClaimsTransformation** interface and the **MyClaimsTransformation** class can be added in the ConfigureServices method as a service.
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
