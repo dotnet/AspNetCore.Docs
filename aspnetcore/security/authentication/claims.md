@@ -19,7 +19,7 @@ This article covers the following areas:
 * How to configure map claims using an OpenID Connect client
 * Set the name claim and the role claim
 * Reset the claims namespaces
-* Customize, extend the claims with ASP.NET Core Identity
+* Customize, extend the claims with ASP.NET Core using IClaimsTransformation
 
 ## Mapping claims using Open ID Connect authentication
 
