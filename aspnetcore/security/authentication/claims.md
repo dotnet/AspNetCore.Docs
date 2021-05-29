@@ -78,7 +78,7 @@ public void ConfigureServices(IServiceCollection services)
 
 ## Name claim and role claim mapping
 
-The **IClaimsTransformation** interface can be used to add extra claims to the **ClaimsPrincipal** class. The interface requires a single method **TransformAsync**. This method might get called multiple times. Only add a new claim if it does not already exist in the **ClaimsPrincipal**. A **ClaimsIdentity** is created to add the new claims and this can be added to the **ClaimsPrincipal**.
+The **Name** claim and the **Role** claim are mapped to default properties in the ASP.NET Core HTTP context. Sometimes it is required to use different claims for the default properties, or the name claim and the role claim do not match the default values. The claims can be mapped using the **TokenValidationParameters** property and set to any claim as required. The values from the claims can be used directly in the HttpContext **User.Identity.Name** property and the roles.
 
 If the **User.Identity.Name** has no value or the roles are missing, please check the values in the returned claims and set the **NameClaimType** and the **RoleClaimType** values. The returned claims from the client authentication can be viewed in the HTTP context.
 
@@ -114,7 +114,7 @@ public void Configure(IApplicationBuilder app)
 
 ## Extending or adding custom claims in ASP.NET Core using IClaimsTransformation
 
-The **IClaimsTransformation** interface can be used to add extra claims to **ClaimsPrincipal** class. The interface has a single method **TransformAsync**. Claims should only be added once to the principal. Only add a new claim if it does not already exist in the **ClaimsPrincipal**. A **ClaimsIdentity** is created to add the new claims and this can be added to the **ClaimsPrincipal**.
+The **IClaimsTransformation** interface can be used to add extra claims to the **ClaimsPrincipal** class. The interface requires a single method **TransformAsync**. This method might get called multiple times. Only add a new claim if it does not already exist in the **ClaimsPrincipal**. A **ClaimsIdentity** is created to add the new claims and this can be added to the **ClaimsPrincipal**.
 
 ```csharp
 public class MyClaimsTransformation : IClaimsTransformation
