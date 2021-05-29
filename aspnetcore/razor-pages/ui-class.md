@@ -23,9 +23,9 @@ Razor views, pages, controllers, page models, [Razor components](xref:blazor/com
 # [Visual Studio](#tab/visual-studio)
 
 * From Visual Studio select **Create a new project**.
-* Select **Razor Class Library** > Press button **[Next]**.
-* Name the library (for example, "RazorClassLib"). Note: To avoid a file name collision with the generated view library, ensure the library name doesn't end in `.Views`. Then press button **[Next]**. Then choose option in drop-down list "Target Framework", you will see options like *.NET Core 3.1 (Long-term support)*, *.NET 5.0 (Current)* (default option), or *.NET 6.0 (Preview)*.
-Select option *☑ Support pages and views* if you need to support views (for user interface). By default, only Razor Pages are supported, press button **[Create]**.
+* Select **Razor Class Library** > Press button **Next**.
+* Name the library (for example, "RazorClassLib"). Note: To avoid a file name collision with the generated view library, ensure the library name doesn't end in `.Views`. Then press button **Next**. Then choose option in drop-down list "Target Framework", you will see options like *.NET Core 3.1 (Long-term support)*, *.NET 5.0 (Current)* (default option), or *.NET 6.0 (Preview)*.
+Select option *☑ Support pages and views* if you need to support views (for user interface). By default, only Razor Pages are supported, press button **Create**.
 
 The Razor class library (RCL) template defaults to Razor component development by default. The **Support pages and views** option supports pages and views.
 
