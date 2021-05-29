@@ -5,7 +5,7 @@ description: Learn how to map claims, do claims transformations, customize claim
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/28/2021
+ms.date: 05/29/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/claims
 ---
@@ -13,7 +13,7 @@ uid: security/authentication/claims
 
 By [Damien Bowden](https://github.com/damienbod)
 
-Claims can be created from user data, identity data which can be issued using a trusted identity provider or ASP.NET Core identity. A claim is a name value pair that represents what the subject is, not what the subject can do.
+Claims can be created from any user data or identity data which can be issued using a trusted identity provider or ASP.NET Core identity. A claim is a name value pair that represents what the subject is, not what the subject can do.
 This article covers the following areas:
 
 * How to configure map claims using an OpenID Connect client
