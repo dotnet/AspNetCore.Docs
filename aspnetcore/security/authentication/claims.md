@@ -16,7 +16,7 @@ By [Damien Bowden](https://github.com/damienbod)
 Claims can be created from any user data or identity data which can be issued using a trusted identity provider or ASP.NET Core identity. A claim is a name value pair that represents what the subject is, not what the subject can do.
 This article covers the following areas:
 
-* How to configure map claims using an OpenID Connect client
+* How to configure and map claims using an OpenID Connect client
 * Set the name claim and the role claim
 * Reset the claims namespaces
 * Customize, extend the claims using IClaimsTransformation
