@@ -633,7 +633,7 @@ If the app doesn't build the host with `CreateDefaultBuilder`, add the [Event So
 For more information, see:
 
 * [Trace for performance analysis utility (dotnet-trace)](/dotnet/core/diagnostics/dotnet-trace) (.NET Core documentation)
-* [Trace for performance analysis utility (dotnet-trace)](https://github.com/dotnet/diagnostics/blob/master/documentation/dotnet-trace-instructions.md) (dotnet/diagnostics GitHub repository documentation)
+* [Trace for performance analysis utility (dotnet-trace)](https://github.com/dotnet/diagnostics/blob/main/documentation/dotnet-trace-instructions.md) (dotnet/diagnostics GitHub repository documentation)
 * [LoggingEventSource Class](xref:Microsoft.Extensions.Logging.EventSource.LoggingEventSource) (.NET API Browser)
 * <xref:System.Diagnostics.Tracing.EventLevel>
 * [LoggingEventSource reference source (3.0)](https://github.com/dotnet/extensions/blob/release/3.0/src/Logging/Logging.EventSource/src/LoggingEventSource.cs): To obtain reference source for a different version, change the branch to `release/{Version}`, where `{Version}` is the version of ASP.NET Core desired.

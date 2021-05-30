@@ -457,7 +457,7 @@ The preceding example uses the `ResolvedFileToPublish` item, whose default behav
 </ResolvedFileToPublish>
 ```
 
-For more deployment samples, see the [Web SDK README file](https://github.com/dotnet/sdk/tree/master/src/WebSdk).
+For more deployment samples, see the [Web SDK README file](https://github.com/dotnet/sdk/tree/main/src/WebSdk).
 
 ## Run a target before or after publishing
 
