@@ -57,7 +57,7 @@ Visual Studio for Mac requires version 8.8 (build 1532) or later:
 > [!NOTE]
 > Apple Safari on macOS isn't currently supported.
 
-## Debug an existing standalone Blazor WebAssembly app
+## Debug a standalone Blazor WebAssembly app
 
 To enable debugging for an existing Blazor WebAssembly app, update the `launchSettings.json` file in the startup project to include the following `inspectUri` property in each launch profile:
 
