@@ -72,9 +72,60 @@ When executing a hosted Blazor WebAssembly app, run the app from the solution's 
 
 1. The IDE requests that you add assets to build and debug the project. Select **Yes**.
 
+   If Visual Studio Code doesn't offer to create the assets automatically, use the following files:
+
+   `.vscode/launch.json` (configured for launch and debug of a Blazor WebAssembly app):
+
+   ```json
+   {
+       // Use IntelliSense to learn about possible attributes.
+       // Hover to view descriptions of existing attributes.
+       // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+       "version": "0.2.0",
+       "configurations": [
+           {
+               "type": "blazorwasm",
+               "name": "Launch and Debug Blazor WebAssembly Application",
+               "request": "launch",
+               "cwd": "${workspaceFolder}",
+               "browser": "edge"
+           }
+       ]
+   }
+   ```
+
+   `.vscode/tasks.json`:
+
+   ```json
+   {
+       // See https://go.microsoft.com/fwlink/?LinkId=733558
+       // for the documentation about the tasks.json format
+       "version": "2.0.0",
+       "tasks": [
+           {
+               "label": "build",
+               "command": "dotnet",
+               "type": "shell",
+               "args": [
+                   "build",
+                   // Ask dotnet build to generate full paths for file names.
+                   "/property:GenerateFullPaths=true",
+                   // Do not generate summary otherwise it leads to duplicate errors in Problems panel
+                   "/consoleloggerparameters:NoSummary",
+               ],
+               "group": "build",
+               "presentation": {
+                   "reveal": "silent"
+               },
+               "problemMatcher": "$msCompile"
+           }
+       ]
+   }
+   ```
+
    **Hosted Blazor WebAssembly launch and task configuration**
 
-   For hosted Blazor WebAssembly solutions, add (or move) the `.vscode` folder with `launch.json` and `tasks.json` files to the solution's parent folder, which is the folder that contains the typical project folder names of `Client`, `Server`, and `Shared`. Update or confirm that the configuration in the `launch.json` and `tasks.json` files execute a hosted Blazor WebAssembly app from the **`Server`** project.
+   For hosted Blazor WebAssembly solutions, add (or move) the `.vscode` folder with `launch.json` and `tasks.json` files to the solution's parent folder, which is the folder that contains the typical project folders: `Client`, `Server`, and `Shared`. Update or confirm that the configuration in the `launch.json` and `tasks.json` files execute a hosted Blazor WebAssembly app from the **`Server`** project.
 
    **`.vscode/launch.json`** (`launch` configuration):
 
@@ -117,8 +168,7 @@ When executing a hosted Blazor WebAssembly app, run the app from the solution's 
    "args": [
      "build",
        "${workspaceFolder}/Server/BlazorWebAssemblySignalRApp.Server.csproj",
-       "/property:GenerateFullPaths=true",
-       "/consoleloggerparameters:NoSummary"
+       ...
    ],
    ...
    ```

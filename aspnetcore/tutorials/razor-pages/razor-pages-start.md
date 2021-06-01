@@ -235,6 +235,8 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 
   A *.vscode* directory, containing *launch.json* and *tasks.json* files, is added to the project's root directory.
 
+  If Visual Studio Code doesn't offer to add the assets automatically, see the **Linux** operating system guidance in <xref:blazor/tooling?pivot=linux>.
+
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 * Select **File** > **New Solution**.
@@ -380,6 +382,8 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 * After the status bar's OmniSharp flame icon turns green, a dialog asks **Required assets to build and debug are missing from 'RazorPagesMovie'. Add them?** Select **Yes**.
 
   A *.vscode* directory, containing *launch.json* and *tasks.json* files, is added to the project's root directory.
+
+  If Visual Studio Code doesn't offer to add the assets automatically, see the **Linux** operating system guidance in <xref:blazor/tooling?pivot=linux>.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 

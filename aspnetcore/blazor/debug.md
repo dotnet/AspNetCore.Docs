@@ -57,7 +57,7 @@ Visual Studio for Mac requires version 8.8 (build 1532) or later:
 > [!NOTE]
 > Apple Safari on macOS isn't currently supported.
 
-## Enable debugging
+## Debug an existing standalone Blazor WebAssembly app
 
 To enable debugging for an existing Blazor WebAssembly app, update the `launchSettings.json` file in the startup project to include the following `inspectUri` property in each launch profile:
 
@@ -185,17 +185,60 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 
 ## Debug hosted Blazor WebAssembly
 
-1. Open the **`Client`** project folder of the hosted Blazor solution folder in VS Code.
+For guidance on configuring VS Code assets in the `.vscode` folder and where to place the `.vscode` folder in the solution, see the **Linux** operating system guidance in <xref:blazor/tooling?pivots=linux>.
 
-1. If there's no launch configuration set for the project, the following notification appears. Select **Yes**.
+The `.vscode/launch.json` file sets the current working directory to the `**Server**` project's folder, typically `Server` for a hosted Blazor WebAssembly solution:
 
-   > Required assets to build and debug are missing from '{APPLICATION NAME}'. Add them?
+```json
+"cwd": "${workspaceFolder}/Server"
+```
 
-   For information on configuring VS Code assets in the `.vscode` folder, see the **Linux** operating system guidance in <xref:blazor/tooling>.
+If Microsoft Edge is used for debugging instead of Google Chrome, the `.vscode/launch.json` launch configuration sets the `browser` property:
 
-1. In the command palette at the top of the window, select the *Server* project within the hosted solution.
+```json
+"browser": "edge"
+```
 
-A `launch.json` file is generated with the launch configuration for launching the debugger.
+The `.vscode/tasks.json` file adds the **`Server`** app's project file path to the `dotnet build` arguments under `args`. The `**Server**` project's folder is typically named `Server` in a solution based on the hosted Blazor WebAssembly project template. The following example uses the project file for the **`Server`** app of the [Blazor-SignalR tutorial](xref:tutorials/signalr-blazor)), which has a project file named `BlazorWebAssemblySignalRApp.Server.csproj`:
+
+```json
+{
+    ...
+    "tasks": [
+        {
+            "label": "build",
+            "command": "dotnet",
+            "type": "shell",
+            "args": [
+                ...
+                "${workspaceFolder}/Server/BlazorWebAssemblySignalRApp.Server.csproj",
+                ...
+            ],
+            ...
+        }
+    ]
+}
+```
+
+The **`Server`** project's `Properties/launchSettings.json` file includes the `inspectUri` property for the debugging proxy. The following example names the launch profile for the **`Server`** app of the [Blazor-SignalR tutorial](xref:tutorials/signalr-blazor)), which is `BlazorWebAssemblySignalRApp.Server`:
+
+```json
+{
+  "iisSettings": {
+    ...
+  },
+  "profiles": {
+    "IIS Express": {
+      "inspectUri": "{wsProtocol}://{url.hostname}:{url.port}/_framework/debug/ws-proxy?browser={browserInspectUri}",
+      ...
+    },
+    "BlazorWebAssemblySignalRApp.Server": {
+      "inspectUri": "{wsProtocol}://{url.hostname}:{url.port}/_framework/debug/ws-proxy?browser={browserInspectUri}",
+      ...
+    }
+  }
+}
+```
 
 ## Attach to an existing debugging session
 
@@ -251,24 +294,6 @@ The following launch configuration options are supported for the `blazorwasm` de
   "url": "http://localhost:5000"
 }
 ```
-
-### Launch and debug a hosted Blazor WebAssembly app with Microsoft Edge
-
-Browser configuration defaults to Google Chrome. When using Microsoft Edge for debugging, set `browser` to `edge`. To use Google Chrome, either don't set the `browser` option or set the option's value to `chrome`.
-
-```json
-{
-  "name": "Launch and Debug Hosted Blazor WebAssembly App",
-  "type": "blazorwasm",
-  "request": "launch",
-  "hosted": true,
-  "program": "${workspaceFolder}/Server/bin/Debug/netcoreapp3.1/MyHostedApp.Server.dll",
-  "cwd": "${workspaceFolder}/Server",
-  "browser": "edge"
-}
-```
-
-In the preceding example, `MyHostedApp.Server.dll` is the *Server* app's assembly. The `.vscode` folder is located in the solution's folder next to the `Client`, `Server`, and `Shared` folders.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
