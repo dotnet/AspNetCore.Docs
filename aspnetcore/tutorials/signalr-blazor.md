@@ -123,7 +123,10 @@ Follow the guidance for your choice of tooling:
 
 1. In Visual Studio Code, open the app's project folder.
 
-1. When the dialog appears to add assets to build and debug the app, select **Yes**. Visual Studio Code automatically adds the `.vscode` folder with generated `launch.json` and `tasks.json` files.
+To configure Visual Studio Code assets in the `.vscode` folder for debugging, see:
+
+* <xref:blazor/tooling?pivots=linux> (use the guidance for the *Linux* operating system regardless of platform)
+* <xref:blazor/debug>
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -390,7 +393,7 @@ Follow the guidance for your choice of tooling:
 
 1. In Visual Studio Code, open the app's project folder.
 
-1. When the dialog appears to add assets to build and debug the app, select **Yes**. Visual Studio Code automatically adds the `.vscode` folder with generated `launch.json` and `tasks.json` files. For information on configuring VS Code assets in the `.vscode` folder, see the **Linux** operating system guidance in <xref:blazor/tooling>.
+1. When the dialog appears to add assets to build and debug the app, select **Yes**. Visual Studio Code automatically adds the `.vscode` folder with generated `launch.json` and `tasks.json` files. For information on configuring VS Code assets in the `.vscode` folder, including how to manually add the files to the solution, see the **Linux** operating system guidance in <xref:blazor/tooling?pivot=linux>.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
