@@ -26,8 +26,13 @@ else
                     <input @bind="editItem.Name" />
                 </td>
                 <td class="text-center">
-                    <button class="btn btn-success" @onclick="SaveItem">Save</button>
-                    <button class="btn btn-danger" @onclick="@(() => editRowStyle = "none")">Cancel</button>
+                    <button class="btn btn-success" @onclick="SaveItem">
+                        Save
+                    </button>
+                    <button class="btn btn-danger" 
+                            @onclick="@(() => editRowStyle = "none")">
+                        Cancel
+                    </button>
                 </td>
             </tr>
             @foreach (var item in todoItems)
@@ -41,8 +46,14 @@ else
                     </td>
                     <td>@item.Name</td>
                     <td class="text-center">
-                        <button class="btn btn-warning" @onclick="@(() => EditItem(item.Id))">Edit</button>
-                        <button class="btn btn-danger" @onclick="@(async () => await DeleteItem(item.Id))">Delete</button>
+                        <button class="btn btn-warning" 
+                                @onclick="@(() => EditItem(item.Id))">
+                            Edit
+                        </button>
+                        <button class="btn btn-danger" 
+                                @onclick="@(async () => await DeleteItem(item.Id))">
+                            Delete
+                        </button>
                     </td>
                 </tr>
             }
@@ -68,7 +79,8 @@ else
 
     protected override async Task OnInitializedAsync() => await GetTodoItems();
 
-    private async Task GetTodoItems() => todoItems = await Http.GetFromJsonAsync<TodoItem[]>(ServiceEndpoint);
+    private async Task GetTodoItems() => 
+        todoItems = await Http.GetFromJsonAsync<TodoItem[]>(ServiceEndpoint);
 
     private void EditItem(long id)
     {

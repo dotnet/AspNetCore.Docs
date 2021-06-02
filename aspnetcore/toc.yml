@@ -385,7 +385,7 @@
               uid: blazor/js-interop/call-javascript-from-dotnet
             - name: Call .NET from JavaScript
               uid: blazor/js-interop/call-dotnet-from-javascript
-        - name: Call a web API from WebAssembly
+        - name: Call a web API
           uid: blazor/call-web-api
         - name: Security and Identity
           items:

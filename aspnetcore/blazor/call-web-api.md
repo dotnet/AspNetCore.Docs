@@ -5,7 +5,7 @@ description: Learn how to call a web API in Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/28/2021
+ms.date: 06/02/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/call-web-api
 zone_pivot_groups: blazor-hosting-models
@@ -18,22 +18,24 @@ zone_pivot_groups: blazor-hosting-models
 
 ## Examples in this article
 
-In this article's examples, a Todo web API processes create, read, update, and delete (CRUD) operations. The examples are based on a `TodoItem` class that stores the:
+In this article's examples, a hypothetical Todo web API on a server processes create, read, update, and delete (CRUD) operations. The examples are based on a `TodoItem` class that stores the following Todo item data:
 
 * ID (`Id`, `long`): Unique ID of the item.
 * Name (`Name`, `string`): Name of the item.
 * Status (`IsComplete`, `bool`): Indication if the Todo item is finished.
 
-Use the following `TodoItem` class with the examples if you build them into a test app:
+Use the following `TodoItem` class with this article's examples if you build the examples into a test app:
 
 ```csharp
-private class TodoItem
+public class TodoItem
 {
     public long Id { get; set; }
     public string Name { get; set; }
     public bool IsComplete { get; set; }
 }
 ```
+
+For guidance on how to create a server-side web API, see <xref:tutorials/first-web-api>. For information on Cross-origin resource sharing (CORS), see the [CORS guidance](#cross-origin-resource-sharing-cors) later in this article.
 
 ## Packages
 
@@ -53,22 +55,28 @@ builder.Services.AddScoped(sp =>
 
 ## `HttpClient` and JSON helpers
 
-[`HttpClient`](xref:fundamentals/http-requests) is available as a preconfigured service for making requests back to the origin server.
+<xref:System.Net.Http.HttpClient> is available as a preconfigured service for making requests back to the origin server.
 
-<xref:System.Net.Http.HttpClient> and JSON helpers are also used to call third-party web API endpoints. <xref:System.Net.Http.HttpClient> is implemented using the browser [Fetch API](https://developer.mozilla.org/docs/Web/API/Fetch_API) and is subject to its limitations, including enforcement of the same origin policy.
+<xref:System.Net.Http.HttpClient> and JSON helpers (<xref:System.Net.Http.Json.HttpClientJsonExtensions?displayProperty=nameWithType>) are also used to call third-party web API endpoints. <xref:System.Net.Http.HttpClient> is implemented using the browser's [Fetch API](https://developer.mozilla.org/docs/Web/API/Fetch_API) and is subject to its limitations, including enforcement of the [same-origin policy](#cross-origin-resource-sharing-cors).
 
-The client's base address is set to the originating server's address. Inject an <xref:System.Net.Http.HttpClient> instance using the [`@inject`](xref:mvc/views/razor#inject) directive:
+The client's base address is set to the originating server's address. Inject an <xref:System.Net.Http.HttpClient> instance into a component using the [`@inject`](xref:mvc/views/razor#inject) directive:
 
 ```razor
 @using System.Net.Http
 @inject HttpClient Http
 ```
 
+Use the <xref:System.Net.Http.Json?displayProperty=fullName> namespace for access to <xref:System.Net.Http.Json.HttpClientJsonExtensions>:
+
+```razor
+@using System.Net.Http.Json
+```
+
 ### GET from JSON (`GetFromJsonAsync`)
 
-<xref:System.Net.Http.Json.HttpClientJsonExtensions.GetFromJsonAsync%2A>: Sends an HTTP GET request and parses the JSON response body to create an object.
+<xref:System.Net.Http.Json.HttpClientJsonExtensions.GetFromJsonAsync%2A> sends an HTTP GET request and parses the JSON response body to create an object.
 
-In the following component code, the `todoItems` are displayed by the component. The `GetTodoItems` method is triggered when the component is finished rendering ([`OnInitializedAsync`](xref:blazor/components/lifecycle#component-initialization-oninitializedasync)).
+In the following component code, the `todoItems` are displayed by the component. <xref:System.Net.Http.Json.HttpClientJsonExtensions.GetFromJsonAsync%2A> is called when the component is finished initializing ([`OnInitializedAsync`](xref:blazor/components/lifecycle#component-initialization-oninitializedasync)).
 
 ```razor
 @using System.Net.Http
@@ -124,7 +132,7 @@ In the following component code, `newItemName` is provided by a bound element of
 }
 ```
 
-Calls to <xref:System.Net.Http.Json.HttpClientJsonExtensions.PostAsJsonAsync%2A> return an <xref:System.Net.Http.HttpResponseMessage>. To deserialize the JSON content from the response message, use the `ReadFromJsonAsync<T>` extension method:
+Calls to <xref:System.Net.Http.Json.HttpClientJsonExtensions.PostAsJsonAsync%2A> return an <xref:System.Net.Http.HttpResponseMessage>. To deserialize the JSON content from the response message, use the <xref:System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsync%2A> extension method. The following example reads JSON weather data:
 
 ```csharp
 var content = await response.Content.ReadFromJsonAsync<WeatherForecast>();
@@ -134,7 +142,7 @@ var content = await response.Content.ReadFromJsonAsync<WeatherForecast>();
 
 <xref:System.Net.Http.Json.HttpClientJsonExtensions.PutAsJsonAsync%2A> sends an HTTP PUT request, including JSON-encoded content.
 
-In the following component code, `editItem` values for `Name` and `IsCompleted` are provided by bound elements of the component. The item's `Id` is set when the item is selected in another part of the UI and `EditItem` is called. The `SaveItem` method is triggered by selecting the Save `<button>` element.
+In the following component code, `editItem` values for `Name` and `IsCompleted` are provided by bound elements of the component. The item's `Id` is set when the item is selected in another part of the UI and `EditItem` is called. The `SaveItem` method is triggered by selecting the **Save** `<button>` element.
 
 ```razor
 @using System.Net.Http
@@ -159,7 +167,7 @@ In the following component code, `editItem` values for `Name` and `IsCompleted` 
 }
 ```
 
-Calls to <xref:System.Net.Http.Json.HttpClientJsonExtensions.PutAsJsonAsync%2A> return an <xref:System.Net.Http.HttpResponseMessage>. To deserialize the JSON content from the response message, use the <xref:System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsync%2A> extension method:
+Calls to <xref:System.Net.Http.Json.HttpClientJsonExtensions.PutAsJsonAsync%2A> return an <xref:System.Net.Http.HttpResponseMessage>. To deserialize the JSON content from the response message, use the <xref:System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsync%2A> extension method. The following example reads JSON weather data:
 
 ```csharp
 var content = await response.Content.ReadFromJsonAsync<WeatherForecast>();
@@ -169,7 +177,7 @@ var content = await response.Content.ReadFromJsonAsync<WeatherForecast>();
 
 <xref:System.Net.Http> includes additional extension methods for sending HTTP requests and receiving HTTP responses. <xref:System.Net.Http.HttpClient.DeleteAsync%2A?displayProperty=nameWithType> is used to send an HTTP DELETE request to a web API.
 
-In the following component code, the Delete `<button>` element calls the `DeleteItem` method. The bound `<input>` element supplies the `id` of the item to delete.
+In the following component code, the **Delete** `<button>` element calls the `DeleteItem` method. The bound `<input>` element supplies the `id` of the item to delete.
 
 ```razor
 @using System.Net.Http
@@ -199,7 +207,7 @@ Reference the [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Micro
 
 In the preceding example, the `{VERSION}` placeholder is the version of the package.
 
-`Program.Main` (`Program.cs`):
+In `Program.Main` of the `Program.cs` file:
 
 ```csharp
 builder.Services.AddHttpClient("WebAPI", client => 
@@ -277,24 +285,22 @@ public class WeatherForecastHttpClient
 
     public async Task<WeatherForecast[]> GetForecastAsync()
     {
-        var forecasts = new WeatherForecast[0];
-
         try
         {
-            forecasts = await http.GetFromJsonAsync<WeatherForecast[]>(
+            return await http.GetFromJsonAsync<WeatherForecast[]>(
                 "WeatherForecast");
         }
         catch
         {
             ...
-        }
 
-        return forecasts;
+            return new WeatherForecast[0];
+        }
     }
 }
 ```
 
-`Program.Main` (`Program.cs`):
+In `Program.Main` of the `Program.cs` file:
 
 ```csharp
 builder.Services.AddHttpClient<WeatherForecastHttpClient>(client => 
@@ -349,7 +355,7 @@ else
 
 ## `HttpClient` and `HttpRequestMessage` with Fetch API request options
 
-[`HttpClient`](xref:fundamentals/http-requests) ([API documentation](xref:System.Net.Http.HttpClient)) and <xref:System.Net.Http.HttpRequestMessage> can be used to customize requests. For example, you can specify the HTTP method and request headers. The following component makes a `POST` request to a To Do List API endpoint on the server and shows the response body:
+[`HttpClient`](xref:fundamentals/http-requests) ([API documentation](xref:System.Net.Http.HttpClient)) and <xref:System.Net.Http.HttpRequestMessage> can be used to customize requests. For example, you can specify the HTTP method and request headers. The following component makes a `POST` request to a web API endpoint and shows the response body.
 
 `Pages/TodoRequest.razor`:
 
@@ -365,9 +371,7 @@ else
 
 ::: moniker-end
 
-Blazor WebAssembly's implementation of <xref:System.Net.Http.HttpClient> uses [Fetch API](https://developer.mozilla.org/docs/Web/API/WindowOrWorkerGlobalScope/fetch). The Fetch API allows configuring several [request-specific options](https://developer.mozilla.org/docs/Web/API/WindowOrWorkerGlobalScope/fetch#Parameters).
-
-Fetch API request options can be configured with <xref:System.Net.Http.HttpRequestMessage> extension methods shown in the following table.
+Blazor WebAssembly's implementation of <xref:System.Net.Http.HttpClient> uses [Fetch API](https://developer.mozilla.org/docs/Web/API/WindowOrWorkerGlobalScope/fetch). Fetch API allows the configuration of several [request-specific options](https://developer.mozilla.org/docs/Web/API/WindowOrWorkerGlobalScope/fetch#Parameters). Options can be configured with <xref:System.Net.Http.HttpRequestMessage> extension methods shown in the following table.
 
 | Extension method | Fetch API request property |
 | --- | --- |
@@ -376,9 +380,9 @@ Fetch API request options can be configured with <xref:System.Net.Http.HttpReque
 | <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestIntegrity%2A> | [`integrity`](https://developer.mozilla.org/docs/Web/API/Request/integrity) |
 | <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestMode%2A> | [`mode`](https://developer.mozilla.org/docs/Web/API/Request/mode) |
 
-You can set additional options using the more generic <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestOption%2A> extension method.
+Set additional options using the generic <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestOption%2A> extension method.
 
-The HTTP response is typically buffered to enable support for sync reads on the response content. To enable support for response streaming, use the <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserResponseStreamingEnabled%2A> extension method on the request.
+The HTTP response is typically buffered to enable support for synchronous reads on the response content. To enable support for response streaming, use the <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserResponseStreamingEnabled%2A> extension method on the request.
 
 To include credentials in a cross-origin request, use the <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestCredentials%2A> extension method:
 
@@ -390,9 +394,9 @@ For more information on Fetch API options, see [MDN web docs: WindowOrWorkerGlob
 
 ## Call web API example
 
-The following example calls a Web API. The example requires a running web API based on the sample app described by the <xref:tutorials/first-web-api> article. This example makes requests to the web API at `https://localhost:10000/api/TodoItems`. If a different web API address is used, update the `ServiceEndpoint` constant value in the component's `@code` block.
+The following example calls a web API. The example requires a running web API based on the sample app described by the <xref:tutorials/first-web-api> article. This example makes requests to the web API at `https://localhost:10000/api/TodoItems`. If a different web API address is used, update the `ServiceEndpoint` constant value in the component's `@code` block.
 
-The following example makes a [cross-origin resource sharing (CORS)](xref:security/cors) request from `http://localhost:5000` or `https://localhost:5001` to the web API service app. Add the following CORS middleware configuration to the web API's service's `Startup.Configure` method:
+The following example makes a [cross-origin resource sharing (CORS)](xref:security/cors) request from `http://localhost:5000` or `https://localhost:5001` to the web API. Add the following CORS middleware configuration to the web API's service's `Startup.Configure` method:
 
 ```csharp
 app.UseCors(policy => 
@@ -431,13 +435,13 @@ By default, ASP.NET Core apps use ports 5000 (HTTP) and 5001 (HTTPS). To run bot
 
 ## Handle errors
 
-When errors occur while interacting with a web API, they can be handled by developer code. For example, <xref:System.Net.Http.Json.HttpClientJsonExtensions.GetFromJsonAsync%2A> expects a JSON response from the server API with a `Content-Type` of `application/json`. If the response isn't in JSON format, content validation throws a <xref:System.NotSupportedException>.
+Handle web API response errors in developer code when they occur. For example, <xref:System.Net.Http.Json.HttpClientJsonExtensions.GetFromJsonAsync%2A> expects a JSON response from the web API with a `Content-Type` of `application/json`. If the response isn't in JSON format, content validation throws a <xref:System.NotSupportedException>.
 
-In the following example, the URI endpoint for the weather forecast data request is misspelled. The URI should be to `WeatherForecast` but appears in the call as `WeatherForcast` (missing "e").
+In the following example, the URI endpoint for the weather forecast data request is misspelled. The URI should be to `WeatherForecast` but appears in the call as `WeatherForcast`, which is missing the letter `e` in `Forecast`.
 
-The <xref:System.Net.Http.Json.HttpClientJsonExtensions.GetFromJsonAsync%2A> call expects JSON to be returned, but the server returns HTML for an unhandled exception on the server with a `Content-Type` of `text/html`. The unhandled exception occurs on the server because the path isn't found and middleware can't serve a page or view for the request.
+The <xref:System.Net.Http.Json.HttpClientJsonExtensions.GetFromJsonAsync%2A> call expects JSON to be returned, but the web API returns HTML for an unhandled exception with a `Content-Type` of `text/html`. The unhandled exception occurs because the path isn't found and middleware can't serve a page or view for the request.
 
-In <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> on the client, <xref:System.NotSupportedException> is thrown when the response content is validated as non-JSON. The exception is caught in the `catch` block, where custom logic could log the error or present a friendly error message to the user:
+In <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> on the client, <xref:System.NotSupportedException> is thrown when the response content is validated as non-JSON. The exception is caught in the `catch` block, where custom logic could log the error or present a friendly error message to the user.
 
 `Pages/FetchDataReturnsHTMLOnException.razor`:
 
@@ -495,7 +499,7 @@ else
 ```
 
 > [!NOTE]
-> The preceding example is for demonstration purposes. A web API server app can be configured to return JSON even when an endpoint doesn't exist or an unhandled exception on the server occurs.
+> The preceding example is for demonstration purposes. A web API can be configured to return JSON even when an endpoint doesn't exist or an unhandled exception occurs on the server.
 
 For more information, see <xref:blazor/fundamentals/handle-errors>.
 
@@ -505,47 +509,93 @@ For more information, see <xref:blazor/fundamentals/handle-errors>.
 
 [Blazor Server](xref:blazor/hosting-models#blazor-server) apps call web APIs using <xref:System.Net.Http.HttpClient> instances, typically created using <xref:System.Net.Http.IHttpClientFactory>. For guidance that applies to Blazor Server, see <xref:fundamentals/http-requests>.
 
-XXXXXXXXXXXXXXXXXXXXXXXXX
-
-In the following example ....... or cross-link to File Uploads example.
-
-
-
-
-
-
 A Blazor Server app doesn't include an <xref:System.Net.Http.HttpClient> service by default. Provide an <xref:System.Net.Http.HttpClient> to the app using the [`HttpClient` factory infrastructure](xref:fundamentals/http-requests).
 
+In `Startup.`ConfigureServices` of `Startup.cs`:
 
+```csharp
+services.AddHttpClient();
+```
 
+The following Blazor Server Razor component makes a request to a web API for GitHub branches similar to the *Basic Usage* example in the <xref:fundamentals/http-requests> article.
 
+`Pages/CallWebAPI.razor`:
 
+```razor
+@page "/call-web-api"
+@using System.Text.Json
+@using System.Text.Json.Serialization;
+@inject IHttpClientFactory ClientFactory
+
+<h1>Call web API from a Blazor Server Razor component</h1>
+
+@if (getBranchesError)
+{
+    <p>Unable to get branches from GitHub. Please try again later.</p>
+}
+else
+{
+    <ul>
+        @foreach (var branch in branches)
+        {
+            <li>@branch.Name</li>
+        }
+    </ul>
+}
+
+@code {
+    private IEnumerable<GitHubBranch> branches;
+    private bool getBranchesError;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var request = new HttpRequestMessage(HttpMethod.Get,
+            "https://api.github.com/repos/dotnet/AspNetCore.Docs/branches");
+        request.Headers.Add("Accept", "application/vnd.github.v3+json");
+        request.Headers.Add("User-Agent", "HttpClientFactory-Sample");
+
+        var client = ClientFactory.CreateClient();
+
+        var response = await client.SendAsync(request);
+
+        if (response.IsSuccessStatusCode)
+        {
+            using var responseStream = await response.Content.ReadAsStreamAsync();
+            branches = await JsonSerializer.DeserializeAsync
+                <IEnumerable<GitHubBranch>>(responseStream);
+        }
+        else
+        {
+            getBranchesError = true;
+            branches = Array.Empty<GitHubBranch>();
+        }
+    }
+
+    public class GitHubBranch
+    {
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+    }
+}
+```
+
+For an additional working example, see the Blazor Server file upload example that uploads files to a web API controller in <xref:blazor/file-uploads#upload-files-to-a-server>.
 
 ::: zone-end
 
 ## Cross-origin resource sharing (CORS)
 
-::: zone pivot="webassembly"
-
 Browser security prevents a webpage from making requests to a different domain than the one that served the webpage. This restriction is called the *same-origin policy*. The same-origin policy prevents a malicious site from reading sensitive data from another site. To make requests from the browser to an endpoint with a different origin, the *endpoint* must enable [cross-origin resource sharing (CORS)](https://www.w3.org/TR/cors/).
 
-<!--
+::: zone pivot="webassembly"
 
-XXXXXXXXXX Include guidance here or refer/cross-link the snippets sample app for this scenario XXXXXXXXXXX
+For information on secure CORS requests in Blazor WebAssembly apps, see <xref:blazor/security/webassembly/additional-scenarios#cross-origin-resource-sharing-cors>.
 
-The [Blazor WebAssembly sample app (BlazorWebAssemblySample)](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/blazor/common/samples/) demonstrates the use of CORS in the Call Web API component (`Pages/CallWebAPI.razor`).
-
--->
-
-For more information on secure CORS requests in Blazor WebAssembly apps, see <xref:blazor/security/webassembly/additional-scenarios#cross-origin-resource-sharing-cors>.
-
-For general information on CORS, see <xref:security/cors>.
+For information on CORS, see <xref:security/cors>. The article's examples don't pertain directly to Blazor WebAssembly apps, but the article is useful for learning general CORS concepts.
 
 ::: zone-end
 
 ::: zone pivot="server"
-
-Browser security prevents a webpage from making requests to a different domain than the one that served the webpage. This restriction is called the *same-origin policy*. The same-origin policy prevents a malicious site from reading sensitive data from another site. To make requests from the browser to an endpoint with a different origin, the *endpoint* must enable [cross-origin resource sharing (CORS)](https://www.w3.org/TR/cors/).
 
 For more information, see <xref:security/cors>.
 
