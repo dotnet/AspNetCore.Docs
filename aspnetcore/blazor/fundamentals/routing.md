@@ -191,7 +191,7 @@ The route constraints shown in the following table are available. For the route 
 
 ::: moniker range=">= aspnetcore-5.0"
 
-Route contraints also work with [optional parameters](#optional-parameters):
+Route contraints also work with [optional parameters](#route-parameters):
 
 ```razor
 @page "/user/{Id:int?}"
