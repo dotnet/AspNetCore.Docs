@@ -189,6 +189,16 @@ The route constraints shown in the following table are available. For the route 
 > [!WARNING]
 > Route constraints that verify the URL and are converted to a CLR type (such as `int` or <xref:System.DateTime>) always use the invariant culture. These constraints assume that the URL is non-localizable.
 
+::: moniker range=">= aspnetcore-5.0"
+
+Route contraints also work with [optional parameters](#optional-parameters):
+
+```razor
+@page "/user/{Id:int?}"
+```
+
+::: moniker-end
+
 ## Routing with URLs that contain dots
 
 For hosted Blazor WebAssembly and Blazor Server apps, the server-side default route template assumes that if the last segment of a request URL contains a dot (`.`) that a file is requested. For example, the URL `https://localhost.com:5001/example/some.thing` is interpreted by the router as a request for a file named `some.thing`. Without additional configuration, an app returns a *404 - Not Found* response if `some.thing` was meant to route to a component with an [`@page` directive](xref:mvc/views/razor#page) and `some.thing` is a route parameter value. To use a route with one or more parameters that contain a dot, the app must configure the route with a custom template.
