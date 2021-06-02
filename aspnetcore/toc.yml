@@ -1078,6 +1078,8 @@
           uid: security/authentication/index
         - name: Introduction to Identity
           uid: security/authentication/identity
+        - name: Mapping, customizing, and transforming claims
+          uid: security/authentication/claims
         - name: Identity with SPA
           uid: security/authentication/identity/spa
         - name: Scaffold Identity
