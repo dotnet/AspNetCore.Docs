@@ -1,4 +1,5 @@
 @page "/call-dotnet-example-2"
+@implements IDisposable
 @inject IJSRuntime JS
 
 <h1>Call .NET Example 2</h1>
@@ -10,7 +11,7 @@
 </p>
 
 <p>
-    <button type="button" @onclick="TriggerDotNetInstanceMethod">
+    <button @onclick="TriggerDotNetInstanceMethod">
         Trigger .NET instance method
     </button>
 </p>
@@ -20,12 +21,21 @@
 </p>
 
 @code {
-    public string name;
-    public string result;
+    private string name;
+    private string result;
+    private DotNetObjectReference<CallDotNetExample2> objRef;
 
     public async Task TriggerDotNetInstanceMethod()
     {
-        var jsInteropClasses = new JsInteropClasses3(JS);
-        result = await jsInteropClasses.CallHelloHelperSayHello(name);
+        objRef = DotNetObjectReference.Create(this);
+        result = await JS.InvokeAsync<string>("sayHello1", objRef);
+    }
+
+    [JSInvokable]
+    public string GetHelloMessage() => $"Hello, {name}!";
+
+    public void Dispose()
+    {
+        objRef?.Dispose();
     }
 }
