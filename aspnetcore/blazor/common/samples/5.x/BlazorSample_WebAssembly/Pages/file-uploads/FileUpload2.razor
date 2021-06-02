@@ -2,7 +2,7 @@
 @using System.Linq
 @using Microsoft.Extensions.Logging
 @inject HttpClient Http
-@inject ILogger<FileUpload2> logger
+@inject ILogger<FileUpload2> Logger
 
 <h1>Upload Files</h1>
 
@@ -23,7 +23,7 @@
                     <li>
                         File: @file.Name
                         <br>
-                        @if (FileUpload(uploadResults, file.Name, logger,
+                        @if (FileUpload(uploadResults, file.Name, Logger,
                            out var result))
                         {
                             <span>
@@ -84,7 +84,7 @@
                 }
                 else
                 {
-                    logger.LogInformation("{FileName} not uploaded (Err: 6)", 
+                    Logger.LogInformation("{FileName} not uploaded (Err: 6)", 
                         file.Name);
 
                     uploadResults.Add(
