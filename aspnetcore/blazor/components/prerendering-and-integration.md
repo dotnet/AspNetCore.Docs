@@ -260,7 +260,7 @@ Additional work might be required depending on the static resources that compone
 
 ## Additional Blazor WebAssembly resources
 
-* [State management: Handle prerendering](xref:blazor/state-management?pivot=webassembly#handle-prerendering)
+* [State management: Handle prerendering](xref:blazor/state-management#handle-prerendering)
 * [Prerendering support with assembly lazy loading](xref:blazor/webassembly-lazy-load-assemblies#assembly-load-logic-in-onnavigateasync)
 * Razor component lifecycle subjects that pertain to prerendering
   * [Component initialization (`OnInitialized{Async}`)](xref:blazor/components/lifecycle#component-initialization-oninitializedasync)
@@ -677,14 +677,14 @@ For more information, see <xref:blazor/components/index#namespaces>.
 
 ## Additional Blazor Server resources
 
-* [State management: Handle prerendering](xref:blazor/state-management?pivot=server#handle-prerendering)
+* [State management: Handle prerendering](xref:blazor/state-management#handle-prerendering)
 * Razor component lifecycle subjects that pertain to prerendering
   * [Component initialization (`OnInitialized{Async}`)](xref:blazor/components/lifecycle#component-initialization-oninitializedasync)
   * [After component render (`OnAfterRender{Async}`)](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync)
   * [Stateful reconnection after prerendering](xref:blazor/components/lifecycle#stateful-reconnection-after-prerendering)
   * [Detect when the app is prerendering](xref:blazor/components/lifecycle#detect-when-the-app-is-prerendering)
 * [Authentication and authorization: General aspects](xref:blazor/security/index#aspnet-core-blazor-authentication-and-authorization)
-* [Blazor Server rerendering](xref:blazor/fundamentals/handle-errors?pivot=server#blazor-server-prerendering-server)
+* [Blazor Server rerendering](xref:blazor/fundamentals/handle-errors#blazor-server-prerendering-server)
 * [Host and deploy: Blazor Server](xref:blazor/host-and-deploy/server)
 * [Threat mitigation: Cross-site scripting (XSS)](xref:blazor/security/server/threat-mitigation#cross-site-scripting-xss)
 
