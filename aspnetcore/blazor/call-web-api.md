@@ -268,7 +268,7 @@ Components inject the typed <xref:System.Net.Http.HttpClient> to call the web AP
 When running on WebAssembly in a Blazor WebAssembly app, [`HttpClient`](xref:fundamentals/http-requests) ([API documentation](xref:System.Net.Http.HttpClient)) and <xref:System.Net.Http.HttpRequestMessage> can be used to customize requests. For example, you can specify the HTTP method and request headers. The following component makes a `POST` request to a To Do List API endpoint on the server and shows the response body:
 
 ```razor
-@page "/todorequest"
+@page "/todo-request"
 @using System.Net.Http
 @using System.Net.Http.Headers
 @using System.Net.Http.Json
