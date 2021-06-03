@@ -20,7 +20,7 @@ This overview article covers general concepts. Further JS interop guidance is pr
 
 ## Interaction with the Document Object Model (DOM)
 
-Only mutate the Document Object Model (DOM) with JavaScript (JS) when the object doesn't interact with Blazor. Blazor maintains representations of the DOM and interacts directly with DOM objects. If JS interop mutates an element or its content and Blazor attempts to apply diffs to the element, the diffs won't match the DOM and undefined behavior results. Arbitrary behaviors may merely interfere with the presentation of elements or their behavior but may also introduce security risks to the app or server.
+Only mutate the Document Object Model (DOM) with JavaScript (JS) when the object doesn't interact with Blazor. Blazor maintains representations of the DOM and interacts directly with DOM objects. If an element rendered by Blazor is modified externally using JS directly or via JS Interop, the DOM may no longer match Blazor's internal representation, which can result in undefined behavior. Undefined behavior may merely interfere with the presentation of elements or their functions but may also introduce security risks to the app or server.
 
 This guidance not only applies to your own JS interop code but also to any JS libraries that the app uses, including anything provided by a third-party framework, such as [Bootstrap JS](https://getbootstrap.com/) and [jQuery](https://jquery.com/).
 
