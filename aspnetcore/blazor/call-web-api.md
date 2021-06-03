@@ -5,7 +5,7 @@ description: Learn how to call a web API in Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/02/2021
+ms.date: 06/03/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/call-web-api
 zone_pivot_groups: blazor-hosting-models
@@ -14,15 +14,15 @@ zone_pivot_groups: blazor-hosting-models
 
 ::: zone pivot="webassembly"
 
-[Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly) apps call web APIs using a preconfigured <xref:System.Net.Http.HttpClient> service. Compose requests, which can include [Fetch API](https://developer.mozilla.org/docs/Web/API/Fetch_API) options, using Blazor JSON helpers or with <xref:System.Net.Http.HttpRequestMessage>. The <xref:System.Net.Http.HttpClient> service in Blazor WebAssembly apps is focused on making requests back to the server of origin.
+[Blazor WebAssembly](xref:blazor/hosting-models#blazor-webassembly) apps call web APIs using a preconfigured <xref:System.Net.Http.HttpClient> service, which is focused on making requests back to the server of origin. Additional <xref:System.Net.Http.HttpClient> service configurations for other web APIs can be created in developer code. Requests are composed using Blazor JSON helpers or with <xref:System.Net.Http.HttpRequestMessage>. Requests can include [Fetch API](https://developer.mozilla.org/docs/Web/API/Fetch_API) option configuration.
 
 ## Examples in this article
 
-In this article's examples, a hypothetical Todo web API on a server processes create, read, update, and delete (CRUD) operations. The examples are based on a `TodoItem` class that stores the following Todo item data:
+In this article's component examples, a hypothetical todo list web API is used to create, read, update, and delete (CRUD) todo items on a server. The examples are based on a `TodoItem` class that stores the following todo item data:
 
 * ID (`Id`, `long`): Unique ID of the item.
 * Name (`Name`, `string`): Name of the item.
-* Status (`IsComplete`, `bool`): Indication if the Todo item is finished.
+* Status (`IsComplete`, `bool`): Indication if the todo item is finished.
 
 Use the following `TodoItem` class with this article's examples if you build the examples into a test app:
 
@@ -43,7 +43,7 @@ Reference the [`System.Net.Http.Json`](https://www.nuget.org/packages/System.Net
 
 ## Add the `HttpClient` service
 
-In `Program.Main`, add an <xref:System.Net.Http.HttpClient> service if it doesn't already exist:
+In `Program.Main`, add an <xref:System.Net.Http.HttpClient> service if it isn't already present from a Blazor project template used to create the app:
 
 ```csharp
 builder.Services.AddScoped(sp => 
@@ -57,7 +57,7 @@ builder.Services.AddScoped(sp =>
 
 <xref:System.Net.Http.HttpClient> is available as a preconfigured service for making requests back to the origin server.
 
-<xref:System.Net.Http.HttpClient> and JSON helpers (<xref:System.Net.Http.Json.HttpClientJsonExtensions?displayProperty=nameWithType>) are also used to call third-party web API endpoints. <xref:System.Net.Http.HttpClient> is implemented using the browser's [Fetch API](https://developer.mozilla.org/docs/Web/API/Fetch_API) and is subject to its limitations, including enforcement of the [same-origin policy](#cross-origin-resource-sharing-cors).
+<xref:System.Net.Http.HttpClient> and JSON helpers (<xref:System.Net.Http.Json.HttpClientJsonExtensions?displayProperty=nameWithType>) are also used to call third-party web API endpoints. <xref:System.Net.Http.HttpClient> is implemented using the browser's [Fetch API](https://developer.mozilla.org/docs/Web/API/Fetch_API) and is subject to its limitations, including enforcement of the [same-origin policy (discussed later in this article)](#cross-origin-resource-sharing-cors).
 
 The client's base address is set to the originating server's address. Inject an <xref:System.Net.Http.HttpClient> instance into a component using the [`@inject`](xref:mvc/views/razor#inject) directive:
 
@@ -66,7 +66,7 @@ The client's base address is set to the originating server's address. Inject an 
 @inject HttpClient Http
 ```
 
-Use the <xref:System.Net.Http.Json?displayProperty=fullName> namespace for access to <xref:System.Net.Http.Json.HttpClientJsonExtensions>:
+Use the <xref:System.Net.Http.Json?displayProperty=fullName> namespace for access to <xref:System.Net.Http.Json.HttpClientJsonExtensions>, including <xref:System.Net.Http.Json.HttpClientJsonExtensions.GetFromJsonAsync%2A>, <xref:System.Net.Http.Json.HttpClientJsonExtensions.PutAsJsonAsync%2A>, and <xref:System.Net.Http.Json.HttpClientJsonExtensions.PostAsJsonAsync%2A>:
 
 ```razor
 @using System.Net.Http.Json
@@ -140,9 +140,9 @@ var content = await response.Content.ReadFromJsonAsync<WeatherForecast>();
 
 ### PUT as JSON (`PutAsJsonAsync`)
 
-<xref:System.Net.Http.Json.HttpClientJsonExtensions.PutAsJsonAsync%2A> sends an HTTP PUT request, including JSON-encoded content.
+<xref:System.Net.Http.Json.HttpClientJsonExtensions.PutAsJsonAsync%2A> sends an HTTP PUT request with JSON-encoded content.
 
-In the following component code, `editItem` values for `Name` and `IsCompleted` are provided by bound elements of the component. The item's `Id` is set when the item is selected in another part of the UI and `EditItem` is called. The `SaveItem` method is triggered by selecting the **Save** `<button>` element.
+In the following component code, `editItem` values for `Name` and `IsCompleted` are provided by bound elements of the component. The item's `Id` is set when the item is selected in another part of the UI (not shown) and `EditItem` is called. The `SaveItem` method is triggered by selecting the `<button>` element.
 
 ```razor
 @using System.Net.Http
@@ -155,6 +155,7 @@ In the following component code, `editItem` values for `Name` and `IsCompleted` 
 <button @onclick="SaveItem">Save</button>
 
 @code {
+    private string id;
     private TodoItem editItem = new TodoItem();
 
     private void EditItem(long id)
@@ -177,7 +178,7 @@ var content = await response.Content.ReadFromJsonAsync<WeatherForecast>();
 
 <xref:System.Net.Http> includes additional extension methods for sending HTTP requests and receiving HTTP responses. <xref:System.Net.Http.HttpClient.DeleteAsync%2A?displayProperty=nameWithType> is used to send an HTTP DELETE request to a web API.
 
-In the following component code, the **Delete** `<button>` element calls the `DeleteItem` method. The bound `<input>` element supplies the `id` of the item to delete.
+In the following component code, the `<button>` element calls the `DeleteItem` method. The bound `<input>` element supplies the `id` of the item to delete.
 
 ```razor
 @using System.Net.Http
@@ -439,7 +440,7 @@ Handle web API response errors in developer code when they occur. For example, <
 
 In the following example, the URI endpoint for the weather forecast data request is misspelled. The URI should be to `WeatherForecast` but appears in the call as `WeatherForcast`, which is missing the letter `e` in `Forecast`.
 
-The <xref:System.Net.Http.Json.HttpClientJsonExtensions.GetFromJsonAsync%2A> call expects JSON to be returned, but the web API returns HTML for an unhandled exception with a `Content-Type` of `text/html`. The unhandled exception occurs because the path isn't found and middleware can't serve a page or view for the request.
+The <xref:System.Net.Http.Json.HttpClientJsonExtensions.GetFromJsonAsync%2A> call expects JSON to be returned, but the web API returns HTML for an unhandled exception with a `Content-Type` of `text/html`. The unhandled exception occurs because the path to `/WeatherForcast` isn't found and middleware can't serve a page or view for the request.
 
 In <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> on the client, <xref:System.NotSupportedException> is thrown when the response content is validated as non-JSON. The exception is caught in the `catch` block, where custom logic could log the error or present a friendly error message to the user.
 
@@ -544,8 +545,11 @@ else
 }
 
 @code {
-    private IEnumerable<GitHubBranch> branches;
+    private IEnumerable<GitHubBranch> branches = Array.Empty<GitHubBranch>();
     private bool getBranchesError;
+    private bool shouldRender;
+
+    protected override bool ShouldRender() => shouldRender;
 
     protected override async Task OnInitializedAsync()
     {
@@ -567,8 +571,9 @@ else
         else
         {
             getBranchesError = true;
-            branches = Array.Empty<GitHubBranch>();
         }
+
+        shouldRender = true;
     }
 
     public class GitHubBranch
@@ -579,17 +584,17 @@ else
 }
 ```
 
-For an additional working example, see the Blazor Server file upload example that uploads files to a web API controller in <xref:blazor/file-uploads#upload-files-to-a-server>.
+For an additional working example, see the Blazor Server file upload example that uploads files to a web API controller in the <xref:blazor/file-uploads#upload-files-to-a-server> article.
 
 ::: zone-end
 
 ## Cross-origin resource sharing (CORS)
 
-Browser security prevents a webpage from making requests to a different domain than the one that served the webpage. This restriction is called the *same-origin policy*. The same-origin policy prevents a malicious site from reading sensitive data from another site. To make requests from the browser to an endpoint with a different origin, the *endpoint* must enable [cross-origin resource sharing (CORS)](https://www.w3.org/TR/cors/).
+Browser security restricts a webpage from making requests to a different domain than the one that served the webpage. This restriction is called the *same-origin policy*. The same-origin policy restricts (but doesn't prevent) a malicious site from reading sensitive data from another site. To make requests from the browser to an endpoint with a different origin, the *endpoint* must enable [cross-origin resource sharing (CORS)](https://www.w3.org/TR/cors/).
 
 ::: zone pivot="webassembly"
 
-For information on secure CORS requests in Blazor WebAssembly apps, see <xref:blazor/security/webassembly/additional-scenarios#cross-origin-resource-sharing-cors>.
+For information on CORS requests in Blazor WebAssembly apps, see <xref:blazor/security/webassembly/additional-scenarios#cross-origin-resource-sharing-cors>.
 
 For information on CORS, see <xref:security/cors>. The article's examples don't pertain directly to Blazor WebAssembly apps, but the article is useful for learning general CORS concepts.
 
@@ -603,7 +608,7 @@ For more information, see <xref:security/cors>.
 
 ## Blazor framework component examples for testing web API access
 
-Various network tools are publicly available for testing web API backend apps directly, such as [Fiddler](https://www.telerik.com/fiddler), [Firefox Browser Developer](https://www.mozilla.org/firefox/developer/), or [Postman](https://www.postman.com). Blazor framework's reference source includes <xref:System.Net.Http.HttpClient> test assets that are useful for testing:
+Various network tools are publicly available for testing web API backend apps directly, such as [Fiddler](https://www.telerik.com/fiddler), [Firefox Browser Developer](https://www.mozilla.org/firefox/developer/), and [Postman](https://www.postman.com). Blazor framework's reference source includes <xref:System.Net.Http.HttpClient> test assets that are useful for testing:
 
 [`HttpClientTest` assets in the `dotnet/aspnetcore` GitHub repository](https://github.com/dotnet/aspnetcore/tree/main/src/Components/test/testassets/BasicTestApp/HttpClientTest)
 
