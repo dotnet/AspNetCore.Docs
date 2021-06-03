@@ -40,7 +40,7 @@ The `Render` lifecycle:
 
 1. Avoid further rendering operations on the component:
    * After the first render.
-   * When [`ShouldRender`](#suppress-ui-refreshing-shouldrender) is `false`.
+   * When [`ShouldRender`](xref:blazor/components/rendering#suppress-ui-refreshing-shouldrender) is `false`.
 1. Build the render tree diff (difference) and render the component.
 1. Await the DOM to update.
 1. Call [`OnAfterRender{Async}`](#after-component-render-onafterrenderasync).
@@ -206,28 +206,6 @@ Even if you return a <xref:System.Threading.Tasks.Task> from <xref:Microsoft.Asp
 1. When the Blazor script (`blazor.webassembly.js` or `blazor.server.js`) start in the browser, the component is restarted in an interactive rendering mode. After a component is restarted, <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> **are** called because the app isn't in the prerendering phase any longer.
 
 If event handlers are provided in developer code, unhook them on disposal. For more information, see the [Component disposal with `IDisposable`](#component-disposal-with-idisposable) section.
-
-## Suppress UI refreshing (`ShouldRender`)
-
-<xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> is called each time a component is rendered. Override <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> to manage UI refreshing. If the implementation returns `true`, the UI is refreshed.
-
-Even if <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> is overridden, the component is always initially rendered.
-
-`Pages/ControlRender.razor`:
-
-::: moniker range=">= aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/lifecycle/ControlRender.razor)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/lifecycle/ControlRender.razor)]
-
-::: moniker-end
-
-For more information on performance best practices pertaining to <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A>, see <xref:blazor/webassembly-performance-best-practices#avoid-unnecessary-rendering-of-component-subtrees>.
 
 ## State changes (`StateHasChanged`)
 
