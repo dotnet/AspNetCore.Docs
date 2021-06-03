@@ -24,7 +24,7 @@ Only mutate the Document Object Model (DOM) with JavaScript (JS) when the object
 
 This guidance not only applies to your own JS interop code but also to any JS libraries that the app uses, including anything provided by a third-party framework, such as [Bootstrap JS](https://getbootstrap.com/) and [jQuery](https://jquery.com/).
 
-In a few documentation examples, JS interop is used to mutate an element *purely for demonstration purposes* as part of the example. In those cases, a warning appears in the text.
+In a few documentation examples, JS interop is used to mutate an element *purely for demonstration purposes* as part of an example. In those cases, a warning appears in the text.
 
 For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet#capture-references-to-elements>.
 
