@@ -311,6 +311,42 @@ private static byte[] StringToByteArray(string hex)
 }
 ```
 
+If your application is reverse proxied by NGINX with the configuration `proxy_set_header ssl-client-cert $ssl_client_escaped_cert` or deployed on Kubernetes using NGINX Ingress, the client certificate will be passed to your application in [URL-encoded form](https://en.wikipedia.org/wiki/Percent-encoding). To use it, decode it as follows:
+
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddCertificateForwarding(options =>
+    {
+        options.CertificateHeader = "ssl-client-cert";
+        options.HeaderConverter = (headerValue) =>
+        {
+            X509Certificate2 clientCertificate = null;
+
+            if(!string.IsNullOrWhiteSpace(headerValue))
+            {
+                byte[] bytes = UrlEncodedPemToByteArray(headerValue);
+                clientCertificate = new X509Certificate2(bytes);
+            }
+
+            return clientCertificate;
+        };
+    });
+}
+
+// using System.Net;
+private static byte[] UrlEncodedPemToByteArray(string urlEncodedBase64Pem)
+{
+    var base64Pem = WebUtility.UrlDecode(urlEncodedBase64Pem);
+    var base64Cert = base64Pem
+        .Replace("-----BEGIN CERTIFICATE-----", string.Empty)
+        .Replace("-----END CERTIFICATE-----", string.Empty)
+        .Trim();
+
+    return Convert.FromBase64String(base64Cert);
+}
+```
+
 The `Startup.Configure` method then adds the middleware. `UseCertificateForwarding` is called before the calls to `UseAuthentication` and `UseAuthorization`:
 
 ```csharp
