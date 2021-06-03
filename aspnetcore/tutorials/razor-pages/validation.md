@@ -57,9 +57,9 @@ The validation attributes specify behavior to enforce on the model properties th
 
 The preceding validation rules are used for demonstration, they are not optimal for a production system. For example, the preceding prevents entering a movie with only two chars and doesn't allow special characters in `Genre`.
 
-Having validation rules automatically enforced by ASP.NET Core helps:
+Having validation rules automatically enforced by ASP.NET Core helpers:
 
-* Helps make the app more robust.
+* Helpers make the app more robust.
 * Reduce chances of saving invalid data to the database.
 
 ### Validation Error UI in Razor Pages
