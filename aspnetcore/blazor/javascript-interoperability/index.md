@@ -18,6 +18,16 @@ This overview article covers general concepts. Further JS interop guidance is pr
 * <xref:blazor/js-interop/call-javascript-from-dotnet>
 * <xref:blazor/js-interop/call-dotnet-from-javascript>
 
+## Interaction with the Document Object Model (DOM)
+
+Only mutate the Document Object Model (DOM) with JavaScript (JS) when the object doesn't interact with Blazor. Blazor maintains representations of the DOM and interacts directly with DOM objects. If JS interop mutates an element or its content and Blazor attempts to apply diffs to the element, the diffs won't match the DOM and undefined behavior results. Arbitrary behaviors may merely interfere with the presentation of elements or their behavior but may also introduce security risks to the app or server.
+
+This guidance not only applies to your own JS interop code but also to any JS libraries that the app uses, including anything provided by a third-party framework, such as [Bootstrap JS](https://getbootstrap.com/) and [jQuery](https://jquery.com/).
+
+In a few documentation examples, JS interop is used to mutate an element *purely for demonstration purposes* as part of an example. In those cases, a warning appears in the text.
+
+For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet#capture-references-to-elements>.
+
 ## Location of JavaScipt
 
 Load JavaScript (JS) code using any of the following approaches:
