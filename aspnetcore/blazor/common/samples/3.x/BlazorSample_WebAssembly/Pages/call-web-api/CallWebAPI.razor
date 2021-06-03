@@ -1,0 +1,118 @@
+@page "/call-web-api"
+@inject HttpClient Http
+
+<h1>Todo Items</h1>
+
+@if (todoItems == null)
+{
+    <p>No Todo Items found.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="text-center">Complete</th>
+                <th>Name</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr id="editRow" style="display:@editRowStyle">
+                <td class="text-center">
+                    <input type="checkbox" @bind="editItem.IsComplete" />
+                </td>
+                <td>
+                    <input @bind="editItem.Name" />
+                </td>
+                <td class="text-center">
+                    <button class="btn btn-success" @onclick="SaveItem">
+                        Save
+                    </button>
+                    <button class="btn btn-danger" 
+                            @onclick="@(() => editRowStyle = "none")">
+                        Cancel
+                    </button>
+                </td>
+            </tr>
+            @foreach (var item in todoItems)
+            {
+                <tr>
+                    <td class="text-center">
+                        @if (item.IsComplete)
+                        {
+                            <span>&#10004;</span>
+                        }
+                    </td>
+                    <td>@item.Name</td>
+                    <td class="text-center">
+                        <button class="btn btn-warning" 
+                                @onclick="@(() => EditItem(item.Id))">Edit</button>
+                        <button class="btn btn-danger" 
+                                @onclick="@(async () => await DeleteItem(item.Id))">
+                            Delete
+                        </button>
+                    </td>
+                </tr>
+            }
+            <tr id="addRow">
+                <td></td>
+                <td>
+                    <input @bind="newItemName" placeholder="New Todo Item" />
+                </td>
+                <td class="text-center">
+                    <button class="btn btn-success" @onclick="@AddItem">Add</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+}
+
+@code {
+    private const string ServiceEndpoint = "https://localhost:10000/api/TodoItems";
+    private TodoItem[] todoItems;
+    private TodoItem editItem = new TodoItem();
+    private string editRowStyle = "none";
+    private string newItemName;
+
+    protected override async Task OnInitializedAsync() => await GetTodoItems();
+
+    private async Task GetTodoItems() => 
+        todoItems = await Http.GetFromJsonAsync<TodoItem[]>(ServiceEndpoint);
+
+    private void EditItem(long id)
+    {
+        editItem = todoItems.Single(i => i.Id == id);
+        editRowStyle = "table-row";
+    }
+
+    private async Task AddItem()
+    {
+        var addItem = new TodoItem { Name = newItemName, IsComplete = false };
+        await Http.PostAsJsonAsync(ServiceEndpoint, addItem);
+        newItemName = string.Empty;
+        await GetTodoItems();
+        editRowStyle = "none";
+    }
+
+    private async Task SaveItem()
+    {
+        await Http.PutAsJsonAsync($"{ServiceEndpoint}/{editItem.Id}", editItem);
+        await GetTodoItems();
+        editRowStyle = "none";
+    }
+
+    private async Task DeleteItem(long id)
+    {
+        await Http.DeleteAsync($"{ServiceEndpoint}/{id}");
+        await GetTodoItems();
+        editRowStyle = "none";
+    }
+
+    private class TodoItem
+    {
+        public long Id { get; set; }
+        public string Name { get; set; }
+        public bool IsComplete { get; set; }
+    }
+}
