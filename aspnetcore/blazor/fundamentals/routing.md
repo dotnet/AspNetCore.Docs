@@ -63,6 +63,9 @@ Components support multiple route templates using multiple [`@page` directives](
 > [!IMPORTANT]
 > For URLs to resolve correctly, the app must include a `<base>` tag in its `wwwroot/index.html` file (Blazor WebAssembly) or `Pages/_Host.cshtml` file (Blazor Server) with the app base path specified in the `href` attribute. For more information, see <xref:blazor/host-and-deploy/index#app-base-path>.
 
+> [!NOTE]
+> The <xref:Microsoft.AspNetCore.Components.Routing.Router> doesn't interact with query string values. To work with query strings, see the [Query string and parse parameters](#query-string-and-parse-parameters) section.
+
 ## Provide custom content when content isn't found
 
 The <xref:Microsoft.AspNetCore.Components.Routing.Router> component allows the app to specify custom content if content isn't found for the requested route.
@@ -150,6 +153,9 @@ protected override void OnParametersSet()
 }
 ```
 
+> [!NOTE]
+> Route parameters don't work with query string values. To work with query strings, see the [Query string and parse parameters](#query-string-and-parse-parameters) section.
+
 ## Route constraints
 
 A route constraint enforces type matching on a route segment to a component.
@@ -173,6 +179,9 @@ In the following example, the route to the `User` component only matches if:
 
 ::: moniker-end
 
+> [!NOTE]
+> Route contraints don't work with query string values. To work with query strings, see the [Query string and parse parameters](#query-string-and-parse-parameters) section.
+
 The route constraints shown in the following table are available. For the route constraints that match the invariant culture, see the warning below the table for more information.
 
 | Constraint | Example           | Example Matches                                                                  | Invariant<br>culture<br>matching |
@@ -188,6 +197,34 @@ The route constraints shown in the following table are available. For the route 
 
 > [!WARNING]
 > Route constraints that verify the URL and are converted to a CLR type (such as `int` or <xref:System.DateTime>) always use the invariant culture. These constraints assume that the URL is non-localizable.
+
+::: moniker range=">= aspnetcore-5.0"
+
+Route contraints also work with [optional parameters](#route-parameters). In the following example, `Id` is required, but `Option` is an optional boolean route parameter.
+
+`Pages/User.razor`:
+
+```razor
+@page "/user/{Id:int}/{Option:bool?}"
+
+<p>
+    Id: @Id
+</p>
+
+<p>
+    Option: @Option
+</p>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    [Parameter]
+    public bool Option { get; set; }
+}
+```
+
+::: moniker-end
 
 ## Routing with URLs that contain dots
 
