@@ -40,7 +40,7 @@ Blazor relies on the host to the serve the appropriate compressed files. When us
   * Obtain the JavaScript Brotli decoder from the [google/brotli GitHub repository](https://github.com/google/brotli). The decoder file is named `decode.js` and found in the repository's [`js` folder](https://github.com/google/brotli/tree/master/js).
   
     > [!WARNING]
-    > Don't use the minified version of the `decode.js` script (`decode.min.js`) in the [google/brotli GitHub repository](https://github.com/google/brotli) repository. A regression was reported in the `decode.min.js` script at [TypeError in decode.min.js (google/brotli #881)](https://github.com/google/brotli/issues/881). Workaround the issue with any of the following approaches:
+    > Don't use the minified version of the `decode.js` script (`decode.min.js`) in the [google/brotli GitHub repository](https://github.com/google/brotli) repository. A regression was reported in the `decode.min.js` script at [TypeError in decode.min.js (google/brotli #881)](https://github.com/google/brotli/issues/881). Adopt any of the following approaches:
     >
     > * Use the unminified version of the script until the regression is fixed.
     > * Automatically minify the script at build-time with a third-party minification tool compatible with ASP.NET Core. For more information, see <xref:client-side/bundling-and-minification>.
