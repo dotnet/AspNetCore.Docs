@@ -26,7 +26,7 @@ HTTP Logging is valuable in several scenarios to:
 * Filter which parts of the request and response are logged.
 * Filtering which headers to log.
 
-HTTP Logging ***can reduce the performance of an app***, especially when logging the request and response bodies. Consider and performance impact when selecting fields to log. Test the performance impact of the selected logging properties.
+HTTP Logging ***can reduce the performance of an app***, especially when logging the request and response bodies. Consider the performance impact when selecting fields to log. Test the performance impact of the selected logging properties.
 
 > [!WARNING]
 > HTTP Logging can potentially log personally identifiable information (PII). Consider the risk and avoid logging sensitive information.
