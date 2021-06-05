@@ -75,8 +75,9 @@
 
                 if (file.Size < maxFileSize)
                 {
+                    var byteContent = new ByteArrayContent(await fileContent.ReadAsByteArrayAsync());
                     content.Add(
-                        content: fileContent,
+                        content: byteContent,
                         name: "\"files\"",
                         fileName: file.Name);
 
