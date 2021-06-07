@@ -1412,6 +1412,8 @@ The following keywords are reserved names and can't be used as route names or pa
 * `handler`
 * `page`
 
+[!INCLUDE[](~/includes/reservedRouting.md)]
+
 ## Route constraint reference
 
 Route constraints execute when a match has occurred to the incoming URL and the URL path is tokenized into route values. Route constraints generally inspect the route value associated via the route template and make a yes/no decision about whether or not the value is acceptable. Some route constraints use data outside the route value to consider whether the request can be routed. For example, the <xref:Microsoft.AspNetCore.Routing.Constraints.HttpMethodRouteConstraint> can accept or reject a request based on its HTTP verb. Constraints are used in routing requests and link generation.
