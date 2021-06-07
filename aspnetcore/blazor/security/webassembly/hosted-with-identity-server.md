@@ -303,9 +303,9 @@ public class CustomUserFactory
         if (user.Identity.IsAuthenticated)
         {
             var identity = (ClaimsIdentity)user.Identity;
-            var roleClaims = identity.FindAll(identity.RoleClaimType);
+            var roleClaims = identity.FindAll(identity.RoleClaimType).ToArray();
 
-            if (roleClaims != null && roleClaims.Any())
+            if (roleClaims.Any())
             {
                 foreach (var existingClaim in roleClaims)
                 {
