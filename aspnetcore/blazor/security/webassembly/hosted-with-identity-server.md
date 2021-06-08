@@ -431,6 +431,8 @@ using IdentityServer4.Services;
 ...
 
 services.AddTransient<IProfileService, ProfileService>();
+
+JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Remove("role");
 ```
 
 ### Use authorization mechanisms
