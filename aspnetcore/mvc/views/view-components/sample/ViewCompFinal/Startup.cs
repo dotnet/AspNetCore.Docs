@@ -1,10 +1,9 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ViewComponentSample.Models;
+using Microsoft.Extensions.Hosting;
 
 namespace ViewComponentSample
 {
@@ -14,10 +13,11 @@ namespace ViewComponentSample
         {
             services.AddDbContext<ToDoContext>(options =>
                     options.UseInMemoryDatabase("db"));
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddControllersWithViews();
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -25,12 +25,14 @@ namespace ViewComponentSample
             }
             
             app.UseStaticFiles();
-           
-            app.UseMvc(routes =>
+
+            app.UseRouting();
+
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapRoute(
+                endpoints.MapControllerRoute(
                     name: "default",
-                    template: "{controller=Todo}/{action=Index}/{id?}");
+                    pattern: "{controller=Todo}/{action=Index}/{id?}");
             });
         }
     }

@@ -40,6 +40,10 @@ namespace ViewComponentSample.Controllers
         {
             return View(_ToDoContext.ToDo.ToList());
         }
+        public IActionResult IndexTypeof()
+        {
+            return View(_ToDoContext.ToDo.ToList());
+        }
 
         public IActionResult IndexFirst()
         {
