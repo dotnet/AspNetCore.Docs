@@ -46,7 +46,7 @@ To configure a custom error handling page for the [Production environment](xref:
 * Re-executes the request in an alternate pipeline using the path indicated. The request isn't re-executed if the response has started. The template generated code re-executes the request using the `/Error` path.
 
 > [!WARNING]
-> An unhandled exception propagated to the alternate pipeline is **not** propagated further in the original pipeline.
+> If the alternate pipeline throws an exception of its own, Exception Handling Middleware rethrows the original exception.
 
 In the following example, <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A> adds the exception handling middleware in non-Development environments:
 
