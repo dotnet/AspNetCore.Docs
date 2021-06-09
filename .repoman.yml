@@ -9,9 +9,7 @@ config:
 
     ParserRegex: "^\\* (.*): (.*)$"
 
-
 issues:
-
 
   opened:
     # New issue opened, add Not Triaged  
@@ -20,9 +18,7 @@ issues:
 
     # default for doc comment
     - check:
-        - type: metadata-comment
-          name: contentsource
-          value: ".*"
+        - type: metadata-exists
       pass:
         - labels-add: ["Source - Docs.ms"]
 
