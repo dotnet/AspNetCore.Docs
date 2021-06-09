@@ -88,7 +88,7 @@ In the preceding code, `await context.Response.WriteAsync(new string(' ', 512));
 -->
 
 > [!WARNING]
-> Unhandled exceptions in the alternate request pipeline are **not** propagated back to the original pipeline. The exception caught by <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A> is propagated instead.
+> Unhandled exceptions in the [alternate request pipeline](#exception-handler-page) are **not** propagated back to the original pipeline. The exception caught by <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A> is propagated instead.
 
 > [!WARNING]
 > Do **not** serve sensitive error information from <xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandlerFeature> or <xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandlerPathFeature> to clients. Serving errors is a security risk.
