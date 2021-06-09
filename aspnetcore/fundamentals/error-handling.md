@@ -86,8 +86,9 @@ The following code uses a lambda for exception handling:
 <!-- 
 In the preceding code, `await context.Response.WriteAsync(new string(' ', 512));` is added so the Internet Explorer browser displays the error message rather than an IE error message. For more information, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/16144).
 -->
+
 > [!WARNING]
-> Unhandled exceptions in the alternate request pipeline **will not** be propagated back to the original pipeline. The exception caught by <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A> will be propagated instead.
+> Unhandled exceptions in the alternate request pipeline are **not** propagated back to the original pipeline. The exception caught by <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A> is propagated instead.
 
 > [!WARNING]
 > Do **not** serve sensitive error information from <xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandlerFeature> or <xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandlerPathFeature> to clients. Serving errors is a security risk.
