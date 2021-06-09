@@ -45,6 +45,9 @@ To configure a custom error handling page for the [Production environment](xref:
 * Catches and logs unhandled exceptions.
 * Re-executes the request in an alternate pipeline using the path indicated. The request isn't re-executed if the response has started. The template generated code re-executes the request using the `/Error` path.
 
+> [!WARNING]
+> Unhandled exceptions in the [alternate request pipeline](#exception-handler-page) are **not** propagated back to the original pipeline. The exception caught by <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A> is propagated instead.
+
 In the following example, <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A> adds the exception handling middleware in non-Development environments:
 
 [!code-csharp[](error-handling/samples/2.x/ErrorHandlingSample/Startup.cs?name=snippet_DevPageAndHandlerPage&highlight=5-9)]
@@ -86,9 +89,6 @@ The following code uses a lambda for exception handling:
 <!-- 
 In the preceding code, `await context.Response.WriteAsync(new string(' ', 512));` is added so the Internet Explorer browser displays the error message rather than an IE error message. For more information, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/16144).
 -->
-
-> [!WARNING]
-> Unhandled exceptions in the [alternate request pipeline](#exception-handler-page) are **not** propagated back to the original pipeline. The exception caught by <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A> is propagated instead.
 
 > [!WARNING]
 > Do **not** serve sensitive error information from <xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandlerFeature> or <xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandlerPathFeature> to clients. Serving errors is a security risk.
