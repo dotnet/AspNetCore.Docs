@@ -1,0 +1,83 @@
+﻿revision: 1
+schema-version: 1
+owner-ms-alias: adegeo
+
+config:
+  DocMetadata:
+    Headers:
+      - ["---", "#### "]
+
+    ParserRegex: "^\\* (.*): (.*)$"
+
+
+issues:
+
+
+  opened:
+    # New issue opened, add Not Triaged  
+    - labels-add: [":watch: Not Triaged"]
+
+
+    # default for doc comment
+    - check:
+        - type: metadata-comment
+          name: contentsource
+          value: ".*"
+      pass:
+        - labels-add: ["Source - Docs.ms"]
+
+        # Checks for specific paths
+        - check:
+            - type: metadata-comment
+              name: contentsource
+              value: "(?i).*main\/aspnetcore\/blazor.*"
+          pass:
+            - labels-add: ["Blazor"]
+        - check:
+            - type: metadata-comment
+              name: contentsource
+              value: "(?i).*main\/aspnetcore\/host-and-deploy\/blazor.*"
+          pass:
+            - labels-add: ["Blazor"]
+        - check:
+            - type: metadata-comment
+              name: contentsource
+              value: "(?i).*main\/aspnetcore\/mvc\/views\/tag-helpers\/built-in\/component-tag-helper.md"
+          pass:
+            - labels-add: ["Blazor"]
+        - check:
+            - type: metadata-comment
+              name: contentsource
+              value: "(?i).*main\/aspnetcore\/security\/blazor.*"
+          pass:
+            - labels-add: ["Blazor"]
+        - check:
+            - type: metadata-comment
+              name: contentsource
+              value: "(?i).*main\/aspnetcore\/tutorials\/*blazor*.*"
+          pass:
+            - labels-add: ["Blazor"]
+        - check:
+            - type: metadata-comment
+              name: contentsource
+              value: "(?i).*main\/aspnetcore\/grpc.*"
+          pass:
+            - labels-add: ["gRPC"]
+        - check:
+            - type: metadata-comment
+              name: contentsource
+              value: "(?i).*main\/aspnetcore\/tutorials\/grpc*.*"
+          pass:
+            - labels-add: ["gRPC"]
+        - check:
+            - type: metadata-comment
+              name: contentsource
+              value: "(?i).*main\/aspnetcore\/signalr.*"
+          pass:
+            - labels-add: ["SignalR"]
+        - check:
+            - type: metadata-comment
+              name: contentsource
+              value: "(?i).*main\/aspnetcore\/tutorials\/signalr*.*"
+          pass:
+            - labels-add: ["SignalR"]
