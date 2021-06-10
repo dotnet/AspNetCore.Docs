@@ -29,6 +29,8 @@ issues:
               value: "(?i)aspnetcore-blazor$"
           pass:
             - labels-add: ["Blazor"]
+            - projects-add: [35]
+            - labels-remove: [":watch: Not Triaged"]
         - check:
             - type: metadata-comment
               name: technology
@@ -49,6 +51,8 @@ issues:
               value: "(?i).*main\/aspnetcore\/mvc\/views\/tag-helpers\/built-in\/component-tag-helper.md"
           pass:
             - labels-add: ["Blazor"]
+            - projects-add: [35]
+            - labels-remove: [":watch: Not Triaged"]
         
         # If the word appears anywhere in the file name path, add the label
         - check:
@@ -57,6 +61,8 @@ issues:
               value: "(?i).*blazor.*"
           pass:
             - labels-add: ["Blazor"]
+            - projects-add: [35]
+            - labels-remove: [":watch: Not Triaged"]
         - check:
             - type: metadata-comment
               name: contentsource
@@ -69,12 +75,3 @@ issues:
               value: "(?i).*signalr.*"
           pass:
             - labels-add: ["SignalR"]
-
-  labeled:
-
-    # If a blazor label is added to an issue, automatically add it to the blazor project
-    - check:
-        - type: query
-          value: "length(Issue.labels[?name == 'Blazor']) != `0`"
-      pass:
-        - projects-add: [35]
