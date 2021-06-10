@@ -743,7 +743,7 @@ Create resources for each locale. In the following example, resources are create
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Greeting" xml:space="preserve">
-    <value>¡Hola Mundo!</value>
+    <value>¡Hola, Mundo!</value>
   </data>
 </root>
 ```
