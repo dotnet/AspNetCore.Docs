@@ -385,7 +385,7 @@ else
     protected override async Task OnInitializedAsync()
     {
         var result = await ProtectedSessionStore.GetAsync<int>("count");
-        currentCount = result.Success ? result.Value : 0;
+        CurrentCount = result.Success ? result.Value : 0;
         isLoaded = true;
     }
 

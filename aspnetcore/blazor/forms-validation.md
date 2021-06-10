@@ -257,11 +257,7 @@ In the following example:
 
 ## Display name support
 
-The following built-in components support display names with the <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601.DisplayName%2A?displayProperty=nameWithType> parameter:
-
-* <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601>
-* <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601>
-* <xref:Microsoft.AspNetCore.Components.Forms.InputSelect%601>
+Several built-in components support display names with the <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601.DisplayName%2A?displayProperty=nameWithType> parameter.
 
 In the `Starfleet Starship Database` form (`FormExample2` component) of the [Example form](#example-form) section, the production date of a new starship doesn't specify a display name:
 

@@ -14,7 +14,7 @@ For the following example, the `setElementText1` function is placed inside the `
 ```
 
 > [!WARNING]
-> **The preceding example modifies the Document Object Model (DOM) directly for demonstration purposes only.** Directly modifying the DOM with JavaScript isn't recommended in most scenarios because JavaScript can interfere with Blazor's change tracking.
+> **The preceding example modifies the Document Object Model (DOM) directly for demonstration purposes only.** Directly modifying the DOM with JavaScript isn't recommended in most scenarios because JavaScript can interfere with Blazor's change tracking. For more information, see <xref:blazor/js-interop/index#interaction-with-the-document-object-model-dom>.
 
 To delay JavaScript interop calls until a point where such calls are guaranteed to work, override the [`OnAfterRender{Async}` lifecycle event](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync). This event is only called after the app is fully rendered.
 
@@ -59,7 +59,7 @@ For the following example, the `setElementText2` function is placed inside the `
 ```
 
 > [!WARNING]
-> **The preceding example modifies the Document Object Model (DOM) directly for demonstration purposes only.** Directly modifying the DOM with JavaScript isn't recommended in most scenarios because JavaScript can interfere with Blazor's change tracking.
+> **The preceding example modifies the Document Object Model (DOM) directly for demonstration purposes only.** Directly modifying the DOM with JavaScript isn't recommended in most scenarios because JavaScript can interfere with Blazor's change tracking. For more information, see <xref:blazor/js-interop/index#interaction-with-the-document-object-model-dom>.
 
 Where <xref:Microsoft.JSInterop.JSRuntime.InvokeAsync%2A?displayProperty=nameWithType> is called, the <xref:Microsoft.AspNetCore.Components.ElementReference> is only used in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> and not in any earlier lifecycle method because there's no JavaScript element until after the component is rendered.
 

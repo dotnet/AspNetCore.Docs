@@ -59,7 +59,7 @@ The preceding validation rules are used for demonstration, they are not optimal 
 
 Having validation rules automatically enforced by ASP.NET Core helps:
 
-* Helps make the app more robust.
+* Make the app more robust.
 * Reduce chances of saving invalid data to the database.
 
 ### Validation Error UI in Razor Pages
