@@ -20,18 +20,20 @@ Client-side load balancing requires [Grpc.Net.Client](https://www.nuget.org/pack
 
 Client-side load balancing is configured when a channel is created. The two components to consider when using load balancing:
 
-* The resolver, which resolves the addresses for the client.
-* The load balancer, which creates connections and picks the address that a gRPC call will use.
+* The resolver, which resolves the addresses for the channel. A resolver can be used to get addresses from an external service. Addresses are cached by a channel and then periodically refreshed to support scenarios where addresses might change at runtime.
+* The load balancer, which creates connections, manages the channel connectivity state, and for each gRPC call will pick the address it uses.
 
-Built-in implementations of resolvers and load balancers are included in [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client). Load balancing can also be extended by implementing [custom resolvers and load balancers](#write-custom-resolvers-and-load-balancers).
+Built-in implementations of resolvers and load balancers are included in [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client). Load balancing can also be extended by writing [custom resolvers and load balancers](#write-custom-resolvers-and-load-balancers).
 
 ## Configure resolver
 
-The resolver is configured using the scheme of the address URI for the channel. For example, `dns:///my-example-host`.
+The resolver is configured using the scheme of the address URI for the channel. When the address URI matches a resolver the channel won't call that URI directly. Instead the matching resolver is created and used to resolve the addresses that will be used to make gRPC calls.
+
+For example, `dns:///my-example-host` matches `DnsResolver`, which then resolves the hostname `my-example-host` to `localhost:80` and `localhost:81`. These addresses are used at runtime when making gRPC calls.
 
 | Scheme   | Type             | Description |
 | -------- | ---------------- | ----------- |
-| `dns`    | `DnsResolver`    | Resolves addresses by querying the hostname for [DNS service records](https://en.wikipedia.org/wiki/SRV_record). The addresses are cached in the client and periodically refreshed. |
+| `dns`    | `DnsResolver`    | Resolves addresses by querying the hostname for [DNS service records](https://en.wikipedia.org/wiki/SRV_record). |
 | `static` | `StaticResolver` | Resolves addresses from a static collection that is specified by the app. Recommended if an app already knows the addresses it needs to call. |
 
 #### DnsResolver
@@ -96,8 +98,8 @@ A load balancer is specified in a service config using the `ServiceConfig.LoadBa
 
 | Name          | Type                     | Description |
 | ------------- | ------------------------ | ----------- |
-| `pick_first`  | `PickFirstLoadBalancer`  | Attempts to connect to addresses until a connection is successfully made. gRPC calls are all made to the same address. |
-| `round_robin` | `RoundRobinLoadBalancer` | Attempts to connect to all addresses. gRPC calls are distributed across all connections using [round-robin](https://www.nginx.com/resources/glossary/round-robin-load-balancing/) logic. |
+| `pick_first`  | `PickFirstLoadBalancer`  | Attempts to connect to addresses until a connection is successfully made. gRPC calls are all made to first successful connection. |
+| `round_robin` | `RoundRobinLoadBalancer` | Attempts to connect to all addresses. gRPC calls are distributed across all successful connections using [round-robin](https://www.nginx.com/resources/glossary/round-robin-load-balancing/) logic. |
 
 There are a couple of ways a channel can get a service config with a load balancer configured:
 
