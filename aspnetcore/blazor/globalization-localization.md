@@ -57,6 +57,8 @@ The following component demonstrates Blazor's default globalization. The number 
 @page "/culture-example-1"
 @using System.Globalization
 
+<h1>Culture Example 1</h1>
+
 <p>
     <b>CurrentCulture</b>: @CultureInfo.CurrentCulture
     <b>CurrentUICulture</b>: @CultureInfo.CurrentUICulture
@@ -155,17 +157,17 @@ Use [Localization Middleware](xref:fundamentals/localization#localization-middle
 
 Use of a cookie ensures that the WebSocket connection can correctly propagate the culture. If localization schemes are based on the URL path or query string, the scheme might not be able to work with WebSockets, thus fail to persist the culture. Therefore, use of a localization culture cookie is the recommended approach.
 
-Specify the supported cultures in `Startup.Configure` (`Startup.cs`):
+Specify the app's supported cultures in `Startup.Configure` (`Startup.cs`). The following examples configures supported cultures for British English and Peruvian Spanish:
 
 ```csharp
 app.UseRequestLocalization(new RequestLocalizationOptions()
-    .AddSupportedCultures(new[] { "en-GB" })
-    .AddSupportedUICultures(new[] { "en-GB" }));
+    .AddSupportedCultures(new[] { "en-GB", "es-PE" })
+    .AddSupportedUICultures(new[] { "en-GB", "es-PE" }));
 ```
 
 The values for <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions.AddSupportedCultures%2A> and <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions.AddSupportedUICultures%2A> must conform to the [BCP-47 language tag format](https://www.rfc-editor.org/info/bcp47).
 
-The following example shows how to set the app's culture in a cookie that can be read by Localization Middleware. Create a Razor expression in the `Pages/_Host.cshtml` file immediately inside the opening `<body>` tag. The app's culture is explicitly set in ASP.NET Core's culture cookie (name: `.AspNetCore.Culture`) for <xref:System.Globalization.CultureInfo.CurrentUICulture> and <xref:System.Globalization.CultureInfo.CurrentUICulture>.
+The following example shows how to set the app's culture to one of the supported cultures, in this case British English (`en-GB`), in a cookie that can be read by Localization Middleware. Create a Razor expression in the `Pages/_Host.cshtml` file immediately inside the opening `<body>` tag. The app's culture is explicitly set in ASP.NET Core's culture cookie (name: `.AspNetCore.Culture`) for <xref:System.Globalization.CultureInfo.CurrentUICulture> and <xref:System.Globalization.CultureInfo.CurrentUICulture>.
 
 Add the following namespaces at the top of the `Pages/_Host.cshtml` file:
 
@@ -189,7 +191,7 @@ Inside the opening `<body>` tag of `Pages/_Host.cshtml`:
 
 An alternative to using the `Pages/_Host.cshtml` file to set the app's culture is to set the culture with <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions.SetDefaultCulture%2A?displayProperty=nameWithType>.
 
-In `Startup.Configure`:
+In `Startup.Configure` (`Startup.cs`):
 
 ```csharp
 app.UseRequestLocalization(
@@ -201,10 +203,12 @@ app.UseRequestLocalization(
 
 For information on ordering the Localization Middleware in the middleware pipeline of `Startup.Configure`, see <xref:fundamentals/middleware/index#middleware-order>.
 
-To support multiple cultures with a default culture, create an array of supported cultures:
+To support multiple cultures with a default culture, create an array of the supported cultures and call <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions.SetDefaultCulture%2A?displayProperty=nameWithType> with the default culture.
+
+In `Startup.Configure` (`Startup.cs`):
 
 ```csharp
-var supportedCultures = new[] { "en-GB", "fr-FR" };
+var supportedCultures = new[] { "en-GB", "es-PE" };
 var localizationOptions = new RequestLocalizationOptions()
     .SetDefaultCulture(supportedCultures[0])
     .AddSupportedCultures(supportedCultures)
@@ -344,7 +348,7 @@ Create a culture selector component that can be shared throughout the app.
     private CultureInfo[] supportedCultures = new[]
     {
         new CultureInfo("en-GB"),
-        new CultureInfo("fr-FR"),
+        new CultureInfo("es-PE"),
     };
 
     private CultureInfo Culture
@@ -364,7 +368,7 @@ Create a culture selector component that can be shared throughout the app.
 }
 ```
 
-At the bottom of the `<div class="main">` element of `Shared/MainLayout.razor`, add the `CultureSelector` component:
+Inside the closing `</div>` tag of the `<div class="main">` element in `Shared/MainLayout.razor`, add the `CultureSelector` component:
 
 ```razor
 <div class="bottom-row px-4">
@@ -379,6 +383,8 @@ Add a component to demonstrate user culture selection.
 ```razor
 @page "/culture-example-1"
 @using System.Globalization
+
+<h1>Culture Example 1</h1>
 
 <p>
     <b>CurrentCulture</b>: @CultureInfo.CurrentCulture
@@ -427,7 +433,7 @@ Set the app's default and supported cultures with <xref:Microsoft.AspNetCore.Bui
 In `Startup.Configure`:
 
 ```csharp
-var supportedCultures = new[] { "en-GB", "fr-FR" };
+var supportedCultures = new[] { "en-GB", "es-PE" };
 var localizationOptions = new RequestLocalizationOptions()
     .SetDefaultCulture(supportedCultures[0])
     .AddSupportedCultures(supportedCultures)
@@ -475,7 +481,7 @@ public class CultureController : Controller
             HttpContext.Response.Cookies.Append(
                 CookieRequestCultureProvider.DefaultCookieName,
                 CookieRequestCultureProvider.MakeCookieValue(
-                    new RequestCulture(culture)));
+                    new RequestCulture(culture, culture)));
         }
 
         return LocalRedirect(redirectUri);
@@ -513,7 +519,7 @@ Create a culture selector component that can be shared throughout the app.
     private CultureInfo[] supportedCultures = new[]
     {
         new CultureInfo("en-GB"),
-        new CultureInfo("fr-FR"),
+        new CultureInfo("es-PE"),
     };
 
     protected override void OnInitialized()
@@ -542,7 +548,7 @@ Create a culture selector component that can be shared throughout the app.
 }
 ```
 
-At the bottom of the `<div class="main">` element of `Shared/MainLayout.razor`, add the `CultureSelector` component:
+Inside the closing `</div>` tag of the `<div class="main">` element in `Shared/MainLayout.razor`, add the `CultureSelector` component:
 
 ```razor
 <div class="bottom-row px-4">
@@ -557,6 +563,8 @@ Add a component to demonstrate user culture selection.
 ```razor
 @page "/culture-example-1"
 @using System.Globalization
+
+<h1>Culture Example 1</h1>
 
 <p>
     <b>CurrentCulture</b>: @CultureInfo.CurrentCulture
@@ -595,9 +603,9 @@ Adopt an approach for the app to set a culture, including the addition of locali
 * [Statically set the application culture](#statically-set-the-application-culture)
 * [Dynamically set the application culture](#dynamically-set-the-application-culture)
 
-The example of localized resources in this section works with the prior examples in this article where the app's supported cultures are English (`en`) as a default locale and French (`fr`) as a user-selectable or browser-specified alternate locale.
+The example of localized resources in this section works with the prior examples in this article where the app's supported cultures are English (`en`) as a default locale and Spanish (`es`) as a user-selectable or browser-specified alternate locale.
 
-Create resources for each locale. In the following example, resources are created for a default `Greeting` string of `Hello, World!` and a `Greeting` string in and French (`fr`), `Bonjour le monde!`.
+Create resources for each locale. In the following example, resources are created for a default `Greeting` string of `Hello, World!` and a `Greeting` string in and Spanish (`es`), `¡Hola, Mundo!`.
 
 > [!NOTE]
 > The following resource files (`.resx`) can be added in Visual Studio by right-clicking the project's `Pages` folder and selecting **Add** > **New Item** > **Resources File**.
@@ -671,7 +679,7 @@ Create resources for each locale. In the following example, resources are create
 </root>
 ```
 
-`Pages/CultureExample2.fr.resx`:
+`Pages/CultureExample2.es.resx`:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -735,7 +743,7 @@ Create resources for each locale. In the following example, resources are create
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Greeting" xml:space="preserve">
-    <value>Bonjour le monde!</value>
+    <value>¡Hola Mundo!</value>
   </data>
 </root>
 ```
@@ -754,7 +762,11 @@ Add the namespace for <xref:Microsoft.Extensions.Localization?displayProperty=fu
 @page "/culture-example-2"
 @inject IStringLocalizer<CultureExample2> Loc
 
-<h1>@Loc["Greeting"]</h1>
+<h1>Culture Example 2</h1>
+
+<p>
+    @Loc["Greeting"]
+</p>
 
 <p>
     @greeting
