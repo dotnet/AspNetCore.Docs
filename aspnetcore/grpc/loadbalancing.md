@@ -32,7 +32,7 @@ The resolver is configured using the scheme of the address URI for the channel.
 | Scheme   | Type             | Description |
 | -------- | ---------------- | ----------- |
 | `dns`    | `DnsResolver`    | Resolves addresses by querying the hostname for [DNS service records](https://en.wikipedia.org/wiki/SRV_record). |
-| `static` | `StaticResolver` | Resolves addresses that have been specified by the app. Recommended if an app already knows the addresses it will call. |
+| `static` | `StaticResolver` | Resolves addresses that the app has specified. Recommended if an app already knows the addresses it will call. |
 
 When the address URI matches a resolver the channel won't call that URI directly. Instead, a matching resolver is created and used to resolve the addresses that gRPC calls are sent to.
 
