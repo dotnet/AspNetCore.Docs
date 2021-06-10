@@ -20,8 +20,8 @@ Client-side load balancing requires [Grpc.Net.Client](https://www.nuget.org/pack
 
 Client-side load balancing is configured when a channel is created. The two components to consider when using load balancing:
 
-* The resolver, which resolves the addresses for the channel. A resolver can be used to get addresses from an external service. Addresses are cached by a channel and then periodically refreshed to support scenarios where addresses might change at runtime.
-* The load balancer, which creates connections, manages the channel connectivity state, and for each gRPC call will pick the address it uses.
+* The resolver, which resolves the addresses for the channel. A resolver can be used to get addresses from an external source. Results are cached by a channel and then periodically refreshed to support scenarios where addresses change.
+* The load balancer, which creates connections and picks the address that a gRPC call will use.
 
 Built-in implementations of resolvers and load balancers are included in [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client). Load balancing can also be extended by writing [custom resolvers and load balancers](#write-custom-resolvers-and-load-balancers).
 
@@ -66,7 +66,7 @@ The preceding code:
 
 #### StaticResolver
 
-Another resolver available to use with load balancing is `StaticResolver`. This resolver doesn't call an external service. Instead, the client app configures the addresses it resolves. `StaticResolver` is designed for situations where an app already knows the addresses it needs to call.
+Another resolver available to use with load balancing is `StaticResolver`. This resolver doesn't call an external source. Instead, the client app configures the addresses it resolves. `StaticResolver` is designed for situations where an app already knows the addresses it needs to call.
 
 ```csharp
 var factory = new StaticResolverFactory(addr => new[]
@@ -110,7 +110,7 @@ A load balancer is specified in a service config using the `ServiceConfig.LoadBa
 There are a couple of ways a channel can get a service config with a load balancer configured:
 
 * An app can specify a service config when a channel is created using `GrpcChannelOptions.ServiceConfig`. This is the fastest to get setup and is shown in an example below.
-* Alternatively, a resolver can resolve a service config for a channel. This feature allows an external service to specify how its callers should perform load balancing. Whether a resolver supports resolving a service config is dependent on the resolver implementation. Disable this feature with `GrpcChannelOptions.DisableResolverServiceConfig`.
+* Alternatively, a resolver can resolve a service config for a channel. This feature allows an external source to specify how its callers should perform load balancing. Whether a resolver supports resolving a service config is dependent on the resolver implementation. Disable this feature with `GrpcChannelOptions.DisableResolverServiceConfig`.
 * If no service config is provided, or the service config doesn't have a load balancer configured, the channel defaults to `PickFirstLoadBalancer`.
 
 ```csharp
