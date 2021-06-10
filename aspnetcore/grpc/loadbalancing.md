@@ -27,14 +27,20 @@ Built-in implementations of resolvers and load balancers are included in [Grpc.N
 
 ## Configure resolver
 
-The resolver is configured using the scheme of the address URI for the channel. When the address URI matches a resolver the channel won't call that URI directly. Instead the matching resolver is created and used to resolve the addresses that will be used to make gRPC calls.
-
-For example, `dns:///my-example-host` matches `DnsResolver`, which then resolves the hostname `my-example-host` to `localhost:80` and `localhost:81`. These addresses are used at runtime when making gRPC calls.
+The resolver is configured using the scheme of the address URI for the channel.
 
 | Scheme   | Type             | Description |
 | -------- | ---------------- | ----------- |
 | `dns`    | `DnsResolver`    | Resolves addresses by querying the hostname for [DNS service records](https://en.wikipedia.org/wiki/SRV_record). |
 | `static` | `StaticResolver` | Resolves addresses from a static collection that is specified by the app. Recommended if an app already knows the addresses it needs to call. |
+
+When the address URI matches a resolver the channel won't call that URI directly. Instead the matching resolver is created and used to resolve the addresses that will be used to make gRPC calls.
+
+For example, `GrpcChannel.ForAddress("dns:///my-example-host")`:
+
+* The `dns` scheme maps to `DnsResolver`. A new instance of that resolver is created for the channel.
+* Resolver runs for the hostname `my-example-host` and gets two results: `localhost:80` and `localhost:81`.
+* `localhost:80` and `localhost:81` are used by the load balancer to create connections and make gRPC calls.
 
 #### DnsResolver
 
