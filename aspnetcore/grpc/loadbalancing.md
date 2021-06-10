@@ -20,7 +20,7 @@ Client-side load balancing requires [Grpc.Net.Client](https://www.nuget.org/pack
 
 Client-side load balancing is configured when a channel is created. The two components to consider when using load balancing:
 
-* The resolver, which resolves the addresses for the channel. A resolver can be used to get addresses from an external source. Results are cached by a channel and then periodically refreshed to support scenarios where addresses change.
+* The resolver, which resolves the addresses for the channel. Resolvers support getting addresses from an external source.
 * The load balancer, which creates connections and picks the address that a gRPC call will use.
 
 Built-in implementations of resolvers and load balancers are included in [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client). Load balancing can also be extended by writing [custom resolvers and load balancers](#write-custom-resolvers-and-load-balancers).
@@ -32,15 +32,15 @@ The resolver is configured using the scheme of the address URI for the channel.
 | Scheme   | Type             | Description |
 | -------- | ---------------- | ----------- |
 | `dns`    | `DnsResolver`    | Resolves addresses by querying the hostname for [DNS service records](https://en.wikipedia.org/wiki/SRV_record). |
-| `static` | `StaticResolver` | Resolves addresses from a static collection that is specified by the app. Recommended if an app already knows the addresses it needs to call. |
+| `static` | `StaticResolver` | Resolves addresses that have been specified by the app. Recommended if an app already knows the addresses it will call. |
 
-When the address URI matches a resolver the channel won't call that URI directly. Instead the matching resolver is created and used to resolve the addresses that will be used to make gRPC calls.
+When the address URI matches a resolver the channel won't call that URI directly. Instead, a matching resolver is created and used to resolve the addresses that gRPC calls are sent to.
 
 For example, `GrpcChannel.ForAddress("dns:///my-example-host")`:
 
 * The `dns` scheme maps to `DnsResolver`. A new instance of that resolver is created for the channel.
-* Resolver runs for the hostname `my-example-host` and gets two results: `localhost:80` and `localhost:81`.
-* `localhost:80` and `localhost:81` are used by the load balancer to create connections and make gRPC calls.
+* Resolver makes a DNS query for `my-example-host` and gets two results: `localhost:80` and `localhost:81`.
+* Load balancer uses `localhost:80` and `localhost:81` to create connections and make gRPC calls.
 
 #### DnsResolver
 
@@ -96,7 +96,7 @@ The preceding code:
   * The address `static:///my-example-host`. The `static` schema maps to `StaticResolver`.
   * Sets `GrpcChannelOptions.ServiceProvider` with the DI service provider.
 
-This example creates a new `ServiceCollection` for DI. If an app already has DI setup, like an ASP.NET Core website, then types should be registered with the existing DI instance. `GrpcChannelOptions.ServiceProvider` is configured by getting an `IServiceProvider` from DI.
+This example creates a new `ServiceCollection` for DI. Suppose an app already has DI setup, like an ASP.NET Core website. In that case, types should be registered with the existing DI instance. `GrpcChannelOptions.ServiceProvider` is configured by getting an `IServiceProvider` from DI.
 
 ## Configure load balancer
 
@@ -109,7 +109,7 @@ A load balancer is specified in a service config using the `ServiceConfig.LoadBa
 
 There are a couple of ways a channel can get a service config with a load balancer configured:
 
-* An app can specify a service config when a channel is created using `GrpcChannelOptions.ServiceConfig`. This is the fastest to get setup and is shown in an example below.
+* An app can specify a service config when a channel is created using `GrpcChannelOptions.ServiceConfig`.
 * Alternatively, a resolver can resolve a service config for a channel. This feature allows an external source to specify how its callers should perform load balancing. Whether a resolver supports resolving a service config is dependent on the resolver implementation. Disable this feature with `GrpcChannelOptions.DisableResolverServiceConfig`.
 * If no service config is provided, or the service config doesn't have a load balancer configured, the channel defaults to `PickFirstLoadBalancer`.
 
@@ -187,12 +187,12 @@ The preceding code:
 * `FileResolverFactory` implements `ResolverFactory`. It maps to the `file` scheme and creates `FileResolver` instances.
 * `FileResolver` implements `Resolver`. In `RefreshAsync`:
   * The file URI is converted to a local path. For example, `file:///c:/addresses.json` becomes `c:\addresses.json`.
-  * JSON is loaded from disk and converted into a collection addresses.
+  * JSON is loaded from disk and converted into a collection of addresses.
   * Listener is called with results to let the channel know that addresses are available.
 
 ### Create a custom load balancer
 
-A load balancer implements `LoadBalancer` and is created by a `LoadBalancerFactory`. A load balancer is given addresses from a resolver and creates `Subchannel` instances. The load balancer tracks state about the connection, and creates a `SubchannelPicker` that the channel will use to pick addresses when making gRPC calls.
+A load balancer implements `LoadBalancer` and is created by a `LoadBalancerFactory`. A load balancer is given addresses from a resolver and creates `Subchannel` instances. The load balancer tracks state about the connection and creates a `SubchannelPicker` that the channel will use to pick addresses when making gRPC calls.
 
 `SubchannelsLoadBalancer` is:
 
@@ -258,7 +258,7 @@ The preceding code:
 
 Custom resolvers and load balancers need to be registered with dependency injection (DI) when they are used. There are a couple of options:
 
-* If an app is already using DI, such as an ASP.NET Core website, then they can be registered with existing DI configuration. An `IServiceProvider` can then be resolved from DI and passed to the channel using `GrpcChannelOptions.ServiceProvider`.
+* If an app is already using DI, such as an ASP.NET Core website, they can be registered with the existing DI configuration. An `IServiceProvider` can then be resolved from DI and passed to the channel using `GrpcChannelOptions.ServiceProvider`.
 * If an app isn't using DI then a `ServiceCollection` can be created, types registered with it, then create a service provider using `IServiceCollection.BuildServiceProvider()`.
 
 ```csharp
