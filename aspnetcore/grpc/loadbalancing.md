@@ -12,7 +12,7 @@ uid: grpc/loadbalancing
 
 By [James Newton-King](https://twitter.com/jamesnk)
 
-Client-side load balancing is a feature that allows gRPC clients to distribute load optimally across available servers without requiring a proxy. This article discusses how to configure a client-side load balancing to create scalable, high-performance gRPC apps in .NET.
+Client-side load balancing is a feature that allows gRPC clients to distribute load optimally across available servers. This article discusses how to configure a client-side load balancing to create scalable, high-performance gRPC apps in .NET.
 
 Client-side load balancing requires [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client) version XXXX or later.
 
@@ -98,7 +98,7 @@ The preceding code:
   * The address `static:///my-example-host`. The `static` scheme maps to `StaticResolver`.
   * Sets `GrpcChannelOptions.ServiceProvider` with the DI service provider.
 
-This example creates a new `ServiceCollection` for DI. Suppose an app already has DI setup, like an ASP.NET Core website. In that case, types should be registered with the existing DI instance. `GrpcChannelOptions.ServiceProvider` is configured by getting an `IServiceProvider` from DI.
+This example creates a new <xref:Microsoft.Extensions.DependencyInjection.ServiceCollection> for DI. Suppose an app already has DI setup, like an ASP.NET Core website. In that case, types should be registered with the existing DI instance. `GrpcChannelOptions.ServiceProvider` is configured by getting an <xref:System.IServiceProvider> from DI.
 
 ## Configure load balancer
 
@@ -260,8 +260,8 @@ The preceding code:
 
 Custom resolvers and load balancers need to be registered with dependency injection (DI) when they are used. There are a couple of options:
 
-* If an app is already using DI, such as an ASP.NET Core website, they can be registered with the existing DI configuration. An `IServiceProvider` can then be resolved from DI and passed to the channel using `GrpcChannelOptions.ServiceProvider`.
-* If an app isn't using DI then a `ServiceCollection` can be created, types registered with it, then create a service provider using `IServiceCollection.BuildServiceProvider()`.
+* If an app is already using DI, such as an ASP.NET Core website, they can be registered with the existing DI configuration. An <xref:System.IServiceProvider> can then be resolved from DI and passed to the channel using `GrpcChannelOptions.ServiceProvider`.
+* If an app isn't using DI then a <xref:Microsoft.Extensions.DependencyInjection.ServiceCollection> can be created, types registered with it, then create a service provider using <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.BuildServiceProvider*>.
 
 ```csharp
 var services = new ServiceCollection();
