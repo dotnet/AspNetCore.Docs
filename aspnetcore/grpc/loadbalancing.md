@@ -27,7 +27,7 @@ Built-in implementations of resolvers and load balancers are included in [Grpc.N
 
 ## Configure resolver
 
-The resolver is configured using the scheme of the address URI for the channel.
+The resolver is configured using the address a channel is created with. In particular, the [URI scheme](https://wikipedia.org/wiki/Uniform_Resource_Identifier#Syntax) specifies the resolver.
 
 | Scheme   | Type             | Description |
 | -------- | ---------------- | ----------- |
@@ -57,7 +57,7 @@ var response = await client.SayHelloAsync(new HelloRequest { Name = "world" });
 
 The preceding code:
 
-* Configures the created channel with the address `dns:///my-example-host`. The `dns` schema maps to `DnsResolver`.
+* Configures the created channel with the address `dns:///my-example-host`. The `dns` scheme maps to `DnsResolver`.
 * Doesn't specify a load balancer. The channel defaults to `PickFirstLoadBalancer`.
 * Starts the gRPC call `SayHello`.
   * `DnsResolver` resolves addresses for the hostname `my-example-host`.
@@ -95,7 +95,7 @@ The preceding code:
 * Creates a `StaticResolverFactory`. This factory knows about two addresses: `localhost:80` and `localhost:81`.
 * Registers the factory with dependency injection (DI).
 * Configures the created channel with:
-  * The address `static:///my-example-host`. The `static` schema maps to `StaticResolver`.
+  * The address `static:///my-example-host`. The `static` scheme maps to `StaticResolver`.
   * Sets `GrpcChannelOptions.ServiceProvider` with the DI service provider.
 
 This example creates a new `ServiceCollection` for DI. Suppose an app already has DI setup, like an ASP.NET Core website. In that case, types should be registered with the existing DI instance. `GrpcChannelOptions.ServiceProvider` is configured by getting an `IServiceProvider` from DI.
