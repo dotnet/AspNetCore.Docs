@@ -261,7 +261,7 @@ The preceding code:
 Custom resolvers and load balancers need to be registered with dependency injection (DI) when they are used. There are a couple of options:
 
 * If an app is already using DI, such as an ASP.NET Core website, they can be registered with the existing DI configuration. An <xref:System.IServiceProvider> can then be resolved from DI and passed to the channel using `GrpcChannelOptions.ServiceProvider`.
-* If an app isn't using DI then a <xref:Microsoft.Extensions.DependencyInjection.ServiceCollection> can be created, types registered with it, then create a service provider using <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.BuildServiceProvider*>.
+* If an app isn't using DI then a <xref:Microsoft.Extensions.DependencyInjection.ServiceCollection> can be created, types registered with it, then create a service provider using <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionContainerBuilderExtensions.BuildServiceProvider*>.
 
 ```csharp
 var services = new ServiceCollection();
