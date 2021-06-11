@@ -20,7 +20,7 @@ Client-side load balancing requires [Grpc.Net.Client](https://www.nuget.org/pack
 
 Client-side load balancing is configured when a channel is created. The two components to consider when using load balancing:
 
-* The resolver, which resolves the addresses for the channel. Resolvers support getting addresses from an external source.
+* The resolver, which resolves the addresses for the channel. Resolvers support getting addresses from an external source. This is also known as service discovery.
 * The load balancer, which creates connections and picks the address that a gRPC call will use.
 
 Built-in implementations of resolvers and load balancers are included in [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client). Load balancing can also be extended by writing [custom resolvers and load balancers](#write-custom-resolvers-and-load-balancers).
@@ -34,7 +34,7 @@ The resolver is configured using the scheme of the address URI for the channel.
 | `dns`    | `DnsResolver`    | Resolves addresses by querying the hostname for [DNS service records](https://en.wikipedia.org/wiki/SRV_record). |
 | `static` | `StaticResolver` | Resolves addresses that the app has specified. Recommended if an app already knows the addresses it will call. |
 
-When the address URI matches a resolver the channel won't call that URI directly. Instead, a matching resolver is created and used to resolve the addresses that gRPC calls are sent to.
+A channel doesn't directly call a URI that matches a resolver. Instead, a matching resolver is created and used to resolve the addresses.
 
 For example, `GrpcChannel.ForAddress("dns:///my-example-host")`:
 
@@ -60,13 +60,15 @@ The preceding code:
 * Configures the created channel with the address `dns:///my-example-host`. The `dns` schema maps to `DnsResolver`.
 * Doesn't specify a load balancer. The channel defaults to `PickFirstLoadBalancer`.
 * Starts the gRPC call `SayHello`.
-  * `DnsResolver` resolves addresses for the hostname `my-example-host`. The result is cached and refreshed when needed.
+  * `DnsResolver` resolves addresses for the hostname `my-example-host`.
   * `PickFirstLoadBalancer` attempts to connect to one of the resolved addresses.
   * The call is sent to the first address the channel successfully connects to.
 
+Performance is important when load balancing. The latency of resolving addresses is eliminated from gRPC calls by caching the addresses. A resolver will be invoked when making the first gRPC call, and subsequent calls use the cache. Addresses are automatically refreshed if a connection is interrupted. Refreshing is important in scenarios where addresses change at runtime. For example, in Kubernetes a [restarted pod](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/) triggers `DnsResolver` to refresh and get the pod's new address.
+
 #### StaticResolver
 
-Another resolver available to use with load balancing is `StaticResolver`. This resolver doesn't call an external source. Instead, the client app configures the addresses it resolves. `StaticResolver` is designed for situations where an app already knows the addresses it needs to call.
+Another resolver available to use with load balancing is `StaticResolver`. This resolver doesn't call an external source. Instead, the client app configures the addresses. `StaticResolver` is designed for situations where an app already knows the addresses it will call.
 
 ```csharp
 var factory = new StaticResolverFactory(addr => new[]
@@ -146,7 +148,7 @@ A resolver is responsible for resolving the addresses a load balancer will use. 
 public class FileResolver : Resolver
 {
     private readonly Uri _address;
-    private readonly Action<ResolverResult> _listener;
+    private Action<ResolverResult> _listener;
 
     public ExampleResolver(Uri address)
     {
