@@ -377,12 +377,12 @@ Support for <xref:System.Net.Http.HttpClient> instances is added that include ac
 `Program.cs`:
 
 ```csharp
-builder.Services.AddHttpClient("{APP ASSEMBLY}.WebAPI", client => 
+builder.Services.AddHttpClient("{APP ASSEMBLY}.ServerAPI", client => 
         client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))
     .AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
 
 builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>()
-    .CreateClient("{APP ASSEMBLY}.WebAPI"));
+    .CreateClient("{APP ASSEMBLY}.ServerAPI"));
 ```
 
 The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `BlazorSample.Client`).
