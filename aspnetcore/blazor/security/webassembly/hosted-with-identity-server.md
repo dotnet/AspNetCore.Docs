@@ -173,15 +173,15 @@ For the placeholder `{VERSION}`, the latest stable version of the package that m
 
 ### `HttpClient` configuration
 
-In `Program.Main` (`Program.cs`), a named <xref:System.Net.Http.HttpClient> (`{APP ASSEMBLY}.WebAPI`) is configured to supply <xref:System.Net.Http.HttpClient> instances that include access tokens when making requests to the server API:
+In `Program.Main` (`Program.cs`), a named <xref:System.Net.Http.HttpClient> (`{APP ASSEMBLY}.ServerAPI`) is configured to supply <xref:System.Net.Http.HttpClient> instances that include access tokens when making requests to the server API:
 
 ```csharp
-builder.Services.AddHttpClient("{APP ASSEMBLY}.WebAPI", 
+builder.Services.AddHttpClient("{APP ASSEMBLY}.ServerAPI", 
         client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))
     .AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
 
 builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>()
-    .CreateClient("{APP ASSEMBLY}.WebAPI"));
+    .CreateClient("{APP ASSEMBLY}.ServerAPI"));
 ```
 
 The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `BlazorSample.Client`).
