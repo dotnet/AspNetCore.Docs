@@ -190,7 +190,7 @@ When the culture is Peruvian Spanish (`es-PE`), the rendered component uses day/
 >
 > **number**: 1.999,69
 
-## Statically set the application culture
+## Statically set the culture
 
 ::: zone pivot="webassembly"
 
@@ -270,7 +270,7 @@ For information on ordering the Localization Middleware in the middleware pipeli
 
 Use the `CultureExample1` component shown in the [Demonstration component](#demonstration-component) section to study how globalization works. Issue a request with United States English (`en-US`). Switch to Peruvian Spanish (`es-PE`) in the browser's language settings. Request the webpage again. When the requested language is Peruvian Spanish, the app's culture remains United States English (`en-US`).
 
-## Dynamically set the application culture by user preference
+## Dynamically set the culture by user preference
 
 ::: zone pivot="webassembly"
 
@@ -605,7 +605,7 @@ Use the `CultureExample1` component shown in the [Demonstration component](#demo
 
 ## Localization
 
-If the app doesn't already support culture selection per the [Dynamically set the application culture by user preference](#dynamically-set-the-application-culture-by-user-preference) section of this article, add a package reference for the [`Microsoft.Extensions.Localization`](https://www.nuget.org/packages/Microsoft.Extensions.Localization) package to the app's project file (`.csproj`):
+If the app doesn't already support culture selection per the [Dynamically set the culture by user preference](#dynamically-set-the-culture-by-user-preference) section of this article, add a package reference for the [`Microsoft.Extensions.Localization`](https://www.nuget.org/packages/Microsoft.Extensions.Localization) package to the app's project file (`.csproj`):
 
 ```xml
 <PackageReference Include="Microsoft.Extensions.Localization" Version="{VERSION}" />
@@ -661,7 +661,7 @@ public class Program
 
 Use [Localization Middleware](xref:fundamentals/localization#localization-middleware) to set the app's culture.
 
-If the app doesn't already support culture selection per the [Dynamically set the application culture by user preference](#dynamically-set-the-application-culture-by-user-preference) section of this article:
+If the app doesn't already support culture selection per the [Dynamically set the culture by user preference](#dynamically-set-the-culture-by-user-preference) section of this article:
 
 * Add localization services to the app with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A>.
 * Specify the app's default and supported cultures in `Startup.Configure` (`Startup.cs`). The following example configures supported cultures for United States English and Peruvian Spanish.
@@ -686,7 +686,7 @@ app.UseRequestLocalization(localizationOptions);
 
 For information on ordering the Localization Middleware in the middleware pipeline of `Startup.Configure`, see <xref:fundamentals/middleware/index#middleware-order>.
 
-If the app should localize resources based on storing a user's culture setting, use a localization culture cookie. Use of a cookie ensures that the WebSocket connection can correctly propagate the culture. If localization schemes are based on the URL path or query string, the scheme might not be able to work with [WebSockets](xref:fundamentals/websockets), thus fail to persist the culture. Therefore, the recommended approach is to use a localization culture cookie. See the [Dynamically set the application culture by user preference](#dynamically-set-the-application-culture-by-user-preference) section of this article to see an example Razor expression for the `Pages/_Host.cshtml` file that persists the user's culture selection.
+If the app should localize resources based on storing a user's culture setting, use a localization culture cookie. Use of a cookie ensures that the WebSocket connection can correctly propagate the culture. If localization schemes are based on the URL path or query string, the scheme might not be able to work with [WebSockets](xref:fundamentals/websockets), thus fail to persist the culture. Therefore, the recommended approach is to use a localization culture cookie. See the [Dynamically set the culture by user preference](#dynamically-set-the-culture-by-user-preference) section of this article to see an example Razor expression for the `Pages/_Host.cshtml` file that persists the user's culture selection.
 
 ::: zone-end
 
