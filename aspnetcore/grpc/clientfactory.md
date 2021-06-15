@@ -165,7 +165,7 @@ public class AggregatorService : Aggregator.AggregatorBase
 
     public AggregatorService(GrpcClientFactory grpcClientFactory)
     {
-        _client = grpcClientFactory.Create<Greeter.GreeterClient>("GreeterAuthenticated");
+        _client = grpcClientFactory.CreateClient<Greeter.GreeterClient>("GreeterAuthenticated");
     }
 }
 ```
