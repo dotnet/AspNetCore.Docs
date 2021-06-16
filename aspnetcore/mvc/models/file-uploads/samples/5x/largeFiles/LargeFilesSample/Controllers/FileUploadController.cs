@@ -29,7 +29,7 @@ namespace LargeFilesSample.Controllers
         public class JsonResponse
         {
             /// <summary>
-            /// 生产环境的消息
+            /// just some message
             /// </summary>
             public string Message { get; set; }
         }
@@ -82,7 +82,7 @@ namespace LargeFilesSample.Controllers
                     // Here, the file name is considered trusty by default.
 
                     // Get the file extension, and combine a random file name with it
-                    var fileName = Path.GetRandomFileName() + Path.GetExtension(contentDisposition.FileName.Value);
+                    var fileName = Guid.NewGuid().ToString("N") + Path.GetExtension(contentDisposition.FileName.Value);
                     var saveToPath = Path.Combine(AppContext.BaseDirectory, "files", fileName);
 
                     using (var targetStream = System.IO.File.Create(saveToPath))
