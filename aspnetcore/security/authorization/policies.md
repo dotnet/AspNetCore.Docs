@@ -171,6 +171,8 @@ Handlers are registered in the services collection during configuration. For exa
 
 The preceding code registers `MinimumAgeHandler` as a singleton by invoking `services.AddSingleton<IAuthorizationHandler, MinimumAgeHandler>();`. Handlers can be registered using any of the built-in [service lifetimes](xref:fundamentals/dependency-injection#service-lifetimes).
 
+It is possible to bundle both a requirement and a handler in a single class implementing both `IAuthorizationRequirement` and `IAuthorizationHander`. This creates a tight coupling between the handler and requirement and is only recommended for simple requirements and handlers. Creating a class which implements both interfaces removes the need to register the handler in DI due to the built-in `PassThroughtAuthorizationHandler` that allows requirements to handle themselves. 
+
 ## What should a handler return?
 
 Note that the `Handle` method in the [handler example](#security-authorization-handler-example) returns no value. How is a status of either success or failure indicated?
