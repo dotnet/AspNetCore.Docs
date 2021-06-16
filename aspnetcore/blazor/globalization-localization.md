@@ -5,20 +5,20 @@ description: Learn how to make Razor components accessible to users in multiple 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/14/2021
+ms.date: 06/16/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/globalization-localization
 zone_pivot_groups: blazor-hosting-models
 ---
 # ASP.NET Core Blazor globalization and localization
 
-Razor components can render accessible content to users in different cultures and languages. For [globalization](/dotnet/standard/globalization-localization/globalization), Blazor provides number and date formatting. For [localization](/dotnet/standard/globalization-localization/localization), Blazor renders content using the [.NET Resources system](/dotnet/framework/resources/).
+Razor components can render globalized and localized content to users in different cultures and languages. For [globalization](/dotnet/standard/globalization-localization/globalization), Blazor provides number and date formatting. For [localization](/dotnet/standard/globalization-localization/localization), Blazor renders content using the [.NET Resources system](/dotnet/framework/resources/).
 
 A limited set of ASP.NET Core's localization features are supported:
 
 ✔️ <xref:Microsoft.Extensions.Localization.IStringLocalizer> and <xref:Microsoft.Extensions.Localization.IStringLocalizer%601> are supported in Blazor apps.
 
-❌ <xref:Microsoft.AspNetCore.Mvc.Localization.IHtmlLocalizer>, <xref:Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer>, and [Data Annotations localization](xref:fundamentals/localization#dataannotations-localization) are ASP.NET Core MVC features and **not supported** in Blazor apps.
+❌ <xref:Microsoft.AspNetCore.Mvc.Localization.IHtmlLocalizer>, <xref:Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer>, and [Data Annotations localization](xref:fundamentals/localization#dataannotations-localization) are ASP.NET Core MVC features and *not supported* in Blazor apps.
 
 This article describes how to use Blazor's globalization and localization features based on:
 
@@ -32,7 +32,7 @@ For additional general information, see <xref:fundamentals/localization>.
 >
 > In this article, *language* refers to selections made by a user in their browser's settings. The user's selections are submitted in browser requests in the [`Accept-Language` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Accept-Language). Browser settings usually use the word "language" in the UI.
 >
-> *Culture* refers to members of .NET and Blazor API. For example, a user's request can include the [`Accept-Language` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Accept-Language) specifying a *language* from the user's perspective, but the app ultimately sets the <xref:System.Globalization.CultureInfo.CurrentCulture> ("**culture**") property from the language that the user requested. API usually uses the word "culture" in its members.
+> *Culture* pertains to members of .NET and Blazor API. For example, a user's request can include the [`Accept-Language` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Accept-Language) specifying a *language* from the user's perspective, but the app ultimately sets the <xref:System.Globalization.CultureInfo.CurrentCulture> ("**culture**") property from the language that the user requested. API usually uses the word "culture" in its member names.
 
 ## Globalization
 
@@ -75,53 +75,38 @@ The following `CultureExample1` component can be used to demonstrate Blazor glob
 
 <p>
     <b>CurrentCulture</b>: @CultureInfo.CurrentCulture
-    <b>CurrentUICulture</b>: @CultureInfo.CurrentUICulture
 </p>
 
 <h2>Rendered values</h2>
 
-<p>
-    <b>Date</b>: @dt
-</p>
-
-<p>
-    <b>number</b>: @number.ToString("N2")
-</p>
-
-<h2><code>&lt;input&gt;</code> elements that set a <code>type</code></h2>
-
-<p>
-    The following <code>&lt;input&gt;</code> elements use 
-    <code>CultureInfo.InvariantCulture</code>.
-</p>
-
-<p>
-    <label>
-        Date: <input type="date" @bind="dt" />
-    </label>
-
-</p>
-
-<p>
-    <label>
-        Number: <input type="number" @bind="number" />
-    </label>
-</p>
+<ul>
+    <li><b>Date</b>: @dt</li>
+    <li><b>number</b>: @number.ToString("N2")</li>
+</ul>
 
 <h2><code>&lt;input&gt;</code> elements that don't set a <code>type</code></h2>
 
 <p>
-    <label>
-        Date: <input @bind="dt" />
-    </label>
-
+    The following <code>&lt;input&gt;</code> elements use
+    <code>CultureInfo.CurrentCulture</code>.
 </p>
+
+<ul>
+    <li><label><b>Date:</b> <input @bind="dt" /></label></li>
+    <li><label><b>Number:</b> <input @bind="number" /></label></li>
+</ul>
+
+<h2><code>&lt;input&gt;</code> elements that set a <code>type</code></h2>
 
 <p>
-    <label>
-        Number: <input @bind="number" />
-    </label>
+    The following <code>&lt;input&gt;</code> elements use
+    <code>CultureInfo.InvariantCulture</code>.
 </p>
+
+<ul>
+    <li><label><b>Date:</b> <input type="date" @bind="dt" /></label></li>
+    <li><label><b>Number:</b> <input type="number" @bind="number" /></label></li>
+</ul>
 
 @code {
     private DateTime dt = DateTime.Now;
@@ -136,7 +121,7 @@ Add a list item to the navigation menu `<ul>` element in `Shared/NavMenu.razor` 
 ```razor
 <li class="nav-item px-3">
     <NavLink class="nav-link" href="culture-example-1">
-        <span class="oi oi-list-rich" aria-hidden="true"></span> Example 1
+        <span class="oi oi-list-rich" aria-hidden="true"></span> Culture Example 1
     </NavLink>
 </li>
 ```
@@ -217,19 +202,19 @@ The app's culture can be set in JavaScript when Blazor starts with the `applicat
 
 The value for `applicationCulture` must conform to the [BCP-47 language tag format](https://www.rfc-editor.org/info/bcp47). For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
 
-An alternative to setting the culture with `Blazor.Start` is to set the culture in C# code. Set <xref:System.Globalization.CultureInfo.DefaultThreadCurrentCulture?displayProperty=nameWithType> and <xref:System.Globalization.CultureInfo.DefaultThreadCurrentUICulture?displayProperty=nameWithType> in `Program.Main` (`Program.cs`):
+An alternative to setting the culture with `Blazor.Start` is to set the culture in C# code. Set <xref:System.Globalization.CultureInfo.DefaultThreadCurrentCulture?displayProperty=nameWithType> and <xref:System.Globalization.CultureInfo.DefaultThreadCurrentUICulture?displayProperty=nameWithType> in `Program.Main` (`Program.cs`).
+
+Add the <xref:System.Globalization?displayProperty=fullName> namespace to `Program.cs`:
+
+```csharp
+using System.Globalization;
+```
+
+Add the culture settings before the line that builds and runs the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder> (`await builder.Build().RunAsync();`):
 
 ```csharp
 CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("en-US");
 CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("en-US");
-```
-
-If the app doesn't require localization, configure the app to support the invariant culture, which is generally based on United States English (`en-US`). Set the `InvariantGlobalization` property to `true` in the app's project file (`.csproj`):
-
-```xml
-<PropertyGroup>
-  <InvariantGlobalization>true</InvariantGlobalization>
-</PropertyGroup>
 ```
 
 ::: moniker-end
@@ -270,6 +255,14 @@ For information on ordering the Localization Middleware in the middleware pipeli
 
 Use the `CultureExample1` component shown in the [Demonstration component](#demonstration-component) section to study how globalization works. Issue a request with United States English (`en-US`). Switch to Peruvian Spanish (`es-PE`) in the browser's language settings. Request the webpage again. When the requested language is Peruvian Spanish, the app's culture remains United States English (`en-US`).
 
+If the app doesn't require localization, configure the app to support the invariant culture, which is generally based on United States English (`en-US`). Set the `InvariantGlobalization` property to `true` in the app's project file (`.csproj`):
+
+```xml
+<PropertyGroup>
+  <InvariantGlobalization>true</InvariantGlobalization>
+</PropertyGroup>
+```
+
 ## Dynamically set the culture by user preference
 
 ::: zone pivot="webassembly"
@@ -294,20 +287,15 @@ Set the `BlazorWebAssemblyLoadAllGlobalizationData` property to `true` in the pr
 
 The app's culture in a Blazor WebAssembly app is set using the Blazor framework's API. A user's culture selection can be persisted in browser local storage.
 
-Inside the closing `</body>` tag of `wwwroot/index.html`, provide JS functions to get and set the user's culture selection with browser local storage:
+Inside the closing `</body>` tag and after the Blazor script of `wwwroot/index.html`, provide JS functions to get and set the user's culture selection with browser local storage:
 
 ```html
-<body>
-    ...
-
-    <script src="_framework/blazor.webassembly.js"></script>
-    <script>
-        window.blazorCulture = {
-            get: () => window.localStorage['BlazorCulture'],
-            set: (value) => window.localStorage['BlazorCulture'] = value
-        };
-    </script>
-</body>
+<script>
+    window.blazorCulture = {
+        get: () => window.localStorage['BlazorCulture'],
+        set: (value) => window.localStorage['BlazorCulture'] = value
+    };
+</script>
 ```
 
 ::: moniker range=">= aspnetcore-5.0"
@@ -436,7 +424,9 @@ Examples of locations where an app might store a user's preference include in [b
 Add a package reference for the [`Microsoft.Extensions.Localization`](https://www.nuget.org/packages/Microsoft.Extensions.Localization) package to the app's project file (`.csproj`):
 
 ```xml
-<PackageReference Include="Microsoft.Extensions.Localization" Version="{VERSION}" />
+<ItemGroup>
+  <PackageReference Include="Microsoft.Extensions.Localization" Version="{VERSION}" />
+</ItemGroup>
 ```
 
 The `{VERSION}` placeholder in the preceding package reference is the version of the package.
@@ -499,10 +489,10 @@ If the app isn't configured to process controller actions:
 
 * Add controller endpoint routing in `Startup.Configure` by calling <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers%2A> on the <xref:Microsoft.AspNetCore.Routing.IEndpointRouteBuilder>:
 
-  ```csharp
+  ```diff
   app.UseEndpoints(endpoints =>
   {
-      endpoints.MapControllers();
+  +   endpoints.MapControllers();
       endpoints.MapBlazorHub();
       endpoints.MapFallbackToPage("/_Host");
   });
@@ -695,7 +685,7 @@ The example of localized resources in this section works with the prior examples
 Create resources for each locale. In the following example, resources are created for a default `Greeting` string of `Hello, World!` and a `Greeting` string in and Spanish (`es`), `¡Hola, Mundo!`.
 
 > [!NOTE]
-> The following resource files (`.resx`) can be added in Visual Studio by right-clicking the project's `Pages` folder and selecting **Add** > **New Item** > **Resources File**.
+> The following resource file can be added in Visual Studio by right-clicking the project's `Pages` folder and selecting **Add** > **New Item** > **Resources File**. Name the file `CultureExample2.resx`. When the editor appears, provide data for a new entry. Set the **Name** to `Greeting` and **Value** to `Hello, World!`. Save the file.
 
 `Pages/CultureExample2.resx`:
 
@@ -765,6 +755,9 @@ Create resources for each locale. In the following example, resources are create
   </data>
 </root>
 ```
+
+> [!NOTE]
+> The following resource file can be added in Visual Studio by right-clicking the project's `Pages` folder and selecting **Add** > **New Item** > **Resources File**. Name the file `CultureExample2.es.resx`. When the editor appears, provide data for a new entry. Set the **Name** to `Greeting` and **Value** to `¡Hola, Mundo!`. Save the file.
 
 `Pages/CultureExample2.es.resx`:
 
@@ -847,9 +840,16 @@ Add the namespace for <xref:Microsoft.Extensions.Localization?displayProperty=fu
 
 ```razor
 @page "/culture-example-2"
+@using System.Globalization
 @inject IStringLocalizer<CultureExample2> Loc
 
 <h1>Culture Example 2</h1>
+
+<p>
+    <b>CurrentCulture</b>: @CultureInfo.CurrentCulture
+</p>
+
+<h2>Greeting</h2>
 
 <p>
     @Loc["Greeting"]
