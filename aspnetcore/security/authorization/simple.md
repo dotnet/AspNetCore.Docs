@@ -69,7 +69,7 @@ This would allow only authenticated users to the `AccountController`, except for
 > [!WARNING]
 > `[AllowAnonymous]` bypasses all authorization statements. If you combine `[AllowAnonymous]` and any `[Authorize]` attribute, the `[Authorize]` attributes are ignored. For example if you apply `[AllowAnonymous]` at the controller level, any `[Authorize]` attributes on the same controller (or on any action within it) is ignored.
 
-The following code limits access to the `LoginModel` Razor Page to authenticated users:
+The following code limits access to the `LogoutModel` Razor Page to authenticated users:
 
 ```csharp
 [Authorize]
