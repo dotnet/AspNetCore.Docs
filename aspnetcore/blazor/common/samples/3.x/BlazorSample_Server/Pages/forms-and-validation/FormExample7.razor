@@ -1,6 +1,6 @@
-@page "/form-example-6"
+@page "/form-example-7"
 @using Microsoft.Extensions.Logging
-@inject ILogger<FormExample6> Logger
+@inject ILogger<FormExample7> Logger
 
 <EditForm Model="@exampleModel" OnValidSubmit="@HandleValidSubmit">
     <DataAnnotationsValidator />
@@ -16,7 +16,7 @@
 </p>
 
 @code {
-    private ExampleModel exampleModel = new();
+    private ExampleModel exampleModel = new ExampleModel();
 
     private void HandleValidSubmit()
     {

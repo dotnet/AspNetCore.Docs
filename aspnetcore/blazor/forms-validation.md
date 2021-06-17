@@ -430,7 +430,92 @@ Create a validator component from <xref:Microsoft.AspNetCore.Components.Componen
 
 ## Business logic validation
 
-For business logic validation, use a [validator component](#validator-components) that receives form errors in a dictionary.
+### Basic form validation
+
+In basic form validation scenarios, an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> instance can use declared <xref:Microsoft.AspNetCore.Components.Forms.EditContext> and <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore> instances to validate form fields. A handler for the <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnValidationRequested> event of the <xref:Microsoft.AspNetCore.Components.Forms.EditContext> executes custom validation logic. The handler's result updates the <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore> instance.
+
+> [!WARNING]
+> When used the same component, the approach in this section is incompatible with the use of a *validator component*, which is described in the [Typical form validation](#typical-form-validation) section later in this article.
+>
+> Use of both approaches simultaneously leads to a conflict over control of the form's <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore>. Basic form validation is most useful in cases where the form's model is defined within the component hosting the form, either as members directly on the component or in a subclass. Use of a validator component is a better choice where an independent model class is used across several components.
+>
+> The approach demonstrated in this section can be used as a shared component in other components that use an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> with validator components. The shared component provides one or more values to its parent component via one or more [component parameters](xref:blazor/components/index#component-parameters).
+
+`Pages/FormExample4.razor`:
+
+```razor
+@page "/form-example-4"
+@using Microsoft.Extensions.Logging
+@inject ILogger<ShipHolodecks> Logger
+
+<h2>Ship Holodecks</h2>
+
+<EditForm EditContext="editContext" OnValidSubmit="@HandleValidSubmit">
+    <label>
+        @nameof(holodeck.Type1):
+        <InputCheckbox @bind-Value="holodeck.Type1" />
+    </label>
+
+    <label>
+        @nameof(holodeck.Type2):
+        <InputCheckbox @bind-Value="holodeck.Type2" />
+    </label>
+
+    <button type="submit">Update</button>
+
+    <ValidationMessage For="() => holodeck.Options" />
+
+    <p>
+        <a href="http://www.startrek.com/">Star Trek</a>,
+        &copy;1966-2019 CBS Studios, Inc. and
+        <a href="https://www.paramount.com">Paramount Pictures</a>
+    </p>
+</EditForm>
+
+@code {
+    private EditContext editContext;
+    private ValidationMessageStore validationMessageStore;
+    private Holodeck holodeck = new();
+
+    protected override void OnInitialized()
+    {
+        editContext = new(holodeck);
+        editContext.OnValidationRequested += editContext_OnValidationRequested;
+        validationMessageStore = new(editContext);
+    }
+
+    void editContext_OnValidationRequested(object sender, 
+        ValidationRequestedEventArgs args)
+    {
+        validationMessageStore.Clear();
+
+        // Custom validation logic
+        if (!holodeck.Options)
+        {
+            validationMessageStore.Add(() =>
+                holodeck.Options, "Select at least one holodeck type.");
+        }
+    }
+
+    private void HandleValidSubmit()
+    {
+        Logger.LogInformation("HandleValidSubmit called: Processing the form");
+
+        // Process the form
+    }
+
+    public class Holodeck
+    {
+        public bool Type1 { get; set; }
+        public bool Type2 { get; set; }
+        public bool Options => Type1 || Type2;
+    }
+}
+```
+
+### Typical form validation
+
+For typical business logic validation, use a [validator component](#validator-components) that receives form errors in a dictionary.
 
 In the following example:
 
@@ -440,17 +525,17 @@ In the following example:
 
 When validation messages are set in the component, they're added to the validator's <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore> and shown in the <xref:Microsoft.AspNetCore.Components.Forms.EditForm>'s validation summary.
 
-`Pages/FormExample4.razor`:
+`Pages/FormExample5.razor`:
 
 ::: moniker range=">= aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample4.razor)]
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample5.razor)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample4.razor)]
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample5.razor)]
 
 ::: moniker-end
 
@@ -697,12 +782,12 @@ In the **`Client`** project, add the `CustomValidation` component shown in the [
 
 In the **`Client`** project, the `Starfleet Starship Database` form is updated to show server validation errors with help of the `CustomValidation` component. When the server API returns validation messages, they're added to the `CustomValidation` component's <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore>. The errors are available in the form's <xref:Microsoft.AspNetCore.Components.Forms.EditContext> for display by the form's validation summary.
 
-In the following `FormExample5` component, update the namespace of the **`Shared`** project (`@using BlazorSample.Shared`) to the shared project's namespace. Note that the form requires authorization, so the user must be signed into the app to navigate to the form.
+In the following `FormExample6` component, update the namespace of the **`Shared`** project (`@using BlazorSample.Shared`) to the shared project's namespace. Note that the form requires authorization, so the user must be signed into the app to navigate to the form.
 
-`Pages/FormExample5.razor`:
+`Pages/FormExample6.razor`:
 
 ```razor
-@page "/form-example-5"
+@page "/form-example-6"
 @using System.Net
 @using System.Net.Http.Json
 @using Microsoft.AspNetCore.Authorization
@@ -711,7 +796,7 @@ In the following `FormExample5` component, update the namespace of the **`Shared
 @using BlazorSample.Shared
 @attribute [Authorize]
 @inject HttpClient Http
-@inject ILogger<FormExample5> Logger
+@inject ILogger<FormExample6> Logger
 
 <h1>Starfleet Starship Database</h1>
 
@@ -877,19 +962,19 @@ The following `CustomInputText` component inherits the framework's `InputText` c
 
 ::: moniker-end
 
-The `CustomInputText` component can be used anywhere <xref:Microsoft.AspNetCore.Components.Forms.InputText> is used. The following `FormExample6` component uses the shared `CustomInputText` component.
+The `CustomInputText` component can be used anywhere <xref:Microsoft.AspNetCore.Components.Forms.InputText> is used. The following `FormExample7` component uses the shared `CustomInputText` component.
 
-`Pages/FormExample6.razor`:
+`Pages/FormExample7.razor`:
 
 ::: moniker range=">= aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample6.razor?highlight=9)]
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample7.razor?highlight=9)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample6.razor?highlight=9)]
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample7.razor?highlight=9)]
 
 ::: moniker-end
 
@@ -1194,9 +1279,9 @@ Create a class derived from <xref:Microsoft.AspNetCore.Components.Forms.FieldCss
 
 Set the `CustomFieldClassProvider` class as the Field CSS Class Provider on the form's <xref:Microsoft.AspNetCore.Components.Forms.EditContext> instance with <xref:Microsoft.AspNetCore.Components.Forms.EditContextFieldClassExtensions.SetFieldCssClassProvider%2A>.
 
-`Pages/FormExample7.razor`:
+`Pages/FormExample8.razor`:
 
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample7.razor?highlight=21)]
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample8.razor?highlight=21)]
 
 The preceding example checks the validity of all form fields and applies a style to each field. If the form should only apply custom styles to a subset of the fields, make `CustomFieldClassProvider` apply styles conditionally. The following `CustomFieldClassProvider2` example only applies a style to the `Name` field. For any fields with names not matching `Name`, `string.Empty` is returned, and no style is applied.
 
@@ -1360,17 +1445,17 @@ To enable and disable the submit button based on form validation, the following 
 > [!NOTE]
 > When assigning to the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.EditContext?displayProperty=nameWithType>, don't also assign an <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?displayProperty=nameWithType> to the <xref:Microsoft.AspNetCore.Components.Forms.EditForm>.
 
-`Pages/FormExample8.razor`:
+`Pages/FormExample9.razor`:
 
 ::: moniker range=">= aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample8.razor)]
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample9.razor)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample8.razor)]
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample9.razor)]
 
 ::: moniker-end
 
