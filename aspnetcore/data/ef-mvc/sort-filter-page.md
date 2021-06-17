@@ -226,7 +226,7 @@ In *HomeController.cs*, add the following using statements at the top of the fil
 
 Add a class variable for the database context immediately after the opening curly brace for the class, and get an instance of the context from ASP.NET Core DI:
 
-[!code-csharp[](intro/samples/cu/Controllers/HomeController.cs?name=snippet_AddContext&highlight=3,5,7)]
+[!code-csharp[](intro/samples/cu/Controllers/HomeController.cs?name=snippet_AddContext&highlight=4,6,9)]
 
 Add an `About` method with the following code:
 
