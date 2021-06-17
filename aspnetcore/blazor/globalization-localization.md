@@ -30,7 +30,7 @@ For additional general information, see <xref:fundamentals/localization>.
 > [!NOTE]
 > Often, the terms *language* and *culture* are used interchangably when dealing with globalization and localization concepts.
 >
-> In this article, *language* refers to selections made by a user in their browser's settings. The user's selections are submitted in browser requests in the [`Accept-Language` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Accept-Language). Browser settings usually use the word "language" in the UI.
+> In this article, *language* refers to selections made by a user in their browser's settings. The user's language selections are submitted in browser requests in the [`Accept-Language` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Accept-Language). Browser settings usually use the word "language" in the UI.
 >
 > *Culture* pertains to members of .NET and Blazor API. For example, a user's request can include the [`Accept-Language` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Accept-Language) specifying a *language* from the user's perspective, but the app ultimately sets the <xref:System.Globalization.CultureInfo.CurrentCulture> ("**culture**") property from the language that the user requested. API usually uses the word "culture" in its member names.
 
@@ -130,9 +130,7 @@ Add a list item to the navigation menu `<ul>` element in `Shared/NavMenu.razor` 
 
 The [`Accept-Language` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Accept-Language) is set by the browser and controlled by the user's language preferences in browser settings. In browser settings, a user sets one or more preferred languages in order of preference. The order of preference is used by the browser to set quality values (`q`, 0-1) for each language in the header. The following example specifies United States English, English, and Peruvian Spanish with a preference for United States English or English:
 
-```
-Accept-Language: en-US,en;q=0.9,es-PE;q=0.8
-```
+**Accept-Language**: en-US,en;q=0.9,es-PE;q=0.8
 
 The app's culture is set by matching the first requested language that matches a supported culture of the app.
 
@@ -146,7 +144,7 @@ In `Startup.ConfigureServices` (`Startup.cs`):
 services.AddLocalization();
 ```
 
-Specify the app's supported cultures in `Startup.Configure` (`Startup.cs`). The following example configures supported cultures for United States English and Peruvian Spanish:
+Specify the app's supported cultures in `Startup.Configure` (`Startup.cs`) immediately after Routing Middleware is added to the processing pipeline. The following example configures supported cultures for United States English and Peruvian Spanish:
 
 ```csharp
 app.UseRequestLocalization(new RequestLocalizationOptions()
@@ -165,15 +163,13 @@ Use the `CultureExample1` component shown in the [Demonstration component](#demo
 
 When the culture is United States English (`en-US`), the rendered component uses month/day date formatting (`6/7`), 12-hour time (`AM`/`PM`), and comma separators in numbers with a dot for the decimal value (`1,999.69`):
 
-> **Date**: 6/7/2021 6:45:22 AM
->
-> **number**: 1,999.69
+* **Date**: 6/7/2021 6:45:22 AM
+* **Number**: 1,999.69
 
 When the culture is Peruvian Spanish (`es-PE`), the rendered component uses day/month date formatting (`7/6`), 24-hour time, and period separators in numbers with a comma for the decimal value (`1.999,69`):
 
-> **Date**: 7/6/2021 6:49:38
->
-> **number**: 1.999,69
+* **Date**: 7/6/2021 6:49:38
+* **Number**: 1.999,69
 
 ## Statically set the culture
 
@@ -189,10 +185,9 @@ Set the `BlazorWebAssemblyLoadAllGlobalizationData` property to `true` in the ap
 </PropertyGroup>
 ```
 
-The app's culture can be set in JavaScript when Blazor starts with the `applicationCulture` option passed to `Blazor.start`. The following example configures the app to launch using the United States English (`en-US`) culture:
+The app's culture can be set in JavaScript when Blazor starts with the `applicationCulture` option passed to `Blazor.start`. The following example configures the app to launch using the United States English (`en-US`) culture. Add the following `<script>` element after the Blazor script (`blazor.webassembly.js`) loads:
 
 ```html
-<script src="_framework/blazor.webassembly.js" autostart="false"></script>
 <script>
   Blazor.start({
     applicationCulture: 'en-US'
@@ -237,7 +232,7 @@ In `Startup.ConfigureServices` (`Startup.cs`):
 services.AddLocalization();
 ```
 
-Specify the static culture in `Startup.Configure` (`Startup.cs`). The following example configures United States English:
+Specify the static culture in `Startup.Configure` (`Startup.cs`) immediately after Routing Middleware is added to the processing pipeline. The following example configures United States English:
 
 ```csharp
 app.UseRequestLocalization(
@@ -291,10 +286,10 @@ Inside the closing `</body>` tag and after the Blazor script of `wwwroot/index.h
 
 ```html
 <script>
-    window.blazorCulture = {
-        get: () => window.localStorage['BlazorCulture'],
-        set: (value) => window.localStorage['BlazorCulture'] = value
-    };
+  window.blazorCulture = {
+    get: () => window.localStorage['BlazorCulture'],
+    set: (value) => window.localStorage['BlazorCulture'] = value
+  };
 </script>
 ```
 
@@ -324,39 +319,60 @@ In `Program.Main` (`Program.cs`):
 * Add Blazor's localization service to the app's service collection with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A>.
 * Use [JS interop](xref:blazor/js-interop/call-javascript-from-dotnet) to call into JS and retrieve the user's culture selection from local storage. If local storage doesn't contain a culture for the user, set a default value.
 
-```csharp
-...
-using System.Globalization;
-using Microsoft.JSInterop;
+Make the following adjustments to `Program.Main`:
 
-public class Program
+```diff
+using System;
+using System.Net.Http;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Text;
+using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
++using System.Globalization;
++using Microsoft.JSInterop;
+
+namespace SampleApp
 {
-    public static async Task Main(string[] args)
+    public class Program
     {
-        ...
-
-        builder.Services.AddLocalization();
-
-        var host = builder.Build();
-
-        CultureInfo culture;
-        var js = host.Services.GetRequiredService<IJSRuntime>();
-        var result = await js.InvokeAsync<string>("blazorCulture.get");
-
-        if (result != null)
+        public static async Task Main(string[] args)
         {
-            culture = new CultureInfo(result);
-        }
-        else
-        {
-            culture = new CultureInfo("en-US");
-            await js.InvokeVoidAsync("blazorCulture.set", "en-US");
-        }
+            var builder = WebAssemblyHostBuilder.CreateDefault(args);
+            builder.RootComponents.Add<App>("#app");
 
-        CultureInfo.DefaultThreadCurrentCulture = culture;
-        CultureInfo.DefaultThreadCurrentUICulture = culture;
+            builder.Services.AddScoped(
+                sp => new HttpClient 
+                { 
+                    BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
+                });
 
-        await host.RunAsync();
+-           await builder.Build().RunAsync();
++           builder.Services.AddLocalization();
+
++           var host = builder.Build();
+
++           CultureInfo culture;
++           var js = host.Services.GetRequiredService<IJSRuntime>();
++           var result = await js.InvokeAsync<string>("blazorCulture.get");
+
++           if (result != null)
++           {
++               culture = new CultureInfo(result);
++           }
++           else
++           {
++               culture = new CultureInfo("en-US");
++               await js.InvokeVoidAsync("blazorCulture.set", "en-US");
++           }
+
++           CultureInfo.DefaultThreadCurrentCulture = culture;
++           CultureInfo.DefaultThreadCurrentUICulture = culture;
+
++           await host.RunAsync();
+        }
     }
 }
 ```
@@ -441,7 +457,7 @@ services.AddLocalization();
 
 Set the app's default and supported cultures with <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions.SetDefaultCulture%2A?displayProperty=nameWithType>.
 
-In `Startup.Configure`:
+In `Startup.Configure` immediately after Routing Middleware is added to the processing pipeline:
 
 ```csharp
 var supportedCultures = new[] { "en-US", "es-PE" };
@@ -628,19 +644,39 @@ In `Program.Main` (`Program.cs`):
 * Add namespaces for <xref:System.Globalization?displayProperty=fullName>.
 * Add Blazor's localization service to the app's service collection with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A>.
 
-```csharp
-...
-using System.Globalization;
+Make the following adjustments to `Program.Main`:
 
-public class Program
+```diff
+using System;
+using System.Net.Http;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Text;
+using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
++using System.Globalization;
+
+namespace SampleApp
 {
-    public static async Task Main(string[] args)
+    public class Program
     {
-        ...
+        public static async Task Main(string[] args)
+        {
+            var builder = WebAssemblyHostBuilder.CreateDefault(args);
+            builder.RootComponents.Add<App>("#app");
 
-        builder.Services.AddLocalization();
+            builder.Services.AddScoped(
+                sp => new HttpClient 
+                { 
+                    BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
+                });
 
-        await builder.Build().RunAsync();
++           builder.Services.AddLocalization();
+
+            await builder.Build().RunAsync();
+        }
     }
 }
 ```
@@ -662,7 +698,7 @@ In `Startup.ConfigureServices` (`Startup.cs`):
 services.AddLocalization();
 ```
 
-In `Startup.Configure`:
+In `Startup.Configure` immediately after Routing Middleware is added to the processing pipeline:
 
 ```csharp
 var supportedCultures = new[] { "en-US", "es-PE" };
@@ -682,7 +718,10 @@ If the app should localize resources based on storing a user's culture setting, 
 
 The example of localized resources in this section works with the prior examples in this article where the app's supported cultures are English (`en`) as a default locale and Spanish (`es`) as a user-selectable or browser-specified alternate locale.
 
-Create resources for each locale. In the following example, resources are created for a default `Greeting` string of `Hello, World!` and a `Greeting` string in and Spanish (`es`), `¡Hola, Mundo!`.
+Create resources for each locale. In the following example, resources are created for a default `Greeting` string:
+
+* English: `Hello, World!`
+* Spanish (`es`): `¡Hola, Mundo!`
 
 > [!NOTE]
 > The following resource file can be added in Visual Studio by right-clicking the project's `Pages` folder and selecting **Add** > **New Item** > **Resources File**. Name the file `CultureExample2.resx`. When the editor appears, provide data for a new entry. Set the **Name** to `Greeting` and **Value** to `Hello, World!`. Save the file.
