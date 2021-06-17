@@ -4,21 +4,4 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="LargeFilesSample\**" />
-    <Content Remove="LargeFilesSample\**" />
-    <EmbeddedResource Remove="LargeFilesSample\**" />
-    <None Remove="LargeFilesSample\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Files\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="Files\README.md">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
 </Project>

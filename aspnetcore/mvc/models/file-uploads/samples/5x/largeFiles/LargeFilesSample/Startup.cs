@@ -36,16 +36,6 @@ namespace LargeFilesSample
 
             app.UseRouting();
 
-            app.UseAuthorization();
-
-            
-            app.UseStaticFiles(new StaticFileOptions()
-            {
-                FileProvider = new PhysicalFileProvider(Path.Combine(AppContext.BaseDirectory, "files")),
-                RequestPath = new PathString("/files"),
-                ServeUnknownFileTypes = true
-            });
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

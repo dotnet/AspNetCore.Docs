@@ -14,12 +14,7 @@ namespace LargeFilesSample
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.ConfigureKestrel((context, options) =>
-                    {
-                        // 调整请求的大小限制，使得可以上传大文件
-                        options.Limits.MaxRequestBodySize = long.MaxValue;
-                    })
-                    .UseStartup<Startup>();
+                    webBuilder.UseStartup<Startup>();
                 });
     }
 }

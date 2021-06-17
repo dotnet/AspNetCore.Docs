@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using Microsoft.Net.Http.Headers;
-using System;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -24,17 +23,6 @@ namespace LargeFilesSample.Controllers
         }
 
         /// <summary>
-        /// Friendly return model, the position and way of its definition may change in actual use 
-        /// </summary>
-        public class JsonResponse
-        {
-            /// <summary>
-            /// just some message
-            /// </summary>
-            public string Message { get; set; }
-        }
-
-        /// <summary>
         /// Action for upload large file
         /// </summary>
         /// <remarks>
@@ -46,8 +34,6 @@ namespace LargeFilesSample.Controllers
         [Route(nameof(UploadLargeFile))]
         public async Task<IActionResult> UploadLargeFile()
         {
-            var result = new JsonResponse();
-
             var request = HttpContext.Request;
 
             // validation of Content-Type
@@ -57,8 +43,7 @@ namespace LargeFilesSample.Controllers
                 !MediaTypeHeaderValue.TryParse(request.ContentType, out var mediaTypeHeader) ||
                 string.IsNullOrEmpty(mediaTypeHeader.Boundary.Value))
             {
-                result.Message = "This Content-Type cannot be processed";
-                return BadRequest(result);
+                return new UnsupportedMediaTypeResult();
             }
 
             var reader = new MultipartReader(mediaTypeHeader.Boundary.Value, request.Body);
@@ -77,32 +62,25 @@ namespace LargeFilesSample.Controllers
                     // Don't trust any file name, file extension, and file data from the request unless you trust them completely
                     // Otherwise, it is very likely to cause problems such as virus uploading, disk filling, etc
                     // In short, it is necessary to restrict and verify the upload
+                    // Here, we just use the temporary folder and a random file name
 
-                    // This example only introduces how to save the uploaded data,but ignores the situations mentioned above.
-                    // Here, the file name is considered trusty by default.
-
-                    // Get the file extension, and combine a random file name with it
-                    var fileName = Guid.NewGuid().ToString("N") + Path.GetExtension(contentDisposition.FileName.Value);
-                    var saveToPath = Path.Combine(AppContext.BaseDirectory, "files", fileName);
+                    // Get the temporary folder, and combine a random file name with it
+                    var fileName = Path.GetRandomFileName();
+                    var saveToPath = Path.Combine(Path.GetTempPath(), fileName);
 
                     using (var targetStream = System.IO.File.Create(saveToPath))
                     {
                         await section.Body.CopyToAsync(targetStream);
                     }
 
-                    return Ok(new
-                    {
-                        message = "Uploaded successfully!",
-                        fileUrl = $"/files/{fileName}"
-                    });
+                    return Ok();
                 }
 
                 section = await reader.ReadNextSectionAsync();
             }
 
             // If the code runs to this location, it means that no files have been saved
-            result.Message = "No files data in the request ";
-            return BadRequest(result);
+            return BadRequest("No files data in the request.");
         }
     }
 }
