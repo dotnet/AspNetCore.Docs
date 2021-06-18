@@ -1,4 +1,4 @@
-revision: 1
+revision: 2
 schema-version: 1
 owner-ms-alias: adegeo
 
@@ -47,7 +47,7 @@ issues:
         # Checks for specific files
         - check:
             - type: metadata-comment
-              name: contentsource
+              name: content source
               value: "(?i).*main\/aspnetcore\/mvc\/views\/tag-helpers\/built-in\/component-tag-helper.md"
           pass:
             - labels-add: ["Blazor"]
@@ -57,7 +57,7 @@ issues:
         # If the word appears anywhere in the file name path, add the label
         - check:
             - type: metadata-comment
-              name: contentsource
+              name: content source
               value: "(?i).*blazor.*"
           pass:
             - labels-add: ["Blazor"]
@@ -65,13 +65,13 @@ issues:
             - labels-remove: [":watch: Not Triaged"]
         - check:
             - type: metadata-comment
-              name: contentsource
+              name: content source
               value: "(?i).*grpc.*"
           pass:
             - labels-add: ["gRPC"]
         - check:
             - type: metadata-comment
-              name: contentsource
+              name: content source
               value: "(?i).*signalr.*"
           pass:
             - labels-add: ["SignalR"]
