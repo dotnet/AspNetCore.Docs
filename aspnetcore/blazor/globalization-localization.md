@@ -185,9 +185,15 @@ Set the `BlazorWebAssemblyLoadAllGlobalizationData` property to `true` in the ap
 </PropertyGroup>
 ```
 
-The app's culture can be set in JavaScript when Blazor starts with the `applicationCulture` option passed to `Blazor.start`. The following example configures the app to launch using the United States English (`en-US`) culture. Add the following `<script>` element after the Blazor script (`blazor.webassembly.js`) loads:
+The app's culture can be set in JavaScript when Blazor starts with the `applicationCulture` option passed to `Blazor.start`. The following example configures the app to launch using the United States English (`en-US`) culture:
+
+* Don't autostart Blazor by adding `autostart="false"` to the Blazor `<script>` tag.
+* Add the following `<script>` element after the Blazor script loads.
+
+Inside the `<head>` element content in `wwwroot/index.html`:
 
 ```html
+<script src="_framework/blazor.webassembly.js" autostart="false"></script>
 <script>
   Blazor.start({
     applicationCulture: 'en-US'
@@ -235,14 +241,10 @@ services.AddLocalization();
 Specify the static culture in `Startup.Configure` (`Startup.cs`) immediately after Routing Middleware is added to the processing pipeline. The following example configures United States English:
 
 ```csharp
-app.UseRequestLocalization(
-    new RequestLocalizationOptions()
-        .SetDefaultCulture("en-US")
-        .AddSupportedCultures("en-US")
-        .AddSupportedUICultures("en-US"));
+app.UseRequestLocalization("en-US");
 ```
 
-The value for <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions.AddSupportedCultures%2A> and <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions.AddSupportedUICultures%2A> must conform to the [BCP-47 language tag format](https://www.rfc-editor.org/info/bcp47).
+The culture value for <xref:Microsoft.AspNetCore.Builder.ApplicationBuilderExtensions.UseRequestLocalization%2A> must conform to the [BCP-47 language tag format](https://www.rfc-editor.org/info/bcp47).
 
 For information on ordering the Localization Middleware in the middleware pipeline of `Startup.Configure`, see <xref:fundamentals/middleware/index#middleware-order>.
 
