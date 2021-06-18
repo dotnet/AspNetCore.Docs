@@ -481,11 +481,11 @@ In basic form validation scenarios, an <xref:Microsoft.AspNetCore.Components.For
     protected override void OnInitialized()
     {
         editContext = new(holodeck);
-        editContext.OnValidationRequested += editContext_OnValidationRequested;
+        editContext.OnValidationRequested += HandleValidationRequested;
         validationMessageStore = new(editContext);
     }
 
-    void editContext_OnValidationRequested(object sender, 
+    private void HandleValidationRequested(object sender, 
         ValidationRequestedEventArgs args)
     {
         validationMessageStore.Clear();
@@ -514,7 +514,7 @@ In basic form validation scenarios, an <xref:Microsoft.AspNetCore.Components.For
 
     public void Dispose()
     {
-        editContext.OnValidationRequested -= editContext_OnValidationRequested;
+        editContext.OnValidationRequested -= HandleValidationRequested;
     }
 }
 ```
