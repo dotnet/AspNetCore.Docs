@@ -446,7 +446,8 @@ In basic form validation scenarios, an <xref:Microsoft.AspNetCore.Components.For
 ```razor
 @page "/form-example-4"
 @using Microsoft.Extensions.Logging
-@inject ILogger<ShipHolodecks> Logger
+@implements IDisposable
+@inject ILogger<FormExample4> Logger
 
 <h2>Ship Holodecks</h2>
 
@@ -474,8 +475,8 @@ In basic form validation scenarios, an <xref:Microsoft.AspNetCore.Components.For
 
 @code {
     private EditContext editContext;
-    private ValidationMessageStore validationMessageStore;
     private Holodeck holodeck = new();
+    private ValidationMessageStore validationMessageStore;
 
     protected override void OnInitialized()
     {
@@ -509,6 +510,11 @@ In basic form validation scenarios, an <xref:Microsoft.AspNetCore.Components.For
         public bool Type1 { get; set; }
         public bool Type2 { get; set; }
         public bool Options => Type1 || Type2;
+    }
+
+    public void Dispose()
+    {
+        editContext.OnValidationRequested -= editContext_OnValidationRequested;
     }
 }
 ```
