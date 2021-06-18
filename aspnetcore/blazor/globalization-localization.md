@@ -81,7 +81,7 @@ The following `CultureExample1` component can be used to demonstrate Blazor glob
 
 <ul>
     <li><b>Date</b>: @dt</li>
-    <li><b>number</b>: @number.ToString("N2")</li>
+    <li><b>Number</b>: @number.ToString("N2")</li>
 </ul>
 
 <h2><code>&lt;input&gt;</code> elements that don't set a <code>type</code></h2>
