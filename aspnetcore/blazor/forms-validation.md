@@ -435,11 +435,11 @@ Create a validator component from <xref:Microsoft.AspNetCore.Components.Componen
 In basic form validation scenarios, an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> instance can use declared <xref:Microsoft.AspNetCore.Components.Forms.EditContext> and <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore> instances to validate form fields. A handler for the <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnValidationRequested> event of the <xref:Microsoft.AspNetCore.Components.Forms.EditContext> executes custom validation logic. The handler's result updates the <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore> instance.
 
 > [!WARNING]
-> When used the same component, the approach in this section is incompatible with the use of a *validator component*, which is described in the [Typical form validation](#typical-form-validation) section later in this article.
+> When used the same component, the approach in this section is incompatible with the use of a *validator component*, which is described in the next section, [General form validation](#general-form-validation).
 >
 > Use of both approaches simultaneously leads to a conflict over control of the form's <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore>. Basic form validation is most useful in cases where the form's model is defined within the component hosting the form, either as members directly on the component or in a subclass. Use of a validator component is a better choice where an independent model class is used across several components.
 >
-> The approach demonstrated in this section can be used as a shared component in other components that use an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> with validator components. The shared component provides one or more values to its parent component via one or more [component parameters](xref:blazor/components/index#component-parameters).
+> The approach demonstrated in this section can be used as a shared component in other components that use an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> with validator components. The shared component provides one or more values to its parent component via [component parameters](xref:blazor/components/index#component-parameters).
 
 `Pages/FormExample4.razor`:
 
@@ -519,9 +519,12 @@ In basic form validation scenarios, an <xref:Microsoft.AspNetCore.Components.For
 }
 ```
 
-### Typical form validation
+### General form validation
 
-For typical business logic validation, use a [validator component](#validator-components) that receives form errors in a dictionary.
+For general business logic validation, use a [validator component](#validator-components) that receives form errors in a dictionary.
+
+> [!WARNING]
+> When used the same component, the approach in this section is incompatible with the use of [basic form validation](#basic-form-validation) in the preceding section. Use of both approaches simultaneously leads to a conflict over control of the form's <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore>. Basic form validation is most useful in cases where the form's model is defined within the component hosting the form, either as members directly on the component or in a subclass. Use of a validator component is a better choice where an independent model class is used across several components. However, the approaches can be integrated if the basic form validation approach is used in a shared component that provides one or more values to its parent component via [component parameters](xref:blazor/components/index#component-parameters).
 
 In the following example:
 
