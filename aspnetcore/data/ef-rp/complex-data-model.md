@@ -612,7 +612,7 @@ The next section fixes this error.
 
 With the existing database, there are two approaches to changing the database:
 
-* [Drop and re-create the database](#drop). Choose this section if when using SQLite.
+* [Drop and re-create the database](#drop). Choose this section when using SQLite.
 * [Apply the migration to the existing database](#applyexisting). The instructions in this section work for SQL Server only, ***not for SQLite***.
 
 Either choice works for SQL Server. While the apply-migration method is more complex and time-consuming, it's the preferred approach for real-world, production environments.
