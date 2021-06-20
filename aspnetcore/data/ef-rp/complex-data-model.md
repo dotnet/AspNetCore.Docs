@@ -506,10 +506,7 @@ Update *Data/SchoolContext.cs* with the following code:
 [!code-csharp[](intro/samples/cu50/Data/SchoolContext.cs?name=snippet_SS&highlight=15-17,21-28)]
 
 <!-- TODO review -->
-The preceding code adds the new entities and:
-
-* Configures the many-to-many relationship between the `Instructor` and `Course` entities.
-* Configures a concurrency token for the `Department` entity. Concurrency is discussed later in the tutorial.
+The preceding code adds the new entities and configures the many-to-many relationship between the `Instructor` and `Course` entities.
 
 ## Fluent API alternative to attributes
 
