@@ -506,10 +506,7 @@ Update *Data/SchoolContext.cs* with the following code:
 [!code-csharp[](intro/samples/cu50/Data/SchoolContext.cs?name=snippet_SS&highlight=15-17,21-28)]
 
 <!-- TODO review -->
-The preceding code adds the new entities and:
-
-* Configures the many-to-many relationship between the `Instructor` and `Course` entities.
-* Configures a concurrency token for the `Department` entity. Concurrency is discussed later in the tutorial.
+The preceding code adds the new entities and configures the many-to-many relationship between the `Instructor` and `Course` entities.
 
 ## Fluent API alternative to attributes
 
@@ -612,7 +609,7 @@ The next section fixes this error.
 
 With the existing database, there are two approaches to changing the database:
 
-* [Drop and re-create the database](#drop). Choose this section if when using SQLite.
+* [Drop and re-create the database](#drop). Choose this section when using SQLite.
 * [Apply the migration to the existing database](#applyexisting). The instructions in this section work for SQL Server only, ***not for SQLite***.
 
 Either choice works for SQL Server. While the apply-migration method is more complex and time-consuming, it's the preferred approach for real-world, production environments.
