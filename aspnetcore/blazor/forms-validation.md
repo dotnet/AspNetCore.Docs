@@ -489,7 +489,7 @@ Server validation is supported in addition to client-side validation:
 * The server API includes both the built-in framework data annotations validation and custom validation logic supplied by the developer. If validation passes on the server, process the form and send back a success status code ([`200 - OK`](https://developer.mozilla.org/docs/Web/HTTP/Status/200)). If validation fails, return a failure status code ([`400 - Bad Request`](https://developer.mozilla.org/docs/Web/HTTP/Status/400)) and the field validation errors.
 * Either disable the form on success or display the errors.
 
-[Basic validation](#basic-validation) is useful in cases where the form's model is defined within the component hosting the form, either as members directly on the component or in a subclass. Use of a server validation with a validator component is recommended where an independent model class is used across several components.
+[Basic validation](#basic-validation) is useful in cases where the form's model is defined within the component hosting the form, either as members directly on the component or in a subclass. Use of a validator component is recommended where an independent model class is used across several components.
 
 The following example is based on:
 
