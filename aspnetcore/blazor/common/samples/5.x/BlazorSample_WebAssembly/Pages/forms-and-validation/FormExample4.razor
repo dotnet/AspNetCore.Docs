@@ -28,13 +28,15 @@
 </EditForm>
 
 @code {
-    private static readonly Holodeck holodeck = new();
-    private static readonly EditContext editContext = new(holodeck);
-    private readonly ValidationMessageStore messageStore = new(editContext);
+    private EditContext editContext;
+    private Holodeck holodeck = new();
+    private ValidationMessageStore messageStore;
 
     protected override void OnInitialized()
     {
+        editContext = new(holodeck);
         editContext.OnValidationRequested += HandleValidationRequested;
+        messageStore = new(editContext);
     }
 
     private void HandleValidationRequested(object sender, 
