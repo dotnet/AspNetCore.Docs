@@ -28,27 +28,27 @@
 </EditForm>
 
 @code {
-    private EditContext editContext;
-    private Holodeck holodeck = new Holodeck();
-    private ValidationMessageStore validationMessageStore;
+    private readonly Holodeck holodeck = new Holodeck();
+    private readonly EditContext editContext = new EditContext(holodeck);
+    private readonly ValidationMessageStore messageStore = 
+        new ValidationMessageStore(editContext);
 
     protected override void OnInitialized()
     {
         editContext = new EditContext(holodeck);
         editContext.OnValidationRequested += HandleValidationRequested;
-        validationMessageStore = new ValidationMessageStore(editContext);
+        messageStore = new ValidationMessageStore(editContext);
     }
 
     private void HandleValidationRequested(object sender, 
         ValidationRequestedEventArgs args)
     {
-        validationMessageStore.Clear();
+        messageStore.Clear();
 
         // Custom validation logic
         if (!holodeck.Options)
         {
-            validationMessageStore.Add(() =>
-                holodeck.Options, "Select at least one holodeck type.");
+            messageStore.Add(() => holodeck.Options, "Select at least one.");
         }
     }
 

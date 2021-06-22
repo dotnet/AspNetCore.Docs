@@ -370,24 +370,21 @@ Assign a custom template to <xref:Microsoft.AspNetCore.Components.Forms.InputDat
 
 In basic form validation scenarios, an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> instance can use declared <xref:Microsoft.AspNetCore.Components.Forms.EditContext> and <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore> instances to validate form fields. A handler for the <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnValidationRequested> event of the <xref:Microsoft.AspNetCore.Components.Forms.EditContext> executes custom validation logic. The handler's result updates the <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore> instance.
 
-> [!WARNING]
-> When used the same component, the approach in this section is incompatible with the use of a *validator component*, which is described in the [Validator components](#validator-components) section.
->
-> Use of both approaches simultaneously leads to a conflict over control of the form's <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore>. Basic form validation is most useful in cases where the form's model is defined within the component hosting the form, either as members directly on the component or in a subclass. Use of a validator component is a better choice where an independent model class is used across several components.
->
-> The approach demonstrated in this section can be used as a shared component in other components that use an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> with validator components. The shared component provides one or more values to its parent component via [component parameters](xref:blazor/components/index#component-parameters).
+Basic form validation is useful in cases where the form's model is defined within the component hosting the form, either as members directly on the component or in a subclass. Use of a [validator component](#validator-components) is recommended where an independent model class is used across several components.
+
+In the following `FormExample4` component, the `HandleValidationRequested` handler method clears any existing validation messages by calling <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore.Clear%2A?displayProperty=nameWithType> before validating the form.
 
 `Pages/FormExample4.razor`:
 
 ::: moniker range=">= aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample4.razor?highlight=38,42-53,71)]
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample4.razor?highlight=38,42-53,70)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample4.razor?highlight=38,42-53,71)]
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample4.razor?highlight=39,43-54,71)]
 
 ::: moniker-end
 
@@ -455,8 +452,7 @@ Create a validator component from <xref:Microsoft.AspNetCore.Components.Componen
 
 For general business logic validation, use a [validator component](#validator-components) that receives form errors in a dictionary.
 
-> [!WARNING]
-> When used the same component, the approach in this section is incompatible with the use of [basic form validation](#basic-validation). Use of both approaches simultaneously leads to a conflict over control of the form's <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore>. Basic validation is most useful in cases where the form's model is defined within the component hosting the form, either as members directly on the component or in a subclass. Use of a validator component is a better choice where an independent model class is used across several components. However, the approaches can be integrated if the basic form validation approach is used in a shared component that provides one or more values to its parent component via [component parameters](xref:blazor/components/index#component-parameters).
+[Basic validation](#basic-validation) is useful in cases where the form's model is defined within the component hosting the form, either as members directly on the component or in a subclass. Use of a validator component is recommended where an independent model class is used across several components.
 
 In the following example:
 
@@ -493,8 +489,7 @@ Server validation is supported in addition to client-side validation:
 * The server API includes both the built-in framework data annotations validation and custom validation logic supplied by the developer. If validation passes on the server, process the form and send back a success status code ([`200 - OK`](https://developer.mozilla.org/docs/Web/HTTP/Status/200)). If validation fails, return a failure status code ([`400 - Bad Request`](https://developer.mozilla.org/docs/Web/HTTP/Status/400)) and the field validation errors.
 * Either disable the form on success or display the errors.
 
-> [!WARNING]
-> When used the same component, the approach in this section is incompatible with the use of [basic form validation](#basic-validation). Use of both approaches simultaneously leads to a conflict over control of the form's <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore>. Basic validation is most useful in cases where the form's model is defined within the component hosting the form, either as members directly on the component or in a subclass. Use of a validator component is a better choice where an independent model class is used across several components. However, the approaches can be integrated if the basic form validation approach is used in a shared component that provides one or more values to its parent component via [component parameters](xref:blazor/components/index#component-parameters).
+[Basic validation](#basic-validation) is useful in cases where the form's model is defined within the component hosting the form, either as members directly on the component or in a subclass. Use of a server validation with a validator component is recommended where an independent model class is used across several components.
 
 The following example is based on:
 
@@ -829,7 +824,7 @@ In the following `FormExample6` component, update the namespace of the **`Shared
                 .ReadFromJsonAsync<Dictionary<string, List<string>>>();
 
             if (response.StatusCode == HttpStatusCode.BadRequest && 
-                errors.Count() > 0)
+                errors.Any())
             {
                 customValidation.DisplayErrors(errors);
             }

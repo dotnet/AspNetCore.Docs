@@ -55,7 +55,7 @@
                 "'Description' is required." });
         }
 
-        if (errors.Count() > 0)
+        if (errors.Any())
         {
             customValidation.DisplayErrors(errors);
         }
