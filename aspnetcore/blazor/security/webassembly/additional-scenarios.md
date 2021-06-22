@@ -802,7 +802,7 @@ For an additional example that works with AAD security groups and AAD Administra
 
 ## Support prerendering with authentication
 
-After following the guidance in one of the Blazor WebAssembly security app topics, use the following instructions to create an app that:
+Prerendering content that requires authentication and authorization isn't currently supported. After following the guidance in one of the Blazor WebAssembly security app topics, use the following instructions to create an app that:
 
 * Prerenders paths for which authorization isn't required.
 * Doesn't prerender paths for which authorization is required.
