@@ -302,6 +302,9 @@ A common and recommended approach is to only store the underlying data in the pa
 
 ::: moniker-end
 
+> [!WARNING]
+> Generally, avoid creating components that write directly to their own component parameters. The preceding `NestedChild` component makes use of a `BoundValue` property instead of writing directly to its `ChildMessage` parameter. For more information, see <xref:blazor/components/index#overwritten-parameters>.
+
 `Shared/NestedGrandchild.razor`:
 
 ::: moniker range=">= aspnetcore-5.0"
