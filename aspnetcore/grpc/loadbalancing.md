@@ -12,9 +12,12 @@ uid: grpc/loadbalancing
 
 By [James Newton-King](https://twitter.com/jamesnk)
 
-Client-side load balancing is a feature that allows gRPC clients to distribute load optimally across available servers. This article discusses how to configure a client-side load balancing to create scalable, high-performance gRPC apps in .NET.
+Client-side load balancing is a feature that allows gRPC clients to distribute load optimally across available servers. This article discusses how to configure client-side load balancing to create scalable, high-performance gRPC apps in .NET.
 
-Client-side load balancing requires [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client) version XXXX or later.
+Client-side load balancing requires:
+
+* .NET 5 or later.
+* [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client) version XXXX or later.
 
 ## Configure gRPC client-side load balancing
 
@@ -23,11 +26,11 @@ Client-side load balancing is configured when a channel is created. The two comp
 * The resolver, which resolves the addresses for the channel. Resolvers support getting addresses from an external source. This is also known as service discovery.
 * The load balancer, which creates connections and picks the address that a gRPC call will use.
 
-Built-in implementations of resolvers and load balancers are included in [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client). Load balancing can also be extended by writing [custom resolvers and load balancers](#write-custom-resolvers-and-load-balancers).
+Built-in implementations of resolvers and load balancers are included in [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client). Load balancing can also be extended by [writing custom resolvers and load balancers](#write-custom-resolvers-and-load-balancers).
 
 ## Configure resolver
 
-The resolver is configured using the address a channel is created with. In particular, the [URI scheme](https://wikipedia.org/wiki/Uniform_Resource_Identifier#Syntax) specifies the resolver.
+The resolver is configured using the address a channel is created with. The [URI scheme](https://wikipedia.org/wiki/Uniform_Resource_Identifier#Syntax) of the address specifies the resolver.
 
 | Scheme   | Type             | Description |
 | -------- | ---------------- | ----------- |
@@ -106,7 +109,7 @@ A load balancer is specified in a service config using the `ServiceConfig.LoadBa
 
 | Name          | Type                     | Description |
 | ------------- | ------------------------ | ----------- |
-| `pick_first`  | `PickFirstLoadBalancer`  | Attempts to connect to addresses until a connection is successfully made. gRPC calls are all made to first successful connection. |
+| `pick_first`  | `PickFirstLoadBalancer`  | Attempts to connect to addresses until a connection is successfully made. gRPC calls are all made to the first successful connection. |
 | `round_robin` | `RoundRobinLoadBalancer` | Attempts to connect to all addresses. gRPC calls are distributed across all successful connections using [round-robin](https://www.nginx.com/resources/glossary/round-robin-load-balancing/) logic. |
 
 There are a couple of ways a channel can get a service config with a load balancer configured:
