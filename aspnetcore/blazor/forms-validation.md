@@ -248,6 +248,9 @@ In the following example:
 
 ::: moniker-end
 
+> [!NOTE]
+> Changing the <xref:Microsoft.AspNetCore.Components.Forms.EditContext> after its assigned is **not** supported.
+
 ::: moniker range=">= aspnetcore-5.0"
 
 ## Display name support
