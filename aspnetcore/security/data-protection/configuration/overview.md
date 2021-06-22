@@ -423,7 +423,7 @@ Though not exposed as a first-class API, the Data Protection system is extensibl
 When hosting in a [Docker](/dotnet/standard/microservices-architecture/container-docker-introduction/) container, keys should be maintained in either:
 
 * A folder that's a Docker volume that persists beyond the container's lifetime, such as a shared volume or a host-mounted volume.
-* An external provider, such as [Azure Blob Storage](https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blobs-introduction/) as shown above or [Redis](https://redis.io/).
+* An external provider, such as [Azure Blob Storage](/azure/storage/blobs/storage-blobs-introduction) (shown above) or [Redis](https://redis.io).
 
 
 ## Persisting keys with Redis
