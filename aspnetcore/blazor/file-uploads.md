@@ -100,7 +100,7 @@ The following example demonstrates multiple file upload in a component. <xref:Mi
 > In the preceding command:
 >
 > * The `{SIZE}` placeholder is the size of the file in bytes (for example, `2097152` for a 2 MB file).
-> * The `{PATH}` placeholder is the path where the file should be created (for example, `D:/test_files/testfile2MB.txt`).
+> * The `{PATH}` placeholder is the path and file with file extension (for example, `D:/test_files/testfile2MB.txt`).
 
 `Pages/FileUpload1.razor`:
 
