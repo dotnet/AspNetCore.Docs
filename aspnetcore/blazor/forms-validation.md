@@ -248,11 +248,6 @@ In the following example:
 
 ::: moniker-end
 
-> [!NOTE]
-> Framework API doesn't exist to clear validation messages directly from an <xref:Microsoft.AspNetCore.Components.Forms.EditContext>. Therefore, we don't generally recommend adding validation messages to a new <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore> in a form. To manage validation messages, use a [validator component](#validator-components) with your [business logic validation code](#business-logic-validation), as described in this article.
->
-> Additionally, changing the <xref:Microsoft.AspNetCore.Components.Forms.EditContext> after its assigned is **not** supported.
-
 ::: moniker range=">= aspnetcore-5.0"
 
 ## Display name support
@@ -368,6 +363,31 @@ Assign a custom template to <xref:Microsoft.AspNetCore.Components.Forms.InputDat
 
 ::: moniker-end
 
+## Basic validation
+
+In basic form validation scenarios, an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> instance can use declared <xref:Microsoft.AspNetCore.Components.Forms.EditContext> and <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore> instances to validate form fields. A handler for the <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnValidationRequested> event of the <xref:Microsoft.AspNetCore.Components.Forms.EditContext> executes custom validation logic. The handler's result updates the <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore> instance.
+
+> [!WARNING]
+> When used the same component, the approach in this section is incompatible with the use of a *validator component*, which is described in the [Validator components](#validator-components) section.
+>
+> Use of both approaches simultaneously leads to a conflict over control of the form's <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore>. Basic form validation is most useful in cases where the form's model is defined within the component hosting the form, either as members directly on the component or in a subclass. Use of a validator component is a better choice where an independent model class is used across several components.
+>
+> The approach demonstrated in this section can be used as a shared component in other components that use an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> with validator components. The shared component provides one or more values to its parent component via [component parameters](xref:blazor/components/index#component-parameters).
+
+`Pages/FormExample4.razor`:
+
+::: moniker range=">= aspnetcore-5.0"
+
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample4.razor?highlight=38,42-53,71)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample4.razor?highlight=38,42-53,71)]
+
+::: moniker-end
+
 ## Data Annotations Validator component and custom validation
 
 The <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component attaches data annotations validation to a cascaded <xref:Microsoft.AspNetCore.Components.Forms.EditContext>. Enabling data annotations validation requires the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. To use a different validation system than data annotations, use a custom implementation instead of the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. The framework implementations for <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> are available for inspection in the reference source:
@@ -388,8 +408,8 @@ Validator components support form validation by managing a <xref:Microsoft.AspNe
 
 The Blazor framework provides the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component to attach validation support to forms based on [validation attributes (data annotations)](xref:mvc/models/validation#validation-attributes). You can create custom validator components to process validation messages for different forms on the same page or the same form at different steps of form processing (for example, client-side validation followed by server-side validation). The validator component example shown in this section, `CustomValidation`, is used in the following sections of this article:
 
-* [Business logic validation](#business-logic-validation)
-* [Server validation](#server-validation)
+* [Business logic validation with a validator component](#business-logic-validation-with-a-validator-component)
+* [Server validation with a validator component](#server-validation-with-a-validator-component)
 
 > [!NOTE]
 > Custom data annotation validation attributes can be used instead of custom validator components in many cases. Custom attributes applied to the form's model activate with the use of the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. When used with server-side validation, any custom attributes applied to the model must be executable on the server. For more information, see <xref:mvc/models/validation#alternatives-to-built-in-attributes>.
@@ -428,103 +448,12 @@ Create a validator component from <xref:Microsoft.AspNetCore.Components.Componen
 > [!NOTE]
 > Anonymous lambda expressions are registered event handlers for <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnValidationRequested> and <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnFieldChanged> in the preceding example. It isn't necessary to implement <xref:System.IDisposable> and unsubscribe the event delegates in this scenario. For more information, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable>.
 
-## Business logic validation
-
-### Basic form validation
-
-In basic form validation scenarios, an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> instance can use declared <xref:Microsoft.AspNetCore.Components.Forms.EditContext> and <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore> instances to validate form fields. A handler for the <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnValidationRequested> event of the <xref:Microsoft.AspNetCore.Components.Forms.EditContext> executes custom validation logic. The handler's result updates the <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore> instance.
-
-> [!WARNING]
-> When used the same component, the approach in this section is incompatible with the use of a *validator component*, which is described in the next section, [General form validation](#general-form-validation).
->
-> Use of both approaches simultaneously leads to a conflict over control of the form's <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore>. Basic form validation is most useful in cases where the form's model is defined within the component hosting the form, either as members directly on the component or in a subclass. Use of a validator component is a better choice where an independent model class is used across several components.
->
-> The approach demonstrated in this section can be used as a shared component in other components that use an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> with validator components. The shared component provides one or more values to its parent component via [component parameters](xref:blazor/components/index#component-parameters).
-
-`Pages/FormExample4.razor`:
-
-```razor
-@page "/form-example-4"
-@using Microsoft.Extensions.Logging
-@implements IDisposable
-@inject ILogger<FormExample4> Logger
-
-<h2>Ship Holodecks</h2>
-
-<EditForm EditContext="editContext" OnValidSubmit="@HandleValidSubmit">
-    <label>
-        @nameof(holodeck.Type1):
-        <InputCheckbox @bind-Value="holodeck.Type1" />
-    </label>
-
-    <label>
-        @nameof(holodeck.Type2):
-        <InputCheckbox @bind-Value="holodeck.Type2" />
-    </label>
-
-    <button type="submit">Update</button>
-
-    <ValidationMessage For="() => holodeck.Options" />
-
-    <p>
-        <a href="http://www.startrek.com/">Star Trek</a>,
-        &copy;1966-2019 CBS Studios, Inc. and
-        <a href="https://www.paramount.com">Paramount Pictures</a>
-    </p>
-</EditForm>
-
-@code {
-    private EditContext editContext;
-    private Holodeck holodeck = new();
-    private ValidationMessageStore validationMessageStore;
-
-    protected override void OnInitialized()
-    {
-        editContext = new(holodeck);
-        editContext.OnValidationRequested += HandleValidationRequested;
-        validationMessageStore = new(editContext);
-    }
-
-    private void HandleValidationRequested(object sender, 
-        ValidationRequestedEventArgs args)
-    {
-        validationMessageStore.Clear();
-
-        // Custom validation logic
-        if (!holodeck.Options)
-        {
-            validationMessageStore.Add(() =>
-                holodeck.Options, "Select at least one holodeck type.");
-        }
-    }
-
-    private void HandleValidSubmit()
-    {
-        Logger.LogInformation("HandleValidSubmit called: Processing the form");
-
-        // Process the form
-    }
-
-    public class Holodeck
-    {
-        public bool Type1 { get; set; }
-        public bool Type2 { get; set; }
-        public bool Options => Type1 || Type2;
-    }
-
-    public void Dispose()
-    {
-        editContext.OnValidationRequested -= HandleValidationRequested;
-    }
-}
-```
-
-### General form validation
+## Business logic validation with a validator component
 
 For general business logic validation, use a [validator component](#validator-components) that receives form errors in a dictionary.
 
 > [!WARNING]
-> When used the same component, the approach in this section is incompatible with the use of [basic form validation](#basic-form-validation) in the preceding section. Use of both approaches simultaneously leads to a conflict over control of the form's <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore>. Basic form validation is most useful in cases where the form's model is defined within the component hosting the form, either as members directly on the component or in a subclass. Use of a validator component is a better choice where an independent model class is used across several components. However, the approaches can be integrated if the basic form validation approach is used in a shared component that provides one or more values to its parent component via [component parameters](xref:blazor/components/index#component-parameters).
+> When used the same component, the approach in this section is incompatible with the use of [basic form validation](#basic-validation). Use of both approaches simultaneously leads to a conflict over control of the form's <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore>. Basic validation is most useful in cases where the form's model is defined within the component hosting the form, either as members directly on the component or in a subclass. Use of a validator component is a better choice where an independent model class is used across several components. However, the approaches can be integrated if the basic form validation approach is used in a shared component that provides one or more values to its parent component via [component parameters](xref:blazor/components/index#component-parameters).
 
 In the following example:
 
@@ -551,7 +480,7 @@ When validation messages are set in the component, they're added to the validato
 > [!NOTE]
 > As an alternative to using [validation components](#validator-components), data annotation validation attributes can be used. Custom attributes applied to the form's model activate with the use of the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. When used with server-side validation, the attributes must be executable on the server. For more information, see <xref:mvc/models/validation#alternatives-to-built-in-attributes>.
 
-## Server validation
+## Server validation with a validator component
 
 Server validation is supported in addition to client-side validation:
 
@@ -560,6 +489,9 @@ Server validation is supported in addition to client-side validation:
 * Process model validation on the server.
 * The server API includes both the built-in framework data annotations validation and custom validation logic supplied by the developer. If validation passes on the server, process the form and send back a success status code ([`200 - OK`](https://developer.mozilla.org/docs/Web/HTTP/Status/200)). If validation fails, return a failure status code ([`400 - Bad Request`](https://developer.mozilla.org/docs/Web/HTTP/Status/400)) and the field validation errors.
 * Either disable the form on success or display the errors.
+
+> [!WARNING]
+> When used the same component, the approach in this section is incompatible with the use of [basic form validation](#basic-validation). Use of both approaches simultaneously leads to a conflict over control of the form's <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore>. Basic validation is most useful in cases where the form's model is defined within the component hosting the form, either as members directly on the component or in a subclass. Use of a validator component is a better choice where an independent model class is used across several components. However, the approaches can be integrated if the basic form validation approach is used in a shared component that provides one or more values to its parent component via [component parameters](xref:blazor/components/index#component-parameters).
 
 The following example is based on:
 
