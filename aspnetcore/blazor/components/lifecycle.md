@@ -322,7 +322,7 @@ If the object is created in a lifecycle method, such as `OnInitialized`/`OnIniti
 
 ::: moniker-end
 
-For asynchronous disposal tasks, use `DisposeAsync` instead of <xref:System.IDisposable.Dispose>. In the following example, `obj` is set in a lifecycle method (not shown), so it's disposed with a `null` check in the `DisposeAsync` method:
+For asynchronous disposal tasks, use `DisposeAsync` instead of <xref:System.IDisposable.Dispose>. In the following example, `obj` is set in a lifecycle method (not shown), so it's disposed with a `null` check in the `DisposeAsync` method and set to `null`:
 
 ```csharp
 private {TYPE} obj;
@@ -332,6 +332,7 @@ public async ValueTask DisposeAsync()
     if (obj is not null)
     {
         await obj.DisposeAsync();
+        obj = null;
     }
 }
 ```
