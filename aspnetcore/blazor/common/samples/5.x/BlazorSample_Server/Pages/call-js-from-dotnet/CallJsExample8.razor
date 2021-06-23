@@ -32,7 +32,7 @@
 
     async ValueTask IAsyncDisposable.DisposeAsync()
     {
-        await mapInstance.DisposeAsync();
-        await mapModule.DisposeAsync();
+        await mapInstance?.DisposeAsync();
+        await mapModule?.DisposeAsync();
     }
 }

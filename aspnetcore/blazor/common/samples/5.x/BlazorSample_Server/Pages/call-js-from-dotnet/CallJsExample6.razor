@@ -37,6 +37,6 @@
 
     async ValueTask IAsyncDisposable.DisposeAsync()
     {
-        await module.DisposeAsync();
+        await module?.DisposeAsync();
     }
 }
