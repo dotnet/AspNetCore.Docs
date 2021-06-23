@@ -244,7 +244,7 @@ The `PasswordEntry` component is used in another component, such as the followin
 
 ::: moniker-end
 
-When the `PasswordBinding` component is initially rendered, the `password` value of `Not set` is displayed in the UI. After initial rendering, the value of `password` reflects changes of the `Password` component parameter value in the `PasswordEntry` component.
+When the `PasswordBinding` component is initially rendered, the `password` value of `Not set` is displayed in the UI. After initial rendering, the value of `password` reflects changes made to the `Password` component parameter value in the `PasswordEntry` component.
 
 > [!NOTE]
 > The preceding example binds the password one-way from the child `PasswordEntry` component to the parent `PasswordBinding` component. Two-way binding isn't a requirement in this scenario if the goal is for the app to have a shared password entry component for reuse around the app that merely passes the password to the parent. For an approach that permits two-way binding without [writing directly to the child component's parameter](xref:blazor/components/index#overwritten-parameters), see the `NestedChild` component example in the [Bind across more than two components](#bind-across-more-than-two-components) section of this article.
