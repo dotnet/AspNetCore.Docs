@@ -292,34 +292,35 @@ If a component implements <xref:System.IDisposable>, the framework calls the [di
 
 If an object requires disposal, a lambda can be used to dispose of the object when <xref:System.IDisposable.Dispose%2A?displayProperty=nameWithType> is called. The following example appears in the <xref:blazor/components/rendering#receiving-a-call-from-something-external-to-the-blazor-rendering-and-event-handling-system> article and demonstrates the use of a lambda expression for the disposal of a <xref:System.Timers.Timer>.
 
-`Pages/CounterWithTimerDisposal.razor`:
+`Pages/CounterWithTimerDisposal1.razor`:
 
 ::: moniker range=">= aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/lifecycle/CounterWithTimerDisposal.razor)]
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/lifecycle/CounterWithTimerDisposal1.razor?highlight=28)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/lifecycle/CounterWithTimerDisposal.razor)]
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/lifecycle/CounterWithTimerDisposal1.razor?highlight=28)]
 
 ::: moniker-end
 
-If the object is created in a lifecycle method, such as `OnInitialized`/`OnInitializedAsync`, check for `null` before calling `Dispose`. For exammple, `timer?.Dispose()` in the following example:
+If the object is created in a lifecycle method, such as `OnInitialized`/`OnInitializedAsync`, check for `null` before calling `Dispose`.
 
-```csharp
-private Timer timer;
+`Pages/CounterWithTimerDisposal2.razor`:
 
-protected override void OnInitialized()
-{
-    timer = new(1000);
-    timer.Elapsed += (sender, eventArgs) => OnTimerCallback();
-    timer.Start();
-}
+::: moniker range=">= aspnetcore-5.0"
 
-public void Dispose() => timer?.Dispose();
-```
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/lifecycle/CounterWithTimerDisposal2.razor?highlight=15,29)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/lifecycle/CounterWithTimerDisposal2.razor?highlight=15,29)]
+
+::: moniker-end
 
 For asynchronous disposal tasks, use `DisposeAsync` instead of <xref:System.IDisposable.Dispose>. In the following example, `obj` is set in a lifecycle method (not shown), so it's disposed with a `null` check in the `DisposeAsync` method:
 
