@@ -20,7 +20,7 @@
     {
         if (firstRender)
         {
-            module = await JS.InvokeAsync<IJSObjectReference>("import", 
+            module = await JS.InvokeAsync<IJSObjectReference>("import",
                 "./scripts.js");
         }
     }
@@ -37,6 +37,9 @@
 
     async ValueTask IAsyncDisposable.DisposeAsync()
     {
-        await module?.DisposeAsync();
+        if (module is not null)
+        {
+            await module.DisposeAsync();
+        }
     }
 }

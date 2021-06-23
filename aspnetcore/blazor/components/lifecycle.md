@@ -306,14 +306,36 @@ If an object requires disposal, a lambda can be used to dispose of the object wh
 
 ::: moniker-end
 
-For asynchronous disposal tasks, use `DisposeAsync` instead of <xref:System.IDisposable.Dispose>:
+If the object is created in a lifecycle method, such as `OnInitialized`/`OnInitializedAsync`, check for `null` before calling `Dispose`. For exammple, `timer?.Dispose()` in the following example:
 
 ```csharp
+private Timer timer;
+
+protected override void OnInitialized()
+{
+    timer = new(1000);
+    timer.Elapsed += (sender, eventArgs) => OnTimerCallback();
+    timer.Start();
+}
+
+public void Dispose() => timer?.Dispose();
+```
+
+For asynchronous disposal tasks, use `DisposeAsync` instead of <xref:System.IDisposable.Dispose>. In the following example, `timer` is set in a lifecycle method (not shown), so it's disposed with a `null` check in the `DisposeAsync` method:
+
+```csharp
+private {TYPE} obj;
+
 public async ValueTask DisposeAsync()
 {
-    await ...
+    if (obj is not null)
+    {
+        await obj.DisposeAsync();
+    }
 }
 ```
+
+In the preceding example, the `{TYPE}` placeholder is the type of the disposable object.
 
 > [!NOTE]
 > Calling <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> in `Dispose` isn't supported. <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> might be invoked as part of tearing down the renderer, so requesting UI updates at that point isn't supported.
