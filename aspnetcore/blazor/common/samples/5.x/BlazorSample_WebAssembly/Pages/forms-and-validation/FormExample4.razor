@@ -1,34 +1,24 @@
 @page "/form-example-4"
 @using Microsoft.Extensions.Logging
+@implements IDisposable
 @inject ILogger<FormExample4> Logger
 
-<h1>Starfleet Starship Database</h1>
+<h2>Ship Holodecks</h2>
 
-<h2>New Ship Entry Form</h2>
+<EditForm EditContext="editContext" OnValidSubmit="@HandleValidSubmit">
+    <label>
+        Type 1:
+        <InputCheckbox @bind-Value="holodeck.Type1" />
+    </label>
 
-<EditForm Model="@starship" OnValidSubmit="@HandleValidSubmit">
-    <CustomValidation @ref="customValidation" />
-    <ValidationSummary />
+    <label>
+        Type 2:
+        <InputCheckbox @bind-Value="holodeck.Type2" />
+    </label>
 
-    <p>
-        <label>
-            Primary Classification:
-            <InputSelect @bind-Value="starship.Classification">
-                <option value="">Select classification ...</option>
-                <option value="Exploration">Exploration</option>
-                <option value="Diplomacy">Diplomacy</option>
-                <option value="Defense">Defense</option>
-            </InputSelect>
-        </label>
-    </p>
-    <p>
-        <label>
-            Description (optional):
-            <InputTextArea @bind-Value="starship.Description" />
-        </label>
-    </p>
+    <button type="submit">Update</button>
 
-    <button type="submit">Submit</button>
+    <ValidationMessage For="() => holodeck.Options" />
 
     <p>
         <a href="http://www.startrek.com/">Star Trek</a>,
@@ -38,32 +28,45 @@
 </EditForm>
 
 @code {
-    private CustomValidation customValidation;
-    private Starship starship = new() { ProductionDate = DateTime.UtcNow };
+    private EditContext editContext;
+    private Holodeck holodeck = new();
+    private ValidationMessageStore messageStore;
+
+    protected override void OnInitialized()
+    {
+        editContext = new(holodeck);
+        editContext.OnValidationRequested += HandleValidationRequested;
+        messageStore = new(editContext);
+    }
+
+    private void HandleValidationRequested(object sender, 
+        ValidationRequestedEventArgs args)
+    {
+        messageStore.Clear();
+
+        // Custom validation logic
+        if (!holodeck.Options)
+        {
+            messageStore.Add(() => holodeck.Options, "Select at least one.");
+        }
+    }
 
     private void HandleValidSubmit()
     {
-        customValidation.ClearErrors();
+        Logger.LogInformation("HandleValidSubmit called: Processing the form");
 
-        var errors = new Dictionary<string, List<string>>();
+        // Process the form
+    }
 
-        if (starship.Classification == "Defense" &&
-                string.IsNullOrEmpty(starship.Description))
-        {
-            errors.Add(nameof(starship.Description),
-                new() { "For a 'Defense' ship classification, " +
-                "'Description' is required." });
-        }
+    public class Holodeck
+    {
+        public bool Type1 { get; set; }
+        public bool Type2 { get; set; }
+        public bool Options => Type1 || Type2;
+    }
 
-        if (errors.Count() > 0)
-        {
-            customValidation.DisplayErrors(errors);
-        }
-        else
-        {
-            Logger.LogInformation("HandleValidSubmit called: Processing the form");
-
-            // Process the valid form
-        }
+    public void Dispose()
+    {
+        editContext.OnValidationRequested -= HandleValidationRequested;
     }
 }

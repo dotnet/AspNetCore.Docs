@@ -2,24 +2,21 @@
 @using Microsoft.Extensions.Logging
 @inject ILogger<FormExample7> Logger
 
-<EditForm EditContext="@editContext" OnValidSubmit="@HandleValidSubmit">
+<EditForm Model="@exampleModel" OnValidSubmit="@HandleValidSubmit">
     <DataAnnotationsValidator />
     <ValidationSummary />
 
-    <InputText id="name" @bind-Value="exampleModel.Name" />
+    <CustomInputText @bind-Value="exampleModel.Name" />
 
     <button type="submit">Submit</button>
 </EditForm>
 
+<p>
+    CurrentValue: @exampleModel.Name
+</p>
+
 @code {
     private ExampleModel exampleModel = new();
-    private EditContext editContext;
-
-    protected override void OnInitialized()
-    {
-        editContext = new(exampleModel);
-        editContext.SetFieldCssClassProvider(new CustomFieldClassProvider());
-    }
 
     private void HandleValidSubmit()
     {
