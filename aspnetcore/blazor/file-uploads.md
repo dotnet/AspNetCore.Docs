@@ -90,6 +90,18 @@ The following example demonstrates multiple file upload in a component. <xref:Mi
 >
 > Namespaces in the `_Imports.razor` file aren't applied to C# files (`.cs`). C# files require an explicit [`using`](/dotnet/csharp/language-reference/language-specification/namespaces#using-directives) directive.
 
+> [!NOTE]
+> For testing file upload components, you can create test files of any size with [PowerShell](/powershell/):
+>
+> ```powershell
+> $out = new-object byte[] {SIZE}; (new-object Random).NextBytes($out); [IO.File]::WriteAllBytes('{PATH}', $out)
+> ```
+>
+> In the preceding command:
+>
+> * The `{SIZE}` placeholder is the size of the file in bytes (for example, `2097152` for a 2 MB file).
+> * The `{PATH}` placeholder is the path and file with file extension (for example, `D:/test_files/testfile2MB.txt`).
+
 `Pages/FileUpload1.razor`:
 
 ::: zone pivot="webassembly"

@@ -208,7 +208,7 @@ By convention, a property can be bound to a corresponding event handler by inclu
 <ChildBind @bind-Year="year" @bind-Year:event="YearChanged" />
 ```
 
-In a more sophisticated and real-world example, the following `Password` component:
+In a more sophisticated and real-world example, the following `PasswordEntry` component:
 
 * Sets an `<input>` element's value to a `password` field.
 * Exposes changes of a `Password` property to a parent component with an [`EventCallback`](xref:blazor/components/event-handling#eventcallback) that passes in the current value of the child's `password` field as its argument.
@@ -244,7 +244,12 @@ The `PasswordEntry` component is used in another component, such as the followin
 
 ::: moniker-end
 
-Perform checks or trap errors in the method that invokes the binding's delegate. The following revised `PasswordEntry` component provides immediate feedback to the user if a space is used in the password's value.
+When the `PasswordBinding` component is initially rendered, the `password` value of `Not set` is displayed in the UI. After initial rendering, the value of `password` reflects changes made to the `Password` component parameter value in the `PasswordEntry` component.
+
+> [!NOTE]
+> The preceding example binds the password one-way from the child `PasswordEntry` component to the parent `PasswordBinding` component. Two-way binding isn't a requirement in this scenario if the goal is for the app to have a shared password entry component for reuse around the app that merely passes the password to the parent. For an approach that permits two-way binding without [writing directly to the child component's parameter](xref:blazor/components/index#overwritten-parameters), see the `NestedChild` component example in the [Bind across more than two components](#bind-across-more-than-two-components) section of this article.
+
+Perform checks or trap errors in the handler. The following revised `PasswordEntry` component provides immediate feedback to the user if a space is used in the password's value.
 
 `Shared/PasswordEntry.razor`:
 
@@ -296,6 +301,9 @@ A common and recommended approach is to only store the underlying data in the pa
 [!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Shared/data-binding/NestedChild.razor)]
 
 ::: moniker-end
+
+> [!WARNING]
+> Generally, avoid creating components that write directly to their own component parameters. The preceding `NestedChild` component makes use of a `BoundValue` property instead of writing directly to its `ChildMessage` parameter. For more information, see <xref:blazor/components/index#overwritten-parameters>.
 
 `Shared/NestedGrandchild.razor`:
 

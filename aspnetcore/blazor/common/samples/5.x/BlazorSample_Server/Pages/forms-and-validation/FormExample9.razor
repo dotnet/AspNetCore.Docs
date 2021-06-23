@@ -1,7 +1,7 @@
-@page "/form-example-8"
+@page "/form-example-9"
 @using Microsoft.Extensions.Logging
 @implements IDisposable
-@inject ILogger<FormExample8> Logger
+@inject ILogger<FormExample9> Logger
 
 <EditForm EditContext="@editContext" OnValidSubmit="@HandleValidSubmit">
     <DataAnnotationsValidator />
@@ -19,7 +19,7 @@
 
 @code {
     private Starship starship = 
-        new Starship()
+        new()
         {
             Identifier = "NCC-1701",
             Classification = "Exploration",
@@ -32,7 +32,7 @@
 
     protected override void OnInitialized()
     {
-        editContext = new EditContext(starship);
+        editContext = new(starship);
         editContext.OnFieldChanged += HandleFieldChanged;
     }
 
