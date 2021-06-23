@@ -321,7 +321,7 @@ protected override void OnInitialized()
 public void Dispose() => timer?.Dispose();
 ```
 
-For asynchronous disposal tasks, use `DisposeAsync` instead of <xref:System.IDisposable.Dispose>. In the following example, `timer` is set in a lifecycle method (not shown), so it's disposed with a `null` check in the `DisposeAsync` method:
+For asynchronous disposal tasks, use `DisposeAsync` instead of <xref:System.IDisposable.Dispose>. In the following example, `obj` is set in a lifecycle method (not shown), so it's disposed with a `null` check in the `DisposeAsync` method:
 
 ```csharp
 private {TYPE} obj;
