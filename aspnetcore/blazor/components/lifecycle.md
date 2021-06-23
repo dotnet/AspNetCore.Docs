@@ -339,6 +339,8 @@ public async ValueTask DisposeAsync()
 
 In the preceding example, the `{TYPE}` placeholder is the type of the disposable object.
 
+For more information, see [Implement a DisposeAsync method (.NET documentation)](/dotnet/standard/garbage-collection/implementing-disposeasync).
+
 > [!NOTE]
 > Calling <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> in `Dispose` isn't supported. <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> might be invoked as part of tearing down the renderer, so requesting UI updates at that point isn't supported.
 
