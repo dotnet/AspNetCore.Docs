@@ -151,7 +151,10 @@ Client-side load balancing is extensible:
 
 ### Create a custom resolver
 
-A resolver is responsible for resolving the addresses a load balancer will use. It can also optionally provide a service config. A resolver implements `Resolver` and is created by a `ResolverFactory`. Create a custom resolver by implementing these types.
+A resolver:
+* Implements `Resolver` and is created by a `ResolverFactory`. Create a custom resolver by implementing these types.
+* Is responsible for resolving the addresses a load balancer uses.
+* Can optionally provide a service configuration.
 
 ```csharp
 public class FileResolver : Resolver
