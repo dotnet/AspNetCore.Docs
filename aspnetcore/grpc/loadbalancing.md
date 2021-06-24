@@ -33,21 +33,22 @@ Built-in implementations of resolvers and load balancers are included in [Grpc.N
 
 The resolver is configured using the address a channel is created with. The [URI scheme](https://wikipedia.org/wiki/Uniform_Resource_Identifier#Syntax) of the address specifies the resolver.
 
-| Scheme   | Type             | Description |
-| -------- | ---------------- | ----------- |
-| `dns`    | `DnsResolver`    | Resolves addresses by querying the hostname for [DNS service records](https://en.wikipedia.org/wiki/SRV_record). |
-| `static` | `StaticResolver` | Resolves addresses that the app has specified. Recommended if an app already knows the addresses it calls. |
+| Scheme   | Type                    | Description |
+| -------- | ----------------------- | ----------- |
+| `dns`    | `DnsResolverFactory`    | Resolves addresses by querying the hostname for [DNS service records](https://en.wikipedia.org/wiki/SRV_record). |
+| `static` | `StaticResolverFactory` | Resolves addresses that the app has specified. Recommended if an app already knows the addresses it calls. |
 
 A channel doesn't directly call a URI that matches a resolver. Instead, a matching resolver is created and used to resolve the addresses.
 
 For example, using `GrpcChannel.ForAddress("dns:///my-example-host")`:
 
-* The `dns` scheme maps to `DnsResolver`. A new instance of that resolver is created for the channel.
+* The `dns` scheme maps to `DnsResolverFactory`. A new instance of a DNS resolver is created for the channel.
 * The resolver makes a DNS query for `my-example-host` and gets two results: `localhost:80` and `localhost:81`.
 * The load balancer uses `localhost:80` and `localhost:81` to create connections and make gRPC calls.
-#### DnsResolver
 
-The `DnsResolver` is designed to get addresses from an external source. DNS resolution is commonly used to load balance over pod instances that have a [Kubernetes headless services](https://kubernetes.io/docs/concepts/services-networking/service/#headless-services).
+#### DnsResolverFactory
+
+The `DnsResolverFactory` creates a resolver designed to get addresses from an external source. DNS resolution is commonly used to load balance over pod instances that have a [Kubernetes headless services](https://kubernetes.io/docs/concepts/services-networking/service/#headless-services).
 
 ```csharp
 var channel = GrpcChannel.ForAddress(
@@ -60,18 +61,18 @@ var response = await client.SayHelloAsync(new HelloRequest { Name = "world" });
 
 The preceding code:
 
-* Configures the created channel with the address `dns:///my-example-host`. The `dns` scheme maps to `DnsResolver`.
-* Doesn't specify a load balancer. The channel defaults to `PickFirstLoadBalancer`.
+* Configures the created channel with the address `dns:///my-example-host`. The `dns` scheme maps to `DnsResolverFactory`.
+* Doesn't specify a load balancer. The channel defaults to a pick first load balancer.
 * Starts the gRPC call `SayHello`:
-  * `DnsResolver` resolves addresses for the hostname `my-example-host`.
-  * `PickFirstLoadBalancer` attempts to connect to one of the resolved addresses.
+  * DNS resolver gets addresses for the hostname `my-example-host`.
+  * Pick first load balancer attempts to connect to one of the resolved addresses.
   * The call is sent to the first address the channel successfully connects to.
 
-Performance is important when load balancing. The latency of resolving addresses is eliminated from gRPC calls by caching the addresses. A resolver will be invoked when making the first gRPC call, and subsequent calls use the cache. Addresses are automatically refreshed if a connection is interrupted. Refreshing is important in scenarios where addresses change at runtime. For example, in Kubernetes a [restarted pod](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/) triggers `DnsResolver` to refresh and get the pod's new address.
+Performance is important when load balancing. The latency of resolving addresses is eliminated from gRPC calls by caching the addresses. A resolver will be invoked when making the first gRPC call, and subsequent calls use the cache. Addresses are automatically refreshed if a connection is interrupted. Refreshing is important in scenarios where addresses change at runtime. For example, in Kubernetes a [restarted pod](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/) triggers the DNS resolver to refresh and get the pod's new address.
 
-#### StaticResolver
+#### StaticResolverFactory
 
-Another resolver is `StaticResolver`. This resolver:
+A static resolver is provided by `StaticResolverFactory`. This resolver:
 
 * Doesn't call an external source. Instead, the client app configures the addresses.
 * Is designed for situations where an app already knows the addresses it calls.
@@ -101,7 +102,7 @@ The preceding code:
 * Creates a `StaticResolverFactory`. This factory knows about two addresses: `localhost:80` and `localhost:81`.
 * Registers the factory with dependency injection (DI).
 * Configures the created channel with:
-  * The address `static:///my-example-host`. The `static` scheme maps to `StaticResolver`.
+  * The address `static:///my-example-host`. The `static` scheme maps to a static resolver.
   * Sets `GrpcChannelOptions.ServiceProvider` with the DI service provider.
 
 This example creates a new <xref:Microsoft.Extensions.DependencyInjection.ServiceCollection> for DI. Suppose an app already has DI setup, like an ASP.NET Core website. In that case, types should be registered with the existing DI instance. `GrpcChannelOptions.ServiceProvider` is configured by getting an <xref:System.IServiceProvider> from DI.
@@ -110,16 +111,16 @@ This example creates a new <xref:Microsoft.Extensions.DependencyInjection.Servic
 
 A load balancer is specified in a service config using the `ServiceConfig.LoadBalancingConfigs` collection. Two load balancers are built-in and map to load balancer config names:
 
-| Name          | Type                     | Description |
-| ------------- | ------------------------ | ----------- |
-| `pick_first`  | `PickFirstLoadBalancer`  | Attempts to connect to addresses until a connection is successfully made. gRPC calls are all made to the first successful connection. |
-| `round_robin` | `RoundRobinLoadBalancer` | Attempts to connect to all addresses. gRPC calls are distributed across all successful connections using [round-robin](https://www.nginx.com/resources/glossary/round-robin-load-balancing/) logic. |
+| Name          | Type                            | Description |
+| ------------- | ------------------------------- | ----------- |
+| `pick_first`  | `PickFirstLoadBalancerFactory`  | Attempts to connect to addresses until a connection is successfully made. gRPC calls are all made to the first successful connection. |
+| `round_robin` | `RoundRobinLoadBalancerFactory` | Attempts to connect to all addresses. gRPC calls are distributed across all successful connections using [round-robin](https://www.nginx.com/resources/glossary/round-robin-load-balancing/) logic. |
 
 There are a couple of ways a channel can get a service config with a load balancer configured:
 
 * An app can specify a service config when a channel is created using `GrpcChannelOptions.ServiceConfig`.
 * Alternatively, a resolver can resolve a service config for a channel. This feature allows an external source to specify how its callers should perform load balancing. Whether a resolver supports resolving a service config is dependent on the resolver implementation. Disable this feature with `GrpcChannelOptions.DisableResolverServiceConfig`.
-* If no service config is provided, or the service config doesn't have a load balancer configured, the channel defaults to `PickFirstLoadBalancer`.
+* If no service config is provided, or the service config doesn't have a load balancer configured, the channel defaults to `PickFirstLoadBalancerFactory`.
 
 ```csharp
 var channel = GrpcChannel.ForAddress(
@@ -136,10 +137,10 @@ var response = await client.SayHelloAsync(new HelloRequest { Name = "world" });
 
 The preceding code:
 
-* Specifies a `RoundRobinLoadBalancer` in the service config.
+* Specifies a `RoundRobinLoadBalancerFactory` in the service config.
 * Starts the gRPC call `SayHello`:
-  * `DnsResolver` resolves addresses for the hostname `my-example-host`.
-  * `RoundRobinLoadBalancer` attempts to connect to all resolved addresses.
+  * `DnsResolverFactory` creates a resolver that gets addresses for the hostname `my-example-host`.
+  * Round-robin load balancer attempts to connect to all resolved addresses.
   * gRPC calls are distributed evenly using round-robin logic.
 
 ## Write custom resolvers and load balancers
