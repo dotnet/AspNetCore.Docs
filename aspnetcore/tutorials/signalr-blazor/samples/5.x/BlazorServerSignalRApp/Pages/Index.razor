@@ -59,7 +59,8 @@
         if (hubConnection is not null)
         {
             await hubConnection.DisposeAsync();
-            hubConnection = null;
         }
+
+        hubConnection = null;
     }
 }

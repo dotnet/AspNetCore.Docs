@@ -40,7 +40,8 @@
         if (module is not null)
         {
             await module.DisposeAsync();
-            module = null;
         }
+
+        module = null;
     }
 }

@@ -332,8 +332,9 @@ public async ValueTask DisposeAsync()
     if (obj is not null)
     {
         await obj.DisposeAsync();
-        obj = null;
     }
+
+    obj = null;
 }
 ```
 
