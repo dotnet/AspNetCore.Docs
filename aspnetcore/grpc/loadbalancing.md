@@ -71,8 +71,8 @@ Performance is important when load balancing. The latency of resolving addresses
 
 #### StaticResolver
 
-`StaticResolver`:
-* Is another resolver available to use with load balancing.
+Another resolver is `StaticResolver`. This resolver:
+
 * Doesn't call an external source. Instead, the client app configures the addresses.
 * Is designed for situations where an app already knows the addresses it calls.
 
@@ -152,6 +152,7 @@ Client-side load balancing is extensible:
 ### Create a custom resolver
 
 A resolver:
+
 * Implements `Resolver` and is created by a `ResolverFactory`. Create a custom resolver by implementing these types.
 * Is responsible for resolving the addresses a load balancer uses.
 * Can optionally provide a service configuration.
