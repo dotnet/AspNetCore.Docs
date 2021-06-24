@@ -333,7 +333,7 @@ The following component:
 
 ::: moniker-end
 
-For more information on component disposal, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable>.
+For more information on component disposal, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable-iasyncdisposable>.
 
 ## Query string and parse parameters
 
