@@ -203,7 +203,11 @@ In the preceding code:
 
 ### Create a custom load balancer
 
-A load balancer implements `LoadBalancer` and is created by a `LoadBalancerFactory`. A load balancer is given addresses from a resolver and creates `Subchannel` instances. The load balancer tracks state about the connection and creates a `SubchannelPicker` that the channel will use to pick addresses when making gRPC calls.
+A load balancer:
+
+* Implements `LoadBalancer` and is created by a `LoadBalancerFactory`. Create a custom load balancer by implementing these types.
+* Is given addresses from a resolver and creates `Subchannel` instances.
+* Tracks state about the connection and creates a `SubchannelPicker` that the channel uses to pick addresses when making gRPC calls.
 
 The `SubchannelsLoadBalancer` is:
 
