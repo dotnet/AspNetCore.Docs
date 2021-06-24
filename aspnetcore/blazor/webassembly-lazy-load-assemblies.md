@@ -168,8 +168,6 @@ The following complete <xref:Microsoft.AspNetCore.Components.Routing.Router> com
 
 `App.razor`:
 
-::: moniker range=">= aspnetcore-5.0"
-
 ```razor
 @using System.Reflection
 @using Microsoft.AspNetCore.Components.Routing
@@ -217,60 +215,6 @@ The following complete <xref:Microsoft.AspNetCore.Components.Routing.Router> com
     }
 }
 ```
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-```razor
-@using System.Reflection
-@using Microsoft.AspNetCore.Components.Routing
-@using Microsoft.AspNetCore.Components.WebAssembly.Services
-@using Microsoft.Extensions.Logging
-@inject LazyAssemblyLoader assemblyLoader
-@inject ILogger<App> Logger
-
-<Router AppAssembly="@typeof(Program).Assembly"
-        AdditionalAssemblies="@lazyLoadedAssemblies" 
-        OnNavigateAsync="@OnNavigateAsync">
-    <Navigating>
-        <div style="padding:20px;background-color:blue;color:white">
-            <p>Loading the requested page&hellip;</p>
-        </div>
-    </Navigating>
-    <Found Context="routeData">
-        <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
-    </Found>
-    <NotFound>
-        <LayoutView Layout="@typeof(MainLayout)">
-            <p>Sorry, there's nothing at this address.</p>
-        </LayoutView>
-    </NotFound>
-</Router>
-
-@code {
-    private List<Assembly> lazyLoadedAssemblies = new List<Assembly>();
-
-    private async Task OnNavigateAsync(NavigationContext args)
-    {
-        try
-        {
-            if (args.Path.EndsWith("/robot"))
-            {
-                var assemblies = await assemblyLoader.LoadAssembliesAsync(
-                    new List<string>() { "GrantImaharaRobotControls.dll" });
-                lazyLoadedAssemblies.AddRange(assemblies);
-            }
-        }
-        catch (Exception ex)
-        {
-            Logger.LogError("Error: {Message}", ex.Message);
-        }
-    }
-}
-```
-
-::: moniker-end
 
 [!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
 
