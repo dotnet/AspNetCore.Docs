@@ -59,7 +59,7 @@ The default implementation of <xref:Microsoft.AspNetCore.Components.ComponentBas
 
 If [`base.SetParametersAsync`](xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A) isn't invoked, developer code can interpret the incoming parameters' values in any way required. For example, there's no requirement to assign the incoming parameters to the properties of the class.
 
-If event handlers are provided in developer code, unhook them on disposal. For more information, see the [Component disposal with `IDisposable` `IAsyncDisposable`](#component-disposal-with-idisposable-iasyncdisposable) section.
+If event handlers are provided in developer code, unhook them on disposal. For more information, see the [Component disposal with `IDisposable` `IAsyncDisposable`](#component-disposal-with-idisposable-and-iasyncdisposable) section.
 
 In the following example, <xref:Microsoft.AspNetCore.Components.ParameterView.TryGetValue%2A?displayProperty=nameWithType> assigns the `Param` parameter's value to `value` if parsing a route parameter for `Param` is successful. When `value` isn't `null`, the value is displayed by the component.
 
@@ -117,7 +117,7 @@ To prevent developer code in <xref:Microsoft.AspNetCore.Components.ComponentBase
 
 While a Blazor app is prerendering, certain actions, such as calling into JavaScript (JS interop), aren't possible. Components may need to render differently when prerendered. For more information, see the [Detect when the app is prerendering](#detect-when-the-app-is-prerendering) section.
 
-If event handlers are provided in developer code, unhook them on disposal. For more information, see the [Component disposal with `IDisposable` `IAsyncDisposable`](#component-disposal-with-idisposable-iasyncdisposable) section.
+If event handlers are provided in developer code, unhook them on disposal. For more information, see the [Component disposal with `IDisposable` `IAsyncDisposable`](#component-disposal-with-idisposable-and-iasyncdisposable) section.
 
 ## After parameters are set (`OnParametersSet{Async}`)
 
@@ -159,7 +159,7 @@ protected override async Task OnParametersSetAsync()
 }
 ```
 
-If event handlers are provided in developer code, unhook them on disposal. For more information, see the [Component disposal with `IDisposable` `IAsyncDisposable`](#component-disposal-with-idisposable-iasyncdisposable) section.
+If event handlers are provided in developer code, unhook them on disposal. For more information, see the [Component disposal with `IDisposable` `IAsyncDisposable`](#component-disposal-with-idisposable-and-iasyncdisposable) section.
 
 For more information on route parameters and constraints, see <xref:blazor/fundamentals/routing>.
 
@@ -205,7 +205,7 @@ Even if you return a <xref:System.Threading.Tasks.Task> from <xref:Microsoft.Asp
 1. The component executes on the server to produce some static HTML markup in the HTTP response. During this phase, <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> aren't called.
 1. When the Blazor script (`blazor.webassembly.js` or `blazor.server.js`) start in the browser, the component is restarted in an interactive rendering mode. After a component is restarted, <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> **are** called because the app isn't in the prerendering phase any longer.
 
-If event handlers are provided in developer code, unhook them on disposal. For more information, see the [Component disposal with `IDisposable` `IAsyncDisposable`](#component-disposal-with-idisposable-iasyncdisposable) section.
+If event handlers are provided in developer code, unhook them on disposal. For more information, see the [Component disposal with `IDisposable` `IAsyncDisposable`](#component-disposal-with-idisposable-and-iasyncdisposable) section.
 
 ## State changes (`StateHasChanged`)
 
@@ -272,37 +272,48 @@ Although the content in this section focuses on Blazor Server and stateful Signa
 
 [!INCLUDE[](~/blazor/includes/prerendering.md)]
 
-## Component disposal with `IDisposable` `IAsyncDisposable`
+## Component disposal with `IDisposable` and `IAsyncDisposable`
 
-If a component implements <xref:System.IDisposable>, the framework calls the [disposal method](/dotnet/standard/garbage-collection/implementing-dispose) when the component is removed from the UI, where unmanaged resources can be released. Disposal can occur at any time, including during [component initialization](#component-initialization-oninitializedasync). The following component implements <xref:System.IDisposable> with the [`@implements`](xref:mvc/views/razor#implements) Razor directive:
+If a component implements <xref:System.IDisposable>, <xref:System.IAsyncDisposable>, or both, the framework calls for unmanaged resource disposal when the component is removed from the UI. Disposal can occur at any time, including during [component initialization](#component-initialization-oninitializedasync).
+
+### Synchronous `IDisposable`
+
+For synchronous disposal tasks, use <xref:System.IDisposable.Dispose%2A?displayProperty=nameWithType>.
+
+The following component:
+
+* Implements <xref:System.IDisposable> with the [`@implements`](xref:mvc/views/razor#implements) Razor directive.
+* Disposes of `obj`, which is an unmanaged type that implements <xref:System.IDisposable>.
+* A null check is performed because `obj` is created in a lifecycle method (not shown).
 
 ```razor
-@using System
 @implements IDisposable
 
 ...
 
 @code {
+    ...
+
     public void Dispose()
     {
-        ...
+        obj?.Dispose();
     }
 }
 ```
 
-If an object requires disposal, a lambda can be used to dispose of the object when <xref:System.IDisposable.Dispose%2A?displayProperty=nameWithType> is called. The following example appears in the <xref:blazor/components/rendering#receiving-a-call-from-something-external-to-the-blazor-rendering-and-event-handling-system> article and demonstrates the use of a lambda expression for the disposal of a <xref:System.Timers.Timer>.
+If a single object requires disposal, a lambda can be used to dispose of the object when <xref:System.IDisposable.Dispose%2A> is called. The following example appears in the <xref:blazor/components/rendering#receiving-a-call-from-something-external-to-the-blazor-rendering-and-event-handling-system> article and demonstrates the use of a lambda expression for the disposal of a <xref:System.Timers.Timer>.
 
 `Pages/CounterWithTimerDisposal1.razor`:
 
 ::: moniker range=">= aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/lifecycle/CounterWithTimerDisposal1.razor?highlight=28)]
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/lifecycle/CounterWithTimerDisposal1.razor?highlight=3,11,28)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/lifecycle/CounterWithTimerDisposal1.razor?highlight=28)]
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/lifecycle/CounterWithTimerDisposal1.razor?highlight=3,11,28)]
 
 ::: moniker-end
 
@@ -322,28 +333,50 @@ If the object is created in a lifecycle method, such as `OnInitialized`/`OnIniti
 
 ::: moniker-end
 
-For asynchronous disposal tasks, use <xref:System.IAsyncDisposable.DisposeAsync%2A?displayProperty=nameWithType> instead of <xref:System.IDisposable.Dispose>. In the following example, `obj` is set in a lifecycle method (not shown), so it's disposed with a `null` check in the <xref:System.IAsyncDisposable.DisposeAsync%2A> method and set to `null`:
+For more information, see:
 
-```csharp
-private {TYPE} obj;
+* [Cleaning up unmanaged resources (.NET documentation)](/dotnet/standard/garbage-collection/unmanaged)
+* [Null-conditional operators ?. and ?[]](/dotnet/csharp/language-reference/operators/member-access-operators#null-conditional-operators--and-)
 
-public async ValueTask DisposeAsync()
-{
-    if (obj is not null)
+### Asynchronous `IAsyncDisposable`
+
+For asynchronous disposal tasks, use <xref:System.IAsyncDisposable.DisposeAsync%2A?displayProperty=nameWithType>.
+
+The following component:
+
+* Implements <xref:System.IAsyncDisposable> with the [`@implements`](xref:mvc/views/razor#implements) Razor directive.
+* Disposes of `obj`, which is an unmanaged type that implements <xref:System.IAsyncDisposable>.
+* A null check is performed because `obj` is created in a lifecycle method (not shown).
+
+```razor
+@implements IAsyncDisposable
+
+...
+
+@code {
+    ...
+
+    public async ValueTask DisposeAsync()
     {
-        await obj.DisposeAsync();
+        if (obj is not null)
+        {
+            await obj.DisposeAsync();
+        }
     }
-
-    obj = null;
 }
 ```
 
-In the preceding example, the `{TYPE}` placeholder is the type of the object that implements <xref:System.IAsyncDisposable>.
+For more information, see:
 
-For more information, see [Implement a DisposeAsync method (.NET documentation)](/dotnet/standard/garbage-collection/implementing-disposeasync).
+* [Cleaning up unmanaged resources (.NET documentation)](/dotnet/standard/garbage-collection/unmanaged)
+* [Null-conditional operators ?. and ?[]](/dotnet/csharp/language-reference/operators/member-access-operators#null-conditional-operators--and-)
+
+### `StateHasChanged`
 
 > [!NOTE]
 > Calling <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> in `Dispose` isn't supported. <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> might be invoked as part of tearing down the renderer, so requesting UI updates at that point isn't supported.
+
+### Event handlers
 
 Unsubscribe event handlers from .NET events. The following [Blazor form](xref:blazor/forms-validation) examples show how to unsubscribe an event handler in the `Dispose` method:
 
@@ -483,6 +516,8 @@ Unsubscribe event handlers from .NET events. The following [Blazor form](xref:bl
 
 ::: moniker-end
 
+### Anonymous functions, methods, and expressions
+
 When [anonymous functions](/dotnet/csharp/programming-guide/statements-expressions-operators/anonymous-functions), methods, or expressions, are used, it isn't necessary to implement <xref:System.IDisposable> and unsubscribe delegates. However, failing to unsubscribe a delegate is a problem **when the object exposing the event outlives the lifetime of the component registering the delegate**. When this occurs, a memory leak results because the registered delegate keeps the original object alive. Therefore, only use the following approaches when you know that the event delegate disposes quickly. When in doubt about the lifetime of objects that require disposal, subscribe a delegate method and properly dispose the delegate as the earlier examples show.
 
 * Anonymous lambda method approach (explicit disposal not required):
@@ -588,7 +623,7 @@ Other reasons why background work items might require cancellation include:
 To implement a cancelable background work pattern in a component:
 
 * Use a <xref:System.Threading.CancellationTokenSource> and <xref:System.Threading.CancellationToken>.
-* On [disposal of the component](#component-disposal-with-idisposable-iasyncdisposable) and at any point cancellation is desired by manually cancelling the token, call [`CancellationTokenSource.Cancel`](xref:System.Threading.CancellationTokenSource.Cancel%2A) to signal that the background work should be cancelled.
+* On [disposal of the component](#component-disposal-with-idisposable-and-iasyncdisposable) and at any point cancellation is desired by manually cancelling the token, call [`CancellationTokenSource.Cancel`](xref:System.Threading.CancellationTokenSource.Cancel%2A) to signal that the background work should be cancelled.
 * After the asynchronous call returns, call <xref:System.Threading.CancellationToken.ThrowIfCancellationRequested%2A> on the token.
 
 In the following example:
