@@ -240,7 +240,7 @@ public class RandomBalancer : SubchannelsLoadBalancer
         public override PickResult Pick(PickContext context)
         {
             // Pick a random subchannel.
-            return _subchannels[Random.Shared.Next(0, _subchannels.Count)];
+            return PickResult.ForSubchannel(_subchannels[Random.Shared.Next(0, _subchannels.Count)]);
         }
     }
 }
