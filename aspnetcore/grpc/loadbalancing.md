@@ -17,6 +17,7 @@ Client-side load balancing is a feature that allows gRPC clients to distribute l
 Client-side load balancing requires:
 
 * .NET 5 or later.
+!<-- TODO: Fix version -->
 * [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client) version XXXX or later.
 
 ## Configure gRPC client-side load balancing
@@ -39,12 +40,11 @@ The resolver is configured using the address a channel is created with. The [URI
 
 A channel doesn't directly call a URI that matches a resolver. Instead, a matching resolver is created and used to resolve the addresses.
 
-For example, `GrpcChannel.ForAddress("dns:///my-example-host")`:
+For example, using `GrpcChannel.ForAddress("dns:///my-example-host")`:
 
 * The `dns` scheme maps to `DnsResolver`. A new instance of that resolver is created for the channel.
-* Resolver makes a DNS query for `my-example-host` and gets two results: `localhost:80` and `localhost:81`.
-* Load balancer uses `localhost:80` and `localhost:81` to create connections and make gRPC calls.
-
+* The resolver makes a DNS query for `my-example-host` and gets two results: `localhost:80` and `localhost:81`.
+* The load balancer uses `localhost:80` and `localhost:81` to create connections and make gRPC calls.
 #### DnsResolver
 
 The `DnsResolver` is designed to get addresses from an external source. DNS resolution is commonly used to load balance over pod instances that have a [Kubernetes headless services](https://kubernetes.io/docs/concepts/services-networking/service/#headless-services).
@@ -62,7 +62,7 @@ The preceding code:
 
 * Configures the created channel with the address `dns:///my-example-host`. The `dns` scheme maps to `DnsResolver`.
 * Doesn't specify a load balancer. The channel defaults to `PickFirstLoadBalancer`.
-* Starts the gRPC call `SayHello`.
+* Starts the gRPC call `SayHello`:
   * `DnsResolver` resolves addresses for the hostname `my-example-host`.
   * `PickFirstLoadBalancer` attempts to connect to one of the resolved addresses.
   * The call is sent to the first address the channel successfully connects to.
@@ -71,7 +71,10 @@ Performance is important when load balancing. The latency of resolving addresses
 
 #### StaticResolver
 
-Another resolver available to use with load balancing is `StaticResolver`. This resolver doesn't call an external source. Instead, the client app configures the addresses. `StaticResolver` is designed for situations where an app already knows the addresses it will call.
+`StaticResolver`:
+* Is another resolver available to use with load balancing.
+* Doesn't call an external source. Instead, the client app configures the addresses.
+* Is designed for situations where an app already knows the addresses it calls.
 
 ```csharp
 var factory = new StaticResolverFactory(addr => new[]
@@ -134,14 +137,17 @@ var response = await client.SayHelloAsync(new HelloRequest { Name = "world" });
 The preceding code:
 
 * Specifies a `RoundRobinLoadBalancer` in the service config.
-* Starts the gRPC call `SayHello`.
+* Starts the gRPC call `SayHello`:
   * `DnsResolver` resolves addresses for the hostname `my-example-host`.
   * `RoundRobinLoadBalancer` attempts to connect to all resolved addresses.
   * gRPC calls are distributed evenly using round-robin logic.
 
 ## Write custom resolvers and load balancers
 
-Client-side load balancing is extensible. It is possible to create a custom resolver by implementing `Resolver` to resolve addresses from a new data source. Or create a custom load balancer by implementing `LoadBalancer` with new load balancing behavior.
+Client-side load balancing is extensible:
+
+* Implement `Resolver` to create a custom resolver and resolve addresses from a new data source.
+* Implement `LoadBalancer` to create a custom load balancer with new load balancing behavior.
 
 ### Create a custom resolver
 
@@ -187,7 +193,7 @@ public class FileResolverFactory : ResolverFactory
 }
 ```
 
-The preceding code:
+In the preceding code:
 
 * `FileResolverFactory` implements `ResolverFactory`. It maps to the `file` scheme and creates `FileResolver` instances.
 * `FileResolver` implements `Resolver`. In `RefreshAsync`:
@@ -199,7 +205,7 @@ The preceding code:
 
 A load balancer implements `LoadBalancer` and is created by a `LoadBalancerFactory`. A load balancer is given addresses from a resolver and creates `Subchannel` instances. The load balancer tracks state about the connection and creates a `SubchannelPicker` that the channel will use to pick addresses when making gRPC calls.
 
-`SubchannelsLoadBalancer` is:
+The `SubchannelsLoadBalancer` is:
 
 * An abstract base class that implements `LoadBalancer`.
 * Manages creating `Subchannel` instances from addresses.
@@ -254,7 +260,7 @@ public class RandomBalancerFactory : LoadBalancerFactory
 }
 ```
 
-The preceding code:
+In the preceding code:
 
 * `RandomBalancerFactory` implements `LoadBalancerFactory`. It maps to the `random` policy name and creates `RandomBalancer` instances.
 * `RandomBalancer` implements `SubchannelsLoadBalancer`. It creates a `RandomPicker` that randomly picks a subchannel.
@@ -263,8 +269,10 @@ The preceding code:
 
 Custom resolvers and load balancers need to be registered with dependency injection (DI) when they are used. There are a couple of options:
 
-* If an app is already using DI, such as an ASP.NET Core website, they can be registered with the existing DI configuration. An <xref:System.IServiceProvider> can then be resolved from DI and passed to the channel using `GrpcChannelOptions.ServiceProvider`.
-* If an app isn't using DI then a <xref:Microsoft.Extensions.DependencyInjection.ServiceCollection> can be created, types registered with it, then create a service provider using <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionContainerBuilderExtensions.BuildServiceProvider*>.
+* If an app is already using DI, such as an ASP.NET Core web app, they can be registered with the existing DI configuration. An <xref:System.IServiceProvider> can be resolved from DI and passed to the channel using `GrpcChannelOptions.ServiceProvider`.
+* If an app isn't using DI then create:
+  * A <xref:Microsoft.Extensions.DependencyInjection.ServiceCollection> with types registered with it.
+  * A service provider using <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionContainerBuilderExtensions.BuildServiceProvider*>.
 
 ```csharp
 var services = new ServiceCollection();
@@ -300,17 +308,17 @@ Network load balancers are a common solution for load balancing because they are
 
 gRPC and HTTP/2 can be effectively load balanced using either an application load balancer proxy or client-side load balancing. Both of these options allow individual gRPC calls to be distributed across available servers. Deciding between proxy and client-side load balancing is an architectural choice. There are pros and cons for each.
 
-* **Proxy** - gRPC calls are sent to the proxy, the proxy makes a load balancing decision, and the gRPC call is sent on to the final endpoint. The proxy is responsible for knowing about endpoints. Using a proxy adds:
+* **Proxy**: gRPC calls are sent to the proxy, the proxy makes a load balancing decision, and the gRPC call is sent on to the final endpoint. The proxy is responsible for knowing about endpoints. Using a proxy adds:
 
   * An additional network hop to gRPC calls.
   * Latency and consumes additional resources.
   * Proxy server must be setup and configured correctly.
 
-* **Client-side load balancing** - The gRPC client makes a load balancing decision when a gRPC call is started. The gRPC call is sent directly to the final endpoint. When using client-side load balancing:
+* **Client-side load balancing**: The gRPC client makes a load balancing decision when a gRPC call is started. The gRPC call is sent directly to the final endpoint. When using client-side load balancing:
 
-  * Client is responsible for knowing about available endpoints and making load balancing decisions.
-  * Additional client configuration required.
-  * High-performance, load balanced gRPC calls that eliminate the need for a proxy.
+  * The client is responsible for knowing about available endpoints and making load balancing decisions.
+  * Additional client configuration is required.
+  * High-performance, load balanced gRPC calls eliminate the need for a proxy.
 
 ## Additional resources
 
