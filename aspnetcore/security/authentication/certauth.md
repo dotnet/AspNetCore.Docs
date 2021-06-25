@@ -311,30 +311,65 @@ private static byte[] StringToByteArray(string hex)
 }
 ```
 
-If your application is reverse proxied by NGINX with the configuration `proxy_set_header ssl-client-cert $ssl_client_escaped_cert` or deployed on Kubernetes using NGINX Ingress, the client certificate will be passed to your application in [URL-encoded form](https://en.wikipedia.org/wiki/Percent-encoding). To use it, decode it as follows:
+If the app is reverse proxied by NGINX with the configuration `proxy_set_header ssl-client-cert $ssl_client_escaped_cert` or deployed on Kubernetes using NGINX Ingress, the client certificate is to the app in [URL-encoded form](https://en.wikipedia.org/wiki/Percent-encoding). To use the certificate, decode it as follows:
+
+::: moniker range=">= aspnetcore-5.0"
+
+In `Startup.ConfigureServices` (`Startup.cs`):
 
 ```csharp
-public void ConfigureServices(IServiceCollection services)
+services.AddCertificateForwarding(options =>
 {
-    services.AddCertificateForwarding(options =>
+    options.CertificateHeader = "ssl-client-cert";
+    options.HeaderConverter = (headerValue) =>
     {
-        options.CertificateHeader = "ssl-client-cert";
-        options.HeaderConverter = (headerValue) =>
+        X509Certificate2 clientCertificate = null;
+
+        if (!string.IsNullOrWhiteSpace(headerValue))
         {
-            X509Certificate2 clientCertificate = null;
+            var certPem = WebUtility.UrlDecode(headerValue);
+            clientCertificate = X509Certificate2.CreateFromPem(certPem);
+        }
 
-            if(!string.IsNullOrWhiteSpace(headerValue))
-            {
-                byte[] bytes = UrlEncodedPemToByteArray(headerValue);
-                clientCertificate = new X509Certificate2(bytes);
-            }
+        return clientCertificate;
+    };
+});
+```
 
-            return clientCertificate;
-        };
-    });
-}
+::: moniker-end
 
-// using System.Net;
+::: moniker range="< aspnetcore-5.0"
+
+Add the namespace for <xref:System.Net?displayProperty=fullName> to the top of `Startup.cs`:
+
+```csharp
+using System.Net;
+```
+
+In `Startup.ConfigureServices`:
+
+```csharp
+services.AddCertificateForwarding(options =>
+{
+    options.CertificateHeader = "ssl-client-cert";
+    options.HeaderConverter = (headerValue) =>
+    {
+        X509Certificate2 clientCertificate = null;
+
+        if (!string.IsNullOrWhiteSpace(headerValue))
+        {
+            var bytes = UrlEncodedPemToByteArray(headerValue);
+            clientCertificate = new X509Certificate2(bytes);
+        }
+
+        return clientCertificate;
+    };
+});
+```
+
+Add the `UrlEncodedPemToByteArray` method:
+
+```csharp
 private static byte[] UrlEncodedPemToByteArray(string urlEncodedBase64Pem)
 {
     var base64Pem = WebUtility.UrlDecode(urlEncodedBase64Pem);
@@ -346,6 +381,8 @@ private static byte[] UrlEncodedPemToByteArray(string urlEncodedBase64Pem)
     return Convert.FromBase64String(base64Cert);
 }
 ```
+
+::: moniker-end
 
 The `Startup.Configure` method then adds the middleware. `UseCertificateForwarding` is called before the calls to `UseAuthentication` and `UseAuthorization`:
 
