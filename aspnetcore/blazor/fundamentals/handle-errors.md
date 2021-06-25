@@ -174,7 +174,7 @@ A component may be removed from the UI, for example, because the user has naviga
 
 If disposal logic may throw exceptions, the app should trap the exceptions using a [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statement with error handling and logging.
 
-For more information on component disposal, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable>.
+For more information on component disposal, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable-and-iasyncdisposable>.
 
 <h3 id="javascript-interop-webassembly">JavaScript interop</h3>
 
@@ -458,7 +458,7 @@ A component may be removed from the UI, for example, because the user has naviga
 
 If the component's `Dispose` method throws an unhandled exception, the exception is fatal to a Blazor Server circuit. If disposal logic may throw exceptions, the app should trap the exceptions using a [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statement with error handling and logging.
 
-For more information on component disposal, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable>.
+For more information on component disposal, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable-and-iasyncdisposable>.
 
 <h3 id="javascript-interop-server">JavaScript interop</h3>
 

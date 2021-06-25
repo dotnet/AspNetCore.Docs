@@ -51,7 +51,7 @@ Here are some of the built-in validation attributes:
 * `[Phone]`: Validates that the property has a telephone number format.
 * `[Range]`: Validates that the property value falls within a specified range.
 * `[RegularExpression]`: Validates that the property value matches a specified regular expression.
-* `[Required]`: Validates that the field is not null. See [`[Required]` attribute](#required-attribute) for details about this attribute's behavior.
+* `[Required]`: Validates that the field is not null. See [`[Required]` attribute](#non-nullable-reference-types-and-required-attribute) for details about this attribute's behavior.
 * `[StringLength]`: Validates that a string property value doesn't exceed a specified length limit.
 * `[Url]`: Validates that the property has a URL format.
 * `[Remote]`: Validates input on the client by calling an action method on the server. See [`[Remote]` attribute](#remote-attribute) for details about this attribute's behavior.

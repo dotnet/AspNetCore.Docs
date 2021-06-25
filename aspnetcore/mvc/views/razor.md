@@ -730,6 +730,12 @@ Razor directive attributes are represented by implicit expressions with reserved
 
 Data binding in components is accomplished with the `@bind` attribute. For more information, see <xref:blazor/components/data-binding>.
 
+### `@bind:culture`
+
+*This scenario only applies to Razor components (.razor).*
+
+Use the `@bind:culture` attribute with the [`@bind`](#bind) attribute to provide a <xref:System.Globalization.CultureInfo?displayProperty=fullName> for parsing and formatting a value. For more information, see <xref:blazor/globalization-localization#globalization>.
+
 ### `@on{EVENT}`
 
 *This scenario only applies to Razor components (.razor).*
