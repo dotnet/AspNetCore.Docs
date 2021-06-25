@@ -116,7 +116,7 @@ A load balancer is specified in a [service config](https://github.com/grpc/grpc/
 | `pick_first`  | `PickFirstLoadBalancerFactory`  | Attempts to connect to addresses until a connection is successfully made. gRPC calls are all made to the first successful connection. |
 | `round_robin` | `RoundRobinLoadBalancerFactory` | Attempts to connect to all addresses. gRPC calls are distributed across all successful connections using [round-robin](https://www.nginx.com/resources/glossary/round-robin-load-balancing/) logic. |
 
-Service config is an abbreviation of service configuration. There are a couple of ways a channel can get a service config with a load balancer configured:
+Service config is an abbreviation of service configuration and is represented by the `ServiceConfig` type. There are a couple of ways a channel can get a service config with a load balancer configured:
 
 * An app can specify a service config when a channel is created using `GrpcChannelOptions.ServiceConfig`.
 * Alternatively, a resolver can resolve a service config for a channel. This feature allows an external source to specify how its callers should perform load balancing. Whether a resolver supports resolving a service config is dependent on the resolver implementation. Disable this feature with `GrpcChannelOptions.DisableResolverServiceConfig`.
