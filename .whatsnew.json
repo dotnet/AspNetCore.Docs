@@ -5,6 +5,13 @@
   "docLinkSettings": {
     "linkFormat": "xref"
   },
+  "navigationOptions": {
+    "maximumNumberOfArticles": 6,
+    "tocParentNode": "What's new",
+    "repoTocFolder": "aspnetcore/whats-new",
+    "indexParentNode": "Find ASP.NET Core docs updates",
+    "repoIndexFolder": "aspnetcore/whats-new"
+  },
   "inclusionCriteria": {
     "additionalMicrosoftOrgs": [
       "ASP.NET"
