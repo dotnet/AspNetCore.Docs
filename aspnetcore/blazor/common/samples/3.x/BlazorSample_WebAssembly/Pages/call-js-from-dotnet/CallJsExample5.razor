@@ -40,5 +40,5 @@
             $"{price.ToString("c")}: {interopResult}";
     }
 
-    public void Dispose() => jsClass.Dispose();
+    public void Dispose() => jsClass?.Dispose();
 }

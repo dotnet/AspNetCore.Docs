@@ -32,5 +32,5 @@
         await jsClass.TickerChanged(stockSymbol, price);
     }
 
-    public void Dispose() => jsClass.Dispose();
+    public void Dispose() => jsClass?.Dispose();
 }

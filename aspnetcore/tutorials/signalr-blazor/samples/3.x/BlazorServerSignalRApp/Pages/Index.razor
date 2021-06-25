@@ -56,6 +56,6 @@
 
     public async ValueTask DisposeAsync()
     {
-        await hubConnection.DisposeAsync();
+        await hubConnection?.DisposeAsync();
     }
 }
