@@ -34,7 +34,7 @@ This document covers low-level details of ASP.NET Core routing. For information 
 The endpoint routing system described in this document applies to ASP.NET Core 3.0 and later. For information on the previous routing system based on <xref:Microsoft.AspNetCore.Routing.IRouter>, select the ASP.NET Core 2.1 version using one of the following approaches:
 
 * The version selector for a previous version.
-* Select [ASP.NET Core 2.1 routing](?view=aspnetcore-2.1).
+* Select [ASP.NET Core 2.1 routing](?preserve-view=true&view=aspnetcore-2.1).
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/routing/samples/3.x) ([how to download](xref:index#how-to-download-a-sample))
 
@@ -1007,7 +1007,7 @@ services.AddMvc(options => options.EnableEndpointRouting = false)
     .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 ```
 
-For more information on <xref:Microsoft.AspNetCore.Routing.IRouter>-based routing, see the [ASP.NET Core 2.1 version of this topic](?view=aspnetcore-2.1).
+For more information on <xref:Microsoft.AspNetCore.Routing.IRouter>-based routing, see the [ASP.NET Core 2.1 version of this topic](?preserve-view=true&view=aspnetcore-2.1).
 
 > [!IMPORTANT]
 > This document covers low-level ASP.NET Core routing. For information on ASP.NET Core MVC routing, see <xref:mvc/controllers/routing>. For information on routing conventions in Razor Pages, see <xref:razor-pages/razor-pages-conventions>.
