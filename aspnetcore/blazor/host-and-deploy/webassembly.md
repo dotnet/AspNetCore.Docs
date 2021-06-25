@@ -37,24 +37,17 @@ Blazor relies on the host to the serve the appropriate compressed files. When us
 * For IIS `web.config` compression configuration, see the [IIS: Brotli and Gzip compression](#brotli-and-gzip-compression) section. 
 * When hosting on static hosting solutions that don't support statically-compressed file content negotiation, such as GitHub Pages, consider configuring the app to fetch and decode Brotli compressed files:
 
-  * Obtain the JavaScript Brotli decoder from the [google/brotli GitHub repository](https://github.com/google/brotli). The decoder file is named `decode.js` and found in the repository's [`js` folder](https://github.com/google/brotli/tree/master/js).
+  * Obtain the JavaScript Brotli decoder from the [google/brotli GitHub repository](https://github.com/google/brotli). The minified decoder file is named `decode.min.js` and found in the repository's [`js` folder](https://github.com/google/brotli/tree/master/js).
   
-    > [!WARNING]
-    > Don't use the minified version of the `decode.js` script (`decode.min.js`) in the [google/brotli GitHub repository](https://github.com/google/brotli) repository. A regression was reported in the `decode.min.js` script at [TypeError in decode.min.js (google/brotli #881)](https://github.com/google/brotli/issues/881). Adopt any of the following approaches:
-    >
-    > * Use the unminified version of the script until the regression is fixed.
-    > * Automatically minify the `decode.js` script at build-time with a third-party minification tool compatible with ASP.NET Core. For more information, see <xref:client-side/bundling-and-minification>.
-    > * Use the [npm package](https://www.npmjs.com/package/brotli).
-    > * Find another JavaScript Brotli decoder to use.
-    >
-    > The example code in this section uses the **unminified** version of the script (`decode.js`).
+    > [!NOTE]
+    > If the minified version of the `decode.js` script (`decode.min.js`) fails, try using the unminified version (`decode.js`) instead.
 
   * Update the app to use the decoder. Change the markup inside the closing `<body>` tag in `wwwroot/index.html` to the following:
   
     ```html
-    <script src="decode.js"></script>
     <script src="_framework/blazor.webassembly.js" autostart="false"></script>
-    <script>
+    <script type="module">
+      import { BrotliDecode } from './decode.min.js';
       Blazor.start({
         loadBootResource: function (type, name, defaultUri, integrity) {
           if (type !== 'dotnetjs' && location.hostname !== 'localhost') {
