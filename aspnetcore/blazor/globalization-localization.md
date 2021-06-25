@@ -317,68 +317,44 @@ In the `wwwroot/index.html` file after Blazor's `<script>` tag and before the cl
 
 ::: moniker-end
 
-In `Program.Main` (`Program.cs`):
+Add the namespaces for <xref:System.Globalization?displayProperty=fullName> and <xref:Microsoft.JSInterop?displayProperty=fullName> to the top of `Program.cs`:
 
-* Add namespaces for <xref:System.Globalization?displayProperty=fullName> and <xref:Microsoft.JSInterop?displayProperty=fullName>.
-* Add Blazor's localization service to the app's service collection with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A>.
-* Use [JS interop](xref:blazor/js-interop/call-javascript-from-dotnet) to call into JS and retrieve the user's culture selection from local storage. If local storage doesn't contain a culture for the user, set a default value.
+```csharp
+using System.Globalization;
+using Microsoft.JSInterop;
+```
 
-Make the following adjustments to `Program.Main`:
+Remove the following line from `Program.Main`:
 
 ```diff
-using System;
-using System.Net.Http;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Text;
-using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-+using System.Globalization;
-+using Microsoft.JSInterop;
+-await builder.Build().RunAsync();
+```
 
-namespace SampleApp
+Replace the preceding line with the following code. The code adds Blazor's localization service to the app's service collection with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A> and uses [JS interop](xref:blazor/js-interop/call-javascript-from-dotnet) to call into JS and retrieve the user's culture selection from local storage. If local storage doesn't contain a culture for the user, the code sets a default value of United States English (`en-US`).
+
+```csharp
+builder.Services.AddLocalization();
+
+var host = builder.Build();
+
+CultureInfo culture;
+var js = host.Services.GetRequiredService<IJSRuntime>();
+var result = await js.InvokeAsync<string>("blazorCulture.get");
+
+if (result != null)
 {
-    public class Program
-    {
-        public static async Task Main(string[] args)
-        {
-            var builder = WebAssemblyHostBuilder.CreateDefault(args);
-            builder.RootComponents.Add<App>("#app");
-
-            builder.Services.AddScoped(
-                sp => new HttpClient 
-                { 
-                    BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
-                });
-
--           await builder.Build().RunAsync();
-+           builder.Services.AddLocalization();
-
-+           var host = builder.Build();
-
-+           CultureInfo culture;
-+           var js = host.Services.GetRequiredService<IJSRuntime>();
-+           var result = await js.InvokeAsync<string>("blazorCulture.get");
-
-+           if (result != null)
-+           {
-+               culture = new CultureInfo(result);
-+           }
-+           else
-+           {
-+               culture = new CultureInfo("en-US");
-+               await js.InvokeVoidAsync("blazorCulture.set", "en-US");
-+           }
-
-+           CultureInfo.DefaultThreadCurrentCulture = culture;
-+           CultureInfo.DefaultThreadCurrentUICulture = culture;
-
-+           await host.RunAsync();
-        }
-    }
+    culture = new CultureInfo(result);
 }
+else
+{
+    culture = new CultureInfo("en-US");
+    await js.InvokeVoidAsync("blazorCulture.set", "en-US");
+}
+
+CultureInfo.DefaultThreadCurrentCulture = culture;
+CultureInfo.DefaultThreadCurrentUICulture = culture;
+
+await host.RunAsync();
 ```
 
 The following `CultureSelector` component shows how to set the user's culture selection into browser local storage via JS interop. The component is placed in the `Shared` folder for use throughout the app.
@@ -508,6 +484,12 @@ If the app isn't configured to process controller actions:
   ```
 
 * Add controller endpoint routing in `Startup.Configure` by calling <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers%2A> on the <xref:Microsoft.AspNetCore.Routing.IEndpointRouteBuilder>:
+
+  ```csharp
+  endpoints.MapControllers();
+  ```
+
+  The following example shows the call to <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints%2A> after the line is added:
 
   ```diff
   app.UseEndpoints(endpoints =>
@@ -643,46 +625,16 @@ By default, the Intermediate Language (IL) Linker configuration for Blazor WebAs
 
 ::: moniker-end
 
-In `Program.Main` (`Program.cs`):
+In `Program.Main` (`Program.cs`), add namespace the namespace for <xref:System.Globalization?displayProperty=fullName> to the top of the file:
 
-* Add namespaces for <xref:System.Globalization?displayProperty=fullName>.
-* Add Blazor's localization service to the app's service collection with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A>.
+```csharp
+using System.Globalization;
+```
 
-Make the following adjustments to `Program.Main`:
+Add Blazor's localization service to the app's service collection with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A> in `Program.Main`:
 
-```diff
-using System;
-using System.Net.Http;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Text;
-using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-+using System.Globalization;
-
-namespace SampleApp
-{
-    public class Program
-    {
-        public static async Task Main(string[] args)
-        {
-            var builder = WebAssemblyHostBuilder.CreateDefault(args);
-            builder.RootComponents.Add<App>("#app");
-
-            builder.Services.AddScoped(
-                sp => new HttpClient 
-                { 
-                    BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
-                });
-
-+           builder.Services.AddLocalization();
-
-            await builder.Build().RunAsync();
-        }
-    }
-}
+```csharp
+builder.Services.AddLocalization();
 ```
 
 ::: zone-end
