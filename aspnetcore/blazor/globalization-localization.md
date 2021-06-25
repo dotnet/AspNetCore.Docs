@@ -32,7 +32,7 @@ For additional general information, see <xref:fundamentals/localization>.
 >
 > In this article, *language* refers to selections made by a user in their browser's settings. The user's language selections are submitted in browser requests in the [`Accept-Language` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Accept-Language). Browser settings usually use the word "language" in the UI.
 >
-> *Culture* pertains to members of .NET and Blazor API. For example, a user's request can include the [`Accept-Language` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Accept-Language) specifying a *language* from the user's perspective, but the app ultimately sets the <xref:System.Globalization.CultureInfo.CurrentCulture> ("**culture**") property from the language that the user requested. API usually uses the word "culture" in its member names.
+> *Culture* pertains to members of .NET and Blazor API. For example, a user's request can include the [`Accept-Language` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Accept-Language) specifying a *language* from the user's perspective, but the app ultimately sets the <xref:System.Globalization.CultureInfo.CurrentCulture> ("culture") property from the language that the user requested. API usually uses the word "culture" in its member names.
 
 ## Globalization
 
@@ -128,9 +128,9 @@ Add a list item to the navigation menu `<ul>` element in `Shared/NavMenu.razor` 
 
 ## Dynamically set the culture from the `Accept-Language` header
 
-The [`Accept-Language` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Accept-Language) is set by the browser and controlled by the user's language preferences in browser settings. In browser settings, a user sets one or more preferred languages in order of preference. The order of preference is used by the browser to set quality values (`q`, 0-1) for each language in the header. The following example specifies United States English, English, and Peruvian Spanish with a preference for United States English or English:
+The [`Accept-Language` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Accept-Language) is set by the browser and controlled by the user's language preferences in browser settings. In browser settings, a user sets one or more preferred languages in order of preference. The order of preference is used by the browser to set quality values (`q`, 0-1) for each language in the header. The following example specifies United States English, English, and Chilean Spanish with a preference for United States English or English:
 
-**Accept-Language**: en-US,en;q=0.9,es-PE;q=0.8
+**Accept-Language**: en-US,en;q=0.9,es-CL;q=0.8
 
 The app's culture is set by matching the first requested language that matches a supported culture of the app.
 
@@ -144,19 +144,19 @@ In `Startup.ConfigureServices` (`Startup.cs`):
 services.AddLocalization();
 ```
 
-Specify the app's supported cultures in `Startup.Configure` (`Startup.cs`) immediately after Routing Middleware is added to the processing pipeline. The following example configures supported cultures for United States English and Peruvian Spanish:
+Specify the app's supported cultures in `Startup.Configure` (`Startup.cs`) immediately after Routing Middleware is added to the processing pipeline. The following example configures supported cultures for United States English and Chilean Spanish:
 
 ```csharp
 app.UseRequestLocalization(new RequestLocalizationOptions()
-    .AddSupportedCultures(new[] { "en-US", "es-PE" })
-    .AddSupportedUICultures(new[] { "en-US", "es-PE" }));
+    .AddSupportedCultures(new[] { "en-US", "es-CL" })
+    .AddSupportedUICultures(new[] { "en-US", "es-CL" }));
 ```
 
 For information on ordering the Localization Middleware in the middleware pipeline of `Startup.Configure`, see <xref:fundamentals/middleware/index#middleware-order>.
 
 ::: zone-end
 
-Use the `CultureExample1` component shown in the [Demonstration component](#demonstration-component) section to study how globalization works. Issue a request with United States English (`en-US`). Switch to Peruvian Spanish (`es-PE`) in the browser's language settings. Request the webpage again.
+Use the `CultureExample1` component shown in the [Demonstration component](#demonstration-component) section to study how globalization works. Issue a request with United States English (`en-US`). Switch to Chilean Spanish (`es-CL`) in the browser's language settings. Request the webpage again.
 
 > [!NOTE]
 > Some browsers force you to use the default language setting for both requests and the browser's own UI settings. This can make changing the language back to one that you understand difficult because all of the setting UI screens might end up in a language that you can't read. A browser such as [Opera](https://www.opera.com/download) is a good choice for testing because it permits you to set a default language for webpage requests but leave the browser's settings UI in your language.
@@ -166,7 +166,7 @@ When the culture is United States English (`en-US`), the rendered component uses
 * **Date**: 6/7/2021 6:45:22 AM
 * **Number**: 1,999.69
 
-When the culture is Peruvian Spanish (`es-PE`), the rendered component uses day/month date formatting (`7/6`), 24-hour time, and period separators in numbers with a comma for the decimal value (`1.999,69`):
+When the culture is Chilean Spanish (`es-CL`), the rendered component uses day/month date formatting (`7/6`), 24-hour time, and period separators in numbers with a comma for the decimal value (`1.999,69`):
 
 * **Date**: 7/6/2021 6:49:38
 * **Number**: 1.999,69
@@ -185,25 +185,27 @@ Set the `BlazorWebAssemblyLoadAllGlobalizationData` property to `true` in the ap
 </PropertyGroup>
 ```
 
-The app's culture can be set in JavaScript when Blazor starts with the `applicationCulture` option passed to `Blazor.start`. The following example configures the app to launch using the United States English (`en-US`) culture:
+The app's culture can be set in JavaScript when Blazor starts with the `applicationCulture` Blazor start option. The following example configures the app to launch using the United States English (`en-US`) culture.
 
-* Don't autostart Blazor by adding `autostart="false"` to the Blazor `<script>` tag.
-* Add the following `<script>` element after the Blazor script loads.
+* In `wwwroot/index.html`, prevent Blazor autostart by adding `autostart="false"` to Blazor's `<script>` tag:
 
-Inside the `<head>` element content in `wwwroot/index.html`:
+  ```html
+  <script src="_framework/blazor.webassembly.js" autostart="false"></script>
+  ```
 
-```html
-<script src="_framework/blazor.webassembly.js" autostart="false"></script>
-<script>
-  Blazor.start({
-    applicationCulture: 'en-US'
-  });
-</script>
-```
+* Add the following `<script>` block after Blazor's `<script>` tag and before the closing `</body>` tag:
+
+  ```html
+  <script>
+    Blazor.start({
+      applicationCulture: 'en-US'
+    });
+  </script>
+  ```
 
 The value for `applicationCulture` must conform to the [BCP-47 language tag format](https://www.rfc-editor.org/info/bcp47). For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
 
-An alternative to setting the culture with `Blazor.Start` is to set the culture in C# code. Set <xref:System.Globalization.CultureInfo.DefaultThreadCurrentCulture?displayProperty=nameWithType> and <xref:System.Globalization.CultureInfo.DefaultThreadCurrentUICulture?displayProperty=nameWithType> in `Program.Main` (`Program.cs`).
+An alternative to setting the culture Blazor's start option is to set the culture in C# code. Set <xref:System.Globalization.CultureInfo.DefaultThreadCurrentCulture?displayProperty=nameWithType> and <xref:System.Globalization.CultureInfo.DefaultThreadCurrentUICulture?displayProperty=nameWithType> in `Program.Main` (`Program.cs`).
 
 Add the <xref:System.Globalization?displayProperty=fullName> namespace to `Program.cs`:
 
@@ -250,7 +252,7 @@ For information on ordering the Localization Middleware in the middleware pipeli
 
 ::: zone-end
 
-Use the `CultureExample1` component shown in the [Demonstration component](#demonstration-component) section to study how globalization works. Issue a request with United States English (`en-US`). Switch to Peruvian Spanish (`es-PE`) in the browser's language settings. Request the webpage again. When the requested language is Peruvian Spanish, the app's culture remains United States English (`en-US`).
+Use the `CultureExample1` component shown in the [Demonstration component](#demonstration-component) section to study how globalization works. Issue a request with United States English (`en-US`). Switch to Chilean Spanish (`es-CL`) in the browser's language settings. Request the webpage again. When the requested language is Chilean Spanish, the app's culture remains United States English (`en-US`).
 
 If the app doesn't require localization, configure the app to support the invariant culture, which is generally based on United States English (`en-US`). Set the `InvariantGlobalization` property to `true` in the app's project file (`.csproj`):
 
@@ -284,7 +286,7 @@ Set the `BlazorWebAssemblyLoadAllGlobalizationData` property to `true` in the pr
 
 The app's culture in a Blazor WebAssembly app is set using the Blazor framework's API. A user's culture selection can be persisted in browser local storage.
 
-Inside the closing `</body>` tag and after the Blazor script of `wwwroot/index.html`, provide JS functions to get and set the user's culture selection with browser local storage:
+In the `wwwroot/index.html` file after Blazor's `<script>` tag and before the closing `</body>` tag, provide JS functions to get and set the user's culture selection with browser local storage:
 
 ```html
 <script>
@@ -405,7 +407,7 @@ The following `CultureSelector` component shows how to set the user's culture se
     private CultureInfo[] supportedCultures = new[]
     {
         new CultureInfo("en-US"),
-        new CultureInfo("es-PE"),
+        new CultureInfo("es-CL"),
     };
 
     private CultureInfo Culture
@@ -462,7 +464,7 @@ Set the app's default and supported cultures with <xref:Microsoft.AspNetCore.Bui
 In `Startup.Configure` immediately after Routing Middleware is added to the processing pipeline:
 
 ```csharp
-var supportedCultures = new[] { "en-US", "es-PE" };
+var supportedCultures = new[] { "en-US", "es-CL" };
 var localizationOptions = new RequestLocalizationOptions()
     .SetDefaultCulture(supportedCultures[0])
     .AddSupportedCultures(supportedCultures)
@@ -482,7 +484,7 @@ Add the following namespaces to the top of the `Pages/_Host.cshtml` file:
 @using Microsoft.AspNetCore.Localization
 ```
 
-Inside the opening `<body>` tag of `Pages/_Host.cshtml`, add the following Razor expression:
+Immediately after the opening `<body>` tag of `Pages/_Host.cshtml`, add the following Razor expression:
 
 ```cshtml
 @{
@@ -570,7 +572,7 @@ The following `CultureSelector` component shows how to perform the initial redir
     private CultureInfo[] supportedCultures = new[]
     {
         new CultureInfo("en-US"),
-        new CultureInfo("es-PE"),
+        new CultureInfo("es-CL"),
     };
 
     protected override void OnInitialized()
@@ -692,7 +694,7 @@ Use [Localization Middleware](xref:fundamentals/localization#localization-middle
 If the app doesn't already support culture selection per the [Dynamically set the culture by user preference](#dynamically-set-the-culture-by-user-preference) section of this article:
 
 * Add localization services to the app with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A>.
-* Specify the app's default and supported cultures in `Startup.Configure` (`Startup.cs`). The following example configures supported cultures for United States English and Peruvian Spanish.
+* Specify the app's default and supported cultures in `Startup.Configure` (`Startup.cs`). The following example configures supported cultures for United States English and Chilean Spanish.
 
 In `Startup.ConfigureServices` (`Startup.cs`):
 
@@ -703,7 +705,7 @@ services.AddLocalization();
 In `Startup.Configure` immediately after Routing Middleware is added to the processing pipeline:
 
 ```csharp
-var supportedCultures = new[] { "en-US", "es-PE" };
+var supportedCultures = new[] { "en-US", "es-CL" };
 var localizationOptions = new RequestLocalizationOptions()
     .SetDefaultCulture(supportedCultures[0])
     .AddSupportedCultures(supportedCultures)
