@@ -317,7 +317,7 @@ If a single object requires disposal, a lambda can be used to dispose of the obj
 
 ::: moniker-end
 
-If the object is created in a lifecycle method, such as `OnInitialized`/`OnInitializedAsync`, check for `null` before calling `Dispose`.
+If the object is created in a lifecycle method, such as [`OnInitialized`/`OnInitializedAsync`](#component-initialization-oninitializedasync), check for `null` before calling `Dispose`.
 
 `Pages/CounterWithTimerDisposal2.razor`:
 
@@ -370,6 +370,15 @@ For more information, see:
 
 * [Cleaning up unmanaged resources (.NET documentation)](/dotnet/standard/garbage-collection/unmanaged)
 * [Null-conditional operators ?. and ?[]](/dotnet/csharp/language-reference/operators/member-access-operators#null-conditional-operators--and-)
+
+### Assignment of `null` to disposed objects
+
+Usually, there's no need to assign `null` to disposed objects after calling <xref:System.IDisposable.Dispose%2A>/<xref:System.IAsyncDisposable.DisposeAsync%2A>. Rare cases for assigning `null` are:
+
+* If the object's type is poorly implemented and doesn't tolerate repeat calls to <xref:System.IDisposable.Dispose%2A>/<xref:System.IAsyncDisposable.DisposeAsync%2A>. All types should allow multiple disposal calls, but not all implementions permit it. If you know that this is the case, assign `null` after disposal to ensure gracefully skipping further calls to <xref:System.IDisposable.Dispose%2A>/<xref:System.IAsyncDisposable.DisposeAsync%2A>.
+* If you find that a long-lived process continues to hold a reference to a disposed object, assigning `null` allows the [garbage collector](/dotnet/standard/garbage-collection/fundamentals) to free the object in spite of the long-lived process holding a reference the object.
+
+These are unusual scenarios. For objects that are implemented correctly and behave normally, there's no point in assigning `null` to disposed objects. In the rare cases where an object must be assigned `null`, we recommend clearly documenting the reason in code and seeking a solution that prevents the need for it.
 
 ### `StateHasChanged`
 
