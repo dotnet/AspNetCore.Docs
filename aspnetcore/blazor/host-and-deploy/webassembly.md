@@ -42,10 +42,17 @@ Blazor relies on the host to the serve the appropriate compressed files. When us
     > [!NOTE]
     > If the minified version of the `decode.js` script (`decode.min.js`) fails, try using the unminified version (`decode.js`) instead.
 
-  * Update the app to use the decoder. Change the markup inside the closing `</body>` tag in `wwwroot/index.html` to the following:
-  
+  * Update the app to use the decoder.
+    
+    In the `wwwroot/index.html` file, set `autostart` to `false` on Blazor's `<script>` tag:
+    
     ```html
     <script src="_framework/blazor.webassembly.js" autostart="false"></script>
+    ```
+    
+    After Blazor's `<script>` tag and inside the closing `</body>` tag, add the following JavaScript code `<script>` block:
+  
+    ```html
     <script type="module">
       import { BrotliDecode } from './decode.min.js';
       Blazor.start({
