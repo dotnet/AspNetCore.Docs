@@ -50,7 +50,7 @@ Blazor relies on the host to the serve the appropriate compressed files. When us
     <script src="_framework/blazor.webassembly.js" autostart="false"></script>
     ```
     
-    After Blazor's `<script>` tag and inside the closing `</body>` tag, add the following JavaScript code `<script>` block:
+    After Blazor's `<script>` tag and before the closing `</body>` tag, add the following JavaScript code `<script>` block:
   
     ```html
     <script type="module">
