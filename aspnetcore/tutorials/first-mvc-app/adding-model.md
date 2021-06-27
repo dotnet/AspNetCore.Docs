@@ -85,7 +85,7 @@ From the **Project** menu, select **Manage NuGet Packages**.
 In the **Search** field in the upper right:
 
 * Enter `Microsoft.EntityFrameworkCore.SQLite`.
-* Press the **Return** key to search.
+* Press the <kbd>Return</kbd> key to search.
 * Select the matching NuGet package and select the **Add Package** button.
 
 ![Add Entity Framework Core NuGet Package](~/tutorials/first-mvc-app-mac/adding-model/_static/add-nuget-packages.png)
@@ -118,7 +118,7 @@ Use the scaffolding tool to produce `Create`, `Read`, `Update`, and `Delete` (CR
 
 # [Visual Studio](#tab/visual-studio)
 
-In **Solution Explorer**, right-click the *Controllers* folder **> Add > New Scaffolded Item**.
+In **Solution Explorer**, right-click the *Controllers* folder and select **Add > New Scaffolded Item**.
 
 ![view of above step](adding-model/_static/add_controller5.png)
 
@@ -132,7 +132,7 @@ Complete the **Add MVC Controller with views, using Entity Framework** dialog:
 * In the **Data context class** row, select the **+** (plus) sign.
   * In the **Add Data Context** dialog, the class name *MvcMovie.Data.MvcMovieContext* is generated.
   * Select **Add**.
-* **Views** and **Controller name** : Keep the default.
+* **Views** and **Controller name**: Keep the default.
 * Select **Add**.
 
 ![Add Data context keep defaults](adding-model/_static/dc5_last_step.png)
@@ -219,7 +219,7 @@ Scaffolding updates the following:
 Scaffolding creates the following:
 
 * A movies controller: *Controllers/MoviesController.cs*
-* Razor view files for Create, Delete, Details, Edit, and Index pages: `Views/Movies/*.cshtml`
+* Razor view files for **Create**, **Delete**, **Details**, **Edit**, and **Index** pages: `Views/Movies/*.cshtml`
 * A database context class: *Data/MvcMovieContext.cs*
 
 The automatic creation of these files and file updates are known as *scaffolding*.
@@ -349,7 +349,7 @@ Scaffolding added a connection string to the *appsettings.json* file:
 
 For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the `ConnectionString` key from the *appsettings.json* file.
 
-### The InitialCreate class
+### The `InitialCreate` class
 
 Examine the *Migrations/{timestamp}_InitialCreate.cs* migration file:
 
@@ -376,7 +376,7 @@ Test the **Edit**, **Details**, and **Delete** pages.
 
 <a name="strongly-typed-models-and-the--keyword"></a>
 
-## Strongly typed models and the @model keyword
+## Strongly typed models and the `@model` directive
 
 Earlier in this tutorial, you saw how a controller can pass data or objects to a view using the `ViewData` dictionary. The `ViewData` dictionary is a dynamic object that provides a convenient late-bound way to pass information to a view.
 
@@ -396,9 +396,9 @@ The `id` can be passed in with a query string, as in the following example:
 
 `https://localhost:5001/movies/details?id=1`
 
-The `id` parameter is defined as a [nullable type](/dotnet/csharp/programming-guide/nullable-types/index) (int?) in cases when the `id` value isn't provided.
+The `id` parameter is defined as a [nullable type](/dotnet/csharp/programming-guide/nullable-types/index) (`int?`) in cases when the `id` value isn't provided.
 
-A [lambda expression](/dotnet/articles/csharp/programming-guide/statements-expressions-operators/lambda-expressions) is passed in to <xref:System.Data.Entity.QueryableExtensions.FirstOrDefaultAsync%2A>to select movie entities that match the route data or query string value.
+A [lambda expression](/dotnet/articles/csharp/programming-guide/statements-expressions-operators/lambda-expressions) is passed in to the <xref:System.Data.Entity.QueryableExtensions.FirstOrDefaultAsync%2A> method to select movie entities that match the route data or query string value.
 
 ```csharp
 var movie = await _context.Movie
