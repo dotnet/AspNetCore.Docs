@@ -86,13 +86,13 @@ In the **Search** field in the upper right:
 
 * Enter `Microsoft.EntityFrameworkCore.SQLite`.
 * Press the <kbd>Return</kbd> key to search.
-* Select the matching NuGet package and select the <kbd>Add Package</kbd> button.
+* Select the matching NuGet package and select the **Add Package** button.
 
 ![Add Entity Framework Core NuGet Package](~/tutorials/first-mvc-app-mac/adding-model/_static/add-nuget-packages.png)
 
-The **Select Projects** dialog displays, with the `MvcMovie` project selected. Select the <kbd>Ok</kbd> button.
+The **Select Projects** dialog displays, with the `MvcMovie` project selected. Select the **Ok** button.
 
-A **License Acceptance** dialog displays. Review the licenses, then select the <kbd>Accept</kbd> button.
+A **License Acceptance** dialog displays. Review the licenses, then select the **Accept** button.
 
 Repeat the above steps to install the following NuGet packages:
 
@@ -118,7 +118,7 @@ Use the scaffolding tool to produce `Create`, `Read`, `Update`, and `Delete` (CR
 
 # [Visual Studio](#tab/visual-studio)
 
-In the **Solution Explorer**, right-click the *Controllers* folder **> Add > New Scaffolded Item**.
+In **Solution Explorer**, right-click the *Controllers* folder and select **Add > New Scaffolded Item**.
 
 ![view of above step](adding-model/_static/add_controller5.png)
 
