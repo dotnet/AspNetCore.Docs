@@ -7,11 +7,6 @@ set -e
 #     $2 is the <github.repository>
 #     $3 is the savedir
 
-declare -r STARTDATE=$(date "+%F" -d "$(date +'%Y-%m-01') -1 month");
-declare -r ENDDATE=$(date "+%F" -d "$STARTDATE +1 month -1 day");
-
-echo "From $STARTDATE to $ENDDATE"
-
 while getopts o:r:s: option
 do
 case "${option}"
@@ -25,6 +20,4 @@ done
 dotnet whatsnew \
     --owner $OWNER \
     --repo $REPO \
-    --startdate $STARTDATE \
-    --enddate $ENDDATE \
     --savedir $SAVEDIR
