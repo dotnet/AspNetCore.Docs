@@ -508,4 +508,4 @@ To satisfy the preceding requirements, make the following changes:
 For more information on building ASP.NET Core web APIs, see the following resources:
 
 * [YouTube version of this article](https://www.youtube.com/watch?v=7uJt_sOenyo&feature=youtu.be)
-* [Create web APIs with ASP.NET Core](https://docs.microsoft.com/aspnet/core/web-api/index?view=aspnetcore-3.0)
+* [Create web APIs with ASP.NET Core](../../../../../web-api/index.md?view=aspnetcore-3.0)
