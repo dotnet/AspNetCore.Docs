@@ -182,14 +182,14 @@ Benefits of ASP.NET Core SPA with JavaScript Frameworks, in addition to the clie
 
 To get started, see:
 
-* [Use the Angular project template with ASP.NET Core](xref:/client-side/spa/angular)
-* [Use the React project template with ASP.NET Core](xref:/client-side/spa/react)
-* [Use the React-with-Redux project template with ASP.NET Core](xref:/client-side/spa/react-with-redux)
+* [Use the Angular project template with ASP.NET Core](xref:client-side/spa/angular)
+* [Use the React project template with ASP.NET Core](xref:client-side/spa/react)
+* [Use the React-with-Redux project template with ASP.NET Core](xref:client-side/spa/react-with-redux)
 
 ## Next steps
 
 For more information, see:
 
-* Blazor hosting models: Server vs WebAssembly](xref:/blazor/hosting-models)
-* Provide an API for your web UI app: Compare gRPC services with HTTP APIS and SignalR (xref:/aspnet/core/grpc/comparison)
-* Prerender and integrate ASP.NET Core Razor components (xref:/blazor/components/prerendering-and-integration)
+* [Blazor hosting models: Server vs WebAssembly](xref:blazor/hosting-models)
+* [Provide an API for your web UI app: Compare gRPC services with HTTP APIS and SignalR](xref:aspnet/core/grpc/comparison)
+* [Prerender and integrate ASP.NET Core Razor components](xref:blazor/components/prerendering-and-integration)
