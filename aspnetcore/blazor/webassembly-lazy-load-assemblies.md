@@ -5,7 +5,7 @@ description: Discover how to lazy load assemblies in ASP.NET Core Blazor WebAsse
 monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/24/2021
+ms.date: 07/01/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/webassembly-lazy-load-assemblies
 ---
@@ -96,6 +96,8 @@ While loading assemblies, which can take several seconds, the <xref:Microsoft.As
 * Add an [`@using`](xref:mvc/views/razor#using) directive for the <xref:Microsoft.AspNetCore.Components.Routing?displayProperty=fullName> namespace.
 * Add a `<Navigating>` tag to the component with markup to display during page transition events.
 
+In the `App` component (`App.razor`):
+
 ```razor
 ...
 @using Microsoft.AspNetCore.Components.Routing
@@ -115,14 +117,20 @@ While loading assemblies, which can take several seconds, the <xref:Microsoft.As
 
 The <xref:Microsoft.AspNetCore.Components.Routing.NavigationContext> object passed to the <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> callback contains a <xref:Microsoft.AspNetCore.Components.Routing.NavigationContext.CancellationToken> that's set when a new navigation event occurs. The <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> callback must throw when this cancellation token is set to avoid continuing to run the <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> callback on a outdated navigation.
 
-If a user navigates to Route A and then immediately to Route B, the app shouldn't continue running the <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> callback for Route A:
+If a user navigates to an endpoint but then immediately navigates to a new endpoint, the app shouldn't continue running the <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> callback for the first endpoint.
+
+In the following `App` component example:
+
+* The cancellation token is passed in the call to `PostAsJsonAsync`, which can cancel the POST if the user navigates away from the `/about` endpoint.
+* The cancellation token is set during a product prefetch operation if the user navigates away from the `/store` endpoint.
+
+`App.razor`:
 
 ```razor
 @inject HttpClient Http
 @inject ProductCatalog Products
 
-<Router AppAssembly="@typeof(Program).Assembly" 
-    OnNavigateAsync="@OnNavigateAsync">
+<Router AppAssembly="@typeof(Program).Assembly" OnNavigateAsync="@OnNavigateAsync">
     ...
 </Router>
 
@@ -132,7 +140,8 @@ If a user navigates to Route A and then immediately to Route B, the app shouldn'
         if (context.Path == "/about") 
         {
             var stats = new Stats = { Page = "/about" };
-            await Http.PostAsJsonAsync("api/visited", stats, context.CancellationToken);
+            await Http.PostAsJsonAsync("api/visited", stats, 
+                context.CancellationToken);
         }
         else if (context.Path == "/store")
         {
