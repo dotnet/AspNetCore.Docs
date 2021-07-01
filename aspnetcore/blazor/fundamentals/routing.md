@@ -375,7 +375,7 @@ For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet>.
 
 ::: moniker range=">= aspnetcore-5.0"
 
-### User interaction with `<Navigating>` content
+## User interaction with `<Navigating>` content
 
 The <xref:Microsoft.AspNetCore.Components.Routing.Router> component can indicate to the user that a page transition is occurring.
 
