@@ -981,7 +981,7 @@ In the preceding example:
 * `Notifier` invokes the component's `OnNotify` method outside of Blazor's synchronization context. `InvokeAsync` is used to switch to the correct context and queue a render. For more information, see <xref:blazor/components/rendering>.
 * The component implements <xref:System.IDisposable>. The `OnNotify` delegate is unsubscribed in the `Dispose` method, which is called by the framework when the component is disposed. For more information, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable-and-iasyncdisposable>.
 
-## Use \@key to control the preservation of elements and components
+## Use `@key` to control the preservation of elements and components
 
 When rendering a list of elements or components and the elements or components subsequently change, Blazor must decide which of the previous elements or components can be retained and how model objects should map to them. Normally, this process is automatic and can be ignored, but there are cases where you may want to control the process.
 
@@ -1045,7 +1045,7 @@ Other collection updates exhibit the same behavior when the [`@key`][5] directiv
 > [!IMPORTANT]
 > Keys are local to each container element or component. Keys aren't compared globally across the document.
 
-### When to use \@key
+### When to use `@key`
 
 Typically, it makes sense to use [`@key`][5] whenever a list is rendered (for example, in a [`foreach`](/dotnet/csharp/language-reference/keywords/foreach-in) block) and a suitable value exists to define the [`@key`][5].
 
@@ -1074,13 +1074,90 @@ If an `person` instance changes, the [`@key`][5] attribute directive forces Blaz
 
 This is useful to guarantee that no UI state is preserved when the collection changes within a subtree.
 
-### When not to use \@key
+### Scope of `@key`
+
+The [`@key`][5] attribute directive isn't globally scoped. The directive is only scoped to its own siblings within its parent.
+
+Consider the following example. The `first` and `second` keys are compared against each other within the same scope of the outer `<div>` element:
+
+```razor
+<div>
+    <div @key="first">...</div>
+    <div @key="second">...</div>
+</div>
+```
+
+However, the following example demonstrates `first` and `second` keys in their own scopes, unrelated to each other and without influence on each other. Each [`@key`][5] scope only applies to its parent `<div>` element, not across the parent `<div>` elements:
+
+```razor
+<div>
+    <div @key="first">...</div>
+</div>
+<div>
+    <div @key="second">...</div>
+</div>
+```
+
+For the `Details` component shown earlier, the following examples render `person` data within the same [`@key`][5] scope. The following examples demonstrate typical use cases for [`@key`][5]:
+
+```razor
+<div>
+    @foreach (var person in people)
+    {
+        <Details @key="person" Data="@person.Data" />
+    }
+</div>
+```
+
+```razor
+@foreach (var person in people)
+{
+    <div @key="person">
+        <Details Data="@person.Data" />
+    </div>
+}
+```
+
+```razor
+<ol>
+    @foreach (var person in people)
+    {
+        <li @key="person">
+            <Details Data="@person.Data" />
+        </li>
+    }
+</ol>
+```
+
+The following examples only scope [`@key`][5] to the `Details` component instances, not across them. Therefore, `person` data for each member of the `people` collection is **not** keyed on each `person` instance across the rendered `Details` components. Avoid the following patterns when using [`@key`][5]:
+
+```razor
+@foreach (var person in people)
+{
+    <div>
+        <Details @key="person" Data="@person.Data" />
+    </div>
+}
+```
+
+```razor
+<ol>
+    @foreach (var person in people)
+    {
+        <li>
+            <Details @key="person" Data="@person.Data" />
+        </li>
+    }
+</ol>
+```
+
+### When not to use `@key`
 
 There's a performance cost when rendering with [`@key`][5]. The performance cost isn't large, but only specify [`@key`][5] if preserving the element or component benefits the app.
 
 Even if [`@key`][5] isn't used, Blazor preserves child element and component instances as much as possible. The only advantage to using [`@key`][5] is control over *how* model instances are mapped to the preserved component instances, instead of Blazor selecting the mapping.
 
-### Values to use for \@key
+### Values to use for `@key`
 
 Generally, it makes sense to supply one of the following values for [`@key`][5]:
 
