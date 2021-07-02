@@ -4,12 +4,13 @@ no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cook
 Run the following .NET CLI commands:
 
 ```dotnetcli
-dotnet tool install --global dotnet-ef && \
-dotnet tool install --global dotnet-aspnet-codegenerator && \
-dotnet add package Microsoft.EntityFrameworkCore.Design && \
-dotnet add package Microsoft.EntityFrameworkCore.SQLite && \
-dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design && \
+dotnet tool install --global dotnet-ef
+dotnet tool install --global dotnet-aspnet-codegenerator
+dotnet add package Microsoft.EntityFrameworkCore.Design
+dotnet add package Microsoft.EntityFrameworkCore.SQLite
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
 dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+
 ```
 
 The preceding commands add:
