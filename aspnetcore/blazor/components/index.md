@@ -1076,7 +1076,7 @@ This is useful to guarantee that no UI state is preserved when the collection ch
 
 ### Scope of `@key`
 
-The [`@key`][5] attribute directive isn't globally scoped. The directive is only scoped to its own siblings within its parent.
+The [`@key`][5] attribute directive is scoped to its own siblings within its parent.
 
 Consider the following example. The `first` and `second` keys are compared against each other within the same scope of the outer `<div>` element:
 
@@ -1087,7 +1087,7 @@ Consider the following example. The `first` and `second` keys are compared again
 </div>
 ```
 
-However, the following example demonstrates `first` and `second` keys in their own scopes, unrelated to each other and without influence on each other. Each [`@key`][5] scope only applies to its parent `<div>` element, not across the parent `<div>` elements:
+The following example demonstrates `first` and `second` keys in their own scopes, unrelated to each other and without influence on each other. Each [`@key`][5] scope only applies to its parent `<div>` element, not across the parent `<div>` elements:
 
 ```razor
 <div>
