@@ -1098,7 +1098,7 @@ The following example demonstrates `first` and `second` keys in their own scopes
 </div>
 ```
 
-For the `Details` component shown earlier, the following examples render `person` data within the same [`@key`][5] scope. The following examples demonstrate typical use cases for [`@key`][5]:
+For the `Details` component shown earlier, the following examples render `person` data within the same [`@key`][5] scope and demonstrate typical use cases for [`@key`][5]:
 
 ```razor
 <div>
