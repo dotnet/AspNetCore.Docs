@@ -1129,7 +1129,7 @@ For the `Details` component shown earlier, the following examples render `person
 </ol>
 ```
 
-The following examples only scope [`@key`][5] to the `Details` component instances, not across them. Therefore, `person` data for each member of the `people` collection is **not** keyed on each `person` instance across the rendered `Details` components. Avoid the following patterns when using [`@key`][5]:
+The following examples only scope [`@key`][5] to the `<div>` or `<li>` element that surrounds each `Details` component instance. Therefore, `person` data for each member of the `people` collection is **not** keyed on each `person` instance across the rendered `Details` components. Avoid the following patterns when using [`@key`][5]:
 
 ```razor
 @foreach (var person in people)
