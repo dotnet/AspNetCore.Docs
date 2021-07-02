@@ -2,14 +2,11 @@
 @using System.Timers
 @implements IDisposable
 
-<ol>
-    @foreach (var person in people)
-    {
-        <li>
-            <Details Data="@person.Data" />
-        </li>
-    }
-</ol>
+@foreach (var person in people)
+{
+    <Details Data="@person.Data" />
+    <br>
+}
 
 @code {
     private Timer timer = new Timer(3000);
