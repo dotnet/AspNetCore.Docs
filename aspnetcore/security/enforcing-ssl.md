@@ -470,7 +470,7 @@ See [this GitHub comment](https://github.com/dotnet/aspnetcore/issues/32361#issu
 
 ### Trust the certificate with other distros
 
-See [this issue](https://github.com/dotnet/aspnetcore/issues/32842).
+See [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/32842).
 
 ## Trust HTTPS certificate from Windows Subsystem for Linux
 
