@@ -158,7 +158,7 @@ This page reads and displays related data in the following ways:
 
 The instructors page shows data from three different tables. A view model is needed that includes three properties representing the three tables.
 
-Create *SchoolViewModels/InstructorIndexData.cs* with the following code:
+Create *Models/SchoolViewModels/InstructorIndexData.cs* with the following code:
 
 [!code-csharp[](intro/samples/cu50/Models/SchoolViewModels/InstructorIndexData.cs)]
 
