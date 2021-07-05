@@ -2,7 +2,7 @@
 title: Choose an ASP.NET Core UI
 author: wadepickett
 description: Understand when to use the various ASP.NET Core web UI technologies Microsoft provides and supports.
-ms.author: wadepickett
+ms.author: wpickett
 ms.date: 06/29/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/choose-web-ui-stack
@@ -94,7 +94,7 @@ Razor Pages benefits, in addition to the server rendering benefits previously li
   * Groups of related pages can be kept in their own namespace and directory.
 
 
-To get started with your first ASP.NET Core Razor Pages app, see [Get started with Razor Pages](xref:/tutorials/razor-pages/razor-pages-start). For a complete overview of ASP.NET Core Razor Pages, its architecture, and benefits,  [Get started with Razor Pages](xref:/tutorials/razor-pages)
+To get started with your first ASP.NET Core Razor Pages app, see [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start). For a complete overview of ASP.NET Core Razor Pages, its architecture, and benefits,  [Get started with Razor Pages](xref:tutorials/razor-pages)
 
 ### ASP.NET MVC
 
@@ -106,7 +106,7 @@ MVC benefits, in addition to the server rendering benefits previously listed:
 * Clear [separation of concerns](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#separation-of-concerns) for maximum flexibility.
 * The Model-View-Controller separation of responsibilities ensures that the business model can evolve without being tightly coupled to low-level implementation details.
 
-To get started with your first ASP.NET Core MVC app, see [Get started with MVC](xref:/tutorials/first-mvc-app/start-mvc). For a complete overview of ASP.NET Core MVC, its architecture and benefits, see [Overview of ASP.NET Core MVC](xref:/aspnet/core/mvc/overview)
+To get started with your first ASP.NET Core MVC app, see [Get started with MVC](xref:tutorials/first-mvc-app/start-mvc). For a complete overview of ASP.NET Core MVC, its architecture and benefits, see [Overview of ASP.NET Core MVC](xref:mvc/overview)
 
 ## Choose a client rendered ASP.NET Core solution
 
@@ -153,7 +153,7 @@ Blazor Server benefits:
   * Access to secrets, such as an access key used for API calls to Azure storage.
 * Uses a token-based security model, rather than using cookies that may or may not be enabled on the browser.
 
-To get started with your first ASP.NET Core Blazor Server app, see [Get started with Blazor](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro). For a complete overview of ASP.NET Core Blazor Server, its architecture and benefits, see [Introduction to ASP.NET Core Blazor](xref:/blazor).
+To get started with your first ASP.NET Core Blazor Server app, see [Get started with Blazor](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro). For a complete overview of ASP.NET Core Blazor Server, its architecture and benefits, see [Introduction to ASP.NET Core Blazor](xref:blazor).
 
 ### ASP.NET Core MVC plus hosted Blazor WebAssembly
 
@@ -166,7 +166,7 @@ Choose ASP.NET Core MVC plus Blazor WebAssembly when these benefits best fit you
 	* Improves the perceived load time of the app while interactivity is being set up.
 * Add islands of interactivity to existing views (pages), using the component tag helper.
 
-To get started with ASP.NET Core MVC plus Blazor WebAssembly, see [Prerender and integrate ASP.NET Core Razor components](xref:/blazor/components/prerendering-and-integration).
+To get started with ASP.NET Core MVC plus Blazor WebAssembly, see [Prerender and integrate ASP.NET Core Razor components](xref:blazor/components/prerendering-and-integration).
 
 ### ASP.NET Core Single Page Application (SPA) with JavaScript Frameworks such as Angular and React
 
@@ -191,5 +191,5 @@ To get started, see:
 For more information, see:
 
 * [Blazor hosting models: Server vs WebAssembly](xref:blazor/hosting-models)
-* [Provide an API for your web UI app: Compare gRPC services with HTTP APIS and SignalR](xref:aspnet/core/grpc/comparison)
+* [Provide an API for your web UI app: Compare gRPC services with HTTP APIS and SignalR](xref:grpc/comparison)
 * [Prerender and integrate ASP.NET Core Razor components](xref:blazor/components/prerendering-and-integration)
