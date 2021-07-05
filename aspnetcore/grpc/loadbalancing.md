@@ -154,7 +154,7 @@ The preceding code:
 
 ## Configure channel credentials
 
-A channel must know whether gRPC calls are sent using [transport security](grpc/security#transport-security) or not. `http` and `https` are no longer part of the address, the scheme now specifies a resolver, so `ChannelCredentials` must be configured on channel options when using load balancing.
+A channel must know whether gRPC calls are sent using [transport security](xref:grpc/security#transport-security) or not. `http` and `https` are no longer part of the address, the scheme now specifies a resolver, so `ChannelCredentials` must be configured on channel options when using load balancing.
 
 * `ChannelCredentials.SecureSsl` - gRPC calls are secured with [Transport Layer Security (TLS)](https://tools.ietf.org/html/rfc5246). Equivalent to an `https` address.
 * `ChannelCredentials.Insecure` - gRPC calls don't use transport security. Equivalent to an `http` address.
