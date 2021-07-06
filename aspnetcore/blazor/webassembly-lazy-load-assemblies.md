@@ -5,7 +5,7 @@ description: Discover how to lazy load assemblies in ASP.NET Core Blazor WebAsse
 monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/01/2021
+ms.date: 07/06/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/webassembly-lazy-load-assemblies
 ---
@@ -18,13 +18,24 @@ Blazor WebAssembly app startup performance can be improved by deferring the load
 
 ## Project file
 
-Mark assemblies for lazy loading in the app's project file (`.csproj`) using the `BlazorWebAssemblyLazyLoad` item. Use the assembly name with the `.dll` extension. The Blazor framework prevents the assemblies from loading at app launch. The following example marks the `GrantImaharaRobotControls.dll` assembly for lazy loading. If an assembly that's marked for lazy loading has dependencies, they must also be marked for lazy loading.
+Mark assemblies for lazy loading in the app's project file (`.csproj`) using the `BlazorWebAssemblyLazyLoad` item. Use the assembly name with the `.dll` extension. The Blazor framework prevents the assemblies from loading at app launch.
 
 ```xml
 <ItemGroup>
   <BlazorWebAssemblyLazyLoad Include="GrantImaharaRobotControls.dll" />
 </ItemGroup>
 ```
+
+Place one `BlazorWebAssemblyLazyLoad` item for each assembly. If an assembly  has dependencies, they must also be marked for lazy loading. The following example marks the `GrantImaharaRobotControls.dll` assembly and its dependency assembly, `RobotControlLogging.dll`, for lazy loading.
+
+```xml
+<ItemGroup>
+  <BlazorWebAssemblyLazyLoad Include="GrantImaharaRobotControls.dll" />
+  <BlazorWebAssemblyLazyLoad Include="RobotControlLogging.dll" />
+</ItemGroup>
+```
+
+XXXXXXXXXXXXXXXXXXXXX DOES ORDER MATTER FOR DEPENDENT ASSEMBLIES?
 
 ## `Router` component
 
@@ -106,8 +117,7 @@ The <xref:Microsoft.AspNetCore.Components.WebAssembly.Services.LazyAssemblyLoade
 * Loads assemblies into the runtime executing on WebAssembly in the browser.
 
 ```csharp
-await AssemblyLoader.LoadAssembliesAsync(
-    new List<string>() { "{LIST OF ASSEMBLIES}" });
+await AssemblyLoader.LoadAssembliesAsync(new[] { "{LIST OF ASSEMBLIES}" });
 ```
 
 The `{LIST OF ASSEMBLIES}` placeholder in the preceding code is the comma-separated list of assembly filenames, including their `.dll` file extensions.
@@ -156,6 +166,110 @@ To rectify this:
 
 ## Complete example
 
+Create a robot controls demonstration assembly as a [Razor class library](xref:blazor/components/class-libraries) for the example in this section:
+
+1. Create a new ASP.NET Core class library project:
+
+   * Visual Studio: **Create a solution** > **Create a new project** > **Razor Class Library**. Name the project `GrantImaharaRobotControls`.
+   * Visual Studio Code/.NET CLI: Execute `dotnet new razorclasslib -o GrantImaharaRobotControls` from a command prompt. The `-o|--output` option creates a folder for the solution and names the project `GrantImaharaRobotControls`.
+
+1. The example component presented later in this section uses a [Blazor form](xref:blazor/forms-validation). Add a package reference to the RCL project for [`Microsoft.AspNetCore.Components.Forms`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Forms).
+
+1. Create a `HandGesture` class in the RCL with a `ThumbUp` method that hypothetically makes a robot perform a thumbs-up gesture. The method accepts an argument for the side, `Left` or `Right`, stored in an [`enum`](/dotnet/csharp/language-reference/builtin-types/enum). The method returns `true` on success.
+
+   `HandGesture.cs`:
+
+   ```csharp
+   using Microsoft.Extensions.Logging;
+
+   namespace GrantImaharaRobotControls
+   {
+       public static class HandGesture
+       {
+           public static bool ThumbUp(Axis axis, ILogger logger)
+           {
+               logger.LogInformation("Thumb up gesture. Axis: {Axis}", axis);
+
+               // Code to make robot perform gesture
+
+               return true;
+           }
+       }
+
+       public enum Axis { Left, Right }
+   }
+   ```
+
+1. Add the following component to the root of the RCL project. The component permits the user to submit a left or right hand thumb-up gesture request.
+
+   `Robot.razor`:
+
+   ```razor
+   @page "/robot"
+   @using Microsoft.AspNetCore.Components.Forms
+   @using Microsoft.Extensions.Logging
+   @inject ILogger<Robot> Logger
+
+   <h1>Robot</h1>
+
+   <EditForm Model="@robotModel" OnValidSubmit="@HandleValidSubmit">
+       <InputRadioGroup @bind-Value="robotModel.AxisSelection">
+           @foreach (var entry in (GrantImaharaRobotControls.Axis[])Enum
+               .GetValues(typeof(GrantImaharaRobotControls.Axis)))
+           {
+               <InputRadio Value="entry" />
+               <text>&nbsp;</text>@entry<br>
+           }
+       </InputRadioGroup>
+
+       <button type="submit">Submit</button>
+   </EditForm>
+
+   <p>
+       @message
+   </p>
+
+   @code {
+       private RobotModel robotModel = new() { AxisSelection = Axis.Left };
+       private string message;
+
+       private void HandleValidSubmit()
+       {
+           Logger.LogInformation("HandleValidSubmit called");
+
+           var result = HandGesture.ThumbUp(robotModel.AxisSelection, Logger);
+
+           message = $"ThumbUp returned {result} at {DateTime.Now}.";
+       }
+
+       public class RobotModel
+       {
+           public Axis AxisSelection { get; set; }
+       }
+   }
+   ```
+
+Create a Blazor WebAssembly app to demonstrate lazy loading of the RCL's assembly:
+
+1. Create the Blazor WebAssembly app in Visual Studio, Visual Studio Code, or via a command prompt with the .NET CLI. Name the project `LazyLoadTest`.
+
+1. Create a project reference for the `GrantImaharaRobotControls` RCL:
+
+   * Visual Studio: Add the `GrantImaharaRobotControls` RCL project to the solution (**Add** > **Existing Project**). Select **Add** > **Project Reference** to add a project reference for the `GrantImaharaRobotControls` RCL.
+   * Visual Studio Code/.NET CLI: Execute `dotnet add reference {PATH}` in a command shell from the project's folder. The `{PATH}` placeholder is the path to the RCL project.
+
+1. Build and run the app. For the default page that loads the `Index` component (`Pages/Index.razor`), the developer tool's Network tab loads the RCL's assembly `GrantImaharaRobotControls.dll` although the `Index` component makes no use of the assembly:
+
+XXXXXXXXXXXXXXX IMAGE HERE
+
+Configure the app to lazy load the `GrantImaharaRobotControls.dll` assembly:
+
+```xml
+<ItemGroup>
+  <BlazorWebAssemblyLazyLoad Include="GrantImaharaRobotControls.dll" />
+</ItemGroup>
+```
+
 The following <xref:Microsoft.AspNetCore.Components.Routing.Router> component demonstrates loading the `GrantImaharaRobotControls.dll` assembly when the user navigates to `/robot`. During page transitions, a styled message is displayed to the user.
 
 The following example also provides the list of additional assemblies to load to the `AdditionalAssemblies` parameter of the `Router` component, which results in the router searching the assemblies for routable components in those assemblies. For more information, see <xref:blazor/fundamentals/routing#route-to-components-from-multiple-assemblies>.
@@ -198,7 +312,7 @@ The following example also provides the list of additional assemblies to load to
             if (args.Path.EndsWith("/robot"))
             {
                 var assemblies = await AssemblyLoader.LoadAssembliesAsync(
-                    new List<string>() { "GrantImaharaRobotControls.dll" });
+                    new[] { "GrantImaharaRobotControls.dll" });
                 lazyLoadedAssemblies.AddRange(assemblies);
             }
         }
@@ -211,6 +325,14 @@ The following example also provides the list of additional assemblies to load to
 ```
 
 [!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
+
+Build and run the app again. For the default page that loads the `Index` component (`Pages/Index.razor`), the developer tool's Network tab indicates that the RCL's assembly (`GrantImaharaRobotControls.dll`) doesn't load for the `Index` component:
+
+XXXXXXXXXXXXXXX IMAGE HERE
+
+If the `Robot` component from the RCL is requested at `https://localhost:5001/robot` in the browser, the `GrantImaharaRobotControls.dll` assembly is loaded and the `Robot` component is rendered:
+
+XXXXXXXXXXXXXXX IMAGE HERE
 
 ## Troubleshoot
 
