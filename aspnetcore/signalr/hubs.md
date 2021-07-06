@@ -122,7 +122,7 @@ To make calls to specific clients, use the properties of the `Clients` object. I
 
 * `SendMessage` sends a message to all connected clients, using `Clients.All`.
 * `SendMessageToCaller` sends a message back to the caller, using `Clients.Caller`.
-* `SendMessageToGroups` sends a message to all clients in the `SignalR Users` group.
+* `SendMessageToGroup` sends a message to all clients in the `SignalR Users` group.
 
 [!code-csharp[Send messages](hubs/sample/hubs/chathub.cs?name=HubMethods)]
 
