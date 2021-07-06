@@ -467,6 +467,11 @@ See [Configure trust of HTTPS certificate using Firefox browser](#trust-ff-ba) i
 ### Trust the certificate with Fedora 34
 
 See [this GitHub comment](https://github.com/dotnet/aspnetcore/issues/32361#issuecomment-837111639).
+
+### Trust the certificate with other distros
+
+See [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/32842).
+
 ## Trust HTTPS certificate from Windows Subsystem for Linux
 
 The [Windows Subsystem for Linux (WSL)](/windows/wsl/about) generates an HTTPS self-signed development certificate. To configure the Windows certificate store to trust the WSL certificate:
