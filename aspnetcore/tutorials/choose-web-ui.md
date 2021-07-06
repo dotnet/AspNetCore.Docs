@@ -3,7 +3,7 @@ title: Choose an ASP.NET Core UI
 author: wadepickett
 description: Understand when to use the various ASP.NET Core web UI technologies Microsoft provides and supports.
 ms.author: wpickett
-ms.date: 06/29/2021
+ms.date: 06/30/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/choose-web-ui-stack
 ---
@@ -94,7 +94,7 @@ Razor Pages benefits, in addition to the server rendering benefits previously li
   * Groups of related pages can be kept in their own namespace and directory.
 
 
-To get started with your first ASP.NET Core Razor Pages app, see [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start). For a complete overview of ASP.NET Core Razor Pages, its architecture, and benefits,  [Get started with Razor Pages](xref:tutorials/razor-pages)
+To get started with your first ASP.NET Core Razor Pages app, see [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start). For a complete overview of ASP.NET Core Razor Pages, its architecture, and benefits,  [Get started with Razor Pages](xref:tutorials/razor-pages/)
 
 ### ASP.NET MVC
 
@@ -153,7 +153,7 @@ Blazor Server benefits:
   * Access to secrets, such as an access key used for API calls to Azure storage.
 * Uses a token-based security model, rather than using cookies that may or may not be enabled on the browser.
 
-To get started with your first ASP.NET Core Blazor Server app, see [Get started with Blazor](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro). For a complete overview of ASP.NET Core Blazor Server, its architecture and benefits, see [Introduction to ASP.NET Core Blazor](xref:blazor).
+To get started with your first ASP.NET Core Blazor Server app, see [Get started with Blazor](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro). For a complete overview of ASP.NET Core Blazor Server, its architecture and benefits, see [Introduction to ASP.NET Core Blazor](xref:blazor/).
 
 ### ASP.NET Core MVC plus hosted Blazor WebAssembly
 
