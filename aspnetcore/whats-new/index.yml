@@ -15,7 +15,7 @@ landingContent:
       - linkListType: whats-new
         links:
           - text: June 2021
-            url: 2021-06.md
+            url: 21-06.md
           - text: May 2021
             url: 2021-05.md
           - text: April 2021
