@@ -21,9 +21,9 @@ Use the following flowchart to select an ASP.NET Core web UI technology:
 
 ## Choose server rendered UI or client rendered UI
 
-There are two general approaches to building modern web UI:
+There are two general approaches to building modern web UI with ASP.NET Core:
 
-* Apps that render UI on the server.
+* Apps that render UI from the server.
 * Apps that render UI on the client in the browser.
 
 There are benefits and drawbacks to consider for either approach. A hybrid approach is also possible. For example, most of the web UI is rendered on the server, and client rendered pages are added as needed.
@@ -41,7 +41,6 @@ Benefits:
 * Flexibility of access to server resources, in a protected environment. For example:
   * Database access.
   * Access to secrets, such as an access key used for API calls to Azure storage.
-* Uses a token-based security model, rather than using cookies.
 
 Examples of server rendered web UI apps:
 
@@ -52,16 +51,16 @@ Examples of server rendered web UI apps:
 Drawbacks:
 
 * The cost of compute and memory use are concentrated on the server, rather than each client.
-* Rich interactivity isn't instant: Rich interactive-driven changes are best generated on the client, rather than requiring a round trip to the server to generate an updated page.
+* User interactions require a round trip to the server to generate UI updates.
 
 ### When to choose a client rendered UI approach
 
-A client rendered web UI app dynamically renders UI on the client, generating and updating the page on the client.
+A client rendered app dynamically renders web UI on the client, directly updating the browser DOM as necessary.
 
 Benefits:
 
 * Takes advantage of the capabilities of the user’s device.
-* Allows for rich interactivity that is instant, without requiring a round trip to the server. UI event handling and logic runs locally on the user's device with minimal latency. Choose a client rendered application if your app's requirements include rich functionality that goes beyond what typical HTML forms offer.
+* Allows for rich interactivity that is instant, without requiring a round trip to the server. UI event handling and logic runs locally on the user's device with minimal latency. Choose a client rendered application if your app's requirements include rich user interactions.
 * Supports incremental updates, saving partially completed forms or documents without the user having to select a button to submit a form.
 * Can be designed to run in a disconnected mode. Updates to the client-side model that are eventually synchronized back to the server once a connection is re-established.
 
@@ -73,7 +72,7 @@ Examples of client rendered web UI:
 
 Drawbacks:
 
-* Code for the logic has to be downloaded to the client, adding to the initial load time.
+* Code for the logic has to be downloaded and executed on the client, adding to the initial load time.
 * Uses cookies rather than a Token based security model. Cookies may or may not be enabled on the user's browser.
 * Client requirements may exclude user's who have low-end devices, older browser versions, or low-bandwidth connections.
 
@@ -96,7 +95,7 @@ Razor Pages benefits, in addition to the server rendering benefits previously li
 
 To get started with your first ASP.NET Core Razor Pages app, see [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start). For a complete overview of ASP.NET Core Razor Pages, its architecture and benefits, see: [Introduction to Razor Pages in ASP.NET Core](xref:razor-pages/index)
 
-### ASP.NET MVC
+### ASP.NET Core MVC
 
 ASP.NET MVC renders UI on the server and uses a Model-View-Controller (MVC) architectural pattern. The MVC pattern separates an application into three main groups of components: Models, Views, and Controllers. User requests are routed to a Controller.The Controller is responsible for working with the Model to perform user actions and, or retrieve results of queries. The Controller chooses the View to display to the user, and provides it with any Model data it requires.
 
@@ -112,7 +111,7 @@ To get started with your first ASP.NET Core MVC app, see [Get started with MVC](
 
 The following section briefly explains the ASP.NET Core web UI client rendered models available and directs you to the next steps to get started.
 
-### ASP.NET Core Blazor WebAssembly
+### Blazor
 
 Blazor WebAssembly is a [single-page app (SPA) framework](/dotnet/architecture/modern-web-apps-azure/choose-between-traditional-web-and-single-page-apps) for building interactive client-side web apps that run in the browser on a [WebAssembly](https://webassembly.org/)-based .NET runtime (*Blazor WebAssembly*). Blazor WebAssembly uses open web standards without plugins or recompiling code into other languages. Blazor WebAssembly works in all modern web browsers, including mobile browsers.
 
@@ -174,7 +173,7 @@ To get started with ASP.NET Core MVC plus Blazor WebAssembly, see [Prerender and
 
 ### ASP.NET Core Single Page Application (SPA) with JavaScript Frameworks such as Angular and React
 
-Build client-side logic for ASP.NET Core apps using popular JavaScript frameworks, like [Angular](https://angular.io/) or [React](https://facebook.github.io/react/).  ASP.NET Core provides project templates for Angular, React, and React plus Redux.
+Build client-side logic for ASP.NET Core apps using popular JavaScript frameworks, like [Angular](https://angular.io/) or [React](https://facebook.github.io/react/).  ASP.NET Core provides project templates for Angular and React.
 
 Benefits of ASP.NET Core SPA with JavaScript Frameworks, in addition to the client rendering benefits previously listed:
 
@@ -188,7 +187,6 @@ To get started, see:
 
 * [Use the Angular project template with ASP.NET Core](xref:spa/angular)
 * [Use the React project template with ASP.NET Core](xref:spa/react)
-* [Use the React-with-Redux project template with ASP.NET Core](xref:spa/react-with-redux)
 
 ## Next steps
 
