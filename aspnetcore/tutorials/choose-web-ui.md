@@ -65,17 +65,17 @@ Benefits:
 * Supports incremental updates, saving partially completed forms or documents without the user having to select a button to submit a form.
 * Can be designed to run in a disconnected mode. Updates to the client-side model that are eventually synchronized back to the server once a connection is re-established.
 
-Drawbacks:
-
-* Code for the logic has to be downloaded to the client, adding to the initial load time.
-* Uses cookies rather than a Token based security model. Cookies may or may not be enabled on the user's browser.
-* Client requirements may exclude user's who have low-end devices, older browser versions, or low-bandwidth connections.
-
 Examples of client rendered web UI:
 
 * An interactive dashboard.
 * An app featuring drag-and-drop functionality
 * A responsive and collaborative social app.
+
+Drawbacks:
+
+* Code for the logic has to be downloaded to the client, adding to the initial load time.
+* Uses cookies rather than a Token based security model. Cookies may or may not be enabled on the user's browser.
+* Client requirements may exclude user's who have low-end devices, older browser versions, or low-bandwidth connections.
 
 ## Choose a server rendered ASP.NET Core UI solution
 
