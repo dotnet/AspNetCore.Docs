@@ -9,7 +9,7 @@ uid: tutorials/choose-web-ui
 ---
 # Choose an ASP.NET Core web UI
 
-ASP.NET Core is a complete end to end UI framework.  You choose which functionalities to combine that fit your web UI app needs.
+ASP.NET Core is a complete end to end UI framework. You choose which functionalities to combine that fit your web UI app needs.
 
 Start by determining if your web UI app will primarily benefit from pre-rendering UI on the server, or rendering UI at the client browser. Then review the server rendered or client rendered ASP.NET Core project types to find which best fit your apps needs. 
 
@@ -26,7 +26,7 @@ There are two general approaches to building modern web UI:
 * Apps that render UI on the server.
 * Apps that render UI on the client in the browser.
 
-There are benefits and drawbacks to consider for either approach. A hybrid approach is also possible.  For example, most of the web UI is rendered on the server, and client rendered pages are added as needed.
+There are benefits and drawbacks to consider for either approach. A hybrid approach is also possible. For example, most of the web UI is rendered on the server, and client rendered pages are added as needed.
 
 ### When to choose a server rendered UI approach
 
@@ -79,7 +79,7 @@ Drawbacks:
 
 ## Choose a server rendered ASP.NET Core UI solution
 
-The following section briefly explains the ASP.NET Core web UI server rendered models available and directs next steps to get started.  ASP.NET Core Razor Pages and ASP.NET Core MVC are server-based frameworks for building web apps with .NET.
+The following section briefly explains the ASP.NET Core web UI server rendered models available and directs next steps to get started. ASP.NET Core Razor Pages and ASP.NET Core MVC are server-based frameworks for building web apps with .NET.
 
 ### ASP.NET Core Razor Pages
 
@@ -87,18 +87,18 @@ Razor Pages is a page-based model that is easy to get started with. UI and busin
 
 Razor Pages benefits, in addition to the server rendering benefits previously listed:
 
-* Quickly build and update UI.  What you need to code for the page is kept with the page, while keeping UI and business logic concerns separate.
+* Quickly build and update UI. What you need to code for the page is kept with the page, while keeping UI and business logic concerns separate.
 * Testable and scales to large apps.
 * Keep your ASP.NET Core pages organized in a simpler way:
-  * All view (page) specific logic and page properties (view model) can be kept together in their own namespace and directory.  
+  * All view (page) specific logic and page properties (view model) can be kept together in their own namespace and directory.
   * Groups of related pages can be kept in their own namespace and directory.
 
 
-To get started with your first ASP.NET Core Razor Pages app, see [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start). For a complete overview of ASP.NET Core Razor Pages, its architecture, and benefits,  [Introduction to Razor Pages in ASP.NET Core](xref:razor-pages/index)
+To get started with your first ASP.NET Core Razor Pages app, see [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start). For a complete overview of ASP.NET Core Razor Pages, its architecture and benefits, see: [Introduction to Razor Pages in ASP.NET Core](xref:razor-pages/index)
 
 ### ASP.NET MVC
 
-ASP.NET MVC renders UI on the server and uses a Model-View-Controller (MVC) architectural pattern. The MVC pattern separates an application into three main groups of components: Models, Views, and Controllers. User requests are routed to a Controller.  The Controller is responsible for working with the Model to perform user actions and, or retrieve results of queries. The Controller chooses the View to display to the user, and provides it with any Model data it requires.
+ASP.NET MVC renders UI on the server and uses a Model-View-Controller (MVC) architectural pattern. The MVC pattern separates an application into three main groups of components: Models, Views, and Controllers. User requests are routed to a Controller.The Controller is responsible for working with the Model to perform user actions and, or retrieve results of queries. The Controller chooses the View to display to the user, and provides it with any Model data it requires.
 
 MVC benefits, in addition to the server rendering benefits previously listed:
 
@@ -114,7 +114,7 @@ The following section briefly explains the ASP.NET Core web UI client rendered m
 
 ### ASP.NET Core Blazor WebAssembly
 
-Blazor WebAssembly is a [single-page app (SPA) framework](/dotnet/architecture/modern-web-apps-azure/choose-between-traditional-web-and-single-page-apps) for building interactive client-side web apps with .NET. Blazor WebAssembly uses open web standards without plugins or recompiling code into other languages. Blazor WebAssembly works in all modern web browsers, including mobile browsers.
+Blazor WebAssembly is a [single-page app (SPA) framework](/dotnet/architecture/modern-web-apps-azure/choose-between-traditional-web-and-single-page-apps) for building interactive client-side web apps that run in the browser on a [WebAssembly](https://webassembly.org/)-based .NET runtime (*Blazor WebAssembly*). Blazor WebAssembly uses open web standards without plugins or recompiling code into other languages. Blazor WebAssembly works in all modern web browsers, including mobile browsers.
 
 Running .NET code inside web browsers is made possible by [WebAssembly](https://webassembly.org) (abbreviated `wasm`). WebAssembly is a compact bytecode format optimized for fast download and maximum execution speed. WebAssembly is an open web standard and supported in web browsers without plugins.
 
@@ -126,6 +126,7 @@ Benefits:
   * Accelerate app development.
   * Reduce build pipeline complexity.
   * Simplify maintenance.
+  * Leverage the existing .NET ecosystem of [.NET libraries](/dotnet/standard/class-libraries).
   * Let developers understand and work on both client-side and server-side code.
 * Reusable, sharable UI components: Blazor apps are composed of reusable web UI components implemented using C#, HTML, and CSS. Both client and server code  are written in C#, allowing you to share code and libraries.
 * Blazor works in all modern web browsers, including mobile browsers. Blazor uses open web standards without plug-ins or code transpilation.
@@ -138,9 +139,11 @@ Benefits:
   * [GrapeCity](https://www.grapecity.com/componentone/blazor-ui-controls)
   * [jQWidgets](https://www.htmlelements.com/blazor/), and others.
 
+To get started with your first ASP.NET Core Blazor WebAssembly app, see [Tooling for ASP.NET Core Blazor](xref:blazor/tooling). For a complete overview of ASP.NET Core Blazor WebAssembly, its architecture and benefits, see [Overview of Blazor WebAssembly](xref:blazor/index#blazor-webassembly)
+
 ### ASP.NET Core Blazor Server
 
-ASP.NET Core Blazor Server has the advantage of direct access to server resources, while providing model for building rich, interactive, and composable user interfaces in C#. Blazor Server components are UI elements such as a page, dialog, or data entry form, that handle client-side web UI interactions.  The client-side web UI interactions are handled over a websocket connection, and can span multiple connections to increase speed. Blazor components keep track of the state of the client-side DOM and efficiently apply updates to only the components that need it.
+ASP.NET Core Blazor Server has the advantage of direct access to server resources, while providing model for building rich, interactive, and composable user interfaces in C#. Blazor Server components are UI elements such as a page, dialog, or data entry form, that handle client-side web UI interactions. The client-side web UI interactions are handled over a websocket connection, and can span multiple connections to increase speed. Blazor components keep track of the state of the client-side DOM and efficiently apply updates to only the components that need it.
 
 Blazor Server benefits:
 
@@ -148,6 +151,7 @@ Blazor Server benefits:
 * Share server-side and client-side app logic written in .NET.
 * Render the UI as HTML and CSS for wide browser support, including mobile browsers.
 * Share app logic across server and client.
+* Leverage the existing .NET ecosystem of [.NET libraries](/dotnet/standard/class-libraries).
 * Flexibility of access to server resources, in a protected environment. For example:
   * Database access.
   * Access to secrets, such as an access key used for API calls to Azure storage.
@@ -157,7 +161,7 @@ To get started with your first ASP.NET Core Blazor Server app, see [Get started 
 
 ### ASP.NET Core MVC plus hosted Blazor WebAssembly
 
-MVC and Blazor are both part of the ASP.NET Core framework and are designed to be used together.  Razor components can be integrated into Razor Pages and MVC apps in a hosted Blazor WebAssembly solution. When the page or view is rendered, components can be prerendered at the same time.
+MVC and Blazor are both part of the ASP.NET Core framework and are designed to be used together. Razor components can be integrated into Razor Pages and MVC apps in a hosted Blazor WebAssembly solution. When the page or view is rendered, components can be prerendered at the same time.
 
 Choose ASP.NET Core MVC plus Blazor WebAssembly when these benefits best fit your Web UI app needs:
 
