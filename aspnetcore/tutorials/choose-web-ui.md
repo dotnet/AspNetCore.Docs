@@ -128,7 +128,7 @@ Benefits:
   * Simplify maintenance.
   * Leverage the existing .NET ecosystem of [.NET libraries](/dotnet/standard/class-libraries).
   * Let developers understand and work on both client-side and server-side code.
-* Reusable, sharable UI components: Blazor apps are composed of reusable web UI components implemented using C#, HTML, and CSS. Both client and server code  are written in C#, allowing you to share code and libraries.
+* Reusable, sharable UI components: Blazor apps are composed of reusable web UI components implemented using C#, HTML, and CSS. Both client and server code are written in C#, allowing you to share code and libraries.
 * Blazor works in all modern web browsers, including mobile browsers. Blazor uses open web standards without plug-ins or code transpilation.
 * Quickly get productive with Blazor reusable UI components from top component vendors like:
   * [Telerik](https://www.telerik.com/blazor-ui)
@@ -139,7 +139,7 @@ Benefits:
   * [GrapeCity](https://www.grapecity.com/componentone/blazor-ui-controls)
   * [jQWidgets](https://www.htmlelements.com/blazor/), and others.
 
-To get started with your first ASP.NET Core Blazor WebAssembly app, see [Tooling for ASP.NET Core Blazor](xref:blazor/tooling). For a complete overview of ASP.NET Core Blazor WebAssembly, its architecture and benefits, see [Overview of Blazor WebAssembly](xref:blazor/index#blazor-webassembly)
+To get started with your first ASP.NET Core Blazor WebAssembly app, see [Tooling for ASP.NET Core Blazor](xref:blazor/tooling). For a complete overview of ASP.NET Core Blazor WebAssembly, its architecture and benefits, see [Overview of Blazor WebAssembly](xref:blazor/index#blazor-webassembly).
 
 ### ASP.NET Core Blazor Server
 
