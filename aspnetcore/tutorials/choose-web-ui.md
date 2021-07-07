@@ -5,7 +5,7 @@ description: Understand when to use the various ASP.NET Core web UI technologies
 ms.author: wpickett
 ms.date: 06/30/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
-uid: fundamentals/choose-web-ui-stack
+uid: tutorials/choose-web-ui
 ---
 # Choose an ASP.NET Core web UI
 
@@ -94,7 +94,7 @@ Razor Pages benefits, in addition to the server rendering benefits previously li
   * Groups of related pages can be kept in their own namespace and directory.
 
 
-To get started with your first ASP.NET Core Razor Pages app, see [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start). For a complete overview of ASP.NET Core Razor Pages, its architecture, and benefits,  [Get started with Razor Pages](xref:tutorials/razor-pages/)
+To get started with your first ASP.NET Core Razor Pages app, see [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start). For a complete overview of ASP.NET Core Razor Pages, its architecture, and benefits,  [Introduction to Razor Pages in ASP.NET Core](xref:razor-pages/index)
 
 ### ASP.NET MVC
 
@@ -153,7 +153,7 @@ Blazor Server benefits:
   * Access to secrets, such as an access key used for API calls to Azure storage.
 * Uses a token-based security model, rather than using cookies that may or may not be enabled on the browser.
 
-To get started with your first ASP.NET Core Blazor Server app, see [Get started with Blazor](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro). For a complete overview of ASP.NET Core Blazor Server, its architecture and benefits, see [Introduction to ASP.NET Core Blazor](xref:blazor/).
+To get started with your first ASP.NET Core Blazor Server app, see [Get started with Blazor](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro). For a complete overview of ASP.NET Core Blazor Server, its architecture and benefits, see [Introduction to ASP.NET Core Blazor](xref:blazor/index).
 
 ### ASP.NET Core MVC plus hosted Blazor WebAssembly
 
@@ -182,9 +182,9 @@ Benefits of ASP.NET Core SPA with JavaScript Frameworks, in addition to the clie
 
 To get started, see:
 
-* [Use the Angular project template with ASP.NET Core](xref:client-side/spa/angular)
-* [Use the React project template with ASP.NET Core](xref:client-side/spa/react)
-* [Use the React-with-Redux project template with ASP.NET Core](xref:client-side/spa/react-with-redux)
+* [Use the Angular project template with ASP.NET Core](xref:spa/angular)
+* [Use the React project template with ASP.NET Core](xref:spa/react)
+* [Use the React-with-Redux project template with ASP.NET Core](xref:spa/react-with-redux)
 
 ## Next steps
 
