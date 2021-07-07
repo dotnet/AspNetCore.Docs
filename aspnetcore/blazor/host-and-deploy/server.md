@@ -47,7 +47,7 @@ Blazor works best when using WebSockets as the SignalR transport due to lower la
 
 #### Azure SignalR Service
 
-We recommend using the [Azure SignalR Service](xref:signalr/scale#azure-signalr-service) for Blazor Server apps. The service allows for scaling up a Blazor Server app to a large number of concurrent SignalR connections. In addition, the SignalR Service's global reach and high-performance data centers significantly aid in reducing latency due to geography.
+We recommend using the [Azure SignalR Service](xref:signalr/scale#azure-signalr-service) for Blazor Server apps. The service works in conjunction with the app's Blazor hub for scaling up a Blazor Server app to a large number of concurrent SignalR connections. In addition, the SignalR Service's global reach and high-performance data centers significantly aid in reducing latency due to geography.
 
 > [!IMPORTANT]
 > When [WebSockets](https://wikipedia.org/wiki/WebSocket) are disabled, Azure App Service simulates a real-time connection using HTTP Long Polling. HTTP Long Polling is noticeably slower than running with WebSockets enabled, which doesn't use polling to simulate a client-server connection.
@@ -58,30 +58,31 @@ We recommend using the [Azure SignalR Service](xref:signalr/scale#azure-signalr-
 >
 > * [What is Azure SignalR Service?](/azure/azure-signalr/signalr-overview)
 > * [Performance guide for Azure SignalR Service](/azure-signalr/signalr-concept-performance#performance-factors)
+> * [Publish an ASP.NET Core SignalR app to Azure App Service](/aspnet/core/signalr/publish-to-azure-web-app)
 
 ### Configuration
 
 To configure an app for the Azure SignalR Service, the app must support *sticky sessions*, where clients are [redirected back to the same server when prerendering](xref:blazor/hosting-models#connection-to-the-server). The `ServerStickyMode` option or configuration value is set to `Required`. Typically, an app creates the configuration using **_ONE_** of the following approaches:
 
-   * `Startup.ConfigureServices`:
-  
-     ```csharp
-     services.AddSignalR().AddAzureSignalR(options =>
-     {
-         options.ServerStickyMode = 
-             Microsoft.Azure.SignalR.ServerStickyMode.Required;
-     });
-     ```
+* `Startup.ConfigureServices`:
 
-   * Configuration (use **_ONE_** of the following approaches):
-  
-     * In `appsettings.json`:
+  ```csharp
+  services.AddSignalR().AddAzureSignalR(options =>
+  {
+      options.ServerStickyMode = 
+      Microsoft.Azure.SignalR.ServerStickyMode.Required;
+  });
+  ```
 
-       ```json
-       "Azure:SignalR:StickyServerMode": "Required"
-       ```
+* Configuration (use **_ONE_** of the following approaches):
 
-     * The app service's **Configuration** > **Application settings** in the Azure portal (**Name**: `Azure__SignalR__StickyServerMode`, **Value**: `Required`). This approach is adopted for the app automatically if you [provision the Azure SignalR Service](#provision-the-azure-signalr-service).
+  * In `appsettings.json`:
+
+    ```json
+    "Azure:SignalR:StickyServerMode": "Required"
+    ```
+
+  * The app service's **Configuration** > **Application settings** in the Azure portal (**Name**: `Azure__SignalR__StickyServerMode`, **Value**: `Required`). This approach is adopted for the app automatically if you [provision the Azure SignalR Service](#provision-the-azure-signalr-service).
 
 ### Provision the Azure SignalR Service
 
