@@ -40,18 +40,18 @@ At the end of this tutorial, you'll have a working todo list app.
 
 Create a new Blazor app named `TodoList` in a command shell:
 
-::: zone pivot="webassembly"
-
-```dotnetcli
-dotnet new blazorwasm -o TodoList
-```
-
-::: zone-end
-
 ::: zone pivot="server"
 
 ```dotnetcli
 dotnet new blazorserver -o TodoList
+```
+
+::: zone-end
+
+::: zone pivot="webassembly"
+
+```dotnetcli
+dotnet new blazorwasm -o TodoList
 ```
 
 ::: zone-end

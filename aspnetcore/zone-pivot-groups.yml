@@ -14,7 +14,7 @@ groups:
   title: Blazor Hosting Model
   prompt: Choose a Blazor hosting model
   pivots:
-    - id: webassembly
-      title: Blazor WebAssembly
     - id: server
       title: Blazor Server
+    - id: webassembly
+      title: Blazor WebAssembly
