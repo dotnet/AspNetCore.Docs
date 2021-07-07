@@ -108,6 +108,12 @@ Streaming calls can be used with gRPC retries, but there are important considera
 
 For more information, see [When retries are valid](#when-retries-are-valid).
 
+### Retry backoff delay
+
+The backoff delay between retry attempts is configured with `InitialBackoff`, `MaxBackoff`, and `BackoffMultiplier`. More information about each option is available in the [gRPC retry options section](#grpc-retry-options).
+
+The actual delay between retry attempts is randomized. A randomized delay between 0 and the current backoff determines when the next retry attempt is made. Consider that even with exponential backoff configured, increasing the current backoff between attempts, the actual delay between attempts isn't always larger. The delay is randomized to prevent retries from multiple calls from clustering together and potentially overloading the server.
+
 ### gRPC retry options
 
 The following table describes options for configuring gRPC retry policies:
