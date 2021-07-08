@@ -131,6 +131,10 @@ services.AddServerSideBlazor()
     });
 ```
 
+## Blazor Hub endpoint route configuration
+
+In `Startup.Configure`, Blazor Server apps call <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> on the <xref:Microsoft.AspNetCore.Routing.IEndpointRouteBuilder> of <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints%2A> to map the Blazor <xref:Microsoft.AspNetCore.SignalR.Hub> to the app's default path. The Blazor Server script (`blazor.server.js`) automatically points to the endpoint created by <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A>.
+
 ## Reflect the connection state in the UI
 
 When the client detects that the connection has been lost, a default UI is displayed to the user while the client attempts to reconnect. If reconnection fails, the user is provided the option to retry.
@@ -360,7 +364,7 @@ When a circuit ends because a user has disconnected and the framework is cleanin
 
 ## Azure SignalR Service
 
-We recommend using the [Azure SignalR Service](xref:signalr/scale#azure-signalr-service) for Blazor Server apps hosted in Microsoft Azure. The service allows for scaling up a Blazor Server app to a large number of concurrent SignalR connections. In addition, the SignalR Service's global reach and high-performance data centers significantly aid in reducing latency due to geography. For prerendering support with the Azure SignalR Service, configure the app to use *sticky sessions*. For more information, see <xref:blazor/host-and-deploy/server>.
+We recommend using the [Azure SignalR Service](xref:signalr/scale#azure-signalr-service) for Blazor Server apps hosted in Microsoft Azure. The service works in conjunction with the app's Blazor Hub for scaling up a Blazor Server app to a large number of concurrent SignalR connections. In addition, the SignalR Service's global reach and high-performance data centers significantly aid in reducing latency due to geography. For prerendering support with the Azure SignalR Service, configure the app to use *sticky sessions*. For more information, see <xref:blazor/host-and-deploy/server>.
 
 ## Additional resources
 
@@ -368,5 +372,8 @@ We recommend using the [Azure SignalR Service](xref:signalr/scale#azure-signalr-
 * <xref:signalr/configuration>
 * <xref:blazor/security/server/threat-mitigation>
 * [Blazor Server reconnection events and component lifecycle events](xref:blazor/components/lifecycle#blazor-server-reconnection-events)
+* [What is Azure SignalR Service?](/azure/azure-signalr/signalr-overview)
+* [Performance guide for Azure SignalR Service](/azure-signalr/signalr-concept-performance#performance-factors)
+* [Publish an ASP.NET Core SignalR app to Azure App Service](/aspnet/core/signalr/publish-to-azure-web-app)
 
 ::: zone-end
