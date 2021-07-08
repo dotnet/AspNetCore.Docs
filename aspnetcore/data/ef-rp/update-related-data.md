@@ -126,7 +126,7 @@ The checkboxes enable changes to courses an instructor is assigned to. A checkbo
 
 ### Create a class for assigned courses data
 
-Create *Models/SchoolViewModels/AssignedCourseData.cs* with the following code:
+Create *SchoolViewModels/AssignedCourseData.cs* with the following code:
 
 [!code-csharp[](intro/samples/cu50/Models/SchoolViewModels/AssignedCourseData.cs)]
 
@@ -355,7 +355,7 @@ The checkboxes enable changes to courses an instructor is assigned to. A checkbo
 
 ### Create a class for assigned courses data
 
-Create *Models/SchoolViewModels/AssignedCourseData.cs* with the following code:
+Create *SchoolViewModels/AssignedCourseData.cs* with the following code:
 
 [!code-csharp[](intro/samples/cu30/Models/SchoolViewModels/AssignedCourseData.cs)]
 
@@ -601,7 +601,7 @@ checkboxes enable changes to courses an instructor is assigned to. A checkbox is
 
 ### Add classes to support Create and Edit instructor pages
 
-Create *Models/SchoolViewModels/AssignedCourseData.cs* with the following code:
+Create *SchoolViewModels/AssignedCourseData.cs* with the following code:
 
 [!code-csharp[](intro/samples/cu/Models/SchoolViewModels/AssignedCourseData.cs)]
 
