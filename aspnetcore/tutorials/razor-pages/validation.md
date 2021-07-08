@@ -179,8 +179,6 @@ The DataAnnotations applied to the class changes the schema. For example, the Da
 * Limits the characters to 60.
 * Doesn't allow a `null` value.
 
-# [Visual Studio](#tab/visual-studio)
-
 The `Movie` table currently has the following schema:
 
 ```sql
@@ -223,11 +221,6 @@ CREATE TABLE [dbo].[Movie] (
 );
 ```
 
-# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
-
-Migrations are not required for SQLite.
-
----
 
 ### Publish to Azure
 
