@@ -121,6 +121,8 @@ ASP.NET Core allows you to specify two culture values, <xref:Microsoft.AspNetCor
 
 ## Resource files
 
+This section explains how to use the resource editor in Visual Studio. For MacOS and Linux, see the [PO (Portable Object)](https://docs.orchardcore.net/en/dev/docs/reference/modules/Localize/) provider from [OrchardCore](https://docs.orchardcore.net/en/dev/index.html) and [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/2501).
+
 A resource file is a useful mechanism for separating localizable strings from code. Translated strings for the non-default language are isolated in *.resx* resource files. For example, you might want to create Spanish resource file named *Welcome.es.resx* containing translated strings. "es" is the language code for Spanish. To create this resource file in Visual Studio:
 
 1. In **Solution Explorer**, right click on the folder which will contain the resource file > **Add** > **New Item**.
