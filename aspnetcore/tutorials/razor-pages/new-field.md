@@ -112,6 +112,7 @@ Another option is to delete the database and use migrations to re-create the dat
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
+### Add a migration for rating
 Use the following commands to add a migration for the rating field:
 
 ```dotnetcli
