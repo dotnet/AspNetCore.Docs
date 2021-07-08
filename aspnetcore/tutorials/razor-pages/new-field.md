@@ -112,24 +112,32 @@ Another option is to delete the database and use migrations to re-create the dat
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-### Drop and re-create the database
+Use the following commands to add a migration for the rating field:
 
-> [!NOTE]
-> For this tutorial, you use the Entity Framework Core *migrations* feature where possible. Migrations updates the database schema to match changes in the data model. However, migrations can only do the kinds of changes that the EF Core provider supports, and the SQLite provider's capabilities are limited. For example, adding a column is supported, but removing or changing a column is not supported. If a migration is created to remove or change a column, the `ef migrations add` command succeeds but the `ef database update` command fails. Due to these limitations, this tutorial doesn't use migrations for SQLite schema changes. Instead, when the schema changes, you drop and re-create the database.
->
->The workaround for the SQLite limitations is to manually write migrations code to perform a table rebuild when something in the table changes. A table rebuild involves:
->
->* Creating a new table.
->* Copying data from the old table to the new table.
->* Dropping the old table.
->* Renaming the new table.
->
->For more information, see the following resources:
->
-> * [SQLite EF Core Database Provider Limitations](/ef/core/providers/sqlite/limitations)
-> * [Customize migration code](/ef/core/managing-schemas/migrations/#customize-migration-code)
-> * [Data seeding](/ef/core/modeling/data-seeding)
-> * [SQLite ALTER TABLE statement](https://sqlite.org/lang_altertable.html)
+```dotnetcli
+dotnet-ef migrations add rating
+dotnet-ef database update
+```
+
+### Optional: Drop and re-create the database for other providers
+
+Skip this section if you successfully migrated the database.
+
+In this tutorial, Entity Framework Core *migrations* features are used when possible. Migrations updates the database schema to match changes in the data model. However, migrations can only do the kinds of changes that the EF Core provider supports, and some provider's capabilities are limited. For example, adding a column may be supported, but removing or changing a column is not. If a migration is created to remove or change a column, the `ef migrations add` command succeeds but the `ef database update` command fails. Due to these limitations, you can drop and re-create the database.
+
+The workaround for the limitations is to manually write migrations code to perform a table rebuild when something in the table changes. A table rebuild involves:
+
+* Creating a new table.
+* Copying data from the old table to the new table.
+* Dropping the old table.
+* Renaming the new table.
+
+For more information, see the following resources:
+
+ * [SQLite EF Core Database Provider Limitations](/ef/core/providers/sqlite/limitations)
+ * [Customize migration code](/ef/core/managing-schemas/migrations/#customize-migration-code)
+ * [Data seeding](/ef/core/modeling/data-seeding)
+ * [SQLite ALTER TABLE statement](https://sqlite.org/lang_altertable.html)
 
 1. Delete the migration folder.  
 
