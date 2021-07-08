@@ -72,15 +72,17 @@ namespace LargeFilesSample.Controllers
                     {
                         await section.Body.CopyToAsync(targetStream);
                     }
-
-                    return Ok();
+                   
+                }
+                else
+                {
+                    // If the code runs to this location, it means that no files have been saved
+                    return BadRequest("No files data in the request.");
                 }
 
                 section = await reader.ReadNextSectionAsync();
             }
-
-            // If the code runs to this location, it means that no files have been saved
-            return BadRequest("No files data in the request.");
+            return Ok();
         }
     }
 }
