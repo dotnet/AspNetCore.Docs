@@ -96,7 +96,7 @@ The `Update-Database` command tells the framework to apply the schema changes to
 
 <a name="ssox"></a>
 
-If you delete all the records in the database, the initializer will seed the database and include the `Rating` field. You can do this with the delete links in the browser or from [Sql Server Object Explorer](xref:tutorials/razor-pages/sql#ssox) (SSOX).
+Delete all the records in the database, the initializer will seed the database and include the `Rating` field. Deleting can be done with the delete links in the browser or from [Sql Server Object Explorer](xref:tutorials/razor-pages/sql#ssox) (SSOX).
 
 Another option is to delete the database and use migrations to re-create the database. To delete the database in SSOX:
 
@@ -118,6 +118,17 @@ Use the following commands to add a migration for the rating field:
 dotnet-ef migrations add rating
 dotnet-ef database update
 ```
+
+The `dotnet-ef migrations add rating` command tells the framework to:
+
+* Compare the `Movie` model with the `Movie` database schema.
+* Create code to migrate the database schema to the new model.
+
+The name `Rating` is arbitrary and is used to name the migration file. It's helpful to use a meaningful name for the migration file.
+
+The `database update` command tells the framework to apply the schema changes to the database and to preserve existing data.
+
+Delete all the records in the database, the initializer will seed the database and include the `Rating` field. 
 
 ### Optional: Drop and re-create the database for other providers
 
