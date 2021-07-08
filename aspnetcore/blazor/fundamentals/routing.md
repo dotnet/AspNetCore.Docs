@@ -429,43 +429,7 @@ When prerendering on the server in a Blazor Server app or hosted Blazor WebAssem
 * Once when the requested endpoint component is initially rendered statically.
 * A second time when the browser renders the endpoint component.
 
-To prevent developer code in <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> from running twice when prerendering, the `App` component can store the <xref:Microsoft.AspNetCore.Components.Routing.NavigationContext> for use in [`OnAfterRender`/`OnAfterRenderAsync`](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync), where `firstRender` can be checked. For more information, see [Detect when the app is prerendering](xref:blazor/components/lifecycle#detect-when-the-app-is-prerendering) in the *Blazor Lifecycle* article.
-
-The following example executes <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogInformation%2A> once when the `App` component (`App.razor`) is first rendered with <xref:Microsoft.AspNetCore.Components.Routing.NavigationContext> information:
-
-```razor
-@using Microsoft.Extensions.Logging
-@inject ILogger<App> Logger
-
-<Router AppAssembly="@typeof(Program).Assembly" 
-    OnNavigateAsync="@OnNavigateAsync">
-    ...
-</Router>
-
-@code {
-    private NavigationContext navContext;
-
-    private Task OnNavigateAsync(NavigationContext context)
-    {
-        navContext = context;
-
-        return Task.CompletedTask;
-    }
-
-    protected override void OnAfterRender(bool firstRender)
-    {
-        if (firstRender)
-        {
-            Logger.LogInformation($"Path requested: {navContext.Path}");
-        }
-    }
-}
-```
-
-[!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
-
-> [!NOTE]
-> Framework API doesn't provide a synchronous version of <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync>. In the preceding example, <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> runs synchronously without the `async` keyword and returns a completed <xref:System.Threading.Tasks.Task>.
+To prevent developer code in <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> from executing twice, the `App` component can store the <xref:Microsoft.AspNetCore.Components.Routing.NavigationContext> for use in [`OnAfterRender`/`OnAfterRenderAsync`](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync), where `firstRender` can be checked. For more information, see [Detect when the app is prerendering](xref:blazor/components/lifecycle#detect-when-the-app-is-prerendering) in the *Blazor Lifecycle* article.
 
 ## Handle cancellations in `OnNavigateAsync`
 
