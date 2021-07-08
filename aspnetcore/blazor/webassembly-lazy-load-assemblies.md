@@ -304,7 +304,7 @@ Configure the app to lazy load the `GrantImaharaRobotControls.dll` assembly:
        {
            try
            {
-               if (args.Path == "/robot")
+               if (args.Path == "robot")
                {
                    var assemblies = await AssemblyLoader.LoadAssembliesAsync(
                        new[] { "GrantImaharaRobotControls.dll" });
