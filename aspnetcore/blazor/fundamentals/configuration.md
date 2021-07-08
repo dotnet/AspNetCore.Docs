@@ -25,7 +25,7 @@ Other configuration providers registered by the app can also provide configurati
 * [Azure App configuration provider](/azure/azure-app-configuration/quickstart-aspnet-core-app): The provider isn't appropriate for Blazor WebAssembly apps because Blazor WebAssembly apps don't run on a server in Azure.
 
 > [!WARNING]
-> Configuration and settings files in a Blazor WebAssembly app are visible to users. **Don't store app secrets, credentials, or any other sensitive data in the configuration or files of a Blazor WebAssembly app.**
+> Configuration in a Blazor WebAssembly app is visible to users. **Don't store app secrets, credentials, or any other sensitive data in the configuration of a Blazor WebAssembly app.**
 
 For more information on configuration providers, see <xref:fundamentals/configuration/index>.
 
@@ -55,12 +55,7 @@ Inject an <xref:Microsoft.Extensions.Configuration.IConfiguration> instance into
 </h1>
 ```
 
-Client security restrictions prevent direct access to files, including settings files for app configuration. To read configuration files in addition to `appsettings.json`/`appsettings.{ENVIRONMENT}.json` from the `wwwroot` folder into configuration, use an <xref:System.Net.Http.HttpClient>.
-
-> [!WARNING]
-> Configuration and settings files in a Blazor WebAssembly app are visible to users. **Don't store app secrets, credentials, or any other sensitive data in the configuration or files of a Blazor WebAssembly app.**
-
-The following example reads a configuration file (`cars.json`) into the app's configuration.
+To read other configuration files from the `wwwroot` folder into configuration, use an <xref:System.Net.Http.HttpClient> to obtain the file's content. The following example reads a configuration file (`cars.json`) into the app's configuration.
 
 `wwwroot/cars.json`:
 

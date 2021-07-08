@@ -260,7 +260,6 @@ Additional work might be required depending on the static resources that compone
 
 ## Additional Blazor WebAssembly resources
 
-* [Hosted Blazor WebAssembly logging](xref:blazor/fundamentals/logging#hosted-blazor-webassembly-logging)
 * [State management: Handle prerendering](xref:blazor/state-management#handle-prerendering)
 * [Prerendering support with assembly lazy loading](xref:blazor/webassembly-lazy-load-assemblies#assembly-load-logic-in-onnavigateasync)
 * Razor component lifecycle subjects that pertain to prerendering
