@@ -5,23 +5,17 @@ no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cook
 
 ## Error boundaries
 
-Error boundaries provide a convenient approach for handling exceptions.
-
-To define an error boundary, use the `ErrorBoundary` component to wrap existing content. The `ErrorBoundary` component:
+Error boundaries provide a convenient approach for handling exceptions. The `ErrorBoundary` component:
 
 * Renders its child content when an error hasn't occurred.
 * Renders error UI when an unhandled exception is thrown.
 
-For example, an error boundary can be added around the body content of the app's main layout.
+To define an error boundary, use the `ErrorBoundary` component to wrap existing content. For example, an error boundary can be added around the body content of the app's main layout.
 
 `Shared/MainLayout.razor`:
 
 ```razor
 <div class="main">
-    <div class="top-row px-4">
-        <a href="https://docs.microsoft.com/aspnet/" target="_blank" rel="noopener">About</a>
-    </div>
-
     <div class="content px-4">
         <ErrorBoundary>
             @Body
@@ -51,9 +45,7 @@ private void IncrementCount()
 If the unhandled exception is thrown for a `currentCount` over five:
 
 * The exception is handled by the error boundary.
-* Error UI is rendered.
-
-> An error has occurred!
+* Error UI is rendered (`An error has occurred!`).
 
 By default, the `ErrorBoundary` component renders an empty `<div>` element with the `blazor-error-boundary` CSS class for its error content. The colors, text, and icon for the default UI are defined using CSS in the app, so you're free to customize the error UI.
 
@@ -70,7 +62,7 @@ You can also change the default error content by setting the `ErrorContent` prop
 </ErrorBoundary>
 ```
 
-Because the error boundary is defined in the layout in the preceding examples, the error UI is seen regardless of which page the user navigated to. We recommend narrowly scoping error boundaries in most scenarios. If you do broadly scope an error boundary, you can reset it to a non-error state on subsequent page navigation events by calling the `Recover` method on the error boundary:
+Because the error boundary is defined in the layout in the preceding examples, the error UI is seen regardless of which page the user navigated to. We recommend narrowly scoping error boundaries in most scenarios. If you do broadly scope an error boundary, you can reset it to a non-error state on subsequent page navigation events by calling the error boundary's `Recover` method:
 
 ```razor
 ...
