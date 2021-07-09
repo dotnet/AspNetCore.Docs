@@ -523,6 +523,13 @@ Apply the `[EditorRequired]` attribute to specify a required component parameter
 public string Title { get; set; }
 ```
 
+Single-line attribute lists are also supported:
+
+```csharp
+[Parameter, EditorRequired]
+public string Title { get; set; }
+```
+
 ::: moniker-end
 
 ## Route parameters
