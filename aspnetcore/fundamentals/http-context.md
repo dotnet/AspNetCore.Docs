@@ -138,7 +138,7 @@ To safely perform background work with `HttpContext` data:
 
 * Copy the required data during request processing.
 * Pass the copied data to a background task.
-* Do ***not*** reference `HttpContext` data in parallel tasks. The data needed from the context should be extracted before starting the parallel tasks.
+* Do ***not*** reference `HttpContext` data in parallel tasks. Extract the data needed from the context before starting the parallel tasks.
 
 To avoid unsafe code, never pass the `HttpContext` into a method that performs background work. Pass the required data instead. In the following example, `SendEmailCore` is called to start sending an email. The `correlationId` is passed to `SendEmailCore`, not the `HttpContext`. Code execution doesn't wait for `SendEmailCore` to complete:
 
