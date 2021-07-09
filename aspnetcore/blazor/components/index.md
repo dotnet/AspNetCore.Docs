@@ -513,6 +513,18 @@ public DateTime StartData { get; set; } = DateTime.Now;
 
 After the initial assignment of <xref:System.DateTime.Now?displayProperty=nameWithType>, do **not** assign a value to `StartData` in developer code. For more information, see the [Overwritten parameters](#overwritten-parameters) section of this article.
 
+::: moniker range=">= aspnetcore-6.0"
+
+Apply the `[EditorRequired]` attribute to specify a required component parameter. If a parameter value isn't provided, editors or build tools may display warnings to the user. This attribute is only valid on properties also marked with the `[Parameter]` attribute.
+
+```csharp
+[Parameter]
+[EditorRequired]
+public string Title { get; set; }
+```
+
+::: moniker-end
+
 ## Route parameters
 
 Components can specify route parameters in the route template of the [`@page`][9] directive. The [Blazor router](xref:blazor/fundamentals/routing) uses route parameters to populate corresponding component parameters.
