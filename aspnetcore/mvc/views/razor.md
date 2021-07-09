@@ -776,11 +776,35 @@ The `@key` directive attribute causes the components diffing algorithm to guaran
 
 Component references (`@ref`) provide a way to reference a component instance so that you can issue commands to that instance. For more information, see <xref:blazor/components/index#capture-references-to-components>.
 
+::: moniker-end
+
+::: moniker range=">= aspnetcore-6.0"
+
 ### `@typeparam`
 
 *This scenario only applies to Razor components (.razor).*
 
-The `@typeparam` directive declares a generic type parameter for the generated component class. For more information, see <xref:blazor/components/templated-components>.
+The `@typeparam` directive declares a [generic type parameter](/dotnet/csharp/programming-guide/generics/generic-type-parameters) for the generated component class. Generic types with [`where`](/dotnet/csharp/language-reference/keywords/where-generic-type-constraint) type constraints are supported.
+
+For more information, see the following articles:
+
+* <xref:blazor/components/index#generic-type-parameter-support>
+* <xref:blazor/components/templated-components>
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-6.0 > aspnetcore-3.0"
+
+### `@typeparam`
+
+*This scenario only applies to Razor components (.razor).*
+
+The `@typeparam` directive declares a [generic type parameter](/dotnet/csharp/programming-guide/generics/generic-type-parameters) for the generated component class.
+
+For more information, see the following articles:
+
+* <xref:blazor/components/index#generic-type-parameter-support>
+* <xref:blazor/components/templated-components>
 
 ::: moniker-end
 

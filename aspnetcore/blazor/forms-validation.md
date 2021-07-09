@@ -1055,6 +1055,12 @@ When working with radio buttons in a form, data binding is handled differently t
 }
 ```
 
+For more information on generic type parameters (`@typeparam`), see the following articles:
+
+* <xref:mvc/views/razor#typeparam>
+* <xref:blazor/components/index#generic-type-parameter-support>
+* <xref:blazor/components/templated-components>
+
 The following `RadioButtonExample` component uses the preceding `InputRadio` component to obtain and validate a rating from the user:
 
 `Pages/RadioButtonExample.razor`:

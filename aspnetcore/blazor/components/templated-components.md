@@ -172,12 +172,22 @@ When receiving a cascaded type parameter, components obtain the parameter value 
 
 Matching is only performed by name. Therefore, we recommend avoiding a cascaded generic type parameter with a generic name, for example `T` or `TItem`. If a developer opts into cascading a type parameter, they're implicitly promising that its name is unique enough not to clash with other cascaded type parameters from unrelated components.
 
+Generic types with [`where`](/dotnet/csharp/language-reference/keywords/where-generic-type-constraint) type constraints are supported:
+
+```razor
+@typeparam TEntity where TEntity : IEntity
+```
+
+For more information, see the following articles:
+
+* <xref:mvc/views/razor#typeparam>
+* <xref:blazor/components/index#generic-type-parameter-support>
+
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-6.0"
 
-> [!NOTE]
-> Inferred generic types are supported in ASP.NET Core 6.0 or later. For more information, see a version of this article later than ASP.NET Core 5.0.
+Inferred generic types are supported in ASP.NET Core 6.0 or later. For more information, see the 6.0 or a later version of this article.
 
 ::: moniker-end
 

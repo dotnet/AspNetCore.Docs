@@ -1348,6 +1348,29 @@ Whitespace isn't preserved from the preceding markup:
 
 ::: moniker-end
 
+## Generic type parameter support
+
+The [`@typeparam`][11] directive declares a [generic type parameter](/dotnet/csharp/programming-guide/generics/generic-type-parameters) for the generated component class:
+
+```razor
+@typeparam TItem
+```
+
+::: moniker range=">= aspnetcore-6.0"
+
+C# syntax with [`where`](/dotnet/csharp/language-reference/keywords/where-generic-type-constraint) type constraints is supported:
+
+```razor
+@typeparam TEntity where TEntity : IEntity
+```
+
+For more information, see the following articles:
+
+* <xref:mvc/views/razor#typeparam>
+* <xref:blazor/components/templated-components>
+
+::: moniker-end
+
 <!--Reference links in article-->
 [1]: <xref:mvc/views/razor#code>
 [2]: <xref:mvc/views/razor#using>
@@ -1359,3 +1382,4 @@ Whitespace isn't preserved from the preceding markup:
 [8]: <xref:mvc/views/razor#namespace>
 [9]: <xref:mvc/views/razor#page>
 [10]: <xref:mvc/views/razor#bind>
+[11]: <xref:mvc/views/razor#typeparam>
