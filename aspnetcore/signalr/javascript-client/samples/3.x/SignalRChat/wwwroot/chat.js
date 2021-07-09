@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // <snippet_Connection>
     const connection = new signalR.HubConnectionBuilder()
         .withUrl("/chathub")
-        .withAutomaticReconnect()
         .configureLogging(signalR.LogLevel.Information)
         .build();
     // </snippet_Connection>
@@ -37,6 +36,14 @@ document.addEventListener("DOMContentLoaded", () => {
             setTimeout(start, 5000);
         }
     };
+    
+    connection.onclose(function (error) {
+        if (error) {
+            console.log(`Connection closed with error: ${error}`);
+        } else {
+            console.log("Connection closed.");
+        }
+    });
 
     // Start the connection.
     start();
