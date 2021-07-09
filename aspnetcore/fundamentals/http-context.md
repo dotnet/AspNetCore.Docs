@@ -129,7 +129,7 @@ public class UserRepository : IUserRepository
 
 ## HttpContext access from a background thread
 
-`HttpContext` isn't thread-safe. Reading or writing properties of the `HttpContext` outside of processing a request can result in a <xref:System.NullReferenceException>.
+`HttpContext` isn't thread-safe. Reading or writing properties of the `HttpContext` outside of processing a request can result in a <xref:System.NullReferenceException>. In most cases, code should not access <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor.HttpContext?displayProperty=nameWithType> to get data. Rather than accessing `IHttpContextAccessor`, applications should copy the data from the request on the controller or middleware and then pass it to a service.
 
 > [!NOTE]
 > If your app generates sporadic `NullReferenceException` errors, review parts of the code that start background processing or that continue processing after a request completes. Look for mistakes, such as defining a controller method as `async void`.
