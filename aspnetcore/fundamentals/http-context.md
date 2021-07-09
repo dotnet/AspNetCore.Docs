@@ -1,7 +1,7 @@
 ---
 title: Access HttpContext in ASP.NET Core
 author: coderandhiker
-description: Learn how to access HttpContext in ASP.NET Core.
+description: HttpContext in ASP.NET Core. HttpContext is not thread-safe.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
