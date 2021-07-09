@@ -1,7 +1,7 @@
 ---
 title: Access HttpContext in ASP.NET Core
 author: coderandhiker
-description: HttpContext in ASP.NET Core. HttpContext is not thread-safe.
+description: HttpContext in ASP.NET Core. HttpContext is not thread-safe and can throw NullReferenceException.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
