@@ -65,7 +65,7 @@
             if (uploadResults.SingleOrDefault(
                 f => f.FileName == file.Name) is null)
             {
-                var fileContent = new StreamContent(file.OpenReadStream());
+                var fileContent = new StreamContent(file.OpenReadStream(long.MaxValue));
 
                 files.Add(
                     new()
