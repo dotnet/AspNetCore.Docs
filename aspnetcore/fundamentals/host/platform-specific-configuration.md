@@ -67,7 +67,7 @@ To disable automatic loading of hosting startup assemblies, use one of the follo
             {
                 webBuilder.UseSetting(
                         WebHostDefaults.HostingStartupExcludeAssembliesKey, 
-                        "{ASSEMBLY1;ASSEMBLY2; ...}")
+                        "ASSEMBLY1;ASSEMBLY2; ...")
                     .UseStartup<Startup>();
             });
     ```
