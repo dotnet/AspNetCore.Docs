@@ -141,7 +141,7 @@ The following [setx](/windows-server/administration/windows-commands/setx) comma
 
 ```console
 setx MyKey "My key from setx Environment" /M
-setx Position__Title Setx_Environment_Editor /M
+setx Position__Title Environment_Editor /M
 setx Position__Name Environment_Rick /M
 ```
 

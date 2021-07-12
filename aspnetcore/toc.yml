@@ -463,6 +463,8 @@
               href: blazor/security/index.md#authorizeview-component
             - name: CascadingValue
               href: blazor/components/cascading-values-and-parameters.md#cascadingvalue-component
+            - name: ErrorBoundary
+              href: blazor/fundamentals/handle-errors.md#error-boundaries
             - name: InputCheckbox
               href: blazor/forms-validation.md#built-in-form-components
             - name: InputDate
