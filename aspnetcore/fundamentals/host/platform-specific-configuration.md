@@ -220,7 +220,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
         {
             webBuilder.UseSetting(
                     WebHostDefaults.HostingStartupAssembliesKey, 
-                    "{ASSEMBLY1;ASSEMBLY2; ...}")
+                    "ASSEMBLY1;ASSEMBLY2; ...")
                 .UseStartup<Startup>();
         });
 ```
