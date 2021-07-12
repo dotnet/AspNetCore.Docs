@@ -1288,7 +1288,49 @@ Similarly, SVG images are supported in the CSS rules of a stylesheet file (`.css
 }
 ```
 
-However, inline SVG markup isn't supported in all scenarios. If you place an `<svg>` tag directly into a Razor file (`.razor`), basic image rendering is supported but many advanced scenarios aren't yet supported. For example, `<use>` tags aren't currently respected, and [`@bind`][10] can't be used with some SVG tags. For more information, see [SVG support in Blazor (dotnet/aspnetcore #18271)](https://github.com/dotnet/aspnetcore/issues/18271).
+::: moniker range=">= aspnetcore-6.0"
+
+SVG supports the `<foreignObject>` element to display arbitrary HTML within an SVG. The markup can represent arbitrary HTML, a <xref:Microsoft.AspNetCore.Components.RenderFragment>, or a Razor component.
+
+The following example demonstrates:
+
+* Display of a `string` (`@message`).
+* Two-way binding with an `<input>` element and a `value` field.
+* A `Robot` component.
+
+```razor
+<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="0" rx="10" ry="10" width="200" height="200" stroke="black" 
+        fill="none" />
+    <foreignObject x="20" y="20" width="160" height="160">
+        <p>@message</p>
+    </foreignObject>
+</svg>
+
+<svg xmlns="http://www.w3.org/2000/svg">
+    <foreignObject width="200" height="200">
+        <label>
+            Two-way binding:
+            <input @bind="value" @bind:event="oninput" />
+        </label>
+    </foreignObject>
+</svg>
+
+<svg xmlns="http://www.w3.org/2000/svg">
+    <foreignObject>
+        <Robot />
+    </foreignObject>
+</svg>
+
+@code {
+    private string message = "Lorem ipsum dolor sit amet, consectetur adipiscing " +
+        "elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
+
+    private string value;
+}
+```
+
+::: moniker-end
 
 ## Whitespace rendering behavior
 
