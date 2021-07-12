@@ -404,9 +404,69 @@ Objects that contain circular references can't be serialized on the client for e
 * .NET method calls.
 * JavaScript method calls from C# when the return type has circular references.
 
+::: moniker range=">= aspnetcore-6.0"
+
+## Byte array support
+
+Blazor supports optimized byte array JS interop that avoids encoding/decoding byte arrays into Base64. The following example uses JS interop to pass a byte array to .NET.
+
+Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server), provide a `sendByteArray` JS function. The function is called by a button in the component and doesn't return a value:
+
+```html
+<script>
+  window.sendByteArrayAsync = () => {
+    const data = new Uint8Array([0x45,0x76,0x65,0x72,0x79,0x74,0x68,0x69,
+        0x6e,0x67,0x27,0x73,0x20,0x73,0x68,0x69,0x6e,0x79,0x2c,
+        0x20,0x43,0x61,0x70,0x74,0x69,0x61,0x6e,0x2e,0x20,0x4e,
+        0x6f,0x74,0x20,0x74,0x6f,0x20,0x66,0x72,0x65,0x74,0x2e]);
+    let result = await DotNet.invokeMethodAsync('BlazorSample',
+        'ReceiveBytes', data);
+    alert(result);
+  };
+</script>
+```
+
+`Pages/ReceiveByteArray.razor`:
+
+```razor
+@page "/receive-byte-array"
+@using System.Text
+
+<h1>Receive Byte Array (JS to .NET)</h1>
+
+<p>
+    <button onclick="sendByteArrayAsync()">Send Bytes</button>
+</p>
+
+<p>
+    @result
+</p>
+
+<p>
+    Quote &copy;2005 <a href="https://www.uphe.com">Universal Pictures</a>:
+    <a href="https://www.uphe.com/movies/serenity">Serenity</a><br>
+    <a href="https://www.imdb.com/name/nm0821612/">Jewel Staite on IMDB</a>
+</p>
+
+@code {
+    private string result;
+
+    [JSInvokable]
+    public static Task<string> ReceiveBytes(byte[] receivedBytes)
+    {
+        return Task.FromResult(
+            Encoding.Unicode.GetString(receivedBytes, 0, receivedBytes.Length));
+    }
+}
+```
+
+For information on using a byte array when calling JavaScript from .NET, see <xref:blazor/js-interop/call-dotnet-from-javascript#byte-array-support>.
+
+::: moniker-end
+
 ## Size limits on JavaScript interop calls
 
-[!INCLUDE[](~/blazor/includes/js-interop-size-limits.md)]
+[!INCLUDE[](~/blazor/includes/js-interop/size-limits.md)]
 
 ::: moniker range=">= aspnetcore-5.0"
 
