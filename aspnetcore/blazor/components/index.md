@@ -1274,7 +1274,7 @@ For information on setting an app's base path, see <xref:blazor/host-and-deploy/
 
 ## Scalable Vector Graphics (SVG) images
 
-Since Blazor renders HTML, browser-supported images, including Scalable Vector Graphics (SVG) images (`.svg`), are supported via the `<img>` tag:
+Since Blazor renders HTML, browser-supported images, including [Scalable Vector Graphics (SVG) images (`.svg`)](https://developer.mozilla.org/docs/Web/SVG), are supported via the `<img>` tag:
 
 ```html
 <img alt="Example image" src="image.svg" />
@@ -1290,7 +1290,7 @@ Similarly, SVG images are supported in the CSS rules of a stylesheet file (`.css
 
 ::: moniker range=">= aspnetcore-6.0"
 
-SVG supports the `<foreignObject>` element to display arbitrary HTML within an SVG. The markup can represent arbitrary HTML, a <xref:Microsoft.AspNetCore.Components.RenderFragment>, or a Razor component.
+Blazor supports the [`<foreignObject>`](https://developer.mozilla.org/docs/Web/SVG/Element/foreignObject) element to display arbitrary HTML within an SVG. The markup can represent arbitrary HTML, a <xref:Microsoft.AspNetCore.Components.RenderFragment>, or a Razor component.
 
 The following example demonstrates:
 
