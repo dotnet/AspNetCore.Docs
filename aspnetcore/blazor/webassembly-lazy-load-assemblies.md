@@ -5,20 +5,20 @@ description: Discover how to lazy load assemblies in ASP.NET Core Blazor WebAsse
 monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/08/2021
+ms.date: 07/12/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/webassembly-lazy-load-assemblies
 ---
 # Lazy load assemblies in ASP.NET Core Blazor WebAssembly
 
-Blazor WebAssembly app startup performance can be improved by deferring the loading of some app assemblies until they're required, which is called *lazy loading*.
+Blazor WebAssembly app startup performance can be improved by deferring the loading of selected app assemblies until they're required, which is called *lazy loading*.
 
-The [Complete example](#complete-example) section at the end of this article provides a working example.
+This article's initial sections cover the app configuration required for lazy loading assemblies. For a working demonstration, see the [Complete example](#complete-example) section at the end of this article.
 
 > [!NOTE]
 > Assembly lazy loading doesn't benefit Blazor Server apps because Blazor Server app assemblies aren't downloaded to the client.
 
-## Project file
+## Project file configuration
 
 Mark assemblies for lazy loading in the app's project file (`.csproj`) using the `BlazorWebAssemblyLazyLoad` item. Use the assembly name with the `.dll` extension. The Blazor framework prevents the assembly from loading at app launch.
 
@@ -32,28 +32,85 @@ The `{ASSEMBLY NAME}` placeholder is the name of the assembly. The `.dll` file e
 
 Include one `BlazorWebAssemblyLazyLoad` item for each assembly. If an assembly has dependencies, they must also be marked for lazy loading.
 
-## `Router` component
+## `Router` component configuration
 
-Blazor's <xref:Microsoft.AspNetCore.Components.Routing.Router> component designates the assemblies that Blazor searches for routable components. The <xref:Microsoft.AspNetCore.Components.Routing.Router> component is also responsible for rendering the component for the route where the user navigates. The <xref:Microsoft.AspNetCore.Components.Routing.Router> component supports an <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> feature that can be used in conjunction with lazy loading.
+A framework-provided singleton service is available for loading assemblies, <xref:Microsoft.AspNetCore.Components.WebAssembly.Services.LazyAssemblyLoader>. The <xref:Microsoft.AspNetCore.Components.WebAssembly.Services.LazyAssemblyLoader.LoadAssembliesAsync%2A?displayProperty=nameWithType> method:
 
-In the app's <xref:Microsoft.AspNetCore.Components.Routing.Router> component, which appears in the `App.razor` file:
+* Uses [JS interop](xref:blazor/js-interop/call-dotnet-from-javascript) to fetch assemblies via a network call.
+* Loads assemblies into the runtime executing on WebAssembly in the browser.
 
-* Add an <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> callback. The <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> handler is invoked when the user:
-  * Visits a route for the first time by navigating to it directly in their browser.
-  * Navigates to a new route using a link or a <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A?displayProperty=nameWithType> invocation.
-* If lazy-loaded assemblies contain routable components, add a [List](xref:System.Collections.Generic.List%601)\<<xref:System.Reflection.Assembly>> (for example, named `lazyLoadedAssemblies`) to the component. The assemblies are passed back to the <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies> collection in case the assemblies contain routable components. The framework searches the assemblies for routes and updates the route collection if new routes are found.
+Blazor's <xref:Microsoft.AspNetCore.Components.Routing.Router> component designates the assemblies that Blazor searches for routable components and is also responsible for rendering the component for the route where the user navigates. The <xref:Microsoft.AspNetCore.Components.Routing.Router> component's [`OnNavigateAsync` method](xref:blazor/fundamentals/routing#handle-asynchronous-navigation-events-with-onnavigateasync) is used in conjunction with lazy loading to load the correct assemblies for endpoints that a user requests.
 
-The following example is for lazy loaded assemblies that may contain routable components.
+Logic is implemented inside <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> determines the assemblies to load with <xref:Microsoft.AspNetCore.Components.WebAssembly.Services.LazyAssemblyLoader>. Options include:
 
-At the top of the `App` component (`App.razor`) file, add the namespace for <xref:System.Reflection?displayProperty=fullName> to access the <xref:System.Reflection.Assembly> type:
+* Conditional checks inside the <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> method.
+* A lookup table that maps routes to assembly names, either injected into the component or implemented within the [`@code`](xref:mvc/views/razor#code) block.
+
+In the following example:
+
+* The namespace for <xref:Microsoft.AspNetCore.Components.WebAssembly.Services?displayProperty=fullName> is specified.
+* The <xref:Microsoft.AspNetCore.Components.WebAssembly.Services.LazyAssemblyLoader> service is injected.
+* The `{PATH}` placeholder is the path where the list of assemblies should load. The example uses a conditional check for a single path that loads a single set of assemblies.
+* The `{LIST OF ASSEMBLIES}` placeholder is the comma-separated list of assembly filenames, including their `.dll` extensions (for example, `"Assembly1.dll", "Assembly2.dll"`).
+
+`App.razor`:
+
+```razor
+@using Microsoft.AspNetCore.Components.Routing
+@using Microsoft.AspNetCore.Components.WebAssembly.Services
+@using Microsoft.Extensions.Logging
+@inject LazyAssemblyLoader AssemblyLoader
+@inject ILogger<App> Logger
+
+<Router AppAssembly="@typeof(Program).Assembly" 
+    OnNavigateAsync="@OnNavigateAsync">
+    ...
+</Router>
+
+@code {
+    private async Task OnNavigateAsync(NavigationContext args)
+    {
+        try
+           {
+               if (args.Path == "{PATH}")
+               {
+                   var assemblies = await AssemblyLoader.LoadAssembliesAsync(
+                       new[] { {LIST OF ASSEMBLIES} });
+               }
+           }
+           catch (Exception ex)
+           {
+               Logger.LogError("Error: {Message}", ex.Message);
+           }
+    }
+}
+```
+
+> [!NOTE]
+> The preceding example doesn't show the contents of the `Router` component's Razor markup (`...`). For a demonstration with complete code, see the [Complete example](#complete-example) section of this article.
+
+[!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
+
+## Assemblies that include routable components
+
+When the list of assemblies includes routable components, the assembly list for a given path is passed to the `Router` component's <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies> collection.
+
+In the following example:
+
+* A [List](xref:System.Collections.Generic.List%601)\<<xref:System.Reflection.Assembly>> named `lazyLoadedAssemblies` passes the assembly list to <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies>. The framework searches the assemblies for routes and updates the route collection if new routes are found. To access the <xref:System.Reflection.Assembly> type, the namespace for <xref:System.Reflection?displayProperty=fullName> is included at the top of the `App.razor` file.
+* The `{PATH}` placeholder is the path where the list of assemblies should load. The example uses a conditional check for a single path that loads a single set of assemblies.
+* The `{LIST OF ASSEMBLIES}` placeholder is the comma-separated list of assembly filenames, including their `.dll` extensions (for example, `"Assembly1.dll", "Assembly2.dll"`).
+
+`App.razor`:
 
 ```razor
 @using System.Reflection
-```
+@using Microsoft.AspNetCore.Components.Routing
+@using Microsoft.AspNetCore.Components.WebAssembly.Services
+@using Microsoft.Extensions.Logging
+@inject LazyAssemblyLoader AssemblyLoader
+@inject ILogger<App> Logger
 
-In the `App` component (`App.razor`):
-
-```razor
 <Router AppAssembly="@typeof(Program).Assembly" 
     AdditionalAssemblies="@lazyLoadedAssemblies" 
     OnNavigateAsync="@OnNavigateAsync">
@@ -65,67 +122,29 @@ In the `App` component (`App.razor`):
 
     private async Task OnNavigateAsync(NavigationContext args)
     {
-        ...
+        try
+           {
+               if (args.Path == "{PATH}")
+               {
+                   var assemblies = await AssemblyLoader.LoadAssembliesAsync(
+                       new[] { {LIST OF ASSEMBLIES} });
+                   lazyLoadedAssemblies.AddRange(assemblies);
+               }
+           }
+           catch (Exception ex)
+           {
+               Logger.LogError("Error: {Message}", ex.Message);
+           }
     }
 }
 ```
 
+> [!NOTE]
+> The preceding example doesn't show the contents of the `Router` component's Razor markup (`...`). For a demonstration with complete code, see the [Complete example](#complete-example) section of this article.
+
 [!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
 
-For more information on <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync>, see <xref:blazor/fundamentals/routing#handle-asynchronous-navigation-events-with-onnavigateasync>.
-
-## Assembly load logic in `OnNavigateAsync`
-
-<xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> has a <xref:Microsoft.AspNetCore.Components.Routing.NavigationContext> parameter that provides information about the current asynchronous navigation event, including the target path (<xref:Microsoft.AspNetCore.Components.Routing.NavigationContext.Path>) and the cancellation token (<xref:Microsoft.AspNetCore.Components.Routing.NavigationContext.CancellationToken>):
-
-* The <xref:Microsoft.AspNetCore.Components.Routing.NavigationContext.Path> property is the user's destination path relative to the app's base path.
-* The <xref:Microsoft.AspNetCore.Components.Routing.NavigationContext.CancellationToken> can be used to observe the cancellation of the asynchronous task. <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> automatically cancels the currently running navigation task when the user navigates to a different page.
-
-Inside <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync>, implement logic to determine the assemblies to load. Options include:
-
-* Conditional checks inside the <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> method.
-* A lookup table that maps routes to assembly names, either injected into the component or implemented within the [`@code`](xref:mvc/views/razor#code) block.
-
-<xref:Microsoft.AspNetCore.Components.WebAssembly.Services.LazyAssemblyLoader> is a framework-provided singleton service for loading assemblies.
-
-At the top of the `App` component (`App.razor`) file:
-
-* Add the namespace for <xref:Microsoft.AspNetCore.Components.WebAssembly.Services?displayProperty=fullName>.
-* Inject the <xref:Microsoft.AspNetCore.Components.WebAssembly.Services.LazyAssemblyLoader> service.
-
-```razor
-@using Microsoft.AspNetCore.Components.WebAssembly.Services
-@inject LazyAssemblyLoader AssemblyLoader
-```
-
-The <xref:Microsoft.AspNetCore.Components.WebAssembly.Services.LazyAssemblyLoader> provides the <xref:Microsoft.AspNetCore.Components.WebAssembly.Services.LazyAssemblyLoader.LoadAssembliesAsync%2A> method that:
-
-* Uses [JS interop](xref:blazor/js-interop/call-dotnet-from-javascript) to fetch assemblies via a network call.
-* Loads assemblies into the runtime executing on WebAssembly in the browser.
-
-```csharp
-await AssemblyLoader.LoadAssembliesAsync(new[] { "{LIST OF ASSEMBLIES}" });
-```
-
-The `{LIST OF ASSEMBLIES}` placeholder is the comma-separated list of assembly filenames, including their `.dll` extensions.
-
-If the <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> callback throws an unhandled exception, the [Blazor error UI](xref:blazor/fundamentals/handle-errors#detailed-errors-during-development) is invoked.
-
-## Lazy load assemblies in a hosted Blazor WebAssembly solution
-
-The framework's lazy loading implementation supports lazy loading with prerendering in a hosted Blazor WebAssembly solution. During prerendering, all assemblies, including those marked for lazy loading, are assumed to be loaded. Manually register the <xref:Microsoft.AspNetCore.Components.WebAssembly.Services.LazyAssemblyLoader> service in the **`Server`** project.
-
-At the top of the `Startup.cs` file of the **`Server`** project, add the namespace for <xref:Microsoft.AspNetCore.Components.WebAssembly.Services?displayProperty=fullName>:
-
-```csharp
-using Microsoft.AspNetCore.Components.WebAssembly.Services;
-```
-
-In the `Startup.ConfigureServices` method (`Startup.cs`) of the **`Server`** project, register the service:
-
-```csharp
-services.AddScoped<LazyAssemblyLoader>();
-```
+For more information, see <xref:blazor/fundamentals/routing#route-to-components-from-multiple-assemblies>.
 
 ## User interaction with `<Navigating>` content
 
@@ -148,12 +167,28 @@ To rectify this:
 * Check to see if the app is running in the `Production` environment when determining which assembly names to use.
 * Store the renamed assembly names in a separate file and read from that file to determine what assembly name to use in the <xref:Microsoft.AspNetCore.Components.WebAssembly.Services.LazyAssemblyLoader> service and <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> callback methods.
 
+## Lazy load assemblies in a hosted Blazor WebAssembly solution
+
+The framework's lazy loading implementation supports lazy loading with prerendering in a hosted Blazor WebAssembly solution. During prerendering, all assemblies, including those marked for lazy loading, are assumed to be loaded. Manually register the <xref:Microsoft.AspNetCore.Components.WebAssembly.Services.LazyAssemblyLoader> service in the **`Server`** project.
+
+At the top of the `Startup.cs` file of the **`Server`** project, add the namespace for <xref:Microsoft.AspNetCore.Components.WebAssembly.Services?displayProperty=fullName>:
+
+```csharp
+using Microsoft.AspNetCore.Components.WebAssembly.Services;
+```
+
+In the `Startup.ConfigureServices` method (`Startup.cs`) of the **`Server`** project, register the service:
+
+```csharp
+services.AddScoped<LazyAssemblyLoader>();
+```
+
 ## Complete example
 
 The demonstration in this section:
 
 * Creates a robot controls assembly (`GrantImaharaRobotControls.dll`) as a [Razor class library (RCL)](xref:blazor/components/class-libraries) that includes a `Robot` component (`Robot.razor` with a route template of `/robot`).
-* Lazily loads the RCL's assembly in a Blazor WebAssembly app to render its `Robot` component when the `/robot` URL is requested by the user.
+* Lazily loads the RCL's assembly to render its `Robot` component when the `/robot` URL is requested by the user.
 
 1. Create a new ASP.NET Core class library project:
 
@@ -251,7 +286,7 @@ Create a Blazor WebAssembly app to demonstrate lazy loading of the RCL's assembl
    * Visual Studio: Add the `GrantImaharaRobotControls` RCL project to the solution (**Add** > **Existing Project**). Select **Add** > **Project Reference** to add a project reference for the `GrantImaharaRobotControls` RCL.
    * Visual Studio Code/.NET CLI: Execute `dotnet add reference {PATH}` in a command shell from the project's folder. The `{PATH}` placeholder is the path to the RCL project.
 
-Build and run the app. For the default page that loads the `Index` component (`Pages/Index.razor`), the developer tool's Network tab indicates that the RCL's assembly `GrantImaharaRobotControls.dll` is loaded. The `Index` component makes no use of the assembly, so loading the assembly is inefficient. In the upcoming steps, the app is configured to lazily load the assembly only for the `Robot` component.
+Build and run the app. For the default page that loads the `Index` component (`Pages/Index.razor`), the developer tool's Network tab indicates that the RCL's assembly `GrantImaharaRobotControls.dll` is loaded. The `Index` component makes no use of the assembly, so loading the assembly is inefficient.
 
 ![Index component loaded in the browser with developer tool's Network tab indicating that the GrantImaharaRobotControls.dll assembly is loaded.](webassembly-lazy-load-assemblies/_static/screenshot1.png)
 
@@ -265,9 +300,11 @@ Configure the app to lazy load the `GrantImaharaRobotControls.dll` assembly:
    </ItemGroup>
    ```
 
-1. The following <xref:Microsoft.AspNetCore.Components.Routing.Router> component demonstrates loading the `GrantImaharaRobotControls.dll` assembly when the user navigates to `/robot`. During page transitions, a styled message is displayed to the user.
+1. The following <xref:Microsoft.AspNetCore.Components.Routing.Router> component demonstrates loading the `GrantImaharaRobotControls.dll` assembly when the user navigates to `/robot`. 
 
-   The following example also provides the list of additional assemblies to load to the `AdditionalAssemblies` parameter of the `Router` component, which results in the router searching the assemblies for routable components in those assemblies. For more information, see <xref:blazor/fundamentals/routing#route-to-components-from-multiple-assemblies>.
+   During page transitions, a styled message is displayed to the user with the `<Navigating>` element. For more information, see the [User interaction with `<Navigating>` content](#user-interaction-with-navigating-content) section.
+
+   The assembly is assigned to <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies>, which results in the router searching the assembly for routable components, where it finds the `Robot` component. The `Robot` component's route is added to the app's route collection. For more information, see <xref:blazor/fundamentals/routing#route-to-components-from-multiple-assemblies> and the [Assemblies that include routable components](#assemblies-that-include-routable-components) section.
 
    `App.razor`:
 
@@ -339,4 +376,5 @@ If the `Robot` component from the RCL is requested at `https://localhost:5001/ro
 
 ## Additional resources
 
+* [Handle asynchronous navigation events with `OnNavigateAsync`](xref:blazor/fundamentals/routing#handle-asynchronous-navigation-events-with-onnavigateasync)
 * <xref:blazor/webassembly-performance-best-practices>

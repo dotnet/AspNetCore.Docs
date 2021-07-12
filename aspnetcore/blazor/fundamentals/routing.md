@@ -422,7 +422,7 @@ In the `App` component (`App.razor`):
 
 [!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
 
-For an example that uses <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync>, see <xref:blazor/webassembly-lazy-load-assemblies#assembly-load-logic-in-onnavigateasync>.
+For an example that uses <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync>, see <xref:blazor/webassembly-lazy-load-assemblies>.
 
 When prerendering on the server in a Blazor Server app or hosted Blazor WebAssembly app, <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> is executed *twice*:
 

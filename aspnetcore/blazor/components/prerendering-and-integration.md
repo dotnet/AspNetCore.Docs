@@ -261,7 +261,7 @@ Additional work might be required depending on the static resources that compone
 ## Additional Blazor WebAssembly resources
 
 * [State management: Handle prerendering](xref:blazor/state-management#handle-prerendering)
-* [Prerendering support with assembly lazy loading](xref:blazor/webassembly-lazy-load-assemblies#assembly-load-logic-in-onnavigateasync)
+* [Prerendering support with assembly lazy loading](xref:blazor/webassembly-lazy-load-assemblies#lazy-load-assemblies-in-a-hosted-blazor-webassembly-solution)
 * Razor component lifecycle subjects that pertain to prerendering
   * [Component initialization (`OnInitialized{Async}`)](xref:blazor/components/lifecycle#component-initialization-oninitializedasync)
   * [After component render (`OnAfterRender{Async}`)](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync)
