@@ -373,6 +373,116 @@ For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet>.
 
 ::: moniker-end
 
+::: moniker range=">= aspnetcore-5.0"
+
+## User interaction with `<Navigating>` content
+
+The <xref:Microsoft.AspNetCore.Components.Routing.Router> component can indicate to the user that a page transition is occurring.
+
+At the top of the `App` component (`App.razor`), add an [`@using`](xref:mvc/views/razor#using) directive for the <xref:Microsoft.AspNetCore.Components.Routing?displayProperty=fullName> namespace:
+
+```razor
+@using Microsoft.AspNetCore.Components.Routing
+```
+
+Add a `<Navigating>` tag to the component with markup to display during page transition events. For more information, see <xref:Microsoft.AspNetCore.Components.Routing.Router.Navigating> (API documentation).
+
+In the router element content (`<Router>...</Router>`) of the `App` component (`App.razor`):
+
+```razor
+<Navigating>
+    <p>Loading the requested page&hellip;</p>
+</Navigating>
+```
+
+For an example that uses the <xref:Microsoft.AspNetCore.Components.Routing.Router.Navigating> property, see <xref:blazor/webassembly-lazy-load-assemblies#user-interaction-with-navigating-content>.
+
+## Handle asynchronous navigation events with `OnNavigateAsync`
+
+The <xref:Microsoft.AspNetCore.Components.Routing.Router> component supports an <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> feature. The <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> handler is invoked when the user:
+
+* Visits a route for the first time by navigating to it directly in their browser.
+* Navigates to a new route using a link or a <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A?displayProperty=nameWithType> invocation.
+
+In the `App` component (`App.razor`):
+
+```razor
+<Router AppAssembly="@typeof(Program).Assembly" 
+    OnNavigateAsync="@OnNavigateAsync">
+    ...
+</Router>
+
+@code {
+    private async Task OnNavigateAsync(NavigationContext args)
+    {
+        ...
+    }
+}
+```
+
+[!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
+
+For an example that uses <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync>, see <xref:blazor/webassembly-lazy-load-assemblies>.
+
+When prerendering on the server in a Blazor Server app or hosted Blazor WebAssembly app, <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> is executed *twice*:
+
+* Once when the requested endpoint component is initially rendered statically.
+* A second time when the browser renders the endpoint component.
+
+To prevent developer code in <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> from executing twice, the `App` component can store the <xref:Microsoft.AspNetCore.Components.Routing.NavigationContext> for use in [`OnAfterRender`/`OnAfterRenderAsync`](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync), where `firstRender` can be checked. For more information, see [Detect when the app is prerendering](xref:blazor/components/lifecycle#detect-when-the-app-is-prerendering) in the *Blazor Lifecycle* article.
+
+## Handle cancellations in `OnNavigateAsync`
+
+The <xref:Microsoft.AspNetCore.Components.Routing.NavigationContext> object passed to the <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> callback contains a <xref:Microsoft.AspNetCore.Components.Routing.NavigationContext.CancellationToken> that's set when a new navigation event occurs. The <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> callback must throw when this cancellation token is set to avoid continuing to run the <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> callback on a outdated navigation.
+
+If a user navigates to an endpoint but then immediately navigates to a new endpoint, the app shouldn't continue running the <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> callback for the first endpoint.
+
+In the following `App` component example:
+
+* The cancellation token is passed in the call to `PostAsJsonAsync`, which can cancel the POST if the user navigates away from the `/about` endpoint.
+* The cancellation token is set during a product prefetch operation if the user navigates away from the `/store` endpoint.
+
+`App.razor`:
+
+```razor
+@inject HttpClient Http
+@inject ProductCatalog Products
+
+<Router AppAssembly="@typeof(Program).Assembly" 
+    OnNavigateAsync="@OnNavigateAsync">
+    ...
+</Router>
+
+@code {
+    private async Task OnNavigateAsync(NavigationContext context)
+    {
+        if (context.Path == "/about") 
+        {
+            var stats = new Stats = { Page = "/about" };
+            await Http.PostAsJsonAsync("api/visited", stats, 
+                context.CancellationToken);
+        }
+        else if (context.Path == "/store")
+        {
+            var productIds = [345, 789, 135, 689];
+
+            foreach (var productId in productIds) 
+            {
+                context.CancellationToken.ThrowIfCancellationRequested();
+                Products.Prefetch(productId);
+            }
+        }
+    }
+}
+```
+
+[!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
+
+> [!NOTE]
+> Not throwing if the cancellation token in <xref:Microsoft.AspNetCore.Components.Routing.NavigationContext> is canceled can result in unintended behavior, such as rendering a component from a previous navigation.
+
+::: moniker-end
+
 ## `NavLink` and `NavMenu` components
 
 Use a <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component in place of HTML hyperlink elements (`<a>`) when creating navigation links. A <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component behaves like an `<a>` element, except it toggles an `active` CSS class based on whether its `href` matches the current URL. The `active` class helps a user understand which page is the active page among the navigation links displayed. Optionally, assign a CSS class name to <xref:Microsoft.AspNetCore.Components.Routing.NavLink.ActiveClass?displayProperty=nameWithType> to apply a custom CSS class to the rendered link when the current route matches the `href`.
