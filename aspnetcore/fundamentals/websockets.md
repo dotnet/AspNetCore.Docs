@@ -110,7 +110,7 @@ using (WebSocket webSocket = await context.WebSockets.AcceptWebSocketAsync(
 }
 ````
 
-Additionally, there are the [ServerMaxWindowBits](TODO) and [DisableServerContextTakeover](TODO) advanced options on [WebSocketAcceptContext](dotnet/api/microsoft.aspnetcore.http.websocketacceptcontext) that control how the compression works.
+`WebSocketAcceptContext.ServerMaxWindowBits` and `WebSocketAcceptContext.DisableServerContextTakeover` are advanced options that control how the compression works.
 
 Compression is negotiated between the client and server when first establishing a connection. You can read more about the negotiation in the [Compression Extensions for WebSocket RFC](https://datatracker.ietf.org/doc/html/rfc7692#section-7).
 
