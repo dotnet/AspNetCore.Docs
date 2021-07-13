@@ -92,6 +92,32 @@ The WebSocket closed exception can also happen when returning too soon from an a
 
 Never use `Task.Wait`, `Task.Result`, or similar blocking calls to wait for the socket to complete, as that can cause serious threading issues. Always use `await`.
 
+::: moniker range=">= aspnetcore-6.0"
+
+### Using Compression
+
+> [!WARNING]
+> Enabling compression over encrypted connections makes the application subject to CRIME/BREACH type attacks.
+> If you are sending sensitive information consider not enabling compression, or make sure you use [WebSocketMessageFlags.DisableCompression](TODO) when calling [WebSocket.SendAsync](TODO).
+> This applies to both sides of the WebSocket, it's worth noting that the WebSockets API in the browser doesn't have configuration for disabling compression per send. 
+
+If compression of messages over WebSockets is desired then the accept code needs to specify that it allows compression as follows:
+```csharp
+using (WebSocket webSocket = await context.WebSockets.AcceptWebSocketAsync(
+    new WebSocketAcceptContext() { DangerousEnableCompression = true }))
+{
+}
+````
+
+Additionally, there are the [ServerMaxWindowBits](TODO) and [DisableServerContextTakeover](TODO) advanced options on [WebSocketAcceptContext](dotnet/api/microsoft.aspnetcore.http.websocketacceptcontext) that control how the compression works.
+
+Compression is negotiated between the client and server when first establishing a connection. You can read more about the negotatiation in the [Compression Extensions for WebSocket RFC](https://datatracker.ietf.org/doc/html/rfc7692#section-7)
+
+> [!NOTE]
+> If the compression negotiation isn't accepted by either the server or client, the connection will still be established, it will not use compression when sending/receiving messages though.
+
+::: moniker-end
+
 ## Send and receive messages
 
 The `AcceptWebSocketAsync` method upgrades the TCP connection to a WebSocket connection and provides a [WebSocket](/dotnet/core/api/system.net.websockets.websocket) object. Use the `WebSocket` object to send and receive messages.
