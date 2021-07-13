@@ -220,7 +220,7 @@ Scoped services must be resolved in the `InvokeAsync` method:
 The logger output shows:
 
 * *Transient* objects are always different. The transient `OperationId` value is different in the `IndexModel` and in the middleware.
-* *Scoped* objects are the same for each request but different across each request.
+* *Scoped* objects are the same for each request in a session but different across different request sessions.
 * *Singleton* objects are the same for every request.
 
 To reduce the logging output, set "Logging:LogLevel:Microsoft:Error" in the *appsettings.Development.json* file:
