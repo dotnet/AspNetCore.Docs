@@ -94,14 +94,15 @@ Never use `Task.Wait`, `Task.Result`, or similar blocking calls to wait for the 
 
 ::: moniker range=">= aspnetcore-6.0"
 
-### Using Compression
+### Compression
 
 > [!WARNING]
-> Enabling compression over encrypted connections makes the application subject to CRIME/BREACH type attacks.
-> If you are sending sensitive information consider not enabling compression, or make sure you use [WebSocketMessageFlags.DisableCompression](TODO) when calling [WebSocket.SendAsync](TODO).
-> This applies to both sides of the WebSocket, it's worth noting that the WebSockets API in the browser doesn't have configuration for disabling compression per send. 
+> Enabling compression over encrypted connections makes the app subject to CRIME/BREACH attacks.
+> If sending sensitive information, avoid enabling compression or use `WebSocketMessageFlags.DisableCompression` when calling `WebSocket.SendAsync`.
+> This applies to both sides of the WebSocket. Note that the WebSockets API in the browser doesn't have configuration for disabling compression per send. 
 
-If compression of messages over WebSockets is desired then the accept code needs to specify that it allows compression as follows:
+If compression of messages over WebSockets is desired, then the accept code must specify that it allows compression as follows:
+
 ```csharp
 using (WebSocket webSocket = await context.WebSockets.AcceptWebSocketAsync(
     new WebSocketAcceptContext() { DangerousEnableCompression = true }))
@@ -111,10 +112,10 @@ using (WebSocket webSocket = await context.WebSockets.AcceptWebSocketAsync(
 
 Additionally, there are the [ServerMaxWindowBits](TODO) and [DisableServerContextTakeover](TODO) advanced options on [WebSocketAcceptContext](dotnet/api/microsoft.aspnetcore.http.websocketacceptcontext) that control how the compression works.
 
-Compression is negotiated between the client and server when first establishing a connection. You can read more about the negotatiation in the [Compression Extensions for WebSocket RFC](https://datatracker.ietf.org/doc/html/rfc7692#section-7)
+Compression is negotiated between the client and server when first establishing a connection. You can read more about the negotiation in the [Compression Extensions for WebSocket RFC](https://datatracker.ietf.org/doc/html/rfc7692#section-7).
 
 > [!NOTE]
-> If the compression negotiation isn't accepted by either the server or client, the connection will still be established, it will not use compression when sending/receiving messages though.
+> If the compression negotiation isn't accepted by either the server or client, the connection is still established. However, the connection doesn't use compression when sending and receiving messages.
 
 ::: moniker-end
 
