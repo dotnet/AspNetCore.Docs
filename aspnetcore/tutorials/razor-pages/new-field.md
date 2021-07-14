@@ -116,8 +116,8 @@ Another option is to delete the database and use migrations to re-create the dat
 Use the following commands to add a migration for the rating field:
 
 ```dotnetcli
-dotnet-ef migrations add rating
-dotnet-ef database update
+dotnet ef migrations add rating
+dotnet ef database update
 ```
 
 The `dotnet-ef migrations add rating` command tells the framework to:
