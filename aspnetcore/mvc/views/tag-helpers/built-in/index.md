@@ -8,7 +8,6 @@ ms.date: 10/10/2018
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/views/tag-helpers/builtin-th/Index
 ---
-
 # ASP.NET Core built-in Tag Helpers
 
 By [Peter Kellner](https://peterkellner.net)
