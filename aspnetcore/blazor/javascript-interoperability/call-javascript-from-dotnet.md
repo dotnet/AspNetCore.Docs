@@ -670,7 +670,7 @@ Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or
 <h1>Send Byte Array .NET to JS</h1>
 
 <p>
-    <button @onclick="SendBytes">Send Bytes</button>
+    <button @onclick="SendByteArray">Send Bytes</button>
 </p>
 
 <p>
@@ -686,7 +686,7 @@ Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or
 @code {
     private string result;
 
-    private async Task SendBytes()
+    private async Task SendByteArray()
     {
         var bytes = new byte[] { 0x45, 0x76, 0x65, 0x72, 0x79, 0x74, 0x68, 0x69,
             0x6e, 0x67, 0x27, 0x73, 0x20, 0x73, 0x68, 0x69, 0x6e, 0x79, 0x2c,

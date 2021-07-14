@@ -414,12 +414,12 @@ Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or
 
 ```html
 <script>
-  window.sendBytes = () => {
+  window.sendByteArray = () => {
     const data = new Uint8Array([0x45,0x76,0x65,0x72,0x79,0x74,0x68,0x69,
       0x6e,0x67,0x27,0x73,0x20,0x73,0x68,0x69,0x6e,0x79,0x2c,
       0x20,0x43,0x61,0x70,0x74,0x69,0x61,0x6e,0x2e,0x20,0x4e,
       0x6f,0x74,0x20,0x74,0x6f,0x20,0x66,0x72,0x65,0x74,0x2e]);
-    DotNet.invokeMethodAsync('ByteArrayTesting', 'ReceiveByteArray', data)
+    DotNet.invokeMethodAsync('BlazorSample', 'ReceiveByteArray', data)
       .then(str => {
         alert(str);
       });
@@ -436,7 +436,7 @@ Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or
 <h1>Send Byte Array JS to .NET</h1>
 
 <p>
-    <button onclick="sendBytes()">Send Bytes</button>
+    <button onclick="sendByteArray()">Send Bytes</button>
 </p>
 
 <p>
