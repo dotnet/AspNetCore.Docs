@@ -70,7 +70,7 @@ Components support multiple route templates using multiple [`@page` directives](
 
 ## Focus an element on navigation
 
-Use the `FocusOnNavigate` component to set the UI focus to an element based on a CSS selector after navigating from one page to another. You can see the `FocusOnNavigate` component in use by the `App` component of an app generated from the Blazor project template.
+Use the `FocusOnNavigate` component to set the UI focus to an element based on a CSS selector after navigating from one page to another. You can see the `FocusOnNavigate` component in use by the `App` component of an app generated from a Blazor project template.
 
 `App.razor`:
 
@@ -88,7 +88,7 @@ Use the `FocusOnNavigate` component to set the UI focus to an element based on a
 </Router>
 ```
 
-When the `Router` component navigates to a new page, the `FocusOnNavigate` component sets the focus to the page's top-level header (`<h1>`). This is a common strategy for ensuring that page navigations are announced when using a screen reader.
+When the preceding `Router` component navigates to a new page, the `FocusOnNavigate` component sets the focus to the page's top-level header (`<h1>`). This is a common strategy for ensuring that page navigations are announced when using a screen reader.
 
 ::: moniker-end
 
