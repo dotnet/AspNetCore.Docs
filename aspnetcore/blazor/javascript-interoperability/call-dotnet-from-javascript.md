@@ -450,7 +450,7 @@ Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or
     public static Task<string> ReceiveByteArray(byte[] receivedBytes)
     {
         return Task.FromResult(
-            Encoding.Unicode.GetString(receivedBytes, 0, receivedBytes.Length));
+            Encoding.UTF8.GetString(receivedBytes, 0, receivedBytes.Length));
     }
 }
 ```
