@@ -16,63 +16,52 @@ Authentication is enabled with the following highlighted lines in `Startup`:
 
 [!code-csharp[](aad-ui/samples/WebAAD6/Startup.cs?name=snippet&highlight=9,10)]
 
-The preceding code sets up a policy scheme that delegates authentication tasks to an underlying [Open ID Connect](https://openid.net/connect/) authentication handler and sign-in tasks to a cookie authentication handler.
+The preceding code sets up a policy scheme that delegates authentication tasks to an underlying [OpenID Connect](https://openid.net/connect/) (**OIDC**) authentication handler and sign-in tasks to a cookie authentication handler.
 
 When an unauthenticated user tries to visit a protected page:
 
 * The app emits a challenge to the policy scheme, which is setup as the default scheme.
-* The challenge delegates to the underlying Open ID Connect scheme.
-* Open ID Connect redirects the user to the authorize endpoint.
+* The challenge delegates to the underlying OIDC scheme.
+* OIDC redirects the user to the authorize endpoint.
 
 When the process is successful:
 
 * The app returns to the `signin-oidc` endpoint.
 * The sign-in process continues by validating the response and emitting a cookie with the results.
 
-The authentication package is just a wrapper around the underlying Open ID Connect API. The Open ID Connect API is available to customize any detail or extend the current functionality.
+The authentication package is just a wrapper around the underlying OIDC API. The OIDC API is available to customize any detail or extend the current functionality.
 
-## Customizing the sign-in and sign-out processes
+## Customize the sign-in and sign-out processes
 
 By default the template is setup with a login and logout buttons that call a controller provided in the package to start the authentication operations.
 
-A controller or razor page can be created to begin sign-in and sign-out by calling the appropriate method on the `HttpContext`. For example:
+A controller or razor page can be created to begin sign-in and sign-out by calling the appropriate method on the `HttpContext`, for example:
 
 [!code-csharp[](aad-ui/samples/WebAAD6/Areas/Identity/Pages/Account/SignOut.cshtml.cs?name=snippet)]
 
 The preceding sign-out code ensures the app is signed out locally even if remote sign-out fails.
 
-## Configuring the underlying OIDC middleware
+## Configure the underlying OIDC middleware
 
-This can be achieved by calling Configure after `AddAzureAD` and perfoming any desired customization
+Configuring the underlying OIDC middleware can be achieved by calling Configure after `AddAzureAD` and performing any desired customization, as shown in the following highlighted code:
 
-```csharp
-services.AddAuthentication(AzureADDefaults.AuthenticationScheme)
-    .AddAzureAD(options => Configuration.Bind("AzureAd", options));
+[!code-csharp[](aad-ui/samples/WebAAD6/Startup2.cs?name=snippet&highlight=12-14)]
 
-services.Configure<OpenIdConnectOptions>(AzureADDefaults.OpenIdScheme, options => {
+## Request an access token
 
-});
-```
+The OIDC authentication handler can be configured to request an access token from Azure Active Directory.
 
-## Requesting an access token
+Given a registered app, the OIDC middlware can be configured as shown in the following highlighted code:
 
-The Open ID Connect authentication handler can be configured to request an access token from Azure Active Directory.
+[!code-csharp[](aad-ui/samples/WebAAD6/Startup3.cs?name=snippet&highlight=12-17)]
 
-Given a registered app, you can configure the Open ID Connect middlware as follows:
+* `options.ResponseType = "code"` changes the authentication flow to `code`. The default authentication flow is `id_token`.
+* The `offline_access` scope allows the app to request refresh tokens from the app that it can use to refresh `access_tokens` without user interaction.
+* The `<<scope>>` parameter is the scope for the API to be called, this typically has the form of `api://<<api-app-id-uri>>/scope-name`
+* `Resource` is the client id for the Resource (API) you want to get an access token for. This value will appear in the audience (aud) claim of the provisioned access token so it must match what the Server API has configured as the client ID.
 
-```csharp
-options.ResponseType = "code";
-options.Scope.Add("offline_access");
-options.Scope.Add("<<scope>>");
-options.Resource = "<<api-client-id>>";
-```
+## Update an app to use V2.0 endpoints
 
-* The response type `code` changes the authentication flow to `code` the default is `id_token`.
-* The `offline_access` scope allows the app to request refresh tokens from the app that it can use to refresh access_tokens without user interaction.
-* The `<<scope>>` parameter is the scope for the API you want to call, this typically has the form of `api://<<api-app-id-uri>>/scope-name`
-* The resource is the client id for the Resource (API) you want to get an access token for. This value will appear in the audience (aud) claim of the provisioned access token so it must match what the Server API has configured as the client ID.
-
-## Updating your app to use V2.0 endpoints
 Our packages use the V1.0 endpoints of Azure Active Directory and Visual Studio provisions a V1 endpoint, that means that if you create a new app from the portal you will have to adjust the configuration of the API/Web App to match the endpoint expected by the registered apps.
 
 For APIs you can do so configuring the JWT Bearer options as follows:
@@ -84,7 +73,7 @@ services.Configure<JwtBearerOptions>(AzureADDefaults.JwtBearerAuthenticationSche
 });
 ```
 
-For web apps you can do so by configuring the Open ID Connect options as follows:
+For web apps you can do so by configuring the OIDC options as follows:
 
 ```csharp
 services.Configure<OpenIdConnectOptions>(AzureADDefaults.OpenIdScheme, options =>
@@ -124,7 +113,7 @@ You can check the specific App ID Uri to use in the app registration description
 
 ## Retrieving an using access tokens and refresh tokens
 
-You can configure the Open ID Connect authentication handler to save the tokens it provisions as part of the authorization process by setting `SaveTokens = true` in the Open ID Connect options:
+You can configure the OIDC authentication handler to save the tokens it provisions as part of the authorization process by setting `SaveTokens = true` in the OIDC options:
 ```csharp
 services.Configure<OpenIdConnectOptions>(AzureADDefaults.OpenIdScheme, options =>
 {
