@@ -465,6 +465,8 @@
               href: blazor/components/cascading-values-and-parameters.md#cascadingvalue-component
             - name: ErrorBoundary
               href: blazor/fundamentals/handle-errors.md#error-boundaries
+            - name: FocusOnNavigate
+              href: blazor/fundamentals/routing.md#focus-an-element-on-navigation
             - name: InputCheckbox
               href: blazor/forms-validation.md#built-in-form-components
             - name: InputDate
