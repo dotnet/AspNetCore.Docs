@@ -515,7 +515,7 @@ After the initial assignment of <xref:System.DateTime.Now?displayProperty=nameWi
 
 ::: moniker range=">= aspnetcore-6.0"
 
-Apply the `[EditorRequired]` attribute to specify a required component parameter. If a parameter value isn't provided, editors or build tools may display warnings to the user. This attribute is only valid on properties also marked with the `[Parameter]` attribute.
+Apply the `[EditorRequired]` attribute to specify a required component parameter. If a parameter value isn't provided, editors or build tools may display warnings to the user. This attribute is only valid on properties also marked with the `[Parameter]` attribute. The `[EditorRequired]` attribute is enforced at design-time and when the app is built. The attribute isn't enforced at runtime, and it doesn't guarantee a non-`null` parameter value.
 
 ```csharp
 [Parameter]
