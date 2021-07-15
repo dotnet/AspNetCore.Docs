@@ -10,11 +10,7 @@ uid: security/authentication/aad-ui
 ---
 # Azure Active Directory with ASP.NET Core
 
-# Azure active directory UI
-
-The ASP.NET Core applications include support for authenticating with Azure Active Directory out of the box when you are using MVC, Razor Pages or Server-Side Blazor.
-
-By default the template is set up to authenticate the user. It does so by using the `Microsoft.AspNetCore.Authentication.AzureAD.UI` package. This package contains helper methods and a basic UI that allows you to handle authenticating with Azure Active Directory.
+The web templates for ASP.NET Core MVC, Razor Pages, and Server-Side Blazor include support for authenticating users with [Azure Active Directory](/azure/active-directory/authentication/overview-authentication) (AAD). Support for AAD is provided by the [Microsoft.AspNetCore.Authentication.AzureAD.UI](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.AzureAD.UI) NuGet package. This package contains helper methods and a basic UI that supports authenticating with AAD.
 
 Authentication is setup in the following lines in startup:
 ```csharp
@@ -22,7 +18,9 @@ services.AddAuthentication(AzureADDefaults.AuthenticationScheme)
     .AddAzureAD(options => Configuration.Bind("AzureAd", options));
 ```
 
-The snippet above sets up a policy scheme that delegates authentication tasks to an underlying Open ID Connect authentication handler and sign-in tasks to a cookie authentication handler.
+[!code-csharp[](aad-ui/samples/WebAAD6/Startup.cs?name=snippet&highlight=9,10)]
+
+The preceding code sets up a policy scheme that delegates authentication tasks to an underlying Open ID Connect authentication handler and sign-in tasks to a cookie authentication handler.
 
 When an unauthenticated user tries to visit a protected page, the application emits a challenge to the policy scheme (which is setup as the default scheme) and that delegates to the underlying Open ID Connect scheme that redirects the user to the authorize endpoint.
 
