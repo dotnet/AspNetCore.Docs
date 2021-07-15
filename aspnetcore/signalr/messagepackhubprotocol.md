@@ -5,7 +5,7 @@ description: Add MessagePack Hub Protocol to ASP.NET Core SignalR.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 09/24/2020
+ms.date: 7/16/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: signalr/messagepackhubprotocol
 ---
@@ -81,17 +81,15 @@ After installing the npm package, the module can be used directly via a JavaScri
 
 *node_modules\\@microsoft\signalr-protocol-msgpack\dist\browser\signalr-protocol-msgpack.js* 
 
-In a browser, the `msgpack5` library must be referenced. Use a `<script>` tag to create a reference. The library can be found at *node_modules\msgpack5\dist\msgpack5.js*.
+In a browser, `signalr-protocol-msgpack` must be referenced. Use a `<script>` tag to create a reference. The library can be found at *node_modules\msgpack5\dist\msgpack5.js*.
 
 The following javaScript files must be referenced in the order shown below:
 
 
 ```html
 <script src="~/lib/signalr/signalr.js"></script>
-<script src="~/lib/msgpack5/msgpack5.js"></script>
 <script src="~/lib/signalr/signalr-protocol-msgpack.js"></script>
 ```
-If *signalr-protocol-msgpack.js* is referenced before *msgpack5.js*, an error occurs when trying to connect with MessagePack.
 
 Adding `.withHubProtocol(new signalR.protocols.msgpack.MessagePackHubProtocol())` to the `HubConnectionBuilder` configures the client to use the MessagePack protocol when connecting to a server.
 
@@ -154,7 +152,7 @@ The MessagePack protocol doesn't provide a way to encode the `Kind` value of a `
 
 ### DateTime.MinValue is not supported by MessagePack in JavaScript
 
-The [msgpack5](https://github.com/mcollina/msgpack5) library used by the SignalR JavaScript client doesn't support the `timestamp96` type in MessagePack. This type is used to encode very large date values (either very early in the past or very far in the future). The value of `DateTime.MinValue` is `January 1, 0001`, which must be encoded in a `timestamp96` value. Because of this, sending `DateTime.MinValue` to a JavaScript client isn't supported. When `DateTime.MinValue` is received by the JavaScript client, the following error is thrown:
+The [msgpack](https://github.com/msgpack/msgpack) library used by the SignalR JavaScript client doesn't support the `timestamp96` type in MessagePack. This type is used to encode very large date values (either very early in the past or very far in the future). The value of `DateTime.MinValue` is `January 1, 0001`, which must be encoded in a `timestamp96` value. Because of this, sending `DateTime.MinValue` to a JavaScript client isn't supported. When `DateTime.MinValue` is received by the JavaScript client, the following error is thrown:
 
 ```
 Uncaught Error: unable to find ext type 255 at decoder.js:427
