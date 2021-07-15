@@ -12,21 +12,24 @@ uid: security/authentication/aad-ui
 
 The web templates for ASP.NET Core MVC, Razor Pages, and Server-Side Blazor include support for authenticating users with [Azure Active Directory](/azure/active-directory/authentication/overview-authentication) (AAD). Support for AAD is provided by the [Microsoft.AspNetCore.Authentication.AzureAD.UI](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.AzureAD.UI) NuGet package. This package contains helper methods and a basic UI that supports authenticating with AAD.
 
-Authentication is setup in the following lines in startup:
-```csharp
-services.AddAuthentication(AzureADDefaults.AuthenticationScheme)
-    .AddAzureAD(options => Configuration.Bind("AzureAd", options));
-```
+Authentication is enabled with the following highlighted lines in `Startup`:
 
 [!code-csharp[](aad-ui/samples/WebAAD6/Startup.cs?name=snippet&highlight=9,10)]
 
-The preceding code sets up a policy scheme that delegates authentication tasks to an underlying Open ID Connect authentication handler and sign-in tasks to a cookie authentication handler.
+The preceding code sets up a policy scheme that delegates authentication tasks to an underlying [Open ID Connect](https://openid.net/connect/) authentication handler and sign-in tasks to a cookie authentication handler.
 
-When an unauthenticated user tries to visit a protected page, the application emits a challenge to the policy scheme (which is setup as the default scheme) and that delegates to the underlying Open ID Connect scheme that redirects the user to the authorize endpoint.
+When an unauthenticated user tries to visit a protected page:
 
-When the process is successful, the application comes back to the `signin-oidc` endpoint and the sign-in process continues by validating the response and emitting a cookie with the results.
+* The app emits a challenge to the policy scheme, which is setup as the default scheme.
+* The challenge delegates to the underlying Open ID Connect scheme.
+* Open ID Connect redirects the user to the authorize endpoint.
 
-The authentication package is merely a wrapper around the underlying Open ID Connect concepts and those are still available to customize any detail or extend the current functionality in the ways provided by the Open ID Connect handler.
+When the process is successful:
+
+* The app returns to the `signin-oidc` endpoint.
+* The sign-in process continues by validating the response and emitting a cookie with the results.
+
+The authentication package is just a wrapper around the underlying Open ID Connect API. The Open ID Connect API is available to customize any detail or extend the current functionality.
 
 ## Customizing the sign-in and sign-out processes
 
@@ -61,7 +64,7 @@ services.Configure<OpenIdConnectOptions>(AzureADDefaults.OpenIdScheme, options =
 
 The Open ID Connect authentication handler can be configured to request an access token from Azure Active Directory.
 
-Given a registered application, you can configure the Open ID Connect middlware as follows:
+Given a registered app, you can configure the Open ID Connect middlware as follows:
 
 ```csharp
 options.ResponseType = "code";
@@ -71,12 +74,12 @@ options.Resource = "<<api-client-id>>";
 ```
 
 * The response type `code` changes the authentication flow to `code` the default is `id_token`.
-* The `offline_access` scope allows the application to request refresh tokens from the app that it can use to refresh access_tokens without user interaction.
+* The `offline_access` scope allows the app to request refresh tokens from the app that it can use to refresh access_tokens without user interaction.
 * The `<<scope>>` parameter is the scope for the API you want to call, this typically has the form of `api://<<api-app-id-uri>>/scope-name`
 * The resource is the client id for the Resource (API) you want to get an access token for. This value will appear in the audience (aud) claim of the provisioned access token so it must match what the Server API has configured as the client ID.
 
-## Updating your application to use V2.0 endpoints
-Our packages use the V1.0 endpoints of Azure Active Directory and Visual Studio provisions a V1 endpoint, that means that if you create a new application from the portal you will have to adjust the configuration of the API/Web App to match the endpoint expected by the registered apps.
+## Updating your app to use V2.0 endpoints
+Our packages use the V1.0 endpoints of Azure Active Directory and Visual Studio provisions a V1 endpoint, that means that if you create a new app from the portal you will have to adjust the configuration of the API/Web App to match the endpoint expected by the registered apps.
 
 For APIs you can do so configuring the JWT Bearer options as follows:
 
@@ -87,7 +90,7 @@ services.Configure<JwtBearerOptions>(AzureADDefaults.JwtBearerAuthenticationSche
 });
 ```
 
-For web applications you can do so by configuring the Open ID Connect options as follows:
+For web apps you can do so by configuring the Open ID Connect options as follows:
 
 ```csharp
 services.Configure<OpenIdConnectOptions>(AzureADDefaults.OpenIdScheme, options =>
@@ -121,7 +124,7 @@ services.Configure<OpenIdConnectOptions>(AzureADDefaults.OpenIdScheme, options =
   }
 }
 ```
-You can check the specific App ID Uri to use in the application registration description for your app.
+You can check the specific App ID Uri to use in the app registration description for your app.
 
 ## Retrieving an using access tokens and refresh tokens
 
