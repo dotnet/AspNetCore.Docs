@@ -81,8 +81,7 @@ After installing the npm package, the module can be used directly via a JavaScri
 
 *node_modules\\@microsoft\signalr-protocol-msgpack\dist\browser\signalr-protocol-msgpack.js* 
 
-The following javaScript files must be referenced in the order shown below:
-
+The following required javaScript files must be referenced in the order shown below:
 
 ```html
 <script src="~/lib/signalr/signalr.js"></script>
