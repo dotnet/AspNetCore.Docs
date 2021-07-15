@@ -1082,7 +1082,7 @@
           uid: security/authentication/index
         - name: Introduction to Identity
           uid: security/authentication/identity
-        - name: Azure Active Directory
+        - name: Azure Active Directory UI
           uid: security/authentication/aad-ui
         - name: Mapping, customizing, and transforming claims
           uid: security/authentication/claims

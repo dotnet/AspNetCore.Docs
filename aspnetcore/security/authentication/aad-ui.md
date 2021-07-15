@@ -8,7 +8,7 @@ ms.custom: "mvc, seodec18"
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/aad-ui
 ---
-# Azure Active Directory with ASP.NET Core
+# Azure Active Directory UI with ASP.NET Core
 
 The web templates for ASP.NET Core MVC, Razor Pages, and Server-Side Blazor include support for authenticating users with [Azure Active Directory](/azure/active-directory/authentication/overview-authentication) (AAD). Support for AAD is provided by the [Microsoft.AspNetCore.Authentication.AzureAD.UI](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.AzureAD.UI) NuGet package. This package contains helper methods and a basic UI that supports authenticating with AAD.
 
@@ -35,17 +35,11 @@ The authentication package is just a wrapper around the underlying Open ID Conne
 
 By default the template is setup with a login and logout buttons that call a controller provided in the package to start the authentication operations.
 
-You can create your own controller or razor page to begin the login/logout processes and start the proccess there by calling the appropriate method on the HttpContext. For example:
+A controller or razor page can be created to begin sign-in and sign-out by calling the appropriate method on the `HttpContext`. For example:
 
-```csharp
-[HttpPost]
-[ValidateAntiforgeryToken]
-public IActionResult SignOut()
-{
-    // This is done in this order to ensue that we log out locally even if the remote logout fails.
-    return SignOut(AzureADDefaults.CookieSchemeName, AzureADDefaults.OpenIdConnectSchemeName);
-}
-```
+[!code-csharp[](aad-ui/samples/WebAAD6/Areas/Identity/Pages/Account/SignOut.cshtml.cs?name=snippet)]
+
+The preceding sign-out code ensures the app is signed out locally even if remote sign-out fails.
 
 ## Configuring the underlying OIDC middleware
 
@@ -100,7 +94,8 @@ services.Configure<OpenIdConnectOptions>(AzureADDefaults.OpenIdScheme, options =
 ```
 
 ### Code changes when you upgrade to V2.0
-* The list of claims in the ID token changes. check [here](https://docs.microsoft.com/en-us/azure/active-directory/azuread-dev/azure-ad-endpoint-comparison) for details on the differences.
+
+* The list of claims in the ID token changes. check [here](/azure/active-directory/azuread-dev/azure-ad-endpoint-comparison) for details on the differences.
 * You don't need to specify the resource property anymore when requesting an access token. The snippet below can be removed
 ```csharp
 services.Configure<OpenIdConnectOptions>(AzureADDefaults.OpenIdScheme, options =>
@@ -112,6 +107,7 @@ services.Configure<OpenIdConnectOptions>(AzureADDefaults.OpenIdScheme, options =
 ```
 
 ### Considerations with the App ID URI
+
 * When using v2.0 endpoints APIs define an "App ID URI" which is meant to represent a unique identifier for the API.
 * All scopes include that as a prefix and v2.0 endpoints will emit access tokens with the App ID URI as the audience.
 * That means that if you are using V2.0 endpoints the client ID configured in your server API will have to change from the API Application (client) Id to the App ID URI. For example:
