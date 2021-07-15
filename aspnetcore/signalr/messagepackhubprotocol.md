@@ -81,6 +81,14 @@ After installing the npm package, the module can be used directly via a JavaScri
 
 *node_modules\\@microsoft\signalr-protocol-msgpack\dist\browser\signalr-protocol-msgpack.js* 
 
+The following javaScript files must be referenced in the order shown below:
+
+
+```html
+<script src="~/lib/signalr/signalr.js"></script>
+<script src="~/lib/signalr/signalr-protocol-msgpack.js"></script>
+```
+
 Adding `.withHubProtocol(new signalR.protocols.msgpack.MessagePackHubProtocol())` to the `HubConnectionBuilder` configures the client to use the MessagePack protocol when connecting to a server.
 
 ```javascript
