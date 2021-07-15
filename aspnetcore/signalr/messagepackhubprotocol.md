@@ -315,7 +315,7 @@ HubConnection messagePackConnection = HubConnectionBuilder.create("YOUR HUB URL 
     .build();
 ```
 
-## MessagePack quirks
+## MessagePack considerations
 
 There are a few issues to be aware of when using the MessagePack Hub Protocol.
 
