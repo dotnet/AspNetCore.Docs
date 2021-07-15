@@ -427,13 +427,13 @@ Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or
 </script>
 ```
 
-`Pages/SendByteArrayJSToDotNet.razor`:
+`Pages/CallDotNetExample7.razor`:
 
 ```razor
-@page "/send-byte-array-js-to-dotnet"
+@page "/call-dotnet-example-7"
 @using System.Text
 
-<h1>Send Byte Array JS to .NET</h1>
+<h1>Call .NET Example 7</h1>
 
 <p>
     <button onclick="sendByteArray()">Send Bytes</button>

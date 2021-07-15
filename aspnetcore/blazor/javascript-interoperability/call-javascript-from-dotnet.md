@@ -661,13 +661,13 @@ Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or
 </script>
 ```
 
-`Pages/SendByteArrayDotNetToJS.razor`:
+`Pages/CallJsExample9.razor`:
 
 ```razor
-@page "/send-byte-array-dotnet-to-js"
+@page "/call-js-example-9"
 @inject IJSRuntime JS
 
-<h1>Send Byte Array .NET to JS</h1>
+<h1>Call JS Example 9</h1>
 
 <p>
     <button @onclick="SendByteArray">Send Bytes</button>
@@ -756,9 +756,9 @@ Place the following `<script>` block in `wwwroot/index.html` (Blazor WebAssembly
 > * The function is likely to be renamed.
 > * The function itself might be removed in favor of automatic conversion of strings by the framework.
 
-`Pages/CallJsExample9.razor`:
+`Pages/CallJsExample10.razor`:
 
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample9.razor)]
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample10.razor)]
 
 If an <xref:Microsoft.JSInterop.IJSUnmarshalledObjectReference> instance isn't disposed in C# code, it can be disposed in JS. The following `dispose` function disposes the object reference when called from JS:
 
