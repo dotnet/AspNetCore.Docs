@@ -249,19 +249,13 @@ In the following example:
 ::: moniker-end
 
 > [!NOTE]
-> Framework API doesn't exist to clear validation messages directly from an <xref:Microsoft.AspNetCore.Components.Forms.EditContext>. Therefore, we don't generally recommend adding validation messages to a new <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore> in a form. To manage validation messages, use a [validator component](#validator-components) with your [business logic validation code](#business-logic-validation), as described in this article.
->
-> Additionally, changing the <xref:Microsoft.AspNetCore.Components.Forms.EditContext> after its assigned is **not** supported.
+> Changing the <xref:Microsoft.AspNetCore.Components.Forms.EditContext> after its assigned is **not** supported.
 
 ::: moniker range=">= aspnetcore-5.0"
 
 ## Display name support
 
-The following built-in components support display names with the <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601.DisplayName%2A?displayProperty=nameWithType> parameter:
-
-* <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601>
-* <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601>
-* <xref:Microsoft.AspNetCore.Components.Forms.InputSelect%601>
+Several built-in components support display names with the <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601.DisplayName%2A?displayProperty=nameWithType> parameter.
 
 In the `Starfleet Starship Database` form (`FormExample2` component) of the [Example form](#example-form) section, the production date of a new starship doesn't specify a display name:
 
@@ -372,6 +366,28 @@ Assign a custom template to <xref:Microsoft.AspNetCore.Components.Forms.InputDat
 
 ::: moniker-end
 
+## Basic validation
+
+In basic form validation scenarios, an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> instance can use declared <xref:Microsoft.AspNetCore.Components.Forms.EditContext> and <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore> instances to validate form fields. A handler for the <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnValidationRequested> event of the <xref:Microsoft.AspNetCore.Components.Forms.EditContext> executes custom validation logic. The handler's result updates the <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore> instance.
+
+Basic form validation is useful in cases where the form's model is defined within the component hosting the form, either as members directly on the component or in a subclass. Use of a [validator component](#validator-components) is recommended where an independent model class is used across several components.
+
+In the following `FormExample4` component, the `HandleValidationRequested` handler method clears any existing validation messages by calling <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore.Clear%2A?displayProperty=nameWithType> before validating the form.
+
+`Pages/FormExample4.razor`:
+
+::: moniker range=">= aspnetcore-5.0"
+
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample4.razor?highlight=38,42-53,70)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample4.razor?highlight=38,42-53,70)]
+
+::: moniker-end
+
 ## Data Annotations Validator component and custom validation
 
 The <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component attaches data annotations validation to a cascaded <xref:Microsoft.AspNetCore.Components.Forms.EditContext>. Enabling data annotations validation requires the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. To use a different validation system than data annotations, use a custom implementation instead of the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. The framework implementations for <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> are available for inspection in the reference source:
@@ -392,8 +408,8 @@ Validator components support form validation by managing a <xref:Microsoft.AspNe
 
 The Blazor framework provides the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component to attach validation support to forms based on [validation attributes (data annotations)](xref:mvc/models/validation#validation-attributes). You can create custom validator components to process validation messages for different forms on the same page or the same form at different steps of form processing (for example, client-side validation followed by server-side validation). The validator component example shown in this section, `CustomValidation`, is used in the following sections of this article:
 
-* [Business logic validation](#business-logic-validation)
-* [Server validation](#server-validation)
+* [Business logic validation with a validator component](#business-logic-validation-with-a-validator-component)
+* [Server validation with a validator component](#server-validation-with-a-validator-component)
 
 > [!NOTE]
 > Custom data annotation validation attributes can be used instead of custom validator components in many cases. Custom attributes applied to the form's model activate with the use of the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. When used with server-side validation, any custom attributes applied to the model must be executable on the server. For more information, see <xref:mvc/models/validation#alternatives-to-built-in-attributes>.
@@ -430,11 +446,13 @@ Create a validator component from <xref:Microsoft.AspNetCore.Components.Componen
 > The `{CLASS NAME}` placeholder is the name of the component class. The custom validator example in this section specifies the example namespace `BlazorSample`.
 
 > [!NOTE]
-> Anonymous lambda expressions are registered event handlers for <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnValidationRequested> and <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnFieldChanged> in the preceding example. It isn't necessary to implement <xref:System.IDisposable> and unsubscribe the event delegates in this scenario. For more information, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable>.
+> Anonymous lambda expressions are registered event handlers for <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnValidationRequested> and <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnFieldChanged> in the preceding example. It isn't necessary to implement <xref:System.IDisposable> and unsubscribe the event delegates in this scenario. For more information, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable-and-iasyncdisposable>.
 
-## Business logic validation
+## Business logic validation with a validator component
 
-For business logic validation, use a [validator component](#validator-components) that receives form errors in a dictionary.
+For general business logic validation, use a [validator component](#validator-components) that receives form errors in a dictionary.
+
+[Basic validation](#basic-validation) is useful in cases where the form's model is defined within the component hosting the form, either as members directly on the component or in a subclass. Use of a validator component is recommended where an independent model class is used across several components.
 
 In the following example:
 
@@ -444,24 +462,24 @@ In the following example:
 
 When validation messages are set in the component, they're added to the validator's <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore> and shown in the <xref:Microsoft.AspNetCore.Components.Forms.EditForm>'s validation summary.
 
-`Pages/FormExample4.razor`:
+`Pages/FormExample5.razor`:
 
 ::: moniker range=">= aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample4.razor)]
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample5.razor)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample4.razor)]
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample5.razor)]
 
 ::: moniker-end
 
 > [!NOTE]
 > As an alternative to using [validation components](#validator-components), data annotation validation attributes can be used. Custom attributes applied to the form's model activate with the use of the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. When used with server-side validation, the attributes must be executable on the server. For more information, see <xref:mvc/models/validation#alternatives-to-built-in-attributes>.
 
-## Server validation
+## Server validation with a validator component
 
 Server validation is supported in addition to client-side validation:
 
@@ -470,6 +488,8 @@ Server validation is supported in addition to client-side validation:
 * Process model validation on the server.
 * The server API includes both the built-in framework data annotations validation and custom validation logic supplied by the developer. If validation passes on the server, process the form and send back a success status code ([`200 - OK`](https://developer.mozilla.org/docs/Web/HTTP/Status/200)). If validation fails, return a failure status code ([`400 - Bad Request`](https://developer.mozilla.org/docs/Web/HTTP/Status/400)) and the field validation errors.
 * Either disable the form on success or display the errors.
+
+[Basic validation](#basic-validation) is useful in cases where the form's model is defined within the component hosting the form, either as members directly on the component or in a subclass. Use of a validator component is recommended where an independent model class is used across several components.
 
 The following example is based on:
 
@@ -701,21 +721,21 @@ In the **`Client`** project, add the `CustomValidation` component shown in the [
 
 In the **`Client`** project, the `Starfleet Starship Database` form is updated to show server validation errors with help of the `CustomValidation` component. When the server API returns validation messages, they're added to the `CustomValidation` component's <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore>. The errors are available in the form's <xref:Microsoft.AspNetCore.Components.Forms.EditContext> for display by the form's validation summary.
 
-In the following `FormExample5` component, update the namespace of the **`Shared`** project (`@using BlazorSample.Shared`) to the shared project's namespace. Note that the form requires authorization, so the user must be signed into the app to navigate to the form.
+In the following `FormExample6` component, update the namespace of the **`Shared`** project (`@using BlazorSample.Shared`) to the shared project's namespace. Note that the form requires authorization, so the user must be signed into the app to navigate to the form.
 
-`Pages/FormExample5.razor`:
+`Pages/FormExample6.razor`:
 
 ```razor
-@page "/form-example-5"
-@attribute [Authorize]
+@page "/form-example-6"
 @using System.Net
 @using System.Net.Http.Json
 @using Microsoft.AspNetCore.Authorization
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 @using Microsoft.Extensions.Logging
 @using BlazorSample.Shared
+@attribute [Authorize]
 @inject HttpClient Http
-@inject ILogger<FormExample5> Logger
+@inject ILogger<FormExample6> Logger
 
 <h1>Starfleet Starship Database</h1>
 
@@ -804,7 +824,7 @@ In the following `FormExample5` component, update the namespace of the **`Shared
                 .ReadFromJsonAsync<Dictionary<string, List<string>>>();
 
             if (response.StatusCode == HttpStatusCode.BadRequest && 
-                errors.Count() > 0)
+                errors.Any())
             {
                 customValidation.DisplayErrors(errors);
             }
@@ -881,19 +901,19 @@ The following `CustomInputText` component inherits the framework's `InputText` c
 
 ::: moniker-end
 
-The `CustomInputText` component can be used anywhere <xref:Microsoft.AspNetCore.Components.Forms.InputText> is used. The following `FormExample6` component uses the shared `CustomInputText` component.
+The `CustomInputText` component can be used anywhere <xref:Microsoft.AspNetCore.Components.Forms.InputText> is used. The following `FormExample7` component uses the shared `CustomInputText` component.
 
-`Pages/FormExample6.razor`:
+`Pages/FormExample7.razor`:
 
 ::: moniker range=">= aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample6.razor?highlight=9)]
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample7.razor?highlight=9)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample6.razor?highlight=9)]
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample7.razor?highlight=9)]
 
 ::: moniker-end
 
@@ -997,8 +1017,8 @@ When working with radio buttons in a form, data binding is handled differently t
 
 ```razor
 @using System.Globalization
-@typeparam TValue
 @inherits InputBase<TValue>
+@typeparam TValue
 
 <input @attributes="AdditionalAttributes" type="radio" value="@SelectedValue" 
        checked="@(SelectedValue.Equals(Value))" @onchange="OnChange" />
@@ -1034,6 +1054,12 @@ When working with radio buttons in a form, data binding is handled differently t
     }
 }
 ```
+
+For more information on generic type parameters (`@typeparam`), see the following articles:
+
+* <xref:mvc/views/razor#typeparam>
+* <xref:blazor/components/index#generic-type-parameter-support>
+* <xref:blazor/components/templated-components>
 
 The following `RadioButtonExample` component uses the preceding `InputRadio` component to obtain and validate a rating from the user:
 
@@ -1198,9 +1224,9 @@ Create a class derived from <xref:Microsoft.AspNetCore.Components.Forms.FieldCss
 
 Set the `CustomFieldClassProvider` class as the Field CSS Class Provider on the form's <xref:Microsoft.AspNetCore.Components.Forms.EditContext> instance with <xref:Microsoft.AspNetCore.Components.Forms.EditContextFieldClassExtensions.SetFieldCssClassProvider%2A>.
 
-`Pages/FormExample7.razor`:
+`Pages/FormExample8.razor`:
 
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample7.razor?highlight=21)]
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample8.razor?highlight=21)]
 
 The preceding example checks the validity of all form fields and applies a style to each field. If the form should only apply custom styles to a subset of the fields, make `CustomFieldClassProvider` apply styles conditionally. The following `CustomFieldClassProvider2` example only applies a style to the `Name` field. For any fields with names not matching `Name`, `string.Empty` is returned, and no style is applied.
 
@@ -1359,22 +1385,22 @@ To enable and disable the submit button based on form validation, the following 
 * Uses a shortened version of the preceding `Starfleet Starship Database` form (`FormExample2` component) that only accepts a value for the ship's identifier. The other `Starship` properties receive valid default values when an instance of the `Starship` type is created.
 * Uses the form's <xref:Microsoft.AspNetCore.Components.Forms.EditContext> to assign the model when the component is initialized.
 * Validates the form in the context's <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnFieldChanged> callback to enable and disable the submit button.
-* Implements <xref:System.IDisposable> and unsubscribes the event handler in the `Dispose` method. For more information, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable>.
+* Implements <xref:System.IDisposable> and unsubscribes the event handler in the `Dispose` method. For more information, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable-and-iasyncdisposable>.
 
 > [!NOTE]
 > When assigning to the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.EditContext?displayProperty=nameWithType>, don't also assign an <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?displayProperty=nameWithType> to the <xref:Microsoft.AspNetCore.Components.Forms.EditForm>.
 
-`Pages/FormExample8.razor`:
+`Pages/FormExample9.razor`:
 
 ::: moniker range=">= aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample8.razor)]
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample9.razor)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample8.razor)]
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample9.razor)]
 
 ::: moniker-end
 

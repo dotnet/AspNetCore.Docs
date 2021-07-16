@@ -46,9 +46,9 @@ In production, don't render framework exception messages or stack traces in the 
 * Disclose sensitive information to end users.
 * Help a malicious user discover weaknesses in an app that can compromise the security of the app, server, or network.
 
-## Global exception handling
-
 [!INCLUDE[](~/blazor/includes/handle-errors/global-exception-handling.md)]
+
+[!INCLUDE[](~/blazor/includes/handle-errors/error-boundaries.md)]
 
 ## Log errors with a persistent provider
 
@@ -99,13 +99,13 @@ In the following example where <xref:Microsoft.AspNetCore.Components.ComponentBa
 
 ::: moniker range=">= aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/handle-errors/ProductDetails.razor?name=snippet&highlight=11,27-39)]
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/handle-errors/ProductDetails.razor?highlight=11,27-39)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/handle-errors/ProductDetails.razor?name=snippet&highlight=11,27-39)]
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/handle-errors/ProductDetails.razor?highlight=11,27-39)]
 
 ::: moniker-end
 
@@ -117,17 +117,15 @@ Rendering logic can throw an exception. An example of this scenario occurs when 
 
 To prevent a <xref:System.NullReferenceException> in rendering logic, check for a `null` object before accessing its members. In the following example, `person.Address` properties aren't accessed if `person.Address` is `null`:
 
-::: moniker range=">= aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/handle-errors/PersonExample.razor?name=snippet&highlight=1)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/handle-errors/PersonExample.razor?name=snippet&highlight=1)]
-
-::: moniker-end
+```razor
+@if (person.Address != null)
+{
+    <div>@person.Address.Line1</div>
+    <div>@person.Address.Line2</div>
+    <div>@person.Address.City</div>
+    <div>@person.Address.Country</div>
+}
+```
 
 The preceding code assumes that `person` isn't `null`. Often, the structure of the code guarantees that an object exists at the time the component is rendered. In those cases, it isn't necessary to check for `null` in rendering logic. In the prior example, `person` might be guaranteed to exist because `person` is created when the component is instantiated, as the following example shows:
 
@@ -176,7 +174,7 @@ A component may be removed from the UI, for example, because the user has naviga
 
 If disposal logic may throw exceptions, the app should trap the exceptions using a [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statement with error handling and logging.
 
-For more information on component disposal, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable>.
+For more information on component disposal, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable-and-iasyncdisposable>.
 
 <h3 id="javascript-interop-webassembly">JavaScript interop</h3>
 
@@ -330,11 +328,11 @@ In production, don't render framework exception messages or stack traces in the 
 * Disclose sensitive information to end users.
 * Help a malicious user discover weaknesses in an app that can compromise the security of the app, server, or network.
 
-## Global exception handling
-
 [!INCLUDE[](~/blazor/includes/handle-errors/global-exception-handling.md)]
 
 Because the approaches in this section handle errors with a [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statement, the SignalR connection between the client and server isn't broken when an error occurs and the circuit remains alive. Any unhandled exception is fatal to a circuit. For more information, see the preceding section on [how a Blazor Server app reacts to unhandled exceptions](#how-a-blazor-server-app-reacts-to-unhandled-exceptions).
+
+[!INCLUDE[](~/blazor/includes/handle-errors/error-boundaries.md)]
 
 ## Log errors with a persistent provider
 
@@ -385,13 +383,13 @@ In the following example where <xref:Microsoft.AspNetCore.Components.ComponentBa
 
 ::: moniker range=">= aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_Server/Pages/handle-errors/ProductDetails.razor?name=snippet&highlight=11,27-39)]
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_Server/Pages/handle-errors/ProductDetails.razor?highlight=11,27-39)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_Server/Pages/handle-errors/ProductDetails.razor?name=snippet&highlight=11,27-39)]
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_Server/Pages/handle-errors/ProductDetails.razor?highlight=11,27-39)]
 
 ::: moniker-end
 
@@ -403,17 +401,15 @@ Rendering logic can throw an exception. An example of this scenario occurs when 
 
 To prevent a <xref:System.NullReferenceException> in rendering logic, check for a `null` object before accessing its members. In the following example, `person.Address` properties aren't accessed if `person.Address` is `null`:
 
-::: moniker range=">= aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_Server/Pages/handle-errors/PersonExample.razor?name=snippet&highlight=1)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_Server/Pages/handle-errors/PersonExample.razor?name=snippet&highlight=1)]
-
-::: moniker-end
+```razor
+@if (person.Address != null)
+{
+    <div>@person.Address.Line1</div>
+    <div>@person.Address.Line2</div>
+    <div>@person.Address.City</div>
+    <div>@person.Address.Country</div>
+}
+```
 
 The preceding code assumes that `person` isn't `null`. Often, the structure of the code guarantees that an object exists at the time the component is rendered. In those cases, it isn't necessary to check for `null` in rendering logic. In the prior example, `person` might be guaranteed to exist because `person` is created when the component is instantiated, as the following example shows:
 
@@ -462,7 +458,7 @@ A component may be removed from the UI, for example, because the user has naviga
 
 If the component's `Dispose` method throws an unhandled exception, the exception is fatal to a Blazor Server circuit. If disposal logic may throw exceptions, the app should trap the exceptions using a [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statement with error handling and logging.
 
-For more information on component disposal, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable>.
+For more information on component disposal, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable-and-iasyncdisposable>.
 
 <h3 id="javascript-interop-server">JavaScript interop</h3>
 

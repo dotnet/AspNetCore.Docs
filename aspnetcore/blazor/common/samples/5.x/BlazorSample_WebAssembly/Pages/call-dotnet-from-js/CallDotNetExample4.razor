@@ -1,0 +1,38 @@
+@page "/call-dotnet-example-4"
+@implements IDisposable
+@inject IJSRuntime JS
+
+<h1>Call .NET Example 4</h1>
+
+<p>
+    <label>
+        Name: <input @bind="name" />
+    </label>
+</p>
+
+<p>
+    <button @onclick="TriggerDotNetInstanceMethod">
+        Trigger .NET instance method
+    </button>
+</p>
+
+<p>
+    @result
+</p>
+
+@code {
+    private string name;
+    private string result;
+    private JsInteropClasses3 jsInteropClasses;
+
+    private async Task TriggerDotNetInstanceMethod()
+    {
+        jsInteropClasses = new JsInteropClasses3(JS);
+        result = await jsInteropClasses.CallHelloHelperGetHelloMessage(name);
+    }
+
+    public void Dispose()
+    {
+        jsInteropClasses?.Dispose();
+    }
+}

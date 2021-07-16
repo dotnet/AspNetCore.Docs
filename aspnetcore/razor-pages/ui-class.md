@@ -22,10 +22,10 @@ Razor views, pages, controllers, page models, [Razor components](xref:blazor/com
 
 # [Visual Studio](#tab/visual-studio)
 
-* From Visual Studio select **Create new a new project**.
+* From Visual Studio select **Create a new project**.
 * Select **Razor Class Library** > **Next**.
-* Name the library (for example, "RazorClassLib"), > **Create**. To avoid a file name collision with the generated view library, ensure the library name doesn't end in `.Views`.
-* Select **Support pages and views** if you need to support views. By default, only Razor Pages are supported. Select **Create**.
+* Name the library (for example, "RazorClassLib"), > **Create** > **Next**. To avoid a file name collision with the generated view library, ensure the library name doesn't end in `.Views`.
+* Select the **Target Framework**. Check **☑ Support pages and views** to support views. By default, only Razor Pages are supported. Select **Create**.
 
 The Razor class library (RCL) template defaults to Razor component development by default. The **Support pages and views** option supports pages and views.
 
@@ -429,7 +429,7 @@ For more information, see [dotnet new](/dotnet/core/tools/dotnet-new). To avoid 
 
 Add Razor files to the RCL.
 
-The ASP.NET Core templates assume the RCL content is in the *Areas* folder. See [RCL Pages layout](#rcl-pages-layout) to create an RCL that exposes content in `~/Pages` rather than `~/Areas/Pages`.
+The ASP.NET Core templates assume the RCL content is in the *Areas* folder. See [RCL Pages layout](#rcl-lay) below to create an RCL that exposes content in `~/Pages` rather than `~/Areas/Pages`.
 
 ## Reference RCL content
 
@@ -445,6 +445,8 @@ When a view, partial view, or Razor Page is found in both the web app and the RC
 In the sample download, rename *WebApp1/Areas/MyFeature2* to *WebApp1/Areas/MyFeature* to test precedence.
 
 Copy the *RazorUIClassLib/Areas/MyFeature/Pages/Shared/_Message.cshtml* partial view to *WebApp1/Areas/MyFeature/Pages/Shared/_Message.cshtml*. Update the markup to indicate the new location. Build and run the app to verify the app's version of the partial is being used.
+
+<a name="rcl-lay"></a>
 
 ### RCL Pages layout
 

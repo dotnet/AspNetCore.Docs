@@ -27,7 +27,7 @@ Open the *Models/Movie.cs* file and add the highlighted lines shown in the follo
 In the previous code:
 
 * The `[Column(TypeName = "decimal(18, 2)")]` data annotation enables Entity Framework Core to correctly map `Price` to currency in the database. For more information, see [Data Types](/ef/core/modeling/relational/data-types).
-* The [[Display]](xref:Microsoft.AspNetCore.Mvc.ModelBinding.Metadata.DisplayMetadata) attribute specifies the display name of a field. In the preceding code, "Release Date" instead of "ReleaseDate".
+* The [[Display]](xref:System.ComponentModel.DataAnnotations.DisplayAttribute) attribute specifies the display name of a field. In the preceding code, "Release Date" instead of "ReleaseDate".
 * The [[DataType]](xref:System.ComponentModel.DataAnnotations.DataTypeAttribute) attribute specifies the type of the data (`Date`). The time information stored in the field isn't displayed.
 
 [DataAnnotations](/aspnet/mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-6) is covered in the next tutorial.
@@ -84,7 +84,7 @@ Test the behavior of `@page "{id:int?}"`:
 
 With the `@page "{id:int}"` directive, the break point is never hit. The routing engine returns HTTP 404. Using `@page "{id:int?}"`, the `OnGetAsync` method returns `NotFound` (HTTP 404):
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie50/Pages/Movies/Details.cshtml.cs?name=snippet1&highlight=10-13)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie50/Pages/Movies/Details.cshtml.cs?name=snippet1&highlight=3-6)]
 
 ### Review concurrency exception handling
 
@@ -199,7 +199,7 @@ To test the behavior of `@page "{id:int?}"`:
 
 With the `@page "{id:int}"` directive, the break point is never hit. The routing engine returns HTTP 404. Using `@page "{id:int?}"`, the `OnGetAsync` method returns `NotFound` (HTTP 404):
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Pages/Movies/Details.cshtml.cs?name=snippet1&highlight=10-13)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Pages/Movies/Details.cshtml.cs?name=snippet1&highlight=3-6)]
 
 ### Review concurrency exception handling
 

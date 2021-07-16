@@ -71,6 +71,8 @@ To disable automatic loading of hosting startup assemblies, use one of the follo
                     .UseStartup<Startup>();
             });
     ```
+    
+    The `{ASSEMBLY1;ASSEMBLY2; ...}` placeholder represents the semicolon-separated list of assemblies.
 
   * `ASPNETCORE_HOSTINGSTARTUPEXCLUDEASSEMBLIES` environment variable.
 
@@ -224,6 +226,8 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
                 .UseStartup<Startup>();
         });
 ```
+
+The `{ASSEMBLY1;ASSEMBLY2; ...}` placeholder represents the semicolon-separated list of assemblies.
 
 When multiple hosting startup assembles are present, their <xref:Microsoft.AspNetCore.Hosting.IHostingStartup.Configure*> methods are executed in the order that the assemblies are listed.
 

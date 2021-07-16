@@ -11,7 +11,7 @@ uid: tutorials/grpc/grpc-start
 
 By [John Luo](https://github.com/juntaoluo)
 
-This tutorial shows how to create a .NET Core [gRPC](https://grpc.io/docs/guides/) client and an ASP.NET Core gRPC Server.
+This tutorial shows how to create a .NET Core [gRPC](xref:grpc/index) client and an ASP.NET Core gRPC Server.
 
 At the end, you'll have a gRPC client that communicates with the gRPC Greeter service.
 

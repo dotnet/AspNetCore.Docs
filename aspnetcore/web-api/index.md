@@ -11,6 +11,8 @@ uid: web-api/index
 ---
 # Create web APIs with ASP.NET Core
 
+<!-- TODO next update consoladate moniker versions   -->
+
 By [Scott Addie](https://github.com/scottaddie) and [Tom Dykstra](https://github.com/tdykstra)
 
 ASP.NET Core supports creating RESTful services, also known as web APIs, using C#. To handle requests, a web API uses controllers. *Controllers* in a web API are classes that derive from `ControllerBase`. This article shows how to use controllers for handling web API requests.

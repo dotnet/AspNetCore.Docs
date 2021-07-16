@@ -16,11 +16,7 @@ This article describes how to create a [hosted Blazor WebAssembly solution](xref
 ::: moniker range=">= aspnetcore-5.0"
 
 > [!NOTE]
-> For Blazor WebAssembly apps created in Visual Studio that are configured to support accounts in an AAD organizational directory, Visual Studio doesn't currently configure the solution's projects or the Azure portal app registrations correctly on project generation. This will be addressed in a future release of Visual Studio.
->
-> This article shows how to create the solution and Azure app portal registrations with the .NET CLI `dotnet new` command and by manually creating the app registrations in the Azure portal.
->
-> If you prefer to create the solution and Azure app registrations with Visual Studio before the IDE is updated, refer to **_each section of this article_** and confirm or update the apps' configurations and the apps' registrations after Visual Studio creates the solution.
+> For Blazor WebAssembly apps created in Visual Studio that are configured to support accounts in an AAD organizational directory with Microsoft Identity Platform, use Visual Studio version 16.10 or later in order to create the app with the correct Azure configuration. If you use a version of Visual Studio earlier than 16.10, you must manually update the app's configuration per **_each section of this article_** after generating the app.
 
 ::: moniker-end
 
@@ -389,7 +385,7 @@ builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>()
     .CreateClient("{APP ASSEMBLY}.ServerAPI"));
 ```
 
-The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `BlazorSample.ServerAPI`).
+The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `BlazorSample.Client`).
 
 Support for authenticating users is registered in the service container with the <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A> extension method provided by the [`Microsoft.Authentication.WebAssembly.Msal`](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal) package. This method sets up the services required for the app to interact with the Identity Provider (IP).
 

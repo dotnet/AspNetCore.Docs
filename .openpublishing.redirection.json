@@ -832,7 +832,7 @@
         },
         {
             "source_path": "aspnetcore/razor-components/layouts.md",
-            "redirect_url": "/aspnet/core/blazor/layouts",
+            "redirect_url": "/aspnet/core/blazor/components/layouts",
             "redirect_document_id": false
         },
         {
@@ -847,7 +847,7 @@
         },
         {
             "source_path": "aspnetcore/razor-components/javascript-interop.md",
-            "redirect_url": "/aspnet/core/blazor/js-interop/index",
+            "redirect_url": "/aspnet/core/blazor/javascript-interoperability/",
             "redirect_document_id": false
         },
         {
@@ -927,7 +927,7 @@
         },
         {
             "source_path": "aspnetcore/blazor/javascript-interop.md",
-            "redirect_url": "/aspnet/core/blazor/js-interop/index",
+            "redirect_url": "/aspnet/core/blazor/javascript-interoperability/",
             "redirect_document_id": false
         },
         {
@@ -1057,7 +1057,7 @@
         },
         {
             "source_path": "aspnetcore/blazor/integrate-components.md",
-            "redirect_url": "/aspnet/core/blazor/components/integrate-components",
+            "redirect_url": "/aspnet/core/blazor/components/prerendering-and-integration",
             "redirect_document_id": false
         },
         {
@@ -1087,7 +1087,7 @@
         },
         {
             "source_path": "aspnetcore/tutorials/build-your-first-blazor-app.md",
-            "redirect_url": "/aspnet/core/tutorials/build-a-blazor-app",
+            "redirect_url": "https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro",
             "redirect_document_id": false
         },
         {
@@ -1141,12 +1141,17 @@
         },
         {
             "source_path": "aspnetcore/blazor/call-javascript-from-dotnet.md",
-            "redirect_url": "/aspnet/core/blazor/js-interop/call-javascript-from-dotnet",
+            "redirect_url": "/aspnet/core/blazor/javascript-interoperability/call-javascript-from-dotnet",
             "redirect_document_id": false
         },
         {
             "source_path": "aspnetcore/blazor/call-dotnet-from-javascript.md",
-            "redirect_url": "/aspnet/core/blazor/js-interop/call-dotnet-from-javascript",
+            "redirect_url": "/aspnet/core/blazor/javascript-interoperability/call-dotnet-from-javascript",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/blazor/layouts.md",
+            "redirect_url": "/aspnet/core/blazor/components/layouts",
             "redirect_document_id": false
         }
     ]

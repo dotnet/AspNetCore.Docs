@@ -40,9 +40,9 @@ When the app starts, the assembly specified as the Router's `AppAssembly` is sca
 At runtime, the <xref:Microsoft.AspNetCore.Components.RouteView> component:
 
 * Receives the <xref:Microsoft.AspNetCore.Components.RouteData> from the <xref:Microsoft.AspNetCore.Components.Routing.Router> along with any route parameters.
-* Renders the specified component with its [layout](xref:blazor/layouts), including any further nested layouts.
+* Renders the specified component with its [layout](xref:blazor/components/layouts), including any further nested layouts.
 
-Optionally specify a <xref:Microsoft.AspNetCore.Components.RouteView.DefaultLayout> parameter with a layout class for components that don't specify a layout with the [`@layout` directive](xref:blazor/layouts#apply-a-layout-to-a-component). The framework's [Blazor project templates](xref:blazor/project-structure) specify the `MainLayout` component (`Shared/MainLayout.razor`) as the app's default layout. For more information on layouts, see <xref:blazor/layouts>.
+Optionally specify a <xref:Microsoft.AspNetCore.Components.RouteView.DefaultLayout> parameter with a layout class for components that don't specify a layout with the [`@layout` directive](xref:blazor/components/layouts#apply-a-layout-to-a-component). The framework's [Blazor project templates](xref:blazor/project-structure) specify the `MainLayout` component (`Shared/MainLayout.razor`) as the app's default layout. For more information on layouts, see <xref:blazor/components/layouts>.
 
 Components support multiple route templates using multiple [`@page` directives](xref:mvc/views/razor#page). The following example component loads on requests for `/BlazorRoute` and `/DifferentBlazorRoute`.
 
@@ -62,6 +62,35 @@ Components support multiple route templates using multiple [`@page` directives](
 
 > [!IMPORTANT]
 > For URLs to resolve correctly, the app must include a `<base>` tag in its `wwwroot/index.html` file (Blazor WebAssembly) or `Pages/_Host.cshtml` file (Blazor Server) with the app base path specified in the `href` attribute. For more information, see <xref:blazor/host-and-deploy/index#app-base-path>.
+
+> [!NOTE]
+> The <xref:Microsoft.AspNetCore.Components.Routing.Router> doesn't interact with query string values. To work with query strings, see the [Query string and parse parameters](#query-string-and-parse-parameters) section.
+
+::: moniker range=">= aspnetcore-6.0"
+
+## Focus an element on navigation
+
+Use the `FocusOnNavigate` component to set the UI focus to an element based on a CSS selector after navigating from one page to another. You can see the `FocusOnNavigate` component in use by the `App` component of an app generated from a Blazor project template.
+
+`App.razor`:
+
+```razor
+<Router AppAssembly="@typeof(Program).Assembly">
+    <Found Context="routeData">
+        <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
+        <FocusOnNavigate RouteData="@routeData" Selector="h1" />
+    </Found>
+    <NotFound>
+        <LayoutView Layout="@typeof(MainLayout)">
+            <p role="alert">Sorry, there's nothing at this address.</p>
+        </LayoutView>
+    </NotFound>
+</Router>
+```
+
+When the preceding `Router` component navigates to a new page, the `FocusOnNavigate` component sets the focus to the page's top-level header (`<h1>`). This is a common strategy for ensuring that page navigations are announced when using a screen reader.
+
+::: moniker-end
 
 ## Provide custom content when content isn't found
 
@@ -85,7 +114,7 @@ In the `App` component, set custom content in the <xref:Microsoft.AspNetCore.Com
 
 ::: moniker-end
 
-Arbitrary items are supported as content of the `<NotFound>` tags, such as other interactive components. To apply a default layout to <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound> content, see <xref:blazor/layouts#apply-a-layout-to-arbitrary-content-layoutview-component>.
+Arbitrary items are supported as content of the `<NotFound>` tags, such as other interactive components. To apply a default layout to <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound> content, see <xref:blazor/components/layouts#apply-a-layout-to-arbitrary-content-layoutview-component>.
 
 ## Route to components from multiple assemblies
 
@@ -93,19 +122,15 @@ Use the <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblie
 
 `App.razor`:
 
-::: moniker range=">= aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/routing/App3.razor?name=snippet)]
-
-::: moniker-end
+```razor
+<Router
+    AppAssembly="@typeof(Program).Assembly"
+    AdditionalAssemblies="new[] { typeof(Component1).Assembly }">
+    @* ... Router component elements ... *@
+</Router>
+```
 
 [!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
-
-::: moniker range="< aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/routing/App3.razor?name=snippet)]
-
-::: moniker-end
 
 ## Route parameters
 
@@ -154,6 +179,9 @@ protected override void OnParametersSet()
 }
 ```
 
+> [!NOTE]
+> Route parameters don't work with query string values. To work with query strings, see the [Query string and parse parameters](#query-string-and-parse-parameters) section.
+
 ## Route constraints
 
 A route constraint enforces type matching on a route segment to a component.
@@ -177,6 +205,9 @@ In the following example, the route to the `User` component only matches if:
 
 ::: moniker-end
 
+> [!NOTE]
+> Route contraints don't work with query string values. To work with query strings, see the [Query string and parse parameters](#query-string-and-parse-parameters) section.
+
 The route constraints shown in the following table are available. For the route constraints that match the invariant culture, see the warning below the table for more information.
 
 | Constraint | Example           | Example Matches                                                                  | Invariant<br>culture<br>matching |
@@ -192,6 +223,34 @@ The route constraints shown in the following table are available. For the route 
 
 > [!WARNING]
 > Route constraints that verify the URL and are converted to a CLR type (such as `int` or <xref:System.DateTime>) always use the invariant culture. These constraints assume that the URL is non-localizable.
+
+::: moniker range=">= aspnetcore-5.0"
+
+Route contraints also work with [optional parameters](#route-parameters). In the following example, `Id` is required, but `Option` is an optional boolean route parameter.
+
+`Pages/User.razor`:
+
+```razor
+@page "/user/{Id:int}/{Option:bool?}"
+
+<p>
+    Id: @Id
+</p>
+
+<p>
+    Option: @Option
+</p>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    [Parameter]
+    public bool Option { get; set; }
+}
+```
+
+::: moniker-end
 
 ## Routing with URLs that contain dots
 
@@ -300,7 +359,7 @@ The following component:
 
 ::: moniker-end
 
-For more information on component disposal, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable>.
+For more information on component disposal, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable-and-iasyncdisposable>.
 
 ## Query string and parse parameters
 
@@ -340,6 +399,116 @@ For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet>.
 
 ::: moniker-end
 
+::: moniker range=">= aspnetcore-5.0"
+
+## User interaction with `<Navigating>` content
+
+The <xref:Microsoft.AspNetCore.Components.Routing.Router> component can indicate to the user that a page transition is occurring.
+
+At the top of the `App` component (`App.razor`), add an [`@using`](xref:mvc/views/razor#using) directive for the <xref:Microsoft.AspNetCore.Components.Routing?displayProperty=fullName> namespace:
+
+```razor
+@using Microsoft.AspNetCore.Components.Routing
+```
+
+Add a `<Navigating>` tag to the component with markup to display during page transition events. For more information, see <xref:Microsoft.AspNetCore.Components.Routing.Router.Navigating> (API documentation).
+
+In the router element content (`<Router>...</Router>`) of the `App` component (`App.razor`):
+
+```razor
+<Navigating>
+    <p>Loading the requested page&hellip;</p>
+</Navigating>
+```
+
+For an example that uses the <xref:Microsoft.AspNetCore.Components.Routing.Router.Navigating> property, see <xref:blazor/webassembly-lazy-load-assemblies#user-interaction-with-navigating-content>.
+
+## Handle asynchronous navigation events with `OnNavigateAsync`
+
+The <xref:Microsoft.AspNetCore.Components.Routing.Router> component supports an <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> feature. The <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> handler is invoked when the user:
+
+* Visits a route for the first time by navigating to it directly in their browser.
+* Navigates to a new route using a link or a <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A?displayProperty=nameWithType> invocation.
+
+In the `App` component (`App.razor`):
+
+```razor
+<Router AppAssembly="@typeof(Program).Assembly" 
+    OnNavigateAsync="@OnNavigateAsync">
+    ...
+</Router>
+
+@code {
+    private async Task OnNavigateAsync(NavigationContext args)
+    {
+        ...
+    }
+}
+```
+
+[!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
+
+For an example that uses <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync>, see <xref:blazor/webassembly-lazy-load-assemblies>.
+
+When prerendering on the server in a Blazor Server app or hosted Blazor WebAssembly app, <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> is executed *twice*:
+
+* Once when the requested endpoint component is initially rendered statically.
+* A second time when the browser renders the endpoint component.
+
+To prevent developer code in <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> from executing twice, the `App` component can store the <xref:Microsoft.AspNetCore.Components.Routing.NavigationContext> for use in [`OnAfterRender`/`OnAfterRenderAsync`](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync), where `firstRender` can be checked. For more information, see [Detect when the app is prerendering](xref:blazor/components/lifecycle#detect-when-the-app-is-prerendering) in the *Blazor Lifecycle* article.
+
+## Handle cancellations in `OnNavigateAsync`
+
+The <xref:Microsoft.AspNetCore.Components.Routing.NavigationContext> object passed to the <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> callback contains a <xref:Microsoft.AspNetCore.Components.Routing.NavigationContext.CancellationToken> that's set when a new navigation event occurs. The <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> callback must throw when this cancellation token is set to avoid continuing to run the <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> callback on a outdated navigation.
+
+If a user navigates to an endpoint but then immediately navigates to a new endpoint, the app shouldn't continue running the <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> callback for the first endpoint.
+
+In the following `App` component example:
+
+* The cancellation token is passed in the call to `PostAsJsonAsync`, which can cancel the POST if the user navigates away from the `/about` endpoint.
+* The cancellation token is set during a product prefetch operation if the user navigates away from the `/store` endpoint.
+
+`App.razor`:
+
+```razor
+@inject HttpClient Http
+@inject ProductCatalog Products
+
+<Router AppAssembly="@typeof(Program).Assembly" 
+    OnNavigateAsync="@OnNavigateAsync">
+    ...
+</Router>
+
+@code {
+    private async Task OnNavigateAsync(NavigationContext context)
+    {
+        if (context.Path == "/about") 
+        {
+            var stats = new Stats = { Page = "/about" };
+            await Http.PostAsJsonAsync("api/visited", stats, 
+                context.CancellationToken);
+        }
+        else if (context.Path == "/store")
+        {
+            var productIds = [345, 789, 135, 689];
+
+            foreach (var productId in productIds) 
+            {
+                context.CancellationToken.ThrowIfCancellationRequested();
+                Products.Prefetch(productId);
+            }
+        }
+    }
+}
+```
+
+[!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
+
+> [!NOTE]
+> Not throwing if the cancellation token in <xref:Microsoft.AspNetCore.Components.Routing.NavigationContext> is canceled can result in unintended behavior, such as rendering a component from a previous navigation.
+
+::: moniker-end
+
 ## `NavLink` and `NavMenu` components
 
 Use a <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component in place of HTML hyperlink elements (`<a>`) when creating navigation links. A <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component behaves like an `<a>` element, except it toggles an `active` CSS class based on whether its `href` matches the current URL. The `active` class helps a user understand which page is the active page among the navigation links displayed. Optionally, assign a CSS class name to <xref:Microsoft.AspNetCore.Components.Routing.NavLink.ActiveClass?displayProperty=nameWithType> to apply a custom CSS class to the rendered link when the current route matches the `href`.
@@ -348,13 +517,13 @@ The following `NavMenu` component creates a [`Bootstrap`](https://getbootstrap.c
 
 ::: moniker range=">= aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Shared/routing/NavMenu.razor?name=snippet&highlight=4,9)]
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Shared/routing/NavMenu.razor?highlight=4,9)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Shared/routing/NavMenu.razor?name=snippet&highlight=4,9)]
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Shared/routing/NavMenu.razor?highlight=4,9)]
 
 ::: moniker-end
 
@@ -420,13 +589,13 @@ Blazor Server is integrated into [ASP.NET Core Endpoint Routing](xref:fundamenta
 
 ::: moniker range=">= aspnetcore-5.0"
 
-[!code-csharp[](~/blazor/common/samples/5.x/BlazorSample_Server/routing/Startup.cs?name=snippet&highlight=5)]
+[!code-csharp[](~/blazor/common/samples/5.x/BlazorSample_Server/routing/Startup.cs?highlight=11)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-[!code-csharp[](~/blazor/common/samples/3.x/BlazorSample_Server/routing/Startup.cs?name=snippet&highlight=5)]
+[!code-csharp[](~/blazor/common/samples/3.x/BlazorSample_Server/routing/Startup.cs?highlight=11)]
 
 ::: moniker-end
 

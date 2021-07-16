@@ -158,7 +158,7 @@ This page reads and displays related data in the following ways:
 
 The instructors page shows data from three different tables. A view model is needed that includes three properties representing the three tables.
 
-Create *SchoolViewModels/InstructorIndexData.cs* with the following code:
+Create *Models/SchoolViewModels/InstructorIndexData.cs* with the following code:
 
 [!code-csharp[](intro/samples/cu50/Models/SchoolViewModels/InstructorIndexData.cs)]
 
@@ -207,7 +207,7 @@ Examine the query in the *Pages/Instructors/Index.cshtml.cs* file:
 The code specifies eager loading for the following navigation properties:
 
 * `Instructor.OfficeAssignment`
-* `Instructor.Course`
+* `Instructor.Courses`
     * `Course.Department`
 
 The following code executes when an instructor is selected, that is, `id != null`.
@@ -249,13 +249,13 @@ The preceding code makes the following changes:
     ```
 
   * Adds a **Courses** column that displays courses taught by each instructor. See [Explicit line transition](xref:mvc/views/razor#explicit-line-transition) for more about this razor syntax.
-  * Adds code that dynamically adds `class="success"` to the `tr` element of the selected instructor and course. This sets a background color for the selected row using a Bootstrap class.
+  * Adds code that dynamically adds `class="table-success"` to the `tr` element of the selected instructor and course. This sets a background color for the selected row using a Bootstrap class.
 
     ```html
     string selectedRow = "";
     if (item.CourseID == Model.CourseID)
     {
-        selectedRow = "success";
+        selectedRow = "table-success";
     }
     <tr class="@selectedRow">
     ```
@@ -530,13 +530,13 @@ The preceding code makes the following changes:
 
 * Adds a **Courses** column that displays courses taught by each instructor. See [Explicit line transition](xref:mvc/views/razor#explicit-line-transition) for more about this razor syntax.
 
-* Adds code that dynamically adds `class="success"` to the `tr` element of the selected instructor and course. This sets a background color for the selected row using a Bootstrap class.
+* Adds code that dynamically adds `class="table-success"` to the `tr` element of the selected instructor and course. This sets a background color for the selected row using a Bootstrap class.
 
   ```html
   string selectedRow = "";
   if (item.CourseID == Model.CourseID)
   {
-      selectedRow = "success";
+      selectedRow = "table-success";
   }
   <tr class="@selectedRow">
   ```

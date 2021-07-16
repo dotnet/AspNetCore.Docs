@@ -126,7 +126,7 @@ The checkboxes enable changes to courses an instructor is assigned to. A checkbo
 
 ### Create a class for assigned courses data
 
-Create *SchoolViewModels/AssignedCourseData.cs* with the following code:
+Create *Models/SchoolViewModels/AssignedCourseData.cs* with the following code:
 
 [!code-csharp[](intro/samples/cu50/Models/SchoolViewModels/AssignedCourseData.cs)]
 
@@ -156,7 +156,7 @@ Update *Pages/Instructors/Edit.cshtml.cs* with the following code:
 
 The preceding code:
 
-* Gets the current `Instructor` entity from the database using eager loading for the `OfficeAssignment`, `CourseAssignment`, and `CourseAssignment.Course` navigation properties.
+* Gets the current `Instructor` entity from the database using eager loading for the `OfficeAssignment` and `Courses` navigation properties.
 * Updates the retrieved `Instructor` entity with values from the model binder. <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync%2A> prevents [overposting](xref:data/ef-rp/crud#overposting).
 * If the office location is blank, sets `Instructor.OfficeAssignment` to null. When `Instructor.OfficeAssignment` is null, the related row in the `OfficeAssignment` table is deleted.
 * Calls `PopulateAssignedCourseData` in `OnGetAsync` to provide information for the checkboxes using the `AssignedCourseData` view model class.
@@ -355,7 +355,7 @@ The checkboxes enable changes to courses an instructor is assigned to. A checkbo
 
 ### Create a class for assigned courses data
 
-Create *SchoolViewModels/AssignedCourseData.cs* with the following code:
+Create *Models/SchoolViewModels/AssignedCourseData.cs* with the following code:
 
 [!code-csharp[](intro/samples/cu30/Models/SchoolViewModels/AssignedCourseData.cs)]
 
@@ -601,7 +601,7 @@ checkboxes enable changes to courses an instructor is assigned to. A checkbox is
 
 ### Add classes to support Create and Edit instructor pages
 
-Create *SchoolViewModels/AssignedCourseData.cs* with the following code:
+Create *Models/SchoolViewModels/AssignedCourseData.cs* with the following code:
 
 [!code-csharp[](intro/samples/cu/Models/SchoolViewModels/AssignedCourseData.cs)]
 

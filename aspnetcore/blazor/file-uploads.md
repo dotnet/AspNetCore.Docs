@@ -90,6 +90,18 @@ The following example demonstrates multiple file upload in a component. <xref:Mi
 >
 > Namespaces in the `_Imports.razor` file aren't applied to C# files (`.cs`). C# files require an explicit [`using`](/dotnet/csharp/language-reference/language-specification/namespaces#using-directives) directive.
 
+> [!NOTE]
+> For testing file upload components, you can create test files of any size with [PowerShell](/powershell/):
+>
+> ```powershell
+> $out = new-object byte[] {SIZE}; (new-object Random).NextBytes($out); [IO.File]::WriteAllBytes('{PATH}', $out)
+> ```
+>
+> In the preceding command:
+>
+> * The `{SIZE}` placeholder is the size of the file in bytes (for example, `2097152` for a 2 MB file).
+> * The `{PATH}` placeholder is the path and file with file extension (for example, `D:/test_files/testfile2MB.txt`).
+
 `Pages/FileUpload1.razor`:
 
 ::: zone pivot="webassembly"
@@ -239,7 +251,7 @@ To use the following code, create a `Development/unsafe_uploads` folder at the r
 ::: zone-end
 
 > [!WARNING]
-> The example saves files without scanning their contents. In production scenarios, an anti-virus/anti-malware scanner API is used on files before making them available for download or for use by other systems. For more information on security considerations when uploading files to a server, see <xref:mvc/models/file-uploads#security-considerations>.
+> The example saves files without scanning their contents. In production scenarios, use an anti-virus/anti-malware scanner API on uploaded files before making them available for download or for use by other systems. For more information on security considerations when uploading files to a server, see <xref:mvc/models/file-uploads#security-considerations>.
 
 `Controllers/FilesaveController.cs`:
 

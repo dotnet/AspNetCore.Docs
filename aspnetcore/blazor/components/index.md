@@ -513,6 +513,25 @@ public DateTime StartData { get; set; } = DateTime.Now;
 
 After the initial assignment of <xref:System.DateTime.Now?displayProperty=nameWithType>, do **not** assign a value to `StartData` in developer code. For more information, see the [Overwritten parameters](#overwritten-parameters) section of this article.
 
+::: moniker range=">= aspnetcore-6.0"
+
+Apply the `[EditorRequired]` attribute to specify a required component parameter. If a parameter value isn't provided, editors or build tools may display warnings to the user. This attribute is only valid on properties also marked with the `[Parameter]` attribute. The `[EditorRequired]` attribute is enforced at design-time and when the app is built. The attribute isn't enforced at runtime, and it doesn't guarantee a non-`null` parameter value.
+
+```csharp
+[Parameter]
+[EditorRequired]
+public string Title { get; set; }
+```
+
+Single-line attribute lists are also supported:
+
+```csharp
+[Parameter, EditorRequired]
+public string Title { get; set; }
+```
+
+::: moniker-end
+
 ## Route parameters
 
 Components can specify route parameters in the route template of the [`@page`][9] directive. The [Blazor router](xref:blazor/fundamentals/routing) uses route parameters to populate corresponding component parameters.
@@ -979,9 +998,9 @@ Use the `Notifier` service to update a component.
 In the preceding example:
 
 * `Notifier` invokes the component's `OnNotify` method outside of Blazor's synchronization context. `InvokeAsync` is used to switch to the correct context and queue a render. For more information, see <xref:blazor/components/rendering>.
-* The component implements <xref:System.IDisposable>. The `OnNotify` delegate is unsubscribed in the `Dispose` method, which is called by the framework when the component is disposed. For more information, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable>.
+* The component implements <xref:System.IDisposable>. The `OnNotify` delegate is unsubscribed in the `Dispose` method, which is called by the framework when the component is disposed. For more information, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable-and-iasyncdisposable>.
 
-## Use \@key to control the preservation of elements and components
+## Use `@key` to control the preservation of elements and components
 
 When rendering a list of elements or components and the elements or components subsequently change, Blazor must decide which of the previous elements or components can be retained and how model objects should map to them. Normally, this process is automatic and can be ignored, but there are cases where you may want to control the process.
 
@@ -1045,7 +1064,7 @@ Other collection updates exhibit the same behavior when the [`@key`][5] directiv
 > [!IMPORTANT]
 > Keys are local to each container element or component. Keys aren't compared globally across the document.
 
-### When to use \@key
+### When to use `@key`
 
 Typically, it makes sense to use [`@key`][5] whenever a list is rendered (for example, in a [`foreach`](/dotnet/csharp/language-reference/keywords/foreach-in) block) and a suitable value exists to define the [`@key`][5].
 
@@ -1074,13 +1093,90 @@ If an `person` instance changes, the [`@key`][5] attribute directive forces Blaz
 
 This is useful to guarantee that no UI state is preserved when the collection changes within a subtree.
 
-### When not to use \@key
+### Scope of `@key`
+
+The [`@key`][5] attribute directive is scoped to its own siblings within its parent.
+
+Consider the following example. The `first` and `second` keys are compared against each other within the same scope of the outer `<div>` element:
+
+```razor
+<div>
+    <div @key="first">...</div>
+    <div @key="second">...</div>
+</div>
+```
+
+The following example demonstrates `first` and `second` keys in their own scopes, unrelated to each other and without influence on each other. Each [`@key`][5] scope only applies to its parent `<div>` element, not across the parent `<div>` elements:
+
+```razor
+<div>
+    <div @key="first">...</div>
+</div>
+<div>
+    <div @key="second">...</div>
+</div>
+```
+
+For the `Details` component shown earlier, the following examples render `person` data within the same [`@key`][5] scope and demonstrate typical use cases for [`@key`][5]:
+
+```razor
+<div>
+    @foreach (var person in people)
+    {
+        <Details @key="person" Data="@person.Data" />
+    }
+</div>
+```
+
+```razor
+@foreach (var person in people)
+{
+    <div @key="person">
+        <Details Data="@person.Data" />
+    </div>
+}
+```
+
+```razor
+<ol>
+    @foreach (var person in people)
+    {
+        <li @key="person">
+            <Details Data="@person.Data" />
+        </li>
+    }
+</ol>
+```
+
+The following examples only scope [`@key`][5] to the `<div>` or `<li>` element that surrounds each `Details` component instance. Therefore, `person` data for each member of the `people` collection is **not** keyed on each `person` instance across the rendered `Details` components. Avoid the following patterns when using [`@key`][5]:
+
+```razor
+@foreach (var person in people)
+{
+    <div>
+        <Details @key="person" Data="@person.Data" />
+    </div>
+}
+```
+
+```razor
+<ol>
+    @foreach (var person in people)
+    {
+        <li>
+            <Details @key="person" Data="@person.Data" />
+        </li>
+    }
+</ol>
+```
+
+### When not to use `@key`
 
 There's a performance cost when rendering with [`@key`][5]. The performance cost isn't large, but only specify [`@key`][5] if preserving the element or component benefits the app.
 
 Even if [`@key`][5] isn't used, Blazor preserves child element and component instances as much as possible. The only advantage to using [`@key`][5] is control over *how* model instances are mapped to the preserved component instances, instead of Blazor selecting the mapping.
 
-### Values to use for \@key
+### Values to use for `@key`
 
 Generally, it makes sense to supply one of the following values for [`@key`][5]:
 
@@ -1197,7 +1293,7 @@ For information on setting an app's base path, see <xref:blazor/host-and-deploy/
 
 ## Scalable Vector Graphics (SVG) images
 
-Since Blazor renders HTML, browser-supported images, including Scalable Vector Graphics (SVG) images (`.svg`), are supported via the `<img>` tag:
+Since Blazor renders HTML, browser-supported images, including [Scalable Vector Graphics (SVG) images (`.svg`)](https://developer.mozilla.org/docs/Web/SVG), are supported via the `<img>` tag:
 
 ```html
 <img alt="Example image" src="image.svg" />
@@ -1211,7 +1307,49 @@ Similarly, SVG images are supported in the CSS rules of a stylesheet file (`.css
 }
 ```
 
-However, inline SVG markup isn't supported in all scenarios. If you place an `<svg>` tag directly into a Razor file (`.razor`), basic image rendering is supported but many advanced scenarios aren't yet supported. For example, `<use>` tags aren't currently respected, and [`@bind`][10] can't be used with some SVG tags. For more information, see [SVG support in Blazor (dotnet/aspnetcore #18271)](https://github.com/dotnet/aspnetcore/issues/18271).
+::: moniker range=">= aspnetcore-6.0"
+
+Blazor supports the [`<foreignObject>`](https://developer.mozilla.org/docs/Web/SVG/Element/foreignObject) element to display arbitrary HTML within an SVG. The markup can represent arbitrary HTML, a <xref:Microsoft.AspNetCore.Components.RenderFragment>, or a Razor component.
+
+The following example demonstrates:
+
+* Display of a `string` (`@message`).
+* Two-way binding with an `<input>` element and a `value` field.
+* A `Robot` component.
+
+```razor
+<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="0" rx="10" ry="10" width="200" height="200" stroke="black" 
+        fill="none" />
+    <foreignObject x="20" y="20" width="160" height="160">
+        <p>@message</p>
+    </foreignObject>
+</svg>
+
+<svg xmlns="http://www.w3.org/2000/svg">
+    <foreignObject width="200" height="200">
+        <label>
+            Two-way binding:
+            <input @bind="value" @bind:event="oninput" />
+        </label>
+    </foreignObject>
+</svg>
+
+<svg xmlns="http://www.w3.org/2000/svg">
+    <foreignObject>
+        <Robot />
+    </foreignObject>
+</svg>
+
+@code {
+    private string message = "Lorem ipsum dolor sit amet, consectetur adipiscing " +
+        "elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
+
+    private string value;
+}
+```
+
+::: moniker-end
 
 ## Whitespace rendering behavior
 
@@ -1271,6 +1409,29 @@ Whitespace isn't preserved from the preceding markup:
 
 ::: moniker-end
 
+## Generic type parameter support
+
+The [`@typeparam`][11] directive declares a [generic type parameter](/dotnet/csharp/programming-guide/generics/generic-type-parameters) for the generated component class:
+
+```razor
+@typeparam TItem
+```
+
+::: moniker range=">= aspnetcore-6.0"
+
+C# syntax with [`where`](/dotnet/csharp/language-reference/keywords/where-generic-type-constraint) type constraints is supported:
+
+```razor
+@typeparam TEntity where TEntity : IEntity
+```
+
+::: moniker-end
+
+For more information, see the following articles:
+
+* <xref:mvc/views/razor#typeparam>
+* <xref:blazor/components/templated-components>
+
 <!--Reference links in article-->
 [1]: <xref:mvc/views/razor#code>
 [2]: <xref:mvc/views/razor#using>
@@ -1282,3 +1443,4 @@ Whitespace isn't preserved from the preceding markup:
 [8]: <xref:mvc/views/razor#namespace>
 [9]: <xref:mvc/views/razor#page>
 [10]: <xref:mvc/views/razor#bind>
+[11]: <xref:mvc/views/razor#typeparam>

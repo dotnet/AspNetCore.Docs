@@ -37,6 +37,9 @@
 
     async ValueTask IAsyncDisposable.DisposeAsync()
     {
-        await module.DisposeAsync();
+        if (module is not null)
+        {
+            await module.DisposeAsync();
+        }
     }
 }

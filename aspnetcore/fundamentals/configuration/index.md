@@ -75,7 +75,9 @@ The default <xref:Microsoft.Extensions.Configuration.Json.JsonConfigurationProvi
 * In development, *appsettings*.***Development***.*json* configuration overwrites values found in *appsettings.json*.
 * In production, *appsettings*.***Production***.*json* configuration overwrites values found in *appsettings.json*. For example, when deploying the app to Azure.
 
-If a configuration value must be guaranteed, see [GetValue](#getvalue). The preceding example only reads strings and doesn’t support a default value
+If a configuration value must be guaranteed, see [GetValue](#getvalue). The preceding example only reads strings and doesn’t support a default value.
+
+Using the [default](#default) configuration, the *appsettings.json* and *appsettings.*`Environment`*.json* files are enabled with [reloadOnChange: true](https://github.com/dotnet/extensions/blob/release/3.1/src/Hosting/Hosting/src/Host.cs#L74-L75). Changes made to the *appsettings.json* and *appsettings.*`Environment`*.json* file ***after*** the app starts are read by the [JSON configuration provider](#jcp).
 
 <a name="optpat"></a>
 
@@ -139,7 +141,7 @@ The following [setx](/windows-server/administration/windows-commands/setx) comma
 
 ```console
 setx MyKey "My key from setx Environment" /M
-setx Position__Title Setx_Environment_Editor /M
+setx Position__Title Environment_Editor /M
 setx Position__Name Environment_Rick /M
 ```
 
@@ -307,6 +309,16 @@ dotnet run -k1 value1 -k2 value2 --alt3=value2 /alt4=value3 --alt5 value5 /alt6 
 ```
 
 For apps that use switch mappings, the call to `CreateDefaultBuilder` shouldn't pass arguments. The `CreateDefaultBuilder` method's `AddCommandLine` call doesn't include mapped switches, and there's no way to pass the switch-mapping dictionary to `CreateDefaultBuilder`. The solution isn't to pass the arguments to `CreateDefaultBuilder` but instead to allow the `ConfigurationBuilder` method's `AddCommandLine` method to process both the arguments and the switch-mapping dictionary.
+
+## Set environment and command-line arguments with Visual Studio
+
+The following image shows setting environment and command-line arguments with Visual Studio:
+
+![Debug tab of VS](index/_static/vs-cmd-env.png)
+
+In Visual Studio 2019 version 16.10 preview 4 and later, setting environment and command-line arguments is done from the launch profiles UI:
+
+![launch profiles UI](index/_static/dbg-launch-profiles-ui.png)
 
 ## Hierarchical configuration data
 

@@ -22,9 +22,9 @@ For convenience, the framework provides the <xref:Microsoft.AspNetCore.Component
 
 In the following example:
 
-* <xref:Microsoft.Extensions.DependencyInjection.HttpClientFactoryServiceCollectionExtensions.AddHttpClient%2A> adds <xref:System.Net.Http.IHttpClientFactory> and related services to the service collection and configures a named <xref:System.Net.Http.HttpClient> (`ServerAPI`). <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType> is the base address of the resource URI when sending requests. <xref:System.Net.Http.IHttpClientFactory> is provided by the [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http) NuGet package.
+* <xref:Microsoft.Extensions.DependencyInjection.HttpClientFactoryServiceCollectionExtensions.AddHttpClient%2A> adds <xref:System.Net.Http.IHttpClientFactory> and related services to the service collection and configures a named <xref:System.Net.Http.HttpClient> (`WebAPI`). <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType> is the base address of the resource URI when sending requests. <xref:System.Net.Http.IHttpClientFactory> is provided by the [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http) NuGet package.
 * <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.BaseAddressAuthorizationMessageHandler> is the <xref:System.Net.Http.DelegatingHandler> used to attach access tokens to outgoing <xref:System.Net.Http.HttpResponseMessage> instances. Access tokens are only added when the request URI is within the app's base URI.
-* <xref:System.Net.Http.IHttpClientFactory.CreateClient%2A?displayProperty=nameWithType> creates and configures an <xref:System.Net.Http.HttpClient> instance for outgoing requests using the configuration that corresponds to the named <xref:System.Net.Http.HttpClient> (`ServerAPI`).
+* <xref:System.Net.Http.IHttpClientFactory.CreateClient%2A?displayProperty=nameWithType> creates and configures an <xref:System.Net.Http.HttpClient> instance for outgoing requests using the configuration that corresponds to the named <xref:System.Net.Http.HttpClient> (`WebAPI`).
 
 ```csharp
 using System.Net.Http;
@@ -32,12 +32,12 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 
 ...
 
-builder.Services.AddHttpClient("ServerAPI", 
+builder.Services.AddHttpClient("WebAPI", 
         client => client.BaseAddress = new Uri("https://www.example.com/base"))
     .AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
 
 builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>()
-    .CreateClient("ServerAPI"));
+    .CreateClient("WebAPI"));
 ```
 
 For a hosted Blazor solution based on the [Blazor WebAssembly project template](xref:blazor/project-structure), request URIs are within the app's base URI by default. Therefore, <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> (`new Uri(builder.HostEnvironment.BaseAddress)`) is assigned to the <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType> in an app generated from the project template.
@@ -96,7 +96,7 @@ In `Program.Main` (`Program.cs`), `CustomAuthorizationMessageHandler` is registe
 ```csharp
 builder.Services.AddScoped<CustomAuthorizationMessageHandler>();
 
-builder.Services.AddHttpClient("ServerAPI",
+builder.Services.AddHttpClient("WebAPI",
         client => client.BaseAddress = new Uri("https://www.example.com/base"))
     .AddHttpMessageHandler<CustomAuthorizationMessageHandler>();
 ```
@@ -117,7 +117,7 @@ The configured <xref:System.Net.Http.HttpClient> is used to make authorized requ
     {
         try
         {
-            var client = ClientFactory.CreateClient("ServerAPI");
+            var client = ClientFactory.CreateClient("WebAPI");
 
             examples = 
                 await client.GetFromJsonAsync<ExampleType[]>("ExampleAPIMethod");
@@ -255,7 +255,7 @@ If the Blazor WebAssembly app ordinarily uses a secure default <xref:System.Net.
 `Program.Main` (`Program.cs`):
 
 ```csharp
-builder.Services.AddHttpClient("ServerAPI.NoAuthenticationClient", 
+builder.Services.AddHttpClient("WebAPI.NoAuthenticationClient", 
     client => client.BaseAddress = new Uri("https://www.example.com/base"));
 ```
 
@@ -275,7 +275,7 @@ A component creates the <xref:System.Net.Http.HttpClient> from the <xref:System.
 
     protected override async Task OnInitializedAsync()
     {
-        var client = ClientFactory.CreateClient("ServerAPI.NoAuthenticationClient");
+        var client = ClientFactory.CreateClient("WebAPI.NoAuthenticationClient");
 
         forecasts = await client.GetFromJsonAsync<WeatherForecast[]>(
             "WeatherForecastNoAuthentication");
@@ -802,7 +802,7 @@ For an additional example that works with AAD security groups and AAD Administra
 
 ## Support prerendering with authentication
 
-After following the guidance in one of the Blazor WebAssembly security app topics, use the following instructions to create an app that:
+Prerendering content that requires authentication and authorization isn't currently supported. After following the guidance in one of the Blazor WebAssembly security app topics, use the following instructions to create an app that:
 
 * Prerenders paths for which authorization isn't required.
 * Doesn't prerender paths for which authorization is required.
@@ -1019,9 +1019,9 @@ A component in the client app can make gRPC calls using the gRPC client (`Pages/
 
 ```razor
 @page "/grpc"
-@attribute [Authorize]
 @using Microsoft.AspNetCore.Authorization
 @using {APP ASSEMBLY}.Shared
+@attribute [Authorize]
 @inject Greeter.GreeterClient GreeterClient
 
 <h1>Invoke gRPC service</h1>

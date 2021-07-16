@@ -4,7 +4,6 @@ public class Startup
 {
     public void Configure(IApplicationBuilder app)
     {
-        #region snippet
         app.UseRouting();
 
         app.UseEndpoints(endpoints =>
@@ -12,6 +11,5 @@ public class Startup
             endpoints.MapBlazorHub();
             endpoints.MapFallbackToPage("/_Host");
         });
-        #endregion
     }
 }

@@ -37,23 +37,24 @@ Blazor relies on the host to the serve the appropriate compressed files. When us
 * For IIS `web.config` compression configuration, see the [IIS: Brotli and Gzip compression](#brotli-and-gzip-compression) section. 
 * When hosting on static hosting solutions that don't support statically-compressed file content negotiation, such as GitHub Pages, consider configuring the app to fetch and decode Brotli compressed files:
 
-  * Obtain the JavaScript Brotli decoder from the [google/brotli GitHub repository](https://github.com/google/brotli). The decoder file is named `decode.js` and found in the repository's [`js` folder](https://github.com/google/brotli/tree/master/js).
+  * Obtain the JavaScript Brotli decoder from the [google/brotli GitHub repository](https://github.com/google/brotli). The minified decoder file is named `decode.min.js` and found in the repository's [`js` folder](https://github.com/google/brotli/tree/master/js).
   
     > [!NOTE]
-    > A regression is present in the minified version of the `decode.js` script (`decode.min.js`) in the [google/brotli GitHub repository](https://github.com/google/brotli). Until the issue [TypeError in decode.min.js (google/brotli #881)](https://github.com/google/brotli/issues/881) is resolved, take one of the following approaches:
-    >
-    > * Temporarily use the unminified version of the script.
-    > * Automatically minify the script at build-time with a third-party minification tool compatible with ASP.NET Core.
-    > * Use the [npm package](https://www.npmjs.com/package/brotli).
-    >
-    > The example code in this section uses the **unminified** version of the script (`decode.js`).
+    > If the minified version of the `decode.js` script (`decode.min.js`) fails, try using the unminified version (`decode.js`) instead.
 
-  * Update the app to use the decoder. Change the markup inside the closing `<body>` tag in `wwwroot/index.html` to the following:
+  * Update the app to use the decoder.
+    
+    In the `wwwroot/index.html` file, set `autostart` to `false` on Blazor's `<script>` tag:
+    
+    ```html
+    <script src="_framework/blazor.webassembly.js" autostart="false"></script>
+    ```
+    
+    After Blazor's `<script>` tag and before the closing `</body>` tag, add the following JavaScript code `<script>` block:
   
     ```html
-    <script src="decode.js"></script>
-    <script src="_framework/blazor.webassembly.js" autostart="false"></script>
-    <script>
+    <script type="module">
+      import { BrotliDecode } from './decode.min.js';
       Blazor.start({
         loadBootResource: function (type, name, defaultUri, integrity) {
           if (type !== 'dotnetjs' && location.hostname !== 'localhost') {
@@ -749,7 +750,7 @@ If you confirm that the server is returning plausibly correct data, there must b
 
 ### Troubleshoot integrity PowerShell script
 
-Use the [`integrity.ps1`](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/blazor/host-and-deploy/webassembly/_samples/integrity.ps1?raw=true) PowerShell script to validate a published and deployed Blazor app. The script is provided as a starting point when the app has integrity issues that the Blazor framework can't identify. Customization of the script might be required for your apps.
+Use the [`integrity.ps1`](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/blazor/host-and-deploy/webassembly/_samples/integrity.ps1?raw=true) PowerShell script to validate a published and deployed Blazor app. The script is provided for PowerShell Core 6 as a starting point when the app has integrity issues that the Blazor framework can't identify. Customization of the script might be required for your apps, including if running on version of PowerShell later than version 6.2.7.
 
 The script checks the files in the `publish` folder and downloaded from the deployed app to detect issues in the different manifests that contain integrity hashes. These checks should detect the most common problems:
 
@@ -769,11 +770,28 @@ Placeholders:
 * `{PUBLISH OUTPUT FOLDER}`: The path to the app's `publish` folder or location where the app is published for deployment.
 
 > [!NOTE]
-> To clone the `dotnet/AspNetCore.Docs` GitHub repository to a system that uses the [Bitdefender](https://www.bitdefender.com) virus scanner, add an exception to Bitdefender for the `integrity.ps1` script. Add the exception to Bitdefender before cloning the repo to avoid having the script quarantined by the virus scanner. The following example is a typical path to the script for the cloned repo on a Windows system. Adjust the path as needed. The placeholder `{USER}` is the user's path segment.
+> When cloning the `dotnet/AspNetCore.Docs` GitHub repository, the `integrity.ps1` script might be quarantined by [Bitdefender](https://www.bitdefender.com) or another virus scanner present on the system. Usually, the file is trapped by a virus scanner's *heuristic scanning* technology, which merely looks for patterns in files that might indicate the presence of malware. To prevent the virus scanner from quarantining the file, add an exception to the virus scanner prior to cloning the repo. The following example is a typical path to the script on a Windows system. Adjust the path as needed for other systems. The placeholder `{USER}` is the user's path segment.
 >
 > ```
 > C:\Users\{USER}\Documents\GitHub\AspNetCore.Docs\aspnetcore\blazor\host-and-deploy\webassembly\_samples\integrity.ps1
 > ```
+>
+> **Warning**: *Creating virus scanner exeptions is dangerous and should only be performed when you're certain that the file is safe.*
+>
+> Comparing the checksum of a file to a valid checksum value doesn't guaratee file safety, but modifying a file in a way that maintains a checksum value isn't trivial for malicious users. Therefore, checksums are useful as a general security approach. Compare the checksum of the local `integrity.ps1` file to one of the following values:
+>
+> * SHA256: `6b0dc7aba5d8489136bb2969036432597615b11b4e432535e173ca077a0449c4`
+> * MD5: `f0c800a4c72604bd47f3c19f5f0bb4f4`
+>
+> Obtain the file's checksum on Windows OS with the following command. Provide the path and file name for the `{PATH AND FILE NAME}` placeholder and indicate the type of checksum to produce for the `{SHA512|MD5}` placeholder, either `SHA256` or `MD5`:
+>
+> ```console
+> CertUtil -hashfile {PATH AND FILE NAME} {SHA256|MD5}
+> ```
+> 
+> If you have any cause for concern that checksum validation isn't secure enough in your environment, consult your organization's security leadership for guidance.
+>
+> For more information, see [Understanding malware & other threats](/windows/security/threat-protection/intelligence/understanding-malware).
 
 ### Disable integrity checking for non-PWA apps
 

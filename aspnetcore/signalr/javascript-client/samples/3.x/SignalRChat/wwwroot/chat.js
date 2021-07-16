@@ -36,8 +36,14 @@ document.addEventListener("DOMContentLoaded", () => {
             setTimeout(start, 5000);
         }
     };
-
-    connection.onclose(start);
+    
+    connection.onclose(function (error) {
+        if (error) {
+            console.log(`Connection closed with error: ${error}`);
+        } else {
+            console.log("Connection closed.");
+        }
+    });
 
     // Start the connection.
     start();

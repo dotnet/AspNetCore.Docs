@@ -33,56 +33,40 @@ The last two steps of this sequence continue recursively down the component hier
 If you want to interrupt this process and prevent rendering recursion into a particular subtree, then you can either:
 
 * Ensure that all parameters to a certain component are of primitive immutable types (for example, `string`, `int`, `bool`, `DateTime`, and others). The built-in logic for detecting changes automatically skips rerendering if none of these parameter values have changed. If you render a child component with `<Customer CustomerId="@item.CustomerId" />`, where `CustomerId` is an `int` value, then it isn't rerendered except when `item.CustomerId` changes.
-* If you need to accept nonprimitive parameter values, such as custom model types, event callbacks, or <xref:Microsoft.AspNetCore.Components.RenderFragment> values, then you can override <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> to control the decision about whether to render, which is described in the [Use of `ShouldRender`](#use-of-shouldrender) section.
+* If you need to accept nonprimitive parameter values, such as custom model types, event callbacks, or <xref:Microsoft.AspNetCore.Components.RenderFragment> values or if authoring a UI-only component that doesn't change after the initial render (regardless of any parameter values), override <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> to control the decision about whether to render. The following example uses private fields to track the necessary information to detect changes. The value of `shouldRender` is based on checking for any kind of change or mutation that should prompt a rerender. `prevOutboundFlightId` and `prevInboundFlightId` track information for the next potential update:
+
+  ```razor
+  @code {
+      [Parameter]
+      public FlightInfo OutboundFlight { get; set; }
+
+      [Parameter]
+      public FlightInfo InboundFlight { get; set; }
+
+      private int prevOutboundFlightId;
+      private int prevInboundFlightId;
+      private bool shouldRender;
+
+      protected override void OnParametersSet()
+      {
+          shouldRender = OutboundFlight.FlightId != prevOutboundFlightId
+              || InboundFlight.FlightId != prevInboundFlightId;
+
+          prevOutboundFlightId = OutboundFlight.FlightId;
+          prevInboundFlightId = InboundFlight.FlightId;
+      }
+
+     protected override bool ShouldRender() => shouldRender;
+  }
+  ```
+
+  In the preceding example, an event handler may also set `shouldRender` to `true` so that the component is rerendered after the event. For most components, this level of manual control isn't necessary. You should only be concerned about skipping rendering subtrees if those subtrees are particularly expensive to render and are causing UI lag. For more information, see <xref:blazor/components/lifecycle>.
+
+  For general information on `ShouldRender`, see <xref:blazor/components/rendering#suppress-ui-refreshing-shouldrender>.
 
 By skipping rerendering of whole subtrees, you may be able to remove the vast majority of the rendering cost when an event occurs.
 
 You may wish to factor out child components specifically so that you can skip rerendering that part of the UI. This is a valid way to reduce the rendering cost of a parent component.
-
-#### Use of `ShouldRender`
-
-If authoring a UI-only component that never changes after the initial render (regardless of any parameter values), configure <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> to return `false`:
-
-```razor
-@code {
-    protected override bool ShouldRender() => false;
-}
-```
-
-If the component only requires rerendering when its parameter values mutate in particular ways, then you can use private fields to track the necessary information to detect changes. In the following example, `shouldRender` is based on checking for any kind of change or mutation that should prompt a rerender. `prevOutboundFlightId` and `prevInboundFlightId` track information for the next potential update:
-
-```razor
-@code {
-    [Parameter]
-    public FlightInfo OutboundFlight { get; set; }
-    
-    [Parameter]
-    public FlightInfo InboundFlight { get; set; }
-
-    private int prevOutboundFlightId;
-    private int prevInboundFlightId;
-    private bool shouldRender;
-
-    protected override void OnParametersSet()
-    {
-        shouldRender = OutboundFlight.FlightId != prevOutboundFlightId
-            || InboundFlight.FlightId != prevInboundFlightId;
-
-        prevOutboundFlightId = OutboundFlight.FlightId;
-        prevInboundFlightId = InboundFlight.FlightId;
-    }
-
-    protected override bool ShouldRender() => shouldRender;
-
-    // Note that 
-}
-```
-
-In the preceding code, an event handler may also set `shouldRender` to `true` so that the component is rerendered after the event.
-
-For most components, this level of manual control isn't necessary. You should only be concerned about skipping rendering subtrees if those subtrees are particularly expensive to render and are causing UI lag.
-
-For more information, see <xref:blazor/components/lifecycle>.
 
 ::: moniker range=">= aspnetcore-5.0"
 
@@ -254,6 +238,12 @@ To reduce this load, you could bundle together multiple parameters via custom cl
 
 In the preceding example, `Data` is different for every cell, but `Options` is common across all of them. Of course, it might be an improvement not to have a `<TableCell>` component and instead inline its logic into the parent component.
 
+For more information on generic type parameters (`@typeparam`), see the following articles:
+
+* <xref:mvc/views/razor#typeparam>
+* <xref:blazor/components/index#generic-type-parameter-support>
+* <xref:blazor/components/templated-components>
+
 #### Ensure cascading parameters are fixed
 
 The `<CascadingValue>` component has an optional parameter called `IsFixed`.
@@ -421,8 +411,8 @@ In the following example, no event handler added to the component triggers a rer
 
 ```razor
 @page "/handle-click-1"
-@implements IHandleEvent
 @using Microsoft.Extensions.Logging
+@implements IHandleEvent
 @inject ILogger<HandleClick1> Logger
 
 <p>

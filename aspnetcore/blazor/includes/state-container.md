@@ -46,8 +46,8 @@ services.AddScoped<StateContainer>();
 `Shared/Nested.razor`:
 
 ```razor
-@inject StateContainer StateContainer
 @implements IDisposable
+@inject StateContainer StateContainer
 
 <h2>Nested component</h2>
 
@@ -82,8 +82,8 @@ services.AddScoped<StateContainer>();
 
 ```razor
 @page "/state-container"
-@inject StateContainer StateContainer
 @implements IDisposable
+@inject StateContainer StateContainer
 
 <h1>State Container component</h1>
 
@@ -116,4 +116,4 @@ services.AddScoped<StateContainer>();
 }
 ```
 
-The preceding components implement <xref:System.IDisposable>, and the `OnChange` delegates are unsubscribed in the `Dispose` methods, which are called by the framework when the components are disposed. For more information, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable>.
+The preceding components implement <xref:System.IDisposable>, and the `OnChange` delegates are unsubscribed in the `Dispose` methods, which are called by the framework when the components are disposed. For more information, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable-and-iasyncdisposable>.

@@ -3,7 +3,7 @@
 @using System.Text.Json
 @using Microsoft.Extensions.Logging
 @inject IHttpClientFactory ClientFactory
-@inject ILogger<FileUpload2> logger
+@inject ILogger<FileUpload2> Logger
 
 <h1>Upload Files</h1>
 
@@ -24,7 +24,7 @@
                     <li>
                         File: @file.Name
                         <br>
-                        @if (FileUpload(uploadResults, file.Name, logger,
+                        @if (FileUpload(uploadResults, file.Name, Logger,
                            out var result))
                         {
                             <span>
@@ -66,16 +66,13 @@
             if (uploadResults.SingleOrDefault(
                 f => f.FileName == file.Name) is null)
             {
-                var fileContent = new StreamContent(file.OpenReadStream());
-
-                files.Add(
-                    new()
-                    {
-                        Name = file.Name
-                    });
-
-                if (file.Size < maxFileSize)
+                try
                 {
+                    var fileContent = 
+                        new StreamContent(file.OpenReadStream(maxFileSize));
+
+                    files.Add(new() { Name = file.Name });
+
                     content.Add(
                         content: fileContent,
                         name: "\"files\"",
@@ -83,10 +80,11 @@
 
                     upload = true;
                 }
-                else
+                catch (Exception ex)
                 {
-                    logger.LogInformation("{FileName} not uploaded (Err: 6)", 
-                        file.Name);
+                    Logger.LogInformation(
+                        "{FileName} not uploaded (Err: 6): {Message}", 
+                        file.Name, ex.Message);
 
                     uploadResults.Add(
                         new()

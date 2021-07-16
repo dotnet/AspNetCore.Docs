@@ -1,45 +1,24 @@
 @page "/form-example-8"
 @using Microsoft.Extensions.Logging
 @inject ILogger<FormExample8> Logger
-@implements IDisposable
 
 <EditForm EditContext="@editContext" OnValidSubmit="@HandleValidSubmit">
     <DataAnnotationsValidator />
     <ValidationSummary />
 
-    <p>
-        <label>
-            Identifier:
-            <InputText @bind-Value="starship.Identifier" />
-        </label>
-    </p>
+    <InputText id="name" @bind-Value="exampleModel.Name" />
 
-    <button type="submit" disabled="@formInvalid">Submit</button>
+    <button type="submit">Submit</button>
 </EditForm>
 
 @code {
-    private Starship starship = 
-        new()
-        {
-            Identifier = "NCC-1701",
-            Classification = "Exploration",
-            MaximumAccommodation = 150,
-            IsValidatedDesign = true,
-            ProductionDate = new DateTime(2245, 4, 11)
-        };
-    private bool formInvalid = false;
+    private ExampleModel exampleModel = new();
     private EditContext editContext;
 
     protected override void OnInitialized()
     {
-        editContext = new(starship);
-        editContext.OnFieldChanged += HandleFieldChanged;
-    }
-
-    private void HandleFieldChanged(object sender, FieldChangedEventArgs e)
-    {
-        formInvalid = !editContext.Validate();
-        StateHasChanged();
+        editContext = new(exampleModel);
+        editContext.SetFieldCssClassProvider(new CustomFieldClassProvider());
     }
 
     private void HandleValidSubmit()
@@ -47,10 +26,5 @@
         Logger.LogInformation("HandleValidSubmit called");
 
         // Process the valid form
-    }
-
-    public void Dispose()
-    {
-        editContext.OnFieldChanged -= HandleFieldChanged;
     }
 }

@@ -59,7 +59,7 @@ The preceding validation rules are used for demonstration, they are not optimal 
 
 Having validation rules automatically enforced by ASP.NET Core helps:
 
-* Helps make the app more robust.
+* Make the app more robust.
 * Reduce chances of saving invalid data to the database.
 
 ### Validation Error UI in Razor Pages
@@ -179,8 +179,6 @@ The DataAnnotations applied to the class changes the schema. For example, the Da
 * Limits the characters to 60.
 * Doesn't allow a `null` value.
 
-# [Visual Studio](#tab/visual-studio)
-
 The `Movie` table currently has the following schema:
 
 ```sql
@@ -223,11 +221,6 @@ CREATE TABLE [dbo].[Movie] (
 );
 ```
 
-# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
-
-Migrations are not required for SQLite.
-
----
 
 ### Publish to Azure
 

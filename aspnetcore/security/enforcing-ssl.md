@@ -423,13 +423,13 @@ For chromium browsers on Linux:
     dotnet dev-certs https -ep /usr/local/share/ca-certificates/aspnet/https.crt --format PEM
     ```
 
-    The path in the preceding command is specific for Ubuntu. For other distributions, select an appropriate path or use the path for the Certificate Authorities (CAs).
+    The path in the preceding command is specific for Ubuntu. For other distributions, select an appropriate path or use the path for the Certificate Authorities (CAs). **You may need elevated permissions to export the certificate to the `ca-certificates` folder.**
 
   * Run the following commands:
   
     ```cli
-    certutil -d sql:$HOME/.pki/nssdb -A -t "P,," -n localhost -i /usr/local/share/ca-certificates/  aspnet/https.crt
-    certutil -d sql:$HOME/.pki/nssdb -A -t "C,," -n localhost -i /usr/local/share/ca-certificates/  aspnet/https.crt
+    certutil -d sql:$HOME/.pki/nssdb -A -t "P,," -n localhost -i /usr/local/share/ca-certificates/aspnet/https.crt
+    certutil -d sql:$HOME/.pki/nssdb -A -t "C,," -n localhost -i /usr/local/share/ca-certificates/aspnet/https.crt
     ```
   
   * Exit and restart the browser.
@@ -467,6 +467,11 @@ See [Configure trust of HTTPS certificate using Firefox browser](#trust-ff-ba) i
 ### Trust the certificate with Fedora 34
 
 See [this GitHub comment](https://github.com/dotnet/aspnetcore/issues/32361#issuecomment-837111639).
+
+### Trust the certificate with other distros
+
+See [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/32842).
+
 ## Trust HTTPS certificate from Windows Subsystem for Linux
 
 The [Windows Subsystem for Linux (WSL)](/windows/wsl/about) generates an HTTPS self-signed development certificate. To configure the Windows certificate store to trust the WSL certificate:
@@ -486,7 +491,9 @@ The [Windows Subsystem for Linux (WSL)](/windows/wsl/about) generates an HTTPS s
 
 The preceding approach is a one time operation per certificate and per WSL distribution. It's easier than exporting the certificate over and over. If you update or regenerate the certificate on windows, you might need to run the preceding commands again.
 
-## Troubleshoot certificate problems
+<a name="tcp"></a>
+
+## Troubleshoot certificate problems such as certificate not trusted
 
 This section provides help when the ASP.NET Core HTTPS development certificate has been [installed and trusted](#trust), but you still have browser warnings that the certificate is not trusted. The ASP.NET Core HTTPS development certificate is used by [Kestrel](xref:fundamentals/servers/kestrel).
 
@@ -502,6 +509,8 @@ dotnet dev-certs https --trust
 ```
 
 Close any browser instances open. Open a new browser window to app. Certificate trust is cached by browsers.
+
+### dotnet dev-certs https --clean Fails
 
 The preceding commands solve most browser trust issues. If the browser is still not trusting the certificate, follow the platform-specific suggestions that follow.
 

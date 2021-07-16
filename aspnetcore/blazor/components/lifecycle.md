@@ -40,7 +40,7 @@ The `Render` lifecycle:
 
 1. Avoid further rendering operations on the component:
    * After the first render.
-   * When [`ShouldRender`](#suppress-ui-refreshing-shouldrender) is `false`.
+   * When [`ShouldRender`](xref:blazor/components/rendering#suppress-ui-refreshing-shouldrender) is `false`.
 1. Build the render tree diff (difference) and render the component.
 1. Await the DOM to update.
 1. Call [`OnAfterRender{Async}`](#after-component-render-onafterrenderasync).
@@ -59,7 +59,7 @@ The default implementation of <xref:Microsoft.AspNetCore.Components.ComponentBas
 
 If [`base.SetParametersAsync`](xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A) isn't invoked, developer code can interpret the incoming parameters' values in any way required. For example, there's no requirement to assign the incoming parameters to the properties of the class.
 
-If event handlers are provided in developer code, unhook them on disposal. For more information, see the [Component disposal with `IDisposable`](#component-disposal-with-idisposable) section.
+If event handlers are provided in developer code, unhook them on disposal. For more information, see the [Component disposal with `IDisposable` `IAsyncDisposable`](#component-disposal-with-idisposable-and-iasyncdisposable) section.
 
 In the following example, <xref:Microsoft.AspNetCore.Components.ParameterView.TryGetValue%2A?displayProperty=nameWithType> assigns the `Param` parameter's value to `value` if parsing a route parameter for `Param` is successful. When `value` isn't `null`, the value is displayed by the component.
 
@@ -108,16 +108,16 @@ protected override async Task OnInitializedAsync()
 }
 ```
 
-Blazor apps that [prerender their content](xref:blazor/fundamentals/signalr#render-mode) call <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> *twice*:
+Blazor apps that prerender their content on the server call <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> *twice*:
 
 * Once when the component is initially rendered statically as part of the page.
 * A second time when the browser renders the component.
 
-To prevent developer code in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> from running twice when prerendering in Blazor Server apps, see the [Stateful reconnection after prerendering](#stateful-reconnection-after-prerendering) section. Although the content in the section focuses on Blazor Server and stateful SignalR *reconnection*, the scenario for prerendering in hosted Blazor WebAssembly apps (<xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssemblyPrerendered>) involves similar conditions and approaches to prevent executing developer code twice. A *new state preservation feature* is planned for the ASP.NET Core 6.0 release that will improve the management of initialization code execution during prerendering.
+To prevent developer code in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> from running twice when prerendering, see the [Stateful reconnection after prerendering](#stateful-reconnection-after-prerendering) section. Although the content in the section focuses on Blazor Server and stateful SignalR *reconnection*, the scenario for prerendering in hosted Blazor WebAssembly apps (<xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssemblyPrerendered>) involves similar conditions and approaches to prevent executing developer code twice. A *new state preservation feature* is planned for the ASP.NET Core 6.0 release that will improve the management of initialization code execution during prerendering.
 
 While a Blazor app is prerendering, certain actions, such as calling into JavaScript (JS interop), aren't possible. Components may need to render differently when prerendered. For more information, see the [Detect when the app is prerendering](#detect-when-the-app-is-prerendering) section.
 
-If event handlers are provided in developer code, unhook them on disposal. For more information, see the [Component disposal with `IDisposable`](#component-disposal-with-idisposable) section.
+If event handlers are provided in developer code, unhook them on disposal. For more information, see the [Component disposal with `IDisposable` `IAsyncDisposable`](#component-disposal-with-idisposable-and-iasyncdisposable) section.
 
 ## After parameters are set (`OnParametersSet{Async}`)
 
@@ -159,7 +159,7 @@ protected override async Task OnParametersSetAsync()
 }
 ```
 
-If event handlers are provided in developer code, unhook them on disposal. For more information, see the [Component disposal with `IDisposable`](#component-disposal-with-idisposable) section.
+If event handlers are provided in developer code, unhook them on disposal. For more information, see the [Component disposal with `IDisposable` `IAsyncDisposable`](#component-disposal-with-idisposable-and-iasyncdisposable) section.
 
 For more information on route parameters and constraints, see <xref:blazor/fundamentals/routing>.
 
@@ -205,29 +205,7 @@ Even if you return a <xref:System.Threading.Tasks.Task> from <xref:Microsoft.Asp
 1. The component executes on the server to produce some static HTML markup in the HTTP response. During this phase, <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> aren't called.
 1. When the Blazor script (`blazor.webassembly.js` or `blazor.server.js`) start in the browser, the component is restarted in an interactive rendering mode. After a component is restarted, <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> **are** called because the app isn't in the prerendering phase any longer.
 
-If event handlers are provided in developer code, unhook them on disposal. For more information, see the [Component disposal with `IDisposable`](#component-disposal-with-idisposable) section.
-
-## Suppress UI refreshing (`ShouldRender`)
-
-<xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> is called each time a component is rendered. Override <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> to manage UI refreshing. If the implementation returns `true`, the UI is refreshed.
-
-Even if <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> is overridden, the component is always initially rendered.
-
-`Pages/ControlRender.razor`:
-
-::: moniker range=">= aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/lifecycle/ControlRender.razor)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/lifecycle/ControlRender.razor)]
-
-::: moniker-end
-
-For more information on performance best practices pertaining to <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A>, see <xref:blazor/webassembly-performance-best-practices#avoid-unnecessary-rendering-of-component-subtrees>.
+If event handlers are provided in developer code, unhook them on disposal. For more information, see the [Component disposal with `IDisposable` `IAsyncDisposable`](#component-disposal-with-idisposable-and-iasyncdisposable) section.
 
 ## State changes (`StateHasChanged`)
 
@@ -247,13 +225,13 @@ In the `FetchData` component of the Blazor templates, <xref:Microsoft.AspNetCore
 
 ::: moniker range=">= aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_Server/Pages/lifecycle/FetchData.razor?name=snippet&highlight=9,21,25)]
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_Server/Pages/lifecycle/FetchData.razor?highlight=9,21,25)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_Server/Pages/lifecycle/FetchData.razor?name=snippet&highlight=9,21,25)]
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_Server/Pages/lifecycle/FetchData.razor?highlight=9,21,25)]
 
 ::: moniker-end
 
@@ -294,51 +272,120 @@ Although the content in this section focuses on Blazor Server and stateful Signa
 
 [!INCLUDE[](~/blazor/includes/prerendering.md)]
 
-## Component disposal with `IDisposable`
+## Component disposal with `IDisposable` and `IAsyncDisposable`
 
-If a component implements <xref:System.IDisposable>, the framework calls the [disposal method](/dotnet/standard/garbage-collection/implementing-dispose) when the component is removed from the UI, where unmanaged resources can be released. Disposal can occur at any time, including during [component initialization](#component-initialization-oninitializedasync). The following component implements <xref:System.IDisposable> with the [`@implements`](xref:mvc/views/razor#implements) Razor directive:
+If a component implements <xref:System.IDisposable>, <xref:System.IAsyncDisposable>, or both, the framework calls for unmanaged resource disposal when the component is removed from the UI. Disposal can occur at any time, including during [component initialization](#component-initialization-oninitializedasync).
+
+### Synchronous `IDisposable`
+
+For synchronous disposal tasks, use <xref:System.IDisposable.Dispose%2A?displayProperty=nameWithType>.
+
+The following component:
+
+* Implements <xref:System.IDisposable> with the [`@implements`](xref:mvc/views/razor#implements) Razor directive.
+* Disposes of `obj`, which is an unmanaged type that implements <xref:System.IDisposable>.
+* A null check is performed because `obj` is created in a lifecycle method (not shown).
 
 ```razor
-@using System
 @implements IDisposable
 
 ...
 
 @code {
+    ...
+
     public void Dispose()
     {
-        ...
+        obj?.Dispose();
     }
 }
 ```
 
-If an object requires disposal, a lambda can be used to dispose of the object when <xref:System.IDisposable.Dispose%2A?displayProperty=nameWithType> is called. The following example appears in the <xref:blazor/components/rendering#receiving-a-call-from-something-external-to-the-blazor-rendering-and-event-handling-system> article and demonstrates the use of a lambda expression for the disposal of a <xref:System.Timers.Timer>.
+If a single object requires disposal, a lambda can be used to dispose of the object when <xref:System.IDisposable.Dispose%2A> is called. The following example appears in the <xref:blazor/components/rendering#receiving-a-call-from-something-external-to-the-blazor-rendering-and-event-handling-system> article and demonstrates the use of a lambda expression for the disposal of a <xref:System.Timers.Timer>.
 
-`Pages/CounterWithTimerDisposal.razor`:
+`Pages/CounterWithTimerDisposal1.razor`:
 
 ::: moniker range=">= aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/lifecycle/CounterWithTimerDisposal.razor)]
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/lifecycle/CounterWithTimerDisposal1.razor?highlight=3,11,28)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/lifecycle/CounterWithTimerDisposal.razor)]
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/lifecycle/CounterWithTimerDisposal1.razor?highlight=3,11,28)]
 
 ::: moniker-end
 
-For asynchronous disposal tasks, use `DisposeAsync` instead of <xref:System.IDisposable.Dispose>:
+If the object is created in a lifecycle method, such as [`OnInitialized`/`OnInitializedAsync`](#component-initialization-oninitializedasync), check for `null` before calling `Dispose`.
 
-```csharp
-public async ValueTask DisposeAsync()
-{
-    await ...
+`Pages/CounterWithTimerDisposal2.razor`:
+
+::: moniker range=">= aspnetcore-5.0"
+
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/lifecycle/CounterWithTimerDisposal2.razor?highlight=15,29)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/lifecycle/CounterWithTimerDisposal2.razor?highlight=15,29)]
+
+::: moniker-end
+
+For more information, see:
+
+* [Cleaning up unmanaged resources (.NET documentation)](/dotnet/standard/garbage-collection/unmanaged)
+* [Null-conditional operators ?. and ?[]](/dotnet/csharp/language-reference/operators/member-access-operators#null-conditional-operators--and-)
+
+### Asynchronous `IAsyncDisposable`
+
+For asynchronous disposal tasks, use <xref:System.IAsyncDisposable.DisposeAsync%2A?displayProperty=nameWithType>.
+
+The following component:
+
+* Implements <xref:System.IAsyncDisposable> with the [`@implements`](xref:mvc/views/razor#implements) Razor directive.
+* Disposes of `obj`, which is an unmanaged type that implements <xref:System.IAsyncDisposable>.
+* A null check is performed because `obj` is created in a lifecycle method (not shown).
+
+```razor
+@implements IAsyncDisposable
+
+...
+
+@code {
+    ...
+
+    public async ValueTask DisposeAsync()
+    {
+        if (obj is not null)
+        {
+            await obj.DisposeAsync();
+        }
+    }
 }
 ```
 
+For more information, see:
+
+* [Cleaning up unmanaged resources (.NET documentation)](/dotnet/standard/garbage-collection/unmanaged)
+* [Null-conditional operators ?. and ?[]](/dotnet/csharp/language-reference/operators/member-access-operators#null-conditional-operators--and-)
+
+### Assignment of `null` to disposed objects
+
+Usually, there's no need to assign `null` to disposed objects after calling <xref:System.IDisposable.Dispose%2A>/<xref:System.IAsyncDisposable.DisposeAsync%2A>. Rare cases for assigning `null` include the following:
+
+* If the object's type is poorly implemented and doesn't tolerate repeat calls to <xref:System.IDisposable.Dispose%2A>/<xref:System.IAsyncDisposable.DisposeAsync%2A>, assign `null` after disposal to gracefully skip further calls to <xref:System.IDisposable.Dispose%2A>/<xref:System.IAsyncDisposable.DisposeAsync%2A>.
+* If a long-lived process continues to hold a reference to a disposed object, assigning `null` allows the [garbage collector](/dotnet/standard/garbage-collection/fundamentals) to free the object in spite of the long-lived process holding a reference to it.
+
+These are unusual scenarios. For objects that are implemented correctly and behave normally, there's no point in assigning `null` to disposed objects. In the rare cases where an object must be assigned `null`, we recommend documenting the reason and seeking a solution that prevents the need to assign `null`.
+
+### `StateHasChanged`
+
 > [!NOTE]
 > Calling <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> in `Dispose` isn't supported. <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> might be invoked as part of tearing down the renderer, so requesting UI updates at that point isn't supported.
+
+### Event handlers
 
 Unsubscribe event handlers from .NET events. The following [Blazor form](xref:blazor/forms-validation) examples show how to unsubscribe an event handler in the `Dispose` method:
 
@@ -346,11 +393,67 @@ Unsubscribe event handlers from .NET events. The following [Blazor form](xref:bl
 
 * Private field and lambda approach
 
-  [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/lifecycle/EventHandlerDisposal1.razor?name=snippet&highlight=24,29)]
+  ```razor
+  @implements IDisposable
+
+  <EditForm EditContext="@editContext">
+      ...
+      <button type="submit" disabled="@formInvalid">Submit</button>
+  </EditForm>
+
+  @code {
+      // ...
+      private EventHandler<FieldChangedEventArgs> fieldChanged;
+
+      protected override void OnInitialized()
+      {
+          editContext = new(model);
+
+          fieldChanged = (_, __) =>
+          {
+              // ...
+          };
+
+          editContext.OnFieldChanged += fieldChanged;
+      }
+
+      public void Dispose()
+      {
+          editContext.OnFieldChanged -= fieldChanged;
+      }
+  }
+  ```
 
 * Private method approach
 
-  [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/lifecycle/EventHandlerDisposal2.razor?name=snippet&highlight=16,26)]
+  ```razor
+  @implements IDisposable
+
+  <EditForm EditContext="@editContext">
+      ...
+      <button type="submit" disabled="@formInvalid">Submit</button>
+  </EditForm>
+
+  @code {
+      // ...
+
+      protected override void OnInitialized()
+      {
+          editContext = new(model);
+          editContext.OnFieldChanged += HandleFieldChanged;
+      }
+
+      private void HandleFieldChanged(object sender, FieldChangedEventArgs e)
+      {
+          // ...
+      }
+
+      public void Dispose()
+      {
+          editContext.OnFieldChanged -= HandleFieldChanged;
+      }
+  }
+  ```
 
 ::: moniker-end
 
@@ -358,13 +461,71 @@ Unsubscribe event handlers from .NET events. The following [Blazor form](xref:bl
 
 * Private field and lambda approach
 
-  [!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/lifecycle/EventHandlerDisposal1.razor?name=snippet&highlight=24,29)]
+  ```razor
+  @implements IDisposable
+
+  <EditForm EditContext="@editContext">
+      ...
+      <button type="submit" disabled="@formInvalid">Submit</button>
+  </EditForm>
+
+  @code {
+      // ...
+      private EventHandler<FieldChangedEventArgs> fieldChanged;
+
+      protected override void OnInitialized()
+      {
+          editContext = new EditContext(model);
+
+          fieldChanged = (_, __) =>
+          {
+              // ...
+          };
+
+          editContext.OnFieldChanged += fieldChanged;
+      }
+
+      public void Dispose()
+      {
+          editContext.OnFieldChanged -= fieldChanged;
+      }
+  }
+  ```
 
 * Private method approach
 
-  [!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/lifecycle/EventHandlerDisposal2.razor?name=snippet&highlight=16,26)]
+  ```razor
+  @implements IDisposable
+
+  <EditForm EditContext="@editContext">
+      ...
+      <button type="submit" disabled="@formInvalid">Submit</button>
+  </EditForm>
+
+  @code {
+      // ...
+
+      protected override void OnInitialized()
+      {
+          editContext = new EditContext(model);
+          editContext.OnFieldChanged += HandleFieldChanged;
+      }
+
+      private void HandleFieldChanged(object sender, FieldChangedEventArgs e)
+      {
+          // ...
+      }
+
+      public void Dispose()
+      {
+          editContext.OnFieldChanged -= HandleFieldChanged;
+      }
+  }
+  ```
 
 ::: moniker-end
+
+### Anonymous functions, methods, and expressions
 
 When [anonymous functions](/dotnet/csharp/programming-guide/statements-expressions-operators/anonymous-functions), methods, or expressions, are used, it isn't necessary to implement <xref:System.IDisposable> and unsubscribe delegates. However, failing to unsubscribe a delegate is a problem **when the object exposing the event outlives the lifetime of the component registering the delegate**. When this occurs, a memory leak results because the registered delegate keeps the original object alive. Therefore, only use the following approaches when you know that the event delegate disposes quickly. When in doubt about the lifetime of objects that require disposal, subscribe a delegate method and properly dispose the delegate as the earlier examples show.
 
@@ -471,7 +632,7 @@ Other reasons why background work items might require cancellation include:
 To implement a cancelable background work pattern in a component:
 
 * Use a <xref:System.Threading.CancellationTokenSource> and <xref:System.Threading.CancellationToken>.
-* On [disposal of the component](#component-disposal-with-idisposable) and at any point cancellation is desired by manually cancelling the token, call [`CancellationTokenSource.Cancel`](xref:System.Threading.CancellationTokenSource.Cancel%2A) to signal that the background work should be cancelled.
+* On [disposal of the component](#component-disposal-with-idisposable-and-iasyncdisposable) and at any point cancellation is desired by manually canceling the token, call [`CancellationTokenSource.Cancel`](xref:System.Threading.CancellationTokenSource.Cancel%2A) to signal that the background work should be cancelled.
 * After the asynchronous call returns, call <xref:System.Threading.CancellationToken.ThrowIfCancellationRequested%2A> on the token.
 
 In the following example:

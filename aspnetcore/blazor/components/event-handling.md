@@ -19,7 +19,7 @@ Specify delegate event handlers in Razor component markup with [`@on{DOM EVENT}=
 For event handling:
 
 * Asynchronous delegate event handlers that return a <xref:System.Threading.Tasks.Task> are supported.
-* Delegate event handlers automatically trigger a UI render, so there's no need to manually call [StateHasChanged](xref:blazor/components/lifecycle#state-changes-statehaschanged).
+* Delegate event handlers automatically trigger a UI render, so there's no need to manually call [`StateHasChanged`](xref:blazor/components/lifecycle#state-changes-statehaschanged).
 * Exceptions are logged.
 
 The following code:
@@ -327,6 +327,9 @@ It's often convenient to close over additional values using C# method parameters
 >
 > * The loop variable `i` is assigned to `buttonNumber`.
 > * `buttonNumber` is used in the lambda expression.
+
+> [!NOTE]
+> Use of the approach in this section can lead to poor performance with many rendered components. For more information, see [Blazor Binary message size send from server to client increases (dotnet/aspnetcore #17886)](https://github.com/dotnet/aspnetcore/issues/17886).
 
 ## EventCallback
 

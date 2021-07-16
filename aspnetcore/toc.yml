@@ -349,6 +349,8 @@
           items:
             - name: Overview
               uid: blazor/components/index
+            - name: Layouts
+              uid: blazor/components/layouts
             - name: Cascading values and parameters
               uid: blazor/components/cascading-values-and-parameters
             - name: Data binding
@@ -371,8 +373,6 @@
               uid: blazor/components/class-libraries
         - name: Globalization and localization
           uid: blazor/globalization-localization
-        - name: Layouts
-          uid: blazor/layouts
         - name: Forms and validation
           uid: blazor/forms-validation
         - name: File uploads
@@ -385,7 +385,7 @@
               uid: blazor/js-interop/call-javascript-from-dotnet
             - name: Call .NET from JavaScript
               uid: blazor/js-interop/call-dotnet-from-javascript
-        - name: Call a web API from WebAssembly
+        - name: Call a web API
           uid: blazor/call-web-api
         - name: Security and Identity
           items:
@@ -463,6 +463,10 @@
               href: blazor/security/index.md#authorizeview-component
             - name: CascadingValue
               href: blazor/components/cascading-values-and-parameters.md#cascadingvalue-component
+            - name: ErrorBoundary
+              href: blazor/fundamentals/handle-errors.md#error-boundaries
+            - name: FocusOnNavigate
+              href: blazor/fundamentals/routing.md#focus-an-element-on-navigation
             - name: InputCheckbox
               href: blazor/forms-validation.md#built-in-form-components
             - name: InputDate
@@ -482,9 +486,9 @@
             - name: InputTextArea
               href: blazor/forms-validation.md#built-in-form-components
             - name: LayoutView
-              href: blazor/layouts.md#apply-a-layout-to-arbitrary-content-layoutview-component
+              href: blazor/components/layouts.md#apply-a-layout-to-arbitrary-content-layoutview-component
             - name: MainLayout
-              href: blazor/layouts.md#mainlayout-component
+              href: blazor/components/layouts.md#mainlayout-component
             - name: NavLink
               href: blazor/fundamentals/routing.md#navlink-and-navmenu-components
             - name: NavMenu
@@ -564,6 +568,8 @@
               uid: mvc/views/tag-helpers/builtin-th/link-tag-helper
             - name: Partial
               uid: mvc/views/tag-helpers/builtin-th/partial-tag-helper
+            - name: Preserve Component State
+              uid: mvc/views/tag-helpers/builtin-th/preserve-component-state-tag-helper
             - name: Script
               uid: mvc/views/tag-helpers/builtin-th/script-tag-helper
             - name: Select
@@ -1078,6 +1084,8 @@
           uid: security/authentication/index
         - name: Introduction to Identity
           uid: security/authentication/identity
+        - name: Mapping, customizing, and transforming claims
+          uid: security/authentication/claims
         - name: Identity with SPA
           uid: security/authentication/identity/spa
         - name: Scaffold Identity

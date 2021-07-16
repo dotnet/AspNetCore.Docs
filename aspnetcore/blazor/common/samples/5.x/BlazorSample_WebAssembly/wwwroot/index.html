@@ -31,7 +31,7 @@
         };
     </script>
     <script>
-        window.returnJSObjectReference = () => {
+        window.returnObjectReference = () => {
             return {
                 unmarshalledFunctionReturnBoolean: function (fields) {
                     const name = Blazor.platform.readStringField(fields, 0);
@@ -68,6 +68,30 @@
         function setElementClass(element, className) {
             var myElement = element;
             myElement.classList.add(className);
+        }
+    </script>
+    <script>
+        window.returnArrayAsync = () => {
+            DotNet.invokeMethodAsync('BlazorSample', 'ReturnArrayAsync')
+                .then(data => {
+                    console.log(data);
+                });
+        };
+    </script>
+    <script>
+        window.sayHello1 = (dotNetHelper) => {
+            return dotNetHelper.invokeMethodAsync('GetHelloMessage');
+        };
+    </script>
+    <script>
+        window.sayHello2 = (dotNetHelper, name) => {
+            return dotNetHelper.invokeMethodAsync('GetHelloMessage', name);
+        };
+    </script>
+    <script>
+        window.updateMessageCaller = (dotnetHelper) => {
+            dotnetHelper.invokeMethodAsync('BlazorSample', 'UpdateMessageCaller');
+            dotnetHelper.dispose();
         }
     </script>
 </body>

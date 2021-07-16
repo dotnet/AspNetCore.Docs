@@ -258,26 +258,6 @@ Additional work might be required depending on the static resources that compone
 >
 > This is normal behavior because prerendering and integrating a Blazor WebAssembly app with routable Razor components is incompatible with the use of CSS selectors.
 
-## Additional Blazor WebAssembly resources
-
-* [State management: Handle prerendering](xref:blazor/state-management?pivot=webassembly#handle-prerendering)
-* [Prerendering support with assembly lazy loading](xref:blazor/webassembly-lazy-load-assemblies#assembly-load-logic-in-onnavigateasync)
-* Razor component lifecycle subjects that pertain to prerendering
-  * [Component initialization (`OnInitialized{Async}`)](xref:blazor/components/lifecycle#component-initialization-oninitializedasync)
-  * [After component render (`OnAfterRender{Async}`)](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync)
-  * [Stateful reconnection after prerendering](xref:blazor/components/lifecycle#stateful-reconnection-after-prerendering): Although the content in the section focuses on Blazor Server and stateful SignalR *reconnection*, the scenario for prerendering in hosted Blazor WebAssembly apps (<xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssemblyPrerendered>) involves similar conditions and approaches to prevent executing developer code twice. A *new state preservation feature* is planned for the ASP.NET Core 6.0 release that will improve the management of initialization code execution during prerendering.
-  * [Detect when the app is prerendering](xref:blazor/components/lifecycle#detect-when-the-app-is-prerendering)
-* Authentication and authorization subjects that pertain to prerendering
-  * [General aspects](xref:blazor/security/index#aspnet-core-blazor-authentication-and-authorization)
-  * [Support prerendering with authentication](xref:blazor/security/webassembly/additional-scenarios#support-prerendering-with-authentication)
-* [Host and deploy: Blazor WebAssembly](xref:blazor/host-and-deploy/webassembly)
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-Integrating Razor components into Razor Pages and MVC apps in a hosted Blazor WebAssembly solution is supported in ASP.NET Core in .NET 5 or later. Select a .NET 5 or later version of this article.
-
 ::: moniker-end
 
 ::: zone-end
@@ -675,16 +655,132 @@ The `_ViewImports.cshtml` file is located in the `Pages` folder of a Razor Pages
 
 For more information, see <xref:blazor/components/index#namespaces>.
 
+::: zone-end
+
+::: moniker range=">= aspnetcore-6.0"
+
+## Preserve prerendered state
+
+Without preserving prerendered state, any state that used during prerendering is lost and must be recreated when the app is fully loaded. If any state is setup asynchronously, the UI may flicker as the the prerendered UI is replaced with temporary placeholders and then fully rendered again.
+
+To solve these problems, Blazor supports persisting state in a prerendered page using the [Preserve Component State Tag Helper](xref:mvc/views/tag-helpers/builtin-th/preserve-component-state-tag-helper) (`<preserve-component-state />`). Add the `<preserve-component-state />` tag inside the closing `</body>` tag of `_Host.cshtml`.
+
+::: zone pivot="webassembly"
+
+`Pages/_Host.cshtml`:
+
+```cshtml
+<body>
+    <component type="typeof(App)" render-mode="WebAssemblyPrerendered" />
+
+    ...
+
+    <persist-component-state />
+</body>
+```
+
+::: zone-end
+
+::: zone pivot="server"
+
+`Pages/_Host.cshtml`:
+
+```cshtml
+<body>
+    <component type="typeof(App)" render-mode="ServerPrerendered" />
+
+    ...
+
+    <persist-component-state />
+</body>
+```
+
+::: zone-end
+
+In the app, decide what state to persist using the `ComponentApplicationState` service. The `ComponentApplicationState.OnPersisting` event is fired just before the state is persisted into the prerendered page, which allows a component to retrieve the state when initializing the component.
+
+The following example shows how the weather forecast in the `FetchData` component from an app based on the Blazor project template is persisted during prerendering and then retrieved to initialize the component. The Persist Component State Tag Helper persists the component state after all component invocations.
+
+`Pages/FetchData.razor`:
+
+```razor
+@page "/fetchdata"
+@implements IDisposable
+@inject ComponentApplicationState ApplicationState
+
+...
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        ApplicationState.OnPersisting += PersistForecasts;
+
+        if (!ApplicationState
+            .TryTakeAsJson<WeatherForecast[]>("fetchdata", out var forecasts))
+        {
+            forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
+        }
+    }
+
+    private Task PersistForecasts()
+    {
+        ApplicationState.PersistAsJson("fetchdata", forecasts);
+
+        return Task.CompletedTask;
+    }
+
+    void IDisposable.Dispose()
+    {
+        ApplicationState.OnPersisting -= PersistForecasts;
+    }
+}
+```
+
+By initializing components with the same state used during prerendering, any expensive initialization steps are only executed once. The rendered UI also matches the prerendered UI, so no flicker occurs in the browser.
+
+::: moniker-end
+
+::: zone pivot="webassembly"
+
+::: moniker range=">= aspnetcore-5.0"
+
+## Additional Blazor WebAssembly resources
+
+* [Hosted Blazor WebAssembly logging](xref:blazor/fundamentals/logging#hosted-blazor-webassembly-logging)
+* [State management: Handle prerendering](xref:blazor/state-management#handle-prerendering)
+* [Prerendering support with assembly lazy loading](xref:blazor/webassembly-lazy-load-assemblies#lazy-load-assemblies-in-a-hosted-blazor-webassembly-solution)
+* Razor component lifecycle subjects that pertain to prerendering
+  * [Component initialization (`OnInitialized{Async}`)](xref:blazor/components/lifecycle#component-initialization-oninitializedasync)
+  * [After component render (`OnAfterRender{Async}`)](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync)
+  * [Stateful reconnection after prerendering](xref:blazor/components/lifecycle#stateful-reconnection-after-prerendering): Although the content in the section focuses on Blazor Server and stateful SignalR *reconnection*, the scenario for prerendering in hosted Blazor WebAssembly apps (<xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssemblyPrerendered>) involves similar conditions and approaches to prevent executing developer code twice. A *new state preservation feature* is planned for the ASP.NET Core 6.0 release that will improve the management of initialization code execution during prerendering.
+  * [Detect when the app is prerendering](xref:blazor/components/lifecycle#detect-when-the-app-is-prerendering)
+* Authentication and authorization subjects that pertain to prerendering
+  * [General aspects](xref:blazor/security/index#aspnet-core-blazor-authentication-and-authorization)
+  * [Support prerendering with authentication](xref:blazor/security/webassembly/additional-scenarios#support-prerendering-with-authentication)
+* [Host and deploy: Blazor WebAssembly](xref:blazor/host-and-deploy/webassembly)
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+Integrating Razor components into Razor Pages and MVC apps in a hosted Blazor WebAssembly solution is supported in ASP.NET Core in .NET 5 or later. Select a .NET 5 or later version of this article.
+
+::: moniker-end
+
+::: zone-end
+
+::: zone pivot="server"
+
 ## Additional Blazor Server resources
 
-* [State management: Handle prerendering](xref:blazor/state-management?pivot=server#handle-prerendering)
+* [State management: Handle prerendering](xref:blazor/state-management#handle-prerendering)
 * Razor component lifecycle subjects that pertain to prerendering
   * [Component initialization (`OnInitialized{Async}`)](xref:blazor/components/lifecycle#component-initialization-oninitializedasync)
   * [After component render (`OnAfterRender{Async}`)](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync)
   * [Stateful reconnection after prerendering](xref:blazor/components/lifecycle#stateful-reconnection-after-prerendering)
   * [Detect when the app is prerendering](xref:blazor/components/lifecycle#detect-when-the-app-is-prerendering)
 * [Authentication and authorization: General aspects](xref:blazor/security/index#aspnet-core-blazor-authentication-and-authorization)
-* [Blazor Server rerendering](xref:blazor/fundamentals/handle-errors?pivot=server#blazor-server-prerendering-server)
+* [Blazor Server rerendering](xref:blazor/fundamentals/handle-errors#blazor-server-prerendering-server)
 * [Host and deploy: Blazor Server](xref:blazor/host-and-deploy/server)
 * [Threat mitigation: Cross-site scripting (XSS)](xref:blazor/security/server/threat-mitigation#cross-site-scripting-xss)
 

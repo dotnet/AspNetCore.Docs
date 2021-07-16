@@ -15,11 +15,7 @@ namespace BlazorSample.Shared
         {
             base.OnParametersSet();
 
-            if (subscription != null)
-            {
-                subscription.Dispose();
-            }
-
+            subscription?.Dispose();
             subscription = Parent.Subscribe(this);
         }
 

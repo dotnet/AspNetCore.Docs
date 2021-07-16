@@ -8,6 +8,7 @@ ms.custom: mvc
 ms.date: 02/12/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/build-a-blazor-app
+zone_pivot_groups: blazor-hosting-models
 ---
 # Build a Blazor todo list app
 
@@ -35,19 +36,33 @@ At the end of this tutorial, you'll have a working todo list app.
 
 ::: moniker-end
 
-## Create a todo list Blazor app
+## Create a Blazor app
 
-1. Create a new Blazor app named `TodoList` in a command shell:
+Create a new Blazor app named `TodoList` in a command shell:
 
-   ```dotnetcli
-   dotnet new blazorserver -o TodoList
-   ```
+::: zone pivot="server"
 
-   The preceding command creates a folder named `TodoList` with the `-o|--output` option to hold the app. The `TodoList` folder is the *root folder* of the project. Change directories to the `TodoList` folder with the following command:
+```dotnetcli
+dotnet new blazorserver -o TodoList
+```
 
-   ```dotnetcli
-   cd TodoList
-   ```
+::: zone-end
+
+::: zone pivot="webassembly"
+
+```dotnetcli
+dotnet new blazorwasm -o TodoList
+```
+
+::: zone-end
+
+The preceding command creates a folder named `TodoList` with the `-o|--output` option to hold the app. The `TodoList` folder is the *root folder* of the project. Change directories to the `TodoList` folder with the following command:
+
+```dotnetcli
+cd TodoList
+```
+
+## Build a todo list Blazor app
 
 1. Add a new `Todo` Razor component to the app using the following command:
 
@@ -102,7 +117,7 @@ At the end of this tutorial, you'll have a working todo list app.
 
 1. Build and run the app by executing the [`dotnet watch run`](xref:tutorials/dotnet-watch) command in the command shell from the `TodoList` folder. After the app is running, visit the new Todo page by selecting the **`Todo`** link in the app's navigation bar, which loads the page at `/todo`.
 
-   Leave the app running the command shell. Each time a file is saved, the app is automatically rebuilt. The browser temporarily loses its connection to the app while compiling and restarting. The page in the browser is automatically reloaded when the connection is re-established.
+   Leave the app running the command shell. Each time a file is saved, the app is automatically rebuilt, and the page in the browser is automatically reloaded.
 
 1. Add a `TodoItem.cs` file to the root of the project (the `TodoList` folder) to hold a class that represents a todo item. Use the following C# code for the `TodoItem` class.
 
@@ -159,7 +174,7 @@ At the end of this tutorial, you'll have a working todo list app.
 
    ::: moniker-end
 
-1. Save the `TodoItem.cs` file and the updated `Pages/Todo.razor` file. In the command shell, the app is automatically rebuilt when the files are saved. The browser temporarily loses its connection to the app and then reloads the page when the connection is re-established.
+1. Save the `TodoItem.cs` file and the updated `Pages/Todo.razor` file. In the command shell, the app is automatically rebuilt when the files are saved. The browser reloads the page.
 
 1. When the **`Add todo`** button is selected, nothing happens because an event handler isn't attached to the button.
 
@@ -211,26 +226,26 @@ At the end of this tutorial, you'll have a working todo list app.
 
    ::: moniker-end
 
-1. Save the `Pages/Todo.razor` file. The app is automatically rebuilt in the command shell. The page reloads in the browser after the browser reconnects to the app.
+1. Save the `Pages/Todo.razor` file. The app is automatically rebuilt in the command shell, and the page reloads in the browser.
 
 1. The title text for each todo item can be made editable, and a checkbox can help the user keep track of completed items. Add a checkbox input for each todo item and bind its value to the `IsDone` property. Change `@todo.Title` to an `<input>` element bound to `todo.Title` with `@bind`:
 
-   ::: moniker range=">= aspnetcore-5.0"
+   ```razor
+   <ul>
+       @foreach (var todo in todos)
+       {
+           <li>
+               <input type="checkbox" @bind="todo.IsDone" />
+               <input @bind="todo.Title" />
+           </li>
+       }
+   </ul>
+   ```
 
-   [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo7.razor?name=snippet&highlight=4-7)]
-
-   ::: moniker-end
-
-   ::: moniker range="< aspnetcore-5.0"
-
-   [!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo7.razor?name=snippet&highlight=4-7)]
-
-   ::: moniker-end
-
-1. Update the `<h3>` header to show a count of the number of todo items that aren't complete (`IsDone` is `false`).
+1. Update the `<h1>` header to show a count of the number of todo items that aren't complete (`IsDone` is `false`).
 
    ```razor
-   <h3>Todo (@todos.Count(todo => !todo.IsDone))</h3>
+   <h1>Todo (@todos.Count(todo => !todo.IsDone))</h1>
    ```
 
 1. The completed `Todo` component (`Pages/Todo.razor`):
@@ -247,7 +262,7 @@ At the end of this tutorial, you'll have a working todo list app.
 
    ::: moniker-end
 
-1. Save the `Pages/Todo.razor` file. The app is automatically rebuilt in the command shell. The page reloads in the browser after the browser reconnects to the app.
+1. Save the `Pages/Todo.razor` file. The app is automatically rebuilt in the command shell, and the page reloads in the browser.
 
 1. Add items, edit items, and mark todo items done to test the component.
 

@@ -369,6 +369,8 @@ For more information about asynchronous programming in .NET, see [Async Overview
 
 See [Performance considerations](xref:data/ef-rp/intro#performance-considerations) for information on limiting the number or entities returned from a query.
 
+[!INCLUDE[s](~/includes/sql-log.md)]
+
 Advance to the next tutorial to learn how to perform basic CRUD (create, read, update, delete) operations.
 
 > [!div class="nextstepaction"]
@@ -382,7 +384,7 @@ Advance to the next tutorial to learn how to perform basic CRUD (create, read, u
 
 The Contoso University sample web application demonstrates how to create ASP.NET Core 2.2 MVC web applications using Entity Framework (EF) Core 2.2 and Visual Studio 2017 or 2019.
 
-This tutorial has not been updated for ASP.NET Core 3.1. It has been updated for [ASP.NET Core 5.0](xref:data/ef-mvc/intro?view=aspnetcore-5.0).
+This tutorial has not been updated for ASP.NET Core 3.1. It has been updated for [ASP.NET Core 5.0](xref:data/ef-mvc/intro?view=aspnetcore-5.0&preserve-view=true).
 
 The sample application is a web site for a fictional Contoso University. It includes functionality such as student admission, course creation, and instructor assignments. This is the first in a series of tutorials that explain how to build the Contoso University sample application from scratch.
 
