@@ -1364,12 +1364,12 @@ C# syntax with [`where`](/dotnet/csharp/language-reference/keywords/where-generi
 @typeparam TEntity where TEntity : IEntity
 ```
 
+::: moniker-end
+
 For more information, see the following articles:
 
 * <xref:mvc/views/razor#typeparam>
 * <xref:blazor/components/templated-components>
-
-::: moniker-end
 
 <!--Reference links in article-->
 [1]: <xref:mvc/views/razor#code>

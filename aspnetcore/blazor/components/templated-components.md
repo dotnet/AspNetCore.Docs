@@ -187,7 +187,7 @@ For more information, see the following articles:
 
 ::: moniker range="< aspnetcore-6.0"
 
-Inferred generic types are supported in ASP.NET Core 6.0 or later. For more information, see the 6.0 or a later version of this article.
+Inferred generic types are supported in ASP.NET Core 6.0 or later. For more information, see a 6.0 or later version of this article.
 
 ::: moniker-end
 
