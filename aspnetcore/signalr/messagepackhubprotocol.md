@@ -119,7 +119,7 @@ HubConnection messagePackConnection = HubConnectionBuilder.create("YOUR HUB URL 
     .build();
 ```
 
-## MessagePack quirks
+## MessagePack considerations
 
 There are a few issues to be aware of when using the MessagePack Hub Protocol.
 
@@ -483,7 +483,7 @@ const connection = new signalR.HubConnectionBuilder()
 > [!NOTE]
 > At this time, there are no configuration options for the MessagePack protocol on the JavaScript client.
 
-## MessagePack quirks
+## MessagePack considerations
 
 There are a few issues to be aware of when using the MessagePack Hub Protocol.
 
@@ -663,7 +663,7 @@ const connection = new signalR.HubConnectionBuilder()
 > [!NOTE]
 > At this time, there are no configuration options for the MessagePack protocol on the JavaScript client.
 
-## MessagePack quirks
+## MessagePack considerations
 
 There are a few issues to be aware of when using the MessagePack Hub Protocol.
 
