@@ -97,7 +97,7 @@ Never use `Task.Wait`, `Task.Result`, or similar blocking calls to wait for the 
 ### Compression
 
 > [!WARNING]
-> Enabling compression over encrypted connections makes the app subject to CRIME/BREACH attacks.
+> Enabling compression over encrypted connections can make an app subject to CRIME/BREACH attacks.
 > If sending sensitive information, avoid enabling compression or use `WebSocketMessageFlags.DisableCompression` when calling `WebSocket.SendAsync`.
 > This applies to both sides of the WebSocket. Note that the WebSockets API in the browser doesn't have configuration for disabling compression per send. 
 
