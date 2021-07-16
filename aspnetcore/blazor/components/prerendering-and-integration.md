@@ -661,9 +661,9 @@ For more information, see <xref:blazor/components/index#namespaces>.
 
 ## Preserve prerendered state
 
-Without preserving prerendered state, any state that was used during prerendering is lost and must be recreated when the app is fully loaded. If any state is setup asynchronously, then the UI may flicker as the the prerendered UI is replaced with temporary placeholders and then fully rendered again.
+Without preserving prerendered state, any state that used during prerendering is lost and must be recreated when the app is fully loaded. If any state is setup asynchronously, the UI may flicker as the the prerendered UI is replaced with temporary placeholders and then fully rendered again.
 
-To solve this problem, Blazor supports persisting state into the prerendered page using the [Preserve Component State Tag Helper](xref:mvc/views/tag-helpers/builtin-th/preserve-component-state-tag-helper) (`<preserve-component-state>`).
+To solve these problems, Blazor supports persisting state in a prerendered page using the [Preserve Component State Tag Helper](xref:mvc/views/tag-helpers/builtin-th/preserve-component-state-tag-helper) (`<preserve-component-state />`). Add the `<preserve-component-state />` tag inside the closing `</body>` tag of `_Host.cshtml`.
 
 ::: zone pivot="webassembly"
 
@@ -697,11 +697,11 @@ To solve this problem, Blazor supports persisting state into the prerendered pag
 
 ::: zone-end
 
-In the app, you decide what state to persist using the `ComponentApplicationState` service. The `ComponentApplicationState.OnPersisting` event is fired just before the state is persisted into the prerendered page, which allows you to retrieve any persisted state when initializing a component.
+In the app, decide what state to persist using the `ComponentApplicationState` service. The `ComponentApplicationState.OnPersisting` event is fired just before the state is persisted into the prerendered page, which allows a component to retrieve the state when initializing the component.
 
-The following example below shows how the weather forecasts in the `FetchData` component from an app based on the Blazor project template can be persisted during prerendering and then retrieved to initialize the component. The Persist Component State Tag Helper persists the component state after all component invocations.
+The following example shows how the weather forecast in the `FetchData` component from an app based on the Blazor project template is persisted during prerendering and then retrieved to initialize the component. The Persist Component State Tag Helper persists the component state after all component invocations.
 
-`FetchData.razor`:
+`Pages/FetchData.razor`:
 
 ```razor
 @page "/fetchdata"
@@ -716,7 +716,7 @@ The following example below shows how the weather forecasts in the `FetchData` c
         ApplicationState.OnPersisting += PersistForecasts;
 
         if (!ApplicationState
-            .TryRedeemFromJson<WeatherForecast[]>("fetchdata", out var forecasts))
+            .TryTakeAsJson<WeatherForecast[]>("fetchdata", out var forecasts))
         {
             forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
         }
@@ -736,7 +736,7 @@ The following example below shows how the weather forecasts in the `FetchData` c
 }
 ```
 
-By initializing components with the same state used during prerendering, any expensive initialization steps are only executed once. The rendered UI also matches the prerendered UI, so no flicker occurs.
+By initializing components with the same state used during prerendering, any expensive initialization steps are only executed once. The rendered UI also matches the prerendered UI, so no flicker occurs in the browser.
 
 ::: moniker-end
 

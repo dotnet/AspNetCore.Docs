@@ -5,7 +5,7 @@ ms.author: riande
 description: Learn how to use the ASP.NET Core Preserve Component State Tag Helper to preserve state when prerendering components.
 monikerRange: '>= aspnetcore-6.0'
 ms.custom: mvc
-ms.date: 07/14/2021
+ms.date: 07/16/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/views/tag-helpers/builtin-th/preserve-component-state-tag-helper
 zone_pivot_groups: blazor-hosting-models
@@ -21,7 +21,7 @@ Follow the guidance in the *Configuration* section for either:
 
 ## Preserve Component State Tag Helper
 
-To preserve state into prerendered components, use the Preserve Component State Tag Helper (). Add the `<preserve-component-state>` tag inside the closing `</body>` tag of the `_Host` page in an app that prerenders components:
+To preserve state for prerendered components, use the Preserve Component State Tag Helper (`<persist-component-state />`). Add the `<preserve-component-state />` tag inside the closing `</body>` tag of the `_Host` page in an app that prerenders components:
 
 ::: zone pivot="webassembly"
 
@@ -74,7 +74,7 @@ In the following example:
         ApplicationState.OnPersisting += PersistData;
 
         if (!ApplicationState
-            .TryRedeemFromJson<{TYPE}>("{TOKEN}", out var data))
+            .TryTakeAsJson<{TYPE}>("{TOKEN}", out var data))
         {
             data = ...;
         }
