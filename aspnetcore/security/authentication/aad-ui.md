@@ -62,7 +62,7 @@ Given a registered app, the OIDC middlware can be configured as shown in the fol
 
 ## Update an app to use V2.0 endpoints
 
-Our packages use the V1.0 endpoints of Azure Active Directory and Visual Studio provisions a V1 endpoint, that means that if you create a new app from the portal you will have to adjust the configuration of the API/Web App to match the endpoint expected by the registered apps.
+Both the `Microsoft.AspNetCore.Authentication.AzureAD.UI` NuGet package and the ASP.NET Core web templates provisions a V1 endpoints. If you create a new app from the portal you will have to adjust the configuration of the API or web app to match the endpoint expected by the registered apps.
 
 For APIs you can do so configuring the JWT Bearer options as follows:
 
@@ -73,19 +73,15 @@ services.Configure<JwtBearerOptions>(AzureADDefaults.JwtBearerAuthenticationSche
 });
 ```
 
-For web apps you can do so by configuring the OIDC options as follows:
+For web apps you can do so by configuring the OIDC options as shown in the following highlighted code:
 
-```csharp
-services.Configure<OpenIdConnectOptions>(AzureADDefaults.OpenIdScheme, options =>
-{
-    options.Authority += "/v2.0";
-}
-```
+[!code-csharp[](aad-ui/samples/WebAAD6/Startup4.cs?name=snippet&highlight=12-15)]
 
-### Code changes when you upgrade to V2.0
+### Code changes when upgrading to V2.0
 
-* The list of claims in the ID token changes. check [here](/azure/active-directory/azuread-dev/azure-ad-endpoint-comparison) for details on the differences.
-* You don't need to specify the resource property anymore when requesting an access token. The snippet below can be removed
+* The list of claims in the ID token changes. See [Why update to Microsoft identity platform (v2.0)](/azure/active-directory/azuread-dev/azure-ad-endpoint-comparison) for details on the differences.
+* The resource property doesn't need to be specified when requesting an access token. The following code can be removed:
+
 ```csharp
 services.Configure<OpenIdConnectOptions>(AzureADDefaults.OpenIdScheme, options =>
 {
@@ -97,9 +93,9 @@ services.Configure<OpenIdConnectOptions>(AzureADDefaults.OpenIdScheme, options =
 
 ### Considerations with the App ID URI
 
-* When using v2.0 endpoints APIs define an "App ID URI" which is meant to represent a unique identifier for the API.
-* All scopes include that as a prefix and v2.0 endpoints will emit access tokens with the App ID URI as the audience.
-* That means that if you are using V2.0 endpoints the client ID configured in your server API will have to change from the API Application (client) Id to the App ID URI. For example:
+* When using v2.0 endpoints APIs define an `App ID URI` which is meant to represent a unique identifier for the API.
+* All scopes include that as a prefix and v2.0 endpoints will emit access tokens with the `App ID URI` as the audience.
+* That means that if you are using V2.0 endpoints the client ID configured in your server API will have to change from the API Application (client) Id to the `App ID URI`. For example:
 
 ```json
 {
@@ -109,11 +105,12 @@ services.Configure<OpenIdConnectOptions>(AzureADDefaults.OpenIdScheme, options =
   }
 }
 ```
+
 You can check the specific App ID Uri to use in the app registration description for your app.
 
-## Retrieving an using access tokens and refresh tokens
+## Retrieve and use access tokens and refresh tokens
 
-You can configure the OIDC authentication handler to save the tokens it provisions as part of the authorization process by setting `SaveTokens = true` in the OIDC options:
+The OIDC authentication handler can be configured to save the tokens it provisions as part of the authorization process by setting `SaveTokens = true` in the OIDC options:
 ```csharp
 services.Configure<OpenIdConnectOptions>(AzureADDefaults.OpenIdScheme, options =>
 {
