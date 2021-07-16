@@ -11,11 +11,11 @@ uid: mvc/views/razor
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT), [Taylor Mullen](https://twitter.com/ntaylormullen), and [Dan Vicarel](https://github.com/Rabadash8820)
 
-Razor is a markup syntax for embedding server-based code into webpages. The Razor syntax consists of Razor markup, C#, and HTML. Files containing Razor generally have a *.cshtml* file extension. Razor is also found in [Razor components](xref:blazor/components/index) files (*.razor*).
+Razor is a markup syntax for embedding server-based code into webpages. The Razor syntax consists of Razor markup, C#, and HTML. Files containing Razor generally have a `.cshtml` file extension. Razor is also found in [Razor components](xref:blazor/components/index) files (`.razor`).
 
 ## Rendering HTML
 
-The default Razor language is HTML. Rendering HTML from Razor markup is no different than rendering HTML from an HTML file. HTML markup in *.cshtml* Razor files is rendered by the server unchanged.
+The default Razor language is HTML. Rendering HTML from Razor markup is no different than rendering HTML from an HTML file. HTML markup in `.cshtml` Razor files is rendered by the server unchanged.
 
 ## Razor syntax
 
@@ -101,7 +101,7 @@ Explicit expressions can be used to concatenate text with an expression result:
 
 Without the explicit expression, `<p>Age@joe.Age</p>` is treated as an email address, and `<p>Age@joe.Age</p>` is rendered. When written as an explicit expression, `<p>Age33</p>` is rendered.
 
-Explicit expressions can be used to render output from generic methods in *.cshtml* files. The following markup shows how to correct the error shown earlier caused by the brackets of a C# generic. The code is written as an explicit expression:
+Explicit expressions can be used to render output from generic methods in `.cshtml` files. The following markup shows how to correct the error shown earlier caused by the brackets of a C# generic. The code is written as an explicit expression:
 
 ```cshtml
 <p>@(GenericMethod<int>())</p>
@@ -568,7 +568,7 @@ The code renders the following HTML:
 </div>
 ```
 
- `@model` and `@inherits` can be used in the same view. `@inherits` can be in a *_ViewImports.cshtml* file that the view imports:
+ `@model` and `@inherits` can be used in the same view. `@inherits` can be in a `_ViewImports.cshtml` file that the view imports:
 
 [!code-cshtml[](razor/sample/Views/_ViewImportsModel.cshtml)]
 
@@ -602,7 +602,7 @@ The `@layout` directive specifies a layout for routable Razor components that ha
 
 ### `@model`
 
-*This scenario only applies to MVC views and Razor Pages (.cshtml).*
+*This scenario only applies to MVC views and Razor Pages (`.cshtml`).*
 
 The `@model` directive specifies the type of the model passed to a view or page:
 
@@ -610,7 +610,7 @@ The `@model` directive specifies the type of the model passed to a view or page:
 @model TypeNameOfModel
 ```
 
-In an ASP.NET Core MVC or Razor Pages app created with individual user accounts, *Views/Account/Login.cshtml* contains the following model declaration:
+In an ASP.NET Core MVC or Razor Pages app created with individual user accounts, `Views/Account/Login.cshtml` contains the following model declaration:
 
 ```cshtml
 @model LoginViewModel
@@ -635,7 +635,7 @@ The `@model` directive specifies the type of the `Model` property. The directive
 The `@namespace` directive:
 
 * Sets the namespace of the class of the generated Razor page, MVC view, or Razor component.
-* Sets the root derived namespaces of a pages, views, or components classes from the closest imports file in the directory tree, *_ViewImports.cshtml* (views or pages) or *_Imports.razor* (Razor components).
+* Sets the root derived namespaces of a pages, views, or components classes from the closest imports file in the directory tree, `_ViewImports.cshtml` (views or pages) or *_Imports.razor* (Razor components).
 
 ```cshtml
 @namespace Your.Namespace.Here
@@ -643,27 +643,27 @@ The `@namespace` directive:
 
 For the Razor Pages example shown in the following table:
 
-* Each page imports *Pages/_ViewImports.cshtml*.
-* *Pages/_ViewImports.cshtml* contains `@namespace Hello.World`.
+* Each page imports `Pages/_ViewImports.cshtml`.
+* `Pages/_ViewImports.cshtml` contains `@namespace Hello.World`.
 * Each page has `Hello.World` as the root of it's namespace.
 
 | Page                                        | Namespace                             |
 | ------------------------------------------- | ------------------------------------- |
-| *Pages/Index.cshtml*                        | `Hello.World`                         |
-| *Pages/MorePages/Page.cshtml*               | `Hello.World.MorePages`               |
-| *Pages/MorePages/EvenMorePages/Page.cshtml* | `Hello.World.MorePages.EvenMorePages` |
+| `Pages/Index.cshtml`                        | `Hello.World`                         |
+| `Pages/MorePages/Page.cshtml`               | `Hello.World.MorePages`               |
+| `Pages/MorePages/EvenMorePages/Page.cshtml` | `Hello.World.MorePages.EvenMorePages` |
 
 The preceding relationships apply to import files used with MVC views and Razor components.
 
 When multiple import files have a `@namespace` directive, the file closest to the page, view, or component in the directory tree is used to set the root namespace.
 
-If the *EvenMorePages* folder in the preceding example has an imports file with `@namespace Another.Planet` (or the *Pages/MorePages/EvenMorePages/Page.cshtml* file contains `@namespace Another.Planet`), the result is shown in the following table.
+If the `EvenMorePages` folder in the preceding example has an imports file with `@namespace Another.Planet` (or the `Pages/MorePages/EvenMorePages/Page.cshtml` file contains `@namespace Another.Planet`), the result is shown in the following table.
 
 | Page                                        | Namespace               |
 | ------------------------------------------- | ----------------------- |
-| *Pages/Index.cshtml*                        | `Hello.World`           |
-| *Pages/MorePages/Page.cshtml*               | `Hello.World.MorePages` |
-| *Pages/MorePages/EvenMorePages/Page.cshtml* | `Another.Planet`        |
+| `Pages/Index.cshtml`                        | `Hello.World`           |
+| `Pages/MorePages/Page.cshtml`               | `Hello.World.MorePages` |
+| `Pages/MorePages/EvenMorePages/Page.cshtml` | `Another.Planet`        |
 
 ### `@page`
 
@@ -671,14 +671,14 @@ If the *EvenMorePages* folder in the preceding example has an imports file with 
 
 The `@page` directive has different effects depending on the type of the file where it appears. The directive:
 
-* In a *.cshtml* file indicates that the file is a Razor Page. For more information, see [Custom routes](xref:razor-pages/index#custom-routes) and <xref:razor-pages/index>.
+* In a `.cshtml` file indicates that the file is a Razor Page. For more information, see [Custom routes](xref:razor-pages/index#custom-routes) and <xref:razor-pages/index>.
 * Specifies that a Razor component should handle requests directly. For more information, see <xref:blazor/fundamentals/routing>.
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
 
-The `@page` directive on the first line of a *.cshtml* file indicates that the file is a Razor Page. For more information, see <xref:razor-pages/index>.
+The `@page` directive on the first line of a `.cshtml` file indicates that the file is a Razor Page. For more information, see <xref:razor-pages/index>.
 
 ::: moniker-end
 
@@ -698,7 +698,7 @@ When set to `false` (default), whitespace in the rendered markup from Razor comp
 
 ### `@section`
 
-*This scenario only applies to MVC views and Razor Pages (.cshtml).*
+*This scenario only applies to MVC views and Razor Pages (`.cshtml`).*
 
 The `@section` directive is used in conjunction with [MVC and Razor Pages layouts](xref:mvc/views/layout) to enable views or pages to render content in different parts of the HTML page. For more information, see <xref:mvc/views/layout>.
 
@@ -923,7 +923,7 @@ Rendered output:
 
 ## Tag Helpers
 
-*This scenario only applies to MVC views and Razor Pages (.cshtml).*
+*This scenario only applies to MVC views and Razor Pages (`.cshtml`).*
 
 There are three directives that pertain to [Tag Helpers](xref:mvc/views/tag-helpers/intro).
 
@@ -974,7 +974,7 @@ C# Razor keywords must be double-escaped with `@(@C# Razor Keyword)` (for exampl
 
 ::: moniker range=">= aspnetcore-2.1"
 
-With .NET Core SDK 2.1 or later, the [Razor SDK](xref:razor-pages/sdk) handles compilation of Razor files. When building a project, the Razor SDK generates an *obj/<build_configuration>/<target_framework_moniker>/Razor* directory in the project root. The directory structure within the *Razor* directory mirrors the project's directory structure.
+With .NET Core SDK 2.1 or later, the [Razor SDK](xref:razor-pages/sdk) handles compilation of Razor files. When building a project, the Razor SDK generates an `obj/<build_configuration>/<target_framework_moniker>/Razor` directory in the project root. The directory structure within the `Razor` directory mirrors the project's directory structure.
 
 Consider the following directory structure in an ASP.NET Core 2.1 Razor Pages project targeting .NET Core 2.1:
 
@@ -993,7 +993,7 @@ Consider the following directory structure in an ASP.NET Core 2.1 Razor Pages pr
    Index.cshtml.cs
   ```
 
-Building the project in *Debug* configuration yields the following *obj* directory:
+Building the project in *Debug* configuration yields the following `obj` directory:
 
 ```
  obj/
@@ -1012,7 +1012,7 @@ Building the project in *Debug* configuration yields the following *obj* directo
            Index.g.cshtml.cs
 ```
 
-To view the generated class for *Pages/Index.cshtml*, open *obj/Debug/netcoreapp2.1/Razor/Pages/Index.g.cshtml.cs*.
+To view the generated class for `Pages/Index.cshtml`, open `obj/Debug/netcoreapp2.1/Razor/Pages/Index.g.cshtml.cs`.
 
 ::: moniker-end
 
@@ -1037,8 +1037,8 @@ Set a breakpoint on the `return csharpDocument;` statement of `CustomTemplateEng
 The Razor view engine performs case-sensitive lookups for views. However, the actual lookup is determined by the underlying file system:
 
 * File based source:
-  * On operating systems with case insensitive file systems (for example, Windows), physical file provider lookups are case insensitive. For example, `return View("Test")` results in matches for */Views/Home/Test.cshtml*, */Views/home/test.cshtml*, and any other casing variant.
-  * On case-sensitive file systems (for example, Linux, OSX, and with `EmbeddedFileProvider`), lookups are case-sensitive. For example, `return View("Test")` specifically matches */Views/Home/Test.cshtml*.
+  * On operating systems with case insensitive file systems (for example, Windows), physical file provider lookups are case insensitive. For example, `return View("Test")` results in matches for `/Views/Home/Test.cshtml`, `/Views/home/test.cshtml`, and any other casing variant.
+  * On case-sensitive file systems (for example, Linux, OSX, and with `EmbeddedFileProvider`), lookups are case-sensitive. For example, `return View("Test")` specifically matches `/Views/Home/Test.cshtml`.
 * Precompiled views: With ASP.NET Core 2.0 and later, looking up precompiled views is case insensitive on all operating systems. The behavior is identical to physical file provider's behavior on Windows. If two precompiled views differ only in case, the result of lookup is non-deterministic.
 
 Developers are encouraged to match the casing of file and directory names to the casing of:
