@@ -238,6 +238,12 @@ To reduce this load, you could bundle together multiple parameters via custom cl
 
 In the preceding example, `Data` is different for every cell, but `Options` is common across all of them. Of course, it might be an improvement not to have a `<TableCell>` component and instead inline its logic into the parent component.
 
+For more information on generic type parameters (`@typeparam`), see the following articles:
+
+* <xref:mvc/views/razor#typeparam>
+* <xref:blazor/components/index#generic-type-parameter-support>
+* <xref:blazor/components/templated-components>
+
 #### Ensure cascading parameters are fixed
 
 The `<CascadingValue>` component has an optional parameter called `IsFixed`.

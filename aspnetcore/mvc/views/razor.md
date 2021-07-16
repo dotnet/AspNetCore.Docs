@@ -452,7 +452,7 @@ The `@attribute` directive adds the given attribute to the class of the generate
 
 ### `@code`
 
-*This scenario only applies to Razor components (.razor).*
+*This scenario only applies to Razor components (`.razor`).*
 
 The `@code` block enables a [Razor component](xref:blazor/components/index) to add C# members (fields, properties, and methods) to a component:
 
@@ -594,7 +594,7 @@ The `@inject` directive enables the Razor Page to inject a service from the [ser
 
 ### `@layout`
 
-*This scenario only applies to Razor components (.razor).*
+*This scenario only applies to Razor components (`.razor`).*
 
 The `@layout` directive specifies a layout for routable Razor components that have an [`@page`](#page) directive. Layout components are used to avoid code duplication and inconsistency. For more information, see <xref:blazor/components/layouts>.
 
@@ -722,25 +722,25 @@ Razor directive attributes are represented by implicit expressions with reserved
 
 ### `@attributes`
 
-*This scenario only applies to Razor components (.razor).*
+*This scenario only applies to Razor components (`.razor`).*
 
 `@attributes` allows a component to render non-declared attributes. For more information, see <xref:blazor/components/index#attribute-splatting-and-arbitrary-parameters>.
 
 ### `@bind`
 
-*This scenario only applies to Razor components (.razor).*
+*This scenario only applies to Razor components (`.razor`).*
 
 Data binding in components is accomplished with the `@bind` attribute. For more information, see <xref:blazor/components/data-binding>.
 
 ### `@bind:culture`
 
-*This scenario only applies to Razor components (.razor).*
+*This scenario only applies to Razor components (`.razor`).*
 
 Use the `@bind:culture` attribute with the [`@bind`](#bind) attribute to provide a <xref:System.Globalization.CultureInfo?displayProperty=fullName> for parsing and formatting a value. For more information, see <xref:blazor/globalization-localization#globalization>.
 
 ### `@on{EVENT}`
 
-*This scenario only applies to Razor components (.razor).*
+*This scenario only applies to Razor components (`.razor`).*
 
 Razor provides event handling features for components. For more information, see <xref:blazor/components/event-handling>.
 
@@ -750,13 +750,13 @@ Razor provides event handling features for components. For more information, see
 
 ### `@on{EVENT}:preventDefault`
 
-*This scenario only applies to Razor components (.razor).*
+*This scenario only applies to Razor components (`.razor`).*
 
 Prevents the default action for the event.
 
 ### `@on{EVENT}:stopPropagation`
 
-*This scenario only applies to Razor components (.razor).*
+*This scenario only applies to Razor components (`.razor`).*
 
 Stops event propagation for the event.
 
@@ -766,21 +766,59 @@ Stops event propagation for the event.
 
 ### `@key`
 
-*This scenario only applies to Razor components (.razor).*
+*This scenario only applies to Razor components (`.razor`).*
 
 The `@key` directive attribute causes the components diffing algorithm to guarantee preservation of elements or components based on the key's value. For more information, see <xref:blazor/components/index#use-key-to-control-the-preservation-of-elements-and-components>.
 
 ### `@ref`
 
-*This scenario only applies to Razor components (.razor).*
+*This scenario only applies to Razor components (`.razor`).*
 
 Component references (`@ref`) provide a way to reference a component instance so that you can issue commands to that instance. For more information, see <xref:blazor/components/index#capture-references-to-components>.
 
+::: moniker-end
+
+::: moniker range=">= aspnetcore-6.0"
+
 ### `@typeparam`
 
-*This scenario only applies to Razor components (.razor).*
+*This scenario only applies to Razor components (`.razor`).*
 
-The `@typeparam` directive declares a generic type parameter for the generated component class. For more information, see <xref:blazor/components/templated-components>.
+The `@typeparam` directive declares a [generic type parameter](/dotnet/csharp/programming-guide/generics/generic-type-parameters) for the generated component class:
+
+```razor
+@typeparam TEntity
+```
+
+Generic types with [`where`](/dotnet/csharp/language-reference/keywords/where-generic-type-constraint) type constraints are supported:
+
+```razor
+@typeparam TEntity where TEntity : IEntity
+```
+
+For more information, see the following articles:
+
+* <xref:blazor/components/index#generic-type-parameter-support>
+* <xref:blazor/components/templated-components>
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-6.0 >= aspnetcore-3.0"
+
+### `@typeparam`
+
+*This scenario only applies to Razor components (`.razor`).*
+
+The `@typeparam` directive declares a [generic type parameter](/dotnet/csharp/programming-guide/generics/generic-type-parameters) for the generated component class:
+
+```razor
+@typeparam TEntity
+```
+
+For more information, see the following articles:
+
+* <xref:blazor/components/index#generic-type-parameter-support>
+* <xref:blazor/components/templated-components>
 
 ::: moniker-end
 
