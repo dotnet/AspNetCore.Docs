@@ -41,6 +41,8 @@ The simplest `fetch` call accepts a single parameter representing the route. A s
 
 1. Create a *wwwroot* folder in the project root.
 
+1. Create a *css* folder inside of the *wwwroot* folder.
+
 1. Create a *js* folder inside of the *wwwroot* folder.
 
 1. Add an HTML file named *index.html* to the *wwwroot* folder. Replace the contents of *index.html* with the following markup:
