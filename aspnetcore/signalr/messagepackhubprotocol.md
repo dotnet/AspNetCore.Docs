@@ -5,7 +5,7 @@ description: Add MessagePack Hub Protocol to ASP.NET Core SignalR.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 09/24/2020
+ms.date: 7/16/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: signalr/messagepackhubprotocol
 ---
@@ -81,17 +81,12 @@ After installing the npm package, the module can be used directly via a JavaScri
 
 *node_modules\\@microsoft\signalr-protocol-msgpack\dist\browser\signalr-protocol-msgpack.js* 
 
-In a browser, the `msgpack5` library must be referenced. Use a `<script>` tag to create a reference. The library can be found at *node_modules\msgpack5\dist\msgpack5.js*.
-
-The following javaScript files must be referenced in the order shown below:
-
+The following required javaScript files must be referenced in the order shown below:
 
 ```html
 <script src="~/lib/signalr/signalr.js"></script>
-<script src="~/lib/msgpack5/msgpack5.js"></script>
 <script src="~/lib/signalr/signalr-protocol-msgpack.js"></script>
 ```
-If *signalr-protocol-msgpack.js* is referenced before *msgpack5.js*, an error occurs when trying to connect with MessagePack.
 
 Adding `.withHubProtocol(new signalR.protocols.msgpack.MessagePackHubProtocol())` to the `HubConnectionBuilder` configures the client to use the MessagePack protocol when connecting to a server.
 
@@ -124,7 +119,7 @@ HubConnection messagePackConnection = HubConnectionBuilder.create("YOUR HUB URL 
     .build();
 ```
 
-## MessagePack quirks
+## MessagePack considerations
 
 There are a few issues to be aware of when using the MessagePack Hub Protocol.
 
@@ -151,18 +146,6 @@ Using `camelCased` names won't properly bind to the C# class. You can work aroun
 ### DateTime.Kind is not preserved when serializing/deserializing
 
 The MessagePack protocol doesn't provide a way to encode the `Kind` value of a `DateTime`. As a result, when deserializing a date, the MessagePack Hub Protocol will convert to the UTC format if the `DateTime.Kind` is `DateTimeKind.Local` otherwise it will not touch the time and pass it as is. If you're working with `DateTime` values, we recommend converting to UTC before sending them. Convert them from UTC to local time when you receive them.
-
-### DateTime.MinValue is not supported by MessagePack in JavaScript
-
-The [msgpack5](https://github.com/mcollina/msgpack5) library used by the SignalR JavaScript client doesn't support the `timestamp96` type in MessagePack. This type is used to encode very large date values (either very early in the past or very far in the future). The value of `DateTime.MinValue` is `January 1, 0001`, which must be encoded in a `timestamp96` value. Because of this, sending `DateTime.MinValue` to a JavaScript client isn't supported. When `DateTime.MinValue` is received by the JavaScript client, the following error is thrown:
-
-```
-Uncaught Error: unable to find ext type 255 at decoder.js:427
-```
-
-Usually, `DateTime.MinValue` is used to encode a "missing" or `null` value. If you need to encode that value in MessagePack, use a nullable `DateTime` value (`DateTime?`) or encode a separate `bool` value indicating if the date is present.
-
-For more information on this limitation, see GitHub issue [aspnet/SignalR#2228](https://github.com/aspnet/SignalR/issues/2228).
 
 ### MessagePack support in "ahead-of-time" compilation environment
 
@@ -316,7 +299,7 @@ HubConnection messagePackConnection = HubConnectionBuilder.create("YOUR HUB URL 
     .build();
 ```
 
-## MessagePack quirks
+## MessagePack considerations
 
 There are a few issues to be aware of when using the MessagePack Hub Protocol.
 
@@ -500,7 +483,7 @@ const connection = new signalR.HubConnectionBuilder()
 > [!NOTE]
 > At this time, there are no configuration options for the MessagePack protocol on the JavaScript client.
 
-## MessagePack quirks
+## MessagePack considerations
 
 There are a few issues to be aware of when using the MessagePack Hub Protocol.
 
@@ -680,7 +663,7 @@ const connection = new signalR.HubConnectionBuilder()
 > [!NOTE]
 > At this time, there are no configuration options for the MessagePack protocol on the JavaScript client.
 
-## MessagePack quirks
+## MessagePack considerations
 
 There are a few issues to be aware of when using the MessagePack Hub Protocol.
 
