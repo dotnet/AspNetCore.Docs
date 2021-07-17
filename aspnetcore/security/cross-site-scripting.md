@@ -35,10 +35,10 @@ Take the following Razor view:
 
 ```cshtml
 @{
-       var untrustedInput = "<\"123\">";
-   }
+    var untrustedInput = "<\"123\">";
+}
 
-   @untrustedInput
+    @untrustedInput
    ```
 
 This view outputs the contents of the *untrustedInput* variable. This variable includes some characters which are used in XSS attacks, namely &lt;, " and &gt;. Examining the source shows the rendered output encoded as:
@@ -161,20 +161,20 @@ To use the configurable encoders via DI your constructors should take an *HtmlEn
 
 ```csharp
 public class HomeController : Controller
-   {
-       HtmlEncoder _htmlEncoder;
-       JavaScriptEncoder _javaScriptEncoder;
-       UrlEncoder _urlEncoder;
+{
+    HtmlEncoder _htmlEncoder;
+    JavaScriptEncoder _javaScriptEncoder;
+    UrlEncoder _urlEncoder;
 
-       public HomeController(HtmlEncoder htmlEncoder,
-                             JavaScriptEncoder javascriptEncoder,
-                             UrlEncoder urlEncoder)
-       {
-           _htmlEncoder = htmlEncoder;
-           _javaScriptEncoder = javascriptEncoder;
-           _urlEncoder = urlEncoder;
-       }
-   }
+    public HomeController(HtmlEncoder htmlEncoder,
+                          JavaScriptEncoder javascriptEncoder,
+                          UrlEncoder urlEncoder)
+    {
+        _htmlEncoder = htmlEncoder;
+        _javaScriptEncoder = javascriptEncoder;
+        _urlEncoder = urlEncoder;
+    }
+}
    ```
 
 ## Encoding URL Parameters
@@ -183,7 +183,7 @@ If you want to build a URL query string with untrusted input as a value use the 
 
 ```csharp
 var example = "\"Quoted Value with spaces and &\"";
-   var encodedValue = _urlEncoder.Encode(example);
+var encodedValue = _urlEncoder.Encode(example);
    ```
 
 After encoding the encodedValue variable will contain `%22Quoted%20Value%20with%20spaces%20and%20%26%22`. Spaces, quotes, punctuation and other unsafe characters will be percent encoded to their hexadecimal value, for example a space character will become %20.
