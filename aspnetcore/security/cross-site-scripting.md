@@ -184,7 +184,7 @@ If you want to build a URL query string with untrusted input as a value use the 
 ```csharp
 var example = "\"Quoted Value with spaces and &\"";
 var encodedValue = _urlEncoder.Encode(example);
-   ```
+```
 
 After encoding the encodedValue variable will contain `%22Quoted%20Value%20with%20spaces%20and%20%26%22`. Spaces, quotes, punctuation and other unsafe characters will be percent encoded to their hexadecimal value, for example a space character will become %20.
 
