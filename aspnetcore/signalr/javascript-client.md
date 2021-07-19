@@ -284,7 +284,6 @@ To avoid putting an app to sleep, the app should trigger one of the heuristics t
 
 The following code example shows how to use a [Web Lock](https://developer.mozilla.org/docs/Web/API/Web_Locks_API) to keep a tab awake and avoid an unexpected connection closure.
 
-
 ```javascript
 var lockResolver;
 if (navigator && navigator.locks && navigator.locks.request) {
@@ -303,6 +302,7 @@ For the preceding code example:
 * Web Locks are experimental. The conditional check confirms that the browser supports Web Locks.
 * The promise resolver (`lockResolver`) is stored so that the lock can be released when it's acceptable for the tab to sleep.
 * When closing the connection, the lock is released by calling `lockResolver()`. When the lock is released, the tab is allowed to sleep.
+
 ## Additional resources
 
 * [JavaScript API reference](/javascript/api/?view=signalr-js-latest&preserve-view=true )
