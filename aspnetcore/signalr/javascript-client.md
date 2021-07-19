@@ -263,33 +263,32 @@ The following code demonstrates a typical manual reconnection approach:
 
 [!code-javascript[](javascript-client/samples/3.x/SignalRChat/wwwroot/chat.js?range=30-46)]
 
-A real-world implementation would use an exponential back-off or retry a specified number of times before giving up.
+A production implementation would use an exponential back-off or retry a specified number of times before giving up.
 
 ### Browser sleeping tab
 
-Some browsers have a tab freezing or sleeping feature to reduce computer resource usage for inactive tabs. This can cause SignalR connections to close and may result in an unwanted user experience. Browsers can use heuristics to figure out if a tab should be put to sleep such as:
-* playing audio
-* holding a web lock
-* holding an IndexedDB lock
-* being connected to a USB device
-* capturing video or audio
-* being mirrored
-* capturing a window or display
+Some browsers have a tab freezing or sleeping feature to reduce computer resource usage for inactive tabs. This can cause SignalR connections to close and may result in an unwanted user experience. Browsers use heuristics to figure out if a tab should be put to sleep, such as:
+
+* Playing audio
+* Holding a web lock
+* Holding an `IndexedDB` lock
+* Being connected to a USB device
+* Capturing video or audio
+* Being mirrored
+* Capturing a window or display
 
 > [!NOTE]
 > These heuristics may change over time or differ between browsers. Check your support matrix and figure out what method works best for your scenarios.
 
-If your app wants to avoid being put to sleep then it will need to trigger one of the heurstics that the browser looks at.
+To avoid putting an app to sleep, the app should trigger one of the heuristics that the browser uses.
 
-The following code example will show how to make use of [Web Locks](https://developer.mozilla.org/docs/Web/API/Web_Locks_API) to keep the tab awake and avoid unexpected connection closures from the tab going to sleep.
+The following code example shows how to use a [Web Lock](https://developer.mozilla.org/docs/Web/API/Web_Locks_API) to keep a tab awake and avoid an unexpected connection closure.
 
 
 ```javascript
 var lockResolver;
-// web locks are experimental, we need to check if the browser supports them
 if (navigator && navigator.locks && navigator.locks.request) {
     const promise = new Promise((res) => {
-        // store promise resolver so you can release the lock whenever you are ok with the tab sleeping
         lockResolver = res;
     });
     
@@ -298,10 +297,14 @@ if (navigator && navigator.locks && navigator.locks.request) {
     });
 }
 
-// when closing the connection release the lock to allow the tab to sleep
 lockResolver();
 ```
 
+For the preceding code example:
+
+* Web Locks are experimental. The conditional check confirms that the browser supports Web Locks.
+* The promise resolver (`lockResolver`) is stored so that the lock can be released when it's acceptable for the tab to sleep.
+* When closing the connection, the lock is released by calling `lockResolver()`. When the lock is released, the tab is allowed to sleep.
 ## Additional resources
 
 * [JavaScript API reference](/javascript/api/?view=signalr-js-latest&preserve-view=true )
