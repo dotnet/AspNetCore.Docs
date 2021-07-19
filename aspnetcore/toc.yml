@@ -192,6 +192,9 @@
             - name: Use managed data stores >>
               display: tutorial, kubernetes, aks, acr, docker
               href: /learn/modules/microservices-data-aspnet-core/
+            - name: Implement API gateways >>
+              display: tutorial, kubernetes, aks, acr, docker
+              href: /learn/modules/microservices-apigateway-aspnet-core/
         - name: Data access >>
           displayName: tutorial, ef, entity framework
           href: /learn/modules/persist-data-ef-core/
