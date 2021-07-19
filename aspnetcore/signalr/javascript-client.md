@@ -265,7 +265,7 @@ The following code demonstrates a typical manual reconnection approach:
 
 A production implementation would use an exponential back-off or retry a specified number of times before giving up.
 
-### Browser sleeping tab
+## Browser sleeping tab
 
 Some browsers have a tab freezing or sleeping feature to reduce computer resource usage for inactive tabs. This can cause SignalR connections to close and may result in an unwanted user experience. Browsers use heuristics to figure out if a tab should be put to sleep, such as:
 
