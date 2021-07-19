@@ -296,8 +296,6 @@ if (navigator && navigator.locks && navigator.locks.request) {
         return promise;
     });
 }
-
-lockResolver();
 ```
 
 For the preceding code example:
