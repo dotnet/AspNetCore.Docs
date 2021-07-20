@@ -271,7 +271,7 @@ No secrets configured for this application.
 
 ## Manage user secrets with Visual Studio
 
-To manage user secrets in Visual Studio, right click the project in solution explorer nd select **Manage User Secrets**:
+To manage user secrets in Visual Studio, right click the project in solution explorer and select **Manage User Secrets**:
 
 ![Visual Studio showing Manage User Secrets](app-secrets/_static/usvs.png)
 
