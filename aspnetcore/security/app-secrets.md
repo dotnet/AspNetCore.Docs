@@ -1,4 +1,3 @@
-
 ---
 title: Safe storage of app secrets in development in ASP.NET Core
 author: rick-anderson
