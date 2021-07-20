@@ -21,4 +21,4 @@ The following INCLUDE is for versions >=5.0 and \<6.0 via a moniker range in the
 
 ## Bookmarks
 
-* [Version Test 1 topic (should load 5.0): *Content 2* section via bookmark](xref:version-test-2#content-2)
+* [Version Test 1 topic (should load 5.0): *Content 2* section via bookmark](xref:version-test-1#content-2)

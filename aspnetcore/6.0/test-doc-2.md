@@ -12,3 +12,7 @@ uid: version-test-2
 # ASP.NET Core version test 2
 
 ## 6.0 or later version
+
+## Bookmarks
+
+* [Version Test 1 topic (should load 5.0 because there isn't a 6.0 version): *Content 2* section via bookmark](xref:version-test-1#content-2)

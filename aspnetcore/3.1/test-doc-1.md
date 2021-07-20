@@ -17,7 +17,7 @@ uid: version-test-1
 
 * [This topic 5.0 version](?view=aspnetcore-5.0&preserve-view=true)
 * [This topic 6.0 version (doesn't exist)](?view=aspnetcore-6.0&preserve-view=true)
-* [Version Test 2 topic (versionless XREF: should load 5.0)](xref:version-test-2)
+* [Version Test 2 topic (versionless XREF: should load 3.1)](xref:version-test-2)
 * [Version Test 2 topic (3.1 version)](xref:version-test-2?view=aspnetcore-3.1&preserve-view=true)
 * [Version Test 2 topic (5.0 version)](xref:version-test-2?view=aspnetcore-5.0&preserve-view=true)
 * [Version Test 2 topic (6.0 version)](xref:version-test-2?view=aspnetcore-6.0&preserve-view=true)
@@ -25,7 +25,7 @@ uid: version-test-1
 ## Bookmarks
 
 * [This topic links *Content 2* section](#content-2)
-* [Version Test 2 topic (versionless XREF: should load 5.0) (has a cross-link back here to the *Content 2* section)](xref:version-test-2)
+* [Version Test 2 topic (versionless XREF: should load 3.1) (has a cross-link back here (3.1) to the *Content 2* section)](xref:version-test-2)
 
 ## Snippet sample code
 
