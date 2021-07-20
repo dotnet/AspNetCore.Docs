@@ -92,10 +92,11 @@ Binding supports [`multiple`](https://developer.mozilla.org/docs/Web/HTML/Attrib
     <label>
         Select one or more cars: 
         <select @onchange="SelectedCarsChanged" multiple>
-            <option value="volvo">Volvo</option>
-            <option value="saab">Saab</option>
-            <option value="opel">Opel</option>
             <option value="audi">Audi</option>
+            <option value="jeep">Jeep</option>
+            <option value="opel">Opel</option>
+            <option value="saab">Saab</option>
+            <option value="volvo">Volvo</option>
         </select>
     </label>
 </p>
@@ -108,9 +109,10 @@ Binding supports [`multiple`](https://developer.mozilla.org/docs/Web/HTML/Attrib
     <label>
         Select one or more cities: 
         <select @bind="SelectedCities" multiple>
-            <option value="@("\"sf\"")">San Francisco</option>
+            <option value="@("\"bal\"")">Baltimore</option>
             <option value="@("\"la\"")">Los Angeles</option>
             <option value="@("\"pdx\"")">Portland</option>
+            <option value="@("\"sf\"")">San Francisco</option>
             <option value="@("\"sea\"")">Seattle</option>
         </select>
     </label>
@@ -122,7 +124,7 @@ Binding supports [`multiple`](https://developer.mozilla.org/docs/Web/HTML/Attrib
 
 @code {
     public string[] SelectedCars { get; set; } = new string[] { };
-    public string[] SelectedCities { get; set; } = new[] { "\"sf\"", "\"sea\"" };
+    public string[] SelectedCities { get; set; } = new[] { "\"bal\"", "\"sea\"" };
 
     void SelectedCarsChanged(ChangeEventArgs e)
     {
