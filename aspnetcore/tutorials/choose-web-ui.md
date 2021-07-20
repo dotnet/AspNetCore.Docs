@@ -11,7 +11,7 @@ uid: tutorials/choose-web-ui
 
 ASP.NET Core is a complete end to end UI framework. You choose which functionalities to combine that fit your web UI app needs.
 
-Start by determining if your web UI app will primarily benefit from pre-rendering UI on the server, or rendering UI at the client browser.
+A helpful place to start is to consider if your web UI app will primarily benefit from pre-rendering UI on the server, or rendering UI at the client browser.
 
 ## Consider the benefits and costs of server rendered UI and client rendered UI
 
