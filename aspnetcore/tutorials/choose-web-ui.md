@@ -70,7 +70,6 @@ Examples of client rendered web UI:
 Drawbacks:
 
 * Code for the logic has to be downloaded and executed on the client, adding to the initial load time.
-* Uses cookies rather than a Token based security model. Cookies may or may not be enabled on the user's browser.
 * Client requirements may exclude user's who have low-end devices, older browser versions, or low-bandwidth connections.
 
 ## Choose a predominantly server rendered ASP.NET Core UI solution
@@ -125,14 +124,7 @@ Benefits:
   * Let developers understand and work on both client-side and server-side code.
 * Reusable, sharable UI components: Blazor apps are composed of reusable web UI components implemented using C#, HTML, and CSS. Both client and server code are written in C#, allowing you to share code and libraries.
 * Blazor works in all modern web browsers, including mobile browsers. Blazor uses open web standards without plug-ins or code transpilation.
-* Quickly get productive with Blazor reusable UI components from top component vendors like:
-  * [Telerik](https://www.telerik.com/blazor-ui)
-  * [DevExpress](https://www.devexpress.com/blazor/)
-  * [Syncfusion](https://www.syncfusion.com/blazor-components)
-  * [Radzen](https://blazor.radzen.com/)
-  * [Infragistics](https://www.infragistics.com/products/ignite-ui-blazor)
-  * [GrapeCity](https://www.grapecity.com/componentone/blazor-ui-controls)
-  * [jQWidgets](https://www.htmlelements.com/blazor/), and others.
+* Quickly get productive with Blazor reusable UI components from [top component vendors](https://blazor.net).
 
 To get started with your first ASP.NET Core Blazor WebAssembly app, see [Tooling for ASP.NET Core Blazor](xref:blazor/tooling). For a complete overview of ASP.NET Core Blazor WebAssembly, its architecture and benefits, see [Overview of Blazor WebAssembly](xref:blazor/index#blazor-webassembly).
 
@@ -173,8 +165,8 @@ Build client-side logic for ASP.NET Core apps using popular JavaScript framework
 
 Benefits of ASP.NET Core SPA with JavaScript Frameworks, in addition to the client rendering benefits previously listed:
 
-* Client-side UI frameworks run on the user’s device in the browser
-* Client-based apps take advantage of the capabilities of the user’s device and provide rich interactivity.
+* The Javascript runtime environment is already provided with the browser.
+* Large community and mature ecosystem.
 * Build client-side logic for ASP.NET Core apps using popular JS frameworks, like Angular and React, or build your client-side logic with .NET using Blazor.
 * Client-based apps can be deployed as standalone static sites, but often call into server hosted functionality through APIs.
 * Make your app installable and run offline by turning it into a Progressive Web App (PWA).
