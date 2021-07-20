@@ -26,7 +26,7 @@ There are two general approaches to building modern web UI with ASP.NET Core:
 * Apps that render UI from the server.
 * Apps that render UI on the client in the browser.
 
-There are benefits and drawbacks to consider for either approach. A hybrid approach is also possible. For example, most of the web UI is rendered on the server, and client rendered pages are added as needed.
+There are benefits and drawbacks to consider for either approach. A hybrid approach is also possible. For example, most of the web UI is rendered on the server, and client rendered components are added as needed.
 
 ### When to choose a server rendered UI approach
 
@@ -37,15 +37,17 @@ Benefits:
 * The client requirements are minimal since the server does the work of logic and page generation:
   * Great for low-end devices and low-bandwidth connections.
   * Allows for a broad range of browser versions at the client.
+  * Quick initial page load times.
   * Minimal to no code to pull to the client.
 * Flexibility of access to server resources, in a protected environment. For example:
   * Database access.
   * Access to secrets, such as an access key used for API calls to Azure storage.
+* Static site analysis advantages, such as search engine optimization.
 
-Examples of server rendered web UI apps:
+Examples of common server rendered web UI app scenarios:
 
-* A website for bank services.
-* A blog.
+* Display read-only data such as transaction lists. 
+* Display static blog pages.
 * A public-facing content management system.
 
 Drawbacks:
@@ -60,7 +62,7 @@ A client rendered app dynamically renders web UI on the client, directly updatin
 Benefits:
 
 * Takes advantage of the capabilities of the user’s device.
-* Allows for rich interactivity that is instant, without requiring a round trip to the server. UI event handling and logic runs locally on the user's device with minimal latency. Choose a client rendered application if your app's requirements include rich user interactions.
+* Allows for rich interactivity that is instant, without requiring a round trip to the server. UI event handling and logic run locally on the user's device with minimal latency. Choose a client rendered application if your app's requirements include rich user interactions.
 * Supports incremental updates, saving partially completed forms or documents without the user having to select a button to submit a form.
 * Can be designed to run in a disconnected mode. Updates to the client-side model that are eventually synchronized back to the server once a connection is re-established.
 
@@ -92,12 +94,11 @@ Razor Pages benefits, in addition to the server rendering benefits previously li
   * All view (page) specific logic and page properties (view model) can be kept together in their own namespace and directory.
   * Groups of related pages can be kept in their own namespace and directory.
 
-
 To get started with your first ASP.NET Core Razor Pages app, see [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start). For a complete overview of ASP.NET Core Razor Pages, its architecture and benefits, see: [Introduction to Razor Pages in ASP.NET Core](xref:razor-pages/index)
 
 ### ASP.NET Core MVC
 
-ASP.NET MVC renders UI on the server and uses a Model-View-Controller (MVC) architectural pattern. The MVC pattern separates an application into three main groups of components: Models, Views, and Controllers. User requests are routed to a Controller.The Controller is responsible for working with the Model to perform user actions and, or retrieve results of queries. The Controller chooses the View to display to the user, and provides it with any Model data it requires.
+ASP.NET MVC renders UI on the server and uses a Model-View-Controller (MVC) architectural pattern. The MVC pattern separates an application into three main groups of components: Models, Views, and Controllers. User requests are routed to a Controller. The Controller is responsible for working with the Model to perform user actions and, or retrieve results of queries. The Controller chooses the View to display to the user, and provides it with any Model data it requires.
 
 MVC benefits, in addition to the server rendering benefits previously listed:
 
