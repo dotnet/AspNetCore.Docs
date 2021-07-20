@@ -1,3 +1,4 @@
+
 ---
 title: Safe storage of app secrets in development in ASP.NET Core
 author: rick-anderson
@@ -266,6 +267,14 @@ Running `dotnet user-secrets list` displays the following message:
 ```console
 No secrets configured for this application.
 ```
+
+<a name="muswvs"></a>
+
+## Manage user secrets with Visual Studio
+
+To manage user secrets in Visual Studio, right click the project in solution explorer nd select **Manage User Secrets**:
+
+
 
 ## Additional resources
 
