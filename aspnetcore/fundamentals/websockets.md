@@ -92,6 +92,33 @@ The WebSocket closed exception can also happen when returning too soon from an a
 
 Never use `Task.Wait`, `Task.Result`, or similar blocking calls to wait for the socket to complete, as that can cause serious threading issues. Always use `await`.
 
+::: moniker range=">= aspnetcore-6.0"
+
+### Compression
+
+> [!WARNING]
+> Enabling compression over encrypted connections can make an app subject to CRIME/BREACH attacks.
+> If sending sensitive information, avoid enabling compression or use `WebSocketMessageFlags.DisableCompression` when calling `WebSocket.SendAsync`.
+> This applies to both sides of the WebSocket. Note that the WebSockets API in the browser doesn't have configuration for disabling compression per send. 
+
+If compression of messages over WebSockets is desired, then the accept code must specify that it allows compression as follows:
+
+```csharp
+using (WebSocket webSocket = await context.WebSockets.AcceptWebSocketAsync(
+    new WebSocketAcceptContext() { DangerousEnableCompression = true }))
+{
+}
+````
+
+`WebSocketAcceptContext.ServerMaxWindowBits` and `WebSocketAcceptContext.DisableServerContextTakeover` are advanced options that control how the compression works.
+
+Compression is negotiated between the client and server when first establishing a connection. You can read more about the negotiation in the [Compression Extensions for WebSocket RFC](https://datatracker.ietf.org/doc/html/rfc7692#section-7).
+
+> [!NOTE]
+> If the compression negotiation isn't accepted by either the server or client, the connection is still established. However, the connection doesn't use compression when sending and receiving messages.
+
+::: moniker-end
+
 ## Send and receive messages
 
 The `AcceptWebSocketAsync` method upgrades the TCP connection to a WebSocket connection and provides a [WebSocket](/dotnet/core/api/system.net.websockets.websocket) object. Use the `WebSocket` object to send and receive messages.

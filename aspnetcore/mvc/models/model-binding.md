@@ -40,10 +40,10 @@ http://contoso.com/api/pets/2?DogsOnly=true
 
 Model binding goes through the following steps after the routing system selects the action method:
 
-* Finds the first parameter of `GetByID`, an integer named `id`.
+* Finds the first parameter of `GetById`, an integer named `id`.
 * Looks through the available sources in the HTTP request and finds `id` = "2" in route data.
 * Converts the string "2" into integer 2.
-* Finds the next parameter of `GetByID`, a boolean named `dogsOnly`.
+* Finds the next parameter of `GetById`, a boolean named `dogsOnly`.
 * Looks through the sources and finds "DogsOnly=true" in the query string. Name matching is not case-sensitive.
 * Converts the string "true" into boolean `true`.
 
