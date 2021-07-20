@@ -11,24 +11,19 @@ uid: tutorials/choose-web-ui
 
 ASP.NET Core is a complete end to end UI framework. You choose which functionalities to combine that fit your web UI app needs.
 
-Start by determining if your web UI app will primarily benefit from pre-rendering UI on the server, or rendering UI at the client browser. Then review the server rendered or client rendered ASP.NET Core project types to find which best fit your apps needs. 
+Start by determining if your web UI app will primarily benefit from pre-rendering UI on the server, or rendering UI at the client browser.
 
-## Choose an ASP.NET Core web UI technology
+## Consider the benefits and costs of server rendered UI and client rendered UI
 
-Use the following flowchart to select an ASP.NET Core web UI technology:
-
-![Decision tree for ASP.NET Core web UI technology](choose-web-ui/_static/choose_ui.png)
-
-## Choose server rendered UI or client rendered UI
-
-There are two general approaches to building modern web UI with ASP.NET Core:
+There are three general approaches to building modern web UI with ASP.NET Core:
 
 * Apps that render UI from the server.
 * Apps that render UI on the client in the browser.
+* Hybrid apps that take advantage of both server and client UI rendering approaches. For example, most of the web UI is rendered on the server, and client rendered components are added as needed.
 
-There are benefits and drawbacks to consider for either approach. A hybrid approach is also possible. For example, most of the web UI is rendered on the server, and client rendered components are added as needed.
+There are benefits and drawbacks to consider when rendering UI on the server or on the client.
 
-### When to choose a server rendered UI approach
+### Considering a predominantly server rendered UI approach
 
 A web UI app that renders on the server dynamically generates the page's HTML and CSS on the server. The page arrives at the client ready to display.
 
@@ -55,7 +50,7 @@ Drawbacks:
 * The cost of compute and memory use are concentrated on the server, rather than each client.
 * User interactions require a round trip to the server to generate UI updates.
 
-### When to choose a client rendered UI approach
+### Considering a predominantly client rendered UI approach
 
 A client rendered app dynamically renders web UI on the client, directly updating the browser DOM as necessary.
 
@@ -78,7 +73,7 @@ Drawbacks:
 * Uses cookies rather than a Token based security model. Cookies may or may not be enabled on the user's browser.
 * Client requirements may exclude user's who have low-end devices, older browser versions, or low-bandwidth connections.
 
-## Choose a server rendered ASP.NET Core UI solution
+## Choose a predominantly server rendered ASP.NET Core UI solution
 
 The following section briefly explains the ASP.NET Core web UI server rendered models available and directs next steps to get started. ASP.NET Core Razor Pages and ASP.NET Core MVC are server-based frameworks for building web apps with .NET.
 
@@ -108,7 +103,7 @@ MVC benefits, in addition to the server rendering benefits previously listed:
 
 To get started with your first ASP.NET Core MVC app, see [Get started with MVC](xref:tutorials/first-mvc-app/start-mvc). For a complete overview of ASP.NET Core MVC, its architecture and benefits, see [Overview of ASP.NET Core MVC](xref:mvc/overview)
 
-## Choose a client rendered ASP.NET Core solution
+## Choose a predominantly client rendered ASP.NET Core solution
 
 The following section briefly explains the ASP.NET Core web UI client rendered models available and directs you to the next steps to get started.
 
