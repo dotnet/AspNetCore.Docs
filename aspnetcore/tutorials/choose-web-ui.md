@@ -171,6 +171,10 @@ Benefits of ASP.NET Core SPA with JavaScript Frameworks, in addition to the clie
 * Client-based apps can be deployed as standalone static sites, but often call into server hosted functionality through APIs.
 * Make your app installable and run offline by turning it into a Progressive Web App (PWA).
 
+Downsides:
+* More coding languages, frameworks, and tools required.
+* Difficult to share code so some logic may be duplicated.
+
 To get started, see:
 
 * [Use the Angular project template with ASP.NET Core](xref:spa/angular)
