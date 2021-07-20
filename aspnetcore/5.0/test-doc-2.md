@@ -1,7 +1,7 @@
 ---
 title: ASP.NET Core version test 2
 author: guardrex
-description: Learn about environments in Blazor, including how to set the environment.
+description: Test Doc.
 monikerRange: '>= aspnetcore-5.0 < aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
