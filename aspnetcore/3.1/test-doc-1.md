@@ -27,6 +27,12 @@ uid: version-test-1
 * [This topic links *Content 2* section](#content-2)
 * [Version Test 2 topic (versionless XREF: should load 5.0) (has a cross-link back here to the *Content 2* section)](xref:version-test-2)
 
+## Snippet sample code
+
+`Pages/HellowWorld.razor` (3.x WASM sample):
+
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/index/HelloWorld.razor)]
+
 ### Content 1
 
 * Lorem ipsum dolor sit amet, consectetur adipiscing elit.

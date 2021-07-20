@@ -13,6 +13,12 @@ uid: version-test-2
 
 ## 5.0 version
 
+## INCLUDE
+
+The following INCLUDE is for versions >=5.0 and \<6.0 via a moniker range in the INCLUDE file:
+
+[!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
+
 ## Bookmarks
 
 * [Version Test 1 topic (should load 5.0): *Content 2* section via bookmark](xref:version-test-2#content-2)

@@ -12,3 +12,9 @@ uid: version-test-1
 # ASP.NET Core version test 1
 
 ## 5.0 or later version
+
+## Snippet sample code
+
+`Pages/HellowWorld.razor` (5.x WASM sample):
+
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/index/HelloWorld.razor)]

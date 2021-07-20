@@ -12,3 +12,9 @@ uid: version-test-2
 # ASP.NET Core version test 2
 
 ## 3.1 version
+
+## INCLUDE
+
+The following INCLUDE is for versions >=5.0 and \<6.0 via a moniker range in the INCLUDE file:
+
+[!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
