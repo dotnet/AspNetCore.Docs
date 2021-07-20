@@ -787,21 +787,21 @@ Other data types, such as string arrays, can be converted but require creating a
 
 To catch JS exceptions, wrap the JS interop in a [`try`-`catch` block](/dotnet/csharp/fundamentals/exceptions/exception-handling) and catch a <xref:Microsoft.JSInterop.JSException>.
 
-In the following example, the `nonFunction` JS function doesn't exist. The <xref:Microsoft.JSInterop.JSException> is trapped with a <xref:System.Exception.Message> that indicates the following error:
+In the following example, the `nonFunction` JS function doesn't exist. When the function isn't found, the <xref:Microsoft.JSInterop.JSException> is trapped with a <xref:System.Exception.Message> that indicates the following error:
 
-> Could not find 'nonFunction' ('nonFunction' was undefined).
+> `Could not find 'nonFunction' ('nonFunction' was undefined).`
 
-`Pages/CallJSExample11.razor`:
+`Pages/CallJsExample11.razor`:
 
 ::: moniker range=">= aspnetcore-5.0"
 
-[!code-csharp[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJSExample11.razor?highlight=28)]
+[!code-csharp[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample11.razor?highlight=28)]
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-[!code-csharp[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJSExample11.razor?highlight=28)]
+[!code-csharp[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample11.razor?highlight=28)]
 
 ::: moniker-end
 
