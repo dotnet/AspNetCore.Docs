@@ -1,0 +1,14 @@
+{
+    "aspnetcore-3.1": {
+        "conceptualToc": "toc.yml",
+        "conceptualTocUrl": "/toc.json"
+    },
+    "aspnetcore-5.0": {
+        "conceptualToc": "toc.yml",
+        "conceptualTocUrl": "/toc.json"
+    },
+    "aspnetcore-6.0": {
+        "conceptualToc": "toc.yml",
+        "conceptualTocUrl": "/toc.json"
+    }
+}
