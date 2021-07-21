@@ -1005,28 +1005,28 @@
           displayName: deploy, publish
           uid: host-and-deploy/iis/protocols
     - name: Kestrel
-      displayName: deploy, publish, server
+      displayName: deploy, publish, server, Kestrel
       items:
-        - name: Overview
+        - name: Kestrel overview
           displayName: deploy, publish, server
           uid: fundamentals/servers/kestrel
         - name: Endpoints
-          displayName: deploy, publish, server
+          displayName: deploy, publish, server, Kestrel
           uid: fundamentals/servers/kestrel/endpoints
         - name: Options
-          displayName: deploy, publish, server
+          displayName: deploy, publish, server, Kestrel
           uid: fundamentals/servers/kestrel/options
         - name: HTTP/2
-          displayName: deploy, publish, server
+          displayName: deploy, publish, server, Kestrel
           uid: fundamentals/servers/kestrel/http2
         - name: When to use a reverse proxy
-          displayName: deploy, publish, server
+          displayName: deploy, publish, server, Kestrel
           uid: fundamentals/servers/kestrel/when-to-use-a-reverse-proxy
         - name: Host filtering
-          displayName: deploy, publish, server
+          displayName: deploy, publish, server, Kestrel
           uid: fundamentals/servers/kestrel/host-filtering
         - name: Request draining
-          displayName: deploy, publish, server
+          displayName: deploy, publish, server, Kestrel
           uid: fundamentals/servers/kestrel/request-draining
     - name: HTTP.sys
       displayName: deploy, publish, server
