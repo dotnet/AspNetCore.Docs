@@ -1,4 +1,3 @@
-
 ---
 title: Host ASP.NET Core on Windows with IIS
 author: rick-anderson
