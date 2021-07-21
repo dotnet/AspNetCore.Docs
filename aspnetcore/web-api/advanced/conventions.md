@@ -20,7 +20,7 @@ A convention allows you to:
 * Define the most common return types and status codes returned from a specific type of action.
 * Identify actions that deviate from the defined standard.
 
-ASP.NET Core MVC includes a set of default conventions in <xref:Microsoft.AspNetCore.Mvc.DefaultApiConventions?displayProperty=fullName>. The conventions are based on the *ValuesController.cs* added to an **API** project template. Actions that follow the patterns in the *ValuesController.cs* work with the default conventions. If the default conventions don't meet your needs, see [Create web API conventions](#create-web-api-conventions).
+ASP.NET Core MVC 3.0 and later includes a set of default conventions in <xref:Microsoft.AspNetCore.Mvc.DefaultApiConventions?displayProperty=fullName>. The conventions are based on the *ValuesController.cs* added to an **API** project template. Actions that follow the patterns in the *ValuesController.cs* work with the default conventions. If the default conventions don't meet your needs, see [Create web API conventions](#create-web-api-conventions).
 
 [!code-csharp[](conventions/ValuesController.cs)]
 
