@@ -45,7 +45,10 @@
         ],
         "group": "group1",
         "src": "."
-      }
+      },
+      { "files": [ "**/*.png", "**/*.jpg", "**/*.gif", "**/*.svg", "**/*.pdf" ], "exclude": [ "**/includes/**" ], "group": "aspnetcore-3.1", "src": "3.1" },
+      { "files": [ "**/*.png", "**/*.jpg", "**/*.gif", "**/*.svg", "**/*.pdf" ], "exclude": [ "**/includes/**" ], "group": "aspnetcore-5.0", "src": "5.0" },
+      { "files": [ "**/*.png", "**/*.jpg", "**/*.gif", "**/*.svg", "**/*.pdf" ], "exclude": [ "**/includes/**" ], "group": "aspnetcore-6.0", "src": "6.0" }
     ],
     "overwrite": [],
     "externalReference": [],
