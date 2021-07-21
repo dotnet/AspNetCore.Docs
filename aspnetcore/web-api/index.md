@@ -11,7 +11,6 @@ uid: web-api/index
 ---
 # Create web APIs with ASP.NET Core
 
-
 By [Scott Addie](https://github.com/scottaddie) and [Tom Dykstra](https://github.com/tdykstra)
 
 ASP.NET Core supports creating RESTful services, also known as web APIs, using C#. To handle requests, a web API uses controllers. *Controllers* in a web API are classes that derive from `ControllerBase`. This article shows how to use controllers for handling web API requests.
@@ -309,10 +308,6 @@ The `[Consumes]` attribute is applied to both actions. The `PostJson` action han
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
-
-## ControllerBase class
-
-A web API consists of one or more controller classes that derive from <xref:Microsoft.AspNetCore.Mvc.ControllerBase>. The web API project template provides a starter controller:
 
 [!code-csharp[](index/samples/2.x/2.2/Controllers/ValuesController.cs?name=snippet_ControllerSignature&highlight=3)]
 
