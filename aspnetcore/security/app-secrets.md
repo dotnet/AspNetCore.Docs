@@ -267,6 +267,14 @@ Running `dotnet user-secrets list` displays the following message:
 No secrets configured for this application.
 ```
 
+<a name="muswvs"></a>
+
+## Manage user secrets with Visual Studio
+
+To manage user secrets in Visual Studio, right click the project in solution explorer and select **Manage User Secrets**:
+
+![Visual Studio showing Manage User Secrets](app-secrets/_static/usvs.png)
+
 ## Additional resources
 
 * See [this issue](https://github.com/dotnet/AspNetCore.Docs/issues/16328) for information on accessing user secrets from IIS.
