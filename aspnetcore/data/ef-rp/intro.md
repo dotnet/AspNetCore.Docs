@@ -502,7 +502,7 @@ For more information about asynchronous programming in .NET, see [Async Overview
 
 ## Friendly database errors in development
 
-The following highligted code shows how to display database-related exceptions that can be resolved by using Entity Framework migrations. When an exceptions occurs, an HTML response with details about possible actions to resolve the issue is generated.
+The following highligted code shows how to display database-related exceptions in development that can be resolved by using Entity Framework migrations. When an exceptions occurs, an HTML response with details about possible actions to resolve the issue is generated.
 
 
 [!code-csharp[Main](intro/samples/cu50/Startup.cs?name=snippet&highlight=8,15-16)]
