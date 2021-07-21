@@ -23,8 +23,11 @@
         "group": "group1",
         "src": "."
       },
+      { "files": [ "toc.yml" ], "group": "aspnetcore-3.1", "src": "." },
       { "files": [ "**/*.md" ], "exclude": [ "**/includes/**" ], "group": "aspnetcore-3.1", "src": "3.1" },
+      { "files": [ "toc.yml" ], "group": "aspnetcore-5.0", "src": "." },
       { "files": [ "**/*.md" ], "exclude": [ "**/includes/**" ], "group": "aspnetcore-5.0", "src": "5.0" },
+      { "files": [ "toc.yml" ], "group": "aspnetcore-6.0", "src": "." },
       { "files": [ "**/*.md" ], "exclude": [ "**/includes/**" ], "group": "aspnetcore-6.0", "src": "6.0" }
     ],
     "resource": [
