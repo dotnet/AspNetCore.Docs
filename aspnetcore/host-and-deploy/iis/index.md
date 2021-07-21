@@ -1,3 +1,4 @@
+
 ---
 title: Host ASP.NET Core on Windows with IIS
 author: rick-anderson
@@ -527,14 +528,14 @@ To set environment variables for individual apps running in isolated app pools (
 
 ## Configuration sections of web.config
 
-Configuration sections of ASP.NET 4.x apps in *web.config* aren't used by ASP.NET Core apps for configuration:
+Configuration sections of ASP.NET apps in *web.config* aren't used by ASP.NET Core apps for configuration:
 
 * `<system.web>`
 * `<appSettings>`
 * `<connectionStrings>`
 * `<location>`
 
-ASP.NET Core apps are configured using other configuration providers. For more information, see [Configuration](xref:fundamentals/configuration/index).
+ASP.NET Core apps are configured using other configuration providers. For more information, see [Configuration](xref:fundamentals/configuration/index) and [.NET Core run-time configuration settings](dotnet/core/run-time-config/)
 
 ## Application Pools
 
