@@ -373,7 +373,7 @@
             - name: Prerender and integrate components
               uid: blazor/components/prerendering-and-integration
             - name: Class libraries
-              href: /blazor/components/class-libraries.md
+              uid: blazor/components/class-libraries
         - name: Globalization and localization
           uid: blazor/globalization-localization
         - name: Forms and validation
