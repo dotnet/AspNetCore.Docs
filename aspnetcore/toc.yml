@@ -469,7 +469,7 @@
             - name: ErrorBoundary
               href: blazor/fundamentals/handle-errors.md#error-boundaries
             - name: FocusOnNavigate
-              uid: blazor/fundamentals/routing
+              href: blazor/fundamentals/routing.md#focus-an-element-on-navigation
             - name: InputCheckbox
               href: blazor/forms-validation.md#built-in-form-components
             - name: InputDate
@@ -493,11 +493,11 @@
             - name: MainLayout
               href: blazor/components/layouts.md#mainlayout-component
             - name: NavLink
-              uid: blazor/fundamentals/routing
+              href: blazor/fundamentals/routing.md#navlink-and-navmenu-components
             - name: NavMenu
-              uid: blazor/fundamentals/routing
+              href: blazor/fundamentals/routing.md#navlink-and-navmenu-components
             - name: Router
-              uid: blazor/fundamentals/routing
+              href: blazor/fundamentals/routing.md#route-templates
             - name: Virtualize
               uid: blazor/components/virtualization
     - name: Client-side development
