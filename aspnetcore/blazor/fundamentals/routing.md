@@ -206,7 +206,7 @@ In the following example, the route to the `User` component only matches if:
 ::: moniker-end
 
 > [!NOTE]
-> Route contraints don't work with query string values. To work with query strings, see the [Query string and parse parameters](#query-string-and-parse-parameters) section.
+> Route constraints don't work with query string values. To work with query strings, see the [Query string and parse parameters](#query-string-and-parse-parameters) section.
 
 The route constraints shown in the following table are available. For the route constraints that match the invariant culture, see the warning below the table for more information.
 
@@ -226,7 +226,7 @@ The route constraints shown in the following table are available. For the route 
 
 ::: moniker range=">= aspnetcore-5.0"
 
-Route contraints also work with [optional parameters](#route-parameters). In the following example, `Id` is required, but `Option` is an optional boolean route parameter.
+Route constraints also work with [optional parameters](#route-parameters). In the following example, `Id` is required, but `Option` is an optional boolean route parameter.
 
 `Pages/User.razor`:
 
