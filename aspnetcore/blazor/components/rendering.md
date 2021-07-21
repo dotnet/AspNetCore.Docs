@@ -2,7 +2,7 @@
 title: ASP.NET Core Blazor component rendering
 author: guardrex
 description: Learn about Razor component rendering in ASP.NET Core Blazor apps, including when to call StateHasChanged.
-monikerRange: '>= aspnetcore-3.1 < aspnetcore-5.0'
+monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 03/16/2021
@@ -41,7 +41,17 @@ Even if <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> is 
 
 `Pages/ControlRender.razor`:
 
+::: moniker range=">= aspnetcore-5.0"
+
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/rendering/ControlRender.razor)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
 [!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/rendering/ControlRender.razor)]
+
+::: moniker-end
 
 For more information on performance best practices pertaining to <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A>, see <xref:blazor/webassembly-performance-best-practices#avoid-unnecessary-rendering-of-component-subtrees>.
 
@@ -71,7 +81,17 @@ Consider the following `CounterState1` component, which updates the count four t
 
 `Pages/CounterState1.razor`:
 
+::: moniker range=">= aspnetcore-5.0"
+
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/rendering/CounterState1.razor?highlight=17,21,25,29)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
 [!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/rendering/CounterState1.razor?highlight=17,21,25,29)]
+
+::: moniker-end
 
 ### Receiving a call from something external to the Blazor rendering and event handling system
 
@@ -86,7 +106,17 @@ Because the callback is invoked outside of Blazor's synchronization context, the
 
 `Pages/CounterState2.razor`:
 
+::: moniker range=">= aspnetcore-5.0"
+
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/rendering/CounterState2.razor?highlight=26)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
 [!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/rendering/CounterState2.razor?highlight=26)]
+
+::: moniker-end
 
 ### To render a component outside the subtree that's rerendered by a particular event
 
