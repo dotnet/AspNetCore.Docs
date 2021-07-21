@@ -23,9 +23,9 @@
         "group": "group1",
         "src": "."
       },
-      { "files": [ "**/*.md" ], "group": "aspnetcore-3.1", "src": "3.1" },
-      { "files": [ "**/*.md" ], "group": "aspnetcore-5.0", "src": "5.0" },
-      { "files": [ "**/*.md" ], "group": "aspnetcore-6.0", "src": "6.0" }
+      { "files": [ "**/*.md" ], "exclude": [ "**/includes/**" ], "group": "aspnetcore-3.1", "src": "3.1" },
+      { "files": [ "**/*.md" ], "exclude": [ "**/includes/**" ], "group": "aspnetcore-5.0", "src": "5.0" },
+      { "files": [ "**/*.md" ], "exclude": [ "**/includes/**" ], "group": "aspnetcore-6.0", "src": "6.0" }
     ],
     "resource": [
       {
