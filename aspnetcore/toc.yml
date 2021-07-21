@@ -469,7 +469,7 @@
             - name: ErrorBoundary
               href: blazor/fundamentals/handle-errors.md#error-boundaries
             - name: FocusOnNavigate
-              href: blazor/fundamentals/routing.md#focus-an-element-on-navigation
+              uid: blazor/fundamentals/routing
             - name: InputCheckbox
               href: blazor/forms-validation.md#built-in-form-components
             - name: InputDate
@@ -493,11 +493,11 @@
             - name: MainLayout
               href: blazor/components/layouts.md#mainlayout-component
             - name: NavLink
-              href: blazor/fundamentals/routing.md#navlink-and-navmenu-components
+              uid: blazor/fundamentals/routing
             - name: NavMenu
-              href: blazor/fundamentals/routing.md#navlink-and-navmenu-components
+              uid: blazor/fundamentals/routing
             - name: Router
-              href: blazor/fundamentals/routing.md#route-templates
+              uid: blazor/fundamentals/routing
             - name: Virtualize
               uid: blazor/components/virtualization
     - name: Client-side development
@@ -1450,7 +1450,3 @@
   href: /dotnet/api/?view=aspnetcore-2.2
 - name: Contribute
   href: https://github.com/dotnet/AspNetCore.Docs/blob/main/CONTRIBUTING.md
-- name: Test 1
-  uid: version-test-1
-- name: Test 2
-  uid: version-test-2
