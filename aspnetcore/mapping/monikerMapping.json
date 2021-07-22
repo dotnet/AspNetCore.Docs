@@ -1,19 +1,19 @@
 {
     "aspnetcore-3.1": {
         "conceptualToc": "toc.yml",
-        "packageRoot": "",
+        "packageRoot": "../3.1",
         "conceptualTocUrl": "/toc.json",
         "referenceTocUrl": "/toc.json"
     },
     "aspnetcore-5.0": {
         "conceptualToc": "toc.yml",
-        "packageRoot": "",
+        "packageRoot": "../5.0",
         "conceptualTocUrl": "/toc.json",
         "referenceTocUrl": "/toc.json"
     },
     "aspnetcore-6.0": {
         "conceptualToc": "toc.yml",
-        "packageRoot": "",
+        "packageRoot": "../6.0",
         "conceptualTocUrl": "/toc.json",
         "referenceTocUrl": "/toc.json"
     }
