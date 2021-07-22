@@ -13,27 +13,47 @@ uid: security/authentication/azure-ad-b2c
 [Azure Active Directory B2C](/azure/active-directory-b2c/active-directory-b2c-overview) (Azure AD B2C) is a cloud identity management solution for web and mobile apps. The service provides authentication for apps hosted in the cloud and on-premises. Authentication types include individual accounts, social network accounts, and federated enterprise accounts. Additionally, Azure AD B2C can provide multi-factor authentication with minimal configuration.
 
 > [!TIP]
-> Azure Active Directory (Azure AD) and Azure AD B2C are separate product offerings. An Azure AD tenant represents an organization, while an Azure AD B2C tenant represents a collection of identities to be used with relying party applications. To learn more, see [Azure AD B2C: Frequently asked questions (FAQ)](/azure/active-directory-b2c/active-directory-b2c-faqs).
+> Azure Active Directory (Azure AD) and Azure AD B2C are separate product offerings. An Azure AD tenant generally represents an organization, while an Azure AD B2C tenant represents a collection of identities to be used with relying party applications. To learn more, see [Azure AD B2C: Frequently asked questions (FAQ)](/azure/active-directory-b2c/active-directory-b2c-faqs).
 
-In this tutorial, you will learn how to configure an ASP.NET Core app for authentication with Azure AD B2C.
+In this tutorial, you'll learn how to configure an ASP.NET Core app for authentication with Azure AD B2C.
 
 ## Prerequisites
 
 The following are required for this walkthrough:
 
-* [Microsoft Azure subscription](https://azure.microsoft.com/free/dotnet/?ref=microsoft.com&utm_source=microsoft.com&utm_medium=docs&utm_campaign=visualstudio)
-* [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019)
+- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/dotnet).
+- .NET 5.0 SDK or later. [Install the latest .NET 5.0 SDK](https://dotnet.microsoft.com/download/dotnet/5.0) for your platform.
 
 ## Preparation
 
 1. [Create an Azure Active Directory B2C tenant](/azure/active-directory-b2c/tutorial-create-tenant).
-1. [Create a new ASP.NET Core Razor app](/aspnet/core/getting-started/).
-1. [Create a web app registration in the tenant](/azure/active-directory-b2c/tutorial-register-applications#register-a-web-application). For **Redirect URI**, use `https://localhost:5001/signin-oidc`, substituting your configured SSL port for `5001` as required.
+1. Create a new ASP.NET Core Razor pages app:
+    
+    ```dotnetcli
+    dotnet new razor -o azure-ad-b2c
+    ```
+    
+    The previous command creates a new ASP.NET Core Razor Pages app in a directory named *azure-ad-b2c*. 
+    
+    > [!TIP]
+    > You may prefer to [use Visual Studio to create your app](/visualstudio/ide/quickstart-aspnet-core).
 
-## Configure the app
+1. [Create a web app registration in the tenant](/azure/active-directory-b2c/tutorial-register-applications#register-a-web-application). For **Redirect URI**, use `https://localhost:5001/signin-oidc`.
+ 
+## Modify the app
 
-1. NuGet Package
-1. appsettings.json
+1. From inside the project directory, add the `Microsoft.Identity.Web` and `Microsoft.Identity.Web.UI` packages to the project. If you're using Visual Studio, you can use [NuGet Package Manager](/nuget/consume-packages/install-use-packages-visual-studio).
+
+    ```dotnetcli
+    dotnet add package Microsoft.Identity.Web --version 1.4.0 
+    dotnet add package Microsoft.Identity.Web.UI --version 1.4.0
+    ```
+
+1. Add an `AzureAd` object to *appsettings.json*.
+
+    :::code language="json" source="azure-ad-b2c/sample/appsettings.json highlight="2-8"":::
+
+    
 1. Startup.cs 
 ## Run the app
 
