@@ -448,7 +448,7 @@ Copy the *RazorUIClassLib/Areas/MyFeature/Pages/Shared/_Message.cshtml* partial 
 
 One must enable `Razor Pages` in the web app to make sure the page based routing works. For example, in an MVC application, register the `Razor Pages` services and map the pages with endpoint routing,
 
-[!code-csharp[](ui-class/samples/cli/WebApp1/Startup.cs?name=snippet&highlight=3,23)]
+[!code-csharp[](ui-class/samples/cli/WebApp1/StartupV2.cs?name=snippet&highlight=4,17)]
 
 <a name="rcl-lay"></a>
 
