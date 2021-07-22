@@ -1450,3 +1450,11 @@
   href: /dotnet/api/?view=aspnetcore-2.2
 - name: Contribute
   href: https://github.com/dotnet/AspNetCore.Docs/blob/main/CONTRIBUTING.md
+- name: Doc 1
+  href: /blazor/doc1.md
+- name: Doc 2
+  href: /blazor/doc2.md
+- name: Doc 3
+  href: /blazor/doc3.md
+- name: Doc 4
+  href: /blazor/doc4.md
