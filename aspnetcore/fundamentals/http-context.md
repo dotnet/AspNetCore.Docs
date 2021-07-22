@@ -35,7 +35,7 @@ Razor views expose the `HttpContext` directly via a [RazorPage.Context](xref:Mic
 
 ```cshtml
 @{
-    var username = Context.User.Identity.Name;
+    var username = HttpContext.User.Identity.Name;
     
     ...
 }
