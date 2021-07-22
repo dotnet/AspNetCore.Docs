@@ -13,7 +13,7 @@ uid: blazor-doc2
 
 &gt;= aspnetcore-3.1 &lt; aspnetcore-5.0
 
-## Cross-links (XREF versionless)
+## Cross-links
 
 * <xref:blazor-doc1> (XREF versionless)
 * [Doc 3](/aspnet/core/blazor/doc3)
