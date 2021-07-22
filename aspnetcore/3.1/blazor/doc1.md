@@ -22,7 +22,7 @@ uid: blazor-doc1
 ## Cross-links to different version of Doc2
 
 * [XREF with `xref:blazor-doc2?view=aspnetcore-5.0&preserve-view=true`](xref:blazor-doc2?view=aspnetcore-5.0&preserve-view=true)
-* [MD link with `5.0/blazor/doc2.md?view=aspnetcore-5.0&preserve-view=true`](5.0/blazor/doc2.md?view=aspnetcore-5.0&preserve-view=true)
+* [MD link with `5.0/blazor/doc2.md?view=aspnetcore-5.0&preserve-view=true`](../../5.0/blazor/doc2.md?view=aspnetcore-5.0&preserve-view=true)
 * [Relative link with `/aspnet/core/doc2?view=aspnetcore-5.0&preserve-view=true`](/aspnet/core/doc2?view=aspnetcore-5.0&preserve-view=true)
 
 ## Self-links
