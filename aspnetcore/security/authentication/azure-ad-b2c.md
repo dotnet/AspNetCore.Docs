@@ -48,12 +48,34 @@ The following are required for this walkthrough:
     dotnet add package Microsoft.Identity.Web --version 1.4.0 
     dotnet add package Microsoft.Identity.Web.UI --version 1.4.0
     ```
+    
+    In the preceding:
+
+    - `Microsoft.Identity.Web` includes the basic set of dependencies for authenticating with the Microsoft Identity platform.
+    - `Microsoft.Identity.Web.UI` includes UI functionality encapsulated in an area named `MicrosoftIdentity`.
 
 1. Add an `AzureAd` object to *appsettings.json*.
 
     :::code language="javascript" source="azure-ad-b2c/sample/appsettings.json" highlight="2-8":::
     
-1. Startup.cs 
+    - For **Domain**, use the domain of your Azure AD B2C tenant.
+    - For **ClientId**, use the **Application (client) ID** from the app registration you created in your tenant.
+    - Leave all other values as they are.
+    
+1. In *Views/Shared*, create a file named *_LoginPartial.cshtml*. Include the following code:
+
+    :::code language="razor" source="azure-ad-b2c/sample/Pages/Shared/_LoginPartial.cshtml":::    
+
+    In the preceding code:
+
+    - The partial view checks if the user is authenticated.
+    - Renders a "Sign out" or "Sign in" link as appropriate.
+    - The link points to an action method on the `Account` controller in the `MicrosoftIdentity` area.
+
+1. In *Views/Shared/_Layout.cshtml*, add the highlighted line:
+
+    :::code language="razor" source="azure-ad-b2c/sample/Pages/Shared/_Layout.cshtml" range="11-32" highlight="10":::
+ 
 ## Run the app
 
 1. Success!
