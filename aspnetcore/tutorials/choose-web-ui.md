@@ -23,7 +23,7 @@ There are three general approaches to building modern web UI with ASP.NET Core:
 
 There are benefits and drawbacks to consider when rendering UI on the server or on the client.
 
-### Considering a predominantly server rendered UI approach
+### Considering a server rendered UI approach
 
 A web UI app that renders on the server dynamically generates the page's HTML and CSS on the server. The page arrives at the client ready to display.
 
@@ -50,7 +50,7 @@ Drawbacks:
 * The cost of compute and memory use are concentrated on the server, rather than each client.
 * User interactions require a round trip to the server to generate UI updates.
 
-### Considering a predominantly client rendered UI approach
+### Considering a client rendered UI approach
 
 A client rendered app dynamically renders web UI on the client, directly updating the browser DOM as necessary.
 
@@ -108,38 +108,43 @@ The following section briefly explains the ASP.NET Core web UI client rendered m
 
 ### Blazor
 
-Blazor WebAssembly is a [single-page app (SPA) framework](/dotnet/architecture/modern-web-apps-azure/choose-between-traditional-web-and-single-page-apps) for building interactive client-side web apps that run in the browser on a [WebAssembly](https://webassembly.org/)-based .NET runtime (*Blazor WebAssembly*). Blazor WebAssembly uses open web standards without plugins or recompiling code into other languages. Blazor WebAssembly works in all modern web browsers, including mobile browsers.
+Blazor apps are composed of Blazor components: reusable, web UI components implemented using C#, HTML, and CSS. Both client and server code are written in C#, allowing you to share code and libraries. Blazor components can be rendered or even pre-rendered from views and pages.
 
-Running .NET code inside web browsers is made possible by [WebAssembly](https://webassembly.org) (abbreviated `wasm`). WebAssembly is a compact bytecode format optimized for fast download and maximum execution speed. WebAssembly is an open web standard and supported in web browsers without plugins.
-
-WebAssembly code can access the full functionality of the browser via JavaScript, called *JavaScript interoperability*. .NET code executed via WebAssembly in the browser runs in the browser's JavaScript sandbox with the protections that the sandbox provides against malicious actions on the client machine.
-
-Benefits:
-
+Benefits of Blazor components:
 * Build interactive web UIs using C# instead of JavaScript. Using the same language for front-end and back-end code can:
   * Accelerate app development.
   * Reduce build pipeline complexity.
   * Simplify maintenance.
   * Leverage the existing .NET ecosystem of [.NET libraries](/dotnet/standard/class-libraries).
   * Let developers understand and work on both client-side and server-side code.
-* Reusable, sharable UI components: Blazor apps are composed of reusable web UI components implemented using C#, HTML, and CSS. Both client and server code are written in C#, allowing you to share code and libraries.
-* Blazor works in all modern web browsers, including mobile browsers. Blazor uses open web standards without plug-ins or code transpilation.
+* Reusable, sharable UI components.
 * Quickly get productive with Blazor reusable UI components from [top component vendors](https://blazor.net).
+* Blazor works in all modern web browsers, including mobile browsers. Blazor uses open web standards without plug-ins or code transpilation.
+
+For more information, see [Prerender and integrate ASP.NET Core Razor components](xref:blazor/components/prerendering-and-integration).
+
+#### Blazor hosting options:
+
+Blazor components have the flexibility of being hosted either using Blazor Server or Blazor WebAssembly.
+
+Blazor WebAssembly is a [single-page app (SPA) framework](/dotnet/architecture/modern-web-apps-azure/choose-between-traditional-web-and-single-page-apps) for building interactive client-side web apps that run in the browser on a [WebAssembly](https://webassembly.org/)-based .NET runtime (*Blazor WebAssembly*).
+
+Benefits of Blazor WebAssembly:
+
+* Uses open web standards without plugins or recompiling code into other languages.
+* Works in all modern web browsers, including mobile browsers.
+* WebAssembly code can access the full functionality of the browser via JavaScript, called *JavaScript interoperability*.
 
 To get started with your first ASP.NET Core Blazor WebAssembly app, see [Tooling for ASP.NET Core Blazor](xref:blazor/tooling). For a complete overview of ASP.NET Core Blazor WebAssembly, its architecture and benefits, see [Overview of Blazor WebAssembly](xref:blazor/index#blazor-webassembly).
 
-### ASP.NET Core Blazor Server
+#### ASP.NET Core Blazor Server
 
 ASP.NET Core Blazor Server has the advantage of direct access to server resources, while providing model for building rich, interactive, and composable user interfaces in C#. Blazor Server components are UI elements such as a page, dialog, or data entry form, that handle client-side web UI interactions. The client-side web UI interactions are handled over a websocket connection, and can span multiple connections to increase speed. Blazor components keep track of the state of the client-side DOM and efficiently apply updates to only the components that need it.
 
 Blazor Server benefits:
 
-* Create rich interactive UIs using [C#](/dotnet/csharp/) instead of [JavaScript](https://www.javascript.com).
-* Share server-side and client-side app logic written in .NET.
-* Render the UI as HTML and CSS for wide browser support, including mobile browsers.
-* Share app logic across server and client.
-* Leverage the existing .NET ecosystem of [.NET libraries](/dotnet/standard/class-libraries).
-* Flexibility of access to server resources, in a protected environment. For example:
+* Share app logic across server and client..
+* Flexibility of direct access to server resources, in a protected environment. For example:
   * Database access.
   * Access to secrets, such as an access key used for API calls to Azure storage.
 * Uses a token-based security model, rather than using cookies that may or may not be enabled on the browser.
@@ -148,7 +153,7 @@ To get started with your first ASP.NET Core Blazor Server app, see [Get started 
 
 ### ASP.NET Core MVC plus hosted Blazor WebAssembly
 
-MVC and Blazor are both part of the ASP.NET Core framework and are designed to be used together. Razor components can be integrated into Razor Pages and MVC apps in a hosted Blazor WebAssembly solution. When the page or view is rendered, components can be prerendered at the same time.
+MVC and Blazor are both part of the ASP.NET Core framework and are designed to be used together. Razor components can be integrated into Razor Pages and MVC apps in a hosted Blazor WebAssembly solution. When the page or view is rendered, components can be pre-rendered at the same time.
 
 Choose ASP.NET Core MVC plus Blazor WebAssembly when these benefits best fit your Web UI app needs:
 
