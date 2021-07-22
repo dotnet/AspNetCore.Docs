@@ -115,6 +115,8 @@ Use `apt-get` to install Nginx. The installer creates a `systemd` init script th
 > [!NOTE]
 > If optional Nginx modules are required, building Nginx from source might be required.
 
+You can follow this guide for [building nginx from source](https://www.armanism.com/blog/install-nginx-on-ubuntu)
+
 Since Nginx was installed for the first time, explicitly start it by running:
 
 ```bash
