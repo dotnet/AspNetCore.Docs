@@ -1450,3 +1450,17 @@
   href: /dotnet/api/?view=aspnetcore-2.2
 - name: Contribute
   href: https://github.com/dotnet/AspNetCore.Docs/blob/main/CONTRIBUTING.md
+- name: Version testing
+  items:
+    - name: Doc 1
+      href: 3.1/blazor/doc1.md
+    - name: Doc 2
+      href: 3.1/blazor/doc2.md
+    - name: Doc 2
+      href: 5.0/blazor/doc2.md
+    - name: Doc 3
+      href: 5.0/blazor/doc3.md
+    - name: Doc 3
+      href: 6.0/blazor/doc3.md
+    - name: Doc 4
+      href: 6.0/blazor/doc4.md
