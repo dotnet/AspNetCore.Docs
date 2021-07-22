@@ -92,7 +92,7 @@ To get started with your first ASP.NET Core Razor Pages app, see [Get started wi
 
 ### ASP.NET Core MVC
 
-ASP.NET MVC renders UI on the server and uses a Model-View-Controller (MVC) architectural pattern. The MVC pattern separates an application into three main groups of components: Models, Views, and Controllers. User requests are routed to a Controller. The Controller is responsible for working with the Model to perform user actions and, or retrieve results of queries. The Controller chooses the View to display to the user, and provides it with any Model data it requires.
+ASP.NET MVC renders UI on the server and uses a Model-View-Controller (MVC) architectural pattern. The MVC pattern separates an application into three main groups of components: Models, Views, and Controllers. User requests are routed to a Controller. The Controller is responsible for working with the Model to perform user actions and, or retrieve results of queries. The Controller chooses the View to display to the user, and provides it with any Model data it requires. Support for Razor Pages is built on ASP.NET Core MVC.
 
 MVC benefits, in addition to the server rendering benefits previously listed:
 
