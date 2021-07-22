@@ -4,15 +4,17 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace WebApp1
+namespace MvcApp
 {
-    public class StartupV2
+    public class Startup
     {
         public IConfiguration Configuration { get; }
-        public StartupV2(IConfiguration configuration)
+
+        public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
+        
         #region snippet
         public void ConfigureServices(IServiceCollection services)
         {
