@@ -13,17 +13,13 @@ uid: blazor-doc2
 
 &gt;= aspnetcore-3.1 &lt; aspnetcore-5.0
 
-## Cross-links
-
-* <xref:blazor-doc1> (XREF versionless)
-* [Doc 3](/aspnet/core/blazor/doc3)
-* [Doc 4](/aspnet/core/blazor/doc4)
-* [This topic 5.0 version](?view=aspnetcore-5.0&preserve-view=true)
-* [This topic 6.0 version](?view=aspnetcore-6.0&preserve-view=true)
-
 ## Cross-links (XREF versionless)
 
-XREF versionless that probably break because these docs are physically located in a different group:
-
+* <xref:blazor-doc1>
 * <xref:blazor-doc3>
 * <xref:blazor-doc4>
+
+## Self-links
+
+* [This topic 5.0 version with `?view=aspnetcore-5.0&preserve-view=true`](?view=aspnetcore-5.0&preserve-view=true)
+* [This topic 6.0 version with `?view=aspnetcore-6.0&preserve-view=true`](?view=aspnetcore-6.0&preserve-view=true)
