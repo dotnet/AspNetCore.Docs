@@ -4,7 +4,7 @@ author: camsoper
 description: Discover how to set up Azure Active Directory B2C authentication with ASP.NET Core.
 ms.author: casoper
 ms.custom: "devx-track-csharp, mvc"
-ms.date: 07/21/2021
+ms.date: 07/22/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/azure-ad-b2c
 ---
@@ -38,7 +38,7 @@ The following are required for this walkthrough:
     > [!TIP]
     > You may prefer to [use Visual Studio to create your app](/visualstudio/ide/quickstart-aspnet-core).
 
-1. [Create a web app registration in the tenant](/azure/active-directory-b2c/tutorial-register-applications#register-a-web-application). For **Redirect URI**, use `https://localhost:5001/signin-oidc`.
+1. [Create a web app registration in the tenant](/azure/active-directory-b2c/tutorial-register-applications#register-a-web-application). For **Redirect URI**, use `https://localhost:5001/signin-oidc`, replacing the `5001` port with the port used by your app (if applicable).
  
 ## Modify the app
 
@@ -72,23 +72,56 @@ The following are required for this walkthrough:
     - Renders a "Sign out" or "Sign in" link as appropriate.
     - The link points to an action method on the `Account` controller in the `MicrosoftIdentity` area.
 
-1. In *Views/Shared/_Layout.cshtml*, add the highlighted line:
+1. In *Views/Shared/_Layout.cshtml*, add the highlighted line within the `<header>` element:
 
     :::code language="razor" source="azure-ad-b2c/sample/Pages/Shared/_Layout.cshtml" range="11-32" highlight="10":::
  
+    This renders the *_LoginPartial.cshtml* partial view in every page request that uses this layout.
+
+1. In *Startup.cs*, make the following changes:
+
+    1. Add the following `using` directives:
+    
+        :::code language="csharp" source="azure-ad-b2c/sample/Startup.cs" range="11-13":::
+
+        The preceding code resolves references used in the next steps.
+
+    1. Replace the `ConfigureServices()` method with the following code:
+        
+        :::code language="csharp" source="azure-ad-b2c/sample/Startup.cs" range="27-42":::
+
+        In the preceding code:
+
+        - The calls to the `AddAuthentication` and `AddMicrosoftIdentityWebApp` methods configure the app to use Open ID Connect, specifically configured for the Microsoft Identity platform.
+        - The call to the `AddAuthorization` method initializes ASP.NET Core authorization.
+        - The `AddRazorPages` method call is configured such that anonymous browsers can view the Index page. All other requests require authentication.
+        - The `AddMvcOptions` and `AddMicrosoftIdentityUI` method calls add the required UI components for redirecting to/from Azure AD B2C.
+    
+    1. Add the highlighted line to the `Configure` method:
+        
+        :::code language="csharp" source="azure-ad-b2c/sample/Startup.cs" range="45-71" highlight="19":::
+
+        The preceding code enables authentication in ASP.NET Core.
+
 ## Run the app
 
-1. Success!
+1. Run the app.
+    
+    ```dotnetcli
+    dotnet run
+    ```
+
+1. Browse to your app's secure endpoint (usually `https://localhost:5001/`).
+    - The Index page renders with no authentication challenge.
+    - The header includes a "Sign in" link because you're not authenticated.
+
+1. Select the **Privacy** link.
+    - You are redirected to the to your tenant's configured authentication method.
+    - After signing in, the header displays a welcome message and a "Sign out" link.
 
 ## Next steps
 
-In this tutorial, you learned how to:
-
-> [!div class="checklist"]
-> * Create an Azure Active Directory B2C tenant
-> * Register an app in Azure AD B2C
-> * Use Visual Studio to create an ASP.NET Core Web Application configured to use the Azure AD B2C tenant for authentication
-> * Configure policies controlling the behavior of the Azure AD B2C tenant
+In this tutorial, you learned how to configure an ASP.NET Core app for authentication with Azure AD B2C.
 
 Now that the ASP.NET Core app is configured to use Azure AD B2C for authentication, the [Authorize attribute](xref:security/authorization/simple) can be used to secure your app. Continue developing your app by learning to:
 
