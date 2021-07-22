@@ -14,7 +14,7 @@ namespace WebApp1
         }
 
         public IConfiguration Configuration { get; }
-
+        #region snippet
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
@@ -40,5 +40,6 @@ namespace WebApp1
                 endpoints.MapRazorPages();
             });
         }
+        #endregion
     }
 }
