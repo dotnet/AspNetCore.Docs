@@ -124,7 +124,7 @@ Binding supports [`multiple`](https://developer.mozilla.org/docs/Web/HTML/Attrib
 
 @code {
     public string[] SelectedCars { get; set; } = new string[] { };
-    public string[] SelectedCities { get; set; } = new[] { "\"bal\"", "\"sea\"" };
+    public string[] SelectedCities { get; set; } = new[] { "bal", "sea" };
 
     void SelectedCarsChanged(ChangeEventArgs e)
     {
