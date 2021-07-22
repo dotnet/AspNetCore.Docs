@@ -109,11 +109,11 @@ Binding supports [`multiple`](https://developer.mozilla.org/docs/Web/HTML/Attrib
     <label>
         Select one or more cities: 
         <select @bind="SelectedCities" multiple>
-            <option value="@("\"bal\"")">Baltimore</option>
-            <option value="@("\"la\"")">Los Angeles</option>
-            <option value="@("\"pdx\"")">Portland</option>
-            <option value="@("\"sf\"")">San Francisco</option>
-            <option value="@("\"sea\"")">Seattle</option>
+            <option value="bal">Baltimore</option>
+            <option value="la">Los Angeles</option>
+            <option value="pdx">Portland</option>
+            <option value="sf">San Francisco</option>
+            <option value="sea">Seattle</option>
         </select>
     </label>
 </p>
