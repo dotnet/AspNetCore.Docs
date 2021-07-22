@@ -8,9 +8,11 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+#region snippet_NewUsings
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+#endregion
 
 namespace azure_ad_b2c
 {
@@ -24,6 +26,7 @@ namespace azure_ad_b2c
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
+        #region snippet_ConfigureServices
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
@@ -40,8 +43,10 @@ namespace azure_ad_b2c
                 .AddMvcOptions(options => { })
                 .AddMicrosoftIdentityUI();
         }
+        #endregion
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        #region snippet_Configure
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -69,5 +74,6 @@ namespace azure_ad_b2c
                 endpoints.MapControllers();
             });
         }
+        #endregion
     }
 }

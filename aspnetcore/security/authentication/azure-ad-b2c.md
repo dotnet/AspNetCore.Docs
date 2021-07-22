@@ -57,7 +57,7 @@ The following are required for this walkthrough:
 1. Add an `AzureAd` object to *appsettings.json*.
 
     :::code language="javascript" source="azure-ad-b2c/sample/appsettings.json" highlight="2-8":::
-    
+
     - For **Domain**, use the domain of your Azure AD B2C tenant.
     - For **ClientId**, use the **Application (client) ID** from the app registration you created in your tenant.
     - Leave all other values as they are.
@@ -82,13 +82,13 @@ The following are required for this walkthrough:
 
     1. Add the following `using` directives:
     
-        :::code language="csharp" source="azure-ad-b2c/sample/Startup.cs" range="11-13":::
+        :::code language="csharp" source="azure-ad-b2c/sample/Startup.cs" id="snippet_NewUsings":::
 
         The preceding code resolves references used in the next steps.
 
     1. Replace the `ConfigureServices()` method with the following code:
         
-        :::code language="csharp" source="azure-ad-b2c/sample/Startup.cs" range="27-42":::
+        :::code language="csharp" source="azure-ad-b2c/sample/Startup.cs" id="snippet_ConfigureServices":::
 
         In the preceding code:
 
@@ -99,7 +99,7 @@ The following are required for this walkthrough:
     
     1. Add the highlighted line to the `Configure` method:
         
-        :::code language="csharp" source="azure-ad-b2c/sample/Startup.cs" range="45-71" highlight="19":::
+        :::code language="csharp" source="azure-ad-b2c/sample/Startup.cs" id="snippet_Configure" highlight="19":::
 
         The preceding code enables authentication in ASP.NET Core.
 
