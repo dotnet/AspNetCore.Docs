@@ -33,7 +33,7 @@ The following are required for this walkthrough:
     dotnet new razor -o azure-ad-b2c
     ```
     
-    The previous command creates a new ASP.NET Core Razor Pages app in a directory named *azure-ad-b2c*. 
+    The previous command creates a Razor pages app in a directory named *azure-ad-b2c*. 
     
     > [!TIP]
     > You may prefer to [use Visual Studio to create your app](/visualstudio/ide/quickstart-aspnet-core).
@@ -51,8 +51,7 @@ The following are required for this walkthrough:
 
 1. Add an `AzureAd` object to *appsettings.json*.
 
-    :::code language="json" source="azure-ad-b2c/sample/appsettings.json highlight="2-8"":::
-
+    :::code language="javascript" source="azure-ad-b2c/sample/appsettings.json" highlight="2-8":::
     
 1. Startup.cs 
 ## Run the app
