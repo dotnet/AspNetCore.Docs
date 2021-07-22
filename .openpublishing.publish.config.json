@@ -23,7 +23,7 @@
       "template_folder": "_themes",
       "version": 0,
       "monikerPath": [
-        "mapping/monikerMapping.json"
+        "monikerMapping.json"
       ]
     }
   ],
