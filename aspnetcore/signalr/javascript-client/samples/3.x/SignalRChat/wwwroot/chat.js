@@ -37,12 +37,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
     
-    connection.onclose(function (error) {
-        if (error) {
-            console.log(`Connection closed with error: ${error}`);
-        } else {
-            console.log("Connection closed.");
-        }
+    connection.onclose(async () => {
+        await start();
     });
 
     // Start the connection.
