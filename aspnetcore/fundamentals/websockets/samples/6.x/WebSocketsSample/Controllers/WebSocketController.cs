@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace WebSocketsSample.Controllers
 {
-    #region controller
+    #region snippet
     public class WebSocketController : ControllerBase
     {
         [HttpGet("/ws")]
