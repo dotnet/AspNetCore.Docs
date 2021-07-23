@@ -76,7 +76,7 @@ The following are required for this walkthrough:
 
     :::code language="razor" source="azure-ad-b2c/sample/Pages/Shared/_Layout.cshtml" range="11-32" highlight="10":::
  
-    This renders the *_LoginPartial.cshtml* partial view in every page request that uses this layout.
+    Adding `<partial name="_LoginPartial" />` renders the *_LoginPartial.cshtml* partial view in every page request that uses this layout.
 
 1. In *Startup.cs*, make the following changes:
 
