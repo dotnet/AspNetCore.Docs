@@ -115,8 +115,8 @@ In this tutorial, you'll learn how to configure an ASP.NET Core app for authenti
     - The header includes a **Sign in** link because you're not authenticated.
 
 1. Select the **Privacy** link.
-    - You are redirected to the to your tenant's configured authentication method.
-    - After signing in, the header displays a welcome message and a "Sign out" link.
+    - The browser is redirected to the to your tenant's configured authentication method.
+    - After signing in, the header displays a welcome message and a **Sign out** link.
 
 ## Next steps
 
