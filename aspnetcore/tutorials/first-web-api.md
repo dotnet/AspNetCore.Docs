@@ -279,7 +279,7 @@ In ASP.NET Core, services such as the DB context must be registered with the [de
 
 Update *Startup.cs* with the following code:
 
-[!code-csharp[](first-web-api/samples/5.x/TodoApi/Startup.cs?highlight=7-8,23-24&name=snippet_all)]
+[!code-csharp[](first-web-api/samples/5.x/TodoApi/Startup.cs?highlight=7-8,25-30,38-39&name=snippet_all)]
 
 The preceding code:
 
