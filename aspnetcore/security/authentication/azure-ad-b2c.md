@@ -92,10 +92,10 @@ The following are required for this walkthrough:
 
         In the preceding code:
 
-        - The calls to the `AddAuthentication` and `AddMicrosoftIdentityWebApp` methods configure the app to use Open ID Connect, specifically configured for the Microsoft Identity platform.
-        - The call to the `AddAuthorization` method initializes ASP.NET Core authorization.
-        - The `AddRazorPages` method call is configured such that anonymous browsers can view the Index page. All other requests require authentication.
-        - The `AddMvcOptions` and `AddMicrosoftIdentityUI` method calls add the required UI components for redirecting to/from Azure AD B2C.
+        - Calls to the `AddAuthentication` and `AddMicrosoftIdentityWebApp` methods configure the app to use Open ID Connect, specifically configured for the Microsoft Identity platform.
+        - `AddAuthorization` initializes ASP.NET Core authorization.
+        - The `AddRazorPages` call configures the app so anonymous browsers can view the Index page. All other requests require authentication.
+        - `AddMvcOptions` and `AddMicrosoftIdentityUI` add the required UI components for redirecting to/from Azure AD B2C.
     
     1. Add the highlighted line to the `Configure` method:
         
