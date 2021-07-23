@@ -86,7 +86,7 @@ The following are required for this walkthrough:
 
         The preceding code resolves references used in the next steps.
 
-    1. Replace the `ConfigureServices()` method with the following code:
+    1. Replace `ConfigureServices` with the following code:
         
         :::code language="csharp" source="azure-ad-b2c/sample/Startup.cs" id="snippet_ConfigureServices":::
 
