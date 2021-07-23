@@ -103,13 +103,13 @@
       },
       "monikerRange": {
         "3.1/blazor/components/class-libraries/**": ">= aspnetcore-3.1 < aspnetcore-5.0",
-        "3.1/blazor/debug/**": ">= aspnetcore-3.1 < aspnetcore-5.0",
+        "3.1/blazor/debug-topic/**": ">= aspnetcore-3.1 < aspnetcore-5.0",
 
         "5.0/blazor/components/class-libraries/**": ">= aspnetcore-5.0 < aspnetcore-6.0",
-        "5.0/blazor/debug/**": ">= aspnetcore-5.0 < aspnetcore-6.0",
+        "5.0/blazor/debug-topic/**": ">= aspnetcore-5.0 < aspnetcore-6.0",
 
         "6.0/blazor/components/class-libraries/**": ">= aspnetcore-6.0",
-        "6.0/blazor/debug/**": ">= aspnetcore-6.0"
+        "6.0/blazor/debug-topic/**": ">= aspnetcore-6.0"
       }
     },
     "template": [],
