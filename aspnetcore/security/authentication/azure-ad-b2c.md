@@ -56,7 +56,7 @@ The following are required for this walkthrough:
 
 1. Add an `AzureAd` object to *appsettings.json*.
 
-    :::code language="javascript" source="azure-ad-b2c/sample/appsettings.json" highlight="2-8":::
+    :::code language="json" source="azure-ad-b2c/sample/appsettings.json" highlight="2-8":::
 
     - For **Domain**, use the domain of your Azure AD B2C tenant.
     - For **ClientId**, use the **Application (client) ID** from the app registration you created in your tenant.
