@@ -101,7 +101,7 @@
         "**/getting-started/**/**.md": "tutorial",
         "**/tutorials/**/**.md": "tutorial"
       },
-      "moniker-range": {
+      "monikerRange": {
         "3.1/blazor/components/class-libraries/**": ">= aspnetcore-3.1 < aspnetcore-5.0",
         "3.1/blazor/debug/**": ">= aspnetcore-3.1 < aspnetcore-5.0",
 
