@@ -7,13 +7,16 @@ namespace BlazorServerDbContextExample.Data
     public class DbContextFactory<TContext> 
         : IDbContextFactory<TContext> where TContext : DbContext
     {
-        private readonly IServiceProvider _provider;
+        private readonly IServiceProvider provider;
 
         public DbContextFactory(IServiceProvider provider)
         {
-            _provider = provider ?? throw new ArgumentNullException($"{nameof(provider)}: You must configure an instance of IServiceProvider");
+            this.provider = provider ?? throw new ArgumentNullException(
+                $"{nameof(provider)}: You must configure an instance of " +
+                "IServiceProvider");
         }
 
-        public TContext CreateDbContext() => ActivatorUtilities.CreateInstance<TContext>(_provider);
+        public TContext CreateDbContext() => 
+            ActivatorUtilities.CreateInstance<TContext>(provider);
     }
 }
