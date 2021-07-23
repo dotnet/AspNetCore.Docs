@@ -69,7 +69,7 @@ The following are required for this walkthrough:
     In the preceding code:
 
     - The partial view checks if the user is authenticated.
-    - Renders a "Sign out" or "Sign in" link as appropriate.
+    - Renders a **Sign out** or **Sign in** link as appropriate.
     - The link points to an action method on the `Account` controller in the `MicrosoftIdentity` area.
 
 1. In *Views/Shared/_Layout.cshtml*, add the highlighted line within the `<header>` element:
