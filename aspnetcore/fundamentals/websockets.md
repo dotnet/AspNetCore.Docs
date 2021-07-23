@@ -79,7 +79,7 @@ A WebSocket request could come in on any URL, but this sample code only accepts 
 
 To keep the `Startup` clutter-free, a similar approach can be taken in an action method:
 
-[!code-csharp[](websockets/samples/6.x/WebSocketsSample/Controllers/WebSocketController.cs?name=WebSocketController)]
+[!code-csharp[](websockets/samples/6.x/WebSocketsSample/Controllers/WebSocketController.cs?name=snippet)]
 
 When using a WebSocket, you **must** keep the middleware pipeline running for the duration of the connection. If you attempt to send or receive a WebSocket message after the middleware pipeline ends, you may get an exception like the following:
 
