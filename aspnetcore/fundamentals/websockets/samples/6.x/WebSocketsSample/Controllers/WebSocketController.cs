@@ -16,7 +16,8 @@ namespace WebSocketsSample.Controllers
         {
             if (HttpContext.WebSockets.IsWebSocketRequest)
             {
-                using WebSocket webSocket = await HttpContext.WebSockets.AcceptWebSocketAsync();
+                using WebSocket webSocket = await 
+                                   HttpContext.WebSockets.AcceptWebSocketAsync();
                 await Echo(HttpContext, webSocket);
             }
             else
