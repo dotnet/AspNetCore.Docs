@@ -446,7 +446,7 @@ In the sample download, rename *WebApp1/Areas/MyFeature2* to *WebApp1/Areas/MyFe
 
 Copy the *RazorUIClassLib/Areas/MyFeature/Pages/Shared/_Message.cshtml* partial view to *WebApp1/Areas/MyFeature/Pages/Shared/_Message.cshtml*. Update the markup to indicate the new location. Build and run the app to verify the app's version of the partial is being used.
 
-One must enable `Razor Pages` in the web app to make sure the page based routing works. For example, in an MVC application, register the `Razor Pages` services and map the pages with endpoint routing,
+If Razor Pages are used in the RCL, Razor Pages services and endpoints must be enabled in the hosting app:
 
 [!code-csharp[](ui-class/samples/Startup.cs?name=snippet&highlight=4,17)]
 
