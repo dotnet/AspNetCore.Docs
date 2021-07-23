@@ -42,7 +42,7 @@ The following are required for this walkthrough:
  
 ## Modify the app
 
-1. From inside the project directory, add the `Microsoft.Identity.Web` and `Microsoft.Identity.Web.UI` packages to the project. If you're using Visual Studio, you can use [NuGet Package Manager](/nuget/consume-packages/install-use-packages-visual-studio).
+1. Add the `Microsoft.Identity.Web` and `Microsoft.Identity.Web.UI` packages to the project. If you're using Visual Studio, you can use [NuGet Package Manager](/nuget/consume-packages/install-use-packages-visual-studio).
 
     ```dotnetcli
     dotnet add package Microsoft.Identity.Web --version 1.4.0 
