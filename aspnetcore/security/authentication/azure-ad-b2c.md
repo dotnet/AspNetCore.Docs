@@ -111,9 +111,9 @@ The following are required for this walkthrough:
     dotnet run
     ```
 
-1. Browse to your app's secure endpoint (usually `https://localhost:5001/`).
+1. Browse to the app's secure endpoint, for example, `https://localhost:5001/`.
     - The Index page renders with no authentication challenge.
-    - The header includes a "Sign in" link because you're not authenticated.
+    - The header includes a **Sign in** link because you're not authenticated.
 
 1. Select the **Privacy** link.
     - You are redirected to the to your tenant's configured authentication method.
