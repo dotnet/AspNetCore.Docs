@@ -77,7 +77,7 @@ The following example is from later in the `Configure` method:
 
 A WebSocket request could come in on any URL, but this sample code only accepts requests for `/ws`.
 
-To keep the `Startup` clutter-free, a similar approach can be taken in an action method:
+A similar approach can be taken in an controller method:
 
 [!code-csharp[](websockets/samples/6.x/WebSocketsSample/Controllers/WebSocketController.cs?name=snippet)]
 
