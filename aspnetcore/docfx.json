@@ -34,19 +34,19 @@
         "src": "." 
       },
       {
-        "files": [ "**/*.gif", "**/*.jpg", "**/*.json", "**/*.pdf", "**/*.png", "**/*.svg" ],
+        "files": [ "**/*.gif", "**/*.jpg", "**/*.pdf", "**/*.png", "**/*.svg" ],
         "exclude": [ "**/includes/**", "**/obj/**" ],
         "group": "aspnetcore-3.1",
         "src": "3.1"
       },
       {
-        "files": [ "**/*.gif", "**/*.jpg", "**/*.json", "**/*.pdf", "**/*.png", "**/*.svg" ],
+        "files": [ "**/*.gif", "**/*.jpg", "**/*.pdf", "**/*.png", "**/*.svg" ],
         "exclude": [ "**/includes/**", "**/obj/**" ],
         "group": "aspnetcore-5.0",
         "src": "5.0"
       },
       {
-        "files": [ "**/*.gif", "**/*.jpg", "**/*.json", "**/*.pdf", "**/*.png", "**/*.svg" ],
+        "files": [ "**/*.gif", "**/*.jpg", "**/*.pdf", "**/*.png", "**/*.svg" ],
         "exclude": [ "**/includes/**", "**/obj/**" ],
         "group": "aspnetcore-6.0",
         "src": "6.0"
@@ -100,6 +100,16 @@
       "ms.topic": {
         "**/getting-started/**/**.md": "tutorial",
         "**/tutorials/**/**.md": "tutorial"
+      },
+      "moniker-range": {
+        "3.1/blazor/components/class-libraries/**": ">= aspnetcore-3.1 < aspnetcore-5.0",
+        "3.1/blazor/debug/**": ">= aspnetcore-3.1 < aspnetcore-5.0",
+
+        "5.0/blazor/components/class-libraries/**": ">= aspnetcore-5.0 < aspnetcore-6.0",
+        "5.0/blazor/debug/**": ">= aspnetcore-5.0 < aspnetcore-6.0",
+
+        "6.0/blazor/components/class-libraries/**": ">= aspnetcore-6.0",
+        "6.0/blazor/debug/**": ">= aspnetcore-6.0"
       }
     },
     "template": [],
