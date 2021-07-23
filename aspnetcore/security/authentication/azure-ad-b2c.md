@@ -38,7 +38,7 @@ The following are required for this walkthrough:
     > [!TIP]
     > You may prefer to [use Visual Studio to create your app](/visualstudio/ide/quickstart-aspnet-core).
 
-1. [Create a web app registration in the tenant](/azure/active-directory-b2c/tutorial-register-applications#register-a-web-application). For **Redirect URI**, use `https://localhost:5001/signin-oidc`, replacing the `5001` port with the port used by your app (if applicable).
+1. [Create a web app registration in the tenant](/azure/active-directory-b2c/tutorial-register-applications#register-a-web-application). For **Redirect URI**, use `https://localhost:5001/signin-oidc`.  Replace `5001` with the port used by your app when using Visual Studio generated ports.
  
 ## Modify the app
 
