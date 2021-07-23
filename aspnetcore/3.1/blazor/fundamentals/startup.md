@@ -2,7 +2,7 @@
 title: ASP.NET Core Blazor Startup
 author: guardrex
 description: Learn how to configure Blazor startup.
-monikerRange: '>= aspnetcore-3.1'
+monikerRange: '>= aspnetcore-3.1 < aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 05/14/2021
@@ -82,7 +82,7 @@ Customize how these boot resources are loaded using the `loadBootResource` API. 
 | `defaultUri` | The relative or absolute URI of the resource. |
 | `integrity`  | The integrity string representing the expected content in the response. |
 
-The `loadBootResource` function can return a URI string to override the loading process. In the following example, the following files from `bin/Release/net5.0/wwwroot/_framework` are served from a CDN at `https://cdn.example.com/blazorwebassembly/5.0.0/`:
+The `loadBootResource` function can return a URI string to override the loading process. In the following example, the following files from `bin/Release/net5.0/wwwroot/_framework` are served from a CDN at `https://cdn.example.com/blazorwebassembly/3.1.0/`:
 
 * `dotnet.*.js`
 * `dotnet.wasm`
@@ -100,7 +100,7 @@ Inside the closing `</body>` tag of `wwwroot/index.html`:
         case 'dotnetjs':
         case 'dotnetwasm':
         case 'timezonedata':
-          return `https://cdn.example.com/blazorwebassembly/5.0.0/${name}`;
+          return `https://cdn.example.com/blazorwebassembly/3.1.0/${name}`;
       }
     }
   });
@@ -133,24 +133,6 @@ The `loadBootResource` function can also return:
 
 ## Additional resources
 
-::: moniker range=">= aspnetcore-5.0"
-
-* [Environments: Set the app's environment](xref:blazor/fundamentals/environments)
-* SignalR
-  * [Blazor startup](xref:blazor/fundamentals/signalr#blazor-startup)
-  * [Configure SignalR client logging](xref:blazor/fundamentals/signalr#configure-signalr-client-logging)
-  * [Modify the reconnection handler](xref:blazor/fundamentals/signalr#modify-the-reconnection-handler)
-  * [Adjust the reconnection retry count and interval](xref:blazor/fundamentals/signalr#adjust-the-reconnection-retry-count-and-interval)
-  * [Hide or replace the reconnection display](xref:blazor/fundamentals/signalr#hide-or-replace-the-reconnection-display)
-  * [Disconnect the Blazor circuit from the client](xref:blazor/fundamentals/signalr#disconnect-the-blazor-circuit-from-the-client)
-* [Globalization and localization: Statically set the culture with `Blazor.start` (*Blazor WebAssembly only*)](xref:blazor/globalization-localization?pivots=webassembly#statically-set-the-culture)
-* [JS interop: Inject a script after Blazor starts](xref:blazor/js-interop/index#inject-a-script-after-blazor-starts)
-* [Host and deploy: Blazor WebAssembly: Compression](xref:blazor/host-and-deploy/webassembly#compression)
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
 * SignalR
   * [Blazor startup](xref:blazor/fundamentals/signalr#blazor-startup)
   * [Configure SignalR client logging](xref:blazor/fundamentals/signalr#configure-signalr-client-logging)
@@ -159,5 +141,3 @@ The `loadBootResource` function can also return:
   * [Hide or replace the reconnection display](xref:blazor/fundamentals/signalr#hide-or-replace-the-reconnection-display)
 * [JS interop: Inject a script after Blazor starts](xref:blazor/js-interop/index#inject-a-script-after-blazor-starts)
 * [Host and deploy: Blazor WebAssembly: Compression](xref:blazor/host-and-deploy/webassembly#compression)
-
-::: moniker-end
