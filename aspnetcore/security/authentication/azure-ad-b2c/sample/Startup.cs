@@ -34,7 +34,8 @@ namespace azure_ad_b2c
 
             services.AddAuthorization(options =>
             {
-                // By default, all incoming requests will be authorized according to the default policy
+                // By default, all incoming requests will be authorized according to 
+                // the default policy
                 options.FallbackPolicy = options.DefaultPolicy;
             });
             services.AddRazorPages(options => {
