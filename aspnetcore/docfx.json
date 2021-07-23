@@ -102,14 +102,23 @@
         "**/tutorials/**/**.md": "tutorial"
       },
       "monikerRange": {
-        "3.1/blazor/components/class-libraries/**": ">= aspnetcore-3.1 < aspnetcore-5.0",
-        "3.1/blazor/debug-topic/**": ">= aspnetcore-3.1 < aspnetcore-5.0",
+        "3.1/**/*.png": ">= aspnetcore-3.1 < aspnetcore-5.0",
+        "3.1/**/*.jpg": ">= aspnetcore-3.1 < aspnetcore-5.0",
+        "3.1/**/*.gif": ">= aspnetcore-3.1 < aspnetcore-5.0",
+        "3.1/**/*.svg": ">= aspnetcore-3.1 < aspnetcore-5.0",
+        "3.1/**/*.pdf": ">= aspnetcore-3.1 < aspnetcore-5.0",
 
-        "5.0/blazor/components/class-libraries/**": ">= aspnetcore-5.0 < aspnetcore-6.0",
-        "5.0/blazor/debug-topic/**": ">= aspnetcore-5.0 < aspnetcore-6.0",
+        "5.0/**/*.png": ">= aspnetcore-5.0 < aspnetcore-6.0",
+        "5.0/**/*.jpg": ">= aspnetcore-5.0 < aspnetcore-6.0",
+        "5.0/**/*.gif": ">= aspnetcore-5.0 < aspnetcore-6.0",
+        "5.0/**/*.svg": ">= aspnetcore-5.0 < aspnetcore-6.0",
+        "5.0/**/*.pdf": ">= aspnetcore-5.0 < aspnetcore-6.0",
 
-        "6.0/blazor/components/class-libraries/**": ">= aspnetcore-6.0",
-        "6.0/blazor/debug-topic/**": ">= aspnetcore-6.0"
+        "6.0/**/*.png": ">= aspnetcore-6.0",
+        "6.0/**/*.jpg": ">= aspnetcore-6.0",
+        "6.0/**/*.gif": ">= aspnetcore-6.0",
+        "6.0/**/*.svg": ">= aspnetcore-6.0",
+        "6.0/**/*.pdf": ">= aspnetcore-6.0"
       }
     },
     "template": [],
