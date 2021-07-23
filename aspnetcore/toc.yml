@@ -448,6 +448,10 @@
           uid: blazor/state-management
         - name: Debug WebAssembly
           href: 3.1/blazor/debug.md
+        - name: Debug WebAssembly
+          href: 5.0/blazor/debug.md
+        - name: Debug WebAssembly
+          href: 6.0/blazor/debug.md
         - name: Lazy load assemblies with WebAssembly
           uid: blazor/webassembly-lazy-load-assemblies
         - name: WebAssembly performance
