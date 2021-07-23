@@ -58,7 +58,7 @@ We recommend using the [Azure SignalR Service](xref:signalr/scale#azure-signalr-
 >
 > * [What is Azure SignalR Service?](/azure/azure-signalr/signalr-overview)
 > * [Performance guide for Azure SignalR Service](/azure-signalr/signalr-concept-performance#performance-factors)
-> * [Publish an ASP.NET Core SignalR app to Azure App Service](/aspnet/core/signalr/publish-to-azure-web-app)
+> * [Publish an ASP.NET Core SignalR app to Azure App Service](../../signalr/publish-to-azure-web-app.md)
 
 ### Configuration
 
