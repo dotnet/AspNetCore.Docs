@@ -2,7 +2,7 @@
 title: ASP.NET Core Blazor static files
 author: guardrex
 description: Learn how to configure and manage static files for Blazor apps.
-monikerRange: '>= aspnetcore-3.1 < aspnetcore-5.0'
+monikerRange: '>= aspnetcore-5.0 < aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 01/27/2021

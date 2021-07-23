@@ -340,6 +340,8 @@
               href: 3.1/blazor/fundamentals/startup.md
             - name: Startup
               href: 5.0/blazor/fundamentals/startup.md
+            - name: Startup
+              href: 6.0/blazor/fundamentals/startup.md
             - name: Environments
               uid: blazor/fundamentals/environments
             - name: Logging
@@ -350,6 +352,10 @@
               uid: blazor/fundamentals/signalr
             - name: Static files
               href: 3.1/blazor/fundamentals/static-files.md
+            - name: Static files
+              href: 5.0/blazor/fundamentals/static-files.md
+            - name: Static files
+              href: 6.0/blazor/fundamentals/static-files.md
         - name: Components
           items:
             - name: Overview
