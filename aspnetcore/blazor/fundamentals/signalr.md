@@ -374,6 +374,6 @@ We recommend using the [Azure SignalR Service](xref:signalr/scale#azure-signalr-
 * [Blazor Server reconnection events and component lifecycle events](xref:blazor/components/lifecycle#blazor-server-reconnection-events)
 * [What is Azure SignalR Service?](/azure/azure-signalr/signalr-overview)
 * [Performance guide for Azure SignalR Service](/azure-signalr/signalr-concept-performance#performance-factors)
-* [Publish an ASP.NET Core SignalR app to Azure App Service](/aspnet/core/signalr/publish-to-azure-web-app)
+* <xref:signalr/publish-to-azure-web-app>
 
 ::: zone-end

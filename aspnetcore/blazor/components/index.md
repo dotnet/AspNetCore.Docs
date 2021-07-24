@@ -376,7 +376,7 @@ The `Title` and `Body` component parameters of the `ParameterChild` component ar
 The following rendered HTML markup from the `ParameterParent` component shows `ParameterChild` component default values when the `ParameterParent` component doesn't supply component parameter values. When the `ParameterParent` component provides component parameter values, they replace the `ParameterChild` component's default values.
 
 > [!NOTE]
-> For clarify, rendered CSS style classes aren't shown in the following rendered HTML markup.
+> For clarity, rendered CSS style classes aren't shown in the following rendered HTML markup.
 
 ```html
 <h1>Child component (without attribute values)</h1>

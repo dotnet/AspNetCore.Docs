@@ -60,7 +60,7 @@ The client library is available on the following CDNs:
 
 The following code creates and starts a connection. The hub's name is case insensitive:
 
-[!code-javascript[](javascript-client/samples/3.x/SignalRChat/wwwroot/chat.js?range=3-6,29-43)]
+[!code-javascript[](javascript-client/samples/3.x/SignalRChat/wwwroot/chat.js?range=3-6,29-45)]
 
 ### Cross-origin connections
 
@@ -261,7 +261,7 @@ The following code demonstrates a typical manual reconnection approach:
 1. A function (in this case, the `start` function) is created to start the connection.
 1. Call the `start` function in the connection's `onclose` event handler.
 
-[!code-javascript[](javascript-client/samples/3.x/SignalRChat/wwwroot/chat.js?range=30-40)]
+[!code-javascript[](javascript-client/samples/3.x/SignalRChat/wwwroot/chat.js?range=30-42)]
 
 A real-world implementation would use an exponential back-off or retry a specified number of times before giving up.
 
