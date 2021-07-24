@@ -61,16 +61,15 @@ In this tutorial, you'll learn how to configure an ASP.NET Core app for authenti
     - For **ClientId**, use the **Application (client) ID** from the app registration you created in your tenant.
     - Leave all other values as they are.
  
- > [!NOTE]
-> If using Azure B2C user flows, you need to set the **Instance** and the PolicyId of the type of flow.
+    > [!NOTE]
+    > If using Azure B2C user flows, you need to set the **Instance** and the PolicyId of the type of flow.
 
-
-    :::code language="json" source="azure-ad-b2c/sample/appsettings-b2c-userflow.json" highlight="2-8":::
+    :::code language="json" source="azure-ad-b2c/sample/appsettings-b2c-userflow.json" highlight="2-9":::
 
     - For **Domain**, use the domain of your Azure AD B2C tenant.
     - For **ClientId**, use the **Application (client) ID** from the app registration you created in your tenant.
-	- For **Instance**, use the domain of your Azure AD B2C tenant.
-	- For **SignUpSignInPolicyId**, use the user flow policy defined in the Azure B2C tenant
+    - For **Instance**, use the domain of your Azure AD B2C tenant.
+    - For **SignUpSignInPolicyId**, use the user flow policy defined in the Azure B2C tenant
     - Leave all other values as they are.
 	
 1. In *Views/Shared*, create a file named *_LoginPartial.cshtml*. Include the following code:
