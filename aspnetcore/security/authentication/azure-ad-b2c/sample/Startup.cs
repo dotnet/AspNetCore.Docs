@@ -30,7 +30,7 @@ namespace azure_ad_b2c
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
-                .AddMicrosoftIdentityWebApp(Configuration.GetSection("AzureAd"));
+                .AddMicrosoftIdentityWebApp(Configuration.GetSection("AzureB2C"));
 
             services.AddAuthorization(options =>
             {
