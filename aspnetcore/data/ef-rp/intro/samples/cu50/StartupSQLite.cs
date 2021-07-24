@@ -27,13 +27,13 @@ namespace ContosoUniversity
 
             services.AddDatabaseDeveloperPageExceptionFilter();
         }
-        #endregion
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseMigrationsEndPoint();
             }
             else
             {
@@ -53,5 +53,6 @@ namespace ContosoUniversity
                 endpoints.MapRazorPages();
             });
         }
+        #endregion
     }
 }
