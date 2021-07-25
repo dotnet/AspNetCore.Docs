@@ -146,7 +146,8 @@ var defaultMethodConfig = new MethodConfig
     HedgingPolicy = new HedgingPolicy
     {
         MaxAttempts = 5,
-        NonFatalStatusCodes = { StatusCode.Unavailable }
+        NonFatalStatusCodes = { StatusCode.Unavailable },
+        HedgingDelay = TimeSpan.FromSeconds(5)
     }
 };
 
