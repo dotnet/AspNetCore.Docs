@@ -757,7 +757,7 @@ For more information, see the following articles:
 
 ::: moniker-end
 
-::: moniker range="< aspnetcore-6.0 
+::: moniker range="< aspnetcore-6.0"
 
 ### `@typeparam`
 
