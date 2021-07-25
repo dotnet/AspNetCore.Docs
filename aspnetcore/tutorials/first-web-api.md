@@ -281,7 +281,7 @@ Update *Startup.cs* with the following code:
 
 [!code-csharp[](first-web-api/samples/5.x/TodoApi/Startup.cs?highlight=7-8,25-30,38-39&name=snippet_all)]
 
-The preceding code:.000.................
+The preceding code:
 
 * Removes the Swagger calls.
 * Removes unused `using` declarations.
