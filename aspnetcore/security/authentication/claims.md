@@ -23,8 +23,7 @@ This article covers the following areas:
 
 ## Mapping claims using OpenID Connect authentication
 
-The profile claims can be returned in the `id_token` which is returned after a successful authentication. The ASP.NET Core client application just needs to request the profile scope. When using the `id_token` for claims, no extra claims mapping is required.
-
+The profile claims can be returned in the `id_token`, which is returned after a successful authentication. The ASP.NET Core client app only requires the profile scope. When using the `id_token` for claims, no extra claims mapping is required.
 ```csharp
 public void ConfigureServices(IServiceCollection services)
 {
@@ -104,8 +103,7 @@ public void ConfigureServices(IServiceCollection services)
 
 ## Claims namespaces, default namespaces
 
-ASP.NET Core adds default namespaces to some known claims which might not be required in your application. You can disable this namespace adding if you would like to use the claims exactly like the Open ID Connect server created. 
-
+ASP.NET Core adds default namespaces to some known claims, which might not be required in the app. Optionally, disable these added namespaces and use the exact claims that the OpenID Connect server created.
 ```csharp
 public void Configure(IApplicationBuilder app)
 {
