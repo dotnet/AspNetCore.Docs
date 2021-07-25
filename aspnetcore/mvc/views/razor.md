@@ -46,7 +46,7 @@ HTML attributes and content containing email addresses don't treat the `@` symbo
 
 ### Scalable Vector Graphics (SVG)
 
-[SVG](https://developer.mozilla.org/docs/Web/SVG) [foreignObject])https://developer.mozilla.org/docs/Web/SVG/Element/foreignObject) elements are supported:
+[SVG](https://developer.mozilla.org/docs/Web/SVG) [foreignObject](https://developer.mozilla.org/docs/Web/SVG/Element/foreignObject) elements are supported:
 
 ```html
 @{
