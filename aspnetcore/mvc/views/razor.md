@@ -41,6 +41,28 @@ HTML attributes and content containing email addresses don't treat the `@` symbo
 <a href="mailto:Support@contoso.com">Support@contoso.com</a>
 ```
 
+
+::: moniker range=">= aspnetcore-6.0"
+
+### Scalable Vector Graphics (SVG)
+
+[SVG](https://developer.mozilla.org/docs/Web/SVG) [foreignObject])https://developer.mozilla.org/docs/Web/SVG/Element/foreignObject) elements are supported:
+
+```html
+@{
+    string message = "This is an example of using foreignObject with Scalable Vector Graphics (SVG)";
+}
+
+<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="0" rx="10" ry="10" width="200" height="200" stroke="black" fill="none" />
+    <foreignObject x="20" y="20" width="160" height="160">
+        <p>@message</p>
+    </foreignObject>
+</svg>
+```
+
+::: moniker-end
+
 ## Implicit Razor expressions
 
 Implicit Razor expressions start with `@` followed by C# code:
