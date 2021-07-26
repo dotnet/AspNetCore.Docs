@@ -2,7 +2,7 @@
 title: Host and deploy ASP.NET Core Blazor WebAssembly
 author: guardrex
 description: Learn how to host and deploy a Blazor app using ASP.NET Core, Content Delivery Networks (CDN), file servers, and GitHub Pages.
-monikerRange: '>= aspnetcore-3.1'
+monikerRange: '>= aspnetcore-5.0 < aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 01/12/2021
@@ -518,10 +518,10 @@ To deploy a Blazor WebAssembly app to CentOS 7 or later:
            AddOutputFilterByType DEFLATE application/octet-stream
            AddOutputFilterByType DEFLATE application/wasm
            <IfModule mod_setenvif.c>
-	       BrowserMatch ^Mozilla/4 gzip-only-text/html
-	       BrowserMatch ^Mozilla/4.0[678] no-gzip
-	       BrowserMatch bMSIE !no-gzip !gzip-only-text/html
-	   </IfModule>
+         BrowserMatch ^Mozilla/4 gzip-only-text/html
+         BrowserMatch ^Mozilla/4.0[678] no-gzip
+         BrowserMatch bMSIE !no-gzip !gzip-only-text/html
+     </IfModule>
        </IfModule>
 
        ErrorLog /var/log/httpd/blazorapp-error.log
@@ -622,21 +622,9 @@ The `--urls` argument sets the IP addresses or host addresses with ports and pro
   --urls=http://127.0.0.1:0
   ```
 
-::: moniker range=">= aspnetcore-5.0"
-
 ## Configure the Trimmer
 
 Blazor performs Intermediate Language (IL) trimming on each Release build to remove unnecessary IL from the output assemblies. For more information, see <xref:blazor/host-and-deploy/configure-trimmer>.
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-## Configure the Linker
-
-Blazor performs Intermediate Language (IL) linking on each Release build to remove unnecessary IL from the output assemblies. For more information, see <xref:blazor/host-and-deploy/configure-linker>.
-
-::: moniker-end
 
 ## Change the filename extension of DLL files
 
@@ -729,11 +717,11 @@ When an app is built, the generated `blazor.boot.json` manifest describes the SH
 
 Common reasons why this fails are:
 
- * The web server's response is an error (for example, a *404 - Not Found* or a *500 - Internal Server Error*) instead of the file the browser requested. This is reported by the browser as an integrity check failure and not as a response failure.
- * Something has changed the contents of the files between the build and delivery of the files to the browser. This might happen:
-   * If you or build tools manually modify the build output.
-   * If some aspect of the deployment process modified the files. For example if you use a Git-based deployment mechanism, bear in mind that Git transparently converts Windows-style line endings to Unix-style line endings if you commit files on Windows and check them out on Linux. Changing file line endings change the SHA-256 hashes. To avoid this problem, consider [using `.gitattributes` to treat build artifacts as `binary` files](https://git-scm.com/book/en/v2/Customizing-Git-Git-Attributes).
-   * The web server modifies the file contents as part of serving them. For example, some content distribution networks (CDNs) automatically attempt to [minify](xref:client-side/bundling-and-minification#minification) HTML, thereby modifying it. You may need to disable such features.
+* The web server's response is an error (for example, a *404 - Not Found* or a *500 - Internal Server Error*) instead of the file the browser requested. This is reported by the browser as an integrity check failure and not as a response failure.
+* Something has changed the contents of the files between the build and delivery of the files to the browser. This might happen:
+  * If you or build tools manually modify the build output.
+  * If some aspect of the deployment process modified the files. For example if you use a Git-based deployment mechanism, bear in mind that Git transparently converts Windows-style line endings to Unix-style line endings if you commit files on Windows and check them out on Linux. Changing file line endings change the SHA-256 hashes. To avoid this problem, consider [using `.gitattributes` to treat build artifacts as `binary` files](https://git-scm.com/book/en/v2/Customizing-Git-Git-Attributes).
+  * The web server modifies the file contents as part of serving them. For example, some content distribution networks (CDNs) automatically attempt to [minify](xref:client-side/bundling-and-minification#minification) HTML, thereby modifying it. You may need to disable such features.
 
 To diagnose which of these applies in your case:
 
@@ -745,8 +733,8 @@ To diagnose which of these applies in your case:
 
 If you confirm that the server is returning plausibly correct data, there must be something else modifying the contents in between build and delivery of the file. To investigate this:
 
- * Examine the build toolchain and deployment mechanism in case they're modifying files after the files are built. An example of this is when Git transforms file line endings, as described earlier.
- * Examine the web server or CDN configuration in case they're set up to modify responses dynamically (for example, trying to minify HTML). It's fine for the web server to implement HTTP compression (for example, returning `content-encoding: br` or `content-encoding: gzip`), since this doesn't affect the result after decompression. However, it's *not* fine for the web server to modify the uncompressed data.
+* Examine the build toolchain and deployment mechanism in case they're modifying files after the files are built. An example of this is when Git transforms file line endings, as described earlier.
+* Examine the web server or CDN configuration in case they're set up to modify responses dynamically (for example, trying to minify HTML). It's fine for the web server to implement HTTP compression (for example, returning `content-encoding: br` or `content-encoding: gzip`), since this doesn't affect the result after decompression. However, it's *not* fine for the web server to modify the uncompressed data.
 
 ### Troubleshoot integrity PowerShell script
 

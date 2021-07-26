@@ -491,15 +491,29 @@
         - name: Host and deploy
           items:
             - name: Overview
-              uid: blazor/host-and-deploy/index
+              href: 3.1/blazor/host-and-deploy/index.md
+            - name: Overview
+              href: 5.0/blazor/host-and-deploy/index.md
+            - name: Overview
+              href: 6.0/blazor/host-and-deploy/index.md
             - name: Blazor WebAssembly
-              uid: blazor/host-and-deploy/webassembly
+              href: 3.1/blazor/host-and-deploy/webassembly.md
+            - name: Blazor WebAssembly
+              href: 5.0/blazor/host-and-deploy/webassembly.md
+            - name: Blazor WebAssembly
+              href: 6.0/blazor/host-and-deploy/webassembly.md
             - name: Blazor Server
-              uid: blazor/host-and-deploy/server
+              href: 3.1/blazor/host-and-deploy/server.md
+            - name: Blazor Server
+              href: 5.0/blazor/host-and-deploy/server.md
+            - name: Blazor Server
+              href: 6.0/blazor/host-and-deploy/server.md
             - name: Configure the Linker
-              uid: blazor/host-and-deploy/configure-linker
+              href: 3.1/blazor/host-and-deploy/configure-linker.md
             - name: Configure the Trimmer
-              uid: blazor/host-and-deploy/configure-trimmer
+              href: 5.0/blazor/host-and-deploy/configure-trimmer.md
+            - name: Configure the Trimmer
+              href: 6.0/blazor/host-and-deploy/configure-trimmer.md
         - name: Blazor Server and EF Core
           uid: blazor/blazor-server-ef-core
         - name: Advanced scenarios
