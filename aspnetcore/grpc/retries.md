@@ -160,25 +160,11 @@ var channel = GrpcChannel.ForAddress("https://localhost:5001", new GrpcChannelOp
 
 The following table describes options for configuring gRPC hedging policies:
 
-::: moniker range=">= aspnetcore-6.0"
-
 | Option | Description |
 | ------ | ----------- |
 | `MaxAttempts` | The hedging policy will send up to this number of calls. `MaxAttempts` represents the total number of all attempts, including the original attempt. This value is limited by `GrpcChannelOptions.MaxRetryAttempts` which defaults to 5. A value is required and must be 2 or greater. |
 | `HedgingDelay` | The first call is sent immediately, subsequent hedging calls are delayed by this value. When the delay is set to zero or `null`, all hedged calls are sent immediately. `HedgingDelay` is optional and defaults to zero. A value must be zero or greater. |
 | `NonFatalStatusCodes` | A collection of status codes which indicate other hedge calls may still succeed. If a non-fatal status code is returned by the server, hedged calls will continue. Otherwise, outstanding requests will be canceled and the error returned to the app. For more information about status codes, see [Status codes and their use in gRPC](https://grpc.github.io/grpc/core/md_doc_statuscodes.html). |
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-6.0"
-
-| Option | Description |
-| ------ | ----------- |
-| `MaxAttempts` | The hedging policy will send up to this number of calls. `MaxAttempts` represents the total number of all attempts, including the original attempt. This value is limited by `GrpcChannelOptions.MaxRetryAttempts` which defaults to 5. A value is required and must be 2 or greater. |
-| `HedgingDelay` | The first call is sent immediately, subsequent hedging calls are delayed by this value. When the delay is set to zero or `null`, all hedged calls are sent immediately. A value must be zero or greater. |
-| `NonFatalStatusCodes` | A collection of status codes which indicate other hedge calls may still succeed. If a non-fatal status code is returned by the server, hedged calls will continue. Otherwise, outstanding requests will be canceled and the error returned to the app. For more information about status codes, see [Status codes and their use in gRPC](https://grpc.github.io/grpc/core/md_doc_statuscodes.html). |
-
-::: moniker-end
 
 ## Additional resources
 
