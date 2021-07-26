@@ -337,7 +337,11 @@
             - name: Dependency injection
               uid: blazor/fundamentals/dependency-injection
             - name: Startup
-              uid: blazor/fundamentals/startup
+              href: 3.1/blazor/fundamentals/startup.md
+            - name: Startup
+              href: 5.0/blazor/fundamentals/startup.md
+            - name: Startup
+              href: 6.0/blazor/fundamentals/startup.md
             - name: Environments
               uid: blazor/fundamentals/environments
             - name: Logging
@@ -347,7 +351,11 @@
             - name: SignalR
               uid: blazor/fundamentals/signalr
             - name: Static files
-              uid: blazor/fundamentals/static-files
+              href: 3.1/blazor/fundamentals/static-files.md
+            - name: Static files
+              href: 5.0/blazor/fundamentals/static-files.md
+            - name: Static files
+              href: 6.0/blazor/fundamentals/static-files.md
         - name: Components
           items:
             - name: Overview
@@ -363,7 +371,11 @@
             - name: Lifecycle
               uid: blazor/components/lifecycle
             - name: Rendering
-              uid: blazor/components/rendering
+              href: 3.1/blazor/components/rendering.md
+            - name: Rendering
+              href: 5.0/blazor/components/rendering.md
+            - name: Rendering
+              href: 6.0/blazor/components/rendering.md
             - name: Component virtualization
               uid: blazor/components/virtualization
             - name: Templated components
@@ -373,7 +385,11 @@
             - name: Prerender and integrate components
               uid: blazor/components/prerendering-and-integration
             - name: Class libraries
-              uid: blazor/components/class-libraries
+              href: 3.1/blazor/components/class-libraries.md
+            - name: Class libraries
+              href: 5.0/blazor/components/class-libraries.md
+            - name: Class libraries
+              href: 6.0/blazor/components/class-libraries.md
         - name: Globalization and localization
           uid: blazor/globalization-localization
         - name: Forms and validation
@@ -431,7 +447,11 @@
         - name: State management
           uid: blazor/state-management
         - name: Debug WebAssembly
-          uid: blazor/debug
+          href: 3.1/blazor/debug.md
+        - name: Debug WebAssembly
+          href: 5.0/blazor/debug.md
+        - name: Debug WebAssembly
+          href: 6.0/blazor/debug.md
         - name: Lazy load assemblies with WebAssembly
           uid: blazor/webassembly-lazy-load-assemblies
         - name: WebAssembly performance
@@ -1450,17 +1470,3 @@
   href: /dotnet/api/?view=aspnetcore-2.2
 - name: Contribute
   href: https://github.com/dotnet/AspNetCore.Docs/blob/main/CONTRIBUTING.md
-- name: Version testing
-  items:
-    - name: Doc 1
-      href: 3.1/blazor/doc1.md
-    - name: Doc 2
-      href: 3.1/blazor/doc2.md
-    - name: Doc 2
-      href: 5.0/blazor/doc2.md
-    - name: Doc 3
-      href: 5.0/blazor/doc3.md
-    - name: Doc 3
-      href: 6.0/blazor/doc3.md
-    - name: Doc 4
-      href: 6.0/blazor/doc4.md
