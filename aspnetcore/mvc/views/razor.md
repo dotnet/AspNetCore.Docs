@@ -50,7 +50,7 @@ HTML attributes and content containing email addresses don't treat the `@` symbo
 
 ```html
 @{
-    string message = "This is an example of using foreignObject with Scalable Vector Graphics (SVG)";
+    string message = "foreignObject example with Scalable Vector Graphics (SVG)";
 }
 
 <svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
