@@ -54,7 +54,8 @@ HTML attributes and content containing email addresses don't treat the `@` symbo
 }
 
 <svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
-    <rect x="0" y="0" rx="10" ry="10" width="200" height="200" stroke="black" fill="none" />
+    <rect x="0" y="0" rx="10" ry="10" width="200" height="200" stroke="black" 
+        fill="none" />
     <foreignObject x="20" y="20" width="160" height="160">
         <p>@message</p>
     </foreignObject>
