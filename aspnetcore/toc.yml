@@ -331,11 +331,23 @@
         - name: Fundamentals
           items:
             - name: Routing
-              uid: blazor/fundamentals/routing
+              href: 3.1/blazor/fundamentals/routing.md
+            - name: Routing
+              href: 5.0/blazor/fundamentals/routing.md
+            - name: Routing
+              href: 6.0/blazor/fundamentals/routing.md
             - name: Configuration
-              uid: blazor/fundamentals/configuration
+              href: 3.1/blazor/fundamentals/configuration.md
+            - name: Configuration
+              href: 5.0/blazor/fundamentals/configuration.md
+            - name: Configuration
+              href: 6.0/blazor/fundamentals/configuration.md
             - name: Dependency injection
-              uid: blazor/fundamentals/dependency-injection
+              href: 3.1/blazor/fundamentals/dependency-injection.md
+            - name: Dependency injection
+              href: 5.0/blazor/fundamentals/dependency-injection.md
+            - name: Dependency injection
+              href: 6.0/blazor/fundamentals/dependency-injection.md
             - name: Startup
               href: 3.1/blazor/fundamentals/startup.md
             - name: Startup
@@ -343,13 +355,29 @@
             - name: Startup
               href: 6.0/blazor/fundamentals/startup.md
             - name: Environments
-              uid: blazor/fundamentals/environments
+              href: 3.1/blazor/fundamentals/environments.md
+            - name: Environments
+              href: 5.0/blazor/fundamentals/environments.md
+            - name: Environments
+              href: 6.0/blazor/fundamentals/environments.md
             - name: Logging
-              uid: blazor/fundamentals/logging
+              href: 3.1/blazor/fundamentals/logging.md
+            - name: Logging
+              href: 5.0/blazor/fundamentals/logging.md
+            - name: Logging
+              href: 6.0/blazor/fundamentals/logging.md
             - name: Handle errors
-              uid: blazor/fundamentals/handle-errors
+              href: 3.1/blazor/fundamentals/handle-errors.md
+            - name: Handle errors
+              href: 5.0/blazor/fundamentals/handle-errors.md
+            - name: Handle errors
+              href: 6.0/blazor/fundamentals/handle-errors.md
             - name: SignalR
-              uid: blazor/fundamentals/signalr
+              href: 3.1/blazor/fundamentals/signalr.md
+            - name: SignalR
+              href: 5.0/blazor/fundamentals/signalr.md
+            - name: SignalR
+              href: 6.0/blazor/fundamentals/signalr.md
             - name: Static files
               href: 3.1/blazor/fundamentals/static-files.md
             - name: Static files
@@ -487,9 +515,9 @@
             - name: CascadingValue
               href: blazor/components/cascading-values-and-parameters.md#cascadingvalue-component
             - name: ErrorBoundary
-              href: blazor/fundamentals/handle-errors.md#error-boundaries
+              href: 6.0/blazor/fundamentals/handle-errors.md#error-boundaries
             - name: FocusOnNavigate
-              href: blazor/fundamentals/routing.md#focus-an-element-on-navigation
+              href: 6.0/blazor/fundamentals/routing.md#focus-an-element-on-navigation
             - name: InputCheckbox
               href: blazor/forms-validation.md#built-in-form-components
             - name: InputDate
@@ -513,11 +541,23 @@
             - name: MainLayout
               href: blazor/components/layouts.md#mainlayout-component
             - name: NavLink
-              href: blazor/fundamentals/routing.md#navlink-and-navmenu-components
+              href: 3.1/blazor/fundamentals/routing.md#navlink-and-navmenu-components
+            - name: NavLink
+              href: 5.0/blazor/fundamentals/routing.md#navlink-and-navmenu-components
+            - name: NavLink
+              href: 6.0/blazor/fundamentals/routing.md#navlink-and-navmenu-components
             - name: NavMenu
-              href: blazor/fundamentals/routing.md#navlink-and-navmenu-components
+              href: 3.1/blazor/fundamentals/routing.md#navlink-and-navmenu-components
+            - name: NavMenu
+              href: 5.0/blazor/fundamentals/routing.md#navlink-and-navmenu-components
+            - name: NavMenu
+              href: 6.0/blazor/fundamentals/routing.md#navlink-and-navmenu-components
             - name: Router
-              href: blazor/fundamentals/routing.md#route-templates
+              href: 3.1/blazor/fundamentals/routing.md#route-templates
+            - name: Router
+              href: 5.0/blazor/fundamentals/routing.md#route-templates
+            - name: Router
+              href: 6.0/blazor/fundamentals/routing.md#route-templates
             - name: Virtualize
               uid: blazor/components/virtualization
     - name: Client-side development

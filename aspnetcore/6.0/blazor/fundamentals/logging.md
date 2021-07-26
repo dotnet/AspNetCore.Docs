@@ -2,7 +2,7 @@
 title: ASP.NET Core Blazor logging
 author: guardrex
 description: Learn about logging in Blazor apps, including log level configuration and how to write log messages from Razor components.
-monikerRange: '>= aspnetcore-3.1'
+monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 12/16/2020
@@ -80,33 +80,13 @@ The following example demonstrates logging with an <xref:Microsoft.Extensions.Lo
 
 `Pages/Counter.razor`:
 
-::: moniker range=">= aspnetcore-5.0"
-
 [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/logging/Counter1.razor?highlight=3,16)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/logging/Counter1.razor?highlight=3,16)]
-
-::: moniker-end
 
 The following example demonstrates logging with an <xref:Microsoft.Extensions.Logging.ILoggerFactory> in components.
 
 `Pages/Counter.razor`:
 
-::: moniker range=">= aspnetcore-5.0"
-
 [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/logging/Counter2.razor?highlight=3,16-17)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/logging/Counter2.razor?highlight=3,16-17)]
-
-::: moniker-end
 
 ## Additional resources
 

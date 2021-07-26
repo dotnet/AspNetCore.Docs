@@ -2,7 +2,7 @@
 title: ASP.NET Core Blazor SignalR guidance
 author: guardrex
 description: Learn how to configure and manage Blazor SignalR connections.
-monikerRange: '>= aspnetcore-3.1'
+monikerRange: '>= aspnetcore-3.1 < aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 03/12/2021
@@ -61,17 +61,6 @@ To configure SignalR's underlying client to send credentials, such as cookies or
   The preceding example configures the hub connection URL to the absolute URI address at `/chathub`, which is the URL used in the [SignalR with Blazor tutorial](xref:tutorials/signalr-blazor) in the `Index` component (`Pages/Index.razor`). The URI can also be set via a string, for example `https://signalr.example.com`, or via [configuration](xref:blazor/fundamentals/configuration).
 
 For more information, see <xref:signalr/configuration#configure-additional-options>.
-
-::: moniker range=">= aspnetcore-5.0"
-
-## Render mode
-
-If a Blazor WebAssembly app that uses SignalR is configured to prerender on the server, prerendering occurs before the client connection to the server is established. For more information, see the following articles:
-
-* <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>
-* <xref:blazor/components/prerendering-and-integration>
-
-::: moniker-end
 
 ## Additional resources
 
@@ -302,49 +291,13 @@ The placeholder `{ELEMENT ID}` is the ID of the HTML element to display.
 
 For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
 
-::: moniker range=">= aspnetcore-5.0"
-
-Customize the delay before the reconnection display appears by setting the `transition-delay` property in the site's CSS for the modal element. The following example sets the transition delay from 500 ms (default) to 1,000 ms (1 second).
-
-`wwwroot/css/site.css`:
-
-```css
-#components-reconnect-modal {
-    transition: visibility 0s linear 1000ms;
-}
-```
-
-## Disconnect the Blazor circuit from the client
-
-By default, a Blazor circuit is disconnected when the [`unload` page event](https://developer.mozilla.org/docs/Web/API/Window/unload_event) is triggered. To disconnect the circuit for other scenarios on the client, invoke `Blazor.disconnect` in the appropriate event handler. In the following example, the circuit is disconnected when the page is hidden ([`pagehide` event](https://developer.mozilla.org/docs/Web/API/Window/pagehide_event)):
-
-```javascript
-window.addEventListener('pagehide', () => {
-  Blazor.disconnect();
-});
-```
-
-For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
-
-::: moniker-end
-
 ## Blazor Server circuit handler
 
 Blazor Server allows code to define a *circuit handler*, which allows running code on changes to the state of a user's circuit. A circuit handler is implemented by deriving from <xref:Microsoft.AspNetCore.Components.Server.Circuits.CircuitHandler> and registering the class in the app's service container. The following example of a circuit handler tracks open SignalR connections.
 
 `TrackingCircuitHandler.cs`:
 
-::: moniker range=">= aspnetcore-5.0"
-
-[!code-csharp[](~/blazor/common/samples/5.x/BlazorSample_Server/TrackingCircuitHandler.cs)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
 [!code-csharp[](~/blazor/common/samples/3.x/BlazorSample_Server/TrackingCircuitHandler.cs)]
-
-::: moniker-end
 
 Circuit handlers are registered using DI. Scoped instances are created per instance of a circuit. Using the `TrackingCircuitHandler` in the preceding example, a singleton service is created because the state of all circuits must be tracked.
 
