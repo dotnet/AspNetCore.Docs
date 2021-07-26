@@ -2,7 +2,7 @@
 title: Handle errors in ASP.NET Core Blazor apps
 author: guardrex
 description: Discover how ASP.NET Core Blazor how Blazor manages unhandled exceptions and how to develop apps that detect and handle errors.
-monikerRange: '>= aspnetcore-3.1'
+monikerRange: '>= aspnetcore-5.0 < aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/25/2021
@@ -46,9 +46,7 @@ In production, don't render framework exception messages or stack traces in the 
 * Disclose sensitive information to end users.
 * Help a malicious user discover weaknesses in an app that can compromise the security of the app, server, or network.
 
-[!INCLUDE[](~/blazor/includes/handle-errors/global-exception-handling.md)]
-
-[!INCLUDE[](~/blazor/includes/handle-errors/error-boundaries.md)]
+[!INCLUDE[](includes/handle-errors/global-exception-handling.md)]
 
 ## Log errors with a persistent provider
 
@@ -97,17 +95,7 @@ In the following example where <xref:Microsoft.AspNetCore.Components.ComponentBa
   * `loadFailed` is set to `true`, which is used to display an error message to the user.
   * The error is logged.
 
-::: moniker range=">= aspnetcore-5.0"
-
 [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/handle-errors/ProductDetails.razor?highlight=11,27-39)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/handle-errors/ProductDetails.razor?highlight=11,27-39)]
-
-::: moniker-end
 
 <h3 id="rendering-logic-webassembly">Rendering logic</h3>
 
@@ -129,8 +117,6 @@ To prevent a <xref:System.NullReferenceException> in rendering logic, check for 
 
 The preceding code assumes that `person` isn't `null`. Often, the structure of the code guarantees that an object exists at the time the component is rendered. In those cases, it isn't necessary to check for `null` in rendering logic. In the prior example, `person` might be guaranteed to exist because `person` is created when the component is instantiated, as the following example shows:
 
-::: moniker range=">= aspnetcore-5.0"
-
 ```razor
 @code {
     private Person person = new();
@@ -138,20 +124,6 @@ The preceding code assumes that `person` isn't `null`. Often, the structure of t
     ...
 }
 ```
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-```razor
-@code {
-    private Person person = new Person();
-
-    ...
-}
-```
-
-::: moniker-end
 
 <h3 id="event-handlers-webassembly">Event handlers</h3>
 
@@ -328,11 +300,9 @@ In production, don't render framework exception messages or stack traces in the 
 * Disclose sensitive information to end users.
 * Help a malicious user discover weaknesses in an app that can compromise the security of the app, server, or network.
 
-[!INCLUDE[](~/blazor/includes/handle-errors/global-exception-handling.md)]
+[!INCLUDE[](includes/handle-errors/global-exception-handling.md)]
 
 Because the approaches in this section handle errors with a [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statement, the SignalR connection between the client and server isn't broken when an error occurs and the circuit remains alive. Any unhandled exception is fatal to a circuit. For more information, see the preceding section on [how a Blazor Server app reacts to unhandled exceptions](#how-a-blazor-server-app-reacts-to-unhandled-exceptions).
-
-[!INCLUDE[](~/blazor/includes/handle-errors/error-boundaries.md)]
 
 ## Log errors with a persistent provider
 
@@ -381,17 +351,7 @@ In the following example where <xref:Microsoft.AspNetCore.Components.ComponentBa
   * `loadFailed` is set to `true`, which is used to display an error message to the user.
   * The error is logged.
 
-::: moniker range=">= aspnetcore-5.0"
-
 [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_Server/Pages/handle-errors/ProductDetails.razor?highlight=11,27-39)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_Server/Pages/handle-errors/ProductDetails.razor?highlight=11,27-39)]
-
-::: moniker-end
 
 <h3 id="rendering-logic-server">Rendering logic</h3>
 
@@ -413,8 +373,6 @@ To prevent a <xref:System.NullReferenceException> in rendering logic, check for 
 
 The preceding code assumes that `person` isn't `null`. Often, the structure of the code guarantees that an object exists at the time the component is rendered. In those cases, it isn't necessary to check for `null` in rendering logic. In the prior example, `person` might be guaranteed to exist because `person` is created when the component is instantiated, as the following example shows:
 
-::: moniker range=">= aspnetcore-5.0"
-
 ```razor
 @code {
     private Person person = new();
@@ -422,20 +380,6 @@ The preceding code assumes that `person` isn't `null`. Often, the structure of t
     ...
 }
 ```
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-```razor
-@code {
-    private Person person = new Person();
-
-    ...
-}
-```
-
-::: moniker-end
 
 <h3 id="event-handlers-server">Event handlers</h3>
 
