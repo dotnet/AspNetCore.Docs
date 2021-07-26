@@ -54,7 +54,7 @@ In the `App` component, set custom content in the <xref:Microsoft.AspNetCore.Com
 
 [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/routing/App2.razor?highlight=5-8)]
 
-[!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
+[!INCLUDE[](../includes/fundamentals/routing/prefer-exact-matches.md)]
 
 Arbitrary items are supported as content of the `<NotFound>` tags, such as other interactive components. To apply a default layout to <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound> content, see <xref:blazor/components/layouts#apply-a-layout-to-arbitrary-content-layoutview-component>.
 
@@ -72,7 +72,7 @@ Use the <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblie
 </Router>
 ```
 
-[!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
+[!INCLUDE[](../includes/fundamentals/routing/prefer-exact-matches.md)]
 
 ## Route parameters
 
@@ -300,7 +300,7 @@ In the `App` component (`App.razor`):
 }
 ```
 
-[!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
+[!INCLUDE[](../includes/fundamentals/routing/prefer-exact-matches.md)]
 
 For an example that uses <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync>, see <xref:blazor/webassembly-lazy-load-assemblies>.
 
@@ -356,7 +356,7 @@ In the following `App` component example:
 }
 ```
 
-[!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
+[!INCLUDE[](../includes/fundamentals/routing/prefer-exact-matches.md)]
 
 > [!NOTE]
 > Not throwing if the cancellation token in <xref:Microsoft.AspNetCore.Components.Routing.NavigationContext> is canceled can result in unintended behavior, such as rendering a component from a previous navigation.

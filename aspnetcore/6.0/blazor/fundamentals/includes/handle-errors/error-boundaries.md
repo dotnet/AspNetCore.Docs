@@ -1,8 +1,6 @@
 ---
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 ---
-::: moniker range=">= aspnetcore-6.0"
-
 ## Error boundaries
 
 Error boundaries provide a convenient approach for handling exceptions. The `ErrorBoundary` component:
@@ -82,5 +80,3 @@ Because the error boundary is defined in the layout in the preceding examples, t
     }
 }
 ```
-
-::: moniker-end
