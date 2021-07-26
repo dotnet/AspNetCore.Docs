@@ -1,0 +1,4 @@
+!*.min.css
+!*.min.js
+!*.map
+!debug
