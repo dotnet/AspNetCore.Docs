@@ -65,11 +65,11 @@ In this tutorial, you'll learn how to configure an ASP.NET Core app for authenti
 
     :::code language="razor" source="azure-ad-b2c/sample/Pages/Shared/_LoginPartial.cshtml":::    
 
-    In the preceding code:
+    The preceding code:
 
-    - The partial view checks if the user is authenticated.
+    - Checks if the user is authenticated.
     - Renders a **Sign out** or **Sign in** link as appropriate.
-    - The link points to an action method on the `Account` controller in the `MicrosoftIdentity` area.
+        - The link points to an action method on the `Account` controller in the `MicrosoftIdentity` area.
 
 1. In *Views/Shared/_Layout.cshtml*, add the highlighted line within the `<header>` element:
 
@@ -115,7 +115,7 @@ In this tutorial, you'll learn how to configure an ASP.NET Core app for authenti
     - The header includes a **Sign in** link because you're not authenticated.
 
 1. Select the **Privacy** link.
-    - The browser is redirected to the to your tenant's configured authentication method.
+    - The browser is redirected to your tenant's configured authentication method.
     - After signing in, the header displays a welcome message and a **Sign out** link.
 
 ## Next steps
