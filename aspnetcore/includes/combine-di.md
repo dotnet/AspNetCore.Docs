@@ -18,4 +18,4 @@ The remaining services are registered in a similar class. The following `Configu
 **_Note:_** Each `services.Add{GROUP_NAME}` extension method adds and potentially configures services. For example, <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllersWithViews%2A> adds the services MVC controllers with views require, and <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddRazorPages%2A> adds the services Razor Pages requires. We recommended that apps follow the naming convention of creating extension methods in the <xref:Microsoft.Extensions.DependencyInjection?displayProperty=fullName> namespace. Creating extension methods in the `<xref:`Microsoft.Extensions.DependencyInjection` namespace:
 
 * Encapsulates groups of service registrations.
-* Provides convenient intellisense access to the service.
+* Provides convenient [IntelliSense](/visualstudio/ide/using-intellisense) access to the service.
