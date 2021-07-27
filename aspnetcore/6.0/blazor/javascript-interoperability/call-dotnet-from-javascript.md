@@ -2,7 +2,7 @@
 title: Call .NET methods from JavaScript functions in ASP.NET Core Blazor
 author: guardrex
 description: Learn how to invoke .NET methods from JavaScript functions in Blazor apps.
-monikerRange: '>= aspnetcore-3.1'
+monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc, devx-track-js 
 ms.date: 05/25/2021
@@ -54,17 +54,7 @@ In the following `CallDotNetExample1` component, the `ReturnArrayAsync` C# metho
 
 `Pages/CallDotNetExample1.razor`:
 
-::: moniker range=">= aspnetcore-5.0"
-
 [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample1.razor?highlight=12-16)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample1.razor?highlight=12-16)]
-
-::: moniker-end
 
 The `<button>` element's `onclick` HTML attribute is JavaScript's [`onclick`](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers/onclick) event handler assignment for processing [`click`](https://developer.mozilla.org/docs/Web/API/Element/click_event) events, not Blazor's `@onclick` directive attribute. The `returnArrayAsync` JS function is assigned as the handler.
 
@@ -149,17 +139,7 @@ For the following `CallDotNetExample2` component:
 
 `Pages/CallDotNetExample2.razor`:
 
-::: moniker range=">= aspnetcore-5.0"
-
 [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample2.razor?highlight=30-31,34-35)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample2.razor?highlight=30-31,34-35)]
-
-::: moniker-end
 
 To pass arguments to an instance method:
 
@@ -177,17 +157,7 @@ To pass arguments to an instance method:
 
    `Pages/CallDotNetExample3.razor`:
 
-   ::: moniker range=">= aspnetcore-5.0"
-
    [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample3.razor?highlight=31,35)]
-
-   ::: moniker-end
-
-   ::: moniker range="< aspnetcore-5.0"
-
-   [!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample3.razor?highlight=31,35)]
-
-   ::: moniker-end
 
 ### Class instance examples
 
@@ -210,33 +180,13 @@ The following `HelloHelper` class has a JS-invokable .NET method named `GetHello
 
 `HelloHelper.cs`:
 
-::: moniker range=">= aspnetcore-5.0"
-
 [!code-csharp[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/HelloHelper.cs?highlight=5,12-13)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-[!code-csharp[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/HelloHelper.cs?highlight=5,12-13)]
-
-::: moniker-end
 
 The `CallHelloHelperGetHelloMessage` method in the following `JsInteropClasses3` class invokes the JS function `sayHello1` with a new instance of `HelloHelper`.
 
 `JsInteropClasses3.cs`:
 
-::: moniker range=">= aspnetcore-5.0"
-
 [!code-csharp[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/JsInteropClasses3.cs?highlight=15-20)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-[!code-csharp[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/JsInteropClasses3.cs?highlight=15-20)]
-
-::: moniker-end
 
 To avoid a memory leak and allow garbage collection, the .NET object reference created by <xref:Microsoft.JSInterop.DotNetObjectReference> is disposed in the `Dispose` method.
 
@@ -244,17 +194,7 @@ When the **`Trigger .NET instance method`** button is selected in the following 
 
 `Pages/CallDotNetExample4.razor`:
 
-::: moniker range=">= aspnetcore-5.0"
-
 [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample4.razor?highlight=28-32)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample4.razor?highlight=28-32)]
-
-::: moniker-end
 
 The following image shows the rendered component with the name `Amy Pond` in the `Name` field. After the button is selected, `Hello, Amy Pond!` is displayed in the UI:
 
@@ -264,17 +204,7 @@ The preceding pattern shown in the `JsInteropClasses3` class can also be impleme
 
 `Pages/CallDotNetExample5.razor`:
 
-::: moniker range=">= aspnetcore-5.0"
-
 [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample5.razor)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample5.razor)]
-
-::: moniker-end
 
 To avoid a memory leak and allow garbage collection, the .NET object reference created by <xref:Microsoft.JSInterop.DotNetObjectReference> is disposed in the `Dispose` method.
 
@@ -311,17 +241,7 @@ The following `MessageUpdateInvokeHelper` class maintains a JS-invokable .NET me
 
 `MessageUpdateInvokeHelper.cs`:
 
-::: moniker range=">= aspnetcore-5.0"
-
 [!code-csharp[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/MessageUpdateInvokeHelper.cs?highlight=8,13-17)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-[!code-csharp[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/MessageUpdateInvokeHelper.cs?highlight=8,13-17)]
-
-::: moniker-end
 
 The following `updateMessageCaller` JS function invokes the `UpdateMessageCaller` .NET method. `BlazorSample` is the app's assembly name.
 
@@ -342,17 +262,7 @@ When a `ListItem` component's **`InteropCall`** button is selected, `updateMessa
 
 `Shared/ListItem.razor`:
 
-::: moniker range=">= aspnetcore-5.0"
-
 [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Shared/call-dotnet-from-js/ListItem.razor?highlight=1,5,11,15,18-22,24)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Shared/call-dotnet-from-js/ListItem.razor?highlight=1,5,11,15,18-22,24)]
-
-::: moniker-end
 
 [`StateHasChanged`](xref:blazor/components/lifecycle#state-changes-statehaschanged) is called to update the UI when `message` is set in `UpdateMessage`. If `StateHasChanged` isn't called, Blazor has no way of knowing that the UI should be updated when the <xref:System.Action> is invoked.
 
@@ -360,17 +270,7 @@ The following `CallDotNetExample6` parent component includes four list items, ea
 
 `Pages/CallDotNetExample6.razor`:
 
-::: moniker range=">= aspnetcore-5.0"
-
 [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample6.razor?highlight=6-9)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample6.razor?highlight=6-9)]
-
-::: moniker-end
 
 The following image shows the rendered `CallDotNetExample6` parent component after the second **`InteropCall`** button is selected:
 
@@ -388,11 +288,7 @@ Load JavaScript (JS) code using any of approaches described by the [JS interop o
 * [Load a script from an external JS file (`.js`)](xref:blazor/js-interop/index#load-a-script-from-an-external-js-file-js)
 * [Inject a script after Blazor starts](xref:blazor/js-interop/index#inject-a-script-after-blazor-starts)
 
-::: moniker range=">= aspnetcore-5.0"
-
 For information on isolating scripts in [JS modules](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules), see the [JavaScript isolation in JavaScript modules](#javascript-isolation-in-javascript-modules) section.
-
-::: moniker-end
 
 > [!WARNING]
 > Don't place a `<script>` tag in a component file (`.razor`) because the `<script>` tag can't be updated dynamically.
@@ -403,8 +299,6 @@ Objects that contain circular references can't be serialized on the client for e
 
 * .NET method calls.
 * JavaScript method calls from C# when the return type has circular references.
-
-::: moniker range=">= aspnetcore-6.0"
 
 ## Byte array support
 
@@ -457,13 +351,9 @@ Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or
 
 For information on using a byte array when calling JavaScript from .NET, see <xref:blazor/js-interop/call-javascript-from-dotnet#byte-array-support>.
 
-::: moniker-end
-
 ## Size limits on JavaScript interop calls
 
-[!INCLUDE[](~/blazor/includes/js-interop/size-limits.md)]
-
-::: moniker range=">= aspnetcore-5.0"
+[!INCLUDE[](../includes/js-interop/size-limits.md)]
 
 ## JavaScript isolation in JavaScript modules
 
@@ -475,8 +365,6 @@ JS isolation provides the following benefits:
 * Consumers of a library and components aren't required to import the related JS.
 
 For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet#javascript-isolation-in-javascript-modules>.
-
-::: moniker-end
 
 ## Additional resources
 

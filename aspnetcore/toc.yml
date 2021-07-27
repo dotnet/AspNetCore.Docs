@@ -427,11 +427,23 @@
         - name: JavaScript interop
           items:
             - name: Overview
-              uid: blazor/js-interop/index
+              href: 3.1/blazor/js-interop/index.md
+            - name: Overview
+              href: 5.0/blazor/js-interop/index.md
+            - name: Overview
+              href: 6.0/blazor/js-interop/index.md
             - name: Call JavaScript from .NET
-              uid: blazor/js-interop/call-javascript-from-dotnet
+              href: 3.1/blazor/js-interop/call-javascript-from-dotnet.md
+            - name: Call JavaScript from .NET
+              href: 5.0/blazor/js-interop/call-javascript-from-dotnet.md
+            - name: Call JavaScript from .NET
+              href: 6.0/blazor/js-interop/call-javascript-from-dotnet.md
             - name: Call .NET from JavaScript
-              uid: blazor/js-interop/call-dotnet-from-javascript
+              href: 3.1/blazor/js-interop/call-dotnet-from-javascript.md
+            - name: Call .NET from JavaScript
+              href: 5.0/blazor/js-interop/call-dotnet-from-javascript.md
+            - name: Call .NET from JavaScript
+              href: 6.0/blazor/js-interop/call-dotnet-from-javascript.md
         - name: Call a web API
           uid: blazor/call-web-api
         - name: Security and Identity
