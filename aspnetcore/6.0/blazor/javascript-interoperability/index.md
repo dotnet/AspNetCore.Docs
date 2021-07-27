@@ -2,7 +2,7 @@
 title: Blazor JavaScript interoperability (JS interop)
 author: guardrex
 description: Learn how to interact with JavaScript in Blazor apps.
-monikerRange: '>= aspnetcore-3.1'
+monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc, devx-track-js 
 ms.date: 05/12/2021
@@ -40,19 +40,8 @@ Load JavaScript (JS) code using any of the following approaches:
 > [!WARNING]
 > Don't place a `<script>` tag in a Razor component file (`.razor`) because the `<script>` tag can't be updated dynamically by Blazor.
 
-::: moniker range=">= aspnetcore-5.0"
-
 > [!NOTE]
 > Documentation examples usually place scripts in a `<script>` tag or load global scripts from external files. These approaches pollute the client with global functions. For production apps, we recommend placing JavaScript into separate [JavaScript modules](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules) that can be imported when needed. For more information, see the [JavaScript isolation in JavaScript modules](#javascript-isolation-in-javascript-modules) section.
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-> [!NOTE]
-> Documentation examples place scripts into a `<script>` tag or load global scripts from external files. These approaches pollute the client with global functions. Placing JavaScript into separate [JavaScript modules](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules) that can be imported when needed is **not** supported in Blazor earlier than ASP.NET Core 5.0. If the app requires the use of JS modules for JS isolation, we recommend using ASP.NET Core 5.0 or later to build the app. For more information, use the **Version** dropdown list to select a 5.0 or later version of this article and see the *JavaScript isolation in JavaScript modules* section.
-
-::: moniker-end
 
 ### Load a script in `<head>` markup
 
@@ -174,8 +163,6 @@ The `{webassembly|server}` placeholder in the preceding markup is either `webass
 
 For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
 
-::: moniker range=">= aspnetcore-5.0"
-
 ## JavaScript isolation in JavaScript modules
 
 Blazor enables JavaScript (JS) isolation in standard [JavaScript modules](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules) ([ECMAScript specification](https://tc39.es/ecma262/#sec-modules)).
@@ -186,5 +173,3 @@ JS isolation provides the following benefits:
 * Consumers of a library and components aren't required to import the related JS.
 
 For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet#javascript-isolation-in-javascript-modules>.
-
-::: moniker-end

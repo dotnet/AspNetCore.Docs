@@ -2,7 +2,7 @@
 title: Call JavaScript functions from .NET methods in ASP.NET Core Blazor
 author: guardrex
 description: Learn how to invoke JavaScript functions from .NET methods in Blazor apps.
-monikerRange: '>= aspnetcore-3.1'
+monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc, devx-track-js
 ms.date: 05/12/2021
@@ -53,17 +53,7 @@ The following `CallJsExample1` component:
 
 `Pages/CallJsExample1.razor`:
 
-::: moniker range=">= aspnetcore-5.0"
-
 [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample1.razor?highlight=2,34)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample1.razor?highlight=2,34)]
-
-::: moniker-end
 
 ## Invoke JavaScript functions without reading a returned value (`InvokeVoidAsync`)
 
@@ -88,49 +78,19 @@ Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or
 
 `Pages/CallJsExample2.razor`:
 
-::: moniker range=">= aspnetcore-5.0"
-
 [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample2.razor?highlight=2,25)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample2.razor?highlight=2,25)]
-
-::: moniker-end
 
 ### Class (`.cs`) example (`InvokeVoidAsync`)
 
 `JsInteropClasses1.cs`:
 
-::: moniker range=">= aspnetcore-5.0"
-
 [!code-csharp[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/JsInteropClasses1.cs?highlight=2,6,10,15)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-[!code-csharp[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/JsInteropClasses1.cs?highlight=2,6,10,15)]
-
-::: moniker-end
 
 `TickerChanged` calls the `handleTickerChanged1` method in the following `CallJsExample3` component.
 
 `Pages/CallJsExample3.razor`:
 
-::: moniker range=">= aspnetcore-5.0"
-
 [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample3.razor?highlight=2-3,20,24,32,35)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample3.razor?highlight=2-3,20,24,32,35)]
-
-::: moniker-end
 
 ## Invoke JavaScript functions and read a returned value (`InvokeAsync`)
 
@@ -157,49 +117,19 @@ Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or
 
 `Pages/CallJsExample4.razor`:
 
-::: moniker range=">= aspnetcore-5.0"
-
 [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample4.razor?highlight=2,31-34)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample4.razor?highlight=2,31-34)]
-
-::: moniker-end
 
 ### Class (`.cs`) example (`InvokeAsync`)
 
 `JsInteropClasses2.cs`:
 
-::: moniker range=">= aspnetcore-5.0"
-
 [!code-csharp[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/JsInteropClasses2.cs?highlight=2,6,10,15)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-[!code-csharp[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/JsInteropClasses2.cs?highlight=2,6,10,15)]
-
-::: moniker-end
 
 `TickerChanged` calls the `handleTickerChanged2` method and displays the returned string in the following `CallJsExample5` component.
 
 `Pages/CallJsExample5.razor`:
 
-::: moniker range=">= aspnetcore-5.0"
-
 [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample5.razor?highlight=2-3,25,30,38-40,43)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample5.razor?highlight=2-3,25,30,38-40,43)]
-
-::: moniker-end
 
 ## Dynamic content generation scenarios
 
@@ -212,7 +142,7 @@ IJSRuntime JS { get; set; }
 
 ## Detect when a Blazor Server app is prerendering
 
-[!INCLUDE[](~/blazor/includes/prerendering.md)]
+[!INCLUDE[](../includes/prerendering.md)]
 
 ## Location of JavaScipt
 
@@ -223,16 +153,10 @@ Load JavaScript (JS) code using any of approaches described by the [JavaScript (
 * [Load a script from an external JS file (`.js`)](xref:blazor/js-interop/index#load-a-script-from-an-external-js-file-js)
 * [Inject a script after Blazor starts](xref:blazor/js-interop/index#inject-a-script-after-blazor-starts)
 
-::: moniker range=">= aspnetcore-5.0"
-
 For information on isolating scripts in [JS modules](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules), see the [JavaScript isolation in JavaScript modules](#javascript-isolation-in-javascript-modules) section.
-
-::: moniker-end
 
 > [!WARNING]
 > Don't place a `<script>` tag in a component file (`.razor`) because the `<script>` tag can't be updated dynamically.
-
-::: moniker range=">= aspnetcore-5.0"
 
 ## JavaScript isolation in JavaScript modules
 
@@ -285,8 +209,6 @@ Dynamically importing a module requires a network request, so it can only be ach
 > ```
 >
 > For more information, see <xref:blazor/components/class-libraries>.
-
-::: moniker-end
 
 ## Capture references to elements
 
@@ -464,61 +386,21 @@ Add the following script inside closing `</body>` tag of `wwwroot/index.html` (B
 
 `Pages/CallJsExample7.razor` (parent component):
 
-::: moniker range=">= aspnetcore-5.0"
-
 [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/CallJsExample7.razor?highlight=5,9)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/CallJsExample7.razor?highlight=5,9)]
-
-::: moniker-end
 
 `Pages/CallJsExample7.razor.cs`:
 
-::: moniker range=">= aspnetcore-5.0"
-
 [!code-csharp[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/CallJsExample7.razor.cs)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-[!code-csharp[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/CallJsExample7.razor.cs)]
-
-::: moniker-end
 
 In the preceding example, the namespace of the app is `BlazorSample` with components in the `Pages` folder. If testing the code locally, update the namespace.
 
 `Shared/SurveyPrompt.razor` (child component):
 
-::: moniker range=">= aspnetcore-5.0"
-
 [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Shared/SurveyPrompt.razor?highlight=1)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Shared/SurveyPrompt.razor?highlight=1)]
-
-::: moniker-end
 
 `Shared/SurveyPrompt.razor.cs`:
 
-::: moniker range=">= aspnetcore-5.0"
-
 [!code-csharp[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Shared/SurveyPrompt.razor.cs)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-[!code-csharp[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Shared/SurveyPrompt.razor.cs)]
-
-::: moniker-end
 
 In the preceding example, the namespace of the app is `BlazorSample` with shared components in the `Shared` folder. If testing the code locally, update the namespace.
 
@@ -558,8 +440,6 @@ Objects that contain circular references can't be serialized on the client for e
 
 * .NET method calls.
 * JavaScript method calls from C# when the return type has circular references.
-
-::: moniker range=">= aspnetcore-5.0"
 
 ## JavaScript libraries that render UI
 
@@ -641,10 +521,6 @@ In the preceding example:
 * When using this approach, bear in mind the rules about how Blazor retains or destroys DOM elements. The component safely handles button click events and updates the existing map instance because DOM elements are retained where possible by default. If you were rendering a list of map elements from inside a `@foreach` loop, you want to use `@key` to ensure the preservation of component instances. Otherwise, changes in the list data could cause component instances to retain the state of previous instances in an undesirable manner. For more information, see [using @key to preserve elements and components](xref:blazor/components/index#use-key-to-control-the-preservation-of-elements-and-components).
 * The example encapsulates JS logic and dependencies within an ES6 module and loads the module dynamically using the `import` identifier. For more information, see [JavaScript isolation in JavaScript modules](#javascript-isolation-in-javascript-modules).
 
-::: moniker-end
-
-::: moniker range=">= aspnetcore-6.0"
-
 ## Byte array support
 
 Blazor supports optimized byte array JS interop that avoids encoding/decoding byte arrays into Base64. The following example uses JS interop to pass a byte array to Javascript.
@@ -700,13 +576,9 @@ Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or
 
 For information on using a byte array when calling .NET from JavaScript, see <xref:blazor/js-interop/call-dotnet-from-javascript#byte-array-support>.
 
-::: moniker-end
-
 ## Size limits on JavaScript interop calls
 
-[!INCLUDE[](~/blazor/includes/js-interop/size-limits.md)]
-
-::: moniker range=">= aspnetcore-5.0"
+[!INCLUDE[](../includes/js-interop/size-limits.md)]
 
 ## Unmarshalled JavaScript interop
 
@@ -781,8 +653,6 @@ Other data types, such as string arrays, can be converted but require creating a
 > [!WARNING]
 > JS functions provided by the Blazor framework, such as `js_typed_array_to_array`, `mono_obj_array_new`, and `mono_obj_array_set`, are subject to name changes, behavioral changes, or removal in future releases of .NET.
 
-::: moniker-end
-
 ## Catch JavaScript exceptions
 
 To catch JS exceptions, wrap the JS interop in a [`try`-`catch` block](/dotnet/csharp/fundamentals/exceptions/exception-handling) and catch a <xref:Microsoft.JSInterop.JSException>.
@@ -793,17 +663,7 @@ In the following example, the `nonFunction` JS function doesn't exist. When the 
 
 `Pages/CallJsExample11.razor`:
 
-::: moniker range=">= aspnetcore-5.0"
-
 [!code-csharp[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample11.razor?highlight=28)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-[!code-csharp[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample11.razor?highlight=28)]
-
-::: moniker-end
 
 ## Additional resources
 
