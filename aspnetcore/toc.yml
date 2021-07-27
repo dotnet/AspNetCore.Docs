@@ -413,11 +413,11 @@
             - name: Prerender and integrate components
               uid: blazor/components/prerendering-and-integration
             - name: Class libraries
-              href: 3.1/blazor/components/class-libraries.md
+              href: 3.1/blazor/components/class-libraries.md?view=aspnetcore-3.1
             - name: Class libraries
-              href: 5.0/blazor/components/class-libraries.md
+              href: 5.0/blazor/components/class-libraries.md?view=aspnetcore-5.0
             - name: Class libraries
-              href: 6.0/blazor/components/class-libraries.md
+              href: 6.0/blazor/components/class-libraries.md?view=aspnetcore-6.0
         - name: Globalization and localization
           uid: blazor/globalization-localization
         - name: Forms and validation
