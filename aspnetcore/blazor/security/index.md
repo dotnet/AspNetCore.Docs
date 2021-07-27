@@ -116,14 +116,14 @@ For more information on dependency injection (DI) and services, see <xref:blazor
 
 ## Implement a custom AuthenticationStateProvider
 
-If the app requires a custom provider, implement <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> and override `GetAuthenticationStateAsync`:
+If the app requires a custom provider, implement <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> and override `GetAuthenticationStateAsync` and don't forget to implement the `IAccessTokenProvider` as it is required by the `AddRemoteAuthentication` method in [`WebAssemblyAuthenticationServiceCollectionExtensions`](https://github.com/dotnet/aspnetcore/blob/8b30d862de6c9146f466061d51aa3f1414ee2337/src/Components/WebAssembly/WebAssembly.Authentication/src/WebAssemblyAuthenticationServiceCollectionExtensions.cs#L49) :
 
 ```csharp
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components.Authorization;
 
-public class CustomAuthStateProvider : AuthenticationStateProvider
+public class CustomAuthStateProvider : AuthenticationStateProvider, IAccessTokenProvider
 {
     public override Task<AuthenticationState> GetAuthenticationStateAsync()
     {
@@ -136,6 +136,16 @@ public class CustomAuthStateProvider : AuthenticationStateProvider
 
         return Task.FromResult(new AuthenticationState(user));
     }
+    public ValueTask<AccessTokenResult> RequestAccessToken()
+    {
+      return new(); // customize the result
+    }
+
+    public ValueTask<AccessTokenResult> RequestAccessToken(AccessTokenRequestOptions options)
+    {
+      return new(); // customize the result
+    }
+
 }
 ```
 
