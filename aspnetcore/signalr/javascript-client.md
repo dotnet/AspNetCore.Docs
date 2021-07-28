@@ -268,8 +268,6 @@ A production implementation would use an exponential back-off or retry a specifi
 
 <h2 id="bsleep">Browser sleeping tab</h2>
 
-## Browser sleeping tab
-
 Some browsers have a tab freezing or sleeping feature to reduce computer resource usage for inactive tabs. This can cause SignalR connections to close and may result in an unwanted user experience. Browsers use heuristics to figure out if a tab should be put to sleep, such as:
 
 * Playing audio
