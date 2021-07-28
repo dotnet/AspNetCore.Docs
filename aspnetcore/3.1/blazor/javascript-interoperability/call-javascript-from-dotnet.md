@@ -53,7 +53,7 @@ The following `CallJsExample1` component:
 
 `Pages/CallJsExample1.razor`:
 
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample1.razor?highlight=2,34)]
+[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample1.razor?highlight=2,34-35)]
 
 ## Invoke JavaScript functions without reading a returned value (`InvokeVoidAsync`)
 

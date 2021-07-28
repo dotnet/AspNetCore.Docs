@@ -183,7 +183,7 @@ Add the preceding JS module to an app or class library as a static web asset in 
 
 `Pages/CallJsExample6.razor`:
 
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample6.razor?highlight=2-3,16,23-24,35,38-41)]
+[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample6.razor?highlight=2-3,16,23-24,35,38-44)]
 
 In the preceding example:
 
