@@ -406,8 +406,6 @@ To use the `CounterStateProvider` component, wrap an instance of the component a
 </CounterStateProvider>
 ```
 
-[!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
-
 Wrapped components receive and can modify the persisted counter state. The following `Counter` component implements the pattern:
 
 ```razor
