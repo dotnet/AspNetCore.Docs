@@ -263,7 +263,7 @@ The following code demonstrates a typical manual reconnection approach:
 
 [!code-javascript[](javascript-client/samples/3.x/SignalRChat/wwwroot/chat.js?range=30-42)]
 
-A production implementation would use an exponential back-off or retry a specified number of times before giving up.
+Production implementations typically use an exponential back-off or retry a specified number of times.
 
 <!-- This heading is used by code in the SignalR Typescript client, do not rename or remove without considering the impacts there -->
 
