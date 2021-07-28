@@ -79,6 +79,8 @@ Razor attribute binding is case sensitive:
 
 ## Multiple option selection with `<input>` elements
 
+*This feature applies to ASP.NET Core 6.0 Preview 7 or later. ASP.NET Core 6.0 is scheduled for release later this year.*
+
 Binding supports [`multiple`](https://developer.mozilla.org/docs/Web/HTML/Attributes/multiple) option selection with `<input>` elements. The [`@onchange`](xref:mvc/views/razor#onevent) event provides an array of the selected elements via [event arguments (`ChangeEventArgs`)](xref:blazor/components/event-handling#event-arguments). The value must be bound to an array type.
 
 `Pages/BindMultipleInput.razor`:
