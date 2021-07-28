@@ -201,19 +201,19 @@ By default, configuration for the app is loaded by convention from `_configurati
 
 ### Imports file
 
-[!INCLUDE[](~/blazor/includes/security/imports-file-hosted.md)]
+[!INCLUDE[](../includes/imports-file-hosted.md)]
 
 ### Index page
 
-[!INCLUDE[](~/blazor/includes/security/index-page-authentication.md)]
+[!INCLUDE[](../includes/index-page-authentication.md)]
 
 ### App component
 
-[!INCLUDE[](~/blazor/includes/security/app-component.md)]
+[!INCLUDE[](../includes/app-component.md)]
 
 ### RedirectToLogin component
 
-[!INCLUDE[](~/blazor/includes/security/redirecttologin-component.md)]
+[!INCLUDE[](../includes/redirecttologin-component.md)]
 
 ### LoginDisplay component
 
@@ -257,11 +257,11 @@ The `LoginDisplay` component (`Shared/LoginDisplay.razor`) is rendered in the `M
 
 ### Authentication component
 
-[!INCLUDE[](~/blazor/includes/security/authentication-component.md)]
+[!INCLUDE[](../includes/authentication-component.md)]
 
 ### FetchData component
 
-[!INCLUDE[](~/blazor/includes/security/fetchdata-component.md)]
+[!INCLUDE[](../includes/fetchdata-component.md)]
 
 ## Run the app
 
@@ -343,7 +343,7 @@ builder.Services.AddApiAuthorization()
     .AddAccountClaimsPrincipalFactory<CustomUserFactory>();
 ```
 
-In the **`Server`** app, call <xref:Microsoft.AspNetCore.Identity.IdentityBuilder.AddRoles*> on the Identity builder, which adds role-related services:
+In the **`Server`** app, call <xref:Microsoft.AspNetCore.Identity.IdentityBuilder.AddRoles%2A> on the Identity builder, which adds role-related services:
 
 ```csharp
 using Microsoft.AspNetCore.Identity;
@@ -454,7 +454,7 @@ In the **`Client`** app, component authorization approaches are functional at th
 
 `User.Identity.Name` is populated in the **`Client`** app with the user's user name, which is usually their sign-in email address.
 
-[!INCLUDE[](~/blazor/includes/security/usermanager-signinmanager.md)]
+[!INCLUDE[](../includes/usermanager-signinmanager.md)]
 
 ## Host in Azure App Service with a custom domain and certificate
 
@@ -558,7 +558,7 @@ If troubleshooting a certificate loading problem, execute the following command 
 Get-ChildItem -path Cert:\CurrentUser\My -Recurse | Format-List DnsNameList, Subject, Thumbprint, EnhancedKeyUsageList
 ```
 
-[!INCLUDE[](~/blazor/includes/security/troubleshoot.md)]
+[!INCLUDE[](../includes/troubleshoot.md)]
 
 ## Additional resources
 

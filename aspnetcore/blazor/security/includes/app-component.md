@@ -36,5 +36,3 @@ The `App` component (`App.razor`) is similar to the `App` component found in Bla
     </Router>
 </CascadingAuthenticationState>
 ```
-
-[!include[](../prefer-exact-matches.md)]

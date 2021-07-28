@@ -2,7 +2,7 @@
 title: ASP.NET Core Blazor templated components
 author: guardrex
 description: Learn how templated components can accept one or more UI templates as parameters, which can then be used as part of the component's rendering logic.
-monikerRange: '>= aspnetcore-3.1'
+monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 03/04/2021
@@ -22,17 +22,7 @@ Often, templated components are generically typed, as the following `TableTempla
 
 `Shared/TableTemplate.razor`:
 
-::: moniker range=">= aspnetcore-5.0"
-
 [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Shared/templated-components/TableTemplate.razor)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Shared/templated-components/TableTemplate.razor)]
-
-::: moniker-end
 
 When using a templated component, the template parameters can be specified using child elements that match the names of the parameters. In the following example, `<TableHeader>...</TableHeader>` and `<RowTemplate>...<RowTemplate>` supply <xref:Microsoft.AspNetCore.Components.RenderFragment%601> templates for `TableHeader` and `RowTemplate` of the `TableTemplate` component.
 
@@ -40,69 +30,27 @@ Specify the `Context` attribute on the component element when you want to specif
 
 `Pages/Pets1.razor`:
 
-::: moniker range=">= aspnetcore-5.0"
-
 [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/templated-components/Pets1.razor)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/templated-components/Pets1.razor)]
-
-::: moniker-end
 
 Alternatively, you can change the parameter name using the `Context` attribute on the <xref:Microsoft.AspNetCore.Components.RenderFragment%601> child element. In the following example, the `Context` is set on `RowTemplate` rather than `TableTemplate`:
 
 `Pages/Pets2.razor`:
 
-::: moniker range=">= aspnetcore-5.0"
-
 [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/templated-components/Pets2.razor?highlight=10)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/templated-components/Pets2.razor?highlight=10)]
-
-::: moniker-end
 
 Component arguments of type <xref:Microsoft.AspNetCore.Components.RenderFragment%601> have an implicit parameter named `context`, which can be used. In the following example, `Context` isn't set. `@context.{PROPERTY}` supplies pet values to the template, where `{PROPERTY}` is a `Pet` property:
 
 `Pages/Pets3.razor`:
 
-::: moniker range=">= aspnetcore-5.0"
-
 [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/templated-components/Pets3.razor?highlight=11-12)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/templated-components/Pets3.razor?highlight=11-12)]
-
-::: moniker-end
 
 When using generic-typed components, the type parameter is inferred if possible. However, you can explicitly specify the type with an attribute that has a name matching the type parameter, which is `TItem` in the preceding example:
 
 `Pages/Pets4.razor`:
 
-::: moniker range=">= aspnetcore-5.0"
-
 [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/templated-components/Pets4.razor?highlight=5)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/templated-components/Pets4.razor?highlight=5)]
-
-::: moniker-end
 
 ## Infer generic types based on ancestor components
-
-::: moniker range=">= aspnetcore-6.0"
 
 An ancestor component can cascade a type parameter by name to descendants using the `CascadingTypeParameter` attribute. This attribute allows a generic type inference to use the specified type parameter automatically with descendants that have a type parameter with the same name.
 
@@ -182,14 +130,6 @@ For more information, see the following articles:
 
 * <xref:mvc/views/razor#typeparam>
 * <xref:blazor/components/index#generic-type-parameter-support>
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-6.0"
-
-Inferred generic types are supported in ASP.NET Core 6.0 or later. For more information, see a 6.0 or later version of this article.
-
-::: moniker-end
 
 ## Additional resources
 

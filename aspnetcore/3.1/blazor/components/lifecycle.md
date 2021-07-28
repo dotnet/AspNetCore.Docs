@@ -2,7 +2,7 @@
 title: ASP.NET Core Razor component lifecycle
 author: guardrex
 description: Learn about the ASP.NET Core Razor component lifecycle and how to use lifecycle events.
-monikerRange: '>= aspnetcore-3.1'
+monikerRange: '>= aspnetcore-3.1 < aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 03/25/2020
@@ -67,17 +67,7 @@ Although [route parameter matching is case insensitive](xref:blazor/fundamentals
 
 `Pages/SetParamsAsync.razor`:
 
-::: moniker range=">= aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/lifecycle/SetParamsAsync.razor)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
 [!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/lifecycle/SetParamsAsync.razor)]
-
-::: moniker-end
 
 ## Component initialization (`OnInitialized{Async}`)
 
@@ -87,17 +77,7 @@ For a synchronous operation, override <xref:Microsoft.AspNetCore.Components.Comp
 
 `Pages/OnInit.razor`:
 
-::: moniker range=">= aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/lifecycle/OnInit.razor?highlight=8)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
 [!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/lifecycle/OnInit.razor?highlight=8)]
-
-::: moniker-end
 
 To perform an asynchronous operation, override <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> and use the [`await`](/dotnet/csharp/language-reference/operators/await) operator:
 
@@ -135,20 +115,7 @@ For the following example component, navigate to the component's page at a URL:
 
 `Pages/OnParamsSet.razor`:
 
-::: moniker range=">= aspnetcore-5.0"
-
-> [!NOTE]
-> In a component route, it isn't possible to both constrain a <xref:System.DateTime> parameter with the [route constraint `datetime`](xref:blazor/fundamentals/routing#route-constraints) and [make the parameter optional](xref:blazor/fundamentals/routing#route-parameters). Therefore, the following `OnParamsSet` component uses two [`@page`](xref:mvc/views/razor#page) directives to handle routing with and without a supplied date segment in the URL.
-
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/lifecycle/OnParamsSet.razor)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
 [!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/lifecycle/OnParamsSet.razor)]
-
-::: moniker-end
 
 Asynchronous work when applying parameters and property values must occur during the <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A> lifecycle event:
 
@@ -174,17 +141,7 @@ The `firstRender` parameter for <xref:Microsoft.AspNetCore.Components.ComponentB
 
 `Pages/AfterRender.razor`:
 
-::: moniker range=">= aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/lifecycle/AfterRender.razor)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
 [!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/lifecycle/AfterRender.razor)]
-
-::: moniker-end
 
 Asynchronous work immediately after rendering must occur during the <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> lifecycle event:
 
@@ -223,17 +180,7 @@ In the `FetchData` component of the Blazor templates, <xref:Microsoft.AspNetCore
 
 `Pages/FetchData.razor` in the Blazor Server template:
 
-::: moniker range=">= aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_Server/Pages/lifecycle/FetchData.razor?highlight=9,21,25)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
 [!code-razor[](~/blazor/common/samples/3.x/BlazorSample_Server/Pages/lifecycle/FetchData.razor?highlight=9,21,25)]
-
-::: moniker-end
 
 ## Handle errors
 
@@ -252,17 +199,7 @@ The following code demonstrates an updated `WeatherForecastService` in a templat
 
 `WeatherForecastService.cs`:
 
-::: moniker range=">= aspnetcore-5.0"
-
-[!code-csharp[](~/blazor/common/samples/5.x/BlazorSample_Server/lifecycle/WeatherForecastService.cs)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
 [!code-csharp[](~/blazor/common/samples/3.x/BlazorSample_Server/lifecycle/WeatherForecastService.cs)]
-
-::: moniker-end
 
 For more information on the <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper.RenderMode>, see <xref:blazor/fundamentals/signalr#render-mode>.
 
@@ -270,7 +207,7 @@ Although the content in this section focuses on Blazor Server and stateful Signa
 
 ## Detect when the app is prerendering
 
-[!INCLUDE[](~/blazor/includes/prerendering.md)]
+[!INCLUDE[](../includes/prerendering.md)]
 
 ## Component disposal with `IDisposable` and `IAsyncDisposable`
 
@@ -305,33 +242,13 @@ If a single object requires disposal, a lambda can be used to dispose of the obj
 
 `Pages/CounterWithTimerDisposal1.razor`:
 
-::: moniker range=">= aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/lifecycle/CounterWithTimerDisposal1.razor?highlight=3,11,28)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
 [!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/lifecycle/CounterWithTimerDisposal1.razor?highlight=3,11,28)]
-
-::: moniker-end
 
 If the object is created in a lifecycle method, such as [`OnInitialized`/`OnInitializedAsync`](#component-initialization-oninitializedasync), check for `null` before calling `Dispose`.
 
 `Pages/CounterWithTimerDisposal2.razor`:
 
-::: moniker range=">= aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/lifecycle/CounterWithTimerDisposal2.razor?highlight=15,29)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
 [!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/lifecycle/CounterWithTimerDisposal2.razor?highlight=15,29)]
-
-::: moniker-end
 
 For more information, see:
 
@@ -389,76 +306,6 @@ These are unusual scenarios. For objects that are implemented correctly and beha
 
 Unsubscribe event handlers from .NET events. The following [Blazor form](xref:blazor/forms-validation) examples show how to unsubscribe an event handler in the `Dispose` method:
 
-::: moniker range=">= aspnetcore-5.0"
-
-* Private field and lambda approach
-
-  ```razor
-  @implements IDisposable
-
-  <EditForm EditContext="@editContext">
-      ...
-      <button type="submit" disabled="@formInvalid">Submit</button>
-  </EditForm>
-
-  @code {
-      // ...
-      private EventHandler<FieldChangedEventArgs> fieldChanged;
-
-      protected override void OnInitialized()
-      {
-          editContext = new(model);
-
-          fieldChanged = (_, __) =>
-          {
-              // ...
-          };
-
-          editContext.OnFieldChanged += fieldChanged;
-      }
-
-      public void Dispose()
-      {
-          editContext.OnFieldChanged -= fieldChanged;
-      }
-  }
-  ```
-
-* Private method approach
-
-  ```razor
-  @implements IDisposable
-
-  <EditForm EditContext="@editContext">
-      ...
-      <button type="submit" disabled="@formInvalid">Submit</button>
-  </EditForm>
-
-  @code {
-      // ...
-
-      protected override void OnInitialized()
-      {
-          editContext = new(model);
-          editContext.OnFieldChanged += HandleFieldChanged;
-      }
-
-      private void HandleFieldChanged(object sender, FieldChangedEventArgs e)
-      {
-          // ...
-      }
-
-      public void Dispose()
-      {
-          editContext.OnFieldChanged -= HandleFieldChanged;
-      }
-  }
-  ```
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
 * Private field and lambda approach
 
   ```razor
@@ -522,34 +369,12 @@ Unsubscribe event handlers from .NET events. The following [Blazor form](xref:bl
       }
   }
   ```
-
-::: moniker-end
 
 ### Anonymous functions, methods, and expressions
 
 When [anonymous functions](/dotnet/csharp/programming-guide/statements-expressions-operators/anonymous-functions), methods, or expressions, are used, it isn't necessary to implement <xref:System.IDisposable> and unsubscribe delegates. However, failing to unsubscribe a delegate is a problem **when the object exposing the event outlives the lifetime of the component registering the delegate**. When this occurs, a memory leak results because the registered delegate keeps the original object alive. Therefore, only use the following approaches when you know that the event delegate disposes quickly. When in doubt about the lifetime of objects that require disposal, subscribe a delegate method and properly dispose the delegate as the earlier examples show.
 
 * Anonymous lambda method approach (explicit disposal not required):
-
-  ::: moniker range=">= aspnetcore-5.0"
-
-  ```csharp
-  private void HandleFieldChanged(object sender, FieldChangedEventArgs e)
-  {
-      formInvalid = !editContext.Validate();
-      StateHasChanged();
-  }
-
-  protected override void OnInitialized()
-  {
-      editContext = new(starship);
-      editContext.OnFieldChanged += (s, e) => HandleFieldChanged((editContext)s, e);
-  }
-  ```
-
-  ::: moniker-end
-
-  ::: moniker range="< aspnetcore-5.0"
 
   ```csharp
   private void HandleFieldChanged(object sender, FieldChangedEventArgs e)
@@ -565,33 +390,7 @@ When [anonymous functions](/dotnet/csharp/programming-guide/statements-expressio
   }
   ```
 
-  ::: moniker-end
-
 * Anonymous lambda expression approach (explicit disposal not required):
-
-  ::: moniker range=">= aspnetcore-5.0"
-
-  ```csharp
-  private ValidationMessageStore messageStore;
-
-  [CascadingParameter]
-  private EditContext CurrentEditContext { get; set; }
-
-  protected override void OnInitialized()
-  {
-      ...
-
-      messageStore = new(CurrentEditContext);
-
-      CurrentEditContext.OnValidationRequested += (s, e) => messageStore.Clear();
-      CurrentEditContext.OnFieldChanged += (s, e) => 
-          messageStore.Clear(e.FieldIdentifier);
-  }
-  ```
-
-  ::: moniker-end
-
-  ::: moniker range="< aspnetcore-5.0"
 
   ```csharp
   private ValidationMessageStore messageStore;
@@ -610,8 +409,6 @@ When [anonymous functions](/dotnet/csharp/programming-guide/statements-expressio
           messageStore.Clear(e.FieldIdentifier);
   }
   ```
-
-  ::: moniker-end
 
   The full example of the preceding code with anonymous lambda expressions appears in the <xref:blazor/forms-validation#validator-components> article.
 
@@ -642,17 +439,7 @@ In the following example:
 
 `Pages/BackgroundWork.razor`:
 
-::: moniker range=">= aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/lifecycle/BackgroundWork.razor)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
 [!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/lifecycle/BackgroundWork.razor)]
-
-::: moniker-end
 
 ## Blazor Server reconnection events
 

@@ -2,7 +2,7 @@
 title: Prerender and integrate ASP.NET Core Razor components
 author: guardrex
 description: Learn about Razor component integration scenarios for Blazor apps, including prerendering of Razor components on the server.
-monikerRange: '>= aspnetcore-3.1'
+monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 03/31/2021
@@ -13,8 +13,6 @@ zone_pivot_groups: blazor-hosting-models
 # Prerender and integrate ASP.NET Core Razor components
 
 ::: zone pivot="webassembly"
-
-::: moniker range=">= aspnetcore-5.0"
 
 Razor components can be integrated into Razor Pages and MVC apps in a hosted Blazor WebAssembly solution. When the page or view is rendered, components can be prerendered at the same time.
 
@@ -258,8 +256,6 @@ Additional work might be required depending on the static resources that compone
 >
 > This is normal behavior because prerendering and integrating a Blazor WebAssembly app with routable Razor components is incompatible with the use of CSS selectors.
 
-::: moniker-end
-
 ::: zone-end
 
 ::: zone pivot="server"
@@ -419,8 +415,6 @@ To support routable Razor components in Razor Pages apps:
    </Router>
    ```
 
-   [!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
-
 1. Add a `_Host` page to the project with the following content.
 
    `Pages/_Host.cshtml`:
@@ -508,8 +502,6 @@ To support routable Razor components in MVC apps:
        </NotFound>
    </Router>
    ```
-
-   [!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
 
 1. Add a `_Host` view to the project with the following content.
 
@@ -657,8 +649,6 @@ For more information, see <xref:blazor/components/index#namespaces>.
 
 ::: zone-end
 
-::: moniker range=">= aspnetcore-6.0"
-
 ## Preserve prerendered state
 
 Without preserving prerendered state, any state that used during prerendering is lost and must be recreated when the app is fully loaded. If any state is setup asynchronously, the UI may flicker as the the prerendered UI is replaced with temporary placeholders and then fully rendered again.
@@ -738,11 +728,7 @@ The following example shows how the weather forecast in the `FetchData` componen
 
 By initializing components with the same state used during prerendering, any expensive initialization steps are only executed once. The rendered UI also matches the prerendered UI, so no flicker occurs in the browser.
 
-::: moniker-end
-
 ::: zone pivot="webassembly"
-
-::: moniker range=">= aspnetcore-5.0"
 
 ## Additional Blazor WebAssembly resources
 
@@ -758,14 +744,6 @@ By initializing components with the same state used during prerendering, any exp
   * [General aspects](xref:blazor/security/index#aspnet-core-blazor-authentication-and-authorization)
   * [Support prerendering with authentication](xref:blazor/security/webassembly/additional-scenarios#support-prerendering-with-authentication)
 * [Host and deploy: Blazor WebAssembly](xref:blazor/host-and-deploy/webassembly)
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-Integrating Razor components into Razor Pages and MVC apps in a hosted Blazor WebAssembly solution is supported in ASP.NET Core in .NET 5 or later. Select a .NET 5 or later version of this article.
-
-::: moniker-end
 
 ::: zone-end
 
