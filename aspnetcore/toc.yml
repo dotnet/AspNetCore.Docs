@@ -311,13 +311,29 @@
     - name: Blazor
       items:
         - name: Overview
-          uid: blazor/index
+          href: 3.1/blazor/index.md
+        - name: Overview
+          href: 5.0/blazor/index.md
+        - name: Overview
+          href: 6.0/blazor/index.md
         - name: Supported platforms
-          uid: blazor/supported-platforms
+          href: 3.1/blazor/supported-platforms.md
+        - name: Supported platforms
+          href: 5.0/blazor/supported-platforms.md
+        - name: Supported platforms
+          href: 6.0/blazor/supported-platforms.md
         - name: Tooling
-          uid: blazor/tooling
+          href: 3.1/blazor/tooling.md
+        - name: Tooling
+          href: 5.0/blazor/tooling.md
+        - name: Tooling
+          href: 6.0/blazor/tooling.md
         - name: Hosting models
-          uid: blazor/hosting-models
+          href: 3.1/blazor/hosting-models.md
+        - name: Hosting models
+          href: 5.0/blazor/hosting-models.md
+        - name: Hosting models
+          href: 6.0/blazor/hosting-models.md
         - name: Tutorials
           items:
             - name: Build your first Blazor app
@@ -327,69 +343,179 @@
             - name: SignalR with Blazor
               uid: tutorials/signalr-blazor
         - name: Project structure
-          uid: blazor/project-structure
+          href: 3.1/blazor/project-structure.md
+        - name: Project structure
+          href: 5.0/blazor/project-structure.md
+        - name: Project structure
+          href: 6.0/blazor/project-structure.md
         - name: Fundamentals
           items:
             - name: Routing
-              uid: blazor/fundamentals/routing
+              href: 3.1/blazor/fundamentals/routing.md
+            - name: Routing
+              href: 5.0/blazor/fundamentals/routing.md
+            - name: Routing
+              href: 6.0/blazor/fundamentals/routing.md
             - name: Configuration
-              uid: blazor/fundamentals/configuration
+              href: 3.1/blazor/fundamentals/configuration.md
+            - name: Configuration
+              href: 5.0/blazor/fundamentals/configuration.md
+            - name: Configuration
+              href: 6.0/blazor/fundamentals/configuration.md
             - name: Dependency injection
-              uid: blazor/fundamentals/dependency-injection
+              href: 3.1/blazor/fundamentals/dependency-injection.md
+            - name: Dependency injection
+              href: 5.0/blazor/fundamentals/dependency-injection.md
+            - name: Dependency injection
+              href: 6.0/blazor/fundamentals/dependency-injection.md
             - name: Startup
-              uid: blazor/fundamentals/startup
+              href: 3.1/blazor/fundamentals/startup.md
+            - name: Startup
+              href: 5.0/blazor/fundamentals/startup.md
+            - name: Startup
+              href: 6.0/blazor/fundamentals/startup.md
             - name: Environments
-              uid: blazor/fundamentals/environments
+              href: 3.1/blazor/fundamentals/environments.md
+            - name: Environments
+              href: 5.0/blazor/fundamentals/environments.md
+            - name: Environments
+              href: 6.0/blazor/fundamentals/environments.md
             - name: Logging
-              uid: blazor/fundamentals/logging
+              href: 3.1/blazor/fundamentals/logging.md
+            - name: Logging
+              href: 5.0/blazor/fundamentals/logging.md
+            - name: Logging
+              href: 6.0/blazor/fundamentals/logging.md
             - name: Handle errors
-              uid: blazor/fundamentals/handle-errors
+              href: 3.1/blazor/fundamentals/handle-errors.md
+            - name: Handle errors
+              href: 5.0/blazor/fundamentals/handle-errors.md
+            - name: Handle errors
+              href: 6.0/blazor/fundamentals/handle-errors.md
             - name: SignalR
-              uid: blazor/fundamentals/signalr
+              href: 3.1/blazor/fundamentals/signalr.md
+            - name: SignalR
+              href: 5.0/blazor/fundamentals/signalr.md
+            - name: SignalR
+              href: 6.0/blazor/fundamentals/signalr.md
             - name: Static files
-              uid: blazor/fundamentals/static-files
+              href: 3.1/blazor/fundamentals/static-files.md
+            - name: Static files
+              href: 5.0/blazor/fundamentals/static-files.md
+            - name: Static files
+              href: 6.0/blazor/fundamentals/static-files.md
         - name: Components
           items:
             - name: Overview
-              uid: blazor/components/index
+              href: 3.1/blazor/components/index.md
+            - name: Overview
+              href: 5.0/blazor/components/index.md
+            - name: Overview
+              href: 6.0/blazor/components/index.md
             - name: Layouts
-              uid: blazor/components/layouts
+              href: 3.1/blazor/components/layouts.md
+            - name: Layouts
+              href: 5.0/blazor/components/layouts.md
+            - name: Layouts
+              href: 6.0/blazor/components/layouts.md
             - name: Cascading values and parameters
-              uid: blazor/components/cascading-values-and-parameters
+              href: 3.1/blazor/components/cascading-values-and-parameters.md
+            - name: Cascading values and parameters
+              href: 5.0/blazor/components/cascading-values-and-parameters.md
+            - name: Cascading values and parameters
+              href: 6.0/blazor/components/cascading-values-and-parameters.md
             - name: Data binding
-              uid: blazor/components/data-binding
+              href: 3.1/blazor/components/data-binding.md
+            - name: Data binding
+              href: 5.0/blazor/components/data-binding.md
+            - name: Data binding
+              href: 6.0/blazor/components/data-binding.md
             - name: Event handling
-              uid: blazor/components/event-handling
+              href: 3.1/blazor/components/event-handling.md
+            - name: Event handling
+              href: 5.0/blazor/components/event-handling.md
+            - name: Event handling
+              href: 6.0/blazor/components/event-handling.md
             - name: Lifecycle
-              uid: blazor/components/lifecycle
+              href: 3.1/blazor/components/lifecycle.md
+            - name: Lifecycle
+              href: 5.0/blazor/components/lifecycle.md
+            - name: Lifecycle
+              href: 6.0/blazor/components/lifecycle.md
             - name: Rendering
-              uid: blazor/components/rendering
+              href: 3.1/blazor/components/rendering.md
+            - name: Rendering
+              href: 5.0/blazor/components/rendering.md
+            - name: Rendering
+              href: 6.0/blazor/components/rendering.md
             - name: Component virtualization
-              uid: blazor/components/virtualization
+              href: 5.0/blazor/components/virtualization.md
+            - name: Component virtualization
+              href: 6.0/blazor/components/virtualization.md
             - name: Templated components
-              uid: blazor/components/templated-components
+              href: 3.1/blazor/components/templated-components.md
+            - name: Templated components
+              href: 5.0/blazor/components/templated-components.md
+            - name: Templated components
+              href: 6.0/blazor/components/templated-components.md
             - name: CSS isolation
-              uid: blazor/components/css-isolation
+              href: 5.0/blazor/components/css-isolation.md
+            - name: CSS isolation
+              href: 6.0/blazor/components/css-isolation.md
             - name: Prerender and integrate components
-              uid: blazor/components/prerendering-and-integration
+              href: 3.1/blazor/components/prerendering-and-integration.md
+            - name: Prerender and integrate components
+              href: 5.0/blazor/components/prerendering-and-integration.md
+            - name: Prerender and integrate components
+              href: 6.0/blazor/components/prerendering-and-integration.md
             - name: Class libraries
-              uid: blazor/components/class-libraries
+              href: 3.1/blazor/components/class-libraries.md
+            - name: Class libraries
+              href: 5.0/blazor/components/class-libraries.md
+            - name: Class libraries
+              href: 6.0/blazor/components/class-libraries.md
         - name: Globalization and localization
-          uid: blazor/globalization-localization
+          href: 3.1/blazor/globalization-localization.md
+        - name: Globalization and localization
+          href: 5.0/blazor/globalization-localization.md
+        - name: Globalization and localization
+          href: 6.0/blazor/globalization-localization.md
         - name: Forms and validation
-          uid: blazor/forms-validation
+          href: 3.1/blazor/forms-validation.md
+        - name: Forms and validation
+          href: 5.0/blazor/forms-validation.md
+        - name: Forms and validation
+          href: 6.0/blazor/forms-validation.md
         - name: File uploads
-          uid: blazor/file-uploads
+          href: 5.0/blazor/file-uploads.md
+        - name: File uploads
+          href: 6.0/blazor/file-uploads.md
         - name: JavaScript interop
           items:
             - name: Overview
-              uid: blazor/js-interop/index
+              href: 3.1/blazor/javascript-interoperability/index.md
+            - name: Overview
+              href: 5.0/blazor/javascript-interoperability/index.md
+            - name: Overview
+              href: 6.0/blazor/javascript-interoperability/index.md
             - name: Call JavaScript from .NET
-              uid: blazor/js-interop/call-javascript-from-dotnet
+              href: 3.1/blazor/javascript-interoperability/call-javascript-from-dotnet.md
+            - name: Call JavaScript from .NET
+              href: 5.0/blazor/javascript-interoperability/call-javascript-from-dotnet.md
+            - name: Call JavaScript from .NET
+              href: 6.0/blazor/javascript-interoperability/call-javascript-from-dotnet.md
             - name: Call .NET from JavaScript
-              uid: blazor/js-interop/call-dotnet-from-javascript
+              href: 3.1/blazor/javascript-interoperability/call-dotnet-from-javascript.md
+            - name: Call .NET from JavaScript
+              href: 5.0/blazor/javascript-interoperability/call-dotnet-from-javascript.md
+            - name: Call .NET from JavaScript
+              href: 6.0/blazor/javascript-interoperability/call-dotnet-from-javascript.md
         - name: Call a web API
-          uid: blazor/call-web-api
+          href: 3.1/blazor/call-web-api.md
+        - name: Call a web API
+          href: 5.0/blazor/call-web-api.md
+        - name: Call a web API
+          href: 6.0/blazor/call-web-api.md
         - name: Security and Identity
           items:
             - name: Overview
@@ -429,77 +555,185 @@
             - name: Content Security Policy
               uid: blazor/security/content-security-policy
         - name: State management
-          uid: blazor/state-management
+          href: 3.1/blazor/state-management.md
+        - name: State management
+          href: 5.0/blazor/state-management.md
+        - name: State management
+          href: 6.0/blazor/state-management.md
         - name: Debug WebAssembly
-          uid: blazor/debug
+          href: 3.1/blazor/debug.md
+        - name: Debug WebAssembly
+          href: 5.0/blazor/debug.md
+        - name: Debug WebAssembly
+          href: 6.0/blazor/debug.md
         - name: Lazy load assemblies with WebAssembly
-          uid: blazor/webassembly-lazy-load-assemblies
+          href: 5.0/blazor/webassembly-lazy-load-assemblies.md
+        - name: Lazy load assemblies with WebAssembly
+          href: 6.0/blazor/webassembly-lazy-load-assemblies.md
         - name: WebAssembly performance
-          uid: blazor/webassembly-performance-best-practices
+          href: 3.1/blazor/webassembly-performance-best-practices.md
+        - name: WebAssembly performance
+          href: 5.0/blazor/webassembly-performance-best-practices.md
+        - name: WebAssembly performance
+          href: 6.0/blazor/webassembly-performance-best-practices.md
         - name: Test components
-          uid: blazor/test
+          href: 3.1/blazor/test.md
+        - name: Test components
+          href: 5.0/blazor/test.md
+        - name: Test components
+          href: 6.0/blazor/test.md
         - name: Progressive Web Applications
-          uid: blazor/progressive-web-app
+          href: 3.1/blazor/progressive-web-app.md
+        - name: Progressive Web Applications
+          href: 5.0/blazor/progressive-web-app.md
+        - name: Progressive Web Applications
+          href: 6.0/blazor/progressive-web-app.md
         - name: Host and deploy
           items:
             - name: Overview
-              uid: blazor/host-and-deploy/index
+              href: 3.1/blazor/host-and-deploy/index.md
+            - name: Overview
+              href: 5.0/blazor/host-and-deploy/index.md
+            - name: Overview
+              href: 6.0/blazor/host-and-deploy/index.md
             - name: Blazor WebAssembly
-              uid: blazor/host-and-deploy/webassembly
+              href: 3.1/blazor/host-and-deploy/webassembly.md
+            - name: Blazor WebAssembly
+              href: 5.0/blazor/host-and-deploy/webassembly.md
+            - name: Blazor WebAssembly
+              href: 6.0/blazor/host-and-deploy/webassembly.md
             - name: Blazor Server
-              uid: blazor/host-and-deploy/server
+              href: 3.1/blazor/host-and-deploy/server.md
+            - name: Blazor Server
+              href: 5.0/blazor/host-and-deploy/server.md
+            - name: Blazor Server
+              href: 6.0/blazor/host-and-deploy/server.md
             - name: Configure the Linker
-              uid: blazor/host-and-deploy/configure-linker
+              href: 3.1/blazor/host-and-deploy/configure-linker.md
             - name: Configure the Trimmer
-              uid: blazor/host-and-deploy/configure-trimmer
+              href: 5.0/blazor/host-and-deploy/configure-trimmer.md
+            - name: Configure the Trimmer
+              href: 6.0/blazor/host-and-deploy/configure-trimmer.md
         - name: Blazor Server and EF Core
-          uid: blazor/blazor-server-ef-core
+          href: 3.1/blazor/blazor-server-ef-core.md
+        - name: Blazor Server and EF Core
+          href: 5.0/blazor/blazor-server-ef-core.md
+        - name: Blazor Server and EF Core
+          href: 6.0/blazor/blazor-server-ef-core.md
         - name: Advanced scenarios
-          uid: blazor/advanced-scenarios
+          href: 3.1/blazor/advanced-scenarios.md
+        - name: Advanced scenarios
+          href: 5.0/blazor/advanced-scenarios.md
+        - name: Advanced scenarios
+          href: 6.0/blazor/advanced-scenarios.md
         - name: Built-in components
           items:
             - name: App
-              uid: blazor/project-structure
+              href: 3.1/blazor/project-structure.md
+            - name: App
+              href: 5.0/blazor/project-structure.md
+            - name: App
+              href: 6.0/blazor/project-structure.md
             - name: Authentication
               href: blazor/security/webassembly/index.md#authentication-component
             - name: AuthorizeView
               href: blazor/security/index.md#authorizeview-component
             - name: CascadingValue
-              href: blazor/components/cascading-values-and-parameters.md#cascadingvalue-component
+              href: 3.1/blazor/components/cascading-values-and-parameters.md#cascadingvalue-component
+            - name: CascadingValue
+              href: 5.0/blazor/components/cascading-values-and-parameters.md#cascadingvalue-component
+            - name: CascadingValue
+              href: 6.0/blazor/components/cascading-values-and-parameters.md#cascadingvalue-component
             - name: ErrorBoundary
-              href: blazor/fundamentals/handle-errors.md#error-boundaries
+              href: 6.0/blazor/fundamentals/handle-errors.md#error-boundaries
             - name: FocusOnNavigate
-              href: blazor/fundamentals/routing.md#focus-an-element-on-navigation
+              href: 6.0/blazor/fundamentals/routing.md#focus-an-element-on-navigation
             - name: InputCheckbox
-              href: blazor/forms-validation.md#built-in-form-components
+              href: 3.1/blazor/forms-validation.md#built-in-form-components
+            - name: InputCheckbox
+              href: 5.0/blazor/forms-validation.md#built-in-form-components
+            - name: InputCheckbox
+              href: 6.0/blazor/forms-validation.md#built-in-form-components
             - name: InputDate
-              href: blazor/forms-validation.md#built-in-form-components
+              href: 3.1/blazor/forms-validation.md#built-in-form-components
+            - name: InputDate
+              href: 5.0/blazor/forms-validation.md#built-in-form-components
+            - name: InputDate
+              href: 6.0/blazor/forms-validation.md#built-in-form-components
             - name: InputFile
-              uid: blazor/file-uploads
+              href: 5.0/blazor/file-uploads.md
+            - name: InputFile
+              href: 6.0/blazor/file-uploads.md
             - name: InputNumber
-              href: blazor/forms-validation.md#built-in-form-components
+              href: 3.1/blazor/forms-validation.md#built-in-form-components
+            - name: InputNumber
+              href: 5.0/blazor/forms-validation.md#built-in-form-components
+            - name: InputNumber
+              href: 6.0/blazor/forms-validation.md#built-in-form-components
             - name: InputRadio
-              href: blazor/forms-validation.md#built-in-form-components
+              href: 3.1/blazor/forms-validation.md#built-in-form-components
+            - name: InputRadio
+              href: 5.0/blazor/forms-validation.md#built-in-form-components
+            - name: InputRadio
+              href: 6.0/blazor/forms-validation.md#built-in-form-components
             - name: InputRadioGroup
-              href: blazor/forms-validation.md#built-in-form-components
+              href: 3.1/blazor/forms-validation.md#built-in-form-components
+            - name: InputRadioGroup
+              href: 5.0/blazor/forms-validation.md#built-in-form-components
+            - name: InputRadioGroup
+              href: 6.0/blazor/forms-validation.md#built-in-form-components
             - name: InputSelect
-              href: blazor/forms-validation.md#built-in-form-components
+              href: 3.1/blazor/forms-validation.md#built-in-form-components
+            - name: InputSelect
+              href: 5.0/blazor/forms-validation.md#built-in-form-components
+            - name: InputSelect
+              href: 6.0/blazor/forms-validation.md#built-in-form-components
             - name: InputText
-              href: blazor/forms-validation.md#built-in-form-components
+              href: 3.1/blazor/forms-validation.md#built-in-form-components
+            - name: InputText
+              href: 5.0/blazor/forms-validation.md#built-in-form-components
+            - name: InputText
+              href: 6.0/blazor/forms-validation.md#built-in-form-components
             - name: InputTextArea
-              href: blazor/forms-validation.md#built-in-form-components
+              href: 3.1/blazor/forms-validation.md#built-in-form-components
+            - name: InputTextArea
+              href: 5.0/blazor/forms-validation.md#built-in-form-components
+            - name: InputTextArea
+              href: 6.0/blazor/forms-validation.md#built-in-form-components
             - name: LayoutView
-              href: blazor/components/layouts.md#apply-a-layout-to-arbitrary-content-layoutview-component
+              href: 3.1/blazor/components/layouts.md#apply-a-layout-to-arbitrary-content-layoutview-component
+            - name: LayoutView
+              href: 5.0/blazor/components/layouts.md#apply-a-layout-to-arbitrary-content-layoutview-component
+            - name: LayoutView
+              href: 6.0/blazor/components/layouts.md#apply-a-layout-to-arbitrary-content-layoutview-component
             - name: MainLayout
-              href: blazor/components/layouts.md#mainlayout-component
+              href: 3.1/blazor/components/layouts.md#mainlayout-component
+            - name: MainLayout
+              href: 5.0/blazor/components/layouts.md#mainlayout-component
+            - name: MainLayout
+              href: 6.0/blazor/components/layouts.md#mainlayout-component
             - name: NavLink
-              href: blazor/fundamentals/routing.md#navlink-and-navmenu-components
+              href: 3.1/blazor/fundamentals/routing.md#navlink-and-navmenu-components
+            - name: NavLink
+              href: 5.0/blazor/fundamentals/routing.md#navlink-and-navmenu-components
+            - name: NavLink
+              href: 6.0/blazor/fundamentals/routing.md#navlink-and-navmenu-components
             - name: NavMenu
-              href: blazor/fundamentals/routing.md#navlink-and-navmenu-components
+              href: 3.1/blazor/fundamentals/routing.md#navlink-and-navmenu-components
+            - name: NavMenu
+              href: 5.0/blazor/fundamentals/routing.md#navlink-and-navmenu-components
+            - name: NavMenu
+              href: 6.0/blazor/fundamentals/routing.md#navlink-and-navmenu-components
             - name: Router
-              href: blazor/fundamentals/routing.md#route-templates
+              href: 3.1/blazor/fundamentals/routing.md#route-templates
+            - name: Router
+              href: 5.0/blazor/fundamentals/routing.md#route-templates
+            - name: Router
+              href: 6.0/blazor/fundamentals/routing.md#route-templates
             - name: Virtualize
-              uid: blazor/components/virtualization
+              href: 5.0/blazor/components/virtualization.md
+            - name: Virtualize
+              href: 6.0/blazor/components/virtualization.md
     - name: Client-side development
       items:
         - name: Single Page Apps
@@ -1005,28 +1239,28 @@
           displayName: deploy, publish
           uid: host-and-deploy/iis/protocols
     - name: Kestrel
-      displayName: deploy, publish, server
+      displayName: deploy, publish, server, Kestrel
       items:
-        - name: Overview
+        - name: Kestrel overview
           displayName: deploy, publish, server
           uid: fundamentals/servers/kestrel
         - name: Endpoints
-          displayName: deploy, publish, server
+          displayName: deploy, publish, server, Kestrel
           uid: fundamentals/servers/kestrel/endpoints
         - name: Options
-          displayName: deploy, publish, server
+          displayName: deploy, publish, server, Kestrel
           uid: fundamentals/servers/kestrel/options
         - name: HTTP/2
-          displayName: deploy, publish, server
+          displayName: deploy, publish, server, Kestrel
           uid: fundamentals/servers/kestrel/http2
         - name: When to use a reverse proxy
-          displayName: deploy, publish, server
+          displayName: deploy, publish, server, Kestrel
           uid: fundamentals/servers/kestrel/when-to-use-a-reverse-proxy
         - name: Host filtering
-          displayName: deploy, publish, server
+          displayName: deploy, publish, server, Kestrel
           uid: fundamentals/servers/kestrel/host-filtering
         - name: Request draining
-          displayName: deploy, publish, server
+          displayName: deploy, publish, server, Kestrel
           uid: fundamentals/servers/kestrel/request-draining
     - name: HTTP.sys
       displayName: deploy, publish, server

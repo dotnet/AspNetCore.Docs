@@ -162,4 +162,4 @@ public class EmailController : Controller
 
 ## Blazor and shared state
 
-[!INCLUDE[](~/blazor/includes/security/blazor-shared-state.md)]
+[!INCLUDE[](~/blazor/security/includes/blazor-shared-state.md)]

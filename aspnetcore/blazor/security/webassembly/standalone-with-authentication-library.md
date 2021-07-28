@@ -133,19 +133,19 @@ For more information, see the following sections of the *Additional scenarios* a
 
 ## Imports file
 
-[!INCLUDE[](~/blazor/includes/security/imports-file-standalone.md)]
+[!INCLUDE[](../includes/imports-file-standalone.md)]
 
 ## Index page
 
-[!INCLUDE[](~/blazor/includes/security/index-page-authentication.md)]
+[!INCLUDE[](../includes/index-page-authentication.md)]
 
 ## App component
 
-[!INCLUDE[](~/blazor/includes/security/app-component.md)]
+[!INCLUDE[](../includes/app-component.md)]
 
 ## RedirectToLogin component
 
-[!INCLUDE[](~/blazor/includes/security/redirecttologin-component.md)]
+[!INCLUDE[](../includes/redirecttologin-component.md)]
 
 ## LoginDisplay component
 
@@ -185,9 +185,9 @@ The `LoginDisplay` component (`Shared/LoginDisplay.razor`) is rendered in the `M
 
 ## Authentication component
 
-[!INCLUDE[](~/blazor/includes/security/authentication-component.md)]
+[!INCLUDE[](../includes/authentication-component.md)]
 
-[!INCLUDE[](~/blazor/includes/security/troubleshoot.md)]
+[!INCLUDE[](../includes/troubleshoot.md)]
 
 ## Additional resources
 

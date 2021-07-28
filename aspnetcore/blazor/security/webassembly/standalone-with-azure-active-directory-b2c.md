@@ -95,7 +95,7 @@ The output location specified with the `-o|--output` option creates a project fo
 
 ::: moniker range=">= aspnetcore-5.0"
 
-[!INCLUDE[](~/blazor/includes/security/additional-scopes-standalone-nonAAD.md)]
+[!INCLUDE[](../includes/additional-scopes-standalone-nonAAD.md)]
 
 ::: moniker-end
 
@@ -187,37 +187,37 @@ For more information, see the following sections of the *Additional scenarios* a
 
 ## Login mode
 
-[!INCLUDE[](~/blazor/includes/security/msal-login-mode.md)]
+[!INCLUDE[](../includes/msal-login-mode.md)]
 
 ::: moniker-end
 
 ## Imports file
 
-[!INCLUDE[](~/blazor/includes/security/imports-file-standalone.md)]
+[!INCLUDE[](../includes/imports-file-standalone.md)]
 
 ## Index page
 
-[!INCLUDE[](~/blazor/includes/security/index-page-msal.md)]
+[!INCLUDE[](../includes/index-page-msal.md)]
 
 ## App component
 
-[!INCLUDE[](~/blazor/includes/security/app-component.md)]
+[!INCLUDE[](../includes/app-component.md)]
 
 ## RedirectToLogin component
 
-[!INCLUDE[](~/blazor/includes/security/redirecttologin-component.md)]
+[!INCLUDE[](../includes/redirecttologin-component.md)]
 
 ## LoginDisplay component
 
-[!INCLUDE[](~/blazor/includes/security/logindisplay-component.md)]
+[!INCLUDE[](../includes/logindisplay-component.md)]
 
 ## Authentication component
 
-[!INCLUDE[](~/blazor/includes/security/authentication-component.md)]
+[!INCLUDE[](../includes/authentication-component.md)]
 
-[!INCLUDE[](~/blazor/includes/security/wasm-aad-b2c-userflows.md)]
+[!INCLUDE[](../includes/wasm-aad-b2c-userflows.md)]
 
-[!INCLUDE[](~/blazor/includes/security/troubleshoot.md)]
+[!INCLUDE[](../includes/troubleshoot.md)]
 
 ## Additional resources
 

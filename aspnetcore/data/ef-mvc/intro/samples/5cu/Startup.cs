@@ -49,12 +49,14 @@ namespace ContosoUniversity
 
             app.UseAuthorization();
 
+            #region snippet2
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+            #endregion
         }
     }
 }

@@ -14,7 +14,6 @@ namespace WebApp1
         }
 
         public IConfiguration Configuration { get; }
-
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
