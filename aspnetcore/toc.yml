@@ -311,13 +311,29 @@
     - name: Blazor
       items:
         - name: Overview
-          uid: blazor/index
+          href: 3.1/blazor/index.md
+        - name: Overview
+          href: 5.0/blazor/index.md
+        - name: Overview
+          href: 6.0/blazor/index.md
         - name: Supported platforms
-          uid: blazor/supported-platforms
+          href: 3.1/blazor/supported-platforms.md
+        - name: Supported platforms
+          href: 5.0/blazor/supported-platforms.md
+        - name: Supported platforms
+          href: 6.0/blazor/supported-platforms.md
         - name: Tooling
-          uid: blazor/tooling
+          href: 3.1/blazor/tooling.md
+        - name: Tooling
+          href: 5.0/blazor/tooling.md
+        - name: Tooling
+          href: 6.0/blazor/tooling.md
         - name: Hosting models
-          uid: blazor/hosting-models
+          href: 3.1/blazor/hosting-models.md
+        - name: Hosting models
+          href: 5.0/blazor/hosting-models.md
+        - name: Hosting models
+          href: 6.0/blazor/hosting-models.md
         - name: Tutorials
           items:
             - name: Build your first Blazor app
@@ -327,7 +343,11 @@
             - name: SignalR with Blazor
               uid: tutorials/signalr-blazor
         - name: Project structure
-          uid: blazor/project-structure
+          href: 3.1/blazor/project-structure.md
+        - name: Project structure
+          href: 5.0/blazor/project-structure.md
+        - name: Project structure
+          href: 6.0/blazor/project-structure.md
         - name: Fundamentals
           items:
             - name: Routing
@@ -413,17 +433,23 @@
             - name: Prerender and integrate components
               uid: blazor/components/prerendering-and-integration
             - name: Class libraries
-              href: 3.1/blazor/components/class-libraries.md?view=aspnetcore-3.1
+              href: 3.1/blazor/components/class-libraries.md
             - name: Class libraries
-              href: 5.0/blazor/components/class-libraries.md?view=aspnetcore-5.0
+              href: 5.0/blazor/components/class-libraries.md
             - name: Class libraries
-              href: 6.0/blazor/components/class-libraries.md?view=aspnetcore-6.0
+              href: 6.0/blazor/components/class-libraries.md
         - name: Globalization and localization
-          uid: blazor/globalization-localization
+          href: 3.1/blazor/globalization-localization.md
+        - name: Globalization and localization
+          href: 5.0/blazor/globalization-localization.md
+        - name: Globalization and localization
+          href: 6.0/blazor/globalization-localization.md
         - name: Forms and validation
           uid: blazor/forms-validation
         - name: File uploads
-          uid: blazor/file-uploads
+          href: 5.0/blazor/file-uploads.md
+        - name: File uploads
+          href: 6.0/blazor/file-uploads.md
         - name: JavaScript interop
           items:
             - name: Overview
@@ -445,7 +471,11 @@
             - name: Call .NET from JavaScript
               href: 6.0/blazor/javascript-interoperability/call-dotnet-from-javascript.md
         - name: Call a web API
-          uid: blazor/call-web-api
+          href: 3.1/blazor/call-web-api.md
+        - name: Call a web API
+          href: 5.0/blazor/call-web-api.md
+        - name: Call a web API
+          href: 6.0/blazor/call-web-api.md
         - name: Security and Identity
           items:
             - name: Overview
@@ -485,7 +515,11 @@
             - name: Content Security Policy
               uid: blazor/security/content-security-policy
         - name: State management
-          uid: blazor/state-management
+          href: 3.1/blazor/state-management.md
+        - name: State management
+          href: 5.0/blazor/state-management.md
+        - name: State management
+          href: 6.0/blazor/state-management.md
         - name: Debug WebAssembly
           href: 3.1/blazor/debug.md
         - name: Debug WebAssembly
@@ -493,13 +527,27 @@
         - name: Debug WebAssembly
           href: 6.0/blazor/debug.md
         - name: Lazy load assemblies with WebAssembly
-          uid: blazor/webassembly-lazy-load-assemblies
+          href: 5.0/blazor/webassembly-lazy-load-assemblies.md
+        - name: Lazy load assemblies with WebAssembly
+          href: 6.0/blazor/webassembly-lazy-load-assemblies.md
         - name: WebAssembly performance
-          uid: blazor/webassembly-performance-best-practices
+          href: 3.1/blazor/webassembly-performance-best-practices.md
+        - name: WebAssembly performance
+          href: 5.0/blazor/webassembly-performance-best-practices.md
+        - name: WebAssembly performance
+          href: 6.0/blazor/webassembly-performance-best-practices.md
         - name: Test components
-          uid: blazor/test
+          href: 3.1/blazor/test.md
+        - name: Test components
+          href: 5.0/blazor/test.md
+        - name: Test components
+          href: 6.0/blazor/test.md
         - name: Progressive Web Applications
-          uid: blazor/progressive-web-app
+          href: 3.1/blazor/progressive-web-app.md
+        - name: Progressive Web Applications
+          href: 5.0/blazor/progressive-web-app.md
+        - name: Progressive Web Applications
+          href: 6.0/blazor/progressive-web-app.md
         - name: Host and deploy
           items:
             - name: Overview
@@ -527,9 +575,17 @@
             - name: Configure the Trimmer
               href: 6.0/blazor/host-and-deploy/configure-trimmer.md
         - name: Blazor Server and EF Core
-          uid: blazor/blazor-server-ef-core
+          href: 3.1/blazor/blazor-server-ef-core.md
+        - name: Blazor Server and EF Core
+          href: 5.0/blazor/blazor-server-ef-core.md
+        - name: Blazor Server and EF Core
+          href: 6.0/blazor/blazor-server-ef-core.md
         - name: Advanced scenarios
-          uid: blazor/advanced-scenarios
+          href: 3.1/blazor/advanced-scenarios.md
+        - name: Advanced scenarios
+          href: 5.0/blazor/advanced-scenarios.md
+        - name: Advanced scenarios
+          href: 6.0/blazor/advanced-scenarios.md
         - name: Built-in components
           items:
             - name: App

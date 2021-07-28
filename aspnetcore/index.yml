@@ -61,7 +61,7 @@ conceptualContent:
     - title: "Interactive client-side Blazor apps"
       summary: Develop with reusable UI components that can take advantage of WebAssembly for near-native performance
       links:
-        - url: blazor/index.md
+        - url: 5.0/blazor/index.md
           itemType: overview
           text: "Overview"
         - url: https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro
@@ -70,7 +70,7 @@ conceptualContent:
         - url: tutorials/build-a-blazor-app.md
           itemType: get-started
           text: "Build your first Blazor app with reusable components"
-        - url: blazor/hosting-models.md
+        - url: 5.0/blazor/hosting-models.md
           itemType: concept
           text: "Blazor hosting models"
     # Card
