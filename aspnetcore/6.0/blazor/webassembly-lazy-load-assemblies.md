@@ -91,8 +91,6 @@ In the following example:
 > [!NOTE]
 > The preceding example doesn't show the contents of the `Router` component's Razor markup (`...`). For a demonstration with complete code, see the [Complete example](#complete-example) section of this article.
 
-[!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
-
 ## Assemblies that include routable components
 
 When the list of assemblies includes routable components, the assembly list for a given path is passed to the `Router` component's <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies> collection.
@@ -143,8 +141,6 @@ In the following example:
 
 > [!NOTE]
 > The preceding example doesn't show the contents of the `Router` component's Razor markup (`...`). For a demonstration with complete code, see the [Complete example](#complete-example) section of this article.
-
-[!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
 
 For more information, see <xref:blazor/fundamentals/routing#route-to-components-from-multiple-assemblies>.
 
@@ -357,8 +353,6 @@ Configure the app to lazy load the `GrantImaharaRobotControls.dll` assembly:
        }
    }
    ```
-
-   [!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
 
 Build and run the app again. For the default page that loads the `Index` component (`Pages/Index.razor`), the developer tool's Network tab indicates that the RCL's assembly (`GrantImaharaRobotControls.dll`) does **not** load for the `Index` component:
 

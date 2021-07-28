@@ -2,7 +2,7 @@
 title: ASP.NET Core Blazor layouts
 author: guardrex
 description: Learn how to create reusable layout components for Blazor apps.
-monikerRange: '>= aspnetcore-3.1'
+monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 03/02/2021
@@ -29,17 +29,7 @@ The following `DoctorWhoLayout` component shows the Razor template of a layout c
 
 `Shared/DoctorWhoLayout.razor`:
 
-::: moniker range=">= aspnetcore-5.0"
-
 [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Shared/layouts/DoctorWhoLayout.razor?highlight=1,13)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Shared/layouts/DoctorWhoLayout.razor?highlight=1,13)]
-
-::: moniker-end
 
 ### `MainLayout` component
 
@@ -47,21 +37,11 @@ In an app created from a [Blazor project template](xref:blazor/project-structure
 
 `Shared/MainLayout.razor`:
 
-::: moniker range=">= aspnetcore-5.0"
-
 [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Shared/layouts/MainLayout.razor)]
 
 [Blazor's CSS isolation feature](xref:blazor/components/css-isolation) applies isolated CSS styles to the `MainLayout` component. By convention, the styles are provided by the accompanying stylesheet of the same name, `Shared/MainLayout.razor.css`. The ASP.NET Core framework implementation of the stylesheet is available for inspection in the [ASP.NET Core reference source (dotnet/aspnetcore GitHub repository)](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/ComponentsWebAssembly-CSharp/Client/Shared/MainLayout.razor.css).
 
-[!INCLUDE[](~/blazor/includes/aspnetcore-repo-ref-source-links.md)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Shared/layouts/MainLayout.razor)]
-
-::: moniker-end
+[!INCLUDE[](../includes/aspnetcore-repo-ref-source-links.md)]
 
 ## Apply a layout
 
@@ -73,17 +53,7 @@ The content of the following `Episodes` component is inserted into the `DoctorWh
 
 `Pages/Episodes.razor`:
 
-::: moniker range=">= aspnetcore-5.0"
-
 [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/layouts/Episodes.razor?highlight=2)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/layouts/Episodes.razor?highlight=2)]
-
-::: moniker-end
 
 The following rendered HTML markup is produced by the preceding `DoctorWhoLayout` and `Episodes` component. Extraneous markup doesn't appear in order to focus on the content provided by the two components involved:
 
@@ -151,19 +121,7 @@ Specify the default app layout in the in the `App` component's <xref:Microsoft.A
 
 `App.razor`:
 
-::: moniker range=">= aspnetcore-5.0"
-
 [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/layouts/App1.razor?highlight=3)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/layouts/App1.razor?highlight=3)]
-
-::: moniker-end
-
-[!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
 
 For more information on the <xref:Microsoft.AspNetCore.Components.Routing.Router> component, see <xref:blazor/fundamentals/routing>.
 
@@ -175,8 +133,6 @@ To set a layout for arbitrary Razor template content, specify the layout with a 
 
 `App.razor`:
 
-::: moniker range=">= aspnetcore-5.0"
-
 ```razor
 <Router AppAssembly="@typeof(Program).Assembly">
     <Found Context="routeData">
@@ -190,28 +146,6 @@ To set a layout for arbitrary Razor template content, specify the layout with a 
     </NotFound>
 </Router>
 ```
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-```razor
-<Router AppAssembly="@typeof(Program).Assembly">
-    <Found Context="routeData">
-        <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
-    </Found>
-    <NotFound>
-        <LayoutView Layout="@typeof(ErrorLayout)">
-            <h1>Page not found</h1>
-            <p>Sorry, there's nothing at this address.</p>
-        </LayoutView>
-    </NotFound>
-</Router>
-```
-
-::: moniker-end
-
-[!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
 
 ## Nested layouts
 
@@ -223,33 +157,13 @@ The following `DoctorWhoLayout` component is a modified version of the example s
 
 `Shared/DoctorWhoLayout.razor`:
 
-::: moniker range=">= aspnetcore-5.0"
-
 [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Shared/layouts/DoctorWhoLayout2.razor?highlight=2,12)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Shared/layouts/DoctorWhoLayout2.razor?highlight=2,12)]
-
-::: moniker-end
 
 The `ProductionsLayout` component contains the top-level layout elements, where the header (`<header>...</header>`) and footer (`<footer>...</footer>`) elements now reside. The `DoctorWhoLayout` with the `Episodes` component is rendered where `@Body` appears.
 
 `Shared/ProductionsLayout.razor`:
 
-::: moniker range=">= aspnetcore-5.0"
-
 [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Shared/layouts/ProductionsLayout.razor?highlight=13)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Shared/layouts/ProductionsLayout.razor?highlight=13)]
-
-::: moniker-end
 
 The following rendered HTML markup is produced by the preceding nested layout. Extraneous markup doesn't appear in order to focus on the nested content provided by the three components involved:
 

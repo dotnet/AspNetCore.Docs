@@ -296,7 +296,7 @@ Example:
 }
 ```
 
-[!INCLUDE[](~/blazor/includes/security/azure-scope-5x.md)]
+[!INCLUDE[](../includes/azure-scope-5x.md)]
 
 ::: moniker-end
 
@@ -473,7 +473,7 @@ options.ProviderOptions.AdditionalScopesToConsent.Add("{ADDITIONAL SCOPE URI}");
 
 ::: moniker range="< aspnetcore-5.0"
 
-[!INCLUDE[](~/blazor/includes/security/azure-scope-3x.md)]
+[!INCLUDE[](../includes/azure-scope-3x.md)]
 
 ::: moniker-end
 
@@ -486,37 +486,37 @@ For more information, see the following sections of the *Additional scenarios* a
 
 ### Login mode
 
-[!INCLUDE[](~/blazor/includes/security/msal-login-mode.md)]
+[!INCLUDE[](../includes/msal-login-mode.md)]
 
 ::: moniker-end
 
 ### Imports file
 
-[!INCLUDE[](~/blazor/includes/security/imports-file-hosted.md)]
+[!INCLUDE[](../includes/imports-file-hosted.md)]
 
 ### Index page
 
-[!INCLUDE[](~/blazor/includes/security/index-page-msal.md)]
+[!INCLUDE[](../includes/index-page-msal.md)]
 
 ### App component
 
-[!INCLUDE[](~/blazor/includes/security/app-component.md)]
+[!INCLUDE[](../includes/app-component.md)]
 
 ### RedirectToLogin component
 
-[!INCLUDE[](~/blazor/includes/security/redirecttologin-component.md)]
+[!INCLUDE[](../includes/redirecttologin-component.md)]
 
 ### LoginDisplay component
 
-[!INCLUDE[](~/blazor/includes/security/logindisplay-component.md)]
+[!INCLUDE[](../includes/logindisplay-component.md)]
 
 ### Authentication component
 
-[!INCLUDE[](~/blazor/includes/security/authentication-component.md)]
+[!INCLUDE[](../includes/authentication-component.md)]
 
 ### FetchData component
 
-[!INCLUDE[](~/blazor/includes/security/fetchdata-component.md)]
+[!INCLUDE[](../includes/fetchdata-component.md)]
 
 ## Run the app
 
@@ -526,10 +526,10 @@ Run the app from the Server project. When using Visual Studio, either:
 * Select the Server project in **Solution Explorer** and select the **Run** button in the toolbar or start the app from the **Debug** menu.
 
 <!-- HOLD
-[!INCLUDE[](~/blazor/includes/security/usermanager-signinmanager.md)]
+[!INCLUDE[](../includes/usermanager-signinmanager.md)]
 -->
 
-[!INCLUDE[](~/blazor/includes/security/troubleshoot.md)]
+[!INCLUDE[](../includes/troubleshoot.md)]
 
 ## Additional resources
 

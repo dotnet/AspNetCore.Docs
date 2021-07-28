@@ -2,7 +2,7 @@
 title: ASP.NET Core Blazor cascading values and parameters
 author: guardrex
 description: Learn how to flow data from an ancestor component to descendent components.
-monikerRange: '>= aspnetcore-3.1'
+monikerRange: '>= aspnetcore-5.0 < aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/02/2021
@@ -40,17 +40,7 @@ The following [layout component](xref:blazor/components/layouts) specifies theme
 
 `Shared/MainLayout.razor`:
 
-::: moniker range=">= aspnetcore-5.0"
-
 [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Shared/MainLayout.razor?highlight=2,10-14,19)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Shared/MainLayout.razor?highlight=2,9-13,17)]
-
-::: moniker-end
 
 ## `[CascadingParameter]` attribute
 
@@ -60,17 +50,7 @@ The following component binds the `ThemeInfo` cascading value to a cascading par
 
 `Pages/ThemedCounter.razor`:
 
-::: moniker range=">= aspnetcore-5.0"
-
 [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/ThemedCounter.razor?highlight=2,15-17,23-24)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/ThemedCounter.razor?highlight=2,15-17,23-24)]
-
-::: moniker-end
 
 ## Cascade multiple values
 

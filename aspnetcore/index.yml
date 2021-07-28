@@ -205,7 +205,7 @@ conceptualContent:
         - url: tutorials/first-mvc-app/start-mvc.md
           itemType: tutorial
           text: "SQL with ASP.NET Core"
-        - url: ./blazor/components/data-binding.md
+        - url: ./5.0/blazor/components/data-binding.md
           itemType: concept
           text: "Data binding in ASP.NET Core Blazor"
         - url: tutorials/razor-pages/razor-pages-start.md

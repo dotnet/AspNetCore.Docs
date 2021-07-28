@@ -2,7 +2,7 @@
 title: ASP.NET Core Blazor forms and validation
 author: guardrex
 description: Learn how to use forms and field validation scenarios in Blazor.
-monikerRange: '>= aspnetcore-3.1'
+monikerRange: '>= aspnetcore-5.0 < aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 04/27/2021
@@ -17,33 +17,13 @@ To demonstrate how an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> comp
 
 `ExampleModel.cs`:
 
-::: moniker range=">= aspnetcore-5.0"
-
 [!code-csharp[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/ExampleModel.cs?highlight=5-6)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-[!code-csharp[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/ExampleModel.cs?highlight=5-6)]
-
-::: moniker-end
 
 A form is defined using the Blazor framework's <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component. The following Razor component demonstrates typical elements, components, and Razor code to render a webform using an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component, which is bound to the preceding `ExampleModel` type.
 
 `Pages/FormExample1.razor`:
 
-::: moniker range=">= aspnetcore-5.0"
-
 [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample1.razor)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample1.razor)]
-
-::: moniker-end
 
 In the preceding `FormExample1` component:
 
@@ -61,8 +41,6 @@ In the preceding `FormExample1` component:
 ## Binding a form
 
 An <xref:Microsoft.AspNetCore.Components.Forms.EditForm> creates an <xref:Microsoft.AspNetCore.Components.Forms.EditContext> based on the assigned model instance as a [cascading value](xref:blazor/components/cascading-values-and-parameters) for other components in the form. The <xref:Microsoft.AspNetCore.Components.Forms.EditContext> tracks metadata about the edit process, including which fields have been modified and the current validation messages. Assigning to either an <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?displayProperty=nameWithType> or an <xref:Microsoft.AspNetCore.Components.Forms.EditForm.EditContext?displayProperty=nameWithType> can bind a form to data.
-
-::: moniker range=">= aspnetcore-5.0"
 
 Assignment to <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?displayProperty=nameWithType>:
 
@@ -90,38 +68,6 @@ Assignment to <xref:Microsoft.AspNetCore.Components.Forms.EditForm.EditContext?d
 }
 ```
 
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-Assignment to <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?displayProperty=nameWithType>:
-
-```razor
-<EditForm Model="@exampleModel" ...>
-
-@code {
-    private ExampleModel exampleModel = new ExampleModel() { ... };
-}
-```
-
-Assignment to <xref:Microsoft.AspNetCore.Components.Forms.EditForm.EditContext?displayProperty=nameWithType>:
-
-```razor
-<EditForm EditContext="@editContext" ...>
-
-@code {
-    private ExampleModel exampleModel = new ExampleModel() { ... };
-    private EditContext editContext;
-
-    protected override void OnInitialized()
-    {
-        editContext = new EditContext(exampleModel);
-    }
-}
-```
-
-::: moniker-end
-
 Assign **either** an <xref:Microsoft.AspNetCore.Components.Forms.EditForm.EditContext> **or** a <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model> to an <xref:Microsoft.AspNetCore.Components.Forms.EditForm>. Assignment of both isn't supported and generates a runtime error:
 
 > Unhandled exception rendering component: EditForm requires a Model parameter, or an EditContext parameter, but not both.
@@ -138,8 +84,6 @@ The <xref:Microsoft.AspNetCore.Components.Forms.EditForm> provides the following
 
 The Blazor framework provides built-in form components to receive and validate user input. Inputs are validated when they're changed and when a form is submitted. Available input components are shown in the following table.
 
-::: moniker range=">= aspnetcore-5.0"
-
 | Input component | Rendered as&hellip; |
 | --------------- | ------------------- |
 | <xref:Microsoft.AspNetCore.Components.Forms.InputCheckbox> | `<input type="checkbox">` |
@@ -153,24 +97,6 @@ The Blazor framework provides built-in form components to receive and validate u
 | <xref:Microsoft.AspNetCore.Components.Forms.InputTextArea> | `<textarea>` |
 
 For more information on the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component, see <xref:blazor/file-uploads>.
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-| Input component | Rendered as&hellip; |
-| --------------- | ------------------- |
-| <xref:Microsoft.AspNetCore.Components.Forms.InputCheckbox> | `<input type="checkbox">` |
-| <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601> | `<input type="date">` |
-| <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> | `<input type="number">` |
-| <xref:Microsoft.AspNetCore.Components.Forms.InputSelect%601> | `<select>` |
-| <xref:Microsoft.AspNetCore.Components.Forms.InputText> | `<input>` |
-| <xref:Microsoft.AspNetCore.Components.Forms.InputTextArea> | `<textarea>` |
-
-> [!NOTE]
-> <xref:Microsoft.AspNetCore.Components.Forms.InputRadio%601> and <xref:Microsoft.AspNetCore.Components.Forms.InputRadioGroup%601> components are available in ASP.NET Core 5.0 or later. For more information, select a 5.0 or later version of this article.
-
-::: moniker-end
 
 All of the input components, including <xref:Microsoft.AspNetCore.Components.Forms.EditForm>, support arbitrary attributes. Any attribute that doesn't match a component parameter is added to the rendered HTML element.
 
@@ -189,17 +115,7 @@ The following `Starship` type, which is used in several of this article's exampl
 
 `Starship.cs`:
 
-::: moniker range=">= aspnetcore-5.0"
-
 [!code-csharp[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Starship.cs)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-[!code-csharp[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Starship.cs)]
-
-::: moniker-end
 
 The following form accepts and validates user input using:
 
@@ -208,17 +124,7 @@ The following form accepts and validates user input using:
 
 `Pages/FormExample2.razor`:
 
-::: moniker range=">= aspnetcore-5.0"
-
 [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample2.razor)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample2.razor)]
-
-::: moniker-end
 
 The <xref:Microsoft.AspNetCore.Components.Forms.EditForm> in the preceding example creates an <xref:Microsoft.AspNetCore.Components.Forms.EditContext> based on the assigned `Starship` instance (`Model="@starship"`) and handles a valid form. The next example (`FormExample3` component) demonstrates how to assign an <xref:Microsoft.AspNetCore.Components.Forms.EditContext> to a form and validate when the form is submitted.
 
@@ -236,99 +142,14 @@ In the following example:
 
 `Pages/FormExample3.razor`:
 
-::: moniker range=">= aspnetcore-5.0"
-
 [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample3.razor?highlight=5,39,44)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample3.razor?highlight=5,39,44)]
-
-::: moniker-end
 
 > [!NOTE]
 > Changing the <xref:Microsoft.AspNetCore.Components.Forms.EditContext> after its assigned is **not** supported.
 
-::: moniker range=">= aspnetcore-6.0"
-
-## Multiple option selection with the `InputSelect` component
-
-*This feature applies to ASP.NET Core 6.0 Preview 7 or later. ASP.NET Core 6.0 is scheduled for release later this year.*
-
-Binding supports [`multiple`](https://developer.mozilla.org/docs/Web/HTML/Attributes/multiple) option selection with the <xref:Microsoft.AspNetCore.Components.Forms.InputSelect%601> component. The [`@onchange`](xref:mvc/views/razor#onevent) event provides an array of the selected options via [event arguments (`ChangeEventArgs`)](xref:blazor/components/event-handling#event-arguments). The value must be bound to an array type, and binding to an array type makes the [`multiple`](https://developer.mozilla.org/docs/Web/HTML/Attributes/multiple) attribute optional on the <xref:Microsoft.AspNetCore.Components.Forms.InputSelect%601> tag.
-
-In the following example, the user must select at least two starship classifications but no more than three classifications.
-
-`Pages/BindMultipleWithInputSelect.razor`:
-
-```razor
-@page "/bind-multiple-with-inputselect"
-@using System.ComponentModel.DataAnnotations 
-@using Microsoft.Extensions.Logging
-@inject ILogger<BindMultipleWithInputSelect> Logger 
-
-<h1>Bind Multiple <code>InputSelect</code>Example</h1>
-
-<EditForm EditContext="@editContext" OnValidSubmit="@HandleValidSubmit">
-    <DataAnnotationsValidator />
-    <ValidationSummary />
-
-    <p>
-        <label>
-            Select one or more classifications (Minimum: 2, Maximum: 3):
-            <InputSelect @bind-Value="starship.SelectedClassification">
-                <option value="@Classification.Exploration">Exploration</option>
-                <option value="@Classification.Diplomacy">Diplomacy</option>
-                <option value="@Classification.Defense">Defense</option>
-                <option value="@Classification.Research">Research</option>
-            </InputSelect>
-        </label>
-    </p>
-
-    <button type="submit">Submit</button>
-</EditForm>
-
-<p>
-    Selected Classifications: 
-    @string.Join(", ", starship.SelectedClassification)
-</p>
-
-@code {
-    private EditContext editContext;
-    private Starship starship = new();
-
-    protected override void OnInitialized()
-    {
-        editContext = new(starship);
-    }
-
-    private void HandleValidSubmit()
-    {
-        Logger.LogInformation("HandleValidSubmit called");
-    }
-
-    private class Starship
-    {
-        [Required, MinLength(2), MaxLength(3)]
-        public Classification[] SelectedClassification { get; set; } =
-            new[] { Classification.Diplomacy };
-    }
-
-    private enum Classification { Exploration, Diplomacy, Defense, Research }
-}
-```
-
-For information on how empty strings and `null` values are handled in data binding, see the [Binding `InputSelect` options to C# object `null` values](#binding-inputselect-options-to-c-object-null-values) section.
-
-::: moniker-end
-
 ## Binding `InputSelect` options to C# object `null` values
 
 For information on how empty strings and `null` values are handled in data binding, see <xref:blazor/components/data-binding#binding-select-element-options-to-c-object-null-values>.
-
-::: moniker range=">= aspnetcore-5.0"
 
 ## Display name support
 
@@ -361,11 +182,7 @@ The validation summary displays the friendly name when the field's value is inva
 
 > The Production Date field must be a date.
 
-::: moniker-end
-
 ## Error message template support
-
-::: moniker range=">= aspnetcore-5.0"
 
 <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601> and <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> support error message templates:
 
@@ -403,46 +220,6 @@ Assign a custom template to <xref:Microsoft.AspNetCore.Components.Forms.InputDat
 
 > The Production Date field has an incorrect date value.
 
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-<xref:Microsoft.AspNetCore.Components.Forms.InputDate%601> and <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> support error message templates:
-
-* <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601.ParsingErrorMessage%2A?displayProperty=nameWithType>
-* <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601.ParsingErrorMessage%2A?displayProperty=nameWithType>
-
-In the `Starfleet Starship Database` form (`FormExample2` component) of the [Example form](#example-form) section uses a default error message template:
-
-```css
-The {0} field must be a date.
-```
-
-The position of the `{0}` placeholder is where the value of the <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601.DisplayName%2A> property appears when the error is displayed to the user.
-
-```razor
-<label>
-    Production Date:
-    <InputDate @bind-Value="starship.ProductionDate" />
-</label>
-```
-
-> The ProductionDate field must be a date.
-
-Assign a custom template to <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601.ParsingErrorMessage%2A> to provide a custom message:
-
-```razor
-<label>
-    Production Date:
-    <InputDate @bind-Value="starship.ProductionDate" 
-               ParsingErrorMessage="The {0} field has an incorrect date value." />
-</label>
-```
-
-> The ProductionDate field has an incorrect date value.
-
-::: moniker-end
-
 ## Basic validation
 
 In basic form validation scenarios, an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> instance can use declared <xref:Microsoft.AspNetCore.Components.Forms.EditContext> and <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore> instances to validate form fields. A handler for the <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnValidationRequested> event of the <xref:Microsoft.AspNetCore.Components.Forms.EditContext> executes custom validation logic. The handler's result updates the <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore> instance.
@@ -453,17 +230,7 @@ In the following `FormExample4` component, the `HandleValidationRequested` handl
 
 `Pages/FormExample4.razor`:
 
-::: moniker range=">= aspnetcore-5.0"
-
 [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample4.razor?highlight=38,42-53,70)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample4.razor?highlight=38,42-53,70)]
-
-::: moniker-end
 
 ## Data Annotations Validator component and custom validation
 
@@ -472,7 +239,7 @@ The <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> compon
 * [`DataAnnotationsValidator`](https://github.com/dotnet/AspNetCore/blob/main/src/Components/Forms/src/DataAnnotationsValidator.cs)
 * [`AddDataAnnotationsValidation`](https://github.com/dotnet/AspNetCore/blob/main/src/Components/Forms/src/EditContextDataAnnotationsExtensions.cs).
 
-[!INCLUDE[](~/blazor/includes/aspnetcore-repo-ref-source-links.md)]
+[!INCLUDE[](includes/aspnetcore-repo-ref-source-links.md)]
 
 Blazor performs two types of validation:
 
@@ -495,7 +262,7 @@ Create a validator component from <xref:Microsoft.AspNetCore.Components.Componen
 
 * The form's <xref:Microsoft.AspNetCore.Components.Forms.EditContext> is a [cascading parameter](xref:blazor/components/cascading-values-and-parameters) of the component.
 * When the validator component is initialized, a new <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore> is created to maintain a current list of form errors.
-* The message store receives errors when developer code in the form's component calls the `DisplayErrors` method. The errors are passed to the `DisplayErrors` method in a [`Dictionary<string, List<string>>`](xref:System.Collections.Generic.Dictionary`2). In the dictionary, the key is the name of the form field that has one or more errors. The value is the error list.
+* The message store receives errors when developer code in the form's component calls the `DisplayErrors` method. The errors are passed to the `DisplayErrors` method in a [`Dictionary<string, List<string>>`](xref:System.Collections.Generic.Dictionary%602). In the dictionary, the key is the name of the form field that has one or more errors. The value is the error list.
 * Messages are cleared when any of the following have occurred:
   * Validation is requested on the <xref:Microsoft.AspNetCore.Components.Forms.EditContext> when the <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnValidationRequested> event is raised. All of the errors are cleared.
   * A field changes in the form when the <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnFieldChanged> event is raised. Only the errors for the field are cleared.
@@ -503,17 +270,7 @@ Create a validator component from <xref:Microsoft.AspNetCore.Components.Componen
 
 `CustomValidation.cs` (if used in a test app, change the namespace, `BlazorSample`, to match the app's namespace):
 
-::: moniker range=">= aspnetcore-5.0"
-
 [!code-csharp[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/CustomValidation.cs)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-[!code-csharp[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/CustomValidation.cs)]
-
-::: moniker-end
 
 > [!IMPORTANT]
 > Specifying a namespace is **required** when deriving from <xref:Microsoft.AspNetCore.Components.ComponentBase>. Failing to specify a namespace results in a build error:
@@ -541,17 +298,7 @@ When validation messages are set in the component, they're added to the validato
 
 `Pages/FormExample5.razor`:
 
-::: moniker range=">= aspnetcore-5.0"
-
 [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample5.razor)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample5.razor)]
-
-::: moniker-end
 
 > [!NOTE]
 > As an alternative to using [validation components](#validator-components), data annotation validation attributes can be used. Custom attributes applied to the form's model activate with the use of the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. When used with server-side validation, the attributes must be executable on the server. For more information, see <xref:mvc/models/validation#alternatives-to-built-in-attributes>.
@@ -597,8 +344,6 @@ The validation for the `Defense` ship classification only occurs server-side in 
 > * [Microsoft identity platform documentation](/azure/active-directory/develop/)
 
 `Controllers/StarshipValidation.cs`:
-
-::: moniker range=">= aspnetcore-5.0"
 
 ```csharp
 using System;
@@ -660,77 +405,6 @@ namespace BlazorSample.Server.Controllers
     }
 }
 ```
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-> [!NOTE]
-> The `StarshipValidation` controller in this section is appropriate for use with Microsoft Identity 1.0. Additional configuration is required for use with Microsoft Identity 2.0 and ASP.NET Core 5.0 or later. To see a version of the controller for updated versions of these technologies, see a later version of this article.
->
-> For more information on security, see:
->
-> * <xref:blazor/security/index> (and the other articles in the *Blazor Security and Identity* node)
-> * [Microsoft identity platform documentation](/azure/active-directory/develop/)
-
-```csharp
-using System;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using Microsoft.Identity.Web.Resource;
-using BlazorSample.Shared;
-
-namespace BlazorSample.Server.Controllers
-{
-    [Authorize]
-    [ApiController]
-    [Route("[controller]")]
-    public class StarshipValidationController : ControllerBase
-    {
-        private readonly ILogger<StarshipValidationController> logger;
-
-        public StarshipValidationController(
-            ILogger<StarshipValidationController> logger)
-        {
-            this.logger = logger;
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Post(Starship starship)
-        {
-            try
-            {
-                if (starship.Classification == "Defense" && 
-                    string.IsNullOrEmpty(starship.Description))
-                {
-                    ModelState.AddModelError(nameof(starship.Description),
-                        "For a 'Defense' ship " +
-                        "classification, 'Description' is required.");
-                }
-                else
-                {
-                    logger.LogInformation("Processing the form asynchronously");
-
-                    // Process the valid form
-                    // async ...
-
-                    return Ok(ModelState);
-                }
-            }
-            catch (Exception ex)
-            {
-                logger.LogError("Validation Error: {Message}", ex.Message);
-            }
-
-            return BadRequest(ModelState);
-        }
-    }
-}
-```
-
-::: moniker-end
 
 If using the preceding controller in a hosted Blazor WebAssembly app, update the namespace (`BlazorSample.Server.Controllers`) to match the app's controllers namespace.
 
@@ -950,53 +624,21 @@ The following example uses the `ExampleModel` class.
 
 `ExampleModel.cs`:
 
-::: moniker range=">= aspnetcore-5.0"
-
 [!code-csharp[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/ExampleModel.cs)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-[!code-csharp[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/ExampleModel.cs)]
-
-::: moniker-end
 
 The following `CustomInputText` component inherits the framework's `InputText` component and sets event binding to the [`oninput`](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers/oninput) event.
 
 `Shared/CustomInputText.razor`:
 
-::: moniker range=">= aspnetcore-5.0"
-
 [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Shared/forms-and-validation/CustomInputText.razor)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Shared/forms-and-validation/CustomInputText.razor)]
-
-::: moniker-end
 
 The `CustomInputText` component can be used anywhere <xref:Microsoft.AspNetCore.Components.Forms.InputText> is used. The following `FormExample7` component uses the shared `CustomInputText` component.
 
 `Pages/FormExample7.razor`:
 
-::: moniker range=">= aspnetcore-5.0"
-
 [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample7.razor?highlight=9)]
 
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample7.razor?highlight=9)]
-
-::: moniker-end
-
 ## Radio buttons
-
-::: moniker range=">= aspnetcore-5.0"
 
 The example in this section is based on the `Starfleet Starship Database` form of the [Example form](#example-form) section of this article.
 
@@ -1081,112 +723,6 @@ Update the `Starfleet Starship Database` form (`FormExample2` component) from th
 > [!NOTE]
 > If `Name` is omitted, <xref:Microsoft.AspNetCore.Components.Forms.InputRadio%601> components are grouped by their most recent ancestor.
 
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-When working with radio buttons in a form, data binding is handled differently than other elements because radio buttons are evaluated as a group. The value of each radio button is fixed, but the value of the radio button group is the value of the selected radio button. The following example shows how to:
-
-* Handle data binding for a radio button group.
-* Support validation using a custom <xref:Microsoft.AspNetCore.Components.Forms.InputRadio%601> component.
-
-`Shared/InputRadio.razor`:
-
-```razor
-@using System.Globalization
-@inherits InputBase<TValue>
-@typeparam TValue
-
-<input @attributes="AdditionalAttributes" type="radio" value="@SelectedValue" 
-       checked="@(SelectedValue.Equals(Value))" @onchange="OnChange" />
-
-@code {
-    [Parameter]
-    public TValue SelectedValue { get; set; }
-
-    private void OnChange(ChangeEventArgs args)
-    {
-        CurrentValueAsString = args.Value.ToString();
-    }
-
-    protected override bool TryParseValueFromString(string value, 
-        out TValue result, out string errorMessage)
-    {
-        var success = BindConverter.TryConvertTo<TValue>(
-            value, CultureInfo.CurrentCulture, out var parsedValue);
-        if (success)
-        {
-            result = parsedValue;
-            errorMessage = null;
-
-            return true;
-        }
-        else
-        {
-            result = default;
-            errorMessage = $"{FieldIdentifier.FieldName} field isn't valid.";
-
-            return false;
-        }
-    }
-}
-```
-
-For more information on generic type parameters (`@typeparam`), see the following articles:
-
-* <xref:mvc/views/razor#typeparam>
-* <xref:blazor/components/index#generic-type-parameter-support>
-* <xref:blazor/components/templated-components>
-
-The following `RadioButtonExample` component uses the preceding `InputRadio` component to obtain and validate a rating from the user:
-
-`Pages/RadioButtonExample.razor`:
-
-```razor
-@page "/radio-button-example"
-@using System.ComponentModel.DataAnnotations
-@using Microsoft.Extensions.Logging
-@inject ILogger<RadioButtonExample> Logger
-
-<h1>Radio Button Example</h1>
-
-<EditForm Model="@model" OnValidSubmit="@HandleValidSubmit">
-    <DataAnnotationsValidator />
-    <ValidationSummary />
-
-    @for (int i = 1; i <= 5; i++)
-    {
-        <label>
-            <InputRadio name="rate" SelectedValue="@i" @bind-Value="model.Rating" />
-            @i
-        </label>
-    }
-
-    <button type="submit">Submit</button>
-</EditForm>
-
-<p>You chose: @model.Rating</p>
-
-@code {
-    private Model model = new();
-
-    private void HandleValidSubmit()
-    {
-        Logger.LogInformation("HandleValidSubmit called");
-
-        // Process the valid form
-    }
-
-    public class Model
-    {
-        [Range(1, 5)]
-        public int Rating { get; set; }
-    }
-}
-```
-
-::: moniker-end
-
 ## Validation Summary and Validation Message components
 
 The <xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary> component summarizes all validation messages, which is similar to the [Validation Summary Tag Helper](xref:mvc/views/working-with-forms#the-validation-summary-tag-helper):
@@ -1242,8 +778,6 @@ public class CustomValidator : ValidationAttribute
 
 > [!NOTE]
 > <xref:System.ComponentModel.DataAnnotations.ValidationContext.GetService%2A?displayProperty=nameWithType> is `null`. Injecting services for validation in the `IsValid` method isn't supported.
-
-::: moniker range=">= aspnetcore-5.0"
 
 ## Custom validation CSS class attributes
 
@@ -1340,22 +874,12 @@ Using `CustomFieldClassProvider3`:
 * The `Name` field uses the app's custom validation CSS styles.
 * The `Description` field uses logic similar to Blazor's logic and Blazor's default field CSS validation styles.
 
-::: moniker-end
-
 ## Blazor data annotations validation package
 
 The [`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) is a package that fills validation experience gaps using the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. The package is currently *experimental*.
 
 > [!NOTE]
 > The [`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) package has a latest version of *release candidate* at [Nuget.org](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation). Continue to use the *experimental* release candidate package at this time. The package's assembly might be moved to either the framework or the runtime in a future release. Watch the [Announcements GitHub repository](https://github.com/aspnet/Announcements), the [dotnet/aspnetcore GitHub repository](https://github.com/dotnet/aspnetcore), or this topic section for further updates.
-
-::: moniker range="< aspnetcore-5.0"
-
-## `[CompareProperty]` attribute
-
-The <xref:System.ComponentModel.DataAnnotations.CompareAttribute> doesn't work well with the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component because it doesn't associate the validation result with a specific member. This can result in inconsistent behavior between field-level validation and when the entire model is validated on a submit. The [`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) *experimental* package introduces an additional validation attribute, `ComparePropertyAttribute`, that works around these limitations. In a Blazor app, `[CompareProperty]` is a direct replacement for the [`[Compare]` attribute](xref:System.ComponentModel.DataAnnotations.CompareAttribute).
-
-::: moniker-end
 
 ## Nested models, collection types, and complex types
 
@@ -1374,8 +898,6 @@ Annotate model properties with `[ValidateComplexType]`. In the following model c
 
 `Starship.cs`:
 
-::: moniker range=">= aspnetcore-5.0"
-
 ```csharp
 using System;
 using System.ComponentModel.DataAnnotations;
@@ -1390,28 +912,6 @@ public class Starship
     ...
 }
 ```
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-```csharp
-using System;
-using System.ComponentModel.DataAnnotations;
-
-public class Starship
-{
-    ...
-
-    [ValidateComplexType]
-    public ShipDescription ShipDescription { get; set; } = 
-        new ShipDescription();
-
-    ...
-}
-```
-
-::: moniker-end
 
 `ShipDescription.cs`:
 
@@ -1445,17 +945,7 @@ To enable and disable the submit button based on form validation, the following 
 
 `Pages/FormExample9.razor`:
 
-::: moniker range=">= aspnetcore-5.0"
-
 [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample9.razor)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample9.razor)]
-
-::: moniker-end
 
 If a form isn't preloaded with valid values and you wish to disable the **`Submit`** button on form load, set `formInvalid` to `true`.
 
@@ -1494,37 +984,13 @@ Confirm that the <xref:Microsoft.AspNetCore.Components.Forms.EditForm> assigns a
 
 When assigning to <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model>, confirm that the model type is instantiated, as the following example shows:
 
-::: moniker range=">= aspnetcore-5.0"
-
 ```csharp
 private ExampleModel exampleModel = new();
 ```
 
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-```csharp
-private ExampleModel exampleModel = new ExampleModel();
-```
-
-::: moniker-end
-
 ## Additional resources
-
-::: moniker range=">= aspnetcore-5.0"
 
 * <xref:blazor/file-uploads>
 * <xref:blazor/security/webassembly/hosted-with-azure-active-directory>
 * <xref:blazor/security/webassembly/hosted-with-azure-active-directory-b2c>
 * <xref:blazor/security/webassembly/hosted-with-identity-server>
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-* <xref:blazor/security/webassembly/hosted-with-azure-active-directory>
-* <xref:blazor/security/webassembly/hosted-with-azure-active-directory-b2c>
-* <xref:blazor/security/webassembly/hosted-with-identity-server>
-
-::: moniker-end
