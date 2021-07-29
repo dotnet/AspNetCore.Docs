@@ -33,7 +33,7 @@ Benefits:
   * Great for low-end devices and low-bandwidth connections.
   * Allows for a broad range of browser versions at the client.
   * Quick initial page load times.
-  * Minimal to no code to pull to the client.
+  * Minimal to no JavaScript to pull to the client.
 * Flexibility of access to protected server resources:
   * Database access.
   * Access to secrets, such as values for API calls to Azure storage.
@@ -41,7 +41,7 @@ Benefits:
 
 Examples of common server rendered web UI app scenarios:
 
-* Dynamic sites such as those that provide personalized pages, data and forms.
+* Dynamic sites such as those that provide personalized pages, data, and forms.
 * Display read-only data such as transaction lists. 
 * Display static blog pages.
 * A public-facing content management system.
@@ -83,9 +83,9 @@ Razor Pages is a page-based model. UI and business logic concerns are kept separ
 
 Razor Pages benefits, in addition to the server rendering benefits:
 
-* Quickly build and update UI.  Code for the page is kept with the page, while keeping UI and business logic concerns separate.
+* Quickly build and update UI. Code for the page is kept with the page, while keeping UI and business logic concerns separate.
 * Testable and scales to large apps.
-* Keep your ASP.NET Core pages organized in a simpler way:
+* Keep your ASP.NET Core pages organized in a simpler way than ASP.NET MVC:
   * View specific logic and view models can be kept together in their own namespace and directory.
   * Groups of related pages can be kept in their own namespace and directory.
 
@@ -101,7 +101,7 @@ MVC benefits, in addition to the server rendering:
 * Clear [separation of concerns](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#separation-of-concerns) for maximum flexibility.
 * The Model-View-Controller separation of responsibilities ensures that the business model can evolve without being tightly coupled to low-level implementation details.
 
-To get started with  ASP.NET Core MVC , see [Get started with MVC](xref:tutorials/first-mvc-app/start-mvc). For an overview of ASP.NET Core MVC's architecture and benefits, see [Overview of ASP.NET Core MVC](xref:mvc/overview)
+To get started with  ASP.NET Core MVC, see [Get started with MVC](xref:tutorials/first-mvc-app/start-mvc). For an overview of ASP.NET Core MVC's architecture and benefits, see [Overview of ASP.NET Core MVC](xref:mvc/overview)
 
 ## Choose a predominantly client rendered ASP.NET Core solution
 
@@ -147,7 +147,7 @@ Blazor Server benefits:
 * Share app logic across server and client..
 * Flexibility of direct access to server resources. For example:
   * Database.
-  * Secrets, such as an access key-values used for API calls to Azure storage.
+  * Secrets, such as access key-values used for API calls to Azure storage.
 * Uses a token-based security model, rather than using cookies. For example, cookies may not be enabled on the browser.
 
 To get started with ASP.NET Core Blazor Server, see [Get started with Blazor](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro). For an overview of ASP.NET Core Blazor Server, its architecture and benefits, see [Introduction to ASP.NET Core Blazor](xref:blazor/index).
@@ -167,11 +167,11 @@ To get started with ASP.NET Core MVC plus Blazor WebAssembly, see [Prerender and
 
 ### ASP.NET Core Single Page Application (SPA) with JavaScript Frameworks such as Angular and React
 
-Build client-side logic for ASP.NET Core apps using popular JavaScript frameworks, like [Angular](https://angular.io/) or [React](https://facebook.github.io/react/).  ASP.NET Core provides project templates for Angular and React.
+Build client-side logic for ASP.NET Core apps using popular JavaScript frameworks, like [Angular](https://angular.io/) or [React](https://facebook.github.io/react/). ASP.NET Core provides project templates for Angular and React.
 
 Benefits of ASP.NET Core SPA with JavaScript Frameworks, in addition to the client rendering benefits previously listed:
 
-* The Javascript runtime environment is already provided with the browser.
+* The JavaScript runtime environment is already provided with the browser.
 * Large community and mature ecosystem.
 * Build client-side logic for ASP.NET Core apps using popular JS frameworks, like Angular and React, or build your client-side logic with .NET using Blazor.
 
