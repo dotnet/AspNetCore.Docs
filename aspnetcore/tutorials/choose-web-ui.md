@@ -89,7 +89,7 @@ Razor Pages benefits, in addition to the server rendering benefits:
   * View specific logic and view models can be kept together in their own namespace and directory.
   * Groups of related pages can be kept in their own namespace and directory.
 
-To get started with your first ASP.NET Core Razor Pages app, see [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start). For a complete overview of ASP.NET Core Razor Pages, its architecture and benefits, see: [Introduction to Razor Pages in ASP.NET Core](xref:razor-pages/index)
+To get started with your first ASP.NET Core Razor Pages app, see <xref:tutorials/razor-pages/razor-pages-start>. For a complete overview of ASP.NET Core Razor Pages, its architecture and benefits, see: <xref:razor-pages/index>.
 
 ### ASP.NET Core MVC
 
@@ -101,7 +101,7 @@ MVC benefits, in addition to the server rendering:
 * Clear [separation of concerns](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#separation-of-concerns) for maximum flexibility.
 * The Model-View-Controller separation of responsibilities ensures that the business model can evolve without being tightly coupled to low-level implementation details.
 
-To get started with  ASP.NET Core MVC, see [Get started with MVC](xref:tutorials/first-mvc-app/start-mvc). For an overview of ASP.NET Core MVC's architecture and benefits, see [Overview of ASP.NET Core MVC](xref:mvc/overview)
+To get started with  ASP.NET Core MVC, see <xref:tutorials/first-mvc-app/start-mvc>. For an overview of ASP.NET Core MVC's architecture and benefits, see <xref:mvc/overview>.
 
 ## Choose a predominantly client rendered ASP.NET Core solution
 
@@ -162,7 +162,7 @@ Choose ASP.NET Core MVC plus Blazor WebAssembly when these benefits best fit you
 * Prerendering:
   * Executes Razor components on the server and renders them into a page or view.
       * Improves the perceived load time of the app while setting up interactivity.
-* Add islands of interactivity to existing views (pages) with the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper).
+* Add islands of interactivity to existing views (pages) with the <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
 
 To get started with ASP.NET Core MVC plus Blazor WebAssembly, see <xref:blazor/components/prerendering-and-integration>.
 
@@ -182,8 +182,8 @@ Downsides:
 
 To get started, see:
 
-* [Use the Angular project template with ASP.NET Core](xref:spa/angular)
-* [Use the React project template with ASP.NET Core](xref:spa/react)
+* <xref:spa/angular>
+* <xref:spa/react>
 
 ## Next steps
 
