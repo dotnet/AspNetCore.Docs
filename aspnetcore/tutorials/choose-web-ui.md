@@ -57,10 +57,10 @@ A client rendered app dynamically renders web UI on the client, directly updatin
 
 Benefits:
 
-* Takes advantage of the capabilities of the user’s device.
 * Allows for rich interactivity that is nearly instant, without requiring a round trip to the server. UI event handling and logic run locally on the user's device with minimal latency. 
 * Supports incremental updates, saving partially completed forms or documents without the user having to select a button to submit a form.
 * Can be designed to run in a disconnected mode. Updates to the client-side model that are eventually synchronized back to the server once a connection is re-established.
+* Takes advantage of the capabilities of the user’s device.
 
 Examples of client rendered web UI:
 
