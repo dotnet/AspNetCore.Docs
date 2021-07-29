@@ -28,10 +28,7 @@ The word *progressive* is used to describe such apps because:
 
 # [Visual Studio](#tab/visual-studio)
 
-When creating a new **Blazor WebAssembly App** in the **Create a New Project** dialog, select the **Progressive Web Application** checkbox:
-
-![The 'Progressive Web Application' checkbox is selected in the Visual Studio new project dialog.](progressive-web-app/_static/image1.png)
-
+When creating a new **Blazor WebAssembly App** in the **Create a New Project** dialog, select the **Progressive Web Application** checkbox.
 <!--
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
