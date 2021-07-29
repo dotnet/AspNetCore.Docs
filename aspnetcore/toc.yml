@@ -523,27 +523,69 @@
             - name: Blazor WebAssembly
               items:
                 - name: Overview
-                  uid: blazor/security/webassembly/index
+                  href: 3.1/blazor/security/webassembly/index.md
+                - name: Overview
+                  href: 5.0/blazor/security/webassembly/index.md
+                - name: Overview
+                  href: 6.0/blazor/security/webassembly/index.md
                 - name: Standalone with Authentication library
-                  uid: blazor/security/webassembly/standalone-with-authentication-library
+                  href: 3.1/blazor/security/webassembly/standalone-with-authentication-library.md
+                - name: Standalone with Authentication library
+                  href: 5.0/blazor/security/webassembly/standalone-with-authentication-library.md
+                - name: Standalone with Authentication library
+                  href: 6.0/blazor/security/webassembly/standalone-with-authentication-library.md
                 - name: Standalone with Microsoft Accounts
-                  uid: blazor/security/webassembly/standalone-with-microsoft-accounts
+                  href: 3.1/blazor/security/webassembly/standalone-with-microsoft-accounts.md
+                - name: Standalone with Microsoft Accounts
+                  href: 5.0/blazor/security/webassembly/standalone-with-microsoft-accounts.md
+                - name: Standalone with Microsoft Accounts
+                  href: 6.0/blazor/security/webassembly/standalone-with-microsoft-accounts.md
                 - name: Standalone with AAD
-                  uid: blazor/security/webassembly/standalone-with-azure-active-directory
+                  href: 3.1/blazor/security/webassembly/standalone-with-azure-active-directory.md
+                - name: Standalone with AAD
+                  href: 5.0/blazor/security/webassembly/standalone-with-azure-active-directory.md
+                - name: Standalone with AAD
+                  href: 6.0/blazor/security/webassembly/standalone-with-azure-active-directory.md
                 - name: Standalone with AAD B2C
-                  uid: blazor/security/webassembly/standalone-with-azure-active-directory-b2c
+                  href: 3.1/blazor/security/webassembly/standalone-with-azure-active-directory-b2c.md
+                - name: Standalone with AAD B2C
+                  href: 5.0/blazor/security/webassembly/standalone-with-azure-active-directory-b2c.md
+                - name: Standalone with AAD B2C
+                  href: 6.0/blazor/security/webassembly/standalone-with-azure-active-directory-b2c.md
                 - name: Hosted with AAD
-                  uid: blazor/security/webassembly/hosted-with-azure-active-directory
+                  href: 3.1/blazor/security/webassembly/hosted-with-azure-active-directory.md
+                - name: Hosted with AAD
+                  href: 5.0/blazor/security/webassembly/hosted-with-azure-active-directory.md
+                - name: Hosted with AAD
+                  href: 6.0/blazor/security/webassembly/hosted-with-azure-active-directory.md
                 - name: Hosted with AAD B2C
-                  uid: blazor/security/webassembly/hosted-with-azure-active-directory-b2c
+                  href: 3.1/blazor/security/webassembly/hosted-with-azure-active-directory-b2c.md
+                - name: Hosted with AAD B2C
+                  href: 5.0/blazor/security/webassembly/hosted-with-azure-active-directory-b2c.md
+                - name: Hosted with AAD B2C
+                  href: 6.0/blazor/security/webassembly/hosted-with-azure-active-directory-b2c.md
                 - name: Hosted with Identity Server
-                  uid: blazor/security/webassembly/hosted-with-identity-server
+                  href: 3.1/blazor/security/webassembly/hosted-with-identity-server.md
+                - name: Hosted with Identity Server
+                  href: 5.0/blazor/security/webassembly/hosted-with-identity-server.md
+                - name: Hosted with Identity Server
+                  href: 6.0/blazor/security/webassembly/hosted-with-identity-server.md
                 - name: Additional scenarios
-                  uid: blazor/security/webassembly/additional-scenarios
+                  href: 3.1/blazor/security/webassembly/additional-scenarios.md
+                - name: Additional scenarios
+                  href: 5.0/blazor/security/webassembly/additional-scenarios.md
+                - name: Additional scenarios
+                  href: 6.0/blazor/security/webassembly/additional-scenarios.md
                 - name: AAD groups and roles
-                  uid: blazor/security/webassembly/aad-groups-roles
+                  href: 5.0/blazor/security/webassembly/azure-active-directory-groups-and-roles.md
+                - name: AAD groups and roles
+                  href: 6.0/blazor/security/webassembly/azure-active-directory-groups-and-roles.md
                 - name: Graph API
-                  uid: blazor/security/webassembly/graph-api
+                  href: 3.1/blazor/security/webassembly/graph-api.md
+                - name: Graph API
+                  href: 5.0/blazor/security/webassembly/graph-api.md
+                - name: Graph API
+                  href: 6.0/blazor/security/webassembly/graph-api.md
             - name: Blazor Server
               items:
                 - name: Overview
@@ -635,9 +677,17 @@
             - name: App
               href: 6.0/blazor/project-structure.md
             - name: Authentication
-              href: blazor/security/webassembly/index.md#authentication-component
+              href: 3.1/blazor/security/webassembly/index.md#authentication-component
+            - name: Authentication
+              href: 5.0/blazor/security/webassembly/index.md#authentication-component
+            - name: Authentication
+              href: 6.0/blazor/security/webassembly/index.md#authentication-component
             - name: AuthorizeView
-              href: blazor/security/index.md#authorizeview-component
+              href: 3.1/blazor/security/index.md#authorizeview-component
+            - name: AuthorizeView
+              href: 5.0/blazor/security/index.md#authorizeview-component
+            - name: AuthorizeView
+              href: 6.0/blazor/security/index.md#authorizeview-component
             - name: CascadingValue
               href: 3.1/blazor/components/cascading-values-and-parameters.md#cascadingvalue-component
             - name: CascadingValue

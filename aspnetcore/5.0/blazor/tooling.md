@@ -18,8 +18,6 @@ zone_pivot_groups: operating-systems
 
 1. Create a new project.
 
-1. Create a new project.
-
 1. For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template. For a Blazor Server experience, choose the **Blazor Server App** template.
 
    For a hosted Blazor WebAssembly experience, select the **ASP.NET Core hosted** checkbox.
