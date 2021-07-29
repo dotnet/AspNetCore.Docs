@@ -77,6 +77,10 @@ The following example is from later in the `Configure` method:
 
 A WebSocket request could come in on any URL, but this sample code only accepts requests for `/ws`.
 
+A similar approach can be taken in a controller method:
+
+[!code-csharp[](websockets/samples/6.x/WebSocketsSample/Controllers/WebSocketController.cs?name=snippet)]
+
 When using a WebSocket, you **must** keep the middleware pipeline running for the duration of the connection. If you attempt to send or receive a WebSocket message after the middleware pipeline ends, you may get an exception like the following:
 
 ```
