@@ -29,9 +29,22 @@ public class AboutModel : PageModel
 }
 ```
 
-## Use HttpContext from a Razor view
+The same property can be used in the corresponding Razor Page View
 
-Razor views expose the `HttpContext` directly via a [RazorPage.Context](xref:Microsoft.AspNetCore.Mvc.Razor.RazorPage.Context) property on the view. The following example retrieves the current username in an intranet app using Windows Authentication:
+```cshtml
+@page
+@model AboutModel
+@{
+    var message = HttpContext.Request.PathBase;
+    
+    ...
+}
+```
+
+
+## Use HttpContext from a Razor view in MVC
+
+Razor views in the MVC pattern expose the `HttpContext` via the [RazorPage.Context](xref:Microsoft.AspNetCore.Mvc.Razor.RazorPage.Context) property on the view. The following example retrieves the current username in an intranet app using Windows Authentication:
 
 ```cshtml
 @{
