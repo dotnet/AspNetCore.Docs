@@ -13,14 +13,18 @@ uid: web-api/advanced/conventions
 
 By [Pranav Krishnamoorthy](https://github.com/pranavkm) and [Scott Addie](https://github.com/scottaddie)
 
-ASP.NET Core 2.2 and later includes a way to extract common [API documentation](xref:tutorials/web-api-help-pages-using-swagger) and apply it to multiple actions, controllers, or all controllers within an assembly. Web API conventions are a substitute for decorating individual actions with [`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute).
+ASP.NET Core 3.0 and later includes a way to extract common [API documentation](xref:tutorials/web-api-help-pages-using-swagger) and apply it to multiple actions, controllers, or all controllers within an assembly. Web API conventions are a substitute for decorating individual actions with [`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute).
 
 A convention allows you to:
 
 * Define the most common return types and status codes returned from a specific type of action.
 * Identify actions that deviate from the defined standard.
 
-ASP.NET Core MVC 2.2 and later includes a set of default conventions in <xref:Microsoft.AspNetCore.Mvc.DefaultApiConventions?displayProperty=fullName>. The conventions are based on the controller (*ValuesController.cs*) provided in the ASP.NET Core **API** project template. If your actions follow the patterns in the template, you should be successful using the default conventions. If the default conventions don't meet your needs, see [Create web API conventions](#create-web-api-conventions).
+ASP.NET Core MVC 3.0 and later includes a set of default conventions in <xref:Microsoft.AspNetCore.Mvc.DefaultApiConventions?displayProperty=fullName>. The conventions are demonstrated with the *ValuesController.cs* added to an **API** project template:
+
+[!code-csharp[](conventions/ValuesController.cs)]
+
+Actions that follow the patterns in the *ValuesController.cs* work with the default conventions. If the default conventions don't meet your needs, see [Create web API conventions](#create-web-api-conventions).
 
 At runtime, <xref:Microsoft.AspNetCore.Mvc.ApiExplorer> understands conventions. `ApiExplorer` is MVC's abstraction to communicate with [OpenAPI](https://www.openapis.org/) (also known as Swagger) document generators. Attributes from the applied convention are associated with an action and are included in the action's OpenAPI documentation. [API analyzers](xref:web-api/advanced/analyzers) also understand conventions. If your action is unconventional (for example, it returns a status code that isn't documented by the applied convention), a warning encourages you to document the status code.
 
