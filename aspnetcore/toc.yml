@@ -519,7 +519,11 @@
         - name: Security and Identity
           items:
             - name: Overview
-              uid: blazor/security/index
+              href: 3.1/blazor/security/index.md
+            - name: Overview
+              href: 5.0/blazor/security/index.md
+            - name: Overview
+              href: 6.0/blazor/security/index.md
             - name: Blazor WebAssembly
               items:
                 - name: Overview
@@ -589,13 +593,29 @@
             - name: Blazor Server
               items:
                 - name: Overview
-                  uid: blazor/security/server/index
+                  href: 3.1/blazor/security/server/index.md
+                - name: Overview
+                  href: 5.0/blazor/security/server/index.md
+                - name: Overview
+                  href: 6.0/blazor/security/server/index.md
                 - name: Threat mitigation
-                  uid: blazor/security/server/threat-mitigation
+                  href: 3.1/blazor/security/server/threat-mitigation.md
+                - name: Threat mitigation
+                  href: 5.0/blazor/security/server/threat-mitigation.md
+                - name: Threat mitigation
+                  href: 6.0/blazor/security/server/threat-mitigation.md
                 - name: Additional scenarios
-                  uid: blazor/security/server/additional-scenarios
+                  href: 3.1/blazor/security/server/additional-scenarios.md
+                - name: Additional scenarios
+                  href: 5.0/blazor/security/server/additional-scenarios.md
+                - name: Additional scenarios
+                  href: 6.0/blazor/security/server/additional-scenarios.md
             - name: Content Security Policy
-              uid: blazor/security/content-security-policy
+              href: 3.1/blazor/security/content-security-policy.md
+            - name: Content Security Policy
+              href: 5.0/blazor/security/content-security-policy.md
+            - name: Content Security Policy
+              href: 6.0/blazor/security/content-security-policy.md
         - name: State management
           href: 3.1/blazor/state-management.md
         - name: State management
