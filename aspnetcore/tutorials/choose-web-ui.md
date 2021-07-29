@@ -41,6 +41,7 @@ Benefits:
 
 Examples of common server rendered web UI app scenarios:
 
+* Dynamic sites such as those that provide personalized pages, data and forms.
 * Display read-only data such as transaction lists. 
 * Display static blog pages.
 * A public-facing content management system.
@@ -173,8 +174,6 @@ Benefits of ASP.NET Core SPA with JavaScript Frameworks, in addition to the clie
 * The Javascript runtime environment is already provided with the browser.
 * Large community and mature ecosystem.
 * Build client-side logic for ASP.NET Core apps using popular JS frameworks, like Angular and React, or build your client-side logic with .NET using Blazor.
-* Client-based apps can be deployed as standalone static sites, but often call into server hosted functionality through APIs.
-* Make your app installable and run offline by turning it into a Progressive Web App (PWA).
 
 Downsides:
 * More coding languages, frameworks, and tools required.
