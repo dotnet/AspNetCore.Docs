@@ -5,55 +5,35 @@ no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cook
 
 ### Common errors
 
-* Misconfiguration of the app or Identity Provider (IP)
+Misconfiguration of the app or Identity Provider (IP)
 
-  The most common errors are caused by incorrect configuration. The following are a few examples:
-  
-  * Depending on the requirements of the scenario, a missing or incorrect Authority, Instance, Tenant ID, Tenant domain, Client ID, or Redirect URI prevents an app from authenticating clients.
-  * An incorrect access token scope prevents clients from accessing server web API endpoints.
-  * Incorrect or missing server API permissions prevent clients from accessing server web API endpoints.
-  * Running the app at a different port than is configured in the Redirect URI of the Identity Provider's app registration.
-  
-  Configuration sections of this article's guidance show examples of the correct configuration. Carefully check each section of the article looking for app and IP misconfiguration.
-  
-  If the configuration appears correct:
-  
-  * Analyze application logs.
-  * Examine the network traffic between the client app and the IP or server app with the browser's developer tools. Often, an exact error message or a message with a clue to what's causing the problem is returned to the client by the IP or server app after making a request. Developer tools guidance is found in the following articles:
+The most common errors are caused by incorrect configuration. The following are a few examples:
 
-    * [Google Chrome](https://developers.google.com/web/tools/chrome-devtools/network) (Google documentation)
-    * [Microsoft Edge](/microsoft-edge/devtools-guide-chromium/network/)
-    * [Mozilla Firefox](https://developer.mozilla.org/docs/Tools/Network_Monitor) (Mozilla documentation)
+* Depending on the requirements of the scenario, a missing or incorrect Authority, Instance, Tenant ID, Tenant domain, Client ID, or Redirect URI prevents an app from authenticating clients.
+* An incorrect access token scope prevents clients from accessing server web API endpoints.
+* Incorrect or missing server API permissions prevent clients from accessing server web API endpoints.
+* Running the app at a different port than is configured in the Redirect URI of the Identity Provider's app registration.
 
-  * Decode the contents of a JSON Web Token (JWT) used for authenticating a client or accessing a server web API, depending on where the problem is occurring. For more information, see [Inspect the content of a JSON Web Token (JWT)](#inspect-the-content-of-a-json-web-token-jwt).
-  
-  The documenation team responds to document feedback and bugs in articles (open an issue from the **This page** feedback section) but is unable to provide product support. Several public support forums are available to assist with troubleshooting an app. We recommend the following:
-  
-  * [Stack Overflow (tag: `blazor`)](https://stackoverflow.com/questions/tagged/blazor)
-  * [ASP.NET Core Slack Team](http://tattoocoder.com/aspnet-slack-sign-up/)
-  * [Blazor Gitter](https://gitter.im/aspnet/Blazor)
-  
-  For non-security, non-sensitive, and non-confidential reproducible framework bug reports, [open an issue with the ASP.NET Core product unit](https://github.com/dotnet/aspnetcore/issues). Don't open an issue with the product unit until you've thoroughly investigated the cause of a problem and can't resolve it on your own and with the help of the community on a public support forum. The product unit isn't able to troubleshoot individual apps that are broken due to simple misconfiguration or use cases involving third-party services. If a report is sensitive or confidential in nature or describes a potential security flaw in the product that attackers may exploit, see [Reporting security issues and bugs (dotnet/aspnetcore GitHub repository)](https://github.com/dotnet/aspnetcore/blob/main/CONTRIBUTING.md#reporting-security-issues-and-bugs).
+Configuration sections of this article's guidance show examples of the correct configuration. Carefully check each section of the article looking for app and IP misconfiguration.
 
-::: moniker range=">= aspnetcore-5.0"
+If the configuration appears correct:
 
-* Unauthorized client for AAD
+* Analyze application logs.
+* Examine the network traffic between the client app and the IP or server app with the browser's developer tools. Often, an exact error message or a message with a clue to what's causing the problem is returned to the client by the IP or server app after making a request. Developer tools guidance is found in the following articles:
 
-  > info: Microsoft.AspNetCore.Authorization.DefaultAuthorizationService[2]
-  > Authorization failed. These requirements were not met:
-  > DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+  * [Google Chrome](https://developers.google.com/web/tools/chrome-devtools/network) (Google documentation)
+  * [Microsoft Edge](/microsoft-edge/devtools-guide-chromium/network/)
+  * [Mozilla Firefox](https://developer.mozilla.org/docs/Tools/Network_Monitor) (Mozilla documentation)
 
-  Login callback error from AAD:
+* Decode the contents of a JSON Web Token (JWT) used for authenticating a client or accessing a server web API, depending on where the problem is occurring. For more information, see [Inspect the content of a JSON Web Token (JWT)](#inspect-the-content-of-a-json-web-token-jwt).
 
-  * Error: `unauthorized_client`
-  * Description: `AADB2C90058: The provided application is not configured to allow public clients.`
+The documenation team responds to document feedback and bugs in articles (open an issue from the **This page** feedback section) but is unable to provide product support. Several public support forums are available to assist with troubleshooting an app. We recommend the following:
 
-  To resolve the error:
+* [Stack Overflow (tag: `blazor`)](https://stackoverflow.com/questions/tagged/blazor)
+* [ASP.NET Core Slack Team](http://tattoocoder.com/aspnet-slack-sign-up/)
+* [Blazor Gitter](https://gitter.im/aspnet/Blazor)
 
-  1. In the Azure portal, access the [app's manifest](/azure/active-directory/develop/reference-app-manifest).
-  1. Set the [`allowPublicClient` attribute](/azure/active-directory/develop/reference-app-manifest#allowpublicclient-attribute) to `null` or `true`.
-
-::: moniker-end
+For non-security, non-sensitive, and non-confidential reproducible framework bug reports, [open an issue with the ASP.NET Core product unit](https://github.com/dotnet/aspnetcore/issues). Don't open an issue with the product unit until you've thoroughly investigated the cause of a problem and can't resolve it on your own and with the help of the community on a public support forum. The product unit isn't able to troubleshoot individual apps that are broken due to simple misconfiguration or use cases involving third-party services. If a report is sensitive or confidential in nature or describes a potential security flaw in the product that attackers may exploit, see [Reporting security issues and bugs (dotnet/aspnetcore GitHub repository)](https://github.com/dotnet/aspnetcore/blob/main/CONTRIBUTING.md#reporting-security-issues-and-bugs).
 
 ### Cookies and site data
 
