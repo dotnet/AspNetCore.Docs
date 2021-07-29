@@ -149,7 +149,7 @@ With `UseDefaultFiles`, requests to a folder in `wwwroot` search for:
 * *index.htm*
 * *index.html*
 
-The first file found from the list is served as though the request were the fully qualified URI. The browser URL continues to reflect the URI requested.
+The first file found from the list is served as though the request included the file's name. The browser URL continues to reflect the URI requested.
 
 The following code changes the default file name to *mydefault.html*:
 
