@@ -156,7 +156,7 @@ The following [setx](/windows-server/administration/windows-commands/setx) comma
 setx Logging__LogLevel__Microsoft=Information /M
 ```
 
-Consider the following *appsetting.json* file:
+Consider the following *appsettings.json* file:
 
 ```json
 "Logging": {
@@ -168,10 +168,10 @@ Consider the following *appsetting.json* file:
 }
 ```
 
-The following command sets the preceeding configuration in the environment:
+The following command sets the preceding configuration in the environment:
 
 ```cmd
-setx Logging__LogLevel__Microsoft.Hosting.Lifetime=Trace /M
+setx Logging__Console__LogLevel__Microsoft.Hosting.Lifetime=Trace /M
 ```
 
 On [Azure App Service](https://azure.microsoft.com/services/app-service/), select **New application setting** on the **Settings > Configuration** page. Azure App Service application settings are:
