@@ -97,15 +97,17 @@ Follow the guidance for your choice of tooling:
 
 ::: moniker-end
 
-1. Create a new project.
+1. Create a new project. Choose the **Blazor WebAssembly App** template. 
 
-1. Select **Blazor App** and select **Next**.
+   > [!NOTE]
+   > The hosting model (**Blazor WebAssembly App**) selection is in different locations in the **Create a new project** process depending on the version of Visual Studio in use.
 
-1. Type `BlazorWebAssemblySignalRApp` in the **Project name** field. Confirm the **Location** entry is correct or provide a location for the project. Select **Create**.
+1. Type `BlazorWebAssemblySignalRApp` in the **Project name** field. Confirm the **Location** entry is correct or provide a location for the project.
 
-1. Choose the **Blazor WebAssembly App** template.
+1. Select the **ASP.NET Core hosted** checkbox.
 
-1. Under **Advanced**, select the **ASP.NET Core hosted** checkbox.
+   > [!NOTE]
+   > The hosted solution selection (**ASP.NET Core hosted** checkbox) is in different locations in the **Create a new project** process depending on the version of Visual Studio in use.
 
 1. Select **Create**.
 
