@@ -18,12 +18,11 @@ zone_pivot_groups: operating-systems
 
 1. Create a new project.
 
-1. For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template. For a Blazor Server experience, choose the **Blazor Server App** template.
+1. For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template. For a Blazor Server experience, choose the **Blazor Server App** template. Select **Next**.
 
-   For a hosted Blazor WebAssembly experience, select the **ASP.NET Core hosted** checkbox.
+1. Provide a **Project name** and confirm that the **Location** is correct. Select **Next**.
 
-   > [!NOTE]
-   > The hosting model (**Blazor WebAssembly App**/**Blazor Server App**) selection and hosted solution (**ASP.NET Core hosted** checkbox) selection are in different locations in the **Create a new project** process depending on the version of Visual Studio in use.
+1. In the **Additional information** dialog, select the **ASP.NET Core hosted** checkbox for a hosted Blazor WebAssembly app. Select **Create**.
 
    For information on the two Blazor hosting models, *Blazor WebAssembly* (standalone and hosted) and *Blazor Server*, see <xref:blazor/hosting-models>.
 

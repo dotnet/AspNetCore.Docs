@@ -20,11 +20,15 @@ This article explains how to create a [hosted Blazor WebAssembly solution](xref:
 
 To create a new Blazor WebAssembly project with an authentication mechanism:
 
-1. After choosing the **Blazor WebAssembly App** template in the **Create a new ASP.NET Core Web Application** dialog, select **Change** under **Authentication**.
+1. Create a new project.
 
-1. Select **Individual User Accounts** with the **Store user accounts in-app** option to store users within the app using ASP.NET Core's [Identity](xref:security/authentication/identity) system.
+1. Choose the **Blazor WebAssembly App** template. Select **Next**.
 
-1. Select the **ASP.NET Core hosted** checkbox in the **Advanced** section.
+1. Provide a **Project name** and confirm that the **Location** is correct. Select **Next**.
+
+1. In the **Additional information** dialog, select **Individual Accounts** as the **Authentication Type** to store users within the app using ASP.NET Core's [Identity](xref:security/authentication/identity) system.
+
+1. Select the **ASP.NET Core hosted** checkbox.
 
 # [Visual Studio Code / .NET Core CLI](#tab/visual-studio-code+netcore-cli)
 
