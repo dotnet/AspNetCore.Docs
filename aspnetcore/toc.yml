@@ -83,9 +83,17 @@
             - name: Build your first Blazor app
               href: https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro
             - name: Build a Blazor todo list app
-              uid: tutorials/build-a-blazor-app
+              href: 3.1/tutorials/build-a-blazor-app.md
+            - name: Build a Blazor todo list app
+              href: 5.0/tutorials/build-a-blazor-app.md
+            - name: Build a Blazor todo list app
+              href: 6.0/tutorials/build-a-blazor-app.md
             - name: SignalR with Blazor
-              uid: tutorials/signalr-blazor
+              href: 3.1/tutorials/signalr-blazor.md
+            - name: SignalR with Blazor
+              href: 5.0/tutorials/signalr-blazor.md
+            - name: SignalR with Blazor
+              href: 6.0/tutorials/signalr-blazor.md
     - name: Web API apps
       items:
         - name: Create a web API
@@ -113,7 +121,13 @@
           uid: tutorials/signalr-typescript-webpack
         - name: SignalR with Blazor
           displayName: tutorial
-          uid: tutorials/signalr-blazor
+          href: 3.1/tutorials/signalr-blazor.md
+        - name: SignalR with Blazor
+          displayName: tutorial
+          href: 5.0/tutorials/signalr-blazor.md
+        - name: SignalR with Blazor
+          displayName: tutorial
+          href: 6.0/tutorials/signalr-blazor.md
     - name: Remote Procedure Call apps
       items:
         - name: Get started with a gRPC service
@@ -339,9 +353,17 @@
             - name: Build your first Blazor app
               href: https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro
             - name: Build a Blazor todo list app
-              uid: tutorials/build-a-blazor-app
+              href: 3.1/tutorials/build-a-blazor-app.md
+            - name: Build a Blazor todo list app
+              href: 5.0/tutorials/build-a-blazor-app.md
+            - name: Build a Blazor todo list app
+              href: 6.0/tutorials/build-a-blazor-app.md
             - name: SignalR with Blazor
-              uid: tutorials/signalr-blazor
+              href: 3.1/tutorials/signalr-blazor.md
+            - name: SignalR with Blazor
+              href: 5.0/tutorials/signalr-blazor.md
+            - name: SignalR with Blazor
+              href: 6.0/tutorials/signalr-blazor.md
         - name: Project structure
           href: 3.1/blazor/project-structure.md
         - name: Project structure
@@ -964,7 +986,11 @@
         - name: SignalR with TypeScript
           uid: tutorials/signalr-typescript-webpack
         - name: SignalR with Blazor
-          uid: tutorials/signalr-blazor
+          href: 3.1/tutorials/signalr-blazor.md
+        - name: SignalR with Blazor
+          href: 5.0/tutorials/signalr-blazor.md
+        - name: SignalR with Blazor
+          href: 6.0/tutorials/signalr-blazor.md
     - name: Samples
       href: https://github.com/aspnet/SignalR-samples
       displayName: signalr
