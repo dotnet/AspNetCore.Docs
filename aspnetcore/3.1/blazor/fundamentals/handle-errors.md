@@ -95,7 +95,7 @@ In the following example where <xref:Microsoft.AspNetCore.Components.ComponentBa
   * `loadFailed` is set to `true`, which is used to display an error message to the user.
   * The error is logged.
 
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/handle-errors/ProductDetails.razor?highlight=11,27-39)]
+[!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/handle-errors/ProductDetails.razor?highlight=11,27-39)]
 
 <h3 id="rendering-logic-webassembly">Rendering logic</h3>
 
@@ -351,7 +351,7 @@ In the following example where <xref:Microsoft.AspNetCore.Components.ComponentBa
   * `loadFailed` is set to `true`, which is used to display an error message to the user.
   * The error is logged.
 
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_Server/Pages/handle-errors/ProductDetails.razor?highlight=11,27-39)]
+[!code-razor[](~/3.1/blazor/samples/BlazorSample_Server/Pages/handle-errors/ProductDetails.razor?highlight=11,27-39)]
 
 <h3 id="rendering-logic-server">Rendering logic</h3>
 

@@ -360,7 +360,7 @@ else
 
 `Pages/TodoRequest.razor`:
 
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/call-web-api/TodoRequest.razor)]
+[!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Pages/call-web-api/TodoRequest.razor)]
 
 Blazor WebAssembly's implementation of <xref:System.Net.Http.HttpClient> uses [Fetch API](https://developer.mozilla.org/docs/Web/API/WindowOrWorkerGlobalScope/fetch). Fetch API allows the configuration of several [request-specific options](https://developer.mozilla.org/docs/Web/API/WindowOrWorkerGlobalScope/fetch#Parameters). Options can be configured with <xref:System.Net.Http.HttpRequestMessage> extension methods shown in the following table.
 
@@ -402,7 +402,7 @@ By default, ASP.NET Core apps use ports 5000 (HTTP) and 5001 (HTTPS). To run bot
 
 `Pages/CallWebAPI.razor`:
 
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/call-web-api/CallWebAPI.razor)]
+[!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Pages/call-web-api/CallWebAPI.razor)]
 
 ## Handle errors
 

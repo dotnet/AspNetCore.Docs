@@ -1,0 +1,9 @@
+﻿@using Microsoft.Extensions.Logging
+@inject ILogger<ReferenceChild> logger
+
+@code {
+    public void ChildMethod(int value)
+    {
+        logger.LogInformation("Received {Value} in ChildMethod", value);
+    }
+}

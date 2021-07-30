@@ -1,0 +1,22 @@
+﻿@inject IContactFilters Filters
+
+@if (Column == Filters.SortColumn)
+{
+    <span>@SortSymbol</span>
+}
+else
+{
+    <span>&nbsp;</span>
+}
+@code {
+    /// <summary>
+    /// Sets which <see cref="ContactFilterColumns"/> this indicator is for.
+    /// </summary>
+    [Parameter]
+    public ContactFilterColumns Column { get; set; }
+
+    /// <summary>
+    /// The symbol to render.
+    /// </summary>
+    private string SortSymbol => Filters.SortAscending ? "🔼" : "🔽";
+}

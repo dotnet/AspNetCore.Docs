@@ -1,0 +1,10 @@
+@page "/example/{param?}"
+
+<p>
+    Param: @Param
+</p>
+
+@code {
+    [Parameter]
+    public string Param { get; set; }
+}
