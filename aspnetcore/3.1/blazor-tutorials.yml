@@ -1,7 +1,7 @@
-items:
-  - name: Build your first Blazor app
-    href: https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro
-  - name: Build a Blazor todo list app
-    href: tutorials/build-a-blazor-app.md
-  - name: SignalR with Blazor
-    href: tutorials/signalr-blazor.md
+### YamlMime:TableOfContents
+- name: Build your first Blazor app
+  href: https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro
+- name: Build a Blazor todo list app
+  href: tutorials/build-a-blazor-app.md
+- name: SignalR with Blazor
+  href: tutorials/signalr-blazor.md
