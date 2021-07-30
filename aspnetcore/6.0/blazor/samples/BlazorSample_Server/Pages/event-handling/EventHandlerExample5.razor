@@ -1,0 +1,23 @@
+@page "/event-handler-example-5"
+
+<h1>@heading</h1>
+
+@for (var i = 1; i < 4; i++)
+{
+    var buttonNumber = i;
+
+    <p>
+        <button @onclick="@(e => UpdateHeading(e, buttonNumber))">
+            Button #@i
+        </button>
+    </p>
+}
+
+@code {
+    private string heading = "Select a button to learn its position";
+
+    private void UpdateHeading(MouseEventArgs e, int buttonNumber)
+    {
+        heading = $"Selected #{buttonNumber} at {e.ClientX}:{e.ClientY}";
+    }
+}

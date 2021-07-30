@@ -53,7 +53,7 @@ The following `CallJsExample1` component:
 
 `Pages/CallJsExample1.razor`:
 
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample1.razor?highlight=2,34-35)]
+[!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample1.razor?highlight=2,34-35)]
 
 ## Invoke JavaScript functions without reading a returned value (`InvokeVoidAsync`)
 
@@ -78,19 +78,19 @@ Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or
 
 `Pages/CallJsExample2.razor`:
 
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample2.razor?highlight=2,25)]
+[!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample2.razor?highlight=2,25)]
 
 ### Class (`.cs`) example (`InvokeVoidAsync`)
 
 `JsInteropClasses1.cs`:
 
-[!code-csharp[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/JsInteropClasses1.cs?highlight=2,6,10,15)]
+[!code-csharp[](~/3.1/blazor/samples/BlazorSample_WebAssembly/JsInteropClasses1.cs?highlight=2,6,10,15)]
 
 `TickerChanged` calls the `handleTickerChanged1` method in the following `CallJsExample3` component.
 
 `Pages/CallJsExample3.razor`:
 
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample3.razor?highlight=2-3,20,24,32,35)]
+[!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample3.razor?highlight=2-3,20,24,32,35)]
 
 ## Invoke JavaScript functions and read a returned value (`InvokeAsync`)
 
@@ -117,19 +117,19 @@ Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or
 
 `Pages/CallJsExample4.razor`:
 
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample4.razor?highlight=2,31-34)]
+[!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample4.razor?highlight=2,31-34)]
 
 ### Class (`.cs`) example (`InvokeAsync`)
 
 `JsInteropClasses2.cs`:
 
-[!code-csharp[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/JsInteropClasses2.cs?highlight=2,6,10,15)]
+[!code-csharp[](~/3.1/blazor/samples/BlazorSample_WebAssembly/JsInteropClasses2.cs?highlight=2,6,10,15)]
 
 `TickerChanged` calls the `handleTickerChanged2` method and displays the returned string in the following `CallJsExample5` component.
 
 `Pages/CallJsExample5.razor`:
 
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample5.razor?highlight=2-3,25,30,38-40,43)]
+[!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample5.razor?highlight=2-3,25,30,38-40,43)]
 
 ## Dynamic content generation scenarios
 
@@ -332,21 +332,21 @@ Add the following script inside closing `</body>` tag of `wwwroot/index.html` (B
 
 `Pages/CallJsExample7.razor` (parent component):
 
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/CallJsExample7.razor?highlight=5,9)]
+[!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/CallJsExample7.razor?highlight=5,9)]
 
 `Pages/CallJsExample7.razor.cs`:
 
-[!code-csharp[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/CallJsExample7.razor.cs)]
+[!code-csharp[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/CallJsExample7.razor.cs)]
 
 In the preceding example, the namespace of the app is `BlazorSample` with components in the `Pages` folder. If testing the code locally, update the namespace.
 
 `Shared/SurveyPrompt.razor` (child component):
 
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Shared/SurveyPrompt.razor?highlight=1)]
+[!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Shared/SurveyPrompt.razor?highlight=1)]
 
 `Shared/SurveyPrompt.razor.cs`:
 
-[!code-csharp[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Shared/SurveyPrompt.razor.cs)]
+[!code-csharp[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Shared/SurveyPrompt.razor.cs)]
 
 In the preceding example, the namespace of the app is `BlazorSample` with shared components in the `Shared` folder. If testing the code locally, update the namespace.
 
@@ -401,7 +401,7 @@ In the following example, the `nonFunction` JS function doesn't exist. When the 
 
 `Pages/CallJsExample11.razor`:
 
-[!code-csharp[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample11.razor?highlight=28)]
+[!code-csharp[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample11.razor?highlight=28)]
 
 ## Additional resources
 

@@ -20,7 +20,7 @@ To delay JavaScript interop calls until a point where such calls are guaranteed 
 
 `Pages/PrerenderedInterop1.razor`:
 
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/prerendering/PrerenderedInterop1.razor?highlight=2-3,10-17)]
+[!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/prerendering/PrerenderedInterop1.razor?highlight=2-3,10-17)]
 
 The following component demonstrates how to use JavaScript interop as part of a component's initialization logic in a way that's compatible with prerendering. The component shows that it's possible to trigger a rendering update from inside <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A>. The developer must be careful to avoid creating an infinite loop in this scenario.
 
@@ -44,4 +44,4 @@ Where <xref:Microsoft.JSInterop.JSRuntime.InvokeAsync%2A?displayProperty=nameWit
 
 `Pages/PrerenderedInterop2.razor`:
 
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/prerendering/PrerenderedInterop2.razor?highlight=3-4,18,23-29)]
+[!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/prerendering/PrerenderedInterop2.razor?highlight=3-4,18,23-29)]

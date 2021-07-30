@@ -1,0 +1,138 @@
+﻿@inject IContactFilters Filters
+
+@if (CurrentContact != null)
+{
+    <div class="row contact-detail">
+        <div class="col-1 text-right">
+            <a title="Edit" href="edit/@CurrentContact.Id">
+                &nbsp;📝&nbsp;
+            </a>
+            @if (CanDelete)
+            {
+                <span @onclick="DeleteRequestAsync"
+                      title="Delete" class="clickable red">❌</span>
+            }
+            else
+            {
+                <span>&nbsp;</span>
+            }
+            &nbsp;
+        </div>
+        <div class="col-2">
+            <a href="@ViewLink" alt="View Details"
+               title="View Details">
+                @Name
+            </a>
+        </div>
+        @if (!DeleteConfirmation)
+        {
+            <div class="col-2">@CurrentContact.Phone</div>
+            <div class="col-3">@CurrentContact.Street</div>
+            <div class="col-2">@CurrentContact.City</div>
+            <div class="col-1">@CurrentContact.State</div>
+            <div class="col-1">@CurrentContact.ZipCode</div>
+        }
+        else
+        {
+            <div class="col-9">
+                <DeletePrompt Confirmation="ConfirmAsync" />
+            </div>
+        }
+    </div>
+}
+@code {
+
+    private Contact _currentContact;
+
+    /// <summary>
+    /// The <see cref="Contact"/> being rendered.
+    /// </summary>
+    [Parameter]
+    public Contact CurrentContact
+    {
+        get => _currentContact;
+        set
+        {
+            if (value != null && !value.Equals(_currentContact))
+            {
+                _currentContact = value;
+                DeleteConfirmation = false;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Event to raise when a contact delete is requested.
+    /// </summary>
+    [Parameter]
+    public EventCallback DeleteContact { get; set; }
+
+    /// <summary>
+    /// Overall wrapper of functionality.
+    /// </summary>
+    [CascadingParameter]
+    public GridWrapper Wrapper { get; set; }
+
+    /// <summary>
+    /// Returns <c>true</c> if conditions for delete are met.
+    /// </summary>
+    private bool CanDelete => !DeleteConfirmation &&
+    (Wrapper.DeleteRequestId == 0 ||
+    Wrapper.DeleteRequestId == CurrentContact?.Id);
+
+    /// <summary>
+    /// Navigate to view.
+    /// </summary>
+    private string ViewLink => $"View/{CurrentContact?.Id}";
+
+    /// <summary>
+    /// Confirm the delete.
+    /// </summary>
+    private bool DeleteConfirmation { get; set; }
+
+    /// <summary>
+    /// Called based on confirmation.
+    /// </summary>
+    /// <param name="confirmed"><c>True</c> when confirmed</param>
+    /// <returns>A <see cref="Task"/>.</returns>
+    private async Task ConfirmAsync(bool confirmed)
+    {
+        if (confirmed)
+        {
+            await DeleteAsync();
+        }
+        else
+        {
+            DeleteConfirmation = false;
+            await Wrapper.DeleteRequested.InvokeAsync(0);
+        }
+    }
+
+    /// <summary>
+    /// Set delete to true.
+    /// </summary>
+    private async Task DeleteRequestAsync()
+    {
+        if (Wrapper.DeleteRequestId == 0)
+        {
+            DeleteConfirmation = true;
+            await Wrapper.DeleteRequested.InvokeAsync(CurrentContact.Id);
+        }
+    }
+
+    /// <summary>
+    /// Deletes the <see cref="Contact"/>.
+    /// </summary>
+    /// <returns>A <see cref="Task"/>.</returns>
+    private Task DeleteAsync()
+    {
+        return DeleteContact.InvokeAsync(this);
+    }
+
+    /// <summary>
+    /// Correctly formatted name.
+    /// </summary>
+    private string Name => Filters.ShowFirstNameFirst ?
+    $"{CurrentContact?.FirstName} {CurrentContact?.LastName}" :
+    $"{CurrentContact?.LastName}, {CurrentContact?.FirstName}";
+}

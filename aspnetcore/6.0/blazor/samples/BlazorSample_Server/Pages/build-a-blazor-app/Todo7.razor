@@ -1,0 +1,13 @@
+@code{ private List<TodoItem> todos = new(); }
+
+<!-- <snippet> -->
+<ul>
+    @foreach (var todo in todos)
+    {
+        <li>
+            <input type="checkbox" @bind="todo.IsDone" />
+            <input @bind="todo.Title" />
+        </li>
+    }
+</ul>
+<!-- </snippet> -->

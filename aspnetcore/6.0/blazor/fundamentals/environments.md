@@ -75,7 +75,7 @@ Obtain the app's environment in a component by injecting <xref:Microsoft.AspNetC
 
 `Pages/ReadEnvironment.razor`:
 
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/environments/ReadEnvironment.razor?highlight=3,7)]
+[!code-razor[](~/6.0/blazor/samples/BlazorSample_WebAssembly/Pages/environments/ReadEnvironment.razor?highlight=3,7)]
 
 During startup, the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder> exposes the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> through the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.HostEnvironment> property, which enables environment-specific logic in host builder code.
 

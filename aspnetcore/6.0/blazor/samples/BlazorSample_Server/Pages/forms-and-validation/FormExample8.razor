@@ -1,0 +1,30 @@
+@page "/form-example-8"
+@using Microsoft.Extensions.Logging
+@inject ILogger<FormExample8> Logger
+
+<EditForm EditContext="@editContext" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <InputText id="name" @bind-Value="exampleModel.Name" />
+
+    <button type="submit">Submit</button>
+</EditForm>
+
+@code {
+    private ExampleModel exampleModel = new();
+    private EditContext editContext;
+
+    protected override void OnInitialized()
+    {
+        editContext = new(exampleModel);
+        editContext.SetFieldCssClassProvider(new CustomFieldClassProvider());
+    }
+
+    private void HandleValidSubmit()
+    {
+        Logger.LogInformation("HandleValidSubmit called");
+
+        // Process the valid form
+    }
+}

@@ -1,0 +1,17 @@
+@page "/event-handler-example-6"
+
+<p>
+    <input value="@count" @onkeydown="KeyHandler" @onkeydown:preventDefault />
+</p>
+
+@code {
+    private int count = 0;
+
+    private void KeyHandler(KeyboardEventArgs e)
+    {
+        if (e.Key == "+")
+        {
+            count++;
+        }
+    }
+}

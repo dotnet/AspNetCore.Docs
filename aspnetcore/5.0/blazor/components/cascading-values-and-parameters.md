@@ -40,7 +40,7 @@ The following [layout component](xref:blazor/components/layouts) specifies theme
 
 `Shared/MainLayout.razor`:
 
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Shared/MainLayout.razor?highlight=2,10-14,19)]
+[!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Shared/MainLayout.razor?highlight=2,10-14,19)]
 
 ## `[CascadingParameter]` attribute
 
@@ -50,7 +50,7 @@ The following component binds the `ThemeInfo` cascading value to a cascading par
 
 `Pages/ThemedCounter.razor`:
 
-[!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/ThemedCounter.razor?highlight=2,15-17,23-24)]
+[!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Pages/ThemedCounter.razor?highlight=2,15-17,23-24)]
 
 ## Cascade multiple values
 
