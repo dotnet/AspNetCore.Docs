@@ -137,8 +137,6 @@ items:
       href: blazor/host-and-deploy/webassembly.md
     - name: Blazor Server
       href: blazor/host-and-deploy/server.md
-    - name: Configure the Linker
-      href: blazor/host-and-deploy/configure-linker.md
     - name: Configure the Trimmer
       href: blazor/host-and-deploy/configure-trimmer.md
 - name: Blazor Server and EF Core

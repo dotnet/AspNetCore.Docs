@@ -55,10 +55,6 @@ items:
       href: blazor/components/rendering.md
     - name: Templated components
       href: blazor/components/templated-components.md
-    - name: CSS isolation
-      href: 5.0/blazor/components/css-isolation.md
-    - name: CSS isolation
-      href: 6.0/blazor/components/css-isolation.md
     - name: Prerender and integrate components
       href: blazor/components/prerendering-and-integration.md
     - name: Class libraries
