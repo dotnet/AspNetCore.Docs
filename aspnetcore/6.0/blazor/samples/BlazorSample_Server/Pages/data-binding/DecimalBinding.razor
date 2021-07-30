@@ -1,0 +1,32 @@
+@page "/decimal-binding"
+@using System.Globalization
+
+<p>
+    <label>
+        Decimal value (&plusmn;0.000 format):
+        <input @bind="DecimalValue" />
+    </label>
+</p>
+
+<p>
+    <code>decimalValue</code>: @decimalValue
+</p>
+
+@code {
+    private decimal decimalValue = 1.1M;
+    private NumberStyles style = 
+        NumberStyles.AllowDecimalPoint | NumberStyles.AllowLeadingSign;
+    private CultureInfo culture = CultureInfo.CreateSpecificCulture("en-US");
+
+    private string DecimalValue
+    {
+        get => decimalValue.ToString("0.000", culture);
+        set
+        {
+            if (Decimal.TryParse(value, style, culture, out var number))
+            {
+                decimalValue = Math.Round(number, 3);
+            }
+        }
+    }
+}

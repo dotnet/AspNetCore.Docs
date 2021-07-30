@@ -67,7 +67,7 @@ Although [route parameter matching is case insensitive](xref:blazor/fundamentals
 
 `Pages/SetParamsAsync.razor`:
 
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/lifecycle/SetParamsAsync.razor)]
+[!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/lifecycle/SetParamsAsync.razor)]
 
 ## Component initialization (`OnInitialized{Async}`)
 
@@ -77,7 +77,7 @@ For a synchronous operation, override <xref:Microsoft.AspNetCore.Components.Comp
 
 `Pages/OnInit.razor`:
 
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/lifecycle/OnInit.razor?highlight=8)]
+[!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/lifecycle/OnInit.razor?highlight=8)]
 
 To perform an asynchronous operation, override <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> and use the [`await`](/dotnet/csharp/language-reference/operators/await) operator:
 
@@ -115,7 +115,7 @@ For the following example component, navigate to the component's page at a URL:
 
 `Pages/OnParamsSet.razor`:
 
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/lifecycle/OnParamsSet.razor)]
+[!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/lifecycle/OnParamsSet.razor)]
 
 Asynchronous work when applying parameters and property values must occur during the <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A> lifecycle event:
 
@@ -141,7 +141,7 @@ The `firstRender` parameter for <xref:Microsoft.AspNetCore.Components.ComponentB
 
 `Pages/AfterRender.razor`:
 
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/lifecycle/AfterRender.razor)]
+[!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/lifecycle/AfterRender.razor)]
 
 Asynchronous work immediately after rendering must occur during the <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> lifecycle event:
 
@@ -180,7 +180,7 @@ In the `FetchData` component of the Blazor templates, <xref:Microsoft.AspNetCore
 
 `Pages/FetchData.razor` in the Blazor Server template:
 
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_Server/Pages/lifecycle/FetchData.razor?highlight=9,21,25)]
+[!code-razor[](~/3.1/blazor/samples/BlazorSample_Server/Pages/lifecycle/FetchData.razor?highlight=9,21,25)]
 
 ## Handle errors
 
@@ -199,7 +199,7 @@ The following code demonstrates an updated `WeatherForecastService` in a templat
 
 `WeatherForecastService.cs`:
 
-[!code-csharp[](~/blazor/common/samples/3.x/BlazorSample_Server/lifecycle/WeatherForecastService.cs)]
+[!code-csharp[](~/3.1/blazor/samples/BlazorSample_Server/lifecycle/WeatherForecastService.cs)]
 
 For more information on the <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper.RenderMode>, see <xref:blazor/fundamentals/signalr#render-mode>.
 
@@ -242,13 +242,13 @@ If a single object requires disposal, a lambda can be used to dispose of the obj
 
 `Pages/CounterWithTimerDisposal1.razor`:
 
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/lifecycle/CounterWithTimerDisposal1.razor?highlight=3,11,28)]
+[!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/lifecycle/CounterWithTimerDisposal1.razor?highlight=3,11,28)]
 
 If the object is created in a lifecycle method, such as [`OnInitialized`/`OnInitializedAsync`](#component-initialization-oninitializedasync), check for `null` before calling `Dispose`.
 
 `Pages/CounterWithTimerDisposal2.razor`:
 
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/lifecycle/CounterWithTimerDisposal2.razor?highlight=15,29)]
+[!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/lifecycle/CounterWithTimerDisposal2.razor?highlight=15,29)]
 
 For more information, see:
 
@@ -439,7 +439,7 @@ In the following example:
 
 `Pages/BackgroundWork.razor`:
 
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/lifecycle/BackgroundWork.razor)]
+[!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/lifecycle/BackgroundWork.razor)]
 
 ## Blazor Server reconnection events
 

@@ -31,7 +31,7 @@ At the end of this tutorial, you'll have a working chat app.
 
 # [Visual Studio](#tab/visual-studio)
 
-* [Visual Studio 2019 16.8 or later](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019) with the **ASP.NET and web development** workload
+* [Visual Studio 2019 16.10 or later](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019) with the **ASP.NET and web development** workload
 * [!INCLUDE [.NET Core 5.0 SDK](~/includes/5.0-SDK.md)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
@@ -86,7 +86,7 @@ Follow the guidance for your choice of tooling:
 ::: moniker range=">= aspnetcore-5.0"
 
 > [!NOTE]
-> Visual Studio 16.8 or later and .NET Core SDK 5.0.0 or later are required.
+> Visual Studio 16.10 or later and .NET Core SDK 5.0.0 or later are required.
 
 ::: moniker-end
 
@@ -97,17 +97,13 @@ Follow the guidance for your choice of tooling:
 
 ::: moniker-end
 
-1. Create a new project. Choose the **Blazor WebAssembly App** template. 
+1. Create a new project.
 
-   > [!NOTE]
-   > The hosting model (**Blazor WebAssembly App**) selection is in different locations in the **Create a new project** process depending on the version of Visual Studio in use.
+1. Choose the **Blazor WebAssembly App** template. Select **Next**.
 
-1. Type `BlazorWebAssemblySignalRApp` in the **Project name** field. Confirm the **Location** entry is correct or provide a location for the project.
+1. Type `BlazorWebAssemblySignalRApp` in the **Project name** field. Confirm the **Location** entry is correct or provide a location for the project. Select **Next**.
 
-1. Select the **ASP.NET Core hosted** checkbox.
-
-   > [!NOTE]
-   > The hosted solution selection (**ASP.NET Core hosted** checkbox) is in different locations in the **Create a new project** process depending on the version of Visual Studio in use.
+1. In the **Additional information** dialog, select the **ASP.NET Core hosted** checkbox.
 
 1. Select **Create**.
 
@@ -362,7 +358,7 @@ Follow the guidance for your choice of tooling:
 ::: moniker range=">= aspnetcore-5.0"
 
 > [!NOTE]
-> Visual Studio 16.8 or later and .NET Core SDK 5.0.0 or later are required.
+> Visual Studio 16.10 or later and .NET Core SDK 5.0.0 or later are required.
 
 ::: moniker-end
 
@@ -375,11 +371,9 @@ Follow the guidance for your choice of tooling:
 
 1. Create a new project.
 
-1. Select **Blazor App** and select **Next**.
+1. Select the **Blazor Server App** template. Select **Next**.
 
-1. Type `BlazorServerSignalRApp` in the **Project name** field. Confirm the **Location** entry is correct or provide a location for the project. Select **Create**.
-
-1. Choose the **Blazor Server App** template.
+1. Type `BlazorServerSignalRApp` in the **Project name** field. Confirm the **Location** entry is correct or provide a location for the project. Select **Next**.
 
 1. Select **Create**.
 

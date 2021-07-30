@@ -1,0 +1,30 @@
+@page "/themed-counter"
+@using BlazorSample.UIThemeClasses
+
+<h1>Themed Counter</h1>
+
+<p>Current count: @currentCount</p>
+
+<p>
+    <button class="btn" @onclick="IncrementCount">
+        Increment Counter (Unthemed)
+    </button>
+</p>
+
+<p>
+    <button class="btn @ThemeInfo.ButtonClass" @onclick="IncrementCount">
+        Increment Counter (Themed)
+    </button>
+</p>
+
+@code {
+    private int currentCount = 0;
+
+    [CascadingParameter]
+    protected ThemeInfo ThemeInfo { get; set; }
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+}

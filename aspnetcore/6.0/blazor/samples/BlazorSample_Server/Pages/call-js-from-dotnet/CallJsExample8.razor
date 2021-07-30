@@ -1,0 +1,45 @@
+@page "/call-js-example-8"
+@implements IAsyncDisposable
+@inject IJSRuntime JS
+
+<h1>Call JS Example 8</h1>
+
+<div @ref="mapElement" style='width:400px;height:300px'></div>
+
+<button @onclick="() => ShowAsync(51.454514, -2.587910)">Show Bristol, UK</button>
+<button @onclick="() => ShowAsync(35.6762, 139.6503)">Show Tokyo, Japan</button>
+
+@code
+{
+    private ElementReference mapElement;
+    private IJSObjectReference mapModule;
+    private IJSObjectReference mapInstance;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            mapModule = await JS.InvokeAsync<IJSObjectReference>(
+                "import", "./mapComponent.js");
+            mapInstance = await mapModule.InvokeAsync<IJSObjectReference>(
+                "addMapToElement", mapElement);
+        }
+    }
+
+    private async Task ShowAsync(double latitude, double longitude)
+        => await mapModule.InvokeVoidAsync("setMapCenter", mapInstance, latitude,
+            longitude).AsTask();
+
+    async ValueTask IAsyncDisposable.DisposeAsync()
+    {
+        if (mapInstance is not null)
+        {
+            await mapInstance.DisposeAsync();
+        }
+
+        if (mapModule is not null)
+        {
+            await mapModule.DisposeAsync();
+        }
+    }
+}

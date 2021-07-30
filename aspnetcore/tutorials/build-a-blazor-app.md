@@ -81,13 +81,13 @@ cd TodoList
 
    ::: moniker range=">= aspnetcore-5.0"
 
-   [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo0.razor?highlight=1)]
+   [!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo0.razor?highlight=1)]
 
    ::: moniker-end
 
    ::: moniker range="< aspnetcore-5.0"
 
-   [!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo0.razor?highlight=1)]
+   [!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo0.razor?highlight=1)]
 
    ::: moniker-end
 
@@ -103,13 +103,13 @@ cd TodoList
 
    ::: moniker range=">= aspnetcore-5.0"
 
-   [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Shared/build-a-blazor-app/NavMenu.razor?highlight=5-9)]
+   [!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Shared/build-a-blazor-app/NavMenu.razor?highlight=5-9)]
 
    ::: moniker-end
 
    ::: moniker range="< aspnetcore-5.0"
 
-   [!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Shared/build-a-blazor-app/NavMenu.razor?highlight=5-9)]
+   [!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Shared/build-a-blazor-app/NavMenu.razor?highlight=5-9)]
 
    ::: moniker-end
 
@@ -125,13 +125,13 @@ cd TodoList
 
    ::: moniker range=">= aspnetcore-5.0"
 
-   [!code-csharp[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/build-a-blazor-app/TodoItem.cs)]
+   [!code-csharp[](~/5.0/blazor/samples/BlazorSample_WebAssembly/build-a-blazor-app/TodoItem.cs)]
 
    ::: moniker-end
 
    ::: moniker range="< aspnetcore-5.0"
 
-   [!code-csharp[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/build-a-blazor-app/TodoItem.cs)]
+   [!code-csharp[](~/3.1/blazor/samples/BlazorSample_WebAssembly/build-a-blazor-app/TodoItem.cs)]
 
    ::: moniker-end
 
@@ -150,13 +150,13 @@ cd TodoList
 
    ::: moniker range=">= aspnetcore-5.0"
 
-   [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo2.razor?highlight=5-10,13)]
+   [!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo2.razor?highlight=5-10,13)]
 
    ::: moniker-end
 
    ::: moniker range="< aspnetcore-5.0"
 
-   [!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo2.razor?highlight=5-10,13)]
+   [!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo2.razor?highlight=5-10,13)]
 
    ::: moniker-end
 
@@ -164,13 +164,13 @@ cd TodoList
 
    ::: moniker range=">= aspnetcore-5.0"
 
-   [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo3.razor?highlight=12-13)]
+   [!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo3.razor?highlight=12-13)]
 
    ::: moniker-end
 
    ::: moniker range="< aspnetcore-5.0"
 
-   [!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo3.razor?highlight=12-13)]
+   [!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo3.razor?highlight=12-13)]
 
    ::: moniker-end
 
@@ -182,13 +182,13 @@ cd TodoList
 
    ::: moniker range=">= aspnetcore-5.0"
 
-   [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo4.razor?highlight=2,7-10)]
+   [!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo4.razor?highlight=2,7-10)]
 
    ::: moniker-end
 
    ::: moniker range="< aspnetcore-5.0"
 
-   [!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo4.razor?highlight=2,7-10)]
+   [!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo4.razor?highlight=2,7-10)]
 
    ::: moniker-end
 
@@ -196,13 +196,13 @@ cd TodoList
 
    ::: moniker range=">= aspnetcore-5.0"
 
-   [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo5.razor?highlight=3)]
+   [!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo5.razor?highlight=3)]
 
    ::: moniker-end
 
    ::: moniker range="< aspnetcore-5.0"
 
-   [!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo5.razor?highlight=3)]
+   [!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo5.razor?highlight=3)]
 
    ::: moniker-end
 
@@ -216,13 +216,13 @@ cd TodoList
 
    ::: moniker range=">= aspnetcore-5.0"
 
-   [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo6.razor?highlight=19-26)]
+   [!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo6.razor?highlight=19-26)]
 
    ::: moniker-end
 
    ::: moniker range="< aspnetcore-5.0"
 
-   [!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo6.razor?highlight=19-26)]
+   [!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo6.razor?highlight=19-26)]
 
    ::: moniker-end
 
@@ -252,13 +252,13 @@ cd TodoList
 
    ::: moniker range=">= aspnetcore-5.0"
 
-   [!code-razor[](~/blazor/common/samples/5.x/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo1.razor)]
+   [!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo1.razor)]
 
    ::: moniker-end
 
    ::: moniker range="< aspnetcore-5.0"
 
-   [!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo1.razor)]
+   [!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo1.razor)]
 
    ::: moniker-end
 

@@ -80,13 +80,13 @@ The following example demonstrates logging with an <xref:Microsoft.Extensions.Lo
 
 `Pages/Counter.razor`:
 
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/logging/Counter1.razor?highlight=3,16)]
+[!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/logging/Counter1.razor?highlight=3,16)]
 
 The following example demonstrates logging with an <xref:Microsoft.Extensions.Logging.ILoggerFactory> in components.
 
 `Pages/Counter.razor`:
 
-[!code-razor[](~/blazor/common/samples/3.x/BlazorSample_WebAssembly/Pages/logging/Counter2.razor?highlight=3,16-17)]
+[!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/logging/Counter2.razor?highlight=3,16-17)]
 
 ## Additional resources
 

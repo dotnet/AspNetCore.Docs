@@ -1,0 +1,17 @@
+@page "/call-dotnet-example-1"
+
+<h1>Call .NET Example 1</h1>
+
+<p>
+    <button onclick="returnArrayAsync()">
+        Trigger .NET static method
+    </button>
+</p>
+
+@code {
+    [JSInvokable]
+    public static Task<int[]> ReturnArrayAsync()
+    {
+        return Task.FromResult(new int[] { 1, 2, 3 });
+    }
+}

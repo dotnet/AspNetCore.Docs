@@ -1,0 +1,13 @@
+@page "/event-handler-example-4"
+
+<h1>@heading</h1>
+
+<p>
+    <button @onclick="@(e => heading = "New heading!!!")">
+        Update heading
+    </button>
+</p>
+
+@code {
+    private string heading = "Initial heading";
+}

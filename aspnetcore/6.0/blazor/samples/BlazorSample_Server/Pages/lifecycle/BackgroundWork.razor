@@ -1,0 +1,56 @@
+@page "/background-work"
+@using System.Threading
+@using Microsoft.Extensions.Logging
+@implements IDisposable
+@inject ILogger<BackgroundWork> Logger
+
+<button @onclick="LongRunningWork">Trigger long running work</button>
+<button @onclick="Dispose">Trigger Disposal</button>
+
+@code {
+    private Resource resource = new();
+    private CancellationTokenSource cts = new();
+
+    protected async Task LongRunningWork()
+    {
+        Logger.LogInformation("Long running work started");
+
+        await Task.Delay(5000, cts.Token);
+
+        cts.Token.ThrowIfCancellationRequested();
+        resource.BackgroundResourceMethod(Logger);
+    }
+
+    public void Dispose()
+    {
+        Logger.LogInformation("Executing Dispose");
+        cts.Cancel();
+        cts.Dispose();
+        resource?.Dispose();
+    }
+
+    private class Resource : IDisposable
+    {
+        private bool disposed;
+
+        public void BackgroundResourceMethod(ILogger<BackgroundWork> logger)
+        {
+            logger.LogInformation("BackgroundResourceMethod: Start method");
+
+            if (disposed)
+            {
+                logger.LogInformation("BackgroundResourceMethod: Disposed");
+                throw new ObjectDisposedException(nameof(Resource));
+            }
+
+            // Take action on the Resource
+
+            logger.LogInformation("BackgroundResourceMethod: Action on Resource");
+        }
+
+        public void Dispose()
+        {
+            disposed = true;
+        }
+    }
+}

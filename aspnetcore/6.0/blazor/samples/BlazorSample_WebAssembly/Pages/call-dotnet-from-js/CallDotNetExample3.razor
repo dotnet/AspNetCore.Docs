@@ -1,0 +1,41 @@
+@page "/call-dotnet-example-3"
+@implements IDisposable
+@inject IJSRuntime JS
+
+<h1>Call .NET Example 3</h1>
+
+<p>
+    <label>
+        Name: <input @bind="name" />
+    </label>
+</p>
+
+<p>
+    <button @onclick="TriggerDotNetInstanceMethod">
+        Trigger .NET instance method
+    </button>
+</p>
+
+<p>
+    @result
+</p>
+
+@code {
+    private string name;
+    private string result;
+    private DotNetObjectReference<CallDotNetExample3> objRef;
+
+    public async Task TriggerDotNetInstanceMethod()
+    {
+        objRef = DotNetObjectReference.Create(this);
+        result = await JS.InvokeAsync<string>("sayHello2", objRef, name);
+    }
+
+    [JSInvokable]
+    public string GetHelloMessage(string passedName) => $"Hello, {passedName}!";
+
+    public void Dispose()
+    {
+        objRef?.Dispose();
+    }
+}
