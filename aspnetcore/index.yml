@@ -67,7 +67,7 @@ conceptualContent:
         - url: https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro
           itemType: get-started
           text: "Build your first Blazor app"
-        - url: tutorials/build-a-blazor-app.md
+        - url: 5.0/tutorials/build-a-blazor-app.md
           itemType: get-started
           text: "Build your first Blazor app with reusable components"
         - url: 5.0/blazor/hosting-models.md
@@ -152,7 +152,7 @@ conceptualContent:
         - url: signalr/introduction.md
           itemType: get-started
           text: "Create your first SignalR app"
-        - url: tutorials/signalr-blazor.md
+        - url: 5.0/tutorials/signalr-blazor.md
           itemType: tutorial
           text: "SignalR with Blazor WebAssembly"
         - url: tutorials/signalr-typescript-webpack.md
@@ -205,7 +205,7 @@ conceptualContent:
         - url: tutorials/first-mvc-app/start-mvc.md
           itemType: tutorial
           text: "SQL with ASP.NET Core"
-        - url: ./5.0/blazor/components/data-binding.md
+        - url: 5.0/blazor/components/data-binding.md
           itemType: concept
           text: "Data binding in ASP.NET Core Blazor"
         - url: tutorials/razor-pages/razor-pages-start.md
