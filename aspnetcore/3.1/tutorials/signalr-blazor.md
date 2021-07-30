@@ -2,7 +2,7 @@
 title: Use ASP.NET Core SignalR with Blazor
 author: guardrex
 description: Create a chat app that uses ASP.NET Core SignalR with Blazor.
-monikerRange: '>= aspnetcore-3.1'
+monikerRange: '>= aspnetcore-3.1 < aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 01/25/2021
@@ -27,32 +27,6 @@ At the end of this tutorial, you'll have a working chat app.
 
 ## Prerequisites
 
-::: moniker range=">= aspnetcore-5.0"
-
-# [Visual Studio](#tab/visual-studio)
-
-* [Visual Studio 2019 16.10 or later](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019) with the **ASP.NET and web development** workload
-* [!INCLUDE [.NET Core 5.0 SDK](~/includes/5.0-SDK.md)]
-
-# [Visual Studio Code](#tab/visual-studio-code)
-
-[!INCLUDE[](~/includes/net-core-prereqs-vsc-5.0.md)]
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-* [Visual Studio for Mac version 8.8 or later](https://visualstudio.microsoft.com/vs/mac/)
-* [!INCLUDE [.NET Core 5.0 SDK](~/includes/5.0-SDK.md)]
-
-# [.NET Core CLI](#tab/netcore-cli/)
-
-[!INCLUDE[](~/includes/5.0-SDK.md)]
-
----
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
 # [Visual Studio](#tab/visual-studio)
 
 * [Visual Studio 2019 16.6 or later](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019) with the **ASP.NET and web development** workload
@@ -73,8 +47,6 @@ At the end of this tutorial, you'll have a working chat app.
 
 ---
 
-::: moniker-end
-
 ::: zone pivot="webassembly"
 
 ## Create a hosted Blazor WebAssembly app
@@ -83,19 +55,8 @@ Follow the guidance for your choice of tooling:
 
 # [Visual Studio](#tab/visual-studio)
 
-::: moniker range=">= aspnetcore-5.0"
-
-> [!NOTE]
-> Visual Studio 16.10 or later and .NET Core SDK 5.0.0 or later are required.
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
 > [!NOTE]
 > Visual Studio 16.6 or later and .NET Core SDK 3.1.300 or later are required.
-
-::: moniker-end
 
 1. Create a new project.
 
@@ -212,17 +173,7 @@ To add an earlier version of the package, supply the `--version {VERSION}` optio
 
 In the `BlazorWebAssemblySignalRApp.Server` project, create a `Hubs` (plural) folder and add the following `ChatHub` class (`Hubs/ChatHub.cs`):
 
-::: moniker range=">= aspnetcore-5.0"
-
-[!code-csharp[](~/tutorials/signalr-blazor/samples/5.x/BlazorWebAssemblySignalRApp/Server/Hubs/ChatHub.cs)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-[!code-csharp[](~/tutorials/signalr-blazor/samples/3.x/BlazorWebAssemblySignalRApp/Server/Hubs/ChatHub.cs)]
-
-::: moniker-end
+[!code-csharp[](signalr-blazor/samples/BlazorWebAssemblySignalRApp/Server/Hubs/ChatHub.cs)]
 
 ## Add services and an endpoint for the SignalR hub
 
@@ -234,55 +185,24 @@ In the `BlazorWebAssemblySignalRApp.Server` project, create a `Hubs` (plural) fo
    using BlazorWebAssemblySignalRApp.Server.Hubs;
    ```
 
-::: moniker range=">= aspnetcore-5.0"
-
 1. Add SignalR and Response Compression Middleware services to `Startup.ConfigureServices`:
 
-   [!code-csharp[](~/tutorials/signalr-blazor/samples/5.x/BlazorWebAssemblySignalRApp/Server/Startup.cs?name=snippet_ConfigureServices&highlight=3,6-10)]
+   [!code-csharp[](signalr-blazor/samples/BlazorWebAssemblySignalRApp/Server/Startup.cs?name=snippet_ConfigureServices&highlight=3,5-9)]
 
 1. In `Startup.Configure`:
 
    * Use Response Compression Middleware at the top of the processing pipeline's configuration.
    * Between the endpoints for controllers and the client-side fallback, add an endpoint for the hub.
 
-   [!code-csharp[](~/tutorials/signalr-blazor/samples/5.x/BlazorWebAssemblySignalRApp/Server/Startup.cs?name=snippet_Configure&highlight=3,26)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-1. Add SignalR and Response Compression Middleware services to `Startup.ConfigureServices`:
-
-   [!code-csharp[](~/tutorials/signalr-blazor/samples/3.x/BlazorWebAssemblySignalRApp/Server/Startup.cs?name=snippet_ConfigureServices&highlight=3,5-9)]
-
-1. In `Startup.Configure`:
-
-   * Use Response Compression Middleware at the top of the processing pipeline's configuration.
-   * Between the endpoints for controllers and the client-side fallback, add an endpoint for the hub.
-
-   [!code-csharp[](~/tutorials/signalr-blazor/samples/3.x/BlazorWebAssemblySignalRApp/Server/Startup.cs?name=snippet_Configure&highlight=3,25)]
-
-::: moniker-end
+   [!code-csharp[](signalr-blazor/samples/BlazorWebAssemblySignalRApp/Server/Startup.cs?name=snippet_Configure&highlight=3,25)]
 
 ## Add Razor component code for chat
 
 1. In the `BlazorWebAssemblySignalRApp.Client` project, open the `Pages/Index.razor` file.
 
-::: moniker range=">= aspnetcore-5.0"
-
 1. Replace the markup with the following code:
 
-   [!code-razor[](~/tutorials/signalr-blazor/samples/5.x/BlazorWebAssemblySignalRApp/Client/Pages/Index.razor)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-1. Replace the markup with the following code:
-
-   [!code-razor[](~/tutorials/signalr-blazor/samples/3.x/BlazorWebAssemblySignalRApp/Client/Pages/Index.razor)]
-
-::: moniker-end
+   [!code-razor[](signalr-blazor/samples/BlazorWebAssemblySignalRApp/Client/Pages/Index.razor)]
 
 ## Run the app
 
@@ -355,19 +275,8 @@ Follow the guidance for your choice of tooling:
 
 # [Visual Studio](#tab/visual-studio)
 
-::: moniker range=">= aspnetcore-5.0"
-
-> [!NOTE]
-> Visual Studio 16.10 or later and .NET Core SDK 5.0.0 or later are required.
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
 > [!NOTE]
 > Visual Studio 16.6 or later and .NET Core SDK 3.1.300 or later are required.
-
-::: moniker-end
 
 1. Create a new project.
 
@@ -471,8 +380,6 @@ To add an earlier version of the package, supply the `--version {VERSION}` optio
 
 ---
 
-::: moniker range="< aspnetcore-5.0"
-
 ## Add the System.Text.Encodings.Web package
 
 *This section only applies to apps for ASP.NET Core version 3.x.*
@@ -529,23 +436,11 @@ To add an earlier version of the package, supply the `--version {VERSION}` optio
 
 ---
 
-::: moniker-end
-
 ## Add a SignalR hub
 
 Create a `Hubs` (plural) folder and add the following `ChatHub` class (`Hubs/ChatHub.cs`):
 
-::: moniker range=">= aspnetcore-5.0"
-
-[!code-csharp[](~/tutorials/signalr-blazor/samples/5.x/BlazorServerSignalRApp/Hubs/ChatHub.cs)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-[!code-csharp[](~/tutorials/signalr-blazor/samples/3.x/BlazorServerSignalRApp/Hubs/ChatHub.cs)]
-
-::: moniker-end
+[!code-csharp[](signalr-blazor/samples/BlazorServerSignalRApp/Hubs/ChatHub.cs)]
 
 ## Add services and an endpoint for the SignalR hub
 
@@ -558,55 +453,24 @@ Create a `Hubs` (plural) folder and add the following `ChatHub` class (`Hubs/Cha
    using BlazorServerSignalRApp.Server.Hubs;
    ```
 
-::: moniker range=">= aspnetcore-5.0"
-
 1. Add Response Compression Middleware services to `Startup.ConfigureServices`:
 
-   [!code-csharp[](~/tutorials/signalr-blazor/samples/5.x/BlazorServerSignalRApp/Startup.cs?name=snippet_ConfigureServices&highlight=6-10)]
+   [!code-csharp[](signalr-blazor/samples/BlazorServerSignalRApp/Startup.cs?name=snippet_ConfigureServices&highlight=6-10)]
 
 1. In `Startup.Configure`:
 
    * Use Response Compression Middleware at the top of the processing pipeline's configuration.
    * Between the endpoints for mapping the Blazor hub and the client-side fallback, add an endpoint for the hub.
 
-   [!code-csharp[](~/tutorials/signalr-blazor/samples/5.x/BlazorServerSignalRApp/Startup.cs?name=snippet_Configure&highlight=3,23)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-1. Add Response Compression Middleware services to `Startup.ConfigureServices`:
-
-   [!code-csharp[](~/tutorials/signalr-blazor/samples/3.x/BlazorServerSignalRApp/Startup.cs?name=snippet_ConfigureServices&highlight=6-10)]
-
-1. In `Startup.Configure`:
-
-   * Use Response Compression Middleware at the top of the processing pipeline's configuration.
-   * Between the endpoints for mapping the Blazor hub and the client-side fallback, add an endpoint for the hub.
-
-   [!code-csharp[](~/tutorials/signalr-blazor/samples/3.x/BlazorServerSignalRApp/Startup.cs?name=snippet_Configure&highlight=3,23)]
-
-::: moniker-end
+   [!code-csharp[](signalr-blazor/samples/BlazorServerSignalRApp/Startup.cs?name=snippet_Configure&highlight=3,23)]
 
 ## Add Razor component code for chat
 
 1. Open the `Pages/Index.razor` file.
 
-::: moniker range=">= aspnetcore-5.0"
-
 1. Replace the markup with the following code:
 
-   [!code-razor[](~/tutorials/signalr-blazor/samples/5.x/BlazorServerSignalRApp/Pages/Index.razor)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-1. Replace the markup with the following code:
-
-   [!code-razor[](~/tutorials/signalr-blazor/samples/3.x/BlazorServerSignalRApp/Pages/Index.razor)]
-
-::: moniker-end
+   [!code-razor[](signalr-blazor/samples/BlazorServerSignalRApp/Pages/Index.razor)]
 
 ## Run the app
 

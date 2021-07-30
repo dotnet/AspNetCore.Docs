@@ -2,7 +2,7 @@
 title: Build a Blazor todo list app
 author: guardrex
 description: Build a Blazor app step-by-step.
-monikerRange: '>= aspnetcore-3.0'
+monikerRange: '>= aspnetcore-3.1 < aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/12/2021
@@ -24,17 +24,7 @@ At the end of this tutorial, you'll have a working todo list app.
 
 ## Prerequisites
 
-::: moniker range=">= aspnetcore-5.0"
-
-[!INCLUDE[](~/includes/5.0-SDK.md)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
 [!INCLUDE[](~/includes/3.1-SDK.md)]
-
-::: moniker-end
 
 ## Create a Blazor app
 
@@ -79,17 +69,7 @@ cd TodoList
 
    `Pages/Todo.razor`:
 
-   ::: moniker range=">= aspnetcore-5.0"
-
-   [!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo0.razor?highlight=1)]
-
-   ::: moniker-end
-
-   ::: moniker range="< aspnetcore-5.0"
-
    [!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo0.razor?highlight=1)]
-
-   ::: moniker-end
 
    Save the `Pages/Todo.razor` file.
 
@@ -101,17 +81,7 @@ cd TodoList
 
    In `Shared/NavMenu.razor`:
 
-   ::: moniker range=">= aspnetcore-5.0"
-
-   [!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Shared/build-a-blazor-app/NavMenu.razor?highlight=5-9)]
-
-   ::: moniker-end
-
-   ::: moniker range="< aspnetcore-5.0"
-
    [!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Shared/build-a-blazor-app/NavMenu.razor?highlight=5-9)]
-
-   ::: moniker-end
 
    Save the `Shared/NavMenu.razor` file.
 
@@ -123,17 +93,7 @@ cd TodoList
 
    `TodoItem.cs`:
 
-   ::: moniker range=">= aspnetcore-5.0"
-
-   [!code-csharp[](~/5.0/blazor/samples/BlazorSample_WebAssembly/build-a-blazor-app/TodoItem.cs)]
-
-   ::: moniker-end
-
-   ::: moniker range="< aspnetcore-5.0"
-
    [!code-csharp[](~/3.1/blazor/samples/BlazorSample_WebAssembly/build-a-blazor-app/TodoItem.cs)]
-
-   ::: moniker-end
 
    > [!NOTE]
    > If using Visual Studio to create the `TodoItem.cs` file and `TodoItem` class, use either of the following approaches:
@@ -148,31 +108,11 @@ cd TodoList
 
    `Pages/Todo.razor`:
 
-   ::: moniker range=">= aspnetcore-5.0"
-
-   [!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo2.razor?highlight=5-10,13)]
-
-   ::: moniker-end
-
-   ::: moniker range="< aspnetcore-5.0"
-
    [!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo2.razor?highlight=5-10,13)]
-
-   ::: moniker-end
 
 1. The app requires UI elements for adding todo items to the list. Add a text input (`<input>`) and a button (`<button>`) below the unordered list (`<ul>...</ul>`):
 
-   ::: moniker range=">= aspnetcore-5.0"
-
-   [!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo3.razor?highlight=12-13)]
-
-   ::: moniker-end
-
-   ::: moniker range="< aspnetcore-5.0"
-
    [!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo3.razor?highlight=12-13)]
-
-   ::: moniker-end
 
 1. Save the `TodoItem.cs` file and the updated `Pages/Todo.razor` file. In the command shell, the app is automatically rebuilt when the files are saved. The browser reloads the page.
 
@@ -180,31 +120,11 @@ cd TodoList
 
 1. Add an `AddTodo` method to the `Todo` component and register the method for the button using the `@onclick` attribute. The `AddTodo` C# method is called when the button is selected:
 
-   ::: moniker range=">= aspnetcore-5.0"
-
-   [!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo4.razor?highlight=2,7-10)]
-
-   ::: moniker-end
-
-   ::: moniker range="< aspnetcore-5.0"
-
    [!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo4.razor?highlight=2,7-10)]
-
-   ::: moniker-end
 
 1. To get the title of the new todo item, add a `newTodo` string field at the top of the `@code` block:
 
-   ::: moniker range=">= aspnetcore-5.0"
-
-   [!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo5.razor?highlight=3)]
-
-   ::: moniker-end
-
-   ::: moniker range="< aspnetcore-5.0"
-
    [!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo5.razor?highlight=3)]
-
-   ::: moniker-end
 
    Modify the text `<input>` element to bind `newTodo` with the `@bind` attribute:
 
@@ -214,17 +134,7 @@ cd TodoList
 
 1. Update the `AddTodo` method to add the `TodoItem` with the specified title to the list. Clear the value of the text input by setting `newTodo` to an empty string:
 
-   ::: moniker range=">= aspnetcore-5.0"
-
-   [!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo6.razor?highlight=19-26)]
-
-   ::: moniker-end
-
-   ::: moniker range="< aspnetcore-5.0"
-
    [!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo6.razor?highlight=19-26)]
-
-   ::: moniker-end
 
 1. Save the `Pages/Todo.razor` file. The app is automatically rebuilt in the command shell, and the page reloads in the browser.
 
@@ -250,17 +160,7 @@ cd TodoList
 
 1. The completed `Todo` component (`Pages/Todo.razor`):
 
-   ::: moniker range=">= aspnetcore-5.0"
-
-   [!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo1.razor)]
-
-   ::: moniker-end
-
-   ::: moniker range="< aspnetcore-5.0"
-
    [!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo1.razor)]
-
-   ::: moniker-end
 
 1. Save the `Pages/Todo.razor` file. The app is automatically rebuilt in the command shell, and the page reloads in the browser.
 
