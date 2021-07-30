@@ -1,4 +1,4 @@
-### YamlMime:TableOfContents
+items:
 - name: Build your first Blazor app
   href: https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro
 - name: Build a Blazor todo list app
