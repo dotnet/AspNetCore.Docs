@@ -162,7 +162,7 @@ Choose ASP.NET Core MVC plus Blazor WebAssembly when these benefits best fit you
 * Prerendering:
   * Executes Razor components on the server and renders them into a page or view.
       * Improves the perceived load time of the app while setting up interactivity.
-* Add islands of interactivity to existing views (pages) with the <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
+* Add islands of interactivity to existing views (pages) with the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper).
 
 To get started with ASP.NET Core MVC plus Blazor WebAssembly, see <xref:blazor/components/prerendering-and-integration>.
 
