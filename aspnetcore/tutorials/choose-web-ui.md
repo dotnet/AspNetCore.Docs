@@ -59,7 +59,7 @@ Benefits:
 
 * Allows for rich interactivity that is nearly instant, without requiring a round trip to the server. UI event handling and logic run locally on the user's device with minimal latency. 
 * Supports incremental updates, saving partially completed forms or documents without the user having to select a button to submit a form.
-* Can be designed to run in a disconnected mode. Updates to the client-side model that are eventually synchronized back to the server once a connection is re-established.
+* Can be designed to run in a disconnected mode. Updates to the client-side model are eventually synchronized back to the server once a connection is re-established.
 * Takes advantage of the capabilities of the user’s device.
 
 Examples of client rendered web UI:
@@ -95,7 +95,7 @@ To get started with your first ASP.NET Core Razor Pages app, see <xref:tutorials
 
 ASP.NET MVC renders UI on the server and uses a Model-View-Controller (MVC) architectural pattern. The MVC pattern separates an app into three main groups of components: Models, Views, and Controllers. User requests are routed to a controller. The controller is responsible for working with the model to perform user actions or retrieve results of queries. The controller chooses the view to display to the user, and provides it with any model data it requires. Support for Razor Pages is built on ASP.NET Core MVC.
 
-MVC benefits, in addition to the server rendering:
+MVC benefits, in addition to the server rendering benefits:
 
 * Some developers consider it easier to scale the web UI app in terms of complexity. They feel it's easier to code, debug, and test the model, view, or controller when it has a single job.
 * Clear [separation of concerns](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#separation-of-concerns) for maximum flexibility.
