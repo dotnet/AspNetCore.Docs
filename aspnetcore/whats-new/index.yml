@@ -26,8 +26,6 @@ landingContent:
             url: 2021-03.md
           - text: February 2021
             url: 2021-02.md
-          - text: January 2021
-            url: 2021-01.md
 
   - title: "Get involved - contribute to ASP.NET Core docs"
     linkLists:
