@@ -2,7 +2,7 @@
 title: Secure ASP.NET Core Blazor WebAssembly
 author: guardrex
 description: Learn how to secure Blazor WebAssemlby apps as Single Page Applications (SPAs).
-monikerRange: '>= aspnetcore-5.0 < aspnetcore-6.0'
+monikerRange: 'aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 10/27/2020

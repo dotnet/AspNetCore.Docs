@@ -2,7 +2,7 @@
 title: ASP.NET Core Blazor WebAssembly performance best practices
 author: pranavkm
 description: Tips for increasing performance in ASP.NET Core Blazor WebAssembly apps and avoiding common performance problems.
-monikerRange: '>= aspnetcore-6.0'
+monikerRange: 'aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc, devx-track-js
 ms.date: 10/09/2020

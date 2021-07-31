@@ -2,7 +2,7 @@
 title: Tooling for ASP.NET Core Blazor
 author: guardrex
 description: Learn about the tooling available to build Blazor apps.
-monikerRange: '>= aspnetcore-6.0'
+monikerRange: 'aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/11/2021

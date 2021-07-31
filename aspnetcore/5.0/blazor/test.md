@@ -2,7 +2,7 @@
 title: Test components in ASP.NET Core Blazor
 author: guardrex
 description: Learn how to test componments in Blazor apps.
-monikerRange: '>= aspnetcore-5.0 < aspnetcore-6.0'
+monikerRange: 'aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 08/10/2020
