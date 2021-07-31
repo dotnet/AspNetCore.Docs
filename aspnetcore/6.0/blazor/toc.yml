@@ -1,3 +1,7 @@
 items:
+- name: Test 1
+  href: test1.md
+- name: Test 2
+  href: test2.md
 - name: Test 3
   href: test3.md

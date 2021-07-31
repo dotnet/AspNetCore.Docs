@@ -2,7 +2,7 @@
 title: Test 1
 author: guardrex
 description: Test topic 1.
-monikerRange: '>= aspnetcore-3.1'
+monikerRange: '>= aspnetcore-3.1 < aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 07/31/2021
@@ -11,4 +11,4 @@ uid: blazor/test1
 ---
 # Test 1
 
-&gt;= aspnetcore-3.1
+&gt;= aspnetcore-3.1 &lt; aspnetcore-5.0
