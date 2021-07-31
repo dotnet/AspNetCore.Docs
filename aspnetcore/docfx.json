@@ -126,8 +126,8 @@
     "markdownEngineName": "markdig",
     "groups": {
       "group1": { "dest": "group1-dest", "moniker_range": ">= aspnetcore-1.0" },
-      "aspnetcore-3.1": { "dest": "aspnetcore-3.1-dest", "moniker_range": ">= aspnetcore-3.1" },
-      "aspnetcore-5.0": { "dest": "aspnetcore-5.0-dest", "moniker_range": ">= aspnetcore-5.0" },
+      "aspnetcore-3.1": { "dest": "aspnetcore-3.1-dest", "moniker_range": ">= aspnetcore-3.1 < aspnetcore-5.0" },
+      "aspnetcore-5.0": { "dest": "aspnetcore-5.0-dest", "moniker_range": ">= aspnetcore-5.0 < aspnetcore-6.0" },
       "aspnetcore-6.0": { "dest": "aspnetcore-6.0-dest", "moniker_range": ">= aspnetcore-6.0" }
     }
   }
