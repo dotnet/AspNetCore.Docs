@@ -496,6 +496,12 @@
               href: 5.0/blazor/components/class-libraries.md
             - name: Class libraries
               href: 6.0/blazor/components/class-libraries.md
+            - name: Built-in components
+              href: 3.1/blazor/components/built-in-components.md
+            - name: Built-in components
+              href: 5.0/blazor/components/built-in-components.md
+            - name: Built-in components
+              href: 6.0/blazor/components/built-in-components.md
         - name: Globalization and localization
           href: 3.1/blazor/globalization-localization.md
         - name: Globalization and localization
@@ -710,122 +716,6 @@
           href: 5.0/blazor/advanced-scenarios.md
         - name: Advanced scenarios
           href: 6.0/blazor/advanced-scenarios.md
-        - name: Built-in components
-          items:
-            - name: App
-              href: 3.1/blazor/project-structure.md
-            - name: App
-              href: 5.0/blazor/project-structure.md
-            - name: App
-              href: 6.0/blazor/project-structure.md
-            - name: Authentication
-              href: 3.1/blazor/security/webassembly/index.md#authentication-component
-            - name: Authentication
-              href: 5.0/blazor/security/webassembly/index.md#authentication-component
-            - name: Authentication
-              href: 6.0/blazor/security/webassembly/index.md#authentication-component
-            - name: AuthorizeView
-              href: 3.1/blazor/security/index.md#authorizeview-component
-            - name: AuthorizeView
-              href: 5.0/blazor/security/index.md#authorizeview-component
-            - name: AuthorizeView
-              href: 6.0/blazor/security/index.md#authorizeview-component
-            - name: CascadingValue
-              href: 3.1/blazor/components/cascading-values-and-parameters.md#cascadingvalue-component
-            - name: CascadingValue
-              href: 5.0/blazor/components/cascading-values-and-parameters.md#cascadingvalue-component
-            - name: CascadingValue
-              href: 6.0/blazor/components/cascading-values-and-parameters.md#cascadingvalue-component
-            - name: ErrorBoundary
-              href: 6.0/blazor/fundamentals/handle-errors.md#error-boundaries
-            - name: FocusOnNavigate
-              href: 6.0/blazor/fundamentals/routing.md#focus-an-element-on-navigation
-            - name: InputCheckbox
-              href: 3.1/blazor/forms-validation.md#built-in-form-components
-            - name: InputCheckbox
-              href: 5.0/blazor/forms-validation.md#built-in-form-components
-            - name: InputCheckbox
-              href: 6.0/blazor/forms-validation.md#built-in-form-components
-            - name: InputDate
-              href: 3.1/blazor/forms-validation.md#built-in-form-components
-            - name: InputDate
-              href: 5.0/blazor/forms-validation.md#built-in-form-components
-            - name: InputDate
-              href: 6.0/blazor/forms-validation.md#built-in-form-components
-            - name: InputFile
-              href: 5.0/blazor/file-uploads.md
-            - name: InputFile
-              href: 6.0/blazor/file-uploads.md
-            - name: InputNumber
-              href: 3.1/blazor/forms-validation.md#built-in-form-components
-            - name: InputNumber
-              href: 5.0/blazor/forms-validation.md#built-in-form-components
-            - name: InputNumber
-              href: 6.0/blazor/forms-validation.md#built-in-form-components
-            - name: InputRadio
-              href: 3.1/blazor/forms-validation.md#built-in-form-components
-            - name: InputRadio
-              href: 5.0/blazor/forms-validation.md#built-in-form-components
-            - name: InputRadio
-              href: 6.0/blazor/forms-validation.md#built-in-form-components
-            - name: InputRadioGroup
-              href: 3.1/blazor/forms-validation.md#built-in-form-components
-            - name: InputRadioGroup
-              href: 5.0/blazor/forms-validation.md#built-in-form-components
-            - name: InputRadioGroup
-              href: 6.0/blazor/forms-validation.md#built-in-form-components
-            - name: InputSelect
-              href: 3.1/blazor/forms-validation.md#built-in-form-components
-            - name: InputSelect
-              href: 5.0/blazor/forms-validation.md#built-in-form-components
-            - name: InputSelect
-              href: 6.0/blazor/forms-validation.md#built-in-form-components
-            - name: InputText
-              href: 3.1/blazor/forms-validation.md#built-in-form-components
-            - name: InputText
-              href: 5.0/blazor/forms-validation.md#built-in-form-components
-            - name: InputText
-              href: 6.0/blazor/forms-validation.md#built-in-form-components
-            - name: InputTextArea
-              href: 3.1/blazor/forms-validation.md#built-in-form-components
-            - name: InputTextArea
-              href: 5.0/blazor/forms-validation.md#built-in-form-components
-            - name: InputTextArea
-              href: 6.0/blazor/forms-validation.md#built-in-form-components
-            - name: LayoutView
-              href: 3.1/blazor/components/layouts.md#apply-a-layout-to-arbitrary-content-layoutview-component
-            - name: LayoutView
-              href: 5.0/blazor/components/layouts.md#apply-a-layout-to-arbitrary-content-layoutview-component
-            - name: LayoutView
-              href: 6.0/blazor/components/layouts.md#apply-a-layout-to-arbitrary-content-layoutview-component
-            - name: MainLayout
-              href: 3.1/blazor/components/layouts.md#mainlayout-component
-            - name: MainLayout
-              href: 5.0/blazor/components/layouts.md#mainlayout-component
-            - name: MainLayout
-              href: 6.0/blazor/components/layouts.md#mainlayout-component
-            - name: NavLink
-              href: 3.1/blazor/fundamentals/routing.md#navlink-and-navmenu-components
-            - name: NavLink
-              href: 5.0/blazor/fundamentals/routing.md#navlink-and-navmenu-components
-            - name: NavLink
-              href: 6.0/blazor/fundamentals/routing.md#navlink-and-navmenu-components
-            - name: NavMenu
-              href: 3.1/blazor/fundamentals/routing.md#navlink-and-navmenu-components
-            - name: NavMenu
-              href: 5.0/blazor/fundamentals/routing.md#navlink-and-navmenu-components
-            - name: NavMenu
-              href: 6.0/blazor/fundamentals/routing.md#navlink-and-navmenu-components
-            - name: Router
-              href: 3.1/blazor/fundamentals/routing.md#route-templates
-            - name: Router
-              href: 5.0/blazor/fundamentals/routing.md#route-templates
-            - name: Router
-              href: 6.0/blazor/fundamentals/routing.md#route-templates
-            - name: Virtualize
-              href: 5.0/blazor/components/virtualization.md
-            - name: Virtualize
-              href: 6.0/blazor/components/virtualization.md
     - name: Client-side development
       items:
         - name: Single Page Apps

@@ -136,7 +136,7 @@ The preceding code allows directory browsing of the *wwwroot/images* folder usin
 
 ## Serve default documents
 
-Setting a default page provides visitors a starting point on a site. To serve a default page from `wwwroot` without a fully qualified URI, call the <xref:Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles%2A> method:
+Setting a default page provides visitors a starting point on a site. To serve a default file from `wwwroot` without requiring the request URL to include the file's name, call the <xref:Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles%2A> method:
 
 [!code-csharp[](~/fundamentals/static-files/samples/3.x/StaticFilesSample/StartupEmpty.cs?name=snippet_Configure&highlight=15)]
 
@@ -149,7 +149,7 @@ With `UseDefaultFiles`, requests to a folder in `wwwroot` search for:
 * *index.htm*
 * *index.html*
 
-The first file found from the list is served as though the request were the fully qualified URI. The browser URL continues to reflect the URI requested.
+The first file found from the list is served as though the request included the file's name. The browser URL continues to reflect the URI requested.
 
 The following code changes the default file name to *mydefault.html*:
 
