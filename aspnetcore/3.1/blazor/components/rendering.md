@@ -2,7 +2,7 @@
 title: ASP.NET Core Blazor component rendering
 author: guardrex
 description: Learn about Razor component rendering in ASP.NET Core Blazor apps, including when to call StateHasChanged.
-monikerRange: '>= aspnetcore-3.1 < aspnetcore-5.0'
+monikerRange: 'aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 03/16/2021

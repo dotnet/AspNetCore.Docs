@@ -2,7 +2,7 @@
 title: Host and deploy ASP.NET Core Blazor WebAssembly
 author: guardrex
 description: Learn how to host and deploy a Blazor app using ASP.NET Core, Content Delivery Networks (CDN), file servers, and GitHub Pages.
-monikerRange: '>= aspnetcore-5.0 < aspnetcore-6.0'
+monikerRange: 'aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 01/12/2021

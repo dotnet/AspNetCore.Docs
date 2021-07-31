@@ -2,7 +2,7 @@
 title: ASP.NET Core Blazor state management
 author: guardrex
 description: Learn how to persist state in Blazor Server apps.
-monikerRange: '>= aspnetcore-3.1 < aspnetcore-5.0'
+monikerRange: 'aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 10/29/2020

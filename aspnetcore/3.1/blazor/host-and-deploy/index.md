@@ -2,7 +2,7 @@
 title: Host and deploy ASP.NET Core Blazor
 author: guardrex
 description: Discover how to host and deploy Blazor apps.
-monikerRange: '>= aspnetcore-3.1 < aspnetcore-5.0'
+monikerRange: 'aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 07/15/2020
@@ -74,7 +74,7 @@ Blazor Server (`Pages/_Host.cshtml`):
 <base href="~/CoolApp/">
 ```
 
-Blazor Server apps additionally set the server-side base path by calling <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase*> in the app's request pipeline of `Startup.Configure`:
+Blazor Server apps additionally set the server-side base path by calling <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> in the app's request pipeline of `Startup.Configure`:
 
 ```csharp
 app.UsePathBase("/CoolApp");
@@ -100,7 +100,7 @@ dotnet run --pathbase=/CoolApp
 
 The Blazor WebAssembly app responds locally at `http://localhost:port/CoolApp`.
 
-**Blazor Server `MapFallbackToPage` configuration**
+### Blazor Server `MapFallbackToPage` configuration
 
 Pass the following path to <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage%2A> in `Startup.Configure`:
 
@@ -114,7 +114,7 @@ The placeholder `{RELATIVE PATH}` is the non-root path on the server. For exampl
 endpoints.MapFallbackToPage("/CoolApp/{**path:nonfile}");
 ```
 
-**Host multiple Blazor WebAssembly apps**
+### Host multiple Blazor WebAssembly apps
 
 For more information on hosting multiple Blazor WebAssembly apps in a hosted Blazor solution, see <xref:blazor/host-and-deploy/webassembly#hosted-deployment-with-multiple-blazor-webassembly-apps>.
 

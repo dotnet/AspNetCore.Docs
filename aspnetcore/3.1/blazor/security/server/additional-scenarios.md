@@ -2,7 +2,7 @@
 title: ASP.NET Core Blazor Server additional security scenarios
 author: guardrex
 description: Learn how to configure Blazor Server for additional security scenarios.
-monikerRange: '>= aspnetcore-3.1 < aspnetcore-5.0'
+monikerRange: 'aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 10/06/2020

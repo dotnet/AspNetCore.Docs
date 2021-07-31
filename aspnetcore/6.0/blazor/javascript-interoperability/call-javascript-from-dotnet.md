@@ -2,7 +2,7 @@
 title: Call JavaScript functions from .NET methods in ASP.NET Core Blazor
 author: guardrex
 description: Learn how to invoke JavaScript functions from .NET methods in Blazor apps.
-monikerRange: '>= aspnetcore-6.0'
+monikerRange: 'aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc, devx-track-js
 ms.date: 05/12/2021
@@ -523,7 +523,7 @@ In the preceding example:
 
 ## Byte array support
 
-Blazor supports optimized byte array JS interop that avoids encoding/decoding byte arrays into Base64. The following example uses JS interop to pass a byte array to Javascript.
+Blazor supports optimized byte array JS interop that avoids encoding/decoding byte arrays into Base64. The following example uses JS interop to pass a byte array to JavaScript.
 
 Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server), provide a `receiveByteArray` JS function. The function is called with <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A> and doesn't return a value:
 

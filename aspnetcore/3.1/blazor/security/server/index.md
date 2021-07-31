@@ -2,7 +2,7 @@
 title: Secure ASP.NET Core Blazor Server apps
 author: guardrex
 description: Learn how to secure Blazor Server apps as ASP.NET Core applications.
-monikerRange: '>= aspnetcore-3.1 < aspnetcore-5.0'
+monikerRange: 'aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 10/06/2020

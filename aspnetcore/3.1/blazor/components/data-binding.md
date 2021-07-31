@@ -2,7 +2,7 @@
 title: ASP.NET Core Blazor data binding
 author: guardrex
 description: Learn about data binding features for components and Document Object Model (DOM) elements in Blazor apps.
-monikerRange: '>= aspnetcore-3.1 < aspnetcore-5.0'
+monikerRange: 'aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 03/15/2021

@@ -2,7 +2,7 @@
 title: Call a web API in an ASP.NET Core Blazor app
 author: guardrex
 description: Learn how to call a web API in Blazor apps.
-monikerRange: '>= aspnetcore-3.1 < aspnetcore-5.0'
+monikerRange: 'aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 06/03/2021

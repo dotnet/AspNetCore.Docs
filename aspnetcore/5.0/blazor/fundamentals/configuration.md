@@ -2,7 +2,7 @@
 title: ASP.NET Core Blazor configuration
 author: guardrex
 description: Learn about configuration of Blazor apps, including app settings, authentication, and logging configuration.
-monikerRange: '>= aspnetcore-5.0 < aspnetcore-6.0'
+monikerRange: 'aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 12/10/2020
