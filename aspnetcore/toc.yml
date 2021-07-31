@@ -1670,3 +1670,9 @@
   href: /dotnet/api/?view=aspnetcore-2.2
 - name: Contribute
   href: https://github.com/dotnet/AspNetCore.Docs/blob/main/CONTRIBUTING.md
+- name: Testing
+  href: 3.1/blazor/toc.yml
+- name: Testing
+  href: 5.0/blazor/toc.yml
+- name: Testing
+  href: 6.0/blazor/toc.yml

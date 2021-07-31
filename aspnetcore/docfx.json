@@ -2,25 +2,25 @@
   "build": {
     "content": [
       {
-        "files": [ "**/*.md", "**/*.yml" ], 
+        "files": [ "**/*.md", "toc.yml", "whats-new/toc.yml", "whats-new/index.yml", "index.yml", "zone-pivot-groups.yml" ], 
         "exclude": [ "3.1/**", "5.0/**", "6.0/**", "**/includes/**", "***/license.md", "**/obj/**", "***/readme.md", "**/sample/**", "**/samples/**", "_site/**" ], 
         "group": "group1", 
         "src": "."
       },
       {
-        "files": [ "**/*.md" ], 
+        "files": [ "**/*.md", "toc.yml" ], 
         "exclude": [ "**/includes/**", "***/license.md", "**/obj/**", "***/readme.md", "**/sample/**", "**/samples/**" ], 
         "group": "aspnetcore-3.1", 
         "src": "3.1" 
       },
       {
-        "files": [ "**/*.md" ], 
+        "files": [ "**/*.md", "toc.yml" ], 
         "exclude": [ "**/includes/**", "***/license.md", "**/obj/**", "***/readme.md", "**/sample/**", "**/samples/**" ], 
         "group": "aspnetcore-5.0", 
         "src": "5.0"
       },
       {
-        "files": [ "**/*.md" ], 
+        "files": [ "**/*.md", "toc.yml" ], 
         "exclude": [ "**/includes/**", "***/license.md", "**/obj/**", "***/readme.md", "**/sample/**", "**/samples/**" ], 
         "group": "aspnetcore-6.0", 
         "src": "6.0"
