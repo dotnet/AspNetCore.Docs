@@ -323,11 +323,11 @@
         - name: Unit test
           uid: mvc/controllers/testing
     - name: Blazor
-      href: 3.1/toc.yml
+      href: 3.1/blazor/toc.yml
     - name: Blazor
-      href: 5.0/toc.yml
+      href: 5.0/blazor/toc.yml
     - name: Blazor
-      href: 6.0/toc.yml
+      href: 6.0/blazor/toc.yml
     - name: Client-side development
       items:
         - name: Single Page Apps
