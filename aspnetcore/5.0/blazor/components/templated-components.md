@@ -2,7 +2,7 @@
 title: ASP.NET Core Blazor templated components
 author: guardrex
 description: Learn how templated components can accept one or more UI templates as parameters, which can then be used as part of the component's rendering logic.
-monikerRange: '>= aspnetcore-5.0 < aspnetcore-6.0'
+monikerRange: 'aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 03/04/2021

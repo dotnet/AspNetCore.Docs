@@ -2,7 +2,7 @@
 title: ASP.NET Core Blazor WebAssembly with Azure Active Directory groups and roles
 author: guardrex
 description: Learn how to configure Blazor WebAssembly to use Azure Active Directory groups and roles.
-monikerRange: '>= aspnetcore-6.0'
+monikerRange: 'aspnetcore-6.0'
 ms.author: riande
 ms.custom: "devx-track-csharp, mvc"
 ms.date: 01/24/2021

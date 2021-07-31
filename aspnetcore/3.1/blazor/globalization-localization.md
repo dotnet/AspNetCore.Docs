@@ -2,7 +2,7 @@
 title: ASP.NET Core Blazor globalization and localization
 author: guardrex
 description: Learn how to make Razor components accessible to users in multiple cultures and languages.
-monikerRange: '>= aspnetcore-3.1 < aspnetcore-5.0'
+monikerRange: 'aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 06/18/2021

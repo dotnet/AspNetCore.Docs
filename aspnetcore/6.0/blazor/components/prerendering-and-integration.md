@@ -2,7 +2,7 @@
 title: Prerender and integrate ASP.NET Core Razor components
 author: guardrex
 description: Learn about Razor component integration scenarios for Blazor apps, including prerendering of Razor components on the server.
-monikerRange: '>= aspnetcore-6.0'
+monikerRange: 'aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 03/31/2021
