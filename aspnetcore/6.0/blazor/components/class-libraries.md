@@ -239,7 +239,7 @@ When the `Link` component is used in a child component, the linked asset is also
 
 An alternative to using the `Link` component is to link to the library's stylesheet in the app's `<head>` markup.
 
-`wwwroot/index.html` file (Blazor WebAssembly) or `Pages/_Host.cshtml` file (Blazor Server):
+`wwwroot/index.html` file (Blazor WebAssembly) or `Pages/_Layout.cshtml` file (Blazor Server):
 
 ```diff
 + <link href="_content/ComponentLibrary/additionalStyles.css" rel="stylesheet" />

@@ -61,13 +61,14 @@ The Blazor Server template creates the initial files and directory structure for
   * `_Host.cshtml`: The root page of the app implemented as a Razor Page:
     * When any page of the app is initially requested, this page is rendered and returned in the response.
     * The Host page specifies where the root `App` component (`App.razor`) is rendered.
+  * `_Layout.cshtml`: The layout page for the `_Host.cshtml` root page of the app.
   * `Counter` component (`Counter.razor`): Implements the Counter page.
   * `Error` component (`Error.razor`): Rendered when an unhandled exception occurs in the app.
   * `FetchData` component (`FetchData.razor`): Implements the Fetch data page.
   * `Index` component (`Index.razor`): Implements the Home page.
 
 > [!NOTE]
-> JavaScript (JS) files added to the `Pages/_Host.cshtml` file should appear before the closing `</body>` tag. The order that custom JS code is loaded from JS files is important in some scenarios. For example, ensure that JS files with interop methods are included before Blazor framework JS files.
+> JavaScript (JS) files added to the `Pages/_Layout.cshtml` file should appear before the closing `</body>` tag. The order that custom JS code is loaded from JS files is important in some scenarios. For example, ensure that JS files with interop methods are included before Blazor framework JS files.
 
 * `Properties/launchSettings.json`: Holds [development environment configuration](xref:fundamentals/environments#development-and-launchsettingsjson).
 

@@ -64,7 +64,7 @@ public class InitialApplicationState
 }
 ```
 
-In the `_Host.cshtml` file, create and instance of `InitialApplicationState` and pass it as a parameter to the app:
+In the `Pages/_Host.cshtml` file, create and instance of `InitialApplicationState` and pass it as a parameter to the app:
 
 ```cshtml
 @using Microsoft.AspNetCore.Authentication
