@@ -52,18 +52,18 @@ To set up prerendering for a hosted Blazor WebAssembly app:
      > [!NOTE]
      > Leave the `<link>` element that requests the Bootstrap stylesheet (`css/bootstrap/bootstrap.min.css`) in place.
 
-   * Update the `render-mode` of the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) to prerender the root `App` component with <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssemblyPrerendered>:
-
-     ```diff
-     - <component type="typeof(App)" render-mode="ServerPrerendered" />
-     + <component type="typeof(App)" render-mode="WebAssemblyPrerendered" />
-     ```
-
-   * Update the Blazor script source to use the client-side Blazor WebAssembly script:
+   * In the `_Layout.cshtml` file, update the Blazor script source to use the client-side Blazor WebAssembly script:
 
      ```diff
      - <script src="_framework/blazor.server.js"></script>
      + <script src="_framework/blazor.webassembly.js"></script>
+     ```
+
+   * In the `_Host.cshtml` file, update the `render-mode` of the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) to prerender the root `App` component with <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssemblyPrerendered>:
+
+     ```diff
+     - <component type="typeof(App)" render-mode="ServerPrerendered" />
+     + <component type="typeof(App)" render-mode="WebAssemblyPrerendered" />
      ```
 
 1. In `Startup.Configure` of the **`Server`** project, change the fallback from the `index.html` file to the `_Host.cshtml` page.
