@@ -47,6 +47,7 @@ Forwarded Headers Middleware [default settings](#forwarded-headers-middleware-op
 * There is only *one proxy* between the app and the source of the requests.
 * Only loopback addresses are configured for known proxies and known networks.
 * The forwarded headers are named `X-Forwarded-For` and `X-Forwarded-Proto`.
+* The  `ForwardedHeaders` value is `ForwardedHeaders.None`.
 
 Not all network appliances add the `X-Forwarded-For` and `X-Forwarded-Proto` headers without additional configuration. Consult your appliance manufacturer's guidance if proxied requests don't contain these headers when they reach the app. If the appliance uses different header names than `X-Forwarded-For` and `X-Forwarded-Proto`, set the <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.ForwardedForHeaderName> and <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.ForwardedProtoHeaderName> options to match the header names used by the appliance. For more information, see [Forwarded Headers Middleware options](#forwarded-headers-middleware-options) and [Configuration for a proxy that uses different header names](#configuration-for-a-proxy-that-uses-different-header-names).
 
