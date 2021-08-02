@@ -135,9 +135,9 @@ In `Startup.Configure`, Blazor Server apps call <xref:Microsoft.AspNetCore.Build
 
 When the client detects that the connection has been lost, a default UI is displayed to the user while the client attempts to reconnect. If reconnection fails, the user is provided the option to retry.
 
-To customize the UI, define an element with an `id` of `components-reconnect-modal` in the `<body>` of the `_Host.cshtml` Razor page.
+To customize the UI, define an element with an `id` of `components-reconnect-modal` in the `<body>` of the `_Layout.cshtml` Razor page.
 
-`Pages/_Host.cshtml`:
+`Pages/_Layout.cshtml`:
 
 ```cshtml
 <div id="components-reconnect-modal">
@@ -174,7 +174,7 @@ By default, Blazor Server apps prerender the UI on the server before the client 
 
 ## Blazor startup
 
-Configure the manual start of a Blazor Server app's [SignalR circuit](xref:blazor/hosting-models#circuits) in the `Pages/_Host.cshtml` file:
+Configure the manual start of a Blazor Server app's [SignalR circuit](xref:blazor/hosting-models#circuits) in the `Pages/_Layout.cshtml` file:
 
 * Add an `autostart="false"` attribute to the `<script>` tag for the `blazor.server.js` script.
 * Place a script that calls `Blazor.start` after the `blazor.server.js` script's `<script>` tag and inside the closing `</body>` tag.
@@ -187,7 +187,7 @@ For more information, including how to initialize Blazor when the document is re
 
 On the client builder, pass in the `configureSignalR` configuration object that calls `configureLogging` with the log level.
 
-`Pages/_Host.cshtml`:
+`Pages/_Layout.cshtml`:
 
 ```cshtml
 <body>
@@ -222,7 +222,7 @@ To modify the connection events, register callbacks for the following connection
 
 **Both `onConnectionDown` and `onConnectionUp` must be specified.**
 
-`Pages/_Host.cshtml`:
+`Pages/_Layout.cshtml`:
 
 ```cshtml
 <body>
@@ -246,7 +246,7 @@ For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
 
 To adjust the reconnection retry count and interval, set the number of retries (`maxRetries`) and period in milliseconds permitted for each retry attempt (`retryIntervalMilliseconds`).
 
-`Pages/_Host.cshtml`:
+`Pages/_Layout.cshtml`:
 
 ```cshtml
 <body>
@@ -270,7 +270,7 @@ For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
 
 To hide the reconnection display, set the reconnection handler's `_reconnectionDisplay` to an empty object (`{}` or `new Object()`).
 
-`Pages/_Host.cshtml`:
+`Pages/_Layout.cshtml`:
 
 ```cshtml
 <body>

@@ -37,7 +37,7 @@ To set up prerendering for a hosted Blazor WebAssembly app:
    - builder.RootComponents.Add<App>("#app");
    ```
 
-1. Add a `Pages/_Host.cshtml` file to the **`Server`** project's `Pages` folder. You can obtain a `_Host.cshtml` file from a project created from the Blazor Server template with the `dotnet new blazorserver -o BlazorServer` command in a command shell (the `-o BlazorServer` option creates a folder for the project). After placing the `Pages/_Host.cshtml` file into the **`Server`** project of the hosted Blazor WebAssembly solution, make the following changes to the file:
+1. Add `Pages/_Host.cshtml` and `Pages/_Layout.cshtml` files to the **`Server`** project's `Pages` folder. You can obtain a `_Host.cshtml` and `_Layout.cshtml` files from a project created from the Blazor Server template with the `dotnet new blazorserver -o BlazorServer` command in a command shell (the `-o BlazorServer` option creates a folder for the project). After placing the `Pages/_Host.cshtml` and `Pages/_Layout.cshtml` files into the **`Server`** project of the hosted Blazor WebAssembly solution, make the following changes to the `_Layout.cshtml` file:
 
    * Provide an [`@using`](xref:mvc/views/razor#using) directive for the **`Client`** project (for example, `@using BlazorHosted.Client`).
    * Update the stylesheet links to point to the WebAssembly project's stylesheets. In the following example, the client project's namespace is `BlazorHosted.Client`:
@@ -653,16 +653,14 @@ For more information, see <xref:blazor/components/index#namespaces>.
 
 Without preserving prerendered state, any state that used during prerendering is lost and must be recreated when the app is fully loaded. If any state is setup asynchronously, the UI may flicker as the the prerendered UI is replaced with temporary placeholders and then fully rendered again.
 
-To solve these problems, Blazor supports persisting state in a prerendered page using the [Preserve Component State Tag Helper](xref:mvc/views/tag-helpers/builtin-th/preserve-component-state-tag-helper) (`<preserve-component-state />`). Add the `<preserve-component-state />` tag inside the closing `</body>` tag of `_Host.cshtml`.
+To solve these problems, Blazor supports persisting state in a prerendered page using the [Preserve Component State Tag Helper](xref:mvc/views/tag-helpers/builtin-th/preserve-component-state-tag-helper) (`<preserve-component-state />`). Add the `<preserve-component-state />` tag inside the closing `</body>` tag of `_Layout.cshtml`.
 
 ::: zone pivot="webassembly"
 
-`Pages/_Host.cshtml`:
+`Pages/_Layout.cshtml`:
 
 ```cshtml
 <body>
-    <component type="typeof(App)" render-mode="WebAssemblyPrerendered" />
-
     ...
 
     <persist-component-state />
@@ -673,12 +671,10 @@ To solve these problems, Blazor supports persisting state in a prerendered page 
 
 ::: zone pivot="server"
 
-`Pages/_Host.cshtml`:
+`Pages/_Layout.cshtml`:
 
 ```cshtml
 <body>
-    <component type="typeof(App)" render-mode="ServerPrerendered" />
-
     ...
 
     <persist-component-state />

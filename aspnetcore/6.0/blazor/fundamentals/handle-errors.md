@@ -230,7 +230,7 @@ When a Blazor app isn't functioning properly during development, receiving detai
 
 The UI for this error handling experience is part of the [Blazor project templates](xref:blazor/project-structure).
 
-In a Blazor Server app, customize the experience in the `Pages/_Host.cshtml` file:
+In a Blazor Server app, customize the experience in the `Pages/_Layout.cshtml` file:
 
 ```cshtml
 <div id="blazor-error-ui">

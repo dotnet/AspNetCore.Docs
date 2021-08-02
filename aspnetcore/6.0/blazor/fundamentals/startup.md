@@ -11,7 +11,7 @@ uid: blazor/fundamentals/startup
 ---
 # ASP.NET Core Blazor Startup
 
-Configure a manual start in the `wwwroot/index.html` file (Blazor WebAssembly) or `Pages/_Host.cshtml` file (Blazor Server):
+Configure a manual start in the `wwwroot/index.html` file (Blazor WebAssembly) or `Pages/_Layout.cshtml` file (Blazor Server):
 
 * Add an `autostart="false"` attribute and value to the `<script>` tag for the Blazor script.
 * Place a script that calls `Blazor.start` after the Blazor `<script>` tag and inside the closing `</body>` tag.
