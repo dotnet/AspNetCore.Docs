@@ -406,7 +406,7 @@ HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/c
 * <xref:signalr/supported-platforms>
 
 ::: moniker-end
-::: moniker range=">= aspnetcore-5.0"
+::: moniker range="= aspnetcore-5.0"
 
 ## JSON/MessagePack serialization options
 
