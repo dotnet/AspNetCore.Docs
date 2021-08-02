@@ -12,8 +12,6 @@ uid: signalr/authn-and-authz
 
 # Authentication and authorization in ASP.NET Core SignalR
 
-By [Andrew Stanton-Nurse](https://twitter.com/anurse)
-
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/authn-and-authz/sample/) [(how to download)](xref:index#how-to-download-a-sample)
 
 ## Authenticate users connecting to a SignalR hub
@@ -71,6 +69,20 @@ public void Configure(IApplicationBuilder app)
 
 > [!NOTE]
 > The order in which you register the SignalR and ASP.NET Core authentication middleware matters. Always call `UseAuthentication` before `UseSignalR` so that SignalR has a user on the `HttpContext`.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-6.0"
+
+> [!NOTE]
+> If a token expires during the lifetime of a connection, the connection will continue to work. LongPolling and ServerSentEvents connections will fail on subsequent requests if they don't send newer access tokens.
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-6.0"
+
+> [!NOTE]
+> If a token expires during the lifetime of a connection, by default the connection will continue to work. LongPolling and ServerSentEvents connections will fail on subsequent requests if they don't send newer access tokens. If you want connections to be closed when the authentication token expires, that can be enabled with [CloseOnAuthenticationExpiration](xref:signalr/configuration#advanced-http-configuration-options).
 
 ::: moniker-end
 
