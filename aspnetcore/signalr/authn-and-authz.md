@@ -75,14 +75,14 @@ public void Configure(IApplicationBuilder app)
 ::: moniker range="< aspnetcore-6.0"
 
 > [!NOTE]
-> If a token expires during the lifetime of a connection, the connection will continue to work. LongPolling and ServerSentEvents connections will fail on subsequent requests if they don't send newer access tokens.
+> If a token expires during the lifetime of a connection, the connection continues to work. `LongPolling` and `ServerSentEvent` connections fail on subsequent requests if they don't send new access tokens.
 
 ::: moniker-end
 
 ::: moniker range=">= aspnetcore-6.0"
 
 > [!NOTE]
-> If a token expires during the lifetime of a connection, by default the connection will continue to work. LongPolling and ServerSentEvents connections will fail on subsequent requests if they don't send newer access tokens. If you want connections to be closed when the authentication token expires, that can be enabled with [CloseOnAuthenticationExpiration](xref:signalr/configuration#advanced-http-configuration-options).
+> If a token expires during the lifetime of a connection, by default the connection continues to work. `LongPolling` and `ServerSentEvent` connections fail on subsequent requests if they don't send new access tokens. For connections to close when the authentication token expires, set [CloseOnAuthenticationExpiration](xref:signalr/configuration#advanced-http-configuration-options).
 
 ::: moniker-end
 
