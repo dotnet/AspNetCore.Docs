@@ -37,7 +37,7 @@ To set up prerendering for a hosted Blazor WebAssembly app:
    - builder.RootComponents.Add<App>("#app");
    ```
 
-1. Add `Pages/_Host.cshtml` and `Pages/_Layout.cshtml` files to the **`Server`** project's `Pages` folder. You can obtain a `_Host.cshtml` and `_Layout.cshtml` files from a project created from the Blazor Server template with the `dotnet new blazorserver -o BlazorServer` command in a command shell (the `-o BlazorServer` option creates a folder for the project). After placing the `Pages/_Host.cshtml` and `Pages/_Layout.cshtml` files into the **`Server`** project of the hosted Blazor WebAssembly solution, make the following changes to the `_Layout.cshtml` file:
+1. Add `_Host.cshtml` and `_Layout.cshtml` files to the **`Server`** project's `Pages` folder. You can obtain `_Host.cshtml` and `_Layout.cshtml` files from a project created from the Blazor Server template with the `dotnet new blazorserver -o BlazorServer` command in a command shell (the `-o BlazorServer` option creates a folder for the project). After placing the files into the **`Server`** project's `Pages` folder, make the following changes to the `_Layout.cshtml` file:
 
    * Provide an [`@using`](xref:mvc/views/razor#using) directive for the **`Client`** project (for example, `@using BlazorHosted.Client`).
    * Update the stylesheet links to point to the WebAssembly project's stylesheets. In the following example, the client project's namespace is `BlazorHosted.Client`:
