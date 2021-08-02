@@ -121,7 +121,7 @@ An alternative approach to serve files based on authorization is to:
 
 Directory browsing allows directory listing within specified directories.
 
-Directory browsing is disabled by default for security reasons. For more information, see [Considerations](#considerations).
+Directory browsing is disabled by default for security reasons. For more information, see [Security considerations for static files](#security-considerations-for-static-files).
 
 Enable directory browsing with:
 
