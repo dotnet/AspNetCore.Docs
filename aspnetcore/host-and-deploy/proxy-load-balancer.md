@@ -42,7 +42,7 @@ The middleware updates:
 
 For more information on the preceding, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/21615).
 
-Forwarded Headers Middleware [default settings](#forwarded-headers-middleware-options) can be configured. The default settings are:
+Forwarded Headers Middleware [default settings](#forwarded-headers-middleware-options) can be configured. For the default settings:
 
 * There is only *one proxy* between the app and the source of the requests.
 * Only loopback addresses are configured for known proxies and known networks.
