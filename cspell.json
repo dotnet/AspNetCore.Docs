@@ -1,0 +1,21 @@
+{
+  "version": "0.1",
+  "language": "en",
+  "words": [
+    "Blazor",
+    "blazor",
+    "guardrex",
+    "webassembly",
+    "appsettings",
+    "signalr",
+    "Prerender",
+    "prerendering",
+    "aspnetcore",
+    "riande",
+	"wadepickett",
+    "wwwroot"
+  ],
+  "flagWords": [
+    "hte"
+  ]
+}
