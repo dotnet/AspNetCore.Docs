@@ -204,7 +204,7 @@ In *Properties\launchSettings.json*, update `launchUrl` from `"swagger"` to `"ap
 "launchUrl": "api/TodoItems",
 ```
 
-Because Swagger has been removed, the preceding markup changes the URL that is launched to the GET method of the controller added in the following sections.
+Because Swagger will be removed, the preceding markup changes the URL that is launched to the GET method of the controller added in the following sections.
 
 ## Add a model class
 
