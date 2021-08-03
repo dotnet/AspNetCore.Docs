@@ -121,8 +121,6 @@ items:
   href: test.md
 - name: Progressive Web Applications
   href: progressive-web-app.md
-- name: Progressive Web Applications
-  href: progressive-web-app.md
 - name: Host and deploy
   items:
     - name: Overview
