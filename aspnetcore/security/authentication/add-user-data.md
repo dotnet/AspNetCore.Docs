@@ -226,7 +226,7 @@ Test the app:
 * View the custom user data on the `/Identity/Account/Manage` page.
 * Download and view the users personal data from the `/Identity/Account/Manage/PersonalData` page.
 
-## Add claims to Identity using IUserClaimsPrincipalFactory<ApplicationUser>
+## Add claims to Identity using `IUserClaimsPrincipalFactory<ApplicationUser>`
 
 > [!NOTE]
 > This section isn't an extension of the previous tutorial. To apply the following steps to the app built using the tutorial, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/18797).
