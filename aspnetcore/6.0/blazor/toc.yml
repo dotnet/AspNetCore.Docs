@@ -37,7 +37,7 @@ items:
       href: components/index.md
     - name: Layouts
       href: components/layouts.md
-    - name: Control &lt;head&gt; content
+    - name: Control <head> content
       href: components/control-head-content.md
     - name: Cascading values and parameters
       href: components/cascading-values-and-parameters.md
@@ -121,8 +121,6 @@ items:
   href: webassembly-performance-best-practices.md
 - name: Test components
   href: test.md
-- name: Progressive Web Applications
-  href: progressive-web-app.md
 - name: Progressive Web Applications
   href: progressive-web-app.md
 - name: Host and deploy
