@@ -37,7 +37,7 @@ Specify the page's title with the `PageTitle` component. Specify `<head>` elemen
 <PageTitle>@title</PageTitle>
 
 <HeadContent>
-    <meta id="meta-description" name="description" content="@description">
+    <meta name="description" content="@description">
 </HeadContent>
 
 @code {
