@@ -50,7 +50,7 @@ This tutorial creates the following API:
 
 -->
 
-## Create a web project
+## Create an empty web project
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -121,9 +121,13 @@ Open a command terminal in the project folder and run the following command:
 ---
 
 
-### Test the project
+### Examine the code
 
+The the *Program.cs* file contains the following code
 # [Visual Studio](#tab/visual-studio)
+
+From solution explorer, open the *Program.cs* file:
+
 
 Press Ctrl+F5 to run without the debugger. In a browser, navigate to:
 
@@ -154,7 +158,7 @@ Select **Run** > **Start Debugging** to launch the app. Visual Studio for Mac la
 
 Replace the contents of the *program.cs* file with the following code:
 
-[!code-csharp[](min-web-api/samples/6.x/Program.cs?name=snippet_all)]
+[!code-csharp[](min-web-api/samples/6.x/todo/Program.cs?name=snippet_all)]
 
 ### Install Postman
 
@@ -238,7 +242,7 @@ The return types can represent a wide range of HTTP status codes. For example, `
 
 Examine the `app.MapPut("/TodoItems/{id}", ...` method:
 
-[!code-csharp[](min-web-api/samples/6.x/Program.cs?name=snippet_put)]
+[!code-csharp[](min-web-api/samples/6.x/todo/Program.cs?name=snippet_put)]
 
 This method is similar to the `MapPost`, except it uses HTTP PUT. The response is [204 (No Content)](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html). According to the HTTP specification, a PUT request requires the client to send the entire updated entity, not just the changes. To support partial updates, use [HTTP PATCH](xref:Microsoft.AspNetCore.Mvc.HttpPatchAttribute).
 
