@@ -9,9 +9,9 @@ uid: tutorials/choose-web-ui
 ---
 # Choose an ASP.NET Core web UI
 
-ASP.NET Core is a complete UI framework. Choose which functionalities to combine that fit the web UI app needs.
+ASP.NET Core is a complete UI framework. Choose which functionalities to combine that fit the app's web UI needs.
 
-## Consider the benefits and costs of server rendered UI and client rendered UI
+## The benefits and costs of server and client rendered UI
 
 A helpful place to start is to consider if the web UI app will benefit from pre-rendering UI on the server, or rendering UI at the client browser.
 
@@ -23,9 +23,9 @@ There are three general approaches to building modern web UI with ASP.NET Core:
 
 There are benefits and drawbacks to consider when rendering UI on the server or on the client.
 
-### Considering a server rendered UI approach
+### Server rendered UI
 
-A web UI app that renders on the server dynamically generates the page's HTML and CSS on the server. The page arrives at the client ready to display.
+A web UI app that renders on the server dynamically generates the page's HTML and CSS on the server in response to a browser request. The page arrives at the client ready to display.
 
 Benefits:
 
@@ -51,7 +51,7 @@ Drawbacks:
 * The cost of compute and memory use are concentrated on the server, rather than each client.
 * User interactions require a round trip to the server to generate UI updates.
 
-### Considering a client rendered UI approach
+### Client rendered UI
 
 A client rendered app dynamically renders web UI on the client, directly updating the browser DOM as necessary.
 
@@ -73,7 +73,7 @@ Drawbacks:
 * Code for the logic has to be downloaded and executed on the client, adding to the initial load time.
 * Client requirements may exclude user's who have low-end devices, older browser versions, or low-bandwidth connections.
 
-## Choose a predominantly server rendered ASP.NET Core UI solution
+## Choose a server rendered ASP.NET Core UI solution
 
 The following section explains the ASP.NET Core web UI server rendered models available and provides links to get started. ASP.NET Core Razor Pages and ASP.NET Core MVC are server-based frameworks for building web apps with .NET.
 
@@ -97,13 +97,13 @@ ASP.NET MVC renders UI on the server and uses a Model-View-Controller (MVC) arch
 
 MVC benefits, in addition to the server rendering benefits:
 
-* Some developers consider it easier to scale the web UI app in terms of complexity. They feel it's easier to code, debug, and test the model, view, or controller when it has a single job.
+* Based on a scalable and mature model for building large web apps.
 * Clear [separation of concerns](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#separation-of-concerns) for maximum flexibility.
 * The Model-View-Controller separation of responsibilities ensures that the business model can evolve without being tightly coupled to low-level implementation details.
 
 To get started with  ASP.NET Core MVC, see <xref:tutorials/first-mvc-app/start-mvc>. For an overview of ASP.NET Core MVC's architecture and benefits, see <xref:mvc/overview>.
 
-## Choose a predominantly client rendered ASP.NET Core solution
+## Choose a client rendered ASP.NET Core solution
 
 The following section briefly explains the ASP.NET Core web UI client rendered models available and provides links to get started.
 
@@ -168,7 +168,7 @@ To get started with ASP.NET Core MVC plus Blazor WebAssembly, see <xref:blazor/c
 
 ### ASP.NET Core Single Page Application (SPA) with JavaScript Frameworks such as Angular and React
 
-Build client-side logic for ASP.NET Core apps using popular JavaScript frameworks, like [Angular](https://angular.io/) or [React](https://facebook.github.io/react/). ASP.NET Core provides project templates for Angular and React.
+Build client-side logic for ASP.NET Core apps using popular JavaScript frameworks, like [Angular](https://angular.io/) or [React](https://facebook.github.io/react/). ASP.NET Core provides project templates for Angular and React, and can be used with other JavaScript frameworks as well.
 
 Benefits of ASP.NET Core SPA with JavaScript Frameworks, in addition to the client rendering benefits previously listed:
 
