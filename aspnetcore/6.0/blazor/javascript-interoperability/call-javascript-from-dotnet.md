@@ -34,6 +34,8 @@ The following example is based on [`TextDecoder`](https://developer.mozilla.org/
 
 Add the following JS code inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Layout.cshtml` (Blazor Server):
 
+[!INCLUDE[](../includes/layout-page-preview-7.md)]
+
 ```html
 <script>
   window.convertArray = (win1251Array) => {
@@ -63,6 +65,8 @@ Use <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A> when:
 * JS functions return [void(0)/void 0](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/void) or [undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined).
 
 Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Layout.cshtml` (Blazor Server), provide a `displayTickerAlert1` JS function. The function is called with <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A> and doesn't return a value:
+
+[!INCLUDE[](../includes/layout-page-preview-7.md)]
 
 ```html
 <script>
@@ -97,6 +101,8 @@ Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or
 Use <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeAsync%2A> when .NET should read the result of a JS call.
 
 Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Layout.cshtml` (Blazor Server), provide a `displayTickerAlert2` JS function. The following example returns a string for display by the caller:
+
+[!INCLUDE[](../includes/layout-page-preview-7.md)]
 
 ```html
 <script>
@@ -367,6 +373,8 @@ For a parent component to make an element reference available to other component
 
 Add the following style to the `<head>` of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Layout.cshtml` (Blazor Server):
 
+[!INCLUDE[](../includes/layout-page-preview-7.md)]
+
 ```html
 <style>
     .red { color: red }
@@ -374,6 +382,8 @@ Add the following style to the `<head>` of `wwwroot/index.html` (Blazor WebAssem
 ```
 
 Add the following script inside closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Layout.cshtml` (Blazor Server):
+
+[!INCLUDE[](../includes/layout-page-preview-7.md)]
 
 ```html
 <script>
@@ -499,6 +509,8 @@ To produce correct styling, add the following stylesheet tag to the host HTML pa
 
 In `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Layout.cshtml` (Blazor Server), add the following `<link>` element to the `<head>` element markup:
 
+[!INCLUDE[](../includes/layout-page-preview-7.md)]
+
 ```html
 <link href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css" 
     rel="stylesheet" />
@@ -526,6 +538,8 @@ In the preceding example:
 Blazor supports optimized byte array JS interop that avoids encoding/decoding byte arrays into Base64. The following example uses JS interop to pass a byte array to JavaScript.
 
 Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Layout.cshtml` (Blazor Server), provide a `receiveByteArray` JS function. The function is called with <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A> and doesn't return a value:
+
+[!INCLUDE[](../includes/layout-page-preview-7.md)]
 
 ```html
 <script>
@@ -599,6 +613,8 @@ In the following example:
 > The following examples aren't typical use cases for this scenario because the [struct](/dotnet/csharp/language-reference/builtin-types/struct) passed to JS doesn't result in poor component performance. The example uses a small object merely to demonstrate the concepts for passing unserialized .NET data.
 
 Place the following `<script>` block in `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Layout.cshtml` (Blazor Server). Alternatively, you can place the JS in an external JS file referenced inside the closing `</body>` tag with `<script src="{SCRIPT PATH AND FILE NAME (.js)}></script>`, where the `{SCRIPT PATH AND FILE NAME (.js)}` placeholder is the path and file name of the script.
+
+[!INCLUDE[](../includes/layout-page-preview-7.md)]
 
 ```javascript
 <script>

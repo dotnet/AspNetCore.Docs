@@ -307,7 +307,9 @@ To disable prerendering, open the `Pages/_Host.cshtml` file and change the `rend
 <component type="typeof(App)" render-mode="Server" />
 ```
 
-Prerendering of `<head>` content is disabled in `Pages/_Layout.cshtml`:
+[Prerendering of `<head>` content](xref:blazor/components/control-head-content) is disabled in `Pages/_Layout.cshtml`:
+
+[!INCLUDE[](includes/layout-page-preview-7.md)]
 
 ```cshtml
 <component type="typeof(HeadOutlet)" render-mode="Server" />

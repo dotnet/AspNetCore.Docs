@@ -49,6 +49,8 @@ Load JavaScript (JS) code using any of the following approaches:
 
 Place the script  (`<script>...</script>`) in the `<head>` element markup of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Layout.cshtml` (Blazor Server):
 
+[!INCLUDE[](../includes/layout-page-preview-7.md)]
+
 ```html
 <head>
     ...
@@ -70,6 +72,8 @@ Loading JS from the `<head>` isn't the best approach for the following reasons:
 
 Place the script  (`<script>...</script>`) inside the closing `</body>` element markup of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Layout.cshtml` (Blazor Server):
 
+[!INCLUDE[](../includes/layout-page-preview-7.md)]
+
 ```html
 <body>
     ...
@@ -90,6 +94,8 @@ The `{webassembly|server}` placeholder in the preceding markup is either `webass
 Place the script  (`<script>...</script>`) with a script `src` path inside the closing `</body>` tag after the Blazor script reference.
 
 In `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Layout.cshtml` (Blazor Server):
+
+[!INCLUDE[](../includes/layout-page-preview-7.md)]
 
 ```html
 <body>
@@ -137,6 +143,8 @@ For more information, see <xref:blazor/components/class-libraries>.
 ### Inject a script after Blazor starts
 
 Load JS from an injected script in `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Layout.cshtml` (Blazor Server) when the app is initialized:
+
+[!INCLUDE[](../includes/layout-page-preview-7.md)]
 
 * Add `autostart="false"` to the `<script>` tag that loads the Blazor script.
 * Inject a script into the `<head>` element markup that references a custom JS file after starting Blazor by calling `Blazor.start().then(...)`. Place the script (`<script>...</script>`) inside the closing `</body>` tag after the Blazor script is loaded.

@@ -67,6 +67,8 @@ The Blazor Server template creates the initial files and directory structure for
   * `FetchData` component (`FetchData.razor`): Implements the Fetch data page.
   * `Index` component (`Index.razor`): Implements the Home page.
 
+[!INCLUDE[](includes/layout-page-preview-7.md)]
+
 > [!NOTE]
 > JavaScript (JS) files added to the `Pages/_Layout.cshtml` file should appear before the closing `</body>` tag. The order that custom JS code is loaded from JS files is important in some scenarios. For example, ensure that JS files with interop methods are included before Blazor framework JS files.
 
