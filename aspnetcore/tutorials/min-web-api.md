@@ -33,7 +33,6 @@ This tutorial creates the following API:
 
 ## Prerequisites
 
-<!-- 
 # [Visual Studio](#tab/visual-studio)
 
 [!INCLUDE[](~/includes/net-core-prereqs-vs-6.0.md)]
@@ -48,8 +47,6 @@ This tutorial creates the following API:
 
 ---
 
--->
-
 ## Create an empty web project
 
 # [Visual Studio](#tab/visual-studio)
@@ -59,8 +56,6 @@ This tutorial creates the following API:
 * Name the project *TodoApi* and select **Next**.
 * In the **Additional information** dialog, select **.NET 6.0 (Preview)** and select **Create**.
  
- Change .csproj to `<Project Sdk="Microsoft.NET.Sdk.Web">`
-
 <!-- 
 ![VS new project dialog](min-web-api/_static/5/vs.png)
 -->
@@ -120,20 +115,30 @@ Open a command terminal in the project folder and run the following command:
    ```
 ---
 
-
 ### Examine the code
 
-The the *Program.cs* file contains the following code
+The *Program.cs* file contains the following code:
+
+[!code-csharp[](min-web-api/samples/6.x/Program.cs)]
+
+The following code create a `WebApplicationBuilder` with preconfigured defaults, and builds the web app:
+
+  ```csharp
+  var builder = WebApplication.CreateBuilder(args);
+  var app = builder.Build();
+  ```
+
+`app.MapGet("/", () => "Hello World!");`  maps the `/` endpoint to a method that returns `Hello World!`.
+
+`app.Run();` runs the app.
+
+The preceding code is a complete web app with one endpoint.
+
+### Run the app
+
 # [Visual Studio](#tab/visual-studio)
 
-From solution explorer, open the *Program.cs* file:
-
-
-Press Ctrl+F5 to run without the debugger. In a browser, navigate to:
-
-* `/`, for example, `https://localhost:5001/`. `Hello World!` is returned.
-* `/TodoItems`, for example, `https://localhost:5001/TodoItems`. The empty list `[]` is returned. There are no items in the database.
-
+Press Ctrl+F5 to run without the debugger.
 
 [!INCLUDE[](~/includes/trustCertVS.md)]
 
@@ -141,6 +146,8 @@ Press Ctrl+F5 to run without the debugger. In a browser, navigate to:
 
 * The IIS Express web server.
 * The default browser and navigates to `https://localhost:<port>/swagger/index.html`, where `<port>` is a randomly chosen port number.
+
+In a browser, navigate to `/`, for example, `https://localhost:5001/`. `Hello World!` is returned.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -150,9 +157,11 @@ Press Ctrl+F5 to run the app. In a browser, go to following URL: [https://localh
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-Select **Run** > **Start Debugging** to launch the app. Visual Studio for Mac launches a browser and navigates to `https://localhost:<port>`, where `<port>` is a randomly chosen port number. An HTTP 404 (Not Found) error is returned. Append `/swagger` to the URL (change the URL to `https://localhost:<port>/swagger`).
+Select **Run** > **Start Debugging** to launch the app. Visual Studio for Mac launches a browser and navigates to `https://localhost:<port>`, where `<port>` is a randomly chosen port number. 
 
 ---
+
+`Hello World!` is displayed in the browser.
 
 ## Add the API code
 

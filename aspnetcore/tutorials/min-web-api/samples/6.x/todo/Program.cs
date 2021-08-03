@@ -1,3 +1,4 @@
+#define FIRST
 #if FIRST
 #region snippet_all
 using System.ComponentModel.DataAnnotations;

@@ -1,5 +1,4 @@
-﻿#if FIRST
-#else
+﻿#if Second
 #region snippet_all
 using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
@@ -111,7 +110,7 @@ class TodoDb : DbContext
     public DbSet<Todo> Todos => Set<Todo>();
 }
 #endregion
-# endifFIRST
+
 #region snippet_all
 using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
