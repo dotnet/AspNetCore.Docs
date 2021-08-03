@@ -9,22 +9,22 @@ ms.date: 08/03/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/components/control-head-content
 ---
-# Control \<head> content in ASP.NET Core Blazor apps
+# Control `<head>` content in ASP.NET Core Blazor apps
 
 *This feature applies to ASP.NET Core 6.0 Preview 7 or later. ASP.NET Core 6.0 Preview 7 is scheduled for release in August, 2021. ASP.NET Core 6.0 is scheduled for release later this year.*
 
-Razor components can modify the HTML \<head> element content of a page, including setting the page's title (`<title>` element) and modifying metadata (`<meta>` elements).
+Razor components can modify the HTML `<head>` element content of a page, including setting the page's title (`<title>` element) and modifying metadata (`<meta>` elements).
 
-## Control \<head> content in a Razor component
+## Control `<head>` content in a Razor component
 
-Specify the page's title with the `PageTitle` component. Specify `<head>` element content with the `HeadContent` component. The following example, sets the page's title and description using Razor.
+Specify the page's title with the `PageTitle` component. Specify `<head>` element content with the `HeadContent` component. The following example sets the page's title and description using Razor.
 
-`Pages/SetTitleAndDescription.razor`:
+`Pages/ControlHeadContent.razor`:
 
 ```razor
-@page "/set-title-and-description"
+@page "/control-head-content"
 
-<h1>Set title &amp; description</h1>
+<h1>Control &lt;head&gt; content</h1>
 
 <p>
     Title: @title
@@ -56,9 +56,9 @@ In an app created from the Blazor WebAssembly project template, the `HeadOutlet`
 builder.RootComponents.Add<HeadOutlet>("head::after");
 ```
 
-When the [`::after` pseudo-selector](https://developer.mozilla.org/docs/Web/CSS/::after) is specified, the contents of the root component are appended to the existing head contents instead of replacing them. This allows the app to retain static head content in `wwwroot/index.html` without having to repeat it in the app's Razor components.
+When the [`::after` pseudo-selector](https://developer.mozilla.org/docs/Web/CSS/::after) is specified, the contents of the root component are appended to the existing head contents instead of replacing the content. This allows the app to retain static head content in `wwwroot/index.html` without having to repeat the content in the app's Razor components.
 
-In Blazor Server apps created from the Blazor Server project template, a [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) renders \<head> content for the `HeadOutlet` component in `Pages/_Layout.cshtml`:
+In Blazor Server apps created from the Blazor Server project template, a [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) renders `<head>` content for the `HeadOutlet` component in `Pages/_Layout.cshtml`:
 
 ```cshtml
 <head>
