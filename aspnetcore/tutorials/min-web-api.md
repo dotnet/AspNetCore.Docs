@@ -99,17 +99,17 @@ This tutorial creates the following API:
 
 * Select **File** > **New Solution**.
 
-  ![macOS New solution](first-web-api-mac/_static/sln.png)
+`  ![macOS New solution](first-web-api-mac/_static/sln.png)`
 
 * In Visual Studio for Mac earlier than version 8.6, select **.NET Core** > **App** > **API** > **Next**. In version 8.6 or later, select **Web and Console** > **App** > **API** > **Next**.
 
-  ![macOS API template selection](first-web-api-mac/_static/api_template.png)
+`  ![macOS API template selection](first-web-api-mac/_static/api_template.png)`
 
 * In the **Configure the new ASP.NET Core Web API** dialog, select the latest .NET Core 5.x **Target Framework**. Select **Next**.
 
 * Enter *TodoApi* for the **Project Name** and then select **Create**.
 
-  ![config dialog](first-web-api-mac/_static/2.png)
+ ` ![config dialog](first-web-api-mac/_static/2.png)`
 
 [!INCLUDE[](~/includes/mac-terminal-access.md)]
 
@@ -257,8 +257,8 @@ Update the to-do item that has Id = 1 and set its name to `"feed fish"`:
 ```
 
 The following image shows the Postman update:
-
-![Postman console showing 204 (No Content) response](min-web-api/_static/3/pmcput.png)
+<!-- 
+`![Postman console showing 204 (No Content) response](min-web-api/_static/3/pmcput.png)`
 
 ## The DeleteTodoItem method
 
@@ -308,3 +308,5 @@ Verify you can't post or get the secret field.
 ## Call the web API with JavaScript
 
 See [Tutorial: Call an ASP.NET Core web API with JavaScript](xref:tutorials/web-api-javascript).
+
+-->
