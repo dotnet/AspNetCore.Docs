@@ -11,9 +11,10 @@ uid: signalr/hubcontext
 ---
 # Send messages from outside a hub
 
-By [Mikael Mengistu](https://twitter.com/MikaelM_12)
-
 The SignalR hub is the core abstraction for sending messages to clients connected to the SignalR server. It's also possible to send messages from other places in your app using the `IHubContext` service. This article explains how to access a SignalR `IHubContext` to send notifications to clients from outside a hub.
+
+> [!NOTE]
+> The `IHubContext` is for sending notifications to clients, it is not used to call methods on the `Hub`.
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/hubcontext/sample/) [(how to download)](xref:index#how-to-download-a-sample)
 
@@ -100,6 +101,35 @@ public class ChatController : Controller
 ```
 
 See [Strongly typed hubs](xref:signalr/hubs#strongly-typed-hubs) for more information.
+
+::: moniker range=">= aspnetcore-6.0"
+
+### Use IHubContext in generic code
+
+An injected `IHubContext<THub>` instance can be cast to a base hub type or the `Hub` type.
+`IHubContext<THub>` can also be cast to `IHubContext` without a generic `Hub` type specified.
+
+```csharp
+class BaseHub : Hub
+{ }
+
+class ChatHub : BaseHub
+{ }
+
+var hubContext = context.RequestServices
+                            .GetRequiredService<IHubContext<ChatHub>>();
+MethodA((IHubContext<BaseHub>)hubContext);
+
+MethodB((IHubContext<Hub>)hubContext);
+
+MethodC((IHubContext)hubContext);
+```
+
+This is useful when:
+* Writing libraries that don't have a reference to the specific `Hub` type your application is using
+* Writing code that is generic and can apply to multiple different `Hub` implementations
+
+::: moniker-end
 
 ## Related resources
 
