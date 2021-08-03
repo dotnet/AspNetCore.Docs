@@ -37,7 +37,7 @@ items:
       href: components/index.md
     - name: Layouts
       href: components/layouts.md
-    - name: Control head content
+    - name: Control &lt;head&gt; content
       href: components/control-head-content.md
     - name: Cascading values and parameters
       href: components/cascading-values-and-parameters.md
