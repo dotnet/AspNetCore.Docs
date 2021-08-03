@@ -5,7 +5,7 @@ description: Find information on Razor components built-into the Blazor framewor
 monikerRange: 'aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/30/2021
+ms.date: 08/03/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/components/built-in-components
 ---
@@ -17,6 +17,7 @@ The following built-in Razor components are provided by the Blazor framework:
 * [`Authentication`](xref:blazor/security/webassembly/index#authentication-component)
 * [`AuthorizeView`](xref:blazor/security/index#authorizeview-component)
 * [`CascadingValue`](xref:blazor/components/cascading-values-and-parameters#cascadingvalue-component)
+* [`DynamicComponent`](xref:blazor/components/dynamic-component)
 * [`ErrorBoundary`](xref:blazor/fundamentals/handle-errors#error-boundaries)
 * [`FocusOnNavigate`](xref:blazor/fundamentals/routing#focus-an-element-on-navigation)
 * [`InputCheckbox`](xref:blazor/forms-validation#built-in-form-components)

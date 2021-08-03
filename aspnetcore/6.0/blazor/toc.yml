@@ -51,6 +51,8 @@ items:
       href: components/templated-components.md
     - name: CSS isolation
       href: components/css-isolation.md
+    - name: Dynamically-rendered components
+      href: components/dynamic-component.md
     - name: Prerender and integrate components
       href: components/prerendering-and-integration.md
     - name: Class libraries
