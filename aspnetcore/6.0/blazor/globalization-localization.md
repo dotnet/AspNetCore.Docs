@@ -441,12 +441,16 @@ The following example shows how to set the current culture in a cookie that can 
 
 Add the following namespaces to the top of the `Pages/_Layout.cshtml` file:
 
+[!INCLUDE[](includes/layout-page-preview-7.md)]
+
 ```csharp
 @using System.Globalization
 @using Microsoft.AspNetCore.Localization
 ```
 
 Immediately after the opening `<body>` tag of `Pages/_Layout.cshtml`, add the following Razor expression:
+
+[!INCLUDE[](includes/layout-page-preview-7.md)]
 
 ```cshtml
 @{
@@ -645,6 +649,8 @@ app.UseRequestLocalization(localizationOptions);
 For information on ordering the Localization Middleware in the middleware pipeline of `Startup.Configure`, see <xref:fundamentals/middleware/index#middleware-order>.
 
 If the app should localize resources based on storing a user's culture setting, use a localization culture cookie. Use of a cookie ensures that the WebSocket connection can correctly propagate the culture. If localization schemes are based on the URL path or query string, the scheme might not be able to work with [WebSockets](xref:fundamentals/websockets), thus fail to persist the culture. Therefore, the recommended approach is to use a localization culture cookie. See the [Dynamically set the culture by user preference](#dynamically-set-the-culture-by-user-preference) section of this article to see an example Razor expression for the `Pages/_Layout.cshtml` file that persists the user's culture selection.
+
+[!INCLUDE[](includes/layout-page-preview-7.md)]
 
 ::: zone-end
 

@@ -96,6 +96,8 @@ Custom events with custom event arguments are generally enabled with the followi
 
 1. Register the custom event with the preceding handler in `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Layout.cshtml` (Blazor Server) immediately after the Blazor `<script>`:
 
+   [!INCLUDE[](../includes/layout-page-preview-7.md)]
+
    ```html
    <script>
      Blazor.registerCustomEventType('customevent', {
@@ -168,6 +170,8 @@ public class CustomPasteEventArgs : EventArgs
 ```
 
 Add JavaScript code to supply data for the <xref:System.EventArgs> subclass. In the `wwwroot/index.html` or `Pages/_Layout.cshtml` file, add the following `<script>` tag and content immediately after the Blazor script. The following example only handles pasting text, but you could use arbitrary JavaScript APIs to deal with users pasting other types of data, such as images.
+
+[!INCLUDE[](../includes/layout-page-preview-7.md)]
 
 `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Layout.cshtml` (Blazor Server) immediately after the Blazor script:
 

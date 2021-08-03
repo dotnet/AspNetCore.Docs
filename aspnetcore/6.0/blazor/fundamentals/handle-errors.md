@@ -232,6 +232,8 @@ The UI for this error handling experience is part of the [Blazor project templat
 
 In a Blazor Server app, customize the experience in the `Pages/_Layout.cshtml` file:
 
+[!INCLUDE[](../includes/layout-page-preview-7.md)]
+
 ```cshtml
 <div id="blazor-error-ui">
     <environment include="Staging,Production">

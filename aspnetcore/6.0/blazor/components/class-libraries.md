@@ -241,6 +241,8 @@ An alternative to using the `Link` component is to link to the library's stylesh
 
 `wwwroot/index.html` file (Blazor WebAssembly) or `Pages/_Layout.cshtml` file (Blazor Server):
 
+[!INCLUDE[](../includes/layout-page-preview-7.md)]
+
 ```diff
 + <link href="_content/ComponentLibrary/additionalStyles.css" rel="stylesheet" />
 ```
