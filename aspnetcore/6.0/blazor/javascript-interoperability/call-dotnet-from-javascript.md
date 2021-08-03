@@ -60,7 +60,9 @@ The `<button>` element's `onclick` HTML attribute is JavaScript's [`onclick`](ht
 
 The following `returnArrayAsync` JS function, calls the `ReturnArrayAsync` .NET method of the preceding `CallDotNetExample1` component and logs the result to the browser's web developer tools console. `BlazorSample` is the app's assembly name.
 
-Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server):
+Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Layout.cshtml` (Blazor Server):
+
+[!INCLUDE[](../includes/layout-page-preview-7.md)]
 
 ```html
 <script>
@@ -117,7 +119,9 @@ To invoke an instance .NET method from JavaScript (JS):
 
 The following `sayHello1` JS function receives a <xref:Microsoft.JSInterop.DotNetObjectReference> and calls `invokeMethodAsync` to call the `GetHelloMethod` .NET method of a component.
 
-Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server):
+Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Layout.cshtml` (Blazor Server):
+
+[!INCLUDE[](../includes/layout-page-preview-7.md)]
 
 ```html
 <script>
@@ -166,7 +170,9 @@ The following `sayHello1` JS function:
 * Calls the `GetHelloMessage` .NET method on the passed <xref:Microsoft.JSInterop.DotNetObjectReference>.
 * Returns the message from `GetHelloMessage` to the `sayHello1` caller.
 
-Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server):
+Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Layout.cshtml` (Blazor Server):
+
+[!INCLUDE[](../includes/layout-page-preview-7.md)]
 
 ```html
 <script>
@@ -245,7 +251,9 @@ The following `MessageUpdateInvokeHelper` class maintains a JS-invokable .NET me
 
 The following `updateMessageCaller` JS function invokes the `UpdateMessageCaller` .NET method. `BlazorSample` is the app's assembly name.
 
-Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server):
+Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Layout.cshtml` (Blazor Server):
+
+[!INCLUDE[](../includes/layout-page-preview-7.md)]
 
 ```html
 <script>
@@ -304,7 +312,9 @@ Objects that contain circular references can't be serialized on the client for e
 
 Blazor supports optimized byte array JS interop that avoids encoding/decoding byte arrays into Base64. The following example uses JS interop to pass a byte array to .NET.
 
-Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server), provide a `sendByteArray` JS function. The function is called by a button in the component and doesn't return a value:
+Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Layout.cshtml` (Blazor Server), provide a `sendByteArray` JS function. The function is called by a button in the component and doesn't return a value:
+
+[!INCLUDE[](../includes/layout-page-preview-7.md)]
 
 ```html
 <script>

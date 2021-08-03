@@ -96,7 +96,9 @@ The particular script associated with the error is displayed in the console next
 
 ### Blazor Server
 
-In the `<head>` content of the `Pages/_Host.cshtml` host page, apply the directives described in the [Policy directives](#policy-directives) section:
+In the `<head>` content of the `Pages/_Layout.cshtml` host page, apply the directives described in the [Policy directives](#policy-directives) section:
+
+[!INCLUDE[](../includes/layout-page-preview-7.md)]
 
 ```cshtml
 <meta http-equiv="Content-Security-Policy" 

@@ -307,6 +307,14 @@ To disable prerendering, open the `Pages/_Host.cshtml` file and change the `rend
 <component type="typeof(App)" render-mode="Server" />
 ```
 
+[Prerendering of `<head>` content](xref:blazor/components/control-head-content) is disabled in `Pages/_Layout.cshtml`:
+
+[!INCLUDE[](includes/layout-page-preview-7.md)]
+
+```cshtml
+<component type="typeof(HeadOutlet)" render-mode="Server" />
+```
+
 Prerendering might be useful for other pages that don't use `localStorage` or `sessionStorage`. To retain prerendering, defer the loading operation until the browser is connected to the circuit. The following is an example for storing a counter value:
 
 ```razor
