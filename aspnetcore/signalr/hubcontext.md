@@ -116,13 +116,18 @@ class BaseHub : Hub
 class ChatHub : BaseHub
 { }
 
-var hubContext = context.RequestServices
+app.Use(async (context, next) =>
+{
+    var hubContext = context.RequestServices
                             .GetRequiredService<IHubContext<ChatHub>>();
-MethodA((IHubContext<BaseHub>)hubContext);
+    MethodA((IHubContext<BaseHub>)hubContext);
 
-MethodB((IHubContext<Hub>)hubContext);
+    MethodB((IHubContext<Hub>)hubContext);
 
-MethodC((IHubContext)hubContext);
+    MethodC((IHubContext)hubContext);
+
+    await next.Invoke();
+}
 ```
 
 This is useful when:
