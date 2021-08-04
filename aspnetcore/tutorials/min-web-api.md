@@ -41,10 +41,11 @@ This tutorial creates the following API:
 
 [!INCLUDE[](~/includes/net-prereqs-vsc-6.0.md)]
 
+<!-- add VS Mac later 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 [!INCLUDE[](~/includes/net-prereqs-mac-6.0.md)]
-
+-->
 ---
 
 ## Create an empty web project
@@ -80,6 +81,7 @@ This tutorial creates the following API:
   * Creates a new web API project and opens it in Visual Studio Code.
   * Adds the NuGet packages which are required in the next section.
 
+<!-- add VS Mac later 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 * Select **File** > **New Solution**.
@@ -97,7 +99,7 @@ This tutorial creates the following API:
  ` ![config dialog](first-web-api-mac/_static/2.png)`
 
 [!INCLUDE[](~/includes/mac-terminal-access.md)]
-
+-->
 ---
 
 ### Examine the code
@@ -141,9 +143,11 @@ In a browser, navigate to `/`, for example, `https://localhost:5001/`. `Hello Wo
 
 Press Ctrl+F5 to run the app. In a browser, go to following URL: [https://localhost:5001](https://localhost:5001)
 
+<!-- add VS Mac later 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 Select **Run** > **Start Debugging** to launch the app. Visual Studio for Mac launches a browser and navigates to `https://localhost:<port>`, where `<port>` is a randomly chosen port number. 
+-->
 
 ---
 
@@ -171,6 +175,7 @@ NuGet packages must be added to support the database and diagnostics used in thi
    dotnet add package Microsoft.EntityFrameworkCore.InMemory
      ```
 
+<!-- add VS Mac later 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 Open a command terminal in the project folder and run the following command:
@@ -178,6 +183,7 @@ Open a command terminal in the project folder and run the following command:
    ```dotnetcli
    dotnet add package Microsoft.EntityFrameworkCore.InMemory
    ```
+   -->
 ---
 
 ## Add the API code
