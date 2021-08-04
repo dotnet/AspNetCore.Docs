@@ -127,10 +127,11 @@ Press Ctrl+F5 to run without the debugger.
 
 [!INCLUDE[](~/includes/trustCertVS.md)]
 
+TO DO - update to Kestrel
   Visual Studio launches:
 
 * The IIS Express web server.
-* The default browser and navigates to `https://localhost:<port>/swagger/index.html`, where `<port>` is a randomly chosen port number.
+* The default browser and navigates to `https://localhost:<port>/index.html`, where `<port>` is a randomly chosen port number.
 
 In a browser, navigate to `/`, for example, `https://localhost:5001/`. `Hello World!` is returned.
 
@@ -138,7 +139,7 @@ In a browser, navigate to `/`, for example, `https://localhost:5001/`. `Hello Wo
 
 [!INCLUDE[](~/includes/trustCertVSC.md)]
 
-Press Ctrl+F5 to run the app. In a browser, go to following URL: [https://localhost:5001/swagger](https://localhost:5001/swagger)
+Press Ctrl+F5 to run the app. In a browser, go to following URL: [https://localhost:5001](https://localhost:5001)
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
