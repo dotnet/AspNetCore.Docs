@@ -25,17 +25,17 @@ This tutorial creates the following API:
 |API | Description | Request body | Response body |
 |--- | ---- | ---- | ---- |
 |`GET /api` | Browser test, "Hello World" | None | `Hello World!`|
-|`GET /TodoItems` | Get all to-do items | None | Array of to-do items|
-|`GET /TodoItems/{id}` | Get an item by ID | None | To-do item|
-|`POST /TodoItems` | Add a new item | To-do item | To-do item |
-|`PUT /TodoItems/{id}` | Update an existing item &nbsp; | To-do item | None |
-|`DELETE /TodoItems/{id}` &nbsp; &nbsp; | Delete an item &nbsp; &nbsp; | None | None|
+|`GET /todoitems` | Get all to-do items | None | Array of to-do items|
+|`GET /todoitems/{id}` | Get an item by ID | None | To-do item|
+|`POST /todoitems` | Add a new item | To-do item | To-do item |
+|`PUT /todoitems/{id}` | Update an existing item &nbsp; | To-do item | None |
+|`DELETE /todoitems/{id}` &nbsp; &nbsp; | Delete an item &nbsp; &nbsp; | None | None|
 
 ## Prerequisites
 
 # [Visual Studio](#tab/visual-studio)
 
-[!INCLUDE[](~/includes/net-prereqs-vs-6.0.md)]
+[!INCLUDE[](~/includes/net-prereqs/6/net-prereqs-vs22-6.0.md)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -68,7 +68,7 @@ This tutorial creates the following API:
 * Run the following commands:
 
    ```dotnetcli
-   dotnet new webapi -o TodoApi
+   dotnet new web -o TodoApi
    cd TodoApi
    code -r ../TodoApi
    ```
@@ -203,7 +203,7 @@ This tutorial uses Postman to test the API.
 
 * Create a new request.
 * Set the HTTP method to `POST`.
-* Set the URI to `https://localhost:<port>/TodoItems`. For example, `https://localhost:5001/TodoItems`.
+* Set the URI to `https://localhost:<port>/todoitems`. For example, `https://localhost:5001/todoitems`.
 * Select the **Body** tab.
 * Select the **raw** radio button.
 * Set the type to **JSON (application/json)**.
@@ -224,15 +224,15 @@ This tutorial uses Postman to test the API.
 
 Two GET endpoints are implemented:
 
-* `GET /TodoItems`
-* `GET /TodoItems/{id}`
+* `GET /todoitems`
+* `GET /todoitems/{id}`
 
 Test the app by calling the two endpoints from a browser or Postman. For example:
 
-* `https://localhost:5001/TodoItems`
-* `https://localhost:5001/TodoItems/1`
+* `https://localhost:5001/todoitems`
+* `https://localhost:5001/todoitems/1`
 
-A response similar to the following is produced by the call to `GetTodoItems`:
+A response similar to the following is produced by the call to `Gettodoitems`:
 
 ```json
 [
@@ -248,7 +248,7 @@ A response similar to the following is produced by the call to `GetTodoItems`:
 
 * Create a new request.
 * Set the HTTP method to **GET**.
-* Set the request URI to `https://localhost:<port>/TodoItems`. For example, `https://localhost:5001/TodoItems`.
+* Set the request URI to `https://localhost:<port>/todoitems`. For example, `https://localhost:5001/todoitems`.
 * Set **Two pane view** in Postman.
 * Select **Send**.
 
@@ -256,7 +256,7 @@ This app uses an in-memory database. If the app is stopped and started, the prec
 
 ## Return values
 
-The return type of the `GetTodoItems` and `GetTodoItem` methods is `MinimalActionEndpointConventionBuilder`. ASP.NET Core automatically serializes the object to [JSON](https://www.json.org/) and writes the JSON into the body of the response message. The response code for this return type is [200 OK](https://developer.mozilla.org/docs/Web/HTTP/Status/200), assuming there are no unhandled exceptions. Unhandled exceptions are translated into 5xx errors.
+The return type of the `Gettodoitems` and `GetTodoItem` methods is `MinimalActionEndpointConventionBuilder`. ASP.NET Core automatically serializes the object to [JSON](https://www.json.org/) and writes the JSON into the body of the response message. The response code for this return type is [200 OK](https://developer.mozilla.org/docs/Web/HTTP/Status/200), assuming there are no unhandled exceptions. Unhandled exceptions are translated into 5xx errors.
 
 The return types can represent a wide range of HTTP status codes. For example, `GetTodoItem/{id}` can return two different status values:
 
@@ -265,7 +265,7 @@ The return types can represent a wide range of HTTP status codes. For example, `
 
 ## Put methods
 
-Examine the `app.MapPut("/TodoItems/{id}", ...` method:
+Examine the `app.MapPut("/todoitems/{id}", ...` method:
 
 [!code-csharp[](min-web-api/samples/6.x/todo/Program.cs?name=snippet_put)]
 
@@ -293,14 +293,14 @@ The following image shows the Postman update:
 
 Examine the `DeleteTodoItem` method:
 
-[!code-csharp[](min-web-api/samples/5.x/TodoApi/Controllers/TodoItemsController.cs?name=snippet_Delete)]
+[!code-csharp[](min-web-api/samples/5.x/TodoApi/Controllers/todoitemsController.cs?name=snippet_Delete)]
 
 ### Test the DeleteTodoItem method
 
 Use Postman to delete a to-do item:
 
 * Set the method to `DELETE`.
-* Set the URI of the object to delete (for example `https://localhost:5001/TodoItems/1`).
+* Set the URI of the object to delete (for example `https://localhost:5001/todoitems/1`).
 * Select **Send**.
 
 <a name="over-post-v5"></a>
@@ -328,9 +328,9 @@ Create a DTO model:
 
 [!code-csharp[](min-web-api/samples/5.x/TodoApiDTO/Models/TodoItemDTO.cs?name=snippet)]
 
-Update the `TodoItemsController` to use `TodoItemDTO`:
+Update the `todoitemsController` to use `TodoItemDTO`:
 
-[!code-csharp[](min-web-api/samples/5.x/TodoApiDTO/Controllers/TodoItemsController.cs?name=snippet)]
+[!code-csharp[](min-web-api/samples/5.x/TodoApiDTO/Controllers/todoitemsController.cs?name=snippet)]
 
 Verify you can't post or get the secret field.
 
