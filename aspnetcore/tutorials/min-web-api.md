@@ -35,15 +35,15 @@ This tutorial creates the following API:
 
 # [Visual Studio](#tab/visual-studio)
 
-[!INCLUDE[](~/includes/net-core-prereqs-vs-6.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-vs-6.0.md)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!INCLUDE[](~/includes/net-core-prereqs-vsc-6.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-vsc-6.0.md)]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-[!INCLUDE[](~/includes/net-core-prereqs-mac-6.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-mac-6.0.md)]
 
 ---
 
@@ -60,6 +60,7 @@ This tutorial creates the following API:
 ![VS new project dialog](min-web-api/_static/5/vs.png)
 -->
 
+<!-- Move this later since we don't need it now -->
 ### Add NuGet packages
 
 * From the **Tools** menu, select **NuGet Package Manager > Manage NuGet Packages for Solution**.
@@ -163,15 +164,44 @@ Select **Run** > **Start Debugging** to launch the app. Visual Studio for Mac la
 
 `Hello World!` is displayed in the browser.
 
+## Add NuGet packages
+
+# [Visual Studio](#tab/visual-studio)
+
+* From the **Tools** menu, select **NuGet Package Manager > Manage NuGet Packages for Solution**.
+* Select the **Browse** tab, and then enter `Microsoft.EntityFrameworkCore.InMemory` in the search box. Verify **Incluee prerelease** is checked.
+* Select `Microsoft.EntityFrameworkCore.InMemory` in the left pane.
+* Select the **Project** checkbox in the right pane and then select **Install**.
+* Follow the preceding instructions to add the following packages:
+  * `Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore`
+  * `MinimalValidation`
+
+# [Visual Studio Code](#tab/visual-studio-code)
+
+* Run the following commands:
+
+   ```dotnetcli
+   dotnet add package Microsoft.EntityFrameworkCore.InMemory
+     ```
+
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+Open a command terminal in the project folder and run the following command:
+
+   ```dotnetcli
+   dotnet add package Microsoft.EntityFrameworkCore.InMemory
+   ```
+---
+
 ## Add the API code
 
 Replace the contents of the *program.cs* file with the following code:
 
 [!code-csharp[](min-web-api/samples/6.x/todo/Program.cs?name=snippet_all)]
 
-### Install Postman
+## Install Postman to test the app
 
-This tutorial uses Postman to test the web API.
+This tutorial uses Postman to test the API.
 
 * Install [Postman](https://www.getpostman.com/downloads/)
 * Start the web app.
