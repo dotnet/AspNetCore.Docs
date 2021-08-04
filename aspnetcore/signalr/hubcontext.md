@@ -131,7 +131,7 @@ app.Use(async (context, next) =>
 ```
 
 This is useful when:
-* Writing libraries that don't have a reference to the specific `Hub` type your application is using
+* Writing libraries that don't have a reference to the specific `Hub` type the app is using.
 * Writing code that is generic and can apply to multiple different `Hub` implementations
 
 ::: moniker-end
