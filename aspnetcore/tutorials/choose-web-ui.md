@@ -147,11 +147,11 @@ To get started, see:
 * <xref:spa/angular>
 * <xref:spa/react>
 
-## Choose a hybrid solution, ASP.NET Core MVC plus Blazor
+## Choose a hybrid solution: ASP.NET Core MVC plus Blazor
 
 MVC and Blazor are both part of the ASP.NET Core framework and are designed to be used together. Razor components can be integrated into Razor Pages and MVC apps in a hosted Blazor WebAssembly or Server solution. When the page or view is rendered, components can be prerendered at the same time.
 
-Hybrid benefits for MVC plus Blazor in addition to MVC benefits:
+Benefits for MVC plus Blazor, in addition to MVC benefits:
 
 * Prerendering:
   * Executes Razor components on the server and renders them into a page or view.
