@@ -12,6 +12,5 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.0-preview.6.21355.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="6.0.0-preview.6.21352.1" />
-    <PackageReference Include="MinimalValidation" Version="0.1.0-pre" />
   </ItemGroup>
 </Project>

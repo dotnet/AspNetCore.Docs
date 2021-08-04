@@ -30,9 +30,6 @@ app.MapGet("/TodoItems/{id}", async (int id, TodoDb db) =>
 
 app.MapPost("/TodoItems", async (Todo todo, TodoDb db) =>
 {
-    if (!MinimalValidation.TryValidate(todo, out var errors))
-        return Results.ValidationProblem(errors);
-
     db.Todos.Add(todo);
     await db.SaveChangesAsync();
 
