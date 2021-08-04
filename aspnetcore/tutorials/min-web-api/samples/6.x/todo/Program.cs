@@ -34,6 +34,22 @@ app.MapPost("/TodoItems", async (Todo todo, TodoDb db) =>
     return Results.Created($"/TodoItems/{todo.Id}", todo);
 });
 
+#region snippet_put
+app.MapPut("/TodoItems/{id}", async (int id, Todo inputTodo, TodoDb db) =>
+{
+    var todo = await db.Todos.FindAsync(id);
+
+    if (todo is null) return Results.NotFound();
+
+    todo.Name = inputTodo.Name;
+    todo.IsComplete = inputTodo.IsComplete;
+
+    await db.SaveChangesAsync();
+
+    return Results.NoContent();
+});
+#endregion
+
 app.Run();
 
 class Todo
