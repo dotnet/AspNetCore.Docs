@@ -24,12 +24,12 @@ This tutorial creates the following API:
 
 |API | Description | Request body | Response body |
 |--- | ---- | ---- | ---- |
+|`GET /api` | Browser test, "Hello World" | None | `Hello World!`|
 |`GET /TodoItems` | Get all to-do items | None | Array of to-do items|
 |`GET /TodoItems/{id}` | Get an item by ID | None | To-do item|
 |`POST /TodoItems` | Add a new item | To-do item | To-do item |
 |`PUT /TodoItems/{id}` | Update an existing item &nbsp; | To-do item | None |
 |`DELETE /TodoItems/{id}` &nbsp; &nbsp; | Delete an item &nbsp; &nbsp; | None | None|
-|`GET /api` | Browser test, "Hello World" | None | "Hello World"|
 
 ## Prerequisites
 
@@ -61,16 +61,6 @@ This tutorial creates the following API:
 -->
 
 <!-- Move this later since we don't need it now -->
-### Add NuGet packages
-
-* From the **Tools** menu, select **NuGet Package Manager > Manage NuGet Packages for Solution**.
-* Select the **Browse** tab, and then enter `Microsoft.EntityFrameworkCore.InMemory` in the search box. Verify **Incluee prerelease** is checked.
-* Select `Microsoft.EntityFrameworkCore.InMemory` in the left pane.
-* Select the **Project** checkbox in the right pane and then select **Install**.
-* Follow the preceding instructions to add the following packages:
-  * `Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore`
-  * `MinimalValidation`
-
 # [Visual Studio Code](#tab/visual-studio-code)
 
 * Open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
@@ -80,7 +70,6 @@ This tutorial creates the following API:
    ```dotnetcli
    dotnet new webapi -o TodoApi
    cd TodoApi
-   dotnet add package Microsoft.EntityFrameworkCore.InMemory
    code -r ../TodoApi
    ```
 
@@ -109,11 +98,6 @@ This tutorial creates the following API:
 
 [!INCLUDE[](~/includes/mac-terminal-access.md)]
 
-Open a command terminal in the project folder and run the following command:
-
-   ```dotnetcli
-   dotnet add package Microsoft.EntityFrameworkCore.InMemory
-   ```
 ---
 
 ### Examine the code
@@ -165,6 +149,8 @@ Select **Run** > **Start Debugging** to launch the app. Visual Studio for Mac la
 `Hello World!` is displayed in the browser.
 
 ## Add NuGet packages
+
+NuGet packages must be added to support the database and diagnostics used in this tutorial.
 
 # [Visual Studio](#tab/visual-studio)
 
