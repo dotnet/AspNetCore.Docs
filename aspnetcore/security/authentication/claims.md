@@ -146,7 +146,7 @@ public void ConfigureServices(IServiceCollection services)
 
 Refer to the following document:
 
-[Add claims to Identity using IUserClaimsPrincipalFactory](xref:security/authentication/add-user-data#add-claims-to-identity-using-iuserclaimsprincipalfactory)
+[Add claims to Identity using IUserClaimsPrincipalFactory](xref:security/authentication/add-user-data#add-claims-to-identity-using-iuserclaimsprincipalfactoryapplicationuser)
 
 ## Map claims from external identity providers
 
