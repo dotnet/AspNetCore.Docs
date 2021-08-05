@@ -17,7 +17,7 @@ The following built-in Razor components are provided by the Blazor framework:
 * [`Authentication`](xref:blazor/security/webassembly/index#authentication-component)
 * [`AuthorizeView`](xref:blazor/security/index#authorizeview-component)
 * [`CascadingValue`](xref:blazor/components/cascading-values-and-parameters#cascadingvalue-component)
-* [`DynamicComponent`](xref:blazor/components/dynamic-component)
+* [`DynamicComponent`](xref:blazor/components/dynamiccomponent)
 * [`ErrorBoundary`](xref:blazor/fundamentals/handle-errors#error-boundaries)
 * [`FocusOnNavigate`](xref:blazor/fundamentals/routing#focus-an-element-on-navigation)
 * [`InputCheckbox`](xref:blazor/forms-validation#built-in-form-components)
