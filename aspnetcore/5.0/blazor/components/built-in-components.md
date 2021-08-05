@@ -11,7 +11,7 @@ uid: blazor/components/built-in-components
 ---
 # ASP.NET Core built-in Razor components
 
-The following built-in Razor components are provided by the Blazor framework:
+The following built-in Razor components are provided by ASP.NET Core:
 
 * [`App`](xref:blazor/project-structure)
 * [`Authentication`](xref:blazor/security/webassembly/index#authentication-component)
