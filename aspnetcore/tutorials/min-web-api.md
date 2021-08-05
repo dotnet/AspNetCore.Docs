@@ -14,7 +14,7 @@ uid: tutorials/min-web-api
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-Minimal APIs are architected to create REST APIs with the minimal dependencies. They are ideal for microservice and app that don't want to include only the minimum files, features, and dependencies in ASP.NET Core.
+Minimal APIs are architected to create REST APIs with the minimal dependencies. They are ideal for microservices and apps that want to include only the minimum files, features, and dependencies in ASP.NET Core.
 
 This tutorial teaches the basics of building a miminal web API with ASP.NET Core. For a tutorial on creating a web API project that contains more features, see [Create a web API](xref:tutorials/first-web-api)
 
@@ -24,7 +24,7 @@ This tutorial creates the following API:
 
 |API | Description | Request body | Response body |
 |--- | ---- | ---- | ---- |
-|`GET /api` | Browser test, "Hello World" | None | `Hello World!`|
+|`GET /` | Browser test, "Hello World" | None | `Hello World!`|
 |`GET /todoitems` | Get all to-do items | None | Array of to-do items|
 |`GET /todoitems/{id}` | Get an item by ID | None | To-do item|
 |`POST /todoitems` | Add a new item | To-do item | To-do item |
@@ -135,7 +135,7 @@ TO DO - update to Kestrel
 * The IIS Express web server.
 * The default browser and navigates to `https://localhost:<port>/index.html`, where `<port>` is a randomly chosen port number.
 
-In a browser, navigate to `/`, for example, `https://localhost:5001/`. `Hello World!` is returned.
+In a browser, navigate to `/`, for example, `https://localhost:5001/`.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -206,7 +206,9 @@ This tutorial uses Postman to test the API.
 
 <a name="post"></a>
 
-### Test PostTodoItem with Postman
+### Test posting data
+
+The following instructions post data to the app:
 
 * Create a new request.
 * Set the HTTP method to `POST`.
