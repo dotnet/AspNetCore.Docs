@@ -33,6 +33,8 @@
   items:
     - name: Web apps
       items:
+        - name: Choose an ASP.NET Core UI
+          uid: tutorials/choose-web-ui
         - name: Razor Pages
           displayName: tutorial
           items:
