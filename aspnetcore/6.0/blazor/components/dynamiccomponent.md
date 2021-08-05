@@ -190,7 +190,7 @@ Logic can filter and pass in a `ComponentParameters` instance to the `DynamicCom
 {
     <div class="border border-primary my-1 p-1">
         <DynamicComponent Type="@selectedType" 
-            Parameters="@paramDictionaries[selectedType.Name)].ComponentParameters" />
+            Parameters="@paramDictionaries[selectedType.Name].ComponentParameters" />
     </div>
 }
 
@@ -232,7 +232,8 @@ Logic can filter and pass in a `ComponentParameters` instance to the `DynamicCom
         set
         {
             windowSeat = value;
-            paramDictionaries[nameof(RocketLab)].ComponentParameters["WindowSeat"] = windowSeat;
+            paramDictionaries[nameof(RocketLab)].ComponentParameters["WindowSeat"] = 
+                windowSeat;
         }
     }
 
