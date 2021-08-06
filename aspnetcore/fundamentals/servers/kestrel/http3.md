@@ -21,13 +21,10 @@ HTTP/3 is not supported everywhere. The requirements are different depending on 
 Kestrel will enable HTTP/3 only on environments that support it. That means it is possible to configure a port to support all HTTP protocols, e.g. `HttpProtocols.Http1AndHttp2AndHttp3`, and Kestrel's HTTP/3 support will light up on environments where it is available.
 
 ### Windows
-Prerequisites:
-- Latest [Windows Insider Builds](https://insider.windows.com/en-us/), Insiders Fast build. This is required for SChannel support for QUIC.
-  - To confirm you have a new enough build, run winver on command line and confirm you version is greater than Version 2004 (OS Build 20145.1000).
-- Turned on TLS 1.3
-  - It is turned on by default.
+* Windows 11 Build 22000 or later.
+* Transport Layer Security (TLS) 1.3 enabled. It is enabled by default.
 
-During the build, the `msquic.dll` is automatically downloaded and placed in correct directories in order to be picked up by the runtime. It is also published as part of the runtime for Windows.
+The preceding Windows 11 Build versions may require the use of a [Windows Insider](https://insider.windows.com) build.
 
 ### Linux
 
