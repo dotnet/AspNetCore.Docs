@@ -106,27 +106,30 @@ See [Strongly typed hubs](xref:signalr/hubs#strongly-typed-hubs) for more inform
 
 ### Use IHubContext in generic code
 
-An injected `IHubContext<THub>` instance can be cast to a base hub type or the `Hub` type.
-`IHubContext<THub>` can also be cast to `IHubContext` without a generic `Hub` type specified.
+An injected `IHubContext<THub>` instance can be cast to `IHubContext` without a generic `Hub` type specified.
 
 ```csharp
-class BaseHub : Hub
+class MyHub : Hub
 { }
 
-class ChatHub : BaseHub
+class MyOtherHub : Hub
 { }
 
 app.Use(async (context, next) =>
 {
-    var hubContext = context.RequestServices
-                            .GetRequiredService<IHubContext<ChatHub>>();
-    MethodA((IHubContext<BaseHub>)hubContext);
-
-    MethodB((IHubContext<Hub>)hubContext);
-
-    MethodC((IHubContext)hubContext);
+    var myHubContext = context.RequestServices
+                            .GetRequiredService<IHubContext<MyHub>>();
+    var myOtherHubContext = context.RequestServices
+                            .GetRequiredService<IHubContext<MyOtherHub>>();
+    await CommonHubContextMethod((IHubContext)myHubContext);
+    await CommonHubContextMethod((IHubContext)myOtherHubContext);
 
     await next.Invoke();
+}
+
+async Task CommonHubContextMethod(IHubContext context)
+{
+    await context.Clients.All.SendAsync("clientMethod", new Args());
 }
 ```
 
