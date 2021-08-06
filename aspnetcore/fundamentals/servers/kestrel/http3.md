@@ -39,7 +39,7 @@ HTTP/3 will be supported on macOS in a future release.
 
 ## Get started
 
-Use Http/3 by configuring the WebHost to UseQuic, and Kestrel's ListenOptions to use Http/3:
+Use Http/3 by configuring the `WebHost` to `UseQuic`, Kestrel's options to `EnableAltSvc`=`true`, and Kestrel's `ListenOptions` to use `Http1AndHttp2AndHttp3`:
 
 [!code-csharp[](samples/6.x/Http3Sample/Program.cs?name=snippet_UseHttp3&highlight=8)]
 

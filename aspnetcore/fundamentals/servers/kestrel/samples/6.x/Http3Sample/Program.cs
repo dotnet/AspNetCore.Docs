@@ -40,7 +40,7 @@ namespace Http3Sample
                             });
                             listenOptions.UseConnectionLogging();
                             // Use Http3
-                            listenOptions.Protocols = HttpProtocols.Http3;
+                            listenOptions.Protocols = HttpProtocols.Http1AndHttp2AndHttp3;
                         });
                     })
                     .UseStartup<Startup>();
