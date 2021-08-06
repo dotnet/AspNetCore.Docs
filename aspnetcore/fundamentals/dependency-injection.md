@@ -245,12 +245,12 @@ For more information, see [Scope validation](xref:fundamentals/host/web-host#sco
 
 ## Request Services
 
-The services available within an ASP.NET Core request are exposed through the [HttpContext.RequestServices](xref:Microsoft.AspNetCore.Http.HttpContext.RequestServices) collection. When services are requested from inside of a request, the services and their dependencies are resolved from the `RequestServices` collection.
+The services available within an ASP.NET Core request are exposed through the [HttpContext.RequestServices](xref:Microsoft.AspNetCore.Http.HttpContext.RequestServices). When services are requested from inside of a request, the services and their dependencies are resolved from the `RequestServices`.
 
 The framework creates a scope per request and `RequestServices` exposes the scoped service provider. All scoped services are valid for as long as the request is active.
 
 > [!NOTE]
-> Prefer requesting dependencies as constructor parameters to resolving services from the `RequestServices` collection. This results in classes that are easier to test.
+> Prefer requesting dependencies as constructor parameters to resolving services from the `RequestServices`. This results in classes that are easier to test.
 
 ## Design services for dependency injection
 
