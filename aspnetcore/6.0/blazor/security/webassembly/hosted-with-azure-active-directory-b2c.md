@@ -2,7 +2,7 @@
 title: Secure an ASP.NET Core Blazor WebAssembly hosted app with Azure Active Directory B2C
 author: guardrex
 description: Learn how to secure an ASP.NET Core Blazor WebAssembly hosted app with Azure Active Directory B2C.
-monikerRange: 'aspnetcore-6.0'
+monikerRange: '= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 12/26/2020

@@ -2,7 +2,7 @@
 title: ASP.NET Core Blazor hosting models
 author: guardrex
 description: Understand Blazor WebAssembly and Blazor Server hosting models.
-monikerRange: 'aspnetcore-5.0'
+monikerRange: '= aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 12/07/2020

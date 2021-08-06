@@ -2,7 +2,7 @@
 title: Build Progressive Web Applications with ASP.NET Core Blazor WebAssembly
 author: guardrex
 description: Learn how to build a Blazor-based Progressive Web Application (PWA) that use modern browser features to behave like a desktop app.
-monikerRange: 'aspnetcore-6.0'
+monikerRange: '= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 01/11/2021

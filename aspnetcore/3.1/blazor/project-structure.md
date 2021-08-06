@@ -2,7 +2,7 @@
 title: ASP.NET Core Blazor project structure
 author: guardrex
 description: Learn about ASP.NET Core Blazor app project structure.
-monikerRange: 'aspnetcore-3.1'
+monikerRange: '= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 01/19/2021

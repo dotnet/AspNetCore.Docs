@@ -2,7 +2,7 @@
 title: ASP.NET Core Blazor cascading values and parameters
 author: guardrex
 description: Learn how to flow data from an ancestor component to descendent components.
-monikerRange: 'aspnetcore-5.0'
+monikerRange: '= aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/02/2021

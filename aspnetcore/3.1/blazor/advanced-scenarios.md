@@ -2,7 +2,7 @@
 title: ASP.NET Core Blazor advanced scenarios
 author: guardrex
 description: Learn about advanced scenarios in Blazor, including how to incorporate manual RenderTreeBuilder logic into an app.
-monikerRange: 'aspnetcore-3.1'
+monikerRange: '= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 03/16/2021
