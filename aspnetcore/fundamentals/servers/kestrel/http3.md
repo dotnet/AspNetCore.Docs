@@ -33,3 +33,11 @@ apt install libmsquic
 ### macOS
 
 HTTP/3 will be supported on macOS in a future release.
+
+## Get started
+
+Use Http/3 by configuring the WebHost to UseQuic, and Kestrel's ListenOptions to use Http/3:
+
+[!code-csharp[](samples/6.x/Http3Sample/Program.cs?name=snippet_UseHttp3&highlight=8)]
+
+For more information on building the host, see the *Set up a host* and *Default builder settings* sections of <xref:fundamentals/host/generic-host#set-up-a-host>.
