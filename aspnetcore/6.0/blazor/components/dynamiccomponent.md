@@ -5,7 +5,7 @@ description: Learn how to use dynamically-rendered Razor components in Blazor ap
 monikerRange: 'aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/05/2021
+ms.date: 08/06/2021
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/components/dynamiccomponent
 ---
@@ -13,9 +13,9 @@ uid: blazor/components/dynamiccomponent
 
 By [Dave Brock](https://twitter.com/daveabrock)
 
-Use the `DynamicComponent` component to render components by type.
+Use the built-in `DynamicComponent` component to render components by type.
 
-A `DynamicComponent` is useful for rendering components without having to iterate through possible types or use a lot of conditional logic to render a specific component. For example, `DynamicComponent` can render a component based on a user selection from a drop-down list.
+A `DynamicComponent` is useful for rendering components without having to iterate through possible types or having to use conditional logic to render a specific component. For example, `DynamicComponent` can render a component based on a user selection from a dropdown list.
 
 In the following example:
 
@@ -35,56 +35,56 @@ For more information on passing parameter values, see the [Pass parameters](#pas
 
 ## Example
 
-In the following example, a [Blazor form](xref:blazor/forms-validation) renders a component based on the user's selection from a drop-down list of four possible values. 
+In the following example, a [Blazor form](xref:blazor/forms-validation) renders a component based on the user's selection from a dropdown list of four possible values. 
 
-| User selection  | Razor component to render    |
-| --------------- | ---------------------------- |
-| Rocket Lab      | `RocketLab.razor`            |
-| Virgin Galactic | `VirginGalactic.razor`       |
-| SpaceX          | `SpaceX.razor`               |
-| ULA             | `UnitedLaunchAlliance.razor` |
+| User selection       | Razor component to render&hellip;   |
+| -------------------- | ----------------------------------- |
+| Rocket Lab&reg;      | `Shared/RocketLab.razor`            |
+| SpaceX&reg;          | `Shared/SpaceX.razor`               |
+| ULA&reg;             | `Shared/UnitedLaunchAlliance.razor` |
+| Virgin Galactic&reg; | `Shared/VirginGalactic.razor`       |
 
 `Shared/RocketLab.razor`:
 
 ```razor
-<h2>Rocket Lab</h2>
+<h2>Rocket Lab&reg;</h2>
 
 <p>
-    Rocket Lab is a trademark of 
+    Rocket Lab is a registered trademark of 
     <a href="https://www.rocketlabusa.com/">Rocket Lab USA Inc.</a>.
-</p>
-```
-
-`Shared/VirginGalactic.razor`:
-
-```razor
-<h2>Virgin Galactic</h2>
-
-<p>
-    Virgin Galactic is a trademark of 
-    <a href="https://www.virgingalactic.com/">Galactic Enterprises, LLC</a>.
-</p>
-```
-
-`Shared/UnitedLaunchAlliance.razor`:
-
-```razor
-<h2>United Launch Alliance</h2>
-
-<p>
-    United Launch Alliance is a trademark of
-    <a href="https://www.ulalaunch.com/">United Launch Alliance, LLC</a>.
 </p>
 ```
 
 `Shared/SpaceX.razor`:
 
 ```razor
-<h2>SpaceX</h2>
+<h2>SpaceX&reg;</h2>
 
 <p>
-    SpaceX is a trademark of 
+    SpaceX is a registered trademark of 
     <a href="https://www.spacex.com/">Space Exploration Technologies Corp.</a>.
+</p>
+```
+
+`Shared/UnitedLaunchAlliance.razor`:
+
+```razor
+<h2>United Launch Alliance&reg;</h2>
+
+<p>
+    United Launch Alliance and ULA are registered trademarks of
+    <a href="https://www.ulalaunch.com/">United Launch Alliance, LLC</a>.
+</p>
+```
+
+`Shared/VirginGalactic.razor`:
+
+```razor
+<h2>Virgin Galactic&reg;</h2>
+
+<p>
+    Virgin Galactic is a registered trademark of 
+    <a href="https://www.virgingalactic.com/">Galactic Enterprises, LLC</a>.
 </p>
 ```
 
@@ -101,9 +101,9 @@ In the following example, a [Blazor form](xref:blazor/forms-validation) renders 
         <select @onchange="OnDropdownChange">
             <option value="">Select a value</option>
             <option value="@nameof(RocketLab)">Rocket Lab</option>
-            <option value="@nameof(VirginGalactic)">Virgin Galactic</option>
-            <option value="@nameof(UnitedLaunchAlliance)">ULA</option>
             <option value="@nameof(SpaceX)">SpaceX</option>
+            <option value="@nameof(UnitedLaunchAlliance)">ULA</option>
+            <option value="@nameof(VirginGalactic)">Virgin Galactic</option>
         </select>
     </label>
 </p>
@@ -132,13 +132,13 @@ In the `DynamicComponentExample` component:
 * The `{APP NAMESPACE}` placeholder is the namespace of the app (for example, `BlazorSample`).
 * The components to render dynamically are shared components in the app's `Shared` folder:
   * `RocketLab` (`Shared/RocketLab.razor`)
-  * `VirginGalactic` (`Shared/VirginGalactic.razor`)
-  * `UnitedLaunchAlliance` (`Shared/UnitedLaunchAlliance.razor`)
   * `SpaceX` (`Shared/SpaceX.razor`)
+  * `UnitedLaunchAlliance` (`Shared/UnitedLaunchAlliance.razor`)
+  * `VirginGalactic` (`Shared/VirginGalactic.razor`)
 
 ## Pass parameters
 
-If dynamically-rendered components have [component parameters](xref:blazor/components/index#component-parameters), pass them into the `DynamicComponent` as an `IDictionary<string, object>`. The `string` is the name of the parameter, and the `object` is the parameter's value.
+If dynamically-rendered components have [component parameters](xref:blazor/components/index#component-parameters), pass them into the `DynamicComponent` as an `IDictionary<string, object>`. The `string` is the name of the parameter, and the `object` is the parameter's value. Logic can filter and pass in parameters to the `DynamicComponent`, depending on the type passed. Data can be passed from an API, a database, or a method, as long as it returns an `IDictionary<string, object>`.
 
 The following example configures `ComponentMetadata` for dynamically-rendered components.
 
@@ -150,14 +150,12 @@ using System.Collections.Generic;
 
 public class ComponentMetadata
 {
-    public Type ComponentType { get; set; }
-    public Dictionary<string, object> ComponentParameters { get; set; }
+    public string Name { get; set; }
+    public Dictionary<string, object> Parameters { get; set; }
 }
 ```
 
-A dictionary is created for any components with [component parameters](xref:blazor/components/index#component-parameters). In the following example, only the `RocketLab` component has a parameter, which assigns a value for a window seat (`WindowSeat`) on a spaceflight.
-
-Logic can filter and pass in a `ComponentParameters` instance to the `DynamicComponent`, depending on the type passed. Data can be passed from an API, a database, or a function, as long as it returns an `IDictionary<string, object>`.
+In the following example, only the `RocketLab` component has a parameter, which assigns a value for a window seat (`WindowSeat`) on a spaceflight.
 
 `Pages/DynamicComponentExample2.razor`:
 
@@ -178,10 +176,12 @@ Logic can filter and pass in a `ComponentParameters` instance to the `DynamicCom
         Select your transport:
         <select @onchange="OnDropdownChange">
             <option value="">Select a value</option>
-            <option value="@nameof(RocketLab)">Rocket Lab</option>
-            <option value="@nameof(VirginGalactic)">Virgin Galactic</option>
-            <option value="@nameof(UnitedLaunchAlliance)">ULA</option>
-            <option value="@nameof(SpaceX)">SpaceX</option>
+
+            @foreach (var c in components)
+            {
+                <option value="@c.Key">@c.Value.Name</option>
+            }
+
         </select>
     </label>
 </p>
@@ -190,41 +190,37 @@ Logic can filter and pass in a `ComponentParameters` instance to the `DynamicCom
 {
     <div class="border border-primary my-1 p-1">
         <DynamicComponent Type="@selectedType" 
-            Parameters="@paramDictionaries[selectedType.Name].ComponentParameters" />
+            Parameters="@components[selectedType.Name].Parameters" />
     </div>
 }
 
 @code {
-    private bool windowSeat;
-    private Type selectedType;
-    private Dictionary<string, ComponentMetadata> paramDictionaries =
+    private Dictionary<string, ComponentMetadata> components =
         new()
         {
             {
                 "RocketLab",
                 new ComponentMetadata
                 {
-                    ComponentType = typeof(RocketLab),
-                    ComponentParameters = 
-                        new()
-                        {
-                            { "WindowSeat", false }
-                        }
+                    Name = "Rocket Lab",
+                    Parameters = new() { { "WindowSeat", false } }
                 }
             },
             {
                 "VirginGalactic",
-                new ComponentMetadata { ComponentType = typeof(VirginGalactic) }
+                new ComponentMetadata { Name = "Virgin Galactic" }
             },
             {
                 "UnitedLaunchAlliance",
-                new ComponentMetadata { ComponentType = typeof(UnitedLaunchAlliance) }
+                new ComponentMetadata { Name = "ULA" }
             },
             {
                 "SpaceX",
-                new ComponentMetadata { ComponentType = typeof(SpaceX) }
+                new ComponentMetadata { Name = "SpaceX" }
             }
         };
+    private Type selectedType;
+    private bool windowSeat;
 
     private bool WindowSeat
     {
@@ -232,8 +228,7 @@ Logic can filter and pass in a `ComponentParameters` instance to the `DynamicCom
         set
         {
             windowSeat = value;
-            paramDictionaries[nameof(RocketLab)].ComponentParameters["WindowSeat"] = 
-                windowSeat;
+            components[nameof(RocketLab)].Parameters["WindowSeat"] = windowSeat;
         }
     }
 
@@ -250,16 +245,16 @@ In the preceding example:
 * The `{APP NAMESPACE}` placeholder is the namespace of the app (for example, `BlazorSample`).
 * The components to render dynamically are shared components in the app's `Shared` folder. For examples, see the [Example](#example) section earlier in this article:
   * `RocketLab` (`Shared/RocketLab.razor`)
-  * `VirginGalactic` (`Shared/VirginGalactic.razor`)
-  * `UnitedLaunchAlliance` (`Shared/UnitedLaunchAlliance.razor`) 
   * `SpaceX` (`Shared/SpaceX.razor`)
+  * `UnitedLaunchAlliance` (`Shared/UnitedLaunchAlliance.razor`)
+  * `VirginGalactic` (`Shared/VirginGalactic.razor`)
 
 The `RocketLab` component (`Shared/RocketLab.razor`) includes a component parameter named `WindowSeat`:
 
 `Shared/RocketLab.razor`:
 
 ```razor
-<h2>Rocket Lab</h2>
+<h2>Rocket Lab&reg;</h2>
 
 <p>
     User selected a window seat: @WindowSeat
@@ -278,4 +273,8 @@ The `RocketLab` component (`Shared/RocketLab.razor`) includes a component parame
 
 ## Avoid catch-all parameters
 
-Avoid the use of [catch-all parameters](xref:blazor/fundamentals/routing#catch-all-route-parameters). If catch-all parameters are used, every explicit parameter on `DynamicComponent`, now and in the future, effectively is a reserved word that you can't pass to a dynamic child. Any new parameters passed to `DynamicComponent` are a breaking change, as they start shadowing child component parameters that happen to have the same name. It's unlikely that the caller always knows a fixed set of parameter names to pass to all possible dynamic children.
+Avoid the use of [catch-all parameters](xref:blazor/fundamentals/routing#catch-all-route-parameters). If catch-all parameters are used, every explicit parameter on `DynamicComponent` effectively is a reserved word that you can't pass to a dynamic child. Any new parameters passed to `DynamicComponent` are a breaking change, as they start shadowing child component parameters that happen to have the same name. It's unlikely that the caller always knows a fixed set of parameter names to pass to all possible dynamic children.
+
+## Trademarks
+
+Rocket Lab is a registered trademark of [Rocket Lab USA Inc.](https://www.rocketlabusa.com/). SpaceX is a registered trademark of [Space Exploration Technologies Corp.](https://www.spacex.com/). United Launch Alliance and ULA are registered trademarks of [United Launch Alliance, LLC](https://www.ulalaunch.com/). Virgin Galactic is a registered trademark of [Galactic Enterprises, LLC](https://www.virgingalactic.com/).
