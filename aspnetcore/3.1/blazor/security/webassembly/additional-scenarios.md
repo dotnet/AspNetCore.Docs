@@ -2,7 +2,7 @@
 title: ASP.NET Core Blazor WebAssembly additional security scenarios
 author: guardrex
 description: Learn how to configure Blazor WebAssembly for additional security scenarios.
-monikerRange: 'aspnetcore-3.1'
+monikerRange: '= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 10/27/2020

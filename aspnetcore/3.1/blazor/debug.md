@@ -2,7 +2,7 @@
 title: Debug ASP.NET Core Blazor WebAssembly
 author: guardrex
 description: Learn how to debug Blazor apps.
-monikerRange: 'aspnetcore-3.1'
+monikerRange: '= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 08/26/2020

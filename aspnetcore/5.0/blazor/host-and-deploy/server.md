@@ -2,7 +2,7 @@
 title: Host and deploy ASP.NET Core Blazor Server
 author: guardrex
 description: Learn how to host and deploy a Blazor Server app using ASP.NET Core.
-monikerRange: 'aspnetcore-5.0'
+monikerRange: '= aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 08/26/2020

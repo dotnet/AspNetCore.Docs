@@ -2,7 +2,7 @@
 title: ASP.NET Core Blazor routing
 author: guardrex
 description: Learn how to manage request routing in apps and how to use the NavLink component in Blazor apps for navigation.
-monikerRange: 'aspnetcore-6.0'
+monikerRange: '= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 12/09/2020

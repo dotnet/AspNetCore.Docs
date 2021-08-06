@@ -2,7 +2,7 @@
 title: Use ASP.NET Core SignalR with Blazor
 author: guardrex
 description: Create a chat app that uses ASP.NET Core SignalR with Blazor.
-monikerRange: 'aspnetcore-5.0'
+monikerRange: '= aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 01/25/2021

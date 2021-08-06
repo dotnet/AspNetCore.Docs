@@ -2,7 +2,7 @@
 title: Threat mitigation guidance for ASP.NET Core Blazor Server
 author: guardrex
 description: Learn how to mitigate security threats to Blazor Server apps.
-monikerRange: 'aspnetcore-6.0'
+monikerRange: '= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/09/2020
