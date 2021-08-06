@@ -2,7 +2,7 @@
 title: ASP.NET Core Blazor SignalR guidance
 author: guardrex
 description: Learn how to configure and manage Blazor SignalR connections.
-monikerRange: 'aspnetcore-3.1'
+monikerRange: '= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 03/12/2021

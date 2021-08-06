@@ -2,7 +2,7 @@
 title: ASP.NET Core Blazor file uploads
 author: guardrex
 description: Learn how to upload files in Blazor with the InputFile component.
-monikerRange: 'aspnetcore-5.0'
+monikerRange: '= aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
 no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]

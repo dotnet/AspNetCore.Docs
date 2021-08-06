@@ -2,7 +2,7 @@
 title: ASP.NET Core Razor components
 author: guardrex
 description: Learn how to create and use Razor components in Blazor apps, including guidance on Razor syntax in components, component naming, namespaces, and component parameters.
-monikerRange: 'aspnetcore-3.1'
+monikerRange: '= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 04/19/2021

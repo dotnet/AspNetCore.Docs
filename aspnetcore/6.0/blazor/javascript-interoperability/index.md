@@ -2,7 +2,7 @@
 title: Blazor JavaScript interoperability (JS interop)
 author: guardrex
 description: Learn how to interact with JavaScript in Blazor apps.
-monikerRange: 'aspnetcore-6.0'
+monikerRange: '= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc, devx-track-js 
 ms.date: 05/12/2021

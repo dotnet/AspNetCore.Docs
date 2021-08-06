@@ -2,7 +2,7 @@
 title: ASP.NET Core Blazor Startup
 author: guardrex
 description: Learn how to configure Blazor startup.
-monikerRange: 'aspnetcore-3.1'
+monikerRange: '= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 05/14/2021

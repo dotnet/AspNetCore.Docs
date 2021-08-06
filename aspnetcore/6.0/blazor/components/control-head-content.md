@@ -2,7 +2,7 @@
 title: Control &lt;head&gt; content in ASP.NET Core Blazor apps
 author: guardrex
 description: Learn how to control &lt;head&gt; content in Blazor apps, including how to set the page title from a component.
-monikerRange: 'aspnetcore-6.0'
+monikerRange: '= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 08/03/2021

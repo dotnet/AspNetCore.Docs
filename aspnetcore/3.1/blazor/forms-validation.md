@@ -2,7 +2,7 @@
 title: ASP.NET Core Blazor forms and validation
 author: guardrex
 description: Learn how to use forms and field validation scenarios in Blazor.
-monikerRange: 'aspnetcore-3.1'
+monikerRange: '= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 04/27/2021
