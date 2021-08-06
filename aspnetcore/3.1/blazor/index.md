@@ -13,6 +13,7 @@ uid: blazor/index
 
 *Welcome to Blazor!*
 
+test
 Blazor is a framework for building interactive client-side web UI with [.NET](/dotnet/standard/tour):
 
 * Create rich interactive UIs using [C#](/dotnet/csharp/) instead of [JavaScript](https://www.javascript.com).
