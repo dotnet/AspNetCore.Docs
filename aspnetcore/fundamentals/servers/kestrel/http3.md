@@ -14,6 +14,12 @@ uid: fundamentals/servers/kestrel/http3
 
 [HTTP/3](https://quicwg.org/base-drafts/draft-ietf-quic-http.html) is available for ASP.NET Core apps if the following base requirements are met:
 
+## Requirements
+
+HTTP/3 is not supported everywhere. The requirements are different depending on the operating system that Kestrel is running on.
+
+Kestrel will enable HTTP/3 only on environments that support it. That means it is possible to configure a port to support all HTTP protocols, e.g. `HttpProtocols.Http1AndHttp2AndHttp3`, and Kestrel's HTTP/3 support will light up on environments where it is available.
+
 ### Windows
 Prerequisites:
 - Latest [Windows Insider Builds](https://insider.windows.com/en-us/), Insiders Fast build. This is required for SChannel support for QUIC.
