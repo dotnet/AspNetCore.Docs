@@ -163,9 +163,7 @@ NuGet packages must be added to support the database and diagnostics used in thi
 * Select the **Browse** tab, and then enter `Microsoft.EntityFrameworkCore.InMemory` in the search box. Verify **Incluee prerelease** is checked.
 * Select `Microsoft.EntityFrameworkCore.InMemory` in the left pane.
 * Select the **Project** checkbox in the right pane and then select **Install**.
-* Follow the preceding instructions to add the following packages:
-  * `Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore`
-  * `MinimalValidation`
+* Follow the preceding instructions to add the `Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore` package.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
