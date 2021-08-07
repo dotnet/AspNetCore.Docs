@@ -14,6 +14,8 @@ This series of tutorials explains the basics of building a Razor Pages web app.
 
 For a more advanced introduction aimed at developers who are familiar with controllers and views, see <xref:razor-pages/index>.
 
+[!INCLUDE [Choose web UI](~/includes/choose-ui-link.md)]
+
 This series includes the following tutorials:
 
 1. [Create a Razor Pages web app](xref:tutorials/razor-pages/razor-pages-start)
