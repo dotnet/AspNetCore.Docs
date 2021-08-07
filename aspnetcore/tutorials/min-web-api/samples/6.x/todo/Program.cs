@@ -12,6 +12,7 @@ if (app.Environment.IsDevelopment())
     app.UseDeveloperExceptionPage();
 }
 
+#region snippet_get
 app.MapGet("/", () => "Hello World!");
 
 app.MapGet("/TodoItems", async (TodoDb db) =>
@@ -25,6 +26,7 @@ app.MapGet("/TodoItems/{id}", async (int id, TodoDb db) =>
         is Todo todo
             ? Results.Ok(todo)
             : Results.NotFound());
+#endregion
 
 app.MapPost("/TodoItems", async (Todo todo, TodoDb db) =>
 {

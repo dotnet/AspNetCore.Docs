@@ -41,7 +41,7 @@ This tutorial creates the following API:
 
 [!INCLUDE[](~/includes/net-prereqs-vsc-6.0.md)]
 
-<!-- add VS Mac later 
+<!-- add VS Mac later
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 [!INCLUDE[](~/includes/net-prereqs-mac-6.0.md)]
