@@ -82,7 +82,7 @@ namespace ContosoUniversity.Pages.Instructors
                 _logger.LogError(ex.Message);
             }
 
-            PopulateAssignedCourseData(_context, Instructor);
+            PopulateAssignedCourseData(_context, newInstructor);
             return Page();
         }
         #endregion
