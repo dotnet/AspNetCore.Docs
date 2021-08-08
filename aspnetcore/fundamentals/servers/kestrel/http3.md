@@ -12,7 +12,7 @@ uid: fundamentals/servers/kestrel/http3
 
 # Use HTTP/3 with the ASP.NET Core Kestrel web server
 
-[HTTP/3](https://quicwg.org/base-drafts/draft-ietf-quic-http.html) is available for ASP.NET Core apps if the following base requirements are met:
+[HTTP/3](https://quicwg.org/base-drafts/draft-ietf-quic-http.html) is available for ASP.NET Core apps when the following requirements are met:
 
 ## Requirements
 
