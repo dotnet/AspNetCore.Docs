@@ -35,7 +35,7 @@ apt install libmsquic
 
 ### macOS
 
-HTTP/3 will be supported on macOS in a future release.
+HTTP/3 is not currently supported on macOS and may be available in a future release.
 
 ## Get started
 
