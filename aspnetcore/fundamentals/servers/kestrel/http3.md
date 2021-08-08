@@ -47,4 +47,4 @@ HTTP/3 is configured on app start-up. The following code:
 
 [!code-csharp[](samples/6.x/Http3Sample/Program.cs?name=snippet_UseHttp3&highlight=8)]
 
-For more information on building the host, see the *Set up a host* and *Default builder settings* sections of <xref:fundamentals/host/generic-host#set-up-a-host>.
+For more information on building the host, see the **Set up a host** and **Default builder settings** sections of <xref:fundamentals/host/generic-host#set-up-a-host>.
