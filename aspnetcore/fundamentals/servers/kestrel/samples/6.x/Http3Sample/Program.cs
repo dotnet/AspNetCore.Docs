@@ -34,13 +34,9 @@ namespace Http3Sample
 
                         options.Listen(IPAddress.Any, basePort, listenOptions =>
                         {
-                            listenOptions.UseHttps(httpsOptions =>
-                            {
-                                httpsOptions.ServerCertificate = cert;
-                            });
-                            listenOptions.UseConnectionLogging();
                             // Use Http3
                             listenOptions.Protocols = HttpProtocols.Http1AndHttp2AndHttp3;
+                            listenOptions.UseHttps();
                         });
                     })
                     .UseStartup<Startup>();
