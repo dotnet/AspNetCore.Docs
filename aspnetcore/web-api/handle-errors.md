@@ -24,7 +24,7 @@ The [Developer Exception Page](xref:fundamentals/error-handling) is a useful too
 Run the following `curl` command to test the preceding action:
 
 ```bash
-curl -i https://localhost:5001/weatherforecast/chicago
+curl -i https://localhost:5001/weatherforecast/redmond
 ```
 
 ::: moniker range=">= aspnetcore-3.0"
@@ -39,7 +39,7 @@ Server: Microsoft-IIS/10.0
 X-Powered-By: ASP.NET
 Date: Fri, 27 Sep 2019 16:13:16 GMT
 
-System.ArgumentException: We don't offer a weather forecast for chicago. (Parameter 'city')
+System.ArgumentException: We don't offer a weather forecast for redmond. (Parameter 'city')
    at WebApiSample.Controllers.WeatherForecastController.Get(String city) in C:\working_folder\aspnet\AspNetCore.Docs\aspnetcore\web-api\handle-errors\samples\3.x\Controllers\WeatherForecastController.cs:line 34
    at lambda_method(Closure , Object , Object[] )
    at Microsoft.Extensions.Internal.ObjectMethodExecutor.Execute(Object target, Object[] parameters)
@@ -66,7 +66,7 @@ User-Agent: curl/7.55.1
 To display an HTML-formatted response instead, set the `Accept` HTTP request header to the `text/html` media type. For example:
 
 ```bash
-curl -i -H "Accept: text/html" https://localhost:5001/weatherforecast/chicago
+curl -i -H "Accept: text/html" https://localhost:5001/weatherforecast/redmond
 ```
 
 Consider the following excerpt from the HTTP response:
