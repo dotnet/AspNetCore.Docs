@@ -92,7 +92,7 @@ DataAnnotations error messages are localized with `IStringLocalizer<T>`. Using t
 
 [!code-csharp[](localization/sample/3.x/Localization/ViewModels/Account/RegisterViewModel.cs?start=9&end=26)]
 
-In ASP.NET Core MVC 1.1.0 and higher, non-validation attributes are localized. ASP.NET Core MVC 1.0 does **not** look up localized strings for non-validation attributes.
+Non-validation attributes are localized.
 
 <a name="one-resource-string-multiple-classes"></a>
 
