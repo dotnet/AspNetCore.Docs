@@ -29,10 +29,8 @@ namespace Http3Sample
                     })
                     .ConfigureKestrel((context, options) =>
                     {
-                        var basePort = 5557;
                         options.EnableAltSvc = true;
-
-                        options.Listen(IPAddress.Any, basePort, listenOptions =>
+                        options.Listen(IPAddress.Any, 5001, listenOptions =>
                         {
                             // Use Http3
                             listenOptions.Protocols = HttpProtocols.Http1AndHttp2AndHttp3;
