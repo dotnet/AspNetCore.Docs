@@ -19,10 +19,6 @@ namespace Http3Sample
         {
             app.Run(async context =>
             {
-                var memory = new Memory<byte>(new byte[4096]);
-                var length = await context.Request.Body.ReadAsync(memory);
-                context.Response.Headers["test"] = "foo";
-                // for testing
                 await context.Response.WriteAsync("Hello World! " + context.Request.Protocol);
             });
         }
