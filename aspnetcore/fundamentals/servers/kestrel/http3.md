@@ -18,7 +18,7 @@ uid: fundamentals/servers/kestrel/http3
 
 HTTP/3 is not supported everywhere. The requirements are different depending on the operating system that Kestrel is running on.
 
-Kestrel will enable HTTP/3 only on environments that support it. That means it is possible to configure a port to support all HTTP protocols, e.g. `HttpProtocols.Http1AndHttp2AndHttp3`, and Kestrel's HTTP/3 support will light up on environments where it is available.
+Kestrel enables HTTP/3 only on environments that support it. That means it's possible to configure a port to support all HTTP protocols. For example, `HttpProtocols.Http1AndHttp2AndHttp3`, and Kestrel's HTTP/3 is available on environments where it's supported.
 
 ### Windows
 * Windows 11 Build 22000 or later.
