@@ -37,6 +37,10 @@ apt install libmsquic
 
 HTTP/3 is not currently supported on macOS and may be available in a future release.
 
+## Alt-svc
+
+Http/3 is discovered as an upgrade from HTTP/1.1 or HTTP/2 via the alt-svc header. That means the first request will normally use HTTP/1.1 or HTTP/2 before switching to HTTP/3.
+
 ## Get started
 
 HTTP/3 is configured on app start-up. The following code:
@@ -45,6 +49,12 @@ HTTP/3 is configured on app start-up. The following code:
 * Sets `EnableAltSvc` to `true` on Kestrel options.
 * Configures port 5001 to use `HttpProtocols.Http1AndHttp2AndHttp3`.
 
+This sample code is specific to .Net 6 Preview 7, and will change in .Net 6 RC 1.
+
 [!code-csharp[](samples/6.x/Http3Sample/Program.cs?name=snippet_UseHttp3&highlight=8)]
 
 For more information on building the host, see the **Set up a host** and **Default builder settings** sections of <xref:fundamentals/host/generic-host#set-up-a-host>.
+
+## Localhost testing
+* Browsers do not enable HTTP/3 on localhost/loopback connections: to test with a browser, run the client and server on separate machines.
+* HttpClient can be used for localhost/loopback testing.
