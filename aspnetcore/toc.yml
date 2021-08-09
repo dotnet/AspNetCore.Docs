@@ -368,6 +368,8 @@
             uid: blazor/components/templated-components
           - name: CSS isolation
             uid: blazor/components/css-isolation
+          - name: Dynamically-rendered components
+            uid: blazor/components/dynamiccomponent
           - name: Prerender and integrate components
             uid: blazor/components/prerendering-and-integration
           - name: Class libraries
@@ -966,6 +968,9 @@
         - name: Kestrel overview
           displayName: deploy, publish, server
           uid: fundamentals/servers/kestrel
+        - name: HTTP/3
+          displayName: HTTP/3, kestrel
+          uid: fundamentals/servers/kestrel/http3
         - name: Endpoints
           displayName: deploy, publish, server, Kestrel
           uid: fundamentals/servers/kestrel/endpoints
