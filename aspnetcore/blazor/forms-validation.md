@@ -151,7 +151,7 @@ In the following example:
 
 ## Multiple option selection with the `InputSelect` component
 
-*This feature applies to ASP.NET Core 6.0 Preview 7 or later. ASP.NET Core 6.0 is scheduled for release later this year.*
+*This feature applies to ASP.NET Core 6.0 Preview 7 or later. ASP.NET Core 6.0 Preview 7 is scheduled for release in August. ASP.NET Core 6.0 is scheduled for release later this year.*
 
 Binding supports [`multiple`](https://developer.mozilla.org/docs/Web/HTML/Attributes/multiple) option selection with the <xref:Microsoft.AspNetCore.Components.Forms.InputSelect%601> component. The [`@onchange`](xref:mvc/views/razor#onevent) event provides an array of the selected options via [event arguments (`ChangeEventArgs`)](xref:blazor/components/event-handling#event-arguments). The value must be bound to an array type, and binding to an array type makes the [`multiple`](https://developer.mozilla.org/docs/Web/HTML/Attributes/multiple) attribute optional on the <xref:Microsoft.AspNetCore.Components.Forms.InputSelect%601> tag.
 
