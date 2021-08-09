@@ -13,8 +13,6 @@ uid: blazor/components/dynamiccomponent
 
 By [Dave Brock](https://twitter.com/daveabrock)
 
-*This feature applies to ASP.NET Core 6.0 Preview 7 or later. ASP.NET Core 6.0 Preview 7 is scheduled for release in August. ASP.NET Core 6.0 is scheduled for release later this year.*
-
 Use the built-in `DynamicComponent` component to render components by type.
 
 A `DynamicComponent` is useful for rendering components without iterating through possible types or using conditional logic. For example, `DynamicComponent` can render a component based on a user selection from a dropdown list.
@@ -37,14 +35,14 @@ For more information on passing parameter values, see the [Pass parameters](#pas
 
 ## Example
 
-In the following example, a Razor component renders a component based on the user's selection from a dropdown list of four possible values. 
+In the following example, a Razor component renders a component based on the user's selection from a dropdown list of four possible values.
 
-| User selection       | Razor component to render&hellip;   |
-| -------------------- | ----------------------------------- |
-| Rocket Lab&reg;      | `Shared/RocketLab.razor`            |
-| SpaceX&reg;          | `Shared/SpaceX.razor`               |
-| ULA&reg;             | `Shared/UnitedLaunchAlliance.razor` |
-| Virgin Galactic&reg; | `Shared/VirginGalactic.razor`       |
+| User spaceflight carrier selection | Shared Razor component to render    |
+| ---------------------------------- | ----------------------------------- |
+| Rocket Lab&reg;                    | `Shared/RocketLab.razor`            |
+| SpaceX&reg;                        | `Shared/SpaceX.razor`               |
+| ULA&reg;                           | `Shared/UnitedLaunchAlliance.razor` |
+| Virgin Galactic&reg;               | `Shared/VirginGalactic.razor`       |
 
 `Shared/RocketLab.razor`:
 
@@ -53,7 +51,7 @@ In the following example, a Razor component renders a component based on the use
 
 <p>
     Rocket Lab is a registered trademark of 
-    <a href="https://www.rocketlabusa.com/">Rocket Lab USA Inc.</a>.
+    <a href="https://www.rocketlabusa.com/">Rocket Lab USA Inc.</a>
 </p>
 ```
 
@@ -64,7 +62,7 @@ In the following example, a Razor component renders a component based on the use
 
 <p>
     SpaceX is a registered trademark of 
-    <a href="https://www.spacex.com/">Space Exploration Technologies Corp.</a>.
+    <a href="https://www.spacex.com/">Space Exploration Technologies Corp.</a>
 </p>
 ```
 
@@ -132,17 +130,12 @@ In the preceding example:
 
 * Component names are used as the option values using the [`nameof` operator](/dotnet/csharp/language-reference/operators/nameof), which returns component names as constant strings.
 * The `{APP NAMESPACE}` placeholder is the namespace of the app (for example, `BlazorSample`).
-* The dynamically-rendered components are shared components in the app's `Shared` folder:
-  * `RocketLab` (`Shared/RocketLab.razor`)
-  * `SpaceX` (`Shared/SpaceX.razor`)
-  * `UnitedLaunchAlliance` (`Shared/UnitedLaunchAlliance.razor`)
-  * `VirginGalactic` (`Shared/VirginGalactic.razor`)
 
 ## Pass parameters
 
 If dynamically-rendered components have [component parameters](xref:blazor/components/index#component-parameters), pass them into the `DynamicComponent` as an `IDictionary<string, object>`. The `string` is the name of the parameter, and the `object` is the parameter's value.
 
-The following example configures a component metadata object (`ComponentMetadata`) to supply parameter values to dynamically-rendered components based on the type name. The example is just one of several approaches that you can adopt. Parameter data can also be passed from an API, a database, or a method, as long as it returns an `IDictionary<string, object>`.
+The following example configures a component metadata object (`ComponentMetadata`) to supply parameter values to dynamically-rendered components based on the type name. The example is just one of several approaches that you can adopt. Parameter data can also be provided from a web API, a database, or a method. The only requirement is that the approach returns an `IDictionary<string, object>`.
 
 `ComponentMetadata.cs`:
 
@@ -263,7 +256,7 @@ The `RocketLab` component (`Shared/RocketLab.razor`) includes a component parame
 
 <p>
     Rocket Lab is a trademark of 
-    <a href="https://www.rocketlabusa.com/">Rocket Lab USA Inc.</a>.
+    <a href="https://www.rocketlabusa.com/">Rocket Lab USA Inc.</a>
 </p>
 
 @code {
