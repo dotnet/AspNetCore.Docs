@@ -17,18 +17,19 @@ By [Dave Brock](https://twitter.com/daveabrock)
 
 Use the built-in `DynamicComponent` component to render components by type.
 
-A `DynamicComponent` is useful for rendering components without having to iterate through possible types or having to use conditional logic to render a specific component. For example, `DynamicComponent` can render a component based on a user selection from a dropdown list.
+A `DynamicComponent` is useful for rendering components without iterating through possible types or using conditional logic. For example, `DynamicComponent` can render a component based on a user selection from a dropdown list.
 
 In the following example:
 
 * `componentType` specifies the type.
-* `parameterDictionary` specifies component parameters to pass to the `componentType` component.
+* `parameters` specifies component parameters to pass to the `componentType` component.
 
 ```razor
-<DynamicComponent Type="@componentType" Parameters="@parameterDictionary" />
+<DynamicComponent Type="@componentType" Parameters="@parameters" />
+
 @code {
     private Type componentType = ...;
-    private IDictionary<string, object> parameterDictionary = ...;
+    private IDictionary<string, object> parameters = ...;
 }
 ```
 
@@ -36,7 +37,7 @@ For more information on passing parameter values, see the [Pass parameters](#pas
 
 ## Example
 
-In the following example, a [Blazor form](xref:blazor/forms-validation) renders a component based on the user's selection from a dropdown list of four possible values. 
+In the following example, a Razor component renders a component based on the user's selection from a dropdown list of four possible values. 
 
 | User selection       | Razor component to render&hellip;   |
 | -------------------- | ----------------------------------- |
@@ -49,6 +50,7 @@ In the following example, a [Blazor form](xref:blazor/forms-validation) renders 
 
 ```razor
 <h2>Rocket Lab&reg;</h2>
+
 <p>
     Rocket Lab is a registered trademark of 
     <a href="https://www.rocketlabusa.com/">Rocket Lab USA Inc.</a>.
@@ -59,6 +61,7 @@ In the following example, a [Blazor form](xref:blazor/forms-validation) renders 
 
 ```razor
 <h2>SpaceX&reg;</h2>
+
 <p>
     SpaceX is a registered trademark of 
     <a href="https://www.spacex.com/">Space Exploration Technologies Corp.</a>.
@@ -69,6 +72,7 @@ In the following example, a [Blazor form](xref:blazor/forms-validation) renders 
 
 ```razor
 <h2>United Launch Alliance&reg;</h2>
+
 <p>
     United Launch Alliance and ULA are registered trademarks of
     <a href="https://www.ulalaunch.com/">United Launch Alliance, LLC</a>.
@@ -79,6 +83,7 @@ In the following example, a [Blazor form](xref:blazor/forms-validation) renders 
 
 ```razor
 <h2>Virgin Galactic&reg;</h2>
+
 <p>
     Virgin Galactic is a registered trademark of 
     <a href="https://www.virgingalactic.com/">Galactic Enterprises, LLC</a>.
@@ -89,7 +94,9 @@ In the following example, a [Blazor form](xref:blazor/forms-validation) renders 
 
 ```razor
 @page "/dynamiccomponent-example-1"
+
 <h1><code>DynamicComponent</code> Component Example 1</h1>
+
 <p>
     <label>
         Select your transport:
@@ -102,14 +109,17 @@ In the following example, a [Blazor form](xref:blazor/forms-validation) renders 
         </select>
     </label>
 </p>
+
 @if (selectedType is not null)
 {
     <div class="border border-primary my-1 p-1">
         <DynamicComponent Type="@selectedType" />
     </div>
 }
+
 @code {
     private Type selectedType;
+
     private void OnDropdownChange(ChangeEventArgs e)
     {
         selectedType = e.Value.ToString().Length > 0 ? 
@@ -118,11 +128,11 @@ In the following example, a [Blazor form](xref:blazor/forms-validation) renders 
 }
 ```
 
-In the `DynamicComponentExample` component:
+In the preceding example:
 
 * Component names are used as the option values using the [`nameof` operator](/dotnet/csharp/language-reference/operators/nameof), which returns component names as constant strings.
 * The `{APP NAMESPACE}` placeholder is the namespace of the app (for example, `BlazorSample`).
-* The components to render dynamically are shared components in the app's `Shared` folder:
+* The dynamically-rendered components are shared components in the app's `Shared` folder:
   * `RocketLab` (`Shared/RocketLab.razor`)
   * `SpaceX` (`Shared/SpaceX.razor`)
   * `UnitedLaunchAlliance` (`Shared/UnitedLaunchAlliance.razor`)
@@ -130,15 +140,16 @@ In the `DynamicComponentExample` component:
 
 ## Pass parameters
 
-If dynamically-rendered components have [component parameters](xref:blazor/components/index#component-parameters), pass them into the `DynamicComponent` as an `IDictionary<string, object>`. The `string` is the name of the parameter, and the `object` is the parameter's value. Logic can filter and pass in parameters to the `DynamicComponent`, depending on the type passed. Data can be passed from an API, a database, or a method, as long as it returns an `IDictionary<string, object>`.
+If dynamically-rendered components have [component parameters](xref:blazor/components/index#component-parameters), pass them into the `DynamicComponent` as an `IDictionary<string, object>`. The `string` is the name of the parameter, and the `object` is the parameter's value.
 
-The following example configures `ComponentMetadata` for dynamically-rendered components.
+The following example configures a component metadata object (`ComponentMetadata`) to supply parameter values to dynamically-rendered components based on the type name. The example is just one of several approaches that you can adopt. Parameter data can also be passed from an API, a database, or a method, as long as it returns an `IDictionary<string, object>`.
 
 `ComponentMetadata.cs`:
 
 ```csharp
 using System;
 using System.Collections.Generic;
+
 public class ComponentMetadata
 {
     public string Name { get; set; }
@@ -152,13 +163,16 @@ In the following example, only the `RocketLab` component has a parameter, which 
 
 ```razor
 @page "/dynamiccomponent-example-2"
+
 <h1><code>DynamicComponent</code> Component Example 2</h1>
+
 <p>
     <label>
         <input type="checkbox" @bind="WindowSeat" />
         Window Seat (Rocket Lab only)
     </label>
 </p>
+
 <p>
     <label>
         Select your transport:
@@ -171,6 +185,7 @@ In the following example, only the `RocketLab` component has a parameter, which 
         </select>
     </label>
 </p>
+
 @if (selectedType is not null)
 {
     <div class="border border-primary my-1 p-1">
@@ -178,6 +193,7 @@ In the following example, only the `RocketLab` component has a parameter, which 
             Parameters="@components[selectedType.Name].Parameters" />
     </div>
 }
+
 @code {
     private Dictionary<string, ComponentMetadata> components =
         new()
@@ -205,6 +221,7 @@ In the following example, only the `RocketLab` component has a parameter, which 
         };
     private Type selectedType;
     private bool windowSeat;
+
     private bool WindowSeat
     {
         get { return windowSeat; }
@@ -214,6 +231,7 @@ In the following example, only the `RocketLab` component has a parameter, which 
             components[nameof(RocketLab)].Parameters["WindowSeat"] = windowSeat;
         }
     }
+
     private void OnDropdownChange(ChangeEventArgs e)
     {
         selectedType = e.Value.ToString().Length > 0 ? 
@@ -225,11 +243,12 @@ In the following example, only the `RocketLab` component has a parameter, which 
 In the preceding example:
 
 * The `{APP NAMESPACE}` placeholder is the namespace of the app (for example, `BlazorSample`).
-* The components to render dynamically are shared components in the app's `Shared` folder. For examples, see the [Example](#example) section earlier in this article:
-  * `RocketLab` (`Shared/RocketLab.razor`)
-  * `SpaceX` (`Shared/SpaceX.razor`)
-  * `UnitedLaunchAlliance` (`Shared/UnitedLaunchAlliance.razor`)
-  * `VirginGalactic` (`Shared/VirginGalactic.razor`)
+* The dynamically-rendered components are shared components in the app's `Shared` folder:
+  * Shown in this article section: `RocketLab` (`Shared/RocketLab.razor`)
+  * Components shown in the [Example](#example) section earlier in this article:
+    * `SpaceX` (`Shared/SpaceX.razor`)
+    * `UnitedLaunchAlliance` (`Shared/UnitedLaunchAlliance.razor`)
+    * `VirginGalactic` (`Shared/VirginGalactic.razor`)
 
 The `RocketLab` component (`Shared/RocketLab.razor`) includes a component parameter named `WindowSeat`:
 
@@ -237,13 +256,16 @@ The `RocketLab` component (`Shared/RocketLab.razor`) includes a component parame
 
 ```razor
 <h2>Rocket Lab&reg;</h2>
+
 <p>
     User selected a window seat: @WindowSeat
 </p>
+
 <p>
     Rocket Lab is a trademark of 
     <a href="https://www.rocketlabusa.com/">Rocket Lab USA Inc.</a>.
 </p>
+
 @code {
     [Parameter]
     public bool WindowSeat { get; set; }
@@ -256,4 +278,4 @@ Avoid the use of [catch-all parameters](xref:blazor/fundamentals/routing#catch-a
 
 ## Trademarks
 
-Rocket Lab is a registered trademark of [Rocket Lab USA Inc.](https://www.rocketlabusa.com/). SpaceX is a registered trademark of [Space Exploration Technologies Corp.](https://www.spacex.com/). United Launch Alliance and ULA are registered trademarks of [United Launch Alliance, LLC](https://www.ulalaunch.com/). Virgin Galactic is a registered trademark of [Galactic Enterprises, LLC](https://www.virgingalactic.com/).
+Rocket Lab is a registered trademark of [Rocket Lab USA Inc.](https://www.rocketlabusa.com/) SpaceX is a registered trademark of [Space Exploration Technologies Corp.](https://www.spacex.com/) United Launch Alliance and ULA are registered trademarks of [United Launch Alliance, LLC](https://www.ulalaunch.com/). Virgin Galactic is a registered trademark of [Galactic Enterprises, LLC](https://www.virgingalactic.com/).
