@@ -1,6 +1,6 @@
 ---
 title: Dynamically-rendered ASP.NET Core Razor components
-author: guardrex
+author: daveabrock
 description: Learn how to use dynamically-rendered Razor components in Blazor apps.
 monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
