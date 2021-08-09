@@ -1,14 +1,9 @@
 using System;
 using System.Net;
-using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Connections;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
-using Microsoft.AspNetCore.Server.Kestrel.Https;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
 namespace Http3Sample
 {
@@ -17,8 +12,6 @@ namespace Http3Sample
         #region snippet_UseHttp3
         public static async Task Main(string[] args)
         {
-            var cert = CertificateLoader.LoadFromStoreCert("localhost", StoreName.My.ToString(), StoreLocation.CurrentUser, false);
-
             var builder = WebApplication.CreateBuilder(args);
             builder.WebHost.UseKestrel()
             // Set up Quic options
