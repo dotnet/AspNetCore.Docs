@@ -848,7 +848,7 @@
           uid: fundamentals/servers/kestrel
         - name: Use HTTP/3 with Kestrel
           displayName: HTTP/3, kestrel
-          uid: fundamentals/servers/http3
+          uid: fundamentals/servers/kestrel/http3
         - name: Endpoints
           displayName: deploy, publish, server, Kestrel
           uid: fundamentals/servers/kestrel/endpoints
