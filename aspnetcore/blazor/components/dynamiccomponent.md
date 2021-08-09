@@ -13,6 +13,8 @@ uid: blazor/components/dynamiccomponent
 
 By [Dave Brock](https://twitter.com/daveabrock)
 
+*This feature applies to ASP.NET Core 6.0 Preview 7 or later. ASP.NET Core 6.0 Preview 7 is scheduled for release in August. ASP.NET Core 6.0 is scheduled for release later this year.*
+
 Use the built-in `DynamicComponent` component to render components by type.
 
 A `DynamicComponent` is useful for rendering components without having to iterate through possible types or having to use conditional logic to render a specific component. For example, `DynamicComponent` can render a component based on a user selection from a dropdown list.
