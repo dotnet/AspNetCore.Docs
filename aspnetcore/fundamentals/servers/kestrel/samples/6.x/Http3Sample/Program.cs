@@ -14,18 +14,18 @@ namespace Http3Sample
         {
             var builder = WebApplication.CreateBuilder(args);
             builder.WebHost.UseKestrel()
-            // Set up Quic options
+            // Set up QUIC options
             .UseQuic(options =>
             {
                 options.Alpn = "h3-29";
-                options.IdleTimeout = TimeSpan.FromHours(1);
+                options.IdleTimeout = TimeSpan.FromMinutes(1);
             })
             .ConfigureKestrel((context, options) =>
             {
                 options.EnableAltSvc = true;
                 options.Listen(IPAddress.Any, 5001, listenOptions =>
                 {
-                    // Use Http3
+                    // Use HTTP/3
                     listenOptions.Protocols = HttpProtocols.Http1AndHttp2AndHttp3;
                     listenOptions.UseHttps();
                 });
@@ -33,7 +33,7 @@ namespace Http3Sample
             #endregion
             await using var app = builder.Build();
 
-            app.MapGet("/", (Func<string>)(() => "Hello World!"));
+            app.MapGet("/", () => "Hello World!");
 
             await app.RunAsync();
         }
