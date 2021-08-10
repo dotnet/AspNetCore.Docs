@@ -16,7 +16,6 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 [!INCLUDE [consider RP](~/includes/razor.md)]
 
-[!INCLUDE [Choose web UI](~/includes/choose-ui-link.md)]
 
 This is the first tutorial of a series that teaches ASP.NET Core MVC web development with controllers and views.
 
