@@ -21,9 +21,9 @@ HTTP/3 and QUIC have a number of benefits compared to older HTTP versions:
 * Supports transitioning between networks. This feature is useful for mobile devices where it is common to switch between WIFI and cellular networks as a mobile device changes location. Today HTTP/1.1 and HTTP/2 connections will fail with an error and force an app or web browser to retry. HTTP/3 allows the app or web browser to seamlessly continue when a network changes. Kestrel doesn't support network transitions in .NET 6. It may be available in a future release.
 
 > [!IMPORTANT]
-> HTTP/3 is available in .NET 6 as a preview feature. There may be behavioral or performance issues in HTTP/3 with .NET 6.
+> HTTP/3 is available in .NET 6 as a preview feature. The HTTP/3 specification hasn't been finalized. Additionally, there may be behavioral or performance issues in HTTP/3 with .NET 6.
 >
-> Apps that want to use HTTP/3 should be designed to support it alongside older HTTP versions. If issues are identified in HTTP/3 then it is recommended that HTTP/3 is temporarily designed until issues are resolved and the app can be updated.
+> Apps that want to use HTTP/3 should be designed to support it alongside older HTTP versions. If issues are identified in HTTP/3 then it is recommended that apps temporarily disable it until issues are resolved and the app can be updated.
 
 ## HTTP/3 requirements
 
