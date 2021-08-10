@@ -18,7 +18,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 ::: moniker-end
 
 
-See [Publish a Web app to Azure App Service using Visual Studio for Mac](/visualstudio/mac/publish-app-svc) if you are working on macOS.
+If you're working on macOS, see [Publish a Web app to Azure App Service using Visual Studio for Mac](/visualstudio/mac/publish-app-svc).
 
 To troubleshoot an App Service deployment issue, see <xref:test/troubleshoot-azure-iis>.
 
@@ -28,7 +28,7 @@ To troubleshoot an App Service deployment issue, see <xref:test/troubleshoot-azu
 
 ## Create a web app
 
-In the Visual Studio Start Page, select **File > New > Project...**
+In the Visual Studio Start Page, select **File** > **New** > **Project**.
 
 ![File menu](publish-to-azure-webapp-using-vs/_static/file_new_project.png)
 
@@ -77,7 +77,7 @@ The app displays the email used to register the new user and a **Logout** link.
 
 ## Deploy the app to Azure
 
-Right-click on the project in Solution Explorer and select **Publish...**.
+Right-click on the project in Solution Explorer and select **Publish**.
 
 ![Contextual menu open with Publish link highlighted](publish-to-azure-webapp-using-vs/_static/pub.png)
 
@@ -95,7 +95,7 @@ In the **Publish** dialog:
 
 ![Publish Dialog: select Azure Service](publish-to-azure-webapp-using-vs/_static/maas2.png)
 
-In the **Publish** dialog select **Create a new Azure App Service...**
+In the **Publish** dialog, select **Create a new Azure App Service**.
 
 ![Publish dialog: select Azure Service instance](publish-to-azure-webapp-using-vs/_static/maas3.png)
 
@@ -124,7 +124,7 @@ The **Configure dependency** dialog appears:
 
 ![Configure SQL Server Dependency dialog](publish-to-azure-webapp-using-vs/_static/sql1.png)
 
-In the **Configure Azure SQL database** dialog select **Create a SQL Database**
+In the **Configure Azure SQL database** dialog, select **Create a SQL Database**.
 
 ![Configure Azure SQL Database dialog](publish-to-azure-webapp-using-vs/_static/sql2.png)
 
