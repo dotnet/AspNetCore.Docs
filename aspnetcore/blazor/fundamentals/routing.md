@@ -362,7 +362,7 @@ On each incoming navigation event, pending values are discarded and query parame
 
 ### Set query parameters
 
-`SetQueryParameter` adds or updates a query parameter with culture-invariant formatting. If you pass `null` for a nullable type `T`, it's the same as deleting the parameter (covered in the [Remove query parameters](#revmove-query-parameters) section). For non-nullable types, `RemoveQueryParameter` must be called.
+`SetQueryParameter` adds or updates a query parameter with culture-invariant formatting. If you pass `null` for a nullable type `T`, it's the same as deleting the parameter (covered in the [Remove query parameters](#remove-query-parameters) section). For non-nullable types, `RemoveQueryParameter` must be called.
 
 Setting a query parameter:
 
@@ -478,7 +478,7 @@ Nav.UriWithQueryParameter<T>(string name, T value)
 * Returns a string equal to the current URL except with a single parameter added or updated, or removed if the type is nullable and the value is null
 * Automatically uses the correct culture-invariant formatting for the given type, and of course URL-encodes the name and value
 * Won't really be generic - I just wrote it like that here as shorthand. In reality there will be actual overloads for all the supported primitive types, and no other types, so you can't get confused about what's supported.
-* Replaces all of the values with the matching name (if there were multiple of them before). If the value you pass is an IEnumerable<T> for one of the supported types T, then we emit multiple name/value pairs.
+* Replaces all of the values with the matching name (if there were multiple of them before). If the value you pass is an `IEnumerable<T>` for one of the supported types T, then we emit multiple name/value pairs.
 
 ```csharp
 Nav.UriWithQueryParameters(IReadOnlyDictionary<string, object> parameters)
