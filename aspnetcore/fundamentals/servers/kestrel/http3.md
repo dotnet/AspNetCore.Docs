@@ -12,26 +12,26 @@ uid: fundamentals/servers/kestrel/http3
 
 # Use HTTP/3 with the ASP.NET Core Kestrel web server
 
-[HTTP/3](https://quicwg.org/base-drafts/draft-ietf-quic-http.html) is the third and upcoming major version of HTTP. HTTP/3 uses the same semantics as HTTP/1.1 and HTTP/2: the same request methods, status codes, and message fields apply to all versions. The differences are in the underlying transport. Both HTTP/1.1 and HTTP/2 use TCP as their transport. HTTP/3 uses a new transport technology developed alongside HTTP/3 called QUIC.
+[HTTP/3](https://quicwg.org/base-drafts/draft-ietf-quic-http.html) is the third and upcoming major version of HTTP. HTTP/3 uses the same semantics as HTTP/1.1 and HTTP/2: the same request methods, status codes, and message fields apply to all versions. The differences are in the underlying transport. Both HTTP/1.1 and HTTP/2 use TCP as their transport. HTTP/3 uses a new transport technology developed alongside HTTP/3 called [QUIC](https://datatracker.ietf.org/doc/html/draft-ietf-quic-transport-34).
 
-HTTP/3 and QUIC have a number of benefits compared to older HTTP versions:
+HTTP/3 and QUIC have a number of benefits compared to HTTP/1.1 and HTTP/2:
 
 * Faster response time of the first request. QUIC and HTTP/3 negotiates the connection in fewer round-trips between the client and the server. The first request reachs the server faster.
-* Improved experience when there is connection packet loss. HTTP/2 multiplexes multiple requests via one TCP connection. Packet loss on the connection would affect all requests. This problem is called "head-of-line blocking". Because QUIC provides native multiplexing, lost packets only impact the requests where data has been lost.
-* Supports transitioning between networks. This feature is useful for mobile devices where it is common to switch between WIFI and cellular networks as a mobile device changes location. Today HTTP/1.1 and HTTP/2 connections will fail with an error and force an app or web browser to retry. HTTP/3 allows the app or web browser to seamlessly continue when a network changes. Kestrel doesn't support network transitions in .NET 6. It may be available in a future release.
+* Improved experience when there is connection packet loss. HTTP/2 multiplexes multiple requests via one TCP connection. Packet loss on the connection affects all requests. This problem is called "head-of-line blocking". Because QUIC provides native multiplexing, lost packets only impact the requests where data has been lost.
+* Supports transitioning between networks. This feature is useful for mobile devices where it is common to switch between WIFI and cellular networks as a mobile device changes location. Currently HTTP/1.1 and HTTP/2 connections fail with an error when switching networks. An app or web browsers must retry any failed HTTP requests. HTTP/3 allows the app or web browser to seamlessly continue when a network changes. Kestrel doesn't support network transitions in .NET 6. It may be available in a future release.
 
 > [!IMPORTANT]
 > HTTP/3 is available in .NET 6 as a preview feature. The HTTP/3 specification hasn't been finalized. Additionally, there may be behavioral or performance issues in HTTP/3 with .NET 6.
 >
-> Apps that want to use HTTP/3 should be designed to support it alongside older HTTP versions. If issues are identified in HTTP/3 then it is recommended that apps temporarily disable it until issues are resolved and the app can be updated.
+> Apps that want take advantage of HTTP/3 should be designed to support all 3 versions versions. If issues are identified in HTTP/3 then it is recommended that apps temporarily disable it until issues are resolved and the app can be updated.
 
 ## HTTP/3 requirements
 
-HTTP/3 isn't supported everywhere. The requirements are different depending on the operating system that Kestrel is running on.
+HTTP/3 isn't supported everywhere. The requirements are different depending on the operating system hosting Kestrel.
 
-When using HTTP/3, it is recommended to enable it alongside other HTTP versions. Because Kestrel only enables HTTP/3 if an environment supports it, a port configured to serve all HTTP protocols will automatically enable HTTP/3 if it is available. If HTTP/3 isn't available then the port continues to serve HTTP/1.1 and HTTP/2 requests.
+When using HTTP/3, we recommend enabling it and the other HTTP versions. Because Kestrel only enables HTTP/3 if an environment supports it, a port configured to serve all HTTP protocols automatically enable HTTP/3 if it is available. If HTTP/3 isn't available then the port continues to serve HTTP/1.1 and HTTP/2 requests.
 
-For example, `HttpProtocols.Http1AndHttp2AndHttp3` allows Kestrel to enable HTTP/3 on environments where it is supported, along side HTTP/1.1 and HTTP/2.
+For example, `HttpProtocols.Http1AndHttp2AndHttp3` allows Kestrel to enable HTTP/3 on environments where it is supported, with fallbacks for HTTP/1.1 and HTTP/2.
 
 ### Windows
 
@@ -73,6 +73,6 @@ For more information on building the host, see the **Set up a host** and **Defau
 ## Localhost testing
 
 * Browsers do not enable HTTP/3 on localhost/loopback connections: to test with a browser, run the client and server on separate machines.
-* `HttpClient` can be used for localhost/loopback testing in .NET 6 or later. Extra configured is required when using `HttpClient` to make a HTTP/3 request:
+* `HttpClient` can be used for localhost/loopback testing in .NET 6 or later. Extra configured is required when using `HttpClient` to make an HTTP/3 request:
   * Set `HttpRequestMessage.Version` to 3.0, or
   * Set `HttpRequestMessage.VersionPolicy` to `HttpVersionPolicy.RequestVersionOrHigher`.
