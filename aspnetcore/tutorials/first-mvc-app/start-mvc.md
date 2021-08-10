@@ -16,7 +16,6 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 [!INCLUDE [consider RP](~/includes/razor.md)]
 
-
 This is the first tutorial of a series that teaches ASP.NET Core MVC web development with controllers and views.
 
 At the end of the series, you'll have an app that manages and displays movie data. You learn how to:
