@@ -27,8 +27,6 @@ HTTP/3 and QUIC have a number of benefits compared to HTTP/1.1 and HTTP/2:
 
 ## HTTP/3 requirements
 
-HTTP/3 isn't supported everywhere. The requirements are different depending on the operating system hosting Kestrel.
-
 HTTP/3 isn't enabled by default. Because not all routers, firewalls, and proxies properly support HTTP/3, we recommend configuring HTTP/3 together with HTTP/1.1 and HTTP/2. This can be done by specifying `HttpProtocols.Http1AndHttp2AndHttp3` as an endpoint's supported protocols.
 
 If the platform that Kestrel is running on doesn't have all the requirements for HTTP/3 then it is automatically disabled.
