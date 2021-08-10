@@ -54,7 +54,7 @@ HTTP/3 isn't currently supported on macOS and may be available in a future relea
 
 ## Alt-svc
 
-HTTP/3 is discovered as an upgrade from HTTP/1.1 or HTTP/2 via the `alt-svc` header. That means the first request will normally use HTTP/1.1 or HTTP/2 before switching to HTTP/3.
+HTTP/3 is discovered as an upgrade from HTTP/1.1 or HTTP/2 via the `alt-svc` header. That means the first request will normally use HTTP/1.1 or HTTP/2 before switching to HTTP/3. If HTTP/3 is enabled, Kestrel automatically adds the `alt-svc` header.
 
 ## Get started
 
