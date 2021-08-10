@@ -45,8 +45,6 @@ Components support multiple route templates using multiple [`@page` directives](
 
 [!INCLUDE[](~/6.0/blazor/includes/layout-page-preview-7.md)]
 
-The <xref:Microsoft.AspNetCore.Components.Routing.Router> doesn't interact with query string values. To work with query strings, see the [Query string and parse parameters](#query-string-and-parse-parameters) section.
-
 ## Focus an element on navigation
 
 Use the `FocusOnNavigate` component to set the UI focus to an element based on a CSS selector after navigating from one page to another. You can see the `FocusOnNavigate` component in use by the `App` component of an app generated from a Blazor project template.
@@ -118,9 +116,6 @@ protected override void OnParametersSet()
 }
 ```
 
-> [!NOTE]
-> Route parameters don't work with query string values. To work with query strings, see the [Query string and parse parameters](#query-string-and-parse-parameters) section.
-
 ## Route constraints
 
 A route constraint enforces type matching on a route segment to a component.
@@ -133,9 +128,6 @@ In the following example, the route to the `User` component only matches if:
 `Pages/User.razor`:
 
 [!code-razor[](~/6.0/blazor/samples/BlazorSample_WebAssembly/Pages/routing/User.razor?highlight=1)]
-
-> [!NOTE]
-> Route constraints don't work with query string values. To work with query strings, see the [Query string and parse parameters](#query-string-and-parse-parameters) section.
 
 The route constraints shown in the following table are available. For the route constraints that match the invariant culture, see the warning below the table for more information.
 
@@ -260,23 +252,266 @@ For more information on component disposal, see <xref:blazor/components/lifecycl
 
 ## Query string and parse parameters
 
-The query string of a request is obtained from the <xref:Microsoft.AspNetCore.Components.NavigationManager.Uri?displayProperty=nameWithType> property:
+*This feature applies to ASP.NET Core 6.0 Preview 7 or later. ASP.NET Core 6.0 Preview 7 is scheduled for release in August. ASP.NET Core 6.0 is scheduled for release later this year.*
+
+The design of most Blazor app navigation features that would use query strings can rely upon route parameters. However, query strings remain relevant a relevant approach.
+
+Use of query strings are:
+
+* Convenient for multiple optional parameters, since any subset of parameters can appear in the URL in any order.
+* Provide an obvious and standard way to escape user-supplied values so that parsing is robust, unlike route segments where developers and visitors might be confused on the necessity and procedure to escape values.
+* Make an explicit distinction between the part of the URL used for `@page` selection (the path) versus additional parameters (the query). This aspect is an aesthetics consideration.
+* Instinctively favored among developers for creating bookmarkable or linkable state within a page, especially when the state is user-constructed rather than just representing a choice among pre-existing entities. For example, developers often favor a URLs for search with a query string over the use of route parameters with a cryptic segment structure and order, even though the latter is technically possible. The following examples demonstrate both approaches in an issue search for "`Blazor is too cool`" with a sort by "`upvotes`":
+  * Favored: `/dotnet/aspnet/issues?search=Blazor+is+too+cool&sort=upvotes`
+  * Unfavored: `/dotnet/aspnet/issues/search-Blazor+is+too+cool/sort-upvotes`
+
+Out of scope things
+
+* Query strings should explicitly not be involved in the router's selection of @page components.
+  * This is to match both the current behavior of server-side ASP.NET Core routing, and the historical behavior of most web frameworks (e.g., `/folder/somepage.aspx?a=1&b=2` matches `/folder/somepage.aspx` regardless of the query string).
+  * This means you cannot use URLs like products/123?view=details vs products/123?view=reviews to select between two different routable (`@page`) components. You would need to have a single component matching products/{id}, and then inside that, use whatever logic you like (possibly based on query string) to render different content or child components.
+* I don't think we need to have any formatting/parsing options other than "invariant culture". URLs are treated as invariant in other contexts in ASP.NET Core / Blazor. People who want to do something different can always use the "string" APIs and do their own formatting/parsing.
+
+Indicate query string values as route parameters (`[Parameter]` attribute) with the `[FromQuery]` attribute. Query strings are processed with route parameters in `SetParametersAsync`.
+
+Consider handling the URL `/query-string-example-1/123?page=4&filter=house%20salad`. The following `QueryStringExample1` component receives a route parameter for `Id` as an integer (`{id:int}` in the route's template). Query string values for the current page (`CurrentPage`) and a filter (`Filter`) are marked with the `[FromQuery]` attribute. The current page specifies the query string parameter name as `page`, while the filter (`Filter`) defaults to the name of the property (`filter`).
+
+`Pages/QueryStringExample1.razor`:
 
 ```razor
-@inject NavigationManager NavigationManager
+@page "/query-string-example-1/{id:int}"
 
-...
+<h1>Query String Example 1</h1>
 
-var query = new Uri(NavigationManager.Uri).Query;
+<ul>
+    <li>Id: @Id</li>
+    <li>CurrentPage: @CurrentPage</li>
+    <li>Filter: @Filter</li>
+</ul>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    [Parameter]
+    [FromQuery("page")]
+    public int CurrentPage { get; set; }
+
+    [Parameter, FromQuery]
+    public string Filter { get; set; }
+}
 ```
 
-To parse a query string's parameters, one approach is to use [`URLSearchParams`](https://developer.mozilla.org/docs/Web/API/URLSearchParams) with [JavaScript (JS) interop](xref:blazor/js-interop/call-javascript-from-dotnet):
+Use of `[FromQuery]` to receive and set query string values is only honored in routable components with an `@page` directive because the Blazor Router doesn't supply parameter values to descendant components.
 
-```javascript
-export createQueryString = (string queryString) => new URLSearchParams(queryString);
+### Get and set query parameters procedurally
+
+Besides receiving query string parameters with update notifications via `[Parameter]`, any other arbitrary code that has access to the `NavigationManager` is able to get and set values:
+
+`Pages/QueryStringExample2.razor`:
+
+```razor
+@page "/query-string-example-2"
+@inject NavigationManager Nav
+
+<h1>Query String Example 2</h1>
+
+@code {
+    public override async Task SetParametersAsync(ParameterView parameters)
+    {
+        Nav.SetQueryParameter("fromDate", DateTime.Now);
+
+        var page = Nav.GetQueryParameter<int>("page");
+
+        Nav.RemoveQueryParameter("page");
+
+        await base.SetParametersAsync(parameters);
+    }
+}
 ```
 
-For more information on JavaScript isolation with JavaScript modules, see <xref:blazor/js-interop/call-javascript-from-dotnet#javascript-isolation-in-javascript-modules>.
+`GetQueryParameter`/`SetQueryParameter` take a generic type `T`, but the type is usually inferred for `SetQueryParameter` based on the value.
+
+Supported types are identical to supported types for route constraints:
+
+* `bool`
+* `DateTime`
+* `decimal`
+* `double`
+* `float`
+* `Guid`
+* `int`
+* `long`
+* `string`
+
+Passing any other generic type results in a <xref:System.NotSupportedException>. [Nullable value types](/dotnet/csharp/language-reference/builtin-types/nullable-value-types) are supported.
+
+### Get query parameters
+
+The value is returned from `GetQueryParameter` with culture-invariant parsing, if possible. If there's no value or the value is unparseable, `default(T)` is returned. Only one value for a given query parameter is supported, so the first parameter instance found is returned.
+
+The value returned by `GetQueryParameter` can be temporarily inconsistent with `NavigationManager.Url`. If you call `SetQueryParameter` to set a query parameter value, `GetQueryParameter` always returns the value that you set regardless of the URL updating or navigation executing. This is essential for `@bind` to work sensibly without losing keystrokes due to asynchronous event processing.
+
+For the edge case where the component requires the query parameter's value that's still in the URL, specify a value of `true` to `ignorePendingNavigations`:
+
+```csharp
+var page = Nav.GetQueryParameter<int>("page", ignorePendingNavigations: true);
+```
+
+On each incoming navigation event, pending values are discarded and query parameters reflect the actual URL state thereafter.
+
+### Set query parameters
+
+`SetQueryParameter` adds or updates a query parameter with culture-invariant formatting. If you pass `null` for a nullable type `T`, it's the same as deleting the parameter (covered in the [Remove query parameters](#revmove-query-parameters) section). For non-nullable types, `RemoveQueryParameter` must be called.
+
+Setting a query parameter:
+
+* Preserves the existing parameter ordering, appending at the end if the parameter a new key.
+* Causes navigation to occur. By default, the new request is appended to the browser's history, since that's the default for all of the JavaScript APIs.
+
+If you prefer to replace the existing entry, set a value of `true` on `replace`:
+
+```csharp
+Nav.SetQueryParameter("fromDate", startDate, replace: true);
+```
+
+Setting query parameters only triggers client-side navigation. There's never a need to force a full page load because by definition query parameters don't control page selection.
+
+The rendered component only receives notification for setting query parameters if it has a corresponding `[Parameter]` and `[FromQuery]` attributes. That's the mechanism for opting into receiving notifications.
+
+To set multiple query parameters at once, use <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A?displayProperty=nameWithType> and perform your own URL formatting in developer code.
+
+### Remove query parameters
+
+Removal of a query parameter is only required if the parameters type `T` is non-nullable and you want to remove the value entirely. Removing a query parameter triggers the same navigation and other effects as [setting a query parameter](#set-query-parameters). Removal of a query parameter supports `replace`:
+
+```csharp
+Nav.RemoveQueryParameter("fromDate", replace: true);
+```
+
+### Two-way binding to a query parameter
+
+Define get/set pair that uses the `GetQueryParameter`/`SetQueryParameter` APIs. Because of the behavior of setting a parameter followed by a get value operation returning the most-recently-written value, `@bind` behaves normally.
+
+> [!NOTE]
+> The approaches shown in this section are optional and generally only used in special cases. For example, use the approaches in this section if you want to receive notifications when the query parameter value changes. For example, use the approaches for back/forward browser events or when the user enters data that requires an immediate query parameter update.
+
+Notifications trigger [`OnParametersSetAsync`](xref:blazor/components/lifecycle#after-parameters-are-set-onparameterssetasync).
+
+`Pages/QueryStringExample3.razor`:
+
+```razor
+@page "/query-string-example-3"
+@inject NavigationManager Nav
+
+<h1>Query String Example 3</h1>
+
+<input @bind="FilterBindable" @bind:event="oninput" />
+
+@code {
+    [Parameter, FromQuery]
+    public string Filter { get; set; }
+
+    private string FilterBindable
+    {
+        get => Nav.GetQueryParameter<string>("filter");
+        set => Nav.SetQueryParameter("filter", value);
+    }
+}
+```
+
+Declaring a get/set pair like this is reasonably conventional for controlling what a `@bind` does. I know some people will ask why they can't just `@bind` directly to the Filter parameter, but we can't do that (without introducing new magic) because the framework doesn't even know when you call the setter, so can't know to trigger navigation. Benefits of defining your own get/set pair like this:
+
+* It's obvious how it works
+* It's obvious how to pass other parameters like replace or do custom formatting conversions
+* You can easily cause side-effects before the navigation or synchronously after it (not waiting for the round-trip to the browser, depending on your needs.
+
+For people who don't want to define their own get/set pair, we could offer a built-in API that hides away this detail.
+
+`Pages/QueryStringExample4.razor`:
+
+```razor
+@page "/query-string-example-4"
+@inject NavigationManager Nav
+
+<h1>Query String Example 4</h1>
+
+<input @bind="@Nav.Query("filter").Value" @bind:event="oninput" />
+
+@code {
+    [Parameter, FromQuery]
+    public string Filter { get; set; }
+}
+```
+
+`Nav.Query(name, replace=true)` would return a read-only `struct` that's a way to call `GetQueryParameter`/`SetQueryParameter` so it can be used with `@bind`. There can also be a generically-typed overload of it for non-string query parameters:
+
+```razor
+<input type="date" @bind="@(Nav.Query<DateTime>("startdate").Value)" />
+```
+
+> [!NOTE]
+> Due to Razor syntax limitations, you must surround the expression with `@(...)` because of presence of the generic type parameter. Alternatively, you can define a get/set pair manually.
+
+## Build query string API
+
+*This feature applies to ASP.NET Core 6.0 Release Candidate 1 or later. ASP.NET Core 6.0 Release Candidate 1 and ASP.NET Core 6.0 are scheduled for release later this year.*
+
+https://github.com/dotnet/aspnetcore/pull/34813
+
+Scenarios:
+
+* Adding/changing/removing a single query parameter on the current URL
+* Adding/changing/removing multiple query parameters on the current URL
+* Constructing a whole new URL with any number of query parameters
+
+These three cases naturally lead to three different method overloads, and since they are mainly focused on updating the current URL, they make perfectly good sense to hang on `NavigationManager`. This avoids confusing anyone with it seeming to duplicate any other query-related APIs in ASP.NET Core.
+
+Rather than optimize excessively for perf at this stage with the whole "builder" pattern to avoid allocations, I propose the following overloads. Note that there's already `NavigationManager.Uri` to get the current URL, so these naturally fit alongside it in IntelliSense:
+
+### Public APIs
+
+```csharp
+Nav.UriWithQueryParameter<T>(string name, T value)
+```
+
+* Returns a string equal to the current URL except with a single parameter added or updated, or removed if the type is nullable and the value is null
+* Automatically uses the correct culture-invariant formatting for the given type, and of course URL-encodes the name and value
+* Won't really be generic - I just wrote it like that here as shorthand. In reality there will be actual overloads for all the supported primitive types, and no other types, so you can't get confused about what's supported.
+* Replaces all of the values with the matching name (if there were multiple of them before). If the value you pass is an IEnumerable<T> for one of the supported types T, then we emit multiple name/value pairs.
+
+```csharp
+Nav.UriWithQueryParameters(IReadOnlyDictionary<string, object> parameters)
+```
+
+* As above, except with multiple parameters being added/updated/removed.
+* For each value, uses `value?.GetType()` to determine the runtime type and picks the correct culture-invariant formatting for each, or throws for unsupported types
+  * Open question: do we want to support multiple values for a given parameter name? If the value type is `IEnumerable<T>` for a supported `T`, we can certainly add multiple values for the parameter, but we'd need to replace all existing ones with that name otherwise there'd be no way to remove items from a collection.
+* Clearly this will involve a bunch of boxing for most parameter types, plus needs to allocate storage to track which of the existing/new parameters have been used. Possible future alternative: We could introduce a more allocation-free builder variant like I prototyped before, but there's no immediate need for that.
+
+```csharp
+Nav.UriWithQueryParameters(string uri, IReadOnlyDictionary<string, object> parameters)
+```
+
+* As above, except instead of being based on the current URI, it uses some other uri you pass in. This covers the "build a whole new URL with parameters" case.
+
+For clarity, these can actually be extension methods that live in `Microsoft.AspNetCore.Components.Web` or even `Microsoft.AspNetCore.Components`.
+
+### Non-goals
+
+I no longer thing it's necessary or valuable to:
+
+* ... have APIs like `NavigationManager.SetQueryParameter(name, value, replaceFlag)` because that's equivalent to `NavigationManager.NavigateTo(navigationManager.UriWithQuery(name, value), replaceFlag)`
+* ... have any standalone "query string parser" API because:
+  * If you need to receive and process existing query parameters, you'd do that with `[SupplyParameterFromQuery]`
+  * If you want to ignore and leave unrelated parameters in place, the above APIs already do that
+  * It would require a more complicated API anyway. We can't give the developer a dictionary whose values are object, because we don't know how they want each value to be parsed. We'd need a dictionary of `string->QueryParameterValue`, where `QueryParameterValue` is some type on which you can call `GetBoolean`, `GetInt`, `GetIntArray`, etc. It's not good enough to just supply string because they also need access to the standard culture-invariant parsers. So although we could do all this, it's a whole bunch more complex and warrants ending up in a separate package.
+
+
+
+
+
+
 
 ## User interaction with `<Navigating>` content
 
