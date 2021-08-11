@@ -155,7 +155,7 @@ Blazor is a web framework designed to run client-side in the browser on a [WebAs
 
 ## Blazor WebAssembly
 
-The primary Blazor hosting model is running client-side in the browser on WebAssembly. The Blazor app, its dependencies, and the .NET runtime are downloaded to the browser. The app is executed directly on the browser UI thread. UI updates and event handling occur within the same process. The app's assets are deployed as static files to a web server or service capable of serving static content to clients.
+Blazor WebAssembly apps run client-side in the browser on a WebAssembly-based .NET runtime. The Blazor app, its dependencies, and the .NET runtime are downloaded to the browser. The app is executed directly on the browser UI thread. UI updates and event handling occur within the same process. The app's assets are deployed as static files to a web server or service capable of serving static content to clients.
 
 ![Blazor WebAssembly: The Blazor app runs on a UI thread inside the browser.](~/5.0/blazor/hosting-models/_static/blazor-webassembly.png)
 
@@ -293,7 +293,7 @@ Blazor is a web framework designed to run client-side in the browser on a [WebAs
 
 ## Blazor WebAssembly
 
-The primary Blazor hosting model is running client-side in the browser on WebAssembly. The Blazor app, its dependencies, and the .NET runtime are downloaded to the browser. The app is executed directly on the browser UI thread. UI updates and event handling occur within the same process. The app's assets are deployed as static files to a web server or service capable of serving static content to clients.
+Blazor WebAssembly apps run client-side in the browser on a WebAssembly-based .NET runtime. The Blazor app, its dependencies, and the .NET runtime are downloaded to the browser. The app is executed directly on the browser UI thread. UI updates and event handling occur within the same process. The app's assets are deployed as static files to a web server or service capable of serving static content to clients.
 
 ![Blazor WebAssembly: The Blazor app runs on a UI thread inside the browser.](~/3.1/blazor/hosting-models/_static/blazor-webassembly.png)
 
