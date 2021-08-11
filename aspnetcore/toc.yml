@@ -968,9 +968,6 @@
         - name: Kestrel overview
           displayName: deploy, publish, server
           uid: fundamentals/servers/kestrel
-        - name: HTTP/3
-          displayName: HTTP/3, kestrel
-          uid: fundamentals/servers/kestrel/http3
         - name: Endpoints
           displayName: deploy, publish, server, Kestrel
           uid: fundamentals/servers/kestrel/endpoints
@@ -980,6 +977,9 @@
         - name: HTTP/2
           displayName: deploy, publish, server, Kestrel
           uid: fundamentals/servers/kestrel/http2
+        - name: HTTP/3
+          displayName: HTTP/3, kestrel
+          uid: fundamentals/servers/kestrel/http3
         - name: When to use a reverse proxy
           displayName: deploy, publish, server, Kestrel
           uid: fundamentals/servers/kestrel/when-to-use-a-reverse-proxy
