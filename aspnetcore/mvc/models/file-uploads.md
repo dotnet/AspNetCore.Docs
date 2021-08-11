@@ -73,7 +73,7 @@ Common storage options for files include:
   * Physical storage is potentially less expensive than using a cloud data storage service.
   * The app's process must have read and write permissions to the storage location. **Never grant execute permission.**
 
-* Cloud data storage service (for example, [Azure Blob Storage](https://azure.microsoft.com/services/storage/blobs/))
+* Cloud data storage service, for example, [Azure Blob Storage](https://azure.microsoft.com/services/storage/blobs/).
 
   * Services usually offer improved scalability and resiliency over on-premises solutions that are usually subject to single points of failure.
   * Services are potentially lower cost in large storage infrastructure scenarios.
