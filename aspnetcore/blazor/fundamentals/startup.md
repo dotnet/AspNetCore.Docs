@@ -15,8 +15,6 @@ uid: blazor/fundamentals/startup
 
 Configure a manual start in the `wwwroot/index.html` file (Blazor WebAssembly) or `Pages/_Layout.cshtml` file (Blazor Server):
 
-[!INCLUDE[](~/6.0/blazor/includes/layout-page-preview-7.md)]
-
 * Add an `autostart="false"` attribute and value to the `<script>` tag for the Blazor script.
 * Place a script that calls `Blazor.start` after the Blazor `<script>` tag and inside the closing `</body>` tag.
 
