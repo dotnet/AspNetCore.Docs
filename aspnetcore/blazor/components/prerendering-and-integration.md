@@ -41,8 +41,6 @@ To set up prerendering for a hosted Blazor WebAssembly app:
 
 1. Add `_Host.cshtml` and `_Layout.cshtml` files to the **`Server`** project's `Pages` folder. You can obtain `_Host.cshtml` and `_Layout.cshtml` files from a project created from the Blazor Server template with the `dotnet new blazorserver -o BlazorServer` command in a command shell (the `-o BlazorServer` option creates a folder for the project). After placing the files into the **`Server`** project's `Pages` folder, make the following changes to the `_Layout.cshtml` file:
 
-   [!INCLUDE[](~/6.0/blazor/includes/layout-page-preview-7.md)]
-
    * Provide an [`@using`](xref:mvc/views/razor#using) directive for the **`Client`** project (for example, `@using BlazorHosted.Client`).
    * Update the stylesheet links to point to the WebAssembly project's stylesheets. In the following example, the client project's namespace is `BlazorHosted.Client`:
 
@@ -57,8 +55,6 @@ To set up prerendering for a hosted Blazor WebAssembly app:
      > Leave the `<link>` element that requests the Bootstrap stylesheet (`css/bootstrap/bootstrap.min.css`) in place.
 
    * In the `_Layout.cshtml` file, update the Blazor script source to use the client-side Blazor WebAssembly script:
-
-     [!INCLUDE[](~/6.0/blazor/includes/layout-page-preview-7.md)]
 
      ```diff
      - <script src="_framework/blazor.server.js"></script>
@@ -676,8 +672,6 @@ To solve these problems, Blazor supports persisting state in a prerendered page 
 ::: zone-end
 
 ::: zone pivot="server"
-
-[!INCLUDE[](~/6.0/blazor/includes/layout-page-preview-7.md)]
 
 `Pages/_Layout.cshtml`:
 

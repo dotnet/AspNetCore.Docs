@@ -64,8 +64,6 @@ The following `returnArrayAsync` JS function, calls the `ReturnArrayAsync` .NET 
 
 Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Layout.cshtml` (Blazor Server):
 
-[!INCLUDE[](~/6.0/blazor/includes/layout-page-preview-7.md)]
-
 ```html
 <script>
   window.returnArrayAsync = () => {
@@ -123,8 +121,6 @@ The following `sayHello1` JS function receives a <xref:Microsoft.JSInterop.DotNe
 
 Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Layout.cshtml` (Blazor Server):
 
-[!INCLUDE[](~/6.0/blazor/includes/layout-page-preview-7.md)]
-
 ```html
 <script>
   window.sayHello1 = (dotNetHelper) => {
@@ -173,8 +169,6 @@ The following `sayHello1` JS function:
 * Returns the message from `GetHelloMessage` to the `sayHello1` caller.
 
 Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Layout.cshtml` (Blazor Server):
-
-[!INCLUDE[](~/6.0/blazor/includes/layout-page-preview-7.md)]
 
 ```html
 <script>
@@ -255,8 +249,6 @@ The following `updateMessageCaller` JS function invokes the `UpdateMessageCaller
 
 Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Layout.cshtml` (Blazor Server):
 
-[!INCLUDE[](~/6.0/blazor/includes/layout-page-preview-7.md)]
-
 ```html
 <script>
   window.updateMessageCaller = (dotnetHelper) => {
@@ -315,8 +307,6 @@ Objects that contain circular references can't be serialized on the client for e
 Blazor supports optimized byte array JS interop that avoids encoding/decoding byte arrays into Base64. The following example uses JS interop to pass a byte array to .NET.
 
 Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Layout.cshtml` (Blazor Server), provide a `sendByteArray` JS function. The function is called by a button in the component and doesn't return a value:
-
-[!INCLUDE[](~/6.0/blazor/includes/layout-page-preview-7.md)]
 
 ```html
 <script>
