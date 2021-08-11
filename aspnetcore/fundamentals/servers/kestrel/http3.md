@@ -21,15 +21,17 @@ HTTP/3 and QUIC have a number of benefits compared to HTTP/1.1 and HTTP/2:
 * Supports transitioning between networks. This feature is useful for mobile devices where it is common to switch between WIFI and cellular networks as a mobile device changes location. Currently HTTP/1.1 and HTTP/2 connections fail with an error when switching networks. An app or web browsers must retry any failed HTTP requests. HTTP/3 allows the app or web browser to seamlessly continue when a network changes. Kestrel doesn't support network transitions in .NET 6. It may be available in a future release.
 
 > [!IMPORTANT]
-> HTTP/3 is available in .NET 6 as a preview feature. The HTTP/3 specification hasn't been finalized. Additionally, there may be behavioral or performance issues in HTTP/3 with .NET 6.
+> HTTP/3 is available in .NET 6 as a preview feature as the HTTP/3 specification hasn't been finalized and there may be behavioral or performance issues in HTTP/3 with .NET 6.
 >
-> Apps that want take advantage of HTTP/3 should be designed to support all 3 versions versions. If issues are identified in HTTP/3 then it is recommended that apps temporarily disable it until issues are resolved and the app can be updated.
+> Apps that want take advantage of HTTP/3 should be designed to support all 3 HTTP versions. If issues are identified in HTTP/3 then it is recommended that apps temporarily disable it until issues are resolved and the app can be updated.
 
 ## HTTP/3 requirements
 
-HTTP/3 isn't enabled by default. Because not all routers, firewalls, and proxies properly support HTTP/3, we recommend configuring HTTP/3 together with HTTP/1.1 and HTTP/2. This can be done by specifying `HttpProtocols.Http1AndHttp2AndHttp3` as an endpoint's supported protocols.
+As HTTP/3 support is in preview, it is not enabled by default.
 
-If the platform that Kestrel is running on doesn't have all the requirements for HTTP/3 then it is automatically disabled.
+Because not all routers, firewalls, and proxies properly support HTTP/3, we recommend configuring HTTP/3 together with HTTP/1.1 and HTTP/2. This can be done by specifying `HttpProtocols.Http1AndHttp2AndHttp3` as an endpoint's supported protocols.
+
+HTTP/3 uses QUIC as its transport protocol. The .NET implementation of HTTP/3 uses [MsQuic](https://github.com/microsoft/msquic) to provide QUIC functionality. MSQuic is included in specific builds of windows and as a library for linux. If the platform that Kestrel is running on doesn't have all the requirements for HTTP/3 then it is automatically disabled.
 
 For example, `HttpProtocols.Http1AndHttp2AndHttp3` allows Kestrel to enable HTTP/3 on environments where it is supported, with fallbacks for HTTP/1.1 and HTTP/2.
 
