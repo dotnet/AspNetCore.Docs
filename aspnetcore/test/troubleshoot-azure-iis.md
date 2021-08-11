@@ -341,7 +341,6 @@ For more information, see <xref:host-and-deploy/aspnet-core-module#enhanced-diag
 When an app responds slowly or hangs on a request, see the following articles:
 
 * [Troubleshoot slow web app performance issues in Azure App Service](/azure/app-service/app-service-web-troubleshoot-performance-degradation)
-* [Use Crash Diagnoser Site Extension to Capture Dump for Intermittent Exception issues or performance issues on Azure Web App](https://blogs.msdn.microsoft.com/asiatech/2015/12/28/use-crash-diagnoser-site-extension-to-capture-dump-for-intermittent-exception-issues-or-performance-issues-on-azure-web-app/)
 
 ### Monitoring blades
 

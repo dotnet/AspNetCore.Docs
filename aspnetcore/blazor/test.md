@@ -74,7 +74,7 @@ There's no official Microsoft testing framework for Blazor, but the community-dr
 > [!NOTE]
 > bUnit is a third-party testing library and isn't supported or maintained by Microsoft.
 
-bUnit works with general-purpose testing frameworks, such as [MSTest](/dotnet/core/testing/unit-testing-with-mstest), [NUnit](https://nunit.org/), and [xUnit](https://xunit.github.io/). These testing frameworks make bUnit tests look and feel like regular unit tests. bUnit tests integrated with a general-purpose testing framework are ordinarily executed with:
+bUnit works with general-purpose testing frameworks, such as [MSTest](/dotnet/core/testing/unit-testing-with-mstest), [NUnit](https://nunit.org/), and [xUnit.net](https://xunit.net/). These testing frameworks make bUnit tests look and feel like regular unit tests. bUnit tests integrated with a general-purpose testing framework are ordinarily executed with:
 
 * [Visual Studio's Test Explorer](/visualstudio/test/run-unit-tests-with-test-explorer).
 * [`dotnet test`](/dotnet/core/tools/dotnet-test) CLI command in a command shell.

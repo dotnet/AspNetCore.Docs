@@ -51,7 +51,7 @@ The message app is a Razor Pages message system with the following characteristi
 * The app contains a DAL in its database context class, `AppDbContext` (*Data/AppDbContext.cs*). The DAL methods are marked `virtual`, which allows mocking the methods for use in the tests.
 * If the database is empty on app startup, the message store is initialized with three messages. These *seeded messages* are also used in tests.
 
-&#8224;The EF topic, [Test with InMemory](/ef/core/miscellaneous/testing/in-memory), explains how to use an in-memory database for tests with MSTest. This topic uses the [xUnit](https://xunit.github.io/) test framework. Test concepts and test implementations across different test frameworks are similar but not identical.
+&#8224;The EF topic, [Test with InMemory](/ef/core/miscellaneous/testing/in-memory), explains how to use an in-memory database for tests with MSTest. This topic uses the [xUnit](https://github.com/xunit/xunit) test framework. Test concepts and test implementations across different test frameworks are similar but not identical.
 
 Although the sample app doesn't use the repository pattern and isn't an effective example of the [Unit of Work (UoW) pattern](https://martinfowler.com/eaaCatalog/unitOfWork.html), Razor Pages supports these patterns of development. For more information, see [Designing the infrastructure persistence layer](/dotnet/standard/microservices-architecture/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-design) and <xref:mvc/controllers/testing> (the sample implements the repository pattern).
 
@@ -64,7 +64,7 @@ The test app is a console app inside the *tests/RazorPagesTestSample.Tests* fold
 | *UnitTests*     | <ul><li>*DataAccessLayerTest.cs* contains the unit tests for the DAL.</li><li>*IndexPageTests.cs* contains the unit tests for the Index page model.</li></ul> |
 | *Utilities*     | Contains the `TestDbContextOptions` method used to create new database context options for each DAL unit test so that the database is reset to its baseline condition for each test. |
 
-The test framework is [xUnit](https://xunit.github.io/). The object mocking framework is [Moq](https://github.com/moq/moq4).
+The test framework is [xUnit](https://github.com/xunit/xunit). The object mocking framework is [Moq](https://github.com/moq/moq4).
 
 ## Unit tests of the data access layer (DAL)
 
@@ -187,9 +187,8 @@ Other tests in this group create page model objects that include the <xref:Micro
 * <xref:mvc/controllers/testing>
 * [Unit Test Your Code](/visualstudio/test/unit-test-your-code) (Visual Studio)
 * <xref:test/integration-tests>
-* [xUnit.net](https://xunit.github.io/)
+* [xUnit.net](https://github.com/xunit/xunit)
 * [Building a complete .NET Core solution on macOS using Visual Studio for Mac](/dotnet/core/tutorials/using-on-mac-vs-full-solution)
-* [Getting started with xUnit.net: Using .NET Core with the .NET SDK command line](https://xunit.github.io/docs/getting-started-dotnet-core)
 * [Moq](https://github.com/moq/moq4)
 * [Moq Quickstart](https://github.com/Moq/moq4/wiki/Quickstart)
 
