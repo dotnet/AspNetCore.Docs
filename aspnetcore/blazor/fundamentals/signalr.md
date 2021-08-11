@@ -139,8 +139,6 @@ When the client detects that the connection has been lost, a default UI is displ
 
 To customize the UI, define an element with an `id` of `components-reconnect-modal` in the `<body>` of the `_Layout.cshtml` Razor page.
 
-[!INCLUDE[](~/6.0/blazor/includes/layout-page-preview-7.md)]
-
 `Pages/_Layout.cshtml`:
 
 ```cshtml
@@ -180,8 +178,6 @@ By default, Blazor Server apps prerender the UI on the server before the client 
 
 Configure the manual start of a Blazor Server app's [SignalR circuit](xref:blazor/hosting-models#circuits) in the `Pages/_Layout.cshtml` file:
 
-[!INCLUDE[](~/6.0/blazor/includes/layout-page-preview-7.md)]
-
 * Add an `autostart="false"` attribute to the `<script>` tag for the `blazor.server.js` script.
 * Place a script that calls `Blazor.start` after the `blazor.server.js` script's `<script>` tag and inside the closing `</body>` tag.
 
@@ -194,8 +190,6 @@ For more information, including how to initialize Blazor when the document is re
 On the client builder, pass in the `configureSignalR` configuration object that calls `configureLogging` with the log level.
 
 `Pages/_Layout.cshtml`:
-
-[!INCLUDE[](~/6.0/blazor/includes/layout-page-preview-7.md)]
 
 ```cshtml
 <body>
@@ -232,8 +226,6 @@ To modify the connection events, register callbacks for the following connection
 
 `Pages/_Layout.cshtml`:
 
-[!INCLUDE[](~/6.0/blazor/includes/layout-page-preview-7.md)]
-
 ```cshtml
 <body>
     ...
@@ -258,8 +250,6 @@ To adjust the reconnection retry count and interval, set the number of retries (
 
 `Pages/_Layout.cshtml`:
 
-[!INCLUDE[](~/6.0/blazor/includes/layout-page-preview-7.md)]
-
 ```cshtml
 <body>
     ...
@@ -283,8 +273,6 @@ For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
 To hide the reconnection display, set the reconnection handler's `_reconnectionDisplay` to an empty object (`{}` or `new Object()`).
 
 `Pages/_Layout.cshtml`:
-
-[!INCLUDE[](~/6.0/blazor/includes/layout-page-preview-7.md)]
 
 ```cshtml
 <body>

@@ -100,8 +100,6 @@ The particular script associated with the error is displayed in the console next
 
 In the `<head>` content of the `Pages/_Layout.cshtml` host page, apply the directives described in the [Policy directives](#policy-directives) section:
 
-[!INCLUDE[](~/6.0/blazor/includes/layout-page-preview-7.md)]
-
 ```cshtml
 <meta http-equiv="Content-Security-Policy" 
       content="base-uri 'self';
