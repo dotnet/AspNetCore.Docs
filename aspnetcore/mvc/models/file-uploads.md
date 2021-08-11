@@ -63,14 +63,14 @@ Common storage options for files include:
 
   * For small file uploads, a database is often faster than physical storage (file system or network share) options.
   * A database is often more convenient than physical storage options because retrieval of a database record for user data can concurrently supply the file content (for example, an avatar image).
-  * A database is potentially less expensive than using a data storage service.
+  * A database is potentially less expensive than using a cloud data storage service.
 
 * Physical storage (file system or network share)
 
   * For large file uploads:
     * Database limits may restrict the size of the upload.
     * Physical storage is often less economical than storage in a database.
-  * Physical storage is potentially less expensive than using a data storage service.
+  * Physical storage is potentially less expensive than using a cloud data storage service.
   * The app's process must have read and write permissions to the storage location. **Never grant execute permission.**
 
 * Cloud data storage service (for example, [Azure Blob Storage](https://azure.microsoft.com/services/storage/blobs/))
