@@ -126,7 +126,7 @@ The **Configure dependency** dialog appears:
 
 In the **Configure Azure SQL database** dialog, select **Create a SQL Database**.
 
-![Configure Azure SQL Database dialog](publish-to-azure-webapp-using-vs/_static/sql2.png)
+![Select Create a SQL DB](publish-to-azure-webapp-using-vs/_static/sql2.png)
 
 The **Create Azure SQL Database** appears:
 
@@ -141,7 +141,7 @@ After creation is completed the dialog is automatically closed and the **Configu
 * The new instance that was just created is automatically selected.
 * Select **Next**.
 
-![Configure Azure SQL Database dialog](publish-to-azure-webapp-using-vs/_static/sql_select.png)
+![Select Next](publish-to-azure-webapp-using-vs/_static/sql_select.png)
 
 In the next step of the **Configure Azure SQL Database** dialog:
 
@@ -161,11 +161,11 @@ On the **Settings** page of the **Publish** dialog:
 
 * Select **Save**. Visual Studio returns to the **Publish** dialog. 
 
-![Publish dialog: Settings panel](publish-to-azure-webapp-using-vs/_static/pp_settings.png)
+![Publish dialog: Settings panel:Save](publish-to-azure-webapp-using-vs/_static/pp_settings.png)
 
 Click **Publish**. Visual Studio publishes your app to Azure. When the deployment completes, the app is opened in a browser.
 
-![Publish dialog: Settings panel](publish-to-azure-webapp-using-vs/_static/pp_publish.png)
+![Last step](publish-to-azure-webapp-using-vs/_static/pp_publish.png)
 
 ### Update the app
 
