@@ -655,6 +655,37 @@ Other data types, such as string arrays, can be converted but require creating a
 > [!WARNING]
 > JS functions provided by the Blazor framework, such as `js_typed_array_to_array`, `mono_obj_array_new`, and `mono_obj_array_set`, are subject to name changes, behavioral changes, or removal in future releases of .NET.
 
+## Stream from JavaScript to .NET
+
+Blazor supports streaming data directly from JavaScript to .NET. Streams are requested using the `IJSStreamReference` interface:
+
+In client-side JavaScript:
+
+```javascript
+function jsToDotNetStreamReturnValue() {
+  return new Uint8Array(10000000);
+}
+```
+
+In Razor component code:
+
+```csharp
+var dataReference = 
+    await JSRuntime.InvokeAsync<IJSStreamReference>("jsToDotNetStreamReturnValue");
+using var dataReferenceStream = 
+    await dataReference.OpenReadStreamAsync(maxAllowedSize: 10_000_000);
+
+// Write JS Stream to disk
+var outputPath = Path.Combine(Path.GetTempPath(), "file.txt");
+using var outputFileStream = File.OpenWrite(outputPath);
+await dataReferenceStream.CopyToAsync(outputFileStream);
+```
+
+`IJSStreamReference` returns a <xref:System.IO.Stream> with the following parameters:
+
+* `maxAllowedSize`: Maximum number of bytes permitted for the read from JavaScript. The value defaults to 512,000 bytes.
+* `cancellationToken`: A <xref:System.Threading.CancellationToken> for cancelling the read.
+
 ## Catch JavaScript exceptions
 
 To catch JS exceptions, wrap the JS interop in a [`try`-`catch` block](/dotnet/csharp/fundamentals/exceptions/exception-handling) and catch a <xref:Microsoft.JSInterop.JSException>.

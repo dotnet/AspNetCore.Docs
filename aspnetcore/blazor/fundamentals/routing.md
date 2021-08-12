@@ -43,10 +43,6 @@ Components support multiple route templates using multiple [`@page` directives](
 > [!IMPORTANT]
 > For URLs to resolve correctly, the app must include a `<base>` tag in its `wwwroot/index.html` file (Blazor WebAssembly) or `Pages/_Layout.cshtml` file (Blazor Server) with the app base path specified in the `href` attribute. For more information, see <xref:blazor/host-and-deploy/index#app-base-path>.
 
-[!INCLUDE[](~/6.0/blazor/includes/layout-page-preview-7.md)]
-
-The <xref:Microsoft.AspNetCore.Components.Routing.Router> doesn't interact with query string values. To work with query strings, see the [Query string and parse parameters](#query-string-and-parse-parameters) section.
-
 ## Focus an element on navigation
 
 Use the `FocusOnNavigate` component to set the UI focus to an element based on a CSS selector after navigating from one page to another. You can see the `FocusOnNavigate` component in use by the `App` component of an app generated from a Blazor project template.
@@ -118,9 +114,6 @@ protected override void OnParametersSet()
 }
 ```
 
-> [!NOTE]
-> Route parameters don't work with query string values. To work with query strings, see the [Query string and parse parameters](#query-string-and-parse-parameters) section.
-
 ## Route constraints
 
 A route constraint enforces type matching on a route segment to a component.
@@ -133,9 +126,6 @@ In the following example, the route to the `User` component only matches if:
 `Pages/User.razor`:
 
 [!code-razor[](~/6.0/blazor/samples/BlazorSample_WebAssembly/Pages/routing/User.razor?highlight=1)]
-
-> [!NOTE]
-> Route constraints don't work with query string values. To work with query strings, see the [Query string and parse parameters](#query-string-and-parse-parameters) section.
 
 The route constraints shown in the following table are available. For the route constraints that match the invariant culture, see the warning below the table for more information.
 
@@ -231,12 +221,13 @@ Use <xref:Microsoft.AspNetCore.Components.NavigationManager> to manage URIs and 
 | ------ | ----------- |
 | <xref:Microsoft.AspNetCore.Components.NavigationManager.Uri> | Gets the current absolute URI. |
 | <xref:Microsoft.AspNetCore.Components.NavigationManager.BaseUri> | Gets the base URI (with a trailing slash) that can be prepended to relative URI paths to produce an absolute URI. Typically, <xref:Microsoft.AspNetCore.Components.NavigationManager.BaseUri> corresponds to the `href` attribute on the document's `<base>` element in `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Layout.cshtml` (Blazor Server). |
-| <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> | Navigates to the specified URI. If `forceLoad` is `true`:<ul><li>Client-side routing is bypassed.</li><li>The browser is forced to load the new page from the server, whether or not the URI is normally handled by the client-side router.</li></ul> |
-| <xref:Microsoft.AspNetCore.Components.NavigationManager.LocationChanged> | An event that fires when the navigation location has changed. |
+| <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> | Navigates to the specified URI. If `forceLoad` is `true`:<ul><li>Client-side routing is bypassed.</li><li>The browser is forced to load the new page from the server, whether or not the URI is normally handled by the client-side router.</li></ul>If `replace` is `true`, the current URI in the browser history is replaced instead of pushing a new URI onto the history stack. |
+| <xref:Microsoft.AspNetCore.Components.NavigationManager.LocationChanged> | An event that fires when the navigation location has changed. For more information, see the [Location changes](#location-changes) section. |
 | <xref:Microsoft.AspNetCore.Components.NavigationManager.ToAbsoluteUri%2A> | Converts a relative URI into an absolute URI. |
 | <xref:Microsoft.AspNetCore.Components.NavigationManager.ToBaseRelativePath%2A> | Given a base URI (for example, a URI previously returned by <xref:Microsoft.AspNetCore.Components.NavigationManager.BaseUri>), converts an absolute URI into a URI relative to the base URI prefix. |
+| `GetUriWithQueryParameter` | Returns a URI constructed by updating <xref:Microsoft.AspNetCore.Components.NavigationManager.Uri?displayProperty=nameWithType> with a single parameter added, updated, or removed. For more information, see the [Query strings](#query-strings) section. |
 
-[!INCLUDE[](~/6.0/blazor/includes/layout-page-preview-7.md)]
+## Location changes
 
 For the <xref:Microsoft.AspNetCore.Components.NavigationManager.LocationChanged> event, <xref:Microsoft.AspNetCore.Components.Routing.LocationChangedEventArgs> provides the following information about navigation events:
 
@@ -258,25 +249,235 @@ The following component:
 
 For more information on component disposal, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable-and-iasyncdisposable>.
 
-## Query string and parse parameters
+## Query strings
 
-The query string of a request is obtained from the <xref:Microsoft.AspNetCore.Components.NavigationManager.Uri?displayProperty=nameWithType> property:
+Use the `[SupplyParameterFromQuery]` attribute with the `[Parameter]` attribute to specify that a component parameter of a routable component can come from the query string.
+
+> [!NOTE]
+> Component parameters can only receive query parameter values in routable components with an `@page` directive.
+
+Component parameters supplied from the query string support the following types:
+
+* `bool`, `DateTime`, `decimal`, `double`, `float`, `Guid`, `int`, `long`, `string`.
+* Nullable variants of the preceding types (except `string`, which doesn't have a nullable variant).
+* Arrays of the preceding types, whether they're nullable or not nullable.
+
+The correct culture-invariant formatting is applied for the given type (<xref:System.Globalization.CultureInfo.InvariantCulture?displayProperty=nameWithType>).
+
+Specify the `[SupplyParameterFromQuery]` attribute's `Name` property to use a query parameter name different from the component parameter name. In the following example, the C# name of the component parameter is `{COMPONENT PARAMETER NAME}`. A different query parameter name is specified for the `{QUERY PARAMETER NAME}` placeholder:
+
+```csharp
+[Parameter]
+[SupplyParameterFromQuery(Name = "{QUERY PARAMETER NAME}")]
+public string {COMPONENT PARAMETER NAME} { get; set; }
+```
+
+In the following example with a URL of `/search?filter=scifi%20stars&page=3&star=LeVar%20Burton&star=Gary%20Oldman`:
+
+* The `Filter` property resolves to `scifi stars`.
+* The `Page` property resolves to `3`.
+* The `Stars` array is filled from query parameters named `star` (`Name = "star"`) and resolves to `LeVar Burton` and `Gary Oldman`.
+
+`Pages/Search.razor`:
+
+```razor
+@page "/search"
+
+<h1>Search Example</h1>
+
+<p>Filter: @Filter</p>
+
+<p>Page: @Page</p>
+
+<p>Assignees:</p>
+
+<ul>
+    @foreach (var name in Stars)
+    {
+        <li>@name</li>
+    }
+</ul>
+
+@code {
+    [Parameter]
+    [SupplyParameterFromQuery]
+    public string Filter { get; set; }
+
+    [Parameter]
+    [SupplyParameterFromQuery]
+    public int? Page { get; set; }
+
+    [Parameter]
+    [SupplyParameterFromQuery(Name = "star")]
+    public string[] Stars { get; set; }
+}
+```
+
+Use `NavigationManager.GetUriWithQueryParameter` to add, change, or remove one or more query parameters on the current URL:
 
 ```razor
 @inject NavigationManager NavigationManager
 
 ...
 
-var query = new Uri(NavigationManager.Uri).Query;
+NavigationManager.GetUriWithQueryParameter("{NAME}", {VALUE})
 ```
 
-To parse a query string's parameters, one approach is to use [`URLSearchParams`](https://developer.mozilla.org/docs/Web/API/URLSearchParams) with [JavaScript (JS) interop](xref:blazor/js-interop/call-javascript-from-dotnet):
+For the preceding example:
 
-```javascript
-export createQueryString = (string queryString) => new URLSearchParams(queryString);
+* The `{NAME}` placeholder specifies the query parameter name. The `{VALUE}` placeholder specifies the value as a supported type. Supported types are listed later in this section.
+* A string is returned equal to the current URL with a single parameter:
+  * Added if the query parameter name doesn't exist in the current URL.
+  * Updated to the value provided if the query parameter exists in the current URL.
+  * Removed if the type of the provided value is nullable and the value is `null`.
+* The correct culture-invariant formatting is applied for the given type (<xref:System.Globalization.CultureInfo.InvariantCulture?displayProperty=nameWithType>).
+* The query parameter name and value are URL-encoded.
+* All of the values with the matching query parameter name are replaced if there are multiple instances of the type.
+
+Call `NavigationManager.GetUriWithQueryParameters` to create a URI constructed from <xref:Microsoft.AspNetCore.Components.NavigationManager.Uri> with multiple parameters added, updated, or removed. For each value, the framework uses `value?.GetType()` to determine the runtime type for each query parameter and selects the correct culture-invariant formatting. The framework throws an error for unsupported types.
+
+```razor
+@inject NavigationManager NavigationManager
+
+...
+
+NavigationManager.GetUriWithQueryParameters({PARAMETERS})
 ```
 
-For more information on JavaScript isolation with JavaScript modules, see <xref:blazor/js-interop/call-javascript-from-dotnet#javascript-isolation-in-javascript-modules>.
+The `{PARAMETERS}` placeholder is an `IReadOnlyDictionary<string, object>`.
+
+Pass a URI string to `GetUriWithQueryParameters` to generate a new URI from a provided URI with multiple parameters added, updated, or removed. For each value, the framework uses `value?.GetType()` to determine the runtime type for each query parameter and selects the correct culture-invariant formatting. The framework throws an error for unsupported types. Supported types are listed later in this section.
+
+```razor
+@inject NavigationManager NavigationManager
+
+...
+
+NavigationManager.GetUriWithQueryParameters("{URI}", {PARAMETERS})
+```
+
+* The `{URI}` placeholder is the URI with or without a query string.
+* The `{PARAMETERS}` placeholder is an `IReadOnlyDictionary<string, object>`.
+
+Supported types are identical to supported types for route constraints:
+
+* `bool`
+* `DateTime`
+* `decimal`
+* `double`
+* `float`
+* `Guid`
+* `int`
+* `long`
+* `string`
+
+Supported types include:
+
+* Nullable variants of the preceding types (except `string`, which doesn't have a nullable variant).
+* Arrays of the preceding types, whether they're nullable or not nullable.
+
+### Replace a query parameter value when the parameter exists
+
+```csharp
+NavigationManager.GetUriWithQueryParameter("full name", "Morena Baccarin")
+```
+
+| Current URL | Generated URL |
+| --- | --- |
+| `scheme://host/?full%20name=David%20Krumholtz&age=42` | `scheme://host/?full%20name=Morena%20Baccarin&age=42` |
+| `scheme://host/?fUlL%20nAmE=David%20Krumholtz&AgE=42` | `scheme://host/?full%20name=Morena%20Baccarin&AgE=42` |
+| `scheme://host/?full%20name=Jewel%20Staite&age=42&full%20name=Summer%20Glau` | `scheme://host/?full%20name=Morena%20Baccarin&age=42&full%20name=Morena%20Baccarin` |
+| `scheme://host/?full%20name=&age=42` | `scheme://host/?full%20name=Morena%20Baccarin&age=42` |
+| `scheme://host/?full%20name=` | `scheme://host/?full%20name=Morena%20Baccarin` |
+
+### Append a query parameter and value when the parameter doesn't exist
+
+```csharp
+NavigationManager.GetUriWithQueryParameter("name", "Morena Baccarin")
+```
+
+| Current URL | Generated URL |
+| --- | --- |
+| `scheme://host/?age=42` | `scheme://host/?age=42&name=Morena%20Baccarin` |
+| `scheme://host/` | `scheme://host/?name=Morena%20Baccarin` |
+| `scheme://host/?` | `scheme://host/?name=Morena%20Baccarin` |
+
+### Remove a query parameter when the parameter value is `null`
+
+```csharp
+NavigationManager.GetUriWithQueryParameter("full name", (string)null)
+```
+
+| Current URL | Generated URL |
+| --- | --- |
+| `scheme://host/?full%20name=David%20Krumholtz&age=42` | `scheme://host/?age=42` |
+| `scheme://host/?full%20name=Sally%20Smith&age=42&full%20name=Summer%20Glau` | `scheme://host/?age=42` |
+| `scheme://host/?full%20name=Sally%20Smith&age=42&FuLl%20NaMe=Summer%20Glau` | `scheme://host/?age=42` |
+| `scheme://host/?full%20name=&age=42` | `scheme://host/?age=42` |
+| `scheme://host/?full%20name=` | `scheme://host/` |
+
+### Add, update, and remove query parameters
+
+In the following example:
+
+* `name` is removed, if present.
+* `age` is added with a value of `25` (`int`), if not present. If present, `age` is updated to a value of `25`.
+* `eye color` is added or updated to a value of `green`.
+
+```csharp
+NavigationManager.GetUriWithQueryParameters(
+    new Dictionary<string, object>
+    {
+        ["name"] = null,
+        ["age"] = (int?)25,
+        ["eye color"] = "green"
+    })
+```
+
+| Current URL | Generated URL |
+| --- | --- |
+| `scheme://host/?name=David%20Krumholtz&age=42` | `scheme://host/?age=25&eye%20color=green` |
+| `scheme://host/?NaMe=David%20Krumholtz&AgE=42` | `scheme://host/?age=25&eye%20color=green` |
+| `scheme://host/?name=David%20Krumholtz&age=42&keepme=true` | `scheme://host/?age=25&keepme=true&eye%20color=green` |
+| `scheme://host/?age=42&eye%20color=87` | `scheme://host/?age=25&eye%20color=green` |
+| `scheme://host/?` | `scheme://host/?age=25&eye%20color=green` |
+| `scheme://host/` | `scheme://host/?age=25&eye%20color=green` |
+
+### Support for enumerable values
+
+In the following example:
+
+* `full name` is added or updated to `Morena Baccarin`, a single value.
+* `ping` parameters are added or replaced with `35`, `16`, `87` and `240`.
+
+```csharp
+NavigationManager.GetUriWithQueryParameters(
+    new Dictionary<string, object>
+    {
+        ["full name"] = "Morena Baccarin",
+        ["ping"] = new int?[] { 35, 16, null, 87, 240 }
+    })
+```
+
+| Current URL | Generated URL |
+| --- | --- |
+| `scheme://host/?full%20name=David%20Krumholtz&ping=8&ping=300` | `scheme://host/?full%20name=Morena%20Baccarin&ping=35&ping=16&ping=87&ping=240` |
+| `scheme://host/?ping=8&full%20name=David%20Krumholtz&ping=300` | `scheme://host/?ping=35&full%20name=Morena%20Baccarin&ping=16&ping=87&ping=240` |
+| `scheme://host/?ping=8&ping=300&ping=50&ping=68&ping=42` | `scheme://host/?ping=35&ping=16&ping=87&ping=240&full%20name=Morena%20Baccarin` |
+
+### Navigate with an added or modified query string
+
+To navigate with an added or modified query string, pass a generated URL to <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A>.
+
+The following example calls:
+
+* `GetUriWithQueryParameter` to add or replace the `name` query parameter using a value of `Morena Baccarin`.
+* Calls <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> to trigger navigation to the new URL.
+
+```csharp
+NavigationManager.NavigateTo(
+    NavigationManager.GetUriWithQueryParameter("name", "Morena Baccarin"));
+```
 
 ## User interaction with `<Navigating>` content
 

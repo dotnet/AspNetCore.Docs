@@ -33,6 +33,25 @@ In the following example:
 
 For more information on passing parameter values, see the [Pass parameters](#pass-parameters) section later in this article.
 
+Use the `Instance` property to access the dynamically-created component instance:
+
+```razor
+<DynamicComponent Type="@typeof({COMPONENT})" @ref="dc" />
+
+<button @onclick="Refresh">Refresh</button>
+
+@code {
+    private DynamicComponent dc;
+
+    private Task Refresh()
+    {
+        return (dc.Instance as IRefreshable)?.Refresh();
+    }
+}
+```
+
+In the preceding example, the `{COMPONENT}` placeholder is the dynamically-created component type.
+
 ## Example
 
 In the following example, a Razor component renders a component based on the user's selection from a dropdown list of four possible values.
