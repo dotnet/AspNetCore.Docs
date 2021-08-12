@@ -385,8 +385,8 @@ NavigationManager.GetUriWithQueryParameter("full name", "Morena Baccarin")
 
 | Current URL | Generated URL |
 | --- | --- |
-| `scheme://host/?full%20name=David%20Krumholtze&age=42` | `scheme://host/?full%20name=Morena%20Baccarin&age=42` |
-| `scheme://host/?fUlL%20nAmE=David%20Krumholtze&AgE=42` | `scheme://host/?full%20name=Morena%20Baccarin&AgE=42` |
+| `scheme://host/?full%20name=David%20Krumholtz&age=42` | `scheme://host/?full%20name=Morena%20Baccarin&age=42` |
+| `scheme://host/?fUlL%20nAmE=David%20Krumholtz&AgE=42` | `scheme://host/?full%20name=Morena%20Baccarin&AgE=42` |
 | `scheme://host/?full%20name=Jewel%20Staite&age=42&full%20name=Summer%20Glau` | `scheme://host/?full%20name=Morena%20Baccarin&age=42&full%20name=Morena%20Baccarin` |
 | `scheme://host/?full%20name=&age=42` | `scheme://host/?full%20name=Morena%20Baccarin&age=42` |
 | `scheme://host/?full%20name=` | `scheme://host/?full%20name=Morena%20Baccarin` |
@@ -411,7 +411,7 @@ NavigationManager.GetUriWithQueryParameter("full name", (string)null)
 
 | Current URL | Generated URL |
 | --- | --- |
-| `scheme://host/?full%20name=David%20Krumholtze&age=42` | `scheme://host/?age=42` |
+| `scheme://host/?full%20name=David%20Krumholtz&age=42` | `scheme://host/?age=42` |
 | `scheme://host/?full%20name=Sally%20Smith&age=42&full%20name=Summer%20Glau` | `scheme://host/?age=42` |
 | `scheme://host/?full%20name=Sally%20Smith&age=42&FuLl%20NaMe=Summer%20Glau` | `scheme://host/?age=42` |
 | `scheme://host/?full%20name=&age=42` | `scheme://host/?age=42` |
@@ -437,9 +437,9 @@ NavigationManager.GetUriWithQueryParameters(
 
 | Current URL | Generated URL |
 | --- | --- |
-| `scheme://host/?name=David%20Krumholtze&age=42` | `scheme://host/?age=25&eye%20color=green` |
-| `scheme://host/?NaMe=David%20Krumholtze&AgE=42` | `scheme://host/?age=25&eye%20color=green` |
-| `scheme://host/?name=David%20Krumholtze&age=42&keepme=true` | `scheme://host/?age=25&keepme=true&eye%20color=green` |
+| `scheme://host/?name=David%20Krumholtz&age=42` | `scheme://host/?age=25&eye%20color=green` |
+| `scheme://host/?NaMe=David%20Krumholtz&AgE=42` | `scheme://host/?age=25&eye%20color=green` |
+| `scheme://host/?name=David%20Krumholtz&age=42&keepme=true` | `scheme://host/?age=25&keepme=true&eye%20color=green` |
 | `scheme://host/?age=42&eye%20color=87` | `scheme://host/?age=25&eye%20color=green` |
 | `scheme://host/?` | `scheme://host/?age=25&eye%20color=green` |
 | `scheme://host/` | `scheme://host/?age=25&eye%20color=green` |
@@ -462,8 +462,8 @@ NavigationManager.GetUriWithQueryParameters(
 
 | Current URL | Generated URL |
 | --- | --- |
-| `scheme://host/?full%20name=David%20Krumholtze&ping=8&ping=300` | `scheme://host/?full%20name=Morena%20Baccarin&ping=35&ping=16&ping=87&ping=240` |
-| `scheme://host/?ping=8&full%20name=David%20Krumholtze&ping=300` | `scheme://host/?ping=35&full%20name=Morena%20Baccarin&ping=16&ping=87&ping=240` |
+| `scheme://host/?full%20name=David%20Krumholtz&ping=8&ping=300` | `scheme://host/?full%20name=Morena%20Baccarin&ping=35&ping=16&ping=87&ping=240` |
+| `scheme://host/?ping=8&full%20name=David%20Krumholtz&ping=300` | `scheme://host/?ping=35&full%20name=Morena%20Baccarin&ping=16&ping=87&ping=240` |
 | `scheme://host/?ping=8&ping=300&ping=50&ping=68&ping=42` | `scheme://host/?ping=35&ping=16&ping=87&ping=240&full%20name=Morena%20Baccarin` |
 
 ### Navigate with an added or modified query string
