@@ -171,7 +171,7 @@ In the following example, the user must select at least two starship classificat
 
     <p>
         <label>
-            Select one or more classifications (Minimum: 2, Maximum: 3):
+            Select classifications (Minimum: 2, Maximum: 3):
             <InputSelect @bind-Value="starship.SelectedClassification">
                 <option value="@Classification.Exploration">Exploration</option>
                 <option value="@Classification.Diplomacy">Diplomacy</option>
