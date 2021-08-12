@@ -333,7 +333,6 @@ For the preceding example:
 * The correct culture-invariant formatting is applied for the given type (<xref:System.Globalization.CultureInfo.InvariantCulture?displayProperty=nameWithType>).
 * The query parameter name and value are URL-encoded.
 * All of the values with the matching query parameter name are replaced if there are multiple instances of the type.
-* If the value is an `IEnumerable<T>` for one of the supported types, then multiple name/value pairs are emitted. Supported types are listed later in this section.
 
 Call `NavigationManager.GetUriWithQueryParameters` to create a URI constructed from <xref:Microsoft.AspNetCore.Components.NavigationManager.Uri> with multiple parameters added, updated, or removed. For each value, the framework uses `value?.GetType()` to determine the runtime type for each query parameter and selects the correct culture-invariant formatting. The framework throws an error for unsupported types.
 
