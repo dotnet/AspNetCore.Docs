@@ -325,7 +325,7 @@ In this tutorial, you:
 
 At the end of this tutorial, you'll have a working Razor Pages web app that you'll build on in later tutorials.
 
-![Home or Index page](razor-pages-start/_static/home2.2.png)
+![Home or Index page of the app](razor-pages-start/_static/home2.2.png)
 
 ## Prerequisites
 
@@ -351,15 +351,15 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 
 * Create a new ASP.NET Core Web Application and select **Next**.
 
-  ![new ASP.NET Core Web Application](razor-pages-start/_static/np_2.1.png)
+  ![Create a new project](razor-pages-start/_static/np_2.1.png)
 
 * Name the project **RazorPagesMovie**. It's important to name the project *RazorPagesMovie* so the namespaces will match when you copy and paste code.
 
-  ![new ASP.NET Core Web Application](razor-pages-start/_static/config.png)
+  ![Configure your new project](razor-pages-start/_static/config.png)
 
 * Select **ASP.NET Core 2.2** in the dropdown, **Web Application**, and then select **Create**.
 
-![new ASP.NET Core Web Application](razor-pages-start/_static/np_2_2.2.png)
+![Select Web Application](razor-pages-start/_static/np_2_2.2.png)
 
   The following starter project is created:
 
@@ -426,11 +426,11 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 
   This app doesn't track personal information, but the project template includes the consent feature in case you need it to comply with the European Union's [General Data Protection Regulation (GDPR)](xref:security/gdpr).
 
-  ![Home or Index page](razor-pages-start/_static/homeGDPR2.2.png)
+  ![Home or Index page consent feature](razor-pages-start/_static/homeGDPR2.2.png)
 
   The following image shows the app after consent to tracking is provided:
 
-  ![Home or Index page](razor-pages-start/_static/home2.2.png)
+  ![Home or Index page of the application](razor-pages-start/_static/home2.2.png)
   
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -446,11 +446,11 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 
   This app doesn't track personal information, but the project template includes the consent feature in case you need it to comply with the European Union's [General Data Protection Regulation (GDPR)](xref:security/gdpr).
 
-  ![Home or Index page](razor-pages-start/_static/homeGDPR2.2.png)
+  ![Consent feature of the Home or Index page](razor-pages-start/_static/homeGDPR2.2.png)
 
   The following image shows the app after you give consent to tracking:
 
-  ![Home or Index page](razor-pages-start/_static/home2.2.png)
+  ![Index or Home page](razor-pages-start/_static/home2.2.png)
   
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -466,11 +466,11 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 
   This app doesn't track personal information, but the project template includes the consent feature in case you need it to comply with the European Union's [General Data Protection Regulation (GDPR)](xref:security/gdpr).
 
-  ![Home or Index page](razor-pages-start/_static/homeGDPR2.2_safari.png)
+  ![Consent Feature](razor-pages-start/_static/homeGDPR2.2_safari.png)
 
   The following image shows the app after consent to tracking is provided:
 
-  ![Home or Index page](razor-pages-start/_static/home2.2_safari.png)
+  ![The Index or Home page](razor-pages-start/_static/home2.2_safari.png)
 
 <!-- End of VS tabs -->
 
