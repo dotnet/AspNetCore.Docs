@@ -223,7 +223,7 @@ The following instructions post data to the app:
   
   * Select **Send**.
   
-    `![Postman with create request](min-web-api/_static/3/create.png)`
+    ![Postman with create request](min-web-api/_static/post.png)
 
 ## Examine the GET methods
 
