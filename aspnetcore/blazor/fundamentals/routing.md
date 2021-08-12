@@ -387,7 +387,7 @@ NavigationManager.GetUriWithQueryParameter("full name", "Morena Baccarin")
 | --- | --- |
 | `scheme://host/?full%20name=Alan%20Tudyk&age=42` | `scheme://host/?full%20name=Morena%20Baccarin&age=42` |
 | `scheme://host/?fUlL%20nAmE=Alan%20Tudyk&AgE=42` | `scheme://host/?full%20name=Morena%20Baccarin&AgE=42` |
-| `scheme://host/?full%20name=Jewel%20Staite&age=42&full%20name=Summer` | `scheme://host/?full%20name=Morena%20Baccarin&age=42&full%20name=Morena%20Baccarin` |
+| `scheme://host/?full%20name=Jewel%20Staite&age=42&full%20name=Summer%20Glau` | `scheme://host/?full%20name=Morena%20Baccarin&age=42&full%20name=Morena%20Baccarin` |
 | `scheme://host/?full%20name=&age=42` | `scheme://host/?full%20name=Morena%20Baccarin&age=42` |
 | `scheme://host/?full%20name=` | `scheme://host/?full%20name=Morena%20Baccarin` |
 
