@@ -31,7 +31,7 @@ HTTP/3 support is in preview, therefore it's not enabled by default.
 
 Because not all routers, firewalls, and proxies properly support HTTP/3, we recommend configuring HTTP/3 together with HTTP/1.1 and HTTP/2. This can be done by specifying `HttpProtocols.Http1AndHttp2AndHttp3` as an endpoint's supported protocols.
 
-HTTP/3 uses QUIC as its transport protocol. The .NET implementation of HTTP/3 uses [MsQuic](https://github.com/microsoft/msquic) to provide QUIC functionality. MSQuic is included in specific builds of windows and as a library for linux. If the platform that Kestrel is running on doesn't have all the requirements for HTTP/3 then it is automatically disabled.
+HTTP/3 uses QUIC as its transport protocol. The .NET implementation of HTTP/3 uses [MsQuic](https://github.com/microsoft/msquic) to provide QUIC functionality. MSQuic is included in specific builds of windows and as a library for Linux. If the platform that Kestrel is running on doesn't have all the requirements for HTTP/3 then it's disabled.
 
 For example, `HttpProtocols.Http1AndHttp2AndHttp3` allows Kestrel to enable HTTP/3 on environments where it is supported, with fallbacks for HTTP/1.1 and HTTP/2.
 
