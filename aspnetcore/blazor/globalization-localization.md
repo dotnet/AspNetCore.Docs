@@ -1862,18 +1862,6 @@ The [`Accept-Language` header](https://developer.mozilla.org/docs/Web/HTTP/Heade
 
 The app's culture is set by matching the first requested language that matches a supported culture of the app.
 
-::: zone pivot="webassembly"
-
-Set the `BlazorWebAssemblyLoadAllGlobalizationData` property to `true` in the app's project file (`.csproj`):
-
-```xml
-<PropertyGroup>
-  <BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
-</PropertyGroup>
-```
-
-::: zone-end
-
 ::: zone pivot="server"
 
 Blazor Server apps are localized using [Localization Middleware](xref:fundamentals/localization#localization-middleware). Add localization services to the app with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A>.
@@ -1964,14 +1952,6 @@ Add a package reference for the [`Microsoft.Extensions.Localization`](https://ww
 ```
 
 The `{VERSION}` placeholder in the preceding package reference is the version of the package.
-
-Set the `BlazorWebAssemblyLoadAllGlobalizationData` property to `true` in the project file:
-
-```xml
-<PropertyGroup>
-  <BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
-</PropertyGroup>
-```
 
 The app's culture in a Blazor WebAssembly app is set using the Blazor framework's API. A user's culture selection can be persisted in browser local storage.
 
