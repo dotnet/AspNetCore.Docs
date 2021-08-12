@@ -24,7 +24,7 @@ This tutorial creates the following API:
 
 |API | Description | Request body | Response body |
 |--- | ---- | ---- | ---- |
-|`GET /` | Browser test, "Hello World" | None | `Hello World!`|
+|`GET /` | Browser test, "Hello World" | None | Hello World!|
 |`GET /todoitems` | Get all to-do items | None | Array of to-do items|
 |`GET /todoitems/{id}` | Get an item by ID | None | To-do item|
 |`POST /todoitems` | Add a new item | To-do item | To-do item |
@@ -76,10 +76,7 @@ This tutorial creates the following API:
 
 * When a dialog box asks if you want to add required assets to the project, select **Yes**.
 
-  The preceding commands:
-
-  * Creates a new web API project and opens it in Visual Studio Code.
-  * Adds the NuGet packages which are required in the next section.
+  The preceding command creates a new web API project and opens it in Visual Studio Code. 
 
 <!-- add VS Mac later 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
@@ -170,7 +167,8 @@ NuGet packages must be added to support the database and diagnostics used in thi
 * Run the following commands:
 
    ```dotnetcli
-   dotnet add package Microsoft.EntityFrameworkCore.InMemory
+   dotnet add package Microsoft.EntityFrameworkCore.InMemory --prerelease
+   dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore --prerelease
      ```
 
 <!-- add VS Mac later 
@@ -208,24 +206,24 @@ This tutorial uses Postman to test the API.
 
 The following instructions post data to the app:
 
-* Create a new request.
-* Set the HTTP method to `POST`.
-* Set the URI to `https://localhost:<port>/todoitems`. For example, `https://localhost:5001/todoitems`.
-* Select the **Body** tab.
-* Select the **raw** radio button.
-* Set the type to **JSON (application/json)**.
-* In the request body enter JSON for a to-do item:
-
-    ```json
-    {
-      "name":"walk dog",
-      "isComplete":true
-    }
-    ```
-
-* Select **Send**.
-
-  `![Postman with create request](min-web-api/_static/3/create.png)`
+  * Create a new request.
+  * Set the HTTP method to `POST`.
+  * Set the URI to `https://localhost:<port>/todoitems`. For example, `https://localhost:5001/  todoitems`.
+  * Select the **Body** tab.
+  * Select the **raw** radio button.
+  * Set the type to **JSON (application/json)**.
+  * In the request body enter JSON for a to-do item:
+  
+      ```json
+      {
+        "name":"walk dog",
+        "isComplete":true
+      }
+      ```
+  
+  * Select **Send**.
+  
+    `![Postman with create request](min-web-api/_static/3/create.png)`
 
 ## Examine the GET methods
 
