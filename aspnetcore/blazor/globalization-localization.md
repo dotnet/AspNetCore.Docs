@@ -136,6 +136,18 @@ The [`Accept-Language` header](https://developer.mozilla.org/docs/Web/HTTP/Heade
 
 The app's culture is set by matching the first requested language that matches a supported culture of the app.
 
+::: zone pivot="webassembly"
+
+Set the `BlazorWebAssemblyLoadAllGlobalizationData` property to `true` in the app's project file (`.csproj`):
+
+```xml
+<PropertyGroup>
+  <BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
+</PropertyGroup>
+```
+
+::: zone-end
+
 ::: zone pivot="server"
 
 Blazor Server apps are localized using [Localization Middleware](xref:fundamentals/localization#localization-middleware). Add localization services to the app with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A>.
@@ -987,6 +999,18 @@ The [`Accept-Language` header](https://developer.mozilla.org/docs/Web/HTTP/Heade
 
 The app's culture is set by matching the first requested language that matches a supported culture of the app.
 
+::: zone pivot="webassembly"
+
+Set the `BlazorWebAssemblyLoadAllGlobalizationData` property to `true` in the app's project file (`.csproj`):
+
+```xml
+<PropertyGroup>
+  <BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
+</PropertyGroup>
+```
+
+::: zone-end
+
 ::: zone pivot="server"
 
 Blazor Server apps are localized using [Localization Middleware](xref:fundamentals/localization#localization-middleware). Add localization services to the app with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A>.
@@ -1837,6 +1861,18 @@ The [`Accept-Language` header](https://developer.mozilla.org/docs/Web/HTTP/Heade
 **Accept-Language**: en-US,en;q=0.9,es-CL;q=0.8
 
 The app's culture is set by matching the first requested language that matches a supported culture of the app.
+
+::: zone pivot="webassembly"
+
+Set the `BlazorWebAssemblyLoadAllGlobalizationData` property to `true` in the app's project file (`.csproj`):
+
+```xml
+<PropertyGroup>
+  <BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
+</PropertyGroup>
+```
+
+::: zone-end
 
 ::: zone pivot="server"
 
