@@ -223,6 +223,7 @@ The following instructions post data to the app:
   
   * Select **Send**.
   
+  "C:\GH\aspnet\docs\3\AspNetCore.Docs\aspnetcore\tutorials\min-web-api\static\post.png"
     ![Postman with create request](min-web-api/_static/post.png)
 
 ## Examine the GET methods
