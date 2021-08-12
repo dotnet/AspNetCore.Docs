@@ -27,7 +27,7 @@ HTTP/3 and QUIC have a number of benefits compared to HTTP/1.1 and HTTP/2:
 
 ## HTTP/3 requirements
 
-As HTTP/3 support is in preview, it is not enabled by default.
+HTTP/3 support is in preview, therefore it's not enabled by default.
 
 Because not all routers, firewalls, and proxies properly support HTTP/3, we recommend configuring HTTP/3 together with HTTP/1.1 and HTTP/2. This can be done by specifying `HttpProtocols.Http1AndHttp2AndHttp3` as an endpoint's supported protocols.
 
