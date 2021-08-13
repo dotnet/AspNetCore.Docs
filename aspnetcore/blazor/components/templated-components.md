@@ -24,7 +24,7 @@ Often, templated components are generically typed, as the following `TableTempla
 
 `Shared/TableTemplate.razor`:
 
-[!code-razor[](~/6.0/blazor/samples/BlazorSample_WebAssembly/Shared/templated-components/TableTemplate.razor)]
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Shared/templated-components/TableTemplate.razor)]
 
 When using a templated component, the template parameters can be specified using child elements that match the names of the parameters. In the following example, `<TableHeader>...</TableHeader>` and `<RowTemplate>...<RowTemplate>` supply <xref:Microsoft.AspNetCore.Components.RenderFragment%601> templates for `TableHeader` and `RowTemplate` of the `TableTemplate` component.
 
@@ -32,25 +32,25 @@ Specify the `Context` attribute on the component element when you want to specif
 
 `Pages/Pets1.razor`:
 
-[!code-razor[](~/6.0/blazor/samples/BlazorSample_WebAssembly/Pages/templated-components/Pets1.razor)]
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/templated-components/Pets1.razor)]
 
 Alternatively, you can change the parameter name using the `Context` attribute on the <xref:Microsoft.AspNetCore.Components.RenderFragment%601> child element. In the following example, the `Context` is set on `RowTemplate` rather than `TableTemplate`:
 
 `Pages/Pets2.razor`:
 
-[!code-razor[](~/6.0/blazor/samples/BlazorSample_WebAssembly/Pages/templated-components/Pets2.razor?highlight=10)]
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/templated-components/Pets2.razor?highlight=10)]
 
 Component arguments of type <xref:Microsoft.AspNetCore.Components.RenderFragment%601> have an implicit parameter named `context`, which can be used. In the following example, `Context` isn't set. `@context.{PROPERTY}` supplies pet values to the template, where `{PROPERTY}` is a `Pet` property:
 
 `Pages/Pets3.razor`:
 
-[!code-razor[](~/6.0/blazor/samples/BlazorSample_WebAssembly/Pages/templated-components/Pets3.razor?highlight=11-12)]
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/templated-components/Pets3.razor?highlight=11-12)]
 
 When using generic-typed components, the type parameter is inferred if possible. However, you can explicitly specify the type with an attribute that has a name matching the type parameter, which is `TItem` in the preceding example:
 
 `Pages/Pets4.razor`:
 
-[!code-razor[](~/6.0/blazor/samples/BlazorSample_WebAssembly/Pages/templated-components/Pets4.razor?highlight=5)]
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/templated-components/Pets4.razor?highlight=5)]
 
 ## Infer generic types based on ancestor components
 
@@ -152,7 +152,7 @@ Often, templated components are generically typed, as the following `TableTempla
 
 `Shared/TableTemplate.razor`:
 
-[!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Shared/templated-components/TableTemplate.razor)]
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Shared/templated-components/TableTemplate.razor)]
 
 When using a templated component, the template parameters can be specified using child elements that match the names of the parameters. In the following example, `<TableHeader>...</TableHeader>` and `<RowTemplate>...<RowTemplate>` supply <xref:Microsoft.AspNetCore.Components.RenderFragment%601> templates for `TableHeader` and `RowTemplate` of the `TableTemplate` component.
 
@@ -160,25 +160,25 @@ Specify the `Context` attribute on the component element when you want to specif
 
 `Pages/Pets1.razor`:
 
-[!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Pages/templated-components/Pets1.razor)]
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/templated-components/Pets1.razor)]
 
 Alternatively, you can change the parameter name using the `Context` attribute on the <xref:Microsoft.AspNetCore.Components.RenderFragment%601> child element. In the following example, the `Context` is set on `RowTemplate` rather than `TableTemplate`:
 
 `Pages/Pets2.razor`:
 
-[!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Pages/templated-components/Pets2.razor?highlight=10)]
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/templated-components/Pets2.razor?highlight=10)]
 
 Component arguments of type <xref:Microsoft.AspNetCore.Components.RenderFragment%601> have an implicit parameter named `context`, which can be used. In the following example, `Context` isn't set. `@context.{PROPERTY}` supplies pet values to the template, where `{PROPERTY}` is a `Pet` property:
 
 `Pages/Pets3.razor`:
 
-[!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Pages/templated-components/Pets3.razor?highlight=11-12)]
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/templated-components/Pets3.razor?highlight=11-12)]
 
 When using generic-typed components, the type parameter is inferred if possible. However, you can explicitly specify the type with an attribute that has a name matching the type parameter, which is `TItem` in the preceding example:
 
 `Pages/Pets4.razor`:
 
-[!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Pages/templated-components/Pets4.razor?highlight=5)]
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/templated-components/Pets4.razor?highlight=5)]
 
 ## Infer generic types based on ancestor components
 
@@ -203,7 +203,7 @@ Often, templated components are generically typed, as the following `TableTempla
 
 `Shared/TableTemplate.razor`:
 
-[!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Shared/templated-components/TableTemplate.razor)]
+[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Shared/templated-components/TableTemplate.razor)]
 
 When using a templated component, the template parameters can be specified using child elements that match the names of the parameters. In the following example, `<TableHeader>...</TableHeader>` and `<RowTemplate>...<RowTemplate>` supply <xref:Microsoft.AspNetCore.Components.RenderFragment%601> templates for `TableHeader` and `RowTemplate` of the `TableTemplate` component.
 
@@ -211,25 +211,25 @@ Specify the `Context` attribute on the component element when you want to specif
 
 `Pages/Pets1.razor`:
 
-[!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/templated-components/Pets1.razor)]
+[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/templated-components/Pets1.razor)]
 
 Alternatively, you can change the parameter name using the `Context` attribute on the <xref:Microsoft.AspNetCore.Components.RenderFragment%601> child element. In the following example, the `Context` is set on `RowTemplate` rather than `TableTemplate`:
 
 `Pages/Pets2.razor`:
 
-[!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/templated-components/Pets2.razor?highlight=10)]
+[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/templated-components/Pets2.razor?highlight=10)]
 
 Component arguments of type <xref:Microsoft.AspNetCore.Components.RenderFragment%601> have an implicit parameter named `context`, which can be used. In the following example, `Context` isn't set. `@context.{PROPERTY}` supplies pet values to the template, where `{PROPERTY}` is a `Pet` property:
 
 `Pages/Pets3.razor`:
 
-[!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/templated-components/Pets3.razor?highlight=11-12)]
+[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/templated-components/Pets3.razor?highlight=11-12)]
 
 When using generic-typed components, the type parameter is inferred if possible. However, you can explicitly specify the type with an attribute that has a name matching the type parameter, which is `TItem` in the preceding example:
 
 `Pages/Pets4.razor`:
 
-[!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/templated-components/Pets4.razor?highlight=5)]
+[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/templated-components/Pets4.razor?highlight=5)]
 
 ## Infer generic types based on ancestor components
 

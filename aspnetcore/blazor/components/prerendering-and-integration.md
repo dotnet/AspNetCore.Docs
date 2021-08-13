@@ -1169,7 +1169,7 @@ To support routable Razor components in Razor Pages apps:
    </Router>
    ```
 
-   [!INCLUDE[](~/5.0/blazor/includes/prefer-exact-matches.md)]
+   [!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
 
 1. Add a `_Host` page to the project with the following content.
 
@@ -1259,7 +1259,7 @@ To support routable Razor components in MVC apps:
    </Router>
    ```
 
-   [!INCLUDE[](~/5.0/blazor/includes/prefer-exact-matches.md)]
+   [!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
 
 1. Add a `_Host` view to the project with the following content.
 

@@ -21,7 +21,7 @@ The <xref:Microsoft.AspNetCore.Components.Routing.Router> component enables rout
 
 `App.razor`:
 
-[!code-razor[](~/6.0/blazor/samples/BlazorSample_WebAssembly/routing/App1.razor)]
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/routing/App1.razor)]
 
 When a Razor component (`.razor`) with an [`@page` directive](xref:mvc/views/razor#page) is compiled, the generated component class is provided a <xref:Microsoft.AspNetCore.Components.RouteAttribute> specifying the component's route template.
 
@@ -38,7 +38,7 @@ Components support multiple route templates using multiple [`@page` directives](
 
 `Pages/BlazorRoute.razor`:
 
-[!code-razor[](~/6.0/blazor/samples/BlazorSample_WebAssembly/Pages/routing/BlazorRoute.razor?highlight=1-2)]
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/routing/BlazorRoute.razor?highlight=1-2)]
 
 > [!IMPORTANT]
 > For URLs to resolve correctly, the app must include a `<base>` tag in its `wwwroot/index.html` file (Blazor WebAssembly) or `Pages/_Layout.cshtml` file (Blazor Server) with the app base path specified in the `href` attribute. For more information, see <xref:blazor/host-and-deploy/index#app-base-path>.
@@ -73,7 +73,7 @@ In the `App` component, set custom content in the <xref:Microsoft.AspNetCore.Com
 
 `App.razor`:
 
-[!code-razor[](~/6.0/blazor/samples/BlazorSample_WebAssembly/routing/App2.razor?highlight=5-8)]
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/routing/App2.razor?highlight=5-8)]
 
 Arbitrary items are supported as content of the `<NotFound>` tags, such as other interactive components. To apply a default layout to <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound> content, see <xref:blazor/components/layouts#apply-a-layout-to-arbitrary-content-layoutview-component>.
 
@@ -97,13 +97,13 @@ The router uses route parameters to populate the corresponding [component parame
 
 `Pages/RouteParameter.razor`:
 
-[!code-razor[](~/6.0/blazor/samples/BlazorSample_WebAssembly/Pages/routing/RouteParameter1.razor?highlight=1)]
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/routing/RouteParameter1.razor?highlight=1)]
 
 Optional parameters are supported. In the following example, the `text` optional parameter assigns the value of the route segment to the component's `Text` property. If the segment isn't present, the value of `Text` is set to `fantastic`.
 
 `Pages/RouteParameter.razor`:
 
-[!code-razor[](~/6.0/blazor/samples/BlazorSample_WebAssembly/Pages/routing/RouteParameter2.razor?highlight=1)]
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/routing/RouteParameter2.razor?highlight=1)]
 
 Use [`OnParametersSet`](xref:blazor/components/lifecycle#after-parameters-are-set-onparameterssetasync) instead of [`OnInitialized{Async}`](xref:blazor/components/lifecycle#component-initialization-oninitializedasync) to permit app navigation to the same component with a different optional parameter value. Based on the preceding example, use `OnParametersSet` when the user should be able to navigate from `/RouteParameter` to `/RouteParameter/amazing` or from `/RouteParameter/amazing` to `/RouteParameter`:
 
@@ -125,7 +125,7 @@ In the following example, the route to the `User` component only matches if:
 
 `Pages/User.razor`:
 
-[!code-razor[](~/6.0/blazor/samples/BlazorSample_WebAssembly/Pages/routing/User.razor?highlight=1)]
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/routing/User.razor?highlight=1)]
 
 The route constraints shown in the following table are available. For the route constraints that match the invariant culture, see the warning below the table for more information.
 
@@ -175,7 +175,7 @@ Consider the following `Example` component that can receive a route parameter fr
 
 `Pages/Example.razor`:
 
-[!code-razor[](~/6.0/blazor/samples/BlazorSample_WebAssembly/Pages/routing/Example.razor?highlight=1)]
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/routing/Example.razor?highlight=1)]
 
 To permit the **`Server`** app of a hosted Blazor WebAssembly solution to route the request with a dot in the `param` route parameter, add a fallback file route template with the optional parameter in `Startup.Configure`.
 
@@ -207,7 +207,7 @@ Catch-all route parameters are:
 
 `Pages/CatchAll.razor`:
 
-[!code-razor[](~/6.0/blazor/samples/BlazorSample_WebAssembly/Pages/routing/CatchAll.razor)]
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/routing/CatchAll.razor)]
 
 For the URL `/catch-all/this/is/a/test` with a route template of `/catch-all/{*pageRoute}`, the value of `PageRoute` is set to `this/is/a/test`.
 
@@ -245,7 +245,7 @@ The following component:
 
 `Pages/Navigate.razor`:
 
-[!code-razor[](~/6.0/blazor/samples/BlazorSample_WebAssembly/Pages/routing/Navigate.razor)]
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/routing/Navigate.razor)]
 
 For more information on component disposal, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable-and-iasyncdisposable>.
 
@@ -587,7 +587,7 @@ Use a <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component in place 
 
 The following `NavMenu` component creates a [`Bootstrap`](https://getbootstrap.com/docs/) navigation bar that demonstrates how to use <xref:Microsoft.AspNetCore.Components.Routing.NavLink> components:
 
-[!code-razor[](~/6.0/blazor/samples/BlazorSample_WebAssembly/Shared/routing/NavMenu.razor?highlight=4,9)]
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Shared/routing/NavMenu.razor?highlight=4,9)]
 
 > [!NOTE]
 > The `NavMenu` component (`NavMenu.razor`) is provided in the `Shared` folder of an app generated from the [Blazor project templates](xref:blazor/project-structure).
@@ -649,7 +649,7 @@ Blazor Server is integrated into [ASP.NET Core Endpoint Routing](xref:fundamenta
 
 `Startup.cs`:
 
-[!code-csharp[](~/6.0/blazor/samples/BlazorSample_Server/routing/Startup.cs?highlight=11)]
+[!code-csharp[](~/blazor/samples/6.0/BlazorSample_Server/routing/Startup.cs?highlight=11)]
 
 The typical configuration is to route all requests to a Razor page, which acts as the host for the server-side part of the Blazor Server app. By convention, the *host* page is usually named `_Host.cshtml` in the `Pages` folder of the app.
 
@@ -669,7 +669,7 @@ The <xref:Microsoft.AspNetCore.Components.Routing.Router> component enables rout
 
 `App.razor`:
 
-[!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/routing/App1.razor)]
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/routing/App1.razor)]
 
 When a Razor component (`.razor`) with an [`@page` directive](xref:mvc/views/razor#page) is compiled, the generated component class is provided a <xref:Microsoft.AspNetCore.Components.RouteAttribute> specifying the component's route template.
 
@@ -686,7 +686,7 @@ Components support multiple route templates using multiple [`@page` directives](
 
 `Pages/BlazorRoute.razor`:
 
-[!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Pages/routing/BlazorRoute.razor?highlight=1-2)]
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/routing/BlazorRoute.razor?highlight=1-2)]
 
 > [!IMPORTANT]
 > For URLs to resolve correctly, the app must include a `<base>` tag in its `wwwroot/index.html` file (Blazor WebAssembly) or `Pages/_Host.cshtml` file (Blazor Server) with the app base path specified in the `href` attribute. For more information, see <xref:blazor/host-and-deploy/index#app-base-path>.
@@ -701,9 +701,9 @@ In the `App` component, set custom content in the <xref:Microsoft.AspNetCore.Com
 
 `App.razor`:
 
-[!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/routing/App2.razor?highlight=5-8)]
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/routing/App2.razor?highlight=5-8)]
 
-[!INCLUDE[](~/5.0/blazor/includes/prefer-exact-matches.md)]
+[!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
 
 Arbitrary items are supported as content of the `<NotFound>` tags, such as other interactive components. To apply a default layout to <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound> content, see <xref:blazor/components/layouts#apply-a-layout-to-arbitrary-content-layoutview-component>.
 
@@ -721,7 +721,7 @@ Use the <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblie
 </Router>
 ```
 
-[!INCLUDE[](~/5.0/blazor/includes/prefer-exact-matches.md)]
+[!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
 
 ## Route parameters
 
@@ -729,13 +729,13 @@ The router uses route parameters to populate the corresponding [component parame
 
 `Pages/RouteParameter.razor`:
 
-[!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Pages/routing/RouteParameter1.razor?highlight=1)]
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/routing/RouteParameter1.razor?highlight=1)]
 
 Optional parameters are supported. In the following example, the `text` optional parameter assigns the value of the route segment to the component's `Text` property. If the segment isn't present, the value of `Text` is set to `fantastic`.
 
 `Pages/RouteParameter.razor`:
 
-[!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Pages/routing/RouteParameter2.razor?highlight=1)]
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/routing/RouteParameter2.razor?highlight=1)]
 
 Use [`OnParametersSet`](xref:blazor/components/lifecycle#after-parameters-are-set-onparameterssetasync) instead of [`OnInitialized{Async}`](xref:blazor/components/lifecycle#component-initialization-oninitializedasync) to permit app navigation to the same component with a different optional parameter value. Based on the preceding example, use `OnParametersSet` when the user should be able to navigate from `/RouteParameter` to `/RouteParameter/amazing` or from `/RouteParameter/amazing` to `/RouteParameter`:
 
@@ -760,7 +760,7 @@ In the following example, the route to the `User` component only matches if:
 
 `Pages/User.razor`:
 
-[!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Pages/routing/User.razor?highlight=1)]
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/routing/User.razor?highlight=1)]
 
 > [!NOTE]
 > Route constraints don't work with query string values. To work with query strings, see the [Query string and parse parameters](#query-string-and-parse-parameters) section.
@@ -813,7 +813,7 @@ Consider the following `Example` component that can receive a route parameter fr
 
 `Pages/Example.razor`:
 
-[!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Pages/routing/Example.razor?highlight=1)]
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/routing/Example.razor?highlight=1)]
 
 To permit the **`Server`** app of a hosted Blazor WebAssembly solution to route the request with a dot in the `param` route parameter, add a fallback file route template with the optional parameter in `Startup.Configure`.
 
@@ -845,7 +845,7 @@ Catch-all route parameters are:
 
 `Pages/CatchAll.razor`:
 
-[!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Pages/routing/CatchAll.razor)]
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/routing/CatchAll.razor)]
 
 For the URL `/catch-all/this/is/a/test` with a route template of `/catch-all/{*pageRoute}`, the value of `PageRoute` is set to `this/is/a/test`.
 
@@ -880,7 +880,7 @@ The following component:
 
 `Pages/Navigate.razor`:
 
-[!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Pages/routing/Navigate.razor)]
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/routing/Navigate.razor)]
 
 For more information on component disposal, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable-and-iasyncdisposable>.
 
@@ -949,7 +949,7 @@ In the `App` component (`App.razor`):
 }
 ```
 
-[!INCLUDE[](~/5.0/blazor/includes/prefer-exact-matches.md)]
+[!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
 
 For an example that uses <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync>, see <xref:blazor/webassembly-lazy-load-assemblies>.
 
@@ -1005,7 +1005,7 @@ In the following `App` component example:
 }
 ```
 
-[!INCLUDE[](~/5.0/blazor/includes/prefer-exact-matches.md)]
+[!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
 
 > [!NOTE]
 > Not throwing if the cancellation token in <xref:Microsoft.AspNetCore.Components.Routing.NavigationContext> is canceled can result in unintended behavior, such as rendering a component from a previous navigation.
@@ -1016,7 +1016,7 @@ Use a <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component in place 
 
 The following `NavMenu` component creates a [`Bootstrap`](https://getbootstrap.com/docs/) navigation bar that demonstrates how to use <xref:Microsoft.AspNetCore.Components.Routing.NavLink> components:
 
-[!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Shared/routing/NavMenu.razor?highlight=4,9)]
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Shared/routing/NavMenu.razor?highlight=4,9)]
 
 > [!NOTE]
 > The `NavMenu` component (`NavMenu.razor`) is provided in the `Shared` folder of an app generated from the [Blazor project templates](xref:blazor/project-structure).
@@ -1078,7 +1078,7 @@ Blazor Server is integrated into [ASP.NET Core Endpoint Routing](xref:fundamenta
 
 `Startup.cs`:
 
-[!code-csharp[](~/5.0/blazor/samples/BlazorSample_Server/routing/Startup.cs?highlight=11)]
+[!code-csharp[](~/blazor/samples/5.0/BlazorSample_Server/routing/Startup.cs?highlight=11)]
 
 The typical configuration is to route all requests to a Razor page, which acts as the host for the server-side part of the Blazor Server app. By convention, the *host* page is usually named `_Host.cshtml` in the `Pages` folder of the app.
 
@@ -1098,7 +1098,7 @@ The <xref:Microsoft.AspNetCore.Components.Routing.Router> component enables rout
 
 `App.razor`:
 
-[!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/routing/App1.razor)]
+[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/routing/App1.razor)]
 
 When a Razor component (`.razor`) with an [`@page` directive](xref:mvc/views/razor#page) is compiled, the generated component class is provided a <xref:Microsoft.AspNetCore.Components.RouteAttribute> specifying the component's route template.
 
@@ -1115,7 +1115,7 @@ Components support multiple route templates using multiple [`@page` directives](
 
 `Pages/BlazorRoute.razor`:
 
-[!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/routing/BlazorRoute.razor?highlight=1-2)]
+[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/routing/BlazorRoute.razor?highlight=1-2)]
 
 > [!IMPORTANT]
 > For URLs to resolve correctly, the app must include a `<base>` tag in its `wwwroot/index.html` file (Blazor WebAssembly) or `Pages/_Host.cshtml` file (Blazor Server) with the app base path specified in the `href` attribute. For more information, see <xref:blazor/host-and-deploy/index#app-base-path>.
@@ -1130,7 +1130,7 @@ In the `App` component, set custom content in the <xref:Microsoft.AspNetCore.Com
 
 `App.razor`:
 
-[!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/routing/App2.razor?highlight=5-8)]
+[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/routing/App2.razor?highlight=5-8)]
 
 Arbitrary items are supported as content of the `<NotFound>` tags, such as other interactive components. To apply a default layout to <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound> content, see <xref:blazor/components/layouts#apply-a-layout-to-arbitrary-content-layoutview-component>.
 
@@ -1154,13 +1154,13 @@ The router uses route parameters to populate the corresponding [component parame
 
 `Pages/RouteParameter.razor`:
 
-[!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/routing/RouteParameter1.razor?highlight=1)]
+[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/routing/RouteParameter1.razor?highlight=1)]
 
 Optional parameters aren't supported. In the following example, two [`@page` directives](xref:mvc/views/razor#page) are applied. The first directive permits navigation to the component without a parameter. The second directive assigns the `{text}` route parameter value to the component's `Text` property.
 
 `Pages/RouteParameter.razor`:
 
-[!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/routing/RouteParameter2.razor?highlight=2)]
+[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/routing/RouteParameter2.razor?highlight=2)]
 
 
 Use [`OnParametersSet`](xref:blazor/components/lifecycle#after-parameters-are-set-onparameterssetasync) instead of [`OnInitialized{Async}`](xref:blazor/components/lifecycle#component-initialization-oninitializedasync) to permit app navigation to the same component with a different optional parameter value. Based on the preceding example, use `OnParametersSet` when the user should be able to navigate from `/RouteParameter` to `/RouteParameter/amazing` or from `/RouteParameter/amazing` to `/RouteParameter`:
@@ -1186,7 +1186,7 @@ In the following example, the route to the `User` component only matches if:
 
 `Pages/User.razor`:
 
-[!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/routing/User.razor?highlight=1)]
+[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/routing/User.razor?highlight=1)]
 
 > [!NOTE]
 > Route constraints don't work with query string values. To work with query strings, see the [Query string and parse parameters](#query-string-and-parse-parameters) section.
@@ -1215,7 +1215,7 @@ Consider the following `Example` component that can receive a route parameter fr
 
 `Pages/Example.razor`:
 
-[!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/routing/Example.razor?highlight=2)]
+[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/routing/Example.razor?highlight=2)]
 
 To permit the **`Server`** app of a hosted Blazor WebAssembly solution to route the request with a dot in the `param` route parameter, add a fallback file route template with the optional parameter in `Startup.Configure`.
 
@@ -1268,7 +1268,7 @@ The following component:
 
 `Pages/Navigate.razor`:
 
-[!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/routing/Navigate.razor)]
+[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/routing/Navigate.razor)]
 
 For more information on component disposal, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable-and-iasyncdisposable>.
 
@@ -1292,7 +1292,7 @@ Use a <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component in place 
 
 The following `NavMenu` component creates a [`Bootstrap`](https://getbootstrap.com/docs/) navigation bar that demonstrates how to use <xref:Microsoft.AspNetCore.Components.Routing.NavLink> components:
 
-[!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Shared/routing/NavMenu.razor?highlight=4,9)]
+[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Shared/routing/NavMenu.razor?highlight=4,9)]
 
 > [!NOTE]
 > The `NavMenu` component (`NavMenu.razor`) is provided in the `Shared` folder of an app generated from the [Blazor project templates](xref:blazor/project-structure).
@@ -1354,7 +1354,7 @@ Blazor Server is integrated into [ASP.NET Core Endpoint Routing](xref:fundamenta
 
 `Startup.cs`:
 
-[!code-csharp[](~/3.1/blazor/samples/BlazorSample_Server/routing/Startup.cs?highlight=11)]
+[!code-csharp[](~/blazor/samples/3.1/BlazorSample_Server/routing/Startup.cs?highlight=11)]
 
 The typical configuration is to route all requests to a Razor page, which acts as the host for the server-side part of the Blazor Server app. By convention, the *host* page is usually named `_Host.cshtml` in the `Pages` folder of the app.
 

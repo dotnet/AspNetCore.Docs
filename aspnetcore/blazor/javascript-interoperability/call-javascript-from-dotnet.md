@@ -55,7 +55,7 @@ The following `CallJsExample1` component:
 
 `Pages/CallJsExample1.razor`:
 
-[!code-razor[](~/6.0/blazor/samples/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample1.razor?highlight=2,34)]
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample1.razor?highlight=2,34)]
 
 ## Invoke JavaScript functions without reading a returned value (`InvokeVoidAsync`)
 
@@ -80,19 +80,19 @@ Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or
 
 `Pages/CallJsExample2.razor`:
 
-[!code-razor[](~/6.0/blazor/samples/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample2.razor?highlight=2,25)]
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample2.razor?highlight=2,25)]
 
 ### Class (`.cs`) example (`InvokeVoidAsync`)
 
 `JsInteropClasses1.cs`:
 
-[!code-csharp[](~/6.0/blazor/samples/BlazorSample_WebAssembly/JsInteropClasses1.cs?highlight=2,6,10,15)]
+[!code-csharp[](~/blazor/samples/6.0/BlazorSample_WebAssembly/JsInteropClasses1.cs?highlight=2,6,10,15)]
 
 `TickerChanged` calls the `handleTickerChanged1` method in the following `CallJsExample3` component.
 
 `Pages/CallJsExample3.razor`:
 
-[!code-razor[](~/6.0/blazor/samples/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample3.razor?highlight=2-3,20,24,32,35)]
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample3.razor?highlight=2-3,20,24,32,35)]
 
 ## Invoke JavaScript functions and read a returned value (`InvokeAsync`)
 
@@ -119,19 +119,19 @@ Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or
 
 `Pages/CallJsExample4.razor`:
 
-[!code-razor[](~/6.0/blazor/samples/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample4.razor?highlight=2,31-34)]
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample4.razor?highlight=2,31-34)]
 
 ### Class (`.cs`) example (`InvokeAsync`)
 
 `JsInteropClasses2.cs`:
 
-[!code-csharp[](~/6.0/blazor/samples/BlazorSample_WebAssembly/JsInteropClasses2.cs?highlight=2,6,10,15)]
+[!code-csharp[](~/blazor/samples/6.0/BlazorSample_WebAssembly/JsInteropClasses2.cs?highlight=2,6,10,15)]
 
 `TickerChanged` calls the `handleTickerChanged2` method and displays the returned string in the following `CallJsExample5` component.
 
 `Pages/CallJsExample5.razor`:
 
-[!code-razor[](~/6.0/blazor/samples/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample5.razor?highlight=2-3,25,30,38-40,43)]
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample5.razor?highlight=2-3,25,30,38-40,43)]
 
 ## Dynamic content generation scenarios
 
@@ -144,7 +144,7 @@ IJSRuntime JS { get; set; }
 
 ## Detect when a Blazor Server app is prerendering
 
-[!INCLUDE[](~/6.0/blazor/includes/prerendering.md)]
+[!INCLUDE[](~/blazor/includes/prerendering.md)]
 
 ## Location of JavaScipt
 
@@ -185,7 +185,7 @@ Add the preceding JS module to an app or class library as a static web asset in 
 
 `Pages/CallJsExample6.razor`:
 
-[!code-razor[](~/6.0/blazor/samples/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample6.razor?highlight=2-3,16,23-24,35,38-44)]
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample6.razor?highlight=2-3,16,23-24,35,38-44)]
 
 In the preceding example:
 
@@ -388,21 +388,21 @@ Add the following script inside closing `</body>` tag of `wwwroot/index.html` (B
 
 `Pages/CallJsExample7.razor` (parent component):
 
-[!code-razor[](~/6.0/blazor/samples/BlazorSample_WebAssembly/Pages/CallJsExample7.razor?highlight=5,9)]
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/CallJsExample7.razor?highlight=5,9)]
 
 `Pages/CallJsExample7.razor.cs`:
 
-[!code-csharp[](~/6.0/blazor/samples/BlazorSample_WebAssembly/Pages/CallJsExample7.razor.cs)]
+[!code-csharp[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/CallJsExample7.razor.cs)]
 
 In the preceding example, the namespace of the app is `BlazorSample` with components in the `Pages` folder. If testing the code locally, update the namespace.
 
 `Shared/SurveyPrompt.razor` (child component):
 
-[!code-razor[](~/6.0/blazor/samples/BlazorSample_WebAssembly/Shared/SurveyPrompt.razor?highlight=1)]
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Shared/SurveyPrompt.razor?highlight=1)]
 
 `Shared/SurveyPrompt.razor.cs`:
 
-[!code-csharp[](~/6.0/blazor/samples/BlazorSample_WebAssembly/Shared/SurveyPrompt.razor.cs)]
+[!code-csharp[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Shared/SurveyPrompt.razor.cs)]
 
 In the preceding example, the namespace of the app is `BlazorSample` with shared components in the `Shared` folder. If testing the code locally, update the namespace.
 
@@ -508,14 +508,14 @@ In `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Layout.cshtml` (Blazor S
 
 `Pages/CallJsExample8.razor`:
 
-[!code-razor[](~/6.0/blazor/samples/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample8.razor)]
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample8.razor)]
 
 The preceding example produces an interactive map UI. The user:
 
 * Can drag to scroll or zoom.
 * Select buttons to jump to predefined locations.
 
-![Mapbox street map of Tokyo, Japan with buttons to select Bristol, United Kingdom and Tokyo, Japan](~/6.0/blazor/javascript-interoperability/call-javascript-from-dotnet/_static/mapbox-example.png)
+![Mapbox street map of Tokyo, Japan with buttons to select Bristol, United Kingdom and Tokyo, Japan](~/blazor/javascript-interoperability/call-javascript-from-dotnet/_static/mapbox-example.png)
 
 In the preceding example:
 
@@ -580,7 +580,7 @@ For information on using a byte array when calling .NET from JavaScript, see <xr
 
 ## Size limits on JavaScript interop calls
 
-[!INCLUDE[](~/6.0/blazor/includes/js-interop/size-limits.md)]
+[!INCLUDE[](~/blazor/includes/js-interop/size-limits.md)]
 
 ## Unmarshalled JavaScript interop
 
@@ -632,7 +632,7 @@ Place the following `<script>` block in `wwwroot/index.html` (Blazor WebAssembly
 
 `Pages/CallJsExample10.razor`:
 
-[!code-razor[](~/6.0/blazor/samples/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample10.razor)]
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample10.razor)]
 
 If an <xref:Microsoft.JSInterop.IJSUnmarshalledObjectReference> instance isn't disposed in C# code, it can be disposed in JS. The following `dispose` function disposes the object reference when called from JS:
 
@@ -696,7 +696,7 @@ In the following example, the `nonFunction` JS function doesn't exist. When the 
 
 `Pages/CallJsExample11.razor`:
 
-[!code-csharp[](~/6.0/blazor/samples/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample11.razor?highlight=28)]
+[!code-csharp[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample11.razor?highlight=28)]
 
 ## Additional resources
 
@@ -749,7 +749,7 @@ The following `CallJsExample1` component:
 
 `Pages/CallJsExample1.razor`:
 
-[!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample1.razor?highlight=2,34)]
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample1.razor?highlight=2,34)]
 
 ## Invoke JavaScript functions without reading a returned value (`InvokeVoidAsync`)
 
@@ -774,19 +774,19 @@ Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or
 
 `Pages/CallJsExample2.razor`:
 
-[!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample2.razor?highlight=2,25)]
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample2.razor?highlight=2,25)]
 
 ### Class (`.cs`) example (`InvokeVoidAsync`)
 
 `JsInteropClasses1.cs`:
 
-[!code-csharp[](~/5.0/blazor/samples/BlazorSample_WebAssembly/JsInteropClasses1.cs?highlight=2,6,10,15)]
+[!code-csharp[](~/blazor/samples/5.0/BlazorSample_WebAssembly/JsInteropClasses1.cs?highlight=2,6,10,15)]
 
 `TickerChanged` calls the `handleTickerChanged1` method in the following `CallJsExample3` component.
 
 `Pages/CallJsExample3.razor`:
 
-[!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample3.razor?highlight=2-3,20,24,32,35)]
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample3.razor?highlight=2-3,20,24,32,35)]
 
 ## Invoke JavaScript functions and read a returned value (`InvokeAsync`)
 
@@ -813,19 +813,19 @@ Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or
 
 `Pages/CallJsExample4.razor`:
 
-[!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample4.razor?highlight=2,31-34)]
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample4.razor?highlight=2,31-34)]
 
 ### Class (`.cs`) example (`InvokeAsync`)
 
 `JsInteropClasses2.cs`:
 
-[!code-csharp[](~/5.0/blazor/samples/BlazorSample_WebAssembly/JsInteropClasses2.cs?highlight=2,6,10,15)]
+[!code-csharp[](~/blazor/samples/5.0/BlazorSample_WebAssembly/JsInteropClasses2.cs?highlight=2,6,10,15)]
 
 `TickerChanged` calls the `handleTickerChanged2` method and displays the returned string in the following `CallJsExample5` component.
 
 `Pages/CallJsExample5.razor`:
 
-[!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample5.razor?highlight=2-3,25,30,38-40,43)]
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample5.razor?highlight=2-3,25,30,38-40,43)]
 
 ## Dynamic content generation scenarios
 
@@ -838,7 +838,7 @@ IJSRuntime JS { get; set; }
 
 ## Detect when a Blazor Server app is prerendering
 
-[!INCLUDE[](~/5.0/blazor/includes/prerendering.md)]
+[!INCLUDE[](~/blazor/includes/prerendering.md)]
 
 ## Location of JavaScipt
 
@@ -879,7 +879,7 @@ Add the preceding JS module to an app or class library as a static web asset in 
 
 `Pages/CallJsExample6.razor`:
 
-[!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample6.razor?highlight=2-3,16,23-24,35,38-44)]
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample6.razor?highlight=2-3,16,23-24,35,38-44)]
 
 In the preceding example:
 
@@ -1082,21 +1082,21 @@ Add the following script inside closing `</body>` tag of `wwwroot/index.html` (B
 
 `Pages/CallJsExample7.razor` (parent component):
 
-[!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Pages/CallJsExample7.razor?highlight=5,9)]
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/CallJsExample7.razor?highlight=5,9)]
 
 `Pages/CallJsExample7.razor.cs`:
 
-[!code-csharp[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Pages/CallJsExample7.razor.cs)]
+[!code-csharp[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/CallJsExample7.razor.cs)]
 
 In the preceding example, the namespace of the app is `BlazorSample` with components in the `Pages` folder. If testing the code locally, update the namespace.
 
 `Shared/SurveyPrompt.razor` (child component):
 
-[!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Shared/SurveyPrompt.razor?highlight=1)]
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Shared/SurveyPrompt.razor?highlight=1)]
 
 `Shared/SurveyPrompt.razor.cs`:
 
-[!code-csharp[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Shared/SurveyPrompt.razor.cs)]
+[!code-csharp[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Shared/SurveyPrompt.razor.cs)]
 
 In the preceding example, the namespace of the app is `BlazorSample` with shared components in the `Shared` folder. If testing the code locally, update the namespace.
 
@@ -1202,14 +1202,14 @@ In `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Ser
 
 `Pages/CallJsExample8.razor`:
 
-[!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample8.razor)]
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample8.razor)]
 
 The preceding example produces an interactive map UI. The user:
 
 * Can drag to scroll or zoom.
 * Select buttons to jump to predefined locations.
 
-![Mapbox street map of Tokyo, Japan with buttons to select Bristol, United Kingdom and Tokyo, Japan](~/5.0/blazor/javascript-interoperability/call-javascript-from-dotnet/_static/mapbox-example.png)
+![Mapbox street map of Tokyo, Japan with buttons to select Bristol, United Kingdom and Tokyo, Japan](~/blazor/javascript-interoperability/call-javascript-from-dotnet/_static/mapbox-example.png)
 
 In the preceding example:
 
@@ -1219,7 +1219,7 @@ In the preceding example:
 
 ## Size limits on JavaScript interop calls
 
-[!INCLUDE[](~/5.0/blazor/includes/js-interop/size-limits.md)]
+[!INCLUDE[](~/blazor/includes/js-interop/size-limits.md)]
 
 ## Unmarshalled JavaScript interop
 
@@ -1271,7 +1271,7 @@ Place the following `<script>` block in `wwwroot/index.html` (Blazor WebAssembly
 
 `Pages/CallJsExample10.razor`:
 
-[!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample10.razor)]
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample10.razor)]
 
 If an <xref:Microsoft.JSInterop.IJSUnmarshalledObjectReference> instance isn't disposed in C# code, it can be disposed in JS. The following `dispose` function disposes the object reference when called from JS:
 
@@ -1304,7 +1304,7 @@ In the following example, the `nonFunction` JS function doesn't exist. When the 
 
 `Pages/CallJsExample11.razor`:
 
-[!code-csharp[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample11.razor?highlight=28)]
+[!code-csharp[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample11.razor?highlight=28)]
 
 ## Additional resources
 
@@ -1357,7 +1357,7 @@ The following `CallJsExample1` component:
 
 `Pages/CallJsExample1.razor`:
 
-[!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample1.razor?highlight=2,34-35)]
+[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample1.razor?highlight=2,34-35)]
 
 ## Invoke JavaScript functions without reading a returned value (`InvokeVoidAsync`)
 
@@ -1382,19 +1382,19 @@ Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or
 
 `Pages/CallJsExample2.razor`:
 
-[!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample2.razor?highlight=2,25)]
+[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample2.razor?highlight=2,25)]
 
 ### Class (`.cs`) example (`InvokeVoidAsync`)
 
 `JsInteropClasses1.cs`:
 
-[!code-csharp[](~/3.1/blazor/samples/BlazorSample_WebAssembly/JsInteropClasses1.cs?highlight=2,6,10,15)]
+[!code-csharp[](~/blazor/samples/3.1/BlazorSample_WebAssembly/JsInteropClasses1.cs?highlight=2,6,10,15)]
 
 `TickerChanged` calls the `handleTickerChanged1` method in the following `CallJsExample3` component.
 
 `Pages/CallJsExample3.razor`:
 
-[!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample3.razor?highlight=2-3,20,24,32,35)]
+[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample3.razor?highlight=2-3,20,24,32,35)]
 
 ## Invoke JavaScript functions and read a returned value (`InvokeAsync`)
 
@@ -1421,19 +1421,19 @@ Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or
 
 `Pages/CallJsExample4.razor`:
 
-[!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample4.razor?highlight=2,31-34)]
+[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample4.razor?highlight=2,31-34)]
 
 ### Class (`.cs`) example (`InvokeAsync`)
 
 `JsInteropClasses2.cs`:
 
-[!code-csharp[](~/3.1/blazor/samples/BlazorSample_WebAssembly/JsInteropClasses2.cs?highlight=2,6,10,15)]
+[!code-csharp[](~/blazor/samples/3.1/BlazorSample_WebAssembly/JsInteropClasses2.cs?highlight=2,6,10,15)]
 
 `TickerChanged` calls the `handleTickerChanged2` method and displays the returned string in the following `CallJsExample5` component.
 
 `Pages/CallJsExample5.razor`:
 
-[!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample5.razor?highlight=2-3,25,30,38-40,43)]
+[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample5.razor?highlight=2-3,25,30,38-40,43)]
 
 ## Dynamic content generation scenarios
 
@@ -1446,7 +1446,7 @@ IJSRuntime JS { get; set; }
 
 ## Detect when a Blazor Server app is prerendering
 
-[!INCLUDE[](~/3.1/blazor/includes/prerendering.md)]
+[!INCLUDE[](~/blazor/includes/prerendering.md)]
 
 ## Location of JavaScipt
 
@@ -1636,21 +1636,21 @@ Add the following script inside closing `</body>` tag of `wwwroot/index.html` (B
 
 `Pages/CallJsExample7.razor` (parent component):
 
-[!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/CallJsExample7.razor?highlight=5,9)]
+[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/CallJsExample7.razor?highlight=5,9)]
 
 `Pages/CallJsExample7.razor.cs`:
 
-[!code-csharp[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/CallJsExample7.razor.cs)]
+[!code-csharp[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/CallJsExample7.razor.cs)]
 
 In the preceding example, the namespace of the app is `BlazorSample` with components in the `Pages` folder. If testing the code locally, update the namespace.
 
 `Shared/SurveyPrompt.razor` (child component):
 
-[!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Shared/SurveyPrompt.razor?highlight=1)]
+[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Shared/SurveyPrompt.razor?highlight=1)]
 
 `Shared/SurveyPrompt.razor.cs`:
 
-[!code-csharp[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Shared/SurveyPrompt.razor.cs)]
+[!code-csharp[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Shared/SurveyPrompt.razor.cs)]
 
 In the preceding example, the namespace of the app is `BlazorSample` with shared components in the `Shared` folder. If testing the code locally, update the namespace.
 
@@ -1693,7 +1693,7 @@ Objects that contain circular references can't be serialized on the client for e
 
 ## Size limits on JavaScript interop calls
 
-[!INCLUDE[](~/3.1/blazor/includes/js-interop/size-limits.md)]
+[!INCLUDE[](~/blazor/includes/js-interop/size-limits.md)]
 
 ## Catch JavaScript exceptions
 
@@ -1705,7 +1705,7 @@ In the following example, the `nonFunction` JS function doesn't exist. When the 
 
 `Pages/CallJsExample11.razor`:
 
-[!code-csharp[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample11.razor?highlight=28)]
+[!code-csharp[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample11.razor?highlight=28)]
 
 ## Additional resources
 

@@ -89,7 +89,7 @@ The `Dialog` component is nested within another component using an HTML tag. In 
 
 The dialog is rendered when the `Index` component is accessed in a browser. When the button is selected by the user, the browser's developer tools console shows the message written by the `OnYes` method:
 
-![Dialog component rendered in the browser nested inside of the Index component. The browser developer tools console shows the message written by C# code when the user selects the Yes! button in the UI.](~/6.0/blazor/index/_static/dialog.png)
+![Dialog component rendered in the browser nested inside of the Index component. The browser developer tools console shows the message written by C# code when the user selects the Yes! button in the UI.](~/blazor/index/_static/dialog.png)
 
 Components render into an in-memory representation of the browser's [Document Object Model (DOM)](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction) called a *render tree*, which is used to update the UI in a flexible and efficient way.
 
@@ -101,7 +101,7 @@ Running .NET code inside web browsers is made possible by [WebAssembly](https://
 
 WebAssembly code can access the full functionality of the browser via JavaScript, called *JavaScript interoperability*, often shortened to *JavaScript interop* or *JS interop*. .NET code executed via WebAssembly in the browser runs in the browser's JavaScript sandbox with the protections that the sandbox provides against malicious actions on the client machine.
 
-![Blazor WebAssembly runs .NET code in the browser with WebAssembly.](~/6.0/blazor/index/_static/blazor-webassembly.png)
+![Blazor WebAssembly runs .NET code in the browser with WebAssembly.](~/blazor/index/_static/blazor-webassembly.png)
 
 When a Blazor WebAssembly app is built and run in a browser:
 
@@ -127,7 +127,7 @@ The runtime stays on the server and handles:
 
 The connection used by Blazor Server to communicate with the browser is also used to handle JavaScript interop calls.
 
-![Blazor Server runs .NET code on the server and interacts with the Document Object Model on the client over a SignalR connection](~/6.0/blazor/index/_static/blazor-server.png)
+![Blazor Server runs .NET code on the server and interacts with the Document Object Model on the client over a SignalR connection](~/blazor/index/_static/blazor-server.png)
 
 ## JavaScript interop
 
@@ -231,7 +231,7 @@ The `Dialog` component is nested within another component using an HTML tag. In 
 
 The dialog is rendered when the `Index` component is accessed in a browser. When the button is selected by the user, the browser's developer tools console shows the message written by the `OnYes` method:
 
-![Dialog component rendered in the browser nested inside of the Index component. The browser developer tools console shows the message written by C# code when the user selects the Yes! button in the UI.](~/5.0/blazor/index/_static/dialog.png)
+![Dialog component rendered in the browser nested inside of the Index component. The browser developer tools console shows the message written by C# code when the user selects the Yes! button in the UI.](~/blazor/index/_static/dialog.png)
 
 Components render into an in-memory representation of the browser's [Document Object Model (DOM)](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction) called a *render tree*, which is used to update the UI in a flexible and efficient way.
 
@@ -243,7 +243,7 @@ Running .NET code inside web browsers is made possible by [WebAssembly](https://
 
 WebAssembly code can access the full functionality of the browser via JavaScript, called *JavaScript interoperability*, often shortened to *JavaScript interop* or *JS interop*. .NET code executed via WebAssembly in the browser runs in the browser's JavaScript sandbox with the protections that the sandbox provides against malicious actions on the client machine.
 
-![Blazor WebAssembly runs .NET code in the browser with WebAssembly.](~/5.0/blazor/index/_static/blazor-webassembly.png)
+![Blazor WebAssembly runs .NET code in the browser with WebAssembly.](~/blazor/index/_static/blazor-webassembly.png)
 
 When a Blazor WebAssembly app is built and run in a browser:
 
@@ -269,7 +269,7 @@ The runtime stays on the server and handles:
 
 The connection used by Blazor Server to communicate with the browser is also used to handle JavaScript interop calls.
 
-![Blazor Server runs .NET code on the server and interacts with the Document Object Model on the client over a SignalR connection](~/5.0/blazor/index/_static/blazor-server.png)
+![Blazor Server runs .NET code on the server and interacts with the Document Object Model on the client over a SignalR connection](~/blazor/index/_static/blazor-server.png)
 
 ## JavaScript interop
 
@@ -373,7 +373,7 @@ The `Dialog` component is nested within another component using an HTML tag. In 
 
 The dialog is rendered when the `Index` component is accessed in a browser. When the button is selected by the user, the browser's developer tools console shows the message written by the `OnYes` method:
 
-![Dialog component rendered in the browser nested inside of the Index component. The browser developer tools console shows the message written by C# code when the user selects the Yes! button in the UI.](~/3.1/blazor/index/_static/dialog.png)
+![Dialog component rendered in the browser nested inside of the Index component. The browser developer tools console shows the message written by C# code when the user selects the Yes! button in the UI.](~/blazor/index/_static/dialog.png)
 
 Components render into an in-memory representation of the browser's [Document Object Model (DOM)](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction) called a *render tree*, which is used to update the UI in a flexible and efficient way.
 
@@ -385,7 +385,7 @@ Running .NET code inside web browsers is made possible by [WebAssembly](https://
 
 WebAssembly code can access the full functionality of the browser via JavaScript, called *JavaScript interoperability*, often shortened to *JavaScript interop* or *JS interop*. .NET code executed via WebAssembly in the browser runs in the browser's JavaScript sandbox with the protections that the sandbox provides against malicious actions on the client machine.
 
-![Blazor WebAssembly runs .NET code in the browser with WebAssembly.](~/3.1/blazor/index/_static/blazor-webassembly.png)
+![Blazor WebAssembly runs .NET code in the browser with WebAssembly.](~/blazor/index/_static/blazor-webassembly.png)
 
 When a Blazor WebAssembly app is built and run in a browser:
 
@@ -411,7 +411,7 @@ The runtime stays on the server and handles:
 
 The connection used by Blazor Server to communicate with the browser is also used to handle JavaScript interop calls.
 
-![Blazor Server runs .NET code on the server and interacts with the Document Object Model on the client over a SignalR connection](~/3.1/blazor/index/_static/blazor-server.png)
+![Blazor Server runs .NET code on the server and interacts with the Document Object Model on the client over a SignalR connection](~/blazor/index/_static/blazor-server.png)
 
 ## JavaScript interop
 
