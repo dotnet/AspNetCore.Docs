@@ -53,7 +53,7 @@ The output location specified with the `-o|--output` option creates a project fo
 >
 > If the port wasn't configured earlier with the app's known port, return to the app's registration in the Azure portal and update the redirect URI with the correct port.
 
-[!INCLUDE[](~/6.0/blazor/security/includes/additional-scopes-standalone-nonAAD.md)]
+[!INCLUDE[](~/blazor/security/includes/additional-scopes-standalone-nonAAD.md)]
 
 After creating the app, you should be able to:
 
@@ -141,33 +141,33 @@ For more information, see the following sections of the *Additional scenarios* a
 
 ## Login mode
 
-[!INCLUDE[](~/6.0/blazor/security/includes/msal-login-mode.md)]
+[!INCLUDE[](~/blazor/security/includes/msal-login-mode.md)]
 
 ## Imports file
 
-[!INCLUDE[](~/6.0/blazor/security/includes/imports-file-standalone.md)]
+[!INCLUDE[](~/blazor/security/includes/imports-file-standalone.md)]
 
 ## Index page
 
-[!INCLUDE[](~/6.0/blazor/security/includes/index-page-msal.md)]
+[!INCLUDE[](~/blazor/security/includes/index-page-msal.md)]
 
 ## App component
 
-[!INCLUDE[](~/6.0/blazor/security/includes/app-component.md)]
+[!INCLUDE[](~/blazor/security/includes/app-component.md)]
 
 ## RedirectToLogin component
 
-[!INCLUDE[](~/6.0/blazor/security/includes/redirecttologin-component.md)]
+[!INCLUDE[](~/blazor/security/includes/redirecttologin-component.md)]
 
 ## LoginDisplay component
 
-[!INCLUDE[](~/6.0/blazor/security/includes/logindisplay-component.md)]
+[!INCLUDE[](~/blazor/security/includes/logindisplay-component.md)]
 
 ## Authentication component
 
-[!INCLUDE[](~/6.0/blazor/security/includes/authentication-component.md)]
+[!INCLUDE[](~/blazor/security/includes/authentication-component.md)]
 
-[!INCLUDE[](~/6.0/blazor/security/includes/troubleshoot.md)]
+[!INCLUDE[](~/blazor/security/includes/troubleshoot.md)]
 
 ## Additional resources
 
@@ -222,7 +222,7 @@ The output location specified with the `-o|--output` option creates a project fo
 >
 > If the port wasn't configured earlier with the app's known port, return to the app's registration in the Azure portal and update the redirect URI with the correct port.
 
-[!INCLUDE[](~/5.0/blazor/security/includes/additional-scopes-standalone-nonAAD.md)]
+[!INCLUDE[](~/blazor/security/includes/additional-scopes-standalone-nonAAD.md)]
 
 After creating the app, you should be able to:
 
@@ -310,33 +310,33 @@ For more information, see the following sections of the *Additional scenarios* a
 
 ## Login mode
 
-[!INCLUDE[](~/5.0/blazor/security/includes/msal-login-mode.md)]
+[!INCLUDE[](~/blazor/security/includes/msal-login-mode.md)]
 
 ## Imports file
 
-[!INCLUDE[](~/5.0/blazor/security/includes/imports-file-standalone.md)]
+[!INCLUDE[](~/blazor/security/includes/imports-file-standalone.md)]
 
 ## Index page
 
-[!INCLUDE[](~/5.0/blazor/security/includes/index-page-msal.md)]
+[!INCLUDE[](~/blazor/security/includes/index-page-msal.md)]
 
 ## App component
 
-[!INCLUDE[](~/5.0/blazor/security/includes/app-component.md)]
+[!INCLUDE[](~/blazor/security/includes/app-component.md)]
 
 ## RedirectToLogin component
 
-[!INCLUDE[](~/5.0/blazor/security/includes/redirecttologin-component.md)]
+[!INCLUDE[](~/blazor/security/includes/redirecttologin-component.md)]
 
 ## LoginDisplay component
 
-[!INCLUDE[](~/5.0/blazor/security/includes/logindisplay-component.md)]
+[!INCLUDE[](~/blazor/security/includes/logindisplay-component.md)]
 
 ## Authentication component
 
-[!INCLUDE[](~/5.0/blazor/security/includes/authentication-component.md)]
+[!INCLUDE[](~/blazor/security/includes/authentication-component.md)]
 
-[!INCLUDE[](~/5.0/blazor/security/includes/troubleshoot.md)]
+[!INCLUDE[](~/blazor/security/includes/troubleshoot.md)]
 
 ## Additional resources
 
@@ -470,7 +470,7 @@ Specify additional scopes with `AdditionalScopesToConsent`:
 options.ProviderOptions.AdditionalScopesToConsent.Add("{ADDITIONAL SCOPE URI}");
 ```
 
-[!INCLUDE[](~/3.1/blazor/security/includes/azure-scope.md)]
+[!INCLUDE[](~/blazor/security/includes/azure-scope.md)]
 
 For more information, see the following sections of the *Additional scenarios* article:
 
@@ -479,29 +479,29 @@ For more information, see the following sections of the *Additional scenarios* a
 
 ## Imports file
 
-[!INCLUDE[](~/3.1/blazor/security/includes/imports-file-standalone.md)]
+[!INCLUDE[](~/blazor/security/includes/imports-file-standalone.md)]
 
 ## Index page
 
-[!INCLUDE[](~/3.1/blazor/security/includes/index-page-msal.md)]
+[!INCLUDE[](~/blazor/security/includes/index-page-msal.md)]
 
 ## App component
 
-[!INCLUDE[](~/3.1/blazor/security/includes/app-component.md)]
+[!INCLUDE[](~/blazor/security/includes/app-component.md)]
 
 ## RedirectToLogin component
 
-[!INCLUDE[](~/3.1/blazor/security/includes/redirecttologin-component.md)]
+[!INCLUDE[](~/blazor/security/includes/redirecttologin-component.md)]
 
 ## LoginDisplay component
 
-[!INCLUDE[](~/3.1/blazor/security/includes/logindisplay-component.md)]
+[!INCLUDE[](~/blazor/security/includes/logindisplay-component.md)]
 
 ## Authentication component
 
-[!INCLUDE[](~/3.1/blazor/security/includes/authentication-component.md)]
+[!INCLUDE[](~/blazor/security/includes/authentication-component.md)]
 
-[!INCLUDE[](~/3.1/blazor/security/includes/troubleshoot.md)]
+[!INCLUDE[](~/blazor/security/includes/troubleshoot.md)]
 
 ## Additional resources
 

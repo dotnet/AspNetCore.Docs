@@ -69,7 +69,7 @@ To enable debugging for an existing Blazor WebAssembly app, update the `launchSe
 
 Once updated, the `launchSettings.json` file should look similar to the following example:
 
-[!code-json[](~/6.0/blazor/debug/launchSettings.json?highlight=14,22)]
+[!code-json[](~/blazor/debug/launchSettings.json?highlight=14,22)]
 
 The `inspectUri` property:
 
@@ -492,7 +492,7 @@ To enable debugging for an existing Blazor WebAssembly app, update the `launchSe
 
 Once updated, the `launchSettings.json` file should look similar to the following example:
 
-[!code-json[](~/5.0/blazor/debug/launchSettings.json?highlight=14,22)]
+[!code-json[](~/blazor/debug/launchSettings.json?highlight=14,22)]
 
 The `inspectUri` property:
 
@@ -915,7 +915,7 @@ To enable debugging for an existing Blazor WebAssembly app, update the `launchSe
 
 Once updated, the `launchSettings.json` file should look similar to the following example:
 
-[!code-json[](~/3.1/blazor/debug/launchSettings.json?highlight=14,22)]
+[!code-json[](~/blazor/debug/launchSettings.json?highlight=14,22)]
 
 The `inspectUri` property:
 

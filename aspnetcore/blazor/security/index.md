@@ -753,7 +753,7 @@ Set up the `Task<`<xref:Microsoft.AspNetCore.Components.Authorization.Authentica
 </CascadingAuthenticationState>
 ```
 
-[!INCLUDE[](~/5.0/blazor/includes/prefer-exact-matches.md)]
+[!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
 
 In a Blazor WebAssembly App, add services for options and authorization to `Program.Main`:
 
@@ -995,7 +995,7 @@ In the default [Blazor Server project template](xref:blazor/project-structure), 
 </CascadingAuthenticationState>
 ```
 
-[!INCLUDE[](~/5.0/blazor/includes/prefer-exact-matches.md)]
+[!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
 
 The content of `<NotFound>`, `<NotAuthorized>`, and `<Authorizing>` tags can include arbitrary items, such as other interactive components.
 
@@ -1075,7 +1075,7 @@ It's likely that the project wasn't created using a Blazor Server template with 
 </CascadingAuthenticationState>
 ```
 
-[!INCLUDE[](~/5.0/blazor/includes/prefer-exact-matches.md)]
+[!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
 
 The <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationState> supplies the `Task<`<xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState>`>` cascading parameter, which in turn it receives from the underlying <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> DI service.
 

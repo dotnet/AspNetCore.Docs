@@ -26,7 +26,7 @@ In constrained environments, such as inside corporate networks or intranets, som
 
 ## Blazor and shared state
 
-[!INCLUDE[](~/6.0/blazor/security/includes/blazor-shared-state.md)]
+[!INCLUDE[](~/blazor/security/includes/blazor-shared-state.md)]
 
 ## Resource exhaustion
 
@@ -417,7 +417,7 @@ In constrained environments, such as inside corporate networks or intranets, som
 
 ## Blazor and shared state
 
-[!INCLUDE[](~/5.0/blazor/security/includes/blazor-shared-state.md)]
+[!INCLUDE[](~/blazor/security/includes/blazor-shared-state.md)]
 
 ## Resource exhaustion
 
@@ -808,7 +808,7 @@ In constrained environments, such as inside corporate networks or intranets, som
 
 ## Blazor and shared state
 
-[!INCLUDE[](~/3.1/blazor/security/includes/blazor-shared-state.md)]
+[!INCLUDE[](~/blazor/security/includes/blazor-shared-state.md)]
 
 ## Resource exhaustion
 

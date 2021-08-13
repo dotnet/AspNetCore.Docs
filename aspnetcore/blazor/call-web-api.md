@@ -362,7 +362,7 @@ else
 
 `Pages/TodoRequest.razor`:
 
-[!code-razor[](~/6.0/blazor/samples/BlazorSample_WebAssembly/Pages/call-web-api/TodoRequest.razor)]
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/call-web-api/TodoRequest.razor)]
 
 Blazor WebAssembly's implementation of <xref:System.Net.Http.HttpClient> uses [Fetch API](https://developer.mozilla.org/docs/Web/API/WindowOrWorkerGlobalScope/fetch). Fetch API allows the configuration of several [request-specific options](https://developer.mozilla.org/docs/Web/API/WindowOrWorkerGlobalScope/fetch#Parameters). Options can be configured with <xref:System.Net.Http.HttpRequestMessage> extension methods shown in the following table.
 
@@ -404,7 +404,7 @@ By default, ASP.NET Core apps use ports 5000 (HTTP) and 5001 (HTTPS). To run bot
 
 `Pages/CallWebAPI.razor`:
 
-[!code-razor[](~/6.0/blazor/samples/BlazorSample_WebAssembly/Pages/call-web-api/CallWebAPI.razor)]
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/call-web-api/CallWebAPI.razor)]
 
 ## Handle errors
 
@@ -958,7 +958,7 @@ else
 
 `Pages/TodoRequest.razor`:
 
-[!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Pages/call-web-api/TodoRequest.razor)]
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/call-web-api/TodoRequest.razor)]
 
 Blazor WebAssembly's implementation of <xref:System.Net.Http.HttpClient> uses [Fetch API](https://developer.mozilla.org/docs/Web/API/WindowOrWorkerGlobalScope/fetch). Fetch API allows the configuration of several [request-specific options](https://developer.mozilla.org/docs/Web/API/WindowOrWorkerGlobalScope/fetch#Parameters). Options can be configured with <xref:System.Net.Http.HttpRequestMessage> extension methods shown in the following table.
 
@@ -1000,7 +1000,7 @@ By default, ASP.NET Core apps use ports 5000 (HTTP) and 5001 (HTTPS). To run bot
 
 `Pages/CallWebAPI.razor`:
 
-[!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Pages/call-web-api/CallWebAPI.razor)]
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/call-web-api/CallWebAPI.razor)]
 
 ## Handle errors
 
@@ -1180,7 +1180,7 @@ Various network tools are publicly available for testing web API backend apps di
 
 [`HttpClientTest` assets in the `dotnet/aspnetcore` GitHub repository](https://github.com/dotnet/aspnetcore/tree/main/src/Components/test/testassets/BasicTestApp/HttpClientTest)
 
-[!INCLUDE[](~/5.0/blazor/includes/aspnetcore-repo-ref-source-links.md)]
+[!INCLUDE[](~/blazor/includes/aspnetcore-repo-ref-source-links.md)]
 
 ## Additional resources
 
@@ -1556,7 +1556,7 @@ else
 
 `Pages/TodoRequest.razor`:
 
-[!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/call-web-api/TodoRequest.razor)]
+[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/call-web-api/TodoRequest.razor)]
 
 Blazor WebAssembly's implementation of <xref:System.Net.Http.HttpClient> uses [Fetch API](https://developer.mozilla.org/docs/Web/API/WindowOrWorkerGlobalScope/fetch). Fetch API allows the configuration of several [request-specific options](https://developer.mozilla.org/docs/Web/API/WindowOrWorkerGlobalScope/fetch#Parameters). Options can be configured with <xref:System.Net.Http.HttpRequestMessage> extension methods shown in the following table.
 
@@ -1598,7 +1598,7 @@ By default, ASP.NET Core apps use ports 5000 (HTTP) and 5001 (HTTPS). To run bot
 
 `Pages/CallWebAPI.razor`:
 
-[!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/call-web-api/CallWebAPI.razor)]
+[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/call-web-api/CallWebAPI.razor)]
 
 ## Handle errors
 
@@ -1778,7 +1778,7 @@ Various network tools are publicly available for testing web API backend apps di
 
 [`HttpClientTest` assets in the `dotnet/aspnetcore` GitHub repository](https://github.com/dotnet/aspnetcore/tree/main/src/Components/test/testassets/BasicTestApp/HttpClientTest)
 
-[!INCLUDE[](~/3.1/blazor/includes/aspnetcore-repo-ref-source-links.md)]
+[!INCLUDE[](~/blazor/includes/aspnetcore-repo-ref-source-links.md)]
 
 ## Additional resources
 

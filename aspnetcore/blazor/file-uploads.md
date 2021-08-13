@@ -108,13 +108,13 @@ The following example demonstrates multiple file upload in a component. <xref:Mi
 
 ::: zone pivot="webassembly"
 
-[!code-razor[](~/6.0/blazor/samples/BlazorSample_WebAssembly/Pages/file-uploads/FileUpload1.razor)]
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/file-uploads/FileUpload1.razor)]
 
 ::: zone-end
 
 ::: zone pivot="server"
 
-[!code-razor[](~/6.0/blazor/samples/BlazorSample_Server/Pages/file-uploads/FileUpload1.razor)]
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_Server/Pages/file-uploads/FileUpload1.razor)]
 
 ::: zone-end
 
@@ -222,7 +222,7 @@ The following `FileUpload2` component:
 
 `Pages/FileUpload2.razor` in the **`Client`** project:
 
-[!code-razor[](~/6.0/blazor/samples/BlazorSample_WebAssembly/Pages/file-uploads/FileUpload2.razor)]
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/file-uploads/FileUpload2.razor)]
 
 ::: zone-end
 
@@ -230,7 +230,7 @@ The following `FileUpload2` component:
 
 `Pages/FileUpload2.razor` in the Blazor Server app:
 
-[!code-razor[](~/6.0/blazor/samples/BlazorSample_Server/Pages/file-uploads/FileUpload2.razor)]
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_Server/Pages/file-uploads/FileUpload2.razor)]
 
 ::: zone-end
 
@@ -476,13 +476,13 @@ The following example demonstrates multiple file upload in a component. <xref:Mi
 
 ::: zone pivot="webassembly"
 
-[!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Pages/file-uploads/FileUpload1.razor)]
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/file-uploads/FileUpload1.razor)]
 
 ::: zone-end
 
 ::: zone pivot="server"
 
-[!code-razor[](~/5.0/blazor/samples/BlazorSample_Server/Pages/file-uploads/FileUpload1.razor)]
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_Server/Pages/file-uploads/FileUpload1.razor)]
 
 ::: zone-end
 
@@ -590,7 +590,7 @@ The following `FileUpload2` component:
 
 `Pages/FileUpload2.razor` in the **`Client`** project:
 
-[!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Pages/file-uploads/FileUpload2.razor)]
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/file-uploads/FileUpload2.razor)]
 
 ::: zone-end
 
@@ -598,7 +598,7 @@ The following `FileUpload2` component:
 
 `Pages/FileUpload2.razor` in the Blazor Server app:
 
-[!code-razor[](~/5.0/blazor/samples/BlazorSample_Server/Pages/file-uploads/FileUpload2.razor)]
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_Server/Pages/file-uploads/FileUpload2.razor)]
 
 ::: zone-end
 

@@ -56,7 +56,7 @@ In the following `CallDotNetExample1` component, the `ReturnArrayAsync` C# metho
 
 `Pages/CallDotNetExample1.razor`:
 
-[!code-razor[](~/6.0/blazor/samples/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample1.razor?highlight=12-16)]
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample1.razor?highlight=12-16)]
 
 The `<button>` element's `onclick` HTML attribute is JavaScript's [`onclick`](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers/onclick) event handler assignment for processing [`click`](https://developer.mozilla.org/docs/Web/API/Element/click_event) events, not Blazor's `@onclick` directive attribute. The `returnArrayAsync` JS function is assigned as the handler.
 
@@ -141,7 +141,7 @@ For the following `CallDotNetExample2` component:
 
 `Pages/CallDotNetExample2.razor`:
 
-[!code-razor[](~/6.0/blazor/samples/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample2.razor?highlight=30-31,34-35)]
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample2.razor?highlight=30-31,34-35)]
 
 To pass arguments to an instance method:
 
@@ -159,7 +159,7 @@ To pass arguments to an instance method:
 
    `Pages/CallDotNetExample3.razor`:
 
-   [!code-razor[](~/6.0/blazor/samples/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample3.razor?highlight=31,35)]
+   [!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample3.razor?highlight=31,35)]
 
 ### Class instance examples
 
@@ -182,13 +182,13 @@ The following `HelloHelper` class has a JS-invokable .NET method named `GetHello
 
 `HelloHelper.cs`:
 
-[!code-csharp[](~/6.0/blazor/samples/BlazorSample_WebAssembly/HelloHelper.cs?highlight=5,12-13)]
+[!code-csharp[](~/blazor/samples/6.0/BlazorSample_WebAssembly/HelloHelper.cs?highlight=5,12-13)]
 
 The `CallHelloHelperGetHelloMessage` method in the following `JsInteropClasses3` class invokes the JS function `sayHello1` with a new instance of `HelloHelper`.
 
 `JsInteropClasses3.cs`:
 
-[!code-csharp[](~/6.0/blazor/samples/BlazorSample_WebAssembly/JsInteropClasses3.cs?highlight=15-20)]
+[!code-csharp[](~/blazor/samples/6.0/BlazorSample_WebAssembly/JsInteropClasses3.cs?highlight=15-20)]
 
 To avoid a memory leak and allow garbage collection, the .NET object reference created by <xref:Microsoft.JSInterop.DotNetObjectReference> is disposed in the `Dispose` method.
 
@@ -196,17 +196,17 @@ When the **`Trigger .NET instance method`** button is selected in the following 
 
 `Pages/CallDotNetExample4.razor`:
 
-[!code-razor[](~/6.0/blazor/samples/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample4.razor?highlight=28-32)]
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample4.razor?highlight=28-32)]
 
 The following image shows the rendered component with the name `Amy Pond` in the `Name` field. After the button is selected, `Hello, Amy Pond!` is displayed in the UI:
 
-![Rendered 'CallDotNetExample4' component example](~/6.0/blazor/javascript-interoperability/call-dotnet-from-javascript/_static/component-example-4.png)
+![Rendered 'CallDotNetExample4' component example](~/blazor/javascript-interoperability/call-dotnet-from-javascript/_static/component-example-4.png)
 
 The preceding pattern shown in the `JsInteropClasses3` class can also be implemented entirely in a component.
 
 `Pages/CallDotNetExample5.razor`:
 
-[!code-razor[](~/6.0/blazor/samples/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample5.razor)]
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample5.razor)]
 
 To avoid a memory leak and allow garbage collection, the .NET object reference created by <xref:Microsoft.JSInterop.DotNetObjectReference> is disposed in the `Dispose` method.
 
@@ -243,7 +243,7 @@ The following `MessageUpdateInvokeHelper` class maintains a JS-invokable .NET me
 
 `MessageUpdateInvokeHelper.cs`:
 
-[!code-csharp[](~/6.0/blazor/samples/BlazorSample_WebAssembly/MessageUpdateInvokeHelper.cs?highlight=8,13-17)]
+[!code-csharp[](~/blazor/samples/6.0/BlazorSample_WebAssembly/MessageUpdateInvokeHelper.cs?highlight=8,13-17)]
 
 The following `updateMessageCaller` JS function invokes the `UpdateMessageCaller` .NET method. `BlazorSample` is the app's assembly name.
 
@@ -264,7 +264,7 @@ When a `ListItem` component's **`InteropCall`** button is selected, `updateMessa
 
 `Shared/ListItem.razor`:
 
-[!code-razor[](~/6.0/blazor/samples/BlazorSample_WebAssembly/Shared/call-dotnet-from-js/ListItem.razor?highlight=1,5,11,15,18-22,24)]
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Shared/call-dotnet-from-js/ListItem.razor?highlight=1,5,11,15,18-22,24)]
 
 [`StateHasChanged`](xref:blazor/components/lifecycle#state-changes-statehaschanged) is called to update the UI when `message` is set in `UpdateMessage`. If `StateHasChanged` isn't called, Blazor has no way of knowing that the UI should be updated when the <xref:System.Action> is invoked.
 
@@ -272,14 +272,14 @@ The following `CallDotNetExample6` parent component includes four list items, ea
 
 `Pages/CallDotNetExample6.razor`:
 
-[!code-razor[](~/6.0/blazor/samples/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample6.razor?highlight=6-9)]
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample6.razor?highlight=6-9)]
 
 The following image shows the rendered `CallDotNetExample6` parent component after the second **`InteropCall`** button is selected:
 
 * The second `ListItem` component has displayed the `UpdateMessage Called!` message.
 * The **`InteropCall`** button for the second `ListItem` component isn't visible because the button's CSS `display` property is set to `none`.
 
-![Rendered 'CallDotNetExample6' component example](~/6.0/blazor/javascript-interoperability/call-dotnet-from-javascript/_static/component-example-6.png)
+![Rendered 'CallDotNetExample6' component example](~/blazor/javascript-interoperability/call-dotnet-from-javascript/_static/component-example-6.png)
 
 ## Location of JavaScipt
 
@@ -355,7 +355,7 @@ For information on using a byte array when calling JavaScript from .NET, see <xr
 
 ## Size limits on JavaScript interop calls
 
-[!INCLUDE[](~/6.0/blazor/includes/js-interop/size-limits.md)]
+[!INCLUDE[](~/blazor/includes/js-interop/size-limits.md)]
 
 ## JavaScript isolation in JavaScript modules
 
@@ -421,7 +421,7 @@ In the following `CallDotNetExample1` component, the `ReturnArrayAsync` C# metho
 
 `Pages/CallDotNetExample1.razor`:
 
-[!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample1.razor?highlight=12-16)]
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample1.razor?highlight=12-16)]
 
 The `<button>` element's `onclick` HTML attribute is JavaScript's [`onclick`](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers/onclick) event handler assignment for processing [`click`](https://developer.mozilla.org/docs/Web/API/Element/click_event) events, not Blazor's `@onclick` directive attribute. The `returnArrayAsync` JS function is assigned as the handler.
 
@@ -506,7 +506,7 @@ For the following `CallDotNetExample2` component:
 
 `Pages/CallDotNetExample2.razor`:
 
-[!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample2.razor?highlight=30-31,34-35)]
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample2.razor?highlight=30-31,34-35)]
 
 To pass arguments to an instance method:
 
@@ -524,7 +524,7 @@ To pass arguments to an instance method:
 
    `Pages/CallDotNetExample3.razor`:
 
-   [!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample3.razor?highlight=31,35)]
+   [!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample3.razor?highlight=31,35)]
 
 ### Class instance examples
 
@@ -547,13 +547,13 @@ The following `HelloHelper` class has a JS-invokable .NET method named `GetHello
 
 `HelloHelper.cs`:
 
-[!code-csharp[](~/5.0/blazor/samples/BlazorSample_WebAssembly/HelloHelper.cs?highlight=5,12-13)]
+[!code-csharp[](~/blazor/samples/5.0/BlazorSample_WebAssembly/HelloHelper.cs?highlight=5,12-13)]
 
 The `CallHelloHelperGetHelloMessage` method in the following `JsInteropClasses3` class invokes the JS function `sayHello1` with a new instance of `HelloHelper`.
 
 `JsInteropClasses3.cs`:
 
-[!code-csharp[](~/5.0/blazor/samples/BlazorSample_WebAssembly/JsInteropClasses3.cs?highlight=15-20)]
+[!code-csharp[](~/blazor/samples/5.0/BlazorSample_WebAssembly/JsInteropClasses3.cs?highlight=15-20)]
 
 To avoid a memory leak and allow garbage collection, the .NET object reference created by <xref:Microsoft.JSInterop.DotNetObjectReference> is disposed in the `Dispose` method.
 
@@ -561,17 +561,17 @@ When the **`Trigger .NET instance method`** button is selected in the following 
 
 `Pages/CallDotNetExample4.razor`:
 
-[!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample4.razor?highlight=28-32)]
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample4.razor?highlight=28-32)]
 
 The following image shows the rendered component with the name `Amy Pond` in the `Name` field. After the button is selected, `Hello, Amy Pond!` is displayed in the UI:
 
-![Rendered 'CallDotNetExample4' component example](~/6.0/blazor/javascript-interoperability/call-dotnet-from-javascript/_static/component-example-4.png)
+![Rendered 'CallDotNetExample4' component example](~/blazor/javascript-interoperability/call-dotnet-from-javascript/_static/component-example-4.png)
 
 The preceding pattern shown in the `JsInteropClasses3` class can also be implemented entirely in a component.
 
 `Pages/CallDotNetExample5.razor`:
 
-[!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample5.razor)]
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample5.razor)]
 
 To avoid a memory leak and allow garbage collection, the .NET object reference created by <xref:Microsoft.JSInterop.DotNetObjectReference> is disposed in the `Dispose` method.
 
@@ -608,7 +608,7 @@ The following `MessageUpdateInvokeHelper` class maintains a JS-invokable .NET me
 
 `MessageUpdateInvokeHelper.cs`:
 
-[!code-csharp[](~/5.0/blazor/samples/BlazorSample_WebAssembly/MessageUpdateInvokeHelper.cs?highlight=8,13-17)]
+[!code-csharp[](~/blazor/samples/5.0/BlazorSample_WebAssembly/MessageUpdateInvokeHelper.cs?highlight=8,13-17)]
 
 The following `updateMessageCaller` JS function invokes the `UpdateMessageCaller` .NET method. `BlazorSample` is the app's assembly name.
 
@@ -629,7 +629,7 @@ When a `ListItem` component's **`InteropCall`** button is selected, `updateMessa
 
 `Shared/ListItem.razor`:
 
-[!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Shared/call-dotnet-from-js/ListItem.razor?highlight=1,5,11,15,18-22,24)]
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Shared/call-dotnet-from-js/ListItem.razor?highlight=1,5,11,15,18-22,24)]
 
 [`StateHasChanged`](xref:blazor/components/lifecycle#state-changes-statehaschanged) is called to update the UI when `message` is set in `UpdateMessage`. If `StateHasChanged` isn't called, Blazor has no way of knowing that the UI should be updated when the <xref:System.Action> is invoked.
 
@@ -637,14 +637,14 @@ The following `CallDotNetExample6` parent component includes four list items, ea
 
 `Pages/CallDotNetExample6.razor`:
 
-[!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample6.razor?highlight=6-9)]
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample6.razor?highlight=6-9)]
 
 The following image shows the rendered `CallDotNetExample6` parent component after the second **`InteropCall`** button is selected:
 
 * The second `ListItem` component has displayed the `UpdateMessage Called!` message.
 * The **`InteropCall`** button for the second `ListItem` component isn't visible because the button's CSS `display` property is set to `none`.
 
-![Rendered 'CallDotNetExample6' component example](~/5.0/blazor/javascript-interoperability/call-dotnet-from-javascript/_static/component-example-6.png)
+![Rendered 'CallDotNetExample6' component example](~/blazor/javascript-interoperability/call-dotnet-from-javascript/_static/component-example-6.png)
 
 ## Location of JavaScipt
 
@@ -669,7 +669,7 @@ Objects that contain circular references can't be serialized on the client for e
 
 ## Size limits on JavaScript interop calls
 
-[!INCLUDE[](~/5.0/blazor/includes/js-interop/size-limits.md)]
+[!INCLUDE[](~/blazor/includes/js-interop/size-limits.md)]
 
 ## JavaScript isolation in JavaScript modules
 
@@ -735,7 +735,7 @@ In the following `CallDotNetExample1` component, the `ReturnArrayAsync` C# metho
 
 `Pages/CallDotNetExample1.razor`:
 
-[!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample1.razor?highlight=12-16)]
+[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample1.razor?highlight=12-16)]
 
 The `<button>` element's `onclick` HTML attribute is JavaScript's [`onclick`](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers/onclick) event handler assignment for processing [`click`](https://developer.mozilla.org/docs/Web/API/Element/click_event) events, not Blazor's `@onclick` directive attribute. The `returnArrayAsync` JS function is assigned as the handler.
 
@@ -820,7 +820,7 @@ For the following `CallDotNetExample2` component:
 
 `Pages/CallDotNetExample2.razor`:
 
-[!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample2.razor?highlight=30-31,34-35)]
+[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample2.razor?highlight=30-31,34-35)]
 
 To pass arguments to an instance method:
 
@@ -838,7 +838,7 @@ To pass arguments to an instance method:
 
    `Pages/CallDotNetExample3.razor`:
 
-   [!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample3.razor?highlight=31,35)]
+   [!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample3.razor?highlight=31,35)]
 
 ### Class instance examples
 
@@ -861,13 +861,13 @@ The following `HelloHelper` class has a JS-invokable .NET method named `GetHello
 
 `HelloHelper.cs`:
 
-[!code-csharp[](~/3.1/blazor/samples/BlazorSample_WebAssembly/HelloHelper.cs?highlight=5,12-13)]
+[!code-csharp[](~/blazor/samples/3.1/BlazorSample_WebAssembly/HelloHelper.cs?highlight=5,12-13)]
 
 The `CallHelloHelperGetHelloMessage` method in the following `JsInteropClasses3` class invokes the JS function `sayHello1` with a new instance of `HelloHelper`.
 
 `JsInteropClasses3.cs`:
 
-[!code-csharp[](~/3.1/blazor/samples/BlazorSample_WebAssembly/JsInteropClasses3.cs?highlight=15-20)]
+[!code-csharp[](~/blazor/samples/3.1/BlazorSample_WebAssembly/JsInteropClasses3.cs?highlight=15-20)]
 
 To avoid a memory leak and allow garbage collection, the .NET object reference created by <xref:Microsoft.JSInterop.DotNetObjectReference> is disposed in the `Dispose` method.
 
@@ -875,17 +875,17 @@ When the **`Trigger .NET instance method`** button is selected in the following 
 
 `Pages/CallDotNetExample4.razor`:
 
-[!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample4.razor?highlight=28-32)]
+[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample4.razor?highlight=28-32)]
 
 The following image shows the rendered component with the name `Amy Pond` in the `Name` field. After the button is selected, `Hello, Amy Pond!` is displayed in the UI:
 
-![Rendered 'CallDotNetExample4' component example](~/5.0/blazor/javascript-interoperability/call-dotnet-from-javascript/_static/component-example-4.png)
+![Rendered 'CallDotNetExample4' component example](~/blazor/javascript-interoperability/call-dotnet-from-javascript/_static/component-example-4.png)
 
 The preceding pattern shown in the `JsInteropClasses3` class can also be implemented entirely in a component.
 
 `Pages/CallDotNetExample5.razor`:
 
-[!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample5.razor)]
+[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample5.razor)]
 
 To avoid a memory leak and allow garbage collection, the .NET object reference created by <xref:Microsoft.JSInterop.DotNetObjectReference> is disposed in the `Dispose` method.
 
@@ -922,7 +922,7 @@ The following `MessageUpdateInvokeHelper` class maintains a JS-invokable .NET me
 
 `MessageUpdateInvokeHelper.cs`:
 
-[!code-csharp[](~/3.1/blazor/samples/BlazorSample_WebAssembly/MessageUpdateInvokeHelper.cs?highlight=8,13-17)]
+[!code-csharp[](~/blazor/samples/3.1/BlazorSample_WebAssembly/MessageUpdateInvokeHelper.cs?highlight=8,13-17)]
 
 The following `updateMessageCaller` JS function invokes the `UpdateMessageCaller` .NET method. `BlazorSample` is the app's assembly name.
 
@@ -943,7 +943,7 @@ When a `ListItem` component's **`InteropCall`** button is selected, `updateMessa
 
 `Shared/ListItem.razor`:
 
-[!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Shared/call-dotnet-from-js/ListItem.razor?highlight=1,5,11,15,18-22,24)]
+[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Shared/call-dotnet-from-js/ListItem.razor?highlight=1,5,11,15,18-22,24)]
 
 [`StateHasChanged`](xref:blazor/components/lifecycle#state-changes-statehaschanged) is called to update the UI when `message` is set in `UpdateMessage`. If `StateHasChanged` isn't called, Blazor has no way of knowing that the UI should be updated when the <xref:System.Action> is invoked.
 
@@ -951,14 +951,14 @@ The following `CallDotNetExample6` parent component includes four list items, ea
 
 `Pages/CallDotNetExample6.razor`:
 
-[!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample6.razor?highlight=6-9)]
+[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample6.razor?highlight=6-9)]
 
 The following image shows the rendered `CallDotNetExample6` parent component after the second **`InteropCall`** button is selected:
 
 * The second `ListItem` component has displayed the `UpdateMessage Called!` message.
 * The **`InteropCall`** button for the second `ListItem` component isn't visible because the button's CSS `display` property is set to `none`.
 
-![Rendered 'CallDotNetExample6' component example](~/3.1/blazor/javascript-interoperability/call-dotnet-from-javascript/_static/component-example-6.png)
+![Rendered 'CallDotNetExample6' component example](~/blazor/javascript-interoperability/call-dotnet-from-javascript/_static/component-example-6.png)
 
 ## Location of JavaScipt
 
@@ -981,7 +981,7 @@ Objects that contain circular references can't be serialized on the client for e
 
 ## Size limits on JavaScript interop calls
 
-[!INCLUDE[](~/3.1/blazor/includes/js-interop/size-limits.md)]
+[!INCLUDE[](~/blazor/includes/js-interop/size-limits.md)]
 
 ## Additional resources
 
