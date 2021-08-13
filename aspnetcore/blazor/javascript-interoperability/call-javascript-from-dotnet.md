@@ -360,7 +360,7 @@ The `{JAVASCRIPT FUNCTION}` placeholder is the JS function identifier.
 An <xref:Microsoft.AspNetCore.Components.ElementReference> can't be passed between components because:
 
 * The instance is only guaranteed to exist after the component is rendered, which is during or after a component's <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A>/<xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> method executes.
-* An <xref:Microsoft.AspNetCore.Components.ElementReference> is a [`struct`](/csharp/language-reference/builtin-types/struct), which can't be passed as a [component parameter](xref:blazor/components/index#component-parameters).
+* An <xref:Microsoft.AspNetCore.Components.ElementReference> is a [`struct`](/dotnet/csharp/language-reference/builtin-types/struct), which can't be passed as a [component parameter](xref:blazor/components/index#component-parameters).
 
 For a parent component to make an element reference available to other components, the parent component can:
 
@@ -1054,7 +1054,7 @@ The `{JAVASCRIPT FUNCTION}` placeholder is the JS function identifier.
 An <xref:Microsoft.AspNetCore.Components.ElementReference> can't be passed between components because:
 
 * The instance is only guaranteed to exist after the component is rendered, which is during or after a component's <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A>/<xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> method executes.
-* An <xref:Microsoft.AspNetCore.Components.ElementReference> is a [`struct`](/csharp/language-reference/builtin-types/struct), which can't be passed as a [component parameter](xref:blazor/components/index#component-parameters).
+* An <xref:Microsoft.AspNetCore.Components.ElementReference> is a [`struct`](/dotnet/csharp/language-reference/builtin-types/struct), which can't be passed as a [component parameter](xref:blazor/components/index#component-parameters).
 
 For a parent component to make an element reference available to other components, the parent component can:
 
@@ -1608,7 +1608,7 @@ The `{JAVASCRIPT FUNCTION}` placeholder is the JS function identifier.
 An <xref:Microsoft.AspNetCore.Components.ElementReference> can't be passed between components because:
 
 * The instance is only guaranteed to exist after the component is rendered, which is during or after a component's <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A>/<xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> method executes.
-* An <xref:Microsoft.AspNetCore.Components.ElementReference> is a [`struct`](/csharp/language-reference/builtin-types/struct), which can't be passed as a [component parameter](xref:blazor/components/index#component-parameters).
+* An <xref:Microsoft.AspNetCore.Components.ElementReference> is a [`struct`](/dotnet/csharp/language-reference/builtin-types/struct), which can't be passed as a [component parameter](xref:blazor/components/index#component-parameters).
 
 For a parent component to make an element reference available to other components, the parent component can:
 

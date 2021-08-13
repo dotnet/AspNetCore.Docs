@@ -357,7 +357,7 @@ We recommend using the [Azure SignalR Service](xref:signalr/scale#azure-signalr-
 * <xref:blazor/security/server/threat-mitigation>
 * [Blazor Server reconnection events and component lifecycle events](xref:blazor/components/lifecycle#blazor-server-reconnection-events)
 * [What is Azure SignalR Service?](/azure/azure-signalr/signalr-overview)
-* [Performance guide for Azure SignalR Service](/azure-signalr/signalr-concept-performance#performance-factors)
+* [Performance guide for Azure SignalR Service](/azure/azure-signalr/signalr-concept-performance)
 * <xref:signalr/publish-to-azure-web-app>
 
 ::: zone-end
@@ -709,7 +709,7 @@ We recommend using the [Azure SignalR Service](xref:signalr/scale#azure-signalr-
 * <xref:blazor/security/server/threat-mitigation>
 * [Blazor Server reconnection events and component lifecycle events](xref:blazor/components/lifecycle#blazor-server-reconnection-events)
 * [What is Azure SignalR Service?](/azure/azure-signalr/signalr-overview)
-* [Performance guide for Azure SignalR Service](/azure-signalr/signalr-concept-performance#performance-factors)
+* [Performance guide for Azure SignalR Service](/azure/azure-signalr/signalr-concept-performance)
 * <xref:signalr/publish-to-azure-web-app>
 
 ::: zone-end
@@ -1032,7 +1032,7 @@ We recommend using the [Azure SignalR Service](xref:signalr/scale#azure-signalr-
 * <xref:blazor/security/server/threat-mitigation>
 * [Blazor Server reconnection events and component lifecycle events](xref:blazor/components/lifecycle#blazor-server-reconnection-events)
 * [What is Azure SignalR Service?](/azure/azure-signalr/signalr-overview)
-* [Performance guide for Azure SignalR Service](/azure-signalr/signalr-concept-performance#performance-factors)
+* [Performance guide for Azure SignalR Service](/azure/azure-signalr/signalr-concept-performance)
 * <xref:signalr/publish-to-azure-web-app>
 
 ::: zone-end
