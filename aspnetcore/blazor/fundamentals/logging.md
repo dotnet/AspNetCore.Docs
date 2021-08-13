@@ -82,13 +82,13 @@ The following example demonstrates logging with an <xref:Microsoft.Extensions.Lo
 
 `Pages/Counter.razor`:
 
-[!code-razor[](~/6.0/blazor/samples/BlazorSample_WebAssembly/Pages/logging/Counter1.razor?highlight=3,16)]
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/logging/Counter1.razor?highlight=3,16)]
 
 The following example demonstrates logging with an <xref:Microsoft.Extensions.Logging.ILoggerFactory> in components.
 
 `Pages/Counter.razor`:
 
-[!code-razor[](~/6.0/blazor/samples/BlazorSample_WebAssembly/Pages/logging/Counter2.razor?highlight=3,16-17)]
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/logging/Counter2.razor?highlight=3,16-17)]
 
 ## Additional resources
 
@@ -166,13 +166,13 @@ The following example demonstrates logging with an <xref:Microsoft.Extensions.Lo
 
 `Pages/Counter.razor`:
 
-[!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Pages/logging/Counter1.razor?highlight=3,16)]
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/logging/Counter1.razor?highlight=3,16)]
 
 The following example demonstrates logging with an <xref:Microsoft.Extensions.Logging.ILoggerFactory> in components.
 
 `Pages/Counter.razor`:
 
-[!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Pages/logging/Counter2.razor?highlight=3,16-17)]
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/logging/Counter2.razor?highlight=3,16-17)]
 
 ## Additional resources
 
@@ -250,13 +250,13 @@ The following example demonstrates logging with an <xref:Microsoft.Extensions.Lo
 
 `Pages/Counter.razor`:
 
-[!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/logging/Counter1.razor?highlight=3,16)]
+[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/logging/Counter1.razor?highlight=3,16)]
 
 The following example demonstrates logging with an <xref:Microsoft.Extensions.Logging.ILoggerFactory> in components.
 
 `Pages/Counter.razor`:
 
-[!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/logging/Counter2.razor?highlight=3,16-17)]
+[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/logging/Counter2.razor?highlight=3,16-17)]
 
 ## Additional resources
 

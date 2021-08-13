@@ -19,7 +19,7 @@ Blazor is a web framework designed to run client-side in the browser on a [WebAs
 
 Blazor WebAssembly apps run client-side in the browser on a WebAssembly-based .NET runtime. The Blazor app, its dependencies, and the .NET runtime are downloaded to the browser. The app is executed directly on the browser UI thread. UI updates and event handling occur within the same process. The app's assets are deployed as static files to a web server or service capable of serving static content to clients.
 
-![Blazor WebAssembly: The Blazor app runs on a UI thread inside the browser.](~/6.0/blazor/hosting-models/_static/blazor-webassembly.png)
+![Blazor WebAssembly: The Blazor app runs on a UI thread inside the browser.](~/blazor/hosting-models/_static/blazor-webassembly.png)
 
 When the Blazor WebAssembly app is created for deployment without a backend ASP.NET Core app to serve its files, the app is called a *standalone* Blazor WebAssembly app. When the app is created for deployment with a backend app to serve its files, the app is called a *hosted* Blazor WebAssembly app. A hosted Blazor WebAssembly **`Client`** app typically interacts with the backend **`Server`** app over the network using web API calls or [SignalR](xref:signalr/introduction) (<xref:tutorials/signalr-blazor>).
 
@@ -50,7 +50,7 @@ The hosted Blazor app model supports [Docker containers](/dotnet/standard/micros
 
 With the Blazor Server hosting model, the app is executed on the server from within an ASP.NET Core app. UI updates, event handling, and JavaScript calls are handled over a [SignalR](xref:signalr/introduction) connection.
 
-![The browser interacts with the app (hosted inside of an ASP.NET Core app) on the server over a SignalR connection.](~/6.0/blazor/hosting-models/_static/blazor-server.png)
+![The browser interacts with the app (hosted inside of an ASP.NET Core app) on the server over a SignalR connection.](~/blazor/hosting-models/_static/blazor-server.png)
 
 The ASP.NET Core app references the app's `Startup` class to add:
 
@@ -157,7 +157,7 @@ Blazor is a web framework designed to run client-side in the browser on a [WebAs
 
 Blazor WebAssembly apps run client-side in the browser on a WebAssembly-based .NET runtime. The Blazor app, its dependencies, and the .NET runtime are downloaded to the browser. The app is executed directly on the browser UI thread. UI updates and event handling occur within the same process. The app's assets are deployed as static files to a web server or service capable of serving static content to clients.
 
-![Blazor WebAssembly: The Blazor app runs on a UI thread inside the browser.](~/5.0/blazor/hosting-models/_static/blazor-webassembly.png)
+![Blazor WebAssembly: The Blazor app runs on a UI thread inside the browser.](~/blazor/hosting-models/_static/blazor-webassembly.png)
 
 When the Blazor WebAssembly app is created for deployment without a backend ASP.NET Core app to serve its files, the app is called a *standalone* Blazor WebAssembly app. When the app is created for deployment with a backend app to serve its files, the app is called a *hosted* Blazor WebAssembly app. A hosted Blazor WebAssembly **`Client`** app typically interacts with the backend **`Server`** app over the network using web API calls or [SignalR](xref:signalr/introduction) (<xref:tutorials/signalr-blazor>).
 
@@ -188,7 +188,7 @@ The hosted Blazor app model supports [Docker containers](/dotnet/standard/micros
 
 With the Blazor Server hosting model, the app is executed on the server from within an ASP.NET Core app. UI updates, event handling, and JavaScript calls are handled over a [SignalR](xref:signalr/introduction) connection.
 
-![The browser interacts with the app (hosted inside of an ASP.NET Core app) on the server over a SignalR connection.](~/5.0/blazor/hosting-models/_static/blazor-server.png)
+![The browser interacts with the app (hosted inside of an ASP.NET Core app) on the server over a SignalR connection.](~/blazor/hosting-models/_static/blazor-server.png)
 
 The ASP.NET Core app references the app's `Startup` class to add:
 
@@ -295,7 +295,7 @@ Blazor is a web framework designed to run client-side in the browser on a [WebAs
 
 Blazor WebAssembly apps run client-side in the browser on a WebAssembly-based .NET runtime. The Blazor app, its dependencies, and the .NET runtime are downloaded to the browser. The app is executed directly on the browser UI thread. UI updates and event handling occur within the same process. The app's assets are deployed as static files to a web server or service capable of serving static content to clients.
 
-![Blazor WebAssembly: The Blazor app runs on a UI thread inside the browser.](~/3.1/blazor/hosting-models/_static/blazor-webassembly.png)
+![Blazor WebAssembly: The Blazor app runs on a UI thread inside the browser.](~/blazor/hosting-models/_static/blazor-webassembly.png)
 
 When the Blazor WebAssembly app is created for deployment without a backend ASP.NET Core app to serve its files, the app is called a *standalone* Blazor WebAssembly app. When the app is created for deployment with a backend app to serve its files, the app is called a *hosted* Blazor WebAssembly app. A hosted Blazor WebAssembly **`Client`** app typically interacts with the backend **`Server`** app over the network using web API calls or [SignalR](xref:signalr/introduction) (<xref:tutorials/signalr-blazor>).
 
@@ -326,7 +326,7 @@ The hosted Blazor app model supports [Docker containers](/dotnet/standard/micros
 
 With the Blazor Server hosting model, the app is executed on the server from within an ASP.NET Core app. UI updates, event handling, and JavaScript calls are handled over a [SignalR](xref:signalr/introduction) connection.
 
-![The browser interacts with the app (hosted inside of an ASP.NET Core app) on the server over a SignalR connection.](~/3.1/blazor/hosting-models/_static/blazor-server.png)
+![The browser interacts with the app (hosted inside of an ASP.NET Core app) on the server over a SignalR connection.](~/blazor/hosting-models/_static/blazor-server.png)
 
 The ASP.NET Core app references the app's `Startup` class to add:
 

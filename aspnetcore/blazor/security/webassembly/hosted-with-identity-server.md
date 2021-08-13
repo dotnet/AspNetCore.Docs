@@ -207,19 +207,19 @@ By default, configuration for the app is loaded by convention from `_configurati
 
 ### Imports file
 
-[!INCLUDE[](~/6.0/blazor/security/includes/imports-file-hosted.md)]
+[!INCLUDE[](~/blazor/security/includes/imports-file-hosted.md)]
 
 ### Index page
 
-[!INCLUDE[](~/6.0/blazor/security/includes/index-page-authentication.md)]
+[!INCLUDE[](~/blazor/security/includes/index-page-authentication.md)]
 
 ### App component
 
-[!INCLUDE[](~/6.0/blazor/security/includes/app-component.md)]
+[!INCLUDE[](~/blazor/security/includes/app-component.md)]
 
 ### RedirectToLogin component
 
-[!INCLUDE[](~/6.0/blazor/security/includes/redirecttologin-component.md)]
+[!INCLUDE[](~/blazor/security/includes/redirecttologin-component.md)]
 
 ### LoginDisplay component
 
@@ -263,11 +263,11 @@ The `LoginDisplay` component (`Shared/LoginDisplay.razor`) is rendered in the `M
 
 ### Authentication component
 
-[!INCLUDE[](~/6.0/blazor/security/includes/authentication-component.md)]
+[!INCLUDE[](~/blazor/security/includes/authentication-component.md)]
 
 ### FetchData component
 
-[!INCLUDE[](~/6.0/blazor/security/includes/fetchdata-component.md)]
+[!INCLUDE[](~/blazor/security/includes/fetchdata-component.md)]
 
 ## Run the app
 
@@ -460,7 +460,7 @@ In the **`Client`** app, component authorization approaches are functional at th
 
 `User.Identity.Name` is populated in the **`Client`** app with the user's user name, which is usually their sign-in email address.
 
-[!INCLUDE[](~/6.0/blazor/security/includes/usermanager-signinmanager.md)]
+[!INCLUDE[](~/blazor/security/includes/usermanager-signinmanager.md)]
 
 ## Host in Azure App Service with a custom domain and certificate
 
@@ -564,7 +564,7 @@ If troubleshooting a certificate loading problem, execute the following command 
 Get-ChildItem -path Cert:\CurrentUser\My -Recurse | Format-List DnsNameList, Subject, Thumbprint, EnhancedKeyUsageList
 ```
 
-[!INCLUDE[](~/6.0/blazor/security/includes/troubleshoot.md)]
+[!INCLUDE[](~/blazor/security/includes/troubleshoot.md)]
 
 ## Additional resources
 
@@ -774,19 +774,19 @@ By default, configuration for the app is loaded by convention from `_configurati
 
 ### Imports file
 
-[!INCLUDE[](~/5.0/blazor/security/includes/imports-file-hosted.md)]
+[!INCLUDE[](~/blazor/security/includes/imports-file-hosted.md)]
 
 ### Index page
 
-[!INCLUDE[](~/5.0/blazor/security/includes/index-page-authentication.md)]
+[!INCLUDE[](~/blazor/security/includes/index-page-authentication.md)]
 
 ### App component
 
-[!INCLUDE[](~/5.0/blazor/security/includes/app-component.md)]
+[!INCLUDE[](~/blazor/security/includes/app-component.md)]
 
 ### RedirectToLogin component
 
-[!INCLUDE[](~/5.0/blazor/security/includes/redirecttologin-component.md)]
+[!INCLUDE[](~/blazor/security/includes/redirecttologin-component.md)]
 
 ### LoginDisplay component
 
@@ -830,11 +830,11 @@ The `LoginDisplay` component (`Shared/LoginDisplay.razor`) is rendered in the `M
 
 ### Authentication component
 
-[!INCLUDE[](~/5.0/blazor/security/includes/authentication-component.md)]
+[!INCLUDE[](~/blazor/security/includes/authentication-component.md)]
 
 ### FetchData component
 
-[!INCLUDE[](~/5.0/blazor/security/includes/fetchdata-component.md)]
+[!INCLUDE[](~/blazor/security/includes/fetchdata-component.md)]
 
 ## Run the app
 
@@ -1027,7 +1027,7 @@ In the **`Client`** app, component authorization approaches are functional at th
 
 `User.Identity.Name` is populated in the **`Client`** app with the user's user name, which is usually their sign-in email address.
 
-[!INCLUDE[](~/5.0/blazor/security/includes/usermanager-signinmanager.md)]
+[!INCLUDE[](~/blazor/security/includes/usermanager-signinmanager.md)]
 
 ## Host in Azure App Service with a custom domain and certificate
 
@@ -1131,7 +1131,7 @@ If troubleshooting a certificate loading problem, execute the following command 
 Get-ChildItem -path Cert:\CurrentUser\My -Recurse | Format-List DnsNameList, Subject, Thumbprint, EnhancedKeyUsageList
 ```
 
-[!INCLUDE[](~/5.0/blazor/security/includes/troubleshoot.md)]
+[!INCLUDE[](~/blazor/security/includes/troubleshoot.md)]
 
 ## Additional resources
 
@@ -1341,19 +1341,19 @@ By default, configuration for the app is loaded by convention from `_configurati
 
 ### Imports file
 
-[!INCLUDE[](~/3.1/blazor/security/includes/imports-file-hosted.md)]
+[!INCLUDE[](~/blazor/security/includes/imports-file-hosted.md)]
 
 ### Index page
 
-[!INCLUDE[](~/3.1/blazor/security/includes/index-page-authentication.md)]
+[!INCLUDE[](~/blazor/security/includes/index-page-authentication.md)]
 
 ### App component
 
-[!INCLUDE[](~/3.1/blazor/security/includes/app-component.md)]
+[!INCLUDE[](~/blazor/security/includes/app-component.md)]
 
 ### RedirectToLogin component
 
-[!INCLUDE[](~/3.1/blazor/security/includes/redirecttologin-component.md)]
+[!INCLUDE[](~/blazor/security/includes/redirecttologin-component.md)]
 
 ### LoginDisplay component
 
@@ -1397,11 +1397,11 @@ The `LoginDisplay` component (`Shared/LoginDisplay.razor`) is rendered in the `M
 
 ### Authentication component
 
-[!INCLUDE[](~/3.1/blazor/security/includes/authentication-component.md)]
+[!INCLUDE[](~/blazor/security/includes/authentication-component.md)]
 
 ### FetchData component
 
-[!INCLUDE[](~/3.1/blazor/security/includes/fetchdata-component.md)]
+[!INCLUDE[](~/blazor/security/includes/fetchdata-component.md)]
 
 ## Run the app
 
@@ -1594,7 +1594,7 @@ In the **`Client`** app, component authorization approaches are functional at th
 
 `User.Identity.Name` is populated in the **`Client`** app with the user's user name, which is usually their sign-in email address.
 
-[!INCLUDE[](~/3.1/blazor/security/includes/usermanager-signinmanager.md)]
+[!INCLUDE[](~/blazor/security/includes/usermanager-signinmanager.md)]
 
 ## Host in Azure App Service with a custom domain and certificate
 
@@ -1698,7 +1698,7 @@ If troubleshooting a certificate loading problem, execute the following command 
 Get-ChildItem -path Cert:\CurrentUser\My -Recurse | Format-List DnsNameList, Subject, Thumbprint, EnhancedKeyUsageList
 ```
 
-[!INCLUDE[](~/3.1/blazor/security/includes/troubleshoot.md)]
+[!INCLUDE[](~/blazor/security/includes/troubleshoot.md)]
 
 ## Additional resources
 

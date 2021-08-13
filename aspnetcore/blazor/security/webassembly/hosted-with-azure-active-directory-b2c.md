@@ -357,35 +357,35 @@ For more information, see the following sections of the *Additional scenarios* a
 
 ### Login mode
 
-[!INCLUDE[](~/6.0/blazor/security/includes/msal-login-mode.md)]
+[!INCLUDE[](~/blazor/security/includes/msal-login-mode.md)]
 
 ### Imports file
 
-[!INCLUDE[](~/6.0/blazor/security/includes/imports-file-hosted.md)]
+[!INCLUDE[](~/blazor/security/includes/imports-file-hosted.md)]
 
 ### Index page
 
-[!INCLUDE[](~/6.0/blazor/security/includes/index-page-msal.md)]
+[!INCLUDE[](~/blazor/security/includes/index-page-msal.md)]
 
 ### App component
 
-[!INCLUDE[](~/6.0/blazor/security/includes/app-component.md)]
+[!INCLUDE[](~/blazor/security/includes/app-component.md)]
 
 ### RedirectToLogin component
 
-[!INCLUDE[](~/6.0/blazor/security/includes/redirecttologin-component.md)]
+[!INCLUDE[](~/blazor/security/includes/redirecttologin-component.md)]
 
 ### LoginDisplay component
 
-[!INCLUDE[](~/6.0/blazor/security/includes/logindisplay-component.md)]
+[!INCLUDE[](~/blazor/security/includes/logindisplay-component.md)]
 
 ### Authentication component
 
-[!INCLUDE[](~/6.0/blazor/security/includes/authentication-component.md)]
+[!INCLUDE[](~/blazor/security/includes/authentication-component.md)]
 
 ### FetchData component
 
-[!INCLUDE[](~/6.0/blazor/security/includes/fetchdata-component.md)]
+[!INCLUDE[](~/blazor/security/includes/fetchdata-component.md)]
 
 ## Run the app
 
@@ -395,12 +395,12 @@ Run the app from the Server project. When using Visual Studio, either:
 * Select the Server project in **Solution Explorer** and select the **Run** button in the toolbar or start the app from the **Debug** menu.
 
 <!-- HOLD
-[!INCLUDE[](~/6.0/blazor/security/includes/usermanager-signinmanager.md)]
+[!INCLUDE[](~/blazor/security/includes/usermanager-signinmanager.md)]
 -->
 
-[!INCLUDE[](~/6.0/blazor/security/includes/wasm-aad-b2c-userflows.md)]
+[!INCLUDE[](~/blazor/security/includes/wasm-aad-b2c-userflows.md)]
 
-[!INCLUDE[](~/6.0/blazor/security/includes/troubleshoot.md)]
+[!INCLUDE[](~/blazor/security/includes/troubleshoot.md)]
 
 ## Additional resources
 
@@ -760,35 +760,35 @@ For more information, see the following sections of the *Additional scenarios* a
 
 ### Login mode
 
-[!INCLUDE[](~/5.0/blazor/security/includes/msal-login-mode.md)]
+[!INCLUDE[](~/blazor/security/includes/msal-login-mode.md)]
 
 ### Imports file
 
-[!INCLUDE[](~/5.0/blazor/security/includes/imports-file-hosted.md)]
+[!INCLUDE[](~/blazor/security/includes/imports-file-hosted.md)]
 
 ### Index page
 
-[!INCLUDE[](~/5.0/blazor/security/includes/index-page-msal.md)]
+[!INCLUDE[](~/blazor/security/includes/index-page-msal.md)]
 
 ### App component
 
-[!INCLUDE[](~/5.0/blazor/security/includes/app-component.md)]
+[!INCLUDE[](~/blazor/security/includes/app-component.md)]
 
 ### RedirectToLogin component
 
-[!INCLUDE[](~/5.0/blazor/security/includes/redirecttologin-component.md)]
+[!INCLUDE[](~/blazor/security/includes/redirecttologin-component.md)]
 
 ### LoginDisplay component
 
-[!INCLUDE[](~/5.0/blazor/security/includes/logindisplay-component.md)]
+[!INCLUDE[](~/blazor/security/includes/logindisplay-component.md)]
 
 ### Authentication component
 
-[!INCLUDE[](~/5.0/blazor/security/includes/authentication-component.md)]
+[!INCLUDE[](~/blazor/security/includes/authentication-component.md)]
 
 ### FetchData component
 
-[!INCLUDE[](~/5.0/blazor/security/includes/fetchdata-component.md)]
+[!INCLUDE[](~/blazor/security/includes/fetchdata-component.md)]
 
 ## Run the app
 
@@ -798,12 +798,12 @@ Run the app from the Server project. When using Visual Studio, either:
 * Select the Server project in **Solution Explorer** and select the **Run** button in the toolbar or start the app from the **Debug** menu.
 
 <!-- HOLD
-[!INCLUDE[](~/5.0/blazor/security/includes/usermanager-signinmanager.md)]
+[!INCLUDE[](~/blazor/security/includes/usermanager-signinmanager.md)]
 -->
 
-[!INCLUDE[](~/5.0/blazor/security/includes/wasm-aad-b2c-userflows.md)]
+[!INCLUDE[](~/blazor/security/includes/wasm-aad-b2c-userflows.md)]
 
-[!INCLUDE[](~/5.0/blazor/security/includes/troubleshoot.md)]
+[!INCLUDE[](~/blazor/security/includes/troubleshoot.md)]
 
 ## Additional resources
 
@@ -1162,31 +1162,31 @@ For more information, see the following sections of the *Additional scenarios* a
 
 ### Imports file
 
-[!INCLUDE[](~/3.1/blazor/security/includes/imports-file-hosted.md)]
+[!INCLUDE[](~/blazor/security/includes/imports-file-hosted.md)]
 
 ### Index page
 
-[!INCLUDE[](~/3.1/blazor/security/includes/index-page-msal.md)]
+[!INCLUDE[](~/blazor/security/includes/index-page-msal.md)]
 
 ### App component
 
-[!INCLUDE[](~/3.1/blazor/security/includes/app-component.md)]
+[!INCLUDE[](~/blazor/security/includes/app-component.md)]
 
 ### RedirectToLogin component
 
-[!INCLUDE[](~/3.1/blazor/security/includes/redirecttologin-component.md)]
+[!INCLUDE[](~/blazor/security/includes/redirecttologin-component.md)]
 
 ### LoginDisplay component
 
-[!INCLUDE[](~/3.1/blazor/security/includes/logindisplay-component.md)]
+[!INCLUDE[](~/blazor/security/includes/logindisplay-component.md)]
 
 ### Authentication component
 
-[!INCLUDE[](~/3.1/blazor/security/includes/authentication-component.md)]
+[!INCLUDE[](~/blazor/security/includes/authentication-component.md)]
 
 ### FetchData component
 
-[!INCLUDE[](~/3.1/blazor/security/includes/fetchdata-component.md)]
+[!INCLUDE[](~/blazor/security/includes/fetchdata-component.md)]
 
 ## Run the app
 
@@ -1196,12 +1196,12 @@ Run the app from the Server project. When using Visual Studio, either:
 * Select the Server project in **Solution Explorer** and select the **Run** button in the toolbar or start the app from the **Debug** menu.
 
 <!-- HOLD
-[!INCLUDE[](~/3.1/blazor/security/includes/usermanager-signinmanager.md)]
+[!INCLUDE[](~/blazor/security/includes/usermanager-signinmanager.md)]
 -->
 
-[!INCLUDE[](~/3.1/blazor/security/includes/wasm-aad-b2c-userflows.md)]
+[!INCLUDE[](~/blazor/security/includes/wasm-aad-b2c-userflows.md)]
 
-[!INCLUDE[](~/3.1/blazor/security/includes/troubleshoot.md)]
+[!INCLUDE[](~/blazor/security/includes/troubleshoot.md)]
 
 ## Additional resources
 

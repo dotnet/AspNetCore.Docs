@@ -43,7 +43,7 @@ Even if <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> is 
 
 `Pages/ControlRender.razor`:
 
-[!code-razor[](~/6.0/blazor/samples/BlazorSample_WebAssembly/Pages/rendering/ControlRender.razor)]
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/rendering/ControlRender.razor)]
 
 For more information on performance best practices pertaining to <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A>, see <xref:blazor/webassembly-performance-best-practices#avoid-unnecessary-rendering-of-component-subtrees>.
 
@@ -73,7 +73,7 @@ Consider the following `CounterState1` component, which updates the count four t
 
 `Pages/CounterState1.razor`:
 
-[!code-razor[](~/6.0/blazor/samples/BlazorSample_WebAssembly/Pages/rendering/CounterState1.razor?highlight=17,21,25,29)]
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/rendering/CounterState1.razor?highlight=17,21,25,29)]
 
 ### Receiving a call from something external to the Blazor rendering and event handling system
 
@@ -88,7 +88,7 @@ Because the callback is invoked outside of Blazor's synchronization context, the
 
 `Pages/CounterState2.razor`:
 
-[!code-razor[](~/6.0/blazor/samples/BlazorSample_WebAssembly/Pages/rendering/CounterState2.razor?highlight=26)]
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/rendering/CounterState2.razor?highlight=26)]
 
 ### To render a component outside the subtree that's rerendered by a particular event
 
@@ -138,7 +138,7 @@ Even if <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> is 
 
 `Pages/ControlRender.razor`:
 
-[!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Pages/rendering/ControlRender.razor)]
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/rendering/ControlRender.razor)]
 
 For more information on performance best practices pertaining to <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A>, see <xref:blazor/webassembly-performance-best-practices#avoid-unnecessary-rendering-of-component-subtrees>.
 
@@ -168,7 +168,7 @@ Consider the following `CounterState1` component, which updates the count four t
 
 `Pages/CounterState1.razor`:
 
-[!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Pages/rendering/CounterState1.razor?highlight=17,21,25,29)]
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/rendering/CounterState1.razor?highlight=17,21,25,29)]
 
 ### Receiving a call from something external to the Blazor rendering and event handling system
 
@@ -183,7 +183,7 @@ Because the callback is invoked outside of Blazor's synchronization context, the
 
 `Pages/CounterState2.razor`:
 
-[!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Pages/rendering/CounterState2.razor?highlight=26)]
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/rendering/CounterState2.razor?highlight=26)]
 
 ### To render a component outside the subtree that's rerendered by a particular event
 
@@ -233,7 +233,7 @@ Even if <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> is 
 
 `Pages/ControlRender.razor`:
 
-[!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/rendering/ControlRender.razor)]
+[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/rendering/ControlRender.razor)]
 
 For more information on performance best practices pertaining to <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A>, see <xref:blazor/webassembly-performance-best-practices#avoid-unnecessary-rendering-of-component-subtrees>.
 
@@ -263,7 +263,7 @@ Consider the following `CounterState1` component, which updates the count four t
 
 `Pages/CounterState1.razor`:
 
-[!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/rendering/CounterState1.razor?highlight=17,21,25,29)]
+[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/rendering/CounterState1.razor?highlight=17,21,25,29)]
 
 ### Receiving a call from something external to the Blazor rendering and event handling system
 
@@ -278,7 +278,7 @@ Because the callback is invoked outside of Blazor's synchronization context, the
 
 `Pages/CounterState2.razor`:
 
-[!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/rendering/CounterState2.razor?highlight=26)]
+[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/rendering/CounterState2.razor?highlight=26)]
 
 ### To render a component outside the subtree that's rerendered by a particular event
 

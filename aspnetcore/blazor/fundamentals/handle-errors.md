@@ -48,9 +48,9 @@ In production, don't render framework exception messages or stack traces in the 
 * Disclose sensitive information to end users.
 * Help a malicious user discover weaknesses in an app that can compromise the security of the app, server, or network.
 
-[!INCLUDE[](~/6.0/blazor/fundamentals/includes/handle-errors/global-exception-handling.md)]
+[!INCLUDE[](~/blazor/fundamentals/includes/handle-errors/global-exception-handling.md)]
 
-[!INCLUDE[](~/6.0/blazor/fundamentals/includes/handle-errors/error-boundaries.md)]
+[!INCLUDE[](~/blazor/fundamentals/includes/handle-errors/error-boundaries.md)]
 
 ## Log errors with a persistent provider
 
@@ -99,7 +99,7 @@ In the following example where <xref:Microsoft.AspNetCore.Components.ComponentBa
   * `loadFailed` is set to `true`, which is used to display an error message to the user.
   * The error is logged.
 
-[!code-razor[](~/6.0/blazor/samples/BlazorSample_WebAssembly/Pages/handle-errors/ProductDetails.razor?highlight=11,27-39)]
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/handle-errors/ProductDetails.razor?highlight=11,27-39)]
 
 <h3 id="rendering-logic-webassembly">Rendering logic</h3>
 
@@ -304,11 +304,11 @@ In production, don't render framework exception messages or stack traces in the 
 * Disclose sensitive information to end users.
 * Help a malicious user discover weaknesses in an app that can compromise the security of the app, server, or network.
 
-[!INCLUDE[](~/6.0/blazor/fundamentals/includes/handle-errors/global-exception-handling.md)]
+[!INCLUDE[](~/blazor/fundamentals/includes/handle-errors/global-exception-handling.md)]
 
 Because the approaches in this section handle errors with a [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statement, the SignalR connection between the client and server isn't broken when an error occurs and the circuit remains alive. Any unhandled exception is fatal to a circuit. For more information, see the preceding section on [how a Blazor Server app reacts to unhandled exceptions](#how-a-blazor-server-app-reacts-to-unhandled-exceptions).
 
-[!INCLUDE[](~/6.0/blazor/fundamentals/includes/handle-errors/error-boundaries.md)]
+[!INCLUDE[](~/blazor/fundamentals/includes/handle-errors/error-boundaries.md)]
 
 ## Log errors with a persistent provider
 
@@ -357,7 +357,7 @@ In the following example where <xref:Microsoft.AspNetCore.Components.ComponentBa
   * `loadFailed` is set to `true`, which is used to display an error message to the user.
   * The error is logged.
 
-[!code-razor[](~/6.0/blazor/samples/BlazorSample_Server/Pages/handle-errors/ProductDetails.razor?highlight=11,27-39)]
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_Server/Pages/handle-errors/ProductDetails.razor?highlight=11,27-39)]
 
 <h3 id="rendering-logic-server">Rendering logic</h3>
 
@@ -536,7 +536,7 @@ In production, don't render framework exception messages or stack traces in the 
 * Disclose sensitive information to end users.
 * Help a malicious user discover weaknesses in an app that can compromise the security of the app, server, or network.
 
-[!INCLUDE[](~/5.0/blazor/fundamentals/includes/handle-errors/global-exception-handling.md)]
+[!INCLUDE[](~/blazor/fundamentals/includes/handle-errors/global-exception-handling.md)]
 
 ## Log errors with a persistent provider
 
@@ -585,7 +585,7 @@ In the following example where <xref:Microsoft.AspNetCore.Components.ComponentBa
   * `loadFailed` is set to `true`, which is used to display an error message to the user.
   * The error is logged.
 
-[!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Pages/handle-errors/ProductDetails.razor?highlight=11,27-39)]
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/handle-errors/ProductDetails.razor?highlight=11,27-39)]
 
 <h3 id="rendering-logic-webassembly">Rendering logic</h3>
 
@@ -790,7 +790,7 @@ In production, don't render framework exception messages or stack traces in the 
 * Disclose sensitive information to end users.
 * Help a malicious user discover weaknesses in an app that can compromise the security of the app, server, or network.
 
-[!INCLUDE[](~/5.0/blazor/fundamentals/includes/handle-errors/global-exception-handling.md)]
+[!INCLUDE[](~/blazor/fundamentals/includes/handle-errors/global-exception-handling.md)]
 
 Because the approaches in this section handle errors with a [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statement, the SignalR connection between the client and server isn't broken when an error occurs and the circuit remains alive. Any unhandled exception is fatal to a circuit. For more information, see the preceding section on [how a Blazor Server app reacts to unhandled exceptions](#how-a-blazor-server-app-reacts-to-unhandled-exceptions).
 
@@ -841,7 +841,7 @@ In the following example where <xref:Microsoft.AspNetCore.Components.ComponentBa
   * `loadFailed` is set to `true`, which is used to display an error message to the user.
   * The error is logged.
 
-[!code-razor[](~/5.0/blazor/samples/BlazorSample_Server/Pages/handle-errors/ProductDetails.razor?highlight=11,27-39)]
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_Server/Pages/handle-errors/ProductDetails.razor?highlight=11,27-39)]
 
 <h3 id="rendering-logic-server">Rendering logic</h3>
 
@@ -1020,7 +1020,7 @@ In production, don't render framework exception messages or stack traces in the 
 * Disclose sensitive information to end users.
 * Help a malicious user discover weaknesses in an app that can compromise the security of the app, server, or network.
 
-[!INCLUDE[](~/3.1/blazor/fundamentals/includes/handle-errors/global-exception-handling.md)]
+[!INCLUDE[](~/blazor/fundamentals/includes/handle-errors/global-exception-handling.md)]
 
 ## Log errors with a persistent provider
 
@@ -1069,7 +1069,7 @@ In the following example where <xref:Microsoft.AspNetCore.Components.ComponentBa
   * `loadFailed` is set to `true`, which is used to display an error message to the user.
   * The error is logged.
 
-[!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/handle-errors/ProductDetails.razor?highlight=11,27-39)]
+[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/handle-errors/ProductDetails.razor?highlight=11,27-39)]
 
 <h3 id="rendering-logic-webassembly">Rendering logic</h3>
 
@@ -1274,7 +1274,7 @@ In production, don't render framework exception messages or stack traces in the 
 * Disclose sensitive information to end users.
 * Help a malicious user discover weaknesses in an app that can compromise the security of the app, server, or network.
 
-[!INCLUDE[](~/3.1/blazor/fundamentals/includes/handle-errors/global-exception-handling.md)]
+[!INCLUDE[](~/blazor/fundamentals/includes/handle-errors/global-exception-handling.md)]
 
 Because the approaches in this section handle errors with a [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statement, the SignalR connection between the client and server isn't broken when an error occurs and the circuit remains alive. Any unhandled exception is fatal to a circuit. For more information, see the preceding section on [how a Blazor Server app reacts to unhandled exceptions](#how-a-blazor-server-app-reacts-to-unhandled-exceptions).
 
@@ -1325,7 +1325,7 @@ In the following example where <xref:Microsoft.AspNetCore.Components.ComponentBa
   * `loadFailed` is set to `true`, which is used to display an error message to the user.
   * The error is logged.
 
-[!code-razor[](~/3.1/blazor/samples/BlazorSample_Server/Pages/handle-errors/ProductDetails.razor?highlight=11,27-39)]
+[!code-razor[](~/blazor/samples/3.1/BlazorSample_Server/Pages/handle-errors/ProductDetails.razor?highlight=11,27-39)]
 
 <h3 id="rendering-logic-server">Rendering logic</h3>
 

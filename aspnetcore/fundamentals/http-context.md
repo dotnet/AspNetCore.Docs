@@ -176,20 +176,4 @@ public class EmailController : Controller
 
 ## Blazor and shared state
 
-::: moniker range=">= aspnetcore-6.0"
-
-[!INCLUDE[](~/6.0/blazor/security/includes/blazor-shared-state.md)]
-
-::: moniker-end
-
-::: moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
-
-[!INCLUDE[](~/5.0/blazor/security/includes/blazor-shared-state.md)]
-
-::: moniker-end
-
-::: moniker range="< aspnetcore-5.0"
-
-[!INCLUDE[](~/3.1/blazor/security/includes/blazor-shared-state.md)]
-
-::: moniker-end
+[!INCLUDE[](~/blazor/security/includes/blazor-shared-state.md)]

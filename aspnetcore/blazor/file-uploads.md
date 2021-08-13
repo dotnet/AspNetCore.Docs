@@ -108,13 +108,13 @@ The following example demonstrates multiple file upload in a component. <xref:Mi
 
 ::: zone pivot="webassembly"
 
-[!code-razor[](~/6.0/blazor/samples/BlazorSample_WebAssembly/Pages/file-uploads/FileUpload1.razor)]
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/file-uploads/FileUpload1.razor)]
 
 ::: zone-end
 
 ::: zone pivot="server"
 
-[!code-razor[](~/6.0/blazor/samples/BlazorSample_Server/Pages/file-uploads/FileUpload1.razor)]
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_Server/Pages/file-uploads/FileUpload1.razor)]
 
 ::: zone-end
 
@@ -201,7 +201,7 @@ public class UploadResult
 ::: zone-end
 
 > [!NOTE]
-> A security best practice for production apps is to avoid sending error messages to clients that might reveal sensitive information about an app, server, or network. Providing detailed error messages can aid a malicious user in devising attacks on an app, server, or network. The example code in this section only sends back an error code number (`int`) for display by the component client-side if a server-side error occurs. If an user requires assistance with a file upload, they provide the error code to support personnel for support ticket resolution without ever knowing the exact cause of the error.
+> A security best practice for production apps is to avoid sending error messages to clients that might reveal sensitive information about an app, server, or network. Providing detailed error messages can aid a malicious user in devising attacks on an app, server, or network. The example code in this section only sends back an error code number (`int`) for display by the component client-side if a server-side error occurs. If a user requires assistance with a file upload, they provide the error code to support personnel for support ticket resolution without ever knowing the exact cause of the error.
 
 ### Upload component
 
@@ -222,7 +222,7 @@ The following `FileUpload2` component:
 
 `Pages/FileUpload2.razor` in the **`Client`** project:
 
-[!code-razor[](~/6.0/blazor/samples/BlazorSample_WebAssembly/Pages/file-uploads/FileUpload2.razor)]
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/file-uploads/FileUpload2.razor)]
 
 ::: zone-end
 
@@ -230,7 +230,7 @@ The following `FileUpload2` component:
 
 `Pages/FileUpload2.razor` in the Blazor Server app:
 
-[!code-razor[](~/6.0/blazor/samples/BlazorSample_Server/Pages/file-uploads/FileUpload2.razor)]
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_Server/Pages/file-uploads/FileUpload2.razor)]
 
 ::: zone-end
 
@@ -476,13 +476,13 @@ The following example demonstrates multiple file upload in a component. <xref:Mi
 
 ::: zone pivot="webassembly"
 
-[!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Pages/file-uploads/FileUpload1.razor)]
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/file-uploads/FileUpload1.razor)]
 
 ::: zone-end
 
 ::: zone pivot="server"
 
-[!code-razor[](~/5.0/blazor/samples/BlazorSample_Server/Pages/file-uploads/FileUpload1.razor)]
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_Server/Pages/file-uploads/FileUpload1.razor)]
 
 ::: zone-end
 
@@ -569,7 +569,7 @@ public class UploadResult
 ::: zone-end
 
 > [!NOTE]
-> A security best practice for production apps is to avoid sending error messages to clients that might reveal sensitive information about an app, server, or network. Providing detailed error messages can aid a malicious user in devising attacks on an app, server, or network. The example code in this section only sends back an error code number (`int`) for display by the component client-side if a server-side error occurs. If an user requires assistance with a file upload, they provide the error code to support personnel for support ticket resolution without ever knowing the exact cause of the error.
+> A security best practice for production apps is to avoid sending error messages to clients that might reveal sensitive information about an app, server, or network. Providing detailed error messages can aid a malicious user in devising attacks on an app, server, or network. The example code in this section only sends back an error code number (`int`) for display by the component client-side if a server-side error occurs. If a user requires assistance with a file upload, they provide the error code to support personnel for support ticket resolution without ever knowing the exact cause of the error.
 
 ### Upload component
 
@@ -590,7 +590,7 @@ The following `FileUpload2` component:
 
 `Pages/FileUpload2.razor` in the **`Client`** project:
 
-[!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Pages/file-uploads/FileUpload2.razor)]
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/file-uploads/FileUpload2.razor)]
 
 ::: zone-end
 
@@ -598,7 +598,7 @@ The following `FileUpload2` component:
 
 `Pages/FileUpload2.razor` in the Blazor Server app:
 
-[!code-razor[](~/5.0/blazor/samples/BlazorSample_Server/Pages/file-uploads/FileUpload2.razor)]
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_Server/Pages/file-uploads/FileUpload2.razor)]
 
 ::: zone-end
 

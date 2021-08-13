@@ -135,19 +135,19 @@ For more information, see the following sections of the *Additional scenarios* a
 
 ## Imports file
 
-[!INCLUDE[](~/6.0/blazor/security/includes/imports-file-standalone.md)]
+[!INCLUDE[](~/blazor/security/includes/imports-file-standalone.md)]
 
 ## Index page
 
-[!INCLUDE[](~/6.0/blazor/security/includes/index-page-authentication.md)]
+[!INCLUDE[](~/blazor/security/includes/index-page-authentication.md)]
 
 ## App component
 
-[!INCLUDE[](~/6.0/blazor/security/includes/app-component.md)]
+[!INCLUDE[](~/blazor/security/includes/app-component.md)]
 
 ## RedirectToLogin component
 
-[!INCLUDE[](~/6.0/blazor/security/includes/redirecttologin-component.md)]
+[!INCLUDE[](~/blazor/security/includes/redirecttologin-component.md)]
 
 ## LoginDisplay component
 
@@ -187,9 +187,9 @@ The `LoginDisplay` component (`Shared/LoginDisplay.razor`) is rendered in the `M
 
 ## Authentication component
 
-[!INCLUDE[](~/6.0/blazor/security/includes/authentication-component.md)]
+[!INCLUDE[](~/blazor/security/includes/authentication-component.md)]
 
-[!INCLUDE[](~/6.0/blazor/security/includes/troubleshoot.md)]
+[!INCLUDE[](~/blazor/security/includes/troubleshoot.md)]
 
 ## Additional resources
 
@@ -325,19 +325,19 @@ For more information, see the following sections of the *Additional scenarios* a
 
 ## Imports file
 
-[!INCLUDE[](~/5.0/blazor/security/includes/imports-file-standalone.md)]
+[!INCLUDE[](~/blazor/security/includes/imports-file-standalone.md)]
 
 ## Index page
 
-[!INCLUDE[](~/5.0/blazor/security/includes/index-page-authentication.md)]
+[!INCLUDE[](~/blazor/security/includes/index-page-authentication.md)]
 
 ## App component
 
-[!INCLUDE[](~/5.0/blazor/security/includes/app-component.md)]
+[!INCLUDE[](~/blazor/security/includes/app-component.md)]
 
 ## RedirectToLogin component
 
-[!INCLUDE[](~/5.0/blazor/security/includes/redirecttologin-component.md)]
+[!INCLUDE[](~/blazor/security/includes/redirecttologin-component.md)]
 
 ## LoginDisplay component
 
@@ -377,9 +377,9 @@ The `LoginDisplay` component (`Shared/LoginDisplay.razor`) is rendered in the `M
 
 ## Authentication component
 
-[!INCLUDE[](~/5.0/blazor/security/includes/authentication-component.md)]
+[!INCLUDE[](~/blazor/security/includes/authentication-component.md)]
 
-[!INCLUDE[](~/5.0/blazor/security/includes/troubleshoot.md)]
+[!INCLUDE[](~/blazor/security/includes/troubleshoot.md)]
 
 ## Additional resources
 
@@ -515,19 +515,19 @@ For more information, see the following sections of the *Additional scenarios* a
 
 ## Imports file
 
-[!INCLUDE[](~/3.1/blazor/security/includes/imports-file-standalone.md)]
+[!INCLUDE[](~/blazor/security/includes/imports-file-standalone.md)]
 
 ## Index page
 
-[!INCLUDE[](~/3.1/blazor/security/includes/index-page-authentication.md)]
+[!INCLUDE[](~/blazor/security/includes/index-page-authentication.md)]
 
 ## App component
 
-[!INCLUDE[](~/3.1/blazor/security/includes/app-component.md)]
+[!INCLUDE[](~/blazor/security/includes/app-component.md)]
 
 ## RedirectToLogin component
 
-[!INCLUDE[](~/3.1/blazor/security/includes/redirecttologin-component.md)]
+[!INCLUDE[](~/blazor/security/includes/redirecttologin-component.md)]
 
 ## LoginDisplay component
 
@@ -567,9 +567,9 @@ The `LoginDisplay` component (`Shared/LoginDisplay.razor`) is rendered in the `M
 
 ## Authentication component
 
-[!INCLUDE[](~/3.1/blazor/security/includes/authentication-component.md)]
+[!INCLUDE[](~/blazor/security/includes/authentication-component.md)]
 
-[!INCLUDE[](~/3.1/blazor/security/includes/troubleshoot.md)]
+[!INCLUDE[](~/blazor/security/includes/troubleshoot.md)]
 
 ## Additional resources
 

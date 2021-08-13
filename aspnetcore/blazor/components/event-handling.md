@@ -31,7 +31,7 @@ The following code:
 
 `Pages/EventHandlerExample1.razor`:
 
-[!code-razor[](~/6.0/blazor/samples/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample1.razor?highlight=10,17,27-30,32-35)]
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample1.razor?highlight=10,17,27-30,32-35)]
 
 In the following example, `UpdateHeading`:
 
@@ -40,7 +40,7 @@ In the following example, `UpdateHeading`:
 
 `Pages/EventHandlerExample2.razor`:
 
-[!code-razor[](~/6.0/blazor/samples/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample2.razor?highlight=10,19-24)]
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample2.razor?highlight=10,19-24)]
 
 ## Event arguments
 
@@ -50,7 +50,7 @@ For events that support an event argument type, specifying an event parameter in
 
 `Pages/EventHandlerExample3.razor`:
 
-[!code-razor[](~/6.0/blazor/samples/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample3.razor?highlight=17-20)]
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample3.razor?highlight=17-20)]
 
 Supported <xref:System.EventArgs> are shown in the following table.
 
@@ -73,7 +73,7 @@ For more information, see the following resources:
 
 * [`EventArgs` classes in the ASP.NET Core reference source (dotnet/aspnetcore `main` branch)](https://github.com/dotnet/aspnetcore/tree/main/src/Components/Web/src/Web)
 
-  [!INCLUDE[](~/6.0/blazor/includes/aspnetcore-repo-ref-source-links.md)]
+  [!INCLUDE[](~/blazor/includes/aspnetcore-repo-ref-source-links.md)]
 
 * [MDN web docs: GlobalEventHandlers](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers): Includes information on which HTML elements support each DOM event.
 
@@ -232,7 +232,7 @@ In a Razor component, attach the custom handler to an element.
 
 `Pages/EventHandlerExample4.razor`:
 
-[!code-razor[](~/6.0/blazor/samples/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample4.razor?highlight=6)]
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample4.razor?highlight=6)]
 
 It's often convenient to close over additional values using C# method parameters, such as when iterating over a set of elements. The following example creates three buttons, each of which calls `UpdateHeading` and passes the following data:
 
@@ -241,7 +241,7 @@ It's often convenient to close over additional values using C# method parameters
 
 `Pages/EventHandlerExample5.razor`:
 
-[!code-razor[](~/6.0/blazor/samples/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample5.razor?highlight=10,19)]
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample5.razor?highlight=10,19)]
 
 > [!NOTE]
 > Do **not** use a loop variable directly in a lambda expression, such as `i` in the preceding `for` loop example. Otherwise, the same variable is used by all lambda expressions, which results in use of the same value in all lambdas. Always capture the variable's value in a local variable and then use it. In the preceding example:
@@ -259,13 +259,13 @@ The following `Child` component demonstrates how a button's `onclick` handler is
 
 `Shared/Child.razor`:
 
-[!code-razor[](~/6.0/blazor/samples/BlazorSample_WebAssembly/Shared/event-handling/Child.razor)]
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Shared/event-handling/Child.razor)]
 
 The `Parent` component sets the child's <xref:Microsoft.AspNetCore.Components.EventCallback%601> (`OnClickCallback`) to its `ShowMessage` method.
 
 `Pages/Parent.razor`:
 
-[!code-razor[](~/6.0/blazor/samples/BlazorSample_WebAssembly/Pages/event-handling/Parent.razor)]
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/event-handling/Parent.razor)]
 
 When the button is selected in the `ChildComponent`:
 
@@ -297,7 +297,7 @@ When a key is selected on an input device and the element focus is on a text box
 
 `Pages/EventHandlerExample6.razor`:
 
-[!code-razor[](~/6.0/blazor/samples/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample6.razor?highlight=4)]
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample6.razor?highlight=4)]
 
 Specifying the `@on{DOM EVENT}:preventDefault` attribute without a value is equivalent to `@on{DOM EVENT}:preventDefault="true"`.
 
@@ -321,7 +321,7 @@ In the following example, selecting the checkbox prevents click events from the 
 
 `Pages/EventHandlerExample7.razor`:
 
-[!code-razor[](~/6.0/blazor/samples/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample7.razor?highlight=4,15-16)]
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample7.razor?highlight=4,15-16)]
 
 ## Focus an element
 
@@ -329,7 +329,7 @@ Call <xref:Microsoft.AspNetCore.Components.ElementReferenceExtensions.FocusAsync
 
 `Pages/EventHandlerExample8.razor`:
 
-[!code-razor[](~/6.0/blazor/samples/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample8.razor?highlight=16)]
+[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample8.razor?highlight=16)]
 
 ::: moniker-end
 
@@ -353,7 +353,7 @@ The following code:
 
 `Pages/EventHandlerExample1.razor`:
 
-[!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample1.razor?highlight=10,17,27-30,32-35)]
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample1.razor?highlight=10,17,27-30,32-35)]
 
 In the following example, `UpdateHeading`:
 
@@ -362,7 +362,7 @@ In the following example, `UpdateHeading`:
 
 `Pages/EventHandlerExample2.razor`:
 
-[!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample2.razor?highlight=10,19-24)]
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample2.razor?highlight=10,19-24)]
 
 ## Event arguments
 
@@ -370,7 +370,7 @@ For events that support an event argument type, specifying an event parameter in
 
 `Pages/EventHandlerExample3.razor`:
 
-[!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample3.razor?highlight=17-20)]
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample3.razor?highlight=17-20)]
 
 Supported <xref:System.EventArgs> are shown in the following table.
 
@@ -393,7 +393,7 @@ For more information, see the following resources:
 
 * [`EventArgs` classes in the ASP.NET Core reference source (dotnet/aspnetcore `main` branch)](https://github.com/dotnet/aspnetcore/tree/main/src/Components/Web/src/Web)
 
-  [!INCLUDE[](~/5.0/blazor/includes/aspnetcore-repo-ref-source-links.md)]
+  [!INCLUDE[](~/blazor/includes/aspnetcore-repo-ref-source-links.md)]
 
 * [MDN web docs: GlobalEventHandlers](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers): Includes information on which HTML elements support each DOM event.
 
@@ -403,7 +403,7 @@ For more information, see the following resources:
 
 `Pages/EventHandlerExample4.razor`:
 
-[!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample4.razor?highlight=6)]
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample4.razor?highlight=6)]
 
 It's often convenient to close over additional values using C# method parameters, such as when iterating over a set of elements. The following example creates three buttons, each of which calls `UpdateHeading` and passes the following data:
 
@@ -412,7 +412,7 @@ It's often convenient to close over additional values using C# method parameters
 
 `Pages/EventHandlerExample5.razor`:
 
-[!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample5.razor?highlight=10,19)]
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample5.razor?highlight=10,19)]
 
 > [!NOTE]
 > Do **not** use a loop variable directly in a lambda expression, such as `i` in the preceding `for` loop example. Otherwise, the same variable is used by all lambda expressions, which results in use of the same value in all lambdas. Always capture the variable's value in a local variable and then use it. In the preceding example:
@@ -431,13 +431,13 @@ The following `Child` component demonstrates how a button's `onclick` handler is
 
 `Shared/Child.razor`:
 
-[!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Shared/event-handling/Child.razor)]
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Shared/event-handling/Child.razor)]
 
 The `Parent` component sets the child's <xref:Microsoft.AspNetCore.Components.EventCallback%601> (`OnClickCallback`) to its `ShowMessage` method.
 
 `Pages/Parent.razor`:
 
-[!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Pages/event-handling/Parent.razor)]
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/event-handling/Parent.razor)]
 
 When the button is selected in the `ChildComponent`:
 
@@ -469,7 +469,7 @@ When a key is selected on an input device and the element focus is on a text box
 
 `Pages/EventHandlerExample6.razor`:
 
-[!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample6.razor?highlight=4)]
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample6.razor?highlight=4)]
 
 Specifying the `@on{DOM EVENT}:preventDefault` attribute without a value is equivalent to `@on{DOM EVENT}:preventDefault="true"`.
 
@@ -493,7 +493,7 @@ In the following example, selecting the checkbox prevents click events from the 
 
 `Pages/EventHandlerExample7.razor`:
 
-[!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample7.razor?highlight=4,15-16)]
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample7.razor?highlight=4,15-16)]
 
 ## Focus an element
 
@@ -501,7 +501,7 @@ Call <xref:Microsoft.AspNetCore.Components.ElementReferenceExtensions.FocusAsync
 
 `Pages/EventHandlerExample8.razor`:
 
-[!code-razor[](~/5.0/blazor/samples/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample8.razor?highlight=16)]
+[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample8.razor?highlight=16)]
 
 ::: moniker-end
 
@@ -525,7 +525,7 @@ The following code:
 
 `Pages/EventHandlerExample1.razor`:
 
-[!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample1.razor?highlight=10,17,27-30,32-35)]
+[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample1.razor?highlight=10,17,27-30,32-35)]
 
 In the following example, `UpdateHeading`:
 
@@ -534,7 +534,7 @@ In the following example, `UpdateHeading`:
 
 `Pages/EventHandlerExample2.razor`:
 
-[!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample2.razor?highlight=10,19-24)]
+[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample2.razor?highlight=10,19-24)]
 
 ## Event arguments
 
@@ -542,7 +542,7 @@ For events that support an event argument type, specifying an event parameter in
 
 `Pages/EventHandlerExample3.razor`:
 
-[!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample3.razor?highlight=17-20)]
+[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample3.razor?highlight=17-20)]
 
 Supported <xref:System.EventArgs> are shown in the following table.
 
@@ -565,7 +565,7 @@ For more information, see the following resources:
 
 * [`EventArgs` classes in the ASP.NET Core reference source (dotnet/aspnetcore `main` branch)](https://github.com/dotnet/aspnetcore/tree/main/src/Components/Web/src/Web)
 
-  [!INCLUDE[](~/3.1/blazor/includes/aspnetcore-repo-ref-source-links.md)]
+  [!INCLUDE[](~/blazor/includes/aspnetcore-repo-ref-source-links.md)]
 
 * [MDN web docs: GlobalEventHandlers](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers): Includes information on which HTML elements support each DOM event.
 
@@ -575,7 +575,7 @@ For more information, see the following resources:
 
 `Pages/EventHandlerExample4.razor`:
 
-[!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample4.razor?highlight=6)]
+[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample4.razor?highlight=6)]
 
 It's often convenient to close over additional values using C# method parameters, such as when iterating over a set of elements. The following example creates three buttons, each of which calls `UpdateHeading` and passes the following data:
 
@@ -584,7 +584,7 @@ It's often convenient to close over additional values using C# method parameters
 
 `Pages/EventHandlerExample5.razor`:
 
-[!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample5.razor?highlight=10,19)]
+[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample5.razor?highlight=10,19)]
 
 > [!NOTE]
 > Do **not** use a loop variable directly in a lambda expression, such as `i` in the preceding `for` loop example. Otherwise, the same variable is used by all lambda expressions, which results in use of the same value in all lambdas. Always capture the variable's value in a local variable and then use it. In the preceding example:
@@ -602,13 +602,13 @@ The following `Child` component demonstrates how a button's `onclick` handler is
 
 `Shared/Child.razor`:
 
-[!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Shared/event-handling/Child.razor)]
+[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Shared/event-handling/Child.razor)]
 
 The `Parent` component sets the child's <xref:Microsoft.AspNetCore.Components.EventCallback%601> (`OnClickCallback`) to its `ShowMessage` method.
 
 `Pages/Parent.razor`:
 
-[!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/event-handling/Parent.razor)]
+[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/event-handling/Parent.razor)]
 
 When the button is selected in the `ChildComponent`:
 
@@ -640,7 +640,7 @@ When a key is selected on an input device and the element focus is on a text box
 
 `Pages/EventHandlerExample6.razor`:
 
-[!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample6.razor?highlight=4)]
+[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample6.razor?highlight=4)]
 
 Specifying the `@on{DOM EVENT}:preventDefault` attribute without a value is equivalent to `@on{DOM EVENT}:preventDefault="true"`.
 
@@ -664,6 +664,6 @@ In the following example, selecting the checkbox prevents click events from the 
 
 `Pages/EventHandlerExample7.razor`:
 
-[!code-razor[](~/3.1/blazor/samples/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample7.razor?highlight=4,15-16)]
+[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample7.razor?highlight=4,15-16)]
 
 ::: moniker-end

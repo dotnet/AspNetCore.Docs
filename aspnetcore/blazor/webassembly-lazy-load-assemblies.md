@@ -288,7 +288,7 @@ Create a Blazor WebAssembly app to demonstrate lazy loading of the RCL's assembl
 
 Build and run the app. For the default page that loads the `Index` component (`Pages/Index.razor`), the developer tool's Network tab indicates that the RCL's assembly `GrantImaharaRobotControls.dll` is loaded. The `Index` component makes no use of the assembly, so loading the assembly is inefficient.
 
-![Index component loaded in the browser with developer tool's Network tab indicating that the GrantImaharaRobotControls.dll assembly is loaded.](~/6.0/blazor/webassembly-lazy-load-assemblies/_static/screenshot1.png)
+![Index component loaded in the browser with developer tool's Network tab indicating that the GrantImaharaRobotControls.dll assembly is loaded.](~/blazor/webassembly-lazy-load-assemblies/_static/screenshot1.png)
 
 Configure the app to lazy load the `GrantImaharaRobotControls.dll` assembly:
 
@@ -358,11 +358,11 @@ Configure the app to lazy load the `GrantImaharaRobotControls.dll` assembly:
 
 Build and run the app again. For the default page that loads the `Index` component (`Pages/Index.razor`), the developer tool's Network tab indicates that the RCL's assembly (`GrantImaharaRobotControls.dll`) does **not** load for the `Index` component:
 
-![Index component loaded in the browser with developer tool's Network tab indicating that the GrantImaharaRobotControls.dll assembly isn't loaded.](~/6.0/blazor/webassembly-lazy-load-assemblies/_static/screenshot2.png)
+![Index component loaded in the browser with developer tool's Network tab indicating that the GrantImaharaRobotControls.dll assembly isn't loaded.](~/blazor/webassembly-lazy-load-assemblies/_static/screenshot2.png)
 
 If the `Robot` component from the RCL is requested at `https://localhost:5001/robot`, the `GrantImaharaRobotControls.dll` assembly is loaded and the `Robot` component is rendered:
 
-![Robot component loaded in the browser with developer tool's Network tab indicating that the GrantImaharaRobotControls.dll assembly is loaded.](~/6.0/blazor/webassembly-lazy-load-assemblies/_static/screenshot3.png)
+![Robot component loaded in the browser with developer tool's Network tab indicating that the GrantImaharaRobotControls.dll assembly is loaded.](~/blazor/webassembly-lazy-load-assemblies/_static/screenshot3.png)
 
 ## Troubleshoot
 
@@ -461,7 +461,7 @@ In the following example:
 > [!NOTE]
 > The preceding example doesn't show the contents of the `Router` component's Razor markup (`...`). For a demonstration with complete code, see the [Complete example](#complete-example) section of this article.
 
-[!INCLUDE[](~/5.0/blazor/includes/prefer-exact-matches.md)]
+[!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
 
 ## Assemblies that include routable components
 
@@ -514,7 +514,7 @@ In the following example:
 > [!NOTE]
 > The preceding example doesn't show the contents of the `Router` component's Razor markup (`...`). For a demonstration with complete code, see the [Complete example](#complete-example) section of this article.
 
-[!INCLUDE[](~/5.0/blazor/includes/prefer-exact-matches.md)]
+[!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
 
 For more information, see <xref:blazor/fundamentals/routing#route-to-components-from-multiple-assemblies>.
 
@@ -660,7 +660,7 @@ Create a Blazor WebAssembly app to demonstrate lazy loading of the RCL's assembl
 
 Build and run the app. For the default page that loads the `Index` component (`Pages/Index.razor`), the developer tool's Network tab indicates that the RCL's assembly `GrantImaharaRobotControls.dll` is loaded. The `Index` component makes no use of the assembly, so loading the assembly is inefficient.
 
-![Index component loaded in the browser with developer tool's Network tab indicating that the GrantImaharaRobotControls.dll assembly is loaded.](~/5.0/blazor/webassembly-lazy-load-assemblies/_static/screenshot1.png)
+![Index component loaded in the browser with developer tool's Network tab indicating that the GrantImaharaRobotControls.dll assembly is loaded.](~/blazor/webassembly-lazy-load-assemblies/_static/screenshot1.png)
 
 Configure the app to lazy load the `GrantImaharaRobotControls.dll` assembly:
 
@@ -728,15 +728,15 @@ Configure the app to lazy load the `GrantImaharaRobotControls.dll` assembly:
    }
    ```
 
-   [!INCLUDE[](~/5.0/blazor/includes/prefer-exact-matches.md)]
+   [!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
 
 Build and run the app again. For the default page that loads the `Index` component (`Pages/Index.razor`), the developer tool's Network tab indicates that the RCL's assembly (`GrantImaharaRobotControls.dll`) does **not** load for the `Index` component:
 
-![Index component loaded in the browser with developer tool's Network tab indicating that the GrantImaharaRobotControls.dll assembly isn't loaded.](~/5.0/blazor/webassembly-lazy-load-assemblies/_static/screenshot2.png)
+![Index component loaded in the browser with developer tool's Network tab indicating that the GrantImaharaRobotControls.dll assembly isn't loaded.](~/blazor/webassembly-lazy-load-assemblies/_static/screenshot2.png)
 
 If the `Robot` component from the RCL is requested at `https://localhost:5001/robot`, the `GrantImaharaRobotControls.dll` assembly is loaded and the `Robot` component is rendered:
 
-![Robot component loaded in the browser with developer tool's Network tab indicating that the GrantImaharaRobotControls.dll assembly is loaded.](~/5.0/blazor/webassembly-lazy-load-assemblies/_static/screenshot3.png)
+![Robot component loaded in the browser with developer tool's Network tab indicating that the GrantImaharaRobotControls.dll assembly is loaded.](~/blazor/webassembly-lazy-load-assemblies/_static/screenshot3.png)
 
 ## Troubleshoot
 

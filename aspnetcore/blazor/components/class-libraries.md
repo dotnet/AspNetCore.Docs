@@ -187,7 +187,7 @@ The background image is also included from the RCL project template and resides 
 
 `wwwroot/background.png` in the `ComponentLibrary` RCL:
 
-![Diagonally-striped background image from the RCL project template](~/6.0/blazor/components/class-libraries/_static/background.png)
+![Diagonally-striped background image from the RCL project template](~/blazor/components/class-libraries/_static/background.png)
 
 To provide additional library component styles from stylesheets in the library's `wwwroot` folder, link the stylesheets using the framework's `Link` component.
 
@@ -195,7 +195,7 @@ The following background image is used in the next example. If you implement the
 
 `wwwroot/extra-background.png` in the `ComponentLibrary` RCL:
 
-![Diagonally-striped background image added to the library by the developer](~/6.0/blazor/components/class-libraries/_static/extra-background.png)
+![Diagonally-striped background image added to the library by the developer](~/blazor/components/class-libraries/_static/extra-background.png)
 
 Add a new stylesheet to the RCL with an `extra-style` class.
 
@@ -264,7 +264,7 @@ The following Jeep&reg; image is used in this section's example. If you implemen
 
 `wwwroot/jeep-yj.png` in the `ComponentLibrary` RCL:
 
-![Jeep YJ&reg;](~/6.0/blazor/components/class-libraries/_static/jeep-yj.png)
+![Jeep YJ&reg;](~/blazor/components/class-libraries/_static/jeep-yj.png)
 
 Add the following `JeepYJ` component to the RCL.
 
@@ -307,7 +307,7 @@ Add the following `Jeep` component to the app that consumes the `ComponentLibrar
 
 Rendered `Jeep` component:
 
-![Jeep component](~/6.0/blazor/components/class-libraries/_static/jeep-component.png)
+![Jeep component](~/blazor/components/class-libraries/_static/jeep-component.png)
 
 For more information, see <xref:razor-pages/ui-class#create-an-rcl-with-static-assets>.
 
@@ -534,7 +534,7 @@ The background image is also included from the RCL project template and resides 
 
 `wwwroot/background.png` in the `ComponentLibrary` RCL:
 
-![Diagonally-striped background image from the RCL project template](~/5.0/blazor/components/class-libraries/_static/background.png)
+![Diagonally-striped background image from the RCL project template](~/blazor/components/class-libraries/_static/background.png)
 
 ## Create an RCL with static assets
 
@@ -548,7 +548,7 @@ The following Jeep&reg; image is used in this section's example. If you implemen
 
 `wwwroot/jeep-yj.png` in the `ComponentLibrary` RCL:
 
-![Jeep YJ&reg;](~/5.0/blazor/components/class-libraries/_static/jeep-yj.png)
+![Jeep YJ&reg;](~/blazor/components/class-libraries/_static/jeep-yj.png)
 
 Add the following `JeepYJ` component to the RCL.
 
@@ -591,7 +591,7 @@ Add the following `Jeep` component to the app that consumes the `ComponentLibrar
 
 Rendered `Jeep` component:
 
-![Jeep component](~/5.0/blazor/components/class-libraries/_static/jeep-component.png)
+![Jeep component](~/blazor/components/class-libraries/_static/jeep-component.png)
 
 For more information, see <xref:razor-pages/ui-class#create-an-rcl-with-static-assets>.
 
@@ -781,7 +781,7 @@ The following background image and stylesheet are used by the RCL's `Component1`
 
 `wwwroot/background.png` in the `ComponentLibrary` RCL:
 
-![Diagonally-striped background image added to the library by the RCL project template](~/3.1/blazor/components/class-libraries/_static/background.png)
+![Diagonally-striped background image added to the library by the RCL project template](~/blazor/components/class-libraries/_static/background.png)
 
 `wwwroot/styles.css` in the `ComponentLibrary` RCL:
 
@@ -814,7 +814,7 @@ The following Jeep&reg; image is used in this section's example. If you implemen
 
 `wwwroot/jeep-yj.png` in the `ComponentLibrary` RCL:
 
-![Jeep YJ&reg;](~/3.1/blazor/components/class-libraries/_static/jeep-yj.png)
+![Jeep YJ&reg;](~/blazor/components/class-libraries/_static/jeep-yj.png)
 
 Add the following `JeepYJ` component to the RCL.
 
@@ -857,7 +857,7 @@ Add the following `Jeep` component to the app that consumes the `ComponentLibrar
 
 Rendered `Jeep` component:
 
-![Jeep component](~/3.1/blazor/components/class-libraries/_static/jeep-component.png)
+![Jeep component](~/blazor/components/class-libraries/_static/jeep-component.png)
 
 For more information, see <xref:razor-pages/ui-class#create-an-rcl-with-static-assets>.
 

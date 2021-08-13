@@ -95,7 +95,7 @@ To obtain static assets, use **one** of the following approaches:
 
   [Blazor WebAssembly project template `wwwroot` folder (dotnet/aspnetcore GitHub repository `main` branch)](https://github.com/dotnet/aspnetcore/tree/main/src/ProjectTemplates/Web.ProjectTemplates/content/ComponentsWebAssembly-CSharp/Client/wwwroot)
 
-  [!INCLUDE[](~/6.0/blazor/includes/aspnetcore-repo-ref-source-links.md)]
+  [!INCLUDE[](~/blazor/includes/aspnetcore-repo-ref-source-links.md)]
 
 From the source `wwwroot` folder either in the app that you created or from the reference assets in the `dotnet/aspnetcore` GitHub repository, copy the following files into the app's `wwwroot` folder:
 
@@ -125,13 +125,13 @@ In the app's `wwwroot/index.html` file:
 
 When visiting an app created using the PWA template, users have the option of installing the app into their OS's start menu, dock, or home screen. The way this option is presented depends on the user's browser. When using desktop Chromium-based browsers, such as Edge or Chrome, an **Add** button appears within the URL bar. After the user selects the **Add** button, they receive a confirmation dialog:
 
-![The confirmation dialog in Google Chrome presents an Install button to the user for the 'MyBlazorPwa' app.](~/6.0/blazor/progressive-web-app/_static/image2.png)
+![The confirmation dialog in Google Chrome presents an Install button to the user for the 'MyBlazorPwa' app.](~/blazor/progressive-web-app/_static/image2.png)
 
 On iOS, visitors can install the PWA using Safari's **Share** button and its **Add to Homescreen** option. On Chrome for Android, users should select the **Menu** button in the upper-right corner, followed by **Add to Home screen**.
 
 Once installed, the app appears in its own window without an address bar:
 
-![The 'MyBlazorPwa' app runs in Google Chrome without an address bar.](~/6.0/blazor/progressive-web-app/_static/image3.png)
+![The 'MyBlazorPwa' app runs in Google Chrome without an address bar.](~/blazor/progressive-web-app/_static/image3.png)
 
 To customize the window's title, color scheme, icon, or other details, see the `manifest.json` file in the project's `wwwroot` directory. The schema of this file is defined by web standards. For more information, see [MDN web docs: Web App Manifest](https://developer.mozilla.org/docs/Web/Manifest).
 
@@ -151,18 +151,18 @@ To see how offline support works:
 1. Deploy the app to a server that supports HTTPS, and access the app in a browser at its secure HTTPS address.
 1. Open the browser's dev tools and verify that a *Service Worker* is registered for the host on the **Application** tab:
 
-   ![Google Chrome developer tools 'Application' tab shows a Service Worker activated and running.](~/6.0/blazor/progressive-web-app/_static/image4.png)
+   ![Google Chrome developer tools 'Application' tab shows a Service Worker activated and running.](~/blazor/progressive-web-app/_static/image4.png)
 
 1. Reload the page and examine the **Network** tab. **Service Worker** or **memory cache** are listed as the sources for all of the page's assets:
 
-   ![Google Chrome developer tools 'Network' tab showing sources for all of the page's assets.](~/6.0/blazor/progressive-web-app/_static/image5.png)
+   ![Google Chrome developer tools 'Network' tab showing sources for all of the page's assets.](~/blazor/progressive-web-app/_static/image5.png)
 
 1. To verify that the browser isn't dependent on network access to load the app, either:
 
    * Shut down the web server and see how the app continues to function normally, which includes page reloads. Likewise, the app continues to function normally when there's a slow network connection.
    * Instruct the browser to simulate offline mode in the **Network** tab:
 
-   ![Google Chrome developer tools 'Network' tab with the browser mode drop down being changed from 'Online' to 'Offline'.](~/6.0/blazor/progressive-web-app/_static/image6.png)
+   ![Google Chrome developer tools 'Network' tab with the browser mode drop down being changed from 'Online' to 'Offline'.](~/blazor/progressive-web-app/_static/image6.png)
 
 Offline support using a service worker is a web standard, not specific to Blazor. For more information on service workers, see [MDN web docs: Service Worker API](https://developer.mozilla.org/docs/Web/API/Service_Worker_API). To learn more about common usage patterns for service workers, see [Google Web: The Service Worker Lifecycle](https://developers.google.com/web/fundamentals/primers/service-workers/lifecycle).
 
@@ -310,7 +310,7 @@ What surprises many developers is that, even when this update completes, it does
 
 This commonly troubles developers who are trying to test updates to their service worker or offline cached resources. If you check in the browser's developer tools, you may see something like the following:
 
-![Google Chrome 'Application' tab shows that the Service Worker of the app is 'waiting to activate'.](~/6.0/blazor/progressive-web-app/_static/image7.png)
+![Google Chrome 'Application' tab shows that the Service Worker of the app is 'waiting to activate'.](~/blazor/progressive-web-app/_static/image7.png)
 
 For as long as the list of "clients," which are tabs or windows displaying your app, is nonempty, the worker continues waiting. The reason service workers do this is to guarantee consistency. Consistency means that all resources are fetched from the same atomic cache.
 
@@ -451,7 +451,7 @@ To obtain static assets, use **one** of the following approaches:
 
   [Blazor WebAssembly project template `wwwroot` folder (dotnet/aspnetcore GitHub repository `main` branch)](https://github.com/dotnet/aspnetcore/tree/main/src/ProjectTemplates/Web.ProjectTemplates/content/ComponentsWebAssembly-CSharp/Client/wwwroot)
 
-  [!INCLUDE[](~/5.0/blazor/includes/aspnetcore-repo-ref-source-links.md)]
+  [!INCLUDE[](~/blazor/includes/aspnetcore-repo-ref-source-links.md)]
 
 From the source `wwwroot` folder either in the app that you created or from the reference assets in the `dotnet/aspnetcore` GitHub repository, copy the following files into the app's `wwwroot` folder:
 
@@ -481,13 +481,13 @@ In the app's `wwwroot/index.html` file:
 
 When visiting an app created using the PWA template, users have the option of installing the app into their OS's start menu, dock, or home screen. The way this option is presented depends on the user's browser. When using desktop Chromium-based browsers, such as Edge or Chrome, an **Add** button appears within the URL bar. After the user selects the **Add** button, they receive a confirmation dialog:
 
-![The confirmation dialog in Google Chrome presents an Install button to the user for the 'MyBlazorPwa' app.](~/5.0/blazor/progressive-web-app/_static/image2.png)
+![The confirmation dialog in Google Chrome presents an Install button to the user for the 'MyBlazorPwa' app.](~/blazor/progressive-web-app/_static/image2.png)
 
 On iOS, visitors can install the PWA using Safari's **Share** button and its **Add to Homescreen** option. On Chrome for Android, users should select the **Menu** button in the upper-right corner, followed by **Add to Home screen**.
 
 Once installed, the app appears in its own window without an address bar:
 
-![The 'MyBlazorPwa' app runs in Google Chrome without an address bar.](~/5.0/blazor/progressive-web-app/_static/image3.png)
+![The 'MyBlazorPwa' app runs in Google Chrome without an address bar.](~/blazor/progressive-web-app/_static/image3.png)
 
 To customize the window's title, color scheme, icon, or other details, see the `manifest.json` file in the project's `wwwroot` directory. The schema of this file is defined by web standards. For more information, see [MDN web docs: Web App Manifest](https://developer.mozilla.org/docs/Web/Manifest).
 
@@ -507,18 +507,18 @@ To see how offline support works:
 1. Deploy the app to a server that supports HTTPS, and access the app in a browser at its secure HTTPS address.
 1. Open the browser's dev tools and verify that a *Service Worker* is registered for the host on the **Application** tab:
 
-   ![Google Chrome developer tools 'Application' tab shows a Service Worker activated and running.](~/5.0/blazor/progressive-web-app/_static/image4.png)
+   ![Google Chrome developer tools 'Application' tab shows a Service Worker activated and running.](~/blazor/progressive-web-app/_static/image4.png)
 
 1. Reload the page and examine the **Network** tab. **Service Worker** or **memory cache** are listed as the sources for all of the page's assets:
 
-   ![Google Chrome developer tools 'Network' tab showing sources for all of the page's assets.](~/5.0/blazor/progressive-web-app/_static/image5.png)
+   ![Google Chrome developer tools 'Network' tab showing sources for all of the page's assets.](~/blazor/progressive-web-app/_static/image5.png)
 
 1. To verify that the browser isn't dependent on network access to load the app, either:
 
    * Shut down the web server and see how the app continues to function normally, which includes page reloads. Likewise, the app continues to function normally when there's a slow network connection.
    * Instruct the browser to simulate offline mode in the **Network** tab:
 
-   ![Google Chrome developer tools 'Network' tab with the browser mode drop down being changed from 'Online' to 'Offline'.](~/5.0/blazor/progressive-web-app/_static/image6.png)
+   ![Google Chrome developer tools 'Network' tab with the browser mode drop down being changed from 'Online' to 'Offline'.](~/blazor/progressive-web-app/_static/image6.png)
 
 Offline support using a service worker is a web standard, not specific to Blazor. For more information on service workers, see [MDN web docs: Service Worker API](https://developer.mozilla.org/docs/Web/API/Service_Worker_API). To learn more about common usage patterns for service workers, see [Google Web: The Service Worker Lifecycle](https://developers.google.com/web/fundamentals/primers/service-workers/lifecycle).
 
@@ -666,7 +666,7 @@ What surprises many developers is that, even when this update completes, it does
 
 This commonly troubles developers who are trying to test updates to their service worker or offline cached resources. If you check in the browser's developer tools, you may see something like the following:
 
-![Google Chrome 'Application' tab shows that the Service Worker of the app is 'waiting to activate'.](~/5.0/blazor/progressive-web-app/_static/image7.png)
+![Google Chrome 'Application' tab shows that the Service Worker of the app is 'waiting to activate'.](~/blazor/progressive-web-app/_static/image7.png)
 
 For as long as the list of "clients," which are tabs or windows displaying your app, is nonempty, the worker continues waiting. The reason service workers do this is to guarantee consistency. Consistency means that all resources are fetched from the same atomic cache.
 
@@ -807,7 +807,7 @@ To obtain static assets, use **one** of the following approaches:
   >
   > [Blazor WebAssembly project template `wwwroot` folder (dotnet/aspnetcore GitHub repository `main` branch)](https://github.com/dotnet/aspnetcore/tree/main/src/ProjectTemplates/Web.ProjectTemplates/content/ComponentsWebAssembly-CSharp/Client/wwwroot)
   >
-  > [!INCLUDE[](~/3.1/blazor/includes/aspnetcore-repo-ref-source-links.md)]
+  > [!INCLUDE[](~/blazor/includes/aspnetcore-repo-ref-source-links.md)]
 
 From the source `wwwroot` folder either in the app that you created or from the reference assets in the `dotnet/aspnetcore` GitHub repository, copy the following files into the app's `wwwroot` folder:
 
@@ -837,13 +837,13 @@ In the app's `wwwroot/index.html` file:
 
 When visiting an app created using the PWA template, users have the option of installing the app into their OS's start menu, dock, or home screen. The way this option is presented depends on the user's browser. When using desktop Chromium-based browsers, such as Edge or Chrome, an **Add** button appears within the URL bar. After the user selects the **Add** button, they receive a confirmation dialog:
 
-![The confirmation dialog in Google Chrome presents an Install button to the user for the 'MyBlazorPwa' app.](~/3.1/blazor/progressive-web-app/_static/image2.png)
+![The confirmation dialog in Google Chrome presents an Install button to the user for the 'MyBlazorPwa' app.](~/blazor/progressive-web-app/_static/image2.png)
 
 On iOS, visitors can install the PWA using Safari's **Share** button and its **Add to Homescreen** option. On Chrome for Android, users should select the **Menu** button in the upper-right corner, followed by **Add to Home screen**.
 
 Once installed, the app appears in its own window without an address bar:
 
-![The 'MyBlazorPwa' app runs in Google Chrome without an address bar.](~/3.1/blazor/progressive-web-app/_static/image3.png)
+![The 'MyBlazorPwa' app runs in Google Chrome without an address bar.](~/blazor/progressive-web-app/_static/image3.png)
 
 To customize the window's title, color scheme, icon, or other details, see the `manifest.json` file in the project's `wwwroot` directory. The schema of this file is defined by web standards. For more information, see [MDN web docs: Web App Manifest](https://developer.mozilla.org/docs/Web/Manifest).
 
@@ -863,18 +863,18 @@ To see how offline support works:
 1. Deploy the app to a server that supports HTTPS, and access the app in a browser at its secure HTTPS address.
 1. Open the browser's dev tools and verify that a *Service Worker* is registered for the host on the **Application** tab:
 
-   ![Google Chrome developer tools 'Application' tab shows a Service Worker activated and running.](~/3.1/blazor/progressive-web-app/_static/image4.png)
+   ![Google Chrome developer tools 'Application' tab shows a Service Worker activated and running.](~/blazor/progressive-web-app/_static/image4.png)
 
 1. Reload the page and examine the **Network** tab. **Service Worker** or **memory cache** are listed as the sources for all of the page's assets:
 
-   ![Google Chrome developer tools 'Network' tab showing sources for all of the page's assets.](~/3.1/blazor/progressive-web-app/_static/image5.png)
+   ![Google Chrome developer tools 'Network' tab showing sources for all of the page's assets.](~/blazor/progressive-web-app/_static/image5.png)
 
 1. To verify that the browser isn't dependent on network access to load the app, either:
 
    * Shut down the web server and see how the app continues to function normally, which includes page reloads. Likewise, the app continues to function normally when there's a slow network connection.
    * Instruct the browser to simulate offline mode in the **Network** tab:
 
-   ![Google Chrome developer tools 'Network' tab with the browser mode drop down being changed from 'Online' to 'Offline'.](~/3.1/blazor/progressive-web-app/_static/image6.png)
+   ![Google Chrome developer tools 'Network' tab with the browser mode drop down being changed from 'Online' to 'Offline'.](~/blazor/progressive-web-app/_static/image6.png)
 
 Offline support using a service worker is a web standard, not specific to Blazor. For more information on service workers, see [MDN web docs: Service Worker API](https://developer.mozilla.org/docs/Web/API/Service_Worker_API). To learn more about common usage patterns for service workers, see [Google Web: The Service Worker Lifecycle](https://developers.google.com/web/fundamentals/primers/service-workers/lifecycle).
 
@@ -1022,7 +1022,7 @@ What surprises many developers is that, even when this update completes, it does
 
 This commonly troubles developers who are trying to test updates to their service worker or offline cached resources. If you check in the browser's developer tools, you may see something like the following:
 
-![Google Chrome 'Application' tab shows that the Service Worker of the app is 'waiting to activate'.](~/3.1/blazor/progressive-web-app/_static/image7.png)
+![Google Chrome 'Application' tab shows that the Service Worker of the app is 'waiting to activate'.](~/blazor/progressive-web-app/_static/image7.png)
 
 For as long as the list of "clients," which are tabs or windows displaying your app, is nonempty, the worker continues waiting. The reason service workers do this is to guarantee consistency. Consistency means that all resources are fetched from the same atomic cache.
 
