@@ -30,6 +30,7 @@ This tutorial creates the following API:
 |`POST /todoitems` | Add a new item | To-do item | To-do item |
 |`PUT /todoitems/{id}` | Update an existing item &nbsp; | To-do item | None |
 |`DELETE /todoitems/{id}` &nbsp; &nbsp; | Delete an item &nbsp; &nbsp; | None | None|
+|`DELETE /todoitems/delete-all` &nbsp; &nbsp; | Delete all items &nbsp; &nbsp; | None | None|
 
 ## Prerequisites
 
@@ -157,8 +158,8 @@ NuGet packages must be added to support the database and diagnostics used in thi
 # [Visual Studio](#tab/visual-studio)
 
 * From the **Tools** menu, select **NuGet Package Manager > Manage NuGet Packages for Solution**.
-* Select the **Browse** tab, and then enter `Microsoft.EntityFrameworkCore.InMemory` in the search box. Verify **Incluee prerelease** is checked.
-* Select `Microsoft.EntityFrameworkCore.InMemory` in the left pane.
+* Select the **Browse** tab, and then enter `Microsoft.EntityFrameworkCore.InMemory` in the search box. Verify **Include prerelease** is checked.
+* enter **Microsoft.EntityFrameworkCore.InMemory** in the search box, and then select `Microsoft.EntityFrameworkCore.InMemory`.
 * Select the **Project** checkbox in the right pane and then select **Install**.
 * Follow the preceding instructions to add the `Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore` package.
 
@@ -222,9 +223,8 @@ The following instructions post data to the app:
       ```
   
   * Select **Send**.
-  
-  "C:\GH\aspnet\docs\3\AspNetCore.Docs\aspnetcore\tutorials\min-web-api\static\post.png"
-    ![Postman with create request](min-web-api/_static/post.png)
+    ![Postman with Post request details](min-web-api/_static/post2.png)
+    <!-- ![Postman with Post request](min-web-api/_static/post.png) -->
 
 ## Examine the GET methods
 
@@ -262,7 +262,6 @@ A response similar to the following is produced by the call to `Gettodoitems`:
 * Create a new request.
 * Set the HTTP method to **GET**.
 * Set the request URI to `https://localhost:<port>/todoitems`. For example, `https://localhost:5001/todoitems`.
-* Set **Two pane view** in Postman.
 * Select **Send**.
 
 This app uses an in-memory database. If the app is stopped and started, the preceding GET request will not return any data. If no data is returned, [POST](#post) data to the app.
@@ -299,17 +298,18 @@ Update the to-do item that has Id = 1 and set its name to `"feed fish"`:
   }
 ```
 
+<!--
 The following image shows the Postman update:
-<!-- 
+ 
 `![Postman console showing 204 (No Content) response](min-web-api/_static/3/pmcput.png)`
+-->
 
-## The DeleteTodoItem method
+## The MapDelete method
 
-Examine the `DeleteTodoItem` method:
+Examine the `MapDelete` method:
 
-[!code-csharp[](min-web-api/samples/5.x/TodoApi/Controllers/todoitemsController.cs?name=snippet_Delete)]
+[!code-csharp[](min-web-api/samples/6.x/todo/Program.cs?name=snippet_delete)]
 
-### Test the DeleteTodoItem method
 
 Use Postman to delete a to-do item:
 
@@ -319,6 +319,7 @@ Use Postman to delete a to-do item:
 
 <a name="over-post-v5"></a>
 
+<!--
 ## Prevent over-posting
 
 Currently the sample app exposes the entire `TodoItem` object. Production apps typically limit the data that's input and returned using a subset of the model. There are multiple reasons behind this and security is a major one. The subset of a model is usually referred to as a Data Transfer Object (DTO), input model, or view model. **DTO** is used in this article.
@@ -353,3 +354,16 @@ Verify you can't post or get the secret field.
 See [Tutorial: Call an ASP.NET Core web API with JavaScript](xref:tutorials/web-api-javascript).
 
 -->
+
+## Test API
+
+The following code shows the basic approach to testing minimal APIs:
+
+```csharp
+using Microsoft.AspNetCore.TestHost; 
+
+var builder = WebApplication.CreateBuilder();
+ConfigureTestConfiguration(builder.Configuration);
+builder.WebHost.UseTestServer();
+var app = builder.Build();
+```

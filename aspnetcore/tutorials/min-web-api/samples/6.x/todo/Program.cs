@@ -15,29 +15,29 @@ if (app.Environment.IsDevelopment())
 #region snippet_get
 app.MapGet("/", () => "Hello World!");
 
-app.MapGet("/TodoItems", async (TodoDb db) =>
+app.MapGet("/todoitems", async (TodoDb db) =>
     await db.Todos.ToListAsync());
 
-app.MapGet("/TodoItems/complete", async (TodoDb db) =>
+app.MapGet("/todoitems/complete", async (TodoDb db) =>
     await db.Todos.Where(t => t.IsComplete).ToListAsync());
 
-app.MapGet("/TodoItems/{id}", async (int id, TodoDb db) =>
+app.MapGet("/todoitems/{id}", async (int id, TodoDb db) =>
     await db.Todos.FindAsync(id)
         is Todo todo
             ? Results.Ok(todo)
             : Results.NotFound());
 #endregion
 
-app.MapPost("/TodoItems", async (Todo todo, TodoDb db) =>
+app.MapPost("/todoitems", async (Todo todo, TodoDb db) =>
 {
     db.Todos.Add(todo);
     await db.SaveChangesAsync();
 
-    return Results.Created($"/TodoItems/{todo.Id}", todo);
+    return Results.Created($"/todoitems/{todo.Id}", todo);
 });
 
 #region snippet_put
-app.MapPut("/TodoItems/{id}", async (int id, Todo inputTodo, TodoDb db) =>
+app.MapPut("/todoitems/{id}", async (int id, Todo inputTodo, TodoDb db) =>
 {
     var todo = await db.Todos.FindAsync(id);
 
@@ -50,6 +50,21 @@ app.MapPut("/TodoItems/{id}", async (int id, Todo inputTodo, TodoDb db) =>
 
     return Results.NoContent();
 });
+#endregion
+
+#region snippet_delete
+app.MapDelete("/todoitems/{id}", async (int id, TodoDb db) =>
+{
+    if (await db.Todos.FindAsync(id) is Todo todo)
+    {
+        db.Todos.Remove(todo);
+        await db.SaveChangesAsync();
+        return Results.Ok(todo);
+    }
+
+    return Results.NotFound();
+});
+
 #endregion
 
 app.Run();
