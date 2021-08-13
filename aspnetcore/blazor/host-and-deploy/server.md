@@ -59,7 +59,7 @@ We recommend using the [Azure SignalR Service](xref:signalr/scale#azure-signalr-
 > For more information, see:
 >
 > * [What is Azure SignalR Service?](/azure/azure-signalr/signalr-overview)
-> * [Performance guide for Azure SignalR Service](/azure-signalr/signalr-concept-performance#performance-factors)
+> * [Performance guide for Azure SignalR Service](/azure/azure-signalr/signalr-concept-performance#performance-factors)
 > * <xref:signalr/publish-to-azure-web-app>
 
 ### Configuration
@@ -276,7 +276,7 @@ We recommend using the [Azure SignalR Service](xref:signalr/scale#azure-signalr-
 > For more information, see:
 >
 > * [What is Azure SignalR Service?](/azure/azure-signalr/signalr-overview)
-> * [Performance guide for Azure SignalR Service](/azure-signalr/signalr-concept-performance#performance-factors)
+> * [Performance guide for Azure SignalR Service](/azure/azure-signalr/signalr-concept-performance#performance-factors)
 > * <xref:signalr/publish-to-azure-web-app>
 
 ### Configuration
@@ -493,7 +493,7 @@ We recommend using the [Azure SignalR Service](xref:signalr/scale#azure-signalr-
 > For more information, see:
 >
 > * [What is Azure SignalR Service?](/azure/azure-signalr/signalr-overview)
-> * [Performance guide for Azure SignalR Service](/azure-signalr/signalr-concept-performance#performance-factors)
+> * [Performance guide for Azure SignalR Service](/azure/azure-signalr/signalr-concept-performance#performance-factors)
 > * <xref:signalr/publish-to-azure-web-app>
 
 ### Configuration
