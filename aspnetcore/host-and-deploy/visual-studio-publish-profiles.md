@@ -495,5 +495,5 @@ Select the [Debug Console](https://github.com/projectkudu/kudu/wiki/Kudu-console
 
 * [Web Deploy](https://www.iis.net/downloads/microsoft/web-deploy) (MSDeploy) simplifies deployment of web apps and websites to IIS servers.
 * [Web SDK GitHub repository](https://github.com/dotnet/websdk/issues): File issues and request features for deployment.
-* <xref:azure-stack-docs/user/azure-stack-dev-start-howto-vm-dotnet>
+* <xref:azure-stack/user/azure-stack-dev-start-howto-vm-dotnet>
 * <xref:host-and-deploy/iis/transform-webconfig>
