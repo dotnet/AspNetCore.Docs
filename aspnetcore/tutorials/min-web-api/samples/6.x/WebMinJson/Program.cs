@@ -1,14 +1,9 @@
-//#define First
+#define First
 #if First
 #region snippet_1
 using Microsoft.AspNetCore.Http.Json;
 
 var builder = WebApplication.CreateBuilder(args);
-
-builder.Services.Configure<JsonOptions>(options =>
-{
-    options.SerializerOptions.IncludeFields = true;
-});
 
 var app = builder.Build();
 
