@@ -355,6 +355,16 @@ See [Tutorial: Call an ASP.NET Core web API with JavaScript](xref:tutorials/web-
 
 -->
 
+## Use JsonOptions
+
+The following code uses <xref:Microsoft.AspNetCore.Http.Json.JsonOptions>:
+
+[!code-csharp[](min-web-api/samples/6.x/WebMinJson/Program.cs?name=snippet_1)]
+
+The following code uses <xref:System.Text.Json.JsonSerializerOptions>:
+
+[!code-csharp[](min-web-api/samples/6.x/WebMinJson/Program.cs?name=snippet_2)]
+
 ## Test API
 
 The following code shows the basic approach to testing minimal APIs:
