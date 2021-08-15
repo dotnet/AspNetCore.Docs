@@ -16,7 +16,6 @@ app.MapGet("/", () => new Todo { Name = "Walk dog", IsComplete = false });
 
 app.Run();
 
-
 class Todo
 {
     public string? Name { get; set; }
@@ -30,16 +29,12 @@ using System.Text.Json;
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
-var options = new JsonSerializerOptions(JsonSerializerDefaults.Web)
-{
-    IncludeFields = true,
-};
+var options = new JsonSerializerOptions(JsonSerializerDefaults.Web);
 
-
-app.MapGet("/", () => Results.Json(new Todo { Name = "Walk dog", IsComplete = false }, options));
+app.MapGet("/", () => Results.Json(new Todo { 
+                      Name = "Walk dog", IsComplete = false }, options));
 
 app.Run();
-
 
 class Todo
 {
