@@ -651,6 +651,32 @@ For more information, see <xref:blazor/components/index#namespaces>.
 
 ::: zone-end
 
+## Dynamically add root components
+
+*This feature applies to ASP.NET Core 6.0 Release Candidate 1 or later. ASP.NET Core 6.0 Release Candidate 1 is scheduled for release in September. ASP.NET Core 6.0 is scheduled for release later this year.*
+
+Razor components can be dynamically rendered with passed parameters directly from JavaScript or HTML after a Blazor app has started.
+
+In the following example, a `ShoppingCart` component is dynamically rendered with a value for its `ShoppingCartId` component parameter.
+
+In JavaScript:
+
+```javascript
+Blazor.renderComponent({ELEMENT}, { componentName: "ShoppingCart" }, 
+  parameters: { shoppingCartId: "1234" });
+```
+
+In the preceding example, the `{ELEMENT}` placeholder is the [HTML element instance](hhttps://developer.mozilla.org/docs/Web/API/HTMLElement) acting as a container for the rendered component.
+
+In HTML:
+
+```html
+<shopping-cart shopping-cart-id="1234" />
+```
+
+> [!NOTE]
+> Rendering child content of a dynamically-rendered component isn't supported.
+
 ## Preserve prerendered state
 
 Without preserving prerendered state, any state that used during prerendering is lost and must be recreated when the app is fully loaded. If any state is setup asynchronously, the UI may flicker as the the prerendered UI is replaced with temporary placeholders and then fully rendered again.
