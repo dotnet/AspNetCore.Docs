@@ -213,7 +213,7 @@ Some configuration options can be passed to `dotnet watch` through environment v
 
 ## Browser refresh
 
-`dotnet watch` injects a scripts in to the app to allow it to refresh the browser when content needs to be updated. In some scenarios, such as when the app enables response compression, `dotnet watch` might be unable to inject the script. In such a case, you may manually inject the script in to your application when in development. For example, to configure your webapp to manually inject the script, update the layout file to include `_framework/aspnet-browser-refresh.js`:
+`dotnet watch` injects a script in to the app that allows it to refresh the browser when the content changes. In some scenarios, such as when the app enables response compression, `dotnet watch` might be unable to inject the script. For such cases in development, manually inject the script into the app. For example, to configure the  web app to manually inject the script, update the layout file to include `_framework/aspnet-browser-refresh.js`:
 
 ```razor
 @* _Layout.cshtml *@
