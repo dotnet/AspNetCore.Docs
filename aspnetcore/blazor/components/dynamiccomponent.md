@@ -50,7 +50,10 @@ Use the `Instance` property to access the dynamically-created component instance
 }
 ```
 
-In the preceding example, the `{COMPONENT}` placeholder is the dynamically-created component type.
+In the preceding example:
+
+* The `{COMPONENT}` placeholder is the dynamically-created component type.
+* `IRefreshable` is an example interface provided by the developer for the dynamic component instance.
 
 ## Example
 

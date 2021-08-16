@@ -700,7 +700,7 @@ The following approach supports optional client certificates:
 * Set up binding for the domain and subdomain:
   * For example, set up bindings on `contoso.com` and `myClient.contoso.com`. The `contoso.com` host doesn't require a client certificate but `myClient.contoso.com` does.
   * For more information, see:
-    * [Kestrel](/fundamentals/servers/kestrel):
+    * <xref:fundamentals/servers/kestrel>:
       * [ListenOptions.UseHttps](xref:fundamentals/servers/kestrel/endpoints#listenoptionsusehttps)
       * <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.ClientCertificateMode>
       * Note Kestrel does not currently support multiple TLS configurations on one binding, you'll need two bindings with unique IPs or ports. See https://github.com/dotnet/runtime/issues/31097
@@ -716,7 +716,7 @@ The following approach supports optional client certificates:
 * Set up binding for the domain and subdomain:
   * For example, set up bindings on `contoso.com` and `myClient.contoso.com`. The `contoso.com` host doesn't require a client certificate but `myClient.contoso.com` does.
   * For more information, see:
-    * [Kestrel](/fundamentals/servers/kestrel):
+    * <xref:fundamentals/servers/kestrel>:
       * [ListenOptions.UseHttps](xref:fundamentals/servers/kestrel#listenoptionsusehttps)
       * <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.ClientCertificateMode>
       * Note Kestrel does not currently support multiple TLS configurations on one binding, you'll need two bindings with unique IPs or ports. See https://github.com/dotnet/runtime/issues/31097

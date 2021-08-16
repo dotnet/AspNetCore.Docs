@@ -936,7 +936,7 @@ Resource filters are useful to short-circuit most of the pipeline. For example, 
 Resource filter examples:
 
 * [The short-circuiting resource filter](#short-circuiting-resource-filter) shown previously.
-* [DisableFormValueModelBindingAttribute](https://github.com/aspnet/Entropy/blob/rel/2.0.0-preview2/samples/Mvc.FileUpload/Filters/DisableFormValueModelBindingAttribute.cs):
+* [DisableFormValueModelBindingAttribute](https://github.com/aspnet/Entropy/blob/master/samples/Mvc.FileUpload/Filters/DisableFormValueModelBindingAttribute.cs):
 
   * Prevents model binding from accessing the form data.
   * Used for large file uploads to prevent the form data from being read into memory.
