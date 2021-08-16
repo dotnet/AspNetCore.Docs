@@ -369,7 +369,7 @@ In Blazor WebAssembly, file data is streamed directly into the .NET code within 
 
 ::: zone pivot="server"
 
-In Blazor Server, file data is streamed over the SignalR connection into .NET code on the server as the file is read from the stream. `Microsoft.AspNetCore.Components.Server.Circuits.RemoteJSDataStream` allows configuring file upload characteristics for Blazor Server.
+In Blazor Server, file data is streamed over the SignalR connection into .NET code on the server as the file is read from the stream.
 
 ::: zone-end
 
