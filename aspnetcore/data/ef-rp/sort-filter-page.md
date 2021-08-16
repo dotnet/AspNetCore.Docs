@@ -525,7 +525,7 @@ Replace the code in the *Pages/About.cshtml* file with the following code:
 
 Run the app and navigate to the About page. The count of students for each enrollment date is displayed in a table.
 
-If you run into problems you can't solve, download the [completed app for this stage](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-rp/intro/samples/StageSnapShots/cu-part3-sorting).
+If you run into problems you can't solve, download the [completed app for this stage](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-rp/intro/samples/cu20snapshots/cu-part3-sorting).
 
 ![About page](sort-filter-page/_static/about.png)
 
