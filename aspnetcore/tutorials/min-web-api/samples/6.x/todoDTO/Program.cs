@@ -24,16 +24,22 @@ app.MapGet("/todoitems/complete", async (TodoDb db) =>
 app.MapGet("/todoitems/{id}", async (int id, TodoDb db) =>
     await db.Todos.FindAsync(id)
         is Todo todo
-            ? Results.Ok(TodoItemDTO.ItemToDTO(todo))
+            ? Results.Ok(new TodoItemDTO(todo))
             : Results.NotFound());
 #endregion
 
-app.MapPost("/todoitems", async (Todo todo, TodoDb db) =>
+app.MapPost("/todoitems", async (TodoItemDTO todoItemDTO, TodoDb db) =>
 {
-    db.Todos.Add(todo);
+    var todoItem = new Todo
+    {
+        IsComplete = todoItemDTO.IsComplete,
+        Name = todoItemDTO.Name
+    };
+
+    db.Todos.Add(todoItem);
     await db.SaveChangesAsync();
 
-    return Results.Created($"/todoitems/{todo.Id}", todo);
+    return Results.Created($"/todoitems/{todoItem.Id}", todoItem);
 });
 
 #region snippet_put
@@ -84,13 +90,16 @@ public class TodoItemDTO
     public string? Name { get; set; }
     public bool IsComplete { get; set; }
 
-    public static TodoItemDTO ItemToDTO(Todo todoItem) =>
-    new TodoItemDTO
-    {
-        Id = todoItem.Id,
-        Name = todoItem.Name,
-        IsComplete = todoItem.IsComplete
-    };
+    public TodoItemDTO(Todo todoItem) =>
+    (Id, Name, IsComplete) = (todoItem.Id, todoItem.Name, todoItem.IsComplete);
+
+    //public static TodoItemDTO ItemToDTO(Todo todoItem) =>
+    //new TodoItemDTO
+    //{
+    //    Id = todoItem.Id,
+    //    Name = todoItem.Name,
+    //    IsComplete = todoItem.IsComplete
+    //};
 }
 #endregion
 
