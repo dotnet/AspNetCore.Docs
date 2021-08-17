@@ -420,7 +420,18 @@ An `AuthorizationHandler` is implemented that will use the `amr` claim and check
 
 The returned value depends on how the identity authenticated and on the OpenID Connect server implementation.
 
+
+::: moniker range=">= aspnetcore-6.0"
+
+The `AuthorizationHandler` uses the `RequireMfa` requirement and validates the `amr` claim. The OpenID Connect server can be implemented using Duende Identity Server with ASP.NET Core Identity. When a user logs in using TOTP, the `amr` claim is returned with an MFA value. If using a different OpenID Connect server implementation or a different MFA type, the `amr` claim will, or can, have a different value. The code must be extended to accept this as well.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-6.0"
+
 The `AuthorizationHandler` uses the `RequireMfa` requirement and validates the `amr` claim. The OpenID Connect server can be implemented using IdentityServer4 with ASP.NET Core Identity. When a user logs in using TOTP, the `amr` claim is returned with an MFA value. If using a different OpenID Connect server implementation or a different MFA type, the `amr` claim will, or can, have a different value. The code must be extended to accept this as well.
+
+::: moniker-end
 
 ```csharp
 using Microsoft.AspNetCore.Authorization;
