@@ -399,7 +399,7 @@ If the user is already logged in, the client app:
 * Still validates the `amr` claim.
 * Can set up the MFA with a link to the ASP.NET Core Identity view.
 
-![acr_values-1](mfa/_static/acr_values-1.png)
+![acr_values-1 image](mfa/_static/acr_values-1.png)
 
 ## Force ASP.NET Core OpenID Connect client to require MFA
 
@@ -565,15 +565,15 @@ When logging in without MFA (for example, using just a password):
 
 * The `amr` has the `pwd` value:
 
-    ![require_mfa_oidc_02.png](mfa/_static/require_mfa_oidc_02.png)
+  ![amr has the pwd value](mfa/_static/require_mfa_oidc_02.png)
 
 * Access is denied:
 
-    ![require_mfa_oidc_03.png](mfa/_static/require_mfa_oidc_03.png)
+  ![Access is denied](mfa/_static/require_mfa_oidc_03.png)
 
 Alternatively, logging in using OTP with Identity:
 
-![require_mfa_oidc_01.png](mfa/_static/require_mfa_oidc_01.png)
+![Logging in using OTP with Identity](mfa/_static/require_mfa_oidc_01.png)
 
 ## Additional resources
 
