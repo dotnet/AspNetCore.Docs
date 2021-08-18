@@ -25,7 +25,7 @@ HTTP/3 and QUIC have a number of benefits compared to HTTP/1.1 and HTTP/2:
 > 
 > For more information on preview features, see [the preview features specification](https://github.com/dotnet/designs/blob/main/accepted/2021/preview-features/preview-features.md#are-preview-features-supported).
 >
-> Apps configured to take advantage of HTTP/3 should be designed to also support HTTP/1.1 and HTTP/2. If issues are identified in HTTP/3, we recommended that apps disable HTTP/3 until the issues are resolved in a future release.
+> Apps configured to take advantage of HTTP/3 should be designed to also support HTTP/1.1 and HTTP/2. If issues are identified in HTTP/3, we recommended disabling HTTP/3 until the issues are resolved in a future release of ASP.NET Core. Significant issues are reported at the [Announcements GitHub repository](https://github.com/aspnet/Announcements/issues).
 
 ## HTTP/3 requirements
 
