@@ -209,7 +209,7 @@ public override async Task<ExampleResponse> StreamingFromClient(
 
 ### Bi-directional streaming method
 
-A bi-directional streaming method starts *without* the method receiving a message. The `requestStream` parameter is used to read messages from the client. The method can choose to send messages with `responseStream.WriteAsync`. A bi-directional streaming call is complete when the the method returns:
+A bi-directional streaming method starts *without* the method receiving a message. The `requestStream` parameter is used to read messages from the client. The method can choose to send messages with `responseStream.WriteAsync`. A bi-directional streaming call is complete when the method returns:
 
 ```csharp
 public override async Task StreamingBothWays(IAsyncStreamReader<ExampleRequest> requestStream,
