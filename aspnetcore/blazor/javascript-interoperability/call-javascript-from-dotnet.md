@@ -657,34 +657,79 @@ Other data types, such as string arrays, can be converted but require creating a
 
 ## Stream from JavaScript to .NET
 
-Blazor supports streaming data directly from JavaScript to .NET. Streams are requested using the `IJSStreamReference` interface:
+Blazor supports streaming data directly from JavaScript to .NET. Streams are requested using the `Microsoft.JSInterop.IJSStreamReference` interface.
 
-In client-side JavaScript:
+`Microsoft.JSInterop.IJSStreamReference.OpenReadStreamAsync` returns a <xref:System.IO.Stream> and uses the following parameters:
+
+* `maxAllowedSize`: Maximum number of bytes permitted for the read operation from JavaScript, which defaults to 512,000 bytes if not specified.
+* `cancellationToken`: A <xref:System.Threading.CancellationToken> for cancelling the read.
+
+In JavaScript:
 
 ```javascript
-function jsToDotNetStreamReturnValue() {
+function streamToDotNet() {
   return new Uint8Array(10000000);
 }
 ```
 
-In Razor component code:
+In C# code:
 
 ```csharp
 var dataReference = 
-    await JSRuntime.InvokeAsync<IJSStreamReference>("jsToDotNetStreamReturnValue");
+    await JS.InvokeAsync<IJSStreamReference>("streamToDotNet");
 using var dataReferenceStream = 
     await dataReference.OpenReadStreamAsync(maxAllowedSize: 10_000_000);
 
-// Write JS Stream to disk
 var outputPath = Path.Combine(Path.GetTempPath(), "file.txt");
 using var outputFileStream = File.OpenWrite(outputPath);
 await dataReferenceStream.CopyToAsync(outputFileStream);
 ```
 
-`IJSStreamReference` returns a <xref:System.IO.Stream> with the following parameters:
+In the preceding example:
 
-* `maxAllowedSize`: Maximum number of bytes permitted for the read from JavaScript. The value defaults to 512,000 bytes.
-* `cancellationToken`: A <xref:System.Threading.CancellationToken> for cancelling the read.
+* `JS` is an injected <xref:Microsoft.JSInterop.IJSRuntime> instance.
+* The `dataReferenceStream` is written to disk (`file.txt`) at the current user's temporary folder path (<xref:System.IO.Path.GetTempPath%2A>).
+
+## Stream from .NET to JavaScript
+
+*This feature applies to ASP.NET Core 6.0 Release Candidate 1 or later. ASP.NET Core 6.0 Release Candidate 1 is scheduled for release in September. ASP.NET Core 6.0 is scheduled for release later this year.*
+
+Blazor supports streaming data directly from .NET to JavaScript. Streams are created using a `Microsoft.JSInterop.DotNetStreamReference`.
+
+`Microsoft.JSInterop.DotNetStreamReference` represents a .NET stream and uses the following parameters:
+
+* `stream`: The stream sent to JavaScript.
+* `leaveOpen`: Determines if the stream is left open after transmission. If a value isn't provided, `leaveOpen` defaults to `false`.
+
+In JavaScript, use an array buffer or a readable stream to receive the data:
+
+* Using an [`ArrayBuffer`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer):
+
+  ```javascript
+  async function streamToJavaScript(streamRef) {
+    const data = await streamRef.arrayBuffer();
+  }
+  ```
+
+* Using a [`ReadableStream`](https://developer.mozilla.org/docs/Web/API/ReadableStream):
+
+  ```javascript
+  async function streamToJavaScript(streamRef) {
+    const stream = await streamRef.stream();
+  }
+  ```
+
+In C# code:
+
+```csharp
+using var streamRef = new DotNetStreamReference(stream: {STREAM}, leaveOpen: false);
+await JS.InvokeVoidAsync("streamToJavaScript", streamRef);
+```
+
+In the preceding example:
+
+* The `{STREAM}` placeholder represents the <xref:System.IO.Stream> sent to JavaScript.
+* `JS` is an injected <xref:Microsoft.JSInterop.IJSRuntime> instance.
 
 ## Catch JavaScript exceptions
 
