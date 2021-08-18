@@ -22,8 +22,10 @@ HTTP/3 and QUIC have a number of benefits compared to HTTP/1.1 and HTTP/2:
 
 > [!IMPORTANT]
 > HTTP/3 is available in .NET 6 as a preview feature as the HTTP/3 specification hasn't been finalized and there may be behavioral or performance issues in HTTP/3 with .NET 6.
+> 
+> For more information about what a preview feature is, see [the preview features spec](https://github.com/dotnet/designs/blob/main/accepted/2021/preview-features/preview-features.md#are-preview-features-supported).
 >
-> Apps that want take advantage of HTTP/3 should be designed to support all 3 HTTP versions. If issues are identified in HTTP/3 then it is recommended that apps temporarily disable it until issues are resolved and the app can be updated.
+> Apps that want take advantage of HTTP/3 should be designed to support all 3 HTTP versions. If issues are identified in HTTP/3 then it is recommended that apps disable it until issues are resolved in a future release.
 
 ## HTTP/3 requirements
 
