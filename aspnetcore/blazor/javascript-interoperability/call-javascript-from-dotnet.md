@@ -699,7 +699,7 @@ Blazor supports streaming data directly from .NET to JavaScript. Streams are cre
 `Microsoft.JSInterop.DotNetStreamReference` represents a .NET stream and uses the following parameters:
 
 * `stream`: The stream sent to JavaScript.
-* `leaveOpen`: A flag that indicates whether the stream should be left open after transmission, which defaults to `false` if not provided.
+* `leaveOpen`: Determines if the stream is left open after transmission. If a value isn't provided, `leaveOpen` defaults to `false`.
 
 In JavaScript, use an array buffer or a readable stream to receive the data:
 
