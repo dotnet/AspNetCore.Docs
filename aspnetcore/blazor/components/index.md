@@ -1958,7 +1958,7 @@ The [`@typeparam`][11] directive declares a [generic type parameter](/dotnet/csh
 For more information, see the following articles:
 
 * <xref:mvc/views/razor#typeparam>
-* <xref:blazor/components/templated-components
+* <xref:blazor/components/templated-components>
 
 ::: moniker-end
 
@@ -2919,7 +2919,7 @@ The [`@typeparam`][11] directive declares a [generic type parameter](/dotnet/csh
 For more information, see the following articles:
 
 * <xref:mvc/views/razor#typeparam>
-* <xref:blazor/components/templated-components
+* <xref:blazor/components/templated-components>
 
 ::: moniker-end
 
