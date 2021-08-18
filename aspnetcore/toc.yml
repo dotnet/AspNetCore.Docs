@@ -1124,6 +1124,8 @@
                   href: /samples/azure-samples/active-directory-dotnet-native-aspnetcore-v2/calling-an-aspnet-core-web-api-from-a-wpf-application-using-azure-ad-v2/
                 - name: Web API with Azure AD B2C
                   href: https://azure.microsoft.com/resources/samples/active-directory-b2c-dotnetcore-webapi/
+        - name: Secure ASP.NET Core apps with Duende Identity Server
+          href: https://docs.duendesoftware.com
         - name: Secure ASP.NET Core apps with IdentityServer4
           href: https://identityserver4.readthedocs.io/
         - name: Secure ASP.NET Core apps with Azure App Service authentication (Easy Auth)

@@ -713,7 +713,17 @@ To satisfy the preceding requirements, make the following changes:
 
 ## Add authentication support to a web API
 
+::: moniker range=">= aspnetcore-6.0"
+
+[!INCLUDE[](~/includes/DuendeIdentityServer.md)]
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-6.0"
+
 [!INCLUDE[](~/includes/IdentityServer4.md)]
+
+::: moniker-end
 
 ## Next steps
 
