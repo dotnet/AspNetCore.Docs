@@ -13,13 +13,8 @@ if (app.Environment.IsDevelopment())
 }
 
 #region snippet_get
-app.MapGet("/", () => "Hello World!");
-
 app.MapGet("/todoitems", async (TodoDb db) =>
     await db.Todos.Select(x => new TodoItemDTO(x)).ToListAsync());
-
-app.MapGet("/todoitems/complete", async (TodoDb db) =>
-    await db.Todos.Where(t => t.IsComplete).ToListAsync());
 
 app.MapGet("/todoitems/{id}", async (int id, TodoDb db) =>
     await db.Todos.FindAsync(id)
@@ -58,7 +53,6 @@ app.MapPut("/todoitems/{id}", async (int id, TodoItemDTO todoItemDTO, TodoDb db)
 });
 #endregion
 
-#region snippet_delete
 app.MapDelete("/todoitems/{id}", async (int id, TodoDb db) =>
 {
     if (await db.Todos.FindAsync(id) is Todo todo)
@@ -71,17 +65,18 @@ app.MapDelete("/todoitems/{id}", async (int id, TodoDb db) =>
     return Results.NotFound();
 });
 
-#endregion
-
 app.Run();
 
-public class Todo
+#region snippet_secret
+\public class Todo
 {
     public int Id { get; set; }
     [Required]
     public string? Name { get; set; }
     public bool IsComplete { get; set; }
+    public string? Secret { get; set; }
 }
+#endregion
 
 #region snippet_DTO
 public class TodoItemDTO
@@ -92,14 +87,6 @@ public class TodoItemDTO
 
     public TodoItemDTO(Todo todoItem) =>
     (Id, Name, IsComplete) = (todoItem.Id, todoItem.Name, todoItem.IsComplete);
-
-    //public static TodoItemDTO ItemToDTO(Todo todoItem) =>
-    //new TodoItemDTO
-    //{
-    //    Id = todoItem.Id,
-    //    Name = todoItem.Name,
-    //    IsComplete = todoItem.IsComplete
-    //};
 }
 #endregion
 

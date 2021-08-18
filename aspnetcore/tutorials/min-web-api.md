@@ -317,12 +317,11 @@ Use Postman to delete a to-do item:
 * Set the URI of the object to delete (for example `https://localhost:5001/todoitems/1`).
 * Select **Send**.
 
-<a name="over-post-v5"></a>
+<a name="over-post-v6"></a>
 
-<!--
 ## Prevent over-posting
 
-Currently the sample app exposes the entire `TodoItem` object. Production apps typically limit the data that's input and returned using a subset of the model. There are multiple reasons behind this and security is a major one. The subset of a model is usually referred to as a Data Transfer Object (DTO), input model, or view model. **DTO** is used in this article.
+Currently the sample app exposes the entire `Todo` object. Production apps typically limit the data that's input and returned using a subset of the model. There are multiple reasons behind this and security is a major one. The subset of a model is usually referred to as a Data Transfer Object (DTO), input model, or view model. **DTO** is used in this article.
 
 A DTO may be used to:
 
@@ -331,9 +330,9 @@ A DTO may be used to:
 * Omit some properties in order to reduce payload size.
 * Flatten object graphs that contain nested objects. Flattened object graphs can be more convenient for clients.
 
-To demonstrate the DTO approach, update the `TodoItem` class to include a secret field:
+To demonstrate the DTO approach, update the `Todo` class to include a secret field:
 
-[!code-csharp[](min-web-api/samples/5.x/TodoApiDTO/Models/TodoItem.cs?name=snippet&highlight=8)]
+[!code-csharp[](min-web-api/samples/6.x/todoDTO/Program.cs?name=snippet_secret&highlight=7)]
 
 The secret field needs to be hidden from this app, but an administrative app could choose to expose it.
 
@@ -341,19 +340,13 @@ Verify you can post and get the secret field.
 
 Create a DTO model:
 
-[!code-csharp[](min-web-api/samples/5.x/TodoApiDTO/Models/TodoItemDTO.cs?name=snippet)]
+[!code-csharp[](min-web-api/samples/6.x/todoDTO/Program.cs?name=snippet_DTO)]
 
-Update the `todoitemsController` to use `TodoItemDTO`:
+Update the code to use `TodoItemDTO`:
 
-[!code-csharp[](min-web-api/samples/5.x/TodoApiDTO/Controllers/todoitemsController.cs?name=snippet)]
+[!code-csharp[](min-web-api/samples/6.x/todoDTO/Program.cs?name=snippet_all)]
 
 Verify you can't post or get the secret field.
-
-## Call the web API with JavaScript
-
-See [Tutorial: Call an ASP.NET Core web API with JavaScript](xref:tutorials/web-api-javascript).
-
--->
 
 ## Use JsonOptions
 
