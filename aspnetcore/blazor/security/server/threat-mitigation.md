@@ -92,7 +92,7 @@ By default, there's no limit on the number of connections per user for a Blazor 
     > For more information, see the following resources:
     >
     > * <xref:blazor/host-and-deploy/server#signalr-configuration>
-    > * <xref:blazor/fundamentals/signalr?pivots=server#enable-long-polling>
+    > * <xref:blazor/fundamentals/signalr?pivots=server#long-polling>
     > * [Disable Long Polling Fallback Transport for Blazor Server (ASP.NET Announcements)](https://github.com/aspnet/Announcements/issues/470)
     > * [Support WebSocket connections on Azure Front Door](https://feedback.azure.com/forums/217313-networking/suggestions/37346371-support-websocket-connections-on-azure-front-door)
 

@@ -350,27 +350,24 @@ When a circuit ends because a user has disconnected and the framework is cleanin
 
 We recommend using the [Azure SignalR Service](xref:signalr/scale#azure-signalr-service) for Blazor Server apps hosted in Microsoft Azure. The service works in conjunction with the app's Blazor Hub for scaling up a Blazor Server app to a large number of concurrent SignalR connections. In addition, the SignalR Service's global reach and high-performance data centers significantly aid in reducing latency due to geography. For prerendering support with the Azure SignalR Service, configure the app to use *sticky sessions*. For more information, see <xref:blazor/host-and-deploy/server>.
 
-## Enable Long Polling
+## Long Polling
 
-Long Polling was enabled in releases prior to ASP.NET Core 6.0 as a fallback transport for situations in which WebSockets weren't available. If an app targeting ASP.NET Core 6.0 or later must use Long Polling, make the following server-side and client-side changes:
+Long Polling was enabled in releases prior to ASP.NET Core 6.0 as a fallback transport for situations in which the WebSockets transport wasn't available. If an app targeting ASP.NET Core 6.0 or later must use Long Polling, make the following changes:
 
-Server-side update:
-
-In `Startup.cs`, replace `endpoints.MapBlazorHub()` with:
+In the app's `Startup.cs` file, replace `endpoints.MapBlazorHub()` with the following code:
 
 ```csharp
 endpoints.MapBlazorHub(configureOptions: options => 
 { 
-    options.Transports = HttpTransportType.WebSockets | HttpTransportType.LongPolling; 
+    options.Transports = 
+        HttpTransportType.WebSockets | HttpTransportType.LongPolling;
 });
 ```
-
-Client-side update:
 
 Add the following script to the `Shared/_Layout.cshtml` file immediately inside the closing `</body>` tag. WebSockets (`1`) and Long Polling (`4`) are the supported `HTTPTransportTypes`. The following example:
 
 * Specifies support for both WebSockets and Long Polling transports (`1 | 4`).
-* Defaults to WebSockets when a WebSockets connection can be established.
+* Defaults to the WebSockets transport when a WebSockets connection can be established.
 
 ```html
 <script>

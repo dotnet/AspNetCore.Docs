@@ -48,7 +48,7 @@ Blazor Server apps use ASP.NET Core SignalR to communicate with the browser. [Si
 Blazor works best when using WebSockets as the SignalR transport due to lower latency, reliability, and [security](xref:signalr/security). When deploying to Azure App Service, configure the app to use WebSockets in the Azure portal settings for the service. For details on configuring the app for Azure App Service, see the [SignalR publishing guidelines](xref:signalr/publish-to-azure-web-app).
 
 > [!NOTE]
-> In releases prior to ASP.NET Core 6.0, Long Polling was enabled as a fallback transport for situations in which WebSockets weren't available. If an app targeting ASP.NET Core 6.0 or later must use Long Polling, see <xref:blazor/fundamentals/signalr?pivots=server#enable-long-polling>.
+> In releases prior to ASP.NET Core 6.0, Long Polling was enabled as a fallback transport for situations in which the WebSockets transport wasn't available. If an app targeting ASP.NET Core 6.0 or later must use Long Polling, see <xref:blazor/fundamentals/signalr?pivots=server#long-polling>.
 >
 > For more information, see [Disable Long Polling Fallback Transport for Blazor Server (ASP.NET Announcements)](https://github.com/aspnet/Announcements/issues/470).
 
