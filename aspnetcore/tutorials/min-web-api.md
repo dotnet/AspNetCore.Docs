@@ -129,15 +129,12 @@ The preceding code is a complete web app with one endpoint.
 
 Press Ctrl+F5 to run without the debugger.
 
-[!INCLUDE[](~/includes/trustCertVS.md)]
+[!INCLUDE[](~/includes/trustCertVS22.md)]
 
-TO DO - update to Kestrel
-  Visual Studio launches:
+Visual Studio launches:
 
-* The IIS Express web server.
-* The default browser and navigates to `https://localhost:<port>/index.html`, where `<port>` is a randomly chosen port number.
-
-In a browser, navigate to `/`, for example, `https://localhost:5001/`.
+* The [Kestrel web server](xref:fundamentals/servers/kestrel).
+* The default browser and navigates to `https://localhost:5001`.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
