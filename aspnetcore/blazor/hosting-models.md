@@ -46,6 +46,32 @@ To create a Blazor WebAssembly app, see <xref:blazor/tooling>.
 
 The hosted Blazor app model supports [Docker containers](/dotnet/standard/microservices-architecture/container-docker-introduction/index). For Docker support in Visual Studio, right-click on the **`Server`** project of a hosted Blazor WebAssembly solution and select **Add** > **Docker Support**.
 
+
+
+
+
+> [!NOTE]
+> The following guidance on Blazor WebAssembly Ahead-of-Time (AoT) compilation and runtime relinking are *preview release* features of ASP.NET Core 6.0. ASP.NET Core 6.0 is scheduled for release later this year.
+
+Blazor WebAssembly supports Ahead-of-Time (AOT) compilation and runtime relinking, where you can compile your .NET code directly to WebAssembly and trim unused code from .NET Core framework libraries for significant runtime performance improvements and reduced download payload size.
+
+Without enabling AoT compilation, Blazor WebAssembly apps run using a .NET Intermediate Language (IL) interpreter implemented in WebAssembly. Because the .NET code is interpreted, the app usually runs much slower than it would on a server-side .NET runtime. AoT compilation addresses this performance issue by compiling an app's .NET code directly into WebAssembly for native WebAssembly execution on the browser's thread. The AoT performance improvement can yield dramatic improvements for CPU intensive tasks. A 500% increase in performance is possible.
+
+For more information on AoT compilation, see <xref:blazor/tooling#blazor-webassembly-ahead-of-time-aot-compilation>.
+
+One of the largest parts of a default Blazor WebAssembly app is the WebAssembly-based .NET runtime (`dotnet.wasm`) that the browser must download when the app is first accessed by a user's browser. Prior to the release of ASP.NET Core 6.0, the Blazor WebAssembly included support for trimming unused code from the .NET Core framework libraries, but the .NET runtime size has been constant.
+
+For example, a large part of the runtime logic and related data files are for [globalization scenarios](xref:blazor/globalization-localization). Globalization support enables Blazor WebAssembly apps to handle strings, numbers, and dates for the user's culture. For apps that don't require this functionality, loading all of that data and logic reduces the app's download speed for no benefit. Up to the release of ASP.NET Core 6.0, it was possible remove globalization support from .NET Core framework libraries by setting the [`InvariantGlobalization` property](xref:blazor/globalization-localization), but the .NET WebAssembly runtime couldn't be similarly trimmed of globalization-related code.
+
+In apps that adopt ASP.NET Core 6.0 or later, Blazor WebAssembly apps can relink the runtime to trim unused code and improve download performance.
+
+For more information on runtime relinking, see <xref:blazor/tooling#blazor-webassembly-runtime-relinking>.
+
+
+
+
+
+
 ## Blazor Server
 
 With the Blazor Server hosting model, the app is executed on the server from within an ASP.NET Core app. UI updates, event handling, and JavaScript calls are handled over a [SignalR](xref:signalr/introduction) connection.
