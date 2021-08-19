@@ -36,7 +36,7 @@ Replace next moniker,  ::: moniker range=">= aspnetcore-5.0  with the following
 ::: moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 -->
 
-::: moniker range=">= aspnetcore-5.0 
+::: moniker range=">= aspnetcore-5.0"
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT), [Damien Bowden](https://twitter.com/damien_bod), [Bart Calixto](https://twitter.com/bartmax), [Nadeem Afana](https://afana.me/), and [Hisham Bin Ateya](https://twitter.com/hishambinateya)
 
