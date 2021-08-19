@@ -68,7 +68,7 @@ app.MapDelete("/todoitems/{id}", async (int id, TodoDb db) =>
 app.Run();
 
 #region snippet_secret
-\public class Todo
+public class Todo
 {
     public int Id { get; set; }
     [Required]

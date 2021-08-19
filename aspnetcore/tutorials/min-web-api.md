@@ -53,8 +53,12 @@ This tutorial creates the following API:
 
 # [Visual Studio](#tab/visual-studio)
 
-* From the **File** menu, select **New** > **Project**.
-* Select the **ASP.NET Core Empty** template and select **Next**.
+* Start Visual Studio 2022 and select **Create a new project**
+  ![Visual Studio new project start page](min-web-api/_static/create.png)
+* In the **Create a new project** dialog:
+  * Enter `Empty` in the **Search for templates** search box.
+  * Select the **ASP.NET Core Empty** template and select **Next**.
+  ![Visual Studio Create a new project](min-web-api/_static/empty.png)
 * Name the project *TodoApi* and select **Next**.
 * In the **Additional information** dialog, select **.NET 6.0 (Preview)** and select **Create**.
  
