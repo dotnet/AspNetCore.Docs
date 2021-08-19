@@ -226,6 +226,8 @@ This isolation mechanism assumes that the apps are not malicious. A malicious ap
 
 If the Data Protection system isn't provided by an ASP.NET Core host (for example, if you instantiate it via the `DataProtectionProvider` concrete type) app isolation is disabled by default. When app isolation is disabled, all apps backed by the same keying material can share payloads as long as they provide the appropriate [purposes](xref:security/data-protection/consumer-apis/purpose-strings). To provide app isolation in this environment, call the [SetApplicationName](#setapplicationname) method on the configuration object and provide a unique name for each app.
 
+Data Protection is developed with the assumption that all applications sharing a key ring can access all items in that key ring, the application unique identifier is used to ioslate application specific keys derived from the key ring provided keys. It does not expect item level permissions, such as those provided by Azure KeyVault to be used to enforce extra isolation, and this will lead to application errors. If you do not want to rely on the built-in application isolation then seperate key store locations should be used and not shared between applications.
+
 ## Changing algorithms with UseCryptographicAlgorithms
 
 The Data Protection stack allows you to change the default algorithm used by newly-generated keys. The simplest way to do this is to call [UseCryptographicAlgorithms](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionbuilderextensions.usecryptographicalgorithms) from the configuration callback:
