@@ -82,6 +82,14 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
 
 ### Run the service
 
+* Select **Run** > **Start Without Debugging** to launch the app.
+
+  Visual Studio for Mac:
+
+  * Starts [Kestrel](xref:fundamentals/servers/index#kestrel) server.
+  * Launches a browser.
+  * Navigates to `http://localhost:port`, where *port* is a randomly chosen port number.
+
   [!INCLUDE[](~/includes/run-the-app.md)]
 
 The logs show the service listening on `https://localhost:5001`.
