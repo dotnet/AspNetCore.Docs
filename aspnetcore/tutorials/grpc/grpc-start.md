@@ -33,7 +33,7 @@ In this tutorial, you:
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!INCLUDE[](~/includes/net-core-prereqs-vsc-5.1.md)]
+[!INCLUDE[](~/includes/net-core-prereqs-vsc-5.0.md)]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -54,7 +54,7 @@ In this tutorial, you:
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-The tutorial assumes familiarity with VS Code. For more information, see [Getting started with VS Code](https://code.visualstudio.com/docs) and [Visual Studio Code help](#visual-studio-code-help).
+The tutorial assumes familiarity with VS Code. For more information, see [Getting started with VS Code](https://code.visualstudio.com/docs)
 
 * Open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
 * Change to the directory (`cd`) that will contain the project.
@@ -609,3 +609,5 @@ info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
 * <xref:grpc/index>
 * <xref:grpc/basics>
 * <xref:grpc/migration>
+
+::: moniker-end
