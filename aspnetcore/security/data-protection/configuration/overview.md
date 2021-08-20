@@ -242,6 +242,7 @@ Consider the following for app isolation:
 Data Protection is developed with the assumption that all applications sharing a key ring can access all items in that key ring, the application unique identifier is used to isolate application specific keys derived from the key ring provided keys. It does not expect item level permissions, such as those provided by Azure KeyVault to be used to enforce extra isolation, and this will lead to application errors. If you do not want to rely on the built-in application isolation then separate key store locations should be used and not shared between applications.
 
 
+
 ## Changing algorithms with UseCryptographicAlgorithms
 
 The Data Protection stack allows you to change the default algorithm used by newly-generated keys. The simplest way to do this is to call [UseCryptographicAlgorithms](/dotnet/api/microsoft.aspnetcore.dataprotection.dataprotectionbuilderextensions.usecryptographicalgorithms) from the configuration callback:
