@@ -311,7 +311,7 @@ Use the following approaches to reference static assets:
   <img alt="..." src="_content/{LIBRARY NAME}/{PATH AND FILE NAME}" />
   ```
 
-  The `{LIBRARY NAME}` placeholder is the library name. The `{PATH AND FILE NAME}` placeholder is path and file name under `wwwroot`.
+  The `{LIBRARY NAME}` placeholder is the library's assembly name or [NuGet `PackageId` (if specified)](/nuget/create-packages/creating-a-package-msbuild#set-properties). The `{PATH AND FILE NAME}` placeholder is path and file name under `wwwroot`.
 
 For more information on RCLs, see:
 
@@ -1118,7 +1118,7 @@ Use the following approaches to reference static assets:
   <img alt="..." src="_content/{LIBRARY NAME}/{PATH AND FILE NAME}" />
   ```
 
-  The `{LIBRARY NAME}` placeholder is the library name. The `{PATH AND FILE NAME}` placeholder is path and file name under `wwwroot`.
+  The `{LIBRARY NAME}` placeholder is the library's assembly name or [NuGet `PackageId` (if specified)](/nuget/create-packages/creating-a-package-msbuild#set-properties). The `{PATH AND FILE NAME}` placeholder is path and file name under `wwwroot`.
 
 For more information on RCLs, see:
 
@@ -1925,7 +1925,7 @@ Use the following approaches to reference static assets:
   <img alt="..." src="_content/{LIBRARY NAME}/{PATH AND FILE NAME}" />
   ```
 
-  The `{LIBRARY NAME}` placeholder is the library name. The `{PATH AND FILE NAME}` placeholder is path and file name under `wwwroot`.
+  The `{LIBRARY NAME}` placeholder is the library's assembly name or [NuGet `PackageId` (if specified)](/nuget/create-packages/creating-a-package-msbuild#set-properties). The `{PATH AND FILE NAME}` placeholder is path and file name under `wwwroot`.
 
 For more information on RCLs, see:
 
