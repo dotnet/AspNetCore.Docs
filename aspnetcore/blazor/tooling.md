@@ -233,31 +233,30 @@ dotnet new blazorwasm -h
 dotnet new blazorserver -h
 ```
 
+## Blazor WebAssembly ahead-of-time (AOT) compilation
 
+*The following guidance on Blazor WebAssembly ahead-of-time (AOT) compilation is a preview release feature of ASP.NET Core 6.0. ASP.NET Core 6.0 is scheduled for release later this year.*
 
-
-
-
-
-## Blazor WebAssembly Ahead-of-Time (AoT) compilation
-
-*The following guidance on Blazor WebAssembly Ahead-of-Time (AoT) compilation is a preview release feature of ASP.NET Core 6.0. ASP.NET Core 6.0 is scheduled for release later this year.*
-
-To get started with ASP.NET Core in .NET 6 Preview 7, install the [latest preview .NET 6 SDK release](https://dotnet.microsoft.com/download/dotnet/6.0).
+To get started with an ASP.NET Core 6.0 preview or release candidate, install the [latest preview .NET 6 SDK release](https://dotnet.microsoft.com/download/dotnet/6.0).
 
 If you're using Visual Studio on Windows OS, install the [latest preview of Visual Studio 2022](https://visualstudio.microsoft.com/vs/preview/).
 
 > [!NOTE]
 > .NET 6 will be supported in a future public release of Visual Studio 2022 for Mac.
 
-To install the latest .NET WebAssembly tools for AoT compilation and runtime relinking, uninstall any earlier `microsoft-net-sdk-blazorwebassembly-aot` workloads, if they were installed on the system, and install the `wasm-tools` workload by running the following commands from an elevated command prompt:
+To install the latest .NET WebAssembly tools for AOT compilation and runtime relinking:
+
+* Uninstall any earlier `microsoft-net-sdk-blazorwebassembly-aot` workloads, if they were installed on the system earlier.
+* Install the `wasm-tools` workload.
+
+Execute the following commands from an administrator command prompt:
 
 ```dotnetcli
 dotnet workload uninstall microsoft-net-sdk-blazorwebassembly-aot
 dotnet workload install wasm-tools
 ```
 
-To enable WebAssembly AoT compilation, add the `<RunAOTCompilation>` property set to `true` to the Blazor WebAssembly app's project file:
+To enable WebAssembly AOT compilation, add the `<RunAOTCompilation>` property set to `true` to the Blazor WebAssembly app's project file:
 
 ```xml
 <PropertyGroup>
@@ -271,22 +270,19 @@ To compile the app to WebAssembly, publish the app. Publishing using the `Releas
 dotnet publish -c Release
 ```
 
-WebAssembly AoT compilation is only performed when the the project is published. It isn’t used when the project is run during development (`Development` environment). This is because WebAssembly AoT compilation usually takes several minutes on small projects and potentially much longer for larger projects. Speeding up the build time for WebAssembly AoT compilation is under development for future releases of ASP.NET Core.
+WebAssembly AOT compilation is only performed when the the project is published. AOT compilation isn’t used when the project is run during development (`Development` environment). This is because WebAssembly AOT compilation usually takes several minutes on small projects and potentially much longer for larger projects. Speeding up the build time for WebAssembly AOT compilation is under development for future releases of ASP.NET Core.
 
-The size of an AoT-compiled Blazor WebAssembly app is generally larger than the size of the app if compiled into .NET IL. Although the size difference is variable depending on the app, most AoT-compiled Blazor WebAssembly apps are about twice the size of their .NET IL-compiled versions. This means that using WebAssembly AoT compilation trades off load time performance for runtime performance. Whether this tradeoff is worth using AoT compilation depends on your app. Blazor WebAssembly apps that are particularly CPU intensive generally benefit the most from AoT compilation.
+The size of an AOT-compiled Blazor WebAssembly app is generally larger than the size of the app if compiled into .NET IL. Although the size difference is variable depending on the app, most AOT-compiled Blazor WebAssembly apps are about twice the size of their .NET IL-compiled versions. This means that using WebAssembly AOT compilation trades off load time performance for runtime performance. Whether this tradeoff is worth using AOT compilation depends on your app. Blazor WebAssembly apps that are particularly CPU intensive generally benefit the most from AOT compilation.
 
 ## Blazor WebAssembly runtime relinking
 
 *The following guidance on runtime relinking is a preview release feature of ASP.NET Core 6.0. ASP.NET Core 6.0 is scheduled for release later this year.*
 
-Use the .NET WebAssembly tools to relink the runtime to remove unnecessary logic and dramatically reduce the size of the runtime. If you have the .NET WebAssembly workload installed, runtime relinking is performed automatically when you publish an app. The size reduction is particularly dramatic when using invariant globalization mode. For more information on setting the `<InvariantGlobalization>` property to `true` in the app's project file, see <xref:blazor/globalization-localization>.
+Use the .NET WebAssembly tools to relink the runtime, which removes unnecessary logic to reduce the size of the runtime. If you have the .NET WebAssembly workload installed, runtime relinking is performed automatically when you publish an app. The size reduction is particularly dramatic when using invariant globalization mode. For more information on setting the `<InvariantGlobalization>` property to `true` in the app's project file, see <xref:blazor/globalization-localization>.
 
-To install the .NET WebAssembly tools, see the guidance in the [Blazor WebAssembly Ahead-of-Time (AoT) compilation](#blazor-webassembly-ahead-of-time-aot-compilation) section of this article.
+To install the .NET WebAssembly tools, see the guidance in the [Blazor WebAssembly Ahead-of-Time (AOT) compilation](#blazor-webassembly-ahead-of-time-aot-compilation) section of this article.
 
-
-
-
-
+For information on disabling other features, see <xref:blazor/webassembly-performance-best-practices#disable-unused-features>.
 
 ## Additional resources
 
