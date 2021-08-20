@@ -113,7 +113,7 @@ In the following example of the preceding `<script>` tag, the `scripts.js` file 
 When the external JS file is supplied by a [Razor class library](xref:blazor/components/class-libraries), specify the JS file using its stable static web asset path: `./_content/{LIBRARY NAME}/{SCRIPT PATH AND FILENAME (.js)}`:
 
 * The path segment for the current directory (`./`) is required in order to create the correct static asset path to the JS file.
-* The `{LIBRARY NAME}` placeholder is the library's assembly name.
+* The `{LIBRARY NAME}` placeholder is the library's assembly name or [NuGet `PackageId` (if specified)](/nuget/create-packages/creating-a-package-msbuild#set-properties).
 * The `{SCRIPT PATH AND FILENAME (.js)}` placeholder is the path and file name under `wwwroot`.
 
 ```html
@@ -280,7 +280,7 @@ In the following example of the preceding `<script>` tag, the `scripts.js` file 
 When the external JS file is supplied by a [Razor class library](xref:blazor/components/class-libraries), specify the JS file using its stable static web asset path: `./_content/{LIBRARY NAME}/{SCRIPT PATH AND FILENAME (.js)}`:
 
 * The path segment for the current directory (`./`) is required in order to create the correct static asset path to the JS file.
-* The `{LIBRARY NAME}` placeholder is the library's assembly name.
+* The `{LIBRARY NAME}` placeholder is the library's assembly name or [NuGet `PackageId` (if specified)](/nuget/create-packages/creating-a-package-msbuild#set-properties).
 * The `{SCRIPT PATH AND FILENAME (.js)}` placeholder is the path and file name under `wwwroot`.
 
 ```html
@@ -447,7 +447,7 @@ In the following example of the preceding `<script>` tag, the `scripts.js` file 
 When the external JS file is supplied by a [Razor class library](xref:blazor/components/class-libraries), specify the JS file using its stable static web asset path: `./_content/{LIBRARY NAME}/{SCRIPT PATH AND FILENAME (.js)}`:
 
 * The path segment for the current directory (`./`) is required in order to create the correct static asset path to the JS file.
-* The `{LIBRARY NAME}` placeholder is the library's assembly name.
+* The `{LIBRARY NAME}` placeholder is the library's assembly name or [NuGet `PackageId` (if specified)](/nuget/create-packages/creating-a-package-msbuild#set-properties).
 * The `{SCRIPT PATH AND FILENAME (.js)}` placeholder is the path and file name under `wwwroot`.
 
 ```html
