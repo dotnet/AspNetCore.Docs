@@ -239,6 +239,9 @@ Consider the following for app isolation:
   This "functionally equivalent to a compromise of both" clause holds even if the two apps use different mechanisms for key protection at rest. Typicallt, this isn't an expected configuration. The protection-at-rest mechanism is intended to provide protection in the event an adversary gains read access to the repository. An adversary who gains write access to the repository (perhaps because they attained code execution permission within an app) can insert malicious keys into storage. The Data Protection system intentionally does not provide protection against an adversary who gains write access to the key repository.
 
 * If apps need to remain truly isolated from one another, they should use different key repositories. This naturally falls out of the definition of "isolated". Apps are ***not*** isolated if they all have Read and Write access to each other's data stores.
+=======
+Data Protection is developed with the assumption that all applications sharing a key ring can access all items in that key ring, the application unique identifier is used to isolate application specific keys derived from the key ring provided keys. It does not expect item level permissions, such as those provided by Azure KeyVault to be used to enforce extra isolation, and this will lead to application errors. If you do not want to rely on the built-in application isolation then separate key store locations should be used and not shared between applications.
+
 
 ## Changing algorithms with UseCryptographicAlgorithms
 
