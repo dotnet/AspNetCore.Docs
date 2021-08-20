@@ -73,12 +73,9 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-* Start Visual Studio for Mac and select **Create a new project**. Alternatively, from the Visual Studio **File** menu, select **New** > **Project**.
-* In the **Create a new project** dialog, select **Web and Console** > **App** > **gRPC Service** and select **Next**:
-
-  ![Create a new project dialog on macOS](~/tutorials/grpc/grpc-start/static/cnp-mac.png)
-
-* Select **.NET Core 3.1** for the target framework and select **Next**.
+* Start Visual Studio for Mac and select **New**. Alternatively, from the Visual Studio **File** menu, select **New Solution**.
+* In the **Choose a template for your new project** dialog, select **Web and Console** > **App** > **gRPC Service** and select **Next**.
+* Select **.NET 5.0** for the target framework and select **Next**.
 * Name the project **GrpcGreeter**. It's important to name the project *GrpcGreeter* so the namespaces match when you copy and paste code.
 * Select **Create**.
 ---
