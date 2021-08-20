@@ -234,7 +234,7 @@ Consider the following for app isolation:
 
 * The application discriminator is used to allow different apps to share the same master key material but to keep their cryptographic payloads distinct from one another. <!-- The docs already draw an analogy between this and multi-tenancy.--> For the apps to be able to read each other's cryptographic payloads, they must have the same application discriminator.
 
-* If an app is compromised (RCE attack), all master key material accessible to that app must also be considered compromised, regardless of its protection-at-rest state. This implies that if two apps are pointed at the same repository, even if they use different app discriminators, a compromise of one is functionally equivalent to a compromise of both.
+* If an app is compromised (for example, by an RCE attack), all master key material accessible to that app must also be considered compromised, regardless of its protection-at-rest state. This implies that if two apps are pointed at the same repository, even if they use different app discriminators, a compromise of one is functionally equivalent to a compromise of both.
 
   This "functionally equivalent to a compromise of both" clause holds even if the two apps use different mechanisms for key protection at rest. Typicallt, this isn't an expected configuration. The protection-at-rest mechanism is intended to provide protection in the event an adversary gains read access to the repository. An adversary who gains write access to the repository (perhaps because they attained code execution permission within an app) can insert malicious keys into storage. The Data Protection system intentionally does not provide protection against an adversary who gains write access to the key repository.
 
