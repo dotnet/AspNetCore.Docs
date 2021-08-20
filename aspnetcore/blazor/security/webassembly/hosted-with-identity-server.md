@@ -13,7 +13,10 @@ uid: blazor/security/webassembly/hosted-with-identity-server
 
 ::: moniker range=">= aspnetcore-6.0"
 
-This article explains how to create a [hosted Blazor WebAssembly solution](xref:blazor/hosting-models#blazor-webassembly) that uses [IdentityServer](https://identityserver.io/) to authenticate users and API calls.
+This article explains how to create a [hosted Blazor WebAssembly solution](xref:blazor/hosting-models#blazor-webassembly) that uses [Duende Identity Server](https://docs.duendesoftware.com) to authenticate users and API calls.
+
+> [!IMPORTANT]
+> [Duende Software](https://duendesoftware.com/) might require you to pay a license fee for production use of Duende Identity Server. For more information, see <xref:migration/50-to-60#project-templates-use-duende-identity-server>.
 
 > [!NOTE]
 > To configure a standalone or hosted Blazor WebAssembly app to use an existing, external Identity Server instance, follow the guidance in <xref:blazor/security/webassembly/standalone-with-authentication-library>.
@@ -122,7 +125,7 @@ Specify the issuer explicitly when deploying to Azure App Service on Linux. For 
 
 ### AddApiAuthorization
 
-The <xref:Microsoft.Extensions.DependencyInjection.IdentityServerBuilderConfigurationExtensions.AddApiAuthorization%2A> helper method configures [IdentityServer](https://identityserver.io/) for ASP.NET Core scenarios. IdentityServer is a powerful and extensible framework for handling app security concerns. IdentityServer exposes unnecessary complexity for the most common scenarios. Consequently, a set of conventions and configuration options is provided that we consider a good starting point. Once your authentication needs change, the full power of IdentityServer is available to customize authentication to suit an app's requirements.
+The <xref:Microsoft.Extensions.DependencyInjection.IdentityServerBuilderConfigurationExtensions.AddApiAuthorization%2A> helper method configures [Identity Server](https://docs.duendesoftware.com) for ASP.NET Core scenarios. Identity Server is a powerful and extensible framework for handling app security concerns. IdentityServer exposes unnecessary complexity for the most common scenarios. Consequently, a set of conventions and configuration options is provided that we consider a good starting point. Once your authentication needs change, the full power of IdentityServer is available to customize authentication to suit an app's requirements.
 
 ### AddIdentityServerJwt
 
@@ -401,8 +404,8 @@ In the **`Server`** app, create a `ProfileService` implementation.
 
 ```csharp
 using IdentityModel;
-using IdentityServer4.Models;
-using IdentityServer4.Services;
+using Duende.IdentityServer.Models;
+using Duende.IdentityServer.Services;
 using System.Threading.Tasks;
 
 public class ProfileService : IProfileService
@@ -432,7 +435,7 @@ public class ProfileService : IProfileService
 In the **`Server`** app, register the Profile Service in `Startup.ConfigureServices`:
 
 ```csharp
-using IdentityServer4.Services;
+using Duende.IdentityServer.Services;
 
 ...
 
@@ -469,7 +472,7 @@ The following guidance explains:
 * How to deploy a hosted Blazor WebAssembly app with Identity Server to [Azure App Service](https://azure.microsoft.com/services/app-service/) with a custom domain.
 * How to create and use a TLS certificate for HTTPS protocol communication with browsers. Although the guidance focuses on using the certificate with a custom domain, the guidance is equally applicable to using a default Azure Apps domain, for example `contoso.azurewebsites.net`.
 
-For this hosting scenario, do **not** use the same certificate for [Identity Server's token signing key](https://docs.identityserver.io/en/latest/topics/crypto.html#token-signing-and-validation) and the site's HTTPS secure communication with browsers:
+For this hosting scenario, do **not** use the same certificate for [Identity Server's token signing key](https://docs.duendesoftware.com/identityserver/v5/fundamentals/keys/) and the site's HTTPS secure communication with browsers:
 
 * Using different certificates for these two requirements is a good security practice because it isolates private keys for each purpose.
 * TLS certificates for communication with browsers is managed independently without affecting Identity Server's token signing.
@@ -542,7 +545,7 @@ To configure an app, Azure App Service, and Azure Key Vault to host with a custo
 
    For testing purposes, an app's local [SQLite](https://www.sqlite.org/index.html) database, which is configured by default by the Blazor template, can be deployed with the app without additional configuration. Configuring a different database for Identity Server in production is beyond the scope of this article. For more information, see the database resources in the following documentation sets:
    * [App Service](/azure/app-service/)
-   * [Identity Server](https://identityserver4.readthedocs.io/en/latest/)
+   * [Duende Identity Server](https://docs.duendesoftware.com)
 
 1. Select the **Edit** link under the deployment profile name at the top of the window. Change the destination URL to the site's custom domain URL (for example, `https://www.contoso.com`). Save the settings.
 1. Publish the app. Visual Studio opens a browser window and requests the site at its custom domain.
@@ -575,6 +578,7 @@ Get-ChildItem -path Cert:\CurrentUser\My -Recurse | Format-List DnsNameList, Sub
 * <xref:host-and-deploy/proxy-load-balancer>: Includes guidance on:
   * Using Forwarded Headers Middleware to preserve HTTPS scheme information across proxy servers and internal networks.
   * Additional scenarios and use cases, including manual scheme configuration, request path changes for correct request routing, and forwarding the request scheme for Linux and non-IIS reverse proxies.
+* [Duende Identity Server](https://docs.duendesoftware.com)
 
 ::: moniker-end
 
