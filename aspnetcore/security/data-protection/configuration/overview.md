@@ -446,6 +446,22 @@ When hosting in a [Docker](/dotnet/standard/microservices-architecture/container
 
 Only Redis versions supporting [Redis Data Persistence](/azure/azure-cache-for-redis/cache-how-to-premium-persistence) should be used to store keys. [Azure Blob storage](/azure/storage/blobs/storage-blobs-introduction) is persistent and can be used to store keys. For more information, see [this GitHub issue](https://github.com/dotnet/AspNetCore/issues/13476).
 
+## Logging DataProtection
+
+Enable `Information` level logging of DataProtection to help diagnosis problem. The following JSON in the *appsetting.json* file enables information logging of DataProtection API:
+
+```JSON
+{
+  "Logging": {
+    "LogLevel": {
+      " Microsoft.AspNetCore.DataProtection": "Information"
+    }
+  }
+}
+```
+
+For more information on logging configuration, see [Logging in .NET Core and ASP.NET Core](xref:fundamentals/logging/index).
+
 ## Additional resources
 
 * <xref:security/data-protection/configuration/non-di-scenarios>
