@@ -9,7 +9,6 @@ no-loc: [Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cook
 uid: tutorials/min-web-api
 ---
 
-<!-- test with windows sandbox -->
 # Tutorial: Create a web minimal API with ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
@@ -26,11 +25,11 @@ This tutorial creates the following API:
 |--- | ---- | ---- | ---- |
 |`GET /` | Browser test, "Hello World" | None | Hello World!|
 |`GET /todoitems` | Get all to-do items | None | Array of to-do items|
+|`GET /todoitems/complete` | Get completed to-do items | None | Array of to-do items|
 |`GET /todoitems/{id}` | Get an item by ID | None | To-do item|
 |`POST /todoitems` | Add a new item | To-do item | To-do item |
 |`PUT /todoitems/{id}` | Update an existing item &nbsp; | To-do item | None |
 |`DELETE /todoitems/{id}` &nbsp; &nbsp; | Delete an item &nbsp; &nbsp; | None | None|
-|`DELETE /todoitems/delete-all` &nbsp; &nbsp; | Delete all items &nbsp; &nbsp; | None | None|
 
 ## Prerequisites
 
@@ -160,7 +159,7 @@ NuGet packages must be added to support the database and diagnostics used in thi
 
 * From the **Tools** menu, select **NuGet Package Manager > Manage NuGet Packages for Solution**.
 * Select the **Browse** tab, and then enter `Microsoft.EntityFrameworkCore.InMemory` in the search box. Verify **Include prerelease** is checked.
-* enter **Microsoft.EntityFrameworkCore.InMemory** in the search box, and then select `Microsoft.EntityFrameworkCore.InMemory`.
+* Enter **Microsoft.EntityFrameworkCore.InMemory** in the search box, and then select `Microsoft.EntityFrameworkCore.InMemory`.
 * Select the **Project** checkbox in the right pane and then select **Install**.
 * Follow the preceding instructions to add the `Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore` package.
 
@@ -210,7 +209,7 @@ The following instructions post data to the app:
 
   * Create a new request.
   * Set the HTTP method to `POST`.
-  * Set the URI to `https://localhost:<port>/todoitems`. For example, `https://localhost:5001/  todoitems`.
+  * Set the URI to `https://localhost:<port>/todoitems`. For example: `https://localhost:5001/todoitems`
   * Select the **Body** tab.
   * Select the **raw** radio button.
   * Set the type to **JSON (application/json)**.
@@ -359,15 +358,8 @@ The following code uses <xref:System.Text.Json.JsonSerializerOptions>:
 
 [!code-csharp[](min-web-api/samples/6.x/WebMinJson/Program.cs?name=snippet_2)]
 
-## Test API
+## Test minimal API
 
 The following code shows the basic approach to testing minimal APIs:
 
-```csharp
-using Microsoft.AspNetCore.TestHost; 
-
-var builder = WebApplication.CreateBuilder();
-ConfigureTestConfiguration(builder.Configuration);
-builder.WebHost.UseTestServer();
-var app = builder.Build();
-```
+For an example of testing a minimal API app, see [this GitHub sample](https://github.com/davidfowl/CommunityStandUpMinimalAPI/blob/davidfowl/rc1/TodoApi.Tests/TodoTests.cs).
