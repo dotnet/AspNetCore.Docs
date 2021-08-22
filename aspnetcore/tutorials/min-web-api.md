@@ -11,6 +11,7 @@ uid: tutorials/min-web-api
 
 # Tutorial: Create a web minimal API with ASP.NET Core
 
+<!-- TODO: Remove aspnetcore\tutorials\min-web-api\samples\6.x -->
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 Minimal APIs are architected to create REST APIs with the minimal dependencies. They are ideal for microservices and apps that want to include only the minimum files, features, and dependencies in ASP.NET Core.
@@ -189,6 +190,26 @@ Replace the contents of the *program.cs* file with the following code:
 
 [!code-csharp[](min-web-api/samples/6.x/todo/Program.cs?name=snippet_all)]
 
+## The model and database context classes
+
+The preceding code contains the following model:
+
+[!code-csharp[](min-web-api/samples/6.x/todo/Program.cs?name=snippet_model)]
+
+A *model* is a set of classes that represent the data that the app manages. The model for this app is the `Todo` class.
+
+The sample app contains the following database context class:
+
+[!code-csharp[](min-web-api/samples/6.x/todo/Program.cs?name=snippet_model)]
+
+The *database context* is the main class that coordinates [Entity Framework](/ef/core/) functionality for a data model. This class is created by deriving from the <xref:Microsoft.EntityFrameworkCore.DbContext?displayProperty=fullName> class.
+
+The following highlighted code adds the database context to the [dependency injection (DI)](xref:fundamentals/dependency-injection) container:
+
+[!code-csharp[](min-web-api/samples/6.x/todo/Program.cs?name=snippet_DI&highlight=3)]
+
+ The DI container provides access to the database context and other services.
+
 ## Install Postman to test the app
 
 This tutorial uses Postman to test the API.
@@ -359,7 +380,5 @@ The following code uses <xref:System.Text.Json.JsonSerializerOptions>:
 [!code-csharp[](min-web-api/samples/6.x/WebMinJson/Program.cs?name=snippet_2)]
 
 ## Test minimal API
-
-The following code shows the basic approach to testing minimal APIs:
 
 For an example of testing a minimal API app, see [this GitHub sample](https://github.com/davidfowl/CommunityStandUpMinimalAPI/blob/davidfowl/rc1/TodoApi.Tests/TodoTests.cs).

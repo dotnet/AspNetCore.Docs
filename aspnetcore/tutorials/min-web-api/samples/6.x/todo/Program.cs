@@ -2,10 +2,12 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
 
+#region snippet_DI
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDbContext<TodoDb>(opt => opt.UseInMemoryDatabase("TodoList"));
 var app = builder.Build();
+#region
 
 if (app.Environment.IsDevelopment())
 {
@@ -69,6 +71,7 @@ app.MapDelete("/todoitems/{id}", async (int id, TodoDb db) =>
 
 app.Run();
 
+#region snippet_model
 class Todo
 {
     public int Id { get; set; }
@@ -76,7 +79,9 @@ class Todo
     public string? Name { get; set; }
     public bool IsComplete { get; set; }
 }
+#endregion
 
+#region snippet_cntx
 class TodoDb : DbContext
 {
     public TodoDb(DbContextOptions<TodoDb> options)
@@ -84,4 +89,5 @@ class TodoDb : DbContext
 
     public DbSet<Todo> Todos => Set<Todo>();
 }
+#endregion
 #endregion
