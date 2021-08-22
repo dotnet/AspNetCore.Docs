@@ -200,7 +200,7 @@ A *model* is a set of classes that represent the data that the app manages. The 
 
 The sample app contains the following database context class:
 
-[!code-csharp[](min-web-api/samples/6.x/todo/Program.cs?name=snippet_model)]
+[!code-csharp[](min-web-api/samples/6.x/todo/Program.cs?name=snippet_cntx)]
 
 The *database context* is the main class that coordinates [Entity Framework](/ef/core/) functionality for a data model. This class is created by deriving from the <xref:Microsoft.EntityFrameworkCore.DbContext?displayProperty=fullName> class.
 
