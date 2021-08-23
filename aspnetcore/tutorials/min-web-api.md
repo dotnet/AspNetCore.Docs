@@ -289,8 +289,10 @@ This app uses an in-memory database. If the app is stopped and started, the prec
 
 ## Return values
 
+ASP.NET Core automatically serializes the object to [JSON](https://www.json.org) and writes the JSON into the body of the response message. The response code for this return type is [200 OK](https://developer.mozilla.org/docs/Web/HTTP/Status/200), assuming there are no unhandled exceptions. Unhandled exceptions are translated into 5xx errors.
+
 <!--
-The return type of the `Gettodoitems` and `GetTodoItem` methods is `MinimalActionEndpointConventionBuilder`.--> ASP.NET Core automatically serializes the object to [JSON](https://www.json.org/) and writes the JSON into the body of the response message. The response code for this return type is [200 OK](https://developer.mozilla.org/docs/Web/HTTP/Status/200), assuming there are no unhandled exceptions. Unhandled exceptions are translated into 5xx errors.
+The return type of the `Gettodoitems` and `GetTodoItem` methods is `MinimalActionEndpointConventionBuilder`.-->
 
 The return types can represent a wide range of HTTP status codes. For example, `GetTodoItem/{id}` can return two different status values:
 
@@ -299,7 +301,7 @@ The return types can represent a wide range of HTTP status codes. For example, `
 
 ## Put methods
 
-Examine the `app.MapPut("/todoitems/{id}", ...` method:
+Examine the `MapPut` method:
 
 [!code-csharp[](min-web-api/samples/6.x/todo/Program.cs?name=snippet_put)]
 
