@@ -66,7 +66,6 @@ app.MapDelete("/todoitems/{id}", async (int id, TodoDb db) =>
 
     return Results.NotFound();
 });
-
 #endregion
 
 app.Run();
