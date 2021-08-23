@@ -325,18 +325,6 @@ protected override IWebHostBuilder CreateWebHostBuilder() =>
 
 The `WebApplicationFactory` constructor infers the app [content root](xref:fundamentals/index#content-root) path by searching for a [`WebApplicationFactoryContentRootAttribute`](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactorycontentrootattribute) on the assembly containing the integration tests with a key equal to the `TEntryPoint` assembly `System.Reflection.Assembly.FullName`. In case an attribute with the correct key isn't found, `WebApplicationFactory` falls back to searching for a solution file (*.sln*) and appends the `TEntryPoint` assembly name to the solution directory. The app root directory (the content root path) is used to discover views and content files.
 
-## Disable shadow copying
-
-Shadow copying causes the tests to execute in a different directory than the output directory. For tests to work properly, shadow copying must be disabled. The [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/test/integration-tests/samples) uses xUnit and disables shadow copying for xUnit by including an `xunit.runner.json` file with the correct configuration setting. For more information, see the [xUnit documentation](https://xunit.net/docs/configuration-files).
-
-Add the `xunit.runner.json` file to root of the test project with the following content:
-
-```json
-{
-  "shadowCopy": false
-}
-```
-
 ## Disposal of objects
 
 After the tests of the `IClassFixture` implementation are executed, [`TestServer`](/dotnet/api/microsoft.aspnetcore.testhost.testserver) and [`HttpClient`](/dotnet/api/system.net.http.httpclient) are disposed when xUnit disposes of the [`WebApplicationFactory`](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1). If objects instantiated by the developer require disposal, dispose of them in the `IClassFixture` implementation. For more information, see [Implementing a Dispose method](/dotnet/standard/garbage-collection/implementing-dispose).
