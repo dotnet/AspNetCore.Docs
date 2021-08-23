@@ -26,7 +26,7 @@ By default, Razor components inherit from the <xref:Microsoft.AspNetCore.Compone
 
 Components inherited from <xref:Microsoft.AspNetCore.Components.ComponentBase> skip rerenders due to parameter updates if either of the following are true:
 
-* All of the parameter values are of known immutable primitive types, such as `int`, `string`, `DateTime`, and haven't changed since the previous set of parameters were set.
+* All of the parameter values, except for complex types, haven't changed since the previous set of parameters were set.
 * The component's [`ShouldRender` method](#suppress-ui-refreshing-shouldrender) returns `false`.
 
 ## Control the rendering flow
@@ -121,7 +121,7 @@ By default, Razor components inherit from the <xref:Microsoft.AspNetCore.Compone
 
 Components inherited from <xref:Microsoft.AspNetCore.Components.ComponentBase> skip rerenders due to parameter updates if either of the following are true:
 
-* All of the parameter values are of known immutable primitive types, such as `int`, `string`, `DateTime`, and haven't changed since the previous set of parameters were set.
+* All of the parameter values, except for complex types, haven't changed since the previous set of parameters were set.
 * The component's [`ShouldRender` method](#suppress-ui-refreshing-shouldrender) returns `false`.
 
 ## Control the rendering flow
@@ -216,7 +216,7 @@ By default, Razor components inherit from the <xref:Microsoft.AspNetCore.Compone
 
 Components inherited from <xref:Microsoft.AspNetCore.Components.ComponentBase> skip rerenders due to parameter updates if either of the following are true:
 
-* All of the parameter values are of known immutable primitive types, such as `int`, `string`, `DateTime`, and haven't changed since the previous set of parameters were set.
+* All of the parameter values, except for complex types, haven't changed since the previous set of parameters were set.
 * The component's [`ShouldRender` method](#suppress-ui-refreshing-shouldrender) returns `false`.
 
 ## Control the rendering flow
