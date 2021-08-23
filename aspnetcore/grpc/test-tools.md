@@ -120,7 +120,7 @@ In the preceding example:
 * Calls the `SayHello` method on the `greeter.Greeter` service.
 * Prints the response message as JSON.
 
-The preceding example uses the `\` to escape the `"` character. Escaping `"` is required in a PowerShell console but must not be used in some consoles. For example, the previous command for a MacOS console:
+The preceding example uses `\` to escape the `"` character. Escaping `"` is required in a PowerShell console but must not be used in some consoles. For example, the previous command for a MacOS console:
 
 ```console
 $ grpcurl -d '{ "name": "World" }' localhost:5001 greet.Greeter/SayHello
