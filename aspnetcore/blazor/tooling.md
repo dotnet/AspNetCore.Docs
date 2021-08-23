@@ -272,13 +272,13 @@ dotnet publish -c Release
 
 WebAssembly AOT compilation is only performed when the the project is published. AOT compilation isn't used when the project is run during development (`Development` environment) because AOT compilation usually takes several minutes on small projects and potentially much longer for larger projects. Reducing the build time for AOT compilation is under development for future releases of ASP.NET Core.
 
-The size of an AOT-compiled Blazor WebAssembly app is generally larger than the size of the app if compiled into .NET IL. Although the size difference is variable depending on the app, most AOT-compiled apps are about twice the size of their IL-compiled versions. This means that using AOT compilation trades off load time performance for runtime performance. Whether this tradeoff is worth using AOT compilation depends on your app. Blazor WebAssembly apps that are CPU intensive generally benefit the most from AOT compilation.
+The size of an AOT-compiled Blazor WebAssembly app is generally larger than the size of the app if compiled into .NET IL. Although the size difference depends on the app, most AOT-compiled apps are about twice the size of their IL-compiled versions. This means that using AOT compilation trades off load time performance for runtime performance. Whether this tradeoff is worth using AOT compilation depends on your app. Blazor WebAssembly apps that are CPU intensive generally benefit the most from AOT compilation.
 
 ## Blazor WebAssembly runtime relinking
 
 *The following guidance on runtime relinking is a preview release feature of ASP.NET Core 6.0. ASP.NET Core 6.0 is scheduled for release later this year.*
 
-Use the .NET WebAssembly tools to relink the runtime, which removes unnecessary logic to reduce the size of the runtime. If you have the .NET WebAssembly workload installed, runtime relinking is performed automatically when you publish an app. The size reduction is particularly dramatic when using invariant globalization mode. For more information, see <xref:blazor/globalization-localization>.
+Use the .NET WebAssembly tools to relink the runtime, which removes unnecessary logic to reduce the size of the runtime. If you have the .NET WebAssembly workload installed, runtime relinking is performed automatically when you publish an app. The size reduction is particularly dramatic when disabling globalization. For more information, see <xref:blazor/globalization-localization>.
 
 To install the .NET WebAssembly tools, see the guidance in the [Blazor WebAssembly ahead-of-time (AOT) compilation](#blazor-webassembly-ahead-of-time-aot-compilation) section of this article.
 

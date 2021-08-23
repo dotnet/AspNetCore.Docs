@@ -60,7 +60,7 @@ For more information on AOT compilation, see <xref:blazor/tooling#blazor-webasse
 > [!NOTE]
 > The following information on Blazor WebAssembly runtime relinking covers a *preview release* feature of ASP.NET Core 6.0. ASP.NET Core 6.0 is scheduled for release later this year.
 
-One of the largest parts of a Blazor WebAssembly app is the WebAssembly-based .NET runtime (`dotnet.wasm`) that the browser must download when the app is first accessed by a user's browser. Prior to the release of ASP.NET Core 6.0, the size of the .NET runtime has been constant. In Blazor WebAssembly apps that target ASP.NET Core 6.0 or later, you can relink the runtime when publishing the app, which trims unused code from the runtime logic and thus improves download speed.
+One of the largest parts of a Blazor WebAssembly app is the WebAssembly-based .NET runtime (`dotnet.wasm`) that the browser must download when the app is first accessed by a user's browser. Prior to the release of ASP.NET Core 6.0, the size of the .NET runtime has been constant. In Blazor WebAssembly apps that target ASP.NET Core 6.0 or later, you can relink the runtime when publishing the app, which trims unused runtime code and thus improves download speed.
 
 For more information on runtime relinking, see <xref:blazor/tooling#blazor-webassembly-runtime-relinking>.
 
