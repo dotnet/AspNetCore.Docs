@@ -246,7 +246,7 @@ If you're using Visual Studio on Windows OS, install the [latest preview of Visu
 
 To install the latest .NET WebAssembly tools for AOT compilation and runtime relinking:
 
-* Uninstall any earlier `microsoft-net-sdk-blazorwebassembly-aot` workloads, if they were installed on the system earlier.
+* Uninstall any `microsoft-net-sdk-blazorwebassembly-aot` workloads, if they were installed on the system earlier.
 * Install the `wasm-tools` workload.
 
 Execute the following commands from an administrator command prompt:
@@ -264,15 +264,15 @@ To enable WebAssembly AOT compilation, add the `<RunAOTCompilation>` property se
 </PropertyGroup>
 ```
 
-To compile the app to WebAssembly, publish the app. Publishing using the `Release` configuration ensures the .NET Intermediate Language (IL) linking is also run to reduce the size of the published app:
+To compile the app to WebAssembly, publish the app. Publishing the `Release` configuration ensures the .NET Intermediate Language (IL) linking is also run to reduce the size of the published app:
 
 ```dotnetcli
 dotnet publish -c Release
 ```
 
-WebAssembly AOT compilation is only performed when the the project is published. AOT compilation isn't used when the project is run during development (`Development` environment) because AOT compilation usually takes several minutes on small projects and potentially much longer for larger projects. Speeding up the build time for AOT compilation is under development for future releases of ASP.NET Core.
+WebAssembly AOT compilation is only performed when the the project is published. AOT compilation isn't used when the project is run during development (`Development` environment) because AOT compilation usually takes several minutes on small projects and potentially much longer for larger projects. Reducing the build time for AOT compilation is under development for future releases of ASP.NET Core.
 
-The size of an AOT-compiled Blazor WebAssembly app is generally larger than the size of the app if compiled into .NET IL. Although the size difference is variable depending on the app, most AOT-compiled apps are about twice the size of their .NET IL-compiled versions. This means that using AOT compilation trades off load time performance for runtime performance. Whether this tradeoff is worth using AOT compilation depends on your app. Blazor WebAssembly apps that are CPU intensive generally benefit the most from AOT compilation.
+The size of an AOT-compiled Blazor WebAssembly app is generally larger than the size of the app if compiled into .NET IL. Although the size difference is variable depending on the app, most AOT-compiled apps are about twice the size of their IL-compiled versions. This means that using AOT compilation trades off load time performance for runtime performance. Whether this tradeoff is worth using AOT compilation depends on your app. Blazor WebAssembly apps that are CPU intensive generally benefit the most from AOT compilation.
 
 ## Blazor WebAssembly runtime relinking
 
