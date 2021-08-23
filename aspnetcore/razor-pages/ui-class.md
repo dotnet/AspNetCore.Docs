@@ -132,7 +132,7 @@ To include TypeScript files in an RCL:
 
 ### Consume content from a referenced RCL
 
-The files included in the `wwwroot` folder of the RCL are exposed to either the RCL or the consuming app under the prefix `_content/{LIBRARY NAME}/`. For example, a library named `Razor.Class.Lib` results in a path to static content at `_content/Razor.Class.Lib/`. When producing a NuGet package and the assembly name isn't the same as the package ID ([`PackageId`](/nuget/create-packages/creating-a-package-msbuild#set-properties) in the library's project file), use the package ID for `{LIBRARY NAME}`.
+The files included in the `wwwroot` folder of the RCL are exposed to either the RCL or the consuming app under the prefix `_content/{PACKAGE ID}/`. For example, a library with an assembly name of `Razor.Class.Lib` and no `<PackageId>` specified in its project file results in a path to static content at `_content/Razor.Class.Lib/`. When producing a NuGet package and the assembly name isn't the same as the package ID ([`<PackageId>`](/nuget/create-packages/creating-a-package-msbuild#set-properties) in the library's project file), use the package ID as specified in the project file for `{PACKAGE ID}`.
 
 The consuming app references static assets provided by the library with `<script>`, `<style>`, `<img>`, and other HTML tags. The consuming app must have [static file support](xref:fundamentals/static-files) enabled in `Startup.Configure`:
 
@@ -183,7 +183,7 @@ When the RCL is built, a manifest is produced that describes the static web asse
 
 ### Publish
 
-When the app is published, the companion assets from all referenced projects and packages are copied into the `wwwroot` folder of the published app under `_content/{LIBRARY NAME}/`. When producing a NuGet package and the assembly name isn't the same as the package ID ([`PackageId`](/nuget/create-packages/creating-a-package-msbuild#set-properties) in the library's project file), use the package ID for `{LIBRARY NAME}` when examining the `wwwroot` folder for the published assets.
+When the app is published, the companion assets from all referenced projects and packages are copied into the `wwwroot` folder of the published app under `_content/{PACKAGE ID}/`. When producing a NuGet package and the assembly name isn't the same as the package ID ([`<PackageId>`](/nuget/create-packages/creating-a-package-msbuild#set-properties) in the library's project file), use the package ID as specified in the project file for `{PACKAGE ID}` when examining the `wwwroot` folder for the published assets.
 
 ## Additional resources
 
@@ -524,7 +524,7 @@ To include TypeScript files in an RCL:
 
 ### Consume content from a referenced RCL
 
-The files included in the `wwwroot` folder of the RCL are exposed to either the RCL or the consuming app under the prefix `_content/{LIBRARY NAME}/`. For example, a library named `Razor.Class.Lib` results in a path to static content at `_content/Razor.Class.Lib/`. When producing a NuGet package and the assembly name isn't the same as the package ID ([`PackageId`](/nuget/create-packages/creating-a-package-msbuild#set-properties) in the library's project file), use the package ID for `{LIBRARY NAME}`.
+The files included in the `wwwroot` folder of the RCL are exposed to either the RCL or the consuming app under the prefix `_content/{PACKAGE ID}/`. For example, a library with an assembly name of `Razor.Class.Lib` and no `<PackageId>` specified in its project file results in a path to static content at `_content/Razor.Class.Lib/`. When producing a NuGet package and the assembly name isn't the same as the package ID ([`<PackageId>`](/nuget/create-packages/creating-a-package-msbuild#set-properties) in the library's project file), use the package ID as specified in the project file for `{PACKAGE ID}`.
 
 The consuming app references static assets provided by the library with `<script>`, `<style>`, `<img>`, and other HTML tags. The consuming app must have [static file support](xref:fundamentals/static-files) enabled in `Startup.Configure`:
 
@@ -575,7 +575,7 @@ When the RCL is built, a manifest is produced that describes the static web asse
 
 ### Publish
 
-When the app is published, the companion assets from all referenced projects and packages are copied into the `wwwroot` folder of the published app under `_content/{LIBRARY NAME}/`. When producing a NuGet package and the assembly name isn't the same as the package ID ([`PackageId`](/nuget/create-packages/creating-a-package-msbuild#set-properties) in the library's project file), use the package ID for `{LIBRARY NAME}` when examining the `wwwroot` folder for the published assets.
+When the app is published, the companion assets from all referenced projects and packages are copied into the `wwwroot` folder of the published app under `_content/{PACKAGE ID}/`. When producing a NuGet package and the assembly name isn't the same as the package ID ([`<PackageId>`](/nuget/create-packages/creating-a-package-msbuild#set-properties) in the library's project file), use the package ID as specified in the project file for `{PACKAGE ID}` when examining the `wwwroot` folder for the published assets.
 
 ## Additional resources
 
