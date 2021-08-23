@@ -120,6 +120,15 @@ In the preceding example:
 * Calls the `SayHello` method on the `greeter.Greeter` service.
 * Prints the response message as JSON.
 
+The preceding example uses the `\` to escape the `"` character. Escaping `"` is required in a PowerShell console but must not be used in some consoles. For example, the previous command for a MacOS console:
+
+```console
+$ grpcurl -d '{ "name": "World" }' localhost:5001 greet.Greeter/SayHello
+{
+  "message": "Hello World"
+}
+```
+
 ## About gRPCui
 
 gRPCui is an interactive web UI for gRPC. It builds on top of gRPCurl and offers a GUI for discovering and testing gRPC services, similar to HTTP tools such as Postman or Swagger UI.
