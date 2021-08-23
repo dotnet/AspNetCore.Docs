@@ -53,14 +53,14 @@ Blazor WebAssembly includes support for trimming unused code from .NET Core fram
 
 In apps that target ASP.NET Core 6.0 or later, Blazor WebAssembly supports [ahead-of-time (AOT) compilation](/dotnet/standard/glossary#aot), where you can compile your .NET code directly into WebAssembly. AOT compilation results in runtime performance improvements at the expense of a larger app size.
 
-Without enabling AOT compilation, Blazor WebAssembly apps run on the browser using a .NET Intermediate Language (IL) interpreter implemented in WebAssembly. Because the .NET code is interpreted, apps typically run slower than they would on a server-side [.NET just-in-time (JIT) runtime](/dotnet/standard/glossary#jit). AOT compilation addresses this performance issue by compiling an app's .NET code directly into WebAssembly for native WebAssembly execution by the browser. The AOT performance improvement can yield dramatic improvements for apps that execute CPU intensive tasks. The drawback for using AOT compilation is that AOT-compiled apps are generally larger than their IL-interpreted counterparts, so they usually take longer to download to the client when first requested.
+Without enabling AOT compilation, Blazor WebAssembly apps run on the browser using a .NET Intermediate Language (IL) interpreter implemented in WebAssembly. Because the .NET code is interpreted, apps typically run slower than they would on a server-side [.NET just-in-time (JIT) runtime](/dotnet/standard/glossary#jit). AOT compilation addresses this performance issue by compiling an app's .NET code directly into WebAssembly for native WebAssembly execution by the browser. The AOT performance improvement can yield dramatic improvements for apps that execute CPU intensive tasks. The drawback to using AOT compilation is that AOT-compiled apps are generally larger than their IL-interpreted counterparts, so they usually take longer to download to the client when first requested.
 
 For more information on AOT compilation, see <xref:blazor/tooling#blazor-webassembly-ahead-of-time-aot-compilation>.
 
 > [!NOTE]
 > The following information on Blazor WebAssembly runtime relinking covers a *preview release* feature of ASP.NET Core 6.0. ASP.NET Core 6.0 is scheduled for release later this year.
 
-One of the largest parts of a Blazor WebAssembly app is the WebAssembly-based .NET runtime (`dotnet.wasm`) that the browser must download when the app is first accessed by a user's browser. Prior to the release of ASP.NET Core 6.0, the .NET runtime size has been constant. In Blazor WebAssembly apps that target ASP.NET Core 6.0 or later, you can relink the runtime when publishing the app, which trims unused code from the runtime logic and thus improves download speed.
+One of the largest parts of a Blazor WebAssembly app is the WebAssembly-based .NET runtime (`dotnet.wasm`) that the browser must download when the app is first accessed by a user's browser. Prior to the release of ASP.NET Core 6.0, the size of the .NET runtime has been constant. In Blazor WebAssembly apps that target ASP.NET Core 6.0 or later, you can relink the runtime when publishing the app, which trims unused code from the runtime logic and thus improves download speed.
 
 For more information on runtime relinking, see <xref:blazor/tooling#blazor-webassembly-runtime-relinking>.
 
