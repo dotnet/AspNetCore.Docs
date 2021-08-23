@@ -127,7 +127,7 @@ When the external JS file is supplied by a [Razor class library](xref:blazor/com
 
 In the following example of the preceding `<script>` tag:
 
-* The Razor class library has an assembly name of `ComponentLibrary`, and no `<PackageId>` is specified in the library's project file.
+* The Razor class library has an assembly name of `ComponentLibrary`, and a `<PackageId>` isn't specified in the library's project file.
 * The `scripts.js` file is in the class library's `wwwroot` folder.
 
 ```html
@@ -294,7 +294,7 @@ When the external JS file is supplied by a [Razor class library](xref:blazor/com
 
 In the following example of the preceding `<script>` tag:
 
-* The Razor class library has an assembly name of `ComponentLibrary`, and no `<PackageId>` is specified in the library's project file.
+* The Razor class library has an assembly name of `ComponentLibrary`, and a `<PackageId>` isn't specified in the library's project file.
 * The `scripts.js` file is in the class library's `wwwroot` folder.
 
 ```html
@@ -461,7 +461,7 @@ When the external JS file is supplied by a [Razor class library](xref:blazor/com
 
 In the following example of the preceding `<script>` tag:
 
-* The Razor class library has an assembly name of `ComponentLibrary`, and no `<PackageId>` is specified in the library's project file.
+* The Razor class library has an assembly name of `ComponentLibrary`, and a `<PackageId>` isn't specified in the library's project file.
 * The `scripts.js` file is in the class library's `wwwroot` folder.
 
 ```html
