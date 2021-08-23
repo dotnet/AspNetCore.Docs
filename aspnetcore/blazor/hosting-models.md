@@ -46,7 +46,7 @@ To create a Blazor WebAssembly app, see <xref:blazor/tooling>.
 
 The hosted Blazor app model supports [Docker containers](/dotnet/standard/microservices-architecture/container-docker-introduction/index). For Docker support in Visual Studio, right-click on the **`Server`** project of a hosted Blazor WebAssembly solution and select **Add** > **Docker Support**.
 
-Blazor WebAssembly includes support for trimming unused code from .NET Core framework libraries. For example, [Blazor globalization support](xref:blazor/globalization-localization) for culture-specific strings, numbers, and dates require the client to download a large amount of data. By disabling globalization support, globalization data is trimmed from the framework's libraries, which reduces the download time of the app.
+Blazor WebAssembly includes support for trimming unused code from .NET Core framework libraries. For example, Blazor's globalization support for culture-specific strings, numbers, and dates require the client to download a large amount of data. By [disabling globalization support](xref:blazor/globalization-localization), globalization data is trimmed from the framework's libraries, which reduces the download time of the app.
 
 > [!NOTE]
 > The following information on Blazor WebAssembly [ahead-of-time (AOT) compilation](/dotnet/standard/glossary#aot) covers a *preview release* feature of ASP.NET Core 6.0. ASP.NET Core 6.0 is scheduled for release later this year.
