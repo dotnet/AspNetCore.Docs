@@ -291,9 +291,6 @@ This app uses an in-memory database. If the app is stopped and started, the prec
 
 ASP.NET Core automatically serializes the object to [JSON](https://www.json.org) and writes the JSON into the body of the response message. The response code for this return type is [200 OK](https://developer.mozilla.org/docs/Web/HTTP/Status/200), assuming there are no unhandled exceptions. Unhandled exceptions are translated into 5xx errors.
 
-<!--
-The return type of the `Gettodoitems` and `GetTodoItem` methods is `MinimalActionEndpointConventionBuilder`.-->
-
 The return types can represent a wide range of HTTP status codes. For example, `GetTodoItem/{id}` can return two different status values:
 
 * If no item matches the requested ID, the method returns a [404 status](https://developer.mozilla.org/docs/Web/HTTP/Status/404) <xref:Microsoft.AspNetCore.Mvc.ControllerBase.NotFound%2A> error code.
